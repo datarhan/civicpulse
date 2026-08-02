@@ -45,15 +45,54 @@ export function normaliseForQuoteMatch(s: string): string {
 }
 
 /**
- * Is `quote` present in `transcript`? Compares a leading window rather than the
- * whole quote: a curator often trims or joins across a segment boundary, and
- * requiring an exact full-length hit would flag those as drift.
+ * Is `quote` present in `transcript`?
+ *
+ * Slides a word window across the whole quote rather than testing only its
+ * start. The leading-window-only version reported four published quotes as
+ * untraceable that were verbatim in the transcript, because a curator had
+ * trimmed the opening differently:
+ *
+ *   quote      "los 50-60% que sí que se retiran de contenedores al día"
+ *   transcript "pasar esos 50-60% que sí que se retiran de contenedores al día"
+ *
+ * Every word after the first two matches. Anchoring on the first eight made
+ * that indistinguishable from an invented sentence — and this script exists
+ * precisely to tell those apart, so a false positive here is not a cosmetic
+ * problem: it spends a curator's attention on a sound citation and, worse,
+ * trains everyone to discount the ones that are real.
  */
 export function quoteAppearsIn(quote: string, transcript: string, words = 8): boolean {
   const q = normaliseForQuoteMatch(quote).split(' ').filter(Boolean)
   if (q.length === 0) return false
-  const needle = q.slice(0, Math.min(words, q.length)).join(' ')
-  return normaliseForQuoteMatch(transcript).includes(needle)
+  const hay = normaliseForQuoteMatch(transcript)
+  const n = Math.min(words, q.length)
+  for (let i = 0; i + n <= q.length; i += 1) {
+    if (hay.includes(q.slice(i, i + n).join(' '))) return true
+  }
+  return false
+}
+
+/**
+ * Longest contiguous run of the quote's words present in the transcript, as a
+ * share of the quote. Reported for the ones that fail, because "0.15 of it is
+ * there" and "0.85 of it is there" are different editorial problems: the first
+ * is an invented sentence, the second is a quote welded together from two
+ * separate passages.
+ */
+export function quoteCoverage(quote: string, transcript: string): number {
+  const q = normaliseForQuoteMatch(quote).split(' ').filter(Boolean)
+  if (q.length === 0) return 0
+  const hay = normaliseForQuoteMatch(transcript)
+  let best = 0
+  for (let i = 0; i < q.length; i += 1) {
+    for (let n = q.length - i; n > best; n -= 1) {
+      if (hay.includes(q.slice(i, i + n).join(' '))) {
+        best = n
+        break
+      }
+    }
+  }
+  return best / q.length
 }
 
 function main() {
@@ -111,11 +150,15 @@ function main() {
         title: f.title,
         quote: text.slice(0, 120),
         sourceClaimId: q.sourceClaimId ?? '',
+        coverage: '',
       }
       const old = readSuperseded(f.plenoId)
       if (quoteAppearsIn(text, t)) ok += 1
       else if (old && quoteAppearsIn(text, old)) supersededOnly.push(row)
-      else drifted.push(row)
+      else {
+        const cov = Math.max(quoteCoverage(text, t), old ? quoteCoverage(text, old) : 0)
+        drifted.push({ ...row, coverage: cov.toFixed(2) })
+      }
     }
   }
 
@@ -146,7 +189,7 @@ function main() {
       `  transcript missing      : ${noTranscript}\n`,
   )
   for (const d of drifted) {
-    console.log(`  ✗ ${d.plenoId}  ${d.findingId}`)
+    console.log(`  ✗ ${d.plenoId}  ${d.findingId}   (longest run present: ${d.coverage})`)
     console.log(`      “${d.quote}”`)
   }
   if (supersededOnly.length > 0) {
