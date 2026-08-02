@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T14:12:06.686Z",
+  "generatedAt": "2026-08-02T15:43:12.593Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -759,21 +759,14 @@
       },
       "verification": {
         "claimId": "ma87e0-103-pro-077932",
-        "verdict": "parcial",
-        "summary": "La reclamación hace referencia a un edificio polivalente financiado, y existe una licitación para obras de impermeabilización en un 'Edificio Polivalente', lo que sugiere una relación temática pero no una corroboración directa del mismo proyecto de financiación integral.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JZ%2F2pX4u%2B497h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato de obras de impermeabilización cubierta Edificio Polivalente por procedimiento abierto súper simplificado",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -921,21 +914,14 @@
       },
       "verification": {
         "claimId": "ma87e0-104-pro-797d2b",
-        "verdict": "parcial",
-        "summary": "Se encuentran licitaciones para planes de formación, incluyendo para personas con diversidad funcional, lo que coincide temáticamente. No obstante, no se halla referencia al monto específico de 62.000 € mencionado en la promesa.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i12iLtOw3qYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio para la ejecución del Plan de Formación, Ocio y Tiempo Libre para personas con diversidad funcional y/o dificultades en el aprendizaje",
-            "similarity": 0.3
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1740,21 +1726,14 @@
       },
       "verification": {
         "claimId": "ma87e0-123-afi-ae351a",
-        "verdict": "verificado",
-        "summary": "La afirmación sobre el aumento de recursos para protección civil se verifica con la licitación para el arrendamiento de 5 vehículos destinados a la Agrupación de Protección Civil, lo que demuestra un aumento en la partida.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Contrato administrativo de suministro _mediante la modalidad de arrendamiento de 5 vehiculos, divididos en cuatro lotes, para las areas de Seguridad Ciudadana, Agrupacion de Protección Civil y Alcaldia del Ayuntamiento de Riba-roj",
-            "similarity": 0.23
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1903,21 +1882,14 @@
       },
       "verification": {
         "claimId": "ma87e0-124-pro-379d2c",
-        "verdict": "parcial",
-        "summary": "La promesa se refiere a la dotación y contratación del 'plan de formación Riva Dona'. Aunque existen licitaciones para 'servicios de formación' que se alinean con la temática, ninguna menciona explícitamente el 'plan Riva Dona', lo que indica una coincidencia parcial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-            "snippet": "80500000-Servicios de formación.",
-            "similarity": 0.5
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2279,27 +2251,14 @@
       },
       "verification": {
         "claimId": "ma87e0-136-pro-e5ff1b",
-        "verdict": "parcial",
-        "summary": "Algunos contratos de licitación están relacionados con áreas de gasto que un plan de ahorro municipal podría abordar, como servicios de comunicaciones y el suministro de carburante para vehículos, pero no con la elaboración del plan en sí.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fYHm8Bv%2BhW%2BiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio de comunicaciones (telefonía y datos)",
-            "similarity": 0.67
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VGh7ihob0AMQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Contrato de suministro de carburante para los vehículos y maquinaria del Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.4
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2971,27 +2930,14 @@
       },
       "verification": {
         "claimId": "ma87e0-157-pro-e86511",
-        "verdict": "parcial",
-        "summary": "Los candidatos confirman la existencia de contratos de servicio de limpieza viaria en Riba-roja, tema principal de la promesa. Sin embargo, no hay evidencia directa que corrobore la modificación o el incremento de dicho contrato.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bWCiPeMjwnKmq21uxhbaVQ%3D%3D",
-            "snippet": "Servicio de limpieza viaria del municipio de Riba-roja",
-            "similarity": 1
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=MjdZ0sfr78Srz3GQd5r6SQ%3D%3D",
-            "snippet": "Contrato de servicio de limpieza viaria del municipio de Riba-roja",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

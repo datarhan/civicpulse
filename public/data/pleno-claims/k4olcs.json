@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T14:12:06.686Z",
+  "generatedAt": "2026-08-02T15:43:12.593Z",
   "version": "1",
   "plenoId": "k4olcs",
   "plenoDate": "2026-04-20",
@@ -67,21 +67,14 @@
       },
       "verification": {
         "claimId": "k4olcs-006-afi-462d5e",
-        "verdict": "verificado",
-        "summary": "La afirmación sobre cuestiones relacionadas con la DANA se corrobora con la existencia de contratos de emergencia para obras de alumbrado público que mencionan explícitamente la DANA como causa.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i7R1v8v1LLWKeVWTb9Scog%3D%3D",
-            "snippet": "Contrato de emergencia de obras de actuación alumbrado público zona este por DANA",
-            "similarity": 0.29
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -298,39 +291,14 @@
       },
       "verification": {
         "claimId": "k4olcs-010-afi-6c6525",
-        "verdict": "verificado",
-        "summary": "La afirmación sobre recursos destinados a servicios como escuelas infantiles, formación de adultos, promoción de la salud y cultura se corrobora con varias licitaciones para catering escolar, servicios de formación, vigilancia de la salud y reparaciones en centros culturales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=z7UouQF%2B3AgQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de catering en escuelas infantiles",
-            "similarity": 0.67
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-            "snippet": "80500000-Servicios de formación.",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0rlFYENVpkYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Prevención ajeno: vigilancia de la salud",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G9Ov8%2BrfB%2BAuf4aBO%2BvQlQ%3D%3D",
-            "snippet": "Contrato menor de obras, para la reparación del centro de transformación del auditorio y casa de la cultura de Riba-roja de Turia.",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -920,21 +888,14 @@
       },
       "verification": {
         "claimId": "k4olcs-018-cit-e5dc0f",
-        "verdict": "parcial",
-        "summary": "El candidato describe un contrato para el desarrollo e implantación de un Panel de Inteligencia de datos turísticos en el marco del Plan de Recuperación, Transformación y Resiliencia, lo cual se relaciona parcialmente con la adquisición de dispositivos para el inventario municipal.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fGWK7%2B%2Fp3sZJ8Trn0ZPzLw%3D%3D",
-            "snippet": "Contrato administrativo de servicio de desarrollo e implantación de un Panel de Inteligencia de datos turísticos en Riba-roja de Túria para el Plan de Sostenibilidad turística en Destino (PSTD/22) en el Marco del Plan de Recuperac",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

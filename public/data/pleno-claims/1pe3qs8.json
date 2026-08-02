@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T14:12:06.686Z",
+  "generatedAt": "2026-08-02T15:43:12.593Z",
   "version": "1",
   "plenoId": "1pe3qs8",
   "plenoDate": "2026-01-07",
@@ -195,21 +195,14 @@
       },
       "verification": {
         "claimId": "1pe3qs8-005-cit-6af61c",
-        "verdict": "parcial",
-        "summary": "Existe un contrato de servicio para la recogida de residuos sólidos urbanos que incluye asistencia técnica y apoyo para el control y supervisión de su prestación, lo cual es topícamente relevante para la auditoría externa mencionada en la reclamación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TO7sKuaZmazpxJFXpLZ%2B2A%3D%3D",
-            "snippet": "Contrato de servicio de recogida de residuos sólidos urbanos del municipio y servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del mismo.",
-            "similarity": 0.23
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T14:12:06.686Z",
+  "generatedAt": "2026-08-02T15:43:12.593Z",
   "version": "1",
   "plenoId": "rx4hb4",
   "plenoDate": "2026-02-09",
@@ -1034,33 +1034,14 @@
       },
       "verification": {
         "claimId": "rx4hb4-455-cit-5e90b2",
-        "verdict": "parcial",
-        "summary": "La afirmación se refiere a la reconstrucción urbana post-DANA de infraestructuras y servicios. Las licitaciones propuestas abordan obras y servicios urbanos generales, relacionados temáticamente pero sin mención explícita a la DANA o a proyectos de reconstrucción específicos por sus efectos.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fmHzgB33HDSXQV0WE7lYPw%3D%3D",
-            "snippet": "Asfaltados urbanos (5 urbanos) se relaciona con la infraestructura urbana mencionada en la afirmación.",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=H7ClfDjddvCrz3GQd5r6SQ%3D%3D",
-            "snippet": "Servicio de redacción de proyecto de obra para la construcción de una pasarela peatonal es una infraestructura urbana.",
-            "similarity": 0.4
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y9xtWLJKz4CcCF8sV%2BqtYA%3D%3D",
-            "snippet": "Rehabilitación cubierta Pabellón Municipal se relaciona con equipamientos e infraestructuras.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

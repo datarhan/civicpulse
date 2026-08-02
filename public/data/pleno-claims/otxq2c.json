@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T14:12:06.686Z",
+  "generatedAt": "2026-08-02T15:43:12.593Z",
   "version": "1",
   "plenoId": "otxq2c",
   "plenoDate": "2025-10-06",
@@ -24,27 +24,14 @@
       },
       "verification": {
         "claimId": "otxq2c-003-cit-9fac1b",
-        "verdict": "verificado",
-        "summary": "La afirmación sobre la promoción de planes estratégicos, innovación y ciudades inteligentes, con planes aprobados o en redacción, se corrobora con la existencia de un plan estratégico territorial en fase de redacción y un plan de destinos turísticos inteligentes.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EPfBoyapDZkQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Redacción del plan estratégico territorial sostenible, integrado y participado del municipio de Riba-roja de Túria",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=R7hBeG%2Fn5eqmq21uxhbaVQ%3D%3D",
-            "snippet": "servicio de dirección y desarrollo del Plan de Destinos Turísticos Inteligentes para Riba-roja de Túria",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -66,33 +53,14 @@
       },
       "verification": {
         "claimId": "otxq2c-003-cit-805ba2",
-        "verdict": "verificado",
-        "summary": "La promoción de un plan estratégico que fomente la innovación y las ciudades inteligentes se corrobora con la redacción de un plan estratégico territorial, un plan de destinos turísticos inteligentes y premios a la innovación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EPfBoyapDZkQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Redacción del plan estratégico territorial sostenible, integrado y participado del municipio de Riba-roja de Túria",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=R7hBeG%2Fn5eqmq21uxhbaVQ%3D%3D",
-            "snippet": "servicio de dirección y desarrollo del Plan de Destinos Turísticos Inteligentes para Riba-roja de Túria",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xX4MskNW8lRVkTabT%2FRM8A%3D%3D",
-            "snippet": "Premios RIV - Riba Innovación Viva.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -114,21 +82,14 @@
       },
       "verification": {
         "claimId": "otxq2c-003-cit-3a6035",
-        "verdict": "verificado",
-        "summary": "El Ayuntamiento ha adjudicado un servicio para la dirección y desarrollo de un Plan de Destinos Turísticos Inteligentes, lo que corrobora la existencia de planes en redacción o aprobación relacionados con ciudades inteligentes.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=R7hBeG%2Fn5eqmq21uxhbaVQ%3D%3D",
-            "snippet": "servicio de dirección y desarrollo del Plan de Destinos Turísticos Inteligentes para Riba-roja de Túria",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -150,27 +111,14 @@
       },
       "verification": {
         "claimId": "otxq2c-004-cit-c67f7e",
-        "verdict": "verificado",
-        "summary": "La afirmación sobre la promoción de planes estratégicos para la innovación y ciudades inteligentes es corroborada por las licitaciones para el Plan de Destinos Turísticos Inteligentes y la redacción de un plan estratégico territorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=R7hBeG%2Fn5eqmq21uxhbaVQ%3D%3D",
-            "snippet": "servicio de dirección y desarrollo del Plan de Destinos Turísticos Inteligentes para Riba-roja de Túria",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EPfBoyapDZkQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Redacción del plan estratégico territorial sostenible, integrado y participado del municipio de Riba-roja de Túria",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -398,21 +346,14 @@
       },
       "verification": {
         "claimId": "otxq2c-005-pro-9bf6f5",
-        "verdict": "parcial",
-        "summary": "The claim concerns the City Council's adhesion to the Spanish network of smart cities. Candidate 0 refers to a plan for 'Smart Tourism Destinations', which is thematically related but not a direct match for the city-wide network adhesion.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=R7hBeG%2Fn5eqmq21uxhbaVQ%3D%3D",
-            "snippet": "servicio de dirección y desarrollo del Plan de Destinos Turísticos Inteligentes para Riba-roja de Túria",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1522,27 +1463,14 @@
       },
       "verification": {
         "claimId": "otxq2c-023-cit-6b6d73",
-        "verdict": "verificado",
-        "summary": "El Plan de Inclusión y Cohesión Social Municipal y los servicios de comedor social y atención a menores en riesgo corroboran la implementación de una cobertura para situaciones de vulnerabilidad, como la pérdida de ingresos y el acompañamiento a menores.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y%2B4KpfdCiqmiEJrVRqloyA%3D%3D",
-            "snippet": "servicio para la elaboración del Plan de Inclusión y Cohesión Social Municipal para el municipio de Riba-roja de Túria.",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Gv7EBVfBZwcQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de comedor social para familias y atención específica durante los periodos de vacaciones escolares para menores, en el centro municipal de Bienestar Social del Ayuntamiento",
-            "similarity": 0.23
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4114,21 +4042,14 @@
       },
       "verification": {
         "claimId": "otxq2c-082-cit-915a1d",
-        "verdict": "parcial",
-        "summary": "El candidato es un contrato de seguro con la Federación Española de Municipios y Provincias, lo cual es topológicamente relacionado con el organismo mencionado en el premio, pero no corrobora la existencia de un premio.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=XgeaweUR6Tm9Hd5zqvq9cg%3D%3D",
-            "snippet": "Contrato privado de seguro flota vehículos basado en el Acuerdo Marco para la contratación de determinados seguros por la Central de Contratación de la Federación Española de Municipios y Provincias: Lote nº 6 Flota vehículos",
-            "similarity": 0.5
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

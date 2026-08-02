@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T14:12:06.686Z",
+  "generatedAt": "2026-08-02T15:43:12.593Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -4699,41 +4699,6 @@
     },
     {
       "claim": {
-        "id": "1du4rf5-113-acu-bc9288",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 113,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "el apoyo de los afectados de la DANA y la dimisión del señor Mazón. Votamos a favor",
-        "context": "el apoyo de los afectados de la DANA y la dimisión del señor Mazón. Votamos a favor",
-        "topic": "social",
-        "entities": {},
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "La frase 'Votamos a favor' indica una acción concreta de votación sobre un tema específico. Es verificable en los registros de votación del pleno municipal para la moción mencionada.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-113-acu-bc9288",
-        "verdict": "parcial",
-        "summary": "Los candidatos se refieren a servicios de limpieza post-DANA, lo que es un tipo de apoyo, pero no abordan la dimisión del señor Mazón ni el apoyo directo a los afectados mencionado en la reclamación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8nJHtO7mD29LAIVZdUs8KA%3D%3D",
-            "snippet": "Servicio de limpieza de caminos y viales como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia.",
-            "similarity": 0.25
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "1du4rf5-114-pro-375448",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -6513,43 +6478,6 @@
         "confidence": 0.2
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-265-acu-368205",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 265,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Por este grave fallo de gestión. Que ha puesto en riesgo la salud. De miles de mujeres.",
-        "context": "Y asumir las responsabilidades políticas pertinentes. Por este grave fallo de gestión. Que ha puesto en riesgo la salud. De miles de mujeres. Actuar desde lo local. A través de acciones de proximidad.",
-        "topic": "salud",
-        "entities": {
-          "referencedEntity": "programa de prevención del cáncer de mama"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "Se acusa a un 'grave fallo de gestión' de haber puesto 'en riesgo la salud de miles de mujeres' en el contexto del programa de prevención del cáncer de mama, lo cual implicaría hechos concretos que podrían ser investigados a través de informes o quejas.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-265-acu-368205",
-        "verdict": "parcial",
-        "summary": "Los contratos de 'vigilancia de la salud' se relacionan con el tema general de salud, pero no abordan directamente un fallo de gestión ni el impacto específico en 'miles de mujeres' como se afirma en la acusación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0rlFYENVpkYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Prevención ajeno: vigilancia de la salud",
-            "similarity": 0.25
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {

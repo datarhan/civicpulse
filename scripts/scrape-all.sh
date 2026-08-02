@@ -100,6 +100,12 @@ BEST_EFFORT=(
   # first time from a residential IP, so it belongs with the other six in
   # scripts/scrape-ci-blocked.sh, not in the gate.
   scrape:paro
+  # LLM step, and CI has no backend by design: no API keys, and ollama is out of
+  # every fallback chain. It cannot pass on a runner, so gating the nightly on it
+  # meant the run could only ever be red. It surfaced the moment scrape:paro was
+  # demoted — one critical failure had been hiding the next.
+  # The real vote extraction runs curator-side in hallazgos-pipeline.sh.
+  extract:all-pleno-votes
   scrape:pleno-agendas
   scrape:consell-cv
   scrape:elections

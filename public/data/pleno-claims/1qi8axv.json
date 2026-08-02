@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T14:12:06.686Z",
+  "generatedAt": "2026-08-02T15:43:12.593Z",
   "version": "1",
   "plenoId": "1qi8axv",
   "plenoDate": "2025-12-23",
@@ -2179,21 +2179,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-059-afi-3e1e17",
-        "verdict": "parcial",
-        "summary": "Los candidatos confirman la existencia de contratos de asistencia técnica en la actualidad, lo que respalda la parte de la afirmación 'y en este sí', pero no proporcionan información sobre el 'contrato anterior' para verificar la comparación completa.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xX4MskNW8lRVkTabT%2FRM8A%3D%3D",
-            "snippet": "Asistencia técnica creación espacio RIV, RIBA INNOVACIÓ VIVA.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

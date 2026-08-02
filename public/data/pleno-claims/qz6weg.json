@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T14:12:06.686Z",
+  "generatedAt": "2026-08-02T15:43:12.593Z",
   "version": "1",
   "plenoId": "qz6weg",
   "plenoDate": "2025-12-01",
@@ -262,21 +262,14 @@
       },
       "verification": {
         "claimId": "qz6weg-011-pro-272366",
-        "verdict": "verificado",
-        "summary": "La promesa de proponer la asunción de gestión directa del Ayuntamiento para la finalización de las obras se verifica con la existencia de licitaciones para servicios técnicos preparatorios para el inicio de dicha gestión en la unidad de ejecución Santa Rosa II.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ppCWsw4C8jUQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de redacción trabajos  técnicos preparatorios para el inicio de la gestión directa de la unidad de ejecución Santa Rosa II",
-            "similarity": 0.27
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2164,21 +2157,14 @@
       },
       "verification": {
         "claimId": "qz6weg-044-cit-70b437",
-        "verdict": "verificado",
-        "summary": "La afirmación sobre la recuperación del edificio 'la botella' está corroborada por las licitaciones para las 'Obras de habilitación edificio la Botaya Fases II y III'.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de habilitación edificio la Botaya Fases II y III",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2201,21 +2187,14 @@
       },
       "verification": {
         "claimId": "qz6weg-045-cit-f2e393",
-        "verdict": "verificado",
-        "summary": "Los contratos de 'Obras de habilitación edificio la Botaya Fases II y III' corroboran la recuperación del edificio mencionado en la afirmación, que estaba abandonado.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de habilitación edificio la Botaya Fases II y III",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2354,21 +2333,14 @@
       },
       "verification": {
         "claimId": "qz6weg-046-pro-651dec",
-        "verdict": "verificado",
-        "summary": "Existen contratos de arrendamiento y habilitación de espacios para aulas adicionales destinadas al Conservatorio de Música y Danza, lo cual corrobora la promesa de incorporar el Conservatorio de Danza.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BXRNnYuo8hkBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza",
-            "similarity": 0.27
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3374,21 +3346,14 @@
       },
       "verification": {
         "claimId": "qz6weg-058-cit-66709b",
-        "verdict": "parcial",
-        "summary": "The claim is about publishing an agreement on the municipal transparency portal. Candidates show tenders for the development and maintenance of a Transparency Portal, indicating a related action but not direct evidence of publication.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mV0QInbOtkfnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Servicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición especial de ejecuci",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3999,21 +3964,14 @@
       },
       "verification": {
         "claimId": "qz6weg-066-pro-10b69a",
-        "verdict": "parcial",
-        "summary": "The claim refers to projects being 'in phases' and 'in process'. The awarded tender for 'Obras de habilitación edificio la Botaya Fases II y III' is related as it explicitly mentions 'Fases II y III' and its awarded status indicates it has progressed from being 'in process'.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de habilitación edificio la Botaya Fases II y III",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -10947,33 +10905,14 @@
       },
       "verification": {
         "claimId": "qz6weg-264-afi-0d9a3b",
-        "verdict": "verificado",
-        "summary": "Múltiples registros de contratación confirman la existencia de proyectos y servicios con fechas de 2024 y 2025, alineándose con el período mencionado en la afirmación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KFJ4LSXR4ZGzz8fXU2i3eQ%3D%3D",
-            "snippet": "Servicio ornamentación alumbrado navideño 2024-2025 · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.4
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KFJ4LSXR4ZGzz8fXU2i3eQ%3D%3D",
-            "snippet": "Servicio ornamentación alumbrado navideño 2024-2025 · Ayuntamiento de Riba-roja de Túria · revoked",
-            "similarity": 0.4
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=031ONMu5JSn%2B3JAijKO%2Bkg%3D%3D",
-            "snippet": "adquisición de vestuario laboral y EPIs para el personal del Taller de Empleo Riba-roja Bonica VI FOTAE/2024/25/46, proyecto de formación y empleo",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -12074,21 +12013,14 @@
       },
       "verification": {
         "claimId": "qz6weg-278-cit-1e696b",
-        "verdict": "parcial",
-        "summary": "The claim mentions an initiative or campaign for local commerce. Candidate 4, 'Actuación musical feria del comercio 2019', is topically related as a specific event within a commerce fair, which supports local commerce.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=82sUgR%2BfOSyXQV0WE7lYPw%3D%3D",
-            "snippet": "Actuación musical feria del comercio 2019",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

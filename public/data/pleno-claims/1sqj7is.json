@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T14:12:06.686Z",
+  "generatedAt": "2026-08-02T15:43:12.593Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -799,21 +799,14 @@
       },
       "verification": {
         "claimId": "1sqj7is-033-cit-3e2633",
-        "verdict": "parcial",
-        "summary": "Existe un contrato de consultoría y asistencia jurídica relacionada con el contrato de servicio de gestión integral del agua, lo cual es temáticamente relevante para la iniciativa de adecuar la normativa municipal de las tarifas del Servicio Público de Gestión Integral del Agua.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Sn3tl1a79p4uf4aBO%2BvQlQ%3D%3D",
-            "snippet": "Contrato Menor de consultoría y asistencia jurídica especializada en relación al contrato de servicio de gestión integral del agua y los procedimientos judiciales que le afectan.",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1006,27 +999,14 @@
       },
       "verification": {
         "claimId": "1sqj7is-039-pro-55766c",
-        "verdict": "parcial",
-        "summary": "Los candidatos demuestran el uso del \"Sistema Dinámico de Adquisición\", que es el objeto de la afirmación sobre la reducción de plazos administrativos, aunque no verifican directamente la reducción de dichos plazos.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4roXkK9o42irz3GQd5r6SQ%3D%3D",
-            "snippet": "Contrato derivado del sistema dinámico de adquisición de servicios para TALLERES de INFORMÁTICA en la EPA.",
-            "similarity": 0.43
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2FxOcSrQ966OcCF8sV%2BqtYA%3D%3D",
-            "snippet": "Contratación derivada del sistema dinámico de adquisición (SDA) de servicios de diversa índole, para la prestación del servicio de TALLER DE INGLÉS a impartir en la Escuela Pública de Adultos.",
-            "similarity": 0.24
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1583,21 +1563,14 @@
       },
       "verification": {
         "claimId": "1sqj7is-068-pro-adb4e8",
-        "verdict": "parcial",
-        "summary": "Los contratos derivados del sistema dinámico de adquisición reflejan el compromiso continuo de trabajar en la contratación pública, alineándose con la promesa de mejorar su innovación y transparencia.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4roXkK9o42irz3GQd5r6SQ%3D%3D",
-            "snippet": "Contrato derivado del sistema dinámico de adquisición de servicios para TALLERES de INFORMÁTICA en la EPA.",
-            "similarity": 0.57
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
