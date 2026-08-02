@@ -13,7 +13,7 @@
  */
 
 import { existsSync, readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { resolve, dirname } from 'node:path'
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
 import type { MyContext } from '../types.ts'
@@ -26,9 +26,20 @@ import {
   type CurationQueue,
 } from '../services/curation.ts'
 
-const QUEUE_PATH =
-  process.env.CURATION_QUEUE_PATH ??
-  resolve(process.cwd(), '..', 'editorial', 'auto-curation-queue-pending-measurement.json')
+/**
+ * Where the queue lives.
+ *
+ * Deployed (Fly): the host PUSHES it to POST /curation/queue and it lands on
+ * the volume — the container has no view of the host filesystem, so a path into
+ * ../editorial would silently always be empty.
+ * Local dev: fall back to the host path the auto-curate run writes directly.
+ */
+function queuePath(): string {
+  if (process.env.CURATION_QUEUE_PATH) return process.env.CURATION_QUEUE_PATH
+  const onVolume = resolve(dirname(process.env.DB_PATH ?? './data/bot.db'), 'curation-queue.json')
+  if (existsSync(onVolume)) return onVolume
+  return resolve(process.cwd(), '..', 'editorial', 'auto-curation-queue-pending-measurement.json')
+}
 
 function parseAdmins(): Set<number> {
   const ids = new Set<number>()
@@ -40,6 +51,7 @@ function parseAdmins(): Set<number> {
 }
 
 function loadQueue(): CurationQueue | null {
+  const QUEUE_PATH = queuePath()
   if (!existsSync(QUEUE_PATH)) return null
   try {
     const raw = JSON.parse(readFileSync(QUEUE_PATH, 'utf8'))
@@ -51,8 +63,15 @@ function loadQueue(): CurationQueue | null {
 
 export function registerCurarCommand(bot: Bot<MyContext>, db: Db) {
   const admins = parseAdmins()
+  // Log on BOTH paths. A component that only speaks when it is broken cannot be
+  // confirmed working, and "started fine" then looks identical to "never
+  // registered" in the logs.
   if (admins.size === 0) {
     console.log('[curar] ADMIN_USER_IDS not set — curation commands disabled')
+  } else {
+    console.log(
+      `[curar] curation enabled for ${admins.size} admin(s): ${[...admins].join(', ')} · queue ${queuePath()}`,
+    )
   }
   const isAdmin = (ctx: MyContext) => !!ctx.from?.id && admins.has(ctx.from.id)
   const denied = 'Comando reservado a la curaduría editorial.'

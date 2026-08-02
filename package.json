@@ -153,7 +153,8 @@
     "review:surfaces": "npx tsx scripts/review-surfaces.ts",
     "check:finding-entities": "npx tsx scripts/check-finding-entities.ts",
     "eval:extractor": "npx tsx scripts/eval-extractor.ts",
-    "apply-curation": "npx tsx scripts/apply-curation.ts"
+    "apply-curation": "npx tsx scripts/apply-curation.ts",
+    "push-curation-queue": "npx tsx scripts/push-curation-queue.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

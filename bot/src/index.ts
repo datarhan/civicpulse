@@ -26,6 +26,8 @@ import { getQueja } from './db/queries.ts'
 import { routeUsingLocalOfficials } from './services/router.ts'
 import { logger } from './util/log.ts'
 import { buildHealth } from './services/health'
+import { handleCurationRequest } from './services/curation-http.ts'
+import { pendingApplications } from './services/curation.ts'
 
 function makeBot() {
   const token = process.env.BOT_TOKEN
@@ -107,6 +109,25 @@ async function main() {
 
     const server = http.createServer(async (req, res) => {
       const url = new URL(req.url ?? '/', `http://${req.headers.host ?? 'localhost'}`)
+
+      // Curation loop for a REMOTE bot. Mounted in BOTH branches: production on
+      // Fly runs webhook mode, and mounting it only on the long-polling server
+      // meant the endpoints 404'd in the only place they are actually needed.
+      if (
+        await handleCurationRequest(req, res, {
+          listPending: () => pendingApplications(db as never),
+          markApplied: (refs) => {
+            const stmt = db.prepare(
+              "UPDATE curation_decisions SET applied_at = datetime('now') WHERE ref = ? AND applied_at IS NULL",
+            )
+            let n = 0
+            for (const r of refs) n += (stmt.run(r) as { changes: number }).changes
+            return n
+          },
+        })
+      ) {
+        return
+      }
 
       // Public export endpoint. Protected by an optional bearer token.
       if (req.method === 'GET' && url.pathname === '/export/quejas.json') {
@@ -242,7 +263,22 @@ async function main() {
     // webhook mode (3000 by default); doesn't conflict because this branch
     // never enters webhook mode.
     const http = await import('node:http')
-    const healthServer = http.createServer((req, res) => {
+    const healthServer = http.createServer(async (req, res) => {
+      // Curation loop for a REMOTE bot: the queue is produced on the host and
+      // pushed here, decisions are pulled back. Without this the /curar command
+      // would always report an empty queue on Fly.
+      const handled = await handleCurationRequest(req, res, {
+        listPending: () => pendingApplications(db as never),
+        markApplied: (refs) => {
+          const stmt = db.prepare(
+            "UPDATE curation_decisions SET applied_at = datetime('now') WHERE ref = ? AND applied_at IS NULL",
+          )
+          let n = 0
+          for (const r of refs) n += (stmt.run(r) as { changes: number }).changes
+          return n
+        },
+      })
+      if (handled) return
       if (req.method === 'GET' && (req.url === '/health' || req.url === '/')) {
         res.statusCode = 200
         res.setHeader('Content-Type', 'application/json')
