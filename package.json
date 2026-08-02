@@ -146,6 +146,8 @@
     "check:corpus": "bash scripts/verify-transcript-corpus.sh",
     "check:drift": "npx tsx scripts/check-prose-drift.ts",
     "check:vocabulary": "npx tsx scripts/check-vocabulary.ts",
+    "check:runs": "npx tsx scripts/check-runs.ts",
+    "check:retrieval": "npx tsx scripts/check-retrieval.ts",
     "review:surfaces": "npx tsx scripts/review-surfaces.ts"
   },
   "dependencies": {

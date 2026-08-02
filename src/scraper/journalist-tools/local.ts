@@ -4,9 +4,11 @@
  * agent corpus (transcripts + press) with graceful lexical-only fallback.
  */
 import { resolve } from 'node:path'
+import { existsSync, readFileSync } from 'node:fs'
 import { matchesAnyToken, readJsonSnapshot, tokenize } from './internal'
 import { loadAgentCorpus, rankAgentCorpus, type AgentCorpusRow } from '../agent-corpus'
-import { embedTexts } from '../embed-client'
+import { embedTexts, type EmbedOptions } from '../embed-client'
+import { parseCorpusSidecar, type CorpusSidecar } from '../retrieval-health'
 
 // ─── Local-snapshot tools ──────────────────────────────────────────────────
 
@@ -91,20 +93,52 @@ function warnOnce(path: string, msg: string): void {
   process.stderr.write(`[journalist-tools] ${msg}\n`)
 }
 
-let defaultEmbedFn: ((text: string) => Promise<number[]>) | null = null
+/**
+ * Query embedder pinned to the backend that BUILT the corpus, read from its
+ * `.model` sidecar.
+ *
+ * Previously this let the client resolve the backend from `EMBED_BACKEND` /
+ * auto-detect. That is ambient state, and it was simply wrong here: the agent
+ * corpus is gemini/768 while an `OPENAI_API_KEY` in the environment resolves to
+ * openai/1536, so every query mismatched, the dim guard below fired, and
+ * semantic recall was silently off for the journalist agent — the same defect
+ * already fixed once on the verifier corpus, still live on this one.
+ *
+ * The corpus knows how it was built; ambient config has to be remembered
+ * correctly at every call site. Prefer the corpus.
+ */
+const embedFnCache = new Map<string, (text: string) => Promise<number[]>>()
 
-function getDefaultEmbedFn(): (text: string) => Promise<number[]> {
-  if (!defaultEmbedFn) {
-    defaultEmbedFn = async (text: string) => {
-      // Let the client resolve the backend (env/auto) so the
-      // insufficient_quota → gemini latch applies at query time; only an
-      // explicitly env-pinned ollama stays pinned.
-      const backend = process.env.EMBED_BACKEND as 'openai' | 'gemini' | 'ollama' | undefined
-      const [vec] = await embedTexts([text], backend === 'ollama' ? { backend } : {})
-      return vec
-    }
+function getCorpusEmbedFn(cachePath: string): (text: string) => Promise<number[]> {
+  const hit = embedFnCache.get(cachePath)
+  if (hit) return hit
+
+  let side: CorpusSidecar = {}
+  try {
+    const p = `${cachePath}.model`
+    if (existsSync(p)) side = parseCorpusSidecar(readFileSync(p, 'utf8'))
+  } catch {
+    /* no sidecar → fall back to ambient resolution below */
   }
-  return defaultEmbedFn
+
+  const fn = async (text: string) => {
+    const opts: EmbedOptions = {}
+    if (side.backend === 'openai' || side.backend === 'gemini' || side.backend === 'ollama')
+      opts.backend = side.backend
+    if (side.model) opts.model = side.model
+    if (side.dim) opts.dim = side.dim
+    // No sidecar: preserve the previous behaviour — let the client resolve
+    // (so the insufficient_quota → gemini latch still applies), except that an
+    // explicitly env-pinned ollama stays pinned.
+    if (!opts.backend) {
+      const backend = process.env.EMBED_BACKEND as 'openai' | 'gemini' | 'ollama' | undefined
+      if (backend === 'ollama') opts.backend = backend
+    }
+    const [vec] = await embedTexts([text], opts)
+    return vec
+  }
+  embedFnCache.set(cachePath, fn)
+  return fn
 }
 
 /**
@@ -150,7 +184,7 @@ export async function semanticLocalHits(
 
   let queryVec: number[]
   try {
-    queryVec = await (opts.embedFn ?? getDefaultEmbedFn())(q)
+    queryVec = await (opts.embedFn ?? getCorpusEmbedFn(cachePath))(q)
   } catch (err) {
     warnOnce(
       `${cachePath}#embed`,

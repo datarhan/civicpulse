@@ -952,8 +952,22 @@ export async function getShortlist(
     return shortlistCandidates(inputs, topK)
   }
 
+  // Pin the query backend to whatever BUILT this corpus, per its `.model`
+  // sidecar. `EMBED_BACKEND` is ambient and has been wrong here: the corpus was
+  // gemini/768 while an OPENAI_API_KEY in the env resolved to openai/1536, so
+  // every cosine returned 0, every candidate fell under the floor, and the run
+  // reported "no candidates" — identical to an empty corpus. The sidecar is the
+  // only thing that knows the truth, and nothing read it. Fall back to ambient
+  // resolution only when there is no sidecar.
+  const { parseCorpusSidecar } = await import('./retrieval-health')
+  const side = corpus.model ? parseCorpusSidecar(corpus.model) : {}
   const embedFn: import('./semantic-shortlist').EmbedFn = async (text) => {
-    const [v] = await embedModule.embedTexts([text])
+    const opts: Record<string, unknown> = {}
+    if (side.backend === 'openai' || side.backend === 'gemini' || side.backend === 'ollama')
+      opts.backend = side.backend
+    if (side.model) opts.model = side.model
+    if (side.dim) opts.dim = side.dim
+    const [v] = await embedModule.embedTexts([text], opts)
     return v
   }
 

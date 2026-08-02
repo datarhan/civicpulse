@@ -14,6 +14,7 @@ playwright-report/
 test-results/
 .llm-cache/
 .embed-cache/
+.run-manifests/
 eval/scorecards/
 .press-cache/
 .research-cache/

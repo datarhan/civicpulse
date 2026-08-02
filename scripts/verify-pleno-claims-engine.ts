@@ -21,7 +21,8 @@ import { resolve } from 'node:path'
 import type { PlenoClaim } from '../src/scraper/pleno-claim'
 import type { ClaimVerification, ClaimVerdict } from '../src/scraper/claim-verifier'
 import { makeEngineVerifier, loadVerifierContext } from '../src/scraper/verifier-runner'
-import { resetBudget } from '../src/llm/client'
+import { resetBudget, getRunStats } from '../src/llm/client'
+import { startRun, formatManifest } from '../src/scraper/run-manifest'
 import { loadOverlay, rebuildVerified, OVERLAY } from './verified-rebuild'
 import { applyOverlayEntries, type ApplyEntry, type Overlay } from '../src/scraper/verified-merge'
 
@@ -67,6 +68,13 @@ async function main() {
   // This is the heaviest LLM consumer in the repo (it walks every claim), and
   // it was the one script of eighteen that never armed the guard.
   resetBudget()
+  // Counts are recorded here but MEASURED in the llm client, so the manifest
+  // cannot inherit this script's beliefs about what it did.
+  const run = startRun('verify-pleno-claims-engine', {
+    mode: process.argv.includes('--base') ? 'base' : 'llm-overclaims',
+    getStats: getRunStats,
+    model: MODEL,
+  })
   if (!existsSync(VERIFIED)) {
     process.stderr.write('[verify-engine] verified.json missing — run verify:pleno-claims first\n')
     process.exit(1)
@@ -148,8 +156,10 @@ async function main() {
   for (const id of targets) {
     if (done >= args.max) break
     const claim = claimById.get(id)
+    run.attempt()
     if (!claim) {
       skipped++
+      run.skip('claim not in snapshot')
       continue
     }
     done++
@@ -159,6 +169,7 @@ async function main() {
     } catch (err) {
       process.stderr.write(`[verify-engine] ${id} engine error: ${String(err).slice(0, 120)}\n`)
       skipped++
+      run.skip('engine error')
       continue
     }
     const cur = currentVerdict.get(id) ?? 'sin-datos'
@@ -177,10 +188,15 @@ async function main() {
         editor: `verdict-engine:${MODEL}`,
       })
       retracted++
+      run.judge()
+      run.record('retracted')
     } else if (skippedIds.has(id)) {
       unjudged++
+      run.neverAttempt()
     } else {
       kept++
+      run.judge()
+      run.record('kept')
     }
     if (done % 10 === 0)
       process.stderr.write(`[verify-engine] ${done}/${targets.length} · ${retracted} retracted\n`)
@@ -203,6 +219,13 @@ async function main() {
       `never asked ${unjudged} · skipped ${skipped}` +
       `${args.dryRun ? ' (DRY-RUN, nothing written)' : ''}\n`,
   )
+
+  const { manifest, findings } = run.finish({ exitCode: process.exitCode ? 1 : 0 })
+  process.stderr.write(`\n${formatManifest(manifest)}\n`)
+  for (const f of findings) {
+    process.stderr.write(`  ${f.level.toUpperCase()} [${f.code}] ${f.message}\n`)
+  }
+  if (findings.some((f) => f.level === 'error')) process.exitCode = 1
 }
 
 function writeOverlay(o: Overlay) {

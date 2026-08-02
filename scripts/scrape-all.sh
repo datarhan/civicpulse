@@ -256,6 +256,24 @@ if ! npm run check:cadence; then
   soft_failures+=("check:cadence")
 fi
 
+# Did the LLM passes that ran overnight actually do work? A run that judged
+# nothing, or whose every call failed having consumed zero tokens, reports
+# success today. See src/scraper/run-manifest.ts for the three incidents.
+if ! npm run check:runs; then
+  echo "[scrape-all] SOFT-FAILED: check:runs — a run reported success without doing work"
+  soft_failures+=("check:runs")
+fi
+
+# Can the embedding corpora still be searched? --offline keeps this free and
+# CI-safe (structural + sidecar checks only, no API calls); the self-retrieval
+# probe runs curator-side where a key is present. A corpus queried at the wrong
+# width scores 0 on every row and reports it as "no candidates" — the failure
+# that left 653 claims unjudged.
+if ! npm run check:retrieval -- --offline; then
+  echo "[scrape-all] SOFT-FAILED: check:retrieval — corpus unsearchable or mis-shaped"
+  soft_failures+=("check:retrieval")
+fi
+
 echo ""
 echo "================================================================"
 echo "[scrape-all] summary"

@@ -333,6 +333,7 @@ export function resetBudget(limit?: number) {
     tokensUsed: 0,
     limit: limit ?? (envLimit > 0 ? envLimit : defaultLimit),
   }
+  resetRunStats()
   // Also reset the circuit breaker so a stuck state from the previous run
   // doesn't bleed into a fresh extract. Threshold tuneable via env.
   resetCircuit(Number(process.env.LLM_CIRCUIT_THRESHOLD || 10))
@@ -346,6 +347,59 @@ function chargeBudget(tokens: number): boolean {
 
 export function getBudget(): RunBudget | null {
   return currentBudget
+}
+
+/**
+ * Per-run LLM traffic counters, accumulated at the one chokepoint every call
+ * passes through.
+ *
+ * Scripts already report their own progress, but a script can only report what
+ * it believes happened. When the backend stopped answering, the heaviest
+ * consumer in the repo reported `re-judged 1017 · kept 1017` having made zero
+ * successful calls — its own bookkeeping was intact and completely wrong. These
+ * counters are measured one layer below, so a run cannot claim work it did not
+ * do.
+ *
+ * `zeroTokenFailures` is the specific signature worth naming: a failure that
+ * consumed no tokens and cost nothing means the backend refused before reading
+ * the prompt (rate limit, session lock, dead binary) — the work was never hard,
+ * it was never attempted. 190 of those in a row is a broken pipe, not a
+ * difficult corpus, and the two look identical in a progress log.
+ */
+export interface RunStats {
+  /** callLLM invocations that reached at least one backend. */
+  calls: number
+  cacheHits: number
+  ok: number
+  failed: number
+  zeroTokenFailures: number
+  /** Calls skipped because the breaker was already open (it did its job). */
+  shortCircuited: number
+  tokens: number
+  costUSD: number
+}
+
+function freshStats(): RunStats {
+  return {
+    calls: 0,
+    cacheHits: 0,
+    ok: 0,
+    failed: 0,
+    zeroTokenFailures: 0,
+    shortCircuited: 0,
+    tokens: 0,
+    costUSD: 0,
+  }
+}
+
+let currentStats: RunStats = freshStats()
+
+export function getRunStats(): RunStats {
+  return { ...currentStats }
+}
+
+export function resetRunStats(): void {
+  currentStats = freshStats()
 }
 
 // ─── Cache ──────────────────────────────────────────────────────────────────
@@ -1128,12 +1182,18 @@ export async function callLLM<TSchema extends ZodTypeAny>(
   })
 
   const cached = readCache<z.infer<TSchema>>(config.cacheDir, key)
-  if (cached) return cached.result
+  if (cached) {
+    currentStats.cacheHits += 1
+    return cached.result
+  }
 
   // Circuit breaker short-circuit — once tripped, stop making API calls and
   // let the run finish writing its checkpoint cleanly. One log line, then
   // silent skip for the rest of the run.
-  if (currentCircuit?.tripped) return null
+  if (currentCircuit?.tripped) {
+    currentStats.shortCircuited += 1
+    return null
+  }
 
   // Budget check before making the call — estimate by prompt length.
   const approxTokens = Math.ceil((opts.systemPrompt.length + opts.userPrompt.length) / 4)
@@ -1280,6 +1340,18 @@ export async function callLLM<TSchema extends ZodTypeAny>(
   // those makes the failure permanent: every re-run replays null instantly,
   // defeating the whole point of re-running. Successful results are stable
   // given the content-addressed key, so caching them is always safe.
+  currentStats.calls += 1
+  currentStats.tokens += tokenCount
+  currentStats.costUSD += costUSD
+  if (result !== null) {
+    currentStats.ok += 1
+  } else {
+    currentStats.failed += 1
+    // Nothing was read and nothing was billed ⇒ no backend ever processed the
+    // prompt. Distinguishes "the model found this hard" from "the pipe is shut".
+    if (tokenCount === 0) currentStats.zeroTokenFailures += 1
+  }
+
   if (result !== null) {
     const usedConfig: ClientConfig = { ...config, backend: usedBackend }
     const entry: CacheEntry<z.infer<TSchema>> = {
