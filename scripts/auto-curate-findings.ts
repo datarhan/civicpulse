@@ -57,6 +57,11 @@ import {
   explainMissingMeasurement,
   loadMeasurements,
 } from '../src/scraper/automation-policy'
+import {
+  buildCurationQueue,
+  isCleanForReview,
+  type QueueInputs,
+} from '../src/scraper/curation-queue'
 
 /**
  * Measurement key governing unattended publication of auto-curated findings.
@@ -66,6 +71,40 @@ const FINDING_MEASUREMENT_KEY = 'finding.informational.bloc'
 
 /** Set when the automation policy refuses publication; drafts still get written. */
 let policyBlocked: string | null = null
+
+/**
+ * Datasets the curation checks need: the name haystack, the current verdict of
+ * every claim, and the company names a human already accepted.
+ */
+function buildQueueInputs(): QueueInputs {
+  const read = (p: string): any => {
+    const abs = resolve(p)
+    return existsSync(abs) ? JSON.parse(readFileSync(abs, 'utf8')) : null
+  }
+  const tenders = read('public/data/tenders.json') ?? {}
+  const bdns = read('public/data/bdns.json') ?? {}
+  const entities = read('public/data/entities.json') ?? {}
+  const verified = read('public/data/pleno-claims-verified.json') ?? { items: [] }
+  const baseline = read('.finding-entity-baseline.json') ?? {}
+
+  const haystack = [
+    ...[...(tenders.contracts ?? []), ...(tenders.tenders ?? [])].map(
+      (c: any) => `${c.title ?? ''} ${c.assignee ?? ''} ${c.contractor ?? ''}`,
+    ),
+    ...(bdns.items ?? bdns.convocatorias ?? []).map(
+      (b: any) => `${b.title ?? b.descripcion ?? ''} ${b.organo ?? ''}`,
+    ),
+    ...(entities.items ?? entities.entities ?? []).map(
+      (e: any) => `${e.name ?? e.canonical ?? ''} ${(e.aliases ?? []).join(' ')}`,
+    ),
+  ].join(' ')
+
+  const verdictByClaimId = new Map<string, string>()
+  for (const it of verified.items ?? []) {
+    verdictByClaimId.set(it.claim.id, it.verification.verdict)
+  }
+  return { haystack, verdictByClaimId, reviewedNames: baseline.reviewed ?? [] }
+}
 
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
 const FINDINGS = resolve('public/data/pleno-findings.json')
@@ -367,11 +406,21 @@ async function main() {
       ? resolve('editorial/auto-curation-queue-pending-measurement.json')
       : `/tmp/auto-curate-preview-${Date.now()}.json`
     mkdirSync(resolve('editorial'), { recursive: true })
-    writeFileSync(previewPath, JSON.stringify({ accepted, rejected }, null, 2) + '\n')
+    // Ship the deterministic checks WITH the drafts. A curator reviewing on a
+    // phone can judge prose but cannot check a company name against 1,231
+    // contract rows — and that was two of the four real defects found in the
+    // published corpus. See src/scraper/curation-queue.ts.
+    const queue = buildCurationQueue(accepted, buildQueueInputs(), {
+      reason: policyBlocked ?? 'dry-run',
+      now: new Date().toISOString(),
+    })
+    writeFileSync(previewPath, JSON.stringify(queue, null, 2) + '\n')
+    const blockers = queue.items.filter((i) => !isCleanForReview(i)).length
     process.stdout.write(
       policyBlocked
-        ? `[auto-curate] NOT PUBLISHED (${policyBlocked}) — ${accepted.length} draft(s) written to ${previewPath} for curator review.\n`
-        : `[auto-curate] DRY RUN — wrote ${accepted.length} accepted finding(s) to ${previewPath} (no persistence).\n`,
+        ? `[auto-curate] NOT PUBLISHED (${policyBlocked}) — ${queue.items.length} draft(s) → ${previewPath}\n` +
+            `[auto-curate]   ${blockers} carry a blocker for the curator's attention · review with /curar on the bot\n`
+        : `[auto-curate] DRY RUN — wrote ${queue.items.length} accepted finding(s) to ${previewPath} (no persistence).\n`,
     )
     return
   }

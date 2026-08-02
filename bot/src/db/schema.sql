@@ -72,3 +72,20 @@ CREATE TABLE IF NOT EXISTS subscriptions (
 );
 
 CREATE INDEX IF NOT EXISTS idx_subscriptions_user ON subscriptions(telegram_user_id);
+
+-- Curation decisions on auto-curated findings the automation policy refused to
+-- publish. The bot NEVER writes public/data/pleno-findings.json: it records a
+-- decision here, and the host-side `npm run apply-curation` publishes approved
+-- drafts through the validated CLI so git history stays the audit trail.
+-- One row per (ref, admin) — a second decision by the same admin replaces it.
+CREATE TABLE IF NOT EXISTS curation_decisions (
+  ref               TEXT NOT NULL,
+  telegram_user_id  INTEGER NOT NULL,
+  decision          TEXT NOT NULL CHECK (decision IN ('approve','reject')),
+  note              TEXT,
+  created_at        TEXT NOT NULL DEFAULT (datetime('now')),
+  applied_at        TEXT,
+  PRIMARY KEY (ref, telegram_user_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_curation_pending ON curation_decisions(applied_at);

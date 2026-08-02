@@ -11,7 +11,9 @@
     "test:watch": "vitest",
     "migrate": "tsx src/db/migrate.ts",
     "process-photos": "tsx src/services/process-photos.ts",
-    "export": "tsx src/services/export.ts"
+    "export": "tsx src/services/export.ts",
+    "export-curation": "npx tsx scripts/export-curation.ts",
+    "mark-curation-applied": "npx tsx scripts/mark-curation-applied.ts"
   },
   "dependencies": {
     "@grammyjs/conversations": "^2.1.0",

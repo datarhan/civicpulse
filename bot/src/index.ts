@@ -15,6 +15,7 @@ import { registerRanking } from './commands/ranking.ts'
 import { registerDigest } from './commands/digest.ts'
 import { registerBatchCommand } from './commands/batch.ts'
 import { registerEscalar } from './commands/escalar.ts'
+import { registerCurarCommand } from './commands/curar.ts'
 import { makeChannel } from './services/channel.ts'
 import { buildSnapshot } from './services/snapshot.ts'
 import { buildBatch, renderBatchHtml, renderBatchMarkdown } from './services/batch.ts'
@@ -51,6 +52,7 @@ function makeBot() {
   registerDigest(bot, db)
   registerBatchCommand(bot, db, channel)
   registerEscalar(bot, db, channel)
+  registerCurarCommand(bot, db)
 
   // Silencio cron — hourly tick that auto-transitions aged registered
   // quejas to silencio_negativo. Paused during LOREG freeze.
