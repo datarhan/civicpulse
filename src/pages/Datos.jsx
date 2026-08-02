@@ -218,6 +218,24 @@ function DatasetsCatalog() {
       path: '/data/obras.json',
       fmt: ['json'],
     },
+    // Added 2026-08-02. The catalogue described itself as "Catálogo de datasets"
+    // while listing 20 of the snapshots the project publishes — omitting BOE,
+    // BOP, elections, the Sindicatura audits, CTBG, budget execution, obras and
+    // the EU TED notices, all of which are rendered elsewhere on the site. A
+    // journalist reading this page to see what is reusable would have concluded
+    // they did not exist. These are fetched lazily by the catalogue itself, so
+    // the counts come from the files rather than a hand-kept number.
+    ...EXTRA_DATASETS.map(([name, path, source]) => ({
+      name,
+      // No row count: showing one would mean fetching fourteen more snapshots
+      // on page load. The gap this closes is DISCOVERABILITY — the datasets
+      // were invisible, not uncounted — and each row links straight to the file.
+      rows: '—',
+      updated: '—',
+      source,
+      path,
+      fmt: ['json'],
+    })),
   ]
 
   return (
@@ -674,6 +692,31 @@ function AsociacionesCard() {
     </Card>
   )
 }
+
+/**
+ * Datasets that were missing from the catalogue.
+ *
+ * Kept as data rather than more hand-written JSX blocks: each entry is one line,
+ * so adding the next dataset is a one-line change instead of a 9-line block —
+ * which is a large part of why these fourteen drifted out of the catalogue in
+ * the first place.
+ */
+const EXTRA_DATASETS = [
+  ['BOE · Boletín Oficial del Estado', '/data/boe.json', 'boe.es · datos abiertos'],
+  ['BOP València · edictos', '/data/bop.json', 'BOP València'],
+  ['Ejecución presupuestaria', '/data/budget-execution.json', 'Ayuntamiento · SICALWIN'],
+  ['Contratos EU · TED', '/data/tenders-ted.json', 'ted.europa.eu'],
+  ['Resultados electorales', '/data/elections.json', 'GVA/ICV · ARGOS'],
+  ['Sindicatura de Comptes CV', '/data/sindicatura.json', 'sindicom.gva.es'],
+  ['CTBG · reclamaciones', '/data/ctbg.json', 'MinHac · CTBG'],
+  ['Consell de Transparència CV', '/data/consell-cv.json', 'GVA · CTCV'],
+  ['Obras municipales', '/data/obras.json', 'Portal de Transparencia'],
+  ['Procesos selectivos', '/data/procesos-selectivos.json', 'ribarroja.es'],
+  ['Registro de asociaciones', '/data/asociaciones.json', 'Registro Municipal'],
+  ['Servicios civiles (POI)', '/data/civic-poi.json', 'OpenStreetMap'],
+  ['Callejero', '/data/streets.json', 'OpenStreetMap'],
+  ['Empleo público · ADL', '/data/empleo.json', 'ribaocupacio.portalemp.com'],
+]
 
 export default function Datos() {
   const t = useT()
