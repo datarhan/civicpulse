@@ -68,9 +68,13 @@ export function SectionHeader({ tone = 'neutral', title, meta, badge, style }) {
         ...style,
       }}
     >
-      <span
+      {/* h2, not a span: these bands ARE the column's section structure, so
+          they are what a screen-reader user navigates by. Rendering them as
+          styled text left the landing with no heading outline at all. */}
+      <h2
         className="mono"
         style={{
+          margin: 0,
           fontSize: 10,
           color: t.ink,
           letterSpacing: '.12em',
@@ -79,7 +83,7 @@ export function SectionHeader({ tone = 'neutral', title, meta, badge, style }) {
         }}
       >
         {title}
-      </span>
+      </h2>
       {badge}
       {meta != null && (
         <span

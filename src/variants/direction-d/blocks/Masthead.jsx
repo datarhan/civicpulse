@@ -20,8 +20,16 @@ export function EditorialMasthead({ now }) {
         <span>CivicPulse · Boletín</span>
         <span>{fmtDateLong(now)}</span>
       </div>
-      <div
+      {/* The page's only h1. Until Aug 2026 the landing's single heading was
+          the LeadStory press headline — so the homepage's h1 was a third-party
+          article title, and when that block was retired the page was left with
+          NO headings at all: a screen-reader user pressing H got nothing, on
+          the most-visited route. axe never caught it because
+          `page-has-heading-one` is a best-practice rule, outside the wcag2aa
+          tags the suite gates on. */}
+      <h1
         style={{
+          margin: 0,
           fontFamily: SERIF,
           fontSize: 34,
           fontWeight: 900,
@@ -30,7 +38,7 @@ export function EditorialMasthead({ now }) {
         }}
       >
         El Mirador
-      </div>
+      </h1>
       <div
         style={{
           fontFamily: MONO,
@@ -72,19 +80,19 @@ export function QuejaCTA() {
       >
         Voz ciudadana · canal directo
       </div>
-      <div
+      <h2
         style={{
+          margin: '0 0 10px',
           fontFamily: SERIF,
           fontSize: 22,
           lineHeight: 1.15,
           fontWeight: 600,
           letterSpacing: '-.01em',
           color: PALETTE.ink,
-          marginBottom: 10,
         }}
       >
         Denuncia un bache en 10 segundos.
-      </div>
+      </h2>
       <div style={{ fontSize: 12.5, color: PALETTE.ink60, marginBottom: 12, lineHeight: 1.45 }}>
         Abre el bot de Telegram, envía{' '}
         <span

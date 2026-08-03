@@ -26,6 +26,33 @@ test.describe('Landing (/)', () => {
     expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
   })
 
+  test('has a heading outline a screen reader can navigate', async ({ page }) => {
+    // Regression guard. The landing's ONLY heading used to be the LeadStory
+    // press headline — so the homepage h1 was a third-party article title, and
+    // retiring that block left the page with zero headings. The axe gate stayed
+    // green throughout: `page-has-heading-one` and `empty-heading` are
+    // best-practice rules, outside the wcag2a/wcag2aa tags a11y.spec.ts filters
+    // on. Nothing else in the suite would have noticed.
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
+    await expect(page.locator('h1')).toHaveCount(1)
+    await expect(page.locator('h1')).toHaveText('El Mirador')
+
+    // Every editorial section band is a real h2, so H-key navigation lands on
+    // the column's structure instead of skipping the page entirely.
+    const h2 = page.locator('h2')
+    await expect.poll(() => h2.count(), { timeout: 8000 }).toBeGreaterThanOrEqual(6)
+
+    // No empty headings, and no level skipped between h1 and the first h2.
+    const levels = await page.evaluate(() =>
+      [...document.querySelectorAll('h1,h2,h3,h4,h5,h6')].map((h) => ({
+        level: +h.tagName[1],
+        text: (h.textContent || '').trim(),
+      })),
+    )
+    expect(levels.filter((l) => !l.text)).toEqual([])
+    expect(Math.min(...levels.map((l) => l.level))).toBe(1)
+  })
+
   test('interactive map layers: control, Servicios default, money toggle, neighborhood popup', async ({
     page,
   }) => {

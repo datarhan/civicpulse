@@ -93,9 +93,9 @@ export function AlcaldeBox() {
           >
             Alcalde
           </div>
-          <div style={{ fontSize: 15, fontWeight: 700, marginTop: 2, letterSpacing: '-.01em' }}>
+          <h2 style={{ fontSize: 15, fontWeight: 700, margin: '2px 0 0', letterSpacing: '-.01em' }}>
             {mayor.name}
-          </div>
+          </h2>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
             <span
               className="mono"
