@@ -24,6 +24,26 @@ export function wiringFor(guard: string, sites: Map<string, string>): string[] {
   return hits
 }
 
+/**
+ * Three states for wiring too — and this one caught the author.
+ *
+ * `check:contract-drift` is deliberately NOT in any pipeline: it needs a model
+ * and CI has none, so running it nightly would report health it never measured.
+ * The audit had no way to say that, so it flagged the guard as an orphan and
+ * exited 1. Same collapse as the injection column before it was split: "nobody
+ * wired this" and "this is a manual tool on purpose" are different facts, and
+ * an audit that cannot tell them apart trains you to ignore its red.
+ *
+ * `manual` requires a REASON. A guard with no call sites and no stated reason
+ * is still an orphan and still fails.
+ */
+export type WiringState = 'wired' | 'manual' | 'orphan'
+
+export function classifyWiring(wiredIn: string[], manualReason?: string): WiringState {
+  if (wiredIn.length > 0) return 'wired'
+  return manualReason ? 'manual' : 'orphan'
+}
+
 /** `from '../src/foo/bar'` → `src/foo/bar`, extension stripped. */
 export function importedModules(scriptSource: string): string[] {
   return [...scriptSource.matchAll(/from ['"]\.\.\/(src\/[^'"]+)['"]/g)].map((m) =>
@@ -137,7 +157,9 @@ export function classifyInjection(input: {
 
 export interface GuardSummary {
   total: number
+  /** Orphans only — a documented manual-only guard is not counted here. */
   notInvoked: number
+  manual: number
   untested: number
   proven: number
   silent: number
@@ -147,12 +169,20 @@ export interface GuardSummary {
 }
 
 export function summarise(
-  rows: Array<{ wiredIn: string[]; testedBy: string[]; verdict: InjectionVerdict }>,
+  rows: Array<{
+    wiredIn: string[]
+    testedBy: string[]
+    verdict: InjectionVerdict
+    manualReason?: string
+  }>,
 ): GuardSummary {
   const count = (s: InjectionState) => rows.filter((r) => r.verdict.state === s).length
+  const wiring = (s: WiringState) =>
+    rows.filter((r) => classifyWiring(r.wiredIn, r.manualReason) === s).length
   return {
     total: rows.length,
-    notInvoked: rows.filter((r) => r.wiredIn.length === 0).length,
+    notInvoked: wiring('orphan'),
+    manual: wiring('manual'),
     untested: rows.filter((r) => r.testedBy.length === 0).length,
     proven: count('proven'),
     silent: count('silent'),

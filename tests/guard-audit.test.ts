@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import {
   auditFails,
   classifyInjection,
+  classifyWiring,
   importedModules,
   invokesGuard,
   scriptTargets,
@@ -10,6 +11,8 @@ import {
   wiringFor,
   type InjectionVerdict,
 } from '../src/scraper/guard-audit'
+
+const OK: InjectionVerdict = { state: 'proven', detail: '' }
 
 describe('guard-audit — is this guard invoked?', () => {
   it('finds a guard in an npm-run line', () => {
@@ -40,6 +43,47 @@ describe('guard-audit — is this guard invoked?', () => {
 
   it('reports an unwired guard as an empty list, never as absent', () => {
     expect(wiringFor('check:nadie', new Map([['a.sh', 'npm run check:json']]))).toEqual([])
+  })
+})
+
+describe('guard-audit — manual-only is not the same as forgotten', () => {
+  // This case caught its own author: check:contract-drift is deliberately in no
+  // pipeline (it needs a model, CI has none), and the audit flagged it as an
+  // orphan and exited 1. Same collapse the injection column had.
+  it('a guard with call sites is wired', () => {
+    expect(classifyWiring(['scripts/scrape-all.sh'])).toBe('wired')
+  })
+
+  it('no call sites and a stated reason is manual, not an orphan', () => {
+    expect(classifyWiring([], 'necesita un modelo y CI no lo tiene')).toBe('manual')
+  })
+
+  it('no call sites and NO reason is still an orphan, and still fails', () => {
+    expect(classifyWiring([])).toBe('orphan')
+    expect(auditFails(summarise([{ wiredIn: [], testedBy: ['t'], verdict: OK }]))).toBe(true)
+  })
+
+  it('an empty reason string does not buy an exemption', () => {
+    // Otherwise `MANUAL_ONLY[name]` returning '' would silently launder an orphan.
+    expect(classifyWiring([], '')).toBe('orphan')
+  })
+
+  it('a documented manual guard does NOT fail the audit', () => {
+    expect(
+      auditFails(
+        summarise([{ wiredIn: [], testedBy: ['t'], verdict: OK, manualReason: 'a propósito' }]),
+      ),
+    ).toBe(false)
+  })
+
+  it('counts manual separately from orphaned, so neither hides in the other', () => {
+    const s = summarise([
+      { wiredIn: ['a.sh'], testedBy: ['t'], verdict: OK },
+      { wiredIn: [], testedBy: ['t'], verdict: OK, manualReason: 'a propósito' },
+      { wiredIn: [], testedBy: ['t'], verdict: OK },
+    ])
+    expect(s.notInvoked).toBe(1)
+    expect(s.manual).toBe(1)
   })
 })
 
@@ -191,6 +235,7 @@ describe('guard-audit — what makes the audit itself fail', () => {
     expect(s).toEqual({
       total: 5,
       notInvoked: 1,
+      manual: 0,
       untested: 1,
       proven: 1,
       silent: 1,

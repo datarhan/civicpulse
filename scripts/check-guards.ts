@@ -40,6 +40,7 @@ import { resolve } from 'node:path'
 import {
   auditFails,
   classifyInjection,
+  classifyWiring,
   summarise,
   scriptTargets,
   testsForScript,
@@ -57,6 +58,19 @@ interface GuardRow {
   injection?: string
   note?: string
   verdict?: InjectionVerdict
+}
+
+/**
+ * Guards that no pipeline invokes ON PURPOSE, and why.
+ *
+ * Without this table `check:contract-drift` was reported as an orphan and the
+ * audit exited 1 — correctly, by its old rules, on a guard whose whole design
+ * says it must not run unattended. A reason is mandatory: no call sites and no
+ * entry here is still an orphan and still fails.
+ */
+const MANUAL_ONLY: Record<string, string> = {
+  'check:contract-drift':
+    'necesita un modelo y CI no lo tiene — en un cron nocturno informaría de una salud que nunca midió',
 }
 
 /**
@@ -79,6 +93,8 @@ const NOT_INJECTABLE: Record<string, string> = {
     'lee .run-manifests/, que está en .gitignore — y este arnés restaura con git, así que no podría deshacer el daño',
   'check:vocabulary':
     'su fallo es que aparezca vocabulario NUEVO, y cualquier valor que inventemos aquí es exactamente eso: la inyección se probaría a sí misma',
+  'check:contract-drift':
+    'necesita un modelo, y su fallo es una FRASE que dejó de ser cierta: corromper un fichero no lo reproduce',
 }
 
 const ROOT = resolve('.')
@@ -351,19 +367,27 @@ function main(): void {
       notInjectableReason: NOT_INJECTABLE[r.name],
     })
   }
-  const stats = summarise(rows.map((r) => ({ ...r, verdict: r.verdict! })))
+  const stats = summarise(
+    rows.map((r) => ({ ...r, verdict: r.verdict!, manualReason: MANUAL_ONLY[r.name] })),
+  )
 
   if (asJson) {
     out(JSON.stringify({ guards: rows, injected: inject, stats }, null, 2))
     return
   }
 
-  const orphans = rows.filter((r) => r.wiredIn.length === 0)
+  const orphans = rows.filter((r) => classifyWiring(r.wiredIn, MANUAL_ONLY[r.name]) === 'orphan')
   const untested = rows.filter((r) => r.testedBy.length === 0)
   const w = Math.max(...rows.map((r) => r.name.length))
   out('[check:guards] wiring — where is each guard actually invoked?\n')
   for (const r of rows) {
-    const where = r.wiredIn.length ? r.wiredIn.join(', ') : '⚠ NOT INVOKED ANYWHERE'
+    const state = classifyWiring(r.wiredIn, MANUAL_ONLY[r.name])
+    const where =
+      state === 'wired'
+        ? r.wiredIn.join(', ')
+        : state === 'manual'
+          ? `manual, a propósito — ${MANUAL_ONLY[r.name]}`
+          : '⚠ NO SE INVOCA EN NINGÚN SITIO'
     out(`  ${r.name.padEnd(w)}  ${where}`)
   }
 
@@ -400,7 +424,8 @@ function main(): void {
   const silent = rows.filter((r) => r.verdict!.state === 'silent')
   out()
   out(
-    `${stats.total} guarda(s) · ${stats.notInvoked} sin invocar · ${stats.untested} sin test · ` +
+    `${stats.total} guarda(s) · ${stats.notInvoked} sin invocar · ${stats.manual} manual(es) ` +
+      `con motivo · ${stats.untested} sin test · ` +
       `${inject ? `${stats.proven} probada(s)` : 'dientes sin probar'} · ` +
       `${stats.undefinedInjection} sin inyección · ${stats.notInjectable} no inyectable(s) con motivo`,
   )

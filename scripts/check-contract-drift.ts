@@ -7,7 +7,8 @@
  *   npm run check:contract-drift -- /metodologia    # one page
  *   npm run check:contract-drift -- --json
  *
- * Requires the preview server (`npm run preview`) and a $0 backend.
+ * Requires the preview server (`npm run preview`) and a $0 backend. Expect it
+ * to take MINUTES per page, not seconds — see the timeout note below.
  *
  * ## Why this exists, and why it took a second commit
  *
@@ -48,6 +49,22 @@ import { ContractDriftSchema } from '../src/llm/schemas'
 // literal v4 address refuses every connection and each page renders empty —
 // which this would report as "nothing to review" rather than as a fault.
 const BASE = process.env.REVIEW_BASE_URL || 'http://localhost:4173'
+
+/**
+ * This workload is SLOW, and the client's 180 s default is below its floor.
+ *
+ * Measured 2026-08-03 on claude-code: a minimal structured call returns in 11 s,
+ * but a real contract-drift prompt — /metodologia is ~24 000 characters of
+ * dense prose plus the commit list — took **184 s** even when the page was
+ * truncated to 4 000. Every full run before this line hit the 180 s ceiling,
+ * three attempts each, then fell through to gemini and timed out there too. The
+ * symptom was indistinguishable from "no backend configured".
+ *
+ * So the default here is 10 minutes. Still overridable, and the pages this
+ * reads are the two longest on the site, which is exactly why nobody re-reads
+ * them by hand.
+ */
+if (!process.env.LLM_CLI_TIMEOUT_MS) process.env.LLM_CLI_TIMEOUT_MS = '600000'
 
 /** The two pages CLAUDE.md calls the published editorial contract. */
 const CONTRACT_PAGES = ['/metodologia', '/aviso-legal']
