@@ -18,12 +18,14 @@ import {
 import { PromoteForm } from './curator/PromoteForm'
 import { ContradichoBundleRow, IssueRow } from './curator/queues'
 import { PromiseDraftRow, PromisePendingRow } from './curator/promise-queue'
+import { AreaFitRow } from './curator/area-fit-queue'
 import { VoiceEnrollmentSection, VoiceIDAssignmentsSection } from './curator/voice'
 
 export default function Curator() {
   const queue = useJsonResource(QUEUE_URL)
   const issues = useJsonResource(ISSUES_URL)
   const promiseQueue = useJsonResource('/api/curator/promise-queue')
+  const areaFitQueue = useJsonResource('/api/curator/area-fit-queue')
   const pendingPromises = useJsonResource('/data/promises.json')
   const [openBundle, setOpenBundle] = useState(null)
   const [refreshing, setRefreshing] = useState(false)
@@ -74,6 +76,21 @@ export default function Curator() {
     queue.refresh()
     setUnarchiving(null)
   }
+
+  // Encaje declarado. Unreviewed rows float to the top; already-published ones
+  // stay visible so a curator can retract without leaving the dashboard.
+  const areaFitPublished = new Set(
+    (areaFitQueue.data?.published ?? []).map((r) => `${r.officialSlug}::${r.portfolio}`),
+  )
+  const areaFitOfficials = new Map((areaFitQueue.data?.officials ?? []).map((o) => [o.slug, o]))
+  const areaFitRows = [...(areaFitQueue.data?.rows ?? [])].sort((a, b) => {
+    const pa = areaFitPublished.has(`${a.officialSlug}::${a.portfolio}`) ? 1 : 0
+    const pb = areaFitPublished.has(`${b.officialSlug}::${b.portfolio}`) ? 1 : 0
+    if (pa !== pb) return pa - pb
+    return a.officialSlug === b.officialSlug
+      ? a.portfolio.localeCompare(b.portfolio)
+      : a.officialSlug.localeCompare(b.officialSlug)
+  })
 
   // Promise auto-curator review queue. Fast-track drafts ("listo para
   // publicar") float to the top so the curator sees the ready ones first.
@@ -383,6 +400,58 @@ export default function Curator() {
         )}
         {ghIssues.map((i) => (
           <IssueRow key={i.number} issue={i} />
+        ))}
+      </Card>
+
+      <Card style={{ padding: 16, marginBottom: 18 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <SectionHead title="Encaje declarado · cola de revisión" />
+          <span
+            className="mono"
+            style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+          >
+            {areaFitQueue.data
+              ? `${areaFitRows.length} en cola · ${areaFitPublished.size} publicadas · ${areaFitQueue.data.backend ?? '?'}`
+              : ''}
+          </span>
+          <button
+            onClick={() => areaFitQueue.refresh()}
+            disabled={areaFitQueue.loading}
+            style={{
+              padding: '5px 10px',
+              fontSize: 11,
+              border: '1px solid var(--border2)',
+              background: 'var(--paper)',
+              borderRadius: 6,
+              cursor: areaFitQueue.loading ? 'not-allowed' : 'pointer',
+            }}
+          >
+            {areaFitQueue.loading ? 'Refreshing…' : 'Refresh'}
+          </button>
+        </div>
+        <p style={{ fontSize: 11.5, color: 'var(--ink60)', lineHeight: 1.5, margin: '4px 0 10px' }}>
+          Cada fila nombra a una persona viva, así que ninguna se publica sin firma. Revisa la
+          evidencia citada y el criterio: la nota del curador se publica, así que describe el
+          criterio, nunca el material descartado.
+        </p>
+        {areaFitQueue.loading && <p style={{ fontSize: 12 }}>Loading…</p>}
+        {areaFitQueue.error && (
+          <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>{String(areaFitQueue.error)}</p>
+        )}
+        {!areaFitQueue.loading && areaFitRows.length === 0 && (
+          <p style={{ fontSize: 12, color: 'var(--ink60)' }}>
+            Cola vacía. Genera propuestas con{' '}
+            <code>LLM_BACKEND=claude-code npm run suggest:area-fit</code>.
+          </p>
+        )}
+        {areaFitRows.map((r) => (
+          <AreaFitRow
+            key={`${r.officialSlug}::${r.portfolio}`}
+            row={r}
+            official={areaFitOfficials.get(r.officialSlug)}
+            published={areaFitPublished.has(`${r.officialSlug}::${r.portfolio}`)}
+            onDone={() => areaFitQueue.refresh()}
+          />
         ))}
       </Card>
 

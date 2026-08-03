@@ -57,6 +57,8 @@ function main() {
     officials: readJson('officials.json'),
     social: readJson('officials-social.json'),
     assignments: readJson('journalist-assignments.json'),
+    areaFit: readJson('area-fit.json'),
+    reports: readJson('journalist-reports.json'),
     entities: readJson('entities.json'),
     entityOverrides: readJson('entity-overrides.json'),
   }

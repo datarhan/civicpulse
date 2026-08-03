@@ -1,0 +1,109 @@
+{
+  "_comment": "CURADO — se edita por PR, nunca por automatización. Qué exige la ley para ocupar cada puesto del ayuntamiento. Existe para que el bloque «encaje declarado» de /cargos no se lea como una descalificación: si la ley no pide titulación, que un cargo electo no declare formación del ramo es un hecho, no un incumplimiento. Cada requisito cita su norma con texto literal y enlace al BOE; check:citations recorre esas URL.",
+  "generatedAt": "2026-08-03T00:00:00.000Z",
+  "note": "Sólo se recogen requisitos verificados literalmente contra el texto consolidado del BOE. Donde no se ha podido verificar el artículo, no se afirma nada.",
+  "roles": [
+    {
+      "id": "cargo-electo",
+      "label": {
+        "es": "Concejal · cargo electo",
+        "ca": "Regidor · càrrec electe"
+      },
+      "acceso": {
+        "es": "Elección en las urnas",
+        "ca": "Elecció a les urnes"
+      },
+      "requisitos": [
+        {
+          "es": "Ser mayor de edad",
+          "ca": "Ser major d'edat",
+          "sourceId": "loreg-6-1"
+        },
+        {
+          "es": "Poseer la cualidad de elector",
+          "ca": "Posseir la qualitat d'elector",
+          "sourceId": "loreg-6-1"
+        },
+        {
+          "es": "No estar incurso en causa de inelegibilidad",
+          "ca": "No estar incurs en causa d'inelegibilitat",
+          "sourceId": "loreg-6-1"
+        }
+      ],
+      "titulacionExigida": null,
+      "titulacionNota": {
+        "es": "Ninguna. La ley electoral no exige título académico ni experiencia profesional para ser elegible.",
+        "ca": "Cap. La llei electoral no exigeix títol acadèmic ni experiència professional per ser elegible."
+      }
+    },
+    {
+      "id": "habilitacion-nacional",
+      "label": {
+        "es": "Secretaría · Intervención-Tesorería",
+        "ca": "Secretaria · Intervenció-Tresoreria"
+      },
+      "acceso": {
+        "es": "Proceso selectivo estatal",
+        "ca": "Procés selectiu estatal"
+      },
+      "requisitos": [
+        {
+          "es": "Titulación universitaria del subgrupo A1",
+          "ca": "Titulació universitària del subgrup A1",
+          "sourceId": "rd128-18-1"
+        },
+        {
+          "es": "Superar el proceso selectivo convocado por el Ministerio de Hacienda y Función Pública",
+          "ca": "Superar el procés selectiu convocat pel Ministeri d'Hisenda i Funció Pública",
+          "sourceId": "rd128-19-2"
+        }
+      ],
+      "titulacionExigida": {
+        "es": "Titulación universitaria (subgrupo A1)",
+        "ca": "Titulació universitària (subgrup A1)"
+      },
+      "titulacionNota": {
+        "es": "Quienes fiscalizan la legalidad y los pagos del ayuntamiento acceden por oposición estatal y con título universitario. Quienes deciden en qué se gasta, no.",
+        "ca": "Qui fiscalitza la legalitat i els pagaments de l'ajuntament hi accedeix per oposició estatal i amb títol universitari. Qui decideix en què es gasta, no."
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "loreg-6-1",
+      "title": "Ley Orgánica 5/1985, de 19 de junio, del Régimen Electoral General — artículo 6.1",
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1985-11672",
+      "publisher": "Boletín Oficial del Estado",
+      "retrievedAt": "2026-08-03",
+      "excerpt": "Son elegibles los españoles mayores de edad, que poseyendo la cualidad de elector, no se encuentren incursos en alguna de las siguientes causas de inelegibilidad:",
+      "trust": "high"
+    },
+    {
+      "id": "rd128-17-1",
+      "title": "Real Decreto 128/2018, de 16 de marzo — artículo 17.1",
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2018-3760",
+      "publisher": "Boletín Oficial del Estado",
+      "retrievedAt": "2026-08-03",
+      "excerpt": "La escala de funcionarios de Administración Local con habilitación de carácter nacional, se divide en las siguientes subescalas: a) Secretaría. b) Intervención-Tesorería. c) Secretaría-Intervención.",
+      "trust": "high"
+    },
+    {
+      "id": "rd128-18-1",
+      "title": "Real Decreto 128/2018, de 16 de marzo — artículo 18.1",
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2018-3760",
+      "publisher": "Boletín Oficial del Estado",
+      "retrievedAt": "2026-08-03",
+      "excerpt": "Para participar en las pruebas selectivas deberán estar en posesión, o en condiciones de obtener el momento en que termine el plazo de presentación de instancias, de la titulación universitaria exigida para el ingreso en los Cuerpos o escalas clasificados en el subgrupo A1",
+      "trust": "high"
+    },
+    {
+      "id": "rd128-19-2",
+      "title": "Real Decreto 128/2018, de 16 de marzo — artículo 19.2",
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2018-3760",
+      "publisher": "Boletín Oficial del Estado",
+      "retrievedAt": "2026-08-03",
+      "excerpt": "El ingreso en las subescalas en que se estructura la habilitación de carácter nacional se llevará a cabo mediante el correspondiente proceso selectivo, conforme a las bases y programas aprobados por el Ministerio de Hacienda y Función Pública",
+      "trust": "high"
+    }
+  ]
+}

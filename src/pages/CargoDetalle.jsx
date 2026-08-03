@@ -12,6 +12,7 @@ import { useTransparencyDocs } from '../hooks/useTransparencyDocs'
 import { cvDocForOfficial } from '../lib/official-cv'
 import { latestVoteShare } from '../lib/party-alias'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
+import { EncajeMatrix, QueExigeLaLey } from '../components/EncajeDeclarado'
 import { useT, useLocale } from '../i18n'
 
 function flattenAgendas(snap) {
@@ -526,6 +527,12 @@ export default function CargoDetalle() {
 
       <FichaOficial official={official} roster={officialsList} />
       <Mandato party={official.party} />
+      {/* The matrix states what someone declares; QueExigeLaLey states what the
+          law asks for, which is nothing for an elected post. The second is what
+          keeps the first from reading as a disqualification, so they ship
+          together and in this order. */}
+      <EncajeMatrix official={official} bioRoute={bioRoutes.get(official.slug)} />
+      <QueExigeLaLey />
       <Retribucion slug={official.slug} />
       <AreaSpend slugs={slugs} />
       <AreaActivity slugs={slugs} />

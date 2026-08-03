@@ -162,6 +162,18 @@ const ActionSchemas = {
     .strict(),
   'refresh-gh-issues': z.object({}).strict(),
   'refresh-curate-queue': z.object({}).strict(),
+  // «Encaje declarado» — promote / reject / retract ONE (official × área) row.
+  // Names a living person, so `curator` is required on the publish path and the
+  // CLI refuses without it; reject and retract only ever remove.
+  'promote-area-fit': z
+    .object({
+      official: z.string().regex(/^[a-z0-9-]{3,60}$/),
+      area: z.string().min(2).max(120),
+      action: z.enum(['publish', 'reject', 'retract']),
+      curator: z.string().min(2).max(80).optional(),
+      note: z.string().max(400).optional(),
+    })
+    .strict(),
   // Draft a title + summary via LLM for one bundle. Read-only — does
   // not write to pleno-findings.json. Output is the LLM's JSON; the
   // dashboard parses it and pre-fills the editorial form. Optional
@@ -378,6 +390,16 @@ function buildArgv(action, args) {
     }
     case 'refresh-curate-queue': {
       return ['run', 'refresh:curate-queue']
+    }
+    case 'promote-area-fit': {
+      const argv = ['run', 'promote-area-fit', '--', '--official', args.official, '--area', args.area]
+      if (args.action === 'reject') argv.push('--reject')
+      else if (args.action === 'retract') argv.push('--retract', '--curator', args.curator)
+      else {
+        argv.push('--curator', args.curator)
+        if (args.note) argv.push('--note', args.note)
+      }
+      return argv
     }
     case 'draft-finding': {
       const argv = ['run', 'draft-finding', '--', '--pleno-id', args.plenoId, '--topic', args.topic]
@@ -972,6 +994,55 @@ function handleVoiceprintsRead(req, res, cwd) {
  * empty queue rather than an error. Corrupt JSON is logged + treated as
  * empty so a single bad file never blanks the dashboard.
  */
+/**
+ * GET /api/curator/area-fit-queue — the local-only «encaje declarado» review
+ * queue.
+ *
+ * Reads editorial/area-fit-queue.json, which is GITIGNORED and never served by
+ * Vercel. That is the whole point: these rows are unreviewed machine judgements
+ * about whether a NAMED councillor's declared training relates to the área they
+ * run. Under public/ they would be fetchable by URL the moment they were
+ * written, reviewed or not.
+ *
+ * Also returns what is already published so the dashboard can mark each row,
+ * and the officials roster so it can show names rather than slugs.
+ */
+function handleAreaFitQueueRead(req, res, cwd) {
+  if (req.method !== 'GET') {
+    sendJson(res, 405, { error: 'method not allowed' })
+    return
+  }
+  {
+    const originErr = checkOrigin(req)
+    if (originErr) {
+      sendJson(res, 403, { error: originErr })
+      return
+    }
+  }
+  const read = (rel, fallback) => {
+    const path = resolve(cwd, rel)
+    if (!existsSync(path)) return fallback
+    try {
+      return JSON.parse(readFileSync(path, 'utf8'))
+    } catch (err) {
+      // Corrupt file → an empty list, never a crashed dashboard.
+      process.stderr.write(`[area-fit-queue] ${rel} unreadable: ${err.message}\n`)
+      return fallback
+    }
+  }
+  const queue = read('editorial/area-fit-queue.json', {})
+  const published = read('public/data/area-fit.json', {})
+  const officials = read('public/data/officials.json', {})
+  sendJson(res, 200, {
+    generatedAt: typeof queue.generatedAt === 'string' ? queue.generatedAt : null,
+    promptVersion: queue.promptVersion ?? null,
+    backend: queue.backend ?? null,
+    rows: Array.isArray(queue.rows) ? queue.rows : [],
+    published: Array.isArray(published.rows) ? published.rows : [],
+    officials: Array.isArray(officials.officials) ? officials.officials : [],
+  })
+}
+
 function handlePromiseQueueRead(req, res, cwd) {
   if (req.method !== 'GET') {
     sendJson(res, 405, { error: 'method not allowed' })
@@ -1319,6 +1390,17 @@ export function viteCuratorPlugin(opts = {}) {
         if (!req.url || req.url === '/' || req.url === '') {
           try {
             handleVoiceprintsRead(req, res, cwd)
+          } catch (err) {
+            sendJson(res, 500, { error: err.message })
+          }
+        } else {
+          next()
+        }
+      })
+      server.middlewares.use('/api/curator/area-fit-queue', (req, res, next) => {
+        if (!req.url || req.url === '/' || req.url === '') {
+          try {
+            handleAreaFitQueueRead(req, res, cwd)
           } catch (err) {
             sendJson(res, 500, { error: err.message })
           }

@@ -47,6 +47,8 @@ export const CURATED = {
   'place-overrides.json': 'npm run promote-place',
   'entity-overrides.json': 'npm run entity-alias',
   'gazetteer-supplement.json': 'curated — each row needs OSM-id/URL provenance',
+  'area-fit.json': 'npm run promote-area-fit',
+  'requisitos-cargo.json': 'curated + cited — hand-edit via PR, never programmatically',
 }
 
 const DRAFTY = /(suggestion|draft|borrador|propuesta)/i

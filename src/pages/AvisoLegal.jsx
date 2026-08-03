@@ -110,6 +110,31 @@ export default function AvisoLegal() {
 
       <Card style={{ marginTop: 14 }}>
         <SectionHead
+          eyebrow="Formación y trayectoria de cargos electos"
+          title="Qué afirmamos, y qué no, sobre la cualificación de un concejal"
+        />
+        <p>
+          En la ficha de cada concejal con delegación publicamos, área por área, si la formación y
+          la trayectoria que constan en su CV público guardan relación con la materia de esa área.{' '}
+          <strong>No es una evaluación de su competencia ni de su idoneidad para el cargo</strong>,
+          y no se expresa como nota, porcentaje ni clasificación. La ley electoral no exige
+          titulación alguna para ser concejal: la comparación no mide un incumplimiento, porque no
+          hay requisito que incumplir.
+        </p>
+        <p>
+          «No consta» significa que la fuente publicada no lo recoge —no que la persona carezca de
+          ello—, y enlaza al apartado de huecos de su propia biografía. Cada fila la propone una
+          máquina citando exclusivamente elementos de esa misma lista, y{' '}
+          <strong>la revisa y la firma una persona</strong> antes de publicarse, con su nombre
+          visible junto a la fecha. Ninguna fila se publica de forma automática, y el bloque
+          desaparece por completo durante el periodo electoral (LOREG art. 50). Cualquier cargo
+          puede ejercer su derecho de rectificación por las vías descritas más arriba, con los
+          mismos plazos.
+        </p>
+      </Card>
+
+      <Card style={{ marginTop: 14 }}>
+        <SectionHead
           eyebrow="Privacidad / protección de datos"
           title="Datos personales de cargos electos"
         />

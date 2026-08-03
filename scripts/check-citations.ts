@@ -32,6 +32,35 @@ import {
 } from '../src/scraper/citation-check'
 
 const REPORTS = resolve('public/data/journalist-reports.json')
+const REQUISITOS = resolve('public/data/requisitos-cargo.json')
+
+/**
+ * `requisitos-cargo.json` as a ReportLike, so the BOE citations behind «qué
+ * exige la ley» go through the same gate as everything else.
+ *
+ * That block is what stops the encaje chips reading as a disqualification, so a
+ * dead or drifted link there is not cosmetic: it is the evidence for the claim
+ * that no law requires a concejal to hold any qualification. Its rows carry
+ * `sourceId` (singular); collectSourceRefs looks for `sourceIds`, so normalise
+ * on the way in rather than loosening the collector for one file.
+ */
+function requisitosAsReport(): ReportLike | null {
+  if (!existsSync(REQUISITOS)) return null
+  const raw = JSON.parse(readFileSync(REQUISITOS, 'utf8'))
+  const roles = Array.isArray(raw.roles) ? raw.roles : []
+  return {
+    id: 'requisitos-cargo',
+    sources: Array.isArray(raw.sources) ? raw.sources : [],
+    sections: roles.map((r: { requisitos?: Array<{ sourceId?: string }> }) => ({
+      kind: 'requisitos',
+      payload: {
+        items: (r.requisitos ?? []).map((q) => ({
+          sourceIds: q.sourceId ? [q.sourceId] : [],
+        })),
+      },
+    })),
+  }
+}
 /** Polite: the council's site is a small municipal box, not a CDN. */
 const CONCURRENCY = 4
 const PAUSE_MS = 300
@@ -112,6 +141,11 @@ async function main(): Promise<void> {
     }
     reports = JSON.parse(readFileSync(REPORTS, 'utf8')).items as ReportLike[]
     label = 'public/data/journalist-reports.json'
+    const requisitos = requisitosAsReport()
+    if (requisitos) {
+      reports = [...reports, requisitos]
+      label += ' + requisitos-cargo.json'
+    }
   }
 
   const urls = [

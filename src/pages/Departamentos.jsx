@@ -3,6 +3,7 @@ import { Card, Pill, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import { usePromises, isPromiseFrozen, PARTY_TONE } from '../hooks/usePromises'
+import { useAreaFit, fitAggregate } from '../hooks/useAreaFit'
 import { useT, useLocale } from '../i18n'
 
 /** Compact euros for a card stat: 61.262.695 € reads as "61,3 M€". */
@@ -204,6 +205,42 @@ function Stat({ label, value, tone, muted, sub }) {
   )
 }
 
+/**
+ * One line, no names.
+ *
+ * The house pattern from press-analytics: the aggregate carries the story
+ * without any individual carrying a grade. Deliberately states counts and not a
+ * rate — "4 de 11" invites a percentage, and a percentage about who governs a
+ * town is a scoreboard. Anchored in check:drift so it cannot go stale.
+ */
+function EncajeAggregate() {
+  const t = useT()
+  const { data, frozen } = useAreaFit()
+  const agg = fitAggregate(data)
+  if (frozen || !agg) return null
+  return (
+    <p
+      style={{
+        fontSize: 12.5,
+        color: 'var(--ink60)',
+        lineHeight: 1.55,
+        maxWidth: 780,
+        margin: '-12px 0 22px',
+        paddingLeft: 10,
+        borderLeft: '2px solid var(--border2)',
+      }}
+    >
+      {t('departamentos.encaje')
+        .replace('{cargos}', String(agg.cargos))
+        .replace('{conFormacion}', String(agg.conFormacion))
+        .replace('{sinRelacion}', String(agg.sinRelacion))}{' '}
+      <Link to="/metodologia#encaje" style={{ color: 'var(--civic)', textDecoration: 'none' }}>
+        {t('encaje.card.law')} →
+      </Link>
+    </p>
+  )
+}
+
 export default function Departamentos() {
   const t = useT()
   const stats = useDepartmentStats()
@@ -252,6 +289,7 @@ export default function Departamentos() {
       >
         {t('departamentos.subtitle')}
       </p>
+      <EncajeAggregate />
       <div
         style={{
           display: 'grid',

@@ -419,6 +419,79 @@ export default function Metodologia() {
         </div>
       </Card>
 
+      <Card style={{ marginTop: 14 }} id="encaje">
+        <SectionHead
+          eyebrow="Qué trae al puesto quien dirige cada área"
+          title="Encaje declarado · y qué NO significa"
+        />
+        <div style={{ padding: '0 14px 14px', fontSize: 13, lineHeight: 1.6 }}>
+          <p style={{ marginTop: 0 }}>
+            En la ficha de cada concejal con delegación aparece, área por área, si lo que declara en
+            su CV publicado guarda relación con la materia de esa área. Es un cruce entre dos cosas
+            que ya publicábamos por separado: las <strong>concejalías delegadas</strong> por decreto
+            de alcaldía y la <strong>formación y trayectoria</strong> que consta en su biografía,
+            con su cita.
+          </p>
+          <p>
+            <strong>No es una calificación, y conviene decir por qué.</strong> La primera versión de
+            esta idea era un «perfil ideal» por cargo y un porcentaje de encaje. Se descartó: un
+            concejal no es una contratación. La ley electoral no exige título académico ni
+            experiencia profesional para ser elegible —basta ser mayor de edad, estar en el censo y
+            no incurrir en causa de inelegibilidad—, así que puntuar a un cargo electo contra un
+            perfil que ninguna norma contiene sería una opinión con apariencia de métrica. El
+            contraste que sí es un hecho comprobable está en la ficha: quienes fiscalizan la
+            legalidad y los pagos del ayuntamiento —secretaría, intervención, tesorería— acceden por
+            oposición estatal y con titulación universitaria; quienes deciden en qué se gasta, no.
+          </p>
+          <p>Por tanto, esta sección:</p>
+          <ul style={{ paddingLeft: 18 }}>
+            <li>
+              <strong>No puntúa, no suma y no ordena.</strong> No hay porcentaje, ni ranking, ni
+              agregado por persona. Se nombran las áreas en las que se encontró relación; nunca se
+              cuentan. «3 de 4» sería una nota con pasos intermedios.
+            </li>
+            <li>
+              <strong>«No consta» no significa «no tiene».</strong> Significa que la fuente
+              publicada no lo recoge, y enlaza al apartado de huecos de su propia biografía. Es
+              distinto de «sin relación declarada», que sí afirma algo: que consta formación y que
+              corresponde a otra materia. Son hechos diferentes sobre una persona y llevan palabras
+              diferentes.
+            </li>
+            <li>
+              <strong>No mide gestión.</strong> Que la formación de alguien coincida con su área no
+              dice nada sobre cómo la dirige, y que no coincida tampoco. Lo que sí se puede medir de
+              su gestión —votaciones, promesas con plazo, contratación, quejas— está en{' '}
+              <code>/departamentos</code>, y se cuenta por área, no por persona.
+            </li>
+            <li>
+              <strong>Nada de esto se publica solo.</strong> Un modelo propone la relación citando
+              por índice sobre la propia lista del CV —de modo que no puede inventarse una fuente— y
+              un curador revisa y <strong>firma cada fila</strong> antes de que se publique. Nombrar
+              a una persona concreta es Nivel C de la política de automatización: ninguna precisión
+              medida lo desbloquea. La cola de revisión no es pública.
+            </li>
+            <li>
+              <strong>Los 10 concejales sin delegación no aparecen en blanco.</strong> Se dice
+              expresamente que no dirigen ninguna concejalía, porque un hueco sin explicar
+              convertiría la página en «el partido de gobierno tiene credenciales y el resto no» —
+              un reflejo de quién gobierna, no de quién está formado.
+            </li>
+            <li>
+              <strong>Se suspende en periodo electoral.</strong> Con <code>frozenUntil</code> activo
+              el bloque desaparece por completo. Los hechos no cambian; publicarlos en campaña, sí.
+            </li>
+          </ul>
+          <p style={{ marginBottom: 0 }}>
+            Los requisitos legales citados proceden del texto consolidado del BOE: la{' '}
+            <strong>Ley Orgánica 5/1985 del Régimen Electoral General</strong>, artículo 6.1, para
+            los cargos electos, y el <strong>Real Decreto 128/2018</strong>, artículos 17, 18 y 19,
+            para los funcionarios de Administración Local con habilitación de carácter nacional.
+            Sólo se recogen artículos verificados literalmente; donde no se pudo verificar el texto,
+            no se afirma nada.
+          </p>
+        </div>
+      </Card>
+
       <Card style={{ marginTop: 14 }} id="verificacion-declaraciones">
         <SectionHead
           eyebrow="Verificación de declaraciones de pleno"

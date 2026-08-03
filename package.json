@@ -162,7 +162,9 @@
     "check:guards": "npx tsx scripts/check-guards.ts",
     "repoint-finding-claims": "npx tsx scripts/repoint-finding-claims.ts",
     "check:transcription-health": "npx tsx scripts/check-transcription-health.ts",
-    "monitor:health": "npx tsx scripts/monitor-health.ts"
+    "monitor:health": "npx tsx scripts/monitor-health.ts",
+    "suggest:area-fit": "npx tsx scripts/suggest-area-fit.ts",
+    "promote-area-fit": "npx tsx scripts/promote-area-fit.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

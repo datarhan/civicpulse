@@ -54,6 +54,8 @@ Everything produced by the convention above. Safe to delete and rebuild.
 | `place-overrides.json`                              | `src/scraper/place-suggestion.ts` · `npm run promote-place`                                                                   |
 | `gazetteer-supplement.json`                         | `src/scraper/gazetteer-supplement.ts`                                                                                         |
 | `entity-overrides.json`                             | `src/scraper/entities.ts` · `npm run entity-alias`                                                                            |
+| `area-fit.json`                                     | `src/scraper/area-fit.ts` · `npm run promote-area-fit`                                                                        |
+| `requisitos-cargo.json`                             | curated · cited al BOE · hand-edit via PR                                                                                     |
 
 Each CLI re-validates the whole snapshot before writing, so an invariant
 (≥20-char verbatim quote, ≥10-char title) cannot silently slip. Route

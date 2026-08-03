@@ -73,7 +73,19 @@ export interface RelationsCheckInputs {
     approvals?: Array<{ quejaId?: string; tenderId?: string | number }>
   } | null
   dedicaciones?: { byOfficial?: Array<{ slug?: string }> } | null
-  officials?: { officials?: Array<{ slug?: string }> } | null
+  officials?: { officials?: Array<{ slug?: string; portfolios?: string[] }> } | null
+  /** Curated «encaje declarado» rows (area-fit.json). */
+  areaFit?: {
+    rows?: Array<{
+      officialSlug?: string
+      portfolio?: string
+      reportId?: string
+      formacion?: { evidence?: Array<{ sourceIds?: string[] }> }
+      experiencia?: { evidence?: Array<{ sourceIds?: string[] }> }
+    }>
+  } | null
+  /** journalist-reports.json — the reports encaje rows cite. */
+  reports?: { items?: Array<{ id?: string; sources?: Array<{ id?: string }> }> } | null
   entities?: {
     companies?: Array<{
       id?: string
@@ -132,6 +144,8 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
     entityOverrides,
     social,
     assignments,
+    areaFit,
+    reports,
   } = inputs
 
   const verifiedIds = new Set(
@@ -356,6 +370,52 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
         checked += 1
         if (!officialSlugs.has(a.subject.slug))
           broken.push(`${a?.id ?? '?'} profiles unknown official ${a.subject.slug}`)
+      }
+      return { checked, broken }
+    }),
+
+    // Three ways an encaje row can lie about a named person, all referential:
+    // it can name someone who is not a councillor, attach a judgement to an área
+    // somebody else runs, or cite a source that is not in the report it claims.
+    check('areafit-officials', 'error', areaFit != null && officials != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      const portfoliosBySlug = new Map(
+        (officials?.officials ?? []).map((o) => [o?.slug, new Set(o?.portfolios ?? [])]),
+      )
+      for (const r of areaFit?.rows ?? []) {
+        checked += 1
+        if (!r?.officialSlug || !officialSlugs.has(r.officialSlug)) {
+          broken.push(`encaje row for unknown official ${r?.officialSlug ?? '?'}`)
+          continue
+        }
+        const held = portfoliosBySlug.get(r.officialSlug)
+        if (!r?.portfolio || !held?.has(r.portfolio))
+          broken.push(`${r.officialSlug} does not hold the área "${r?.portfolio ?? '?'}"`)
+      }
+      return { checked, broken }
+    }),
+
+    check('areafit-report-sources', 'error', areaFit != null && reports != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      const sourcesByReport = new Map(
+        (reports?.items ?? []).map((r) => [
+          r?.id,
+          new Set((r?.sources ?? []).map((s) => s?.id).filter((s): s is string => !!s)),
+        ]),
+      )
+      for (const r of areaFit?.rows ?? []) {
+        const known = sourcesByReport.get(r?.reportId)
+        for (const field of ['formacion', 'experiencia'] as const) {
+          for (const ev of r?.[field]?.evidence ?? []) {
+            for (const id of ev?.sourceIds ?? []) {
+              checked += 1
+              if (!known || !known.has(id))
+                broken.push(`${r?.officialSlug}/${r?.portfolio}.${field} cites unknown ${id}`)
+            }
+          }
+        }
       }
       return { checked, broken }
     }),

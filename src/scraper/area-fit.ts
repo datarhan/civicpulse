@@ -91,7 +91,6 @@ export interface AreaFitRow {
   reportId: string
   formacion: FitAssessment
   experiencia: FitAssessment
-  cargoPublicoPrevio: FitAssessment
   curatedBy?: string
   curatedAt?: string
   curatorNotes?: string
@@ -176,22 +175,23 @@ export function resolveAssessment(raw: RawAssessment, pool: FitEvidenceItem[]): 
   return { value: raw.value, evidence, ...(reason ? { reason } : {}) }
 }
 
-/**
- * Prior elected or public office — deterministic, no model.
+/*
+ * A `cargoPublicoPrevio` chip was built here and removed before it shipped.
  *
- * Presence in the biography's `career-political` section IS the fact; there is
- * nothing to judge about relatedness, so nothing to get wrong.
+ * It read the biography's `career-political` section, which INCLUDES the
+ * current mandate — so every sitting councillor scored "has held public
+ * office", by definition. A chip whose value is the same for all 40 rows
+ * carries no information, and for Eva Lara, whose only political row is the
+ * seat she holds now, it asserted a prior office she has never held.
+ *
+ * Computing it honestly means separating "held office" from "stood and was not
+ * elected" — Alfredo Pla's 2019 row is a candidacy at nº 13 with no seat — and
+ * the section does not mark that reliably. It is also orthogonal to what this
+ * surface claims: whether what someone brings relates to the área they run.
+ *
+ * So it is gone rather than approximated. Prior office is a real question; it
+ * needs its own data, not a keyword guess over this one.
  */
-export function deriveCargoPublicoPrevio(task: FitTask): FitAssessment {
-  if (!task.politicalItems.length) {
-    return { value: 'no-consta', evidence: [] }
-  }
-  const evidence = task.politicalItems
-    .filter((i) => i.sourceIds.length > 0)
-    .map((i) => ({ label: i.label, sourceIds: [...i.sourceIds] }))
-  if (!evidence.length) return { value: 'no-consta', evidence: [] }
-  return { value: 'relacionada', evidence }
-}
 
 /** Assemble a full row from a task and the model's answer for it. */
 export function rowFromResponse(task: FitTask, response: RawFitResponse): AreaFitRow {
@@ -207,7 +207,24 @@ export function rowFromResponse(task: FitTask, response: RawFitResponse): AreaFi
     experiencia: task.careerItems.length
       ? resolveAssessment(response.experiencia, task.careerItems)
       : { value: 'no-consta', evidence: [] },
-    cargoPublicoPrevio: deriveCargoPublicoPrevio(task),
+  }
+}
+
+/**
+ * The row for a task no model was ever asked about.
+ *
+ * Kept separate from `rowFromResponse` so "we never asked" can never be dressed
+ * up as "we asked and it said nothing" — the reporting distinction the run
+ * manifest exists to preserve.
+ */
+export function rowWithoutModel(task: FitTask): AreaFitRow {
+  return {
+    officialSlug: task.officialSlug,
+    portfolio: task.portfolio,
+    departmentSlug: task.departmentSlug,
+    reportId: task.reportId,
+    formacion: { value: 'no-consta', evidence: [] },
+    experiencia: { value: 'no-consta', evidence: [] },
   }
 }
 
@@ -440,7 +457,6 @@ export function validateAreaFitSnapshot(
     const known = ctx.reportSources[r.reportId]
     validateAssessment(r.formacion, `${where}.formacion`, known)
     validateAssessment(r.experiencia, `${where}.experiencia`, known)
-    validateAssessment(r.cargoPublicoPrevio, `${where}.cargoPublicoPrevio`, known)
   }
 
   const share = noConstaShare(s.rows)

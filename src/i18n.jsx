@@ -332,6 +332,30 @@ const CATALOGUE = {
       'Las promesas se atribuyen a nivel de grupo parlamentario, no a personas. Los puntos de orden del día se cuentan cuando la concejalía proponente coincide con un área asignada.',
     'cargos.detalle.methodology.link': 'Leer metodología →',
 
+    'encaje.eyebrow': 'Encaje declarado',
+    'encaje.field.formacion': 'Formación',
+    'encaje.field.experiencia': 'Experiencia',
+    'encaje.value.relacionada': 'relacionada',
+    'encaje.value.sin-relacion-declarada': 'sin relación declarada',
+    'encaje.value.no-consta': 'no consta',
+    'encaje.card.source': 'Según su CV publicado.',
+    'encaje.card.gaps': 'qué falta',
+    'encaje.card.law': 'qué exige la ley',
+    'encaje.sinDelegacion.label': 'Sin delegación de área',
+    'encaje.sinDelegacion.note':
+      'No dirige ninguna concejalía, así que no hay área con la que comparar. El bloque en blanco refleja quién gobierna, no quién está formado.',
+    'encaje.matrix.title': 'Qué declara para cada área que dirige',
+    'encaje.matrix.intro':
+      'Área por área, si lo que declara en su CV publicado guarda relación con la materia. No es una calificación: no hay nota, ni suma, ni orden. «No consta» significa que la fuente publicada no lo recoge.',
+    'encaje.matrix.dept': 'Ver departamento',
+    'encaje.matrix.signed': 'Revisado y firmado por',
+    'encaje.ley.eyebrow': 'Requisitos legales',
+    'encaje.ley.title': 'Qué exige la ley para cada puesto',
+    'encaje.ley.titulacion': 'Titulación exigida',
+    'encaje.ley.ninguna': 'ninguna',
+    'departamentos.encaje':
+      'De {cargos} concejalías con delegación, en {conFormacion} el responsable declara formación del campo del área y en {sinRelacion} lo declarado corresponde a otra materia.',
+
     'departamentos.eyebrow': 'Rendición de cuentas',
     'departamentos.title': 'Departamentos · compromisos y plazos',
     'departamentos.subtitle':
@@ -713,6 +737,30 @@ const CATALOGUE = {
     'cargos.detalle.methodology':
       "Les promeses s'atribueixen a nivell de grup parlamentari, no a persones. Els punts de l'ordre del dia es compten quan la regidoria proposant coincideix amb una àrea assignada.",
     'cargos.detalle.methodology.link': 'Llegir metodologia →',
+
+    'encaje.eyebrow': 'Encaix declarat',
+    'encaje.field.formacion': 'Formació',
+    'encaje.field.experiencia': 'Experiència',
+    'encaje.value.relacionada': 'relacionada',
+    'encaje.value.sin-relacion-declarada': 'sense relació declarada',
+    'encaje.value.no-consta': 'no consta',
+    'encaje.card.source': 'Segons el seu CV publicat.',
+    'encaje.card.gaps': 'què falta',
+    'encaje.card.law': 'què exigeix la llei',
+    'encaje.sinDelegacion.label': 'Sense delegació d’àrea',
+    'encaje.sinDelegacion.note':
+      'No dirigeix cap regidoria, així que no hi ha àrea amb què comparar. El bloc en blanc reflecteix qui governa, no qui està format.',
+    'encaje.matrix.title': 'Què declara per a cada àrea que dirigeix',
+    'encaje.matrix.intro':
+      'Àrea per àrea, si el que declara al seu CV publicat guarda relació amb la matèria. No és una qualificació: no hi ha nota, ni suma, ni ordre. «No consta» vol dir que la font publicada no ho recull.',
+    'encaje.matrix.dept': 'Veure departament',
+    'encaje.matrix.signed': 'Revisat i signat per',
+    'encaje.ley.eyebrow': 'Requisits legals',
+    'encaje.ley.title': 'Què exigeix la llei per a cada lloc',
+    'encaje.ley.titulacion': 'Titulació exigida',
+    'encaje.ley.ninguna': 'cap',
+    'departamentos.encaje':
+      'De {cargos} regidories amb delegació, en {conFormacion} el responsable declara formació del camp de l’àrea i en {sinRelacion} el que declara correspon a una altra matèria.',
 
     'departamentos.eyebrow': 'Rendició de comptes',
     'departamentos.title': 'Departaments · compromisos i terminis',

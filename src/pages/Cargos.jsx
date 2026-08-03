@@ -9,6 +9,7 @@ import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
 import { useQuejas } from '../hooks/useQuejas'
 import { useSocialFor, SOCIAL_PLATFORM_META } from '../hooks/useOfficialsSocial'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
+import { EncajeCard } from '../components/EncajeDeclarado'
 import { fmtDateLong } from '../lib/formatters'
 import { useT, useLocale } from '../i18n'
 
@@ -541,6 +542,7 @@ function OfficialCard({ o, big = false, bioRoute }) {
       <RetribucionBadge official={o} />
       <SalaryGrowth official={o} />
       <DepartmentLinks portfolios={o.portfolios} />
+      <EncajeCard official={o} bioRoute={bioRoute} />
       <QuejaBadge slug={o.slug} />
     </Card>
   )

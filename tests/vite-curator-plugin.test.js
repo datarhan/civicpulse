@@ -398,6 +398,7 @@ describe('ActionSchemas', () => {
       'finding-reply',
       'mark-reviewed-promise',
       'override-speaker-assignment',
+      'promote-area-fit',
       'promote-claim',
       'refresh-curate-queue',
       'refresh-gh-issues',
@@ -405,6 +406,58 @@ describe('ActionSchemas', () => {
       'retract-promise',
       'unarchive-bundle',
     ])
+  })
+
+  describe('promote-area-fit', () => {
+    const schema = ActionSchemas['promote-area-fit']
+
+    it('accepts a publish with a curator signature', () => {
+      expect(
+        schema.safeParse({
+          official: 'teresa-pozuelo-martin',
+          area: 'Urbanismo',
+          action: 'publish',
+          curator: 'datarhan',
+        }).success,
+      ).toBe(true)
+    })
+
+    it('accepts a reject without one — rejecting publishes nothing', () => {
+      expect(
+        schema.safeParse({
+          official: 'alfredo-pla-gimenez',
+          area: 'Fallas',
+          action: 'reject',
+        }).success,
+      ).toBe(true)
+    })
+
+    it('rejects an unknown action', () => {
+      expect(
+        schema.safeParse({ official: 'x-y', area: 'Urbanismo', action: 'approve' }).success,
+      ).toBe(false)
+    })
+
+    it('rejects a slug with shell metacharacters', () => {
+      expect(
+        schema.safeParse({
+          official: 'teresa$(whoami)',
+          area: 'Urbanismo',
+          action: 'reject',
+        }).success,
+      ).toBe(false)
+    })
+
+    it('rejects unknown keys', () => {
+      expect(
+        schema.safeParse({
+          official: 'x-y',
+          area: 'Urbanismo',
+          action: 'reject',
+          autoPublish: true,
+        }).success,
+      ).toBe(false)
+    })
   })
 
   describe('enroll-voice', () => {

@@ -6,7 +6,7 @@ import {
   AreaFitValidationError,
   buildFitTasks,
   resolveAssessment,
-  deriveCargoPublicoPrevio,
+  rowWithoutModel,
   rowFromResponse,
   noConstaShare,
   validateAreaFitSnapshot,
@@ -116,16 +116,24 @@ describe('area-fit — parsing the real model payload', () => {
     ).toThrow(AreaFitValidationError)
   })
 
-  it('builds a full row, with cargoPublicoPrevio derived without a model', () => {
+  it('builds a full row from the model answer', () => {
     const c = FIXTURE.cases.find((x) => x.response.formacion.value === 'relacionada')!
-    const task = taskFrom(c, [{ label: 'Concejala desde 2019', sourceIds: ['src-070'] }])
+    const task = taskFrom(c)
     const row = rowFromResponse(task, c.response)
     expect(row.officialSlug).toBe(c.task.officialSlug)
     expect(row.portfolio).toBe(c.task.portfolio)
     expect(row.formacion.value).toBe('relacionada')
     expect(row.formacion.evidence.length).toBeGreaterThan(0)
-    expect(row.cargoPublicoPrevio.value).toBe('relacionada')
-    expect(row.cargoPublicoPrevio.evidence[0].sourceIds).toEqual(['src-070'])
+  })
+
+  it('carries no cargoPublicoPrevio field — it was tautological and was removed', () => {
+    // career-political includes the CURRENT mandate, so every sitting
+    // councillor scored "has held public office" and the chip could not vary.
+    // For Eva Lara, whose only political row is the seat she holds now, it
+    // asserted a prior office she has never held.
+    const c = FIXTURE.cases[0]
+    const row = rowFromResponse(taskFrom(c), c.response) as Record<string, unknown>
+    expect('cargoPublicoPrevio' in row).toBe(false)
   })
 })
 
@@ -143,7 +151,10 @@ describe('area-fit — the no-consta path is reachable without a model', () => {
   it('marks an absent section no-consta, never sin-relacion-declarada', () => {
     // "We have no CV" and "the CV does not relate" are different facts about a
     // named person. DATA_INTEGRITY failure mode 3.
-    expect(deriveCargoPublicoPrevio(emptyTask).value).toBe('no-consta')
+    const row = rowWithoutModel(emptyTask)
+    expect(row.formacion.value).toBe('no-consta')
+    expect(row.experiencia.value).toBe('no-consta')
+    expect(row.formacion.evidence).toEqual([])
   })
 
   it('never asks the model about a pool it cannot judge', () => {
@@ -190,7 +201,6 @@ describe('area-fit — validateAreaFitSnapshot', () => {
           evidence: [{ label: 'Arquitecto Técnico — UPV', sourceIds: ['src-060'] }],
         },
         experiencia: { value: 'sin-relacion-declarada', evidence: [] },
-        cargoPublicoPrevio: { value: 'no-consta', evidence: [] },
         curatedBy: 'Sergei Lutchenko',
         curatedAt: '2026-08-03',
       },
@@ -239,7 +249,6 @@ describe('area-fit — validateAreaFitSnapshot', () => {
     const s = good()
     s.rows[0].formacion = { value: 'no-consta', evidence: [] }
     s.rows[0].experiencia = { value: 'no-consta', evidence: [] }
-    s.rows[0].cargoPublicoPrevio = { value: 'no-consta', evidence: [] }
     expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(/no-consta/)
   })
 })
