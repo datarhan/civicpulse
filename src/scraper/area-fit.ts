@@ -1,0 +1,490 @@
+/**
+ * Encaje declarado — what formación and experiencia the holder of a delegated
+ * área declares, per (official × portfolio), with a citation for every word.
+ *
+ * This is the most libel-material derived surface in the repo: it attaches a
+ * judgement to a NAMED living person. Three decisions carry that weight.
+ *
+ * 1. THERE IS NO SCORE. The original ask was an HR-style "ideal profile" per
+ *    cargo and a fit percentage on each card. A concejal is not a hire — Spanish
+ *    law requires no titulación for the office, voters choose — so a percentage
+ *    grades an elected official against a rubric a model invented and no statute
+ *    contains. The house pattern (press-analytics computes a trust score and
+ *    never renders it; AreaActivity refuses to put bloc-level content under a
+ *    person's photograph) is: publish the components, refuse the sum. Nothing
+ *    here returns a number, a ranking, or a per-person aggregate.
+ *
+ * 2. THREE VALUES, NOT TWO. `no-consta` (nothing on record to judge) and
+ *    `sin-relacion-declarada` (a CV IS on record and none of it relates) are
+ *    different facts about a person, and collapsing them is DATA_INTEGRITY
+ *    failure mode 3 — a sentinel published as a value. Pla declares a Grado
+ *    Superior de Peluquería; that is on record and unrelated to Fiestas.
+ *    Navarro declares nothing at all. Printing the same chip for both would
+ *    assert of Navarro something no source supports.
+ *
+ * 3. CITE BY INDEX, NEVER BY ID. The model receives numbered items and returns
+ *    indices; this module maps indices back to sourceIds. The model therefore
+ *    cannot emit a source id at all, so it cannot invent one. The promise miner
+ *    learned this the hard way (172fd04): it accepted model-authored ids, the
+ *    model invented them for third-party news, and forcing them would have
+ *    mis-attached evidence to the wrong person. An index outside the pool is a
+ *    hard error here — never repaired, never clamped.
+ *
+ * The model never sees a case it cannot judge: an absent section resolves to
+ * `no-consta` deterministically, before any call. And `cargoPublicoPrevio` needs
+ * no model at all — it falls out of the biography's `career-political` section.
+ *
+ * Pure: no fs, no network, no clock. The CLI at scripts/suggest-area-fit.ts owns
+ * the model call; scripts/promote-area-fit.ts owns the write.
+ */
+
+/**
+ * Exported so tests import it instead of restating it. Six suites in this repo
+ * hand-copied an enum and stayed green while production matched nothing; the
+ * costliest coerced 298 contracts to `unknown` and lost €53.5M from the site.
+ */
+export const FIT_VALUES = ['relacionada', 'sin-relacion-declarada', 'no-consta'] as const
+export type FitValue = (typeof FIT_VALUES)[number]
+
+/**
+ * Ceiling on how much of a published snapshot may be `no-consta`.
+ *
+ * Paired with the enum per DATA_INTEGRITY §1: an allow-set assertion alone
+ * cannot fail when the fallback is itself a member of the set. All 11 officials
+ * holding a delegation today have both an `education` and a
+ * `career-professional` section, so the true share is ~0. A snapshot that
+ * breaches this is reading the wrong field, not discovering mass ignorance.
+ */
+export const NO_CONSTA_CEILING = 0.1
+
+export const AREA_FIT_PROMPT_VERSION = 'area-fit-v1'
+
+export interface FitEvidenceItem {
+  /** Human-readable, verbatim from the biography section. */
+  label: string
+  sourceIds: string[]
+}
+
+export interface FitAssessment {
+  value: FitValue
+  evidence: FitEvidenceItem[]
+  /** The model's stated criterion. Published, so it describes the rule, never the person. */
+  reason?: string
+}
+
+export interface FitTask {
+  officialSlug: string
+  /** Verbatim from officials.json — what the delegation decree actually says. */
+  portfolio: string
+  /** null when canonicalizeDepartment does not resolve it; the row stands anyway. */
+  departmentSlug: string | null
+  reportId: string
+  educationItems: FitEvidenceItem[]
+  careerItems: FitEvidenceItem[]
+  politicalItems: FitEvidenceItem[]
+}
+
+export interface AreaFitRow {
+  officialSlug: string
+  portfolio: string
+  departmentSlug: string | null
+  reportId: string
+  formacion: FitAssessment
+  experiencia: FitAssessment
+  cargoPublicoPrevio: FitAssessment
+  curatedBy?: string
+  curatedAt?: string
+  curatorNotes?: string
+  /** Drafts only. The published schema REJECTS this field — two independent layers. */
+  requiresHumanApproval?: true
+}
+
+export interface AreaFitSnapshot {
+  generatedAt: string
+  mandate: string
+  note?: string
+  method?: string
+  rows: AreaFitRow[]
+}
+
+/** Raw, unvalidated assessment as it arrives from the model. */
+export interface RawAssessment {
+  value: string
+  evidenceIndices: number[]
+  reason?: string
+}
+
+export interface RawFitResponse {
+  formacion: RawAssessment
+  experiencia: RawAssessment
+}
+
+export class AreaFitValidationError extends Error {}
+
+function must(cond: unknown, msg: string): asserts cond {
+  if (!cond) throw new AreaFitValidationError(msg)
+}
+
+const isFitValue = (v: unknown): v is FitValue =>
+  typeof v === 'string' && (FIT_VALUES as readonly string[]).includes(v)
+
+/** Minimal shape this module needs from officials.json. */
+export interface OfficialLike {
+  slug: string
+  name?: string
+  party?: string
+  role?: string
+  portfolios: string[]
+}
+
+/**
+ * Turn a model answer into evidence, or refuse.
+ *
+ * `no-consta` is not accepted here: it is a fact about our sources, decided
+ * before the model is called, never something the model may claim.
+ */
+export function resolveAssessment(raw: RawAssessment, pool: FitEvidenceItem[]): FitAssessment {
+  must(raw && typeof raw === 'object', 'assessment must be an object')
+  must(isFitValue(raw.value), `value must be one of ${FIT_VALUES.join(' | ')}, got ${raw.value}`)
+  must(
+    raw.value !== 'no-consta',
+    'the model may not return no-consta — an absent section is resolved deterministically',
+  )
+
+  const indices = Array.isArray(raw.evidenceIndices) ? raw.evidenceIndices : []
+  const evidence: FitEvidenceItem[] = []
+  for (const i of indices) {
+    must(
+      Number.isInteger(i) && i >= 0 && i < pool.length,
+      `evidence index ${i} is outside the pool of ${pool.length} — refusing to repair it, ` +
+        'a drifted index attaches evidence to the wrong claim',
+    )
+    const item = pool[i]
+    must(
+      Array.isArray(item.sourceIds) && item.sourceIds.length > 0,
+      `pool item ${i} ("${item.label}") carries no sourceIds — it cannot support a published claim`,
+    )
+    evidence.push({ label: item.label, sourceIds: [...item.sourceIds] })
+  }
+
+  must(
+    raw.value !== 'relacionada' || evidence.length > 0,
+    '"relacionada" requires at least one cited item — an uncited relation is an opinion',
+  )
+
+  const reason = typeof raw.reason === 'string' ? raw.reason.trim() : undefined
+  return { value: raw.value, evidence, ...(reason ? { reason } : {}) }
+}
+
+/**
+ * Prior elected or public office — deterministic, no model.
+ *
+ * Presence in the biography's `career-political` section IS the fact; there is
+ * nothing to judge about relatedness, so nothing to get wrong.
+ */
+export function deriveCargoPublicoPrevio(task: FitTask): FitAssessment {
+  if (!task.politicalItems.length) {
+    return { value: 'no-consta', evidence: [] }
+  }
+  const evidence = task.politicalItems
+    .filter((i) => i.sourceIds.length > 0)
+    .map((i) => ({ label: i.label, sourceIds: [...i.sourceIds] }))
+  if (!evidence.length) return { value: 'no-consta', evidence: [] }
+  return { value: 'relacionada', evidence }
+}
+
+/** Assemble a full row from a task and the model's answer for it. */
+export function rowFromResponse(task: FitTask, response: RawFitResponse): AreaFitRow {
+  must(response && typeof response === 'object', 'response must be an object')
+  return {
+    officialSlug: task.officialSlug,
+    portfolio: task.portfolio,
+    departmentSlug: task.departmentSlug,
+    reportId: task.reportId,
+    formacion: task.educationItems.length
+      ? resolveAssessment(response.formacion, task.educationItems)
+      : { value: 'no-consta', evidence: [] },
+    experiencia: task.careerItems.length
+      ? resolveAssessment(response.experiencia, task.careerItems)
+      : { value: 'no-consta', evidence: [] },
+    cargoPublicoPrevio: deriveCargoPublicoPrevio(task),
+  }
+}
+
+/** Share of published assessments that are `no-consta`, for the ceiling. */
+export function noConstaShare(rows: readonly AreaFitRow[]): number {
+  const values = rows.flatMap((r) => [r.formacion?.value, r.experiencia?.value])
+  if (!values.length) return 0
+  return values.filter((v) => v === 'no-consta').length / values.length
+}
+
+/** Does this task need a model call at all? */
+export function needsModel(task: FitTask): boolean {
+  return task.educationItems.length > 0 || task.careerItems.length > 0
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Building tasks from the published snapshots
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** Minimal shape this module needs from a journalist report. */
+export interface ReportLike {
+  id: string
+  sections: Array<{ kind: string; payload: Record<string, unknown> }>
+}
+
+function sectionPayload(
+  report: ReportLike | undefined,
+  kind: string,
+): Record<string, unknown> | null {
+  const s = report?.sections?.find((x) => x.kind === kind)
+  return s ? s.payload : null
+}
+
+function itemsFrom(
+  payload: Record<string, unknown> | null,
+  label: (row: Record<string, unknown>) => string,
+): FitEvidenceItem[] {
+  const rows = (payload?.items as Array<Record<string, unknown>> | undefined) || []
+  return rows
+    .map((r) => ({
+      label: label(r).trim(),
+      sourceIds: Array.isArray(r.sourceIds) ? (r.sourceIds as string[]) : [],
+    }))
+    .filter((i) => i.label.length > 0)
+}
+
+const joinNonEmpty = (parts: Array<unknown>, sep: string) =>
+  parts.filter((p) => typeof p === 'string' && p.trim().length > 0).join(sep)
+
+/**
+ * One task per (official × raw portfolio string).
+ *
+ * Raw string, not canonical slug: it is what the alcaldía's delegation decree
+ * says, and canonicalizeDepartment has known collisions ("Movilidad y Deportes"
+ * → deportes, "Juventud y Servicios Jurídicos" → servicios-generales) plus one
+ * portfolio that resolves to null. Judging the canonical slug would silently
+ * merge two delegations or drop one.
+ *
+ * `resolveSlug` is injected so this module stays free of the departments table.
+ */
+export function buildFitTasks(
+  officials: readonly OfficialLike[],
+  reports: readonly ReportLike[],
+  resolveSlug: (portfolio: string) => string | null = () => null,
+): FitTask[] {
+  const bySlug = new Map<string, ReportLike>()
+  for (const r of reports) {
+    const portrait = sectionPayload(r, 'portrait')
+    const slug = portrait?.officialSlug
+    if (typeof slug === 'string') bySlug.set(slug, r)
+  }
+
+  const tasks: FitTask[] = []
+  for (const o of officials) {
+    if (!Array.isArray(o.portfolios) || o.portfolios.length === 0) continue
+    const report = bySlug.get(o.slug)
+    const educationItems = itemsFrom(sectionPayload(report, 'education'), (r) =>
+      joinNonEmpty([r.degree, r.institution], ' — '),
+    )
+    const careerItems = itemsFrom(sectionPayload(report, 'career-professional'), (r) =>
+      joinNonEmpty([r.role, r.org], ' @ '),
+    )
+    const politicalItems = itemsFrom(sectionPayload(report, 'career-political'), (r) =>
+      joinNonEmpty([r.role, r.org], ' @ '),
+    )
+    for (const portfolio of o.portfolios) {
+      if (typeof portfolio !== 'string' || !portfolio.trim()) continue
+      tasks.push({
+        officialSlug: o.slug,
+        portfolio,
+        departmentSlug: resolveSlug(portfolio),
+        reportId: report?.id ?? '',
+        educationItems,
+        careerItems,
+        politicalItems,
+      })
+    }
+  }
+  return tasks
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Prompts — the only place the model's instructions live
+// ─────────────────────────────────────────────────────────────────────────────
+
+export function buildAreaFitSystemPrompt(): string {
+  return `Eres analista documental de un observatorio municipal español.
+
+Se te da UN área de gestión delegada de un ayuntamiento y lo que una persona
+declara en su CV publicado. Decides, para la formación y para la trayectoria
+profesional POR SEPARADO, si lo declarado guarda relación con la MATERIA de esa
+área.
+
+Reglas, sin excepción:
+- Juzgas la relación entre una materia y un área. NO juzgas a la persona, ni su
+  competencia, ni su idoneidad para el cargo. No emitas ninguna valoración.
+- Usa ÚNICAMENTE los elementos que se te dan. No infieras nada que no esté
+  escrito. No uses conocimiento externo sobre esta persona.
+- Cita por ÍNDICE: devuelve los índices de los elementos en los que te apoyas,
+  exactamente como aparecen numerados. Nunca inventes un índice.
+- "relacionada" exige al menos un índice. Si no puedes señalar ninguno, el valor
+  es "sin-relacion-declarada" y evidenceIndices va vacío.
+- La relación ha de ser de materia, no de prestigio: un título universitario no
+  es "relacionado" con todo, y una formación profesional del ramo sí lo es con el
+  suyo.
+- "reason" es una frase, factual, sin adjetivos de mérito. Describe el criterio,
+  nunca a la persona.
+
+Devuelve SÓLO JSON.`
+}
+
+export function buildAreaFitUserPrompt(task: FitTask): string {
+  const fmt = (xs: FitEvidenceItem[]) =>
+    xs.length ? xs.map((x, i) => `  [${i}] ${x.label}`).join('\n') : '  (sin elementos)'
+  return `ÁREA DE GESTIÓN DELEGADA: ${task.portfolio}
+
+FORMACIÓN DECLARADA:
+${fmt(task.educationItems)}
+
+TRAYECTORIA PROFESIONAL DECLARADA:
+${fmt(task.careerItems)}
+
+Responde con el JSON de valoración para esta área.`
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Validators
+// ─────────────────────────────────────────────────────────────────────────────
+
+export interface AreaFitValidationContext {
+  officials: readonly OfficialLike[]
+  /** reportId → the set of source ids that report actually carries. */
+  reportSources: Record<string, Set<string>>
+}
+
+function validateAssessment(a: FitAssessment, where: string, known: Set<string> | undefined) {
+  must(a && typeof a === 'object', `${where} required`)
+  must(isFitValue(a.value), `${where}.value must be one of ${FIT_VALUES.join(' | ')}`)
+  must(Array.isArray(a.evidence), `${where}.evidence must be an array`)
+  must(
+    a.value !== 'relacionada' || a.evidence.length > 0,
+    `${where}: "relacionada" requires at least one cited item`,
+  )
+  must(
+    a.value === 'relacionada' || a.evidence.length === 0,
+    `${where}: only "relacionada" may carry evidence`,
+  )
+  for (const ev of a.evidence) {
+    must(typeof ev.label === 'string' && ev.label.length > 0, `${where}: evidence needs a label`)
+    must(
+      Array.isArray(ev.sourceIds) && ev.sourceIds.length > 0,
+      `${where}: evidence "${ev.label}" carries no sourceIds`,
+    )
+    for (const id of ev.sourceIds) {
+      must(
+        !known || known.has(id),
+        `${where}: sourceId ${id} does not exist in the cited report — ` +
+          'an orphan citation is worse than no citation',
+      )
+    }
+  }
+}
+
+/**
+ * The published shape. Rejects anything that would put an uncited, unsigned or
+ * mis-attached judgement about a named person on the site.
+ */
+export function validateAreaFitSnapshot(
+  json: unknown,
+  ctx: AreaFitValidationContext,
+): AreaFitSnapshot {
+  const s = json as AreaFitSnapshot
+  must(s && typeof s === 'object', 'snapshot must be an object')
+  must(typeof s.mandate === 'string' && s.mandate.length >= 4, 'mandate required')
+  must(Array.isArray(s.rows), 'rows must be an array')
+
+  const byslug = new Map(ctx.officials.map((o) => [o.slug, o]))
+  const seen = new Set<string>()
+
+  for (const r of s.rows) {
+    const where = `${r?.officialSlug}/${r?.portfolio}`
+    must(typeof r.officialSlug === 'string' && r.officialSlug.length > 0, 'officialSlug required')
+    const official = byslug.get(r.officialSlug)
+    must(official, `${where}: officialSlug does not resolve in officials.json`)
+    must(typeof r.portfolio === 'string' && r.portfolio.length > 0, `${where}: portfolio required`)
+    must(
+      official.portfolios.includes(r.portfolio),
+      `${where}: this official does not hold that portfolio — ` +
+        'attaching a judgement to an área someone else runs is a misattribution',
+    )
+
+    const key = `${r.officialSlug}::${r.portfolio}`
+    must(!seen.has(key), `${where}: duplicate row`)
+    seen.add(key)
+
+    must(
+      !('requiresHumanApproval' in r),
+      `${where}: requiresHumanApproval must not appear on a published row — ` +
+        'promotion strips it; its presence means a draft leaked into the published set',
+    )
+    must(
+      typeof r.curatedBy === 'string' && r.curatedBy.length > 0,
+      `${where}: curatedBy required — this names a person, so it carries a signature`,
+    )
+    must(
+      typeof r.curatedAt === 'string' && /^\d{4}-\d{2}-\d{2}/.test(r.curatedAt),
+      `${where}: curatedAt must be an ISO date`,
+    )
+
+    const known = ctx.reportSources[r.reportId]
+    validateAssessment(r.formacion, `${where}.formacion`, known)
+    validateAssessment(r.experiencia, `${where}.experiencia`, known)
+    validateAssessment(r.cargoPublicoPrevio, `${where}.cargoPublicoPrevio`, known)
+  }
+
+  const share = noConstaShare(s.rows)
+  must(
+    share < NO_CONSTA_CEILING,
+    `no-consta share is ${(share * 100).toFixed(1)}% (ceiling ${NO_CONSTA_CEILING * 100}%) — ` +
+      'that many blanks means the pipeline is reading the wrong field, not that the CVs are empty',
+  )
+
+  return s
+}
+
+/** The DRAFT shape: the mirror image — every row MUST carry the approval flag. */
+export function validateAreaFitDrafts(json: unknown): AreaFitRow[] {
+  const s = json as { rows?: AreaFitRow[] }
+  must(s && typeof s === 'object', 'draft queue must be an object')
+  must(Array.isArray(s.rows), 'draft queue rows must be an array')
+  for (const r of s.rows) {
+    must(
+      r.requiresHumanApproval === true,
+      `${r?.officialSlug}/${r?.portfolio}: a draft must carry requiresHumanApproval: true`,
+    )
+    must(
+      !r.curatedBy,
+      `${r?.officialSlug}/${r?.portfolio}: a draft cannot carry a curator signature`,
+    )
+  }
+  return s.rows
+}
+
+/** Rows for one official, in the order their portfolios are declared. */
+export function rowsForOfficial(snap: AreaFitSnapshot | null, slug: string): AreaFitRow[] {
+  return (snap?.rows || []).filter((r) => r.officialSlug === slug)
+}
+
+/**
+ * Áreas where a given field is `relacionada`, for the card.
+ *
+ * Returns names, never a count or a ratio: "3 de 4" is a score with extra steps,
+ * and the whole point of this surface is that it does not grade anyone.
+ */
+export function relatedAreas(
+  rows: readonly AreaFitRow[],
+  field: 'formacion' | 'experiencia',
+): string[] {
+  return rows.filter((r) => r[field]?.value === 'relacionada').map((r) => r.portfolio)
+}

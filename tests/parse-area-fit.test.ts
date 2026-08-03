@@ -35,7 +35,10 @@ const FIXTURE = JSON.parse(
 }
 
 /** A task shaped like the fixture's, with the political pool the fixture omits. */
-function taskFrom(c: (typeof FIXTURE.cases)[number], politicalItems: FitEvidenceItem[] = []): FitTask {
+function taskFrom(
+  c: (typeof FIXTURE.cases)[number],
+  politicalItems: FitEvidenceItem[] = [],
+): FitTask {
   return {
     officialSlug: c.task.officialSlug,
     portfolio: c.task.portfolio,
@@ -63,7 +66,10 @@ describe('area-fit — parsing the real model payload', () => {
   it('the fixture exercises BOTH outcomes, so a parser that returns one is not green', () => {
     // Asserting "no invalid values" would pass on an empty result. Assert the
     // check evaluated something.
-    const values = FIXTURE.cases.flatMap((c) => [c.response.formacion.value, c.response.experiencia.value])
+    const values = FIXTURE.cases.flatMap((c) => [
+      c.response.formacion.value,
+      c.response.experiencia.value,
+    ])
     expect(values.filter((v) => v === 'relacionada').length).toBeGreaterThan(0)
     expect(values.filter((v) => v === 'sin-relacion-declarada').length).toBeGreaterThan(0)
   })
@@ -160,7 +166,13 @@ describe('area-fit — the no-consta path is reachable without a model', () => {
 
 describe('area-fit — validateAreaFitSnapshot', () => {
   const OFFICIALS = [
-    { slug: 'teresa-pozuelo-martin', name: 'T', party: 'PSOE', role: 'concejal', portfolios: ['Urbanismo'] },
+    {
+      slug: 'teresa-pozuelo-martin',
+      name: 'T',
+      party: 'PSOE',
+      role: 'concejal',
+      portfolios: ['Urbanismo'],
+    },
   ]
   const REPORT_SOURCES = { 'r-1': new Set(['src-060']) }
 
