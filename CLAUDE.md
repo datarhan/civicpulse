@@ -267,7 +267,7 @@ tightly, cache raw payloads locally while iterating. Aggregate anything
 personal — citizen complaints especially — to neighbourhood level before it
 lands in `public/data/`.
 
-Queja photos are never published raw. `bot/scripts/process-photos` boxes faces,
+Queja photos are never published raw. `cd bot && npm run process-photos` boxes faces,
 plates and ID text with a vision model, hard-mosaics them, strips EXIF/GPS, and
 **fails closed** — if the vision call cannot run, the photo is held, never
 published. `/olvidar` prunes the image; that is the right-to-be-forgotten
