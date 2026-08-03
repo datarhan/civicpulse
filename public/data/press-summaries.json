@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-01T08:55:14.665Z",
+  "generatedAt": "2026-08-03T08:42:38.655Z",
   "source": {
-    "description": "Neutral editorial summaries for press articles audited by the lab. Requires an article body; RSS gives us titles only, so this is empty until body extraction ships.",
+    "description": "Neutral editorial summaries for press articles audited by the lab",
     "contract": "src/scraper/press-summary-llm.ts"
   },
   "stats": {
     "total": 0,
-    "requested": 0
+    "requested": 3
   },
   "items": []
 }

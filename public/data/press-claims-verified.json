@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-08-01T19:44:05.615Z",
+  "generatedAt": "2026-08-03T08:42:37.814Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 10,
+    "total": 5,
     "byVerdict": {
       "verificado": 0,
-      "parcial": 0,
+      "parcial": 1,
       "contradicho": 0,
-      "sin-datos": 10,
+      "sin-datos": 4,
       "promesa-repetida": 0
     }
   },
@@ -55,6 +55,55 @@
         "articleSource": "Periòdic del Camp de Túria",
         "articleSourceHost": "infoturia.com",
         "articleFingerprint": "1jggbak"
+      }
+    },
+    {
+      "claim": {
+        "id": "1e5ntzg-0-num",
+        "articleId": "1e5ntzg",
+        "articleFingerprint": "eravvk",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
+        "articleDate": "2026-07-27T09:53:53.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "una inversión de 61.000 euros en artes escénicas",
+        "context": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027",
+        "topic": "cultura",
+        "entities": {
+          "amountEuros": 61000,
+          "date": "2026-07-27",
+          "referencedEntity": "programa PLATEA 2026-2027"
+        },
+        "confidence": 0.9,
+        "reasoning": "La cifra de inversión es un dato verificable relacionado con el programa mencionado.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1e5ntzg-0-num",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JMTkgha0kaB7h85%2Fpmmsfw%3D%3D",
+            "snippet": "El objeto del contrato es la elaboración y redacción del Plan de Movilidad Urbana Sostenible (PMUS) de Riba-roja de Túria, por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación y mejoras como criterio de adjudicación y con condición especial de ejecución de carácter perspectiva de genero, de conformidad con lo dispuesto en el Pliego de cláusulas administrativas particulares y en el Pliego de prescripciones técnicas.  \nEsta actuación es susceptible de ser cofinanciada al 50 % por la Unión Europea a través del Programa Operativo del Fondo Europeo de Desarrollo Regional (FEDER) de la Comunidad Valenciana 2014-2020. · Ayuntamiento de Riba-roja de Túria · architecture · 60.000 €",
+            "similarity": 0.68
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "eravvk"
       }
     },
     {
@@ -168,237 +217,7 @@
         "articleSourceHost": "infoturia.com",
         "articleFingerprint": "y7xc58"
       }
-    },
-    {
-      "claim": {
-        "id": "15xyao0-0-num",
-        "articleId": "15xyao0",
-        "articleFingerprint": "1948dow",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84953-riba-roja-reconeix-a-31-esportistes-i-18-clubs-en-la-nit-de-lesport-2026.html",
-        "articleDate": "2026-07-20T16:01:07.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "Riba-Roja reconeix a 31 esportistes i 18 clubs en la Nit de l’Esport 2026",
-        "context": "El titular destaca el reconocimiento que se llevó a cabo en la Nit de l’Esport 2026, donde se mencionan los números de deportistas y clubes premiados.",
-        "topic": "cultura",
-        "entities": {
-          "count": 31,
-          "countUnit": "esportistes",
-          "date": "2026-07-20",
-          "referencedEntity": "Riba-Roja"
-        },
-        "confidence": 0.9,
-        "reasoning": "El claim es contrastable porque se refiere a un evento específico y a cifras concretas de reconocimiento.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "15xyao0-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84953-riba-roja-reconeix-a-31-esportistes-i-18-clubs-en-la-nit-de-lesport-2026.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "1948dow"
-      }
-    },
-    {
-      "claim": {
-        "id": "v9agr0-0-num",
-        "articleId": "v9agr0",
-        "articleFingerprint": "qjvz8u",
-        "articleSource": "El Periódico de Aquí",
-        "articleSourceHost": "elperiodicodeaqui.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOUWFjSEJCVnE4QjlEWnlfTVl6VG5zTDlQSi1tS0NHMm1namxjaW03OVVWd1RQbnY4cEVaRExDUW5JRTU2TVNFM1Rta09JRzhWUlZrUDY5TlJqT1ZOcEI3SHlzM1QzQlBRZ05melZJc3lCbFowUXdRTEpzWFRUUE1TTkZ2SkItMWhVOW1MTDkwU1lGNGl2MzhpcllUUDd5V2JBWVhBVzRzb3BRYmgtbmxDU0I3ZU9EVXEyb28xdWVNRmVYWGNMYXFFeWJuZlhYbkptYmVrOTJzaVN2dXR4aGc?oc=5",
-        "articleDate": "2026-07-20T12:27:50.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "Riba-roja premia a 31 deportistas y 18 clubes por sus éxitos",
-        "context": "El Periódico de Aquí informa sobre la Nit de l'Esport 2026, donde se reconocieron a deportistas y clubes locales.",
-        "topic": "cultura",
-        "entities": {
-          "count": 31,
-          "countUnit": "deportistas",
-          "date": "2026-07-20",
-          "referencedEntity": "Riba-roja de Túria"
-        },
-        "confidence": 0.9,
-        "reasoning": "El número de deportistas y clubes premiados es un dato verificable.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "v9agr0-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOUWFjSEJCVnE4QjlEWnlfTVl6VG5zTDlQSi1tS0NHMm1namxjaW03OVVWd1RQbnY4cEVaRExDUW5JRTU2TVNFM1Rta09JRzhWUlZrUDY5TlJqT1ZOcEI3SHlzM1QzQlBRZ05melZJc3lCbFowUXdRTEpzWFRUUE1TTkZ2SkItMWhVOW1MTDkwU1lGNGl2MzhpcllUUDd5V2JBWVhBVzRzb3BRYmgtbmxDU0I3ZU9EVXEyb28xdWVNRmVYWGNMYXFFeWJuZlhYbkptYmVrOTJzaVN2dXR4aGc?oc=5",
-        "articleSource": "El Periódico de Aquí",
-        "articleSourceHost": "elperiodicodeaqui.com",
-        "articleFingerprint": "qjvz8u"
-      }
-    },
-    {
-      "claim": {
-        "id": "pcyu6o-0-num",
-        "articleId": "pcyu6o",
-        "articleFingerprint": "11xy7us",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84805-helados-estiu-embene-46-milions-de-litres-de-gelat.html",
-        "articleDate": "2026-07-16T08:36:40.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "Helados Estiu ven 46 milions de litres de gelat",
-        "context": "El titular del artículo menciona la cantidad de gelato vendido por la empresa Helados Estiu.",
-        "topic": "other",
-        "entities": {
-          "count": 46,
-          "countUnit": "millones de litros",
-          "referencedEntity": "Helados Estiu"
-        },
-        "confidence": 0.9,
-        "reasoning": "La afirmación sobre la cantidad de gelato vendido es un dato numérico que puede ser verificado.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "pcyu6o-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84805-helados-estiu-embene-46-milions-de-litres-de-gelat.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "11xy7us"
-      }
-    },
-    {
-      "claim": {
-        "id": "rsig4c-0-num",
-        "articleId": "rsig4c",
-        "articleFingerprint": "7ufsj8",
-        "articleSource": "Valencia Plaza",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOSTRVWWpaYXFDeFJIaGdOc01MSG9vQXJVTEhuVEFJRDFQLWJCQU1BTEtaOE9ENjNpcUtCeEpTME9jdnhXUkRGeXdTdGMtc3Bva080WDNRM0o5VzdXN2lvdzB2ZGRHSjMtdVJxWjZodHdOWWwwTkJoQmVXNTM5ZGVtVENaSUlESTItZTlCSV80RVFra1hTdkdFOWtacmotcTA3MG4ydExVS0hZOC1uOTFqOEQyT05uN1ZfQk9kdXVMZG44UThhVVpFc1NjS0xVYlBmSXV2YWxWb1hTdXlpd1FDMlpsSTZWRkFGRmh4aU5SX3k?oc=5",
-        "articleDate": "2026-07-14T07:00:00.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "un gran parque urbano de 5 hectáreas",
-        "context": "El 'Pacadar 360' de Riba-roja: un gran parque urbano de 5 hectáreas adaptado al nuevo contexto climático",
-        "topic": "medio-ambiente",
-        "entities": {
-          "count": 5,
-          "countUnit": "hectáreas",
-          "referencedEntity": "Pacadar 360"
-        },
-        "confidence": 0.9,
-        "reasoning": "La afirmación sobre el tamaño del parque es cuantificable y se puede verificar.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rsig4c-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOSTRVWWpaYXFDeFJIaGdOc01MSG9vQXJVTEhuVEFJRDFQLWJCQU1BTEtaOE9ENjNpcUtCeEpTME9jdnhXUkRGeXdTdGMtc3Bva080WDNRM0o5VzdXN2lvdzB2ZGRHSjMtdVJxWjZodHdOWWwwTkJoQmVXNTM5ZGVtVENaSUlESTItZTlCSV80RVFra1hTdkdFOWtacmotcTA3MG4ydExVS0hZOC1uOTFqOEQyT05uN1ZfQk9kdXVMZG44UThhVVpFc1NjS0xVYlBmSXV2YWxWb1hTdXlpd1FDMlpsSTZWRkFGRmh4aU5SX3k?oc=5",
-        "articleSource": "Valencia Plaza",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleFingerprint": "7ufsj8"
-      }
-    },
-    {
-      "claim": {
-        "id": "hwjyxk-0-num",
-        "articleId": "hwjyxk",
-        "articleFingerprint": "oun6xw",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84704-riba-roja-redueix-latur-en-quasi-100-persones-desde-juny-del-passat-any.html",
-        "articleDate": "2026-07-13T16:17:57.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "Riba-roja redueix l’atur en quasi 100 persones desde juny del passat any",
-        "context": "El titular del artículo menciona una reducción del desempleo en Riba-roja de Túria, indicando que casi 100 personas han encontrado trabajo desde junio del año anterior.",
-        "topic": "empleo",
-        "entities": {
-          "count": 100,
-          "countUnit": "personas",
-          "date": "2025-06-01",
-          "referencedEntity": "Riba-roja de Túria"
-        },
-        "confidence": 0.8,
-        "reasoning": "La afirmación se puede verificar a través de datos de empleo del municipio.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "hwjyxk-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84704-riba-roja-redueix-latur-en-quasi-100-persones-desde-juny-del-passat-any.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "oun6xw"
-      }
-    },
-    {
-      "claim": {
-        "id": "1jxa9ng-0-num",
-        "articleId": "1jxa9ng",
-        "articleFingerprint": "r7hnyw",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84660-el-consell-inverteix-236-milions-per-a-ampliar-la-depuradora-a-riba-roja.html",
-        "articleDate": "2026-07-10T12:16:02.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "El Consell inverteix 23,6 milions per a ampliar la depuradora a Riba-roja",
-        "context": "El Consell ha anunciado una inversión significativa en la infraestructura de Riba-roja.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "amountEuros": 23600000,
-          "date": "2026-07-10",
-          "referencedEntity": "depuradora"
-        },
-        "confidence": 0.9,
-        "reasoning": "La cifra de inversión es un dato verificable y específico que se puede contrastar.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1jxa9ng-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84660-el-consell-inverteix-236-milions-per-a-ampliar-la-depuradora-a-riba-roja.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "r7hnyw"
-      }
     }
   ],
-  "sourceGeneratedAt": "2026-07-31T08:15:09.639Z"
+  "sourceGeneratedAt": "2026-08-03T08:42:31.717Z"
 }
