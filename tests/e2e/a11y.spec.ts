@@ -58,6 +58,40 @@ async function scanForBlockingViolations(page: import('@playwright/test').Page, 
 }
 
 test.describe('Accessibility (WCAG 2.1 AA)', () => {
+  // A run must prove it did work — docs/DATA_INTEGRITY.md rule #2, applied to
+  // this gate rather than to a scraper.
+  //
+  // The landing reported "no contrast violations" for its entire history while
+  // axe evaluated ZERO nodes on it. axe cannot resolve a background stack
+  // through the Leaflet tile layer, so it abandons the rule for the whole page;
+  // comparable routes get hundreds of checks (/cargos 258, /presupuesto 543).
+  // Hiding the map — which carries no text of ours — lets the rule see the 222
+  // nodes that do. That first honest run surfaced 26 real failures, from
+  // 1.54:1 metro badges to section headings sitting at 4.0 on their own washes.
+  //
+  // The assertion is on the COUNT as well as the verdict: a zero means the rule
+  // silently no-op'd, and any green above it is worth nothing.
+  const HIDE_MAP = '.leaflet-container{display:none !important}'
+  for (const path of ['/', '/cargos', '/presupuesto']) {
+    test(`${path} — contrast rule runs, and passes what it sees`, async ({ page }) => {
+      await page.goto(path, { waitUntil: 'domcontentloaded' })
+      await page.waitForTimeout(1500)
+      await page.addStyleTag({ content: HIDE_MAP })
+      await page.waitForTimeout(300)
+      const r = await new AxeBuilder({ page }).withRules(['color-contrast']).analyze()
+      const violations = r.violations.flatMap((v) => v.nodes)
+      const evaluated = r.passes.flatMap((p) => p.nodes).length + violations.length
+      expect(
+        evaluated,
+        `axe checked ${evaluated} nodes for contrast on ${path} — the rule did not run, so a green result proves nothing`,
+      ).toBeGreaterThan(20)
+      expect(
+        violations.map((n) => `${n.target.join(' ')} — ${n.any[0]?.message ?? ''}`),
+        `contrast failures on ${path}`,
+      ).toEqual([])
+    })
+  }
+
   for (const path of STRICT_ROUTES) {
     test(`${path} has no critical or serious axe violations`, async ({ page }) => {
       const blocking = await scanForBlockingViolations(page, path)

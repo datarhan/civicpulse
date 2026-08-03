@@ -22,6 +22,7 @@
  * their INTERNAL spacing and the column owns the space between them.
  */
 import { PALETTE, SANS } from './tokens'
+import { useT } from '../../i18n'
 import { EditorialMasthead, QuejaCTA } from './blocks/Masthead'
 import { ReportajeBlockD } from './blocks/ReportajeBlockD'
 import { AlcaldeBox } from './blocks/AlcaldeBox'
@@ -38,15 +39,16 @@ import {
 export const BLOCK_GAP = 18
 
 function EditorialColumn({ now }) {
+  const t = useT()
   return (
+    // Width / padding / overflow live in `.d-editorial` (DirectionD's style
+    // block): below the breakpoint the column goes full-width and stops
+    // scrolling internally, and an inline style would outrank the media query.
     <aside
+      className="d-editorial"
+      aria-label={t('a11y.editorialLabel')}
       style={{
-        width: 420,
-        flexShrink: 0,
         background: PALETTE.bg,
-        borderLeft: '1px solid ' + PALETTE.hair,
-        overflowY: 'auto',
-        padding: '24px 26px',
         fontFamily: SANS,
         color: PALETTE.ink,
         display: 'flex',

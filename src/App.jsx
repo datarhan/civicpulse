@@ -4,6 +4,7 @@ import { Sidebar, NAV } from './components/Sidebar'
 import { Topbar } from './components/Topbar'
 import { CmdK } from './components/CmdK'
 import { TweaksPanel, TweaksButton } from './components/TweaksPanel'
+import { SkipLink } from './components/SkipLink'
 import { useT } from './i18n'
 import { PERIODISTAS_ENABLED } from './flags'
 
@@ -106,7 +107,10 @@ function InnerShell({ onOpenCmdK }) {
       )}
       <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
         <Topbar crumb={crumb} onOpenCmdK={onOpenCmdK} onOpenSidebar={() => setSidebarOpen(true)} />
-        <div style={{ flex: 1, minWidth: 0 }}>
+        {/* The skip target sits BELOW the topbar, not on <main> — <main> wraps
+            the topbar here, so landing on it would skip the sidebar only to
+            drop the reader back at the breadcrumb and search. */}
+        <div id="contenido" tabIndex={-1} style={{ flex: 1, minWidth: 0 }}>
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/cargos" element={<Cargos />} />
@@ -194,14 +198,18 @@ export default function App() {
 
   if (onLanding) {
     return (
-      <Suspense fallback={<Loading />}>
-        <DirectionD />
-      </Suspense>
+      <>
+        <SkipLink />
+        <Suspense fallback={<Loading />}>
+          <DirectionD />
+        </Suspense>
+      </>
     )
   }
 
   return (
     <>
+      <SkipLink />
       <InnerShell onOpenCmdK={() => setCmdK(true)} />
       {!tweaksOpen && <TweaksButton onOpen={() => setTweaksOpen(true)} />}
       <TweaksPanel

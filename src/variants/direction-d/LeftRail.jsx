@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { SectionGlyph } from '../../components/SectionGlyph'
 import { NAV, NAV_SECONDARY } from '../../nav'
 import { PALETTE, SANS } from './tokens'
+import { useT } from '../../i18n'
 
 // The icon-only rail renders from the SHARED nav lists (src/nav.js) — the same
 // source the labelled Sidebar uses — so the two menus can never drift. The
@@ -60,32 +61,27 @@ function RailLink({ item }) {
 }
 
 function LeftRail() {
+  const t = useT()
   return (
-    <aside
-      style={{
-        width: 56,
-        flexShrink: 0,
-        background: PALETTE.paper,
-        borderRight: '1px solid ' + PALETTE.hair,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: '12px 0',
-        gap: 4,
-        fontFamily: SANS,
-      }}
-    >
+    // <nav>, not <aside>: this IS the landing's navigation — the only one,
+    // since the route bypasses the Sidebar. As a second unlabelled <aside>
+    // beside the editorial column it also tripped axe's `landmark-unique`.
+    // Geometry lives in `.d-rail` (DirectionD's style block) because it flips
+    // from a vertical rail to a horizontal scroller below the breakpoint, and
+    // an inline style would outrank the media query.
+    <nav className="d-rail" aria-label={t('a11y.railLabel')} style={{ fontFamily: SANS }}>
       {NAV.map((item) => (
         <RailLink key={item.to} item={item} />
       ))}
       <div
         aria-hidden="true"
-        style={{ width: 22, height: 1, background: PALETTE.hair, margin: '6px 0' }}
+        className="d-rail-sep"
+        style={{ background: PALETTE.hair, flexShrink: 0 }}
       />
       {NAV_SECONDARY.map((item) => (
         <RailLink key={item.to} item={item} />
       ))}
-    </aside>
+    </nav>
   )
 }
 export { LeftRail }

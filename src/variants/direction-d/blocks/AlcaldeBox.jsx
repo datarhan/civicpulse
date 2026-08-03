@@ -6,8 +6,10 @@ import { useTenders } from '../../../hooks/useTenders'
 import { useBdns } from '../../../hooks/useBdns'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../../../scraper/departments'
 import { PALETTE, MONO } from '../tokens'
+import { useT } from '../../../i18n'
 
 export function AlcaldeBox() {
+  const t = useT()
   const { loading, error, data } = useOfficials()
   const { data: promisesData } = usePromises()
   const { data: agendasData } = usePlenoAgendas()
@@ -91,7 +93,7 @@ export function AlcaldeBox() {
               textTransform: 'uppercase',
             }}
           >
-            Alcalde
+            {t('landing.alcalde.role')}
           </div>
           <h2 style={{ fontSize: 15, fontWeight: 700, margin: '2px 0 0', letterSpacing: '-.01em' }}>
             {mayor.name}

@@ -16,7 +16,7 @@ const cardStyle = {
 const titleStyle = {
   fontFamily: "'DM Mono', monospace",
   fontSize: 8.5,
-  color: 'rgba(11,15,25,.55)',
+  color: 'rgba(11,15,25,.62)',
   letterSpacing: '.1em',
   textTransform: 'uppercase',
   marginBottom: 5,
@@ -56,7 +56,7 @@ export function PoiLegend() {
         style={{
           marginTop: 5,
           fontSize: 9,
-          color: 'rgba(11,15,25,.5)',
+          color: 'rgba(11,15,25,.62)',
           fontFamily: "'DM Mono', monospace",
         }}
       >

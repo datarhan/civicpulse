@@ -3,6 +3,7 @@ import { CircleMarker, Polyline, Popup } from 'react-leaflet'
 import { useGeo } from '../../../hooks/useGeo'
 import { useMetroNetwork, indexLineColors } from '../../../hooks/useMetroNetwork'
 import { normaliseStationName } from '../shared'
+import { readableInk } from '../../../lib/contrast'
 
 /**
  * Render the whole Metrovalencia + FGV network (10 lines · ~1k tracks ·
@@ -84,7 +85,7 @@ export function FullNetwork() {
                       key={r}
                       style={{
                         background: colors[r] || '#64748B',
-                        color: '#FFFFFF',
+                        color: readableInk(colors[r] || '#64748B'),
                         fontFamily: 'DM Mono, monospace',
                         fontSize: 10,
                         fontWeight: 800,

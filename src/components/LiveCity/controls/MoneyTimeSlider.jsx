@@ -80,7 +80,7 @@ export function MoneyTimeSlider({
           style={{
             fontFamily: "'DM Mono', monospace",
             fontSize: 8.5,
-            color: 'rgba(11,15,25,.55)',
+            color: 'rgba(11,15,25,.62)',
             letterSpacing: '.1em',
             textTransform: 'uppercase',
           }}
@@ -101,7 +101,7 @@ export function MoneyTimeSlider({
               borderRadius: 999,
               border: `1px solid ${obrasOnly ? '#2463EB' : '#C9C3B4'}`,
               background: obrasOnly ? 'rgba(36,99,235,.14)' : 'transparent',
-              color: obrasOnly ? '#1D4FBB' : 'rgba(11,15,25,.6)',
+              color: obrasOnly ? '#1D4FBB' : 'rgba(11,15,25,.62)',
             }}
           >
             {t('map.money.obras')}
@@ -119,7 +119,7 @@ export function MoneyTimeSlider({
               borderRadius: 999,
               border: `1px solid ${danaOnly ? '#E08600' : '#C9C3B4'}`,
               background: danaOnly ? 'rgba(224,134,0,.16)' : 'transparent',
-              color: danaOnly ? '#A85F00' : 'rgba(11,15,25,.6)',
+              color: danaOnly ? '#A85F00' : 'rgba(11,15,25,.62)',
             }}
           >
             {t('map.money.dana')}
@@ -164,7 +164,7 @@ export function MoneyTimeSlider({
         <span className="mono" style={{ fontSize: 11, fontWeight: 700, color: '#0B0F19' }}>
           {label}
         </span>
-        <span style={{ fontSize: 9.5, color: 'rgba(11,15,25,.5)' }}>{t('map.money.accum')}</span>
+        <span style={{ fontSize: 9.5, color: 'rgba(11,15,25,.62)' }}>{t('map.money.accum')}</span>
       </div>
     </div>
   )

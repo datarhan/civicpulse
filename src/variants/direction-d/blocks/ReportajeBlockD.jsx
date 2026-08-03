@@ -5,6 +5,7 @@ import { loadSnapshotOptional } from '../../../lib/snapshot-store'
 import { truncateAtWord, fmtDateHuman } from '../../../lib/formatters'
 import { PALETTE, SERIF, MONO } from '../tokens'
 import { SectionHeader } from '../SectionHeader'
+import { useT } from '../../../i18n'
 
 /**
  * The landing column's lead block: CivicPulse's own long-form investigations.
@@ -58,14 +59,15 @@ function useReportajesPublicados() {
 }
 
 export function ReportajeBlockD() {
+  const t = useT()
   const items = useReportajesPublicados()
   if (!items || items.length === 0) return null
   return (
     <div>
       <SectionHeader
         tone="reportajes"
-        title="Reportajes · CivicPulse"
-        meta={`${items.length} ${items.length === 1 ? 'pieza' : 'piezas'}`}
+        title={t('landing.section.reportajes')}
+        meta={`${items.length} ${t(items.length === 1 ? 'landing.reportajes.piece' : 'landing.reportajes.pieces')}`}
       />
       {items.map(({ slug, meta }, i) => {
         const topic = reportajeTopic(meta.seccion)
@@ -150,8 +152,12 @@ export function ReportajeBlockD() {
                     fontWeight: 700,
                   }}
                 >
-                  {correcciones} {correcciones === 1 ? 'corrección' : 'correcciones'} publicada
-                  {correcciones === 1 ? '' : 's'}
+                  {correcciones}{' '}
+                  {t(
+                    correcciones === 1
+                      ? 'landing.reportajes.correction'
+                      : 'landing.reportajes.corrections',
+                  )}
                 </span>
               </div>
             )}
@@ -171,7 +177,7 @@ export function ReportajeBlockD() {
           to="/reportajes"
           style={{ color: PALETTE.civic, textDecoration: 'none', fontWeight: 600 }}
         >
-          Todos los reportajes →
+          {t('landing.reportajes.all')}
         </Link>
       </div>
     </div>

@@ -4,6 +4,7 @@ import { computeOtherStationSchedule, computeStationSchedule } from '../../../ho
 import { useMetroSchedule } from '../../../hooks/useMetroSchedule'
 import { ExtLink } from '../../Primitives'
 import { GTFS_SLUG_BY_NAME, METRO_COLOR } from '../shared'
+import { readableInk } from '../../../lib/contrast'
 import { GtfsSchedulePopup } from './GtfsSchedulePopup'
 
 export function StationSchedulePopup({ name, match, rawStation }) {
@@ -235,7 +236,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
             height: 16,
             borderRadius: '50%',
             background: METRO_COLOR,
-            color: '#FFFFFF',
+            color: readableInk(METRO_COLOR),
             display: 'grid',
             placeItems: 'center',
             fontFamily: 'DM Mono, monospace',

@@ -19,10 +19,19 @@ const PALETTE = {
   civic: '#2463EB',
   accent: '#B0291F',
   accent2: '#1E3A8A',
+  // FILL vs INK, the same split index.css already makes with `--ok` /
+  // `--ok-ink`. The vivid tones are for shapes — sparkline strokes, dots, bars —
+  // where contrast rules don't apply. As TEXT on the warm paper they fail AA:
+  // ok is 3.10:1 and warn 3.00:1 against #FAF8F2, and both were being used for
+  // KPI values and badge labels. The -Ink variants are the text-safe pair
+  // (4.72:1 and 4.73:1). axe never reported this because its contrast rule
+  // evaluates zero nodes on the landing — see a11y.spec.ts.
   ok: '#16A34A',
+  okInk: '#15803D',
   warn: '#D97706',
+  warnInk: '#92400E',
   crit: '#DC2626',
-  amber: '#B45309',
+  amber: '#92400E',
 }
 
 function fmtClock(d) {

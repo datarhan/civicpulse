@@ -5,23 +5,30 @@ import { useNextMetro } from '../../hooks/useNextMetro'
 import { useMetroSchedule } from '../../hooks/useMetroSchedule'
 import { useAirQuality, describeAqi } from '../../hooks/useAirQuality'
 import { PALETTE, SANS, MONO, fmtClock } from './tokens'
+import { METRO_COLOR } from '../../components/LiveCity/shared'
+import { readableInk } from '../../lib/contrast'
 
 function Header({ now }) {
   return (
+    // Fixed 54px row on desktop; below the breakpoint it wraps and grows
+    // instead (see `.d-topbar` in DirectionD). Squeezed at 375 it used to force
+    // the brand block into a three-line column AND push 476px of live chips
+    // past the viewport — invisible while the shell was position:fixed and
+    // clipping them, a document-wide horizontal scroll once it wasn't.
     <header
+      className="d-topbar"
       style={{
         display: 'flex',
         alignItems: 'center',
         gap: 16,
         padding: '0 20px',
-        height: 54,
         background: PALETTE.paper,
         borderBottom: '1px solid ' + PALETTE.hair,
         flexShrink: 0,
         fontFamily: SANS,
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div className="d-brand" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <svg width="22" height="22" viewBox="0 0 24 24">
           <rect x="1" y="1" width="22" height="22" rx="5" fill={PALETTE.civic} />
           <path
@@ -34,7 +41,11 @@ function Header({ now }) {
         </svg>
         <div style={{ fontWeight: 700, letterSpacing: '-.01em', fontSize: 15 }}>CivicPulse</div>
         <span style={{ color: PALETTE.ink40, fontSize: 13 }}>·</span>
+        {/* Dropped below 560px: the region is the least load-bearing crumb on a
+            site about one municipality, and it is what makes the brand block
+            too wide to fit beside the town name. */}
         <span
+          className="d-region"
           style={{
             fontFamily: MONO,
             fontSize: 10,
@@ -45,7 +56,9 @@ function Header({ now }) {
         >
           Comunitat Valenciana
         </span>
-        <span style={{ color: PALETTE.ink40 }}>›</span>
+        <span className="d-region" style={{ color: PALETTE.ink40 }}>
+          ›
+        </span>
         <span style={{ fontSize: 13.5, fontWeight: 600 }}>Riba-roja de Túria</span>
         <span
           style={{
@@ -220,7 +233,11 @@ function LiveStrip() {
         background: PALETTE.bg,
         border: '1px solid ' + PALETTE.hair,
         fontFamily: SANS,
-        flexShrink: 0,
+        // Shrinks and scrolls rather than forcing the header wider than the
+        // window. As flex-shrink:0 it kept its full ~476px, which overflowed
+        // the document from 1024px down — invisible only while the shell was a
+        // clipping box, and the shell can't be one (see .d-shell).
+        minWidth: 0,
       }}
     >
       {weather && (
@@ -288,8 +305,10 @@ function LiveStrip() {
                 width: 18,
                 height: 18,
                 borderRadius: '50%',
-                background: '#A47E52',
-                color: '#FFFFFF',
+                background: METRO_COLOR,
+                // FGV's own L9 brown; white on it is 3.69:1. Flip the ink,
+                // keep the brand fill. See src/lib/contrast.js.
+                color: readableInk(METRO_COLOR),
                 display: 'grid',
                 placeItems: 'center',
                 fontFamily: MONO,

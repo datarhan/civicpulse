@@ -1,4 +1,5 @@
 // @ts-check
+import { readableInk } from '../../../lib/contrast'
 
 /** Render the station popup using real FGV GTFS data. At the Riba-roja
  *  terminus we hide the inbound-arrival row (it's just trains pulling
@@ -28,7 +29,7 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
               height: 18,
               borderRadius: '50%',
               background: ln === 'L2' ? '#B4397F' : lineColor,
-              color: '#FFFFFF',
+              color: readableInk(ln === 'L2' ? '#B4397F' : lineColor),
               display: 'grid',
               placeItems: 'center',
               fontFamily: 'DM Mono, monospace',
@@ -67,7 +68,7 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
             <span
               style={{
                 fontSize: 10.5,
-                color: '#FFFFFF',
+                color: readableInk(d.line === 'L2' ? '#B4397F' : '#A47E52'),
                 background: d.line === 'L2' ? '#B4397F' : '#A47E52',
                 padding: '1px 5px',
                 borderRadius: 3,

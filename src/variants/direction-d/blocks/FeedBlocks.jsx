@@ -9,8 +9,10 @@ import { PALETTE } from '../tokens'
 import { SectionHeader } from '../SectionHeader'
 import { ExtLink } from '../../../components/Primitives'
 import { RetiredSourceNote } from '../../../components/RetiredSourceNote'
+import { useT } from '../../../i18n'
 
 export function EmpleoBlockD() {
+  const t = useT()
   const { loading, error, data } = useEmpleo()
   if (loading || error || !data) return null
   const items = data.items || []
@@ -26,8 +28,8 @@ export function EmpleoBlockD() {
     <div>
       <SectionHeader
         tone="empleo"
-        title="Empleo · Agència de Col·locació"
-        meta={`${data.stats.openTotal} ofertas`}
+        title={t('landing.section.empleo')}
+        meta={`${data.stats.openTotal} ${t('landing.ofertas')}`}
       />
       {picks.map((o, i) => {
         const muni = (o.detail && o.detail.municipio) || o.location || ''
@@ -59,13 +61,14 @@ export function EmpleoBlockD() {
           fontWeight: 600,
         }}
       >
-        Ver todas las ofertas →
+        {t('landing.empleo.all')}
       </Link>
     </div>
   )
 }
 
 export function LiveContracts() {
+  const t = useT()
   const { loading, error, data } = useTenders()
   if (loading || error || !data) return null
   const recent = (data.top?.recentAwarded || []).slice(0, 4)
@@ -83,7 +86,7 @@ export function LiveContracts() {
     <div>
       <SectionHeader
         tone="contratos"
-        title="Contratos adjudicados"
+        title={t('landing.section.contratos')}
         // awardedContracts, not totalContracts. Under a heading that says
         // ADJUDICADOS this paired the count of ALL 804 contracts — void,
         // abandoned and revoked included — with the money of only the 698
@@ -137,6 +140,7 @@ export function LiveContracts() {
 }
 
 export function ParticipaBlockD() {
+  const t = useT()
   const { loading, error, data } = useParticipa()
   if (loading || error || !data) return null
   const items = (data.items || []).slice(0, 3)
@@ -144,7 +148,11 @@ export function ParticipaBlockD() {
   const fmt = (iso) => new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })
   return (
     <div>
-      <SectionHeader tone="participa" title="Participación ciudadana" meta={data.stats.total} />
+      <SectionHeader
+        tone="participa"
+        title={t('landing.section.participa')}
+        meta={data.stats.total}
+      />
       <RetiredSourceNote upstream={data.upstream} />
       {items.map((it, i) => (
         <div
@@ -188,6 +196,7 @@ export function ParticipaBlockD() {
 }
 
 export function PressBlockD() {
+  const t = useT()
   const { loading, error, data } = usePress()
   if (loading || error || !data) return null
   const items = (data.items || []).slice(0, 5)
@@ -196,8 +205,8 @@ export function PressBlockD() {
     <div>
       <SectionHeader
         tone="prensa"
-        title={`Prensa · ${data.stats.total} titulares`}
-        meta={`${data.stats.sources} medios`}
+        title={`${t('landing.section.prensa')} · ${data.stats.total} ${t('landing.titulares')}`}
+        meta={`${data.stats.sources} ${t('landing.medios')}`}
       />
       {items.map((p, i) => (
         <div
@@ -254,6 +263,7 @@ export function PressBlockD() {
 }
 
 export function EventsBlockD() {
+  const t = useT()
   const { loading, error, data } = useEvents()
   if (loading || error || !data) return null
   const items = upcomingEvents(data).slice(0, 4)
@@ -262,7 +272,7 @@ export function EventsBlockD() {
     <div>
       <SectionHeader
         tone="eventos"
-        title="Próximos eventos"
+        title={t('landing.section.eventos')}
         meta={data.stats?.upcoming ?? items.length}
       />
       {items.map((e, i) => (

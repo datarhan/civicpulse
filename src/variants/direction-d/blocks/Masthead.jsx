@@ -1,6 +1,8 @@
 import { PALETTE, SERIF, SANS, MONO, fmtDateLong } from '../tokens'
+import { useT } from '../../../i18n'
 
 export function EditorialMasthead({ now }) {
+  const t = useT()
   return (
     <div style={{ borderBottom: '2px solid ' + PALETTE.rule, paddingBottom: 10 }}>
       <div
@@ -17,7 +19,7 @@ export function EditorialMasthead({ now }) {
           marginBottom: 6,
         }}
       >
-        <span>CivicPulse · Boletín</span>
+        <span>{t('landing.masthead.kicker')}</span>
         <span>{fmtDateLong(now)}</span>
       </div>
       {/* The page's only h1. Until Aug 2026 the landing's single heading was
@@ -37,7 +39,7 @@ export function EditorialMasthead({ now }) {
           lineHeight: 0.95,
         }}
       >
-        El Mirador
+        {t('landing.masthead.title')}
       </h1>
       <div
         style={{
@@ -50,13 +52,14 @@ export function EditorialMasthead({ now }) {
           marginTop: 5,
         }}
       >
-        Diario cívico · Riba-roja de Túria
+        {t('landing.masthead.tagline')}
       </div>
     </div>
   )
 }
 
 export function QuejaCTA() {
+  const t = useT()
   // TODO operator: paste a Loom share URL here to enable the embed.
   return (
     <div
@@ -78,7 +81,7 @@ export function QuejaCTA() {
           marginBottom: 6,
         }}
       >
-        Voz ciudadana · canal directo
+        {t('landing.queja.kicker')}
       </div>
       <h2
         style={{
@@ -91,10 +94,10 @@ export function QuejaCTA() {
           color: PALETTE.ink,
         }}
       >
-        Denuncia un bache en 10 segundos.
+        {t('landing.queja.title')}
       </h2>
       <div style={{ fontSize: 12.5, color: PALETTE.ink60, marginBottom: 12, lineHeight: 1.45 }}>
-        Abre el bot de Telegram, envía{' '}
+        {t('landing.queja.body1')}{' '}
         <span
           style={{
             fontFamily: MONO,
@@ -106,9 +109,7 @@ export function QuejaCTA() {
         >
           /queja
         </span>
-        , adjunta foto y ubicación. Si 10 vecinos la apoyan, entra al Registro Electrónico del
-        Ayuntamiento como solicitud oficial. Reloj legal público, sin coste, sin datos personales
-        publicados.
+        {t('landing.queja.body2')}
       </div>
       <a
         href="https://t.me/munigraph_bot?start=landing"
@@ -129,7 +130,7 @@ export function QuejaCTA() {
           boxShadow: '0 2px 6px rgba(36,99,235,.25)',
         }}
       >
-        Abrir el bot →
+        {t('landing.queja.cta')}
       </a>
       <a
         href="/aviso-legal"
@@ -141,7 +142,7 @@ export function QuejaCTA() {
           textUnderlineOffset: 2,
         }}
       >
-        Cómo protegemos tus datos
+        {t('landing.queja.privacy')}
       </a>
     </div>
   )

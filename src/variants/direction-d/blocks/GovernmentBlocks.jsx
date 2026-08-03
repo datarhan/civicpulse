@@ -2,16 +2,22 @@ import { useOfficials, partyColor } from '../../../hooks/useOfficials'
 import { usePromises, isPromiseFrozen } from '../../../hooks/usePromises'
 import { usePlenoAgendas } from '../../../hooks/usePlenoAgendas'
 import { PALETTE, MONO } from '../tokens'
+import { useT } from '../../../i18n'
 import { SectionHeader } from '../SectionHeader'
 
 export function CoalitionRing() {
+  const t = useT()
   const { loading, error, data } = useOfficials()
   if (loading || error || !data) return null
   const order = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'EU-Podem', 'Otro']
   const items = order.filter((p) => data.composition[p]).map((p) => ({ p, n: data.composition[p] }))
   return (
     <div>
-      <SectionHeader tone="pleno" title="Pleno municipal" meta={`${data.count} escaños`} />
+      <SectionHeader
+        tone="pleno"
+        title={t('landing.section.pleno')}
+        meta={`${data.count} ${t('landing.escanos')}`}
+      />
       <div
         style={{
           display: 'flex',
@@ -65,6 +71,7 @@ export function CoalitionRing() {
 }
 
 export function PromesasBlockD() {
+  const t = useT()
   const { loading, error, data } = usePromises()
   if (loading || error || !data) return null
   const frozen = isPromiseFrozen(data)
@@ -79,7 +86,7 @@ export function PromesasBlockD() {
     <div>
       <SectionHeader
         tone="promesas"
-        title="Seguimiento de promesas"
+        title={t('landing.section.promesas')}
         meta={total}
         badge={
           frozen && (
@@ -120,20 +127,20 @@ export function PromesasBlockD() {
         ))}
       </div>
       <div style={{ fontSize: 11.5, color: PALETTE.ink80, lineHeight: 1.45, marginBottom: 6 }}>
-        Compromisos públicos documentados con cita verbatim y fuente primaria. Sin juicios
-        automáticos de cumplimiento.
+        {t('landing.promesas.blurb')}
       </div>
       <a
         href="/promesas"
         style={{ color: PALETTE.accent, textDecoration: 'none', fontSize: 11.5, fontWeight: 600 }}
       >
-        Ver tracker completo →
+        {t('landing.promesas.cta')}
       </a>
     </div>
   )
 }
 
 export function DepartamentosBlockD() {
+  const t = useT()
   const { data: agendas } = usePlenoAgendas()
   const officialsSnap = useOfficials()
   const promisesSnap = usePromises()
@@ -147,7 +154,7 @@ export function DepartamentosBlockD() {
     <div>
       <SectionHeader
         tone="rendicion"
-        title="Rendición de cuentas por concejalía"
+        title={t('landing.section.rendicion')}
         badge={
           !frozen &&
           vencidos > 0 && (
@@ -155,7 +162,7 @@ export function DepartamentosBlockD() {
               className="mono"
               style={{
                 fontSize: 9.5,
-                color: PALETTE.warn,
+                color: PALETTE.warnInk,
                 background: 'rgba(217,119,6,.10)',
                 padding: '1px 6px',
                 borderRadius: 3,
@@ -231,14 +238,13 @@ export function DepartamentosBlockD() {
         )}
       </div>
       <div style={{ fontSize: 11.5, color: PALETTE.ink80, lineHeight: 1.45, marginBottom: 6 }}>
-        Cruza votos de pleno, promesas electorales y quejas ciudadanas por concejalía. Un plazo
-        vencido se marca como aviso editorial — el estado nunca se modifica de forma automática.
+        {t('landing.rendicion.blurb')}
       </div>
       <a
         href="/departamentos"
         style={{ color: PALETTE.accent, textDecoration: 'none', fontSize: 11.5, fontWeight: 600 }}
       >
-        Ver dashboard por departamento →
+        {t('landing.rendicion.cta')}
       </a>
     </div>
   )

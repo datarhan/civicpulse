@@ -4,6 +4,7 @@ import { useTenders } from '../../hooks/useTenders'
 import { useParo } from '../../hooks/useParo'
 import { usePlenos, PLENO_LABEL } from '../../hooks/usePlenos'
 import { PALETTE, SERIF, SANS, MONO } from './tokens'
+import { useT } from '../../i18n'
 
 function MiniSpark({ data, color }) {
   const max = Math.max(...data)
@@ -34,19 +35,18 @@ function MiniSpark({ data, color }) {
   )
 }
 
+// Text gets the -Ink pair (AA on the warm paper); shapes keep the vivid fill,
+// where contrast thresholds don't apply. Same split as `--ok` / `--ok-ink`.
+const TONE_TEXT = { ok: PALETTE.okInk, warn: PALETTE.warnInk, crit: PALETTE.crit }
+const TONE_FILL = { ok: PALETTE.ok, warn: PALETTE.warn, crit: PALETTE.crit }
+
 function Kpi({ label, value, delta, tone, sub, spark, sparkColor, serif }) {
-  const color =
-    tone === 'ok'
-      ? PALETTE.ok
-      : tone === 'warn'
-        ? PALETTE.warn
-        : tone === 'crit'
-          ? PALETTE.crit
-          : PALETTE.ink
+  const color = TONE_TEXT[tone] ?? PALETTE.ink
+  const fill = TONE_FILL[tone] ?? PALETTE.ink
   return (
     <div
+      className="d-kpi-cell"
       style={{
-        flex: 1,
         padding: '10px 16px',
         borderRight: '1px solid ' + PALETTE.hair,
         display: 'flex',
@@ -85,7 +85,7 @@ function Kpi({ label, value, delta, tone, sub, spark, sparkColor, serif }) {
               fontSize: 10.5,
               fontWeight: 700,
               color: delta.startsWith('▲')
-                ? PALETTE.ok
+                ? PALETTE.okInk
                 : delta.startsWith('▼')
                   ? PALETTE.crit
                   : PALETTE.ink50,
@@ -100,7 +100,7 @@ function Kpi({ label, value, delta, tone, sub, spark, sparkColor, serif }) {
           {sub && (
             <span style={{ fontFamily: MONO, fontSize: 10, color: PALETTE.ink50 }}>{sub}</span>
           )}
-          {spark && <MiniSpark data={spark} color={sparkColor || color} />}
+          {spark && <MiniSpark data={spark} color={sparkColor || fill} />}
         </div>
       )}
     </div>
@@ -108,6 +108,7 @@ function Kpi({ label, value, delta, tone, sub, spark, sparkColor, serif }) {
 }
 
 function KpiStrip() {
+  const t = useT()
   const padron = usePadron().data
   const budget = useBudget().data
   const tenders = useTenders().data
@@ -151,10 +152,20 @@ function KpiStrip() {
   const totalPlenos = plenos?.stats?.total
 
   return (
+    // `.d-kpi` owns height + overflow: below the breakpoint the six cells no
+    // longer fit, and squeezing them wrapped "27 jul" onto two lines and cut
+    // the last cell off entirely. There it scrolls horizontally instead, with
+    // each cell holding a legible minimum width.
     <footer
+      className="d-kpi"
+      // Scrollable below the breakpoint, so it must be keyboard-reachable —
+      // otherwise the cells past the fold can only be read by touch or mouse
+      // (axe `scrollable-region-focusable`, serious). tabIndex is harmless on
+      // desktop where the strip doesn't scroll.
+      tabIndex={0}
+      aria-label={t('a11y.kpiLabel')}
       style={{
         display: 'flex',
-        height: 76,
         background: PALETTE.paper,
         borderTop: '1px solid ' + PALETTE.rule,
         flexShrink: 0,

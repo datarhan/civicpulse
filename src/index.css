@@ -601,3 +601,34 @@ body.cp-kiosk .cp-live-container {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ---- Skip link · WCAG 2.4.1 Bypass Blocks (Level A) --------------------
+   Off-screen until focused, then pinned top-left. It cannot be display:none
+   or visibility:hidden — that removes it from the tab order, which is the one
+   thing it exists to be in. The landing puts 112 focusable stops (weather
+   chip, air-quality chip, metro chip, search, 14 rail glyphs, map controls…)
+   ahead of the editorial column; without this, every keyboard visit pays that
+   toll. Target is #contenido on <main>, which carries tabindex="-1" so focus
+   genuinely moves rather than the page merely scrolling. */
+.cp-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10000;
+  padding: 10px 16px;
+  background: var(--civic);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 0 0 8px 0;
+  text-decoration: none;
+}
+.cp-skip-link:focus {
+  left: 0;
+}
+/* <main tabindex="-1"> is focused programmatically by the skip link; suppress
+   the ring on that synthetic focus so the page doesn't look like it has a
+   stray selection, while keyboard focus on real controls keeps its ring. */
+main:focus:not(:focus-visible) {
+  outline: none;
+}

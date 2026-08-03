@@ -102,10 +102,18 @@ function MapAttribution() {
         zIndex: 400,
         maxWidth: 240,
         fontSize: 9.5,
-        color: 'rgba(255,255,255,.5)',
+        // Attribution sits directly on the map tiles, whose luminance we do
+        // not control, so it carried its own contrast with a soft shadow and
+        // measured 1.37:1 against the terrain. An opaque dark plate under it
+        // makes the pairing deterministic instead of tile-dependent.
+        color: 'rgba(255,255,255,.92)',
+        // .55 still let the tiles through to 4.43:1. .78 makes the plate
+        // dominant enough that the ratio no longer depends on what is under it.
+        background: 'rgba(11,15,25,.78)',
+        padding: '3px 6px',
+        borderRadius: 4,
         fontFamily: MONO,
         letterSpacing: '.04em',
-        textShadow: '0 1px 2px rgba(0,0,0,.6)',
         pointerEvents: 'none',
         textAlign: 'right',
         lineHeight: 1.4,

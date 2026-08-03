@@ -26,17 +26,25 @@
  * one more category.
  */
 
+/**
+ * The `ink` values are measured against each tone's OWN wash, not against the
+ * warm paper — the wash darkens the effective background by a few percent,
+ * which is exactly enough to drop a 4.7:1 pairing under the 4.5 floor. The
+ * rendición amber (4.16) and contratos green (4.28) both failed that way, and
+ * no audit had ever seen it: axe's contrast rule cannot resolve a background
+ * through the Leaflet tile layer, so it evaluated zero nodes on this page.
+ */
 export const SECTION_TONES = {
   reportajes: { bar: '#0B0F19', wash: 'rgba(11,15,25,.06)', ink: '#0B0F19' },
   pleno: { bar: '#1E3A8A', wash: 'rgba(30,58,138,.07)', ink: '#1E3A8A' },
   promesas: { bar: '#2463EB', wash: 'rgba(36,99,235,.08)', ink: '#1E4FBB' },
-  rendicion: { bar: '#B45309', wash: 'rgba(180,83,9,.10)', ink: '#B45309' },
+  rendicion: { bar: '#B45309', wash: 'rgba(180,83,9,.10)', ink: '#92400E' },
   prensa: { bar: '#B0291F', wash: 'rgba(176,41,31,.08)', ink: '#8F221A' },
-  contratos: { bar: '#16A34A', wash: 'rgba(22,163,74,.09)', ink: '#15803D' },
-  participa: { bar: '#0D9488', wash: 'rgba(13,148,136,.10)', ink: '#0F766E' },
-  eventos: { bar: '#0D9488', wash: 'rgba(13,148,136,.10)', ink: '#0F766E' },
+  contratos: { bar: '#16A34A', wash: 'rgba(22,163,74,.09)', ink: '#166534' },
+  participa: { bar: '#0D9488', wash: 'rgba(13,148,136,.10)', ink: '#0F5F59' },
+  eventos: { bar: '#0D9488', wash: 'rgba(13,148,136,.10)', ink: '#0F5F59' },
   empleo: { bar: '#4F46E5', wash: 'rgba(79,70,229,.08)', ink: '#4338CA' },
-  neutral: { bar: 'rgba(11,15,25,.35)', wash: 'rgba(11,15,25,.05)', ink: 'rgba(11,15,25,.68)' },
+  neutral: { bar: 'rgba(11,15,25,.35)', wash: 'rgba(11,15,25,.05)', ink: 'rgba(11,15,25,.72)' },
 }
 
 export function sectionTone(name) {
@@ -89,8 +97,10 @@ export function SectionHeader({ tone = 'neutral', title, meta, badge, style }) {
         <span
           className="mono"
           style={{
+            // .55 measured 4.0–4.1 against the tinted washes. .70 clears the
+            // floor on all of them and still reads as secondary to the title.
             fontSize: 10,
-            color: 'rgba(11,15,25,.55)',
+            color: 'rgba(11,15,25,.70)',
             marginLeft: 'auto',
             whiteSpace: 'nowrap',
           }}

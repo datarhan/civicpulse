@@ -360,6 +360,55 @@ const CATALOGUE = {
       'Fecha de compromiso superada sin que se haya registrado evidencia de ejecución. El estado editorial NO cambia automáticamente.',
     'liveTicker.plazosVencidos': 'plazos vencidos',
     'liveTicker.plazosVencidos.none': 'sin plazos vencidos · todo en regla',
+
+    // Accessibility chrome
+    'a11y.skipToContent': 'Saltar al contenido',
+    'a11y.railLabel': 'Secciones',
+    'a11y.editorialLabel': 'El Mirador · boletín cívico',
+    'a11y.mainLabel': 'Mapa y boletín',
+    'a11y.kpiLabel': 'Indicadores del municipio',
+
+    // Landing ("El Mirador"). These ARE chrome under the policy above — the
+    // column's own section bands and calls to action, not scraped data — but
+    // until Aug 2026 none of them went through t(), so switching to Valencià
+    // changed 8 of 376 lines on the page and every editorial heading stayed
+    // in Castilian.
+    'landing.masthead.kicker': 'CivicPulse · Boletín',
+    'landing.masthead.title': 'El Mirador',
+    'landing.masthead.tagline': 'Diario cívico · Riba-roja de Túria',
+    'landing.queja.kicker': 'Voz ciudadana · canal directo',
+    'landing.queja.title': 'Denuncia un bache en 10 segundos.',
+    'landing.queja.body1': 'Abre el bot de Telegram, envía',
+    'landing.queja.body2':
+      ', adjunta foto y ubicación. Si 10 vecinos la apoyan, entra al Registro Electrónico del Ayuntamiento como solicitud oficial. Reloj legal público, sin coste, sin datos personales publicados.',
+    'landing.queja.cta': 'Abrir el bot →',
+    'landing.queja.privacy': 'Cómo protegemos tus datos',
+    'landing.section.reportajes': 'Reportajes · CivicPulse',
+    'landing.section.pleno': 'Pleno municipal',
+    'landing.section.promesas': 'Seguimiento de promesas',
+    'landing.section.rendicion': 'Rendición de cuentas por concejalía',
+    'landing.section.prensa': 'Prensa',
+    'landing.section.contratos': 'Contratos adjudicados',
+    'landing.section.empleo': 'Empleo · Agència de Col·locació',
+    'landing.section.eventos': 'Próximos eventos',
+    'landing.section.participa': 'Participación ciudadana',
+    'landing.reportajes.all': 'Todos los reportajes →',
+    'landing.reportajes.piece': 'pieza',
+    'landing.reportajes.pieces': 'piezas',
+    'landing.reportajes.correction': 'corrección publicada',
+    'landing.reportajes.corrections': 'correcciones publicadas',
+    'landing.alcalde.role': 'Alcalde',
+    'landing.empleo.all': 'Ver todas las ofertas →',
+    'landing.promesas.blurb':
+      'Compromisos públicos documentados con cita verbatim y fuente primaria. Sin juicios automáticos de cumplimiento.',
+    'landing.promesas.cta': 'Ver tracker completo →',
+    'landing.rendicion.blurb':
+      'Cruza votos de pleno, promesas electorales y quejas ciudadanas por concejalía. Un plazo vencido se marca como aviso editorial — el estado nunca se modifica de forma automática.',
+    'landing.rendicion.cta': 'Ver dashboard por departamento →',
+    'landing.escanos': 'escaños',
+    'landing.titulares': 'titulares',
+    'landing.medios': 'medios',
+    'landing.ofertas': 'ofertas',
   },
 
   // Valencià (estàndard oficial — Acadèmia Valenciana de la Llengua / GVA)
@@ -691,6 +740,51 @@ const CATALOGUE = {
       "Data de compromís superada sense que s'haja registrat evidència d'execució. L'estat editorial NO canvia automàticament.",
     'liveTicker.plazosVencidos': 'terminis vençuts',
     'liveTicker.plazosVencidos.none': 'sense terminis vençuts · tot en regla',
+
+    // Accessibilitat
+    'a11y.skipToContent': 'Saltar al contingut',
+    'a11y.railLabel': 'Seccions',
+    'a11y.editorialLabel': 'El Mirador · butlletí cívic',
+    'a11y.mainLabel': 'Mapa i butlletí',
+    'a11y.kpiLabel': 'Indicadors del municipi',
+
+    // Portada ("El Mirador")
+    'landing.masthead.kicker': 'CivicPulse · Butlletí',
+    'landing.masthead.title': 'El Mirador',
+    'landing.masthead.tagline': 'Diari cívic · Riba-roja de Túria',
+    'landing.queja.kicker': 'Veu ciutadana · canal directe',
+    'landing.queja.title': 'Denuncia un clot en 10 segons.',
+    'landing.queja.body1': 'Obri el bot de Telegram, envia',
+    'landing.queja.body2':
+      ", adjunta foto i ubicació. Si 10 veïns la recolzen, entra al Registre Electrònic de l'Ajuntament com a sol·licitud oficial. Rellotge legal públic, sense cost, sense dades personals publicades.",
+    'landing.queja.cta': 'Obrir el bot →',
+    'landing.queja.privacy': 'Com protegim les teues dades',
+    'landing.section.reportajes': 'Reportatges · CivicPulse',
+    'landing.section.pleno': 'Ple municipal',
+    'landing.section.promesas': 'Seguiment de promeses',
+    'landing.section.rendicion': 'Retiment de comptes per regidoria',
+    'landing.section.prensa': 'Premsa',
+    'landing.section.contratos': 'Contractes adjudicats',
+    'landing.section.empleo': 'Ocupació · Agència de Col·locació',
+    'landing.section.eventos': 'Pròxims esdeveniments',
+    'landing.section.participa': 'Participació ciutadana',
+    'landing.reportajes.all': 'Tots els reportatges →',
+    'landing.reportajes.piece': 'peça',
+    'landing.reportajes.pieces': 'peces',
+    'landing.reportajes.correction': 'correcció publicada',
+    'landing.reportajes.corrections': 'correccions publicades',
+    'landing.alcalde.role': 'Alcalde',
+    'landing.empleo.all': 'Veure totes les ofertes →',
+    'landing.promesas.blurb':
+      'Compromisos públics documentats amb cita verbatim i font primària. Sense judicis automàtics de compliment.',
+    'landing.promesas.cta': 'Veure el tracker complet →',
+    'landing.rendicion.blurb':
+      "Creua vots de ple, promeses electorals i queixes ciutadanes per regidoria. Un termini vençut es marca com a avís editorial — l'estat mai es modifica de manera automàtica.",
+    'landing.rendicion.cta': 'Veure el tauler per departament →',
+    'landing.escanos': 'escons',
+    'landing.titulares': 'titulars',
+    'landing.medios': 'mitjans',
+    'landing.ofertas': 'ofertes',
   },
 }
 
