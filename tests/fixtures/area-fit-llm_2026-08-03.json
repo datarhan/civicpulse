@@ -1,0 +1,805 @@
+{
+  "_comment": "Respuestas REALES de claude-code/sonnet (promptVersion area-fit-v1, 2026-08-03) para tres cargos elegidos para cubrir el espacio de resultados: Pozuelo (arquitecta técnica en Urbanismo), Pla (peluquería en Fiestas) y Ramos (banca en Agricultura). Contrato RED del parser: no reescribir a mano.",
+  "generatedAt": "2026-08-03T00:00:00.000Z",
+  "promptVersion": "area-fit-v1",
+  "backend": "claude-code",
+  "model": "sonnet",
+  "cases": [
+    {
+      "task": {
+        "officialSlug": "teresa-pozuelo-martin",
+        "portfolio": "Urbanismo",
+        "reportId": "r-teresa-pozuelo-bio-2026-07-30",
+        "educationItems": [
+          {
+            "label": "Arquitecto Técnico — Universitat Politècnica de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Ingeniero de Edificación — Universitat Politècnica de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Máster en Project Management — FLC de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Técnico en Prevención de Riesgos Laborales — FLC de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ],
+        "careerItems": [
+          {
+            "label": "Ayudante de jefe de obra @ Pavituria SL",
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "label": "Arquitecta técnica y jefa de obra @ Grupo Tremon SA",
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ]
+      },
+      "response": {
+        "formacion": {
+          "value": "relacionada",
+          "evidenceIndices": [
+            0,
+            1
+          ],
+          "reason": "Las titulaciones de Arquitecto Técnico e Ingeniero de Edificación corresponden a la materia de construcción y edificación, propia del ámbito urbanístico; el máster en Project Management y el técnico en prevención de riesgos laborales no se declaran vinculados específicamente a esa materia."
+        },
+        "experiencia": {
+          "value": "relacionada",
+          "evidenceIndices": [
+            0,
+            1
+          ],
+          "reason": "Los puestos declarados corresponden a jefatura y ayudantía de jefatura de obra, actividad de ejecución y dirección de construcción que forma parte de la materia urbanística."
+        }
+      }
+    },
+    {
+      "task": {
+        "officialSlug": "teresa-pozuelo-martin",
+        "portfolio": "Vivienda",
+        "reportId": "r-teresa-pozuelo-bio-2026-07-30",
+        "educationItems": [
+          {
+            "label": "Arquitecto Técnico — Universitat Politècnica de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Ingeniero de Edificación — Universitat Politècnica de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Máster en Project Management — FLC de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Técnico en Prevención de Riesgos Laborales — FLC de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ],
+        "careerItems": [
+          {
+            "label": "Ayudante de jefe de obra @ Pavituria SL",
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "label": "Arquitecta técnica y jefa de obra @ Grupo Tremon SA",
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ]
+      },
+      "response": {
+        "formacion": {
+          "value": "relacionada",
+          "evidenceIndices": [
+            0,
+            1
+          ],
+          "reason": "Las titulaciones de Arquitecto Técnico e Ingeniero de Edificación versan sobre la técnica de construcción y edificación, materia propia del área de vivienda; el máster en Project Management y el técnico en Prevención de Riesgos Laborales no especifican vinculación con la materia de edificación o vivienda."
+        },
+        "experiencia": {
+          "value": "relacionada",
+          "evidenceIndices": [
+            0,
+            1
+          ],
+          "reason": "Los puestos de ayudante de jefe de obra y jefa de obra corresponden a la ejecución y dirección de obras de edificación, materia vinculada a la construcción y gestión de vivienda."
+        }
+      }
+    },
+    {
+      "task": {
+        "officialSlug": "teresa-pozuelo-martin",
+        "portfolio": "Obra Pública",
+        "reportId": "r-teresa-pozuelo-bio-2026-07-30",
+        "educationItems": [
+          {
+            "label": "Arquitecto Técnico — Universitat Politècnica de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Ingeniero de Edificación — Universitat Politècnica de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Máster en Project Management — FLC de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Técnico en Prevención de Riesgos Laborales — FLC de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ],
+        "careerItems": [
+          {
+            "label": "Ayudante de jefe de obra @ Pavituria SL",
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "label": "Arquitecta técnica y jefa de obra @ Grupo Tremon SA",
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ]
+      },
+      "response": {
+        "formacion": {
+          "value": "relacionada",
+          "evidenceIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "reason": "Arquitecto Técnico e Ingeniero de Edificación son titulaciones del ámbito de la construcción y edificación; el Máster en Project Management y el Técnico en Prevención de Riesgos Laborales fueron cursados en la Fundación Laboral de la Construcción (FLC), entidad formativa específica del sector de la construcción, materia coincidente con obra pública."
+        },
+        "experiencia": {
+          "value": "relacionada",
+          "evidenceIndices": [
+            0,
+            1
+          ],
+          "reason": "Ambos puestos declarados (ayudante de jefe de obra y arquitecta técnica y jefa de obra) corresponden a funciones de dirección y ejecución de obra en empresas constructoras, materia coincidente con obra pública."
+        }
+      }
+    },
+    {
+      "task": {
+        "officialSlug": "teresa-pozuelo-martin",
+        "portfolio": "Áreas Industriales y Cementerio",
+        "reportId": "r-teresa-pozuelo-bio-2026-07-30",
+        "educationItems": [
+          {
+            "label": "Arquitecto Técnico — Universitat Politècnica de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Ingeniero de Edificación — Universitat Politècnica de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Máster en Project Management — FLC de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Técnico en Prevención de Riesgos Laborales — FLC de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ],
+        "careerItems": [
+          {
+            "label": "Ayudante de jefe de obra @ Pavituria SL",
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "label": "Arquitecta técnica y jefa de obra @ Grupo Tremon SA",
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ]
+      },
+      "response": {
+        "formacion": {
+          "value": "relacionada",
+          "evidenceIndices": [
+            0,
+            1
+          ],
+          "reason": "Arquitecto Técnico e Ingeniero de Edificación son titulaciones de la rama de edificación y construcción, materia relacionada con la gestión de infraestructuras, naves y edificaciones propia de áreas industriales y cementerio; el máster en Project Management y la formación en prevención de riesgos laborales no especifican un sector o materia vinculados a esa gestión."
+        },
+        "experiencia": {
+          "value": "relacionada",
+          "evidenceIndices": [
+            0,
+            1
+          ],
+          "reason": "Los puestos de ayudante de jefe de obra y de jefa de obra corresponden a la ejecución y dirección de obras de construcción, materia de edificación e infraestructuras vinculada a la gestión física de áreas industriales y del cementerio."
+        }
+      }
+    },
+    {
+      "task": {
+        "officialSlug": "alfredo-pla-gimenez",
+        "portfolio": "Fallas",
+        "reportId": "r-alfredo-pla-bio-2026-07-31",
+        "educationItems": [
+          {
+            "label": "Grado Superior de Peluquería (homologado por el Ministerio de Educación y Ciencia en 1982) — Academia de Peluquería y Estética Dani de Valencia",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ],
+        "careerItems": [
+          {
+            "label": "Peluquero en diferentes salones @ Salones de peluquería (varios)",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Gerente de la peluquería (autónomo bajo su propio nombre desde el 01-01-1986) @ FREDI&STILISTAS",
+            "sourceIds": [
+              "src-060",
+              "src-069"
+            ]
+          }
+        ]
+      },
+      "response": {
+        "formacion": {
+          "value": "sin-relacion-declarada",
+          "evidenceIndices": [],
+          "reason": "La formación en peluquería es un oficio de estética personal sin conexión de materia con la organización, tradición o gestión de las Fallas."
+        },
+        "experiencia": {
+          "value": "sin-relacion-declarada",
+          "evidenceIndices": [],
+          "reason": "La trayectoria descrita se desarrolla en el sector de la peluquería, incluida su gestión como negocio propio, sin vínculo de materia con las Fallas."
+        }
+      }
+    },
+    {
+      "task": {
+        "officialSlug": "alfredo-pla-gimenez",
+        "portfolio": "Fiestas y Tradiciones",
+        "reportId": "r-alfredo-pla-bio-2026-07-31",
+        "educationItems": [
+          {
+            "label": "Grado Superior de Peluquería (homologado por el Ministerio de Educación y Ciencia en 1982) — Academia de Peluquería y Estética Dani de Valencia",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ],
+        "careerItems": [
+          {
+            "label": "Peluquero en diferentes salones @ Salones de peluquería (varios)",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Gerente de la peluquería (autónomo bajo su propio nombre desde el 01-01-1986) @ FREDI&STILISTAS",
+            "sourceIds": [
+              "src-060",
+              "src-069"
+            ]
+          }
+        ]
+      },
+      "response": {
+        "formacion": {
+          "value": "sin-relacion-declarada",
+          "evidenceIndices": [],
+          "reason": "La formación es un título de Peluquería, materia ajena a la gestión de fiestas y tradiciones, sin contenidos relativos a folclore, patrimonio festivo o cultura popular."
+        },
+        "experiencia": {
+          "value": "sin-relacion-declarada",
+          "evidenceIndices": [],
+          "reason": "La trayectoria descrita corresponde a la actividad de peluquería (salones y gerencia de un negocio de peluquería), sin mención de organización de fiestas, actos festivos, tradiciones populares o entidades culturales/festivas."
+        }
+      }
+    },
+    {
+      "task": {
+        "officialSlug": "jose-luis-ramos-march",
+        "portfolio": "Agenda 2030",
+        "reportId": "r-jose-luis-ramos-bio-2026-07-31",
+        "educationItems": [
+          {
+            "label": "Graduado escolar — Universidad Laboral de Cheste",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "BUP (Bachillerato Unificado Polivalente) — IES Rodrigo Botet de Manises",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "Curso \"Política de Riesgos en el sector financiero\" — Fundación de Estudios Bursátiles y Financieros",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "Grado elemental de ahorro en el sector de la banca — ESIC",
+            "sourceIds": [
+              "src-002"
+            ]
+          }
+        ],
+        "careerItems": [
+          {
+            "label": "Director (sector banca) @ Cajamar",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Director (sector banca) @ Caja Campo",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Director (sector banca) @ Banco de València",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Administrativo (sector banca) @ Banco de València",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          }
+        ]
+      },
+      "response": {
+        "formacion": {
+          "value": "sin-relacion-declarada",
+          "evidenceIndices": [],
+          "reason": "La formación declarada corresponde a estudios generales (graduado escolar, BUP) y a materias del sector financiero y bancario (riesgos financieros, ahorro bancario), sin contenidos vinculados a sostenibilidad, desarrollo sostenible u objetivos de la Agenda 2030."
+        },
+        "experiencia": {
+          "value": "sin-relacion-declarada",
+          "evidenceIndices": [],
+          "reason": "La trayectoria declarada consiste en puestos directivos y administrativos en entidades bancarias, sin mención de funciones relacionadas con sostenibilidad, desarrollo sostenible o los objetivos de la Agenda 2030."
+        }
+      }
+    },
+    {
+      "task": {
+        "officialSlug": "jose-luis-ramos-march",
+        "portfolio": "Emergencia climática",
+        "reportId": "r-jose-luis-ramos-bio-2026-07-31",
+        "educationItems": [
+          {
+            "label": "Graduado escolar — Universidad Laboral de Cheste",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "BUP (Bachillerato Unificado Polivalente) — IES Rodrigo Botet de Manises",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "Curso \"Política de Riesgos en el sector financiero\" — Fundación de Estudios Bursátiles y Financieros",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "Grado elemental de ahorro en el sector de la banca — ESIC",
+            "sourceIds": [
+              "src-002"
+            ]
+          }
+        ],
+        "careerItems": [
+          {
+            "label": "Director (sector banca) @ Cajamar",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Director (sector banca) @ Caja Campo",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Director (sector banca) @ Banco de València",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Administrativo (sector banca) @ Banco de València",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          }
+        ]
+      },
+      "response": {
+        "formacion": {
+          "value": "sin-relacion-declarada",
+          "evidenceIndices": [],
+          "reason": "La formación declarada corresponde a educación general básica (graduado escolar, BUP) y a materias del sector financiero/bancario, sin contenido relativo a clima, medio ambiente o sostenibilidad."
+        },
+        "experiencia": {
+          "value": "sin-relacion-declarada",
+          "evidenceIndices": [],
+          "reason": "Los puestos declarados corresponden todos al sector bancario (dirección y administración), sin vínculo temático con la emergencia climática."
+        }
+      }
+    },
+    {
+      "task": {
+        "officialSlug": "jose-luis-ramos-march",
+        "portfolio": "Fondos Europeos",
+        "reportId": "r-jose-luis-ramos-bio-2026-07-31",
+        "educationItems": [
+          {
+            "label": "Graduado escolar — Universidad Laboral de Cheste",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "BUP (Bachillerato Unificado Polivalente) — IES Rodrigo Botet de Manises",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "Curso \"Política de Riesgos en el sector financiero\" — Fundación de Estudios Bursátiles y Financieros",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "Grado elemental de ahorro en el sector de la banca — ESIC",
+            "sourceIds": [
+              "src-002"
+            ]
+          }
+        ],
+        "careerItems": [
+          {
+            "label": "Director (sector banca) @ Cajamar",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Director (sector banca) @ Caja Campo",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Director (sector banca) @ Banco de València",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Administrativo (sector banca) @ Banco de València",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          }
+        ]
+      },
+      "response": {
+        "formacion": {
+          "value": "sin-relacion-declarada",
+          "evidenceIndices": [],
+          "reason": "La formación declarada corresponde a educación general básica y a cursos sobre riesgos financieros y ahorro en el sector bancario, materia distinta de los fondos europeos (normativa, gestión y ejecución de programas de financiación de la Unión Europea), sin mención explícita a estos últimos."
+        },
+        "experiencia": {
+          "value": "sin-relacion-declarada",
+          "evidenceIndices": [],
+          "reason": "Los puestos declarados corresponden a banca comercial (dirección y administración en entidades bancarias), materia distinta de la gestión de fondos europeos (subvenciones, ayudas o programas de financiación de la Unión Europea), sin mención explícita a estos últimos."
+        }
+      }
+    },
+    {
+      "task": {
+        "officialSlug": "jose-luis-ramos-march",
+        "portfolio": "Integridad",
+        "reportId": "r-jose-luis-ramos-bio-2026-07-31",
+        "educationItems": [
+          {
+            "label": "Graduado escolar — Universidad Laboral de Cheste",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "BUP (Bachillerato Unificado Polivalente) — IES Rodrigo Botet de Manises",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "Curso \"Política de Riesgos en el sector financiero\" — Fundación de Estudios Bursátiles y Financieros",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "Grado elemental de ahorro en el sector de la banca — ESIC",
+            "sourceIds": [
+              "src-002"
+            ]
+          }
+        ],
+        "careerItems": [
+          {
+            "label": "Director (sector banca) @ Cajamar",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Director (sector banca) @ Caja Campo",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Director (sector banca) @ Banco de València",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Administrativo (sector banca) @ Banco de València",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          }
+        ]
+      },
+      "response": {
+        "formacion": {
+          "value": "sin-relacion-declarada",
+          "evidenceIndices": [],
+          "reason": "Los elementos declarados corresponden a educación general (graduado escolar, BUP) y a formación específica del sector bancario (riesgos financieros, ahorro), ninguno referido a integridad institucional, ética pública, transparencia o prevención de conflictos de interés."
+        },
+        "experiencia": {
+          "value": "sin-relacion-declarada",
+          "evidenceIndices": [],
+          "reason": "Los puestos declarados son de dirección y administración en entidades bancarias, sin mención de funciones de integridad institucional, cumplimiento normativo, auditoría o control de conflictos de interés."
+        }
+      }
+    },
+    {
+      "task": {
+        "officialSlug": "jose-luis-ramos-march",
+        "portfolio": "Agricultura",
+        "reportId": "r-jose-luis-ramos-bio-2026-07-31",
+        "educationItems": [
+          {
+            "label": "Graduado escolar — Universidad Laboral de Cheste",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "BUP (Bachillerato Unificado Polivalente) — IES Rodrigo Botet de Manises",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "Curso \"Política de Riesgos en el sector financiero\" — Fundación de Estudios Bursátiles y Financieros",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "Grado elemental de ahorro en el sector de la banca — ESIC",
+            "sourceIds": [
+              "src-002"
+            ]
+          }
+        ],
+        "careerItems": [
+          {
+            "label": "Director (sector banca) @ Cajamar",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Director (sector banca) @ Caja Campo",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Director (sector banca) @ Banco de València",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Administrativo (sector banca) @ Banco de València",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          }
+        ]
+      },
+      "response": {
+        "formacion": {
+          "value": "sin-relacion-declarada",
+          "evidenceIndices": [],
+          "reason": "La formación declarada corresponde a educación general (graduado escolar, BUP) y a cursos del ámbito financiero/bancario, sin contenidos sobre materia agrícola."
+        },
+        "experiencia": {
+          "value": "sin-relacion-declarada",
+          "evidenceIndices": [],
+          "reason": "Todos los puestos declarados se enmarcan explícitamente en el sector bancario/financiero (banca), no en la materia agrícola."
+        }
+      }
+    },
+    {
+      "task": {
+        "officialSlug": "jose-luis-ramos-march",
+        "portfolio": "Actividades y Edificios públicos",
+        "reportId": "r-jose-luis-ramos-bio-2026-07-31",
+        "educationItems": [
+          {
+            "label": "Graduado escolar — Universidad Laboral de Cheste",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "BUP (Bachillerato Unificado Polivalente) — IES Rodrigo Botet de Manises",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "Curso \"Política de Riesgos en el sector financiero\" — Fundación de Estudios Bursátiles y Financieros",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "Grado elemental de ahorro en el sector de la banca — ESIC",
+            "sourceIds": [
+              "src-002"
+            ]
+          }
+        ],
+        "careerItems": [
+          {
+            "label": "Director (sector banca) @ Cajamar",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Director (sector banca) @ Caja Campo",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Director (sector banca) @ Banco de València",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Administrativo (sector banca) @ Banco de València",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          }
+        ]
+      },
+      "response": {
+        "formacion": {
+          "value": "sin-relacion-declarada",
+          "evidenceIndices": [],
+          "reason": "La formación declarada consiste en estudios básicos generales (graduado escolar, BUP) y formación específica del sector financiero/bancario, sin contenidos relativos a actividades, licencias o gestión de edificios públicos."
+        },
+        "experiencia": {
+          "value": "sin-relacion-declarada",
+          "evidenceIndices": [],
+          "reason": "Toda la trayectoria declarada corresponde al sector bancario (dirección y administración en entidades financieras), sin relación de materia con la gestión de actividades o edificios públicos."
+        }
+      }
+    }
+  ]
+}
