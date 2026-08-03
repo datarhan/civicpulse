@@ -140,6 +140,18 @@ function SourceRow({ src, num }) {
           style={{ padding: '8px 10px', color: 'var(--ink60)', verticalAlign: 'top' }}
         >
           {src.retrievedAt?.slice(0, 10) ?? '—'}
+          {/* The date is when we read the DOCUMENT; the link above may point
+              somewhere else if the publisher has since moved it. Saying
+              "recuperado el X" beside a URL that did not serve it on X would be
+              a small lie, and the ledger is the one part of the page whose
+              entire job is being checkable. */}
+          {src.previousUrl && (
+            <div
+              style={{ fontSize: '0.72rem', color: 'var(--ink50)', marginTop: 2, lineHeight: 1.3 }}
+            >
+              reubicada {src.relocatedAt?.slice(0, 10) ?? ''}
+            </div>
+          )}
         </td>
         <td style={{ padding: '8px 10px', verticalAlign: 'top' }}>
           <Pill tone={CITATION_TRUST_TONE[src.trust] || 'ghost'} size="sm">
@@ -164,12 +176,27 @@ function SourceRow({ src, num }) {
           )}
         </td>
       </tr>
-      {open && src.excerpt && (
+      {open && (src.excerpt || src.previousUrl) && (
         <tr>
           <td colSpan={7} style={{ padding: '4px 16px 12px 38px', background: 'var(--soft)' }}>
-            <span style={{ fontSize: 12, fontStyle: 'italic', color: 'var(--ink60)' }}>
-              «{src.excerpt}»
-            </span>
+            {src.excerpt && (
+              <span style={{ fontSize: 12, fontStyle: 'italic', color: 'var(--ink60)' }}>
+                «{src.excerpt}»
+              </span>
+            )}
+            {/* Naming the old address is what makes the relocation checkable
+                rather than something the reader has to take on trust. The
+                excerpt above was verified verbatim against the document at the
+                NEW url before the pointer was moved. */}
+            {src.previousUrl && (
+              <div
+                className="mono"
+                style={{ fontSize: 11, color: 'var(--ink50)', marginTop: src.excerpt ? 8 : 0 }}
+              >
+                Publicada originalmente en {src.previousUrl} — el publicador la movió; el extracto
+                citado se verificó literalmente en la dirección actual.
+              </div>
+            )}
           </td>
         </tr>
       )}

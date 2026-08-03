@@ -107,12 +107,27 @@ const INJECTIONS: Array<{
   {
     guard: 'check:relations',
     file: 'public/data/pleno-findings.json',
-    describe: 'a finding pointing at a claim id that does not exist',
+    describe: 'a published finding pointing at a claim id that does not exist',
     corrupt: (s) => {
       const d = JSON.parse(s)
-      const f = d.items.find((x: { claimIds?: string[] }) => Array.isArray(x.claimIds))
-      if (!f) throw new Error('no finding with claimIds to corrupt')
-      f.claimIds.push('c-injected-nonexistent')
+      const f = d.items.find((x: { sourceClaimIds?: string[] }) => Array.isArray(x.sourceClaimIds))
+      if (!f) throw new Error('no finding with sourceClaimIds to corrupt')
+      f.sourceClaimIds.push('c-injected-nonexistent')
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
+  {
+    guard: 'check:finding-quotes',
+    file: 'public/data/pleno-findings.json',
+    describe: 'a verbatim quote nobody ever said',
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const f = d.items.find(
+        (x: { quotes?: Array<{ text?: string }> }) => x.quotes && x.quotes.length > 0,
+      )
+      if (!f) throw new Error('no finding with quotes to corrupt')
+      f.quotes[0].text =
+        'Esta frase no la pronunció nadie en ningún pleno de este municipio, jamás.'
       return JSON.stringify(d, null, 2) + '\n'
     },
   },
