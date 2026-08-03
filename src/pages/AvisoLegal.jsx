@@ -115,13 +115,31 @@ export default function AvisoLegal() {
         />
         <p>
           Los datos personales tratados sobre cargos electos (nombre, fotografía pública, correo
-          institucional, concejalía asignada) provienen de publicaciones del propio Ayuntamiento de
-          Riba-roja de Túria y menciones en prensa pública. No se rastrea a los visitantes del sitio
-          ni se usa analítica invasiva.
+          institucional, concejalía asignada, y las cuentas públicas que el propio cargo usa para
+          comunicar en su papel institucional) provienen de publicaciones del Ayuntamiento de
+          Riba-roja de Túria, menciones en prensa pública y esas mismas cuentas públicas. No se
+          rastrea a los visitantes del sitio ni se usa analítica invasiva.
         </p>
         <p>
           Los titulares de cargo pueden solicitar la eliminación de su fotografía concreta
           manteniendo el resto del registro (nombre, concejalía). Canal: el mismo de rectificación.
+        </p>
+        <p>
+          <strong>Huellas de voz: no conservamos ninguna.</strong> El repositorio incluye una
+          herramienta de curación que puede identificar quién habla en un pleno comparando la voz
+          contra una huella vocal previamente registrada. Está{' '}
+          <strong>desactivada por defecto</strong> y no la ejecuta ningún proceso automático: la
+          transcripción diarizada publica hablantes anónimos («SPEAKER_01»), y ninguna superficie
+          pública atribuye una intervención a una persona concreta sin que un curador lo promueva.
+        </p>
+        <p>
+          Durante 2026 se registraron tres huellas de voz de concejales a partir de vídeos que ellos
+          mismos habían publicado en sus cuentas. Una huella vocal es un dato biométrico, y esta
+          página no la mencionaba: describía un conjunto de datos que ya no era el que se trataba.
+          Al detectarlo, <strong>las tres se borraron</strong> — el 3 de agosto de 2026, sin que se
+          hubiera publicado nunca ninguna atribución derivada de ellas. Hoy no hay ninguna
+          registrada. Si alguna vez volviera a registrarse alguna, se dirá aquí antes, y el borrado
+          seguirá estando a un correo de distancia por el canal de rectificación.
         </p>
       </Card>
 
