@@ -420,6 +420,41 @@ async function main() {
   for (const id of ids) {
     try {
       const fresh = await runOne(id, plenos, currentSeats, minConfidence, concurrency)
+
+      // EMPTY-RESULT GUARD — never replace a non-empty claim set with nothing.
+      //
+      // Distinct from the orphan guard below, and deliberately NOT overridable
+      // by --force-orphan-findings. Those are different questions:
+      //   orphan guard  · "this overwrite would strand published findings"
+      //   this guard    · "the extraction produced nothing, so there is nothing
+      //                    to overwrite WITH"
+      // Conflating them cost 918 claims on 2026-08-03: brxx5g (341) and
+      // 1du4rf5 (577) were re-extracted while the backend was refusing every
+      // call, produced 0 claims each, and had their existing sets replaced by
+      // the empty result. brxx5g was cited by NO finding, so the orphan guard
+      // never even engaged — a pleno silently went from 341 claims to 0.
+      // Recovered from git; this makes it unrepeatable.
+      //
+      // A pleno whose claims genuinely all disappear is not a thing that
+      // happens: the transcript only grows or is replaced by a better one.
+      const previousForPleno = previousByPleno.get(id) ?? []
+      if (fresh.length === 0 && previousForPleno.length > 0) {
+        process.stderr.write(
+          `[extract·claims] ${id} PRESERVED — extraction returned 0 claims but ${previousForPleno.length} ` +
+            `already exist. Refusing to replace a populated pleno with nothing; this is almost always a\n` +
+            `[extract·claims]   dead backend rather than an empty session. Check the manifest below, then re-run.\n`,
+        )
+        accumulated.push(...previousForPleno)
+        run.attempt()
+        run.skip('extraction empty — previous claims preserved')
+        completed += 1
+        const totalPreserved = writeSnapshot()
+        process.stdout.write(
+          `[extract·claims] checkpoint ${completed}/${ids.length}: ${id} · PRESERVED (${previousForPleno.length} claim(s)) · snapshot=${totalPreserved} total\n`,
+        )
+        continue
+      }
+
       // Preservation check: would this overwrite leave any published
       // finding with an orphan sourceClaimId for this pleno?
       const cited = findingsCitations.get(id)
