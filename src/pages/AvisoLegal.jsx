@@ -138,9 +138,14 @@ export default function AvisoLegal() {
             Nunca audio privado, ni grabaciones hechas por nosotros.
           </li>
           <li>
-            <strong>La huella no sale de este equipo.</strong> No se publica, no se sube a ningún
-            servicio y no se envía a la API de transcripción, que recibe la sesión sin ninguna voz
-            de referencia.
+            <strong>La huella no sale de este equipo</strong>, pero un fragmento del audio de origen
+            sí. La huella —el vector numérico— no se publica ni se sube a ningún servicio. La
+            transcripción de un pleno se envía <em>sin ninguna voz de referencia</em>. En cambio, la
+            herramienta que busca a quién pertenece cada voz de la sala sube a la API de diarización
+            un recorte de hasta 8 segundos del audio público de cada cargo ya registrado, porque es
+            la única forma de que el servicio distinga esas voces del resto. Ese recorte viaja{' '}
+            <strong>sin nombre</strong>: se etiqueta con una referencia opaca (<code>ref1</code>,{' '}
+            <code>ref2</code>…) y la correspondencia con la persona se resuelve en este equipo.
           </li>
           <li>
             <strong>Es una herramienta de curación, desactivada por defecto</strong>, que se ejecuta
@@ -160,6 +165,14 @@ export default function AvisoLegal() {
           y describía un origen —publicaciones municipales y prensa— que se había quedado corto. Lo
           detectó una comprobación automática que compara esta página con lo que ha cambiado en el
           código. No se había publicado nunca ninguna atribución derivada de una huella vocal.
+        </p>
+        <p>
+          Y la primera versión de esa declaración, publicada ese mismo día, era inexacta: afirmaba
+          que la huella no se subía «a ningún servicio», cuando la herramienta de búsqueda de voces
+          llevaba desde el 1 de agosto enviando recortes de audio —entonces todavía etiquetados con
+          el nombre del cargo— a la API de diarización. Lo detectó la misma comprobación, en su
+          segunda pasada, el 3 de agosto de 2026. El texto de arriba describe lo que ocurre de
+          verdad, y desde esa fecha los recortes viajan con una etiqueta opaca en lugar del nombre.
         </p>
       </Card>
 

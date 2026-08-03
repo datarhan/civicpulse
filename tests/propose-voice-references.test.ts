@@ -4,6 +4,8 @@ import {
   matchAnnouncedOfficial,
   proposeFromSegments,
   longestRunFor,
+  referenceLabel,
+  resolveSpeaker,
 } from '../scripts/propose-voice-references'
 
 /**
@@ -258,5 +260,60 @@ describe('propose-voice-references — false positives from session brxx5g', () 
       { slug: 'juan-boix-martinez', name: 'Juan Boix Martínez' },
     ]
     expect(proposeFromSegments(segs, roster, new Set(['Robert Raga Gadea']))).toEqual([])
+  })
+})
+
+describe("reference labels — the councillor's name must not leave the machine", () => {
+  // `/aviso-legal` said the voiceprint "no se sube a ningún servicio". The print
+  // itself never did, but this sweep uploaded an 8 s clip of the enrolment audio
+  // tagged `known_speaker_names[]=Robert Raga Gadea`. The clip is what makes the
+  // sweep work and stays; the name never had to go with it.
+  const enrolled = [
+    { slug: 'robert-raga-gadea', name: 'Robert Raga Gadea' },
+    { slug: 'maria-esther-gomez-laredo', name: 'María Esther Gómez Laredo' },
+  ]
+  const labels = new Map(enrolled.map((e, i) => [referenceLabel(i), e.name]))
+
+  it('carries nothing about the person', () => {
+    for (const [i, e] of enrolled.entries()) {
+      const label = referenceLabel(i)
+      expect(label).toMatch(/^ref\d+$/)
+      for (const part of e.name.toLowerCase().split(/\s+/)) {
+        expect(label.toLowerCase()).not.toContain(part)
+      }
+      expect(label).not.toContain(e.slug)
+    }
+  })
+
+  it('is distinct per reference — two councillors must not collide', () => {
+    expect(new Set(enrolled.map((_, i) => referenceLabel(i))).size).toBe(enrolled.length)
+  })
+
+  it("cannot collide with the API's own anonymous cluster labels", () => {
+    // The API returns bare "A"/"B"/"SPEAKER_01"; a label that looked like one
+    // would silently merge a real councillor into an anonymous cluster.
+    for (const anon of ['A', 'B', 'SPEAKER_01', 'speaker_1']) {
+      expect(referenceLabel(0)).not.toBe(anon)
+    }
+  })
+
+  it('translates a reply back to the enrolled name', () => {
+    expect(resolveSpeaker('ref1', labels, 3)).toBe('Robert Raga Gadea')
+    expect(resolveSpeaker('ref2', labels, 3)).toBe('María Esther Gómez Laredo')
+  })
+
+  it('keeps an enrolled speaker global across chunks, not namespaced', () => {
+    // Namespacing a known speaker per chunk would break every proposal that
+    // spans chunks, which is most of them.
+    expect(resolveSpeaker('ref1', labels, 0)).toBe(resolveSpeaker('ref1', labels, 7))
+  })
+
+  it('still namespaces an anonymous cluster to its chunk', () => {
+    expect(resolveSpeaker('A', labels, 2)).toBe('c2-A')
+    expect(resolveSpeaker('A', labels, 2)).not.toBe(resolveSpeaker('A', labels, 3))
+  })
+
+  it('namespaces rather than guessing when there are no references at all', () => {
+    expect(resolveSpeaker('A', new Map(), 1)).toBe('c1-A')
   })
 })

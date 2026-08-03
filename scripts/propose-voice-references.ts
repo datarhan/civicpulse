@@ -155,6 +155,37 @@ export function proposeFromSegments(
 }
 
 /**
+ * Opaque label for a reference clip, in place of the councillor's name.
+ *
+ * The diarization API echoes back whatever label we attach to a reference, and
+ * we attached the full name — so every sweep told a third-party processor "this
+ * voice belongs to Robert Raga Gadea". It never needed that: the label is a
+ * join key, and the mapping back to a person can stay on this machine.
+ *
+ * The clip still leaves (that is what /aviso-legal now says); the identity does
+ * not. Found 2026-08-03 by `check:contract-drift`, which flagged the page for
+ * claiming nothing was uploaded at all.
+ */
+export function referenceLabel(index: number): string {
+  return `ref${index + 1}`
+}
+
+/**
+ * Translate an API speaker label back to the enrolled name, or namespace an
+ * anonymous cluster to its chunk.
+ *
+ * Enrolled speakers must keep the SAME name across chunks — the same references
+ * go with every request — while "A" in chunk 2 is not "A" in chunk 1.
+ */
+export function resolveSpeaker(
+  speaker: string,
+  labels: ReadonlyMap<string, string>,
+  chunk: number,
+): string {
+  return labels.get(speaker) ?? `c${chunk}-${speaker}`
+}
+
+/**
  * The audio window the EVIDENCE actually covers: the speaker's turn starting at
  * `at`, extended through their contiguous following segments, capped at 8 s.
  *
@@ -274,6 +305,8 @@ async function main() {
   // name across chunks — only the anonymous A/B/C labels are chunk-local,
   // which is fine since a candidate clip is always cut from its own chunk.
   const refArgs: string[] = []
+  /** Opaque label → councillor name. Never sent; used to read the reply back. */
+  const refLabels = new Map<string, string>()
   for (const e of enrolled) {
     const clip = resolve(work, `ref-${e.slug}.wav`)
     const uri = resolve(work, `ref-${e.slug}.uri`)
@@ -325,12 +358,10 @@ async function main() {
     ])
     const b64 = execFileSync('sh', ['-c', `base64 -i ${clip} | tr -d '\\n'`]).toString()
     writeFileSync(uri, `data:audio/wav;base64,${b64}`)
-    refArgs.push(
-      '-F',
-      `known_speaker_names[]=${e.name}`,
-      '-F',
-      `known_speaker_references[]=<${uri}`,
-    )
+    // The label, not the name — see `referenceLabel`.
+    const label = referenceLabel(refLabels.size)
+    refLabels.set(label, e.name)
+    refArgs.push('-F', `known_speaker_names[]=${label}`, '-F', `known_speaker_references[]=<${uri}`)
   }
 
   // A full session at 64 kbps blows past the 25 MB upload cap (2.7 h ≈ 77 MB),
@@ -426,13 +457,27 @@ async function main() {
       start: Number(s.start) + offset,
       end: Number(s.end) + offset,
       // Namespace anonymous clusters per chunk; "A" in chunk 2 is not "A" in
-      // chunk 1. Enrolled names are global and must stay untouched.
-      speaker: enrolled.some((e) => e.name === s.speaker)
-        ? String(s.speaker)
-        : `c${c}-${String(s.speaker)}`,
+      // chunk 1. Reference labels translate back to the enrolled name here, so
+      // everything downstream keeps seeing real names without them ever having
+      // been uploaded.
+      speaker: resolveSpeaker(String(s.speaker), refLabels, c),
       text: String(s.text || ''),
     }))
     segments.push(...part_segs)
+    // A reference set that comes back matching nothing is the failure mode this
+    // script has already been bitten by twice: the API rejects or ignores the
+    // references, every speaker lands in an anonymous cluster, and the sweep
+    // reports "0 candidates" as though the session simply had nothing to find.
+    // Compare against the NAMES: `part_segs` has already been translated, so
+    // testing the labels here would never match and the warning would fire on
+    // every chunk of every healthy sweep.
+    const refNames = new Set(refLabels.values())
+    if (refLabels.size > 0 && !part_segs.some((s) => refNames.has(s.speaker))) {
+      console.warn(
+        `[voice-refs] chunk ${c}: sent ${refLabels.size} reference(s) and the API matched ` +
+          `NONE of them — this is not the same as "nobody spoke", check the reply`,
+      )
+    }
     for (const p of proposeFromSegments(segments, officials, new Set(enrolled.map((e) => e.name))))
       found.add(p.slug)
     console.log(`${part_segs.length} segs · ${found.size}/${wanted} councillors proposed so far`)
