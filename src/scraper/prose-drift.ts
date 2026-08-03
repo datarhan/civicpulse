@@ -50,6 +50,28 @@ export interface DriftRow {
 }
 
 /**
+ * A figure this could not compare, and why.
+ *
+ * Not cosmetic. `check:drift` prints how many figures it produced a row for, so
+ * a figure that fell out — anchor key renamed, snapshot missing, upstream shape
+ * changed to `undefined` — used to take the watch count down with it in
+ * silence: «2 vigiladas · 0 divergentes» quietly becomes «1 · 0» and still
+ * reads as healthy. DATA_INTEGRITY.md rule 2: a run reports attempted, done and
+ * skipped-with-reason SEPARATELY, because folding "never attempted" into
+ * "nothing wrong" is how every silent-failure incident here began.
+ */
+export interface SkippedFigure {
+  where: string
+  anchor: string
+  reason: string
+}
+
+export interface DriftReport {
+  rows: DriftRow[]
+  skipped: SkippedFigure[]
+}
+
+/**
  * A frozen figure is expected to lag — data moves. What is worth a human's
  * attention is a figure that is no longer the same ORDER of thing: a rounding
  * difference is noise, a 4.8× gap means the published sentence is telling the
@@ -57,18 +79,37 @@ export interface DriftRow {
  */
 export const DRIFT_THRESHOLD = 0.25
 
+/** Every input figure comes back exactly once, as a row or as a skip. */
 export function detectDrift(
   frozen: FrozenFigure[],
   anchors: Record<string, LiveAnchor>,
-): DriftRow[] {
-  const out: DriftRow[] = []
+): DriftReport {
+  const rows: DriftRow[] = []
+  const skipped: SkippedFigure[] = []
+  const skip = (f: FrozenFigure, reason: string) =>
+    skipped.push({ where: f.where, anchor: f.anchor, reason })
+
   for (const f of frozen) {
     const a = anchors[f.anchor]
-    if (!a || !Number.isFinite(a.value) || a.value === 0) continue
-    if (!Number.isFinite(f.value) || f.value === 0) continue
+    if (!a) {
+      skip(f, `no existe el ancla «${f.anchor}» — ¿la renombraron?`)
+      continue
+    }
+    if (!Number.isFinite(a.value)) {
+      skip(f, `el ancla ${a.label} devolvió un valor no numérico (¿cambió la forma del snapshot?)`)
+      continue
+    }
+    if (a.value === 0) {
+      skip(f, `el ancla ${a.label} vale 0 — no hay contra qué comparar`)
+      continue
+    }
+    if (!Number.isFinite(f.value) || f.value === 0) {
+      skip(f, 'la cifra congelada no está en la pieza publicada, o vale 0')
+      continue
+    }
     const ratio = f.value / a.value
     const rel = Math.abs(f.value - a.value) / Math.max(Math.abs(a.value), 1)
-    out.push({
+    rows.push({
       where: f.where,
       anchor: a.label,
       frozen: f.value,
@@ -77,5 +118,5 @@ export function detectDrift(
       severity: rel > DRIFT_THRESHOLD ? 'drifted' : 'ok',
     })
   }
-  return out
+  return { rows, skipped }
 }

@@ -63,9 +63,23 @@ function main() {
     )
   }
 
-  const rows = detectDrift(frozen, anchors)
+  const { rows, skipped } = detectDrift(frozen, anchors)
   const bad = rows.filter((r) => r.severity === 'drifted')
-  console.log(`[drift] ${rows.length} tracked figure(s) · ${bad.length} drifted\n`)
+  console.log(
+    `[drift] ${frozen.length} cifra(s) en la lista · ${rows.length} comparada(s) · ` +
+      `${bad.length} divergente(s)` +
+      (skipped.length > 0 ? ` · ${skipped.length} SIN comparar` : '') +
+      '\n',
+  )
+
+  // A figure that fell out of the comparison is not a clean figure. Printed
+  // before the drifts because it is the more dangerous of the two: a drift is
+  // visible, a figure nobody compared looks exactly like a figure that matched.
+  for (const s of skipped) {
+    console.log(`  ⓘ ${s.where}`)
+    console.log(`      no comparada: ${s.reason}`)
+  }
+  if (skipped.length > 0) console.log()
 
   // Report COVERAGE, not just findings.
   //
