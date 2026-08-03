@@ -176,11 +176,21 @@ async function main() {
 
   const total = all.reduce((n, p) => n + p.flags.length, 0)
   const totalDropped = all.reduce((n, p) => n + p.dropped.length, 0)
+  const reviewed = all.filter((p) => p.consulted)
+  const unreviewed = all.filter((p) => !p.consulted).map((p) => p.page)
   console.log(
-    `\n[contract-drift] ${pages.length} página(s) · ${changes.length} commit(s) de los últimos ` +
-      `${days} días · ${total} aviso(s) para revisión humana` +
-      (totalDropped > 0 ? ` · ${totalDropped} descartado(s)` : ''),
+    `\n[contract-drift] ${pages.length} página(s) · ${reviewed.length} revisada(s) · ` +
+      `${changes.length} commit(s) de los últimos ${days} días · ` +
+      `${total} aviso(s) para revisión humana` +
+      (totalDropped > 0 ? ` · ${totalDropped} descartado(s)` : '') +
+      (unreviewed.length > 0 ? ` · ${unreviewed.length} SIN REVISAR` : ''),
   )
+  // Named, not just counted: «2 páginas · 0 avisos» with both unreviewed is an
+  // all-clear nobody measured, which is the failure this check exists to avoid.
+  if (unreviewed.length > 0) {
+    console.log(`                 sin revisar: ${unreviewed.join(', ')}`)
+    process.exitCode = 1
+  }
   if (total > 0) {
     console.log(
       '\n  Esto NO pide editar la página: pide decidir si la frase sigue siendo\n' +

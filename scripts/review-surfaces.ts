@@ -114,9 +114,16 @@ async function main() {
   const cache = force ? {} : loadCache()
   const browser = await chromium.launch()
   const page = await browser.newPage()
-  const all: Array<{ route: string; findings: ReaderFinding[]; dropped: ReaderFinding[] }> = []
+  const all: Array<{
+    route: string
+    findings: ReaderFinding[]
+    dropped: ReaderFinding[]
+    consulted: boolean
+    reason?: string
+  }> = []
   let skipped = 0
   let totalDropped = 0
+  const unreviewed: string[] = []
 
   for (const route of routes) {
     await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })
@@ -133,18 +140,42 @@ async function main() {
     cache[route] = h
 
     const input: SurfaceInput = { route, renderedText, facts: factsFor(route) }
-    const { findings, dropped } = await reviewSurfaceDetailed(input, async (i) => {
-      const r = await callLLM({
-        systemPrompt: buildReaderReviewSystemPrompt(),
-        userPrompt: buildReaderReviewUserPrompt(i),
-        schema: ReaderReviewSchema,
-        promptVersion: READER_REVIEW_PROMPT_VERSION,
-        input: { route: i.route },
-      })
-      return r?.findings ?? []
-    })
-    all.push({ route, findings, dropped })
+    const { findings, dropped, consulted, reason } = await reviewSurfaceDetailed(
+      input,
+      async (i) => {
+        const r = await callLLM({
+          systemPrompt: buildReaderReviewSystemPrompt(),
+          userPrompt: buildReaderReviewUserPrompt(i),
+          schema: ReaderReviewSchema,
+          promptVersion: READER_REVIEW_PROMPT_VERSION,
+          input: { route: i.route },
+        })
+        // `callLLM` returns null once every backend is exhausted. Coercing that
+        // to `[]` here — which this line did — made an unreviewable run print
+        // «nada que señalar» for all six routes. Nobody looked is not a clean
+        // page, and this check runs on pre-push, where that reads as approval.
+        return r ? r.findings : null
+      },
+    )
+    all.push({ route, findings, dropped, consulted, reason })
     totalDropped += dropped.length
+    if (!consulted) {
+      unreviewed.push(route)
+      // Do NOT cache the hash of a route nobody reviewed: it would be skipped
+      // as "sin cambios" on the next run and never looked at again.
+      delete cache[route]
+      if (!asJson) {
+        console.log(`\n── ${route} ${'─'.repeat(Math.max(0, 50 - route.length))}`)
+        console.log(
+          `   ⓘ SIN REVISAR: ${
+            reason === 'empty-page'
+              ? 'la página renderizó vacía — ¿está levantado el preview?'
+              : 'ningún backend respondió'
+          }`,
+        )
+      }
+      continue
+    }
     if (!asJson) {
       console.log(`\n── ${route} ${'─'.repeat(Math.max(0, 50 - route.length))}`)
       if (findings.length === 0 && dropped.length === 0) console.log('   nada que señalar.')
@@ -168,13 +199,21 @@ async function main() {
   writeFileSync(CACHE, JSON.stringify(cache, null, 2) + '\n')
   if (asJson) console.log(JSON.stringify(all, null, 2))
   const total = all.reduce((n, r) => n + r.findings.length, 0)
-  if (!asJson)
+  if (!asJson) {
     console.log(
       `\n[review] ${routes.length} ruta(s) · ${skipped} sin cambios · ` +
+        `${all.filter((r) => r.consulted).length} revisada(s) · ` +
         `${total} señalamiento(s) para revisión humana` +
-        (totalDropped > 0 ? ` · ${totalDropped} descartado(s) por no citar literalmente` : ''),
+        (totalDropped > 0 ? ` · ${totalDropped} descartado(s) por no citar literalmente` : '') +
+        (unreviewed.length > 0 ? ` · ${unreviewed.length} SIN REVISAR` : ''),
     )
-  if (total > 0) process.exitCode = 1
+    // Named, not just counted. «6 rutas · 0 señalamientos» with every route
+    // unreviewed is the shape of an all-clear nobody measured.
+    if (unreviewed.length > 0) {
+      console.log(`           sin revisar: ${unreviewed.join(', ')}`)
+    }
+  }
+  if (total > 0 || unreviewed.length > 0) process.exitCode = 1
 }
 
 main().catch((e) => {
