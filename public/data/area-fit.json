@@ -1,7 +1,1064 @@
 {
-  "generatedAt": "2026-08-03T21:15:31.106Z",
+  "generatedAt": "2026-08-03T21:37:38.738Z",
   "mandate": "2023-2027",
   "note": "Qué formación y trayectoria declara públicamente quien dirige cada área. No es una calificación: la ley no exige titulación alguna para ser concejal (a diferencia de la secretaría, la intervención y la tesorería municipales, que exigen oposición estatal). «No consta» significa que la fuente publicada no lo recoge, no que la persona carezca de ello.",
   "method": "Un modelo compara, área por área, lo que el CV publicado declara con la materia del área, citando por índice sobre esa misma lista; un curador revisa y firma cada fila antes de publicarse. Nada se publica automáticamente.",
-  "rows": []
+  "rows": [
+    {
+      "officialSlug": "alfredo-pla-gimenez",
+      "portfolio": "Fallas",
+      "departmentSlug": "fiestas",
+      "reportId": "r-alfredo-pla-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación declarada es un título de peluquería, materia distinta a la de Fallas."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La experiencia declarada corresponde a la gestión y ejercicio de peluquería, materia distinta a la organización, coordinación o gestión de las fiestas falleras."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "alfredo-pla-gimenez",
+      "portfolio": "Fiestas y Tradiciones",
+      "departmentSlug": "fiestas",
+      "reportId": "r-alfredo-pla-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación es un título de peluquería y estética, sin relación con la materia de organización de fiestas y tradiciones."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La trayectoria descrita es de actividad profesional en peluquería (empleado y luego gerente autónomo), sin relación con la materia de fiestas y tradiciones."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "david-barbancho-martinez",
+      "portfolio": "Acción social y políticas inclusivas",
+      "departmentSlug": "servicios-sociales",
+      "reportId": "r-david-barbancho-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Los títulos declarados corresponden a fiscalidad/derecho tributario, derecho general, gestión de RRHH y administración de empresas; ninguno se refiere a materia de acción social, servicios sociales o políticas de inclusión."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "El puesto declarado es de dirección de RRHH en una empresa privada, función de gestión de personal interno, sin referencia a materia de acción social o políticas inclusivas."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "david-barbancho-martinez",
+      "portfolio": "Juventud y Servicios Jurídicos",
+      "departmentSlug": "servicios-generales",
+      "reportId": "r-david-barbancho-bio-2026-07-31",
+      "formacion": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Máster Universitario en Fiscalidad Internacional, Derecho Tributario (actualmente cursando) — Universidad Internacional de la Rioja",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "label": "Grado en Derecho — Universidad Camilo José Cela",
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          }
+        ],
+        "reason": "El Grado en Derecho y el Máster en Fiscalidad Internacional/Derecho Tributario son formación jurídica, materia coincidente con Servicios Jurídicos; no se declara formación en materia de Juventud."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "El puesto declarado es de dirección de recursos humanos en una sociedad mercantil, materia de gestión de personal, sin mención a funciones jurídicas ni a juventud."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "david-barbancho-martinez",
+      "portfolio": "Mayores",
+      "departmentSlug": "mayores",
+      "reportId": "r-david-barbancho-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Las formaciones declaradas corresponden a derecho, fiscalidad y administración de empresas/RRHH, sin contenido específico de gerontología, dependencia o servicios sociales para personas mayores."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La dirección de RRHH consiste en gestión de personal de una empresa privada, sin relación de materia con la atención, servicios o políticas dirigidas a personas mayores."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "eva-lara-catala",
+      "portfolio": "Educación",
+      "departmentSlug": "educacion",
+      "reportId": "r-eva-lara-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La licenciatura en Historia y los estudios de Arte Dramático son formaciones en disciplinas de contenido (historia, artes escénicas), no en educación, pedagogía o docencia."
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Profesora de Educación Secundaria (Geografía e Historia; coordinadora de Igualdad y Convivencia y del proyecto Memoria Democrática) @ Generalitat Valenciana — IES El Quint (Riba-roja de Túria)",
+            "sourceIds": [
+              "src-062"
+            ]
+          }
+        ],
+        "reason": "El puesto declarado es de profesora de Educación Secundaria en un centro público, lo que corresponde directamente a la materia educativa del área."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "eva-lara-catala",
+      "portfolio": "Infancia y Adolescencia y Memoria Histórica",
+      "departmentSlug": "servicios-sociales",
+      "reportId": "r-eva-lara-bio-2026-07-31",
+      "formacion": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Licenciada en Historia — Universitat de València",
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ],
+        "reason": "La licenciatura en Historia guarda relación de materia con el ámbito de memoria histórica; los estudios de arte dramático no tratan materia de infancia y adolescencia ni de memoria histórica."
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Profesora de Educación Secundaria (Geografía e Historia; coordinadora de Igualdad y Convivencia y del proyecto Memoria Democrática) @ Generalitat Valenciana — IES El Quint (Riba-roja de Túria)",
+            "sourceIds": [
+              "src-062"
+            ]
+          }
+        ],
+        "reason": "El puesto de profesora de Educación Secundaria implica trabajo directo con adolescentes, y la coordinación del proyecto de Memoria Democrática corresponde a la materia de memoria histórica."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "jose-angel-hernandez-carrizosa",
+      "portfolio": "Administración y Servicios Generales",
+      "departmentSlug": "servicios-generales",
+      "reportId": "r-jose-angel-hernandez-bio-2026-07-31",
+      "formacion": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Dirección y Gestión Económico-Financiera — Escuela de Negocios Lluís Vives — Cámara Oficial de Comercio de Valencia",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ],
+        "reason": "Ambas formaciones versan sobre administración y gestión económico-financiera, materia coincidente con la administración y gestión general."
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Auxiliar administrativo y administrativo @ Vilarsal SL",
+            "sourceIds": [
+              "src-063"
+            ]
+          },
+          {
+            "label": "Administrativo @ Artículos de Carpintería Moreno SL",
+            "sourceIds": [
+              "src-063"
+            ]
+          },
+          {
+            "label": "Controller financiero @ Grupo Serratable SL",
+            "sourceIds": [
+              "src-062"
+            ]
+          },
+          {
+            "label": "Administrador solidario @ Nexo Nivel SL",
+            "sourceIds": [
+              "src-062"
+            ]
+          }
+        ],
+        "reason": "Los puestos declarados son funciones administrativas, de control financiero y de administración de sociedades, materia coincidente con administración y servicios generales."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "jose-angel-hernandez-carrizosa",
+      "portfolio": "Compra Pública",
+      "departmentSlug": "contratacion",
+      "reportId": "r-jose-angel-hernandez-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Las formaciones declaradas versan sobre administración, finanzas y dirección económico-financiera de carácter general, sin contenido específico sobre contratación pública, licitaciones o compras del sector público."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Los puestos declarados son de administración general, control financiero y administración societaria en empresas privadas; ninguno menciona funciones de compras, contratación, licitación o gestión de proveedores propias de la compra pública."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "jose-angel-hernandez-carrizosa",
+      "portfolio": "Empleo y Emprendimiento",
+      "departmentSlug": "empleo-economia",
+      "reportId": "r-jose-angel-hernandez-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Las formaciones declaradas versan sobre administración y gestión económico-financiera de empresas, materia general de administración y finanzas, no sobre intermediación laboral, orientación al empleo o creación y desarrollo de negocios propios del emprendimiento."
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Administrador solidario @ Nexo Nivel SL",
+            "sourceIds": [
+              "src-062"
+            ]
+          }
+        ],
+        "reason": "El puesto de administrador solidario implica la gestión y dirección de una empresa propia, materia directamente vinculada al emprendimiento; los demás puestos declarados (auxiliar administrativo, administrativo, controller financiero) corresponden a funciones administrativas y financieras dentro de empresas ajenas, sin relación con empleo o emprendimiento."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "jose-angel-hernandez-carrizosa",
+      "portfolio": "Finanzas públicas y recaudación",
+      "departmentSlug": "hacienda",
+      "reportId": "r-jose-angel-hernandez-bio-2026-07-31",
+      "formacion": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Dirección y Gestión Económico-Financiera — Escuela de Negocios Lluís Vives — Cámara Oficial de Comercio de Valencia",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ],
+        "reason": "Ambas formaciones versan sobre administración y finanzas (grado superior en Administración y Finanzas) y sobre dirección y gestión económico-financiera, materias directamente vinculadas a la gestión financiera que constituye el área."
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Controller financiero @ Grupo Serratable SL",
+            "sourceIds": [
+              "src-062"
+            ]
+          }
+        ],
+        "reason": "El puesto de controller financiero corresponde a funciones de gestión y control financiero, materia coincidente con finanzas; los demás puestos declarados son de administración general o de administración societaria sin mención de contenido financiero o recaudatorio específico."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "jose-angel-hernandez-carrizosa",
+      "portfolio": "Fomento económico",
+      "departmentSlug": "empleo-economia",
+      "reportId": "r-jose-angel-hernandez-bio-2026-07-31",
+      "formacion": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Dirección y Gestión Económico-Financiera — Escuela de Negocios Lluís Vives — Cámara Oficial de Comercio de Valencia",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ],
+        "reason": "Ambas formaciones corresponden a administración y finanzas (FP de Administración y Finanzas, y Dirección y Gestión Económico-Financiera), materia directamente vinculada a la gestión económica que es objeto del área de Fomento económico."
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Auxiliar administrativo y administrativo @ Vilarsal SL",
+            "sourceIds": [
+              "src-063"
+            ]
+          },
+          {
+            "label": "Administrativo @ Artículos de Carpintería Moreno SL",
+            "sourceIds": [
+              "src-063"
+            ]
+          },
+          {
+            "label": "Controller financiero @ Grupo Serratable SL",
+            "sourceIds": [
+              "src-062"
+            ]
+          },
+          {
+            "label": "Administrador solidario @ Nexo Nivel SL",
+            "sourceIds": [
+              "src-062"
+            ]
+          }
+        ],
+        "reason": "Los puestos declarados son de administración y gestión económico-financiera de empresas (administrativo, controller financiero, administrador), materia coincidente con la gestión económica propia del área de Fomento económico."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "jose-angel-hernandez-carrizosa",
+      "portfolio": "Recursos Humanos",
+      "departmentSlug": "recursos-humanos",
+      "reportId": "r-jose-angel-hernandez-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación declarada es de administración y finanzas (FPII) y de dirección y gestión económico-financiera; no se declara contenido específico de gestión de personas, relaciones laborales u otra materia propia de recursos humanos."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Los puestos declarados son de carácter administrativo general, financiero (controller) y de administración societaria; no se menciona selección, gestión de personal, relaciones laborales u otras funciones propias del área de recursos humanos."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "jose-angel-hernandez-carrizosa",
+      "portfolio": "y Comercio",
+      "departmentSlug": "comercio",
+      "reportId": "r-jose-angel-hernandez-bio-2026-07-31",
+      "formacion": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ],
+        "reason": "La titulación de FPII incluye explícitamente la rama 'Comercial' en su denominación (Administrativa y Comercial), lo que supone coincidencia de materia con el área de Comercio."
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Administrativo @ Artículos de Carpintería Moreno SL",
+            "sourceIds": [
+              "src-063"
+            ]
+          }
+        ],
+        "reason": "El puesto se desempeñó en una empresa cuya actividad declarada (Artículos de Carpintería) consiste en el trato de artículos/mercancías, propio de la materia comercial."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "jose-luis-ramos-march",
+      "portfolio": "Actividades y Edificios públicos",
+      "departmentSlug": "obras-publicas",
+      "reportId": "r-jose-luis-ramos-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación declarada corresponde a educación general básica/secundaria y a materias financieras y bancarias, sin contenido relativo a gestión de actividades o edificios públicos."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La trayectoria declarada se desarrolla íntegramente en el sector bancario (dirección y administración), sin experiencia en gestión de actividades o edificios públicos."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "jose-luis-ramos-march",
+      "portfolio": "Agenda 2030",
+      "departmentSlug": "medio-ambiente",
+      "reportId": "r-jose-luis-ramos-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación declarada consiste en estudios básicos (graduado escolar, BUP) y cursos de riesgo financiero y ahorro bancario, sin contenidos relativos a sostenibilidad, objetivos de desarrollo sostenible o materias afines a la Agenda 2030."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La trayectoria declarada se limita a puestos directivos y administrativos en el sector bancario, sin mención a sostenibilidad, medio ambiente, desarrollo sostenible u otras materias propias de la Agenda 2030."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "jose-luis-ramos-march",
+      "portfolio": "Agricultura",
+      "departmentSlug": "agricultura",
+      "reportId": "r-jose-luis-ramos-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación declarada corresponde a educación general básica (graduado escolar, BUP) y a estudios del sector financiero/bancario (riesgos financieros, ahorro en banca), ninguno referido a materia agrícola."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Todos los puestos declarados se describen explícitamente como del sector banca (director o administrativo), sin mención de funciones o materias agrícolas."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "jose-luis-ramos-march",
+      "portfolio": "Emergencia climática",
+      "departmentSlug": "medio-ambiente",
+      "reportId": "r-jose-luis-ramos-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación declarada corresponde a educación general (graduado escolar, BUP) y a cursos del sector financiero/bancario (riesgos financieros, ahorro bancario), sin contenido relativo a clima, medio ambiente o sostenibilidad."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La trayectoria declarada consiste en puestos directivos y administrativos en entidades bancarias, sin vínculo temático con la gestión de emergencia climática o medio ambiente."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "jose-luis-ramos-march",
+      "portfolio": "Fondos Europeos",
+      "departmentSlug": "empleo-economia",
+      "reportId": "r-jose-luis-ramos-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Los estudios declarados son educación general (graduado escolar, BUP) y formación en el sector bancario (riesgos financieros, ahorro en banca); ninguno versa sobre fondos europeos, subvenciones o gestión de programas comunitarios."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La trayectoria declarada transcurre íntegramente en banca privada (puestos de dirección y administrativo en entidades bancarias), sin mención a gestión, tramitación o ejecución de fondos europeos ni de programas o subvenciones comunitarias."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "jose-luis-ramos-march",
+      "portfolio": "Integridad",
+      "departmentSlug": "transparencia",
+      "reportId": "r-jose-luis-ramos-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación declarada corresponde a educación general básica y a materias de banca, ahorro y riesgos financieros, sin contenido específico sobre ética, integridad institucional o prevención de la corrupción."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Los puestos declarados son de dirección y administración en banca, sin mención a funciones de integridad, ética, cumplimiento normativo o prevención de conflictos de interés."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "jose-manuel-vila-oltra",
+      "portfolio": "Arte y Cultura",
+      "departmentSlug": "cultura",
+      "reportId": "r-jose-vila-bio-2026-07-31",
+      "formacion": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Grado en Lengua y Literatura Españolas — Facultad de Filología",
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "label": "Especialización en Literatura Española Contemporánea (cursos) — UIMP y UNED",
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ],
+        "reason": "El grado en Lengua y Literatura Españolas y la especialización en Literatura Española Contemporánea corresponden a la materia cultural/literaria, incluida en el ámbito de Arte y Cultura."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Los puestos declarados corresponden al sector bancario y de gestión inmobiliaria, sin vínculo declarado con materias artísticas o culturales."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "maria-esther-gomez-laredo",
+      "portfolio": "Atención a la ciudadanía",
+      "departmentSlug": "comunicacion",
+      "reportId": "r-esther-gomez-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación declarada es informática de gestión, inversión financiera y seguros; ninguna materia versa sobre atención ciudadana, servicios públicos o gestión de relaciones con la ciudadanía."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La trayectoria descrita corresponde a consultoría de sistemas, banca, seguros y asesoría financiera privada; ninguna entrada refiere gestión de atención al público, información, quejas o trámites en el ámbito de la administración ciudadana."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "maria-esther-gomez-laredo",
+      "portfolio": "Participación y transparencia",
+      "departmentSlug": "transparencia",
+      "reportId": "r-esther-gomez-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación declarada corresponde a informática de gestión, inversión financiera y seguros; ninguna materia versa sobre participación ciudadana o transparencia."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Las trayectorias descritas corresponden a consultoría de sistemas, banca, seguros y gestión de proyectos IT; ninguna se refiere a participación ciudadana, gobierno abierto, acceso a la información o transparencia administrativa."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "maria-esther-gomez-laredo",
+      "portfolio": "Promoción de la Salud e Infraestructuras sanitarias",
+      "departmentSlug": "salud",
+      "reportId": "r-esther-gomez-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación declarada corresponde a informática de gestión, inversión financiera y seguros; ninguna materia se refiere a salud, sanidad o infraestructuras sanitarias."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La trayectoria descrita se desarrolla en consultoría de sistemas, banca, seguros de vida/ahorro/pensiones y asesoría financiera; ninguna de esas materias corresponde a promoción de la salud o infraestructuras sanitarias."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "maria-esther-gomez-laredo",
+      "portfolio": "Turismo y patrimonio histórico",
+      "departmentSlug": "turismo",
+      "reportId": "r-esther-gomez-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación declarada corresponde a informática de gestión, inversión financiera y seguros; ninguna trata materias de turismo o patrimonio histórico."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La trayectoria declarada se desarrolla en consultoría de sistemas, banca, seguros y gestión de proyectos IT; no incluye funciones vinculadas a turismo o patrimonio histórico."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "rafael-gomez-sanchez",
+      "portfolio": "barrios y diseminados",
+      "departmentSlug": "urbanismo",
+      "reportId": "r-rafael-gomez-bio-2026-07-30",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Estudios de grado III en Industrias Alimentarias corresponden a la materia agroalimentaria, sin relación temática con la gestión de barrios y diseminados."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La actividad de transportista autónomo pertenece al sector del transporte y no a la gestión administrativa o territorial de barrios y diseminados."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "rafael-gomez-sanchez",
+      "portfolio": "Movilidad y Deportes",
+      "departmentSlug": "deportes",
+      "reportId": "r-rafael-gomez-bio-2026-07-30",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación declarada corresponde a Industrias Alimentarias, materia distinta de movilidad (transporte, tráfico, vía pública) o deportes."
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Transportista (autónomo) @ Autónomo — sector transporte",
+            "sourceIds": [
+              "src-002"
+            ]
+          }
+        ],
+        "reason": "La actividad de transportista autónomo pertenece al sector transporte, materia comprendida en movilidad."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "rafael-gomez-sanchez",
+      "portfolio": "Servicios públicos municipales",
+      "departmentSlug": "servicios-generales",
+      "reportId": "r-rafael-gomez-bio-2026-07-30",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación declarada es de industrias alimentarias, materia distinta de la gestión de servicios públicos municipales (agua, residuos, transporte, alumbrado, etc.), sin que se especifique vínculo alguno con ella."
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Transportista (autónomo) @ Autónomo — sector transporte",
+            "sourceIds": [
+              "src-002"
+            ]
+          }
+        ],
+        "reason": "La experiencia se declara en el sector transporte, materia que se incluye habitualmente entre los servicios públicos municipales (movilidad y transporte)."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "rafael-gomez-sanchez",
+      "portfolio": "Urbanizaciones",
+      "departmentSlug": "urbanismo",
+      "reportId": "r-rafael-gomez-bio-2026-07-30",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Los estudios declarados corresponden a industrias alimentarias, una materia distinta a la gestión de urbanizaciones (infraestructuras, servicios y desarrollo urbanístico de estas zonas)."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La experiencia declarada es en el sector transporte como transportista autónomo, materia distinta a la gestión de urbanizaciones."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "raquel-pamblanco-paredes",
+      "portfolio": "Comunicación e información",
+      "departmentSlug": "comunicacion",
+      "reportId": "r-raquel-pamblanco-bio-2026-07-31",
+      "formacion": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Grado en Comunicación Audiovisual — Universidad CEU Cardenal Herrera",
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ],
+        "reason": "El grado en Comunicación Audiovisual corresponde directamente a la materia de comunicación; el máster en Dirección de Marketing pertenece al ámbito de gestión comercial/marketing, materia distinta de la comunicación e información institucional."
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Locutora de radio (informativo diario, salud e inglés) @ Radio Riba-roja",
+            "sourceIds": [
+              "src-064"
+            ]
+          },
+          {
+            "label": "Comunicación (estrategia, contenidos y protocolo para el grupo socialista) @ FVMP — Federació Valenciana de Municipis i Províncies",
+            "sourceIds": [
+              "src-062"
+            ]
+          }
+        ],
+        "reason": "El puesto de locutora en un informativo diario de radio y el puesto de comunicación (estrategia, contenidos y protocolo) en la FVMP corresponden directamente a la materia de comunicación e información; la consultoría de marketing digital y la coordinación de un equipo de ventas pertenecen a materias de marketing y ventas, distintas de la del área."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "raquel-pamblanco-paredes",
+      "portfolio": "Igualdad",
+      "departmentSlug": "igualdad",
+      "reportId": "r-raquel-pamblanco-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Los estudios declarados son Comunicación Audiovisual y Dirección de Marketing, disciplinas cuya materia no corresponde a igualdad."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Las experiencias declaradas son locución radiofónica, marketing digital, comunicación institucional/protocolo y ventas; ninguna refiere materia de igualdad (políticas de género, violencia machista, diversidad, planes de igualdad)."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "raquel-pamblanco-paredes",
+      "portfolio": "Protocolo y Bienestar Animal",
+      "departmentSlug": "bienestar-animal",
+      "reportId": "r-raquel-pamblanco-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Los títulos declarados corresponden a comunicación audiovisual y dirección de marketing, materias distintas a protocolo institucional o bienestar animal."
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Comunicación (estrategia, contenidos y protocolo para el grupo socialista) @ FVMP — Federació Valenciana de Municipis i Províncies",
+            "sourceIds": [
+              "src-062"
+            ]
+          }
+        ],
+        "reason": "El elemento 2 describe funciones de protocolo (junto con comunicación y contenidos), lo que coincide con la materia de protocolo del área; ningún elemento menciona bienestar animal."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "raquel-pamblanco-paredes",
+      "portfolio": "Seguridad y emergencias",
+      "departmentSlug": "seguridad",
+      "reportId": "r-raquel-pamblanco-bio-2026-07-31",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Las titulaciones declaradas son de comunicación audiovisual y dirección de marketing, materias distintas de seguridad y emergencias."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Los puestos declarados corresponden a locución de radio, marketing digital, comunicación institucional y ventas, sin relación de materia con seguridad y emergencias."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "robert-raga-gadea",
+      "portfolio": "Alcaldía",
+      "departmentSlug": "alcaldia",
+      "reportId": "r-robert-raga-bio-v4-2026-07-30",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación declarada corresponde a estudios generales de educación básica y obligatoria (EGB, secundaria, acceso a universidad para mayores de 25 años), sin especialización en administración pública, gobierno local o materias afines a la Alcaldía."
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Asesor institucional @ Diputació de València",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "label": "Funcionario de la Administración Local (en excedencia especial desde 2007) @ Ajuntament de Riba-roja de Túria",
+            "sourceIds": [
+              "src-002"
+            ]
+          }
+        ],
+        "reason": "El puesto de asesor institucional en una diputación y la condición de funcionario de la Administración Local corresponden a la materia de gestión institucional y administración local propia del área de Alcaldía; la actividad autónoma en energías renovables y seguridad no guarda relación con esa materia."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "robert-raga-gadea",
+      "portfolio": "Innovación",
+      "departmentSlug": "innovacion",
+      "reportId": "r-robert-raga-bio-v4-2026-07-30",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación declarada corresponde a educación general obligatoria y acceso a la universidad para mayores de 25 años, sin especialidad ni contenido relacionado con innovación."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Ninguna experiencia declarada (asesoría institucional, autónomo en energías renovables y seguridad, funcionariado de administración local) menciona materias de innovación, tecnología, digitalización o I+D+i."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "robert-raga-gadea",
+      "portfolio": "Planificación estratégica y grandes proyectos y cooperación nacional e internacional",
+      "departmentSlug": "innovacion",
+      "reportId": "r-robert-raga-bio-v4-2026-07-30",
+      "formacion": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "La formación declarada corresponde a estudios de magisterio EGB, educación secundaria obligatoria y acceso a la universidad para mayores de 25 años, sin especialización en planificación estratégica, gestión de proyectos o relaciones de cooperación nacional e internacional."
+      },
+      "experiencia": {
+        "value": "sin-relacion-declarada",
+        "evidence": [],
+        "reason": "Ninguna entrada menciona explícitamente planificación estratégica, gestión de grandes proyectos o cooperación nacional/internacional: se citan asesoría institucional sin materia especificada, actividad autónoma en energías renovables y seguridad, y una plaza de funcionario de administración local en excedencia, ninguna vinculada por su descripción a la materia del área."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "teresa-pozuelo-martin",
+      "portfolio": "Áreas Industriales y Cementerio",
+      "departmentSlug": null,
+      "reportId": "r-teresa-pozuelo-bio-2026-07-30",
+      "formacion": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Arquitecto Técnico — Universitat Politècnica de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Ingeniero de Edificación — Universitat Politècnica de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Máster en Project Management — FLC de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Técnico en Prevención de Riesgos Laborales — FLC de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ],
+        "reason": "Arquitectura técnica e ingeniería de edificación son formaciones de la materia de construcción y edificación, y el máster en Project Management y el técnico en prevención de riesgos laborales proceden de la FLC (entidad de formación del sector de la construcción), materia vinculada a la gestión y mantenimiento de infraestructuras propia de áreas industriales y cementerio."
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Ayudante de jefe de obra @ Pavituria SL",
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "label": "Arquitecta técnica y jefa de obra @ Grupo Tremon SA",
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ],
+        "reason": "Ambos puestos son de dirección/ayudantía de obra en empresas constructoras, materia de construcción y edificación vinculada a la gestión de infraestructuras propia de áreas industriales y cementerio."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "teresa-pozuelo-martin",
+      "portfolio": "Obra Pública",
+      "departmentSlug": "obras-publicas",
+      "reportId": "r-teresa-pozuelo-bio-2026-07-30",
+      "formacion": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Arquitecto Técnico — Universitat Politècnica de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Ingeniero de Edificación — Universitat Politècnica de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ],
+        "reason": "Arquitecto Técnico e Ingeniero de Edificación son titulaciones del ámbito de la construcción y edificación, materia directamente vinculada a la obra pública; el máster en Project Management y la formación en Prevención de Riesgos Laborales son transversales a múltiples sectores y no se declaran vinculados específicamente a la construcción u obra pública."
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Ayudante de jefe de obra @ Pavituria SL",
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "label": "Arquitecta técnica y jefa de obra @ Grupo Tremon SA",
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ],
+        "reason": "Los puestos declarados (ayudante de jefe de obra y jefa de obra) corresponden a funciones de dirección y ejecución de obras de construcción, materia coincidente con la gestión de obra pública."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "teresa-pozuelo-martin",
+      "portfolio": "Urbanismo",
+      "departmentSlug": "urbanismo",
+      "reportId": "r-teresa-pozuelo-bio-2026-07-30",
+      "formacion": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Arquitecto Técnico — Universitat Politècnica de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Ingeniero de Edificación — Universitat Politècnica de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ],
+        "reason": "Las titulaciones de Arquitecto Técnico e Ingeniero de Edificación forman en construcción, edificación y normativa técnica, materias propias del área de urbanismo; el máster en Project Management y el técnico en Prevención de Riesgos Laborales no versan específicamente sobre planeamiento, licencias o edificación urbanística."
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Ayudante de jefe de obra @ Pavituria SL",
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "label": "Arquitecta técnica y jefa de obra @ Grupo Tremon SA",
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ],
+        "reason": "Trabajo como ayudante de jefe de obra y como jefa de obra en empresas constructoras corresponde a la actividad de edificación y construcción, materia comprendida en la gestión de urbanismo."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    },
+    {
+      "officialSlug": "teresa-pozuelo-martin",
+      "portfolio": "Vivienda",
+      "departmentSlug": "vivienda",
+      "reportId": "r-teresa-pozuelo-bio-2026-07-30",
+      "formacion": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Arquitecto Técnico — Universitat Politècnica de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "label": "Ingeniero de Edificación — Universitat Politècnica de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ],
+        "reason": "Arquitecto Técnico e Ingeniero de Edificación son titulaciones sobre construcción y edificación, materia directamente vinculada a la gestión de vivienda; el máster en Project Management y el técnico en Prevención de Riesgos Laborales no especifican vinculación con edificación o vivienda."
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Ayudante de jefe de obra @ Pavituria SL",
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "label": "Arquitecta técnica y jefa de obra @ Grupo Tremon SA",
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ],
+        "reason": "Los puestos de ayudante de jefe de obra y de arquitecta técnica y jefa de obra corresponden a trabajos de construcción y dirección de obra, materia propia de la gestión de vivienda."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-03"
+    }
+  ]
 }
