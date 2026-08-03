@@ -62,7 +62,6 @@ export function AlcaldeBox() {
         padding: '12px 0',
         borderTop: '1px solid ' + PALETTE.hair,
         borderBottom: '1px solid ' + PALETTE.hair,
-        margin: '14px 0',
       }}
     >
       <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>

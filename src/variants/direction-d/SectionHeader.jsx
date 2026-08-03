@@ -17,9 +17,17 @@
  *   red   → newsroom / press (prensa)
  *   green → money (contratos)
  *   teal  → civic engagement (participa, eventos)
+ *   ink   → OUR OWN reporting (reportajes)
+ *
+ * `reportajes` is deliberately the only achromatic tone. It leads the column,
+ * and the distinction it has to carry is not "which topic" but "who wrote
+ * this" — our own investigations against seven feeds of other people's output.
+ * Full-strength masthead ink says that; an eighth hue would just have read as
+ * one more category.
  */
 
 export const SECTION_TONES = {
+  reportajes: { bar: '#0B0F19', wash: 'rgba(11,15,25,.06)', ink: '#0B0F19' },
   pleno: { bar: '#1E3A8A', wash: 'rgba(30,58,138,.07)', ink: '#1E3A8A' },
   promesas: { bar: '#2463EB', wash: 'rgba(36,99,235,.08)', ink: '#1E4FBB' },
   rendicion: { bar: '#B45309', wash: 'rgba(180,83,9,.10)', ink: '#B45309' },

@@ -23,7 +23,7 @@ export function EmpleoBlockD() {
     .slice(0, 3)
   const fmt = (iso) => new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })
   return (
-    <div style={{ marginBottom: 18 }}>
+    <div>
       <SectionHeader
         tone="empleo"
         title="Empleo · Agència de Col·locació"
@@ -80,7 +80,7 @@ export function LiveContracts() {
     }).format(n)
 
   return (
-    <div style={{ marginBottom: 18 }}>
+    <div>
       <SectionHeader
         tone="contratos"
         title="Contratos adjudicados"
@@ -143,7 +143,7 @@ export function ParticipaBlockD() {
   if (items.length === 0) return null
   const fmt = (iso) => new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })
   return (
-    <div style={{ marginBottom: 18 }}>
+    <div>
       <SectionHeader tone="participa" title="Participación ciudadana" meta={data.stats.total} />
       <RetiredSourceNote upstream={data.upstream} />
       {items.map((it, i) => (
@@ -193,7 +193,7 @@ export function PressBlockD() {
   const items = (data.items || []).slice(0, 5)
   if (items.length === 0) return null
   return (
-    <div style={{ marginBottom: 18 }}>
+    <div>
       <SectionHeader
         tone="prensa"
         title={`Prensa · ${data.stats.total} titulares`}
@@ -259,7 +259,7 @@ export function EventsBlockD() {
   const items = upcomingEvents(data).slice(0, 4)
   if (items.length === 0) return null
   return (
-    <div style={{ marginBottom: 18 }}>
+    <div>
       <SectionHeader
         tone="eventos"
         title="Próximos eventos"

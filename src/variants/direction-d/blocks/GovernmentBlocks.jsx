@@ -10,7 +10,7 @@ export function CoalitionRing() {
   const order = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'EU-Podem', 'Otro']
   const items = order.filter((p) => data.composition[p]).map((p) => ({ p, n: data.composition[p] }))
   return (
-    <div style={{ marginBottom: 16 }}>
+    <div>
       <SectionHeader tone="pleno" title="Pleno municipal" meta={`${data.count} escaños`} />
       <div
         style={{
@@ -76,7 +76,7 @@ export function PromesasBlockD() {
   }, {})
   const parties = Object.entries(byParty).sort((a, b) => b[1] - a[1])
   return (
-    <div style={{ marginBottom: 18 }}>
+    <div>
       <SectionHeader
         tone="promesas"
         title="Seguimiento de promesas"
@@ -144,7 +144,7 @@ export function DepartamentosBlockD() {
   const totalDepts = 28
   const totalOfficials = officialsSnap.data?.officials?.length ?? null
   return (
-    <div style={{ marginBottom: 18 }}>
+    <div>
       <SectionHeader
         tone="rendicion"
         title="Rendición de cuentas por concejalía"

@@ -2,7 +2,7 @@ import { PALETTE, SERIF, SANS, MONO, fmtDateLong } from '../tokens'
 
 export function EditorialMasthead({ now }) {
   return (
-    <div style={{ marginBottom: 18, borderBottom: '2px solid ' + PALETTE.rule, paddingBottom: 10 }}>
+    <div style={{ borderBottom: '2px solid ' + PALETTE.rule, paddingBottom: 10 }}>
       <div
         style={{
           display: 'flex',
@@ -53,7 +53,6 @@ export function QuejaCTA() {
   return (
     <div
       style={{
-        margin: '10px 0 22px',
         padding: '14px 16px',
         background: '#EEF4FF',
         border: '1px solid #C7D7F8',

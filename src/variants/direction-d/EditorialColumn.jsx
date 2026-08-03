@@ -8,14 +8,21 @@
  * canonical partyColor() (identical values).
  *
  *   blocks/Masthead.jsx         EditorialMasthead · QuejaCTA
- *   blocks/LeadStory.jsx        Kicker · LeadStory
+ *   blocks/ReportajeBlockD.jsx  ReportajeBlockD (the lead)
  *   blocks/AlcaldeBox.jsx       AlcaldeBox (6 hooks · libel-aware copy)
  *   blocks/GovernmentBlocks.jsx CoalitionRing · PromesasBlockD · DepartamentosBlockD
  *   blocks/FeedBlocks.jsx       PressBlockD · LiveContracts · ParticipaBlockD
+ *
+ * VERTICAL RHYTHM lives here, in the container's flex `gap` — NOT in the
+ * blocks. Each block used to carry its own bottom margin and they had drifted
+ * (18 / 16 / 22 / none), and the two that ended in a hairline instead sat flush
+ * against the next block, one of them producing a double rule against
+ * AlcaldeBox's own top border. A gap can't drift: a block that renders nothing
+ * returns null, contributes no flex item, and leaves no hole. So blocks own
+ * their INTERNAL spacing and the column owns the space between them.
  */
 import { PALETTE, SANS } from './tokens'
 import { EditorialMasthead, QuejaCTA } from './blocks/Masthead'
-import { LeadStory } from './blocks/LeadStory'
 import { ReportajeBlockD } from './blocks/ReportajeBlockD'
 import { AlcaldeBox } from './blocks/AlcaldeBox'
 import { CoalitionRing, PromesasBlockD, DepartamentosBlockD } from './blocks/GovernmentBlocks'
@@ -26,6 +33,9 @@ import {
   EventsBlockD,
   EmpleoBlockD,
 } from './blocks/FeedBlocks'
+
+/** The one number that sets the column's vertical rhythm. */
+export const BLOCK_GAP = 18
 
 function EditorialColumn({ now }) {
   return (
@@ -39,11 +49,13 @@ function EditorialColumn({ now }) {
         padding: '24px 26px',
         fontFamily: SANS,
         color: PALETTE.ink,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: BLOCK_GAP,
       }}
     >
       <EditorialMasthead now={now} />
       <QuejaCTA />
-      <LeadStory />
       <ReportajeBlockD />
       <AlcaldeBox />
       <CoalitionRing />

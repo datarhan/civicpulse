@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest'
-import { timeAgo, prettyNeighborhood, safeHref } from '../../src/lib/formatters'
+import {
+  timeAgo,
+  prettyNeighborhood,
+  safeHref,
+  truncateAtWord,
+  fmtDateHuman,
+} from '../../src/lib/formatters'
 
 // Build an ISO string a given number of milliseconds in the past.
 const ago = (ms: number) => new Date(Date.now() - ms).toISOString()
@@ -61,5 +67,77 @@ describe('safeHref', () => {
     expect(safeHref('data:text/html,<script>x</script>')).toBe(null)
     expect(safeHref(null)).toBe(null)
     expect(safeHref('not a url')).toBe(null)
+  })
+})
+
+describe('truncateAtWord', () => {
+  it('returns "" for falsy input', () => {
+    expect(truncateAtWord('', 20)).toBe('')
+    expect(truncateAtWord(null, 20)).toBe('')
+    expect(truncateAtWord(undefined, 20)).toBe('')
+  })
+
+  it('leaves text at or under the budget untouched — no gratuitous ellipsis', () => {
+    expect(truncateAtWord('corto', 20)).toBe('corto')
+    expect(truncateAtWord('exactamente-veinte!!', 20)).toBe('exactamente-veinte!!')
+  })
+
+  it('trims surrounding whitespace before measuring', () => {
+    expect(truncateAtWord('   corto   ', 20)).toBe('corto')
+  })
+
+  it('cuts on a word boundary, never mid-word', () => {
+    const out = truncateAtWord('El Ayuntamiento celebra una plataforma innovadora', 30)
+    expect(out.endsWith('…')).toBe(true)
+    // Every word in the output is a whole word from the source.
+    for (const w of out.replace('…', '').split(' ')) {
+      expect('El Ayuntamiento celebra una plataforma innovadora'.split(' ')).toContain(w)
+    }
+  })
+
+  it('never exceeds the budget plus the one ellipsis character', () => {
+    const long = 'palabra '.repeat(80)
+    for (const max of [10, 40, 120, 165]) {
+      expect(truncateAtWord(long, max).length).toBeLessThanOrEqual(max + 1)
+    }
+  })
+
+  it('hard-cuts a single word longer than the budget rather than returning only "…"', () => {
+    const out = truncateAtWord('supercalifragilisticoespialidoso', 10)
+    expect(out).toBe('supercalif…')
+  })
+
+  it('strips dangling punctuation so the ellipsis does not read as ",…"', () => {
+    // The comma would otherwise survive the word-boundary cut.
+    expect(truncateAtWord('visitantes, el expediente de contratación permite', 12)).toBe(
+      'visitantes…',
+    )
+  })
+
+  it('does not append an ellipsis when the boundary cut consumed nothing', () => {
+    expect(truncateAtWord('dos palabras', 12)).toBe('dos palabras')
+  })
+})
+
+describe('fmtDateHuman', () => {
+  it('returns "" for falsy input', () => {
+    expect(fmtDateHuman('')).toBe('')
+    expect(fmtDateHuman(null)).toBe('')
+    expect(fmtDateHuman(undefined)).toBe('')
+  })
+
+  it('renders an ISO date as a long Spanish date', () => {
+    // The reportaje snapshots carry BOTH shapes: `publicadoEl` is hand-written
+    // prose, `fechaDatos` is ISO. Rendering the raw ISO next to prose is the
+    // drift this exists to kill.
+    expect(fmtDateHuman('2026-07-06')).toBe('6 de julio de 2026')
+  })
+
+  it('passes an already-human Spanish date through verbatim', () => {
+    expect(fmtDateHuman('15 de julio de 2026')).toBe('15 de julio de 2026')
+  })
+
+  it('passes any non-ISO string through rather than guessing', () => {
+    expect(fmtDateHuman('primavera de 2026')).toBe('primavera de 2026')
   })
 })

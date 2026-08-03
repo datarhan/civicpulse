@@ -85,6 +85,62 @@ export function prettyNeighborhood(slug) {
 }
 
 /**
+ * Shorten a summary to fit a teaser slot WITHOUT slicing a word in half.
+ *
+ * The column's list rows truncate headlines with a naive `.slice()`, which is
+ * tolerable for a title you are meant to click. A summary is meant to be READ,
+ * and "…comportamiento de los visi…" reads as a rendering bug rather than an
+ * abridgement. So: cut at the last space inside the budget, drop the dangling
+ * punctuation that cut would strand ("visitantes,…"), and append one ellipsis.
+ *
+ * Two deliberate edge behaviours:
+ *   · a word-boundary further back than 40% of the budget is ignored (a single
+ *     very long token would otherwise return almost nothing) — hard-cut instead;
+ *   · text already within budget comes back untouched, with NO ellipsis, so a
+ *     short summary never pretends there is more to read.
+ *
+ * @param {string|null|undefined} text
+ * @param {number} max  budget for the visible text; output is at most max + 1
+ *                      characters (the ellipsis).
+ * @returns {string}
+ */
+export function truncateAtWord(text, max) {
+  if (!text) return ''
+  const t = String(text).trim()
+  if (t.length <= max) return t
+  const cut = t.slice(0, max)
+  const lastSpace = cut.lastIndexOf(' ')
+  const body = lastSpace > max * 0.4 ? cut.slice(0, lastSpace) : cut
+  return body.replace(/[\s,;:.·—–-]+$/u, '') + '…'
+}
+
+/**
+ * Render a date that may arrive EITHER as ISO or as hand-written Spanish prose.
+ *
+ * The reportaje snapshots carry both shapes — `publicadoEl: "15 de julio de
+ * 2026"` next to `fechaDatos: "2026-07-06"` — and every surface that falls back
+ * from one to the other has been printing the raw ISO string next to prose.
+ * Anything non-ISO passes through verbatim rather than being guessed at.
+ *
+ * ISO date-only values are parsed as LOCAL midnight on purpose: `new
+ * Date('2026-07-06')` is UTC midnight, which renders as the 5th for any reader
+ * west of Greenwich. A publication date has no time zone.
+ *
+ * @param {string|null|undefined} value
+ * @returns {string}
+ */
+export function fmtDateHuman(value) {
+  if (!value) return ''
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(value)
+  if (!m) return value
+  return new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString('es-ES', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+}
+
+/**
  * Return the URL only when it uses a safe web scheme (http/https), else null.
  * Guards against javascript:/data: hrefs from scraped external data (XSS).
  * @param {string|null|undefined} url
