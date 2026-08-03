@@ -1,25 +1,115 @@
 {
-  "generatedAt": "2026-08-02T16:08:39.232Z",
+  "generatedAt": "2026-08-03T08:08:46.280Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 47,
-    "openTotal": 47,
-    "inRibaRoja": 33,
-    "closingSoon": 3,
-    "withDetail": 47,
+    "total": 51,
+    "openTotal": 51,
+    "inRibaRoja": 35,
+    "closingSoon": 7,
+    "withDetail": 51,
     "byMonth": {
+      "2026-08": 1,
       "2026-07": 26,
       "2026-06": 15,
-      "2026-05": 2,
+      "2026-05": 3,
       "2026-04": 3,
+      "2026-02": 2,
       "2025-11": 1
     }
   },
   "items": [
+    {
+      "id": "2506",
+      "fo": 2506,
+      "codigo": "2026/00205",
+      "titulo": "Conductor/limpiador industrial (mañanas)",
+      "publishedAt": "2026-08-03",
+      "deadline": "2026-10-03",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2506",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00205"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Conductor/limpiador industrial (mañanas)"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Experiencia mínima de un año Permiso C CAP TARJETA TACÓGRAFO DIGITAL"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "OTROS SERVICIOS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "INDIFERENTE"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno mañana"
+          },
+          {
+            "label": "Horario",
+            "value": "De lunes a viernes de 6 a 14 h o de lunes a viernes de 14 a 22h"
+          },
+          {
+            "label": "Salario",
+            "value": "1854€ brutos"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Conducción de camión aspirador para la retirada y aspiración de sólidos industriales. - Apoyo en tareas generales de mantenimiento y limpieza técnica. - Preparación y revisión básica del equipo antes de los servicios. - Cumplimiento estricto de las normas de seguridad y PRL. - Trabajo coordinado con el equipo en diferentes centros de trabajo."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          },
+          {
+            "label": "Habilidades",
+            "value": "Tarjeta tacógrafo digital"
+          }
+        ],
+        "tipoContrato": "INDIFERENTE",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "2",
+        "categoria": "PEONES",
+        "observaciones": "Experiencia mínima de un año Permiso C CAP TARJETA TACÓGRAFO DIGITAL",
+        "jornada": "Completa Turnos: Turno mañana",
+        "horario": "De lunes a viernes de 6 a 14 h o de lunes a viernes de 14 a 22h",
+        "salario": "1854€ brutos",
+        "funciones": "- Conducción de camión aspirador para la retirada y aspiración de sólidos industriales. - Apoyo en tareas generales de mantenimiento y limpieza técnica. - Preparación y revisión básica del equipo antes de los servicios. - Cumplimiento estricto de las normas de seguridad y PRL. - Trabajo coordinado con el equipo en diferentes centros de trabajo.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2505",
       "fo": 2505,
@@ -362,7 +452,7 @@
       "id": "2502",
       "fo": 2502,
       "codigo": "2026/00201",
-      "titulo": "MOZ@ ALMACÉN DEPARTAMENTO INTERNACIONAL",
+      "titulo": "Mozo almacén departamento internacional",
       "publishedAt": "2026-07-23",
       "deadline": "2026-09-23",
       "location": "Área Industrial Riba-roja Riba-roja de Túria",
@@ -378,11 +468,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "MOZ@ ALMACÉN DEPARTAMENTO INTERNACIONAL"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Incorporasción inmediata"
+            "value": "Mozo almacén departamento internacional"
           },
           {
             "label": "Tipo de contrato",
@@ -416,7 +502,6 @@
         "tipoContrato": "CONTRATO INDEFINIDO",
         "duracion": "3 MESES DE PRUEBA + INDEFINIDO",
         "numPuestos": "1",
-        "observaciones": "Incorporasción inmediata",
         "jornada": "Completa",
         "horario": "Desde las 08:00 hasta las 17:00 (-1 hora comida).",
         "salario": "Según convenio de moz@ especialista",
@@ -427,7 +512,7 @@
       "id": "2501",
       "fo": 2501,
       "codigo": "2026/00200",
-      "titulo": "ATC INTERNACIONAL",
+      "titulo": "ATC internacional",
       "publishedAt": "2026-07-23",
       "deadline": "2026-09-23",
       "location": "Área Industrial Riba-roja Riba-roja de Túria",
@@ -443,7 +528,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "ATC INTERNACIONAL"
+            "value": "ATC internacional"
           },
           {
             "label": "Observaciones",
@@ -492,7 +577,7 @@
       "id": "2500",
       "fo": 2500,
       "codigo": "2026/00199",
-      "titulo": "CHOFER CAMION",
+      "titulo": "Chofer camión",
       "publishedAt": "2026-07-22",
       "deadline": "2026-09-22",
       "location": "FERCOMETAL S.L. Riba-roja de Túria",
@@ -508,7 +593,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "CHOFER CAMION"
+            "value": "Chofer camión"
           },
           {
             "label": "Observaciones",
@@ -648,7 +733,7 @@
       "id": "2498",
       "fo": 2498,
       "codigo": "2026/00197",
-      "titulo": "CELADOR/A",
+      "titulo": "Celador/a",
       "publishedAt": "2026-07-21",
       "deadline": "2026-09-21",
       "location": "Riba-roja de Túria",
@@ -664,7 +749,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "CELADOR/A"
+            "value": "Celador/a"
           },
           {
             "label": "Sector CNAE",
@@ -788,7 +873,7 @@
       "id": "2497",
       "fo": 2497,
       "codigo": "2026/00196",
-      "titulo": "CONDUCTOR GRUA RÍGIDO Y ARTICULADO",
+      "titulo": "Conductor grúa rígido y articulado",
       "publishedAt": "2026-07-20",
       "deadline": "2026-09-20",
       "location": "POLÍGONO INDUSTRIAL Riba-roja de Túria",
@@ -804,7 +889,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "CONDUCTOR GRUA RÍGIDO Y ARTICULADO"
+            "value": "Conductor grúa rígido y articulado"
           },
           {
             "label": "Sector CNAE",
@@ -952,7 +1037,7 @@
       "id": "2495",
       "fo": 2495,
       "codigo": "2026/00194",
-      "titulo": "OPERARIO/A DE CARPINTERÍA METÁLICA",
+      "titulo": "Operario/a de carpintería metálica",
       "publishedAt": "2026-07-15",
       "deadline": "2026-09-15",
       "location": "Riba-roja de Túria Riba-roja de Túria",
@@ -968,7 +1053,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "OPERARIO/A DE CARPINTERÍA METÁLICA"
+            "value": "Operario/a de carpintería metálica"
           },
           {
             "label": "Observaciones",
@@ -1022,7 +1107,7 @@
       "id": "2494",
       "fo": 2494,
       "codigo": "2026/00193",
-      "titulo": "PERSONAL PARA ESTABLECIMIENTO COMERCIAL",
+      "titulo": "Personal para establecimiento comercial",
       "publishedAt": "2026-07-15",
       "deadline": "2026-09-15",
       "location": "Riba-roja Riba-roja de Túria",
@@ -1038,7 +1123,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "PERSONAL PARA ESTABLECIMIENTO COMERCIAL"
+            "value": "Personal para establecimiento comercial"
           },
           {
             "label": "Observaciones",
@@ -1091,7 +1176,7 @@
       "id": "2493",
       "fo": 2493,
       "codigo": "2026/00192",
-      "titulo": "OPERARIO/A DE CONTROL DE CALIDAD DE PRUEBAS DE SERVICIO E INSTALACIONES (área fontanería y/o electricidad)",
+      "titulo": "Operario/a de control de calidad de pruebas de servicio e instalaciones (área fontanería y/o electricidad)",
       "publishedAt": "2026-07-15",
       "deadline": "2026-09-15",
       "location": "C/ Pedrapiquers, s/n-Pol. Ind. Riba-roja de Túria",
@@ -1107,7 +1192,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "OPERARIO/A DE CONTROL DE CALIDAD DE PRUEBAS DE SERVICIO E INSTALACIONES (área fontanería y/o electricidad)"
+            "value": "Operario/a de control de calidad de pruebas de servicio e instalaciones (área fontanería y/o electricidad)"
           },
           {
             "label": "Observaciones",
@@ -1170,7 +1255,7 @@
       "id": "2492",
       "fo": 2492,
       "codigo": "2026/00191",
-      "titulo": "OPERARIO/A DE RECOGIDA DE MUESTRAS EN OBRAS DE CONSTRUCCIÓN",
+      "titulo": "Operario/a de recogida de muestras en obras de construcción",
       "publishedAt": "2026-07-15",
       "deadline": "2026-09-15",
       "location": "C/ Pedrapiquers, s/n-Pol. Ind. Riba-roja de Túria",
@@ -1186,7 +1271,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "OPERARIO/A DE RECOGIDA DE MUESTRAS EN OBRAS DE CONSTRUCCIÓN"
+            "value": "Operario/a de recogida de muestras en obras de construcción"
           },
           {
             "label": "Observaciones",
@@ -1518,7 +1603,7 @@
       "id": "2488",
       "fo": 2488,
       "codigo": "2026/00187",
-      "titulo": "AUXILIAR ADMINISTRATIVO",
+      "titulo": "Auxiliar administrativo/a",
       "publishedAt": "2026-07-13",
       "deadline": "2026-09-13",
       "location": "POLIGONO INDUSTRIAL Loriguilla (Valencia)",
@@ -1534,7 +1619,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "AUXILIAR ADMINISTRATIVO"
+            "value": "Auxiliar administrativo/a"
           },
           {
             "label": "Observaciones",
@@ -1569,6 +1654,10 @@
             "value": "Completa Turnos: Turno partido"
           },
           {
+            "label": "Horario",
+            "value": "Lunes a jueves: de 09:00 a 14:00 h y de 15:00 a 18:30 h. Viernes: de 08:00 a 14:00 h."
+          },
+          {
             "label": "Salario",
             "value": "1500"
           },
@@ -1590,6 +1679,7 @@
         "provincia": "Valencia",
         "cp": "46393",
         "jornada": "Completa Turnos: Turno partido",
+        "horario": "Lunes a jueves: de 09:00 a 14:00 h y de 15:00 a 18:30 h. Viernes: de 08:00 a 14:00 h.",
         "salario": "1500",
         "funciones": "Funciones principales Control diario de partes de trabajo del personal. Revisión y gestión de albaranes de maquinaria y transporte. Preparación y seguimiento de certificaciones mensuales. Gestión documental de clientes y proveedores. Administración de plataformas documentales como Nalanda, Quioo, ProAPP, Achilles y otras similares. Archivo y control de documentación administrativa. Apoyo al departamento de administración en las tareas propias del puesto. Coordinación documental con los diferentes departamentos de la empresa.",
         "vehiculo": "Sí",
@@ -3285,6 +3375,89 @@
       }
     },
     {
+      "id": "2367",
+      "fo": 2367,
+      "codigo": "2026/00071",
+      "titulo": "Oficiales albañilería para obra civil",
+      "publishedAt": "2026-05-25",
+      "deadline": "2026-10-03",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2367",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00071"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Oficiales albañilería para obra civil"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Oficial de Albañileria para obra civil (Gasolineras, Naves...)"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "4"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 3ª y ESPECIALISTAS"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46370"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Horario",
+            "value": "Lunes a jueves de 08:00 a 18:00 Viernes de: 08:00 a 15:30 1 hora de almuerzo + 1 hora de comida (Excepto viernes)"
+          },
+          {
+            "label": "Salario",
+            "value": "Competitivo"
+          },
+          {
+            "label": "Funciones",
+            "value": "Oficial para Obra Civil"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "4",
+        "categoria": "OFICIAL DE 3ª y ESPECIALISTAS",
+        "observaciones": "Oficial de Albañileria para obra civil (Gasolineras, Naves...)",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46370",
+        "jornada": "Completa Turnos: Turno partido",
+        "horario": "Lunes a jueves de 08:00 a 18:00 Viernes de: 08:00 a 15:30 1 hora de almuerzo + 1 hora de comida (Excepto viernes)",
+        "salario": "Competitivo",
+        "funciones": "Oficial para Obra Civil",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
       "id": "2146",
       "fo": 2146,
       "codigo": "2025/00178",
@@ -3599,6 +3772,141 @@
             "experiencia": "2 Años"
           }
         ]
+      }
+    },
+    {
+      "id": "2344",
+      "fo": 2344,
+      "codigo": "2026/00044",
+      "titulo": "Oficial de 1ª albañil",
+      "publishedAt": "2026-02-20",
+      "deadline": "2026-10-03",
+      "location": "Chiva (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2344",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00044"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Oficial de 1ª albañil"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Requisitos valorables: Experiencia de 2 años PRL albañilería Formación previa en albañilería Coche para acceder al puesto de trabajo"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "INDIFERENTE"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 1ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Chiva, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Salario",
+            "value": "SEGÚN CONVENIO"
+          }
+        ],
+        "tipoContrato": "INDIFERENTE",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "2",
+        "categoria": "OFICIAL DE 1ª",
+        "observaciones": "Requisitos valorables: Experiencia de 2 años PRL albañilería Formación previa en albañilería Coche para acceder al puesto de trabajo",
+        "jornada": "Completa",
+        "salario": "SEGÚN CONVENIO",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2335",
+      "fo": 2335,
+      "codigo": "2026/00037",
+      "titulo": "Educador/a comedor escolar",
+      "publishedAt": "2026-02-12",
+      "deadline": "2026-10-03",
+      "location": "Paterna (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2335",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00037"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Educador/a comedor escolar"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Requisitos: - Experiencia mínima necesaria 6 meses. - MAT o titulaciones relacionadas con el ámbito educativo. - Estar en posesión del certificado de negación de delitos de aturaleza sexual actualizado."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Paterna, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Parcial"
+          },
+          {
+            "label": "Horario",
+            "value": "De 12:30 a 15:30 horas"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Gestión de grupos escolares durante el horario de comedor. - Servir y retirar mesas. - Educación en bueno ámbitos alimenticios e higiene. - Control y seguimiento de patio."
+          }
+        ],
+        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Requisitos: - Experiencia mínima necesaria 6 meses. - MAT o titulaciones relacionadas con el ámbito educativo. - Estar en posesión del certificado de negación de delitos de aturaleza sexual actualizado.",
+        "jornada": "Parcial",
+        "horario": "De 12:30 a 15:30 horas",
+        "salario": "Según convenio",
+        "funciones": "- Gestión de grupos escolares durante el horario de comedor. - Servir y retirar mesas. - Educación en bueno ámbitos alimenticios e higiene. - Control y seguimiento de patio.",
+        "ocupaciones": []
       }
     },
     {
