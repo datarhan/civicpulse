@@ -35,6 +35,71 @@ test.describe('Cargos (/cargos)', () => {
     await expect(page.getByText('Robert Raga Gadea').first()).toBeVisible({ timeout: 8000 })
   })
 
+  test('a councillor with no delegated área says so, rather than rendering blank', async ({
+    page,
+  }) => {
+    // 10 of 21 hold no portfolio, so no encaje row can exist for them. Without
+    // this explicit state /cargos silently becomes "the governing party has
+    // credentials, everyone else is blank" — an artifact of who governs, not of
+    // who is qualified. The empty case has to be PROVEN reachable: a suite that
+    // only asserts the populated path would stay green while the blank returned.
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+    const card = page
+      .locator('div')
+      .filter({ hasText: /^PP/ })
+      .filter({ hasText: 'Laura Guzman Bruno' })
+      .first()
+    await expect(card).toBeVisible({ timeout: 8000 })
+    await expect(page.getByText('Sin delegación de área').first()).toBeVisible({ timeout: 8000 })
+    await expect(page.getByText(/no hay área con la que comparar/i).first()).toBeVisible()
+  })
+
+  test('the populated encaje block names áreas and renders no score', async ({ page }) => {
+    // The published snapshot ships with zero rows (each names a living person
+    // and waits on a curator signature), so asserting "no percentage on the
+    // page" against it would pass by measuring an empty block — the exact
+    // green-but-vacuous shape DATA_INTEGRITY warns about. Stub the snapshot so
+    // the POPULATED render is what gets checked.
+    await page.route('**/data/area-fit.json', (route) =>
+      route.fulfill({
+        contentType: 'application/json',
+        body: JSON.stringify({
+          generatedAt: '2026-08-03T00:00:00.000Z',
+          mandate: '2023-2027',
+          rows: [
+            {
+              officialSlug: 'teresa-pozuelo-martin',
+              portfolio: 'Urbanismo',
+              departmentSlug: 'urbanismo',
+              reportId: 'r-teresa-pozuelo-bio-2026-07-30',
+              formacion: {
+                value: 'relacionada',
+                evidence: [{ label: 'Arquitecto Técnico — UPV', sourceIds: ['src-060'] }],
+              },
+              experiencia: { value: 'sin-relacion-declarada', evidence: [] },
+              curatedBy: 'e2e',
+              curatedAt: '2026-08-03',
+            },
+          ],
+        }),
+      }),
+    )
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+
+    // The block is really there, and it names the área rather than counting it.
+    await expect(page.getByText('Encaje declarado').first()).toBeVisible({ timeout: 8000 })
+    await expect(page.getByText('sin relación declarada').first()).toBeVisible()
+
+    const body = await page.locator('body').innerText()
+    const section = body.slice(body.indexOf('CONCEJALAS Y CONCEJALES'))
+    // innerText reflects CSS text-transform, so the eyebrow arrives uppercased.
+    expect(section).toMatch(/encaje declarado/i)
+    // No grade, in any of the shapes it could take.
+    expect(section).not.toMatch(/encaje[^\n]{0,40}\d+\s*%/i)
+    expect(section).not.toMatch(/\d+\s*\/\s*\d+\s*áreas/i)
+    expect(section).not.toMatch(/\d+\s+de\s+\d+\s+áreas/i)
+  })
+
   test('clicking a councillor link navigates into the detail view', async ({ page }) => {
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
     const link = page.locator('a[href^="/cargos/"]').first()
