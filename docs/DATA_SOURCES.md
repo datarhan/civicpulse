@@ -42,23 +42,31 @@ Everything produced by the convention above. Safe to delete and rebuild.
 
 ### Curated — human-edited only, NEVER written by automation
 
-| File                                                | Schema / CLI                                                                                            |
-| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `promises.json`                                     | `src/scraper/promises.ts` · `npm run reply`, `freeze:set`                                               |
-| `pleno-votes.json`                                  | `src/scraper/pleno-votes.ts` · `npm run pleno-vote`                                                     |
-| `pleno-findings.json`                               | `src/scraper/pleno-finding.ts` · `npm run promote-claim`, `finding-reply`, `correct-pleno-finding`      |
-| `journalist-reports.json` (+ `journalist-reports/`) | `src/scraper/journalist.ts` · `npm run promote-report`, `correct-journalist-report`, `journalist-reply` |
-| `quejas-responses.json`                             | `scripts/apply-queja-response.ts` · `npm run queja-reply`                                               |
-| `sindic.json`                                       | `src/scraper/sindic.ts` · `npm run sindic:add`                                                          |
-| `plantilla.json`, `dedicaciones.json`               | curated · cited · `src/scraper/dedicaciones.ts`                                                         |
-| `place-overrides.json`                              | `src/scraper/place-suggestion.ts` · `npm run promote-place`                                             |
-| `gazetteer-supplement.json`                         | `src/scraper/gazetteer-supplement.ts`                                                                   |
-| `entity-overrides.json`                             | `src/scraper/entities.ts` · `npm run entity-alias`                                                      |
+| File                                                | Schema / CLI                                                                                                                  |
+| --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `promises.json`                                     | `src/scraper/promises.ts` · `npm run reply`, `freeze:set`                                                                     |
+| `pleno-votes.json`                                  | `src/scraper/pleno-votes.ts` · `npm run pleno-vote`                                                                           |
+| `pleno-findings.json`                               | `src/scraper/pleno-finding.ts` · `npm run promote-claim`, `finding-reply`, `correct-pleno-finding`                            |
+| `journalist-reports.json` (+ `journalist-reports/`) | `src/scraper/journalist.ts` · `npm run promote-report`, `correct-journalist-report`, `journalist-reply`, `repoint-source-url` |
+| `quejas-responses.json`                             | `scripts/apply-queja-response.ts` · `npm run queja-reply`                                                                     |
+| `sindic.json`                                       | `src/scraper/sindic.ts` · `npm run sindic:add`                                                                                |
+| `plantilla.json`, `dedicaciones.json`               | curated · cited · `src/scraper/dedicaciones.ts`                                                                               |
+| `place-overrides.json`                              | `src/scraper/place-suggestion.ts` · `npm run promote-place`                                                                   |
+| `gazetteer-supplement.json`                         | `src/scraper/gazetteer-supplement.ts`                                                                                         |
+| `entity-overrides.json`                             | `src/scraper/entities.ts` · `npm run entity-alias`                                                                            |
 
 Each CLI re-validates the whole snapshot before writing, so an invariant
 (≥20-char verbatim quote, ≥10-char title) cannot silently slip. Route
 algorithmic output through the CLI, never straight into the file — the schema
 validator and the git history are the audit trail.
+
+`repoint-source-url` is the odd one out and worth knowing about: when a
+publisher MOVES a document, the claim, the excerpt and `retrievedAt` are all
+still right — only the address is stale. That is not a correction, and filing it
+under `corrections[]` would tell readers we got something wrong. It records
+`previousUrl` + `relocatedAt` instead, and **refuses to move a citation unless
+the frozen excerpt still appears verbatim in the document at the new URL** — so
+"repoint" can never quietly become "swap the evidence".
 
 ### Machine-written suggestions — a curator promotes, nothing auto-publishes
 

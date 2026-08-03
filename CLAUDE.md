@@ -246,6 +246,13 @@ Beyond those three:
   URL-backed citation. A `critical` finding requires ≥1 evidence ref. A `dueBy`
   on a pleno vote requires a verbatim `dueBySource` clause from the acta.
   Machine-inferred deadlines reintroduce exactly the risk these block.
+- **A citation has to resolve before it publishes.** `check:citations` blocks a
+  promotion whose claims cite a missing source, whose quote is not verbatim in
+  the excerpt it cites, or whose URL is dead. It classifies URLs
+  `alive`/`dead`/`unverifiable` and only `dead` blocks — a check wrong four
+  times in forty-eight is one everybody skips. What it cannot judge — does the
+  excerpt _support_ the sentence or merely relate to it — is the
+  `revisar-borrador` skill.
 - **An agenda item is a commitment only when a matching vote exists** (join on
   `plenoId + itemNumber`). Otherwise it renders as "debatido, sin voto
   transcrito" and is never counted overdue. Overdue flags never flip a status.

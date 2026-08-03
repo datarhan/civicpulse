@@ -132,6 +132,8 @@ All report-only inside `scrape:all`; run any of them directly.
 | `check:relations`                 | cross-snapshot FK breakage (findings→claims, votes→plenos, …)      |
 | `check:cadence`                   | snapshots past their expected refresh interval                     |
 | `check:runs`                      | a run that reported success without doing work                     |
+| `check:citations`                 | a published claim whose citation no longer holds                   |
+| `check:guards`                    | a guard in this table that nothing invokes                         |
 | `check:drift`, `check:vocabulary` | upstream shape / vocabulary changes                                |
 | `check:corpus`, `check:retrieval` | embedding corpus integrity, self-retrieval probe                   |
 | `check:transcripts`               | degenerate transcripts in the published corpus                     |
@@ -141,6 +143,26 @@ All report-only inside `scrape:all`; run any of them directly.
 Baselines (`.vocabulary-census.json`, `.transcript-check-baseline.json`) are
 **committed on purpose**. Gitignored, CI would write a fresh one each night and
 report "no change" forever.
+
+`check:citations` is split across two runners, and the split is the point. The
+free structural half (does every claim cite a source that exists, is every quote
+verbatim in its excerpt) runs in `scrape:all` with `--offline`. The URL probe
+runs in `scrape-ci-blocked.sh`, because it needs a residential IP for the same
+reason the seven adapters there do — a runner would mark most of the corpus
+`unverifiable`, find nothing, and report a clean bill of health. The blocking
+copy runs at promote time, against the draft.
+
+### Proving the guards still guard
+
+```bash
+npm run check:guards            # wiring: is each guard above invoked anywhere?
+npm run check:guards -- --inject   # break what each one watches, confirm it fires
+```
+
+`--inject` mutates real snapshots, restores them from git, and **verifies the
+restoration** (exit 2 if it cannot). It refuses to touch a file with uncommitted
+changes. It also names every guard it has no injection for, rather than letting
+a partial pass read as full coverage — as of 2026-08-03 that is 11 of 15.
 
 ## Git hooks
 
