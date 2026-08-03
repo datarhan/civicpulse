@@ -237,6 +237,8 @@ export function computeDepartmentStats({
   // Contratación. The largest money dataset had no owner at all: Gobierto
   // labels each contract with an English `categoryTitle`, which the Spanish
   // keyword rules never matched, so all 804 awarded contracts reached no
+  let contratacionFrom = null
+  let contratacionTo = null
   // concejalía. Only awarded rows count — a tender still open has moved no
   // money — and only unambiguous categories, so the number under-states
   // instead of putting a wrong owner on a spending figure.
@@ -251,6 +253,17 @@ export function computeDepartmentStats({
     if (!slug || !buckets[slug]) continue
     buckets[slug].contratacion.contratos += 1
     buckets[slug].contratacion.importeEur += Number(c.finalAmount || c.initialAmount || 0)
+    // The span these euros cover, read from the rows we actually counted.
+    // Without it the card shows a nine-year accumulation next to a one-year
+    // municipal budget and invites the reader to compare them — the same
+    // defect the landing page shipped with «Presup. 2025 €41,6M» beside
+    // «Contratos adj. €68,0M». Computed, never typed: a hardcoded «2017-2026»
+    // goes false on its own the next time the scraper runs.
+    const year = Number(String(c.awardDate ?? '').slice(0, 4))
+    if (Number.isFinite(year) && year > 1990) {
+      if (contratacionFrom === null || year < contratacionFrom) contratacionFrom = year
+      if (contratacionTo === null || year > contratacionTo) contratacionTo = year
+    }
   }
 
   // Verified claims (deterministic + LLM second-pass). Each claim's topic
@@ -297,5 +310,14 @@ export function computeDepartmentStats({
     plazosVencidosCount += b.plenoVotes.plazosVencidos + b.promesas.plazosVencidos
   }
 
-  return { bySlug: buckets, list, plazosVencidosCount, unbucketedOverdueVotes }
+  return {
+    bySlug: buckets,
+    list,
+    plazosVencidosCount,
+    unbucketedOverdueVotes,
+    contratacionYears:
+      contratacionFrom !== null && contratacionTo !== null
+        ? { from: contratacionFrom, to: contratacionTo }
+        : null,
+  }
 }

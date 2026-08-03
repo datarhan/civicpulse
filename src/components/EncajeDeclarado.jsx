@@ -119,16 +119,24 @@ export function EncajeCard({ official, bioRoute }) {
 
       <div style={{ marginTop: 7, fontSize: 10.5, color: 'var(--ink50)', lineHeight: 1.45 }}>
         {t('encaje.card.source')}{' '}
+        {/* Underlined, not just tinted. These sit INSIDE a sentence, and WCAG
+          2.1 AA (link-in-text-block) requires a link in running text to be
+          distinguishable without relying on colour — axe flags all 22 of them
+          otherwise. Standalone links elsewhere on the card keep the house
+          no-underline style; the rule is about links embedded in prose. */}
         {bioRoute && (
           <>
             ·{' '}
-            <Link to={bioRoute} style={{ color: 'var(--civic)', textDecoration: 'none' }}>
+            <Link to={bioRoute} style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
               {t('encaje.card.gaps')}
             </Link>
           </>
         )}{' '}
         ·{' '}
-        <Link to="/metodologia#encaje" style={{ color: 'var(--civic)', textDecoration: 'none' }}>
+        <Link
+          to="/metodologia#encaje"
+          style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+        >
           {t('encaje.card.law')}
         </Link>
       </div>
@@ -265,7 +273,7 @@ export function EncajeMatrix({ official, bioRoute }) {
                       <div style={{ margin: '4px 0 0 120px', fontSize: 11.5 }}>
                         <Link
                           to={bioRoute}
-                          style={{ color: 'var(--civic)', textDecoration: 'none' }}
+                          style={{ color: 'var(--civic)', textDecoration: 'underline' }}
                         >
                           {t('encaje.card.gaps')}
                         </Link>

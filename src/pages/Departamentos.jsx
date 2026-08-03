@@ -14,7 +14,7 @@ function formatEurosCompact(eur) {
   return `${Math.round(eur)} €`
 }
 
-function DepartmentCard({ bucket, frozen }) {
+function DepartmentCard({ bucket, frozen, contratacionYears }) {
   const t = useT()
   const { locale } = useLocale()
   const label = locale === 'ca' ? bucket.labelCa : bucket.labelEs
@@ -109,9 +109,18 @@ function DepartmentCard({ bucket, frozen }) {
             />
             {/* Awarded spend this concejalía owns. Under-states by design: only
               contracts whose category maps unambiguously to a department are
-              counted, so a blank means "not attributable", never "spent zero". */}
+              counted, so a blank means "not attributable", never "spent zero".
+
+              The PERIOD is part of the label, not a footnote. Without it the
+              card puts a nine-year accumulation beside a one-year municipal
+              budget and a reader concludes one concejalía moves a large share
+              of the annual spend. Read from the counted rows, never typed. */}
             <Stat
-              label={t('departamentos.card.contratacion')}
+              label={
+                contratacionYears
+                  ? `${t('departamentos.card.contratacion')} ${contratacionYears.from}–${contratacionYears.to}`
+                  : t('departamentos.card.contratacion')
+              }
               value={
                 bucket.contratacion.contratos > 0
                   ? formatEurosCompact(bucket.contratacion.importeEur)
@@ -234,7 +243,8 @@ function EncajeAggregate() {
         .replace('{cargos}', String(agg.cargos))
         .replace('{conFormacion}', String(agg.conFormacion))
         .replace('{sinRelacion}', String(agg.sinRelacion))}{' '}
-      <Link to="/metodologia#encaje" style={{ color: 'var(--civic)', textDecoration: 'none' }}>
+      {/* Inside the sentence, so underlined — see EncajeDeclarado.jsx. */}
+      <Link to="/metodologia#encaje" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
         {t('encaje.card.law')} →
       </Link>
     </p>
@@ -260,6 +270,7 @@ export default function Departamentos() {
 
   const list = stats.data.list
   const totalVencidos = stats.data.plazosVencidosCount
+  const unbucketed = stats.data.unbucketedOverdueVotes ?? 0
 
   return (
     <div style={{ padding: '28px 28px 48px', maxWidth: 1180, margin: '0 auto' }}>
@@ -268,9 +279,33 @@ export default function Departamentos() {
         title={t('departamentos.title')}
         right={
           <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            {/* An overdue item whose vote carries no department lands in the
+              page total and in NO card, so a reader who trusts the warning hunts
+              through 28 concejalías all reading 0 and concludes the page
+              contradicts itself. Say where it went instead of hiding it — the
+              gap is a finding about our own data, not an embarrassment to round
+              away.
+
+              When EVERY overdue item is unlocatable the count is stated once:
+              «1 plazo vencido · 1 sin concejalía asignada» reads as two
+              separate things, which is a second wrong answer, not a fix. */}
             {!frozen && totalVencidos > 0 && (
               <Pill tone="warn" size="sm">
-                ⚠ {totalVencidos} {t('liveTicker.plazosVencidos')}
+                ⚠ {totalVencidos}{' '}
+                {totalVencidos === 1
+                  ? t('departamentos.plazoVencido')
+                  : t('liveTicker.plazosVencidos')}
+                {/* Weight alone carries the de-emphasis. An `opacity` here
+                  dropped this text under the WCAG AA contrast floor inside the
+                  warn pill and axe caught it — fading a warning until it is hard
+                  to read defeats the warning. */}
+                {unbucketed > 0 && (
+                  <span style={{ fontWeight: 400 }}>
+                    {unbucketed === totalVencidos
+                      ? `, ${t('departamentos.sinConcejalia')}`
+                      : ` · ${unbucketed} ${t('departamentos.sinConcejalia')}`}
+                  </span>
+                )}
               </Pill>
             )}
             <DataAsOf iso={stats.generatedAt} label="Departamentos" />
@@ -303,7 +338,12 @@ export default function Departamentos() {
         }}
       >
         {list.map((bucket) => (
-          <DepartmentCard key={bucket.slug} bucket={bucket} frozen={frozen} />
+          <DepartmentCard
+            key={bucket.slug}
+            bucket={bucket}
+            frozen={frozen}
+            contratacionYears={stats.data.contratacionYears}
+          />
         ))}
       </div>
     </div>
