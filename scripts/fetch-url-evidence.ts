@@ -19,6 +19,11 @@
  *      anything else → reject.
  *   4. Snippet capped at 1500 chars (LLM input is small + cheap).
  *
+ * Steps 1 and 2 come from `lib/doc-fetch.ts`. They used to be a local copy, and
+ * the copy kept an 8 MB transport cap after the shared one moved to 32 MB —
+ * so this script failed on every acta over 8 MB, which is most of them. Only
+ * MAX_SNIPPET below is legitimately local: it is a prompt budget, not transport.
+ *
  * Audio/video are NOT supported here — those need Whisper transcription
  * which takes minutes. Future addition: a job-queue pattern with
  * background processing + status polling.
@@ -28,92 +33,14 @@ import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { resolve as resolvePath, join } from 'node:path'
 import * as cheerio from 'cheerio'
+import { buildUA, fetchCapped, ssrfReason } from './lib/doc-fetch'
 
-const UA = 'CivicPulse curator dashboard / fetch-url-evidence (https://civicpulse.es)'
-const FETCH_TIMEOUT_MS = 25_000
-const MAX_BYTES = 8 * 1024 * 1024 // 8 MB cap on remote payload
+const UA = buildUA('fetch-url-evidence')
 const MAX_SNIPPET = 1500
 
 function fail(msg: string, code = 1): never {
   process.stderr.write(`[fetch-url-evidence] ${msg}\n`)
   process.exit(code)
-}
-
-/**
- * SSRF guard: reject schemes other than http(s), and reject hostnames
- * that resolve to private / loopback / link-local IPs. We do a coarse
- * lexical pre-check (private-IP ranges, "localhost") because Node's
- * `dns.lookup` would add latency for every fetch and the lexical check
- * blocks the obvious cases. The network-level guarantee is the trust
- * boundary itself: this script only runs from the curator's localhost
- * via the dev-only middleware.
- */
-function ssrfCheck(url: URL): string | null {
-  if (url.protocol !== 'http:' && url.protocol !== 'https:') {
-    return `unsupported scheme ${url.protocol}`
-  }
-  const host = url.hostname.toLowerCase()
-  if (host === 'localhost' || host === '0.0.0.0' || host.endsWith('.localhost')) {
-    return 'localhost not allowed'
-  }
-  // Private + loopback + link-local IPv4.
-  if (/^127\./.test(host)) return '127.x not allowed'
-  if (/^10\./.test(host)) return '10.x not allowed'
-  if (/^192\.168\./.test(host)) return '192.168.x not allowed'
-  if (/^172\.(1[6-9]|2\d|3[01])\./.test(host)) return '172.16-31.x not allowed'
-  if (/^169\.254\./.test(host)) return 'link-local 169.254.x not allowed'
-  // IPv6 loopback and link-local.
-  if (host === '::1' || host === '[::1]') return 'IPv6 loopback not allowed'
-  if (host.startsWith('fe80:') || host.startsWith('[fe80:')) return 'IPv6 link-local not allowed'
-  return null
-}
-
-/**
- * Fetch with a body-size cap. We stream the response so a multi-GB PDF
- * doesn't OOM the curator's laptop.
- */
-async function fetchWithCap(url: string): Promise<{ contentType: string; body: Uint8Array }> {
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS)
-  let res: Response
-  try {
-    res = await fetch(url, {
-      headers: { 'User-Agent': UA, accept: '*/*' },
-      redirect: 'follow',
-      signal: controller.signal,
-    })
-  } finally {
-    clearTimeout(timer)
-  }
-  if (!res.ok) throw new Error(`GET ${url} → ${res.status}`)
-
-  const contentType = res.headers.get('content-type') ?? 'application/octet-stream'
-  if (!res.body) throw new Error('empty response body')
-  const reader = res.body.getReader()
-  const chunks: Uint8Array[] = []
-  let received = 0
-  while (true) {
-    const { done, value } = await reader.read()
-    if (done) break
-    if (!value) continue
-    received += value.byteLength
-    if (received > MAX_BYTES) {
-      try {
-        await reader.cancel()
-      } catch {
-        /* noop */
-      }
-      throw new Error(`payload exceeds ${MAX_BYTES / 1024 / 1024} MB cap`)
-    }
-    chunks.push(value)
-  }
-  const body = new Uint8Array(received)
-  let offset = 0
-  for (const c of chunks) {
-    body.set(c, offset)
-    offset += c.byteLength
-  }
-  return { contentType, body }
 }
 
 function extractFromHtml(html: string): { title: string; snippet: string } {
@@ -183,12 +110,12 @@ async function main() {
   } catch {
     fail(`invalid URL: ${urlArg}`, 2)
   }
-  const ssrf = ssrfCheck(parsed)
+  const ssrf = ssrfReason(parsed)
   if (ssrf) fail(`refused: ${ssrf}`, 2)
 
   let fetched: { contentType: string; body: Uint8Array }
   try {
-    fetched = await fetchWithCap(parsed.toString())
+    fetched = await fetchCapped(parsed.toString(), UA)
   } catch (err) {
     fail((err as Error).message)
   }

@@ -6,11 +6,15 @@
  * pure half — deciding whether an excerpt appears in the text — is
  * `src/scraper/quote-match.ts`, and is tested without a network.
  *
- * Deliberately NOT shared with `fetch-url-evidence.ts` yet. That script caps
- * its output at 1500 chars because it feeds an LLM prompt; this one needs the
- * whole document because it is looking for one sentence that could be anywhere
- * in it. Consolidating the SSRF guard and the capped reader into one place is
- * worth doing, but not in the same change that repoints 68 published citations.
+ * This is the ONE transport for cited documents. `fetch-url-evidence.ts` used
+ * to carry a line-for-line copy of `ssrfReason` and the capped reader, and the
+ * copy went stale in the way forks always do: it kept an 8 MB cap after this
+ * file learned that municipal actas run 8–10 MB, so the curator's "Add URL"
+ * button failed on the exact document class this project cites most. Same trap
+ * as DATA_INTEGRITY.md rule 1 — do not fork it again.
+ *
+ * What legitimately differs between callers is the SNIPPET length (a prompt
+ * budget), not the transport. That stays with each caller.
  */
 import { spawnSync } from 'node:child_process'
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
@@ -18,8 +22,15 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import * as cheerio from 'cheerio'
 
-export const UA =
-  'CivicPulse/1.0 (watchdog cívico Riba-roja de Túria; +https://github.com/datarhan/civicpulse) citation-check'
+/**
+ * Identify the project and say which job is calling — `docs/` asks scrapers to
+ * be identifiable, and a bare "CivicPulse" is one of the UAs ribarroja.es's WAF
+ * refuses.
+ */
+export const buildUA = (purpose: string) =>
+  `CivicPulse/1.0 (watchdog cívico Riba-roja de Túria; +https://github.com/datarhan/civicpulse) ${purpose}`
+
+export const UA = buildUA('citation-check')
 
 const TIMEOUT_MS = 30_000
 /** Municipal acta PDFs are routinely 8–10 MB scans. 8 MB was not enough. */
@@ -47,7 +58,14 @@ export interface UrlVerdict {
   reason?: string
 }
 
-function ssrfReason(url: URL): string | null {
+/**
+ * Coarse lexical SSRF guard: http(s) only, no loopback / private / link-local.
+ *
+ * Lexical on purpose — a `dns.lookup` per fetch buys a real guarantee at a
+ * latency cost, and the actual trust boundary is that every caller runs from
+ * the curator's own machine. This blocks the obvious cases and is cheap.
+ */
+export function ssrfReason(url: URL): string | null {
   if (url.protocol !== 'http:' && url.protocol !== 'https:') {
     return `unsupported scheme ${url.protocol}`
   }
@@ -116,13 +134,16 @@ export async function classifyUrl(url: string): Promise<UrlVerdict> {
 }
 
 /** Fetch with a body-size cap, streaming so a huge PDF cannot OOM the laptop. */
-async function fetchCapped(url: string): Promise<{ contentType: string; body: Uint8Array }> {
+export async function fetchCapped(
+  url: string,
+  ua: string = UA,
+): Promise<{ contentType: string; body: Uint8Array }> {
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
   let res: Response
   try {
     res = await fetch(url, {
-      headers: { 'User-Agent': UA, accept: '*/*' },
+      headers: { 'User-Agent': ua, accept: '*/*' },
       redirect: 'follow',
       signal: controller.signal,
     })

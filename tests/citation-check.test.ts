@@ -7,7 +7,7 @@ import {
   collectSourceRefs,
   type ReportLike,
 } from '../src/scraper/citation-check'
-import { stateForStatus } from '../scripts/lib/doc-fetch'
+import { ssrfReason, stateForStatus } from '../scripts/lib/doc-fetch'
 import { quoteAppearsIn } from '../src/scraper/quote-match'
 
 // A REAL published row, trimmed — not an invented shape. Six tests in this repo
@@ -163,5 +163,43 @@ describe('doc-fetch: status → state', () => {
     [503, 'unverifiable'],
   ])('%i → %s', (status, expected) => {
     expect(stateForStatus(status as number)).toBe(expected)
+  })
+})
+
+describe('doc-fetch: SSRF guard', () => {
+  // Untested in BOTH copies until the fork was removed. It is a security
+  // control reached by a URL a curator pastes into the dashboard, so the
+  // interesting assertion is that it refuses — a guard nobody has watched
+  // refuse is the same as no guard.
+  it.each([
+    ['file:///etc/passwd', 'scheme'],
+    ['ftp://example.org/x', 'scheme'],
+    ['http://localhost:8080/x', 'localhost'],
+    ['http://sub.localhost/x', 'localhost'],
+    ['http://0.0.0.0/x', 'localhost'],
+    ['http://127.0.0.1/x', '127'],
+    ['http://10.1.2.3/x', '10'],
+    ['http://192.168.1.1/x', '192.168'],
+    ['http://172.16.0.1/x', '172'],
+    ['http://172.31.255.1/x', '172'],
+    // The cloud metadata endpoint — the reason this guard exists at all.
+    ['http://169.254.169.254/latest/meta-data/', '169.254'],
+    ['http://[::1]/x', 'IPv6 loopback'],
+    ['http://[fe80::1]/x', 'IPv6 link-local'],
+  ])('refuses %s', (url, fragment) => {
+    const reason = ssrfReason(new URL(url))
+    expect(reason).not.toBeNull()
+    expect(reason).toContain(fragment)
+  })
+
+  it.each([
+    'https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/x/filesGroup/acta.pdf',
+    'http://regmeet.com/x',
+    // 172.32 is public: the private block stops at 172.31, and an off-by-one
+    // here would silently refuse real sources.
+    'http://172.32.0.1/x',
+    'http://11.0.0.1/x',
+  ])('allows %s', (url) => {
+    expect(ssrfReason(new URL(url))).toBeNull()
   })
 })
