@@ -661,6 +661,26 @@ export const PlaceGeocodeResponseSchema = z.object({
 })
 export type PlaceGeocodeResponse = z.infer<typeof PlaceGeocodeResponseSchema>
 
+/**
+ * Flags from the contract-drift pass: published editorial prose that a code
+ * change has since made untrue. Empty is the expected answer.
+ *
+ * `sentence` is checked against the page and `sha` against the supplied commit
+ * list by `groundFlags`, so a paraphrase or an invented hash is dropped rather
+ * than argued with.
+ */
+export const ContractDriftSchema = z.object({
+  flags: z
+    .array(
+      z.object({
+        sentence: z.string().min(25),
+        sha: z.string().min(7).max(40),
+        why: z.string().min(10).max(400),
+      }),
+    )
+    .max(8),
+})
+
 /** Findings from the reader-review pass. Empty is the expected answer. */
 export const ReaderReviewSchema = z.object({
   findings: z

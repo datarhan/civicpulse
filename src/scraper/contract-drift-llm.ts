@@ -65,24 +65,83 @@ function normalise(s: string): string {
  * one we supplied. Both are cheap and both catch the failure mode that matters:
  * a model paraphrasing the page and then objecting to its own paraphrase.
  */
-export function groundFlags(flags: DriftFlag[], input: ContractDriftInput): DriftFlag[] {
+export interface DroppedFlag {
+  flag: DriftFlag
+  /** Which gate rejected it — a bare count says something is hidden without
+   * letting anyone judge whether it mattered. */
+  reason: 'no-sentence' | 'too-short' | 'not-on-page' | 'unknown-sha'
+}
+
+export function partitionFlags(
+  flags: DriftFlag[],
+  input: ContractDriftInput,
+): { kept: DriftFlag[]; dropped: DroppedFlag[] } {
   const hay = normalise(input.prose)
   const shas = new Set(input.changes.map((c) => c.sha.slice(0, 7)))
-  return flags.filter((f) => {
-    if (!f?.sentence || !f?.sha) return false
+  const kept: DriftFlag[] = []
+  const dropped: DroppedFlag[] = []
+  for (const f of flags ?? []) {
+    if (!f?.sentence || !f?.sha) {
+      dropped.push({ flag: f, reason: 'no-sentence' })
+      continue
+    }
     const needle = normalise(f.sentence)
-    if (needle.length < 25) return false // too short to be a real claim
-    if (!hay.includes(needle)) return false // paraphrased, not quoted
-    return shas.has(f.sha.slice(0, 7))
-  })
+    if (needle.length < 25) dropped.push({ flag: f, reason: 'too-short' })
+    else if (!hay.includes(needle)) dropped.push({ flag: f, reason: 'not-on-page' })
+    else if (!shas.has(f.sha.slice(0, 7))) dropped.push({ flag: f, reason: 'unknown-sha' })
+    else kept.push(f)
+  }
+  return { kept, dropped }
+}
+
+export function groundFlags(flags: DriftFlag[], input: ContractDriftInput): DriftFlag[] {
+  return partitionFlags(flags, input).kept
 }
 
 export async function findContractDrift(
   input: ContractDriftInput,
   call: DriftCaller,
 ): Promise<DriftFlag[]> {
-  if (!input.prose.trim() || input.changes.length === 0) return []
+  return (await findContractDriftDetailed(input, call)).flags
+}
+
+export interface DriftResult {
+  flags: DriftFlag[]
+  dropped: DroppedFlag[]
+  /**
+   * Did the model actually answer?
+   *
+   * `false` means nobody looked — no backend, a timeout, an empty page, no
+   * commits. It is NOT the same as "found nothing", and collapsing the two is
+   * how a check reports health it never measured. Caught live: on the first
+   * real run both backends were exhausted and this printed «el contrato sigue
+   * al día» for both pages.
+   */
+  consulted: boolean
+  /** Why not, when `consulted` is false. */
+  reason?: 'empty-page' | 'no-changes' | 'no-answer'
+}
+
+/**
+ * Kept, dropped, and whether anyone was asked.
+ *
+ * The filter exists to discard a model that paraphrases the page and then
+ * objects to its own paraphrase, so a discarded flag is the RIGHT outcome —
+ * but printing only the survivors makes "the contract is current" and "I threw
+ * three away" the same line.
+ */
+export async function findContractDriftDetailed(
+  input: ContractDriftInput,
+  call: DriftCaller,
+): Promise<DriftResult> {
+  if (!input.prose.trim()) {
+    return { flags: [], dropped: [], consulted: false, reason: 'empty-page' }
+  }
+  if (input.changes.length === 0) {
+    return { flags: [], dropped: [], consulted: false, reason: 'no-changes' }
+  }
   const raw = await call(input)
-  if (!raw) return []
-  return groundFlags(raw, input)
+  if (!raw) return { flags: [], dropped: [], consulted: false, reason: 'no-answer' }
+  const { kept, dropped } = partitionFlags(raw, input)
+  return { flags: kept, dropped, consulted: true }
 }

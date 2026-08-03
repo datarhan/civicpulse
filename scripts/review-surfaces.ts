@@ -26,6 +26,7 @@ import {
   type SurfaceInput,
   type ReaderFinding,
 } from '../src/scraper/reader-review'
+import { authorshipBreakdown } from '../src/scraper/finding-authorship'
 import { callLLM } from '../src/llm/client'
 import {
   buildReaderReviewSystemPrompt,
@@ -93,9 +94,11 @@ function factsFor(route: string): Record<string, unknown> {
     return {
       ...common,
       'hallazgos: total publicados': (findings?.items ?? []).length,
-      'hallazgos: escritos por una máquina (auto-curation-v1 / civicpulse-auto)': (
-        findings?.items ?? []
-      ).filter((f: { curatorName?: string }) => (f.curatorName ?? '').startsWith('auto')).length,
+      // Via the shared predicate, NOT a local `startsWith('auto')`: that copy
+      // matched `auto-curation-v1` and missed `civicpulse-auto`, so the model
+      // judging whether /hallazgos over-claims human curation was handed 44
+      // where the truth was 49 — an under-count, in the flattering direction.
+      'hallazgos: escritos por una máquina': authorshipBreakdown(findings?.items ?? []).machine,
     }
   return common
 }

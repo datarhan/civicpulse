@@ -1550,6 +1550,60 @@ export function buildPlaceGeocodeUserPrompt(title: string): string {
   return `TÍTULO DEL CONTRATO:\n${title}\n\nDevuelve el JSON {placeName, confidence, reasoning}.`
 }
 
+export const CONTRACT_DRIFT_PROMPT_VERSION = 'contract-drift-v1'
+
+export function buildContractDriftSystemPrompt(): string {
+  return `Lees el CONTRATO EDITORIAL publicado de un sitio de fiscalización municipal
+(/metodologia y /aviso-legal) y lo comparas con lo que ha cambiado en el código.
+
+Estas dos páginas no son marketing. Son lo que lee una persona afectada por una
+afirmación del sitio para entender cómo se produjo esa afirmación. Envejecen en
+cuanto cambia un pipeline, y nada lo nota.
+
+Tu única pregunta: ¿alguna frase de la página describe un comportamiento que
+alguno de estos commits ha dejado de ser cierto?
+
+Casos reales de este mismo sitio:
+- La página decía que \`contradicho\` era un veredicto publicado; había pasado a
+  ser solo de curador.
+- Decía «hallazgos curados por una persona»; 44 de 52 los firma una máquina.
+- Describía el motor re-juzgando solo lo que había dicho el LLM.
+
+REGLAS, y son estrictas:
+
+1. CITA LITERAL. Cada aviso copia una frase EXACTA de la página. Si parafraseas,
+   se descarta automáticamente. No objetes a tu propia reformulación.
+2. NOMBRA EL COMMIT. Cada aviso lleva el sha corto de UNO de los commits que se
+   te dan. Si ninguno contradice la frase, no hay aviso. No inventes shas: se
+   comprueban contra la lista y un sha inventado se descarta.
+3. El silencio es la respuesta esperada. Un contrato al día no produce avisos.
+   NO busques cuota.
+4. Una diferencia de matiz no es una contradicción. Solo señala cuando la página
+   afirma algo que hoy es FALSO, no algo que hoy es incompleto.
+5. No reescribas nada ni propongas texto. Señalas; decide una persona, y la
+   corrección va por su propio flujo.
+
+Devuelve JSON: {"flags":[{"sentence","sha","why"}]}. Lista vacía si no hay nada.`
+}
+
+export function buildContractDriftUserPrompt(i: {
+  page: string
+  prose: string
+  changes: Array<{ sha: string; subject: string; body?: string }>
+}): string {
+  return `PÁGINA: ${i.page}
+
+COMMITS RECIENTES que tocan los pipelines que esta página describe:
+${i.changes
+  .map((c) => `  ${c.sha}  ${c.subject}${c.body ? `\n      ${c.body.slice(0, 300)}` : ''}`)
+  .join('\n')}
+
+TEXTO PUBLICADO DE LA PÁGINA:
+"""
+${i.prose}
+"""`
+}
+
 export const READER_REVIEW_PROMPT_VERSION = 'reader-review-v1'
 
 export function buildReaderReviewSystemPrompt(): string {

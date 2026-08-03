@@ -1,6 +1,31 @@
 import { Card, SectionHead } from '../components/Primitives'
+import { usePlenoFindings } from '../hooks/usePlenoFindings'
+import { authorshipBreakdown } from '../scraper/finding-authorship'
+
+/**
+ * How many published findings a machine wrote, counted from the snapshot at
+ * render time rather than typed into the prose.
+ *
+ * This page is the published editorial contract, so a stale number here is a
+ * false statement about how the site works — not a typo. CLAUDE.md forbids
+ * writing row counts into docs because every one that was ever written here was
+ * wrong when audited; on a PUBLISHED page the same number is worse, because it
+ * goes false on its own the next time the auto-curator runs and nobody edits a
+ * page to notice. Reading it live is the only version that cannot rot.
+ *
+ * Falls back to prose without figures while the snapshot loads or if it 404s:
+ * an unqualified «la mayoría» is true regardless, and a number rendered from a
+ * half-loaded snapshot would be worse than no number.
+ */
+function useAuthorshipDisclosure() {
+  const { data } = usePlenoFindings()
+  const items = data?.items ?? []
+  if (items.length === 0) return null
+  return authorshipBreakdown(items)
+}
 
 export default function Metodologia() {
+  const authorship = useAuthorshipDisclosure()
   return (
     <div
       className="cp-page"
@@ -64,8 +89,12 @@ export default function Metodologia() {
           </li>
           <li>
             <strong>Derecho de rectificación.</strong> Cualquier persona, colectivo o partido puede
-            proponer correcciones mediante issue pública en GitHub. Plazo de revisión: 24 h. Plazo
-            de resolución: 72 h.
+            proponer correcciones mediante issue pública en GitHub. Plazo de revisión: 24 h hábiles
+            (L-V). Plazo de resolución: 72 h. Son los mismos plazos que fija{' '}
+            <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
+              /aviso-legal
+            </a>
+            , y se cuentan igual en ambos documentos.
           </li>
         </ol>
       </Card>
@@ -364,10 +393,12 @@ export default function Metodologia() {
               es medirlo, no afirmar que funciona. Lo que se compara con el umbral no es la cifra
               medida sino el <strong>límite inferior de su intervalo de confianza al 95 %</strong>,
               porque una muestra pequeña no permite saber de qué lado del umbral está. La auditoría
-              de agosto de 2026 revisó los 52 hallazgos publicados y encontró 4 defectos —un 92,3 %
-              de acierto, por encima del 0,90—, pero con 52 casos ese 92,3 % es compatible con un 81
-              % real, así que la publicación automática sigue cerrada hasta que haya más casos
-              revisados.
+              de agosto de 2026 revisó los 52 hallazgos publicados <em>entonces</em> y encontró 4
+              defectos —un 92,3 % de acierto, por encima del 0,90—, pero con 52 casos ese 92,3 % es
+              compatible con un 81 % real, así que la publicación automática sigue cerrada hasta que
+              haya más casos revisados. Esa cifra está congelada a propósito: es lo que se midió en
+              esa fecha, no una afirmación sobre hoy, y sólo cambia cuando se registra una medición
+              nueva.
             </li>
             <li>
               <strong>Siempre con firma humana.</strong> Nombrar a una persona concreta, cualquier
@@ -490,10 +521,14 @@ export default function Metodologia() {
             2026— los que había afirmado el comparador determinista. Esa primera pasada sobre la
             base retractó <strong>229 de 264 veredictos juzgados</strong>, coherente con el conjunto
             de control: el determinista acierta un 33&nbsp;% en <em>verificado</em> y un 22&nbsp;%
-            en <em>parcial</em>. Quedan 413 declaraciones que el modelo no llegó a ver, porque sin
-            cifra en euros la recuperación léxica no encuentra candidatos; conservan su veredicto
-            determinista hasta que la vía semántica las alcance. En una muestra de control
-            etiquetada a mano, su veredicto <code>sin-datos</code> acierta ~92&nbsp;%, así que{' '}
+            en <em>parcial</em>. Una parte de las declaraciones el modelo no llega a verlas, porque
+            sin cifra en euros la recuperación léxica no encuentra candidatos; conservan su
+            veredicto determinista hasta que la vía semántica las alcance. (Aquí no damos el número
+            exacto a propósito: cambia con cada pleno transcrito, y una cifra escrita en esta página
+            se quedaría falsa sin que nadie lo notara. El recuento vigente está en el bloque{' '}
+            <code>stats</code> de <code>pleno-claims-verified.json</code>, que se publica junto al
+            resto de los datos.) En una muestra de control etiquetada a mano, su veredicto{' '}
+            <code>sin-datos</code> acierta ~92&nbsp;%, así que{' '}
             <strong>
               sólo aplicamos sus retractaciones a <code>sin-datos</code>
             </strong>{' '}
@@ -503,13 +538,25 @@ export default function Metodologia() {
           </li>
           <li>
             <strong>Hallazgos editoriales.</strong> La mayoría los redacta un proceso automático
-            bajo reglas fijas, no una persona: de los 52 publicados, 44 los firma{' '}
-            <code>auto-curation-v1</code> y 5 <code>civicpulse-auto</code>. El pie de cada ficha
-            dice quién la editó, y un nombre así significa que el título y el resumen los escribió
-            una máquina. Cuando un veredicto merece contexto se escribe un hallazgo en{' '}
-            <code>pleno-findings.json</code> con título, resumen (≥40 caracteres), citas verbatim y
-            referencias explícitas de corroboración o contradicción. Los hallazgos se publican con
-            derecho de réplica literal para el grupo afectado.
+            bajo reglas fijas, no una persona
+            {authorship ? (
+              <>
+                : de los {authorship.total} publicados,{' '}
+                <strong>{authorship.machine} los firma una máquina</strong> (
+                {authorship.byMachineName.map(([name, n], i) => (
+                  <span key={name}>
+                    {i > 0 && ', '}
+                    {n} <code>{name}</code>
+                  </span>
+                ))}
+                )
+              </>
+            ) : null}
+            . El pie de cada ficha dice quién la editó, y un nombre así significa que el título y el
+            resumen los escribió una máquina. Cuando un veredicto merece contexto se escribe un
+            hallazgo en <code>pleno-findings.json</code> con título, resumen (≥40 caracteres), citas
+            verbatim y referencias explícitas de corroboración o contradicción. Los hallazgos se
+            publican con derecho de réplica literal para el grupo afectado.
           </li>
         </ol>
         <p style={{ margin: '12px 0 0', color: 'var(--ink70)' }}>

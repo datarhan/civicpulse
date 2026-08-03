@@ -1,5 +1,11 @@
 import { describe, it, expect, vi } from 'vitest'
-import { findContractDrift, groundFlags, type ContractDriftInput } from '../src/scraper/contract-drift-llm'
+import {
+  findContractDrift,
+  findContractDriftDetailed,
+  groundFlags,
+  partitionFlags,
+  type ContractDriftInput,
+} from '../src/scraper/contract-drift-llm'
 
 const input: ContractDriftInput = {
   page: '/metodologia',
@@ -39,7 +45,13 @@ describe('contract-drift — grounding', () => {
 
   it('drops a flag citing a commit we never supplied', () => {
     const kept = groundFlags(
-      [{ sentence: 'El motor nunca marca contradicho de forma automática', sha: '9999999', why: 'x' }],
+      [
+        {
+          sentence: 'El motor nunca marca contradicho de forma automática',
+          sha: '9999999',
+          why: 'x',
+        },
+      ],
       input,
     )
     expect(kept).toEqual([])
@@ -57,5 +69,69 @@ describe('contract-drift — grounding', () => {
 
   it('returns an empty list when the model finds nothing — the expected answer', async () => {
     expect(await findContractDrift(input, async () => [])).toEqual([])
+  })
+})
+
+describe('contract-drift — a discarded flag must not look like a current contract', () => {
+  // Same silence reader-review had until 2026-08-03: printing only survivors
+  // makes "the contract is up to date" and "I threw three away" the same line.
+  it('says WHICH gate rejected each flag, not just how many', () => {
+    const { kept, dropped } = partitionFlags(
+      [
+        {
+          sentence: 'Los hallazgos editoriales están curados por una persona',
+          sha: 'abc1234',
+          why: 'ok',
+        },
+        { sentence: 'La página afirma que humanos curan los hallazgos', sha: 'abc1234', why: 'x' },
+        {
+          sentence: 'El motor nunca marca contradicho de forma automática',
+          sha: '9999999',
+          why: 'x',
+        },
+        { sentence: 'muy corta', sha: 'abc1234', why: 'x' },
+      ],
+      input,
+    )
+    expect(kept).toHaveLength(1)
+    expect(dropped.map((d) => d.reason)).toEqual(['not-on-page', 'unknown-sha', 'too-short'])
+  })
+
+  it('an incomplete flag is dropped with a reason rather than throwing', () => {
+    const { dropped } = partitionFlags(
+      [{ sha: 'abc1234', why: 'x' } as unknown as { sentence: string; sha: string; why: string }],
+      input,
+    )
+    expect(dropped[0].reason).toBe('no-sentence')
+  })
+
+  it('every flag comes back as either kept or dropped — none are lost', () => {
+    const flags = [
+      {
+        sentence: 'Los hallazgos editoriales están curados por una persona',
+        sha: 'abc1234',
+        why: 'a',
+      },
+      { sentence: 'no está en la página en absoluto, ni de lejos', sha: 'def5678', why: 'b' },
+      { sentence: 'corta', sha: 'abc1234', why: 'c' },
+    ]
+    const { kept, dropped } = partitionFlags(flags, input)
+    expect(kept.length + dropped.length).toBe(flags.length)
+  })
+
+  it('findContractDriftDetailed hands back the dropped flags, not just a count', async () => {
+    const r = await findContractDriftDetailed(input, async () => [
+      { sentence: 'La página afirma que humanos curan los hallazgos', sha: 'abc1234', why: 'x' },
+    ])
+    expect(r.flags).toEqual([])
+    expect(r.dropped).toHaveLength(1) // NOT the same as "el contrato sigue al día"
+    expect(r.dropped[0].reason).toBe('not-on-page')
+  })
+
+  it('the strictness stays — a sliding window here would let a paraphrase through', () => {
+    // Deliberately the same policy as reader-review, and for the same reason.
+    // See the do-not-loosen block in tests/reader-review.test.ts.
+    const almost = 'Los hallazgos editoriales están curados por una persona incompetente'
+    expect(partitionFlags([{ sentence: almost, sha: 'abc1234', why: 'x' }], input).kept).toEqual([])
   })
 })

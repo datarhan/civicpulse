@@ -110,17 +110,35 @@ export async function reviewSurface(
   return (await reviewSurfaceDetailed(input, call)).findings
 }
 
+export interface SurfaceResult {
+  findings: ReaderFinding[]
+  dropped: ReaderFinding[]
+  /**
+   * Did the model actually answer?
+   *
+   * `false` means nobody looked — an empty render, or every backend exhausted.
+   * That is NOT "the page is clean", and `review:surfaces` printed exactly that
+   * for both pages the first time a sibling check hit an exhausted backend.
+   * A check that reports health it never measured is the failure this repo has
+   * had four recorded instances of.
+   */
+  consulted: boolean
+  reason?: 'empty-page' | 'no-answer'
+}
+
 export async function reviewSurfaceDetailed(
   input: SurfaceInput,
   call: ReaderCaller,
-): Promise<{ findings: ReaderFinding[]; dropped: ReaderFinding[] }> {
-  if (!input.renderedText.trim()) return { findings: [], dropped: [] }
+): Promise<SurfaceResult> {
+  if (!input.renderedText.trim()) {
+    return { findings: [], dropped: [], consulted: false, reason: 'empty-page' }
+  }
   const raw = await call(input)
-  if (!raw) return { findings: [], dropped: [] }
+  if (!raw) return { findings: [], dropped: [], consulted: false, reason: 'no-answer' }
   const { kept, dropped } = partitionFindings(raw, input)
   // The dropped ones travel with the result, not just their count. On the first
   // run that reported them, four of six routes had printed "nada que señalar"
   // while holding five discarded findings between them; a bare number tells you
   // something is hidden without letting you judge whether it mattered.
-  return { findings: kept, dropped }
+  return { findings: kept, dropped, consulted: true }
 }

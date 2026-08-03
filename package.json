@@ -158,6 +158,7 @@
     "push-curation-queue": "npx tsx scripts/push-curation-queue.ts",
     "check:json": "npx tsx scripts/check-json.ts",
     "check:citations": "npx tsx scripts/check-citations.ts",
+    "check:contract-drift": "npx tsx scripts/check-contract-drift.ts",
     "check:guards": "npx tsx scripts/check-guards.ts",
     "repoint-finding-claims": "npx tsx scripts/repoint-finding-claims.ts",
     "check:transcription-health": "npx tsx scripts/check-transcription-health.ts",
