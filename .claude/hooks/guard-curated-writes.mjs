@@ -10,6 +10,7 @@
  */
 import { readFileSync } from 'node:fs'
 import { decide, decideBash } from './curated-paths.mjs'
+import { decideIrreplaceableBash } from './irreplaceable-paths.mjs'
 
 let payload = {}
 try {
@@ -25,9 +26,11 @@ try {
 const tool = payload.tool_name
 const input = payload.tool_input || {}
 
+// Curated-write first: it names the CLI that owns the file, which is the more
+// actionable answer when both could fire.
 const verdict =
   tool === 'Bash'
-    ? decideBash(input.command)
+    ? (decideBash(input.command) ?? decideIrreplaceableBash(input.command))
     : ['Write', 'Edit', 'NotebookEdit', 'MultiEdit'].includes(tool)
       ? decide(input.file_path ?? input.notebook_path)
       : null

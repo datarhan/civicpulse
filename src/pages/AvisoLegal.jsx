@@ -125,21 +125,41 @@ export default function AvisoLegal() {
           manteniendo el resto del registro (nombre, concejalía). Canal: el mismo de rectificación.
         </p>
         <p>
-          <strong>Huellas de voz: no conservamos ninguna.</strong> El repositorio incluye una
-          herramienta de curación que puede identificar quién habla en un pleno comparando la voz
-          contra una huella vocal previamente registrada. Está{' '}
-          <strong>desactivada por defecto</strong> y no la ejecuta ningún proceso automático: la
-          transcripción diarizada publica hablantes anónimos («SPEAKER_01»), y ninguna superficie
-          pública atribuye una intervención a una persona concreta sin que un curador lo promueva.
+          <strong>Huellas de voz.</strong> Para saber qué concejal interviene en cada punto de un
+          pleno, el proyecto puede registrar una <em>huella vocal</em> de un cargo electo y
+          compararla con las voces de la sesión. Una huella vocal es un{' '}
+          <strong>dato biométrico</strong>, así que las condiciones se declaran aquí y no en un
+          manual técnico:
         </p>
+        <ul>
+          <li>
+            <strong>El audio de origen es siempre público y del propio cargo</strong>: grabaciones
+            de plenos o vídeos que el cargo ha publicado en sus cuentas institucionales o públicas.
+            Nunca audio privado, ni grabaciones hechas por nosotros.
+          </li>
+          <li>
+            <strong>La huella no sale de este equipo.</strong> No se publica, no se sube a ningún
+            servicio y no se envía a la API de transcripción, que recibe la sesión sin ninguna voz
+            de referencia.
+          </li>
+          <li>
+            <strong>Es una herramienta de curación, desactivada por defecto</strong>, que se ejecuta
+            a mano. La transcripción publica hablantes anónimos («SPEAKER_01»), y ninguna superficie
+            pública atribuye una intervención a una persona concreta hasta que un curador lo
+            promueve — la atribución automática es de grupo municipal, nunca individual.
+          </li>
+          <li>
+            <strong>Se borra a petición</strong>, por el mismo canal de rectificación, sin que ello
+            afecte al resto del registro. No hay plazo de conservación pactado: si el cargo lo pide,
+            se elimina.
+          </li>
+        </ul>
         <p>
-          Durante 2026 se registraron tres huellas de voz de concejales a partir de vídeos que ellos
-          mismos habían publicado en sus cuentas. Una huella vocal es un dato biométrico, y esta
-          página no la mencionaba: describía un conjunto de datos que ya no era el que se trataba.
-          Al detectarlo, <strong>las tres se borraron</strong> — el 3 de agosto de 2026, sin que se
-          hubiera publicado nunca ninguna atribución derivada de ellas. Hoy no hay ninguna
-          registrada. Si alguna vez volviera a registrarse alguna, se dirá aquí antes, y el borrado
-          seguirá estando a un correo de distancia por el canal de rectificación.
+          Esta declaración faltaba: hasta el 3 de agosto de 2026 esta página enumeraba los datos
+          tratados sobre cargos electos sin mencionar ni las huellas de voz ni las cuentas públicas,
+          y describía un origen —publicaciones municipales y prensa— que se había quedado corto. Lo
+          detectó una comprobación automática que compara esta página con lo que ha cambiado en el
+          código. No se había publicado nunca ninguna atribución derivada de una huella vocal.
         </p>
       </Card>
 
