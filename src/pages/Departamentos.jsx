@@ -22,10 +22,17 @@ function DepartmentCard({ bucket, frozen }) {
   const vencidos = bucket.plenoVotes.plazosVencidos + bucket.promesas.plazosVencidos
 
   return (
-    <>
+    // ONE grid item per concejalía. This used to be a fragment, which put the
+    // card and its "Ver responsable" link in two separate cells of the parent
+    // grid: the link floated into the next column, and because a concejalía
+    // with no responsable emits no link, the offset drifted down the list until
+    // every link sat against a card belonging to somebody else. On a page whose
+    // job is saying which councillor answers for which área, that is a
+    // misattribution, not a spacing bug.
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <Link
         to={`/departamentos/${bucket.slug}`}
-        style={{ textDecoration: 'none', color: 'inherit' }}
+        style={{ textDecoration: 'none', color: 'inherit', display: 'block', flex: 1 }}
       >
         <Card hover style={{ height: '100%' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, marginBottom: 12 }}>
@@ -142,24 +149,25 @@ function DepartmentCard({ bucket, frozen }) {
               />
             )}
           </div>
-          {/* Real, non-nested route to the person accountable for this área.
-            Sits OUTSIDE the card-wide <Link> so it is a genuine anchor rather
-            than nested anchors, and closes the graph: /cargos already pointed
-            here, but a reader landing on a concejalía could not reach the
-            councillor who answers for it. */}
         </Card>
       </Link>
-      {official && (
-        <div style={{ marginTop: 6, textAlign: 'right' }}>
+      {/* Real, non-nested route to the person accountable for this área. Sits
+        OUTSIDE the card-wide <Link> so it is a genuine anchor rather than
+        nested anchors, and closes the graph: /cargos already pointed here, but
+        a reader landing on a concejalía could not reach the councillor who
+        answers for it. The row is reserved whether or not there is a
+        responsable, so every card in a row still ends on the same line. */}
+      <div style={{ marginTop: 4, minHeight: 16, textAlign: 'right' }}>
+        {official && (
           <Link
             to={`/cargos/${official.slug}`}
             style={{ fontSize: 11.5, color: 'var(--civic)', textDecoration: 'none' }}
           >
             {t('departamentos.card.verResponsable')} →
           </Link>
-        </div>
-      )}
-    </>
+        )}
+      </div>
+    </div>
   )
 }
 
@@ -248,7 +256,12 @@ export default function Departamentos() {
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-          gap: 12,
+          // Row gap wider than the column gap on purpose: "Ver responsable"
+          // hangs below its card, so the space under it must read as bigger
+          // than the space above it. Proximity is what tells a reader which
+          // concejalía the councillor belongs to.
+          columnGap: 12,
+          rowGap: 20,
         }}
       >
         {list.map((bucket) => (
