@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { placeAmountsAt } from '../../src/lib/tender-points'
+import { placeAmountsAt, obrasWithoutMoneyPin } from '../../src/lib/tender-points'
 
 const A = (over) => ({
   id: over.id,
@@ -96,5 +96,49 @@ describe('lib/tender-points — placeAmountsAt', () => {
   it('returns an empty map for empty/nullish input', () => {
     expect(placeAmountsAt([]).size).toBe(0)
     expect(placeAmountsAt(null).size).toBe(0)
+  })
+})
+
+describe('obrasWithoutMoneyPin — no double pin for the same work', () => {
+  // 6 of the 11 located obras sit on the SAME point as a contract from the
+  // registry ("Asfaltado Traver", "Aparcamiento Pacadar", "Pla Edificant CEIP
+  // ERES ALTES"…). Painting both layers together would show two markers, with
+  // two different amounts, for one piece of work — exactly the kind of
+  // double-count this project's honesty gates exist to prevent.
+  const places = [
+    { slug: 'traver', point: [39.5468, -0.582] },
+    { slug: 'mayor', point: [39.54, -0.57] },
+  ]
+
+  it('drops an obra that already has a money pin at its point', () => {
+    const obras = [{ id: 'o1', nombre: 'Asfaltado Traver', lat: 39.5468, lng: -0.582 }]
+    expect(obrasWithoutMoneyPin(obras, places)).toEqual([])
+  })
+
+  it('keeps an obra the contract registry never placed', () => {
+    const obras = [{ id: 'o2', nombre: 'Obra sin contrato situado', lat: 39.52, lng: -0.6 }]
+    expect(obrasWithoutMoneyPin(obras, places).map((o) => o.id)).toEqual(['o2'])
+  })
+
+  it('tolerates sub-metre coordinate drift between the two sources', () => {
+    // The gazetteer point and the resolver point come from the same OSM node
+    // but round-trip through different pipelines.
+    const obras = [{ id: 'o3', lat: 39.54680004, lng: -0.58200002 }]
+    expect(obrasWithoutMoneyPin(obras, places)).toEqual([])
+  })
+
+  it('drops obras with no usable coordinates rather than guessing', () => {
+    const obras = [
+      { id: 'a' },
+      { id: 'b', lat: 39.52, lng: null },
+      { id: 'c', lat: 'x', lng: 'y' },
+    ]
+    expect(obrasWithoutMoneyPin(obras, places)).toEqual([])
+  })
+
+  it('is total on empty/missing inputs', () => {
+    expect(obrasWithoutMoneyPin(null, places)).toEqual([])
+    expect(obrasWithoutMoneyPin([{ id: 'o', lat: 1, lng: 2 }], null).map((o) => o.id)).toEqual(['o'])
+    expect(obrasWithoutMoneyPin(undefined, undefined)).toEqual([])
   })
 })

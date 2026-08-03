@@ -7,9 +7,19 @@ import { POI_CATEGORIES } from '../../../lib/civic-poi'
  * Public-service points of interest (schools, health, parks, sport, culture,
  * civic buildings) from OSM, one small category-coloured CircleMarker each.
  * Hover shows the name + category. Only NAMED civic facilities are in the
- * snapshot, so there's no private-pool noise. Rendered only while toggled on.
+ * snapshot, so there's no private-pool noise.
+ *
+ * Two modes. On its own (`dimmed: false`) it is a directory of public
+ * facilities. Underneath the money layer (`dimmed: true`) it is CONTEXT: the
+ * same points at half strength and a smaller radius, there to answer "what is
+ * at this address" for the spend pins on top, without competing with them.
+ * That is the whole reason the layer survived being demoted from the landing
+ * default — a euro figure floating over farmland says nothing; the same figure
+ * over the Casa de Cultura says something.
+ *
+ * @param {{ dimmed?: boolean }} props
  */
-export function CivicPoiLayer() {
+export function CivicPoiLayer({ dimmed = false }) {
   const { data } = useCivicPoi()
   const pois = data?.pois || []
   return (
@@ -20,16 +30,26 @@ export function CivicPoiLayer() {
           <CircleMarker
             key={p.id}
             center={[p.lat, p.lng]}
-            radius={5}
-            pathOptions={{ color: '#0B0F19', weight: 1, fillColor: cat.color, fillOpacity: 0.92 }}
+            radius={dimmed ? 3.5 : 5}
+            pathOptions={{
+              // Context takes no clicks and shows no tooltip — it exists to be
+              // read past, not interacted with.
+              interactive: !dimmed,
+              color: dimmed ? 'rgba(11,15,25,.45)' : '#0B0F19',
+              weight: 1,
+              fillColor: cat.color,
+              fillOpacity: dimmed ? 0.4 : 0.92,
+            }}
           >
-            <Tooltip direction="top">
-              <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 12 }}>
-                <strong>{p.name}</strong>
-                <br />
-                <span style={{ color: cat.color, fontWeight: 600 }}>{cat.label}</span>
-              </div>
-            </Tooltip>
+            {!dimmed && (
+              <Tooltip direction="top">
+                <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 12 }}>
+                  <strong>{p.name}</strong>
+                  <br />
+                  <span style={{ color: cat.color, fontWeight: 600 }}>{cat.label}</span>
+                </div>
+              </Tooltip>
+            )}
           </CircleMarker>
         )
       })}

@@ -7,13 +7,19 @@ import { useT } from '../../../i18n'
  * appears once its layer actually renders, so the control never lies about what
  * a toggle does. `glyph` is a decorative Unicode marker (aria-hidden);
  * `labelKey` is an i18n chrome string.
+ *
+ * "Obras 2019–2024" was retired as a chip in Aug 2026. It duplicated the money
+ * layer (which already carries a 2018→2025 time slider AND a construction-only
+ * filter), its Transparencia source is frozen, and 6 of its 11 geolocated
+ * fichas shared a point with a located contract. The fichas PLACSP never placed
+ * now ride with the money layer. Every toggle removed is worth more on a phone,
+ * where this control spans 366px of a 390px screen.
  */
 export const MAP_LAYERS = [
   { key: 'money', labelKey: 'map.layer.money', glyph: '€' },
   { key: 'poi', labelKey: 'map.layer.poi', glyph: '◉' },
   { key: 'quejas', labelKey: 'map.layer.quejas', glyph: '⚑' },
   { key: 'flood', labelKey: 'map.layer.flood', glyph: '≈' },
-  { key: 'obras', labelKey: 'map.layer.obras', glyph: '⚒' },
 ]
 
 const cardStyle = {

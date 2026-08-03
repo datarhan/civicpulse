@@ -150,7 +150,7 @@ const CATALOGUE = {
 
     // Map (landing interactive layers)
     'map.layers.title': 'Capas del mapa',
-    'map.layer.money': 'Gasto municipal',
+    'map.layer.money': 'Gasto situado',
     'map.layer.obras': 'Obras 2019–2024',
     'map.layer.poi': 'Servicios',
     'map.layer.quejas': 'Quejas',
@@ -167,6 +167,9 @@ const CATALOGUE = {
     'map.money.play': 'Reproducir línea de tiempo del gasto',
     'map.money.pause': 'Pausar línea de tiempo del gasto',
     'map.money.accum': 'obra acumulada',
+    'map.money.of': 'de',
+    'map.money.coverage':
+      'Sólo el gasto cuyo título nombra un lugar. El resto son servicios de ámbito municipal —recogida de residuos, limpieza viaria, ayuda a domicilio— que no tienen un punto en el mapa.',
     'map.poi.title': 'Servicios públicos',
     'map.poi.source': 'OpenStreetMap · datos abiertos',
     'map.flood.title': 'Riesgo de inundación',
@@ -539,7 +542,7 @@ const CATALOGUE = {
 
     // Map (landing interactive layers)
     'map.layers.title': 'Capes del mapa',
-    'map.layer.money': 'Despesa municipal',
+    'map.layer.money': 'Despesa situada',
     'map.layer.obras': 'Obres 2019–2024',
     'map.layer.poi': 'Serveis',
     'map.layer.quejas': 'Queixes',
@@ -556,6 +559,9 @@ const CATALOGUE = {
     'map.money.play': 'Reproduir la línia de temps de la despesa',
     'map.money.pause': 'Pausar la línia de temps de la despesa',
     'map.money.accum': 'obra acumulada',
+    'map.money.of': 'de',
+    'map.money.coverage':
+      "Només la despesa el títol de la qual nomena un lloc. La resta són serveis d'àmbit municipal —recollida de residus, neteja viària, ajuda a domicili— que no tenen un punt al mapa.",
     'map.poi.title': 'Serveis públics',
     'map.poi.source': 'OpenStreetMap · dades obertes',
     'map.flood.title': 'Risc d’inundació',

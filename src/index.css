@@ -568,7 +568,21 @@ body.cp-kiosk .cp-live-container {
 .cp-osm-neigh {
   background: transparent !important;
   border: none !important;
+}
+/* The barrio marker is a 140×20 divIcon holding a dot and a name label, so its
+   hit box sweeps a wide strip of map — and 21 of them together were swallowing
+   clicks aimed at the spend pins underneath. The plain `.cp-osm-neigh` rule
+   below used to say `pointer-events: none`, but Leaflet's own
+   `.leaflet-interactive { pointer-events: auto }` is a same-specificity rule
+   that loads later and won. Qualifying with the Leaflet class settles it.
+   The 8px dot keeps the interaction; the name is decoration and now behaves
+   like it. */
+.leaflet-marker-icon.cp-osm-neigh {
   pointer-events: none;
+}
+.cp-osm-neigh .cp-osm-neigh-dot {
+  pointer-events: auto;
+  cursor: pointer;
 }
 .cp-osm-neigh-dot {
   position: absolute;

@@ -53,43 +53,70 @@ test.describe('Landing (/)', () => {
     expect(Math.min(...levels.map((l) => l.level))).toBe(1)
   })
 
-  test('interactive map layers: control, Servicios default, money toggle, neighborhood popup', async ({
+  test('interactive map layers: money default, coverage disclosure, neighborhood popup', async ({
     page,
   }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' })
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 8000 })
 
-    // Layer control is present. Servicios (civic-POI) is the default flagship,
-    // so its legend shows on load and the money timeline does NOT (money is
-    // opt-in via its chip).
+    // Located spend is the default layer, not the Servicios directory. A
+    // municipal-accountability map opening on a static OSM list of schools put
+    // the least mission-relevant layer in the most valuable position.
     await expect(page.getByRole('group', { name: /Capas del mapa/i })).toBeVisible()
-    await expect(page.getByText(/Servicios públicos/i).first()).toBeVisible()
-    await expect(page.getByRole('button', { name: /línea de tiempo del gasto/i })).toBeHidden()
-
-    // A neighborhood marker opens the aggregated civic card.
-    await page.locator('.cp-osm-neigh').first().click({ force: true })
-    await expect(
-      page
-        .locator('.leaflet-popup-content')
-        .getByText(/Población/i)
-        .first(),
-    ).toBeVisible({ timeout: 6000 })
-
-    // Toggling "Gasto municipal" mounts the money timeline (its play button)
-    // and paints the precise "obras situadas" pins.
-    await page.getByRole('button', { name: /^Gasto municipal$/i }).click()
     await expect(page.getByRole('button', { name: /línea de tiempo del gasto/i })).toBeVisible()
-    const pin = page.locator('path.cp-money-pin').first()
-    await expect(pin).toBeVisible({ timeout: 6000 })
+    await expect(page.locator('path.cp-money-pin').first()).toBeVisible({ timeout: 8000 })
 
-    // Clicking a money pin opens the contract card with the winner + € detail.
-    await pin.click({ force: true })
-    await expect(
-      page
-        .locator('.leaflet-popup-content')
-        .getByText(/Adjudicatario/i)
-        .first(),
-    ).toBeVisible({ timeout: 6000 })
+    // The layer must state what share of contracting it can actually show.
+    // It paints ~3% of the money — every pin honest, the label implying
+    // completeness — so the coverage line is not decoration, it is the
+    // difference between a map and a claim.
+    await expect(page.getByText(/M€ de [\d.,]+\s?M€ · [\d,]+%/).first()).toBeVisible({ timeout: 8000 })
+    await expect(page.getByText(/servicios de ámbito municipal/i).first()).toBeVisible()
+
+    // Named for what it is. "Gasto municipal" promised all of it.
+    const control = page.getByRole('group', { name: /Capas del mapa/i })
+    await expect(control.getByRole('button', { name: /^Gasto situado$/i })).toBeVisible()
+    await expect(control.getByRole('button', { name: /^Gasto municipal$/i })).toHaveCount(0)
+
+    // Obras lost its chip: its source is frozen and 6 of its 11 geolocated
+    // fichas shared a point with a located contract. It rides with the money
+    // layer now.
+    await expect(control.getByRole('button', { name: /Obras/i })).toHaveCount(0)
+
+    // Civic POIs still render underneath, as context for the spend pins.
+    await expect(page.getByText(/Servicios públicos/i).first()).toBeVisible()
+
+    // Clicking a money pin opens the contract card with the winner + € detail,
+    // and a barrio dot opens the aggregated civic card.
+    //
+    // Both go through `toPass`, which retries the CLICK, not just the
+    // assertion. A single click can land before Leaflet has bound the popup
+    // handler for a freshly-mounted layer — this test failed exactly once in a
+    // full parallel run and passed alone every time, which is the signature of
+    // a race rather than a broken expectation. Retrying the interaction is the
+    // honest fix; a longer timeout on the assertion would only have widened the
+    // window on a click that never registered.
+    await expect(async () => {
+      await page.locator('path.cp-money-pin').first().click({ force: true })
+      await expect(
+        page
+          .locator('.leaflet-popup-content')
+          .getByText(/Adjudicatario/i)
+          .first(),
+      ).toBeVisible({ timeout: 2500 })
+    }).toPass({ timeout: 15000 })
+
+    // Close the open popup first: an open Leaflet popup swallows the next click.
+    await page.keyboard.press('Escape')
+    await expect(async () => {
+      await page.locator('.cp-osm-neigh-dot').first().click({ force: true })
+      await expect(
+        page
+          .locator('.leaflet-popup-content')
+          .getByText(/Población/i)
+          .first(),
+      ).toBeVisible({ timeout: 2500 })
+    }).toPass({ timeout: 15000 })
 
     // The retired "Tren L9" schematic-train chip is gone; toggling its
     // replacement "Quejas" mounts the citizen-complaint heat layer and shows

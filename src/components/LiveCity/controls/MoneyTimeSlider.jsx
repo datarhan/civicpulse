@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { fmtDateShort } from '../../../lib/formatters'
 import { useT } from '../../../i18n'
+import { MoneyCoverage } from './MoneyCoverage'
 
 const cardStyle = {
   background: 'rgba(255,255,255,.94)',
@@ -10,7 +11,9 @@ const cardStyle = {
   padding: '8px 10px',
   fontFamily: "'Outfit', system-ui, sans-serif",
   boxShadow: '0 4px 16px rgba(11,15,25,.16)',
-  width: 232,
+  // 232 forced the header row (title + the two filter chips) onto three lines.
+  // Invisible while the layer was opt-in; the layer now opens by default.
+  width: 268,
 }
 
 /**
@@ -22,6 +25,7 @@ const cardStyle = {
  * toggle-off. Mirrors Presupuesto/TimeSlider, re-themed for the map.
  */
 export function MoneyTimeSlider({
+  snapshot,
   min,
   max,
   value,
@@ -166,6 +170,7 @@ export function MoneyTimeSlider({
         </span>
         <span style={{ fontSize: 9.5, color: 'rgba(11,15,25,.62)' }}>{t('map.money.accum')}</span>
       </div>
+      <MoneyCoverage snapshot={snapshot} />
     </div>
   )
 }
