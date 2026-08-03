@@ -435,9 +435,9 @@ export default function Metodologia() {
         </p>
         <ol style={{ margin: '10px 0 0', paddingLeft: 20 }}>
           <li>
-            <strong>Extracción automática</strong> (LLM, requiere aprobación humana). Sobre la
-            transcripción del vídeo del pleno, el modelo extrae <em>verbatim</em> las afirmaciones y
-            las clasifica en cinco tipos: <code>promesa</code> · <code>afirmacion_numerica</code> ·{' '}
+            <strong>Extracción automática</strong> (LLM, requiere aprobación humana). Sobre el texto
+            de la sesión, el modelo extrae <em>verbatim</em> las afirmaciones y las clasifica en
+            cinco tipos: <code>promesa</code> · <code>afirmacion_numerica</code> ·{' '}
             <code>cita_obra</code> · <code>cita_convenio</code> · <code>acusacion_publica</code>.
             Cada registro se guarda en <code>pleno-claims-suggestions.json</code> con{' '}
             <strong>atribución primaria a nivel de grupo municipal</strong>. La identificación
@@ -448,6 +448,17 @@ export default function Metodologia() {
             <code>/declaraciones</code>, <code>/hallazgos</code>) nombra al individuo hasta que un
             curador lo promueve manualmente. La atribución por grupo es la única que aparece sin
             revisión humana.
+            <p style={{ margin: '8px 0 0' }}>
+              <strong>Ese texto no siempre es la transcripción del vídeo.</strong> Cuando no hay
+              audio de la sesión, lo que se procesa es el <strong>acta municipal</strong>, que es un
+              resumen ya redactado por secretaría. La diferencia importa a quien lee: una cita
+              «literal» sacada de un acta cita al acta, no a la intervención. Cada sesión en{' '}
+              <a href="/plenos" style={{ color: 'var(--civic)' }}>
+                /plenos
+              </a>{' '}
+              indica cuál de las dos está mostrando, y el clasificador nunca adivina — si un
+              documento no lleva marcas de tiempo que avancen, no se da por transcripción de audio.
+            </p>
           </li>
           <li>
             <strong>Contraste determinista</strong> (sin LLM) contra la base de datos municipal:
