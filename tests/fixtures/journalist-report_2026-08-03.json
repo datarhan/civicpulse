@@ -1,0 +1,67 @@
+{
+  "id": "r-rfolgado-bio-2026-07-31",
+  "sections": [
+    {
+      "kind": "quote-card",
+      "payload": {
+        "verbatim": "Por el Grupo político municipal con la denominación de Grupo Municipal Compromís per Riba-roja: 1. Don Rafael Folgado Navarro (INICIATIVA-COMPROMÍS). Siendo su Portavoz: Don Rafael Folgado Navarro.",
+        "attributedTo": "Acta del pleno de organización de 07-07-2023 (constitución del Grupo Municipal Compromís)",
+        "date": "2023-07-07",
+        "sourceId": "src-065"
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Identidad y cargo público",
+        "bodyMarkdown": "Rafael Folgado Navarro (Riba-roja de Túria, 13 de febrero de 1964) es **concejal y portavoz del Grupo Municipal Compromís** — el único concejal de esa formación, que constituye por sí solo el grupo. Hombre del municipio y de la bicicleta —gerente del negocio familiar Ciclos Folgado y durante años profesor de un módulo de conducción de grupos en bicicleta—, es también el opositor con más recorrido institucional: ya fue concejal en el mandato 2015-2019, entonces con responsabilidades de gobierno.",
+        "sourceIds": [
+          "src-060",
+          "src-069",
+          "src-065",
+          "src-062"
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-060",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/Compromis-Rafael-Folgado-Navarro.pdf",
+      "title": "CV publicado en el portal municipal — presentación (nacimiento en Riba-roja) (autodeclarado)",
+      "retrievedAt": "2026-07-31T19:25:38.445Z",
+      "excerpt": "PRESENTACIÓN 13 FEBRERO 1964 RIBA-ROJA DE TÚRIA rfolgado@ribarroja.es",
+      "trust": "medium"
+    },
+    {
+      "id": "src-062",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/Compromis-Rafael-Folgado-Navarro.pdf",
+      "title": "CV publicado en el portal municipal — experiencia: concejal 2015-2019 (Fomento Económico), profesor de ciclismo y Ciclos Folgado (autodeclarado)",
+      "retrievedAt": "2026-07-31T19:25:38.445Z",
+      "excerpt": "Concejal Ajuntament Riba-roja de Túria legislatura 2016-2019. Concejalía de Fomento Económico, Empleo, Actividades y Agricultura Profesor especialista del Módulo de Conducción de Grupos en bicicleta de Formación Profesional de Actividades Físicas en el Medio natural de Grado Mediano años 2000-2012 en el I.F.P. Superior N.º 2 de Cheste Gerente y Oficial de 1ª en reparación y mantenimiento de bicicletas en empresa familiar denominada CICLOS FOLGADO",
+      "trust": "medium"
+    },
+    {
+      "id": "src-065",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
+      "title": "Acta organización 07-07-2023 — Grupo Municipal Compromís (Folgado, único miembro y portavoz)",
+      "retrievedAt": "2026-07-31T19:25:38.445Z",
+      "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Compromís per Riba-roja,\nes:\n1. Don Rafael Folgado Navarro (INICIATIVA-COMPROMÍS)\nSiendo su Portavoz: Don Rafael Folgado Navarro",
+      "trust": "high",
+      "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "relocatedAt": "2026-08-03T13:48:12.556Z"
+    },
+    {
+      "id": "src-069",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/Acta-pleno-constitucion-13-06-2015.pdf",
+      "title": "Acta sesión constitutiva 13-06-2015 — concejales electos proclamados (Folgado, mandato 2015-2019)",
+      "retrievedAt": "2026-07-31T19:25:38.445Z",
+      "excerpt": "D. JOSÉ ÁNGEL HERNANDEZ CARRIZOSA Dª BEATRIZ QUEVEDO SÁNCHEZ D. RAFAEL FOLGADO NAVARRO D. MIQUEL CASTILLO FAUS",
+      "trust": "high"
+    }
+  ]
+}

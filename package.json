@@ -130,6 +130,7 @@
     "journalist:run": "npx tsx scripts/journalist-run.ts",
     "promote-report": "npx tsx scripts/promote-report.ts",
     "correct-journalist-report": "npx tsx scripts/correct-journalist-report.ts",
+    "repoint-source-url": "npx tsx scripts/repoint-source-url.ts",
     "journalist-reply": "npx tsx scripts/apply-journalist-response.ts",
     "journalist:export-soul": "npx tsx scripts/journalist-export-soul.ts",
     "searxng:up": "docker compose -f scripts/searxng/docker-compose.yml up -d",
@@ -156,6 +157,8 @@
     "apply-curation": "npx tsx scripts/apply-curation.ts",
     "push-curation-queue": "npx tsx scripts/push-curation-queue.ts",
     "check:json": "npx tsx scripts/check-json.ts",
+    "check:citations": "npx tsx scripts/check-citations.ts",
+    "check:guards": "npx tsx scripts/check-guards.ts",
     "repoint-finding-claims": "npx tsx scripts/repoint-finding-claims.ts",
     "check:transcription-health": "npx tsx scripts/check-transcription-health.ts",
     "monitor:health": "npx tsx scripts/monitor-health.ts"

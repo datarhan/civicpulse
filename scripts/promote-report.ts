@@ -34,6 +34,8 @@ import {
   type JournalistReportsSnapshot,
 } from '../src/scraper/journalist'
 import { pruneUncitedSources } from '../src/scraper/journalist-agent/builders'
+import { blocks, checkCitations, type ReportLike } from '../src/scraper/citation-check'
+import { classifyUrl, type UrlVerdict } from './lib/doc-fetch'
 
 const ASSIGNMENTS = resolve('public/data/journalist-assignments.json')
 const DRAFTS = resolve('editorial/journalist-drafts/journalist-reports-suggestions.json')
@@ -53,7 +55,7 @@ function usage(): never {
   process.stderr.write(
     'Usage:\n' +
       '  npm run promote-report -- <assignmentId> [--curator "<name>"] [--curator-notes "<text>"] \\\n' +
-      '      [--ack-legal-review] [--edit]\n',
+      '      [--ack-legal-review] [--edit] [--skip-citation-check]\n',
   )
   process.exit(2)
 }
@@ -64,6 +66,7 @@ interface Opts {
   curatorNotes?: string
   ackLegalReview: boolean
   edit: boolean
+  skipCitationCheck: boolean
 }
 
 function parseArgs(argv: string[]): Opts {
@@ -71,6 +74,7 @@ function parseArgs(argv: string[]): Opts {
     assignmentId: '',
     curator: 'civicpulse-curator',
     ackLegalReview: false,
+    skipCitationCheck: false,
     edit: false,
   }
   for (let i = 0; i < argv.length; i++) {
@@ -78,6 +82,7 @@ function parseArgs(argv: string[]): Opts {
     if (a === '--curator') o.curator = argv[++i]
     else if (a === '--curator-notes') o.curatorNotes = argv[++i]
     else if (a === '--ack-legal-review') o.ackLegalReview = true
+    else if (a === '--skip-citation-check') o.skipCitationCheck = true
     else if (a === '--edit') o.edit = true
     else if (a === '-h' || a === '--help') usage()
     else if (a.startsWith('--')) {
@@ -117,7 +122,60 @@ function writeChunk(report: JournalistReport): string {
   return writeJsonChunk(CHUNK_DIR, `${report.assignmentId}.json`, report)
 }
 
-function main(): void {
+/**
+ * Every citation in the draft must resolve and hold before this becomes a page
+ * about a named councillor.
+ *
+ * This step did not exist until 2026-08-03. Promotion stripped
+ * `requiresHumanApproval`, stamped `promotedBy`, and wrote — without
+ * re-verifying a single citation. The only thing between LLM-written prose and
+ * publication was a person reading it, and 27 of the last 109 `fix` commits
+ * were on exactly these surfaces.
+ *
+ * Only `error` blocks. A URL we cannot reach FROM HERE (regmeet.com refuses
+ * this IP, two ministries 403 a non-browser UA) is reported and waved through:
+ * if being offline could block a promotion, the first thing anyone would do is
+ * add a flag to skip the check.
+ */
+async function citationGate(report: JournalistReport, skip: boolean): Promise<void> {
+  if (skip) {
+    process.stdout.write(
+      '[promote-report] --skip-citation-check: citations NOT verified for this promotion\n',
+    )
+    return
+  }
+  const urls = [...new Set(report.sources.map((s) => s.url).filter(Boolean))] as string[]
+  const urlStates = new Map<string, UrlVerdict>()
+  for (let i = 0; i < urls.length; i += 4) {
+    const verdicts = await Promise.all(urls.slice(i, i + 4).map(classifyUrl))
+    for (const v of verdicts) urlStates.set(v.url, v)
+    if (i + 4 < urls.length) await new Promise((r) => setTimeout(r, 300))
+  }
+  const result = checkCitations({ reports: [report as unknown as ReportLike], urlStates })
+  const c = result.coverage
+  process.stdout.write(
+    `[promote-report] citations: ${c.sources} source(s), ${c.sourcesWithExcerpt} with an excerpt, ` +
+      `${c.urlsChecked}/${c.urls} URLs probed, ${c.quoteCards} quote card(s)\n`,
+  )
+  for (const f of result.findings.filter((x) => x.severity === 'info')) {
+    process.stdout.write(`  · unreachable from here: ${f.detail}\n`)
+  }
+  for (const f of result.findings.filter((x) => x.severity === 'warn')) {
+    process.stdout.write(`  ! ${f.sourceId}: ${f.detail}\n`)
+  }
+  if (blocks(result)) {
+    process.stderr.write('\n[promote-report] REFUSE: this draft has citations that do not hold.\n')
+    for (const f of result.findings.filter((x) => x.severity === 'error')) {
+      process.stderr.write(`  ${f.sourceId ?? '—'}  [${f.code}]\n      ${f.detail}\n`)
+    }
+    process.stderr.write(
+      '\n  Fix the draft, or repoint a moved document with `npm run repoint-source-url`.\n',
+    )
+    process.exit(1)
+  }
+}
+
+async function main(): Promise<void> {
   const opts = parseArgs(process.argv.slice(2))
   const drafts = loadDrafts()
   const matching = drafts.filter((d) => d.assignmentId === opts.assignmentId)
@@ -163,6 +221,10 @@ function main(): void {
     response: null,
   }
 
+  // Run BEFORE --edit returns: the point of --edit is to see what would be
+  // published, and "would this be refused?" is part of that.
+  await citationGate(report, opts.skipCitationCheck)
+
   if (opts.edit) {
     const tmp = `/tmp/journalist-report-${report.id}.json`
     writeJsonFile(tmp, report)
@@ -206,4 +268,8 @@ function main(): void {
   )
 }
 
-main()
+main().catch((e) => {
+  process.stderr.write(`[promote-report] ${(e as Error).stack ?? e}
+`)
+  process.exit(1)
+})

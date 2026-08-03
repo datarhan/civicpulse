@@ -174,6 +174,26 @@ function validateSourceCitation(s: unknown, idx: number, ci: number): SourceCita
   if (o.localPath !== undefined) {
     must(typeof o.localPath === 'string', `items[${idx}].sources[${ci}].localPath must be string`)
   }
+  // A relocation is only meaningful as a pair: where it was, and when we moved
+  // the pointer. One without the other is a half-recorded edit to a published
+  // citation, which is worse than not recording it.
+  if (o.previousUrl !== undefined) {
+    must(
+      typeof o.previousUrl === 'string' && URL_RE.test(o.previousUrl),
+      `items[${idx}].sources[${ci}].previousUrl must be http(s) URL`,
+    )
+    must(
+      typeof o.relocatedAt === 'string' && ISO_FULL.test(o.relocatedAt),
+      `items[${idx}].sources[${ci}].previousUrl requires relocatedAt (ISO datetime)`,
+    )
+    must(o.previousUrl !== o.url, `items[${idx}].sources[${ci}].previousUrl must differ from url`)
+  }
+  if (o.relocatedAt !== undefined) {
+    must(
+      typeof o.previousUrl === 'string',
+      `items[${idx}].sources[${ci}].relocatedAt requires previousUrl`,
+    )
+  }
   // Web/official-doc citations should carry a URL — they're external claims.
   // Local-snapshot citations must carry a localPath.
   if (o.kind === 'web' || o.kind === 'official-doc' || o.kind === 'boe') {
@@ -197,6 +217,8 @@ function validateSourceCitation(s: unknown, idx: number, ci: number): SourceCita
     ...(o.excerpt ? { excerpt: o.excerpt as string } : {}),
     ...(o.localPath ? { localPath: o.localPath as string } : {}),
     trust: o.trust as CitationTrust,
+    ...(o.previousUrl ? { previousUrl: o.previousUrl as string } : {}),
+    ...(o.relocatedAt ? { relocatedAt: o.relocatedAt as string } : {}),
   }
 }
 

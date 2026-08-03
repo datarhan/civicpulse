@@ -190,6 +190,18 @@ export interface SourceCitation {
   excerpt?: string
   localPath?: string
   trust: CitationTrust
+  /**
+   * Where this document used to live, when the publisher moved it. Set only by
+   * `repoint-source-url`, which refuses to move a citation unless `excerpt`
+   * still appears verbatim in the document at the new URL — so the pair is a
+   * record of a relocation, never of a substitution.
+   *
+   * Not a `correction`: the claim, the excerpt and `retrievedAt` are unchanged.
+   * Filing an upstream file move under corrections[] would tell readers we got
+   * something wrong when we did not.
+   */
+  previousUrl?: string
+  relocatedAt?: string
 }
 
 export interface TimelineEvent {

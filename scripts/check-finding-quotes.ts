@@ -26,74 +26,11 @@ const FINDINGS = resolve('public/data/pleno-findings.json')
 const TRANSCRIPTS = resolve('public/data/pleno-transcripts')
 const SUPERSEDED = resolve('public/data/pleno-transcripts/superseded')
 
-/**
- * Normalise for comparison: transcripts carry `[12.3 → 15.6] (SPEAKER_00)`
- * prefixes and line breaks that a quote never does, and engines differ on
- * punctuation and casing. Collapsing both sides to bare lowercase words
- * compares what was SAID, not how it was formatted.
- */
-export function normaliseForQuoteMatch(s: string): string {
-  return s
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .toLowerCase()
-    .replace(/\[\d+\.?\d*\s*→\s*\d+\.?\d*\]/g, ' ')
-    .replace(/\((?:SPEAKER_\d+|UNKNOWN)[^)]*\)/gi, ' ')
-    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-}
-
-/**
- * Is `quote` present in `transcript`?
- *
- * Slides a word window across the whole quote rather than testing only its
- * start. The leading-window-only version reported four published quotes as
- * untraceable that were verbatim in the transcript, because a curator had
- * trimmed the opening differently:
- *
- *   quote      "los 50-60% que sí que se retiran de contenedores al día"
- *   transcript "pasar esos 50-60% que sí que se retiran de contenedores al día"
- *
- * Every word after the first two matches. Anchoring on the first eight made
- * that indistinguishable from an invented sentence — and this script exists
- * precisely to tell those apart, so a false positive here is not a cosmetic
- * problem: it spends a curator's attention on a sound citation and, worse,
- * trains everyone to discount the ones that are real.
- */
-export function quoteAppearsIn(quote: string, transcript: string, words = 8): boolean {
-  const q = normaliseForQuoteMatch(quote).split(' ').filter(Boolean)
-  if (q.length === 0) return false
-  const hay = normaliseForQuoteMatch(transcript)
-  const n = Math.min(words, q.length)
-  for (let i = 0; i + n <= q.length; i += 1) {
-    if (hay.includes(q.slice(i, i + n).join(' '))) return true
-  }
-  return false
-}
-
-/**
- * Longest contiguous run of the quote's words present in the transcript, as a
- * share of the quote. Reported for the ones that fail, because "0.15 of it is
- * there" and "0.85 of it is there" are different editorial problems: the first
- * is an invented sentence, the second is a quote welded together from two
- * separate passages.
- */
-export function quoteCoverage(quote: string, transcript: string): number {
-  const q = normaliseForQuoteMatch(quote).split(' ').filter(Boolean)
-  if (q.length === 0) return 0
-  const hay = normaliseForQuoteMatch(transcript)
-  let best = 0
-  for (let i = 0; i < q.length; i += 1) {
-    for (let n = q.length - i; n > best; n -= 1) {
-      if (hay.includes(q.slice(i, i + n).join(' '))) {
-        best = n
-        break
-      }
-    }
-  }
-  return best / q.length
-}
+// Hoisted to src/scraper/ when check:citations and repoint-source-url became
+// the second and third callers. Re-exported so existing importers (and the
+// test that pins the sliding-window behaviour) keep working unchanged.
+export { normaliseForQuoteMatch, quoteAppearsIn, quoteCoverage } from '../src/scraper/quote-match'
+import { quoteAppearsIn, quoteCoverage } from '../src/scraper/quote-match'
 
 function main() {
   const asJson = process.argv.includes('--json')

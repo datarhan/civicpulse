@@ -310,6 +310,30 @@ if ! npm run check:runs; then
   soft_failures+=("check:runs")
 fi
 
+# Structural half of the citation check: does every claim cite a source that
+# exists, is every quote card verbatim in the excerpt it points at, can every
+# citation still be re-verified. Free, no network.
+#
+# --offline is not a cost saving, it is the only honest setting HERE. The URL
+# probe needs a residential IP: ribarroja.es fronts a WAF and regmeet.com
+# blackholes GitHub's ranges, so a runner would mark most of the corpus
+# `unverifiable`, find nothing, and report a clean bill of health — a check
+# that cannot fail. The probing half runs in scrape-ci-blocked.sh, which is
+# where everything needing a residential IP already lives.
+if ! npm run check:citations -- --offline; then
+  echo "[scrape-all] SOFT-FAILED: check:citations — a published claim's citation does not hold"
+  soft_failures+=("check:citations")
+fi
+
+# Is every guard above actually invoked by something? `check:automation` was
+# hooked to nothing at all for weeks — a correct check nobody runs. This is the
+# wiring half only (free, reads files); the fault-injection half mutates
+# snapshots and stays manual: `npm run check:guards -- --inject`.
+if ! npm run check:guards; then
+  echo "[scrape-all] SOFT-FAILED: check:guards — a guard is not invoked anywhere"
+  soft_failures+=("check:guards")
+fi
+
 # Can the embedding corpora still be searched? --offline keeps this free and
 # CI-safe (structural + sidecar checks only, no API calls); the self-retrieval
 # probe runs curator-side where a key is present. A corpus queried at the wrong

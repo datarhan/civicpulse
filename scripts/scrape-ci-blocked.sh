@@ -33,6 +33,19 @@ if [ ${#failed[@]} -gt 0 ]; then
   echo "[ci-blocked] FAILED: ${failed[*]}"
 fi
 
+# Can a reader still FOLLOW the citations under published claims about named
+# councillors? This is the half of check:citations that needs the network, and
+# it belongs here for the same reason the adapters above do: the WAF and the
+# blackholed ranges mean a GitHub runner would find every URL "unreachable",
+# report nothing, and look healthy.
+#
+# It found the first one the day it was written: the council restructured its
+# transparency portal and two acta PDFs backing 68 citations across 12 of 21
+# biographies started returning 404, with nothing in this repo changing.
+# Report-only — link rot is upstream's doing and must not fail a data refresh.
+echo "[ci-blocked] $(date '+%F %T') running check:citations (network probe)"
+npm run check:citations || echo "[ci-blocked] check:citations reported findings — see above"
+
 # Commit only these snapshots — never `git add -A`, so an in-progress working
 # tree is not swept into an unattended commit.
 git add public/data/paro.json public/data/plenos-agendas.json public/data/consell-cv.json \
