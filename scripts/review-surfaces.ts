@@ -21,7 +21,11 @@ import { readFileSync, existsSync, writeFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { resolve } from 'node:path'
 import { chromium } from '@playwright/test'
-import { reviewSurface, type SurfaceInput, type ReaderFinding } from '../src/scraper/reader-review'
+import {
+  reviewSurfaceDetailed,
+  type SurfaceInput,
+  type ReaderFinding,
+} from '../src/scraper/reader-review'
 import { callLLM } from '../src/llm/client'
 import {
   buildReaderReviewSystemPrompt,
@@ -107,8 +111,9 @@ async function main() {
   const cache = force ? {} : loadCache()
   const browser = await chromium.launch()
   const page = await browser.newPage()
-  const all: Array<{ route: string; findings: ReaderFinding[] }> = []
+  const all: Array<{ route: string; findings: ReaderFinding[]; dropped: ReaderFinding[] }> = []
   let skipped = 0
+  let totalDropped = 0
 
   for (const route of routes) {
     await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })
@@ -125,7 +130,7 @@ async function main() {
     cache[route] = h
 
     const input: SurfaceInput = { route, renderedText, facts: factsFor(route) }
-    const findings = await reviewSurface(input, async (i) => {
+    const { findings, dropped } = await reviewSurfaceDetailed(input, async (i) => {
       const r = await callLLM({
         systemPrompt: buildReaderReviewSystemPrompt(),
         userPrompt: buildReaderReviewUserPrompt(i),
@@ -135,10 +140,19 @@ async function main() {
       })
       return r?.findings ?? []
     })
-    all.push({ route, findings })
+    all.push({ route, findings, dropped })
+    totalDropped += dropped.length
     if (!asJson) {
       console.log(`\n── ${route} ${'─'.repeat(Math.max(0, 50 - route.length))}`)
-      if (findings.length === 0) console.log('   nada que señalar.')
+      if (findings.length === 0 && dropped.length === 0) console.log('   nada que señalar.')
+      // "nothing to flag" and "I threw three away" must not print the same line.
+      // Not necessarily a defect: the filter exists to discard a model that
+      // paraphrases the page and then objects to its own paraphrase. But it
+      // must be visible, and inspectable, rather than read as a clean page.
+      for (const f of dropped)
+        console.log(
+          `   ✗ descartado (no cita la página literalmente): «${String(f?.quote ?? '—').slice(0, 90)}»`,
+        )
       for (const f of findings) {
         console.log(`   ${f.severity === 'misleading' ? '⚠︎' : '·'} «${f.quote.slice(0, 110)}»`)
         console.log(`      un lector concluiría: ${f.inference}`)
@@ -154,7 +168,8 @@ async function main() {
   if (!asJson)
     console.log(
       `\n[review] ${routes.length} ruta(s) · ${skipped} sin cambios · ` +
-        `${total} señalamiento(s) para revisión humana`,
+        `${total} señalamiento(s) para revisión humana` +
+        (totalDropped > 0 ? ` · ${totalDropped} descartado(s) por no citar literalmente` : ''),
     )
   if (total > 0) process.exitCode = 1
 }

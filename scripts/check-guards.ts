@@ -35,12 +35,14 @@
  * coverage at all.
  */
 import { execFileSync, spawnSync } from 'node:child_process'
-import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync, readdirSync, existsSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 interface GuardRow {
   name: string
   wiredIn: string[]
+  /** Test files that import a module this guard's script depends on. */
+  testedBy: string[]
   /** null = not exercised this run */
   firesOnFault: boolean | null
   injection?: string
@@ -68,6 +70,53 @@ function callSites(): Map<string, string> {
     }
   }
   return files
+}
+
+/**
+ * Which test files exercise a guard, resolved through the MODULE GRAPH rather
+ * than by name.
+ *
+ * A grep for the guard's name answers a different question and answers it
+ * wrongly: it said 12 of 13 guards had no test when 9 of 12 do — off by 4×. The
+ * reason is that `scripts/check-relations.ts` is a thin CLI whose logic lives in
+ * `src/scraper/relations-check.ts`, and the test imports the MODULE, never the
+ * script or the npm-script name. So: read the script's imports, then find the
+ * tests that import the same paths.
+ */
+function testsForGuard(scriptFile: string, tests: Map<string, string>): string[] {
+  const src = readFileSync(resolve(ROOT, 'scripts', scriptFile), 'utf8')
+  const modules = [...src.matchAll(/from ['"]\.\.\/(src\/[^'"]+)['"]/g)].map((m) =>
+    m[1].replace(/\.(ts|js)$/, ''),
+  )
+  const own = `scripts/${scriptFile.replace(/\.ts$/, '')}`
+  const hits: string[] = []
+  for (const [name, body] of tests) {
+    // The guard keeps its logic inline and the test imports the script itself.
+    if (body.includes(own)) {
+      hits.push(`${name} (direct)`)
+      continue
+    }
+    // Otherwise, name the module the test actually covers. Reporting a bare ✓
+    // would overstate: `quote-match` is shared by three guards, so ANY test of
+    // it would make all three look covered. Naming the module lets a reader see
+    // whether it is the guard's own logic or a shared dependency — which is the
+    // whole point, since a grep answering this question was wrong by 4×.
+    const via = modules.find((m) => body.includes(m))
+    if (via) hits.push(`${name} (via ${via.split('/').pop()})`)
+  }
+  return hits
+}
+
+function testFiles(): Map<string, string> {
+  const dir = resolve(ROOT, 'tests')
+  const out = new Map<string, string>()
+  if (!existsSync(dir)) return out
+  for (const f of readdirSync(dir)) {
+    if (!/\.test\.(ts|js|jsx)$/.test(f)) continue
+    const p = resolve(dir, f)
+    if (statSync(p).isFile()) out.set(f, readFileSync(p, 'utf8'))
+  }
+  return out
 }
 
 /**
@@ -161,6 +210,7 @@ function main(): void {
   const guards = Object.keys(pkg.scripts).filter((k) => k.startsWith('check:'))
   const sites = callSites()
 
+  const tests = testFiles()
   const rows: GuardRow[] = guards.map((g) => {
     const wiredIn: string[] = []
     for (const [path, body] of sites) {
@@ -169,7 +219,13 @@ function main(): void {
         wiredIn.push(path.replace(`${ROOT}/`, ''))
       }
     }
-    return { name: g, wiredIn, firesOnFault: null }
+    // The npm script's target file, so we can read ITS imports.
+    const target = /tsx (scripts\/[^\s]+)/.exec(pkg.scripts[g] as string)?.[1]
+    const testedBy =
+      target && existsSync(resolve(ROOT, target))
+        ? testsForGuard(target.replace('scripts/', ''), tests)
+        : []
+    return { name: g, wiredIn, testedBy, firesOnFault: null }
   })
 
   if (inject) {
@@ -212,11 +268,17 @@ function main(): void {
   }
 
   const orphans = rows.filter((r) => r.wiredIn.length === 0)
+  const untested = rows.filter((r) => r.testedBy.length === 0)
   const w = Math.max(...rows.map((r) => r.name.length))
   out('[check:guards] wiring — where is each guard actually invoked?\n')
   for (const r of rows) {
     const where = r.wiredIn.length ? r.wiredIn.join(', ') : '⚠ NOT INVOKED ANYWHERE'
     out(`  ${r.name.padEnd(w)}  ${where}`)
+  }
+
+  out('\n[check:guards] tests — does anything exercise its logic?\n')
+  for (const r of rows) {
+    out(`  ${r.name.padEnd(w)}  ${r.testedBy.length ? r.testedBy.join(', ') : '⚠ NO TEST'}`)
   }
 
   if (inject) {
@@ -244,10 +306,13 @@ function main(): void {
   const silent = rows.filter((r) => r.firesOnFault === false)
   out()
   out(
-    `${rows.length} guard(s) · ${orphans.length} not invoked anywhere · ` +
+    `${rows.length} guard(s) · ${orphans.length} not invoked · ${untested.length} without a test · ` +
       `${inject ? `${rows.filter((r) => r.firesOnFault === true).length} proven to fire` : 'teeth not tested'}`,
   )
 
+  if (untested.length) {
+    out(`WITHOUT A TEST (reported, does not fail): ${untested.map((r) => r.name).join(', ')}`)
+  }
   if (orphans.length || silent.length) {
     if (orphans.length) out(`\nNOT INVOKED: ${orphans.map((r) => r.name).join(', ')}`)
     if (silent.length) out(`SILENT ON ITS OWN FAULT: ${silent.map((r) => r.name).join(', ')}`)

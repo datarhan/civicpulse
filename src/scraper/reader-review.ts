@@ -65,24 +65,62 @@ function normalise(s: string): string {
  * the sentence is not on the page, there is nothing to fix — and requiring the
  * quote makes a false positive visible in one glance instead of arguable.
  */
-export function groundFindings(findings: ReaderFinding[], input: SurfaceInput): ReaderFinding[] {
+export function partitionFindings(
+  findings: ReaderFinding[],
+  input: SurfaceInput,
+): { kept: ReaderFinding[]; dropped: ReaderFinding[] } {
   const hay = normalise(input.renderedText)
-  return (findings ?? []).filter((f) => {
-    if (!f?.quote || !f?.inference || !f?.contradictedBy) return false
+  const kept: ReaderFinding[] = []
+  const dropped: ReaderFinding[] = []
+  for (const f of findings ?? []) {
+    if (!f?.quote || !f?.inference || !f?.contradictedBy) {
+      dropped.push(f)
+      continue
+    }
     const q = normalise(f.quote)
     // Long enough to identify a real claim; short enough that a model quoting a
     // whole section does not sneak past by including one true sentence.
-    if (q.length < 12 || q.length > 400) return false
-    return hay.includes(q)
-  })
+    if (q.length < 12 || q.length > 400 || !hay.includes(q)) dropped.push(f)
+    else kept.push(f)
+  }
+  return { kept, dropped }
 }
 
+export function groundFindings(findings: ReaderFinding[], input: SurfaceInput): ReaderFinding[] {
+  return partitionFindings(findings, input).kept
+}
+
+/**
+ * How many findings the grounding gate discarded.
+ *
+ * Reported, not just counted. `review-surfaces` used to print the number of
+ * SURVIVORS and, at zero, "nada que señalar" — so "the page is clean" and "the
+ * model produced three findings and I threw them all away" printed the same
+ * line. That is the shape of every silent-failure incident in this repo: the
+ * check's silence gets read as approval.
+ *
+ * A high drop count is not necessarily a bug — the gate exists to discard
+ * findings that do not quote the page, and a model that paraphrases SHOULD be
+ * discarded. It is a signal to look, not a defect.
+ */
 export async function reviewSurface(
   input: SurfaceInput,
   call: ReaderCaller,
 ): Promise<ReaderFinding[]> {
-  if (!input.renderedText.trim()) return []
+  return (await reviewSurfaceDetailed(input, call)).findings
+}
+
+export async function reviewSurfaceDetailed(
+  input: SurfaceInput,
+  call: ReaderCaller,
+): Promise<{ findings: ReaderFinding[]; dropped: ReaderFinding[] }> {
+  if (!input.renderedText.trim()) return { findings: [], dropped: [] }
   const raw = await call(input)
-  if (!raw) return []
-  return groundFindings(raw, input)
+  if (!raw) return { findings: [], dropped: [] }
+  const { kept, dropped } = partitionFindings(raw, input)
+  // The dropped ones travel with the result, not just their count. On the first
+  // run that reported them, four of six routes had printed "nada que señalar"
+  // while holding five discarded findings between them; a bare number tells you
+  // something is hidden without letting you judge whether it mattered.
+  return { findings: kept, dropped }
 }
