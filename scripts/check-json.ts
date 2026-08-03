@@ -23,6 +23,7 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { resolve, join } from 'node:path'
 import { execFileSync } from 'node:child_process'
+import { CONFLICT_MARKERS_SOURCE, inspectJsonText } from '../src/scraper/json-integrity'
 
 const ROOT = resolve('public/data')
 
@@ -40,16 +41,8 @@ function main() {
   const broken: { path: string; reason: string }[] = []
 
   for (const f of files) {
-    const text = readFileSync(f, 'utf8')
-    if (/^<{7} |^={7}$|^>{7} /m.test(text)) {
-      broken.push({ path: f, reason: 'contains merge-conflict markers' })
-      continue
-    }
-    try {
-      JSON.parse(text)
-    } catch (err) {
-      broken.push({ path: f, reason: (err as Error).message.slice(0, 80) })
-    }
+    const verdict = inspectJsonText(readFileSync(f, 'utf8'))
+    if (verdict.ok === false) broken.push({ path: f, reason: verdict.reason })
   }
 
   // Conflict markers anywhere in tracked source, not just data. Cheap, and the
@@ -61,7 +54,19 @@ function main() {
   try {
     markedSource = execFileSync(
       'git',
-      ['grep', '-l', '-E', '^<{7} |^>{7} ', '--', '*.ts', '*.js', '*.jsx', '*.md', '*.sh', '*.yml'],
+      [
+        'grep',
+        '-l',
+        '-E',
+        CONFLICT_MARKERS_SOURCE,
+        '--',
+        '*.ts',
+        '*.js',
+        '*.jsx',
+        '*.md',
+        '*.sh',
+        '*.yml',
+      ],
       { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] },
     )
       .split('\n')

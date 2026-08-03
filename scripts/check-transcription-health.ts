@@ -24,6 +24,7 @@
  */
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { computeBacklog, shouldNotify } from '../src/scraper/transcription-health'
 
 const STATE = resolve('.transcription-health-state.json')
 const TRANSCRIPTS = resolve('public/data/pleno-transcripts')
@@ -143,15 +144,11 @@ async function main() {
   // nobody believes when it finally reports something real. So the universe is
   // "has a video OR already has a transcript", and the denominator is only ever
   // that set.
-  let withVideo = new Set(plenos.map((p) => p.id))
-  if (existsSync(VIDEOS)) {
-    const vids = JSON.parse(readFileSync(VIDEOS, 'utf8')).items ?? []
-    const dates = new Set(vids.map((v: { plenoDate: string }) => v.plenoDate))
-    withVideo = new Set(plenos.filter((p) => dates.has(p.date)).map((p) => p.id))
-  }
-  const transcribable = plenos.map((p) => p.id).filter((id) => withVideo.has(id) || done.has(id))
-  const doneCount = transcribable.filter((id) => done.has(id)).length
-  const remaining = transcribable.filter((id) => !done.has(id))
+  const videoDates: string[] | null = existsSync(VIDEOS)
+    ? ((JSON.parse(readFileSync(VIDEOS, 'utf8')).items ?? []) as { plenoDate: string }[]).map(
+        (v) => v.plenoDate,
+      )
+    : null
 
   const newestMs = [...done]
     .map((id) => {
@@ -162,11 +159,21 @@ async function main() {
       }
     })
     .reduce((a, b) => Math.max(a, b), 0)
-  const daysSince = newestMs ? (Date.now() - newestMs) / 86_400_000 : Infinity
+
+  const backlog = computeBacklog({
+    plenos,
+    transcribedIds: [...done],
+    videoDates,
+    newestTranscriptMs: newestMs,
+    nowMs: Date.now(),
+  })
+  const { remaining, daysSinceNewest: daysSince } = backlog
+  const doneCount = backlog.done.length
+  const transcribable = backlog.transcribable
 
   process.stdout.write(
     `[transcription-health] ${doneCount}/${transcribable.length} transcritas ` +
-      `(${plenos.length} sesiones en total, ${plenos.length - transcribable.length} sin vídeo conocido) · ` +
+      `(${backlog.totalSessions} sesiones en total, ${backlog.withoutVideo} sin vídeo conocido) · ` +
       `${remaining.length} pendientes · última hace ${daysSince === Infinity ? '—' : daysSince.toFixed(1)} días\n`,
   )
 
@@ -187,11 +194,13 @@ async function main() {
     'La transcripción lleva días sin avanzar y OpenAI responde con normalidad, así que la causa está en otro sitio: revisa yt-dlp, el índice de vídeos o el log del cron.'
 
   const state = loadState()
-  const unchanged = state.lastCause === cause
-  const lastAgo = state.lastNotifiedAt
-    ? (Date.now() - new Date(state.lastNotifiedAt).getTime()) / 86_400_000
-    : Infinity
-  const shouldNotify = force || !unchanged || lastAgo >= RENOTIFY_DAYS
+  const decision = shouldNotify({
+    state,
+    cause,
+    nowMs: Date.now(),
+    force,
+    renotifyDays: RENOTIFY_DAYS,
+  })
 
   const msg =
     `⚠️ <b>Transcripción parada</b>\n\n` +
@@ -209,11 +218,8 @@ async function main() {
     process.exitCode = 1
     return
   }
-  if (!shouldNotify) {
-    process.stdout.write(
-      `[transcription-health] misma causa que la última vez y avisado hace ${lastAgo.toFixed(1)} días ` +
-        `(< ${RENOTIFY_DAYS}) — no se repite el aviso\n`,
-    )
+  if (!decision.notify) {
+    process.stdout.write(`[transcription-health] ${decision.reason} — no se repite el aviso\n`)
     process.exitCode = 1
     return
   }
