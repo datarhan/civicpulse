@@ -35,8 +35,8 @@ const fmtM = (n) =>
 const fmtPct = (n) => new Intl.NumberFormat('es-ES', { maximumFractionDigits: 1 }).format(n)
 
 /**
- * @param {{ universe?: { locatedAmount?: number, totalAmount?: number,
- *   locatedContracts?: number, totalContracts?: number } }} props.snapshot
+ * @param {{ snapshot?: { universe?: { locatedAmount?: number, totalAmount?: number,
+ *   locatedContracts?: number, totalContracts?: number } } }} props
  */
 export function MoneyCoverage({ snapshot }) {
   const t = useT()

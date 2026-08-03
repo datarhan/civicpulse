@@ -1,11 +1,14 @@
 /**
  * Journalist runner CLI — execute the 4-stage agent for one assignment
- * and persist the draft to public/data/journalist-reports-suggestions.json.
+ * and persist the draft under editorial/journalist-drafts/ (gitignored,
+ * NOT web-served).
  *
  *   npm run journalist:run -- <assignmentId> [--token-budget N] [--dry-run] [--stop-after plan|research|synth|verify]
  *
- * The draft is also written as a chunk under
- *   editorial/journalist-drafts/<assignmentId>.draft.json  (NOT web-served)
+ * Drafts are unreviewed machine prose about named living people, so they
+ * must never land under public/ — anything there is served. They were, until
+ * 2026-08-01; see docs/JOURNALIST_AGENT.md. Per-assignment chunk at
+ *   editorial/journalist-drafts/<assignmentId>.draft.json
  * so the curator dashboard can preview a single assignment without
  * loading the whole suggestions snapshot.
  *

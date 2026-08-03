@@ -18,8 +18,8 @@
  *   · stamps the auto-judicial-token legalSensitivity bump
  *   · seeds the photoPath / portfolios / partyTone fields on portrait
  *     sections from officials.json
- *   · returns a `JournalistReportDraft` ready to be persisted by the
- *     CLI to public/data/journalist-reports-suggestions.json
+ *   · returns a `JournalistReportDraft` ready to be persisted by the CLI
+ *     under editorial/journalist-drafts/ (gitignored, NOT web-served)
  *
  * Every LLM call goes through `callLLM` which caches and meters. The
  * pipeline never throws on a single-stage failure; it returns a draft

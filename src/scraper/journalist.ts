@@ -16,9 +16,12 @@
  *     Curator-seeded. Each row = one task for the agent. Status moves
  *     pending → running → drafted → promoted | failed.
  *
- *   public/data/journalist-reports-suggestions.json
- *     Machine-written. Every row has `requiresHumanApproval:true`. Never
- *     rendered on a public page; only the /curator dashboard shows it.
+ *   editorial/journalist-drafts/journalist-reports-suggestions.json
+ *     Machine-written, gitignored, NOT web-served. Every row has
+ *     `requiresHumanApproval:true`; only the /curator dashboard reads it.
+ *     It lived under public/data/ until 2026-08-01, which published 24
+ *     unreviewed drafts about named councillors. Never move it back:
+ *     "not linked from a page" is not "not published".
  *
  *   public/data/journalist-reports.json
  *     Curator-promoted. This is what the public SPA reads. Inherits the

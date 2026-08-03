@@ -8,8 +8,8 @@
  *       [--ack-legal-review] \
  *       [--edit]
  *
- * Reads the draft from public/data/journalist-reports-suggestions.json,
- * strips the `requiresHumanApproval` flag, attaches `promotedBy` /
+ * Reads the draft from editorial/journalist-drafts/ (gitignored, NOT
+ * web-served), strips the `requiresHumanApproval` flag, attaches `promotedBy` /
  * `promotedAt` / `curatorNotes` / empty `corrections[]` / `response:null`,
  * and writes to public/data/journalist-reports.json (validated by
  * validateReportsSnapshot) + the per-id chunk under
