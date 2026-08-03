@@ -79,8 +79,9 @@ schema **rejects** that field — defence in depth.
 
 ### Bot-owned
 
-`quejas.json` — written by `bot/src/services/snapshot.ts`, exported daily by the
-Telegram bot's launchd/Docker job. Do not hand-edit; edit the bot's SQLite.
+`quejas.json` — written by `bot/src/services/snapshot.ts` on the Fly.io bot and
+pulled into the repo daily by `pull-quejas.yml`. Do not hand-edit; the next pull
+overwrites it. Change the bot's SQLite instead.
 
 ---
 
@@ -311,7 +312,7 @@ Telegram bot's launchd/Docker job. Do not hand-edit; edit the bot's SQLite.
 ### Quejas ciudadanas (Telegram-captured, SQLite-backed)
 
 - **Pipeline** — **bot-owned** · `bot/src/services/snapshot.ts`
-- **Source** — Exported by `npm run export` (host-side; runs against the same SQLite the bot writes to). The bot itself runs in a long-polling Docker container locally (`bot/docker-compose.yml`) or as a launchd user agent for setups outside `~/Documents/`; payload is Open311 GeoReport v2-flavoured; only non-PII fields are published
+- **Source** — The bot runs on **Fly.io** (`munigraph-ribarroja`, webhook mode) and serves its own snapshot at `/export/quejas.json` behind `EXPORT_TOKEN`; `pull-quejas.yml` fetches it daily at 04:00 UTC. `npm run export` is the local equivalent, writing from whatever SQLite is on the host — useful in development, not the production path. Payload is Open311 GeoReport v2-flavoured; only non-PII fields are published
 - **Surfaces** — `/quejas` feed + heatmap · `/quejas/dashboard` analytics · `/quejas/:id` detail view · `/cargos` QuejaBadge
 
 ### Queja responses (curated, right-of-reply)

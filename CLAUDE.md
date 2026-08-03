@@ -53,13 +53,19 @@ Biografía spec always fails on a local full run. That is the flag, not a defect
 ## Architecture
 
 A **front-end-only SPA** (Vite + React 18 + React Router 6) reading static JSON
-from `public/data/`, plus a sibling Node.js Telegram bot in `bot/` that captures
-citizen complaints into SQLite and exports its own snapshot into the same tree.
+from `public/data/`, plus a sibling Node.js Telegram bot (`bot/`) that captures
+citizen complaints into SQLite.
 
-No production backend — Vercel serves the static assets next to the JSON. The
-one exception is `vite-curator-plugin.js`, which mounts `/api/curator/*` for the
-local curator dashboard and is excluded from the production build in two
-independent places (`vite.config.js` externals + a React-layer route guard).
+The SPA has no backend of its own — Vercel serves the static assets next to the
+JSON. Two things are not the SPA and are easy to mistake for exceptions:
+
+- **The bot is deployed**, on Fly.io (`munigraph-ribarroja.fly.dev`, webhook
+  mode, SQLite on a persistent volume). It is not part of the SPA build and the
+  site renders fine without it. `pull-quejas.yml` pulls its
+  `/export/quejas.json` into `public/data/` daily. See `bot/DEPLOY.md`.
+- **`vite-curator-plugin.js`** mounts `/api/curator/*` for the local curator
+  dashboard and is excluded from the production build in two independent places
+  (`vite.config.js` externals + a React-layer route guard).
 
 - `src/App.jsx` is the root. `/` renders `DirectionD` (full-bleed map + editorial
   column + KPI strip) with **no sidebar**; every other route renders inside

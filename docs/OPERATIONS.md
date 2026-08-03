@@ -66,16 +66,16 @@ adapter names to the `case` switch.
 
 ## The other GitHub workflows
 
-| Workflow                          | Trigger                                                                                                                                |
-| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `e2e.yml`                         | push / PR — Playwright, sets `VITE_ENABLE_PERIODISTAS=true` (absent locally, so `/cargos`'s Biografía spec always reds on a local run) |
-| `deploy-vercel.yml`               | `workflow_run` after a green nightly, plus push                                                                                        |
-| `batch-reminder.yml`              | Mondays 08:00 UTC — nudges the queja batch registrar                                                                                   |
-| `pull-quejas.yml`                 | daily 04:00 UTC — feature-flagged by `vars.BOT_EXPORT_URL`, a no-op until a remote bot deploy exists                                   |
-| `ingest-finding-responses.yml`    | issue labelled `derecho-replica`                                                                                                       |
-| `ingest-journalist-responses.yml` | issue labelled `derecho-replica` **and** `periodista`                                                                                  |
-| `ingest-pleno-votes.yml`          | issue from the `pleno-vote.yml` form                                                                                                   |
-| `ingest-queja-responses.yml`      | issue from the `queja-response.yml` form                                                                                               |
+| Workflow                          | Trigger                                                                                                                                                                                                                       |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `e2e.yml`                         | push / PR — Playwright, sets `VITE_ENABLE_PERIODISTAS=true` (absent locally, so `/cargos`'s Biografía spec always reds on a local run)                                                                                        |
+| `deploy-vercel.yml`               | `workflow_run` after a green nightly, plus push                                                                                                                                                                               |
+| `batch-reminder.yml`              | Mondays 08:00 UTC — nudges the queja batch registrar                                                                                                                                                                          |
+| `pull-quejas.yml`                 | daily 04:00 UTC (before the scrape) — pulls the bot's `/export/quejas.json` from Fly.io into `public/data/`. Live since 2026-08-02; gated on `vars.BOT_EXPORT_URL`, so unsetting that variable silently stops queja refreshes |
+| `ingest-finding-responses.yml`    | issue labelled `derecho-replica`                                                                                                                                                                                              |
+| `ingest-journalist-responses.yml` | issue labelled `derecho-replica` **and** `periodista`                                                                                                                                                                         |
+| `ingest-pleno-votes.yml`          | issue from the `pleno-vote.yml` form                                                                                                                                                                                          |
+| `ingest-queja-responses.yml`      | issue from the `queja-response.yml` form                                                                                                                                                                                      |
 
 Each ingest workflow parses the structured form, calls the matching curator CLI,
 commits, and closes the issue with a permalink. Git history is the sole audit
@@ -96,7 +96,28 @@ Anything needing an LLM backend or a residential IP runs here, not in CI.
 Install helpers: `scripts/cron-install-hallazgos.sh`,
 `scripts/cron-install-press-lab.sh`. Run them from Terminal — launchd agents
 under `~/Documents/` die with exit 78 on macOS TCC, which is why these are cron
-and why the bot moved to Docker (`cd bot && docker compose up -d`).
+rather than launchd.
+
+`launchctl list` may still show `com.civicpulse.munigraph.{bot,export}` in that
+failed state. They are leftovers from before the bot moved to Fly.io and the
+export became a GitHub Action; nothing depends on them.
+
+## The bot
+
+Deployed on **Fly.io** — app `munigraph-ribarroja`, region `cdg`, webhook mode
+(`WEBHOOK_URL` set), SQLite on a persistent volume. It ran locally under launchd
+and then Docker Compose during development; neither is the runtime now, and
+`bot/docker-compose.yml` is for local work only.
+
+Deploys must run from the repo root, because the Dockerfile reads
+`queja-router` and `officials.json` from the monorepo:
+
+```bash
+flyctl deploy --config bot/fly.toml --dockerfile bot/Dockerfile --remote-only .
+```
+
+Full setup, secrets and volume creation: the header of `bot/fly.toml` and
+`bot/DEPLOY.md`.
 
 > **A local cron commits to whatever branch is checked out.** If you are mid-work
 > on a branch when one fires, `git pull --rebase` can strand you;
