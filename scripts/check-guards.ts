@@ -37,6 +37,15 @@
 import { execFileSync, spawnSync } from 'node:child_process'
 import { readFileSync, writeFileSync, readdirSync, existsSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
+import {
+  auditFails,
+  classifyInjection,
+  summarise,
+  scriptTargets,
+  testsForScript,
+  wiringFor,
+  type InjectionVerdict,
+} from '../src/scraper/guard-audit'
 
 interface GuardRow {
   name: string
@@ -47,6 +56,29 @@ interface GuardRow {
   firesOnFault: boolean | null
   injection?: string
   note?: string
+  verdict?: InjectionVerdict
+}
+
+/**
+ * Guards with no injection, and why there cannot be one HERE.
+ *
+ * The distinction this table exists for: «nobody wrote one» and «nobody can
+ * write one from a nightly» are different facts, and collapsing them makes the
+ * first look excusable and the second look like negligence. Anything not listed
+ * here and not in INJECTIONS is reported as a genuine to-do.
+ */
+const NOT_INJECTABLE: Record<string, string> = {
+  'check:retrieval':
+    'necesita reconstruir un corpus de embeddings (backend medido) para fallar de verdad',
+  'check:corpus':
+    'es un orquestador: inyecta sus partes (check:transcripts, check:finding-quotes) por separado',
+  'check:guards': 'es este mismo script — inyectarse a sí mismo no prueba nada',
+  'check:transcription-health':
+    'su fallo es el paso del TIEMPO (días sin avance), no un fichero corrupto',
+  'check:runs':
+    'lee .run-manifests/, que está en .gitignore — y este arnés restaura con git, así que no podría deshacer el daño',
+  'check:vocabulary':
+    'su fallo es que aparezca vocabulario NUEVO, y cualquier valor que inventemos aquí es exactamente eso: la inyección se probaría a sí misma',
 }
 
 const ROOT = resolve('.')
@@ -72,39 +104,23 @@ function callSites(): Map<string, string> {
   return files
 }
 
+const readIfExists = (p: string): string | null => {
+  const abs = resolve(ROOT, p)
+  return existsSync(abs) ? readFileSync(abs, 'utf8') : null
+}
+
 /**
- * Which test files exercise a guard, resolved through the MODULE GRAPH rather
- * than by name.
- *
- * A grep for the guard's name answers a different question and answers it
- * wrongly: it said 12 of 13 guards had no test when 9 of 12 do — off by 4×. The
- * reason is that `scripts/check-relations.ts` is a thin CLI whose logic lives in
- * `src/scraper/relations-check.ts`, and the test imports the MODULE, never the
- * script or the npm-script name. So: read the script's imports, then find the
- * tests that import the same paths.
+ * Reads every script an npm command reaches — following a shell orchestrator to
+ * the tsx files it runs — then defers to the pure resolver in `guard-audit`.
  */
-function testsForGuard(scriptFile: string, tests: Map<string, string>): string[] {
-  const src = readFileSync(resolve(ROOT, 'scripts', scriptFile), 'utf8')
-  const modules = [...src.matchAll(/from ['"]\.\.\/(src\/[^'"]+)['"]/g)].map((m) =>
-    m[1].replace(/\.(ts|js)$/, ''),
-  )
-  const own = `scripts/${scriptFile.replace(/\.ts$/, '')}`
-  const hits: string[] = []
-  for (const [name, body] of tests) {
-    // The guard keeps its logic inline and the test imports the script itself.
-    if (body.includes(own)) {
-      hits.push(`${name} (direct)`)
-      continue
-    }
-    // Otherwise, name the module the test actually covers. Reporting a bare ✓
-    // would overstate: `quote-match` is shared by three guards, so ANY test of
-    // it would make all three look covered. Naming the module lets a reader see
-    // whether it is the guard's own logic or a shared dependency — which is the
-    // whole point, since a grep answering this question was wrong by 4×.
-    const via = modules.find((m) => body.includes(m))
-    if (via) hits.push(`${name} (via ${via.split('/').pop()})`)
+function testsForGuard(npmCommand: string, tests: Map<string, string>): string[] {
+  const hits = new Set<string>()
+  for (const target of scriptTargets(npmCommand, readIfExists)) {
+    const body = readIfExists(target)
+    if (!body || /\.(sh|bash)$/.test(target)) continue
+    for (const h of testsForScript(body, target.replace(/\.(ts|js)$/, ''), tests)) hits.add(h)
   }
-  return hits
+  return [...hits]
 }
 
 function testFiles(): Map<string, string> {
@@ -180,6 +196,77 @@ const INJECTIONS: Array<{
       return JSON.stringify(d, null, 2) + '\n'
     },
   },
+  {
+    guard: 'check:cadence',
+    file: 'public/data/tenders.json',
+    describe: 'un snapshot fechado hace dos años — la forma exacta del cron congelado',
+    // The three-act freeze saga: a scraper stops, the file stays, and every
+    // semantic check keeps passing over stale data.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      d.generatedAt = new Date(Date.parse(d.generatedAt ?? '2026-01-01') - 730 * 86_400_000)
+        .toISOString()
+        .replace(/\.\d+Z$/, 'Z')
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
+  {
+    guard: 'check:drift',
+    file: 'public/data/reportajes/reconstruccion-dana.json',
+    describe: 'una cifra congelada multiplicada por diez',
+    // The 2026-08-02 incident in reverse: prose left behind by a data fix.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      if (typeof d?.totals?.totalAwarded !== 'number') throw new Error('sin totals.totalAwarded')
+      d.totals.totalAwarded = d.totals.totalAwarded * 10
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
+  {
+    guard: 'check:finding-entities',
+    file: 'public/data/pleno-findings.json',
+    describe: 'un hallazgo que afirma como registro una empresa que no consta en ningún dato',
+    // The motivating shape, verbatim: «según el registro municipal … la empresa
+    // FCC», where FCC appeared in zero of 1,231 contract rows. The trigger is
+    // the ASSERTION phrase (empresa/mercantil/adjudicataria), not any mention of
+    // a company — a first attempt at this injection said «adjudicado a X» and
+    // the guard stayed silent, correctly: that is not the defect it watches.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const f = d.items?.[0]
+      if (!f) throw new Error('sin hallazgos que corromper')
+      f.summary =
+        `${f.summary ?? ''} Según el registro municipal, la empresa Inventadadelturia ` +
+        `ejecutó las obras.`
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
+  {
+    guard: 'check:transcripts',
+    file: 'public/data/pleno-transcripts/yhp4sc.txt',
+    describe: 'un transcript que se convierte en un bucle — la firma de Whisper alucinando',
+    // The real shape: whisper-1 fed a multi-hour file loops one phrase for
+    // thousands of lines. That published 7% of a pleno as if it were the whole
+    // session (postmortem 9dd8f07).
+    corrupt: () =>
+      `${'Muchas gracias, señor alcalde.\n'.repeat(4000)}Y con esto levantamos la sesión.\n`,
+  },
+  {
+    guard: 'check:automation',
+    file: '.automation-measurements.json',
+    describe: 'una medición de precisión caducada — el permiso para publicar solo, vencido',
+    // Tier B is autonomous only while a RECORDED precision is current. Letting
+    // a measurement expire unnoticed is how an unmeasured class keeps
+    // publishing on the strength of a number nobody re-took.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const rows = Array.isArray(d) ? d : (d.measurements ?? [])
+      if (!rows.length) throw new Error('sin mediciones que caducar')
+      const old = new Date(Date.now() - 400 * 86_400_000).toISOString()
+      for (const m of rows) m.measuredAt = old
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
 ]
 
 function gitIsClean(file: string): boolean {
@@ -212,19 +299,8 @@ function main(): void {
 
   const tests = testFiles()
   const rows: GuardRow[] = guards.map((g) => {
-    const wiredIn: string[] = []
-    for (const [path, body] of sites) {
-      // `npm run check:x` — and not as a substring of a longer name.
-      if (new RegExp(`\\b${g.replace(':', '\\:')}\\b(?![:\\w-])`).test(body)) {
-        wiredIn.push(path.replace(`${ROOT}/`, ''))
-      }
-    }
-    // The npm script's target file, so we can read ITS imports.
-    const target = /tsx (scripts\/[^\s]+)/.exec(pkg.scripts[g] as string)?.[1]
-    const testedBy =
-      target && existsSync(resolve(ROOT, target))
-        ? testsForGuard(target.replace('scripts/', ''), tests)
-        : []
+    const wiredIn = wiringFor(g, sites).map((p) => p.replace(`${ROOT}/`, ''))
+    const testedBy = testsForGuard(pkg.scripts[g] as string, tests)
     return { name: g, wiredIn, testedBy, firesOnFault: null }
   })
 
@@ -262,8 +338,23 @@ function main(): void {
     }
   }
 
+  // `hasInjection` is a static fact about the INJECTIONS table, NOT about
+  // whether this run exercised it. Deriving it from `r.injection` — which is
+  // only populated under --inject — made every guard report "no injection" on
+  // a plain wiring run, so four written injections read as four missing ones.
+  const defined = new Set(INJECTIONS.map((i) => i.guard))
+  for (const r of rows) {
+    r.verdict = classifyInjection({
+      hasInjection: defined.has(r.name),
+      fired: r.firesOnFault,
+      note: r.note ?? (inject ? undefined : 'definida; ejecuta con --inject para probarla'),
+      notInjectableReason: NOT_INJECTABLE[r.name],
+    })
+  }
+  const stats = summarise(rows.map((r) => ({ ...r, verdict: r.verdict! })))
+
   if (asJson) {
-    out(JSON.stringify({ guards: rows, injected: inject }, null, 2))
+    out(JSON.stringify({ guards: rows, injected: inject, stats }, null, 2))
     return
   }
 
@@ -281,41 +372,52 @@ function main(): void {
     out(`  ${r.name.padEnd(w)}  ${r.testedBy.length ? r.testedBy.join(', ') : '⚠ NO TEST'}`)
   }
 
-  if (inject) {
-    out('\n[check:guards] teeth — does it exit non-zero when its fault is present?\n')
-    for (const r of rows.filter((x) => x.injection)) {
-      const verdict =
-        r.firesOnFault === null
-          ? `— ${r.note ?? 'not exercised'}`
-          : r.firesOnFault
-            ? 'FIRES'
-            : '⚠ SILENT'
-      out(`  ${r.name.padEnd(w)}  ${verdict}`)
-      out(`  ${' '.repeat(w)}  injected: ${r.injection}`)
-    }
-    const notExercised = rows.filter((x) => !x.injection).map((x) => x.name)
-    if (notExercised.length) {
-      out(`\n  ${notExercised.length} guard(s) have NO injection defined and were not exercised:`)
-      out(`    ${notExercised.join(', ')}`)
-      out('  Add one to INJECTIONS in scripts/check-guards.ts rather than assuming they work.')
-    }
-  } else {
-    out('\n  (wiring only — run with --inject to also break things and watch them scream)')
+  // Injection coverage is reported in THREE states, always — not only under
+  // --inject. Before, a guard with no injection and a guard nobody can inject
+  // from a nightly printed the same undifferentiated line, which reads as
+  // negligence in one case and as coverage in neither.
+  out('\n[check:guards] dientes — ¿salta cuando su propio fallo está presente?\n')
+  for (const r of rows) {
+    const v = r.verdict!
+    const label =
+      v.state === 'proven'
+        ? 'FIRES'
+        : v.state === 'silent'
+          ? '⚠ SILENT'
+          : v.state === 'not-run'
+            ? `— ${v.detail}`
+            : v.state === 'not-injectable'
+              ? 'sin inyección, a propósito'
+              : '⚠ sin inyección'
+    out(`  ${r.name.padEnd(w)}  ${label}`)
+    if (r.injection) out(`  ${' '.repeat(w)}  inyectado: ${r.injection}`)
+    else if (v.state === 'not-injectable') out(`  ${' '.repeat(w)}  ${v.detail}`)
+  }
+  if (!inject) {
+    out('\n  (auditoría de cableado — con --inject además rompe cosas y mira si gritan)')
   }
 
-  const silent = rows.filter((r) => r.firesOnFault === false)
+  const silent = rows.filter((r) => r.verdict!.state === 'silent')
   out()
   out(
-    `${rows.length} guard(s) · ${orphans.length} not invoked · ${untested.length} without a test · ` +
-      `${inject ? `${rows.filter((r) => r.firesOnFault === true).length} proven to fire` : 'teeth not tested'}`,
+    `${stats.total} guarda(s) · ${stats.notInvoked} sin invocar · ${stats.untested} sin test · ` +
+      `${inject ? `${stats.proven} probada(s)` : 'dientes sin probar'} · ` +
+      `${stats.undefinedInjection} sin inyección · ${stats.notInjectable} no inyectable(s) con motivo`,
   )
 
   if (untested.length) {
-    out(`WITHOUT A TEST (reported, does not fail): ${untested.map((r) => r.name).join(', ')}`)
+    out(`SIN TEST (se informa, no falla): ${untested.map((r) => r.name).join(', ')}`)
   }
-  if (orphans.length || silent.length) {
-    if (orphans.length) out(`\nNOT INVOKED: ${orphans.map((r) => r.name).join(', ')}`)
-    if (silent.length) out(`SILENT ON ITS OWN FAULT: ${silent.map((r) => r.name).join(', ')}`)
+  const toWrite = rows.filter((r) => r.verdict!.state === 'undefined').map((r) => r.name)
+  if (toWrite.length) {
+    out(
+      `SIN INYECCIÓN, PENDIENTE DE ESCRIBIR: ${toWrite.join(', ')}\n` +
+        '  Añádela a INJECTIONS, o a NOT_INJECTABLE con el motivo — pero no la des por buena.',
+    )
+  }
+  if (auditFails(stats)) {
+    if (orphans.length) out(`\nSIN INVOCAR: ${orphans.map((r) => r.name).join(', ')}`)
+    if (silent.length) out(`MUDA ANTE SU PROPIO FALLO: ${silent.map((r) => r.name).join(', ')}`)
     process.exit(1)
   }
 }
