@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T19:26:08.697Z",
+  "generatedAt": "2026-08-03T13:48:12.556Z",
   "legalNotice": "Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público en github.com/datarhan/civicpulse.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -357,56 +357,68 @@
         {
           "id": "src-063",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "retrievedAt": "2026-07-31T19:25:38.445Z",
           "excerpt": "Maria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno\nJuan Boix Martínez\nPaula Navarro Sanfeliu\nJose Luis Fernández Santamaria\nJose Manuel Gallardo Martínez\nRafael Folgado Navarro",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-064",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
           "retrievedAt": "2026-07-31T19:25:38.445Z",
           "excerpt": "por el siguiente orden:\n- Rafael Folgado Navarro\n- Jose Manuel Gallardo Martínez\n- Jose Luis Fernández Santamaria\n- Paula Navarro Sanfeliu\n- Juan Boix Martínez\n- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-065",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Grupo Municipal Compromís (Folgado, único miembro y portavoz)",
           "retrievedAt": "2026-07-31T19:25:38.445Z",
           "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Compromís per Riba-roja,\nes:\n1. Don Rafael Folgado Navarro (INICIATIVA-COMPROMÍS)\nSiendo su Portavoz: Don Rafael Folgado Navarro",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-066",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — candidatura a la Alcaldía y votación (Folgado, 1 voto)",
           "retrievedAt": "2026-07-31T19:25:38.445Z",
           "excerpt": "Votos a favor de D. Rafael Folgado Navarro\nVotos a favor de __1",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-067",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Comisión Informativa: Compromís, titular Folgado (único miembro, en las cinco comisiones)",
           "retrievedAt": "2026-07-31T19:25:38.445Z",
           "excerpt": "Grupo Municipal Compromís per Riba-roja\nTitular: D. Rafael Folgado Navarro",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-068",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
           "retrievedAt": "2026-07-31T19:25:38.445Z",
           "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-069",
@@ -868,56 +880,68 @@
         {
           "id": "src-064",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "retrievedAt": "2026-07-31T19:13:04.360Z",
           "excerpt": "Soraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno\nJuan Boix Martínez\nPaula Navarro Sanfeliu\nJose Luis Fernández Santamaria\nJose Manuel Gallardo Martínez",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-065",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
           "retrievedAt": "2026-07-31T19:13:04.360Z",
           "excerpt": "por el siguiente orden:\n- Rafael Folgado Navarro\n- Jose Manuel Gallardo Martínez\n- Jose Luis Fernández Santamaria\n- Paula Navarro Sanfeliu\n- Juan Boix Martínez\n- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-066",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Grupo Municipal Esquerra Unida-Podem (Gallardo, único miembro y portavoz)",
           "retrievedAt": "2026-07-31T19:13:04.360Z",
           "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Esquerra Unida- Podem:\nUnides, es:\n1. Don José Manuel Gallardo Martínez\nSiendo su Portavoz: Don José Manuel Gallardo Martínez",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-067",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — candidatura a la Alcaldía y votación (Gallardo, 0 votos)",
           "retrievedAt": "2026-07-31T19:13:04.360Z",
           "excerpt": "Votos a favor de D. Alberto Jose Gimeno Calvo\nVotos a favor de __7\nVotos a favor de D. Jose Luis Fernández Santamaria.\nVotos a favor de __1\nVotos a favor de D. Jose Manuel Gallardo Martínez\nVotos a favor de __0",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-068",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Comisión Informativa: EU-Podem, titular Gallardo (único miembro, en las cinco comisiones)",
           "retrievedAt": "2026-07-31T19:13:04.360Z",
           "excerpt": "Grupo Municipal Esquerra Unida- Podem: Unides\nTitular: D. José Manuel Gallardo Martínez",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-069",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
           "retrievedAt": "2026-07-31T19:13:04.360Z",
           "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-070",
@@ -1356,56 +1380,68 @@
         {
           "id": "src-064",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "retrievedAt": "2026-07-31T19:00:08.953Z",
           "excerpt": "Alberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno\nJuan Boix Martínez\nPaula Navarro Sanfeliu\nJose Luis Fernández Santamaria",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-065",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
           "retrievedAt": "2026-07-31T19:00:08.953Z",
           "excerpt": "- Rafael Folgado Navarro\n- Jose Manuel Gallardo Martínez\n- Jose Luis Fernández Santamaria\n- Paula Navarro Sanfeliu\n- Juan Boix Martínez\n- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-066",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Grupo Municipal Vox (Fernández, único miembro y portavoz)",
           "retrievedAt": "2026-07-31T19:00:08.953Z",
           "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:\n1. Don José Luis Fernández Santamaría\nSiendo su Portavoz: Don José Luis Fernández Santamaría",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-067",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — candidatura a la Alcaldía y votación (Fernández, 1 voto)",
           "retrievedAt": "2026-07-31T19:00:08.953Z",
           "excerpt": "Votos a favor de D. Alberto Jose Gimeno Calvo\nVotos a favor de __7\nVotos a favor de D. Jose Luis Fernández Santamaria.\nVotos a favor de __1\nVotos a favor de D. Jose Manuel Gallardo Martínez\nVotos a favor de __0",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-068",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Comisión Informativa: Vox, titular Fernández (único miembro, en las cinco comisiones)",
           "retrievedAt": "2026-07-31T19:00:08.953Z",
           "excerpt": "Grupo Municipal Vox Riba roja de Túria\nTitular: D. José Luis Fernández Santamaría.",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-069",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
           "retrievedAt": "2026-07-31T19:00:08.953Z",
           "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-070",
@@ -1684,47 +1720,57 @@
         {
           "id": "src-060",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "retrievedAt": "2026-07-31T18:46:19.301Z",
           "excerpt": "David Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno\nJuan Boix Martínez\nPaula Navarro Sanfeliu",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-062",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — formación de la Mesa de Edad (Navarro Sanfeliu, la más joven, junto al mayor)",
           "retrievedAt": "2026-07-31T18:46:19.302Z",
           "excerpt": "Acto seguido se procede a formar la Mesa de Edad para lo cual se invita que suban al estrado\nlos Sres. D. Jose Manuel Vila Oltra y Dª. Paula Navarro Sanfeliu, asumiendo la Presidencia el\nprimero de ellos, previa formulación de juramento o promesa a los efectos de tomar posesión de sus\ncargos de Concejales.",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-063",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Navarro n.º 7, sin la marca «Independiente»)",
           "retrievedAt": "2026-07-31T18:46:19.302Z",
           "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-064",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Comisión Informativa de Educación, Cultura, Deportes y Fiestas: titulares del Grupo Popular (incl. Navarro)",
           "retrievedAt": "2026-07-31T18:46:19.302Z",
           "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Mª José Pradas Ramo\nTitular: D. Juan Boix Martínez\nTitular: Dª Paula Navarro Sanfeliu",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-065",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
           "retrievedAt": "2026-07-31T18:46:19.302Z",
           "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-066",
@@ -2005,47 +2051,57 @@
         {
           "id": "src-060",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "retrievedAt": "2026-07-31T18:34:52.031Z",
           "excerpt": "Alfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno\nJuan Boix Martínez",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-061",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
           "retrievedAt": "2026-07-31T18:34:52.032Z",
           "excerpt": "- Jose Manuel Gallardo Martínez\n- Jose Luis Fernández Santamaria\n- Paula Navarro Sanfeliu\n- Juan Boix Martínez\n- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-062",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Boix n.º 5, «(Independiente)»)",
           "retrievedAt": "2026-07-31T18:34:52.032Z",
           "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-063",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Comisión Informativa de Educación, Cultura, Deportes y Fiestas: titulares del Grupo Popular (incl. Boix)",
           "retrievedAt": "2026-07-31T18:34:52.032Z",
           "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Mª José Pradas Ramo\nTitular: D. Juan Boix Martínez\nTitular: Dª Paula Navarro Sanfeliu",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-064",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
           "retrievedAt": "2026-07-31T18:34:52.032Z",
           "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-065",
@@ -2337,38 +2393,46 @@
         {
           "id": "src-060",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "retrievedAt": "2026-07-31T18:24:55.727Z",
           "excerpt": "Jose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-061",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
           "retrievedAt": "2026-07-31T18:24:55.728Z",
           "excerpt": "- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-062",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Guzmán n.º 6, sin la marca «Independiente»)",
           "retrievedAt": "2026-07-31T18:24:55.728Z",
           "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-063",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
           "retrievedAt": "2026-07-31T18:24:55.728Z",
           "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-064",
@@ -2849,47 +2913,57 @@
         {
           "id": "src-062",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "retrievedAt": "2026-07-31T18:14:46.881Z",
           "excerpt": "Maria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-063",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
           "retrievedAt": "2026-07-31T18:14:46.881Z",
           "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-064",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Ferrer n.º 4, «(Independiente)»)",
           "retrievedAt": "2026-07-31T18:14:46.881Z",
           "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-065",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Comisión Informativa de Gestión Municipal y Gobierno Abierto: titulares del Grupo Popular",
           "retrievedAt": "2026-07-31T18:14:46.881Z",
           "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Soraya Trejo Delgado\nTitular: Dª Mª José Pradas Ramo\n30\nTitular: D. Salvador Evaristo Ferrer Cortina\nSuplente: Cualquier otro Concejal de su grupo político",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-066",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
           "retrievedAt": "2026-07-31T18:14:46.881Z",
           "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-067",
@@ -3372,47 +3446,57 @@
         {
           "id": "src-063",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "retrievedAt": "2026-07-31T17:45:15.620Z",
           "excerpt": "Eva Lara Catalá\nRafael Gomez Sanchez\nMaria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-064",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
           "retrievedAt": "2026-07-31T17:45:15.620Z",
           "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-065",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Pradas n.º 3, «(Independiente)»)",
           "retrievedAt": "2026-07-31T17:45:15.620Z",
           "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-066",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Comisión Informativa de Educación, Cultura, Deportes y Fiestas: titulares del Grupo Popular",
           "retrievedAt": "2026-07-31T17:45:15.620Z",
           "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Mª José Pradas Ramo\nTitular: D. Juan Boix Martínez\nTitular: Dª Paula Navarro Sanfeliu",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-067",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
           "retrievedAt": "2026-07-31T17:45:15.620Z",
           "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-068",
@@ -3726,47 +3810,57 @@
         {
           "id": "src-060",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "retrievedAt": "2026-07-31T17:34:01.372Z",
           "excerpt": "Jose Angel Hernandez Carrizosa\nEva Lara Catalá\nRafael Gomez Sanchez\nMaria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-061",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
           "retrievedAt": "2026-07-31T17:34:01.373Z",
           "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-062",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Trejo n.º 2, «(Independiente)», portavoz suplente)",
           "retrievedAt": "2026-07-31T17:34:01.373Z",
           "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-063",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Comisión Informativa de Gestión Municipal y Gobierno Abierto: titulares del Grupo Popular",
           "retrievedAt": "2026-07-31T17:34:01.373Z",
           "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Soraya Trejo Delgado\nTitular: Dª Mª José Pradas Ramo",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-064",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
           "retrievedAt": "2026-07-31T17:34:01.373Z",
           "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-065",
@@ -4258,74 +4352,90 @@
         {
           "id": "src-062",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "retrievedAt": "2026-07-31T17:24:16.057Z",
           "excerpt": "Jose Luis Ramos March\nJose Angel Hernandez Carrizosa\nEva Lara Catalá\nRafael Gomez Sanchez\nMaria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-063",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
           "retrievedAt": "2026-07-31T17:24:16.057Z",
           "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-064",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — candidaturas a la Alcaldía (cabezas de lista; Gimeno «(independiente), Partido Popular»)",
           "retrievedAt": "2026-07-31T17:24:16.057Z",
           "excerpt": "Presentan candidatura los siguientes Concejales/as:\n- Roberto Pascual Raga Gadea, Partido Socialista Obrero Español\n- Alberto Jose Gimeno Calvo (independiente), Partido Popular\n- Jose Luis Fernández Santamaria, VOX\n- Jose Manuel Gallardo Martínez, Esquerra Unida – Unides Podem per Riba-roja",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-065",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — votación de investidura (Raga 11 · Gimeno 7)",
           "retrievedAt": "2026-07-31T17:24:16.057Z",
           "excerpt": "Interviene la Sr. Presidente indicando que finalizada la votación y realizado el escrutinio, el\nresultado es el siguiente:\nVotos a favor de D. Roberto Pascual Raga Gadea.\nVotos a favor de __11\n3\nVotos a favor de D. Alberto Jose Gimeno Calvo\nVotos a favor de __7\nVotos a favor de D. Jose Luis Fernández Santamaria.\nVotos a favor de __1\nVotos a favor de D. Jose Manuel Gallardo Martínez\nVotos a favor de __0\nVotos a favor de D. Rafael Folgado Navarro\nVotos a favor de __1\nVotos blancos________1",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-066",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Gimeno n.º 1 y portavoz; 5 de 7 miembros «(Independiente)»)",
           "retrievedAt": "2026-07-31T17:24:16.057Z",
           "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-067",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Comisión Informativa de Educación, Cultura, Deportes y Fiestas: titulares del Grupo Popular",
           "retrievedAt": "2026-07-31T17:24:16.057Z",
           "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Mª José Pradas Ramo\nTitular: D. Juan Boix Martínez\nTitular: Dª Paula Navarro Sanfeliu",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-068",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Comisión Informativa de Inclusión Social: titulares del Grupo Popular",
           "retrievedAt": "2026-07-31T17:24:16.057Z",
           "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Mª José Pradas Ramo\nTitular: D. Juan Boix Martínez",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-069",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
           "retrievedAt": "2026-07-31T17:24:16.057Z",
           "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-070",
@@ -4985,56 +5095,68 @@
         {
           "id": "src-062",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "retrievedAt": "2026-07-31T13:13:56.327Z",
           "excerpt": "Maria Teresa Pozuelo Martin\nJose Luis Ramos March\nJose Angel Hernandez Carrizosa\nEva Lara Catalá\nRafael Gomez Sanchez\nMaria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-063",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
           "retrievedAt": "2026-07-31T13:13:56.327Z",
           "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-064",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Grupo Municipal Socialista (Barbancho, puesto 11)",
           "retrievedAt": "2026-07-31T13:13:56.327Z",
           "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Socialista de Riba-roja, son:\n1. Don Roberto Pascual Raga Gadea\n2. Doña Maria Teresa Pozuelo Martín\n3. Don José Luis Ramos March\n4. Don José Ángel Hernández Carrizosa\n5. Doña Eva Lara Catalá (Independiente)\n6. Don Rafael Gómez Sánchez\n7. Doña Maria Esther Gómez Laredo\n8. Don José Manuel Vila Oltra (Independiente)\n9. Doña Raquel Pamblanco Paredes\n10. Don Alfredo Plá Giménez\n11. Don David Barbancho Martínez",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-065",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — decreto de delegaciones, punto 11 (Acción social y políticas inclusivas, Mayores, Juventud y Servicios Jurídicos)",
           "retrievedAt": "2026-07-31T13:13:56.327Z",
           "excerpt": "9. Se delegan en la Concejal Dª Raquel Pamblanco, las competencias que al Alcalde le\ncorresponden en materia de Seguridad y emergencias, Igualdad, Comunicación e información y\nBienestar Animal.\n10. Se delegan en el Concejal D. Alfredo Plá, las competencias que al Alcalde le\ncorresponden en materia de Fallas, Fiestas y Tradiciones.\n11. Se delegan en el Concejal D. David Barbancho las competencias en materia de Acción\nsocial y políticas inclusivas, Mayores, Juventud y Servicios Jurídicos.",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-066",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — régimen de dedicación exclusiva (38.891,66 € brutos anuales)",
           "retrievedAt": "2026-07-31T13:13:56.327Z",
           "excerpt": "- Concejal delegada de Seguridad y emergencias, Igualdad, Comunicación e Información y\nBienestar Animal: 38.891,66 € brutos anuales.\n- Concejal delegada de Participación y transparencia, Atención a la ciudadanía, Turismo y\nPatrimonio Histórico: 38.891,66 € brutos anuales.\n- Concejal delegado de Acción social y políticas inclusivas, Mayores, Juventud y Servicios\nJurídicos: 38.891,66 € brutos anuales.",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-067",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Comisión Informativa de Inclusión Social (titular)",
           "retrievedAt": "2026-07-31T13:13:56.327Z",
           "excerpt": "5. Comisión Informativa de Inclusión Social, Igualdad, Promoción de la Salud y Bienestar animal\nQue englobará las siguientes materias: Políticas inclusivas, derechos sociales, Igualdad, Mayores,\nPromoción de la salud y hábitos saludables, y Bienestar Animal.\nGrupo Municipal Socialista de Riba-roja\nTitular: D. David Barbancho Martínez\nTitular: Dª Raquel Pamblanco Paredes\nTitular: Dª Esther Gómez Laredo.",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-068",
@@ -5610,65 +5732,79 @@
         {
           "id": "src-061",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "retrievedAt": "2026-07-31T12:59:29.943Z",
           "excerpt": "Maria Teresa Pozuelo Martin\nJose Luis Ramos March\nJose Angel Hernandez Carrizosa\nEva Lara Catalá\nRafael Gomez Sanchez\nMaria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-062",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
           "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
           "retrievedAt": "2026-07-31T12:59:29.943Z",
           "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
         },
         {
           "id": "src-063",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Grupo Municipal Socialista (Pla, puesto 10)",
           "retrievedAt": "2026-07-31T12:59:29.943Z",
           "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Socialista de Riba-roja, son:\n1. Don Roberto Pascual Raga Gadea\n2. Doña Maria Teresa Pozuelo Martín\n3. Don José Luis Ramos March\n4. Don José Ángel Hernández Carrizosa\n5. Doña Eva Lara Catalá (Independiente)\n6. Don Rafael Gómez Sánchez\n7. Doña Maria Esther Gómez Laredo\n8. Don José Manuel Vila Oltra (Independiente)\n9. Doña Raquel Pamblanco Paredes\n10. Don Alfredo Plá Giménez\n11. Don David Barbancho Martínez",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-064",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — decreto de delegaciones, punto 10 (Fallas, Fiestas y Tradiciones)",
           "retrievedAt": "2026-07-31T12:59:29.943Z",
           "excerpt": "9. Se delegan en la Concejal Dª Raquel Pamblanco, las competencias que al Alcalde le\ncorresponden en materia de Seguridad y emergencias, Igualdad, Comunicación e información y\nBienestar Animal.\n10. Se delegan en el Concejal D. Alfredo Plá, las competencias que al Alcalde le\ncorresponden en materia de Fallas, Fiestas y Tradiciones.\n11. Se delegan en el Concejal D. David Barbancho las competencias en materia de Acción\nsocial y políticas inclusivas, Mayores, Juventud y Servicios Jurídicos.",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-065",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — composición de la Junta de Gobierno Local",
           "retrievedAt": "2026-07-31T12:59:29.943Z",
           "excerpt": "PRIMERO.- Nombrar miembros de la Junta de Gobierno Local a los siguientes concejales:\nEl Alcalde: D. Roberto-Pascual Raga Gadea.\n1. Dª Mª Teresa Pozuelo Martín.\n2. D. José Luis Ramos March.\n3. D. José Ángel Hernández Carrizosa.\n4. Dª Eva Lara Catalá.\n5. D. Rafael Gómez Sánchez.\n6. Dª José Manuel Vila Oltra.\n7. D. Alfredo Pla Giménez.\nSEGUNDO.- Corresponderá a la Junta de Gobierno, así integrada, y bajo la presidencia de esta Alcaldía:",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-066",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
           "retrievedAt": "2026-07-31T12:59:29.943Z",
           "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-067",
           "kind": "official-doc",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
           "title": "Acta organización 07-07-2023 — Comisión Informativa de Educación, Cultura, Deportes y Fiestas (titular)",
           "retrievedAt": "2026-07-31T12:59:29.943Z",
           "excerpt": "4. Comisión Informativa de Educación, Cultura, Deportes y Fiestas\nQue englobará las siguientes materias: Educación, Cultura, Arte, Patrimonio, Deportes, Fiestas,\nTradiciones, ECA, Fallas, Conservatorio, EEII, Juventud, Infancia, Adolescencia y Memoria histórica.\n32\nComposición:\nGrupo Municipal Socialista de Riba-roja\nTitular: Dª Eva Lara Catalá\nTitular: D. José Manuel Vila Oltra\nTitular: D. David Barbancho Martínez\nTitular: D. Rafael Gómez Sánchez\nTitular: D. Alfredo Plá Giménez",
-          "trust": "high"
+          "trust": "high",
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
         },
         {
           "id": "src-068",
