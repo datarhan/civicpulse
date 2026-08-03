@@ -1,7 +1,9 @@
 import { describe, it, expect } from 'vitest'
-import { readFileSync, existsSync } from 'node:fs'
-import { resolve } from 'node:path'
-import { decide, CURATED } from '../.claude/hooks/guard-curated-writes.mjs'
+import { execFileSync } from 'node:child_process'
+import { readFileSync, existsSync, mkdtempSync, symlinkSync } from 'node:fs'
+import { resolve, join } from 'node:path'
+import { tmpdir } from 'node:os'
+import { decide, decideBash, canonical, CURATED } from '../.claude/hooks/curated-paths.mjs'
 
 // The PreToolUse guard is the only rule in this repo that is enforced rather
 // than merely documented, so it needs the same discipline as an adapter: if it
@@ -9,6 +11,13 @@ import { decide, CURATED } from '../.claude/hooks/guard-curated-writes.mjs'
 
 const never = () => false // pretend the path does not exist yet
 const always = () => true
+const HOOK = resolve(__dirname, '../.claude/hooks/guard-curated-writes.mjs')
+
+/** Drive the hook the way Claude Code does: JSON on stdin, JSON on stdout. */
+const run = (payload, bin = HOOK) => {
+  const out = execFileSync('node', [bin], { input: JSON.stringify(payload), encoding: 'utf8' })
+  return out.trim() ? JSON.parse(out).hookSpecificOutput.permissionDecision : null
+}
 
 describe('guard: curated files', () => {
   it('denies a direct write to every curated snapshot, naming its CLI', () => {
@@ -35,6 +44,83 @@ describe('guard: curated files', () => {
     const listed = [...section.matchAll(/`([a-z-]+\.json)`/g)].map((m) => m[1])
     expect(listed.length).toBeGreaterThan(8)
     expect(listed.filter((f) => !CURATED[f])).toEqual([])
+  })
+})
+
+// Three bypasses a security review found in the first version. Each of these
+// reproduces one; all three passed the guard as originally committed.
+describe('guard: bypasses that used to work', () => {
+  // path-substring-check: `includes('public/data/')` over an unnormalized
+  // string. Every spelling below opens the same file.
+  it('normalizes the path before matching', () => {
+    for (const p of [
+      'public/data/promises.json',
+      './public/data/promises.json',
+      'public/./data/promises.json', // used to ALLOW
+      'public//data/promises.json', // used to ALLOW
+      'public/data/../data/promises.json',
+      'src/../public/data/promises.json',
+    ]) {
+      expect(decide(p, never)?.decision, p).toBe('deny')
+    }
+  })
+
+  it('canonical() collapses the spellings to one', () => {
+    for (const p of ['public/./data/x.json', 'public//data/x.json', './public/data/x.json']) {
+      expect(canonical(p)).toBe('public/data/x.json')
+    }
+  })
+
+  // allowlist-semantic-escape: the settings matcher covered Write|Edit|
+  // NotebookEdit, so a shell redirect achieved the same edit untouched — and is
+  // the obvious next move once a Write is denied.
+  it('catches shell writes to a curated file', () => {
+    for (const cmd of [
+      'echo "{}" > public/data/promises.json',
+      'cat x.json >> public/data/pleno-votes.json',
+      "sed -i '' s/a/b/ public/data/sindic.json",
+      'cp /tmp/x.json public/data/promises.json',
+      'jq . x.json | tee public/data/promises.json',
+    ]) {
+      expect(decideBash(cmd)?.decision, cmd).toBe('ask')
+    }
+  })
+
+  it('leaves reads and the sanctioned CLIs alone', () => {
+    for (const cmd of [
+      'jq . public/data/promises.json',
+      'cat public/data/promises.json | head',
+      'npm run reply -- p-1 PSOE "una cita verbatim suficientemente larga"',
+      'git diff public/data/promises.json',
+      'npm test',
+      // cp/mv write only their LAST argument — this one reads it out to a
+      // backup, which is exactly what you want to stay easy.
+      'cp public/data/promises.json /tmp/backup.json',
+    ]) {
+      expect(decideBash(cmd), cmd).toBeNull()
+    }
+  })
+
+  // parser-differential: main() only ran when argv[1] ended in the script's own
+  // filename, so a symlink or renamed copy allowed everything AND printed
+  // nothing — indistinguishable from a pass.
+  it('still guards when invoked through a symlink', () => {
+    const link = join(mkdtempSync(join(tmpdir(), 'cp-guard-')), 'renamed.mjs')
+    symlinkSync(HOOK, link)
+    const payload = { tool_name: 'Write', tool_input: { file_path: 'public/data/promises.json' } }
+    expect(run(payload, link)).toBe('deny')
+  })
+
+  it('guards end-to-end over the real stdin/stdout contract', () => {
+    expect(
+      run({ tool_name: 'Write', tool_input: { file_path: 'public/data/promises.json' } }),
+    ).toBe('deny')
+    expect(
+      run({ tool_name: 'Bash', tool_input: { command: 'echo x > public/data/sindic.json' } }),
+    ).toBe('ask')
+    expect(run({ tool_name: 'Read', tool_input: { file_path: 'public/data/promises.json' } })).toBe(
+      null,
+    )
   })
 })
 
@@ -66,6 +152,17 @@ describe('guard: published surface', () => {
     // these were missing, every nightly rewrite would prompt.
     for (const f of ['promise-suggestions.json', 'place-suggestions.json']) {
       expect(existsSync(resolve(__dirname, `../public/data/${f}`)), f).toBe(true)
+    }
+  })
+})
+
+describe('guard: the settings matcher must reach every write path', () => {
+  // A perfect decide() protects nothing if the tool never routes through it.
+  it('registers the file-writing tools and Bash', () => {
+    const cfg = JSON.parse(readFileSync(resolve(__dirname, '../.claude/settings.json'), 'utf8'))
+    const matcher = cfg.hooks.PreToolUse[0].matcher
+    for (const tool of ['Write', 'Edit', 'MultiEdit', 'NotebookEdit', 'Bash']) {
+      expect(new RegExp(`^(${matcher})$`).test(tool), tool).toBe(true)
     }
   })
 })
