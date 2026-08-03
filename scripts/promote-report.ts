@@ -36,6 +36,7 @@ import {
 import { pruneUncitedSources } from '../src/scraper/journalist-agent/builders'
 import { blocks, checkCitations, type ReportLike } from '../src/scraper/citation-check'
 import { classifyUrl, type UrlVerdict } from './lib/doc-fetch'
+import { publishableWarnings, triageWarnings } from '../src/scraper/journalist/warning-triage'
 
 const ASSIGNMENTS = resolve('public/data/journalist-assignments.json')
 const DRAFTS = resolve('editorial/journalist-drafts/journalist-reports-suggestions.json')
@@ -211,9 +212,33 @@ async function main(): Promise<void> {
         `(${draft.sources.length}→${citedSources.length}); full trail stays in the draft\n`,
     )
   }
+  // `warnings` is PUBLISHED — Navigation.jsx renders it on the report page —
+  // and stage 4 emits some that are deterministically false. On this very
+  // draft family it claimed five cited source ids were "absent from the
+  // provided sources"; all five were present. Withholding one is a downgrade
+  // (removing an unsupported machine-written claim), which is always allowed;
+  // adding one would not be. Nothing is dropped silently: every withheld
+  // warning is printed with the reason it was refuted.
+  const triaged = triageWarnings({
+    warnings: draft.warnings,
+    sources: citedSources,
+    sections: draft.sections,
+  })
+  const withheld = triaged.filter((t) => t.verdict === 'refuted')
+  if (withheld.length > 0) {
+    process.stdout.write(
+      `[promote-report] ${withheld.length} warning(s) WITHHELD as deterministically false ` +
+        `(not published; the draft keeps them):\n`,
+    )
+    for (const w of withheld) {
+      process.stdout.write(`  · ${w.warning}\n      → ${w.reason}\n`)
+    }
+  }
+
   const report: JournalistReport = {
     ...(base as Omit<JournalistReportDraft, 'requiresHumanApproval'>),
     sources: citedSources,
+    warnings: publishableWarnings(triaged),
     promotedBy: opts.curator,
     promotedAt: new Date().toISOString(),
     ...(opts.curatorNotes ? { curatorNotes: opts.curatorNotes } : {}),

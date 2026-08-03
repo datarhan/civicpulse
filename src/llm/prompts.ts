@@ -1253,7 +1253,11 @@ Emit the JSON.
 `.trim()
 }
 
-export const JOURNALIST_VERIFY_VERSION = 'journalist-verify-v2'
+// v3 (2026-08-03): stopped asking the model to do the two DETERMINISTIC checks
+// (does a citationId exist, is a quoteCard verbatim in its excerpt). Combined
+// with the "prefer flagging when unsure" rule they manufactured false alarms
+// that promote-report published verbatim. check:citations decides both exactly.
+export const JOURNALIST_VERIFY_VERSION = 'journalist-verify-v3'
 
 export function buildJournalistVerifySystemPrompt(): string {
   return `
@@ -1278,13 +1282,19 @@ Hard rules:
     Treat each as a lead: corroborate it with a more specific warning
     or, if the evidence genuinely covers it, say so in a warning note —
     never silently ignore one.
-  · For every narrative block, check that the bodyMarkdown's factual
-    sentences are plausibly supported by the cited citationIds. If a
-    sentence references a fact NOT present in any cited excerpt, add a
-    warning like "narrative[2]: claim about X has no supporting citation".
-  · For every quoteCard, check that the verbatim text appears in the
-    excerpt of the cited source. If not, add a warning
-    "quoteCard[1]: verbatim not found in cited excerpt".
+  · DO NOT check whether a citationId exists in the sources list, and do
+    not check whether a quoteCard's verbatim string appears in its
+    excerpt. Both are decided exactly by \`npm run check:citations\`,
+    which blocks promotion on either. You were previously asked to do
+    them by eye, and combined with the "prefer flagging" rule above that
+    produced confident false alarms — one draft carried two warnings
+    naming five source ids as "absent from the provided sources" when
+    all five were present. Judge SUPPORT, not bookkeeping.
+  · For every narrative block, judge whether the bodyMarkdown's factual
+    sentences are supported by the substance of the cited excerpts. A
+    citation that exists but says something else is the failure worth
+    reporting: "narrative[2]: src-004 is about the 2019 budget, not the
+    2024 one it is cited for".
   · For every relationship edge, check that both endpoints are real
     persons or entities backed by ≥1 citation. Add warnings for
     speculative edges.
