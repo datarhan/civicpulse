@@ -256,7 +256,12 @@ describe('scraper/promises — validatePromisesSnapshot', () => {
           status: 'documentada',
           evidence: [],
           createdAt: '2026-07-02',
-          autoPublished: { at: '2026-07-02T06:00:00.000Z', by: 'auto-curation-v1', confidence: 0.83, reviewState: 'pending-review' },
+          autoPublished: {
+            at: '2026-07-02T06:00:00.000Z',
+            by: 'auto-curation-v1',
+            confidence: 0.83,
+            reviewState: 'pending-review',
+          },
         },
       ],
     }
@@ -288,7 +293,12 @@ describe('scraper/promises — validatePromisesSnapshot', () => {
           status: 'documentada',
           evidence: [],
           createdAt: '2026-07-02',
-          autoPublished: { at: '2026-07-02T06:00:00.000Z', by: 'auto-curation-v1', confidence: 0.83, reviewState: 'live' },
+          autoPublished: {
+            at: '2026-07-02T06:00:00.000Z',
+            by: 'auto-curation-v1',
+            confidence: 0.83,
+            reviewState: 'live',
+          },
         },
       ],
     }
@@ -332,5 +342,78 @@ describe('scraper/promises — validatePromisesSnapshot', () => {
       ],
     }
     expect(() => validatePromisesSnapshot(JSON.stringify(ok))).not.toThrow()
+  })
+})
+
+describe('promises — a promise may not cite us as its own source', () => {
+  /**
+   * `psoe-alumbrado-led-680k` was published on /promesas with a «cita» nobody
+   * uttered — a sentence we wrote ourselves — and `source.url` pointing at our
+   * own `tenders.json`. We cited ourselves as the evidence for an accusation of
+   * favouritism against a named party, and the schema was satisfied because it
+   * only asked for «≥20 chars + URL + publisher». Retracted in c66cf93.
+   *
+   * Nothing stopped the next one. This does: a primary source has to be
+   * somebody else's document. Our own snapshots are what a claim is CHECKED
+   * against, never what it RESTS on.
+   */
+  const base = {
+    version: '1.0',
+    generatedAt: '2026-04-20',
+    frozenUntil: null,
+    legalNotice: 'x'.repeat(100),
+    contactUrl: 'https://x.test/issues',
+    methodologyUrl: '/metodologia',
+  }
+  const withSource = (url: string) => ({
+    ...base,
+    items: [
+      {
+        id: 'p-1',
+        party: 'PSOE',
+        title: 'Una promesa cualquiera',
+        quote: 'una cita suficientemente larga para el esquema',
+        source: { url, publisher: 'Test' },
+        madeAt: '2025-06-01',
+        topic: 'fiscal',
+        kind: 'anuncio-gobierno',
+        status: 'documentada',
+        evidence: [],
+        createdAt: '2025-06-01',
+      },
+    ],
+  })
+
+  it.each([
+    'https://civicpulse.es/data/tenders.json',
+    'https://civicpulse.es/promesas',
+    'http://www.civicpulse.es/data/budget.json',
+    'https://CIVICPULSE.ES/data/x.json',
+  ])('rejects %s as a primary source', (url) => {
+    expect(() => validatePromisesSnapshot(JSON.stringify(withSource(url)))).toThrow(
+      /no puede citarse a sí mismo|self/i,
+    )
+  })
+
+  it.each([
+    'https://www.levante-emv.com/una-noticia',
+    'https://ribalicita.ribarroja.es/visualizaciones/contratos',
+    'https://www.ribarroja.es/es/plenos/2026',
+    'https://contrataciondelestado.gob.es/x',
+  ])('still accepts a real third-party source: %s', (url) => {
+    expect(() => validatePromisesSnapshot(JSON.stringify(withSource(url)))).not.toThrow()
+  })
+
+  it('does not reject a domain that merely contains our name', () => {
+    // `notcivicpulse.es.example.com` is somebody else's host.
+    expect(() =>
+      validatePromisesSnapshot(JSON.stringify(withSource('https://notcivicpulse.example.com/x'))),
+    ).not.toThrow()
+  })
+
+  it('the shipped snapshot passes — this guard is not retroactively broken', () => {
+    // c66cf93 removed the only offenders; if this ever fails, something
+    // re-introduced a self-citation rather than the guard being wrong.
+    expect(() => validatePromisesSnapshot(readFileSync(SNAPSHOT, 'utf8'))).not.toThrow()
   })
 })

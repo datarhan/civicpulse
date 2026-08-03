@@ -184,6 +184,40 @@ function assertUrl(v: unknown, name: string): asserts v is string {
   }
 }
 
+/** Our own published surfaces. Matches the host, not the string: a URL merely
+ *  containing our name belongs to somebody else. */
+const OWN_HOSTS = /^(?:www\.)?civicpulse\.es$/i
+
+/**
+ * A promise may not rest on us.
+ *
+ * `psoe-alumbrado-led-680k` shipped on /promesas with a «cita» nobody uttered —
+ * a sentence we had written — and `source.url` pointing at our own
+ * `tenders.json`, making CivicPulse the evidence for an accusation of
+ * favouritism against a named party. The schema accepted it because it asked
+ * only for «≥20 characters + URL + publisher», and a check that cannot tell a
+ * quote from our own prose is not checking anything (c66cf93, 2026-08-02).
+ *
+ * Our snapshots are what a claim is CHECKED AGAINST, never what it RESTS ON.
+ * Applied to `source.url` only: an `evidence[].url` pointing at our own data is
+ * a legitimate cross-reference, and the contrast step is built on exactly that.
+ */
+function assertNotSelfCited(url: string, name: string): void {
+  let host: string
+  try {
+    host = new URL(url).hostname
+  } catch {
+    return // shape is assertUrl's job, not ours
+  }
+  if (OWN_HOSTS.test(host)) {
+    throw new ValidationError(
+      `${name} no puede citarse a sí mismo (${host}): una promesa necesita una fuente primaria ` +
+        `de un tercero. Nuestros propios datos sirven para CONTRASTAR la afirmación, no para ` +
+        `sostenerla — ver c66cf93.`,
+    )
+  }
+}
+
 function validateEvidence(e: unknown, idx: number): EvidenceEntry {
   if (!e || typeof e !== 'object') throw new ValidationError(`evidence[${idx}] must be object`)
   const r = e as Record<string, unknown>
@@ -212,6 +246,7 @@ function validatePromise(p: unknown, idx: number): Promise {
     throw new ValidationError(`items[${idx}].source missing`)
   const src = r.source as Record<string, unknown>
   assertUrl(src.url, `items[${idx}].source.url`)
+  assertNotSelfCited(src.url, `items[${idx}].source.url`)
   assertString(src.publisher, `items[${idx}].source.publisher`, 1, 100)
   assertIsoDate(r.madeAt, `items[${idx}].madeAt`)
   assertEnum(r.topic, ALLOWED_TOPICS, `items[${idx}].topic`)
