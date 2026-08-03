@@ -50,3 +50,4 @@ public/data/pleno-claims-regrounding-flags.json
 
 # Alert de-duplication state for check:transcription-health (local, per-machine).
 .transcription-health-state.json
+.health-monitor-state.json

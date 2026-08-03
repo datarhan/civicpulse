@@ -157,7 +157,8 @@
     "push-curation-queue": "npx tsx scripts/push-curation-queue.ts",
     "check:json": "npx tsx scripts/check-json.ts",
     "repoint-finding-claims": "npx tsx scripts/repoint-finding-claims.ts",
-    "check:transcription-health": "npx tsx scripts/check-transcription-health.ts"
+    "check:transcription-health": "npx tsx scripts/check-transcription-health.ts",
+    "monitor:health": "npx tsx scripts/monitor-health.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

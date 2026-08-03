@@ -135,12 +135,41 @@ is_best_effort() {
 
 failures=()
 soft_failures=()
+# Steps deliberately not attempted here (e.g. LLM work with no backend). Kept
+# apart from failures: "never attempted" and "tried and failed" are different
+# facts, and folding them together is how a run reports work it never did.
+skipped=()
+
+# Steps that need an LLM. CI has no backend by design — no API keys, and ollama
+# is out of every fallback chain — so these cannot do their work there. Running
+# them anyway is not merely wasteful: they still WRITE their output file, so a
+# runner that extracted nothing overwrites a snapshot a curator had regenerated
+# locally. `pleno-votes-suggestions.json` collided that way twice in two days,
+# once landing literal conflict markers in main. Skip rather than clobber.
+LLM_STEPS=(extract:all-pleno-votes)
+needs_llm() {
+  local x
+  for x in "${LLM_STEPS[@]}"; do [ "$x" = "$1" ] && return 0; done
+  return 1
+}
+has_llm_backend() {
+  [ -n "${OPENAI_API_KEY:-}" ] || [ -n "${ANTHROPIC_API_KEY:-}" ] || \
+  [ -n "${GEMINI_API_KEY:-}" ] || command -v claude >/dev/null 2>&1 || \
+  command -v agy >/dev/null 2>&1
+}
 
 for s in "${SCRAPERS[@]}"; do
   echo ""
   echo "================================================================"
   echo "[scrape-all] running: $s"
   echo "================================================================"
+  if needs_llm "$s" && ! has_llm_backend; then
+    echo "[scrape-all] SKIPPED: $s — needs an LLM backend and none is available here."
+    echo "[scrape-all]   It runs curator-side (hallazgos-pipeline.sh). Skipping so this"
+    echo "[scrape-all]   run does not overwrite the snapshot with an empty result."
+    skipped+=("$s")
+    continue
+  fi
   if npm run "$s"; then
     echo "[scrape-all] ok: $s"
   else
@@ -314,6 +343,12 @@ echo ""
 echo "================================================================"
 echo "[scrape-all] summary"
 echo "================================================================"
+if [ ${#skipped[@]} -gt 0 ]; then
+  echo "[scrape-all] ${#skipped[@]} paso(s) NO intentado(s) (sin backend disponible aquí):"
+  for f in "${skipped[@]}"; do
+    echo "  - $f"
+  done
+fi
 if [ ${#soft_failures[@]} -gt 0 ]; then
   echo "[scrape-all] ${#soft_failures[@]} best-effort soft-failure(s) (not fatal):"
   for f in "${soft_failures[@]}"; do
