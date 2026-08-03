@@ -8,8 +8,8 @@
  * canonical partyColor() (identical values).
  *
  *   blocks/Masthead.jsx         EditorialMasthead · QuejaCTA
- *   blocks/ReportajeBlockD.jsx  ReportajeBlockD (the lead)
  *   blocks/AlcaldeBox.jsx       AlcaldeBox (6 hooks · libel-aware copy)
+ *   blocks/ReportajeBlockD.jsx  ReportajeBlockD
  *   blocks/GovernmentBlocks.jsx CoalitionRing · PromesasBlockD · DepartamentosBlockD
  *   blocks/FeedBlocks.jsx       PressBlockD · LiveContracts · ParticipaBlockD
  *
@@ -56,8 +56,8 @@ function EditorialColumn({ now }) {
     >
       <EditorialMasthead now={now} />
       <QuejaCTA />
-      <ReportajeBlockD />
       <AlcaldeBox />
+      <ReportajeBlockD />
       <CoalitionRing />
       <PromesasBlockD />
       <DepartamentosBlockD />
