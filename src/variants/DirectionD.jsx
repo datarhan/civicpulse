@@ -3,7 +3,7 @@ import LiveTicker from '../components/LiveTicker'
 import { RIBA_ROJA_CENTER, PALETTE, SANS, useClock } from './direction-d/tokens'
 import { Header } from './direction-d/Topbar'
 import { LeftRail } from './direction-d/LeftRail'
-import { EventTicker, MapAttribution } from './direction-d/MapOverlays'
+import { EventTicker } from './direction-d/MapOverlays'
 import { EditorialColumn } from './direction-d/EditorialColumn'
 import { KpiStrip } from './direction-d/KpiStrip'
 import { useT } from '../i18n'
@@ -32,7 +32,7 @@ export default function DirectionD() {
 
         Colours are interpolated from PALETTE so there is exactly one source of
         truth; a hard-coded copy in index.css would drift the first time a token
-        moved. (tests/landing-responsive.test.ts pins the interpolation.)
+        moved. (tests/e2e/landing-responsive.spec.ts pins the behaviour.)
 
         WHY the breakpoint exists: on desktop this is a fixed, full-viewport app
         shell — map and editorial column side by side, each scrolling
@@ -81,8 +81,8 @@ export default function DirectionD() {
         .d-kpi { height: 76px; }
         .d-kpi-cell { flex: 1; min-width: 0; }
         .d-main { flex: 1; display: flex; min-width: 0; min-height: 0; }
-        /* Clips the absolutely-positioned overlays (ticker marquee, event strip,
-           attribution) to the pane. Without it the marquee — two chip lists
+        /* Clips the absolutely-positioned overlays (ticker marquee, event
+           strip) to the pane. Without it the marquee — two chip lists
            back to back, deliberately wider than the screen — escapes and drags
            the document sideways once the shell is no longer a clipping box. */
         .d-mappane { flex: 1; position: relative; min-width: 0; overflow: hidden; }
@@ -153,7 +153,6 @@ export default function DirectionD() {
             <StylizedMap center={RIBA_ROJA_CENTER} />
             <LiveTicker />
             <EventTicker />
-            <MapAttribution />
           </div>
 
           <EditorialColumn now={now} />
