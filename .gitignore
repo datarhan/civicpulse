@@ -5,11 +5,14 @@ dist/
 .DS_Store
 *.log
 .vercel
-# .claude is local (settings, locks) EXCEPT skills, which are shared team
-# procedures checked into the repo (a directory-pattern ignore would block
-# the negation, hence the /* form).
+# .claude is local (locks, per-machine settings) EXCEPT skills, hooks and the
+# shared settings.json — those are team procedure and enforcement, checked into
+# the repo (a directory-pattern ignore would block the negation, hence /*).
+# settings.local.json stays ignored: that one is per-machine.
 .claude/*
 !.claude/skills/
+!.claude/hooks/
+!.claude/settings.json
 playwright-report/
 test-results/
 .llm-cache/

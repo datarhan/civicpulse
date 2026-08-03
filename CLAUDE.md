@@ -207,6 +207,12 @@ Five surfaces make claims about named elected officials: `/promesas`,
 any change to them as legally material. The rules below are encoded in schema
 validators and CLIs — if you find yourself working around one, stop.
 
+The first two are also **enforced, not just documented**:
+`.claude/hooks/guard-curated-writes.mjs` denies a direct write to a curated file
+(naming the CLI that owns it) and asks before a new draft-shaped file appears
+under `public/`. Both had already been broken in production, which is the bar
+for moving a rule out of this file and into a hook.
+
 **Curated files are never written by automation.** `promises.json`,
 `pleno-votes.json`, `pleno-findings.json`, `journalist-reports.json`,
 `quejas-responses.json`, `sindic.json`, `dedicaciones.json`, `plantilla.json`,
