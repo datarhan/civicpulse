@@ -11,6 +11,7 @@
 import { readFileSync } from 'node:fs'
 import { decide, decideBash } from './curated-paths.mjs'
 import { decideIrreplaceableBash } from './irreplaceable-paths.mjs'
+import { decideMeasureMedia } from './measure-media.mjs'
 
 let payload = {}
 try {
@@ -30,7 +31,9 @@ const input = payload.tool_input || {}
 // actionable answer when both could fire.
 const verdict =
   tool === 'Bash'
-    ? (decideBash(input.command) ?? decideIrreplaceableBash(input.command))
+    ? (decideBash(input.command) ??
+      decideIrreplaceableBash(input.command) ??
+      decideMeasureMedia(input.command))
     : ['Write', 'Edit', 'NotebookEdit', 'MultiEdit'].includes(tool)
       ? decide(input.file_path ?? input.notebook_path)
       : null
