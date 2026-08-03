@@ -47,3 +47,6 @@ public/data/pleno-claims-regrounding-flags.json
 # `git ls-files` — so ignoring the pattern is safe and stops the next one.
 *\ 2
 *\ 2.*
+
+# Alert de-duplication state for check:transcription-health (local, per-machine).
+.transcription-health-state.json
