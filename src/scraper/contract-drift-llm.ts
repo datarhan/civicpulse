@@ -29,6 +29,8 @@
  * a backend.
  */
 
+import { sha256Short } from './hash'
+
 export interface ContractDriftInput {
   /** Page identifier, e.g. `/metodologia`. */
   page: string
@@ -48,6 +50,33 @@ export interface DriftFlag {
 }
 
 export type DriftCaller = (input: ContractDriftInput) => Promise<DriftFlag[] | null>
+
+/**
+ * What `callLLM` should key its cache on for this check.
+ *
+ * `callLLM`'s cache key is (backend, model, promptVersion, schema, **input**) —
+ * the prompts themselves are NOT in it. So whatever goes here decides when the
+ * question gets asked again, and the CLI originally passed `{ page }`: the key
+ * was the route name. The first run cached `flags: []` for both pages; every
+ * later run would have replayed that in milliseconds, across any number of
+ * pipeline commits, and reported it as a review.
+ *
+ * That failure is invisible to `DriftResult.consulted`, which only knows whether
+ * an array came back — a cache hit looks exactly like an answer. The fix has to
+ * be here, in what the key is made of.
+ *
+ * Content-addressed on the two things that can change the answer: the page prose
+ * and the commit list, message bodies included. Identical inputs still hit the
+ * cache, which is the only case where a replay is the same as an answer.
+ */
+export function driftCacheInput(input: ContractDriftInput): { page: string; content: string } {
+  return {
+    page: input.page,
+    content: sha256Short(
+      JSON.stringify([input.prose, input.changes.map((c) => [c.sha, c.subject, c.body ?? ''])]),
+    ),
+  }
+}
 
 /** Loose match so trivial whitespace/quote differences do not drop a real flag. */
 function normalise(s: string): string {

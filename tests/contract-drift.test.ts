@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import {
+  driftCacheInput,
   findContractDrift,
   findContractDriftDetailed,
   groundFlags,
@@ -133,5 +134,45 @@ describe('contract-drift — a discarded flag must not look like a current contr
     // See the do-not-loosen block in tests/reader-review.test.ts.
     const almost = 'Los hallazgos editoriales están curados por una persona incompetente'
     expect(partitionFlags([{ sentence: almost, sha: 'abc1234', why: 'x' }], input).kept).toEqual([])
+  })
+})
+
+describe('contract-drift — the cache must not answer for the model', () => {
+  // Found 2026-08-03 before the second real run. `callLLM` keys its cache on
+  // (backend, model, promptVersion, schema, input), and the CLI passed
+  // `input: { page }`. So the key was the ROUTE NAME. Both entries on disk held
+  // `flags: []` from the first run; re-running after eleven pipeline commits and
+  // an edit to /aviso-legal would have replayed those two empty verdicts in
+  // milliseconds and printed «2 revisada(s) · 0 aviso(s)».
+  //
+  // Worse than a plain stale read: `consulted` would be TRUE, because the cache
+  // returns a non-null array. The three-state honesty layer in DriftResult
+  // cannot see this — a cache hit is indistinguishable from an answer.
+  const other = (o: Partial<ContractDriftInput>) => driftCacheInput({ ...input, ...o })
+
+  it('is stable when nothing changed — the cache is still worth having', () => {
+    expect(driftCacheInput(input)).toEqual(driftCacheInput({ ...input }))
+  })
+
+  it('changes when the page prose changes', () => {
+    expect(other({ prose: input.prose + ' Una frase nueva.' })).not.toEqual(driftCacheInput(input))
+  })
+
+  it('changes when a new commit lands — the whole point of the check', () => {
+    const changes = [...input.changes, { sha: '9999999', subject: 'feat: algo nuevo' }]
+    expect(other({ changes })).not.toEqual(driftCacheInput(input))
+  })
+
+  it('changes when a commit message changes, not just its sha', () => {
+    const changes = [{ ...input.changes[0], subject: 'otro asunto' }, input.changes[1]]
+    expect(other({ changes })).not.toEqual(driftCacheInput(input))
+  })
+
+  it('differs between pages', () => {
+    expect(other({ page: '/aviso-legal' })).not.toEqual(driftCacheInput(input))
+  })
+
+  it('keeps the route legible, so a cache entry can be traced to a page', () => {
+    expect(driftCacheInput(input).page).toBe('/metodologia')
   })
 })

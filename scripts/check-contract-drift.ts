@@ -32,6 +32,7 @@
 import { execFileSync } from 'node:child_process'
 import { chromium } from '@playwright/test'
 import {
+  driftCacheInput,
   findContractDriftDetailed,
   type ContractDriftInput,
   type DriftFlag,
@@ -149,7 +150,10 @@ async function main() {
           userPrompt: buildContractDriftUserPrompt(i),
           schema: ContractDriftSchema,
           promptVersion: CONTRACT_DRIFT_PROMPT_VERSION,
-          input: { page: i.page },
+          // NOT `{ page: i.page }` — that keyed the cache on the route name, so
+          // the second run replayed the first run's verdict forever. See
+          // `driftCacheInput`.
+          input: driftCacheInput(i),
         })
         return r ? r.flags : null
       },
