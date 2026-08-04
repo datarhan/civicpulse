@@ -923,3 +923,36 @@ describe('area-fit — the real review queue, as the model actually filled it', 
     expect(checked).toBeGreaterThan(0)
   })
 })
+
+describe('area-fit — the published snapshot’s backing is MEASURED, not assumed', () => {
+  const snap = JSON.parse(
+    readFileSync(join(__dirname, '..', 'public', 'data', 'area-fit.json'), 'utf8'),
+  ) as { rows: AreaFitRow[] }
+  const assessments = snap.rows.flatMap((r) => [r.formacion, r.experiencia])
+
+  it('every assessment that cites something carries a classified respaldo', () => {
+    const citing = assessments.filter((a) => a.evidence.length > 0)
+    // ASSERT THE CLASSIFIER RAN. "0 corroboradas" and "nobody ever populated the
+    // field" are indistinguishable from outside — this line is the difference,
+    // and it is the whole reason the test exists (DATA_INTEGRITY §2).
+    expect(citing.length).toBeGreaterThan(0)
+    expect(citing.filter((a) => a.respaldo === undefined)).toEqual([])
+    expect(citing.filter((a) => a.respaldo === 'sin-clasificar')).toEqual([])
+  })
+
+  it('an assessment that cites nothing carries no respaldo at all', () => {
+    // The complement, and not a formality: `sin-clasificar` on these would be
+    // false (there is no citation whose backing could be unknown) AND would make
+    // the whole surface unpublishable, since the published validator refuses it.
+    // Absent here means "there is nothing to describe", never "we did not look".
+    const uncited = assessments.filter((a) => a.evidence.length === 0)
+    expect(uncited.length).toBeGreaterThan(0)
+    expect(uncited.filter((a) => 'respaldo' in a)).toEqual([])
+  })
+
+  it('publishes no respaldo the enum does not contain', () => {
+    for (const a of assessments) {
+      if (a.respaldo !== undefined) expect(RESPALDO_VALUES).toContain(a.respaldo)
+    }
+  })
+})

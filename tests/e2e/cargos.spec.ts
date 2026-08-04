@@ -54,12 +54,39 @@ test.describe('Cargos (/cargos)', () => {
     await expect(page.getByText(/no hay área con la que comparar/i).first()).toBeVisible()
   })
 
+  test('the encaje block states its backing once per card, never as a repeated badge', async ({
+    page,
+  }) => {
+    // Against the REAL snapshot, not a stub: the rule under test is about how
+    // many times a thing renders, and a one-row stub cannot fail it.
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText('Encaje declarado').first()).toBeVisible({ timeout: 8000 })
+
+    const body = await page.locator('body').innerText()
+    const count = (re: RegExp) => (body.match(re) ?? []).length
+    const cards = count(/ENCAJE DECLARADO/g)
+    const sentences = count(/lo declara la propia persona/g)
+
+    // It renders at all (an assertion that measures nothing is the failure mode
+    // this repo keeps hitting), and never more than once per card.
+    expect(cards).toBeGreaterThan(0)
+    expect(sentences).toBeGreaterThan(0)
+    expect(sentences).toBeLessThanOrEqual(cards)
+    // And NOT as a mark beside every chip. While all the assessments agree —
+    // they all do today — the per-item mark must not appear anywhere at all.
+    // Matched as a bare word rather than a whole line: the mark is a flex item
+    // and how innerText breaks lines around it is a layout detail, so anchoring
+    // to one would make this assertion depend on styling to fail. The one-line
+    // sentence above never contains the word.
+    expect(body).not.toMatch(/\bautodeclarada\b/)
+  })
+
   test('the populated encaje block names áreas and renders no score', async ({ page }) => {
-    // The published snapshot ships with zero rows (each names a living person
-    // and waits on a curator signature), so asserting "no percentage on the
-    // page" against it would pass by measuring an empty block — the exact
-    // green-but-vacuous shape DATA_INTEGRITY warns about. Stub the snapshot so
-    // the POPULATED render is what gets checked.
+    // Stubbed on purpose: the published rows move with every promotion, so
+    // pinning "no percentage anywhere" to them would drift into measuring
+    // whatever happens to be there — including, at the limit, an empty block,
+    // the green-but-vacuous shape DATA_INTEGRITY warns about. The stub fixes a
+    // known POPULATED shape so the assertion always has something to bite on.
     await page.route('**/data/area-fit.json', (route) =>
       route.fulfill({
         contentType: 'application/json',

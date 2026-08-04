@@ -458,6 +458,18 @@ export default function Metodologia() {
               diferentes.
             </li>
             <li>
+              <strong>Se dice de qué se sostiene lo que se afirma.</strong> Cada cita que respalda
+              una relación se clasifica por quién la publicó: si sale del CV que la propia persona
+              declara, si la corrobora una fuente independiente, o si hay una discrepancia
+              documentada. Mientras todas las evaluaciones de una ficha coinciden, se dice{' '}
+              <strong>una sola vez</strong> y no como un distintivo repetido junto a cada elemento —
+              una marca idéntica en todos no distingue nada. En cuanto divergen, se dice elemento
+              por elemento. «Autodeclarada» describe la fuente, no a la persona, y no es un
+              reproche: declarar el propio currículo es lo que la ley pide. Cuando una advertencia
+              de la biografía recae sobre uno de estos ejes se publica con su texto literal, firmada
+              una a una; ninguna se publica sola.
+            </li>
+            <li>
               <strong>No mide gestión.</strong> Que la formación de alguien coincida con su área no
               dice nada sobre cómo la dirige, y que no coincida tampoco. Lo que sí se puede medir de
               su gestión —votaciones, promesas con plazo, contratación, quejas— está en{' '}

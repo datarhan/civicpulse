@@ -60,6 +60,46 @@ export function overallValue(rows, field) {
   return 'sin-relacion-declarada'
 }
 
+/**
+ * The single backing value shared by a card's assessments, or null when they
+ * disagree — or when nothing is cited at all.
+ *
+ * Returning null on divergence is what tells the UI to fall back to per-item
+ * marks. While every assessment agrees, the surface states the backing ONCE: a
+ * badge repeated identically beside every assessment distinguishes nothing,
+ * which is exactly how the `cargoPublicoPrevio` chip died (see
+ * src/scraper/area-fit.ts). Every published respaldo currently reads
+ * `autodeclarada` — that uniformity IS the finding, and one sentence states it
+ * better than a wall of identical marks. No count here on purpose: it moves with
+ * every promotion, and a stale number outlives the measurement behind it.
+ *
+ * An assessment that cites nothing carries no respaldo, so it contributes no
+ * value here: "no citation" is not a third opinion about backing, and letting it
+ * count would report divergence where there is only silence. When NOTHING cites
+ * anything the result is null and the caller renders no backing line at all —
+ * there is no citation whose backing could be described.
+ *
+ * `fields` narrows the question to one axis, for the divergent branch: the card
+ * aggregates several áreas per field, so it must be able to ask "do all the
+ * formación assessments agree?" without also folding in experiencia.
+ */
+export function sharedRespaldo(rows, fields = ['formacion', 'experiencia']) {
+  const values = (rows || []).flatMap((r) => fields.map((f) => r?.[f]?.respaldo)).filter(Boolean)
+  if (!values.length) return null
+  return values.every((v) => v === values[0]) ? values[0] : null
+}
+
+/**
+ * Signed warning mappings for one official, optionally on one axis.
+ *
+ * Reads only what a curator signed: drafts live in the gitignored queue and
+ * never reach this data. Zero signed avisos is the normal state and must render
+ * as nothing, never as an empty box implying something is missing.
+ */
+export function avisosForSlug(data, slug, eje) {
+  return (data?.avisos || []).filter((a) => a.officialSlug === slug && (!eje || a.eje === eje))
+}
+
 /** Corporation-wide counts for the /departamentos aggregate. Names nobody. */
 export function fitAggregate(data) {
   const rows = data?.rows || []

@@ -338,7 +338,23 @@ const CATALOGUE = {
     'encaje.value.relacionada': 'relacionada',
     'encaje.value.sin-relacion-declarada': 'sin relación declarada',
     'encaje.value.no-consta': 'no consta',
-    'encaje.card.source': 'Según su CV publicado.',
+    // De qué se sostiene lo anterior. Una frase, no un distintivo repetido:
+    // mientras todas las evaluaciones de la ficha coinciden se dice una vez.
+    // «sin-clasificar» no tiene texto a propósito: el validador publicado lo
+    // rechaza, y darle copia sería preparar sitio para lo que no debe salir.
+    'encaje.respaldo.autodeclarada':
+      'Todo lo anterior lo declara la propia persona; ninguna fuente independiente lo corrobora.',
+    'encaje.respaldo.corroborada': 'Corroborado por una fuente independiente.',
+    'encaje.respaldo.discrepancia-documentada': 'Hay una discrepancia documentada sin resolver.',
+    'encaje.respaldo.mark.autodeclarada': 'autodeclarada',
+    'encaje.respaldo.mark.corroborada': 'corroborada',
+    'encaje.respaldo.mark.discrepancia-documentada': 'discrepancia documentada',
+    'encaje.aviso.label': 'Advertencia de la biografía',
+    'encaje.aviso.contradice': 'contradicción sin resolver',
+    'encaje.aviso.corrobora': 'otra fuente lo confirma',
+    'encaje.aviso.matiza': 'matiz',
+    'encaje.aviso.area':
+      'Sus áreas delegadas han cambiado durante el mandato; esta ficha puede referirse a un área que ya no lleva.',
     'encaje.card.gaps': 'qué falta',
     'encaje.card.law': 'qué exige la ley',
     'encaje.sinDelegacion.label': 'Sin delegación de área',
@@ -746,7 +762,20 @@ const CATALOGUE = {
     'encaje.value.relacionada': 'relacionada',
     'encaje.value.sin-relacion-declarada': 'sense relació declarada',
     'encaje.value.no-consta': 'no consta',
-    'encaje.card.source': 'Segons el seu CV publicat.',
+    'encaje.respaldo.autodeclarada':
+      'Tot això ho declara la mateixa persona; cap font independent no ho corrobora.',
+    'encaje.respaldo.corroborada': 'Corroborat per una font independent.',
+    'encaje.respaldo.discrepancia-documentada':
+      'Hi ha una discrepància documentada sense resoldre.',
+    'encaje.respaldo.mark.autodeclarada': 'autodeclarada',
+    'encaje.respaldo.mark.corroborada': 'corroborada',
+    'encaje.respaldo.mark.discrepancia-documentada': 'discrepància documentada',
+    'encaje.aviso.label': 'Advertiment de la biografia',
+    'encaje.aviso.contradice': 'contradicció sense resoldre',
+    'encaje.aviso.corrobora': 'una altra font ho confirma',
+    'encaje.aviso.matiza': 'matís',
+    'encaje.aviso.area':
+      'Les seues àrees delegades han canviat durant el mandat; aquesta fitxa pot referir-se a una àrea que ja no porta.',
     'encaje.card.gaps': 'què falta',
     'encaje.card.law': 'què exigeix la llei',
     'encaje.sinDelegacion.label': 'Sense delegació d’àrea',

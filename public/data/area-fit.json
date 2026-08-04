@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T21:37:38.738Z",
+  "generatedAt": "2026-08-04T14:37:54.545Z",
   "mandate": "2023-2027",
   "note": "Qué formación y trayectoria declara públicamente quien dirige cada área. No es una calificación: la ley no exige titulación alguna para ser concejal (a diferencia de la secretaría, la intervención y la tesorería municipales, que exigen oposición estatal). «No consta» significa que la fuente publicada no lo recoge, no que la persona carezca de ello.",
   "method": "Un modelo compara, área por área, lo que el CV publicado declara con la materia del área, citando por índice sobre esa misma lista; un curador revisa y firma cada fila antes de publicarse. Nada se publica automáticamente.",
@@ -20,7 +20,7 @@
         "reason": "La experiencia declarada corresponde a la gestión y ejercicio de peluquería, materia distinta a la organización, coordinación o gestión de las fiestas falleras."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "alfredo-pla-gimenez",
@@ -38,7 +38,7 @@
         "reason": "La trayectoria descrita es de actividad profesional en peluquería (empleado y luego gerente autónomo), sin relación con la materia de fiestas y tradiciones."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "david-barbancho-martinez",
@@ -56,7 +56,7 @@
         "reason": "El puesto declarado es de dirección de RRHH en una empresa privada, función de gestión de personal interno, sin referencia a materia de acción social o políticas inclusivas."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "david-barbancho-martinez",
@@ -81,7 +81,8 @@
             ]
           }
         ],
-        "reason": "El Grado en Derecho y el Máster en Fiscalidad Internacional/Derecho Tributario son formación jurídica, materia coincidente con Servicios Jurídicos; no se declara formación en materia de Juventud."
+        "reason": "El Grado en Derecho y el Máster en Fiscalidad Internacional/Derecho Tributario son formación jurídica, materia coincidente con Servicios Jurídicos; no se declara formación en materia de Juventud.",
+        "respaldo": "autodeclarada"
       },
       "experiencia": {
         "value": "sin-relacion-declarada",
@@ -89,7 +90,7 @@
         "reason": "El puesto declarado es de dirección de recursos humanos en una sociedad mercantil, materia de gestión de personal, sin mención a funciones jurídicas ni a juventud."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "david-barbancho-martinez",
@@ -107,7 +108,7 @@
         "reason": "La dirección de RRHH consiste en gestión de personal de una empresa privada, sin relación de materia con la atención, servicios o políticas dirigidas a personas mayores."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "eva-lara-catala",
@@ -129,10 +130,11 @@
             ]
           }
         ],
-        "reason": "El puesto declarado es de profesora de Educación Secundaria en un centro público, lo que corresponde directamente a la materia educativa del área."
+        "reason": "El puesto declarado es de profesora de Educación Secundaria en un centro público, lo que corresponde directamente a la materia educativa del área.",
+        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "eva-lara-catala",
@@ -149,7 +151,8 @@
             ]
           }
         ],
-        "reason": "La licenciatura en Historia guarda relación de materia con el ámbito de memoria histórica; los estudios de arte dramático no tratan materia de infancia y adolescencia ni de memoria histórica."
+        "reason": "La licenciatura en Historia guarda relación de materia con el ámbito de memoria histórica; los estudios de arte dramático no tratan materia de infancia y adolescencia ni de memoria histórica.",
+        "respaldo": "autodeclarada"
       },
       "experiencia": {
         "value": "relacionada",
@@ -161,10 +164,11 @@
             ]
           }
         ],
-        "reason": "El puesto de profesora de Educación Secundaria implica trabajo directo con adolescentes, y la coordinación del proyecto de Memoria Democrática corresponde a la materia de memoria histórica."
+        "reason": "El puesto de profesora de Educación Secundaria implica trabajo directo con adolescentes, y la coordinación del proyecto de Memoria Democrática corresponde a la materia de memoria histórica.",
+        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "jose-angel-hernandez-carrizosa",
@@ -187,7 +191,8 @@
             ]
           }
         ],
-        "reason": "Ambas formaciones versan sobre administración y gestión económico-financiera, materia coincidente con la administración y gestión general."
+        "reason": "Ambas formaciones versan sobre administración y gestión económico-financiera, materia coincidente con la administración y gestión general.",
+        "respaldo": "autodeclarada"
       },
       "experiencia": {
         "value": "relacionada",
@@ -217,10 +222,11 @@
             ]
           }
         ],
-        "reason": "Los puestos declarados son funciones administrativas, de control financiero y de administración de sociedades, materia coincidente con administración y servicios generales."
+        "reason": "Los puestos declarados son funciones administrativas, de control financiero y de administración de sociedades, materia coincidente con administración y servicios generales.",
+        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "jose-angel-hernandez-carrizosa",
@@ -238,7 +244,7 @@
         "reason": "Los puestos declarados son de administración general, control financiero y administración societaria en empresas privadas; ninguno menciona funciones de compras, contratación, licitación o gestión de proveedores propias de la compra pública."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "jose-angel-hernandez-carrizosa",
@@ -260,10 +266,11 @@
             ]
           }
         ],
-        "reason": "El puesto de administrador solidario implica la gestión y dirección de una empresa propia, materia directamente vinculada al emprendimiento; los demás puestos declarados (auxiliar administrativo, administrativo, controller financiero) corresponden a funciones administrativas y financieras dentro de empresas ajenas, sin relación con empleo o emprendimiento."
+        "reason": "El puesto de administrador solidario implica la gestión y dirección de una empresa propia, materia directamente vinculada al emprendimiento; los demás puestos declarados (auxiliar administrativo, administrativo, controller financiero) corresponden a funciones administrativas y financieras dentro de empresas ajenas, sin relación con empleo o emprendimiento.",
+        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "jose-angel-hernandez-carrizosa",
@@ -286,7 +293,8 @@
             ]
           }
         ],
-        "reason": "Ambas formaciones versan sobre administración y finanzas (grado superior en Administración y Finanzas) y sobre dirección y gestión económico-financiera, materias directamente vinculadas a la gestión financiera que constituye el área."
+        "reason": "Ambas formaciones versan sobre administración y finanzas (grado superior en Administración y Finanzas) y sobre dirección y gestión económico-financiera, materias directamente vinculadas a la gestión financiera que constituye el área.",
+        "respaldo": "autodeclarada"
       },
       "experiencia": {
         "value": "relacionada",
@@ -298,10 +306,11 @@
             ]
           }
         ],
-        "reason": "El puesto de controller financiero corresponde a funciones de gestión y control financiero, materia coincidente con finanzas; los demás puestos declarados son de administración general o de administración societaria sin mención de contenido financiero o recaudatorio específico."
+        "reason": "El puesto de controller financiero corresponde a funciones de gestión y control financiero, materia coincidente con finanzas; los demás puestos declarados son de administración general o de administración societaria sin mención de contenido financiero o recaudatorio específico.",
+        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "jose-angel-hernandez-carrizosa",
@@ -324,7 +333,8 @@
             ]
           }
         ],
-        "reason": "Ambas formaciones corresponden a administración y finanzas (FP de Administración y Finanzas, y Dirección y Gestión Económico-Financiera), materia directamente vinculada a la gestión económica que es objeto del área de Fomento económico."
+        "reason": "Ambas formaciones corresponden a administración y finanzas (FP de Administración y Finanzas, y Dirección y Gestión Económico-Financiera), materia directamente vinculada a la gestión económica que es objeto del área de Fomento económico.",
+        "respaldo": "autodeclarada"
       },
       "experiencia": {
         "value": "relacionada",
@@ -354,10 +364,11 @@
             ]
           }
         ],
-        "reason": "Los puestos declarados son de administración y gestión económico-financiera de empresas (administrativo, controller financiero, administrador), materia coincidente con la gestión económica propia del área de Fomento económico."
+        "reason": "Los puestos declarados son de administración y gestión económico-financiera de empresas (administrativo, controller financiero, administrador), materia coincidente con la gestión económica propia del área de Fomento económico.",
+        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "jose-angel-hernandez-carrizosa",
@@ -375,7 +386,7 @@
         "reason": "Los puestos declarados son de carácter administrativo general, financiero (controller) y de administración societaria; no se menciona selección, gestión de personal, relaciones laborales u otras funciones propias del área de recursos humanos."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "jose-angel-hernandez-carrizosa",
@@ -392,7 +403,8 @@
             ]
           }
         ],
-        "reason": "La titulación de FPII incluye explícitamente la rama 'Comercial' en su denominación (Administrativa y Comercial), lo que supone coincidencia de materia con el área de Comercio."
+        "reason": "La titulación de FPII incluye explícitamente la rama 'Comercial' en su denominación (Administrativa y Comercial), lo que supone coincidencia de materia con el área de Comercio.",
+        "respaldo": "autodeclarada"
       },
       "experiencia": {
         "value": "relacionada",
@@ -404,10 +416,11 @@
             ]
           }
         ],
-        "reason": "El puesto se desempeñó en una empresa cuya actividad declarada (Artículos de Carpintería) consiste en el trato de artículos/mercancías, propio de la materia comercial."
+        "reason": "El puesto se desempeñó en una empresa cuya actividad declarada (Artículos de Carpintería) consiste en el trato de artículos/mercancías, propio de la materia comercial.",
+        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "jose-luis-ramos-march",
@@ -425,7 +438,7 @@
         "reason": "La trayectoria declarada se desarrolla íntegramente en el sector bancario (dirección y administración), sin experiencia en gestión de actividades o edificios públicos."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "jose-luis-ramos-march",
@@ -443,7 +456,7 @@
         "reason": "La trayectoria declarada se limita a puestos directivos y administrativos en el sector bancario, sin mención a sostenibilidad, medio ambiente, desarrollo sostenible u otras materias propias de la Agenda 2030."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "jose-luis-ramos-march",
@@ -461,7 +474,7 @@
         "reason": "Todos los puestos declarados se describen explícitamente como del sector banca (director o administrativo), sin mención de funciones o materias agrícolas."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "jose-luis-ramos-march",
@@ -479,7 +492,7 @@
         "reason": "La trayectoria declarada consiste en puestos directivos y administrativos en entidades bancarias, sin vínculo temático con la gestión de emergencia climática o medio ambiente."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "jose-luis-ramos-march",
@@ -497,7 +510,7 @@
         "reason": "La trayectoria declarada transcurre íntegramente en banca privada (puestos de dirección y administrativo en entidades bancarias), sin mención a gestión, tramitación o ejecución de fondos europeos ni de programas o subvenciones comunitarias."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "jose-luis-ramos-march",
@@ -515,7 +528,7 @@
         "reason": "Los puestos declarados son de dirección y administración en banca, sin mención a funciones de integridad, ética, cumplimiento normativo o prevención de conflictos de interés."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "jose-manuel-vila-oltra",
@@ -538,7 +551,8 @@
             ]
           }
         ],
-        "reason": "El grado en Lengua y Literatura Españolas y la especialización en Literatura Española Contemporánea corresponden a la materia cultural/literaria, incluida en el ámbito de Arte y Cultura."
+        "reason": "El grado en Lengua y Literatura Españolas y la especialización en Literatura Española Contemporánea corresponden a la materia cultural/literaria, incluida en el ámbito de Arte y Cultura.",
+        "respaldo": "autodeclarada"
       },
       "experiencia": {
         "value": "sin-relacion-declarada",
@@ -546,7 +560,7 @@
         "reason": "Los puestos declarados corresponden al sector bancario y de gestión inmobiliaria, sin vínculo declarado con materias artísticas o culturales."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "maria-esther-gomez-laredo",
@@ -564,7 +578,7 @@
         "reason": "La trayectoria descrita corresponde a consultoría de sistemas, banca, seguros y asesoría financiera privada; ninguna entrada refiere gestión de atención al público, información, quejas o trámites en el ámbito de la administración ciudadana."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "maria-esther-gomez-laredo",
@@ -582,7 +596,7 @@
         "reason": "Las trayectorias descritas corresponden a consultoría de sistemas, banca, seguros y gestión de proyectos IT; ninguna se refiere a participación ciudadana, gobierno abierto, acceso a la información o transparencia administrativa."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "maria-esther-gomez-laredo",
@@ -600,7 +614,7 @@
         "reason": "La trayectoria descrita se desarrolla en consultoría de sistemas, banca, seguros de vida/ahorro/pensiones y asesoría financiera; ninguna de esas materias corresponde a promoción de la salud o infraestructuras sanitarias."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "maria-esther-gomez-laredo",
@@ -618,7 +632,7 @@
         "reason": "La trayectoria declarada se desarrolla en consultoría de sistemas, banca, seguros y gestión de proyectos IT; no incluye funciones vinculadas a turismo o patrimonio histórico."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "rafael-gomez-sanchez",
@@ -636,7 +650,7 @@
         "reason": "La actividad de transportista autónomo pertenece al sector del transporte y no a la gestión administrativa o territorial de barrios y diseminados."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "rafael-gomez-sanchez",
@@ -658,10 +672,11 @@
             ]
           }
         ],
-        "reason": "La actividad de transportista autónomo pertenece al sector transporte, materia comprendida en movilidad."
+        "reason": "La actividad de transportista autónomo pertenece al sector transporte, materia comprendida en movilidad.",
+        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "rafael-gomez-sanchez",
@@ -683,10 +698,11 @@
             ]
           }
         ],
-        "reason": "La experiencia se declara en el sector transporte, materia que se incluye habitualmente entre los servicios públicos municipales (movilidad y transporte)."
+        "reason": "La experiencia se declara en el sector transporte, materia que se incluye habitualmente entre los servicios públicos municipales (movilidad y transporte).",
+        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "rafael-gomez-sanchez",
@@ -704,7 +720,7 @@
         "reason": "La experiencia declarada es en el sector transporte como transportista autónomo, materia distinta a la gestión de urbanizaciones."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "raquel-pamblanco-paredes",
@@ -721,7 +737,8 @@
             ]
           }
         ],
-        "reason": "El grado en Comunicación Audiovisual corresponde directamente a la materia de comunicación; el máster en Dirección de Marketing pertenece al ámbito de gestión comercial/marketing, materia distinta de la comunicación e información institucional."
+        "reason": "El grado en Comunicación Audiovisual corresponde directamente a la materia de comunicación; el máster en Dirección de Marketing pertenece al ámbito de gestión comercial/marketing, materia distinta de la comunicación e información institucional.",
+        "respaldo": "autodeclarada"
       },
       "experiencia": {
         "value": "relacionada",
@@ -739,10 +756,11 @@
             ]
           }
         ],
-        "reason": "El puesto de locutora en un informativo diario de radio y el puesto de comunicación (estrategia, contenidos y protocolo) en la FVMP corresponden directamente a la materia de comunicación e información; la consultoría de marketing digital y la coordinación de un equipo de ventas pertenecen a materias de marketing y ventas, distintas de la del área."
+        "reason": "El puesto de locutora en un informativo diario de radio y el puesto de comunicación (estrategia, contenidos y protocolo) en la FVMP corresponden directamente a la materia de comunicación e información; la consultoría de marketing digital y la coordinación de un equipo de ventas pertenecen a materias de marketing y ventas, distintas de la del área.",
+        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "raquel-pamblanco-paredes",
@@ -760,7 +778,7 @@
         "reason": "Las experiencias declaradas son locución radiofónica, marketing digital, comunicación institucional/protocolo y ventas; ninguna refiere materia de igualdad (políticas de género, violencia machista, diversidad, planes de igualdad)."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "raquel-pamblanco-paredes",
@@ -782,10 +800,11 @@
             ]
           }
         ],
-        "reason": "El elemento 2 describe funciones de protocolo (junto con comunicación y contenidos), lo que coincide con la materia de protocolo del área; ningún elemento menciona bienestar animal."
+        "reason": "El elemento 2 describe funciones de protocolo (junto con comunicación y contenidos), lo que coincide con la materia de protocolo del área; ningún elemento menciona bienestar animal.",
+        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "raquel-pamblanco-paredes",
@@ -803,7 +822,7 @@
         "reason": "Los puestos declarados corresponden a locución de radio, marketing digital, comunicación institucional y ventas, sin relación de materia con seguridad y emergencias."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "robert-raga-gadea",
@@ -831,10 +850,11 @@
             ]
           }
         ],
-        "reason": "El puesto de asesor institucional en una diputación y la condición de funcionario de la Administración Local corresponden a la materia de gestión institucional y administración local propia del área de Alcaldía; la actividad autónoma en energías renovables y seguridad no guarda relación con esa materia."
+        "reason": "El puesto de asesor institucional en una diputación y la condición de funcionario de la Administración Local corresponden a la materia de gestión institucional y administración local propia del área de Alcaldía; la actividad autónoma en energías renovables y seguridad no guarda relación con esa materia.",
+        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "robert-raga-gadea",
@@ -852,7 +872,7 @@
         "reason": "Ninguna experiencia declarada (asesoría institucional, autónomo en energías renovables y seguridad, funcionariado de administración local) menciona materias de innovación, tecnología, digitalización o I+D+i."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "robert-raga-gadea",
@@ -870,7 +890,7 @@
         "reason": "Ninguna entrada menciona explícitamente planificación estratégica, gestión de grandes proyectos o cooperación nacional/internacional: se citan asesoría institucional sin materia especificada, actividad autónoma en energías renovables y seguridad, y una plaza de funcionario de administración local en excedencia, ninguna vinculada por su descripción a la materia del área."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "teresa-pozuelo-martin",
@@ -905,7 +925,8 @@
             ]
           }
         ],
-        "reason": "Arquitectura técnica e ingeniería de edificación son formaciones de la materia de construcción y edificación, y el máster en Project Management y el técnico en prevención de riesgos laborales proceden de la FLC (entidad de formación del sector de la construcción), materia vinculada a la gestión y mantenimiento de infraestructuras propia de áreas industriales y cementerio."
+        "reason": "Arquitectura técnica e ingeniería de edificación son formaciones de la materia de construcción y edificación, y el máster en Project Management y el técnico en prevención de riesgos laborales proceden de la FLC (entidad de formación del sector de la construcción), materia vinculada a la gestión y mantenimiento de infraestructuras propia de áreas industriales y cementerio.",
+        "respaldo": "autodeclarada"
       },
       "experiencia": {
         "value": "relacionada",
@@ -923,10 +944,11 @@
             ]
           }
         ],
-        "reason": "Ambos puestos son de dirección/ayudantía de obra en empresas constructoras, materia de construcción y edificación vinculada a la gestión de infraestructuras propia de áreas industriales y cementerio."
+        "reason": "Ambos puestos son de dirección/ayudantía de obra en empresas constructoras, materia de construcción y edificación vinculada a la gestión de infraestructuras propia de áreas industriales y cementerio.",
+        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "teresa-pozuelo-martin",
@@ -949,7 +971,8 @@
             ]
           }
         ],
-        "reason": "Arquitecto Técnico e Ingeniero de Edificación son titulaciones del ámbito de la construcción y edificación, materia directamente vinculada a la obra pública; el máster en Project Management y la formación en Prevención de Riesgos Laborales son transversales a múltiples sectores y no se declaran vinculados específicamente a la construcción u obra pública."
+        "reason": "Arquitecto Técnico e Ingeniero de Edificación son titulaciones del ámbito de la construcción y edificación, materia directamente vinculada a la obra pública; el máster en Project Management y la formación en Prevención de Riesgos Laborales son transversales a múltiples sectores y no se declaran vinculados específicamente a la construcción u obra pública.",
+        "respaldo": "autodeclarada"
       },
       "experiencia": {
         "value": "relacionada",
@@ -967,10 +990,11 @@
             ]
           }
         ],
-        "reason": "Los puestos declarados (ayudante de jefe de obra y jefa de obra) corresponden a funciones de dirección y ejecución de obras de construcción, materia coincidente con la gestión de obra pública."
+        "reason": "Los puestos declarados (ayudante de jefe de obra y jefa de obra) corresponden a funciones de dirección y ejecución de obras de construcción, materia coincidente con la gestión de obra pública.",
+        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "teresa-pozuelo-martin",
@@ -993,7 +1017,8 @@
             ]
           }
         ],
-        "reason": "Las titulaciones de Arquitecto Técnico e Ingeniero de Edificación forman en construcción, edificación y normativa técnica, materias propias del área de urbanismo; el máster en Project Management y el técnico en Prevención de Riesgos Laborales no versan específicamente sobre planeamiento, licencias o edificación urbanística."
+        "reason": "Las titulaciones de Arquitecto Técnico e Ingeniero de Edificación forman en construcción, edificación y normativa técnica, materias propias del área de urbanismo; el máster en Project Management y el técnico en Prevención de Riesgos Laborales no versan específicamente sobre planeamiento, licencias o edificación urbanística.",
+        "respaldo": "autodeclarada"
       },
       "experiencia": {
         "value": "relacionada",
@@ -1011,10 +1036,11 @@
             ]
           }
         ],
-        "reason": "Trabajo como ayudante de jefe de obra y como jefa de obra en empresas constructoras corresponde a la actividad de edificación y construcción, materia comprendida en la gestión de urbanismo."
+        "reason": "Trabajo como ayudante de jefe de obra y como jefa de obra en empresas constructoras corresponde a la actividad de edificación y construcción, materia comprendida en la gestión de urbanismo.",
+        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     },
     {
       "officialSlug": "teresa-pozuelo-martin",
@@ -1037,7 +1063,8 @@
             ]
           }
         ],
-        "reason": "Arquitecto Técnico e Ingeniero de Edificación son titulaciones sobre construcción y edificación, materia directamente vinculada a la gestión de vivienda; el máster en Project Management y el técnico en Prevención de Riesgos Laborales no especifican vinculación con edificación o vivienda."
+        "reason": "Arquitecto Técnico e Ingeniero de Edificación son titulaciones sobre construcción y edificación, materia directamente vinculada a la gestión de vivienda; el máster en Project Management y el técnico en Prevención de Riesgos Laborales no especifican vinculación con edificación o vivienda.",
+        "respaldo": "autodeclarada"
       },
       "experiencia": {
         "value": "relacionada",
@@ -1055,10 +1082,11 @@
             ]
           }
         ],
-        "reason": "Los puestos de ayudante de jefe de obra y de arquitecta técnica y jefa de obra corresponden a trabajos de construcción y dirección de obra, materia propia de la gestión de vivienda."
+        "reason": "Los puestos de ayudante de jefe de obra y de arquitecta técnica y jefa de obra corresponden a trabajos de construcción y dirección de obra, materia propia de la gestión de vivienda.",
+        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-03"
+      "curatedAt": "2026-08-04"
     }
   ]
 }

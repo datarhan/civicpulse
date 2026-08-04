@@ -8,6 +8,8 @@ import {
   fitRowsForSlug,
   relatedAreaNames,
   overallValue,
+  sharedRespaldo,
+  avisosForSlug,
 } from '../hooks/useAreaFit'
 
 /**
@@ -31,6 +33,13 @@ import {
  *    área, so no row can exist for them. Rendering nothing would turn /cargos
  *    into "the governing party has credentials, everyone else is blank" — an
  *    artifact of who governs, not of who is qualified. SinDelegacion says so.
+ *
+ *  · THE BACKING IS STATED ONCE, NOT ONCE PER CHIP. While every assessment on a
+ *    card rests on the same kind of source — today they all do — one sentence
+ *    says so. A badge repeated identically beside every chip distinguishes
+ *    nothing; that is how the cargoPublicoPrevio chip died. `sharedRespaldo`
+ *    returns null the moment they diverge, and only then do per-item marks
+ *    appear, where they would actually tell two items apart.
  */
 
 const TONE = {
@@ -39,8 +48,87 @@ const TONE = {
   'no-consta': 'ghost',
 }
 
+/**
+ * Backing values that have published copy.
+ *
+ * `sin-clasificar` is deliberately absent: the published validator refuses it,
+ * and `t()` falls back to the raw key, so an unexpected value would print
+ * "encaje.respaldo.sin-clasificar" on a page about a named person instead of
+ * rendering nothing. The gate is here, not in the translation table.
+ */
+const RESPALDO_CON_COPIA = ['autodeclarada', 'corroborada', 'discrepancia-documentada']
+
 function valueLabel(t, value) {
   return t(`encaje.value.${value}`)
+}
+
+/**
+ * A curator-signed biography warning, rendered as the biography's own words.
+ *
+ * Attribution is the whole design: the eyebrow says the sentence comes from the
+ * biography's warnings, and `verbatim` is read from the report at publication
+ * time — nothing here is written by a model or by this component. `quote` is off
+ * on the compact card, where the caveat has to fit under two chip rows, and on
+ * for the matrix, which is where the citations live.
+ *
+ * `eje: 'area'` gets its own fixed sentence because it is not a note about the
+ * person at all: it says the ROW may be judging an área they no longer hold.
+ */
+function Aviso({ aviso, quote = false }) {
+  const t = useT()
+  const isArea = aviso.eje === 'area'
+  return (
+    <div
+      style={{
+        marginTop: 6,
+        paddingLeft: 8,
+        borderLeft: '2px solid var(--warn)',
+        fontSize: 10.5,
+        color: 'var(--ink70)',
+        lineHeight: 1.45,
+      }}
+    >
+      <span
+        className="mono"
+        style={{
+          fontSize: 9.5,
+          letterSpacing: '.08em',
+          textTransform: 'uppercase',
+          color: 'var(--warn-ink)',
+        }}
+      >
+        {t('encaje.aviso.label')}
+        {!isArea &&
+          ` · ${t(`encaje.field.${aviso.eje}`)} · ${t(`encaje.aviso.${aviso.direccion}`)}`}
+      </span>
+      {isArea && <div style={{ marginTop: 2 }}>{t('encaje.aviso.area')}</div>}
+      {(quote || !isArea) && (
+        <div style={{ marginTop: 2, fontStyle: 'italic' }}>«&nbsp;{aviso.verbatim}&nbsp;»</div>
+      )}
+    </div>
+  )
+}
+
+/** The one-line backing statement, or nothing when there is no citation to describe. */
+function RespaldoLine({ value, style = {} }) {
+  const t = useT()
+  if (!RESPALDO_CON_COPIA.includes(value)) return null
+  return (
+    <div style={{ fontSize: 10.5, color: 'var(--ink60)', lineHeight: 1.45, ...style }}>
+      {t(`encaje.respaldo.${value}`)}
+    </div>
+  )
+}
+
+/** The per-item mark, used ONLY where the items disagree. */
+function RespaldoMark({ value }) {
+  const t = useT()
+  if (!RESPALDO_CON_COPIA.includes(value)) return null
+  return (
+    <span className="mono" style={{ fontSize: 9.5, color: 'var(--ink60)', whiteSpace: 'nowrap' }}>
+      {t(`encaje.respaldo.mark.${value}`)}
+    </span>
+  )
 }
 
 /**
@@ -60,6 +148,12 @@ export function EncajeCard({ official, bioRoute }) {
   if (!rows.length) return null
 
   const fields = ['formacion', 'experiencia']
+  // One value for the whole card, or null when the assessments disagree — the
+  // switch between "say it once" and "mark each item".
+  const shared = sharedRespaldo(rows)
+  // Signed only, and normally zero. An empty list renders nothing at all: an
+  // empty warning box would imply something is missing when nothing is.
+  const avisosArea = avisosForSlug(data, official.slug, 'area')
 
   return (
     <div
@@ -82,43 +176,63 @@ export function EncajeCard({ official, bioRoute }) {
         {t('encaje.eyebrow')}
       </div>
 
+      {/* Above the chips, never on one: the delegation changed, so the ROW may
+          be judging an área this person no longer holds. That is a correctness
+          caveat about our data, not a remark about them. */}
+      {avisosArea.map((a) => (
+        <Aviso key={`${a.reportId}#${a.avisoIndex}`} aviso={a} />
+      ))}
+
       {fields.map((field) => {
         const value = overallValue(rows, field)
         if (!value) return null
         const areas = relatedAreaNames(rows, field)
+        // Only when the card as a whole diverges, and only for the axis that
+        // actually agrees with itself: marking every chip when they all say the
+        // same thing is the noise this design exists to avoid.
+        const mark = shared ? null : sharedRespaldo(rows, [field])
+        const avisosCampo = avisosForSlug(data, official.slug, field)
         return (
-          <div
-            key={field}
-            style={{
-              display: 'flex',
-              alignItems: 'baseline',
-              gap: 8,
-              fontSize: 11.5,
-              lineHeight: 1.5,
-              marginBottom: 3,
-            }}
-          >
-            <span style={{ color: 'var(--ink60)', flexShrink: 0, minWidth: 104 }}>
-              {t(`encaje.field.${field}`)}
-            </span>
-            {value === 'relacionada' && areas.length > 0 ? (
-              <span style={{ color: 'var(--ink)', minWidth: 0 }}>
-                {areas.slice(0, 3).join(' · ')}
-                {areas.length > 3 && (
-                  <span style={{ color: 'var(--ink50)' }}>{` +${areas.length - 3}`}</span>
-                )}
+          <div key={field} style={{ marginBottom: 3 }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'baseline',
+                gap: 8,
+                fontSize: 11.5,
+                lineHeight: 1.5,
+              }}
+            >
+              <span style={{ color: 'var(--ink60)', flexShrink: 0, minWidth: 104 }}>
+                {t(`encaje.field.${field}`)}
               </span>
-            ) : (
-              <Pill tone={TONE[value]} size="xs">
-                {valueLabel(t, value)}
-              </Pill>
-            )}
+              {value === 'relacionada' && areas.length > 0 ? (
+                <span style={{ color: 'var(--ink)', minWidth: 0 }}>
+                  {areas.slice(0, 3).join(' · ')}
+                  {areas.length > 3 && (
+                    <span style={{ color: 'var(--ink50)' }}>{` +${areas.length - 3}`}</span>
+                  )}
+                </span>
+              ) : (
+                <Pill tone={TONE[value]} size="xs">
+                  {valueLabel(t, value)}
+                </Pill>
+              )}
+              {mark && <RespaldoMark value={mark} />}
+            </div>
+            {avisosCampo.map((a) => (
+              <Aviso key={`${a.reportId}#${a.avisoIndex}`} aviso={a} />
+            ))}
           </div>
         )
       })}
 
-      <div style={{ marginTop: 7, fontSize: 10.5, color: 'var(--ink50)', lineHeight: 1.45 }}>
-        {t('encaje.card.source')}{' '}
+      {/* Said once for the whole card. When `shared` is null the marks above
+          carry it instead, and when nothing is cited there is no backing to
+          describe and this renders nothing — «no consta» is not «autodeclarada». */}
+      {shared && <RespaldoLine value={shared} style={{ marginTop: 7 }} />}
+
+      <div style={{ marginTop: 4, fontSize: 10.5, color: 'var(--ink50)', lineHeight: 1.45 }}>
         {/* Underlined, not just tinted. These sit INSIDE a sentence, and WCAG
           2.1 AA (link-in-text-block) requires a link in running text to be
           distinguishable without relying on colour — axe flags all 22 of them
@@ -126,13 +240,12 @@ export function EncajeCard({ official, bioRoute }) {
           no-underline style; the rule is about links embedded in prose. */}
         {bioRoute && (
           <>
-            ·{' '}
             <Link to={bioRoute} style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
               {t('encaje.card.gaps')}
             </Link>
+            {' · '}
           </>
-        )}{' '}
-        ·{' '}
+        )}
         <Link
           to="/metodologia#encaje"
           style={{ color: 'var(--civic)', textDecoration: 'underline' }}
@@ -173,6 +286,15 @@ export function EncajeMatrix({ official, bioRoute }) {
   const rows = fitRowsForSlug(data, official.slug)
   if (frozen || !rows.length) return null
 
+  // Same rule as the card, one level down: while every cited assessment here
+  // rests on the same kind of source, the section says it once above the áreas
+  // instead of repeating a mark inside each one.
+  const shared = sharedRespaldo(rows)
+  // ALL of them, once, above the grid — not inside each área card. A warning is
+  // a fact about the biography, so repeating it under all four áreas someone
+  // holds would multiply one sentence into four apparent findings.
+  const avisos = avisosForSlug(data, official.slug)
+
   return (
     <section style={{ marginTop: 28 }}>
       <div
@@ -192,6 +314,16 @@ export function EncajeMatrix({ official, bioRoute }) {
       <p style={{ fontSize: 13, color: 'var(--ink60)', lineHeight: 1.55, margin: '0 0 14px' }}>
         {t('encaje.matrix.intro')}
       </p>
+
+      {shared && <RespaldoLine value={shared} style={{ fontSize: 12, margin: '-6px 0 14px' }} />}
+
+      {avisos.length > 0 && (
+        <div style={{ marginBottom: 14 }}>
+          {avisos.map((a) => (
+            <Aviso key={`${a.reportId}#${a.avisoIndex}`} aviso={a} quote />
+          ))}
+        </div>
+      )}
 
       <div style={{ display: 'grid', gap: 10 }}>
         {rows.map((r) => {
@@ -247,6 +379,9 @@ export function EncajeMatrix({ official, bioRoute }) {
                       <Pill tone={TONE[a.value]} size="xs">
                         {valueLabel(t, a.value)}
                       </Pill>
+                      {/* Only where it tells two assessments apart. While the
+                          section-level line above holds, this is silent. */}
+                      {!shared && <RespaldoMark value={a.respaldo} />}
                     </div>
                     {a.evidence?.length > 0 && (
                       <ul
