@@ -68,6 +68,57 @@ export const RESPALDO_VALUES = [
 ] as const
 export type RespaldoValue = (typeof RESPALDO_VALUES)[number]
 
+/**
+ * Which axis a biography warning bears on.
+ *
+ * A biography's `warnings` are free prose, and most of them have nothing to do
+ * with this surface: private-activity compatibility, press coverage, a
+ * file-naming incident. A few bear directly on it — a CV that contradicts a
+ * statutory declaration is a fact about the same evidence a chip is built from.
+ * Mapping them is what lets the real discrepancy surface without the noise
+ * surfacing with it.
+ *
+ * `area` is not a decoration: it means the delegation changed mid-mandate, so a
+ * row may be judging an área the person no longer holds. That is a correctness
+ * problem with the ROW, not a note about the person, and it renders as such —
+ * hence `decoratesChip: false`.
+ *
+ * `ninguno` is the honest majority answer and exists so the model can say "this
+ * one is not about you" instead of straining to fit it somewhere. It is dropped
+ * before the queue and refused by the published validator: a mapping that says
+ * nothing while naming a living person is worse than no mapping.
+ */
+export const AVISO_EJES = ['formacion', 'experiencia', 'area', 'ninguno'] as const
+export type AvisoEje = (typeof AVISO_EJES)[number]
+
+export interface AvisoMapping {
+  officialSlug: string
+  /** The report the index is relative to — an index means nothing without it. */
+  reportId: string
+  avisoIndex: number
+  eje: AvisoEje
+  /** The model's short label for the KIND of warning. Never rendered as prose. */
+  tipo?: string
+  /** Resolved here from the index — the model never emits prose we publish. */
+  verbatim: string
+  decoratesChip: boolean
+  curatedBy?: string
+  curatedAt?: string
+  /** Drafts only. The published schema REJECTS this field — two independent layers. */
+  requiresHumanApproval?: true
+}
+
+/**
+ * Which axes a chip can actually show.
+ *
+ * Derived, never stored by hand: the published validator recomputes it, so a
+ * snapshot whose flag was hand-edited cannot make a chip claim an axis it is
+ * not on.
+ */
+export function decoratesChipFor(eje: AvisoEje): boolean {
+  return eje === 'formacion' || eje === 'experiencia'
+}
+
 /** Minimal shape this module needs from a report's `sources` array. */
 export interface SourceLike {
   id: string
@@ -189,6 +240,12 @@ export interface AreaFitSnapshot {
   note?: string
   method?: string
   rows: AreaFitRow[]
+  /**
+   * Optional and separate from `rows` on purpose: a warning is a fact about the
+   * biography, not about one (official × área) pair, and most rows will never
+   * have one.
+   */
+  avisos?: AvisoMapping[]
 }
 
 /** Raw, unvalidated assessment as it arrives from the model. */
@@ -211,6 +268,53 @@ function must(cond: unknown, msg: string): asserts cond {
 
 const isFitValue = (v: unknown): v is FitValue =>
   typeof v === 'string' && (FIT_VALUES as readonly string[]).includes(v)
+
+const isAvisoEje = (v: unknown): v is AvisoEje =>
+  typeof v === 'string' && (AVISO_EJES as readonly string[]).includes(v)
+
+/**
+ * Turn the model's answer about ONE warning into a mapping, or refuse.
+ *
+ * The model returns an INDEX; the text that gets published is read from the
+ * report's own `warnings` array here. So the model cannot author a sentence
+ * this surface publishes about a named person — the strongest form of the
+ * cite-by-index rule the rest of this module already follows.
+ *
+ * An index outside the report's warnings is a hard error, never repaired: a
+ * drifted index attaches one councillor's warning to another's claim, and a
+ * clamp would do it silently. The promise miner learned this at 172fd04.
+ */
+export function resolveAvisoMapping(
+  raw: { avisoIndex: number; eje: string; tipo?: string },
+  warnings: readonly string[],
+  ctx: { officialSlug: string; reportId: string } = { officialSlug: '', reportId: '' },
+): AvisoMapping {
+  must(raw && typeof raw === 'object', 'aviso mapping must be an object')
+  must(
+    isAvisoEje(raw.eje),
+    `eje must be one of ${AVISO_EJES.join(' | ')}, got ${JSON.stringify(raw.eje)}`,
+  )
+  must(
+    Number.isInteger(raw.avisoIndex) && raw.avisoIndex >= 0 && raw.avisoIndex < warnings.length,
+    `avisoIndex ${raw.avisoIndex} is outside the report's ${warnings.length} warning(s) — ` +
+      'refusing to repair it; a drifted index attaches a warning to the wrong claim',
+  )
+  const verbatim = warnings[raw.avisoIndex]
+  must(
+    typeof verbatim === 'string' && verbatim.trim().length > 0,
+    `warning ${raw.avisoIndex} is empty — there is nothing to map`,
+  )
+  const tipo = typeof raw.tipo === 'string' ? raw.tipo.trim() : ''
+  return {
+    officialSlug: ctx.officialSlug,
+    reportId: ctx.reportId,
+    avisoIndex: raw.avisoIndex,
+    eje: raw.eje,
+    ...(tipo ? { tipo } : {}),
+    verbatim,
+    decoratesChip: decoratesChipFor(raw.eje),
+  }
+}
 
 /** Minimal shape this module needs from officials.json. */
 export interface OfficialLike {
@@ -359,6 +463,8 @@ export interface ReportLike {
   sections: Array<{ kind: string; payload: Record<string, unknown> }>
   /** The citations the sections' sourceIds point at; carries `selfDeclared`. */
   sources?: SourceLike[]
+  /** Free prose the biography publishes about its own limits. Indexed, never rewritten. */
+  warnings?: string[]
 }
 
 function sectionPayload(
@@ -386,6 +492,22 @@ const joinNonEmpty = (parts: Array<unknown>, sep: string) =>
   parts.filter((p) => typeof p === 'string' && p.trim().length > 0).join(sep)
 
 /**
+ * officialSlug → their biography, read off the `portrait` section.
+ *
+ * Exported so the rows and the warnings resolve a person's report the SAME way.
+ * Two independent lookups is how a warning ends up quoted under the wrong
+ * councillor's name — the one failure this whole surface cannot afford.
+ */
+export function indexReportsByOfficial(reports: readonly ReportLike[]): Map<string, ReportLike> {
+  const bySlug = new Map<string, ReportLike>()
+  for (const r of reports) {
+    const slug = sectionPayload(r, 'portrait')?.officialSlug
+    if (typeof slug === 'string') bySlug.set(slug, r)
+  }
+  return bySlug
+}
+
+/**
  * One task per (official × raw portfolio string).
  *
  * Raw string, not canonical slug: it is what the alcaldía's delegation decree
@@ -401,12 +523,7 @@ export function buildFitTasks(
   reports: readonly ReportLike[],
   resolveSlug: (portfolio: string) => string | null = () => null,
 ): FitTask[] {
-  const bySlug = new Map<string, ReportLike>()
-  for (const r of reports) {
-    const portrait = sectionPayload(r, 'portrait')
-    const slug = portrait?.officialSlug
-    if (typeof slug === 'string') bySlug.set(slug, r)
-  }
+  const bySlug = indexReportsByOfficial(reports)
 
   const tasks: FitTask[] = []
   for (const o of officials) {
@@ -486,6 +603,39 @@ TRAYECTORIA PROFESIONAL DECLARADA:
 ${fmt(task.careerItems)}
 
 Responde con el JSON de valoración para esta área.`
+}
+
+export const AVISO_PROMPT_VERSION = 'area-fit-aviso-v1'
+
+export function buildAvisoSystemPrompt(): string {
+  return `Eres analista documental de un observatorio municipal español.
+
+Se te da la lista numerada de ADVERTENCIAS que acompaña a una biografía y debes
+decir, para cada una, sobre qué eje recae:
+
+- "formacion"   — pone en cuestión, matiza o corrobora la FORMACIÓN declarada.
+- "experiencia" — lo mismo para la TRAYECTORIA PROFESIONAL declarada.
+- "area"        — dice que las áreas o delegaciones han cambiado.
+- "ninguno"     — cualquier otra cosa (compatibilidad de actividades privadas,
+                  cobertura de prensa, incidencias de archivo, patrimonio).
+
+Reglas:
+- Cita por ÍNDICE, exactamente como están numeradas. Nunca inventes un índice.
+- Una advertencia que sólo dice que un dato es autodeclarado es "ninguno": eso
+  ya se refleja por otra vía y repetirlo es ruido.
+- No juzgas a la persona. No añades prosa sobre ella.
+- "tipo" es una etiqueta corta en minúsculas y con guiones (por ejemplo
+  "sin-resolver", "delegacion-cambiada"). No es una frase.
+- Ante la duda, "ninguno".
+
+Devuelve SÓLO JSON.`
+}
+
+export function buildAvisoUserPrompt(warnings: readonly string[]): string {
+  return `ADVERTENCIAS:
+${warnings.map((w, i) => `  [${i}] ${w}`).join('\n')}
+
+Devuelve {"avisos":[{"avisoIndex":n,"eje":"…","tipo":"…"}]} con una entrada por advertencia.`
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -589,6 +739,58 @@ export function validateAreaFitSnapshot(
     validateAssessment(r.experiencia, `${where}.experiencia`, known)
   }
 
+  if (s.avisos !== undefined) {
+    must(Array.isArray(s.avisos), 'avisos must be an array when present')
+    const seenAvisos = new Set<string>()
+    for (const a of s.avisos) {
+      const where = `aviso ${a?.officialSlug}#${a?.avisoIndex}`
+      must(a && typeof a === 'object', 'aviso must be an object')
+      must(
+        typeof a.officialSlug === 'string' && byslug.has(a.officialSlug),
+        `${where}: officialSlug does not resolve in officials.json`,
+      )
+      must(
+        typeof a.reportId === 'string' && a.reportId.length > 0,
+        `${where}: reportId required — an index means nothing without the list it indexes`,
+      )
+      must(
+        Number.isInteger(a.avisoIndex) && a.avisoIndex >= 0,
+        `${where}: avisoIndex must be a non-negative integer`,
+      )
+      must(isAvisoEje(a.eje), `${where}: eje must be one of ${AVISO_EJES.join(' | ')}`)
+      must(
+        a.eje !== 'ninguno',
+        `${where}: refusing to publish eje "ninguno" — it asserts nothing and names a ` +
+          'living person to assert it; drop the mapping instead',
+      )
+      must(
+        typeof a.verbatim === 'string' && a.verbatim.trim().length > 0,
+        `${where}: verbatim required — it is the warning's own text, read from the report`,
+      )
+      must(
+        a.decoratesChip === decoratesChipFor(a.eje),
+        `${where}: decoratesChip (${a.decoratesChip}) contradicts eje "${a.eje}" — ` +
+          'the flag is derived, so a hand-edited one makes a chip claim the wrong axis',
+      )
+      must(
+        !('requiresHumanApproval' in a),
+        `${where}: requiresHumanApproval must not appear on a published aviso — ` +
+          'promotion strips it; its presence means a draft leaked into the published set',
+      )
+      must(
+        typeof a.curatedBy === 'string' && a.curatedBy.length > 0,
+        `${where}: curatedBy required — this names a person, so it carries a signature`,
+      )
+      must(
+        typeof a.curatedAt === 'string' && /^\d{4}-\d{2}-\d{2}/.test(a.curatedAt),
+        `${where}: curatedAt must be an ISO date`,
+      )
+      const key = `${a.officialSlug}::${a.avisoIndex}`
+      must(!seenAvisos.has(key), `${where}: duplicate aviso mapping`)
+      seenAvisos.add(key)
+    }
+  }
+
   const share = noConstaShare(s.rows)
   must(
     share < NO_CONSTA_CEILING,
@@ -601,7 +803,7 @@ export function validateAreaFitSnapshot(
 
 /** The DRAFT shape: the mirror image — every row MUST carry the approval flag. */
 export function validateAreaFitDrafts(json: unknown): AreaFitRow[] {
-  const s = json as { rows?: AreaFitRow[] }
+  const s = json as { rows?: AreaFitRow[]; avisos?: AvisoMapping[] }
   must(s && typeof s === 'object', 'draft queue must be an object')
   must(Array.isArray(s.rows), 'draft queue rows must be an array')
   for (const r of s.rows) {
@@ -612,6 +814,22 @@ export function validateAreaFitDrafts(json: unknown): AreaFitRow[] {
     must(
       !r.curatedBy,
       `${r?.officialSlug}/${r?.portfolio}: a draft cannot carry a curator signature`,
+    )
+  }
+  // The avisos ride the same queue and so answer to the same mirror: an aviso
+  // draft that arrived pre-signed, or without the flag, is one the promote step
+  // would wave straight through.
+  for (const a of s.avisos ?? []) {
+    const where = `aviso ${a?.officialSlug}#${a?.avisoIndex}`
+    must(
+      a.requiresHumanApproval === true,
+      `${where}: a draft must carry requiresHumanApproval: true`,
+    )
+    must(!a.curatedBy, `${where}: a draft cannot carry a curator signature`)
+    must(isAvisoEje(a.eje), `${where}: eje must be one of ${AVISO_EJES.join(' | ')}`)
+    must(
+      a.eje !== 'ninguno',
+      `${where}: "ninguno" is dropped before the queue — it is not something to review`,
     )
   }
   return s.rows

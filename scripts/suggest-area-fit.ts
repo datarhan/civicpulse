@@ -27,13 +27,20 @@ import { decideAutomation } from '../src/scraper/automation-policy'
 import { canonicalizeDepartment } from '../src/scraper/departments'
 import {
   AREA_FIT_PROMPT_VERSION,
+  AVISO_PROMPT_VERSION,
+  AVISO_EJES,
   buildAreaFitSystemPrompt,
   buildAreaFitUserPrompt,
+  buildAvisoSystemPrompt,
+  buildAvisoUserPrompt,
   buildFitTasks,
+  indexReportsByOfficial,
   needsModel,
+  resolveAvisoMapping,
   rowFromResponse,
   rowWithoutModel,
   type AreaFitRow,
+  type AvisoMapping,
   type FitTask,
   type OfficialLike,
   type ReportLike,
@@ -52,6 +59,20 @@ const AssessmentSchema = z.object({
 const ResponseSchema = z.object({
   formacion: AssessmentSchema,
   experiencia: AssessmentSchema,
+})
+
+// The enum is IMPORTED, not restated: a hand-copied list here would drift from
+// the resolver's and this schema would keep accepting a value the resolver
+// rejects (DATA_INTEGRITY §1). `avisoIndex` is the only channel the model has —
+// there is no field on this schema through which it could emit publishable prose.
+const AvisoSchema = z.object({
+  avisos: z.array(
+    z.object({
+      avisoIndex: z.number().int().nonnegative(),
+      eje: z.enum(AVISO_EJES),
+      tipo: z.string().optional(),
+    }),
+  ),
 })
 
 function arg(name: string): string | null {
@@ -157,11 +178,93 @@ async function main() {
     }
   }
 
+  // ───────────────────────────────────────────────────────────────────────────
+  // Fase 2 — las advertencias de la biografía, a su eje
+  //
+  // Una llamada por INFORME, no por advertencia: el modelo ve la lista entera
+  // numerada, que es lo que le permite decir "ésta va sobre formación y esta
+  // otra no va sobre nada" sin que cada una le llegue descontextualizada. Y
+  // devuelve índices: el texto que se publica lo lee este script del propio
+  // informe, así que el modelo no redacta ni una palabra publicable.
+  // ───────────────────────────────────────────────────────────────────────────
+  const byOfficial = indexReportsByOfficial(reports)
+  const avisos: AvisoMapping[] = []
+  // Sólo quien tiene fila. Un aviso sin fila a la que referirse no se renderiza
+  // en ningún sitio, y clasificarlo sería pedirle al modelo un juicio sobre una
+  // persona que esta superficie no menciona.
+  const slugsConFila = [...new Set(tasks.map((t) => t.officialSlug))]
+  let ofrecidos = 0
+
+  for (const slug of slugsConFila) {
+    const report = byOfficial.get(slug)
+    // Sin filtrar y sin reordenar: el índice es relativo a la lista que publica
+    // el informe. Filtrar aquí desplazaría los índices y un curador que
+    // resolviese avisoIndex contra el informe leería otra advertencia.
+    const warnings = report?.warnings ?? []
+    if (!warnings.length) {
+      run.skip('sin-avisos')
+      continue
+    }
+    ofrecidos += warnings.length
+
+    if (dryRun) {
+      run.neverAttempt()
+      continue
+    }
+
+    run.attempt()
+    const res = await callLLM({
+      systemPrompt: buildAvisoSystemPrompt(),
+      userPrompt: buildAvisoUserPrompt(warnings),
+      promptVersion: AVISO_PROMPT_VERSION,
+      schema: AvisoSchema,
+      input: { slug, reportId: report!.id },
+    })
+
+    // Un null NO es "ninguna advertencia aplica": es un backend agotado. Se
+    // nombra el informe sin clasificar en lugar de dar un visto bueno silencioso.
+    if (!res) {
+      run.record('aviso-backend-null')
+      console.warn(`[area-fit] ⚠ ${slug} — el backend no clasificó sus ${warnings.length} aviso(s)`)
+      continue
+    }
+
+    const vistos = new Set<number>()
+    for (const raw of res.avisos) {
+      try {
+        const m = resolveAvisoMapping(raw, warnings, { officialSlug: slug, reportId: report!.id })
+        if (vistos.has(m.avisoIndex)) {
+          run.record('aviso-duplicado')
+          continue
+        }
+        vistos.add(m.avisoIndex)
+        run.record(`aviso:${m.eje}`)
+        // "ninguno" es la respuesta honesta mayoritaria y no viaja a la cola:
+        // no dice nada y nombraría a una persona para no decirlo.
+        if (m.eje === 'ninguno') continue
+        avisos.push({ ...m, requiresHumanApproval: true })
+      } catch (err) {
+        // Un índice a la deriva mata su propio aviso, no la ronda entera.
+        run.record('aviso-rechazado-por-validador')
+        console.warn(`[area-fit] ✗ aviso de ${slug} — ${(err as Error).message}`)
+      }
+    }
+    // Que el modelo omita una advertencia no es lo mismo que clasificarla como
+    // "ninguno", y se cuenta aparte para que la ronda no aparente más trabajo
+    // del que hizo.
+    for (let i = 0; i < warnings.length; i += 1) {
+      if (!vistos.has(i)) run.record('aviso-sin-clasificar')
+    }
+    run.judge()
+  }
+
   if (dryRun) {
     console.log(
       `[area-fit] dry-run: ${tasks.length} pares, ` +
         `${deterministic.length} sin CV publicado (no-consta determinista), ` +
-        `${tasks.length - deterministic.length} habrían llamado al modelo`,
+        `${tasks.length - deterministic.length} habrían llamado al modelo\n` +
+        `[area-fit] dry-run: ${ofrecidos} advertencia(s) en ${slugsConFila.length} informe(s) ` +
+        'habrían pedido una llamada más por informe',
     )
     run.finish({ write: false })
     return
@@ -177,8 +280,10 @@ async function main() {
           'esquema publicado rechaza ese campo. Se promociona con `npm run promote-area-fit`.',
         generatedAt: new Date().toISOString(),
         promptVersion: AREA_FIT_PROMPT_VERSION,
+        avisoPromptVersion: AVISO_PROMPT_VERSION,
         backend: cfg.backend,
         rows,
+        avisos,
       },
       null,
       2,
@@ -189,7 +294,9 @@ async function main() {
   console.log(
     `[area-fit] ${rows.length} fila(s) en cola → ${OUT}\n` +
       `           intentadas ${manifest.attempted} · juzgadas ${manifest.judged} · ` +
-      `nunca intentadas ${manifest.neverAttempted}`,
+      `nunca intentadas ${manifest.neverAttempted}\n` +
+      `           ${ofrecidos} advertencia(s) leída(s) · ${avisos.length} con eje ` +
+      '(el resto son «ninguno» y no viajan a la cola)',
   )
   for (const f of findings)
     console.log(`           ${f.level === 'error' ? '✗' : '⚠'} ${f.message}`)

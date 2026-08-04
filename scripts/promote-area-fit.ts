@@ -7,6 +7,8 @@
  *       --curator "datarhan" [--note "el título es del ramo de la edificación"]
  *   npm run promote-area-fit -- --official alfredo-pla-gimenez --area "Fallas" --reject
  *   npm run promote-area-fit -- --official X --area Y --retract --curator "datarhan"
+ *   npm run promote-area-fit -- --aviso --official eva-lara-catala --aviso-index 1 \
+ *       --curator "datarhan"
  *
  * The ONLY path that writes public/data/area-fit.json. Mirrors promote-place /
  * promote-social / promote-claim: the machine proposes, a human publishes, the
@@ -23,6 +25,7 @@ import {
   validateAreaFitSnapshot,
   type AreaFitRow,
   type AreaFitSnapshot,
+  type AvisoMapping,
   type OfficialLike,
 } from '../src/scraper/area-fit'
 
@@ -82,6 +85,11 @@ function loadQueue(): AreaFitRow[] {
   return JSON.parse(readFileSync(QUEUE, 'utf8')).rows || []
 }
 
+function loadQueueAvisos(): AvisoMapping[] {
+  if (!existsSync(QUEUE)) return []
+  return JSON.parse(readFileSync(QUEUE, 'utf8')).avisos || []
+}
+
 function frozenUntil(): string | null {
   if (!existsSync(PROMISES)) return null
   try {
@@ -117,6 +125,11 @@ function write(snap: AreaFitSnapshot) {
       ? a.portfolio.localeCompare(b.portfolio)
       : a.officialSlug.localeCompare(b.officialSlug),
   )
+  snap.avisos?.sort((a, b) =>
+    a.officialSlug === b.officialSlug
+      ? a.avisoIndex - b.avisoIndex
+      : a.officialSlug.localeCompare(b.officialSlug),
+  )
   writeFileSync(OUT, JSON.stringify(snap, null, 2) + '\n')
 }
 
@@ -124,13 +137,31 @@ function main() {
   const queue = loadQueue()
 
   if (process.argv.includes('--list')) {
-    const published = new Set(loadPublished().rows.map((r) => `${r.officialSlug}::${r.portfolio}`))
+    const snap = loadPublished()
+    const published = new Set(snap.rows.map((r) => `${r.officialSlug}::${r.portfolio}`))
     console.log(`${queue.length} fila(s) en cola:\n`)
     for (const r of queue) {
       const mark = published.has(`${r.officialSlug}::${r.portfolio}`)
         ? '✓ publicada'
         : '· pendiente'
       console.log(`${mark}  ${describe(r)}`)
+    }
+
+    // La cola de avisos se lista aquí y no en otro sitio: lo que no se ve no se
+    // revisa, y firmarlos es el mismo acto que firmar una fila.
+    const avisos = loadQueueAvisos()
+    const pubAvisos = new Set((snap.avisos ?? []).map((a) => `${a.officialSlug}::${a.avisoIndex}`))
+    console.log(`\n${avisos.length} aviso(s) en cola:\n`)
+    for (const a of avisos) {
+      const mark = pubAvisos.has(`${a.officialSlug}::${a.avisoIndex}`)
+        ? '✓ publicado'
+        : '· pendiente'
+      console.log(
+        `${mark}  ${a.officialSlug}  ·  aviso ${a.avisoIndex}  →  eje ${a.eje}` +
+          `${a.tipo ? ` (${a.tipo})` : ''}` +
+          `${a.decoratesChip ? '' : '  [no decora ningún chip: señala la FILA]'}\n` +
+          `      « ${a.verbatim} »\n`,
+      )
     }
     return
   }
@@ -141,6 +172,69 @@ function main() {
     process.exit(1)
   }
 
+  // Firmar el eje de una advertencia. Va en el MISMO CLI que las filas porque
+  // es el mismo acto — colgar una afirmación publicada de una persona con
+  // nombre y apellidos — y debe revalidar el mismo snapshot entero.
+  if (process.argv.includes('--aviso')) {
+    const slug = arg('official')
+    const idxRaw = arg('aviso-index')
+    if (!slug || idxRaw === null) {
+      console.error(
+        'uso: npm run promote-area-fit -- --aviso --official <slug> --aviso-index <n> --curator "<nombre>"',
+      )
+      process.exit(1)
+    }
+    const idx = Number(idxRaw)
+    if (!Number.isInteger(idx) || idx < 0) {
+      console.error(`--aviso-index ha de ser un entero no negativo, no ${JSON.stringify(idxRaw)}`)
+      process.exit(1)
+    }
+    const snap = loadPublished()
+    snap.avisos = snap.avisos ?? []
+
+    if (process.argv.includes('--reject')) {
+      console.log(`✗ rechazado (no se publica)  ${slug} · aviso ${idx}`)
+      return
+    }
+    if (process.argv.includes('--retract')) {
+      const before = snap.avisos.length
+      snap.avisos = snap.avisos.filter((a) => !(a.officialSlug === slug && a.avisoIndex === idx))
+      if (snap.avisos.length === before) {
+        console.error(`no hay aviso publicado para ${slug} · ${idx}`)
+        process.exit(1)
+      }
+      snap.generatedAt = new Date().toISOString()
+      write(snap)
+      console.log(`↩ retirado  ${slug} · aviso ${idx}`)
+      return
+    }
+
+    const curator = arg('curator')
+    if (!curator) {
+      console.error('--curator es obligatorio: esto nombra a una persona, así que lleva firma')
+      process.exit(1)
+    }
+    const draft = loadQueueAvisos().find((a) => a.officialSlug === slug && a.avisoIndex === idx)
+    if (!draft) {
+      console.error(`no hay borrador de aviso en cola para ${slug} · ${idx}`)
+      process.exit(1)
+    }
+    // Se descarta el flag al pasar — el esquema publicado lo rechaza.
+    const { requiresHumanApproval: _dropAviso, ...rest } = draft
+    snap.avisos = snap.avisos.filter((a) => !(a.officialSlug === slug && a.avisoIndex === idx))
+    snap.avisos.push({
+      ...rest,
+      curatedBy: curator,
+      curatedAt: new Date().toISOString().slice(0, 10),
+    })
+    snap.generatedAt = new Date().toISOString()
+    write(snap)
+    console.log(
+      `✓ publicado  ${slug} · aviso ${idx} → eje ${draft.eje}\n      « ${draft.verbatim} »`,
+    )
+    return
+  }
+
   const slug = arg('official')
   const area = arg('area')
   if (!slug || !area) {
@@ -148,6 +242,7 @@ function main() {
       'uso: npm run promote-area-fit -- --official <slug> --area "<área>" --curator "<nombre>"\n' +
         '     npm run promote-area-fit -- --official <slug> --area "<área>" --reject\n' +
         '     npm run promote-area-fit -- --official <slug> --area "<área>" --retract --curator "<nombre>"\n' +
+        '     npm run promote-area-fit -- --aviso --official <slug> --aviso-index <n> --curator "<nombre>"\n' +
         '     npm run promote-area-fit -- --list',
     )
     process.exit(1)

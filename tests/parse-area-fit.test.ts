@@ -1,18 +1,22 @@
 import { describe, it, expect } from 'vitest'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import {
   FIT_VALUES,
   RESPALDO_VALUES,
+  AVISO_EJES,
   AreaFitValidationError,
+  validateAreaFitDrafts,
   buildFitTasks,
   deriveRespaldo,
   resolveAssessment,
+  resolveAvisoMapping,
   rowWithoutModel,
   rowFromResponse,
   noConstaShare,
   validateAreaFitSnapshot,
   type AreaFitRow,
+  type AvisoMapping,
   type FitTask,
   type FitEvidenceItem,
   type SourceLike,
@@ -463,5 +467,258 @@ describe('area-fit — respaldo travels on the row', () => {
     expect(tasks).toHaveLength(1)
     expect(tasks[0].sourcesById['src-1']).toMatchObject({ selfDeclared: true })
     expect(tasks[0].sourcesById['src-2']).toMatchObject({ selfDeclared: false })
+  })
+})
+
+describe('area-fit — avisos mapped to an axis', () => {
+  const WARNINGS = [
+    'Los datos de formación proceden del CV autodeclarado de la propia concejala.',
+    'Su CV y su declaración estatutaria difieren en el inicio de su plaza docente (2006 frente a 09/2008); se publica sin resolver.',
+    'Las delegaciones han variado durante el mandato: el decreto de 07-2023 recogía Participación…',
+  ]
+
+  it('exports the axis enum rather than letting callers restate it', () => {
+    // Imported, never hand-copied: DATA_INTEGRITY §1.
+    expect(AVISO_EJES).toContain('formacion')
+    expect(AVISO_EJES).toContain('experiencia')
+    expect(AVISO_EJES).toContain('area')
+    expect(AVISO_EJES).toContain('ninguno')
+    expect(new Set(AVISO_EJES).size).toBe(AVISO_EJES.length)
+  })
+
+  it('carries the warning verbatim, resolved from its index', () => {
+    // The model returns a number; the PROSE that gets published is read from
+    // the report here. The model therefore cannot author a published sentence.
+    const m = resolveAvisoMapping(
+      { avisoIndex: 1, eje: 'experiencia', tipo: 'sin-resolver' },
+      WARNINGS,
+    )
+    expect(m.eje).toBe('experiencia')
+    expect(m.verbatim).toBe(WARNINGS[1])
+    expect(m.tipo).toBe('sin-resolver')
+  })
+
+  it('rejects an index outside the report’s warnings rather than repairing it', () => {
+    expect(() => resolveAvisoMapping({ avisoIndex: 9, eje: 'experiencia' }, WARNINGS)).toThrow(
+      AreaFitValidationError,
+    )
+    // Off-by-one at the boundary is the realistic drift, not index 9.
+    expect(() =>
+      resolveAvisoMapping({ avisoIndex: WARNINGS.length, eje: 'ninguno' }, WARNINGS),
+    ).toThrow(AreaFitValidationError)
+    expect(() => resolveAvisoMapping({ avisoIndex: -1, eje: 'ninguno' }, WARNINGS)).toThrow(
+      AreaFitValidationError,
+    )
+  })
+
+  it('rejects an axis outside the enum', () => {
+    expect(() => resolveAvisoMapping({ avisoIndex: 0, eje: 'sospecha' }, WARNINGS)).toThrow(
+      AreaFitValidationError,
+    )
+  })
+
+  it('keeps eje=area away from the chips — it flags the ROW', () => {
+    // Not a decoration: it means the delegation changed mid-mandate, so the row
+    // may be judging an área the person no longer holds.
+    const m = resolveAvisoMapping(
+      { avisoIndex: 2, eje: 'area', tipo: 'delegacion-cambiada' },
+      WARNINGS,
+    )
+    expect(m.eje).toBe('area')
+    expect(m.decoratesChip).toBe(false)
+  })
+
+  it('decorates a chip only for the two axes a chip actually shows', () => {
+    // Asserting "area is false" alone passes on a function that always returns
+    // false. Assert the check can distinguish.
+    const eje = (e: string) => resolveAvisoMapping({ avisoIndex: 0, eje: e }, WARNINGS)
+    expect(eje('formacion').decoratesChip).toBe(true)
+    expect(eje('experiencia').decoratesChip).toBe(true)
+    expect(eje('area').decoratesChip).toBe(false)
+    expect(eje('ninguno').decoratesChip).toBe(false)
+  })
+
+  it('stamps the official and report the index is relative to', () => {
+    // An index is meaningless without the list it indexes into: carrying the
+    // reportId is what lets a reader (and check:relations) resolve it back.
+    const m = resolveAvisoMapping({ avisoIndex: 0, eje: 'ninguno' }, WARNINGS, {
+      officialSlug: 'eva-lara-catala',
+      reportId: 'r-eva-lara-bio-2026-07-31',
+    })
+    expect(m.officialSlug).toBe('eva-lara-catala')
+    expect(m.reportId).toBe('r-eva-lara-bio-2026-07-31')
+  })
+})
+
+describe('area-fit — the published snapshot validates its avisos', () => {
+  const OFFICIALS = [
+    {
+      slug: 'teresa-pozuelo-martin',
+      name: 'T',
+      party: 'PSOE',
+      role: 'concejal',
+      portfolios: ['Urbanismo'],
+    },
+  ]
+  const ctx = { officials: OFFICIALS, reportSources: { 'r-1': new Set(['src-060']) } }
+
+  const good = () => ({
+    generatedAt: '2026-08-04T00:00:00.000Z',
+    mandate: '2023-2027',
+    rows: [
+      {
+        officialSlug: 'teresa-pozuelo-martin',
+        portfolio: 'Urbanismo',
+        departmentSlug: 'urbanismo',
+        reportId: 'r-1',
+        formacion: {
+          value: 'relacionada',
+          evidence: [{ label: 'Arquitecto Técnico — UPV', sourceIds: ['src-060'] }],
+        },
+        experiencia: { value: 'sin-relacion-declarada', evidence: [] },
+        curatedBy: 'Sergei Lutchenko',
+        curatedAt: '2026-08-04',
+      },
+    ],
+    avisos: [
+      {
+        officialSlug: 'teresa-pozuelo-martin',
+        reportId: 'r-1',
+        avisoIndex: 1,
+        eje: 'experiencia',
+        verbatim: 'Su CV y su declaración estatutaria difieren en el inicio de su plaza docente.',
+        decoratesChip: true,
+        curatedBy: 'Sergei Lutchenko',
+        curatedAt: '2026-08-04',
+      },
+    ],
+  })
+
+  it('accepts a signed aviso mapping', () => {
+    expect(() => validateAreaFitSnapshot(good(), ctx)).not.toThrow()
+  })
+
+  it('rejects an aviso whose eje is outside the enum', () => {
+    const s = good()
+    ;(s.avisos[0] as Record<string, unknown>).eje = 'sospecha'
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(AreaFitValidationError)
+  })
+
+  it('rejects an aviso with no verbatim text — an empty warning says nothing', () => {
+    const s = good()
+    s.avisos[0].verbatim = ''
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(AreaFitValidationError)
+  })
+
+  it('rejects an aviso with no curator signature', () => {
+    const s = good()
+    delete (s.avisos[0] as Partial<AvisoMapping>).curatedBy
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(AreaFitValidationError)
+  })
+
+  it('rejects requiresHumanApproval on a PUBLISHED aviso', () => {
+    // Same two-layer rule as the rows: drafts must carry it, published must not.
+    const s = good() as Record<string, unknown>
+    ;(s.avisos as Array<Record<string, unknown>>)[0].requiresHumanApproval = true
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(AreaFitValidationError)
+  })
+
+  it('rejects an aviso attached to an official who is not in officials.json', () => {
+    const s = good()
+    s.avisos[0].officialSlug = 'quien-sea'
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(AreaFitValidationError)
+  })
+
+  it('refuses a published eje=ninguno — it says nothing and names a person to say it', () => {
+    const s = good()
+    ;(s.avisos[0] as Record<string, unknown>).eje = 'ninguno'
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(AreaFitValidationError)
+  })
+
+  it('refuses decoratesChip disagreeing with the eje', () => {
+    // The flag is derived, so a snapshot where it was hand-edited is a snapshot
+    // whose chips no longer match the axis they claim to be showing.
+    const s = good()
+    s.avisos[0].decoratesChip = false
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(AreaFitValidationError)
+  })
+
+  it('still accepts a snapshot with no avisos at all — the field is optional', () => {
+    const s = good() as Record<string, unknown>
+    delete s.avisos
+    expect(() => validateAreaFitSnapshot(s, ctx)).not.toThrow()
+  })
+})
+
+describe('area-fit — the review queue is the mirror of the published shape', () => {
+  const draft = () => ({
+    rows: [],
+    avisos: [
+      {
+        officialSlug: 'eva-lara-catala',
+        reportId: 'r-eva-lara-bio-2026-07-31',
+        avisoIndex: 1,
+        eje: 'experiencia',
+        verbatim: 'Su CV y su declaración estatutaria difieren en el inicio de su plaza docente.',
+        decoratesChip: true,
+        requiresHumanApproval: true,
+      },
+    ],
+  })
+
+  it('accepts an aviso draft carrying the approval flag', () => {
+    expect(() => validateAreaFitDrafts(draft())).not.toThrow()
+  })
+
+  it('rejects an aviso draft that lost the approval flag', () => {
+    const d = draft()
+    delete (d.avisos[0] as Partial<AvisoMapping>).requiresHumanApproval
+    expect(() => validateAreaFitDrafts(d)).toThrow(AreaFitValidationError)
+  })
+
+  it('rejects an aviso draft that arrived pre-signed', () => {
+    // A signature the curator never gave is the whole failure this gate exists
+    // to catch: promote would wave it straight through.
+    const d = draft() as Record<string, unknown>
+    ;(d.avisos as Array<Record<string, unknown>>)[0].curatedBy = 'un modelo'
+    expect(() => validateAreaFitDrafts(d)).toThrow(AreaFitValidationError)
+  })
+
+  it('rejects "ninguno" reaching the queue — it is dropped, not reviewed', () => {
+    const d = draft() as Record<string, unknown>
+    ;(d.avisos as Array<Record<string, unknown>>)[0].eje = 'ninguno'
+    expect(() => validateAreaFitDrafts(d)).toThrow(AreaFitValidationError)
+  })
+})
+
+describe('area-fit — the real review queue, as the model actually filled it', () => {
+  // Reads editorial/area-fit-queue.json when it exists. Gitignored, so this is
+  // a local-only check and SKIPS in CI rather than pretending to have run.
+  const QUEUE = join(__dirname, '..', 'editorial', 'area-fit-queue.json')
+  const queue = existsSync(QUEUE)
+    ? (JSON.parse(readFileSync(QUEUE, 'utf8')) as {
+        avisos?: Array<AvisoMapping & { requiresHumanApproval?: true }>
+      })
+    : null
+
+  it.skipIf(!queue)('every queued aviso quotes its report verbatim at its own index', () => {
+    // The one property the whole cite-by-index design exists to guarantee: the
+    // published text is the report's, at the index the mapping names. A silent
+    // drift here would quote one councillor's warning under another's name.
+    const reports = JSON.parse(
+      readFileSync(join(__dirname, '..', 'public', 'data', 'journalist-reports.json'), 'utf8'),
+    )
+    const byId = new Map<string, { warnings?: string[] }>(
+      (reports.items || reports.reports || []).map((r: { id: string }) => [r.id, r]),
+    )
+    let checked = 0
+    for (const a of queue!.avisos ?? []) {
+      expect(byId.get(a.reportId)?.warnings?.[a.avisoIndex]).toBe(a.verbatim)
+      expect(a.requiresHumanApproval).toBe(true)
+      expect(a.eje).not.toBe('ninguno')
+      checked += 1
+    }
+    // Assert the check evaluated something: an empty queue would otherwise pass.
+    expect(checked).toBeGreaterThan(0)
   })
 })
