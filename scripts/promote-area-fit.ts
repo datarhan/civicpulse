@@ -67,6 +67,21 @@ function loadReportSources(): Record<string, Set<string>> {
   return out
 }
 
+/**
+ * reportId → that report's warnings, read fresh at WRITE time.
+ *
+ * The queue may have been drafted days ago against a biography that has since
+ * been re-run. Re-reading here is what lets the validator catch a mapping whose
+ * index no longer points at the sentence it quotes.
+ */
+function loadReportWarnings(): Record<string, string[]> {
+  const raw = JSON.parse(readFileSync(REPORTS, 'utf8'))
+  const items = raw.items || raw.reports || []
+  const out: Record<string, string[]> = {}
+  for (const r of items) out[r.id] = Array.isArray(r.warnings) ? r.warnings : []
+  return out
+}
+
 function loadPublished(): AreaFitSnapshot {
   if (!existsSync(OUT)) {
     return {
@@ -118,8 +133,11 @@ function describe(r: AreaFitRow): string {
 function write(snap: AreaFitSnapshot) {
   const officials = loadOfficials()
   const reportSources = loadReportSources()
-  // Re-validate the WHOLE snapshot, never just the touched row.
-  validateAreaFitSnapshot(snap, { officials, reportSources })
+  const reportWarnings = loadReportWarnings()
+  // Re-validate the WHOLE snapshot, never just the touched row — and re-resolve
+  // every aviso index against the reports as they stand right now, not as they
+  // stood when the queue was drafted.
+  validateAreaFitSnapshot(snap, { officials, reportSources, reportWarnings })
   snap.rows.sort((a, b) =>
     a.officialSlug === b.officialSlug
       ? a.portfolio.localeCompare(b.portfolio)
@@ -157,8 +175,7 @@ function main() {
         ? '✓ publicado'
         : '· pendiente'
       console.log(
-        `${mark}  ${a.officialSlug}  ·  aviso ${a.avisoIndex}  →  eje ${a.eje}` +
-          `${a.tipo ? ` (${a.tipo})` : ''}` +
+        `${mark}  ${a.officialSlug}  ·  aviso ${a.avisoIndex}  →  eje ${a.eje} · ${a.direccion}` +
           `${a.decoratesChip ? '' : '  [no decora ningún chip: señala la FILA]'}\n` +
           `      « ${a.verbatim} »\n`,
       )
@@ -230,7 +247,8 @@ function main() {
     snap.generatedAt = new Date().toISOString()
     write(snap)
     console.log(
-      `✓ publicado  ${slug} · aviso ${idx} → eje ${draft.eje}\n      « ${draft.verbatim} »`,
+      `✓ publicado  ${slug} · aviso ${idx} → eje ${draft.eje} · ${draft.direccion}\n` +
+        `      « ${draft.verbatim} »`,
     )
     return
   }

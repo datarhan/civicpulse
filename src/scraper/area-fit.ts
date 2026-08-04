@@ -91,14 +91,33 @@ export type RespaldoValue = (typeof RESPALDO_VALUES)[number]
 export const AVISO_EJES = ['formacion', 'experiencia', 'area', 'ninguno'] as const
 export type AvisoEje = (typeof AVISO_EJES)[number]
 
+/**
+ * WHICH WAY the warning cuts — required, and a closed set on purpose.
+ *
+ * The axis alone cannot be rendered. Of the first three `experiencia` mappings
+ * this pipeline produced, TWO were corroborations: Pozuelo's 2015/2019
+ * discrepancy was RESOLVED by independent sources (BOP n.º 79, acta de 2015),
+ * and Barbancho's statutory declaration CORROBORATES his CV. Painting either as
+ * "discrepancia documentada" would publish corroboration as suspicion about a
+ * named person — the exact inversion this surface exists to avoid.
+ *
+ * It is an enum and not a label because the field REACHES public/data. This
+ * carried free text for one commit, and a free-text field that publishes is a
+ * field through which a model can author a sentence about a living person —
+ * `tipo: 'El concejal miente sobre su titulación'` validated and would have
+ * shipped under a curator's signature. A closed set cannot hold a sentence.
+ */
+export const AVISO_DIRECCIONES = ['contradice', 'corrobora', 'matiza'] as const
+export type AvisoDireccion = (typeof AVISO_DIRECCIONES)[number]
+
 export interface AvisoMapping {
   officialSlug: string
   /** The report the index is relative to — an index means nothing without it. */
   reportId: string
   avisoIndex: number
   eje: AvisoEje
-  /** The model's short label for the KIND of warning. Never rendered as prose. */
-  tipo?: string
+  /** Which way it cuts. Required: an axis with no direction cannot be rendered. */
+  direccion: AvisoDireccion
   /** Resolved here from the index — the model never emits prose we publish. */
   verbatim: string
   decoratesChip: boolean
@@ -272,20 +291,25 @@ const isFitValue = (v: unknown): v is FitValue =>
 const isAvisoEje = (v: unknown): v is AvisoEje =>
   typeof v === 'string' && (AVISO_EJES as readonly string[]).includes(v)
 
+const isAvisoDireccion = (v: unknown): v is AvisoDireccion =>
+  typeof v === 'string' && (AVISO_DIRECCIONES as readonly string[]).includes(v)
+
 /**
  * Turn the model's answer about ONE warning into a mapping, or refuse.
  *
- * The model returns an INDEX; the text that gets published is read from the
- * report's own `warnings` array here. So the model cannot author a sentence
- * this surface publishes about a named person — the strongest form of the
- * cite-by-index rule the rest of this module already follows.
+ * The model chooses from three closed sets — an index, an axis and a direction —
+ * and the text that gets published is read from the report's own `warnings`
+ * array here. Every field the model can influence is therefore bounded, so it
+ * cannot author a sentence this surface publishes about a named person. That is
+ * the strongest form of the cite-by-index rule the rest of this module follows,
+ * and it holds only while NO free-text field survives to publication.
  *
  * An index outside the report's warnings is a hard error, never repaired: a
  * drifted index attaches one councillor's warning to another's claim, and a
  * clamp would do it silently. The promise miner learned this at 172fd04.
  */
 export function resolveAvisoMapping(
-  raw: { avisoIndex: number; eje: string; tipo?: string },
+  raw: { avisoIndex: number; eje: string; direccion: string },
   warnings: readonly string[],
   ctx: { officialSlug: string; reportId: string } = { officialSlug: '', reportId: '' },
 ): AvisoMapping {
@@ -293,6 +317,11 @@ export function resolveAvisoMapping(
   must(
     isAvisoEje(raw.eje),
     `eje must be one of ${AVISO_EJES.join(' | ')}, got ${JSON.stringify(raw.eje)}`,
+  )
+  must(
+    isAvisoDireccion(raw.direccion),
+    `direccion must be one of ${AVISO_DIRECCIONES.join(' | ')}, got ${JSON.stringify(raw.direccion)} — ` +
+      'an axis with no direction renders corroboration as suspicion',
   )
   must(
     Number.isInteger(raw.avisoIndex) && raw.avisoIndex >= 0 && raw.avisoIndex < warnings.length,
@@ -304,13 +333,12 @@ export function resolveAvisoMapping(
     typeof verbatim === 'string' && verbatim.trim().length > 0,
     `warning ${raw.avisoIndex} is empty — there is nothing to map`,
   )
-  const tipo = typeof raw.tipo === 'string' ? raw.tipo.trim() : ''
   return {
     officialSlug: ctx.officialSlug,
     reportId: ctx.reportId,
     avisoIndex: raw.avisoIndex,
     eje: raw.eje,
-    ...(tipo ? { tipo } : {}),
+    direccion: raw.direccion,
     verbatim,
     decoratesChip: decoratesChipFor(raw.eje),
   }
@@ -605,28 +633,41 @@ ${fmt(task.careerItems)}
 Responde con el JSON de valoración para esta área.`
 }
 
-export const AVISO_PROMPT_VERSION = 'area-fit-aviso-v1'
+export const AVISO_PROMPT_VERSION = 'area-fit-aviso-v2'
 
 export function buildAvisoSystemPrompt(): string {
   return `Eres analista documental de un observatorio municipal español.
 
-Se te da la lista numerada de ADVERTENCIAS que acompaña a una biografía y debes
-decir, para cada una, sobre qué eje recae:
+Se te da la lista numerada de ADVERTENCIAS que acompaña a una biografía. Para
+cada una dices DOS cosas: sobre qué EJE recae y en qué DIRECCIÓN.
 
-- "formacion"   — pone en cuestión, matiza o corrobora la FORMACIÓN declarada.
-- "experiencia" — lo mismo para la TRAYECTORIA PROFESIONAL declarada.
+EJE:
+- "formacion"   — recae sobre la FORMACIÓN ACADÉMICA declarada (títulos, cursos,
+                  centros donde estudió).
+- "experiencia" — recae sobre la TRAYECTORIA PROFESIONAL declarada: empleos y
+                  actividad laboral. NO es "experiencia" una advertencia sobre
+                  su carrera POLÍTICA (concejalías, actas, listas electorales,
+                  desde cuándo es regidor): esa carrera no entra en este eje.
+                  Si la advertencia sólo habla de cargos electos, es "ninguno".
 - "area"        — dice que las áreas o delegaciones han cambiado.
 - "ninguno"     — cualquier otra cosa (compatibilidad de actividades privadas,
-                  cobertura de prensa, incidencias de archivo, patrimonio).
+                  cobertura de prensa, incidencias de archivo, patrimonio,
+                  carrera política).
+
+DIRECCIÓN (obligatoria, incluso cuando el eje es "ninguno"):
+- "contradice" — dos fuentes se contradicen y la contradicción sigue abierta,
+                 o el dato no ha podido verificarse y queda en entredicho.
+- "corrobora"  — otra fuente confirma lo declarado, o una discrepancia anterior
+                 quedó RESUELTA. Una advertencia que confirma NO es un reparo.
+- "matiza"     — acota, precisa o contextualiza sin confirmar ni desmentir.
 
 Reglas:
 - Cita por ÍNDICE, exactamente como están numeradas. Nunca inventes un índice.
 - Una advertencia que sólo dice que un dato es autodeclarado es "ninguno": eso
   ya se refleja por otra vía y repetirlo es ruido.
-- No juzgas a la persona. No añades prosa sobre ella.
-- "tipo" es una etiqueta corta en minúsculas y con guiones (por ejemplo
-  "sin-resolver", "delegacion-cambiada"). No es una frase.
-- Ante la duda, "ninguno".
+- No juzgas a la persona. No escribes prosa: sólo eliges de las listas de
+  arriba. Ningún texto tuyo se publica.
+- Ante la duda en el eje, "ninguno". Ante la duda en la dirección, "matiza".
 
 Devuelve SÓLO JSON.`
 }
@@ -635,7 +676,9 @@ export function buildAvisoUserPrompt(warnings: readonly string[]): string {
   return `ADVERTENCIAS:
 ${warnings.map((w, i) => `  [${i}] ${w}`).join('\n')}
 
-Devuelve {"avisos":[{"avisoIndex":n,"eje":"…","tipo":"…"}]} con una entrada por advertencia.`
+Devuelve {"avisos":[{"avisoIndex":n,"eje":"…","direccion":"…"}]} con una entrada
+por advertencia. "eje" es uno de ${AVISO_EJES.join(' | ')} y "direccion" uno de
+${AVISO_DIRECCIONES.join(' | ')}. No añadas ningún otro campo.`
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -646,6 +689,22 @@ export interface AreaFitValidationContext {
   officials: readonly OfficialLike[]
   /** reportId → the set of source ids that report actually carries. */
   reportSources: Record<string, Set<string>>
+  /**
+   * reportId → that report's `warnings`, so an aviso's index can be RE-RESOLVED
+   * at publication time and not merely at generation time.
+   *
+   * Without it, cite-by-index protects only the moment the model answered. Re-run
+   * a biography between `suggest` and `promote` — warnings reorder or a
+   * retraction shortens the list — and a stale `verbatim` publishes under a stale
+   * index with a curator's name on it. That is precisely the "warning quoted
+   * under the wrong councillor's name" this module says it cannot afford, so the
+   * check has to run where the write happens.
+   *
+   * Optional only so the 40 already-published rows keep validating in callers
+   * that hold no reports; an aviso whose report is missing here is REFUSED
+   * rather than waved through.
+   */
+  reportWarnings?: Record<string, readonly string[]>
 }
 
 function validateAssessment(a: FitAssessment, where: string, known: Set<string> | undefined) {
@@ -764,6 +823,16 @@ export function validateAreaFitSnapshot(
           'living person to assert it; drop the mapping instead',
       )
       must(
+        isAvisoDireccion(a.direccion),
+        `${where}: direccion must be one of ${AVISO_DIRECCIONES.join(' | ')} — ` +
+          'an axis with no direction renders corroboration as suspicion',
+      )
+      must(
+        !('tipo' in a),
+        `${where}: "tipo" was free text the model authored and it reached public/data — ` +
+          'it is gone; use direccion, which is a closed set',
+      )
+      must(
         typeof a.verbatim === 'string' && a.verbatim.trim().length > 0,
         `${where}: verbatim required — it is the warning's own text, read from the report`,
       )
@@ -772,6 +841,23 @@ export function validateAreaFitSnapshot(
         `${where}: decoratesChip (${a.decoratesChip}) contradicts eje "${a.eje}" — ` +
           'the flag is derived, so a hand-edited one makes a chip claim the wrong axis',
       )
+      // RE-RESOLVE the index against the report as it stands NOW. Generation-time
+      // validation cannot see a biography re-run that happened afterwards.
+      if (ctx.reportWarnings) {
+        const warnings = ctx.reportWarnings[a.reportId]
+        must(
+          Array.isArray(warnings),
+          `${where}: reportId "${a.reportId}" resolves to no report — ` +
+            'an aviso whose list cannot be found is refused, never assumed correct',
+        )
+        must(
+          warnings[a.avisoIndex] === a.verbatim,
+          `${where}: verbatim no longer matches warning ${a.avisoIndex} of ${a.reportId} ` +
+            `(the report now has ${warnings.length}) — the biography was re-run after the ` +
+            'mapping was drafted; re-run `npm run suggest:area-fit` rather than publishing a ' +
+            'quote the report no longer contains at that index',
+        )
+      }
       must(
         !('requiresHumanApproval' in a),
         `${where}: requiresHumanApproval must not appear on a published aviso — ` +
@@ -831,6 +917,11 @@ export function validateAreaFitDrafts(json: unknown): AreaFitRow[] {
       a.eje !== 'ninguno',
       `${where}: "ninguno" is dropped before the queue — it is not something to review`,
     )
+    must(
+      isAvisoDireccion(a.direccion),
+      `${where}: direccion must be one of ${AVISO_DIRECCIONES.join(' | ')}`,
+    )
+    must(!('tipo' in a), `${where}: "tipo" is gone — it was unbounded model-authored text`)
   }
   return s.rows
 }

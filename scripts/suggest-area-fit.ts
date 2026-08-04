@@ -29,6 +29,7 @@ import {
   AREA_FIT_PROMPT_VERSION,
   AVISO_PROMPT_VERSION,
   AVISO_EJES,
+  AVISO_DIRECCIONES,
   buildAreaFitSystemPrompt,
   buildAreaFitUserPrompt,
   buildAvisoSystemPrompt,
@@ -61,16 +62,22 @@ const ResponseSchema = z.object({
   experiencia: AssessmentSchema,
 })
 
-// The enum is IMPORTED, not restated: a hand-copied list here would drift from
-// the resolver's and this schema would keep accepting a value the resolver
-// rejects (DATA_INTEGRITY §1). `avisoIndex` is the only channel the model has —
-// there is no field on this schema through which it could emit publishable prose.
+// Both enums are IMPORTED, not restated: a hand-copied list here would drift
+// from the resolver's and this schema would keep accepting a value the resolver
+// rejects (DATA_INTEGRITY §1).
+//
+// EVERY field is a closed set — an index, an axis, a direction — so there is no
+// field on this schema through which the model could emit publishable prose.
+// That sentence was written here once while a free-text `tipo` sat two lines
+// below it, and `tipo` travelled all the way into public/data/area-fit.json;
+// anything under public/ is published whether a page renders it or not. Adding
+// a string field here re-opens that hole, so do not.
 const AvisoSchema = z.object({
   avisos: z.array(
     z.object({
       avisoIndex: z.number().int().nonnegative(),
       eje: z.enum(AVISO_EJES),
-      tipo: z.string().optional(),
+      direccion: z.enum(AVISO_DIRECCIONES),
     }),
   ),
 })
@@ -239,6 +246,7 @@ async function main() {
         }
         vistos.add(m.avisoIndex)
         run.record(`aviso:${m.eje}`)
+        run.record(`direccion:${m.direccion}`)
         // "ninguno" es la respuesta honesta mayoritaria y no viaja a la cola:
         // no dice nada y nombraría a una persona para no decirlo.
         if (m.eje === 'ninguno') continue

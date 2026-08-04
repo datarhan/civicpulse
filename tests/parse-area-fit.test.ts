@@ -5,6 +5,7 @@ import {
   FIT_VALUES,
   RESPALDO_VALUES,
   AVISO_EJES,
+  AVISO_DIRECCIONES,
   AreaFitValidationError,
   validateAreaFitDrafts,
   buildFitTasks,
@@ -490,40 +491,33 @@ describe('area-fit — avisos mapped to an axis', () => {
     // The model returns a number; the PROSE that gets published is read from
     // the report here. The model therefore cannot author a published sentence.
     const m = resolveAvisoMapping(
-      { avisoIndex: 1, eje: 'experiencia', tipo: 'sin-resolver' },
+      { avisoIndex: 1, eje: 'experiencia', direccion: 'contradice' },
       WARNINGS,
     )
     expect(m.eje).toBe('experiencia')
     expect(m.verbatim).toBe(WARNINGS[1])
-    expect(m.tipo).toBe('sin-resolver')
+    expect(m.direccion).toBe('contradice')
   })
 
   it('rejects an index outside the report’s warnings rather than repairing it', () => {
-    expect(() => resolveAvisoMapping({ avisoIndex: 9, eje: 'experiencia' }, WARNINGS)).toThrow(
-      AreaFitValidationError,
-    )
+    const at = (i: number) =>
+      resolveAvisoMapping({ avisoIndex: i, eje: 'experiencia', direccion: 'matiza' }, WARNINGS)
+    expect(() => at(9)).toThrow(AreaFitValidationError)
     // Off-by-one at the boundary is the realistic drift, not index 9.
-    expect(() =>
-      resolveAvisoMapping({ avisoIndex: WARNINGS.length, eje: 'ninguno' }, WARNINGS),
-    ).toThrow(AreaFitValidationError)
-    expect(() => resolveAvisoMapping({ avisoIndex: -1, eje: 'ninguno' }, WARNINGS)).toThrow(
-      AreaFitValidationError,
-    )
+    expect(() => at(WARNINGS.length)).toThrow(AreaFitValidationError)
+    expect(() => at(-1)).toThrow(AreaFitValidationError)
   })
 
   it('rejects an axis outside the enum', () => {
-    expect(() => resolveAvisoMapping({ avisoIndex: 0, eje: 'sospecha' }, WARNINGS)).toThrow(
-      AreaFitValidationError,
-    )
+    expect(() =>
+      resolveAvisoMapping({ avisoIndex: 0, eje: 'sospecha', direccion: 'matiza' }, WARNINGS),
+    ).toThrow(AreaFitValidationError)
   })
 
   it('keeps eje=area away from the chips — it flags the ROW', () => {
     // Not a decoration: it means the delegation changed mid-mandate, so the row
     // may be judging an área the person no longer holds.
-    const m = resolveAvisoMapping(
-      { avisoIndex: 2, eje: 'area', tipo: 'delegacion-cambiada' },
-      WARNINGS,
-    )
+    const m = resolveAvisoMapping({ avisoIndex: 2, eje: 'area', direccion: 'matiza' }, WARNINGS)
     expect(m.eje).toBe('area')
     expect(m.decoratesChip).toBe(false)
   })
@@ -531,7 +525,8 @@ describe('area-fit — avisos mapped to an axis', () => {
   it('decorates a chip only for the two axes a chip actually shows', () => {
     // Asserting "area is false" alone passes on a function that always returns
     // false. Assert the check can distinguish.
-    const eje = (e: string) => resolveAvisoMapping({ avisoIndex: 0, eje: e }, WARNINGS)
+    const eje = (e: string) =>
+      resolveAvisoMapping({ avisoIndex: 0, eje: e, direccion: 'matiza' }, WARNINGS)
     expect(eje('formacion').decoratesChip).toBe(true)
     expect(eje('experiencia').decoratesChip).toBe(true)
     expect(eje('area').decoratesChip).toBe(false)
@@ -541,10 +536,11 @@ describe('area-fit — avisos mapped to an axis', () => {
   it('stamps the official and report the index is relative to', () => {
     // An index is meaningless without the list it indexes into: carrying the
     // reportId is what lets a reader (and check:relations) resolve it back.
-    const m = resolveAvisoMapping({ avisoIndex: 0, eje: 'ninguno' }, WARNINGS, {
-      officialSlug: 'eva-lara-catala',
-      reportId: 'r-eva-lara-bio-2026-07-31',
-    })
+    const m = resolveAvisoMapping(
+      { avisoIndex: 0, eje: 'ninguno', direccion: 'matiza' },
+      WARNINGS,
+      { officialSlug: 'eva-lara-catala', reportId: 'r-eva-lara-bio-2026-07-31' },
+    )
     expect(m.officialSlug).toBe('eva-lara-catala')
     expect(m.reportId).toBe('r-eva-lara-bio-2026-07-31')
   })
@@ -560,7 +556,14 @@ describe('area-fit — the published snapshot validates its avisos', () => {
       portfolios: ['Urbanismo'],
     },
   ]
-  const ctx = { officials: OFFICIALS, reportSources: { 'r-1': new Set(['src-060']) } }
+  const AVISO_TEXT = 'Su CV y su declaración estatutaria difieren en el inicio de su plaza docente.'
+  // The report as it stands NOW — what the validator re-resolves the index against.
+  const WARNINGS_NOW = ['Los datos proceden de un CV autodeclarado.', AVISO_TEXT]
+  const ctx = {
+    officials: OFFICIALS,
+    reportSources: { 'r-1': new Set(['src-060']) },
+    reportWarnings: { 'r-1': WARNINGS_NOW },
+  }
 
   const good = () => ({
     generatedAt: '2026-08-04T00:00:00.000Z',
@@ -586,7 +589,8 @@ describe('area-fit — the published snapshot validates its avisos', () => {
         reportId: 'r-1',
         avisoIndex: 1,
         eje: 'experiencia',
-        verbatim: 'Su CV y su declaración estatutaria difieren en el inicio de su plaza docente.',
+        direccion: 'contradice',
+        verbatim: AVISO_TEXT,
         decoratesChip: true,
         curatedBy: 'Sergei Lutchenko',
         curatedAt: '2026-08-04',
@@ -630,9 +634,16 @@ describe('area-fit — the published snapshot validates its avisos', () => {
   })
 
   it('refuses a published eje=ninguno — it says nothing and names a person to say it', () => {
-    const s = good()
-    ;(s.avisos[0] as Record<string, unknown>).eje = 'ninguno'
-    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(AreaFitValidationError)
+    // decoratesChip is flipped to false ALONGSIDE the eje, so this snapshot is
+    // consistent in every other respect. The first version of this test left it
+    // `true`, which made the derived-flag check four lines below reject the
+    // snapshot instead — the test passed with the ninguno gate DELETED. Ablation-
+    // verified 2026-08-04: removing the gate now fails exactly this test.
+    const s = good() as Record<string, unknown>
+    const aviso = (s.avisos as Array<Record<string, unknown>>)[0]
+    aviso.eje = 'ninguno'
+    aviso.decoratesChip = false
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(/ninguno/)
   })
 
   it('refuses decoratesChip disagreeing with the eje', () => {
@@ -640,13 +651,149 @@ describe('area-fit — the published snapshot validates its avisos', () => {
     // whose chips no longer match the axis they claim to be showing.
     const s = good()
     s.avisos[0].decoratesChip = false
-    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(AreaFitValidationError)
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(/decoratesChip/)
+  })
+
+  it('requires a reportId — an index means nothing without the list it indexes', () => {
+    // Matched on the gate's OWN wording, not merely on the substring "reportId":
+    // the re-resolution check below also mentions reportId, so a loose regex
+    // passed with this gate ablated. Ablation-verified 2026-08-04.
+    const s = good() as Record<string, unknown>
+    ;(s.avisos as Array<Record<string, unknown>>)[0].reportId = ''
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(/reportId required/)
   })
 
   it('still accepts a snapshot with no avisos at all — the field is optional', () => {
     const s = good() as Record<string, unknown>
     delete s.avisos
     expect(() => validateAreaFitSnapshot(s, ctx)).not.toThrow()
+  })
+
+  it('refuses an aviso whose direccion is outside the enum', () => {
+    const s = good() as Record<string, unknown>
+    ;(s.avisos as Array<Record<string, unknown>>)[0].direccion = 'desmiente'
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(/direccion/)
+  })
+
+  it('refuses an aviso with no direccion at all', () => {
+    const s = good()
+    delete (s.avisos[0] as Partial<AvisoMapping>).direccion
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(/direccion/)
+  })
+
+  it('refuses a published aviso still carrying the retired free-text `tipo`', () => {
+    // It reached public/data once. The published shape now names it and refuses.
+    const s = good() as Record<string, unknown>
+    ;(s.avisos as Array<Record<string, unknown>>)[0].tipo =
+      'El concejal miente sobre su titulación universitaria y lo sabe.'
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(/tipo/)
+  })
+
+  // ── Re-resolving the index at PUBLICATION time, not just at generation ──
+  //
+  // Cite-by-index protected only the moment the model answered. Between
+  // `suggest` and `promote` a biography can be re-run: warnings reorder, or a
+  // retraction shortens the list. Nothing re-checked the mapping before it
+  // published, so a stale quote could ship under a stale index with a curator's
+  // name on it.
+
+  it('refuses a verbatim that no longer matches the warning at that index', () => {
+    const s = good()
+    // The biography was re-run and warning 1 was rewritten.
+    const moved = {
+      ...ctx,
+      reportWarnings: { 'r-1': [WARNINGS_NOW[0], 'Otra advertencia distinta por completo.'] },
+    }
+    expect(() => validateAreaFitSnapshot(s, moved)).toThrow(/verbatim no longer matches/)
+  })
+
+  it('refuses a mapping whose index now falls off the end of a shortened list', () => {
+    const s = good()
+    const shortened = { ...ctx, reportWarnings: { 'r-1': [WARNINGS_NOW[0]] } }
+    expect(() => validateAreaFitSnapshot(s, shortened)).toThrow(/verbatim no longer matches/)
+  })
+
+  it('refuses a reportId that resolves to no report at all', () => {
+    const s = good()
+    s.avisos[0].reportId = 'r-inventado'
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(/resolves to no report/)
+  })
+
+  it('accepts the same mapping once the reports are supplied and still agree', () => {
+    // The positive half: without it, a validator that threw unconditionally
+    // would pass every test above.
+    expect(() => validateAreaFitSnapshot(good(), ctx)).not.toThrow()
+    // …and the warnings really are being consulted, not ignored:
+    expect(WARNINGS_NOW[good().avisos[0].avisoIndex]).toBe(good().avisos[0].verbatim)
+  })
+})
+
+describe('area-fit — direccion: which way the warning cuts', () => {
+  it('exports the direction enum rather than letting callers restate it', () => {
+    expect(AVISO_DIRECCIONES).toContain('contradice')
+    expect(AVISO_DIRECCIONES).toContain('corrobora')
+    expect(AVISO_DIRECCIONES).toContain('matiza')
+    expect(new Set(AVISO_DIRECCIONES).size).toBe(AVISO_DIRECCIONES.length)
+    // It is a SEPARATE axis from the eje: merging them could not say
+    // "experiencia, but corroborating".
+    for (const d of AVISO_DIRECCIONES) expect(AVISO_EJES).not.toContain(d)
+  })
+
+  it('carries the direction through onto the mapping', () => {
+    const W = ['una advertencia']
+    for (const d of AVISO_DIRECCIONES) {
+      expect(
+        resolveAvisoMapping({ avisoIndex: 0, eje: 'experiencia', direccion: d }, W).direccion,
+      ).toBe(d)
+    }
+  })
+
+  it('refuses a mapping with no direction at all', () => {
+    // Two of the first three real `experiencia` mappings were CORROBORATIONS.
+    // Without a direction the surface can only render them as doubts, which
+    // publishes corroboration as suspicion about a named person.
+    expect(() =>
+      resolveAvisoMapping(
+        { avisoIndex: 0, eje: 'experiencia' } as unknown as {
+          avisoIndex: number
+          eje: string
+          direccion: string
+        },
+        ['una advertencia'],
+      ),
+    ).toThrow(AreaFitValidationError)
+  })
+
+  it('refuses a direction outside the enum', () => {
+    expect(() =>
+      resolveAvisoMapping({ avisoIndex: 0, eje: 'experiencia', direccion: 'desmiente' }, [
+        'una advertencia',
+      ]),
+    ).toThrow(AreaFitValidationError)
+  })
+
+  it('never emits a free-text field the model authored', () => {
+    // `tipo` used to be `z.string().optional()` and travelled all the way into
+    // public/data/area-fit.json, where anything is published whether a page
+    // renders it or not. A model-authored sentence about a living person could
+    // ship under a curator's signature. The mapping now carries no such field.
+    const m = resolveAvisoMapping(
+      { avisoIndex: 0, eje: 'experiencia', direccion: 'matiza', tipo: 'texto libre' } as never,
+      ['una advertencia'],
+    ) as Record<string, unknown>
+    expect('tipo' in m).toBe(false)
+    // Every remaining string value is either resolved from the report or drawn
+    // from a closed set — assert that, rather than trusting the shape.
+    const enums = new Set<string>([...AVISO_EJES, ...AVISO_DIRECCIONES])
+    let checked = 0
+    for (const [k, v] of Object.entries(m)) {
+      if (typeof v !== 'string') continue
+      expect(k === 'verbatim' ? ['una advertencia'].includes(v) : enums.has(v) || v === '').toBe(
+        true,
+      )
+      checked += 1
+    }
+    expect(checked).toBeGreaterThan(0)
   })
 })
 
@@ -659,6 +806,7 @@ describe('area-fit — the review queue is the mirror of the published shape', (
         reportId: 'r-eva-lara-bio-2026-07-31',
         avisoIndex: 1,
         eje: 'experiencia',
+        direccion: 'contradice',
         verbatim: 'Su CV y su declaración estatutaria difieren en el inicio de su plaza docente.',
         decoratesChip: true,
         requiresHumanApproval: true,
@@ -687,7 +835,17 @@ describe('area-fit — the review queue is the mirror of the published shape', (
   it('rejects "ninguno" reaching the queue — it is dropped, not reviewed', () => {
     const d = draft() as Record<string, unknown>
     ;(d.avisos as Array<Record<string, unknown>>)[0].eje = 'ninguno'
-    expect(() => validateAreaFitDrafts(d)).toThrow(AreaFitValidationError)
+    expect(() => validateAreaFitDrafts(d)).toThrow(/ninguno/)
+  })
+
+  it('rejects a draft with no direccion, or with free-text `tipo`', () => {
+    const noDir = draft()
+    delete (noDir.avisos[0] as Partial<AvisoMapping>).direccion
+    expect(() => validateAreaFitDrafts(noDir)).toThrow(/direccion/)
+
+    const withTipo = draft() as Record<string, unknown>
+    ;(withTipo.avisos as Array<Record<string, unknown>>)[0].tipo = 'una frase entera del modelo'
+    expect(() => validateAreaFitDrafts(withTipo)).toThrow(/tipo/)
   })
 })
 
@@ -716,6 +874,9 @@ describe('area-fit — the real review queue, as the model actually filled it', 
       expect(byId.get(a.reportId)?.warnings?.[a.avisoIndex]).toBe(a.verbatim)
       expect(a.requiresHumanApproval).toBe(true)
       expect(a.eje).not.toBe('ninguno')
+      expect(AVISO_DIRECCIONES).toContain(a.direccion)
+      // No free-text field survives into the queue.
+      expect('tipo' in a).toBe(false)
       checked += 1
     }
     // Assert the check evaluated something: an empty queue would otherwise pass.
