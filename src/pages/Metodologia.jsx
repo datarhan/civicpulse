@@ -872,6 +872,34 @@ export default function Metodologia() {
         </p>
       </Card>
 
+      <Card style={{ marginTop: 14 }} id="gasto-por-concejalia">
+        <SectionHead
+          eyebrow="Transparencia · gasto por concejalía"
+          title="Cómo se asigna un contrato a un área"
+        />
+        <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
+          La cifra de contratación que aparece en cada ficha de{' '}
+          <a href="/departamentos" style={{ color: 'var(--civic)' }}>
+            /departamentos
+          </a>{' '}
+          se asigna por el <strong>código CPV</strong> —el vocabulario común europeo de
+          contratación, que declara el propio órgano contratante junto al expediente—, no por la
+          etiqueta de categoría del portal de datos. Se lee el código <strong>principal</strong>, el
+          primero: el CPV se declara con el objeto del contrato delante y los accesorios detrás. Los
+          códigos genéricos (98 «servicios diversos», 79 «servicios empresariales») no asignan área:
+          dicen que el expediente no precisa de qué se trata, y eso no es una respuesta.
+        </p>
+        <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
+          Antes se asignaba por la categoría del portal, que es una etiqueta gruesa. El{' '}
+          <strong>4 de agosto de 2026</strong> se corrigió: 40 contratos figuraban bajo{' '}
+          <em>Salud</em> sin ser gasto sanitario —alumbrado ornamental de Navidad, clases de inglés,
+          vallado— por valor de unos 355.000 €, y se mostraban bajo el nombre de la concejala que
+          responde por esa área. La cifra <strong>infra-estima a propósito</strong>: cuando los
+          códigos declarados no nombran ningún área, el contrato queda sin asignar. Un cero
+          significa «no atribuible», nunca «no se gastó».
+        </p>
+      </Card>
+
       <Card style={{ marginTop: 14 }}>
         <SectionHead
           eyebrow="Transparencia · mapa del gasto"

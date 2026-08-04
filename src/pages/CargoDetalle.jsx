@@ -47,9 +47,12 @@ function portfolioSlugs(official) {
  * between `speakerGroup` (bloc) and an individual applies to euros, so this
  * block names the concejalía in its own heading and its own sub-labels.
  *
- * The figure UNDER-states: only contracts whose Gobierto category maps
- * unambiguously to a department are attributed (see departmentForTenderCategory),
- * so a zero means "nothing attributable", never "spent nothing".
+ * The figure UNDER-states: a contract is attributed from the CPV code its own
+ * contracting authority filed (see departmentForTender), and only when that code
+ * names an área — so a zero means "nothing attributable", never "spent nothing".
+ * Gobierto's coarse category is the fallback for the rows that filed no code at
+ * all; attributing on it put €355k of Christmas lighting and English classes
+ * under Salud.
  */
 function AreaSpend({ slugs }) {
   const t = useT()
