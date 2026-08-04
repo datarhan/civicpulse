@@ -5,7 +5,7 @@
  */
 import { resolve } from 'node:path'
 import { existsSync, readFileSync } from 'node:fs'
-import { matchesAnyToken, readJsonSnapshot, tokenize } from './internal'
+import { matchesAnyToken, matchesPersonName, readJsonSnapshot, tokenize } from './internal'
 import { loadAgentCorpus, rankAgentCorpus, type AgentCorpusRow } from '../agent-corpus'
 import { embedTexts, type EmbedOptions } from '../embed-client'
 import { parseCorpusSidecar, type CorpusSidecar } from '../retrieval-health'
@@ -262,7 +262,7 @@ export function fetchPressForSubject(name: string, limit = 20): PressHit[] {
   for (const it of data.items) {
     if (hits.length >= limit) break
     const title = (it.title as string) ?? ''
-    if (!matchesAnyToken(title, tokens)) continue
+    if (!matchesPersonName(title, tokens)) continue
     // press.json canonical schema (from src/scraper/press.ts) uses
     // `link` + `date` (ISO datetime). Older test fixtures used
     // `url` + `publishedAt`; we read both defensively so the tool
@@ -301,7 +301,7 @@ export function fetchPlenoClaimsForSubject(name: string, limit = 15): PlenoClaim
     if (hits.length >= limit) break
     const verbatim = (it.verbatim as string) ?? ''
     const context = (it.context as string) ?? ''
-    if (!matchesAnyToken(verbatim + ' ' + context, tokens)) continue
+    if (!matchesPersonName(verbatim + ' ' + context, tokens)) continue
     hits.push({
       id: (it.id as string) ?? '',
       plenoId: (it.plenoId as string) ?? undefined,
