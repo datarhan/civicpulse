@@ -191,6 +191,21 @@ export interface SourceCitation {
   localPath?: string
   trust: CitationTrust
   /**
+   * The SUBJECT wrote this document.
+   *
+   * Orthogonal to `trust`, which rates the PUBLISHER: a CV on the town-hall
+   * portal is `official-doc` / `trust:'high'` AND entirely self-declared.
+   * Conflating the two seals self-declaration as verified, which is the exact
+   * error this field exists to prevent — measured 2026-08-04, all 109 evidence
+   * references behind the encaje rows were self-declared and none was marked.
+   *
+   * A declaración de bienes/actividades is self-declared too: filing it is
+   * compulsory, its contents are still the subject's own account.
+   *
+   * `undefined` means NOT YET CLASSIFIED and must never be read as `false`.
+   */
+  selfDeclared?: boolean
+  /**
    * Where this document used to live, when the publisher moved it. Set only by
    * `repoint-source-url`, which refuses to move a citation unless `excerpt`
    * still appears verbatim in the document at the new URL — so the pair is a

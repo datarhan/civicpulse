@@ -144,6 +144,10 @@ function validateSourceCitation(s: unknown, idx: number, ci: number): SourceCita
     typeof o.trust === 'string' && (ALLOWED_CITATION_TRUST as readonly string[]).includes(o.trust),
     `items[${idx}].sources[${ci}].trust must be one of ${ALLOWED_CITATION_TRUST.join(',')}`,
   )
+  must(
+    o.selfDeclared === undefined || typeof o.selfDeclared === 'boolean',
+    `items[${idx}].sources[${ci}].selfDeclared must be a boolean when present`,
+  )
   if (o.url !== undefined) {
     must(
       typeof o.url === 'string' && URL_RE.test(o.url),
@@ -217,6 +221,7 @@ function validateSourceCitation(s: unknown, idx: number, ci: number): SourceCita
     ...(o.excerpt ? { excerpt: o.excerpt as string } : {}),
     ...(o.localPath ? { localPath: o.localPath as string } : {}),
     trust: o.trust as CitationTrust,
+    ...(o.selfDeclared === undefined ? {} : { selfDeclared: o.selfDeclared as boolean }),
     ...(o.previousUrl ? { previousUrl: o.previousUrl as string } : {}),
     ...(o.relocatedAt ? { relocatedAt: o.relocatedAt as string } : {}),
   }
