@@ -471,7 +471,8 @@
       "retrievedAt": "2026-07-31T12:41:55.847Z",
       "excerpt": "role: concejal · party: PSOE · portfolios: Fallas, Fiestas y Tradiciones",
       "localPath": "public/data/officials.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-060",
@@ -615,7 +616,8 @@
       "retrievedAt": "2026-07-31T12:59:29.943Z",
       "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (Gobierto/PLACSP): 0 coincidencias para «PLA GIMENEZ» y 0 para «FREDI». Área Fallas/Fiestas desde 2023-07: solo 2 adjudicaciones tituladas con palabras clave festivas (derivados de un SDA de fiestas), frente a 282 del corpus en el mismo periodo — el gasto festivo se articula mayoritariamente por contratos menores u otros vehículos no capturados por título.",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     }
   ],
   "warnings": [

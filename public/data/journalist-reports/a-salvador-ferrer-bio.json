@@ -528,7 +528,8 @@
       "retrievedAt": "2026-07-31T18:14:46.881Z",
       "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «FERRER CORTINA» y 0 para «SF ADMINISTRADORES» (el despacho de su actividad declarada de administración de fincas).",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     }
   ],
   "warnings": [

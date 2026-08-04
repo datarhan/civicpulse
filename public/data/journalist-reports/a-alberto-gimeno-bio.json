@@ -398,7 +398,8 @@
       "retrievedAt": "2026-07-31T13:18:03.625Z",
       "excerpt": "role: concejal · party: PP · portfolios: ",
       "localPath": "public/data/officials.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-002",
@@ -574,7 +575,8 @@
       "retrievedAt": "2026-07-31T17:24:16.057Z",
       "excerpt": "Punto 1: «Ratificar la solicitud para la celebración del Pleno Extraordinario presentada por parte de los miembros del Grupo Municipal Popular». Punto 2: «Debate y adopción de acuerdos en relación con la gestión del servicio de recogida de RSU, poda y voluminosos, la situación contractual del servicio y la tasa de basura».",
       "localPath": "public/data/plenos-agendas.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-075",
@@ -593,7 +595,8 @@
       "retrievedAt": "2026-07-31T17:24:16.057Z",
       "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «GIMENO CALVO».",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     }
   ],
   "warnings": [

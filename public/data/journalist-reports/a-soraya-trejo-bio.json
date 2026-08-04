@@ -344,8 +344,7 @@
       "title": "Portal de transparencia — listado de datos biográficos: sin CV publicado de Trejo (17 PDF para otros miembros)",
       "retrievedAt": "2026-07-31T17:34:01.373Z",
       "excerpt": "PDF publicados en la ficha de datos biográficos (extracto de nombres de archivo): CV_DAVID_BARRANCHO · CV-TERESA-POZUELO · CURRICULUM-JOSE-ANGEL-HERNANDEZ · Datos-biogrficos-Alberto-J-Gimeno-Calvo · Compromis-Rafael-Folgado-Navarro · EU_UP-Jose-Manuel-Gallardo · PP-M-Jose-Pradas-Ramo · PP-Salvador-Ferrer-Cortina · PSOE-… (9) · VOX-Jose-Luis-Fernandez-Santamaria. No figura ningún archivo de Soraya Trejo Delgado, Laura Guzmán Bruno, Juan Boix Martínez ni Paula Navarro Sanfeliu.",
-      "trust": "high",
-      "selfDeclared": true
+      "trust": "high"
     },
     {
       "id": "src-069",
@@ -355,7 +354,8 @@
       "retrievedAt": "2026-07-31T17:34:01.373Z",
       "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «TREJO» y 0 para «LLORENS» + «FORNÉS» (el despacho de su actividad declarada). En las candidaturas del BOP: 0 apariciones en 2019; la única coincidencia «TREJO» de 2015 corresponde a una candidata homónima de la circunscripción de Foios, no a la concejal.",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     }
   ],
   "warnings": [

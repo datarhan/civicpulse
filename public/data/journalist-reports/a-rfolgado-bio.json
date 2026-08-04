@@ -500,7 +500,8 @@
       "retrievedAt": "2026-07-31T19:25:38.445Z",
       "excerpt": "Barrido nominal: 0 coincidencias para «Ciclos Folgado» (su negocio declarado). El apellido «Folgado» —muy común en Riba-roja (el acta de 2015 recoge a un concejal distinto, José Luis Folgado Correa)— sí aparece en tres empresas adjudicatarias sin relación documentada con el concejal: Gil Folgado Catering, Folgado Materiales de Construcción e Industrial Gil Folgado. Adyacencia de apellido no es vínculo; sin documento, no se atribuyen.",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     }
   ],
   "warnings": [

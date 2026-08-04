@@ -453,7 +453,8 @@
       "retrievedAt": "2026-07-30T22:20:52.726Z",
       "excerpt": "role: concejal · party: PSOE · portfolios: Urbanismo, Vivienda, Obra Pública, Áreas Industriales y Cementerio",
       "localPath": "public/data/officials.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-003",
@@ -462,8 +463,7 @@
       "title": "•42. PRESIDENCIA. DEL ' ' CONSEJO, DE MINISTROS - BOE.es",
       "retrievedAt": "2026-07-30T22:20:54.998Z",
       "excerpt": "Universidad de Barcelona. *.•. 77® Gregorio González Ramos '. Aduana de Farga ... Sebastián Pozuelo Martín. San Lorenzo Calatrava ido. ' - ®. ' 1.500. -Ángel ...",
-      "trust": "high",
-      "selfDeclared": false
+      "trust": "high"
     },
     {
       "id": "src-004",
@@ -481,7 +481,8 @@
       "retrievedAt": "2026-07-30T22:20:55.031Z",
       "excerpt": "1ª Teniente de Alcalde · Territorio y Agenda Urbana: dedicación exclusiva, 43.067,36 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
       "localPath": "public/data/dedicaciones.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-006",
@@ -490,7 +491,8 @@
       "retrievedAt": "2026-07-30T22:20:55.032Z",
       "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
       "localPath": "public/data/elections.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-009",
@@ -499,7 +501,8 @@
       "title": "Sra. Dª. Teresa Pozuelo Martín | Ayuntamiento de Riba-roja de Túria",
       "retrievedAt": "2026-07-30T22:20:55.665Z",
       "excerpt": "Áreas: Urbanismo, Vivienda, Obra Pública, Áreas Industriales y Cementerio.",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-060",
@@ -642,7 +645,8 @@
       "retrievedAt": "2026-07-30T22:35:41.293Z",
       "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Pozuelo», y sus antiguos empleadores declarados (Grupo Tremon SA, Pavituria SL) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (urbanismo, vivienda, obra pública, industriales, cementerio): 77 de 282; un solo licitador 34/77 (44%) frente a 156/282 (55%) del conjunto; contratos menores 18/77 (23%) frente a 57/282 (20%).",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-080",
@@ -653,7 +657,7 @@
       "retrievedAt": "2026-07-31T08:05:04.220Z",
       "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
       "trust": "high",
-      "selfDeclared": true
+      "selfDeclared": false
     },
     {
       "id": "src-090",

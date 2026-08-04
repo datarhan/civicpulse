@@ -465,7 +465,8 @@
       "retrievedAt": "2026-07-31T07:34:06.576Z",
       "excerpt": "role: concejal · party: PSOE · portfolios: Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación, Fomento económico, Empleo y Emprendimiento, y Comercio",
       "localPath": "public/data/officials.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-005",
@@ -474,7 +475,8 @@
       "retrievedAt": "2026-07-31T07:34:12.679Z",
       "excerpt": "3er Teniente de Alcalde · Administración, RR. HH., Hacienda y Fomento: dedicación exclusiva, 43.067,36 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
       "localPath": "public/data/dedicaciones.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-006",
@@ -483,7 +485,8 @@
       "retrievedAt": "2026-07-31T07:34:12.680Z",
       "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
       "localPath": "public/data/elections.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-007",
@@ -511,7 +514,8 @@
       "retrievedAt": "2026-07-31T07:34:16.519Z",
       "excerpt": "[3900.0 → 3930.0] Gracias Gracias José Ángel Bueno, decir que creo que ha explicado perfectamente José Ángel los puntos el llevarlo ahora creo que también ha quedado claro para que no distorsionar aquellos vecinos que no",
       "localPath": "public/data/pleno-transcripts/1qi8axv.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-032",
@@ -695,7 +699,8 @@
       "retrievedAt": "2026-07-31T07:45:31.798Z",
       "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Hernández Carrizosa». Las cuatro sociedades donde trabajó según su CV — Nexo Nivel SL (administrador solidario 2008-2015), Grupo Serratable SL, Artículos de Carpintería Moreno SL y Vilarsal SL — no constan como adjudicatarias ni licitadoras. Corpus completo desde julio de 2023 (su delegación incluye Compra Pública): 282 contratos, 55% con un solo licitador, 20% menores.",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-080",
@@ -706,7 +711,7 @@
       "retrievedAt": "2026-07-31T08:05:04.220Z",
       "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
       "trust": "high",
-      "selfDeclared": true
+      "selfDeclared": false
     },
     {
       "id": "src-090",

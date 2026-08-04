@@ -429,7 +429,8 @@
       "retrievedAt": "2026-07-30T17:34:20.519Z",
       "excerpt": "role: concejal · party: PSOE · portfolios: Servicios públicos municipales, Urbanizaciones, barrios y diseminados, Movilidad y Deportes",
       "localPath": "public/data/officials.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-002",
@@ -448,7 +449,8 @@
       "retrievedAt": "2026-07-30T17:34:25.786Z",
       "excerpt": "Concejal delegado · Servicios públicos, Urbanizaciones, Movilidad y Deportes: dedicación exclusiva, 38.891,66 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
       "localPath": "public/data/dedicaciones.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-007",
@@ -457,7 +459,8 @@
       "retrievedAt": "2026-07-30T17:34:25.787Z",
       "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
       "localPath": "public/data/elections.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-023",
@@ -475,7 +478,8 @@
       "retrievedAt": "2026-07-30T17:34:33.687Z",
       "excerpt": "[0.0 → 0.0] abril, Reguladora de las Bases del Régimen Local, RESUELVO: [0.0 → 0.0] PRIMERO.- Cesar a D. Rafael Gómez Sánchez como miembro de la Junta de Gobierno Local. [0.0 → 0.0] SEGUNDO.- Nombrar a D. Rafael Folgado ",
       "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-060",
@@ -534,7 +538,8 @@
       "retrievedAt": "2026-07-30T21:34:53.859Z",
       "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Gómez Sánchez». 58 contratos de ámbito del transporte (Automoción La Pista SA, Autobuses Dura SL, Selan Bus SL, Taxis Mota, entre otros) y 46 de ámbito deportivo (Ecosiona Facility Services SL, Compañía de Tratamientos Levante SL, Saludes Parques Infantiles SL, Club de Básquet Riba-roja) sin coincidencia nominal con el concejal.",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-066",
@@ -543,7 +548,8 @@
       "retrievedAt": "2026-07-30T21:41:58.162Z",
       "excerpt": "Contratos adjudicados desde julio de 2019 en materias de sus áreas (deportes, transporte/movilidad, urbanizaciones, parques y servicios urbanos): 116 de 565 del corpus. Un solo licitador: 40/116 (34%) frente a 279/565 (49%) del conjunto municipal; contratos menores: 20/116 (17%) frente a 144/565 (26%). Los grandes contratos del ámbito (limpieza viaria y mantenimiento, autobús urbano) se adjudicaron con entre 3 y 6 ofertas (SAV, Autobuses Dura SL).",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-067",
@@ -576,7 +582,7 @@
       "retrievedAt": "2026-07-31T08:05:04.220Z",
       "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
       "trust": "high",
-      "selfDeclared": true
+      "selfDeclared": false
     },
     {
       "id": "src-090",

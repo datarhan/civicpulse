@@ -409,7 +409,8 @@
       "retrievedAt": "2026-07-31T12:30:32.232Z",
       "excerpt": "role: concejal · party: PSOE · portfolios: Seguridad y emergencias, Igualdad, Comunicación e información, Protocolo y Bienestar Animal",
       "localPath": "public/data/officials.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-005",
@@ -418,7 +419,8 @@
       "retrievedAt": "2026-07-31T12:30:34.539Z",
       "excerpt": "Concejala delegada · Seguridad, Igualdad y Comunicación: dedicación exclusiva, 38.891,66 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
       "localPath": "public/data/dedicaciones.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-006",
@@ -427,7 +429,8 @@
       "retrievedAt": "2026-07-31T12:30:34.540Z",
       "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
       "localPath": "public/data/elections.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-022",
@@ -436,7 +439,8 @@
       "retrievedAt": "2026-07-31T12:30:38.462Z",
       "excerpt": "[0.0 → 0.0] Líder: Raquel Pamblanco Paredes. Concejala delegada [0.0 → 0.0] Persona empleada pública responsable: Fernando Tejera, [0.0 → 0.0] Intendente de la Policía Local. [0.0 → 0.0] C/Carretera de Villamarchante, 11",
       "localPath": "public/data/pleno-transcripts/1080zow.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-023",
@@ -445,7 +449,8 @@
       "retrievedAt": "2026-07-31T12:30:38.462Z",
       "excerpt": "[0.0 → 0.0] I.CPS.2.3: Nº de espectáculos y recitales abiertos al público/ realizados. [0.0 → 0.0] Perspectiva ODS: ODS 4, 5, 10 y 11 [0.0 → 0.0] 11. MUJER E IGUALDAD (MUJ) [0.0 → 0.0] Líder: Raquel Pamblanco Paredes, Co",
       "localPath": "public/data/pleno-transcripts/1080zow.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-031",
@@ -454,7 +459,8 @@
       "retrievedAt": "2026-07-31T12:30:39.029Z",
       "excerpt": "[0.0 → 0.0] /20243 e informe 218/2023 de la función interventora de conformidad con lo establecido en el [0.0 → 0.0] TRLRHL, el RD 424/2017, de 28 de abril, por el que se regula el régimen jurídico del control [0.0 → 0.0",
       "localPath": "public/data/pleno-transcripts/1080zow.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-060",
@@ -582,7 +588,7 @@
       "retrievedAt": "2026-07-31T12:40:03.553Z",
       "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
       "trust": "high",
-      "selfDeclared": true
+      "selfDeclared": false
     },
     {
       "id": "src-072",
@@ -613,7 +619,8 @@
       "retrievedAt": "2026-07-31T12:40:03.553Z",
       "excerpt": "804 contratos examinados: ningún adjudicatario coincide con «Pamblanco», ni con sus empleadoras declaradas (Vorwerk, FVMP, Opt-Media Marketing Solutions). Candidata en 2015 (puesto 12, como independiente, BOP n.º 79) y 2019 (puesto 16, n.º 82) sin obtener acta; electa en 2023.",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     }
   ],
   "warnings": [

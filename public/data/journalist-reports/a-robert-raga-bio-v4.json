@@ -527,7 +527,8 @@
       "retrievedAt": "2026-07-30T15:52:28.626Z",
       "excerpt": "role: alcalde · party: PSOE · portfolios: Alcaldía, Innovación, Planificación estratégica y grandes proyectos y cooperación nacional e internacional",
       "localPath": "public/data/officials.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-002",
@@ -546,7 +547,8 @@
       "title": "Conoce el salario público de Roberto Pascual Raga Gadea",
       "retrievedAt": "2026-07-30T15:52:28.628Z",
       "excerpt": "Roberto Pascual Raga Gadea es Alcalde Del Ayuntamiento De Riba-Roja De Túria por el partido PSOE. Conoce su salario público.",
-      "trust": "medium"
+      "trust": "medium",
+      "selfDeclared": false
     },
     {
       "id": "src-006",
@@ -555,7 +557,8 @@
       "retrievedAt": "2026-07-30T15:52:28.634Z",
       "excerpt": "Alcaldía: dedicación exclusiva, 48.234,08 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
       "localPath": "public/data/dedicaciones.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-007",
@@ -564,7 +567,8 @@
       "retrievedAt": "2026-07-30T15:52:28.635Z",
       "excerpt": "2020: 45.461,94 € · 2021: 45.916,56 € · 2022: 52.855,48 € · 2024: 48.647,5 €",
       "localPath": "public/data/ispa.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-008",
@@ -573,7 +577,8 @@
       "retrievedAt": "2026-07-30T15:52:28.635Z",
       "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
       "localPath": "public/data/elections.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-009",
@@ -592,7 +597,8 @@
       "title": "Sr. D. Robert Raga Gadea | Ayuntamiento de Riba-roja de Túria",
       "retrievedAt": "2026-07-30T15:52:28.635Z",
       "excerpt": "Áreas: Alcaldía. Innovación, Planificación estratégica y grandes proyectos y cooperación nacional e internacional.",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-015",
@@ -601,7 +607,8 @@
       "title": "JUNTA SUPERIOR DE CONTRACTACIÓ ADMINISTRATIVA Carrer ...",
       "retrievedAt": "2026-07-30T15:52:28.635Z",
       "excerpt": "21 jun 2021 ... ROBERTO PASCUAL RAGA GADEA, Alcalde del Ayuntamiento de Riba-roja de ... Sentencia del Tribunal Superior de Justicia de la Comunidad Valenciana ...",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-017",
@@ -610,7 +617,8 @@
       "title": "Estimado amigo, - Ayuntamiento de Riba-roja de Túria",
       "retrievedAt": "2026-07-30T15:52:28.636Z",
       "excerpt": "ACTA SESIÓN EXTRAORDINARIA CELEBRADA POR EL AYUNTAMIENTO PLENO EL DÍA 30 DE DICIEMBRE DE 2022 Lugar: Salón de Actos del Ayuntamiento Fecha: 30 de diciembre de 2022 Hora: 09:00 CARÁCTER DE LA SESION: EXTRAORDINARIA ALCALDE-PRESIDENTE: ROBERTO RAGA GADEA CONCEJALES ASISTENTES: Partido Socialista Obrero Español (PSOE) Partido Popular (PP) Ciudadanos Partido de la Ciudadanía (CS) Roberto Pascual Raga Gadea Maria Teresa Pozuelo Martin Jose Luis Ramos March Zafira Perez Pacheco Jos",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-018",
@@ -619,7 +627,8 @@
       "title": "JUNTA SUPERIOR DE CONTRACTACIÓ ADMINISTRATIVA Carrer ...",
       "retrievedAt": "2026-07-30T15:52:28.636Z",
       "excerpt": "21 jun 2021 ... REVISIÓN DE OFICIO. OBRAS QUE DEBEN SER OBJETO DE LICITACIÓN ... ROBERTO PASCUAL RAGA GADEA, Alcalde del Ayuntamiento de Riba-roja de ...",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-019",
@@ -638,7 +647,8 @@
       "title": "ANUNCIO - Ayuntamiento de Riba-roja de Túria",
       "retrievedAt": "2026-07-30T15:52:28.636Z",
       "excerpt": "18 jun 2026 ... En Riba-roja de Turia, a fecha de la firma electrónica. El Alcalde. Roberto Raga Gadea ... Revisión de oficio y recursos. Tema 6. Procedimiento ...",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-021",
@@ -647,7 +657,8 @@
       "title": "Agenda Robert Raga Gadea - Ayuntamiento de Riba-roja de Túria",
       "retrievedAt": "2026-07-30T15:52:28.636Z",
       "excerpt": "Hacienda · Tesorería · Periodo medio de pago y morosidad · Gestión tributaria ... Agenda Robert Raga Gadea. Alcalde - President. En este espacio puedes ...",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-024",
@@ -656,7 +667,8 @@
       "retrievedAt": "2026-07-30T15:52:31.494Z",
       "excerpt": "[0.0 → 0.0] ACTA SESSIÓ EXTRAORDINÀRIA CELEBRADA PER L'AJUNTAMENT [0.0 → 0.0] PLE EL DIA 24 DE MAIG DE 2023 [0.0 → 0.0] Lloc: Sessió telemàtica a distància [0.0 → 0.0] Data: 24 de maig de 2023 [0.0 → 0.0] Hora: 09.30 [0.",
       "localPath": "public/data/pleno-transcripts/15000go.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-025",
@@ -665,7 +677,8 @@
       "retrievedAt": "2026-07-30T15:52:31.494Z",
       "excerpt": "[0.0 → 0.0] ACTA SESSIÓ ORDINÀRIA CELEBRADA PER L'AJUNTAMENT PLE EL [0.0 → 0.0] DIA 8 DE MAIG DE 2023 [0.0 → 0.0] Lloc: Sala d'actes de l'Ajuntament [0.0 → 0.0] Data: 8 de maig de 2023 [0.0 → 0.0] Hora: 17.30 [0.0 → 0.0]",
       "localPath": "public/data/pleno-transcripts/67qdq8.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-039",
@@ -674,7 +687,8 @@
       "title": "Robert Raga, alcalde de Riba-roja: «El Parque del Turia es el gran olvidado en la reconstrucción» | Las Provincias",
       "retrievedAt": "2026-07-30T15:52:33.065Z",
       "excerpt": "Nosotros tenemos otra en proyecto que haremos con fondos para la reconstrucción que costará unos 800.000 euros y protegerá el sector 14 del área industrial. –¿Riba-roja es como el nudo gordiano para prevenir otra dana?",
-      "trust": "medium"
+      "trust": "medium",
+      "selfDeclared": false
     },
     {
       "id": "src-053",
@@ -735,7 +749,8 @@
       "retrievedAt": "2026-07-30T21:56:05.961Z",
       "excerpt": "804 contratos adjudicados examinados en el mirror oficial de licitaciones: ningún adjudicatario coincide con los apellidos «Raga» o «Raga Gadea».",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-080",
@@ -746,7 +761,7 @@
       "retrievedAt": "2026-07-31T08:05:04.220Z",
       "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
       "trust": "high",
-      "selfDeclared": true
+      "selfDeclared": false
     },
     {
       "id": "src-090",

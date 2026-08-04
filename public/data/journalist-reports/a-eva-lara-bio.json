@@ -365,7 +365,8 @@
       "retrievedAt": "2026-07-31T08:42:57.642Z",
       "excerpt": "role: concejal · party: PSOE · portfolios: Educación, Infancia y Adolescencia y Memoria Histórica",
       "localPath": "public/data/officials.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-002",
@@ -383,7 +384,8 @@
       "title": "Sra. Dª. Eva Lara Catalá | Ayuntamiento de Riba-roja de Túria",
       "retrievedAt": "2026-07-31T08:43:00.967Z",
       "excerpt": "Áreas: Educación, Infancia y Adolescencia y Memoria Histórica.",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-036",
@@ -401,7 +403,8 @@
       "retrievedAt": "2026-07-31T08:43:09.805Z",
       "excerpt": "eva-lara-catala · Eva Lara Catalá · Sra. · concejal · PSOE · Educación · Infancia y Adolescencia y Memoria Histórica · alcaldia@ribarroja.es · /data/photos/eva-lara-catala.jpg · https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/",
       "localPath": "public/data/officials.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-060",
@@ -537,7 +540,7 @@
       "retrievedAt": "2026-07-31T08:54:21.979Z",
       "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
       "trust": "high",
-      "selfDeclared": true
+      "selfDeclared": false
     },
     {
       "id": "src-073",
@@ -546,7 +549,8 @@
       "retrievedAt": "2026-07-31T08:54:21.979Z",
       "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Lara Catalá». Contratos del ámbito educativo desde julio de 2023: 12 identificados — muestra demasiado pequeña para comparar indicadores de competencia; ninguno con vínculo nominal con la concejala. No figura en las candidaturas de 2015 (BOP n.º 79) ni de 2019 (BOP n.º 82): la de 2023 es su primera lista.",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     }
   ],
   "warnings": [

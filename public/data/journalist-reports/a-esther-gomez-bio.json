@@ -439,7 +439,8 @@
       "retrievedAt": "2026-07-31T10:24:48.788Z",
       "excerpt": "role: concejal · party: PSOE · portfolios: Participación y transparencia, Atención a la ciudadanía, Turismo y patrimonio histórico, Promoción de la Salud e Infraestructuras sanitarias",
       "localPath": "public/data/officials.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-002",
@@ -448,7 +449,8 @@
       "retrievedAt": "2026-07-31T10:24:50.819Z",
       "excerpt": "Concejala delegada · Participación, Atención ciudadana y Turismo: dedicación exclusiva, 38.891,66 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
       "localPath": "public/data/dedicaciones.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-003",
@@ -457,7 +459,8 @@
       "retrievedAt": "2026-07-31T10:24:50.819Z",
       "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
       "localPath": "public/data/elections.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-060",
@@ -606,7 +609,7 @@
       "retrievedAt": "2026-07-31T10:34:18.162Z",
       "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
       "trust": "high",
-      "selfDeclared": true
+      "selfDeclared": false
     },
     {
       "id": "src-073",
@@ -626,7 +629,8 @@
       "retrievedAt": "2026-07-31T10:34:18.162Z",
       "excerpt": "804 contratos examinados: ningún adjudicatario coincide con «Gómez Laredo», y ninguna de sus empleadoras declaradas (Banco Mediolanum, Aviva, ASEVAL, Indra SSI, GFT Iberia, SENER, IDOM, ERIA) consta como adjudicataria. Contratos de sus áreas desde 07-2023: 6 — muestra demasiado pequeña para comparar. Ausente de la candidatura de 2015 (BOP n.º 79); en 2019 concurrió en el puesto 10 (BOP n.º 82).",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     }
   ],
   "warnings": [

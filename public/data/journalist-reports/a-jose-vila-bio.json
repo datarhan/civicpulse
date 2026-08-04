@@ -422,7 +422,8 @@
       "retrievedAt": "2026-07-31T12:18:00.271Z",
       "excerpt": "role: concejal · party: PSOE · portfolios: Arte y Cultura",
       "localPath": "public/data/officials.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-002",
@@ -431,7 +432,8 @@
       "retrievedAt": "2026-07-31T12:18:02.364Z",
       "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
       "localPath": "public/data/elections.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-018",
@@ -440,7 +442,8 @@
       "retrievedAt": "2026-07-31T12:18:05.921Z",
       "excerpt": "[0.0 → 0.0] Líder: José Manuel Vila, Concejal delegado [0.0 → 0.0] Persona empleada pública responsable: Ana Huertas Técnica de [0.0 → 0.0] Educación y Cultura. [0.0 → 0.0] Carrer Mercat, 9-2º piso, 46190 Riba-roja de Tú",
       "localPath": "public/data/pleno-transcripts/1080zow.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-020",
@@ -449,7 +452,8 @@
       "retrievedAt": "2026-07-31T12:18:05.921Z",
       "excerpt": "[0.0 → 0.0] Líder: Líder: José Manuel Vila, Concejal delegado [0.0 → 0.0] Persona empleada pública responsable: Vicente Moreno, Director [0.0 → 0.0] Auditorio Municipal [0.0 → 0.0] C/Mayor, 135, 46190 Riba-roja de Túria,",
       "localPath": "public/data/pleno-transcripts/1080zow.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-024",
@@ -458,7 +462,8 @@
       "retrievedAt": "2026-07-31T12:18:06.286Z",
       "excerpt": "[0.0 → 0.0] ACTA SESIÓN ORDINARIA CELEBRADA POR EL [0.0 → 0.0] AYUNTAMIENTO PLENO EL DÍA 15 DE ABRIL DE 2024 [0.0 → 0.0] Lugar: Salón de Actos del Ayuntamiento [0.0 → 0.0] Fecha: 15 de abril de 2024 [0.0 → 0.0] Hora: 17:",
       "localPath": "public/data/pleno-transcripts/1080zow.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-025",
@@ -467,7 +472,8 @@
       "retrievedAt": "2026-07-31T12:18:06.593Z",
       "excerpt": "[0.0 → 0.0] Líder: José Manuel Vila, Concejal delegado [0.0 → 0.0] Persona empleada pública responsable: Ana Huertas Técnica de [0.0 → 0.0] Educación y Cultura. [0.0 → 0.0] Carrer Mercat, 9-2º piso, 46190 Riba-roja de Tú",
       "localPath": "public/data/pleno-transcripts/1080zow.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-060",
@@ -477,8 +483,7 @@
       "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
       "retrievedAt": "2026-07-31T12:25:02.891Z",
       "excerpt": "PRESENTACIÓN 8 SEPTIEMBRE 1960 RIBA-ROJA DE TÚRIA jmvila@ribarroja.es",
-      "trust": "high",
-      "selfDeclared": true
+      "trust": "high"
     },
     {
       "id": "src-061",
@@ -644,7 +649,7 @@
       "retrievedAt": "2026-07-31T12:25:02.891Z",
       "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
       "trust": "high",
-      "selfDeclared": true
+      "selfDeclared": false
     },
     {
       "id": "src-077",
@@ -653,7 +658,8 @@
       "retrievedAt": "2026-07-31T12:25:02.891Z",
       "excerpt": "804 contratos examinados: ningún adjudicatario coincide con «Vila Oltra», ni con sus empleadoras declaradas (Cajamar/Ruralcaja, Cimenta2, Haya Real Estate). Contratos del ámbito cultural desde 07-2023: 12 — muestra demasiado pequeña para comparar. Ausente de las candidaturas de 2015 (BOP n.º 79) y 2019 (n.º 82): la de 2023 es su primera lista.",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     }
   ],
   "warnings": [

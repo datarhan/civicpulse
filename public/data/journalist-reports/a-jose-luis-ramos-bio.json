@@ -457,7 +457,8 @@
       "retrievedAt": "2026-07-31T07:14:24.112Z",
       "excerpt": "role: concejal · party: PSOE · portfolios: Agenda 2030, Emergencia climática, Fondos Europeos, Integridad, Agricultura, Actividades y Edificios públicos",
       "localPath": "public/data/officials.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-002",
@@ -476,7 +477,8 @@
       "retrievedAt": "2026-07-31T07:14:31.109Z",
       "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
       "localPath": "public/data/elections.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-009",
@@ -486,7 +488,7 @@
       "retrievedAt": "2026-07-31T07:14:31.687Z",
       "excerpt": "D. JOSÉ LUIS RAMOS MARCH AGENDA 2030, EMERGENCIA CLIMÁTICA, FONDOS EUROPEOS, INTEGRIDAD, AGRICULTURA Y ACTIVIDADES.",
       "trust": "high",
-      "selfDeclared": true
+      "selfDeclared": false
     },
     {
       "id": "src-016",
@@ -505,7 +507,8 @@
       "title": "Estimado amigo, - Ayuntamiento de Riba-roja de Túria",
       "retrievedAt": "2026-07-31T07:14:32.585Z",
       "excerpt": "ACTA SESIÓN EXTRAORDINARIA CELEBRADA POR EL AYUNTAMIENTO PLENO EL DÍA 30 DE DICIEMBRE DE 2022 Lugar: Salón de Actos del Ayuntamiento Fecha: 30 de diciembre de 2022 Hora: 09:00 CARÁCTER DE LA SESION: EXTRAORDINARIA ALCALDE-PRESIDENTE: ROBERTO RAGA GADEA CONCEJALES ASISTENTES: Partido Socialista Obrero Español (PSOE) Partido Popular (PP) Ciudadanos Partido de la Ciudadanía (CS) Roberto Pascual Raga Gadea Maria Teresa Pozuelo Martin Jose Luis Ramos March Zafira Perez Pacheco Jos",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-019",
@@ -523,7 +526,8 @@
       "title": "Corporación Municipal | Ayuntamiento de Riba-roja de Túria",
       "retrievedAt": "2026-07-31T07:14:33.224Z",
       "excerpt": "Corporación Municipal · Sr. D. Robert Raga Gadea. Áreas: Alcaldía. · Sra. Dª. Teresa Pozuelo Martín. · Sr. D. José Luis Ramos March. · Sr. D. José Ángel Hernández ...",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-024",
@@ -550,7 +554,8 @@
       "retrievedAt": "2026-07-31T07:14:40.505Z",
       "excerpt": "[0.0 → 0.0] competencias que al Alcalde le corresponden en materia de Urbanismo, Vivienda, Obra Pública, [0.0 → 0.0] Áreas Industriales y Cementerio. [0.0 → 0.0] 3. Se delega en el Segundo Teniente de Alcalde, D. Jose Lu",
       "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-060",
@@ -683,7 +688,8 @@
       "retrievedAt": "2026-07-31T07:25:34.362Z",
       "excerpt": "Acuerdo del Pleno de 07-07-2023 (expte. 4533/2023/GEN): 7 dedicaciones exclusivas — 1 de 48.234,08 €, 2 de 43.067,36 € y 4 de 38.891,66 €. José Luis Ramos March no figura entre ellas.",
       "localPath": "public/data/dedicaciones.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-073",
@@ -692,7 +698,8 @@
       "retrievedAt": "2026-07-31T07:25:34.362Z",
       "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Ramos March», y sus antiguos empleadores declarados del sector bancario (Cajamar, Caja Campo, Banco de València) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (agricultura, edificios públicos, energía y clima, comercio, fondos europeos): 34 de 282; un solo licitador 13/34 (38%) frente a 156/282 (55%) del conjunto; contratos menores 7/34 (21%).",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-080",
@@ -703,7 +710,7 @@
       "retrievedAt": "2026-07-31T08:05:04.220Z",
       "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
       "trust": "high",
-      "selfDeclared": true
+      "selfDeclared": false
     },
     {
       "id": "src-081",

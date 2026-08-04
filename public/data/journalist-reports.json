@@ -507,7 +507,8 @@
           "retrievedAt": "2026-07-31T19:25:38.445Z",
           "excerpt": "Barrido nominal: 0 coincidencias para «Ciclos Folgado» (su negocio declarado). El apellido «Folgado» —muy común en Riba-roja (el acta de 2015 recoge a un concejal distinto, José Luis Folgado Correa)— sí aparece en tres empresas adjudicatarias sin relación documentada con el concejal: Gil Folgado Catering, Folgado Materiales de Construcción e Industrial Gil Folgado. Adyacencia de apellido no es vínculo; sin documento, no se atribuyen.",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         }
       ],
       "warnings": [
@@ -1017,7 +1018,8 @@
           "retrievedAt": "2026-07-31T19:13:04.360Z",
           "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «Gallardo Martínez», y 0 para las entidades sociales de su trayectoria (APRODIS, FESORD, Orilla-Actúa). Ninguna consta como adjudicataria del Ayuntamiento bajo esos nombres.",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         }
       ],
       "warnings": [
@@ -1521,7 +1523,8 @@
           "retrievedAt": "2026-07-31T19:00:08.953Z",
           "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «Fernández Santamaría», 0 para «APROA» (su consultoría desde 2022) y 0 para «Bankia». La única coincidencia «Caixabank» es una filial de leasing (Caixabank Equipment Finance), sin relación personal con el concejal.",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         }
       ],
       "warnings": [
@@ -1857,8 +1860,7 @@
           "title": "Portal de transparencia — listado de datos biográficos: sin CV publicado de Navarro",
           "retrievedAt": "2026-07-31T18:46:19.302Z",
           "excerpt": "PDF publicados en la ficha de datos biográficos (extracto de nombres de archivo): CV_DAVID_BARRANCHO · CV-TERESA-POZUELO · CURRICULUM-JOSE-ANGEL-HERNANDEZ · Datos-biogrficos-Alberto-J-Gimeno-Calvo · Compromis-Rafael-Folgado-Navarro · EU_UP-Jose-Manuel-Gallardo · PP-M-Jose-Pradas-Ramo · PP-Salvador-Ferrer-Cortina · PSOE-… (9) · VOX-Jose-Luis-Fernandez-Santamaria. No figura ningún archivo de Paula Navarro Sanfeliu (ni de Trejo, Guzmán o Boix).",
-          "trust": "high",
-          "selfDeclared": true
+          "trust": "high"
         },
         {
           "id": "src-070",
@@ -1868,7 +1870,8 @@
           "retrievedAt": "2026-07-31T18:46:19.302Z",
           "excerpt": "se preguntó a la rechidora Paula Navarro en cualidad de representante del Grupo del Consejo de Igualdad",
           "localPath": "public/data/pleno-transcripts/19gax3o.txt",
-          "trust": "medium"
+          "trust": "medium",
+          "selfDeclared": false
         },
         {
           "id": "src-071",
@@ -1878,7 +1881,8 @@
           "retrievedAt": "2026-07-31T18:46:19.302Z",
           "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «Navarro Sanfeliu». No consta como adjudicataria del Ayuntamiento; sus empleadores declarados son centros sanitarios, ajenos al corpus de contratación municipal.",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         }
       ],
       "warnings": [
@@ -2197,8 +2201,7 @@
           "title": "Portal de transparencia — listado de datos biográficos: sin CV publicado de Boix",
           "retrievedAt": "2026-07-31T18:34:52.032Z",
           "excerpt": "PDF publicados en la ficha de datos biográficos (extracto de nombres de archivo): CV_DAVID_BARRANCHO · CV-TERESA-POZUELO · CURRICULUM-JOSE-ANGEL-HERNANDEZ · Datos-biogrficos-Alberto-J-Gimeno-Calvo · Compromis-Rafael-Folgado-Navarro · EU_UP-Jose-Manuel-Gallardo · PP-M-Jose-Pradas-Ramo · PP-Salvador-Ferrer-Cortina · PSOE-… (9) · VOX-Jose-Luis-Fernandez-Santamaria. No figura ningún archivo de Juan Boix Martínez (ni de Trejo, Guzmán o Navarro Sanfeliu).",
-          "trust": "high",
-          "selfDeclared": true
+          "trust": "high"
         },
         {
           "id": "src-069",
@@ -2208,7 +2211,8 @@
           "retrievedAt": "2026-07-31T18:34:52.032Z",
           "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «Boix Martínez». No consta como adjudicatario del Ayuntamiento.",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         }
       ],
       "warnings": [
@@ -2546,8 +2550,7 @@
           "title": "Portal de transparencia — listado de datos biográficos: sin CV publicado de Guzmán",
           "retrievedAt": "2026-07-31T18:24:55.728Z",
           "excerpt": "PDF publicados en la ficha de datos biográficos (extracto de nombres de archivo): CV_DAVID_BARRANCHO · CV-TERESA-POZUELO · CURRICULUM-JOSE-ANGEL-HERNANDEZ · Datos-biogrficos-Alberto-J-Gimeno-Calvo · Compromis-Rafael-Folgado-Navarro · EU_UP-Jose-Manuel-Gallardo · PP-M-Jose-Pradas-Ramo · PP-Salvador-Ferrer-Cortina · PSOE-… (9) · VOX-Jose-Luis-Fernandez-Santamaria. No figura ningún archivo de Laura Guzmán Bruno (ni de Soraya Trejo, Juan Boix ni Paula Navarro).",
-          "trust": "high",
-          "selfDeclared": true
+          "trust": "high"
         },
         {
           "id": "src-069",
@@ -2557,7 +2560,8 @@
           "retrievedAt": "2026-07-31T18:24:55.728Z",
           "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «GUZMÁN BRUNO». Su empleador declarado (Caixabank) presta servicios financieros que no figuran en el corpus de contratación (licitaciones y contratos menores); las operaciones de tesorería/crédito municipales se tramitan por otra vía y ella es empleada del banco, no órgano decisor, y concejal de la oposición.",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         }
       ],
       "warnings": [
@@ -3101,7 +3105,8 @@
           "retrievedAt": "2026-07-31T18:14:46.881Z",
           "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «FERRER CORTINA» y 0 para «SF ADMINISTRADORES» (el despacho de su actividad declarada de administración de fincas).",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         }
       ],
       "warnings": [
@@ -3638,7 +3643,8 @@
           "retrievedAt": "2026-07-31T17:45:15.620Z",
           "excerpt": "Punto 1: «Ratificar la solicitud para la celebración del Pleno Extraordinario presentada por parte de los miembros del Grupo Municipal Popular». Punto 2: «Debate y adopción de acuerdos en relación con la gestión del servicio de recogida de RSU, poda y voluminosos, la situación contractual del servicio y la tasa de basura».",
           "localPath": "public/data/plenos-agendas.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         }
       ],
       "warnings": [
@@ -3999,8 +4005,7 @@
           "title": "Portal de transparencia — listado de datos biográficos: sin CV publicado de Trejo (17 PDF para otros miembros)",
           "retrievedAt": "2026-07-31T17:34:01.373Z",
           "excerpt": "PDF publicados en la ficha de datos biográficos (extracto de nombres de archivo): CV_DAVID_BARRANCHO · CV-TERESA-POZUELO · CURRICULUM-JOSE-ANGEL-HERNANDEZ · Datos-biogrficos-Alberto-J-Gimeno-Calvo · Compromis-Rafael-Folgado-Navarro · EU_UP-Jose-Manuel-Gallardo · PP-M-Jose-Pradas-Ramo · PP-Salvador-Ferrer-Cortina · PSOE-… (9) · VOX-Jose-Luis-Fernandez-Santamaria. No figura ningún archivo de Soraya Trejo Delgado, Laura Guzmán Bruno, Juan Boix Martínez ni Paula Navarro Sanfeliu.",
-          "trust": "high",
-          "selfDeclared": true
+          "trust": "high"
         },
         {
           "id": "src-069",
@@ -4010,7 +4015,8 @@
           "retrievedAt": "2026-07-31T17:34:01.373Z",
           "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «TREJO» y 0 para «LLORENS» + «FORNÉS» (el despacho de su actividad declarada). En las candidaturas del BOP: 0 apariciones en 2019; la única coincidencia «TREJO» de 2015 corresponde a una candidata homónima de la circunscripción de Foios, no a la concejal.",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         }
       ],
       "warnings": [
@@ -4424,7 +4430,8 @@
           "retrievedAt": "2026-07-31T13:18:03.625Z",
           "excerpt": "role: concejal · party: PP · portfolios: ",
           "localPath": "public/data/officials.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-002",
@@ -4600,7 +4607,8 @@
           "retrievedAt": "2026-07-31T17:24:16.057Z",
           "excerpt": "Punto 1: «Ratificar la solicitud para la celebración del Pleno Extraordinario presentada por parte de los miembros del Grupo Municipal Popular». Punto 2: «Debate y adopción de acuerdos en relación con la gestión del servicio de recogida de RSU, poda y voluminosos, la situación contractual del servicio y la tasa de basura».",
           "localPath": "public/data/plenos-agendas.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-075",
@@ -4619,7 +4627,8 @@
           "retrievedAt": "2026-07-31T17:24:16.057Z",
           "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «GIMENO CALVO».",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         }
       ],
       "warnings": [
@@ -5164,7 +5173,8 @@
           "retrievedAt": "2026-07-31T13:03:05.106Z",
           "excerpt": "role: concejal · party: PSOE · portfolios: Acción social y políticas inclusivas, Mayores, Juventud y Servicios Jurídicos",
           "localPath": "public/data/officials.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-002",
@@ -5183,7 +5193,8 @@
           "retrievedAt": "2026-07-31T13:03:07.878Z",
           "excerpt": "Concejal delegado · Acción social, Mayores y Juventud: dedicación exclusiva, 38.891,66 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
           "localPath": "public/data/dedicaciones.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-004",
@@ -5192,7 +5203,8 @@
           "retrievedAt": "2026-07-31T13:03:07.879Z",
           "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
           "localPath": "public/data/elections.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-060",
@@ -5334,7 +5346,8 @@
           "retrievedAt": "2026-07-31T13:13:56.327Z",
           "excerpt": "tenders.contracts[id=77927]: «Servicio para la ejecución del Plan de Formación, Ocio y Tiempo Libre para personas con diversidad funcional y/o dificultades en el aprendizaje» · assignee=Juntsumem, S.L. · procedimiento abierto · 2 licitadores · importe inicial 115.000,00 € · adjudicación 104.545,45 € · awardDate 2018-02-08 · ejecución 2017-10-01→2019-10-01 · CPV 85320000. Barrido nominal «BARBANCHO» en adjudicatarios: 0 coincidencias.",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-073",
@@ -5344,7 +5357,8 @@
           "retrievedAt": "2026-07-31T13:13:56.327Z",
           "excerpt": "Ediciones posteriores del mismo programa en tenders.json: 2021-03-06 Fundación de la Comunitat Valenciana Juan I. Muñoz Bastide (125.867,50 €) · 2022-07-01 escuela de verano Riba Actua (33.538,12 €) · 2025-07-24 programa municipal Fundación Juan I. Muñoz Bastide (175.351,81 €) y escuela de verano AUCA Projectes Educatius SL (31.271,51 €). Juntsumem, S.L. no vuelve a aparecer como adjudicatario en el corpus.",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-074",
@@ -5852,7 +5866,8 @@
           "retrievedAt": "2026-07-31T12:41:55.847Z",
           "excerpt": "role: concejal · party: PSOE · portfolios: Fallas, Fiestas y Tradiciones",
           "localPath": "public/data/officials.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-060",
@@ -5996,7 +6011,8 @@
           "retrievedAt": "2026-07-31T12:59:29.943Z",
           "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (Gobierto/PLACSP): 0 coincidencias para «PLA GIMENEZ» y 0 para «FREDI». Área Fallas/Fiestas desde 2023-07: solo 2 adjudicaciones tituladas con palabras clave festivas (derivados de un SDA de fiestas), frente a 282 del corpus en el mismo periodo — el gasto festivo se articula mayoritariamente por contratos menores u otros vehículos no capturados por título.",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         }
       ],
       "warnings": [
@@ -6421,7 +6437,8 @@
           "retrievedAt": "2026-07-31T12:30:32.232Z",
           "excerpt": "role: concejal · party: PSOE · portfolios: Seguridad y emergencias, Igualdad, Comunicación e información, Protocolo y Bienestar Animal",
           "localPath": "public/data/officials.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-005",
@@ -6430,7 +6447,8 @@
           "retrievedAt": "2026-07-31T12:30:34.539Z",
           "excerpt": "Concejala delegada · Seguridad, Igualdad y Comunicación: dedicación exclusiva, 38.891,66 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
           "localPath": "public/data/dedicaciones.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-006",
@@ -6439,7 +6457,8 @@
           "retrievedAt": "2026-07-31T12:30:34.540Z",
           "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
           "localPath": "public/data/elections.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-022",
@@ -6448,7 +6467,8 @@
           "retrievedAt": "2026-07-31T12:30:38.462Z",
           "excerpt": "[0.0 → 0.0] Líder: Raquel Pamblanco Paredes. Concejala delegada [0.0 → 0.0] Persona empleada pública responsable: Fernando Tejera, [0.0 → 0.0] Intendente de la Policía Local. [0.0 → 0.0] C/Carretera de Villamarchante, 11",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-023",
@@ -6457,7 +6477,8 @@
           "retrievedAt": "2026-07-31T12:30:38.462Z",
           "excerpt": "[0.0 → 0.0] I.CPS.2.3: Nº de espectáculos y recitales abiertos al público/ realizados. [0.0 → 0.0] Perspectiva ODS: ODS 4, 5, 10 y 11 [0.0 → 0.0] 11. MUJER E IGUALDAD (MUJ) [0.0 → 0.0] Líder: Raquel Pamblanco Paredes, Co",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-031",
@@ -6466,7 +6487,8 @@
           "retrievedAt": "2026-07-31T12:30:39.029Z",
           "excerpt": "[0.0 → 0.0] /20243 e informe 218/2023 de la función interventora de conformidad con lo establecido en el [0.0 → 0.0] TRLRHL, el RD 424/2017, de 28 de abril, por el que se regula el régimen jurídico del control [0.0 → 0.0",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-060",
@@ -6594,7 +6616,7 @@
           "retrievedAt": "2026-07-31T12:40:03.553Z",
           "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
           "trust": "high",
-          "selfDeclared": true
+          "selfDeclared": false
         },
         {
           "id": "src-072",
@@ -6625,7 +6647,8 @@
           "retrievedAt": "2026-07-31T12:40:03.553Z",
           "excerpt": "804 contratos examinados: ningún adjudicatario coincide con «Pamblanco», ni con sus empleadoras declaradas (Vorwerk, FVMP, Opt-Media Marketing Solutions). Candidata en 2015 (puesto 12, como independiente, BOP n.º 79) y 2019 (puesto 16, n.º 82) sin obtener acta; electa en 2023.",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         }
       ],
       "warnings": [
@@ -7064,7 +7087,8 @@
           "retrievedAt": "2026-07-31T12:18:00.271Z",
           "excerpt": "role: concejal · party: PSOE · portfolios: Arte y Cultura",
           "localPath": "public/data/officials.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-002",
@@ -7073,7 +7097,8 @@
           "retrievedAt": "2026-07-31T12:18:02.364Z",
           "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
           "localPath": "public/data/elections.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-018",
@@ -7082,7 +7107,8 @@
           "retrievedAt": "2026-07-31T12:18:05.921Z",
           "excerpt": "[0.0 → 0.0] Líder: José Manuel Vila, Concejal delegado [0.0 → 0.0] Persona empleada pública responsable: Ana Huertas Técnica de [0.0 → 0.0] Educación y Cultura. [0.0 → 0.0] Carrer Mercat, 9-2º piso, 46190 Riba-roja de Tú",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-020",
@@ -7091,7 +7117,8 @@
           "retrievedAt": "2026-07-31T12:18:05.921Z",
           "excerpt": "[0.0 → 0.0] Líder: Líder: José Manuel Vila, Concejal delegado [0.0 → 0.0] Persona empleada pública responsable: Vicente Moreno, Director [0.0 → 0.0] Auditorio Municipal [0.0 → 0.0] C/Mayor, 135, 46190 Riba-roja de Túria,",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-024",
@@ -7100,7 +7127,8 @@
           "retrievedAt": "2026-07-31T12:18:06.286Z",
           "excerpt": "[0.0 → 0.0] ACTA SESIÓN ORDINARIA CELEBRADA POR EL [0.0 → 0.0] AYUNTAMIENTO PLENO EL DÍA 15 DE ABRIL DE 2024 [0.0 → 0.0] Lugar: Salón de Actos del Ayuntamiento [0.0 → 0.0] Fecha: 15 de abril de 2024 [0.0 → 0.0] Hora: 17:",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-025",
@@ -7109,7 +7137,8 @@
           "retrievedAt": "2026-07-31T12:18:06.593Z",
           "excerpt": "[0.0 → 0.0] Líder: José Manuel Vila, Concejal delegado [0.0 → 0.0] Persona empleada pública responsable: Ana Huertas Técnica de [0.0 → 0.0] Educación y Cultura. [0.0 → 0.0] Carrer Mercat, 9-2º piso, 46190 Riba-roja de Tú",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-060",
@@ -7119,8 +7148,7 @@
           "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
           "retrievedAt": "2026-07-31T12:25:02.891Z",
           "excerpt": "PRESENTACIÓN 8 SEPTIEMBRE 1960 RIBA-ROJA DE TÚRIA jmvila@ribarroja.es",
-          "trust": "high",
-          "selfDeclared": true
+          "trust": "high"
         },
         {
           "id": "src-061",
@@ -7286,7 +7314,7 @@
           "retrievedAt": "2026-07-31T12:25:02.891Z",
           "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
           "trust": "high",
-          "selfDeclared": true
+          "selfDeclared": false
         },
         {
           "id": "src-077",
@@ -7295,7 +7323,8 @@
           "retrievedAt": "2026-07-31T12:25:02.891Z",
           "excerpt": "804 contratos examinados: ningún adjudicatario coincide con «Vila Oltra», ni con sus empleadoras declaradas (Cajamar/Ruralcaja, Cimenta2, Haya Real Estate). Contratos del ámbito cultural desde 07-2023: 12 — muestra demasiado pequeña para comparar. Ausente de las candidaturas de 2015 (BOP n.º 79) y 2019 (n.º 82): la de 2023 es su primera lista.",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         }
       ],
       "warnings": [
@@ -7750,7 +7779,8 @@
           "retrievedAt": "2026-07-31T10:24:48.788Z",
           "excerpt": "role: concejal · party: PSOE · portfolios: Participación y transparencia, Atención a la ciudadanía, Turismo y patrimonio histórico, Promoción de la Salud e Infraestructuras sanitarias",
           "localPath": "public/data/officials.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-002",
@@ -7759,7 +7789,8 @@
           "retrievedAt": "2026-07-31T10:24:50.819Z",
           "excerpt": "Concejala delegada · Participación, Atención ciudadana y Turismo: dedicación exclusiva, 38.891,66 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
           "localPath": "public/data/dedicaciones.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-003",
@@ -7768,7 +7799,8 @@
           "retrievedAt": "2026-07-31T10:24:50.819Z",
           "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
           "localPath": "public/data/elections.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-060",
@@ -7917,7 +7949,7 @@
           "retrievedAt": "2026-07-31T10:34:18.162Z",
           "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
           "trust": "high",
-          "selfDeclared": true
+          "selfDeclared": false
         },
         {
           "id": "src-073",
@@ -7937,7 +7969,8 @@
           "retrievedAt": "2026-07-31T10:34:18.162Z",
           "excerpt": "804 contratos examinados: ningún adjudicatario coincide con «Gómez Laredo», y ninguna de sus empleadoras declaradas (Banco Mediolanum, Aviva, ASEVAL, Indra SSI, GFT Iberia, SENER, IDOM, ERIA) consta como adjudicataria. Contratos de sus áreas desde 07-2023: 6 — muestra demasiado pequeña para comparar. Ausente de la candidatura de 2015 (BOP n.º 79); en 2019 concurrió en el puesto 10 (BOP n.º 82).",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         }
       ],
       "warnings": [
@@ -8319,7 +8352,8 @@
           "retrievedAt": "2026-07-31T08:42:57.642Z",
           "excerpt": "role: concejal · party: PSOE · portfolios: Educación, Infancia y Adolescencia y Memoria Histórica",
           "localPath": "public/data/officials.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-002",
@@ -8337,7 +8371,8 @@
           "title": "Sra. Dª. Eva Lara Catalá | Ayuntamiento de Riba-roja de Túria",
           "retrievedAt": "2026-07-31T08:43:00.967Z",
           "excerpt": "Áreas: Educación, Infancia y Adolescencia y Memoria Histórica.",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-036",
@@ -8355,7 +8390,8 @@
           "retrievedAt": "2026-07-31T08:43:09.805Z",
           "excerpt": "eva-lara-catala · Eva Lara Catalá · Sra. · concejal · PSOE · Educación · Infancia y Adolescencia y Memoria Histórica · alcaldia@ribarroja.es · /data/photos/eva-lara-catala.jpg · https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/",
           "localPath": "public/data/officials.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-060",
@@ -8491,7 +8527,7 @@
           "retrievedAt": "2026-07-31T08:54:21.979Z",
           "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
           "trust": "high",
-          "selfDeclared": true
+          "selfDeclared": false
         },
         {
           "id": "src-073",
@@ -8500,7 +8536,8 @@
           "retrievedAt": "2026-07-31T08:54:21.979Z",
           "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Lara Catalá». Contratos del ámbito educativo desde julio de 2023: 12 identificados — muestra demasiado pequeña para comparar indicadores de competencia; ninguno con vínculo nominal con la concejala. No figura en las candidaturas de 2015 (BOP n.º 79) ni de 2019 (BOP n.º 82): la de 2023 es su primera lista.",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         }
       ],
       "warnings": [
@@ -8981,7 +9018,8 @@
           "retrievedAt": "2026-07-31T07:34:06.576Z",
           "excerpt": "role: concejal · party: PSOE · portfolios: Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación, Fomento económico, Empleo y Emprendimiento, y Comercio",
           "localPath": "public/data/officials.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-005",
@@ -8990,7 +9028,8 @@
           "retrievedAt": "2026-07-31T07:34:12.679Z",
           "excerpt": "3er Teniente de Alcalde · Administración, RR. HH., Hacienda y Fomento: dedicación exclusiva, 43.067,36 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
           "localPath": "public/data/dedicaciones.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-006",
@@ -8999,7 +9038,8 @@
           "retrievedAt": "2026-07-31T07:34:12.680Z",
           "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
           "localPath": "public/data/elections.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-007",
@@ -9027,7 +9067,8 @@
           "retrievedAt": "2026-07-31T07:34:16.519Z",
           "excerpt": "[3900.0 → 3930.0] Gracias Gracias José Ángel Bueno, decir que creo que ha explicado perfectamente José Ángel los puntos el llevarlo ahora creo que también ha quedado claro para que no distorsionar aquellos vecinos que no",
           "localPath": "public/data/pleno-transcripts/1qi8axv.txt",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-032",
@@ -9211,7 +9252,8 @@
           "retrievedAt": "2026-07-31T07:45:31.798Z",
           "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Hernández Carrizosa». Las cuatro sociedades donde trabajó según su CV — Nexo Nivel SL (administrador solidario 2008-2015), Grupo Serratable SL, Artículos de Carpintería Moreno SL y Vilarsal SL — no constan como adjudicatarias ni licitadoras. Corpus completo desde julio de 2023 (su delegación incluye Compra Pública): 282 contratos, 55% con un solo licitador, 20% menores.",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-080",
@@ -9222,7 +9264,7 @@
           "retrievedAt": "2026-07-31T08:05:04.220Z",
           "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
           "trust": "high",
-          "selfDeclared": true
+          "selfDeclared": false
         },
         {
           "id": "src-090",
@@ -9748,7 +9790,8 @@
           "retrievedAt": "2026-07-31T07:14:24.112Z",
           "excerpt": "role: concejal · party: PSOE · portfolios: Agenda 2030, Emergencia climática, Fondos Europeos, Integridad, Agricultura, Actividades y Edificios públicos",
           "localPath": "public/data/officials.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-002",
@@ -9767,7 +9810,8 @@
           "retrievedAt": "2026-07-31T07:14:31.109Z",
           "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
           "localPath": "public/data/elections.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-009",
@@ -9777,7 +9821,7 @@
           "retrievedAt": "2026-07-31T07:14:31.687Z",
           "excerpt": "D. JOSÉ LUIS RAMOS MARCH AGENDA 2030, EMERGENCIA CLIMÁTICA, FONDOS EUROPEOS, INTEGRIDAD, AGRICULTURA Y ACTIVIDADES.",
           "trust": "high",
-          "selfDeclared": true
+          "selfDeclared": false
         },
         {
           "id": "src-016",
@@ -9796,7 +9840,8 @@
           "title": "Estimado amigo, - Ayuntamiento de Riba-roja de Túria",
           "retrievedAt": "2026-07-31T07:14:32.585Z",
           "excerpt": "ACTA SESIÓN EXTRAORDINARIA CELEBRADA POR EL AYUNTAMIENTO PLENO EL DÍA 30 DE DICIEMBRE DE 2022 Lugar: Salón de Actos del Ayuntamiento Fecha: 30 de diciembre de 2022 Hora: 09:00 CARÁCTER DE LA SESION: EXTRAORDINARIA ALCALDE-PRESIDENTE: ROBERTO RAGA GADEA CONCEJALES ASISTENTES: Partido Socialista Obrero Español (PSOE) Partido Popular (PP) Ciudadanos Partido de la Ciudadanía (CS) Roberto Pascual Raga Gadea Maria Teresa Pozuelo Martin Jose Luis Ramos March Zafira Perez Pacheco Jos",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-019",
@@ -9814,7 +9859,8 @@
           "title": "Corporación Municipal | Ayuntamiento de Riba-roja de Túria",
           "retrievedAt": "2026-07-31T07:14:33.224Z",
           "excerpt": "Corporación Municipal · Sr. D. Robert Raga Gadea. Áreas: Alcaldía. · Sra. Dª. Teresa Pozuelo Martín. · Sr. D. José Luis Ramos March. · Sr. D. José Ángel Hernández ...",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-024",
@@ -9841,7 +9887,8 @@
           "retrievedAt": "2026-07-31T07:14:40.505Z",
           "excerpt": "[0.0 → 0.0] competencias que al Alcalde le corresponden en materia de Urbanismo, Vivienda, Obra Pública, [0.0 → 0.0] Áreas Industriales y Cementerio. [0.0 → 0.0] 3. Se delega en el Segundo Teniente de Alcalde, D. Jose Lu",
           "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-060",
@@ -9974,7 +10021,8 @@
           "retrievedAt": "2026-07-31T07:25:34.362Z",
           "excerpt": "Acuerdo del Pleno de 07-07-2023 (expte. 4533/2023/GEN): 7 dedicaciones exclusivas — 1 de 48.234,08 €, 2 de 43.067,36 € y 4 de 38.891,66 €. José Luis Ramos March no figura entre ellas.",
           "localPath": "public/data/dedicaciones.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-073",
@@ -9983,7 +10031,8 @@
           "retrievedAt": "2026-07-31T07:25:34.362Z",
           "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Ramos March», y sus antiguos empleadores declarados del sector bancario (Cajamar, Caja Campo, Banco de València) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (agricultura, edificios públicos, energía y clima, comercio, fondos europeos): 34 de 282; un solo licitador 13/34 (38%) frente a 156/282 (55%) del conjunto; contratos menores 7/34 (21%).",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-080",
@@ -9994,7 +10043,7 @@
           "retrievedAt": "2026-07-31T08:05:04.220Z",
           "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
           "trust": "high",
-          "selfDeclared": true
+          "selfDeclared": false
         },
         {
           "id": "src-081",
@@ -10484,7 +10533,8 @@
           "retrievedAt": "2026-07-30T22:20:52.726Z",
           "excerpt": "role: concejal · party: PSOE · portfolios: Urbanismo, Vivienda, Obra Pública, Áreas Industriales y Cementerio",
           "localPath": "public/data/officials.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-003",
@@ -10493,8 +10543,7 @@
           "title": "•42. PRESIDENCIA. DEL ' ' CONSEJO, DE MINISTROS - BOE.es",
           "retrievedAt": "2026-07-30T22:20:54.998Z",
           "excerpt": "Universidad de Barcelona. *.•. 77® Gregorio González Ramos '. Aduana de Farga ... Sebastián Pozuelo Martín. San Lorenzo Calatrava ido. ' - ®. ' 1.500. -Ángel ...",
-          "trust": "high",
-          "selfDeclared": false
+          "trust": "high"
         },
         {
           "id": "src-004",
@@ -10512,7 +10561,8 @@
           "retrievedAt": "2026-07-30T22:20:55.031Z",
           "excerpt": "1ª Teniente de Alcalde · Territorio y Agenda Urbana: dedicación exclusiva, 43.067,36 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
           "localPath": "public/data/dedicaciones.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-006",
@@ -10521,7 +10571,8 @@
           "retrievedAt": "2026-07-30T22:20:55.032Z",
           "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
           "localPath": "public/data/elections.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-009",
@@ -10530,7 +10581,8 @@
           "title": "Sra. Dª. Teresa Pozuelo Martín | Ayuntamiento de Riba-roja de Túria",
           "retrievedAt": "2026-07-30T22:20:55.665Z",
           "excerpt": "Áreas: Urbanismo, Vivienda, Obra Pública, Áreas Industriales y Cementerio.",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-060",
@@ -10673,7 +10725,8 @@
           "retrievedAt": "2026-07-30T22:35:41.293Z",
           "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Pozuelo», y sus antiguos empleadores declarados (Grupo Tremon SA, Pavituria SL) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (urbanismo, vivienda, obra pública, industriales, cementerio): 77 de 282; un solo licitador 34/77 (44%) frente a 156/282 (55%) del conjunto; contratos menores 18/77 (23%) frente a 57/282 (20%).",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-080",
@@ -10684,7 +10737,7 @@
           "retrievedAt": "2026-07-31T08:05:04.220Z",
           "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
           "trust": "high",
-          "selfDeclared": true
+          "selfDeclared": false
         },
         {
           "id": "src-090",
@@ -11185,7 +11238,8 @@
           "retrievedAt": "2026-07-30T17:34:20.519Z",
           "excerpt": "role: concejal · party: PSOE · portfolios: Servicios públicos municipales, Urbanizaciones, barrios y diseminados, Movilidad y Deportes",
           "localPath": "public/data/officials.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-002",
@@ -11204,7 +11258,8 @@
           "retrievedAt": "2026-07-30T17:34:25.786Z",
           "excerpt": "Concejal delegado · Servicios públicos, Urbanizaciones, Movilidad y Deportes: dedicación exclusiva, 38.891,66 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
           "localPath": "public/data/dedicaciones.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-007",
@@ -11213,7 +11268,8 @@
           "retrievedAt": "2026-07-30T17:34:25.787Z",
           "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
           "localPath": "public/data/elections.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-023",
@@ -11231,7 +11287,8 @@
           "retrievedAt": "2026-07-30T17:34:33.687Z",
           "excerpt": "[0.0 → 0.0] abril, Reguladora de las Bases del Régimen Local, RESUELVO: [0.0 → 0.0] PRIMERO.- Cesar a D. Rafael Gómez Sánchez como miembro de la Junta de Gobierno Local. [0.0 → 0.0] SEGUNDO.- Nombrar a D. Rafael Folgado ",
           "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-060",
@@ -11290,7 +11347,8 @@
           "retrievedAt": "2026-07-30T21:34:53.859Z",
           "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Gómez Sánchez». 58 contratos de ámbito del transporte (Automoción La Pista SA, Autobuses Dura SL, Selan Bus SL, Taxis Mota, entre otros) y 46 de ámbito deportivo (Ecosiona Facility Services SL, Compañía de Tratamientos Levante SL, Saludes Parques Infantiles SL, Club de Básquet Riba-roja) sin coincidencia nominal con el concejal.",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-066",
@@ -11299,7 +11357,8 @@
           "retrievedAt": "2026-07-30T21:41:58.162Z",
           "excerpt": "Contratos adjudicados desde julio de 2019 en materias de sus áreas (deportes, transporte/movilidad, urbanizaciones, parques y servicios urbanos): 116 de 565 del corpus. Un solo licitador: 40/116 (34%) frente a 279/565 (49%) del conjunto municipal; contratos menores: 20/116 (17%) frente a 144/565 (26%). Los grandes contratos del ámbito (limpieza viaria y mantenimiento, autobús urbano) se adjudicaron con entre 3 y 6 ofertas (SAV, Autobuses Dura SL).",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-067",
@@ -11332,7 +11391,7 @@
           "retrievedAt": "2026-07-31T08:05:04.220Z",
           "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
           "trust": "high",
-          "selfDeclared": true
+          "selfDeclared": false
         },
         {
           "id": "src-090",
@@ -11907,7 +11966,8 @@
           "retrievedAt": "2026-07-30T15:52:28.626Z",
           "excerpt": "role: alcalde · party: PSOE · portfolios: Alcaldía, Innovación, Planificación estratégica y grandes proyectos y cooperación nacional e internacional",
           "localPath": "public/data/officials.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-002",
@@ -11926,7 +11986,8 @@
           "title": "Conoce el salario público de Roberto Pascual Raga Gadea",
           "retrievedAt": "2026-07-30T15:52:28.628Z",
           "excerpt": "Roberto Pascual Raga Gadea es Alcalde Del Ayuntamiento De Riba-Roja De Túria por el partido PSOE. Conoce su salario público.",
-          "trust": "medium"
+          "trust": "medium",
+          "selfDeclared": false
         },
         {
           "id": "src-006",
@@ -11935,7 +11996,8 @@
           "retrievedAt": "2026-07-30T15:52:28.634Z",
           "excerpt": "Alcaldía: dedicación exclusiva, 48.234,08 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
           "localPath": "public/data/dedicaciones.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-007",
@@ -11944,7 +12006,8 @@
           "retrievedAt": "2026-07-30T15:52:28.635Z",
           "excerpt": "2020: 45.461,94 € · 2021: 45.916,56 € · 2022: 52.855,48 € · 2024: 48.647,5 €",
           "localPath": "public/data/ispa.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-008",
@@ -11953,7 +12016,8 @@
           "retrievedAt": "2026-07-30T15:52:28.635Z",
           "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
           "localPath": "public/data/elections.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-009",
@@ -11972,7 +12036,8 @@
           "title": "Sr. D. Robert Raga Gadea | Ayuntamiento de Riba-roja de Túria",
           "retrievedAt": "2026-07-30T15:52:28.635Z",
           "excerpt": "Áreas: Alcaldía. Innovación, Planificación estratégica y grandes proyectos y cooperación nacional e internacional.",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-015",
@@ -11981,7 +12046,8 @@
           "title": "JUNTA SUPERIOR DE CONTRACTACIÓ ADMINISTRATIVA Carrer ...",
           "retrievedAt": "2026-07-30T15:52:28.635Z",
           "excerpt": "21 jun 2021 ... ROBERTO PASCUAL RAGA GADEA, Alcalde del Ayuntamiento de Riba-roja de ... Sentencia del Tribunal Superior de Justicia de la Comunidad Valenciana ...",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-017",
@@ -11990,7 +12056,8 @@
           "title": "Estimado amigo, - Ayuntamiento de Riba-roja de Túria",
           "retrievedAt": "2026-07-30T15:52:28.636Z",
           "excerpt": "ACTA SESIÓN EXTRAORDINARIA CELEBRADA POR EL AYUNTAMIENTO PLENO EL DÍA 30 DE DICIEMBRE DE 2022 Lugar: Salón de Actos del Ayuntamiento Fecha: 30 de diciembre de 2022 Hora: 09:00 CARÁCTER DE LA SESION: EXTRAORDINARIA ALCALDE-PRESIDENTE: ROBERTO RAGA GADEA CONCEJALES ASISTENTES: Partido Socialista Obrero Español (PSOE) Partido Popular (PP) Ciudadanos Partido de la Ciudadanía (CS) Roberto Pascual Raga Gadea Maria Teresa Pozuelo Martin Jose Luis Ramos March Zafira Perez Pacheco Jos",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-018",
@@ -11999,7 +12066,8 @@
           "title": "JUNTA SUPERIOR DE CONTRACTACIÓ ADMINISTRATIVA Carrer ...",
           "retrievedAt": "2026-07-30T15:52:28.636Z",
           "excerpt": "21 jun 2021 ... REVISIÓN DE OFICIO. OBRAS QUE DEBEN SER OBJETO DE LICITACIÓN ... ROBERTO PASCUAL RAGA GADEA, Alcalde del Ayuntamiento de Riba-roja de ...",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-019",
@@ -12018,7 +12086,8 @@
           "title": "ANUNCIO - Ayuntamiento de Riba-roja de Túria",
           "retrievedAt": "2026-07-30T15:52:28.636Z",
           "excerpt": "18 jun 2026 ... En Riba-roja de Turia, a fecha de la firma electrónica. El Alcalde. Roberto Raga Gadea ... Revisión de oficio y recursos. Tema 6. Procedimiento ...",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-021",
@@ -12027,7 +12096,8 @@
           "title": "Agenda Robert Raga Gadea - Ayuntamiento de Riba-roja de Túria",
           "retrievedAt": "2026-07-30T15:52:28.636Z",
           "excerpt": "Hacienda · Tesorería · Periodo medio de pago y morosidad · Gestión tributaria ... Agenda Robert Raga Gadea. Alcalde - President. En este espacio puedes ...",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-024",
@@ -12036,7 +12106,8 @@
           "retrievedAt": "2026-07-30T15:52:31.494Z",
           "excerpt": "[0.0 → 0.0] ACTA SESSIÓ EXTRAORDINÀRIA CELEBRADA PER L'AJUNTAMENT [0.0 → 0.0] PLE EL DIA 24 DE MAIG DE 2023 [0.0 → 0.0] Lloc: Sessió telemàtica a distància [0.0 → 0.0] Data: 24 de maig de 2023 [0.0 → 0.0] Hora: 09.30 [0.",
           "localPath": "public/data/pleno-transcripts/15000go.txt",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-025",
@@ -12045,7 +12116,8 @@
           "retrievedAt": "2026-07-30T15:52:31.494Z",
           "excerpt": "[0.0 → 0.0] ACTA SESSIÓ ORDINÀRIA CELEBRADA PER L'AJUNTAMENT PLE EL [0.0 → 0.0] DIA 8 DE MAIG DE 2023 [0.0 → 0.0] Lloc: Sala d'actes de l'Ajuntament [0.0 → 0.0] Data: 8 de maig de 2023 [0.0 → 0.0] Hora: 17.30 [0.0 → 0.0]",
           "localPath": "public/data/pleno-transcripts/67qdq8.txt",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-039",
@@ -12054,7 +12126,8 @@
           "title": "Robert Raga, alcalde de Riba-roja: «El Parque del Turia es el gran olvidado en la reconstrucción» | Las Provincias",
           "retrievedAt": "2026-07-30T15:52:33.065Z",
           "excerpt": "Nosotros tenemos otra en proyecto que haremos con fondos para la reconstrucción que costará unos 800.000 euros y protegerá el sector 14 del área industrial. –¿Riba-roja es como el nudo gordiano para prevenir otra dana?",
-          "trust": "medium"
+          "trust": "medium",
+          "selfDeclared": false
         },
         {
           "id": "src-053",
@@ -12115,7 +12188,8 @@
           "retrievedAt": "2026-07-30T21:56:05.961Z",
           "excerpt": "804 contratos adjudicados examinados en el mirror oficial de licitaciones: ningún adjudicatario coincide con los apellidos «Raga» o «Raga Gadea».",
           "localPath": "public/data/tenders.json",
-          "trust": "high"
+          "trust": "high",
+          "selfDeclared": false
         },
         {
           "id": "src-080",
@@ -12126,7 +12200,7 @@
           "retrievedAt": "2026-07-31T08:05:04.220Z",
           "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
           "trust": "high",
-          "selfDeclared": true
+          "selfDeclared": false
         },
         {
           "id": "src-090",
@@ -12194,5 +12268,5 @@
       "response": null
     }
   ],
-  "curatorNotes": "2026-08-04 · Sergei Lutchenko: marcado `selfDeclared` en las fuentes por tipo de documento (CV, currículum y declaraciones = autodeclarado; BOP, BOE y actas = no). 91 fuente(s) quedaron sin clasificar a propósito."
+  "curatorNotes": "2026-08-04 · Sergei Lutchenko: marcado `selfDeclared` en las fuentes por tipo de documento (CV, currículum y declaraciones = autodeclarado; BOP, BOE y actas = no). 91 fuente(s) quedaron sin clasificar a propósito.\n2026-08-04 · Sergei Lutchenko: re-clasificado `selfDeclared` con un modelo LLM (self-declared-v1) sobre el FRAGMENTO citado de cada fuente, no sobre el título — sustituye la primera versión (solo regex sobre el título), que una revisión encontró equivocada en un documento mixto (cabecera fijada por decreto vs. cuerpo autodeclarado) y en un aviso del BOP citado con dos títulos distintos para el mismo documento. 95 autodeclaradas, 268 no, 17 sin clasificar a propósito."
 }

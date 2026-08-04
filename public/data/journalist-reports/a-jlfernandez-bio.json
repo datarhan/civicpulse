@@ -487,7 +487,8 @@
       "retrievedAt": "2026-07-31T19:00:08.953Z",
       "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «Fernández Santamaría», 0 para «APROA» (su consultoría desde 2022) y 0 para «Bankia». La única coincidencia «Caixabank» es una filial de leasing (Caixabank Equipment Finance), sin relación personal con el concejal.",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     }
   ],
   "warnings": [

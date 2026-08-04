@@ -520,7 +520,8 @@
       "retrievedAt": "2026-07-31T17:45:15.620Z",
       "excerpt": "Punto 1: «Ratificar la solicitud para la celebración del Pleno Extraordinario presentada por parte de los miembros del Grupo Municipal Popular». Punto 2: «Debate y adopción de acuerdos en relación con la gestión del servicio de recogida de RSU, poda y voluminosos, la situación contractual del servicio y la tasa de basura».",
       "localPath": "public/data/plenos-agendas.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     }
   ],
   "warnings": [

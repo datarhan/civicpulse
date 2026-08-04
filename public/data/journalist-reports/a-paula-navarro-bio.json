@@ -319,8 +319,7 @@
       "title": "Portal de transparencia — listado de datos biográficos: sin CV publicado de Navarro",
       "retrievedAt": "2026-07-31T18:46:19.302Z",
       "excerpt": "PDF publicados en la ficha de datos biográficos (extracto de nombres de archivo): CV_DAVID_BARRANCHO · CV-TERESA-POZUELO · CURRICULUM-JOSE-ANGEL-HERNANDEZ · Datos-biogrficos-Alberto-J-Gimeno-Calvo · Compromis-Rafael-Folgado-Navarro · EU_UP-Jose-Manuel-Gallardo · PP-M-Jose-Pradas-Ramo · PP-Salvador-Ferrer-Cortina · PSOE-… (9) · VOX-Jose-Luis-Fernandez-Santamaria. No figura ningún archivo de Paula Navarro Sanfeliu (ni de Trejo, Guzmán o Boix).",
-      "trust": "high",
-      "selfDeclared": true
+      "trust": "high"
     },
     {
       "id": "src-070",
@@ -330,7 +329,8 @@
       "retrievedAt": "2026-07-31T18:46:19.302Z",
       "excerpt": "se preguntó a la rechidora Paula Navarro en cualidad de representante del Grupo del Consejo de Igualdad",
       "localPath": "public/data/pleno-transcripts/19gax3o.txt",
-      "trust": "medium"
+      "trust": "medium",
+      "selfDeclared": false
     },
     {
       "id": "src-071",
@@ -340,7 +340,8 @@
       "retrievedAt": "2026-07-31T18:46:19.302Z",
       "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «Navarro Sanfeliu». No consta como adjudicataria del Ayuntamiento; sus empleadores declarados son centros sanitarios, ajenos al corpus de contratación municipal.",
       "localPath": "public/data/tenders.json",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     }
   ],
   "warnings": [
