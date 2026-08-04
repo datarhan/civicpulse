@@ -310,8 +310,13 @@ function main() {
     .filter(Boolean)
     .join('\n')
 
-  validateReportsSnapshot(snap)
-  writeFileSync(AGG, JSON.stringify(snap, null, 2) + '\n')
+  // validateReportsSnapshot takes a JSON STRING, not an object (validators.ts:521).
+  // Serialise once and reuse it, so what we validate is byte-identical to what
+  // we write — validating one object and writing another is how a snapshot
+  // ships an invariant the validator never saw.
+  const serialised = JSON.stringify(snap, null, 2) + '\n'
+  validateReportsSnapshot(serialised)
+  writeFileSync(AGG, serialised)
 
   // Mirrors — a stale mirror is a second, drifting copy of the same claim.
   let mirrors = 0
