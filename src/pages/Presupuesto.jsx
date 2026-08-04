@@ -92,6 +92,10 @@ function RealSubsidies() {
 
 function RealBudgetHeader() {
   const { loading, error, data } = useBudget()
+  // Read before the early return — rules of hooks. Used only to state that the
+  // town's own execution statement disagrees with CONPREL about the approved
+  // budget; the figures below are never mixed or reconciled.
+  const { data: execData } = useBudgetExecution()
   if (loading || error || !data) {
     return (
       <>
@@ -135,6 +139,22 @@ function RealBudgetHeader() {
   const perCapita = s.population > 0 ? s.totalExpense / s.population : 0
   const generatedDate = fmtDateLong(data.generatedAt)
 
+  // The two sources disagree about the APPROVED budget itself, not merely
+  // about approved-vs-spent: CONPREL publishes 41.578.252,26 € for 2025 while
+  // the town's own execution statement opens at 37.599.838,15 €. Neither is
+  // averaged, chosen or quietly preferred — each is attributed and the gap is
+  // named, because inventing the bridge between two public sources would be a
+  // worse defect than the ambiguity.
+  //
+  // Gated on the years matching. Comparing a CONPREL year against an execution
+  // statement from a different exercise would manufacture a discrepancy that
+  // does not exist, which is the same defect this note exists to fix.
+  const exec = execData?.latest
+  const execInicial =
+    exec && exec.year === s.year && exec.gastos?.total?.inicial > 0
+      ? exec.gastos.total.inicial
+      : null
+
   return (
     <>
       <div
@@ -169,7 +189,14 @@ function RealBudgetHeader() {
         </div>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <Pill tone="civic">{s.year}</Pill>
-          <Pill tone="ok">REAL</Pill>
+          {/* Was «REAL». Next to a year, above a euro total, and with an
+              execution block further down the page, that pill read as "this is
+              what the town really spent" — the exact opposite of what it
+              marked. Every figure in this header is the APPROVED budget as
+              published by CONPREL; what was actually spent is the `ejecutado`
+              column below, and it is less than half of it. The pill now names
+              the stage instead of asserting a verdict. */}
+          <Pill tone="neutral">APROBADO</Pill>
           <DataAsOf iso={data.generatedAt} label="CONPREL" />
         </div>
       </div>
@@ -192,7 +219,7 @@ function RealBudgetHeader() {
               letterSpacing: '.06em',
             }}
           >
-            Ingresos totales
+            Ingresos presupuestados
           </div>
           <div
             className="mono"
@@ -214,7 +241,7 @@ function RealBudgetHeader() {
               letterSpacing: '.06em',
             }}
           >
-            Gastos totales
+            Gastos presupuestados
           </div>
           <div
             className="mono"
@@ -265,7 +292,7 @@ function RealBudgetHeader() {
               letterSpacing: '.06em',
             }}
           >
-            Gasto por habitante
+            Gasto presupuestado/hab.
           </div>
           <div
             className="mono"
@@ -278,6 +305,29 @@ function RealBudgetHeader() {
           </div>
         </Card>
       </div>
+      <p
+        style={{
+          fontSize: 11.5,
+          color: 'var(--ink60)',
+          lineHeight: 1.55,
+          margin: '0 0 16px',
+        }}
+      >
+        Estas cuatro cifras son el presupuesto <strong>aprobado</strong> de {s.year} según CONPREL
+        (Ministerio de Hacienda). No son gasto realizado: lo efectivamente gastado aparece más
+        abajo, en «Ejecución presupuestaria».
+        {execInicial !== null && (
+          <>
+            {' '}
+            Las dos fuentes no coinciden sobre cuál fue el presupuesto aprobado: el estado de
+            ejecución que publica el propio Ayuntamiento parte de un crédito inicial de{' '}
+            <span className="mono">{formatEuros(execInicial)}</span>, frente a los{' '}
+            <span className="mono">{formatEuros(s.totalExpense)}</span> de CONPREL. Esta página
+            publica las dos y no las reconcilia: no consta el motivo de la diferencia y elegir una
+            sería inventar el puente entre dos fuentes oficiales.
+          </>
+        )}
+      </p>
     </>
   )
 }

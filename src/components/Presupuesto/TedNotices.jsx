@@ -1,5 +1,6 @@
 import { Card, ExtLink } from '../Primitives'
 import { useTendersTed } from '../../hooks/useTendersTed'
+import { yearSpan } from '../../lib/year-span'
 import { useT } from '../../i18n'
 
 const eur = (n) =>
@@ -25,6 +26,13 @@ export function TedNotices() {
   if (items.length === 0) return null
   const valued = items.filter((i) => i.totalValueEur)
   const total = valued.reduce((s, i) => s + i.totalValueEur, 0)
+  // This block sits on a page titled «Presupuesto municipal <año>», directly
+  // above «Gastos <año> · clasificación económica». Without its own period the
+  // euro total reads as one year's worth of EU-threshold contracting against a
+  // one-year budget — several times larger. It is not: these notices span
+  // nine exercises. Nor does every notice carry a figure, so the count behind
+  // the euros is stated rather than left to be assumed as all of them.
+  const span = yearSpan(items.map((i) => i.publicationDate))
   const rows = [...items]
     .sort((a, b) => (b.totalValueEur ?? 0) - (a.totalValueEur ?? 0))
     .slice(0, 10)
@@ -44,7 +52,8 @@ export function TedNotices() {
           {t('presupuesto.ted.eyebrow')}
         </div>
         <div style={{ fontSize: 13, color: 'var(--ink70)' }}>
-          {items.length} {t('presupuesto.ted.notices')} · {eur(total)} {t('presupuesto.ted.valued')}
+          {items.length} {t('presupuesto.ted.notices')}
+          {span ? ` ${span}` : ''} · {valued.length} {t('presupuesto.ted.valued')} · {eur(total)}
         </div>
       </div>
       <div style={{ fontSize: 12, color: 'var(--ink60)', margin: '8px 0 12px', lineHeight: 1.5 }}>

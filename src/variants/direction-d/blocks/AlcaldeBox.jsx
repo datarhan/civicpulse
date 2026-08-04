@@ -5,28 +5,10 @@ import { useBudget, formatEuros as formatBudgetEuros } from '../../../hooks/useB
 import { useTenders } from '../../../hooks/useTenders'
 import { useBdns } from '../../../hooks/useBdns'
 import { isCommittedContract } from '../../../lib/contract-status'
+import { yearSpan } from '../../../lib/year-span'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../../../scraper/departments'
 import { PALETTE, MONO } from '../tokens'
 import { useT } from '../../../i18n'
-
-/**
- * Visible period for an accumulated figure — «2017–2026», or a single year
- * when the rows share one.
- *
- * Derived from the rows actually counted, never typed: a literal span goes
- * false on its own the next time the scraper runs. Same reason
- * `department-stats.js` computes `contratacionYears` instead of hardcoding it.
- */
-function yearSpan(dates) {
-  const ys = dates
-    .map((d) => String(d ?? '').slice(0, 4))
-    .filter((y) => /^\d{4}$/.test(y))
-    .sort()
-  if (ys.length === 0) return null
-  const first = ys[0]
-  const last = ys[ys.length - 1]
-  return first === last ? first : `${first}–${last}`
-}
 
 export function AlcaldeBox() {
   const t = useT()
