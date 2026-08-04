@@ -549,8 +549,19 @@ function OfficialCard({ o, big = false, bioRoute }) {
 }
 
 function CompositionBar({ composition, total }) {
-  const order = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'Otro']
-  const items = order.filter((p) => composition[p]).map((p) => ({ p, n: composition[p] }))
+  // The known parties fix the reading order; anything else in the snapshot is
+  // APPENDED rather than dropped. A hard-coded allow-list here erased EU-Podem
+  // — a party holding a real seat — so the bar painted 20 escaños under a label
+  // reading «Total 21», and the councillor elected for it did not appear in the
+  // corporation at all. A whitelist that silently discards live data is the
+  // same defect this repo keeps finding in its enums; a party that wins a seat
+  // must never depend on someone remembering to add it here.
+  const order = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'EU-Podem', 'Otro']
+  const known = order.filter((p) => composition[p])
+  const rest = Object.keys(composition)
+    .filter((p) => composition[p] && !order.includes(p))
+    .sort((a, b) => composition[b] - composition[a])
+  const items = [...known, ...rest].map((p) => ({ p, n: composition[p] }))
   return (
     <div style={{ marginTop: 14 }}>
       <div
