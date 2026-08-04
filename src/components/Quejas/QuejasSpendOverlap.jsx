@@ -5,6 +5,7 @@ import { useGeo } from '../../hooks/useGeo'
 import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { useQuejas } from '../../hooks/useQuejas'
 import { computeOverlapRows } from '../../lib/neighborhood-aggregate'
+import { yearSpan } from '../../lib/year-span'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -38,6 +39,24 @@ export default function QuejasSpendOverlap() {
     quejaItems: quejas?.items,
   })
   if (rows.length === 0) return null
+
+  // The two columns do NOT cover the same window, and side by side they invite
+  // exactly the reading they cannot support: that a barrio with one queja and
+  // €344k, or none and €652k, says something about how the town responds.
+  // The complaints channel is months old; the money is years of accumulated
+  // awards.
+  //
+  // Both spans are measured over the rows actually shown. The spend span comes
+  // from the assignments that landed in a ZONE — the same subset the zone
+  // amounts are summed from — and deliberately not from `universe.dateMin`,
+  // which spans all 693 contracts including the ones no barrio ever gets
+  // credited with. A period wider than the money it labels is the same defect
+  // one level down.
+  const spendSpan = yearSpan(
+    (tenderGeo?.assignments ?? []).filter((a) => (a.zones?.length ?? 0) > 0).map((a) => a.date),
+  )
+  const quejaSpan = yearSpan((quejas?.items ?? []).map((q) => q.requested_datetime))
+
   return (
     <Card style={{ marginTop: 14 }}>
       <SectionHead
@@ -54,9 +73,19 @@ export default function QuejasSpendOverlap() {
           lineHeight: 1.5,
         }}
       >
-        Por barrio: número de quejas ciudadanas frente al gasto municipal ya situado en obras allí.
-        Son cifras de contexto — la ausencia de gasto situado <strong>no</strong> implica
-        desatención: muchas actuaciones no nombran el lugar en el título y por eso no se sitúan (ver{' '}
+        Por barrio: número de quejas ciudadanas frente al gasto municipal ya situado en obras allí.{' '}
+        <strong>Las dos columnas no cubren el mismo periodo</strong>
+        {quejaSpan && spendSpan ? (
+          <>
+            : las quejas se recogen desde {quejaSpan} y el gasto situado acumula adjudicaciones de{' '}
+            {spendSpan}
+          </>
+        ) : (
+          ' — el canal de quejas es mucho más reciente que el registro de contratación'
+        )}
+        , así que comparar una columna con la otra no mide la respuesta municipal. Son cifras de
+        contexto — la ausencia de gasto situado <strong>no</strong> implica desatención: muchas
+        actuaciones no nombran el lugar en el título y por eso no se sitúan (ver{' '}
         <a
           href="/metodologia#relacion-quejas-contratos"
           style={{ color: 'var(--civic)', textDecoration: 'underline' }}
@@ -75,8 +104,10 @@ export default function QuejasSpendOverlap() {
         }}
       >
         <div style={HEAD}>Barrio</div>
-        <div style={{ ...HEAD, textAlign: 'right' }}>Quejas</div>
-        <div style={{ ...HEAD, textAlign: 'right' }}>Gasto situado</div>
+        <div style={{ ...HEAD, textAlign: 'right' }}>Quejas{quejaSpan ? ` ${quejaSpan}` : ''}</div>
+        <div style={{ ...HEAD, textAlign: 'right' }}>
+          Gasto situado{spendSpan ? ` ${spendSpan}` : ''}
+        </div>
         {rows.map((r) => (
           <Fragment key={r.slug}>
             <div>
