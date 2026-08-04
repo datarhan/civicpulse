@@ -57,8 +57,10 @@ done
 
 npx vite preview --host 127.0.0.1 --port "$PORT" --strictPort >/dev/null 2>&1 &
 PREVIEW=$!
+LOG=$(mktemp -t cp-review)
 cleanup() {
   [ -n "$PREVIEW" ] && kill "$PREVIEW" 2>/dev/null
+  [ -n "$LOG" ] && rm -f "$LOG"
   : # load-bearing: the trap's status is the hook's status. See the header.
 }
 trap 'cleanup' EXIT
@@ -88,9 +90,22 @@ env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY \
     GEMINI_BIN=/nonexistent-disabled AGY_BIN=/nonexistent-disabled \
     LLM_BACKEND=claude-code LLM_CONCURRENCY=1 \
     REVIEW_BASE_URL="http://127.0.0.1:$PORT" \
-    npm run --silent review:surfaces -- --budget-seconds 60
+    npm run --silent review:surfaces -- --budget-seconds 60 2>&1 | tee "$LOG"
 
 # No `|| true` on that: it was there before and it never protected anything —
 # the status leaked around it through the trap. `set +e` is what protects it.
-echo "[pre-push] revisión informativa ($(( $(date +%s) - STARTED ))s), parcial por diseño — el push continúa pase lo que pase."
+#
+# Making the hook unable to block re-opens the failure it was built against:
+# nobody reads an exit code that can no longer stop anything, so the LAST LINE is
+# the whole report. `[review]` is the summary the script prints once it has
+# something to say about coverage; without it the run died before reviewing
+# anything, and found in fault injection printing «parcial por diseño» over a
+# Playwright crash. A hook that cannot block must at minimum refuse to imply it
+# looked.
+if grep -q '^\[review\]' "$LOG" 2>/dev/null; then
+  echo "[pre-push] revisión informativa ($(( $(date +%s) - STARTED ))s), parcial por diseño — el push continúa pase lo que pase."
+else
+  echo "[pre-push] ⚠︎ la revisión NO llegó a emitir resumen — NO SE REVISÓ NADA ($(( $(date +%s) - STARTED ))s)."
+  echo "[pre-push]   El push continúa igualmente, porque este gancho nunca bloquea, pero nadie ha leído estas páginas."
+fi
 exit 0

@@ -187,3 +187,9 @@ a partial pass read as full coverage — as of 2026-08-03 that is 11 of 15.
   full pass is always available with `npm run review:surfaces`. The hook takes
   its own free port from 4189 up, so a `npm run preview` on 4173 neither kills
   it nor gets silently reviewed in its place.
+
+  Because it can no longer block, its **last line is the whole report** — nobody
+  reads an exit code that cannot stop anything. So the hook checks that the
+  review actually emitted its `[review]` coverage summary, and prints **«NO SE
+  REVISÓ NADA»** when it did not. Fault injection found it printing «parcial por
+  diseño» over a Playwright crash that had reviewed zero pages.
