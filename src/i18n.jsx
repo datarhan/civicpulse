@@ -458,6 +458,11 @@ const CATALOGUE = {
     'landing.section.rendicion': 'Rendición de cuentas por concejalía',
     'landing.section.prensa': 'Prensa',
     'landing.section.contratos': 'Contratos adjudicados',
+    // The counter above this line is an accumulation; the list below it is the
+    // four most recent awards. Without the period between them the pair reads
+    // as one summer's spending.
+    'landing.contratos.acumulado': 'Acumulado',
+    'landing.contratos.recientes': 'abajo, las últimas adjudicaciones',
     'landing.section.empleo': 'Empleo · Agència de Col·locació',
     'landing.section.eventos': 'Próximos eventos',
     'landing.section.participa': 'Participación ciudadana',
@@ -880,6 +885,8 @@ const CATALOGUE = {
     'landing.section.rendicion': 'Retiment de comptes per regidoria',
     'landing.section.prensa': 'Premsa',
     'landing.section.contratos': 'Contractes adjudicats',
+    'landing.contratos.acumulado': 'Acumulat',
+    'landing.contratos.recientes': 'a sota, les últimes adjudicacions',
     'landing.section.empleo': 'Ocupació · Agència de Col·locació',
     'landing.section.eventos': 'Pròxims esdeveniments',
     'landing.section.participa': 'Participació ciutadana',

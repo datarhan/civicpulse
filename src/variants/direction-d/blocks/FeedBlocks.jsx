@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useTenders, formatDate as formatTenderDate } from '../../../hooks/useTenders'
 import { contractAmount } from '../../../lib/tender-geo'
+import { isCommittedContract } from '../../../lib/contract-status'
+import { yearSpan } from '../../../lib/year-span'
 import { useParticipa, KIND_ICON } from '../../../hooks/useParticipa'
 import { usePress, timeAgo as pressTimeAgo } from '../../../hooks/usePress'
 import { useEvents, upcomingEvents, formatEventWhen } from '../../../hooks/useEvents'
@@ -82,6 +84,16 @@ export function LiveContracts() {
       notation: n >= 100_000 ? 'compact' : 'standard',
     }).format(n)
 
+  // The period, derived from the same rows the counter counts. The four
+  // contracts listed below are the MOST RECENT awards — all of them July 2026 —
+  // so an undated «698 · 68 M€» beside them reads as this summer's spending
+  // rather than as nine exercises of accumulation. This block is the third
+  // place on the landing to publish that pair, after AlcaldeBox and KpiStrip;
+  // fixing the other two twice is how the defect survived two review rounds.
+  const awardedYears = yearSpan(
+    (data.contracts ?? []).filter(isCommittedContract).map((c) => c.awardDate),
+  )
+
   return (
     <div>
       <SectionHeader
@@ -92,8 +104,28 @@ export function LiveContracts() {
         // abandoned and revoked included — with the money of only the 698
         // committed ones, while the same screen showed 698 elsewhere. Found by
         // the reader-review agent, on a page a human had already audited.
+        //
+        // The span rides in this VISIBLE string, never in a `title` tooltip: a
+        // hover carries nothing to a phone, to a scanning reader, or to the
+        // surface reviewer's `innerText`, so a period hidden there is a fix
+        // that cannot be observed — the front-end twin of a green test that
+        // measured nothing.
         meta={`${data.stats.awardedContracts} · ${fmtEur(data.stats.awardedTotalEuros)}`}
       />
+      {awardedYears && (
+        <div
+          className="mono"
+          style={{
+            fontSize: 10,
+            color: PALETTE.ink60,
+            marginTop: -6,
+            marginBottom: 8,
+            lineHeight: 1.35,
+          }}
+        >
+          {t('landing.contratos.acumulado')} {awardedYears} · {t('landing.contratos.recientes')}
+        </div>
+      )}
       {recent.map((c, i) => (
         <div
           key={c.id}

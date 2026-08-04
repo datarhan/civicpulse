@@ -1,5 +1,6 @@
 // @ts-check
 import { useT } from '../../../i18n'
+import { yearSpan } from '../../../lib/year-span'
 
 /**
  * What share of municipal contracting this map can actually show.
@@ -36,7 +37,8 @@ const fmtPct = (n) => new Intl.NumberFormat('es-ES', { maximumFractionDigits: 1 
 
 /**
  * @param {{ snapshot?: { universe?: { locatedAmount?: number, totalAmount?: number,
- *   locatedContracts?: number, totalContracts?: number } } }} props
+ *   locatedContracts?: number, totalContracts?: number, dateMin?: string|null,
+ *   dateMax?: string|null } } }} props
  */
 export function MoneyCoverage({ snapshot }) {
   const t = useT()
@@ -44,6 +46,12 @@ export function MoneyCoverage({ snapshot }) {
   // No universe block ⇒ say nothing rather than imply a coverage we can't back.
   if (!u || !u.totalAmount || !u.locatedAmount) return null
   const pct = (100 * u.locatedAmount) / u.totalAmount
+  // `dateMin`/`dateMax` are the span of this exact universe — the same rows the
+  // denominator sums — so the period can never describe a wider set than the
+  // figure. The landing's KPI strip publishes «Presup. 2025 · €41,6M» a few
+  // hundred pixels below, and an undated €68,0M beside a one-year budget is the
+  // comparison this whole line exists to prevent.
+  const span = yearSpan([u.dateMin, u.dateMax])
 
   return (
     <div
@@ -61,8 +69,8 @@ export function MoneyCoverage({ snapshot }) {
         className="mono"
         style={{ fontSize: 10.5, color: 'rgba(11,15,25,.86)', fontWeight: 700 }}
       >
-        {fmtM(u.locatedAmount)} {t('map.money.of')} {fmtM(u.totalAmount)} ·{' '}
-        {pct < 1 ? '<1' : fmtPct(pct)}%
+        {fmtM(u.locatedAmount)} {t('map.money.of')} {fmtM(u.totalAmount)}
+        {span ? ` (${span})` : ''} · {pct < 1 ? '<1' : fmtPct(pct)}%
       </div>
       <div style={{ marginTop: 3 }}>{t('map.money.coverage')}</div>
     </div>

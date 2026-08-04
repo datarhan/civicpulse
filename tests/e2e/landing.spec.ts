@@ -26,6 +26,78 @@ test.describe('Landing (/)', () => {
     expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
   })
 
+  test('every cumulative contract figure carries its period in visible text', async ({ page }) => {
+    // This defect survived two review rounds because it lives in FOUR places.
+    // Each round fixed the instance that had been named and shipped; the
+    // reviewer read the page again and flagged the next one. So the guard has
+    // to be plural: enumerate every surface that publishes the accumulated
+    // contract figure, and require each to carry its own span.
+    //
+    // «Visible text» is load-bearing. An earlier fix put the years in a `title`
+    // tooltip, which no phone shows, no scanning reader sees and no `innerText`
+    // carries — so the surface reviewer could not observe the fix and re-flagged
+    // the page. Everything below reads `innerText`.
+    //
+    // Count and span are both DERIVED FROM THE SNAPSHOT, never typed here. A
+    // hand-copied «698 · 2017–2026» keeps asserting yesterday's numbers after
+    // the scraper moves, and pinning the span is what makes this guard bite:
+    // the first draft accepted any four-digit year, which the award list's own
+    // «28 jul 2026» satisfied — the test passed with the fix ablated.
+    const snap = await (await page.request.get('/data/tenders.json')).json()
+    const committed = (
+      snap.contracts as { status?: string; assignee?: string; awardDate?: string }[]
+    ).filter((c) => {
+      if (['void', 'abandoned', 'revoked', 'withdrawn'].includes(c.status ?? '')) return false
+      if (['awarded', 'formalized', 'finalized', 'closed'].includes(c.status ?? '')) return true
+      return (!c.status || c.status === 'unknown') && Boolean(c.assignee)
+    })
+    const awarded = String(snap.stats.awardedContracts)
+    const years = committed
+      .map((c) => String(c.awardDate ?? '').slice(0, 4))
+      .filter((y) => /^\d{4}$/.test(y))
+      .sort()
+    const span = years[0] === years[years.length - 1] ? years[0] : `${years[0]}–${years.at(-1)}`
+    expect(Number(awarded)).toBeGreaterThan(0)
+    expect(span).toMatch(/^\d{4}(–\d{4})?$/)
+
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText(/Robert Raga/i).first()).toBeVisible({ timeout: 8000 })
+
+    // Every assertion below uses the RETRYING `toContainText`, never a one-shot
+    // `innerText()`. The KPI cell exists before its snapshot arrives, rendering
+    // «Contratos adj. / — / —» — so `toBeVisible()` passes on a placeholder and
+    // a snapshot read taken right after it can measure the empty state. That
+    // raced under full-suite parallel load exactly once in four runs.
+    // `toContainText` compares against `textContent`, which is also why the
+    // uppercase text-transform is not in the way.
+
+    // 1 · KPI strip cell — sits two cells away from «Presup. 2025 · €41,6M».
+    const kpi = page.locator('.d-kpi-cell', { hasText: /Contratos adj/i }).first()
+    await expect(kpi).toContainText(`Contratos adj. ${span}`, { timeout: 8000 })
+    await expect(kpi).toContainText(awarded)
+
+    // 2 · editorial column band — the count sits directly above a list of
+    // awards all dated this July, which is what invites "recent" over
+    // "accumulated". The span may live in the band or in the line under it, so
+    // assert over the whole section, not the band alone.
+    const section = page
+      .locator('[data-section-band]')
+      .filter({ hasText: /Contratos/i })
+      .first()
+      .locator('xpath=..')
+    await expect(section).toContainText(awarded, { timeout: 8000 })
+    await expect(section).toContainText(span)
+
+    // 3 · the mayor's government strip, under a «Gobierno municipal · 2025»
+    // heading beside a one-year budget.
+    const govLink = page
+      .locator('a[href="/presupuesto"]')
+      .filter({ hasText: /contratos/i })
+      .first()
+    await expect(govLink).toContainText(awarded, { timeout: 8000 })
+    await expect(govLink).toContainText(span)
+  })
+
   test('has a heading outline a screen reader can navigate', async ({ page }) => {
     // Regression guard. The landing's ONLY heading used to be the LeadStory
     // press headline — so the homepage h1 was a third-party article title, and
@@ -66,11 +138,18 @@ test.describe('Landing (/)', () => {
     await expect(page.getByRole('button', { name: /línea de tiempo del gasto/i })).toBeVisible()
     await expect(page.locator('path.cp-money-pin').first()).toBeVisible({ timeout: 8000 })
 
-    // The layer must state what share of contracting it can actually show.
-    // It paints ~3% of the money — every pin honest, the label implying
-    // completeness — so the coverage line is not decoration, it is the
-    // difference between a map and a claim.
-    await expect(page.getByText(/M€ de [\d.,]+\s?M€ · [\d,]+%/).first()).toBeVisible({ timeout: 8000 })
+    // The layer must state what share of contracting it can actually show —
+    // AND over what period. It paints ~3% of the money — every pin honest, the
+    // label implying completeness — so the coverage line is not decoration, it
+    // is the difference between a map and a claim. The denominator is nine
+    // exercises of awards sitting a few hundred pixels above a one-year
+    // «Presup. 2025 · €41,6M», so the span is part of the disclosure, not a
+    // decoration on it: the regex requires it rather than tolerating it.
+    const coverage = page.getByText(/M€ de [\d.,]+\s?M€ \(\d{4}(–\d{4})?\) · [\d,]+%/).first()
+    await expect(coverage).toBeVisible({ timeout: 8000 })
+    // Assert the check evaluated something: a regex that matched an empty or
+    // absent node would pass `toBeVisible` on nothing at all.
+    expect((await coverage.innerText()).trim().length).toBeGreaterThan(10)
     await expect(page.getByText(/servicios de ámbito municipal/i).first()).toBeVisible()
 
     // Named for what it is. "Gasto municipal" promised all of it.

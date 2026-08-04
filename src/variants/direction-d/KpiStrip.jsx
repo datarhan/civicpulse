@@ -3,6 +3,8 @@ import { useBudget, formatEuros as formatBudgetEuros } from '../../hooks/useBudg
 import { useTenders } from '../../hooks/useTenders'
 import { useParo } from '../../hooks/useParo'
 import { usePlenos, PLENO_LABEL } from '../../hooks/usePlenos'
+import { isCommittedContract } from '../../lib/contract-status'
+import { yearSpan } from '../../lib/year-span'
 import { PALETTE, SERIF, SANS, MONO } from './tokens'
 import { useT } from '../../i18n'
 
@@ -131,18 +133,17 @@ function KpiStrip() {
   const awardedCount = tenders?.stats?.awardedContracts
   const awardedValue = awardedTotal ? formatBudgetEuros(awardedTotal, { compact: true }) : '—'
   // Span of the award dates, so the cumulative total carries its own period.
-  const awardedYears = (() => {
-    const ds = (tenders?.contracts ?? [])
-      .map((c) => c.awardDate)
-      .filter(Boolean)
-      .map((d) => String(d).slice(0, 4))
-      .sort()
-    return ds.length
-      ? ds[0] === ds[ds.length - 1]
-        ? ds[0]
-        : `${ds[0]}–${ds[ds.length - 1]}`
-      : null
-  })()
+  //
+  // Measured over EXACTLY the rows the cell counts — the committed contracts
+  // behind `awardedContracts` / `awardedTotalEuros` — not over every dated row
+  // in the file. A local copy of this loop read all 711 dated contracts while
+  // labelling the 698 committed ones, so the period described 19 awards the
+  // figure excludes. Both spans happen to be 2017–2026 today, which is exactly
+  // why it could sit here unnoticed: a mislabelled period only becomes visibly
+  // false on the scraper run where the two sets stop agreeing.
+  const awardedYears = yearSpan(
+    (tenders?.contracts ?? []).filter(isCommittedContract).map((c) => c.awardDate),
+  )
 
   const nextPleno = (plenos?.items || [])[0]
   const plenoDate = nextPleno
