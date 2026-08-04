@@ -436,19 +436,6 @@ describe('area-fit — respaldo (de qué se sostiene la evidencia)', () => {
   })
 })
 
-describe('area-fit — the published snapshot’s backing is MEASURED, not assumed', () => {
-  it('every published assessment carries a respaldo', () => {
-    const snap = JSON.parse(
-      readFileSync(join(__dirname, '..', 'public', 'data', 'area-fit.json'), 'utf8'),
-    ) as { rows: Array<Record<string, { respaldo?: string }>> }
-    const values = snap.rows.flatMap((r) => [r.formacion?.respaldo, r.experiencia?.respaldo])
-    // Assert the classifier RAN. "0 corroboradas" must be a measured result,
-    // not a field nobody populated — the two look identical from the outside.
-    expect(values.length).toBeGreaterThan(0)
-    expect(values.filter((v) => v === undefined)).toEqual([])
-    expect(values.filter((v) => v === 'sin-clasificar')).toEqual([])
-  })
-})
 ```
 
 - [ ] **Step 2: Run to verify it fails**
@@ -516,8 +503,8 @@ Add `respaldo?: RespaldoValue` to `FitAssessment`, and in `validateAssessment` (
 
 - [ ] **Step 5: Run tests**
 
-Run: `npx vitest run tests/parse-area-fit.test.ts`
-Expected: the `deriveRespaldo` tests PASS; the published-snapshot test FAILS (rows have no `respaldo` yet). That failure is expected and is fixed in Task 5 by re-promoting.
+Run: `npx vitest run tests/parse-area-fit.test.ts && npm test`
+Expected: PASS, whole suite green. The assertion that the PUBLISHED snapshot carries a `respaldo` belongs to Task 5, where re-promotion makes it true — committing a knowingly-red test here would leave the suite failing across two task reviews and train the next reviewer to ignore red.
 
 - [ ] **Step 6: Commit**
 
@@ -818,7 +805,29 @@ npm run promote-area-fit -- --list
 
 Re-run each `--official … --area … --curator "Sergei Lutchenko"` line. Then sign the aviso mappings the queue proposes, rejecting any that read as a note about the person rather than about the evidence.
 
-- [ ] **Step 2: Verify the published snapshot**
+- [ ] **Step 2: Add the measured-not-assumed test, now that it can pass**
+
+Append to `tests/parse-area-fit.test.ts`:
+
+```ts
+describe('area-fit — the published snapshot’s backing is MEASURED, not assumed', () => {
+  it('every published assessment carries a classified respaldo', () => {
+    const snap = JSON.parse(
+      readFileSync(join(__dirname, '..', 'public', 'data', 'area-fit.json'), 'utf8'),
+    ) as { rows: Array<Record<string, { respaldo?: string }>> }
+    const values = snap.rows.flatMap((r) => [r.formacion?.respaldo, r.experiencia?.respaldo])
+    // Assert the classifier RAN. "0 corroboradas" and "nobody populated the
+    // field" are indistinguishable from outside; this is the difference.
+    expect(values.length).toBeGreaterThan(0)
+    expect(values.filter((v) => v === undefined)).toEqual([])
+    expect(values.filter((v) => v === 'sin-clasificar')).toEqual([])
+  })
+})
+```
+
+Run: `npx vitest run tests/parse-area-fit.test.ts` — expected PASS.
+
+- [ ] **Step 3: Verify the published snapshot**
 
 ```bash
 node -e "
@@ -832,7 +841,7 @@ npx vitest run tests/parse-area-fit.test.ts
 ```
 Expected: no `undefined`, no `sin-clasificar`; the Task-3 snapshot test now PASSES.
 
-- [ ] **Step 3: Expose it from the hook**
+- [ ] **Step 4: Expose it from the hook**
 
 In `src/hooks/useAreaFit.js` add:
 
@@ -856,7 +865,7 @@ export function avisosForSlug(data, slug, eje) {
 }
 ```
 
-- [ ] **Step 4: Render adaptively**
+- [ ] **Step 5: Render adaptively**
 
 In `EncajeCard` (`src/components/EncajeDeclarado.jsx`): compute `const shared = sharedRespaldo(rows)`. When `shared` is non-null render ONE line under the chips —
 `t('encaje.respaldo.' + shared)` — and no per-item marks. When it is null, render a small marker beside each chip instead. Replace the current `encaje.card.source` string. Any `eje: 'area'` aviso renders as a row-level warning above the chips, not as a chip decoration.
@@ -871,7 +880,7 @@ New i18n keys (es + ca):
 'encaje.aviso.area': 'Sus áreas delegadas han cambiado durante el mandato; esta ficha puede referirse a un área que ya no lleva.'
 ```
 
-- [ ] **Step 5: Verify in the browser**
+- [ ] **Step 6: Verify in the browser**
 
 ```bash
 VITE_ENABLE_PERIODISTAS=true npm run build
@@ -879,7 +888,7 @@ npx vite preview --host 127.0.0.1 --port 4173 --strictPort
 ```
 Check `/cargos` (one shared line per card, no repeated badge), `/cargos/teresa-pozuelo-martin`, and a card whose official has an `eje: 'area'` aviso.
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 7: Commit**
 
 ```bash
 npm run typecheck && npm run lint && npx prettier --write src public/data/area-fit.json
