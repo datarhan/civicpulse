@@ -323,6 +323,45 @@ describe('area-fit — respaldo (de qué se sostiene la evidencia)', () => {
       'sin-clasificar',
     )
   })
+
+  it('lets a single unclassified source outweigh a corroborated sibling', () => {
+    // The property under test is the ORDER of the guards, not the return value.
+    // Checking `some(f => f === false)` BEFORE the `undefined` guard passes every
+    // other test in this file while answering `corroborada` for an assessment
+    // that cites something nobody classified — "we never looked" published as
+    // "independently verified", the exact failure this axis exists to prevent.
+    // Every other case here is uniformly classified, so only a MIXED assessment
+    // can distinguish the two orderings.
+    expect(deriveRespaldo([{ label: 'x', sourceIds: ['src-unset', 'src-bop'] }], SRC)).toBe(
+      'sin-clasificar',
+    )
+  })
+
+  it('masks across evidence items too — the shape real rows are built in', () => {
+    // A row cites one item per CV line, so in practice the unclassified source
+    // arrives on a DIFFERENT item from the independent one. The ids are
+    // flattened across items before the guards run for exactly this reason;
+    // guarding per item would let a clean item vouch for a dirty one.
+    expect(
+      deriveRespaldo(
+        [
+          { label: 'x', sourceIds: ['src-bop'] },
+          { label: 'y', sourceIds: ['src-unset'] },
+        ],
+        SRC,
+      ),
+    ).toBe('sin-clasificar')
+  })
+
+  it('does not let a self-declared source mask an unclassified one either', () => {
+    // The other direction of the same masking bug, and the more dangerous one
+    // here: `autodeclarada` PUBLISHES, `sin-clasificar` is refused. A guard that
+    // answered on the first `true` it saw would ship an unreviewed source under
+    // a verdict a curator never gave it.
+    expect(deriveRespaldo([{ label: 'x', sourceIds: ['src-cv', 'src-unset'] }], SRC)).toBe(
+      'sin-clasificar',
+    )
+  })
 })
 
 describe('area-fit — respaldo travels on the row', () => {

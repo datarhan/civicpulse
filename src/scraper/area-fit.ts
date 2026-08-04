@@ -50,10 +50,12 @@ export type FitValue = (typeof FIT_VALUES)[number]
  * What an assessment's evidence RESTS ON — a separate question from whether it
  * relates to the área, and deliberately a separate value.
  *
- * Measured 2026-08-04: all 109 evidence references behind the 40 published rows
- * were self-declared, so this axis reads `autodeclarada` everywhere today. That
- * is the finding, not a bug — and it is why the UI states it once instead of
- * printing an identical badge 80 times.
+ * Measured 2026-08-04: EVERY evidence reference behind the published rows traces
+ * to a document the subject wrote, so this axis reads `autodeclarada` throughout.
+ * That is the finding, not a bug — and the reason the surface should state it
+ * once rather than repeat an identical badge on every assessment. No count is
+ * written here on purpose: it moves with every promotion, and a stale number in
+ * a comment is how a claim outlives the measurement behind it. Count the rows.
  *
  * `sin-clasificar` is NOT a synonym for autodeclarada. It means no one has said
  * what backs this, and it must never render as corroboration.
@@ -123,6 +125,11 @@ export function deriveRespaldo(
   const ids = evidence.flatMap((e) => e.sourceIds ?? [])
   if (!ids.length) return 'sin-clasificar'
   const flags = ids.map((id) => sourcesById[id]?.selfDeclared)
+  // ORDER IS LOAD-BEARING: the unclassified guard runs FIRST. Checking for an
+  // independent source before it would answer `corroborada` for an assessment
+  // that also cites something nobody classified. Pinned by the mixed-source
+  // tests in tests/parse-area-fit.test.ts — every uniformly-classified case
+  // passes under either ordering.
   if (flags.some((f) => f === undefined)) return 'sin-clasificar'
   return flags.some((f) => f === false) ? 'corroborada' : 'autodeclarada'
 }
