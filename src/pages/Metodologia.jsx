@@ -681,8 +681,12 @@ export default function Metodologia() {
             . El pie de cada ficha dice quién la editó, y un nombre así significa que el título y el
             resumen los escribió una máquina. Cuando un veredicto merece contexto se escribe un
             hallazgo en <code>pleno-findings.json</code> con título, resumen (≥40 caracteres), citas
-            verbatim y referencias explícitas de corroboración o contradicción. Los hallazgos se
-            publican con derecho de réplica literal para el grupo afectado.
+            verbatim y los documentos con los que se ha cotejado. Esa lista es lo que se cotejó, no
+            lo que da la razón: el proceso automático vuelca en <code>corroboration</code> toda la
+            evidencia que el verificador encontró para las citas del hallazgo, la respalde o la
+            desmienta, así que la ficha la publica bajo el rótulo neutro «documentos cotejados» y es
+            el resumen el que dice si la corroboran. Los hallazgos se publican con derecho de
+            réplica literal para el grupo afectado.
           </li>
         </ol>
         <p style={{ margin: '12px 0 0', color: 'var(--ink70)' }}>

@@ -2,10 +2,32 @@ import { Card, Pill, SectionHead, ExtLink } from './Primitives'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
 import { blocLabel } from '../lib/party-label.js'
 
-function RefList({ refs, kind }) {
+/**
+ * The documents a finding was cross-checked against.
+ *
+ * The heading used to read «Corrobora», which asserted a verdict the slot does
+ * not carry. `corroboration[]` is not a filtered list of documents that agree:
+ * `auto-curate.ts` fills it with EVERY verifier evidence ref for the cited
+ * quotes — agreeing or not — plus the pleno video itself. Six published
+ * findings therefore stamped «CORROBORA» over documents their own prose calls
+ * insufficient: `f-2026-07-03-cit-1e90e0` says «sin corroboración documental»
+ * above three tenders (the register holds no FCC contract at all), and
+ * `f-2025-10-06-acu-b00839` says the cited contract «no documenta el sistema
+ * COMETA». Being checked is not agreeing.
+ *
+ * The heading now names the list; whether those documents corroborate is what
+ * each finding's own summary is for. The green `--ok-ink` went with it — a
+ * colour asserts a verdict just as loudly as a word.
+ *
+ * Shared with `/hallazgos`, which imports this: the same component was
+ * duplicated verbatim in `pages/Hallazgos.jsx`, so the first fix reached only
+ * one of the two surfaces that render it.
+ */
+export function RefList({ refs, kind }) {
   if (!refs || refs.length === 0) return null
-  const label = kind === 'corroboration' ? 'Corrobora' : 'Contradice'
-  const tone = kind === 'corroboration' ? 'var(--ok-ink)' : 'var(--crit-ink)'
+  const isCorroboration = kind === 'corroboration'
+  const label = isCorroboration ? 'Documentos cotejados' : 'Documentos que contradicen'
+  const tone = isCorroboration ? 'var(--ink60)' : 'var(--crit-ink)'
   return (
     <div style={{ marginTop: 6 }}>
       <div
@@ -172,8 +194,8 @@ export function PlenoFindingsSection() {
         su contexto documental (contratos, subvenciones, presupuesto, promesas). La mayoría los
         redacta un proceso automático bajo reglas fijas; el pie de cada ficha dice quién la editó, y
         un nombre como «auto-curation-v1» significa que el texto lo escribió una máquina. Cada
-        hallazgo cita literales verbatim, referencias de corroboración y de contradicción, y permite
-        réplica literal de los grupos afectados.
+        hallazgo cita literales verbatim, lista los documentos con los que se ha cotejado —lo
+        corroboren o no— y permite réplica literal de los grupos afectados.
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {items.map((f) => (

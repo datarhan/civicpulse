@@ -3,7 +3,11 @@ import { useLocation, Link } from 'react-router-dom'
 import { Card, Pill, ExtLink } from '../components/Primitives'
 import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import DataAsOf from '../components/DataAsOf'
+// One RefList, not two. It was duplicated verbatim here and in PlenoFindings,
+// so a heading fixed on one surface silently left the other one lying.
+import { RefList } from '../components/PlenoFindings'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
+import { authorshipBreakdown } from '../scraper/finding-authorship'
 import { PARTY_TONE } from '../hooks/usePromises'
 import { usePlenoClaims } from '../hooks/usePlenoClaims'
 import { findingMatchesArea } from '../lib/finding-area'
@@ -36,52 +40,6 @@ function MiniStat({ label, value, tone }) {
       <div className="mono" style={{ fontSize: 18, fontWeight: 600, color, marginTop: 2 }}>
         {value}
       </div>
-    </div>
-  )
-}
-
-function RefList({ refs, kind }) {
-  if (!refs || refs.length === 0) return null
-  const label = kind === 'corroboration' ? 'Corrobora' : 'Contradice'
-  const tone = kind === 'corroboration' ? 'var(--ok-ink)' : 'var(--crit-ink)'
-  return (
-    <div style={{ marginTop: 6 }}>
-      <div
-        className="mono"
-        style={{
-          fontSize: 9,
-          letterSpacing: '.1em',
-          textTransform: 'uppercase',
-          color: tone,
-          marginBottom: 4,
-        }}
-      >
-        {label}
-      </div>
-      {refs.map((r, i) => {
-        const isUrl = /^https?:\/\//.test(r.ref)
-        const body = (
-          <>
-            <span className="mono" style={{ fontSize: 9.5, color: 'var(--ink50)', marginRight: 6 }}>
-              {r.kind.toUpperCase()}
-            </span>
-            <span style={{ fontSize: 12 }}>{r.snippet}</span>
-          </>
-        )
-        return isUrl ? (
-          <ExtLink
-            key={i}
-            href={r.ref}
-            style={{ display: 'block', padding: '2px 0', textDecoration: 'none', color: 'inherit' }}
-          >
-            {body}
-          </ExtLink>
-        ) : (
-          <div key={i} style={{ padding: '2px 0' }}>
-            {body}
-          </div>
-        )
-      })}
     </div>
   )
 }
@@ -351,6 +309,15 @@ export default function Hallazgos() {
 
   const items = useMemo(() => data?.items ?? [], [data])
 
+  // Who actually wrote these, counted from the snapshot at render time rather
+  // than typed into the prose below. `/metodologia` reads its figure the same
+  // way for the same reason: a number written into a page goes false on its own
+  // the next time the auto-curator runs, and nobody edits a page to notice.
+  // Null while the snapshot is empty or still loading — the fallback prose says
+  // «la mayoría», which is true either way, and a figure from a half-loaded
+  // snapshot would be worse than no figure.
+  const authorship = useMemo(() => (items.length > 0 ? authorshipBreakdown(items) : null), [items])
+
   const counts = useMemo(() => {
     const bySeverity = {}
     const bySpeaker = {}
@@ -450,8 +417,9 @@ export default function Hallazgos() {
           Cada hallazgo toma una o más afirmaciones literales de un pleno y las sitúa en su contexto
           documental (contratos, subvenciones, presupuesto, promesas). La mayoría los redacta un
           proceso automático bajo reglas fijas; el pie de cada ficha dice quién la editó, y un
-          nombre como «auto-curation-v1» significa que el texto lo escribió una máquina. Incluye
-          corroboración, contradicción y derecho de réplica literal para el grupo afectado.
+          nombre como «auto-curation-v1» significa que el texto lo escribió una máquina. Cada ficha
+          lista los documentos con los que se ha cotejado —lo corroboren o no— y da derecho de
+          réplica literal al grupo afectado.
         </p>
         <div style={{ marginTop: 10 }}>
           <DataAsOf iso={data?.generatedAt} label="Hallazgos" />
@@ -641,11 +609,20 @@ export default function Hallazgos() {
           lineHeight: 1.55,
         }}
       >
-        <strong style={{ color: 'var(--ink)' }}>Cómo se escribe un hallazgo.</strong> Un curador
-        humano revisa las afirmaciones extraídas automáticamente de las transcripciones del pleno,
-        contrasta con la base documental municipal y redacta una nota editorial que cita verbatim.
-        Los grupos afectados pueden responder con cita literal a través del enlace «Responder como
-        grupo afectado».{' '}
+        <strong style={{ color: 'var(--ink)' }}>Cómo se escribe un hallazgo.</strong> Un proceso
+        automático agrupa las afirmaciones extraídas de las transcripciones del pleno, las coteja
+        con la base documental municipal y redacta el título y el resumen bajo reglas fijas
+        {authorship ? (
+          <>
+            : de los {authorship.total} publicados,{' '}
+            <strong style={{ color: 'var(--ink)' }}>
+              {authorship.machine} los firma una máquina
+            </strong>
+          </>
+        ) : null}
+        . El pie de cada ficha dice quién la editó, y un nombre como «auto-curation-v1» significa
+        que el texto lo escribió una máquina, no una persona. Los grupos afectados pueden responder
+        con cita literal a través del enlace «Responder como grupo afectado».{' '}
         <a
           href="/metodologia#verificacion-declaraciones"
           style={{ color: 'var(--civic)', textDecoration: 'underline' }}
