@@ -315,8 +315,6 @@ export function EncajeMatrix({ official, bioRoute }) {
         {t('encaje.matrix.intro')}
       </p>
 
-      {shared && <RespaldoLine value={shared} style={{ fontSize: 12, margin: '-6px 0 14px' }} />}
-
       {avisos.length > 0 && (
         <div style={{ marginBottom: 14 }}>
           {avisos.map((a) => (
@@ -439,6 +437,11 @@ export function EncajeMatrix({ official, bioRoute }) {
           )
         })}
       </div>
+
+      {/* BELOW the áreas, not above them. The sentence describes the citations
+          listed in the grid; rendered before it, "lo que aquí se cita" pointed
+          backwards at the intro paragraph, which cites nothing. */}
+      {shared && <RespaldoLine value={shared} style={{ fontSize: 12, marginTop: 10 }} />}
     </section>
   )
 }

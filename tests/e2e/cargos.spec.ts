@@ -65,7 +65,7 @@ test.describe('Cargos (/cargos)', () => {
     const body = await page.locator('body').innerText()
     const count = (re: RegExp) => (body.match(re) ?? []).length
     const cards = count(/ENCAJE DECLARADO/g)
-    const sentences = count(/lo declara la propia persona/g)
+    const sentences = count(/Lo que aquí se cita procede del CV/g)
 
     // It renders at all (an assertion that measures nothing is the failure mode
     // this repo keeps hitting), and never more than once per card.

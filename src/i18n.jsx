@@ -338,14 +338,23 @@ const CATALOGUE = {
     'encaje.value.relacionada': 'relacionada',
     'encaje.value.sin-relacion-declarada': 'sin relación declarada',
     'encaje.value.no-consta': 'no consta',
-    // De qué se sostiene lo anterior. Una frase, no un distintivo repetido:
+    // De qué se sostiene LO CITADO. Una frase, no un distintivo repetido:
     // mientras todas las evaluaciones de la ficha coinciden se dice una vez.
+    //
+    // El sujeto es «lo que aquí se cita», nunca la ficha entera. Decía «todo lo
+    // anterior» y alcanzaba también a las evaluaciones que no citan nada: sobre
+    // ésas no se comprobó corroboración alguna, así que negarla afirmaba un
+    // resultado que nadie midió. Una ausencia no es un hallazgo — la misma
+    // distinción que separa «no consta» de «sin relación declarada».
+    //
     // «sin-clasificar» no tiene texto a propósito: el validador publicado lo
     // rechaza, y darle copia sería preparar sitio para lo que no debe salir.
     'encaje.respaldo.autodeclarada':
-      'Todo lo anterior lo declara la propia persona; ninguna fuente independiente lo corrobora.',
-    'encaje.respaldo.corroborada': 'Corroborado por una fuente independiente.',
-    'encaje.respaldo.discrepancia-documentada': 'Hay una discrepancia documentada sin resolver.',
+      'Lo que aquí se cita procede del CV que publica la propia persona; ninguna fuente independiente lo corrobora.',
+    'encaje.respaldo.corroborada':
+      'Lo que aquí se cita lo respalda además alguna fuente independiente de la persona.',
+    'encaje.respaldo.discrepancia-documentada':
+      'Lo que aquí se cita arrastra una discrepancia documentada sin resolver.',
     'encaje.respaldo.mark.autodeclarada': 'autodeclarada',
     'encaje.respaldo.mark.corroborada': 'corroborada',
     'encaje.respaldo.mark.discrepancia-documentada': 'discrepancia documentada',
@@ -763,10 +772,11 @@ const CATALOGUE = {
     'encaje.value.sin-relacion-declarada': 'sense relació declarada',
     'encaje.value.no-consta': 'no consta',
     'encaje.respaldo.autodeclarada':
-      'Tot això ho declara la mateixa persona; cap font independent no ho corrobora.',
-    'encaje.respaldo.corroborada': 'Corroborat per una font independent.',
+      'El que ací es cita procedeix del CV que publica la mateixa persona; cap font independent no ho corrobora.',
+    'encaje.respaldo.corroborada':
+      'El que ací es cita ho respalda a més alguna font independent de la persona.',
     'encaje.respaldo.discrepancia-documentada':
-      'Hi ha una discrepància documentada sense resoldre.',
+      'El que ací es cita arrossega una discrepància documentada sense resoldre.',
     'encaje.respaldo.mark.autodeclarada': 'autodeclarada',
     'encaje.respaldo.mark.corroborada': 'corroborada',
     'encaje.respaldo.mark.discrepancia-documentada': 'discrepància documentada',

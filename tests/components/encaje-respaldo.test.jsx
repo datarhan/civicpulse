@@ -21,7 +21,7 @@ const OFFICIAL = {
   portfolios: ['Urbanismo', 'Cultura'],
 }
 
-const RESPALDO_SENTENCE = /lo declara la propia persona/i
+const RESPALDO_SENTENCE = /Lo que aquí se cita procede del CV que publica la propia persona/i
 const AVISO_LABEL = /Advertencia de la biografía/i
 
 /** One row, with whatever backing each axis should carry. */

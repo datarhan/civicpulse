@@ -458,16 +458,22 @@ export default function Metodologia() {
               diferentes.
             </li>
             <li>
-              <strong>Se dice de qué se sostiene lo que se afirma.</strong> Cada cita que respalda
-              una relación se clasifica por quién la publicó: si sale del CV que la propia persona
-              declara, si la corrobora una fuente independiente, o si hay una discrepancia
-              documentada. Mientras todas las evaluaciones de una ficha coinciden, se dice{' '}
-              <strong>una sola vez</strong> y no como un distintivo repetido junto a cada elemento —
-              una marca idéntica en todos no distingue nada. En cuanto divergen, se dice elemento
-              por elemento. «Autodeclarada» describe la fuente, no a la persona, y no es un
-              reproche: declarar el propio currículo es lo que la ley pide. Cuando una advertencia
-              de la biografía recae sobre uno de estos ejes se publica con su texto literal, firmada
-              una a una; ninguna se publica sola.
+              <strong>Se dice de qué se sostiene lo citado.</strong> Cada cita que respalda una
+              relación se clasifica por quién la publicó: si sale del CV que la propia persona
+              declara, o si además la respalda una fuente independiente de ella. La frase habla{' '}
+              <strong>sólo de lo citado</strong>: donde no se cita nada no se dice nada, porque
+              sobre lo que no se citó no se comprobó ninguna corroboración y negarla sería publicar
+              como hallazgo lo que nadie llegó a medir. Mientras todas las evaluaciones de una ficha
+              coinciden se dice <strong>una sola vez</strong>, no como un distintivo repetido junto
+              a cada elemento — una marca idéntica en todos no distingue nada. Cuando divergen, la
+              ficha lo indica en el eje —formación o trayectoria— en el que pueda decirse entero, y
+              donde ni siquiera ahí coincide, calla en lugar de aproximar; la vista por áreas sí lo
+              marca evaluación por evaluación, que es donde están las citas. «Autodeclarada»
+              describe la fuente, no a la persona, y no es un reproche: declarar el propio currículo
+              es lo que la ley pide. Queda reservado un tercer valor, «discrepancia documentada»,
+              que ningún automatismo deriva: sólo puede ponerlo un curador leyendo dos fuentes que
+              se contradicen. Cuando una advertencia de la biografía recae sobre uno de estos ejes
+              se publica con su texto literal, firmada una a una; ninguna se publica sola.
             </li>
             <li>
               <strong>No mide gestión.</strong> Que la formación de alguien coincida con su área no
