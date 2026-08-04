@@ -347,9 +347,14 @@ function ConsellCvCard() {
   if (!data) return null
   const { stats, matched } = data
   const when = fmtDateShort(data.generatedAt)
+  // «Desestimatoria» CONTAINS «estimatoria», so testing the shorter pattern
+  // first matched both and made the branch below it unreachable: a REJECTED
+  // appeal would render in the colour that means the council was found wrong.
+  // The negative case is tested first because it is the longer word — the same
+  // longest-match-wins rule canonicalizeDepartment uses, for the same reason.
   const sentidoColor = (s) => {
-    if (/estimatoria/i.test(s)) return 'var(--warn)'
     if (/desestimat/i.test(s)) return 'var(--ok)'
+    if (/estimat/i.test(s)) return 'var(--warn)'
     return 'var(--ink60)'
   }
   return (
