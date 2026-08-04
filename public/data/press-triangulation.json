@@ -1,9 +1,10 @@
 {
-  "generatedAt": "2026-08-03T08:42:39.381Z",
+  "generatedAt": "2026-08-04T08:49:07.676Z",
   "clusters": [
     {
       "clusterId": "1urv1oi",
       "articleIds": [
+        "1sauhls",
         "1xgs7rs",
         "j1s6zk",
         "se650n"
@@ -11,10 +12,36 @@
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
         "El Periódico de Aquí",
-        "Las Provincias"
+        "Las Provincias",
+        "Periòdic del Camp de Túria"
       ],
       "earliestDate": "2026-07-29T12:21:23.000Z",
-      "latestDate": "2026-07-29T13:51:48.000Z",
+      "latestDate": "2026-08-03T17:35:23.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
+    {
+      "clusterId": "667p4g",
+      "articleIds": [
+        "1rnqaoc",
+        "40rpxn",
+        "febeas",
+        "suulkc"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "El Periódico de Aquí",
+        "Levante-EMV",
+        "Valencia Plaza"
+      ],
+      "earliestDate": "2026-07-08T07:00:00.000Z",
+      "latestDate": "2026-07-09T07:00:00.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
@@ -32,7 +59,7 @@
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "valenciaextra.com"
+        "València Extra"
       ],
       "earliestDate": "2026-07-07T08:50:27.000Z",
       "latestDate": "2026-07-07T10:30:00.000Z",
@@ -44,10 +71,31 @@
         "sin-datos": 0,
         "promesa-repetida": 0
       }
+    },
+    {
+      "clusterId": "1m7nrz8",
+      "articleIds": [
+        "1ept28o",
+        "c11o5g"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Periòdic del Camp de Túria"
+      ],
+      "earliestDate": "2026-08-03T11:39:46.000Z",
+      "latestDate": "2026-08-03T13:00:06.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
     }
   ],
   "stats": {
-    "totalClusters": 2,
-    "triangulated3Plus": 1
+    "totalClusters": 4,
+    "triangulated3Plus": 2
   }
 }

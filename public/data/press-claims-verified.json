@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-08-03T08:42:37.814Z",
+  "generatedAt": "2026-08-04T08:49:05.942Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 5,
+    "total": 2,
     "byVerdict": {
       "verificado": 0,
       "parcial": 1,
       "contradicho": 0,
-      "sin-datos": 4,
+      "sin-datos": 1,
       "promesa-repetida": 0
     }
   },
@@ -105,119 +105,7 @@
         "articleSourceHost": "ribarroja.es",
         "articleFingerprint": "eravvk"
       }
-    },
-    {
-      "claim": {
-        "id": "8ka1c8-0-pro",
-        "articleId": "8ka1c8",
-        "articleFingerprint": "y7xc58",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84973-riba-roja-avanca-cap-a-la-construccio-del-futur-centre-de-salut.html",
-        "articleDate": "2026-07-21T12:50:39.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "body",
-        "type": "promesa",
-        "attributedSource": "municipal",
-        "verbatim": "l’Ajuntament “està fermament compromés amb la seua execució i a col·laborar en tot el que siga necessari perquè siga per fi una realitat”",
-        "context": "l’alcalde ha subratllat que es tracta del projecte “més important i esperat” pels seus veïns i que l’Ajuntament “està fermament compromés amb la seua execució i a col·laborar en tot el que siga necessari perquè siga per fi una realitat”.",
-        "topic": "salud",
-        "entities": {
-          "referencedEntity": "Centre d'Atenció Primària"
-        },
-        "confidence": 0.8,
-        "reasoning": "La afirmación expresa un compromiso del Ayuntamiento con la ejecución del proyecto del centro de salud.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "8ka1c8-0-pro",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84973-riba-roja-avanca-cap-a-la-construccio-del-futur-centre-de-salut.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "y7xc58"
-      }
-    },
-    {
-      "claim": {
-        "id": "8ka1c8-1-num",
-        "articleId": "8ka1c8",
-        "articleFingerprint": "y7xc58",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84973-riba-roja-avanca-cap-a-la-construccio-del-futur-centre-de-salut.html",
-        "articleDate": "2026-07-21T12:50:39.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "Riba-roja necessita “urgentment” un nou centre de salut que s’ajuste a les dimensions i necessitats actuals del municipi, amb “més mèdics i personal sanitari que garantisquen una sanitat pública de qualitat i suficient a nostres més de 26.000 habitants”.",
-        "context": "Raga ha recordat que Riba-roja necessita “urgentment” un nou centre de salut que s’ajuste a les dimensions i necessitats actuals del municipi, amb “més mèdics i personal sanitari que garantisquen una sanitat pública de qualitat i suficient a nostres més de 26.000 habitants”.",
-        "topic": "salud",
-        "entities": {
-          "count": 26000,
-          "countUnit": "habitants",
-          "referencedEntity": "Riba-roja de Túria"
-        },
-        "confidence": 0.9,
-        "reasoning": "La afirmación menciona una cifra específica de habitantes en Riba-roja, lo que la hace contrastable.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "8ka1c8-1-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84973-riba-roja-avanca-cap-a-la-construccio-del-futur-centre-de-salut.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "y7xc58"
-      }
-    },
-    {
-      "claim": {
-        "id": "8ka1c8-2-pro",
-        "articleId": "8ka1c8",
-        "articleFingerprint": "y7xc58",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84973-riba-roja-avanca-cap-a-la-construccio-del-futur-centre-de-salut.html",
-        "articleDate": "2026-07-21T12:50:39.000Z",
-        "segmentIndex": 2,
-        "segmentKind": "body",
-        "type": "promesa",
-        "attributedSource": "municipal",
-        "verbatim": "el propòsit de la Generalitat és poder sol·licitar la llicència amb el projecte bàsic finalitzat abans d’acabar l’any",
-        "context": "Segons han traslladat, el propòsit de la Generalitat és poder sol·licitar la llicència amb el projecte bàsic finalitzat abans d’acabar l’any, de manera que es licite i construïsca l’edifici en 2027.",
-        "topic": "salud",
-        "entities": {
-          "date": "2026-12-31",
-          "referencedEntity": "Centre d'Atenció Primària"
-        },
-        "confidence": 0.8,
-        "reasoning": "La afirmación indica un compromiso de la Generalitat para solicitar la licencia del proyecto, lo que es verificable.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "8ka1c8-2-pro",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84973-riba-roja-avanca-cap-a-la-construccio-del-futur-centre-de-salut.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "y7xc58"
-      }
     }
   ],
-  "sourceGeneratedAt": "2026-08-03T08:42:31.717Z"
+  "sourceGeneratedAt": "2026-08-04T08:48:59.742Z"
 }

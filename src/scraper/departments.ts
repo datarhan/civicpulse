@@ -348,3 +348,108 @@ export function departmentForTenderCategory(
   if (!categoryTitle) return null
   return TENDER_CATEGORY_DEPARTMENT[categoryTitle.trim().toLowerCase()] ?? null
 }
+
+/**
+ * CPV division → department. CPV is the EU's Common Procurement Vocabulary, a
+ * standardised code the contracting authority files with the tender itself.
+ *
+ * This exists because Gobierto's `categoryTitle` is a coarse, lossy label and
+ * attributing spend on it put €1.07M under Salud that was never health
+ * spending — Christmas ornamental lighting, English classes at the CFPA,
+ * RIBAJOVE, security fencing — all rendered on /departamentos/salud beneath the
+ * name of the councillor who answers for that área. The CPV codes were on the
+ * same rows the whole time.
+ *
+ * Longest prefix wins, so 926 (sporting) beats 92 (recreational/cultural) —
+ * the same rule `canonicalizeDepartment` uses, and for the same reason.
+ */
+const CPV_DEPARTMENT: ReadonlyArray<readonly [string, DepartmentSlug]> = [
+  ['926', 'deportes'],
+  ['925', 'cultura'],
+  ['923', 'cultura'],
+  ['922', 'comunicacion'],
+  ['921', 'cultura'],
+  ['92', 'cultura'],
+  ['852', 'bienestar-animal'],
+  ['85', 'salud'],
+  ['80', 'educacion'],
+  ['90', 'medio-ambiente'],
+  ['45', 'obras-publicas'],
+  ['44', 'obras-publicas'],
+  ['71', 'urbanismo'],
+  ['70', 'vivienda'],
+  ['63', 'movilidad'],
+  ['60', 'movilidad'],
+  ['34', 'movilidad'],
+  ['72', 'innovacion'],
+  ['64', 'innovacion'],
+  ['48', 'innovacion'],
+  ['66', 'hacienda'],
+  ['77', 'agricultura'],
+  ['03', 'agricultura'],
+  ['50', 'servicios-generales'],
+  ['39', 'servicios-generales'],
+  ['31', 'servicios-generales'],
+  ['09', 'servicios-generales'],
+]
+
+/**
+ * CPV divisions that say nothing about WHICH área spends the money.
+ *
+ * 98300000 ("miscellaneous services") rides 48 of the 55 contracts Gobierto
+ * files under health, and 79 ("business services") is nearly as broad. Letting
+ * either resolve a department would just relocate the misattribution instead of
+ * removing it, so they are read as silence.
+ */
+const CPV_GENERIC = ['98', '79', '55', '51', '15', '75']
+
+/** The department a single CPV code points at, or null. */
+export function departmentForCpv(code: string | null | undefined): DepartmentSlug | null {
+  const c = String(code ?? '').replace(/\D/g, '')
+  if (!c) return null
+  if (CPV_GENERIC.some((g) => c.startsWith(g))) return null
+  for (const [prefix, slug] of CPV_DEPARTMENT) {
+    if (c.startsWith(prefix)) return slug
+  }
+  return null
+}
+
+export interface TenderLike {
+  categoryTitle?: string | null
+  cpvs?: Array<string | number> | null
+}
+
+/**
+ * Department that owns a contract's spending, preferring the filed CPV codes
+ * over Gobierto's coarse category.
+ *
+ * Three outcomes, and the middle one is the point:
+ *   - CPVs resolve to exactly one department  → that department
+ *   - CPVs resolve to two or more, or only to generic codes → null
+ *   - no CPVs at all → fall back to `categoryTitle`
+ *
+ * A contract whose codes disagree is genuinely ambiguous, and this returns null
+ * rather than picking. Under-attributing leaves money unassigned; mis-attributing
+ * puts it under a named councillor who never spent it.
+ */
+export function departmentForTender(tender: TenderLike): DepartmentSlug | null {
+  const codes = Array.isArray(tender?.cpvs) ? tender.cpvs : []
+  if (codes.length > 0) {
+    // CPV is filed PRIMARY-FIRST: the opening code is the contract's main
+    // object and the rest are ancillary. Weighing them equally invents
+    // conflicts — the town's €17.4M street-cleaning contract files
+    // 90511300 (litter collection) then 71356200 (technical assistance), and
+    // reading those as a tie between medio-ambiente and urbanismo dropped it
+    // from the map entirely. First code that resolves wins; generic codes are
+    // skipped rather than treated as disagreement.
+    for (const code of codes) {
+      const slug = departmentForCpv(String(code))
+      if (slug) return slug
+    }
+    // Codes were filed and none of them says which área spends this. That is
+    // an answer, not a gap to paper over with the coarse category that put
+    // Christmas lighting under Salud.
+    return null
+  }
+  return departmentForTenderCategory(tender?.categoryTitle)
+}

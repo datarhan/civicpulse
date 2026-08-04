@@ -1,21 +1,21 @@
 {
-  "generatedAt": "2026-08-03T08:42:31.717Z",
+  "generatedAt": "2026-08-04T08:48:59.742Z",
   "source": {
     "description": "Press claims extracted by the laboratory pipeline",
     "contract": "src/scraper/press-claim.ts"
   },
   "stats": {
-    "total": 5,
+    "total": 2,
     "byType": {
-      "promesa": 2,
-      "afirmacion_numerica": 3,
+      "promesa": 0,
+      "afirmacion_numerica": 2,
       "cita_obra": 0,
       "cita_convenio": 0,
       "acusacion_publica": 0,
       "dato_municipal": 0
     },
     "bySource": {
-      "Periòdic del Camp de Túria": 4,
+      "Periòdic del Camp de Túria": 1,
       "Ayuntamiento de Riba-roja de Túria": 1
     },
     "byTopic": {
@@ -28,7 +28,7 @@
       "seguridad": 0,
       "empleo": 0,
       "urbanismo": 0,
-      "salud": 3,
+      "salud": 0,
       "transparencia": 0,
       "educacion": 0,
       "demografia": 0,
@@ -36,15 +36,15 @@
     },
     "byAttributedSource": {
       "outlet": 1,
-      "municipal": 4,
+      "municipal": 1,
       "opposition": 0,
       "unspecified": 0
     },
     "articlesProcessed": 25,
     "articlesAvailable": 155,
-    "llmUnavailable": 9,
-    "windowFrom": "2026-07-21T12:50:39.000Z",
-    "windowTo": "2026-07-31T11:25:58.000Z"
+    "llmUnavailable": 13,
+    "windowFrom": "2026-07-22T15:00:14.000Z",
+    "windowTo": "2026-08-04T06:40:51.000Z"
   },
   "items": [
     {
@@ -93,75 +93,6 @@
       },
       "confidence": 0.9,
       "reasoning": "La cifra de inversión es un dato verificable relacionado con el programa mencionado.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "8ka1c8-0-pro",
-      "articleId": "8ka1c8",
-      "articleFingerprint": "y7xc58",
-      "articleSource": "Periòdic del Camp de Túria",
-      "articleSourceHost": "infoturia.com",
-      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84973-riba-roja-avanca-cap-a-la-construccio-del-futur-centre-de-salut.html",
-      "articleDate": "2026-07-21T12:50:39.000Z",
-      "segmentIndex": 0,
-      "segmentKind": "body",
-      "type": "promesa",
-      "attributedSource": "municipal",
-      "verbatim": "l’Ajuntament “està fermament compromés amb la seua execució i a col·laborar en tot el que siga necessari perquè siga per fi una realitat”",
-      "context": "l’alcalde ha subratllat que es tracta del projecte “més important i esperat” pels seus veïns i que l’Ajuntament “està fermament compromés amb la seua execució i a col·laborar en tot el que siga necessari perquè siga per fi una realitat”.",
-      "topic": "salud",
-      "entities": {
-        "referencedEntity": "Centre d'Atenció Primària"
-      },
-      "confidence": 0.8,
-      "reasoning": "La afirmación expresa un compromiso del Ayuntamiento con la ejecución del proyecto del centro de salud.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "8ka1c8-1-num",
-      "articleId": "8ka1c8",
-      "articleFingerprint": "y7xc58",
-      "articleSource": "Periòdic del Camp de Túria",
-      "articleSourceHost": "infoturia.com",
-      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84973-riba-roja-avanca-cap-a-la-construccio-del-futur-centre-de-salut.html",
-      "articleDate": "2026-07-21T12:50:39.000Z",
-      "segmentIndex": 1,
-      "segmentKind": "body",
-      "type": "afirmacion_numerica",
-      "attributedSource": "municipal",
-      "verbatim": "Riba-roja necessita “urgentment” un nou centre de salut que s’ajuste a les dimensions i necessitats actuals del municipi, amb “més mèdics i personal sanitari que garantisquen una sanitat pública de qualitat i suficient a nostres més de 26.000 habitants”.",
-      "context": "Raga ha recordat que Riba-roja necessita “urgentment” un nou centre de salut que s’ajuste a les dimensions i necessitats actuals del municipi, amb “més mèdics i personal sanitari que garantisquen una sanitat pública de qualitat i suficient a nostres més de 26.000 habitants”.",
-      "topic": "salud",
-      "entities": {
-        "count": 26000,
-        "countUnit": "habitants",
-        "referencedEntity": "Riba-roja de Túria"
-      },
-      "confidence": 0.9,
-      "reasoning": "La afirmación menciona una cifra específica de habitantes en Riba-roja, lo que la hace contrastable.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "8ka1c8-2-pro",
-      "articleId": "8ka1c8",
-      "articleFingerprint": "y7xc58",
-      "articleSource": "Periòdic del Camp de Túria",
-      "articleSourceHost": "infoturia.com",
-      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84973-riba-roja-avanca-cap-a-la-construccio-del-futur-centre-de-salut.html",
-      "articleDate": "2026-07-21T12:50:39.000Z",
-      "segmentIndex": 2,
-      "segmentKind": "body",
-      "type": "promesa",
-      "attributedSource": "municipal",
-      "verbatim": "el propòsit de la Generalitat és poder sol·licitar la llicència amb el projecte bàsic finalitzat abans d’acabar l’any",
-      "context": "Segons han traslladat, el propòsit de la Generalitat és poder sol·licitar la llicència amb el projecte bàsic finalitzat abans d’acabar l’any, de manera que es licite i construïsca l’edifici en 2027.",
-      "topic": "salud",
-      "entities": {
-        "date": "2026-12-31",
-        "referencedEntity": "Centre d'Atenció Primària"
-      },
-      "confidence": 0.8,
-      "reasoning": "La afirmación indica un compromiso de la Generalitat para solicitar la licencia del proyecto, lo que es verificable.",
       "requiresHumanApproval": true
     }
   ]

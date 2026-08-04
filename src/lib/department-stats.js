@@ -17,7 +17,7 @@ import {
   DEPARTMENT_LABEL,
   canonicalizeDepartment,
   resolveResponsibleOfficial,
-  departmentForTenderCategory,
+  departmentForTender,
 } from '../scraper/departments'
 import { topicToDeptSlugs, promiseDeptSlug } from './department-claim-topics'
 
@@ -249,7 +249,9 @@ export function computeDepartmentStats({
     // awardDate and amount all present), so trusting that field reported
     // €15M of €138M attributable spend.
     if (!c.assignee || c.status === 'revoked') continue
-    const slug = departmentForTenderCategory(c.categoryTitle)
+    // Prefer the filed CPV codes over Gobierto's coarse category: the category
+    // alone put 40 contracts under Salud that were never health spending.
+    const slug = departmentForTender(c)
     if (!slug || !buckets[slug]) continue
     buckets[slug].contratacion.contratos += 1
     buckets[slug].contratacion.importeEur += Number(c.finalAmount || c.initialAmount || 0)
