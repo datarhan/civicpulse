@@ -47,6 +47,32 @@ export const FIT_VALUES = ['relacionada', 'sin-relacion-declarada', 'no-consta']
 export type FitValue = (typeof FIT_VALUES)[number]
 
 /**
+ * What an assessment's evidence RESTS ON — a separate question from whether it
+ * relates to the área, and deliberately a separate value.
+ *
+ * Measured 2026-08-04: all 109 evidence references behind the 40 published rows
+ * were self-declared, so this axis reads `autodeclarada` everywhere today. That
+ * is the finding, not a bug — and it is why the UI states it once instead of
+ * printing an identical badge 80 times.
+ *
+ * `sin-clasificar` is NOT a synonym for autodeclarada. It means no one has said
+ * what backs this, and it must never render as corroboration.
+ */
+export const RESPALDO_VALUES = [
+  'autodeclarada',
+  'corroborada',
+  'discrepancia-documentada',
+  'sin-clasificar',
+] as const
+export type RespaldoValue = (typeof RESPALDO_VALUES)[number]
+
+/** Minimal shape this module needs from a report's `sources` array. */
+export interface SourceLike {
+  id: string
+  selfDeclared?: boolean
+}
+
+/**
  * Ceiling on how much of a published snapshot may be `no-consta`.
  *
  * Paired with the enum per DATA_INTEGRITY §1: an allow-set assertion alone
@@ -70,6 +96,52 @@ export interface FitAssessment {
   evidence: FitEvidenceItem[]
   /** The model's stated criterion. Published, so it describes the rule, never the person. */
   reason?: string
+  /**
+   * What the cited evidence rests on. The second axis — never folded into
+   * `value`. Absent when the assessment cites nothing, present and never
+   * `sin-clasificar` when it does; see `withRespaldo` and the published
+   * validator.
+   */
+  respaldo?: RespaldoValue
+}
+
+/**
+ * Derive the respaldo of a set of cited items.
+ *
+ * Fails closed in both directions a reader could be misled: an id nobody
+ * classified, and an id that is not in the map at all, both read
+ * `sin-clasificar`. Only an explicit `selfDeclared: false` — someone other than
+ * the subject published it — earns `corroborada`.
+ *
+ * `discrepancia-documentada` is not derivable and is never returned here: two
+ * sources disagreeing is a curator's reading of them, not a flag comparison.
+ */
+export function deriveRespaldo(
+  evidence: readonly FitEvidenceItem[],
+  sourcesById: Record<string, SourceLike>,
+): RespaldoValue {
+  const ids = evidence.flatMap((e) => e.sourceIds ?? [])
+  if (!ids.length) return 'sin-clasificar'
+  const flags = ids.map((id) => sourcesById[id]?.selfDeclared)
+  if (flags.some((f) => f === undefined)) return 'sin-clasificar'
+  return flags.some((f) => f === false) ? 'corroborada' : 'autodeclarada'
+}
+
+/**
+ * Stamp the respaldo of an assessment that cites something.
+ *
+ * An assessment with no evidence is left WITHOUT a respaldo rather than marked
+ * `sin-clasificar`: only `relacionada` may carry citations here, so the other
+ * two values — 52 of the 80 published assessments on 2026-08-04 — have nothing
+ * whose backing could be stated. Stamping them would assert nothing and, because
+ * the published validator refuses `sin-clasificar`, would make the entire
+ * surface unpublishable. Absent means "there is no citation to describe"; the
+ * validator's job is to refuse an assessment that DOES cite something nobody
+ * classified.
+ */
+function withRespaldo(a: FitAssessment, sourcesById: Record<string, SourceLike>): FitAssessment {
+  if (!a.evidence.length) return a
+  return { ...a, respaldo: deriveRespaldo(a.evidence, sourcesById) }
 }
 
 export interface FitTask {
@@ -82,6 +154,12 @@ export interface FitTask {
   educationItems: FitEvidenceItem[]
   careerItems: FitEvidenceItem[]
   politicalItems: FitEvidenceItem[]
+  /**
+   * The cited report's own sources, by id — the only place the respaldo axis
+   * can be read from. Carried on the task so it is built once, next to the
+   * items whose ids it explains, instead of re-loaded by every caller.
+   */
+  sourcesById: Record<string, SourceLike>
 }
 
 export interface AreaFitRow {
@@ -193,20 +271,39 @@ export function resolveAssessment(raw: RawAssessment, pool: FitEvidenceItem[]): 
  * needs its own data, not a keyword guess over this one.
  */
 
-/** Assemble a full row from a task and the model's answer for it. */
-export function rowFromResponse(task: FitTask, response: RawFitResponse): AreaFitRow {
+/**
+ * Assemble a full row from a task and the model's answer for it.
+ *
+ * `sourcesById` defaults to the task's own map — one source of truth — and is
+ * overridable only so a re-derivation can pass a freshly loaded classification
+ * without rebuilding every task.
+ */
+export function rowFromResponse(
+  task: FitTask,
+  response: RawFitResponse,
+  sourcesById: Record<string, SourceLike> = task.sourcesById,
+): AreaFitRow {
   must(response && typeof response === 'object', 'response must be an object')
+  // An absent map is an EMPTY one, never a permissive one: every id then reads
+  // unclassified and the row cannot publish.
+  const sources = sourcesById ?? {}
   return {
     officialSlug: task.officialSlug,
     portfolio: task.portfolio,
     departmentSlug: task.departmentSlug,
     reportId: task.reportId,
-    formacion: task.educationItems.length
-      ? resolveAssessment(response.formacion, task.educationItems)
-      : { value: 'no-consta', evidence: [] },
-    experiencia: task.careerItems.length
-      ? resolveAssessment(response.experiencia, task.careerItems)
-      : { value: 'no-consta', evidence: [] },
+    formacion: withRespaldo(
+      task.educationItems.length
+        ? resolveAssessment(response.formacion, task.educationItems)
+        : { value: 'no-consta', evidence: [] },
+      sources,
+    ),
+    experiencia: withRespaldo(
+      task.careerItems.length
+        ? resolveAssessment(response.experiencia, task.careerItems)
+        : { value: 'no-consta', evidence: [] },
+      sources,
+    ),
   }
 }
 
@@ -217,14 +314,19 @@ export function rowFromResponse(task: FitTask, response: RawFitResponse): AreaFi
  * up as "we asked and it said nothing" — the reporting distinction the run
  * manifest exists to preserve.
  */
-export function rowWithoutModel(task: FitTask): AreaFitRow {
+export function rowWithoutModel(
+  task: FitTask,
+  sourcesById: Record<string, SourceLike> = task.sourcesById,
+): AreaFitRow {
   return {
     officialSlug: task.officialSlug,
     portfolio: task.portfolio,
     departmentSlug: task.departmentSlug,
     reportId: task.reportId,
-    formacion: { value: 'no-consta', evidence: [] },
-    experiencia: { value: 'no-consta', evidence: [] },
+    // Both cite nothing, so neither gains a respaldo — there is no backing to
+    // describe when we hold no source at all.
+    formacion: withRespaldo({ value: 'no-consta', evidence: [] }, sourcesById ?? {}),
+    experiencia: withRespaldo({ value: 'no-consta', evidence: [] }, sourcesById ?? {}),
   }
 }
 
@@ -248,6 +350,8 @@ export function needsModel(task: FitTask): boolean {
 export interface ReportLike {
   id: string
   sections: Array<{ kind: string; payload: Record<string, unknown> }>
+  /** The citations the sections' sourceIds point at; carries `selfDeclared`. */
+  sources?: SourceLike[]
 }
 
 function sectionPayload(
@@ -310,6 +414,12 @@ export function buildFitTasks(
     const politicalItems = itemsFrom(sectionPayload(report, 'career-political'), (r) =>
       joinNonEmpty([r.role, r.org], ' @ '),
     )
+    // Only ids the report actually carries. An id we cannot find is left out
+    // rather than defaulted, so deriveRespaldo reads it as unclassified.
+    const sourcesById: Record<string, SourceLike> = {}
+    for (const s of report?.sources ?? []) {
+      if (s && typeof s.id === 'string') sourcesById[s.id] = s
+    }
     for (const portfolio of o.portfolios) {
       if (typeof portfolio !== 'string' || !portfolio.trim()) continue
       tasks.push({
@@ -320,6 +430,7 @@ export function buildFitTasks(
         educationItems,
         careerItems,
         politicalItems,
+        sourcesById,
       })
     }
   }
@@ -391,6 +502,18 @@ function validateAssessment(a: FitAssessment, where: string, known: Set<string> 
   must(
     a.value === 'relacionada' || a.evidence.length === 0,
     `${where}: only "relacionada" may carry evidence`,
+  )
+  must(
+    a.respaldo === undefined || (RESPALDO_VALUES as readonly string[]).includes(a.respaldo),
+    `${where}.respaldo must be one of ${RESPALDO_VALUES.join(' | ')}`,
+  )
+  // Requiring a respaldo on every citing assessment is the NEXT gate, and it
+  // lands with the re-promotion that makes it true — not here, where it would
+  // condemn the 28 already-published rows that predate the axis.
+  must(
+    a.respaldo !== 'sin-clasificar',
+    `${where}: refusing to publish an assessment whose backing was never classified — ` +
+      'run `npm run backfill:self-declared` first',
   )
   for (const ev of a.evidence) {
     must(typeof ev.label === 'string' && ev.label.length > 0, `${where}: evidence needs a label`)

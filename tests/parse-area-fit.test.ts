@@ -3,8 +3,10 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import {
   FIT_VALUES,
+  RESPALDO_VALUES,
   AreaFitValidationError,
   buildFitTasks,
+  deriveRespaldo,
   resolveAssessment,
   rowWithoutModel,
   rowFromResponse,
@@ -13,6 +15,7 @@ import {
   type AreaFitRow,
   type FitTask,
   type FitEvidenceItem,
+  type SourceLike,
 } from '../src/scraper/area-fit'
 
 const FIXTURE = JSON.parse(
@@ -38,6 +41,7 @@ const FIXTURE = JSON.parse(
 function taskFrom(
   c: (typeof FIXTURE.cases)[number],
   politicalItems: FitEvidenceItem[] = [],
+  sourcesById: Record<string, SourceLike> = {},
 ): FitTask {
   return {
     officialSlug: c.task.officialSlug,
@@ -47,6 +51,7 @@ function taskFrom(
     educationItems: c.task.educationItems,
     careerItems: c.task.careerItems,
     politicalItems,
+    sourcesById,
   }
 }
 
@@ -146,6 +151,7 @@ describe('area-fit — the no-consta path is reachable without a model', () => {
     educationItems: [],
     careerItems: [],
     politicalItems: [],
+    sourcesById: {},
   }
 
   it('marks an absent section no-consta, never sin-relacion-declarada', () => {
@@ -250,5 +256,173 @@ describe('area-fit — validateAreaFitSnapshot', () => {
     s.rows[0].formacion = { value: 'no-consta', evidence: [] }
     s.rows[0].experiencia = { value: 'no-consta', evidence: [] }
     expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(/no-consta/)
+  })
+
+  it('accepts a published row that states what its cited evidence rests on', () => {
+    const s = good()
+    ;(s.rows[0].formacion as Record<string, unknown>).respaldo = 'autodeclarada'
+    expect(() => validateAreaFitSnapshot(s, ctx)).not.toThrow()
+  })
+
+  it('refuses to publish an assessment whose backing was never classified', () => {
+    // `sin-clasificar` is not a quieter `autodeclarada`: it means nobody said
+    // what backs this. Publishing it lets a reader supply the missing word.
+    const s = good()
+    ;(s.rows[0].formacion as Record<string, unknown>).respaldo = 'sin-clasificar'
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(AreaFitValidationError)
+  })
+
+  it('rejects a respaldo outside the enum', () => {
+    const s = good()
+    ;(s.rows[0].formacion as Record<string, unknown>).respaldo = 'verificada'
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(AreaFitValidationError)
+  })
+})
+
+describe('area-fit — respaldo (de qué se sostiene la evidencia)', () => {
+  const SRC: Record<string, SourceLike> = {
+    'src-cv': { id: 'src-cv', selfDeclared: true },
+    'src-bop': { id: 'src-bop', selfDeclared: false },
+    'src-unset': { id: 'src-unset' },
+  }
+
+  it('is a separate axis from FIT_VALUES, never merged into it', () => {
+    for (const v of RESPALDO_VALUES) expect(FIT_VALUES).not.toContain(v)
+  })
+
+  it('reads autodeclarada when every cited source is the subject’s own account', () => {
+    expect(deriveRespaldo([{ label: 'x', sourceIds: ['src-cv'] }], SRC)).toBe('autodeclarada')
+  })
+
+  it('reads corroborada as soon as one independent source backs it', () => {
+    expect(
+      deriveRespaldo(
+        [
+          { label: 'x', sourceIds: ['src-cv'] },
+          { label: 'y', sourceIds: ['src-bop'] },
+        ],
+        SRC,
+      ),
+    ).toBe('corroborada')
+  })
+
+  it('refuses to read an unclassified source as corroboration', () => {
+    // `undefined` means nobody classified it. Treating it as independent is
+    // how self-declaration gets published as verified.
+    expect(deriveRespaldo([{ label: 'x', sourceIds: ['src-unset'] }], SRC)).toBe('sin-clasificar')
+  })
+
+  it('has no evidence at all → sin-clasificar, not autodeclarada', () => {
+    expect(deriveRespaldo([], SRC)).toBe('sin-clasificar')
+  })
+
+  it('treats a sourceId absent from the map as unclassified, not as independent', () => {
+    // The map is the report's own sources; an id that is not in it was never
+    // classified either. Falling through to "corroborada" would invent one.
+    expect(deriveRespaldo([{ label: 'x', sourceIds: ['src-fantasma'] }], SRC)).toBe(
+      'sin-clasificar',
+    )
+  })
+})
+
+describe('area-fit — respaldo travels on the row', () => {
+  const related = FIXTURE.cases.find(
+    (x) =>
+      x.response.formacion.value === 'relacionada' &&
+      x.response.experiencia.value === 'relacionada',
+  )!
+  const unrelated = FIXTURE.cases.find(
+    (x) =>
+      x.response.formacion.value === 'sin-relacion-declarada' &&
+      x.response.experiencia.value === 'sin-relacion-declarada',
+  )!
+
+  /** Every id the fixture case cites, classified as told. */
+  const classify = (
+    c: (typeof FIXTURE.cases)[number],
+    flag: (id: string) => boolean | undefined,
+  ): Record<string, SourceLike> =>
+    Object.fromEntries(
+      [...c.task.educationItems, ...c.task.careerItems]
+        .flatMap((i) => i.sourceIds)
+        .map((id) => [id, { id, ...(flag(id) === undefined ? {} : { selfDeclared: flag(id) }) }]),
+    )
+
+  it('stamps both axes on the same assessment without merging them', () => {
+    // src-060 is the CV, src-061 an independent publication: one row, one fit
+    // value, two different respaldos. A single merged field could not say this.
+    const row = rowFromResponse(
+      taskFrom(
+        related,
+        [],
+        classify(related, (id) => id === 'src-060'),
+      ),
+      related.response,
+    )
+    expect(row.formacion.value).toBe('relacionada')
+    expect(row.formacion.respaldo).toBe('autodeclarada')
+    expect(row.experiencia.value).toBe('relacionada')
+    expect(row.experiencia.respaldo).toBe('corroborada')
+  })
+
+  it('stamps sin-clasificar when the cited sources were never classified', () => {
+    // Which is exactly what the published validator then refuses.
+    const row = rowFromResponse(taskFrom(related, [], {}), related.response)
+    expect(row.formacion.respaldo).toBe('sin-clasificar')
+  })
+
+  it('leaves respaldo unset where there is no cited evidence to describe', () => {
+    // `sin-relacion-declarada` and `no-consta` carry no citations — the
+    // validator forbids it — so there is nothing whose backing to state. That
+    // is 52 of the 80 published assessments; stamping them `sin-clasificar`
+    // would assert nothing and block the whole surface from publishing.
+    const row = rowFromResponse(
+      taskFrom(
+        unrelated,
+        [],
+        classify(unrelated, () => true),
+      ),
+      unrelated.response,
+    )
+    expect(row.formacion.evidence).toEqual([])
+    expect(row.formacion.respaldo).toBeUndefined()
+    expect(row.experiencia.respaldo).toBeUndefined()
+
+    const never = rowWithoutModel({
+      officialSlug: 'sin-datos',
+      portfolio: 'Cultura',
+      departmentSlug: 'cultura',
+      reportId: 'r-x',
+      educationItems: [],
+      careerItems: [],
+      politicalItems: [],
+      sourcesById: {},
+    })
+    expect(never.formacion.respaldo).toBeUndefined()
+  })
+
+  it('carries the report’s own sources onto the task, so nothing has to re-load them', () => {
+    const tasks = buildFitTasks(
+      [{ slug: 'x', name: 'X', portfolios: ['Cultura'], party: 'PP', role: 'concejal' }],
+      [
+        {
+          id: 'r-9',
+          sections: [
+            { kind: 'portrait', payload: { officialSlug: 'x' } },
+            {
+              kind: 'education',
+              payload: { items: [{ degree: 'Grado', institution: 'UPV', sourceIds: ['src-1'] }] },
+            },
+          ],
+          sources: [
+            { id: 'src-1', selfDeclared: true },
+            { id: 'src-2', selfDeclared: false },
+          ],
+        },
+      ],
+    )
+    expect(tasks).toHaveLength(1)
+    expect(tasks[0].sourcesById['src-1']).toMatchObject({ selfDeclared: true })
+    expect(tasks[0].sourcesById['src-2']).toMatchObject({ selfDeclared: false })
   })
 })
