@@ -1604,7 +1604,10 @@ ${i.prose}
 """`
 }
 
-export const READER_REVIEW_PROMPT_VERSION = 'reader-review-v1'
+// v2: a page bigger than one call arrives split, so the prompt has to say which
+// fragment this is. Without that the model reads a partial page as a whole one
+// and objects that it "does not say" something that is two fragments away.
+export const READER_REVIEW_PROMPT_VERSION = 'reader-review-v2'
 
 export function buildReaderReviewSystemPrompt(): string {
   return `Eres un lector escéptico de un sitio de fiscalización municipal. NO revisas
@@ -1645,9 +1648,21 @@ export function buildReaderReviewUserPrompt(i: {
   route: string
   renderedText: string
   facts: Record<string, unknown>
+  /** Which fragment of the page this is, when the page did not fit in one call. */
+  part?: { index: number; total: number }
 }): string {
+  // Only when the page really is split. A page that fits in one call must read
+  // exactly as before — "fragmento 1 de 1" would invite the model to hedge about
+  // context it actually has in full.
+  const fragmento =
+    i.part && i.part.total > 1
+      ? `\nFRAGMENTO ${i.part.index} de ${i.part.total} de esta misma página. Ves sólo este
+trozo: NO señales que «falta» algo, que la página «no explica» algo o que «no
+aclara» algo — puede estar en otro fragmento. Juzga únicamente lo que este texto
+afirma.\n`
+      : ''
   return `RUTA: ${i.route}
-
+${fragmento}
 HECHOS COMPROBABLES (de los snapshots que alimentan esta página):
 ${Object.entries(i.facts)
   .map(([k, v]) => `  - ${k}: ${JSON.stringify(v)}`)

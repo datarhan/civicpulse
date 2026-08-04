@@ -9,6 +9,7 @@ import {
   relatedAreaNames,
   overallValue,
   sharedRespaldo,
+  citesNothing,
   avisosForSlug,
 } from '../hooks/useAreaFit'
 
@@ -40,6 +41,13 @@ import {
  *    nothing; that is how the cargoPublicoPrevio chip died. `sharedRespaldo`
  *    returns null the moment they diverge, and only then do per-item marks
  *    appear, where they would actually tell two items apart.
+ *
+ *  · BUT EVERY CARD SAYS WHAT IT COMPARED. The card whose every assessment is
+ *    negative is the one a reader will judge hardest, and it was the one that
+ *    ended up with no provenance at all: nothing cites, so no backing sentence
+ *    applied, so two bare negative labels stood alone under a warning frame.
+ *    `ComparadoLine` covers that case. Stating what was read is not the same as
+ *    claiming a check nobody ran.
  */
 
 const TONE = {
@@ -63,13 +71,20 @@ function valueLabel(t, value) {
 }
 
 /**
- * A curator-signed biography warning, rendered as the biography's own words.
+ * A curator-signed biography warning.
  *
- * Attribution is the whole design: the eyebrow says the sentence comes from the
- * biography's warnings, and `verbatim` is read from the report at publication
- * time — nothing here is written by a model or by this component. `quote` is off
- * on the compact card, where the caveat has to fit under two chip rows, and on
- * for the matrix, which is where the citations live.
+ * Attribution is the whole design, and THE EYEBROW FOLLOWS WHAT IS ACTUALLY
+ * PRINTED. `verbatim` is read from the report at publication time — nothing here
+ * is written by a model — but one branch does not print it: `eje: 'area'` on the
+ * compact card renders a fixed sentence of OUR OWN, because the caveat has to
+ * fit under two chip rows. Labelling that sentence "Advertencia de la biografía"
+ * attributed a CivicPulse sentence to a document that did not write it. The
+ * paraphrase was faithful, so nothing false was published — but on a page that
+ * names living people, who said a sentence is part of what the sentence says.
+ *
+ * So: the biography is credited only where the biography is quoted. Everywhere
+ * else the warning is labelled as ours, about this ficha. The « » quotes are the
+ * attribution device, and the eyebrow must not outrun them.
  *
  * `eje: 'area'` gets its own fixed sentence because it is not a note about the
  * person at all: it says the ROW may be judging an área they no longer hold.
@@ -77,6 +92,8 @@ function valueLabel(t, value) {
 function Aviso({ aviso, quote = false }) {
   const t = useT()
   const isArea = aviso.eje === 'area'
+  // The single rule: is the biography's own text on screen in this block?
+  const showsVerbatim = quote || !isArea
   return (
     <div
       style={{
@@ -97,12 +114,12 @@ function Aviso({ aviso, quote = false }) {
           color: 'var(--warn-ink)',
         }}
       >
-        {t('encaje.aviso.label')}
+        {showsVerbatim ? t('encaje.aviso.label') : t('encaje.aviso.label.ficha')}
         {!isArea &&
           ` · ${t(`encaje.field.${aviso.eje}`)} · ${t(`encaje.aviso.${aviso.direccion}`)}`}
       </span>
       {isArea && <div style={{ marginTop: 2 }}>{t('encaje.aviso.area')}</div>}
-      {(quote || !isArea) && (
+      {showsVerbatim && (
         <div style={{ marginTop: 2, fontStyle: 'italic' }}>«&nbsp;{aviso.verbatim}&nbsp;»</div>
       )}
     </div>
@@ -116,6 +133,25 @@ function RespaldoLine({ value, style = {} }) {
   return (
     <div style={{ fontSize: 10.5, color: 'var(--ink60)', lineHeight: 1.45, ...style }}>
       {t(`encaje.respaldo.${value}`)}
+    </div>
+  )
+}
+
+/**
+ * What the card was compared against, for a card that cites nothing at all.
+ *
+ * Not a variant of `RespaldoLine`: every sentence there is about «lo que aquí se
+ * cita», and with no citation none of them is true. This one names the document
+ * the comparison was made against and stops. It must not say a source failed to
+ * corroborate anything — nothing was cited, so nothing was checked, and an
+ * absence published as a result is the exact defect the wording above was
+ * narrowed to avoid.
+ */
+function ComparadoLine({ style = {} }) {
+  const t = useT()
+  return (
+    <div style={{ fontSize: 10.5, color: 'var(--ink60)', lineHeight: 1.45, ...style }}>
+      {t('encaje.card.sinCita')}
     </div>
   )
 }
@@ -227,10 +263,18 @@ export function EncajeCard({ official, bioRoute }) {
         )
       })}
 
-      {/* Said once for the whole card. When `shared` is null the marks above
-          carry it instead, and when nothing is cited there is no backing to
-          describe and this renders nothing — «no consta» is not «autodeclarada». */}
-      {shared && <RespaldoLine value={shared} style={{ marginTop: 7 }} />}
+      {/* Said once for the whole card, and SOMETHING is always said. `shared`
+          null covers two different situations: the assessments disagree, and the
+          marks above carry it; or nothing cites anything, and there is no
+          backing to describe — but there is still a document all of it was
+          compared against, and a card that stated neither read as a verdict.
+          «no consta» is still not «autodeclarada»: the second line claims no
+          citation and no corroboration check. */}
+      {shared ? (
+        <RespaldoLine value={shared} style={{ marginTop: 7 }} />
+      ) : (
+        citesNothing(rows) && <ComparadoLine style={{ marginTop: 7 }} />
+      )}
 
       <div style={{ marginTop: 4, fontSize: 10.5, color: 'var(--ink50)', lineHeight: 1.45 }}>
         {/* Underlined, not just tinted. These sit INSIDE a sentence, and WCAG

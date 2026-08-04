@@ -90,6 +90,25 @@ export function sharedRespaldo(rows, fields = ['formacion', 'experiencia']) {
 }
 
 /**
+ * True when NOT ONE assessment on these rows cites anything.
+ *
+ * The other half of `sharedRespaldo` returning null. Null means one of two very
+ * different things — the assessments DISAGREE about their backing, or NOBODY
+ * cited anything — and the surface owes the reader a different sentence for
+ * each. Conflating them is what left the three cards whose every assessment
+ * reads «sin relación declarada» with two bare negative labels and no statement
+ * of what they had been compared against: a finding no component asserts.
+ *
+ * Keyed on `respaldo` rather than on `evidence.length` because the two are the
+ * same fact by construction — `stampRespaldo` in src/scraper/area-fit.ts leaves
+ * a non-citing assessment WITHOUT a respaldo, and `areafit-respaldo-classified`
+ * in relations-check.ts fails the build if a citing one ever lacks it.
+ */
+export function citesNothing(rows, fields = ['formacion', 'experiencia']) {
+  return !(rows || []).some((r) => fields.some((f) => r?.[f]?.respaldo))
+}
+
+/**
  * Signed warning mappings for one official, optionally on one axis.
  *
  * Reads only what a curator signed: drafts live in the gitignored queue and

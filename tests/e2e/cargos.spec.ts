@@ -81,6 +81,39 @@ test.describe('Cargos (/cargos)', () => {
     expect(body).not.toMatch(/\bautodeclarada\b/)
   })
 
+  test('every encaje card states what it was compared against, harshest included', async ({
+    page,
+  }) => {
+    // Against the REAL snapshot, and about the cards a reader judges hardest.
+    // Three published officials — jose-luis-ramos-march, maria-esther-gomez-laredo
+    // and alfredo-pla-gimenez — read «sin relación declarada» on both axes and
+    // cite nothing at all, so no backing sentence applied and the card rendered
+    // two bare negative labels with no provenance whatsoever. Two of them carry a
+    // signed warning frame above as well. A card stating nothing about its source
+    // reads as a finding no component asserts.
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText('Encaje declarado').first()).toBeVisible({ timeout: 8000 })
+    const body = await page.locator('body').innerText()
+
+    // innerText reflects CSS text-transform, so the eyebrow arrives uppercased.
+    const blocks = body
+      .split('ENCAJE DECLARADO')
+      .slice(1)
+      .map((s) => {
+        const end = s.indexOf('qué exige la ley')
+        return end === -1 ? s : s.slice(0, end)
+      })
+    // The assertion has to bite on something: a gate that measures zero cards is
+    // the green-but-vacuous shape DATA_INTEGRITY warns about.
+    expect(blocks.length).toBeGreaterThan(0)
+    // The uncited case is REACHABLE in the published data, not only in a stub.
+    expect(blocks.filter((b) => /Lo que se compara es el CV/.test(b)).length).toBeGreaterThan(0)
+    // And no card goes without: every provenance sentence names the CV. If a
+    // card with divergent backing ever appears — none exists today — this goes
+    // red, and someone decides what the per-item marks say about provenance.
+    for (const b of blocks) expect(b).toMatch(/\bCV\b/)
+  })
+
   test('the populated encaje block names áreas and renders no score', async ({ page }) => {
     // Stubbed on purpose: the published rows move with every promotion, so
     // pinning "no percentage anywhere" to them would drift into measuring

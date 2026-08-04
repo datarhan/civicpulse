@@ -472,8 +472,11 @@ export default function Metodologia() {
               describe la fuente, no a la persona, y no es un reproche: declarar el propio currículo
               es lo que la ley pide. Queda reservado un tercer valor, «discrepancia documentada»,
               que ningún automatismo deriva: sólo puede ponerlo un curador leyendo dos fuentes que
-              se contradicen. Cuando una advertencia de la biografía recae sobre uno de estos ejes
-              se publica con su texto literal, firmada una a una; ninguna se publica sola.
+              se contradicen. Cuando una advertencia de la biografía recae sobre uno de estos ejes,
+              el proceso la propone clasificada y ahí se detiene: la firma un curador una por una, y
+              puede no firmarla. Que sea cierta y esté bien clasificada no basta para publicarla. La
+              que se firma sale con su texto literal; la que no, no sale, y la ficha no dice nada de
+              ella.
             </li>
             <li>
               <strong>No mide gestión.</strong> Que la formación de alguien coincida con su área no
@@ -514,8 +517,11 @@ export default function Metodologia() {
             medición. Y se comprueba: una evaluación que cita algo sin decir de qué se sostiene, o
             que lo deja en «sin clasificar», rompe la auditoría de integridad que se pasa sobre los
             datos publicados. Y cuando la biografía deja constancia de una discrepancia sin resolver
-            sobre la formación o la trayectoria, el bloque lo dice, con el texto literal de la
-            advertencia.
+            sobre la formación o la trayectoria, el proceso la propone como advertencia clasificada;
+            que llegue al bloque —con el texto literal de la advertencia— depende de que un curador
+            la firme, y puede no firmarla aunque la clasificación sea correcta. Sin esa firma la
+            ficha no la menciona, así que la ausencia de advertencias en una ficha no significa que
+            la biografía no recoja ninguna.
           </p>
           <p style={{ marginBottom: 0 }}>
             Los requisitos legales citados proceden del texto consolidado del BOE: la{' '}

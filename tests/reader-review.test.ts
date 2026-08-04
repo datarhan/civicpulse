@@ -1,9 +1,11 @@
 import { describe, it, expect, vi } from 'vitest'
 import {
+  chunkRenderedText,
   groundFindings,
   partitionFindings,
   reviewSurface,
   reviewSurfaceDetailed,
+  REVIEW_CHUNK_CHARS,
   type SurfaceInput,
 } from '../src/scraper/reader-review'
 import { quoteAppearsIn } from '../src/scraper/quote-match'
@@ -128,6 +130,58 @@ describe('reader-review — the strictness is deliberate, do not loosen it', () 
         page,
       ),
     ).toEqual([]) // this filter: no
+  })
+})
+
+describe('reader-review — a big page is split, never trimmed', () => {
+  // The bug: `review-surfaces` sliced the rendered text to the first 12.000
+  // characters and reviewed that, silently. /metodologia renders 34.909
+  // characters, so 66% of the published editorial contract — including three
+  // paragraphs added the same week, at offsets 13.819, 16.186 and 17.303 — was
+  // never seen by the check that exists to read it. The change-detection hash
+  // was computed over the same prefix, so those edits could not even mark the
+  // route as changed. Green while measuring nothing, again.
+  const strip = (s: string) => s.replace(/\s+/g, '')
+
+  it('LOSES NOTHING — every character of the page ends up in some fragment', () => {
+    const page = Array.from({ length: 900 }, (_, i) => `Línea ${i} con texto suficiente.`).join('\n')
+    expect(page.length).toBeGreaterThan(REVIEW_CHUNK_CHARS)
+    const chunks = chunkRenderedText(page)
+    expect(chunks.length).toBeGreaterThan(1)
+    expect(strip(chunks.join(''))).toBe(strip(page))
+  })
+
+  it('keeps every fragment inside the call budget', () => {
+    const page = 'x'.repeat(50_000)
+    for (const c of chunkRenderedText(page)) expect(c.length).toBeLessThanOrEqual(REVIEW_CHUNK_CHARS)
+  })
+
+  it('reaches text that the old 12k slice cut off', () => {
+    // Anchored to the real shape of the defect: a sentence past the old cut.
+    const filler = 'relleno '.repeat(2_000) // ~16k characters
+    const page = `${filler}\nEl bloque lo dice siempre, con el texto literal.`
+    const chunks = chunkRenderedText(page)
+    expect(page.slice(0, REVIEW_CHUNK_CHARS)).not.toMatch(/texto literal/)
+    expect(chunks.some((c) => c.includes('El bloque lo dice siempre'))).toBe(true)
+  })
+
+  it('splits on line boundaries so a claim is not cut in half', () => {
+    const line = 'a'.repeat(4_000)
+    const chunks = chunkRenderedText([line, line, line, line].join('\n'), 9_000)
+    // 4 lines of 4k in 9k fragments: 2 + 2, never 2¼.
+    expect(chunks).toHaveLength(2)
+    for (const c of chunks) expect(c.split('\n').every((l) => l.length === 4_000)).toBe(true)
+  })
+
+  it('hard-splits a single line too long to fit, rather than dropping it', () => {
+    const chunks = chunkRenderedText('z'.repeat(25_000))
+    expect(chunks).toHaveLength(3)
+    expect(chunks.join('').length).toBe(25_000)
+  })
+
+  it('a page that fits is one fragment, and a blank page is none', () => {
+    expect(chunkRenderedText('corto')).toEqual(['corto'])
+    expect(chunkRenderedText('   \n  ')).toEqual([])
   })
 })
 

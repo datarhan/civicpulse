@@ -46,6 +46,64 @@ export interface ReaderFinding {
 
 export type ReaderCaller = (input: SurfaceInput) => Promise<ReaderFinding[] | null>
 
+/**
+ * Characters of rendered text handed to the model in one call.
+ *
+ * Not a page limit — a CALL limit. The caller splits and reviews every fragment;
+ * see `chunkRenderedText`.
+ */
+export const REVIEW_CHUNK_CHARS = 12_000
+
+/**
+ * Split a rendered page into review-sized fragments, LOSING NOTHING.
+ *
+ * This function exists because of a silent-truncation bug that is the exact
+ * shape of every incident in docs/DATA_INTEGRITY.md. `review-surfaces` sliced
+ * the rendered text to the first 12.000 characters and reviewed that, with no
+ * mention anywhere that it had done so. On /metodologia — 34.909 characters, the
+ * published editorial contract — that is 34% of the page, and the three edits
+ * that shipped on the branch that found this all sat past the cut. Worse, the
+ * change-detection hash was computed over the same truncated prefix, so an edit
+ * beyond it could not even mark the route as changed: the tool reported "sin
+ * cambios" about prose it had never read, then "nada que señalar" when forced.
+ *
+ * Two thirds of the page had never been reviewed by the check built to review it.
+ *
+ * So: no default truncation anywhere. A page too big for one call is reviewed in
+ * several, and the caller reports how much of it was actually reviewed.
+ *
+ * Splits on line boundaries (`innerText` is newline-separated blocks) so a
+ * fragment does not cut a sentence in half — a model cannot judge the meaning of
+ * half a claim, and the grounding filter would drop any quote spanning the seam.
+ * A single line longer than `size` is hard-split rather than dropped: losing
+ * text is the one thing this must never do.
+ */
+export function chunkRenderedText(text: string, size = REVIEW_CHUNK_CHARS): string[] {
+  if (!text.trim()) return []
+  if (text.length <= size) return [text]
+  const chunks: string[] = []
+  let current: string[] = []
+  let length = 0
+  const flush = () => {
+    if (current.length) chunks.push(current.join('\n'))
+    current = []
+    length = 0
+  }
+  for (const line of text.split('\n')) {
+    if (line.length > size) {
+      flush()
+      for (let i = 0; i < line.length; i += size) chunks.push(line.slice(i, i + size))
+      continue
+    }
+    // +1 for the newline this line will be rejoined with.
+    if (length && length + line.length + 1 > size) flush()
+    current.push(line)
+    length += line.length + 1
+  }
+  flush()
+  return chunks.filter((c) => c.trim())
+}
+
 function normalise(s: string): string {
   return s
     .normalize('NFD')

@@ -358,7 +358,22 @@ const CATALOGUE = {
     'encaje.respaldo.mark.autodeclarada': 'autodeclarada',
     'encaje.respaldo.mark.corroborada': 'corroborada',
     'encaje.respaldo.mark.discrepancia-documentada': 'discrepancia documentada',
+    // Contra qué se comparó, cuando NADA en la ficha cita nada.
+    //
+    // Las frases de arriba hablan de «lo que aquí se cita», así que sin una sola
+    // cita ninguna es cierta y la ficha se quedaba con dos etiquetas negativas y
+    // ninguna procedencia: dos «sin relación declarada» sueltos se leen como un
+    // hallazgo que ningún componente afirma. Ésta dice contra qué se comparó sin
+    // decir nada de citas que no existen — y en particular NO niega corroboración
+    // alguna, porque donde no se citó nada no se comprobó nada.
+    'encaje.card.sinCita':
+      'Lo que se compara es el CV que la propia persona declara y el ayuntamiento publica; aquí no se cita ninguna de sus entradas, así que no hay referencia cuyo respaldo describir.',
     'encaje.aviso.label': 'Advertencia de la biografía',
+    // El mismo aviso, cuando la superficie NO enseña el texto literal de la
+    // biografía sino la frase fija de más abajo — que la escribe este sitio, no
+    // la biografía. La etiqueta sigue al contenido: se atribuye a la biografía
+    // sólo lo que se cita entre comillas.
+    'encaje.aviso.label.ficha': 'Advertencia sobre esta ficha',
     'encaje.aviso.contradice': 'contradicción sin resolver',
     'encaje.aviso.corrobora': 'otra fuente lo confirma',
     'encaje.aviso.matiza': 'matiz',
@@ -780,7 +795,10 @@ const CATALOGUE = {
     'encaje.respaldo.mark.autodeclarada': 'autodeclarada',
     'encaje.respaldo.mark.corroborada': 'corroborada',
     'encaje.respaldo.mark.discrepancia-documentada': 'discrepància documentada',
+    'encaje.card.sinCita':
+      'El que es compara és el CV que la mateixa persona declara i l’ajuntament publica; ací no se’n cita cap entrada, així que no hi ha cap referència de la qual dir en què se sosté.',
     'encaje.aviso.label': 'Advertiment de la biografia',
+    'encaje.aviso.label.ficha': 'Advertiment sobre aquesta fitxa',
     'encaje.aviso.contradice': 'contradicció sense resoldre',
     'encaje.aviso.corrobora': 'una altra font ho confirma',
     'encaje.aviso.matiza': 'matís',
