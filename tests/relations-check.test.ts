@@ -346,6 +346,61 @@ describe('relations-check — encaje declarado', () => {
     expect(r?.status).toBe('empty')
   })
 
+  it('flags a stored «corroborada» whose cited sources are all the subject’s own', () => {
+    // The dangerous direction: the card would say an independent source backs
+    // this, about a named councillor, while every source behind it is his CV.
+    const r = runRelationsChecks({
+      reports: { items: [{ id: 'r-1', sources: [{ id: 'src-1', selfDeclared: true }] }] },
+      areaFit: row({ value: 'relacionada', evidence: [cited], respaldo: 'corroborada' }),
+    } as never).find((x) => x.name === 'areafit-respaldo-derived')
+    expect(r?.status).toBe('broken')
+    expect(r?.level).toBe('error')
+    expect(r?.broken[0]).toContain('robert-raga-gadea')
+    expect(r?.broken[0]).toContain('Hacienda')
+    expect(r?.broken[0]).toContain('corroborada')
+    expect(r?.broken[0]).toContain('autodeclarada')
+  })
+
+  it('flags the understating direction too — a stale value is stale either way', () => {
+    const r = runRelationsChecks({
+      reports: { items: [{ id: 'r-1', sources: [{ id: 'src-1', selfDeclared: false }] }] },
+      areaFit: row({ value: 'relacionada', evidence: [cited], respaldo: 'autodeclarada' }),
+    } as never).find((x) => x.name === 'areafit-respaldo-derived')
+    expect(r?.status).toBe('broken')
+  })
+
+  it('passes when the stored respaldo is what the cited sources derive', () => {
+    const r = runRelationsChecks({
+      reports: { items: [{ id: 'r-1', sources: [{ id: 'src-1', selfDeclared: true }] }] },
+      areaFit: row({ value: 'relacionada', evidence: [cited], respaldo: 'autodeclarada' }),
+    } as never).find((x) => x.name === 'areafit-respaldo-derived')
+    expect(r?.status).toBe('ok')
+    expect(r?.checked).toBe(1)
+  })
+
+  it('exempts «discrepancia-documentada», which no automation derives', () => {
+    const rs = byName(
+      runRelationsChecks({
+        reports: { items: [{ id: 'r-1', sources: [{ id: 'src-1', selfDeclared: true }] }] },
+        areaFit: row(
+          { value: 'relacionada', evidence: [cited], respaldo: 'discrepancia-documentada' },
+          { value: 'relacionada', evidence: [cited], respaldo: 'autodeclarada' },
+        ),
+      } as never),
+    )
+    // The curator's reading survives; the derivable sibling is still measured.
+    expect(rs['areafit-respaldo-derived'].status).toBe('ok')
+    expect(rs['areafit-respaldo-derived'].checked).toBe(1)
+  })
+
+  it('reports empty, not ok, when nothing cites anything to re-derive', () => {
+    const r = runRelationsChecks({
+      reports: { items: [{ id: 'r-1', sources: [{ id: 'src-1', selfDeclared: true }] }] },
+      areaFit: row({ value: 'no-consta', evidence: [] }),
+    } as never).find((x) => x.name === 'areafit-respaldo-derived')
+    expect(r?.status).toBe('empty')
+  })
+
   it('flags an aviso whose index is outside the report it cites', () => {
     const r = runRelationsChecks({
       reports,

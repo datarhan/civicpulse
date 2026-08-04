@@ -18,7 +18,7 @@
  * drift) that must not red a nightly.
  */
 
-import { RESPALDO_VALUES } from './area-fit'
+import { deriveRespaldo, RESPALDO_VALUES, type SourceLike } from './area-fit'
 import { ALLOWED_DEPARTMENT_SLUGS } from './departments'
 import { normalizeCompanyKey } from './entities'
 
@@ -95,7 +95,12 @@ export interface RelationsCheckInputs {
   } | null
   /** journalist-reports.json — the reports encaje rows cite. */
   reports?: {
-    items?: Array<{ id?: string; sources?: Array<{ id?: string }>; warnings?: string[] }>
+    items?: Array<{
+      id?: string
+      /** `selfDeclared` is the only place the respaldo axis can be read from. */
+      sources?: Array<{ id?: string; selfDeclared?: boolean }>
+      warnings?: string[]
+    }>
   } | null
   entities?: {
     companies?: Array<{
@@ -494,6 +499,62 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
             // Not pedantry: the surface renders only the three values with
             // published copy, so an unknown one prints NO backing line at all.
             broken.push(`${where}: respaldo "${v}" is not one of ${RESPALDO_VALUES.join(' | ')}`)
+          }
+        }
+      }
+      return { checked, broken }
+    }),
+
+    // RE-DERIVE, DO NOT TRUST — the same move the published validator makes on
+    // an aviso's `verbatim`: a stored string is only ever a copy of a fact that
+    // lives somewhere else, and copies go stale silently. `selfDeclared` is
+    // re-classified by its own backfill; when it moves, nothing else re-reads
+    // the rows that were derived from it.
+    //
+    // Both directions are broken because both are stale, but they are not
+    // equally harmful, and this is the one that justifies an error level:
+    // `corroborada` published over self-declared sources makes the card say
+    // «alguna fuente independiente de la persona» about a NAMED councillor
+    // while every source behind it is his own CV — the surface claiming
+    // stronger evidence than it holds, which is the failure this whole feature
+    // exists to prevent. The reverse only makes us say less than we could.
+    //
+    // `discrepancia-documentada` is EXEMPT on purpose, not by omission:
+    // `deriveRespaldo` never returns it (two sources disagreeing is a curator's
+    // reading of them, not a flag comparison), so re-deriving would report
+    // every curator judgement as a mismatch and train everyone to ignore this
+    // check.
+    check('areafit-respaldo-derived', 'error', areaFit != null && reports != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      const sourcesByReport = new Map(
+        (reports?.items ?? []).map((r) => {
+          const byId: Record<string, SourceLike> = {}
+          for (const s of r?.sources ?? []) {
+            if (typeof s?.id === 'string') byId[s.id] = { id: s.id, selfDeclared: s.selfDeclared }
+          }
+          return [r?.id, byId] as const
+        }),
+      )
+      for (const r of areaFit?.rows ?? []) {
+        // An absent map is an EMPTY one, never a permissive one: every id then
+        // reads unclassified and the mismatch surfaces.
+        const sources = sourcesByReport.get(r?.reportId) ?? {}
+        for (const field of ['formacion', 'experiencia'] as const) {
+          const a = r?.[field]
+          const evidence = a?.evidence ?? []
+          if (!evidence.length) continue
+          if (a?.respaldo === 'discrepancia-documentada') continue
+          checked += 1
+          const derived = deriveRespaldo(
+            evidence.map((ev) => ({ label: '', sourceIds: ev?.sourceIds ?? [] })),
+            sources,
+          )
+          if (derived !== a?.respaldo) {
+            broken.push(
+              `${r?.officialSlug ?? '?'}/${r?.portfolio ?? '?'}.${field}: publica ` +
+                `«${a?.respaldo ?? 'sin respaldo'}», las fuentes citadas derivan «${derived}»`,
+            )
           }
         }
       }
