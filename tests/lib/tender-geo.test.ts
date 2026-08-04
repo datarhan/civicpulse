@@ -4,6 +4,8 @@ import {
   topContractors,
   filterContracts,
   moneyRadiusMeters,
+  contractTypeTotals,
+  obrasSharePct,
 } from '../../src/lib/tender-geo'
 
 const ASSIGN = [
@@ -111,5 +113,55 @@ describe('lib/tender-geo', () => {
         .sort(),
     ).toEqual(['b', 'c'])
     expect(filterContracts(contracts, { dana: true }, byId).map((c) => c.id)).toEqual(['b'])
+  })
+
+  describe('contractTypeTotals / obrasSharePct', () => {
+    // The number these back is published in a sentence about named public
+    // money, so the failure mode that matters is over-claiming obras.
+    const CONTRACTS = [
+      { assignee: 'A', status: 'awarded', finalAmountNoTaxes: 100, contractType: 'construction' },
+      { assignee: 'B', status: 'formalized', finalAmountNoTaxes: 300, contractType: 'services' },
+      { assignee: 'C', status: 'awarded', finalAmountNoTaxes: 100, contractType: 'supplies' },
+      // Cancelled and in-flight rows are not committed money, in either total.
+      { assignee: 'D', status: 'void', finalAmountNoTaxes: 900, contractType: 'construction' },
+      { assignee: 'E', status: 'open', finalAmountNoTaxes: 900, contractType: 'construction' },
+    ]
+
+    it('groups committed euros by type, biggest first, ignoring undone awards', () => {
+      const { rows, total } = contractTypeTotals(CONTRACTS)
+      expect(total).toBe(500)
+      expect(rows.map((r) => r.type)).toEqual(['services', 'construction', 'supplies'])
+      expect(rows[0]).toEqual({ type: 'services', amount: 300, count: 1 })
+    })
+
+    it('files a missing contractType under `other` instead of dropping it', () => {
+      // A dropped row would shrink the denominator and INFLATE the obras share
+      // — the exact direction the published sentence must not err in.
+      const { rows, total } = contractTypeTotals([
+        { assignee: 'A', status: 'awarded', finalAmountNoTaxes: 100, contractType: 'construction' },
+        { assignee: 'B', status: 'awarded', finalAmountNoTaxes: 100 },
+      ])
+      expect(total).toBe(200)
+      expect(rows.find((r) => r.type === 'other')?.amount).toBe(100)
+      expect(obrasSharePct({ rows, total })).toBe(50)
+    })
+
+    it('reports the obras share of the whole, not of the biggest row', () => {
+      expect(obrasSharePct(contractTypeTotals(CONTRACTS))).toBe(20)
+    })
+
+    it('returns null rather than 0 % when there is nothing to take a share of', () => {
+      // «0 % obras» and «no hay contratos» are different claims; a caller has to
+      // be able to tell them apart and say nothing in the second case.
+      expect(obrasSharePct(contractTypeTotals([]))).toBeNull()
+      expect(obrasSharePct(contractTypeTotals([{ status: 'void', finalAmount: 10 }]))).toBeNull()
+    })
+
+    it('reports 0 when there are contracts but none of them are obras', () => {
+      const totals = contractTypeTotals([
+        { assignee: 'B', status: 'awarded', finalAmountNoTaxes: 300, contractType: 'services' },
+      ])
+      expect(obrasSharePct(totals)).toBe(0)
+    })
   })
 })

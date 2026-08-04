@@ -123,6 +123,53 @@ export function topContractors(contracts, n = 15, resolver = null) {
 }
 
 /**
+ * Committed euros grouped by `contractType`, biggest first.
+ *
+ * Exists because a heading claimed something the figure under it did not
+ * support: «¿A dónde va el dinero en obras?» sat above the full €68,0M of
+ * municipal contracting, of which obras are about a quarter — most of it is
+ * town-wide services. Correcting the heading meant publishing the actual share,
+ * and a share published beside the breakdown that proves it must come from the
+ * SAME computation, or the two drift and the page contradicts itself one scroll
+ * apart. So the summary line and the «Tipos de gasto» chart both call this.
+ *
+ * `contractType` is Gobierto's own field, not an inference from the title.
+ * Rows with no type land in `other` rather than being dropped, so the shares
+ * always sum to the whole.
+ *
+ * @param {any[]} contracts
+ * @returns {{rows: {type: string, amount: number, count: number}[], total: number}}
+ */
+export function contractTypeTotals(contracts) {
+  const m = new Map()
+  let total = 0
+  for (const c of contracts || []) {
+    if (!isCommittedContract(c)) continue
+    const amount = contractAmount(c)
+    if (!(amount > 0)) continue
+    const type = c.contractType || 'other'
+    const cur = m.get(type) || { type, amount: 0, count: 0 }
+    cur.amount += amount
+    cur.count += 1
+    m.set(type, cur)
+    total += amount
+  }
+  return { rows: [...m.values()].sort((a, b) => b.amount - a.amount), total }
+}
+
+/**
+ * Share of a set of euros that is `construction` (obras), 0–100.
+ * @param {{rows: {type: string, amount: number}[], total: number}} totals
+ * @returns {number|null} null when there is nothing to take a share OF — a
+ *   caller must then say nothing rather than print «0 % obras».
+ */
+export function obrasSharePct(totals) {
+  if (!totals || !(totals.total > 0)) return null
+  const obras = totals.rows.find((r) => r.type === 'construction')
+  return ((obras?.amount ?? 0) / totals.total) * 100
+}
+
+/**
  * @param {any[]} contracts
  * @param {{text?:string,zoneSlug?:string,category?:string,year?:string,dana?:boolean,type?:string}} [opts]
  * @param {Map<string,any>} [assignmentsById]

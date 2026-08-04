@@ -1,6 +1,5 @@
 import { useMemo } from 'react'
-import { contractAmount } from '../../lib/tender-geo'
-import { isCommittedContract } from '../../lib/contract-status.js'
+import { contractTypeTotals } from '../../lib/tender-geo'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -28,17 +27,11 @@ const TYPE_COLOR = {
 }
 
 export default function SpendingTypeBreakdown({ contracts, snapshot }) {
+  // Shared with the section's own summary line, which now states the obras
+  // share out loud. Two copies of this loop would let the heading and the chart
+  // that justifies it disagree one scroll apart.
   const { rows, total, danaPct } = useMemo(() => {
-    const m = new Map()
-    let sum = 0
-    for (const c of contracts || []) {
-      const amt = isCommittedContract(c) ? contractAmount(c) : 0
-      if (amt <= 0) continue
-      const k = c.contractType || 'other'
-      m.set(k, (m.get(k) || 0) + amt)
-      sum += amt
-    }
-    const r = [...m.entries()].map(([k, v]) => ({ k, v })).sort((a, b) => b.v - a.v)
+    const { rows: r, total: sum } = contractTypeTotals(contracts)
     const dpct = sum > 0 ? ((snapshot?.universe?.danaAwardedAmount || 0) / sum) * 100 : 0
     return { rows: r, total: sum, danaPct: dpct }
   }, [contracts, snapshot])
@@ -56,15 +49,18 @@ export default function SpendingTypeBreakdown({ contracts, snapshot }) {
       >
         {rows.map((r) => (
           <div
-            key={r.k}
-            title={`${TYPE_LABEL[r.k] || r.k}: ${fmtEur(r.v)}`}
-            style={{ width: (r.v / total) * 100 + '%', background: TYPE_COLOR[r.k] || '#94A3B8' }}
+            key={r.type}
+            title={`${TYPE_LABEL[r.type] || r.type}: ${fmtEur(r.amount)}`}
+            style={{
+              width: (r.amount / total) * 100 + '%',
+              background: TYPE_COLOR[r.type] || '#94A3B8',
+            }}
           />
         ))}
       </div>
       {rows.map((r) => (
         <div
-          key={r.k}
+          key={r.type}
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -78,18 +74,18 @@ export default function SpendingTypeBreakdown({ contracts, snapshot }) {
               width: 10,
               height: 10,
               borderRadius: 2,
-              background: TYPE_COLOR[r.k] || '#94A3B8',
+              background: TYPE_COLOR[r.type] || '#94A3B8',
             }}
           />
-          <span style={{ flex: 1 }}>{TYPE_LABEL[r.k] || r.k}</span>
+          <span style={{ flex: 1 }}>{TYPE_LABEL[r.type] || r.type}</span>
           <span className="mono" style={{ fontWeight: 700 }}>
-            {fmtEur(r.v)}
+            {fmtEur(r.amount)}
           </span>
           <span
             className="mono"
             style={{ width: 44, textAlign: 'right', color: 'var(--ink50)', fontSize: 11 }}
           >
-            {((r.v / total) * 100).toFixed(0)}%
+            {((r.amount / total) * 100).toFixed(0)}%
           </span>
         </div>
       ))}

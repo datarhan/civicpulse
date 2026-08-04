@@ -56,7 +56,11 @@ export default function GastoMap({ snapshot, sliderTime, danaOnly, selectedZone,
           borderRadius: 10,
         }}
       >
-        Aún no hay obras situables en el periodo seleccionado.
+        {/* «Contratos», not «obras»: the layer paints every award whose title
+            names a zone — services and supplies among them — so an empty state
+            that says «obras» tells the reader the map is narrower than it is,
+            the same overreach the section heading above used to make. */}
+        Aún no hay contratos situables en el periodo seleccionado.
       </div>
     )
   }

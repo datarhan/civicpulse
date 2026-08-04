@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Card, SectionHead, Pill } from '../Primitives'
+import { contractTypeTotals, obrasSharePct } from '../../lib/tender-geo'
 import { useTenders } from '../../hooks/useTenders'
 import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { useCpvLabels } from '../../hooks/useCpvLabels'
@@ -27,6 +28,31 @@ export default function GastoDashboard() {
   const dateMax = tg?.universe?.dateMax ? new Date(tg.universe.dateMax).getTime() : 0
   const dateMin = tg?.universe?.dateMin ? new Date(tg.universe.dateMin).getTime() : 0
 
+  // What this section's own figure is actually made of.
+  //
+  // The heading used to read «¿A dónde va el dinero en obras?» directly above
+  // «De 68 M€ adjudicados en contratos … 2,2 M€ se pueden situar en el mapa» —
+  // so the reader took the whole 68 M€ for public works, when obras are about a
+  // quarter of it and town-wide services are the majority. The section's own
+  // small print said so ("servicios, suministros y obras sin lugar citado"); the
+  // heading contradicted the body four lines above it.
+  //
+  // Both shares are MEASURED here, never typed: from the contracts for the
+  // total, and from the zoned assignments for what the map paints. Computing
+  // them also means the sentence can't survive a scraper run that changes the
+  // mix — which a literal «26 %» silently would.
+  const obrasPct = useMemo(() => obrasSharePct(contractTypeTotals(contracts)), [contracts])
+  const obrasPctMapa = useMemo(() => {
+    const located = (tg?.assignments ?? []).filter((a) => (a.zones ?? []).length > 0)
+    const total = located.reduce((s, a) => s + (a.amount || 0), 0)
+    if (!(total > 0)) return null
+    const obras = located
+      .filter((a) => a.contractType === 'construction')
+      .reduce((s, a) => s + (a.amount || 0), 0)
+    return (obras / total) * 100
+  }, [tg])
+  const pct0 = (n) => new Intl.NumberFormat('es-ES', { maximumFractionDigits: 0 }).format(n)
+
   const [selectedZone, setSelectedZone] = useState(null)
   const [sliderTime, setSliderTime] = useState(0)
   const [danaOnly, setDanaOnly] = useState(false)
@@ -42,12 +68,17 @@ export default function GastoDashboard() {
   return (
     <Card>
       <SectionHead
-        eyebrow="Mapa del gasto · obras situables"
-        title="¿A dónde va el dinero en obras?"
+        eyebrow="Mapa del gasto · contratos situables"
+        title="¿A dónde va el dinero en contratos?"
       />
       <div style={{ fontSize: 11, color: 'var(--ink50)', marginBottom: 10 }}>
-        Solo se sitúan los contratos cuyo título nombra una zona. Tamaño del círculo = € · azul obra
-        general · ámbar DANA.
+        El total de abajo es <strong>todo el gasto en contratos, no solo obras</strong>:
+        {obrasPct != null ? ` las obras son el ${pct0(obrasPct)} %` : ' el grueso'} y el resto son
+        servicios de ámbito municipal, suministros y otros —el desglose completo está en «Tipos de
+        gasto». Solo se sitúan los contratos cuyo título nombra una zona
+        {obrasPctMapa != null ? `, y ahí sí predominan las obras (${pct0(obrasPctMapa)} %)` : ''}.
+        Tamaño del círculo = € adjudicado en la zona · ámbar cuando la mitad o más es recuperación
+        DANA.
       </div>
       <div style={{ marginBottom: 10 }}>
         <button
