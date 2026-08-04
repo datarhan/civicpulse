@@ -7,7 +7,25 @@
 # NEVER blocks. A probabilistic check that can block a push teaches everyone to
 # type --no-verify, and then it protects nothing. It prints and gets out of the
 # way; you decide.
-cd "$(git rev-parse --show-toplevel)"
+#
+# That paragraph was a promise, and the promise was false for eight commits.
+# Husky runs this file as `sh -e` (see .husky/_/h). Under -e, a command that
+# fails INSIDE the EXIT trap aborts the shell with its status — and the trap's
+# `kill $PREVIEW` failed every time, because a developer's own preview already
+# held :4173, `--strictPort` killed this one at birth, and by cleanup time the
+# corpse had been reaped. Exit 1. Push refused. The hook printed "el push
+# continúa" on its way out.
+#
+# So "never blocks" is now structural, and it takes all three of these:
+#   1. `set +e`, so a failing command cannot abort anything;
+#   2. a cleanup whose last command is `:`, so the trap cannot return non-zero;
+#   3. an explicit `exit 0` on every path.
+# (2) and (3) are not redundant with (1) and not with each other: measured under
+# `sh -e`, a trailing `exit 0` alone still exits 1, because the trap runs after
+# it and overrides it. Do not delete one because the other looks sufficient.
+set +e
+
+cd "$(git rev-parse --show-toplevel)" || exit 0
 
 # What is actually being pushed?
 RANGE="origin/main..HEAD"
@@ -23,17 +41,56 @@ if ! command -v claude >/dev/null 2>&1; then
   exit 0
 fi
 
+STARTED=$(date +%s)
 echo "[pre-push] datos o copy modificados — leyendo las páginas como un lector…"
 npm run build >/dev/null 2>&1 || { echo "[pre-push] build falló; se omite la revisión."; exit 0; }
-npx vite preview --host 127.0.0.1 --port 4173 --strictPort >/dev/null 2>&1 &
-PREVIEW=$!
-trap 'kill $PREVIEW 2>/dev/null' EXIT
-sleep 5
 
+# Its OWN port, never the 4173 a developer runs `npm run preview` on. Sharing it
+# was not a cosmetic clash: `--strictPort` made this preview exit instantly, the
+# review then read the OTHER server's older build without either of them saying
+# so, and the dead pid is what leaked the failing status. Take a free port or
+# take none.
+PORT=4189
+while [ "$PORT" -lt 4210 ] && curl -s -o /dev/null --max-time 1 "http://127.0.0.1:$PORT/"; do
+  PORT=$((PORT + 1))
+done
+
+npx vite preview --host 127.0.0.1 --port "$PORT" --strictPort >/dev/null 2>&1 &
+PREVIEW=$!
+cleanup() {
+  [ -n "$PREVIEW" ] && kill "$PREVIEW" 2>/dev/null
+  : # load-bearing: the trap's status is the hook's status. See the header.
+}
+trap 'cleanup' EXIT
+
+# Poll, do not sleep. `sleep 5` was both too long when the server was already up
+# and too short when it was not — and a preview that never came up renders every
+# page empty, which is a run that reviewed nothing, not a clean site.
+READY=""
+TRIES=0
+while [ "$TRIES" -lt 60 ]; do
+  curl -s -o /dev/null --max-time 1 "http://127.0.0.1:$PORT/" && { READY=1; break; }
+  sleep 0.25
+  TRIES=$((TRIES + 1))
+done
+if [ -z "$READY" ]; then
+  echo "[pre-push] el preview no levantó en :$PORT — revisión OMITIDA (omitida ≠ limpia)."
+  exit 0
+fi
+
+# BOUNDED, and it says what the bound cost. The full review measured 568s across
+# six routes — git waits ten minutes and then kills the hook, which is how this
+# came to block. 60s buys the routes it can reach; the script names the ones it
+# could not and refuses to cache a fragment it did not read. `npm run
+# review:surfaces` with no budget is still the complete pass, on demand.
 set -a; [ -f .env ] && . ./.env >/dev/null 2>&1; set +a
 env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY \
     GEMINI_BIN=/nonexistent-disabled AGY_BIN=/nonexistent-disabled \
     LLM_BACKEND=claude-code LLM_CONCURRENCY=1 \
-    npm run --silent review:surfaces || true
+    REVIEW_BASE_URL="http://127.0.0.1:$PORT" \
+    npm run --silent review:surfaces -- --budget-seconds 60
 
-echo "[pre-push] revisión informativa — el push continúa."
+# No `|| true` on that: it was there before and it never protected anything —
+# the status leaked around it through the trap. `set +e` is what protects it.
+echo "[pre-push] revisión informativa ($(( $(date +%s) - STARTED ))s), parcial por diseño — el push continúa pase lo que pase."
+exit 0

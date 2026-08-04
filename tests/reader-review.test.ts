@@ -6,6 +6,8 @@ import {
   reviewSurface,
   reviewSurfaceDetailed,
   REVIEW_CHUNK_CHARS,
+  parseReviewArgs,
+  readCacheEntry,
   type SurfaceInput,
 } from '../src/scraper/reader-review'
 import { quoteAppearsIn } from '../src/scraper/quote-match'
@@ -144,7 +146,9 @@ describe('reader-review — a big page is split, never trimmed', () => {
   const strip = (s: string) => s.replace(/\s+/g, '')
 
   it('LOSES NOTHING — every character of the page ends up in some fragment', () => {
-    const page = Array.from({ length: 900 }, (_, i) => `Línea ${i} con texto suficiente.`).join('\n')
+    const page = Array.from({ length: 900 }, (_, i) => `Línea ${i} con texto suficiente.`).join(
+      '\n',
+    )
     expect(page.length).toBeGreaterThan(REVIEW_CHUNK_CHARS)
     const chunks = chunkRenderedText(page)
     expect(chunks.length).toBeGreaterThan(1)
@@ -153,7 +157,8 @@ describe('reader-review — a big page is split, never trimmed', () => {
 
   it('keeps every fragment inside the call budget', () => {
     const page = 'x'.repeat(50_000)
-    for (const c of chunkRenderedText(page)) expect(c.length).toBeLessThanOrEqual(REVIEW_CHUNK_CHARS)
+    for (const c of chunkRenderedText(page))
+      expect(c.length).toBeLessThanOrEqual(REVIEW_CHUNK_CHARS)
   })
 
   it('reaches text that the old 12k slice cut off', () => {
@@ -223,5 +228,77 @@ describe('reader-review — a discarded finding must not look like a clean page'
     // whether it mattered. The first real run had five of these across four
     // routes that were all printing "nothing to flag".
     expect(r.dropped[0].quote).toBe('una frase que la página nunca dice')
+  })
+})
+
+describe('reader-review — un presupuesto de tiempo compra prisa, no silencio', () => {
+  // `review:surfaces` unbounded measured 568s over six routes. git kills a
+  // pre-push hook at ten minutes, and husky turns a killed hook into a refused
+  // push — so the hook now passes `--budget-seconds`. The risk that buys is the
+  // original sin of this file wearing a clock instead of a `.slice(0, 12000)`:
+  // a check that quietly covers less than it implies.
+  it('no confunde el VALOR del presupuesto con una ruta llamada «60»', () => {
+    // El parser viejo era `filter(a => !a.startsWith('--'))`, que se habría
+    // llevado el 60 por delante y habría intentado revisar http://…/60.
+    const a = parseReviewArgs(['--budget-seconds', '60'])
+    expect(a.routes).toEqual([])
+    expect(a.budgetSeconds).toBe(60)
+
+    const b = parseReviewArgs(['--budget-seconds=90', '/plenos'])
+    expect(b.routes).toEqual(['/plenos'])
+    expect(b.budgetSeconds).toBe(90)
+  })
+
+  it('sin bandera y sin entorno NO hay límite — el pase completo sigue siendo el pase completo', () => {
+    expect(parseReviewArgs(['/'], undefined).budgetSeconds).toBe(0)
+    expect(parseReviewArgs([], '45').budgetSeconds).toBe(45)
+    // La bandera manda sobre el entorno.
+    expect(parseReviewArgs(['--budget-seconds', '10'], '45').budgetSeconds).toBe(10)
+  })
+
+  it('un presupuesto ilegible es NINGÚN presupuesto, nunca un presupuesto de cero', () => {
+    // Un cero silencioso revisaría cero fragmentos e imprimiría un resumen. El
+    // fallo por defecto de esta herramienta tiene que ser revisar de más.
+    for (const bad of ['abracadabra', '0', '-30', '']) {
+      expect(parseReviewArgs(['--budget-seconds', bad]).budgetSeconds).toBe(0)
+    }
+    expect(parseReviewArgs([], 'lo-que-sea').budgetSeconds).toBe(0)
+    expect(parseReviewArgs(['--json', '--force']).json && parseReviewArgs(['--force']).force).toBe(
+      true,
+    )
+  })
+})
+
+describe('reader-review — la caché no puede hacer desaparecer un señalamiento', () => {
+  const finding = {
+    quote: 'Presup. 2025 €41,6M',
+    inference: 'x'.repeat(12),
+    contradictedBy: 'y'.repeat(6),
+    severity: 'unclear' as const,
+  }
+
+  it('recuerda QUÉ encontró, no sólo que miró', () => {
+    // El fallo: la caché guardaba el hash a secas, así que una ruta se retiraba
+    // tras CUALQUIER pase completo — incluido uno que acababa de señalar dos
+    // yuxtaposiciones engañosas. La siguiente ejecución imprimía «sin cambios,
+    // se omite» y el resumen, «0 señalamiento(s)», sobre defectos vivos.
+    const e = readCacheEntry({ hash: 'abc123', findings: [finding], at: '2026-08-05T00:00:00Z' })
+    expect(e?.hash).toBe('abc123')
+    expect(e?.findings).toHaveLength(1)
+    expect(e?.at).toBe('2026-08-05T00:00:00Z')
+  })
+
+  it('lee la caché vieja de sólo-hash sin inventarse hallazgos', () => {
+    const e = readCacheEntry('deadbeefdeadbeef')
+    expect(e).toEqual({ hash: 'deadbeefdeadbeef', findings: [] })
+  })
+
+  it('una entrada corrupta es un fallo de caché, y un fallo de caché revisa MÁS', () => {
+    // La dirección segura: perder la caché cuesta una llamada, confiar en una
+    // caché rota cuesta una página sin leer que se declara limpia.
+    expect(readCacheEntry(undefined)).toBeNull()
+    expect(readCacheEntry({} as never)).toBeNull()
+    expect(readCacheEntry({ findings: [finding] } as never)).toBeNull()
+    expect(readCacheEntry({ hash: 'ok' } as never)).toEqual({ hash: 'ok', findings: [] })
   })
 })

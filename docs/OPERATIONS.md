@@ -171,3 +171,19 @@ a partial pass read as full coverage — as of 2026-08-03 that is 11 of 15.
   `i18n.jsx`, builds and reads the affected pages as a visitor would. **Never
   blocks**: a probabilistic check that can block a push teaches everyone to type
   `--no-verify`, and then it protects nothing.
+
+  "Never blocks" is structural, not a promise — the promise was false for eight
+  commits. Husky runs the hook as `sh -e`, and under `-e` a command that fails
+  inside the EXIT trap aborts the shell with its status; the trap's `kill` of an
+  already-dead preview did exactly that, so the hook printed «el push continúa»
+  and exited 1. It now sets `set +e`, ends its trap on `:`, and `exit 0`s on
+  every path. All three are needed: a trailing `exit 0` alone still exits 1,
+  because the trap runs after it.
+
+  It is also **bounded and partial by design**: `--budget-seconds 60`, which
+  measured 87s end to end where the unbounded pass measured 568s and git killed
+  it at ten minutes. The budget never buys silence — routes the clock did not
+  reach are named, half-read pages report PARCIAL and are not cached, and the
+  full pass is always available with `npm run review:surfaces`. The hook takes
+  its own free port from 4189 up, so a `npm run preview` on 4173 neither kills
+  it nor gets silently reviewed in its place.

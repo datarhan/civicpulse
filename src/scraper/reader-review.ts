@@ -55,6 +55,62 @@ export type ReaderCaller = (input: SurfaceInput) => Promise<ReaderFinding[] | nu
 export const REVIEW_CHUNK_CHARS = 12_000
 
 /**
+ * What `review-surfaces` remembers about a route between runs.
+ *
+ * The findings travel WITH the hash. Storing the hash alone retired a route
+ * after any complete pass, including one that had just flagged two misleading
+ * juxtapositions — the next run printed «sin cambios, se omite» and summarised
+ * «0 señalamiento(s)» about live, unfixed flags.
+ */
+export interface ReviewCacheEntry {
+  hash: string
+  findings: ReaderFinding[]
+  /** ISO timestamp of the last real review. Drives oldest-first ordering. */
+  at?: string
+}
+
+/**
+ * Read either cache shape; callers write the new one.
+ *
+ * Earlier caches held a bare hash string. Returning `null` for those would be
+ * safe (a missed cache means MORE review, never less) but would silently throw
+ * away every remembered finding on upgrade, so they are read as an entry with
+ * no findings — which is exactly what they recorded.
+ */
+export function readCacheEntry(v: string | ReviewCacheEntry | undefined): ReviewCacheEntry | null {
+  if (typeof v === 'string') return { hash: v, findings: [] }
+  if (v && typeof v.hash === 'string') return { hash: v.hash, findings: v.findings ?? [], at: v.at }
+  return null
+}
+
+/**
+ * `--budget-seconds N`, `--budget-seconds=N`, or `REVIEW_BUDGET_SECONDS`.
+ *
+ * Written as a real parser rather than the old `filter(a => !a.startsWith('--'))`,
+ * which keeps a flag's VALUE and would have sent the tool off to review a route
+ * named `60`. A non-positive or unparseable budget means NO budget: this file's
+ * whole subject is checks that quietly do less than they claim, and a typo that
+ * silently shrinks coverage to nothing would be one more.
+ */
+export function parseReviewArgs(argv: string[], budgetEnv?: string) {
+  const routes: string[] = []
+  let budgetSeconds = Number(budgetEnv ?? 0)
+  for (let i = 0; i < argv.length; i += 1) {
+    const a = argv[i]
+    if (a === '--budget-seconds') {
+      budgetSeconds = Number(argv[i + 1])
+      i += 1
+    } else if (a.startsWith('--budget-seconds=')) {
+      budgetSeconds = Number(a.slice('--budget-seconds='.length))
+    } else if (!a.startsWith('--')) {
+      routes.push(a)
+    }
+  }
+  if (!Number.isFinite(budgetSeconds) || budgetSeconds <= 0) budgetSeconds = 0
+  return { routes, budgetSeconds, json: argv.includes('--json'), force: argv.includes('--force') }
+}
+
+/**
  * Split a rendered page into review-sized fragments, LOSING NOTHING.
  *
  * This function exists because of a silent-truncation bug that is the exact

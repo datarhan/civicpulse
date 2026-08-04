@@ -4,11 +4,19 @@
  * data does not support.
  *
  *   npm run review:surfaces -- /            # one route
- *   npm run review:surfaces                 # the default set
+ *   npm run review:surfaces                 # the default set, unbounded
  *   npm run review:surfaces -- --json
+ *   npm run review:surfaces -- --budget-seconds 60
  *
  * Requires the preview server (`npm run preview`) and a $0 LLM backend:
  *   LLM_BACKEND=claude-code npm run review:surfaces
+ *
+ * `--budget-seconds N` (or `REVIEW_BUDGET_SECONDS`) caps the WALL CLOCK, for
+ * callers that cannot wait — the pre-push hook, which measured 568s unbounded
+ * and was killed by git at ten minutes. The budget buys time, NEVER silence: a
+ * fragment the clock cut off is a PARCIAL, a route never reached is named as
+ * SIN REVISAR, neither is cached, and the run exits non-zero. Without the flag
+ * nothing is bounded and the full review is exactly what it was.
  *
  * Renders with Playwright rather than reading JSX, because the defect being
  * hunted only exists once the page is assembled: two true numbers side by side
@@ -30,8 +38,11 @@ import { chromium } from '@playwright/test'
 import {
   reviewSurfaceDetailed,
   chunkRenderedText,
+  parseReviewArgs,
+  readCacheEntry,
   type SurfaceInput,
   type ReaderFinding,
+  type ReviewCacheEntry,
 } from '../src/scraper/reader-review'
 import { authorshipBreakdown } from '../src/scraper/finding-authorship'
 import { callLLM } from '../src/llm/client'
@@ -42,19 +53,31 @@ import {
 } from '../src/llm/prompts'
 import { ReaderReviewSchema } from '../src/llm/schemas'
 
-// `localhost`, not `127.0.0.1`: vite preview binds IPv6 by default, so the
-// literal v4 address refuses the connection and every route fails to render —
-// which this script would report as "nothing to review" rather than as a fault.
+// `localhost`, not `127.0.0.1`: a plain `npm run preview` binds IPv6 by default,
+// so the literal v4 address refuses the connection and every route fails to
+// render — which this script would report as "nothing to review" rather than as
+// a fault. The pre-push hook overrides this, and must: it starts its own preview
+// on its own free port with an explicit `--host 127.0.0.1`, so it passes the v4
+// URL that matches. Whoever starts the server picks the address.
 const BASE = process.env.REVIEW_BASE_URL || 'http://localhost:4173'
 
 /**
- * route → hash of the rendered text last reviewed.
+ * route → { hash of the rendered text last reviewed, what that review found }.
  *
  * The anti-decay mechanism, and the reason this can be automated at all. A model
  * asked repeatedly about UNCHANGED prose will eventually produce a plausible
  * wrong flag, and from that point the check gets ignored — which is how a check
- * dies. So a route whose rendered output is byte-identical to last time is
- * skipped outright: no call, no chance of a new opinion about old text.
+ * dies. So a route whose rendered output is byte-identical to last time is not
+ * asked about again: no call, no chance of a new opinion about old text.
+ *
+ * THE FINDINGS ARE STORED WITH THE HASH, and that is the difference between
+ * skipping a call and forgetting a defect. The cache used to hold the hash
+ * alone, so a route retired after ANY complete pass — including one that had
+ * just flagged two misleading juxtapositions. The next run printed «sin cambios,
+ * se omite» and the summary printed «0 señalamiento(s)» about a page whose flags
+ * were still live and still unfixed. A skip now REPLAYS what the last review
+ * found, and those findings still count toward the total and the exit code. The
+ * page changed or it did not; a flag does not expire because a clock ran.
  *
  * HASHED OVER THE WHOLE PAGE, and that is load-bearing. It used to hash the same
  * truncated prefix the review was given, so an edit past the cut changed nothing
@@ -70,7 +93,7 @@ const BASE = process.env.REVIEW_BASE_URL || 'http://localhost:4173'
  * text depends on local data state and it would churn on every run.
  */
 const CACHE = resolve('.review-cache.json')
-const loadCache = (): Record<string, string> =>
+const loadCache = (): Record<string, string | ReviewCacheEntry> =>
   existsSync(CACHE) ? JSON.parse(readFileSync(CACHE, 'utf8')) : {}
 const hashOf = (s: string) => createHash('sha256').update(s).digest('hex').slice(0, 16)
 const DATA = resolve('public/data')
@@ -120,12 +143,52 @@ function factsFor(route: string): Record<string, unknown> {
 const DEFAULT_ROUTES = ['/', '/presupuesto', '/plenos', '/hallazgos', '/promesas', '/quejas']
 
 async function main() {
-  const args = process.argv.slice(2).filter((a) => !a.startsWith('--'))
-  const routes = args.length ? args : DEFAULT_ROUTES
-  const asJson = process.argv.includes('--json')
-
-  const force = process.argv.includes('--force')
+  const {
+    routes: named,
+    budgetSeconds,
+    json: asJson,
+    force,
+  } = parseReviewArgs(process.argv.slice(2), process.env.REVIEW_BUDGET_SECONDS)
   const cache = force ? {} : loadCache()
+  // Oldest first, but ONLY under a budget and ONLY for the default set. A budget
+  // starves whatever sits at the end of the list, and a fixed order starves the
+  // same routes every time — which is a route that is never reviewed and nobody
+  // notices, the exact failure this whole file exists to avoid. An explicit
+  // route list is the caller's order and is left alone.
+  const routes =
+    named.length || !budgetSeconds
+      ? named.length
+        ? named
+        : DEFAULT_ROUTES
+      : [...DEFAULT_ROUTES].sort((a, b) =>
+          (readCacheEntry(cache[a])?.at ?? '').localeCompare(readCacheEntry(cache[b])?.at ?? ''),
+        )
+  /** Wall clock, not a per-call timeout: the caller's patience is the budget. */
+  const startedAt = Date.now()
+  const deadline = budgetSeconds ? startedAt + budgetSeconds * 1000 : Infinity
+  const spent = () => Math.round((Date.now() - startedAt) / 1000)
+  /**
+   * Longest model call seen this run. Measured, not assumed — one fragment cost
+   * 65s here and 44s in the run before, and a hard-coded guess would be wrong in
+   * whichever direction hurt.
+   */
+  let slowestCallMs = 0
+  /**
+   * "Is there time to START another fragment?" — not "has the clock run out?".
+   *
+   * A call cannot be interrupted once it is in flight, so a plain deadline check
+   * makes the budget a floor rather than a ceiling: measured, `--budget-seconds
+   * 15` returned in 65s, because at t=1s the clock had not run out and the call
+   * that started then took the other 64. Refusing to start a fragment that
+   * probably cannot finish is what turns the number into a promise.
+   *
+   * THE FIRST CALL ALWAYS RUNS: `slowestCallMs` is 0 until something has been
+   * measured, and a budget too small for even one fragment must still review one
+   * fragment. Reviewing nothing and saying so is honest but useless; the real
+   * bound is therefore `budget + the first call`, and the summary prints the
+   * time actually spent so nobody has to take this comment's word for it.
+   */
+  const noTimeToStart = () => Date.now() + slowestCallMs >= deadline
   const browser = await chromium.launch()
   const page = await browser.newPage()
   const all: Array<{
@@ -147,10 +210,42 @@ async function main() {
   const unreviewed: string[] = []
   /** Routes where SOME fragments were reviewed and some were not. */
   const partial: string[] = []
+  /** Routes the clock never reached. Named, never folded into "unchanged". */
+  const ranOut: string[] = []
+  /** Live findings from a previous review of byte-identical text. */
+  let remembered = 0
   const pct = (n: number) => `${Math.round(n * 100)}%`
   const num = (n: number) => n.toLocaleString('es-ES')
+  const header = (route: string) =>
+    console.log(`\n── ${route} ${'─'.repeat(Math.max(0, 50 - route.length))}`)
+  const printFinding = (f: ReaderFinding) => {
+    console.log(`   ${f.severity === 'misleading' ? '⚠︎' : '·'} «${f.quote.slice(0, 110)}»`)
+    console.log(`      un lector concluiría: ${f.inference}`)
+    console.log(`      pero los datos dicen: ${f.contradictedBy}`)
+  }
 
   for (const route of routes) {
+    // Checked BEFORE the render, so an exhausted budget costs nothing and the
+    // route is reported as unreached rather than as anything else.
+    if (noTimeToStart()) {
+      ranOut.push(route)
+      all.push({
+        route,
+        findings: [],
+        dropped: [],
+        consulted: false,
+        reason: 'budget',
+        chars: 0,
+        charsReviewed: 0,
+        chunks: 0,
+        chunksReviewed: 0,
+        coverage: 0,
+      })
+      // The cache is left ALONE: this route was not reviewed, but the previous
+      // review of its previous text is still true. Deleting would be safe too;
+      // writing anything would not.
+      continue
+    }
     await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })
     // Give the snapshot store a beat to resolve before reading the text.
     await page.waitForTimeout(1200)
@@ -158,9 +253,23 @@ async function main() {
     const renderedText = await page.locator('body').innerText()
 
     const h = hashOf(renderedText)
-    if (cache[route] === h) {
+    const prev = readCacheEntry(cache[route])
+    if (prev && prev.hash === h) {
       skipped += 1
-      if (!asJson) console.log(`\n── ${route} · sin cambios desde la última revisión, se omite`)
+      remembered += prev.findings.length
+      if (!asJson) {
+        if (prev.findings.length === 0) {
+          console.log(`\n── ${route} · sin cambios desde la última revisión, se omite`)
+        } else {
+          // A skip must never look cleaner than the review it is standing in for.
+          header(route)
+          console.log(
+            `   sin cambios desde la última revisión (no se vuelve a llamar al modelo), ` +
+              `pero ${prev.findings.length} señalamiento(s) SIGUEN EN PIE:`,
+          )
+          for (const f of prev.findings) printFinding(f)
+        }
+      }
       continue
     }
 
@@ -173,7 +282,15 @@ async function main() {
     let reason: string | undefined = chunks.length ? undefined : 'empty-page'
 
     for (const [index, chunk] of chunks.entries()) {
+      // `break`, not `continue`: once the clock is gone it stays gone, and the
+      // fragments left behind make this route PARCIAL — reported, uncached, and
+      // retried next run. A budget may cost coverage; it may not hide the cost.
+      if (noTimeToStart()) {
+        reason ??= 'budget'
+        break
+      }
       const input: SurfaceInput = { route, renderedText: chunk, facts }
+      const calledAt = Date.now()
       const r = await reviewSurfaceDetailed(input, async (i) => {
         const res = await callLLM({
           systemPrompt: buildReaderReviewSystemPrompt(),
@@ -195,6 +312,10 @@ async function main() {
         // page, and this check runs on pre-push, where that reads as approval.
         return res ? res.findings : null
       })
+      // The slowest, not the average: the budget is a promise about the worst
+      // case, and averaging a fast cached fragment with a slow live one is how
+      // an estimate ends up cheerfully starting the call that blows it.
+      slowestCallMs = Math.max(slowestCallMs, Date.now() - calledAt)
       if (!r.consulted) {
         reason ??= r.reason
         continue
@@ -223,7 +344,7 @@ async function main() {
     totalDropped += dropped.length
     // Only a route reviewed END TO END may be remembered as reviewed. Caching a
     // partial pass would retire the unread part of the page permanently.
-    if (complete) cache[route] = h
+    if (complete) cache[route] = { hash: h, findings, at: new Date().toISOString() }
     else delete cache[route]
     // Tracked here, not inside the printing branch: `--json` must reach the same
     // exit code as the human output, or CI and a person disagree about the run.
@@ -232,19 +353,21 @@ async function main() {
     if (!consulted) {
       unreviewed.push(route)
       if (!asJson) {
-        console.log(`\n── ${route} ${'─'.repeat(Math.max(0, 50 - route.length))}`)
+        header(route)
         console.log(
           `   ⓘ SIN REVISAR: ${
             reason === 'empty-page'
               ? 'la página renderizó vacía — ¿está levantado el preview?'
-              : 'ningún backend respondió'
+              : reason === 'budget'
+                ? `se agotó el presupuesto de ${budgetSeconds}s antes de leer ningún fragmento`
+                : 'ningún backend respondió'
           }`,
         )
       }
       continue
     }
     if (!asJson) {
-      console.log(`\n── ${route} ${'─'.repeat(Math.max(0, 50 - route.length))}`)
+      header(route)
       // Coverage FIRST, on every route, whether or not it is complete. The bug
       // this line exists for was not that the tool reviewed a third of the page;
       // it was that nothing in the output said so.
@@ -256,7 +379,13 @@ async function main() {
         console.log(
           `   ⚠︎ REVISIÓN PARCIAL: ${chunks.length - chunksReviewed} fragmento(s) SIN REVISAR ` +
             `(${pct(1 - coverage)} de la página). ` +
-            `${reason === 'no-answer' ? 'Ningún backend respondió a esos.' : ''}`.trim(),
+            `${
+              reason === 'budget'
+                ? `Se agotó el presupuesto de ${budgetSeconds}s.`
+                : reason === 'no-answer'
+                  ? 'Ningún backend respondió a esos.'
+                  : ''
+            }`.trim(),
         )
         console.log(
           `      Lo de abajo NO cubre la página entera. No se guarda en caché: se reintenta.`,
@@ -272,29 +401,31 @@ async function main() {
         console.log(
           `   ✗ descartado (no cita la página literalmente): «${String(f?.quote ?? '—').slice(0, 90)}»`,
         )
-      for (const f of findings) {
-        console.log(`   ${f.severity === 'misleading' ? '⚠︎' : '·'} «${f.quote.slice(0, 110)}»`)
-        console.log(`      un lector concluiría: ${f.inference}`)
-        console.log(`      pero los datos dicen: ${f.contradictedBy}`)
-      }
+      for (const f of findings) printFinding(f)
     }
   }
 
   await browser.close()
   writeFileSync(CACHE, JSON.stringify(cache, null, 2) + '\n')
   if (asJson) console.log(JSON.stringify(all, null, 2))
-  const total = all.reduce((n, r) => n + r.findings.length, 0)
+  // Findings replayed from an unchanged page COUNT. They are live defects on a
+  // live page; the only thing the cache saved was the call, not the problem.
+  const total = all.reduce((n, r) => n + r.findings.length, 0) + remembered
   if (!asJson) {
     const chars = all.reduce((n, r) => n + r.chars, 0)
     const read = all.reduce((n, r) => n + r.charsReviewed, 0)
     console.log(
-      `\n[review] ${routes.length} ruta(s) · ${skipped} sin cambios · ` +
+      `\n[review] ${routes.length} ruta(s) · ${spent()}s` +
+        (budgetSeconds ? ` de un presupuesto de ${budgetSeconds}s` : ' (sin límite de tiempo)') +
+        ` · ${skipped} sin cambios · ` +
         `${all.filter((r) => r.consulted && r.chunksReviewed === r.chunks).length} revisada(s) ` +
         `al completo · ` +
         `${total} señalamiento(s) para revisión humana` +
+        (remembered > 0 ? ` (${remembered} heredado(s) de una revisión anterior)` : '') +
         (totalDropped > 0 ? ` · ${totalDropped} descartado(s) por no citar literalmente` : '') +
         (partial.length > 0 ? ` · ${partial.length} PARCIAL(ES)` : '') +
-        (unreviewed.length > 0 ? ` · ${unreviewed.length} SIN REVISAR` : ''),
+        (unreviewed.length > 0 ? ` · ${unreviewed.length} SIN REVISAR` : '') +
+        (ranOut.length > 0 ? ` · ${ranOut.length} NO ALCANZADA(S) POR TIEMPO` : ''),
     )
     // The total is stated even when everything went fine. «revisada» without a
     // figure is what let 66% of /metodologia go unread for three runs.
@@ -312,8 +443,22 @@ async function main() {
     if (unreviewed.length > 0) {
       console.log(`           sin revisar: ${unreviewed.join(', ')}`)
     }
+    // The sentence the whole budget mechanism has to be able to say out loud.
+    // A bounded check that does not name what it left out is the truncation bug
+    // again, wearing a clock instead of a `.slice(0, 12000)`.
+    if (ranOut.length > 0) {
+      console.log(
+        `           el presupuesto de ${budgetSeconds}s se agotó y NO se llegó a: ` +
+          `${ranOut.join(', ')} — ejecuta \`npm run review:surfaces\` para leerlas enteras.`,
+      )
+    }
   }
-  if (total > 0 || unreviewed.length > 0 || partial.length > 0) process.exitCode = 1
+  // `ranOut` is in here deliberately: a run that skipped routes did not review
+  // the site, and must not exit 0 as though it had. The pre-push hook ignores
+  // this code by construction — nothing here may block a push — but a person or
+  // a CI job reading it gets the truth.
+  if (total > 0 || unreviewed.length > 0 || partial.length > 0 || ranOut.length > 0)
+    process.exitCode = 1
 }
 
 main().catch((e) => {
