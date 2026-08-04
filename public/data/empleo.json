@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-08-03T08:08:46.280Z",
+  "generatedAt": "2026-08-04T07:21:34.341Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 51,
-    "openTotal": 51,
-    "inRibaRoja": 35,
+    "total": 52,
+    "openTotal": 52,
+    "inRibaRoja": 36,
     "closingSoon": 7,
-    "withDetail": 51,
+    "withDetail": 52,
     "byMonth": {
-      "2026-08": 1,
+      "2026-08": 2,
       "2026-07": 26,
       "2026-06": 15,
       "2026-05": 3,
@@ -22,6 +22,91 @@
     }
   },
   "items": [
+    {
+      "id": "2508",
+      "fo": 2508,
+      "codigo": "2026/00206",
+      "titulo": "peon albañil",
+      "publishedAt": "2026-08-03",
+      "deadline": "2026-10-03",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2508",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00206"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "peon albañil"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "CONSTRUCCIÓN"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Horario",
+            "value": "de 8 a 18"
+          },
+          {
+            "label": "Salario",
+            "value": "base"
+          },
+          {
+            "label": "Funciones",
+            "value": "picar y desescombrar"
+          },
+          {
+            "label": "Habilidades",
+            "value": "no precisa"
+          },
+          {
+            "label": "Informática",
+            "value": "no"
+          }
+        ],
+        "tipoContrato": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "2",
+        "categoria": "PEONES",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa Turnos: Turno partido",
+        "horario": "de 8 a 18",
+        "salario": "base",
+        "funciones": "picar y desescombrar",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2506",
       "fo": 2506,
@@ -471,6 +556,10 @@
             "value": "Mozo almacén departamento internacional"
           },
           {
+            "label": "Observaciones",
+            "value": "Carnet de carretillero/a. Importante nivel de inglés, mínimo B2. Experiencia en lanzaderas, como mozo almacén, preparador/a pedidos, factor, similar. Manejo de excell, power b, tablas dinámicas, etc.,. Grabad@r datos Contrato indefinido con 3 meses de prueba. Categoría de mozo especialista. SBA el correspondiente según convenio de transporte 2026 acorde a su categoría profesional de mozo especialista. Coche propio. Horario desde las 08:00 hasta las 17:00 (-1 hora comida). Fecha de incorporación INMEDIATA."
+          },
+          {
             "label": "Tipo de contrato",
             "value": "CONTRATO INDEFINIDO"
           },
@@ -502,6 +591,7 @@
         "tipoContrato": "CONTRATO INDEFINIDO",
         "duracion": "3 MESES DE PRUEBA + INDEFINIDO",
         "numPuestos": "1",
+        "observaciones": "Carnet de carretillero/a. Importante nivel de inglés, mínimo B2. Experiencia en lanzaderas, como mozo almacén, preparador/a pedidos, factor, similar. Manejo de excell, power b, tablas dinámicas, etc.,. Grabad@r datos Contrato indefinido con 3 meses de prueba. Categoría de mozo especialista. SBA el correspondiente según convenio de transporte 2026 acorde a su categoría profesional de mozo especialista. Coche propio. Horario desde las 08:00 hasta las 17:00 (-1 hora comida). Fecha de incorporación INMEDIATA.",
         "jornada": "Completa",
         "horario": "Desde las 08:00 hasta las 17:00 (-1 hora comida).",
         "salario": "Según convenio de moz@ especialista",

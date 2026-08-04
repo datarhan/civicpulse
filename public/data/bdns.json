@@ -1,17 +1,28 @@
 {
-  "generatedAt": "2026-08-03T07:58:59.419Z",
+  "generatedAt": "2026-08-04T07:10:16.438Z",
   "source": {
     "url": "https://www.pap.hacienda.gob.es/bdnstrans/api/convocatorias/busqueda",
     "query": "riba-roja",
     "platform": "MinHac BDNS (Base de Datos Nacional de Subvenciones)"
   },
   "stats": {
-    "total": 172,
-    "granted": 154,
+    "total": 173,
+    "granted": 155,
     "received": 18,
-    "latestDate": "2026-07-29T00:00:00.000Z"
+    "latestDate": "2026-08-03T00:00:00.000Z"
   },
   "items": [
+    {
+      "id": 1124848,
+      "bdnsCode": "923287",
+      "description": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la convocatoria de subvenciones destinadas a la concesión de los premios EcoRiba 2026",
+      "date": "2026-08-03T00:00:00.000Z",
+      "organ": "LOCAL · RIBA-ROJA DE TÚRIA · AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA",
+      "level1": "LOCAL",
+      "level2": "RIBA-ROJA DE TÚRIA",
+      "direction": "granted",
+      "sourceUrl": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/923287"
+    },
     {
       "id": 1123840,
       "bdnsCode": "922279",

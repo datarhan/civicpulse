@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T07:58:47.090Z",
+  "generatedAt": "2026-08-04T07:10:05.016Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter"
@@ -58547,6 +58547,19 @@
       ]
     },
     {
+      "id": "node-14068765019",
+      "name": "València Sud",
+      "lineRefs": [
+        "L1",
+        "L2",
+        "L7"
+      ],
+      "centroid": [
+        39.4395984,
+        -0.4114817
+      ]
+    },
+    {
       "id": "node-253110945",
       "name": "Paiporta",
       "lineRefs": [
@@ -58595,19 +58608,6 @@
       "centroid": [
         39.4314053,
         -0.4722157
-      ]
-    },
-    {
-      "id": "node-14068765019",
-      "name": "València Sud",
-      "lineRefs": [
-        "L1",
-        "L2",
-        "L7"
-      ],
-      "centroid": [
-        39.4395984,
-        -0.4114817
       ]
     },
     {

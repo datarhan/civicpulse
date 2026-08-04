@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T08:10:36.055Z",
+  "generatedAt": "2026-08-04T07:23:21.422Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -78,7 +78,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -143,7 +143,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -194,18 +194,18 @@
           "date": "2026-07-07",
           "quote": "Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA",
           "kind": "press",
-          "publisher": "valenciaextra.com",
+          "publisher": "València Extra",
           "matchedKeywords": [
             "dana",
             "tras"
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNdzJsZVRna3VWTWE1OTNRdk40VGZkaG92eW9Zc2Vaam4wcVhMdzJTanc0WXREbXZzaHJyQ1g5RFZ3M2lUTFJiSVA1QTVseGh5Q2hGdnhhRHhwVTRWVW9EcS1WVUxiYVJVUldQajNjNXY0RjE5Z21xRFRSNEUyOGRMNHZVQW8xT01SU0ZhVTdHZUdGeUkyN3phZktzYkVjY1lwRnVEV2dvTG80ZnFSVVdzTkxzZ0dzWlhhOUVfNVNQejJGNGl5MDU3TXduZDFBSWlQOVdWVzFkNmpha1VoNUlV?oc=5",
-          "date": "2026-07-07",
-          "quote": "El Ejército desmonta el puente militar de Riba-roja tras 19 meses de servicio después de la dana",
+          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQSWlLN1hwMGlBNXR3ZmpnNnU5OFhiU3l6dlI3a3loNldUVS1hcktKZk9RVHBWclRLUDFRdWgzRkx5Ny1rQW9icl9nOGJvcGlncF8xT3VsUkMzS0ItQUgwTlZJT1FRRWstOHZiRlBmdUxnRDFyQXh1QzRhYWZxdE1ETzN5ZTZZOFdGc21kNmJ4TElBN21YWXdfeUQ5cElveGNIeXA2X1pqZGsyQ0J6ekc5YXVLOFFUcGFXY1g4enRPMEdNZHpsQld0amVRa0VrUktjbUJGM21wcGVvM2EyWFhGWEwwRQ?oc=5",
+          "date": "2026-07-03",
+          "quote": "Desmontan el puente militar de Riba-roja que mantuvo la conexión del municipio tras la Dana",
           "kind": "press",
-          "publisher": "El Periódico de Aquí",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "dana",
             "tras"
@@ -213,7 +213,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -225,7 +225,7 @@
           "date": "2026-07-07",
           "quote": "Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA",
           "kind": "press",
-          "publisher": "valenciaextra.com",
+          "publisher": "València Extra",
           "matchedKeywords": [
             "suelo",
             "vivienda"
@@ -255,7 +255,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -342,7 +342,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -366,7 +366,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -415,7 +415,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -423,7 +423,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -431,7 +431,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -495,7 +495,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -526,7 +526,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -566,7 +566,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -610,7 +610,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -654,7 +654,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -684,7 +684,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -719,25 +719,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
       "proposedStatus": "documentada",
       "confidence": 0.287,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNdzJsZVRna3VWTWE1OTNRdk40VGZkaG92eW9Zc2Vaam4wcVhMdzJTanc0WXREbXZzaHJyQ1g5RFZ3M2lUTFJiSVA1QTVseGh5Q2hGdnhhRHhwVTRWVW9EcS1WVUxiYVJVUldQajNjNXY0RjE5Z21xRFRSNEUyOGRMNHZVQW8xT01SU0ZhVTdHZUdGeUkyN3phZktzYkVjY1lwRnVEV2dvTG80ZnFSVVdzTkxzZ0dzWlhhOUVfNVNQejJGNGl5MDU3TXduZDFBSWlQOVdWVzFkNmpha1VoNUlV?oc=5",
-          "date": "2026-07-07",
-          "quote": "El Ejército desmonta el puente militar de Riba-roja tras 19 meses de servicio después de la dana",
-          "kind": "press",
-          "publisher": "El Periódico de Aquí",
-          "matchedKeywords": [
-            "tras",
-            "puente",
-            "militar"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQSWlLN1hwMGlBNXR3ZmpnNnU5OFhiU3l6dlI3a3loNldUVS1hcktKZk9RVHBWclRLUDFRdWgzRkx5Ny1rQW9icl9nOGJvcGlncF8xT3VsUkMzS0ItQUgwTlZJT1FRRWstOHZiRlBmdUxnRDFyQXh1QzRhYWZxdE1ETzN5ZTZZOFdGc21kNmJ4TElBN21YWXdfeUQ5cElveGNIeXA2X1pqZGsyQ0J6ekc5YXVLOFFUcGFXY1g4enRPMEdNZHpsQld0amVRa0VrUktjbUJGM21wcGVvM2EyWFhGWEwwRQ?oc=5",
           "date": "2026-07-03",
@@ -764,7 +752,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -784,7 +772,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -803,7 +791,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -834,28 +822,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
       "proposedStatus": "documentada",
       "confidence": 0.4,
       "reasoning": [
-        {
-          "url": "https://www.ribarroja.es/es/noticia/riba-roja-repartir%C3%A1-de-forma-gratuita-m%C3%A1s-de-2.000-helados-a-las-personas-asistentes-al-cinema-d%27estiu",
-          "date": "2026-06-16",
-          "quote": "Riba-roja repartirá de forma gratuita más de 2.000 helados a las personas asistentes al Cinema d'Estiu",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "helado",
-            "cinema",
-            "estiu",
-            "repartira",
-            "persona",
-            "asistent"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPVmlicEE2Z25xZi15c1NmMnNCdWRjSTlDbGlZU1BGLS1XYmVveU05OGZQYUFGN2tOS2lDajIwSGRac1Y1aklEdE5JYnFTWW9qTXdGM2hkMTc4bVFVc082bXRzeGoyMGJWV2RLOTYwaW0zTlE3NlRhTXVmaWd4VnhfSGNrcGx6cm55WlhxY1RBWmtlYlNfNUpBbjJwdHBJMXlHMi1OSk5iYVpNQVR2VGZuSlJIRWJnMXpkWHpSM3ZrZlhFUzdHWThJTDZFTUM3djhxbjAyN2VvWdIB3AFBVV95cUxQM3JzY0N1Q0NkQ3plTUNwclRWZXNxOTFzLXBVdldaYWpaTnA1Q3g2Y000RzdEUHBiN0NwODdmRFhDaDhzUW9la3dIUTNEaGZqMldXLU00Q3U0OUpuVGt5Uk81OXJLOGNLelZQZzZJeUE2UjZmVHRQREtobi1mbkFnSTNKRDlYSDhOTUNoTUVIcDlQa1J2akE4NGVXcVJVUEFGNmNHT1pDSEl2WWxrRnYwZXllQWh6NURpUURlRzR1OWZSVnI4c1dpQ1VabFd2aWlwbXNTLURfRzlCMFlk?oc=5",
           "date": "2026-06-16",
@@ -894,24 +867,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
       "proposedStatus": "documentada",
       "confidence": 0.175,
       "reasoning": [
-        {
-          "url": "https://www.ribarroja.es/es/noticia/riba-roja-repartir%C3%A1-de-forma-gratuita-m%C3%A1s-de-2.000-helados-a-las-personas-asistentes-al-cinema-d%27estiu",
-          "date": "2026-06-16",
-          "quote": "Riba-roja repartirá de forma gratuita más de 2.000 helados a las personas asistentes al Cinema d'Estiu",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "cinema",
-            "estiu"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPVmlicEE2Z25xZi15c1NmMnNCdWRjSTlDbGlZU1BGLS1XYmVveU05OGZQYUFGN2tOS2lDajIwSGRac1Y1aklEdE5JYnFTWW9qTXdGM2hkMTc4bVFVc082bXRzeGoyMGJWV2RLOTYwaW0zTlE3NlRhTXVmaWd4VnhfSGNrcGx6cm55WlhxY1RBWmtlYlNfNUpBbjJwdHBJMXlHMi1OSk5iYVpNQVR2VGZuSlJIRWJnMXpkWHpSM3ZrZlhFUzdHWThJTDZFTUM3djhxbjAyN2VvWdIB3AFBVV95cUxQM3JzY0N1Q0NkQ3plTUNwclRWZXNxOTFzLXBVdldaYWpaTnA1Q3g2Y000RzdEUHBiN0NwODdmRFhDaDhzUW9la3dIUTNEaGZqMldXLU00Q3U0OUpuVGt5Uk81OXJLOGNLelZQZzZJeUE2UjZmVHRQREtobi1mbkFnSTNKRDlYSDhOTUNoTUVIcDlQa1J2akE4NGVXcVJVUEFGNmNHT1pDSEl2WWxrRnYwZXllQWh6NURpUURlRzR1OWZSVnI4c1dpQ1VabFd2aWlwbXNTLURfRzlCMFlk?oc=5",
           "date": "2026-06-16",
@@ -925,13 +887,24 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
       "proposedStatus": "documentada",
       "confidence": 0.175,
       "reasoning": [
+        {
+          "url": "https://www.ribarroja.es/es/noticia/referentes-del-deporte-de-riba-roja-ser%C3%A1n-los-encargados-de-dar-el-preg%C3%B3n-de-las-fiestas-de-agosto-2026%3A-rub%C3%A9n-burgos%2C-mario-casades%2C-martina-gil%2C-sara-prieto-y-anelis-rodr%C3%ADguez",
+          "date": "2026-08-03",
+          "quote": "Referentes del deporte de Riba-roja serán los encargados de dar el pregón de las Fiestas de Agosto 2026: Rubén Burgos, Mario Casades, Martina Gil, Sara Prieto y Anelis Rodríguez",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "2026",
+            "deporte"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/ocupaci%C3%B3n-temporal-de-v%C3%ADa-p%C3%BAblica-para-la-instalaci%C3%B3n-de-televisores-para-ver-la-final-del-mundial",
           "date": "2026-07-17",
@@ -967,7 +940,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-03T08:10:35.936Z"
+      "generatedAt": "2026-08-04T07:23:21.296Z"
     }
   ],
   "llmEvidence": [],
