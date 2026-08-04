@@ -12,9 +12,13 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { validateFindingsSnapshot } from '../src/scraper/pleno-finding'
+import { SPEAKER_GROUPS, type SpeakerGroup } from '../src/scraper/pleno-votes'
 
 const FINDINGS = resolve('public/data/pleno-findings.json')
-const ALLOWED_PARTIES = new Set(['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'Otro'])
+// Imported, not restated. The hand-copied version of this set had drifted:
+// it omitted EU-Podem (so that group could not file a reply at all) and
+// carried `Otro`, which the findings validator no longer accepts.
+const ALLOWED_PARTIES = new Set<string>(SPEAKER_GROUPS)
 
 function usage(): never {
   process.stderr.write(
@@ -58,7 +62,7 @@ function main() {
   snapshot.items[idx] = {
     ...snapshot.items[idx],
     response: {
-      from: party as 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'Otro',
+      from: party as SpeakerGroup,
       quote: quote.trim(),
       ...(sourceUrl ? { sourceUrl } : {}),
       respondedAt,

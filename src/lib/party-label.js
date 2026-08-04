@@ -15,6 +15,13 @@
  * The recognised party now carries its real name (see `partyFromLogo`), so
  * `Otro` is left meaning only "not determined" — and is rendered as such,
  * never as a party.
+ *
+ * As of the `retire:otro-sentinel` migration no published snapshot carries
+ * `speakerGroup: "Otro"` any more, and the validators reject it (see
+ * SPEAKER_GROUPS in src/scraper/pleno-votes.ts). The branch below is kept
+ * deliberately: a reader mid-session can still be holding an older snapshot
+ * from the HTTP cache, and this is the layer that has to render it honestly.
+ * It is a stale-data guard, not a live code path.
  */
 
 /** Group codes that identify a real political group. */

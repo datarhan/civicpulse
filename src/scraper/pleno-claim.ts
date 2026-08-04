@@ -24,7 +24,7 @@
  * other libel-adjacent surface in the project.
  */
 
-import type { VoteBloc } from './pleno-votes'
+import type { SpeakerGroup } from './pleno-votes'
 
 export type ClaimType =
   | 'promesa'
@@ -112,7 +112,7 @@ export interface PlenoClaim {
    * is set, no published surface (`/declaraciones`, `/hallazgos`) names
    * the individual until a curator promotes it via `promote-claim`.
    */
-  speakerGroup: VoteBloc | null
+  speakerGroup: SpeakerGroup | null
   /**
    * Optional individual attribution — only populated when the
    * transcript line was rewritten with a high-tier voice-id named tag

@@ -11,7 +11,6 @@
       "topic": "fiscal",
       "blocs": [
         "PSOE",
-        "Otro",
         "PP"
       ],
       "score": 19.85,
@@ -32,7 +31,7 @@
         },
         {
           "claimId": "10yl550-260-afi-4aaf07",
-          "speakerGroup": "Otro",
+          "speakerGroup": null,
           "verdict": "verificado",
           "confidence": 0.9,
           "verbatim": "la capacidad de financiación subía 17 millones 160 mil euros",
@@ -46,7 +45,7 @@
         },
         {
           "claimId": "10yl550-260-afi-02c43b",
-          "speakerGroup": "Otro",
+          "speakerGroup": null,
           "verdict": "verificado",
           "confidence": 0.9,
           "verbatim": "la capacidad de financiación seguía siendo positiva en nada menos que tres millones y medio de euros",
@@ -150,14 +149,13 @@
       "plenoTitle": "Sesión de fecha 11 de mayo de 2026",
       "topic": "empleo",
       "blocs": [
-        "PSOE",
-        "Otro"
+        "PSOE"
       ],
       "score": 7.9,
       "quotes": [
         {
           "claimId": "10yl550-267-afi-22d7e4",
-          "speakerGroup": "Otro",
+          "speakerGroup": null,
           "verdict": "verificado",
           "confidence": 0.9,
           "verbatim": "el año pasado se dotaron 443.000 euros que se invirtieron de forma directa al comercio.",
@@ -171,7 +169,7 @@
         },
         {
           "claimId": "10yl550-321-afi-ca48b5",
-          "speakerGroup": "Otro",
+          "speakerGroup": null,
           "verdict": "verificado",
           "confidence": 0.8,
           "verbatim": "se dotó el año pasado y se ha vuelto a dotar en un año esos dos mil euros.",

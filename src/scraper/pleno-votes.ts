@@ -16,7 +16,36 @@
  * new party must be added there first so the UI can render it.
  */
 
-export type VoteBloc = 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'EU-Podem' | 'Otro'
+/**
+ * Group codes that NAME a real municipal group. This is the only set a
+ * `speakerGroup` may take — «who said this» is an attribution, so a
+ * placeholder there is a claim about a person.
+ *
+ * `Otro` is deliberately absent. It never meant "another party"; it was the
+ * extractor's "cannot tell". Riba-roja's corporación is PSOE 11 · PP 7 · VOX 1
+ * · Compromís 1 · EU-Podem 1, so a reader of the published JSON who takes
+ * `Otro` for "the party that is not one of the four" identifies one specific
+ * councillor by elimination. `null` already means "not determined" and already
+ * renders as «Grupo no identificado» (src/lib/party-label.js `blocLabel`), so
+ * the sentinel had no job left. See docs/DATA_INTEGRITY.md, «un centinela
+ * nunca es un valor».
+ *
+ * Mirrored by `REAL_BLOCS` in src/lib/party-label.js for the JS/UI layer; a
+ * test asserts the two lists cannot drift apart.
+ */
+export const SPEAKER_GROUPS = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'EU-Podem'] as const
+
+/** A group that can be named as the author of a statement. */
+export type SpeakerGroup = (typeof SPEAKER_GROUPS)[number]
+
+/**
+ * A voting bloc. Strictly wider than `SpeakerGroup`: `Otro` survives here
+ * because `votes[].bloc` answers a different question — which group cast this
+ * vote — in a human-curated file whose schema has no null, and where the acta
+ * itself can record a «concejal no adscrito» / «grupo mixto» that belongs to
+ * no group (see PARTY_PATTERNS in ./pleno-vote-inference).
+ */
+export type VoteBloc = SpeakerGroup | 'Otro'
 
 export type VoteDirection = 'a_favor' | 'en_contra' | 'abstencion' | 'ausente'
 
@@ -90,15 +119,12 @@ export interface PlenoVotesSnapshot {
   items: PlenoVote[]
 }
 
-export const ALLOWED_BLOCS: readonly VoteBloc[] = [
-  'PSOE',
-  'PP',
-  'VOX',
-  'Compromís',
-  'Ciudadanos',
-  'EU-Podem',
-  'Otro',
-]
+/**
+ * Vote-bloc allow-list. Derived from SPEAKER_GROUPS so the two cannot be
+ * hand-edited apart — the wider set is the narrow one plus the vote-only
+ * `Otro`. Do NOT use this to validate a `speakerGroup`: use SPEAKER_GROUPS.
+ */
+export const ALLOWED_BLOCS: readonly VoteBloc[] = [...SPEAKER_GROUPS, 'Otro']
 
 export const ALLOWED_DIRECTIONS: readonly VoteDirection[] = [
   'a_favor',

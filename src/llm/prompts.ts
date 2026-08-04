@@ -13,6 +13,7 @@
  * instruction is belt-and-suspenders, not load-bearing.
  */
 import { ALLOWED_PARTIES, ALLOWED_TOPICS, ALLOWED_KINDS } from '../scraper/promises'
+import { SPEAKER_GROUPS } from '../scraper/pleno-votes'
 
 // ─── Shared footer: injection defense ───────────────────────────────────────
 const SAFETY_FOOTER = `
@@ -167,8 +168,8 @@ Te daré un fragmento de ~900 caracteres del pleno. Extrae TODAS las afirmacione
 
 Para cada afirmación extrae:
 - type: una de las cinco categorías
-- speakerGroup: PSOE | PP | VOX | Compromís | Ciudadanos | EU-Podem, SOLO si el fragmento deja claro qué grupo habla. NUNCA un nombre propio. null si dudas.
-  NO uses «Otro». Existe en el esquema por compatibilidad con datos antiguos, pero no nombra a ningún grupo: el grupo de Esquerra Unida-Podem se escribe EU-Podem. Si no puedes determinar el grupo, la respuesta es null.
+- speakerGroup: ${SPEAKER_GROUPS.join(' | ')}, SOLO si el fragmento deja claro qué grupo habla. NUNCA un nombre propio. null si dudas.
+  NO uses «Otro»: el esquema lo RECHAZA y la respuesta entera se descarta. No nombra a ningún grupo — el de Esquerra Unida-Podem se escribe EU-Podem. Si no puedes determinar el grupo, la respuesta es null.
 - speakerSlug: slug del concejal SI Y SOLO SI la línea de la transcripción ya viene rotulada por el sistema de voz (ver bloque "IDENTIFICACIÓN POR VOZ" arriba). null en cualquier otro caso. Esta es una atribución secundaria — el speakerGroup sigue siendo la atribución primaria.
 - verbatim: cita literal (≥20 caracteres, máx 500), tal y como aparece en la transcripción aunque Whisper la haya degradado. Esta es la responsabilidad legal — no la parafrasees.
 - context: el párrafo breve (≥20 caracteres) alrededor de la verbatim para que el curador humano pueda juzgar.

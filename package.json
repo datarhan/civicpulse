@@ -157,6 +157,7 @@
     "eval:extractor": "npx tsx scripts/eval-extractor.ts",
     "apply-curation": "npx tsx scripts/apply-curation.ts",
     "push-curation-queue": "npx tsx scripts/push-curation-queue.ts",
+    "retire:otro-sentinel": "npx tsx scripts/retire-otro-sentinel.ts",
     "check:json": "npx tsx scripts/check-json.ts",
     "check:citations": "npx tsx scripts/check-citations.ts",
     "check:contract-drift": "npx tsx scripts/check-contract-drift.ts",

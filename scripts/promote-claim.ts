@@ -32,6 +32,7 @@ import {
   type FindingSeverity,
   type PlenoFindingsSnapshot,
 } from '../src/scraper/pleno-finding'
+import { SPEAKER_GROUPS, type SpeakerGroup } from '../src/scraper/pleno-votes'
 import type { PlenoClaim } from '../src/scraper/pleno-claim'
 import type { ClaimVerification } from '../src/scraper/claim-verifier'
 
@@ -346,9 +347,9 @@ function main() {
       }
       // Type-narrow: party must be one of the allowed blocs (the schema
       // validator will catch this too, but failing here gives a cleaner
-      // error message).
-      const ALLOWED = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'Otro'] as const
-      if (!(ALLOWED as readonly string[]).includes(o.party)) {
+      // error message). Imported, not restated — the local copy had drifted,
+      // omitting EU-Podem and carrying the retired `Otro` sentinel.
+      if (!(SPEAKER_GROUPS as readonly string[]).includes(o.party)) {
         process.stderr.write(
           `[promote-claim] official ${o.slug} has party "${o.party}" which is not a tracked bloc\n`,
         )
@@ -357,7 +358,7 @@ function main() {
       individualSpeaker = {
         slug: o.slug,
         name: o.name,
-        party: o.party as (typeof ALLOWED)[number],
+        party: o.party as SpeakerGroup,
       }
       process.stderr.write(
         `[promote-claim] individualSpeaker → ${o.name} (${o.party}) [${opts.individualSpeaker === 'auto' ? 'auto-detected from claims' : 'explicit'}]\n`,

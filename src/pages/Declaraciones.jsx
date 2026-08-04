@@ -186,7 +186,12 @@ function ClaimRow({ item, plenoTitle }) {
 }
 
 const ALL_VERDICTS = ['verificado', 'parcial', 'contradicho', 'promesa-repetida', 'sin-datos']
-const ALL_BLOCS = ['PSOE', 'PP', 'VOX', 'Compromís', 'EU-Podem', 'Otro', null]
+// The five groups holding seats in this corporación, plus `null` for claims
+// whose group could not be determined. `Otro` used to sit in this list and was
+// rendered as a chip labelled with the raw code — the one surface where a
+// reader actually saw the word, since the chip prints `b` rather than passing
+// it through blocLabel(). It named no group and its claims now carry `null`.
+const ALL_BLOCS = ['PSOE', 'PP', 'VOX', 'Compromís', 'EU-Podem', null]
 
 export default function Declaraciones() {
   const t = useT()
@@ -209,7 +214,7 @@ export default function Declaraciones() {
       'sin-datos': 0,
       'promesa-repetida': 0,
     }
-    const byBloc = { PSOE: 0, PP: 0, VOX: 0, Compromís: 0, 'EU-Podem': 0, Otro: 0, null: 0 }
+    const byBloc = { PSOE: 0, PP: 0, VOX: 0, Compromís: 0, 'EU-Podem': 0, null: 0 }
     const topics = new Set()
     for (const it of items) {
       byVerdict[it.verification.verdict] = (byVerdict[it.verification.verdict] ?? 0) + 1

@@ -28,6 +28,7 @@
  *  · publishedAt  ISO
  *  · response     optional right-of-reply field (same pattern as promises)
  */
+import { SPEAKER_GROUPS, type SpeakerGroup } from './pleno-votes'
 
 export type FindingSeverity = 'informational' | 'notable' | 'critical'
 
@@ -42,9 +43,12 @@ export interface FindingQuote {
   text: string
   /**
    * Speaker group (bloc-level only, never personal). Null when the
-   * curator can't be certain from the transcript.
+   * curator can't be certain from the transcript — `null` is the ONLY way
+   * to express that. There is no "unknown group" code: a placeholder in an
+   * attribution field identifies the single councillor outside the four
+   * large groups by elimination.
    */
-  speakerGroup: 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'EU-Podem' | 'Otro' | null
+  speakerGroup: SpeakerGroup | null
   /** The claim id this quote came from (for audit trail). */
   sourceClaimId: string
 }
@@ -109,10 +113,10 @@ export interface PlenoFinding {
   individualSpeaker?: {
     slug: string
     name: string
-    party: 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'EU-Podem' | 'Otro'
+    party: SpeakerGroup
   } | null
   response?: {
-    from: 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'EU-Podem' | 'Otro'
+    from: SpeakerGroup
     quote: string
     sourceUrl?: string
     respondedAt: string
@@ -176,7 +180,17 @@ export class FindingValidationError extends Error {
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}/
 const URL_RE = /^https?:\/\/\S+$/
-const ALLOWED_BLOCS = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'EU-Podem', 'Otro'] as const
+/**
+ * The groups a finding may attribute anything to — a quote, a named
+ * individual's party, a right-of-reply. Imported, never restated: a
+ * hand-copied allow-list is how six tests in this repo stayed green while
+ * matching nothing in production (docs/DATA_INTEGRITY.md, rule 1).
+ *
+ * Narrower than ALLOWED_BLOCS by exactly `Otro`, which is a vote-file value
+ * only. Every attribution field here is a claim about who spoke, so the only
+ * honest way to say "we don't know" is `null`.
+ */
+const ALLOWED_BLOCS = SPEAKER_GROUPS
 
 function must(cond: unknown, msg: string): asserts cond {
   if (!cond) throw new FindingValidationError(msg)

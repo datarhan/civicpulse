@@ -10,7 +10,12 @@
  * bodies at call time via `zodToJsonSchema` (see client.ts).
  */
 import { z } from 'zod'
-import { ALLOWED_BLOCS, ALLOWED_DIRECTIONS, ALLOWED_OUTCOMES } from '../scraper/pleno-votes'
+import {
+  ALLOWED_BLOCS,
+  ALLOWED_DIRECTIONS,
+  ALLOWED_OUTCOMES,
+  SPEAKER_GROUPS,
+} from '../scraper/pleno-votes'
 import {
   ALLOWED_CLAIM_TYPES,
   ALLOWED_CLAIM_TOPICS,
@@ -86,7 +91,14 @@ export const ClaimEntitiesSchema = z.object({
 
 export const PlenoClaimSuggestionSchema = z.object({
   type: z.enum([...ALLOWED_CLAIM_TYPES] as [(typeof ALLOWED_CLAIM_TYPES)[number]]),
-  speakerGroup: z.enum([...ALLOWED_BLOCS] as [(typeof ALLOWED_BLOCS)[number]]).nullable(),
+  // SPEAKER_GROUPS, not ALLOWED_BLOCS: the vote list carries `Otro`, which is
+  // a "cannot tell" sentinel and must never be writable as an attribution.
+  // The model answers `null` when the group is unclear.
+  // No `as [T]` cast here: SPEAKER_GROUPS is a readonly tuple (`as const`), so
+  // zod infers the full union from it. The cast the neighbouring enums need is
+  // an artefact of their `readonly T[]` typing, and it would silently narrow
+  // this one to a single member.
+  speakerGroup: z.enum(SPEAKER_GROUPS).nullable(),
   // Optional individual attribution — only set when the transcript line
   // carries a high-tier voice-id named tag like `(Robert Raga Gadea)`,
   // produced by `scripts/identify-pleno-speakers.ts --apply`. NEVER
