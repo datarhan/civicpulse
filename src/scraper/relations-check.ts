@@ -18,6 +18,7 @@
  * drift) that must not red a nightly.
  */
 
+import { RESPALDO_VALUES } from './area-fit'
 import { ALLOWED_DEPARTMENT_SLUGS } from './departments'
 import { normalizeCompanyKey } from './entities'
 
@@ -80,12 +81,22 @@ export interface RelationsCheckInputs {
       officialSlug?: string
       portfolio?: string
       reportId?: string
-      formacion?: { evidence?: Array<{ sourceIds?: string[] }> }
-      experiencia?: { evidence?: Array<{ sourceIds?: string[] }> }
+      formacion?: { evidence?: Array<{ sourceIds?: string[] }>; respaldo?: string }
+      experiencia?: { evidence?: Array<{ sourceIds?: string[] }>; respaldo?: string }
+    }>
+    /** Curator-signed biography warnings, cited BY INDEX into a report. */
+    avisos?: Array<{
+      officialSlug?: string
+      reportId?: string
+      avisoIndex?: number
+      eje?: string
+      verbatim?: string
     }>
   } | null
   /** journalist-reports.json — the reports encaje rows cite. */
-  reports?: { items?: Array<{ id?: string; sources?: Array<{ id?: string }> }> } | null
+  reports?: {
+    items?: Array<{ id?: string; sources?: Array<{ id?: string }>; warnings?: string[] }>
+  } | null
   entities?: {
     companies?: Array<{
       id?: string
@@ -414,6 +425,75 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
               if (!known || !known.has(id))
                 broken.push(`${r?.officialSlug}/${r?.portfolio}.${field} cites unknown ${id}`)
             }
+          }
+        }
+      }
+      return { checked, broken }
+    }),
+
+    // An aviso is an INDEX into a biography's `warnings`, and an index means
+    // nothing once the list under it moves. The published validator re-resolves
+    // it where the write happens; nothing re-checked it afterwards, and a
+    // biography can be re-run any night. The text is compared, not just the
+    // bound: a reordered list keeps every index in range while moving one
+    // councillor's warning under another's claim.
+    check('areafit-avisos', 'error', areaFit != null && reports != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      const warningsByReport = new Map(
+        (reports?.items ?? []).map((r) => [r?.id, r?.warnings ?? []] as const),
+      )
+      for (const a of areaFit?.avisos ?? []) {
+        checked += 1
+        const where = `aviso ${a?.officialSlug ?? '?'}#${a?.avisoIndex ?? '?'}`
+        const warnings = warningsByReport.get(a?.reportId)
+        if (!warnings) {
+          broken.push(`${where} cites report ${a?.reportId ?? '?'}, which resolves nowhere`)
+          continue
+        }
+        const i = a?.avisoIndex
+        if (!Number.isInteger(i) || (i as number) < 0 || (i as number) >= warnings.length) {
+          broken.push(
+            `${where}: index outside the ${warnings.length} warning(s) of ${a?.reportId ?? '?'}`,
+          )
+          continue
+        }
+        if (warnings[i as number] !== a?.verbatim) {
+          broken.push(
+            `${where}: verbatim is not warning ${i} of ${a?.reportId ?? '?'} any more — ` +
+              'the biography was re-run after the mapping was signed',
+          )
+        }
+      }
+      return { checked, broken }
+    }),
+
+    // «Nobody corroborated this» and «nobody looked» read identically from
+    // outside, so the guard asserts the classifier RAN: an assessment that
+    // cites evidence carries a respaldo, and no published respaldo is
+    // `sin-clasificar`. An assessment that cites NOTHING is exempt by design —
+    // there is no citation whose backing could be described, and demanding one
+    // would condemn most of the published rows.
+    check('areafit-respaldo-classified', 'error', areaFit != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      const allowed = new Set<string>(RESPALDO_VALUES)
+      for (const r of areaFit?.rows ?? []) {
+        for (const field of ['formacion', 'experiencia'] as const) {
+          const a = r?.[field]
+          const cites = (a?.evidence ?? []).length > 0
+          const v = a?.respaldo
+          if (!cites && v === undefined) continue
+          checked += 1
+          const where = `${r?.officialSlug ?? '?'}/${r?.portfolio ?? '?'}.${field}`
+          if (v === undefined) {
+            broken.push(`${where} cites evidence but carries no respaldo`)
+          } else if (v === 'sin-clasificar') {
+            broken.push(`${where}: respaldo is sin-clasificar — nobody said what backs this`)
+          } else if (!allowed.has(v)) {
+            // Not pedantry: the surface renders only the three values with
+            // published copy, so an unknown one prints NO backing line at all.
+            broken.push(`${where}: respaldo "${v}" is not one of ${RESPALDO_VALUES.join(' | ')}`)
           }
         }
       }

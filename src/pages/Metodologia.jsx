@@ -499,6 +499,24 @@ export default function Metodologia() {
               el bloque desaparece por completo. Los hechos no cambian; publicarlos en campaña, sí.
             </li>
           </ul>
+          <p>
+            <strong>De qué está hecha esa clasificación.</strong> Hoy, todas las referencias que
+            sostienen este bloque proceden de un documento que la propia persona redactó sobre sí
+            misma: el CV que el ayuntamiento publica en su portal. Una declaración de bienes y
+            actividades contaría igual —la custodia un registro oficial, pero lo que dice sigue
+            siendo el relato del interesado—. Por eso de cada fuente se anotan{' '}
+            <strong>dos cosas distintas</strong>: quién la publica y de quién es el relato. Un CV
+            colgado en el portal municipal tiene un publicador fiable y una afirmación sin
+            verificar; tomar el sello del ayuntamiento por una comprobación sería dar por hecha una
+            que nadie hizo. Que ninguna evaluación diga hoy «corroborada» es el resultado de esa
+            clasificación, hecha fuente a fuente: no es un valor decorativo ni inalcanzable —se
+            deriva en cuanto una de las citas la publica un tercero ajeno a la persona—, sino una
+            medición. Y se comprueba: una evaluación que cita algo sin decir de qué se sostiene, o
+            que lo deja en «sin clasificar», rompe la auditoría de integridad que se pasa sobre los
+            datos publicados. Y cuando la biografía deja constancia de una discrepancia sin resolver
+            sobre la formación o la trayectoria, el bloque lo dice, con el texto literal de la
+            advertencia.
+          </p>
           <p style={{ marginBottom: 0 }}>
             Los requisitos legales citados proceden del texto consolidado del BOE: la{' '}
             <strong>Ley Orgánica 5/1985 del Régimen Electoral General</strong>, artículo 6.1, para

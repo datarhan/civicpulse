@@ -733,9 +733,12 @@ function validateAssessment(a: FitAssessment, where: string, known: Set<string> 
     a.respaldo === undefined || (RESPALDO_VALUES as readonly string[]).includes(a.respaldo),
     `${where}.respaldo must be one of ${RESPALDO_VALUES.join(' | ')}`,
   )
-  // Requiring a respaldo on every citing assessment is the NEXT gate, and it
-  // lands with the re-promotion that makes it true — not here, where it would
-  // condemn the 28 already-published rows that predate the axis.
+  // "Every citing assessment carries a respaldo" is enforced, but by
+  // `areafit-respaldo-classified` in relations-check.ts, not here: this
+  // validator sees ONE snapshot at write time, and the failure worth catching —
+  // a row that stopped being classified after a re-run elsewhere — is a
+  // property of the committed set. Refusing it here would also have condemned
+  // the rows that predate the axis, at a moment when nothing could repair them.
   must(
     a.respaldo !== 'sin-clasificar',
     `${where}: refusing to publish an assessment whose backing was never classified — ` +

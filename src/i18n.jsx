@@ -774,7 +774,7 @@ const CATALOGUE = {
     'encaje.respaldo.autodeclarada':
       'El que ací es cita procedeix del CV que publica la mateixa persona; cap font independent no ho corrobora.',
     'encaje.respaldo.corroborada':
-      'El que ací es cita ho respalda a més alguna font independent de la persona.',
+      'El que ací es cita ho avala a més alguna font independent de la persona.',
     'encaje.respaldo.discrepancia-documentada':
       'El que ací es cita arrossega una discrepància documentada sense resoldre.',
     'encaje.respaldo.mark.autodeclarada': 'autodeclarada',

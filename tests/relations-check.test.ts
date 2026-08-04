@@ -280,3 +280,143 @@ describe('relations-check — officials hub', () => {
     expect(r?.status).toBe('empty')
   })
 })
+
+describe('relations-check — encaje declarado', () => {
+  const cited = { label: 'Grado en Derecho', sourceIds: ['src-1'] }
+  const reports = {
+    items: [{ id: 'r-1', sources: [{ id: 'src-1' }], warnings: ['El CV no cita el año.'] }],
+  }
+  const row = (
+    formacion: unknown,
+    experiencia: unknown = { value: 'no-consta', evidence: [] },
+  ) => ({
+    rows: [
+      {
+        officialSlug: 'robert-raga-gadea',
+        portfolio: 'Hacienda',
+        reportId: 'r-1',
+        formacion,
+        experiencia,
+      },
+    ],
+  })
+
+  it('flags an assessment that cites evidence and carries no respaldo', () => {
+    const r = runRelationsChecks({
+      areaFit: row({ value: 'relacionada', evidence: [cited] }),
+    } as never).find((x) => x.name === 'areafit-respaldo-classified')
+    expect(r?.status).toBe('broken')
+    expect(r?.level).toBe('error')
+    expect(r?.broken[0]).toContain('formacion')
+  })
+
+  it('flags a respaldo nobody classified — «0 corroboradas» and «nobody looked» must not look alike', () => {
+    const r = runRelationsChecks({
+      areaFit: row({ value: 'relacionada', evidence: [cited], respaldo: 'sin-clasificar' }),
+    } as never).find((x) => x.name === 'areafit-respaldo-classified')
+    expect(r?.status).toBe('broken')
+    expect(r?.broken[0]).toContain('sin-clasificar')
+  })
+
+  it('flags a respaldo outside the enum, which renders as no backing line at all', () => {
+    const r = runRelationsChecks({
+      areaFit: row({ value: 'relacionada', evidence: [cited], respaldo: 'verificada' }),
+    } as never).find((x) => x.name === 'areafit-respaldo-classified')
+    expect(r?.status).toBe('broken')
+    expect(r?.broken[0]).toContain('verificada')
+  })
+
+  it('does NOT demand a respaldo from an assessment that cites nothing', () => {
+    // By design: there is no citation whose backing could be described, and a
+    // gate demanding one would make most published rows unpublishable.
+    const r = runRelationsChecks({
+      areaFit: row(
+        { value: 'relacionada', evidence: [cited], respaldo: 'autodeclarada' },
+        { value: 'sin-relacion-declarada', evidence: [] },
+      ),
+    } as never).find((x) => x.name === 'areafit-respaldo-classified')
+    expect(r?.status).toBe('ok')
+    expect(r?.checked).toBe(1)
+  })
+
+  it('reports empty, not ok, when no assessment cites anything', () => {
+    const r = runRelationsChecks({
+      areaFit: row({ value: 'no-consta', evidence: [] }),
+    } as never).find((x) => x.name === 'areafit-respaldo-classified')
+    expect(r?.status).toBe('empty')
+  })
+
+  it('flags an aviso whose index is outside the report it cites', () => {
+    const r = runRelationsChecks({
+      reports,
+      areaFit: {
+        rows: [],
+        avisos: [
+          { officialSlug: 'robert-raga-gadea', reportId: 'r-1', avisoIndex: 3, verbatim: 'x' },
+        ],
+      },
+    } as never).find((x) => x.name === 'areafit-avisos')
+    expect(r?.status).toBe('broken')
+    expect(r?.broken[0]).toContain('1 warning')
+  })
+
+  it('flags an aviso citing a report that does not exist', () => {
+    const r = runRelationsChecks({
+      reports,
+      areaFit: {
+        rows: [],
+        avisos: [
+          { officialSlug: 'robert-raga-gadea', reportId: 'r-gone', avisoIndex: 0, verbatim: 'x' },
+        ],
+      },
+    } as never).find((x) => x.name === 'areafit-avisos')
+    expect(r?.status).toBe('broken')
+    expect(r?.broken[0]).toContain('r-gone')
+  })
+
+  it('flags an aviso whose verbatim the biography no longer holds at that index', () => {
+    // The index stays in range when the warnings list is REORDERED — only the
+    // text tells you the quote moved out from under a councillor's name.
+    const r = runRelationsChecks({
+      reports,
+      areaFit: {
+        rows: [],
+        avisos: [
+          {
+            officialSlug: 'robert-raga-gadea',
+            reportId: 'r-1',
+            avisoIndex: 0,
+            verbatim: 'Una advertencia que el informe ya no dice.',
+          },
+        ],
+      },
+    } as never).find((x) => x.name === 'areafit-avisos')
+    expect(r?.status).toBe('broken')
+    expect(r?.broken[0]).toContain('verbatim')
+  })
+
+  it('passes an aviso that still resolves, and reports empty with none', () => {
+    const rs = byName(
+      runRelationsChecks({
+        reports,
+        areaFit: {
+          rows: [],
+          avisos: [
+            {
+              officialSlug: 'robert-raga-gadea',
+              reportId: 'r-1',
+              avisoIndex: 0,
+              verbatim: 'El CV no cita el año.',
+            },
+          ],
+        },
+      } as never),
+    )
+    expect(rs['areafit-avisos'].status).toBe('ok')
+    expect(rs['areafit-avisos'].checked).toBe(1)
+    expect(
+      byName(runRelationsChecks({ reports, areaFit: { rows: [] } } as never))['areafit-avisos']
+        .status,
+    ).toBe('empty')
+  })
+})

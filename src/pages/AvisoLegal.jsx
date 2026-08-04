@@ -127,9 +127,16 @@ export default function AvisoLegal() {
           máquina citando exclusivamente elementos de esa misma lista, y{' '}
           <strong>la revisa y la firma una persona</strong> antes de publicarse, con su nombre
           visible junto a la fecha. Ninguna fila se publica de forma automática, y el bloque
-          desaparece por completo durante el periodo electoral (LOREG art. 50). Cualquier cargo
-          puede ejercer su derecho de rectificación por las vías descritas más arriba, con los
-          mismos plazos.
+          desaparece por completo durante el periodo electoral (LOREG art. 50).
+        </p>
+        <p>
+          Las referencias que sostienen cada fila proceden hoy, todas, del CV que la propia persona
+          declara y el ayuntamiento publica:{' '}
+          <strong>
+            no afirmamos que lo declarado sea cierto, sino que consta declarado y dónde consta
+          </strong>
+          , y la ficha lo dice donde hay algo citado. Cualquier cargo puede ejercer su derecho de
+          rectificación por las vías descritas más arriba, con los mismos plazos.
         </p>
       </Card>
 
