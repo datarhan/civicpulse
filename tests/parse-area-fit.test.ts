@@ -719,6 +719,46 @@ describe('area-fit — the published snapshot validates its avisos', () => {
     expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(/resolves to no report/)
   })
 
+  it('REFUSES to validate avisos at all when the context carries no reportWarnings', () => {
+    // The check must not vanish when a caller forgets the field — it must refuse.
+    // Verbatim from the reviewer's attack: an invented sentence about a named
+    // councillor, which PUBLISHED under a context of {officials, reportSources}
+    // because the re-resolution was wrapped in `if (ctx.reportWarnings)`.
+    // `check:contract-drift` and the pre-push `review:surfaces` both shipped this
+    // exact shape — absent input reading as a pass (DATA_INTEGRITY §2).
+    const s = good()
+    s.avisos[0].verbatim = 'Cobró comisiones ilegales según fuentes internas.'
+    const blind = { officials: OFFICIALS, reportSources: ctx.reportSources }
+    expect(() => validateAreaFitSnapshot(s, blind)).toThrow(/reportWarnings/)
+    // And with the reports present it is caught on its merits, not by the guard.
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(/verbatim no longer matches/)
+  })
+
+  it('does not require reportWarnings from a snapshot that carries no avisos', () => {
+    // The guard is scoped to what it protects: a rows-only snapshot must still
+    // validate in a caller that holds no reports.
+    const s = good() as Record<string, unknown>
+    delete s.avisos
+    expect(() =>
+      validateAreaFitSnapshot(s, { officials: OFFICIALS, reportSources: ctx.reportSources }),
+    ).not.toThrow()
+    const empty = good() as Record<string, unknown>
+    empty.avisos = []
+    expect(() =>
+      validateAreaFitSnapshot(empty, { officials: OFFICIALS, reportSources: ctx.reportSources }),
+    ).not.toThrow()
+  })
+
+  it('refuses an empty reportWarnings object rather than treating it as "no reports"', () => {
+    // Defaulting the field to `{}` would reproduce the same hole one layer down:
+    // every reportId would resolve to nothing and the aviso would be refused for
+    // the wrong reason, or — worse, in a laxer future — waved through.
+    const s = good()
+    expect(() => validateAreaFitSnapshot(s, { ...ctx, reportWarnings: {} })).toThrow(
+      /resolves to no report/,
+    )
+  })
+
   it('accepts the same mapping once the reports are supplied and still agree', () => {
     // The positive half: without it, a validator that threw unconditionally
     // would pass every test above.

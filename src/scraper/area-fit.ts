@@ -700,9 +700,19 @@ export interface AreaFitValidationContext {
    * under the wrong councillor's name" this module says it cannot afford, so the
    * check has to run where the write happens.
    *
-   * Optional only so the 40 already-published rows keep validating in callers
-   * that hold no reports; an aviso whose report is missing here is REFUSED
-   * rather than waved through.
+   * Optional in the TYPE only so a snapshot carrying no avisos still validates
+   * in callers that hold no reports. The moment a snapshot carries even one
+   * aviso this field is REQUIRED AT RUNTIME and its absence is a hard error —
+   * see the guard in `validateAreaFitSnapshot`.
+   *
+   * It cannot be merely optional. An omitted field would not weaken the
+   * re-resolution check, it would DELETE it, and a fabricated `verbatim` would
+   * publish under a named councillor's row. This repo has shipped that exact
+   * shape twice — `check:contract-drift` and the pre-push `review:surfaces` both
+   * printed an all-clear against a dead backend because absent input read as
+   * "nothing to report" (DATA_INTEGRITY §2). Type-level `required` would not be
+   * enough on its own either: tsconfig covers only src/ and scripts/, so a test-
+   * built or JS-built context is never typechecked.
    */
   reportWarnings?: Record<string, readonly string[]>
 }
@@ -800,6 +810,23 @@ export function validateAreaFitSnapshot(
 
   if (s.avisos !== undefined) {
     must(Array.isArray(s.avisos), 'avisos must be an array when present')
+    // REFUSE TO RUN rather than skip the re-resolution below. A caller that
+    // forgets this field does not get a weaker check, it gets no check, and a
+    // fabricated `verbatim` publishes under a named councillor's row with a
+    // curator's signature on it. Not defaulted to `{}` on purpose: that would
+    // reproduce the same hole one layer down, where every reportId would simply
+    // resolve to nothing. A snapshot with zero avisos needs no reports.
+    must(
+      s.avisos.length === 0 ||
+        (ctx.reportWarnings !== null &&
+          typeof ctx.reportWarnings === 'object' &&
+          !Array.isArray(ctx.reportWarnings)),
+      `this snapshot carries ${s.avisos.length} aviso(s) but the validation context has no ` +
+        '`reportWarnings`, so their indices cannot be re-resolved against the reports. ' +
+        'Refusing to validate: an absent input must never read as a pass. Pass ' +
+        "reportWarnings (reportId → that report's warnings[]) — see loadReportWarnings() " +
+        'in scripts/promote-area-fit.ts.',
+    )
     const seenAvisos = new Set<string>()
     for (const a of s.avisos) {
       const where = `aviso ${a?.officialSlug}#${a?.avisoIndex}`
@@ -843,21 +870,21 @@ export function validateAreaFitSnapshot(
       )
       // RE-RESOLVE the index against the report as it stands NOW. Generation-time
       // validation cannot see a biography re-run that happened afterwards.
-      if (ctx.reportWarnings) {
-        const warnings = ctx.reportWarnings[a.reportId]
-        must(
-          Array.isArray(warnings),
-          `${where}: reportId "${a.reportId}" resolves to no report — ` +
-            'an aviso whose list cannot be found is refused, never assumed correct',
-        )
-        must(
-          warnings[a.avisoIndex] === a.verbatim,
-          `${where}: verbatim no longer matches warning ${a.avisoIndex} of ${a.reportId} ` +
-            `(the report now has ${warnings.length}) — the biography was re-run after the ` +
-            'mapping was drafted; re-run `npm run suggest:area-fit` rather than publishing a ' +
-            'quote the report no longer contains at that index',
-        )
-      }
+      // Unconditional: the guard above already refused a context without the
+      // reports, so there is no branch here in which the check can be skipped.
+      const warnings = ctx.reportWarnings![a.reportId]
+      must(
+        Array.isArray(warnings),
+        `${where}: reportId "${a.reportId}" resolves to no report — ` +
+          'an aviso whose list cannot be found is refused, never assumed correct',
+      )
+      must(
+        warnings[a.avisoIndex] === a.verbatim,
+        `${where}: verbatim no longer matches warning ${a.avisoIndex} of ${a.reportId} ` +
+          `(the report now has ${warnings.length}) — the biography was re-run after the ` +
+          'mapping was drafted; re-run `npm run suggest:area-fit` rather than publishing a ' +
+          'quote the report no longer contains at that index',
+      )
       must(
         !('requiresHumanApproval' in a),
         `${where}: requiresHumanApproval must not appear on a published aviso — ` +
