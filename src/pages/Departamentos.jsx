@@ -334,7 +334,12 @@ export default function Departamentos() {
           // than the space above it. Proximity is what tells a reader which
           // concejalía the councillor belongs to.
           columnGap: 12,
-          rowGap: 20,
+          // Raised from 20 when CPV-based attribution left more cards without a
+          // «N contratos» sub-line: shorter cards shrank the gap below «Ver
+          // responsable» until it was only 2.8× the gap above it, and the
+          // proximity that tells a reader which concejalía the link belongs to
+          // started to blur. The e2e guard caught it at 2.82.
+          rowGap: 26,
         }}
       >
         {list.map((bucket) => (
