@@ -438,7 +438,8 @@
       "title": "CV autodeclarado (ficha oficial de transparencia) — Rafael Gómez Sánchez",
       "retrievedAt": "2026-07-30T17:34:24.741Z",
       "excerpt": "SN PRESENTACIÓN FORMACIÓN MÓDULOS FORMATIVOS• INSTITUTO SAN VICENTE FERRER• 1995 Estudios en grado III en Industrias Alimentarias EXPERIENCIA PROFESIONAL REGIDOR • 2019 - 2023• AYUNTAMIENTO RIBA-ROJA DE TÚRIA Barrios y urbanizaciones, Parques y jardines, Servicios Públicos, Transporte y movilidad TRANSPORTISTA • 2001 - 2015• AUTÓNOMO Autónomo en el sector transporte 15 ENERO 1976 VALÈNCIA rgomez@ribarroja.es D. RAFAEL GÓMEZ SÁNCHEZ SERVICIOS PÚBLICOS MUNICIPALES, URBANIZACION",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": true
     },
     {
       "id": "src-006",
@@ -483,7 +484,8 @@
       "retrievedAt": "2026-07-30T21:21:59.943Z",
       "excerpt": "Maria Jose Pradas Ramo Salvador Evaristo Ferrer Cortina Laura Guzman Bruno Juan Boix Martínez Paula Navarro Sanfeliu Jose Luis Fernández Santamaria Jose Manuel Gallardo Martínez Rafael Folgado Navarro Los cuales han sido proclamados concejales/as electos/as en las elecciones locales celebradas el pasado día 28 de mayo de 2023.",
       "localPath": "public/data/pleno-transcripts/9jatoj.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-061",
@@ -492,7 +494,8 @@
       "retrievedAt": "2026-07-30T21:21:59.943Z",
       "excerpt": "Proceden a formular juramento o promesa tomando posesión de sus cargos de Concejal/la por el siguiente orden: - Rafael Folgado Navarro - Jose Manuel Gallardo Martínez - Jose Luis Fernández Santamaria - Paula Navarro Sanfeliu - Juan Boix Martínez - Laura Guzman Bruno - Salvador Evaristo Ferrer Cortina",
       "localPath": "public/data/pleno-transcripts/9jatoj.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-064",
@@ -501,7 +504,8 @@
       "retrievedAt": "2026-07-30T21:21:59.943Z",
       "excerpt": "- Raquel Pamblanco Paredes - Jose Manuel Vila Oltra - Maria Esther Gomez Laredo - Rafael Gomez Sanchez - Eva Lara Catalá",
       "localPath": "public/data/pleno-transcripts/9jatoj.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-062",
@@ -510,7 +514,8 @@
       "retrievedAt": "2026-07-30T21:21:59.943Z",
       "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Socialista de Riba-roja, son: 1. Don Roberto Pascual Raga Gadea 2. Doña Maria Teresa Pozuelo Martín 3. Don José Luis Ramos March 4. Don José Ángel Hernández Carrizosa 5. Doña Eva Lara Catalá (Independiente) 6. Don Rafael Gómez Sánchez 7. Doña Maria Esther Gómez Laredo 8. Don José Manuel Vila Oltra (Independiente) 9. Doña Raquel Pamblanco Paredes 10. Don Alfredo Plá Giménez 11. Don David Barbancho Martínez",
       "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-063",
@@ -519,7 +524,8 @@
       "retrievedAt": "2026-07-30T21:21:59.943Z",
       "excerpt": "5. Se delegan en la Concejal Dª Eva Lara las competencias que al Alcalde le corresponden en materia de Educación, Infancia y Adolescencia y Memoria Histórica. 6. Se delegan en el Concejal D. Rafael Gómez, las competencias que al Alcalde le corresponden en materia de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, Movilidad y Deportes.",
       "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-065",
@@ -547,7 +553,8 @@
       "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
       "retrievedAt": "2026-07-30T21:47:48.515Z",
       "excerpt": "Concejala EVA LARA CATALÁ 65.000,00 1.027,00 66.027,00 61.085,76 Concejal RAFAEL GOMEZ SANCHEZ 37.500,00 3.800,00 41.300,00 4.400,00 Concejala MARIA ESTHER GOMEZ LAREDO 56.346,91 108.114,74 164.461,65 4.681,53",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": true
     },
     {
       "id": "src-068",
@@ -557,7 +564,8 @@
       "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
       "retrievedAt": "2026-07-30T21:47:48.515Z",
       "excerpt": "EVA LARA CATALÁ Profesora IES el Quint 00/09/2008 RAFAEL GOMEZ SANCHEZ Concejal Ayuntamiento Riba-roja de Túria 15/06/2019",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": true
     },
     {
       "id": "src-080",
@@ -567,7 +575,8 @@
       "publisher": "Boletín Oficial de la Provincia de València",
       "retrievedAt": "2026-07-31T08:05:04.220Z",
       "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": true
     },
     {
       "id": "src-090",
@@ -577,7 +586,8 @@
       "publisher": "Boletín Oficial de la Provincia de València",
       "retrievedAt": "2026-07-31T08:26:19.506Z",
       "excerpt": "CIRCUNSCRIPCIÓN ELECTORAL RIBA-ROJA DE TÚRIA CANDIDATURA NÚM. 1: PARTIDO SOCIALISTA OBRERO ESPAÑOL (P.S.O.E.) TITULARES 1. ROBERTO PASCUAL RAGA GADEA 2. MARIA TERESA POZUELO MARTIN 3. JOSE LUIS RAMOS MARCH 4. ZAFIRA PEREZ PACHECO 5. JOSE ANGEL HERNANDEZ CARRIZOSA 6. MARIA DOLORES VERDEGUER ROYO 7. JOSE LUIS LOPEZ GALDON 8. ANA CRISTINA FOLGADO MORALES 9. RAFAEL GOMEZ SANCHEZ 10. MARIA ESTHER GOMEZ LAREDO",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-091",
@@ -587,7 +597,8 @@
       "publisher": "Boletín Oficial de la Provincia de València",
       "retrievedAt": "2026-07-31T08:26:19.506Z",
       "excerpt": "CIRCUNSCRIPCIÓN ELECTORAL: RIbA-ROJA DE TúRIA Candidatura núm.: 1. PARTIDO SOCIALISTA OBRERO ESPAÑOL (P.S.O.E.) 1. Don ROBERTO RAGA GADEA 2. Doña MARIA TERESA POZUELO MARTI (Independiente) 3. Don JOSE LUIS LOPEZ GALDON 4. Doña MARIA DOLORES VERDEGUER ROYO 5. Don JOSE ANGEL HERNANDEZ CARRIZOSA 6. Doña BEATRIZ QUEVEDO SANCHEZ (Independiente) 7. Don RAFAEL GOMEZ SANCHEZ",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-094",
@@ -597,7 +608,8 @@
       "publisher": "Ayuntamiento de Riba-roja de Túria",
       "retrievedAt": "2026-07-31T08:26:19.506Z",
       "excerpt": "Primer Teniente de Alcalde: Teresa Pozuelo Martín. Segundo Teniente de Alcalde: José Angel Hernández Carrizosa. Tercer Teniente de Alcalde: José Luis López Galdón. Cuarto Teniente de Alcalde: Rafael Gómez Sánchez.",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     }
   ],
   "warnings": [

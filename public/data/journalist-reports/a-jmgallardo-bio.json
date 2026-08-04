@@ -340,7 +340,8 @@
       "title": "CV publicado en el portal municipal — presentación (nacimiento en Riba-roja) (autodeclarado)",
       "retrievedAt": "2026-07-31T19:13:04.359Z",
       "excerpt": "PRESENTACIÓN 2 FEBRERO 1993 RIBA-ROJA DE TÚRIA jmgallardo@ribarroja.es",
-      "trust": "medium"
+      "trust": "medium",
+      "selfDeclared": true
     },
     {
       "id": "src-061",
@@ -349,7 +350,8 @@
       "title": "CV publicado en el portal municipal — formación (trabajo social) (autodeclarado)",
       "retrievedAt": "2026-07-31T19:13:04.360Z",
       "excerpt": "MÁSTER UNIVERSITARIO EN PROFESOR/A DE SECUNDARIA I FORMACIÓN PROFESIONAL • UNIVERSIDAD DE VALÈNCIA • 2020 – 2021 MÁSTER UNIVERSITARIO EN BIENESTAR SOCIAL: INTERVENCIÓN FAMILIAR • UNIVERSIDAD DE VALÈNCIA • 2018 – 2019 GRADO EN TRABAJO SOCIAL CON MENCIÓN EN SALUD • UNIVERSIDAD DE VALÈNCIA • 2013 – 2017 TÉCNICO/A SUPERIOR EN INTEGRACIÓN SOCIAL • CIPFP MISERICORDIA • 2011 – 2013",
-      "trust": "medium"
+      "trust": "medium",
+      "selfDeclared": true
     },
     {
       "id": "src-062",
@@ -358,7 +360,8 @@
       "title": "CV publicado en el portal municipal — experiencia: trabajador social en FESORD (2022) y APRODIS (2019) (autodeclarado)",
       "retrievedAt": "2026-07-31T19:13:04.360Z",
       "excerpt": "TRABAJADOR SOCIAL • 2022 - ACTUALIDAD• FUNDACIÓN FESORD Intervención social desde el departamento de Atención a Personas Sordas en referencia a recursos sociales, recursos económicos y servicios públicos. TRABAJADOR SOCIAL • 2019 - ACTUALIDAD• ASOCIACIÓN APRODIS Intervención familiar en referencia a dependencia y diversidad funcional.",
-      "trust": "medium"
+      "trust": "medium",
+      "selfDeclared": true
     },
     {
       "id": "src-063",
@@ -367,7 +370,8 @@
       "title": "CV publicado en el portal municipal — experiencia previa: integrador social (Patronato Fco Esteve) y coordinación del plan de ocio y diversidad funcional (autodeclarado)",
       "retrievedAt": "2026-07-31T19:13:04.360Z",
       "excerpt": "INTEGRADOR SOCIAL • 2017-2018 • PATRONATO INTERMUNICIPAL FCO ESTEVE Responsable del programa de Apoyo a la Vida Independiente. COORDINADOR DEL PLAN DE OCIO Y FORMACIÓN PARA PERSONAS CON DIVERSIDAD FUNCIONAL DE RIBA-ROJA DE TÚRIA • 2016 • ASOCIACIÓN ORILLA-ACTÚA",
-      "trust": "medium"
+      "trust": "medium",
+      "selfDeclared": true
     },
     {
       "id": "src-064",
@@ -378,7 +382,8 @@
       "excerpt": "Soraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno\nJuan Boix Martínez\nPaula Navarro Sanfeliu\nJose Luis Fernández Santamaria\nJose Manuel Gallardo Martínez",
       "trust": "high",
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:11.361Z"
+      "relocatedAt": "2026-08-03T13:48:11.361Z",
+      "selfDeclared": false
     },
     {
       "id": "src-065",
@@ -389,7 +394,8 @@
       "excerpt": "por el siguiente orden:\n- Rafael Folgado Navarro\n- Jose Manuel Gallardo Martínez\n- Jose Luis Fernández Santamaria\n- Paula Navarro Sanfeliu\n- Juan Boix Martínez\n- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina",
       "trust": "high",
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:11.361Z"
+      "relocatedAt": "2026-08-03T13:48:11.361Z",
+      "selfDeclared": false
     },
     {
       "id": "src-066",
@@ -400,7 +406,8 @@
       "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Esquerra Unida- Podem:\nUnides, es:\n1. Don José Manuel Gallardo Martínez\nSiendo su Portavoz: Don José Manuel Gallardo Martínez",
       "trust": "high",
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:12.556Z"
+      "relocatedAt": "2026-08-03T13:48:12.556Z",
+      "selfDeclared": false
     },
     {
       "id": "src-067",
@@ -411,7 +418,8 @@
       "excerpt": "Votos a favor de D. Alberto Jose Gimeno Calvo\nVotos a favor de __7\nVotos a favor de D. Jose Luis Fernández Santamaria.\nVotos a favor de __1\nVotos a favor de D. Jose Manuel Gallardo Martínez\nVotos a favor de __0",
       "trust": "high",
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:11.361Z"
+      "relocatedAt": "2026-08-03T13:48:11.361Z",
+      "selfDeclared": false
     },
     {
       "id": "src-068",
@@ -422,7 +430,8 @@
       "excerpt": "Grupo Municipal Esquerra Unida- Podem: Unides\nTitular: D. José Manuel Gallardo Martínez",
       "trust": "high",
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:12.556Z"
+      "relocatedAt": "2026-08-03T13:48:12.556Z",
+      "selfDeclared": false
     },
     {
       "id": "src-069",
@@ -433,7 +442,8 @@
       "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
       "trust": "high",
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:12.556Z"
+      "relocatedAt": "2026-08-03T13:48:12.556Z",
+      "selfDeclared": false
     },
     {
       "id": "src-070",
@@ -442,7 +452,8 @@
       "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN)",
       "retrievedAt": "2026-07-31T19:13:04.360Z",
       "excerpt": "JOSE MANUEL GALLARDO MARTÍNEZ 0,00 5.505,72 5.505,72 0,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": true
     },
     {
       "id": "src-071",
@@ -451,7 +462,8 @@
       "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
       "retrievedAt": "2026-07-31T19:13:04.360Z",
       "excerpt": "JOSE MANUEL GALLARDO MARTÍNEZ | Trabajador Social · Asociación APRODIS · 01/09/2019 · y Fundación FESORD CV · 01/09/2022 — [tabla de actividades por columnas: cargo · entidad · fecha de inicio]",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": true
     },
     {
       "id": "src-072",
@@ -460,7 +472,8 @@
       "title": "BOP de València n.º 82, 30-04-2019 — candidatura de EUPV-ERPV por Riba-roja (Gallardo, puesto 2, tras el cabeza Rafael Gómez Muñoz)",
       "retrievedAt": "2026-07-31T19:13:04.360Z",
       "excerpt": "CANDIDATURA NÚM. 3:\nL’ESQUERRA DE RIBA-ROJA - ESQUERRA UNIDA - ESQUERRA \nREPUBLICANA : SEGUIM ENDAVANT (EUPV-ERPV:SE)\nTITULARES\n1. RAFAEL GÓMEZ MUÑOZ\n2. JOSÉ MANUEL GALLARDO MARTÍNEZ",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-073",
@@ -469,7 +482,8 @@
       "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
       "retrievedAt": "2026-07-31T19:13:04.360Z",
       "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN).",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-074",

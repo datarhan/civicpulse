@@ -133,6 +133,7 @@
     "repoint-source-url": "npx tsx scripts/repoint-source-url.ts",
     "journalist-reply": "npx tsx scripts/apply-journalist-response.ts",
     "journalist:export-soul": "npx tsx scripts/journalist-export-soul.ts",
+    "backfill:self-declared": "npx tsx scripts/backfill-self-declared.ts",
     "searxng:up": "docker compose -f scripts/searxng/docker-compose.yml up -d",
     "searxng:down": "docker compose -f scripts/searxng/docker-compose.yml down",
     "scrape:all": "bash scripts/scrape-all.sh",

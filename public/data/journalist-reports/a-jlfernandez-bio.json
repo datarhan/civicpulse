@@ -344,7 +344,8 @@
       "title": "CV publicado en el portal municipal — presentación (nacimiento) (autodeclarado)",
       "retrievedAt": "2026-07-31T19:00:08.952Z",
       "excerpt": "PRESENTACIÓN 2 SEPTIEMBRE 1964 MADRID jlsantamaria08@gmail.com",
-      "trust": "medium"
+      "trust": "medium",
+      "selfDeclared": true
     },
     {
       "id": "src-061",
@@ -353,7 +354,8 @@
       "title": "CV publicado en el portal municipal — formación (economía y banca) (autodeclarado)",
       "retrievedAt": "2026-07-31T19:00:08.953Z",
       "excerpt": "MÁSTER EN GESTION Y DIRECCION BANCARIA, por la Universidad Autónoma de Madrid, año 2006 DIPLOMADO EN URBANISMO, por Asprima, año 2005 MÁSTER EGEI, por la Universidad Politécnica de Valencia, graduado en el año 1.992. GRADUADO EN COMERCIO EXTERIOR, por la Universidad Politécnica de Madrid, año 1992. TITULADO AGENTE Y CORREDOR DE SEGUROS, por la Dirección General de Seguros, año 1991. LICENCIADO EN CIENCIAS ECONÓMICAS Y EMPRESARIALES, por la Universidad de Valencia, año 1989.",
-      "trust": "medium"
+      "trust": "medium",
+      "selfDeclared": true
     },
     {
       "id": "src-062",
@@ -362,7 +364,8 @@
       "title": "CV publicado en el portal municipal — cargo en VOX provincial, consultoría APROA (desde 2022) y Caixabank (autodeclarado)",
       "retrievedAt": "2026-07-31T19:00:08.953Z",
       "excerpt": "Responsable de la Vicesecretaría nacional de movilización social de VOX en la provincia de Valencia Actualmente y desde enero de 2022 Consultor financiero externo en el despacho profesional APROA CONSULTORIA Y GESTION de Valencia https://grupoaproa.es/equipo/ Desde marzo de 2021 GERENTE DE NEGOCIO INMOBILIARIO de la Comunidad Valenciana en CAIXABANK hasta 31 de diciembre de 2021",
-      "trust": "medium"
+      "trust": "medium",
+      "selfDeclared": true
     },
     {
       "id": "src-063",
@@ -371,7 +374,8 @@
       "title": "CV publicado en el portal municipal — etapa en Bankia (2016-2021) (autodeclarado)",
       "retrievedAt": "2026-07-31T19:00:08.953Z",
       "excerpt": "Desde 2018 GERENTE DE LA DIRECCION DE FINANCIACION INMOBILIARIA de Bankia para Comunidad Valenciana Desde 2016 hasta 2018 GERENTE SEGMENTO EMPRESARIAL en Zona Centro Valencia en Bankia",
-      "trust": "medium"
+      "trust": "medium",
+      "selfDeclared": true
     },
     {
       "id": "src-064",
@@ -382,7 +386,8 @@
       "excerpt": "Alberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno\nJuan Boix Martínez\nPaula Navarro Sanfeliu\nJose Luis Fernández Santamaria",
       "trust": "high",
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:11.361Z"
+      "relocatedAt": "2026-08-03T13:48:11.361Z",
+      "selfDeclared": false
     },
     {
       "id": "src-065",
@@ -393,7 +398,8 @@
       "excerpt": "- Rafael Folgado Navarro\n- Jose Manuel Gallardo Martínez\n- Jose Luis Fernández Santamaria\n- Paula Navarro Sanfeliu\n- Juan Boix Martínez\n- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo",
       "trust": "high",
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:11.361Z"
+      "relocatedAt": "2026-08-03T13:48:11.361Z",
+      "selfDeclared": false
     },
     {
       "id": "src-066",
@@ -404,7 +410,8 @@
       "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:\n1. Don José Luis Fernández Santamaría\nSiendo su Portavoz: Don José Luis Fernández Santamaría",
       "trust": "high",
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:12.556Z"
+      "relocatedAt": "2026-08-03T13:48:12.556Z",
+      "selfDeclared": false
     },
     {
       "id": "src-067",
@@ -415,7 +422,8 @@
       "excerpt": "Votos a favor de D. Alberto Jose Gimeno Calvo\nVotos a favor de __7\nVotos a favor de D. Jose Luis Fernández Santamaria.\nVotos a favor de __1\nVotos a favor de D. Jose Manuel Gallardo Martínez\nVotos a favor de __0",
       "trust": "high",
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:11.361Z"
+      "relocatedAt": "2026-08-03T13:48:11.361Z",
+      "selfDeclared": false
     },
     {
       "id": "src-068",
@@ -426,7 +434,8 @@
       "excerpt": "Grupo Municipal Vox Riba roja de Túria\nTitular: D. José Luis Fernández Santamaría.",
       "trust": "high",
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:12.556Z"
+      "relocatedAt": "2026-08-03T13:48:12.556Z",
+      "selfDeclared": false
     },
     {
       "id": "src-069",
@@ -437,7 +446,8 @@
       "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
       "trust": "high",
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:12.556Z"
+      "relocatedAt": "2026-08-03T13:48:12.556Z",
+      "selfDeclared": false
     },
     {
       "id": "src-070",
@@ -446,7 +456,8 @@
       "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN)",
       "retrievedAt": "2026-07-31T19:00:08.953Z",
       "excerpt": "JOSE LUIS FERNÁNDEZ SANTAMARIA 370.000,00 237.435,00 607.435,00 19.237,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": true
     },
     {
       "id": "src-071",
@@ -455,7 +466,8 @@
       "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
       "retrievedAt": "2026-07-31T19:00:08.953Z",
       "excerpt": "JOSE LUIS FERNÁNDEZ SANTAMARIA | Apoderado · Entidades de crédito · 00/12/1990 → 00/12/2021 — [tabla de actividades por columnas: cargo · entidad · inicio · cese; el «00» del día es un marcador del formulario]",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": true
     },
     {
       "id": "src-072",
@@ -464,7 +476,8 @@
       "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
       "retrievedAt": "2026-07-31T19:00:08.953Z",
       "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN).",
-      "trust": "high"
+      "trust": "high",
+      "selfDeclared": false
     },
     {
       "id": "src-073",
