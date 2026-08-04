@@ -4,9 +4,29 @@ import { usePlenoAgendas } from '../../../hooks/usePlenoAgendas'
 import { useBudget, formatEuros as formatBudgetEuros } from '../../../hooks/useBudget'
 import { useTenders } from '../../../hooks/useTenders'
 import { useBdns } from '../../../hooks/useBdns'
+import { isCommittedContract } from '../../../lib/contract-status'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../../../scraper/departments'
 import { PALETTE, MONO } from '../tokens'
 import { useT } from '../../../i18n'
+
+/**
+ * Visible period for an accumulated figure — «2017–2026», or a single year
+ * when the rows share one.
+ *
+ * Derived from the rows actually counted, never typed: a literal span goes
+ * false on its own the next time the scraper runs. Same reason
+ * `department-stats.js` computes `contratacionYears` instead of hardcoding it.
+ */
+function yearSpan(dates) {
+  const ys = dates
+    .map((d) => String(d ?? '').slice(0, 4))
+    .filter((y) => /^\d{4}$/.test(y))
+    .sort()
+  if (ys.length === 0) return null
+  const first = ys[0]
+  const last = ys[ys.length - 1]
+  return first === last ? first : `${first}–${last}`
+}
 
 export function AlcaldeBox() {
   const t = useT()
@@ -29,6 +49,19 @@ export function AlcaldeBox() {
   const tendersAwarded = tendersData?.stats?.awardedContracts
   const tendersEuros = tendersData?.stats?.awardedTotalEuros
   const bdnsGranted = bdnsData?.stats?.granted
+
+  // Both accumulations below sit under a "Gobierno municipal · <año>" heading
+  // beside a one-year budget, so each has to carry its own period in the
+  // VISIBLE string. The span is measured over exactly the rows behind each
+  // figure — committed contracts for the contract count, granted subsidies for
+  // the subsidy count — so the period can never describe a different set than
+  // the number it labels.
+  const tendersYears = yearSpan(
+    (tendersData?.contracts ?? []).filter(isCommittedContract).map((c) => c.awardDate),
+  )
+  const bdnsYears = yearSpan(
+    (bdnsData?.items ?? []).filter((g) => g.direction === 'granted').map((g) => g.date),
+  )
 
   // Canonicalise mayor's portfolios to dept slugs (dedup). The mayor owns
   // several concejalías; surface all of them as chips so the reader can
@@ -226,17 +259,23 @@ export function AlcaldeBox() {
                 href="/presupuesto"
                 style={{ color: PALETTE.ink80, textDecoration: 'none' }}
                 // NOT "durante el mandato": the figure is every award in the
-                // registry, 2017-2026. It also sits beside an ANNUAL budget
-                // under a "Gobierno municipal · 2025" heading, so without the
-                // period a reader concludes the town awards more than it
-                // budgets. Flagged by the reader-review agent after a human
-                // had already fixed the same confusion in the KPI strip and
-                // missed this copy of it.
-                title="Contratos adjudicados registrados (acumulado 2017-2026, no solo este mandato)"
+                // registry. It also sits beside an ANNUAL budget under a
+                // "Gobierno municipal · <año>" heading, so without the period a
+                // reader concludes the town awards more than it budgets.
+                //
+                // The period lives in the visible string, NOT in this title.
+                // The first fix for this shipped the years into a `title`
+                // tooltip, which no touch device shows, no scanning reader
+                // sees, and no `innerText` carries — so the surface reviewer
+                // structurally could not observe it and re-flagged the page
+                // every run. A fix applied where it cannot be read is the
+                // front-end twin of a test that is green while measuring
+                // nothing.
+                title="Contratos adjudicados registrados en el portal de contratación, no solo los de este mandato"
               >
                 <span style={{ fontWeight: 700 }}>{tendersAwarded}</span>{' '}
                 <span style={{ color: PALETTE.ink50 }}>
-                  contratos acum.
+                  contratos{tendersYears ? ` ${tendersYears}` : ''}
                   {tendersEuros ? ` · ${formatBudgetEuros(tendersEuros)}` : ''}
                 </span>
               </a>
@@ -248,7 +287,9 @@ export function AlcaldeBox() {
                 title="Subvenciones concedidas por el Ayuntamiento (registro BDNS)"
               >
                 <span style={{ fontWeight: 700 }}>{bdnsGranted}</span>{' '}
-                <span style={{ color: PALETTE.ink50 }}>subvenciones</span>
+                <span style={{ color: PALETTE.ink50 }}>
+                  subvenciones{bdnsYears ? ` ${bdnsYears}` : ''}
+                </span>
               </a>
             )}
           </div>
