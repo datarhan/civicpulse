@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T14:37:54.545Z",
+  "generatedAt": "2026-08-04T16:23:46.032Z",
   "mandate": "2023-2027",
   "note": "Qué formación y trayectoria declara públicamente quien dirige cada área. No es una calificación: la ley no exige titulación alguna para ser concejal (a diferencia de la secretaría, la intervención y la tesorería municipales, que exigen oposición estatal). «No consta» significa que la fuente publicada no lo recoge, no que la persona carezca de ello.",
   "method": "Un modelo compara, área por área, lo que el CV publicado declara con la materia del área, citando por índice sobre esa misma lista; un curador revisa y firma cada fila antes de publicarse. Nada se publica automáticamente.",
@@ -1085,6 +1085,41 @@
         "reason": "Los puestos de ayudante de jefe de obra y de arquitecta técnica y jefa de obra corresponden a trabajos de construcción y dirección de obra, materia propia de la gestión de vivienda.",
         "respaldo": "autodeclarada"
       },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-04"
+    }
+  ],
+  "avisos": [
+    {
+      "officialSlug": "jose-luis-ramos-march",
+      "reportId": "r-jose-luis-ramos-bio-2026-07-31",
+      "avisoIndex": 1,
+      "eje": "area",
+      "direccion": "matiza",
+      "verbatim": "Las áreas delegadas han variado durante el mandato: el decreto de julio de 2023 incluía Comercio; el registro municipal vigente recoge en su lugar Actividades y Edificios públicos. Se publican ambas con su fuente.",
+      "decoratesChip": false,
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-04"
+    },
+    {
+      "officialSlug": "maria-esther-gomez-laredo",
+      "reportId": "r-esther-gomez-bio-2026-07-31",
+      "avisoIndex": 1,
+      "eje": "area",
+      "direccion": "matiza",
+      "verbatim": "Las delegaciones han variado durante el mandato: el decreto de 07-2023 recogía Participación, Atención a la ciudadanía y Turismo; el registro vigente añade Promoción de la Salud e Infraestructuras sanitarias.",
+      "decoratesChip": false,
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-04"
+    },
+    {
+      "officialSlug": "raquel-pamblanco-paredes",
+      "reportId": "r-raquel-pamblanco-bio-2026-07-31",
+      "avisoIndex": 1,
+      "eje": "area",
+      "direccion": "matiza",
+      "verbatim": "Las delegaciones han variado durante el mandato: el decreto de 07-2023 recogía Seguridad, Igualdad, Comunicación y Bienestar Animal; el registro vigente añade Protocolo.",
+      "decoratesChip": false,
       "curatedBy": "Sergei Lutchenko",
       "curatedAt": "2026-08-04"
     }
