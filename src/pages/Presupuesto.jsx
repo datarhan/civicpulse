@@ -201,7 +201,13 @@ function RealBudgetHeader() {
         </div>
       </div>
 
+      {/* Cuatro columnas fijas. En 375px eso son pistas de ~70px que ninguna
+          cifra en DM Mono puede ocupar, y como `1fr` no baja del contenido
+          mínimo, la tira empujaba el documento hasta 581px. El colapso a 2×2
+          vive en index.css: un estilo inline no puede llevar media queries y
+          además gana a la clase, de ahí el `!important` de allí. */}
       <div
+        className="cp-kpi-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(4, 1fr)',
@@ -338,7 +344,12 @@ function BudgetCharts() {
   const s = data.snapshot
   return (
     <>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+      {/* Misma historia que la tira de KPIs: dos columnas fijas que en móvil
+          no caben. Colapsa a una en index.css. */}
+      <div
+        className="cp-charts-grid"
+        style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}
+      >
         <Card>
           <SectionHead
             eyebrow={`Gastos ${s.year} · clasificación económica`}

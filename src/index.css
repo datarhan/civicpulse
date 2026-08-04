@@ -616,6 +616,28 @@ body.cp-kiosk .cp-live-container {
   }
 }
 
+/* /presupuesto — la cabecera declara inline `repeat(4, 1fr)` para los cuatro
+   KPIs y `1fr 1fr` para las dos gráficas de gasto. En 375px eso pedía cuatro
+   pistas de ~70px, y como `1fr` es `minmax(auto, 1fr)` ninguna pista baja del
+   contenido mínimo de su tarjeta: el documento se estiraba hasta 581px sobre
+   un viewport de 375 y la página se desplazaba en horizontal en un teléfono.
+   `minmax(0, 1fr)` + `min-width: 0` es lo que de verdad permite encoger; sin
+   ambos, dos columnas volverían a desbordar en cuanto una cifra creciese.
+   El `!important` no es decorativo: un estilo inline gana a una clase, y una
+   media query no cabe en el prop `style`. */
+@media (max-width: 720px) {
+  .cp-kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .cp-charts-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .cp-kpi-grid > *,
+  .cp-charts-grid > * {
+    min-width: 0;
+  }
+}
+
 /* ---- Skip link · WCAG 2.4.1 Bypass Blocks (Level A) --------------------
    Off-screen until focused, then pinned top-left. It cannot be display:none
    or visibility:hidden — that removes it from the tab order, which is the one
