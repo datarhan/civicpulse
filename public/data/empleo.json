@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-08-04T07:21:34.341Z",
+  "generatedAt": "2026-08-05T07:28:02.770Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 52,
-    "openTotal": 52,
-    "inRibaRoja": 36,
+    "total": 53,
+    "openTotal": 53,
+    "inRibaRoja": 38,
     "closingSoon": 7,
-    "withDetail": 52,
+    "withDetail": 53,
     "byMonth": {
-      "2026-08": 2,
-      "2026-07": 26,
-      "2026-06": 15,
+      "2026-08": 5,
+      "2026-07": 25,
+      "2026-06": 14,
       "2026-05": 3,
       "2026-04": 3,
       "2026-02": 2,
@@ -23,10 +23,267 @@
   },
   "items": [
     {
+      "id": "2510",
+      "fo": 2510,
+      "codigo": "2026/00209",
+      "titulo": "Peón almacén",
+      "publishedAt": "2026-08-04",
+      "deadline": "2026-10-04",
+      "location": "POLIGONO INDUSTRIAL MAS DE BALO SECTOR 12 Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2510",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00209"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Peón almacén"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Empresa estable, en crecimiento y con un ambiente de trabajo cercano, donde valoramos la actitud, las ganas y el compromiso por encima de todo. Requisitos : Uso de algún tipo de maquinaria Disponer de medio de transporte para desplazamiento hasta el centro de trabajo Disponibilidad horaria completa para trabajar algún mes de lunes a viernes en turnos rotativos (7:30 a 18:00 y 13:00 a 22:00)"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "INDUSTRIA MANUFACTURERA"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "POLIGONO INDUSTRIAL MAS DE BALO SECTOR 12, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Parcial Turnos: Turno partido"
+          },
+          {
+            "label": "Horario",
+            "value": "7:30 - 13:00 y de 15:00 - 18:00"
+          },
+          {
+            "label": "Salario",
+            "value": "+18.000"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Estar en línea de producción haciendo \"picking\" y separando metales. - Manejo y control de las máquinas con las que se trabaja habitualmente - Mantenimiento básico y orden del puesto de trabajo - Apoyar en las tareas generales del almacén. - Apoyo en tareas generales del proceso productivo"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "numPuestos": "2",
+        "categoria": "PEONES",
+        "observaciones": "Empresa estable, en crecimiento y con un ambiente de trabajo cercano, donde valoramos la actitud, las ganas y el compromiso por encima de todo. Requisitos : Uso de algún tipo de maquinaria Disponer de medio de transporte para desplazamiento hasta el centro de trabajo Disponibilidad horaria completa para trabajar algún mes de lunes a viernes en turnos rotativos (7:30 a 18:00 y 13:00 a 22:00)",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46394",
+        "jornada": "Parcial Turnos: Turno partido",
+        "horario": "7:30 - 13:00 y de 15:00 - 18:00",
+        "salario": "+18.000",
+        "funciones": "- Estar en línea de producción haciendo \"picking\" y separando metales. - Manejo y control de las máquinas con las que se trabaja habitualmente - Mantenimiento básico y orden del puesto de trabajo - Apoyar en las tareas generales del almacén. - Apoyo en tareas generales del proceso productivo",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2509",
+      "fo": 2509,
+      "codigo": "2026/00208",
+      "titulo": "Personal de limpieza sustitución agosto",
+      "publishedAt": "2026-08-04",
+      "deadline": "2026-10-04",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2509",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00208"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Personal de limpieza sustitución agosto"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Requisitos : Preferible experiencia previa Vehículo propio"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Sustitución por vacaciones"
+          },
+          {
+            "label": "Horario",
+            "value": "29 horas semanales 39 horas semanales"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Tareas de limpieza"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "2",
+        "observaciones": "Requisitos : Preferible experiencia previa Vehículo propio",
+        "jornada": "Completa",
+        "horario": "29 horas semanales 39 horas semanales",
+        "salario": "Según convenio",
+        "funciones": "Tareas de limpieza",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2507",
+      "fo": 2507,
+      "codigo": "2026/00207",
+      "titulo": "Operario/a de lavadero de cisternas",
+      "publishedAt": "2026-08-04",
+      "deadline": "2026-10-04",
+      "location": "POLÍGONO INDUSTRIAL RIBA-ROJA Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2507",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00207"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a de lavadero de cisternas"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se ofrece estabilidad laboral y formación continua en seguridad química y medioambiental. Requisitos : No es necesario experiencia previa Conocimientos básicos para interpretación de fichas de seguridad (FDS) y compatibilidades químicas Experiencia deseable en puestos similares (lavaderos industriales, plantas químicas o gestión de residuos) Residencia en la zona Riba-roja (Valencia) Valorable positivamente: Carnet de carretillero, formación en seguridad químicas y conocimientos en el funcionamiento de calderas industriales INCORPORACIÓN INMEDIATA"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "OTROS SERVICIOS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "POLÍGONO INDUSTRIAL RIBA-ROJA, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno mañana, Turno tarde, Turno rotativo"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Turnos de mañana y tarde rotativos"
+          },
+          {
+            "label": "Horario",
+            "value": "06:00 A 14:00 - 12:00 a 20:00h"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Realizar la limpieza interior y exterior de cisternas químicas, contenedores y unidades de transporte, siguiendo los procedimientos técnicos establecidos - Ejecutar procesos de vaporizado y secado de unidades - Inspección de cisternas y contenedores post-lavado: verificación de estanqueidad, revisión de válvulas, juntas y puntos críticos para evitar contaminación cruzada - Gestión y etiquetado de residuos derivados de la limpieza, cumpliendo con la normativa medioambiental - Cumplimiento de protocolos de seguridad y calidad, especialmente en trabajos en altura y espacios confinados."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "2",
+        "categoria": "PEONES",
+        "observaciones": "Se ofrece estabilidad laboral y formación continua en seguridad química y medioambiental. Requisitos : No es necesario experiencia previa Conocimientos básicos para interpretación de fichas de seguridad (FDS) y compatibilidades químicas Experiencia deseable en puestos similares (lavaderos industriales, plantas químicas o gestión de residuos) Residencia en la zona Riba-roja (Valencia) Valorable positivamente: Carnet de carretillero, formación en seguridad químicas y conocimientos en el funcionamiento de calderas industriales INCORPORACIÓN INMEDIATA",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno rotativo",
+        "horario": "06:00 A 14:00 - 12:00 a 20:00h",
+        "salario": "Según convenio",
+        "funciones": "- Realizar la limpieza interior y exterior de cisternas químicas, contenedores y unidades de transporte, siguiendo los procedimientos técnicos establecidos - Ejecutar procesos de vaporizado y secado de unidades - Inspección de cisternas y contenedores post-lavado: verificación de estanqueidad, revisión de válvulas, juntas y puntos críticos para evitar contaminación cruzada - Gestión y etiquetado de residuos derivados de la limpieza, cumpliendo con la normativa medioambiental - Cumplimiento de protocolos de seguridad y calidad, especialmente en trabajos en altura y espacios confinados.",
+        "vehiculo": "Sí",
+        "ocupaciones": [
+          {
+            "nombre": "Oficiales, operarios y artesanos de otros oficios no clasificados bajo otros epígrafes",
+            "experiencia": "6 Meses"
+          }
+        ]
+      }
+    },
+    {
       "id": "2508",
       "fo": 2508,
       "codigo": "2026/00206",
-      "titulo": "peon albañil",
+      "titulo": "Peon albañil",
       "publishedAt": "2026-08-03",
       "deadline": "2026-10-03",
       "location": "Riba-roja de Túria",
@@ -42,7 +299,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "peon albañil"
+            "value": "Peon albañil"
           },
           {
             "label": "Sector CNAE",
@@ -1438,93 +1695,6 @@
       }
     },
     {
-      "id": "2490",
-      "fo": 2490,
-      "codigo": "2026/00190",
-      "titulo": "Auxiliar administrativo/a",
-      "publishedAt": "2026-07-15",
-      "deadline": "2026-09-15",
-      "location": "Poligono Industrial Poyo de Reva Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2490",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00190"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Auxiliar administrativo/a"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "OTROS SERVICIOS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "temporal + indefinido"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "AUXILIARES ADMINISTRATIVOS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Poligono Industrial Poyo de Reva, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "- 2 semanas 8 a 17 h - 1 semana 9 a 18:30 h - 1 sábado cada 3 de 8 a 13:30 h"
-          },
-          {
-            "label": "Salario",
-            "value": "17.500 €"
-          },
-          {
-            "label": "Funciones",
-            "value": "Tareas de apoyo en general a administración pero su tarea principal será administrativo de prevención ( se formará a la persona si no tiene experiencia) Necesitamos que tenga mucha actitud."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION",
-        "duracion": "temporal + indefinido",
-        "numPuestos": "1",
-        "categoria": "AUXILIARES ADMINISTRATIVOS",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46394",
-        "jornada": "Completa Turnos: Turno partido",
-        "horario": "- 2 semanas 8 a 17 h - 1 semana 9 a 18:30 h - 1 sábado cada 3 de 8 a 13:30 h",
-        "salario": "17.500 €",
-        "funciones": "Tareas de apoyo en general a administración pero su tarea principal será administrativo de prevención ( se formará a la persona si no tiene experiencia) Necesitamos que tenga mucha actitud.",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "Asistentes de dirección y administrativos",
-            "experiencia": "1 Años, 5 Meses"
-          }
-        ]
-      }
-    },
-    {
       "id": "2491",
       "fo": 2491,
       "codigo": "2026/00189",
@@ -1713,7 +1883,7 @@
           },
           {
             "label": "Observaciones",
-            "value": "Ubicación: Loriguilla (Valencia) Incorporación: Septiembre Jornada: Completa En Kalpae Ibérica seguimos creciendo Buscamos incorporar un/a Auxiliar Administrativo/a para nuestra oficina de Loriguilla, con capacidad de organización, atención al detalle y experiencia en tareas administrativas relacionadas con el sector de la construcción, movimiento de tierras o maquinaria. Funciones principales Control diario de partes de trabajo del personal. Revisión y gestión de albaranes de maquinaria y transporte. Preparación y seguimiento de certificaciones mensuales. Gestión documental de clientes y proveedores. Administración de plataformas documentales como Nalanda, Quioo, ProAPP, Achilles y otras similares. Archivo y control de documentación administrativa. Apoyo al departamento de administración en las tareas propias del puesto. Coordinación documental con los diferentes departamentos de la empresa. Requisitos Formación en Administración, Gestión Administrativa o similar. Se valorará experiencia previa en empresas de construcción, obra civil, maquinaria o sectores afines. Experiencia en el manejo de plataformas documentales empresariales. Dominio de Microsoft Office, especialmente Excel. Persona organizada, resolutiva, metódica y con capacidad para gestionar varias tareas simultáneamente. Vehículo propio para desplazarse al centro de trabajo. Se ofrece Incorporación estable a una empresa en pleno crecimiento. Incorporación durante el mes de septiembre. Buen ambiente de trabajo y posibilidad de desarrollo profesional. Formación inicial para facilitar la adaptación al puesto. Horario Lunes a jueves: de 09:00 a 14:00 h y de 15:00 a 18:30 h. Viernes: de 08:00 a 14:00 h. Si te interesa formar parte de un equipo dinámico y desarrollar tu carrera en una empresa referente en el sector del movimiento de tierras, la maquinaria y la gestión de residuos, esperamos recibir tu candidatura."
+            "value": "Buscamos incorporar un/a Auxiliar Administrativo/a para nuestra oficina de Loriguilla, con capacidad de organización, atención al detalle y experiencia en tareas administrativas relacionadas con el sector de la construcción, movimiento de tierras o maquinaria. Requisitos : Formación en Administración, Gestión Administrativa o similar. Se valorará experiencia previa en empresas de construcción, obra civil, maquinaria o sectores afines. Experiencia en el manejo de plataformas documentales empresariales. Dominio de Microsoft Office, especialmente Excel. Persona organizada, resolutiva, metódica y con capacidad para gestionar varias tareas simultáneamente. Vehículo propio para desplazarse al centro de trabajo. INCORPORACIÓN DURANTE EL MES DE SEPTIEMBRE"
           },
           {
             "label": "Sector CNAE",
@@ -1753,7 +1923,7 @@
           },
           {
             "label": "Funciones",
-            "value": "Funciones principales Control diario de partes de trabajo del personal. Revisión y gestión de albaranes de maquinaria y transporte. Preparación y seguimiento de certificaciones mensuales. Gestión documental de clientes y proveedores. Administración de plataformas documentales como Nalanda, Quioo, ProAPP, Achilles y otras similares. Archivo y control de documentación administrativa. Apoyo al departamento de administración en las tareas propias del puesto. Coordinación documental con los diferentes departamentos de la empresa."
+            "value": "- Control diario de partes de trabajo del personal. - Revisión y gestión de albaranes de maquinaria y transporte. Preparación y seguimiento de certificaciones mensuales. - Gestión documental de clientes y proveedores. - Administración de plataformas documentales como Nalanda, Quioo, ProAPP, Achilles y otras similares. - Archivo y control de documentación administrativa. - Apoyo al departamento de administración en las tareas propias del puesto. - Coordinación documental con los diferentes departamentos de la empresa."
           },
           {
             "label": "Requiere vehículo propio",
@@ -1764,14 +1934,14 @@
         "duracion": "Más de 6 meses",
         "numPuestos": "1",
         "categoria": "AUXILIARES ADMINISTRATIVOS",
-        "observaciones": "Ubicación: Loriguilla (Valencia) Incorporación: Septiembre Jornada: Completa En Kalpae Ibérica seguimos creciendo Buscamos incorporar un/a Auxiliar Administrativo/a para nuestra oficina de Loriguilla, con capacidad de organización, atención al detalle y experiencia en tareas administrativas relacionadas con el sector de la construcción, movimiento de tierras o maquinaria. Funciones principales Control diario de partes de trabajo del personal. Revisión y gestión de albaranes de maquinaria y transporte. Preparación y seguimiento de certificaciones mensuales. Gestión documental de clientes y proveedores. Administración de plataformas documentales como Nalanda, Quioo, ProAPP, Achilles y otras similares. Archivo y control de documentación administrativa. Apoyo al departamento de administración en las tareas propias del puesto. Coordinación documental con los diferentes departamentos de la empresa. Requisitos Formación en Administración, Gestión Administrativa o similar. Se valorará experiencia previa en empresas de construcción, obra civil, maquinaria o sectores afines. Experiencia en el manejo de plataformas documentales empresariales. Dominio de Microsoft Office, especialmente Excel. Persona organizada, resolutiva, metódica y con capacidad para gestionar varias tareas simultáneamente. Vehículo propio para desplazarse al centro de trabajo. Se ofrece Incorporación estable a una empresa en pleno crecimiento. Incorporación durante el mes de septiembre. Buen ambiente de trabajo y posibilidad de desarrollo profesional. Formación inicial para facilitar la adaptación al puesto. Horario Lunes a jueves: de 09:00 a 14:00 h y de 15:00 a 18:30 h. Viernes: de 08:00 a 14:00 h. Si te interesa formar parte de un equipo dinámico y desarrollar tu carrera en una empresa referente en el sector del movimiento de tierras, la maquinaria y la gestión de residuos, esperamos recibir tu candidatura.",
+        "observaciones": "Buscamos incorporar un/a Auxiliar Administrativo/a para nuestra oficina de Loriguilla, con capacidad de organización, atención al detalle y experiencia en tareas administrativas relacionadas con el sector de la construcción, movimiento de tierras o maquinaria. Requisitos : Formación en Administración, Gestión Administrativa o similar. Se valorará experiencia previa en empresas de construcción, obra civil, maquinaria o sectores afines. Experiencia en el manejo de plataformas documentales empresariales. Dominio de Microsoft Office, especialmente Excel. Persona organizada, resolutiva, metódica y con capacidad para gestionar varias tareas simultáneamente. Vehículo propio para desplazarse al centro de trabajo. INCORPORACIÓN DURANTE EL MES DE SEPTIEMBRE",
         "municipio": "Loriguilla",
         "provincia": "Valencia",
         "cp": "46393",
         "jornada": "Completa Turnos: Turno partido",
         "horario": "Lunes a jueves: de 09:00 a 14:00 h y de 15:00 a 18:30 h. Viernes: de 08:00 a 14:00 h.",
         "salario": "1500",
-        "funciones": "Funciones principales Control diario de partes de trabajo del personal. Revisión y gestión de albaranes de maquinaria y transporte. Preparación y seguimiento de certificaciones mensuales. Gestión documental de clientes y proveedores. Administración de plataformas documentales como Nalanda, Quioo, ProAPP, Achilles y otras similares. Archivo y control de documentación administrativa. Apoyo al departamento de administración en las tareas propias del puesto. Coordinación documental con los diferentes departamentos de la empresa.",
+        "funciones": "- Control diario de partes de trabajo del personal. - Revisión y gestión de albaranes de maquinaria y transporte. Preparación y seguimiento de certificaciones mensuales. - Gestión documental de clientes y proveedores. - Administración de plataformas documentales como Nalanda, Quioo, ProAPP, Achilles y otras similares. - Archivo y control de documentación administrativa. - Apoyo al departamento de administración en las tareas propias del puesto. - Coordinación documental con los diferentes departamentos de la empresa.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
@@ -3222,89 +3392,6 @@
         "funciones": "- Levantar a personas residentes según pauta. - Cambios de pañal. - Duchas y aseos. - Dar comidas. - Lavandería Las funciones necesarias para el puesto.",
         "vehiculo": "Sí",
         "ocupaciones": []
-      }
-    },
-    {
-      "id": "2456",
-      "fo": 2456,
-      "codigo": "2026/00158",
-      "titulo": "Mozo/a almacén de paquetería",
-      "publishedAt": "2026-06-04",
-      "deadline": "2026-08-04",
-      "location": "Cheste (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2456",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00158"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Mozo/a almacén de paquetería"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Funciones a realizar: • Carga y descarga de mercancía • Ubicación de la mercancía con PDA • Organización y limpieza del almacén. Requiere esfuerzo físico."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "FIJOS DISCONTINUOS"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "10"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Cheste, Provincia: Valencia, CP: 46380"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Turnos: Turno tarde, Turno noche"
-          },
-          {
-            "label": "Horario",
-            "value": "De 23:30 a 8:30 o de 15:00 a 23:00, o parcial noche"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Carga y descarga de mercancía - Ubicación de la mercancía con PDA - Organización y limpieza del almacén"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "FIJOS DISCONTINUOS",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "10",
-        "observaciones": "Funciones a realizar: • Carga y descarga de mercancía • Ubicación de la mercancía con PDA • Organización y limpieza del almacén. Requiere esfuerzo físico.",
-        "municipio": "Cheste",
-        "provincia": "Valencia",
-        "cp": "46380",
-        "jornada": "Turnos: Turno tarde, Turno noche",
-        "horario": "De 23:30 a 8:30 o de 15:00 a 23:00, o parcial noche",
-        "salario": "Según convenio",
-        "funciones": "- Carga y descarga de mercancía - Ubicación de la mercancía con PDA - Organización y limpieza del almacén",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "MOZOS DE CARGA Y DESCARGA, ALMACÉN Y/O MERCADO DE ABASTOS",
-            "experiencia": "6 Meses"
-          }
-        ]
       }
     },
     {
