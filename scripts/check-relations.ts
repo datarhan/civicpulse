@@ -9,7 +9,7 @@
  * never a false failure on a fresh clone) and formats the report.
  */
 
-import { readFileSync } from 'node:fs'
+import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import {
   runRelationsChecks,
@@ -26,6 +26,32 @@ function readJson(rel: string): any | undefined {
   } catch {
     return undefined
   }
+}
+
+/**
+ * Every file under public/, as the site-absolute path a citation would use.
+ * Vercel serves the whole directory, so this is exactly the set of URLs an
+ * internal citation can resolve to — which lets `votes-breakdown-source` prove
+ * a transcript citation is followable without touching the network.
+ */
+function publishedAssetPaths(dir = join(process.cwd(), 'public'), prefix = ''): Set<string> {
+  const out = new Set<string>()
+  let entries: string[]
+  try {
+    entries = readdirSync(dir)
+  } catch {
+    return out
+  }
+  for (const name of entries) {
+    const full = join(dir, name)
+    const rel = `${prefix}/${name}`
+    if (statSync(full).isDirectory()) {
+      for (const p of publishedAssetPaths(full, rel)) out.add(p)
+    } else {
+      out.add(rel)
+    }
+  }
+  return out
 }
 
 function main() {
@@ -62,6 +88,7 @@ function main() {
     reports: readJson('journalist-reports.json'),
     entities: readJson('entities.json'),
     entityOverrides: readJson('entity-overrides.json'),
+    publishedAssets: publishedAssetPaths(),
   }
 
   const results = runRelationsChecks(inputs)

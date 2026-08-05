@@ -66,8 +66,28 @@ const NOW = new Date('2026-08-05')
  * duplicated group, a title under 20 chars or a `dueBy` without its verbatim
  * clause throws here, in the fixture, rather than passing silently.
  */
+const FIXTURE_URL = 'https://example.org/actas/fixture.pdf'
+
+/** One citation per claim. `acta` because the fixture's source is an acta PDF,
+ *  and an acta is the one kind that carries BOTH halves — so a fixture built on
+ *  it keeps exercising the outcome and the breakdown together. */
+function fixtureProvenance(votes: unknown[]) {
+  const ref = {
+    kind: 'acta' as const,
+    url: FIXTURE_URL,
+    publisher: 'Fixture — Ayuntamiento de Riba-roja de Túria',
+    retrievedAt: '2026-03-20',
+    verification: 'sin-verificar' as const,
+  }
+  return { outcome: ref, breakdown: votes.length > 0 ? ref : null }
+}
+
 function makeVote(id: string, over: Partial<PlenoVote> = {}): PlenoVote {
   const [plenoId, num] = id.split('-')
+  const votes = over.votes ?? [
+    { bloc: 'PSOE' as const, direction: 'a_favor' as const, seats: 11 },
+    { bloc: 'PP' as const, direction: 'en_contra' as const, seats: 7 },
+  ]
   return validateVote({
     id,
     plenoId,
@@ -75,14 +95,12 @@ function makeVote(id: string, over: Partial<PlenoVote> = {}): PlenoVote {
     plenoDate: '2026-03-12',
     title: 'Aprobación del expediente de contratación del banco de pruebas',
     outcome: 'aprobado',
-    votes: [
-      { bloc: 'PSOE', direction: 'a_favor', seats: 11 },
-      { bloc: 'PP', direction: 'en_contra', seats: 7 },
-    ],
-    sourceUrl: 'https://example.org/actas/fixture.pdf',
+    sourceUrl: FIXTURE_URL,
     sourcePublisher: 'Fixture — Ayuntamiento de Riba-roja de Túria',
     retrievedAt: '2026-03-20',
+    provenance: fixtureProvenance(votes),
     ...over,
+    votes,
   })
 }
 
@@ -652,5 +670,74 @@ describe('the published snapshot upholds the retraction invariants', () => {
     expect(r.checked).toBe(
       published().retractions.length + published().items.filter((v) => v.votesRetracted).length,
     )
+  })
+})
+
+/**
+ * A withdrawn tally takes its citation with it.
+ *
+ * The two halves of a vote have different sources, so withdrawing the tally
+ * must not leave `provenance.breakdown` pointing at a document for something
+ * the page no longer shows — and must not lose it either, or a later revocation
+ * would republish an uncited breakdown.
+ */
+describe('retracting a breakdown moves its citation to the ledger', () => {
+  it('drops provenance.breakdown from the row and tombstones it', () => {
+    const snap = corpus()
+    const target = snap.items[0]
+    // ABLATION: the row cites a breakdown before the retraction. Without this
+    // the assertion below would also pass on a row that never had one.
+    expect(target.provenance?.breakdown).not.toBeNull()
+
+    const after = validateSnapshot(retractVoteBreakdown(snap, target.id, SIG))
+    const row = after.items.find((v) => v.id === target.id)
+    expect(row!.votes).toHaveLength(0)
+    expect(row!.provenance?.breakdown).toBeNull()
+    // The outcome keeps its own source: it was never in question.
+    expect(row!.provenance?.outcome.url).toBe(target.provenance!.outcome.url)
+
+    const entry = after.retractions.find((r) => r.voteId === target.id && r.scope === 'breakdown')
+    expect(entry!.originalBreakdownSource?.url).toBe(target.provenance!.breakdown!.url)
+  })
+
+  it('restores the tally AND its citation on revoke', () => {
+    const snap = corpus()
+    const target = snap.items[0]
+    const retracted = validateSnapshot(retractVoteBreakdown(snap, target.id, SIG))
+    const revoked = validateSnapshot(
+      revokeRetraction(retracted, target.id, 'breakdown', {
+        reason: 'cotejado con el acta publicada; el desglose original era correcto',
+        editor: 'Curator',
+        at: '2026-08-06T00:00:00.000Z',
+      }),
+    )
+    const row = revoked.items.find((v) => v.id === target.id)
+    expect(row!.votes).toEqual(target.votes)
+    expect(row!.provenance?.breakdown?.url).toBe(target.provenance!.breakdown!.url)
+    expect(row!.votesRetracted).toBeUndefined()
+  })
+
+  it('REFUSES to revoke a tally the ledger cannot cite', () => {
+    // The three entries written before 2026-08-05 carry no breakdown source —
+    // they were withdrawn precisely because the tally had none. Putting one
+    // back must not quietly republish an uncited breakdown.
+    const snap = corpus()
+    const target = snap.items[0]
+    const retracted = validateSnapshot(retractVoteBreakdown(snap, target.id, SIG))
+    const legacy = {
+      ...retracted,
+      retractions: retracted.retractions.map((r) => {
+        if (r.voteId !== target.id || r.scope !== 'breakdown') return r
+        const { originalBreakdownSource: _predatesProvenance, ...rest } = r
+        return rest
+      }),
+    }
+    expect(() =>
+      revokeRetraction(legacy, target.id, 'breakdown', {
+        reason: 'intento de republicar un desglose sin fuente que lo sostenga',
+        editor: 'Curator',
+        at: '2026-08-06T00:00:00.000Z',
+      }),
+    ).toThrow(/without a breakdown source/)
   })
 })

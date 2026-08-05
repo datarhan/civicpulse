@@ -331,10 +331,24 @@ overwrites it. Change the bot's SQLite instead.
 - **Source** — Added via `npm run queja-reply` after receiving an official reply via the `.github/ISSUE_TEMPLATE/queja-response.yml` form
 - **Surfaces** — `/quejas/:id` verbatim response card under the timeline
 
-### Pleno votes (curated, transcribed from actas)
+### Pleno votes (curated, one citation per claim)
 
 - **Pipeline** — **human-curated** · `pleno-votes.ts` schema validator
-- **Source** — Added via `npm run pleno-vote` or the `.github/ISSUE_TEMPLATE/pleno-vote.yml` form ingested by `ingest-pleno-votes.yml`. Each record cites the acta URL + retrieval date; misattribution is a libel risk, so the schema enforces verbatim ≥20 char title + per-bloc tuple with duplicate-bloc detection
+- **Source** — Added via `npm run pleno-vote` or the `.github/ISSUE_TEMPLATE/pleno-vote.yml` form ingested by `ingest-pleno-votes.yml`. Misattribution is a libel risk, so the schema enforces a verbatim ≥20 char title + per-bloc tuples with duplicate-bloc detection
+- **Provenance is per claim, not per row.** A vote asserts two facts with two
+  different sources, and `provenance.outcome` / `provenance.breakdown` cite them
+  separately. `VOTE_SOURCE_KINDS` records what each kind of source actually
+  publishes, and `BREAKDOWN_SOURCE_KINDS` is derived from it: regmeet publishes
+  the orden del día and the result and **no per-bloc tally**, so the validator
+  refuses a breakdown attributed to it. Until 2026-08-05 every row carried one
+  `sourceUrl`, on all 17 of them regmeet, while the tallies came off an uncited
+  Whisper transcript — `check:citations` could not see it because the URL
+  resolves, it just does not carry half the claim. A breakdown stays
+  `verification: "sin-verificar"` until a curator cotejes it against the acta;
+  raising it requires a verbatim quote and a signature. Read-side twins:
+  `check:relations` → `votes-breakdown-source` (error) and
+  `votes-breakdown-verified` (warn, currently red for every unverified row).
+  One-shot migration: `scripts/migrate-vote-provenance.ts`
 - **Withdrawal** — `npm run retract-vote` is the only way out. Two scopes, because the
   two halves of a record do not share a provenance: `--reason/--editor` alone withdraws
   the **whole vote** (it leaves `items[]`, so it stops counting everywhere that reads
@@ -346,4 +360,8 @@ overwrites it. Change the bot's SQLite instead.
   → `votes-retractions`
 - **Surfaces** — `/plenos` — `PlenoVotesBlock` (empty-state honest when no votes registered).
   A withdrawn breakdown renders `VoteBreakdownRetracted` in the tally's place on
-  `/plenos/:id` and `/departamentos/:slug`; a withdrawn record simply is not there
+  `/plenos/:id` and `/departamentos/:slug`; a withdrawn record simply is not there.
+  `VoteProvenance` names both sources under every vote on those two pages —
+  `/departamentos/:slug` used to show one link labelled «Acta oficial» pointing
+  at regmeet, and `/plenos/:id` showed none at all. `/datos` counts the
+  uncotejado breakdowns in the catalogue row

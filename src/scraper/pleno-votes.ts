@@ -8,9 +8,13 @@
  * `npm run pleno-vote` CLI (which runs this validator before any write) or an
  * approved pull request can mutate public/data/pleno-votes.json.
  *
- * Source of truth: the published acta (pleno minutes) on ribarroja.es or the
- * DVD/PDF published by the secretaría municipal. Every vote record must cite
- * the acta URL + publication date and quote the exact acuerdo title verbatim.
+ * Sources, plural — and that is the point. A record asserts an OUTCOME and a
+ * per-bloc BREAKDOWN, and in practice they come from different documents: the
+ * council's session portal publishes the orden del día and the result, the
+ * acta publishes both, and the session transcript carries the nominal call.
+ * Each half cites its own source in `provenance`; see the block above
+ * `VOTE_SOURCE_KINDS` for what went wrong when they shared one. The acuerdo
+ * title is quoted verbatim from the orden del día either way.
  *
  * Party bloc identifiers mirror src/hooks/useOfficials.js PARTY_COLORS. Any
  * new party must be added there first so the UI can render it.
@@ -63,6 +67,170 @@ export type VoteBloc = SpeakerGroup
 export type VoteDirection = 'a_favor' | 'en_contra' | 'abstencion' | 'ausente'
 
 export type VoteOutcome = 'aprobado' | 'rechazado' | 'retirado' | 'aplazado'
+
+// ── provenance: one citation per claim, not one per row ──────────────────────
+//
+// A vote record asserts TWO facts of different provenance:
+//
+//   · the outcome    — «el punto se aprobó»
+//   · the breakdown  — «PSOE a favor, PP en contra, …»
+//
+// Until 2026-08-05 every published row carried a single `sourceUrl`, and for
+// all 17 of them it pointed at regmeet. regmeet publishes the orden del día
+// and the outcome; it publishes NO per-bloc breakdown at all. The tallies came
+// off an uncited Whisper transcript of the session. So each row attributed two
+// claims to one citation that supports one of them — and `check:citations`
+// could never catch it, because the URL resolves perfectly. It just does not
+// contain half of what was attributed to it.
+//
+// The fix is structural rather than editorial: a source is declared per claim,
+// and the schema knows which claims each kind of source is capable of carrying.
+// A breakdown attributed to regmeet is now refused at write time, by the same
+// validator every CLI runs before it writes.
+
+/**
+ * What each kind of source ACTUALLY publishes.
+ *
+ * This table is the single definition of «can this citation carry this claim».
+ * `BREAKDOWN_SOURCE_KINDS` / `OUTCOME_SOURCE_KINDS` are DERIVED from it and
+ * exported, so a checker or a test can never hand-copy a list that has since
+ * drifted — the trap in docs/DATA_INTEGRITY.md rule 1, which cost this repo
+ * €53.5M of published contracting.
+ *
+ * `publishesBreakdown: false` on `regmeet` is the whole point of this file's
+ * 2026-08-05 migration; it is a fact about the upstream portal, not a policy
+ * knob. Loosening it re-permits exactly the defect the split exists to remove.
+ */
+export const VOTE_SOURCE_KINDS = {
+  /** The published minutes. The authoritative record of both halves. */
+  acta: { label: 'Acta oficial', publishesOutcome: true, publishesBreakdown: true },
+  /** The council's session portal. Item + outcome only — never a tally. */
+  regmeet: {
+    label: 'Portal de sesiones (regmeet)',
+    publishesOutcome: true,
+    publishesBreakdown: false,
+  },
+  /** Whisper transcript of the session audio, published under
+   *  /data/pleno-transcripts/. Carries the nominal call, so it CAN support a
+   *  breakdown — but it is machine-written, and three of the first nineteen
+   *  breakdowns taken from it were wrong. Hence `verification`. */
+  transcripcion: {
+    label: 'Transcripción automática de la sesión',
+    publishesOutcome: true,
+    publishesBreakdown: true,
+  },
+  /** The session video. The transcript's own upstream. */
+  video: { label: 'Vídeo de la sesión', publishesOutcome: true, publishesBreakdown: true },
+} as const satisfies Record<
+  string,
+  { label: string; publishesOutcome: boolean; publishesBreakdown: boolean }
+>
+
+export type VoteSourceKind = keyof typeof VOTE_SOURCE_KINDS
+
+export const VOTE_SOURCE_KIND_IDS = Object.keys(VOTE_SOURCE_KINDS) as VoteSourceKind[]
+
+/** Kinds that can support «how each group voted». Derived, never restated. */
+export const BREAKDOWN_SOURCE_KINDS: readonly VoteSourceKind[] = VOTE_SOURCE_KIND_IDS.filter(
+  (k) => VOTE_SOURCE_KINDS[k].publishesBreakdown,
+)
+
+/** Kinds that can support «how the motion resolved». Derived, never restated. */
+export const OUTCOME_SOURCE_KINDS: readonly VoteSourceKind[] = VOTE_SOURCE_KIND_IDS.filter(
+  (k) => VOTE_SOURCE_KINDS[k].publishesOutcome,
+)
+
+/**
+ * Has a human checked THIS claim against THIS source?
+ *
+ * Deliberately two values, not a confidence score. «sin-verificar» is the
+ * honest state of every breakdown migrated on 2026-08-05: the transcript is
+ * now cited, and nobody has cotejado it against the acta. Recording that is
+ * the point — a migration that relabelled 16 unverified rows as verified would
+ * have been worse than the single-citation defect it replaced.
+ */
+export const VOTE_VERIFICATIONS = ['verificado', 'sin-verificar'] as const
+export type VoteVerification = (typeof VOTE_VERIFICATIONS)[number]
+
+/** Minimum length of the verbatim clause a `verificado` ref must carry.
+ *  Same bar as `dueBySource` — a verdict without the words that support it is
+ *  an assertion, not evidence. */
+export const VERIFIED_QUOTE_MIN = 20
+
+/**
+ * One citation, for one claim.
+ *
+ * `url` accepts a site-absolute path as well as an http(s) URL, because the
+ * transcript a breakdown comes from is an artefact this site publishes itself
+ * (`/data/pleno-transcripts/<plenoId>.txt` — the same path
+ * src/pages/PlenoDetalle.jsx already fetches). That makes the breakdown
+ * citation resolvable and, unlike an upstream URL, checkable offline: see the
+ * `votes-breakdown-source` check in src/scraper/relations-check.ts, which
+ * refuses a site-relative ref whose file is not in the build.
+ */
+export interface VoteSourceRef {
+  kind: VoteSourceKind
+  /** http(s) URL, or a site-absolute path (`/data/…`) for our own artefacts. */
+  url: string
+  publisher: string
+  /** ISO date (YYYY-MM-DD) the source was consulted. */
+  retrievedAt: string
+  /** Where inside the source: «punto 6», «[3412.5 → 3418.0]», a page number.
+   *  Optional, and absent on every row migrated on 2026-08-05 — locating each
+   *  tally in a two-hour transcript is work nobody has done, and inventing a
+   *  timestamp would be the fabricated verification this split exists to
+   *  prevent. */
+  locator?: string
+  verification: VoteVerification
+  /** Verbatim clause supporting the claim. Required when `verificado`. */
+  quote?: string
+  /** Curator signature. Required when `verificado` — never a script name. */
+  verifiedBy?: string
+}
+
+/** Publisher string for the session transcripts this site generates. */
+export const TRANSCRIPT_SOURCE_PUBLISHER =
+  'CivicPulse — transcripción automática (Whisper) de la sesión'
+
+/** Where a session transcript is published. One definition, shared by the
+ *  migration, the promote CLI and the checker. */
+export function transcriptRefUrl(plenoId: string): string {
+  return `/data/pleno-transcripts/${plenoId}.txt`
+}
+
+/**
+ * Which kind of source a URL is — or null when it is not one we recognise.
+ *
+ * Deliberately never guesses. Naming the wrong kind is exactly how a per-bloc
+ * breakdown ends up attributed to a portal that publishes none, so an
+ * unrecognised host returns null and every caller refuses rather than
+ * defaulting.
+ */
+export function voteSourceKindForUrl(url: string): VoteSourceKind | null {
+  if (url.startsWith('/data/pleno-transcripts/')) return 'transcripcion'
+  let host: string
+  try {
+    host = new URL(url).host
+  } catch {
+    return null
+  }
+  if (host === 'regmeet.com') return 'regmeet'
+  if (host === 'ribarroja.es' || host.endsWith('.ribarroja.es')) return 'acta'
+  if (host === 'youtu.be' || host === 'youtube.com' || host.endsWith('.youtube.com')) return 'video'
+  return null
+}
+
+/**
+ * The two halves of a vote record, each with its own source.
+ *
+ * `breakdown` is null exactly when no per-bloc tally is published (either the
+ * row never had one, or a curator withdrew it). A citation left behind for a
+ * tally that is gone would be a claim about nothing.
+ */
+export interface VoteProvenance {
+  outcome: VoteSourceRef
+  breakdown: VoteSourceRef | null
+}
 
 /** Per-bloc vote tuple. Every bloc that existed on the date of the session
  *  must appear exactly once (no duplicates, no gaps) — enforced at validate().
@@ -139,7 +307,18 @@ export interface PlenoVote {
    * is legally material.
    */
   dueBySource?: string
-  /** Source citation — URL to the acta or a scanned PDF. Required. */
+  /**
+   * Per-claim citations: where the outcome came from, and where the breakdown
+   * came from. Required on every row in `items[]` (enforced in
+   * `validateSnapshot`, not here, so the pre-migration votes tombstoned inside
+   * `retractions[].original` keep validating without being re-annotated).
+   */
+  provenance?: VoteProvenance
+  /**
+   * Source citation for the OUTCOME. Kept as the flat field five consumers and
+   * three CLIs already read, and pinned by `validateVote` to
+   * `provenance.outcome.url` so the two cannot drift into two truths.
+   */
   sourceUrl: string
   /** Publisher of the source (typically "Ayuntamiento de Riba-roja de Túria"). */
   sourcePublisher: string
@@ -206,6 +385,16 @@ export interface VoteRetraction {
   original: PlenoVote | null
   originalVotes: VoteByBloc[] | null
   /**
+   * The withdrawn breakdown's citation, for `scope: 'breakdown'`.
+   *
+   * Optional because the three entries written before 2026-08-05 predate
+   * per-claim provenance and are never re-annotated — a retraction ledger that
+   * gets edited after the fact records nothing. The consequence is deliberate:
+   * `revokeRetraction` refuses to restore a tally it cannot cite, so putting
+   * one of those three back requires a curator to state where it comes from.
+   */
+  originalBreakdownSource?: VoteSourceRef | null
+  /**
    * Set when a curator explicitly puts the id back into circulation. The entry
    * survives; only its blocking effect lifts. Absent = the retraction is live.
    */
@@ -270,12 +459,107 @@ export const RETRACTION_REASON_MIN = 20
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
 const ISO_DATETIME = /^\d{4}-\d{2}-\d{2}T[\d:.]+Z?$/
 const URL_RE = /^https?:\/\/\S+$/
+/** http(s), or a site-absolute path — but not `//host`, which is a remote URL
+ *  wearing a local path's clothes. */
+const REF_URL_RE = /^(?:https?:\/\/\S+|\/(?!\/)\S*)$/
 const ID_RE = /^[a-z0-9]+-\d{2,}$/
 
 export class PlenoVoteValidationError extends Error {}
 
 function must(cond: unknown, msg: string): asserts cond {
   if (!cond) throw new PlenoVoteValidationError(msg)
+}
+
+/** True when `url` points at an artefact this site publishes itself, so a
+ *  checker can resolve it against the build instead of the network. */
+export function isSiteRelativeRef(url: string): boolean {
+  return url.startsWith('/')
+}
+
+/**
+ * Validate one per-claim citation.
+ *
+ * `claim` decides which capability the kind must have — that is the whole
+ * guard: `regmeet` passes as an outcome source and is REFUSED as a breakdown
+ * source, because the portal publishes no per-bloc tally. The allowed sets are
+ * derived from `VOTE_SOURCE_KINDS`, never listed here.
+ */
+export function validateSourceRef(
+  raw: unknown,
+  claim: 'outcome' | 'breakdown',
+  ctx = '',
+): VoteSourceRef {
+  must(typeof raw === 'object' && raw !== null, `${claim} source must be an object${ctx}`)
+  const o = raw as Record<string, unknown>
+  const allowed = claim === 'breakdown' ? BREAKDOWN_SOURCE_KINDS : OUTCOME_SOURCE_KINDS
+
+  must(
+    typeof o.kind === 'string' && VOTE_SOURCE_KIND_IDS.includes(o.kind as VoteSourceKind),
+    `${claim} source kind must be one of ${VOTE_SOURCE_KIND_IDS.join(',')}${ctx}`,
+  )
+  must(
+    allowed.includes(o.kind as VoteSourceKind),
+    `${claim} source cannot be "${String(o.kind)}": ` +
+      `${VOTE_SOURCE_KINDS[o.kind as VoteSourceKind].label} does not publish ` +
+      `${claim === 'breakdown' ? 'a per-bloc breakdown' : 'an outcome'}. ` +
+      `Allowed here: ${allowed.join(', ')}${ctx}`,
+  )
+  must(
+    typeof o.url === 'string' && REF_URL_RE.test(o.url),
+    `${claim} source url must be http(s) or a site-absolute path${ctx}`,
+  )
+  must(
+    typeof o.publisher === 'string' && o.publisher.trim().length > 0,
+    `${claim} source publisher required${ctx}`,
+  )
+  must(
+    typeof o.retrievedAt === 'string' && ISO_DATE.test(o.retrievedAt),
+    `${claim} source retrievedAt must be ISO date${ctx}`,
+  )
+  must(
+    typeof o.verification === 'string' &&
+      (VOTE_VERIFICATIONS as readonly string[]).includes(o.verification),
+    `${claim} source verification must be one of ${VOTE_VERIFICATIONS.join(',')}${ctx}`,
+  )
+  if (o.locator !== undefined) {
+    must(
+      typeof o.locator === 'string' && o.locator.trim().length > 0,
+      `${claim} source locator must be a non-empty string when present${ctx}`,
+    )
+  }
+  // «verificado» is the only value that upgrades what the reader is told, so it
+  // is the only one that carries a burden: the words that support the claim,
+  // and the name of whoever read them. Without this an automated pass could
+  // flip every row to verified and change nothing else — rule 4 in
+  // docs/DATA_INTEGRITY.md, «nada automático reescribe prosa publicada».
+  if (o.verification === 'verificado') {
+    must(
+      typeof o.quote === 'string' && o.quote.trim().length >= VERIFIED_QUOTE_MIN,
+      `${claim} source marked "verificado" needs a verbatim quote ≥${VERIFIED_QUOTE_MIN} chars${ctx}`,
+    )
+    must(
+      typeof o.verifiedBy === 'string' && o.verifiedBy.trim().length > 0,
+      `${claim} source marked "verificado" needs verifiedBy — a curator signature${ctx}`,
+    )
+  } else {
+    must(
+      o.quote === undefined && o.verifiedBy === undefined,
+      `${claim} source carries quote/verifiedBy but is not marked "verificado" — ` +
+        `a signature beside an unverified claim reads as a verification that did ` +
+        `not happen${ctx}`,
+    )
+  }
+
+  return {
+    kind: o.kind as VoteSourceKind,
+    url: o.url as string,
+    publisher: (o.publisher as string).trim(),
+    retrievedAt: o.retrievedAt as string,
+    ...(o.locator !== undefined ? { locator: (o.locator as string).trim() } : {}),
+    verification: o.verification as VoteVerification,
+    ...(o.quote !== undefined ? { quote: (o.quote as string).trim() } : {}),
+    ...(o.verifiedBy !== undefined ? { verifiedBy: (o.verifiedBy as string).trim() } : {}),
+  }
 }
 
 export function validateVote(v: unknown, idx = -1): PlenoVote {
@@ -341,6 +625,44 @@ export function validateVote(v: unknown, idx = -1): PlenoVote {
     typeof o.retrievedAt === 'string' && ISO_DATE.test(o.retrievedAt),
     `retrievedAt must be ISO date${ctx}`,
   )
+
+  // Per-claim provenance. Optional HERE so the pre-migration votes tombstoned
+  // inside retractions[].original keep validating unchanged; required on every
+  // published row by validateSnapshot.
+  let provenance: VoteProvenance | undefined
+  if (o.provenance !== undefined) {
+    must(
+      typeof o.provenance === 'object' && o.provenance !== null,
+      `provenance must be an object${ctx}`,
+    )
+    const p = o.provenance as Record<string, unknown>
+    const outcomeRef = validateSourceRef(p.outcome, 'outcome', ctx)
+    // One URL, one truth. `sourceUrl` stays because five consumers read it;
+    // letting it disagree with the outcome citation would just move the defect.
+    must(
+      outcomeRef.url === o.sourceUrl,
+      `provenance.outcome.url (${outcomeRef.url}) ≠ sourceUrl (${String(o.sourceUrl)}) — ` +
+        `the outcome has one source, not two${ctx}`,
+    )
+    // The pairing that makes the split real, checked BOTH ways: a published
+    // tally with no breakdown citation is the 2026-08-05 defect itself, and a
+    // breakdown citation with no tally cites something the page does not show.
+    const tallyCount = (o.votes as unknown[]).length
+    if (p.breakdown == null) {
+      must(
+        tallyCount === 0,
+        `provenance.breakdown is null but ${tallyCount} per-bloc tuple(s) are ` +
+          `published — a breakdown must name the source that carries it${ctx}`,
+      )
+      provenance = { outcome: outcomeRef, breakdown: null }
+    } else {
+      must(tallyCount > 0, `provenance.breakdown is set but no per-bloc tally is published${ctx}`)
+      provenance = {
+        outcome: outcomeRef,
+        breakdown: validateSourceRef(p.breakdown, 'breakdown', ctx),
+      }
+    }
+  }
 
   if (o.dueBy !== undefined) {
     must(typeof o.dueBy === 'string' && ISO_DATE.test(o.dueBy), `dueBy must be ISO date${ctx}`)
@@ -422,6 +744,7 @@ export function validateVote(v: unknown, idx = -1): PlenoVote {
           },
         }
       : {}),
+    ...(provenance !== undefined ? { provenance } : {}),
     sourceUrl: o.sourceUrl as string,
     sourcePublisher: (o.sourcePublisher as string).trim(),
     retrievedAt: o.retrievedAt as string,
@@ -477,6 +800,17 @@ export function validateRetraction(r: unknown, idx = -1): VoteRetraction {
       idx,
     ).votes
   }
+  // Present only on entries written after 2026-08-05. Absent is a fact about
+  // when the entry was made, never something to backfill: see the field's doc
+  // comment on `VoteRetraction`.
+  let originalBreakdownSource: VoteSourceRef | null | undefined
+  if (o.originalBreakdownSource !== undefined && o.originalBreakdownSource !== null) {
+    must(
+      scope === 'breakdown',
+      `originalBreakdownSource belongs to a breakdown retraction, not a "${scope}" one${ctx}`,
+    )
+    originalBreakdownSource = validateSourceRef(o.originalBreakdownSource, 'breakdown', ctx)
+  }
 
   const revokedFields = [o.revokedAt, o.revokedBy, o.revokedReason].filter((x) => x !== undefined)
   must(
@@ -509,6 +843,7 @@ export function validateRetraction(r: unknown, idx = -1): VoteRetraction {
     retractedAt: o.retractedAt as string,
     original,
     originalVotes,
+    ...(originalBreakdownSource !== undefined ? { originalBreakdownSource } : {}),
     ...(revokedFields.length === 3
       ? {
           revokedAt: o.revokedAt as string,
@@ -553,6 +888,16 @@ export function validateSnapshot(raw: unknown): PlenoVotesSnapshot {
     const v = validateVote(it, i)
     must(!seenIds.has(v.id), `duplicate id ${v.id}`)
     seenIds.add(v.id)
+    // PUBLISHED rows must say where each half came from. Enforced here rather
+    // than in validateVote so the pre-migration votes tombstoned inside
+    // retractions[].original — which also go through validateVote — keep
+    // validating without being retroactively annotated.
+    must(
+      v.provenance != null,
+      `vote ${v.id} publishes no provenance: state where the outcome comes from ` +
+        `and, if a per-bloc tally is published, where THAT comes from. ` +
+        `Migrate with npx tsx scripts/migrate-vote-provenance.ts (items[${i}])`,
+    )
     return v
   })
 
@@ -734,10 +1079,24 @@ export function retractVoteBreakdown(
     retractedAt: sig.at,
   }
   const { votes: originalVotes, ...rest } = target
+  // The tally's citation leaves with the tally. Leaving `provenance.breakdown`
+  // behind would cite a source for something the page no longer shows; the
+  // ledger keeps it so a revocation can put both back together.
+  const originalBreakdownSource = target.provenance?.breakdown ?? null
+  const withdrawnProvenance = target.provenance
+    ? { outcome: target.provenance.outcome, breakdown: null }
+    : undefined
   return {
     ...snap,
     items: snap.items.map((v) =>
-      v.id === voteId ? { ...rest, votes: [], votesRetracted: stamp } : v,
+      v.id === voteId
+        ? {
+            ...rest,
+            ...(withdrawnProvenance ? { provenance: withdrawnProvenance } : {}),
+            votes: [],
+            votesRetracted: stamp,
+          }
+        : v,
     ),
     retractions: [
       ...snap.retractions,
@@ -749,6 +1108,7 @@ export function retractVoteBreakdown(
         retractedAt: sig.at,
         original: null,
         originalVotes,
+        originalBreakdownSource,
       },
     ],
   }
@@ -772,6 +1132,20 @@ export function revokeRetraction(
   checkSignature(sig)
   const live = findLiveRetraction(snap, voteId, scope)
   refuse(live != null, `no live ${scope} retraction for "${voteId}"`)
+  // Restoring a tally re-asserts «this is how each group voted», so it has to
+  // come back with the citation it was withdrawn with. The three entries
+  // written before 2026-08-05 have none — they were retracted precisely
+  // because their breakdown had no source that carried it — so a revocation
+  // there stops here rather than republishing an uncited tally.
+  if (scope === 'breakdown' && (live.originalVotes?.length ?? 0) > 0) {
+    refuse(
+      live.originalBreakdownSource != null,
+      `the withdrawn tally for "${voteId}" was recorded without a breakdown source ` +
+        `(retracted ${live.retractedAt}), so revoking would republish an uncited ` +
+        `breakdown — the defect this ledger exists to record. Publish it instead ` +
+        `with: npm run pleno-vote -- --file <vote.json>, stating provenance.breakdown.`,
+    )
+  }
   return {
     ...snap,
     items:
@@ -779,7 +1153,18 @@ export function revokeRetraction(
         ? snap.items.map((v) => {
             if (v.id !== voteId) return v
             const { votesRetracted: _dropped, ...rest } = v
-            return { ...rest, votes: live.originalVotes ?? [] }
+            return {
+              ...rest,
+              ...(rest.provenance && live.originalBreakdownSource
+                ? {
+                    provenance: {
+                      outcome: rest.provenance.outcome,
+                      breakdown: live.originalBreakdownSource,
+                    },
+                  }
+                : {}),
+              votes: live.originalVotes ?? [],
+            }
           })
         : snap.items,
     retractions: snap.retractions.map((r) =>

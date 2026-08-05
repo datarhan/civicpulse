@@ -621,3 +621,101 @@ describe('relations-check — encaje declarado', () => {
     ).toBe('empty')
   })
 })
+
+/**
+ * The read-side twins of the provenance guard.
+ *
+ * Both are FAULT-INJECTED here rather than merely run against a clean file. The
+ * mistake this whole feature exists to correct is a check that was green over
+ * 16 broken rows, and two suites in this repo have already been green while
+ * measuring nothing (docs/DATA_INTEGRITY.md). A check nobody has watched fail
+ * is not evidence.
+ */
+describe('relations-check — vote provenance', () => {
+  const transcriptRef = {
+    kind: 'transcripcion',
+    url: '/data/pleno-transcripts/qz6weg.txt',
+    verification: 'sin-verificar',
+  }
+  const regmeetRef = { kind: 'regmeet', url: 'https://regmeet.com/x', verification: 'sin-verificar' }
+  const tally = [{ bloc: 'PSOE', direction: 'a_favor' }]
+  const assets = new Set(['/data/pleno-transcripts/qz6weg.txt'])
+
+  const run = (items: unknown[], publishedAssets: Set<string> | null = assets) =>
+    byName(
+      runRelationsChecks({
+        votes: { items: items as never, retractions: [] },
+        publishedAssets,
+      }),
+    )
+
+  it('passes a row whose breakdown cites a transcript that is in the build', () => {
+    // ABLATION for every "broken" case below: this input is the same shape and
+    // it passes, so a failure there is the injected fault and not the fixture.
+    const rs = run([
+      { id: 'a-01', votes: tally, provenance: { outcome: regmeetRef, breakdown: transcriptRef } },
+    ])
+    expect(rs['votes-breakdown-source'].status).toBe('ok')
+    expect(rs['votes-breakdown-source'].checked).toBe(1)
+  })
+
+  it('BREAKS at error level when a tally is attributed to regmeet', () => {
+    const rs = run([
+      { id: 'a-01', votes: tally, provenance: { outcome: regmeetRef, breakdown: regmeetRef } },
+    ])
+    expect(rs['votes-breakdown-source'].status).toBe('broken')
+    expect(rs['votes-breakdown-source'].level).toBe('error')
+    expect(rs['votes-breakdown-source'].broken[0]).toMatch(/publishes no per-bloc tally/)
+  })
+
+  it('BREAKS when a tally is published with no breakdown source at all', () => {
+    // The literal pre-2026-08-05 state of all 17 published rows.
+    const rs = run([{ id: 'a-01', votes: tally, provenance: { outcome: regmeetRef } }])
+    expect(rs['votes-breakdown-source'].status).toBe('broken')
+    expect(rs['votes-breakdown-source'].broken[0]).toMatch(/no breakdown source/)
+  })
+
+  it('BREAKS when the cited transcript is not in the build', () => {
+    const rs = run(
+      [{ id: 'a-01', votes: tally, provenance: { outcome: regmeetRef, breakdown: transcriptRef } }],
+      new Set(),
+    )
+    expect(rs['votes-breakdown-source'].status).toBe('broken')
+    expect(rs['votes-breakdown-source'].broken[0]).toMatch(/not in public\//)
+  })
+
+  it('reports `empty`, not `ok`, when no row publishes a tally', () => {
+    // A withdrawn breakdown leaves nothing to source. A green line there would
+    // read as "provenance verified" over zero refs.
+    const rs = run([
+      { id: 'a-01', votes: [], provenance: { outcome: regmeetRef, breakdown: null } },
+    ])
+    expect(rs['votes-breakdown-source'].status).toBe('empty')
+    expect(rs['votes-breakdown-verified'].status).toBe('empty')
+  })
+
+  it('warns — never errors — on a breakdown nobody has cotejado', () => {
+    const rs = run([
+      { id: 'a-01', votes: tally, provenance: { outcome: regmeetRef, breakdown: transcriptRef } },
+    ])
+    expect(rs['votes-breakdown-verified'].status).toBe('broken')
+    expect(rs['votes-breakdown-verified'].level).toBe('warn')
+    expect(rs['votes-breakdown-verified'].checked).toBe(1)
+    expect(rs['votes-breakdown-verified'].broken[0]).toMatch(/sin-verificar/)
+  })
+
+  it('goes quiet once a curator has cotejado the breakdown', () => {
+    const rs = run([
+      {
+        id: 'a-01',
+        votes: tally,
+        provenance: {
+          outcome: regmeetRef,
+          breakdown: { ...transcriptRef, verification: 'verificado' },
+        },
+      },
+    ])
+    expect(rs['votes-breakdown-verified'].status).toBe('ok')
+    expect(rs['votes-breakdown-verified'].checked).toBe(1)
+  })
+})

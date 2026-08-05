@@ -266,8 +266,34 @@ export default function Metodologia() {
         </p>
         <ul style={{ margin: '10px 0 0', paddingLeft: 20 }}>
           <li>
-            <strong>Los votos de pleno son el hecho primario.</strong> Se transcriben del acta
-            oficial y son el material más verificable. Las promesas electorales son secundarias.
+            <strong>Los votos de pleno son el hecho primario.</strong> Son el material más
+            verificable y las promesas electorales son secundarias. Pero un voto no se lee de una
+            sola fuente, y hasta agosto de 2026 esta página decía que se transcribía «del acta
+            oficial». No era cierto: <strong>cada voto cita ahora dos fuentes distintas</strong>. El{' '}
+            <strong>resultado</strong> (aprobado, rechazado) procede del portal de sesiones del
+            Ayuntamiento (regmeet.com), que publica el orden del día y el resultado. El{' '}
+            <strong>desglose por grupos</strong> —quién votó qué— <em>no</em> lo publica ese portal:
+            procede de la transcripción automática (Whisper) del audio de la sesión, que publicamos
+            íntegra en <code>/data/pleno-transcripts/</code>. Antes ambas mitades colgaban de un
+            único enlace que sólo sostenía una de ellas, y en{' '}
+            <a href="/departamentos" style={{ color: 'var(--civic)' }}>
+              /departamentos
+            </a>{' '}
+            ese enlace se rotulaba «Acta oficial». Tres desgloses se comprobaron y resultaron
+            erróneos; están retirados y su retirada consta.
+          </li>
+          <li>
+            <strong>Un desglose no verificado se declara como tal.</strong> Mientras nadie haya
+            cotejado un desglose contra el acta, se publica con la marca{' '}
+            <strong>«sin cotejar con el acta»</strong> junto a su fuente, y así aparece en cada
+            votación y en el catálogo de{' '}
+            <a href="/datos" style={{ color: 'var(--civic)' }}>
+              /datos
+            </a>
+            . Levantar esa marca exige una cita literal y la firma de quien la comprueba; no hay
+            proceso automático que pueda hacerlo. El esquema rechaza además atribuir un desglose a
+            una fuente que no publica desgloses, de modo que el fallo original no puede repetirse
+            por descuido.
           </li>
           <li>
             <strong>El plazo debe venir del acta.</strong> Para los votos de pleno, un{' '}
@@ -275,8 +301,8 @@ export default function Metodologia() {
             <code>dueBySource</code>, ≥20 caracteres). Sin cita literal no hay plazo.
           </li>
           <li>
-            <strong>El grupo también debe venir del acta.</strong> Cuando el acta registra un voto
-            sin decir qué grupo lo emitió, la fila se publica como{' '}
+            <strong>El grupo también debe venir de la fuente.</strong> Cuando la fuente registra un
+            voto sin decir qué grupo lo emitió, la fila se publica como{' '}
             <strong>«Grupo no identificado»</strong>, nunca con una etiqueta que parezca un partido.
             Deducir el grupo restando escaños identificaría por eliminación al único concejal fuera
             de PSOE, PP, VOX y Compromís. Poner el nombre real exige que el acta lo nombre{' '}

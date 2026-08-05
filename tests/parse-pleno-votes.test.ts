@@ -3,6 +3,10 @@ import {
   validateVote,
   validateSnapshot,
   PlenoVoteValidationError,
+  BREAKDOWN_SOURCE_KINDS,
+  OUTCOME_SOURCE_KINDS,
+  VOTE_SOURCE_KINDS,
+  VOTE_SOURCE_KIND_IDS,
 } from '../src/scraper/pleno-votes'
 
 const baseVote = {
@@ -23,6 +27,24 @@ const baseVote = {
   sourceUrl: 'http://www.ribarroja.es/plenos/2026/acta-20-abril',
   sourcePublisher: 'Ayuntamiento de Riba-roja de Túria',
   retrievedAt: '2026-04-20',
+  // An acta is the one source kind that publishes BOTH the outcome and the
+  // per-bloc tally, so this fixture cites it for both.
+  provenance: {
+    outcome: {
+      kind: 'acta',
+      url: 'http://www.ribarroja.es/plenos/2026/acta-20-abril',
+      publisher: 'Ayuntamiento de Riba-roja de Túria',
+      retrievedAt: '2026-04-20',
+      verification: 'sin-verificar',
+    },
+    breakdown: {
+      kind: 'acta',
+      url: 'http://www.ribarroja.es/plenos/2026/acta-20-abril',
+      publisher: 'Ayuntamiento de Riba-roja de Túria',
+      retrievedAt: '2026-04-20',
+      verification: 'sin-verificar',
+    },
+  },
 }
 
 describe('pleno-votes validator', () => {
@@ -159,4 +181,183 @@ describe('pleno-votes validator', () => {
       }),
     ).toThrow(/ISO/)
   })
+})
+
+/**
+ * A vote asserts two facts — «se aprobó» and «PSOE a favor, PP en contra» — and
+ * until 2026-08-05 both hung off one `sourceUrl` that, on all 17 published
+ * rows, pointed at regmeet. regmeet publishes the orden del día and the result
+ * and NO per-bloc tally at all, so half of every row was attributed to a
+ * document that does not contain it. `check:citations` could not see it: the
+ * URL resolves, it simply does not carry the claim.
+ *
+ * These pin the guard where it belongs — on the writer. Every CLI runs
+ * `validateSnapshot` before it writes, so the combination below cannot be
+ * committed by a curator, a promotion or a merge.
+ */
+describe('provenance: one citation per claim', () => {
+  const regmeetUrl = 'https://regmeet.com/aytoribarroja/participaciones/abc?idioma=castellano'
+  const transcriptRef = {
+    kind: 'transcripcion',
+    url: '/data/pleno-transcripts/k4olcs.txt',
+    publisher: 'CivicPulse — transcripción automática (Whisper) de la sesión',
+    retrievedAt: '2026-08-01',
+    verification: 'sin-verificar',
+  }
+  const regmeetRef = {
+    kind: 'regmeet',
+    url: regmeetUrl,
+    publisher: 'Ayuntamiento de Riba-roja de Túria',
+    retrievedAt: '2026-06-24',
+    verification: 'sin-verificar',
+  }
+  const onRegmeet = { ...baseVote, sourceUrl: regmeetUrl }
+
+  it('derives the allowed kinds from the capability table rather than a copy', () => {
+    // The list a checker imports must be a function of the table, not a hand
+    // -kept twin of it — the failure mode in docs/DATA_INTEGRITY.md rule 1.
+    expect([...BREAKDOWN_SOURCE_KINDS].sort()).toEqual(
+      VOTE_SOURCE_KIND_IDS.filter((k) => VOTE_SOURCE_KINDS[k].publishesBreakdown).sort(),
+    )
+    // …and the fact that makes this whole split necessary.
+    expect(BREAKDOWN_SOURCE_KINDS).not.toContain('regmeet')
+    expect(OUTCOME_SOURCE_KINDS).toContain('regmeet')
+    // No kind may be inert in both roles: that would be a source nothing can cite.
+    for (const k of VOTE_SOURCE_KIND_IDS) {
+      expect(BREAKDOWN_SOURCE_KINDS.includes(k) || OUTCOME_SOURCE_KINDS.includes(k)).toBe(true)
+    }
+  })
+
+  it('REFUSES a per-bloc breakdown attributed to regmeet — the original defect', () => {
+    expect(() =>
+      validateVote({
+        ...onRegmeet,
+        provenance: { outcome: regmeetRef, breakdown: regmeetRef },
+      }),
+    ).toThrow(/does not publish a per-bloc breakdown/)
+  })
+
+  it('accepts regmeet for the outcome and the transcript for the breakdown', () => {
+    const v = validateVote({
+      ...onRegmeet,
+      provenance: { outcome: regmeetRef, breakdown: transcriptRef },
+    })
+    expect(v.provenance?.outcome.kind).toBe('regmeet')
+    expect(v.provenance?.breakdown?.kind).toBe('transcripcion')
+    // The field must survive the validator's rebuild — a citation silently
+    // dropped on the way through is the same as no citation.
+    expect(v.provenance?.breakdown?.url).toBe('/data/pleno-transcripts/k4olcs.txt')
+  })
+
+  it('refuses a published tally with no breakdown citation', () => {
+    expect(() =>
+      validateVote({ ...onRegmeet, provenance: { outcome: regmeetRef, breakdown: null } }),
+    ).toThrow(/must name the source that carries it/)
+  })
+
+  it('refuses a breakdown citation with no tally to support', () => {
+    expect(() =>
+      validateVote({
+        ...onRegmeet,
+        votes: [],
+        votesRetracted: {
+          reason: 'el desglose procedía de una transcripción sin cotejar',
+          editor: 'Curator',
+          retractedAt: '2026-08-05T00:00:00.000Z',
+        },
+        provenance: { outcome: regmeetRef, breakdown: transcriptRef },
+      }),
+    ).toThrow(/no per-bloc tally is published/)
+  })
+
+  it('refuses an outcome citation that disagrees with sourceUrl', () => {
+    expect(() =>
+      validateVote({
+        ...onRegmeet,
+        provenance: {
+          outcome: { ...regmeetRef, url: 'https://regmeet.com/aytoribarroja/otra-cosa' },
+          breakdown: transcriptRef,
+        },
+      }),
+    ).toThrow(/the outcome has one source, not two/)
+  })
+
+  it('gates "verificado" behind a verbatim quote and a signature', () => {
+    const verified = { ...transcriptRef, verification: 'verificado' }
+    expect(() =>
+      validateVote({ ...onRegmeet, provenance: { outcome: regmeetRef, breakdown: verified } }),
+    ).toThrow(/verbatim quote/)
+    expect(() =>
+      validateVote({
+        ...onRegmeet,
+        provenance: {
+          outcome: regmeetRef,
+          breakdown: { ...verified, quote: 'tretze vots en contra i huit a favor' },
+        },
+      }),
+    ).toThrow(/verifiedBy/)
+    const ok = validateVote({
+      ...onRegmeet,
+      provenance: {
+        outcome: regmeetRef,
+        breakdown: {
+          ...verified,
+          quote: 'tretze vots en contra i huit a favor',
+          verifiedBy: 'Sergei Lutchenko',
+        },
+      },
+    })
+    expect(ok.provenance?.breakdown?.verification).toBe('verificado')
+  })
+
+  it('refuses a signature beside a claim that is NOT marked verified', () => {
+    // Otherwise a row could carry a curator's name while still declaring
+    // itself unchecked — a verification that did not happen, in writing.
+    expect(() =>
+      validateVote({
+        ...onRegmeet,
+        provenance: {
+          outcome: regmeetRef,
+          breakdown: { ...transcriptRef, verifiedBy: 'Sergei Lutchenko' },
+        },
+      }),
+    ).toThrow(/not marked "verificado"/)
+  })
+
+  it('requires provenance on every PUBLISHED row, but not on a tombstoned one', () => {
+    // Published: refused.
+    expect(() =>
+      validateSnapshot({
+        generatedAt: '2026-08-05T00:00:00.000Z',
+        source: { description: 'x', contract: 'y' },
+        items: [baseVote2WithoutProvenance()],
+      }),
+    ).toThrow(/publishes no provenance/)
+
+    // Tombstoned inside retractions[]: accepted unchanged. The three entries
+    // written before the migration must never be re-annotated — a ledger that
+    // gets edited after the fact records nothing.
+    const snap = validateSnapshot({
+      generatedAt: '2026-08-05T00:00:00.000Z',
+      source: { description: 'x', contract: 'y' },
+      items: [],
+      retractions: [
+        {
+          voteId: 'k4olcs-03',
+          scope: 'record',
+          reason: 'la transcripción invierte las direcciones publicadas en este punto',
+          editor: 'Curator',
+          retractedAt: '2026-08-05T00:00:00.000Z',
+          original: baseVote2WithoutProvenance(),
+          originalVotes: null,
+        },
+      ],
+    })
+    expect(snap.retractions[0].original?.provenance).toBeUndefined()
+  })
+
+  function baseVote2WithoutProvenance() {
+    const { provenance: _dropped, ...rest } = baseVote
+    return rest
+  }
 })

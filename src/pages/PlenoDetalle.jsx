@@ -4,6 +4,7 @@ import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import { AgendaRow } from '../components/plenos/AgendaRow'
 import { VoteTallyBar, DirectionLegend } from '../components/plenos/VoteTallyBar'
 import { VoteBreakdownRetracted } from '../components/plenos/VoteBreakdownRetracted'
+import { VoteProvenance } from '../components/plenos/VoteProvenance'
 import { FindingCard } from '../components/PlenoFindings'
 import { ClaimLedger } from '../components/ClaimLedger'
 import { usePlenos, PLENO_TONE, PLENO_LABEL } from '../hooks/usePlenos'
@@ -563,6 +564,10 @@ export default function PlenoDetalle() {
                   ) : (
                     <VoteTallyBar tally={rec.votes} />
                   )}
+                  {/* This tab showed a tally with no citation at all — the
+                      reader could not tell the outcome and the breakdown come
+                      from two different sources, let alone which. */}
+                  <VoteProvenance provenance={rec.provenance} />
                 </div>
               ))}
             </Card>

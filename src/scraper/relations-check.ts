@@ -21,6 +21,7 @@
 import { deriveRespaldo, RESPALDO_VALUES, type SourceLike } from './area-fit'
 import { ALLOWED_DEPARTMENT_SLUGS } from './departments'
 import { normalizeCompanyKey } from './entities'
+import { BREAKDOWN_SOURCE_KINDS, isSiteRelativeRef } from './pleno-votes'
 
 export type CheckLevel = 'error' | 'warn'
 export type CheckStatus = 'ok' | 'broken' | 'empty' | 'skipped'
@@ -62,6 +63,10 @@ export interface RelationsCheckInputs {
       itemNumber?: number
       votes?: unknown[]
       votesRetracted?: unknown
+      provenance?: {
+        outcome?: { kind?: string; url?: string; verification?: string }
+        breakdown?: { kind?: string; url?: string; verification?: string } | null
+      }
     }>
     retractions?: Array<{
       voteId?: string
@@ -71,6 +76,10 @@ export interface RelationsCheckInputs {
       revokedAt?: string
     }>
   } | null
+  /** Site-absolute paths that exist in the build (`/data/…`). The CLI collects
+   *  them; supplied so a citation pointing at our own artefact can be resolved
+   *  offline instead of trusted. */
+  publishedAssets?: Set<string> | null
   /** plenos-agendas.json — agenda items carry `number` (not itemNumber). */
   agendas?: { plenos?: Array<{ id?: string; agenda?: Array<{ number?: number }> }> } | null
   promises?: { items?: Array<{ id?: string; departmentSlug?: string | null }> } | null
@@ -187,6 +196,7 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
     assignments,
     areaFit,
     reports,
+    publishedAssets,
   } = inputs
 
   const verifiedIds = new Set(
@@ -486,6 +496,80 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
         checked += 1
         if (!liveBreakdowns.has(v.id as string)) {
           broken.push(`${v?.id ?? '?'} is stamped votesRetracted with no live ledger entry`)
+        }
+      }
+      return { checked, broken }
+    }),
+
+    // ── vote provenance, per claim ───────────────────────────────────────
+    // A vote asserts two facts — the outcome, and how each group voted — and
+    // until 2026-08-05 both hung off one `sourceUrl` that, on all 17 rows,
+    // pointed at regmeet. regmeet publishes no per-bloc tally at all, so half
+    // of every row was attributed to a source that does not carry it. Nothing
+    // could catch it: the URL resolves, it just does not contain the claim.
+    //
+    // The hard stop is in `validateSnapshot` — it runs before every write, so
+    // no CLI can produce such a row. These two are the read-side twins, for a
+    // hand-edited or merge-resolved file that never went through a CLI.
+    //
+    // `checked` counts PUBLISHED BREAKDOWNS, so a file whose tallies have all
+    // been withdrawn reports `empty` rather than a green line that would read
+    // as «provenance verified» over nothing.
+    check('votes-breakdown-source', 'error', votes != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      for (const v of votes?.items ?? []) {
+        if ((v?.votes?.length ?? 0) === 0) continue // no tally, nothing to source
+        checked += 1
+        const id = v?.id ?? '?'
+        const ref = v?.provenance?.breakdown
+        if (ref == null) {
+          broken.push(
+            `${id} publishes ${v.votes?.length} per-bloc tuple(s) with no breakdown source`,
+          )
+          continue
+        }
+        if (!ref.kind || !(BREAKDOWN_SOURCE_KINDS as readonly string[]).includes(ref.kind)) {
+          broken.push(
+            `${id} cites a "${String(ref.kind)}" breakdown source, which publishes no per-bloc tally ` +
+              `(allowed: ${BREAKDOWN_SOURCE_KINDS.join(', ')})`,
+          )
+          continue
+        }
+        // Our own artefacts are checkable without the network: if the file is
+        // not in the build, the citation is a 404 for every reader.
+        if (ref.url && isSiteRelativeRef(ref.url) && publishedAssets != null) {
+          if (!publishedAssets.has(ref.url)) {
+            broken.push(`${id} cites ${ref.url}, which is not in public/`)
+          }
+        }
+      }
+      return { checked, broken }
+    }),
+
+    // Warn, not error, and the distinction is the point. A `sin-verificar`
+    // breakdown is now HONESTLY cited — the transcript does carry the nominal
+    // call — but nobody has cotejado it against the acta, and three of the
+    // first nineteen taken from it were wrong. That is disclosed debt, which
+    // is what 'warn' means in this file, and it is the state of 16 live rows:
+    // erroring would red the nightly indefinitely over a condition the site
+    // already declares, and a permanently-red check is one everybody learns to
+    // skip. What must never be silent is the COUNT, so every row is listed.
+    //
+    // The tier that does block is the one above, and it blocks at write time.
+    check('votes-breakdown-verified', 'warn', votes != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      for (const v of votes?.items ?? []) {
+        if ((v?.votes?.length ?? 0) === 0) continue
+        const ref = v?.provenance?.breakdown
+        if (ref == null) continue // already an error above; not double-counted
+        checked += 1
+        if (ref.verification !== 'verificado') {
+          broken.push(
+            `${v?.id ?? '?'} breakdown is ${String(ref.verification)} — cited to ` +
+              `${String(ref.kind)}, never cotejado against the acta`,
+          )
         }
       }
       return { checked, broken }

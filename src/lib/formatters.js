@@ -141,13 +141,25 @@ export function fmtDateHuman(value) {
 }
 
 /**
- * Return the URL only when it uses a safe web scheme (http/https), else null.
+ * Return the URL only when it is safe to put in an href, else null.
  * Guards against javascript:/data: hrefs from scraped external data (XSS).
+ *
+ * Site-absolute paths pass too. Some citations point at an artefact this site
+ * publishes itself — a vote's per-bloc breakdown cites the session transcript
+ * at `/data/pleno-transcripts/<plenoId>.txt` — and `new URL()` throws on a bare
+ * path, so those were being turned into an unlinked <span> by ExtLink: the
+ * citation silently disappeared instead of failing loudly. A leading `/` cannot
+ * carry a scheme, so it cannot be the attack this function exists to stop.
+ *
+ * `//host/x` stays blocked: that is a protocol-relative REMOTE url wearing a
+ * local path's clothes, and it is the one string a "starts with /" test gets
+ * wrong.
  * @param {string|null|undefined} url
  * @returns {string|null}
  */
 export function safeHref(url) {
   if (!url) return null
+  if (url.startsWith('/')) return url.startsWith('//') ? null : url
   try {
     const p = new URL(url)
     return p.protocol === 'http:' || p.protocol === 'https:' ? url : null

@@ -34,6 +34,24 @@ const VOTE = {
   sourceUrl: 'https://regmeet.com/aytoribarroja/participaciones/abc?idioma=castellano',
   sourcePublisher: 'Ayuntamiento de Riba-roja de Túria',
   retrievedAt: '2026-06-24',
+  // The real shape of this row: regmeet carries the outcome, the session
+  // transcript carries the tally, and nobody has cotejado the tally.
+  provenance: {
+    outcome: {
+      kind: 'regmeet',
+      url: 'https://regmeet.com/aytoribarroja/participaciones/abc?idioma=castellano',
+      publisher: 'Ayuntamiento de Riba-roja de Túria',
+      retrievedAt: '2026-06-24',
+      verification: 'sin-verificar',
+    },
+    breakdown: {
+      kind: 'transcripcion',
+      url: '/data/pleno-transcripts/qz6weg.txt',
+      publisher: 'CivicPulse — transcripción automática (Whisper) de la sesión',
+      retrievedAt: '2026-08-01',
+      verification: 'sin-verificar',
+    },
+  },
 }
 
 const SNAP = {

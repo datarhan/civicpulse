@@ -37,6 +37,22 @@ function retractionNote(retracted) {
   return n > 0 ? ` · ${n} retirada${n === 1 ? '' : 's'}` : ''
 }
 
+/**
+ * How many published per-bloc breakdowns nobody has cotejado against the acta.
+ *
+ * The catalogue is where a reader goes to judge how much to trust a dataset, so
+ * the count belongs here rather than only in a CI check nobody outside the repo
+ * runs. Counted from the rows themselves — a `stats` field could go stale
+ * against the items it summarises.
+ */
+function unverifiedBreakdownNote(items) {
+  const withBreakdown = items.filter((v) => (v?.votes?.length ?? 0) > 0)
+  const unverified = withBreakdown.filter(
+    (v) => v?.provenance?.breakdown?.verification !== 'verificado',
+  ).length
+  return unverified > 0 ? ` · ${unverified} desglose${unverified === 1 ? '' : 's'} sin cotejar` : ''
+}
+
 function DatasetsCatalog() {
   const officials = useOfficials().data
   const budget = useBudget().data
@@ -193,10 +209,14 @@ function DatasetsCatalog() {
       // that lost data — but only once there are any: «0 retiradas» would be
       // noise on a file that has never had one.
       rows: votes?.items
-        ? `${votes.items.length} votaciones` + retractionNote(votes?.stats?.retracted)
+        ? `${votes.items.length} votaciones` +
+          unverifiedBreakdownNote(votes.items) +
+          retractionNote(votes?.stats?.retracted)
         : '—',
       updated: formatDate(votes?.generatedAt),
-      source: 'curación · actas (regmeet.com)',
+      // Not «actas»: no row here was read off an acta. The outcome comes from
+      // the session portal, the per-bloc tally from the session transcript.
+      source: 'curación · resultado regmeet.com · desglose transcripción',
       path: '/data/pleno-votes.json',
       fmt: ['json'],
     },

@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
+import { Card, Pill, SectionHead } from '../components/Primitives'
 import { PlazoVencidoBadge } from '../components/PlazoVencidoBadge'
 import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import {
@@ -16,6 +16,7 @@ import { canonicalizeDepartment } from '../scraper/departments'
 import { ClaimLedger } from '../components/ClaimLedger'
 import { VoteTallyBar, DirectionLegend } from '../components/plenos/VoteTallyBar'
 import { VoteBreakdownRetracted } from '../components/plenos/VoteBreakdownRetracted'
+import { VoteProvenance } from '../components/plenos/VoteProvenance'
 import { deptSlugToClaimTopics, promiseDeptSlug } from '../lib/department-claim-topics.js'
 import { useT, useLocale } from '../i18n'
 
@@ -93,18 +94,10 @@ function VotesSection({ slug, frozen }) {
               )}
             </div>
           )}
-          <ExtLink
-            href={v.sourceUrl}
-            style={{
-              display: 'inline-block',
-              marginTop: 10,
-              fontSize: 11.5,
-              color: 'var(--civic)',
-              textDecoration: 'none',
-            }}
-          >
-            Acta oficial →
-          </ExtLink>
+          {/* Was a single «Acta oficial →» pointing at regmeet — a label that
+              named a document the link does not lead to, over a row whose
+              per-bloc tally came from somewhere else again. */}
+          <VoteProvenance provenance={v.provenance} />
         </Card>
       ))}
     </div>

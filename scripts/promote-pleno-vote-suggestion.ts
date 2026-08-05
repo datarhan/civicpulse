@@ -22,7 +22,13 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { spawnSync } from 'node:child_process'
-import { validateVote, type PlenoVote } from '../src/scraper/pleno-votes'
+import {
+  transcriptRefUrl,
+  TRANSCRIPT_SOURCE_PUBLISHER,
+  validateVote,
+  voteSourceKindForUrl,
+  type PlenoVote,
+} from '../src/scraper/pleno-votes'
 import type { InferredVote } from '../src/scraper/pleno-vote-inference'
 
 const SUGGESTIONS = resolve('public/data/pleno-votes-suggestions.json')
@@ -130,6 +136,31 @@ function main() {
     process.exit(1)
   }
 
+  // The suggestion's OUTCOME is checked against regmeet (which publishes it);
+  // its per-bloc tally is read out of the session transcript by the extractor
+  // and regmeet publishes no tally at all. Promoting used to hang both off the
+  // regmeet link, which is the defect the 2026-08-05 migration corrected — so
+  // the promoted row now cites the transcript for the half that came from it,
+  // `sin-verificar` until a curator cotejes it against the acta.
+  const outcomeKind = voteSourceKindForUrl(sourceUrl)
+  if (outcomeKind == null) {
+    process.stderr.write(
+      `[promote-vote] unrecognised source url "${sourceUrl}" — cannot say what kind of ` +
+        'document it is. Pass the acta or the regmeet link explicitly.\n',
+    )
+    process.exit(1)
+  }
+  const today = new Date().toISOString().slice(0, 10)
+  const transcriptPath = resolve(`public/data/pleno-transcripts/${plenoId}.txt`)
+  if (suggestion.votes.length > 0 && !existsSync(transcriptPath)) {
+    process.stderr.write(
+      `[promote-vote] the per-bloc tally comes from the session transcript, but ` +
+        `public/data/pleno-transcripts/${plenoId}.txt is not in the build — refusing to ` +
+        'cite a source a reader cannot open.\n',
+    )
+    process.exit(1)
+  }
+
   const paddedItem = String(itemNumber).padStart(2, '0')
   const candidate: Partial<PlenoVote> & Record<string, unknown> = {
     id: `${plenoId}-${paddedItem}`,
@@ -144,9 +175,28 @@ function main() {
     ...(suggestion.dueBy && suggestion.dueBySource
       ? { dueBy: suggestion.dueBy, dueBySource: suggestion.dueBySource }
       : {}),
+    provenance: {
+      outcome: {
+        kind: outcomeKind,
+        url: sourceUrl,
+        publisher: 'Ayuntamiento de Riba-roja de Túria',
+        retrievedAt: today,
+        verification: 'sin-verificar',
+      },
+      breakdown:
+        suggestion.votes.length > 0
+          ? {
+              kind: 'transcripcion',
+              url: transcriptRefUrl(plenoId),
+              publisher: TRANSCRIPT_SOURCE_PUBLISHER,
+              retrievedAt: today,
+              verification: 'sin-verificar',
+            }
+          : null,
+    },
     sourceUrl,
     sourcePublisher: 'Ayuntamiento de Riba-roja de Túria',
-    retrievedAt: new Date().toISOString().slice(0, 10),
+    retrievedAt: today,
   }
 
   // Defensive: run the validator before writing to disk or invoking the CLI.

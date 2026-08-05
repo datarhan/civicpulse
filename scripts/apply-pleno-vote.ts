@@ -19,13 +19,16 @@ import { resolve } from 'node:path'
 import {
   validateSnapshot,
   validateVote,
+  voteSourceKindForUrl,
   ALLOWED_BLOCS,
   ALLOWED_DIRECTIONS,
   ALLOWED_OUTCOMES,
+  BREAKDOWN_SOURCE_KINDS,
   type PlenoVote,
   type PlenoVotesSnapshot,
   type VoteDirection,
   type VoteBloc,
+  type VoteProvenance,
 } from '../src/scraper/pleno-votes'
 
 const DATA_PATH = resolve('public/data/pleno-votes.json')
@@ -127,6 +130,43 @@ function main() {
     const item = Number(itemStr)
     if (!Number.isInteger(item) || item <= 0) usage()
     const { date } = lookupPleno(plenoId)
+    const votes = parseVoteTuples(voteSpec)
+    // The positional form is «I am reading one document and typing it in», so
+    // that one document is cited for both halves — and the validator then
+    // refuses the combination that caused the 2026-08-05 migration: a per-bloc
+    // tally attributed to a source that publishes no tally. To enter a vote
+    // whose outcome and breakdown come from DIFFERENT documents (a regmeet
+    // outcome with a transcript breakdown, the ordinary case), use --file.
+    const kind = voteSourceKindForUrl(sourceUrl)
+    if (kind == null) {
+      process.stderr.write(
+        `[pleno-vote] unrecognised source url "${sourceUrl}" — cannot tell what kind of ` +
+          `document it is, and guessing is how a breakdown ends up cited to something ` +
+          `that does not publish one. Use --file and state provenance explicitly.\n`,
+      )
+      process.exit(1)
+    }
+    if (votes.length > 0 && !(BREAKDOWN_SOURCE_KINDS as readonly string[]).includes(kind)) {
+      process.stderr.write(
+        `[pleno-vote] ${sourceUrl} publishes no per-bloc breakdown, so it cannot be the ` +
+          `source of one. Record the outcome from it and the tally from the document that ` +
+          `does carry it (the session transcript, or the acta) via:\n` +
+          `  npm run pleno-vote -- --file <vote.json>\n`,
+      )
+      process.exit(1)
+    }
+    const today = new Date().toISOString().slice(0, 10)
+    const ref = {
+      kind,
+      url: sourceUrl,
+      publisher: 'Ayuntamiento de Riba-roja de Túria',
+      retrievedAt: today,
+      verification: 'sin-verificar' as const,
+    }
+    const provenance: VoteProvenance = {
+      outcome: ref,
+      breakdown: votes.length > 0 ? ref : null,
+    }
     incoming = validateVote({
       id: `${plenoId}-${String(item).padStart(2, '0')}`,
       plenoId,
@@ -134,13 +174,31 @@ function main() {
       itemNumber: item,
       title,
       outcome,
-      votes: parseVoteTuples(voteSpec),
+      votes,
+      provenance,
       sourceUrl,
       sourcePublisher: 'Ayuntamiento de Riba-roja de Túria',
-      retrievedAt: new Date().toISOString().slice(0, 10),
+      retrievedAt: today,
     })
   } else {
     usage()
+  }
+
+  // Named before the snapshot-level failure, which would otherwise point a
+  // curator at the one-shot migration script rather than at their own input.
+  if (!incoming.provenance) {
+    process.stderr.write(
+      `[pleno-vote] ${incoming.id} has no provenance. A published vote states where each ` +
+        `half comes from:\n` +
+        `  "provenance": {\n` +
+        `    "outcome":   { "kind": "regmeet", "url": "…", "publisher": "…", ` +
+        `"retrievedAt": "YYYY-MM-DD", "verification": "sin-verificar" },\n` +
+        `    "breakdown": { "kind": "transcripcion", "url": "/data/pleno-transcripts/<plenoId>.txt", ` +
+        `… }   // or null when no tally is published\n` +
+        `  }\n` +
+        `Allowed breakdown kinds: ${BREAKDOWN_SOURCE_KINDS.join(', ')}.\n`,
+    )
+    process.exit(1)
   }
 
   const snap = loadSnapshot()

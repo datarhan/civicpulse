@@ -68,6 +68,18 @@ describe('safeHref', () => {
     expect(safeHref(null)).toBe(null)
     expect(safeHref('not a url')).toBe(null)
   })
+
+  // A vote's breakdown cites /data/pleno-transcripts/<plenoId>.txt. Before this
+  // these returned null and ExtLink rendered an unlinked <span> — the citation
+  // vanished from the page without anything failing.
+  it('allows a site-absolute path so an internal citation stays clickable', () => {
+    expect(safeHref('/data/pleno-transcripts/qz6weg.txt')).toBe('/data/pleno-transcripts/qz6weg.txt')
+    expect(safeHref('/plenos/qz6weg')).toBe('/plenos/qz6weg')
+  })
+
+  it('still rejects a protocol-relative url, which only looks like a path', () => {
+    expect(safeHref('//evil.example/x')).toBe(null)
+  })
 })
 
 describe('truncateAtWord', () => {
