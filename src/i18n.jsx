@@ -269,6 +269,20 @@ const CATALOGUE = {
     'hallazgos.area.clear': 'ver todos',
     'hallazgos.area.note':
       'Hallazgos cuyas declaraciones se clasifican en esta área. La atribución de cada hallazgo es al GRUPO político que habló, nunca a una persona concreta.',
+    // Cross-checked documents. The date qualifier is chrome, not data: it says
+    // WHICH date is being shown, so «7 feb 2023» beneath a 2026 debate cannot
+    // be read as the debate's own date.
+    'findings.refs.crossChecked': 'Documentos cotejados',
+    'findings.refs.contradiction': 'Documentos que contradicen',
+    'findings.refs.date.award': 'adjudicación',
+    'findings.refs.date.formalized': 'formalización',
+    'findings.refs.date.start': 'inicio',
+    'findings.refs.date.opened': 'apertura de ofertas',
+    'findings.refs.date.submission': 'plazo de presentación',
+    'findings.refs.date.session': 'sesión',
+    'findings.refs.date.none': 'sin fecha publicada',
+    'findings.refs.date.noneTitle':
+      'El registro público de este documento no publica ninguna fecha utilizable. No significa que sea reciente.',
     'cargos.detalle.actividad.eyebrow': 'Actividad de sus áreas',
     'cargos.detalle.actividad.title': 'Qué se ha debatido y verificado en sus concejalías',
     'cargos.detalle.actividad.intro':
@@ -722,6 +736,17 @@ const CATALOGUE = {
     'hallazgos.area.clear': 'veure tots',
     'hallazgos.area.note':
       "Troballes les declaracions de les quals es classifiquen en esta àrea. L'atribució de cada troballa és al GRUP polític que va parlar, mai a una persona concreta.",
+    'findings.refs.crossChecked': 'Documents contrastats',
+    'findings.refs.contradiction': 'Documents que contradiuen',
+    'findings.refs.date.award': 'adjudicació',
+    'findings.refs.date.formalized': 'formalització',
+    'findings.refs.date.start': 'inici',
+    'findings.refs.date.opened': "obertura d'ofertes",
+    'findings.refs.date.submission': 'termini de presentació',
+    'findings.refs.date.session': 'sessió',
+    'findings.refs.date.none': 'sense data publicada',
+    'findings.refs.date.noneTitle':
+      "El registre públic d'este document no publica cap data utilitzable. No vol dir que siga recent.",
     'cargos.detalle.actividad.eyebrow': 'Activitat de les seues àrees',
     'cargos.detalle.actividad.title': "Què s'ha debatut i verificat a les seues regidories",
     'cargos.detalle.actividad.intro':

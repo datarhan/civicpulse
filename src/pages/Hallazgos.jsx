@@ -142,8 +142,8 @@ function FindingDetailCard({ f, permalink }) {
           ))}
         </div>
       )}
-      <RefList refs={f.crossChecked} kind="crossChecked" />
-      <RefList refs={f.contradiction} kind="contradiction" />
+      <RefList refs={f.crossChecked} kind="crossChecked" plenoDate={f.plenoDate} />
+      <RefList refs={f.contradiction} kind="contradiction" plenoDate={f.plenoDate} />
       {f.response ? (
         <div
           style={{

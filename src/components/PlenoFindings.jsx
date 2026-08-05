@@ -1,6 +1,10 @@
 import { Card, Pill, SectionHead, ExtLink } from './Primitives'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
+import { useTenders } from '../hooks/useTenders'
 import { blocLabel } from '../lib/party-label.js'
+import { refDateIndexFor, refDate } from '../lib/crosschecked-date.js'
+import { fmtDateShort } from '../lib/formatters'
+import { useT } from '../i18n'
 
 /**
  * The documents a finding was cross-checked against.
@@ -28,10 +32,63 @@ import { blocLabel } from '../lib/party-label.js'
  * duplicated verbatim in `pages/Hallazgos.jsx`, so the first fix reached only
  * one of the two surfaces that render it.
  */
-export function RefList({ refs, kind }) {
+/**
+ * When a cross-checked document is from, rendered where the reader sees it.
+ *
+ * Not decoration. `f-2026-07-03-cit-1e90e0` is about a JULY 2026 debate on an
+ * emergency waste contract, and the document at the top of its list opens
+ * «contrato emergencia acondicionamiento de caminos…» — an emergency contract
+ * from the NOVEMBER 2022 storms, about roads. The list is honest (it means
+ * «cotejado», not «coincide») and the reference is a real record, so the fix
+ * is not to remove it: it is to show the one fact that tells the two apart,
+ * which was in the data and not on screen.
+ *
+ * The date is always labelled with WHICH date it is — a contract's award is
+ * not its start — and a document that publishes none says so in words. A blank
+ * would read as recent, which is the failure being repaired.
+ */
+function RefDate({ date, t }) {
+  // `undefined` = nothing has resolved this ref yet (the tenders snapshot is
+  // still in flight). Rendering "sin fecha" then would be a claim about the
+  // document made from our own loading state.
+  if (date === undefined) return null
+  const known = date !== null
+  const field = known ? t(`findings.refs.date.${date.field}`) : null
+  return (
+    <span
+      className="mono"
+      style={{
+        fontSize: 9.5,
+        // No opacity: this is text inside a tinted chip, and opacity there
+        // drops it below AA against the tint at any theme.
+        color: known ? 'var(--ink70)' : 'var(--ink60)',
+        background: 'var(--soft)',
+        border: known ? 'none' : '1px dashed var(--border2)',
+        padding: '1px 5px',
+        borderRadius: 4,
+        marginRight: 6,
+        whiteSpace: 'nowrap',
+      }}
+      title={known ? `${field} · ${date.iso}` : t('findings.refs.date.noneTitle')}
+    >
+      {known ? `${fmtDateShort(date.iso)} · ${field}` : t('findings.refs.date.none')}
+    </span>
+  )
+}
+
+export function RefList({ refs, kind, plenoDate }) {
+  const t = useT()
+  // Tender dates live in tenders.json and nowhere smaller. A precomputed
+  // index would be lighter, but it goes stale exactly where mis-dating is most
+  // likely — the newest finding, citing the newest expediente — and a stale
+  // index renders no date at all. Reading the live snapshot cannot rot; the
+  // session store fetches it once per session and shares it with /cambios,
+  // /presupuesto and /departamentos.
+  const { data: tenders } = useTenders()
+  const index = refDateIndexFor(tenders)
   if (!refs || refs.length === 0) return null
   const isCrossChecked = kind === 'crossChecked'
-  const label = isCrossChecked ? 'Documentos cotejados' : 'Documentos que contradicen'
+  const label = t(isCrossChecked ? 'findings.refs.crossChecked' : 'findings.refs.contradiction')
   const tone = isCrossChecked ? 'var(--ink60)' : 'var(--crit-ink)'
   return (
     <div style={{ marginTop: 6 }}>
@@ -53,7 +110,11 @@ export function RefList({ refs, kind }) {
           <>
             <span className="mono" style={{ fontSize: 9.5, color: 'var(--ink50)', marginRight: 6 }}>
               {r.kind.toUpperCase()}
-            </span>
+            </span>{' '}
+            <RefDate date={refDate(r, index, plenoDate)} t={t} />{' '}
+            {/* The spaces above are load-bearing: margins separate the chips
+                visually, but a screen reader reads the text nodes, and without
+                them it says «adjudicacióncontrato emergencia». */}
             <span style={{ fontSize: 12 }}>{r.snippet}</span>
           </>
         )
@@ -141,8 +202,8 @@ export function FindingCard({ f }) {
           ))}
         </div>
       )}
-      <RefList refs={f.crossChecked} kind="crossChecked" />
-      <RefList refs={f.contradiction} kind="contradiction" />
+      <RefList refs={f.crossChecked} kind="crossChecked" plenoDate={f.plenoDate} />
+      <RefList refs={f.contradiction} kind="contradiction" plenoDate={f.plenoDate} />
       {f.response && (
         <div
           style={{
