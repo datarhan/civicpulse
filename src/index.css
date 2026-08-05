@@ -638,6 +638,26 @@ body.cp-kiosk .cp-live-container {
   }
 }
 
+/* /declaraciones — la cabecera de cada declaración es un flex de una sola
+   línea: dos píldoras, el grupo, el tema, un separador elástico y el enlace de
+   fecha. `flex-wrap` por defecto es `nowrap`, así que en cuanto el tema crece
+   nada cede y el último elemento —el enlace «2026-04-20»— sale de la pantalla:
+   379px de documento sobre un viewport de 375, con desplazamiento horizontal.
+
+   Se deja envolver en lugar de recortar con puntos suspensivos: el tema y el
+   grupo son datos, y una elipsis en un teléfono esconde precisamente lo que la
+   fila existe para decir. `min-width: 0` es lo que permite que un hijo baje de
+   su contenido mínimo; sin él, envolver no basta cuando un solo elemento ya es
+   más ancho que la tarjeta. Aquí no hace falta `!important` porque el estilo
+   inline de la fila no declara `flex-wrap`. */
+.cp-claim-head {
+  flex-wrap: wrap;
+}
+
+.cp-claim-head > * {
+  min-width: 0;
+}
+
 /* ---- Skip link · WCAG 2.4.1 Bypass Blocks (Level A) --------------------
    Off-screen until focused, then pinned top-left. It cannot be display:none
    or visibility:hidden — that removes it from the tab order, which is the one

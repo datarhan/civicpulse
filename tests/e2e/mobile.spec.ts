@@ -76,13 +76,10 @@ const CONTENT_FLOOR = 150
 // where defects go to die: the number is the real measurement, and a route
 // that starts fitting FAILS until its line is deleted. Fixing the page is the
 // only way out; raising the number is not.
-const KNOWN_OVERFLOW: Record<string, { widthPx: number; reason: string }> = {
-  '/declaraciones': {
-    widthPx: 401,
-    reason:
-      'el enlace de fecha de cada declaración (p. ej. «2026-04-20») llega a x=400 en un viewport de 375 — 26px de exceso. Medido 2026-08-04.',
-  },
-}
+//
+// Vacío desde 2026-08-05: /declaraciones era la última entrada y su cabecera
+// ya envuelve, así que todas las rutas se miden contra el mismo listón.
+const KNOWN_OVERFLOW: Record<string, { widthPx: number; reason: string }> = {}
 
 async function measure(page: import('@playwright/test').Page, route: Route, readyTimeout = 20_000) {
   await page.goto(route.path, { waitUntil: 'domcontentloaded' })

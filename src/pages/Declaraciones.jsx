@@ -108,7 +108,13 @@ function ClaimRow({ item, plenoTitle }) {
   if (c.entities?.date) ent.push(c.entities.date)
   return (
     <Card>
-      <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 8 }}>
+      {/* La envoltura y el encogido viven en index.css (.cp-claim-head): una
+          media query no cabe en el prop `style`, y esta fila es la que
+          desbordaba /declaraciones en un teléfono de 375px. */}
+      <div
+        className="cp-claim-head"
+        style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 8 }}
+      >
         <Pill tone={VERDICT_TONE[v.verdict] ?? 'neutral'} size="xs">
           {VERDICT_LABEL[v.verdict] ?? v.verdict}
         </Pill>
