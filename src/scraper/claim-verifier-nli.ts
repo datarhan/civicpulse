@@ -92,7 +92,16 @@ export async function verifyClaimWithNli(
   const verdict: ClaimVerdict = bestEntail >= NLI_THRESHOLDS.high ? 'verificado' : 'parcial'
   const evidence: ClaimEvidence[] = supports.map(({ idx }) => {
     const c = inputs.candidates[idx]
-    return { kind: c.kind, ref: c.ref, snippet: c.snippet, similarity: c.similarity }
+    // `stance: 'checked'` even at high entailment: this module never emits
+    // `contradicho` (see the header), and reground.ts records that the NLI
+    // signal is inverted often enough that it is triage, not a finding.
+    return {
+      kind: c.kind,
+      ref: c.ref,
+      snippet: c.snippet,
+      similarity: c.similarity,
+      stance: 'checked' as const,
+    }
   })
 
   return {

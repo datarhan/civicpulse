@@ -35,7 +35,7 @@ const BASE = {
           sourceClaimId: '1sqj7is-042-afi-abcdef',
         },
       ],
-      corroboration: [],
+      crossChecked: [],
       contradiction: [],
       relatedPromiseIds: [],
       curatorName: 'curator-0',

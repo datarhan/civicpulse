@@ -18,7 +18,7 @@
  *      b. Generate {title, summary} via gemini (or whichever backend
  *         the auto-fallback chain picks).
  *      c. Compose the PlenoFinding payload (severity=informational,
- *         curatorName='auto-curation-v1', corroboration aggregated
+ *         curatorName='auto-curation-v1', refs bucketed by recorded stance
  *         from verifier evidence + pleno video URL).
  *      d. Validate via validateFindingsSnapshot — if it rejects
  *         (e.g. LLM produced too-short summary on retry-exhausted

@@ -94,6 +94,35 @@ export type ClaimVerdict =
   | 'sin-datos'
   | 'promesa-repetida'
 
+/**
+ * What this verifier established about a document RELATIVE to the claim.
+ *
+ * There are two members, not three, and the missing one is the point. No path
+ * in this file establishes that a document *supports* a sentence: every
+ * "match" here is a lexical or arithmetic coincidence between a euro figure or
+ * an entity name and a contract title. Measured on the published snapshot
+ * (6.359 claims), the five refs carrying the strongest possible signal —
+ * verdict `verificado` with `similarity ≥ 0.8` — include «Vox dice que no, que
+ * no» matched at 1.0 to the *electronic voting system* tender, and «el
+ * fatídico día 29 de octubre de 2024» matched at 1.0 to a debris-clearing
+ * contract. Four of those five support nothing. A `corroborates` member would
+ * have carried all five.
+ *
+ * So:
+ *   · 'contradicts' — the verifier made a directional, reasoned finding that
+ *     the record is incompatible with the claim (the two `contradicho` return
+ *     paths below, or an LLM citation flagged `isContradiction`).
+ *   · 'checked'     — the document was cross-referenced and surfaced. Nothing
+ *     more is asserted. Whether it corroborates is an editorial judgement no
+ *     deterministic matcher in this repo makes.
+ *
+ * Absent ⇒ `'checked'`. Every consumer must treat an unset stance as the
+ * weakest reading; a missing field may never be upgraded into a verdict.
+ */
+export type EvidenceStance = 'contradicts' | 'checked'
+
+export const EVIDENCE_STANCES: readonly EvidenceStance[] = ['contradicts', 'checked']
+
 export interface ClaimEvidence {
   kind: 'tender' | 'bdns' | 'budget' | 'promise' | 'prior-claim' | 'factcheck' | 'boe'
   /** URL or synthetic ref for the curator to click through. */
@@ -102,6 +131,23 @@ export interface ClaimEvidence {
   snippet: string
   /** Numeric similarity for amount-based matches (0..1). */
   similarity?: number
+  /**
+   * Set at the point of emission by the verifiers that feed pleno findings
+   * (this file, claim-verifier-llm, claim-verifier-engine). Optional because
+   * snapshots written before 2026-08 carry none, and because inventing a
+   * stance for a row nobody classified is the defect this field exists to
+   * stop. Read it through `evidenceStance()`, never directly.
+   */
+  stance?: EvidenceStance
+}
+
+/**
+ * The ONE reader for `stance`. Whitelists the enum rather than defaulting with
+ * `??`, so a snapshot from disk carrying a stale or garbage value degrades to
+ * `'checked'` instead of being trusted.
+ */
+export function evidenceStance(ev: { stance?: string } | null | undefined): EvidenceStance {
+  return ev?.stance === 'contradicts' ? 'contradicts' : 'checked'
 }
 
 export interface ClaimVerification {
@@ -481,6 +527,10 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
           ref: p.source?.url ?? `promise:${p.id}`,
           snippet: `«${String(p.quote).slice(0, 160)}» · promesa ${p.id} (${p.madeAt})`,
           similarity: Math.round(score * 100) / 100,
+          // A previously-published promise with an overlapping quote says the
+          // speaker said this before. It does not attest that what they said
+          // is true, which is what a finding's prose is about.
+          stance: 'checked',
         })
       }
     }
@@ -559,6 +609,10 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
             'es-ES',
           )} €`,
           similarity: Math.round(best.sim * 100) / 100,
+          // `combined` blends amount and title overlap, so a 0.6 pass can come
+          // from either side alone. A contract whose title happens to share
+          // words with the claim has not corroborated it.
+          stance: 'checked',
         })
       } else if (entityMatchMismatchedAmount) {
         // No strong (amount + entity) match, but an entity match with a
@@ -569,6 +623,9 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
           ref: t.permalink ?? '',
           snippet: `${tenderTitle(t)} · ${Math.round(tenderAmount(t)!).toLocaleString('es-ES')} € (no coincide con el importe citado)`,
           similarity: Math.round(entityMatchMismatchedAmount.textSim * 100) / 100,
+          // The reason this branch returns `contradicho`: same entity, an
+          // amount off by ≥2×. This ref IS the discrepancy.
+          stance: 'contradicts',
         })
         return {
           claimId: claim.id,
@@ -610,6 +667,9 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
             return `${bdnsText(best.row).slice(0, 160)} · ${money}`
           })(),
           similarity: Math.round(best.sim * 100) / 100,
+          // Same blend as the tender path, and rows with no published amount
+          // are matched on the convocatoria title alone.
+          stance: 'checked',
         })
       }
     }
@@ -635,6 +695,9 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
               candidate.amount,
             ).toLocaleString('es-ES')} €`,
             similarity: Math.round(sim * 100) / 100,
+            // Explicitly a plausibility check ("is this figure the right order
+            // of magnitude for the chapter?"). Plausible is not corroborated.
+            stance: 'checked',
           })
         }
       }
@@ -672,14 +735,23 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
       // catches false positives via cite-grounding; we lose precision
       // hardly any and gain a lot of recall on real municipal-work claims.
       if (textSim >= 0.5) {
+        // Contradicho: speaker says "completed" but tender is open/pending.
+        // Decided BEFORE the push so the ref carries its own stance rather
+        // than the reader having to infer it from the enclosing verdict.
+        const refutes = Boolean(
+          claimsCompleted && t.status && TENDER_NOT_DONE_STATUSES.has(t.status.toLowerCase()),
+        )
         evidence.push({
           kind: 'tender',
           ref: t.permalink ?? '',
           snippet: `${tenderTitle(t)} · estado: ${t.status ?? 'desconocido'}`,
           similarity: Math.round(textSim * 100) / 100,
+          // Title overlap only — no amount, no semantics. This is the path
+          // that matched a queue-management IT contract to a claim about
+          // waiting times, so it is `checked` at every similarity value.
+          stance: refutes ? 'contradicts' : 'checked',
         })
-        // Contradicho: speaker says "completed" but tender is open/pending.
-        if (claimsCompleted && t.status && TENDER_NOT_DONE_STATUSES.has(t.status.toLowerCase())) {
+        if (refutes) {
           return {
             claimId: claim.id,
             verdict: 'contradicho',

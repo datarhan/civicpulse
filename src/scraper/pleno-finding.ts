@@ -20,8 +20,14 @@
  *  · severity     informational | notable | critical
  *  · sourceClaimIds   every claim id this finding cites
  *  · quotes       verbatim quotes used as evidence
- *  · corroboration tenders/BDNS/budget refs that confirm
- *  · contradiction tenders/BDNS/budget refs that contradict (when applicable)
+ *  · crossChecked  tenders/BDNS/budget refs the claims were cross-referenced
+ *                  against — whether or not they agree. The field was called
+ *                  `corroboration` until 2026-08-05; nothing upstream ever
+ *                  established corroboration, so the name asserted a verdict
+ *                  the contents did not carry and the LLM synthesiser wrote
+ *                  prose from the name. See EvidenceStance in claim-verifier.
+ *  · contradiction refs the verifier found INCOMPATIBLE with the claim
+ *                  (stance='contradicts'). Gates severity=critical.
  *  · relatedPromiseIds references to promises.json when this finding
  *                     is a promise-repetition note
  *  · curatorName  who edited this
@@ -58,7 +64,9 @@ export interface FindingRef {
    * Six original kinds come from the deterministic + LLM verifiers
    * (tender / bdns / budget / promise / pleno-video / pleno-acta).
    * Three additional kinds are populated only by the curator path
-   * via the dashboard's `extraCorroboration` flow:
+   * via the dashboard's `extraCorroboration` flow (a curator deliberately
+   * attaching a document; it still lands in `crossChecked[]`, because the
+   * CLI does not check that it supports anything either):
    *   · press      – external news article (HTML URL)
    *   · document   – non-acta external PDF (auditor report, contract,
    *                  press release, etc.)
@@ -93,7 +101,18 @@ export interface PlenoFinding {
   severity: FindingSeverity
   sourceClaimIds: string[]
   quotes: FindingQuote[]
-  corroboration: FindingRef[]
+  /**
+   * Every document the cited claims were cross-referenced against, plus the
+   * pleno recording as provenance. Renders as «Documentos cotejados». It is
+   * NOT a filtered list of documents that agree — see the header.
+   */
+  crossChecked: FindingRef[]
+  /**
+   * Only refs the verifier found incompatible with a cited claim
+   * (`stance: 'contradicts'`), or a curator's own. Empty is the normal state:
+   * `selectBundles` quarantines every contradicho-bearing bundle, so no
+   * automated path can fill this.
+   */
   contradiction: FindingRef[]
   relatedPromiseIds: string[]
   curatorName: string
@@ -282,19 +301,32 @@ function validateFinding(f: unknown, idx: number): PlenoFinding {
     `items[${idx}].quotes must be non-empty — a finding without a verbatim anchor is not publishable`,
   )
   const quotes = (o.quotes as unknown[]).map((q, qi) => validateQuote(q, idx, qi))
-  const corroboration = (Array.isArray(o.corroboration) ? (o.corroboration as unknown[]) : []).map(
-    (r, ri) => validateRef(r, idx, 'corroboration', ri),
+  // `corroboration` was renamed to `crossChecked` on 2026-08-05. Rejecting the
+  // old key outright is the second layer: a row that still carries it was
+  // written by something that never learned the field means "cotejado", not
+  // "corrobora", and would publish the old assertion under the new heading.
+  must(
+    o.corroboration === undefined,
+    `items[${idx}]: \`corroboration\` was renamed to \`crossChecked\` — the list is what was ` +
+      `cross-checked, not what agrees. Nothing upstream establishes corroboration.`,
+  )
+  const crossChecked = (Array.isArray(o.crossChecked) ? (o.crossChecked as unknown[]) : []).map(
+    (r, ri) => validateRef(r, idx, 'crossChecked', ri),
   )
   const contradiction = (Array.isArray(o.contradiction) ? (o.contradiction as unknown[]) : []).map(
     (r, ri) => validateRef(r, idx, 'contradiction', ri),
   )
-  // Severity=critical requires at least one contradiction OR one
-  // corroboration row — a "critical" finding with zero evidence rows would
-  // be pure editorial assertion, which fails the project's standard.
+  // `critical` is the strongest verdict this site publishes about a named
+  // bloc, and /metodologia has always promised it requires "al menos una
+  // referencia de contradicción". The gate used to accept a corroboration ref
+  // instead, so the published contract had never once been met — the
+  // disjunction let "we looked at some documents" stand in for "a document
+  // refutes this". Now it says what the page says.
   if (o.severity === 'critical') {
     must(
-      contradiction.length >= 1 || corroboration.length >= 1,
-      `items[${idx}] severity=critical requires ≥1 contradiction or corroboration ref`,
+      contradiction.length >= 1,
+      `items[${idx}] severity=critical requires ≥1 contradiction ref (a cross-checked document ` +
+        `is not a refutation) — see /metodologia#disciplina-antilibellos`,
     )
   }
   must(
@@ -398,7 +430,7 @@ function validateFinding(f: unknown, idx: number): PlenoFinding {
     severity: o.severity as FindingSeverity,
     sourceClaimIds: (o.sourceClaimIds as unknown[]).map((x) => String(x)),
     quotes,
-    corroboration,
+    crossChecked,
     contradiction,
     relatedPromiseIds,
     curatorName: o.curatorName as string,

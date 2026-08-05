@@ -25,7 +25,7 @@ const CLEAN: DraftFindingLike = {
   quotes: [
     { text: 'vamos a ampliar la recogida de residuos', speakerGroup: 'PSOE', sourceClaimId: 'c1' },
   ],
-  corroboration: [{ kind: 'tender', snippet: 'contrato de recogida de residuos sólidos urbanos' }],
+  crossChecked: [{ kind: 'tender', snippet: 'contrato de recogida de residuos sólidos urbanos' }],
 }
 
 describe('checkDraft — the four defect classes actually observed', () => {
@@ -81,19 +81,19 @@ describe('checkDraft — the four defect classes actually observed', () => {
     const d: DraftFindingLike = {
       ...CLEAN,
       quotes: [{ text: 'el parqué del complejo lo vamos a cambiar', speakerGroup: 'PSOE' }],
-      corroboration: [
+      crossChecked: [
         { kind: 'tender', snippet: 'pavimentación del paseo exterior uniendo edificios' },
       ],
     }
-    expect(codes(checkDraft(d, inputs()))).toContain('weak-corroboration')
+    expect(codes(checkDraft(d, inputs()))).toContain('unrelated-cross-check')
   })
 
-  it('ignores the pleno video when judging corroboration — it is provenance, not evidence', () => {
+  it('ignores the pleno video when cross-checking — it is provenance, not evidence', () => {
     const d: DraftFindingLike = {
       ...CLEAN,
-      corroboration: [{ kind: 'pleno-video', snippet: 'Vídeo del pleno · YouTube' }],
+      crossChecked: [{ kind: 'pleno-video', snippet: 'Vídeo del pleno · YouTube' }],
     }
-    expect(codes(checkDraft(d, inputs()))).not.toContain('weak-corroboration')
+    expect(codes(checkDraft(d, inputs()))).not.toContain('unrelated-cross-check')
   })
 
   it('warns on quotes with no attribution', () => {

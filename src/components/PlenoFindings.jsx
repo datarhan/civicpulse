@@ -6,18 +6,23 @@ import { blocLabel } from '../lib/party-label.js'
  * The documents a finding was cross-checked against.
  *
  * The heading used to read «Corrobora», which asserted a verdict the slot does
- * not carry. `corroboration[]` is not a filtered list of documents that agree:
- * `auto-curate.ts` fills it with EVERY verifier evidence ref for the cited
- * quotes — agreeing or not — plus the pleno video itself. Six published
+ * not carry. The field behind it is not a filtered list of documents that
+ * agree: `auto-curate.ts` filled it with EVERY verifier evidence ref for the
+ * cited quotes — agreeing or not — plus the pleno video itself. Six published
  * findings therefore stamped «CORROBORA» over documents their own prose calls
  * insufficient: `f-2026-07-03-cit-1e90e0` says «sin corroboración documental»
  * above three tenders (the register holds no FCC contract at all), and
  * `f-2025-10-06-acu-b00839` says the cited contract «no documenta el sistema
  * COMETA». Being checked is not agreeing.
  *
- * The heading now names the list; whether those documents corroborate is what
- * each finding's own summary is for. The green `--ok-ink` went with it — a
- * colour asserts a verdict just as loudly as a word.
+ * The heading was fixed first and the field kept its old name for four days,
+ * which is how the LLM synthesiser went on writing «corroborado por…» under an
+ * honest heading: it reads the schema, not the page. The field is now
+ * `crossChecked[]`, and `contradiction[]` takes only refs the verifier
+ * recorded as `stance: 'contradicts'`.
+ *
+ * The green `--ok-ink` went with the old heading — a colour asserts a verdict
+ * just as loudly as a word.
  *
  * Shared with `/hallazgos`, which imports this: the same component was
  * duplicated verbatim in `pages/Hallazgos.jsx`, so the first fix reached only
@@ -25,9 +30,9 @@ import { blocLabel } from '../lib/party-label.js'
  */
 export function RefList({ refs, kind }) {
   if (!refs || refs.length === 0) return null
-  const isCorroboration = kind === 'corroboration'
-  const label = isCorroboration ? 'Documentos cotejados' : 'Documentos que contradicen'
-  const tone = isCorroboration ? 'var(--ink60)' : 'var(--crit-ink)'
+  const isCrossChecked = kind === 'crossChecked'
+  const label = isCrossChecked ? 'Documentos cotejados' : 'Documentos que contradicen'
+  const tone = isCrossChecked ? 'var(--ink60)' : 'var(--crit-ink)'
   return (
     <div style={{ marginTop: 6 }}>
       <div
@@ -136,7 +141,7 @@ export function FindingCard({ f }) {
           ))}
         </div>
       )}
-      <RefList refs={f.corroboration} kind="corroboration" />
+      <RefList refs={f.crossChecked} kind="crossChecked" />
       <RefList refs={f.contradiction} kind="contradiction" />
       {f.response && (
         <div

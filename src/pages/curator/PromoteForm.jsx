@@ -68,7 +68,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
         title: parsed.title || '',
         snippet: parsed.snippet,
         // Default OFF: the curator opts in per-item to the URL/PDF
-        // landing in corroboration[] on the published finding. This
+        // landing in crossChecked[] on the published finding. This
         // is the libel-safe default — research-only URLs don't
         // accidentally become public citations.
         includeInCorroboration: false,
@@ -486,7 +486,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                         cursor: 'pointer',
                         userSelect: 'none',
                       }}
-                      title="If checked, this URL/PDF/transcript lands in the published finding's corroboration[] for citizen-facing citation."
+                      title="If checked, this URL/PDF/transcript lands in the published finding's crossChecked[] for citizen-facing citation. The CLI does not verify it supports the finding — say so in the summary."
                     >
                       <input
                         type="checkbox"
@@ -494,7 +494,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                         onChange={() => toggleEvidenceCorroboration(i)}
                         style={{ margin: 0 }}
                       />
-                      Include in published <code>corroboration[]</code>
+                      Include in published <code>crossChecked[]</code>
                     </label>
                   </div>
                   <button
@@ -800,7 +800,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
               }}
             >
               <b>{corroborationPayload.length}</b> evidence will be embedded as{' '}
-              <code>corroboration[]</code> on the published finding (
+              <code>crossChecked[]</code> on the published finding (
               {corroborationPayload.map((c) => c.kind).join(' · ')})
             </div>
           )}

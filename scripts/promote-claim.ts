@@ -34,7 +34,7 @@ import {
 } from '../src/scraper/pleno-finding'
 import { SPEAKER_GROUPS, type SpeakerGroup } from '../src/scraper/pleno-votes'
 import type { PlenoClaim } from '../src/scraper/pleno-claim'
-import type { ClaimVerification } from '../src/scraper/claim-verifier'
+import { evidenceStance, type ClaimVerification } from '../src/scraper/claim-verifier'
 
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
 const FINDINGS = resolve('public/data/pleno-findings.json')
@@ -82,10 +82,10 @@ function loadFindings(): PlenoFindingsSnapshot {
 }
 
 function evidenceToRefs(ev: ClaimVerification['evidence']): {
-  corroboration: FindingRef[]
+  crossChecked: FindingRef[]
   contradiction: FindingRef[]
 } {
-  const corroboration: FindingRef[] = []
+  const crossChecked: FindingRef[] = []
   const contradiction: FindingRef[] = []
   for (const e of ev) {
     if (e.kind === 'prior-claim') continue // not representable as a findings ref
@@ -96,20 +96,18 @@ function evidenceToRefs(ev: ClaimVerification['evidence']): {
     // 'factcheck'/'boe'); preserve the existing runtime behaviour and let the
     // findings validator be the gate on which kinds are accepted.
     const ref: FindingRef = { kind: e.kind as FindingRef['kind'], ref: e.ref, snippet }
-    // Heuristic — very strong matches or high-similarity rows corroborate;
-    // rows with low similarity or mismatched-amount notes contradict.
-    if ((e.similarity ?? 0) >= 0.65 && !e.snippet.includes('no coincide')) {
-      corroboration.push(ref)
-    } else if (e.snippet.includes('no coincide')) {
-      contradiction.push(ref)
-    } else {
-      corroboration.push(ref) // default: treat as supporting reference
-    }
+    // Read the stance the verifier RECORDED. This used to be a local
+    // heuristic — `similarity ≥ 0.65` counted as corroborating and the
+    // fallback branch was literally `corroboration.push(ref) // default:
+    // treat as supporting reference`, so a document nobody classified was
+    // published as support. Only a recorded 'contradicts' now separates.
+    if (evidenceStance(e) === 'contradicts') contradiction.push(ref)
+    else crossChecked.push(ref)
   }
-  return { corroboration, contradiction }
+  return { crossChecked, contradiction }
 }
 
-/** Curator-supplied refs eligible to land in `corroboration[]`. The
+/** Curator-supplied refs eligible to land in `crossChecked[]`. The
  *  CLI restricts the kinds here to the three curator-only values
  *  (`press`, `document`, `transcript`) — the remaining six kinds are
  *  populated only by the verifier path. */
@@ -267,11 +265,11 @@ function main() {
     speakerGroup: r.claim.speakerGroup,
     sourceClaimId: r.claim.id,
   }))
-  const corroboration: FindingRef[] = []
+  const crossChecked: FindingRef[] = []
   const contradiction: FindingRef[] = []
   for (const r of rows) {
     const split = evidenceToRefs(r.verification.evidence)
-    corroboration.push(...split.corroboration)
+    crossChecked.push(...split.crossChecked)
     contradiction.push(...split.contradiction)
     if (r.verification.verdict === 'contradicho') {
       // Ensure at least one contradiction ref is present (the verifier's
@@ -285,15 +283,18 @@ function main() {
       }
     }
   }
-  // Curator-supplied corroboration (URL/PDF/transcript). Dedup by ref
-  // so a curator-added URL that happens to also surface in the
+  // Curator-supplied refs (URL/PDF/transcript). They land in crossChecked[]
+  // like everything else: a curator attaching a document is a curator saying
+  // "read this alongside", and the CLI verifies nothing about whether it
+  // supports the finding. If it refutes one, the curator says so in the
+  // summary. Dedup by ref so a curator-added URL that also surfaces in the
   // verifier's evidence doesn't appear twice on the published card.
   if (opts.extraCorroboration.length > 0) {
-    const seen = new Set(corroboration.map((c) => c.ref))
+    const seen = new Set(crossChecked.map((c) => c.ref))
     for (const e of opts.extraCorroboration) {
       if (seen.has(e.ref)) continue
       seen.add(e.ref)
-      corroboration.push(e)
+      crossChecked.push(e)
     }
   }
 
@@ -375,7 +376,7 @@ function main() {
     severity: opts.severity,
     sourceClaimIds: rows.map((r) => r.claim.id),
     quotes,
-    corroboration,
+    crossChecked,
     contradiction,
     relatedPromiseIds: opts.relatedPromises,
     curatorName: opts.curator,
@@ -420,7 +421,7 @@ function main() {
   writeFileSync(FINDINGS, serialized, 'utf8')
   process.stdout.write(
     `[promote-claim] ${existingIdx >= 0 ? 'updated' : 'promoted'} finding ${id} ` +
-      `(${rows.length} claim(s), ${corroboration.length} corroboration${opts.extraCorroboration.length > 0 ? ` [+${opts.extraCorroboration.length} curator]` : ''}, ${contradiction.length} contradiction) → ${FINDINGS}\n`,
+      `(${rows.length} claim(s), ${crossChecked.length} cross-checked${opts.extraCorroboration.length > 0 ? ` [+${opts.extraCorroboration.length} curator]` : ''}, ${contradiction.length} contradiction) → ${FINDINGS}\n`,
   )
 }
 

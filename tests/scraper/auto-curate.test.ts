@@ -242,7 +242,7 @@ describe('composeFinding', () => {
     expect(() => validateFindingsSnapshot(JSON.stringify(snap))).not.toThrow()
   })
 
-  it('aggregates verifier evidence into corroboration[]', () => {
+  it('aggregates verifier evidence into crossChecked[]', () => {
     const bundle = buildBundle()
     const finding = composeFinding({
       bundle,
@@ -251,11 +251,11 @@ describe('composeFinding', () => {
       llmSummary:
         'Resumen suficientemente largo para satisfacer el suelo de validación del schema.',
     })
-    expect(finding.corroboration.length).toBeGreaterThan(0)
-    expect(finding.corroboration[0].kind).toBe('tender')
+    expect(finding.crossChecked.length).toBeGreaterThan(0)
+    expect(finding.crossChecked[0].kind).toBe('tender')
   })
 
-  it('appends pleno video URL to corroboration when supplied', () => {
+  it('appends pleno video URL to crossChecked when supplied', () => {
     const bundle = buildBundle()
     const finding = composeFinding({
       bundle,
@@ -265,7 +265,7 @@ describe('composeFinding', () => {
       plenoSourceUrl: 'https://www.youtube.com/watch?v=ABCDEF',
       plenoSourceKind: 'pleno-video',
     })
-    const videoRef = finding.corroboration.find((r) => r.kind === 'pleno-video')
+    const videoRef = finding.crossChecked.find((r) => r.kind === 'pleno-video')
     expect(videoRef).toBeDefined()
     expect(videoRef!.ref).toBe('https://www.youtube.com/watch?v=ABCDEF')
   })
@@ -279,7 +279,7 @@ describe('composeFinding', () => {
       llmTitle: 'Dedup test 2026-01-15',
       llmSummary: 'Resumen suficientemente largo para satisfacer el suelo del schema.',
     })
-    expect(finding.corroboration).toHaveLength(1)
+    expect(finding.crossChecked).toHaveLength(1)
   })
 
   it('severity is hard-coded informational regardless of bundle', () => {

@@ -682,11 +682,17 @@ export default function Metodologia() {
             resumen los escribió una máquina. Cuando un veredicto merece contexto se escribe un
             hallazgo en <code>pleno-findings.json</code> con título, resumen (≥40 caracteres), citas
             verbatim y los documentos con los que se ha cotejado. Esa lista es lo que se cotejó, no
-            lo que da la razón: el proceso automático vuelca en <code>corroboration</code> toda la
-            evidencia que el verificador encontró para las citas del hallazgo, la respalde o la
-            desmienta, así que la ficha la publica bajo el rótulo neutro «documentos cotejados» y es
-            el resumen el que dice si la corroboran. Los hallazgos se publican con derecho de
-            réplica literal para el grupo afectado.
+            lo que da la razón: el campo se llama <code>crossChecked</code> y recoge toda la
+            evidencia que el verificador encontró para las citas del hallazgo, así que la ficha la
+            publica bajo el rótulo neutro «documentos cotejados» y es el resumen el que dice si la
+            corroboran. Hasta el 5 de agosto de 2026 ese mismo campo se llamaba{' '}
+            <code>corroboration</code> con exactamente el mismo contenido: <strong>ningún</strong>{' '}
+            paso de este proceso comprueba que un documento respalde una frase —los cruces son
+            coincidencias de importe o de palabras en un título— y el nombre afirmaba lo que la
+            lista no había medido. Se renombró sin tocar una sola referencia. El campo{' '}
+            <code>contradiction</code> sólo admite documentos que el verificador marcó como
+            incompatibles con la cita. Los hallazgos se publican con derecho de réplica literal para
+            el grupo afectado.
           </li>
         </ol>
         <p style={{ margin: '12px 0 0', color: 'var(--ink70)' }}>
@@ -806,9 +812,13 @@ export default function Metodologia() {
             citan únicamente al medio que publicó la pieza. Nunca al/a la firmante.
           </li>
           <li>
-            <strong>Severity crítico exige evidencia.</strong> El validador rechaza un hallazgo
-            etiquetado como <code>critical</code> sin al menos una referencia de contradicción
-            dateada y enlazada.
+            <strong>Severity crítico exige una contradicción.</strong> El validador rechaza un
+            hallazgo etiquetado como <code>critical</code> sin al menos una referencia de
+            contradicción dateada y enlazada. Hasta el 5 de agosto de 2026 aceptaba en su lugar
+            cualquier documento cotejado, de modo que esta regla —publicada desde el principio—
+            nunca había llegado a exigirse: «hemos mirado estos expedientes» valía por «un
+            expediente lo desmiente». Hoy el código dice lo que dice esta página. No hay ningún
+            hallazgo <code>critical</code> publicado.
           </li>
         </ul>
 

@@ -111,7 +111,7 @@ const SeverityEnum = z.enum(['informational', 'notable', 'critical'])
 const COMMIT_FILE_ALLOWLIST = ['public/data/pleno-findings.json', 'public/data/promises.json']
 
 // Per-evidence ref the curator opts in to publishing as
-// `corroboration[]` on the finding. Kind is restricted to the three
+// `crossChecked[]` on the finding. Kind is restricted to the three
 // curator-only values; the verifier-only kinds (tender / bdns / etc.)
 // flow through the deterministic + LLM pipelines, never the dashboard.
 const CuratorRefKind = z.enum(['press', 'document', 'transcript'])
@@ -141,7 +141,7 @@ const ActionSchemas = {
         .regex(/^[a-z0-9-]{3,80}$/)
         .optional(),
       // Optional curator-supplied corroboration entries (≤10). Each
-      // entry lands in `corroboration[]` on the published finding.
+      // entry lands in `crossChecked[]` on the published finding.
       extraCorroboration: z.array(ExtraCorroborationEntry).max(10).optional(),
       force: z.boolean().optional(),
     })

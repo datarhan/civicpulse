@@ -142,7 +142,7 @@ function FindingDetailCard({ f, permalink }) {
           ))}
         </div>
       )}
-      <RefList refs={f.corroboration} kind="corroboration" />
+      <RefList refs={f.crossChecked} kind="crossChecked" />
       <RefList refs={f.contradiction} kind="contradiction" />
       {f.response ? (
         <div

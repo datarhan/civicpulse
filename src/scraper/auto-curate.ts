@@ -16,7 +16,7 @@
  * curator-only forever. See plan: floating-drifting-river.md.
  */
 import type { PlenoClaim } from './pleno-claim'
-import type { ClaimVerification } from './claim-verifier'
+import { evidenceStance, type ClaimVerification } from './claim-verifier'
 import type { PlenoFinding, FindingQuote, FindingRef, FindingSeverity } from './pleno-finding'
 
 export interface VerifiedItem {
@@ -154,7 +154,8 @@ export interface ComposeOpts {
   selectedQuotes: VerifiedItem[]
   llmTitle: string
   llmSummary: string
-  /** Optional pleno video / acta URL aggregated as a corroborating ref. */
+  /** Optional pleno video / acta URL. Provenance — where the quote came
+   *  from — not evidence for it, so it lands in crossChecked[]. */
   plenoSourceUrl?: string | null
   plenoSourceKind?: 'pleno-video' | 'pleno-acta'
   curatorName?: string
@@ -167,10 +168,16 @@ export interface ComposeOpts {
  *
  *   · severity is hard-coded informational.
  *   · curatorName defaults to "auto-curation-v1" so these are auditable.
- *   · corroboration[] aggregates EVERY verifier evidence ref from the
- *     selected quotes (deduped by ref) + the pleno source URL when
- *     supplied. contradiction[] stays empty (we filter those bundles
- *     out at selectBundles).
+ *   · refs are bucketed by the stance the verifier RECORDED on each one:
+ *     `contradicts` → contradiction[], everything else → crossChecked[],
+ *     which also takes the pleno source URL (provenance, not evidence).
+ *     An unset stance is `checked` — a ref nobody classified may never be
+ *     promoted into a verdict bucket.
+ *     Until 2026-08-05 this aggregated every ref into a field called
+ *     `corroboration[]`, and the LLM synthesiser, reading the name, wrote
+ *     «corroborado por…» over contracts that corroborated nothing.
+ *     contradiction[] still stays empty in practice: selectBundles
+ *     quarantines every contradicho-bearing bundle before we get here.
  *   · finding id mirrors promote-claim's scheme:
  *     f-<plenoDate>-<lastTwoSegmentsOfFirstClaimId>.
  */
@@ -185,11 +192,12 @@ export function composeFinding(opts: ComposeOpts): PlenoFinding {
     sourceClaimId: it.claim.id,
   }))
 
-  // Aggregate every verifier evidence ref from each cited claim. Dedup
-  // by ref string — the same tender often shows up under multiple
-  // claims when the bundle topic repeats.
+  // Bucket every verifier evidence ref from each cited claim by the stance
+  // recorded ON THAT REF. Dedup by ref string — the same tender often shows
+  // up under multiple claims when the bundle topic repeats.
   const seenRefs = new Set<string>()
-  const corroboration: FindingRef[] = []
+  const crossChecked: FindingRef[] = []
+  const contradiction: FindingRef[] = []
   for (const it of selectedQuotes) {
     for (const ev of it.verification.evidence ?? []) {
       // FindingRef.kind enum is narrower than ClaimEvidence.kind; map
@@ -201,11 +209,15 @@ export function composeFinding(opts: ComposeOpts): PlenoFinding {
       seenRefs.add(ev.ref)
       const snippet =
         ev.snippet.length > 237 ? ev.snippet.slice(0, 237).trimEnd() + '…' : ev.snippet
-      corroboration.push({ kind: kindMapped as FindingRef['kind'], ref: ev.ref, snippet })
+      const ref: FindingRef = { kind: kindMapped as FindingRef['kind'], ref: ev.ref, snippet }
+      // evidenceStance() whitelists the enum, so an absent or unrecognised
+      // value lands here as 'checked' rather than being trusted.
+      if (evidenceStance(ev) === 'contradicts') contradiction.push(ref)
+      else crossChecked.push(ref)
     }
   }
   if (opts.plenoSourceUrl) {
-    corroboration.push({
+    crossChecked.push({
       kind: opts.plenoSourceKind ?? 'pleno-video',
       ref: opts.plenoSourceUrl,
       snippet:
@@ -228,8 +240,8 @@ export function composeFinding(opts: ComposeOpts): PlenoFinding {
     severity,
     sourceClaimIds: selectedQuotes.map((q) => q.claim.id),
     quotes,
-    corroboration,
-    contradiction: [],
+    crossChecked,
+    contradiction,
     relatedPromiseIds: [],
     curatorName,
     publishedAt: new Date().toISOString().slice(0, 10),

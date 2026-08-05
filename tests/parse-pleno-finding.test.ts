@@ -25,7 +25,7 @@ const VALID = {
           sourceClaimId: '1sqj7is-042-afi-abcdef',
         },
       ],
-      corroboration: [],
+      crossChecked: [],
       contradiction: [],
       relatedPromiseIds: [],
       curatorName: 'curator-0',
@@ -68,6 +68,20 @@ describe('validateFindingsSnapshot — legal invariants', () => {
     expect(() => validateFindingsSnapshot(JSON.stringify(bad))).toThrow(/critical/)
   })
 
+  it('rejects severity=critical backed only by cross-checked documents', () => {
+    // The gate used to accept a corroboration ref in place of a
+    // contradiction, so /metodologia's "al menos una referencia de
+    // contradicción" had never been enforced by anything.
+    const bad = JSON.parse(JSON.stringify(VALID))
+    bad.items[0].severity = 'critical'
+    bad.items[0].crossChecked = [
+      { kind: 'tender', ref: 'https://t/1', snippet: 'expediente cotejado, no desmiente nada' },
+    ]
+    expect(() => validateFindingsSnapshot(JSON.stringify(bad))).toThrow(
+      /requires ≥1 contradiction ref/,
+    )
+  })
+
   it('accepts severity=critical WITH ≥1 contradiction ref', () => {
     const withRef = JSON.parse(JSON.stringify(VALID))
     withRef.items[0].severity = 'critical'
@@ -104,25 +118,25 @@ describe('validateFindingsSnapshot — legal invariants', () => {
 
 describe('FindingRef.kind — curator-only kinds', () => {
   // Three new kinds were added so the curator dashboard can persist
-  // URL/PDF/transcript evidence into corroboration[]: 'press',
+  // URL/PDF/transcript evidence into crossChecked[]: 'press',
   // 'document', 'transcript'. The original six (tender/bdns/budget/
   // promise/pleno-video/pleno-acta) keep working.
   const PUBLISH_KINDS_OK = ['press', 'document', 'transcript']
 
   for (const kind of PUBLISH_KINDS_OK) {
-    it(`accepts kind=${kind} in corroboration[]`, () => {
+    it(`accepts kind=${kind} in crossChecked[]`, () => {
       const ok = JSON.parse(JSON.stringify(VALID))
-      ok.items[0].corroboration = [
+      ok.items[0].crossChecked = [
         { kind, ref: 'https://example.com/source', snippet: 'curator-supplied citation' },
       ]
       const snap = validateFindingsSnapshot(JSON.stringify(ok))
-      expect(snap.items[0].corroboration[0].kind).toBe(kind)
+      expect(snap.items[0].crossChecked[0].kind).toBe(kind)
     })
   }
 
   it('still accepts the six original kinds (no regression)', () => {
     const ok = JSON.parse(JSON.stringify(VALID))
-    ok.items[0].corroboration = [
+    ok.items[0].crossChecked = [
       { kind: 'tender', ref: 'https://t/1', snippet: 'tender' },
       { kind: 'bdns', ref: 'https://b/1', snippet: 'bdns' },
       { kind: 'budget', ref: 'budget:2025:cap3', snippet: 'budget' },
@@ -131,18 +145,18 @@ describe('FindingRef.kind — curator-only kinds', () => {
       { kind: 'pleno-acta', ref: 'https://ribarroja.es/acta', snippet: 'acta' },
     ]
     const snap = validateFindingsSnapshot(JSON.stringify(ok))
-    expect(snap.items[0].corroboration).toHaveLength(6)
+    expect(snap.items[0].crossChecked).toHaveLength(6)
   })
 
   it('still rejects unknown kinds', () => {
     const bad = JSON.parse(JSON.stringify(VALID))
-    bad.items[0].corroboration = [{ kind: 'rumor', ref: 'https://x', snippet: 'unverified' }]
+    bad.items[0].crossChecked = [{ kind: 'rumor', ref: 'https://x', snippet: 'unverified' }]
     expect(() => validateFindingsSnapshot(JSON.stringify(bad))).toThrow(/kind invalid/)
   })
 
   it('rejects snippet >240 chars regardless of kind', () => {
     const bad = JSON.parse(JSON.stringify(VALID))
-    bad.items[0].corroboration = [{ kind: 'press', ref: 'https://x', snippet: 'x'.repeat(241) }]
+    bad.items[0].crossChecked = [{ kind: 'press', ref: 'https://x', snippet: 'x'.repeat(241) }]
     expect(() => validateFindingsSnapshot(JSON.stringify(bad))).toThrow(/1-240 chars/)
   })
 })

@@ -17,8 +17,11 @@
  *   entity-unbacked  · FCC, named as municipal record, in zero contract rows
  *   all-sin-datos    · every cited claim retracted, yet the summary asserts
  *                      documentary corroboration (the PEF and COMETA cases)
- *   weak-corroboration · cited contract shares almost nothing with what was said
- *                      (the Complejo La Malla / paseo Pacadar collision)
+ *   unrelated-cross-check · cited contract shares almost nothing with what was
+ *                      said (the Complejo La Malla / paseo Pacadar collision).
+ *                      Named `weak-corroboration` until the field it reads was
+ *                      renamed `crossChecked` — nothing upstream establishes
+ *                      corroboration, so a check could not measure its weakness.
  *
  * Pure module: callers supply the drafts and the datasets.
  */
@@ -41,7 +44,7 @@ export interface DraftFindingLike {
   severity?: string
   sourceClaimIds?: string[]
   quotes?: { text: string; speakerGroup?: string | null; sourceClaimId?: string }[]
-  corroboration?: { kind?: string; snippet?: string; ref?: string }[]
+  crossChecked?: { kind?: string; snippet?: string; ref?: string }[]
 }
 
 export interface QueueItem {
@@ -133,15 +136,15 @@ export function checkDraft(draft: DraftFindingLike, inputs: QueueInputs): Curati
     })
   }
 
-  // 3 · Cited corroboration that shares almost nothing with what was said.
+  // 3 · A cross-checked document that shares almost nothing with what was said.
   const said = contentTokens((draft.quotes ?? []).map((q) => q.text).join(' '))
-  const substantive = (draft.corroboration ?? []).filter((c) => c.kind !== 'pleno-video')
+  const substantive = (draft.crossChecked ?? []).filter((c) => c.kind !== 'pleno-video')
   const weak = substantive.filter(
     (c) => [...contentTokens(c.snippet ?? '')].filter((w) => said.has(w)).length === 0,
   )
   if (weak.length > 0) {
     checks.push({
-      code: 'weak-corroboration',
+      code: 'unrelated-cross-check',
       level: 'warn',
       message:
         `${weak.length} de ${substantive.length} expediente(s) citados no comparten ninguna ` +

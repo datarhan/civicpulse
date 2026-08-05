@@ -196,6 +196,9 @@ export async function verifyClaimWithLlm(
       ref: cand.ref,
       snippet: e.snippet.slice(0, 240),
       similarity: cand.similarity,
+      // The model was asked, per citation, whether the document contradicts.
+      // A "no" is not a "yes, it corroborates" — see EvidenceStance.
+      stance: e.isContradiction ? 'contradicts' : 'checked',
     })
   }
 

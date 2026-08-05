@@ -78,6 +78,9 @@ export async function verifyClaimWithEngine(
       ref: cand.ref,
       snippet: c.snippet.slice(0, 240),
       similarity: cand.similarity,
+      // The engine is NEI-by-default and never emits `contradicho`, so it has
+      // no directional finding to record.
+      stance: 'checked',
     })
   }
 
