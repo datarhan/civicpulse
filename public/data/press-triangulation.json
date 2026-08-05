@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T08:49:07.676Z",
+  "generatedAt": "2026-08-05T08:45:38.179Z",
   "clusters": [
     {
       "clusterId": "1urv1oi",
@@ -38,7 +38,7 @@
         "Ayuntamiento de Riba-roja de Túria",
         "El Periódico de Aquí",
         "Levante-EMV",
-        "Valencia Plaza"
+        "valenciaplaza.com"
       ],
       "earliestDate": "2026-07-08T07:00:00.000Z",
       "latestDate": "2026-07-09T07:00:00.000Z",
@@ -59,7 +59,7 @@
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "València Extra"
+        "valenciaextra.com"
       ],
       "earliestDate": "2026-07-07T08:50:27.000Z",
       "latestDate": "2026-07-07T10:30:00.000Z",

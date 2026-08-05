@@ -1,22 +1,21 @@
 {
-  "generatedAt": "2026-08-04T08:48:59.742Z",
+  "generatedAt": "2026-08-05T08:45:30.969Z",
   "source": {
     "description": "Press claims extracted by the laboratory pipeline",
     "contract": "src/scraper/press-claim.ts"
   },
   "stats": {
-    "total": 2,
+    "total": 1,
     "byType": {
       "promesa": 0,
-      "afirmacion_numerica": 2,
+      "afirmacion_numerica": 1,
       "cita_obra": 0,
       "cita_convenio": 0,
       "acusacion_publica": 0,
       "dato_municipal": 0
     },
     "bySource": {
-      "Periòdic del Camp de Túria": 1,
-      "Ayuntamiento de Riba-roja de Túria": 1
+      "Periòdic del Camp de Túria": 1
     },
     "byTopic": {
       "fiscal": 0,
@@ -24,7 +23,7 @@
       "movilidad": 0,
       "medio-ambiente": 0,
       "social": 0,
-      "cultura": 2,
+      "cultura": 1,
       "seguridad": 0,
       "empleo": 0,
       "urbanismo": 0,
@@ -36,15 +35,15 @@
     },
     "byAttributedSource": {
       "outlet": 1,
-      "municipal": 1,
+      "municipal": 0,
       "opposition": 0,
       "unspecified": 0
     },
     "articlesProcessed": 25,
     "articlesAvailable": 155,
-    "llmUnavailable": 13,
-    "windowFrom": "2026-07-22T15:00:14.000Z",
-    "windowTo": "2026-08-04T06:40:51.000Z"
+    "llmUnavailable": 18,
+    "windowFrom": "2026-07-27T10:33:05.000Z",
+    "windowTo": "2026-08-04T17:39:29.000Z"
   },
   "items": [
     {
@@ -69,30 +68,6 @@
       },
       "confidence": 0.9,
       "reasoning": "La afirmación incluye una cifra específica de inversión que puede ser verificada.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "1e5ntzg-0-num",
-      "articleId": "1e5ntzg",
-      "articleFingerprint": "eravvk",
-      "articleSource": "Ayuntamiento de Riba-roja de Túria",
-      "articleSourceHost": "ribarroja.es",
-      "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
-      "articleDate": "2026-07-27T09:53:53.000Z",
-      "segmentIndex": 0,
-      "segmentKind": "title",
-      "type": "afirmacion_numerica",
-      "attributedSource": "municipal",
-      "verbatim": "una inversión de 61.000 euros en artes escénicas",
-      "context": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027",
-      "topic": "cultura",
-      "entities": {
-        "amountEuros": 61000,
-        "date": "2026-07-27",
-        "referencedEntity": "programa PLATEA 2026-2027"
-      },
-      "confidence": 0.9,
-      "reasoning": "La cifra de inversión es un dato verificable relacionado con el programa mencionado.",
       "requiresHumanApproval": true
     }
   ]

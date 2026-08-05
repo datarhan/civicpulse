@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-08-04T08:49:05.942Z",
+  "generatedAt": "2026-08-05T08:45:36.897Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 2,
+    "total": 1,
     "byVerdict": {
       "verificado": 0,
-      "parcial": 1,
+      "parcial": 0,
       "contradicho": 0,
       "sin-datos": 1,
       "promesa-repetida": 0
@@ -56,56 +56,7 @@
         "articleSourceHost": "infoturia.com",
         "articleFingerprint": "1jggbak"
       }
-    },
-    {
-      "claim": {
-        "id": "1e5ntzg-0-num",
-        "articleId": "1e5ntzg",
-        "articleFingerprint": "eravvk",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
-        "articleDate": "2026-07-27T09:53:53.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "una inversión de 61.000 euros en artes escénicas",
-        "context": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027",
-        "topic": "cultura",
-        "entities": {
-          "amountEuros": 61000,
-          "date": "2026-07-27",
-          "referencedEntity": "programa PLATEA 2026-2027"
-        },
-        "confidence": 0.9,
-        "reasoning": "La cifra de inversión es un dato verificable relacionado con el programa mencionado.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1e5ntzg-0-num",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JMTkgha0kaB7h85%2Fpmmsfw%3D%3D",
-            "snippet": "El objeto del contrato es la elaboración y redacción del Plan de Movilidad Urbana Sostenible (PMUS) de Riba-roja de Túria, por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación y mejoras como criterio de adjudicación y con condición especial de ejecución de carácter perspectiva de genero, de conformidad con lo dispuesto en el Pliego de cláusulas administrativas particulares y en el Pliego de prescripciones técnicas.  \nEsta actuación es susceptible de ser cofinanciada al 50 % por la Unión Europea a través del Programa Operativo del Fondo Europeo de Desarrollo Regional (FEDER) de la Comunidad Valenciana 2014-2020. · Ayuntamiento de Riba-roja de Túria · architecture · 60.000 €",
-            "similarity": 0.68
-          }
-        ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "eravvk"
-      }
     }
   ],
-  "sourceGeneratedAt": "2026-08-04T08:48:59.742Z"
+  "sourceGeneratedAt": "2026-08-05T08:45:30.969Z"
 }
