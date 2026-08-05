@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-02T15:09:37.136Z",
+  "generatedAt": "2026-08-05T07:24:35.551Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. La mayoría los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -1930,7 +1930,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate de los grupos PP, Compromís y un grupo no identificado en el pleno de Riba-roja de Túria del 2026-01-19",
-      "summary": "En la sesión del 19 de enero de 2026, el grupo PP afirma que votará a favor de la modificación de crédito y el grupo Compromís señala su apoyo al plan de contratación de 2026. Por su parte, un grupo no identificado manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal incluye en este periodo expedientes de contratación como el Contrato de carácter menor de obras para la ejecución del proyecto de modificación de instalación de ACS con mezcladores para duchas en pabellón deportivo municipal.",
+      "summary": "En la sesión del 19 de enero de 2026, el grupo PP afirma que votará a favor de la modificación de crédito y el grupo Compromís señala su apoyo al plan de contratación de 2026. Por su parte, un grupo no identificado manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal de contratación del que dispone este medio arranca en 2017, así que no recoge ningún expediente de aquel periodo; entre los documentos cotejados con esta sesión figura el Contrato de carácter menor de obras para la modificación de instalación de ACS con mezcladores para duchas en pabellón deportivo municipal, adjudicado en 2026.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-114-afi-5238db",
@@ -2018,6 +2018,14 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:15.716Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión del 19 de enero de 2026, el grupo PP afirma que votará a favor de la modificación de crédito y el grupo Compromís señala su apoyo al plan de contratación de 2026. Por su parte, un grupo no identificado manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal incluye en este periodo expedientes de contratación como el Contrato de carácter menor de obras para la ejecución del proyecto de modificación de instalación de ACS con mezcladores para duchas en pabellón deportivo municipal.",
+          "corrected": "En la sesión del 19 de enero de 2026, el grupo PP afirma que votará a favor de la modificación de crédito y el grupo Compromís señala su apoyo al plan de contratación de 2026. Por su parte, un grupo no identificado manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal de contratación del que dispone este medio arranca en 2017, así que no recoge ningún expediente de aquel periodo; entre los documentos cotejados con esta sesión figura el Contrato de carácter menor de obras para la modificación de instalación de ACS con mezcladores para duchas en pabellón deportivo municipal, adjudicado en 2026.",
+          "reason": "La frase ataba un expediente de 2026 a una auditoría de 2006-2012. El registro disponible empieza en 2017 y no puede contener expedientes de aquel periodo.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-05T07:24:35.551Z"
         }
       ]
     },
@@ -3150,7 +3158,7 @@
       "plenoId": "otxq2c",
       "plenoDate": "2025-10-06",
       "title": "Pleno del 2025-10-06: Debate sobre seguridad",
-      "summary": "Durante la sesión del pleno del 6 de octubre de 2025, el grupo PSOE afirmó que «no ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas». Por su parte, VOX mencionó a Itziar Moreno en un contexto de condena, mientras que el PP señaló errores en la migración de datos y el control de localización en el sistema, destacando que «falla el sistema cometa del Gobierno de España». Estos puntos fueron corroborados por el registro del tender sobre el mantenimiento del sistema inteligente de gestión de esperas y colas.",
+      "summary": "Durante la sesión del pleno del 6 de octubre de 2025, el grupo PSOE afirmó que «no ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas». Por su parte, VOX mencionó a Itziar Moreno en un contexto de condena, mientras que el PP señaló errores en la migración de datos y el control de localización en el sistema, destacando que «falla el sistema cometa del Gobierno de España». Se cotejaron con estas intervenciones expedientes del registro municipal de contratación; ninguno las respalda ni las desmiente.",
       "severity": "informational",
       "sourceClaimIds": [
         "otxq2c-042-acu-bba0e9",
@@ -3212,7 +3220,16 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "Durante la sesión del pleno del 6 de octubre de 2025, el grupo PSOE afirmó que «no ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas». Por su parte, VOX mencionó a Itziar Moreno en un contexto de condena, mientras que el PP señaló errores en la migración de datos y el control de localización en el sistema, destacando que «falla el sistema cometa del Gobierno de España». Estos puntos fueron corroborados por el registro del tender sobre el mantenimiento del sistema inteligente de gestión de esperas y colas.",
+          "corrected": "Durante la sesión del pleno del 6 de octubre de 2025, el grupo PSOE afirmó que «no ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas». Por su parte, VOX mencionó a Itziar Moreno en un contexto de condena, mientras que el PP señaló errores en la migración de datos y el control de localización en el sistema, destacando que «falla el sistema cometa del Gobierno de España». Se cotejaron con estas intervenciones expedientes del registro municipal de contratación; ninguno las respalda ni las desmiente.",
+          "reason": "El registro de un contrato de gestión de esperas y colas no corrobora un debate sobre seguridad y violencia de género. El verificador no establece corroboración en ningún caso: sólo deja constancia de qué documentos se cotejaron.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-05T07:24:19.960Z"
+        }
+      ]
     },
     {
       "id": "f-2025-10-06-acu-b00839",
