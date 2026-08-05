@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-03T17:27:08.171Z",
+  "generatedAt": "2026-08-05T10:09:10.318Z",
   "source": {
     "description": "Curated voting records transcribed verbatim from published pleno actas (Ayuntamiento de Riba-roja de Túria). Each record cites the source acta URL and the retrieval date.",
     "contract": "Human-edited, schema-validated. Mutations only via npm run pleno-vote CLI or GH Issue ingestion workflow."
   },
   "stats": {
-    "total": 19,
+    "total": 17,
     "byOutcome": {
-      "aprobado": 18,
+      "aprobado": 16,
       "rechazado": 1,
       "retirado": 0,
       "aplazado": 0
@@ -15,11 +15,15 @@
     "byPleno": {
       "10yl550": 1,
       "k4olcs": 2,
-      "1sqj7is": 5,
+      "1sqj7is": 4,
       "rx4hb4": 3,
-      "1qi8axv": 2,
+      "1qi8axv": 1,
       "qz6weg": 3,
       "1du4rf5": 3
+    },
+    "retracted": {
+      "record": 2,
+      "breakdown": 1
     }
   },
   "items": [
@@ -230,45 +234,6 @@
       "retrievedAt": "2026-06-24"
     },
     {
-      "id": "1sqj7is-09",
-      "plenoId": "1sqj7is",
-      "plenoDate": "2026-03-09",
-      "itemNumber": 9,
-      "title": "Moción del Grupo Municipal VOX Riba-roja de Túria coordinada sobre la regularización masiva de inmigrantes ilegales",
-      "outcome": "aprobado",
-      "votes": [
-        {
-          "bloc": "PSOE",
-          "direction": "a_favor",
-          "seats": 11
-        },
-        {
-          "bloc": "PP",
-          "direction": "a_favor",
-          "seats": 7
-        },
-        {
-          "bloc": "VOX",
-          "direction": "a_favor",
-          "seats": 1
-        },
-        {
-          "bloc": "Compromís",
-          "direction": "abstencion",
-          "seats": 1
-        },
-        {
-          "bloc": null,
-          "direction": "a_favor",
-          "seats": 1
-        }
-      ],
-      "expediente": "09/2026/PGRU",
-      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano",
-      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
-      "retrievedAt": "2026-06-24"
-    },
-    {
       "id": "1sqj7is-11",
       "plenoId": "1sqj7is",
       "plenoDate": "2026-03-09",
@@ -406,44 +371,6 @@
       "retrievedAt": "2026-06-24"
     },
     {
-      "id": "1qi8axv-04",
-      "plenoId": "1qi8axv",
-      "plenoDate": "2025-12-23",
-      "itemNumber": 4,
-      "title": "Expedient 5267/2025/GEN: Proposta d'acord amb el Ple Concertació Operació de Crèdit",
-      "outcome": "aprobado",
-      "votes": [
-        {
-          "bloc": "PSOE",
-          "direction": "a_favor",
-          "seats": 11
-        },
-        {
-          "bloc": "PP",
-          "direction": "a_favor",
-          "seats": 7
-        },
-        {
-          "bloc": "VOX",
-          "direction": "a_favor",
-          "seats": 1
-        },
-        {
-          "bloc": null,
-          "direction": "a_favor",
-          "seats": 1
-        },
-        {
-          "bloc": "Compromís",
-          "direction": "a_favor",
-          "seats": 1
-        }
-      ],
-      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/69f357fcc8e6d119f3d95f33cedb5915?idioma=castellano",
-      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
-      "retrievedAt": "2026-06-24"
-    },
-    {
       "id": "1qi8axv-05",
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
@@ -549,34 +476,13 @@
       "itemNumber": 14,
       "title": "Moció del Grup Municipal Popular Riba-roja de Túria en defensa dels treballadors autònoms",
       "outcome": "rechazado",
-      "votes": [
-        {
-          "bloc": "PSOE",
-          "direction": "en_contra",
-          "seats": 11
-        },
-        {
-          "bloc": "PP",
-          "direction": "a_favor",
-          "seats": 7
-        },
-        {
-          "bloc": "VOX",
-          "direction": "a_favor",
-          "seats": 1
-        },
-        {
-          "bloc": "Compromís",
-          "direction": "ausente",
-          "seats": 1
-        },
-        {
-          "bloc": null,
-          "direction": "a_favor",
-          "seats": 1
-        }
-      ],
+      "votes": [],
       "expediente": "31/2025/PGRU",
+      "votesRetracted": {
+        "reason": "El resultado (rechazado) está publicado por regmeet y se mantiene; el desglose por bloques procede de la transcripción y dos de sus direcciones están invertidas.",
+        "editor": "Sergei Lutchenko",
+        "retractedAt": "2026-08-05T10:09:10.317Z"
+      },
       "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/5481b2f34a74e427a2818014b8e103b0?idioma=castellano",
       "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
       "retrievedAt": "2026-06-24"
@@ -687,6 +593,136 @@
       "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/db98dc0dbafde48e8f74c0de001d35e4?idioma=castellano",
       "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
       "retrievedAt": "2026-06-24"
+    }
+  ],
+  "retractions": [
+    {
+      "voteId": "1qi8axv-04",
+      "scope": "record",
+      "reason": "La transcripción de la sesión invierte 4 de las 5 direcciones publicadas y la secretaría declara «no teníamos esa mayoría absoluta… el punto no ha sido aprobado»; regmeet tampoco muestra distintivo de resultado.",
+      "editor": "Sergei Lutchenko",
+      "retractedAt": "2026-08-05T10:09:09.561Z",
+      "original": {
+        "id": "1qi8axv-04",
+        "plenoId": "1qi8axv",
+        "plenoDate": "2025-12-23",
+        "itemNumber": 4,
+        "title": "Expedient 5267/2025/GEN: Proposta d'acord amb el Ple Concertació Operació de Crèdit",
+        "outcome": "aprobado",
+        "votes": [
+          {
+            "bloc": "PSOE",
+            "direction": "a_favor",
+            "seats": 11
+          },
+          {
+            "bloc": "PP",
+            "direction": "a_favor",
+            "seats": 7
+          },
+          {
+            "bloc": "VOX",
+            "direction": "a_favor",
+            "seats": 1
+          },
+          {
+            "bloc": null,
+            "direction": "a_favor",
+            "seats": 1
+          },
+          {
+            "bloc": "Compromís",
+            "direction": "a_favor",
+            "seats": 1
+          }
+        ],
+        "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/69f357fcc8e6d119f3d95f33cedb5915?idioma=castellano",
+        "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+        "retrievedAt": "2026-06-24"
+      },
+      "originalVotes": null
+    },
+    {
+      "voteId": "1sqj7is-09",
+      "scope": "record",
+      "reason": "La transcripción recoge «tretze vots en contra i huit a favor», es decir rechazada, frente al resultado publicado; además 3 de las 5 direcciones no coinciden con el llamamiento nominal.",
+      "editor": "Sergei Lutchenko",
+      "retractedAt": "2026-08-05T10:09:09.948Z",
+      "original": {
+        "id": "1sqj7is-09",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "itemNumber": 9,
+        "title": "Moción del Grupo Municipal VOX Riba-roja de Túria coordinada sobre la regularización masiva de inmigrantes ilegales",
+        "outcome": "aprobado",
+        "votes": [
+          {
+            "bloc": "PSOE",
+            "direction": "a_favor",
+            "seats": 11
+          },
+          {
+            "bloc": "PP",
+            "direction": "a_favor",
+            "seats": 7
+          },
+          {
+            "bloc": "VOX",
+            "direction": "a_favor",
+            "seats": 1
+          },
+          {
+            "bloc": "Compromís",
+            "direction": "abstencion",
+            "seats": 1
+          },
+          {
+            "bloc": null,
+            "direction": "a_favor",
+            "seats": 1
+          }
+        ],
+        "expediente": "09/2026/PGRU",
+        "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano",
+        "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+        "retrievedAt": "2026-06-24"
+      },
+      "originalVotes": null
+    },
+    {
+      "voteId": "qz6weg-14",
+      "scope": "breakdown",
+      "reason": "El resultado (rechazado) está publicado por regmeet y se mantiene; el desglose por bloques procede de la transcripción y dos de sus direcciones están invertidas.",
+      "editor": "Sergei Lutchenko",
+      "retractedAt": "2026-08-05T10:09:10.317Z",
+      "original": null,
+      "originalVotes": [
+        {
+          "bloc": "PSOE",
+          "direction": "en_contra",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "ausente",
+          "seats": 1
+        },
+        {
+          "bloc": null,
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ]
     }
   ]
 }
