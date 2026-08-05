@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import { AgendaRow } from '../components/plenos/AgendaRow'
 import { VoteTallyBar, DirectionLegend } from '../components/plenos/VoteTallyBar'
+import { VoteBreakdownRetracted } from '../components/plenos/VoteBreakdownRetracted'
 import { FindingCard } from '../components/PlenoFindings'
 import { ClaimLedger } from '../components/ClaimLedger'
 import { usePlenos, PLENO_TONE, PLENO_LABEL } from '../hooks/usePlenos'
@@ -557,7 +558,11 @@ export default function PlenoDetalle() {
                   <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>
                     {rec.itemNumber}. {rec.title}
                   </div>
-                  <VoteTallyBar tally={rec.votes} />
+                  {rec.votesRetracted ? (
+                    <VoteBreakdownRetracted retraction={rec.votesRetracted} />
+                  ) : (
+                    <VoteTallyBar tally={rec.votes} />
+                  )}
                 </div>
               ))}
             </Card>

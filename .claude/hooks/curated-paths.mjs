@@ -35,7 +35,7 @@ import { basename, normalize } from 'node:path'
  */
 export const CURATED = {
   'promises.json': 'npm run reply / freeze:set / freeze:clear',
-  'pleno-votes.json': 'npm run pleno-vote (or promote-vote)',
+  'pleno-votes.json': 'npm run pleno-vote / promote-vote / retract-vote',
   'pleno-findings.json': 'npm run promote-claim / finding-reply / correct-pleno-finding',
   'press-findings.json': 'npm run correct-press-finding',
   'journalist-reports.json':

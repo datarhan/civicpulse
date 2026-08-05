@@ -29,6 +29,14 @@ function formatDate(iso) {
   return fmtDateShort(iso) || '—'
 }
 
+/** «· N retiradas» for the vote catalogue row, or nothing when none are.
+ *  Counts live (non-revoked) retractions only — a revoked one is back in
+ *  `items[]` and would be counted twice. */
+function retractionNote(retracted) {
+  const n = (retracted?.record ?? 0) + (retracted?.breakdown ?? 0)
+  return n > 0 ? ` · ${n} retirada${n === 1 ? '' : 's'}` : ''
+}
+
 function DatasetsCatalog() {
   const officials = useOfficials().data
   const budget = useBudget().data
@@ -180,7 +188,13 @@ function DatasetsCatalog() {
     },
     {
       name: 'Votaciones de pleno',
-      rows: votes?.items ? `${votes.items.length} votaciones` : '—',
+      // A retraction removes the row from items[], so the count drops on its
+      // own. Naming the withdrawals keeps that drop from reading as a scrape
+      // that lost data — but only once there are any: «0 retiradas» would be
+      // noise on a file that has never had one.
+      rows: votes?.items
+        ? `${votes.items.length} votaciones` + retractionNote(votes?.stats?.retracted)
+        : '—',
       updated: formatDate(votes?.generatedAt),
       source: 'curación · actas (regmeet.com)',
       path: '/data/pleno-votes.json',

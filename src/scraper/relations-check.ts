@@ -55,7 +55,22 @@ export interface RelationsCheckInputs {
     }>
   } | null
   plenos?: { items?: Array<{ id?: string }> } | null
-  votes?: { items?: Array<{ id?: string; plenoId?: string; itemNumber?: number }> } | null
+  votes?: {
+    items?: Array<{
+      id?: string
+      plenoId?: string
+      itemNumber?: number
+      votes?: unknown[]
+      votesRetracted?: unknown
+    }>
+    retractions?: Array<{
+      voteId?: string
+      scope?: string
+      editor?: string
+      retractedAt?: string
+      revokedAt?: string
+    }>
+  } | null
   /** plenos-agendas.json — agenda items carry `number` (not itemNumber). */
   agendas?: { plenos?: Array<{ id?: string; agenda?: Array<{ number?: number }> }> } | null
   promises?: { items?: Array<{ id?: string; departmentSlug?: string | null }> } | null
@@ -421,6 +436,57 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
       for (const cid of Object.keys(overlay?.entries ?? {})) {
         checked += 1
         if (!verifiedIds.has(cid)) broken.push(`overlay entry ${cid} not in verified (stale)`)
+      }
+      return { checked, broken }
+    }),
+
+    // A retracted vote must not silently reappear, and a withdrawn breakdown
+    // must not silently come back as a tally. The hard stop is in
+    // `validateSnapshot` — it runs on every write, so `pleno-vote` and
+    // `promote-vote` cannot republish a withdrawn id at all. This is the
+    // read-side twin: it catches a hand-edited or merge-resolved file that
+    // never went through a CLI, which is exactly how the last two curated-file
+    // defects arrived.
+    //
+    // `checked` counts LEDGER ENTRIES, so a file with no retractions reports
+    // `empty`, not `ok` — a green line here must never be mistaken for
+    // "reappearance was verified" when there was nothing to verify.
+    check('votes-retractions', 'error', votes != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      const published = new Map(
+        (votes?.items ?? []).filter((v) => v?.id).map((v) => [v.id as string, v]),
+      )
+      const liveBreakdowns = new Set<string>()
+      for (const r of votes?.retractions ?? []) {
+        checked += 1
+        const id = r?.voteId ?? '?'
+        if (!r?.editor || !r?.retractedAt) {
+          broken.push(`${id} retraction has no editor/retractedAt signature`)
+        }
+        if (r?.revokedAt) continue // lifted, deliberately and on the record
+        if (r?.scope === 'record') {
+          if (published.has(id)) broken.push(`${id} is retracted but published again in items[]`)
+        } else if (r?.scope === 'breakdown') {
+          liveBreakdowns.add(id)
+          const item = published.get(id)
+          if (!item) {
+            broken.push(`${id} has a breakdown retraction but no vote in items[]`)
+          } else if ((item.votes?.length ?? 0) > 0 || item.votesRetracted == null) {
+            broken.push(`${id} has a live breakdown retraction but publishes a tally again`)
+          }
+        } else {
+          broken.push(`${id} has unknown retraction scope "${String(r?.scope)}"`)
+        }
+      }
+      // The mirror: a stamped row whose ledger entry vanished would leave the
+      // withdrawn tuples unrecoverable and the withdrawal unattributed.
+      for (const v of votes?.items ?? []) {
+        if (v?.votesRetracted == null) continue
+        checked += 1
+        if (!liveBreakdowns.has(v.id as string)) {
+          broken.push(`${v?.id ?? '?'} is stamped votesRetracted with no live ledger entry`)
+        }
       }
       return { checked, broken }
     }),

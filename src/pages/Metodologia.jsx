@@ -306,6 +306,17 @@ export default function Metodologia() {
             en el orden del día sólo se cuenta como compromiso cuando existe una transcripción de
             voto emparejada (por <code>plenoId + itemNumber</code>).
           </li>
+          <li>
+            <strong>Una votación publicada se puede retirar.</strong> Cuando la fuente contradice lo
+            publicado, un curador humano la retracta con firma y motivo. Hay dos alcances, porque
+            las dos mitades del registro no tienen el mismo respaldo documental:{' '}
+            <strong>retirar la votación entera</strong> —desaparece del sitio y deja de contar en
+            los recuentos de /plenos y /departamentos y en el aviso de plazo vencido— o{' '}
+            <strong>retirar sólo el desglose por grupos</strong>, dejando publicados el punto, el
+            resultado y la fuente. Lo retirado no se borra: queda archivado con su contenido
+            original, quién lo retiró y por qué, y el validador impide que vuelva a publicarse sin
+            una revocación explícita, también firmada. Nunca se retracta de forma automática.
+          </li>
         </ul>
       </Card>
 

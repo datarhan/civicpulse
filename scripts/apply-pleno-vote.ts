@@ -44,8 +44,10 @@ function loadSnapshot(): PlenoVotesSnapshot {
         total: 0,
         byOutcome: { aprobado: 0, rechazado: 0, retirado: 0, aplazado: 0 },
         byPleno: {},
+        retracted: { record: 0, breakdown: 0 },
       },
       items: [],
+      retractions: [],
     }
   }
   return validateSnapshot(JSON.parse(readFileSync(DATA_PATH, 'utf8')))

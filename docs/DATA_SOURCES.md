@@ -45,7 +45,7 @@ Everything produced by the convention above. Safe to delete and rebuild.
 | File                                                | Schema / CLI                                                                                                                  |
 | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | `promises.json`                                     | `src/scraper/promises.ts` · `npm run reply`, `freeze:set`                                                                     |
-| `pleno-votes.json`                                  | `src/scraper/pleno-votes.ts` · `npm run pleno-vote`                                                                           |
+| `pleno-votes.json`                                  | `src/scraper/pleno-votes.ts` · `npm run pleno-vote`, `promote-vote`, `retract-vote`                                           |
 | `pleno-findings.json`                               | `src/scraper/pleno-finding.ts` · `npm run promote-claim`, `finding-reply`, `correct-pleno-finding`                            |
 | `journalist-reports.json` (+ `journalist-reports/`) | `src/scraper/journalist.ts` · `npm run promote-report`, `correct-journalist-report`, `journalist-reply`, `repoint-source-url` |
 | `quejas-responses.json`                             | `scripts/apply-queja-response.ts` · `npm run queja-reply`                                                                     |
@@ -335,4 +335,15 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — **human-curated** · `pleno-votes.ts` schema validator
 - **Source** — Added via `npm run pleno-vote` or the `.github/ISSUE_TEMPLATE/pleno-vote.yml` form ingested by `ingest-pleno-votes.yml`. Each record cites the acta URL + retrieval date; misattribution is a libel risk, so the schema enforces verbatim ≥20 char title + per-bloc tuple with duplicate-bloc detection
-- **Surfaces** — `/plenos` — `PlenoVotesBlock` (empty-state honest when no votes registered)
+- **Withdrawal** — `npm run retract-vote` is the only way out. Two scopes, because the
+  two halves of a record do not share a provenance: `--reason/--editor` alone withdraws
+  the **whole vote** (it leaves `items[]`, so it stops counting everywhere that reads
+  `items`), while `--breakdown` withdraws **only the per-bloc tally** and leaves item,
+  outcome and source published. Retractions are tombstoned into `retractions[]` with the
+  original content, and `validateSnapshot` then refuses to let that id back into `items[]`
+  — `pleno-vote` and `promote-vote` both run it, so a withdrawn vote cannot reappear
+  without an explicit signed `--unretract`. Read-side twin: `check:relations`
+  → `votes-retractions`
+- **Surfaces** — `/plenos` — `PlenoVotesBlock` (empty-state honest when no votes registered).
+  A withdrawn breakdown renders `VoteBreakdownRetracted` in the tally's place on
+  `/plenos/:id` and `/departamentos/:slug`; a withdrawn record simply is not there
