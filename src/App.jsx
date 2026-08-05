@@ -5,6 +5,7 @@ import { Topbar } from './components/Topbar'
 import { CmdK } from './components/CmdK'
 import { TweaksPanel, TweaksButton } from './components/TweaksPanel'
 import { SkipLink } from './components/SkipLink'
+import { useHashScroll } from './hooks/useHashScroll'
 import { useT } from './i18n'
 import { PERIODISTAS_ENABLED } from './flags'
 
@@ -81,6 +82,11 @@ function InnerShell({ onOpenCmdK }) {
   const active = NAV.find((n) => location.pathname.startsWith(n.to))
   const crumb = active ? t(active.labelKey) : 'CivicPulse'
   const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  // Every fragment we publish lives on an inner route: the per-finding
+  // permalinks on /hallazgos and the section anchors on /metodologia. The
+  // landing has none, and it renders outside this shell.
+  useHashScroll()
 
   useEffect(() => {
     setSidebarOpen(false)

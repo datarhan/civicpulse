@@ -65,7 +65,22 @@ export function Delta({ v, size = 11 }) {
   )
 }
 
-export function Card({ children, style = {}, pad = true, hover = false }) {
+/**
+ * The generic panel. Anything it does not name — `id`, `role`, `aria-*`,
+ * `className` — is forwarded to the underlying `<div>`.
+ *
+ * That passthrough is load-bearing, not a convenience. Nine call sites pass an
+ * `id`: one per finding on `/hallazgos` and eight section anchors on
+ * `/metodologia`. While the signature destructured a fixed list, React never
+ * saw those ids, so `/hallazgos#f-…` — the href in the card's own «enlace
+ * permanente», in Cmd+K, and in the ClaimReview JSON-LD that Google's Fact
+ * Check Tools indexes — resolved to no element and dropped the reader at the
+ * top of the page. A dropped prop warns about nothing, which is why it lasted.
+ *
+ * `{...rest}` goes FIRST so a caller cannot accidentally clobber the hover
+ * handlers or the token-driven style below; those stay the component's own.
+ */
+export function Card({ children, style = {}, pad = true, hover = false, ...rest }) {
   const onEnter = hover
     ? (e) => {
         e.currentTarget.style.borderColor = 'var(--border)'
@@ -78,6 +93,7 @@ export function Card({ children, style = {}, pad = true, hover = false }) {
     : undefined
   return (
     <div
+      {...rest}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
       style={{

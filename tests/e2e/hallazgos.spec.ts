@@ -69,6 +69,61 @@ test.describe('Hallazgos (/hallazgos)', () => {
       expect(payload.itemReviewed?.appearance?.[0]?.url).toContain('/plenos')
     }
   })
+
+  /**
+   * A permalink that resolves to no element is worse than no permalink: the
+   * href is well-formed, the page loads, and the reader is silently dropped at
+   * the top with 52 findings between them and the one they were sent to read.
+   *
+   * Two independent things have to hold, and both were broken:
+   *   · <Card> has to forward `id` (it destructured a fixed prop list),
+   *   · something has to scroll AFTER the snapshot lands — the cards mount well
+   *     after the browser's native hash scroll has already run and given up.
+   *
+   * So this asserts the settled position, not the markup. Fixing only the
+   * passthrough leaves it red.
+   */
+  test('a cold-loaded #f-… permalink lands on its finding, not the page top', async ({
+    page,
+    request,
+  }) => {
+    // A real published id, read from the snapshot rather than hard-coded — a
+    // curated file changes, and a stale literal would make this test measure
+    // a missing element instead of a missing anchor.
+    const snapshot = await request.get('/data/pleno-findings.json')
+    expect(snapshot.ok(), 'pleno-findings.json must be served').toBeTruthy()
+    const ids: string[] = (await snapshot.json()).items.map((f: { id: string }) => f.id)
+    expect(ids.length, 'no published findings — this test would measure nothing').toBeGreaterThan(3)
+
+    // Deliberately not the first card: the first one is at the top anyway, so
+    // it would pass with no scrolling at all.
+    const target = ids[ids.length - 1]
+
+    await page.goto(`/hallazgos#${target}`, { waitUntil: 'domcontentloaded' })
+
+    const el = page.locator(`[id="${target}"]`)
+    await expect(el, 'the finding card must carry its id in the DOM').toBeAttached({
+      timeout: 15_000,
+    })
+
+    // The settled scroll position, after fonts and one painted frame.
+    await page.evaluate(() => document.fonts.ready.then(() => undefined))
+    await page.waitForFunction(
+      (id) => {
+        const node = document.getElementById(id)
+        if (!node) return false
+        const top = node.getBoundingClientRect().top
+        return top >= -4 && top < window.innerHeight
+      },
+      target,
+      { timeout: 10_000 },
+    )
+
+    // And prove the page actually moved — a viewport tall enough to show every
+    // finding would satisfy the check above without any scrolling.
+    const scrolled = await page.evaluate(() => window.scrollY)
+    expect(scrolled, 'the page never scrolled — the fragment resolved nowhere').toBeGreaterThan(100)
+  })
 })
 
 test.describe('Cargo detail (/cargos/:slug)', () => {
