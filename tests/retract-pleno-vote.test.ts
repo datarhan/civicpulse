@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 import {
+  validateVote,
   validateSnapshot,
   retractVoteRecord,
   retractVoteBreakdown,
@@ -12,6 +13,8 @@ import {
   PlenoVoteValidationError,
   PlenoVoteRetractionError,
   RETRACTION_REASON_MIN,
+  type PlenoVote,
+  type VoteRetraction,
   type PlenoVotesSnapshot,
 } from '../src/scraper/pleno-votes'
 import { tallyByBloc } from '../src/hooks/usePlenoVotes'
@@ -19,20 +22,33 @@ import { computeDepartmentStats } from '../src/lib/department-stats'
 import { runRelationsChecks } from '../src/scraper/relations-check'
 
 /**
- * A retraction has to REMOVE something a reader could see. These tests are
- * therefore written against the real published snapshot and the real consumers
- * (`computeDepartmentStats`, `tallyByBloc`) rather than a hand-built fixture:
- * a fixture that restates the shape is the exact trap docs/DATA_INTEGRITY.md
- * rule 1 is about, and it is how six suites here stayed green while measuring
- * nothing.
+ * A retraction has to REMOVE something a reader could see, so these tests drive
+ * the real consumers — `validateSnapshot`, `tallyByBloc`,
+ * `computeDepartmentStats`, `runRelationsChecks` — not stand-ins for them.
+ *
+ * What they no longer drive is the PUBLISHED snapshot. The first version of
+ * this file was written while public/data/pleno-votes.json held zero
+ * retractions, and it read that file for every case: «the ledger is empty»,
+ * «retracted.breakdown is 1», «retractions.length is 1». The first three real
+ * retractions — the feature being used for its purpose — turned five of those
+ * green assertions red without a line of production code changing. An expected
+ * value of "however many retractions exist today" measures the calendar.
+ *
+ * So the operations run against a corpus this file BUILDS. That is the shape
+ * docs/DATA_INTEGRITY.md rule 1 warns about, and the warning is answered rather
+ * than ignored: every fixture vote is produced by the production `validateVote`
+ * and every fixture snapshot by the production `validateSnapshot`, so the
+ * enums, the bloc dedupe, the retired `Otro` sentinel and the votes/
+ * votesRetracted pairing are the real ones. A fixture that drifted from the
+ * schema throws while being built instead of quietly measuring nothing, and the
+ * `PlenoVote` type on the builder makes the drift a typecheck failure too.
+ *
+ * The published file is still under test — in the last block — but only for
+ * invariants that hold at zero retractions and at three hundred.
  *
  * Every "it disappeared" assertion is paired with an ABLATION asserting it was
  * there beforehand. Without that, all of these pass on an empty snapshot.
  */
-
-const DATA = resolve(__dirname, '../public/data/pleno-votes.json')
-const published = (): PlenoVotesSnapshot =>
-  validateSnapshot(JSON.parse(readFileSync(DATA, 'utf8')))
 
 const SIG = {
   reason: 'la fuente citada no publica este desglose por grupos',
@@ -40,18 +56,133 @@ const SIG = {
   at: '2026-08-05T10:00:00.000Z',
 }
 
-/** The published corpus has to be non-trivial or nothing below measures anything. */
+/** Before `NOW`, so a vote carrying it is unambiguously overdue. */
+const OVERDUE_BY = '2026-01-15'
+const NOW = new Date('2026-08-05')
+
+/**
+ * Build one fixture vote THROUGH the production validator, so the fixture
+ * cannot restate a shape the parser no longer accepts: an unknown bloc, a
+ * duplicated group, a title under 20 chars or a `dueBy` without its verbatim
+ * clause throws here, in the fixture, rather than passing silently.
+ */
+function makeVote(id: string, over: Partial<PlenoVote> = {}): PlenoVote {
+  const [plenoId, num] = id.split('-')
+  return validateVote({
+    id,
+    plenoId,
+    itemNumber: Number(num),
+    plenoDate: '2026-03-12',
+    title: 'Aprobación del expediente de contratación del banco de pruebas',
+    outcome: 'aprobado',
+    votes: [
+      { bloc: 'PSOE', direction: 'a_favor', seats: 11 },
+      { bloc: 'PP', direction: 'en_contra', seats: 7 },
+    ],
+    sourceUrl: 'https://example.org/actas/fixture.pdf',
+    sourcePublisher: 'Fixture — Ayuntamiento de Riba-roja de Túria',
+    retrievedAt: '2026-03-20',
+    ...over,
+  })
+}
+
+/** Same trick one level up: the snapshot invariants are the production ones. */
+function makeSnapshot(items: PlenoVote[], retractions: VoteRetraction[] = []): PlenoVotesSnapshot {
+  return validateSnapshot({
+    generatedAt: '2026-08-05T00:00:00.000Z',
+    source: { description: 'fixture', contract: 'fixture' },
+    items,
+    retractions,
+  })
+}
+
+/**
+ * A corpus with the four properties the cases below need: a departmented vote
+ * carrying an overdue plazo, a `rechazado`, a vote with a null-bloc tuple, and
+ * a vote outside any department. Rebuilt per call so no case can leak into the
+ * next.
+ */
+function corpus(): PlenoVotesSnapshot {
+  return makeSnapshot([
+    makeVote('fixa-01', {
+      department: 'urbanismo',
+      dueBy: OVERDUE_BY,
+      dueBySource: 'con un plazo de ejecución de seis meses desde la firma del acta',
+    }),
+    makeVote('fixa-02', {
+      outcome: 'rechazado',
+      title: 'Moción para la revisión del contrato de limpieza viaria del municipio',
+      votes: [
+        { bloc: 'PSOE', direction: 'en_contra', seats: 11 },
+        { bloc: 'PP', direction: 'a_favor', seats: 7 },
+        { bloc: null, direction: 'abstencion' },
+      ],
+    }),
+    makeVote('fixb-03', {
+      department: 'urbanismo',
+      votes: [{ bloc: 'PP', direction: 'abstencion', seats: 7 }],
+    }),
+    makeVote('fixb-04', {
+      votes: [{ bloc: 'VOX', direction: 'a_favor', seats: 1 }],
+    }),
+  ])
+}
+
+/** Agenda snapshot joining every fixture vote on plenoId + itemNumber. */
+function agendasFixture() {
+  return {
+    plenos: [
+      {
+        id: 'fixa',
+        date: '2026-03-12',
+        agenda: [
+          { number: 1, departmentSlug: 'urbanismo' },
+          { number: 2, departmentSlug: 'urbanismo' },
+        ],
+      },
+      {
+        id: 'fixb',
+        date: '2026-03-12',
+        agenda: [
+          { number: 3, departmentSlug: 'urbanismo' },
+          { number: 4, departmentSlug: 'urbanismo' },
+        ],
+      },
+    ],
+  }
+}
+
+/** The corpus has to be non-trivial or nothing below measures anything. */
 describe('retraction fixtures — the corpus under test is real', () => {
-  it('reads a published snapshot with votes in it', () => {
-    const snap = published()
+  it('builds a snapshot the production validator accepts', () => {
+    const snap = corpus()
     expect(snap.items.length).toBeGreaterThan(0)
     expect(snap.items.some((v) => v.votes.length > 0)).toBe(true)
+    // Every property a case below relies on, asserted once here: if the corpus
+    // loses one, the case that needs it fails loudly instead of going vacuous.
+    expect(snap.items.some((v) => v.department)).toBe(true)
+    expect(snap.items.some((v) => v.dueBy && v.outcome === 'aprobado')).toBe(true)
+    expect(snap.items.some((v) => v.outcome === 'rechazado')).toBe(true)
+    expect(snap.items.some((v) => v.votes.some((t) => t.bloc === null))).toBe(true)
+    // The starting point of every case: nothing has been withdrawn yet.
+    expect(snap.retractions).toEqual([])
+    expect(snap.stats.retracted).toEqual({ record: 0, breakdown: 0 })
+  })
+
+  it('refuses to build a fixture the parser would reject', () => {
+    // The guard on the guard: if makeVote stopped validating, the corpus could
+    // drift from the schema and every case above it would measure a shape
+    // production has not accepted for months.
+    expect(() => makeVote('fixa-09', { title: 'corto' })).toThrow(PlenoVoteValidationError)
+    expect(() =>
+      makeVote('fixa-09', { votes: [{ bloc: 'Otro' as never, direction: 'a_favor' }] }),
+    ).toThrow(PlenoVoteValidationError)
   })
 })
 
 describe('retractVoteRecord — the whole vote leaves the published surface', () => {
   it('removes the row from items[] and tombstones it verbatim', () => {
-    const snap = published()
+    const snap = corpus()
     const target = snap.items[0]
 
     expect(snap.items.map((v) => v.id)).toContain(target.id) // ablation
@@ -70,8 +201,8 @@ describe('retractVoteRecord — the whole vote leaves the published surface', ()
   })
 
   it('drops the vote from stats.byOutcome and counts it as retracted', () => {
-    const snap = published()
-    const target = snap.items.find((v) => v.outcome === 'rechazado') ?? snap.items[0]
+    const snap = corpus()
+    const target = snap.items.find((v) => v.outcome === 'rechazado')!
 
     const before = snap.stats.byOutcome[target.outcome]
     expect(before).toBeGreaterThan(0) // ablation
@@ -79,11 +210,13 @@ describe('retractVoteRecord — the whole vote leaves the published surface', ()
     const after = validateSnapshot(retractVoteRecord(snap, target.id, SIG))
     expect(after.stats.byOutcome[target.outcome]).toBe(before - 1)
     expect(after.stats.total).toBe(snap.stats.total - 1)
-    expect(after.stats.retracted.record).toBe(1)
+    // A DELTA, not a census: «one more than there were» stays true whatever the
+    // ledger already held.
+    expect(after.stats.retracted.record).toBe(snap.stats.retracted.record + 1)
   })
 
   it('stops the vote counting in tallyByBloc (/plenos party alignment)', () => {
-    const snap = published()
+    const snap = corpus()
     const target = snap.items.find((v) => v.votes.some((t) => t.bloc))!
     expect(target).toBeDefined()
     const bloc = target.votes.find((t) => t.bloc)!.bloc as string
@@ -97,38 +230,51 @@ describe('retractVoteRecord — the whole vote leaves the published surface', ()
   })
 
   it('refuses a vote that is not published', () => {
-    expect(() => retractVoteRecord(published(), 'nosuch-99', SIG)).toThrow(
-      PlenoVoteRetractionError,
+    expect(() => retractVoteRecord(corpus(), 'nosuch-99', SIG)).toThrow(PlenoVoteRetractionError)
+  })
+
+  it('refuses to publish a record retraction over a live breakdown retraction', () => {
+    // Not a hypothetical: the published qz6weg-14 is breakdown-retracted, and
+    // withdrawing its whole record would orphan that ledger entry. The pure
+    // step is deliberately permissive — it is a weakening — and the validator
+    // the CLI runs before EVERY write is what refuses, so the invalid
+    // combination cannot reach public/data/. Fail-closed, pinned.
+    const snap = corpus()
+    const id = 'fixa-02'
+    const withBreakdown = validateSnapshot(retractVoteBreakdown(snap, id, SIG))
+    expect(withBreakdown.items.map((v) => v.id)).toContain(id) // ablation
+    expect(() => validateSnapshot(retractVoteRecord(withBreakdown, id, SIG))).toThrow(
+      PlenoVoteValidationError,
     )
   })
 })
 
 describe('retraction stops driving /departamentos', () => {
-  /** The one vote in the corpus carrying a dueBy — the «plazos vencidos» driver. */
+  /** The vote in the corpus carrying a dueBy — the «plazos vencidos» driver. */
   const overdueVote = (snap: PlenoVotesSnapshot) =>
     snap.items.find((v) => v.dueBy && v.outcome === 'aprobado')
 
   it('a retracted vote stops counting in the department vote tallies', () => {
-    const snap = published()
+    const snap = corpus()
     const target = snap.items.find((v) => v.department)
-    // Not a skip: if no published vote carries a department, this check would
-    // silently measure nothing, and that must be loud.
-    expect(target, 'no published vote has a department — this test measures nothing').toBeDefined()
+    // Not a skip: if no vote carries a department, this check would silently
+    // measure nothing, and that must be loud.
+    expect(target, 'no fixture vote has a department — this test measures nothing').toBeDefined()
 
-    const beforeStats = computeDepartmentStats({ votes: snap, now: new Date('2026-08-05') })
+    const beforeStats = computeDepartmentStats({ votes: snap, now: NOW })
     const beforeTotal = beforeStats.list.reduce((n: number, d: any) => n + d.plenoVotes.total, 0)
     expect(beforeTotal).toBeGreaterThan(0) // ablation
 
     const after = validateSnapshot(retractVoteRecord(snap, target!.id, SIG))
-    const afterStats = computeDepartmentStats({ votes: after, now: new Date('2026-08-05') })
+    const afterStats = computeDepartmentStats({ votes: after, now: NOW })
     const afterTotal = afterStats.list.reduce((n: number, d: any) => n + d.plenoVotes.total, 0)
     expect(afterTotal).toBe(beforeTotal - 1)
   })
 
   it('a retracted vote stops driving the «plazos vencidos» flag', () => {
-    const snap = published()
+    const snap = corpus()
     const target = overdueVote(snap)
-    expect(target, 'no published vote has a dueBy — this test measures nothing').toBeDefined()
+    expect(target, 'no fixture vote has a dueBy — this test measures nothing').toBeDefined()
 
     // Pick a `now` strictly after the plazo so the flag is definitely lit.
     const now = new Date(new Date(target!.dueBy!).getTime() + 86_400_000 * 30)
@@ -143,28 +289,24 @@ describe('retraction stops driving /departamentos', () => {
   })
 
   it('a retracted vote returns its agenda item to «debatido, sin voto transcrito»', () => {
-    const snap = published()
-    const agendas = JSON.parse(
-      readFileSync(resolve(__dirname, '../public/data/plenos-agendas.json'), 'utf8'),
-    )
-    // Find a vote whose agenda item is actually bucketed to a department, else
-    // sinVoto cannot move and the assertion would be vacuous.
+    const snap = corpus()
+    const agendas = agendasFixture()
+    // The vote must join a DEPARTMENTED agenda item, else sinVoto cannot move
+    // and the assertion would be vacuous.
     const target = snap.items.find((v) =>
-      (agendas.plenos ?? []).some(
-        (p: any) =>
-          p.id === v.plenoId &&
-          (p.agenda ?? []).some((it: any) => it.number === v.itemNumber && it.departmentSlug),
+      agendas.plenos.some(
+        (p) => p.id === v.plenoId && p.agenda.some((it) => it.number === v.itemNumber),
       ),
     )
-    expect(target, 'no published vote joins a departmented agenda item').toBeDefined()
+    expect(target, 'no fixture vote joins a departmented agenda item').toBeDefined()
 
     const sum = (s: any) => s.list.reduce((n: number, d: any) => n + d.plenoAgendas.sinVoto, 0)
-    const before = sum(computeDepartmentStats({ votes: snap, agendas, now: new Date('2026-08-05') }))
+    const before = sum(computeDepartmentStats({ votes: snap, agendas, now: NOW }))
     const after = sum(
       computeDepartmentStats({
         votes: validateSnapshot(retractVoteRecord(snap, target!.id, SIG)),
         agendas,
-        now: new Date('2026-08-05'),
+        now: NOW,
       }),
     )
     expect(after).toBe(before + 1)
@@ -173,7 +315,7 @@ describe('retraction stops driving /departamentos', () => {
 
 describe('retractVoteBreakdown — the narrower operation', () => {
   it('withdraws the tally while item, outcome and source stay published', () => {
-    const snap = published()
+    const snap = corpus()
     const target = snap.items.find((v) => v.votes.length > 0)!
     expect(target.votes.length).toBeGreaterThan(0) // ablation
 
@@ -193,11 +335,11 @@ describe('retractVoteBreakdown — the narrower operation', () => {
     // sourced outcome.
     expect(after.stats.byOutcome).toEqual(snap.stats.byOutcome)
     expect(after.stats.total).toBe(snap.stats.total)
-    expect(after.stats.retracted.breakdown).toBe(1)
+    expect(after.stats.retracted.breakdown).toBe(snap.stats.retracted.breakdown + 1)
   })
 
   it('removes the withdrawn tuples from tallyByBloc', () => {
-    const snap = published()
+    const snap = corpus()
     const target = snap.items.find((v) => v.votes.some((t) => t.bloc))!
     const bloc = target.votes.find((t) => t.bloc)!.bloc as string
     const direction = target.votes.find((t) => t.bloc === bloc)!.direction
@@ -210,7 +352,7 @@ describe('retractVoteBreakdown — the narrower operation', () => {
   })
 
   it('tombstones the withdrawn tuples verbatim', () => {
-    const snap = published()
+    const snap = corpus()
     const target = snap.items.find((v) => v.votes.length > 0)!
     const after = validateSnapshot(retractVoteBreakdown(snap, target.id, SIG))
     const tomb = after.retractions.find((r) => r.voteId === target.id)!
@@ -220,7 +362,7 @@ describe('retractVoteBreakdown — the narrower operation', () => {
   })
 
   it('refuses a vote whose breakdown is already withdrawn', () => {
-    const snap = published()
+    const snap = corpus()
     const target = snap.items.find((v) => v.votes.length > 0)!
     const once = validateSnapshot(retractVoteBreakdown(snap, target.id, SIG))
     expect(() => retractVoteBreakdown(once, target.id, SIG)).toThrow(PlenoVoteRetractionError)
@@ -228,23 +370,23 @@ describe('retractVoteBreakdown — the narrower operation', () => {
 })
 
 describe('the signature is non-negotiable', () => {
-  const target = () => published().items[0].id
+  const target = () => corpus().items[0].id
 
   it('refuses a reason shorter than the minimum', () => {
-    expect(() =>
-      retractVoteRecord(published(), target(), { ...SIG, reason: 'mal' }),
-    ).toThrow(PlenoVoteRetractionError)
+    expect(() => retractVoteRecord(corpus(), target(), { ...SIG, reason: 'mal' })).toThrow(
+      PlenoVoteRetractionError,
+    )
     expect('mal'.length).toBeLessThan(RETRACTION_REASON_MIN) // ablation
   })
 
   it('refuses an empty editor', () => {
-    expect(() => retractVoteRecord(published(), target(), { ...SIG, editor: '  ' })).toThrow(
+    expect(() => retractVoteRecord(corpus(), target(), { ...SIG, editor: '  ' })).toThrow(
       PlenoVoteRetractionError,
     )
   })
 
   it('refuses the same on a breakdown retraction', () => {
-    const snap = published()
+    const snap = corpus()
     const id = snap.items.find((v) => v.votes.length > 0)!.id
     expect(() => retractVoteBreakdown(snap, id, { ...SIG, reason: 'corto' })).toThrow(
       PlenoVoteRetractionError,
@@ -254,7 +396,7 @@ describe('the signature is non-negotiable', () => {
 
 describe('a retracted vote cannot silently reappear', () => {
   it('validateSnapshot refuses a retracted id republished in items[]', () => {
-    const snap = published()
+    const snap = corpus()
     const target = snap.items[0]
     const after = validateSnapshot(retractVoteRecord(snap, target.id, SIG))
 
@@ -270,7 +412,7 @@ describe('a retracted vote cannot silently reappear', () => {
   })
 
   it('names the CLI that would legitimately put it back', () => {
-    const snap = published()
+    const snap = corpus()
     const target = snap.items[0]
     const after = validateSnapshot(retractVoteRecord(snap, target.id, SIG))
     expect(() => validateSnapshot({ ...after, items: [...after.items, target] })).toThrow(
@@ -279,9 +421,12 @@ describe('a retracted vote cannot silently reappear', () => {
   })
 
   it('refuses a withdrawn breakdown republished as a tally', () => {
-    const snap = published()
+    const snap = corpus()
     const target = snap.items.find((v) => v.votes.length > 0)!
     const after = validateSnapshot(retractVoteBreakdown(snap, target.id, SIG))
+    // ABLATION: the untouched row validates, so the throw is the live ledger
+    // entry refusing the tally, not the row being malformed.
+    expect(() => validateSnapshot(snap)).not.toThrow()
     expect(() =>
       validateSnapshot({
         ...after,
@@ -291,16 +436,17 @@ describe('a retracted vote cannot silently reappear', () => {
   })
 
   it('refuses a votesRetracted stamp whose ledger entry was removed', () => {
-    const snap = published()
+    const snap = corpus()
     const target = snap.items.find((v) => v.votes.length > 0)!
     const after = validateSnapshot(retractVoteBreakdown(snap, target.id, SIG))
-    expect(() => validateSnapshot({ ...after, retractions: [] })).toThrow(
-      PlenoVoteValidationError,
-    )
+    // ABLATION: the same items[] WITH its ledger validates, so emptying
+    // retractions[] is what the throw is about.
+    expect(() => validateSnapshot(after)).not.toThrow()
+    expect(() => validateSnapshot({ ...after, retractions: [] })).toThrow(PlenoVoteValidationError)
   })
 
   it('refuses an empty breakdown with no stamp at all', () => {
-    const snap = published()
+    const snap = corpus()
     const target = snap.items.find((v) => v.votes.length > 0)!
     expect(() =>
       validateSnapshot({
@@ -319,22 +465,25 @@ describe('revoking a retraction is explicit, signed and recorded', () => {
   }
 
   it('lifts the block without deleting the ledger entry', () => {
-    const snap = published()
+    const snap = corpus()
     const target = snap.items[0]
     const retracted = validateSnapshot(retractVoteRecord(snap, target.id, SIG))
     const revoked = validateSnapshot(revokeRetraction(retracted, target.id, 'record', REVOKE))
 
-    expect(revoked.retractions.length).toBe(1) // the record survives
-    expect(revoked.retractions[0].revokedBy).toBe(REVOKE.editor)
-    expect(revoked.retractions[0].revokedReason).toBe(REVOKE.reason)
-    expect(isLiveRetraction(revoked.retractions[0])).toBe(false)
-    expect(revoked.stats.retracted.record).toBe(0)
+    // The ledger is append-only: revoking STAMPS, it never prunes, so the
+    // entry count cannot fall.
+    expect(revoked.retractions.length).toBe(retracted.retractions.length)
+    const entry = revoked.retractions.find((r) => r.voteId === target.id)!
+    expect(entry.revokedBy).toBe(REVOKE.editor)
+    expect(entry.revokedReason).toBe(REVOKE.reason)
+    expect(isLiveRetraction(entry)).toBe(false)
+    expect(revoked.stats.retracted.record).toBe(snap.stats.retracted.record)
     // Only now can the id be published again.
     expect(() => validateSnapshot({ ...revoked, items: [...revoked.items, target] })).not.toThrow()
   })
 
   it('restores the withdrawn tuples when a breakdown retraction is revoked', () => {
-    const snap = published()
+    const snap = corpus()
     const target = snap.items.find((v) => v.votes.length > 0)!
     const retracted = validateSnapshot(retractVoteBreakdown(snap, target.id, SIG))
     expect(retracted.items.find((v) => v.id === target.id)!.votes).toEqual([]) // ablation
@@ -347,7 +496,7 @@ describe('revoking a retraction is explicit, signed and recorded', () => {
   })
 
   it('refuses to revoke something that was never retracted', () => {
-    expect(() => revokeRetraction(published(), 'nosuch-99', 'record', REVOKE)).toThrow(
+    expect(() => revokeRetraction(corpus(), 'nosuch-99', 'record', REVOKE)).toThrow(
       PlenoVoteRetractionError,
     )
   })
@@ -358,13 +507,20 @@ describe('check:relations catches a hand-edited reappearance', () => {
     runRelationsChecks({ votes: votes as any }).find((r) => r.name === 'votes-retractions')!
 
   it('is [empty] — not [ok] — when there is nothing to check', () => {
-    const r = run(published())
+    // Built with no ledger on purpose. Asking the PUBLISHED file this question
+    // stopped working the day the feature was first used, which is exactly
+    // backwards: the distinction being tested is «a check that verified zero
+    // refs must not report success», and it is testable only on a corpus this
+    // file controls.
+    const snap = corpus()
+    expect(snap.retractions).toEqual([]) // ablation
+    const r = run(snap)
     expect(r.status).toBe('empty')
     expect(r.checked).toBe(0)
   })
 
   it('reports the check evaluated something once a retraction exists', () => {
-    const snap = published()
+    const snap = corpus()
     const after = validateSnapshot(retractVoteRecord(snap, snap.items[0].id, SIG))
     const r = run(after)
     expect(r.checked).toBeGreaterThan(0)
@@ -372,7 +528,7 @@ describe('check:relations catches a hand-edited reappearance', () => {
   })
 
   it('breaks when a retracted vote is put back by hand', () => {
-    const snap = published()
+    const snap = corpus()
     const target = snap.items[0]
     const after = validateSnapshot(retractVoteRecord(snap, target.id, SIG))
     const tampered = { ...after, items: [...after.items, target] }
@@ -383,11 +539,118 @@ describe('check:relations catches a hand-edited reappearance', () => {
   })
 
   it('breaks when a votesRetracted stamp has no ledger entry', () => {
-    const snap = published()
+    const snap = corpus()
     const target = snap.items.find((v) => v.votes.length > 0)!
     const after = validateSnapshot(retractVoteBreakdown(snap, target.id, SIG))
     const r = run({ ...after, retractions: [] })
     expect(r.status).toBe('broken')
     expect(r.broken.join(' ')).toContain(target.id)
+  })
+})
+
+/**
+ * The published file, tested for what must be TRUE OF IT rather than for what
+ * it happened to contain the day this was written. Every assertion below holds
+ * at zero retractions and at three hundred.
+ *
+ * Where a loop could go vacuous, it counts what it inspected and asserts the
+ * count covers the whole ledger — «this loop saw every entry», which is
+ * checkable, rather than «there was at least one entry», which is the calendar
+ * again.
+ */
+describe('the published snapshot upholds the retraction invariants', () => {
+  const DATA = resolve(__dirname, '../public/data/pleno-votes.json')
+  const raw = (): Record<string, any> => JSON.parse(readFileSync(DATA, 'utf8'))
+  const published = (): PlenoVotesSnapshot => validateSnapshot(raw())
+  const live = (snap: PlenoVotesSnapshot) => snap.retractions.filter(isLiveRetraction)
+
+  it('validates, and carries votes a reader can see', () => {
+    const snap = published()
+    expect(snap.items.length).toBeGreaterThan(0)
+    expect(snap.items.some((v) => v.votes.length > 0)).toBe(true)
+  })
+
+  it('keeps every live record-scoped id out of items[]', () => {
+    const snap = published()
+    const ids = new Set(snap.items.map((v) => v.id))
+    const records = live(snap).filter((r) => r.scope === 'record')
+    let inspected = 0
+    for (const r of records) {
+      inspected += 1
+      expect(ids.has(r.voteId), `${r.voteId} was retracted but is published again`).toBe(false)
+      // Nothing is deleted without a record.
+      expect(r.original, `${r.voteId} has no tombstone`).not.toBeNull()
+      expect(r.original!.id).toBe(r.voteId)
+    }
+    expect(inspected).toBe(records.length)
+  })
+
+  it('keeps every live breakdown-scoped item published with zero tuples', () => {
+    const snap = published()
+    const byId = new Map(snap.items.map((v) => [v.id, v]))
+    const breakdowns = live(snap).filter((r) => r.scope === 'breakdown')
+    let inspected = 0
+    for (const r of breakdowns) {
+      inspected += 1
+      const item = byId.get(r.voteId)
+      expect(item, `${r.voteId} has a breakdown retraction but no item`).toBeDefined()
+      expect(item!.votes).toEqual([])
+      expect(item!.votesRetracted).toBeDefined()
+      // The item keeps what the source does publish.
+      expect(item!.outcome).toBeTruthy()
+      expect(item!.sourceUrl).toMatch(/^https?:\/\//)
+      // …and the withdrawn tuples stay recoverable.
+      expect(r.originalVotes ?? []).not.toEqual([])
+    }
+    expect(inspected).toBe(breakdowns.length)
+  })
+
+  it('signs, dates and explains every retraction', () => {
+    const snap = published()
+    let inspected = 0
+    for (const r of snap.retractions) {
+      inspected += 1
+      expect(r.editor.trim().length, `${r.voteId} has no editor`).toBeGreaterThan(0)
+      expect(r.reason.trim().length, `${r.voteId} reason too short`).toBeGreaterThanOrEqual(
+        RETRACTION_REASON_MIN,
+      )
+      expect(r.retractedAt, `${r.voteId} has no timestamp`).toMatch(/^\d{4}-\d{2}-\d{2}T/)
+      expect(Number.isNaN(Date.parse(r.retractedAt))).toBe(false)
+    }
+    expect(inspected).toBe(snap.retractions.length)
+  })
+
+  it('never stamps a row whose ledger entry is gone', () => {
+    const snap = published()
+    const liveBreakdowns = new Set(
+      live(snap)
+        .filter((r) => r.scope === 'breakdown')
+        .map((r) => r.voteId),
+    )
+    let inspected = 0
+    for (const v of snap.items.filter((it) => it.votesRetracted != null)) {
+      inspected += 1
+      expect(liveBreakdowns.has(v.id), `${v.id} is stamped with no live ledger entry`).toBe(true)
+    }
+    expect(inspected).toBe(snap.items.filter((it) => it.votesRetracted != null).length)
+  })
+
+  it('ships a stats block that matches its own contents', () => {
+    // The committed `stats` is written by validateSnapshot, which recomputes
+    // it. Comparing the file's stored block against the recomputation catches
+    // a hand-edit — including one that under-reports how much was withdrawn.
+    const onDisk = raw()
+    expect(onDisk.stats).toEqual(published().stats)
+  })
+
+  it('passes check:relations — never [broken]', () => {
+    const r = runRelationsChecks({ votes: raw() as any }).find((c) => c.name === 'votes-retractions')!
+    expect(r.broken).toEqual([])
+    expect(r.status).not.toBe('broken')
+    // `empty` is a legitimate state here (no retractions yet) and so is `ok`;
+    // what is asserted is that the check RAN over the whole ledger.
+    expect(r.checked).toBe(
+      published().retractions.length + published().items.filter((v) => v.votesRetracted).length,
+    )
   })
 })
