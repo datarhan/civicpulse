@@ -51,6 +51,7 @@ function main() {
     promiseSuggestions: readJson('promise-suggestions.json'),
     quejas: readJson('quejas.json'),
     tenders: readJson('tenders.json'),
+    videos: readJson('pleno-videos.json'),
     relations: readJson('queja-contract-relations.json'),
     approvedRelations: readJson('queja-contract-relations-approved.json'),
     dedicaciones: readJson('dedicaciones.json'),

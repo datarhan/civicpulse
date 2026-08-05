@@ -45,7 +45,14 @@ export interface RelationsCheckInputs {
   /** Parsed chunk files keyed by their manifest chunkPath. */
   chunkFiles?: Record<string, { items?: unknown[] } | null> | null
   findings?: {
-    items?: Array<{ id?: string; sourceClaimIds?: string[]; relatedPromiseIds?: string[] }>
+    items?: Array<{
+      id?: string
+      plenoDate?: string
+      sourceClaimIds?: string[]
+      relatedPromiseIds?: string[]
+      /** «Documentos cotejados» — see the two findings-crosschecked-* checks. */
+      crossChecked?: Array<{ kind?: string; ref?: string }>
+    }>
   } | null
   plenos?: { items?: Array<{ id?: string }> } | null
   votes?: { items?: Array<{ id?: string; plenoId?: string; itemNumber?: number }> } | null
@@ -66,9 +73,11 @@ export interface RelationsCheckInputs {
   /** Canonical entity registry — people[] mirrors the roster. */
   entitiesPeople?: { people?: Array<{ slug?: string }> } | null
   tenders?: {
-    contracts?: Array<{ id?: string | number }>
-    tenders?: Array<{ id?: string | number }>
+    contracts?: Array<{ id?: string | number; permalink?: string }>
+    tenders?: Array<{ id?: string | number; permalink?: string }>
   } | null
+  /** pleno-videos.json — a 60-item window over the channel feed, NOT an archive. */
+  videos?: { items?: Array<{ url?: string; plenoDate?: string }> } | null
   relations?: { links?: Array<{ quejaId?: string; tenderId?: string | number }> } | null
   approvedRelations?: {
     approvals?: Array<{ quejaId?: string; tenderId?: string | number }>
@@ -152,6 +161,7 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
     promiseSuggestions,
     quejas,
     tenders,
+    videos,
     relations,
     approvedRelations,
     dedicaciones,
@@ -181,6 +191,16 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
     ...(tenders?.contracts ?? []).map((c) => String(c?.id)).filter((id) => id !== 'undefined'),
     ...(tenders?.tenders ?? []).map((t) => String(t?.id)).filter((id) => id !== 'undefined'),
   ])
+  const tenderPermalinks = new Set<string>(
+    [...(tenders?.contracts ?? []), ...(tenders?.tenders ?? [])]
+      .map((t) => t?.permalink)
+      .filter((p): p is string => !!p),
+  )
+  const videoDateByUrl = new Map<string, string | undefined>(
+    (videos?.items ?? [])
+      .filter((v): v is { url: string; plenoDate?: string } => !!v?.url)
+      .map((v) => [v.url, v.plenoDate]),
+  )
   const linkPairs = new Set(
     (relations?.links ?? []).map((l) => `${l?.quejaId}→${String(l?.tenderId)}`),
   )
@@ -214,6 +234,77 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
         for (const pid of f?.relatedPromiseIds ?? []) {
           checked += 1
           if (!promiseIds.has(pid)) broken.push(`${f?.id ?? '?'} cites promise ${pid}`)
+        }
+      }
+      return { checked, broken }
+    }),
+
+    /**
+     * Every `crossChecked[]` tender a published finding cites must be a
+     * contract this repo actually publishes.
+     *
+     * The obvious check — "is this ref still in the verifier's evidence for
+     * this finding's claims?" — is the WRONG one, and measuring it is what
+     * prompted this: 138 of the 157 tender refs are no longer in the live
+     * `pleno-claims-verified.json`. That is not orphaning. `crossChecked[]`
+     * means «documentos cotejados» — what the claims were checked AGAINST,
+     * explicitly not a filtered list of what agrees (see PlenoFinding). The
+     * verdict engine later re-judged most of those claims to `sin-datos` and
+     * emits evidence only for grounded cites, so the association drops out of
+     * the current snapshot while remaining true of the record. Asserting it
+     * would red the nightly on 138 correct citations and pressure a curator
+     * into deleting them.
+     *
+     * What is genuinely invariant is that the cited document EXISTS in our
+     * corpus. That catches the real harm — a fabricated or drifted URL on a
+     * legally-material surface — without asserting a verdict. tenders.json is
+     * a cumulative snapshot (its permalink set only grows), so `error` is safe.
+     * Only `kind: 'tender'` is joined; bdns/budget/promise and the three
+     * curator-only kinds have no permalink corpus to resolve against and are
+     * deliberately not counted, so `checked` never overstates coverage.
+     */
+    check('findings-crosschecked-tenders', 'error', findings != null && tenders != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      for (const f of findings?.items ?? []) {
+        for (const c of f?.crossChecked ?? []) {
+          if (c?.kind !== 'tender' || !c?.ref) continue
+          checked += 1
+          if (!tenderPermalinks.has(c.ref)) {
+            broken.push(`${f?.id ?? '?'} cross-checks unknown tender ${c.ref}`)
+          }
+        }
+      }
+      return { checked, broken }
+    }),
+
+    /**
+     * The pleno recording a finding cites as provenance should be the video
+     * for THAT session. `warn`, not `error`, for a measured reason:
+     * pleno-videos.json is a 60-item window over the council's channel feed,
+     * not an archive, so a correct citation ages out as the channel uploads
+     * other content. Both current misses are one such video — «Ple
+     * Extraordinari 3 de juliol de 2026», present in the snapshot until it was
+     * pushed out of the window on 2026-07-26. The citation is right and the
+     * snapshot is the limitation, so this must surface as debt and never
+     * red a nightly. A DATE mismatch is the case worth reading: that would be
+     * a finding pointing at the wrong session's recording.
+     */
+    check('findings-crosschecked-video', 'warn', findings != null && videos != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      for (const f of findings?.items ?? []) {
+        for (const c of f?.crossChecked ?? []) {
+          if (c?.kind !== 'pleno-video' || !c?.ref) continue
+          checked += 1
+          if (!videoDateByUrl.has(c.ref)) {
+            broken.push(`${f?.id ?? '?'} cites video outside the channel window: ${c.ref}`)
+            continue
+          }
+          const vDate = videoDateByUrl.get(c.ref)
+          if (f?.plenoDate != null && vDate != null && vDate !== f.plenoDate) {
+            broken.push(`${f?.id ?? '?'} (${f.plenoDate}) cites the video of ${vDate}: ${c.ref}`)
+          }
         }
       }
       return { checked, broken }

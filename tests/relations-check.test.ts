@@ -35,6 +35,152 @@ describe('runRelationsChecks', () => {
     expect(rs['manifest-chunks'].status).toBe('skipped')
   })
 
+  describe('findings-crosschecked-tenders', () => {
+    const tenders = {
+      contracts: [{ id: 1, permalink: 'https://contrataciondelestado.es/x?idEvl=AAA' }],
+      tenders: [{ id: 2, permalink: 'https://contrataciondelestado.es/x?idEvl=BBB' }],
+    }
+
+    it('flags a cross-checked tender absent from the published corpus', () => {
+      const rs = byName(
+        runRelationsChecks({
+          tenders,
+          findings: {
+            items: [
+              {
+                id: 'f1',
+                crossChecked: [
+                  { kind: 'tender', ref: 'https://contrataciondelestado.es/x?idEvl=AAA' },
+                  { kind: 'tender', ref: 'https://contrataciondelestado.es/x?idEvl=GONE' },
+                ],
+              },
+            ],
+          },
+        }),
+      )
+      expect(rs['findings-crosschecked-tenders'].status).toBe('broken')
+      expect(rs['findings-crosschecked-tenders'].level).toBe('error')
+      expect(rs['findings-crosschecked-tenders'].checked).toBe(2)
+      expect(rs['findings-crosschecked-tenders'].broken[0]).toContain('GONE')
+    })
+
+    it('passes when every tender ref resolves, matching against both arrays', () => {
+      const rs = byName(
+        runRelationsChecks({
+          tenders,
+          findings: {
+            items: [
+              {
+                id: 'f1',
+                crossChecked: [
+                  { kind: 'tender', ref: 'https://contrataciondelestado.es/x?idEvl=AAA' },
+                  { kind: 'tender', ref: 'https://contrataciondelestado.es/x?idEvl=BBB' },
+                ],
+              },
+            ],
+          },
+        }),
+      )
+      expect(rs['findings-crosschecked-tenders'].status).toBe('ok')
+      expect(rs['findings-crosschecked-tenders'].checked).toBe(2)
+    })
+
+    /**
+     * The check must not claim coverage it does not have. A finding carrying
+     * only kinds with no permalink corpus verified NOTHING, and `empty` is the
+     * only honest report — an `ok` here would be the green-while-measuring-
+     * nothing failure this repo keeps finding.
+     */
+    it('reports empty — not ok — when no ref is of a joinable kind', () => {
+      const rs = byName(
+        runRelationsChecks({
+          tenders,
+          findings: {
+            items: [
+              {
+                id: 'f1',
+                crossChecked: [
+                  { kind: 'pleno-video', ref: 'https://www.youtube.com/watch?v=zzz' },
+                  { kind: 'document', ref: 'https://example.org/informe.pdf' },
+                  { kind: 'bdns', ref: 'bdns:123' },
+                ],
+              },
+            ],
+          },
+        }),
+      )
+      expect(rs['findings-crosschecked-tenders'].status).toBe('empty')
+      expect(rs['findings-crosschecked-tenders'].checked).toBe(0)
+    })
+  })
+
+  describe('findings-crosschecked-video', () => {
+    const videos = {
+      items: [
+        { url: 'https://www.youtube.com/watch?v=AAA', plenoDate: '2026-07-06' },
+        { url: 'https://www.youtube.com/watch?v=BBB', plenoDate: '2026-07-27' },
+      ],
+    }
+
+    it('warns — never errors — on a video outside the channel window', () => {
+      const rs = byName(
+        runRelationsChecks({
+          videos,
+          findings: {
+            items: [
+              {
+                id: 'f1',
+                plenoDate: '2026-07-03',
+                crossChecked: [{ kind: 'pleno-video', ref: 'https://www.youtube.com/watch?v=OLD' }],
+              },
+            ],
+          },
+        }),
+      )
+      expect(rs['findings-crosschecked-video'].status).toBe('broken')
+      expect(rs['findings-crosschecked-video'].level).toBe('warn')
+      expect(rs['findings-crosschecked-video'].broken[0]).toContain('outside the channel window')
+    })
+
+    it("flags a finding citing another session's recording", () => {
+      const rs = byName(
+        runRelationsChecks({
+          videos,
+          findings: {
+            items: [
+              {
+                id: 'f1',
+                plenoDate: '2026-07-06',
+                crossChecked: [{ kind: 'pleno-video', ref: 'https://www.youtube.com/watch?v=BBB' }],
+              },
+            ],
+          },
+        }),
+      )
+      expect(rs['findings-crosschecked-video'].status).toBe('broken')
+      expect(rs['findings-crosschecked-video'].broken[0]).toContain('cites the video of 2026-07-27')
+    })
+
+    it('passes when the recording matches the session date', () => {
+      const rs = byName(
+        runRelationsChecks({
+          videos,
+          findings: {
+            items: [
+              {
+                id: 'f1',
+                plenoDate: '2026-07-06',
+                crossChecked: [{ kind: 'pleno-video', ref: 'https://www.youtube.com/watch?v=AAA' }],
+              },
+            ],
+          },
+        }),
+      )
+      expect(rs['findings-crosschecked-video'].status).toBe('ok')
+      expect(rs['findings-crosschecked-video'].checked).toBe(1)
+    })
+  })
+
   it('flags manifest chunk itemCount mismatches and missing chunk files', () => {
     const rs = byName(
       runRelationsChecks({
