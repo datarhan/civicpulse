@@ -18,9 +18,17 @@
  *
  * Severity is hard-locked to `informational`. The curator path
  * (`promote-press-claim`) is the only way to land `notable` / `critical`.
+ *
+ * Evidence refs are bucketed by the stance the verifier RECORDED on each
+ * one (`EvidenceStance` in claim-verifier.ts — the same type the pleno path
+ * uses, not a copy): `contradicts` → contradiction[], everything else →
+ * crossChecked[]. An unset stance reads as `checked`; a ref nobody
+ * classified may never be promoted into a verdict-bearing bucket. In
+ * practice contradiction[] stays empty here because selectBundles
+ * quarantines every contradicho-bearing bundle before composeFinding runs.
  */
 
-import type { ClaimVerdict } from './claim-verifier'
+import { evidenceStance, type ClaimVerdict } from './claim-verifier'
 import type { PressClaim } from './press-claim'
 import type { PressClaimVerification } from './press-verifier'
 import type { PressFinding, PressFindingRef } from './press-finding'
@@ -202,23 +210,42 @@ export function composeFinding(opts: ComposeOpts): PressFinding {
     sourceClaimId: it.claim.id,
   }))
 
-  const corroborationByRef = new Map<string, PressFindingRef>()
+  // Bucket every verifier evidence ref by the stance recorded ON THAT REF,
+  // deduped by ref string. Until 2026-08-05 all of them went into one field
+  // called `corroboration[]` — including, on the live snapshot, a Plan de
+  // Movilidad Urbana Sostenible contract cross-matched at 0.68 to «una
+  // inversión de 61.000 euros en artes escénicas». Nothing here checks that
+  // a document supports a sentence, so nothing here may say it does.
+  const seenRefs = new Set<string>()
+  const crossChecked: PressFindingRef[] = []
+  const contradiction: PressFindingRef[] = []
   for (const it of sorted) {
     for (const ev of it.verification.evidence) {
-      if (corroborationByRef.has(ev.ref)) continue
+      if (seenRefs.has(ev.ref)) continue
+      seenRefs.add(ev.ref)
+      // Every member of ClaimEvidence['kind'] is mapped, so the fallback is
+      // unreachable: `document` is a CURATOR-ONLY kind, and the auto path
+      // emitting one would present verifier output as a curator's own
+      // attachment. Factcheck and BOE rows used to land there.
       const kindMap: Record<string, PressFindingRef['kind']> = {
         tender: 'tender',
         bdns: 'bdns',
         budget: 'budget',
         promise: 'promise',
         'prior-claim': 'press',
+        factcheck: 'factcheck',
+        boe: 'boe',
       }
       const mapped = kindMap[ev.kind] ?? 'document'
-      corroborationByRef.set(ev.ref, {
+      const ref: PressFindingRef = {
         kind: mapped,
         ref: ev.ref,
         snippet: ev.snippet.slice(0, 240),
-      })
+      }
+      // evidenceStance() whitelists the enum, so an absent or unrecognised
+      // value lands as 'checked' rather than being trusted upward.
+      if (evidenceStance(ev) === 'contradicts') contradiction.push(ref)
+      else crossChecked.push(ref)
     }
   }
 
@@ -248,8 +275,8 @@ export function composeFinding(opts: ComposeOpts): PressFinding {
     summary: summary.slice(0, 2000),
     severity: 'informational',
     quotes,
-    corroboration: Array.from(corroborationByRef.values()),
-    contradiction: [],
+    crossChecked,
+    contradiction,
     relatedPromiseIds: [],
     relatedPlenoItems: [],
     curatorName,

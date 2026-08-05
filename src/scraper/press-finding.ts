@@ -10,6 +10,15 @@
  * data agrees / disagrees / has no record" — never "the journalist was
  * wrong."
  *
+ * The evidence list is `crossChecked[]`. It was called `corroboration[]`
+ * until 2026-08-05, and the name asserted a verdict its contents never
+ * carried: `press-auto-curate.composeFinding` dumped EVERY verifier
+ * evidence ref for the bundled claims into it, agreeing or not, and left
+ * `contradiction[]` empty by construction. Same defect, same fix, and the
+ * same reason it matters — the LLM synthesiser reads the schema, not the
+ * page. See `EvidenceStance` in `claim-verifier.ts`; this file uses that
+ * type rather than declaring a second copy of it.
+ *
  * Auto-curation routes `informational` bundles directly here when
  * dialectic + score gates pass. `contradicho` / `parcial` bundles
  * route to editorial/press-auto-curation-queue.md until a curator
@@ -45,7 +54,9 @@ export interface PressFindingRef {
    * padron/paro) come from `press-verifier.ts`. The curator-only kinds
    * (press, document, transcript) are accepted only via the
    * `--extra-corroboration` flag on `promote-press-claim`; no auto path
-   * can land them.
+   * can land them. Note that even those land in `crossChecked[]`: a
+   * curator deliberately attaching a document is not the CLI checking
+   * that the document supports anything.
    */
   kind:
     | 'tender'
@@ -101,7 +112,21 @@ export interface PressFinding {
   summary: string
   severity: PressFindingSeverity
   quotes: PressFindingQuote[]
-  corroboration: PressFindingRef[]
+  /**
+   * Every municipal document the bundled claims were cross-referenced
+   * against. Renders as «documentos cotejados». It is NOT a filtered list
+   * of documents that agree — no step of the press verifier establishes
+   * that a record supports a sentence, and the one evidence row in the
+   * live snapshot is a Plan de Movilidad Urbana Sostenible contract
+   * attached to a claim about «61.000 euros en artes escénicas».
+   */
+  crossChecked: PressFindingRef[]
+  /**
+   * Only refs the verifier found INCOMPATIBLE with a bundled claim
+   * (`stance: 'contradicts'`), or a curator's own. Empty is the normal
+   * state: `selectBundles` quarantines every contradicho-bearing bundle,
+   * so no automated path can fill this. It gates `severity: 'critical'`.
+   */
   contradiction: PressFindingRef[]
   /** Related promise ids (when the article touches a tracked promise). */
   relatedPromiseIds: string[]
@@ -323,19 +348,36 @@ function validateFinding(f: unknown, idx: number): PressFinding {
   must(Array.isArray(o.quotes) && quotes.length > 0, `items[${idx}].quotes must contain ≥1 quote`)
   const validatedQuotes = quotes.map((q, qi) => validateQuote(q, idx, qi))
 
-  must(Array.isArray(o.corroboration), `items[${idx}].corroboration must be array`)
+  // `corroboration` was renamed to `crossChecked` on 2026-08-05. Rejecting
+  // the old key outright is the second layer: a row that still carries it was
+  // written by something that never learned the field means "cotejado", not
+  // "corrobora", and would publish the old assertion under the new heading.
+  must(
+    o.corroboration === undefined,
+    `items[${idx}]: \`corroboration\` was renamed to \`crossChecked\` — the list is what was ` +
+      `cross-checked, not what agrees. Nothing in the press verifier establishes corroboration.`,
+  )
+  must(Array.isArray(o.crossChecked), `items[${idx}].crossChecked must be array`)
   must(Array.isArray(o.contradiction), `items[${idx}].contradiction must be array`)
-  const corroboration = (o.corroboration as unknown[]).map((r, ri) =>
-    validateRef(r, idx, 'corroboration', ri),
+  const crossChecked = (o.crossChecked as unknown[]).map((r, ri) =>
+    validateRef(r, idx, 'crossChecked', ri),
   )
   const contradiction = (o.contradiction as unknown[]).map((r, ri) =>
     validateRef(r, idx, 'contradiction', ri),
   )
 
+  // /metodologia#laboratorio-prensa has always promised a `critical` finding
+  // needs "al menos una referencia de contradicción". The gate accepted a
+  // cross-checked document instead, so "hemos cotejado estos expedientes"
+  // stood in for "un expediente lo desmiente" — and since 2026-08-05 that
+  // page also says the code matches it. This is the code matching it. A
+  // `critical` press finding names an OUTLET; it is the strongest verdict
+  // this subsystem publishes about one.
   if (o.severity === 'critical') {
     must(
-      corroboration.length + contradiction.length > 0,
-      `items[${idx}]: severity=critical requires ≥1 corroboration or contradiction ref`,
+      contradiction.length >= 1,
+      `items[${idx}]: severity=critical requires ≥1 contradiction ref (a cross-checked document ` +
+        `is not a refutation) — see /metodologia#laboratorio-prensa`,
     )
   }
 
@@ -394,7 +436,7 @@ function validateFinding(f: unknown, idx: number): PressFinding {
     summary: (o.summary as string).trim(),
     severity: o.severity as PressFindingSeverity,
     quotes: validatedQuotes,
-    corroboration,
+    crossChecked,
     contradiction,
     relatedPromiseIds: o.relatedPromiseIds as string[],
     relatedPlenoItems: o.relatedPlenoItems as string[],

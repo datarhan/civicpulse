@@ -812,13 +812,29 @@ export default function Metodologia() {
             citan únicamente al medio que publicó la pieza. Nunca al/a la firmante.
           </li>
           <li>
+            <strong>La lista de documentos dice «cotejado», no «corrobora».</strong> Un hallazgo de
+            prensa publica en <code>crossChecked</code> todos los documentos municipales contra los
+            que se cruzaron sus citas, los respalden o no: <strong>ningún</strong> paso de este
+            verificador comprueba que un expediente sostenga una frase. Los cruces son coincidencias
+            de importe, de cifra contra la última serie publicada o de palabras en un título — la
+            única fila de evidencia del laboratorio a día de hoy empareja un contrato del Plan de
+            Movilidad Urbana Sostenible con una noticia sobre 61.000 € en artes escénicas. Hasta el
+            5 de agosto de 2026 ese campo se llamaba <code>corroboration</code> con exactamente el
+            mismo contenido, igual que en los hallazgos de pleno. Se renombró sin ninguna fila
+            publicada dentro, así que aquí no cambió ninguna afirmación; el cambio es incompatible
+            para quien leyera el fichero. El campo <code>contradiction</code> sólo admite documentos
+            que el verificador marcó como incompatibles con la cita.
+          </li>
+          <li>
             <strong>Severity crítico exige una contradicción.</strong> El validador rechaza un
             hallazgo etiquetado como <code>critical</code> sin al menos una referencia de
             contradicción dateada y enlazada. Hasta el 5 de agosto de 2026 aceptaba en su lugar
             cualquier documento cotejado, de modo que esta regla —publicada desde el principio—
             nunca había llegado a exigirse: «hemos mirado estos expedientes» valía por «un
-            expediente lo desmiente». Hoy el código dice lo que dice esta página. No hay ningún
-            hallazgo <code>critical</code> publicado.
+            expediente lo desmiente». Se apretó primero el validador de los hallazgos de pleno y,
+            ese mismo día, el de los de prensa: entre ambos cambios esta página afirmó de los
+            segundos algo que su código todavía no hacía. Hoy los dos dicen lo que dice esta página.
+            No hay ningún hallazgo <code>critical</code> publicado.
           </li>
         </ul>
 

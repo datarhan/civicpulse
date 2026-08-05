@@ -26,7 +26,7 @@ function makeFinding(overrides: Partial<PressFinding> = {}): PressFinding {
         sourceClaimId: 'test-art-001-0-num',
       },
     ],
-    corroboration: [
+    crossChecked: [
       {
         kind: 'bdns',
         ref: 'BDB-2026-001',
@@ -72,11 +72,13 @@ describe('press-finding — validatePressFindingsSnapshot', () => {
     expect(() => validatePressFindingsSnapshot(JSON.stringify(snap))).toThrow(/summary/)
   })
 
-  it('rejects severity=critical without any evidence', () => {
+  it('rejects severity=critical without a contradiction ref', () => {
+    // A cross-checked document is not a refutation: the gate used to accept
+    // `crossChecked.length + contradiction.length > 0`, so the rule
+    // /metodologia publishes had never once been enforced.
     const snap = makeSnapshot([
       makeFinding({
         severity: 'critical',
-        corroboration: [],
         contradiction: [],
       }),
     ])

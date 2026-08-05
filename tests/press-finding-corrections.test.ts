@@ -35,7 +35,7 @@ function makeFinding(overrides: Partial<PressFinding> = {}): PressFinding {
         sourceClaimId: 'test-art-001-0-num',
       },
     ],
-    corroboration: [
+    crossChecked: [
       {
         kind: 'bdns',
         ref: 'BDB-2026-001',

@@ -14,6 +14,13 @@
  * identical to the pleno path. Only the article context (URL, outlet)
  * is preserved on the outer wrapper so the lab page can render
  * "Verificación de prensa" cards with full provenance.
+ *
+ * Every evidence row this file emits carries an `EvidenceStance`, recorded
+ * at the point of emission (see claim-verifier.ts). All three press-only
+ * paths — padrón/paro, third-party fact-checks, BOE — emit `checked`. The
+ * enum has no `corroborates` member and this file does not earn one: none
+ * of these paths establishes that a record SUPPORTS a sentence, they
+ * establish that a record was found and compared.
  */
 
 import {
@@ -104,6 +111,12 @@ function verifyDatoMunicipal(
           ref: `padron:${latest.year}`,
           snippet: `Padrón INE ${latest.year}: ${latest.total.toLocaleString('es-ES')} habitantes (cifra del medio: ${count.toLocaleString('es-ES')})`,
           similarity: 1 - diff,
+          // `checked`, not a corroboration, and the year is why: this compares
+          // the figure against the LATEST padrón row whatever year the article
+          // was about, and `count` is whatever number the extractor pulled out
+          // of the sentence. A 2019 piece landing within 2% of the 2025 series
+          // is arithmetic, not agreement.
+          stance: 'checked',
         })
       }
     }
@@ -123,6 +136,9 @@ function verifyDatoMunicipal(
           ref: `paro:${latest.month}`,
           snippet: `SEPE paro registrado ${latest.month}: ${latest.total} (cifra del medio: ${count})`,
           similarity: 1 - diff,
+          // Same shape as the padrón branch, and looser (5%): the latest month
+          // regardless of the month the article discussed.
+          stance: 'checked',
         })
       }
     }
@@ -188,7 +204,7 @@ export interface PressClaimVerification extends ClaimVerification {
  *   - Our verdict was sin-datos AND the fact-checker majority verdict
  *     is verificado / parcial / contradicho → adopt their verdict.
  *   - Our verdict was already definitive → keep ours, just attach
- *     the fact-check rows as additional corroboration.
+ *     the fact-check rows as cross-checked documents.
  *   - When fact-checkers disagree among themselves, keep our verdict
  *     and leave a curator note.
  */
@@ -219,11 +235,19 @@ function applyFactCheckCrossRef(
     return top[1] > others ? (top[0] as ClaimVerdict) : null
   })()
 
+  // `checked`, including for a fact-check that rated the claim FALSE. The
+  // directional judgement there is the third party's; ours is a token-overlap
+  // match between their review title and the press verbatim, and
+  // `contradiction[]` gates severity=critical about a named outlet. Letting a
+  // Jaccard score unlock that would loosen the exact gate this stance exists
+  // to protect. Where a fact-checker's disagreement DOES take effect is the
+  // verdict-adoption rule below, which is bounded by a plurality test.
   const newEvidence: ClaimEvidence[] = matches.map((m) => ({
     kind: 'factcheck',
     ref: m.row.reviewUrl,
     snippet: `${m.row.reviewerName}: "${m.row.verdict}" — ${m.row.reviewTitle.slice(0, 180)}`,
     similarity: m.score,
+    stance: 'checked' as const,
   }))
 
   const checkedAgainst = [...inner.checkedAgainst, 'factcheck']
@@ -326,11 +350,16 @@ function applyBoeCrossRef(
   const matches = matchBoe(claim, boe)
   if (matches.length === 0) return inner
 
+  // `checked`. Presence in the gazette proves the acto exists — which is what
+  // the verdict-upgrade below claims — not that the sentence about it is
+  // right. The match is ≥3 shared tokens at Jaccard ≥ 0.08, the loosest
+  // threshold in this file.
   const newEvidence: ClaimEvidence[] = matches.map((m) => ({
     kind: 'boe',
     ref: m.row.urlHtml || m.row.urlPdf,
     snippet: `BOE ${m.row.identificador} · ${m.row.departamento} · ${m.row.titulo.slice(0, 160)}`,
     similarity: m.score,
+    stance: 'checked' as const,
   }))
 
   const checkedAgainst = [...inner.checkedAgainst, 'boe']

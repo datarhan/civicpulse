@@ -1,29 +1,59 @@
 /**
- * One-shot migration: `corroboration` → `crossChecked` in pleno-findings.json.
+ * One-shot migration: `corroboration` → `crossChecked` in the two findings
+ * snapshots that carried the field — `pleno-findings.json` (52 rows) and its
+ * press-side twin `press-findings.json`.
  *
- * Why a script and not an edit: pleno-findings.json is curated and
- * guard-protected, and a rename on a legally-material surface has to leave a
- * record of exactly what it did. This one is mechanical by construction —
- * every ref keeps its kind, ref and snippet, in order, and the row count and
- * per-row ref counts are asserted equal before anything is written. No claim
- * changes; the same documents are published under a name that describes them.
+ * Why a script and not an edit: both files are curated and guard-protected,
+ * and a rename on a legally-material surface has to leave a record of exactly
+ * what it did. This one is mechanical by construction — every ref keeps its
+ * kind, ref and snippet, in order, and the row count and per-row ref counts
+ * are asserted equal before anything is written. No claim changes; the same
+ * documents are published under a name that describes them.
  *
- * The rename itself: `corroboration[]` never held corroboration. `auto-curate`
- * aggregated every verifier evidence ref for the cited quotes — agreeing or
- * not — plus the pleno video. Measured on this file before the migration:
- * 49 of 52 findings carried a non-empty `corroboration[]` and 0 of 52 carried
- * any `contradiction[]`, because the automated path could not produce one. The
- * name is what the LLM synthesiser read when it wrote «corroborado por…».
+ * The rename itself: `corroboration[]` never held corroboration. The auto-
+ * curators aggregated every verifier evidence ref for the cited quotes —
+ * agreeing or not — and left `contradiction[]` empty by construction.
+ * Measured on pleno-findings.json before the migration: 49 of 52 findings
+ * carried a non-empty `corroboration[]` and 0 of 52 carried any
+ * `contradiction[]`. The name is what the LLM synthesiser read when it wrote
+ * «corroborado por…».
  *
- *   npx tsx scripts/migrate-finding-crosschecked.ts [--dry-run]
+ *   npx tsx scripts/migrate-finding-crosschecked.ts [--target pleno|press] [--dry-run]
  *
  * Idempotent: a file already migrated exits 0 having written nothing.
+ *
+ * `press-findings.json` holds no rows, so its migration moves nothing. It is
+ * still run, and still validated, because the point is that the file and its
+ * validator agree BEFORE the first row lands — an empty file is exactly where
+ * a shape defect is cheap to fix and invisible to a row-level check. The
+ * zero-row case is reported as its own outcome, never folded into "migrated".
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { validateFindingsSnapshot } from '../src/scraper/pleno-finding'
+import { validatePressFindingsSnapshot } from '../src/scraper/press-finding'
 
-const FINDINGS = resolve('public/data/pleno-findings.json')
+type Target = 'pleno' | 'press'
+
+const TARGETS: Record<Target, { path: string; validate: (json: string) => { items: unknown[] } }> =
+  {
+    pleno: { path: 'public/data/pleno-findings.json', validate: validateFindingsSnapshot },
+    press: { path: 'public/data/press-findings.json', validate: validatePressFindingsSnapshot },
+  }
+
+const targetArg = (() => {
+  const i = process.argv.indexOf('--target')
+  return i < 0 ? 'pleno' : (process.argv[i + 1] ?? '')
+})()
+if (!(targetArg in TARGETS)) {
+  process.stderr.write(
+    `[migrate-crosschecked] --target must be one of ${Object.keys(TARGETS).join('|')} (got «${targetArg}»)\n`,
+  )
+  process.exit(1)
+}
+const target = TARGETS[targetArg as Target]
+
+const FINDINGS = resolve(target.path)
 const dryRun = process.argv.includes('--dry-run')
 
 interface LegacyRef {
@@ -48,7 +78,23 @@ const raw = JSON.parse(readFileSync(FINDINGS, 'utf8')) as {
   [k: string]: unknown
 }
 const rows = raw.items
-if (!Array.isArray(rows) || rows.length === 0) fail('no items[] to migrate — refusing')
+if (!Array.isArray(rows)) fail('no items[] array — refusing')
+
+// Three outcomes, reported separately. Folding "nothing to migrate because
+// the file is empty" into "already migrated" is how a pass reports success
+// having examined nothing.
+if (rows.length === 0) {
+  // The shape still has to be provably consistent, so validate before
+  // claiming anything: the validator now rejects `corroboration` outright,
+  // and this is where an empty file gets that guarantee checked rather than
+  // assumed.
+  target.validate(readFileSync(FINDINGS, 'utf8'))
+  process.stdout.write(
+    `[migrate-crosschecked] ${target.path}: 0 row(s) — nothing to rename. The file validates ` +
+      `under the post-rename schema, so the first row cannot land in the old shape.\n`,
+  )
+  process.exit(0)
+}
 
 const legacy = rows.filter((r) => r.corroboration !== undefined)
 if (legacy.length === 0) {
@@ -104,10 +150,12 @@ if (totalRefsIn === 0) fail('counted 0 refs to move — the check evaluated noth
 const serialized = JSON.stringify({ ...raw, items: migrated }, null, 2) + '\n'
 // The validator now rejects `corroboration` outright, so this is also the
 // proof that no row kept the old key.
-const snap = validateFindingsSnapshot(serialized)
+const snap = target.validate(serialized) as {
+  items: Array<{ crossChecked: unknown[]; contradiction: unknown[] }>
+}
 
 process.stdout.write(
-  `[migrate-crosschecked] ${legacy.length}/${rows.length} row(s) renamed · ` +
+  `[migrate-crosschecked] ${target.path}: ${legacy.length}/${rows.length} row(s) renamed · ` +
     `${movedRefs} ref(s) moved · ${snap.items.filter((f) => f.crossChecked.length > 0).length} ` +
     `row(s) with a non-empty crossChecked[] · ` +
     `${snap.items.filter((f) => f.contradiction.length > 0).length} with contradiction[]\n`,
