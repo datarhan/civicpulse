@@ -51,6 +51,15 @@ por coste**: lo determinista antes que lo probabilístico, siempre.
   `unknown / total < 0.1`.
 - **Un centinela nunca es un valor.** Si `Otro` puede significar «no lo sé», no
   puede significar también «este partido». Nombra la cosa o devuelve `null`.
+- **Un centinela no se salva cambiando de campo.** `Otro` sobrevivió a la
+  primera retirada en `votes[].bloc` con el argumento de que allí respondía a
+  otra pregunta. No era cierto: las 12 filas llevaban `seats: 1` y nombraban al
+  mismo concejal por eliminación, y el valor ni siquiera venía del acta — el
+  extractor recibió la tabla de escaños de `officials.json` cuando aún decía
+  `Otro` (`scripts/logs/vote-backfill.log`). Si un campo excluido del barrido
+  contiene el centinela, el barrido no ha terminado; y el contador que decía
+  «quedan N sin tocar, a propósito» imprimía N=0 porque nunca abría el fichero
+  que los tenía.
 
 ### Nivel 1 · Que el test no pueda pasar en vano
 

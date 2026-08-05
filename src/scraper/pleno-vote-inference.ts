@@ -88,7 +88,12 @@ const BLOC_ALIASES: Record<VoteBloc, RegExp> = {
   // chair usually says "Esquerra Unida" or "Unides Podem".
   'EU-Podem':
     /\besquerra unida\b|\bunides podem\b|\bpodem\b|\bEUPV\b|\bEU-Podem\b|\bizquierda unida\b/i,
-  Otro: /\bNo adscrito\b|\bno adscrit\b|\bgrupo mixto\b|\bgrup mixt\b/i,
+  // No entry for «no adscrito» / «grupo mixto». They used to map to `Otro`,
+  // but those phrases say a councillor belongs to NO group — they do not name
+  // one, and this table's job is to name one. With no alias the engine simply
+  // does not emit a tuple for them, which is the conservative miss this file
+  // is built around. The current corporación has no non-adscritos; if one
+  // appears, the vote is recorded by a curator with `bloc: null`.
 }
 
 /**

@@ -17,7 +17,7 @@ import { describe, it, expect } from 'vitest'
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { validateFindingsSnapshot } from '../src/scraper/pleno-finding'
-import { ALLOWED_BLOCS, SPEAKER_GROUPS } from '../src/scraper/pleno-votes'
+import { ALLOWED_BLOCS, SPEAKER_GROUPS, validateSnapshot } from '../src/scraper/pleno-votes'
 import { PlenoClaimSuggestionSchema } from '../src/llm/schemas'
 import { REAL_BLOCS } from '../src/lib/party-label.js'
 
@@ -178,14 +178,67 @@ describe('Otro sentinel — the enums that define the boundary', () => {
     expect([...SPEAKER_GROUPS]).toEqual([...REAL_BLOCS])
   })
 
-  it('the vote bloc list stays wider, and deliberately keeps Otro', () => {
-    // Scope boundary, pinned on purpose: votes[].bloc answers a different
-    // question (which group cast a vote) in a curated file with no null, and
-    // an acta can record a «concejal no adscrito». Retiring it there is a
-    // separate editorial decision, not this migration.
-    expect(ALLOWED_BLOCS).toContain('Otro')
-    for (const g of SPEAKER_GROUPS) expect(ALLOWED_BLOCS).toContain(g)
-    expect(ALLOWED_BLOCS.length).toBe(SPEAKER_GROUPS.length + 1)
+  it('the vote bloc list no longer carries Otro either', () => {
+    // The scope boundary this file used to pin — "votes[].bloc answers a
+    // different question, in a curated file with no null" — did not hold. All
+    // 12 rows carrying it had seats:1, so it named the same councillor by
+    // elimination in the one place the site says how a group *voted*; and the
+    // value was copied in from the seat table handed to the extractor, never
+    // read off an acta. `bloc: null` now carries "not identified".
+    expect(ALLOWED_BLOCS).not.toContain('Otro')
+    expect([...ALLOWED_BLOCS]).toEqual([...SPEAKER_GROUPS])
+  })
+})
+
+describe('Otro sentinel — votes[].bloc', () => {
+  const VOTES = join(DATA, 'pleno-votes.json')
+
+  /** The published snapshot, with one tuple's bloc swapped. Derived from live
+   *  data, never hand-written: a restated shape is what let six tests in this
+   *  repo pass while production matched nothing. */
+  function publishedVotesWithFirstBloc(bloc: string | null): string {
+    const doc = JSON.parse(readFileSync(VOTES, 'utf8'))
+    const target = doc.items.find((i: { votes?: unknown[] }) => (i.votes ?? []).length > 0)
+    if (!target) throw new Error('no vote with tuples — fixture cannot be built')
+    target.votes[0].bloc = bloc
+    return JSON.stringify(doc)
+  }
+
+  it('no published vote is attributed to the sentinel, having read real tuples', () => {
+    const doc = JSON.parse(readFileSync(VOTES, 'utf8'))
+    const blocs = (doc.items as { votes: { bloc: unknown }[] }[]).flatMap((i) =>
+      i.votes.map((v) => v.bloc),
+    )
+    // Positive control: the walker reached real tuples of more than one group.
+    expect(blocs.length).toBeGreaterThan(50)
+    const named = blocs.filter((b): b is string => typeof b === 'string')
+    expect(new Set(named).size).toBeGreaterThan(1)
+
+    expect(blocs.filter((b) => b === 'Otro')).toEqual([])
+    for (const b of new Set(named)) expect(SPEAKER_GROUPS).toContain(b)
+    // Everything that is not a named group is null — no third state crept in.
+    expect(blocs.filter((b) => b !== null && typeof b !== 'string')).toEqual([])
+  })
+
+  it('the validator accepts null and refuses "Otro"', () => {
+    // Positive controls first: the fixture is valid but for this one field.
+    expect(() => validateSnapshot(JSON.parse(publishedVotesWithFirstBloc('PSOE')))).not.toThrow()
+    expect(() => validateSnapshot(JSON.parse(publishedVotesWithFirstBloc(null)))).not.toThrow()
+    // The claim under test — and the message has to name the sentinel, or a
+    // curator reading it learns only that some enum was missed.
+    expect(() => validateSnapshot(JSON.parse(publishedVotesWithFirstBloc('Otro')))).toThrow(/Otro/)
+  })
+
+  it('rejects two unattributed tuples in the same vote', () => {
+    // Two nulls are indistinguishable, so the second is a duplicate exactly as
+    // a second PSOE row would be. Without this the dedupe key silently allows
+    // an unbounded number of anonymous seats.
+    const doc = JSON.parse(readFileSync(VOTES, 'utf8'))
+    const target = doc.items.find((i: { votes?: unknown[] }) => (i.votes ?? []).length > 1)
+    expect(target).toBeTruthy()
+    target.votes[0].bloc = null
+    target.votes[1].bloc = null
+    expect(() => validateSnapshot(doc)).toThrow(/more than once/)
   })
 })
 

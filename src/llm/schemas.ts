@@ -40,7 +40,12 @@ const V1_STATUSES = ['documentada', 'en-verificacion'] as const
 // `null` if the segment is preamble, debate, or a non-vote decision.
 
 export const VoteTupleSchema = z.object({
-  bloc: z.enum([...ALLOWED_BLOCS] as [(typeof ALLOWED_BLOCS)[number]]),
+  // Nullable, and `Otro` is no longer in ALLOWED_BLOCS. A model that cannot
+  // tell which group cast a vote must be able to say so without failing the
+  // enum — a hard parse failure there discards the whole extraction, so the
+  // cheapest way to keep the response is to guess a group. `sanitize()` drops
+  // null tuples; they never reach a suggestion.
+  bloc: z.enum([...ALLOWED_BLOCS] as [(typeof ALLOWED_BLOCS)[number]]).nullable(),
   direction: z.enum([...ALLOWED_DIRECTIONS] as [(typeof ALLOWED_DIRECTIONS)[number]]),
   seats: z.number().int().min(0).max(21).optional(),
 })

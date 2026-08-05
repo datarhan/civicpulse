@@ -1,5 +1,6 @@
 import { DIRECTION_TONE } from '../../hooks/usePlenoVotes'
 import { partyColor } from '../../hooks/useOfficials'
+import { blocLabel } from '../../lib/party-label'
 
 export function VoteTuple({ v }) {
   const tone = DIRECTION_TONE[v.direction] || 'neutral'
@@ -35,7 +36,7 @@ export function VoteTuple({ v }) {
       }}
     >
       <span style={{ width: 6, height: 6, borderRadius: '50%', background: partyColor(v.bloc) }} />
-      {v.bloc} ·{' '}
+      {blocLabel(v.bloc)} ·{' '}
       {v.direction === 'a_favor'
         ? '✓'
         : v.direction === 'en_contra'

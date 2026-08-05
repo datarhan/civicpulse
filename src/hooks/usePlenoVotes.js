@@ -34,11 +34,17 @@ export function usePlenoVotes() {
 }
 
 /** Count how many votes each bloc has cast *a favor* / *en contra* / *abstención*
- *  across a filtered set of records. Used by /plenos to show party alignment. */
+ *  across a filtered set of records. Used by /plenos to show party alignment.
+ *
+ *  Tuples with `bloc: null` — the source records the vote but names no group —
+ *  are skipped rather than bucketed: an object key coerces null to the string
+ *  "null", which would render as a party called «null», and a per-bloc
+ *  alignment table has nothing to say about a group it cannot name. */
 export function tallyByBloc(items) {
   const tally = {}
   for (const rec of items || []) {
     for (const v of rec.votes || []) {
+      if (!v.bloc) continue
       const row = (tally[v.bloc] ||= {
         a_favor: 0,
         en_contra: 0,

@@ -275,6 +275,14 @@ export default function Metodologia() {
             <code>dueBySource</code>, ≥20 caracteres). Sin cita literal no hay plazo.
           </li>
           <li>
+            <strong>El grupo también debe venir del acta.</strong> Cuando el acta registra un voto
+            sin decir qué grupo lo emitió, la fila se publica como{' '}
+            <strong>«Grupo no identificado»</strong>, nunca con una etiqueta que parezca un partido.
+            Deducir el grupo restando escaños identificaría por eliminación al único concejal fuera
+            de PSOE, PP, VOX y Compromís. Poner el nombre real exige que el acta lo nombre{' '}
+            <em>en esa votación</em>, y lo hace una persona, no el extractor.
+          </li>
+          <li>
             <strong>El aviso de plazo vencido no cambia ningún estado.</strong> Es una señalización
             editorial; por sí solo, el estado de la promesa o del voto no pasa a{' '}
             <em>no-ejecutada</em>, que —como todo veredicto de incumplimiento— exige curación humana

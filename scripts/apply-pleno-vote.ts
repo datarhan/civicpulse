@@ -51,14 +51,33 @@ function loadSnapshot(): PlenoVotesSnapshot {
   return validateSnapshot(JSON.parse(readFileSync(DATA_PATH, 'utf8')))
 }
 
+/**
+ * Spelling for "the acta records this vote but does not name the group". The
+ * positional form is a shell string, so `null` needs a literal token; both the
+ * JSON spelling and the Castilian one are accepted because a curator typing at
+ * a terminal will reach for either.
+ */
+const UNNAMED_BLOC = new Set(['null', 'sin-identificar'])
+
 function parseVoteTuples(spec: string) {
   return spec.split(',').map((pair) => {
     const [bloc, direction] = pair.split(':').map((s) => s.trim())
     if (!bloc || !direction) {
       throw new Error(`malformed vote tuple "${pair}" (expected "<bloc>:<direction>")`)
     }
+    if (UNNAMED_BLOC.has(bloc)) {
+      if (!(ALLOWED_DIRECTIONS as readonly string[]).includes(direction)) {
+        throw new Error(
+          `unknown direction "${direction}" (allowed: ${ALLOWED_DIRECTIONS.join(', ')})`,
+        )
+      }
+      return { bloc: null, direction: direction as VoteDirection }
+    }
     if (!(ALLOWED_BLOCS as readonly string[]).includes(bloc)) {
-      throw new Error(`unknown bloc "${bloc}" (allowed: ${ALLOWED_BLOCS.join(', ')})`)
+      throw new Error(
+        `unknown bloc "${bloc}" (allowed: ${ALLOWED_BLOCS.join(', ')}, or ` +
+          `${[...UNNAMED_BLOC].join('/')} when the acta does not name the group)`,
+      )
     }
     if (!(ALLOWED_DIRECTIONS as readonly string[]).includes(direction)) {
       throw new Error(
@@ -87,6 +106,7 @@ function usage(): never {
       '  npm run pleno-vote -- --file path/to/vote.json\n\n' +
       `Outcomes:   ${ALLOWED_OUTCOMES.join(', ')}\n` +
       `Blocs:      ${ALLOWED_BLOCS.join(', ')}\n` +
+      `            ${[...UNNAMED_BLOC].join(' / ')} — the acta records the vote but names no group\n` +
       `Directions: ${ALLOWED_DIRECTIONS.join(', ')}\n`,
   )
   process.exit(1)

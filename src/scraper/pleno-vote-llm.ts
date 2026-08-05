@@ -30,6 +30,17 @@ import type { ZodTypeAny, z } from 'zod'
 import { splitSegments, type InferenceResult, type InferredVote } from './pleno-vote-inference'
 import { ALLOWED_BLOCS } from './pleno-votes'
 
+/**
+ * A vote tuple that names a group. The LLM schema allows `bloc: null` so a
+ * model that cannot tell is not forced to guess (a hard enum failure discards
+ * the whole extraction, which makes guessing the cheap answer), but a
+ * suggestion a curator cannot attribute carries no information — `sanitize()`
+ * drops them, and this is the narrowed type it hands downstream.
+ */
+type NamedVoteTuple = PlenoVoteSuggestion['votes'][number] & {
+  bloc: NonNullable<PlenoVoteSuggestion['votes'][number]['bloc']>
+}
+
 export interface LlmInferOptions {
   plenoId: string
   plenoDate: string
@@ -123,15 +134,19 @@ export async function inferVotesWithLlm(
 /**
  * Post-validation guard. Rejects:
  *  - LLM inventing a bloc not in the current council
+ *  - A tuple whose bloc is null («no sé qué grupo»): a suggestion the curator
+ *    cannot attribute carries no information, and inferring the group from
+ *    the seats left over is exactly how `Otro` got into 12 published votes
  *  - Votes > current seat count for a bloc
  *  - Empty votes array (no actionable tuple)
  */
 function sanitize(
   vote: PlenoVoteSuggestion,
   currentSeats: { bloc: string; seats: number }[],
-): PlenoVoteSuggestion | null {
+): (PlenoVoteSuggestion & { votes: NamedVoteTuple[] }) | null {
   const seatMap = new Map(currentSeats.map((s) => [s.bloc, s.seats]))
-  const cleaned = vote.votes.filter((v) => {
+  const cleaned = vote.votes.filter((v): v is NamedVoteTuple => {
+    if (v.bloc === null) return false
     if (!(ALLOWED_BLOCS as readonly string[]).includes(v.bloc)) return false
     if (!seatMap.has(v.bloc)) return false // bloc not in current council
     if (v.seats !== undefined && v.seats > (seatMap.get(v.bloc) ?? 0)) return false
@@ -140,7 +155,11 @@ function sanitize(
   if (cleaned.length === 0) return null
 
   const parsed = PlenoVoteSuggestionSchema.safeParse({ ...vote, votes: cleaned })
-  return parsed.success ? parsed.data : null
+  // `cleaned`, not `parsed.data.votes`: re-parsing widens `bloc` back to
+  // nullable, and the narrowing this function exists to perform would be lost
+  // one line after it was done. The parse still runs — it is the check that
+  // the filtered record is a valid suggestion at all.
+  return parsed.success ? { ...parsed.data, votes: cleaned } : null
 }
 
 /** 10-char hash of the segment so the cache key is stable but short. */

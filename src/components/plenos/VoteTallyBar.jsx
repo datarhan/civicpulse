@@ -1,4 +1,5 @@
 import { DIRECTION_LABEL } from '../../hooks/usePlenoVotes'
+import { blocLabel } from '../../lib/party-label'
 
 // Current corporación seat counts — fallback when a tally row omits `seats`.
 const SEATS = { PSOE: 11, PP: 7, VOX: 1, Compromís: 1, 'EU-Podem': 1 }
@@ -26,10 +27,14 @@ export function VoteTallyBar({ tally }) {
     <div style={{ display: 'flex', height: 20, borderRadius: 5, overflow: 'hidden', gap: 1 }}>
       {sorted.map((v) => {
         const seats = v.seats || SEATS[v.bloc] || 1
+        // `bloc: null` = the source records the vote but names no group. The
+        // segment is ~1/21 of the bar, too narrow for «Grupo no identificado»,
+        // so the glyph carries it and the tooltip spells it out.
+        const named = Boolean(v.bloc)
         return (
           <div
-            key={v.bloc}
-            title={`${v.bloc} · ${DIRECTION_LABEL[v.direction] || v.direction} · ${seats}`}
+            key={v.bloc ?? 'sin-identificar'}
+            title={`${blocLabel(v.bloc)} · ${DIRECTION_LABEL[v.direction] || v.direction} · ${seats}`}
             style={{
               flex: seats,
               background: DIR_COLOR[v.direction] || 'var(--ink40)',
@@ -43,7 +48,7 @@ export function VoteTallyBar({ tally }) {
               className="mono"
               style={{ fontSize: 9, fontWeight: 700, color: '#fff', whiteSpace: 'nowrap' }}
             >
-              {v.bloc}
+              {named ? v.bloc : '?'}
             </span>
           </div>
         )

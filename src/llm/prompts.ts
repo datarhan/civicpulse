@@ -72,7 +72,10 @@ Tu tarea: decidir si el segmento describe UNA votación concreta de un punto del
 - itemNumber: nº del punto del orden del día oficial que se está votando (entero). Úsalo ACTIVAMENTE: el orden del día es la fuente autoritativa, no hace falta que Whisper lo dicte literalmente. Devuelve null sólo si ninguno encaja.
 - outcome: "aprobado" | "rechazado" | "retirado" | "aplazado", o null si poco claro
 - votes: array de { bloc, direction } para cada grupo mencionado
-    - bloc ∈ PSOE, PP, VOX, Compromís, Ciudadanos, EU-Podem, Otro (sólo los de la composición arriba)
+    - bloc ∈ PSOE, PP, VOX, Compromís, Ciudadanos, EU-Podem (sólo los de la composición arriba)
+      NUNCA «Otro»: no nombra a ningún grupo, y con un solo concejal fuera de
+      PSOE/PP/VOX/Compromís lo identifica por eliminación. Si el acta no dice
+      qué grupo emitió ese voto, pon \`null\` — NO lo deduzcas restando escaños.
     - direction ∈ a_favor, en_contra, abstencion, ausente
     - Seats opcional, si el texto lo menciona ("11 votos a favor" de PSOE con 11 escaños)
 - excerpt: cita textual del fragmento (máx 600 chars)

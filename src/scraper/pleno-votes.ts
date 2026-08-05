@@ -39,22 +39,41 @@ export const SPEAKER_GROUPS = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 
 export type SpeakerGroup = (typeof SPEAKER_GROUPS)[number]
 
 /**
- * A voting bloc. Strictly wider than `SpeakerGroup`: `Otro` survives here
- * because `votes[].bloc` answers a different question — which group cast this
- * vote — in a human-curated file whose schema has no null, and where the acta
- * itself can record a «concejal no adscrito» / «grupo mixto» that belongs to
- * no group (see PARTY_PATTERNS in ./pleno-vote-inference).
+ * A voting bloc. Identical to `SpeakerGroup`: `Otro` was retired here too.
+ *
+ * It survived one migration longer on the argument that `votes[].bloc` answers
+ * a different question — which group cast this vote — in a curated file whose
+ * schema had no null. That argument does not hold. The 12 rows carrying it all
+ * had `seats: 1`, and the corporación has exactly one councillor outside
+ * PSOE/PP/VOX/Compromís, so `Otro` named him by elimination in the one place
+ * the site states how a group *voted*. Worse, `Otro` there was not read off an
+ * acta at all: the extractor was handed the seat table from officials.json,
+ * which then still labelled that seat `Otro`
+ * (`seats=PSOE:11,PP:7,VOX:1,Otro:1,Compromís:1` in scripts/logs/vote-backfill.log),
+ * so the sentinel was copied in, not observed.
+ *
+ * A vote by a member the source does not name is now `bloc: null` — rendered
+ * «Grupo no identificado» by src/lib/party-label.js `blocLabel`. Naming the
+ * group instead requires the acta to name it *for that vote*, entered by a
+ * curator through `npm run pleno-vote`. See docs/DATA_INTEGRITY.md, «un
+ * centinela nunca es un valor».
  */
-export type VoteBloc = SpeakerGroup | 'Otro'
+export type VoteBloc = SpeakerGroup
 
 export type VoteDirection = 'a_favor' | 'en_contra' | 'abstencion' | 'ausente'
 
 export type VoteOutcome = 'aprobado' | 'rechazado' | 'retirado' | 'aplazado'
 
 /** Per-bloc vote tuple. Every bloc that existed on the date of the session
- *  must appear exactly once (no duplicates, no gaps) — enforced at validate(). */
+ *  must appear exactly once (no duplicates, no gaps) — enforced at validate().
+ *
+ *  `bloc: null` means the source records the vote but does not say which group
+ *  cast it. It is a gap, not a group: never a placeholder for a group the
+ *  reader could name by elimination. At most one null tuple per vote — two
+ *  unattributed tuples cannot be told apart, and the dedupe check treats them
+ *  as duplicates. */
 export interface VoteByBloc {
-  bloc: VoteBloc
+  bloc: VoteBloc | null
   direction: VoteDirection
   /** Optional: the seat count the bloc held on the date of this session.
    *  Used for UI display; not required for validation. */
@@ -120,11 +139,12 @@ export interface PlenoVotesSnapshot {
 }
 
 /**
- * Vote-bloc allow-list. Derived from SPEAKER_GROUPS so the two cannot be
- * hand-edited apart — the wider set is the narrow one plus the vote-only
- * `Otro`. Do NOT use this to validate a `speakerGroup`: use SPEAKER_GROUPS.
+ * Vote-bloc allow-list. Now exactly SPEAKER_GROUPS — one list, aliased, so the
+ * two cannot be hand-edited apart. `null` is accepted by the validator but is
+ * deliberately absent here: this array is the set of names a vote may be
+ * *attributed* to, and "not identified" is not one of them.
  */
-export const ALLOWED_BLOCS: readonly VoteBloc[] = [...SPEAKER_GROUPS, 'Otro']
+export const ALLOWED_BLOCS: readonly VoteBloc[] = SPEAKER_GROUPS
 
 export const ALLOWED_DIRECTIONS: readonly VoteDirection[] = [
   'a_favor',
@@ -205,17 +225,34 @@ export function validateVote(v: unknown, idx = -1): PlenoVote {
     const vc = ` (items[${idx}].votes[${i}])`
     must(typeof raw === 'object' && raw !== null, `vote tuple must be object${vc}`)
     const vo = raw as Record<string, unknown>
+    // Named before generic: "bloc must be one of PSOE,PP,…" does not tell a
+    // curator *why* the value they typed is refused, and `Otro` is the one
+    // value someone will reach for again.
     must(
-      typeof vo.bloc === 'string' && ALLOWED_BLOCS.includes(vo.bloc as VoteBloc),
-      `bloc must be one of ${ALLOWED_BLOCS.join(',')}${vc}`,
+      vo.bloc !== 'Otro',
+      `bloc "Otro" is retired: it names no group, and with one councillor ` +
+        `outside PSOE/PP/VOX/Compromís it identifies him by elimination. ` +
+        `Use null for "the source does not say", or the real group name${vc}`,
+    )
+    must(
+      vo.bloc === null ||
+        (typeof vo.bloc === 'string' && ALLOWED_BLOCS.includes(vo.bloc as VoteBloc)),
+      `bloc must be null or one of ${ALLOWED_BLOCS.join(',')}${vc}`,
     )
     must(
       typeof vo.direction === 'string' &&
         ALLOWED_DIRECTIONS.includes(vo.direction as VoteDirection),
       `direction must be one of ${ALLOWED_DIRECTIONS.join(',')}${vc}`,
     )
-    must(!seenBlocs.has(vo.bloc as string), `bloc ${vo.bloc} listed more than once${vc}`)
-    seenBlocs.add(vo.bloc as string)
+    // `null` gets its own dedupe key rather than the string "null", which a
+    // bloc could never be: two unattributed tuples are indistinguishable, so
+    // a second one is a duplicate exactly as a second PSOE row would be.
+    const key = vo.bloc === null ? ' sin-identificar' : (vo.bloc as string)
+    must(
+      !seenBlocs.has(key),
+      `bloc ${vo.bloc === null ? '(sin identificar)' : vo.bloc} listed more than once${vc}`,
+    )
+    seenBlocs.add(key)
     if (vo.seats !== undefined) {
       must(
         Number.isInteger(vo.seats) && (vo.seats as number) >= 0,
@@ -223,7 +260,7 @@ export function validateVote(v: unknown, idx = -1): PlenoVote {
       )
     }
     return {
-      bloc: vo.bloc as VoteBloc,
+      bloc: vo.bloc as VoteBloc | null,
       direction: vo.direction as VoteDirection,
       ...(vo.seats !== undefined ? { seats: vo.seats as number } : {}),
     }
