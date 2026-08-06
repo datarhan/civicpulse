@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-08-05T07:28:02.770Z",
+  "generatedAt": "2026-08-06T07:24:44.971Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 53,
-    "openTotal": 53,
-    "inRibaRoja": 38,
+    "total": 57,
+    "openTotal": 57,
+    "inRibaRoja": 40,
     "closingSoon": 7,
-    "withDetail": 53,
+    "withDetail": 57,
     "byMonth": {
-      "2026-08": 5,
+      "2026-08": 9,
       "2026-07": 25,
       "2026-06": 14,
       "2026-05": 3,
@@ -22,6 +22,331 @@
     }
   },
   "items": [
+    {
+      "id": "2514",
+      "fo": 2514,
+      "codigo": "2026/00213",
+      "titulo": "Personal de limpieza en ruta",
+      "publishedAt": "2026-08-05",
+      "deadline": "2026-10-05",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2514",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00213"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Personal de limpieza en ruta"
+          },
+          {
+            "label": "Observaciones",
+            "value": "No requiere experiencia mínima necesaria. Requisitos: Vehículo propio"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Parcial"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Sustitución por vacaciones 1 mes"
+          },
+          {
+            "label": "Horario",
+            "value": "De lunes a viernes de 8:00 a 13:00 horas"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Limpieza de interiores"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "1",
+        "observaciones": "No requiere experiencia mínima necesaria. Requisitos: Vehículo propio",
+        "jornada": "Parcial",
+        "horario": "De lunes a viernes de 8:00 a 13:00 horas",
+        "salario": "Según convenio",
+        "funciones": "Limpieza de interiores",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2513",
+      "fo": 2513,
+      "codigo": "2026/00212",
+      "titulo": "Operario/as con discapacidad",
+      "publishedAt": "2026-08-05",
+      "deadline": "2026-10-05",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2513",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00212"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/as con discapacidad"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Funciones: - Preparado y montaje de piezas. - Montaje de cajas de almacenaje. - Paletizado y etiquetado del producto. - Utilización de pequeñas herramientas eléctricas. - Ejecución de las Órdenes de Trabajo y/o tareas que se les asigna. Requisitos: - Certificado discapacidad igual o superior al 33% y/o incapacidad. - Vehículo imprescindible para acceder al centro de trabajo."
+          },
+          {
+            "label": "Porcentaje de discapacidad",
+            "value": "Igual o superior a 33%"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATACION DISCAPACIDAD"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "12"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno rotativo"
+          },
+          {
+            "label": "Horario",
+            "value": "LUNES A VIERNES - Turno rotativo (06:00 a 14:00 y 14:00 a 22:00)"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Preparado y montaje de piezas. - Montaje de cajas de almacenaje. - Paletizado y etiquetado del producto. - Utilización de pequeñas herramientas eléctricas. - Ejecución de las Órdenes de Trabajo y/o tareas que se les asigna."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATACION DISCAPACIDAD",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "12",
+        "observaciones": "Funciones: - Preparado y montaje de piezas. - Montaje de cajas de almacenaje. - Paletizado y etiquetado del producto. - Utilización de pequeñas herramientas eléctricas. - Ejecución de las Órdenes de Trabajo y/o tareas que se les asigna. Requisitos: - Certificado discapacidad igual o superior al 33% y/o incapacidad. - Vehículo imprescindible para acceder al centro de trabajo.",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa Turnos: Turno rotativo",
+        "horario": "LUNES A VIERNES - Turno rotativo (06:00 a 14:00 y 14:00 a 22:00)",
+        "salario": "Según convenio",
+        "funciones": "- Preparado y montaje de piezas. - Montaje de cajas de almacenaje. - Paletizado y etiquetado del producto. - Utilización de pequeñas herramientas eléctricas. - Ejecución de las Órdenes de Trabajo y/o tareas que se les asigna.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2512",
+      "fo": 2512,
+      "codigo": "2026/00211",
+      "titulo": "Operario/as con discapacidad",
+      "publishedAt": "2026-08-05",
+      "deadline": "2026-10-05",
+      "location": "Llíria (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2512",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00211"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/as con discapacidad"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Funciones: - Control visual de calidad y verificación de piezas. - Verificar el stock del material necesario. - Recuperación de piezas. - Ubicar la mercancía en los embalajes y la zona designada. - Abastecimiento de materias primas y retirada de producto acabado de los puestos de trabajo. - Mantener el orden en la zona de almacenaje. Requisitos: - Certificado discapacidad y/o incapacidad igual o superior al 33%. - Imprescindible vehículo para acceder al centro de trabajo."
+          },
+          {
+            "label": "Porcentaje de discapacidad",
+            "value": "Igual o superior a 33%"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATACION DISCAPACIDAD"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "5"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Llíria, Provincia: Valencia, CP: 46160"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno mañana, Turno tarde, Turno noche"
+          },
+          {
+            "label": "Horario",
+            "value": "LUNES a VIERNES - Turnos rotativos mañana, tarde y noche."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Control visual de calidad y verificación de piezas. - Verificar el stock del material necesario. - Recuperación de piezas. - Ubicar la mercancía en los embalajes y la zona designada. - Abastecimiento de materias primas y retirada de producto acabado de los puestos de trabajo. - Mantener el orden en la zona de almacenaje."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATACION DISCAPACIDAD",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "5",
+        "observaciones": "Funciones: - Control visual de calidad y verificación de piezas. - Verificar el stock del material necesario. - Recuperación de piezas. - Ubicar la mercancía en los embalajes y la zona designada. - Abastecimiento de materias primas y retirada de producto acabado de los puestos de trabajo. - Mantener el orden en la zona de almacenaje. Requisitos: - Certificado discapacidad y/o incapacidad igual o superior al 33%. - Imprescindible vehículo para acceder al centro de trabajo.",
+        "municipio": "Llíria",
+        "provincia": "Valencia",
+        "cp": "46160",
+        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno noche",
+        "horario": "LUNES a VIERNES - Turnos rotativos mañana, tarde y noche.",
+        "salario": "Según convenio",
+        "funciones": "- Control visual de calidad y verificación de piezas. - Verificar el stock del material necesario. - Recuperación de piezas. - Ubicar la mercancía en los embalajes y la zona designada. - Abastecimiento de materias primas y retirada de producto acabado de los puestos de trabajo. - Mantener el orden en la zona de almacenaje.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2511",
+      "fo": 2511,
+      "codigo": "2026/00210",
+      "titulo": "Limpiador/a con discapacidad",
+      "publishedAt": "2026-08-05",
+      "deadline": "2026-10-05",
+      "location": "Pobla de Vallbona (la) (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2511",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00210"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Limpiador/a con discapacidad"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Funciones: -Limpieza de oficinas. -Limpieza de zonas comunes, vestuarios. -Gestión de residuos. -Manejo de productos y equipos de limpieza. -Reposición de suministros necesarios para la limpieza Requisitos: -Imprescindible vehículo propio para desplazarse al centro de trabajo. -Certificado de discapacidad / incapacidad igual o mayor 33%. -Incorporación inmediata."
+          },
+          {
+            "label": "Porcentaje de discapacidad",
+            "value": "Igual o superior a 33%"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATACION DISCAPACIDAD"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Pobla de Vallbona (la), Provincia: Valencia, CP: 46185"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno mañana, Turno tarde"
+          },
+          {
+            "label": "Horario",
+            "value": "LUNES a VIERNES Turnos rotativos de mañana y tarde (6:00 a 14:00 y de 14:00 a 22:00)"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "-Limpieza de oficinas. -Limpieza de zonas comunes, vestuarios. -Gestión de residuos. -Manejo de productos y equipos de limpieza. -Reposición de suministros necesarios para la limpieza"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATACION DISCAPACIDAD",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Funciones: -Limpieza de oficinas. -Limpieza de zonas comunes, vestuarios. -Gestión de residuos. -Manejo de productos y equipos de limpieza. -Reposición de suministros necesarios para la limpieza Requisitos: -Imprescindible vehículo propio para desplazarse al centro de trabajo. -Certificado de discapacidad / incapacidad igual o mayor 33%. -Incorporación inmediata.",
+        "municipio": "Pobla de Vallbona (la)",
+        "provincia": "Valencia",
+        "cp": "46185",
+        "jornada": "Completa Turnos: Turno mañana, Turno tarde",
+        "horario": "LUNES a VIERNES Turnos rotativos de mañana y tarde (6:00 a 14:00 y de 14:00 a 22:00)",
+        "salario": "Según convenio",
+        "funciones": "-Limpieza de oficinas. -Limpieza de zonas comunes, vestuarios. -Gestión de residuos. -Manejo de productos y equipos de limpieza. -Reposición de suministros necesarios para la limpieza",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2510",
       "fo": 2510,
@@ -907,7 +1232,7 @@
           },
           {
             "label": "Salario",
-            "value": "Según convenio auxilair admon"
+            "value": "Según convenio auxiliar admon"
           }
         ],
         "tipoContrato": "CONTRATO INDEFINIDO",
@@ -916,7 +1241,7 @@
         "observaciones": "Incorpración inmediata Imprescindible B2 en inglés, el francés-alemán e italiano suman puntos.",
         "jornada": "Completa",
         "horario": "Desde las 08:00 hasta las 17:00 (- 1 hora comida).",
-        "salario": "Según convenio auxilair admon",
+        "salario": "Según convenio auxiliar admon",
         "ocupaciones": []
       }
     },
@@ -2124,6 +2449,10 @@
           {
             "label": "Observaciones",
             "value": "Funciones: - Limpieza de oficinas. - Limpieza de zonas comunes. - Limpieza industrial. - Manejo de productos y equipos de limpieza. - Reposición de suministros necesarios para la limpieza Requisitos: - Valorable Certificado de Discapacidad igual o superior al 33% o Incapacidad. - Disponer de vehículo propio para desplazarse al centro de trabajo. - Incorporación inmediata."
+          },
+          {
+            "label": "Porcentaje de discapacidad",
+            "value": "Igual o superior a 33%"
           },
           {
             "label": "Tipo de contrato",

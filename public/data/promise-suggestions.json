@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T07:29:48.591Z",
+  "generatedAt": "2026-08-06T07:26:31.470Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -48,7 +48,7 @@
           "date": "2026-07-10",
           "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
           "kind": "press",
-          "publisher": "valenciaextra.com",
+          "publisher": "València Extra",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -59,7 +59,7 @@
           "date": "2026-04-15",
           "quote": "El Gobierno destina 19 millones de euros a las obras de emergencia y restauración fluvial del Túria",
           "kind": "press",
-          "publisher": "valenciaplaza.com",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -78,7 +78,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -90,7 +90,7 @@
           "date": "2026-07-10",
           "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
           "kind": "press",
-          "publisher": "valenciaextra.com",
+          "publisher": "València Extra",
           "matchedKeywords": [
             "inversion",
             "millon",
@@ -144,7 +144,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -206,7 +206,7 @@
           "date": "2026-07-07",
           "quote": "Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA",
           "kind": "press",
-          "publisher": "valenciaextra.com",
+          "publisher": "València Extra",
           "matchedKeywords": [
             "dana",
             "tras"
@@ -214,7 +214,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -226,7 +226,18 @@
           "date": "2026-07-07",
           "quote": "Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA",
           "kind": "press",
-          "publisher": "valenciaextra.com",
+          "publisher": "València Extra",
+          "matchedKeywords": [
+            "suelo",
+            "vivienda"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1oTHdpZGFGVG1XSVVMWGZjZ2tkSktrOHVHWWdydEl6SFFwRkpidG13MmQ0R3VuY25ZcENGUUtFRHU1N0xXNXdrTkNhQTkzX0l5Z3NUOFhBQVhvYy1XOHhtTFNhYkJJRFJMUG1OaUVuRQ?oc=5",
+          "date": "2026-07-07",
+          "quote": "La Generalitat y el Ayuntamiento de Riba-roja de Túria colaboran en el desarrollo de suelo para viviendas e industrias en zonas seguras",
+          "kind": "press",
+          "publisher": "Comunica GVA",
           "matchedKeywords": [
             "suelo",
             "vivienda"
@@ -248,7 +259,7 @@
           "date": "2026-05-18",
           "quote": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
           "kind": "press",
-          "publisher": "valenciaplaza.com",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "plan",
             "vivienda"
@@ -256,7 +267,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -290,7 +301,7 @@
           "date": "2026-05-18",
           "quote": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
           "kind": "press",
-          "publisher": "valenciaplaza.com",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "construccion",
             "vivienda"
@@ -329,7 +340,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -353,7 +364,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -402,7 +413,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -410,7 +421,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -418,7 +429,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -452,7 +463,7 @@
           "date": "2026-07-10",
           "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
           "kind": "press",
-          "publisher": "valenciaextra.com",
+          "publisher": "València Extra",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -463,7 +474,7 @@
           "date": "2026-07-03",
           "quote": "Desmontan el puente militar de Riba-roja que mantuvo la conexión del municipio tras la Dana",
           "kind": "press",
-          "publisher": "valenciaplaza.com",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "dana",
             "municipio"
@@ -482,7 +493,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -513,7 +524,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -553,7 +564,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -597,7 +608,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -641,7 +652,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -671,7 +682,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -706,7 +717,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -718,7 +729,7 @@
           "date": "2026-07-03",
           "quote": "Desmontan el puente militar de Riba-roja que mantuvo la conexión del municipio tras la Dana",
           "kind": "press",
-          "publisher": "valenciaplaza.com",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "tras",
             "puente",
@@ -739,7 +750,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -747,7 +758,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -766,7 +777,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -789,7 +800,7 @@
           "date": "2026-07-10",
           "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
           "kind": "press",
-          "publisher": "valenciaextra.com",
+          "publisher": "València Extra",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -797,7 +808,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -842,7 +853,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -862,7 +873,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -904,7 +915,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-05T07:29:48.465Z"
+      "generatedAt": "2026-08-06T07:26:31.343Z"
     }
   ],
   "llmEvidence": [],
