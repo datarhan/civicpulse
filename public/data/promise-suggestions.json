@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-06T07:26:31.470Z",
+  "generatedAt": "2026-08-07T06:10:18.625Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -48,7 +48,7 @@
           "date": "2026-07-10",
           "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
           "kind": "press",
-          "publisher": "València Extra",
+          "publisher": "valenciaextra.com",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -70,7 +70,7 @@
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
-          "publisher": "Comunica GVA",
+          "publisher": "comunica.gva.es",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -78,7 +78,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -90,7 +90,7 @@
           "date": "2026-07-10",
           "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
           "kind": "press",
-          "publisher": "València Extra",
+          "publisher": "valenciaextra.com",
           "matchedKeywords": [
             "inversion",
             "millon",
@@ -102,7 +102,7 @@
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
-          "publisher": "Comunica GVA",
+          "publisher": "comunica.gva.es",
           "matchedKeywords": [
             "inversion",
             "millon",
@@ -144,7 +144,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -206,7 +206,7 @@
           "date": "2026-07-07",
           "quote": "Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA",
           "kind": "press",
-          "publisher": "València Extra",
+          "publisher": "valenciaextra.com",
           "matchedKeywords": [
             "dana",
             "tras"
@@ -214,7 +214,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -226,7 +226,7 @@
           "date": "2026-07-07",
           "quote": "Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA",
           "kind": "press",
-          "publisher": "València Extra",
+          "publisher": "valenciaextra.com",
           "matchedKeywords": [
             "suelo",
             "vivienda"
@@ -237,7 +237,7 @@
           "date": "2026-07-07",
           "quote": "La Generalitat y el Ayuntamiento de Riba-roja de Túria colaboran en el desarrollo de suelo para viviendas e industrias en zonas seguras",
           "kind": "press",
-          "publisher": "Comunica GVA",
+          "publisher": "comunica.gva.es",
           "matchedKeywords": [
             "suelo",
             "vivienda"
@@ -267,7 +267,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -340,7 +340,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -361,10 +361,32 @@
             "finalizara",
             "julio"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNOE92VXZLWUhNWjRJWlNIZEFQM1ZRaHIxZFVicmR2amVndk5MWTVZWTFmVDRDeXZjOXV4OGsxVi1pbEdWN3BydjlMQS14eHQ0R2FSWGJHaXF4Vm9lcVBJUGFxclp4bV9jRjI2UU1SeHI5eEVIX1hDdFNCRWZZS0NVcDVSVHlSdlN0dzFqTHlPbXdsX3h5cE5ESTRidXJXazVtVEdRSlluNmhkS0VwNFlLX0JGTHpSSDhxWXViY1otTkZNbExNZ1BPdEdn0gHPAUFVX3lxTE44U0Q1eUxhYVdDSnRwaG1wVGRlVERyUmxvcm81VHhQVHBwVGlwYWJKdnpoLWpFVW5ycERfSjNOb3gzZERPRVZseFNQRUhuOUhaVFZXTFNZZVBtbWhPekRMMGVrc0Zfc3Rrb0t2VVpTaTBZYlgwRC1LM2VKQkJfUnp0Y24zUmgzMkhaczZQNGFXMEdHMmc5TGZYemJBVzVpUE9EXzlhUmdyX0JudVdVWkZ4SkZGWmJXRWtNbi1EaktHTF9UeVI3eEhneXJ5RnJycw?oc=5",
+          "date": "2026-08-06",
+          "quote": "L'Eliana reclama el cierre preventivo de la Vallesa y el Parc Natural del Túria durante las alertas por riesgo extremo de incendio",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "parc",
+            "natural"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNd1N5clNhOXBTNXpQcVlvRE13VFZiS09fYVJSeFlSNktUeThHbHhjQXVXQWJpUWRRZ25TVW84ajJRbExmTTR5aXl1QkdpR0c4QkhKZ0ItOHV2R3k3MGZGM1FvMFh6YmpGNnFYQ01tN3FzSnFNVHI2TlQ3c3E0eVNkdTlXbVBuQmF2QjZPaGEwRmU0NWx2RnU4NVFvdzF3bjdhdElCUGZ5UlU2U0hHdlpjU2RUTnRPNDZoUndNWVlLTEtOLUVNdGVXcE9SWDF1QkVxS0FUZE5PT1FDelNDeHVUSE130gHnAUFVX3lxTE9KWkxNTFFPbVNQNWtMRGl0bHJRRjdKdDFXWW1CblNVQXpfRldsczBMVWc3cG1seFpyeFhFZkQzQjJEbzBQblVRYkJudXAwcGM4UUN0ZzdOYmY0dlVkZUpudENvTmNNY2FLV3NfT3p6T013X184aE93RmhZbHBWU3ZSN3RLNDc5bkZURGl3WHBCU3NiYTRiTTByekdNV085WHRiVUdLeXZBREx5bFA0TkxlaW1mVE5aemUwbjdoamR0UGdWeGNOYVNud1l2NkJ1M0ludXpGVmNnQTFVWGJ3UXRaVVJhbkxIdw?oc=5",
+          "date": "2026-05-14",
+          "quote": "Riba-roja instala una malla en ocho hectáreas del Parc Natural del Túria para frenar especies invasoras y minimizar el riesgo de incendios",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "parc",
+            "natural"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -413,7 +435,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -421,7 +443,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -429,7 +451,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -463,7 +485,7 @@
           "date": "2026-07-10",
           "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
           "kind": "press",
-          "publisher": "València Extra",
+          "publisher": "valenciaextra.com",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -493,7 +515,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -516,7 +538,7 @@
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
-          "publisher": "Comunica GVA",
+          "publisher": "comunica.gva.es",
           "matchedKeywords": [
             "avanza",
             "inversion"
@@ -524,7 +546,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -564,7 +586,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -608,7 +630,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -652,7 +674,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -682,7 +704,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -717,7 +739,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -750,7 +772,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -758,7 +780,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -777,7 +799,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -800,7 +822,7 @@
           "date": "2026-07-10",
           "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
           "kind": "press",
-          "publisher": "València Extra",
+          "publisher": "valenciaextra.com",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -808,7 +830,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -830,17 +852,6 @@
           ]
         },
         {
-          "url": "https://www.infoturia.com/riba-roja-de-turia/84805-helados-estiu-embene-46-milions-de-litres-de-gelat.html",
-          "date": "2026-07-16",
-          "quote": "Helados Estiu ven 46 milions de litres de gelat",
-          "kind": "press",
-          "publisher": "Periòdic del Camp de Túria",
-          "matchedKeywords": [
-            "helado",
-            "estiu"
-          ]
-        },
-        {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-reduce-el-paro-en-casi-100-personas-entre-junio-del-pasado-a%C3%B1o-y-el-actual-y-las-afiliaciones-a-la-seguridad-social-vuelven-a-marcar-un-nuevo-r%C3%A9cord-de-22.094",
           "date": "2026-07-13",
           "quote": "Riba-roja reduce el paro en casi 100 personas entre junio del pasado año y el actual y las afiliaciones a la Seguridad Social vuelven a marcar un nuevo récord de 22.094",
@@ -853,13 +864,24 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
       "proposedStatus": "documentada",
       "confidence": 0.175,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxONi1XQzBZQ1pNZGFKTGZVeUhsRDBpTWhsaG45d3l1T05EdjU5alNxQUJFT1hZZmVRZDYzdElTcmx4dXZXMUpyYVRTRDJnUzFwNDVpTDN4Vjh3aDZVZWxYbXlQWlhueXhhT3lpUkxlZ2c5QWduRDd2T0tUc0gwbVU3RnE5Zw?oc=5",
+          "date": "2026-07-30",
+          "quote": "Fiestas Patronales de Agosto de Riba-roja de Túria 2026: programa completo de actos y conciertos gratuitos",
+          "kind": "press",
+          "publisher": "Valenciabonita",
+          "matchedKeywords": [
+            "gratuito",
+            "agosto"
+          ]
+        },
         {
           "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPVmlicEE2Z25xZi15c1NmMnNCdWRjSTlDbGlZU1BGLS1XYmVveU05OGZQYUFGN2tOS2lDajIwSGRac1Y1aklEdE5JYnFTWW9qTXdGM2hkMTc4bVFVc082bXRzeGoyMGJWV2RLOTYwaW0zTlE3NlRhTXVmaWd4VnhfSGNrcGx6cm55WlhxY1RBWmtlYlNfNUpBbjJwdHBJMXlHMi1OSk5iYVpNQVR2VGZuSlJIRWJnMXpkWHpSM3ZrZlhFUzdHWThJTDZFTUM3djhxbjAyN2VvWdIB3AFBVV95cUxQM3JzY0N1Q0NkQ3plTUNwclRWZXNxOTFzLXBVdldaYWpaTnA1Q3g2Y000RzdEUHBiN0NwODdmRFhDaDhzUW9la3dIUTNEaGZqMldXLU00Q3U0OUpuVGt5Uk81OXJLOGNLelZQZzZJeUE2UjZmVHRQREtobi1mbkFnSTNKRDlYSDhOTUNoTUVIcDlQa1J2akE4NGVXcVJVUEFGNmNHT1pDSEl2WWxrRnYwZXllQWh6NURpUURlRzR1OWZSVnI4c1dpQ1VabFd2aWlwbXNTLURfRzlCMFlk?oc=5",
           "date": "2026-06-16",
@@ -873,7 +895,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -915,7 +937,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-06T07:26:31.343Z"
+      "generatedAt": "2026-08-07T06:10:18.501Z"
     }
   ],
   "llmEvidence": [],
