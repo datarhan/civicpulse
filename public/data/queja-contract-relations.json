@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-07T06:10:39.240Z",
+  "generatedAt": "2026-08-08T05:27:45.908Z",
   "source": "queja-contract-relations engine v1 (deterministic)",
   "stats": {
     "frozen": false,
     "quejasScanned": 1,
-    "contractsScanned": 698,
+    "contractsScanned": 699,
     "tierA": 4,
     "tierB": 24,
     "reason": null

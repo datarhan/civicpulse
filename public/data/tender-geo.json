@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-08-07T06:10:36.707Z",
+  "generatedAt": "2026-08-08T05:27:43.994Z",
   "source": {
-    "tenders": "2026-08-07T05:56:06.993Z",
-    "geo": "2026-08-07T05:57:41.721Z"
+    "tenders": "2026-08-08T05:13:38.797Z",
+    "geo": "2026-08-08T05:15:05.768Z"
   },
   "universe": {
-    "totalContracts": 693,
-    "totalAmount": 67996703.99999999,
+    "totalContracts": 694,
+    "totalAmount": 123681882.78999996,
     "locatedContracts": 47,
     "locatedAmount": 2225591.15,
     "situatedContracts": 127,
-    "situatedAmount": 6085027.84,
+    "situatedAmount": 6085027.840000002,
     "danaContracts": 10,
     "danaAmount": 276297.42000000004,
     "danaAwardedContracts": 81,
@@ -900,27 +900,6 @@
   ],
   "assignments": [
     {
-      "id": "1399312",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 248494.39,
-      "amountKind": "final",
-      "date": "2021-06-30",
-      "contractType": "services",
-      "categoryTitle": "environment",
-      "point": [
-        39.5468976,
-        -0.5820025
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer de la Mallà",
-        "matchedText": "Carrer de la Mallà",
-        "sourceId": "carrer-de-la-malla"
-      }
-    },
-    {
       "id": "4558191",
       "zones": [],
       "matchedAlias": {},
@@ -1034,27 +1013,6 @@
       }
     },
     {
-      "id": "3733423",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 12000,
-      "amountKind": "final",
-      "date": "2022-08-30",
-      "contractType": "services",
-      "categoryTitle": "other",
-      "point": [
-        39.5420868,
-        -0.5438471
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Avinguda de la Masia de Traver",
-        "matchedText": "Avinguda de la Masia de Traver",
-        "sourceId": "avinguda-de-la-masia-de-traver"
-      }
-    },
-    {
       "id": "555312",
       "zones": [],
       "matchedAlias": {},
@@ -1115,6 +1073,27 @@
         "name": "Polideportivo Municipal",
         "matchedText": "Polideportivo Municipal",
         "sourceId": "way-39586076"
+      }
+    },
+    {
+      "id": "3733423",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 12000,
+      "amountKind": "final",
+      "date": "2022-08-30",
+      "contractType": "services",
+      "categoryTitle": "other",
+      "point": [
+        39.5420868,
+        -0.5438471
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Avinguda de la Masia de Traver",
+        "matchedText": "Avinguda de la Masia de Traver",
+        "sourceId": "avinguda-de-la-masia-de-traver"
       }
     },
     {
@@ -1185,27 +1164,6 @@
       }
     },
     {
-      "id": "85485",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 92820.91,
-      "amountKind": "final",
-      "date": "2018-03-14",
-      "contractType": "services",
-      "categoryTitle": "environment",
-      "point": [
-        39.5518584,
-        -0.5277984
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer de la Piscina",
-        "matchedText": "Carrer de la Piscina",
-        "sourceId": "carrer-de-la-piscina"
-      }
-    },
-    {
       "id": "306141",
       "zones": [],
       "matchedAlias": {},
@@ -1245,6 +1203,27 @@
         "name": "Gallipont",
         "matchedText": "Gallipont",
         "sourceId": "gallipont"
+      }
+    },
+    {
+      "id": "85485",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 92820.91,
+      "amountKind": "final",
+      "date": "2018-03-14",
+      "contractType": "services",
+      "categoryTitle": "environment",
+      "point": [
+        39.5518584,
+        -0.5277984
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer de la Piscina",
+        "matchedText": "Carrer de la Piscina",
+        "sourceId": "carrer-de-la-piscina"
       }
     },
     {
@@ -1399,7 +1378,7 @@
       }
     },
     {
-      "id": "4973577#3",
+      "id": "4973577#4",
       "zones": [
         "el-molinet"
       ],
@@ -1421,6 +1400,27 @@
         "name": "el Molinet",
         "matchedText": "el Molinet",
         "sourceId": "el-molinet"
+      }
+    },
+    {
+      "id": "713082",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 7336,
+      "amountKind": "final",
+      "date": "2018-11-26",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5484923,
+        -0.5816335
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carretera de Vilamarxant",
+        "matchedText": "Carretera de Vilamarxant",
+        "sourceId": "carretera-de-vilamarxant"
       }
     },
     {
@@ -1579,6 +1579,31 @@
       }
     },
     {
+      "id": "554871",
+      "zones": [
+        "l-oliveral"
+      ],
+      "matchedAlias": {
+        "l-oliveral": "oliveral"
+      },
+      "dana": false,
+      "amount": 7950,
+      "amountKind": "final",
+      "date": "2018-04-11",
+      "contractType": "services",
+      "categoryTitle": "other",
+      "point": [
+        39.4710524,
+        -0.5366921
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "l'Oliveral",
+        "matchedText": "l'Oliveral",
+        "sourceId": "l-oliveral"
+      }
+    },
+    {
       "id": "4579719",
       "zones": [
         "urbanitzacio-els-pous"
@@ -1625,27 +1650,6 @@
       }
     },
     {
-      "id": "713082",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 7336,
-      "amountKind": "final",
-      "date": "2018-11-26",
-      "contractType": "construction",
-      "categoryTitle": "other",
-      "point": [
-        39.5484923,
-        -0.5816335
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carretera de Vilamarxant",
-        "matchedText": "Carretera de Vilamarxant",
-        "sourceId": "carretera-de-vilamarxant"
-      }
-    },
-    {
       "id": "9895895",
       "zones": [],
       "matchedAlias": {},
@@ -1664,6 +1668,27 @@
         "name": "Pabellón deportivo municipal",
         "matchedText": "Pabellón deportivo municipal",
         "sourceId": "pavello-municipal"
+      }
+    },
+    {
+      "id": "555236",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 8000,
+      "amountKind": "final",
+      "date": "2018-04-11",
+      "contractType": "services",
+      "categoryTitle": "other",
+      "point": [
+        39.48555,
+        -0.55304
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "La Sargueta",
+        "matchedText": "La Sargueta",
+        "sourceId": "la-sargueta"
       }
     },
     {
@@ -1710,52 +1735,6 @@
         "name": "l'Oliveral",
         "matchedText": "l'Oliveral",
         "sourceId": "l-oliveral"
-      }
-    },
-    {
-      "id": "554871",
-      "zones": [
-        "l-oliveral"
-      ],
-      "matchedAlias": {
-        "l-oliveral": "oliveral"
-      },
-      "dana": false,
-      "amount": 7950,
-      "amountKind": "final",
-      "date": "2018-04-11",
-      "contractType": "services",
-      "categoryTitle": "other",
-      "point": [
-        39.4710524,
-        -0.5366921
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "l'Oliveral",
-        "matchedText": "l'Oliveral",
-        "sourceId": "l-oliveral"
-      }
-    },
-    {
-      "id": "555236",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 8000,
-      "amountKind": "final",
-      "date": "2018-04-11",
-      "contractType": "services",
-      "categoryTitle": "other",
-      "point": [
-        39.48555,
-        -0.55304
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "La Sargueta",
-        "matchedText": "La Sargueta",
-        "sourceId": "la-sargueta"
       }
     },
     {
@@ -2154,27 +2133,6 @@
       }
     },
     {
-      "id": "2868019",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 20661.16,
-      "amountKind": "final",
-      "date": "2022-03-29",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.4805062,
-        -0.5875882
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer del Mas de Montes",
-        "matchedText": "Carrer del Mas de Montes",
-        "sourceId": "carrer-del-mas-de-montes"
-      }
-    },
-    {
       "id": "1892105#6",
       "zones": [],
       "matchedAlias": {},
@@ -2221,31 +2179,6 @@
       }
     },
     {
-      "id": "29500",
-      "zones": [
-        "urbanitzacio-la-llobatera"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-la-llobatera": "llobatera"
-      },
-      "dana": false,
-      "amount": 12800,
-      "amountKind": "final",
-      "date": "2019-12-28",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5119251,
-        -0.5337693
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Urbanització La Llobatera",
-        "matchedText": "Urbanització La Llobatera",
-        "sourceId": "urbanitzacio-la-llobatera"
-      }
-    },
-    {
       "id": "1561143#4",
       "zones": [],
       "matchedAlias": {},
@@ -2289,6 +2222,52 @@
         "name": "l'Oliveral",
         "matchedText": "l'Oliveral",
         "sourceId": "l-oliveral"
+      }
+    },
+    {
+      "id": "2868019",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 20661.16,
+      "amountKind": "final",
+      "date": "2022-03-29",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.4805062,
+        -0.5875882
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer del Mas de Montes",
+        "matchedText": "Carrer del Mas de Montes",
+        "sourceId": "carrer-del-mas-de-montes"
+      }
+    },
+    {
+      "id": "29500",
+      "zones": [
+        "urbanitzacio-la-llobatera"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-la-llobatera": "llobatera"
+      },
+      "dana": false,
+      "amount": 12800,
+      "amountKind": "final",
+      "date": "2019-12-28",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5119251,
+        -0.5337693
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanització La Llobatera",
+        "matchedText": "Urbanització La Llobatera",
+        "sourceId": "urbanitzacio-la-llobatera"
       }
     },
     {
@@ -2780,27 +2759,6 @@
       }
     },
     {
-      "id": "3733335",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 25200.4,
-      "amountKind": "final",
-      "date": "2022-08-30",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.54635,
-        -0.56768
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Mercado Municipal",
-        "matchedText": "Mercado Municipal",
-        "sourceId": "mercat-municipal"
-      }
-    },
-    {
       "id": "1520813",
       "zones": [
         "urbanitzacio-valencia-la-vella"
@@ -2861,6 +2819,27 @@
         "name": "Passeig del Molinet",
         "matchedText": "Passeig del Molinet",
         "sourceId": "passeig-del-molinet"
+      }
+    },
+    {
+      "id": "3733335",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 25200.4,
+      "amountKind": "final",
+      "date": "2022-08-30",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.54635,
+        -0.56768
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Mercado Municipal",
+        "matchedText": "Mercado Municipal",
+        "sourceId": "mercat-municipal"
       }
     },
     {
@@ -3736,6 +3715,27 @@
         "name": "Carrer La Canal",
         "matchedText": "Carrer La Canal",
         "sourceId": "carrer-la-canal"
+      }
+    },
+    {
+      "id": "1399312",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 248494.39,
+      "amountKind": "final",
+      "date": "2021-06-30",
+      "contractType": "services",
+      "categoryTitle": "environment",
+      "point": [
+        39.5468976,
+        -0.5820025
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer de la Mallà",
+        "matchedText": "Carrer de la Mallà",
+        "sourceId": "carrer-de-la-malla"
       }
     },
     {
