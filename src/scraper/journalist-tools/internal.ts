@@ -7,6 +7,7 @@
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve, join } from 'node:path'
+import { decideCacheRead, decideCacheWrite } from '../research-cache-policy'
 
 // ─── Cache layer ───────────────────────────────────────────────────────────
 
@@ -14,38 +15,79 @@ export const CACHE_DIR = resolve('.research-cache')
 export const UA =
   'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) journalist-agent research'
 
-interface CacheEntry<T> {
+export interface CacheEntry<T> {
   fetchedAt: string
   payload: T
+  /**
+   * Which `cached()` call site wrote this. Added 2026-08-09; entries written
+   * before that lack it, which is why `scripts/research-cache.ts` has to infer
+   * the tool from the payload shape for the older half of the directory. Not
+   * used to serve a read — the tool name is known from the call — it exists so
+   * the cache can be inspected without guessing. Deliberately the tool name
+   * only, never the arguments, which would put councillors' names on disk in
+   * a second place for no benefit.
+   */
+  tool?: string
 }
 
 function cacheKey(name: string, args: unknown): string {
   return createHash('sha256').update(JSON.stringify({ name, args })).digest('hex')
 }
 
-function readCache<T>(key: string): T | null {
+/**
+ * Read the whole entry, not just the payload.
+ *
+ * The old form returned `payload` and the caller tested `hit !== null`, which
+ * had two consequences. The visible one: `fetchedAt` was unreachable, so no TTL
+ * was possible. The invisible one: a legitimately cached `null` — every
+ * "Wikidata has no item for this councillor" — was indistinguishable from a
+ * cache miss, so those calls re-hit the API on every single run despite having
+ * been cached 18 times over. Returning the entry fixes both, and "the entry
+ * exists" is now the hit condition, with freshness decided separately.
+ */
+function readCacheEntry<T>(key: string): CacheEntry<T> | null {
   const path = join(CACHE_DIR, `${key}.json`)
   if (!existsSync(path)) return null
   try {
-    const raw = readFileSync(path, 'utf8')
-    return (JSON.parse(raw) as CacheEntry<T>).payload
+    const parsed = JSON.parse(readFileSync(path, 'utf8')) as CacheEntry<T>
+    if (typeof parsed !== 'object' || parsed === null) return null
+    return parsed
   } catch {
     return null
   }
 }
 
-function writeCacheEntry<T>(key: string, payload: T): void {
+function writeCacheEntry<T>(key: string, tool: string, payload: T): void {
   mkdirSync(CACHE_DIR, { recursive: true })
-  const entry: CacheEntry<T> = { fetchedAt: new Date().toISOString(), payload }
+  const entry: CacheEntry<T> = { fetchedAt: new Date().toISOString(), tool, payload }
   writeFileSync(join(CACHE_DIR, `${key}.json`), JSON.stringify(entry))
 }
 
+/**
+ * Memoise a network call on disk, subject to `research-cache-policy`.
+ *
+ * A withheld write is announced on stderr rather than passed over in silence:
+ * "the cache did not take this answer" is exactly the kind of thing that must
+ * be visible in a nightly log, since the alternative — a run that quietly
+ * re-fetches the same failing endpoint every time — looks identical to a run
+ * that is working.
+ */
 export async function cached<T>(name: string, args: unknown, run: () => Promise<T>): Promise<T> {
   const key = cacheKey(name, args)
-  const hit = readCache<T>(key)
-  if (hit !== null) return hit
+  const entry = readCacheEntry<T>(key)
+  if (entry) {
+    const read = decideCacheRead({
+      tool: name,
+      fetchedAt: entry.fetchedAt,
+      payload: entry.payload,
+      nowMs: Date.now(),
+    })
+    if (read.use) return entry.payload
+  }
   const result = await run()
-  writeCacheEntry(key, result)
+  const write = decideCacheWrite({ tool: name, payload: result })
+  if (write.persist) writeCacheEntry(key, name, result)
+  else process.stderr.write(`[research-cache] ${name}: ${write.reason}\n`)
   return result
 }
 

@@ -46,6 +46,27 @@ only the original public surface.
   `fetchPressForSubject`, `fetchWikidata`, `fetchWikipedia`, `fetchUrl`,
   `webSearch` Exa, `audit` with Wayback). Network results cached at
   `.research-cache/<sha256>.json` (the `internal` module).
+- **The research cache expires.** `src/scraper/research-cache-policy.ts` owns
+  the whole rule as pure functions (`decideCacheWrite` / `decideCacheRead`,
+  clock injected — same shape as `decideSnapshotWrite`). Three things it does
+  that the original cache did not:
+  1. a payload carrying a truthy `error` is **never written** — the caller still
+     gets it, but a `401` or a timeout cannot become the stored answer, and any
+     good entry already on disk survives;
+  2. `fetchedAt` is finally read, so an entry past its TTL is a miss;
+  3. an **empty** answer gets a much shorter TTL than a populated one.
+     `TOOL_TTL_HOURS` sets both per call site — Wikidata/Wikipedia are stable
+     (30d), an empty `webSearch` is not (12h, so the 09:30 nightly always
+     retries it). Anything unregistered falls to a deliberately short default.
+  This is not housekeeping: with no TTL, the 21-councillor batch of 31 Jul /
+  1 Aug 2026 froze 21 empty education/social-media searches, and the resulting
+  `gaps-detected` sections went on publishing "we found nothing" about named
+  living people with no way for the cron to revisit it.
+  Inspect and prune with `npm run cache:research` (report; `--list`, `--json`)
+  and `npm run cache:research -- clear --expired|--errors|--empty|--tool <t>|
+  --older-than <h>|--all [--yes]` — dry-run unless `--yes`. The CLI calls the
+  same `decideCacheRead` the agent does, so what it prints as expired is what
+  the agent treats as a miss.
 - 4-stage pipeline: `src/scraper/journalist-agent.ts` — the orchestrator
   (helpers + section builders extracted to `journalist-agent/{shared,builders}.ts`)
   — `runJournalistAgent`:

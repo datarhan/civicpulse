@@ -340,13 +340,18 @@ describe('webSearch backend dispatcher', () => {
       expect(out.results).toEqual([])
       expect(out.error).toBe('Exa HTTP 401')
 
-      // `cached()` writes that failure to disk — a real bad key would poison a
-      // future search with a stale error, since there is no TTL. `CACHE_DIR`
-      // is resolved at import time, which is the only reason it lands in this
-      // throwaway workspace instead of the developer's repo cache. Pin it, so
-      // dropping the chdir above cannot quietly start poisoning `.research-cache/`.
-      expect(existsSync(join(work, '.research-cache'))).toBe(true)
-      expect(existsSync(join(originalCwd, '.research-cache', 'exa-branch-probe.json'))).toBe(false)
+      // `cached()` used to write that failure to disk, so a bad key poisoned
+      // every later search permanently — there was no TTL and no notion of
+      // failure. It is now withheld: nothing is persisted at all, which is why
+      // the cache directory does not even come into existence here. See
+      // tests/research-cache-io.test.ts for the surviving-good-entry half.
+      expect(existsSync(join(work, '.research-cache'))).toBe(false)
+      // `CACHE_DIR` is resolved at import time, which is the only reason any of
+      // this lands in a throwaway workspace instead of the developer's repo
+      // cache. Pin it, so dropping the chdir above cannot quietly start
+      // writing into `.research-cache/`.
+      expect(tools.CACHE_DIR.endsWith('.research-cache')).toBe(true)
+      expect(tools.CACHE_DIR).not.toContain(originalCwd)
     })
   })
 
