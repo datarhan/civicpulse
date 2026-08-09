@@ -241,6 +241,42 @@
     },
     {
       "officialSlug": "jose-angel-hernandez-carrizosa",
+      "portfolio": "Comercio",
+      "departmentSlug": "comercio",
+      "reportId": "r-jose-angel-hernandez-bio-2026-07-31",
+      "formacion": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
+            "short": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ],
+        "reason": "La titulación de FPII incluye explícitamente la rama 'Comercial' en su denominación (Administrativa y Comercial), lo que supone coincidencia de materia con el área de Comercio.",
+        "respaldo": "autodeclarada"
+      },
+      "experiencia": {
+        "value": "relacionada",
+        "evidence": [
+          {
+            "label": "Administrativo @ Artículos de Carpintería Moreno SL",
+            "short": "Administrativo",
+            "sourceIds": [
+              "src-063"
+            ]
+          }
+        ],
+        "reason": "El puesto se desempeñó en una empresa cuya actividad declarada (Artículos de Carpintería) consiste en el trato de artículos/mercancías, propio de la materia comercial.",
+        "respaldo": "autodeclarada"
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-08-04"
+    },
+    {
+      "officialSlug": "jose-angel-hernandez-carrizosa",
       "portfolio": "Compra Pública",
       "departmentSlug": "contratacion",
       "reportId": "r-jose-angel-hernandez-bio-2026-07-31",
@@ -405,42 +441,6 @@
         "value": "sin-relacion-declarada",
         "evidence": [],
         "reason": "Los puestos declarados son de carácter administrativo general, financiero (controller) y de administración societaria; no se menciona selección, gestión de personal, relaciones laborales u otras funciones propias del área de recursos humanos."
-      },
-      "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-04"
-    },
-    {
-      "officialSlug": "jose-angel-hernandez-carrizosa",
-      "portfolio": "y Comercio",
-      "departmentSlug": "comercio",
-      "reportId": "r-jose-angel-hernandez-bio-2026-07-31",
-      "formacion": {
-        "value": "relacionada",
-        "evidence": [
-          {
-            "label": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
-            "short": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
-            "sourceIds": [
-              "src-060"
-            ]
-          }
-        ],
-        "reason": "La titulación de FPII incluye explícitamente la rama 'Comercial' en su denominación (Administrativa y Comercial), lo que supone coincidencia de materia con el área de Comercio.",
-        "respaldo": "autodeclarada"
-      },
-      "experiencia": {
-        "value": "relacionada",
-        "evidence": [
-          {
-            "label": "Administrativo @ Artículos de Carpintería Moreno SL",
-            "short": "Administrativo",
-            "sourceIds": [
-              "src-063"
-            ]
-          }
-        ],
-        "reason": "El puesto se desempeñó en una empresa cuya actividad declarada (Artículos de Carpintería) consiste en el trato de artículos/mercancías, propio de la materia comercial.",
-        "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
       "curatedAt": "2026-08-04"

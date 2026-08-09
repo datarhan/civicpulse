@@ -1,7 +1,12 @@
 import { describe, it, expect, beforeAll } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { parseCorporacion, canonicalCvUrl, PARTIES } from '../src/scraper/corporacion'
+import {
+  parseCorporacion,
+  canonicalCvUrl,
+  stripLeadingListConjunction,
+  PARTIES,
+} from '../src/scraper/corporacion'
 
 const FIXTURE = join(__dirname, 'fixtures', 'corporacion_2026-04-19.html')
 
@@ -30,6 +35,39 @@ describe('scraper/corporacion — canonicalCvUrl (biography link repair)', () =>
 
   it('leaves an unrecognised href absolutised but untouched', () => {
     expect(canonicalCvUrl('/es/otra-pagina', base)).toBe('https://www.ribarroja.es/es/otra-pagina')
+  })
+})
+
+describe('scraper/corporacion — stripLeadingListConjunction', () => {
+  // Exported so the area-fit migration applies the parser's own rule instead of
+  // a second copy of it, which makes this its own published contract.
+  it('drops a leading "y"', () => {
+    expect(stripLeadingListConjunction('y Comercio')).toBe('Comercio')
+  })
+
+  it('drops a leading "e" — the same conjunction before an i-/hi- sound', () => {
+    // No committed fixture exercises this branch yet ("…, e Igualdad" is the
+    // form it would take), so it is pinned here rather than left unmeasured.
+    expect(stripLeadingListConjunction('e Igualdad')).toBe('Igualdad')
+  })
+
+  it('leaves a word that merely starts with y/e alone', () => {
+    for (const s of ['Igualdad', 'Educación', 'Empleo y Emprendimiento', 'Economía', 'Yacimientos'])
+      expect(stripLeadingListConjunction(s)).toBe(s)
+  })
+
+  it('leaves an internal " y " phrase intact', () => {
+    for (const s of ['Áreas Industriales y Cementerio', 'Finanzas públicas y recaudación'])
+      expect(stripLeadingListConjunction(s)).toBe(s)
+  })
+
+  it('needs whitespace after the conjunction, not just the letter', () => {
+    expect(stripLeadingListConjunction('ycomercio')).toBe('ycomercio')
+    expect(stripLeadingListConjunction('y')).toBe('y')
+  })
+
+  it('does not strip Valencian "i" — only the Castilian page is scraped', () => {
+    expect(stripLeadingListConjunction('i Comerç')).toBe('i Comerç')
   })
 })
 
@@ -113,6 +151,48 @@ describe('scraper/corporacion — parseCorporacion', () => {
         expect(p.length).toBeGreaterThan(2)
       }
     }
+  })
+
+  it('drops the list conjunction from the last área ("…, y Comercio." → "Comercio")', () => {
+    // The source prints the Áreas block as Spanish prose, so the final item is
+    // introduced by «y». Splitting on comma alone published an área literally
+    // named «y Comercio» on /cargos and keyed a curated area-fit row by it.
+    const c = officials.find((o) => o.slug === 'jose-angel-hernandez-carrizosa')!
+    expect(c.portfolios).toContain('Comercio')
+    expect(c.portfolios).not.toContain('y Comercio')
+  })
+
+  it('no portfolio anywhere begins with a list conjunction', () => {
+    // Measured on this fixture: exactly one did. Assert the class, not the row —
+    // the next councillor to gain an área inherits the same prose. `y`/`e` only:
+    // the scraped page is the Castilian one.
+    const offenders = officials.flatMap((o) =>
+      o.portfolios.filter((p) => /^(?:y|e)\s/i.test(p)).map((p) => `${o.slug}: ${p}`),
+    )
+    expect(offenders).toEqual([])
+  })
+
+  it('keeps áreas that merely START with those letters', () => {
+    // «Igualdad» / «Educación» must survive: the rule is a standalone
+    // conjunction followed by a space, not a leading letter.
+    const strip = (raw: string) =>
+      parseCorporacion(
+        html.replace('Empleo y Emprendimiento, y Comercio.', `Empleo y Emprendimiento, ${raw}.`),
+        { baseUrl: 'http://www.ribarroja.es' },
+      ).find((o) => o.slug === 'jose-angel-hernandez-carrizosa')!.portfolios
+    expect(strip('Igualdad')).toContain('Igualdad')
+    expect(strip('Educaci&oacute;n')).toContain('Educación')
+    expect(strip('Infancia y Adolescencia')).toContain('Infancia y Adolescencia')
+  })
+
+  it('keeps a multi-word " y " phrase inside an área intact', () => {
+    // Only a LEADING conjunction is a list artifact. «Empleo y Emprendimiento»
+    // and «Finanzas públicas y recaudación» are single áreas that happen to
+    // contain the word.
+    const c = officials.find((o) => o.slug === 'jose-angel-hernandez-carrizosa')!
+    expect(c.portfolios).toContain('Empleo y Emprendimiento')
+    expect(c.portfolios).toContain('Finanzas públicas y recaudación')
+    expect(c.portfolios).toContain('Administración y Servicios Generales')
   })
 
   it('produces stable slugs (lowercase, ascii, hyphenated)', () => {

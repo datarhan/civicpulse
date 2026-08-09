@@ -112,7 +112,7 @@ const PORTFOLIO_FIXTURE: Array<[string, DepartmentSlug | null]> = [
   ['Promoción de la Salud e Infraestructuras sanitarias', 'salud'],
   ['Áreas Industriales y Cementerio', null],
   ['barrios y diseminados', 'urbanismo'],
-  ['y Comercio', 'comercio'],
+  ['Comercio', 'comercio'],
 ]
 
 describe('canonicalizeDepartment — portfolio strings (TitleCase, accented)', () => {

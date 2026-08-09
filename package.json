@@ -168,7 +168,8 @@
     "monitor:health": "npx tsx scripts/monitor-health.ts",
     "suggest:area-fit": "npx tsx scripts/suggest-area-fit.ts",
     "promote-area-fit": "npx tsx scripts/promote-area-fit.ts",
-    "migrate:area-fit-short": "npx tsx scripts/migrate-area-fit-short.ts"
+    "migrate:area-fit-short": "npx tsx scripts/migrate-area-fit-short.ts",
+    "migrate:area-fit-portfolio-key": "npx tsx scripts/migrate-area-fit-portfolio-key.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

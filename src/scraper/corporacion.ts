@@ -97,6 +97,23 @@ function makeSlug(name: string): string {
   return slugify(name)
 }
 
+/**
+ * Drop the Spanish list conjunction that introduces the last item of an Áreas
+ * block ("…, Empleo y Emprendimiento, y Comercio." → "Comercio").
+ *
+ * Exported because `officials.json` is not the only place a portfolio string is
+ * stored — curated snapshots key rows by it, so a migration has to apply the
+ * exact same rule. Restating it there is how the two drift apart.
+ *
+ * `y` and `e` are the same conjunction (`e` before an i-/hi- sound: "…, e
+ * Igualdad"). Valencian `i` is deliberately absent: `scrape:officials` fetches
+ * only the Castilian page, and a rule for a source we never read is one no
+ * fixture can hold us to.
+ */
+export function stripLeadingListConjunction(part: string): string {
+  return part.replace(/^(?:y|e)\s+/, '')
+}
+
 function extractPortfolios(text: string): string[] {
   // The "Áreas" block runs until the next "Correo electrónico" or end-of-cell.
   const cleaned = text
@@ -107,12 +124,23 @@ function extractPortfolios(text: string): string[] {
   if (!m) return []
   const raw = m[1].replace(/\s*\.?\s*$/, '').trim()
   // Split on comma or period (period is used for top-level portfolios in the
-  // mayor's block, e.g. "Alcaldía. Innovación, …"). Keep multi-word " y "
-  // phrases intact — they're almost always a single portfolio
-  // ("Áreas Industriales y Cementerio").
+  // mayor's block, e.g. "Alcaldía. Innovación, …").
+  //
+  // The Áreas block is Spanish prose, not a machine-readable list, so its last
+  // item arrives introduced by the list conjunction: "…, Empleo y
+  // Emprendimiento, y Comercio." Comma-splitting alone published an área
+  // literally named «y Comercio» on /cargos — and a curated area-fit row was
+  // keyed by that name, so the mistake outlived the page.
+  //
+  // The strip is asymmetric on purpose. A " y " in the MIDDLE of a part is the
+  // área's own name ("Áreas Industriales y Cementerio", "Finanzas públicas y
+  // recaudación", "Empleo y Emprendimiento") and must survive; only a LEADING
+  // conjunction is a list artifact. Requiring the following whitespace is what
+  // keeps "Igualdad" and "Educación" whole, and matching lowercase only keeps
+  // the rule to how a conjunction actually appears mid-sentence.
   const parts = raw
     .split(/\s*[.,]\s*/)
-    .map((p) => p.trim())
+    .map((p) => stripLeadingListConjunction(p.trim()))
     .filter((p) => p.length > 1)
   return parts
 }
