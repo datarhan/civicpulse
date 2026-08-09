@@ -23,6 +23,7 @@ import {
   ALLOWED_PRESS_CLAIM_TYPES,
   ALLOWED_CLAIM_TOPICS,
   ALLOWED_ATTRIBUTED_SOURCES,
+  decidePressClaimsWrite,
   type PressClaimsSnapshot,
 } from '../src/scraper/press-claim'
 import { resetBudget } from '../src/llm/client'
@@ -145,21 +146,45 @@ async function main() {
     items: result.claims,
   }
 
-  await mkdir(dirname(OUT), { recursive: true })
-  await writeFile(OUT, JSON.stringify(snapshot, null, 2) + '\n')
+  // Decide BEFORE writing. The original code wrote first and only then checked
+  // `llmUnavailable`, which meant a run whose every LLM call failed emitted
+  // `total: 0, items: []` over the published corpus and *then* exited 1. The
+  // old comment justified that with "the partial snapshot is still written
+  // above, so progress is kept" — sound for a genuinely partial run, and wrong
+  // for a run that achieved nothing. Zero claims from a dead backend is not
+  // progress, it is erasure: on 2026-08-09 it deleted a live published claim
+  // (gqglxs-0-num) and the pipeline reported the deletion as its result.
+  //
+  // The rule the guard encodes, therefore, is about DIRECTION, not emptiness:
+  // an incomplete run may add claims but may never remove them. A complete run
+  // (llmUnavailable === 0) stays authoritative and always writes, including
+  // when it honestly found fewer claims than last time. See
+  // decidePressClaimsWrite in src/scraper/press-claim.ts for the pure decision.
+  const existingRaw = await readFile(OUT, 'utf8').catch(() => null)
+  const decision = decidePressClaimsWrite({
+    incomingCount: snapshot.items.length,
+    llmUnavailable: result.stats.llmUnavailable,
+    existingRaw,
+  })
 
-  console.log(
-    `[extract:press-claims] wrote ${OUT}` +
-      ` · ${result.stats.claimsEmitted} claims · ` +
-      `triage=${result.stats.triageHits}/${result.stats.total} hits, ` +
-      `body=${result.stats.bodyFetches} fetches`,
-  )
+  if (decision.write) {
+    await mkdir(dirname(OUT), { recursive: true })
+    await writeFile(OUT, JSON.stringify(snapshot, null, 2) + '\n')
+    console.log(
+      `[extract:press-claims] wrote ${OUT}` +
+        ` · ${result.stats.claimsEmitted} claims · ` +
+        `triage=${result.stats.triageHits}/${result.stats.total} hits, ` +
+        `body=${result.stats.bodyFetches} fetches` +
+        ` · ${decision.reason}`,
+    )
+  } else {
+    console.error(`[extract:press-claims] NOT WRITING ${OUT} · ${decision.reason}`)
+  }
 
-  // Don't let a backend-less run masquerade as a clean empty extract. If the
-  // LLM was unreachable for any item, the snapshot is incomplete/untrustworthy
-  // — flag it loudly + exit non-zero so a nightly/cron surfaces it (❌ in the
-  // step log) instead of silently committing an all-empty file behind a green
-  // tick. The partial snapshot is still written above, so progress is kept.
+  // Either way, an incomplete run must not masquerade as a clean extract: flag
+  // it loudly and exit non-zero so the cron marks the step ❌ — and, since the
+  // pipeline now honours that, skips the consumers that would derive published
+  // numbers from a corpus this run could not refresh.
   if (result.stats.llmUnavailable > 0) {
     console.error(
       `[extract:press-claims] WARNING: LLM backend unavailable for ` +

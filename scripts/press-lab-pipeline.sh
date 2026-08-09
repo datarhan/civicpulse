@@ -78,28 +78,108 @@ export CLAUDE_CODE_MODEL="${CLAUDE_CODE_MODEL:-claude-sonnet-5}"
 export LLM_CONCURRENCY="${LLM_CONCURRENCY:-1}"
 
 # Fail fast + loud if the Max login lapsed — else every extract call returns
-# "Not logged in" and the run silently produces nothing.
+# "Not logged in" and the run silently produces nothing. Probe the SAME binary
+# src/llm/client.ts will spawn (CLAUDE_CODE_BIN, default `claude`) — probing a
+# bare `claude` while the client used an override meant the probe could pass
+# for a backend that was never going to be used, and vice versa.
 if [ "$LLM_BACKEND" = claude-code ] &&
-   ! claude -p "ok" --strict-mcp-config --model "$CLAUDE_CODE_MODEL" >/dev/null 2>&1; then
+   ! "${CLAUDE_CODE_BIN:-claude}" -p "ok" --strict-mcp-config --model "$CLAUDE_CODE_MODEL" >/dev/null 2>&1; then
   log "warn: 'claude -p' probe failed — Max login may have lapsed (run: claude, then /login). LLM steps will no-op this run."
 fi
 
 log "starting · llm=$LLM_BACKEND/${CLAUDE_CODE_MODEL} · extract≤$MAX_EXTRACT · summarize≤$MAX_SUMMARIZE · step-cap=${LLM_TIMEOUT}s"
 
 # ---- always start from origin (press.json comes from the GH nightly) --
-git pull --rebase --autostash origin main || { log "git pull failed — aborting before LLM work"; exit 1; }
+# PRESS_LAB_NO_REMOTE=1 is the local-rehearsal switch: it skips BOTH git
+# touchpoints (this pull and the push at the end) so the chain, the gating and
+# the commit message can be exercised on a branch without moving anything
+# remote. Never set in cron.
+if [ -n "${PRESS_LAB_NO_REMOTE:-}" ]; then
+  log "PRESS_LAB_NO_REMOTE — ensayo local: se omite el git pull inicial"
+else
+  git pull --rebase --autostash origin main || { log "git pull failed — aborting before LLM work"; exit 1; }
+fi
 
-# ---- resilient chain: one flaky stage must not abort the rest ---------
-# (mirrors the old nightly's run_lab: log ✓/✗, keep going, commit what refreshed.)
+# ---- resilient chain, WITH honest dependency gating -------------------
+# One flaky INDEPENDENT stage must not abort the rest — that resilience is
+# deliberate and stays. What it must never do is run a stage across a real data
+# dependency after that dependency's producer failed. On 2026-08-09
+# `extract:press-claims` exited 1 against a dead backend and the chain ran
+# `verify:press-claims` anyway; verify derived press-claims-verified.json from
+# the emptied suggestions file, published `stats.total: 0` over a live claim,
+# committed it (c6a6e23) and signed off "done · 0 verified claim(s) pushed" —
+# a deletion reported as a measurement.
+#
+# So a step has THREE outcomes, not two:
+#   ✅ ran and succeeded
+#   ❌ ran and failed
+#   ⏭ never attempted, because a producer did not succeed
+# Mirrors check:relations' ok/empty/broken/skipped vocabulary, for the same
+# reason: a stage that measured nothing must not be able to read as success,
+# and "never attempted" must never fold into "unchanged".
+#
+# DEPENDENCY MAP — verified by reading each script's actual reads, not assumed:
+#   scrape:factcheck        → factcheck.json          ← (nothing in this chain)
+#   extract:press-claims    → press-claims-suggestions ← press.json
+#   verify:press-claims     → press-claims-verified    ← suggestions, factcheck, open data
+#   compute:press-analytics → press-trust, -triangulation, -coverage-gaps
+#                                                      ← press.json, verified
+#   auto-curate-press       → press-findings           ← verified, promises
+#   summarize:press         → press-summaries          ← press.json, suggestions*
+#   audit-press-links       → press-link-rot           ← press.json, promises, suggestions*
+#
+# GATED is the hard chain, where the consumer's output IS a derivation of the
+# producer's: extract → verify → {compute:press-analytics, auto-curate-press}.
+#
+# (*) summarize:press and audit-press-links DO read press-claims-suggestions.json
+# — as an article allow-list and as a URL seed respectively — but neither output
+# is a derivation of it: both are whole-corpus over press.json/promises.json and
+# degrade honestly onto the previous, still-valid suggestions file, whose content
+# the extract-side guard now protects. They stay UNGATED on purpose. Do not
+# "discover" that read later and gate them without first re-checking that their
+# output is still whole-corpus.
 RESULTS=""
+CHAIN_OK=""       # labels that ran and exited 0
+CHAIN_FAILED=""   # labels that ran and exited non-zero
+CHAIN_SKIPPED=""  # labels never attempted (a producer did not succeed)
+
+# macOS cron invokes this with /bin/bash — 3.2, no associative arrays. State is
+# space-delimited label lists; step labels contain no spaces.
+_ran_ok() { case " $CHAIN_OK " in *" $1 "*) return 0 ;; esac; return 1 ; }
+_was_skipped() { case " $CHAIN_SKIPPED " in *" $1 "*) return 0 ;; esac; return 1 ; }
+# Why a dep is unusable, in the words the summary prints.
+_dep_state() { if _was_skipped "$1"; then echo "omitido"; else echo "falló"; fi ; }
+# First unsatisfied dependency in "$1" (space-separated), or empty.
+_blocking_dep() {
+  local d
+  for d in ${1:-}; do
+    if ! _ran_ok "$d"; then echo "$d"; return 0; fi
+  done
+  echo ""
+}
+_record_ok() {
+  CHAIN_OK="$CHAIN_OK $1"
+  RESULTS="${RESULTS}  ✅ $1\n"; log "✓ $1"
+}
+_record_failed() {
+  CHAIN_FAILED="$CHAIN_FAILED $1"
+  RESULTS="${RESULTS}  ❌ $1 (exit $2)\n"; log "✗ $1 FALLÓ (exit $2)${3:-}"
+}
+_record_skipped() {
+  CHAIN_SKIPPED="$CHAIN_SKIPPED $1"
+  local why; why="$2 $(_dep_state "$2")"
+  RESULTS="${RESULTS}  ⏭ $1 — omitido: ${why}\n"
+  log "⏭ $1 — omitido: ${why} (no se ejecuta: su salida se derivaría de datos que este run no pudo refrescar)"
+}
+
+# step <label> <deps> <cmd...>   — deps is a space-separated list, "" for none.
 step() {
-  local label="$1"; shift
-  if "$@"; then
-    RESULTS="${RESULTS}  ✅ ${label}\n"; log "✓ ${label}"
-  else
-    local rc=$?
-    RESULTS="${RESULTS}  ❌ ${label} (exit ${rc})\n"; log "✗ ${label} FAILED (exit ${rc})"
-  fi
+  local label="$1" deps="$2"; shift 2
+  local blocker; blocker="$(_blocking_dep "$deps")"
+  if [ -n "$blocker" ]; then _record_skipped "$label" "$blocker"; return 0; fi
+  local rc=0
+  "$@" || rc=$?
+  if [ "$rc" -eq 0 ]; then _record_ok "$label"; else _record_failed "$label" "$rc"; fi
 }
 # Same $0 policy as auto-curate-press, applied to EVERY LLM step.
 #
@@ -115,13 +195,51 @@ step() {
 # SUBSHELL because `step`/`bounded` are shell functions that `env` cannot exec,
 # and so the unset stays scoped to this step.
 free_step() {
-  local label="$1"; shift
-  if ( unset OPENAI_API_KEY ANTHROPIC_API_KEY; "$@" ); then
-    RESULTS="${RESULTS}  ✅ ${label}\n"; log "✓ ${label}"
+  local label="$1" deps="$2"; shift 2
+  local blocker; blocker="$(_blocking_dep "$deps")"
+  if [ -n "$blocker" ]; then _record_skipped "$label" "$blocker"; return 0; fi
+  local rc=0
+  ( unset OPENAI_API_KEY ANTHROPIC_API_KEY; "$@" ) || rc=$?
+  if [ "$rc" -eq 0 ]; then
+    _record_ok "$label"
   else
-    local rc=$?
-    RESULTS="${RESULTS}  ❌ ${label} (exit ${rc})\n"; log "✗ ${label} FAILED (exit ${rc}) — \$0 backends unavailable, NOT falling back to metered"
+    _record_failed "$label" "$rc" " — backends \$0 no disponibles, NO se cae a metered"
   fi
+}
+# free_step + the gemini CLI disabled: auto-curate-press promotes editorial
+# findings, so project policy is that it may only ever reach a $0 backend.
+curate_step() {
+  local label="$1" deps="$2"; shift 2
+  local blocker; blocker="$(_blocking_dep "$deps")"
+  if [ -n "$blocker" ]; then _record_skipped "$label" "$blocker"; return 0; fi
+  local rc=0
+  # A SUBSHELL, not `env`: `bounded` is a shell function, invisible to `env`
+  # (which can only exec real binaries — `env … bounded …` failed
+  # "env: bounded: No such file or directory" and the step was silently
+  # deferred every run). A `( … )` subshell inherits the function AND scopes
+  # the unset/export so they don't leak to the parent.
+  ( unset OPENAI_API_KEY ANTHROPIC_API_KEY; export GEMINI_BIN=/nonexistent-disabled; "$@" ) || rc=$?
+  if [ "$rc" -eq 0 ]; then
+    _record_ok "$label"
+  else
+    _record_failed "$label" "$rc" " — deferido: $LLM_BACKEND no disponible (una promoción omitida gana a una metered)"
+  fi
+}
+# Which published snapshot each step OWNS. Only a step that actually succeeded
+# may stage its outputs (see the commit block) — the second, independent layer
+# under the extract-side guard and the dependency gate.
+outputs_of() {
+  case "$1" in
+    "scrape:factcheck")        echo "public/data/factcheck.json" ;;
+    "extract:press-claims")    echo "public/data/press-claims-suggestions.json" ;;
+    "verify:press-claims")     echo "public/data/press-claims-verified.json" ;;
+    "summarize:press")         echo "public/data/press-summaries.json" ;;
+    "compute:press-analytics")
+      echo "public/data/press-trust.json public/data/press-triangulation.json public/data/press-coverage-gaps.json" ;;
+    "auto-curate-press")       echo "public/data/press-findings.json" ;;
+    "audit-press-links")       echo "public/data/press-link-rot.json" ;;
+    *)                         echo "" ;;
+  esac
 }
 # Run a command under the hard LLM_TIMEOUT wall-clock cap (perl: macOS lacks
 # `timeout`). SIGALRM survives exec, so the tsx child is killed if it hangs.
@@ -137,70 +255,108 @@ bounded() {
   ' "$LLM_TIMEOUT" "$@"
 }
 
+#         label                     depends on                cmd…
 # factcheck first so the verifier can cross-reference Newtral/Maldita/EFE.
-step "scrape:factcheck"        npx tsx scripts/scrape-factcheck.ts
-free_step "extract:press-claims"    bounded npx tsx scripts/extract-press-claims.ts --max "$MAX_EXTRACT"
-step      "verify:press-claims"     npx tsx scripts/verify-press-claims.ts
-free_step "summarize:press"         bounded npx tsx scripts/summarize-press.ts --max "$MAX_SUMMARIZE"
-step "compute:press-analytics" npx tsx scripts/compute-press-analytics.ts
+step      "scrape:factcheck"        ""                        npx tsx scripts/scrape-factcheck.ts
+free_step "extract:press-claims"    ""                        bounded npx tsx scripts/extract-press-claims.ts --max "$MAX_EXTRACT"
+step      "verify:press-claims"     "extract:press-claims"    npx tsx scripts/verify-press-claims.ts
+free_step "summarize:press"         ""                        bounded npx tsx scripts/summarize-press.ts --max "$MAX_SUMMARIZE"
+step      "compute:press-analytics" "verify:press-claims"     npx tsx scripts/compute-press-analytics.ts
 
 # auto-curate-press must NEVER go metered (project policy: $0 backends only).
-# Strip the metered keys + disable the gemini CLI so it can only reach the
-# local $0 backend. A skipped promotion beats a metered one — deferred.
 log "auto-curating press findings ($LLM_BACKEND only, metered fallback off)…"
-# Strip the metered keys + disable the gemini CLI in a SUBSHELL, not via `env`:
-# `bounded` is a shell function (invisible to `env`, which can only exec real
-# binaries — `env … bounded …` fails "env: bounded: No such file or directory"
-# and the step was silently deferred every run). A `( … )` subshell inherits
-# the function AND scopes the unset/export so they don't leak to the parent.
-if ( unset OPENAI_API_KEY ANTHROPIC_API_KEY; export GEMINI_BIN=/nonexistent-disabled; \
-     bounded npx tsx scripts/auto-curate-press.ts ); then
-  RESULTS="${RESULTS}  ✅ auto-curate-press\n"; log "✓ auto-curate-press"
-else
-  RESULTS="${RESULTS}  ❌ auto-curate-press (deferred)\n"
-  log "warn: auto-curate-press non-zero ($LLM_BACKEND unavailable) — deferred"
-fi
+curate_step "auto-curate-press"     "verify:press-claims"     bounded npx tsx scripts/auto-curate-press.ts
 
 # link-rot audit LAST so it sees every URL this run added.
-step "audit-press-links"       npx tsx scripts/audit-press-links.ts
+step      "audit-press-links"       ""                        npx tsx scripts/audit-press-links.ts
 
 log "chain results:"; printf '%b' "$RESULTS"
+# Attempted / done / never attempted, reported separately — folding the third
+# into the first two is how "0 verified claim(s)" got published as a finding.
+log "resumen: $(echo "$CHAIN_OK" | wc -w | tr -d ' ') ok · $(echo "$CHAIN_FAILED" | wc -w | tr -d ' ') fallidos · $(echo "$CHAIN_SKIPPED" | wc -w | tr -d ' ') omitidos"
+if [ -n "$CHAIN_FAILED" ];  then log "  fallidos:$CHAIN_FAILED"; fi
+if [ -n "$CHAIN_SKIPPED" ]; then log "  omitidos (nunca intentados):$CHAIN_SKIPPED"; fi
+RUN_INCOMPLETE=0
+if [ -n "$CHAIN_FAILED" ] || [ -n "$CHAIN_SKIPPED" ]; then RUN_INCOMPLETE=1; fi
 
-# ---- commit + push ONLY the press-lab-owned snapshots -----------------
+# ---- commit + push ONLY snapshots owned by steps that SUCCEEDED -------
 # Explicit paths so we never race press.json (GH nightly), pleno-* (hallazgos
 # cron), quejas.json (quejas cron), or promises.json (promises cron).
-git add -- \
-  public/data/factcheck.json \
-  public/data/press-claims-suggestions.json \
-  public/data/press-claims-verified.json \
-  public/data/press-summaries.json \
-  public/data/press-trust.json \
-  public/data/press-triangulation.json \
-  public/data/press-coverage-gaps.json \
-  public/data/press-findings.json \
-  public/data/press-link-rot.json 2>/dev/null || true
+#
+# The list is built from CHAIN_OK, not hard-coded: the old unconditional
+# nine-path `git add` is what actually carried the 2026-08-09 deletion to
+# production, because it staged verify's output after verify had derived it
+# from a failed extract. Deriving the list from the outcomes means a
+# misbehaving script cannot publish through this pipeline even if the
+# extract-side guard and the dependency gate were both bypassed — CLAUDE.md's
+# two-independent-layers pattern, this being the second.
+STAGE_PATHS=""
+for _s in $CHAIN_OK; do STAGE_PATHS="$STAGE_PATHS $(outputs_of "$_s")"; done
+WITHHELD_PATHS=""
+for _s in $CHAIN_FAILED $CHAIN_SKIPPED; do WITHHELD_PATHS="$WITHHELD_PATHS $(outputs_of "$_s")"; done
+if [ -n "$WITHHELD_PATHS" ]; then
+  # Left in the working tree on purpose — never discarded. Discarding data is
+  # the failure mode being fixed, not the remedy for it.
+  log "NO se publica (paso fallido u omitido):$WITHHELD_PATHS"
+fi
+
+if [ -z "$STAGE_PATHS" ]; then
+  log "ningún paso terminó bien — no hay nada que publicar (sin commit)"; exit 1
+fi
+# shellcheck disable=SC2086  # deliberate word-split: STAGE_PATHS is a path list
+git add -- $STAGE_PATHS 2>/dev/null || true
 
 if git diff --cached --quiet; then
   log "nothing changed — done (no commit)"; exit 0
 fi
 
-CLAIMS=$(node -e "try{console.log(require('./public/data/press-claims-verified.json').items.length)}catch{console.log(0)}")
+# `CLAIMS` is a MEASUREMENT of the published corpus. Stating it as this run's
+# result when a step failed or was skipped is precisely the lie c6a6e23 told:
+# verify never produced that number, and on that run the number described a
+# deletion. When the run is incomplete the subject says so and cites no count.
+# String(): console.log of a bare number goes through util.inspect, which
+# colourises it whenever colour is enabled (FORCE_COLOR is set in most
+# interactive shells) — so a manual run wrote ANSI escapes straight into the
+# commit subject. Cron's clean env hid it.
+CLAIMS=$(node -e "try{console.log(String(require('./public/data/press-claims-verified.json').items.length))}catch{console.log('0')}")
+if [ "$RUN_INCOMPLETE" -eq 1 ]; then
+  SUBJECT="data(laboratorio): press-lab · ejecución INCOMPLETA, refresco parcial"
+  OUTCOME_BODY="Ejecución INCOMPLETA — no se publica un recuento de claims verificadas:
+este run no lo midió.
+  ok:       ${CHAIN_OK:-(ninguno)}
+  fallidos: ${CHAIN_FAILED:-(ninguno)}
+  omitidos: ${CHAIN_SKIPPED:-(ninguno)}  ← nunca intentados: su productor no terminó bien
+Solo se publican las salidas de los pasos en ok."
+else
+  SUBJECT="data(laboratorio): press-lab refresh · ${CLAIMS} verified claim(s)"
+  OUTCOME_BODY="Cadena completa: ${CHAIN_OK}"
+fi
 git commit -m "$(cat <<EOF
-data(laboratorio): press-lab refresh · ${CLAIMS} verified claim(s)
+${SUBJECT}
 
 Automated by scripts/press-lab-pipeline.sh (local cron).
 scrape:factcheck → extract(${LLM_BACKEND}) → verify → summarize → analytics
 → auto-curate-press(${LLM_BACKEND}) → audit-press-links. Machine claims are
 outlet-attributed and verified against municipal open data; editorial findings
 stay curator-gated.
+
+${OUTCOME_BODY}
 EOF
 )"
 
-# push with one pull-rebase retry (races the per-minute quejas cron).
-if ! git push origin main; then
-  log "push rejected — pull-rebase + retry"
-  git pull --rebase --autostash origin main
-  git push origin main
+if [ -n "${PRESS_LAB_NO_REMOTE:-}" ]; then
+  log "PRESS_LAB_NO_REMOTE — ensayo local: no se hace push"
+else
+  # push with one pull-rebase retry (races the per-minute quejas cron).
+  if ! git push origin main; then
+    log "push rejected — pull-rebase + retry"
+    git pull --rebase --autostash origin main
+    git push origin main
+  fi
 fi
 
+if [ "$RUN_INCOMPLETE" -eq 1 ]; then
+  log "done · ejecución INCOMPLETA · fallidos:${CHAIN_FAILED:- ninguno} · omitidos:${CHAIN_SKIPPED:- ninguno} · sin recuento de claims (este run no lo midió)"
+  exit 1
+fi
 log "done · ${CLAIMS} verified claim(s) pushed"
