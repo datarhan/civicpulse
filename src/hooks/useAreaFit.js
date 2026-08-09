@@ -39,9 +39,81 @@ export function fitRowsForSlug(data, slug) {
  *
  * "3 de 4" is a score with extra steps, and this surface deliberately does not
  * grade anyone. See src/scraper/area-fit.ts for why.
+ *
+ * On the card this is now the QUALIFIER, not the answer: it is printed only
+ * where `isPartialRelation` says the relation stops short of every área the
+ * person holds. Where it reaches all of them there is nothing to qualify, and
+ * the list was pure repetition of the portfolios already printed above it.
  */
 export function relatedAreaNames(rows, field) {
   return (rows || []).filter((r) => r?.[field]?.value === 'relacionada').map((r) => r.portfolio)
+}
+
+/**
+ * The CREDENTIALS behind a field's `relacionada` áreas — the title studied or
+ * the post held, deduped, in the order the CV itself lists them.
+ *
+ * This is what «Formación» and «Experiencia» are ABOUT, and neither line said
+ * it: both printed the áreas a relation was found in, so on 4 of 11 cards the
+ * two axes rendered character-for-character the same sentence — twice, under a
+ * portfolio list the card had already shown. Two labels over one fact is not
+ * two facts.
+ *
+ * `short` over `label` on purpose: the card has one line per axis and no room
+ * for «— Universitat Politècnica de València». Where someone studied is not
+ * what «Formación» claims, and the full form stays on the área view, which has
+ * the space and the citations. Falls back to `label` for the same reason
+ * `resolveAssessment` does — a row whose biography recorded no institution has
+ * a `short` equal to its `label`, and a snapshot written before the field
+ * existed must degrade to the long form rather than to a blank line about a
+ * named person.
+ *
+ * SOURCE ORDER, NEVER RANKED. The sequence is the CV's own. Sorting it — by
+ * seniority, by recency, by which degree looks weightier — would be an editorial
+ * judgement about a person's career that no source here supports. Deduped
+ * because the same degree is cited on every área row it relates to, and a line
+ * reading «Arquitecto Técnico · Arquitecto Técnico · Arquitecto Técnico» counts
+ * the áreas by other means.
+ */
+export function relatedCredentials(rows, field) {
+  const seen = new Set()
+  const out = []
+  for (const r of rows || []) {
+    if (r?.[field]?.value !== 'relacionada') continue
+    for (const ev of r[field].evidence || []) {
+      const text = ev?.short || ev?.label
+      if (!text || seen.has(text)) continue
+      seen.add(text)
+      out.push(text)
+    }
+  }
+  return out
+}
+
+/**
+ * Does this axis relate to SOME of the person's áreas but not all of them?
+ *
+ * The switch that decides whether the card names áreas at all. When every área
+ * someone holds reads `relacionada`, «solo en» plus the whole list would be a
+ * qualifier that qualifies nothing — it restates the portfolios printed higher
+ * up the same card. When the relation stops short, saying so is the honest part:
+ * a credential line alone would let a reader carry it across delegations the
+ * curator explicitly did not find it in.
+ *
+ * The denominator is EVERY row the official has, not just the rows carrying an
+ * assessment on this axis. An área nobody assessed is not an área the relation
+ * was found in, and folding it into "all of them" would silently widen the claim
+ * to cover ground no curator read. Failing towards the qualifier is the
+ * conservative direction: it names áreas, it never invents reach.
+ *
+ * Returns false when nothing relates — that axis renders its Pill and never
+ * reaches this question.
+ */
+export function isPartialRelation(rows, field) {
+  const all = rows || []
+  if (!all.length) return false
+  const related = all.filter((r) => r?.[field]?.value === 'relacionada').length
+  return related > 0 && related < all.length
 }
 
 /**

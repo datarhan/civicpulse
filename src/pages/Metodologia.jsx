@@ -492,8 +492,13 @@ export default function Metodologia() {
           <ul style={{ paddingLeft: 18 }}>
             <li>
               <strong>No puntúa, no suma y no ordena.</strong> No hay porcentaje, ni ranking, ni
-              agregado por persona. Se nombran las áreas en las que se encontró relación; nunca se
-              cuentan. «3 de 4» sería una nota con pasos intermedios.
+              agregado por persona. En la ficha, cada eje nombra <strong>lo declarado</strong>: el
+              título en «Formación», el puesto en «Experiencia» —sin el centro ni la empresa, que
+              van en la vista por áreas junto a su cita—. Los nombres de las áreas se añaden detrás,
+              precedidos de «solo en»,{' '}
+              <strong>únicamente cuando la relación no alcanza a todas</strong> las que dirige:
+              donde las alcanza todas no hay nada que acotar. Ni las áreas ni los títulos se cuentan
+              nunca. «3 de 4» sería una nota con pasos intermedios.
             </li>
             <li>
               <strong>«No consta» no significa «no tiene».</strong> Significa que la fuente

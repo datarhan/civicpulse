@@ -352,6 +352,16 @@ const CATALOGUE = {
     'encaje.value.relacionada': 'relacionada',
     'encaje.value.sin-relacion-declarada': 'sin relación declarada',
     'encaje.value.no-consta': 'no consta',
+    // El conector que ACOTA la credencial a las áreas donde se le encontró
+    // relación, y sólo cuando no las alcanza todas. Sin él, la ficha imprime el
+    // título y nada más, y quien lo lea puede darlo por bueno para todas las
+    // delegaciones — incluidas aquellas en las que el curador expresamente no lo
+    // encontró. Es cromo, así que se traduce; los títulos y los puestos que van
+    // detrás no, porque son el texto literal del CV de una persona.
+    //
+    // Dice «solo en» y a continuación NOMBRES. Nunca «solo en 4 de 7»: eso es la
+    // nota que esta sección existe para no dar.
+    'encaje.card.soloEn': 'solo en',
     // De qué se sostiene LO CITADO. Una frase, no un distintivo repetido:
     // mientras todas las evaluaciones de la ficha coinciden se dice una vez.
     //
@@ -816,6 +826,8 @@ const CATALOGUE = {
     'encaje.value.relacionada': 'relacionada',
     'encaje.value.sin-relacion-declarada': 'sense relació declarada',
     'encaje.value.no-consta': 'no consta',
+    // El connector, no el títol: el que va darrere és el text literal del CV.
+    'encaje.card.soloEn': 'només en',
     'encaje.respaldo.autodeclarada':
       'El que ací es cita procedeix del CV que publica la mateixa persona; cap font independent no ho corrobora.',
     'encaje.respaldo.corroborada':

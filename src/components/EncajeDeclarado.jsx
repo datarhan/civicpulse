@@ -7,6 +7,8 @@ import {
   useRequisitosCargo,
   fitRowsForSlug,
   relatedAreaNames,
+  relatedCredentials,
+  isPartialRelation,
   overallValue,
   sharedRespaldo,
   citesNothing,
@@ -19,11 +21,22 @@ import {
  *
  * Three rules are load-bearing and none of them is cosmetic:
  *
- *  · NO SCORE, EVER. The block names the áreas a relation was found in. It
- *    never counts them, never renders "3 de 4", and never sorts anyone. A
- *    percentage here would grade an elected official against a rubric no
- *    statute contains — and the law requires no qualification at all for the
- *    office, which is what QueExigeLaLey says out loud.
+ *  · NO SCORE, EVER. The card names the credential a relation was found in, and
+ *    names áreas only to say where that relation stops. It never counts either,
+ *    never renders "4 de 7", and never sorts anyone. A percentage here would
+ *    grade an elected official against a rubric no statute contains — and the
+ *    law requires no qualification at all for the office, which is what
+ *    QueExigeLaLey says out loud.
+ *
+ *  · EACH AXIS SAYS ITS OWN THING. «Formación» and «Experiencia» both used to
+ *    print the área list, so on 4 of 11 cards they rendered identical text — a
+ *    third and fourth copy of the portfolios already above them. Two labels over
+ *    one fact reads as two findings. The card now prints what each axis is
+ *    actually about (the título; the puesto) and adds «solo en …» ONLY where
+ *    `isPartialRelation` holds. Where the relation reaches every área the person
+ *    holds there is nothing to qualify, and the list was pure repetition. The
+ *    full form with its institution or company stays on the área view, which has
+ *    the room and the citations.
  *
  *  · «No consta» ≠ «no». The two are different facts about a living person, so
  *    they get different words and different tones. `no-consta` links to the
@@ -167,6 +180,30 @@ function RespaldoMark({ value }) {
   )
 }
 
+/** How many items of a list the card prints before it stops. */
+const CARD_LIST_LIMIT = 3
+
+/**
+ * A source-ordered list, cut at three, with the remainder as «+N».
+ *
+ * «+2» is a count of what is HIDDEN, which is why it does not breach the
+ * no-score rule: it says the line was truncated, not how the person scored.
+ * What it must never become is a count of the áreas a relation was found in —
+ * that is the same number a grade would print. Shared by both lists on purpose:
+ * the credential line and the «solo en» line were two hand-copies of this
+ * arithmetic, and the second one is exactly where an off-by-one lives unnoticed.
+ */
+function TruncatedList({ items }) {
+  const shown = items.slice(0, CARD_LIST_LIMIT)
+  const hidden = items.length - shown.length
+  return (
+    <>
+      {shown.join(' · ')}
+      {hidden > 0 && <span style={{ color: 'var(--ink50)' }}>{` +${hidden}`}</span>}
+    </>
+  )
+}
+
 /**
  * Compact block for an /cargos card.
  *
@@ -222,7 +259,10 @@ export function EncajeCard({ official, bioRoute }) {
       {fields.map((field) => {
         const value = overallValue(rows, field)
         if (!value) return null
-        const areas = relatedAreaNames(rows, field)
+        // What this axis is about, and — only where the relation stops short of
+        // the person's whole delegation — where it was found.
+        const credenciales = relatedCredentials(rows, field)
+        const areas = isPartialRelation(rows, field) ? relatedAreaNames(rows, field) : []
         // Only when the card as a whole diverges, and only for the axis that
         // actually agrees with itself: marking every chip when they all say the
         // same thing is the noise this design exists to avoid.
@@ -242,11 +282,20 @@ export function EncajeCard({ official, bioRoute }) {
               <span style={{ color: 'var(--ink60)', flexShrink: 0, minWidth: 104 }}>
                 {t(`encaje.field.${field}`)}
               </span>
-              {value === 'relacionada' && areas.length > 0 ? (
+              {/* The Pill remains the whole answer for `sin-relacion-declarada`
+                  and `no-consta`: neither has a credential to name, and both are
+                  statements the tone is carrying. A `relacionada` assessment
+                  always cites at least one item (resolveAssessment refuses
+                  otherwise), so the empty fallback is unreachable in published
+                  data — it stays because a stub without evidence must degrade to
+                  the label, never to a blank line beside a person's name. */}
+              {value === 'relacionada' && credenciales.length > 0 ? (
                 <span style={{ color: 'var(--ink)', minWidth: 0 }}>
-                  {areas.slice(0, 3).join(' · ')}
-                  {areas.length > 3 && (
-                    <span style={{ color: 'var(--ink50)' }}>{` +${areas.length - 3}`}</span>
+                  <TruncatedList items={credenciales} />
+                  {areas.length > 0 && (
+                    <span style={{ display: 'block', color: 'var(--ink60)', fontSize: 11 }}>
+                      {t('encaje.card.soloEn')} <TruncatedList items={areas} />
+                    </span>
                   )}
                 </span>
               ) : (

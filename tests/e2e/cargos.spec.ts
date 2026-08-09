@@ -114,7 +114,7 @@ test.describe('Cargos (/cargos)', () => {
     for (const b of blocks) expect(b).toMatch(/\bCV\b/)
   })
 
-  test('the populated encaje block names áreas and renders no score', async ({ page }) => {
+  test('the populated encaje block names the credential and renders no score', async ({ page }) => {
     // Stubbed on purpose: the published rows move with every promotion, so
     // pinning "no percentage anywhere" to them would drift into measuring
     // whatever happens to be there — including, at the limit, an empty block,
@@ -134,7 +134,13 @@ test.describe('Cargos (/cargos)', () => {
               reportId: 'r-teresa-pozuelo-bio-2026-07-30',
               formacion: {
                 value: 'relacionada',
-                evidence: [{ label: 'Arquitecto Técnico — UPV', sourceIds: ['src-060'] }],
+                evidence: [
+                  {
+                    label: 'Arquitecto Técnico — UPV',
+                    short: 'Arquitecto Técnico',
+                    sourceIds: ['src-060'],
+                  },
+                ],
               },
               experiencia: { value: 'sin-relacion-declarada', evidence: [] },
               curatedBy: 'e2e',
@@ -146,14 +152,20 @@ test.describe('Cargos (/cargos)', () => {
     )
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
 
-    // The block is really there, and it names the área rather than counting it.
+    // The block is really there, and «Formación» names the TITLE — not the área,
+    // which the card already prints above, and not the university, which is not
+    // what «Formación» claims and belongs on the área view with its citation.
     await expect(page.getByText('Encaje declarado').first()).toBeVisible({ timeout: 8000 })
+    await expect(page.getByText('Arquitecto Técnico').first()).toBeVisible()
     await expect(page.getByText('sin relación declarada').first()).toBeVisible()
 
     const body = await page.locator('body').innerText()
     const section = body.slice(body.indexOf('CONCEJALAS Y CONCEJALES'))
     // innerText reflects CSS text-transform, so the eyebrow arrives uppercased.
     expect(section).toMatch(/encaje declarado/i)
+    expect(section).not.toContain('UPV')
+    // One área, related, so the relation reaches all of them: nothing to qualify.
+    expect(section).not.toMatch(/solo en/i)
     // No grade, in any of the shapes it could take.
     expect(section).not.toMatch(/encaje[^\n]{0,40}\d+\s*%/i)
     expect(section).not.toMatch(/\d+\s*\/\s*\d+\s*áreas/i)
