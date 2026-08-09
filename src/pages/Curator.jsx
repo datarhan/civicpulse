@@ -19,6 +19,7 @@ import { PromoteForm } from './curator/PromoteForm'
 import { ContradichoBundleRow, IssueRow } from './curator/queues'
 import { PromiseDraftRow, PromisePendingRow } from './curator/promise-queue'
 import { AreaFitRow } from './curator/area-fit-queue'
+import { FindingSupportRow, FindingSupportStyles } from './curator/finding-support-queue'
 import { VoiceEnrollmentSection, VoiceIDAssignmentsSection } from './curator/voice'
 
 export default function Curator() {
@@ -26,6 +27,7 @@ export default function Curator() {
   const issues = useJsonResource(ISSUES_URL)
   const promiseQueue = useJsonResource('/api/curator/promise-queue')
   const areaFitQueue = useJsonResource('/api/curator/area-fit-queue')
+  const findingSupportQueue = useJsonResource('/api/curator/finding-support-queue')
   const pendingPromises = useJsonResource('/data/promises.json')
   const [openBundle, setOpenBundle] = useState(null)
   const [refreshing, setRefreshing] = useState(false)
@@ -91,6 +93,15 @@ export default function Curator() {
       ? a.portfolio.localeCompare(b.portfolio)
       : a.officialSlug.localeCompare(b.officialSlug)
   })
+
+  // «¿Lo sostiene o sólo se le parece?». Se muestran las 52 filas del snapshot
+  // en el orden que trae la cola — primero las que afirman un vínculo
+  // documental sin matizarlo. Aquí no se reordena ni se filtra nada: la lista
+  // de «las que faltan por revisar» se construyó una vez por eliminación y se
+  // cayó tres días después.
+  const findingSupportRows = findingSupportQueue.data?.rows ?? []
+  const findingSupportVerdicts = findingSupportQueue.data?.verdictOptions ?? []
+  const findingSupportStats = findingSupportQueue.data?.stats ?? null
 
   // Promise auto-curator review queue. Fast-track drafts ("listo para
   // publicar") float to the top so the curator sees the ready ones first.
@@ -452,6 +463,58 @@ export default function Curator() {
             published={areaFitPublished.has(`${r.officialSlug}::${r.portfolio}`)}
             onDone={() => areaFitQueue.refresh()}
           />
+        ))}
+      </Card>
+
+      <Card style={{ padding: 16, marginBottom: 18 }}>
+        <FindingSupportStyles />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <SectionHead title="Hallazgos · ¿lo sostiene o sólo se le parece?" />
+          <span
+            className="mono"
+            style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+          >
+            {findingSupportStats
+              ? `${findingSupportStats.queued}/${findingSupportStats.queued} en cola · ` +
+                `${findingSupportStats.afirmativaDocumental} afirman vínculo documental · ` +
+                `${findingSupportStats.conRevisionPrevia} con revisión previa`
+              : ''}
+          </span>
+          <button
+            onClick={() => findingSupportQueue.refresh()}
+            disabled={findingSupportQueue.loading}
+            style={{
+              padding: '5px 10px',
+              fontSize: 11,
+              border: '1px solid var(--border2)',
+              background: 'var(--paper)',
+              borderRadius: 6,
+              cursor: findingSupportQueue.loading ? 'not-allowed' : 'pointer',
+            }}
+          >
+            {findingSupportQueue.loading ? 'Refreshing…' : 'Refresh'}
+          </button>
+        </div>
+        <p style={{ fontSize: 11.5, color: 'var(--ink60)', lineHeight: 1.5, margin: '4px 0 10px' }}>
+          Cada hallazgo publicado, con su sumario y el extracto que cita <strong>al lado</strong>,
+          porque la pregunta es si el extracto lo sostiene o sólo se le parece. La cola presenta
+          evidencia: no puntúa, no ordena por fuerza y no recomienda — el cribado léxico que lo
+          intentó quedó medido sin poder discriminante. Y no escribe: el único escritor del snapshot
+          publicado es <code>npm run correct-pleno-finding</code>.
+        </p>
+        {findingSupportQueue.loading && <p style={{ fontSize: 12 }}>Loading…</p>}
+        {findingSupportQueue.error && (
+          <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
+            {String(findingSupportQueue.error)}
+          </p>
+        )}
+        {!findingSupportQueue.loading && findingSupportRows.length === 0 && (
+          <p style={{ fontSize: 12, color: 'var(--ink60)' }}>
+            Cola vacía. Constrúyela con <code>npm run triage:finding-support</code>.
+          </p>
+        )}
+        {findingSupportRows.map((r) => (
+          <FindingSupportRow key={r.id} row={r} verdictOptions={findingSupportVerdicts} />
         ))}
       </Card>
 

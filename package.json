@@ -167,6 +167,7 @@
     "check:transcription-health": "npx tsx scripts/check-transcription-health.ts",
     "monitor:health": "npx tsx scripts/monitor-health.ts",
     "suggest:area-fit": "npx tsx scripts/suggest-area-fit.ts",
+    "triage:finding-support": "npx tsx scripts/triage-finding-support.ts",
     "promote-area-fit": "npx tsx scripts/promote-area-fit.ts",
     "migrate:area-fit-short": "npx tsx scripts/migrate-area-fit-short.ts",
     "migrate:area-fit-portfolio-key": "npx tsx scripts/migrate-area-fit-portfolio-key.ts"

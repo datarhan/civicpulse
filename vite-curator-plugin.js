@@ -392,7 +392,15 @@ function buildArgv(action, args) {
       return ['run', 'refresh:curate-queue']
     }
     case 'promote-area-fit': {
-      const argv = ['run', 'promote-area-fit', '--', '--official', args.official, '--area', args.area]
+      const argv = [
+        'run',
+        'promote-area-fit',
+        '--',
+        '--official',
+        args.official,
+        '--area',
+        args.area,
+      ]
       if (args.action === 'reject') argv.push('--reject')
       else if (args.action === 'retract') argv.push('--retract', '--curator', args.curator)
       else {
@@ -1043,6 +1051,57 @@ function handleAreaFitQueueRead(req, res, cwd) {
   })
 }
 
+/**
+ * GET /api/curator/finding-support-queue — la cola de revisión «¿el extracto
+ * sostiene el sumario, o sólo se le parece?» de los hallazgos publicados.
+ *
+ * Lee editorial/finding-support-queue.json, GITIGNORED y jamás servido por
+ * Vercel, exactamente por la misma razón que handleAreaFitQueueRead: son filas
+ * sin revisar sobre prosa publicada que nombra a grupos políticos. Bajo public/
+ * serían fetchables por URL en cuanto se escribieran.
+ *
+ * Sólo lectura, y a propósito. `correct-pleno-finding` NO está en el allowlist
+ * de acciones y no se añade aquí: es el único escritor del snapshot publicado,
+ * y una petición del navegador no debe poder reescribir prosa publicada sobre
+ * un cargo electo. La pantalla enseña el comando exacto; lo ejecuta una persona
+ * en su terminal.
+ *
+ * El fichero puede no existir (nadie ha corrido `npm run
+ * triage:finding-support`) → cola vacía, no un error. JSON corrupto se registra
+ * y se trata como vacío para que un fichero malo nunca deje el panel en blanco.
+ */
+function handleFindingSupportQueueRead(req, res, cwd) {
+  if (req.method !== 'GET') {
+    sendJson(res, 405, { error: 'method not allowed' })
+    return
+  }
+  {
+    const originErr = checkOrigin(req)
+    if (originErr) {
+      sendJson(res, 403, { error: originErr })
+      return
+    }
+  }
+  const path = resolve(cwd, 'editorial/finding-support-queue.json')
+  let queue = {}
+  if (existsSync(path)) {
+    try {
+      queue = JSON.parse(readFileSync(path, 'utf8'))
+    } catch (err) {
+      process.stderr.write(`[finding-support-queue] fichero ilegible: ${err.message}\n`)
+      queue = {}
+    }
+  }
+  sendJson(res, 200, {
+    generatedAt: typeof queue.generatedAt === 'string' ? queue.generatedAt : null,
+    queueVersion: queue.queueVersion ?? null,
+    sourceSnapshot: queue.sourceSnapshot ?? null,
+    stats: queue.stats ?? null,
+    verdictOptions: Array.isArray(queue.verdictOptions) ? queue.verdictOptions : [],
+    rows: Array.isArray(queue.rows) ? queue.rows : [],
+  })
+}
+
 function handlePromiseQueueRead(req, res, cwd) {
   if (req.method !== 'GET') {
     sendJson(res, 405, { error: 'method not allowed' })
@@ -1401,6 +1460,17 @@ export function viteCuratorPlugin(opts = {}) {
         if (!req.url || req.url === '/' || req.url === '') {
           try {
             handleAreaFitQueueRead(req, res, cwd)
+          } catch (err) {
+            sendJson(res, 500, { error: err.message })
+          }
+        } else {
+          next()
+        }
+      })
+      server.middlewares.use('/api/curator/finding-support-queue', (req, res, next) => {
+        if (!req.url || req.url === '/' || req.url === '') {
+          try {
+            handleFindingSupportQueueRead(req, res, cwd)
           } catch (err) {
             sendJson(res, 500, { error: err.message })
           }
