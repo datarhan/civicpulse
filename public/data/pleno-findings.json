@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-09T16:58:28.171Z",
+  "generatedAt": "2026-08-09T17:47:11.604Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. La mayoría los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -10,7 +10,7 @@
       "plenoId": "1237hbp",
       "plenoDate": "2026-07-03",
       "title": "03-07-2026: un grupo no identificado señala uso de contrato emergencia con FCC tras lluvias",
-      "summary": "Un grupo no identificado afirma que tres días después del episodio de lluvias torrenciales la empresa FCC comenzó a operar bajo un contrato de emergencia y que dicho contrato suplantaba a Garbialdi en servicios relacionados con derrumbes y muro de contención. Ambas afirmaciones proceden de la intervención en el pleno: el registro municipal de contratación publicado no recoge ningún contrato adjudicado a FCC, de modo que la declaración queda documentada como tal, sin corroboración documental.",
+      "summary": "Un grupo no identificado afirma que tres días después del episodio de lluvias torrenciales la empresa FCC comenzó a operar bajo un contrato de emergencia y que dicho contrato suplantaba a Garbialdi. Ambas afirmaciones proceden de la intervención en el pleno: el registro municipal de contratación publicado no recoge ningún contrato adjudicado a FCC, de modo que la declaración queda documentada como tal, sin corroboración documental.",
       "severity": "informational",
       "sourceClaimIds": [
         "1237hbp-006-cit-1e90e0",
@@ -41,11 +41,6 @@
         }
       ],
       "crossChecked": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mK90j1JRu%2BCXQV0WE7lYPw%3D%3D",
-          "snippet": "contrato emergencia acondicionamiento de caminos con realización de muro de contención y \nmallazo de hormigón por derrumbes con motivo del episodio de lluvias torrenciales \nacontecido en noviembre de 2022. · Ayuntamiento de Riba-roja de…"
-        },
         {
           "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
@@ -91,6 +86,22 @@
           "reason": "El sumario atribuía al registro municipal una corroboración que no existe: no hay ninguna fila adjudicada a FCC en las 1.231 filas de contratos y licitaciones publicadas. Presentaba como hecho documentado lo que era una acusación verbal en el pleno, nombrando a dos empresas. Se reatribuye la afirmación a quien la hizo y se hace explícita la ausencia de respaldo documental.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-02T14:47:30.995Z"
+        },
+        {
+          "field": "summary",
+          "original": "Un grupo no identificado afirma que tres días después del episodio de lluvias torrenciales la empresa FCC comenzó a operar bajo un contrato de emergencia y que dicho contrato suplantaba a Garbialdi en servicios relacionados con derrumbes y muro de contención. Ambas afirmaciones proceden de la intervención en el pleno: el registro municipal de contratación publicado no recoge ningún contrato adjudicado a FCC, de modo que la declaración queda documentada como tal, sin corroboración documental.",
+          "corrected": "Un grupo no identificado afirma que tres días después del episodio de lluvias torrenciales la empresa FCC comenzó a operar bajo un contrato de emergencia y que dicho contrato suplantaba a Garbialdi. Ambas afirmaciones proceden de la intervención en el pleno: el registro municipal de contratación publicado no recoge ningún contrato adjudicado a FCC, de modo que la declaración queda documentada como tal, sin corroboración documental.",
+          "reason": "Corrección de atribución. La corrección anterior arregló el encuadre pero dejó dentro el objeto importado del documento: «en servicios relacionados con derrumbes y muro de contención» no lo dice ninguno de los dos intervinientes, sale del contrato cotejado, y la frase que lo contiene afirma expresamente que ambas afirmaciones proceden de la intervención en el pleno. Se le atribuían así al hablante palabras que no dijo. Se suprime el inciso; el descargo documental se mantiene intacto.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:10.384Z"
+        },
+        {
+          "field": "crossChecked.0",
+          "original": "documento cotejado · sha256:678134a7418e",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira el expediente del que se importaron las palabras que el inciso suprimido atribuía al hablante. Es de casi cuatro años antes de esta sesión, versa sobre caminos y no sobre el servicio del que se hablaba, y coincide sólo en una fórmula meteorológica.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:10.628Z"
         }
       ]
     },
@@ -830,7 +841,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Pleno de Riba-roja de Túria 2026-05-11: Debate sobre presupuestos y financiamiento",
-      "summary": "El PP señala que votaron en contra de un presupuesto que incluía 550.000 euros para el comercio local, mientras que el PSOE afirma no recoger al votar en contra de los presupuestos. En el debate se menciona además el seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento, por lo que la referencia queda documentada como intervención en el pleno.",
+      "summary": "El PP reprocha a la bancada contraria que «el día 16 de marzo ustedes votaron en contra un presupuesto donde llevaba 550.000 euros para el comercio local», sin que la transcripción registre a quién se dirigía. En el debate se menciona además el seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento, por lo que la referencia queda documentada como intervención en el pleno.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-330-acu-7c65c5",
@@ -895,6 +906,14 @@
           "reason": "El sumario afirmaba que «el registro municipal incluye el seguimiento del Plan Económico y Financiero aprobado en 2025». Ninguno de los expedientes citados es ese seguimiento: son un suministro de módulos de presupuestos y RPT, un plan de acción local de 2022 y unas obras de escollera en Paretotes. Además, la intervención de la que procede dice «que aprobaremos en el 2025», en futuro, de modo que se presentaba como registro existente lo que era una intención declarada en el pleno.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-02T15:09:37.135Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PP señala que votaron en contra de un presupuesto que incluía 550.000 euros para el comercio local, mientras que el PSOE afirma no recoger al votar en contra de los presupuestos. En el debate se menciona además el seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento, por lo que la referencia queda documentada como intervención en el pleno.",
+          "corrected": "El PP reprocha a la bancada contraria que «el día 16 de marzo ustedes votaron en contra un presupuesto donde llevaba 550.000 euros para el comercio local», sin que la transcripción registre a quién se dirigía. En el debate se menciona además el seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento, por lo que la referencia queda documentada como intervención en el pleno.",
+          "reason": "Corrección de atribución. «El PP señala que votaron en contra» procede de «el día 16 de marzo ustedes votaron en contra»: el hablante del PP reprochaba el voto a otra bancada, y la sintaxis del sumario invertía el reproche sobre quien lo hacía. Un pronombre de segunda persona en una transcripción no identifica a quién se dirigía, así que se conserva el deíctico citando literalmente. Se retira además la frase que hacía votar en contra al PSOE, procedente de un fragmento roto que no significa nada en castellano y que, sumado a lo anterior, dejaba a los dos grupos votando en contra del mismo presupuesto. La corrección previa del Plan Económico y Financiero no se toca.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:10.878Z"
         }
       ]
     },
@@ -1347,8 +1366,8 @@
       "id": "f-2026-03-16-cit-377216",
       "plenoId": "ma87e0",
       "plenoDate": "2026-03-16",
-      "title": "Chemmachor · edificio polivalente citado en dos intervenciones con contrato en BD",
-      "summary": "En la sesión de marzo de 2026 dos intervenciones del grupo socialista mencionan el edificio polivalente de la Chemmachor (transcrito también como 'Xemachor' o 'Chemachor'). La base municipal de contratación pública registra un contrato de obras de impermeabilización de la cubierta del mismo edificio polivalente — el vínculo documental existe, pero el discurso plenario no cita el expediente ni el importe, por lo que sólo podemos confirmar que el proyecto está activo en el registro de contratación, no el estado real de ejecución ni las fases cubiertas por ese contrato.",
+      "title": "Chemmachor · edificio polivalente citado en dos intervenciones; el contrato registrado no lo nombra",
+      "summary": "En la sesión de marzo de 2026 dos intervenciones del grupo socialista mencionan el edificio polivalente de la Chemmachor (transcrito también como 'Xemachor' o 'Chemachor'). La base municipal de contratación pública registra un contrato de obras de impermeabilización de la cubierta de un Edificio Polivalente, pero el expediente no cita la Chemmachor ni permite confirmar que sea el edificio al que se refieren las intervenciones, y el discurso plenario no cita el expediente ni el importe.",
       "severity": "informational",
       "sourceClaimIds": [
         "ma87e0-104-cit-377216",
@@ -1378,14 +1397,31 @@
       "curatorName": "civicpulse-auto",
       "publishedAt": "2026-04-24",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "original": "Chemmachor · edificio polivalente citado en dos intervenciones con contrato en BD",
+          "corrected": "Chemmachor · edificio polivalente citado en dos intervenciones; el contrato registrado no lo nombra",
+          "reason": "«Con contrato en BD» daba por establecida la identificación que el expediente no permite: el contrato cotejado dice «Edificio Polivalente» y en ningún punto nombra la Chemmachor. El titular es lo primero que se lee, de modo que afirmaba el vínculo antes incluso que el sumario.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:11.119Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión de marzo de 2026 dos intervenciones del grupo socialista mencionan el edificio polivalente de la Chemmachor (transcrito también como 'Xemachor' o 'Chemachor'). La base municipal de contratación pública registra un contrato de obras de impermeabilización de la cubierta del mismo edificio polivalente — el vínculo documental existe, pero el discurso plenario no cita el expediente ni el importe, por lo que sólo podemos confirmar que el proyecto está activo en el registro de contratación, no el estado real de ejecución ni las fases cubiertas por ese contrato.",
+          "corrected": "En la sesión de marzo de 2026 dos intervenciones del grupo socialista mencionan el edificio polivalente de la Chemmachor (transcrito también como 'Xemachor' o 'Chemachor'). La base municipal de contratación pública registra un contrato de obras de impermeabilización de la cubierta de un Edificio Polivalente, pero el expediente no cita la Chemmachor ni permite confirmar que sea el edificio al que se refieren las intervenciones, y el discurso plenario no cita el expediente ni el importe.",
+          "reason": "El matiz exculpaba lo que no estaba en discusión y daba por firme lo que el documento no sostiene. El extracto dice «Edificio Polivalente», genérico, y no nombra la Chemmachor: la identificación es precisamente lo que falta acreditar, y el sumario la afirmaba —«del mismo edificio polivalente», «el vínculo documental existe»—. «El proyecto está activo» tampoco tenía apoyo: el extracto no trae campo de estado alguno. El matiz pasa a recaer sobre la identificación, que es la duda real. El cotejo se mantiene: el documento es real y se describe bien; lo que sobraba era darlo por identificado.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:11.357Z"
+        }
+      ]
     },
     {
       "id": "f-2026-03-16-cit-56214f",
       "plenoId": "ma87e0",
       "plenoDate": "2026-03-16",
       "title": "Centro de Salud · obra registrada, no ampliación mencionada en el discurso",
-      "summary": "En la intervención se afirma que el municipio 'no tiene el Centro de Salud' en el sentido de ampliación o nueva dotación esperada. La base municipal de contratación sí registra un contrato menor para suministro de una carpa de triaje en la zona exterior del Centro de Salud — es una dotación puntual que no equivale a la inversión que el orador echa en falta. La ausencia de obras mayores en el registro corrobora parcialmente la queja discursiva.",
+      "summary": "En la intervención se afirma que el municipio 'no tiene el Centro de Salud' en el sentido de ampliación o nueva dotación esperada. La base municipal de contratación sí registra un contrato menor para suministro de una carpa de triaje en la zona exterior del Centro de Salud — es una dotación puntual que no equivale a la inversión que el orador echa en falta.",
       "severity": "informational",
       "sourceClaimIds": [
         "ma87e0-195-cit-56214f"
@@ -1409,7 +1445,16 @@
       "curatorName": "civicpulse-auto",
       "publishedAt": "2026-04-24",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "En la intervención se afirma que el municipio 'no tiene el Centro de Salud' en el sentido de ampliación o nueva dotación esperada. La base municipal de contratación sí registra un contrato menor para suministro de una carpa de triaje en la zona exterior del Centro de Salud — es una dotación puntual que no equivale a la inversión que el orador echa en falta. La ausencia de obras mayores en el registro corrobora parcialmente la queja discursiva.",
+          "corrected": "En la intervención se afirma que el municipio 'no tiene el Centro de Salud' en el sentido de ampliación o nueva dotación esperada. La base municipal de contratación sí registra un contrato menor para suministro de una carpa de triaje en la zona exterior del Centro de Salud — es una dotación puntual que no equivale a la inversión que el orador echa en falta.",
+          "reason": "«La ausencia de obras mayores en el registro corrobora parcialmente la queja» es una corroboración por silencio, y falsa: un centro de salud no es competencia municipal —lo construye y amplía la administración autonómica—, de modo que su ausencia del registro de contratación del ayuntamiento es lo esperable exista o no la ampliación, y no informa de nada. El argumento se apoyaba además en un corpus que este hallazgo documenta con una sola fila. «Corrobora» es también el verbo que se retiró de la escala de evidencia porque esta tubería no establece corroboración en ningún punto. Se suprime la frase entera; la anterior basta por sí sola.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:11.603Z"
+        }
+      ]
     },
     {
       "id": "f-2026-03-16-cit-436a7e",
@@ -1704,7 +1749,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate sobre infraestructuras deportivas en el pleno de Riba-roja de Túria del 2026-01-19",
-      "summary": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, un grupo no identificado manifiesta que el pabellón deportivo es una instalación relevante sobre la cual se emitieron votos en contra en años anteriores. Este debate coincide con registros oficiales como el \"Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá\".",
+      "summary": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, un grupo no identificado manifiesta que el pabellón deportivo es una instalación relevante sobre la cual se emitieron votos en contra en años anteriores.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-149-cit-3fd230",
@@ -1737,11 +1782,6 @@
       "crossChecked": [
         {
           "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BylZjlFxmVEQK2TEfXGy%2BA%3D%3D",
-          "snippet": "Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá · Ayuntamiento de Riba-roja de Túria · RECOLIM SL · environment · estado: unknown"
-        },
-        {
-          "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
           "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayu…"
         },
@@ -1764,6 +1804,22 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:13.987Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, un grupo no identificado manifiesta que el pabellón deportivo es una instalación relevante sobre la cual se emitieron votos en contra en años anteriores. Este debate coincide con registros oficiales como el \"Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá\".",
+          "corrected": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, un grupo no identificado manifiesta que el pabellón deportivo es una instalación relevante sobre la cual se emitieron votos en contra en años anteriores.",
+          "reason": "El sumario cerraba con un vínculo documental que ninguna fuente sostiene: un contrato de limpieza de la piscina no acredita cuándo se construyó la instalación, cuándo se inauguró ni qué se votó en los años ochenta y noventa. Lo único compartido era la palabra «piscina». Se suprime la frase; el hallazgo se sostiene en lo que dijeron los grupos.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:07.193Z"
+        },
+        {
+          "field": "crossChecked.0",
+          "original": "documento cotejado · sha256:0c2f12385163",
+          "corrected": "retirado del hallazgo",
+          "reason": "El expediente colgaba de una frase que se retira por no sostener nada: existía únicamente para respaldar el vínculo inventado, y compartía con lo debatido una sola palabra. Sin esa frase, nada en el hallazgo lo cita.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:07.435Z"
         }
       ]
     },
@@ -1931,7 +1987,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate sobre urbanismo y mantenimiento de infraestructuras en el pleno del 2026-01-19",
-      "summary": "Durante la sesión, un grupo no identificado señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · estado: unknown'. Por su parte, el grupo VOX señala la ausencia de una agenda de reconstrucción local en el municipio.",
+      "summary": "Durante la sesión, un grupo no identificado señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla'. Por su parte, el grupo VOX señala la ausencia de una agenda de reconstrucción local en el municipio.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-051-cit-c80e68",
@@ -1996,6 +2052,14 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:15.019Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante la sesión, un grupo no identificado señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · estado: unknown'. Por su parte, el grupo VOX señala la ausencia de una agenda de reconstrucción local en el municipio.",
+          "corrected": "Durante la sesión, un grupo no identificado señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla'. Por su parte, el grupo VOX señala la ausencia de una agenda de reconstrucción local en el municipio.",
+          "reason": "La prosa pegaba el extracto crudo dentro de las comillas del título del contrato, con el centinela «estado: unknown» incluido, como si formara parte del nombre del expediente. No es un dato del expediente sino la marca de «no se pudo determinar», y un centinela nunca es un valor. Se cita el título y nada más; la afirmación de existencia no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:08.153Z"
         }
       ]
     },
@@ -2181,7 +2245,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Pleno de Riba-roja de Túria: 2026-01-19 - Urbanismo y Mantenimiento",
-      "summary": "Un grupo no identificado afirma que no estaban previstas ciertas actuaciones relacionadas con la instalación de térmicas. El PP señala problemas en el complejo deportivo La Malla, mencionando la necesidad de reparar la malla exterior debido a su deterioro. Estos puntos se reflejan en registros como 'Servicio mantenimiento instalaciones térmicas deportes' y 'Contrato menor de obras de reposición de alumbrado público en zona industrial'.",
+      "summary": "Un grupo no identificado afirma que no estaban previstas ciertas actuaciones relacionadas con la instalación de térmicas. El PP señala problemas en el complejo deportivo La Malla y advierte de que «hay que ver toda la parte externa de la malla, está cayendo»; la transcripción no permite determinar si se refiere al propio complejo o a un cerramiento.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-119-cit-543cc1",
@@ -2219,11 +2283,6 @@
         },
         {
           "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5dHMlg8mKGsQyBAnWzHfCg%3D%3D",
-          "snippet": "Contrato menor de obras de reposición de alumbrado público en zona industrial de Riba-roja de Túria, como actuaciones de emergencia tras daños por la DANA (Ctto. 168M/2025). · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · construc…"
-        },
-        {
-          "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
           "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayu…"
         },
@@ -2246,6 +2305,22 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:16.057Z"
+        },
+        {
+          "field": "summary",
+          "original": "Un grupo no identificado afirma que no estaban previstas ciertas actuaciones relacionadas con la instalación de térmicas. El PP señala problemas en el complejo deportivo La Malla, mencionando la necesidad de reparar la malla exterior debido a su deterioro. Estos puntos se reflejan en registros como 'Servicio mantenimiento instalaciones térmicas deportes' y 'Contrato menor de obras de reposición de alumbrado público en zona industrial'.",
+          "corrected": "Un grupo no identificado afirma que no estaban previstas ciertas actuaciones relacionadas con la instalación de térmicas. El PP señala problemas en el complejo deportivo La Malla y advierte de que «hay que ver toda la parte externa de la malla, está cayendo»; la transcripción no permite determinar si se refiere al propio complejo o a un cerramiento.",
+          "reason": "La tercera frase presentaba como reflejo de lo debatido un contrato de alumbrado público en el polígono industrial tras la DANA: ni instalaciones térmicas, ni deportes, ni el complejo. Se suprime. La segunda publicaba además las dos lecturas posibles de «la malla» —el complejo y un cerramiento— como si ambas constaran; se devuelve la cita literal y se dice que la transcripción no permite decidir.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:07.677Z"
+        },
+        {
+          "field": "crossChecked.1",
+          "original": "documento cotejado · sha256:9192469bc4b7",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira el expediente que la frase suprimida nombraba: no guarda relación con ninguno de los puntos debatidos y sólo estaba ahí para sostener el vínculo que se ha borrado. El otro cotejo se mantiene, porque sí versa sobre el asunto del que se habló.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:07.917Z"
         }
       ]
     },
@@ -2462,7 +2537,7 @@
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
       "title": "Pleno extraordinario y urgente 2025-12-23: Medio ambiente",
-      "summary": "El PSOE afirma que un contrato para la elaboración del plan local de residuos se aprobó en línea con las directrices establecidas. un grupo no identificado grupo menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%. El registro municipal incluye el Contrato menor de servicio para la elaboración del plan local de residuos.",
+      "summary": "El PSOE afirma que el contrato debatido venía «aprobado por un plan local de residuos» ya existente, que «nos marcaba el camino a seguir», y que incorporaba mejoras directas sobre el tratamiento de la basura y la calidad del servicio. Un grupo no identificado menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%.",
       "severity": "informational",
       "sourceClaimIds": [
         "1qi8axv-052-cit-c905c3",
@@ -2495,11 +2570,6 @@
       "crossChecked": [
         {
           "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D",
-          "snippet": "Contrato menor de servicio para la elaboración del plan  local de residuos para el municipio de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · estado: awarded"
-        },
-        {
-          "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
           "snippet": "Servicio limpieza · Ayuntamiento de Riba-roja de Túria · estado: awarded"
         },
@@ -2527,6 +2597,22 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:17.777Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PSOE afirma que un contrato para la elaboración del plan local de residuos se aprobó en línea con las directrices establecidas. un grupo no identificado grupo menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%. El registro municipal incluye el Contrato menor de servicio para la elaboración del plan local de residuos.",
+          "corrected": "El PSOE afirma que el contrato debatido venía «aprobado por un plan local de residuos» ya existente, que «nos marcaba el camino a seguir», y que incorporaba mejoras directas sobre el tratamiento de la basura y la calidad del servicio. Un grupo no identificado menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%.",
+          "reason": "La relación iba al revés. El interviniente describe un contrato que venía avalado por un plan local de residuos ya existente que «marcaba el camino»; el sumario lo publicaba como un contrato para elaborar el plan, que es justo el expediente citado, y un plan no puede aprobar el contrato que lo crea. La revisión anterior comprobó que el título del contrato coincidía con las palabras del sumario, no que el sumario coincidiera con la intervención. Se reescribe la atribución con las palabras del hablante, se retira el anclaje documental y se corrige el «grupo» duplicado que arrastraba la corrección del relleno «Otro».",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:08.884Z"
+        },
+        {
+          "field": "crossChecked.0",
+          "original": "documento cotejado · sha256:ebfbcb08bff9",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira el expediente que la frase suprimida presentaba como el contrato del que se hablaba. La intervención describe un contrato respaldado por un plan ya existente, no el encargo de redactar ese plan: son dos expedientes distintos y el orden lógico impide confundirlos.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:09.133Z"
         }
       ]
     },
@@ -2607,7 +2693,7 @@
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
       "title": "Debate sobre transparencia y adjudicaciones en el pleno municipal del 2025-12-23",
-      "summary": "Durante la sesión del 2025-12-23, el PSOE señala que la empresa no ha cumplido con lo acordado. El grupo PP manifiesta su negativa, mientras que un grupo no identificado explica su abstención y afirma que ninguna empresa competidora impugnó la adjudicación. El debate se enmarca en la documentación del «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam».",
+      "summary": "Durante la sesión del 2025-12-23, el PSOE señala que la empresa no ha cumplido con lo acordado. Una intervención del PP expresa su voto en contra a título individual y excluye expresamente al resto de su grupo («Yo, no el resto del PP»), mientras que un grupo no identificado explica su abstención y afirma que ninguna empresa competidora impugnó la adjudicación.",
       "severity": "informational",
       "sourceClaimIds": [
         "1qi8axv-060-acu-cd77e9",
@@ -2650,11 +2736,6 @@
         },
         {
           "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
-          "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto si…"
-        },
-        {
-          "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ydq0aOmEzXd7h85%2Fpmmsfw%3D%3D",
           "snippet": "Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación…"
         },
@@ -2677,6 +2758,22 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:18.463Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante la sesión del 2025-12-23, el PSOE señala que la empresa no ha cumplido con lo acordado. El grupo PP manifiesta su negativa, mientras que un grupo no identificado explica su abstención y afirma que ninguna empresa competidora impugnó la adjudicación. El debate se enmarca en la documentación del «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam».",
+          "corrected": "Durante la sesión del 2025-12-23, el PSOE señala que la empresa no ha cumplido con lo acordado. Una intervención del PP expresa su voto en contra a título individual y excluye expresamente al resto de su grupo («Yo, no el resto del PP»), mientras que un grupo no identificado explica su abstención y afirma que ninguna empresa competidora impugnó la adjudicación.",
+          "reason": "Dos defectos. El grave es de atribución: «El grupo PP manifiesta su negativa» procedía de una intervención que separaba expresamente su voto del de su grupo —«Yo, no el resto del PP»—, de modo que el sumario publicaba lo contrario de lo que la cita dice. Se reescribe como voto individual, que es lo único que la fuente acredita. El segundo es el conector documental: ninguna de las cuatro citas nombra el sistema de voto electrónico ni ese expediente, y fijarlo hacía recaer un «no ha cumplido» sobre su adjudicataria.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:08.399Z"
+        },
+        {
+          "field": "crossChecked.2",
+          "original": "documento cotejado · sha256:64e9033a0253",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira el expediente que la frase suprimida fijaba como objeto del debate. Ninguna de las citas lo nombra, y mantenerlo bajo el hallazgo seguiría dirigiendo hacia su adjudicataria un reproche de incumplimiento que la fuente no localiza en ningún contrato.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:08.639Z"
         }
       ]
     },
@@ -3573,7 +3670,7 @@
       "plenoId": "c8kr44",
       "plenoDate": "2025-09-08",
       "title": "Debate sobre la limpieza y el mantenimiento en los colegios de Riba-roja de Túria en el pleno del 2025-09-08",
-      "summary": "El PP señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. Por su parte, Compromís destaca las actuaciones de mejora en centros de la localidad como el Camp de Túria, mientras que el PSOE afirma que el mantenimiento se solventó en pocos días. La actividad contractual del consistorio incluye el Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas.",
+      "summary": "El PP señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. Por su parte, Compromís destaca las actuaciones de mejora en centros de la localidad como el Camp de Túria, mientras que el PSOE afirma que el mantenimiento se solventó en pocos días.",
       "severity": "informational",
       "sourceClaimIds": [
         "c8kr44-231-acu-70a34f",
@@ -3606,11 +3703,6 @@
       "crossChecked": [
         {
           "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ydq0aOmEzXd7h85%2Fpmmsfw%3D%3D",
-          "snippet": "Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación…"
-        },
-        {
-          "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=w73EHAJuKn57h85%2Fpmmsfw%3D%3D",
           "snippet": "Contrato de patrocinio entre el Ayuntamiento y el Club de Básquet Riba-roja Camp de Túria a los efectos de colaborar en el Campus Multideporte Verano 2018 · Ayuntamiento de Riba-roja de Túria · Club de Básquet Riba-roja Camp de Túria · o…"
         },
@@ -3635,14 +3727,31 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-30",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "El PP señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. Por su parte, Compromís destaca las actuaciones de mejora en centros de la localidad como el Camp de Túria, mientras que el PSOE afirma que el mantenimiento se solventó en pocos días. La actividad contractual del consistorio incluye el Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas.",
+          "corrected": "El PP señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. Por su parte, Compromís destaca las actuaciones de mejora en centros de la localidad como el Camp de Túria, mientras que el PSOE afirma que el mantenimiento se solventó en pocos días.",
+          "reason": "La frase final presentaba como actividad contractual pertinente la limpieza del pabellón deportivo, cuando el hallazgo trata de la limpieza de las aulas de los colegios. Sugería que el consistorio tiene contratada precisamente la limpieza que se le reprocha no tener. La palabra compartida era «limpieza». Se suprime.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:09.374Z"
+        },
+        {
+          "field": "crossChecked.0",
+          "original": "documento cotejado · sha256:b603f552dcc6",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira el expediente que la frase suprimida nombraba: es la limpieza de una instalación deportiva y el debate es sobre la limpieza de las aulas. Existía para sostener el vínculo que se ha borrado.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:09.617Z"
+        }
+      ]
     },
     {
       "id": "f-2025-07-31-acu-144947",
       "plenoId": "rmtyr",
       "plenoDate": "2025-07-31",
       "title": "Debate fiscal en el pleno del 2025-07-31: el PP y Compromís señalan discrepancias sobre el presupuesto de 2024",
-      "summary": "En la sesión del 2025-07-31, el PP señala retrasos en la aprobación del presupuesto y afirma haber recurrido a entidades provinciales para reclamar fondos de 2024. Por su parte, Compromís manifiesta que sus propuestas presupuestarias para dicho ejercicio no fueron atendidas. El debate coincide con gestiones provinciales reflejadas en el contrato basado en acuerdo marco para servicios Postales de Carta Certificada y ordinaria, envíos publicitarios y paquetes postales a la Diputación Provincial de Valencia, al Conso.",
+      "summary": "En la sesión del 2025-07-31, el PP señala retrasos en la aprobación del presupuesto y afirma haber recurrido a entidades provinciales para reclamar fondos de 2024. Por su parte, Compromís manifiesta que sus propuestas presupuestarias para dicho ejercicio no fueron atendidas.",
       "severity": "informational",
       "sourceClaimIds": [
         "rmtyr-141-acu-144947",
@@ -3669,11 +3778,6 @@
       "crossChecked": [
         {
           "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RA3UtS1JvGqkU02jNGj1Fw%3D%3D",
-          "snippet": "contrato basado en acuerdo marco para servicios Postales de Carta Certificada y ordinaria, envíos publicitarios y paquetes postales a la Diputación Provincial de Valencia, al Consorcio Provincial de Bomberos y a las Entidades Locales Adh…"
-        },
-        {
-          "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
           "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relati…"
         },
@@ -3693,7 +3797,24 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-31",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "En la sesión del 2025-07-31, el PP señala retrasos en la aprobación del presupuesto y afirma haber recurrido a entidades provinciales para reclamar fondos de 2024. Por su parte, Compromís manifiesta que sus propuestas presupuestarias para dicho ejercicio no fueron atendidas. El debate coincide con gestiones provinciales reflejadas en el contrato basado en acuerdo marco para servicios Postales de Carta Certificada y ordinaria, envíos publicitarios y paquetes postales a la Diputación Provincial de Valencia, al Conso.",
+          "corrected": "En la sesión del 2025-07-31, el PP señala retrasos en la aprobación del presupuesto y afirma haber recurrido a entidades provinciales para reclamar fondos de 2024. Por su parte, Compromís manifiesta que sus propuestas presupuestarias para dicho ejercicio no fueron atendidas.",
+          "reason": "«Gestiones provinciales reflejadas en» inventaba una categoría intermedia para tender un puente entre un debate presupuestario y un contrato de servicios postales: cartas certificadas y paquetería no reflejan ninguna gestión de cobro de fondos. Lo único compartido era la palabra «provincial». La frase se publicaba además cortada a mitad de palabra, como si el corte fuera su final. Se suprime entera.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:09.889Z"
+        },
+        {
+          "field": "crossChecked.0",
+          "original": "documento cotejado · sha256:ebe64b5bd331",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira el expediente que la frase suprimida nombraba. Un contrato de servicios postales no documenta un debate sobre el retraso de un presupuesto ni sobre la reclamación de fondos, y sólo estaba ahí para sostener el conector borrado.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T17:47:10.136Z"
+        }
+      ]
     }
   ]
 }

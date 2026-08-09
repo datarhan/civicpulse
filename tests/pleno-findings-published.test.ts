@@ -45,6 +45,15 @@ const allRefs = items.flatMap((f) => [...f.crossChecked, ...f.contradiction])
 const allCorrections = items.flatMap((f) => f.corrections ?? [])
 const removals = allCorrections.filter((c) => CORRECTION_REMOVAL_FIELD_RE.test(c.field))
 
+/**
+ * Running totals over the whole published ledger. Pinned, not `> 0`: a batch
+ * that silently skipped rows still satisfies a lower bound while retracting
+ * nothing. Each review batch moves these two numbers and says so in its commit
+ * message; every other assertion in this file is local to one finding.
+ */
+const TOTAL_CORRECTIONS = 95
+const TOTAL_REMOVALS = 23
+
 describe('published pleno findings — no matcher internals in reader-facing text', () => {
   it('no snippet carries the similarity annotation', () => {
     // One did: «Aplicativo área de policía local · … · unknown · sim=0.50»
@@ -64,6 +73,26 @@ describe('published pleno findings — no matcher internals in reader-facing tex
   it('every snippet fits the label the reader is shown', () => {
     expect(allRefs.every((r) => r.snippet.length > 0 && r.snippet.length <= 240)).toBe(true)
   })
+
+  it('no summary or title publishes the `unknown` status sentinel as prose', () => {
+    // Same class as `sim=`, one layer further in: `f-2026-01-19-cit-c80e68`
+    // pasted a raw cotejo excerpt inside the quotation marks of a contract
+    // TITLE — «… complejo deportivo La Malla. · Ayuntamiento de Riba-roja de
+    // Túria · estado: unknown» — so a reader saw the sentinel as part of the
+    // expediente's name. `unknown` is the "could not determine" marker, and a
+    // sentinel is never a value (docs/DATA_INTEGRITY.md, rule 3). Here it was
+    // not even accurate: that contract is `formalized` in tenders.json.
+    //
+    // Scoped to PROSE on purpose. Cotejo snippets still carry the sentinel on
+    // several findings; that is the snippet builder's text, one string the
+    // curator CLI has no path to edit, and pretending otherwise by widening
+    // this assertion would make it fail for a reason nobody in this batch
+    // could act on. What it catches is a summary or title quoting an excerpt
+    // raw instead of naming the record.
+    const prose = items.map((f) => `${f.title}\n${f.summary}`)
+    expect(prose.length).toBe(items.length)
+    expect(prose.filter((s) => /estado:\s*unknown/i.test(s))).toEqual([])
+  })
 })
 
 describe('published pleno findings — a removal does not republish what it removed', () => {
@@ -72,11 +101,12 @@ describe('published pleno findings — a removal does not republish what it remo
     // selection, which is precisely how a green suite hides a regression.
     //
     // Pinned to a count, not to `> 0`: the lote-1 review batch added eleven
-    // `crossChecked.<i>` retractions to b8fea6f's four, and a run that skipped
-    // rows would still satisfy `> 0` while retracting nothing.
-    expect(removals.length).toBe(16)
+    // `crossChecked.<i>` retractions to b8fea6f's four and lote-2 another
+    // seven, and a run that skipped rows would still satisfy `> 0` while
+    // retracting nothing.
+    expect(removals.length).toBe(TOTAL_REMOVALS)
     expect(removals.filter((c) => c.field.startsWith('quote.'))).toHaveLength(2)
-    expect(removals.filter((c) => c.field.startsWith('crossChecked.'))).toHaveLength(14)
+    expect(removals.filter((c) => c.field.startsWith('crossChecked.'))).toHaveLength(21)
   })
 
   it('records a digest and a marker, never the removed row', () => {
@@ -518,7 +548,7 @@ describe('published pleno findings — lote 1 of the row 0–17 review', () => {
     expect(LOTE_1).toHaveLength(15)
     const expected = LOTE_1.reduce((n, c) => n + c.added.length, 0)
     expect(expected).toBe(27)
-    expect(allCorrections.length).toBe(76)
+    expect(allCorrections.length).toBe(TOTAL_CORRECTIONS)
     // …and the ids are real. `byId` throws on drift, so this also pins that
     // none of the fifteen was retracted wholesale instead of corrected.
     expect(LOTE_1.map((c) => byId(c.id).id)).toEqual(LOTE_1.map((c) => c.id))
@@ -532,7 +562,7 @@ describe('published pleno findings — lote 1 of the row 0–17 review', () => {
       readFileSync(resolve('public/data/pleno-findings.json'), 'utf8'),
     )
     expect(parsed.items).toHaveLength(items.length)
-    expect(parsed.items.flatMap((f) => f.corrections ?? [])).toHaveLength(76)
+    expect(parsed.items.flatMap((f) => f.corrections ?? [])).toHaveLength(TOTAL_CORRECTIONS)
   })
 
   it.each(LOTE_1)('$id logs exactly the corrections that were issued', (c) => {
@@ -650,5 +680,570 @@ describe('published pleno findings — lote 1 of the row 0–17 review', () => {
     expect(f.title).not.toMatch(/sólo contrato/i)
     // What is left is the quote's own content, and nothing more.
     expect(f.summary).toContain('una parte de las instalaciones deportivas')
+  })
+})
+
+// ─── Lote 2 · filas 18–35 de la cola de revisión ─────────────────────────────
+
+/**
+ * The eleven findings corrected from the row 18–35 review of
+ * `editorial/finding-support-queue.json`.
+ *
+ * Six are lote 1's defect again — the manufactured documentary link the
+ * generator was required to produce until 04761aa — and take lote 1's remedy:
+ * strip the clause, let the finding stand on what the groups said, retract the
+ * expediente that clause named and nothing else. `crossChecked[]` is by
+ * contract the record of what was cross-checked, not a filtered list of what
+ * agrees, so a weak pairing no sentence named stays.
+ *
+ * The five that are not that are the ones worth reading:
+ *
+ *   · cd77e9 — MISATTRIBUTION. «El grupo PP manifiesta su negativa» came from
+ *     «Yo, no el resto del PP. Yo, no.» The speaker was expressly separating
+ *     their vote from their group's, and the summary published the opposite.
+ *   · 7c65c5 — MISATTRIBUTION. «El PP señala que votaron en contra» came from
+ *     «el día 16 de marzo USTEDES votaron en contra»: the PP was accusing
+ *     another bench, and the summary's syntax turned the reproach back on the
+ *     one making it. A second-person pronoun in a transcript does not identify
+ *     who it addressed, so the deixis stays and the quote is verbatim.
+ *   · 1e90e0 — MISATTRIBUTION, surviving a correction that was itself sound.
+ *     August fixed the framing but left «en servicios relacionados con
+ *     derrumbes y muro de contención» in place — words neither speaker says,
+ *     imported from a NOVEMBER 2022 contract, inside a sentence that states
+ *     they come from the intervention.
+ *   · c905c3 — MISATTRIBUTION, against its own `priorReview`, which called it
+ *     exemplary. The speaker describes a contract backed BY a pre-existing
+ *     waste plan; the summary published a contract TO DRAFT the plan, which is
+ *     exactly the expediente it cited. A plan cannot approve the contract that
+ *     creates it. The earlier audit compared the contract's title with the
+ *     summary, never the summary with the intervención.
+ *   · 56214f — `omision-material`. «La ausencia de obras mayores en el
+ *     registro corrobora parcialmente la queja» is corroboration from silence,
+ *     and a health centre is not a municipal competence, so its absence from a
+ *     MUNICIPAL contracting register is expected either way.
+ *
+ * Plus c80e68, whose prose was sound and leaked `· estado: unknown` into a
+ * quoted contract title. That one needed no CLI extension: the sentinel was in
+ * the summary, which `--field summary` already owns.
+ */
+interface Lote2Case {
+  id: string
+  /** Corrections appended by this batch, in issue order. */
+  added: string[]
+  /** Corrections the finding already carried before it. */
+  priorCorrections: number
+  /** Fragments of the defect, which must be gone from title+summary. */
+  drops: string[]
+  /** Fragments the finding still stands on, which must be intact. */
+  keeps: string[]
+  /** Surviving crossChecked rows, in order: `kind` + the snippet's first 40 chars. */
+  refs: string[]
+  /** Surviving quotes, in order. Untouched by this batch — any change is a defect. */
+  claims: string[]
+  groups: (string | null)[]
+}
+
+const LOTE_2: Lote2Case[] = [
+  {
+    id: 'f-2026-01-19-cit-3fd230',
+    added: ['summary', 'crossChecked.0'],
+    priorCorrections: 1,
+    // A CLEANING contract for the pool cannot date the works, the opening or a
+    // vote from 1989. The shared word was «piscina».
+    drops: ['Este debate coincide con registros oficiales', 'Servicio de limpieza de piscina'],
+    keeps: ['se inauguró en diciembre de 2012', 'se emitieron votos en contra en años anteriores'],
+    refs: [
+      'tender|Contrato basado en el SDA de obras para ',
+      'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
+    ],
+    claims: [
+      '19gax3o-149-cit-3fd230',
+      '19gax3o-132-acu-a3b10d',
+      '19gax3o-146-cit-288e9a',
+      '19gax3o-147-acu-01da0f',
+    ],
+    groups: ['PSOE', null, 'PSOE', null],
+  },
+  {
+    id: 'f-2026-01-19-cit-543cc1',
+    added: ['summary', 'crossChecked.1'],
+    priorCorrections: 1,
+    // Two defects. The invented link was street lighting in the industrial
+    // estate after the DANA — neither heating, nor sport, nor the complex. And
+    // the summary read «la malla» BOTH ways at once, as the sports complex and
+    // as a wire fence, publishing both as if each were established; the
+    // transcript settles neither, so the speaker is quoted verbatim instead.
+    drops: [
+      'Estos puntos se reflejan en registros',
+      'alumbrado público en zona industrial',
+      'reparar la malla exterior debido a su deterioro',
+    ],
+    keeps: [
+      'hay que ver toda la parte externa de la malla, está cayendo',
+      'no permite determinar si se refiere al propio complejo o a un cerramiento',
+    ],
+    // The heating cotejo STAYS. The debate's own first quote is «El tema de la
+    // instalación de térmicas», so it is a record genuinely on the subject;
+    // what was false was the prose claiming it reflected the points.
+    refs: [
+      'tender|Servicio mantenimiento instalaciones tér',
+      'tender|Contrato basado en el SDA de obras para ',
+      'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
+    ],
+    claims: [
+      '19gax3o-119-cit-543cc1',
+      '19gax3o-114-acu-961675',
+      '19gax3o-139-cit-be1832',
+      '19gax3o-126-acu-d49e67',
+    ],
+    groups: [null, null, 'PP', 'PP'],
+  },
+  {
+    id: 'f-2026-01-19-cit-c80e68',
+    added: ['summary'],
+    priorCorrections: 1,
+    // The one row of this batch the review upheld. Nothing was retracted and
+    // the claim it makes is unchanged — only the pasted sentinel went.
+    drops: ['estado: unknown', '· Ayuntamiento de Riba-roja de Túria ·'],
+    keeps: [
+      "el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla'",
+      'la ausencia de una agenda de reconstrucción local',
+    ],
+    refs: [
+      'tender|Contratación servicio dirección de obra ',
+      'tender|Servicio mantenimiento instalaciones en ',
+      'tender|Servicio de limpieza de piscina cubierta',
+      'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
+    ],
+    claims: [
+      '19gax3o-051-cit-c80e68',
+      '19gax3o-055-cit-a80e52',
+      '19gax3o-132-cit-35c4f5',
+      '19gax3o-143-cit-a3a7a1',
+    ],
+    groups: ['VOX', 'VOX', null, null],
+  },
+  {
+    id: 'f-2025-12-23-acu-cd77e9',
+    added: ['summary', 'crossChecked.2'],
+    priorCorrections: 1,
+    drops: [
+      'El grupo PP manifiesta su negativa',
+      'El debate se enmarca en la documentación',
+      'sistema de debate, voto electrónico',
+    ],
+    keeps: [
+      'voto en contra a título individual',
+      '«Yo, no el resto del PP»',
+      'ninguna empresa competidora impugnó la adjudicación',
+    ],
+    refs: [
+      'tender|LOTE 3 : Enlace camino c/ Dolçaina – c/ ',
+      'tender|El objeto del contrato es la prestación ',
+      'tender|Contrato por tramitación anticipada de s',
+      'pleno-video|Vídeo del pleno 2025-12-23 · YouTube',
+    ],
+    claims: [
+      '1qi8axv-060-acu-cd77e9',
+      '1qi8axv-113-acu-192a53',
+      '1qi8axv-071-acu-8906e2',
+      '1qi8axv-045-acu-e5dbbb',
+    ],
+    groups: ['PSOE', 'PP', null, null],
+  },
+  {
+    id: 'f-2025-12-23-cit-c905c3',
+    added: ['summary', 'crossChecked.0'],
+    priorCorrections: 1,
+    // «grupo no identificado grupo», a duplicated word and a sentence opening
+    // in lower case, was live prose too — mechanical residue of the `Otro`
+    // fix of 2026-08-01.
+    drops: [
+      'un contrato para la elaboración del plan local de residuos',
+      'El registro municipal incluye',
+      'grupo no identificado grupo',
+    ],
+    keeps: [
+      '«aprobado por un plan local de residuos» ya existente',
+      'Un grupo no identificado menciona la necesidad de mejorar la recogida',
+    ],
+    refs: [
+      'tender|Servicio limpieza · Ayuntamiento de Riba',
+      'tender|Contrato administrativo para la contrata',
+      'pleno-video|Vídeo del pleno 2025-12-23 · YouTube',
+    ],
+    claims: [
+      '1qi8axv-052-cit-c905c3',
+      '1qi8axv-052-cit-977367',
+      '1qi8axv-057-afi-c1ba98',
+      '1qi8axv-057-afi-e76c4d',
+    ],
+    groups: ['PSOE', 'PSOE', null, null],
+  },
+  {
+    id: 'f-2025-09-08-acu-70a34f',
+    added: ['summary', 'crossChecked.0'],
+    priorCorrections: 0,
+    drops: ['La actividad contractual del consistorio incluye', 'limpieza C.D. La Mallá'],
+    keeps: ['el personal docente tuvo que limpiar las aulas', 'se solventó en pocos días'],
+    refs: [
+      'tender|Contrato de patrocinio entre el Ayuntami',
+      'tender|Servicio mantenimiento instalaciones tér',
+      'tender|Mantenimiento de las instalaciones contr',
+      'pleno-video|Vídeo del pleno 2025-09-08 · YouTube',
+    ],
+    claims: [
+      'c8kr44-231-acu-70a34f',
+      'c8kr44-119-cit-e9c4b9',
+      'c8kr44-242-cit-671430',
+      'c8kr44-243-cit-be89b4',
+    ],
+    groups: ['PP', 'Compromís', 'PSOE', 'PSOE'],
+  },
+  {
+    id: 'f-2025-07-31-acu-144947',
+    added: ['summary', 'crossChecked.0'],
+    priorCorrections: 0,
+    // «al Conso.» was the excerpt cut mid-word, published as if it were the
+    // end of the sentence.
+    drops: ['gestiones provinciales reflejadas en', 'servicios Postales de Carta', 'al Conso.'],
+    keeps: [
+      'recurrido a entidades provinciales para reclamar fondos de 2024',
+      'sus propuestas presupuestarias para dicho ejercicio no fueron atendidas',
+    ],
+    refs: [
+      'tender|Contrato de servicio alumbrado ornamenta',
+      'tender|Contrato verbal de servicio de oficiales',
+      'pleno-video|Vídeo del pleno 2025-07-31 · YouTube',
+    ],
+    claims: ['rmtyr-141-acu-144947', 'rmtyr-021-acu-e0e848', 'rmtyr-189-acu-61aa87'],
+    groups: ['PP', 'PP', 'Compromís'],
+  },
+  {
+    id: 'f-2026-07-03-cit-1e90e0',
+    added: ['summary', 'crossChecked.0'],
+    priorCorrections: 3,
+    drops: ['derrumbes y muro de contención', 'en servicios relacionados con'],
+    keeps: [
+      'suplantaba a Garbialdi.',
+      'no recoge ningún contrato adjudicado a FCC',
+      'sin corroboración documental',
+    ],
+    refs: [
+      'tender|LOTE 3 : Enlace camino c/ Dolçaina – c/ ',
+      'tender|Contrato de servicios para la realizació',
+      'pleno-video|Vídeo del pleno 2026-07-03 · YouTube',
+    ],
+    claims: [
+      '1237hbp-006-cit-1e90e0',
+      '1237hbp-046-cit-df61b1',
+      '1237hbp-029-cit-0d2047',
+      '1237hbp-103-cit-4bf2c1',
+    ],
+    groups: [null, null, 'Compromís', null],
+  },
+  {
+    id: 'f-2026-05-11-acu-7c65c5',
+    added: ['summary'],
+    priorCorrections: 1,
+    // The second half went too: «el PSOE afirma no recoger al votar en contra
+    // de los presupuestos» came from a broken fragment that means nothing in
+    // Castilian and still left the PSOE voting against. With the first
+    // sentence it published BOTH groups voting against the same budget.
+    drops: ['El PP señala que votaron en contra', 'el PSOE afirma no recoger al votar'],
+    keeps: [
+      '«el día 16 de marzo ustedes votaron en contra',
+      'sin que la transcripción registre a quién se dirigía',
+      'no recoge ningún expediente de ese seguimiento',
+    ],
+    refs: [
+      'tender|Suministro módulos elaboración de presup',
+      'tender|Contrato Menor 01m/2022 de Servicio de E',
+      'tender|Contrato de obras de escollera de piedra',
+      'pleno-video|Vídeo del pleno 2026-05-11 · YouTube',
+    ],
+    claims: [
+      '10yl550-330-acu-7c65c5',
+      '10yl550-106-acu-dd1a86',
+      '10yl550-254-cit-cb6e5f',
+      '10yl550-300-acu-ae5a28',
+    ],
+    groups: ['PSOE', 'PP', 'PP', 'PP'],
+  },
+  {
+    id: 'f-2026-03-16-cit-377216',
+    added: ['title', 'summary'],
+    priorCorrections: 0,
+    // The hedge exculpated what was not in dispute (execution status) and took
+    // as settled what the excerpt cannot support (that this is the same
+    // building). The cotejo stays — it is real and well described; what was
+    // wrong was calling it identified. The title asserted the link first.
+    drops: [
+      'del mismo edificio polivalente',
+      'el vínculo documental existe',
+      'el proyecto está activo',
+      'con contrato en BD',
+    ],
+    keeps: ['no cita la Chemmachor ni permite confirmar', 'cubierta de un Edificio Polivalente'],
+    refs: ['tender|Obras de impermeabilización cubierta Edi'],
+    claims: ['ma87e0-104-cit-377216', 'ma87e0-162-cit-092d3e'],
+    groups: ['PSOE', 'PSOE'],
+  },
+  {
+    id: 'f-2026-03-16-cit-56214f',
+    added: ['summary'],
+    priorCorrections: 0,
+    drops: ['corrobora', 'La ausencia de obras mayores'],
+    keeps: [
+      'carpa de triaje en la zona exterior del Centro de Salud',
+      'no equivale a la inversión que el orador echa en falta',
+    ],
+    refs: ['tender|Contrato menor, suministro para la adqui'],
+    claims: ['ma87e0-195-cit-56214f'],
+    groups: [null],
+  },
+]
+
+/**
+ * The four rows where the defect was not a manufactured link but words or a
+ * position put into a named bloc's mouth. Each pins the invented assertion as
+ * a REGEX over the corrected title+summary — a substring would pass on a
+ * reworded restatement of the same claim — beside the fragment of the source
+ * the correction now rests on.
+ */
+const MISATRIBUCIONES = [
+  {
+    id: 'f-2025-12-23-acu-cd77e9',
+    /** The bloc position the summary invented. */
+    inventado: /(?:el )?grupo PP[^.]{0,60}(?:negativa|vot[óo] en contra|se opone)/i,
+    /** …and what the source actually says, which the correction now carries. */
+    verbatim: '«Yo, no el resto del PP»',
+    quoteIndex: 1,
+  },
+  {
+    id: 'f-2026-05-11-acu-7c65c5',
+    inventado: /el PP (?:señala|afirma|indica)[^.]{0,40}vot(?:aron|ó|amos) en contra/i,
+    verbatim: '«el día 16 de marzo ustedes votaron en contra',
+    quoteIndex: 3,
+  },
+  {
+    id: 'f-2026-07-03-cit-1e90e0',
+    inventado: /derrumbes|muro de contenci[óo]n/i,
+    // Unlike the other three, the remedy here was a deletion, not a re-quote:
+    // what was invented was the SCOPE of the substitution. The positive half
+    // is therefore that what the finding still says about the contract is the
+    // speaker's own noun phrase.
+    verbatim: 'contrato de emergencia',
+    quoteIndex: 1,
+  },
+  {
+    id: 'f-2025-12-23-cit-c905c3',
+    inventado: /contrato (?:menor )?(?:de servicio )?para la elaboraci[óo]n del plan/i,
+    verbatim: '«aprobado por un plan local de residuos»',
+    quoteIndex: 0,
+  },
+]
+
+describe('published pleno findings — lote 2 of the row 18–35 review', () => {
+  it('corrected exactly the eleven findings the review made actionable', () => {
+    // Same measuring assertion as lote 1: every per-row block below only looks
+    // at rows it was handed, so a pass that skipped some stays green without
+    // this. Ten rows came from the review's actionable list; the eleventh is
+    // c80e68, whose sentinel turned out to be reachable with the CLI as it is.
+    expect(LOTE_2).toHaveLength(11)
+    const expected = LOTE_2.reduce((n, c) => n + c.added.length, 0)
+    expect(expected).toBe(19)
+    expect(LOTE_2.filter((c) => c.added.some((f) => f.startsWith('crossChecked.')))).toHaveLength(7)
+    // No id overlaps lote 1: these are two disjoint passes over one file, and
+    // a row corrected twice would need its `priorCorrections` re-read.
+    const lote1 = new Set(LOTE_1.map((c) => c.id))
+    expect(LOTE_2.filter((c) => lote1.has(c.id))).toEqual([])
+    expect(LOTE_2.map((c) => byId(c.id).id)).toEqual(LOTE_2.map((c) => c.id))
+  })
+
+  it.each(LOTE_2)('$id logs exactly the corrections that were issued', (c) => {
+    const f = byId(c.id)
+    const log = f.corrections ?? []
+    expect(log).toHaveLength(c.priorCorrections + c.added.length)
+    expect(log.slice(c.priorCorrections).map((x) => x.field)).toEqual(c.added)
+    expect(log.slice(c.priorCorrections).every((x) => x.editor.length > 1)).toBe(true)
+    // The trail before this batch is untouched — a new entry appends.
+    expect(log.slice(0, c.priorCorrections).every((x) => x.reason.trim().length >= 20)).toBe(true)
+  })
+
+  it.each(LOTE_2)('$id reads as a finished paragraph, not a truncated one', (c) => {
+    const f = byId(c.id)
+    expect(f.summary.trim().length).toBeGreaterThanOrEqual(40)
+    expect(f.title.trim().length).toBeGreaterThanOrEqual(10)
+    expect(f.summary.trim()).toMatch(/[.!?»"']$/)
+    expect(f.summary).not.toMatch(/[,;:]\s*$/)
+    expect(f.summary).not.toMatch(/\s{2,}|\s+[.,;]/)
+    expect(f.summary).not.toContain('«»')
+    // Every sentence starts with a capital. `c905c3` shipped «… establecidas.
+    // un grupo no identificado grupo menciona …» for eight days: a lower-case
+    // opening is the visible end of a mechanical edit that did not re-read the
+    // paragraph, and the duplicated word came with it.
+    for (const sentence of f.summary.split(/(?<=\.)\s+/)) {
+      if (sentence.trim().length === 0) continue
+      expect(sentence.trim(), `${c.id}: «${sentence.slice(0, 40)}…»`).toMatch(/^[«"'(\p{Lu}\d]/u)
+    }
+  })
+
+  it.each(LOTE_2)('$id no longer carries the defect, and still carries the finding', (c) => {
+    const f = byId(c.id)
+    const prose = `${f.title}\n${f.summary}`
+    for (const d of c.drops) expect(prose, `«${d}» sigue en la prosa`).not.toContain(d)
+    // The measuring half: without it, a summary emptied to «.» would satisfy
+    // every `drops` assertion above and read as a pass.
+    for (const k of c.keeps) expect(prose, `«${k}» debería seguir`).toContain(k)
+  })
+
+  it.each(LOTE_2)('$id keeps every neighbour the correction did not address', (c) => {
+    const f = byId(c.id)
+    expect(f.crossChecked.map((r) => `${r.kind}|${r.snippet.slice(0, 40)}`)).toEqual(c.refs)
+    expect(f.crossChecked.every((r) => /^https?:\/\//.test(r.ref))).toBe(true)
+    // No quote was in scope for this batch either, so every one of them, in
+    // order, must be exactly where it was.
+    expect(f.quotes.map((q) => q.sourceClaimId)).toEqual(c.claims)
+    expect(f.quotes.map((q) => q.speakerGroup)).toEqual(c.groups)
+    expect(f.contradiction).toEqual([])
+    expect(f.severity).toBe('informational')
+  })
+
+  it('every phrase this batch put in guillemets is verbatim in a quote it publishes', () => {
+    // Six of the eleven now quote the speaker instead of paraphrasing them,
+    // which is the remedy for a deictic or an ambiguity the transcript does
+    // not settle. That remedy is only honest if the quoted words are the
+    // speaker's, so each «…» span is matched against the finding's own quotes.
+    let spans = 0
+    for (const c of LOTE_2) {
+      const f = byId(c.id)
+      for (const m of f.summary.matchAll(/«([^»]+)»/g)) {
+        spans += 1
+        const needle = m[1].replace(/[.,;:]$/, '')
+        expect(
+          f.quotes.some((q) => q.text.includes(needle)),
+          `${c.id}: «${needle}» no está en ninguna cita del hallazgo`,
+        ).toBe(true)
+      }
+    }
+    // The measuring assertion: zero spans would satisfy the loop silently.
+    expect(spans).toBeGreaterThanOrEqual(4)
+  })
+
+  it.each(MISATRIBUCIONES)(
+    '$id no longer asserts the bloc position it invented',
+    ({ id, inventado, verbatim, quoteIndex }) => {
+      const f = byId(id)
+      const prose = `${f.title}\n${f.summary}`
+      // A regex, not a substring: the point is that the CLAIM is gone, not
+      // that one wording of it is.
+      expect(prose, `${id} sigue atribuyendo la posición inventada`).not.toMatch(inventado)
+      // …and the correction rests on the source, not on nothing: the fragment
+      // it now carries is verbatim in the quote it came from.
+      expect(prose).toContain(verbatim)
+      const source = f.quotes[quoteIndex]
+      expect(source, `${id}: la cita de origen ya no está`).toBeDefined()
+      expect(source.text).toContain(verbatim.replace(/^«/, '').replace(/»$/, ''))
+    },
+  )
+
+  it('c905c3: the anchored expediente is gone, and the corpus shows why it was wrong', () => {
+    // The row that contradicts its own `priorReview` («ejemplar: cita
+    // exactamente el expediente del que se hablaba»). The intervention
+    // describes a contract backed BY an existing waste plan; the cited
+    // expediente is the commission to WRITE that plan. Two different records,
+    // and the logical order forbids the identification — a plan cannot approve
+    // the contract that creates it. Verified against the published corpus so
+    // the assertion cannot drift from it.
+    const t = JSON.parse(readFileSync(resolve('public/data/tenders.json'), 'utf8')) as {
+      tenders: { title: string }[]
+      contracts: { title: string }[]
+    }
+    const rows = [...t.tenders, ...t.contracts]
+    // Both records exist and are distinct: drafting the plan, and collecting.
+    const redaccion = rows.filter((r) =>
+      /elaboraci[óo]n del plan\s+local de residuos/i.test(r.title),
+    )
+    const recogida = rows.filter((r) => /recogida de residuos s[óo]lidos urbanos/i.test(r.title))
+    expect(redaccion.length).toBeGreaterThan(0)
+    expect(recogida.length).toBeGreaterThan(0)
+    expect(redaccion.map((r) => r.title)).not.toEqual(recogida.map((r) => r.title))
+
+    const f = byId('f-2025-12-23-cit-c905c3')
+    // The drafting contract no longer hangs off the finding at all…
+    expect(f.crossChecked.filter((r) => /elaboraci[óo]n del plan/i.test(r.snippet))).toEqual([])
+    // …and no softer link was substituted for it: the collection expediente
+    // was NOT quietly promoted into the prose to keep a documentary anchor.
+    expect(f.summary).not.toMatch(/registro municipal|base de contrataci[óo]n|expediente/i)
+  })
+
+  it('1e90e0: no vocabulary of the retracted 2022 expediente survives in the prose', () => {
+    // The sharpest form of this row's defect: the summary named an OBJECT for
+    // the alleged substitution — «derrumbes y muro de contención» — that
+    // neither speaker uttered, inside a sentence stating that both assertions
+    // come from the intervention. The words came from the cotejo. Checked
+    // against the corpus rather than against a hand-copied string, so it
+    // cannot drift from the document it is about.
+    const t = JSON.parse(readFileSync(resolve('public/data/tenders.json'), 'utf8')) as {
+      tenders: { title: string }[]
+      contracts: { title: string }[]
+    }
+    const doc = [...t.tenders, ...t.contracts].find((r) =>
+      /contrato emergencia acondicionamiento de caminos/i.test(r.title),
+    )
+    expect(doc, 'el expediente de 2022 ya no está en el corpus').toBeDefined()
+    expect(doc!.title).toMatch(/noviembre de 2022/)
+
+    const f = byId('f-2026-07-03-cit-1e90e0')
+    const prose = `${f.title}\n${f.summary}`
+    // Every distinctive term of that 2022 title is absent from the prose…
+    for (const term of ['derrumbe', 'muro de contención', 'mallazo', 'caminos', '2022']) {
+      expect(doc!.title.toLowerCase(), `«${term}» ya no está en el documento`).toContain(
+        term.toLowerCase(),
+      )
+      expect(prose.toLowerCase(), `«${term}» sigue en la prosa`).not.toContain(term.toLowerCase())
+    }
+    // …and the document itself no longer hangs off the finding.
+    expect(f.crossChecked.filter((r) => /muro de contenci[óo]n/i.test(r.snippet))).toEqual([])
+    // The disclaimer the previous correction added is intact: this row's fix
+    // was additive to that one, not a replacement for it.
+    expect(f.summary).toContain('no recoge ningún contrato adjudicado a FCC')
+  })
+
+  it('no reason written for this batch echoes what its removal took out', () => {
+    // Paso 2 of `revisar-borrador` over lote 2's own seven retractions. The
+    // CLI guard reads capitalisation, so it catches names and misses
+    // paraphrase; this restates the machine-checkable half over the published
+    // bytes, where a hand-edit could land.
+    const batchRemovals = LOTE_2.flatMap((c) =>
+      (byId(c.id).corrections ?? [])
+        .slice(c.priorCorrections)
+        .filter((x) => CORRECTION_REMOVAL_FIELD_RE.test(x.field)),
+    )
+    expect(batchRemovals).toHaveLength(7)
+    const offences: string[] = []
+    for (const r of batchRemovals) {
+      expect(r.original).toMatch(/^documento cotejado · sha256:[0-9a-f]{12}$/)
+      expect(r.corrected).toBe('retirado del hallazgo')
+      for (const m of r.reason.matchAll(/\p{Lu}[\p{L}\p{M}’'-]*/gu)) {
+        const before = r.reason.slice(0, m.index).trimEnd()
+        if (before.length === 0 || /[.!?:;]$/.test(before)) continue
+        offences.push(`${r.field}: «${m[0]}»`)
+      }
+    }
+    expect(offences).toEqual([])
+  })
+
+  it('no reason written for this batch pastes a URL, retraction or not', () => {
+    const batch = LOTE_2.flatMap((c) => (byId(c.id).corrections ?? []).slice(c.priorCorrections))
+    expect(batch).toHaveLength(19)
+    expect(batch.filter((r) => /https?:\/\//.test(r.reason))).toEqual([])
+    expect(batch.every((r) => r.reason.trim().length >= 20)).toBe(true)
+    // Three of the four misattribution reasons say so in as many words. The
+    // correction trail is what a reader of /hallazgos sees beside the struck
+    // text, and «se reescribe la atribución» is the part that matters to them.
+    const attribution = batch.filter((r) => /atribuci[óo]n|atribu(?:ía|ían|ir)/i.test(r.reason))
+    expect(attribution.length).toBeGreaterThanOrEqual(3)
   })
 })

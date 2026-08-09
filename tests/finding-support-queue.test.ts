@@ -15,6 +15,8 @@ import {
   buildSupportQueue,
   carriedReviewsFrom,
   classifyClaimShape,
+  DOCUMENTARY_CONNECTOR_NAMES,
+  HEDGE_MARKER_NAMES,
   SUPPORT_VERDICTS,
   SUPPORT_VERDICT_IDS,
   PRIOR_REVIEWS,
@@ -168,10 +170,34 @@ describe('buildSupportQueue · los casos tabulados, todos reparados', () => {
     // El complemento obligatorio de las tres aserciones invertidas: si el
     // clasificador dejara de reconocer conectores, las tres pasarían por la
     // razón equivocada y este bloque sería verde sin medir nada.
-    const queue = build()
-    const afirmativas = queue.rows.filter((r) => r.claimShape === 'afirmativa-documental')
-    expect(afirmativas.length).toBeGreaterThan(10)
-    expect(afirmativas.every((r) => r.documentaryConnectors.length > 0)).toBe(true)
+    //
+    // Se mide sobre ENTRADA CONTROLADA, no contando filas del corpus vivo. La
+    // versión anterior exigía «más de diez afirmativas publicadas», y eso hace
+    // que una pasada de correcciones —cuyo objetivo es justamente que queden
+    // menos— rompa la prueba por haber acertado. Dos sumarios sintéticos
+    // montados sobre una fila real del snapshot (para no recitar la forma)
+    // bastan: si el léxico muere, los dos caen en el mismo cajón y la
+    // aserción de separación se pone roja pase lo que pase en el corpus.
+    const base = SNAPSHOT.items[0]
+    const probe = (id: string, summary: string) => ({ ...base, id, summary })
+    const controlled = {
+      ...SNAPSHOT,
+      items: [
+        probe('probe-sin-afirmacion', 'Un grupo menciona en el pleno la limpieza de los colegios.'),
+        probe(
+          'probe-afirmativa',
+          'Un grupo menciona la limpieza de los colegios. El registro municipal incluye el contrato de limpieza.',
+        ),
+      ],
+    }
+    const rows = buildSupportQueue(controlled, { generatedAt: '2026-08-09T00:00:00.000Z' }).rows
+    const shapeOf = (id: string) => rows.find((r) => r.id === id)!.claimShape
+    expect(shapeOf('probe-afirmativa')).toBe('afirmativa-documental')
+    expect(shapeOf('probe-sin-afirmacion')).toBe('sin-afirmacion-documental')
+    // Y la cola sigue leyéndose por ese orden: lo que afirma un vínculo, antes.
+    expect(rows.map((r) => r.id)).toEqual(['probe-afirmativa', 'probe-sin-afirmacion'])
+    expect(rows[0].documentaryConnectors.length).toBeGreaterThan(0)
+    expect(rows[1].documentaryConnectors).toEqual([])
   })
 })
 
@@ -261,19 +287,133 @@ describe('classifyClaimShape · propiedad léxica, nunca un pronóstico', () => 
     expect(r.connectors).toEqual([])
   })
 
-  it('clasifica los 52 hallazgos publicados en las tres formas, sin dejar ninguna vacía', () => {
-    const counts = { a: 0, m: 0, s: 0 }
-    for (const f of SNAPSHOT.items) {
-      const shape = classifyClaimShape(f.summary).shape
-      if (shape === 'afirmativa-documental') counts.a += 1
-      else if (shape === 'documental-matizada') counts.m += 1
-      else counts.s += 1
+  /**
+   * ─── El sentinela era una proporción del corpus vivo, y medía al revés ────
+   *
+   * Hasta este lote, la garantía de «el clasificador sigue vivo» era
+   * `counts.a > items.length * 0.3` sobre el snapshot publicado. Nació bien
+   * —si el léxico moría, todo caía en «sin afirmación» y la cola perdía su
+   * orden sin romper nada— pero mide la cosa equivocada en cuanto empieza a
+   * haber correcciones: `afirmativa-documental` cuenta los sumarios que
+   * AFIRMAN un vínculo documental en voz del medio, y retirar los que nadie
+   * comprobó es exactamente el trabajo. El lote 1 lo bajó de 30 a 18 sobre un
+   * suelo de 15,6; el lote 2 lo deja en 12. El suelo castigaba el acierto, y
+   * el modo de «arreglarlo» que invita —bajar el número— es el que deja de
+   * medir.
+   *
+   * La propiedad que de verdad se quería es que el clasificador DISCRIMINE, y
+   * eso no depende del corpus: se comprueba con entradas conocidas. Queda
+   * repartido en dos bloques:
+   *
+   *   · sondas — un par mínimo por cada conector y por cada matiz declarados
+   *     en el módulo, con la lista IMPORTADA, no recitada. Ninguna pasada de
+   *     correcciones puede vaciarlas.
+   *   · corpus — sólo la coherencia entre la etiqueta y la prueba léxica que
+   *     la etiqueta significa, más la constancia de que se recorrieron todas
+   *     las filas. Sin proporciones: ninguna aserción de este bloque puede
+   *     ponerse roja porque el sitio afirme menos vínculos.
+   */
+  it('discrimina: el mismo enunciado documental cambia de forma al añadirle un matiz', () => {
+    // El par mínimo. Una sola frase, una sola variable: el matiz.
+    const afirmativa = 'El registro municipal incluye el contrato de limpieza de los colegios.'
+    const matizada = `${afirmativa.slice(0, -1)}, pero no documenta el asunto debatido.`
+    const sinAfirmacion = 'Un grupo menciona en el pleno la limpieza de los colegios.'
+
+    const shapes = [afirmativa, matizada, sinAfirmacion].map((s) => classifyClaimShape(s).shape)
+    // La aserción de separación, que es la que hay que leer: tres entradas
+    // controladas, tres formas distintas. Si el léxico de conectores muere,
+    // las tres colapsan en «sin afirmación»; si muere el de matices, las dos
+    // primeras colapsan en «afirmativa». Ambos casos caen aquí.
+    expect(new Set(shapes).size).toBe(3)
+    expect(shapes).toEqual([
+      'afirmativa-documental',
+      'documental-matizada',
+      'sin-afirmacion-documental',
+    ])
+  })
+
+  it('cada conector y cada matiz declarados en el módulo se reconocen', () => {
+    // Sondas por nombre. La cobertura se comprueba contra la lista EXPORTADA:
+    // añadir un conector sin sonda pone esto rojo, que es lo contrario de lo
+    // que hace un banco de casos escrito a mano.
+    const CONNECTOR_PROBES: Record<string, string> = {
+      incluye: 'El registro municipal incluye el contrato de limpieza.',
+      consta: 'Según la documentación municipal, consta la licitación de las obras.',
+      registra: 'La base municipal de contratación registra un contrato de obras.',
+      figura: 'En el registro municipal figura el expediente de las obras.',
+      'cuenta-con': 'El registro municipal cuenta con un contrato de limpieza.',
+      corrobora: 'El expediente corrobora la fecha de la adjudicación.',
+      'coincide-con': 'El debate coincide con registros oficiales de contratación.',
+      'se-relaciona-con': 'Este debate se relaciona con el registro de la licitación.',
+      'se-refleja-en': 'Estos puntos se reflejan en registros de contratación municipal.',
+      'se-enmarca-en': 'El debate se enmarca en la documentación del contrato de obras.',
+      'queda-documentado': 'La contratación municipal publicada queda documentada como tal.',
+      'en-referencia-al': 'En referencia al registro, la licitación se tramitó en 2025.',
+      'segun-el-registro': 'Según el registro, la licitación se adjudicó en 2025.',
+      // Sin «incluyen»: el clasificador se queda con el PRIMER conector de la
+      // tabla que encaja en cada frase, así que una sonda con dos conectores
+      // mide el otro y pasa creyendo que midió éste. La aserción de sonda
+      // única, más abajo, es la que lo destapó.
+      'documentos-cotejados': 'Los documentos cotejados corresponden a la licitación de las obras.',
     }
-    expect(counts.a + counts.m + counts.s).toBe(SNAPSHOT.items.length)
-    // Techo de sentinela: si el clasificador dejara de reconocer conectores,
-    // todo caería en «sin afirmación» y la cola perdería su orden sin fallar.
-    expect(counts.a).toBeGreaterThan(SNAPSHOT.items.length * 0.3)
-    expect(counts.s).toBeLessThan(SNAPSHOT.items.length * 0.5)
+    const HEDGE_PROBES: Record<string, string> = {
+      negacion: 'El registro municipal incluye el contrato, pero no documenta lo debatido.',
+      'sin-respaldo': 'El registro municipal incluye el contrato, sin corroboración de lo dicho.',
+      ninguno: 'El registro municipal incluye contratos, pero ninguno respalda lo debatido.',
+      parcial: 'El registro municipal incluye el contrato; sólo podemos confirmar su existencia.',
+    }
+    expect(Object.keys(CONNECTOR_PROBES).sort()).toEqual([...DOCUMENTARY_CONNECTOR_NAMES].sort())
+    expect(Object.keys(HEDGE_PROBES).sort()).toEqual([...HEDGE_MARKER_NAMES].sort())
+
+    for (const [name, probe] of Object.entries(CONNECTOR_PROBES)) {
+      const r = classifyClaimShape(probe)
+      // Sonda de un solo conector, o no se sabe cuál se está midiendo.
+      expect(
+        r.connectors.map((c) => c.name),
+        `sonda de «${name}»`,
+      ).toEqual([name])
+      expect(r.shape, `sonda de «${name}»`).toBe('afirmativa-documental')
+      // Y la frase que se le devuelve al curador es verbatim del sumario, que
+      // es lo único que le permite justificar la etiqueta.
+      expect(probe).toContain(r.connectors[0].sentence)
+    }
+    for (const [name, probe] of Object.entries(HEDGE_PROBES)) {
+      const r = classifyClaimShape(probe)
+      expect(
+        r.hedges.map((h) => h.name),
+        `matiz «${name}» no reconocido`,
+      ).toContain(name)
+      expect(r.shape).toBe('documental-matizada')
+      expect(probe.toLowerCase()).toContain(r.hedges[0].match.toLowerCase())
+    }
+  })
+
+  it('sobre el corpus publicado: la etiqueta y la prueba léxica nunca se separan', () => {
+    // Lo único que se afirma del corpus vivo, y lo que atraparía: una fila
+    // etiquetada sin la evidencia léxica que la etiqueta significa —una
+    // «afirmativa» sin conector, una «matizada» sin matiz, una «sin
+    // afirmación» que sí lo lleva—. Es invariante bajo correcciones: borrar
+    // conectores mueve filas de cajón sin romperlo nunca.
+    let checked = 0
+    for (const f of SNAPSHOT.items) {
+      const { shape, connectors, hedges } = classifyClaimShape(f.summary)
+      checked += 1
+      if (shape === 'afirmativa-documental') {
+        expect(connectors.length, `${f.id}`).toBeGreaterThan(0)
+        expect(hedges, `${f.id}`).toEqual([])
+      } else if (shape === 'documental-matizada') {
+        expect(connectors.length, `${f.id}`).toBeGreaterThan(0)
+        expect(hedges.length, `${f.id}`).toBeGreaterThan(0)
+      } else {
+        expect(connectors, `${f.id}`).toEqual([])
+      }
+      // La frase citada por el conector sale del sumario, byte a byte.
+      for (const c of connectors) expect(f.summary).toContain(c.sentence)
+    }
+    // Que el recorrido evaluó algo. NO se afirma cuántas filas caen en cada
+    // forma: ese número debe poder bajar sin que nada se ponga rojo.
+    expect(checked).toBe(SNAPSHOT.items.length)
+    expect(checked).toBeGreaterThan(40)
   })
 })
 

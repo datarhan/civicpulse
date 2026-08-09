@@ -2,11 +2,12 @@
  * A cross-checked document a reader cannot date.
  *
  * `f-2026-07-03-cit-1e90e0` documents a July 2026 debate about an emergency
- * waste contract; the first document under it is an emergency contract from
+ * waste contract; the first document under it WAS an emergency contract from
  * the November 2022 storms, about roads. Both facts were in the data — one of
- * them was not on screen. These tests pin the resolution, and every scan below
- * asserts it EVALUATED something: an index that silently resolved nothing
- * would satisfy "no wrong dates" perfectly.
+ * them was not on screen. (That pairing has since been retracted from the
+ * finding for a separate reason; the dating property it exposed is what these
+ * tests keep.) Every scan below asserts it EVALUATED something: an index that
+ * silently resolved nothing would satisfy "no wrong dates" perfectly.
  */
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
@@ -180,18 +181,47 @@ describe('the published findings resolve', () => {
     expect(dated / total).toBeGreaterThan(0.9)
   })
 
-  it('dates the FCC finding’s leading document to the 2022 storms, not the debate', () => {
-    const f = items.find((x) => x.id === 'f-2026-07-03-cit-1e90e0')
-    expect(f).toBeTruthy()
-    expect(f!.plenoDate).toBe('2026-07-03')
-    const lead = f!.crossChecked![0]
-    expect(lead.snippet).toMatch(/contrato emergencia acondicionamiento de caminos/)
+  it('dates the 2022 storm contract to the storms, not to the debate citing it', () => {
+    // The document this suite was written for. It used to be
+    // `f-2026-07-03-cit-1e90e0`'s leading cotejo, and the finding read as if
+    // a July 2026 debate about a waste contract were documented by a November
+    // 2022 roads contract; the fix/hallazgos-lote-2 review retracted it from
+    // that finding, because the summary had imported its wording («derrumbes y
+    // muro de contención») and attributed it to a speaker.
+    //
+    // The property under test is `refDate`'s, not that finding's: a document
+    // is dated by ITSELF, never by the session that cites it. So the ref is
+    // built from the corpus row rather than read out of whichever finding
+    // happens to cross-check it today — anchoring a unit property to one
+    // curated row makes a legitimate retraction look like a regression, which
+    // is exactly how this test failed.
+    const row = [...tenders.tenders, ...tenders.contracts].find((r: { title?: string }) =>
+      /contrato emergencia acondicionamiento de caminos/i.test(r.title ?? ''),
+    ) as { title: string; permalink: string } | undefined
+    expect(row, 'el expediente de 2022 ya no está en tenders.json').toBeTruthy()
+    expect(row!.title).toMatch(/noviembre de 2022/)
 
-    const d = refDate(lead, index, f!.plenoDate)
+    const ref: Ref = { kind: 'tender', ref: row!.permalink, snippet: row!.title }
+    // Dated against a debate four years later: the date must be the
+    // document's, and a reader must be able to see the gap.
+    const d = refDate(ref, index, '2026-07-03')
     expect(d).toBeTruthy()
-    // The whole point: the document predates the debate it sits under, and by
-    // enough that a reader must be able to see it.
-    expect(d!.iso < f!.plenoDate).toBe(true)
+    expect(d!.iso < '2026-07-03').toBe(true)
     expect(Number(d!.iso.slice(0, 4))).toBeLessThanOrEqual(2023)
+  })
+
+  it('every finding still carries at least one document a reader can date', () => {
+    // The corpus-level half, and the one a retraction pass could break for
+    // real: taking a row out must not leave a finding whose «Documentos
+    // cotejados» block is all blank dates.
+    let checked = 0
+    for (const f of items) {
+      const refs = f.crossChecked ?? []
+      if (refs.length === 0) continue
+      checked += 1
+      const dated = refs.filter((r) => refDate(r, index, f.plenoDate))
+      expect(dated.length, `${f.id}: ningún cotejo fechable`).toBeGreaterThan(0)
+    }
+    expect(checked).toBeGreaterThan(40)
   })
 })

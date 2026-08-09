@@ -154,6 +154,21 @@ const HEDGE_MARKERS: ReadonlyArray<readonly [string, RegExp]> = [
   ],
 ]
 
+/**
+ * Los nombres de conector y de matiz que el clasificador sabe emitir.
+ *
+ * Exportados para que una prueba pueda comprobar que **discrimina** sin
+ * recitar la lista: un banco de sondas que enumera sus propios casos se queda
+ * atrás en cuanto se añade un conector, y sigue verde. Con esto, la prueba
+ * afirma que cubre exactamente estos nombres y se pone roja el día que aparece
+ * uno nuevo sin sonda. Es la regla 1 de docs/DATA_INTEGRITY.md aplicada a un
+ * léxico en vez de a un enum de estados.
+ */
+export const DOCUMENTARY_CONNECTOR_NAMES: readonly string[] = DOCUMENTARY_CONNECTORS.map(
+  ([name]) => name,
+)
+export const HEDGE_MARKER_NAMES: readonly string[] = HEDGE_MARKERS.map(([name]) => name)
+
 export interface ConnectorHit {
   /** Nombre del conector, p. ej. `incluye`. */
   name: string
