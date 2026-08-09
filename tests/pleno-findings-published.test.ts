@@ -20,6 +20,11 @@ import {
   type PlenoFinding,
   type PlenoFindingsSnapshot,
 } from '../src/scraper/pleno-finding'
+import {
+  buildRecordDateIndex,
+  emptyRecordDateGateReport,
+  recordKnowableAt,
+} from '../src/scraper/record-dates'
 
 /**
  * Parsed RAW, deliberately — not through `validateFindingsSnapshot`.
@@ -51,8 +56,8 @@ const removals = allCorrections.filter((c) => CORRECTION_REMOVAL_FIELD_RE.test(c
  * nothing. Each review batch moves these two numbers and says so in its commit
  * message; every other assertion in this file is local to one finding.
  */
-const TOTAL_CORRECTIONS = 95
-const TOTAL_REMOVALS = 23
+const TOTAL_CORRECTIONS = 116
+const TOTAL_REMOVALS = 33
 
 describe('published pleno findings — no matcher internals in reader-facing text', () => {
   it('no snippet carries the similarity annotation', () => {
@@ -101,12 +106,12 @@ describe('published pleno findings — a removal does not republish what it remo
     // selection, which is precisely how a green suite hides a regression.
     //
     // Pinned to a count, not to `> 0`: the lote-1 review batch added eleven
-    // `crossChecked.<i>` retractions to b8fea6f's four and lote-2 another
-    // seven, and a run that skipped rows would still satisfy `> 0` while
-    // retracting nothing.
+    // `crossChecked.<i>` retractions to b8fea6f's four, lote-2 another seven
+    // and lote-3 nine more plus a quote, and a run that skipped rows would
+    // still satisfy `> 0` while retracting nothing.
     expect(removals.length).toBe(TOTAL_REMOVALS)
-    expect(removals.filter((c) => c.field.startsWith('quote.'))).toHaveLength(2)
-    expect(removals.filter((c) => c.field.startsWith('crossChecked.'))).toHaveLength(21)
+    expect(removals.filter((c) => c.field.startsWith('quote.'))).toHaveLength(3)
+    expect(removals.filter((c) => c.field.startsWith('crossChecked.'))).toHaveLength(30)
   })
 
   it('records a digest and a marker, never the removed row', () => {
@@ -1245,5 +1250,726 @@ describe('published pleno findings — lote 2 of the row 18–35 review', () => 
     // text, and «se reescribe la atribución» is the part that matters to them.
     const attribution = batch.filter((r) => /atribuci[óo]n|atribu(?:ía|ían|ir)/i.test(r.reason))
     expect(attribution.length).toBeGreaterThanOrEqual(3)
+  })
+})
+
+// ─── Lote 3 · filas 36–51 de la cola de revisión ─────────────────────────────
+
+/**
+ * The thirteen findings corrected from the row 36–51 review of
+ * `editorial/finding-support-queue.json`, the last of the three passes.
+ *
+ * This batch is where the REMOVAL CRITERION had to be stated out loud, because
+ * eight of its sixteen rows were tagged `ref-injustificada` — the prose is
+ * sound, a cotejo arguably does not belong. Lotes 1 and 2 already held that
+ * `crossChecked[]` is by contract the record of what was cross-checked and not
+ * a filtered list of what agrees, so a merely WEAK pairing is not grounds for
+ * retraction. A row comes out only when one of three things is true, and each
+ * removal reason says which:
+ *
+ *   1. the deleted sentence NAMED it — the lote 1–2 rule (947479, d89862,
+ *      6c4d24);
+ *   2. it names an identifiable private individual with no role in the session
+ *      — the b8fea6f precedent (8b29a9, cc8758, 34560f);
+ *   3. it POST-DATES the session, so the council cannot have been discussing
+ *      it (5238db ×3, and 2 and 3 together on the three above).
+ *
+ * Criterion 3 is not judgement: it is `recordKnowableAt` from
+ * `src/scraper/record-dates.ts`, the gate 04761aa put in front of new runs,
+ * applied here for consistency. It keys on the EARLIEST attested date of the
+ * expediente, not the award — a procurement is debatable from the day it is
+ * published — which is why the review's own reading of two rows did not
+ * survive contact with it: `cc8758`'s vallados contract, «adjudicado 51 días
+ * después», was already out to bid on 2025-12-18, a month BEFORE the session,
+ * and stays; while `5238db` turned out to carry three post-dated refs, not the
+ * one the review saw.
+ *
+ * Five rows needed prose, and three of those are the batch's real finding:
+ *
+ *   · 947479 — the worst row of the three passes. An apposition welded a
+ *     contract's full title into a sentence about a different agenda item, and
+ *     then published a VOTING OUTCOME that is checkably false: that contract
+ *     was formalised two years before the session, and the only adjudicación
+ *     voted that day passed unanimously with zero abstentions.
+ *   · d89862 — «Ambos grupos hacen referencia al contrato menor … de una
+ *     carpa»: none of the four quotes mentions a carpa, and the document is a
+ *     COVID triage tent. Its third quote was the chair giving the floor,
+ *     published as a PP quote.
+ *   · 6c4d24 — «Ambos grupos mencionan contratos menores … de asesoramiento
+ *     jurídico»: no quote mentions any contract; the bridge was the word
+ *     «jurídico» inside «apoyo psicológico, social, jurídico».
+ *   · a9546e — `tiempo-verbal`, against its own `priorReview`: «convalidó»
+ *     over «proponemos al pleno convalidar», with no vote record either way.
+ *   · a1ba00 — «La oposición atribuye…» over a quote whose `speakerGroup` is
+ *     null, the invented-bloc shape lote 2 corrected four times.
+ *
+ * Three more rows carried smaller versions of the same thing and take the same
+ * remedy — quote the speaker, delete the link nobody checked: b00839 published
+ * a proposed point of agreement as a denuncia already filed; 34560f fused two
+ * unattributed quotes into one subject and aimed an art. 198 breach at an
+ * institution the quote does not name; 431140 tied an ILP to the DANA debate
+ * on a quote that never says what the ILP is about. 66cd62 was a broken
+ * sentence shipped by an automated sweep («un grupo no identificado grupo
+ * señala») plus a euro figure glossed out of a degraded transcript. 3eebaf
+ * supplied a noun («condiciones») the extract does not.
+ */
+interface Lote3Case {
+  id: string
+  /** Corrections appended by this batch, in issue order. */
+  added: string[]
+  /** Corrections the finding already carried before it. */
+  priorCorrections: number
+  /** Fragments of the defect, which must be gone from title+summary. */
+  drops: string[]
+  /** Fragments the finding still stands on, which must be intact. */
+  keeps: string[]
+  /** Surviving crossChecked rows, in order: `kind` + the snippet's first 40 chars. */
+  refs: string[]
+  /** Surviving quotes, in order. */
+  claims: string[]
+  groups: (string | null)[]
+}
+
+const LOTE_3: Lote3Case[] = [
+  {
+    id: 'f-2026-03-09-afi-a9546e',
+    added: ['summary'],
+    priorCorrections: 3,
+    drops: ['convalidó un reconocimiento extrajudicial'],
+    keeps: [
+      'debatió la convalidación de un reconocimiento extrajudicial',
+      'no consta aquí si llegó a aprobarse',
+      // The sentence a previous audit called exemplary. It was never the
+      // problem and must survive the verb fix untouched.
+      'Sin contraste automático: la traza queda en el acta y el expediente interno',
+    ],
+    refs: [],
+    claims: ['1sqj7is-001-afi-a1e446'],
+    groups: [null],
+  },
+  {
+    id: 'f-2026-01-19-afi-5238db',
+    added: ['summary', 'crossChecked.2', 'crossChecked.1', 'crossChecked.0'],
+    priorCorrections: 3,
+    // The August correction fixed the framing and left the clause that named
+    // the expediente. «adjudicado en 2026» is literally true and editorially
+    // misleading: the year is exactly what hides the 79-day gap.
+    drops: [
+      'entre los documentos cotejados con esta sesión figura',
+      'adjudicado en 2026',
+      'mezcladores para duchas',
+    ],
+    keeps: [
+      'arranca en 2017, así que no recoge ningún expediente de aquel periodo',
+      'una auditoría realizada entre 2006 y 2012',
+    ],
+    refs: [
+      'tender|Contrato de servicio alumbrado ornamenta',
+      'tender|Contrato de obras de modificación de núc',
+      'tender|Contrato de suministro e instalación de ',
+      'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
+    ],
+    claims: [
+      '19gax3o-114-afi-5238db',
+      '19gax3o-010-cit-c48425',
+      '19gax3o-186-acu-71dffe',
+      '19gax3o-138-acu-9f3da3',
+    ],
+    groups: ['PP', 'Compromís', null, null],
+  },
+  {
+    id: 'f-2026-01-19-cit-8b29a9',
+    added: ['crossChecked.1'],
+    priorCorrections: 1,
+    // Prose untouched: the August correction already made it honest. Only the
+    // ref that names a private individual and post-dates the session goes.
+    drops: [],
+    keeps: [
+      'corresponde a la pavimentación del paseo Pacadar',
+      'no consta en la contratación publicada ningún expediente que documente esa obra concreta',
+    ],
+    refs: [
+      // The Pacadar cotejo STAYS: the prose cites it to deny it, which is what
+      // earns a ref its place. And the €50,60 hornillo stays too — a weak
+      // pairing no sentence names is not grounds for retraction.
+      'tender|Contrato basado en el SDA de obras para ',
+      'tender|Contrato verbal de suministro compra hor',
+      'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
+    ],
+    claims: [
+      '19gax3o-146-cit-8b29a9',
+      '19gax3o-053-cit-3fa2de',
+      '19gax3o-067-cit-dcdcf6',
+      '19gax3o-139-cit-989b94',
+    ],
+    groups: ['PSOE', 'VOX', null, 'PP'],
+  },
+  {
+    id: 'f-2025-12-23-acu-a1ba00',
+    added: ['summary'],
+    priorCorrections: 1,
+    drops: [
+      'La oposición atribuye',
+      '(grupo no mayoritario)',
+      // English word in published Spanish prose, from the generator.
+      'la finding queda pendiente',
+    ],
+    keeps: [
+      '«también tiene una responsabilidad política el equipo de gobierno»',
+      'PSOE replica que la responsabilidad recae exclusivamente en la empresa',
+      'el hallazgo queda pendiente del informe técnico municipal',
+    ],
+    refs: [],
+    claims: [
+      '1qi8axv-068-acu-a1ba00',
+      '1qi8axv-020-acu-75c8b8',
+      '1qi8axv-023-acu-3aa6fd',
+      '1qi8axv-024-acu-2778ad',
+    ],
+    groups: [null, null, 'Compromís', 'PSOE'],
+  },
+  {
+    id: 'f-2025-10-06-acu-b00839',
+    added: ['summary'],
+    priorCorrections: 1,
+    drops: ['señala que denuncia ante la Consejería'],
+    keeps: [
+      '«Denunciar públicamente a la Consejería esas ampliaciones que nos han hecho»',
+      'no documenta el sistema COMETA ni las demás cuestiones debatidas',
+    ],
+    // Nothing removed. Three of these four are lexical collisions — a FEMP
+    // fleet policy matched to a prize received at the FEMP, a tow-truck
+    // contract matched to «seguridad», a pest-control contract with no bridge
+    // at all — and not one of them meets any of the three criteria: no
+    // sentence names them, none names a person, none post-dates. They stay,
+    // and the prose already says the register does not document the debate.
+    refs: [
+      'tender|Contrato mixto de suministro y servicio ',
+      'tender|El objeto del presente contrato es la pr',
+      'tender|Contrato privado de seguro flota vehícul',
+      'tender|DESINFECCIÓN, DESINSECTACIÓN Y DESRATIZA',
+      'pleno-video|Vídeo del pleno 2025-10-06 · YouTube',
+    ],
+    claims: [
+      'otxq2c-078-acu-b00839',
+      'otxq2c-088-acu-248640',
+      'otxq2c-082-cit-915a1d',
+      'otxq2c-048-cit-11d99a',
+    ],
+    groups: ['PSOE', 'PP', 'PSOE', 'VOX'],
+  },
+  {
+    id: 'f-2026-04-20-cit-947479',
+    added: ['summary', 'crossChecked.0'],
+    priorCorrections: 1,
+    drops: [
+      'en el debate sobre la cartelería digital',
+      'del ayuntam',
+      'El debate sobre la adjudicación del sistema concluyó con la abstención',
+    ],
+    keeps: [
+      'los informes técnicos de la intervención son desfavorables',
+      'la alcaldía no estaba obligada a dar cuenta de dicho informe',
+    ],
+    refs: [
+      'tender|El objeto del contrato es la prestación ',
+      'tender|Aprobación expediente contrato administr',
+      'tender|Mantenimiento control de acceso corporat',
+      'pleno-video|Vídeo del pleno 2026-04-20 · YouTube',
+    ],
+    claims: [
+      'k4olcs-019-cit-947479',
+      'k4olcs-019-acu-940acd',
+      'k4olcs-133-acu-e1bac8',
+      'k4olcs-146-acu-8c6db4',
+    ],
+    groups: [null, null, 'PP', null],
+  },
+  {
+    id: 'f-2026-01-19-cit-cc8758',
+    added: ['crossChecked.0'],
+    priorCorrections: 1,
+    drops: [],
+    keeps: [
+      'el PP mencionó la necesidad de subsanar problemas en el pabellón y el complejo esportivo',
+      'VOX, en cambio, denunció la falta de una agenda de reconstrucción',
+    ],
+    // The Pacadar cotejo STAYS here too, and this is the row where that costs
+    // something to say. What a curator retired from its twin `8b29a9` on
+    // 02-08 was the SENTENCE claiming the works were documented in that
+    // expediente — the ref itself is still on the twin. Retracting it here
+    // would be the inconsistency, not the fix.
+    refs: [
+      'tender|Obras Reconstrucción vallados de parcela',
+      'tender|Contrato basado en el SDA de obras para ',
+      'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
+    ],
+    claims: [
+      '19gax3o-016-cit-cc8758',
+      '19gax3o-067-cit-0c2099',
+      '19gax3o-114-cit-b7641b',
+      '19gax3o-050-acu-8d210f',
+    ],
+    groups: ['PSOE', null, 'PP', 'VOX'],
+  },
+  {
+    id: 'f-2025-12-23-afi-3eebaf',
+    added: ['summary'],
+    priorCorrections: 1,
+    drops: ['señala la inclusión de nuevas condiciones'],
+    keeps: ['«no existía en el contrato anterior y en este sí»', 'sin precisar a qué se refiere'],
+    // Two innovation contracts share nothing with the debate but the string
+    // «asistencia técnica». No sentence names them, so they stay.
+    refs: [
+      'tender|Actualización y mantenimiento de la plat',
+      'tender|Mantenimiento plataforma de administraci',
+      'tender|Servicio de asistencia técnica para el i',
+      'tender|Asistencia técnica creación espacio RIV,',
+      'pleno-video|Vídeo del pleno 2025-12-23 · YouTube',
+    ],
+    claims: ['1qi8axv-122-afi-3eebaf', '1qi8axv-023-cit-3e6224', '1qi8axv-059-afi-3e1e17'],
+    groups: ['VOX', 'Compromís', null],
+  },
+  {
+    id: 'f-2025-12-01-acu-34560f',
+    added: ['summary', 'crossChecked.2'],
+    priorCorrections: 1,
+    drops: ['Un grupo no identificado afirma que la Generalitat no está cumpliendo con sus pagos'],
+    keeps: [
+      '«El PP de la Generalitat no paga»',
+      'la transcripción no identifica a quién se dirige ese «ustedes»',
+    ],
+    // «Amplicación parque Generalitat» stays. The bridge really is a park's
+    // name read as a regional government, and it really does sit under a
+    // finding about unpaid invoices — but the criterion is not "weak", and a
+    // company is not the private individual the b8fea6f precedent is about.
+    refs: [
+      'tender|Amplicación parque Generalitat · Ayuntam',
+      'tender|Contrato de servicio de puesta a disposi',
+      'tender|Contrato de servicio de vigilancia y seg',
+      'pleno-video|Vídeo del pleno 2025-12-01 · YouTube',
+    ],
+    claims: [
+      'qz6weg-220-acu-34560f',
+      'qz6weg-276-cit-5b837f',
+      'qz6weg-216-acu-c41b8d',
+      'qz6weg-163-acu-3a8bb0',
+    ],
+    groups: [null, 'Compromís', null, null],
+  },
+  {
+    id: 'f-2025-12-01-cit-66cd62',
+    added: ['summary'],
+    priorCorrections: 1,
+    drops: [
+      // Shipped in production: the 01-08 sweep replaced «Otro» inside «Otro
+      // grupo señala» and left a broken, lower-case-after-a-full-stop clause.
+      'un grupo no identificado grupo señala',
+      'un plan de rehabilitación por más de 900.000 euros',
+    ],
+    keeps: [
+      '«El plan rehabilita más de 900.000 euros»',
+      'no permite determinar de qué plan se trata',
+      'Un grupo no identificado señala que esta iniciativa se extiende',
+    ],
+    // A 2019 music performance matched on the word «comercio». Weak, unnamed,
+    // pre-dates the session: it stays.
+    refs: [
+      'tender|servicio de asesoramiento jurídico en ma',
+      'tender|Actuación musical feria del comercio 201',
+      'pleno-video|Vídeo del pleno 2025-12-01 · YouTube',
+    ],
+    claims: ['qz6weg-185-cit-66cd62', 'qz6weg-185-afi-eeb37d', 'qz6weg-278-cit-1e696b'],
+    groups: ['PSOE', 'PSOE', null],
+  },
+  {
+    id: 'f-2025-12-01-cit-d89862',
+    added: ['summary', 'quote.2', 'crossChecked.0'],
+    priorCorrections: 0,
+    drops: ['Ambos grupos hacen referencia al contrato menor', 'carpa'],
+    keeps: [
+      'las obras en el Centro de Salud están en curso',
+      'volver a la consellería en enero para revisar el avance del proyecto',
+    ],
+    refs: ['pleno-video|Vídeo del pleno 2025-12-01 · YouTube'],
+    // Three quotes now: the chair's floor-giving line, published as a PP
+    // quote, is gone. `sourceClaimIds` keeps its entry — the claim still
+    // exists in the verified corpus and the finding's id derives from it.
+    claims: ['qz6weg-239-cit-d89862', 'qz6weg-237-cit-7bff59', 'qz6weg-249-cit-3e02ef'],
+    groups: ['PP', 'PP', 'PSOE'],
+  },
+  {
+    id: 'f-2025-11-03-acu-431140',
+    added: ['summary'],
+    priorCorrections: 0,
+    drops: ['una Iniciativa Legislativa Popular (ILP) sobre este tema'],
+    keeps: [
+      'que diferencia de mociones presentadas en legislaturas anteriores',
+      'la intervención citada no dice sobre qué versa',
+      'no recae exclusivamente en la Generalitat Valenciana',
+    ],
+    // The two civil-liability policies stay. Reading «responsabilidad civil»
+    // as «responsabilidad política» is the most gratuitous pairing in the
+    // three passes, and it is still only a pairing: no sentence names them.
+    refs: [
+      'tender|Seguro de responsabilidad civil/patrimon',
+      'tender|Seguro de Responsabilidad Civil/patrimon',
+      'tender|Contrato menor de renovación del actual ',
+      'tender|Contrato de obra en la Pedanía El Oliver',
+      'tender|Contrato de servicio reposición alumbrad',
+      'tender|Contrato de suministro de adquisición de',
+      'pleno-video|Vídeo del pleno 2025-11-03 · YouTube',
+    ],
+    claims: ['1du4rf5-115-acu-431140', '1du4rf5-237-cit-e34df3', '1du4rf5-111-acu-4f6c40'],
+    groups: ['PP', 'PSOE', 'Compromís'],
+  },
+  {
+    id: 'f-2025-10-06-cit-6c4d24',
+    added: ['summary', 'crossChecked.1'],
+    priorCorrections: 0,
+    drops: [
+      'Ambos grupos mencionan contratos menores',
+      'asesoramiento jurídico y defensa procesal del Ayuntamiento.',
+    ],
+    keeps: [
+      'trasladará puntos de acuerdo a varias instituciones',
+      'destacando el compromiso con la protección infantil y adolescente',
+    ],
+    // Eight of the nine tender refs stay, several of them pure noise («obras
+    // de reparación goteras», «Prevención ajeno»). Only the one the deleted
+    // sentence named by its title comes out.
+    refs: [
+      'tender|Contrato menor, servicio para la elabora',
+      'tender|Habilitación de locales de ctra. villama',
+      'tender|Amplicación parque Generalitat · Ayuntam',
+      'tender|Prevención ajeno: especialidades · Ayunt',
+      'tender|obras de reparación goteras en edificios',
+      'tender|Servicio Ayuda a Domicilio personas sin ',
+      'tender|Programa municipal personas con diversid',
+      'tender|Servicio para la ejecución del Plan de F',
+      'pleno-video|Vídeo del pleno 2025-10-06 · YouTube',
+    ],
+    claims: [
+      'otxq2c-037-cit-6c4d24',
+      'otxq2c-072-cit-d5c436',
+      'otxq2c-031-cit-8ffc2f',
+      'otxq2c-024-cit-f56122',
+    ],
+    groups: ['PP', 'PSOE', 'PSOE', 'PSOE'],
+  },
+]
+
+/**
+ * The three rows the classifier filed as `sin-afirmacion-documental` and that
+ * DID assert a documentary link — by apposition, or with a speech verb whose
+ * object is a specific named document. Each pins the assertion as a REGEX over
+ * the corrected prose, because what has to be gone is the CLAIM and not one
+ * wording of it, and each names the document it welded on so a "fix" that only
+ * reworded the sentence cannot pass.
+ */
+const AFIRMACIONES_DOCUMENTALES_FALSAS = [
+  {
+    id: 'f-2026-04-20-cit-947479',
+    // Apposition: «… en el debate sobre la cartelería digital y el «Contrato
+    // mixto suministro y servicio implantación de un sistema de debate …»».
+    // No connector verb, and the whole claim carried by punctuation.
+    inventado:
+      /(?:en el )?debate sobre[^.]{0,80}(?:contrato|cartelería)|adjudicaci[óo]n del sistema[^.]{0,60}abstenci/i,
+    /** Distinctive words of the welded-on expediente's title. */
+    documento: /voto electr[óo]nico|salón de plenos del ayuntam/i,
+    keeps: 'los informes técnicos de la intervención son desfavorables',
+  },
+  {
+    id: 'f-2025-12-01-cit-d89862',
+    // «hacen referencia a» is a documentary connector in everything but name,
+    // and stronger than several that ARE in the list.
+    inventado:
+      /(?:ambos )?grupos[^.]{0,40}(?:hacen referencia|se refieren|mencionan)[^.]{0,40}contrato/i,
+    documento: /carpa|triaje/i,
+    keeps: 'las obras en el Centro de Salud están en curso',
+  },
+  {
+    id: 'f-2025-10-06-cit-6c4d24',
+    inventado:
+      /(?:ambos )?grupos[^.]{0,40}(?:mencionan|citan|hacen referencia)[^.]{0,40}contratos?/i,
+    documento: /asesoramiento jur[íi]dico|defensa procesal/i,
+    keeps: 'El PSOE señala su colaboración en programas de prevención y atención',
+  },
+]
+
+describe('published pleno findings — lote 3 of the row 36–51 review', () => {
+  it('corrected exactly the thirteen findings this pass made actionable', () => {
+    // Same measuring assertion as lotes 1 and 2: every per-row block below
+    // only looks at rows it was handed, so a pass that skipped some stays
+    // green without this.
+    expect(LOTE_3).toHaveLength(13)
+    const expected = LOTE_3.reduce((n, c) => n + c.added.length, 0)
+    expect(expected).toBe(21)
+    expect(LOTE_3.filter((c) => c.added.some((f) => f.startsWith('crossChecked.')))).toHaveLength(7)
+    expect(allCorrections.length).toBe(TOTAL_CORRECTIONS)
+    // Three disjoint passes over one file. A row corrected twice would need
+    // its `priorCorrections` re-read, so an overlap is a defect, not a detail.
+    const earlier = new Set([...LOTE_1.map((c) => c.id), ...LOTE_2.map((c) => c.id)])
+    expect(LOTE_3.filter((c) => earlier.has(c.id))).toEqual([])
+    expect(LOTE_3.map((c) => byId(c.id).id)).toEqual(LOTE_3.map((c) => c.id))
+  })
+
+  it('the two rows the review upheld were not touched at all', () => {
+    // The other half of "corrected exactly thirteen". `b9b013` and `d94904`
+    // were read against their extracts and held; a pass that improved them
+    // anyway would be editing prose no review asked for.
+    for (const id of ['f-2026-04-20-cit-b9b013', 'f-2026-03-09-acu-d94904']) {
+      const f = byId(id)
+      const log = f.corrections ?? []
+      expect(
+        log.filter((c) => c.correctedAt >= '2026-08-09T20:30:00.000Z'),
+        `${id} recibió una corrección de este lote`,
+      ).toEqual([])
+    }
+    // And the row b8fea6f already handled — `bba0e9`, whose surname-matched
+    // architect ref came out there — gets nothing here either.
+    expect(LOTE_3.map((c) => c.id)).not.toContain('f-2025-10-06-acu-bba0e9')
+  })
+
+  it.each(LOTE_3)('$id logs exactly the corrections that were issued', (c) => {
+    const f = byId(c.id)
+    const log = f.corrections ?? []
+    expect(log).toHaveLength(c.priorCorrections + c.added.length)
+    expect(log.slice(c.priorCorrections).map((x) => x.field)).toEqual(c.added)
+    expect(log.slice(c.priorCorrections).every((x) => x.editor.length > 1)).toBe(true)
+    // The trail before this batch is untouched — a new entry appends.
+    expect(log.slice(0, c.priorCorrections).every((x) => x.reason.trim().length >= 20)).toBe(true)
+  })
+
+  it.each(LOTE_3)('$id reads as a finished paragraph, not a truncated one', (c) => {
+    const f = byId(c.id)
+    expect(f.summary.trim().length).toBeGreaterThanOrEqual(40)
+    expect(f.title.trim().length).toBeGreaterThanOrEqual(10)
+    expect(f.summary.trim()).toMatch(/[.!?»"']$/)
+    expect(f.summary).not.toMatch(/[,;:]\s*$/)
+    expect(f.summary).not.toMatch(/\s{2,}|\s+[.,;]/)
+    expect(f.summary).not.toContain('«»')
+    // `66cd62` shipped «… locales. un grupo no identificado grupo señala …»
+    // for eight days — the visible end of a mechanical edit that never
+    // re-read the paragraph, duplicated word and all. This batch is the one
+    // that repairs it, so the assertion is not inherited decoration.
+    for (const sentence of f.summary.split(/(?<=\.)\s+/)) {
+      if (sentence.trim().length === 0) continue
+      expect(sentence.trim(), `${c.id}: «${sentence.slice(0, 40)}…»`).toMatch(/^[«"'(\p{Lu}\d]/u)
+    }
+  })
+
+  it.each(LOTE_3)('$id no longer carries the defect, and still carries the finding', (c) => {
+    const f = byId(c.id)
+    const prose = `${f.title}\n${f.summary}`
+    for (const d of c.drops) expect(prose, `«${d}» sigue en la prosa`).not.toContain(d)
+    // The measuring half: without it, a summary emptied to «.» would satisfy
+    // every `drops` assertion above and read as a pass. Two rows of this batch
+    // have an empty `drops` on purpose — their prose was already sound and
+    // only a ref came out — so `keeps` is the ONLY thing measuring them.
+    expect(c.keeps.length).toBeGreaterThan(0)
+    for (const k of c.keeps) expect(prose, `«${k}» debería seguir`).toContain(k)
+  })
+
+  it.each(LOTE_3)('$id keeps every neighbour the correction did not address', (c) => {
+    const f = byId(c.id)
+    expect(f.crossChecked.map((r) => `${r.kind}|${r.snippet.slice(0, 40)}`)).toEqual(c.refs)
+    expect(f.crossChecked.every((r) => /^https?:\/\//.test(r.ref))).toBe(true)
+    expect(f.quotes.map((q) => q.sourceClaimId)).toEqual(c.claims)
+    expect(f.quotes.map((q) => q.speakerGroup)).toEqual(c.groups)
+    expect(f.contradiction).toEqual([])
+    expect(f.severity).toBe('informational')
+  })
+
+  it('every phrase this batch put in guillemets comes from a source it publishes', () => {
+    // Six of the thirteen now quote the speaker instead of paraphrasing them,
+    // which is the remedy for a deixis, a mood or a noun the extract does not
+    // supply. That is only honest if the words are the speaker's — or, for a
+    // contract title, the document's. So each «…» span must be verbatim in one
+    // of the finding's own quotes or in one of its own cotejo snippets.
+    let spans = 0
+    let fromQuote = 0
+    for (const c of LOTE_3) {
+      const f = byId(c.id)
+      for (const m of f.summary.matchAll(/«([^»]+)»/g)) {
+        spans += 1
+        const needle = m[1].replace(/[.,;:]$/, '')
+        const inQuote = f.quotes.some((q) => q.text.includes(needle))
+        if (inQuote) fromQuote += 1
+        expect(
+          inQuote || f.crossChecked.some((r) => r.snippet.includes(needle)),
+          `${c.id}: «${needle}» no está ni en una cita ni en un cotejo del hallazgo`,
+        ).toBe(true)
+      }
+    }
+    // Both measuring assertions: zero spans would satisfy the loop silently,
+    // and a batch whose every span came from a contract title would mean the
+    // re-quoting remedy was never applied.
+    expect(spans).toBeGreaterThanOrEqual(8)
+    expect(fromQuote).toBeGreaterThanOrEqual(6)
+  })
+
+  it.each(AFIRMACIONES_DOCUMENTALES_FALSAS)(
+    '$id no longer asserts the documentary link the classifier could not see',
+    ({ id, inventado, documento, keeps }) => {
+      const f = byId(id)
+      const prose = `${f.title}\n${f.summary}`
+      expect(prose, `${id} sigue afirmando el vínculo documental`).not.toMatch(inventado)
+      // The document it welded on is gone from the prose too — a reworded
+      // sentence that still names it would be the same claim.
+      expect(prose, `${id} sigue nombrando el expediente`).not.toMatch(documento)
+      // The measuring half.
+      expect(prose).toContain(keeps)
+      // And the pre-correction text is on the record, so the assertion is
+      // provably about a claim that WAS published and not about one nobody
+      // ever wrote: the struck original must match what we say was there.
+      const original = (f.corrections ?? []).find(
+        (c) => c.field === 'summary' && inventado.test(c.original),
+      )
+      expect(original, `${id}: la bitácora no conserva el sumario defectuoso`).toBeDefined()
+    },
+  )
+
+  it('947479: the dates and the vote record that make its removed sentence false', () => {
+    // «El debate sobre la adjudicación del sistema concluyó con la abstención
+    // de varios grupos municipales.» Checked against the two published
+    // snapshots rather than against a hand-copied string, so it cannot drift.
+    const t = JSON.parse(readFileSync(resolve('public/data/tenders.json'), 'utf8')) as {
+      contracts: { title: string; status: string; awardDate: string | null }[]
+    }
+    const sistema = t.contracts.find((r) =>
+      /implantación de un sistema de debate, voto electrónico/i.test(r.title),
+    )
+    expect(sistema, 'el expediente del salón de plenos ya no está en el corpus').toBeDefined()
+    // Formalised two years BEFORE the session: it cannot have been adjudicated
+    // on 2026-04-20.
+    expect(sistema!.status).toBe('formalized')
+    expect(sistema!.awardDate).toBe('2024-04-19')
+
+    const v = JSON.parse(readFileSync(resolve('public/data/pleno-votes.json'), 'utf8')) as {
+      items: {
+        plenoId: string
+        itemNumber: number
+        title: string
+        outcome: string
+        votes: { direction: string }[]
+      }[]
+    }
+    const sesion = v.items.filter((x) => x.plenoId === 'k4olcs')
+    // The gate: two curated votes for that session, and exactly one of them is
+    // an adjudicación. Zero would make everything below vacuous.
+    expect(sesion.length).toBeGreaterThan(0)
+    const adjudicaciones = sesion.filter((x) => /adjudicaci|adjudicació/i.test(x.title))
+    expect(adjudicaciones).toHaveLength(1)
+    // …and it is the water concession, carried unanimously with no abstention.
+    expect(adjudicaciones[0].title).toMatch(/aigua potable|proveïment/i)
+    expect(adjudicaciones[0].outcome).toBe('aprobado')
+    expect(adjudicaciones[0].votes.filter((b) => b.direction === 'abstencion')).toEqual([])
+    expect(adjudicaciones[0].votes.every((b) => b.direction === 'a_favor')).toBe(true)
+
+    const f = byId('f-2026-04-20-cit-947479')
+    expect(f.summary).not.toMatch(/abstenci[óo]n|adjudicaci[óo]n/i)
+  })
+
+  it('a9546e: the pleno-vote record does not carry the item its verb claimed', () => {
+    // «convalidó» asserted an institutional outcome. `pleno-votes.json` holds
+    // four curated votes for that session and none is the reconocimiento
+    // extrajudicial, so nothing published here says it passed.
+    const v = JSON.parse(readFileSync(resolve('public/data/pleno-votes.json'), 'utf8')) as {
+      items: { plenoId: string; title: string }[]
+    }
+    const sesion = v.items.filter((x) => x.plenoId === '1sqj7is')
+    expect(sesion.length).toBeGreaterThan(0)
+    expect(sesion.filter((x) => /reconocimiento extrajudicial/i.test(x.title))).toEqual([])
+
+    const f = byId('f-2026-03-09-afi-a9546e')
+    expect(f.summary).not.toMatch(/\bconvalid[óo]\b/)
+    expect(f.summary).toContain('no consta aquí si llegó a aprobarse')
+  })
+
+  it('no cotejo left on this batch post-dates its own session', () => {
+    // Criterion 3 of the removal rule, re-run over what SURVIVED — the same
+    // gate 04761aa put in front of new runs, so "consistency, not a new rule"
+    // is a claim this file can check rather than assert.
+    const index = buildRecordDateIndex([
+      JSON.parse(readFileSync(resolve('public/data/tenders.json'), 'utf8')),
+    ])
+    const report = emptyRecordDateGateReport()
+    for (const c of LOTE_3) {
+      const f = byId(c.id)
+      for (const r of f.crossChecked) recordKnowableAt(r.ref, f.plenoDate, index, report)
+    }
+    expect(report.postDated).toEqual([])
+    // Measuring halves. Without the first, a batch that deleted every cotejo
+    // would pass; without the second, an empty or broken index reports every
+    // ref as "not in any procurement snapshot" and reads like a clean sweep.
+    expect(report.kept).toBeGreaterThan(25)
+    expect(index.size).toBeGreaterThan(500)
+    // And the control positive: the gate can still say no. Any surviving
+    // dated ref, asked about a session before it existed, must be excluded —
+    // otherwise the block above proves nothing about the gate's discrimination.
+    const dated = byId('f-2025-11-03-acu-431140').crossChecked.find((r) => r.kind === 'tender')!
+    expect(recordKnowableAt(dated.ref, '2000-01-01', index)).toBe(false)
+  })
+
+  it('no reason written for this batch echoes what its removal took out', () => {
+    // Paso 2 of `revisar-borrador` over lote 3's own ten retractions, nine
+    // cotejos and one quote. The CLI guard reads capitalisation, so it catches
+    // names and misses paraphrase; this restates the machine-checkable half
+    // over the published bytes, where a hand-edit could land.
+    const batchRemovals = LOTE_3.flatMap((c) =>
+      (byId(c.id).corrections ?? [])
+        .slice(c.priorCorrections)
+        .filter((x) => CORRECTION_REMOVAL_FIELD_RE.test(x.field)),
+    )
+    expect(batchRemovals).toHaveLength(10)
+    expect(batchRemovals.filter((r) => r.field.startsWith('quote.'))).toHaveLength(1)
+    const offences: string[] = []
+    for (const r of batchRemovals) {
+      const noun = r.field.startsWith('quote.') ? 'cita' : 'documento cotejado'
+      expect(r.original).toMatch(new RegExp(`^${noun} · sha256:[0-9a-f]{12}$`))
+      expect(r.corrected).toMatch(/^retirad[ao] del hallazgo$/)
+      for (const m of r.reason.matchAll(/\p{Lu}[\p{L}\p{M}’'-]*/gu)) {
+        const before = r.reason.slice(0, m.index).trimEnd()
+        if (before.length === 0 || /[.!?:;]$/.test(before)) continue
+        offences.push(`${r.field}: «${m[0]}»`)
+      }
+    }
+    expect(offences).toEqual([])
+  })
+
+  it('every removal reason states which of the three criteria it applied', () => {
+    // The batch's own discipline, published: a retraction whose reason does
+    // not name a criterion is indistinguishable from a purge, and a purge is
+    // what `crossChecked[]` must not become.
+    const CRITERIOS = [
+      /nombraba la frase suprimida|que nombraba la frase/i, // 1 · named by the deleted sentence
+      /identifica por su nombre a un particular/i, // 2 · a private individual
+      /fecha más temprana conocida es(?:, además,)? posterior/i, // 3 · post-dates the session
+    ]
+    const batchRemovals = LOTE_3.flatMap((c) =>
+      (byId(c.id).corrections ?? [])
+        .slice(c.priorCorrections)
+        .filter((x) => x.field.startsWith('crossChecked.')),
+    )
+    expect(batchRemovals).toHaveLength(9)
+    for (const r of batchRemovals) {
+      expect(
+        CRITERIOS.some((re) => re.test(r.reason)),
+        `${r.field}: la razón no nombra ningún criterio`,
+      ).toBe(true)
+    }
+    // All three criteria were actually exercised — a batch that only ever
+    // reached for one would mean the other two were never tested.
+    for (const re of CRITERIOS) {
+      expect(batchRemovals.filter((r) => re.test(r.reason)).length).toBeGreaterThan(0)
+    }
+  })
+
+  it('no reason written for this batch pastes a URL, retraction or not', () => {
+    const batch = LOTE_3.flatMap((c) => (byId(c.id).corrections ?? []).slice(c.priorCorrections))
+    expect(batch).toHaveLength(21)
+    expect(batch.filter((r) => /https?:\/\//.test(r.reason))).toEqual([])
+    expect(batch.every((r) => r.reason.trim().length >= 20)).toBe(true)
   })
 })

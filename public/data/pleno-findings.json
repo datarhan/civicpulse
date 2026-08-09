@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-09T17:47:11.604Z",
+  "generatedAt": "2026-08-09T18:22:29.588Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. La mayoría los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -1289,7 +1289,7 @@
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
       "title": "Debate sobre transparencia y el sistema del salón de plenos en Riba-roja de Túria (2026-04-20)",
-      "summary": "En la sesión, el grupo PP señaló que los informes técnicos de la intervención son desfavorables. Por su parte, una formación no identificada manifestó que la alcaldía no estaba obligada a dar cuenta de dicho informe en el debate sobre la cartelería digital y el «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam». El debate sobre la adjudicación del sistema concluyó con la abstención de varios grupos municipales.",
+      "summary": "En la sesión, el grupo PP señaló que los informes técnicos de la intervención son desfavorables. Por su parte, una formación no identificada manifestó que la alcaldía no estaba obligada a dar cuenta de dicho informe.",
       "severity": "informational",
       "sourceClaimIds": [
         "k4olcs-019-cit-947479",
@@ -1320,11 +1320,6 @@
         }
       ],
       "crossChecked": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
-          "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto si…"
-        },
         {
           "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y1ffHTdiBUTnSoTX3z%2F7wA%3D%3D",
@@ -1359,6 +1354,22 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:13.303Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión, el grupo PP señaló que los informes técnicos de la intervención son desfavorables. Por su parte, una formación no identificada manifestó que la alcaldía no estaba obligada a dar cuenta de dicho informe en el debate sobre la cartelería digital y el «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam». El debate sobre la adjudicación del sistema concluyó con la abstención de varios grupos municipales.",
+          "corrected": "En la sesión, el grupo PP señaló que los informes técnicos de la intervención son desfavorables. Por su parte, una formación no identificada manifestó que la alcaldía no estaba obligada a dar cuenta de dicho informe.",
+          "reason": "Se suprimen dos frases. La primera metía por aposición, entre comillas y truncado, el título de un expediente en un punto del orden del día que las pruebas no unen: el informe desfavorable y la respuesta de la alcaldía son segmentos muy posteriores al de la cartelería. La segunda afirmaba un resultado de votación comprobablemente falso: ese expediente estaba formalizado dos años antes de la sesión, y la única adjudicación votada aquel día se aprobó por unanimidad, sin ninguna abstención.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:26.709Z"
+        },
+        {
+          "field": "crossChecked.0",
+          "original": "documento cotejado · sha256:64e9033a0253",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo el expediente que nombraba la frase suprimida: la aposición lo presentaba como objeto del debate y de una votación de esa sesión, y ni la fecha del expediente ni el registro de votos lo sostienen.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:26.952Z"
         }
       ]
     },
@@ -1571,7 +1582,7 @@
       "plenoId": "1sqj7is",
       "plenoDate": "2026-03-09",
       "title": "Reconocimiento extrajudicial de 242.255 € sin rastro en contratación",
-      "summary": "El pleno de 9 de marzo de 2026 convalidó un reconocimiento extrajudicial de crédito por 242.255 euros, correspondientes a gastos realizados a finales del ejercicio anterior. Nuestra base de datos municipal de contratos y de subvenciones BDNS no registra ninguna operación de ese importe, lo que es consistente con la naturaleza de un reconocimiento extrajudicial (facturación interna convalidada a posteriori, no una licitación pública). Sin contraste automático: la traza queda en el acta y el expediente interno, no en contratacion.es.",
+      "summary": "El pleno de 9 de marzo de 2026 debatió la convalidación de un reconocimiento extrajudicial de crédito por 242.255 euros, correspondientes a gastos realizados a finales del ejercicio anterior; la única intervención citada es la que propone el punto, y los votos transcritos de esa sesión no recogen este expediente, así que no consta aquí si llegó a aprobarse. Nuestra base de datos municipal de contratos y de subvenciones BDNS no registra ninguna operación de ese importe, lo que es consistente con la naturaleza de un reconocimiento extrajudicial (facturación interna convalidada a posteriori, no una licitación pública). Sin contraste automático: la traza queda en el acta y el expediente interno, no en contratacion.es.",
       "severity": "informational",
       "sourceClaimIds": [
         "1sqj7is-001-afi-a1e446"
@@ -1613,6 +1624,14 @@
           "reason": "Re-transcripción del pleno 09-03-2026 (publicada el 2026-07-06 tras la purga de transcripciones alucinadas) re-generó los ids y el verbatim de los claims; se re-ancla la cita al claim vigente del mismo expediente de reconocimiento extrajudicial de 242.255 €.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-07-29T14:35:12.900Z"
+        },
+        {
+          "field": "summary",
+          "original": "El pleno de 9 de marzo de 2026 convalidó un reconocimiento extrajudicial de crédito por 242.255 euros, correspondientes a gastos realizados a finales del ejercicio anterior. Nuestra base de datos municipal de contratos y de subvenciones BDNS no registra ninguna operación de ese importe, lo que es consistente con la naturaleza de un reconocimiento extrajudicial (facturación interna convalidada a posteriori, no una licitación pública). Sin contraste automático: la traza queda en el acta y el expediente interno, no en contratacion.es.",
+          "corrected": "El pleno de 9 de marzo de 2026 debatió la convalidación de un reconocimiento extrajudicial de crédito por 242.255 euros, correspondientes a gastos realizados a finales del ejercicio anterior; la única intervención citada es la que propone el punto, y los votos transcritos de esa sesión no recogen este expediente, así que no consta aquí si llegó a aprobarse. Nuestra base de datos municipal de contratos y de subvenciones BDNS no registra ninguna operación de ese importe, lo que es consistente con la naturaleza de un reconocimiento extrajudicial (facturación interna convalidada a posteriori, no una licitación pública). Sin contraste automático: la traza queda en el acta y el expediente interno, no en contratacion.es.",
+          "reason": "El sumario publicaba como acto consumado lo que su única cita aporta como propuesta: el interviniente propone al pleno convalidar el expediente, y su contexto lo repite. Los votos transcritos de esa sesión tampoco recogen este punto, así que ni por esa vía consta la aprobación. Se corrige el verbo y se dice qué falta.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:24.834Z"
         }
       ]
     },
@@ -1947,11 +1966,6 @@
       "crossChecked": [
         {
           "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
-          "snippet": "Contratación servicio dirección de obra y dirección de ejecución material, coordinación en seguridad \ny salud para proyecto de obras “Reconstrucción de vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DA…"
-        },
-        {
-          "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
           "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA"
         },
@@ -1979,6 +1993,14 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:14.679Z"
+        },
+        {
+          "field": "crossChecked.0",
+          "original": "documento cotejado · sha256:0970b4bbbccd",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión, cuyo vínculo con lo debatido es una coincidencia léxica y cuya fecha más temprana conocida es posterior al pleno.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:27.189Z"
         }
       ]
     },
@@ -2106,11 +2128,6 @@
         },
         {
           "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
-          "snippet": "Contratación servicio dirección de obra y dirección de ejecución material, coordinación en seguridad \ny salud para proyecto de obras “Reconstrucción de vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DA…"
-        },
-        {
-          "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3dTzivflSF2sNfRW6APEDw%3D%3D",
           "snippet": "Contrato verbal de suministro compra hornillo gas y desechables para familia afectada como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 · Ayuntamiento de Riba-roja de Túria · BRICOLAGE MORENO SL ·…"
         },
@@ -2133,6 +2150,14 @@
           "reason": "El sumario presentaba como respaldo del cambio de parqué un contrato del SDA cuyo objeto es la pavimentación del paseo Pacadar: una actuación exterior, no el pavimento interior del Complejo La Malla. Las dos cosas se enlazaron sólo porque ambas mencionan La Malla. Se retira la afirmación de que la obra consta en ese expediente.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-02T14:47:44.234Z"
+        },
+        {
+          "field": "crossChecked.1",
+          "original": "documento cotejado · sha256:0970b4bbbccd",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión, cuyo vínculo con lo debatido es una coincidencia léxica y cuya fecha más temprana conocida es posterior al pleno.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:26.006Z"
         }
       ]
     },
@@ -2141,7 +2166,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate de los grupos PP, Compromís y un grupo no identificado en el pleno de Riba-roja de Túria del 2026-01-19",
-      "summary": "En la sesión del 19 de enero de 2026, el grupo PP afirma que votará a favor de la modificación de crédito y el grupo Compromís señala su apoyo al plan de contratación de 2026. Por su parte, un grupo no identificado manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal de contratación del que dispone este medio arranca en 2017, así que no recoge ningún expediente de aquel periodo; entre los documentos cotejados con esta sesión figura el Contrato de carácter menor de obras para la modificación de instalación de ACS con mezcladores para duchas en pabellón deportivo municipal, adjudicado en 2026.",
+      "summary": "En la sesión del 19 de enero de 2026, el grupo PP afirma que votará a favor de la modificación de crédito y el grupo Compromís señala su apoyo al plan de contratación de 2026. Por su parte, un grupo no identificado manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal de contratación del que dispone este medio arranca en 2017, así que no recoge ningún expediente de aquel periodo.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-114-afi-5238db",
@@ -2172,21 +2197,6 @@
         }
       ],
       "crossChecked": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=lWTuvLzS6jH10HRJw8TEnQ%3D%3D",
-          "snippet": "Contrato de carácter menor de obras para la ejecución del proyecto de modificación de instalación de ACS con mezcladores para duchas en pabellón deportivo municipal"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TxQvZ6saR0ScCF8sV%2BqtYA%3D%3D",
-          "snippet": "Contrato menor de obras referentes a la modificación de instalación de ACS con mezcladores para duchas en complejo deportivo municipal La Malla"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=WUIrTpS4RqweC9GJQOEBkQ%3D%3D",
-          "snippet": "Contrato administrativo de obras para la ejecución del proyecto “Mantenimiento y refuerzo estructural del pabellón polideportivo municipal”"
-        },
         {
           "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
@@ -2237,6 +2247,38 @@
           "reason": "La frase ataba un expediente de 2026 a una auditoría de 2006-2012. El registro disponible empieza en 2017 y no puede contener expedientes de aquel periodo.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-05T07:24:35.551Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión del 19 de enero de 2026, el grupo PP afirma que votará a favor de la modificación de crédito y el grupo Compromís señala su apoyo al plan de contratación de 2026. Por su parte, un grupo no identificado manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal de contratación del que dispone este medio arranca en 2017, así que no recoge ningún expediente de aquel periodo; entre los documentos cotejados con esta sesión figura el Contrato de carácter menor de obras para la modificación de instalación de ACS con mezcladores para duchas en pabellón deportivo municipal, adjudicado en 2026.",
+          "corrected": "En la sesión del 19 de enero de 2026, el grupo PP afirma que votará a favor de la modificación de crédito y el grupo Compromís señala su apoyo al plan de contratación de 2026. Por su parte, un grupo no identificado manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal de contratación del que dispone este medio arranca en 2017, así que no recoge ningún expediente de aquel periodo.",
+          "reason": "La corrección anterior dejó en pie la cláusula que nombraba un expediente cotejado, y ese expediente es posterior a la sesión: el año que la frase daba, 2026, es justamente el dato que ocultaba el desfase. Se suprime la cláusula; la afirmación negativa sobre el arranque del registro se sostiene sola.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:25.068Z"
+        },
+        {
+          "field": "crossChecked.2",
+          "original": "documento cotejado · sha256:ee7ee1a98473",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo un expediente cuya fecha más temprana conocida es posterior a la de la sesión: un procedimiento que aún no constaba el día del debate no pudo ser lo que el pleno debatía.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:25.307Z"
+        },
+        {
+          "field": "crossChecked.1",
+          "original": "documento cotejado · sha256:6af8ebe9ec81",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo un expediente cuya fecha más temprana conocida es posterior a la de la sesión: un procedimiento que aún no constaba el día del debate no pudo ser lo que el pleno debatía.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:25.540Z"
+        },
+        {
+          "field": "crossChecked.0",
+          "original": "documento cotejado · sha256:1de76ca7fa66",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo el expediente que nombraba la frase suprimida y cuya fecha más temprana conocida es, además, posterior a la de la sesión.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:25.773Z"
         }
       ]
     },
@@ -2485,7 +2527,7 @@
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
       "title": "Sesión urgente sobre incumplimiento del contrato de recogida de residuos",
-      "summary": "El pleno urgente de 23 de diciembre de 2025 fue convocado, según un grupo no identificado (grupo no mayoritario) y Compromís, por un presunto incumplimiento del contrato municipal de recogida de residuos. La oposición atribuye al equipo de gobierno responsabilidad política además de la contractual de la empresa adjudicataria; PSOE replica que la responsabilidad recae exclusivamente en la empresa. Los datos municipales publicados (PLACSP, BDNS, presupuesto) aún no incluyen expediente de fiscalización del incumplimiento; la finding queda pendiente del informe técnico municipal y de la réplica formal de los grupos implicados.",
+      "summary": "El pleno urgente de 23 de diciembre de 2025 fue convocado, según un grupo no identificado y Compromís, por un presunto incumplimiento del contrato municipal de recogida de residuos. Una intervención sin grupo atribuido en la transcripción sostiene que, además del incumplimiento contractual, «también tiene una responsabilidad política el equipo de gobierno»; PSOE replica que la responsabilidad recae exclusivamente en la empresa. Los datos municipales publicados (PLACSP, BDNS, presupuesto) aún no incluyen expediente de fiscalización del incumplimiento; el hallazgo queda pendiente del informe técnico municipal y de la réplica formal de los grupos implicados.",
       "severity": "informational",
       "sourceClaimIds": [
         "1qi8axv-068-acu-a1ba00",
@@ -2529,6 +2571,14 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:17.430Z"
+        },
+        {
+          "field": "summary",
+          "original": "El pleno urgente de 23 de diciembre de 2025 fue convocado, según un grupo no identificado (grupo no mayoritario) y Compromís, por un presunto incumplimiento del contrato municipal de recogida de residuos. La oposición atribuye al equipo de gobierno responsabilidad política además de la contractual de la empresa adjudicataria; PSOE replica que la responsabilidad recae exclusivamente en la empresa. Los datos municipales publicados (PLACSP, BDNS, presupuesto) aún no incluyen expediente de fiscalización del incumplimiento; la finding queda pendiente del informe técnico municipal y de la réplica formal de los grupos implicados.",
+          "corrected": "El pleno urgente de 23 de diciembre de 2025 fue convocado, según un grupo no identificado y Compromís, por un presunto incumplimiento del contrato municipal de recogida de residuos. Una intervención sin grupo atribuido en la transcripción sostiene que, además del incumplimiento contractual, «también tiene una responsabilidad política el equipo de gobierno»; PSOE replica que la responsabilidad recae exclusivamente en la empresa. Los datos municipales publicados (PLACSP, BDNS, presupuesto) aún no incluyen expediente de fiscalización del incumplimiento; el hallazgo queda pendiente del informe técnico municipal y de la réplica formal de los grupos implicados.",
+          "reason": "La cita que sostenía la frase no tiene grupo atribuido, y el sumario la asignaba a la oposición: un centinela no es un valor, y la inferencia plausible es justo lo que la regla prohíbe. Se cita al hablante literalmente y se suprime «(grupo no mayoritario)», que tampoco tiene fuente. Se corrige de paso una palabra inglesa en prosa publicada.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:26.242Z"
         }
       ]
     },
@@ -2621,7 +2671,7 @@
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
       "title": "Pleno extraordinario y urgente de Riba-roja de Túria, 2025-12-23: Debates sobre transparencia y accesibilidad a informes",
-      "summary": "VOX afirma que no es necesario desplazarse al ayuntamiento para acceder a los informes. Compromís menciona un contrato para asistencia técnica y supervisión de prestaciones, mientras que un grupo no identificado señala la inclusión de nuevas condiciones en el actual contrato.",
+      "summary": "VOX afirma que no es necesario desplazarse al ayuntamiento para acceder a los informes. Compromís menciona un contrato para asistencia técnica y supervisión de prestaciones, mientras que un grupo no identificado contrasta el contrato en discusión con el anterior —«no existía en el contrato anterior y en este sí»— sin precisar a qué se refiere.",
       "severity": "informational",
       "sourceClaimIds": [
         "1qi8axv-122-afi-3eebaf",
@@ -2685,6 +2735,14 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:18.120Z"
+        },
+        {
+          "field": "summary",
+          "original": "VOX afirma que no es necesario desplazarse al ayuntamiento para acceder a los informes. Compromís menciona un contrato para asistencia técnica y supervisión de prestaciones, mientras que un grupo no identificado señala la inclusión de nuevas condiciones en el actual contrato.",
+          "corrected": "VOX afirma que no es necesario desplazarse al ayuntamiento para acceder a los informes. Compromís menciona un contrato para asistencia técnica y supervisión de prestaciones, mientras que un grupo no identificado contrasta el contrato en discusión con el anterior —«no existía en el contrato anterior y en este sí»— sin precisar a qué se refiere.",
+          "reason": "El extracto no dice qué es lo que no existía en el contrato anterior; el sustantivo «condiciones» lo aportaba el redactor. Se cita al hablante literalmente y se hace explícito que la referencia queda sin determinar.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:27.426Z"
         }
       ]
     },
@@ -2782,7 +2840,7 @@
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "Pleno ordinario 2025-12-01: Discusión sobre obras del Centro de Salud",
-      "summary": "El grupo PP afirma que las obras en el Centro de Salud están en curso y solicita información al respecto. El PSOE señala su intención de volver a la consellería en enero para revisar el avance del proyecto. Ambos grupos hacen referencia al contrato menor para adquisición de una carpa en el centro.",
+      "summary": "El grupo PP afirma que las obras en el Centro de Salud están en curso y solicita información al respecto. El PSOE señala su intención de volver a la consellería en enero para revisar el avance del proyecto.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-239-cit-d89862",
@@ -2802,22 +2860,12 @@
           "sourceClaimId": "qz6weg-237-cit-7bff59"
         },
         {
-          "text": "Contestemos el bloque del Partido Popular sobre el Centro de Salud.",
-          "speakerGroup": "PP",
-          "sourceClaimId": "qz6weg-239-cit-5edf02"
-        },
-        {
           "text": "seguiremos con el tema del centro de salud que cuando pase este mes, en enero, volveremos a la consellería para ver cómo va el tema del proyecto",
           "speakerGroup": "PSOE",
           "sourceClaimId": "qz6weg-249-cit-3e02ef"
         }
       ],
       "crossChecked": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DDuU2CuSCh0BPRBxZ4nJ%2Fg%3D%3D",
-          "snippet": "Contrato menor, suministro para la adquisición de una carpa de 10x15 (150m2) zona exterior Centro de Salud para habilitar zona de triaje para usuarios que accedan al Centro de Salud, para el municipio de Riba-roja de Túria. · Ayuntamient…"
-        },
         {
           "kind": "pleno-video",
           "ref": "https://www.youtube.com/watch?v=fmbfOgTHGYs",
@@ -2829,14 +2877,39 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "El grupo PP afirma que las obras en el Centro de Salud están en curso y solicita información al respecto. El PSOE señala su intención de volver a la consellería en enero para revisar el avance del proyecto. Ambos grupos hacen referencia al contrato menor para adquisición de una carpa en el centro.",
+          "corrected": "El grupo PP afirma que las obras en el Centro de Salud están en curso y solicita información al respecto. El PSOE señala su intención de volver a la consellería en enero para revisar el avance del proyecto.",
+          "reason": "La frase suprimida afirmaba, en indicativo y sobre lo que dos grupos dijeron, un vínculo con un expediente que ninguna de las cuatro citas menciona: el puente era el nombre del centro. El expediente es además un suministro de la época de la pandemia, no la obra que el pleno discutía.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:28.374Z"
+        },
+        {
+          "field": "quote.2",
+          "original": "cita · sha256:6ef92c46362a",
+          "corrected": "retirada del hallazgo",
+          "reason": "Se retira una cita atribuida a un grupo municipal cuyo propio contexto muestra que la pronuncia quien preside la sesión al dar la palabra; el sumario no la utilizaba y se publicaba en el bloque de citas del hallazgo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:28.639Z"
+        },
+        {
+          "field": "crossChecked.0",
+          "original": "documento cotejado · sha256:f51b7b10ff00",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo el expediente que nombraba la frase suprimida: ninguna cita del hallazgo lo menciona y su objeto es muy anterior a las obras debatidas.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:28.878Z"
+        }
+      ]
     },
     {
       "id": "f-2025-12-01-cit-66cd62",
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "Pleno ordinario de Riba-roja de Túria, 2025-12-01: Debates sobre sistemas dinámicos de adquisición y bolsa de autónomos",
-      "summary": "El PSOE afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Además, menciona un plan de rehabilitación por más de 900.000 euros para apoyar a autónomos y pequeñas empresas locales. un grupo no identificado grupo señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
+      "summary": "El PSOE afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Cita además «más de 900.000 euros con una bolsa en el ayuntamiento para los autónomos y pequeñas empresas»: la transcripción dice «El plan rehabilita más de 900.000 euros», y no permite determinar de qué plan se trata. Un grupo no identificado señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-185-cit-66cd62",
@@ -2890,6 +2963,14 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:18.809Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PSOE afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Además, menciona un plan de rehabilitación por más de 900.000 euros para apoyar a autónomos y pequeñas empresas locales. un grupo no identificado grupo señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
+          "corrected": "El PSOE afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Cita además «más de 900.000 euros con una bolsa en el ayuntamiento para los autónomos y pequeñas empresas»: la transcripción dice «El plan rehabilita más de 900.000 euros», y no permite determinar de qué plan se trata. Un grupo no identificado señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
+          "reason": "Dos defectos. El barrido automático de agosto sustituyó el relleno del extractor dentro de una frase y la dejó rota y en minúscula tras punto, así se publicó. Y «un plan de rehabilitación» era una lectura interpretativa de una transcripción degradada, con una cifra en euros colgando de ella; se cita al hablante literalmente y se dice qué no se puede determinar.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:28.138Z"
         }
       ]
     },
@@ -3045,7 +3126,7 @@
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "01-12-2025: Pleno debate sobre pagos a proveedores y ley de contratación",
-      "summary": "Un grupo no identificado afirma que la Generalitat no está cumpliendo con sus pagos y advierte sobre el incumplimiento del artículo 198 de la ley de contratación, que establece intereses por retrasos en los pagos. Además, se menciona el incremento de cuotas de Seguridad Social sin exenciones.",
+      "summary": "Dos intervenciones sin grupo atribuido en la transcripción sostienen, respectivamente, que «El PP de la Generalitat no paga» y que no se aplica la ley de contratación: «si ustedes pagan mal, tienen que pagar intereses, pero no están pagándolos». El artículo 198 que se invoca establece intereses por retrasos en los pagos, y la transcripción no identifica a quién se dirige ese «ustedes». Además, se menciona el incremento de cuotas de Seguridad Social sin exenciones.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-220-acu-34560f",
@@ -3088,11 +3169,6 @@
         },
         {
           "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=czdZT44wsgAtm4eBPtV6eQ%3D%3D",
-          "snippet": "Contratación servicio dirección obra y dirección ejecución material, coordinación en seguridad y salud para el proyecto obras Instalación de pérgolas con vegetación autóctona como refugio climático en Riba-roja de Túria (Valencia), deriv…"
-        },
-        {
-          "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2VffqwkcucQkJPJS%2BPS9vg%3D%3D",
           "snippet": "Contrato de servicio de vigilancia y seguridad privada con motivo de la celebración de la Feria del Comercio de Riba-roja de Túria, mediante contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de…"
         },
@@ -3115,6 +3191,22 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:19.505Z"
+        },
+        {
+          "field": "summary",
+          "original": "Un grupo no identificado afirma que la Generalitat no está cumpliendo con sus pagos y advierte sobre el incumplimiento del artículo 198 de la ley de contratación, que establece intereses por retrasos en los pagos. Además, se menciona el incremento de cuotas de Seguridad Social sin exenciones.",
+          "corrected": "Dos intervenciones sin grupo atribuido en la transcripción sostienen, respectivamente, que «El PP de la Generalitat no paga» y que no se aplica la ley de contratación: «si ustedes pagan mal, tienen que pagar intereses, pero no están pagándolos». El artículo 198 que se invoca establece intereses por retrasos en los pagos, y la transcripción no identifica a quién se dirige ese «ustedes». Además, se menciona el incremento de cuotas de Seguridad Social sin exenciones.",
+          "reason": "El sumario fundía dos citas distintas, ambas sin grupo atribuido, en un solo sujeto y en una sola acusación, y ponía a la administración autonómica como destinataria del reproche sobre el artículo 198 cuando la cita se dirige a un «ustedes» que la transcripción no identifica. Se separan las dos intervenciones y se conserva el deíctico citando literal.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:27.663Z"
+        },
+        {
+          "field": "crossChecked.2",
+          "original": "documento cotejado · sha256:4db4f0ba8799",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión y cuya fecha más temprana conocida es posterior al pleno.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:27.898Z"
         }
       ]
     },
@@ -3188,7 +3280,7 @@
       "plenoId": "1du4rf5",
       "plenoDate": "2025-11-03",
       "title": "Pleno ordinario de Riba-roja de Túria, 2025-11-03: Debates sobre responsabilidad política y propuesta de ILP",
-      "summary": "El PP afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. El PSOE señala su intención de presentar una Iniciativa Legislativa Popular (ILP) sobre este tema, diferenciándola de mociones anteriores. Compromís reclama formalmente la dimisión del presidente y vicepresidenta de la Generalitat por su gestión en el mencionado temporal.",
+      "summary": "El PP afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. El PSOE señala su intención de presentar una Iniciativa Legislativa Popular (ILP), que diferencia de mociones presentadas en legislaturas anteriores; la intervención citada no dice sobre qué versa. Compromís reclama formalmente la dimisión del presidente y vicepresidenta de la Generalitat por su gestión en el mencionado temporal.",
       "severity": "informational",
       "sourceClaimIds": [
         "1du4rf5-115-acu-431140",
@@ -3254,14 +3346,23 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "El PP afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. El PSOE señala su intención de presentar una Iniciativa Legislativa Popular (ILP) sobre este tema, diferenciándola de mociones anteriores. Compromís reclama formalmente la dimisión del presidente y vicepresidenta de la Generalitat por su gestión en el mencionado temporal.",
+          "corrected": "El PP afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. El PSOE señala su intención de presentar una Iniciativa Legislativa Popular (ILP), que diferencia de mociones presentadas en legislaturas anteriores; la intervención citada no dice sobre qué versa. Compromís reclama formalmente la dimisión del presidente y vicepresidenta de la Generalitat por su gestión en el mencionado temporal.",
+          "reason": "La cita sobre la iniciativa legislativa popular no dice de qué trata, y procede de un segmento muy posterior al del debate sobre el temporal; «sobre este tema» era un vínculo temático que ponía el sumario. Se suprime y se dice qué no consta.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:29.113Z"
+        }
+      ]
     },
     {
       "id": "f-2025-10-06-cit-6c4d24",
       "plenoId": "otxq2c",
       "plenoDate": "2025-10-06",
       "title": "Pleno ordinario 2025-10-06: Debate sobre apoyo social e igualdad",
-      "summary": "El PP afirma que trasladará puntos de acuerdo a varias instituciones para mejorar la atención a las mujeres. El PSOE señala su colaboración en programas de prevención y atención, destacando el compromiso con la protección infantil y adolescente. Ambos grupos mencionan contratos menores relacionados con servicios de asesoramiento jurídico y defensa procesal del Ayuntamiento.",
+      "summary": "El PP afirma que trasladará puntos de acuerdo a varias instituciones para mejorar la atención a las mujeres. El PSOE señala su colaboración en programas de prevención y atención, destacando el compromiso con la protección infantil y adolescente.",
       "severity": "informational",
       "sourceClaimIds": [
         "otxq2c-037-cit-6c4d24",
@@ -3296,11 +3397,6 @@
           "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y%2B4KpfdCiqmiEJrVRqloyA%3D%3D",
           "snippet": "Contrato menor, servicio para la elaboración del Plan de Inclusión y Cohesión Social Municipal para el municipio de Riba-roja de Túria."
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=MT4UDr1mVSrnSoTX3z%2F7wA%3D%3D",
-          "snippet": "Servicio de asesoramiento jurídico y defensa procesal del Ayuntamiento"
         },
         {
           "kind": "tender",
@@ -3348,7 +3444,24 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "El PP afirma que trasladará puntos de acuerdo a varias instituciones para mejorar la atención a las mujeres. El PSOE señala su colaboración en programas de prevención y atención, destacando el compromiso con la protección infantil y adolescente. Ambos grupos mencionan contratos menores relacionados con servicios de asesoramiento jurídico y defensa procesal del Ayuntamiento.",
+          "corrected": "El PP afirma que trasladará puntos de acuerdo a varias instituciones para mejorar la atención a las mujeres. El PSOE señala su colaboración en programas de prevención y atención, destacando el compromiso con la protección infantil y adolescente.",
+          "reason": "La frase suprimida afirmaba que ambos grupos mencionaban contratos menores de asesoramiento jurídico, y ninguna de las cuatro citas menciona contrato alguno: el puente era la palabra «jurídico» dentro de una enumeración de apoyo a víctimas, que no es la defensa procesal del ayuntamiento. Tres de las cuatro citas son además del mismo grupo, así que «ambos grupos» tampoco describía la prueba.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:29.347Z"
+        },
+        {
+          "field": "crossChecked.1",
+          "original": "documento cotejado · sha256:c4475a9fe849",
+          "reason": "Se retira del cotejo el expediente que nombraba la frase suprimida: ninguna cita del hallazgo menciona un contrato, y el término compartido designa en la sesión el acompañamiento a víctimas y no la defensa procesal del ayuntamiento.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:29.587Z",
+          "corrected": "retirado del hallazgo"
+        }
+      ]
     },
     {
       "id": "f-2025-10-06-cit-591d40",
@@ -3523,7 +3636,7 @@
       "plenoId": "otxq2c",
       "plenoDate": "2025-10-06",
       "title": "Debate de seguridad en el pleno 2025-10-06: videovigilancia y sistema COMETA",
-      "summary": "En la sesión plenaria del 06-10-2025, VOX manifiesta que considera esencial el sistema COMETA en materia de seguridad, PSOE señala que denuncia ante la Consejería determinadas ampliaciones y PP apunta dudas sobre el cumplimiento de ciertas órdenes. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+      "summary": "En la sesión plenaria del 06-10-2025, VOX manifiesta que considera esencial el sistema COMETA en materia de seguridad, PSOE plantea como punto de acuerdo «Denunciar públicamente a la Consejería esas ampliaciones que nos han hecho» y PP apunta dudas sobre el cumplimiento de ciertas órdenes. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
       "severity": "informational",
       "sourceClaimIds": [
         "otxq2c-078-acu-b00839",
@@ -3593,6 +3706,14 @@
           "reason": "El sumario citaba un contrato de videovigilancia en el polígono Masía Baló como algo que «documenta la actividad municipal en este ámbito» a propósito del sistema COMETA. COMETA es el sistema estatal de seguimiento telemático de medidas de alejamiento; un contrato de cámaras en suelo industrial no lo documenta. Los dos asuntos se enlazaron sólo por la palabra «seguridad». Se mantiene la cita del contrato pero se explicita que no respalda lo debatido.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-02T14:51:20.688Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión plenaria del 06-10-2025, VOX manifiesta que considera esencial el sistema COMETA en materia de seguridad, PSOE señala que denuncia ante la Consejería determinadas ampliaciones y PP apunta dudas sobre el cumplimiento de ciertas órdenes. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+          "corrected": "En la sesión plenaria del 06-10-2025, VOX manifiesta que considera esencial el sistema COMETA en materia de seguridad, PSOE plantea como punto de acuerdo «Denunciar públicamente a la Consejería esas ampliaciones que nos han hecho» y PP apunta dudas sobre el cumplimiento de ciertas órdenes. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+          "reason": "La cita es un punto de acuerdo formulado en infinitivo, y su contexto lo dice con todas las letras; el sumario lo publicaba como una denuncia ya presentada. Se cita al hablante literalmente para que la propuesta no se lea como un acto consumado. La advertencia sobre el expediente de videovigilancia no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:22:26.477Z"
         }
       ]
     },

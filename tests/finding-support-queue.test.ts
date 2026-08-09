@@ -288,6 +288,114 @@ describe('classifyClaimShape · propiedad léxica, nunca un pronóstico', () => 
   })
 
   /**
+   * ─── El punto ciego, declarado ────────────────────────────────────────────
+   *
+   * La sonda de aquí arriba —«Ambos grupos mencionan contratos menores…»— es
+   * casi literalmente el sumario publicado de `f-2025-10-06-cit-6c4d24`, y
+   * este bloque la fijaba como comportamiento DESEADO. Lo es, para lo que el
+   * clasificador mide: los verbos de habla están fuera de la lista a propósito,
+   * porque que un grupo mencione un contrato en el pleno no es que nosotros
+   * afirmemos que el registro lo respalda.
+   *
+   * Y aun así esa frase era falsa: ninguna de las cuatro citas de aquel
+   * hallazgo menciona contrato alguno. La revisión de las filas 36–51 encontró
+   * tres sumarios así, y el patrón no es un conector que faltara en la lista
+   * sino dos formas que la lista no puede ver — la APOSICIÓN («…en el debate
+   * sobre X y el «Contrato mixto…»», sin verbo ninguno) y el verbo de habla con
+   * un documento CONCRETO por objeto.
+   *
+   * No se «arregla» el léxico para que atrape estas tres. Añadir «hacen
+   * referencia a» y una regla de aposición sería ajustar al conjunto de prueba:
+   * las tres dejarían de aparecer y la clase de fallo seguiría entera, ahora
+   * invisible. Lo que sí se puede fijar es la propiedad honesta —el
+   * clasificador es LÉXICO e INCOMPLETO, y su etiqueta no es un permiso—, y
+   * eso se demuestra con las tres frases reales, no con una sonda inventada.
+   */
+  const PUNTO_CIEGO = [
+    {
+      id: 'f-2026-04-20-cit-947479',
+      /** Cómo la frase nombró el documento sin ningún conector. */
+      forma: 'aposición',
+      /** Un trozo del título del expediente que la frase soldó, verbatim. */
+      expediente: 'sistema de debate, voto electrónico',
+    },
+    {
+      id: 'f-2025-12-01-cit-d89862',
+      forma: 'verbo de habla con documento concreto',
+      expediente: 'adquisición de una carpa',
+    },
+    {
+      id: 'f-2025-10-06-cit-6c4d24',
+      forma: 'verbo de habla con documento concreto',
+      expediente: 'asesoramiento jurídico y defensa procesal',
+    },
+  ]
+
+  it.each(PUNTO_CIEGO)(
+    '$id: el clasificador no vio la afirmación documental que la frase sí hacía ($forma)',
+    ({ id, expediente }) => {
+      const finding = SNAPSHOT.items.find((f) => f.id === id)
+      expect(finding, `${id} ya no está en el snapshot`).toBeDefined()
+      // El sumario TAL Y COMO SE PUBLICÓ, leído de la bitácora de correcciones
+      // en vez de copiado a mano: si mañana alguien reescribe la historia, esto
+      // se cae en vez de seguir midiendo una frase que ya no existió.
+      const defectuoso = (finding!.corrections ?? []).find(
+        (c) => c.field === 'summary' && c.original.includes(expediente.split(',')[0]),
+      )
+      expect(defectuoso, `${id}: la bitácora no conserva el sumario defectuoso`).toBeDefined()
+
+      // 1. La etiqueta que el clasificador le dio, y sigue dándole.
+      const antes = classifyClaimShape(defectuoso!.original)
+      expect(antes.shape).toBe('sin-afirmacion-documental')
+      expect(antes.connectors).toEqual([])
+
+      // 2. La mitad positiva: la frase SÍ nombraba un expediente concreto —el
+      //    fragmento existe verbatim en el título de un contrato real del
+      //    corpus que este sitio publica—, así que «sin afirmación documental»
+      //    describe lo que el léxico mide y no lo que la frase hacía.
+      const t = JSON.parse(
+        readFileSync(join(__dirname, '..', 'public', 'data', 'tenders.json'), 'utf8'),
+      ) as {
+        tenders: { title: string }[]
+        contracts: { title: string }[]
+      }
+      const rows = [...t.tenders, ...t.contracts]
+      expect(rows.length).toBeGreaterThan(100)
+      expect(
+        rows.filter((r) => r.title.toLowerCase().includes(expediente.toLowerCase())).length,
+        `«${expediente}» no aparece en ningún título del corpus`,
+      ).toBeGreaterThan(0)
+      expect(defectuoso!.original.toLowerCase()).toContain(expediente.split(',')[0].toLowerCase())
+
+      // 3. Y la etiqueta NO se movió al corregirlo. El sumario de hoy ya no
+      //    afirma nada documental y sigue clasificado igual, así que la
+      //    etiqueta no distinguió la frase falsa de la reparada en ninguna de
+      //    las dos direcciones. `sin-afirmacion-documental` ordena la cola;
+      //    nunca es «aquí no hay nada que comprobar».
+      const ahora = classifyClaimShape(finding!.summary)
+      expect(ahora.shape).toBe(antes.shape)
+      expect(ahora.connectors).toEqual([])
+      expect(finding!.summary).not.toBe(defectuoso!.original)
+    },
+  )
+
+  it('las tres entran en la cola igual que las demás: la forma ordena, no filtra', () => {
+    // El corolario operativo del punto ciego. Si la etiqueta fuera un filtro,
+    // las tres filas peores del corpus habrían salido de la cola sin que nadie
+    // las leyera; entran, sin veredicto, con la CLI de corrección al lado.
+    const rows = build().rows
+    for (const { id } of PUNTO_CIEGO) {
+      const row = rows.find((r) => r.id === id)
+      expect(row, `${id} no está en la cola`).toBeDefined()
+      expect(row!.claimShape).toBe('sin-afirmacion-documental')
+      expect(row!.verdict).toBe('pendiente')
+      expect(row!.correctionCommand).toContain('npm run correct-pleno-finding')
+    }
+    // Que se midió sobre una cola de verdad y no sobre tres filas sueltas.
+    expect(rows.length).toBe(SNAPSHOT.items.length)
+  })
+
+  /**
    * ─── El sentinela era una proporción del corpus vivo, y medía al revés ────
    *
    * Hasta este lote, la garantía de «el clasificador sigue vivo» era
