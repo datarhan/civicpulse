@@ -152,6 +152,17 @@ reason the seven adapters there do — a runner would mark most of the corpus
 `unverifiable`, find nothing, and report a clean bill of health. The blocking
 copy runs at promote time, against the draft.
 
+It probes the evidence refs on published `pleno-findings.json` rows as well as
+journalist-report sources — mostly PLACSP tender permalinks, which nothing
+followed until 2026-08-09. That is a different question from
+`check:relations`' `findings-crosschecked-tenders`, which joins the same refs
+against `tenders.json`: the join catches a fabricated expediente, the probe
+catches a link that has rotted, and neither substitutes for the other. Note
+what `alive` can and cannot mean on PLACSP — it answers 200 for a deeplink id
+it does not recognise, so a live status proves the permalink resolves, not that
+the tender is behind it. Findings ride with the published corpus only, never
+with `--draft`: another curator's link rot must not block a promotion.
+
 ### Proving the guards still guard
 
 ```bash

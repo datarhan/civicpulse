@@ -43,8 +43,35 @@ export type UrlState = 'alive' | 'dead' | 'unverifiable'
 
 export interface CitationCheckInput {
   reports: ReportLike[]
+  /**
+   * Published editorial findings, whose evidence refs are URLs too.
+   *
+   * They are not `ReportLike` and are not folded into `reports[]`: a finding
+   * has no `sections`, no quote cards and no `sources[]`, so three of the four
+   * gates above do not apply to it, and counting 52 findings as 52 "reports"
+   * would inflate a coverage number whose whole job is to say how much was
+   * looked at. Only the URL gate runs over these, and they carry their own
+   * counters.
+   */
+  findings?: FindingLike[]
   /** url → state. A url absent from the map was NOT checked, and says so. */
   urlStates?: Map<string, { state: UrlState; status?: number; reason?: string }>
+}
+
+/**
+ * A published finding, reduced to the citations on it.
+ *
+ * `pleno-findings.json` carries 157 `crossChecked[]` refs of `kind: 'tender'` —
+ * PLACSP permalinks — and until now nothing followed one. `check:relations`'
+ * `findings-crosschecked-tenders` asserts each ref resolves to a tender in OUR
+ * corpus, which is a different question: it catches a fabricated expediente,
+ * not a link that has rotted. Both are needed, and neither substitutes.
+ */
+export interface FindingLike {
+  /** Published finding id, used as the row label in the report. */
+  id: string
+  /** Every evidence ref on the finding — `crossChecked[]` and `contradiction[]`. */
+  refs: Array<{ kind: string; ref: string }>
 }
 
 export interface ReportLike {
@@ -72,6 +99,13 @@ export interface CitationCoverage {
   urls: number
   urlsChecked: number
   quoteCards: number
+  /** Published findings examined. */
+  findings: number
+  /** Evidence refs on them, URL-shaped or not (`budget:2025:cap3` is not). */
+  findingRefs: number
+  /** Of those, the ones that are http(s) and could therefore be probed. */
+  findingUrls: number
+  findingUrlsChecked: number
 }
 
 export interface CitationCheckResult {
@@ -107,6 +141,10 @@ export function checkCitations(input: CitationCheckInput): CitationCheckResult {
     urls: 0,
     urlsChecked: 0,
     quoteCards: 0,
+    findings: 0,
+    findingRefs: 0,
+    findingUrls: 0,
+    findingUrlsChecked: 0,
   }
 
   for (const r of input.reports) {
@@ -185,6 +223,51 @@ export function checkCitations(input: CitationCheckInput): CitationCheckResult {
           reportId: r.id,
           sourceId: s.id,
           detail: `could not reach from here (${v.reason ?? v.status ?? '?'}) — ${s.url}`,
+        })
+      }
+    }
+  }
+
+  // 5. The same question, asked of published findings: does the evidence
+  //    behind /hallazgos still resolve?
+  //
+  //    Only the URL gate. A finding has no sections to walk and no excerpt to
+  //    match a quote against — `crossChecked[].snippet` is a ≤240-char label
+  //    the verifier wrote, not a passage lifted from the document, so testing
+  //    a quote against it would be testing our own summary. Whether the tender
+  //    SUPPORTS the finding is the judgement half, and lives in
+  //    `revisar-borrador`.
+  //
+  //    One row per (finding, ref) rather than per unique URL: the same
+  //    permalink is cited by several findings, and each of those citations is
+  //    separately broken if it rots.
+  for (const f of input.findings ?? []) {
+    coverage.findings += 1
+    for (const r of f.refs) {
+      coverage.findingRefs += 1
+      // Synthetic refs (`budget:2025:cap3`, `verdict:<claimId>`) are not
+      // addresses and are not link-checkable. Skipped, and the gap between
+      // findingRefs and findingUrls is what says so.
+      if (!/^https?:\/\//i.test(r.ref)) continue
+      coverage.findingUrls += 1
+      const v = input.urlStates?.get(r.ref)
+      if (!v) continue
+      coverage.findingUrlsChecked += 1
+      if (v.state === 'dead') {
+        findings.push({
+          severity: 'error',
+          code: 'url-dead',
+          reportId: f.id,
+          sourceId: r.kind,
+          detail: `cited ${r.kind} URL returns ${v.status ?? '?'} — ${r.ref}`,
+        })
+      } else if (v.state === 'unverifiable') {
+        findings.push({
+          severity: 'info',
+          code: 'url-unverifiable',
+          reportId: f.id,
+          sourceId: r.kind,
+          detail: `could not reach from here (${v.reason ?? v.status ?? '?'}) — ${r.ref}`,
         })
       }
     }

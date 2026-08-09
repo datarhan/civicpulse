@@ -118,8 +118,21 @@ export async function classifyUrl(url: string): Promise<UrlVerdict> {
         signal: controller.signal,
         headers: { 'User-Agent': UA, accept: '*/*' },
       })
-      // Plenty of servers refuse HEAD but serve GET fine.
-      if (method === 'HEAD' && (res.status === 405 || res.status === 501)) continue
+      // A HEAD is only believed when it says yes.
+      //
+      // This used to fall through to GET on 405/501 alone — "plenty of servers
+      // refuse HEAD" — which is true but far too narrow. PLACSP
+      // (contrataciondelestado.es) answers HEAD with **404 on every URL it
+      // has**, valid or not, and serves the same URL 200 on GET. Measured
+      // 2026-08-09 on a live tender deeplink: HEAD 404, GET 200, 82 KB of
+      // tender detail. Every one of the 157 tender permalinks cited by
+      // pleno-findings.json goes through this function, so the old rule would
+      // have reported the entire evidence base of /hallazgos as dead — and a
+      // curator acting on that report would have deleted 157 good citations.
+      //
+      // A negative HEAD is therefore never a verdict, only a hint: confirm
+      // with GET. Costs one extra request per non-2xx URL, which are rare.
+      if (method === 'HEAD' && !(res.status >= 200 && res.status < 300)) continue
       return { url, state: stateForStatus(res.status), status: res.status }
     } catch (e) {
       if (method === 'GET') {

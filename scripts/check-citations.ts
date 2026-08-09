@@ -28,11 +28,46 @@ import {
   blocks,
   checkCitations,
   type CitationCheckResult,
+  type FindingLike,
   type ReportLike,
 } from '../src/scraper/citation-check'
 
 const REPORTS = resolve('public/data/journalist-reports.json')
 const REQUISITOS = resolve('public/data/requisitos-cargo.json')
+const PLENO_FINDINGS = resolve('public/data/pleno-findings.json')
+
+/**
+ * The evidence behind /hallazgos, as link-checkable rows.
+ *
+ * 157 of these refs are PLACSP tender permalinks and nothing followed one until
+ * now. `check:relations` joins them against `tenders.json` — a different claim
+ * ("we hold this expediente"), which stays true after the council's platform
+ * reorganises a URL.
+ *
+ * What `alive` means here is narrower than it looks, and the difference is
+ * PLACSP's: a deeplink whose `idEvl` it does not recognise still answers 200
+ * with the platform's generic detail page (measured 2026-08-09 against a
+ * deliberately corrupted id). So a 200 proves the permalink still resolves,
+ * not that the tender is behind it. The corpus join is what establishes the
+ * expediente is real; this establishes the link a reader clicks is not rot.
+ * Neither alone is enough, which is why both run.
+ */
+function plenoFindingsAsRows(): FindingLike[] {
+  if (!existsSync(PLENO_FINDINGS)) return []
+  const raw = JSON.parse(readFileSync(PLENO_FINDINGS, 'utf8')) as {
+    items?: Array<{
+      id?: string
+      crossChecked?: Array<{ kind?: string; ref?: string }>
+      contradiction?: Array<{ kind?: string; ref?: string }>
+    }>
+  }
+  return (raw.items ?? []).map((f) => ({
+    id: f.id ?? '(unnamed finding)',
+    refs: [...(f.crossChecked ?? []), ...(f.contradiction ?? [])]
+      .filter((r) => typeof r?.ref === 'string' && r.ref.length > 0)
+      .map((r) => ({ kind: r.kind ?? 'unknown', ref: r.ref as string })),
+  }))
+}
 
 /**
  * `requisitos-cargo.json` as a ReportLike, so the BOE citations behind «qué
@@ -114,6 +149,15 @@ function report(result: CitationCheckResult, asJson: boolean): void {
     `URLs: ${c.urlsChecked}/${c.urls} probed` +
       (c.urlsChecked < c.urls ? `  ← ${c.urls - c.urlsChecked} NOT checked this run` : ''),
   )
+  if (c.findings > 0) {
+    out(
+      `findings: ${c.findings} · ${c.findingRefs} evidence ref(s) · ` +
+        `${c.findingUrls} link-checkable · ${c.findingUrlsChecked} probed` +
+        (c.findingUrlsChecked < c.findingUrls
+          ? `  ← ${c.findingUrls - c.findingUrlsChecked} NOT checked this run`
+          : ''),
+    )
+  }
   out(`${errors.length} blocking · ${warns.length} warning · ${infos.length} unreachable-from-here`)
 }
 
@@ -125,6 +169,11 @@ async function main(): Promise<void> {
   const draftPath = draftIdx >= 0 ? argv[draftIdx + 1] : null
 
   let reports: ReportLike[]
+  // Findings ride along with the published corpus only. `--draft` is the
+  // blocking promote-time gate for one report, and pulling 52 unrelated
+  // published findings into it would let somebody else's link rot block a
+  // promotion the curator can do nothing about.
+  let plenoFindings: FindingLike[] = []
   let label: string
   if (draftPath) {
     if (!existsSync(draftPath)) {
@@ -146,15 +195,24 @@ async function main(): Promise<void> {
       reports = [...reports, requisitos]
       label += ' + requisitos-cargo.json'
     }
+    plenoFindings = plenoFindingsAsRows()
+    if (plenoFindings.length > 0) label += ' + pleno-findings.json'
   }
 
   const urls = [
-    ...new Set(reports.flatMap((r) => r.sources.map((s) => s.url).filter(Boolean))),
+    ...new Set([
+      ...reports.flatMap((r) => r.sources.map((s) => s.url).filter(Boolean)),
+      // Deduped against the report URLs: probing the same permalink twice
+      // would be impolite and would not learn anything new.
+      ...plenoFindings
+        .flatMap((f) => f.refs.map((r) => r.ref))
+        .filter((u) => /^https?:\/\//i.test(u)),
+    ]),
   ] as string[]
   const urlStates = offline ? undefined : await probe(urls)
 
   out(`[check:citations] ${label}${offline ? '  (offline — URLs not probed)' : ''}`)
-  const result = checkCitations({ reports, urlStates })
+  const result = checkCitations({ reports, findings: plenoFindings, urlStates })
   report(result, asJson)
 
   if (blocks(result)) {
