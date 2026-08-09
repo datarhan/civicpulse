@@ -1,7 +1,8 @@
-import { describe, it, expect, beforeAll, afterAll } from 'vitest'
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs'
+import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest'
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { tmpdir } from 'node:os'
+import { liveNetworkTest } from './setup/no-network'
 
 // Tools imported lazily inside `beforeAll` AFTER we chdir to a tmp
 // workspace so the snapshot paths the tools read resolve cleanly.
@@ -273,32 +274,87 @@ describe('webSearch backend dispatcher', () => {
     })
   }
 
-  it('returns an empty result set + helpful error when neither backend is configured', async () => {
+  /**
+   * A fetch stub that answers from memory and records where it was asked to go.
+   *
+   * The URL log is the point: "which backend did the dispatcher pick" is not
+   * something an error string can answer. The version of these tests that
+   * matched `/Exa|fetch|ENOTFOUND|ECONN|undici|HTTP/i` passed identically
+   * against a live 401 and against an offline DNS failure, which is why it
+   * went unnoticed that `npm test` was calling api.exa.ai on every run.
+   */
+  function recordingFetch(respond: (url: string) => Response) {
+    const calls: Array<{ url: string; method: string; headers: Headers }> = []
+    const fn = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
+      const url =
+        typeof input === 'string'
+          ? input
+          : input instanceof URL
+            ? input.href
+            : (input as Request).url
+      calls.push({
+        url,
+        method: (init?.method ?? 'GET').toUpperCase(),
+        headers: new Headers(init?.headers),
+      })
+      return respond(url)
+    })
+    globalThis.fetch = fn as unknown as typeof globalThis.fetch
+    return calls
+  }
+
+  it('returns an empty result set + helpful error when neither backend is configured, without issuing a request', async () => {
     await withEnv({ SEARXNG_URL: undefined, EXA_API_KEY: undefined }, async () => {
-      const out = await tools.webSearch('any query that should not hit the network')
+      const calls = recordingFetch(() => new Response('unreachable', { status: 500 }))
+      const out = await tools.webSearch('no-backend-probe')
       expect(out.results).toEqual([])
       expect(out.error).toMatch(/SEARXNG_URL|EXA_API_KEY/)
+      // The "no network" half of the claim, asserted instead of assumed: the
+      // early return fires before `cached()` and before a request is built.
+      expect(calls).toEqual([])
     })
   })
 
-  it('preserves the Exa legacy fallback when only EXA_API_KEY is set (no key → no fetch)', async () => {
+  it('routes to the Exa endpoint when only EXA_API_KEY is set, and degrades to an empty result set on an auth failure', async () => {
     await withEnv({ SEARXNG_URL: undefined, EXA_API_KEY: 'sk-fake' }, async () => {
-      // The cached() wrapper still wraps the Exa branch; without a real
-      // network response the inner fetch will reject and surface as
-      // either an Exa HTTP error or a Node ECONN-style message — either
-      // way the result set is empty (graceful degradation).
-      const out = await tools.webSearch('test-only-no-network')
+      const calls = recordingFetch(
+        () =>
+          new Response(JSON.stringify({ error: 'unauthorized' }), {
+            status: 401,
+            headers: { 'content-type': 'application/json' },
+          }),
+      )
+
+      const out = await tools.webSearch('exa-branch-probe')
+
+      // Discriminating: this pins the wire, not a message. SearXNG would have
+      // gone to a different host, and the unconfigured path would not have
+      // fetched at all — neither can masquerade as this.
+      expect(calls.map((c) => c.url)).toEqual(['https://api.exa.ai/search'])
+      expect(calls[0].method).toBe('POST')
+      expect(calls[0].headers.get('x-api-key')).toBe('sk-fake')
+
+      // …and the branch degrades gracefully rather than throwing. Exact
+      // string: an offline DNS failure produces a different one, so this can
+      // no longer pass for the wrong reason.
       expect(out.results).toEqual([])
-      // Either an upstream HTTP error or a thrown fetch-error string;
-      // both prove the dispatcher reached the Exa branch.
-      expect(out.error ?? '').toMatch(/Exa|fetch|ENOTFOUND|ECONN|undici|HTTP/i)
+      expect(out.error).toBe('Exa HTTP 401')
+
+      // `cached()` writes that failure to disk — a real bad key would poison a
+      // future search with a stale error, since there is no TTL. `CACHE_DIR`
+      // is resolved at import time, which is the only reason it lands in this
+      // throwaway workspace instead of the developer's repo cache. Pin it, so
+      // dropping the chdir above cannot quietly start poisoning `.research-cache/`.
+      expect(existsSync(join(work, '.research-cache'))).toBe(true)
+      expect(existsSync(join(originalCwd, '.research-cache', 'exa-branch-probe.json'))).toBe(false)
     })
   })
 
-  // Opt-in live smoke against a real SearXNG instance — only runs when
-  // RUN_E2E_SEARXNG=1 and SEARXNG_URL is set (typical CI never sets it).
-  const liveSearxng = process.env.RUN_E2E_SEARXNG === '1' && process.env.SEARXNG_URL
-  ;(liveSearxng ? it : it.skip)(
+  // Opt-in live smoke against a real SearXNG instance. `liveNetworkTest` is the
+  // skip gate AND the network-guard lift in one declaration, so it cannot run
+  // without permission or hold permission without running.
+  liveNetworkTest(
+    { enabledBy: 'RUN_E2E_SEARXNG', requires: ['SEARXNG_URL'] },
     'returns ≥1 result against a live SearXNG instance',
     async () => {
       const out = await tools.webSearch('Riba-roja de Túria ayuntamiento', { numResults: 5 })
