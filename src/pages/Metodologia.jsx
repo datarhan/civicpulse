@@ -24,8 +24,28 @@ function useAuthorshipDisclosure() {
   return authorshipBreakdown(items)
 }
 
+/**
+ * How many published pleno findings carry a refutation, which is the gate that
+ * decides whether a finding is syndicated as a machine-readable fact-check
+ * (see `src/components/ClaimReviewJsonLd.jsx`).
+ *
+ * Read live for the same reason as the authorship disclosure above. Sharing
+ * `usePlenoFindings` with it costs nothing: hooks ride the module-level
+ * snapshot store, so both mounts resolve from one fetch.
+ */
+function useAdjudicationDisclosure() {
+  const { data } = usePlenoFindings()
+  const items = data?.items ?? []
+  if (items.length === 0) return null
+  return {
+    total: items.length,
+    adjudicated: items.filter((f) => (f.contradiction ?? []).length > 0).length,
+  }
+}
+
 export default function Metodologia() {
   const authorship = useAuthorshipDisclosure()
+  const adjudication = useAdjudicationDisclosure()
   return (
     <div
       className="cp-page"
@@ -921,7 +941,8 @@ export default function Metodologia() {
 
         <h3 style={{ marginTop: 16, fontSize: 15 }}>ClaimReview (schema.org)</h3>
         <p style={{ marginTop: 6 }}>
-          Publicamos cada hallazgo editorial con datos estructurados{' '}
+          Un hallazgo que lleva una <strong>referencia de contradicción</strong> se publica además
+          como datos estructurados{' '}
           <a
             href="https://schema.org/ClaimReview"
             style={{ color: 'var(--civic)' }}
@@ -933,6 +954,36 @@ export default function Metodologia() {
           embebidos en la página. Es el mismo estándar W3C que la API de Google Fact Check Tools
           indexa — y del que <em>leemos</em> a Newtral, Maldita, EFE Verifica y AFP Factual. Al
           publicarlo, terceros pueden cosecharnos en igualdad de condiciones.
+        </p>
+        <p style={{ marginTop: 8 }}>
+          <strong>Y sólo ése.</strong> El bloque incluye un <code>reviewRating</code>: nuestro
+          veredicto sobre la frase citada, que en estas fichas son las palabras textuales de quien
+          habló en el pleno. El único veredicto que este sitio puede sostener es el negativo —{' '}
+          <code>contradiction</code> es el único campo del esquema que recoge una conclusión
+          direccional sobre una cita, y, como se explica más arriba, ningún paso del verificador
+          establece que un documento <em>respalde</em> una frase. Un hallazgo sin contradicción no
+          emite marcado ninguno: preferimos no figurar en un índice de verificaciones a figurar con
+          una verificación que no hemos hecho.
+          {adjudication ? (
+            <>
+              {' '}
+              De los {adjudication.total} hallazgos de pleno publicados,{' '}
+              <strong>{adjudication.adjudicated} cumplen hoy ese requisito</strong>.
+            </>
+          ) : null}
+        </p>
+        <p style={{ marginTop: 8 }}>
+          <strong>Corrección del 9 de agosto de 2026.</strong> Hasta esa fecha el{' '}
+          <code>reviewRating</code> se derivaba de la <code>severity</code> del hallazgo:{' '}
+          <code>informational</code> se publicaba como 5/5 «Verificado», <code>notable</code> como
+          3/5 «Parcialmente verificado» y <code>critical</code> como 1/5. Son dos ejes distintos: la
+          gravedad de <em>nuestro</em> hallazgo no dice nada sobre si la frase citada es cierta. Y
+          como <code>informational</code> es lo que escriben los curadores automáticos, casi todos
+          los hallazgos publicados llevaban sindicado, en formato legible por máquina, que
+          CivicPulse había verificado las palabras del cargo citado — incluidas descalificaciones
+          políticas, fragmentos mal segmentados de la transcripción y frases sobre personas con
+          nombre y apellidos. No se había comprobado ninguna. El marcado se retiró de toda ficha sin
+          contradicción el mismo día.
         </p>
 
         <h3 style={{ marginTop: 16, fontSize: 15 }}>Política de correcciones</h3>

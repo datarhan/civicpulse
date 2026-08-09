@@ -49,21 +49,47 @@ test.describe('Hallazgos (/hallazgos)', () => {
     await expect(page).toHaveURL(/\/hallazgos$/)
   })
 
-  test('publishes schema.org/ClaimReview JSON-LD per pleno finding', async ({ page }) => {
+  /**
+   * ClaimReview is emitted per ADJUDICATED finding, not per finding.
+   *
+   * This test used to assert `ldScripts.length > 0`, and it was green for the
+   * wrong reason: every card emitted a block whose `reviewRating` came from
+   * `severity`, so a councillor's own words shipped to Google's fact-check
+   * index carrying CivicPulse's 5/5 «Verificado» because the finding happened
+   * to be filed `informational`. The count is now derived from the published
+   * snapshot rather than hard-coded, so this measures the gate in the rendered
+   * DOM either way: zero today, N the day N refutations are curated.
+   */
+  test('publishes ClaimReview JSON-LD only for findings that carry a refutation', async ({
+    page,
+    request,
+  }) => {
+    const snapshot = await request.get('/data/pleno-findings.json')
+    expect(snapshot.ok(), 'pleno-findings.json must be served').toBeTruthy()
+    const items: { contradiction?: unknown[] }[] = (await snapshot.json()).items
+    expect(items.length, 'no published findings — this test would measure nothing').toBeGreaterThan(
+      10,
+    )
+    const expected = items.filter((f) => (f.contradiction ?? []).length > 0).length
+
     await page.goto('/hallazgos', { waitUntil: 'domcontentloaded' })
     await expect(page.getByText(/Verificaci.n editorial/i).first()).toBeVisible({
       timeout: 8000,
     })
+    // The cards mount after the snapshot lands; wait for one so an empty
+    // `ldScripts` cannot be the pre-render state instead of the gate.
+    await expect(page.locator('a[href^="/hallazgos#f-"]').first()).toBeVisible({ timeout: 15_000 })
 
     const ldScripts = await page.locator('script[type="application/ld+json"]').allTextContents()
-    expect(ldScripts.length).toBeGreaterThan(0)
+    expect(ldScripts.length).toBe(expected)
     for (const raw of ldScripts) {
       const payload = JSON.parse(raw)
       expect(payload['@context']).toBe('https://schema.org')
       expect(payload['@type']).toBe('ClaimReview')
       expect(payload.author?.name).toBe('CivicPulse')
-      expect(payload.reviewRating?.ratingValue).toBeGreaterThanOrEqual(1)
-      expect(payload.reviewRating?.ratingValue).toBeLessThanOrEqual(5)
+      // The only rating this site can source: `contradiction[]` is the only
+      // adjudication either schema records, and it points one way.
+      expect(payload.reviewRating?.ratingValue).toBe(1)
       expect(typeof payload.claimReviewed).toBe('string')
       // Pleno findings always point at the council session, never an outlet.
       expect(payload.itemReviewed?.appearance?.[0]?.url).toContain('/plenos')

@@ -78,22 +78,33 @@ test.describe('Laboratorio (/laboratorio)', () => {
     await expect(page.getByRole('link', { name: /Leer metodología/i }).first()).toBeVisible()
   })
 
-  test('publishes schema.org/ClaimReview JSON-LD when findings exist', async ({ page }) => {
+  test('publishes ClaimReview JSON-LD only for press findings that carry a refutation', async ({
+    page,
+    request,
+  }) => {
+    // Derived from the snapshot, not hard-coded: press-findings.json is empty
+    // today, so a bare `length === 0` would be green whatever the component
+    // did. `contradiction[]` is the gate on this surface too — a press
+    // `verificado` verdict comes from the same deterministic matcher and is
+    // not an adjudication (see ClaimReviewJsonLd.jsx).
+    const snapshot = await request.get('/data/press-findings.json')
+    expect(snapshot.ok(), 'press-findings.json must be served').toBeTruthy()
+    const items: { contradiction?: unknown[] }[] = (await snapshot.json()).items
+    const expected = items.filter((f) => (f.contradiction ?? []).length > 0).length
+
     await page.goto('/laboratorio', { waitUntil: 'domcontentloaded' })
     await expect(
       page.getByRole('heading', { name: 'Laboratorio de verificación de prensa' }),
     ).toBeVisible({ timeout: 8000 })
 
-    // Each script tag should parse as a ClaimReview payload. If no findings
-    // are loaded (cold lab), the array is empty — accept that too.
     const ldScripts = await page.locator('script[type="application/ld+json"]').allTextContents()
+    expect(ldScripts.length).toBe(expected)
     for (const raw of ldScripts) {
       const payload = JSON.parse(raw)
       expect(payload['@context']).toBe('https://schema.org')
       expect(payload['@type']).toBe('ClaimReview')
       expect(payload.author?.name).toBe('CivicPulse')
-      expect(payload.reviewRating?.ratingValue).toBeGreaterThanOrEqual(1)
-      expect(payload.reviewRating?.ratingValue).toBeLessThanOrEqual(5)
+      expect(payload.reviewRating?.ratingValue).toBe(1)
       expect(typeof payload.claimReviewed).toBe('string')
     }
   })
