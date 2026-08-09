@@ -31,11 +31,15 @@
  *
  *   verificado · parcial · contradicho · sin-datos · promesa-repetida
  *
- * Findings (curator-promoted) land in public/data/press-findings.json
- * via `npm run promote-press-claim`. Right-of-reply is curator-only —
- * `contradicho` and `parcial` bundles route to editorial/press-auto-
- * curation-queue.md until a curator promotes, after which the outlet
- * receives a GitHub-Issue invitation to respond.
+ * Findings land in public/data/press-findings.json via `npm run
+ * auto-curate-press`, severity locked to `informational`. Bundles
+ * carrying a `contradicho` verdict are held in the (gitignored)
+ * editorial/press-auto-curation-queue.md and go no further: there is
+ * no promotion CLI on the press side. See src/scraper/press-finding.ts
+ * for what a curator can and cannot do to a published press finding.
+ *
+ * Right-of-reply is curator-only. Once a finding is published the
+ * affected outlets receive a GitHub-Issue invitation to respond.
  */
 
 export type PressClaimType =

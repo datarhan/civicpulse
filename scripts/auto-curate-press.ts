@@ -3,10 +3,12 @@
  * Auto-curate press findings from the verified-claims snapshot.
  *
  * Hard rules:
- *   - severity is locked to `informational` (curator path lands
- *     notable/critical via promote-press-claim).
+ *   - severity is locked to `informational`. `notable` is reachable only
+ *     as a correction to a published row (`npm run correct-press-finding`);
+ *     `critical` is not reachable at all. There is no press promotion CLI.
  *   - bundles containing ≥1 `contradicho` claim are quarantined to
- *     editorial/press-auto-curation-queue.md, NEVER auto-published.
+ *     editorial/press-auto-curation-queue.md, NEVER auto-published, and
+ *     no command publishes them afterwards.
  *   - LOREG freeze: when promises.json.frozenUntil > today, exit 0
  *     with no writes (same hard-stop as the promises tracker).
  *

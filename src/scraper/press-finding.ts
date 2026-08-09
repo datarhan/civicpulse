@@ -19,13 +19,38 @@
  * page. See `EvidenceStance` in `claim-verifier.ts`; this file uses that
  * type rather than declaring a second copy of it.
  *
- * Auto-curation routes `informational` bundles directly here when
- * dialectic + score gates pass. `contradicho` / `parcial` bundles
- * route to editorial/press-auto-curation-queue.md until a curator
- * promotes them via `npm run promote-press-claim`. After promotion the
- * affected outlets receive a GitHub-Issue invitation
- * (`.github/ISSUE_TEMPLATE/press-finding-response.yml`) to file a
- * verbatim response (≥20 chars), ingested by the
+ * ## How a row gets here, and how far a curator can move it
+ *
+ * `npm run auto-curate-press` is the ONLY writer. It routes bundles here
+ * when the dialectic + score gates pass, with severity hard-locked to
+ * `informational`. Bundles carrying a `contradicho` verdict are held in
+ * editorial/press-auto-curation-queue.md instead — `parcial` alone does
+ * not quarantine, only `contradicho` does (`selectBundles`).
+ *
+ * There is no promotion CLI on the press side. Until 2026-08-09 the
+ * docstrings across this subsystem pointed at one called
+ * "promote-press-claim", in eight places including a PUBLISHED finding
+ * summary. It was never a script and never a file — `git log -S` finds it
+ * only in prose, first written in 0ea02da alongside these schemas. This is
+ * what a curator actually has:
+ *
+ *   · published rows        — `npm run correct-press-finding`, which
+ *     amends title / summary / severity and leaves a dated corrections
+ *     trail. Raising a row to `notable` goes through it.
+ *   · `critical`            — unreachable today. The validator requires
+ *     ≥1 `contradiction[]` ref, and no path (auto or CLI) can add refs
+ *     to a published finding. That gate is deliberate; the missing
+ *     ability to satisfy it is simply not built.
+ *   · quarantined bundles   — no path. They stay in the queue file.
+ *
+ * Build the promotion CLI when there is something to promote. As of this
+ * writing press-findings.json holds 0 rows and the queue is empty, and a
+ * new write path onto a surface that names media outlets is not worth
+ * opening to satisfy a docstring.
+ *
+ * Once a finding is published the affected outlets receive a GitHub-Issue
+ * invitation (`.github/ISSUE_TEMPLATE/press-finding-response.yml`) to
+ * file a verbatim response (≥20 chars), ingested by the
  * `ingest-press-finding-responses.yml` workflow.
  */
 
@@ -52,11 +77,14 @@ export interface PressFindingRef {
   /**
    * Verifier-populated kinds (tender/bdns/budget/promise/pleno-vote/
    * padron/paro) come from `press-verifier.ts`. The curator-only kinds
-   * (press, document, transcript) are accepted only via the
-   * `--extra-corroboration` flag on `promote-press-claim`; no auto path
-   * can land them. Note that even those land in `crossChecked[]`: a
-   * curator deliberately attaching a document is not the CLI checking
-   * that the document supports anything.
+   * (press, document, transcript) are admitted by the schema but no
+   * press path emits them — the pleno twin takes them through
+   * `promote-claim --extra-corroboration`, and press has no equivalent
+   * CLI (see the header). They are kept in the enum so the two finding
+   * schemas stay one shape, not because anything can write them here.
+   * Were one ever landed it would sit in `crossChecked[]` like the rest:
+   * a curator attaching a document is not the CLI checking that the
+   * document supports anything.
    */
   kind:
     | 'tender'

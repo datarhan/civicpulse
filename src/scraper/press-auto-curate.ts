@@ -10,14 +10,17 @@
  *   - verbatim ≥ 25 chars (libel-safe quoting, stronger than the
  *     schema's 20-char minimum).
  *   - opinativa accusations dropped entirely.
- *   - contradicho bundles → quarantine, never auto-published. The
- *     curator must promote via `promote-press-claim` before the
- *     outlet receives a right-of-reply GitHub Issue.
+ *   - contradicho bundles → quarantine, never auto-published, and there
+ *     they stop: press has no promotion CLI, so a quarantined bundle
+ *     reaches no outlet and triggers no right-of-reply. See the header
+ *     of press-finding.ts for what a curator can actually do.
  *   - LOREG freeze: when promises.json.frozenUntil > today, the
  *     selector returns empty buckets and the CLI exits without writing.
  *
- * Severity is hard-locked to `informational`. The curator path
- * (`promote-press-claim`) is the only way to land `notable` / `critical`.
+ * Severity is hard-locked to `informational`. `notable` is reachable
+ * only as a correction to an already-published row
+ * (`npm run correct-press-finding --field severity`); `critical` is not
+ * reachable at all, since it needs a `contradiction[]` ref no path adds.
  *
  * Evidence refs are bucketed by the stance the verifier RECORDED on each
  * one (`EvidenceStance` in claim-verifier.ts — the same type the pleno path
@@ -261,7 +264,13 @@ export function composeFinding(opts: ComposeOpts): PressFinding {
     `Los datos municipales contrastan con la cobertura citada. ` +
     `Veredictos del lote: ${verdictSummary}. ` +
     `Cobertura: ${bundle.attributedOutlets.length} medio(s) — ${bundle.attributedOutlets.join(', ')}. ` +
-    `Lote auto-curado por el laboratorio. Para una verificación editorial completa, ejecute promote-press-claim.`
+    // This string is PUBLISHED: it is the finding's summary, rendered on
+    // /laboratorio. It used to close by telling the reader to execute a
+    // command named "promote-press-claim" — an instruction neither a reader
+    // nor a curator could follow, because no such script has ever existed in
+    // this repo. What the row is, and what it is not, is the honest thing to
+    // say in its place. Guarded by tests/press-cli-references.test.ts.
+    `Lote auto-curado por el laboratorio: el contraste es determinista y no lo ha revisado una persona.`
 
   return {
     id: `pf-${publishedAt}-${bundle.fingerprint.slice(0, 8)}`,
@@ -295,8 +304,12 @@ export function renderQuarantineMarkdown(quarantine: BundleCandidate[]): string 
     `Generated: ${new Date().toISOString()}`,
     '',
     'These bundles contain at least one `contradicho` claim and were NOT',
-    'auto-published. Review each one and run `npm run promote-press-claim`',
-    'to publish (or leave here as a no-op).',
+    'auto-published.',
+    '',
+    'There is no CLI that publishes them. This file is a reading queue, not a',
+    'staging area: press has no `promote` command, and landing one of these',
+    'would mean writing `public/data/press-findings.json` by hand, past the',
+    'curated-write guard. Nothing here is on the site.',
     '',
   ]
   for (const b of quarantine) {
