@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09T08:45:46.299Z",
+  "generatedAt": "2026-08-09T09:38:11.796Z",
   "windowDays": 30,
   "articles": [
     {
@@ -609,10 +609,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 4
     },
     {
       "articleId": "1e5ntzg",
@@ -1004,30 +1004,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "11i757k",
-      "articleFingerprint": "s2t5u0",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-un-turismo-m%C3%A1s-inclusivo-con-un-nuevo-callejero-accesible-y-un-juego-interactivo-sobre-pla-de-nadal",
-      "date": "2026-07-10T09:00:00.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 34,
+      "articleCount": 33,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1047,12 +1030,12 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 1,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.2,
-      "verifiedRatio": null,
-      "contradictedRatio": null
+      "meanTrustScore": 2.4,
+      "verifiedRatio": 0,
+      "contradictedRatio": 0
     },
     {
       "outlet": "levante-emv.com",

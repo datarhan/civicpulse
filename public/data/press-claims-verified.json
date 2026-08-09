@@ -1,19 +1,62 @@
 {
-  "generatedAt": "2026-08-09T08:45:44.628Z",
+  "generatedAt": "2026-08-05T08:45:36.897Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 0,
+    "total": 1,
     "byVerdict": {
       "verificado": 0,
       "parcial": 0,
       "contradicho": 0,
-      "sin-datos": 0,
+      "sin-datos": 1,
       "promesa-repetida": 0
     }
   },
-  "items": [],
-  "sourceGeneratedAt": "2026-08-09T08:45:38.518Z"
+  "items": [
+    {
+      "claim": {
+        "id": "gqglxs-0-num",
+        "articleId": "gqglxs",
+        "articleFingerprint": "1jggbak",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85118-riba-roja-invertira-61-000-euros-en-una-programacio-darts-esceniques-amb-el-programa-platea.html",
+        "articleDate": "2026-07-27T10:33:05.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Riba-roja invertirà 61.000 euros en una programació d’arts escèniques",
+        "context": "Riba-roja invertirà 61.000 euros en una programació d’arts escèniques amb el programa PLATEA",
+        "topic": "cultura",
+        "entities": {
+          "amountEuros": 61000,
+          "date": "2026-07-27",
+          "referencedEntity": "Riba-roja"
+        },
+        "confidence": 0.9,
+        "reasoning": "La afirmación incluye una cifra específica de inversión que puede ser verificada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "gqglxs-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85118-riba-roja-invertira-61-000-euros-en-una-programacio-darts-esceniques-amb-el-programa-platea.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1jggbak"
+      }
+    }
+  ],
+  "sourceGeneratedAt": "2026-08-05T08:45:30.969Z"
 }
