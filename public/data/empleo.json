@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-08-08T05:25:44.397Z",
+  "generatedAt": "2026-08-09T05:41:31.839Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 58,
-    "openTotal": 58,
+    "total": 56,
+    "openTotal": 56,
     "inRibaRoja": 40,
     "closingSoon": 6,
-    "withDetail": 58,
+    "withDetail": 56,
     "byMonth": {
       "2026-08": 10,
       "2026-07": 25,
-      "2026-06": 14,
+      "2026-06": 12,
       "2026-05": 3,
       "2026-04": 3,
       "2026-02": 2,
@@ -3689,124 +3689,6 @@
         "horario": "De lunes a viernes de 8h a 17h",
         "salario": "Según convenio más incentivos y pagas",
         "funciones": "Trabajo de tabiqueria, maestreado, revestimientos, escayola, toda la albañilería en general. Trabajos en zaguanes, viviendas y facahdas principalmente",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2460",
-      "fo": 2460,
-      "codigo": "2026/00161",
-      "titulo": "Fisioterapeuta",
-      "publishedAt": "2026-06-08",
-      "deadline": "2026-08-08",
-      "location": "L'eliana Eliana (l') (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2460",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00161"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Fisioterapeuta"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "L'eliana, Municipio: Eliana (l'), Provincia: Valencia, CP: 46183"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "Mañanas de 9:30 a 13:30 Tardes de 16 a 20 de miércoles a viernes."
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "numPuestos": "1",
-        "municipio": "Eliana (l')",
-        "provincia": "Valencia",
-        "cp": "46183",
-        "jornada": "Turnos: Turno partido",
-        "horario": "Mañanas de 9:30 a 13:30 Tardes de 16 a 20 de miércoles a viernes.",
-        "salario": "Según convenio",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2459",
-      "fo": 2459,
-      "codigo": "2026/00160",
-      "titulo": "Gerocultor/a",
-      "publishedAt": "2026-06-08",
-      "deadline": "2026-08-08",
-      "location": "Llíria Llíria (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2459",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00160"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Gerocultor/a"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "FIJOS DISCONTINUOS"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Llíria, Municipio: Llíria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana, Turno tarde, Turno noche, Turno rotativo"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Levantar a personas residentes según pauta. - Cambios de pañal. - Duchas y aseos. - Dar comidas. - Lavandería Las funciones necesarias para el puesto."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "FIJOS DISCONTINUOS",
-        "numPuestos": "2",
-        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno noche, Turno rotativo",
-        "salario": "Según convenio",
-        "funciones": "- Levantar a personas residentes según pauta. - Cambios de pañal. - Duchas y aseos. - Dar comidas. - Lavandería Las funciones necesarias para el puesto.",
-        "vehiculo": "Sí",
         "ocupaciones": []
       }
     },

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08T05:14:09.210Z",
+  "generatedAt": "2026-08-09T05:28:58.099Z",
   "source": {
     "url": "https://www.boe.es/datosabiertos/api/boe/sumario/{YYYYMMDD}",
     "matchPattern": "riba-roja | ribarroja | ribaroja (case-insensitive)",
@@ -7,13 +7,13 @@
   },
   "stats": {
     "daysFetched": 26,
-    "daysWithMatches": 4,
+    "daysWithMatches": 3,
     "daysFailed": 0,
     "daysRequested": 30,
-    "total": 4,
+    "total": 3,
     "byDepartamento": {
       "MINISTERIO DE TRANSPORTES Y MOVILIDAD SOSTENIBLE": 1,
-      "ADMINISTRACIÓN LOCAL": 2,
+      "ADMINISTRACIÓN LOCAL": 1,
       "SERVICIOS COMUNES PROCESALES": 1
     }
   },
@@ -50,17 +50,6 @@
       "titulo": "RIBARROJA TURIA",
       "urlHtml": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-24558",
       "urlPdf": "https://www.boe.es/boe/dias/2026/07/18/pdfs/BOE-B-2026-24558.pdf"
-    },
-    {
-      "id": "8293fbe3bdf7",
-      "identificador": "BOE-A-2026-15077",
-      "publicacionDate": "2026-07-10T00:00:00.000Z",
-      "departamento": "ADMINISTRACIÓN LOCAL",
-      "seccion": "II. Autoridades y personal. - B. Oposiciones y concursos",
-      "epigrafe": "Personal funcionario y laboral",
-      "titulo": "Resolución de 2 de julio de 2026, del Ayuntamiento de Riba-roja de Túria (Valencia/València), referente a la convocatoria para proveer varias plazas.",
-      "urlHtml": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-15077",
-      "urlPdf": "https://www.boe.es/boe/dias/2026/07/10/pdfs/BOE-A-2026-15077.pdf"
     }
   ]
 }

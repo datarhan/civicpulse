@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08T05:15:09.004Z",
+  "generatedAt": "2026-08-09T05:30:22.177Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -259,16 +259,8 @@
       "name": "Parc Municipal Maldonado",
       "category": "verde",
       "kind": "park",
-      "lat": 39.5477716,
+      "lat": 39.5477533,
       "lng": -0.5797717
-    },
-    {
-      "id": "way-33654935",
-      "name": "Parc Municipal Montealcedo",
-      "category": "verde",
-      "kind": "park",
-      "lat": 39.5528084,
-      "lng": -0.5415844
     },
     {
       "id": "way-551533189",
@@ -288,14 +280,14 @@
     }
   ],
   "stats": {
-    "total": 35,
+    "total": 34,
     "byCategory": {
       "civico": 5,
       "cultura": 4,
       "deporte": 7,
       "educacion": 11,
       "salud": 3,
-      "verde": 5
+      "verde": 4
     }
   }
 }

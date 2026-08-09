@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-08T05:27:43.994Z",
+  "generatedAt": "2026-08-09T05:43:29.715Z",
   "source": {
-    "tenders": "2026-08-08T05:13:38.797Z",
-    "geo": "2026-08-08T05:15:05.768Z"
+    "tenders": "2026-08-09T05:28:26.818Z",
+    "geo": "2026-08-09T05:29:30.973Z"
   },
   "universe": {
     "totalContracts": 694,
@@ -770,7 +770,7 @@
       "name": "Parc Municipal Maldonado",
       "kind": "poi",
       "point": [
-        39.5477716,
+        39.5477533,
         -0.5797717
       ],
       "contractCount": 1,
@@ -3125,7 +3125,7 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.5477716,
+        39.5477533,
         -0.5797717
       ],
       "place": {
