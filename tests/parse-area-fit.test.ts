@@ -10,6 +10,7 @@ import {
   validateAreaFitDrafts,
   buildFitTasks,
   deriveRespaldo,
+  evidencePoolsFor,
   resolveAssessment,
   resolveAvisoMapping,
   rowWithoutModel,
@@ -209,7 +210,13 @@ describe('area-fit — validateAreaFitSnapshot', () => {
         reportId: 'r-1',
         formacion: {
           value: 'relacionada',
-          evidence: [{ label: 'Arquitecto Técnico — UPV', sourceIds: ['src-060'] }],
+          evidence: [
+            {
+              label: 'Arquitecto Técnico — UPV',
+              short: 'Arquitecto Técnico',
+              sourceIds: ['src-060'],
+            },
+          ],
         },
         experiencia: { value: 'sin-relacion-declarada', evidence: [] },
         curatedBy: 'Sergei Lutchenko',
@@ -282,6 +289,132 @@ describe('area-fit — validateAreaFitSnapshot', () => {
     ;(s.rows[0].formacion as Record<string, unknown>).respaldo = 'verificada'
     expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(AreaFitValidationError)
   })
+
+  it('rejects evidence carrying no short form — the card would print nothing', () => {
+    // Required, not optional, on purpose: every row published before the field
+    // existed has to be migrated, and this is what stops "never attempted" from
+    // passing as "nothing to do" (DATA_INTEGRITY §2).
+    const s = good()
+    delete (s.rows[0].formacion.evidence[0] as Partial<FitEvidenceItem>).short
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(/short form/)
+  })
+
+  it('rejects an empty short form as firmly as a missing one', () => {
+    const s = good()
+    s.rows[0].formacion.evidence[0].short = ''
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(/short form/)
+  })
+
+  it('rejects a short form that is not the head of its own label', () => {
+    // The drift this invariant exists to catch: a credential from ANOTHER
+    // biography row lands on this item, and the card publishes a qualification
+    // the person never claimed under their photograph. Cheap to check, because
+    // the full label is the short form with the institution appended.
+    const s = good()
+    s.rows[0].formacion.evidence[0].short = 'Grado en Derecho'
+    expect(() => validateAreaFitSnapshot(s, ctx)).toThrow(/is not the head of/)
+    // Positive control: the same snapshot with the right head passes, so the
+    // gate is discriminating and not merely throwing.
+    s.rows[0].formacion.evidence[0].short = 'Arquitecto Técnico'
+    expect(() => validateAreaFitSnapshot(s, ctx)).not.toThrow()
+  })
+})
+
+describe('area-fit — la credencial, no la institución (el campo `short`)', () => {
+  // Shaped like the real biographies: the report stores the credential and the
+  // place it was earned as SEPARATE keys, which is why nothing has to parse.
+  const REPORT = {
+    id: 'r-9',
+    sections: [
+      { kind: 'portrait', payload: { officialSlug: 'x' } },
+      {
+        kind: 'education',
+        payload: {
+          items: [
+            {
+              degree: 'Arquitecto Técnico',
+              institution: 'Universitat Politècnica de València',
+              sourceIds: ['src-1'],
+            },
+            // A degree that CONTAINS the separator. `label.split(' — ')[0]`
+            // answers «Grado en Historia» here — a qualification this person
+            // does not hold — so this row fails for any regex implementation
+            // and passes only when the structured field is read.
+            {
+              degree: 'Grado en Historia — mención en Patrimonio',
+              institution: 'Universitat de València',
+              sourceIds: ['src-1'],
+            },
+            // No `degree` at all: only the centre is on record.
+            { institution: 'Escuela de Empresariales de Valencia', sourceIds: ['src-1'] },
+          ],
+        },
+      },
+      {
+        kind: 'career-professional',
+        payload: {
+          items: [
+            {
+              role: 'Arquitecta técnica y jefa de obra',
+              org: 'Grupo Tremon SA',
+              sourceIds: ['src-2'],
+            },
+          ],
+        },
+      },
+    ],
+    sources: [
+      { id: 'src-1', selfDeclared: true },
+      { id: 'src-2', selfDeclared: true },
+    ],
+  }
+  const pools = evidencePoolsFor(REPORT)
+
+  it('reads the credential from the report’s own fields instead of splitting the label', () => {
+    expect(pools.educationItems[0]).toMatchObject({
+      label: 'Arquitecto Técnico — Universitat Politècnica de València',
+      short: 'Arquitecto Técnico',
+    })
+    expect(pools.careerItems[0]).toMatchObject({
+      label: 'Arquitecta técnica y jefa de obra @ Grupo Tremon SA',
+      short: 'Arquitecta técnica y jefa de obra',
+    })
+    // The separator-bearing degree: whole, not truncated at the first « — ».
+    expect(pools.educationItems[1].short).toBe('Grado en Historia — mención en Patrimonio')
+  })
+
+  it('carries a short form that actually DIFFERS from the label, for more than one item', () => {
+    // "Every item has a short" passes on a field that copies the label, which
+    // would leave the card printing the institution it was built to drop.
+    const items = [...pools.educationItems, ...pools.careerItems]
+    expect(items.filter((i) => i.short !== i.label).length).toBeGreaterThan(1)
+    for (const i of items) expect(i.label.startsWith(i.short)).toBe(true)
+  })
+
+  it('falls back to the whole line, never to a blank, when no credential is on record', () => {
+    const onlyCentre = pools.educationItems[2]
+    expect(onlyCentre.label).toBe('Escuela de Empresariales de Valencia')
+    expect(onlyCentre.short).toBe(onlyCentre.label)
+    expect(onlyCentre.short.length).toBeGreaterThan(0)
+  })
+
+  it('travels from the pool onto the row the model’s answer builds', () => {
+    // The model cites an INDEX; both label forms are read from the pool item at
+    // that index, so the model cannot author either of them.
+    const tasks = buildFitTasks(
+      [{ slug: 'x', name: 'X', portfolios: ['Urbanismo'], party: 'PSOE', role: 'concejal' }],
+      [REPORT],
+    )
+    const row = rowFromResponse(tasks[0], {
+      formacion: { value: 'relacionada', evidenceIndices: [0], reason: 'materia de edificación' },
+      experiencia: { value: 'relacionada', evidenceIndices: [0], reason: 'jefatura de obra' },
+    })
+    expect(row.formacion.evidence[0].short).toBe('Arquitecto Técnico')
+    expect(row.experiencia.evidence[0].short).toBe('Arquitecta técnica y jefa de obra')
+    // …and the full label survives alongside it: the detail page still cites
+    // where the credential comes from.
+    expect(row.formacion.evidence[0].label).toContain('Universitat Politècnica')
+  })
 })
 
 describe('area-fit — respaldo (de qué se sostiene la evidencia)', () => {
@@ -296,25 +429,19 @@ describe('area-fit — respaldo (de qué se sostiene la evidencia)', () => {
   })
 
   it('reads autodeclarada when every cited source is the subject’s own account', () => {
-    expect(deriveRespaldo([{ label: 'x', sourceIds: ['src-cv'] }], SRC)).toBe('autodeclarada')
+    expect(deriveRespaldo([{ sourceIds: ['src-cv'] }], SRC)).toBe('autodeclarada')
   })
 
   it('reads corroborada as soon as one independent source backs it', () => {
-    expect(
-      deriveRespaldo(
-        [
-          { label: 'x', sourceIds: ['src-cv'] },
-          { label: 'y', sourceIds: ['src-bop'] },
-        ],
-        SRC,
-      ),
-    ).toBe('corroborada')
+    expect(deriveRespaldo([{ sourceIds: ['src-cv'] }, { sourceIds: ['src-bop'] }], SRC)).toBe(
+      'corroborada',
+    )
   })
 
   it('refuses to read an unclassified source as corroboration', () => {
     // `undefined` means nobody classified it. Treating it as independent is
     // how self-declaration gets published as verified.
-    expect(deriveRespaldo([{ label: 'x', sourceIds: ['src-unset'] }], SRC)).toBe('sin-clasificar')
+    expect(deriveRespaldo([{ sourceIds: ['src-unset'] }], SRC)).toBe('sin-clasificar')
   })
 
   it('has no evidence at all → sin-clasificar, not autodeclarada', () => {
@@ -324,9 +451,7 @@ describe('area-fit — respaldo (de qué se sostiene la evidencia)', () => {
   it('treats a sourceId absent from the map as unclassified, not as independent', () => {
     // The map is the report's own sources; an id that is not in it was never
     // classified either. Falling through to "corroborada" would invent one.
-    expect(deriveRespaldo([{ label: 'x', sourceIds: ['src-fantasma'] }], SRC)).toBe(
-      'sin-clasificar',
-    )
+    expect(deriveRespaldo([{ sourceIds: ['src-fantasma'] }], SRC)).toBe('sin-clasificar')
   })
 
   it('lets a single unclassified source outweigh a corroborated sibling', () => {
@@ -337,9 +462,7 @@ describe('area-fit — respaldo (de qué se sostiene la evidencia)', () => {
     // "independently verified", the exact failure this axis exists to prevent.
     // Every other case here is uniformly classified, so only a MIXED assessment
     // can distinguish the two orderings.
-    expect(deriveRespaldo([{ label: 'x', sourceIds: ['src-unset', 'src-bop'] }], SRC)).toBe(
-      'sin-clasificar',
-    )
+    expect(deriveRespaldo([{ sourceIds: ['src-unset', 'src-bop'] }], SRC)).toBe('sin-clasificar')
   })
 
   it('masks across evidence items too — the shape real rows are built in', () => {
@@ -347,15 +470,9 @@ describe('area-fit — respaldo (de qué se sostiene la evidencia)', () => {
     // arrives on a DIFFERENT item from the independent one. The ids are
     // flattened across items before the guards run for exactly this reason;
     // guarding per item would let a clean item vouch for a dirty one.
-    expect(
-      deriveRespaldo(
-        [
-          { label: 'x', sourceIds: ['src-bop'] },
-          { label: 'y', sourceIds: ['src-unset'] },
-        ],
-        SRC,
-      ),
-    ).toBe('sin-clasificar')
+    expect(deriveRespaldo([{ sourceIds: ['src-bop'] }, { sourceIds: ['src-unset'] }], SRC)).toBe(
+      'sin-clasificar',
+    )
   })
 
   it('does not let a self-declared source mask an unclassified one either', () => {
@@ -363,9 +480,7 @@ describe('area-fit — respaldo (de qué se sostiene la evidencia)', () => {
     // here: `autodeclarada` PUBLISHES, `sin-clasificar` is refused. A guard that
     // answered on the first `true` it saw would ship an unreviewed source under
     // a verdict a curator never gave it.
-    expect(deriveRespaldo([{ label: 'x', sourceIds: ['src-cv', 'src-unset'] }], SRC)).toBe(
-      'sin-clasificar',
-    )
+    expect(deriveRespaldo([{ sourceIds: ['src-cv', 'src-unset'] }], SRC)).toBe('sin-clasificar')
   })
 })
 
@@ -576,7 +691,13 @@ describe('area-fit — the published snapshot validates its avisos', () => {
         reportId: 'r-1',
         formacion: {
           value: 'relacionada',
-          evidence: [{ label: 'Arquitecto Técnico — UPV', sourceIds: ['src-060'] }],
+          evidence: [
+            {
+              label: 'Arquitecto Técnico — UPV',
+              short: 'Arquitecto Técnico',
+              sourceIds: ['src-060'],
+            },
+          ],
         },
         experiencia: { value: 'sin-relacion-declarada', evidence: [] },
         curatedBy: 'Sergei Lutchenko',
@@ -954,5 +1075,70 @@ describe('area-fit — the published snapshot’s backing is MEASURED, not assum
     for (const a of assessments) {
       if (a.respaldo !== undefined) expect(RESPALDO_VALUES).toContain(a.respaldo)
     }
+  })
+
+  // ── The short form, on the rows that are actually live ──
+  //
+  // This is the gate that the migration RAN. `short` is required by the type and
+  // by the validator, but neither is evaluated on a file already sitting in
+  // public/data — Vercel serves it whatever its shape.
+
+  const published = assessments.flatMap((a) => a.evidence ?? [])
+
+  it('every published evidence item carries a non-empty short form', () => {
+    // Assert the check evaluated something first: an empty list satisfies every
+    // "none of them is broken" assertion below.
+    expect(published.length).toBeGreaterThan(0)
+    expect(published.filter((ev) => typeof ev.short !== 'string' || !ev.short.length)).toEqual([])
+  })
+
+  it('the published short form is not merely a copy of the label', () => {
+    // A field that copied the label would satisfy the test above while leaving
+    // «Formación» and «Experiencia» printing the institution and the company —
+    // the defect this field exists to fix.
+    //
+    // The `typeof` is load-bearing, not defensive: `undefined !== label` is
+    // true, so the naive form of this assertion PASSED against the unmigrated
+    // snapshot, where no item had a short form at all. Ablation-verified
+    // 2026-08-09 by re-running it against the pre-migration file.
+    const real = published.filter(
+      (ev) => typeof ev.short === 'string' && ev.short.length > 0 && ev.short !== ev.label,
+    )
+    expect(real.length).toBeGreaterThan(0)
+  })
+
+  it('every published short form is the head of its own label', () => {
+    expect(published.filter((ev) => !ev.label.startsWith(ev.short))).toEqual([])
+  })
+
+  it('every published item still resolves to the biography row its short came from', () => {
+    // The mapping is by WHOLE LABEL, exactly as the migration made it. A
+    // biography re-run that rewords a CV line breaks this before anyone notices
+    // that the published credential is quoting text the report no longer has.
+    const reports = JSON.parse(
+      readFileSync(join(__dirname, '..', 'public', 'data', 'journalist-reports.json'), 'utf8'),
+    )
+    const poolsById = new Map(
+      (reports.items || reports.reports || []).map((r: { id: string }) => [
+        r.id,
+        evidencePoolsFor(r),
+      ]),
+    )
+    let checked = 0
+    for (const row of snap.rows) {
+      const pools = poolsById.get(row.reportId) as ReturnType<typeof evidencePoolsFor> | undefined
+      for (const [field, pool] of [
+        ['formacion', pools?.educationItems ?? []],
+        ['experiencia', pools?.careerItems ?? []],
+      ] as const) {
+        for (const ev of row[field]?.evidence ?? []) {
+          const hit = pool.find((p) => p.label === ev.label)
+          expect(hit, `${row.officialSlug}/${row.portfolio}.${field}: «${ev.label}»`).toBeTruthy()
+          expect(ev.short).toBe(hit!.short)
+          checked += 1
+        }
+      }
+    }
+    expect(checked).toBeGreaterThan(0)
   })
 })

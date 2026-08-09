@@ -787,8 +787,10 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
           if (!evidence.length) continue
           if (a?.respaldo === 'discrepancia-documentada') continue
           checked += 1
+          // Only the ids: `deriveRespaldo` takes `CitedSources`, so this check
+          // need not invent a label or a short form it would then be asserting.
           const derived = deriveRespaldo(
-            evidence.map((ev) => ({ label: '', sourceIds: ev?.sourceIds ?? [] })),
+            evidence.map((ev) => ({ sourceIds: ev?.sourceIds ?? [] })),
             sources,
           )
           if (derived !== a?.respaldo) {

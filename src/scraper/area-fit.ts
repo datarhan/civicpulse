@@ -160,6 +160,24 @@ export const AREA_FIT_PROMPT_VERSION = 'area-fit-v1'
 export interface FitEvidenceItem {
   /** Human-readable, verbatim from the biography section. */
   label: string
+  /**
+   * The CREDENTIAL alone — «Arquitecto Técnico», «Arquitecta técnica y jefa de
+   * obra» — without the university or the company that follows it in `label`.
+   *
+   * It exists because the card on /cargos has one line per axis and no room for
+   * the institution: printing the full label there says where someone studied,
+   * which is not what «Formación» claims. Both forms are read from the
+   * biography's OWN structured fields (`degree` / `role`), never by splitting
+   * `label` back apart — a regex over a joined string is a second, silently
+   * divergent parser of data we already hold in pieces.
+   *
+   * REQUIRED, not optional. A snapshot written before this field existed must
+   * be migrated rather than rendered blank, and requiredness is what proves the
+   * migration ran instead of letting "never attempted" pass as "nothing to do"
+   * (DATA_INTEGRITY §2). Never empty: a row with no structured credential falls
+   * back to the whole line.
+   */
+  short: string
   sourceIds: string[]
 }
 
@@ -178,6 +196,17 @@ export interface FitAssessment {
 }
 
 /**
+ * All `deriveRespaldo` actually reads.
+ *
+ * `Pick`ed from FitEvidenceItem rather than restated, so it cannot drift from
+ * it: what an assessment RESTS ON is a property of the source ids it cites and
+ * of nothing else — the labels are for the reader. Narrow on purpose, so a
+ * caller that only holds the ids (relations-check re-derives the axis across the
+ * whole committed set) need not fabricate a label or a short form to ask.
+ */
+export type CitedSources = Pick<FitEvidenceItem, 'sourceIds'>
+
+/**
  * Derive the respaldo of a set of cited items.
  *
  * Fails closed in both directions a reader could be misled: an id nobody
@@ -189,7 +218,7 @@ export interface FitAssessment {
  * sources disagreeing is a curator's reading of them, not a flag comparison.
  */
 export function deriveRespaldo(
-  evidence: readonly FitEvidenceItem[],
+  evidence: readonly CitedSources[],
   sourcesById: Record<string, SourceLike>,
 ): RespaldoValue {
   const ids = evidence.flatMap((e) => e.sourceIds ?? [])
@@ -380,7 +409,15 @@ export function resolveAssessment(raw: RawAssessment, pool: FitEvidenceItem[]): 
       Array.isArray(item.sourceIds) && item.sourceIds.length > 0,
       `pool item ${i} ("${item.label}") carries no sourceIds — it cannot support a published claim`,
     )
-    evidence.push({ label: item.label, sourceIds: [...item.sourceIds] })
+    // Both label forms travel together — the card shows the short one, the
+    // detail page the full one, and they must describe the SAME pool item. The
+    // fallback is the same one `itemsFrom` applies: a pool built without short
+    // forms degrades to the whole line, never to a blank.
+    evidence.push({
+      label: item.label,
+      short: item.short || item.label,
+      sourceIds: [...item.sourceIds],
+    })
   }
 
   must(
@@ -503,21 +540,57 @@ function sectionPayload(
   return s ? s.payload : null
 }
 
+const joinNonEmpty = (parts: Array<unknown>, sep: string) =>
+  parts.filter((p) => typeof p === 'string' && p.trim().length > 0).join(sep)
+
+const str = (v: unknown) => (typeof v === 'string' ? v.trim() : '')
+
+/** The two forms of one biography row: the whole line, and the credential alone. */
+export interface FitLabels {
+  label: string
+  short: string
+}
+
+/**
+ * «Arquitecto Técnico — Universitat Politècnica de València» / «Arquitecto Técnico».
+ *
+ * The report stores `degree` and `institution` as separate keys, so the short
+ * form is READ, not recovered: nothing here ever splits the joined label back
+ * apart. Exported so the one other place that has to reproduce these labels —
+ * scripts/migrate-area-fit-short.ts, matching published evidence back to the row
+ * it came from — uses this builder instead of a second copy of the join.
+ */
+export const educationLabels = (r: Record<string, unknown>): FitLabels => ({
+  label: joinNonEmpty([r.degree, r.institution], ' — '),
+  short: str(r.degree),
+})
+
+/** «Arquitecta técnica y jefa de obra @ Grupo Tremon SA» / the role alone. */
+export const careerLabels = (r: Record<string, unknown>): FitLabels => ({
+  label: joinNonEmpty([r.role, r.org], ' @ '),
+  short: str(r.role),
+})
+
 function itemsFrom(
   payload: Record<string, unknown> | null,
-  label: (row: Record<string, unknown>) => string,
+  labels: (row: Record<string, unknown>) => FitLabels,
 ): FitEvidenceItem[] {
   const rows = (payload?.items as Array<Record<string, unknown>> | undefined) || []
   return rows
-    .map((r) => ({
-      label: label(r).trim(),
-      sourceIds: Array.isArray(r.sourceIds) ? (r.sourceIds as string[]) : [],
-    }))
+    .map((r) => {
+      const parts = labels(r)
+      const label = parts.label.trim()
+      return {
+        label,
+        // Fall back to the whole line rather than publish a blank: a biography
+        // row that carries only an institution still has to render something,
+        // and an empty short is refused by the published validator anyway.
+        short: parts.short.trim() || label,
+        sourceIds: Array.isArray(r.sourceIds) ? (r.sourceIds as string[]) : [],
+      }
+    })
     .filter((i) => i.label.length > 0)
 }
-
-const joinNonEmpty = (parts: Array<unknown>, sep: string) =>
-  parts.filter((p) => typeof p === 'string' && p.trim().length > 0).join(sep)
 
 /**
  * officialSlug → their biography, read off the `portrait` section.
@@ -533,6 +606,31 @@ export function indexReportsByOfficial(reports: readonly ReportLike[]): Map<stri
     if (typeof slug === 'string') bySlug.set(slug, r)
   }
   return bySlug
+}
+
+/** The three pools a biography offers, in the shape a task carries them. */
+export interface FitEvidencePools {
+  educationItems: FitEvidenceItem[]
+  careerItems: FitEvidenceItem[]
+  politicalItems: FitEvidenceItem[]
+}
+
+/**
+ * Build a report's evidence pools — the ONE place a biography row becomes a
+ * citable item.
+ *
+ * Exported so anything that has to map a PUBLISHED evidence item back to the
+ * biography row behind it rebuilds the pool exactly as the pipeline did and
+ * matches on the whole label. The alternative — re-deriving a field from the
+ * label with a regex — is a second parser of the same data, and the one it
+ * would silently disagree with is the one that already published.
+ */
+export function evidencePoolsFor(report: ReportLike | undefined): FitEvidencePools {
+  return {
+    educationItems: itemsFrom(sectionPayload(report, 'education'), educationLabels),
+    careerItems: itemsFrom(sectionPayload(report, 'career-professional'), careerLabels),
+    politicalItems: itemsFrom(sectionPayload(report, 'career-political'), careerLabels),
+  }
 }
 
 /**
@@ -557,15 +655,7 @@ export function buildFitTasks(
   for (const o of officials) {
     if (!Array.isArray(o.portfolios) || o.portfolios.length === 0) continue
     const report = bySlug.get(o.slug)
-    const educationItems = itemsFrom(sectionPayload(report, 'education'), (r) =>
-      joinNonEmpty([r.degree, r.institution], ' — '),
-    )
-    const careerItems = itemsFrom(sectionPayload(report, 'career-professional'), (r) =>
-      joinNonEmpty([r.role, r.org], ' @ '),
-    )
-    const politicalItems = itemsFrom(sectionPayload(report, 'career-political'), (r) =>
-      joinNonEmpty([r.role, r.org], ' @ '),
-    )
+    const { educationItems, careerItems, politicalItems } = evidencePoolsFor(report)
     // Only ids the report actually carries. An id we cannot find is left out
     // rather than defaulted, so deriveRespaldo reads it as unclassified.
     const sourcesById: Record<string, SourceLike> = {}
@@ -746,6 +836,27 @@ function validateAssessment(a: FitAssessment, where: string, known: Set<string> 
   )
   for (const ev of a.evidence) {
     must(typeof ev.label === 'string' && ev.label.length > 0, `${where}: evidence needs a label`)
+    must(
+      typeof ev.short === 'string' && ev.short.length > 0,
+      `${where}: evidence "${ev.label}" carries no short form — the card prints the credential, ` +
+        'not the institution, and a blank line under a named councillor is not an option. ' +
+        'A published snapshot from before the field existed: `npm run migrate:area-fit-short`. ' +
+        'A row still in the review queue from before it: re-run `npm run suggest:area-fit`, ' +
+        'which rebuilds the pools with both label forms',
+    )
+    // The cheap invariant that catches a short form sitting on the WRONG item.
+    // Both forms come from one biography row and the full label is built by
+    // appending the institution (or the company) to the credential, so the
+    // short form is always the head of the label. A short that is not — «Grado
+    // en Derecho» under a label about a building site — is evidence drift, the
+    // same class of failure cite-by-index exists to prevent, and it renders as
+    // a qualification the person never claimed.
+    must(
+      ev.label.startsWith(ev.short),
+      `${where}: short form "${ev.short}" is not the head of "${ev.label}" — ` +
+        'the two must come from the same biography row; refusing to publish a credential ' +
+        'that drifted onto another item',
+    )
     must(
       Array.isArray(ev.sourceIds) && ev.sourceIds.length > 0,
       `${where}: evidence "${ev.label}" carries no sourceIds`,

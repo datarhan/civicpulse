@@ -68,6 +68,7 @@
         "evidence": [
           {
             "label": "Máster Universitario en Fiscalidad Internacional, Derecho Tributario (actualmente cursando) — Universidad Internacional de la Rioja",
+            "short": "Máster Universitario en Fiscalidad Internacional, Derecho Tributario (actualmente cursando)",
             "sourceIds": [
               "src-002",
               "src-061"
@@ -75,6 +76,7 @@
           },
           {
             "label": "Grado en Derecho — Universidad Camilo José Cela",
+            "short": "Grado en Derecho",
             "sourceIds": [
               "src-002",
               "src-061"
@@ -125,6 +127,7 @@
         "evidence": [
           {
             "label": "Profesora de Educación Secundaria (Geografía e Historia; coordinadora de Igualdad y Convivencia y del proyecto Memoria Democrática) @ Generalitat Valenciana — IES El Quint (Riba-roja de Túria)",
+            "short": "Profesora de Educación Secundaria (Geografía e Historia; coordinadora de Igualdad y Convivencia y del proyecto Memoria Democrática)",
             "sourceIds": [
               "src-062"
             ]
@@ -146,6 +149,7 @@
         "evidence": [
           {
             "label": "Licenciada en Historia — Universitat de València",
+            "short": "Licenciada en Historia",
             "sourceIds": [
               "src-061"
             ]
@@ -159,6 +163,7 @@
         "evidence": [
           {
             "label": "Profesora de Educación Secundaria (Geografía e Historia; coordinadora de Igualdad y Convivencia y del proyecto Memoria Democrática) @ Generalitat Valenciana — IES El Quint (Riba-roja de Túria)",
+            "short": "Profesora de Educación Secundaria (Geografía e Historia; coordinadora de Igualdad y Convivencia y del proyecto Memoria Democrática)",
             "sourceIds": [
               "src-062"
             ]
@@ -180,12 +185,14 @@
         "evidence": [
           {
             "label": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
+            "short": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
             "sourceIds": [
               "src-060"
             ]
           },
           {
             "label": "Dirección y Gestión Económico-Financiera — Escuela de Negocios Lluís Vives — Cámara Oficial de Comercio de Valencia",
+            "short": "Dirección y Gestión Económico-Financiera",
             "sourceIds": [
               "src-060"
             ]
@@ -199,24 +206,28 @@
         "evidence": [
           {
             "label": "Auxiliar administrativo y administrativo @ Vilarsal SL",
+            "short": "Auxiliar administrativo y administrativo",
             "sourceIds": [
               "src-063"
             ]
           },
           {
             "label": "Administrativo @ Artículos de Carpintería Moreno SL",
+            "short": "Administrativo",
             "sourceIds": [
               "src-063"
             ]
           },
           {
             "label": "Controller financiero @ Grupo Serratable SL",
+            "short": "Controller financiero",
             "sourceIds": [
               "src-062"
             ]
           },
           {
             "label": "Administrador solidario @ Nexo Nivel SL",
+            "short": "Administrador solidario",
             "sourceIds": [
               "src-062"
             ]
@@ -261,6 +272,7 @@
         "evidence": [
           {
             "label": "Administrador solidario @ Nexo Nivel SL",
+            "short": "Administrador solidario",
             "sourceIds": [
               "src-062"
             ]
@@ -282,12 +294,14 @@
         "evidence": [
           {
             "label": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
+            "short": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
             "sourceIds": [
               "src-060"
             ]
           },
           {
             "label": "Dirección y Gestión Económico-Financiera — Escuela de Negocios Lluís Vives — Cámara Oficial de Comercio de Valencia",
+            "short": "Dirección y Gestión Económico-Financiera",
             "sourceIds": [
               "src-060"
             ]
@@ -301,6 +315,7 @@
         "evidence": [
           {
             "label": "Controller financiero @ Grupo Serratable SL",
+            "short": "Controller financiero",
             "sourceIds": [
               "src-062"
             ]
@@ -322,12 +337,14 @@
         "evidence": [
           {
             "label": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
+            "short": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
             "sourceIds": [
               "src-060"
             ]
           },
           {
             "label": "Dirección y Gestión Económico-Financiera — Escuela de Negocios Lluís Vives — Cámara Oficial de Comercio de Valencia",
+            "short": "Dirección y Gestión Económico-Financiera",
             "sourceIds": [
               "src-060"
             ]
@@ -341,24 +358,28 @@
         "evidence": [
           {
             "label": "Auxiliar administrativo y administrativo @ Vilarsal SL",
+            "short": "Auxiliar administrativo y administrativo",
             "sourceIds": [
               "src-063"
             ]
           },
           {
             "label": "Administrativo @ Artículos de Carpintería Moreno SL",
+            "short": "Administrativo",
             "sourceIds": [
               "src-063"
             ]
           },
           {
             "label": "Controller financiero @ Grupo Serratable SL",
+            "short": "Controller financiero",
             "sourceIds": [
               "src-062"
             ]
           },
           {
             "label": "Administrador solidario @ Nexo Nivel SL",
+            "short": "Administrador solidario",
             "sourceIds": [
               "src-062"
             ]
@@ -398,6 +419,7 @@
         "evidence": [
           {
             "label": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
+            "short": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
             "sourceIds": [
               "src-060"
             ]
@@ -411,6 +433,7 @@
         "evidence": [
           {
             "label": "Administrativo @ Artículos de Carpintería Moreno SL",
+            "short": "Administrativo",
             "sourceIds": [
               "src-063"
             ]
@@ -540,12 +563,14 @@
         "evidence": [
           {
             "label": "Grado en Lengua y Literatura Españolas — Facultad de Filología",
+            "short": "Grado en Lengua y Literatura Españolas",
             "sourceIds": [
               "src-061"
             ]
           },
           {
             "label": "Especialización en Literatura Española Contemporánea (cursos) — UIMP y UNED",
+            "short": "Especialización en Literatura Española Contemporánea (cursos)",
             "sourceIds": [
               "src-061"
             ]
@@ -667,6 +692,7 @@
         "evidence": [
           {
             "label": "Transportista (autónomo) @ Autónomo — sector transporte",
+            "short": "Transportista (autónomo)",
             "sourceIds": [
               "src-002"
             ]
@@ -693,6 +719,7 @@
         "evidence": [
           {
             "label": "Transportista (autónomo) @ Autónomo — sector transporte",
+            "short": "Transportista (autónomo)",
             "sourceIds": [
               "src-002"
             ]
@@ -732,6 +759,7 @@
         "evidence": [
           {
             "label": "Grado en Comunicación Audiovisual — Universidad CEU Cardenal Herrera",
+            "short": "Grado en Comunicación Audiovisual",
             "sourceIds": [
               "src-061"
             ]
@@ -745,12 +773,14 @@
         "evidence": [
           {
             "label": "Locutora de radio (informativo diario, salud e inglés) @ Radio Riba-roja",
+            "short": "Locutora de radio (informativo diario, salud e inglés)",
             "sourceIds": [
               "src-064"
             ]
           },
           {
             "label": "Comunicación (estrategia, contenidos y protocolo para el grupo socialista) @ FVMP — Federació Valenciana de Municipis i Províncies",
+            "short": "Comunicación (estrategia, contenidos y protocolo para el grupo socialista)",
             "sourceIds": [
               "src-062"
             ]
@@ -795,6 +825,7 @@
         "evidence": [
           {
             "label": "Comunicación (estrategia, contenidos y protocolo para el grupo socialista) @ FVMP — Federació Valenciana de Municipis i Províncies",
+            "short": "Comunicación (estrategia, contenidos y protocolo para el grupo socialista)",
             "sourceIds": [
               "src-062"
             ]
@@ -839,12 +870,14 @@
         "evidence": [
           {
             "label": "Asesor institucional @ Diputació de València",
+            "short": "Asesor institucional",
             "sourceIds": [
               "src-002"
             ]
           },
           {
             "label": "Funcionario de la Administración Local (en excedencia especial desde 2007) @ Ajuntament de Riba-roja de Túria",
+            "short": "Funcionario de la Administración Local (en excedencia especial desde 2007)",
             "sourceIds": [
               "src-002"
             ]
@@ -902,24 +935,28 @@
         "evidence": [
           {
             "label": "Arquitecto Técnico — Universitat Politècnica de València",
+            "short": "Arquitecto Técnico",
             "sourceIds": [
               "src-060"
             ]
           },
           {
             "label": "Ingeniero de Edificación — Universitat Politècnica de València",
+            "short": "Ingeniero de Edificación",
             "sourceIds": [
               "src-060"
             ]
           },
           {
             "label": "Máster en Project Management — FLC de València",
+            "short": "Máster en Project Management",
             "sourceIds": [
               "src-060"
             ]
           },
           {
             "label": "Técnico en Prevención de Riesgos Laborales — FLC de València",
+            "short": "Técnico en Prevención de Riesgos Laborales",
             "sourceIds": [
               "src-060"
             ]
@@ -933,12 +970,14 @@
         "evidence": [
           {
             "label": "Ayudante de jefe de obra @ Pavituria SL",
+            "short": "Ayudante de jefe de obra",
             "sourceIds": [
               "src-061"
             ]
           },
           {
             "label": "Arquitecta técnica y jefa de obra @ Grupo Tremon SA",
+            "short": "Arquitecta técnica y jefa de obra",
             "sourceIds": [
               "src-061"
             ]
@@ -960,12 +999,14 @@
         "evidence": [
           {
             "label": "Arquitecto Técnico — Universitat Politècnica de València",
+            "short": "Arquitecto Técnico",
             "sourceIds": [
               "src-060"
             ]
           },
           {
             "label": "Ingeniero de Edificación — Universitat Politècnica de València",
+            "short": "Ingeniero de Edificación",
             "sourceIds": [
               "src-060"
             ]
@@ -979,12 +1020,14 @@
         "evidence": [
           {
             "label": "Ayudante de jefe de obra @ Pavituria SL",
+            "short": "Ayudante de jefe de obra",
             "sourceIds": [
               "src-061"
             ]
           },
           {
             "label": "Arquitecta técnica y jefa de obra @ Grupo Tremon SA",
+            "short": "Arquitecta técnica y jefa de obra",
             "sourceIds": [
               "src-061"
             ]
@@ -1006,12 +1049,14 @@
         "evidence": [
           {
             "label": "Arquitecto Técnico — Universitat Politècnica de València",
+            "short": "Arquitecto Técnico",
             "sourceIds": [
               "src-060"
             ]
           },
           {
             "label": "Ingeniero de Edificación — Universitat Politècnica de València",
+            "short": "Ingeniero de Edificación",
             "sourceIds": [
               "src-060"
             ]
@@ -1025,12 +1070,14 @@
         "evidence": [
           {
             "label": "Ayudante de jefe de obra @ Pavituria SL",
+            "short": "Ayudante de jefe de obra",
             "sourceIds": [
               "src-061"
             ]
           },
           {
             "label": "Arquitecta técnica y jefa de obra @ Grupo Tremon SA",
+            "short": "Arquitecta técnica y jefa de obra",
             "sourceIds": [
               "src-061"
             ]
@@ -1052,12 +1099,14 @@
         "evidence": [
           {
             "label": "Arquitecto Técnico — Universitat Politècnica de València",
+            "short": "Arquitecto Técnico",
             "sourceIds": [
               "src-060"
             ]
           },
           {
             "label": "Ingeniero de Edificación — Universitat Politècnica de València",
+            "short": "Ingeniero de Edificación",
             "sourceIds": [
               "src-060"
             ]
@@ -1071,12 +1120,14 @@
         "evidence": [
           {
             "label": "Ayudante de jefe de obra @ Pavituria SL",
+            "short": "Ayudante de jefe de obra",
             "sourceIds": [
               "src-061"
             ]
           },
           {
             "label": "Arquitecta técnica y jefa de obra @ Grupo Tremon SA",
+            "short": "Arquitecta técnica y jefa de obra",
             "sourceIds": [
               "src-061"
             ]
