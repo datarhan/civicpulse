@@ -38,6 +38,15 @@ REPO_DIR="$(pwd -P)"
 LOG_DIR="$REPO_DIR/scripts/logs"
 mkdir -p "$LOG_DIR"
 
+# Branch guard + pathspec-limited commit, shared by all four cron pipelines.
+# shellcheck source=scripts/lib/cron-git.sh
+. "$REPO_DIR/scripts/lib/cron-git.sh"
+
+# Before the pull and before the LLM call: off main this run would rebase the
+# checked-out branch onto origin/main, commit there, and then push an untouched
+# local main — ten model calls spent on something that can never be published.
+cron_require_main "auto-curate-promises-daily"
+
 # Source .env so AGY_BIN / AGY_MODEL / any keys are available. Don't fail
 # if absent.
 if [ -f "$REPO_DIR/.env" ]; then
@@ -84,11 +93,15 @@ echo "[$(date '+%F %T')] auto-curate-promises-daily done · queue refreshed"
 # autoPublished.reviewState='pending-review' + the public badge until a
 # curator reviews (or retracts) them. No-op when nothing was auto-published.
 # ─────────────────────────────────────────────────────────────────────
-if git diff --quiet -- public/data/promises.json; then
+#
+# Staged, guarded and committed through ONE pathspec. The old guard compared
+# the working tree against the INDEX, so a promises.json someone else had
+# already staged read as "nothing to commit" and this run's auto-published rows
+# were silently dropped; the old `git commit` then took the whole index anyway.
+if ! cron_git_stage_and_check public/data/promises.json; then
   echo "[$(date '+%F %T')] no auto-published promises — nothing to commit"
   exit 0
 fi
-git add public/data/promises.json
-git commit -m "data: daily promise auto-curate (auto-published · pending review)"
+cron_git_commit_pathspec "data: daily promise auto-curate (auto-published · pending review)"
 git push origin main
 echo "[$(date '+%F %T')] pushed auto-published promises"

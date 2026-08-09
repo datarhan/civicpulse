@@ -57,6 +57,20 @@ export PATH="/usr/local/bin:/opt/homebrew/bin:$HOME/.local/bin:$PATH"
 
 log() { echo "[press-lab-pipeline] [$(date '+%F %T')] $*"; }
 
+# ---- branch guard + pathspec-limited commit (shared) ------------------
+# shellcheck source=scripts/lib/cron-git.sh
+. "$REPO_DIR/scripts/lib/cron-git.sh"
+# Before the lock and before any LLM step. PRESS_LAB_NO_REMOTE composes rather
+# than fights: the guard is there to stop a run publishing from a branch whose
+# commits would never reach origin/main, and a rehearsal that skips BOTH the
+# pull and the push publishes nowhere at all — so it stays legal on any branch,
+# which is the whole point of the switch.
+if [ -n "${PRESS_LAB_NO_REMOTE:-}" ]; then
+  cron_require_main "press-lab-pipeline" no-remote
+else
+  cron_require_main "press-lab-pipeline"
+fi
+
 # ---- single-instance lock ---------------------------------------------
 LOCK_DIR="$REPO_DIR/scripts/.press-lab-pipeline.lock"
 if ! mkdir "$LOCK_DIR" 2>/dev/null; then
@@ -310,10 +324,16 @@ fi
 if [ -z "$STAGE_PATHS" ]; then
   log "ningún paso terminó bien — no hay nada que publicar (sin commit)"; exit 1
 fi
+# A THIRD layer, under the extract-side guard and the dependency gate: the
+# staging, the "did anything change?" gate and the commit are now the same
+# pathspec, so a step whose output is not in STAGE_PATHS cannot reach a commit
+# no matter what is sitting in the index. The old `git diff --cached --quiet`
+# asked about the WHOLE index, so a file staged by an unrelated process read as
+# "there is work to do", and the old pathspec-less `git commit` then took it:
+# twice on 2026-08-09 this cron swept a subagent's in-flight staged work into
+# its data commit (f182c61, 15 files including tests/encaje-credencial.test.jsx).
 # shellcheck disable=SC2086  # deliberate word-split: STAGE_PATHS is a path list
-git add -- $STAGE_PATHS 2>/dev/null || true
-
-if git diff --cached --quiet; then
+if ! cron_git_stage_and_check $STAGE_PATHS; then
   log "nothing changed — done (no commit)"; exit 0
 fi
 
@@ -338,7 +358,7 @@ else
   SUBJECT="data(laboratorio): press-lab refresh · ${CLAIMS} verified claim(s)"
   OUTCOME_BODY="Cadena completa: ${CHAIN_OK}"
 fi
-git commit -m "$(cat <<EOF
+cron_git_commit_pathspec "$(cat <<EOF
 ${SUBJECT}
 
 Automated by scripts/press-lab-pipeline.sh (local cron).

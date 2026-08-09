@@ -56,6 +56,15 @@ export PATH="/usr/local/bin:/opt/homebrew/bin:$HOME/.local/bin:$PATH"
 
 log() { echo "[hallazgos-pipeline] [$(date '+%F %T')] $*"; }
 
+# ---- branch guard + pathspec-limited commit (shared) ------------------
+# shellcheck source=scripts/lib/cron-git.sh
+. "$REPO_DIR/scripts/lib/cron-git.sh"
+# Before the lock, before the pull, before Whisper and the extractor: off main
+# this run would rebase the checked-out branch onto origin/main, commit there,
+# and push an untouched local main — hours of transcription that can never be
+# published.
+cron_require_main "hallazgos-pipeline"
+
 # ---- single-instance lock (a run can take hours) ----------------------
 LOCK_DIR="$REPO_DIR/scripts/.hallazgos-pipeline.lock"
 if ! mkdir "$LOCK_DIR" 2>/dev/null; then
@@ -233,17 +242,24 @@ npm run ifcn:cadence --silent -- --strict \
   || log "warn: IFCN cadence gap — no finding published this ISO week yet; promote one manually"
 
 # ---- commit + push the regenerated data -------------------------------
-# Stage everything the pipeline touches under public/data, but never race
-# the two files owned by the OTHER crons (quejas per-minute · promises daily).
-git add -- public/data
-git reset -q -- public/data/quejas.json public/data/promises.json 2>/dev/null || true
-
-if git diff --cached --quiet; then
+# ONE pathspec stages, gates and commits. Everything the pipeline touches under
+# public/data, minus the two files owned by the OTHER crons (quejas per-minute ·
+# promises daily) — carried by ':(exclude)' rather than the old `git add` +
+# `git reset` pair, so those two are never even staged and a run of this cron
+# can no longer unstage work an operator had staged in them.
+#
+# The old guard was `git diff --cached --quiet` over the WHOLE index, and the
+# old `git commit` had no pathspec at all: with anything else staged the guard
+# said "there is work to do" and the commit swept it in (that is how f182c61
+# published a subagent's in-flight test files).
+if ! cron_git_stage_and_check public/data \
+       ':(exclude)public/data/quejas.json' \
+       ':(exclude)public/data/promises.json'; then
   log "nothing changed — done (no commit)"; exit 0
 fi
 
-NEW_FINDINGS=$(git diff --cached -- public/data/pleno-findings.json | grep -cE '^\+ +"id": "f-' || true)
-git commit -m "$(cat <<EOF
+NEW_FINDINGS=$(git diff HEAD -- public/data/pleno-findings.json | grep -cE '^\+ +"id": "f-' || true)
+cron_git_commit_pathspec "$(cat <<EOF
 data: /hallazgos pipeline · ${NEW} pleno(s) transcribed · ${NEW_FINDINGS} new finding(s)
 
 Automated by scripts/hallazgos-pipeline.sh (weekly cron).

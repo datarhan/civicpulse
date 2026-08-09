@@ -10,8 +10,19 @@
 # Install (from Terminal.app — cron edits are TCC-blocked from other shells):
 #   ( crontab -l 2>/dev/null; echo '45 6 * * * /bin/bash '"$PWD"'/scripts/scrape-ci-blocked.sh >> '"$PWD"'/scripts/logs/scrape-ci-blocked.log 2>&1' ) | crontab -
 set -uo pipefail
-cd "$(dirname "$0")/.."
+# `|| exit`: this is the one of the four cron scripts without `set -e`, so a
+# failed cd used to leave it committing from whatever directory cron started in.
+cd "$(dirname "$0")/.." || exit 1
+REPO_DIR="$(pwd -P)"
 mkdir -p scripts/logs
+
+# ---- branch guard + pathspec-limited commit (shared) ------------------
+# shellcheck source=scripts/lib/cron-git.sh
+. "$REPO_DIR/scripts/lib/cron-git.sh"
+# Before the seven adapters hit the council's WAF: off main this run would
+# rebase the checked-out branch onto origin/main, commit there and then push an
+# untouched local main, so the refreshed snapshots would never reach the site.
+cron_require_main "scrape-ci-blocked"
 
 ADAPTERS=(
   scrape:paro
@@ -47,15 +58,39 @@ echo "[ci-blocked] $(date '+%F %T') running check:citations (network probe)"
 npm run check:citations || echo "[ci-blocked] check:citations reported findings — see above"
 
 # Commit only these snapshots — never `git add -A`, so an in-progress working
-# tree is not swept into an unattended commit.
-git add public/data/paro.json public/data/plenos-agendas.json public/data/consell-cv.json \
-        public/data/procesos-selectivos.json public/data/asociaciones.json \
-        public/data/obras.json public/data/sindicatura.json 2>/dev/null || true
-if git diff --cached --quiet; then
+# tree is not swept into an unattended commit. The `git add` alone never
+# achieved that: `git commit` with no pathspec takes the WHOLE index, so
+# anything anyone else had staged went in too. Now the same pathspec stages,
+# gates and commits.
+if ! cron_git_stage_and_check \
+       public/data/paro.json public/data/plenos-agendas.json public/data/consell-cv.json \
+       public/data/procesos-selectivos.json public/data/asociaciones.json \
+       public/data/obras.json public/data/sindicatura.json; then
   echo "[ci-blocked] no changes"
   exit ${#failed[@]}
 fi
-git commit -q -m "chore(data): refresh CI-unreachable adapters (ribarroja.es / regmeet)" || true
-git pull --rebase --autostash origin main && git push origin main
+
+# The commit used to end in `|| true`. An adapter failing is upstream's doing
+# and stays non-fatal; the commit failing is OURS — seven adapters' worth of
+# fresh data that nothing will retry until tomorrow — and swallowing it let the
+# script go on to print "pushed".
+if ! cron_git_commit_pathspec "chore(data): refresh CI-unreachable adapters (ribarroja.es / regmeet)"; then
+  echo "[ci-blocked] ERROR: los datos se refrescaron pero el commit FALLÓ — nada publicado, quedan en el working tree"
+  exit 1
+fi
+
+# Was `git pull --rebase … && git push …` on one line: a failed pull skipped the
+# push silently and the script still echoed "pushed" and exited on the ADAPTER
+# count, so a repo that could not reach origin for days looked healthy. Each
+# step now reports itself. Exit 1 on a publish failure (adapter-only failures
+# keep exiting on their own count, as before).
+if ! git pull --rebase --autostash origin main; then
+  echo "[ci-blocked] ERROR: git pull --rebase falló — el commit existe en local pero NO se ha hecho push; el próximo run reintenta"
+  exit 1
+fi
+if ! git push origin main; then
+  echo "[ci-blocked] ERROR: git push falló — el commit existe en local pero NO está publicado; el próximo run reintenta"
+  exit 1
+fi
 echo "[ci-blocked] pushed"
 exit ${#failed[@]}
