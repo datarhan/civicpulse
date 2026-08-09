@@ -38,7 +38,11 @@ const FIRST_PLENO_ID = JSON.parse(readFileSync('public/data/pleno-claims/index.j
 type Route = { path: string; ready: RegExp }
 
 const ROUTES: Route[] = [
-  { path: '/', ready: /M€ de \d+ M€/ }, // situated-spend ticker (tenders snapshot)
+  // Decimal-tolerant: the accumulated total gained a decimal when a €55,7M
+  // water concession landed on 2026-08-06 («… de 123,7 M€»), and `\d+ M€`
+  // stopped matching. The guard then refused to measure — correctly, but for a
+  // stale reason. A readiness signal must survive the copy it waits on.
+  { path: '/', ready: /M€ de [\d.,]+ M€/ }, // situated-spend ticker (tenders snapshot)
   { path: '/cargos', ready: /Robert Raga Gadea/ }, // officials snapshot
   { path: '/cargos/robert-raga-gadea', ready: /@ribarroja\.es/ }, // the official's own record
   { path: '/presupuesto', ready: /€\d+(?:,\d+)?M/ }, // CONPREL KPI figure
@@ -97,7 +101,7 @@ async function measure(page: import('@playwright/test').Page, route: Route, read
         return new RegExp(source, flags).test(text.replace(/\s+/g, ' '))
       },
       rx,
-      { timeout: readyTimeout }
+      { timeout: readyTimeout },
     )
     .catch(() => undefined)
 
@@ -106,44 +110,41 @@ async function measure(page: import('@playwright/test').Page, route: Route, read
   await page.evaluate(
     () =>
       new Promise<void>((resolve) =>
-        requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
-      )
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+      ),
   )
 
   // One atomic read: the width and the proof that content was on screen when
   // it was taken cannot drift apart, because they come from the same frame.
-  return page.evaluate(
-    ({ source, flags }) => {
-      const root = document.querySelector('main') ?? document.body
-      const text = ((root as HTMLElement).innerText || '').replace(/\s+/g, ' ').trim()
-      const doc = document.documentElement
-      const widest = [...document.querySelectorAll('body *')]
-        .map((el) => {
-          const r = el.getBoundingClientRect()
-          return { right: Math.round(r.right), el }
-        })
-        // Above scrollWidth means a clipped ancestor already contains it
-        // (Leaflet's zoom proxy sits at right≈522730) — not a real offender.
-        .filter((x) => x.right > doc.clientWidth + 6 && x.right <= doc.scrollWidth)
-        .sort((a, b) => b.right - a.right)
-        .slice(0, 3)
-        .map(
-          (x) =>
-            `<${x.el.tagName.toLowerCase()}${
-              x.el.className ? ` class="${String(x.el.className).slice(0, 40)}"` : ''
-            }> right=${x.right} "${(x.el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 40)}"`
-        )
-      return {
-        scrollW: doc.scrollWidth,
-        clientW: doc.clientWidth,
-        innerW: window.innerWidth,
-        chars: text.length,
-        hasData: new RegExp(source, flags).test(text),
-        widest,
-      }
-    },
-    rx
-  )
+  return page.evaluate(({ source, flags }) => {
+    const root = document.querySelector('main') ?? document.body
+    const text = ((root as HTMLElement).innerText || '').replace(/\s+/g, ' ').trim()
+    const doc = document.documentElement
+    const widest = [...document.querySelectorAll('body *')]
+      .map((el) => {
+        const r = el.getBoundingClientRect()
+        return { right: Math.round(r.right), el }
+      })
+      // Above scrollWidth means a clipped ancestor already contains it
+      // (Leaflet's zoom proxy sits at right≈522730) — not a real offender.
+      .filter((x) => x.right > doc.clientWidth + 6 && x.right <= doc.scrollWidth)
+      .sort((a, b) => b.right - a.right)
+      .slice(0, 3)
+      .map(
+        (x) =>
+          `<${x.el.tagName.toLowerCase()}${
+            x.el.className ? ` class="${String(x.el.className).slice(0, 40)}"` : ''
+          }> right=${x.right} "${(x.el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 40)}"`,
+      )
+    return {
+      scrollW: doc.scrollWidth,
+      clientW: doc.clientWidth,
+      innerW: window.innerWidth,
+      chars: text.length,
+      hasData: new RegExp(source, flags).test(text),
+      widest,
+    }
+  }, rx)
 }
 
 type Measurement = Awaited<ReturnType<typeof measure>>
@@ -156,11 +157,11 @@ function assertFitsViewport(m: Measurement, width: number, path: string, ready: 
   //    overrun.
   expect(
     m.hasData,
-    `${path}: ${ready} never appeared, so the width was about to be measured on an empty page (main had ${m.chars} chars)`
+    `${path}: ${ready} never appeared, so the width was about to be measured on an empty page (main had ${m.chars} chars)`,
   ).toBe(true)
   expect(
     m.chars,
-    `${path}: main rendered only ${m.chars} chars — that is a shell, not a page`
+    `${path}: main rendered only ${m.chars} chars — that is a shell, not a page`,
   ).toBeGreaterThan(CONTENT_FLOOR)
 
   // 2. Prove the reference is the viewport and not something the overflow
@@ -168,7 +169,7 @@ function assertFitsViewport(m: Measurement, width: number, path: string, ready: 
   //    two disagree, the difference IS the overflow.
   expect(
     m.clientW,
-    `${path}: layout viewport drifted from the emulated ${width}px (window.innerWidth ${m.innerW})`
+    `${path}: layout viewport drifted from the emulated ${width}px (window.innerWidth ${m.innerW})`,
   ).toBe(width)
 
   // 3. Only now, the actual claim. 6px of sub-pixel margin for browser
@@ -176,7 +177,7 @@ function assertFitsViewport(m: Measurement, width: number, path: string, ready: 
   const debt = KNOWN_OVERFLOW[path]
   expect(
     m.scrollW,
-    `${path}: document is ${m.scrollW}px wide in a ${width}px viewport. Widest: ${m.widest.join(' | ') || '(none)'}`
+    `${path}: document is ${m.scrollW}px wide in a ${width}px viewport. Widest: ${m.widest.join(' | ') || '(none)'}`,
   ).toBeLessThanOrEqual(debt ? debt.widthPx : width + 6)
 
   // A debt entry that no longer describes anything is a green light for a
@@ -184,7 +185,7 @@ function assertFitsViewport(m: Measurement, width: number, path: string, ready: 
   if (debt) {
     expect(
       m.scrollW,
-      `${path}: ya cabe en ${width}px — borra su entrada de KNOWN_OVERFLOW`
+      `${path}: ya cabe en ${width}px — borra su entrada de KNOWN_OVERFLOW`,
     ).toBeGreaterThan(width + 6)
   }
 }
@@ -220,10 +221,10 @@ test.describe('Mobile shell (iPhone 13 mini / 375px)', () => {
     expect(m.hasData, 'blocking /data/*.json must leave the CONPREL figure unrendered').toBe(false)
     expect(
       m.scrollW,
-      'the empty shell fits — a width-only assertion would report green here'
+      'the empty shell fits — a width-only assertion would report green here',
     ).toBeLessThanOrEqual(width + 6)
     expect(() => assertFitsViewport(m, width, route.path, route.ready)).toThrow(
-      /never appeared|shell, not a page/
+      /never appeared|shell, not a page/,
     )
   })
 
