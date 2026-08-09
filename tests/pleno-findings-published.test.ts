@@ -23,6 +23,7 @@ import {
 import {
   buildRecordDateIndex,
   emptyRecordDateGateReport,
+  firstKnownDate,
   recordKnowableAt,
 } from '../src/scraper/record-dates'
 
@@ -56,8 +57,72 @@ const removals = allCorrections.filter((c) => CORRECTION_REMOVAL_FIELD_RE.test(c
  * nothing. Each review batch moves these two numbers and says so in its commit
  * message; every other assertion in this file is local to one finding.
  */
-const TOTAL_CORRECTIONS = 116
-const TOTAL_REMOVALS = 33
+const TOTAL_CORRECTIONS = 125
+const TOTAL_REMOVALS = 41
+
+/** One row of a review batch's fixture: enough to locate its own entries. */
+interface BatchCase {
+  id: string
+  priorCorrections: number
+  added: string[]
+}
+type Correction = NonNullable<PlenoFinding['corrections']>[number]
+
+/**
+ * The slice of a finding's correction log that belongs to one review batch.
+ *
+ * Lotes 1–3 each read a contiguous stretch of the review queue, so a finding
+ * appeared in at most one of them and «everything from `priorCorrections` to
+ * the end» was that batch. Lote 4 is not a queue slice — it is one
+ * deterministic gate re-run over the whole corpus — and it appends to five
+ * findings the earlier batches had already corrected. So a batch names its own
+ * window by offset AND length. Reading to the end instead would make an
+ * earlier batch go red the moment a later one touches the same finding, which
+ * is an append-only ledger working exactly as designed.
+ *
+ * What keeps the window honest is asserted elsewhere and holds jointly: the
+ * log is chronological (below), the file's total is pinned
+ * (`TOTAL_CORRECTIONS`), and each batch pins its own entry count. An extra
+ * entry anywhere breaks at least one of the three.
+ */
+const batchWindow = (c: BatchCase): Correction[] =>
+  (byId(c.id).corrections ?? []).slice(c.priorCorrections, c.priorCorrections + c.added.length)
+
+/** Everything appended to that finding after the batch closed. */
+const afterBatch = (c: BatchCase): Correction[] =>
+  (byId(c.id).corrections ?? []).slice(c.priorCorrections + c.added.length)
+
+/**
+ * A batch's entries are its own: at the offset it claims, in the order it
+ * claims, and with nothing slipped in behind them out of sequence.
+ */
+const expectBatchIsIntact = (cases: BatchCase[]): void => {
+  expect(cases.length).toBeGreaterThan(0)
+  for (const c of cases) {
+    const window = batchWindow(c)
+    expect(window, `${c.id}: la ventana del lote está incompleta`).toHaveLength(c.added.length)
+    const last = window[window.length - 1].correctedAt
+    for (const later of afterBatch(c)) {
+      expect(later.correctedAt > last, `${c.id}: ${later.field} se coló dentro del lote`).toBe(true)
+    }
+  }
+}
+
+describe('published pleno findings — the correction ledger is append-only', () => {
+  it('every finding logs its corrections in the order they were issued', () => {
+    // The property the per-batch windows above rest on. Without it, an offset
+    // into the log would locate nothing in particular.
+    let checked = 0
+    for (const f of items) {
+      const log = f.corrections ?? []
+      for (let i = 1; i < log.length; i += 1) {
+        checked += 1
+        expect(log[i].correctedAt >= log[i - 1].correctedAt, `${f.id}: entrada ${i}`).toBe(true)
+      }
+    }
+    expect(checked).toBeGreaterThan(40)
+  })
+})
 
 describe('published pleno findings — no matcher internals in reader-facing text', () => {
   it('no snippet carries the similarity annotation', () => {
@@ -106,12 +171,13 @@ describe('published pleno findings — a removal does not republish what it remo
     // selection, which is precisely how a green suite hides a regression.
     //
     // Pinned to a count, not to `> 0`: the lote-1 review batch added eleven
-    // `crossChecked.<i>` retractions to b8fea6f's four, lote-2 another seven
-    // and lote-3 nine more plus a quote, and a run that skipped rows would
-    // still satisfy `> 0` while retracting nothing.
+    // `crossChecked.<i>` retractions to b8fea6f's four, lote-2 another seven,
+    // lote-3 nine more plus a quote and lote-4 the last eight post-dated
+    // cotejos, and a run that skipped rows would still satisfy `> 0` while
+    // retracting nothing.
     expect(removals.length).toBe(TOTAL_REMOVALS)
     expect(removals.filter((c) => c.field.startsWith('quote.'))).toHaveLength(3)
-    expect(removals.filter((c) => c.field.startsWith('crossChecked.'))).toHaveLength(30)
+    expect(removals.filter((c) => c.field.startsWith('crossChecked.'))).toHaveLength(38)
   })
 
   it('records a digest and a marker, never the removed row', () => {
@@ -168,8 +234,11 @@ describe('published pleno findings — the three retracted in b8fea6f', () => {
     // The summary is about salvoconductos and never used the removed quote,
     // so it must not have moved.
     expect(f.summary).toContain('salvoconductos')
-    expect(f.crossChecked).toHaveLength(3)
-    expect(f.corrections?.map((c) => c.field)).toEqual(['summary', 'quote.0'])
+    // Two cotejos: the DANA clean-up contract the summary names, and the
+    // session video. The third was the architect's expediente, which lote 4
+    // took out for post-dating this session by five months.
+    expect(f.crossChecked).toHaveLength(2)
+    expect(f.corrections?.map((c) => c.field)).toEqual(['summary', 'quote.0', 'crossChecked.1'])
   })
 
   it('f-2025-10-06-acu-bba0e9 keeps all four quotes and the refs that name nobody', () => {
@@ -278,10 +347,11 @@ const LOTE_1: Lote1Case[] = [
     priorCorrections: 0,
     drops: ['se enmarca en el contexto de varios contratos', 'vivienda tutelada'],
     keeps: ['un mercado de vivienda tensionado', 'la constitucionalidad de la ley estatal'],
+    // Three now: lote 4 took the fourth, a record first attested a month
+    // after this session and awarded to a named private individual.
     refs: [
       'tender|El objeto del contrato es la prestación ',
       'tender|Contrato derivado del sistema dinámico d',
-      'tender|Contratación servicio técnico redacción ',
       'pleno-video|Vídeo del pleno 2026-05-11 · YouTube',
     ],
     claims: [
@@ -494,8 +564,10 @@ const LOTE_1: Lote1Case[] = [
     priorCorrections: 1,
     drops: ['el mismo grupo'],
     keeps: ['sin atribución determinada', 'contratos reiterados entre 2024 y 2026'],
+    // The dirección-de-obra row that led this list went in lote 4: attested
+    // three months after the session. The expediente the summary names by
+    // title is a different one, and it is still here.
     refs: [
-      'tender|Contratación servicio dirección obra y d',
       'tender|El objeto del contrato es la prestación ',
       'tender|Contrato verbal de servicio de oficiales',
       'tender|El objeto contratación es la adquisición',
@@ -557,6 +629,9 @@ describe('published pleno findings — lote 1 of the row 0–17 review', () => {
     // …and the ids are real. `byId` throws on drift, so this also pins that
     // none of the fifteen was retracted wholesale instead of corrected.
     expect(LOTE_1.map((c) => byId(c.id).id)).toEqual(LOTE_1.map((c) => c.id))
+    // Two of the fifteen were corrected again by lote 4. Everything past this
+    // batch's window has to be dated after it, never inserted into it.
+    expectBatchIsIntact(LOTE_1)
   })
 
   it('the whole file still validates through the published schema', () => {
@@ -573,9 +648,9 @@ describe('published pleno findings — lote 1 of the row 0–17 review', () => {
   it.each(LOTE_1)('$id logs exactly the corrections that were issued', (c) => {
     const f = byId(c.id)
     const log = f.corrections ?? []
-    expect(log).toHaveLength(c.priorCorrections + c.added.length)
-    expect(log.slice(c.priorCorrections).map((x) => x.field)).toEqual(c.added)
-    expect(log.slice(c.priorCorrections).every((x) => x.editor.length > 1)).toBe(true)
+    const batch = batchWindow(c)
+    expect(batch.map((x) => x.field)).toEqual(c.added)
+    expect(batch.every((x) => x.editor.length > 1)).toBe(true)
     // The corrections that were already there are untouched — a new entry must
     // append, never rewrite the trail.
     expect(log.slice(0, c.priorCorrections).every((x) => x.reason.trim().length >= 20)).toBe(true)
@@ -627,9 +702,7 @@ describe('published pleno findings — lote 1 of the row 0–17 review', () => {
     // so it catches names and misses paraphrase — this restates the machine-
     // checkable half over the published bytes, where a hand-edit could land.
     const batchRemovals = LOTE_1.flatMap((c) =>
-      (byId(c.id).corrections ?? [])
-        .slice(c.priorCorrections)
-        .filter((x) => CORRECTION_REMOVAL_FIELD_RE.test(x.field)),
+      batchWindow(c).filter((x) => CORRECTION_REMOVAL_FIELD_RE.test(x.field)),
     )
     expect(batchRemovals).toHaveLength(11)
     const offences: string[] = []
@@ -649,7 +722,7 @@ describe('published pleno findings — lote 1 of the row 0–17 review', () => {
     // A retraction reason must not republish the document's address either —
     // and neither should the summary corrections beside them, which is why
     // this looks at all 27 and not only at the eleven removals.
-    const batch = LOTE_1.flatMap((c) => (byId(c.id).corrections ?? []).slice(c.priorCorrections))
+    const batch = LOTE_1.flatMap(batchWindow)
     expect(batch).toHaveLength(27)
     expect(batch.filter((r) => /https?:\/\//.test(r.reason))).toEqual([])
     expect(batch.every((r) => r.reason.trim().length >= 20)).toBe(true)
@@ -814,8 +887,10 @@ const LOTE_2: Lote2Case[] = [
       "el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla'",
       'la ausencia de una agenda de reconstrucción local',
     ],
+    // Lote 4 took the dirección-de-obra row that used to lead this list.
+    // The expediente the summary names by title is a different one — and the
+    // reason the `keeps` above are what they are.
     refs: [
-      'tender|Contratación servicio dirección de obra ',
       'tender|Servicio mantenimiento instalaciones en ',
       'tender|Servicio de limpieza de piscina cubierta',
       'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
@@ -872,9 +947,10 @@ const LOTE_2: Lote2Case[] = [
       '«aprobado por un plan local de residuos» ya existente',
       'Un grupo no identificado menciona la necesidad de mejorar la recogida',
     ],
+    // Two now: lote 4 took the sensorización platform, whose licitación
+    // opened seven weeks after this session.
     refs: [
       'tender|Servicio limpieza · Ayuntamiento de Riba',
-      'tender|Contrato administrativo para la contrata',
       'pleno-video|Vídeo del pleno 2025-12-23 · YouTube',
     ],
     claims: [
@@ -916,8 +992,9 @@ const LOTE_2: Lote2Case[] = [
       'recurrido a entidades provinciales para reclamar fondos de 2024',
       'sus propuestas presupuestarias para dicho ejercicio no fueron atendidas',
     ],
+    // Two now: lote 4 took the Christmas-lighting contract, awarded four
+    // months after this session.
     refs: [
-      'tender|Contrato de servicio alumbrado ornamenta',
       'tender|Contrato verbal de servicio de oficiales',
       'pleno-video|Vídeo del pleno 2025-07-31 · YouTube',
     ],
@@ -1064,14 +1141,17 @@ describe('published pleno findings — lote 2 of the row 18–35 review', () => 
     const lote1 = new Set(LOTE_1.map((c) => c.id))
     expect(LOTE_2.filter((c) => lote1.has(c.id))).toEqual([])
     expect(LOTE_2.map((c) => byId(c.id).id)).toEqual(LOTE_2.map((c) => c.id))
+    // Three of the eleven were corrected again by lote 4, which is not a queue
+    // slice and overlaps all three earlier batches on purpose.
+    expectBatchIsIntact(LOTE_2)
   })
 
   it.each(LOTE_2)('$id logs exactly the corrections that were issued', (c) => {
     const f = byId(c.id)
     const log = f.corrections ?? []
-    expect(log).toHaveLength(c.priorCorrections + c.added.length)
-    expect(log.slice(c.priorCorrections).map((x) => x.field)).toEqual(c.added)
-    expect(log.slice(c.priorCorrections).every((x) => x.editor.length > 1)).toBe(true)
+    const batch = batchWindow(c)
+    expect(batch.map((x) => x.field)).toEqual(c.added)
+    expect(batch.every((x) => x.editor.length > 1)).toBe(true)
     // The trail before this batch is untouched — a new entry appends.
     expect(log.slice(0, c.priorCorrections).every((x) => x.reason.trim().length >= 20)).toBe(true)
   })
@@ -1222,9 +1302,7 @@ describe('published pleno findings — lote 2 of the row 18–35 review', () => 
     // paraphrase; this restates the machine-checkable half over the published
     // bytes, where a hand-edit could land.
     const batchRemovals = LOTE_2.flatMap((c) =>
-      (byId(c.id).corrections ?? [])
-        .slice(c.priorCorrections)
-        .filter((x) => CORRECTION_REMOVAL_FIELD_RE.test(x.field)),
+      batchWindow(c).filter((x) => CORRECTION_REMOVAL_FIELD_RE.test(x.field)),
     )
     expect(batchRemovals).toHaveLength(7)
     const offences: string[] = []
@@ -1241,7 +1319,7 @@ describe('published pleno findings — lote 2 of the row 18–35 review', () => 
   })
 
   it('no reason written for this batch pastes a URL, retraction or not', () => {
-    const batch = LOTE_2.flatMap((c) => (byId(c.id).corrections ?? []).slice(c.priorCorrections))
+    const batch = LOTE_2.flatMap(batchWindow)
     expect(batch).toHaveLength(19)
     expect(batch.filter((r) => /https?:\/\//.test(r.reason))).toEqual([])
     expect(batch.every((r) => r.reason.trim().length >= 20)).toBe(true)
@@ -1712,6 +1790,7 @@ describe('published pleno findings — lote 3 of the row 36–51 review', () => 
     const earlier = new Set([...LOTE_1.map((c) => c.id), ...LOTE_2.map((c) => c.id)])
     expect(LOTE_3.filter((c) => earlier.has(c.id))).toEqual([])
     expect(LOTE_3.map((c) => byId(c.id).id)).toEqual(LOTE_3.map((c) => c.id))
+    expectBatchIsIntact(LOTE_3)
   })
 
   it('the two rows the review upheld were not touched at all', () => {
@@ -1734,9 +1813,9 @@ describe('published pleno findings — lote 3 of the row 36–51 review', () => 
   it.each(LOTE_3)('$id logs exactly the corrections that were issued', (c) => {
     const f = byId(c.id)
     const log = f.corrections ?? []
-    expect(log).toHaveLength(c.priorCorrections + c.added.length)
-    expect(log.slice(c.priorCorrections).map((x) => x.field)).toEqual(c.added)
-    expect(log.slice(c.priorCorrections).every((x) => x.editor.length > 1)).toBe(true)
+    const batch = batchWindow(c)
+    expect(batch.map((x) => x.field)).toEqual(c.added)
+    expect(batch.every((x) => x.editor.length > 1)).toBe(true)
     // The trail before this batch is untouched — a new entry appends.
     expect(log.slice(0, c.priorCorrections).every((x) => x.reason.trim().length >= 20)).toBe(true)
   })
@@ -1918,9 +1997,7 @@ describe('published pleno findings — lote 3 of the row 36–51 review', () => 
     // names and misses paraphrase; this restates the machine-checkable half
     // over the published bytes, where a hand-edit could land.
     const batchRemovals = LOTE_3.flatMap((c) =>
-      (byId(c.id).corrections ?? [])
-        .slice(c.priorCorrections)
-        .filter((x) => CORRECTION_REMOVAL_FIELD_RE.test(x.field)),
+      batchWindow(c).filter((x) => CORRECTION_REMOVAL_FIELD_RE.test(x.field)),
     )
     expect(batchRemovals).toHaveLength(10)
     expect(batchRemovals.filter((r) => r.field.startsWith('quote.'))).toHaveLength(1)
@@ -1948,9 +2025,7 @@ describe('published pleno findings — lote 3 of the row 36–51 review', () => 
       /fecha más temprana conocida es(?:, además,)? posterior/i, // 3 · post-dates the session
     ]
     const batchRemovals = LOTE_3.flatMap((c) =>
-      (byId(c.id).corrections ?? [])
-        .slice(c.priorCorrections)
-        .filter((x) => x.field.startsWith('crossChecked.')),
+      batchWindow(c).filter((x) => x.field.startsWith('crossChecked.')),
     )
     expect(batchRemovals).toHaveLength(9)
     for (const r of batchRemovals) {
@@ -1967,9 +2042,578 @@ describe('published pleno findings — lote 3 of the row 36–51 review', () => 
   })
 
   it('no reason written for this batch pastes a URL, retraction or not', () => {
-    const batch = LOTE_3.flatMap((c) => (byId(c.id).corrections ?? []).slice(c.priorCorrections))
+    const batch = LOTE_3.flatMap(batchWindow)
     expect(batch).toHaveLength(21)
     expect(batch.filter((r) => /https?:\/\//.test(r.reason))).toEqual([])
     expect(batch.every((r) => r.reason.trim().length >= 20)).toBe(true)
+  })
+})
+
+// ─── Lote 4 · las ocho referencias posteriores a su sesión ───────────────────
+
+/**
+ * The last eight post-dated cotejos, on findings outside the row 0–51 review's
+ * scope.
+ *
+ * Lote 3 stated the removal criterion and then said, in as many words, what it
+ * had left behind: «ocho referencias posteriores a su sesión siguen colgando de
+ * hallazgos de los lotes 1 y 2 y de otros que ninguna de las tres pasadas tocó;
+ * la puerta de 04761aa sólo rige las pasadas nuevas, así que ésas necesitan su
+ * propia decisión». This is that decision, and it is the narrowest of the four
+ * batches: criterion 3 only, no judgement anywhere in it.
+ *
+ * A record first attested after the session cannot be what the council was
+ * discussing. That is not an opinion about the pairing's strength — the reading
+ * lote 3 refused to act on — but `recordKnowableAt` over the published
+ * procurement snapshot, keyed on the EARLIEST attested date and not the award,
+ * because a procurement is debatable from the day it goes out to bid.
+ *
+ * Three of the eight are the same record pair the b8fea6f line already retired
+ * from four other findings for naming an identifiable private individual, so
+ * criterion 2 applies to them as well and their reasons say both. The test
+ * below proves that «same record» claim by DIGEST rather than by repeating a
+ * name: `corrections[].original` is a sha256 of the removed row, so two
+ * findings that cited one record produce one digest, and the batch-3 entries
+ * are still in the file to compare against.
+ *
+ * Only one summary had to move. `d6d194` closed with «Según el registro
+ * municipal, consta la licitación de …» naming the very row that comes out —
+ * and a finding whose prose cites a document the page no longer lists is worse
+ * than either defect alone. The other six never named theirs; where a summary
+ * DOES name a document, `namesDoc` below asserts that document survived.
+ */
+interface Lote4Case {
+  id: string
+  /** Corrections appended by this batch, in issue order. */
+  added: string[]
+  /** Corrections the finding already carried before it. */
+  priorCorrections: number
+  /**
+   * The records this batch removed from it: the session date, the earliest
+   * date the snapshot attests the record by, and its permalink. Held so the
+   * removal can be shown to have been DATE-justified — without it, deleting
+   * eight arbitrary rows would satisfy the corpus sweep just as well.
+   */
+  postDated: Array<{ plenoDate: string; firstKnown: string; permalink: string }>
+  /** Fragments of the defect, which must be gone from title+summary. */
+  drops: string[]
+  /** Fragments the finding still stands on, which must be intact. */
+  keeps: string[]
+  /**
+   * A document the summary names by title. It has to still be listed under
+   * «Documentos cotejados» — the invariant this batch could most easily have
+   * broken.
+   */
+  namesDoc?: string
+  /** Surviving crossChecked rows, in order: `kind` + the snippet's first 40 chars. */
+  refs: string[]
+  /** Surviving quotes, in order. */
+  claims: string[]
+  groups: (string | null)[]
+}
+
+const PLACSP = 'https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl='
+
+const LOTE_4: Lote4Case[] = [
+  {
+    id: 'f-2026-05-11-acu-1adbf3',
+    added: ['crossChecked.2'],
+    priorCorrections: 2,
+    postDated: [
+      {
+        plenoDate: '2026-05-11',
+        firstKnown: '2026-06-11',
+        permalink: `${PLACSP}2iTqILStUoT%2Fa9DgO%2BoYKQ%3D%3D`,
+      },
+    ],
+    // Prose untouched: lote 1 already deleted the sentence that asserted a
+    // documentary link, and what is left is quotes about housing.
+    drops: [],
+    keeps: ['Riba Roja es un mercado de vivienda tensionado'],
+    refs: [
+      'tender|El objeto del contrato es la prestación ',
+      'tender|Contrato derivado del sistema dinámico d',
+      'pleno-video|Vídeo del pleno 2026-05-11 · YouTube',
+    ],
+    claims: [
+      '10yl550-062-acu-1adbf3',
+      '10yl550-170-acu-0a31a6',
+      '10yl550-191-cit-9aa672',
+      '10yl550-220-acu-0101aa',
+    ],
+    groups: ['PSOE', 'PP', 'PSOE', 'PSOE'],
+  },
+  {
+    id: 'f-2026-01-19-acu-2c074a',
+    added: ['crossChecked.0'],
+    priorCorrections: 2,
+    postDated: [
+      {
+        plenoDate: '2026-01-19',
+        firstKnown: '2026-04-20',
+        permalink: `${PLACSP}czdZT44wsgAtm4eBPtV6eQ%3D%3D`,
+      },
+    ],
+    drops: [],
+    keeps: ['se realizaron contrataciones de manera verbal y por emergencia'],
+    // The summary quotes this expediente's title in full, truncated mid-word
+    // by the snippet cap. It is a different row from the one removed, and it
+    // is still listed.
+    namesDoc:
+      'Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro ' +
+      'en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del tempora',
+    refs: [
+      'tender|El objeto del contrato es la prestación ',
+      'tender|Contrato verbal de servicio de oficiales',
+      'tender|El objeto contratación es la adquisición',
+      'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
+    ],
+    claims: [
+      '19gax3o-008-acu-2c074a',
+      '19gax3o-090-acu-73f537',
+      '19gax3o-176-acu-e24507',
+      '19gax3o-021-acu-20b3ec',
+    ],
+    groups: [null, 'PSOE', null, null],
+  },
+  {
+    id: 'f-2026-01-19-cit-c80e68',
+    added: ['crossChecked.0'],
+    priorCorrections: 2,
+    postDated: [
+      {
+        plenoDate: '2026-01-19',
+        firstKnown: '2026-04-22',
+        permalink: `${PLACSP}56xTbbVhVpxxseVhcqrkhw%3D%3D`,
+      },
+    ],
+    drops: [],
+    keeps: ['señala la ausencia de una agenda de reconstrucción local'],
+    namesDoc: 'Servicio mantenimiento instalaciones en complejo deportivo La Malla',
+    refs: [
+      'tender|Servicio mantenimiento instalaciones en ',
+      'tender|Servicio de limpieza de piscina cubierta',
+      'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
+    ],
+    claims: [
+      '19gax3o-051-cit-c80e68',
+      '19gax3o-055-cit-a80e52',
+      '19gax3o-132-cit-35c4f5',
+      '19gax3o-143-cit-a3a7a1',
+    ],
+    groups: ['VOX', 'VOX', null, null],
+  },
+  {
+    id: 'f-2025-12-01-acu-51aaa3',
+    added: ['crossChecked.1'],
+    priorCorrections: 2,
+    postDated: [
+      {
+        plenoDate: '2025-12-01',
+        firstKnown: '2026-04-22',
+        permalink: `${PLACSP}56xTbbVhVpxxseVhcqrkhw%3D%3D`,
+      },
+    ],
+    drops: [],
+    keeps: ['habría emitido salvoconductos para que trabajadores y trabajadoras'],
+    namesDoc:
+      'limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral)',
+    refs: [
+      'tender|Contrato verbal de servicio de oficiales',
+      'pleno-video|Vídeo del pleno 2025-12-01 · YouTube',
+    ],
+    claims: ['qz6weg-192-acu-975308', 'qz6weg-193-acu-7589c9'],
+    groups: [null, 'PSOE'],
+  },
+  {
+    id: 'f-2025-12-23-cit-c905c3',
+    added: ['crossChecked.1'],
+    priorCorrections: 3,
+    postDated: [
+      {
+        plenoDate: '2025-12-23',
+        firstKnown: '2026-02-10',
+        permalink: `${PLACSP}Fyy%2BTlMZfRsadbH3CysQuQ%3D%3D`,
+      },
+    ],
+    drops: [],
+    keeps: ['«aprobado por un plan local de residuos»'],
+    refs: [
+      'tender|Servicio limpieza · Ayuntamiento de Riba',
+      'pleno-video|Vídeo del pleno 2025-12-23 · YouTube',
+    ],
+    claims: [
+      '1qi8axv-052-cit-c905c3',
+      '1qi8axv-052-cit-977367',
+      '1qi8axv-057-afi-c1ba98',
+      '1qi8axv-057-afi-e76c4d',
+    ],
+    groups: ['PSOE', 'PSOE', null, null],
+  },
+  {
+    id: 'f-2025-09-08-cit-d6d194',
+    added: ['summary', 'crossChecked.2', 'crossChecked.1'],
+    priorCorrections: 0,
+    postDated: [
+      {
+        plenoDate: '2025-09-08',
+        firstKnown: '2026-07-28',
+        permalink: `${PLACSP}G%2BmnRyGH352ExvMJXBMHHQ%3D%3D`,
+      },
+      {
+        plenoDate: '2025-09-08',
+        firstKnown: '2026-02-11',
+        permalink: `${PLACSP}E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D`,
+      },
+    ],
+    // The only prose in the batch. «Según el registro municipal, consta la
+    // licitación de …» named the row that comes out, and the record it named
+    // is attested five months after the session it was published beside.
+    drops: ['Según el registro municipal', 'consta la licitación', 'Mejora del carril bici'],
+    keeps: [
+      'el grupo Compromís señala la existencia de un contrato para la recogida de residuos sólidos urbanos',
+      'el PSOE manifiesta el inicio de los trabajos en un plan de refugios climáticos',
+    ],
+    refs: [
+      'tender|contrato de OBRAS DE CANALIZACIÓN DE ALI',
+      'tender|obras de reparación goteras en edificios',
+      'pleno-video|Vídeo del pleno 2025-09-08 · YouTube',
+    ],
+    claims: [
+      'c8kr44-073-cit-d6d194',
+      'c8kr44-160-cit-e59f43',
+      'c8kr44-047-cit-8dec6a',
+      'c8kr44-146-cit-ccd20c',
+    ],
+    groups: ['PSOE', 'PSOE', 'Compromís', 'PSOE'],
+  },
+  {
+    id: 'f-2025-07-31-acu-144947',
+    added: ['crossChecked.0'],
+    priorCorrections: 2,
+    postDated: [
+      {
+        plenoDate: '2025-07-31',
+        firstKnown: '2025-11-27',
+        permalink: `${PLACSP}%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D`,
+      },
+    ],
+    drops: [],
+    keeps: ['el PP señala retrasos en la aprobación del presupuesto'],
+    refs: [
+      'tender|Contrato verbal de servicio de oficiales',
+      'pleno-video|Vídeo del pleno 2025-07-31 · YouTube',
+    ],
+    claims: ['rmtyr-141-acu-144947', 'rmtyr-021-acu-e0e848', 'rmtyr-189-acu-61aa87'],
+    groups: ['PP', 'PP', 'Compromís'],
+  },
+]
+
+/** Built once: every test in the block below asks the same index. */
+const tendersSnapshot = JSON.parse(readFileSync(resolve('public/data/tenders.json'), 'utf8')) as {
+  contracts: Array<Record<string, unknown>>
+  tenders: Array<Record<string, unknown>>
+}
+const recordDates = buildRecordDateIndex([tendersSnapshot])
+
+describe('published pleno findings — lote 4, the last post-dated cotejos', () => {
+  it('retired exactly the eight rows the gate flagged, and nothing else', () => {
+    expect(LOTE_4).toHaveLength(7)
+    const rows = LOTE_4.flatMap((c) => c.postDated)
+    expect(rows).toHaveLength(8)
+    const expected = LOTE_4.reduce((n, c) => n + c.added.length, 0)
+    expect(expected).toBe(9) // eight removals and the one summary
+    expect(allCorrections.length).toBe(TOTAL_CORRECTIONS)
+    expect(LOTE_4.map((c) => byId(c.id).id)).toEqual(LOTE_4.map((c) => c.id))
+    expectBatchIsIntact(LOTE_4)
+    // Unlike lotes 1–3, this batch is NOT a slice of the review queue and
+    // OVERLAPS them: it is one gate re-run over the whole corpus, and five of
+    // its seven findings had already been corrected by an earlier pass. Pinned
+    // rather than left implicit, because the overlap is what forced every
+    // batch to name its own window instead of reading to the end of the log.
+    const earlier = new Set([
+      ...LOTE_1.map((c) => c.id),
+      ...LOTE_2.map((c) => c.id),
+      ...LOTE_3.map((c) => c.id),
+    ])
+    expect(LOTE_4.filter((c) => earlier.has(c.id))).toHaveLength(5)
+    // …and lote 4 is a criterion-3 pass only: `d6d194` is the single finding
+    // whose prose moved, because it was the only one naming a row that went.
+    expect(LOTE_4.filter((c) => c.added.includes('summary'))).toHaveLength(1)
+  })
+
+  it.each(LOTE_4)('$id logs exactly the corrections that were issued', (c) => {
+    const f = byId(c.id)
+    const log = f.corrections ?? []
+    const batch = batchWindow(c)
+    expect(batch.map((x) => x.field)).toEqual(c.added)
+    expect(batch.every((x) => x.editor.length > 1)).toBe(true)
+    // Removals renumber, so they are issued highest-index-first. A batch that
+    // went the other way would have retracted whatever slid into the slot.
+    const indices = c.added
+      .filter((x) => x.startsWith('crossChecked.'))
+      .map((x) => Number(x.split('.')[1]))
+    expect(indices).toEqual([...indices].sort((a, b) => b - a))
+    // The trail before this batch is untouched — a new entry appends.
+    expect(log.slice(0, c.priorCorrections).every((x) => x.reason.trim().length >= 20)).toBe(true)
+  })
+
+  it.each(LOTE_4)('$id removed records the snapshot dates AFTER its session', (c) => {
+    // The justifying half. Each removed row is looked up in the published
+    // procurement snapshot through the shipped index, and its earliest
+    // attested date must fall after the session — which is the entire reason
+    // it came out. Without this, eight arbitrary deletions would satisfy the
+    // corpus sweep below just as well.
+    expect(c.postDated.length).toBeGreaterThan(0)
+    for (const row of c.postDated) {
+      expect(
+        recordDates.has(row.permalink),
+        `${c.id}: el expediente ya no está en tenders.json`,
+      ).toBe(true)
+      expect(recordDates.get(row.permalink)).toBe(row.firstKnown)
+      expect(row.firstKnown > row.plenoDate).toBe(true)
+      expect(byId(c.id).plenoDate).toBe(row.plenoDate)
+      // …and it is gone from the page.
+      expect(byId(c.id).crossChecked.map((r) => r.ref)).not.toContain(row.permalink)
+    }
+  })
+
+  it.each(LOTE_4)('$id reads as a finished paragraph, not a truncated one', (c) => {
+    const f = byId(c.id)
+    expect(f.summary.trim().length).toBeGreaterThanOrEqual(40)
+    expect(f.title.trim().length).toBeGreaterThanOrEqual(10)
+    expect(f.summary.trim()).toMatch(/[.!?»"']$/)
+    expect(f.summary).not.toMatch(/[,;:]\s*$/)
+    expect(f.summary).not.toMatch(/\s{2,}|\s+[.,;]/)
+    expect(f.summary).not.toContain('«»')
+    for (const sentence of f.summary.split(/(?<=\.)\s+/)) {
+      if (sentence.trim().length === 0) continue
+      expect(sentence.trim(), `${c.id}: «${sentence.slice(0, 40)}…»`).toMatch(/^[«"'(\p{Lu}\d]/u)
+    }
+  })
+
+  it.each(LOTE_4)('$id no longer carries the defect, and still carries the finding', (c) => {
+    const f = byId(c.id)
+    const prose = `${f.title}\n${f.summary}`
+    for (const d of c.drops) expect(prose, `«${d}» sigue en la prosa`).not.toContain(d)
+    // Six of the seven have an empty `drops` on purpose — their prose never
+    // named the row that came out — so `keeps` is the only thing measuring
+    // them, and a summary emptied to «.» has to fail here.
+    expect(c.keeps.length).toBeGreaterThan(0)
+    for (const k of c.keeps) expect(prose, `«${k}» debería seguir`).toContain(k)
+  })
+
+  it('every document a lote-4 summary names by title is still listed under it', () => {
+    // The invariant this batch could most easily have broken, and the reason
+    // `d6d194` needed prose: a finding whose summary cites an expediente the
+    // page no longer lists is worse than either defect alone.
+    const named = LOTE_4.filter((c) => c.namesDoc)
+    expect(named.length).toBeGreaterThanOrEqual(3)
+    for (const c of named) {
+      const f = byId(c.id)
+      expect(f.summary, `${c.id}: el sumario ya no nombra el documento`).toContain(c.namesDoc!)
+      expect(
+        f.crossChecked.some((r) => r.snippet.includes(c.namesDoc!)),
+        `${c.id}: el sumario nombra un documento que ya no figura entre los cotejados`,
+      ).toBe(true)
+    }
+  })
+
+  it.each(LOTE_4)('$id keeps every neighbour the correction did not address', (c) => {
+    const f = byId(c.id)
+    expect(f.crossChecked.map((r) => `${r.kind}|${r.snippet.slice(0, 40)}`)).toEqual(c.refs)
+    expect(f.crossChecked.every((r) => /^https?:\/\//.test(r.ref))).toBe(true)
+    expect(f.quotes.map((q) => q.sourceClaimId)).toEqual(c.claims)
+    expect(f.quotes.map((q) => q.speakerGroup)).toEqual(c.groups)
+    expect(f.contradiction).toEqual([])
+    expect(f.severity).toBe('informational')
+  })
+
+  /**
+   * Each removal paired with the record it took out: `postDated` is written in
+   * the same order as the `crossChecked.<i>` entries of `added`, which is the
+   * order the CLI was called in — highest index first.
+   */
+  const lote4Removals = (): Array<{
+    entry: Correction
+    record: Lote4Case['postDated'][number]
+  }> =>
+    LOTE_4.flatMap((c) =>
+      batchWindow(c)
+        .filter((x) => x.field.startsWith('crossChecked.'))
+        .map((entry, i) => ({ entry, record: c.postDated[i] })),
+    )
+
+  it('every removal reason names criterion 3, and the ones that add criterion 2 are the records with a person as awardee', () => {
+    const removalsIssued = lote4Removals()
+    expect(removalsIssued).toHaveLength(8)
+    // The pairing above is only meaningful if each case's removals line up
+    // with the records it says they took out, in issue order.
+    for (const c of LOTE_4) {
+      expect(batchWindow(c).filter((x) => x.field.startsWith('crossChecked.'))).toHaveLength(
+        c.postDated.length,
+      )
+    }
+    expect(removalsIssued.every((r) => typeof r.record?.permalink === 'string')).toBe(true)
+    const POSTERIOR = /fecha más temprana conocida es(?:, además,)? posterior/i
+    const PARTICULAR = /identifica por su nombre a un particular/i
+    const NOMBRADO = /nombraba la frase suprimida/i
+    for (const { entry } of removalsIssued) {
+      expect(POSTERIOR.test(entry.reason), `${entry.field}: la razón no invoca el criterio 3`).toBe(
+        true,
+      )
+      expect(entry.original).toMatch(/^documento cotejado · sha256:[0-9a-f]{12}$/)
+      expect(entry.corrected).toBe('retirado del hallazgo')
+    }
+    // One row also names criterion 1 — the sentence that went with it.
+    expect(removalsIssued.filter((r) => NOMBRADO.test(r.entry.reason))).toHaveLength(1)
+
+    // «Where both criteria apply, say both.» Criterion 2 — the b8fea6f
+    // precedent, «publicar la referencia pone a un particular identificable al
+    // lado de lo debatido» — is decided by the record's awardee, not by the
+    // published snippet, which truncates before it. So the split is checked
+    // against `tenders.json` itself, in both directions and WITHOUT naming
+    // anyone: a corporate form in the awardee means criterion 2 does not
+    // apply, its absence means it does.
+    const CORPORATE =
+      /\b(s\.?\s?l\.?\s?[lu]?\.?|s\.?\s?a\.?u?\.?|sociedad|limitada|an[oó]nima|coop|c\.?b\.?|u\.?t\.?e\.?|asociaci|fundaci)\b/i
+    const rows = [...tendersSnapshot.contracts, ...tendersSnapshot.tenders]
+    const awardedToAPerson = (permalink: string): boolean => {
+      const assignees = rows
+        .filter((r) => r.permalink === permalink)
+        .map((r) => r.assignee)
+        .filter((a): a is string => typeof a === 'string' && a.trim().length > 0)
+      expect(assignees.length, `${permalink}: la fila no publica adjudicatario`).toBeGreaterThan(0)
+      return assignees.every((a) => !CORPORATE.test(a))
+    }
+    for (const { entry, record } of removalsIssued) {
+      expect(
+        PARTICULAR.test(entry.reason),
+        `${entry.field}: el criterio 2 y el adjudicatario del expediente no concuerdan`,
+      ).toBe(awardedToAPerson(record.permalink))
+    }
+    // Both halves are non-empty, so neither direction is vacuous.
+    const dual = removalsIssued.filter((r) => PARTICULAR.test(r.entry.reason))
+    expect(dual).toHaveLength(4)
+    expect(removalsIssued.length - dual.length).toBe(4)
+
+    // …and «the same record the b8fea6f precedent already removed elsewhere»
+    // is a claim this file checks rather than asserts. `original` is a sha256
+    // of the removed row, so one record cited by several findings yields one
+    // digest. Three of the four criterion-2 digests already appear among the
+    // retractions issued before this batch — proved without repeating a name.
+    // The fourth is a different record that meets the same criterion.
+    const batchStamps = new Set(removalsIssued.map((r) => r.entry.correctedAt))
+    const priorDigests = new Set(
+      removals.filter((r) => !batchStamps.has(r.correctedAt)).map((r) => r.original),
+    )
+    expect(priorDigests.size).toBeGreaterThan(20)
+    expect(dual.filter((r) => priorDigests.has(r.entry.original))).toHaveLength(3)
+    // Two distinct records under those three rows, not one repeated by accident.
+    expect(
+      new Set(dual.filter((r) => priorDigests.has(r.entry.original)).map((r) => r.entry.original))
+        .size,
+    ).toBe(2)
+  })
+
+  it('no reason written for this batch echoes what it took out, or pastes a URL', () => {
+    const batch = LOTE_4.flatMap(batchWindow)
+    expect(batch).toHaveLength(9)
+    expect(batch.filter((r) => /https?:\/\//.test(r.reason))).toEqual([])
+    expect(batch.every((r) => r.reason.trim().length >= 20)).toBe(true)
+    // Paso 2 over the batch's own reasons, summary correction included: the
+    // CLI guard only fires on removals, so the prose reason is unguarded and
+    // this is the only place it is checked.
+    const offences: string[] = []
+    for (const r of batch) {
+      for (const m of r.reason.matchAll(/\p{Lu}[\p{L}\p{M}’'-]*/gu)) {
+        const before = r.reason.slice(0, m.index).trimEnd()
+        if (before.length === 0 || /[.!?:;]$/.test(before)) continue
+        offences.push(`${r.field}: «${m[0]}»`)
+      }
+    }
+    expect(offences).toEqual([])
+  })
+})
+
+// ─── El cierre de la campaña ─────────────────────────────────────────────────
+
+describe('published pleno findings — the post-dated gate over the whole corpus', () => {
+  it('every cross-reference in the file is one the council could have been discussing', () => {
+    const report = emptyRecordDateGateReport()
+    let traversed = 0
+    for (const f of items) {
+      for (const r of f.crossChecked) {
+        traversed += 1
+        recordKnowableAt(r.ref, f.plenoDate, recordDates, report)
+      }
+    }
+
+    // ── What the check EVALUATED, asserted before what it found. ────────────
+    //
+    // A confident «0 post-dated» came back three times from probes that were
+    // measuring nothing: once keying on `r.url` where the field is `r.ref`,
+    // once passing the arguments to `recordKnowableAt` the wrong way round.
+    // Neither is visible in `postDated`, because an unknown key and a date
+    // used as a key both land in `unindexed` and return `true`. `kept` is the
+    // counter that cannot be faked by either — it only rises when a real ref
+    // resolved to a real date — so it is the guard, and it comes first.
+    expect(recordDates.size).toBeGreaterThan(500)
+    expect(traversed).toBeGreaterThan(100)
+    expect(report.kept).toBeGreaterThan(100)
+    // Nothing fell out of the traversal on the way.
+    expect(
+      report.kept + report.postDated.length + report.undated.length + report.unindexed.length,
+    ).toBe(traversed)
+
+    // ── and only now, the finding. ──────────────────────────────────────────
+    expect(report.postDated).toEqual([])
+
+    // The control positive: the gate can still say no. Otherwise the line
+    // above proves nothing about its discrimination.
+    const dated = items
+      .flatMap((f) => f.crossChecked)
+      .find((r) => typeof recordDates.get(r.ref) === 'string')!
+    expect(recordKnowableAt(dated.ref, '2000-01-01', recordDates)).toBe(false)
+  })
+
+  it('names what the gate could not evaluate instead of folding it into the pass', () => {
+    const report = emptyRecordDateGateReport()
+    const unindexedKinds = new Set<string>()
+    for (const f of items) {
+      for (const r of f.crossChecked) {
+        const before = report.unindexed.length
+        recordKnowableAt(r.ref, f.plenoDate, recordDates, report)
+        if (report.unindexed.length > before) unindexedKinds.add(r.kind)
+      }
+    }
+
+    // Every ref no procurement snapshot covers is the session's own video —
+    // not a procurement record at all, and dated by definition at the session.
+    // Stated in both directions, so a tender ref silently dropping out of
+    // `tenders.json` would show up here as a coverage regression rather than
+    // as a quieter «not in any snapshot».
+    expect(report.unindexed.length).toBeGreaterThan(20)
+    expect([...unindexedKinds]).toEqual(['pleno-video'])
+    const videos = items.flatMap((f) => f.crossChecked).filter((r) => r.kind === 'pleno-video')
+    expect(report.unindexed).toHaveLength(videos.length)
+
+    // The real gap, named rather than hidden: a PLACSP procedure annulled
+    // before award carries no award, formalisation, start or submission date,
+    // so criterion 3 structurally cannot evaluate it. The gate keeps those —
+    // undatable is not proof — and this pins WHY they are undatable. Ordinary
+    // awarded contracts arriving in this bucket would be a lookup defect.
+    const rows = [...tendersSnapshot.contracts, ...tendersSnapshot.tenders]
+    for (const ref of new Set(report.undated)) {
+      const matching = rows.filter((r) => r.permalink === ref || r.htmlUrl === ref)
+      expect(matching.length, `${ref}: el índice lo cubre pero no hay fila`).toBeGreaterThan(0)
+      for (const r of matching) {
+        expect(firstKnownDate(r)).toBeNull()
+        expect(r.status, `${ref}: sin fecha y no anulado — esto es un hueco nuevo`).toBe('void')
+      }
+    }
+    // Small and bounded. A snapshot where this grew would mean the earliest
+    // attested date is going missing on live procedures too.
+    expect(report.undated.length).toBeLessThanOrEqual(8)
   })
 })

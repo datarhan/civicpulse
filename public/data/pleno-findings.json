@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-09T18:22:29.588Z",
+  "generatedAt": "2026-08-09T18:48:08.617Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. La mayoría los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -304,11 +304,6 @@
           "snippet": "Contrato derivado del sistema dinámico de adquisición (SDA) de obras, para la instalación e cuatro elementos exentos de juegos infantiles en la Urbanización Gallipont de Riba-roja de Túria. (Ctto. 216/2023). · Ayuntamiento de Riba-roja d…"
         },
         {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2iTqILStUoT%2Fa9DgO%2BoYKQ%3D%3D",
-          "snippet": "Contratación servicio técnico redacción del Proyecto de Licencia Ambiental y del Plan de Actuación ante Emergencias para las siguientes actividades de carácter temporal correspondientes al ejercicio 2026: Feria del Comercio; Campaña de d…"
-        },
-        {
           "kind": "pleno-video",
           "ref": "https://www.youtube.com/watch?v=5yWcojyo4Lc",
           "snippet": "Vídeo del pleno 2026-05-11 · YouTube"
@@ -335,6 +330,14 @@
           "reason": "Se retira del cotejo el expediente que sostenía la frase documental suprimida: no acredita la materia debatida y su extracto publicado arrastra el nombre de un particular ajeno a la sesión.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T16:58:19.390Z"
+        },
+        {
+          "field": "crossChecked.2",
+          "original": "documento cotejado · sha256:c50793288bf8",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión y cuya fecha más temprana conocida es posterior al pleno.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:47:52.628Z"
         }
       ]
     },
@@ -1880,11 +1883,6 @@
       "crossChecked": [
         {
           "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=czdZT44wsgAtm4eBPtV6eQ%3D%3D",
-          "snippet": "Contratación servicio dirección obra y dirección ejecución material, coordinación en seguridad y salud para el proyecto obras Instalación de pérgolas con vegetación autóctona como refugio climático en Riba-roja de Túria (Valencia), deriv…"
-        },
-        {
-          "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y1ffHTdiBUTnSoTX3z%2F7wA%3D%3D",
           "snippet": "El objeto del contrato es la prestación de un servicio de de atención directa en las áreas industriales que implique más información al empresariado, en cuanto a gestiones administrativas municipales, subvenciones de entes públicos y un…"
         },
@@ -1925,6 +1923,14 @@
           "reason": "«El mismo grupo» fundía dos intervenciones cuya atribución el proceso no pudo determinar: ambas constan sin grupo. Afirmar que hablaba el mismo actor fabrica una atribución que ningún dato acredita, y el contenido apunta en sentido contrario, porque una admite en primera persona lo que la otra reprocha. Se sustituye por una descripción que no atribuye.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T16:58:26.788Z"
+        },
+        {
+          "field": "crossChecked.0",
+          "original": "documento cotejado · sha256:4db4f0ba8799",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión y cuya fecha más temprana conocida es posterior al pleno.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:47:52.964Z"
         }
       ]
     },
@@ -2042,11 +2048,6 @@
       "crossChecked": [
         {
           "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
-          "snippet": "Contratación servicio dirección de obra y dirección de ejecución material, coordinación en seguridad \ny salud para proyecto de obras “Reconstrucción de vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DA…"
-        },
-        {
-          "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
           "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · estado: unknown"
         },
@@ -2082,6 +2083,14 @@
           "reason": "La prosa pegaba el extracto crudo dentro de las comillas del título del contrato, con el centinela «estado: unknown» incluido, como si formara parte del nombre del expediente. No es un dato del expediente sino la marca de «no se pudo determinar», y un centinela nunca es un valor. Se cita el título y nada más; la afirmación de existencia no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T17:47:08.153Z"
+        },
+        {
+          "field": "crossChecked.0",
+          "original": "documento cotejado · sha256:0970b4bbbccd",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión y cuya fecha más temprana conocida es posterior al pleno.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:47:53.294Z"
         }
       ]
     },
@@ -2624,11 +2633,6 @@
           "snippet": "Servicio limpieza · Ayuntamiento de Riba-roja de Túria · estado: awarded"
         },
         {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fyy%2BTlMZfRsadbH3CysQuQ%3D%3D",
-          "snippet": "Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU..."
-        },
-        {
           "kind": "pleno-video",
           "ref": "https://www.youtube.com/watch?v=OGM7-9SLePc",
           "snippet": "Vídeo del pleno 2025-12-23 · YouTube"
@@ -2663,6 +2667,14 @@
           "reason": "Se retira el expediente que la frase suprimida presentaba como el contrato del que se hablaba. La intervención describe un contrato respaldado por un plan ya existente, no el encargo de redactar ese plan: son dos expedientes distintos y el orden lógico impide confundirlos.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T17:47:09.133Z"
+        },
+        {
+          "field": "crossChecked.1",
+          "original": "documento cotejado · sha256:25f1ec6c7cf8",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo un expediente cuya fecha más temprana conocida es posterior a la de la sesión: un procedimiento que aún no constaba el día del debate no pudo ser lo que el pleno debatía.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:47:53.960Z"
         }
       ]
     },
@@ -3241,11 +3253,6 @@
           "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de…"
         },
         {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
-          "snippet": "Contratación servicio dirección de obra y dirección de ejecución material, coordinación en seguridad \ny salud para proyecto de obras “Reconstrucción de vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DA…"
-        },
-        {
           "kind": "pleno-video",
           "ref": "https://www.youtube.com/watch?v=fmbfOgTHGYs",
           "snippet": "Vídeo del pleno 2025-12-01 · YouTube"
@@ -3272,6 +3279,14 @@
           "reason": "Se retira una cita sin atribución de grupo que el resumen no utiliza y que imputa un hecho grave a una persona identificable.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-09T15:46:25.197Z"
+        },
+        {
+          "field": "crossChecked.1",
+          "original": "documento cotejado · sha256:0970b4bbbccd",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión y cuya fecha más temprana conocida es posterior al pleno.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:47:53.626Z"
         }
       ]
     },
@@ -3456,10 +3471,10 @@
         {
           "field": "crossChecked.1",
           "original": "documento cotejado · sha256:c4475a9fe849",
+          "corrected": "retirado del hallazgo",
           "reason": "Se retira del cotejo el expediente que nombraba la frase suprimida: ninguna cita del hallazgo menciona un contrato, y el término compartido designa en la sesión el acompañamiento a víctimas y no la defensa procesal del ayuntamiento.",
           "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T18:22:29.587Z",
-          "corrected": "retirado del hallazgo"
+          "correctedAt": "2026-08-09T18:22:29.587Z"
         }
       ]
     },
@@ -3722,7 +3737,7 @@
       "plenoId": "c8kr44",
       "plenoDate": "2025-09-08",
       "title": "Pleno 2025-09-08: Debate sobre el contrato de residuos y el plan de refugios climáticos en Riba-roja de Túria",
-      "summary": "En la sesión del 2025-09-08, el grupo Compromís señala la existencia de un contrato para la recogida de residuos sólidos urbanos. Por su parte, el PSOE manifiesta el inicio de los trabajos en un plan de refugios climáticos. Según el registro municipal, consta la licitación de Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”.",
+      "summary": "En la sesión del 2025-09-08, el grupo Compromís señala la existencia de un contrato para la recogida de residuos sólidos urbanos. Por su parte, el PSOE manifiesta el inicio de los trabajos en un plan de refugios climáticos.",
       "severity": "informational",
       "sourceClaimIds": [
         "c8kr44-073-cit-d6d194",
@@ -3760,16 +3775,6 @@
         },
         {
           "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
-          "snippet": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambien…"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G%2BmnRyGH352ExvMJXBMHHQ%3D%3D",
-          "snippet": "Contrato adquisición de 320 contendores de carga lateral para el servicio de recogida de residuos en Riba-roja de Túria, así como la retirada y gestión del actual parque existente. · Ayuntamiento de Riba-roja de Túria · Sulo Ibérica, S.A…"
-        },
-        {
-          "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Sigih%2BOEc2d7h85%2Fpmmsfw%3D%3D",
           "snippet": "obras de reparación goteras en edificios municipales. · Ayuntamiento de Riba-roja de Túria · Licitaciones y Obras Hambit, S.L. · construction · estado: awarded"
         },
@@ -3784,7 +3789,32 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-30",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "En la sesión del 2025-09-08, el grupo Compromís señala la existencia de un contrato para la recogida de residuos sólidos urbanos. Por su parte, el PSOE manifiesta el inicio de los trabajos en un plan de refugios climáticos. Según el registro municipal, consta la licitación de Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”.",
+          "corrected": "En la sesión del 2025-09-08, el grupo Compromís señala la existencia de un contrato para la recogida de residuos sólidos urbanos. Por su parte, el PSOE manifiesta el inicio de los trabajos en un plan de refugios climáticos.",
+          "reason": "La frase presentaba como registro de lo dicho una licitación cuya fecha más temprana conocida es cinco meses posterior a la sesión: el expediente no constaba el día del debate, así que no pudo documentarlo. Se retira la frase junto con la referencia que nombraba.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:48:07.947Z"
+        },
+        {
+          "field": "crossChecked.2",
+          "original": "documento cotejado · sha256:6b26401aca42",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo un expediente cuya fecha más temprana conocida es posterior a la de la sesión: un procedimiento que aún no constaba el día del debate no pudo ser lo que el pleno debatía.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:48:08.280Z"
+        },
+        {
+          "field": "crossChecked.1",
+          "original": "documento cotejado · sha256:edbb8423538f",
+          "reason": "Se retira del cotejo el expediente que nombraba la frase suprimida y cuya fecha más temprana conocida es, además, posterior a la de la sesión.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:48:08.615Z",
+          "corrected": "retirado del hallazgo"
+        }
+      ]
     },
     {
       "id": "f-2025-09-08-acu-70a34f",
@@ -3899,11 +3929,6 @@
       "crossChecked": [
         {
           "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
-          "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relati…"
-        },
-        {
-          "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
           "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de…"
         },
@@ -3934,6 +3959,14 @@
           "reason": "Se retira el expediente que la frase suprimida nombraba. Un contrato de servicios postales no documenta un debate sobre el retraso de un presupuesto ni sobre la reclamación de fondos, y sólo estaba ahí para sostener el conector borrado.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T17:47:10.136Z"
+        },
+        {
+          "field": "crossChecked.0",
+          "original": "documento cotejado · sha256:b30b92084fcb",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo un expediente cuya fecha más temprana conocida es posterior a la de la sesión: un procedimiento que aún no constaba el día del debate no pudo ser lo que el pleno debatía.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-09T18:47:54.289Z"
         }
       ]
     }
