@@ -95,69 +95,83 @@ describe('buildSupportQueue · los extractos viajan byte a byte', () => {
   })
 })
 
-describe('buildSupportQueue · los casos tabulados y su documento contradictorio', () => {
-  const CASES = [
+describe('buildSupportQueue · los casos tabulados, todos reparados', () => {
+  /**
+   * Los tres casos de libro que esta cola se escribió para enseñar —un sumario
+   * que ata el debate a un expediente con el que sólo comparte una palabra—
+   * están los tres reparados por `correct-pleno-finding`: `cit-591d40` en
+   * b8fea6f, y los otros dos en el lote de revisión de las filas 0–17.
+   *
+   * Se quedan aquí como ASERCIONES INVERTIDAS en vez de borrarse: un caso que
+   * desaparece de una lista no distingue «se arregló» de «se dejó de mirar».
+   * Cada fila dice qué frase se fue, qué frase se queda y qué documento dejó
+   * de colgar de ella. El detalle de cada retirada está en la bitácora pública
+   * del hallazgo y en tests/pleno-findings-published.test.ts.
+   */
+  const REPARADOS = [
+    {
+      id: 'f-2025-10-06-cit-591d40',
+      // Debate: atención policial a mujeres vulnerables. Documento: un
+      // suministro de dos perros. Colisión sobre «Unidad … Policía Local».
+      document: /dos perros/,
+      claimGone: 'El debate coincide',
+      claimKept: 'una unidad de policía local que asiste a mujeres vulnerables',
+    },
     {
       id: 'f-2026-01-19-acu-d2b7bb',
       // Debate: si un concejal había contestado un correo. Documento: una
-      // migración a Microsoft 365. Colisión sobre «correo».
+      // migración a Microsoft 365 adjudicada DESPUÉS del pleno. Colisión
+      // sobre «correo», y encima con el verbo «corrobora».
       document: /Microsoft 365/,
-      summaryPhrase: 'corrobora la referencia a la gestión del correo electrónico municipal',
+      claimGone: 'corrobora la referencia a la gestión del correo electrónico municipal',
+      claimKept: 'un incumplimiento empresarial calificado de grave ocurrido en enero',
     },
     {
       id: 'f-2026-05-11-acu-1e1bfa',
-      // Debate: Tesorería. Documento: el Plan de Igualdad. Publica una
-      // valoración técnica negativa contra el plan equivocado.
+      // Debate: Tesorería. Documento: el Plan de Igualdad, adjudicado tres
+      // semanas DESPUÉS del pleno. El sumario colgaba una valoración técnica
+      // negativa del plan equivocado.
       document: /Plan de Igualdad/,
-      summaryPhrase: 'la valoración técnica de este Plan no es positiva',
+      claimGone: 'en referencia al registro',
+      // La cita del hablante se queda tal cual: la vaguedad de «este Plan» es
+      // suya, y quitarla sería corregir al hablante en vez de al sumario.
+      claimKept: 'la valoración técnica de este Plan no es positiva',
     },
   ]
 
-  /**
-   * El tercer caso tabulado, `f-2025-10-06-cit-591d40`, ya no lo es.
-   *
-   * Era el ejemplo de libro: un debate sobre atención policial a mujeres
-   * vulnerables anclado por el sumario a un expediente de contratación que
-   * sólo compartía con él las palabras «Unidad … Policía Local». El 09-08-2026
-   * se retiraron por `correct-pleno-finding` la frase que hacía el anclaje y
-   * la referencia, así que la cola ya no tiene ese vínculo afirmado que
-   * enseñarle a un curador.
-   *
-   * Se queda aquí, como aserción invertida, en vez de borrarse: un caso que
-   * desaparece de una lista no deja constancia de si se arregló o de si se
-   * dejó de mirar. El detalle de qué se retiró está en la bitácora pública del
-   * hallazgo y en tests/pleno-findings-published.ts.
-   */
-  it('f-2025-10-06-cit-591d40 ya no afirma un vínculo documental (reparado el 09-08-2026)', () => {
-    const row = build().rows.find((r) => r.id === 'f-2025-10-06-cit-591d40')
-    expect(row, 'el hallazgo reparado sigue teniendo que estar en la cola').toBeDefined()
-    expect(row!.claimShape).toBe('sin-afirmacion-documental')
-    expect(row!.summary).toContain('una unidad de policía local que asiste a mujeres vulnerables')
-    expect(row!.summary).not.toContain('El debate coincide')
-  })
+  it.each(REPARADOS)(
+    '$id ya no afirma el vínculo documental que se le tabuló',
+    ({ id, claimGone, claimKept }) => {
+      const row = build().rows.find((r) => r.id === id)
+      expect(row, 'el hallazgo reparado sigue teniendo que estar en la cola').toBeDefined()
+      expect(row!.summary).not.toContain(claimGone)
+      // Que la aserción negativa se leyó sobre la fila correcta y no sobre una
+      // cadena vacía: la frase que el hallazgo conserva tiene que seguir ahí.
+      expect(row!.summary).toContain(claimKept)
+      expect(row!.claimShape).toBe('sin-afirmacion-documental')
+    },
+  )
 
-  it.each(CASES)('$id aparece con su documento contradictorio', ({ id, document }) => {
-    const row = build().rows.find((r) => r.id === id)
-    expect(row, `${id} no está en la cola`).toBeDefined()
-    const hit = row!.crossChecked.find((c) => document.test(c.excerpt))
-    expect(hit, `${id} no lleva el documento ${document}`).toBeDefined()
-    // El extracto tiene que llegar entero, no como una etiqueta.
-    expect(hit!.excerpt.length).toBeGreaterThan(40)
-    expect(hit!.ref).toMatch(/^https?:\/\//)
-  })
+  it.each(REPARADOS)(
+    '$id ya no cuelga del documento con el que colisionaba',
+    ({ id, document }) => {
+      const row = build().rows.find((r) => r.id === id)!
+      // Que se está mirando una lista de verdad, no una vacía —que es como una
+      // aserción de ausencia pasa sin haber comprobado nada.
+      expect(row.crossChecked.length).toBeGreaterThan(0)
+      expect(row.crossChecked.every((c) => c.excerpt.length > 0)).toBe(true)
+      expect(row.crossChecked.filter((c) => document.test(c.excerpt))).toEqual([])
+    },
+  )
 
-  it.each(CASES)('$id conserva la frase que el curador debe juzgar', ({ id, summaryPhrase }) => {
-    const row = build().rows.find((r) => r.id === id)!
-    expect(row.summary).toContain(summaryPhrase)
-  })
-
-  it('se leen entre los primeros: afirman un vínculo documental', () => {
+  it('la cola sigue sabiendo señalar una afirmación documental cuando la hay', () => {
+    // El complemento obligatorio de las tres aserciones invertidas: si el
+    // clasificador dejara de reconocer conectores, las tres pasarían por la
+    // razón equivocada y este bloque sería verde sin medir nada.
     const queue = build()
-    expect(CASES.length).toBeGreaterThan(0)
-    for (const { id } of CASES) {
-      const row = queue.rows.find((r) => r.id === id)!
-      expect(row.claimShape).toBe('afirmativa-documental')
-    }
+    const afirmativas = queue.rows.filter((r) => r.claimShape === 'afirmativa-documental')
+    expect(afirmativas.length).toBeGreaterThan(10)
+    expect(afirmativas.every((r) => r.documentaryConnectors.length > 0)).toBe(true)
   })
 })
 
