@@ -69,8 +69,17 @@ body:
   - type: input
     id: source-url
     attributes:
+      # No pongas aquí una URL de ejemplo: el portal municipal se ha reorganizado
+      # dos veces y la que había (…/plenos/2026/acta-20-abril.pdf) devuelve 404,
+      # así que hacía de modelo de una ruta que ya no existe. El texto de esta
+      # etiqueta lo lee ingest-pleno-votes.yml por su literal — cámbialo allí a la vez.
       label: "URL del acta oficial"
-      placeholder: "http://www.ribarroja.es/plenos/2026/acta-20-abril.pdf"
+      description: |
+        Enlace al documento donde consta el acuerdo. Preferiblemente el acta;
+        si no está publicada, el portal de sesiones (regmeet.com) o el vídeo de
+        la sesión. El esquema rechaza una URL cuyo tipo de documento no pueda
+        reconocer, y rechaza atribuir el desglose por grupos a una fuente que
+        no lo publica.
     validations:
       required: true
 

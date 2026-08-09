@@ -22,10 +22,25 @@ import { deriveRespaldo, RESPALDO_VALUES, type SourceLike } from './area-fit'
 import { stripLeadingListConjunction } from './corporacion'
 import { ALLOWED_DEPARTMENT_SLUGS } from './departments'
 import { normalizeCompanyKey } from './entities'
-import { BREAKDOWN_SOURCE_KINDS, isSiteRelativeRef } from './pleno-votes'
+import {
+  BREAKDOWN_SOURCE_KINDS,
+  isIndependentlyVerified,
+  isSiteRelativeRef,
+  VOTE_SOURCE_KIND_IDS,
+} from './pleno-votes'
 
 export type CheckLevel = 'error' | 'warn'
 export type CheckStatus = 'ok' | 'broken' | 'empty' | 'skipped'
+
+/** One half of a vote's `provenance`, as much of it as the checks below read.
+ *  Structural only — `isIndependentlyVerified` owns the rule about what a
+ *  `verificado` ref has to carry, so this file never restates it. */
+interface VoteRefShape {
+  kind?: string
+  url?: string
+  verification?: string
+  verifiedAgainst?: { kind?: string; url?: string } | null
+}
 
 export interface RelationCheckResult {
   name: string
@@ -65,8 +80,8 @@ export interface RelationsCheckInputs {
       votes?: unknown[]
       votesRetracted?: unknown
       provenance?: {
-        outcome?: { kind?: string; url?: string; verification?: string }
-        breakdown?: { kind?: string; url?: string; verification?: string } | null
+        outcome?: VoteRefShape
+        breakdown?: VoteRefShape | null
       }
     }>
     retractions?: Array<{
@@ -549,20 +564,50 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
             broken.push(`${id} cites ${ref.url}, which is not in public/`)
           }
         }
+        // A `verificado` flag that is not backed by an independent document is
+        // a claim the site makes about its own rigour, so it belongs at error
+        // level with the other structural defects rather than in the warn tier
+        // that counts honest debt. `validateSourceRef` refuses to write one;
+        // this catches a hand-edited or merge-resolved file that skipped it.
+        if (ref.verification === 'verificado' && !isIndependentlyVerified(ref)) {
+          const against = ref.verifiedAgainst?.kind
+          broken.push(
+            `${id} breakdown is marked verificado but ` +
+              (against == null
+                ? `names no verifiedAgainst — nothing says what it was cotejado against`
+                : !VOTE_SOURCE_KIND_IDS.includes(against as never)
+                  ? `was cotejado against an unknown kind of document ("${String(against)}")`
+                  : `was cotejado against a ${against}, which is not independent of the ` +
+                    `${String(ref.kind)} the tally came from`),
+          )
+        }
       }
       return { checked, broken }
     }),
 
     // Warn, not error, and the distinction is the point. A `sin-verificar`
     // breakdown is now HONESTLY cited — the transcript does carry the nominal
-    // call — but nobody has cotejado it against the acta, and three of the
+    // call — but no second document has been read against it, and three of the
     // first nineteen taken from it were wrong. That is disclosed debt, which
     // is what 'warn' means in this file, and it is the state of 16 live rows:
     // erroring would red the nightly indefinitely over a condition the site
     // already declares, and a permanently-red check is one everybody learns to
     // skip. What must never be silent is the COUNT, so every row is listed.
     //
+    // What this line must NOT say is what it said until 2026-08-09 — «never
+    // cotejado against the acta», which reads as sixteen rows nobody got round
+    // to. The acta is not unread, it is UNREACHABLE: no acta is cached in this
+    // repo, all 45 transcripts on disk are Whisper output, and
+    // scripts/fetch-pleno-actas.ts has four independent breakages against the
+    // Aug-2026 portal (it reads a `link` that points at regmeet, extracts
+    // retired Drupal markup, uses plain http, and no npm script runs it).
+    // Blaming a curator for an upstream we cannot fetch is the same class of
+    // error as the disclaimer this batch removed from the outcome row.
+    //
     // The tier that does block is the one above, and it blocks at write time.
+    // Rows leave this count only via `isIndependentlyVerified` — the same
+    // predicate the validator and the surfaces use — so a self-verified row
+    // cannot go quiet here while going red there.
     check('votes-breakdown-verified', 'warn', votes != null, () => {
       let checked = 0
       const broken: string[] = []
@@ -571,12 +616,15 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
         const ref = v?.provenance?.breakdown
         if (ref == null) continue // already an error above; not double-counted
         checked += 1
-        if (ref.verification !== 'verificado') {
-          broken.push(
-            `${v?.id ?? '?'} breakdown is ${String(ref.verification)} — cited to ` +
-              `${String(ref.kind)}, never cotejado against the acta`,
-          )
-        }
+        if (isIndependentlyVerified(ref)) continue
+        broken.push(
+          ref.verification === 'verificado'
+            ? `${v?.id ?? '?'} breakdown claims verificado without an independent source — ` +
+                `still counted unverified (see votes-breakdown-source)`
+            : `${v?.id ?? '?'} breakdown is ${String(ref.verification)} — cited to ` +
+                `${String(ref.kind)}, no independent source cotejado against it. The acta ` +
+                `that would settle it is unreachable, not unread (scripts/fetch-pleno-actas.ts)`,
+        )
       }
       return { checked, broken }
     }),

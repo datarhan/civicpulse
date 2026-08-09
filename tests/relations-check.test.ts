@@ -708,7 +708,97 @@ describe('relations-check — vote provenance', () => {
     expect(rs['votes-breakdown-verified'].broken[0]).toMatch(/sin-verificar/)
   })
 
-  it('goes quiet once a curator has cotejado the breakdown', () => {
+  it('says the acta is unreachable, not that a curator never got to it', () => {
+    // The line this replaces read «never cotejado against the acta», which
+    // describes sixteen rows of neglect. Nobody has skipped this work: no acta
+    // is fetchable at all (scripts/fetch-pleno-actas.ts is broken four ways
+    // against the Aug-2026 portal, and zero actas are cached). A warn that
+    // misnames its own cause is a warn that gets dismissed for the wrong reason.
+    const rs = run([
+      { id: 'a-01', votes: tally, provenance: { outcome: regmeetRef, breakdown: transcriptRef } },
+    ])
+    const line = rs['votes-breakdown-verified'].broken[0]
+    expect(line).toMatch(/unreachable, not unread/)
+    expect(line).not.toMatch(/never cotejado/)
+  })
+
+  it('goes quiet once a curator has cotejado the breakdown against the acta', () => {
+    // Was: flipping `verification` on the transcript ref — the tally's OWN
+    // source — turned this green, which is what made the whole check hollow.
+    // The positive control now names an independent document.
+    const rs = run([
+      {
+        id: 'a-01',
+        votes: tally,
+        provenance: {
+          outcome: regmeetRef,
+          breakdown: {
+            ...transcriptRef,
+            verification: 'verificado',
+            quote: 'tretze vots en contra i huit a favor',
+            verifiedBy: 'Curator',
+            verifiedAgainst: { kind: 'acta', url: 'https://ribarroja.es/…/acta.pdf' },
+          },
+        },
+      },
+    ])
+    expect(rs['votes-breakdown-verified'].status).toBe('ok')
+    expect(rs['votes-breakdown-verified'].checked).toBe(1)
+    expect(rs['votes-breakdown-source'].status).toBe('ok')
+  })
+
+  it('BREAKS at error level on a tally "verified" against its own transcript', () => {
+    // The exact edit this test file used to assert was fine.
+    const rs = run([
+      {
+        id: 'a-01',
+        votes: tally,
+        provenance: {
+          outcome: regmeetRef,
+          breakdown: {
+            ...transcriptRef,
+            verification: 'verificado',
+            quote: 'tretze vots en contra i huit a favor',
+            verifiedBy: 'Curator',
+            verifiedAgainst: { kind: 'transcripcion', url: transcriptRef.url },
+          },
+        },
+      },
+    ])
+    expect(rs['votes-breakdown-source'].status).toBe('broken')
+    expect(rs['votes-breakdown-source'].level).toBe('error')
+    expect(rs['votes-breakdown-source'].broken[0]).toMatch(
+      /not independent of the transcripcion the tally came from/,
+    )
+  })
+
+  it('keeps counting a self-verified row as unverified — the count never goes silent', () => {
+    // If the warn had kept asking `verification === 'verificado'`, the row above
+    // would have dropped out of the unverified tally at the same moment it
+    // became a defect: the number on /datos would fall while the site got less
+    // trustworthy.
+    const rs = run([
+      {
+        id: 'a-01',
+        votes: tally,
+        provenance: {
+          outcome: regmeetRef,
+          breakdown: {
+            ...transcriptRef,
+            verification: 'verificado',
+            verifiedAgainst: { kind: 'transcripcion', url: transcriptRef.url },
+          },
+        },
+      },
+    ])
+    expect(rs['votes-breakdown-verified'].status).toBe('broken')
+    expect(rs['votes-breakdown-verified'].checked).toBe(1)
+    expect(rs['votes-breakdown-verified'].broken[0]).toMatch(
+      /claims verificado without an independent source/,
+    )
+  })
+
+  it('BREAKS at error level when "verificado" names no document at all', () => {
     const rs = run([
       {
         id: 'a-01',
@@ -719,8 +809,8 @@ describe('relations-check — vote provenance', () => {
         },
       },
     ])
-    expect(rs['votes-breakdown-verified'].status).toBe('ok')
-    expect(rs['votes-breakdown-verified'].checked).toBe(1)
+    expect(rs['votes-breakdown-source'].status).toBe('broken')
+    expect(rs['votes-breakdown-source'].broken[0]).toMatch(/names no verifiedAgainst/)
   })
 })
 

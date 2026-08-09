@@ -1,5 +1,5 @@
 import { ExtLink } from '../Primitives'
-import { VOTE_SOURCE_KINDS } from '../../scraper/pleno-votes'
+import { isIndependentlyVerified, VOTE_SOURCE_KINDS } from '../../scraper/pleno-votes'
 
 /**
  * Where each half of a vote record came from.
@@ -18,9 +18,25 @@ import { VOTE_SOURCE_KINDS } from '../../scraper/pleno-votes'
  * `VOTE_SOURCE_KINDS` — imported, not restated, so a page cannot describe a
  * source as something the schema does not think it is.
  *
- * «sin cotejar con el acta» is shown wherever `verification !== 'verificado'`,
- * which today is every row. It is not a disclaimer bolted on: it is the field
- * a curator flips, with a verbatim quote and a signature, as rows get checked.
+ * The disclaimer follows the same rule, and until 2026-08-09 it did not. One
+ * hard-coded string — «sin cotejar con el acta» — was printed under BOTH rows
+ * wherever `verification !== 'verificado'`, which is every row. So every vote
+ * carried the acta caveat twice and one of the two was false: the outcome comes
+ * from regmeet, the council's own session portal, which publishes the orden del
+ * día and the result as its record. There is nothing above it to cotejar the
+ * outcome against, and printing a caveat there taught readers to skip the one
+ * place it means something.
+ *
+ * Now each row derives its own line, from its own source:
+ *
+ *   · cotejado  → «cotejado contra <the document actually consulted>». Named,
+ *                 never assumed to be the acta — `isIndependentVerificationSource`
+ *                 admits the session video too, and saying «acta» when a curator
+ *                 watched the video would be the same lie in the other direction.
+ *   · otherwise → `VOTE_SOURCE_KINDS[kind].unverifiedNote`, which is null for
+ *                 `acta` and `regmeet` (the document states the claim in the
+ *                 council's own words) and a real caveat for `transcripcion`
+ *                 and `video` (the claim is there only via a reading).
  */
 export function VoteProvenance({ provenance }) {
   if (!provenance?.outcome) return null
@@ -30,45 +46,51 @@ export function VoteProvenance({ provenance }) {
   ]
   return (
     <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 3 }}>
-      {rows.map(({ claim, ref }) => (
-        <div
-          key={claim}
-          style={{
-            display: 'flex',
-            gap: 6,
-            alignItems: 'baseline',
-            flexWrap: 'wrap',
-            fontSize: 11,
-            lineHeight: 1.45,
-          }}
-        >
-          <span
-            className="mono"
+      {rows.map(({ claim, ref }) => {
+        const verified = isIndependentlyVerified(ref)
+        const note = verified
+          ? `cotejado contra ${VOTE_SOURCE_KINDS[ref.verifiedAgainst.kind]?.label ?? ref.verifiedAgainst.kind}`
+          : (VOTE_SOURCE_KINDS[ref.kind]?.unverifiedNote ?? null)
+        return (
+          <div
+            key={claim}
             style={{
-              fontSize: 9.5,
-              letterSpacing: 0.3,
-              color: 'var(--ink50)',
-              textTransform: 'uppercase',
-              minWidth: 62,
+              display: 'flex',
+              gap: 6,
+              alignItems: 'baseline',
+              flexWrap: 'wrap',
+              fontSize: 11,
+              lineHeight: 1.45,
             }}
           >
-            {claim}
-          </span>
-          <ExtLink href={ref.url} style={{ color: 'var(--civic)', textDecoration: 'none' }}>
-            {VOTE_SOURCE_KINDS[ref.kind]?.label ?? ref.kind} →
-          </ExtLink>
-          {ref.locator && (
-            <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
-              {ref.locator}
+            <span
+              className="mono"
+              style={{
+                fontSize: 9.5,
+                letterSpacing: 0.3,
+                color: 'var(--ink50)',
+                textTransform: 'uppercase',
+                minWidth: 62,
+              }}
+            >
+              {claim}
             </span>
-          )}
-          {ref.verification !== 'verificado' && (
-            <span style={{ fontSize: 10.5, color: 'var(--ink60)', fontStyle: 'italic' }}>
-              sin cotejar con el acta
-            </span>
-          )}
-        </div>
-      ))}
+            <ExtLink href={ref.url} style={{ color: 'var(--civic)', textDecoration: 'none' }}>
+              {VOTE_SOURCE_KINDS[ref.kind]?.label ?? ref.kind} →
+            </ExtLink>
+            {ref.locator && (
+              <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+                {ref.locator}
+              </span>
+            )}
+            {note && (
+              <span style={{ fontSize: 10.5, color: 'var(--ink60)', fontStyle: 'italic' }}>
+                {note}
+              </span>
+            )}
+          </div>
+        )
+      })}
     </div>
   )
 }

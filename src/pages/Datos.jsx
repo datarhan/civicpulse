@@ -24,6 +24,7 @@ import { usePlenoVotes } from '../hooks/usePlenoVotes'
 import { useQuejas } from '../hooks/useQuejas'
 import { useTransparencyDocs, groupTransparencyDocs } from '../hooks/useTransparencyDocs'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
+import { isIndependentlyVerified } from '../scraper/pleno-votes'
 
 function formatDate(iso) {
   return fmtDateShort(iso) || '—'
@@ -38,19 +39,38 @@ function retractionNote(retracted) {
 }
 
 /**
- * How many published per-bloc breakdowns nobody has cotejado against the acta.
+ * How many of the published per-bloc breakdowns have not been cotejado against
+ * an independent source — WITH the denominator, which is the fix.
  *
  * The catalogue is where a reader goes to judge how much to trust a dataset, so
  * the count belongs here rather than only in a CI check nobody outside the repo
  * runs. Counted from the rows themselves — a `stats` field could go stale
  * against the items it summarises.
+ *
+ * Until 2026-08-09 this appended a bare «· 16 desgloses sin cotejar» beside
+ * «17 votaciones», so the row put two numbers over two different sets and
+ * invited the reader to subtract them: one vote looked checked, when in fact it
+ * is the one whose tally was withdrawn and so has no desglose to check. Every
+ * number in the row now carries the set it counts — 17 votaciones (rows), and
+ * «N de M desgloses» over the rows that publish a tally at all.
+ *
+ * `isIndependentlyVerified` is imported rather than re-expressed: a page that
+ * decided for itself what «cotejado» means could go quiet over a self-verified
+ * row while check:relations still listed it.
+ *
+ * Exported so a test can hold this number against what the vote cards actually
+ * mark on /plenos/:id and /departamentos/:slug. A count on one page and a
+ * marker on another are the same claim; nothing but a test keeps them one.
  */
-function unverifiedBreakdownNote(items) {
+export function unverifiedBreakdownNote(items) {
   const withBreakdown = items.filter((v) => (v?.votes?.length ?? 0) > 0)
   const unverified = withBreakdown.filter(
-    (v) => v?.provenance?.breakdown?.verification !== 'verificado',
+    (v) => !isIndependentlyVerified(v?.provenance?.breakdown),
   ).length
-  return unverified > 0 ? ` · ${unverified} desglose${unverified === 1 ? '' : 's'} sin cotejar` : ''
+  if (unverified === 0) return ''
+  return ` · ${unverified} de ${withBreakdown.length} desglose${
+    withBreakdown.length === 1 ? '' : 's'
+  } sin cotejar`
 }
 
 function DatasetsCatalog() {

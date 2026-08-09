@@ -2,6 +2,10 @@ import { describe, it, expect } from 'vitest'
 import {
   validateVote,
   validateSnapshot,
+  assertDerivationGraphIsSane,
+  isIndependentlyVerified,
+  isIndependentVerificationSource,
+  voteSourceDerivedFrom,
   PlenoVoteValidationError,
   BREAKDOWN_SOURCE_KINDS,
   OUTCOME_SOURCE_KINDS,
@@ -212,6 +216,14 @@ describe('provenance: one citation per claim', () => {
     verification: 'sin-verificar',
   }
   const onRegmeet = { ...baseVote, sourceUrl: regmeetUrl }
+  /** A citation with no `verification` of its own: it IS the check, not a claim
+   *  waiting to be checked. */
+  const actaCitation = {
+    kind: 'acta',
+    url: 'https://ribarroja.es/files/migrate/9001/filesGroup/acta-k4olcs.pdf',
+    publisher: 'Ayuntamiento de Riba-roja de Túria',
+    retrievedAt: '2026-08-09',
+  }
 
   it('derives the allowed kinds from the capability table rather than a copy', () => {
     // The list a checker imports must be a function of the table, not a hand
@@ -304,6 +316,7 @@ describe('provenance: one citation per claim', () => {
           ...verified,
           quote: 'tretze vots en contra i huit a favor',
           verifiedBy: 'Sergei Lutchenko',
+          verifiedAgainst: actaCitation,
         },
       },
     })
@@ -360,4 +373,189 @@ describe('provenance: one citation per claim', () => {
     const { provenance: _dropped, ...rest } = baseVote
     return rest
   }
+})
+
+/**
+ * «verificado» has to be a check, not a re-read.
+ *
+ * The reproducer is tiny and it shipped: flip `verification` on the transcript
+ * ref a tally was read off, add any 20 characters of that same transcript and a
+ * name, and the validator passed, check:relations went green, and every surface
+ * told the reader the tally had been cotejado. The gate asked for a quote and a
+ * signature and never for a second document.
+ *
+ * Every rejection below is paired with an acceptance of the SAME shape, because
+ * "rejects everything" would satisfy a rejection-only suite. That is the pattern
+ * docs/DATA_INTEGRITY.md was written about.
+ */
+describe('provenance: a verification must be independent of what it verifies', () => {
+  const regmeetUrl = 'https://regmeet.com/aytoribarroja/participaciones/abc?idioma=castellano'
+  const onRegmeet = { ...baseVote, sourceUrl: regmeetUrl }
+  const regmeetRef = {
+    kind: 'regmeet',
+    url: regmeetUrl,
+    publisher: 'Ayuntamiento de Riba-roja de Túria',
+    retrievedAt: '2026-06-24',
+    verification: 'sin-verificar',
+  }
+  const transcriptUrl = '/data/pleno-transcripts/k4olcs.txt'
+  /** The tally's own origin, marked checked — quote and signature supplied. */
+  const selfVerified = {
+    kind: 'transcripcion',
+    url: transcriptUrl,
+    publisher: 'CivicPulse — transcripción automática (Whisper) de la sesión',
+    retrievedAt: '2026-08-01',
+    verification: 'verificado',
+    quote: 'tretze vots en contra i huit a favor',
+    verifiedBy: 'Sergei Lutchenko',
+  }
+  const cite = (kind: string, url: string) => ({
+    kind,
+    url,
+    publisher: 'Ayuntamiento de Riba-roja de Túria',
+    retrievedAt: '2026-08-09',
+  })
+  const actaCite = cite('acta', 'https://ribarroja.es/files/migrate/9001/filesGroup/acta.pdf')
+  const videoCite = cite('video', 'https://youtu.be/abcdefghijk')
+
+  const breakdown = (ref: unknown) =>
+    validateVote({ ...onRegmeet, provenance: { outcome: regmeetRef, breakdown: ref } })
+
+  it('accepts a breakdown cotejado against the acta — the positive control', () => {
+    // Without this, every rejection below is also satisfied by a rule that
+    // refuses all verification, which would be a different defect.
+    const v = breakdown({ ...selfVerified, verifiedAgainst: actaCite })
+    expect(v.provenance?.breakdown?.verification).toBe('verificado')
+    expect(v.provenance?.breakdown?.verifiedAgainst?.kind).toBe('acta')
+    // The citation must survive the validator's rebuild: a `verifiedAgainst`
+    // silently dropped on the way through turns back into the unqualified
+    // "verified" flag this field exists to replace.
+    expect(v.provenance?.breakdown?.verifiedAgainst?.url).toBe(actaCite.url)
+  })
+
+  it('REFUSES a tally verified against the transcript it was read off', () => {
+    // THE reproducer. Quote and signature are present and valid.
+    expect(() => breakdown(selfVerified)).toThrow(/needs verifiedAgainst/)
+    expect(() =>
+      breakdown({ ...selfVerified, verifiedAgainst: cite('transcripcion', transcriptUrl) }),
+    ).toThrow(/cotejado against itself/)
+  })
+
+  it('REFUSES a second document of the same kind, however different its URL', () => {
+    // The edge that looks most like a second opinion and is not: two Whisper
+    // runs over one recording share the failure mode they claim to rule out.
+    expect(() =>
+      breakdown({
+        ...selfVerified,
+        verifiedAgainst: cite('transcripcion', '/data/pleno-transcripts/k4olcs-rerun.txt'),
+      }),
+    ).toThrow(/same kind share the way of knowing/)
+  })
+
+  it('ACCEPTS the session video as a check on a transcript-derived tally', () => {
+    // Decided deliberately, not by omission: the error a verification of a
+    // Whisper tally exists to catch is the transcription step, and the video is
+    // upstream of it. See isIndependentVerificationSource.
+    const v = breakdown({ ...selfVerified, verifiedAgainst: videoCite })
+    expect(v.provenance?.breakdown?.verifiedAgainst?.kind).toBe('video')
+    expect(isIndependentVerificationSource('video', 'transcripcion')).toBe(true)
+  })
+
+  it('REFUSES the transcript as a check on a video-derived tally — the same pair, reversed', () => {
+    // The asymmetry is the rule doing work rather than just comparing labels.
+    expect(isIndependentVerificationSource('transcripcion', 'video')).toBe(false)
+    expect(() =>
+      breakdown({
+        kind: 'video',
+        url: 'https://youtu.be/abcdefghijk',
+        publisher: 'Ayuntamiento de Riba-roja de Túria',
+        retrievedAt: '2026-08-09',
+        verification: 'verificado',
+        quote: 'tretze vots en contra i huit a favor',
+        verifiedBy: 'Sergei Lutchenko',
+        verifiedAgainst: cite('transcripcion', transcriptUrl),
+      }),
+    ).toThrow(/produced from the very source it claims to check/)
+  })
+
+  it('REFUSES cotejar a tally against a source that publishes no tally', () => {
+    // The capability table gates the verifying document too. regmeet publishes
+    // the orden del día and the result; there is no per-bloc tally in it to
+    // agree or disagree with.
+    expect(() =>
+      breakdown({ ...selfVerified, verifiedAgainst: cite('regmeet', regmeetUrl) }),
+    ).toThrow(/does not publish a per-bloc breakdown/)
+  })
+
+  it('REFUSES verifiedAgainst on a claim that is not marked verificado', () => {
+    const { verification: _v, quote: _q, verifiedBy: _b, ...unchecked } = selfVerified
+    expect(() =>
+      breakdown({ ...unchecked, verification: 'sin-verificar', verifiedAgainst: actaCite }),
+    ).toThrow(/not marked "verificado"/)
+  })
+
+  it('applies the rule to the OUTCOME half as well, not only the breakdown', () => {
+    const selfVerifiedOutcome = {
+      ...regmeetRef,
+      verification: 'verificado',
+      quote: 'el punto queda aprobado por mayoría absoluta',
+      verifiedBy: 'Sergei Lutchenko',
+    }
+    expect(() =>
+      validateVote({
+        ...onRegmeet,
+        provenance: {
+          outcome: { ...selfVerifiedOutcome, verifiedAgainst: cite('regmeet', regmeetUrl) },
+          breakdown: null,
+        },
+        votes: [],
+        votesRetracted: {
+          reason: 'el desglose procedía de una transcripción sin cotejar',
+          editor: 'Curator',
+          retractedAt: '2026-08-05T00:00:00.000Z',
+        },
+      }),
+    ).toThrow(/cotejado against itself/)
+    // Positive control for the same half.
+    const ok = validateVote({
+      ...onRegmeet,
+      provenance: {
+        outcome: { ...selfVerifiedOutcome, verifiedAgainst: actaCite },
+        breakdown: null,
+      },
+      votes: [],
+      votesRetracted: {
+        reason: 'el desglose procedía de una transcripción sin cotejar',
+        editor: 'Curator',
+        retractedAt: '2026-08-05T00:00:00.000Z',
+      },
+    })
+    expect(ok.provenance?.outcome.verifiedAgainst?.kind).toBe('acta')
+  })
+
+  it('exposes ONE predicate, and the surfaces read it rather than the raw flag', () => {
+    // /datos, VoteProvenance and check:relations all ask this. If they each
+    // asked `verification === 'verificado'` instead, a self-verified row would
+    // read as checked on three pages while the validator refused to write it.
+    expect(isIndependentlyVerified({ ...selfVerified, verifiedAgainst: actaCite })).toBe(true)
+    expect(isIndependentlyVerified(selfVerified)).toBe(false)
+    expect(
+      isIndependentlyVerified({ ...selfVerified, verifiedAgainst: cite('transcripcion', 'x') }),
+    ).toBe(false)
+    expect(isIndependentlyVerified({ kind: 'acta', verification: 'sin-verificar' })).toBe(false)
+    expect(isIndependentlyVerified(null)).toBe(false)
+  })
+
+  it('keeps the derivation graph in a shape the independence rule can reason about', () => {
+    // The rule only rules out ANCESTORS. Two kinds derived from one upstream
+    // would be siblings — not independent either, and silently approved. This
+    // fails the moment such an edge is added, which is the point.
+    expect(() => assertDerivationGraphIsSane()).not.toThrow()
+    for (const k of VOTE_SOURCE_KIND_IDS) {
+      const from = voteSourceDerivedFrom(k)
+      if (from != null) expect(VOTE_SOURCE_KIND_IDS).toContain(from)
+      // Nothing is independent of itself, derived or not.
+      expect(isIndependentVerificationSource(k, k)).toBe(false)
+    }
+  })
 })

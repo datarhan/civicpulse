@@ -283,17 +283,39 @@ export default function Metodologia() {
             erróneos; están retirados y su retirada consta.
           </li>
           <li>
-            <strong>Un desglose no verificado se declara como tal.</strong> Mientras nadie haya
-            cotejado un desglose contra el acta, se publica con la marca{' '}
-            <strong>«sin cotejar con el acta»</strong> junto a su fuente, y así aparece en cada
-            votación y en el catálogo de{' '}
+            <strong>Un desglose no cotejado se declara como tal.</strong> Mientras no se haya
+            cotejado un desglose contra una segunda fuente, se publica con la marca{' '}
+            <strong>«transcripción automática, sin cotejar con otra fuente»</strong> junto a su
+            fuente, y el catálogo de{' '}
             <a href="/datos" style={{ color: 'var(--civic)' }}>
               /datos
-            </a>
-            . Levantar esa marca exige una cita literal y la firma de quien la comprueba; no hay
-            proceso automático que pueda hacerlo. El esquema rechaza además atribuir un desglose a
-            una fuente que no publica desgloses, de modo que el fallo original no puede repetirse
-            por descuido.
+            </a>{' '}
+            da la cifra con su denominador: cuántos de los desgloses publicados están sin cotejar.
+            Esa marca va en la fila del <em>desglose</em>, no en la del resultado: el resultado lo
+            publica el propio portal de sesiones del Ayuntamiento, y advertir ahí de que «falta el
+            acta» sería falso. Hasta agosto de 2026 la misma frase aparecía bajo las dos filas de
+            cada votación, y una de las dos no era cierta.
+          </li>
+          <li>
+            <strong>Cotejar significa contra otro documento, no releer el mismo.</strong> Para
+            levantar la marca hacen falta una cita literal, la firma de quien comprueba y —desde
+            agosto de 2026— <strong>el documento contra el que se ha cotejado</strong>, que el
+            esquema exige que sea independiente del que originó el dato. Dos transcripciones de la
+            misma sesión no valen (comparten el mismo modo de error); el vídeo sí vale para cotejar
+            una transcripción, porque lo que se comprueba es precisamente el paso de transcribir. La
+            página nombra el documento consultado, nunca «el acta» por defecto. Antes de ese cambio
+            bastaba con citar la propia transcripción de la que salía el recuento: una verificación
+            que no verificaba nada. No hay proceso automático que pueda levantar la marca. El
+            esquema rechaza además atribuir un desglose a una fuente que no publica desgloses, de
+            modo que el fallo original no puede repetirse por descuido.
+          </li>
+          <li>
+            <strong>Hoy no hay ningún desglose cotejado, y no es por dejadez.</strong> El documento
+            que zanjaría un desglose es el acta, y este proyecto <em>no puede descargarla</em>: el
+            portal municipal se reorganizó dos veces en 2026 y el descargador de actas quedó
+            apuntando a rutas que ya no existen. No hay ni una sola acta almacenada aquí; las 45
+            transcripciones que hay en disco son todas automáticas. Preferimos decirlo así —fuente
+            inaccesible— antes que dejar entender que alguien no ha hecho el trabajo.
           </li>
           <li>
             <strong>El plazo debe venir del acta.</strong> Para los votos de pleno, un{' '}

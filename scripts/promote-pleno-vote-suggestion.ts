@@ -52,8 +52,12 @@ function usage(): never {
     'usage:\n' +
       '  npm run promote-vote -- <plenoId> <itemNumber> [sourceUrl] [--edit]\n\n' +
       'Example:\n' +
-      '  npm run promote-vote -- k4olcs 3\n' +
-      '  npm run promote-vote -- k4olcs 3 http://www.ribarroja.es/plenos/2026/acta-20-abril.pdf\n\n' +
+      '  npm run promote-vote -- k4olcs 3\n\n' +
+      'sourceUrl is the OUTCOME source and defaults to the link in plenos.json.\n' +
+      'Pass one only to override it, and only a URL voteSourceKindForUrl can\n' +
+      'recognise — an unknown host is refused, never guessed. (There is no\n' +
+      'example acta URL here on purpose: no acta is reachable, the portal has\n' +
+      'moved twice, and every path once printed here now 404s.)\n\n' +
       'The script reads pleno-votes-suggestions.json (auto-inferred) and\n' +
       'fills the curated fields (title, department, expediente, dueBy,\n' +
       'dueBySource) from agenda + suggestion data. You still eyeball the\n' +

@@ -343,12 +343,30 @@ overwrites it. Change the bot's SQLite instead.
   refuses a breakdown attributed to it. Until 2026-08-05 every row carried one
   `sourceUrl`, on all 17 of them regmeet, while the tallies came off an uncited
   Whisper transcript — `check:citations` could not see it because the URL
-  resolves, it just does not carry half the claim. A breakdown stays
-  `verification: "sin-verificar"` until a curator cotejes it against the acta;
-  raising it requires a verbatim quote and a signature. Read-side twins:
+  resolves, it just does not carry half the claim. Read-side twins:
   `check:relations` → `votes-breakdown-source` (error) and
   `votes-breakdown-verified` (warn, currently red for every unverified row).
   One-shot migration: `scripts/migrate-vote-provenance.ts`
+- **«verificado» means cotejado against an INDEPENDENT document.** A ref marked
+  `verificado` must carry a verbatim quote, a curator signature and
+  `verifiedAgainst` — the citation it was checked against — and
+  `isIndependentVerificationSource` refuses a same-kind document whatever its
+  URL (two Whisper runs share the failure mode they claim to rule out) and
+  anything derived from the source under check. It ACCEPTS the session video
+  over a transcript-derived tally: the error being checked is the transcription
+  step and the video is upstream of it. The surfaces name the document actually
+  consulted, never «el acta» by default. Until 2026-08-09 the gate asked only
+  for a quote ≥20 chars and a name, so quoting the transcript a tally was read
+  off passed as a verification of it. `isIndependentlyVerified` is the one
+  predicate the validator, `check:relations`, `/datos` and `VoteProvenance` all
+  read — none of them re-expresses the rule.
+- **Nothing here has ever been cotejado, and the acta is unreachable.** All 16
+  published breakdowns and all 17 outcomes are `sin-verificar`.
+  `scripts/fetch-pleno-actas.ts` has four independent breakages against the
+  Aug-2026 portal (reads a `link` that points at regmeet since 2026-05-25;
+  extracts retired Drupal markup; plain `http://`; no npm script runs it), zero
+  actas are cached, and every transcript on disk is Whisper output. Messages
+  about this state must say _unreachable_, not _unread_
 - **Withdrawal** — `npm run retract-vote` is the only way out. Two scopes, because the
   two halves of a record do not share a provenance: `--reason/--editor` alone withdraws
   the **whole vote** (it leaves `items[]`, so it stops counting everywhere that reads
@@ -363,5 +381,10 @@ overwrites it. Change the bot's SQLite instead.
   `/plenos/:id` and `/departamentos/:slug`; a withdrawn record simply is not there.
   `VoteProvenance` names both sources under every vote on those two pages —
   `/departamentos/:slug` used to show one link labelled «Acta oficial» pointing
-  at regmeet, and `/plenos/:id` showed none at all. `/datos` counts the
-  uncotejado breakdowns in the catalogue row
+  at regmeet, and `/plenos/:id` showed none at all. Each provenance row's
+  caveat comes from `VOTE_SOURCE_KINDS[kind].unverifiedNote`, which is null for
+  `acta` and `regmeet` (the document states the claim in the council's own
+  words) — before 2026-08-09 one hard-coded «sin cotejar con el acta» was
+  printed under both rows, so every vote carried the acta caveat twice and the
+  one under the outcome was false. `/datos` states the uncotejado count WITH its
+  denominator («N de M desgloses»), so it cannot be read against the row count

@@ -89,7 +89,8 @@ export type VoteOutcome = 'aprobado' | 'rechazado' | 'retirado' | 'aplazado'
 // validator every CLI runs before it writes.
 
 /**
- * What each kind of source ACTUALLY publishes.
+ * What each kind of source ACTUALLY publishes, what it is made FROM, and what
+ * the page must say when a claim cited to it has not been cotejado.
  *
  * This table is the single definition of «can this citation carry this claim».
  * `BREAKDOWN_SOURCE_KINDS` / `OUTCOME_SOURCE_KINDS` are DERIVED from it and
@@ -100,15 +101,49 @@ export type VoteOutcome = 'aprobado' | 'rechazado' | 'retirado' | 'aplazado'
  * `publishesBreakdown: false` on `regmeet` is the whole point of this file's
  * 2026-08-05 migration; it is a fact about the upstream portal, not a policy
  * knob. Loosening it re-permits exactly the defect the split exists to remove.
+ *
+ * The two later columns:
+ *
+ * `derivedFrom` — the artefact this one is MECHANICALLY produced from, or null
+ * for a source that is a record in its own right. Only one edge exists today
+ * (`transcripcion` ← `video`: Whisper reads the recording), and it is the whole
+ * basis of `isIndependentVerificationSource` below. It records production, not
+ * authority: an acta and a video are both accounts of the same session, but
+ * neither is generated from the other.
+ *
+ * `unverifiedNote` — the clause a surface shows beside a claim cited to this
+ * kind while `verification !== 'verificado'`, or null when no caveat is
+ * warranted. It is null for `acta` and `regmeet` because for those the cited
+ * document *states* the claim in the council's own words: an acta is the
+ * authoritative minute, and regmeet is the council's session portal publishing
+ * the orden del día and the result. There is nothing above them to cotejar
+ * against, so a caveat there would be noise that trains readers to ignore the
+ * one place it means something. It is non-null for `transcripcion` and `video`
+ * because those carry the claim only through a reading — a machine's, or a
+ * human's ear — and a reading can be wrong. Three of the first nineteen
+ * breakdowns taken from the transcript were.
+ *
+ * Living in this table, not in the JSX, is deliberate: until 2026-08-09 the
+ * component applied one hard-coded string — «sin cotejar con el acta» — to both
+ * provenance rows, so a regmeet-sourced OUTCOME was published under a caveat
+ * about a document it never needed. One test, two rows, one of them false.
  */
 export const VOTE_SOURCE_KINDS = {
   /** The published minutes. The authoritative record of both halves. */
-  acta: { label: 'Acta oficial', publishesOutcome: true, publishesBreakdown: true },
+  acta: {
+    label: 'Acta oficial',
+    publishesOutcome: true,
+    publishesBreakdown: true,
+    derivedFrom: null,
+    unverifiedNote: null,
+  },
   /** The council's session portal. Item + outcome only — never a tally. */
   regmeet: {
     label: 'Portal de sesiones (regmeet)',
     publishesOutcome: true,
     publishesBreakdown: false,
+    derivedFrom: null,
+    unverifiedNote: null,
   },
   /** Whisper transcript of the session audio, published under
    *  /data/pleno-transcripts/. Carries the nominal call, so it CAN support a
@@ -118,12 +153,29 @@ export const VOTE_SOURCE_KINDS = {
     label: 'Transcripción automática de la sesión',
     publishesOutcome: true,
     publishesBreakdown: true,
+    derivedFrom: 'video',
+    unverifiedNote: 'transcripción automática, sin cotejar con otra fuente',
   },
   /** The session video. The transcript's own upstream. */
-  video: { label: 'Vídeo de la sesión', publishesOutcome: true, publishesBreakdown: true },
+  video: {
+    label: 'Vídeo de la sesión',
+    publishesOutcome: true,
+    publishesBreakdown: true,
+    derivedFrom: null,
+    unverifiedNote: 'leído del vídeo, sin cotejar con otra fuente',
+  },
 } as const satisfies Record<
   string,
-  { label: string; publishesOutcome: boolean; publishesBreakdown: boolean }
+  {
+    label: string
+    publishesOutcome: boolean
+    publishesBreakdown: boolean
+    /** Typed `string | null` rather than `VoteSourceKind | null` because that
+     *  type is derived from this very object. `voteSourceDerivedFrom` narrows
+     *  it, and `assertDerivationGraphIsSane` proves every edge resolves. */
+    derivedFrom: string | null
+    unverifiedNote: string | null
+  }
 >
 
 export type VoteSourceKind = keyof typeof VOTE_SOURCE_KINDS
@@ -140,14 +192,152 @@ export const OUTCOME_SOURCE_KINDS: readonly VoteSourceKind[] = VOTE_SOURCE_KIND_
   (k) => VOTE_SOURCE_KINDS[k].publishesOutcome,
 )
 
+/** The artefact `kind` is mechanically produced from, or null. Narrowing
+ *  accessor for the `string | null` the capability table has to declare. */
+export function voteSourceDerivedFrom(kind: VoteSourceKind): VoteSourceKind | null {
+  return (VOTE_SOURCE_KINDS[kind].derivedFrom as VoteSourceKind | null) ?? null
+}
+
 /**
- * Has a human checked THIS claim against THIS source?
+ * Is `verifier` a source that can genuinely COTEJAR a claim cited to `cited`?
+ *
+ * This is the rule that gives «verificado» a meaning. Until 2026-08-09 there
+ * was none: `verificado` needed only a ≥20-char quote and a signature, so a
+ * curator could mark a tally verified by quoting the very Whisper transcript
+ * the tally was read off — and every surface would then say the claim had been
+ * cotejado. Self-verification passing a verification gate is not a loose gate,
+ * it is a gate measuring nothing.
+ *
+ * Two disqualifiers, and the reasoning for each:
+ *
+ * 1. **Same kind is never independent, whatever the URL.** The kind IS the way
+ *    of knowing. Two transcripts of one session are two runs of the same ASR
+ *    over the same audio: a second run agreeing proves Whisper is
+ *    deterministic, not that the tally is right. Two actas of the same session
+ *    are the same secretario's account, one copied from the other. So the
+ *    same-kind-different-URL case — the one that looks like a second opinion —
+ *    is refused: it shares the failure mode it claims to rule out.
+ *
+ * 2. **A source made FROM the cited one cannot check it.** Everything a
+ *    derivative knows, it got from its upstream, plus whatever its own
+ *    production step got wrong. `transcripcion` derives from `video`, so a
+ *    transcript can never verify a video-read tally.
+ *
+ * The edge that has to be decided explicitly, because it is the one a curator
+ * will actually hit: **video verifying a transcript-derived tally is ACCEPTED.**
+ * The two do come from one session recording, so they are not independent
+ * *observations* of the vote — the acta is, and the acta remains the better
+ * check. But independence here is asked of the ERROR the verification exists to
+ * catch, and that error is the transcription step: Whisper mishearing «tretze»
+ * as «tres», dropping a bloc, or hallucinating a stretch outright. The video is
+ * upstream of that step, and a human watching the nominal call is a different
+ * reader, not a second machine. Rejecting it would mean the only admissible
+ * check is a document this project currently cannot fetch at all (see
+ * `scripts/fetch-pleno-actas.ts`, broken against the Aug-2026 portal), which
+ * would leave `verificado` unreachable in practice and therefore, again,
+ * meaningless. What it does NOT license is quietly calling that «cotejado con
+ * el acta»: the surfaces name the document actually consulted, from
+ * `verifiedAgainst.kind`.
+ *
+ * The graph has one edge, so no two kinds are siblings under a shared upstream.
+ * If one is ever added, `assertDerivationGraphIsSane` fails and forces that
+ * case to be decided here rather than inherited by accident.
+ */
+export function isIndependentVerificationSource(
+  verifier: VoteSourceKind,
+  cited: VoteSourceKind,
+): boolean {
+  if (verifier === cited) return false
+  // Walk the verifier's ancestry: if `cited` is anywhere in it, the verifier is
+  // downstream of what it claims to check.
+  let up = voteSourceDerivedFrom(verifier)
+  const seen = new Set<VoteSourceKind>([verifier])
+  while (up != null && !seen.has(up)) {
+    if (up === cited) return false
+    seen.add(up)
+    up = voteSourceDerivedFrom(up)
+  }
+  return true
+}
+
+/**
+ * Proves the `derivedFrom` column is a well-formed graph, and that the one
+ * assumption `isIndependentVerificationSource` makes about its SHAPE still
+ * holds. Called from the tests; throwing here beats a rule that silently starts
+ * approving pairs nobody weighed.
+ */
+export function assertDerivationGraphIsSane(): void {
+  const roots = new Map<VoteSourceKind, VoteSourceKind>()
+  for (const kind of VOTE_SOURCE_KIND_IDS) {
+    const seen = new Set<VoteSourceKind>([kind])
+    let up = voteSourceDerivedFrom(kind)
+    let root = kind
+    while (up != null) {
+      must(
+        VOTE_SOURCE_KIND_IDS.includes(up),
+        `VOTE_SOURCE_KINDS.${kind}.derivedFrom = "${up}", which is not a source kind`,
+      )
+      must(!seen.has(up), `derivedFrom cycle through ${kind} → ${up}`)
+      seen.add(up)
+      root = up
+      up = voteSourceDerivedFrom(up)
+    }
+    if (root !== kind) {
+      const sibling = [...roots.entries()].find(([, r]) => r === root)
+      // Siblings share every error their common upstream made, so neither can
+      // check the other — but the current table has none, and the walk above
+      // only rules out ANCESTORS. Rather than write a rule for a case that does
+      // not exist, refuse to let one appear unnoticed.
+      must(
+        sibling == null,
+        `${kind} and ${sibling?.[0]} are both derived from ${root}. Two derivatives of one ` +
+          `upstream are not independent of each other, and isIndependentVerificationSource ` +
+          `only rules out ancestors — decide that case there before adding this edge`,
+      )
+      roots.set(kind, root)
+    }
+  }
+}
+
+/**
+ * Has this claim been cotejado against a source that could actually contradict
+ * it? The ONE predicate every surface and checker asks — the validator refuses
+ * to write a ref that would answer this differently from how it reads, so a
+ * consumer never has to re-derive the rule and never gets to soften it.
+ */
+export function isIndependentlyVerified(
+  ref: {
+    kind?: unknown
+    verification?: unknown
+    verifiedAgainst?: { kind?: unknown } | null
+  } | null,
+): boolean {
+  if (ref == null || ref.verification !== 'verificado') return false
+  const against = ref.verifiedAgainst?.kind
+  if (typeof against !== 'string' || !VOTE_SOURCE_KIND_IDS.includes(against as VoteSourceKind))
+    return false
+  if (typeof ref.kind !== 'string' || !VOTE_SOURCE_KIND_IDS.includes(ref.kind as VoteSourceKind))
+    return false
+  return isIndependentVerificationSource(against as VoteSourceKind, ref.kind as VoteSourceKind)
+}
+
+/**
+ * Has a human cotejado THIS claim against an INDEPENDENT source?
  *
  * Deliberately two values, not a confidence score. «sin-verificar» is the
- * honest state of every breakdown migrated on 2026-08-05: the transcript is
- * now cited, and nobody has cotejado it against the acta. Recording that is
- * the point — a migration that relabelled 16 unverified rows as verified would
- * have been worse than the single-citation defect it replaced.
+ * honest state of all 16 published breakdowns and all 17 outcomes: the
+ * transcript is now cited, and no second document has been read against it.
+ * Recording that is the point — a migration that relabelled 16 unverified rows
+ * as verified would have been worse than the single-citation defect it
+ * replaced.
+ *
+ * Note what «sin-verificar» does and does not accuse anyone of. The acta is the
+ * source that would settle a breakdown, and this project cannot currently fetch
+ * one: `scripts/fetch-pleno-actas.ts` reads a `link` that has pointed at
+ * regmeet since 2026-05-25, extracts retired Drupal markup, and has no npm
+ * script wiring it to anything. Zero actas are cached; all 45 transcripts on
+ * disk are Whisper output. So the flag records an unreachable source, not an
+ * unread one, and every message about it should say so.
  */
 export const VOTE_VERIFICATIONS = ['verificado', 'sin-verificar'] as const
 export type VoteVerification = (typeof VOTE_VERIFICATIONS)[number]
@@ -168,7 +358,7 @@ export const VERIFIED_QUOTE_MIN = 20
  * `votes-breakdown-source` check in src/scraper/relations-check.ts, which
  * refuses a site-relative ref whose file is not in the build.
  */
-export interface VoteSourceRef {
+export interface VoteCitation {
   kind: VoteSourceKind
   /** http(s) URL, or a site-absolute path (`/data/…`) for our own artefacts. */
   url: string
@@ -181,11 +371,27 @@ export interface VoteSourceRef {
    *  timestamp would be the fabricated verification this split exists to
    *  prevent. */
   locator?: string
+}
+
+export interface VoteSourceRef extends VoteCitation {
   verification: VoteVerification
-  /** Verbatim clause supporting the claim. Required when `verificado`. */
+  /** Verbatim clause supporting the claim, READ OFF `verifiedAgainst` — not off
+   *  the source being checked. Required when `verificado`. */
   quote?: string
   /** Curator signature. Required when `verificado` — never a script name. */
   verifiedBy?: string
+  /**
+   * The document the claim was cotejado AGAINST. Required when `verificado`,
+   * and refused otherwise.
+   *
+   * This field is what makes «verificado» mean something. Before it existed the
+   * flag needed only a quote and a name, neither of which said WHERE the quote
+   * came from — so quoting the same Whisper transcript the tally was read off
+   * passed the gate, and every surface then told the reader the claim had been
+   * cotejado. `isIndependentVerificationSource` decides which pairs count; the
+   * surfaces name this document rather than assuming it is the acta.
+   */
+  verifiedAgainst?: VoteCitation
 }
 
 /** Publisher string for the session transcripts this site generates. */
@@ -477,61 +683,90 @@ export function isSiteRelativeRef(url: string): boolean {
 }
 
 /**
- * Validate one per-claim citation.
+ * The fields every citation carries, wherever it appears — as the source of a
+ * claim, or as the document a claim was cotejado against.
  *
  * `claim` decides which capability the kind must have — that is the whole
  * guard: `regmeet` passes as an outcome source and is REFUSED as a breakdown
  * source, because the portal publishes no per-bloc tally. The allowed sets are
- * derived from `VOTE_SOURCE_KINDS`, never listed here.
+ * derived from `VOTE_SOURCE_KINDS`, never listed here. It applies to the
+ * verifying document too: you cannot cotejar a per-bloc tally against a portal
+ * that publishes none, so the same gate runs on both.
+ *
+ * `role` only shapes the message — one set of rules, two places they are read.
  */
-export function validateSourceRef(
+function validateCitation(
   raw: unknown,
   claim: 'outcome' | 'breakdown',
-  ctx = '',
-): VoteSourceRef {
-  must(typeof raw === 'object' && raw !== null, `${claim} source must be an object${ctx}`)
+  role: string,
+  ctx: string,
+): VoteCitation {
+  must(typeof raw === 'object' && raw !== null, `${claim} ${role} must be an object${ctx}`)
   const o = raw as Record<string, unknown>
   const allowed = claim === 'breakdown' ? BREAKDOWN_SOURCE_KINDS : OUTCOME_SOURCE_KINDS
 
   must(
     typeof o.kind === 'string' && VOTE_SOURCE_KIND_IDS.includes(o.kind as VoteSourceKind),
-    `${claim} source kind must be one of ${VOTE_SOURCE_KIND_IDS.join(',')}${ctx}`,
+    `${claim} ${role} kind must be one of ${VOTE_SOURCE_KIND_IDS.join(',')}${ctx}`,
   )
   must(
     allowed.includes(o.kind as VoteSourceKind),
-    `${claim} source cannot be "${String(o.kind)}": ` +
+    `${claim} ${role} cannot be "${String(o.kind)}": ` +
       `${VOTE_SOURCE_KINDS[o.kind as VoteSourceKind].label} does not publish ` +
       `${claim === 'breakdown' ? 'a per-bloc breakdown' : 'an outcome'}. ` +
       `Allowed here: ${allowed.join(', ')}${ctx}`,
   )
   must(
     typeof o.url === 'string' && REF_URL_RE.test(o.url),
-    `${claim} source url must be http(s) or a site-absolute path${ctx}`,
+    `${claim} ${role} url must be http(s) or a site-absolute path${ctx}`,
   )
   must(
     typeof o.publisher === 'string' && o.publisher.trim().length > 0,
-    `${claim} source publisher required${ctx}`,
+    `${claim} ${role} publisher required${ctx}`,
   )
   must(
     typeof o.retrievedAt === 'string' && ISO_DATE.test(o.retrievedAt),
-    `${claim} source retrievedAt must be ISO date${ctx}`,
+    `${claim} ${role} retrievedAt must be ISO date${ctx}`,
   )
+  if (o.locator !== undefined) {
+    must(
+      typeof o.locator === 'string' && o.locator.trim().length > 0,
+      `${claim} ${role} locator must be a non-empty string when present${ctx}`,
+    )
+  }
+  return {
+    kind: o.kind as VoteSourceKind,
+    url: o.url as string,
+    publisher: (o.publisher as string).trim(),
+    retrievedAt: o.retrievedAt as string,
+    ...(o.locator !== undefined ? { locator: (o.locator as string).trim() } : {}),
+  }
+}
+
+/**
+ * Validate one per-claim citation, plus — when it claims to have been checked —
+ * the citation it was checked against.
+ */
+export function validateSourceRef(
+  raw: unknown,
+  claim: 'outcome' | 'breakdown',
+  ctx = '',
+): VoteSourceRef {
+  const cite = validateCitation(raw, claim, 'source', ctx)
+  const o = raw as Record<string, unknown>
+
   must(
     typeof o.verification === 'string' &&
       (VOTE_VERIFICATIONS as readonly string[]).includes(o.verification),
     `${claim} source verification must be one of ${VOTE_VERIFICATIONS.join(',')}${ctx}`,
   )
-  if (o.locator !== undefined) {
-    must(
-      typeof o.locator === 'string' && o.locator.trim().length > 0,
-      `${claim} source locator must be a non-empty string when present${ctx}`,
-    )
-  }
   // «verificado» is the only value that upgrades what the reader is told, so it
   // is the only one that carries a burden: the words that support the claim,
-  // and the name of whoever read them. Without this an automated pass could
-  // flip every row to verified and change nothing else — rule 4 in
-  // docs/DATA_INTEGRITY.md, «nada automático reescribe prosa publicada».
+  // the name of whoever read them, and — since 2026-08-09 — WHERE they read
+  // them. Without this an automated pass could flip every row to verified and
+  // change nothing else — rule 4 in docs/DATA_INTEGRITY.md, «nada automático
+  // reescribe prosa publicada».
+  let verifiedAgainst: VoteCitation | undefined
   if (o.verification === 'verificado') {
     must(
       typeof o.quote === 'string' && o.quote.trim().length >= VERIFIED_QUOTE_MIN,
@@ -541,24 +776,47 @@ export function validateSourceRef(
       typeof o.verifiedBy === 'string' && o.verifiedBy.trim().length > 0,
       `${claim} source marked "verificado" needs verifiedBy — a curator signature${ctx}`,
     )
+    must(
+      o.verifiedAgainst != null,
+      `${claim} source marked "verificado" needs verifiedAgainst — the document it was ` +
+        `cotejado against. A quote and a signature say a check happened; only this says ` +
+        `what it was checked against, and without it re-reading the source the claim came ` +
+        `from passes as a verification${ctx}`,
+    )
+    verifiedAgainst = validateCitation(o.verifiedAgainst, claim, 'verifiedAgainst', ctx)
+    // Independence. See `isIndependentVerificationSource` for why same-kind is
+    // refused whatever the URL, and why video-over-transcript is allowed.
+    must(
+      verifiedAgainst.url !== cite.url,
+      `${claim} source claims to have been cotejado against itself (${cite.url}) — ` +
+        `re-reading a document is not a check of it${ctx}`,
+    )
+    must(
+      isIndependentVerificationSource(verifiedAgainst.kind, cite.kind),
+      `${claim} source is cited to ${VOTE_SOURCE_KINDS[cite.kind].label} and claims to have ` +
+        `been cotejado against ${VOTE_SOURCE_KINDS[verifiedAgainst.kind].label}, which is not ` +
+        `independent of it` +
+        (verifiedAgainst.kind === cite.kind
+          ? ` — two documents of the same kind share the way of knowing, so they share the ` +
+            `error too`
+          : ` — it is produced from the very source it claims to check`) +
+        `. Cotejar against a different kind of record that is not derived from this one${ctx}`,
+    )
   } else {
     must(
-      o.quote === undefined && o.verifiedBy === undefined,
-      `${claim} source carries quote/verifiedBy but is not marked "verificado" — ` +
-        `a signature beside an unverified claim reads as a verification that did ` +
-        `not happen${ctx}`,
+      o.quote === undefined && o.verifiedBy === undefined && o.verifiedAgainst === undefined,
+      `${claim} source carries quote/verifiedBy/verifiedAgainst but is not marked ` +
+        `"verificado" — a signature beside an unverified claim reads as a verification that ` +
+        `did not happen${ctx}`,
     )
   }
 
   return {
-    kind: o.kind as VoteSourceKind,
-    url: o.url as string,
-    publisher: (o.publisher as string).trim(),
-    retrievedAt: o.retrievedAt as string,
-    ...(o.locator !== undefined ? { locator: (o.locator as string).trim() } : {}),
+    ...cite,
     verification: o.verification as VoteVerification,
     ...(o.quote !== undefined ? { quote: (o.quote as string).trim() } : {}),
     ...(o.verifiedBy !== undefined ? { verifiedBy: (o.verifiedBy as string).trim() } : {}),
+    ...(verifiedAgainst !== undefined ? { verifiedAgainst } : {}),
   }
 }
 
