@@ -297,6 +297,30 @@ describe('validateReportsSnapshot', () => {
     expect(snap.items[0].response).toBeNull()
   })
 
+  it('carries the snapshot-wide curatorNotes through a round trip', () => {
+    // This validator's return value is what the curator CLIs write back, so a
+    // field it does not name is a field the next correction DELETES. That was
+    // not hypothetical: `backfill-self-declared.ts` has appended a
+    // snapshot-level `curatorNotes` since 2026-08-04, the interface never
+    // declared it, and the first `correct-journalist-report` run through this
+    // gate silently dropped two curator entries. A log the gate protecting it
+    // can erase is not a log.
+    const notes = '2026-08-04 · Curator: re-clasificado selfDeclared sobre el fragmento citado.'
+    const snap = validateReportsSnapshot(
+      JSON.stringify({ ...VALID_REPORTS_SNAPSHOT, curatorNotes: notes }),
+    )
+    expect(snap.curatorNotes).toBe(notes)
+    // And a second pass over the re-serialized output keeps it — that is the
+    // trip that actually happens, read → edit → write → read.
+    expect(validateReportsSnapshot(JSON.stringify(snap)).curatorNotes).toBe(notes)
+  })
+
+  it('rejects a non-string curatorNotes rather than silently dropping it', () => {
+    expect(() =>
+      validateReportsSnapshot(JSON.stringify({ ...VALID_REPORTS_SNAPSHOT, curatorNotes: 42 })),
+    ).toThrow(/curatorNotes must be string/)
+  })
+
   it('rejects a published report that still carries requiresHumanApproval', () => {
     const bad = {
       ...VALID_REPORTS_SNAPSHOT,

@@ -533,6 +533,12 @@ export function validateReportsSnapshot(json: string): JournalistReportsSnapshot
     typeof raw.methodologyUrl === 'string' && raw.methodologyUrl.length > 0,
     'methodologyUrl required',
   )
+  // Snapshot-wide curator log. Carried through explicitly: this rebuild is
+  // what gets written back, so a field the validator does not name is a field
+  // the next curator CLI deletes. `backfill-self-declared.ts` writes it.
+  if (raw.curatorNotes !== undefined) {
+    must(typeof raw.curatorNotes === 'string', 'curatorNotes must be string')
+  }
   must(Array.isArray(raw.items), 'items must be array')
   const items = (raw.items as unknown[]).map((it, i) => validateReport(it, i))
   const seen = new Set<string>()
@@ -546,6 +552,7 @@ export function validateReportsSnapshot(json: string): JournalistReportsSnapshot
     contactUrl: raw.contactUrl as string,
     methodologyUrl: raw.methodologyUrl as string,
     items,
+    ...(raw.curatorNotes ? { curatorNotes: raw.curatorNotes as string } : {}),
   }
 }
 

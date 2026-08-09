@@ -637,7 +637,11 @@ describe('relations-check — vote provenance', () => {
     url: '/data/pleno-transcripts/qz6weg.txt',
     verification: 'sin-verificar',
   }
-  const regmeetRef = { kind: 'regmeet', url: 'https://regmeet.com/x', verification: 'sin-verificar' }
+  const regmeetRef = {
+    kind: 'regmeet',
+    url: 'https://regmeet.com/x',
+    verification: 'sin-verificar',
+  }
   const tally = [{ bloc: 'PSOE', direction: 'a_favor' }]
   const assets = new Set(['/data/pleno-transcripts/qz6weg.txt'])
 
@@ -717,5 +721,103 @@ describe('relations-check — vote provenance', () => {
     ])
     expect(rs['votes-breakdown-verified'].status).toBe('ok')
     expect(rs['votes-breakdown-verified'].checked).toBe(1)
+  })
+})
+
+describe('portrait-officials', () => {
+  // Two councillors, and the ONE fact that makes this check discriminate:
+  // «Comercio» is Hernández's área today. Ramos held it in 2023 and no longer
+  // does — his own biography says so in its body text.
+  const officials = {
+    officials: [
+      {
+        slug: 'jose-angel-hernandez-carrizosa',
+        portfolios: ['Fomento económico', 'Empleo y Emprendimiento', 'Comercio'],
+      },
+      {
+        slug: 'jose-luis-ramos-march',
+        portfolios: ['Agenda 2030', 'Actividades', 'Edificios públicos'],
+      },
+    ],
+  }
+  const portrait = (officialSlug: string, portfolios: string[]) => ({
+    kind: 'portrait',
+    payload: { officialSlug, portfolios },
+  })
+  const run = (id: string, sections: ReturnType<typeof portrait>[]) =>
+    byName(runRelationsChecks({ officials, reports: { items: [{ id, sections }] } }))[
+      'portrait-officials'
+    ]
+
+  it('flags an área that only becomes real once the list conjunction is dropped', () => {
+    const r = run('r-jah', [
+      portrait('jose-angel-hernandez-carrizosa', ['Fomento económico', 'y Comercio']),
+    ])
+    expect(r.status).toBe('broken')
+    expect(r.level).toBe('error')
+    expect(r.checked).toBe(3) // the portrait itself + its two áreas
+    expect(r.broken).toHaveLength(1)
+    expect(r.broken[0]).toContain('«y Comercio»')
+    expect(r.broken[0]).toContain('«Comercio»')
+    expect(r.broken[0]).toContain('officials.json le atribuye hoy')
+  })
+
+  it('POSITIVE CONTROL — silent on a delegation that legitimately moved on', () => {
+    // Ramos' portrait was seeded in July 2023, when the decreto de áreas gave
+    // him Comercio; the register files him elsewhere now. A roster-equality
+    // predicate would red on this forever for an entirely honest reason, which
+    // is the "permanently-red check everybody skips" failure this repo has hit.
+    // The assertion that matters is the pair: nothing broken, AND it looked.
+    const r = run('r-jlr', [portrait('jose-luis-ramos-march', ['Agenda 2030', 'Comercio'])])
+    expect(r.broken).toEqual([])
+    expect(r.checked).toBe(3)
+    expect(r.status).toBe('ok')
+  })
+
+  it('keeps an área whose own name contains « y » whole', () => {
+    // Only a LEADING conjunction is a list artifact. A greedier rule would
+    // rename "Empleo y Emprendimiento" to "Emprendimiento" and invent an área.
+    const r = run('r-jah', [
+      portrait('jose-angel-hernandez-carrizosa', ['Empleo y Emprendimiento']),
+    ])
+    expect(r.status).toBe('ok')
+    expect(r.checked).toBe(2)
+  })
+
+  it('flags a portrait printed under a slug the roster does not know', () => {
+    const r = run('r-ghost', [portrait('quien-sea', ['Comercio'])])
+    expect(r.status).toBe('broken')
+    expect(r.level).toBe('error')
+    expect(r.broken[0]).toContain('quien-sea')
+    // The áreas of an unknown official are not judged: the slug is the defect.
+    expect(r.checked).toBe(1)
+  })
+
+  it('names the área as absent when the stripped form is nobody’s', () => {
+    const r = run('r-jah', [portrait('jose-angel-hernandez-carrizosa', ['y Turismo'])])
+    expect(r.status).toBe('broken')
+    expect(r.broken[0]).toContain('hoy no figura entre sus áreas')
+  })
+
+  it('reports empty — never ok — when no report carries a portrait', () => {
+    const r = byName(
+      runRelationsChecks({
+        officials,
+        reports: { items: [{ id: 'r-x', sections: [{ kind: 'narrative', payload: {} }] }] },
+      }),
+    )['portrait-officials']
+    expect(r.status).toBe('empty')
+    expect(r.checked).toBe(0)
+  })
+
+  it('reports skipped — never ok — when officials.json is absent', () => {
+    const r = byName(
+      runRelationsChecks({
+        reports: {
+          items: [{ id: 'r-jah', sections: [portrait('quien-sea', ['y Comercio'])] }],
+        },
+      }),
+    )['portrait-officials']
+    expect(r.status).toBe('skipped')
   })
 })

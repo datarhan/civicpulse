@@ -15,8 +15,32 @@
  *   · narrative.<heading>.heading        — rename the heading.
  *   · quote.<index>.attributedTo         — change the attribution of a
  *     quote card (0-indexed).
+ *   · portrait.portfolios[<index>]       — rename one área chip on the
+ *     portrait beside the councillor's photograph (0-indexed).
  *
  * Re-validates the whole reports snapshot before writing.
+ *
+ * HOW AN ARRAY ELEMENT FITS A string→string LEDGER. `corrections[]` is flat by
+ * design: the reader is shown `<field> · <original> → <corrected>` and nothing
+ * else (`CorrectionLog` in src/pages/AgenteReporte.jsx). Serialising the whole
+ * `portfolios` array into `original` would bury the one word that changed among
+ * six that did not, so the address goes in `field` and the element alone goes in
+ * `original`/`corrected`. That keeps the reader-facing line legible and the
+ * record precise about what was republished.
+ *
+ * The index is the part that can misattribute, so it is fenced three ways: the
+ * report must carry exactly one portrait, the index is bounds-checked against
+ * that portrait as it stands now, and a value already present elsewhere in the
+ * list is refused — two identical chips would also collide on the `key={p}`
+ * HeroBand renders them with. What this CLI deliberately does NOT do is verify
+ * the new value against `officials.json`: a portrait is a point-in-time snapshot
+ * of the register, and a correction to it must stay able to restore what the
+ * register said then. `check:relations`' `portrait-officials` is where the
+ * roster join lives.
+ *
+ * This is NOT a way to add or drop an área. Renaming is a correction — the same
+ * claim, spelled right. Changing which competences a named councillor holds is a
+ * different claim, and it belongs in a re-run reviewed by a curator.
  */
 import { existsSync, readFileSync } from 'node:fs'
 import { rewriteJsonIfPresent, writeSnapshot } from './lib/snapshot-io'
@@ -41,7 +65,8 @@ function usage(): never {
       'fieldPath:\n' +
       '  · narrative.<heading>.bodyMarkdown\n' +
       '  · narrative.<heading>.heading\n' +
-      '  · quote.<index>.attributedTo\n',
+      '  · quote.<index>.attributedTo\n' +
+      '  · portrait.portfolios[<index>]\n',
   )
   process.exit(2)
 }
@@ -82,12 +107,41 @@ function parseArgs(argv: string[]): Opts {
   return o
 }
 
-function applyCorrection(
+const PORTFOLIO_PATH = /^portrait\.portfolios\[(\d+)\]$/
+
+export function applyCorrection(
   report: JournalistReport,
   fieldPath: string,
   newValue: string,
 ): { sections: ReportSection[]; original: string } {
   const sections = JSON.parse(JSON.stringify(report.sections)) as ReportSection[]
+  if (fieldPath.startsWith('portrait.')) {
+    const m = PORTFOLIO_PATH.exec(fieldPath)
+    if (!m) throw new Error(`portrait subfield must be portfolios[<index>], got ${fieldPath}`)
+    const targetIndex = Number(m[1])
+    const portraits = sections.filter((s) => s.kind === 'portrait') as Array<
+      Extract<ReportSection, { kind: 'portrait' }>
+    >
+    // Zero would silently correct nothing; more than one makes "the portrait"
+    // ambiguous, and guessing which one would rename an área under a photograph
+    // of somebody else.
+    if (portraits.length !== 1)
+      throw new Error(`expected exactly 1 portrait section, found ${portraits.length}`)
+    const list = portraits[0].payload.portfolios
+    if (targetIndex >= list.length)
+      throw new Error(`portfolio index ${targetIndex} out of range (${list.length} áreas)`)
+    const trimmed = newValue.trim()
+    if (!trimmed)
+      throw new Error('a portfolio cannot be blank — dropping an área is a re-run, not a rename')
+    const clash = list.findIndex((p, i) => i !== targetIndex && p === trimmed)
+    if (clash >= 0)
+      throw new Error(
+        `"${trimmed}" is already portfolios[${clash}] — renaming onto it would merge two áreas`,
+      )
+    const original = list[targetIndex]
+    list[targetIndex] = trimmed
+    return { sections, original }
+  }
   if (fieldPath.startsWith('narrative.')) {
     const rest = fieldPath.slice('narrative.'.length)
     const lastDot = rest.lastIndexOf('.')
@@ -175,4 +229,6 @@ function main(): void {
   )
 }
 
-main()
+// Guarded so `applyCorrection` can be unit-tested without the CLI running
+// against public/data on import (same shape as check-finding-quotes.ts).
+if (import.meta.url === `file://${process.argv[1]}`) main()

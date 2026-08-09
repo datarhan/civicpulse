@@ -484,4 +484,16 @@ export interface JournalistReportsSnapshot {
   contactUrl: string
   methodologyUrl: string
   items: JournalistReport[]
+  /**
+   * Snapshot-wide curator log — what a batch script did to EVERY report at
+   * once, which no single `items[].curatorNotes` can hold.
+   * `backfill-self-declared.ts` has been appending to it since 2026-08-04.
+   *
+   * It was missing from this interface and from `validateReportsSnapshot`, so
+   * the note survived on disk only until the first CLI re-serialized the
+   * snapshot through the validator — the next `correct-journalist-report` run
+   * would have dropped two curator entries silently. Declared here so the
+   * record cannot be deleted by the very gate that exists to protect it.
+   */
+  curatorNotes?: string
 }

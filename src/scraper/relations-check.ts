@@ -19,6 +19,7 @@
  */
 
 import { deriveRespaldo, RESPALDO_VALUES, type SourceLike } from './area-fit'
+import { stripLeadingListConjunction } from './corporacion'
 import { ALLOWED_DEPARTMENT_SLUGS } from './departments'
 import { normalizeCompanyKey } from './entities'
 import { BREAKDOWN_SOURCE_KINDS, isSiteRelativeRef } from './pleno-votes'
@@ -133,6 +134,11 @@ export interface RelationsCheckInputs {
       /** `selfDeclared` is the only place the respaldo axis can be read from. */
       sources?: Array<{ id?: string; selfDeclared?: boolean }>
       warnings?: string[]
+      /** Only `portrait` matters here — see the `portrait-officials` check. */
+      sections?: Array<{
+        kind?: string
+        payload?: { officialSlug?: string; portfolios?: string[] }
+      }>
     }>
   } | null
   entities?: {
@@ -627,6 +633,66 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
         checked += 1
         if (!officialSlugs.has(a.subject.slug))
           broken.push(`${a?.id ?? '?'} profiles unknown official ${a.subject.slug}`)
+      }
+      return { checked, broken }
+    }),
+
+    // A biography's `portrait` seeds the chips printed beside the councillor's
+    // photograph: his party and, one per chip, the áreas he runs. It is copied
+    // out of officials.json when the report runs, and nothing joined it back.
+    // `extractPortfolios` once comma-split the council's «…, Empleo y
+    // Emprendimiento, y Comercio.» without dropping the list conjunction and
+    // published an área literally named «y Comercio»; officials.json and
+    // area-fit.json were repaired in a720cfc, the portrait seed was not, and the
+    // wrong chip stayed on a live page for nine days with no check to say so.
+    //
+    // WHAT THIS DELIBERATELY DOES NOT CHECK. A portrait is a point-in-time
+    // snapshot of the register on the day the report ran, so it is NOT required
+    // to equal officials.json today. Delegations move mid-mandate — the Ramos
+    // biography says as much in its own body text («El registro municipal
+    // vigente recoge hoy, en lugar de Comercio, las áreas de Actividades y
+    // Edificios públicos») — and a check that reddened on that would be
+    // permanently red for an honest reason, i.e. the kind everybody learns to
+    // skip. Equality is therefore not the predicate.
+    //
+    // What IS checkable is vocabulary. A portfolio whose name only becomes a
+    // real área after dropping the Spanish list conjunction was never a
+    // delegation, it was a parse — no register ever named an área "y Comercio".
+    // The rule is imported from the parser that produces these strings, so the
+    // two cannot drift (DATA_INTEGRITY §1: export the rule, never restate it),
+    // and officials.json says whether the stripped form is an área this person
+    // actually holds, which is what makes the message actionable rather than a
+    // shrug. Both arms are `error`: neither can fire for an honest reason.
+    check('portrait-officials', 'error', reports != null && officials != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      const portfoliosBySlug = new Map(
+        (officials?.officials ?? []).map((o) => [o?.slug, new Set(o?.portfolios ?? [])]),
+      )
+      for (const r of reports?.items ?? []) {
+        for (const s of r?.sections ?? []) {
+          if (s?.kind !== 'portrait') continue
+          const slug = s?.payload?.officialSlug
+          checked += 1
+          if (!slug || !officialSlugs.has(slug)) {
+            broken.push(`${r?.id ?? '?'} portrait of unknown official ${slug ?? '?'}`)
+            continue
+          }
+          for (const p of s?.payload?.portfolios ?? []) {
+            checked += 1
+            const stripped = stripLeadingListConjunction(p)
+            // A clean name: held today, or an área he has since handed over.
+            // Either way it is history we cannot disprove, so we say nothing.
+            if (stripped === p) continue
+            broken.push(
+              `${r?.id ?? '?'} portrait de ${slug}: «${p}» arrastra la conjunción de lista ` +
+                `del parser — el área es «${stripped}»` +
+                (portfoliosBySlug.get(slug)?.has(stripped)
+                  ? ', que es la que officials.json le atribuye hoy'
+                  : ', que hoy no figura entre sus áreas'),
+            )
+          }
+        }
       }
       return { checked, broken }
     }),

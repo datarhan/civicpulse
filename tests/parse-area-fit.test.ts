@@ -1016,9 +1016,37 @@ describe('area-fit — the real review queue, as the model actually filled it', 
   const QUEUE = join(__dirname, '..', 'editorial', 'area-fit-queue.json')
   const queue = existsSync(QUEUE)
     ? (JSON.parse(readFileSync(QUEUE, 'utf8')) as {
+        rows?: Array<{ officialSlug: string; portfolio: string }>
         avisos?: Array<AvisoMapping & { requiresHumanApproval?: true }>
       })
     : null
+
+  it.skipIf(!queue)('every queued row is keyed by an área its official actually holds', () => {
+    // The queue is what `promote-area-fit` reads, so a stale key here is not
+    // inert: the next promotion writes it straight back into the published
+    // area-fit.json and quietly undoes a720cfc. That is exactly how «y
+    // Comercio» outlived the parser fix once already — the published snapshot
+    // was repaired and the staging copy it is refilled from was not.
+    //
+    // This is the same join `areafit-officials` runs after publication, pulled
+    // one step earlier so a promotion cannot introduce the break in the first
+    // place.
+    const officials = JSON.parse(
+      readFileSync(join(__dirname, '..', 'public', 'data', 'officials.json'), 'utf8'),
+    ) as { officials: Array<{ slug: string; portfolios: string[] }> }
+    const held = new Map(officials.officials.map((o) => [o.slug, new Set(o.portfolios)]))
+    let checked = 0
+    for (const row of queue!.rows ?? []) {
+      expect(held.has(row.officialSlug), `${row.officialSlug} is not on the roster`).toBe(true)
+      expect(
+        held.get(row.officialSlug)!.has(row.portfolio),
+        `${row.officialSlug} does not hold «${row.portfolio}»`,
+      ).toBe(true)
+      checked += 1
+    }
+    // Assert the check evaluated something: an empty queue would otherwise pass.
+    expect(checked).toBeGreaterThan(0)
+  })
 
   it.skipIf(!queue)('every queued aviso quotes its report verbatim at its own index', () => {
     // The one property the whole cite-by-index design exists to guarantee: the

@@ -20,7 +20,7 @@
           "Finanzas públicas y recaudación",
           "Fomento económico",
           "Empleo y Emprendimiento",
-          "y Comercio"
+          "Comercio"
         ],
         "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
       }
@@ -774,6 +774,14 @@
       "reason": "La cláusula sobre el «plan de rehabilitación de vivienda conocido como 'Edifican Heredado'» se retira: «Edifican Heredado» es un error de la transcripción automática por «Pla Edificant», que además no es un plan de vivienda sino el programa autonómico de infraestructuras educativas (así lo recoge la propia transcripción citada), y la atribución de esa intervención al concejal no queda acreditada en la ventana citada.",
       "editor": "Sergei Lutchenko",
       "correctedAt": "2026-07-31"
+    },
+    {
+      "field": "portrait.portfolios[6]",
+      "original": "y Comercio",
+      "corrected": "Comercio",
+      "reason": "El área es «Comercio». El chip del retrato arrastraba la conjunción de lista del bloque «Áreas» del ayuntamiento («…, Empleo y Emprendimiento, y Comercio.»), que el parser separaba por comas sin quitarla; officials.json y area-fit.json se corrigieron en a720cfc y esta semilla se quedó atrás. Es un error de transcripción del nombre del área, no un cambio de competencias: el extracto fechado de src-001 se deja intacto porque cita lo que officials.json decía el 31-07-2026.",
+      "editor": "datarhan",
+      "correctedAt": "2026-08-09"
     }
   ],
   "response": null
