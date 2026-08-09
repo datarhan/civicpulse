@@ -93,6 +93,18 @@ Anything needing an LLM backend or a residential IP runs here, not in CI.
 | 10:15 daily        | `press-lab-pipeline.sh` — `/laboratorio` press fact-check pass                                                                                                      |
 | 11:00 every 2 days | `monitor-health-cron.sh`                                                                                                                                            |
 
+`scrape-ci-blocked.sh`, `auto-curate-promises-daily.sh`, `hallazgos-pipeline.sh`,
+`press-lab-pipeline.sh` and the currently disabled `auto-curate-weekly.sh` all
+commit and push, and all share `scripts/lib/cron-git.sh`. It **refuses to run
+off `main`** — before the pull and before any model call — because on a feature
+branch they would rebase _that_ branch onto `origin/main`, commit there, and
+then push an untouched local `main`, so the run's work would never reach the
+site. A skipped run exits 0; it is not a failure. `CRON_GIT_ALLOW_BRANCH=1`
+overrides it for a deliberate off-main run — and brings the old hazard back with
+it: if a `git pull --rebase` fires under you mid-work, `git rebase --abort` is
+the safe exit. The same helper limits each commit to the paths its own cron
+owns, so whatever else is staged stays staged.
+
 Install helpers: `scripts/cron-install-hallazgos.sh`,
 `scripts/cron-install-press-lab.sh`. Run them from Terminal — launchd agents
 under `~/Documents/` die with exit 78 on macOS TCC, which is why these are cron
@@ -118,10 +130,6 @@ flyctl deploy --config bot/fly.toml --dockerfile bot/Dockerfile --remote-only .
 
 Full setup, secrets and volume creation: the header of `bot/fly.toml` and
 `bot/DEPLOY.md`.
-
-> **A local cron commits to whatever branch is checked out.** If you are mid-work
-> on a branch when one fires, `git pull --rebase` can strand you;
-> `git rebase --abort` is the safe exit.
 
 ## Health checks
 

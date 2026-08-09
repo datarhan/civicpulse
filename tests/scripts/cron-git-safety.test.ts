@@ -1,18 +1,21 @@
 /**
- * scripts/lib/cron-git.sh — the two defects that were present in all four
- * unattended cron pipelines, driven through the REAL shipped scripts.
+ * scripts/lib/cron-git.sh — the two defects that were present in every
+ * unattended cron pipeline, driven through the REAL shipped scripts.
  *
  * 1. `git commit` with no pathspec commits the WHOLE index. Every pipeline
  *    limited its `git add` to a pathspec and then threw that away. Twice on
  *    2026-08-09 the press-lab cron swept a subagent's in-flight staged work
  *    into its own data commit (f182c61, 15 files including
- *    tests/encaje-credencial.test.jsx). The "is there anything to commit?"
- *    guards had the same hole: `git diff --cached --quiet` answers "yes, work
- *    to do" for a stranger's staged file.
+ *    tests/encaje-credencial.test.jsx). Most of the "is there anything to
+ *    commit?" guards had the same hole: `git diff --cached --quiet` answers
+ *    "yes, work to do" for a stranger's staged file. auto-curate-weekly's was
+ *    already pathspec-limited and failed the other way round — it compared the
+ *    working tree against the INDEX, so an already-staged batch read as
+ *    "nothing to commit" and never published.
  *
- * 2. No branch guard. All four pull --rebase origin main and push origin main
- *    from whatever branch is checked out, which rebases YOUR branch, commits
- *    to it, and then pushes an untouched local main.
+ * 2. No branch guard. Every one of them pulls --rebase origin main and pushes
+ *    origin main from whatever branch is checked out, which rebases YOUR
+ *    branch, commits to it, and then pushes an untouched local main.
  *
  * Nothing here re-implements the fix — that is the trap DATA_INTEGRITY.md rule
  * 1 is about. The sandbox is a real git repo with a real bare origin; the
@@ -38,9 +41,10 @@ import { afterAll, describe, expect, it } from 'vitest'
 
 const REPO = resolve(__dirname, '../..')
 
-/** The four shipped cron scripts under test, by sandbox-relative path. */
+/** The shipped cron scripts under test, by sandbox-relative path. */
 const SCRIPTS = [
   'scripts/auto-curate-promises-daily.sh',
+  'scripts/auto-curate-weekly.sh',
   'scripts/hallazgos-pipeline.sh',
   'scripts/press-lab-pipeline.sh',
   'scripts/scrape-ci-blocked.sh',
@@ -288,6 +292,10 @@ describe("cron pipelines · a stranger's staged work is not swept into the commi
   const cases: Array<{ script: string; ownFile: string; env?: Record<string, string> }> = [
     { script: 'scripts/scrape-ci-blocked.sh', ownFile: 'public/data/paro.json' },
     { script: 'scripts/auto-curate-promises-daily.sh', ownFile: 'public/data/promises.json' },
+    // Currently disabled (the plist is renamed .disabled) — but a disabled
+    // agent can be re-enabled, and this one writes pleno-findings.json, a
+    // curated file of claims about named elected officials.
+    { script: 'scripts/auto-curate-weekly.sh', ownFile: 'public/data/pleno-findings.json' },
     { script: 'scripts/hallazgos-pipeline.sh', ownFile: 'public/data/pleno-findings.json' },
     {
       script: 'scripts/press-lab-pipeline.sh',
@@ -322,6 +330,7 @@ describe("cron pipelines · the nothing-changed guard ignores a stranger's stage
   const cases: Array<{ script: string; quiet: string; env?: Record<string, string> }> = [
     { script: 'scripts/scrape-ci-blocked.sh', quiet: 'no changes' },
     { script: 'scripts/auto-curate-promises-daily.sh', quiet: 'nothing to commit' },
+    { script: 'scripts/auto-curate-weekly.sh', quiet: 'no new findings' },
     { script: 'scripts/hallazgos-pipeline.sh', quiet: 'nothing changed' },
     {
       script: 'scripts/press-lab-pipeline.sh',
@@ -354,6 +363,7 @@ describe('cron pipelines · branch guard', () => {
   const cases = [
     'scripts/scrape-ci-blocked.sh',
     'scripts/auto-curate-promises-daily.sh',
+    'scripts/auto-curate-weekly.sh',
     'scripts/hallazgos-pipeline.sh',
     'scripts/press-lab-pipeline.sh',
   ]
@@ -411,6 +421,20 @@ describe('cron pipelines · branch guard', () => {
     expect(git(dir, 'rev-parse', '--abbrev-ref', 'HEAD').trim()).toBe('fix/some-feature')
   }, 60_000)
 
+  it('CRON_GIT_ALLOW_BRANCH=1 overrides for auto-curate-weekly too', () => {
+    // The override is the same escape hatch on the curated-findings cron: it
+    // proceeds, the curator step really runs, and the commit lands on the
+    // feature branch (which is exactly what the guard warns about).
+    const dir = makeSandbox({ branch: 'fix/some-feature' })
+    const r = runScript(dir, 'scripts/auto-curate-weekly.sh', { CRON_GIT_ALLOW_BRANCH: '1' })
+
+    expect(r.log).toContain('CRON_GIT_ALLOW_BRANCH está activo')
+    expect(r.log).not.toContain('OMITIDO')
+    expect(r.log).toContain('[stub] ran auto-curate')
+    expect(r.committed).toContain('public/data/pleno-findings.json')
+    expect(git(dir, 'rev-parse', '--abbrev-ref', 'HEAD').trim()).toBe('fix/some-feature')
+  }, 60_000)
+
   it('PRESS_LAB_NO_REMOTE still rehearses on a feature branch, and stays off the network', () => {
     // The rehearsal switch skips BOTH remote touchpoints, so there is nothing
     // for the branch guard to protect — it composes instead of vetoing.
@@ -451,6 +475,34 @@ describe('hallazgos-pipeline.sh · the other crons’ files stay out', () => {
     expect(r.stagedAfter).not.toContain('public/data/quejas.json')
     expect(r.stagedAfter).not.toContain('public/data/promises.json')
   }, 120_000)
+})
+
+// ---------------------------------------------------------------------------
+describe('auto-curate-weekly.sh · the gate compares against HEAD, not the index', () => {
+  it('publishes a batch an interrupted run left staged', () => {
+    // Unlike the other four, this script's old gate was already pathspec-
+    // limited — but it compared the working tree against the INDEX. Interrupt
+    // a run between its `git add` and its `git commit` (or let anything else
+    // stage the file) and every later run sees worktree == index, prints "no
+    // new findings" and exits 0. A curated batch about named councillors,
+    // stuck one command short of publication and permanently invisible,
+    // because nothing will ever dirty the working tree again.
+    const dir = makeSandbox()
+    writeFileSync(
+      join(dir, 'public/data/pleno-findings.json'),
+      '{"items":[{"id":"f-interrumpido"}]}\n',
+    )
+    git(dir, 'add', '--', 'public/data/pleno-findings.json')
+
+    // STUB_NOOP: this run's curator writes nothing of its own, so the only
+    // thing there is to publish is what the interrupted run left staged.
+    const r = runScript(dir, 'scripts/auto-curate-weekly.sh', { STUB_NOOP: '1' })
+
+    expect(r.log, 'the curator step never ran').toContain('[stub] ran auto-curate')
+    expect(r.log).not.toContain('no new findings')
+    expect(r.committed).toContain('public/data/pleno-findings.json')
+    expect(git(dir, 'show', 'HEAD:public/data/pleno-findings.json')).toContain('f-interrumpido')
+  }, 60_000)
 })
 
 // ---------------------------------------------------------------------------

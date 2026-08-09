@@ -27,6 +27,16 @@ REPO_DIR="$(pwd -P)"
 LOG_DIR="$REPO_DIR/scripts/logs"
 mkdir -p "$LOG_DIR"
 
+# Branch guard + pathspec-limited commit, shared by all five cron pipelines.
+# shellcheck source=scripts/lib/cron-git.sh
+. "$REPO_DIR/scripts/lib/cron-git.sh"
+
+# Before the pull and before the LLM call: off main this run would rebase the
+# checked-out branch onto origin/main, commit there, and then push an untouched
+# local main — a batch of findings about named councillors written, committed
+# somewhere nobody publishes from, and never seen on the site.
+cron_require_main "auto-curate-weekly"
+
 # Source .env so OPENAI_API_KEY (the metered fallback) is available
 # if gemini auth has expired and we need it. Don't fail if absent.
 if [ -f "$REPO_DIR/.env" ]; then
@@ -73,21 +83,26 @@ export GEMINI_MODEL="${GEMINI_MODEL:-gemini-2.5-pro}"
 echo "[$(date '+%F %T')] invoking npm run auto-curate -- --max 5"
 npm run auto-curate -- --max 5
 
-# Was anything actually written?
-if git diff --quiet -- public/data/pleno-findings.json; then
+# Was anything actually written? Staged, gated and committed through ONE
+# pathspec — the findings file. The queue file is gitignored and verified.json
+# may be moving under a concurrent verify pass; neither is ours to commit.
+#
+# The old gate asked `git diff --quiet -- <file>`: working tree against the
+# INDEX, not against HEAD. A pleno-findings.json something else had already
+# staged read as "no new findings" and this run's batch was silently dropped.
+# Worse, the `git commit` under it carried no pathspec at all, so it took the
+# WHOLE index — that is how f182c61 published a subagent's in-flight work.
+if ! cron_git_stage_and_check public/data/pleno-findings.json; then
   echo "[$(date '+%F %T')] no new findings — nothing to commit"
   exit 0
 fi
 
-# Commit only the findings file. The queue file is gitignored, no need
-# to add it. The verified.json could change if a verify pass also ran
-# concurrently — only stage what we own.
-git add public/data/pleno-findings.json
-
-NEW_COUNT=$(git diff --cached -- public/data/pleno-findings.json \
+# HEAD, not --cached: `git commit -- <pathspec>` publishes the WORKING-TREE
+# content of those paths, so that is what the count has to describe.
+NEW_COUNT=$(git diff HEAD -- public/data/pleno-findings.json \
   | grep -cE '^\+ +"id": "f-' || true)
 
-git commit -m "$(cat <<EOF
+cron_git_commit_pathspec "$(cat <<EOF
 data: weekly auto-curate batch · ${NEW_COUNT} new finding(s)
 
 Automated by scripts/auto-curate-weekly.sh (launchd Mondays 09:00).
