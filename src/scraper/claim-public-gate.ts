@@ -43,15 +43,42 @@ export const DATA_GROUNDED_VERDICTS: ReadonlySet<string> = new Set([
  * verdict. It stays in the snapshot (the CLIs and /curator read it) and is
  * withheld from the public ledger. A curator publishes it by promoting the
  * claim into a finding, which is where the human judgement already lives.
+ *
+ * That last sentence is the whole design, and it has a corollary the
+ * auto-curator broke for months: promotion into a finding is the sanctioned way
+ * PAST this gate precisely because a person is standing in it. A machine that
+ * promotes a gated claim has not satisfied the exception, it has walked around
+ * the gate — and lands the withheld verbatim on `/hallazgos`, a page with no
+ * toggle and no gate of its own. `selectBundles` in auto-curate.ts therefore
+ * bundles `shown` claims only.
  */
-function isCuratorPromoted(item: Pick<VerifiedClaimItem, 'verification'>): boolean {
-  const src = (item?.verification as { source?: string } | undefined)?.source
+function isCuratorPromoted(item: ClaimVisibilityInput): boolean {
+  const src = item?.verification?.source
   return src === 'curator' || src === 'curator-downgrade'
 }
 
-export function classifyClaimVisibility(
-  item: Pick<VerifiedClaimItem, 'claim' | 'verification'>,
-): ClaimVisibility {
+/**
+ * The four fields the gate reads, and nothing else.
+ *
+ * Structural and `unknown`-leaved so every caller — the chunker, the SPA, the
+ * verifiers and the auto-curator — passes its own item shape directly. The
+ * alternative was what two call sites already did, `classifyClaimVisibility(it
+ * as never)`: a cast that satisfies the compiler by switching it off, on the
+ * one function in this repo whose whole job is to fail safe. Widening the
+ * parameter is what makes the cast unnecessary rather than merely unwritten.
+ *
+ * Never narrow this to a concrete snapshot type and never let a caller build an
+ * adapter object out of the fields it thinks the gate reads — restating a shape
+ * is how six suites here stayed green while matching nothing, and here it would
+ * fail OPEN: a field added below that the adapter does not forward arrives as
+ * `undefined` and the claim is published.
+ */
+export interface ClaimVisibilityInput {
+  claim?: { type?: unknown; accusationSubtype?: unknown } | null
+  verification?: { verdict?: unknown; source?: unknown } | null
+}
+
+export function classifyClaimVisibility(item: ClaimVisibilityInput): ClaimVisibility {
   const verdict = item?.verification?.verdict
   if (verdict === 'contradicho' && !isCuratorPromoted(item)) return 'hidden'
   const grounded = typeof verdict === 'string' && DATA_GROUNDED_VERDICTS.has(verdict)

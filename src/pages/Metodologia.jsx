@@ -776,17 +776,38 @@ export default function Metodologia() {
             verbatim y los documentos con los que se ha cotejado. Esa lista es lo que se cotejó, no
             lo que da la razón: el campo se llama <code>crossChecked</code> y recoge toda la
             evidencia que el verificador encontró para las citas del hallazgo, así que la ficha la
-            publica bajo el rótulo neutro «documentos cotejados» y es el resumen el que dice si la
-            corroboran. Hasta el 5 de agosto de 2026 ese mismo campo se llamaba{' '}
-            <code>corroboration</code> con exactamente el mismo contenido: <strong>ningún</strong>{' '}
-            paso de este proceso comprueba que un documento respalde una frase —los cruces son
-            coincidencias de importe o de palabras en un título— y el nombre afirmaba lo que la
-            lista no había medido. Se renombró sin tocar una sola referencia. El campo{' '}
-            <code>contradiction</code> sólo admite documentos que el verificador marcó como
-            incompatibles con la cita. Los hallazgos se publican con derecho de réplica literal para
-            el grupo afectado.
+            publica bajo el rótulo neutro «documentos cotejados». Hasta el 5 de agosto de 2026 ese
+            mismo campo se llamaba <code>corroboration</code> con exactamente el mismo contenido:{' '}
+            <strong>ningún</strong> paso de este proceso comprueba que un documento respalde una
+            frase —los cruces son coincidencias de importe o de palabras en un título— y el nombre
+            afirmaba lo que la lista no había medido. Se renombró sin tocar una sola referencia,
+            pero hasta el 9 de agosto de 2026 la instrucción que recibía el redactor automático
+            seguía obligándole a citar al menos un registro «que corrobore», así que el resumen
+            afirmaba en prosa el vínculo que el campo ya había dejado de afirmar. Hoy el resumen no
+            puede decir que un expediente confirme, corrobore, respalde o desmienta una frase, y
+            cuando ninguno de los cotejados viene a cuento —que es el caso normal— lo dice y se
+            acaba ahí. El campo <code>contradiction</code> sólo admite documentos que el verificador
+            marcó como incompatibles con la cita. Los hallazgos se publican con derecho de réplica
+            literal para el grupo afectado.
           </li>
         </ol>
+        <p style={{ margin: '12px 0 0', color: 'var(--ink70)' }}>
+          <strong>Dos límites deterministas del redactor automático.</strong> El primero es la
+          fecha: <strong>un expediente posterior a la sesión no se cruza con ella</strong>, porque
+          no pudo estar sobre la mesa. Lo que se compara es la fecha <em>más temprana</em> que
+          consta del expediente —la apertura de la licitación, no la adjudicación—, ya que un
+          contrato se debate mientras se licita, a veces meses antes de adjudicarse; descartar por
+          la fecha de adjudicación tiraría cruces buenos. Un expediente que no podemos fechar se
+          conserva y se cuenta aparte: la lista es el registro de lo que se cotejó, no una selección
+          de lo que encaja. El segundo es el filtro del registro público de declaraciones: el
+          redactor <strong>sólo cita frases que ese filtro ya muestra</strong> en{' '}
+          <a href="/plenos" style={{ color: 'var(--civic)' }}>
+            /plenos
+          </a>
+          . El filtro retiene las acusaciones opinativas y las que no sostiene ningún dato; la vía
+          prevista para publicarlas es que una persona las promueva a hallazgo, y una máquina no es
+          esa persona.
+        </p>
         <p style={{ margin: '12px 0 0', color: 'var(--ink70)' }}>
           <strong>Frontera legal para las acusaciones.</strong> El LLM clasifica cada acusación
           pública en tres subtipos:

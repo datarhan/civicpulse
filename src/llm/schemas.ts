@@ -289,8 +289,11 @@ export type EngineExtract = z.infer<typeof EngineExtractSchema>
 export const AutoCurateResponseSchema = z.object({
   /** ≤120-char one-line headline. Must include pleno date (YYYY-MM-DD). */
   title: z.string().min(10).max(120),
-  /** 2-3 sentences citing each speaker by bloc + at least one corroborating
-   *  data record. Length floor matches the FindingsSnapshot validator. */
+  /** 1-3 sentences citing each speaker by bloc. Naming a cross-referenced
+   *  record is optional and conditional — see rule 4 of the system prompt;
+   *  this comment used to require "at least one corroborating data record",
+   *  which is the mandate that put a documentary link in ~33 of 40 defective
+   *  published findings. Length floor matches the FindingsSnapshot validator. */
   summary: z.string().min(40).max(600),
 })
 

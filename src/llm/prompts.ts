@@ -570,7 +570,45 @@ export function buildEngineArgueAgainstPrompt(
 
 // ─── Phase 6 · Auto-curation prompts ────────────────────────────────────────
 
-export const AUTO_CURATE_PROMPT_VERSION = 'auto-curate-v2'
+/**
+ * Bump on EVERY edit to the two builders below. `promptVersion` is part of the
+ * content-addressed cache key (src/llm/client.ts:cacheKey), so an edited prompt
+ * that keeps its version serves every draft from `.llm-cache` — written by the
+ * prompt you just replaced. The auto-curate prompt-drift test pins the pair.
+ */
+export const AUTO_CURATE_PROMPT_VERSION = 'auto-curate-v3'
+
+/**
+ * The clause the synthesiser is told to use when no cross-referenced record
+ * evidently bears on the debate — the normal outcome, and the one the prompt
+ * could not express before v3.
+ *
+ * Scoped to «los expedientes cotejados» on purpose: the honest statement is
+ * that nothing WE CHECKED bears on this, never that no such contract exists.
+ * The procurement index is partial and an absence in it is not an absence.
+ *
+ * Exported so the test asserts the built prompt can say this, instead of
+ * hand-copying a sentence that would go on passing after the prompt drifts.
+ */
+export const AUTO_CURATE_NO_RECORD_CLAUSE =
+  'ninguno de los expedientes cotejados se refiere a lo debatido'
+
+/**
+ * Relations the prose may never assert between a record and a quote, in either
+ * direction. Not a style preference: no step of this pipeline evaluates any of
+ * them (see EvidenceStance in src/scraper/claim-verifier.ts, and /metodologia
+ * — «los cruces son coincidencias de importe o de palabras en un título»).
+ */
+export const AUTO_CURATE_BANNED_SUPPORT_VERBS = [
+  'confirma',
+  'corrobora',
+  'respalda',
+  'demuestra',
+  'prueba',
+  'avala',
+  'desmiente',
+  'contradice',
+] as const
 
 export interface AutoCurateBundle {
   plenoId: string
@@ -591,14 +629,15 @@ export interface AutoCurateBundle {
 
 export function buildAutoCurateSystemPrompt(): string {
   return `
-You write a one-line headline + 2-3 sentence editorial summary for a
+You write a one-line headline + a short editorial summary for a
 CivicPulse pleno-claim finding. Output is JSON: {title, summary}.
 
 CivicPulse is a citizen-accountability platform tracking the municipal
 council of Riba-roja de Túria (Spain). Findings are LEGALLY MATERIAL —
-they document what elected officials said in plenary sessions and
-cross-reference against open data (PLACSP tenders, BDNS subsidies,
-budget). Defamation risk is real.
+they document what elected officials said in plenary sessions. Municipal
+open data (PLACSP tenders, BDNS subsidies, budget) is searched alongside,
+and what that search returns is listed under the neutral heading
+«documentos cotejados». Defamation risk is real.
 
 ABSOLUTE RULES (libel safety):
 
@@ -606,13 +645,13 @@ ABSOLUTE RULES (libel safety):
      Compromís, EU-Podem. NEVER name an individual concejal, and never
      write "Otro": it names no group, and the one-seat groups here are
      identified by elimination the moment a placeholder is published.
-     Use null when the group is unclear. Whisper has
-     ~5-10% WER on proper nouns and individual misattribution is the
-     biggest libel exposure we have.
+     If a quote arrives with no group, attribute it to nobody — write
+     «un grupo municipal» or recast the sentence without an actor. Never
+     emit a placeholder token. Whisper has ~5-10% WER on proper nouns and
+     individual misattribution is the biggest libel exposure we have.
 
   2. Use modal/declarative verbs ONLY:
-       ✓ "afirma", "denuncia", "señala", "según", "el registro
-          municipal incluye", "el grupo X manifiesta"
+       ✓ "afirma", "denuncia", "señala", "según", "el grupo X manifiesta"
        ✗ "lied", "mintió", "engañó", "falseó", "ocultó"
      Frame the finding as DOCUMENTING the debate, not adjudicating it.
 
@@ -620,8 +659,31 @@ ABSOLUTE RULES (libel safety):
      adjudicate critical/notable. Your prose must read as neutral
      documentation.
 
-  4. Cite at least one corroborating record by its title. The titles
-     are supplied in the user prompt — never invent records.
+  4. The records listed in the user prompt were retrieved by matching a
+     euro figure, or words in a title, against the municipal open-data
+     index. NOTHING in this pipeline has checked that any of them bears
+     on what was said, and most do not. So:
+
+       · NEVER write, or imply by juxtaposition, that a record does any
+         of these to a quote. You have no basis for any of them:
+           ${AUTO_CURATE_BANNED_SUPPORT_VERBS.join(' · ')}
+
+       · Naming a record is OPTIONAL and conditional: do it only when
+         its own title makes the connection self-evident to a reader who
+         cannot see the match. Then say only what happened — «el cruce
+         con el registro municipal devuelve el expediente “…”» — and
+         leave the reader to judge it.
+
+       · Naming NO record is the normal, expected outcome. It needs no
+         apology and no hedging. When nothing listed evidently bears on
+         the debate, say exactly this and stop there:
+           «${AUTO_CURATE_NO_RECORD_CLAUSE}»
+         A summary that only reports what the groups said, and adds
+         nothing about the record, is a correct summary.
+
+       · Say nothing about records NOT in the list. The index is partial:
+         "no existe contrato alguno" is a claim about the world you
+         cannot make, and inventing a title is never acceptable.
 
   5. Keep names of municipal works/places in the original spelling
      (e.g. "Pabellón Mas d'Escoto", "complejo La Mallá") — do NOT
@@ -629,7 +691,8 @@ ABSOLUTE RULES (libel safety):
 
 LENGTH:
   · title:   10-120 chars. One line. Include pleno date in YYYY-MM-DD form.
-  · summary: 40-600 chars. 2-3 sentences. Plain Spanish.
+  · summary: 40-600 chars. 1-3 sentences, Plain Spanish. Write the
+    shortest summary that is true; do not pad to reach three.
 
 OUTPUT: a single JSON object {title, summary}. No fences. No commentary.
 `.trim()
@@ -642,19 +705,26 @@ export function buildAutoCurateUserPrompt(b: AutoCurateBundle): string {
         `  [${i + 1}] [${q.verdict}] ${q.speakerGroup} (conf ${q.confidence.toFixed(2)})\n      «${q.verbatim}»`,
     )
     .join('\n')
+  // Two block labels used to state the conclusion the model was supposed to
+  // reach: «QUOTES VERIFICADOS» over a list whose per-quote verdicts include
+  // `parcial`, and «REGISTROS QUE CORROBORAN … cita al menos uno», which
+  // restated rule 4's old mandate right beside the titles. A heading is an
+  // instruction; these two now describe where the rows came from and nothing
+  // else, and the per-row verdict tag carries whatever the verifier did say.
   const evidenceBlock =
     b.evidenceSnippets.length === 0
-      ? '  (sin evidencia)'
+      ? '  (el cruce no devolvió ningún expediente)'
       : b.evidenceSnippets.map((s, i) => `  [E${i + 1}] ${s}`).join('\n')
   return `
 PLENO: ${b.plenoTitle} (id ${b.plenoId} · ${b.plenoDate})
 TEMA: ${b.topic}
 GRUPOS QUE INTERVIENEN: ${b.blocs.join(', ')}
 
-QUOTES VERIFICADOS (verbatim del transcript, atribuidos a nivel de grupo):
+CITAS (verbatim del transcript, atribuidas a nivel de grupo):
 ${quoteBlock}
 
-REGISTROS QUE CORROBORAN (titulares supplied — cita al menos uno):
+EXPEDIENTES QUE DEVUELVE EL CRUCE (coincidencia de importe o de palabras del
+título; que alguno venga a cuento es justo lo que nadie ha comprobado):
 ${evidenceBlock}
 
 Emite el JSON {title, summary}.

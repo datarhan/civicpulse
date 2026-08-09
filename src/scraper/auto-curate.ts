@@ -17,6 +17,8 @@
  */
 import type { PlenoClaim } from './pleno-claim'
 import { evidenceStance, toPublishedSnippet, type ClaimVerification } from './claim-verifier'
+import { classifyClaimVisibility } from './claim-public-gate'
+import { recordKnowableAt, type RecordDateGateReport, type RecordDateIndex } from './record-dates'
 import type { PlenoFinding, FindingQuote, FindingRef, FindingSeverity } from './pleno-finding'
 
 export interface VerifiedItem {
@@ -59,15 +61,37 @@ const VERDICT_WEIGHT: Record<string, number> = {
 const BOILERPLATE = /^(Punto|Acta|Acta núm|Comienza el|En base a|Asunto)/i
 
 /**
- * Gate filter, applied per-claim. A bundle is dropped (not just the
- * single claim) if any of its claims fails these checks. The whole
- * bundle is the editorial unit so partial bundles aren't useful.
+ * Gate filter, applied per-claim: a claim that fails is left out of its
+ * bundle, and the survivors then have to clear the dialectic gate on
+ * their own.
  */
 function isClaimEligibleForBundle(it: VerifiedItem): boolean {
   if (!it.claim.speakerGroup) return false // party-attribution required
   if (it.claim.confidence < 0.65) return false
   if (it.claim.verbatim.length < 25) return false
   if (BOILERPLATE.test(it.claim.verbatim)) return false
+  // The public-ledger gate decides what machine-extracted claims may surface
+  // publicly, and until 2026-08-09 nothing on this path asked it. `/hallazgos`
+  // republishes the verbatim of every claim it quotes, so a claim the gate
+  // withholds from `/plenos` was reaching the public through a page with no
+  // gate at all — 77 of the 180 claims cited by the published findings are
+  // `hidden` under today's verdicts, every one an accusation.
+  //
+  // The gate's design does allow a gated claim to be published: a curator
+  // promotes it into a finding. That door is human by construction (see
+  // claim-public-gate.ts), so the machine may not use it. `shown` only —
+  // stricter than `!== 'hidden'` on purpose, so a visibility value added later
+  // has to be opted in rather than inherited.
+  //
+  // `contradicho` is the one verdict exempted here, and not because it is
+  // trusted: the gate calls it `hidden`, and selectBundles below is HARSHER
+  // still — one contradicho claim sends its entire bundle to the curator queue
+  // and publishes none of it. Dropping the claim here would empty that queue
+  // instead of filling it, and a libel guard with nothing left to catch reads
+  // exactly like a libel guard that works. The two rules agree on the outcome;
+  // the stricter one has to be the one that sees the claim.
+  if (it.verification.verdict === 'contradicho') return true
+  if (classifyClaimVisibility(it) !== 'shown') return false
   return true
 }
 
@@ -159,6 +183,12 @@ export interface ComposeOpts {
   plenoSourceUrl?: string | null
   plenoSourceKind?: 'pleno-video' | 'pleno-acta'
   curatorName?: string
+  /** ref → first-known date, from buildRecordDateIndex(). Omitting it
+   *  disables the date gate entirely — the CLI always passes one. */
+  recordDates?: RecordDateIndex
+  /** Caller-owned accumulator the date gate writes to, so the run can
+   *  report dropped and never-evaluated refs separately. */
+  dateGate?: RecordDateGateReport
 }
 
 /**
@@ -178,6 +208,8 @@ export interface ComposeOpts {
  *     «corroborado por…» over contracts that corroborated nothing.
  *     contradiction[] still stays empty in practice: selectBundles
  *     quarantines every contradicho-bearing bundle before we get here.
+ *   · a ref whose record post-dates the session is dropped before either
+ *     bucket — pass `recordDates` (and `dateGate` to hear about it).
  *   · finding id mirrors promote-claim's scheme:
  *     f-<plenoDate>-<lastTwoSegmentsOfFirstClaimId>.
  */
@@ -207,6 +239,11 @@ export function composeFinding(opts: ComposeOpts): PlenoFinding {
       if (!['tender', 'bdns', 'budget', 'promise'].includes(kindMapped)) continue
       if (seenRefs.has(ev.ref)) continue
       seenRefs.add(ev.ref)
+      // A record that did not exist when the council met cannot be what the
+      // council was discussing, in either direction — so this runs before the
+      // stance split and governs contradiction[] too. See record-dates.ts for
+      // why it is the earliest known date and not the award date.
+      if (!recordKnowableAt(ev.ref, bundle.plenoDate, opts.recordDates, opts.dateGate)) continue
       const ref: FindingRef = {
         kind: kindMapped as FindingRef['kind'],
         ref: ev.ref,

@@ -109,7 +109,7 @@ async function main() {
   // subtype. Latent only because the extractor has emitted zero accusations so
   // far; the first one would have published an ungated opinion-accusation
   // naming a person, verbatim.
-  const kept = snap.items.filter((it) => classifyClaimVisibility(it as never) !== 'hidden')
+  const kept = snap.items.filter((it) => classifyClaimVisibility(it) !== 'hidden')
   const dropped = snap.items.length - kept.length
   if (dropped > 0) {
     console.warn(

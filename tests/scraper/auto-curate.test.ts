@@ -15,7 +15,10 @@ import {
   type VerifiedItem,
   type VerifiedSnapshot,
 } from '../../src/scraper/auto-curate'
+import { classifyClaimVisibility } from '../../src/scraper/claim-public-gate'
+import { buildRecordDateIndex, emptyRecordDateGateReport } from '../../src/scraper/record-dates'
 import { validateFindingsSnapshot } from '../../src/scraper/pleno-finding'
+import type { ClaimEvidence } from '../../src/scraper/claim-verifier'
 import type { SpeakerGroup } from '../../src/scraper/pleno-votes'
 
 function mkClaim(over: Partial<VerifiedItem['claim']> = {}): VerifiedItem['claim'] {
@@ -40,6 +43,14 @@ function mkClaim(over: Partial<VerifiedItem['claim']> = {}): VerifiedItem['claim
 function mkItem(
   claimOver: Partial<VerifiedItem['claim']>,
   verdict: VerifiedItem['verification']['verdict'] = 'verificado',
+  evidence: ClaimEvidence[] = [
+    {
+      kind: 'tender',
+      ref: 'https://example.com/tender/1',
+      snippet: 'Servicio mantenimiento instalaciones complejo La Mallá',
+      similarity: 0.7,
+    },
+  ],
 ): VerifiedItem {
   const claim = mkClaim(claimOver)
   return {
@@ -48,14 +59,7 @@ function mkItem(
       claimId: claim.id,
       verdict,
       summary: 'verifier summary',
-      evidence: [
-        {
-          kind: 'tender',
-          ref: 'https://example.com/tender/1',
-          snippet: 'Servicio mantenimiento instalaciones complejo La Mallá',
-          similarity: 0.7,
-        },
-      ],
+      evidence,
       checkedAgainst: ['tenders'],
     },
   }
@@ -181,6 +185,127 @@ describe('selectBundles · gates', () => {
   })
 })
 
+/**
+ * The public claim-ledger gate governs what machine-extracted claims may
+ * surface. `/hallazgos` republishes the verbatim of every claim a finding
+ * quotes, so auto-curation must ask the same gate the ledger asks — and may not
+ * use the exception the gate reserves for a curator.
+ *
+ * Both directions in one test: the only difference between the claims below is
+ * the accusation subtype, which is precisely what the gate reads.
+ */
+describe('selectBundles · public claim-ledger gate', () => {
+  const shownAccusation = (id: string, speakerGroup: SpeakerGroup) =>
+    mkItem(
+      { id, speakerGroup, type: 'acusacion_publica', accusationSubtype: 'factual' },
+      'verificado',
+    )
+
+  it('bundles a gate-shown accusation and leaves the gate-hidden one out', () => {
+    const opinativa = mkItem(
+      {
+        id: 'p1-003-acu-a3',
+        speakerGroup: 'VOX',
+        type: 'acusacion_publica',
+        accusationSubtype: 'opinativa',
+      },
+      'verificado',
+    )
+    // Guard the premise: this pair really does straddle the gate.
+    expect(classifyClaimVisibility(shownAccusation('p1-001-acu-a1', 'PSOE'))).toBe('shown')
+    expect(classifyClaimVisibility(opinativa)).toBe('hidden')
+
+    const r = selectBundles(
+      {
+        items: [
+          shownAccusation('p1-001-acu-a1', 'PSOE'),
+          shownAccusation('p1-002-acu-a2', 'PP'),
+          opinativa,
+        ],
+      },
+      new Set(),
+      { minScore: 0 },
+    )
+    expect(r.eligible).toHaveLength(1)
+    expect(r.eligible[0].items.map((i) => i.claim.id)).toEqual(['p1-001-acu-a1', 'p1-002-acu-a2'])
+    expect(r.quarantine).toHaveLength(0)
+  })
+
+  it('drops an accusation with no subtype — the gate defaults it to opinativa', () => {
+    const r = selectBundles(
+      {
+        items: [
+          shownAccusation('p1-001-acu-a1', 'PSOE'),
+          shownAccusation('p1-002-acu-a2', 'PP'),
+          mkItem(
+            { id: 'p1-003-acu-a3', speakerGroup: 'VOX', type: 'acusacion_publica' },
+            'verificado',
+          ),
+        ],
+      },
+      new Set(),
+      { minScore: 0 },
+    )
+    expect(r.eligible[0].items.map((i) => i.claim.id)).not.toContain('p1-003-acu-a3')
+  })
+
+  it('still quarantines a contradicho bundle, though the gate calls it hidden', () => {
+    // The gate and the quarantine agree that a machine contradicho must not be
+    // published; the quarantine goes further and withholds its whole bundle.
+    // If the gate filtered the claim out first there would be no contradicho
+    // left to route, the queue file would come up empty, and the guard would
+    // look like it had nothing to catch.
+    const contradicho = mkItem(
+      {
+        id: 'p1-003-acu-a3',
+        speakerGroup: 'VOX',
+        type: 'acusacion_publica',
+        accusationSubtype: 'factual',
+      },
+      'contradicho',
+    )
+    expect(classifyClaimVisibility(contradicho)).toBe('hidden')
+    const r = selectBundles(
+      {
+        items: [
+          shownAccusation('p1-001-acu-a1', 'PSOE'),
+          shownAccusation('p1-002-acu-a2', 'PP'),
+          contradicho,
+        ],
+      },
+      new Set(),
+      { minScore: 0 },
+    )
+    expect(r.eligible).toHaveLength(0)
+    expect(r.quarantine).toHaveLength(1)
+    expect(r.quarantine[0].items.map((i) => i.claim.id)).toContain('p1-003-acu-a3')
+  })
+
+  it('drops the claim, not the bundle — the survivors still face the dialectic gate', () => {
+    // One shown claim + one hidden claim: the bundle now has a single bloc and
+    // a single verificado, so it fails the dialectic gate on its own merits.
+    const r = selectBundles(
+      {
+        items: [
+          shownAccusation('p1-001-acu-a1', 'PSOE'),
+          mkItem(
+            {
+              id: 'p1-002-acu-a2',
+              speakerGroup: 'PP',
+              type: 'acusacion_publica',
+              accusationSubtype: 'opinativa',
+            },
+            'verificado',
+          ),
+        ],
+      },
+      new Set(),
+      { minScore: 0 },
+    )
+    expect(r.eligible).toHaveLength(0)
+  })
+})
+
 describe('topQuotes', () => {
   it('prefers contradicho > verificado > parcial, then by confidence', () => {
     const items = [
@@ -295,6 +420,108 @@ describe('composeFinding', () => {
       llmSummary: 'Resumen suficientemente largo para satisfacer el suelo del schema.',
     })
     expect(finding.severity).toBe('informational')
+  })
+})
+
+/**
+ * A record that did not exist when the council met cannot be what the council
+ * was discussing. Three of these shipped: a Microsoft 365 contract awarded
+ * 2026-02-02 cross-checked against a 2026-01-19 session, a Plan de Igualdad
+ * contract awarded 2026-06-02 against 2026-05-11, and an award of 2026-05-08
+ * against a debate seven months earlier.
+ *
+ * The positive control is the point of the test. A tender process is public,
+ * and debatable, from the moment the licitación opens — so a gate keyed on the
+ * award date alone would drop true joins, and a test with only the negative
+ * case could not tell that gate from this one.
+ */
+describe('composeFinding · record-date gate', () => {
+  const SESSION = '2026-01-19'
+  const POST_DATED = 'https://example.com/tender/awarded-after-the-session'
+  const LIVE_PROCESS = 'https://example.com/tender/open-at-the-session'
+
+  const index = buildRecordDateIndex([
+    {
+      contracts: [
+        // The Microsoft 365 shape: awarded a fortnight after the session, no
+        // licitación row, nothing that was under way on the day.
+        { permalink: POST_DATED, awardDate: '2026-02-02', endDate: '2026-10-14' },
+        // Awarded LATER than the post-dated one, and it must survive: its
+        // process was open two weeks before the council sat.
+        { permalink: LIVE_PROCESS, awardDate: '2026-03-01', endDate: '2027-01-01' },
+      ],
+      tenders: [
+        {
+          permalink: LIVE_PROCESS,
+          openProposalsDate: '2026-01-05',
+          submissionDate: '2026-01-30',
+        },
+      ],
+    },
+  ])
+
+  function bundleCiting(refs: string[]) {
+    const blocs: SpeakerGroup[] = ['PSOE', 'PP']
+    const items = refs.map((ref, i) =>
+      mkItem(
+        { id: `p1-00${i}-cit-x${i}`, plenoDate: SESSION, speakerGroup: blocs[i % 2] },
+        'verificado',
+        [{ kind: 'tender', ref, snippet: `Expediente ${i}`, similarity: 0.7 }],
+      ),
+    )
+    return {
+      plenoId: 'p1',
+      plenoDate: SESSION,
+      topic: 'urbanismo',
+      blocs: blocs as string[],
+      items,
+      score: 10,
+    }
+  }
+
+  it('drops the post-dated record and keeps the one whose process was live', () => {
+    const bundle = bundleCiting([POST_DATED, LIVE_PROCESS])
+    const dateGate = emptyRecordDateGateReport()
+    const finding = composeFinding({
+      bundle,
+      selectedQuotes: bundle.items,
+      llmTitle: 'Debate urbanismo pleno 2026-01-19',
+      llmSummary: 'Resumen suficientemente largo para satisfacer el suelo del schema.',
+      recordDates: index,
+      dateGate,
+    })
+    expect(finding.crossChecked.map((r) => r.ref)).toEqual([LIVE_PROCESS])
+    expect(dateGate.postDated).toEqual([
+      { ref: POST_DATED, firstKnown: '2026-02-02', plenoDate: SESSION },
+    ])
+    // The gate dated and passed one ref. Without this, "dropped everything"
+    // and "applied the rule" look identical from the assertion above.
+    expect(dateGate.kept).toBe(1)
+  })
+
+  it('publishes every ref when no index is supplied — the gate is opt-in', () => {
+    const bundle = bundleCiting([POST_DATED, LIVE_PROCESS])
+    const finding = composeFinding({
+      bundle,
+      selectedQuotes: bundle.items,
+      llmTitle: 'Debate urbanismo pleno 2026-01-19',
+      llmSummary: 'Resumen suficientemente largo para satisfacer el suelo del schema.',
+    })
+    expect(finding.crossChecked.map((r) => r.ref).sort()).toEqual([POST_DATED, LIVE_PROCESS].sort())
+  })
+
+  it('never drops the pleno video — provenance is not a cross-referenced record', () => {
+    const bundle = bundleCiting([LIVE_PROCESS])
+    const finding = composeFinding({
+      bundle,
+      selectedQuotes: bundle.items,
+      llmTitle: 'Debate urbanismo pleno 2026-01-19',
+      llmSummary: 'Resumen suficientemente largo para satisfacer el suelo del schema.',
+      plenoSourceUrl: 'https://www.youtube.com/watch?v=ABCDEF',
+      plenoSourceKind: 'pleno-video',
+      recordDates: index,
+    })
+    expect(finding.crossChecked.some((r) => r.kind === 'pleno-video')).toBe(true)
   })
 })
 

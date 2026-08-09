@@ -30,6 +30,12 @@
  * Libel guards (mirrors plan/floating-drifting-river.md):
  *   · Severity always 'informational'. Notable + critical stay manual.
  *   · Contradicho bundles never auto-publish — they go to the queue file.
+ *   · Only claims the public claim-ledger gate marks `shown` are bundled.
+ *     Promotion into a finding is the sanctioned route past that gate and it
+ *     is a human one — see src/scraper/claim-public-gate.ts.
+ *   · A record whose earliest known date falls after the session is never
+ *     cross-checked against it, in the candidate list or in the published
+ *     refs — see src/scraper/record-dates.ts.
  *   · LOREG freeze (frozenUntil > today) → CLI exits without writing.
  *   · Right-of-reply continues to be handled by the existing
  *     finding-response flow; auto-curation is one-way.
@@ -62,6 +68,13 @@ import {
   isCleanForReview,
   type QueueInputs,
 } from '../src/scraper/curation-queue'
+import {
+  buildRecordDateIndex,
+  emptyRecordDateGateReport,
+  recordKnowableAt,
+  summariseRecordDateGate,
+  type RecordDateIndex,
+} from '../src/scraper/record-dates'
 
 /**
  * Measurement key governing unattended publication of auto-curated findings.
@@ -111,6 +124,8 @@ const FINDINGS = resolve('public/data/pleno-findings.json')
 const PLENOS = resolve('public/data/plenos.json')
 const VIDEOS = resolve('public/data/pleno-videos.json')
 const PROMISES = resolve('public/data/promises.json')
+const TENDERS = resolve('public/data/tenders.json')
+const TENDERS_TED = resolve('public/data/tenders-ted.json')
 const QUEUE = resolve('editorial/auto-curation-queue.md')
 
 interface PromisesSnap {
@@ -313,6 +328,28 @@ async function main() {
   const accepted: PlenoFinding[] = []
   const rejected: Array<{ bundle: BundleCandidate; reason: string }> = []
 
+  // Which records could the council have been discussing? Built once from the
+  // procurement snapshots, consulted twice per bundle: here, so a post-dated
+  // expediente is never even shown to the synthesiser, and inside
+  // composeFinding, so it never reaches `crossChecked[]`. Both, because
+  // stripping only the published refs would leave the model writing prose about
+  // a contract the finding no longer cites.
+  const recordDates: RecordDateIndex = buildRecordDateIndex([
+    loadJson<unknown>(TENDERS),
+    loadJson<unknown>(TENDERS_TED),
+  ])
+  const runDateGate = emptyRecordDateGateReport()
+  process.stdout.write(`[auto-curate] record-date index: ${recordDates.size} ref(s)\n`)
+  if (recordDates.size === 0) {
+    // An empty index gates nothing, and every ref would be reported as "not in
+    // any procurement snapshot" — which reads like a clean pass. Say out loud
+    // that the check did not run.
+    process.stderr.write(
+      `[auto-curate] WARN: record-date index is EMPTY (${TENDERS}, ${TENDERS_TED}) — ` +
+        `the post-dated-record gate cannot evaluate anything this run\n`,
+    )
+  }
+
   for (const bundle of eligible.slice(0, opts.max)) {
     const quotes = topQuotes(bundle.items, 4)
     const evidenceSnippets: string[] = []
@@ -322,6 +359,9 @@ async function main() {
         const k = `${ev.kind}:${ev.snippet}`
         if (seen.has(k)) continue
         seen.add(k)
+        // Not counted into runDateGate: composeFinding walks the same refs and
+        // reports them there, and double-counting would overstate the work.
+        if (!recordKnowableAt(ev.ref, bundle.plenoDate, recordDates)) continue
         evidenceSnippets.push(`[${ev.kind}] ${ev.snippet.slice(0, 180)}`)
       }
     }
@@ -353,12 +393,24 @@ async function main() {
       llmSummary: llm.summary.trim(),
       plenoSourceUrl: plenoVideoUrl(videos, bundle.plenoDate),
       plenoSourceKind: 'pleno-video',
+      recordDates,
+      dateGate: runDateGate,
     })
 
     accepted.push(finding)
     process.stdout.write(
       `[auto-curate]   ✓ ${bundle.plenoId}/${bundle.topic} · score=${bundle.score.toFixed(2)} · ${finding.id}\n` +
         `[auto-curate]     title: ${finding.title}\n`,
+    )
+  }
+
+  // Report what the date gate actually evaluated, not just what it dropped: a
+  // run whose refs were all unindexed did no gating at all and must not read
+  // like a clean pass.
+  process.stdout.write(`[auto-curate] record dates · ${summariseRecordDateGate(runDateGate)}\n`)
+  for (const p of runDateGate.postDated) {
+    process.stdout.write(
+      `[auto-curate]   ✗ dropped ref (record dated ${p.firstKnown}, session ${p.plenoDate}): ${p.ref}\n`,
     )
   }
 
