@@ -23,9 +23,9 @@ import {
   ALLOWED_PRESS_CLAIM_TYPES,
   ALLOWED_CLAIM_TOPICS,
   ALLOWED_ATTRIBUTED_SOURCES,
-  decidePressClaimsWrite,
   type PressClaimsSnapshot,
 } from '../src/scraper/press-claim'
+import { decideSnapshotWrite } from '../src/scraper/snapshot-write'
 import { resetBudget } from '../src/llm/client'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -159,12 +159,14 @@ async function main() {
   // an incomplete run may add claims but may never remove them. A complete run
   // (llmUnavailable === 0) stays authoritative and always writes, including
   // when it honestly found fewer claims than last time. See
-  // decidePressClaimsWrite in src/scraper/press-claim.ts for the pure decision.
+  // decideSnapshotWrite in src/scraper/snapshot-write.ts for the pure decision
+  // — shared with summarize:press, which needs the identical rule.
   const existingRaw = await readFile(OUT, 'utf8').catch(() => null)
-  const decision = decidePressClaimsWrite({
+  const decision = decideSnapshotWrite({
     incomingCount: snapshot.items.length,
-    llmUnavailable: result.stats.llmUnavailable,
+    unresolvedCount: result.stats.llmUnavailable,
     existingRaw,
+    itemNoun: 'claim',
   })
 
   if (decision.write) {

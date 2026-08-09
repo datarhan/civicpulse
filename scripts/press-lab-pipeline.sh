@@ -138,6 +138,13 @@ fi
 # the extract-side guard now protects. They stay UNGATED on purpose. Do not
 # "discover" that read later and gate them without first re-checking that their
 # output is still whole-corpus.
+#
+# Re-checked when summarize:press got the same write guard as extract: still an
+# allow-list, still whole-corpus over press.json, so it stays ungated. What it
+# no longer needs is someone else's gate — it now refuses to shrink its own
+# snapshot on an incomplete run and exits non-zero when the backend was
+# unreachable, so a failed summarise withholds press-summaries.json through the
+# CHAIN_OK staging below rather than through a dependency it does not have.
 RESULTS=""
 CHAIN_OK=""       # labels that ran and exited 0
 CHAIN_FAILED=""   # labels that ran and exited non-zero

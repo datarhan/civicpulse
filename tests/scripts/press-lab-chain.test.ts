@@ -232,6 +232,23 @@ describe('press-lab-pipeline.sh · dependency gating', () => {
     expect(r.committed).not.toContain('public/data/press-coverage-gaps.json')
   }, 60_000)
 
+  it('withholds press-summaries.json when summarize:press exits non-zero', () => {
+    // summarize:press is UNGATED by design (it depends on nothing in the
+    // chain), so the only thing standing between a failed summarise and a
+    // published press-summaries.json is its own exit code. Before the guard the
+    // script could not produce one: a dead backend printed "0 summaries" and
+    // exited 0. The stub writes its snapshot even when it fails, so this proves
+    // the commit-side layer, not merely an absent file.
+    const r = runPipeline(makeSandbox(), ['summarize-press'])
+    expect(r.log).toContain('[stub:summarize-press] FAILING') // it really ran
+    expect(r.log).toMatch(/❌ summarize:press \(exit 1\)/)
+    expect(r.committed).not.toContain('public/data/press-summaries.json')
+    // Its independence is intact: nothing else is skipped on its account.
+    expect(r.log).toContain('6 ok · 1 fallidos · 0 omitidos')
+    expect(r.committed).toContain('public/data/press-claims-verified.json')
+    expect(r.subject).toContain('ejecución INCOMPLETA')
+  }, 60_000)
+
   it('never pushes under PRESS_LAB_NO_REMOTE and never touches the network', () => {
     const r = runPipeline(makeSandbox(), [])
     expect(r.log).toContain('se omite el git pull inicial')

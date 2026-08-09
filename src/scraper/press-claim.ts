@@ -288,89 +288,9 @@ export function validatePressClaim(c: PressClaim, idx = 0): PressClaim {
 }
 
 /**
- * Outcome of the "may this run overwrite the published snapshot?" decision.
- * `write` is the verdict; `reason` is logged verbatim so the pipeline log says
- * which branch was taken and why, rather than leaving the operator to infer it
- * from a row count that changed.
+ * The write gate that used to live here — `decidePressClaimsWrite` /
+ * `countPressClaims` — is now `decideSnapshotWrite` / `countSnapshotItems` in
+ * src/scraper/snapshot-write.ts. `summarize:press` needed the identical
+ * "an incomplete run may add rows but never remove them" rule, and one shared
+ * decision beats two drifting copies (CLAUDE.md, data-integrity rule 1).
  */
-export interface PressClaimsWriteDecision {
-  write: boolean
-  reason: string
-  /** Claims already published on disk (0 when the file is absent or corrupt). */
-  existingCount: number
-  /** Claims this run produced. */
-  incomingCount: number
-  /** Whether the run was complete (`llmUnavailable === 0`). */
-  complete: boolean
-}
-
-/** Tolerant claim count for an on-disk snapshot: anything unreadable is 0. */
-export function countPressClaims(raw: string | null | undefined): number {
-  if (!raw) return 0
-  try {
-    const parsed = JSON.parse(raw) as { items?: unknown }
-    return Array.isArray(parsed.items) ? parsed.items.length : 0
-  } catch {
-    return 0
-  }
-}
-
-/**
- * Gate on overwriting `press-claims-suggestions.json`.
- *
- * An incomplete run — one where the LLM backend was unreachable for any item —
- * may ADD claims but may never REMOVE them. The distinction the original code
- * missed: a run that reached the model for 7 of 25 articles kept real partial
- * progress, but a run that reached it for NONE produced `items: []`, and
- * writing that over a published corpus is not progress, it is erasure. On
- * 2026-08-09 that erasure deleted a live claim from the site and the pipeline
- * reported the deletion as its result (`0 verified claim(s) pushed`).
- *
- * So: a complete run always writes (it is authoritative, including when it
- * legitimately found fewer claims). An incomplete run writes only if it did not
- * shrink the corpus.
- *
- * Pure by design — `existingRaw` is passed in rather than read here, so the
- * missing-file, corrupt-file and shrink cases are all unit-testable without
- * touching the filesystem or the CLI.
- */
-export function decidePressClaimsWrite(args: {
-  incomingCount: number
-  llmUnavailable: number
-  existingRaw: string | null
-}): PressClaimsWriteDecision {
-  const { incomingCount, llmUnavailable, existingRaw } = args
-  const existingCount = countPressClaims(existingRaw)
-  const complete = !(llmUnavailable > 0)
-
-  if (complete) {
-    return {
-      write: true,
-      reason: `complete run (llmUnavailable=0) — writing ${incomingCount} claim(s), authoritative`,
-      existingCount,
-      incomingCount,
-      complete,
-    }
-  }
-  if (incomingCount < existingCount) {
-    return {
-      write: false,
-      reason:
-        `refusing to overwrite ${existingCount} claim(s) with ${incomingCount} ` +
-        `from an incomplete run (llmUnavailable=${llmUnavailable}) — an incomplete ` +
-        `run may add claims, never remove them`,
-      existingCount,
-      incomingCount,
-      complete,
-    }
-  }
-  return {
-    write: true,
-    reason:
-      `incomplete run (llmUnavailable=${llmUnavailable}) but it did not shrink the ` +
-      `corpus (${existingCount} → ${incomingCount}) — keeping the partial progress`,
-    existingCount,
-    incomingCount,
-    complete,
-  }
-}

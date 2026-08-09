@@ -23,7 +23,12 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { summarizePressBatch, type PressSummaryInput } from '../src/scraper/press-summary-llm'
+import {
+  summarizePressBatch,
+  unresolvedSummaries,
+  type PressSummaryInput,
+} from '../src/scraper/press-summary-llm'
+import { decideSnapshotWrite } from '../src/scraper/snapshot-write'
 import { resetBudget } from '../src/llm/client'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -88,7 +93,7 @@ async function main() {
     date: p.date,
   }))
 
-  const results = await summarizePressBatch(inputs)
+  const { summaries, stats } = await summarizePressBatch(inputs)
 
   const payload = {
     generatedAt: new Date().toISOString(),
@@ -96,16 +101,78 @@ async function main() {
       description: 'Neutral editorial summaries for press articles audited by the lab',
       contract: 'src/scraper/press-summary-llm.ts',
     },
-    stats: { total: results.length, requested: items.length },
-    items: results,
+    stats: {
+      total: summaries.length,
+      requested: items.length,
+      // Provenance of the RUN, not of the summaries. Without these, "0
+      // summaries" from a healthy pass that found nothing worth summarising, a
+      // pass where the backend was dead, and a pass where no article had a body
+      // are the same file — and the snapshot is what /laboratorio and
+      // /lab-health read. Attempted / done / never attempted, reported
+      // separately (CLAUDE.md data-integrity rule 2).
+      summarized: stats.summarized,
+      skippedNoBody: stats.skippedNoBody,
+      llmUnavailable: stats.llmUnavailable,
+    },
+    items: summaries,
   }
 
-  await mkdir(dirname(OUT), { recursive: true })
-  await writeFile(OUT, JSON.stringify(payload, null, 2) + '\n')
+  // Decide BEFORE writing, on the same shared gate extract:press-claims uses.
+  //
+  // This file is overwritten whole, so a run that produced nothing publishes
+  // `items: []` over whatever was there. On 2026-08-09 the equivalent write in
+  // extract:press-claims deleted a live claim and the pipeline reported the
+  // deletion as its result; summarize:press escaped only because the file was
+  // already empty.
+  //
+  // BOTH unfinished categories count as unresolved, not just the dead backend:
+  // a body that never arrived is no more evidence that an existing summary
+  // should be deleted than an unreachable model is. An incomplete run may add
+  // summaries, never remove them; a complete one stays authoritative.
+  const existingRaw = await readFile(OUT, 'utf8').catch(() => null)
+  const decision = decideSnapshotWrite({
+    incomingCount: summaries.length,
+    unresolvedCount: unresolvedSummaries(stats),
+    existingRaw,
+    itemNoun: 'summary',
+  })
 
-  console.log(
-    `[summarize:press] wrote ${OUT} · ${results.length} summaries (of ${items.length} requested)`,
-  )
+  if (decision.write) {
+    await mkdir(dirname(OUT), { recursive: true })
+    await writeFile(OUT, JSON.stringify(payload, null, 2) + '\n')
+    console.log(
+      `[summarize:press] wrote ${OUT} · ${stats.summarized} summarised, ` +
+        `${stats.skippedNoBody} never attempted (sin cuerpo de artículo), ` +
+        `${stats.llmUnavailable} backend caído · of ${stats.total} requested` +
+        ` · ${decision.reason}`,
+    )
+  } else {
+    console.error(`[summarize:press] NOT WRITING ${OUT} · ${decision.reason}`)
+  }
+
+  // A dead backend must not read as a clean run. Same shape as
+  // extract-press-claims.ts: flag it and exit non-zero so the pipeline's
+  // free_step logs ❌ and withholds press-summaries.json from the commit.
+  //
+  // Only the ATTEMPTED-AND-FAILED count trips this. `skippedNoBody` does not:
+  // it is a disclosed policy skip (8b149d0 — the summariser refuses to
+  // elaborate a headline into invented prose), it is currently every item, and
+  // failing on it would paint the step ❌ every night for a backend that is
+  // perfectly healthy. That is the mirror-image lie of the one being fixed.
+  if (stats.llmUnavailable > 0) {
+    console.error(
+      `[summarize:press] WARNING: LLM backend unavailable for ` +
+        `${stats.llmUnavailable}/${stats.total} articles ` +
+        `(backend=${process.env.LLM_BACKEND ?? 'auto'}). The summaries ` +
+        `snapshot is incomplete — fix the backend and re-run.`,
+    )
+    process.exitCode = 1
+  }
+  // A run that declined to publish its own output has not succeeded either,
+  // even when every failure was a policy skip: the pipeline stages a step's
+  // snapshot only if that step is in CHAIN_OK, so exiting 0 here would let it
+  // report ✅ for a refresh it deliberately withheld.
+  if (!decision.write) process.exitCode = 1
 }
 
 main().catch((err) => {

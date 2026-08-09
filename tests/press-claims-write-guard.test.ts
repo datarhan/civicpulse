@@ -7,7 +7,27 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { countPressClaims, decidePressClaimsWrite } from '../src/scraper/press-claim'
+import { countSnapshotItems, decideSnapshotWrite } from '../src/scraper/snapshot-write'
+
+/**
+ * `decideSnapshotWrite` is the generalised form of what shipped in 621872a as
+ * `decidePressClaimsWrite`. `summarize:press` needed the identical gate, so the
+ * function moved to src/scraper/snapshot-write.ts and was parameterised
+ * (`llmUnavailable` → `unresolvedCount`, plus a cosmetic `itemNoun`) instead of
+ * being copied. These tests still pin the extractor's use of it; the
+ * summariser's is pinned in press-summaries-write-guard.test.ts.
+ */
+const asClaims = (args: {
+  incomingCount: number
+  llmUnavailable: number
+  existingRaw: string | null
+}) =>
+  decideSnapshotWrite({
+    incomingCount: args.incomingCount,
+    unresolvedCount: args.llmUnavailable,
+    existingRaw: args.existingRaw,
+    itemNoun: 'claim',
+  })
 
 /** Build an on-disk snapshot with `n` claim-shaped rows. Only length matters. */
 function snapshotWith(n: number): string {
@@ -19,9 +39,9 @@ function snapshotWith(n: number): string {
   })
 }
 
-describe('decidePressClaimsWrite', () => {
+describe('decideSnapshotWrite · as extract:press-claims calls it', () => {
   it('refuses to shrink the corpus when the run was incomplete (the c6a6e23 reproducer)', () => {
-    const d = decidePressClaimsWrite({
+    const d = asClaims({
       incomingCount: 0,
       llmUnavailable: 25,
       existingRaw: snapshotWith(1),
@@ -35,7 +55,7 @@ describe('decidePressClaimsWrite', () => {
   })
 
   it('refuses any shrink, not just a shrink to zero', () => {
-    const d = decidePressClaimsWrite({
+    const d = asClaims({
       incomingCount: 3,
       llmUnavailable: 4,
       existingRaw: snapshotWith(7),
@@ -45,7 +65,7 @@ describe('decidePressClaimsWrite', () => {
   })
 
   it('allows growth from an incomplete run — that is real partial progress', () => {
-    const d = decidePressClaimsWrite({
+    const d = asClaims({
       incomingCount: 9,
       llmUnavailable: 18,
       existingRaw: snapshotWith(4),
@@ -57,7 +77,7 @@ describe('decidePressClaimsWrite', () => {
   })
 
   it('allows an equal count from an incomplete run', () => {
-    const d = decidePressClaimsWrite({
+    const d = asClaims({
       incomingCount: 2,
       llmUnavailable: 1,
       existingRaw: snapshotWith(2),
@@ -66,7 +86,7 @@ describe('decidePressClaimsWrite', () => {
   })
 
   it('allows a first-ever write when no file exists on disk', () => {
-    const d = decidePressClaimsWrite({
+    const d = asClaims({
       incomingCount: 0,
       llmUnavailable: 25,
       existingRaw: null,
@@ -76,7 +96,7 @@ describe('decidePressClaimsWrite', () => {
   })
 
   it('treats a corrupt existing file as 0 on disk rather than blocking forever', () => {
-    const d = decidePressClaimsWrite({
+    const d = asClaims({
       incomingCount: 0,
       llmUnavailable: 25,
       existingRaw: '{ this is not json',
@@ -86,7 +106,7 @@ describe('decidePressClaimsWrite', () => {
   })
 
   it('does not interfere at all when the run was complete, even if it shrank', () => {
-    const d = decidePressClaimsWrite({
+    const d = asClaims({
       incomingCount: 0,
       llmUnavailable: 0,
       existingRaw: snapshotWith(12),
@@ -96,11 +116,11 @@ describe('decidePressClaimsWrite', () => {
     expect(d.write).toBe(true)
     expect(d.complete).toBe(true)
     expect(d.existingCount).toBe(12)
-    expect(d.reason).toMatch(/complete run \(llmUnavailable=0\)/)
+    expect(d.reason).toMatch(/complete run \(unresolved=0\)/)
   })
 
   it('reports the counts it compared, so a green test cannot mean "measured nothing"', () => {
-    const d = decidePressClaimsWrite({
+    const d = asClaims({
       incomingCount: 5,
       llmUnavailable: 2,
       existingRaw: snapshotWith(5),
@@ -110,16 +130,16 @@ describe('decidePressClaimsWrite', () => {
   })
 })
 
-describe('countPressClaims', () => {
+describe('countSnapshotItems', () => {
   it('counts items in a well-formed snapshot', () => {
-    expect(countPressClaims(snapshotWith(3))).toBe(3)
+    expect(countSnapshotItems(snapshotWith(3))).toBe(3)
   })
 
   it('returns 0 for null, empty, corrupt JSON and a missing items array', () => {
-    expect(countPressClaims(null)).toBe(0)
-    expect(countPressClaims('')).toBe(0)
-    expect(countPressClaims('{ nope')).toBe(0)
-    expect(countPressClaims('{"stats":{"total":9}}')).toBe(0)
-    expect(countPressClaims('{"items":"not-an-array"}')).toBe(0)
+    expect(countSnapshotItems(null)).toBe(0)
+    expect(countSnapshotItems('')).toBe(0)
+    expect(countSnapshotItems('{ nope')).toBe(0)
+    expect(countSnapshotItems('{"stats":{"total":9}}')).toBe(0)
+    expect(countSnapshotItems('{"items":"not-an-array"}')).toBe(0)
   })
 })

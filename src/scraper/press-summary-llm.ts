@@ -44,6 +44,18 @@ export interface SummarizeOptions {
   caller?: typeof callLLM
 }
 
+/**
+ * Is there enough article body here to summarise at all?
+ *
+ * The single source of truth for the MIN_BODY_CHARS floor. `summarizePressArticle`
+ * uses it to fail closed; `summarizePressBatch` uses it to tell its two very
+ * different kinds of null apart. Restating the threshold in the batch would be
+ * exactly the hand-copied shape CLAUDE.md's rule 1 is about.
+ */
+export function hasSummarizableBody(input: PressSummaryInput): boolean {
+  return !!input.body && input.body.trim().length >= MIN_BODY_CHARS
+}
+
 export async function summarizePressArticle(
   input: PressSummaryInput,
   options: SummarizeOptions = {},
@@ -63,7 +75,7 @@ export async function summarizePressArticle(
   //
   // The length floor is what makes this a real gate rather than a formality:
   // a headline echoed into the body field would otherwise pass.
-  if (!input.body || input.body.trim().length < MIN_BODY_CHARS) return null
+  if (!hasSummarizableBody(input)) return null
 
   const caller = options.caller ?? callLLM
   const response = await caller({
@@ -92,14 +104,75 @@ export async function summarizePressArticle(
   }
 }
 
+export interface SummarizeBatchStats {
+  /** Articles handed to the batch. */
+  total: number
+  /** Articles the model actually answered for. */
+  summarized: number
+  /**
+   * Articles NEVER ATTEMPTED — no body, or a body under MIN_BODY_CHARS, so the
+   * fail-closed gate short-circuited before any LLM call. A deliberate policy
+   * skip, not a backend problem.
+   *
+   * This is currently ALL of them: press.json carries no article bodies and
+   * nothing in the pipeline fetches one for the summariser, so the run makes
+   * zero LLM calls. Keeping this separate from `llmUnavailable` is the whole
+   * point — folding "never attempted" into either "done" or "failed" is
+   * CLAUDE.md's data-integrity rule 2.
+   */
+  skippedNoBody: number
+  /**
+   * Articles ATTEMPTED AND FAILED — the call was made and the model produced
+   * nothing usable (backend unreachable, circuit tripped, unparseable answer).
+   * The CLI exits non-zero on any of these so a dead backend cannot read as a
+   * clean run, mirroring extractPressClaimsBatch's counter of the same name.
+   */
+  llmUnavailable: number
+}
+
+/**
+ * Articles this run left unresolved — what `decideSnapshotWrite` needs to know.
+ *
+ * BOTH unfinished categories count, and that is the policy, not an arithmetic
+ * convenience: neither a dead backend nor a body that never arrived is evidence
+ * that an already-published summary should be deleted. Named and exported so
+ * the rule is unit-testable instead of being two inline additions in the CLI.
+ */
+export function unresolvedSummaries(stats: SummarizeBatchStats): number {
+  return stats.llmUnavailable + stats.skippedNoBody
+}
+
 export async function summarizePressBatch(
   inputs: PressSummaryInput[],
   options: SummarizeOptions = {},
-): Promise<PressSummaryResult[]> {
+): Promise<{ summaries: PressSummaryResult[]; stats: SummarizeBatchStats }> {
   const out: PressSummaryResult[] = []
+  let skippedNoBody = 0
+  let llmUnavailable = 0
+
   for (const input of inputs) {
+    // Ask BEFORE the call, so a null can be attributed. Afterwards the two
+    // causes are indistinguishable — which is why the old batch, returning a
+    // bare array, could not tell "we refuse to summarise a headline" from
+    // "the backend is down".
+    const attemptable = hasSummarizableBody(input)
     const result = await summarizePressArticle(input, options)
-    if (result) out.push(result)
+    if (result) {
+      out.push(result)
+    } else if (attemptable) {
+      llmUnavailable += 1
+    } else {
+      skippedNoBody += 1
+    }
   }
-  return out
+
+  return {
+    summaries: out,
+    stats: {
+      total: inputs.length,
+      summarized: out.length,
+      skippedNoBody,
+      llmUnavailable,
+    },
+  }
 }
