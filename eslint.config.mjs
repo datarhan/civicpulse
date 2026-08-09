@@ -80,6 +80,15 @@ export default [
     rules: {
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
+      // NOT a relaxation for tests — the opposite. `no-explicit-any` is already
+      // 'off' for src/, scripts/, bot/src/ and bot/tests/ in the block above;
+      // `tests/` was simply never in a block that set it, so it inherited
+      // 'error' from tseslint's recommended set. That inconsistency is what
+      // kept `npm run lint` scoped away from tests/ — and an unlinted tests/ is
+      // how a test making a live network call on every run survived. Making the
+      // rule uniform is the price of putting tests under the gate at all.
+      // If you want to tighten `any`, tighten it repo-wide, not here alone.
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 ]

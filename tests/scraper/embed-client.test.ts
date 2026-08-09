@@ -177,10 +177,10 @@ function routedFetch(): typeof fetch {
       })
     }
     if (u.includes('generativelanguage.googleapis.com')) {
-      return new Response(
-        JSON.stringify({ embeddings: [{ values: new Array(768).fill(0.1) }] }),
-        { status: 200, headers: { 'content-type': 'application/json' } },
-      )
+      return new Response(JSON.stringify({ embeddings: [{ values: new Array(768).fill(0.1) }] }), {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+      })
     }
     return new Response('unexpected host', { status: 500 })
   }) as unknown as typeof fetch
@@ -211,7 +211,11 @@ describe('openai→gemini quota fallback', () => {
 
   it('does NOT fall back for callers pinning their own key (back-compat/test path)', async () => {
     await expect(
-      embedTexts(['hola'], { apiKey: 'sk-explicit', fetchImpl: routedFetch(), sleep: async () => {} }),
+      embedTexts(['hola'], {
+        apiKey: 'sk-explicit',
+        fetchImpl: routedFetch(),
+        sleep: async () => {},
+      }),
     ).rejects.toThrow(/insufficient_quota/)
     expect(selectBackend()).toBe('openai')
   })

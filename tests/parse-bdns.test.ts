@@ -48,9 +48,7 @@ describe('scraper/bdns — parseBdnsConvocatorias', () => {
   })
 
   it('includes at least one 2026 convocatoria from the Ayuntamiento', () => {
-    const recent = items.filter(
-      (i) => i.direction === 'granted' && i.date.startsWith('2026')
-    )
+    const recent = items.filter((i) => i.direction === 'granted' && i.date.startsWith('2026'))
     expect(recent.length).toBeGreaterThanOrEqual(1)
   })
 })

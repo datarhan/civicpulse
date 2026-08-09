@@ -61,7 +61,12 @@ describe('promise-draft', () => {
   it('validates a well-formed queue', () => {
     const q = validateReviewQueue(queue([draft()]))
     expect(q.drafts).toHaveLength(1)
-    expect(q.drafts[0].proposed.party).toBe('PSOE')
+    // `QueueDraft` is a union; only `new-promise` carries `proposed`. Narrowing
+    // rather than casting means a queue that starts returning status-change
+    // drafts here fails loudly instead of reading `undefined.party`.
+    const d = q.drafts[0]
+    if (d.kind !== 'new-promise') throw new Error(`expected a new-promise draft, got ${d.kind}`)
+    expect(d.proposed.party).toBe('PSOE')
   })
 
   it('rejects a quote shorter than 20 chars', () => {

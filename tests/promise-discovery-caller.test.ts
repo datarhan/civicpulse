@@ -5,7 +5,10 @@ import { PROMISE_DISCOVERY_PROMPT_VERSION } from '../src/llm/prompts'
 describe('discoverPromises', () => {
   it('passes the discovery prompt version + schema and returns the parsed batch', async () => {
     const seen: { promptVersion?: string } = {}
-    const stub = async (opts: { promptVersion: string; schema: { parse: (x: unknown) => unknown } }) => {
+    const stub = async (opts: {
+      promptVersion: string
+      schema: { parse: (x: unknown) => unknown }
+    }) => {
       seen.promptVersion = opts.promptVersion
       return { promises: [] }
     }
@@ -18,7 +21,10 @@ describe('discoverPromises', () => {
   })
 
   it('propagates a null (backend failure) result', async () => {
-    const out = await discoverPromises({ existingTitles: [], sources: [] }, (async () => null) as never)
+    const out = await discoverPromises(
+      { existingTitles: [], sources: [] },
+      (async () => null) as never,
+    )
     expect(out).toBeNull()
   })
 })

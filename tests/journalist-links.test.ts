@@ -10,8 +10,16 @@ import { bioReportRoutes } from '../src/lib/journalist-links'
 
 const ASSIGNMENTS = {
   items: [
-    { id: 'a-bio-v1', status: 'archived', subject: { slug: 'robert-raga-gadea', kind: 'official' } },
-    { id: 'a-bio-v4', status: 'promoted', subject: { slug: 'robert-raga-gadea', kind: 'official' } },
+    {
+      id: 'a-bio-v1',
+      status: 'archived',
+      subject: { slug: 'robert-raga-gadea', kind: 'official' },
+    },
+    {
+      id: 'a-bio-v4',
+      status: 'promoted',
+      subject: { slug: 'robert-raga-gadea', kind: 'official' },
+    },
     { id: 'a-place', status: 'promoted', subject: { slug: 'mas-de-traver', kind: 'place' } },
     { id: 'a-nodraft', status: 'pending', subject: { slug: 'other-official', kind: 'official' } },
   ],

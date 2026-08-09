@@ -10,10 +10,14 @@
  * runtime, so the phantom only becomes visible to a reader — and the file it
  * would have been published from has held 0 rows the whole time.
  *
- * Scope is the press subsystem, deliberately. A repo-wide version of this
- * check currently reports three more phantoms in other subsystems
- * (`check:freshness`, `draft:findings`, `bench:pleno-votes`); widening it
- * belongs with whoever fixes those, not here.
+ * Scope is the press subsystem, deliberately. The three phantoms a repo-wide
+ * version used to report in other subsystems are gone — two docstrings were
+ * corrected and the third named a script that had never existed — but that is
+ * not on its own an argument for widening. Re-run repo-wide today and every
+ * token it still reports is a false positive: a CLI flag written after a bare
+ * "run", a real `scripts/*.sh` that is deliberately not an npm script, and this
+ * file's own fixture strings. A guard whose hits are all noise is one everybody
+ * learns to skip, which is the failure mode COMMAND_RE below is shaped against.
  *
  * The script names are READ from package.json, never restated — a test that
  * hand-copies the list is the shape DATA_INTEGRITY.md rule 1 is about.

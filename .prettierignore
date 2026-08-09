@@ -8,3 +8,10 @@ bot/node_modules/
 bot/data/
 coverage/
 docs/ARCHIVE/
+
+# Captured upstream payloads. They are the RED contract of the TDD cadence —
+# a fixture must stay byte-identical to what the source actually served, so
+# reformatting one silently changes what the parser is tested against. Several
+# of the council's HTML pages are malformed enough that prettier cannot even
+# parse them, which is precisely the input the parsers exist to survive.
+tests/fixtures/

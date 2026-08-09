@@ -17,11 +17,6 @@
     "jsx": "react-jsx",
     "strict": false
   },
-  "include": ["src/**/*", "scripts/**/*"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "bot",
-    "scripts/draft-finding-suggestions.ts"
-  ]
+  "include": ["src/**/*", "scripts/**/*", "tests/**/*"],
+  "exclude": ["node_modules", "dist", "bot"]
 }

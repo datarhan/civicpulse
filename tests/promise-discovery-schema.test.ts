@@ -1,6 +1,10 @@
 import { describe, it, expect } from 'vitest'
 import { PromiseDiscoveryBatchSchema } from '../src/llm/schemas'
-import { buildPromiseDiscoverySystemPrompt, buildPromiseDiscoveryUserPrompt, PROMISE_DISCOVERY_PROMPT_VERSION } from '../src/llm/prompts'
+import {
+  buildPromiseDiscoverySystemPrompt,
+  buildPromiseDiscoveryUserPrompt,
+  PROMISE_DISCOVERY_PROMPT_VERSION,
+} from '../src/llm/prompts'
 
 describe('promise discovery schema + prompt', () => {
   it('accepts a valid discovery batch', () => {
@@ -25,7 +29,20 @@ describe('promise discovery schema + prompt', () => {
 
   it('rejects an out-of-enum topic', () => {
     const parsed = PromiseDiscoveryBatchSchema.safeParse({
-      promises: [{ party: 'PSOE', title: 'x'.repeat(5), quote: 'y'.repeat(25), sourceUrl: 'https://x/n', publisher: 'X', madeAt: '2026-01-01', topic: 'NOPE', kind: 'anuncio-gobierno', confidence: 0.5, reasoning: 'z'.repeat(15) }],
+      promises: [
+        {
+          party: 'PSOE',
+          title: 'x'.repeat(5),
+          quote: 'y'.repeat(25),
+          sourceUrl: 'https://x/n',
+          publisher: 'X',
+          madeAt: '2026-01-01',
+          topic: 'NOPE',
+          kind: 'anuncio-gobierno',
+          confidence: 0.5,
+          reasoning: 'z'.repeat(15),
+        },
+      ],
     })
     expect(parsed.success).toBe(false)
   })
@@ -35,7 +52,20 @@ describe('promise discovery schema + prompt', () => {
     expect(buildPromiseDiscoverySystemPrompt().length).toBeGreaterThan(100)
     const u = buildPromiseDiscoveryUserPrompt({
       existingTitles: ['Ya seguida'],
-      sources: [{ kind: 'press', items: [{ title: 'Nueva promesa', url: 'https://x/n', date: '2026-06-20', publisher: 'X', snippet: 's' }] }],
+      sources: [
+        {
+          kind: 'press',
+          items: [
+            {
+              title: 'Nueva promesa',
+              url: 'https://x/n',
+              date: '2026-06-20',
+              publisher: 'X',
+              snippet: 's',
+            },
+          ],
+        },
+      ],
     })
     expect(u).toContain('Ya seguida')
     expect(u).toContain('Nueva promesa')

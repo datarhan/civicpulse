@@ -14,9 +14,7 @@ import {
  * type:'buffer' gives us a real multi-sheet buffer — same as what the
  * network download would return.
  */
-function makeBuffer(
-  data: Record<string, (string | number | null)[][]>
-): Buffer {
+function makeBuffer(data: Record<string, (string | number | null)[][]>): Buffer {
   const wb = XLSX.utils.book_new()
   for (const [sheetName, rows] of Object.entries(data)) {
     const sheet = XLSX.utils.aoa_to_sheet([CTBG_HEADERS_FOR_TEST, ...rows])
@@ -25,22 +23,24 @@ function makeBuffer(
   return XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' }) as Buffer
 }
 
-function mkRow(o: Partial<{
-  resolucion: string
-  ano: number
-  mesEntrada: string
-  mesResolucion: string
-  motivo: string
-  asunto: string
-  materia1: string
-  materia2: string
-  materia3: string
-  sentido: string
-  criterio1: string
-  criterio2: string
-  palabras: string
-  organismo: string
-}> = {}): (string | number | null)[] {
+function mkRow(
+  o: Partial<{
+    resolucion: string
+    ano: number
+    mesEntrada: string
+    mesResolucion: string
+    motivo: string
+    asunto: string
+    materia1: string
+    materia2: string
+    materia3: string
+    sentido: string
+    criterio1: string
+    criterio2: string
+    palabras: string
+    organismo: string
+  }> = {},
+): (string | number | null)[] {
   return [
     o.resolucion ?? 'R CTBG 0001/2026 ',
     o.ano ?? 2025,
@@ -87,7 +87,7 @@ describe('ctbg — parseCtbgWorkbook', () => {
   it('ignores non-year sheet names', () => {
     const buf = makeBuffer({
       '2025': [mkRow({ resolucion: 'R CTBG 0001/2025' })],
-      'notas': [mkRow({ resolucion: 'R CTBG 9999/XXXX' })],
+      notas: [mkRow({ resolucion: 'R CTBG 9999/XXXX' })],
     })
     const entries = parseCtbgWorkbook(buf)
     expect(entries.length).toBe(1)

@@ -21,6 +21,7 @@ import {
   type AvisoMapping,
   type FitTask,
   type FitEvidenceItem,
+  type ReportLike,
   type SourceLike,
 } from '../src/scraper/area-fit'
 
@@ -116,7 +117,7 @@ describe('area-fit — parsing the real model payload', () => {
   it('rejects "relacionada" carrying no evidence at all', () => {
     expect(() =>
       resolveAssessment({ value: 'relacionada', evidenceIndices: [], reason: 'x' }, [
-        { label: 'Arquitecto Técnico', sourceIds: ['src-060'] },
+        { label: 'Arquitecto Técnico', short: 'Arquitecto Técnico', sourceIds: ['src-060'] },
       ]),
     ).toThrow(AreaFitValidationError)
   })
@@ -143,7 +144,7 @@ describe('area-fit — parsing the real model payload', () => {
     // For Eva Lara, whose only political row is the seat she holds now, it
     // asserted a prior office she has never held.
     const c = FIXTURE.cases[0]
-    const row = rowFromResponse(taskFrom(c), c.response) as Record<string, unknown>
+    const row = rowFromResponse(taskFrom(c), c.response) as unknown as Record<string, unknown>
     expect('cargoPublicoPrevio' in row).toBe(false)
   })
 })
@@ -941,7 +942,7 @@ describe('area-fit — direccion: which way the warning cuts', () => {
     const m = resolveAvisoMapping(
       { avisoIndex: 0, eje: 'experiencia', direccion: 'matiza', tipo: 'texto libre' } as never,
       ['una advertencia'],
-    ) as Record<string, unknown>
+    ) as unknown as Record<string, unknown>
     expect('tipo' in m).toBe(false)
     // Every remaining string value is either resolved from the report or drawn
     // from a closed set — assert that, rather than trusting the shape.
@@ -1147,10 +1148,7 @@ describe('area-fit — the published snapshot’s backing is MEASURED, not assum
       readFileSync(join(__dirname, '..', 'public', 'data', 'journalist-reports.json'), 'utf8'),
     )
     const poolsById = new Map(
-      (reports.items || reports.reports || []).map((r: { id: string }) => [
-        r.id,
-        evidencePoolsFor(r),
-      ]),
+      (reports.items || reports.reports || []).map((r: ReportLike) => [r.id, evidencePoolsFor(r)]),
     )
     let checked = 0
     for (const row of snap.rows) {

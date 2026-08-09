@@ -9,9 +9,8 @@ vi.mock('../../src/lib/snapshot-store', () => ({
 }))
 vi.mock('../../src/reportajes', () => ({ REPORTAJE_SLUGS: ['uno', 'dos'] }))
 
-const { ReportajeBlockD, reportajeTopic, SUMMARY_CHARS } = await import(
-  '../../src/variants/direction-d/blocks/ReportajeBlockD'
-)
+const { ReportajeBlockD, reportajeTopic, SUMMARY_CHARS } =
+  await import('../../src/variants/direction-d/blocks/ReportajeBlockD')
 
 const LARGO =
   'El Ayuntamiento celebra una innovadora plataforma que analiza el comportamiento de los ' +
@@ -82,10 +81,7 @@ describe('ReportajeBlockD — the landing lead', () => {
 
   it('honours the honesty gate: a borrador never lists', async () => {
     snapshots.set('/data/reportajes/uno.json', pieza({ estado: 'borrador' }))
-    snapshots.set(
-      '/data/reportajes/dos.json',
-      pieza({ slug: 'dos', titulo: 'La única publicada' }),
-    )
+    snapshots.set('/data/reportajes/dos.json', pieza({ slug: 'dos', titulo: 'La única publicada' }))
     draw()
     await screen.findByText('La única publicada')
     expect(screen.queryByText('Dos millones para el destino inteligente')).toBeNull()

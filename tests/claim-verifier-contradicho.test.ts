@@ -73,7 +73,10 @@ describe('claim-verifier — contradicho requires a real match', () => {
         entities: { amountEuros: 1_700_000_000, referencedEntity: 'plan edificant' },
       }),
       tenders: tenders([
-        { title: 'obras del plan edificant: eficiencia energética CEIP Eres Altes', finalAmount: 486000 },
+        {
+          title: 'obras del plan edificant: eficiencia energética CEIP Eres Altes',
+          finalAmount: 486000,
+        },
         { title: 'contrato mayor de referencia', finalAmount: 55_685_179 },
       ]),
     })
@@ -90,9 +93,7 @@ describe('claim-verifier — contradicho requires a real match', () => {
           referencedEntity: 'reasfaltado casco urbano',
         },
       }),
-      tenders: tenders([
-        { title: 'Obras de reasfaltado del casco urbano', finalAmount: 200000 },
-      ]),
+      tenders: tenders([{ title: 'Obras de reasfaltado del casco urbano', finalAmount: 200000 }]),
     })
     expect(v.verdict).toBe('contradicho')
   })

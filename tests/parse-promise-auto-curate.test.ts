@@ -238,7 +238,9 @@ describe('promise-auto-curate — selectStatusDrafts', () => {
 
   it('refuses a backward transition (I-2 forward-only): cumplida → en-progreso', () => {
     const out = selectStatusDrafts({
-      candidates: [statusDraft('back', { currentStatus: 'cumplida', proposedStatus: 'en-progreso' })],
+      candidates: [
+        statusDraft('back', { currentStatus: 'cumplida', proposedStatus: 'en-progreso' }),
+      ],
       seenDraftIds: new Set(),
       seenTransitions: new Set(),
       frozen: false,

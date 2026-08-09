@@ -89,7 +89,11 @@ describe('a withdrawn breakdown leaves no vote directions on screen', () => {
   })
 
   it('says the breakdown was withdrawn, and why, instead of leaving a silent hole', () => {
-    render(<VoteBreakdownRetracted retraction={{ reason: REASON, retractedAt: '2026-08-05T10:00:00.000Z' }} />)
+    render(
+      <VoteBreakdownRetracted
+        retraction={{ reason: REASON, retractedAt: '2026-08-05T10:00:00.000Z' }}
+      />,
+    )
     expect(screen.getByText(/DESGLOSE POR GRUPOS RETIRADO/)).toBeTruthy()
     expect(screen.getByText(/2026-08-05/)).toBeTruthy()
     expect(screen.getByText(REASON)).toBeTruthy()

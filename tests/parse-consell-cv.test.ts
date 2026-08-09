@@ -15,15 +15,17 @@ function makeBuffer(rows: (string | number | null)[][]): Buffer {
   return XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' }) as Buffer
 }
 
-function mkRow(o: Partial<{
-  numero: string
-  fecha: string | number
-  expediente: string
-  administracion: string
-  motivo: string
-  materia: string
-  sentido: string
-}> = {}): (string | number | null)[] {
+function mkRow(
+  o: Partial<{
+    numero: string
+    fecha: string | number
+    expediente: string
+    administracion: string
+    motivo: string
+    materia: string
+    sentido: string
+  }> = {},
+): (string | number | null)[] {
   return [
     o.numero ?? '1/2026',
     o.fecha ?? '1/14/26',
@@ -49,10 +51,7 @@ describe('consell-cv — parseConsellTable', () => {
   })
 
   it('skips rows with no numero', () => {
-    const buf = makeBuffer([
-      mkRow({ numero: '1/2026' }),
-      mkRow({ numero: '' }),
-    ])
+    const buf = makeBuffer([mkRow({ numero: '1/2026' }), mkRow({ numero: '' })])
     expect(parseConsellTable(buf, 2026).length).toBe(1)
   })
 
@@ -93,8 +92,26 @@ describe('consell-cv — parseConsellTable', () => {
     const wb = XLSX.utils.book_new()
     const sheet = XLSX.utils.aoa_to_sheet([
       ['RESOLUCIONES 2025', null, null, null, null, null, null, null],
-      ['N.º RESOLUCIÓN', 'FECHA', 'EXPEDIENTE', 'ADMINISTRACIÓN\nRECLAMADA', 'RESUMEN', 'MATERIA', 'SENTIDO', ''],
-      ['1/2025', '14/01/25', 'GESOC/RE/2024/99', 'Ayuntamiento de Riba-roja de Túria', 'Falta de respuesta', 'Información', 'Estimatoria', ''],
+      [
+        'N.º RESOLUCIÓN',
+        'FECHA',
+        'EXPEDIENTE',
+        'ADMINISTRACIÓN\nRECLAMADA',
+        'RESUMEN',
+        'MATERIA',
+        'SENTIDO',
+        '',
+      ],
+      [
+        '1/2025',
+        '14/01/25',
+        'GESOC/RE/2024/99',
+        'Ayuntamiento de Riba-roja de Túria',
+        'Falta de respuesta',
+        'Información',
+        'Estimatoria',
+        '',
+      ],
     ])
     XLSX.utils.book_append_sheet(wb, sheet, 'Hoja1')
     const buf = XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' }) as Buffer
@@ -105,10 +122,7 @@ describe('consell-cv — parseConsellTable', () => {
   })
 
   it('skips rows whose first column is non-numeric (e.g. "Total")', () => {
-    const buf = makeBuffer([
-      mkRow({ numero: '1/2026' }),
-      mkRow({ numero: 'Total' }),
-    ])
+    const buf = makeBuffer([mkRow({ numero: '1/2026' }), mkRow({ numero: 'Total' })])
     expect(parseConsellTable(buf, 2026).length).toBe(1)
   })
 
@@ -195,12 +209,30 @@ describe('consell-cv — filterEntries', () => {
 describe('consell-cv — buildSnapshot', () => {
   it('aggregates matched entries with bySentido + byMateria', () => {
     const buf = makeBuffer([
-      mkRow({ numero: '1/2026', administracion: 'Ayuntamiento de Riba-roja de Túria', sentido: 'Estimatoria' }),
-      mkRow({ numero: '2/2026', administracion: 'Ayuntamiento de Dénia', sentido: 'Desestimatoria' }),
-      mkRow({ numero: '3/2026', administracion: 'Ayuntamiento de Ribarroja del Turia', sentido: 'Estimatoria', materia: 'Contratación' }),
+      mkRow({
+        numero: '1/2026',
+        administracion: 'Ayuntamiento de Riba-roja de Túria',
+        sentido: 'Estimatoria',
+      }),
+      mkRow({
+        numero: '2/2026',
+        administracion: 'Ayuntamiento de Dénia',
+        sentido: 'Desestimatoria',
+      }),
+      mkRow({
+        numero: '3/2026',
+        administracion: 'Ayuntamiento de Ribarroja del Turia',
+        sentido: 'Estimatoria',
+        materia: 'Contratación',
+      }),
     ])
     const entries = parseConsellTable(buf, 2026)
-    const snap = buildSnapshot(entries, ['Riba-roja de Túria', 'Ribarroja del Turia'], [{ year: 2026, url: 'x' }], new Date('2026-04-20T00:00:00Z'))
+    const snap = buildSnapshot(
+      entries,
+      ['Riba-roja de Túria', 'Ribarroja del Turia'],
+      [{ year: 2026, url: 'x' }],
+      new Date('2026-04-20T00:00:00Z'),
+    )
     expect(snap.stats.totalEntries).toBe(3)
     expect(snap.stats.matchedEntries).toBe(2)
     expect(snap.stats.bySentido.Estimatoria).toBe(2)

@@ -19,7 +19,6 @@ export function installFetchMock(map: FetchMockMap) {
     }
     return new Response('not found', { status: 404 })
   })
-  // @ts-expect-error — override global fetch for the test window.
   globalThis.fetch = fn
   return fn
 }

@@ -161,7 +161,6 @@ describe('scraper/tenders — parseRibalicitaTenders', () => {
     }
   })
 
-
   it('sorts newest-first when sortByDateDesc', () => {
     // The adapter exposes tenders sorted newest-first by submission/open date.
     const withDate = tenders.filter((t) => t.submissionDate)

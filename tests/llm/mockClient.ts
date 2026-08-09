@@ -14,7 +14,9 @@ import type { CallLlmOptions } from '../../src/llm/client'
 const responses = new Map<string, unknown>()
 
 export function mockKey(systemPrompt: string, userPrompt: string): string {
-  return createHash('sha256').update(systemPrompt + '\0' + userPrompt).digest('hex')
+  return createHash('sha256')
+    .update(systemPrompt + '\0' + userPrompt)
+    .digest('hex')
 }
 
 /** Register a canned response. Subsequent mockCallLLM() invocations with the
@@ -43,7 +45,9 @@ export async function mockCallLLM<TSchema extends ZodTypeAny>(
   if (canned === null) return null
   const parsed = opts.schema.safeParse(canned)
   if (!parsed.success) {
-    throw new Error(`mockCallLLM: canned response fails schema: ${parsed.error.toString().slice(0, 200)}`)
+    throw new Error(
+      `mockCallLLM: canned response fails schema: ${parsed.error.toString().slice(0, 200)}`,
+    )
   }
   return parsed.data as z.infer<TSchema>
 }

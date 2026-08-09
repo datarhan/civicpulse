@@ -86,7 +86,7 @@ describe('press-finding — corrections log', () => {
 
   it('defaults corrections to empty array when omitted', () => {
     const finding = makeFinding()
-    delete (finding as Record<string, unknown>).corrections
+    delete (finding as unknown as Record<string, unknown>).corrections
     const parsed = validatePressFindingsSnapshot(JSON.stringify(makeSnapshot([finding])))
     expect(parsed.items[0].corrections).toEqual([])
   })

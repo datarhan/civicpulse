@@ -77,7 +77,11 @@ const STEP_OUTPUTS: Record<string, string> = {
 const sandboxes: string[] = []
 
 function git(dir: string, ...args: string[]): string {
-  return execFileSync('git', args, { cwd: dir, encoding: 'utf8', env: { ...process.env, HOME: dir } })
+  return execFileSync('git', args, {
+    cwd: dir,
+    encoding: 'utf8',
+    env: { ...process.env, HOME: dir },
+  })
 }
 
 interface SandboxOpts {
@@ -107,7 +111,10 @@ function makeSandbox(opts: SandboxOpts = {}): string {
   writeFileSync(join(dir, 'public/data/promises.json'), '{"items":[{"id":"baseline"}]}\n')
   // hallazgos' node -e backlog query reads these two. No video date matches a
   // pleno date, so the transcribe/extract loop is an intentional no-op.
-  writeFileSync(join(dir, 'public/data/plenos.json'), '{"items":[{"id":"p1","date":"2020-01-01"}]}\n')
+  writeFileSync(
+    join(dir, 'public/data/plenos.json'),
+    '{"items":[{"id":"p1","date":"2020-01-01"}]}\n',
+  )
   // press-lab snapshots
   for (const f of [
     'factcheck.json',

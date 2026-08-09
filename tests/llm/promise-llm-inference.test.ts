@@ -73,7 +73,9 @@ function userPrompt(input: RetrievalInput, publisher = 'Levante-EMV') {
   })
 }
 
-beforeEach(() => { resetMock() })
+beforeEach(() => {
+  resetMock()
+})
 
 describe('promise-llm-inference · LOREG freeze', () => {
   it('returns no items when the snapshot is frozen until a future date', async () => {
@@ -99,7 +101,8 @@ describe('promise-llm-inference · LOREG freeze', () => {
           evidenceUrl: BASE_INPUT.corpora[0].documents[0].url,
           publisher: 'Levante-EMV',
           date: '2026-03-17',
-          quote: 'El pleno aprobó esta mañana una partida de dos millones para obras escolares en 2026.',
+          quote:
+            'El pleno aprobó esta mañana una partida de dos millones para obras escolares en 2026.',
           reasoning: 'Direct match on the 2M€ amount + 2026 school context.',
           confidence: 0.88,
         },
@@ -234,15 +237,11 @@ describe('promise-llm-inference · empty retriever', () => {
 describe('promise-llm-inference · prompt version', () => {
   it('passes PROMISE_EVIDENCE_PROMPT_VERSION through to the caller', async () => {
     let seen = ''
-    await minePromiseEvidence(
-      BASE_INPUT,
-      { snapshot: { frozenUntil: null } },
-      async (opts) => {
-        seen = opts.promptVersion
-        stubResponse(opts.systemPrompt, opts.userPrompt, { evidence: [] })
-        return mockCallLLM(opts)
-      },
-    )
+    await minePromiseEvidence(BASE_INPUT, { snapshot: { frozenUntil: null } }, async (opts) => {
+      seen = opts.promptVersion
+      stubResponse(opts.systemPrompt, opts.userPrompt, { evidence: [] })
+      return mockCallLLM(opts)
+    })
     expect(seen).toBe(PROMISE_EVIDENCE_PROMPT_VERSION)
   })
 })

@@ -148,10 +148,7 @@ describe('chunker applies the public gate', () => {
       mk('b', 'afirmacion_numerica', 'verificado') as never, // shown
       mk('c', 'afirmacion_numerica', 'sin-datos') as never, // toggle
     ])
-    const { manifest, chunks } = buildManifest(
-      groupItemsByPleno(gated),
-      '2026-06-21T00:00:00.000Z',
-    )
+    const { manifest, chunks } = buildManifest(groupItemsByPleno(gated), '2026-06-21T00:00:00.000Z')
     const items = chunks.get('p1')!.items
     expect(items.map((i) => i.claim.id).sort()).toEqual(['b', 'c'])
     expect(items.every((i) => i.visibility)).toBe(true)

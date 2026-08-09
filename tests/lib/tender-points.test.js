@@ -128,17 +128,15 @@ describe('obrasWithoutMoneyPin — no double pin for the same work', () => {
   })
 
   it('drops obras with no usable coordinates rather than guessing', () => {
-    const obras = [
-      { id: 'a' },
-      { id: 'b', lat: 39.52, lng: null },
-      { id: 'c', lat: 'x', lng: 'y' },
-    ]
+    const obras = [{ id: 'a' }, { id: 'b', lat: 39.52, lng: null }, { id: 'c', lat: 'x', lng: 'y' }]
     expect(obrasWithoutMoneyPin(obras, places)).toEqual([])
   })
 
   it('is total on empty/missing inputs', () => {
     expect(obrasWithoutMoneyPin(null, places)).toEqual([])
-    expect(obrasWithoutMoneyPin([{ id: 'o', lat: 1, lng: 2 }], null).map((o) => o.id)).toEqual(['o'])
+    expect(obrasWithoutMoneyPin([{ id: 'o', lat: 1, lng: 2 }], null).map((o) => o.id)).toEqual([
+      'o',
+    ])
     expect(obrasWithoutMoneyPin(undefined, undefined)).toEqual([])
   })
 })

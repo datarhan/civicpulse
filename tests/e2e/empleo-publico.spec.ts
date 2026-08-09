@@ -8,9 +8,13 @@ test.describe('Empleo público (/empleo-publico)', () => {
       if (m.type() === 'error') errors.push(m.text())
     })
     await page.goto('/empleo-publico', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByRole('heading', { name: 'Empleo público' })).toBeVisible({ timeout: 8000 })
+    await expect(page.getByRole('heading', { name: 'Empleo público' })).toBeVisible({
+      timeout: 8000,
+    })
     // distinct from the ADL feed
-    await expect(page.getByText(/procesos selectivos del propio Ayuntamiento/i).first()).toBeVisible()
+    await expect(
+      page.getByText(/procesos selectivos del propio Ayuntamiento/i).first(),
+    ).toBeVisible()
     expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
   })
 })

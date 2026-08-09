@@ -4,7 +4,14 @@ import { pressLabSummary } from '../../src/lib/press-lab'
 const NOW = new Date('2026-07-03T12:00:00Z').getTime()
 
 function press(id, date) {
-  return { id, title: `headline ${id}`, source: 'X', sourceHost: 'x.test', date, fingerprint: `fp-${id}` }
+  return {
+    id,
+    title: `headline ${id}`,
+    source: 'X',
+    sourceHost: 'x.test',
+    date,
+    fingerprint: `fp-${id}`,
+  }
 }
 function verifiedRow(articleId, verdict) {
   return { claim: { articleId }, verification: { verdict } }

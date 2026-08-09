@@ -9,7 +9,7 @@ function mountWith(data) {
   return render(
     <MemoryRouter>
       <Quejas />
-    </MemoryRouter>
+    </MemoryRouter>,
   )
 }
 
@@ -29,7 +29,11 @@ describe('/quejas — empty state', () => {
       },
       '/data/ctbg.json': {
         generatedAt: '2026-04-20T12:00:00Z',
-        source: { url: 'https://consejodetransparencia.es/x.xlsx', platform: 'CTBG', spec: 'XLSX oficial' },
+        source: {
+          url: 'https://consejodetransparencia.es/x.xlsx',
+          platform: 'CTBG',
+          spec: 'XLSX oficial',
+        },
         query: 'Riba-roja',
         stats: { totalEntries: 10551, matchedEntries: 0, years: [], bySentido: {} },
         matched: [],
@@ -78,8 +82,18 @@ describe('/quejas — populated state', () => {
           },
         ],
       },
-      '/data/sindic.json': { generatedAt: '2026-04-20T00:00:00Z', source: { platform: 'S', portal: 'https://www.elsindic.com' }, items: [] },
-      '/data/ctbg.json': { generatedAt: '2026-04-20T00:00:00Z', source: { url: 'x', platform: 'p', spec: 's' }, query: 'Riba-roja', stats: { totalEntries: 10, matchedEntries: 0, years: [], bySentido: {} }, matched: [] },
+      '/data/sindic.json': {
+        generatedAt: '2026-04-20T00:00:00Z',
+        source: { platform: 'S', portal: 'https://www.elsindic.com' },
+        items: [],
+      },
+      '/data/ctbg.json': {
+        generatedAt: '2026-04-20T00:00:00Z',
+        source: { url: 'x', platform: 'p', spec: 's' },
+        query: 'Riba-roja',
+        stats: { totalEntries: 10, matchedEntries: 0, years: [], bySentido: {} },
+        matched: [],
+      },
       '/data/geo.json': { boundary: { polygon: [] }, neighborhoods: [] },
     })
 
@@ -101,7 +115,11 @@ describe('/quejas — CtbgCard factual zero message', () => {
         stats: { total: 0, byState: {}, byNeighborhood: {}, byCategory: {}, byConcejal: {} },
         items: [],
       },
-      '/data/sindic.json': { generatedAt: '2026-04-20T00:00:00Z', source: { platform: 'S', portal: 'https://www.elsindic.com' }, items: [] },
+      '/data/sindic.json': {
+        generatedAt: '2026-04-20T00:00:00Z',
+        source: { platform: 'S', portal: 'https://www.elsindic.com' },
+        items: [],
+      },
       '/data/ctbg.json': {
         generatedAt: '2026-04-20T00:00:00Z',
         source: { url: 'x', platform: 'CTBG', spec: 'XLSX' },

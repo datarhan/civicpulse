@@ -2,8 +2,8 @@
 /**
  * Report snapshots that have quietly stopped refreshing.
  *
- *   npm run check:freshness            # human table
- *   npm run check:freshness -- --json  # machine-readable
+ *   npm run check:cadence            # human table
+ *   npm run check:cadence -- --json  # machine-readable
  *
  * Exits 1 when something is stale, so a caller can notice. A retired upstream
  * is NOT stale — it is a known, surfaced end-of-life.

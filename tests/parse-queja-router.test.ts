@@ -11,7 +11,7 @@ import {
 } from '../src/scraper/queja-router'
 
 const officials: OfficialsSnapshot = JSON.parse(
-  readFileSync(resolve(__dirname, '../public/data/officials.json'), 'utf8')
+  readFileSync(resolve(__dirname, '../public/data/officials.json'), 'utf8'),
 )
 
 describe('queja-router — classifyQueja', () => {
@@ -96,7 +96,7 @@ describe('queja-router — routeQueja concejalía matching', () => {
   it('routes via_publica to Urbanismo/Obra Pública (Teresa Pozuelo)', () => {
     const r = routeQueja(
       { title: 'Bache profundo', detail: 'Bache en la avenida principal' },
-      officials
+      officials,
     )
     expect(r.concejalia.responsible?.name).toMatch(/Teresa Pozuelo/)
     expect(r.concejalia.area.toLowerCase()).toMatch(/obra|urbanismo/)
@@ -108,7 +108,7 @@ describe('queja-router — routeQueja concejalía matching', () => {
         title: 'Solicitud de acceso a información',
         detail: 'Pido copia de los contratos de alumbrado',
       },
-      officials
+      officials,
     )
     expect(r.concejalia.responsible?.name).toMatch(/María Esther Gómez/)
     expect(r.concejalia.area.toLowerCase()).toMatch(/transparencia/)
@@ -117,7 +117,7 @@ describe('queja-router — routeQueja concejalía matching', () => {
   it('routes limpieza/residuos to Servicios públicos (Rafael Gómez)', () => {
     const r = routeQueja(
       { title: 'Basura acumulada', detail: 'Contenedores desbordados toda la semana' },
-      officials
+      officials,
     )
     expect(r.concejalia.responsible?.name).toMatch(/Rafael Gómez/)
   })
@@ -125,7 +125,7 @@ describe('queja-router — routeQueja concejalía matching', () => {
   it('routes ruido to Seguridad (Raquel Pamblanco)', () => {
     const r = routeQueja(
       { title: 'Ruido nocturno', detail: 'Local con música alta por la noche' },
-      officials
+      officials,
     )
     expect(r.concejalia.responsible?.name).toMatch(/Raquel Pamblanco/)
   })
@@ -141,7 +141,7 @@ describe('queja-router — routeQueja concejalía matching', () => {
     }
     const r = routeQueja(
       { title: 'Algo raro', detail: 'Un tema sin encaje en ninguna concejalía conocida' },
-      minimal
+      minimal,
     )
     expect(r.concejalia.responsible?.role).toBe('alcalde')
     expect(r.concejalia.alcaldeFallback.name).toMatch(/Robert Raga/)
@@ -173,11 +173,9 @@ describe('queja-router — legal basis', () => {
         title: 'Derecho de acceso',
         detail: 'Solicito copia de los contratos de obras del 2025',
       },
-      officials
+      officials,
     )
-    const art20 = r.legalBasis.find((l) =>
-      l.law.includes('19/2013') && l.article.includes('20')
-    )
+    const art20 = r.legalBasis.find((l) => l.law.includes('19/2013') && l.article.includes('20'))
     expect(art20).toBeDefined()
     expect(art20?.url).toMatch(/BOE-A-2013-12887/)
   })
@@ -206,7 +204,7 @@ describe('queja-router — time limits and silencio', () => {
   it('returns 30d resolución for transparencia (1 mes art. 20 Ley 19/2013)', () => {
     const r = routeQueja(
       { title: 'Acceso a información pública', detail: 'pido copia de contratos' },
-      officials
+      officials,
     )
     const res = r.timeLimits.find((t) => t.kind === 'resolucion')
     expect(res?.days).toBe(30)
@@ -215,7 +213,7 @@ describe('queja-router — time limits and silencio', () => {
   it('silencio positivo for licencia de obra menor', () => {
     const r = routeQueja(
       { title: 'Licencia de obra menor', detail: 'pido licencia para reforma interior' },
-      officials
+      officials,
     )
     expect(r.silencio).toBe('positivo')
   })
@@ -239,7 +237,7 @@ describe('queja-router — escalation path', () => {
   it('transparencia escalates to the CTBG (reclamación especial)', () => {
     const r = routeQueja(
       { title: 'Acceso a información pública', detail: 'pido contratos' },
-      officials
+      officials,
     )
     const ctbg = r.escalation.find((e) => e.who.includes('CTBG') || e.who.includes('Consell'))
     expect(ctbg).toBeDefined()
@@ -249,7 +247,7 @@ describe('queja-router — escalation path', () => {
     const r = routeQueja({ title: 'Bache', detail: 'bache' }, officials)
     for (const step of r.escalation) {
       expect(step.basis.url).toMatch(
-        /boe\.es|elsindic\.com|consejodetransparencia\.es|defensordelpueblo\.es|gva\.es/
+        /boe\.es|elsindic\.com|consejodetransparencia\.es|defensordelpueblo\.es|gva\.es/,
       )
     }
   })
@@ -280,7 +278,7 @@ describe('queja-router — Spanish explanation', () => {
   it('produces a human-readable multi-paragraph explanation', () => {
     const r = routeQueja(
       { title: 'Bache profundo en Av. Primera', detail: 'Bache sin reparar desde hace 3 meses' },
-      officials
+      officials,
     )
     expect(r.explanationEs.length).toBeGreaterThan(300)
     // name of responsible + deadline + escalation body all appear
@@ -290,12 +288,9 @@ describe('queja-router — Spanish explanation', () => {
   })
 
   it('never includes editorial adjectives (ineficaz, corrupto, negligente)', () => {
-    const r = routeQueja(
-      { title: 'Bache', detail: 'bache en la calle' },
-      officials
-    )
+    const r = routeQueja({ title: 'Bache', detail: 'bache en la calle' }, officials)
     expect(r.explanationEs.toLowerCase()).not.toMatch(
-      /ineficaz|incompetente|negligente|corrupto|prevaricador|mentiroso/
+      /ineficaz|incompetente|negligente|corrupto|prevaricador|mentiroso/,
     )
   })
 })

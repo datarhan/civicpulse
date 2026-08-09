@@ -115,7 +115,10 @@ describe('summarizePressBatch · attempted / done / never attempted, counted apa
   })
 
   it('accounts for every requested article, so no outcome can go unreported', async () => {
-    const caller = vi.fn().mockResolvedValueOnce({ summary: 'x'.repeat(160) }).mockResolvedValue(null)
+    const caller = vi
+      .fn()
+      .mockResolvedValueOnce({ summary: 'x'.repeat(160) })
+      .mockResolvedValue(null)
     const inputs = [
       article(1, REAL_BODY),
       article(2, REAL_BODY),

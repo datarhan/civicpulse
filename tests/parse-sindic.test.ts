@@ -41,12 +41,10 @@ describe('sindic — validateResolucion', () => {
   })
 
   it('rejects unknown materia and sentido', () => {
-    expect(() =>
-      validateResolucion(mkRes({ materia: 'politica' as never }))
-    ).toThrow(/materia/)
-    expect(() =>
-      validateResolucion(mkRes({ sentido: 'despotriquería' as never }))
-    ).toThrow(/sentido/)
+    expect(() => validateResolucion(mkRes({ materia: 'politica' as never }))).toThrow(/materia/)
+    expect(() => validateResolucion(mkRes({ sentido: 'despotriquería' as never }))).toThrow(
+      /sentido/,
+    )
   })
 
   it('rejects short / long titulo + resumen', () => {
@@ -55,13 +53,13 @@ describe('sindic — validateResolucion', () => {
   })
 
   it('enforces urlPdf on elsindic.com', () => {
-    expect(() =>
-      validateResolucion(mkRes({ urlPdf: 'https://example.com/x.pdf' }))
-    ).toThrow(/elsindic\.com/)
+    expect(() => validateResolucion(mkRes({ urlPdf: 'https://example.com/x.pdf' }))).toThrow(
+      /elsindic\.com/,
+    )
     // http (non-https) also rejected
-    expect(() =>
-      validateResolucion(mkRes({ urlPdf: 'http://www.elsindic.com/x.pdf' }))
-    ).toThrow(/elsindic\.com/)
+    expect(() => validateResolucion(mkRes({ urlPdf: 'http://www.elsindic.com/x.pdf' }))).toThrow(
+      /elsindic\.com/,
+    )
   })
 
   it('accepts queja linkage when well-formed', () => {
@@ -70,9 +68,9 @@ describe('sindic — validateResolucion', () => {
   })
 
   it('rejects malformed quejaIdRelacionada', () => {
-    expect(() =>
-      validateResolucion(mkRes({ quejaIdRelacionada: 'abc' as never }))
-    ).toThrow(/quejaId/)
+    expect(() => validateResolucion(mkRes({ quejaIdRelacionada: 'abc' as never }))).toThrow(
+      /quejaId/,
+    )
   })
 })
 
@@ -88,12 +86,8 @@ describe('sindic — validateSnapshot', () => {
   it('rejects out-of-order items (must be newest first)', () => {
     const older = mkRes({ id: 'sindic-202300001', expediente: '202300001', fecha: '2023-01-01' })
     const newer = mkRes({ id: 'sindic-202400427', expediente: '202400427', fecha: '2024-06-12' })
-    expect(() =>
-      validateSnapshot({ items: [older, newer] })
-    ).toThrow(/newest first/)
-    expect(() =>
-      validateSnapshot({ items: [newer, older] })
-    ).not.toThrow()
+    expect(() => validateSnapshot({ items: [older, newer] })).toThrow(/newest first/)
+    expect(() => validateSnapshot({ items: [newer, older] })).not.toThrow()
   })
 
   it('normalises source metadata', () => {

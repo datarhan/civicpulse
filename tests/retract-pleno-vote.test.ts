@@ -662,7 +662,9 @@ describe('the published snapshot upholds the retraction invariants', () => {
   })
 
   it('passes check:relations — never [broken]', () => {
-    const r = runRelationsChecks({ votes: raw() as any }).find((c) => c.name === 'votes-retractions')!
+    const r = runRelationsChecks({ votes: raw() as any }).find(
+      (c) => c.name === 'votes-retractions',
+    )!
     expect(r.broken).toEqual([])
     expect(r.status).not.toBe('broken')
     // `empty` is a legitimate state here (no retractions yet) and so is `ok`;

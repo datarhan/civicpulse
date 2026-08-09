@@ -27,9 +27,13 @@ const baseClaim: PlenoClaimExtraction = {
   reasoning: 'Cifra concreta atribuible al cierre presupuestario',
 }
 
+// The return is annotated `Promise<any>` because `LlmCaller` is generic over
+// the zod schema chosen at the call site, so no concrete literal is assignable
+// to it. What the payload must look like is pinned by `baseClaim`, which IS
+// typed `PlenoClaimExtraction` — that is where a schema drift surfaces.
 function callerOnce(slug: string | null, opts: Partial<PlenoClaimExtraction> = {}) {
   let called = 0
-  return async () => {
+  return async (): Promise<any> => {
     called += 1
     if (called > 1) return { claims: [] }
     return { claims: [{ ...baseClaim, speakerSlug: slug, ...opts }] }

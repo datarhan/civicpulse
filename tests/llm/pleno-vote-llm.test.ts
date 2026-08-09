@@ -1,7 +1,11 @@
 /**
  * Unit tests for the LLM-backed pleno vote extractor. Uses mockClient so
- * tests are fast + deterministic; precision/recall vs. real LLM is measured
- * separately by `npm run bench:pleno-votes`.
+ * tests are fast + deterministic, and runs in the normal `npm test` pass —
+ * `vitest.config.ts` includes `tests/**` with no exclusion for this directory.
+ *
+ * Nothing here measures precision/recall against a real LLM; no such bench
+ * exists in this repo. The nearest real-model measurements are `eval:verifier`
+ * and `eval:extractor`.
  */
 import { beforeEach, describe, expect, it } from 'vitest'
 import { inferVotesWithLlm } from '../../src/scraper/pleno-vote-llm'
@@ -27,9 +31,15 @@ const OPTS = {
 
 // Realistic transcript — two vote boundaries separated by ≥900 chars of debate
 // filler so splitSegments' overlap window doesn't collapse them into one.
-const DEBATE_FILLER_1 = 'Intervención del portavoz del PSOE defendiendo la propuesta con citas al plan estratégico municipal y al presupuesto aprobado. El portavoz del PP manifiesta su rechazo alegando falta de transparencia en la partida. VOX solicita aclaraciones sobre el calendario de ejecución. Compromís apoya con matices. Se cierra el turno de intervenciones y la alcaldesa invita a la secretaría a leer la propuesta formal.'.repeat(3)
+const DEBATE_FILLER_1 =
+  'Intervención del portavoz del PSOE defendiendo la propuesta con citas al plan estratégico municipal y al presupuesto aprobado. El portavoz del PP manifiesta su rechazo alegando falta de transparencia en la partida. VOX solicita aclaraciones sobre el calendario de ejecución. Compromís apoya con matices. Se cierra el turno de intervenciones y la alcaldesa invita a la secretaría a leer la propuesta formal.'.repeat(
+    3,
+  )
 
-const DEBATE_FILLER_2 = 'Siguiente punto del orden del día. Se cede la palabra al concejal ponente que expone los motivos técnicos y jurídicos. El portavoz de PP pide un informe complementario. El grupo Compromís presenta una enmienda in voce. Tras un receso de cinco minutos, la alcaldesa retoma la sesión y anuncia que la enmienda queda incorporada al texto principal. Se abre el turno de votación.'.repeat(3)
+const DEBATE_FILLER_2 =
+  'Siguiente punto del orden del día. Se cede la palabra al concejal ponente que expone los motivos técnicos y jurídicos. El portavoz de PP pide un informe complementario. El grupo Compromís presenta una enmienda in voce. Tras un receso de cinco minutos, la alcaldesa retoma la sesión y anuncia que la enmienda queda incorporada al texto principal. Se abre el turno de votación.'.repeat(
+    3,
+  )
 
 const TWO_VOTES = `
 Punto 3.— Aprobación inicial del presupuesto municipal para 2026.
@@ -69,7 +79,8 @@ describe('pleno-vote-llm · TWO_VOTES transcript', () => {
 
     stubResponse(sys, buildPlenoVoteUserPrompt(seg1), {
       vote: {
-        itemNumber: 3, outcome: 'aprobado',
+        itemNumber: 3,
+        outcome: 'aprobado',
         votes: [
           { bloc: 'PSOE', direction: 'a_favor', seats: 11 },
           { bloc: 'Compromís', direction: 'a_favor', seats: 1 },
@@ -84,7 +95,8 @@ describe('pleno-vote-llm · TWO_VOTES transcript', () => {
 
     stubResponse(sys, buildPlenoVoteUserPrompt(seg2), {
       vote: {
-        itemNumber: 4, outcome: 'aprobado',
+        itemNumber: 4,
+        outcome: 'aprobado',
         votes: [
           { bloc: 'PSOE', direction: 'a_favor', seats: 11 },
           { bloc: 'PP', direction: 'a_favor', seats: 7 },
@@ -113,10 +125,12 @@ describe('pleno-vote-llm · TWO_VOTES transcript', () => {
     stubResponse(sys, buildPlenoVoteUserPrompt(seg1), { vote: null })
     stubResponse(sys, buildPlenoVoteUserPrompt(seg2), {
       vote: {
-        itemNumber: 4, outcome: 'aprobado',
+        itemNumber: 4,
+        outcome: 'aprobado',
         votes: [{ bloc: 'PSOE', direction: 'a_favor' }],
         excerpt: seg2.slice(0, 400),
-        confidence: 0.7, reasoning: 'one bloc captured',
+        confidence: 0.7,
+        reasoning: 'one bloc captured',
       },
     })
 
@@ -133,10 +147,11 @@ describe('pleno-vote-llm · TWO_VOTES transcript', () => {
     for (const seg of [seg1, seg2]) {
       stubResponse(sys, buildPlenoVoteUserPrompt(seg), {
         vote: {
-          itemNumber: 1, outcome: 'aprobado',
+          itemNumber: 1,
+          outcome: 'aprobado',
           votes: [{ bloc: 'PSOE', direction: 'a_favor' }],
           excerpt: seg.slice(0, 400),
-          confidence: 0.4,  // below gate
+          confidence: 0.4, // below gate
           reasoning: 'low-confidence',
         },
       })
@@ -153,7 +168,8 @@ describe('pleno-vote-llm · sanitize guard', () => {
     const sys = systemPrompt()
     stubResponse(sys, buildPlenoVoteUserPrompt(SINGLE_VOTE), {
       vote: {
-        itemNumber: null, outcome: 'aprobado',
+        itemNumber: null,
+        outcome: 'aprobado',
         // Ciudadanos isn't in the 2023-2027 composition — must be filtered out.
         // Leaves PSOE as the only valid entry; still emits because votes.length > 0.
         votes: [
@@ -175,10 +191,12 @@ describe('pleno-vote-llm · sanitize guard', () => {
     const sys = systemPrompt()
     stubResponse(sys, buildPlenoVoteUserPrompt(SINGLE_VOTE), {
       vote: {
-        itemNumber: null, outcome: 'aprobado',
-        votes: [{ bloc: 'Ciudadanos', direction: 'a_favor' }],  // all invalid
+        itemNumber: null,
+        outcome: 'aprobado',
+        votes: [{ bloc: 'Ciudadanos', direction: 'a_favor' }], // all invalid
         excerpt: SINGLE_VOTE.slice(0, 400),
-        confidence: 0.8, reasoning: 'bogus',
+        confidence: 0.8,
+        reasoning: 'bogus',
       },
     })
     const res = await inferVotesWithLlm(SINGLE_VOTE, OPTS, mockCallLLM)
@@ -189,7 +207,8 @@ describe('pleno-vote-llm · sanitize guard', () => {
     const sys = systemPrompt()
     stubResponse(sys, buildPlenoVoteUserPrompt(SINGLE_VOTE), {
       vote: {
-        itemNumber: null, outcome: 'aprobado',
+        itemNumber: null,
+        outcome: 'aprobado',
         votes: [
           // PSOE currently holds 11 seats; 15 is plausible per the global schema cap (21)
           // but impossible in the 2023-2027 composition. The sanitize guard must filter it.
@@ -197,7 +216,8 @@ describe('pleno-vote-llm · sanitize guard', () => {
           { bloc: 'PP', direction: 'en_contra', seats: 7 },
         ],
         excerpt: SINGLE_VOTE.slice(0, 400),
-        confidence: 0.8, reasoning: 'mixed',
+        confidence: 0.8,
+        reasoning: 'mixed',
       },
     })
     const res = await inferVotesWithLlm(SINGLE_VOTE, OPTS, mockCallLLM)

@@ -41,7 +41,11 @@ describe('shortlistCandidates (lexical pre-filter)', () => {
 
 describe('rerankTierB (LLM pick, injected caller)', () => {
   const candidates = [cand({ tenderId: 'c1', title: 'Obras campo deportivo' })]
-  const good = async () => ({
+  // Every stub below is annotated `Promise<any>`: `LlmCaller` is generic over
+  // the zod schema chosen at the call site, so no concrete literal is
+  // assignable to it. Annotating beats an `as unknown as` cast — the
+  // parameters still get checked.
+  const good = async (): Promise<any> => ({
     correlation: {
       quejaId: 'Q-1',
       tenderPermalink: 'https://x/c1',
@@ -60,7 +64,7 @@ describe('rerankTierB (LLM pick, injected caller)', () => {
     })
   })
   it('drops a hallucinated permalink not in the candidate set', async () => {
-    const halluc = async () => ({
+    const halluc = async (): Promise<any> => ({
       correlation: {
         quejaId: 'Q-1',
         tenderPermalink: 'https://x/ZZZ',
@@ -71,7 +75,7 @@ describe('rerankTierB (LLM pick, injected caller)', () => {
     expect(await rerankTierB(queja, candidates, halluc)).toBeNull()
   })
   it('drops a below-threshold confidence', async () => {
-    const weak = async () => ({
+    const weak = async (): Promise<any> => ({
       correlation: {
         quejaId: 'Q-1',
         tenderPermalink: 'https://x/c1',
@@ -82,11 +86,13 @@ describe('rerankTierB (LLM pick, injected caller)', () => {
     expect(await rerankTierB(queja, candidates, weak)).toBeNull()
   })
   it('returns null when the LLM declines (correlation:null)', async () => {
-    expect(await rerankTierB(queja, candidates, async () => ({ correlation: null }))).toBeNull()
+    expect(
+      await rerankTierB(queja, candidates, async (): Promise<any> => ({ correlation: null })),
+    ).toBeNull()
   })
   it('never calls the LLM when there are no candidates', async () => {
     let called = false
-    const spy = async () => {
+    const spy = async (): Promise<any> => {
       called = true
       return { correlation: null }
     }

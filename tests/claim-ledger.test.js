@@ -1,10 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import {
-  gateForDisplay,
-  sortSignalFirst,
-  filterClaims,
-  facetCounts,
-} from '../src/lib/claim-ledger'
+import { gateForDisplay, sortSignalFirst, filterClaims, facetCounts } from '../src/lib/claim-ledger'
 
 const mk = (verdict, opts = {}) => ({
   visibility: opts.visibility,

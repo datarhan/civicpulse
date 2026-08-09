@@ -119,7 +119,11 @@ describe('press-analytics — computeTrustIndicators', () => {
   it('does not count a same-outlet echo as cross-outlet corroboration', () => {
     const press = [
       makePress({ id: 'a-1', title: 'Riba-roja aprueba el presupuesto municipal de 2026' }),
-      makePress({ id: 'a-2', title: 'Riba-roja aprueba el presupuesto municipal para 2026', fingerprint: 'fp-2' }),
+      makePress({
+        id: 'a-2',
+        title: 'Riba-roja aprueba el presupuesto municipal para 2026',
+        fingerprint: 'fp-2',
+      }),
     ]
     const report = computeTrustIndicators({ press, verified: [], now: NOW })
     expect(report.articles[0].indicators.corroboratedAcrossOutlets).toBe(false)

@@ -9,7 +9,7 @@ function mountWith(data) {
   return render(
     <MemoryRouter>
       <QuejasDashboard />
-    </MemoryRouter>
+    </MemoryRouter>,
   )
 }
 
@@ -76,8 +76,24 @@ describe('/quejas/dashboard', () => {
         count: 2,
         composition: { PSOE: 2 },
         officials: [
-          { slug: 'teresa-pozuelo-martin', name: 'Teresa Pozuelo Martín', role: 'concejal', party: 'PSOE', portfolios: ['Obra Pública'], email: '', photoUrl: '' },
-          { slug: 'maria-esther-gomez-laredo', name: 'María Esther Gómez Laredo', role: 'concejal', party: 'PSOE', portfolios: ['Transparencia'], email: '', photoUrl: '' },
+          {
+            slug: 'teresa-pozuelo-martin',
+            name: 'Teresa Pozuelo Martín',
+            role: 'concejal',
+            party: 'PSOE',
+            portfolios: ['Obra Pública'],
+            email: '',
+            photoUrl: '',
+          },
+          {
+            slug: 'maria-esther-gomez-laredo',
+            name: 'María Esther Gómez Laredo',
+            role: 'concejal',
+            party: 'PSOE',
+            portfolios: ['Transparencia'],
+            email: '',
+            photoUrl: '',
+          },
         ],
       },
     })

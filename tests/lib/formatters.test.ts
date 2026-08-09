@@ -61,7 +61,9 @@ describe('prettyNeighborhood', () => {
 
 describe('safeHref', () => {
   it('allows http/https, rejects javascript:/data:/relative/null', () => {
-    expect(safeHref('https://contrataciondelestado.es/x')).toBe('https://contrataciondelestado.es/x')
+    expect(safeHref('https://contrataciondelestado.es/x')).toBe(
+      'https://contrataciondelestado.es/x',
+    )
     expect(safeHref('http://example.com')).toBe('http://example.com')
     expect(safeHref('javascript:alert(1)')).toBe(null)
     expect(safeHref('data:text/html,<script>x</script>')).toBe(null)
@@ -73,7 +75,9 @@ describe('safeHref', () => {
   // these returned null and ExtLink rendered an unlinked <span> — the citation
   // vanished from the page without anything failing.
   it('allows a site-absolute path so an internal citation stays clickable', () => {
-    expect(safeHref('/data/pleno-transcripts/qz6weg.txt')).toBe('/data/pleno-transcripts/qz6weg.txt')
+    expect(safeHref('/data/pleno-transcripts/qz6weg.txt')).toBe(
+      '/data/pleno-transcripts/qz6weg.txt',
+    )
     expect(safeHref('/plenos/qz6weg')).toBe('/plenos/qz6weg')
   })
 

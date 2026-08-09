@@ -1,7 +1,10 @@
 import { describe, it, expect } from 'vitest'
 import { buildEmpleoRss } from '../src/scraper/empleo-rss'
+import type { OfertaItem } from '../src/scraper/empleo'
 
-const mk = (o: any) => ({
+// Annotated with the real `OfertaItem` rather than left inferred: an inferred
+// literal drifts silently from the interface the builder consumes.
+const mk = (o: any): OfertaItem => ({
   id: String(o.fo),
   fo: o.fo,
   codigo: o.codigo ?? '2026/00001',

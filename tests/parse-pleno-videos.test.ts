@@ -1,22 +1,15 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import {
-  parseVideoEntry,
-  parseChannelFeed,
-  matchVideosToPlenos,
-} from '../src/scraper/pleno-videos'
+import { parseVideoEntry, parseChannelFeed, matchVideosToPlenos } from '../src/scraper/pleno-videos'
 
-const FIXTURE = readFileSync(
-  resolve('tests/fixtures/rr_youtube_channel_sample.jsonl'),
-  'utf8',
-)
+const FIXTURE = readFileSync(resolve('tests/fixtures/rr_youtube_channel_sample.jsonl'), 'utf8')
 
 describe('pleno-videos · parseVideoEntry', () => {
   it('extracts a canonical "Ple Ordinari" title', () => {
     const entry = parseVideoEntry({
       id: 'M1ywm72VHdo',
-      title: "Ple Ordinari  20 d´abril  de 2026.",
+      title: 'Ple Ordinari  20 d´abril  de 2026.',
     })
     expect(entry).not.toBeNull()
     expect(entry!.plenoDate).toBe('2026-04-20')
@@ -61,16 +54,16 @@ describe('pleno-videos · parseVideoEntry', () => {
 
   it('parses each Valencian month correctly', () => {
     const months = [
-      ['gener',    '01'],
-      ['febrer',   '02'],
-      ['març',     '03'],
-      ['abril',    '04'],
-      ['maig',     '05'],
-      ['juny',     '06'],
-      ['juliol',   '07'],
-      ['agost',    '08'],
+      ['gener', '01'],
+      ['febrer', '02'],
+      ['març', '03'],
+      ['abril', '04'],
+      ['maig', '05'],
+      ['juny', '06'],
+      ['juliol', '07'],
+      ['agost', '08'],
       ['setembre', '09'],
-      ['octubre',  '10'],
+      ['octubre', '10'],
       ['novembre', '11'],
       ['desembre', '12'],
     ] as const
@@ -85,7 +78,7 @@ describe('pleno-videos · parseVideoEntry', () => {
     }
   })
 
-  it('handles day-with-apostrophe Valencian form (d\'abril)', () => {
+  it("handles day-with-apostrophe Valencian form (d'abril)", () => {
     const entry = parseVideoEntry({
       id: 'abcdefghijk',
       title: "Ple Ordinari 20 d'abril de 2026",
@@ -147,8 +140,8 @@ describe('pleno-videos · matchVideosToPlenos', () => {
     const snap = parseChannelFeed(FIXTURE)
     const match = matchVideosToPlenos(
       [
-        { id: 'k4olcs',  date: '2026-04-20' },
-        { id: 'ma87e0',  date: '2026-03-16' },
+        { id: 'k4olcs', date: '2026-04-20' },
+        { id: 'ma87e0', date: '2026-03-16' },
         { id: 'unmatch', date: '1999-01-01' },
       ],
       snap.items,
@@ -162,8 +155,20 @@ describe('pleno-videos · matchVideosToPlenos', () => {
     const match = matchVideosToPlenos(
       [{ id: 'x', date: '2024-01-01' }],
       [
-        { ytId: '11111111111', title: 'Stream test — 1 de gener de 2024', plenoDate: '2024-01-01', kind: 'otro', url: 'https://x' },
-        { ytId: '22222222222', title: 'Ple Ordinari 1 de gener de 2024', plenoDate: '2024-01-01', kind: 'ordinario', url: 'https://y' },
+        {
+          ytId: '11111111111',
+          title: 'Stream test — 1 de gener de 2024',
+          plenoDate: '2024-01-01',
+          kind: 'otro',
+          url: 'https://x',
+        },
+        {
+          ytId: '22222222222',
+          title: 'Ple Ordinari 1 de gener de 2024',
+          plenoDate: '2024-01-01',
+          kind: 'ordinario',
+          url: 'https://y',
+        },
       ],
     )
     expect(match.x.ytId).toBe('22222222222')

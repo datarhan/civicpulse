@@ -69,22 +69,36 @@ describe('LLM schemas · PromiseEvidenceItemSchema (V1 gate)', () => {
   })
 
   it('rejects proposedStatus outside V1 set', () => {
-    expect(PromiseEvidenceItemSchema.safeParse({ ...valid, proposedStatus: 'cumplida' }).success).toBe(false)
-    expect(PromiseEvidenceItemSchema.safeParse({ ...valid, proposedStatus: 'no-ejecutada' }).success).toBe(false)
-    expect(PromiseEvidenceItemSchema.safeParse({ ...valid, proposedStatus: 'inviable' }).success).toBe(false)
+    expect(
+      PromiseEvidenceItemSchema.safeParse({ ...valid, proposedStatus: 'cumplida' }).success,
+    ).toBe(false)
+    expect(
+      PromiseEvidenceItemSchema.safeParse({ ...valid, proposedStatus: 'no-ejecutada' }).success,
+    ).toBe(false)
+    expect(
+      PromiseEvidenceItemSchema.safeParse({ ...valid, proposedStatus: 'inviable' }).success,
+    ).toBe(false)
   })
 
   it('accepts V1 statuses', () => {
-    expect(PromiseEvidenceItemSchema.safeParse({ ...valid, proposedStatus: 'documentada' }).success).toBe(true)
-    expect(PromiseEvidenceItemSchema.safeParse({ ...valid, proposedStatus: 'en-verificacion' }).success).toBe(true)
+    expect(
+      PromiseEvidenceItemSchema.safeParse({ ...valid, proposedStatus: 'documentada' }).success,
+    ).toBe(true)
+    expect(
+      PromiseEvidenceItemSchema.safeParse({ ...valid, proposedStatus: 'en-verificacion' }).success,
+    ).toBe(true)
   })
 
   it('rejects non-URL evidenceUrl', () => {
-    expect(PromiseEvidenceItemSchema.safeParse({ ...valid, evidenceUrl: 'not-a-url' }).success).toBe(false)
+    expect(
+      PromiseEvidenceItemSchema.safeParse({ ...valid, evidenceUrl: 'not-a-url' }).success,
+    ).toBe(false)
   })
 
   it('rejects non-ISO date', () => {
-    expect(PromiseEvidenceItemSchema.safeParse({ ...valid, date: '17/03/2026' }).success).toBe(false)
+    expect(PromiseEvidenceItemSchema.safeParse({ ...valid, date: '17/03/2026' }).success).toBe(
+      false,
+    )
   })
 
   it('rejects corpus outside the enum', () => {
@@ -105,11 +119,15 @@ describe('LLM schemas · TenderQuejaCorrelationSchema', () => {
   })
 
   it('rejects non-URL permalink', () => {
-    expect(TenderQuejaCorrelationSchema.safeParse({ ...valid, tenderPermalink: 'T-456' }).success).toBe(false)
+    expect(
+      TenderQuejaCorrelationSchema.safeParse({ ...valid, tenderPermalink: 'T-456' }).success,
+    ).toBe(false)
   })
 
   it('rejects reasoning shorter than 10 chars', () => {
-    expect(TenderQuejaCorrelationSchema.safeParse({ ...valid, reasoning: 'fits.' }).success).toBe(false)
+    expect(TenderQuejaCorrelationSchema.safeParse({ ...valid, reasoning: 'fits.' }).success).toBe(
+      false,
+    )
   })
 })
 

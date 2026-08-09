@@ -55,7 +55,7 @@ describe('direction-d/SectionHeader — render', () => {
         title="Seguimiento de promesas"
         badge={<span>LOREG · congelado</span>}
         meta="16"
-      />
+      />,
     )
     expect(screen.getByText('LOREG · congelado')).toBeInTheDocument()
   })

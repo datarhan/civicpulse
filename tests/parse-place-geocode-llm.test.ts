@@ -107,7 +107,11 @@ describe('place-geocode-llm — geocodeContractsWithLlm', () => {
 
   it('respects the limit (caps how many titles are sent to the LLM)', async () => {
     let calls = 0
-    const caller = async () => {
+    // `Promise<any>`, like `mockCaller` above: `LlmCaller` is generic over the
+    // zod schema picked at the call site, so no concrete literal is assignable
+    // to it. Annotating beats an `as unknown as` cast — the parameters still
+    // get checked.
+    const caller = async (): Promise<any> => {
       calls++
       return { placeName: null, confidence: 0.9, reasoning: 'x' }
     }

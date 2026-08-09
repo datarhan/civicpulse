@@ -16,6 +16,7 @@ import {
   type VerifiedSnapshot,
 } from '../../src/scraper/auto-curate'
 import { validateFindingsSnapshot } from '../../src/scraper/pleno-finding'
+import type { SpeakerGroup } from '../../src/scraper/pleno-votes'
 
 function mkClaim(over: Partial<VerifiedItem['claim']> = {}): VerifiedItem['claim'] {
   return {
@@ -80,7 +81,10 @@ describe('selectBundles · gates', () => {
       items: [
         mkItem({ id: 'p1-001-cit-a1', speakerGroup: 'PSOE' }, 'verificado'),
         mkItem({ id: 'p1-002-cit-a2', speakerGroup: 'PP' }, 'verificado'),
-        mkItem({ id: 'p1-003-acu-a3', speakerGroup: 'Otro' }, 'contradicho'),
+        // A real bloc, not the retired `Otro` sentinel — the routing under test
+        // keys on the verdict, and `Otro` no longer type-checks. See
+        // tests/otro-sentinel-retired.test.ts.
+        mkItem({ id: 'p1-003-acu-a3', speakerGroup: 'VOX' }, 'contradicho'),
       ],
     }
     const r = selectBundles(verified, new Set(), { minScore: 0 })
@@ -191,7 +195,7 @@ describe('topQuotes', () => {
 })
 
 describe('composeFinding', () => {
-  function buildBundle(opts?: Partial<{ blocs: string[]; itemCount: number }>) {
+  function buildBundle(opts?: Partial<{ blocs: SpeakerGroup[]; itemCount: number }>) {
     const blocs = opts?.blocs ?? ['PSOE', 'PP']
     const itemCount = opts?.itemCount ?? 2
     const items: VerifiedItem[] = []

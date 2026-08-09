@@ -62,7 +62,7 @@ describe('scraper/promise-inference — inferPromiseSuggestions', () => {
     const out = inferPromiseSuggestions([basePromise], { press, plenos })
     const s = out[0]
     expect(['documentada', 'en-progreso', 'cumplida', 'parcial', 'no-ejecutada']).toContain(
-      s.proposedStatus
+      s.proposedStatus,
     )
     expect(s.confidence).toBeGreaterThanOrEqual(0)
     expect(s.confidence).toBeLessThanOrEqual(1)

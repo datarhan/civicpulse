@@ -6,7 +6,6 @@
  */
 import { describe, it, expect } from 'vitest'
 // Dynamic import to avoid the React runtime cost in tests that don't need it.
-// @ts-expect-error — JS module, tsx resolves types at runtime
 import { __internal } from '../src/hooks/useNextMetro.js'
 
 const { computeNextTerminusDeparture: computeNext, scheduleForDate, SCHEDULE } = __internal
@@ -88,7 +87,6 @@ describe('next-metro · computeNext · after-hours Sunday → Monday', () => {
   })
 })
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { computeStationSchedule, L9_STATIONS } from '../src/hooks/useNextMetro.js'
 
 describe('next-metro · computeStationSchedule · intermediate station', () => {

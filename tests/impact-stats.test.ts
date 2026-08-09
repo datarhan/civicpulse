@@ -38,7 +38,12 @@ describe('summarizeImpact', () => {
   it('lastFindingAt is the max publishedAt, tolerating rows without one', () => {
     const out = summarizeImpact({
       findings: {
-        items: [{ publishedAt: '2026-07-03' }, {}, { publishedAt: '2026-07-06' }, { publishedAt: '2026-06-01' }],
+        items: [
+          { publishedAt: '2026-07-03' },
+          {},
+          { publishedAt: '2026-07-06' },
+          { publishedAt: '2026-06-01' },
+        ],
       },
     })
     expect(out.findingsCount).toBe(4)

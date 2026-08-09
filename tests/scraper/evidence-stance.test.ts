@@ -234,9 +234,9 @@ describe('validateFindingsSnapshot', () => {
   it('rejects a row that still carries the old corroboration key', () => {
     const base = compose([ref({ stance: 'checked' })])
     const legacy = { ...base, corroboration: base.crossChecked } as unknown as PlenoFinding
-    expect(() => validateFindingsSnapshot(JSON.stringify({ ...SNAP_HEAD, items: [legacy] }))).toThrow(
-      /renamed to `crossChecked`/,
-    )
+    expect(() =>
+      validateFindingsSnapshot(JSON.stringify({ ...SNAP_HEAD, items: [legacy] })),
+    ).toThrow(/renamed to `crossChecked`/)
   })
 
   it('rejects severity=critical backed only by cross-checked documents', () => {

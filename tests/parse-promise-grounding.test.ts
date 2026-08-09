@@ -135,7 +135,6 @@ describe('promise-grounding — default fetch UA', () => {
   it('defaultGroundingFetch sends a Mozilla-leading UA and follows redirects', async () => {
     let seenInit: RequestInit | undefined
     const realFetch = globalThis.fetch
-    // @ts-expect-error test stub
     globalThis.fetch = async (url: string, init?: RequestInit) => {
       seenInit = init
       return { ok: true, url, text: async () => '<p>ok</p>' } as unknown as Response

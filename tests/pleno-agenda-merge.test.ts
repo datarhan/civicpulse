@@ -1,5 +1,9 @@
 import { describe, it, expect } from 'vitest'
-import { mergeAgendaPlenos, type EnrichedPleno } from '../src/scraper/pleno-agenda'
+import {
+  mergeAgendaPlenos,
+  type EnrichedPleno,
+  type PlenoAgendaItem,
+} from '../src/scraper/pleno-agenda'
 
 /**
  * The agendas snapshot used to be rebuilt from scratch over the 30 most-recent
@@ -13,11 +17,12 @@ import { mergeAgendaPlenos, type EnrichedPleno } from '../src/scraper/pleno-agen
  */
 
 function pleno(id: string, itemCount: number, over: Partial<EnrichedPleno> = {}): EnrichedPleno {
-  const agenda = Array.from({ length: itemCount }, (_, n) => ({
+  const agenda: PlenoAgendaItem[] = Array.from({ length: itemCount }, (_, n) => ({
     number: n + 1,
     title: `punto ${n + 1} de ${id}`,
     section: 'resolutiva' as const,
     department: null,
+    departmentSlug: null,
     expediente: null,
   }))
   return {

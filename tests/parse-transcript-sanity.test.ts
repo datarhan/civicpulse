@@ -81,12 +81,19 @@ describe('scraper/transcript-sanity — assessTranscriptSanity', () => {
 
 describe('transcript sanity — Whisper hallucination markers', () => {
   const speech = (n: number) =>
-    Array.from({ length: n }, (_, i) => `[${i}.0 → ${i + 1}.0] Intervención número ${i} sobre el expediente municipal correspondiente.`).join('\n')
+    Array.from(
+      { length: n },
+      (_, i) =>
+        `[${i}.0 → ${i + 1}.0] Intervención número ${i} sobre el expediente municipal correspondiente.`,
+    ).join('\n')
 
   it('flags a file padded with subtitle-corpus text', () => {
     // Real: 1du4rf5 carries 110 lines of "Más información www.alimmenta.com" —
     // a nutrition site the model memorised — and supplies 293 published claims.
-    const ads = Array.from({ length: 60 }, (_, i) => `[${i}.0 → ${i + 1}.0] Más información www.alimmenta.com`).join('\n')
+    const ads = Array.from(
+      { length: 60 },
+      (_, i) => `[${i}.0 → ${i + 1}.0] Más información www.alimmenta.com`,
+    ).join('\n')
     const report = assessTranscriptSanity(`${speech(500)}\n${ads}`)
     expect(report.ok).toBe(false)
     expect(report.reasons).toContain('hallucination-markers')

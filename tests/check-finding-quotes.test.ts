@@ -35,8 +35,12 @@ describe('quoteAppearsIn', () => {
   it('does NOT match invented text, even on-topic', () => {
     // The whole point of the script. Widening the window must not make it
     // vacuous — a check that cannot fail is worse than no check.
-    expect(quoteAppearsIn('el contrato fue adjudicado sin fiscalización previa del interventor', T)).toBe(false)
-    expect(quoteAppearsIn('el alcalde reconoció que había cobrado una comisión de la empresa', T)).toBe(false)
+    expect(
+      quoteAppearsIn('el contrato fue adjudicado sin fiscalización previa del interventor', T),
+    ).toBe(false)
+    expect(
+      quoteAppearsIn('el alcalde reconoció que había cobrado una comisión de la empresa', T),
+    ).toBe(false)
   })
 
   it('does NOT match the same words in a different order', () => {
@@ -54,7 +58,10 @@ describe('quoteCoverage', () => {
     // The gap that makes the number worth printing: it tells a curator whether
     // they are looking at a trimmed citation or a fabricated sentence.
     const real = quoteCoverage('los 50-60% que sí que se retiran de contenedores al día', T)
-    const fake = quoteCoverage('el alcalde reconoció que había cobrado una comisión de la empresa', T)
+    const fake = quoteCoverage(
+      'el alcalde reconoció que había cobrado una comisión de la empresa',
+      T,
+    )
     expect(real).toBeGreaterThan(0.85)
     expect(fake).toBeLessThan(0.35)
   })

@@ -1,15 +1,19 @@
 import { describe, it, expect, beforeAll } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import {
-  parseOfertasList,
-  parseOfertaDetail,
-  OFERTA_STATUS_TONE,
-} from '../src/scraper/empleo'
+import { parseOfertasList, parseOfertaDetail, OFERTA_STATUS_TONE } from '../src/scraper/empleo'
 
 const LIST = join(__dirname, 'fixtures', 'portalemp_ribaocupacio_ofertas_2026-07-05.html')
-const DETAIL_2481 = join(__dirname, 'fixtures', 'portalemp_ribaocupacio_oferta_2481_2026-07-05.html')
-const DETAIL_2480 = join(__dirname, 'fixtures', 'portalemp_ribaocupacio_oferta_2480_2026-07-05.html')
+const DETAIL_2481 = join(
+  __dirname,
+  'fixtures',
+  'portalemp_ribaocupacio_oferta_2481_2026-07-05.html',
+)
+const DETAIL_2480 = join(
+  __dirname,
+  'fixtures',
+  'portalemp_ribaocupacio_oferta_2480_2026-07-05.html',
+)
 
 const BASE = 'https://ribaocupacio.portalemp.com'
 
