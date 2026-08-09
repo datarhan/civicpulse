@@ -16,7 +16,7 @@
  * curator-only forever. See plan: floating-drifting-river.md.
  */
 import type { PlenoClaim } from './pleno-claim'
-import { evidenceStance, type ClaimVerification } from './claim-verifier'
+import { evidenceStance, toPublishedSnippet, type ClaimVerification } from './claim-verifier'
 import type { PlenoFinding, FindingQuote, FindingRef, FindingSeverity } from './pleno-finding'
 
 export interface VerifiedItem {
@@ -207,9 +207,11 @@ export function composeFinding(opts: ComposeOpts): PlenoFinding {
       if (!['tender', 'bdns', 'budget', 'promise'].includes(kindMapped)) continue
       if (seenRefs.has(ev.ref)) continue
       seenRefs.add(ev.ref)
-      const snippet =
-        ev.snippet.length > 237 ? ev.snippet.slice(0, 237).trimEnd() + '…' : ev.snippet
-      const ref: FindingRef = { kind: kindMapped as FindingRef['kind'], ref: ev.ref, snippet }
+      const ref: FindingRef = {
+        kind: kindMapped as FindingRef['kind'],
+        ref: ev.ref,
+        snippet: toPublishedSnippet(ev.snippet),
+      }
       // evidenceStance() whitelists the enum, so an absent or unrecognised
       // value lands here as 'checked' rather than being trusted.
       if (evidenceStance(ev) === 'contradicts') contradiction.push(ref)

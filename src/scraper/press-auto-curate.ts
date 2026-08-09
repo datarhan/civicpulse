@@ -31,7 +31,7 @@
  * quarantines every contradicho-bearing bundle before composeFinding runs.
  */
 
-import { evidenceStance, type ClaimVerdict } from './claim-verifier'
+import { evidenceStance, toPublishedSnippet, type ClaimVerdict } from './claim-verifier'
 import type { PressClaim } from './press-claim'
 import type { PressClaimVerification } from './press-verifier'
 import type { PressFinding, PressFindingRef } from './press-finding'
@@ -243,7 +243,11 @@ export function composeFinding(opts: ComposeOpts): PressFinding {
       const ref: PressFindingRef = {
         kind: mapped,
         ref: ev.ref,
-        snippet: ev.snippet.slice(0, 240),
+        // Was a bare slice(0, 240) — it cut mid-word with no marker, and it
+        // let the prompt's `· sim=0.50` tail through onto a published label.
+        // press-findings.json carries none today; the path that would have
+        // written one is the same one that did on the pleno side.
+        snippet: toPublishedSnippet(ev.snippet),
       }
       // evidenceStance() whitelists the enum, so an absent or unrecognised
       // value lands as 'checked' rather than being trusted upward.

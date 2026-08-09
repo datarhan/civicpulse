@@ -19,6 +19,7 @@ import type {
   ClaimVerification,
 } from './claim-verifier'
 import { shouldSkipLlmVerification, parseCite, looselyContains } from './claim-verifier-llm'
+import { stripSimilarityAnnotation } from '../llm/candidate-annotation'
 
 export interface EngineCite {
   candidateIndex: number
@@ -76,7 +77,11 @@ export async function verifyClaimWithEngine(
     evidence.push({
       kind: cand.kind,
       ref: cand.ref,
-      snippet: c.snippet.slice(0, 240),
+      // Same store-boundary strip as claim-verifier-llm: the engine's own
+      // candidate block renders `· sim=0.50` too, and the extract step returns
+      // the line it read. The similarity survives beside it, as a number in a
+      // number field.
+      snippet: stripSimilarityAnnotation(c.snippet).slice(0, 240),
       similarity: cand.similarity,
       // The engine is NEI-by-default and never emits `contradicho`, so it has
       // no directional finding to record.

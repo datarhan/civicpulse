@@ -31,6 +31,7 @@ import {
   buildClaimVerifierUserPrompt,
 } from '../llm/prompts'
 import { ClaimVerifierLlmResponseSchema } from '../llm/schemas'
+import { stripSimilarityAnnotation } from '../llm/candidate-annotation'
 import type { PlenoClaim } from './pleno-claim'
 import type {
   ClaimEvidence,
@@ -194,7 +195,14 @@ export async function verifyClaimWithLlm(
     evidence.push({
       kind: cand.kind,
       ref: cand.ref,
-      snippet: e.snippet.slice(0, 240),
+      // Strip AFTER the cite grounding above, never before: `parseCite` reads
+      // the head of the snippet and the annotation is glued to its tail, so
+      // the two do not overlap — but the order still matters, because what
+      // gets validated must be what the model actually returned. What gets
+      // STORED must not be, or the prompt's own `· sim=0.50` rides the
+      // evidence into pleno-claims-verified.json and out to a published
+      // «Documentos cotejados» row.
+      snippet: stripSimilarityAnnotation(e.snippet).slice(0, 240),
       similarity: cand.similarity,
       // The model was asked, per citation, whether the document contradicts.
       // A "no" is not a "yes, it corroborates" — see EvidenceStance.

@@ -14,6 +14,11 @@
  */
 import { ALLOWED_PARTIES, ALLOWED_TOPICS, ALLOWED_KINDS } from '../scraper/promises'
 import { SPEAKER_GROUPS } from '../scraper/pleno-votes'
+// The ` · sim=0.50` tail below is rendered through this, never inline: the
+// publishing path strips it back off with the inverse in the same module, and
+// two hand-written copies of a format is how a strip stops matching an emitter
+// without anything going red. See candidate-annotation.ts.
+import { formatSimilarityAnnotation } from './candidate-annotation'
 
 // ─── Shared footer: injection defense ───────────────────────────────────────
 const SAFETY_FOOTER = `
@@ -444,7 +449,7 @@ export function buildClaimVerifierUserPrompt(input: ClaimVerifierInput): string 
       : input.candidates
           .map(
             (cand, i) =>
-              `  [${i}] ${cand.kind} · ref=${cand.ref}\n      ${cand.snippet}${cand.similarity != null ? ` · sim=${cand.similarity.toFixed(2)}` : ''}`,
+              `  [${i}] ${cand.kind} · ref=${cand.ref}\n      ${cand.snippet}${formatSimilarityAnnotation(cand.similarity)}`,
           )
           .join('\n')
 
@@ -488,8 +493,7 @@ function engineCandBlock(candidates: EngineCandLike[]): string {
     ? '(sin candidatos)'
     : candidates
         .map(
-          (c, i) =>
-            `  [${i}] ${c.kind} · ${c.snippet}${c.similarity != null ? ` · sim=${c.similarity.toFixed(2)}` : ''}`,
+          (c, i) => `  [${i}] ${c.kind} · ${c.snippet}${formatSimilarityAnnotation(c.similarity)}`,
         )
         .join('\n')
 }

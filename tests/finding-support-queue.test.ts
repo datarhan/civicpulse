@@ -95,7 +95,7 @@ describe('buildSupportQueue · los extractos viajan byte a byte', () => {
   })
 })
 
-describe('buildSupportQueue · los tres casos tabulados y su documento contradictorio', () => {
+describe('buildSupportQueue · los casos tabulados y su documento contradictorio', () => {
   const CASES = [
     {
       id: 'f-2026-01-19-acu-d2b7bb',
@@ -105,13 +105,6 @@ describe('buildSupportQueue · los tres casos tabulados y su documento contradic
       summaryPhrase: 'corrobora la referencia a la gestión del correo electrónico municipal',
     },
     {
-      id: 'f-2025-10-06-cit-591d40',
-      // Debate: atención policial a mujeres vulnerables. Documento: dos perros
-      // para la Unidad Canina. Colisión sobre «Unidad … Policía Local».
-      document: /dos perros para la Unidad Canina/,
-      summaryPhrase: 'una unidad de policía local que asiste a mujeres vulnerables',
-    },
-    {
       id: 'f-2026-05-11-acu-1e1bfa',
       // Debate: Tesorería. Documento: el Plan de Igualdad. Publica una
       // valoración técnica negativa contra el plan equivocado.
@@ -119,6 +112,29 @@ describe('buildSupportQueue · los tres casos tabulados y su documento contradic
       summaryPhrase: 'la valoración técnica de este Plan no es positiva',
     },
   ]
+
+  /**
+   * El tercer caso tabulado, `f-2025-10-06-cit-591d40`, ya no lo es.
+   *
+   * Era el ejemplo de libro: un debate sobre atención policial a mujeres
+   * vulnerables anclado por el sumario a un expediente de contratación que
+   * sólo compartía con él las palabras «Unidad … Policía Local». El 09-08-2026
+   * se retiraron por `correct-pleno-finding` la frase que hacía el anclaje y
+   * la referencia, así que la cola ya no tiene ese vínculo afirmado que
+   * enseñarle a un curador.
+   *
+   * Se queda aquí, como aserción invertida, en vez de borrarse: un caso que
+   * desaparece de una lista no deja constancia de si se arregló o de si se
+   * dejó de mirar. El detalle de qué se retiró está en la bitácora pública del
+   * hallazgo y en tests/pleno-findings-published.ts.
+   */
+  it('f-2025-10-06-cit-591d40 ya no afirma un vínculo documental (reparado el 09-08-2026)', () => {
+    const row = build().rows.find((r) => r.id === 'f-2025-10-06-cit-591d40')
+    expect(row, 'el hallazgo reparado sigue teniendo que estar en la cola').toBeDefined()
+    expect(row!.claimShape).toBe('sin-afirmacion-documental')
+    expect(row!.summary).toContain('una unidad de policía local que asiste a mujeres vulnerables')
+    expect(row!.summary).not.toContain('El debate coincide')
+  })
 
   it.each(CASES)('$id aparece con su documento contradictorio', ({ id, document }) => {
     const row = build().rows.find((r) => r.id === id)
@@ -135,8 +151,9 @@ describe('buildSupportQueue · los tres casos tabulados y su documento contradic
     expect(row.summary).toContain(summaryPhrase)
   })
 
-  it('los tres se leen entre los primeros: afirman un vínculo documental', () => {
+  it('se leen entre los primeros: afirman un vínculo documental', () => {
     const queue = build()
+    expect(CASES.length).toBeGreaterThan(0)
     for (const { id } of CASES) {
       const row = queue.rows.find((r) => r.id === id)!
       expect(row.claimShape).toBe('afirmativa-documental')

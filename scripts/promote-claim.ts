@@ -34,7 +34,11 @@ import {
 } from '../src/scraper/pleno-finding'
 import { SPEAKER_GROUPS, type SpeakerGroup } from '../src/scraper/pleno-votes'
 import type { PlenoClaim } from '../src/scraper/pleno-claim'
-import { evidenceStance, type ClaimVerification } from '../src/scraper/claim-verifier'
+import {
+  evidenceStance,
+  toPublishedSnippet,
+  type ClaimVerification,
+} from '../src/scraper/claim-verifier'
 
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
 const FINDINGS = resolve('public/data/pleno-findings.json')
@@ -89,9 +93,11 @@ function evidenceToRefs(ev: ClaimVerification['evidence']): {
   const contradiction: FindingRef[] = []
   for (const e of ev) {
     if (e.kind === 'prior-claim') continue // not representable as a findings ref
-    // Truncate snippet to the schema's 240-char cap so long tender titles
-    // don't break the validator on promotion.
-    const snippet = e.snippet.length > 237 ? e.snippet.slice(0, 237).trimEnd() + '…' : e.snippet
+    // Fit the schema's 240-char cap, and drop the prompt's `· sim=0.50` tail
+    // when the model handed back the rendered candidate line instead of the
+    // document's own text. Shared with both auto-curators — see
+    // toPublishedSnippet.
+    const snippet = toPublishedSnippet(e.snippet)
     // Evidence kinds are a superset of FindingRef kinds (they also include
     // 'factcheck'/'boe'); preserve the existing runtime behaviour and let the
     // findings validator be the gate on which kinds are accepted.
@@ -160,10 +166,8 @@ function parseExtraCorroboration(raw: string): FindingRef[] {
       process.stderr.write(`[promote-claim] --extra-corroboration[${i}].snippet: required\n`)
       process.exit(2)
     }
-    // Truncate snippet to the schema's 240-char cap (same trimming
-    // discipline as the verifier path).
-    const snippet = snippetRaw.length > 237 ? snippetRaw.slice(0, 237).trimEnd() + '…' : snippetRaw
-    out.push({ kind: kind as FindingRef['kind'], ref, snippet })
+    // Same trimming discipline as the verifier path, through the same helper.
+    out.push({ kind: kind as FindingRef['kind'], ref, snippet: toPublishedSnippet(snippetRaw) })
   }
   return out
 }

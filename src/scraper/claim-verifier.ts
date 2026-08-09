@@ -29,6 +29,7 @@
  * the UI can render the citations that produced the verdict.
  */
 
+import { stripSimilarityAnnotation } from '../llm/candidate-annotation'
 import { stripDiacritics } from './normalize'
 import type { PlenoClaim, ClaimTopic } from './pleno-claim'
 
@@ -148,6 +149,40 @@ export interface ClaimEvidence {
  */
 export function evidenceStance(ev: { stance?: string } | null | undefined): EvidenceStance {
   return ev?.stance === 'contradicts' ? 'contradicts' : 'checked'
+}
+
+/** The `snippet` cap both finding schemas enforce, and the room an ellipsis needs. */
+const PUBLISHED_SNIPPET_MAX = 240
+const PUBLISHED_SNIPPET_BODY = PUBLISHED_SNIPPET_MAX - 3
+
+/**
+ * Turn a `ClaimEvidence.snippet` into the label a reader sees under
+ * «Documentos cotejados».
+ *
+ * The one door from the verifier's evidence to a published `FindingRef`. It
+ * existed three times — `auto-curate.composeFinding`, `promote-claim
+ * .evidenceToRefs`, `press-auto-curate` — as the same truncation written out
+ * by hand, and the press copy had already drifted to a hard `slice(0, 240)`
+ * that cuts mid-word with no marker.
+ *
+ * Two jobs, and the first is the reason it is a function:
+ *
+ *  1. Drop the prompt's similarity annotation. A snippet on this path is
+ *     whatever the model handed back, and models hand back the rendered
+ *     candidate line, tail included — see candidate-annotation.ts. Doing it
+ *     here means the score is gone before anything reaches a curated file,
+ *     whichever of the three paths a finding came through.
+ *  2. Fit the schema's 240-char cap, marking the cut so the reader can tell a
+ *     truncated title from a short one.
+ *
+ * Not a sanitiser in any broader sense: it does not judge whether the snippet
+ * supports anything, and nothing here decides what belongs in `crossChecked[]`.
+ */
+export function toPublishedSnippet(raw: string): string {
+  const stripped = stripSimilarityAnnotation(raw)
+  return stripped.length > PUBLISHED_SNIPPET_MAX
+    ? stripped.slice(0, PUBLISHED_SNIPPET_BODY).trimEnd() + '…'
+    : stripped
 }
 
 export interface ClaimVerification {

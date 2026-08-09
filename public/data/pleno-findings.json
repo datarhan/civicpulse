@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-05T07:24:35.551Z",
+  "generatedAt": "2026-08-09T15:46:26.903Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. La mayoría los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -2869,11 +2869,6 @@
       ],
       "quotes": [
         {
-          "text": "el señor Roig no ayuda en la dana o provoca muertos",
-          "speakerGroup": null,
-          "sourceClaimId": "qz6weg-179-acu-51aaa3"
-        },
-        {
           "text": "ustedes han hecho salvoconductos para donarles a los trabajadores y trabajadoras para que puedan ir a trabajar en alerta roja.",
           "speakerGroup": null,
           "sourceClaimId": "qz6weg-192-acu-975308"
@@ -2914,6 +2909,14 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:19.852Z"
+        },
+        {
+          "field": "quote.0",
+          "original": "cita · sha256:109e6ab0bb0d",
+          "corrected": "retirada del hallazgo",
+          "reason": "Se retira una cita sin atribución de grupo que el resumen no utiliza y que imputa un hecho grave a una persona identificable.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-09T15:46:25.197Z"
         }
       ]
     },
@@ -3089,7 +3092,7 @@
       "plenoId": "otxq2c",
       "plenoDate": "2025-10-06",
       "title": "Debate sobre seguridad y policía local en el pleno del 2025-10-06",
-      "summary": "El grupo PSOE señala la existencia de una unidad de policía local que asiste a mujeres vulnerables junto a psicólogas y trabajadoras sociales. Asimismo, el grupo PP hace referencia al funcionamiento del sistema de pulseras telemáticas de control de agresores. El debate coincide con la tramitación de expedientes como el «Contrato Menor de Suministro de dos perros para la Unidad Canina del Cuerpo de Policía Local del Ayuntamiento de Riba-Roja de Túria.».",
+      "summary": "El grupo PSOE señala la existencia de una unidad de policía local que asiste a mujeres vulnerables junto a psicólogas y trabajadoras sociales. Asimismo, el grupo PP hace referencia al funcionamiento del sistema de pulseras telemáticas de control de agresores.",
       "severity": "informational",
       "sourceClaimIds": [
         "otxq2c-072-cit-591d40",
@@ -3109,11 +3112,6 @@
           "sourceClaimId": "otxq2c-075-cit-c869c8"
         },
         {
-          "text": "esta persona, como bien ha dicho el portavoz de Compromís, es Carlos Flores, todavía lo tienen sentado en el Congreso.",
-          "speakerGroup": null,
-          "sourceClaimId": "otxq2c-071-acu-affcbc"
-        },
-        {
           "text": "el sistema de pulseras telemáticas de control de todos los agresores, el sistema COMETA, sistema del Centro de Control de Medidas Telemáticas de Añuñamiento.",
           "speakerGroup": "PP",
           "sourceClaimId": "otxq2c-033-cit-bfa19f"
@@ -3122,18 +3120,8 @@
       "crossChecked": [
         {
           "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dUGFcdEbjniiEJrVRqloyA%3D%3D",
-          "snippet": "Contrato Menor de Suministro de dos perros para la Unidad Canina del Cuerpo de Policía Local del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Megafor SAnta Security, s.l. · catering · estado: awarded"
-        },
-        {
-          "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-          "snippet": "Aplicativo área de policía local · Ayuntamiento de Riba-roja de Túria · unknown · sim=0.50"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BpaFZVzsbWYQK2TEfXGy%2BA%3D%3D",
-          "snippet": "Redacción del proyecto de habilitación de parte del edificio Antiguo Hogar del Jubilado para la EPA · Ayuntamiento de Riba-roja de Túria · CARLOS CANET MAHIQUES · architecture · estado: unknown"
+          "snippet": "Aplicativo área de policía local · Ayuntamiento de Riba-roja de Túria · unknown"
         },
         {
           "kind": "tender",
@@ -3151,7 +3139,40 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "El grupo PSOE señala la existencia de una unidad de policía local que asiste a mujeres vulnerables junto a psicólogas y trabajadoras sociales. Asimismo, el grupo PP hace referencia al funcionamiento del sistema de pulseras telemáticas de control de agresores. El debate coincide con la tramitación de expedientes como el «Contrato Menor de Suministro de dos perros para la Unidad Canina del Cuerpo de Policía Local del Ayuntamiento de Riba-Roja de Túria.».",
+          "corrected": "El grupo PSOE señala la existencia de una unidad de policía local que asiste a mujeres vulnerables junto a psicólogas y trabajadoras sociales. Asimismo, el grupo PP hace referencia al funcionamiento del sistema de pulseras telemáticas de control de agresores.",
+          "reason": "Se retira la frase que presentaba un expediente de contratación como contexto del debate: no comparte materia con lo tratado y su único vínculo es una coincidencia de palabras en el título.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-09T15:46:25.894Z"
+        },
+        {
+          "field": "quote.2",
+          "original": "cita · sha256:237f667af133",
+          "corrected": "retirada del hallazgo",
+          "reason": "Se retira una cita sin atribución de grupo que el resumen no utiliza y que nombra a una persona viva ajena a la corporación municipal.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-09T15:46:26.232Z"
+        },
+        {
+          "field": "crossChecked.2",
+          "original": "documento cotejado · sha256:7dc87f672d8b",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión y cuyo objeto no guarda relación con la materia debatida.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-09T15:46:26.568Z"
+        },
+        {
+          "field": "crossChecked.0",
+          "original": "documento cotejado · sha256:642307249618",
+          "reason": "Se retira del cotejo una referencia cuyo único vínculo con lo debatido es una coincidencia de palabras en el título, y que el resumen presentaba como contexto de la sesión.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-09T15:46:26.902Z",
+          "corrected": "retirado del hallazgo"
+        }
+      ]
     },
     {
       "id": "f-2025-10-06-acu-bba0e9",
@@ -3196,11 +3217,6 @@
         },
         {
           "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8p%2Fwsq%2B3XH9eKgd8LfVV9g%3D%3D",
-          "snippet": "71000000-Servicios de arquitectura, construcción, ingeniería e inspección. · Ayuntamiento de Riba-roja de Túria · José Luis Moreno Delgado · architecture · estado: awarded"
-        },
-        {
-          "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
           "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto si…"
         },
@@ -3228,6 +3244,14 @@
           "reason": "El registro de un contrato de gestión de esperas y colas no corrobora un debate sobre seguridad y violencia de género. El verificador no establece corroboración en ningún caso: sólo deja constancia de qué documentos se cotejaron.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-05T07:24:19.960Z"
+        },
+        {
+          "field": "crossChecked.1",
+          "original": "documento cotejado · sha256:724a69f2b25e",
+          "corrected": "retirado del hallazgo",
+          "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión, cuyo vínculo con lo debatido es una coincidencia léxica y cuyo expediente es posterior al pleno.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-09T15:46:25.548Z"
         }
       ]
     },

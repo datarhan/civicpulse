@@ -53,6 +53,7 @@
  * file a verbatim response (≥20 chars), ingested by the
  * `ingest-press-finding-responses.yml` workflow.
  */
+import { stripSimilarityAnnotation } from '../llm/candidate-annotation'
 
 export type PressFindingSeverity = 'informational' | 'notable' | 'critical'
 
@@ -274,14 +275,20 @@ function validateRef(r: unknown, idx: number, label: string, ri: number): PressF
     `items[${idx}].${label}[${ri}].kind must be one of ${ALLOWED_REF_KINDS.join(',')}`,
   )
   must(typeof o.ref === 'string' && o.ref.length > 0, `items[${idx}].${label}[${ri}].ref required`)
+  must(typeof o.snippet === 'string', `items[${idx}].${label}[${ri}].snippet must be 1-240 chars`)
+  // Same door, same strip as pleno-finding's validateRef — read the comment
+  // there. press-findings.json carries no `sim=` today; it is fed by the same
+  // evidence path that put one on /hallazgos, so the guarantee belongs on both
+  // validators rather than on the one that has already been bitten.
+  const snippet = stripSimilarityAnnotation(o.snippet as string)
   must(
-    typeof o.snippet === 'string' && o.snippet.length > 0 && o.snippet.length <= 240,
+    snippet.length > 0 && snippet.length <= 240,
     `items[${idx}].${label}[${ri}].snippet must be 1-240 chars`,
   )
   return {
     kind: o.kind as PressFindingRef['kind'],
     ref: o.ref as string,
-    snippet: o.snippet as string,
+    snippet,
   }
 }
 

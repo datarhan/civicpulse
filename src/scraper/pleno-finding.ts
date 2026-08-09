@@ -34,6 +34,8 @@
  *  · publishedAt  ISO
  *  · response     optional right-of-reply field (same pattern as promises)
  */
+import { stripSimilarityAnnotation } from '../llm/candidate-annotation'
+import { sha256Short } from './hash'
 import { SPEAKER_GROUPS, type SpeakerGroup } from './pleno-votes'
 
 export type FindingSeverity = 'informational' | 'notable' | 'critical'
@@ -168,6 +170,9 @@ export interface PlenoFindingCorrection {
     | 'sourceClaimIds'
     | `quote.${number}.text`
     | `quote.${number}.sourceClaimId`
+    /** Retraction paths — the whole row goes. See REMOVAL below. */
+    | `quote.${number}`
+    | `crossChecked.${number}`
   original: string
   corrected: string
   /** Curator's plain-language explanation (≥20 chars). */
@@ -179,6 +184,63 @@ export interface PlenoFindingCorrection {
 
 /** Correction field paths addressing a quote row: quote.<i>.text / quote.<i>.sourceClaimId */
 export const CORRECTION_QUOTE_FIELD_RE = /^quote\.(\d+)\.(text|sourceClaimId)$/
+
+/**
+ * ── REMOVAL ─────────────────────────────────────────────────────────────────
+ *
+ * Retracting a whole row: a quote that should never have been published, or a
+ * cross-checked reference whose presence beside the finding does harm the
+ * audit trail does not justify.
+ *
+ * A removal is a correction — it goes in the same public log as every other —
+ * but it is the one kind the log's own shape fights, and that is the whole
+ * design problem here. `corrections[]` is `string → string`, and BOTH sides
+ * are published: `/hallazgos` renders `{c.original}` in full, struck through,
+ * and `AgenteReporte`'s `CorrectionLog` renders the first 200 characters of
+ * it. So the obvious encoding — `original` = the text that was taken out —
+ * republishes, on the very same page, the material the removal existed to
+ * remove. Line-through is a style, not a redaction; a crawler, a screen
+ * reader and a copy-paste all still get the words.
+ *
+ * So the ledger records the removal WITHOUT the removed text:
+ *
+ *     field:     "quote.0"
+ *     original:  "cita · sha256:5f3a1c2e9b01"
+ *     corrected: "retirada del hallazgo"
+ *
+ * The digest is `sha256Short` of the row's canonical serialisation as this
+ * validator rebuilds it (fixed key order, so it is reproducible). It reveals
+ * nothing on its own and it confirms everything to anyone holding an earlier
+ * snapshot: this repository's history is public, so an auditor can take the
+ * row from the parent commit, re-run the same hash, and prove exactly which
+ * row left and that nothing else did. That is the property worth having —
+ * the record must be *checkable*, not *readable*. What removal buys is that
+ * the material stops being served to every reader of the page, stops being
+ * indexed, and stops appearing in the syndicated ClaimReview payload. A
+ * strikethrough in the log would have undone all three.
+ *
+ * `field` carries the index, and only the index, for the same reason the
+ * `portrait.portfolios[<i>]` branch of `correct-journalist-report` does: the
+ * address is the small precise part, and the alternative — serialising the
+ * whole array — would republish every sibling to record one departure.
+ *
+ * Two consequences a curator has to plan around, both deliberate:
+ *
+ *   · Indices shift. Removing `crossChecked.0` renumbers everything after it,
+ *     so a run of removals on one finding is issued HIGHEST INDEX FIRST, and
+ *     replaying the log in order reproduces the result.
+ *   · Only these two collections. `contradiction[]` gates `severity:
+ *     critical`, and `sourceClaimIds` already has an edit path; neither is
+ *     reachable here, so a retraction cannot quietly drop the evidence a
+ *     strong verdict rests on.
+ */
+export const CORRECTION_REMOVAL_FIELD_RE = /^(quote|crossChecked)\.(\d+)$/
+
+/** Reader-facing wording per removable collection. Kept beside the regex. */
+const REMOVAL_LABELS = {
+  quote: { noun: 'cita', corrected: 'retirada del hallazgo' },
+  crossChecked: { noun: 'documento cotejado', corrected: 'retirado del hallazgo' },
+} as const
 
 export interface PlenoFindingsSnapshot {
   version: string
@@ -240,6 +302,36 @@ function validateQuote(q: unknown, idx: number, qi: number): FindingQuote {
   }
 }
 
+/**
+ * A published `snippet` is the label under «Documentos cotejados». It may not
+ * carry the matcher's own score.
+ *
+ * The strip lives HERE, in the validator, and not only in the three builders
+ * that compose a `FindingRef` — because this file is written by exactly one
+ * kind of process. `.claude/hooks/curated-paths.mjs` denies every direct write
+ * to `pleno-findings.json` and names the CLI instead, and every one of those
+ * CLIs re-serialises the whole snapshot through `validateFindingsSnapshot`
+ * before writing. So this is the single door, and putting the strip on the
+ * door is what makes "the file cannot hold one" true rather than "no current
+ * writer emits one" — which was already true of two of the three builders on
+ * the day a row shipped carrying `· sim=0.50`.
+ *
+ * This is a normalisation, in the same class as the `.trim()` this validator
+ * already performs on titles, summaries and quote text — not an edit to
+ * anything a source document said. The annotation was never in the record; it
+ * is a number this pipeline computed, rendered into a prompt, and copied back
+ * by a model. No `corrections[]` row is written for removing it, and none
+ * should be: the correction log is for what a curator changed about a claim,
+ * and no claim changes here.
+ *
+ * The scope is narrow on purpose. It removes only what
+ * `formatSimilarityAnnotation` can produce, anchored to the end of the string.
+ * A snippet that merely mentions similarity keeps its words.
+ */
+function publishedSnippet(raw: string): string {
+  return stripSimilarityAnnotation(raw)
+}
+
 function validateRef(r: unknown, idx: number, label: string, ri: number): FindingRef {
   must(typeof r === 'object' && r !== null, `items[${idx}].${label}[${ri}] must be object`)
   const o = r as Record<string, unknown>
@@ -259,14 +351,16 @@ function validateRef(r: unknown, idx: number, label: string, ri: number): Findin
     `items[${idx}].${label}[${ri}].kind invalid`,
   )
   must(typeof o.ref === 'string' && o.ref.length > 0, `items[${idx}].${label}[${ri}].ref required`)
+  must(typeof o.snippet === 'string', `items[${idx}].${label}[${ri}].snippet must be 1-240 chars`)
+  const snippet = publishedSnippet(o.snippet as string)
   must(
-    typeof o.snippet === 'string' && o.snippet.length > 0 && o.snippet.length <= 240,
+    snippet.length > 0 && snippet.length <= 240,
     `items[${idx}].${label}[${ri}].snippet must be 1-240 chars`,
   )
   return {
     kind: o.kind as FindingRef['kind'],
     ref: o.ref as string,
-    snippet: o.snippet as string,
+    snippet,
   }
 }
 
@@ -387,9 +481,11 @@ function validateFinding(f: unknown, idx: number): PlenoFinding {
     const co = c as Record<string, unknown>
     must(
       typeof co.field === 'string' &&
-        (CORRECTION_FIELDS.includes(co.field) || CORRECTION_QUOTE_FIELD_RE.test(co.field)),
+        (CORRECTION_FIELDS.includes(co.field) ||
+          CORRECTION_QUOTE_FIELD_RE.test(co.field) ||
+          CORRECTION_REMOVAL_FIELD_RE.test(co.field)),
       `items[${idx}].corrections[${ci}].field must be one of ${CORRECTION_FIELDS.join(',')} ` +
-        'or quote.<i>.text / quote.<i>.sourceClaimId',
+        'or quote.<i>.text / quote.<i>.sourceClaimId / quote.<i> / crossChecked.<i>',
     )
     must(
       typeof co.original === 'string' && co.original.length > 0,
@@ -512,5 +608,148 @@ export function applyFindingCorrection(
     quote[prop] = corrected
     return original
   }
+  if (CORRECTION_REMOVAL_FIELD_RE.test(field)) {
+    throw new Error(
+      `"${field}" is a removal path — use applyFindingRemoval, not applyFindingCorrection. ` +
+        'A removal has no replacement value, and blanking a field is not a removal.',
+    )
+  }
   throw new Error(`unknown correction field "${field}"`)
+}
+
+/**
+ * Retract one `quotes[i]` or one `crossChecked[i]` from a published finding,
+ * returning the pair of strings the corrections log will show. Mutates the
+ * finding in place; the caller MUST re-validate the whole snapshot before
+ * persisting, exactly as with `applyFindingCorrection`.
+ *
+ * Read the REMOVAL block above for why `original` is a digest and not the
+ * text. The fences, in the order they fire:
+ *
+ *   1. The path must address `quote` or `crossChecked`. `contradiction[]` and
+ *      `sourceClaimIds` are deliberately unreachable — see above.
+ *   2. The index must be in range NOW. Indices shift as removals land, so a
+ *      stale index from an earlier reading of the file must not silently
+ *      retract whatever slid into that slot.
+ *   3. A finding must keep at least one quote. The schema already refuses an
+ *      empty `quotes[]` — «a finding without a verbatim anchor is not
+ *      publishable» — but it would refuse it from inside the re-validation
+ *      pass, after the mutation, with a message about the snapshot rather
+ *      than about what the curator just asked for. If a finding's last quote
+ *      has to go, the finding does: that is a retraction, not a correction.
+ */
+export function applyFindingRemoval(
+  finding: PlenoFinding,
+  field: string,
+): { original: string; corrected: string } {
+  const m = CORRECTION_REMOVAL_FIELD_RE.exec(field)
+  if (!m) {
+    throw new Error(
+      `"${field}" is not a removal path — expected quote.<i> or crossChecked.<i>. ` +
+        'contradiction[] is not removable here: it is what gates severity=critical.',
+    )
+  }
+  const collection = m[1] as keyof typeof REMOVAL_LABELS
+  const index = Number(m[2])
+  const rows: unknown[] = collection === 'quote' ? finding.quotes : finding.crossChecked
+  if (index >= rows.length) {
+    throw new Error(
+      `${collection} index ${index} out of range (finding has ${rows.length}). ` +
+        'Indices shift as removals land — re-read the finding and issue removals highest-first.',
+    )
+  }
+  if (collection === 'quote' && finding.quotes.length === 1) {
+    throw new Error(
+      'refusing to remove the last quote: a finding without a verbatim anchor is not ' +
+        'publishable. Retract the finding instead of emptying it.',
+    )
+  }
+  const [removed] = rows.splice(index, 1)
+  const label = REMOVAL_LABELS[collection]
+  return {
+    original: `${label.noun} · sha256:${sha256Short(JSON.stringify(removed))}`,
+    corrected: label.corrected,
+  }
+}
+
+/**
+ * Every token that appears capitalised in `text`. Proper nouns, and the
+ * sentence-initial words that look like them.
+ */
+function capitalisedTokens(text: string): string[] {
+  return text.match(/\p{Lu}[\p{L}\p{M}’'-]*/gu) ?? []
+}
+
+/**
+ * Does this `--reason` name something the removal just took out?
+ *
+ * `corrections[].reason` is published — `/hallazgos` prints it under
+ * «Motivo:» beside every entry. On 2026-07-31 three biographies had to be
+ * corrected a second time because their curator notes explained *what had
+ * been excluded and why*, and in doing so named the person, the case and the
+ * homonymy that the exclusion existed to protect. A removal reason has the
+ * same shape and the same failure: the row is gone from the page, and the
+ * sentence explaining its departure puts it back.
+ *
+ * The rule (`revisar-borrador`, Paso 2) is that a note describes the
+ * CRITERION, never the material. What this function can enforce of that rule
+ * is the half that is mechanical: a reason may not repeat a proper noun from
+ * the row it removed, or its URL.
+ *
+ *   ✅ «Se retira una cita sin atribución de grupo que el resumen no utiliza
+ *      y que imputa un hecho grave a una persona identificable.»
+ *   ❌ «Se retira la cita que decía que el señor <Nombre> …»
+ *
+ * Be clear about what it does NOT catch, because a guard trusted past its
+ * range is worse than none: it reads capitalisation, so it sees names and
+ * misses paraphrase. A reason that avoids every name and still describes the
+ * allegation in lowercase passes this and fails Paso 2. Judgement stays with
+ * the curator; this only makes the commonest slip impossible.
+ *
+ * Scope is removals only. For an ordinary correction `original` is published
+ * verbatim beside the reason anyway, so there is nothing for the reason to
+ * protect and the same check would be a pointless denial.
+ *
+ * Returns the offending fragment, or null when the reason is clean.
+ */
+export function reasonEchoesRemoved(
+  reason: string,
+  removed: { text: string; ref: string | null },
+): string | null {
+  if (removed.ref && reason.includes(removed.ref)) return removed.ref
+  const names = new Set(capitalisedTokens(removed.text))
+  if (names.size === 0) return null
+  // A capital that opens a sentence is grammar, not a name — «Se retira…»
+  // must not trip on a removed snippet that happens to start with «Se».
+  const re = /\p{Lu}[\p{L}\p{M}’'-]*/gu
+  for (const m of reason.matchAll(re)) {
+    const before = reason.slice(0, m.index).trimEnd()
+    const sentenceInitial = before.length === 0 || /[.!?:;]$/.test(before)
+    if (sentenceInitial) continue
+    if (names.has(m[0])) return m[0]
+  }
+  return null
+}
+
+/**
+ * The removed row, as `applyFindingRemoval` will digest it.
+ *
+ * Exported so the CLI can read a row BEFORE removing it — it needs the text
+ * to check that the curator's `--reason` does not echo it, which is the whole
+ * point of the removal, and it needs the digest to be computed over the same
+ * bytes either way.
+ */
+export function findingRemovalTarget(
+  finding: PlenoFinding,
+  field: string,
+): { text: string; ref: string | null } | null {
+  const m = CORRECTION_REMOVAL_FIELD_RE.exec(field)
+  if (!m) return null
+  const index = Number(m[2])
+  if (m[1] === 'quote') {
+    const q = finding.quotes[index]
+    return q ? { text: q.text, ref: null } : null
+  }
+  const r = finding.crossChecked[index]
+  return r ? { text: r.snippet, ref: r.ref } : null
 }
