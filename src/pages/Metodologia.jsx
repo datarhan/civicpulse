@@ -679,15 +679,36 @@ export default function Metodologia() {
             de la sesión, el modelo extrae <em>verbatim</em> las afirmaciones y las clasifica en
             cinco tipos: <code>promesa</code> · <code>afirmacion_numerica</code> ·{' '}
             <code>cita_obra</code> · <code>cita_convenio</code> · <code>acusacion_publica</code>.
-            Cada registro se guarda en <code>pleno-claims-suggestions.json</code> con{' '}
-            <strong>atribución primaria a nivel de grupo municipal</strong>. La identificación
-            individual (concejal concreto) sólo se anota como señal secundaria (
-            <code>speakerSlug</code>) cuando el sistema de identificación por voz —entrenado con
-            muestras públicas de cada concejal— ha asignado esa línea con alta confianza (cosine ≥
-            0,6 y margen ≥ 0,15 frente al segundo candidato). Aún así, ninguna superficie pública (
-            <code>/declaraciones</code>, <code>/hallazgos</code>) nombra al individuo hasta que un
-            curador lo promueve manualmente. La atribución por grupo es la única que aparece sin
-            revisión humana.
+            Cada registro se guarda en <code>pleno-claims-suggestions.json</code>.{' '}
+            <strong>El modelo no dice de qué grupo es quien habla.</strong> No se le pregunta.
+            <p style={{ margin: '8px 0 0' }}>
+              Hasta el 10 de agosto de 2026 sí se le preguntaba, y no podía saberlo. El modelo ve un
+              fragmento de unos 1.200 caracteres, y medido sobre una sesión real, de sus 515
+              fragmentos <strong>6 (el 1%)</strong> contienen el momento en que la presidencia
+              concede la palabra —la única prueba de quién la tiene— mientras que 211 (el 41%) se
+              limitan a <em>nombrar</em> un partido, que en un debate suele ser aquel al que se
+              ataca. Preguntado igualmente, el modelo tiraba del nombre que aparecía en el texto. El
+              resultado eran citas archivadas bajo el grupo al que critican. Las 1.415 atribuciones
+              que ese método había producido se han retirado a «sin identificar».
+            </p>
+            <p style={{ margin: '8px 0 0' }}>
+              La atribución se une ahora <strong>después</strong> de extraer, desde un mapa de
+              hablantes construido a partir del audio, en el que cada grupo se sostiene sobre la
+              frase concreta en que la presidencia lo nombró al dar la palabra —«Compromís, Rafa»—
+              con el segundo exacto de la grabación en que se dijo. El nombre y el partido tienen
+              que aparecer en esa frase: si el mapa no acredita quién hablaba, la cita se publica{' '}
+              <strong>sin grupo</strong>, y eso es una respuesta, no un fallo.
+            </p>
+            <p style={{ margin: '8px 0 0' }}>
+              La identificación individual (concejal concreto) sigue siendo una señal secundaria (
+              <code>speakerSlug</code>), y sólo cuando la identificación por voz —entrenada con
+              muestras públicas— ha asignado esa línea con alta confianza (cosine ≥ 0,6 y margen ≥
+              0,15 frente al segundo candidato). Ninguna superficie pública (
+              <code>/declaraciones</code>, <code>/hallazgos</code>) nombra al individuo hasta que un
+              curador lo promueve manualmente. Conviene decir además algo que la etiqueta de grupo
+              oculta: <strong>VOX, EU-Podem y Compromís tienen un escaño cada uno</strong>, así que
+              en esos tres casos etiquetar el grupo señala necesariamente a esa persona.
+            </p>
             <p style={{ margin: '8px 0 0' }}>
               <strong>Ese texto no siempre es la transcripción del vídeo.</strong> Cuando no hay
               audio de la sesión, lo que se procesa es el <strong>acta municipal</strong>, que es un
