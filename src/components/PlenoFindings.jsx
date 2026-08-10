@@ -6,6 +6,12 @@ import { QUOTE_PROVENANCE_STATUS_IDS } from '../scraper/quote-provenance'
 import { CLAIM_VISIBILITIES } from '../scraper/claim-public-gate'
 import { blocLabel } from '../lib/party-label.js'
 import { refDateIndexFor, refDate } from '../lib/crosschecked-date.js'
+import {
+  refStatusIndexFor,
+  refStatus,
+  snippetWithoutStatus,
+  REF_STATUS_KINDS,
+} from '../lib/crosschecked-status.js'
 import { fmtDateShort } from '../lib/formatters'
 import { useT } from '../i18n'
 
@@ -79,6 +85,70 @@ function RefDate({ date, t }) {
   )
 }
 
+/**
+ * What the procurement register says happened to a cross-checked document.
+ *
+ * The date was published beside every ref and the STATE was not, so three
+ * PLACSP procedures annulled before award — `finalAmount: 0`, no award,
+ * formalisation or start date at all — appeared under «Documentos cotejados»
+ * looking exactly like a signed contract. Nothing published names them, so the
+ * removal criteria leave them in place; what was owed was the missing fact.
+ *
+ * Rendered like `RefDate` and for the same reasons: always present when the
+ * snapshot has resolved the ref, always saying WHICH answer it is, and with a
+ * dashed border when the register publishes nothing. A state shown only on the
+ * annulled ones would make its absence ambiguous — «fine» and «unresolved»
+ * would look the same.
+ *
+ * `status: 'unknown'` is Gobierto's blank after normalisation, and it is not a
+ * state (`docs/DATA_INTEGRITY.md` rule 3). It resolves to `null` here and
+ * renders as «sin estado», never as the token — which is what 16 published
+ * snippets still say in their own text, and what `snippetWithoutStatus` takes
+ * off the display copy.
+ */
+// `--ink80`, not the `--ink70` the chip beside this one asks for: that token is
+// used 99 times across src/ and is DEFINED NOWHERE, so it silently falls back
+// to the inherited colour. Repointing all 99 is a site-wide visual change and
+// not this branch's business; adding a hundredth is avoidable.
+const REF_STATUS_TONE = {
+  cancelled: { fg: 'var(--warn-ink)', bg: 'var(--warn-soft)' },
+  committed: { fg: 'var(--ink80)', bg: 'var(--soft)' },
+  'in-flight': { fg: 'var(--ink80)', bg: 'var(--soft)' },
+}
+
+function RefStatus({ status, t }) {
+  // `undefined` = the tenders snapshot has not resolved this ref yet. Saying
+  // anything here would be a claim about the document made from our own
+  // loading state — the same rule RefDate follows.
+  if (status === undefined) return null
+  const known = status !== null
+  const tone = known ? REF_STATUS_TONE[status.kind] : null
+  return (
+    <span
+      className="mono"
+      style={{
+        fontSize: 9.5,
+        // No opacity: tinted chip, and opacity drops the text below AA
+        // against the tint at either theme.
+        color: known ? tone.fg : 'var(--ink60)',
+        background: known ? tone.bg : 'var(--soft)',
+        border: known ? 'none' : '1px dashed var(--border2)',
+        padding: '1px 5px',
+        borderRadius: 4,
+        marginRight: 6,
+        whiteSpace: 'nowrap',
+      }}
+      title={
+        known
+          ? `${t(`findings.refs.status.${status.kind}Title`)} (${status.status})`
+          : t('findings.refs.status.noneTitle')
+      }
+    >
+      {known ? t(`findings.refs.status.${status.kind}`) : t('findings.refs.status.none')}
+    </span>
+  )
+}
+
 export function RefList({ refs, kind, plenoDate }) {
   const t = useT()
   // Tender dates live in tenders.json and nowhere smaller. A precomputed
@@ -89,6 +159,7 @@ export function RefList({ refs, kind, plenoDate }) {
   // /presupuesto and /departamentos.
   const { data: tenders } = useTenders()
   const index = refDateIndexFor(tenders)
+  const statusIndex = refStatusIndexFor(tenders)
   if (!refs || refs.length === 0) return null
   const isCrossChecked = kind === 'crossChecked'
   const label = t(isCrossChecked ? 'findings.refs.crossChecked' : 'findings.refs.contradiction')
@@ -115,10 +186,15 @@ export function RefList({ refs, kind, plenoDate }) {
               {r.kind.toUpperCase()}
             </span>{' '}
             <RefDate date={refDate(r, index, plenoDate)} t={t} />{' '}
+            <RefStatus status={refStatus(r, statusIndex)} t={t} />{' '}
             {/* The spaces above are load-bearing: margins separate the chips
                 visually, but a screen reader reads the text nodes, and without
                 them it says «adjudicacióncontrato emergencia». */}
-            <span style={{ fontSize: 12 }}>{r.snippet}</span>
+            {/* The snippet loses its `· estado: <token>` tail: the state now
+                has a field of its own, and the tail printed the raw sentinel
+                «unknown» to a reader on 16 of these. Display only — the
+                committed snippet is untouched. */}
+            <span style={{ fontSize: 12 }}>{snippetWithoutStatus(r.snippet)}</span>
           </>
         )
         return isUrl ? (
@@ -278,6 +354,7 @@ if (import.meta.env?.DEV) {
   const missing = [
     ...QUOTE_PROVENANCE_STATUS_IDS.filter((id) => !(id in PROVENANCE_MARK)),
     ...CLAIM_VISIBILITIES.filter((id) => !(id in CONTRAST_MARK)),
+    ...REF_STATUS_KINDS.filter((id) => !(id in REF_STATUS_TONE)),
   ]
   if (missing.length > 0) {
     throw new Error(

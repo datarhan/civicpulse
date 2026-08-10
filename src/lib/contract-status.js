@@ -18,11 +18,21 @@
  * /presupuesto said €14.7M from the same file.
  */
 
-/** Statuses that mean the contract was signed or awarded. */
-const COMMITTED = new Set(['awarded', 'formalized', 'finalized', 'closed'])
+/**
+ * Statuses that mean the contract was signed or awarded.
+ *
+ * ORDERED, strongest first: a permalink is often several rows (one per lot)
+ * carrying different statuses, and a caller naming the expediente in one word
+ * needs a deterministic pick rather than whichever lot the array happened to
+ * list first. Declared as arrays with the Sets derived, so the order and the
+ * membership cannot disagree.
+ */
+export const COMMITTED_STATUSES = ['formalized', 'finalized', 'closed', 'awarded']
+const COMMITTED = new Set(COMMITTED_STATUSES)
 
 /** Statuses that mean the award was undone. Never counted as spend. */
-const CANCELLED = new Set(['void', 'abandoned', 'revoked', 'withdrawn'])
+export const CANCELLED_STATUSES = ['void', 'revoked', 'abandoned', 'withdrawn']
+const CANCELLED = new Set(CANCELLED_STATUSES)
 
 /**
  * Statuses that mean the procurement is still running, so no money is
@@ -30,14 +40,36 @@ const CANCELLED = new Set(['void', 'abandoned', 'revoked', 'withdrawn'])
  * still be withdrawn before formalisation, and 23 of the 449 licitaciones sit
  * in that state.
  */
-const IN_FLIGHT = new Set([
-  'open',
+export const IN_FLIGHT_STATUSES = [
+  'provisionally_awarded',
   'in_progress',
   'evaluation',
-  'draft',
+  'open',
   'pending',
-  'provisionally_awarded',
-])
+  'draft',
+]
+const IN_FLIGHT = new Set(IN_FLIGHT_STATUSES)
+
+/**
+ * Which of the three things a status says, or `null` when it says nothing.
+ *
+ * `null` covers BOTH `unknown` — Gobierto's blank, the sentinel — and a
+ * vocabulary this build has never seen. Neither is a value
+ * (`docs/DATA_INTEGRITY.md` rule 3): a caller must render «no consta» or stay
+ * quiet, never print the token. `estado: unknown` sat inside 16 published
+ * finding snippets precisely because the sentinel was treated as a word.
+ *
+ * @param {string|null|undefined} status
+ * @returns {'committed'|'cancelled'|'in-flight'|null}
+ */
+export function procurementStatusKind(status) {
+  if (typeof status !== 'string') return null
+  const s = status.trim().toLowerCase()
+  if (COMMITTED.has(s)) return 'committed'
+  if (CANCELLED.has(s)) return 'cancelled'
+  if (IN_FLIGHT.has(s)) return 'in-flight'
+  return null
+}
 
 /**
  * True when the contract represents committed public money.

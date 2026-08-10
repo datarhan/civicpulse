@@ -1,5 +1,7 @@
 import { Component, useCallback, useEffect, useState } from 'react'
 import { Card, Pill } from '../../components/Primitives'
+import { QuoteProvenanceMark } from '../../components/PlenoFindings'
+import { useFindingQuoteProvenance, provenanceFor } from '../../hooks/useFindingQuoteProvenance'
 
 class SectionErrorBoundary extends Component {
   constructor(props) {
@@ -111,6 +113,30 @@ function PartyChip({ party }) {
   return <Pill tone={tone}>{party}</Pill>
 }
 
+/**
+ * The marks a reader already sees beside this quote on `/hallazgos`.
+ *
+ * Both axes: which transcript the words come from, and what the editorial gate
+ * would do with the claim behind them. The curator queues rendered `«{text}»`
+ * plain, so the person deciding whether a finding stays published saw LESS
+ * about a quote than a visitor does — backwards for the surface where the
+ * judgement actually happens.
+ *
+ * The PUBLIC component, not a copy of it. `quoteMarks` and its wording live in
+ * `PlenoFindings.jsx`; a second rendering here could drift from the page and
+ * let a curator approve against marks the reader never got — the exact failure
+ * `RefList` already caused once by being duplicated verbatim across two
+ * surfaces. Reading the snapshot through the same hook the page uses makes the
+ * two provably the same answer, rather than two answers that agree today.
+ *
+ * Renders nothing for an unmarked quote, and nothing while the snapshot is in
+ * flight: silence is the honest output when there is nothing to say.
+ */
+function QuoteMarks({ findingId, index }) {
+  const { data } = useFindingQuoteProvenance()
+  return <QuoteProvenanceMark entry={provenanceFor(data, findingId)[index]} />
+}
+
 export {
   SectionErrorBoundary,
   QUEUE_URL,
@@ -121,4 +147,5 @@ export {
   shortDate,
   VerdictPill,
   PartyChip,
+  QuoteMarks,
 }

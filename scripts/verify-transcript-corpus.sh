@@ -20,6 +20,12 @@ cd "$(dirname "$0")/.."
 # checkout every night, write a fresh baseline, and report "no new untraceable
 # quotes" forever — a check that cannot fail. It is also meaningful state in its
 # own right: the list of quote drifts a human has already looked at and accepted.
+#
+# The run may SHRINK it without being asked — a row that is traceable again is
+# retired, so the recovery is reported once instead of every night — but it
+# never GROWS without `--baseline`. Accepting a drift nobody has looked at stays
+# a human act; retiring a stale row only tightens the gate, because that quote
+# breaking again would then come back as "appeared" rather than stay silent.
 BASELINE=".transcript-check-baseline.json"
 CUR=$(mktemp)
 trap 'rm -f "$CUR"' EXIT

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Pill } from '../../components/Primitives'
+import { QuoteMarks } from './shared'
 
 /**
  * «¿Cuál de estos pasajes es la cita?» — la fila de reanclaje de un literal
@@ -181,6 +182,11 @@ export function QuoteReanchorRow({ row }) {
             }}
           >
             «{row.publishedQuote}»
+            {/* Las dos marcas que el lector ya tiene delante en /hallazgos. La
+                píldora de arriba dice por qué la fila está en esta cola; ésta
+                añade el otro eje —qué haría la puerta editorial con la
+                afirmación—, que la cola no enseñaba en ninguna parte. */}
+            <QuoteMarks findingId={row.findingId} index={row.quoteIndex} />
           </div>
           {row.supersededAt && (
             <div style={{ marginTop: 8 }}>

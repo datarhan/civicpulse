@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Pill } from '../../components/Primitives'
+import { QuoteMarks } from './shared'
 
 /**
  * «¿Lo sostiene o sólo se le parece?» — la fila de revisión de un hallazgo
@@ -227,12 +228,17 @@ export function FindingSupportRow({ row, verdictOptions }) {
               {row.quotes.map((q, i) => (
                 <div
                   key={i}
-                  style={{ fontSize: 12, color: 'var(--ink70)', lineHeight: 1.5, marginBottom: 3 }}
+                  style={{ fontSize: 12, color: 'var(--ink70)', lineHeight: 1.5, marginBottom: 6 }}
                 >
                   «{q.text}»{' '}
                   <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
                     {q.speakerGroup ?? 'grupo no identificado'}
                   </span>
+                  {/* Lo que el lector ya ve junto a esta cita en /hallazgos.
+                      Sin esto, quien juzga si el hallazgo sigue publicado veía
+                      MENOS que un visitante: ni de qué transcripción salen las
+                      palabras ni qué haría con ellas la puerta editorial. */}
+                  <QuoteMarks findingId={row.id} index={i} />
                 </div>
               ))}
             </div>

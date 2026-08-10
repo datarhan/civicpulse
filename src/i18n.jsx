@@ -283,6 +283,21 @@ const CATALOGUE = {
     'findings.refs.date.none': 'sin fecha publicada',
     'findings.refs.date.noneTitle':
       'El registro público de este documento no publica ninguna fecha utilizable. No significa que sea reciente.',
+    // Tres estados y sólo tres, más el silencio mientras el snapshot carga. Un
+    // expediente anulado antes de adjudicar y un contrato firmado se leían
+    // igual bajo «Documentos cotejados».
+    'findings.refs.status.cancelled': 'expediente anulado',
+    'findings.refs.status.cancelledTitle':
+      'El procedimiento terminó sin contrato: se anuló, se desistió o quedó desierto. El ayuntamiento no llegó a firmarlo.',
+    'findings.refs.status.committed': 'adjudicado',
+    'findings.refs.status.committedTitle':
+      'El registro publica este expediente como adjudicado o formalizado: hay contrato.',
+    'findings.refs.status.in-flight': 'en licitación',
+    'findings.refs.status.in-flightTitle':
+      'El expediente sigue en marcha: publicado, en evaluación o con adjudicación sólo provisional. Todavía no hay contrato firme.',
+    'findings.refs.status.none': 'sin estado',
+    'findings.refs.status.noneTitle':
+      'El registro público de este documento no publica ningún estado utilizable. No significa que se anulara ni que se firmara.',
     'cargos.detalle.actividad.eyebrow': 'Actividad de sus áreas',
     'cargos.detalle.actividad.title': 'Qué se ha debatido y verificado en sus concejalías',
     'cargos.detalle.actividad.intro':
@@ -757,6 +772,18 @@ const CATALOGUE = {
     'findings.refs.date.none': 'sense data publicada',
     'findings.refs.date.noneTitle':
       "El registre públic d'este document no publica cap data utilitzable. No vol dir que siga recent.",
+    'findings.refs.status.cancelled': 'expedient anul·lat',
+    'findings.refs.status.cancelledTitle':
+      "El procediment va acabar sense contracte: es va anul·lar, se'n va desistir o va quedar desert. L'ajuntament no el va arribar a signar.",
+    'findings.refs.status.committed': 'adjudicat',
+    'findings.refs.status.committedTitle':
+      'El registre publica este expedient com a adjudicat o formalitzat: hi ha contracte.',
+    'findings.refs.status.in-flight': 'en licitació',
+    'findings.refs.status.in-flightTitle':
+      "L'expedient continua en marxa: publicat, en avaluació o amb adjudicació només provisional. Encara no hi ha contracte ferm.",
+    'findings.refs.status.none': 'sense estat',
+    'findings.refs.status.noneTitle':
+      "El registre públic d'este document no publica cap estat utilitzable. No vol dir que s'anul·lara ni que se signara.",
     'cargos.detalle.actividad.eyebrow': 'Activitat de les seues àrees',
     'cargos.detalle.actividad.title': "Què s'ha debatut i verificat a les seues regidories",
     'cargos.detalle.actividad.intro':

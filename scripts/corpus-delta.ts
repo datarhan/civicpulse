@@ -11,9 +11,27 @@
  * This used to be a `node -e` string inside that shell script. The set
  * arithmetic it does is the part with a wrong answer available, and no test
  * could reach it in there.
+ *
+ * Three things have to be true before a delta is printed at all, and none of
+ * them were: the run must have cotejado something, the baseline must have been
+ * written by the same classifier, and a recovery must be RETIRED rather than
+ * re-announced for ever. See `src/scraper/corpus-baseline.ts`.
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
-import { compareCorpus, corpusDeltaBlocks, type DriftedQuote } from '../src/scraper/corpus-baseline'
+import {
+  acceptedBaseline,
+  baselineAcceptedAt,
+  baselineIncomparable,
+  baselineRows,
+  compareCorpus,
+  corpusDeltaBlocks,
+  healedBaseline,
+  runMeasuredNothing,
+  type DriftedQuote,
+} from '../src/scraper/corpus-baseline'
+
+/** Just the date: the hour a baseline was accepted is noise in a one-line report. */
+const day = (iso: string) => (iso ? iso.slice(0, 10) : 'fecha desconocida')
 
 function main() {
   const [curPath, basePath, flag] = process.argv.slice(2)
@@ -23,13 +41,16 @@ function main() {
   }
   const accept = flag === '--baseline'
   const cur = JSON.parse(readFileSync(curPath, 'utf8')) as {
+    checked?: number
     ok?: number
+    sanity?: string | null
     driftedCount?: number
     supersededOnlyCount?: number
     undeterminedCount?: number
     drifted?: DriftedQuote[]
   }
   const current = cur.drifted ?? []
+  const now = new Date().toISOString()
 
   // «cannot tell» is printed on its own and never added to superseded-only: for
   // those sessions the current transcript is SHORTER than the one it replaced,
@@ -41,24 +62,64 @@ function main() {
   )
 
   if (accept || !existsSync(basePath)) {
-    writeFileSync(basePath, JSON.stringify({ drifted: current }, null, 2))
-    console.log(accept ? '  baseline accepted.' : '  baseline created (first run).')
+    writeFileSync(basePath, `${JSON.stringify(acceptedBaseline(current, now), null, 2)}\n`)
+    console.log(accept ? '  línea base aceptada.' : '  línea base creada (primera pasada).')
     return
   }
 
-  const baseline = (JSON.parse(readFileSync(basePath, 'utf8')).drifted ?? []) as DriftedQuote[]
+  // Before subtracting: did this run measure anything? An empty `drifted`
+  // because the pass fell over looks exactly like an empty `drifted` because
+  // nothing is broken, and subtracted from a populated baseline the first one
+  // prints a wall of recoveries that never happened.
+  const unmeasured = runMeasuredNothing(cur)
+  if (unmeasured) {
+    console.error(`\n  ⚠︎ delta NO calculado — ${unmeasured}`)
+    process.exitCode = 1
+    return
+  }
+
+  const raw = JSON.parse(readFileSync(basePath, 'utf8')) as unknown
+  // Two lists built by different classifiers do not subtract to anything. This
+  // is the check saying «no lo sé», which is the answer that was missing when
+  // 22 re-filed quotes were reported as 22 recoveries.
+  const incomparable = baselineIncomparable(raw)
+  if (incomparable) {
+    console.error(`\n  ⚠︎ delta NO calculado — ${incomparable}.`)
+    console.error(
+      '  Revisa el estado actual arriba y acéptalo con:\n' +
+        '      bash scripts/verify-transcript-corpus.sh --baseline',
+    )
+    process.exitCode = 1
+    return
+  }
+
+  const baseline = baselineRows(raw)
+  const since = day(baselineAcceptedAt(raw))
   const delta = compareCorpus(current, baseline)
 
-  if (delta.healed.length)
-    console.log(`  ✓ ${delta.healed.length} cita(s) vuelven a ser rastreables`)
+  // Healed rows are RETIRED, not just announced. Left in place they were
+  // re-announced every run for ever — and «vuelven a ser rastreables» in a
+  // run report reads as «en esta pasada», which the delta cannot know.
+  if (delta.healed.length > 0) {
+    writeFileSync(basePath, `${JSON.stringify(healedBaseline(current, baseline, now), null, 2)}\n`)
+    console.log(
+      `  ✓ ${delta.healed.length} cita(s) han vuelto a ser rastreables desde la línea base ` +
+        `del ${since}\n    (en cuál de las pasadas, esto no puede saberlo); se retiran de la línea base.`,
+    )
+  }
   if (!corpusDeltaBlocks(delta)) {
-    console.log('  ✓ ninguna cita dejó de ser rastreable en esta pasada')
+    if (delta.healed.length === 0) {
+      console.log(
+        `  · sin cambios desde la línea base del ${since}: ` +
+          (delta.carried.length === 0
+            ? 'ninguna cita sin rastro, tampoco entonces.'
+            : `las mismas ${delta.carried.length} cita(s) sin rastro.`),
+      )
+    }
     return
   }
 
-  console.log(
-    `\n  ⚠︎ ${delta.appeared.length} cita(s) DEJARON de ser rastreables tras re-transcribir:`,
-  )
+  console.log(`\n  ⚠︎ ${delta.appeared.length} cita(s) se han quedado SIN RASTRO en esta pasada:`)
   for (const k of delta.appeared.slice(0, 10)) {
     const [id, q] = k.split('|')
     console.log(`      ${id}  «${q}…»`)
@@ -66,11 +127,16 @@ function main() {
   if (delta.appeared.length > 10) {
     console.log(`      … y ${delta.appeared.length - 10} más`)
   }
+  // NOT «cita un transcript reemplazado», which is what this said while
+  // `drifted` still meant «ausente de la vigente». Since 8a4ef92 that case is
+  // `solo-en-sustituida`, a published state with its own queue, and what lands
+  // here is the harder question: the words are in no transcript we hold.
   console.log(
-    '\n  Citan un transcript que ha sido reemplazado. El texto viejo se conserva\n' +
-      '  bajo pleno-transcripts/superseded/, así que la cita sigue siendo\n' +
-      '  comprobable — pero el hallazgo debería refrescarse contra el texto mejor,\n' +
-      '  o corregirse vía `npm run correct-pleno-finding`.\n' +
+    '\n  No constan ni en la transcripción vigente ni en la que sustituyó, así que\n' +
+      '  no hay texto contra el que cotejarlas. Eso NO las hace falsas — decide una\n' +
+      '  persona, y la corrección se registra con `npm run correct-pleno-finding`.\n' +
+      '  Mientras siga sin resolverse, `compute:finding-quote-provenance` se niega a\n' +
+      '  escribir el snapshot que marca las citas en /hallazgos.\n' +
       '  Aceptar el nuevo estado: bash scripts/verify-transcript-corpus.sh --baseline',
   )
   process.exitCode = 1
