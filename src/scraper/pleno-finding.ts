@@ -183,7 +183,20 @@ export interface PlenoFindingCorrection {
 }
 
 /** Correction field paths addressing a quote row: quote.<i>.text / quote.<i>.sourceClaimId */
-export const CORRECTION_QUOTE_FIELD_RE = /^quote\.(\d+)\.(text|sourceClaimId)$/
+/**
+ * `speakerGroup` is correctable because attribution turned out to be the field
+ * most likely to be wrong. It was inferred by a model from a ~1200-character
+ * window that, measured, contains the evidence of who is speaking 1% of the
+ * time — so published quotes ended up filed under the bloc they criticise.
+ * Until this was added the CLI could correct a quote's text but not the name
+ * attached to it, which left no sanctioned way to retract an attribution at all.
+ *
+ * An empty `--new` sets it to `null`: "we no longer say who". Setting it to a
+ * DIFFERENT bloc is allowed here because a curator reading the acta is exactly
+ * who should be able to, but no automated path may — see
+ * `scripts/reconcile-attribution.ts`, which can only ever empty it.
+ */
+export const CORRECTION_QUOTE_FIELD_RE = /^quote\.(\d+)\.(text|sourceClaimId|speakerGroup)$/
 
 /**
  * ── REMOVAL ─────────────────────────────────────────────────────────────────
@@ -760,7 +773,22 @@ export function applyFindingCorrection(
     if (!quote) {
       throw new Error(`quote index ${qi} out of range (finding has ${finding.quotes.length})`)
     }
-    const prop = m[2] as 'text' | 'sourceClaimId'
+    const prop = m[2] as 'text' | 'sourceClaimId' | 'speakerGroup'
+    if (prop === 'speakerGroup') {
+      // Empty means "we no longer say who said this". There is deliberately no
+      // placeholder code: in a 21-seat council an "unknown group" value names
+      // the councillor outside the large groups by elimination.
+      const original = String(quote.speakerGroup ?? '')
+      const next = corrected.trim()
+      if (next && !(SPEAKER_GROUPS as readonly string[]).includes(next)) {
+        throw new Error(
+          `"${next}" is not a publishable bloc (${SPEAKER_GROUPS.join(', ')}). ` +
+            'Pass an empty --new to retract the attribution instead.',
+        )
+      }
+      quote.speakerGroup = (next || null) as SpeakerGroup | null
+      return original
+    }
     const original = String(quote[prop] ?? '')
     quote[prop] = corrected
     return original
