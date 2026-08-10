@@ -207,9 +207,23 @@ fi
 # The graph declares what the deterministic tier cannot reach. Printed even on
 # success, because "nothing to report" and "an LLM stage is overdue and this
 # runner has no model" must not look the same in the nightly log.
+#
+# And a bare heading with nothing under it reads as "nothing owed", which is the
+# very failure this block exists to prevent. So say which of the two it is:
+# today the graph declares no `llm` nodes at all, so an empty list means the
+# tier is UNMODELLED, not idle.
 echo ""
-echo "[scrape-all] LLM-tier backlog the laptop crons still owe:"
-npm run --silent refresh -- --list llm | sed 's/^/  · /' || true
+LLM_BACKLOG=$(npm run --silent refresh -- --list llm 2>/dev/null || true)
+if [ -n "$LLM_BACKLOG" ]; then
+  echo "[scrape-all] LLM-tier backlog the laptop crons still owe:"
+  echo "$LLM_BACKLOG" | sed 's/^/  · /'
+elif npx tsx -e 'import{DATA_GRAPH}from"./src/scraper/data-graph.ts";process.exit(DATA_GRAPH.some(n=>n.tier==="llm")?0:1)' 2>/dev/null; then
+  echo "[scrape-all] LLM tier: every declared node is fresh."
+else
+  echo "[scrape-all] LLM tier: NOT MODELLED in data-graph.ts yet — this says nothing"
+  echo "[scrape-all]   about whether transcription, speaker maps or extraction are overdue."
+  echo "[scrape-all]   Those still run from the laptop crons on their own backlogs."
+fi
 
 echo ""
 echo "================================================================"
