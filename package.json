@@ -175,7 +175,8 @@
     "promote-area-fit": "npx tsx scripts/promote-area-fit.ts",
     "migrate:area-fit-short": "npx tsx scripts/migrate-area-fit-short.ts",
     "migrate:area-fit-portfolio-key": "npx tsx scripts/migrate-area-fit-portfolio-key.ts",
-    "extract:speaker-map": "npx tsx scripts/extract-speaker-map.ts"
+    "extract:speaker-map": "npx tsx scripts/extract-speaker-map.ts",
+    "retract:guessed-attributions": "npx tsx scripts/retract-guessed-attributions.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

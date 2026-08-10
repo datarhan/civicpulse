@@ -17,7 +17,7 @@
       "quotes": [
         {
           "claimId": "10yl550-009-afi-826b4f",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "verdict": "verificado",
           "confidence": 0.95,
           "verbatim": "hemos llegado a pagar un millón de euros en extrajudiciales",
@@ -59,7 +59,7 @@
         },
         {
           "claimId": "10yl550-288-afi-4017bd",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "verdict": "verificado",
           "confidence": 0.9,
           "verbatim": "30.000 euros en las actuaciones.",
@@ -86,7 +86,7 @@
       "quotes": [
         {
           "claimId": "c8kr44-172-cit-b1b4d4",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "verdict": "verificado",
           "confidence": 0.95,
           "verbatim": "más de 100 millones de euros se han traído en subvenciones",
@@ -100,7 +100,7 @@
         },
         {
           "claimId": "c8kr44-202-afi-0dc394",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "verdict": "verificado",
           "confidence": 0.9,
           "verbatim": "este Ayuntamiento pagará 3.975.000 euros en el 2024.",
@@ -114,7 +114,7 @@
         },
         {
           "claimId": "c8kr44-205-afi-03f5b7",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "verdict": "verificado",
           "confidence": 0.85,
           "verbatim": "Y también se encuentra que 649.000 euros, que son el equivalente a 101 factores, que están pendientes de que los proveedores nos envíen la ficha de mantenimiento.",
@@ -128,7 +128,7 @@
         },
         {
           "claimId": "c8kr44-202-afi-988c8e",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "verdict": "parcial",
           "confidence": 0.9,
           "verbatim": "En el mismo periodo, primer trimestre y segundo trimestre del 2025, hemos pagado 8.167.000 euros.",
@@ -183,7 +183,7 @@
         },
         {
           "claimId": "10yl550-025-acu-2980a7",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "verdict": "parcial",
           "confidence": 0.9,
           "verbatim": "el gobierno de Mazón y de Juan Pérez de Yorca ha denegado ese centro de formación integral para Riva Rocha.",
