@@ -17,7 +17,11 @@
  * part of the runtime fallback chain (user directive 2026-07-07 — local
  * inference pins the machine); it runs only as an explicit primary
  * (LLM_BACKEND=ollama) or when no other backend is installed at all.
- * claude-code is auto-chained only as agy's first fallback.
+ * claude-code is auto-chained as the first fallback of the two capped-$0
+ * backends, `agy` and `gemini`, and of no others. `LLM_ZERO_COST_ONLY=1` drops
+ * the metered backends from the chain entirely. The rules and the incidents
+ * behind them live on `buildBackendChain`, which is exported so they can be
+ * asserted rather than trusted.
  *
  * The public entrypoint `callLLM<T>` does:
  *   1. Compute a content-addressed cache key (model + promptVersion + schema + input)
@@ -223,6 +227,20 @@ export interface ClientConfig {
   agyBin: string
   cacheDir: string
   maxTokensPerRun: number
+  /**
+   * Remove every metered backend from the fallback chain (`LLM_ZERO_COST_ONLY=1`).
+   *
+   * The chain silently reaches for `openai` whenever a $0 primary fails, which
+   * is correct for an interactive run and wrong for an unattended one. The
+   * auto-curator postmortem is the precedent: agy's daily Google quota
+   * exhausted, `agy -p` exited 0 with empty stdout, and the wrapper leaked to
+   * metered openai without anyone noticing until the bill.
+   *
+   * `unset OPENAI_API_KEY` does the same job, but only if you remember every
+   * time, from every cron, in every subshell. A flag is checkable; a habit is
+   * not.
+   */
+  zeroCostOnly: boolean
 }
 
 export function loadConfigFromEnv(): ClientConfig {
@@ -288,7 +306,64 @@ export function loadConfigFromEnv(): ClientConfig {
     agyModel: process.env.AGY_MODEL || process.env.GEMINI_MODEL || 'gemini-2.5-pro',
     cacheDir: resolve('.llm-cache'),
     maxTokensPerRun: Number(process.env.LLM_MAX_TOKENS_PER_RUN || 500_000),
+    zeroCostOnly: process.env.LLM_ZERO_COST_ONLY === '1',
   }
+}
+
+/**
+ * The ordered list of backends `callLLM` will try: the configured primary
+ * first, then whichever fallbacks are actually reachable.
+ *
+ * Extracted and exported because this function decides whether an unattended
+ * run spends money, and until now nothing asserted its behaviour. The
+ * auto-curator leak — agy's Google quota exhausted, `agy -p` exiting 0 with
+ * empty stdout, the chain falling through to metered openai — was invisible
+ * precisely because the chain was an inline loop nobody could unit-test.
+ *
+ * Rules, each one paid for:
+ *
+ *   · **ollama is NEVER auto-chained** (user directive 2026-07-07). Local qwen
+ *     inference pinned the machine for an hour when both $0 CLIs failed. It is
+ *     reachable only as an explicit primary.
+ *
+ *   · **claude-code is chained only off the two $0 Google-quota backends**,
+ *     `agy` (directive 2026-07-06) and `gemini` (directive 2026-08-10). Both
+ *     fail the same way — a cap, not an outage — and both should reach for the
+ *     other free quota rather than the credit card. It is deliberately NOT
+ *     chained off a metered primary: an errant heavy extract must not drain
+ *     the Max quota that interactive Claude sessions share.
+ *
+ *   · **`zeroCostOnly` removes the metered backends entirely.** Unsetting the
+ *     API keys does the same thing, but only if you remember, every time, from
+ *     every cron. A flag can be asserted in a test; a habit cannot.
+ *
+ * Note claude-code is text-only (`claude -p` takes no attachments), so nothing
+ * here can rescue an audio task. Transcription and the speaker-map pass do not
+ * use this client at all — a text model handed an audio job with no audio
+ * would invent the answer, which is worse than failing.
+ */
+export function buildBackendChain(config: ClientConfig): Backend[] {
+  const commandExists = (bin: string): boolean =>
+    bin.includes('/')
+      ? existsSync(bin)
+      : (process.env.PATH || '').split(':').some((d) => d && existsSync(`${d}/${bin}`))
+
+  const chain: Backend[] = [config.backend]
+  const capped$0Primary = config.backend === 'agy' || config.backend === 'gemini'
+  const order: Backend[] = capped$0Primary
+    ? ['claude-code', 'openai', 'anthropic', 'gemini']
+    : ['openai', 'anthropic', 'gemini']
+
+  for (const b of order) {
+    if (b === config.backend) continue
+    if (config.zeroCostOnly && (b === 'openai' || b === 'anthropic')) continue
+    if (b === 'claude-code' && !commandExists(config.claudeCodeBin)) continue
+    if (b === 'openai' && !config.openaiApiKey) continue
+    if (b === 'anthropic' && !config.anthropicApiKey) continue
+    if (b === 'gemini' && !existsSync(config.geminiBin)) continue
+    chain.push(b)
+  }
+  return chain
 }
 
 function backendModel(config: ClientConfig): string {
@@ -1204,42 +1279,7 @@ export async function callLLM<TSchema extends ZodTypeAny>(
     return null
   }
 
-  // Build the ordered list of backends to try. Primary is whatever the
-  // config says; fallbacks are the other configured backends in priority
-  // order:
-  //   openai (metered) → anthropic (metered) → gemini (Pro subscription)
-  // gemini is auto-used as a fallback when its CLI binary exists on disk —
-  // assumed to mean the user has opted in by installing it.
-  //
-  // ollama is NEVER auto-chained (user directive 2026-07-07): local qwen
-  // inference pinned the machine for an hour when both $0 CLIs failed. It
-  // remains reachable only as an explicit primary (LLM_BACKEND=ollama).
-  //
-  // claude-code is auto-chained ONLY as agy's FIRST fallback ("if agy hits its
-  // Google quota, use the claude CLI" — user directive 2026-07-06): agy is $0
-  // (Google subscription) but daily-capped, and when it's exhausted `agy -p`
-  // returns empty, so we prefer claude-code (also $0, on a SEPARATE Max quota)
-  // over the metered openai/anthropic path. It is NOT chained off any other
-  // primary — an errant heavy extract on e.g. openai must not silently drain
-  // the Max quota that interactive Claude sessions share. Gated on the binary
-  // being resolvable (default `claude` on PATH; override via CLAUDE_CODE_BIN).
-  const commandExists = (bin: string): boolean =>
-    bin.includes('/')
-      ? existsSync(bin)
-      : (process.env.PATH || '').split(':').some((d) => d && existsSync(`${d}/${bin}`))
-  const attemptedBackends: Backend[] = [config.backend]
-  const fallbackOrder: Backend[] =
-    config.backend === 'agy'
-      ? ['claude-code', 'openai', 'anthropic', 'gemini']
-      : ['openai', 'anthropic', 'gemini']
-  for (const b of fallbackOrder) {
-    if (b === config.backend) continue
-    if (b === 'claude-code' && !commandExists(config.claudeCodeBin)) continue
-    if (b === 'openai' && !config.openaiApiKey) continue
-    if (b === 'anthropic' && !config.anthropicApiKey) continue
-    if (b === 'gemini' && !existsSync(config.geminiBin)) continue
-    attemptedBackends.push(b)
-  }
+  const attemptedBackends = buildBackendChain(config)
 
   const t0 = Date.now()
   let result: z.infer<TSchema> | null = null
