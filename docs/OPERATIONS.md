@@ -105,6 +105,19 @@ it: if a `git pull --rebase` fires under you mid-work, `git rebase --abort` is
 the safe exit. The same helper limits each commit to the paths its own cron
 owns, so whatever else is staged stays staged.
 
+That check is not a one-off at the top. It **records the HEAD it approved** —
+the ref, plus a count of branch switches read from HEAD's reflog, because a
+branch can be left and re-entered and the name alone would match again — and
+**re-checks it before every later git write**: the opening pull, the `git add`,
+the commit and the retry pull. A run whose branch moves under it (an agent
+branching off mid-run is how commit 30277ab landed on a feature branch) stops
+there. It commits nothing, discards nothing, prints the `git status` of the
+snapshots it produced so you know they are still in the working tree, and exits
+**non-zero** — unlike the opening guard, because a run that did the work and
+cannot publish it _is_ a failure. Under `CRON_GIT_ALLOW_BRANCH=1` or the
+`PRESS_LAB_NO_REMOTE` rehearsal the branch it pins is the one you actually
+started on, not `main`.
+
 Install helpers: `scripts/cron-install-hallazgos.sh`,
 `scripts/cron-install-press-lab.sh`. Run them from Terminal — launchd agents
 under `~/Documents/` die with exit 78 on macOS TCC, which is why these are cron

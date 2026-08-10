@@ -17,6 +17,15 @@
  *    origin main from whatever branch is checked out, which rebases YOUR
  *    branch, commits to it, and then pushes an untouched local main.
  *
+ * 3. The branch guard was a point-in-time check. It was correctly wired into
+ *    all five and it still failed: on 2026-08-10 press-lab started at 10:45
+ *    (guard passed, HEAD was main), an agent branched off during the run, and
+ *    commit 30277ab landed on fix/citas-no-contrastadas. Same race in front of
+ *    the opening pull, where the damage is worse — it rebases that branch.
+ *    Reproduced below by a STUB that switches branch midway, the way the real
+ *    incident happened; and, for the pull, by the `claude -p` probe that sits
+ *    between the guard and the pull.
+ *
  * Nothing here re-implements the fix — that is the trap DATA_INTEGRITY.md rule
  * 1 is about. The sandbox is a real git repo with a real bare origin; the
  * pipeline STEPS are stubbed through a real `npm run` (a sandbox package.json
@@ -53,6 +62,34 @@ const SCRIPTS = [
 
 /** The file a concurrent subagent had staged when f182c61 swept it up. */
 const STRANGER = 'tests/encaje-credencial.test.jsx'
+
+/**
+ * Injected into both stubs. A concurrent agent moves HEAD midway through the
+ * run — the 30277ab race. Two shapes, because they are two different bugs:
+ *
+ *   STUB_SWITCH_BRANCH     branch off and stay there. HEAD's ref changes.
+ *   STUB_ROUNDTRIP_BRANCH  branch off and switch straight back. The branch NAME
+ *                          matches again on the way out, so a name-only check
+ *                          waves it through — while the two checkouts have had
+ *                          the chance to revert this run's files under it.
+ *
+ * Both are one-shot: the stub runs once per pipeline step.
+ */
+const SWITCH_SNIPPET = `
+if [ -n "\${STUB_SWITCH_BRANCH:-}" ]; then
+  _cur="$(git symbolic-ref --short -q HEAD || true)"
+  if [ "$_cur" != "\${STUB_SWITCH_BRANCH}" ]; then
+    git checkout -q -b "\${STUB_SWITCH_BRANCH}" 2>/dev/null || git checkout -q "\${STUB_SWITCH_BRANCH}"
+    echo "[stub] switched HEAD to \${STUB_SWITCH_BRANCH}"
+  fi
+fi
+if [ -n "\${STUB_ROUNDTRIP_BRANCH:-}" ] && [ ! -e .stub-roundtrip-done ]; then
+  _back="$(git symbolic-ref --short -q HEAD || true)"
+  git checkout -q -b "\${STUB_ROUNDTRIP_BRANCH}" 2>/dev/null || git checkout -q "\${STUB_ROUNDTRIP_BRANCH}"
+  git checkout -q "$_back"
+  : > .stub-roundtrip-done
+  echo "[stub] round-tripped HEAD via \${STUB_ROUNDTRIP_BRANCH} back to $_back"
+fi`
 
 /** npm-script → snapshot it writes. Mirrors what each real script produces. */
 const STEP_OUTPUTS: Record<string, string> = {
@@ -149,6 +186,7 @@ echo "[stub] ran $name"
 if [ -n "\${STUB_STAGE_STRANGER:-}" ] && [ -e "\${STUB_STAGE_STRANGER}" ]; then
   git add -- "\${STUB_STAGE_STRANGER}" && echo "[stub] staged stranger \${STUB_STAGE_STRANGER}"
 fi
+${SWITCH_SNIPPET}
 case " \${STUB_FAIL:-} " in *" $name "*) echo "[stub] $name FAILING" >&2; exit 1 ;; esac
 if [ -n "\${STUB_NOOP:-}" ]; then echo "[stub] $name wrote nothing"; exit 0; fi
 outs=""
@@ -171,6 +209,7 @@ echo "[stub] ran $name"
 if [ -n "\${STUB_STAGE_STRANGER:-}" ] && [ -e "\${STUB_STAGE_STRANGER}" ]; then
   git add -- "\${STUB_STAGE_STRANGER}" && echo "[stub] staged stranger \${STUB_STAGE_STRANGER}"
 fi
+${SWITCH_SNIPPET}
 case "$name" in
   scrape-factcheck)        outs="factcheck.json" ;;
   extract-press-claims)    outs="press-claims-suggestions.json" ;;
@@ -219,6 +258,8 @@ interface RunResult {
   /** Still staged after the run (the stranger's work must survive untouched). */
   stagedAfter: string[]
   head: string
+  /** Branch checked out when the run ended ('HEAD' if detached). */
+  branchAfter: string
   originHead: string
 }
 
@@ -248,6 +289,7 @@ function runScript(dir: string, script: string, env: Record<string, string> = {}
     log = (e.stdout ?? '') + (e.stderr ?? '')
   }
   const head = git(dir, 'rev-parse', 'HEAD').trim()
+  const branchAfter = git(dir, 'rev-parse', '--abbrev-ref', 'HEAD').trim()
   const stagedAfter = git(dir, 'diff', '--cached', '--name-only')
     .split('\n')
     .map((s) => s.trim())
@@ -262,7 +304,7 @@ function runScript(dir: string, script: string, env: Record<string, string> = {}
     /* broken-remote sandboxes */
   }
   if (head === before) {
-    return { status, log, committed: [], subject: '', stagedAfter, head, originHead }
+    return { status, log, committed: [], subject: '', stagedAfter, head, branchAfter, originHead }
   }
   const committed = git(dir, 'show', '--name-only', '--format=', 'HEAD')
     .split('\n')
@@ -275,6 +317,7 @@ function runScript(dir: string, script: string, env: Record<string, string> = {}
     subject: git(dir, 'log', '-1', '--format=%s').trim(),
     stagedAfter,
     head,
+    branchAfter,
     originHead,
   }
 }
@@ -282,6 +325,35 @@ function runScript(dir: string, script: string, env: Record<string, string> = {}
 /** Drop an untracked file the cron has no business committing. */
 function plantStranger(dir: string): void {
   writeFileSync(join(dir, STRANGER), "it('encaje declarado', () => {})\n")
+}
+
+/** Tip of a local branch, or '' when it does not exist. */
+function tip(dir: string, ref: string): string {
+  try {
+    return git(dir, 'rev-parse', ref).trim()
+  } catch {
+    return ''
+  }
+}
+
+/** Porcelain status lines for a path — proof the run's output survived. */
+function statusOf(dir: string, path: string): string {
+  return git(dir, 'status', '--porcelain', '--', path).trim()
+}
+
+/**
+ * Put origin/main one commit ahead of local main, so the opening
+ * `git pull --rebase` has something real to do — and something real to break
+ * if it fires on the wrong branch. `reset --hard` writes no
+ * `checkout: moving from` reflog entry, so the setup cannot itself trip the
+ * switch counter.
+ */
+function advanceOrigin(dir: string): void {
+  writeFileSync(join(dir, 'public/data/press.json'), '{"items":[{"id":"upstream"}]}\n')
+  git(dir, 'add', '--', 'public/data/press.json')
+  git(dir, 'commit', '-qm', 'upstream: a commit only origin has')
+  git(dir, 'push', '-q', 'origin', 'main')
+  git(dir, 'reset', '-q', '--hard', 'HEAD~1')
 }
 
 afterAll(() => {
@@ -461,6 +533,164 @@ describe('cron pipelines · branch guard', () => {
     expect(r.log).toContain('se omite el git pull inicial')
     expect(r.log).toContain('ensayo local: no se hace push')
     expect(r.originHead).toBe(originBefore)
+  }, 120_000)
+})
+
+// ---------------------------------------------------------------------------
+// The guard passed at 10:45 and the commit landed at 10:52 on a branch that did
+// not exist at 10:45. The guard must record what it approved and the commit
+// must re-check it.
+describe('cron pipelines · the commit lands on the branch the guard approved, or nowhere', () => {
+  const cases: Array<{ script: string; ownFile: string; env?: Record<string, string> }> = [
+    { script: 'scripts/scrape-ci-blocked.sh', ownFile: 'public/data/paro.json' },
+    { script: 'scripts/auto-curate-promises-daily.sh', ownFile: 'public/data/promises.json' },
+    { script: 'scripts/auto-curate-weekly.sh', ownFile: 'public/data/pleno-findings.json' },
+    { script: 'scripts/hallazgos-pipeline.sh', ownFile: 'public/data/pleno-findings.json' },
+    {
+      script: 'scripts/press-lab-pipeline.sh',
+      ownFile: 'public/data/press-claims-verified.json',
+      env: { PRESS_LAB_NO_REMOTE: '1' },
+    },
+  ]
+
+  for (const { script, ownFile, env } of cases) {
+    it(`${script} refuses to commit when HEAD moves mid-run (the 30277ab reproducer)`, () => {
+      const dir = makeSandbox()
+      const base = tip(dir, 'main')
+      const r = runScript(dir, script, { STUB_SWITCH_BRANCH: 'fix/mid-run', ...env })
+
+      // The reproducer conditions were REALLY present: the run did its work,
+      // and HEAD really moved under it.
+      expect(r.log, 'no step ran — the run measured nothing').toContain('[stub] ran ')
+      expect(r.log).toContain('[stub] switched HEAD to fix/mid-run')
+      expect(r.branchAfter, 'the mid-run switch did not stick').toBe('fix/mid-run')
+
+      // The point: no commit, on EITHER branch.
+      expect(tip(dir, 'fix/mid-run'), 'it committed onto the new branch').toBe(base)
+      expect(tip(dir, 'main'), 'it committed onto main after HEAD had left it').toBe(base)
+      expect(r.committed).toEqual([])
+
+      // Loud, naming the branch it approved and the one it found…
+      expect(r.log).toContain('ABORTADO')
+      expect(r.log).toMatch(/rama aprobada al empezar: 'main'/)
+      expect(r.log).toMatch(/rama ahora mismo: +'fix\/mid-run'/)
+      // …non-zero, so a cron log the operator greps for failures shows it…
+      expect(r.status).not.toBe(0)
+      // …and refusing is not discarding: the run's output is still in the
+      // working tree, and the refusal names it so the operator can publish it.
+      expect(statusOf(dir, ownFile), `${ownFile} was not left in the working tree`).not.toBe('')
+      expect(r.log).toContain('sigue en el working tree')
+      expect(r.log).toContain(ownFile)
+    }, 120_000)
+  }
+
+  it('the normal path still commits — same branch throughout, no refusal', () => {
+    // Positive control. A guard that never lets anything through is not a fix.
+    const dir = makeSandbox()
+    const base = tip(dir, 'main')
+    const r = runScript(dir, 'scripts/scrape-ci-blocked.sh')
+
+    expect(r.log).not.toContain('ABORTADO')
+    expect(r.branchAfter).toBe('main')
+    expect(tip(dir, 'main'), 'nothing was committed').not.toBe(base)
+    expect(r.committed).toContain('public/data/paro.json')
+    expect(r.log).toContain('[ci-blocked] pushed')
+    expect(r.status).toBe(0)
+  }, 60_000)
+
+  it('a round trip is refused too — the branch NAME is not the identity', () => {
+    // Checked out, worked on, switched back: the name matches again on the way
+    // out, so a name-only check waves it through. It must not — those two
+    // checkouts rewrite every file that differs between the branches, which can
+    // silently revert the very snapshots this run is about to publish.
+    const dir = makeSandbox()
+    const base = tip(dir, 'main')
+    const r = runScript(dir, 'scripts/scrape-ci-blocked.sh', {
+      STUB_ROUNDTRIP_BRANCH: 'fix/excursion',
+    })
+
+    expect(r.log).toContain('[stub] round-tripped HEAD via fix/excursion back to main')
+    expect(r.branchAfter, 'HEAD did not come back to main').toBe('main')
+    expect(statusOf(dir, 'public/data/paro.json'), 'nothing was produced').not.toBe('')
+
+    expect(r.log).toContain('ABORTADO')
+    expect(r.log).toContain('Mismo NOMBRE de rama')
+    expect(r.log).toMatch(/cambios de rama en el reflog: \d+ → \d+/)
+    expect(tip(dir, 'main')).toBe(base)
+    expect(r.committed).toEqual([])
+    expect(r.status).not.toBe(0)
+  }, 60_000)
+
+  it('CRON_GIT_ALLOW_BRANCH=1 pins the branch it approved, not literally main', () => {
+    // The override approves THIS branch, so leaving THIS branch is the breach.
+    const dir = makeSandbox({ branch: 'fix/some-feature' })
+    const base = tip(dir, 'main')
+    const r = runScript(dir, 'scripts/scrape-ci-blocked.sh', {
+      CRON_GIT_ALLOW_BRANCH: '1',
+      STUB_SWITCH_BRANCH: 'fix/another',
+    })
+
+    expect(r.log).toContain('CRON_GIT_ALLOW_BRANCH está activo')
+    expect(r.log).toContain('[stub] switched HEAD to fix/another')
+    expect(r.log).toContain('ABORTADO')
+    expect(r.log).toMatch(/rama aprobada al empezar: 'fix\/some-feature'/)
+    expect(r.log).toMatch(/rama ahora mismo: +'fix\/another'/)
+    expect(tip(dir, 'fix/another')).toBe(base)
+    expect(tip(dir, 'fix/some-feature')).toBe(base)
+    expect(r.status).not.toBe(0)
+  }, 60_000)
+
+  it('the PRESS_LAB_NO_REMOTE rehearsal is identity-checked too', () => {
+    // Nothing is pushed in a rehearsal, but committing onto a branch that
+    // appeared under it is still wrong — and the checkout can still eat the
+    // rehearsal's output.
+    const dir = makeSandbox({ branch: 'fix/rehearsal' })
+    const base = tip(dir, 'main')
+    const r = runScript(dir, 'scripts/press-lab-pipeline.sh', {
+      PRESS_LAB_NO_REMOTE: '1',
+      STUB_SWITCH_BRANCH: 'fix/mid-rehearsal',
+    })
+
+    expect(r.log).toMatch(/HEAD está en 'fix\/rehearsal'.*este run no toca el remoto/)
+    expect(r.log).toContain('ABORTADO')
+    expect(r.log).toMatch(/rama aprobada al empezar: 'fix\/rehearsal'/)
+    expect(r.log).toMatch(/rama ahora mismo: +'fix\/mid-rehearsal'/)
+    expect(tip(dir, 'fix/mid-rehearsal')).toBe(base)
+    expect(tip(dir, 'fix/rehearsal')).toBe(base)
+    expect(r.status).not.toBe(0)
+  }, 120_000)
+})
+
+// ---------------------------------------------------------------------------
+describe('cron pipelines · the opening pull races the guard as well', () => {
+  it('press-lab-pipeline.sh will not pull --rebase onto a branch that appeared after the guard', () => {
+    // The window in front of the pull is not theoretical: the lock, the .env
+    // and a `claude -p` probe all sit between the guard and the pull. Here the
+    // PROBE is the concurrent agent — it switches branch and exits 0, so
+    // press-lab walks straight on into `git pull --rebase --autostash origin
+    // main`, which on a feature branch rewrites that branch.
+    const dir = makeSandbox()
+    const probe = join(dir, 'switching-claude.sh')
+    writeFileSync(probe, '#!/bin/bash\ngit checkout -q -b fix/pull-race\nexit 0\n')
+    chmodSync(probe, 0o755)
+    advanceOrigin(dir)
+    const base = tip(dir, 'main')
+
+    const r = runScript(dir, 'scripts/press-lab-pipeline.sh', {
+      LLM_BACKEND: 'claude-code',
+      CLAUDE_CODE_BIN: probe,
+    })
+
+    expect(r.branchAfter, 'the probe never switched branch').toBe('fix/pull-race')
+    expect(r.log).toContain("ABORTADO antes de 'git pull inicial'")
+    expect(r.log).toMatch(/rama aprobada al empezar: 'main'/)
+    expect(r.log).toMatch(/rama ahora mismo: +'fix\/pull-race'/)
+    // Refused BEFORE the pull: the feature branch was not rebased onto the
+    // commit only origin has, local main is untouched, and no step ran.
+    expect(tip(dir, 'fix/pull-race'), 'the pull rebased the feature branch').toBe(base)
+    expect(tip(dir, 'main')).toBe(base)
+    expect(r.log).not.toContain('[stub] ran ')
+    expect(r.status).not.toBe(0)
   }, 120_000)
 })
 

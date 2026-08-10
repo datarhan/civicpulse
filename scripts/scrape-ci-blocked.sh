@@ -84,7 +84,11 @@ fi
 # count, so a repo that could not reach origin for days looked healthy. Each
 # step now reports itself. Exit 1 on a publish failure (adapter-only failures
 # keep exiting on their own count, as before).
-if ! git pull --rebase --autostash origin main; then
+# Through cron_git_pull_rebase: this one runs AFTER the commit, so by now the
+# seven adapters and check:citations have had minutes to be interrupted by a
+# branch switch — and on the wrong branch this pull rebases THAT branch onto
+# origin/main. The commit is already local either way; the next run retries it.
+if ! cron_git_pull_rebase "pull-rebase previo al push"; then
   echo "[ci-blocked] ERROR: git pull --rebase falló — el commit existe en local pero NO se ha hecho push; el próximo run reintenta"
   exit 1
 fi

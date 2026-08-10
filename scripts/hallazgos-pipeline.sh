@@ -113,7 +113,10 @@ export WHISPER_ENGINE="${WHISPER_ENGINE:-openai}"
 log "starting · MAX_PLENOS=$MAX_PLENOS · llm=$LLM_BACKEND/${CLAUDE_CODE_MODEL:-$AGY_MODEL} · whisper=$WHISPER_ENGINE · blocklist=[${TRANSCRIBE_BLOCKLIST:-none}]"
 
 # ---- always start from origin -----------------------------------------
-git pull --rebase --autostash origin main || { log "git pull failed — aborting before LLM work"; exit 1; }
+# cron_git_pull_rebase, not a bare pull: the lock, the .env and the `claude -p`
+# probe above are seconds of window since the branch guard, and on the wrong
+# branch this pull would rebase THAT branch onto origin/main.
+cron_git_pull_rebase "git pull inicial" || { log "git pull failed — aborting before LLM work"; exit 1; }
 
 # ---- refresh the video index (cheap) ----------------------------------
 npm run scrape:pleno-videos || log "warn: scrape:pleno-videos failed — continuing with existing index"
@@ -287,7 +290,7 @@ EOF
 # push with one pull-rebase retry (races the per-minute quejas cron)
 if ! git push origin main; then
   log "push rejected — pull-rebase + retry"
-  git pull --rebase --autostash origin main
+  cron_git_pull_rebase "pull-rebase de reintento tras push rechazado"
   git push origin main
 fi
 

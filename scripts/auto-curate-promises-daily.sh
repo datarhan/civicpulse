@@ -59,7 +59,11 @@ echo "[$(date '+%F %T')] auto-curate-promises-daily starting"
 # Pull-rebase first so a later publish push (if auto-publish is enabled
 # below) isn't stale. If pull fails (network/rebase conflict), bail
 # before the LLM run so we don't waste a call.
-git pull --rebase --autostash origin main
+#
+# Through cron_git_pull_rebase: sourcing .env sits between the branch guard and
+# this line, and on a branch that appeared in that window the pull would rebase
+# THAT branch onto origin/main instead of just refusing.
+cron_git_pull_rebase "git pull inicial"
 
 # Mirror the env the press-lab wrapper uses — it is the one cron job on
 # claude-code that has kept working. This one set neither the model nor the

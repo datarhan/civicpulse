@@ -49,7 +49,11 @@ echo "[$(date '+%F %T')] auto-curate-weekly starting"
 # Always pull-rebase first so we don't push stale state. If pull fails
 # (network down, rebase conflict), bail before the LLM run so we
 # don't waste quota.
-git pull --rebase --autostash origin main
+#
+# Through cron_git_pull_rebase: sourcing .env sits between the branch guard and
+# this line, and on a branch that appeared in that window the pull would rebase
+# THAT branch onto origin/main instead of just refusing.
+cron_git_pull_rebase "git pull inicial"
 
 # SUPERSEDED: this promote-only wrapper is replaced by the full-chain
 # scripts/hallazgos-pipeline.sh (daily cron: transcribe→extract→verify→

@@ -111,7 +111,10 @@ log "starting · llm=$LLM_BACKEND/${CLAUDE_CODE_MODEL} · extract≤$MAX_EXTRACT
 if [ -n "${PRESS_LAB_NO_REMOTE:-}" ]; then
   log "PRESS_LAB_NO_REMOTE — ensayo local: se omite el git pull inicial"
 else
-  git pull --rebase --autostash origin main || { log "git pull failed — aborting before LLM work"; exit 1; }
+  # cron_git_pull_rebase, not a bare pull: the lock, the .env and the `claude -p`
+  # probe above are seconds of window since the branch guard, and on the wrong
+  # branch this pull would rebase THAT branch onto origin/main.
+  cron_git_pull_rebase "git pull inicial" || { log "git pull failed — aborting before LLM work"; exit 1; }
 fi
 
 # ---- resilient chain, WITH honest dependency gating -------------------
@@ -377,7 +380,7 @@ else
   # push with one pull-rebase retry (races the per-minute quejas cron).
   if ! git push origin main; then
     log "push rejected — pull-rebase + retry"
-    git pull --rebase --autostash origin main
+    cron_git_pull_rebase "pull-rebase de reintento tras push rechazado"
     git push origin main
   fi
 fi
