@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-09T18:48:08.617Z",
+  "generatedAt": "2026-08-10T11:28:45.176Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. La mayoría los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -206,11 +206,6 @@
           "text": "la barrera está funcionando muy bien",
           "speakerGroup": null,
           "sourceClaimId": "10yl550-346-cit-6ee502"
-        },
-        {
-          "text": "El partido popular. Estuvo en consellería. Exigiendo. Que nos dijeran. Que según ustedes. Habían prometido. A la ciudadanía. De Riva Roja. Que se había solicitado. La pasarela. Ahí nos dijeron. Que nadie había solicitado nada.",
-          "speakerGroup": "PP",
-          "sourceClaimId": "10yl550-046-acu-5c6faa"
         }
       ],
       "crossChecked": [
@@ -254,6 +249,14 @@
           "reason": "Se retira del cotejo el expediente que sostenía la frase documental suprimida: el registro no permite identificar cuál de las varias estructuras homónimas del corpus es la debatida, y elegir una entre ellas es una selección sin respaldo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T16:58:20.857Z"
+        },
+        {
+          "field": "quote.3",
+          "original": "cita · sha256:51c76f1a94eb",
+          "corrected": "retirada del hallazgo",
+          "reason": "Se retira una de las dos copias de la misma intervención: la más corta está contenida palabra por palabra en la otra, que conserva además el arranque de la frase. Publicarla dos veces multiplicaba una sola declaración.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T11:28:03.127Z"
         }
       ]
     },
@@ -1010,8 +1013,8 @@
       "id": "f-2026-05-11-acu-da7902",
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
-      "title": "Pleno 2026-05-11: PSOE y PP debaten sobre la Asociación Abrupa y la fira 2025",
-      "summary": "El grupo PSOE denuncia que el PP no se ha puesto en contacto con la Asociación Abrupa y le solicita rectificar y pedir disculpas por utilizar su logotipo y nombre sin su consentimiento. El grupo PP, por su parte, señala su intervención previa sobre la fira de 2025.",
+      "title": "Pleno 2026-05-11: el PSOE reprocha al PP el uso del nombre de la Asociación Abrupa",
+      "summary": "El grupo PSOE denuncia que el PP no se ha puesto en contacto con la Asociación Abrupa y le solicita rectificar y pedir disculpas por utilizar su logotipo y nombre sin su consentimiento.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-274-acu-da7902",
@@ -1028,11 +1031,6 @@
           "text": "rectifique y pida disculpas a la Asociación Abrupa, primero por utilizar su logotipo y su nombre de forma partidista sin su consentimiento",
           "speakerGroup": "PSOE",
           "sourceClaimId": "10yl550-274-acu-4cb575"
-        },
-        {
-          "text": "el Partido Popular el otro día trajo una noticia diciendo que el gobierno no hizo la fira del 2025 porque estaba dos velas, canino.",
-          "speakerGroup": "PP",
-          "sourceClaimId": "10yl550-294-acu-c8a5f4"
         }
       ],
       "crossChecked": [
@@ -1068,6 +1066,30 @@
           "reason": "Se retira del cotejo el expediente que sostenía la frase documental suprimida: no toca ninguno de los dos asuntos que el hallazgo documenta, y publicarlo junto a ellos insinúa un contraste de gasto que nada acredita.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T16:58:21.612Z"
+        },
+        {
+          "field": "quote.2",
+          "original": "cita · sha256:ae0143dab9ae",
+          "corrected": "retirada del hallazgo",
+          "reason": "Se retira una cita cuyo grupo atribuido es incompatible con su propio texto, que habla de esa formación en tercera persona. La misma frase se publica en otro hallazgo de la sesión con la atribución que la transcripción sostiene.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T11:28:13.355Z"
+        },
+        {
+          "field": "title",
+          "original": "Pleno 2026-05-11: PSOE y PP debaten sobre la Asociación Abrupa y la fira 2025",
+          "corrected": "Pleno 2026-05-11: el PSOE reprocha al PP el uso del nombre de la Asociación Abrupa",
+          "reason": "El titular anunciaba un debate entre dos grupos sobre dos asuntos. Retirada la única cita que sostenía la segunda mitad, el hallazgo documenta una sola intervención sobre un solo asunto, y el titular pasa a decir eso.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T11:28:24.744Z"
+        },
+        {
+          "field": "summary",
+          "original": "El grupo PSOE denuncia que el PP no se ha puesto en contacto con la Asociación Abrupa y le solicita rectificar y pedir disculpas por utilizar su logotipo y nombre sin su consentimiento. El grupo PP, por su parte, señala su intervención previa sobre la fira de 2025.",
+          "corrected": "El grupo PSOE denuncia que el PP no se ha puesto en contacto con la Asociación Abrupa y le solicita rectificar y pedir disculpas por utilizar su logotipo y nombre sin su consentimiento.",
+          "reason": "La segunda frase descansaba entera en una cita retirada por llevar un grupo atribuido que su propio texto desmiente. Sin esa cita nada en el hallazgo acredita esa intervención, así que la frase se va en lugar de quedarse sin fuente.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T11:28:25.315Z"
         }
       ]
     },
@@ -1791,11 +1813,6 @@
           "sourceClaimId": "19gax3o-132-acu-a3b10d"
         },
         {
-          "text": "el pabellón que es una instalación de primer orden que ustedes votaron en contra porque era demasiado grande, como decían, en los años 89-90 ha estado 20 años sin mantenimiento del PSOE 20 años",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "19gax3o-146-cit-288e9a"
-        },
-        {
           "text": "el pabellón que es una instalación de primer orden que ustedes votaron en contra porque era demasiado grande",
           "speakerGroup": null,
           "sourceClaimId": "19gax3o-147-acu-01da0f"
@@ -1842,6 +1859,14 @@
           "reason": "El expediente colgaba de una frase que se retira por no sostener nada: existía únicamente para respaldar el vínculo inventado, y compartía con lo debatido una sola palabra. Sin esa frase, nada en el hallazgo lo cita.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T17:47:07.435Z"
+        },
+        {
+          "field": "quote.2",
+          "original": "cita · sha256:9d75ee928343",
+          "corrected": "retirada del hallazgo",
+          "reason": "Se retira una de las dos copias de la misma intervención: la copia larga contiene entera a la otra, y la coletilla que añade no consta en la transcripción vigente, que en ese punto dice algo distinto y de sentido contrario.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T11:27:52.877Z"
         }
       ]
     },
@@ -3227,7 +3252,7 @@
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "Salvoconductos a trabajadores tras la DANA a debate en el pleno 2025-12-01",
-      "summary": "Según el registro del pleno, los grupos PSOE y un grupo no identificado manifiestan que el consistorio habría emitido salvoconductos para que trabajadores y trabajadoras acudieran a sus puestos durante la alerta roja posterior a la DANA. El debate queda documentado junto al contrato verbal de servicio para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) derivado del temporal.",
+      "summary": "Según el registro del pleno, el grupo PSOE manifiesta que el consistorio habría emitido salvoconductos para que trabajadores y trabajadoras acudieran a sus puestos durante la alerta roja posterior a la DANA. El debate queda documentado junto al contrato verbal de servicio para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) derivado del temporal.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-179-acu-51aaa3",
@@ -3235,11 +3260,6 @@
         "qz6weg-193-acu-7589c9"
       ],
       "quotes": [
-        {
-          "text": "ustedes han hecho salvoconductos para donarles a los trabajadores y trabajadoras para que puedan ir a trabajar en alerta roja.",
-          "speakerGroup": null,
-          "sourceClaimId": "qz6weg-192-acu-975308"
-        },
         {
           "text": "después de la catástrofe de la DANA, ustedes han hecho salvoconductos para donarles a los trabajadores y trabajadoras para que puedan ir a trabajar en alerta roja.",
           "speakerGroup": "PSOE",
@@ -3287,6 +3307,22 @@
           "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión y cuya fecha más temprana conocida es posterior al pleno.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:47:53.626Z"
+        },
+        {
+          "field": "quote.0",
+          "original": "cita · sha256:5195187eb6ea",
+          "corrected": "retirada del hallazgo",
+          "reason": "Se retira una de las dos copias de la misma intervención: su texto está contenido íntegro en la otra cita del hallazgo, que además sí lleva grupo atribuido. Publicadas juntas, una sola voz se leía como dos.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T11:27:32.151Z"
+        },
+        {
+          "field": "summary",
+          "original": "Según el registro del pleno, los grupos PSOE y un grupo no identificado manifiestan que el consistorio habría emitido salvoconductos para que trabajadores y trabajadoras acudieran a sus puestos durante la alerta roja posterior a la DANA. El debate queda documentado junto al contrato verbal de servicio para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) derivado del temporal.",
+          "corrected": "Según el registro del pleno, el grupo PSOE manifiesta que el consistorio habría emitido salvoconductos para que trabajadores y trabajadoras acudieran a sus puestos durante la alerta roja posterior a la DANA. El debate queda documentado junto al contrato verbal de servicio para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) derivado del temporal.",
+          "reason": "El sumario contaba dos intervinientes donde la sesión registra uno: las dos citas eran la misma frase, y de esa duplicación salía un grupo sin identificar que nunca habló. Retirada la copia, el sumario informa de un solo grupo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T11:27:44.852Z"
         }
       ]
     },
@@ -3570,7 +3606,7 @@
       "plenoId": "otxq2c",
       "plenoDate": "2025-10-06",
       "title": "Pleno del 2025-10-06: Debate sobre seguridad",
-      "summary": "Durante la sesión del pleno del 6 de octubre de 2025, el grupo PSOE afirmó que «no ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas». Por su parte, VOX mencionó a Itziar Moreno en un contexto de condena, mientras que el PP señaló errores en la migración de datos y el control de localización en el sistema, destacando que «falla el sistema cometa del Gobierno de España». Se cotejaron con estas intervenciones expedientes del registro municipal de contratación; ninguno las respalda ni las desmiente.",
+      "summary": "Durante la sesión del pleno del 6 de octubre de 2025, el grupo PSOE afirmó que «no ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas», mientras que el PP señaló errores en la migración de datos y el control de localización en el sistema, destacando que «falla el sistema cometa del Gobierno de España». Se cotejaron con estas intervenciones expedientes del registro municipal de contratación; ninguno las respalda ni las desmiente.",
       "severity": "informational",
       "sourceClaimIds": [
         "otxq2c-042-acu-bba0e9",
@@ -3583,11 +3619,6 @@
           "text": "No ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas.",
           "speakerGroup": "PSOE",
           "sourceClaimId": "otxq2c-042-acu-bba0e9"
-        },
-        {
-          "text": "Itziar Moreno, condenada por pertenecer a ETA tras intentar asesinar a varios gendarmes.",
-          "speakerGroup": "VOX",
-          "sourceClaimId": "otxq2c-116-acu-ee87cb"
         },
         {
           "text": "Recientemente se ha tenido constancia de errores que ha tenido la migración de datos y el control de la localización en el sistema",
@@ -3630,8 +3661,8 @@
       "corrections": [
         {
           "field": "summary",
-          "original": "Durante la sesión del pleno del 6 de octubre de 2025, el grupo PSOE afirmó que «no ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas». Por su parte, VOX mencionó a Itziar Moreno en un contexto de condena, mientras que el PP señaló errores en la migración de datos y el control de localización en el sistema, destacando que «falla el sistema cometa del Gobierno de España». Estos puntos fueron corroborados por el registro del tender sobre el mantenimiento del sistema inteligente de gestión de esperas y colas.",
-          "corrected": "Durante la sesión del pleno del 6 de octubre de 2025, el grupo PSOE afirmó que «no ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas». Por su parte, VOX mencionó a Itziar Moreno en un contexto de condena, mientras que el PP señaló errores en la migración de datos y el control de localización en el sistema, destacando que «falla el sistema cometa del Gobierno de España». Se cotejaron con estas intervenciones expedientes del registro municipal de contratación; ninguno las respalda ni las desmiente.",
+          "original": "sumario · sha256:cd5db2eac3bf",
+          "corrected": "sumario · sha256:73c1855e0425",
           "reason": "El registro de un contrato de gestión de esperas y colas no corrobora un debate sobre seguridad y violencia de género. El verificador no establece corroboración en ningún caso: sólo deja constancia de qué documentos se cotejaron.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-05T07:24:19.960Z"
@@ -3643,6 +3674,22 @@
           "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión, cuyo vínculo con lo debatido es una coincidencia léxica y cuyo expediente es posterior al pleno.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-09T15:46:25.548Z"
+        },
+        {
+          "field": "quote.1",
+          "original": "cita · sha256:9c4af4fd7783",
+          "corrected": "retirada del hallazgo",
+          "reason": "Se retira una cita que nombra a un particular ajeno a la corporación y le imputa un hecho grave que ninguna fuente de este sitio puede comprobar ni descartar. La atribución de bloque permite informar de que un grupo dijo algo; no obliga a reproducir el nombre.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-10T11:28:33.848Z"
+        },
+        {
+          "field": "summary",
+          "original": "sumario · sha256:73c1855e0425",
+          "corrected": "Durante la sesión del pleno del 6 de octubre de 2025, el grupo PSOE afirmó que «no ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas», mientras que el PP señaló errores en la migración de datos y el control de localización en el sistema, destacando que «falla el sistema cometa del Gobierno de España». Se cotejaron con estas intervenciones expedientes del registro municipal de contratación; ninguno las respalda ni las desmiente.",
+          "reason": "El sumario reproducía el nombre de un particular ajeno a la corporación y le adosaba un hecho grave que ninguna fuente de este sitio puede comprobar, para acto seguido dejarlo abierto diciendo que el registro municipal ni lo respalda ni lo desmiente. La atribución de bloque permite informar de lo que dijo un grupo; no obliga a repetir el nombre. El registro guarda la huella de lo retirado y no el texto: un tachado en esta misma página se lo devolvería al lector.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-10T11:28:45.174Z"
         }
       ]
     },
@@ -3809,10 +3856,10 @@
         {
           "field": "crossChecked.1",
           "original": "documento cotejado · sha256:edbb8423538f",
+          "corrected": "retirado del hallazgo",
           "reason": "Se retira del cotejo el expediente que nombraba la frase suprimida y cuya fecha más temprana conocida es, además, posterior a la de la sesión.",
           "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T18:48:08.615Z",
-          "corrected": "retirado del hallazgo"
+          "correctedAt": "2026-08-09T18:48:08.615Z"
         }
       ]
     },

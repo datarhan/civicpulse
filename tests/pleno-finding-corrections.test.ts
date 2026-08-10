@@ -5,12 +5,19 @@
  */
 import { describe, expect, it } from 'vitest'
 
+import { sha256Short } from '../src/scraper/hash'
 import {
   applyFindingCorrection,
+  applyFindingRedaction,
   applyFindingRemoval,
+  findAttributionConflicts,
+  findingRedactionTarget,
   findingRemovalTarget,
+  findRepeatedQuotes,
   reasonEchoesRemoved,
+  REDACTION_DIGEST_RE,
   validateFindingsSnapshot,
+  type PlenoFinding,
   type PlenoFindingCorrection,
 } from '../src/scraper/pleno-finding'
 
@@ -435,5 +442,259 @@ describe('findingRemovalTarget', () => {
   it('returns null for a path that addresses nothing', () => {
     expect(findingRemovalTarget(finding(), 'quote.9')).toBeNull()
     expect(findingRemovalTarget(finding(), 'summary')).toBeNull()
+  })
+})
+
+// ─── Redaction ──────────────────────────────────────────────────────────────
+
+/**
+ * A finding whose summary names somebody it should not, corrected once
+ * already — so the ledger holds two more copies of that prose, one on each
+ * side of the earlier row. That is the shape a plain `--field summary` edit
+ * cannot reach: `/hallazgos` prints `original` in full, struck through, and no
+ * appended entry deletes an earlier one's text.
+ */
+const REDACTABLE = {
+  ...BASE,
+  items: [
+    {
+      ...BASE.items[0],
+      summary:
+        'El pleno convalidó el expediente. En el debate se mencionó a Fulgencio Estévez en un contexto de condena, y el registro municipal ni lo respalda ni lo desmiente.',
+      corrections: [
+        {
+          field: 'summary',
+          original:
+            'El pleno convalidó el expediente. En el debate se mencionó a Fulgencio Estévez en un contexto de condena, corroborado por el registro municipal de contratación.',
+          corrected:
+            'El pleno convalidó el expediente. En el debate se mencionó a Fulgencio Estévez en un contexto de condena, y el registro municipal ni lo respalda ni lo desmiente.',
+          reason: 'El verificador no establece corroboración: sólo deja constancia del cotejo.',
+          editor: 'Curador A',
+          correctedAt: '2026-04-23T00:00:00.000Z',
+        },
+        {
+          field: 'crossChecked.0',
+          original: 'documento cotejado · sha256:0123456789ab',
+          corrected: 'retirado del hallazgo',
+          reason: 'se retira del cotejo una referencia sin relación con la materia debatida',
+          editor: 'Curador A',
+          correctedAt: '2026-04-24T00:00:00.000Z',
+        },
+      ],
+    },
+  ],
+}
+
+const CLEAN_SUMMARY =
+  'El pleno convalidó el expediente de reconocimientos extrajudiciales, y el registro municipal ni lo respalda ni lo desmiente.'
+
+describe('applyFindingRedaction', () => {
+  const finding = () => validateFindingsSnapshot(JSON.stringify(REDACTABLE)).items[0]
+
+  it('publishes the new prose and digests the old, instead of striking it through', () => {
+    const before = finding()
+    const f = finding()
+    const { original, corrected } = applyFindingRedaction(f, 'summary', CLEAN_SUMMARY)
+
+    expect(f.summary).toBe(CLEAN_SUMMARY)
+    expect(corrected).toBe(CLEAN_SUMMARY)
+    expect(original).toMatch(REDACTION_DIGEST_RE)
+    expect(original).not.toContain('Fulgencio')
+    expect(original).toBe(`sumario · sha256:${sha256Short(JSON.stringify(before.summary))}`)
+  })
+
+  it('sweeps the log, because an earlier row on that field is a copy of the same prose', () => {
+    // The half a plain correction cannot do. Without it the redaction removes
+    // one printing of the name and leaves two behind, on the same page.
+    const f = finding()
+    const { swept } = applyFindingRedaction(f, 'summary', CLEAN_SUMMARY)
+    expect(swept).toBe(1)
+
+    const log = f.corrections ?? []
+    expect(log[0].original).toMatch(REDACTION_DIGEST_RE)
+    expect(log[0].corrected).toMatch(REDACTION_DIGEST_RE)
+    expect(JSON.stringify(log)).not.toContain('Fulgencio')
+    // Everything about that row that is not the prose survives untouched —
+    // whose correction it was, when, and why.
+    expect(log[0].editor).toBe('Curador A')
+    expect(log[0].correctedAt).toBe('2026-04-23T00:00:00.000Z')
+    expect(log[0].reason).toContain('El verificador no establece corroboración')
+    // …and rows on other fields are out of scope: the crossChecked retraction
+    // keeps its own digest wording rather than being relabelled.
+    expect(log[1].original).toBe('documento cotejado · sha256:0123456789ab')
+    expect(log[1].corrected).toBe('retirado del hallazgo')
+  })
+
+  it('leaves a chain an auditor can walk from the parent commit', () => {
+    const before = finding()
+    const f = finding()
+    const { original } = applyFindingRedaction(f, 'summary', CLEAN_SUMMARY)
+    // The value the earlier row installed IS the value this redaction
+    // replaced, so its digested `corrected` and this `original` are the same
+    // string — and both are reproducible from the pre-redaction snapshot.
+    expect((f.corrections ?? [])[0].corrected).toBe(original)
+    expect(original).toBe(
+      `sumario · sha256:${sha256Short(JSON.stringify(before.corrections?.[0].corrected))}`,
+    )
+  })
+
+  it('is idempotent over an already-digested row', () => {
+    const f = finding()
+    applyFindingRedaction(f, 'summary', CLEAN_SUMMARY)
+    const after = JSON.parse(JSON.stringify(f.corrections)) as PlenoFindingCorrection[]
+    const second = applyFindingRedaction(f, 'summary', `${CLEAN_SUMMARY} Una frase más.`)
+    // Nothing left to sweep: a digest is not re-digested into a digest of a
+    // digest, which would break every earlier chain.
+    expect(second.swept).toBe(0)
+    expect((f.corrections ?? [])[0]).toEqual(after[0])
+  })
+
+  it('refuses the fields that publish no prose, and the empty replacement', () => {
+    expect(() => applyFindingRedaction(finding(), 'severity', 'notable')).toThrow(/not redactable/)
+    expect(() => applyFindingRedaction(finding(), 'quote.0', 'x')).toThrow(/not redactable/)
+    expect(() => applyFindingRedaction(finding(), 'sourceClaimIds', 'a,b')).toThrow(
+      /not redactable/,
+    )
+    // Emptying a field is a retraction wearing an edit's clothes — the same
+    // refusal `--field quote.0 --new ""` gets.
+    expect(() => applyFindingRedaction(finding(), 'summary', 'corto')).toThrow(
+      /refusing to redact to a stub/,
+    )
+    const f = finding()
+    expect(() => applyFindingRedaction(f, 'summary', f.summary)).toThrow(/already that text/)
+  })
+
+  it('hands the CLI everything the reason must not name, log included', () => {
+    const f = finding()
+    const target = findingRedactionTarget(f, 'summary')!
+    // Not just the current value: the reason guard has to see the log copies
+    // too, or a reason may quote the very sentence the sweep is about to hide.
+    expect(target.text).toContain('Fulgencio')
+    expect(target.text).toContain('corroborado por el registro municipal')
+    expect(reasonEchoesRemoved('Se retira la mención a Estévez del sumario.', target)).toBe(
+      'Estévez',
+    )
+    expect(
+      reasonEchoesRemoved(
+        'El sumario reproducía el nombre de un particular ajeno a la corporación junto a un hecho grave que ninguna fuente permite comprobar.',
+        target,
+      ),
+    ).toBeNull()
+    // Reading the target does not apply it.
+    expect(f.summary).toContain('Fulgencio')
+    expect(findingRedactionTarget(f, 'severity')).toBeNull()
+  })
+
+  it('keeps a redacted finding valid through the published schema', () => {
+    const snap = JSON.parse(JSON.stringify(REDACTABLE))
+    const parsed = validateFindingsSnapshot(JSON.stringify(snap))
+    applyFindingRedaction(parsed.items[0], 'summary', CLEAN_SUMMARY)
+    parsed.items[0].corrections?.push({
+      field: 'summary',
+      original: `sumario · sha256:${sha256Short(JSON.stringify(REDACTABLE.items[0].summary))}`,
+      corrected: CLEAN_SUMMARY,
+      reason: 'el sumario reproducía el nombre de un particular ajeno a la corporación',
+      editor: 'Curador A',
+      correctedAt: '2026-04-25T00:00:00.000Z',
+    })
+    expect(() => validateFindingsSnapshot(JSON.stringify(parsed))).not.toThrow()
+  })
+})
+
+// ─── The two shapes, as gates ───────────────────────────────────────────────
+
+const twoQuotes = (a: Partial<PlenoFinding['quotes'][number]>, b: typeof a) => {
+  const clone = JSON.parse(JSON.stringify(BASE))
+  clone.items[0].sourceClaimIds = ['1sqj7is-042-afi-abcdef', '1sqj7is-043-afi-bbbbbb']
+  clone.items[0].quotes = [
+    { speakerGroup: 'PSOE', sourceClaimId: '1sqj7is-042-afi-abcdef', ...a },
+    { speakerGroup: 'PSOE', sourceClaimId: '1sqj7is-043-afi-bbbbbb', ...b },
+  ]
+  return clone
+}
+
+const WHOLE = 'después de la catástrofe, ustedes han emitido salvoconductos en alerta roja'
+const PART = WHOLE.slice(28)
+
+describe('findRepeatedQuotes — one intervention is one row', () => {
+  it('catches the copy the extractor cut from a later word, in either order', () => {
+    for (const snap of [
+      twoQuotes({ text: WHOLE }, { text: PART }),
+      twoQuotes({ text: PART }, { text: WHOLE }),
+    ]) {
+      expect(() => validateFindingsSnapshot(JSON.stringify(snap))).toThrow(
+        /one intervention, one row/,
+      )
+    }
+  })
+
+  it('catches an exact duplicate, and reports it once rather than twice', () => {
+    const snap = twoQuotes({ text: WHOLE }, { text: WHOLE, speakerGroup: null })
+    expect(findRepeatedQuotes(snap.items[0])).toHaveLength(1)
+    expect(() => validateFindingsSnapshot(JSON.stringify(snap))).toThrow(/quotes\[0\]/)
+  })
+
+  it('is not fooled by re-wrapping', () => {
+    const snap = twoQuotes({ text: WHOLE.replace(/ /g, '  ') }, { text: PART })
+    expect(findRepeatedQuotes(snap.items[0])).toHaveLength(1)
+  })
+
+  it('leaves two genuinely different interventions alone', () => {
+    const snap = twoQuotes(
+      { text: WHOLE },
+      { text: 'una intervención distinta sobre el mismo asunto municipal' },
+    )
+    expect(findRepeatedQuotes(snap.items[0])).toEqual([])
+    expect(() => validateFindingsSnapshot(JSON.stringify(snap))).not.toThrow()
+  })
+})
+
+describe('findAttributionConflicts — one verbatim is one bloc', () => {
+  const twoFindings = (
+    left: { bloc: string | null; pleno?: string },
+    right: { bloc: string | null; pleno?: string },
+  ) => {
+    const clone = JSON.parse(JSON.stringify(BASE))
+    const base = clone.items[0]
+    clone.items = [
+      { ...base, id: 'f-a', plenoId: left.pleno ?? '1sqj7is' },
+      { ...base, id: 'f-b', plenoId: right.pleno ?? '1sqj7is' },
+    ]
+    clone.items[0].quotes = [{ ...base.quotes[0], text: WHOLE, speakerGroup: left.bloc }]
+    clone.items[1].quotes = [{ ...base.quotes[0], text: WHOLE, speakerGroup: right.bloc }]
+    return clone
+  }
+
+  it('rejects the same sentence published under two blocs in one session', () => {
+    const snap = twoFindings({ bloc: 'PP' }, { bloc: 'PSOE' })
+    expect(() => validateFindingsSnapshot(JSON.stringify(snap))).toThrow(
+      /published under two blocs/,
+    )
+    // Names both sides, so the curator can tell which one the transcript refutes.
+    expect(findAttributionConflicts(snap.items)[0]).toContain('f-a')
+    expect(findAttributionConflicts(snap.items)[0]).toContain('f-b')
+  })
+
+  it('does not treat null as a rival attribution', () => {
+    // `null` is the absence of a claim about who spoke — the only honest way to
+    // say the curator cannot tell. Beside a bloc it is incomplete, not false,
+    // and calling it a contradiction would push curators toward guessing.
+    const snap = twoFindings({ bloc: 'PP' }, { bloc: null })
+    expect(findAttributionConflicts(snap.items)).toEqual([])
+    expect(() => validateFindingsSnapshot(JSON.stringify(snap))).not.toThrow()
+  })
+
+  it('does not treat two sessions as one', () => {
+    // Two speakers in two different plenos may utter the same sentence; a gate
+    // that called that a contradiction would be wrong for a reason nobody
+    // could act on.
+    const snap = twoFindings({ bloc: 'PP' }, { bloc: 'PSOE', pleno: 'otxq2c' })
+    expect(findAttributionConflicts(snap.items)).toEqual([])
+    expect(() => validateFindingsSnapshot(JSON.stringify(snap))).not.toThrow()
+  })
+
+  it('agrees with itself when both findings say the same bloc', () => {
+    const snap = twoFindings({ bloc: 'PSOE' }, { bloc: 'PSOE' })
+    expect(findAttributionConflicts(snap.items)).toEqual([])
   })
 })

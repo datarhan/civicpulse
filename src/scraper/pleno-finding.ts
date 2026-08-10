@@ -242,6 +242,61 @@ const REMOVAL_LABELS = {
   crossChecked: { noun: 'documento cotejado', corrected: 'retirado del hallazgo' },
 } as const
 
+/**
+ * ── REDACTION ───────────────────────────────────────────────────────────────
+ *
+ * An ordinary `--field summary` correction publishes its `original` in full,
+ * struck through, and that is right nearly always: the reader is owed the
+ * sentence that was withdrawn, or the log records nothing anyone can check.
+ *
+ * The exception is when the prior text IS the harm. A summary that reproduced
+ * the name of a private individual beside an unverifiable criminal allegation
+ * cannot be repaired by a correction whose ledger row reprints the sentence on
+ * the same page — line-through is a style, not a redaction, and the crawler,
+ * the screen reader and the copy-paste all still get the words. That is the
+ * same trap REMOVAL above was built for, one field further out.
+ *
+ * So `--redact` writes the digest in place of the prior prose:
+ *
+ *     field:     "summary"
+ *     original:  "sumario · sha256:5f3a1c2e9b01"
+ *     corrected: "<the rewritten summary, published as usual>"
+ *
+ * Two things make it different from a removal, and both are deliberate:
+ *
+ *   · `corrected` is real text, not a marker. A redaction replaces; it does
+ *     not empty. The finding keeps a summary, and the reader reads it.
+ *   · It SWEEPS the finding's own correction log. `corrections[].original` and
+ *     `.corrected` are copies of that field's published prose, so an earlier
+ *     row on the same field is an archive of exactly what is being redacted —
+ *     the loophole that would defeat every redaction issued through this CLI.
+ *     Each such row keeps its `field`, `reason`, `editor` and `correctedAt`,
+ *     and its two prose sides become digests of themselves.
+ *
+ * The sweep is over-inclusive on purpose: it digests every prior row on that
+ * field, including one whose text predates the offending phrase. Deciding
+ * which prior versions are safe would need the CLI to be told the offending
+ * string — putting it in the shell history, the reason guard's blind spot and
+ * eventually a commit message — and getting that judgement wrong leaks. An
+ * over-broad digest costs a reader some detail in one finding's log; the
+ * narrow version costs the redaction.
+ *
+ * Reachable only for `title` and `summary`. Quotes are verbatim and go through
+ * REMOVAL; the citation fields have their own repair path.
+ */
+export const REDACTION_LABELS = {
+  title: 'titular',
+  summary: 'sumario',
+} as const
+
+export type RedactableField = keyof typeof REDACTION_LABELS
+
+/** What a redacted ledger side looks like, for tests and for the sweep's idempotence. */
+export const REDACTION_DIGEST_RE = /^(?:titular|sumario) · sha256:[0-9a-f]{12}$/
+
+const redactionDigest = (field: RedactableField, value: string): string =>
+  `${REDACTION_LABELS[field]} · sha256:${sha256Short(JSON.stringify(value))}`
+
 export interface PlenoFindingsSnapshot {
   version: string
   generatedAt: string
@@ -537,6 +592,102 @@ function validateFinding(f: unknown, idx: number): PlenoFinding {
   }
 }
 
+/**
+ * ── ONE UTTERANCE, ONE ROW ──────────────────────────────────────────────────
+ *
+ * The extractor emits a claim per candidate sentence, and it repeatedly cut
+ * the same intervention twice — once whole, once from a later word — so the
+ * bundle selector handed the curator two claim ids for one thing a councillor
+ * said. Published side by side they are not a duplicate the reader skims past:
+ * the synthesiser counts rows to write the summary, so `f-2025-12-01-acu-51aaa3`
+ * shipped «los grupos PSOE y un grupo no identificado manifiestan» over a
+ * single voice, and `f-2026-05-11-acu-a870a4` published one bench's sentence as
+ * two. It also multiplies whatever the sentence alleges.
+ *
+ * The rule is containment, not equality: the second copy is normally a prefix
+ * or a suffix of the first, and an equality test caught none of the three real
+ * cases. Comparison is on the published text — that is what the page shows —
+ * with whitespace collapsed so re-wrapping cannot hide a repeat.
+ *
+ * Scoped inside one finding. Two findings citing overlapping material is
+ * ordinary: each stands on the part it needs, and neither claims a headcount
+ * over the other's rows.
+ */
+export function findRepeatedQuotes(finding: PlenoFinding): string[] {
+  const norm = (s: string) => s.replace(/\s+/g, ' ').trim()
+  const out: string[] = []
+  for (let i = 0; i < finding.quotes.length; i += 1) {
+    for (let j = 0; j < finding.quotes.length; j += 1) {
+      if (i === j) continue
+      const a = norm(finding.quotes[i].text)
+      const b = norm(finding.quotes[j].text)
+      // On an exact duplicate both directions hold; report the pair once.
+      if (a === b && i > j) continue
+      if (b.includes(a)) {
+        out.push(
+          `quotes[${i}] is republished inside quotes[${j}] — one intervention, one row. ` +
+            'Retract the redundant copy with `correct-pleno-finding --remove quote.<i>`',
+        )
+      }
+    }
+  }
+  return out
+}
+
+/**
+ * ── ONE VERBATIM, ONE BLOC ──────────────────────────────────────────────────
+ *
+ * `f-2026-05-11-acu-da7902` published «el Partido Popular el otro día trajo una
+ * noticia…» as PP and `f-2026-05-11-cit-a0a379` published the same sentence, in
+ * the same session, as PSOE. Both cannot be true, and no gate here compared
+ * them: each finding validated alone, and the attribution axis was never
+ * checked for correctness at all.
+ *
+ * The honest rule is narrower than "the same string always means the same
+ * speaker":
+ *
+ *   · Keyed on `plenoId` + the text. Two speakers in two different sessions
+ *     may utter the same sentence, and calling that a contradiction would be a
+ *     gate wrong for a reason nobody could act on.
+ *   · `null` never conflicts. It is the absence of an attribution, not a rival
+ *     one — the one honest way to say the curator cannot tell (see
+ *     FindingQuote.speakerGroup) — so `null` beside `PSOE` is incomplete, not
+ *     false. Only two DIFFERENT blocs are a contradiction.
+ *   · Not keyed on `sourceClaimId`. The two rows above carry different ids
+ *     (…-293 and …-294): the extractor had already split one utterance into two
+ *     claims, so an id-scoped check would have seen nothing.
+ *
+ * There is no repair path in this module: `speakerGroup` has no correction
+ * field, deliberately, because crossing to or between blocs is a curator's
+ * judgement per finding. The remedy is to retract the row whose attribution the
+ * transcript refutes.
+ */
+export function findAttributionConflicts(items: PlenoFinding[]): string[] {
+  const byUtterance = new Map<string, Map<string, string[]>>()
+  for (const f of items) {
+    for (const q of f.quotes) {
+      if (q.speakerGroup === null) continue
+      const key = `${f.plenoId} ${q.text.replace(/\s+/g, ' ').trim()}`
+      const blocs = byUtterance.get(key) ?? new Map<string, string[]>()
+      blocs.set(q.speakerGroup, [...(blocs.get(q.speakerGroup) ?? []), f.id])
+      byUtterance.set(key, blocs)
+    }
+  }
+  const out: string[] = []
+  for (const [key, blocs] of byUtterance) {
+    if (blocs.size < 2) continue
+    const where = [...blocs]
+      .map(([bloc, ids]) => `${bloc} (${ids.join(', ')})`)
+      .sort()
+      .join(' vs ')
+    out.push(
+      `one verbatim from pleno ${key.split(' ')[0]} is published under two blocs: ${where}. ` +
+        'At most one is right; retract the row the transcript refutes',
+    )
+  }
+  return out
+}
+
 export function validateFindingsSnapshot(json: string): PlenoFindingsSnapshot {
   const raw = JSON.parse(json) as Record<string, unknown>
   must(typeof raw.version === 'string', 'version required')
@@ -554,6 +705,12 @@ export function validateFindingsSnapshot(json: string): PlenoFindingsSnapshot {
     must(!seen.has(it.id), `duplicate finding id ${it.id}`)
     seen.add(it.id)
   }
+  for (const it of items) {
+    const dup = findRepeatedQuotes(it)
+    must(dup.length === 0, `${it.id}: ${dup.join('; ')}`)
+  }
+  const conflicts = findAttributionConflicts(items)
+  must(conflicts.length === 0, conflicts.join('; '))
   return {
     version: raw.version as string,
     generatedAt: raw.generatedAt as string,
@@ -752,4 +909,84 @@ export function findingRemovalTarget(
   }
   const r = finding.crossChecked[index]
   return r ? { text: r.snippet, ref: r.ref } : null
+}
+
+/**
+ * Everything a redaction of `field` will take off the page: the value it
+ * replaces, plus both prose sides of every prior correction row on that same
+ * field. Exported for the same reason as `findingRemovalTarget` — the CLI
+ * checks the curator's `--reason` against it BEFORE the digests land, and
+ * afterwards there is nothing left to check it against.
+ */
+export function findingRedactionTarget(
+  finding: PlenoFinding,
+  field: string,
+): { text: string; ref: string | null } | null {
+  if (!(field in REDACTION_LABELS)) return null
+  const current = String(finding[field as RedactableField] ?? '')
+  const priors = (finding.corrections ?? [])
+    .filter((c) => c.field === field)
+    .flatMap((c) => [c.original, c.corrected])
+    .filter((s) => !REDACTION_DIGEST_RE.test(s))
+  return { text: [current, ...priors].join('\n'), ref: null }
+}
+
+/**
+ * Rewrite `title` or `summary` and record the prior prose as a digest rather
+ * than as text, sweeping the finding's own log of earlier copies of it.
+ * Mutates in place; the caller MUST re-validate the whole snapshot before
+ * persisting, exactly as with the other two appliers.
+ *
+ * Read the REDACTION block above for why this exists and why the sweep is
+ * deliberately over-broad. The fences, in the order they fire:
+ *
+ *   1. The field must be redactable. `severity` is an enum, `sourceClaimIds`
+ *      an id list, quotes are verbatim — none of them can carry the kind of
+ *      prose this path exists for, and all three have their own edit routes.
+ *   2. The replacement must differ from what is there, or the row would record
+ *      a redaction that redacted nothing while still digesting the log.
+ *   3. The replacement must be substantive. `--redact summary --new ""` is the
+ *      same lie `--field quote.0 --new ""` was: a deletion wearing an edit's
+ *      clothes, and the schema's own floor for a summary is 40 characters.
+ *
+ * Returns the ledger pair plus the number of prior rows swept, so the CLI can
+ * tell the curator what else changed shape — a silent rewrite of somebody
+ * else's log entry is exactly the surprise this repo keeps paying for.
+ */
+export function applyFindingRedaction(
+  finding: PlenoFinding,
+  field: string,
+  corrected: string,
+): { original: string; corrected: string; swept: number } {
+  if (!(field in REDACTION_LABELS)) {
+    throw new Error(
+      `"${field}" is not redactable — expected ${Object.keys(REDACTION_LABELS).join(' or ')}. ` +
+        'A quote goes through applyFindingRemoval; severity and the citation fields ' +
+        'publish no prose for a digest to protect.',
+    )
+  }
+  const key = field as RedactableField
+  const previous = String(finding[key] ?? '')
+  if (previous === corrected) {
+    throw new Error(`${field} is already that text — a redaction that changes nothing is a no-op`)
+  }
+  if (corrected.trim().length < 40) {
+    throw new Error(
+      'refusing to redact to a stub: a redaction replaces prose, it does not empty a ' +
+        'field. If the finding cannot be stated without the redacted material, retract it.',
+    )
+  }
+  finding[key] = corrected
+  let swept = 0
+  for (const row of finding.corrections ?? []) {
+    if (row.field !== field) continue
+    if (!REDACTION_DIGEST_RE.test(row.original)) {
+      row.original = redactionDigest(key, row.original)
+      swept += 1
+    }
+    if (!REDACTION_DIGEST_RE.test(row.corrected)) {
+      row.corrected = redactionDigest(key, row.corrected)
+    }
+  }
+  return { original: redactionDigest(key, previous), corrected, swept }
 }

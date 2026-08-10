@@ -218,7 +218,28 @@ export function composeFinding(opts: ComposeOpts): PlenoFinding {
   const severity: FindingSeverity = 'informational'
   const curatorName = opts.curatorName ?? 'auto-curation-v1'
 
-  const quotes: FindingQuote[] = selectedQuotes.map((it) => ({
+  // Refs are deduped below and quotes were not, which is how the extractor's
+  // habit of cutting one intervention twice — once whole, once from a later
+  // word — reached the page as two rows. The synthesiser counts rows to write
+  // the summary, so a single voice shipped as «los grupos PSOE y un grupo no
+  // identificado manifiestan». Containment, not equality: none of the three
+  // published cases was an exact repeat. The rule is the validator's
+  // `findRepeatedQuotes`, applied where the rows are chosen rather than left
+  // for the gate to reject the whole run over.
+  const normQuote = (s: string) => s.replace(/\s+/g, ' ').trim()
+  const kept: VerifiedItem[] = []
+  for (const it of selectedQuotes) {
+    const text = normQuote(it.claim.verbatim)
+    const swallowed = kept.findIndex((k) => normQuote(k.claim.verbatim).includes(text))
+    if (swallowed >= 0) continue
+    // The incoming row may instead CONTAIN one already kept; the fuller
+    // verbatim wins, and `sourceClaimIds` keeps both ids either way.
+    for (let i = kept.length - 1; i >= 0; i -= 1) {
+      if (text.includes(normQuote(kept[i].claim.verbatim))) kept.splice(i, 1)
+    }
+    kept.push(it)
+  }
+  const quotes: FindingQuote[] = kept.map((it) => ({
     text: it.claim.verbatim,
     speakerGroup: it.claim.speakerGroup,
     sourceClaimId: it.claim.id,

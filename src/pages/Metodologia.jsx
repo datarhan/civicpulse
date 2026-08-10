@@ -1006,9 +1006,10 @@ export default function Metodologia() {
           más las revisiones posteriores, que es lo que se publica—.{' '}
           <code>npm run check:relations</code> vuelve a preguntárselo en cada pasada nocturna y se
           pone en rojo si la marca publicada deja de coincidir, para que no pueda quedarse vieja en
-          silencio. <strong>Ninguna cita se ha retirado ni reescrito</strong>, y el único escritor
-          del fichero de hallazgos sigue siendo la CLI de correcciones, que deja el cambio en la
-          bitácora pública de la ficha.
+          silencio. <strong>Marcar no retira</strong>: esta pasada no quitó ni reescribió ninguna
+          cita. Las retiradas que sí ha habido las firma una persona por la CLI de correcciones —el
+          único escritor del fichero de hallazgos— y cada una deja su fila en la bitácora pública de
+          la ficha.
         </p>
       </Card>
 
@@ -1208,6 +1209,20 @@ export default function Metodologia() {
           <li>
             La bitácora de correcciones se renderiza pública dentro de la tarjeta del hallazgo. El
             historial es <em>append-only</em>.
+          </li>
+          <li>
+            Cuando lo que sale es material que no debe seguir publicándose —una cita retirada, o un
+            sumario que reproducía el nombre de un particular ajeno a la corporación junto a una
+            imputación que no consta comprobada— la fila{' '}
+            <strong>no guarda el texto anterior sino su huella</strong> (
+            <code>cita · sha256:…</code>, <code>sumario · sha256:…</code>). La razón es que la
+            bitácora se imprime entera en la ficha, tachada: escribir ahí lo retirado lo devolvería
+            al lector en la misma página, y un tachado es un estilo, no una redacción. La huella se
+            calcula sobre la fila tal y como la reconstruye el validador y el historial del
+            repositorio es público, así que cualquiera puede tomar la versión anterior, rehacerla y
+            comprobar exactamente qué se fue y que no se fue nada más. Al reescribir así un sumario,
+            las filas anteriores de la bitácora sobre ese mismo campo pasan también a huella: son
+            copias de la misma prosa, y dejarlas deshace la retirada.
           </li>
           <li>
             Las refutaciones del medio citado pasan por el formulario público{' '}

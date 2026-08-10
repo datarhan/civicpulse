@@ -17,7 +17,7 @@ import {
 } from '../../src/scraper/auto-curate'
 import { classifyClaimVisibility } from '../../src/scraper/claim-public-gate'
 import { buildRecordDateIndex, emptyRecordDateGateReport } from '../../src/scraper/record-dates'
-import { validateFindingsSnapshot } from '../../src/scraper/pleno-finding'
+import { findRepeatedQuotes, validateFindingsSnapshot } from '../../src/scraper/pleno-finding'
 import type { ClaimEvidence } from '../../src/scraper/claim-verifier'
 import type { SpeakerGroup } from '../../src/scraper/pleno-votes'
 
@@ -331,6 +331,12 @@ describe('composeFinding', () => {
             id: `p1-00${i}-cit-x${i}`,
             speakerGroup: blocs[i % blocs.length],
             confidence: 0.85,
+            // Distinct per item, deliberately. Until 2026-08-10 every item in
+            // this bundle carried mkClaim's default verbatim, so `composeFinding`
+            // was only ever exercised on a bundle where two blocs said the
+            // identical sentence — the very shape three published findings
+            // shipped. A fixture that restates the defect cannot detect it.
+            verbatim: `intervención número ${i} sobre el estado del complejo deportivo La Mallá`,
           },
           'verificado',
         ),
@@ -369,6 +375,56 @@ describe('composeFinding', () => {
       items: [finding],
     }
     expect(() => validateFindingsSnapshot(JSON.stringify(snap))).not.toThrow()
+  })
+
+  /**
+   * The generator pattern behind `f-2025-12-01-acu-51aaa3`,
+   * `f-2026-01-19-cit-3fd230` and `f-2026-05-11-acu-a870a4`: the extractor
+   * emits a claim for the whole sentence AND one starting a few words in, the
+   * selector hands both to the composer, and the page shows one voice twice —
+   * with two different `speakerGroup` values in all three real cases, so the
+   * LLM summary then counted two speakers.
+   *
+   * Both orderings, because they take DIFFERENT branches of the dedupe and the
+   * published corpus contained one of each: `51aaa3` had the short copy first,
+   * `a870a4` the long one. A single ordering left half the dedupe unexercised —
+   * ablating that half stayed green.
+   */
+  const WHOLE = 'después de la catástrofe, ustedes han emitido salvoconductos en alerta roja'
+  const CUT = { id: 'p1-010-acu-short', speakerGroup: null, verbatim: WHOLE.slice(28) } as const
+  const FULL = { id: 'p1-011-acu-whole', speakerGroup: 'PSOE', verbatim: WHOLE } as const
+  const OTHER = {
+    id: 'p1-012-acu-other',
+    speakerGroup: 'PP',
+    verbatim: 'una cuestión enteramente distinta',
+  } as const
+
+  it.each([
+    { order: 'short first', claims: [CUT, FULL, OTHER], anchor: 'f-2026-01-15-acu-short' },
+    { order: 'long first', claims: [FULL, CUT, OTHER], anchor: 'f-2026-01-15-acu-whole' },
+  ])('publishes one row per intervention when the extractor cut it twice ($order)', (c) => {
+    const bundle = buildBundle()
+    bundle.items = c.claims.map((x) => mkItem({ ...x }))
+    const finding = composeFinding({
+      bundle,
+      selectedQuotes: bundle.items,
+      llmTitle: 'Debate sobre salvoconductos pleno 2026-01-15',
+      llmSummary:
+        'En el pleno del 15 de enero de 2026 se debatió la emisión de salvoconductos durante la alerta roja, con intervenciones de dos grupos municipales.',
+    })
+    // Whichever came first, the fuller verbatim is the one that survives —
+    // and it is the attributed one.
+    expect(finding.quotes.map((q) => q.sourceClaimId)).toEqual([
+      'p1-011-acu-whole',
+      'p1-012-acu-other',
+    ])
+    expect(finding.quotes[0].speakerGroup).toBe('PSOE')
+    // Both ids stay in the citation trail: the claim was real, it was just not
+    // a second row.
+    expect(finding.sourceClaimIds).toEqual(c.claims.map((x) => x.id))
+    // And the id still keys the anchor, so deduping cannot rename a finding.
+    expect(finding.id).toBe(c.anchor)
+    expect(findRepeatedQuotes(finding)).toEqual([])
   })
 
   it('aggregates verifier evidence into crossChecked[]', () => {

@@ -14,8 +14,11 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
+import { sha256Short } from '../src/scraper/hash'
 import {
   CORRECTION_REMOVAL_FIELD_RE,
+  findAttributionConflicts,
+  findRepeatedQuotes,
   validateFindingsSnapshot,
   type PlenoFinding,
   type PlenoFindingsSnapshot,
@@ -57,8 +60,8 @@ const removals = allCorrections.filter((c) => CORRECTION_REMOVAL_FIELD_RE.test(c
  * nothing. Each review batch moves these two numbers and says so in its commit
  * message; every other assertion in this file is local to one finding.
  */
-const TOTAL_CORRECTIONS = 125
-const TOTAL_REMOVALS = 41
+const TOTAL_CORRECTIONS = 134
+const TOTAL_REMOVALS = 46
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
 interface BatchCase {
@@ -172,11 +175,11 @@ describe('published pleno findings — a removal does not republish what it remo
     //
     // Pinned to a count, not to `> 0`: the lote-1 review batch added eleven
     // `crossChecked.<i>` retractions to b8fea6f's four, lote-2 another seven,
-    // lote-3 nine more plus a quote and lote-4 the last eight post-dated
-    // cotejos, and a run that skipped rows would still satisfy `> 0` while
-    // retracting nothing.
+    // lote-3 nine more plus a quote, lote-4 the last eight post-dated cotejos
+    // and lote-5 five quotes, and a run that skipped rows would still satisfy
+    // `> 0` while retracting nothing.
     expect(removals.length).toBe(TOTAL_REMOVALS)
-    expect(removals.filter((c) => c.field.startsWith('quote.'))).toHaveLength(3)
+    expect(removals.filter((c) => c.field.startsWith('quote.'))).toHaveLength(8)
     expect(removals.filter((c) => c.field.startsWith('crossChecked.'))).toHaveLength(38)
   })
 
@@ -222,38 +225,56 @@ describe('published pleno findings — the three retracted in b8fea6f', () => {
    * rows are pinned by value here rather than by count.
    */
 
-  it('f-2025-12-01-acu-51aaa3 stands on its two salvoconductos quotes', () => {
+  it('f-2025-12-01-acu-51aaa3 stands on its one salvoconductos quote', () => {
     const f = byId('f-2025-12-01-acu-51aaa3')
-    expect(f.quotes).toHaveLength(2)
-    expect(f.quotes.map((q) => q.sourceClaimId)).toEqual([
-      'qz6weg-192-acu-975308',
-      'qz6weg-193-acu-7589c9',
-    ])
-    expect(f.quotes.map((q) => q.speakerGroup)).toEqual([null, 'PSOE'])
+    // One, not two: lote 5 found the surviving pair was one intervention cut
+    // twice, and the shorter copy carried no bloc while the summary counted it
+    // as a second speaker. See the lote-5 block below.
+    expect(f.quotes).toHaveLength(1)
+    expect(f.quotes.map((q) => q.sourceClaimId)).toEqual(['qz6weg-193-acu-7589c9'])
+    expect(f.quotes.map((q) => q.speakerGroup)).toEqual(['PSOE'])
     expect(f.quotes.every((q) => q.text.includes('salvoconductos'))).toBe(true)
-    // The summary is about salvoconductos and never used the removed quote,
-    // so it must not have moved.
+    // The summary is still about salvoconductos — what moved is the headcount.
     expect(f.summary).toContain('salvoconductos')
     // Two cotejos: the DANA clean-up contract the summary names, and the
     // session video. The third was the architect's expediente, which lote 4
     // took out for post-dating this session by five months.
     expect(f.crossChecked).toHaveLength(2)
-    expect(f.corrections?.map((c) => c.field)).toEqual(['summary', 'quote.0', 'crossChecked.1'])
+    expect(f.corrections?.map((c) => c.field)).toEqual([
+      'summary',
+      'quote.0',
+      'crossChecked.1',
+      'quote.0',
+      'summary',
+    ])
   })
 
-  it('f-2025-10-06-acu-bba0e9 keeps all four quotes and the refs that name nobody', () => {
+  it('f-2025-10-06-acu-bba0e9 keeps the refs that name nobody, and now names nobody itself', () => {
     const f = byId('f-2025-10-06-acu-bba0e9')
-    // Untouched: this finding's quotes were never in scope.
-    expect(f.quotes).toHaveLength(4)
-    expect(f.quotes.map((q) => q.speakerGroup)).toEqual(['PSOE', 'VOX', 'PP', 'PP'])
-    // The bloc-attributed VOX quote and the summary sentence it supports stay:
-    // whether to publish them at all is a curator's call, not a cleanup's.
-    expect(f.summary).toContain('Itziar Moreno')
+    // Three, not four. b8fea6f left the naming quote and the summary sentence
+    // it supported as a curator's call; lote 5 is that call — see the lote-5
+    // block for why a `--field summary` edit could not carry it alone.
+    expect(f.quotes).toHaveLength(3)
+    expect(f.quotes.map((q) => q.speakerGroup)).toEqual(['PSOE', 'PP', 'PP'])
+    expect(f.quotes.map((q) => q.sourceClaimId)).toEqual([
+      'otxq2c-042-acu-bba0e9',
+      'otxq2c-033-acu-f6e1d4',
+      'otxq2c-065-acu-231d81',
+    ])
+    // The finding still reports the exchange it was published for.
+    expect(f.summary).toContain('no ha habido recortes ni ocultaciones')
+    expect(f.summary).toContain('falla el sistema cometa del Gobierno de España')
+    expect(f.summary).toContain('ninguno las respalda ni las desmiente')
     // Three refs left, and not one of them carries a person's name.
     expect(f.crossChecked).toHaveLength(4)
     expect(f.crossChecked.filter((r) => r.kind === 'tender')).toHaveLength(3)
     expect(f.crossChecked.some((r) => r.kind === 'pleno-video')).toBe(true)
-    expect(f.corrections?.map((c) => c.field)).toEqual(['summary', 'crossChecked.1'])
+    expect(f.corrections?.map((c) => c.field)).toEqual([
+      'summary',
+      'crossChecked.1',
+      'quote.1',
+      'summary',
+    ])
   })
 
   it('f-2025-10-06-cit-591d40 no longer anchors the debate to an unrelated expediente', () => {
@@ -388,26 +409,25 @@ const LOTE_1: Lote1Case[] = [
       'tender|Contrato de obras para la ejecución del ',
       'pleno-video|Vídeo del pleno 2026-05-11 · YouTube',
     ],
-    claims: [
-      '10yl550-045-acu-a870a4',
-      '10yl550-054-acu-a487ce',
-      '10yl550-346-cit-6ee502',
-      '10yl550-046-acu-5c6faa',
-    ],
-    groups: ['PP', 'PP', null, 'PP'],
+    // Three now: lote 5 took `10yl550-046-acu-5c6faa`, the same intervention
+    // as `-045` minus its first four words.
+    claims: ['10yl550-045-acu-a870a4', '10yl550-054-acu-a487ce', '10yl550-346-cit-6ee502'],
+    groups: ['PP', 'PP', null],
   },
   {
     id: 'f-2026-05-11-acu-da7902',
     added: ['summary', 'crossChecked.1'],
     priorCorrections: 0,
     drops: ['alumbrado ornamental navideño'],
-    keeps: ['rectificar y pedir disculpas', 'sobre la fira de 2025'],
+    // «sobre la fira de 2025» left with lote 5: the only quote behind that
+    // clause was the one whose bloc its own text refutes.
+    keeps: ['rectificar y pedir disculpas', 'Asociación Abrupa'],
     refs: [
       'tender|contrato de servicios Biblioteca Aprenem',
       'pleno-video|Vídeo del pleno 2026-05-11 · YouTube',
     ],
-    claims: ['10yl550-274-acu-da7902', '10yl550-274-acu-4cb575', '10yl550-294-acu-c8a5f4'],
-    groups: ['PSOE', 'PSOE', 'PP'],
+    claims: ['10yl550-274-acu-da7902', '10yl550-274-acu-4cb575'],
+    groups: ['PSOE', 'PSOE'],
   },
   {
     id: 'f-2026-05-11-acu-ea9d47',
@@ -834,13 +854,10 @@ const LOTE_2: Lote2Case[] = [
       'tender|Contrato basado en el SDA de obras para ',
       'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
     ],
-    claims: [
-      '19gax3o-149-cit-3fd230',
-      '19gax3o-132-acu-a3b10d',
-      '19gax3o-146-cit-288e9a',
-      '19gax3o-147-acu-01da0f',
-    ],
-    groups: ['PSOE', null, 'PSOE', null],
+    // Three now: lote 5 took `19gax3o-146-cit-288e9a`, which contains
+    // `-147` word for word and continues past it.
+    claims: ['19gax3o-149-cit-3fd230', '19gax3o-132-acu-a3b10d', '19gax3o-147-acu-01da0f'],
+    groups: ['PSOE', null, null],
   },
   {
     id: 'f-2026-01-19-cit-543cc1',
@@ -2222,8 +2239,10 @@ const LOTE_4: Lote4Case[] = [
       'tender|Contrato verbal de servicio de oficiales',
       'pleno-video|Vídeo del pleno 2025-12-01 · YouTube',
     ],
-    claims: ['qz6weg-192-acu-975308', 'qz6weg-193-acu-7589c9'],
-    groups: [null, 'PSOE'],
+    // One now: lote 5 took `qz6weg-192-acu-975308`, the unattributed copy of
+    // the same sentence `-193` carries whole.
+    claims: ['qz6weg-193-acu-7589c9'],
+    groups: ['PSOE'],
   },
   {
     id: 'f-2025-12-23-cit-c905c3',
@@ -2615,5 +2634,298 @@ describe('published pleno findings — the post-dated gate over the whole corpus
     // Small and bounded. A snapshot where this grew would mean the earliest
     // attested date is going missing on live procedures too.
     expect(report.undated.length).toBeLessThanOrEqual(8)
+  })
+})
+
+// ─── Lote 5 · atribuciones que el propio corpus desmiente ────────────────────
+
+/**
+ * Five retractions and three prose edits, from two shapes that no gate in this
+ * repo was looking for. Neither is a judgement call — both are decidable from
+ * the published bytes plus the transcript of record, which is why they are here
+ * and the rest of the exception review is not.
+ *
+ *   1. ONE INTERVENTION, TWO ROWS. The extractor cuts a sentence twice, once
+ *      whole and once from a later word, and both claims reach the page. The
+ *      synthesiser counts rows: `51aaa3` published «los grupos PSOE y un grupo
+ *      no identificado manifiestan» over a single voice. `3fd230` and `a870a4`
+ *      are the same shape. Fixed at the generator too — see the containment
+ *      dedupe in composeFinding and its reproducer in auto-curate.test.ts.
+ *   2. ONE VERBATIM, TWO BLOCS. «el Partido Popular el otro día trajo una
+ *      noticia…» shipped as PP in `da7902` and as PSOE in `a0a379`. The
+ *      sentence names the PP in the third person and the speaker who says it
+ *      also says «Partido Popular no» of the same bench, so PP is the copy that
+ *      goes; `a0a379` is untouched.
+ *
+ * Plus the one row where the harm was in the prose rather than the shape:
+ * `bba0e9`'s summary named a private individual beside a criminal allegation
+ * this site cannot check. Its own block is below, because an ordinary
+ * correction could not carry it.
+ */
+const LOTE_5: BatchCase[] = [
+  { id: 'f-2025-12-01-acu-51aaa3', priorCorrections: 3, added: ['quote.0', 'summary'] },
+  { id: 'f-2026-01-19-cit-3fd230', priorCorrections: 3, added: ['quote.2'] },
+  { id: 'f-2026-05-11-acu-a870a4', priorCorrections: 3, added: ['quote.3'] },
+  {
+    id: 'f-2026-05-11-acu-da7902',
+    priorCorrections: 2,
+    added: ['quote.2', 'title', 'summary'],
+  },
+  { id: 'f-2025-10-06-acu-bba0e9', priorCorrections: 2, added: ['quote.1', 'summary'] },
+]
+
+describe('published pleno findings — lote 5, attributions the corpus itself refutes', () => {
+  it('issued exactly the nine entries this pass made actionable', () => {
+    expect(LOTE_5).toHaveLength(5)
+    expect(LOTE_5.reduce((n, c) => n + c.added.length, 0)).toBe(9)
+    expect(allCorrections.length).toBe(TOTAL_CORRECTIONS)
+    expect(LOTE_5.map((c) => byId(c.id).id)).toEqual(LOTE_5.map((c) => c.id))
+    expectBatchIsIntact(LOTE_5)
+    // Five quote retractions, one per finding — this is the batch that moved
+    // `quote.` removals from three to eight.
+    const quoteRemovals = LOTE_5.flatMap((c) =>
+      batchWindow(c).filter((x) => x.field.startsWith('quote.')),
+    )
+    expect(quoteRemovals).toHaveLength(5)
+    for (const r of quoteRemovals) {
+      expect(r.original).toMatch(/^cita · sha256:[0-9a-f]{12}$/)
+      expect(r.corrected).toBe('retirada del hallazgo')
+    }
+    // Every digest distinct: five different rows left, not one row logged five
+    // times against five findings.
+    expect(new Set(quoteRemovals.map((r) => r.original)).size).toBe(5)
+  })
+
+  it.each(LOTE_5)('$id reads as a finished paragraph, not a truncated one', (c) => {
+    const f = byId(c.id)
+    expect(f.summary.trim().length).toBeGreaterThanOrEqual(40)
+    expect(f.title.trim().length).toBeGreaterThanOrEqual(10)
+    expect(f.summary.trim()).toMatch(/[.!?»"']$/)
+    expect(f.summary).not.toMatch(/[,;:]\s*$/)
+    expect(f.summary).not.toMatch(/\s{2,}|\s+[.,;]/)
+    expect(f.summary).not.toContain('«»')
+    // Removing a quote must not leave the finding without one.
+    expect(f.quotes.length).toBeGreaterThan(0)
+  })
+
+  it('no reason written for this batch echoes what it took off the page', () => {
+    // Paso 2 over lote 5's own entries, including the two prose edits and the
+    // redaction: a reason that names the material undoes the retraction on the
+    // same page. Same machine-checkable half as lotes 1–4 — no proper noun
+    // anywhere but at the head of a sentence.
+    const batch = LOTE_5.flatMap(batchWindow)
+    expect(batch).toHaveLength(9)
+    const offences: string[] = []
+    for (const r of batch) {
+      expect(r.reason.trim().length).toBeGreaterThanOrEqual(20)
+      for (const m of r.reason.matchAll(/\p{Lu}[\p{L}\p{M}’'-]*/gu)) {
+        const before = r.reason.slice(0, m.index).trimEnd()
+        if (before.length === 0 || /[.!?:;]$/.test(before)) continue
+        offences.push(`${r.field} · ${r.correctedAt}: «${m[0]}»`)
+      }
+    }
+    expect(offences).toEqual([])
+    expect(batch.filter((r) => /https?:\/\//.test(r.reason))).toEqual([])
+  })
+
+  it('f-2025-12-01-acu-51aaa3 reports one speaker, because one spoke', () => {
+    const f = byId('f-2025-12-01-acu-51aaa3')
+    // The headcount the duplicate manufactured is gone…
+    expect(f.summary).not.toContain('los grupos PSOE y un grupo no identificado')
+    expect(f.summary).not.toContain('un grupo no identificado')
+    // …and the finding still says what it was published to say.
+    expect(f.summary).toContain('el grupo PSOE manifiesta')
+    expect(f.summary).toContain('alerta roja posterior a la DANA')
+    expect(f.summary).toContain('Els Pous, c/ Ànimes y Pedanía del Oliveral')
+  })
+
+  it('f-2026-05-11-acu-da7902 no longer publishes a bloc its own quote refutes', () => {
+    const f = byId('f-2026-05-11-acu-da7902')
+    // The retracted verbatim names the PP in the third person; every surviving
+    // quote here is the PSOE bench's.
+    expect(f.quotes.map((q) => q.speakerGroup)).toEqual(['PSOE', 'PSOE'])
+    expect(f.quotes.some((q) => q.text.includes('trajo una noticia'))).toBe(false)
+    // Title and summary followed the evidence instead of outliving it.
+    expect(`${f.title}\n${f.summary}`).not.toMatch(/fira (de |)2025/i)
+    expect(f.title).toContain('Asociación Abrupa')
+    expect(f.summary).toContain('rectificar y pedir disculpas')
+
+    // The other half of the pair keeps the sentence, with the bloc the
+    // transcript supports. Retracting both would have been the cleanup
+    // destroying the finding rather than repairing it.
+    const other = byId('f-2026-05-11-cit-a0a379')
+    const survivor = other.quotes.find((q) => q.text.includes('trajo una noticia'))
+    expect(survivor?.speakerGroup).toBe('PSOE')
+    // …and untouched by this batch.
+    expect(other.corrections?.map((c) => c.field)).toEqual(['summary', 'summary', 'crossChecked.1'])
+  })
+})
+
+// ─── Las dos formas, sobre todo el corpus ────────────────────────────────────
+
+/**
+ * Both shapes as invariants over the whole file, not as five named repairs.
+ *
+ * Each detector is checked against a PLANTED case first. After lote 5 the file
+ * contains zero of either, so «found none» over the real corpus is exactly the
+ * assertion that a broken detector also satisfies — the failure mode
+ * docs/DATA_INTEGRITY.md names twice. The control makes the difference
+ * observable: a detector that cannot see the defect fails before it is asked
+ * about the published bytes.
+ *
+ * The detectors are imported, never restated. `validateFindingsSnapshot` runs
+ * both, so the file cannot be written with either shape in it and these are
+ * the reader-facing statement of a gate that already holds.
+ */
+describe('published pleno findings — one intervention is one row', () => {
+  it('detects a republished quote when there is one to detect', () => {
+    const planted = JSON.parse(JSON.stringify(items[0])) as PlenoFinding
+    const anchor = planted.quotes[0]
+    planted.quotes = [{ ...anchor, text: `preámbulo que nadie recuerda, ${anchor.text}` }, anchor]
+    expect(findRepeatedQuotes(planted)).toHaveLength(1)
+    expect(findRepeatedQuotes(planted)[0]).toContain('one intervention, one row')
+    // Whitespace is not a hiding place.
+    planted.quotes[0].text = planted.quotes[0].text.replace(/ /g, '  ')
+    expect(findRepeatedQuotes(planted)).toHaveLength(1)
+  })
+
+  it('and finds none in the published file', () => {
+    let compared = 0
+    const offences: string[] = []
+    for (const f of items) {
+      compared += f.quotes.length * (f.quotes.length - 1)
+      for (const o of findRepeatedQuotes(f)) offences.push(`${f.id}: ${o}`)
+    }
+    // The measuring half: 52 findings with a single quote each would compare
+    // nothing and pass.
+    expect(compared).toBeGreaterThan(300)
+    expect(offences).toEqual([])
+  })
+})
+
+describe('published pleno findings — one verbatim is one bloc', () => {
+  it('detects two blocs on one sentence when there are two to detect', () => {
+    const source = items.find((f) => f.quotes.some((q) => q.speakerGroup !== null))!
+    const a = JSON.parse(JSON.stringify(source)) as PlenoFinding
+    a.quotes = [a.quotes.find((q) => q.speakerGroup !== null)!]
+    const b = JSON.parse(JSON.stringify(a)) as PlenoFinding
+    b.id = `${a.id}-copia`
+    b.quotes = [{ ...a.quotes[0], speakerGroup: a.quotes[0].speakerGroup === 'PP' ? 'PSOE' : 'PP' }]
+    expect(findAttributionConflicts([a, b])).toHaveLength(1)
+    expect(findAttributionConflicts([a, b])[0]).toContain('two blocs')
+
+    // …and the two cases the rule deliberately does NOT call a conflict, so
+    // the gate's shape is pinned and not just its verdict.
+    const unattributed = JSON.parse(JSON.stringify(b)) as PlenoFinding
+    unattributed.quotes[0].speakerGroup = null
+    expect(findAttributionConflicts([a, unattributed])).toEqual([])
+    const otherSession = JSON.parse(JSON.stringify(b)) as PlenoFinding
+    otherSession.plenoId = `${a.plenoId}-otra`
+    expect(findAttributionConflicts([a, otherSession])).toEqual([])
+  })
+
+  it('and finds none in the published file', () => {
+    // Measuring half again: the index has to have been built over the real
+    // quotes before «no conflicts» means anything.
+    const attributed = items.flatMap((f) => f.quotes).filter((q) => q.speakerGroup !== null)
+    expect(attributed.length).toBeGreaterThan(100)
+    expect(findAttributionConflicts(items)).toEqual([])
+  })
+})
+
+// ─── El nombre que no vuelve por la bitácora ─────────────────────────────────
+
+/**
+ * `f-2025-10-06-acu-bba0e9` reproduced the name of a private individual — not
+ * one of the 21 elected members — beside a terrorism conviction the site cannot
+ * verify, and then noted that municipal contracting records «ni las respalda ni
+ * las desmiente», which frames an unverifiable criminal allegation as an open
+ * question on a transparency page.
+ *
+ * The name was in four places, and only one of them was the quote:
+ *
+ *   · `quotes[1]` — retracted with `--remove`, digest in the ledger.
+ *   · `summary` — rewritten. But `/hallazgos` prints `corrections[].original`
+ *     IN FULL, struck through, so an ordinary `--field summary` correction
+ *     would have reprinted the name on the same page, in the same request. A
+ *     line-through is a style; the crawler, the screen reader and the
+ *     copy-paste all still get the words.
+ *   · `corrections[0].original` AND `.corrected` — the 2026-08-05 correction,
+ *     both sides of it, each a full copy of a summary carrying the name. This
+ *     is the part a summary edit cannot reach at all: the log is append-only,
+ *     so no new entry removes an old one's text.
+ *
+ * Hence `--redact`, which digests the prior value instead of printing it and
+ * sweeps the finding's earlier rows on the same field. See the REDACTION block
+ * in src/scraper/pleno-finding.ts.
+ *
+ * ── How this asserts absence without writing the name ──
+ *
+ * A test that spells out the string it is proving absent republishes it in a
+ * public repository, which is the same mistake one layer down. So the needle is
+ * a digest and the haystack is every capitalised bigram in the published bytes.
+ * The control positive — a name that IS in the file — proves the scan can find
+ * one at all, which is what stops «no match» from meaning «no scan».
+ */
+const capitalisedBigrams = (text: string): string[] => {
+  const out: string[] = []
+  let prev: { word: string; end: number } | null = null
+  for (const m of text.matchAll(/[\p{L}\p{M}][\p{L}\p{M}’'-]*/gu)) {
+    const word = m[0]
+    const start = m.index
+    if (
+      prev &&
+      /^\p{Lu}/u.test(prev.word) &&
+      /^\p{Lu}/u.test(word) &&
+      // Space or NBSP only: a newline between two capitals is two sentences,
+      // not a name.
+      /^[ \u00a0]+$/.test(text.slice(prev.end, start))
+    ) {
+      out.push(`${prev.word} ${word}`)
+    }
+    prev = { word, end: start + word.length }
+  }
+  return out
+}
+
+describe('published pleno findings — the redacted name is not in the file', () => {
+  const raw = readFileSync(resolve('public/data/pleno-findings.json'), 'utf8')
+  const bigrams = capitalisedBigrams(raw)
+  /** sha256Short of a name this file must not contain. Written as a digest on purpose. */
+  const REDACTED = '61e22e1af9da'
+  /** sha256Short of the signing curator's name, which it does contain. */
+  const CONTROL = sha256Short('Sergei Lutchenko')
+
+  it('scans something, and can find a name when one is there', () => {
+    expect(bigrams.length).toBeGreaterThan(200)
+    expect(bigrams.map(sha256Short)).toContain(CONTROL)
+    // And the digest discriminates: an absent bigram must not match the
+    // control, or the comparison below would pass on any input at all.
+    expect(sha256Short('Nombre Inexistente')).not.toBe(CONTROL)
+  })
+
+  it('and the redacted name is nowhere in it — summary, quotes or ledger', () => {
+    expect(bigrams.map(sha256Short)).not.toContain(REDACTED)
+  })
+
+  it('the ledger records the redaction as a checkable digest, not as prose', () => {
+    const f = byId('f-2025-10-06-acu-bba0e9')
+    const log = f.corrections ?? []
+    const summaryRows = log.filter((c) => c.field === 'summary')
+    expect(summaryRows).toHaveLength(2)
+    // The swept 2026-08-05 row: both prose sides digested, everything else
+    // exactly as its editor left it.
+    expect(summaryRows[0].original).toMatch(/^sumario · sha256:[0-9a-f]{12}$/)
+    expect(summaryRows[0].corrected).toMatch(/^sumario · sha256:[0-9a-f]{12}$/)
+    expect(summaryRows[0].correctedAt).toBe('2026-08-05T07:24:19.960Z')
+    expect(summaryRows[0].reason).toContain('El verificador no establece corroboración')
+    // The redaction itself: prior value digested, new value published.
+    expect(summaryRows[1].original).toMatch(/^sumario · sha256:[0-9a-f]{12}$/)
+    expect(summaryRows[1].corrected).toBe(f.summary)
+    // The chain is what makes it auditable: the value the earlier row
+    // installed is the value this one replaced, so the two digests are the
+    // same string and anyone holding the parent commit can take that summary,
+    // re-run `sha256Short(JSON.stringify(text))` and walk the log.
+    expect(summaryRows[0].corrected).toBe(summaryRows[1].original)
   })
 })
