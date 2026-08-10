@@ -1,5 +1,6 @@
 import { Card, SectionHead } from '../components/Primitives'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
+import { useFindingQuoteProvenance } from '../hooks/useFindingQuoteProvenance'
 import { authorshipBreakdown } from '../scraper/finding-authorship'
 
 /**
@@ -43,9 +44,24 @@ function useAdjudicationDisclosure() {
   }
 }
 
+/**
+ * How many published verbatims are still traceable to the transcript vigente,
+ * read live from the derived snapshot for the same reason as the two above.
+ *
+ * Here the reason is sharper than staleness: this figure moves every time a
+ * session is re-transcribed, which is a routine background job. A number typed
+ * into this paragraph would be a false statement about how many quotes on the
+ * site are confirmed — on the page that IS the editorial contract.
+ */
+function useQuoteProvenanceDisclosure() {
+  const { data } = useFindingQuoteProvenance()
+  return data?.stats ?? null
+}
+
 export default function Metodologia() {
   const authorship = useAuthorshipDisclosure()
   const adjudication = useAdjudicationDisclosure()
+  const quoteProvenance = useQuoteProvenanceDisclosure()
   return (
     <div
       className="cp-page"
@@ -828,6 +844,75 @@ export default function Metodologia() {
             Sólo revisión editorial.
           </li>
         </ul>
+      </Card>
+
+      <Card id="citas-transcripcion" style={{ marginTop: 14, scrollMarginTop: 24 }}>
+        <SectionHead
+          eyebrow="Citas literales y transcripciones"
+          title="Qué significa que una cita esté marcada"
+        />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Las citas entrecomilladas de{' '}
+          <a href="/hallazgos" style={{ color: 'var(--civic)' }}>
+            /hallazgos
+          </a>{' '}
+          se toman de la transcripción automática de la sesión, no de un acta ni de un taquígrafo.{' '}
+          <strong>Varias sesiones se han transcrito una segunda vez</strong> con un motor mejor, y
+          la transcripción antigua se conserva. Eso permite hacer una pregunta que antes no se podía
+          hacer: ¿las palabras que publicamos siguen apareciendo en el mejor texto que tenemos de
+          esa sesión?
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          Para muchas, la respuesta es <strong>no</strong>. En la mayoría de esas sesiones la
+          transcripción nueva es bastante más extensa que la que sustituyó, así que la ausencia no
+          es falta de cobertura: es que el primer motor oía mal. Transcribía <em>Riba-roja</em> como
+          «Rivarroch» e inventaba palabras que no existen. El asunto se debatió —los temas aparecen
+          en las dos pasadas—, pero{' '}
+          <strong>
+            la literalidad que hay entre comillas puede ser la del transcriptor y no la del concejal
+          </strong>
+          .
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          Cada cita afectada lleva su marca al lado, y hay dos porque son dos cosas distintas:
+        </p>
+        <ul style={{ margin: '8px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
+          <li>
+            <strong>«no consta en la transcripción revisada»</strong> — la cita aparece palabra por
+            palabra en la transcripción anterior y no en la vigente, y la vigente <em>no</em> es más
+            corta. Lo que el lector debe concluir: el intercambio ocurrió, la atribución al grupo se
+            mantiene, y el <em>tenor exacto</em> de las palabras no está confirmado contra el mejor
+            texto disponible.
+          </li>
+          <li>
+            <strong>«no hemos podido comprobarlo»</strong> — en esa sesión la transcripción vigente
+            es <em>más corta</em> que la que sustituyó, así que la ausencia puede deberse al cambio
+            de motor o a un tramo que la nueva pasada no cubre. No afirmamos ninguna de las dos
+            cosas. Es un estado propio precisamente para no dejarlo caer en el anterior.
+          </li>
+        </ul>
+        {quoteProvenance && (
+          <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+            Hoy, de {quoteProvenance.quotes} literales publicados,{' '}
+            <strong>{quoteProvenance.enVigente}</strong> aparecen en la transcripción vigente de su
+            sesión, <strong>{quoteProvenance.soloEnSustituida}</strong> sólo en la que se sustituyó
+            y <strong>{quoteProvenance.sinDeterminar}</strong> no se pueden situar. La cifra se lee
+            del fichero derivado <code>finding-quote-provenance.json</code> en el momento de mostrar
+            esta página, no está escrita aquí: cambia cada vez que se vuelve a transcribir una
+            sesión.
+          </p>
+        )}
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>No reescribimos ninguna cita por nuestra cuenta.</strong> El estado es un cálculo
+          sobre dos ficheros —lo comprueba <code>npm run check:finding-quotes</code>, que se niega a
+          pasar si la marca publicada deja de coincidir con las transcripciones—, pero elegir el
+          pasaje equivalente en el texto nuevo es una decisión editorial sobre lo que dijo una
+          persona. Esas citas están en una cola de reanclaje para revisión humana, y el cambio, si
+          se hace, entra por la vía de corrección de siempre: queda en la bitácora pública de la
+          ficha, con el texto anterior tachado y el motivo. Una cita que no aparece en{' '}
+          <strong>ninguna</strong> de las dos transcripciones es un problema distinto —posible
+          invención, no desgaste— y no se publica con marca: se bloquea.
+        </p>
       </Card>
 
       <Card style={{ marginTop: 14 }}>

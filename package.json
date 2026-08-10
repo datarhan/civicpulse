@@ -104,6 +104,7 @@
     "verify:press-claims": "npx tsx scripts/verify-press-claims.ts",
     "summarize:press": "npx tsx scripts/summarize-press.ts",
     "compute:press-analytics": "npx tsx scripts/compute-press-analytics.ts",
+    "compute:finding-quote-provenance": "npx tsx scripts/compute-finding-quote-provenance.ts",
     "auto-curate-press": "npx tsx scripts/auto-curate-press.ts",
     "auto-curate-promises": "npx tsx scripts/auto-curate-promises.ts",
     "extract-and-verify:press-claims": "npm run extract:press-claims && npm run verify:press-claims",
@@ -169,6 +170,7 @@
     "monitor:health": "npx tsx scripts/monitor-health.ts",
     "suggest:area-fit": "npx tsx scripts/suggest-area-fit.ts",
     "triage:finding-support": "npx tsx scripts/triage-finding-support.ts",
+    "triage:quote-reanchor": "npx tsx scripts/triage-quote-reanchor.ts",
     "promote-area-fit": "npx tsx scripts/promote-area-fit.ts",
     "migrate:area-fit-short": "npx tsx scripts/migrate-area-fit-short.ts",
     "migrate:area-fit-portfolio-key": "npx tsx scripts/migrate-area-fit-portfolio-key.ts"

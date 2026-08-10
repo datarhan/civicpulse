@@ -236,6 +236,17 @@ env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY GEMINI_BIN=/nonexistent-disabled \
   npm run auto-curate -- --max 5 \
   || log "warn: auto-curate non-zero (agy throttled + no \$0 fallback) — findings deferred"
 
+# ---- provenance of every published verbatim ---------------------------
+# A newly promoted finding quotes the transcript that is current TODAY, and a
+# session re-transcribed above turns yesterday's quotes into quotes of a text
+# that no longer exists. Both change what /hallazgos must mark, so the derived
+# snapshot is regenerated here, in the same run, before the commit — otherwise
+# the page would carry a marker (or no marker) about a state of the world that
+# ended thirty seconds ago. It reads two snapshots and writes a third; it never
+# touches pleno-findings.json.
+npm run compute:finding-quote-provenance \
+  || log "warn: compute:finding-quote-provenance non-zero — /hallazgos puede quedar con marcas viejas"
+
 # ---- IFCN weekly-cadence check (informational, never fatal) -----------
 # The IFCN signatory track requires ≥1 published finding per ISO week.
 npm run ifcn:cadence --silent -- --strict \

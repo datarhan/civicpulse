@@ -28,6 +28,7 @@ import {
   isSiteRelativeRef,
   VOTE_SOURCE_KIND_IDS,
 } from './pleno-votes'
+import { QUOTE_PROVENANCE_STATUS_IDS } from './quote-provenance'
 
 export type CheckLevel = 'error' | 'warn'
 export type CheckStatus = 'ok' | 'broken' | 'empty' | 'skipped'
@@ -67,9 +68,19 @@ export interface RelationsCheckInputs {
       plenoDate?: string
       sourceClaimIds?: string[]
       relatedPromiseIds?: string[]
+      /** Published verbatims — see `findings-quote-provenance`. */
+      quotes?: Array<{ text?: string }>
       /** «Documentos cotejados» — see the two findings-crosschecked-* checks. */
       crossChecked?: Array<{ kind?: string; ref?: string }>
     }>
+  } | null
+  /**
+   * `finding-quote-provenance.json` — which transcript each published verbatim
+   * comes from. Derived by `compute:finding-quote-provenance`.
+   */
+  quoteProvenance?: {
+    stats?: { quotes?: number }
+    quotes?: Record<string, Array<{ status?: string; reason?: string }>>
   } | null
   plenos?: { items?: Array<{ id?: string }> } | null
   votes?: {
@@ -217,6 +228,7 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
     assignments,
     areaFit,
     reports,
+    quoteProvenance,
     publishedAssets,
   } = inputs
 
@@ -269,6 +281,44 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
           checked += 1
           if (!verifiedIds.has(cid)) broken.push(`${f?.id ?? '?'} cites ${cid}`)
         }
+      }
+      return { checked, broken }
+    }),
+
+    /**
+     * Every verbatim `/hallazgos` publishes must carry a provenance row saying
+     * which transcript it comes from.
+     *
+     * 95 of the 177 published quotes appear only in the transcript their
+     * session had BEFORE it was re-transcribed, and the page marks them. A
+     * quote with no row renders unmarked — that is, as confirmed against the
+     * best available text — so a missing row is not a gap in a report, it is a
+     * false statement on a page about a named political group.
+     *
+     * The status must be one of the three the enum defines, imported rather
+     * than restated: a fourth value appearing here means the page is receiving
+     * a status its wording map does not cover.
+     */
+    check('findings-quote-provenance', 'error', findings != null && quoteProvenance != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      for (const f of findings?.items ?? []) {
+        const rows = quoteProvenance?.quotes?.[f?.id ?? ''] ?? null
+        const quotes = f?.quotes ?? []
+        if (quotes.length === 0) continue
+        if (rows == null) {
+          checked += quotes.length
+          broken.push(`${f?.id ?? '?'} has ${quotes.length} quote(s) and no provenance row`)
+          continue
+        }
+        quotes.forEach((_q, i) => {
+          checked += 1
+          const status = rows[i]?.status
+          if (status == null) broken.push(`${f?.id ?? '?'}[${i}] has no provenance status`)
+          else if (!QUOTE_PROVENANCE_STATUS_IDS.includes(status as never)) {
+            broken.push(`${f?.id ?? '?'}[${i}] carries unknown status "${status}"`)
+          }
+        })
       }
       return { checked, broken }
     }),

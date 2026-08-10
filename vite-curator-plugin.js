@@ -1102,6 +1102,55 @@ function handleFindingSupportQueueRead(req, res, cwd) {
   })
 }
 
+/**
+ * GET /api/curator/quote-reanchor-queue — la cola de reanclaje de los literales
+ * que /hallazgos publica con marca: constan en la transcripción que la sesión
+ * tenía antes de re-transcribirse y no en la vigente.
+ *
+ * Lee editorial/quote-reanchor-queue.json, GITIGNORED y jamás servido por
+ * Vercel, por la misma razón que handleFindingSupportQueueRead: son pasajes de
+ * transcripción sin revisar junto a atribuciones de grupo político. Bajo public/
+ * serían fetchables por URL en cuanto se escribieran.
+ *
+ * Sólo lectura, y a propósito. `correct-pleno-finding` NO está en el allowlist
+ * de acciones y no se añade aquí: reanclar una cita es decidir qué dijo una
+ * persona nombrable, y eso no se hace desde un botón del navegador. La pantalla
+ * enseña el comando exacto; lo ejecuta una persona en su terminal.
+ *
+ * El fichero puede no existir (nadie ha corrido `npm run triage:quote-reanchor`)
+ * → cola vacía, no un error.
+ */
+function handleQuoteReanchorQueueRead(req, res, cwd) {
+  if (req.method !== 'GET') {
+    sendJson(res, 405, { error: 'method not allowed' })
+    return
+  }
+  {
+    const originErr = checkOrigin(req)
+    if (originErr) {
+      sendJson(res, 403, { error: originErr })
+      return
+    }
+  }
+  const path = resolve(cwd, 'editorial/quote-reanchor-queue.json')
+  let queue = {}
+  if (existsSync(path)) {
+    try {
+      queue = JSON.parse(readFileSync(path, 'utf8'))
+    } catch (err) {
+      process.stderr.write(`[quote-reanchor-queue] fichero ilegible: ${err.message}\n`)
+      queue = {}
+    }
+  }
+  sendJson(res, 200, {
+    generatedAt: typeof queue.generatedAt === 'string' ? queue.generatedAt : null,
+    queueVersion: queue.queueVersion ?? null,
+    sourceSnapshot: queue.sourceSnapshot ?? null,
+    stats: queue.stats ?? null,
+    rows: Array.isArray(queue.rows) ? queue.rows : [],
+  })
+}
+
 function handlePromiseQueueRead(req, res, cwd) {
   if (req.method !== 'GET') {
     sendJson(res, 405, { error: 'method not allowed' })
@@ -1471,6 +1520,17 @@ export function viteCuratorPlugin(opts = {}) {
         if (!req.url || req.url === '/' || req.url === '') {
           try {
             handleFindingSupportQueueRead(req, res, cwd)
+          } catch (err) {
+            sendJson(res, 500, { error: err.message })
+          }
+        } else {
+          next()
+        }
+      })
+      server.middlewares.use('/api/curator/quote-reanchor-queue', (req, res, next) => {
+        if (!req.url || req.url === '/' || req.url === '') {
+          try {
+            handleQuoteReanchorQueueRead(req, res, cwd)
           } catch (err) {
             sendJson(res, 500, { error: err.message })
           }

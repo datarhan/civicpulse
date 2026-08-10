@@ -295,6 +295,15 @@ overwrites it. Change the bot's SQLite instead.
 - **Source** — Same shape as press corrections. Same IFCN-compliant trail for the editorial findings auto-curated from pleno transcripts.
 - **Surfaces** — `/hallazgos` — collapsible "Bitácora de correcciones" expander on each `FindingDetailCard`.
 
+### Provenance of every published verbatim (which transcript a quote comes from)
+
+- **Pipeline** — **derived** · `compute-finding-quote-provenance.ts` → `src/scraper/quote-provenance.ts` → `finding-quote-provenance.json` → `useFindingQuoteProvenance.js`
+- **Source** — `pleno-findings.json` × the transcript corpus (`pleno-transcripts/` and `pleno-transcripts/superseded/`). Three states per quote, keyed by finding id + quote index: `en-vigente` (matches the current transcript), `solo-en-sustituida` (matches only the pre-re-transcription text, and the current file is not smaller — so the absence is degraded ASR, not missing coverage), `sin-determinar` (cannot tell: no current transcript, or the current one is SHORTER than the one it replaced). A quote in **neither** transcript gets no label at all — the pass refuses to write, because that is the fabrication question and `check:finding-quotes` owns it.
+- **Why derived, not curated** — the status is a fact about two files on disk. Writing it into `pleno-findings.json` would need dozens of curated corrections for something no human judged. Nothing here writes the findings snapshot; the only writer stays `npm run correct-pleno-finding`.
+- **Matcher** — one, shared: `src/scraper/quote-match.ts`. And one classifier: `check:finding-quotes` re-derives through the same `classifyQuoteProvenance` and **exits 1 when the committed snapshot disagrees**, so a marker on the page cannot go stale silently. `check:relations` carries `findings-quote-provenance` so the count stays visible in the routine report.
+- **Re-anchoring** — `npm run triage:quote-reanchor` → `editorial/quote-reanchor-queue.json` (gitignored, never under `public/`), surfaced in `/curator`. It **proposes passages and selects none**; a curator applies the change with `npm run correct-pleno-finding -- <id> --field quote.<i>.text`.
+- **Surfaces** — `/hallazgos` and `/plenos/:id` (per-quote chip + per-card note, shared `QuoteProvenanceMark`/`QuoteProvenanceNote` in `PlenoFindings.jsx`), and the published editorial contract at `/metodologia#citas-transcripcion`.
+
 ### Editorial findings as ClaimReview JSON-LD
 
 - **Pipeline** — **published** · `src/components/ClaimReviewJsonLd.jsx`

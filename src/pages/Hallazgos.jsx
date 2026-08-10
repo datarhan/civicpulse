@@ -5,8 +5,9 @@ import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import DataAsOf from '../components/DataAsOf'
 // One RefList, not two. It was duplicated verbatim here and in PlenoFindings,
 // so a heading fixed on one surface silently left the other one lying.
-import { RefList } from '../components/PlenoFindings'
+import { RefList, QuoteProvenanceMark, QuoteProvenanceNote } from '../components/PlenoFindings'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
+import { useFindingQuoteProvenance, provenanceFor } from '../hooks/useFindingQuoteProvenance'
 import { authorshipBreakdown } from '../scraper/finding-authorship'
 import { PARTY_TONE } from '../hooks/usePromises'
 import { usePlenoClaims } from '../hooks/usePlenoClaims'
@@ -44,7 +45,20 @@ function MiniStat({ label, value, tone }) {
   )
 }
 
-function FindingDetailCard({ f, permalink }) {
+/**
+ * Exportada sólo para que una prueba pueda renderizar la ficha REAL de
+ * /hallazgos, no una imitación. Es la superficie con más citas del sitio y la
+ * que un lector abre desde un permalink; que la marca de procedencia salga
+ * aquí no puede quedar cubierto por el hecho de que salga en FindingCard.
+ */
+export function FindingDetailCard({ f, permalink }) {
+  // Which transcript each of this finding's verbatims actually comes from. One
+  // fetch per session for the whole page — the snapshot store single-flights it
+  // — and the marker itself lives in PlenoFindings so /plenos/:id renders the
+  // same thing. The RefList duplication taught this lesson already: a fix on one
+  // of two copies leaves the other one lying.
+  const { data: provenance } = useFindingQuoteProvenance()
+  const prov = provenanceFor(provenance, f.id)
   return (
     <Card id={f.id} style={{ scrollMarginTop: 24 }}>
       <ClaimReviewJsonLd finding={f} />
@@ -138,8 +152,10 @@ function FindingDetailCard({ f, permalink }) {
                   {blocLabel(q.speakerGroup)}
                 </span>
               )}
+              <QuoteProvenanceMark entry={prov[i]} />
             </blockquote>
           ))}
+          <QuoteProvenanceNote entries={prov} />
         </div>
       )}
       <RefList refs={f.crossChecked} kind="crossChecked" plenoDate={f.plenoDate} />
@@ -306,6 +322,10 @@ export default function Hallazgos() {
   // mapping /departamentos uses, so both surfaces agree on what an área means.
   const areaFilter = new URLSearchParams(location.search).get('area')
   const { data: claimsForArea } = usePlenoClaims()
+  // Read for the page-level figure only; each card fetches its own rows from
+  // the same session-cached snapshot.
+  const { data: provenanceSnapshot } = useFindingQuoteProvenance()
+  const provStats = provenanceSnapshot?.stats ?? null
 
   const items = useMemo(() => data?.items ?? [], [data])
 
@@ -629,6 +649,28 @@ export default function Hallazgos() {
         >
           Leer metodología →
         </a>
+        {/* Counted from the derived snapshot, never typed here: a figure written
+            into a page goes false on its own the next time a session is
+            re-transcribed, and nobody edits a page to notice. */}
+        {provStats && provStats.soloEnSustituida + provStats.sinDeterminar > 0 && (
+          <div style={{ marginTop: 8 }}>
+            <strong style={{ color: 'var(--ink)' }}>Citas y transcripciones.</strong> Varias
+            sesiones se transcribieron una segunda vez con un motor mejor. De los {provStats.quotes}{' '}
+            literales publicados aquí,{' '}
+            <strong style={{ color: 'var(--ink)' }}>{provStats.enVigente}</strong> aparecen en la
+            transcripción vigente de su sesión;{' '}
+            <strong style={{ color: 'var(--ink)' }}>{provStats.soloEnSustituida}</strong> sólo en la
+            que se sustituyó, y {provStats.sinDeterminar} no se pueden situar en ninguna de las dos.
+            Los que no constan en el texto vigente llevan su marca al lado. No reescribimos ninguna
+            cita por nuestra cuenta.{' '}
+            <a
+              href="/metodologia#citas-transcripcion"
+              style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+            >
+              Qué significa cada marca →
+            </a>
+          </div>
+        )}
       </div>
     </div>
   )

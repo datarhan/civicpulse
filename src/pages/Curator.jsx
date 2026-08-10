@@ -20,6 +20,7 @@ import { ContradichoBundleRow, IssueRow } from './curator/queues'
 import { PromiseDraftRow, PromisePendingRow } from './curator/promise-queue'
 import { AreaFitRow } from './curator/area-fit-queue'
 import { FindingSupportRow, FindingSupportStyles } from './curator/finding-support-queue'
+import { QuoteReanchorRow, QuoteReanchorStyles } from './curator/quote-reanchor-queue'
 import { VoiceEnrollmentSection, VoiceIDAssignmentsSection } from './curator/voice'
 
 export default function Curator() {
@@ -28,6 +29,7 @@ export default function Curator() {
   const promiseQueue = useJsonResource('/api/curator/promise-queue')
   const areaFitQueue = useJsonResource('/api/curator/area-fit-queue')
   const findingSupportQueue = useJsonResource('/api/curator/finding-support-queue')
+  const quoteReanchorQueue = useJsonResource('/api/curator/quote-reanchor-queue')
   const pendingPromises = useJsonResource('/data/promises.json')
   const [openBundle, setOpenBundle] = useState(null)
   const [refreshing, setRefreshing] = useState(false)
@@ -102,6 +104,8 @@ export default function Curator() {
   const findingSupportRows = findingSupportQueue.data?.rows ?? []
   const findingSupportVerdicts = findingSupportQueue.data?.verdictOptions ?? []
   const findingSupportStats = findingSupportQueue.data?.stats ?? null
+  const quoteReanchorRows = quoteReanchorQueue.data?.rows ?? []
+  const quoteReanchorStats = quoteReanchorQueue.data?.stats ?? null
 
   // Promise auto-curator review queue. Fast-track drafts ("listo para
   // publicar") float to the top so the curator sees the ready ones first.
@@ -515,6 +519,62 @@ export default function Curator() {
         )}
         {findingSupportRows.map((r) => (
           <FindingSupportRow key={r.id} row={r} verdictOptions={findingSupportVerdicts} />
+        ))}
+      </Card>
+
+      <Card style={{ padding: 16, marginBottom: 18 }}>
+        <QuoteReanchorStyles />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <SectionHead title="Hallazgos · reanclar citas de una transcripción superada" />
+          <span
+            className="mono"
+            style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+          >
+            {quoteReanchorStats
+              ? `${quoteReanchorStats.encoladas}/${quoteReanchorStats.marcadas} en cola · ` +
+                `${quoteReanchorStats.conCandidatos} con pasajes candidatos · ` +
+                `${quoteReanchorStats.sinCandidatos} sin ninguno`
+              : ''}
+          </span>
+          <button
+            onClick={() => quoteReanchorQueue.refresh()}
+            disabled={quoteReanchorQueue.loading}
+            style={{
+              padding: '5px 10px',
+              fontSize: 11,
+              border: '1px solid var(--border2)',
+              background: 'var(--paper)',
+              borderRadius: 6,
+              cursor: quoteReanchorQueue.loading ? 'not-allowed' : 'pointer',
+            }}
+          >
+            {quoteReanchorQueue.loading ? 'Refreshing…' : 'Refresh'}
+          </button>
+        </div>
+        <p style={{ fontSize: 11.5, color: 'var(--ink60)', lineHeight: 1.5, margin: '4px 0 10px' }}>
+          Estas citas constan en la transcripción que su sesión tenía <strong>antes</strong> de
+          volverse a transcribir, y no en la vigente. La cola{' '}
+          <strong>propone pasajes y no elige ninguno</strong>: el orden es solapamiento de palabras
+          con contenido, que no es un veredicto, y{' '}
+          <strong>no se afirma que ningún candidato sea la cita</strong> — dos intervenciones del
+          mismo punto del orden del día comparten casi todo el vocabulario. Léelos, comprueba las
+          palabras que faltan, y si decides reanclarla ejecuta{' '}
+          <code>npm run correct-pleno-finding</code> tú mismo: queda en la bitácora pública de la
+          ficha.
+        </p>
+        {quoteReanchorQueue.loading && <p style={{ fontSize: 12 }}>Loading…</p>}
+        {quoteReanchorQueue.error && (
+          <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
+            {String(quoteReanchorQueue.error)}
+          </p>
+        )}
+        {!quoteReanchorQueue.loading && quoteReanchorRows.length === 0 && (
+          <p style={{ fontSize: 12, color: 'var(--ink60)' }}>
+            Cola vacía. Constrúyela con <code>npm run triage:quote-reanchor</code>.
+          </p>
+        )}
+        {quoteReanchorRows.map((r) => (
+          <QuoteReanchorRow key={r.key} row={r} />
         ))}
       </Card>
 

@@ -88,6 +88,7 @@ function main() {
     reports: readJson('journalist-reports.json'),
     entities: readJson('entities.json'),
     entityOverrides: readJson('entity-overrides.json'),
+    quoteProvenance: readJson('finding-quote-provenance.json'),
     publishedAssets: publishedAssetPaths(),
   }
 

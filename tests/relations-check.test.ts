@@ -33,6 +33,60 @@ describe('runRelationsChecks', () => {
     expect(rs['findings-claims'].status).toBe('skipped')
     expect(rs['relations-quejas-tenders'].status).toBe('skipped')
     expect(rs['manifest-chunks'].status).toBe('skipped')
+    expect(rs['findings-quote-provenance'].status).toBe('skipped')
+  })
+
+  describe('findings-quote-provenance', () => {
+    // Un literal sin fila de procedencia se pinta SIN marca, o sea como
+    // cotejado contra el mejor texto disponible. Eso no es un hueco en un
+    // informe: es una afirmación falsa en una página que nombra a un grupo.
+    const findings = {
+      items: [{ id: 'f1', quotes: [{ text: 'una' }, { text: 'otra' }] }],
+    }
+
+    it('acepta un hallazgo con una fila por cita', () => {
+      const rs = byName(
+        runRelationsChecks({
+          findings,
+          quoteProvenance: {
+            quotes: { f1: [{ status: 'en-vigente' }, { status: 'solo-en-sustituida' }] },
+          },
+        }),
+      )
+      expect(rs['findings-quote-provenance'].status).toBe('ok')
+      expect(rs['findings-quote-provenance'].checked).toBe(2)
+    })
+
+    it('señala la cita que se quedó sin fila', () => {
+      const rs = byName(
+        runRelationsChecks({
+          findings,
+          quoteProvenance: { quotes: { f1: [{ status: 'en-vigente' }] } },
+        }),
+      )
+      expect(rs['findings-quote-provenance'].status).toBe('broken')
+      expect(rs['findings-quote-provenance'].level).toBe('error')
+      expect(rs['findings-quote-provenance'].broken[0]).toContain('f1[1]')
+    })
+
+    it('señala un hallazgo entero sin procedencia', () => {
+      const rs = byName(runRelationsChecks({ findings, quoteProvenance: { quotes: {} } }))
+      expect(rs['findings-quote-provenance'].status).toBe('broken')
+      expect(rs['findings-quote-provenance'].broken[0]).toContain('no provenance row')
+    })
+
+    it('señala un estado que la página no sabe rotular', () => {
+      const rs = byName(
+        runRelationsChecks({
+          findings,
+          quoteProvenance: {
+            quotes: { f1: [{ status: 'en-vigente' }, { status: 'estado-inventado' }] },
+          },
+        }),
+      )
+      expect(rs['findings-quote-provenance'].status).toBe('broken')
+      expect(rs['findings-quote-provenance'].broken[0]).toContain('estado-inventado')
+    })
   })
 
   describe('findings-crosschecked-tenders', () => {

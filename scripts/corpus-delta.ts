@@ -26,13 +26,18 @@ function main() {
     ok?: number
     driftedCount?: number
     supersededOnlyCount?: number
+    undeterminedCount?: number
     drifted?: DriftedQuote[]
   }
   const current = cur.drifted ?? []
 
+  // «cannot tell» is printed on its own and never added to superseded-only: for
+  // those sessions the current transcript is SHORTER than the one it replaced,
+  // so the absence may be missing coverage rather than reworded ASR, and
+  // folding the two would publish a confidence the bytes do not support.
   console.log(
     `  traceable ${cur.ok ?? 0} · superseded-only ${cur.supersededOnlyCount ?? 0} · ` +
-      `NOT found ${cur.driftedCount ?? 0}`,
+      `cannot tell ${cur.undeterminedCount ?? 0} · NOT found ${cur.driftedCount ?? 0}`,
   )
 
   if (accept || !existsSync(basePath)) {

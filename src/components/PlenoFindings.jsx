@@ -1,6 +1,8 @@
 import { Card, Pill, SectionHead, ExtLink } from './Primitives'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
 import { useTenders } from '../hooks/useTenders'
+import { useFindingQuoteProvenance, provenanceFor } from '../hooks/useFindingQuoteProvenance'
+import { QUOTE_PROVENANCE_STATUS_IDS } from '../scraper/quote-provenance'
 import { blocLabel } from '../lib/party-label.js'
 import { refDateIndexFor, refDate } from '../lib/crosschecked-date.js'
 import { fmtDateShort } from '../lib/formatters'
@@ -136,7 +138,122 @@ export function RefList({ refs, kind, plenoDate }) {
   )
 }
 
+/**
+ * The reader-facing half of the quote-provenance snapshot.
+ *
+ * Eighteen pleno sessions were transcribed a second time with a better engine.
+ * 95 of the 177 verbatims published on this site appear in the transcript they
+ * were lifted from and NOT in the one that replaced it — and for most of those
+ * sessions the current file is 121–191 % the size of its predecessor, so the
+ * absence is not missing coverage. It is the earlier machine's wording, sitting
+ * inside guillemets, attributed to a named political group.
+ *
+ * The substance is real: «Feria de Comercio» appears five times in each pass of
+ * `10yl550`, while `satombat` and `Rivarroch` are artefacts only the old one
+ * produces. So the honest move is neither to delete the quote nor to silently
+ * rewrite it — it is to tell the reader that the words between the guillemets
+ * are not confirmed against the best available text, and to leave the rewording
+ * to a person. Nothing automatic edits published prose.
+ *
+ * Two marks, not one. «Sólo en la sustituida» is a claim: we know the new pass
+ * says more and still does not contain these words. «Sin determinar» is the
+ * absence of a claim, for the sessions whose current transcript is SHORTER than
+ * the one it replaced — there, the words may have been reworded or the stretch
+ * may simply not be covered, and we do not know which. Collapsing the second
+ * into the first would publish a confidence the bytes do not support.
+ */
+const PROVENANCE_MARK = {
+  'en-vigente': null,
+  'solo-en-sustituida': {
+    tone: 'warn',
+    chip: 'no consta en la transcripción revisada',
+    title:
+      'La sesión se transcribió de nuevo con un motor mejor y estas palabras no aparecen en el texto nuevo.',
+    note:
+      'Sesión re-transcrita con un motor mejor. Las citas marcadas constan literalmente en la ' +
+      'transcripción anterior y no en la vigente, que es más extensa: el asunto se debatió, pero ' +
+      'la literalidad entrecomillada es la del primer transcriptor y no está confirmada contra el ' +
+      'mejor texto disponible. Reanclarla es trabajo de una persona; aquí no se reescribe sola.',
+  },
+  'sin-determinar': {
+    tone: 'ghost',
+    chip: 'no hemos podido comprobarlo',
+    title:
+      'No podemos decir si estas palabras cambiaron al re-transcribir o si el tramo no está cubierto.',
+    note:
+      'La transcripción vigente de esta sesión es más corta que la que sustituyó, así que la ' +
+      'ausencia de estas palabras puede deberse al cambio de motor o a un tramo que la nueva pasada ' +
+      'no cubre. No afirmamos ninguna de las dos cosas.',
+  },
+}
+
+// The enum is imported, never restated: a hand-copied list of states is how six
+// tests in this repo stayed green while production matched nothing
+// (docs/DATA_INTEGRITY.md rule 1). A new state must break this on sight.
+if (import.meta.env?.DEV && QUOTE_PROVENANCE_STATUS_IDS.some((id) => !(id in PROVENANCE_MARK))) {
+  throw new Error(
+    'PlenoFindings: falta la redacción de lectura para un estado de procedencia nuevo — ' +
+      QUOTE_PROVENANCE_STATUS_IDS.filter((id) => !(id in PROVENANCE_MARK)).join(', '),
+  )
+}
+
+/** The chip that sits beside one quote. Renders nothing for a sound quote. */
+export function QuoteProvenanceMark({ entry }) {
+  const mark = entry ? PROVENANCE_MARK[entry.status] : null
+  if (!mark) return null
+  return (
+    <Pill tone={mark.tone} size="xs" style={{ fontStyle: 'normal', marginLeft: 6 }}>
+      <span title={mark.title}>{mark.chip}</span>
+    </Pill>
+  )
+}
+
+/**
+ * One sentence per distinct mark present on a card, below its quotes. A chip
+ * alone says «something is off» without saying what a reader should conclude,
+ * and this is prose about named political groups.
+ */
+export function QuoteProvenanceNote({ entries }) {
+  const seen = []
+  for (const e of entries ?? []) {
+    if (PROVENANCE_MARK[e?.status] && !seen.includes(e.status)) seen.push(e.status)
+  }
+  if (seen.length === 0) return null
+  return (
+    <div
+      style={{
+        marginTop: 8,
+        padding: '7px 10px',
+        borderLeft: '3px solid var(--warn)',
+        background: 'var(--soft)',
+        borderRadius: 4,
+        fontSize: 11,
+        lineHeight: 1.5,
+        color: 'var(--ink70)',
+      }}
+    >
+      {seen.map((s) => (
+        <div key={s} style={{ marginTop: 2 }}>
+          <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>
+            {PROVENANCE_MARK[s].chip}
+          </strong>
+          {' — '}
+          {PROVENANCE_MARK[s].note}
+        </div>
+      ))}
+      <a
+        href="/metodologia#citas-transcripcion"
+        style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+      >
+        Cómo se comprueba una cita →
+      </a>
+    </div>
+  )
+}
+
 export function FindingCard({ f }) {
+  const { data: provenance } = useFindingQuoteProvenance()
+  const prov = provenanceFor(provenance, f.id)
   return (
     <Card>
       <div
@@ -198,8 +315,12 @@ export function FindingCard({ f }) {
                   {blocLabel(q.speakerGroup)}
                 </span>
               )}
+              <QuoteProvenanceMark entry={prov[i]} />
             </blockquote>
           ))}
+          {/* Only the three quotes this card shows are marked, so the note must
+              describe those and not the finding's full list. */}
+          <QuoteProvenanceNote entries={prov.slice(0, 3)} />
         </div>
       )}
       <RefList refs={f.crossChecked} kind="crossChecked" plenoDate={f.plenoDate} />
