@@ -50,6 +50,11 @@ import {
 } from '../src/scraper/speaker-map-prompt'
 import { decideSnapshotWrite } from '../src/scraper/snapshot-write'
 import {
+  adjudicateWeakRows,
+  applyAdjudications,
+  type AdjudicationOutcome,
+} from '../src/scraper/speaker-map-adjudicate'
+import {
   seatsFromOfficials,
   type OfficialLike,
   type OfficialsDoc,
@@ -57,6 +62,13 @@ import {
 
 const OUT_DIR = resolve('pleno-speaker-map')
 const MODEL = process.env.SPEAKER_MAP_MODEL || 'gemini-3.5-flash'
+/**
+ * Ceiling on back-reference adjudications per chunk. Costs Max-plan time
+ * rather than money, but a session with many weak rows would otherwise sit in
+ * the model for a long while with nothing telling you why.
+ */
+const ADJUDICATE_MAX = Number(process.env.SPEAKER_MAP_ADJUDICATE_MAX || 12)
+const SKIP_ADJUDICATION = process.env.SPEAKER_MAP_ADJUDICATE === '0'
 const BASE = 'https://generativelanguage.googleapis.com'
 
 interface Args {
@@ -356,6 +368,12 @@ async function main() {
     const rejected: RejectedCandidate[] = []
     const failedChunks: Array<{ chunk: number; why: string }> = []
     let quotaExhausted: string | null = null
+    const adjudicated: Record<AdjudicationOutcome, number> = {
+      accepted: 0,
+      rejected: 0,
+      'not-adjudicated': 0,
+    }
+    let adjudicationSkipped = 0
     let labelsSeen = 0
     let done = 0
 
@@ -422,6 +440,24 @@ async function main() {
         seats,
       })
       labelsSeen += new Set(parsed.segments.map((s) => s.speaker)).size
+
+      // A back-reference resolves but cannot be confirmed positionally, so the
+      // validator keeps it `weak` and `blocForLabel` refuses it. Ask a text
+      // model whether the cited line identifies that speaker or merely mentions
+      // them. It never proposes anyone, and a backend that does not answer
+      // leaves the row exactly as weak as it was.
+      if (!SKIP_ADJUDICATION && v.rows.some((r) => r.weak)) {
+        const run = await adjudicateWeakRows({
+          rows: v.rows,
+          segments: parsed.segments,
+          max: ADJUDICATE_MAX,
+        })
+        v.rows = applyAdjudications(v.rows, run.results)
+        for (const k of Object.keys(run.tally) as AdjudicationOutcome[]) {
+          adjudicated[k] += run.tally[k]
+        }
+        adjudicationSkipped += run.skipped
+      }
 
       for (const s of parsed.segments) {
         segments.push({
@@ -525,6 +561,9 @@ async function main() {
         `  coverage      ${(map.stats.coverage * 100).toFixed(1)}% of ${Math.round(total)}s\n` +
         `  labels seen   ${labelsSeen}\n` +
         `  rows accepted ${rows.length}  (${rows.filter((r) => r.weak).length} weak)\n` +
+        `  back-refs     ${adjudicated.accepted} confirmed · ${adjudicated.rejected} rejected · ` +
+        `${adjudicated['not-adjudicated']} NOT adjudicated (backend silent — still weak)` +
+        `${adjudicationSkipped ? ` · ${adjudicationSkipped} never sent (cap ${ADJUDICATE_MAX})` : ''}\n` +
         `  rows rejected ${rejected.length}  ${JSON.stringify(map.stats.rejectedBy)}\n` +
         `  councillors   ${bySlug.size} identified across chunks\n`,
     )
