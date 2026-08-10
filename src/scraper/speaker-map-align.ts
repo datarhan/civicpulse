@@ -197,6 +197,44 @@ export function alignSpeakerMap(opts: AlignOptions): AlignmentResult {
 }
 
 /**
+ * A resolver from a verbatim quote to the bloc that said it.
+ *
+ * This is what replaces the extractor's guess. It is deliberately per-CLAIM
+ * rather than per-window: an extraction window is a 1200-character slice that
+ * routinely spans two or three speakers, so "the bloc for this window" is not
+ * a well-defined thing and answering it at all would reintroduce the error.
+ *
+ * Returns null whenever the quote cannot be located, or lands on a line the
+ * map does not vouch for. Null means "nobody is claiming to know", which the
+ * published schema already represents and which the eval scores as abstention
+ * rather than error.
+ */
+export function blocResolverFor(
+  published: readonly RawSegment[],
+  alignment: AlignmentResult,
+): (verbatim: string) => string | null {
+  let hay = ''
+  const marks: Array<{ at: number; index: number }> = []
+  for (const [index, line] of published.entries()) {
+    marks.push({ at: hay.length, index })
+    hay += normaliseForQuoteMatch(line.text) + ' '
+  }
+  const blocByIndex = new Map(alignment.lines.map((l) => [l.index, l.bloc]))
+
+  return (verbatim: string): string | null => {
+    const { coverage, at } = locateQuote(verbatim, hay)
+    if (at < 0 || coverage < ALIGN_MIN_COVERAGE) return null
+    let index: number | null = null
+    for (const m of marks) {
+      if (m.at <= at) index = m.index
+      else break
+    }
+    if (index === null) return null
+    return blocByIndex.get(index) ?? null
+  }
+}
+
+/**
  * Bloc per published-transcript speaker label, but only where the whole label
  * agrees.
  *

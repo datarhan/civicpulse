@@ -14,6 +14,7 @@
 import { findPartiesInText, normalizeParty } from '../lib/party-alias'
 import type { BlocSeats, OfficialLike } from './corporation-seats'
 import { singleSeatBlocs } from './corporation-seats'
+import { SPEAKER_GROUPS } from './pleno-votes'
 import type { RawSegment, SpeakerCandidate, SpeakerMapRow } from './speaker-map'
 
 export type RejectReason =
@@ -29,6 +30,8 @@ export type RejectReason =
   | 'ambiguous'
   /** Two labels resolved to the same person, so at least one is wrong. */
   | 'label-collision'
+  /** The roster's party for this councillor is not publishable as a bloc. */
+  | 'bloc-not-publishable'
 
 export interface RejectedCandidate {
   label: string
@@ -226,6 +229,22 @@ export function validateSpeakerMap(opts: ValidateOptions): ValidationResult {
     }
 
     const official = pool[0]
+
+    // The roster's party vocabulary is WIDER than what may be published:
+    // `PARTIES` in corporacion.ts carries `Otro`, which never meant "another
+    // party" — it was the extractor's "cannot tell". In a 21-seat council a
+    // published `Otro` identifies one councillor by elimination, which is
+    // `DATA_INTEGRITY.md` rule 3 exactly. Removing `speakerGroup` from the LLM
+    // schema moved that risk here, so the gate moves here with it.
+    if (!(SPEAKER_GROUPS as readonly string[]).includes(official.party)) {
+      reject(
+        c.label,
+        'bloc-not-publishable',
+        `${official.name} sits under "${official.party}", which is not a publishable bloc`,
+      )
+      continue
+    }
+
     rows.push({
       label: c.label,
       bloc: official.party,

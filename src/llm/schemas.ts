@@ -10,12 +10,7 @@
  * bodies at call time via `zodToJsonSchema` (see client.ts).
  */
 import { z } from 'zod'
-import {
-  ALLOWED_BLOCS,
-  ALLOWED_DIRECTIONS,
-  ALLOWED_OUTCOMES,
-  SPEAKER_GROUPS,
-} from '../scraper/pleno-votes'
+import { ALLOWED_BLOCS, ALLOWED_DIRECTIONS, ALLOWED_OUTCOMES } from '../scraper/pleno-votes'
 import {
   ALLOWED_CLAIM_TYPES,
   ALLOWED_CLAIM_TOPICS,
@@ -96,23 +91,31 @@ export const ClaimEntitiesSchema = z.object({
 
 export const PlenoClaimSuggestionSchema = z.object({
   type: z.enum([...ALLOWED_CLAIM_TYPES] as [(typeof ALLOWED_CLAIM_TYPES)[number]]),
-  // SPEAKER_GROUPS, not ALLOWED_BLOCS: the vote list carries `Otro`, which is
-  // a "cannot tell" sentinel and must never be writable as an attribution.
-  // The model answers `null` when the group is unclear.
-  // No `as [T]` cast here: SPEAKER_GROUPS is a readonly tuple (`as const`), so
-  // zod infers the full union from it. The cast the neighbouring enums need is
-  // an artefact of their `readonly T[]` typing, and it would silently narrow
-  // this one to a single member.
-  speakerGroup: z.enum(SPEAKER_GROUPS).nullable(),
+  // `speakerGroup` is DELIBERATELY ABSENT from this schema.
+  //
+  // The model used to answer it, and could not. Measured on pleno 10yl550, of
+  // the 515 windows the extractor sees, 6 (1%) contain a turn-grant — the only
+  // evidence of who holds the floor — while 41% merely name a party, which in
+  // a debate is usually the party being attacked. Asked anyway, the model
+  // reached for the name in the text, and quotes were published under the bloc
+  // they criticise.
+  //
+  // Attribution is now joined after extraction from `pleno-speaker-map/`,
+  // where each speaker is backed by a cited turn-grant on tape. Removing the
+  // field from the schema is what makes the old error structurally impossible
+  // rather than merely discouraged: there is nothing left to guess with.
+  // See src/scraper/speaker-map.ts.
+  //
   // Optional individual attribution — only set when the transcript line
   // carries a high-tier voice-id named tag like `(Robert Raga Gadea)`,
   // produced by `scripts/identify-pleno-speakers.ts --apply`. NEVER
-  // populated from prose alone (Whisper WER on proper nouns is too high
-  // to be defamation-safe). Validated post-LLM against the enrolled
-  // voiceprint set + officials.json party consistency in
-  // src/scraper/pleno-claim-llm.ts. speakerGroup remains the primary
-  // libel-safe attribution; speakerSlug is editorial signal that the
-  // dashboard / curator can use, but is NOT auto-published into
+  // populated from prose alone (ASR error on proper nouns is too high to be
+  // defamation-safe). Validated post-LLM in src/scraper/pleno-claim-llm.ts
+  // against the enrolled voiceprint set and against the bloc the speaker map
+  // resolved — the two now come from independent sources (a voiceprint cosine
+  // and a turn-grant on tape), so they can genuinely disagree, and when they
+  // do it is the individual attribution that is dropped. speakerSlug is
+  // editorial signal for the curator dashboard and is NOT auto-published into
   // /declaraciones or /hallazgos without explicit promote-claim curation.
   speakerSlug: z
     .string()

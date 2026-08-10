@@ -19,6 +19,8 @@ import { join, resolve } from 'node:path'
 import { validateFindingsSnapshot } from '../src/scraper/pleno-finding'
 import { ALLOWED_BLOCS, SPEAKER_GROUPS, validateSnapshot } from '../src/scraper/pleno-votes'
 import { PlenoClaimSuggestionSchema } from '../src/llm/schemas'
+import { validateSpeakerMap } from '../src/scraper/speaker-map-validate'
+import { seatsFromOfficials } from '../src/scraper/corporation-seats'
 import { REAL_BLOCS } from '../src/lib/party-label.js'
 
 const DATA = resolve(__dirname, '..', 'public', 'data')
@@ -145,23 +147,72 @@ describe('Otro sentinel — the validator refuses to let it back in', () => {
     )
   })
 
-  it('the extractor schema rejects "Otro" and accepts null', () => {
-    // Same trick: a real extracted claim, not a hand-copied shape.
+  /**
+   * The extractor schema used to hold the line here, rejecting `Otro` as a
+   * speakerGroup the LLM might emit. It no longer can: `speakerGroup` was
+   * removed from that schema entirely, because the model could not answer it
+   * from a 1200-character window and was inferring the bloc from whichever
+   * party the text named. zod strips unknown keys, so the old assertion would
+   * now pass vacuously.
+   *
+   * The risk did not disappear, it MOVED — the bloc is joined from the speaker
+   * map, whose source is `officials.json`, whose `PARTIES` vocabulary DOES
+   * carry `Otro`. So the guard moves with it, and both halves are asserted.
+   */
+  it('the extractor schema no longer lets the LLM name a bloc at all', () => {
     const suggestions = JSON.parse(
       readFileSync(join(DATA, 'pleno-claims-suggestions.json'), 'utf8'),
     )
-    const sample = suggestions.items.find((i: { speakerGroup?: unknown }) => i.speakerGroup)
+    const sample = suggestions.items.find((i: { verbatim?: unknown }) => i.verbatim)
     expect(sample).toBeTruthy()
 
-    const parse = (speakerGroup: string | null) =>
-      PlenoClaimSuggestionSchema.safeParse({ ...sample, speakerGroup })
+    // Positive control: the sample really is a valid claim, so a failure below
+    // means something about speakerGroup and not about a broken fixture.
+    expect(PlenoClaimSuggestionSchema.safeParse(sample).success).toBe(true)
 
-    // Positive controls first: the fixture is valid but for speakerGroup.
-    expect(parse('PSOE').success).toBe(true)
-    expect(parse(null).success).toBe(true)
-    // The claim under test.
-    expect(parse('Otro').success).toBe(false)
-    expect(parse('Otro').error?.issues.some((i) => i.path.includes('speakerGroup'))).toBe(true)
+    const parsed = PlenoClaimSuggestionSchema.safeParse({ ...sample, speakerGroup: 'Otro' })
+    expect(parsed.success).toBe(true)
+    // …and the sentinel does not survive into the parsed object.
+    expect(parsed.data).not.toHaveProperty('speakerGroup')
+  })
+
+  it('the speaker map refuses to publish a councillor whose roster party is Otro', () => {
+    const doc = JSON.parse(readFileSync(join(DATA, 'officials.json'), 'utf8'))
+    const seats = seatsFromOfficials(doc)
+    const segments = [
+      { start: 0, end: 2, speaker: 'SPEAKER_00', text: 'Mes paraules? Rafa.' },
+      { start: 2, end: 6, speaker: 'SPEAKER_01', text: 'Gracies.' },
+    ]
+    const candidate = {
+      label: 'SPEAKER_01',
+      heardAs: 'Rafa',
+      party: null,
+      evidence: {
+        spokenBy: 'SPEAKER_00',
+        at: 0,
+        quote: 'Mes paraules? Rafa.',
+        relation: 'turn-grant' as const,
+      },
+    }
+
+    // Positive control: with a normal roster the row is accepted, so the
+    // rejection below is caused by the party and nothing else.
+    const ok = validateSpeakerMap({
+      candidates: [candidate],
+      segments,
+      officials: [{ slug: 'rafa-x', name: 'Rafael Folgado Navarro', party: 'Compromís' }],
+      seats,
+    })
+    expect(ok.rows).toHaveLength(1)
+
+    const withOtro = validateSpeakerMap({
+      candidates: [candidate],
+      segments,
+      officials: [{ slug: 'rafa-x', name: 'Rafael Folgado Navarro', party: 'Otro' }],
+      seats,
+    })
+    expect(withOtro.rows).toHaveLength(0)
+    expect(withOtro.rejected[0].reason).toBe('bloc-not-publishable')
   })
 })
 

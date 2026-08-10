@@ -22,6 +22,9 @@ import type {
 } from '../src/scraper/pleno-claim'
 import { ALLOWED_CLAIM_TYPES, ALLOWED_CLAIM_TOPICS } from '../src/scraper/pleno-claim'
 import { assessTranscript } from '../src/scraper/transcript-quality'
+import { alignSpeakerMap, blocResolverFor } from '../src/scraper/speaker-map-align'
+import { parseDiarizedTranscript } from '../src/scraper/voice-id'
+import type { SpeakerMap } from '../src/scraper/speaker-map'
 import {
   seatsFromOfficials,
   type BlocSeats,
@@ -166,6 +169,28 @@ async function runOne(
         .join(', ')}\n`,
     )
   }
+  // Attribution comes from the speaker map, joined per claim after extraction.
+  // Without a map every claim gets `speakerGroup: null` — honest, and better
+  // than the guess it replaces, but say so plainly rather than let a silent
+  // absence look like a session where nobody was identifiable.
+  const mapPath = resolve('pleno-speaker-map', `${plenoId}.json`)
+  let resolveBloc: ((verbatim: string) => string | null) | undefined
+  if (existsSync(mapPath)) {
+    const map = JSON.parse(readFileSync(mapPath, 'utf8')) as SpeakerMap
+    const published = parseDiarizedTranscript(transcript)
+    const alignment = alignSpeakerMap({ published, map })
+    resolveBloc = blocResolverFor(published, alignment)
+    process.stdout.write(
+      `[extract·claims]   ${plenoId} · speaker map: ${map.rows.filter((r) => !r.weak).length} ` +
+        `vouched row(s), ${alignment.stats.aligned}/${published.length} transcript line(s) attributed\n`,
+    )
+  } else {
+    process.stdout.write(
+      `[extract·claims]   ${plenoId} · NO speaker map at ${mapPath} — every claim will carry\n` +
+        `[extract·claims]     speakerGroup:null. Run \`npm run extract:speaker-map -- ${plenoId}\` first.\n`,
+    )
+  }
+
   // Log every ~5% of windows processed so long runs aren't silent.
   let lastReport = -1
   const res = await extractClaimsWithLlm(transcript, {
@@ -176,6 +201,7 @@ async function runOne(
     allowedSpeakers,
     minConfidence,
     concurrency,
+    resolveBloc,
     onWindow: ({ index, total, claimsKept }) => {
       const pct = Math.floor(((index + 1) / total) * 20) // 5% buckets
       if (pct > lastReport) {

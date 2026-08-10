@@ -13,7 +13,6 @@
  * instruction is belt-and-suspenders, not load-bearing.
  */
 import { ALLOWED_PARTIES, ALLOWED_TOPICS, ALLOWED_KINDS } from '../scraper/promises'
-import { SPEAKER_GROUPS } from '../scraper/pleno-votes'
 // The ` · sim=0.50` tail below is rendered through this, never inline: the
 // publishing path strips it back off with the inverse in the same module, and
 // two hand-written copies of a format is how a strip stops matching an emitter
@@ -110,7 +109,12 @@ export function buildPlenoVoteUserPrompt(segment: string): string {
 
 // ─── Phase 1b · Pleno claim extraction ──────────────────────────────────────
 
-export const PLENO_CLAIM_PROMPT_VERSION = 'pleno-claim-v4'
+/**
+ * Part of the LLM cache key. v5 removed `speakerGroup` from the model's job
+ * entirely — without the bump a warm cache would keep serving v4 answers,
+ * complete with their guessed attributions, while the run reported success.
+ */
+export const PLENO_CLAIM_PROMPT_VERSION = 'pleno-claim-v5'
 
 export interface AllowedSpeaker {
   /** kebab-case slug from public/data/officials.json. */
@@ -163,6 +167,8 @@ Fecha del pleno: ${opts.plenoDate}
 Composición del pleno (${opts.currentSeats.reduce((a, s) => a + s.seats, 0)} escaños):
 ${seatsLines}
 ${agendaBlock}${speakersBlock}
+NO ATRIBUYAS. No digas de qué grupo es quien habla, ni lo insinúes en \`context\` o en \`reasoning\`. El fragmento que recibes casi nunca contiene la prueba: la presidencia concede la palabra nombrando al grupo una vez cada varios minutos, y dentro de un fragmento el partido que se menciona suele ser aquel al que se ATACA, no el que habla. La atribución se añade después, cruzando con la grabación. Si sientes la tentación de deducir el grupo por el contenido, esa es exactamente la deducción que produce citas archivadas bajo el partido al que critican.
+
 Te daré un fragmento de ~900 caracteres del pleno. Extrae TODAS las afirmaciones verificables de ese fragmento, hasta un máximo de 8. Cada una debe entrar en una de estas categorías:
 
 - "promesa": compromiso futuro concreto ("construiremos 500 viviendas sociales antes de 2027")
@@ -176,9 +182,7 @@ Te daré un fragmento de ~900 caracteres del pleno. Extrae TODAS las afirmacione
 
 Para cada afirmación extrae:
 - type: una de las cinco categorías
-- speakerGroup: ${SPEAKER_GROUPS.join(' | ')}, SOLO si el fragmento deja claro qué grupo habla. NUNCA un nombre propio. null si dudas.
-  NO uses «Otro»: el esquema lo RECHAZA y la respuesta entera se descarta. No nombra a ningún grupo — el de Esquerra Unida-Podem se escribe EU-Podem. Si no puedes determinar el grupo, la respuesta es null.
-- speakerSlug: slug del concejal SI Y SOLO SI la línea de la transcripción ya viene rotulada por el sistema de voz (ver bloque "IDENTIFICACIÓN POR VOZ" arriba). null en cualquier otro caso. Esta es una atribución secundaria — el speakerGroup sigue siendo la atribución primaria.
+- speakerSlug: slug del concejal SI Y SOLO SI la línea de la transcripción ya viene rotulada por el sistema de voz (ver bloque "IDENTIFICACIÓN POR VOZ" arriba). null en cualquier otro caso.
 - verbatim: cita literal (≥20 caracteres, máx 500), tal y como aparece en la transcripción aunque Whisper la haya degradado. Esta es la responsabilidad legal — no la parafrasees.
 - context: el párrafo breve (≥20 caracteres) alrededor de la verbatim para que el curador humano pueda juzgar.
 - topic: fiscal | vivienda | movilidad | medio-ambiente | social | cultura | seguridad | empleo | urbanismo | salud | transparencia | educacion | other
