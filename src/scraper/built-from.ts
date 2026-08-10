@@ -20,7 +20,7 @@
  * hash lives in the published JSON, which is fine — it is provenance, and this
  * project publishes provenance on purpose.
  */
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { sha256Short } from './hash'
 import { stalenessInputs, type DataNode } from './data-graph'
@@ -39,10 +39,40 @@ export type BuiltFrom = Record<string, string>
  */
 export const ABSENT = 'absent'
 
-export function hashOf(basename: string, dir = DATA_DIR): string {
-  const path = resolve(dir, basename)
+/**
+ * Content hash of one input, which may be a file or a whole directory.
+ *
+ * A trailing `/` means a directory, hashed as a manifest of `name:hash` over
+ * its sorted immediate entries. **Not recursive**, deliberately:
+ * `pleno-transcripts/` contains a `superseded/` subdirectory holding the
+ * transcripts a session had BEFORE it was re-transcribed, and letting those
+ * perturb the live corpus would mark the claims stale every time an old
+ * transcript was archived. Measured on the real corpus: 44 files, 9.6 MB,
+ * 52 ms.
+ *
+ * An input containing a `/` resolves from the repo root rather than
+ * `public/data`, because `pleno-speaker-map/` sits outside it.
+ */
+export function hashOf(input: string, dir = DATA_DIR): string {
+  const isDir = input.endsWith('/')
+  const name = isDir ? input.slice(0, -1) : input
+  // A bare basename lives in `dir`; anything with a path separator is
+  // repo-relative.
+  const path = name.includes('/') ? resolve(name) : resolve(dir, name)
   if (!existsSync(path)) return ABSENT
-  return sha256Short(readFileSync(path, 'utf8'))
+
+  if (!isDir) return sha256Short(readFileSync(path, 'utf8'))
+
+  const entries = readdirSync(path, { withFileTypes: true })
+    .filter((e) => e.isFile())
+    .map((e) => e.name)
+    .sort()
+  const manifest = entries
+    .map((n) => `${n}:${sha256Short(readFileSync(resolve(path, n), 'utf8'))}`)
+    .join('\n')
+  // An empty directory and a missing one are different facts: the first is a
+  // real, hashable state (nothing has been built yet), the second is ABSENT.
+  return sha256Short(manifest)
 }
 
 /**

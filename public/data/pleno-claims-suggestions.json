@@ -121516,5 +121516,13 @@
       "reasoning": "Es un compromiso para llevar a pleno dos de las comisiones en una fecha específica (26 de julio de 2023), verificable en las actas de dicho pleno.",
       "requiresHumanApproval": true
     }
-  ]
+  ],
+  "builtFrom": {
+    "officials.json": "f81fa2cc1203",
+    "pleno-findings.json": "94a4c9f535c9",
+    "pleno-speaker-map/": "absent",
+    "pleno-transcripts/": "852b7466ab7f",
+    "plenos-agendas.json": "666d6279269f",
+    "plenos.json": "b311d31ab2c4"
+  }
 }

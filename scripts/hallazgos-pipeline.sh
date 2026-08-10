@@ -196,6 +196,20 @@ else
   log "no transcribable backlog"
 fi
 
+# ---- what the dependency graph says is owed ----------------------------
+# The graph answers WHETHER LLM work is owed — it hashes the transcript and
+# speaker-map directories against what the claims corpus was built from. It
+# does NOT choose sessions: it knows nothing about quota, chunk budgets or
+# which pleno is newest, and those are exactly what the backlogs below are for.
+# Asking it first means a run that finds nothing to do can say so on evidence
+# rather than because its own selector happened to come up empty.
+GRAPH_OWED=$(npm run --silent refresh -- --list llm 2>/dev/null || true)
+if [ -n "$GRAPH_OWED" ]; then
+  log "grafo: trabajo LLM pendiente → $(echo "$GRAPH_OWED" | tr '\n' ' ')"
+else
+  log "grafo: el corpus de claims está al día respecto a transcripciones y mapas"
+fi
+
 # ---- speaker maps: who was actually speaking ---------------------------
 # The claim extractor no longer guesses `speakerGroup`; it joins it from
 # pleno-speaker-map/<id>.json, where every speaker is backed by a turn-grant the
@@ -246,6 +260,10 @@ if [ "$SPEAKER_MAP_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
         # just established. Same $0 policy as every other model call here.
         if env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$mid"; then
           NEW=$((NEW+1)); log "✓ $mid claims re-extracted with map attribution"
+          # Tell the graph the work landed. Without this the llm node reports
+          # stale forever, and a permanently-stale node trains people to stop
+          # reading the report.
+          npm run --silent refresh -- --stamp pleno-claims-suggestions.json || true
         else
           log "warn: re-extract failed for $mid — map kept, claims still unattributed"
         fi

@@ -27,6 +27,7 @@ import { resolve } from 'node:path'
 import {
   DATA_GRAPH,
   topologicalOrder,
+  stalenessInputs,
   type DataNode,
   type NodeTier,
 } from '../src/scraper/data-graph'
@@ -91,6 +92,33 @@ function main() {
   } catch (err) {
     process.stderr.write(`[refresh] ${err instanceof Error ? err.message : err}\n`)
     process.exit(1)
+  }
+
+  // `--stamp <node>`: record what a node was built from, WITHOUT rebuilding it.
+  //
+  // `llm` and `curated` nodes are never rebuilt here — that is the whole point
+  // — so without this they would report "built before provenance was recorded"
+  // forever. A permanently-stale node nobody can clear is noise, and noise
+  // trains people to stop reading the report. Whoever actually did the work
+  // (the pipeline after an extraction, a curator after a promotion) stamps it,
+  // and from then on "stale" means an input genuinely moved.
+  const stampIdx = argv.indexOf('--stamp')
+  if (stampIdx >= 0) {
+    const id = argv[stampIdx + 1]
+    const node = order.find((n) => n.id === id)
+    if (!node) {
+      process.stderr.write(`[refresh] --stamp: "${id}" is not a node in the graph\n`)
+      process.exit(2)
+    }
+    const err = stamp(node)
+    if (err) {
+      process.stderr.write(`[refresh] --stamp: ${err}\n`)
+      process.exit(1)
+    }
+    process.stdout.write(
+      `[refresh] stamped ${id} with ${stalenessInputs(node).length} input hash(es)\n`,
+    )
+    return
   }
 
   // `--list <tier>`: machine-readable backlog for a pipeline, nothing else.

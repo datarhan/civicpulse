@@ -125,6 +125,42 @@ export const DATA_GRAPH: readonly DataNode[] = [
     script: 'scripts/compute-press-analytics.ts',
     note: 'press trust / triangulation / coverage gaps — one command, three files',
   },
+  {
+    // AGGREGATE. The graph answers "is LLM work owed at all"; which sessions,
+    // in what order, within what quota, stays with `hallazgos-pipeline.sh`.
+    // Modelling one node per pleno would mean generating the graph, and a
+    // generated declaration cannot be checked against a hand-written one — the
+    // anti-drift property is worth more than the extra precision.
+    // Reads its own output too: the preservation guard snapshots the claim ids
+    // published findings cite, so a re-extract that renames them refuses to
+    // overwrite rather than orphan a citation.
+    id: 'pleno-claims-suggestions.json',
+    tier: 'llm',
+    reads: [
+      'officials.json',
+      'pleno-claims-suggestions.json',
+      'pleno-findings.json',
+      'pleno-speaker-map/',
+      'pleno-transcripts/',
+      'plenos-agendas.json',
+      'plenos.json',
+    ],
+    writes: ['pleno-claims-suggestions.json'],
+    command: 'bash scripts/hallazgos-pipeline.sh',
+    script: 'scripts/extract-pleno-claims.ts',
+    note: 'claim extraction · attribution joined from the speaker map',
+  },
+  {
+    // Curated: `refresh` reports it and never runs it. The command is here so
+    // the report can name the human step that is owed rather than just saying
+    // "stale".
+    id: 'pleno-findings.json',
+    tier: 'curated',
+    reads: ['pleno-claims-verified.json'],
+    writes: ['pleno-findings.json'],
+    command: 'npm run promote-claim  (curator)',
+    note: 'published findings — a human signs every one',
+  },
 ]
 
 /** Nodes that write `id`, so a walker can find what produces a given file. */

@@ -53,6 +53,60 @@ describe('hashOf', () => {
   })
 })
 
+describe('hashOf — directory inputs', () => {
+  const putDir = (name: string, files: Record<string, string>) => {
+    mkdirSync(join(dir, name), { recursive: true })
+    for (const [f, body] of Object.entries(files)) writeFileSync(join(dir, name, f), body)
+  }
+
+  it('hashes a directory as a manifest of its files', () => {
+    putDir('corpus', { 'a.txt': 'uno', 'b.txt': 'dos' })
+    const first = hashOf('corpus/', dir)
+    expect(first).not.toBe(ABSENT)
+    expect(hashOf('corpus/', dir)).toBe(first)
+  })
+
+  it('changes when one file in it changes', () => {
+    putDir('corpus', { 'a.txt': 'uno', 'b.txt': 'dos' })
+    const before = hashOf('corpus/', dir)
+    writeFileSync(join(dir, 'corpus', 'b.txt'), 'dos, corregido')
+    expect(hashOf('corpus/', dir)).not.toBe(before)
+  })
+
+  it('changes when a file is added or removed', () => {
+    putDir('corpus', { 'a.txt': 'uno' })
+    const before = hashOf('corpus/', dir)
+    writeFileSync(join(dir, 'corpus', 'c.txt'), 'tres')
+    expect(hashOf('corpus/', dir)).not.toBe(before)
+  })
+
+  it('is order-independent — readdir order must not decide the hash', () => {
+    putDir('one', { 'a.txt': 'uno', 'b.txt': 'dos' })
+    putDir('two', { 'b.txt': 'dos', 'a.txt': 'uno' })
+    expect(hashOf('one/', dir)).toBe(hashOf('two/', dir))
+  })
+
+  /**
+   * `pleno-transcripts/` holds a `superseded/` subdirectory of transcripts a
+   * session had BEFORE re-transcription. Recursing would mark the claims stale
+   * every time an old transcript was archived, which is not a change to the
+   * live corpus at all.
+   */
+  it('does not recurse into subdirectories', () => {
+    putDir('corpus', { 'a.txt': 'uno' })
+    const before = hashOf('corpus/', dir)
+    mkdirSync(join(dir, 'corpus', 'superseded'), { recursive: true })
+    writeFileSync(join(dir, 'corpus', 'superseded', 'old.txt'), 'viejo')
+    expect(hashOf('corpus/', dir)).toBe(before)
+  })
+
+  it('reports a missing directory as absent, and an empty one as a real hash', () => {
+    expect(hashOf('nope/', dir)).toBe(ABSENT)
+    mkdirSync(join(dir, 'vacio'), { recursive: true })
+    expect(hashOf('vacio/', dir)).not.toBe(ABSENT)
+  })
+})
+
 describe('builtFromFor', () => {
   it('records a hash per input', () => {
     put('a.json', { x: 1 })

@@ -34,6 +34,12 @@ import { resetBudget, loadConfigFromEnv, getRunStats } from '../src/llm/client'
 import { startRun, formatManifest } from '../src/scraper/run-manifest'
 
 const OUT_PATH = resolve('public/data/pleno-claims-suggestions.json')
+// Both of these are read one file at a time, keyed by plenoId, so the
+// data-graph scanner — which looks for literal `.json` paths — cannot see
+// them. Declared here, beside the code, so `check:data-graph` can hold the
+// graph to it.
+// data-graph: reads pleno-transcripts/
+// data-graph: reads pleno-speaker-map/
 const TRANSCRIPT_DIR = resolve('public/data/pleno-transcripts')
 const PLENOS_PATH = resolve('public/data/plenos.json')
 const OFFICIALS_PATH = resolve('public/data/officials.json')
