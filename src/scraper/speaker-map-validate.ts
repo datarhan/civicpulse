@@ -80,6 +80,29 @@ export function nameMatches(heard: string, officialName: string): boolean {
   )
 }
 
+/**
+ * Is the name the model reports actually spoken in the quote it cites?
+ *
+ * Token-level and prefix-tolerant, matching `nameMatches`, because the quote
+ * carries the spoken form: «Compromís, Rafa» acredits "Rafa", and a quote
+ * reading «el regidor del Partit Popular» acredits no name whatever the model
+ * put in the field.
+ */
+export function nameAppearsIn(heard: string, quote: string): boolean {
+  const quoteTokens = new Set(
+    fold(quote)
+      .split(/[^a-z0-9]+/)
+      .filter(Boolean),
+  )
+  const heardTokens = fold(heard).split(/\s+/).filter(Boolean)
+  if (heardTokens.length === 0) return false
+  return heardTokens.every((h) =>
+    [...quoteTokens].some(
+      (q) => (h.length >= 3 && q.startsWith(h)) || (q.length >= 3 && h.startsWith(q)),
+    ),
+  )
+}
+
 export interface ValidateOptions {
   candidates: readonly SpeakerCandidate[]
   segments: readonly RawSegment[]
@@ -144,13 +167,23 @@ export function validateSpeakerMap(opts: ValidateOptions): ValidationResult {
       weak = true
     }
 
-    // ── Gate 3 · the party must be IN the evidence, not supplied by the model ──
-    // Asked for a party the model will produce one whether the audio carries
-    // it or not: on 2026-08-10 it answered «Partido Popular» citing a line
-    // reading only «Es paraules. Abert, Pep?».
+    // ── Gate 3 · party AND name must be IN the cited evidence ───────────
+    // Asked for a field the model supplies one whether the audio carries it or
+    // not. Both halves were caught on real output on 2026-08-10:
+    //
+    //   · party — it answered «Partido Popular» citing a line reading only
+    //     «Es paraules. Abert, Pep?».
+    //   · name  — it answered «Salva» citing «el regidor del Partit Popular»,
+    //     a quote containing no name at all. That one RESOLVED, to a real
+    //     councillor, on evidence that names nobody. Plausible and unfounded
+    //     is the worst combination there is.
+    //
+    // Anything the quote does not carry is dropped here, and what remains has
+    // to stand on its own.
     const inQuote: string[] = findPartiesInText(ev.quote)
-    const claimed = c.party ? normalizeParty(c.party) : null
-    const acredited = claimed && inQuote.includes(claimed) ? claimed : null
+    const claimedParty = c.party ? normalizeParty(c.party) : null
+    const acredited = claimedParty && inQuote.includes(claimedParty) ? claimedParty : null
+    const acreditedName = c.heardAs && nameAppearsIn(c.heardAs, ev.quote) ? c.heardAs : null
 
     // ── Gate 4 · resolve to exactly one councillor, party first ─────────
     // A one-seat bloc names its councillor outright, which is why the party
@@ -158,15 +191,26 @@ export function validateSpeakerMap(opts: ValidateOptions): ValidationResult {
     // Rafa» resolves even though "Rafa" is not a token of "Rafael Folgado
     // Navarro".
     let pool = officials.filter((o) => (acredited ? o.party === acredited : true))
-    if (!(acredited && oneSeat.has(acredited)) && c.heardAs) {
-      pool = pool.filter((o) => nameMatches(c.heardAs as string, o.name))
+    const resolvedByOneSeat = Boolean(acredited && oneSeat.has(acredited))
+    if (!resolvedByOneSeat) {
+      if (!acreditedName) {
+        reject(
+          c.label,
+          'unresolvable',
+          c.heardAs
+            ? `heard "${c.heardAs}" but the cited quote does not contain it`
+            : 'no name in the cited quote and the party is not single-seat',
+        )
+        continue
+      }
+      pool = pool.filter((o) => nameMatches(acreditedName, o.name))
     }
 
     if (pool.length === 0) {
       reject(
         c.label,
         'unresolvable',
-        `heard "${c.heardAs ?? '—'}"${acredited ? ` (${acredited})` : ''} matches nobody`,
+        `heard "${acreditedName ?? '—'}"${acredited ? ` (${acredited})` : ''} matches nobody`,
       )
       continue
     }

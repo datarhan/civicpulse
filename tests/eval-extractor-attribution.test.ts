@@ -18,7 +18,19 @@ const MAP: SpeakerMap = {
   plenoId: 'test',
   generatedAt: '2026-08-10T00:00:00Z',
   model: 'test',
-  stats: { labelsSeen: 3, rowsAccepted: 2, rowsRejected: 0, rejectedBy: {} },
+  chunkSeconds: 600,
+  segments: [],
+  rejected: [],
+  stats: {
+    chunksExpected: 1,
+    chunksTranscribed: 1,
+    failedChunks: [],
+    labelsSeen: 3,
+    rowsAccepted: 2,
+    rowsRejected: 0,
+    rejectedBy: {},
+    coverage: 1,
+  },
   rows: [
     {
       label: 'SPEAKER_05',

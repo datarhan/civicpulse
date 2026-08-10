@@ -85,23 +85,66 @@ export interface SpeakerMapRow {
   weak: boolean
 }
 
+/**
+ * A label made unique across the whole session: `c03/SPEAKER_01`.
+ *
+ * Each chunk is transcribed independently, so `SPEAKER_01` in chunk 3 has
+ * nothing to do with `SPEAKER_01` in chunk 4 — the same trap the published
+ * transcripts already carry, where pyannote's per-chunk numbering makes the
+ * chair appear as thirteen different people. Prefixing keeps them apart.
+ *
+ * Cross-chunk identity is recovered afterwards, and by a stronger route: two
+ * labels that resolve to the same councillor slug ARE the same person, which
+ * is a documentary claim rather than an acoustic guess.
+ */
+export function globalLabel(chunk: number, label: string): string {
+  return `c${String(chunk).padStart(2, '0')}/${label}`
+}
+
 export interface SpeakerMap {
   plenoId: string
   generatedAt: string
   /** Model that produced the raw identity block, for provenance. */
   model: string
+  /** Chunk length used, so a re-run with different chunking is comparable. */
+  chunkSeconds: number
+  /**
+   * Every segment, times made absolute and labels made global. P3 aligns the
+   * published transcript against this text, so it has to travel with the map.
+   */
+  segments: RawSegment[]
   rows: SpeakerMapRow[]
+  /**
+   * Candidates that failed a gate, each with the reason and the detail.
+   *
+   * Persisted, not just tallied. A curator asking "why is this councillor
+   * missing from the map" needs the answer in the file, and a tuning change to
+   * a gate needs the cases it would newly admit — neither is recoverable from
+   * a count.
+   */
+  rejected: Array<{ label: string; reason: string; detail: string }>
   /**
    * What the run did, separately. A map with zero rows because the audio was
    * never fetched and a map with zero rows because nobody was ever named are
    * different facts, and folding them together is `DATA_INTEGRITY.md` rule 2.
    */
   stats: {
+    chunksExpected: number
+    chunksTranscribed: number
+    /**
+     * Chunks that never produced a usable transcript, with why. Named
+     * explicitly so a gap in the map cannot be mistaken for a stretch where
+     * nobody spoke — `DATA_INTEGRITY.md` rule 2, the same distinction between
+     * "never attempted" and "nothing found".
+     */
+    failedChunks: Array<{ chunk: number; why: string }>
     labelsSeen: number
     rowsAccepted: number
     rowsRejected: number
     /** Reason → count, so a run can say WHY it dropped what it dropped. */
     rejectedBy: Record<string, number>
+    /** Share of the session's duration the transcript actually spans. */
+    coverage: number
   }
 }
 

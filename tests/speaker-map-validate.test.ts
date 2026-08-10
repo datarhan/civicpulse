@@ -166,6 +166,53 @@ describe('the gates fire — fault injection', () => {
     expect(r.rows[0].weak).toBe(true)
   })
 
+  /**
+   * Caught on a live run, not imagined: the model reported `heardAs: "Salva"`
+   * citing «el regidor del Partit Popular» — a quote with no name in it at
+   * all. It RESOLVED, to a real PP councillor, on evidence naming nobody.
+   * Plausible and unfounded is the worst combination this pipeline can ship.
+   */
+  it('gate 3 · drops a name the quote does not contain', () => {
+    const r = only({
+      ...good,
+      heardAs: 'Salva',
+      party: 'Partit Popular',
+      evidence: {
+        ...good.evidence!,
+        quote: 'el regidor del Partit Popular',
+        relation: 'back-reference' as const,
+      },
+    })
+    expect(r.rows).toHaveLength(0)
+    expect(r.rejected[0].reason).toBe('unresolvable')
+    expect(r.rejected[0].detail).toContain('does not contain it')
+  })
+
+  it('gate 3 · a party with no name still resolves when the bloc has one seat', () => {
+    // «Compromís, Rafa» and «Compromís» alone both name Rafael Folgado, because
+    // the group holds a single seat. That is the one case where a party
+    // suffices — and it is exactly why such rows are namesIndividual.
+    const r = only({
+      ...good,
+      heardAs: null,
+      party: 'Compromís',
+      evidence: { ...good.evidence!, quote: 'Compromís', relation: 'back-reference' as const },
+    })
+    expect(r.rows[0].slug).toBe('rafael-folgado-navarro')
+    expect(r.rows[0].namesIndividual).toBe(true)
+  })
+
+  it('gate 3 · a multi-seat party with no acredited name fails closed', () => {
+    const r = only({
+      ...good,
+      heardAs: null,
+      party: 'PSOE',
+      evidence: { ...good.evidence!, quote: 'el PSOE', relation: 'back-reference' as const },
+    })
+    expect(r.rows).toHaveLength(0)
+    expect(r.rejected[0].reason).toBe('unresolvable')
+  })
+
   it('gate 3 · drops a party the quote does not carry', () => {
     // Claim PSOE from a quote that says "Vox". Without the acredited party the
     // name "José Luis" fits two councillors, so it fails closed.
