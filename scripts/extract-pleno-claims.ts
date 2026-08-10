@@ -22,6 +22,11 @@ import type {
 } from '../src/scraper/pleno-claim'
 import { ALLOWED_CLAIM_TYPES, ALLOWED_CLAIM_TOPICS } from '../src/scraper/pleno-claim'
 import { assessTranscript } from '../src/scraper/transcript-quality'
+import {
+  seatsFromOfficials,
+  type BlocSeats,
+  type OfficialsDoc,
+} from '../src/scraper/corporation-seats'
 import { resetBudget, loadConfigFromEnv, getRunStats } from '../src/llm/client'
 import { startRun, formatManifest } from '../src/scraper/run-manifest'
 
@@ -38,29 +43,18 @@ interface PlenoMeta {
   title?: string
 }
 
-interface Officials {
-  officials?: Array<{ slug: string; name: string; party: string }>
-  composition?: Record<string, number>
-}
+type Officials = OfficialsDoc
 
 function loadPlenos(): PlenoMeta[] {
   if (!existsSync(PLENOS_PATH)) throw new Error('plenos.json not found — run scrape:plenos first')
   return JSON.parse(readFileSync(PLENOS_PATH, 'utf8')).items as PlenoMeta[]
 }
 
-function loadCurrentSeats(): { bloc: string; seats: number }[] {
+function loadCurrentSeats(): BlocSeats[] {
   if (!existsSync(OFFICIALS_PATH)) {
     throw new Error('officials.json not found — run scrape:officials first')
   }
-  const officials = JSON.parse(readFileSync(OFFICIALS_PATH, 'utf8')) as Officials
-  if (officials.composition) {
-    return Object.entries(officials.composition).map(([bloc, seats]) => ({ bloc, seats }))
-  }
-  const counts = new Map<string, number>()
-  for (const o of officials.officials ?? []) {
-    counts.set(o.party, (counts.get(o.party) ?? 0) + 1)
-  }
-  return [...counts.entries()].map(([bloc, seats]) => ({ bloc, seats }))
+  return seatsFromOfficials(JSON.parse(readFileSync(OFFICIALS_PATH, 'utf8')) as Officials)
 }
 
 /**
