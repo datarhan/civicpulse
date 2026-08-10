@@ -297,6 +297,24 @@ const REMOVAL_LABELS = {
  * Reachable only for `title` and `summary`. Quotes are verbatim and go through
  * REMOVAL; the citation fields have their own repair path.
  */
+/**
+ * What the corrections log shows when an attribution is withdrawn.
+ *
+ * The stored value is `null` — `applyFindingCorrection` writes that — but the
+ * log's `corrected` side is a REQUIRED non-empty string, so `""` fails
+ * validation outright. And even if it did not: `/hallazgos` renders the
+ * corrections trail, and an empty cell beside a struck-through «PSOE» reads as
+ * a rendering fault rather than a deliberate withdrawal.
+ *
+ * So the log carries the words the UI already uses for a null group
+ * (`src/lib/party-label.js`), and reader and record agree.
+ */
+export const ATTRIBUTION_RETRACTED_LABEL = 'sin identificar'
+
+/** Does this correction field hold a quote's group attribution? */
+export const isSpeakerGroupField = (field: string): boolean =>
+  /^quote\.\d+\.speakerGroup$/.test(field)
+
 export const REDACTION_LABELS = {
   title: 'titular',
   summary: 'sumario',

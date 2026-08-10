@@ -178,7 +178,8 @@
     "extract:speaker-map": "npx tsx scripts/extract-speaker-map.ts",
     "retract:guessed-attributions": "npx tsx scripts/retract-guessed-attributions.ts",
     "check:data-graph": "npx tsx scripts/check-data-graph.ts",
-    "refresh": "npx tsx scripts/refresh.ts"
+    "refresh": "npx tsx scripts/refresh.ts",
+    "reconcile:attribution": "npx tsx scripts/reconcile-attribution.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

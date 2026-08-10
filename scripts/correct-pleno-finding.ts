@@ -65,6 +65,8 @@ import {
   findingRemovalTarget,
   reasonEchoesRemoved,
   CORRECTION_QUOTE_FIELD_RE,
+  ATTRIBUTION_RETRACTED_LABEL,
+  isSpeakerGroupField,
   CORRECTION_REMOVAL_FIELD_RE,
   REDACTION_LABELS,
   validateFindingsSnapshot,
@@ -221,10 +223,17 @@ async function main() {
     if (original === corrected) {
       bail(`field ${field} is already "${corrected}" — no change to record`)
     }
+    // Retracting an attribution stores `null`, but the log's `corrected` side
+    // is a required non-empty string and an empty cell beside a struck-through
+    // «PSOE» reads as a broken page. Log the words, store the null.
+    const loggedCorrected =
+      isSpeakerGroupField(field as string) && (corrected as string).trim() === ''
+        ? ATTRIBUTION_RETRACTED_LABEL
+        : (corrected as string)
     entry = {
       field: field as PlenoFindingCorrection['field'],
       original,
-      corrected: corrected as string,
+      corrected: loggedCorrected,
       ...base,
     }
   }
