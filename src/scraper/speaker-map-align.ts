@@ -13,7 +13,11 @@
  * uses against published quotes, so a line the audit considers to be the same
  * text and a line the aligner considers to be the same text cannot diverge.
  */
-import { normaliseForQuoteMatch, quoteCoverage } from './quote-match'
+// `locateQuote` below reproduces `quoteCoverage`'s scoring and adds the match
+// POSITION, which is what selects a speaker. The two are pinned to each other
+// by a test over real transcript lines rather than by importing one into the
+// other, because only the position-carrying variant is usable here.
+import { normaliseForQuoteMatch } from './quote-match'
 import type { RawSegment, SpeakerMap } from './speaker-map'
 import { blocForLabel } from './speaker-map'
 
