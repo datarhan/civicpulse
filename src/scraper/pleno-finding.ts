@@ -667,7 +667,7 @@ export function findAttributionConflicts(items: PlenoFinding[]): string[] {
   for (const f of items) {
     for (const q of f.quotes) {
       if (q.speakerGroup === null) continue
-      const key = `${f.plenoId} ${q.text.replace(/\s+/g, ' ').trim()}`
+      const key = `${f.plenoId}\u0000${q.text.replace(/\s+/g, ' ').trim()}`
       const blocs = byUtterance.get(key) ?? new Map<string, string[]>()
       blocs.set(q.speakerGroup, [...(blocs.get(q.speakerGroup) ?? []), f.id])
       byUtterance.set(key, blocs)
@@ -681,7 +681,7 @@ export function findAttributionConflicts(items: PlenoFinding[]): string[] {
       .sort()
       .join(' vs ')
     out.push(
-      `one verbatim from pleno ${key.split(' ')[0]} is published under two blocs: ${where}. ` +
+      `one verbatim from pleno ${key.split('\u0000')[0]} is published under two blocs: ${where}. ` +
         'At most one is right; retract the row the transcript refutes',
     )
   }
