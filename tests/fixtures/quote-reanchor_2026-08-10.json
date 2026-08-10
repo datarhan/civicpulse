@@ -1,0 +1,962 @@
+{
+  "_comment": "Registro de la tanda de reanclaje del 2026-08-10. Las citas van como digest (sha256Short del texto), nunca como prosa: este fichero se commitea y el material es material publicado sobre cargos vivos. Un auditor rehace cualquier fila con `sha256Short(texto)` y el commit padre delante. Lo consume tests/pleno-findings-published.test.ts.",
+  "batch": "quote-reanchor-2026-08-10",
+  "source": "editorial/quote-reanchor-queue.json (95 filas, tres revisores)",
+  "counts": {
+    "decisions": 95,
+    "reanclar": 56,
+    "ambiguo": 36,
+    "retirar": 3,
+    "applied": 49,
+    "skipped": 46
+  },
+  "rows": [
+    {
+      "tag": "a0",
+      "findingId": "f-2026-05-11-acu-1adbf3",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "6862eba59b46",
+      "textAfter": "f55735ce85a4"
+    },
+    {
+      "tag": "a1",
+      "findingId": "f-2026-05-11-acu-1e1bfa",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "ccc5c6d5d6f2"
+    },
+    {
+      "tag": "a2",
+      "findingId": "f-2026-05-11-acu-1e1bfa",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "5da5eecd6d13",
+      "textAfter": "71369a2b8a17"
+    },
+    {
+      "tag": "a3",
+      "findingId": "f-2026-05-11-acu-7c65c5",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "7875e26a7280",
+      "textAfter": "8e321143a95b"
+    },
+    {
+      "tag": "a4",
+      "findingId": "f-2026-05-11-acu-7c65c5",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "0c8cc554da3e"
+    },
+    {
+      "tag": "a5",
+      "findingId": "f-2026-05-11-acu-7c65c5",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "f050f099d002"
+    },
+    {
+      "tag": "a6",
+      "findingId": "f-2026-05-11-acu-da7902",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": false,
+      "textBefore": "50d3272f3ce7"
+    },
+    {
+      "tag": "a7",
+      "findingId": "f-2026-05-11-acu-ea9d47",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "636e0934fb1b"
+    },
+    {
+      "tag": "a8",
+      "findingId": "f-2026-05-11-acu-ea9d47",
+      "verdict": "reanclar",
+      "applied": false,
+      "skipReason": "el sumario del hallazgo entrecomilla un tramo de esta cita; reanclarla dejaría ese entrecomillado sin respaldo en ninguna cita publicada, y reescribir el sumario de un grupo nombrado es criterio de curador",
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "f3427865faa7"
+    },
+    {
+      "tag": "a9",
+      "findingId": "f-2026-05-11-acu-ea9d47",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "6f16b233d9c1",
+      "textAfter": "befdcf928652"
+    },
+    {
+      "tag": "a10",
+      "findingId": "f-2026-05-11-acu-ea9d47",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "4e1cdc40aaa0",
+      "textAfter": "a676c9b2e550"
+    },
+    {
+      "tag": "a11",
+      "findingId": "f-2026-05-11-cit-0907e6",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "5fca42d7577d"
+    },
+    {
+      "tag": "a12",
+      "findingId": "f-2026-05-11-cit-0907e6",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "d0de094d0e21",
+      "textAfter": "db6138d67561"
+    },
+    {
+      "tag": "a13",
+      "findingId": "f-2026-05-11-cit-0907e6",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "2fea900469be"
+    },
+    {
+      "tag": "a14",
+      "findingId": "f-2026-05-11-cit-0907e6",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "d8962e5c9542",
+      "textAfter": "890d9a865a95"
+    },
+    {
+      "tag": "a15",
+      "findingId": "f-2026-05-11-cit-73d3cf",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "6d9a3311161a",
+      "textAfter": "e4c11e6303bd"
+    },
+    {
+      "tag": "a16",
+      "findingId": "f-2026-05-11-cit-73d3cf",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "8a55f039bf9c"
+    },
+    {
+      "tag": "a17",
+      "findingId": "f-2026-05-11-cit-73d3cf",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "439eb978869c"
+    },
+    {
+      "tag": "a18",
+      "findingId": "f-2026-05-11-cit-7f7619",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "fb4fa412e91a",
+      "textAfter": "244e17bc1599"
+    },
+    {
+      "tag": "a19",
+      "findingId": "f-2026-05-11-cit-a0a379",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "f12685210538",
+      "textAfter": "bbb042468a4a"
+    },
+    {
+      "tag": "a20",
+      "findingId": "f-2026-05-11-cit-a0a379",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "50d3272f3ce7"
+    },
+    {
+      "tag": "a21",
+      "findingId": "f-2026-04-20-acu-93c1e8",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "43f26b3b9c7c"
+    },
+    {
+      "tag": "a22",
+      "findingId": "f-2026-04-20-acu-93c1e8",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "b6f603837d38"
+    },
+    {
+      "tag": "a23",
+      "findingId": "f-2026-04-20-cit-25e6ea",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "124898798ad7"
+    },
+    {
+      "tag": "a24",
+      "findingId": "f-2026-04-20-cit-947479",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "7f3abfb8e80f"
+    },
+    {
+      "tag": "a25",
+      "findingId": "f-2026-04-20-cit-947479",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "defd850c58a6"
+    },
+    {
+      "tag": "a26",
+      "findingId": "f-2026-04-20-cit-947479",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "47118ebd47a2",
+      "textAfter": "05a89d6ba191"
+    },
+    {
+      "tag": "a27",
+      "findingId": "f-2026-04-20-cit-b9b013",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "156f1cfbca7b"
+    },
+    {
+      "tag": "a28",
+      "findingId": "f-2026-03-16-cit-377216",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "6b37a60ff37e",
+      "textAfter": "078b03ecd868"
+    },
+    {
+      "tag": "a29",
+      "findingId": "f-2026-03-16-cit-436a7e",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "279655001ca9",
+      "textAfter": "29e7b4de87f1"
+    },
+    {
+      "tag": "a30",
+      "findingId": "f-2026-03-16-cit-56214f",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "77447c92b2fe",
+      "textAfter": "c4abbefbc096"
+    },
+    {
+      "tag": "a31",
+      "findingId": "f-2026-03-16-cit-75b31f",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "25dbf0510f79",
+      "textAfter": "0e43b9326022"
+    },
+    {
+      "tag": "b0",
+      "findingId": "f-2026-03-09-acu-d94904",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "6ef888cfd368"
+    },
+    {
+      "tag": "b1",
+      "findingId": "f-2026-03-09-acu-d94904",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "cb1853cb5747"
+    },
+    {
+      "tag": "b2",
+      "findingId": "f-2026-01-19-acu-2c074a",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "972c4f848122"
+    },
+    {
+      "tag": "b3",
+      "findingId": "f-2026-01-19-acu-2c074a",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "8d6dcc2979be"
+    },
+    {
+      "tag": "b4",
+      "findingId": "f-2026-01-19-acu-2c074a",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "4fce2dbf17d6",
+      "textAfter": "7661bc290204"
+    },
+    {
+      "tag": "b5",
+      "findingId": "f-2026-01-19-acu-b1a13f",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "d8a8db45437d",
+      "textAfter": "d679a367a651"
+    },
+    {
+      "tag": "b6",
+      "findingId": "f-2026-01-19-acu-b1a13f",
+      "verdict": "reanclar",
+      "applied": false,
+      "skipReason": "aplicarla deja quotes[2] contenida literalmente en quotes[1] del mismo hallazgo — findRepeatedQuotes rechaza la escritura y retirar la copia sobrante es criterio de curador",
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "3c85491f65ce"
+    },
+    {
+      "tag": "b7",
+      "findingId": "f-2026-01-19-acu-b1a13f",
+      "verdict": "reanclar",
+      "applied": false,
+      "skipReason": "aplicarla deja quotes[2] contenida literalmente en quotes[1] del mismo hallazgo — findRepeatedQuotes rechaza la escritura y retirar la copia sobrante es criterio de curador",
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "96b99686339e"
+    },
+    {
+      "tag": "b8",
+      "findingId": "f-2026-01-19-acu-d2b7bb",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "d28d79fb887c",
+      "textAfter": "4e1c7294a8fc"
+    },
+    {
+      "tag": "b9",
+      "findingId": "f-2026-01-19-acu-d2b7bb",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "0e4c804a2c99",
+      "textAfter": "e4b3311c9150"
+    },
+    {
+      "tag": "b10",
+      "findingId": "f-2026-01-19-acu-d2b7bb",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "07da34a6b6cc"
+    },
+    {
+      "tag": "b11",
+      "findingId": "f-2026-01-19-afi-5238db",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "c7b03b528a80"
+    },
+    {
+      "tag": "b12",
+      "findingId": "f-2026-01-19-afi-5238db",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "f7810b865d3c",
+      "textAfter": "4197bbe6572d"
+    },
+    {
+      "tag": "b13",
+      "findingId": "f-2026-01-19-afi-5238db",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "6bd89b799d22",
+      "textAfter": "de6c5d9db1d5"
+    },
+    {
+      "tag": "b14",
+      "findingId": "f-2026-01-19-afi-5b06c8",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "21a6383c73aa",
+      "textAfter": "85f91e5a1863"
+    },
+    {
+      "tag": "b15",
+      "findingId": "f-2026-01-19-afi-5b06c8",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "40c873ea5da3"
+    },
+    {
+      "tag": "b16",
+      "findingId": "f-2026-01-19-cit-3fd230",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "81142513088e",
+      "textAfter": "2c16a7feba35"
+    },
+    {
+      "tag": "b17",
+      "findingId": "f-2026-01-19-cit-3fd230",
+      "verdict": "reanclar",
+      "applied": false,
+      "skipReason": "la cita ya no está publicada: 6ad12d2 retiró la copia redundante y su hermana lleva el reanclaje equivalente",
+      "attributionContradicted": false,
+      "publishedBefore": false,
+      "textBefore": "454f6db3b75e"
+    },
+    {
+      "tag": "b18",
+      "findingId": "f-2026-01-19-cit-3fd230",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "128895039b2e",
+      "textAfter": "5db832288d4f"
+    },
+    {
+      "tag": "b19",
+      "findingId": "f-2026-01-19-cit-543cc1",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "ecfb4c4a9049",
+      "textAfter": "75a471d674f9"
+    },
+    {
+      "tag": "b20",
+      "findingId": "f-2026-01-19-cit-543cc1",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "35c05e9a9f2d",
+      "textAfter": "4fe7c0d5f05c"
+    },
+    {
+      "tag": "b21",
+      "findingId": "f-2026-01-19-cit-543cc1",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "65c1cf902124"
+    },
+    {
+      "tag": "b22",
+      "findingId": "f-2026-01-19-cit-543cc1",
+      "verdict": "reanclar",
+      "applied": false,
+      "skipReason": "el sumario del hallazgo entrecomilla un tramo de esta cita; reanclarla dejaría ese entrecomillado sin respaldo en ninguna cita publicada, y reescribir el sumario de un grupo nombrado es criterio de curador",
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "775831d5c4ae"
+    },
+    {
+      "tag": "b23",
+      "findingId": "f-2026-01-19-cit-8b29a9",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "9563c147c08a",
+      "textAfter": "59ad35a62fe5"
+    },
+    {
+      "tag": "b24",
+      "findingId": "f-2026-01-19-cit-8b29a9",
+      "verdict": "retirar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "edffbcf24a1c"
+    },
+    {
+      "tag": "b25",
+      "findingId": "f-2026-01-19-cit-8b29a9",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "aa8c145a9ae3"
+    },
+    {
+      "tag": "b26",
+      "findingId": "f-2026-01-19-cit-c80e68",
+      "verdict": "retirar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "ae09ba20c30c"
+    },
+    {
+      "tag": "b27",
+      "findingId": "f-2026-01-19-cit-c80e68",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "9e9611926be9"
+    },
+    {
+      "tag": "b28",
+      "findingId": "f-2026-01-19-cit-cc8758",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "3ed5ba9b225d"
+    },
+    {
+      "tag": "b29",
+      "findingId": "f-2026-01-19-cit-cc8758",
+      "verdict": "retirar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "5632d9de57e7"
+    },
+    {
+      "tag": "b30",
+      "findingId": "f-2025-12-23-acu-a1ba00",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "29f322ff9bec",
+      "textAfter": "1e806e44c037"
+    },
+    {
+      "tag": "b31",
+      "findingId": "f-2025-12-23-acu-a1ba00",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "890b89d75479"
+    },
+    {
+      "tag": "c0",
+      "findingId": "f-2025-12-23-acu-cd77e9",
+      "verdict": "reanclar",
+      "applied": false,
+      "skipReason": "el sumario del hallazgo entrecomilla un tramo de esta cita; reanclarla dejaría ese entrecomillado sin respaldo en ninguna cita publicada, y reescribir el sumario de un grupo nombrado es criterio de curador",
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "23179c7109cf"
+    },
+    {
+      "tag": "c1",
+      "findingId": "f-2025-12-23-acu-cd77e9",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "63cdc1d5ffb7",
+      "textAfter": "df638efb20b1"
+    },
+    {
+      "tag": "c2",
+      "findingId": "f-2025-12-23-afi-3eebaf",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "693b140f4f51",
+      "textAfter": "13d29e682231"
+    },
+    {
+      "tag": "c3",
+      "findingId": "f-2025-12-23-cit-c905c3",
+      "verdict": "reanclar",
+      "applied": false,
+      "skipReason": "aplicarla deja quotes[3] contenida literalmente en quotes[2] del mismo hallazgo — findRepeatedQuotes rechaza la escritura y retirar la copia sobrante es criterio de curador",
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "3daa6afb7a87"
+    },
+    {
+      "tag": "c4",
+      "findingId": "f-2025-12-23-cit-c905c3",
+      "verdict": "reanclar",
+      "applied": false,
+      "skipReason": "aplicarla deja quotes[3] contenida literalmente en quotes[2] del mismo hallazgo — findRepeatedQuotes rechaza la escritura y retirar la copia sobrante es criterio de curador",
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "433136d8bb01"
+    },
+    {
+      "tag": "c5",
+      "findingId": "f-2025-12-01-acu-34560f",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "9eac3a623c83"
+    },
+    {
+      "tag": "c6",
+      "findingId": "f-2025-12-01-acu-34560f",
+      "verdict": "reanclar",
+      "applied": false,
+      "skipReason": "el sumario del hallazgo entrecomilla un tramo de esta cita; reanclarla dejaría ese entrecomillado sin respaldo en ninguna cita publicada, y reescribir el sumario de un grupo nombrado es criterio de curador",
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "b91ca65c5833"
+    },
+    {
+      "tag": "c7",
+      "findingId": "f-2025-12-01-acu-51aaa3",
+      "verdict": "reanclar",
+      "applied": false,
+      "skipReason": "la cita ya no está publicada: 6ad12d2 retiró la copia redundante y su hermana lleva el reanclaje equivalente",
+      "attributionContradicted": false,
+      "publishedBefore": false,
+      "textBefore": "581e3a936787"
+    },
+    {
+      "tag": "c8",
+      "findingId": "f-2025-12-01-acu-51aaa3",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "53a21f05010a",
+      "textAfter": "774bbd3cdd21"
+    },
+    {
+      "tag": "c9",
+      "findingId": "f-2025-12-01-cit-66709b",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "1d49ae8ef825",
+      "textAfter": "f91cb1f129cb"
+    },
+    {
+      "tag": "c10",
+      "findingId": "f-2025-12-01-cit-bef239",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "63d0289cc852"
+    },
+    {
+      "tag": "c11",
+      "findingId": "f-2025-12-01-cit-bef239",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "67319c40f9c9",
+      "textAfter": "c31216540770"
+    },
+    {
+      "tag": "c12",
+      "findingId": "f-2025-12-01-cit-bef239",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "212e411d4691",
+      "textAfter": "c16bd6f215fa"
+    },
+    {
+      "tag": "c13",
+      "findingId": "f-2025-12-01-cit-bef239",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "9693fce4f10e",
+      "textAfter": "5d93a91eff01"
+    },
+    {
+      "tag": "c14",
+      "findingId": "f-2025-11-03-acu-431140",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "ff20ebdfd061",
+      "textAfter": "3f853552becf"
+    },
+    {
+      "tag": "c15",
+      "findingId": "f-2025-11-03-acu-431140",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "ef70abdb1ac3",
+      "textAfter": "47727f38261e"
+    },
+    {
+      "tag": "c16",
+      "findingId": "f-2025-10-06-acu-b00839",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "2144eb0c4f70"
+    },
+    {
+      "tag": "c17",
+      "findingId": "f-2025-10-06-acu-b00839",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "9450f85e0492",
+      "textAfter": "bbb0c50c52fd"
+    },
+    {
+      "tag": "c18",
+      "findingId": "f-2025-10-06-acu-b00839",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": true,
+      "publishedBefore": true,
+      "textBefore": "456b307195dc"
+    },
+    {
+      "tag": "c19",
+      "findingId": "f-2025-10-06-acu-bba0e9",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "bf54cc0738ee",
+      "textAfter": "8450649a0b94"
+    },
+    {
+      "tag": "c20",
+      "findingId": "f-2025-10-06-acu-bba0e9",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "37a428435a9b"
+    },
+    {
+      "tag": "c21",
+      "findingId": "f-2025-10-06-cit-591d40",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "d749616635c9",
+      "textAfter": "9b69ffe6e145"
+    },
+    {
+      "tag": "c22",
+      "findingId": "f-2025-10-06-cit-6c4d24",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "f4d6e5a48aa8",
+      "textAfter": "63dad5c58ed5"
+    },
+    {
+      "tag": "c23",
+      "findingId": "f-2025-09-08-acu-70a34f",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "dcb622099c59"
+    },
+    {
+      "tag": "c24",
+      "findingId": "f-2025-09-08-acu-70a34f",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "dd8c29af4756"
+    },
+    {
+      "tag": "c25",
+      "findingId": "f-2025-09-08-acu-70a34f",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "979b596abfc1",
+      "textAfter": "3dff73453204"
+    },
+    {
+      "tag": "c26",
+      "findingId": "f-2025-09-08-acu-70a34f",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "51f61e475c59",
+      "textAfter": "6170864995b2"
+    },
+    {
+      "tag": "c27",
+      "findingId": "f-2025-09-08-cit-d6d194",
+      "verdict": "ambiguo",
+      "applied": false,
+      "skipReason": null,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "9d6712963150"
+    },
+    {
+      "tag": "c28",
+      "findingId": "f-2025-09-08-cit-d6d194",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "92fc48159145",
+      "textAfter": "67c2171f7e26"
+    },
+    {
+      "tag": "c29",
+      "findingId": "f-2025-07-31-acu-144947",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "f94b46509aac",
+      "textAfter": "b7ac8c1de51c"
+    },
+    {
+      "tag": "c30",
+      "findingId": "f-2025-07-31-acu-144947",
+      "verdict": "reanclar",
+      "applied": true,
+      "attributionContradicted": false,
+      "publishedBefore": true,
+      "textBefore": "081621c573ea",
+      "textAfter": "ed2a9a65992b"
+    }
+  ]
+}

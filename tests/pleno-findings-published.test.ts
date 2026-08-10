@@ -19,10 +19,13 @@ import {
   CORRECTION_REMOVAL_FIELD_RE,
   findAttributionConflicts,
   findRepeatedQuotes,
+  reasonEchoesRemoved,
   validateFindingsSnapshot,
   type PlenoFinding,
   type PlenoFindingsSnapshot,
 } from '../src/scraper/pleno-finding'
+import { normaliseForQuoteMatch, quoteAppearsIn } from '../src/scraper/quote-match'
+import { MARKED_STATUS_IDS } from '../src/scraper/quote-provenance'
 import {
   buildRecordDateIndex,
   emptyRecordDateGateReport,
@@ -60,8 +63,8 @@ const removals = allCorrections.filter((c) => CORRECTION_REMOVAL_FIELD_RE.test(c
  * nothing. Each review batch moves these two numbers and says so in its commit
  * message; every other assertion in this file is local to one finding.
  */
-const TOTAL_CORRECTIONS = 134
-const TOTAL_REMOVALS = 46
+const TOTAL_CORRECTIONS = 183
+const TOTAL_REMOVALS = 49
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
 interface BatchCase {
@@ -175,11 +178,11 @@ describe('published pleno findings — a removal does not republish what it remo
     //
     // Pinned to a count, not to `> 0`: the lote-1 review batch added eleven
     // `crossChecked.<i>` retractions to b8fea6f's four, lote-2 another seven,
-    // lote-3 nine more plus a quote, lote-4 the last eight post-dated cotejos
-    // and lote-5 five quotes, and a run that skipped rows would still satisfy
-    // `> 0` while retracting nothing.
+    // lote-3 nine more plus a quote, lote-4 the last eight post-dated cotejos,
+    // lote-5 five quotes and the re-anchoring batch three more, and a run that
+    // skipped rows would still satisfy `> 0` while retracting nothing.
     expect(removals.length).toBe(TOTAL_REMOVALS)
-    expect(removals.filter((c) => c.field.startsWith('quote.'))).toHaveLength(8)
+    expect(removals.filter((c) => c.field.startsWith('quote.'))).toHaveLength(11)
     expect(removals.filter((c) => c.field.startsWith('crossChecked.'))).toHaveLength(38)
   })
 
@@ -233,8 +236,11 @@ describe('published pleno findings — the three retracted in b8fea6f', () => {
     expect(f.quotes).toHaveLength(1)
     expect(f.quotes.map((q) => q.sourceClaimId)).toEqual(['qz6weg-193-acu-7589c9'])
     expect(f.quotes.map((q) => q.speakerGroup)).toEqual(['PSOE'])
-    expect(f.quotes.every((q) => q.text.includes('salvoconductos'))).toBe(true)
-    // The summary is still about salvoconductos — what moved is the headcount.
+    // «salvo conductors», in Valencià, since the 2026-08-10 re-anchoring: the
+    // councillor said it in Valencià and the superseded engine published a
+    // Castilian translation as his verbatim. The summary keeps the Castilian
+    // spelling because it is the curator's own prose, not a quotation.
+    expect(f.quotes.every((q) => /salvo\s?conduct/i.test(q.text))).toBe(true)
     expect(f.summary).toContain('salvoconductos')
     // Two cotejos: the DANA clean-up contract the summary names, and the
     // session video. The third was the architect's expediente, which lote 4
@@ -246,6 +252,7 @@ describe('published pleno findings — the three retracted in b8fea6f', () => {
       'crossChecked.1',
       'quote.0',
       'summary',
+      'quote.0.text',
     ])
   })
 
@@ -274,6 +281,7 @@ describe('published pleno findings — the three retracted in b8fea6f', () => {
       'crossChecked.1',
       'quote.1',
       'summary',
+      'quote.1.text',
     ])
   })
 
@@ -294,6 +302,7 @@ describe('published pleno findings — the three retracted in b8fea6f', () => {
       'quote.2',
       'crossChecked.2',
       'crossChecked.0',
+      'quote.2.text',
     ])
   })
 
@@ -912,13 +921,11 @@ const LOTE_2: Lote2Case[] = [
       'tender|Servicio de limpieza de piscina cubierta',
       'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
     ],
-    claims: [
-      '19gax3o-051-cit-c80e68',
-      '19gax3o-055-cit-a80e52',
-      '19gax3o-132-cit-35c4f5',
-      '19gax3o-143-cit-a3a7a1',
-    ],
-    groups: ['VOX', 'VOX', null, null],
+    // The row that used to lead this list was retracted on 2026-08-10: its
+    // text appears nowhere in the current transcript and carried a clause
+    // duplicated inside itself, the signature of the superseded engine looping.
+    claims: ['19gax3o-055-cit-a80e52', '19gax3o-132-cit-35c4f5', '19gax3o-143-cit-a3a7a1'],
+    groups: ['VOX', null, null],
   },
   {
     id: 'f-2025-12-23-acu-cd77e9',
@@ -1491,13 +1498,11 @@ const LOTE_3: Lote3Case[] = [
       'tender|Contrato verbal de suministro compra hor',
       'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
     ],
-    claims: [
-      '19gax3o-146-cit-8b29a9',
-      '19gax3o-053-cit-3fa2de',
-      '19gax3o-067-cit-dcdcf6',
-      '19gax3o-139-cit-989b94',
-    ],
-    groups: ['PSOE', 'VOX', null, 'PP'],
+    // The VOX row that sat second was retracted on 2026-08-10: the superseded
+    // transcript repeated that sentence eight times over and the current one
+    // does not contain it at all.
+    claims: ['19gax3o-146-cit-8b29a9', '19gax3o-067-cit-dcdcf6', '19gax3o-139-cit-989b94'],
+    groups: ['PSOE', null, 'PP'],
   },
   {
     id: 'f-2025-12-23-acu-a1ba00',
@@ -1599,13 +1604,10 @@ const LOTE_3: Lote3Case[] = [
       'tender|Contrato basado en el SDA de obras para ',
       'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
     ],
-    claims: [
-      '19gax3o-016-cit-cc8758',
-      '19gax3o-067-cit-0c2099',
-      '19gax3o-114-cit-b7641b',
-      '19gax3o-050-acu-8d210f',
-    ],
-    groups: ['PSOE', null, 'PP', 'VOX'],
+    // The VOX row that closed this list was retracted on 2026-08-10 — the same
+    // hallucinated clause its twin `cit-c80e68` published, truncated.
+    claims: ['19gax3o-016-cit-cc8758', '19gax3o-067-cit-0c2099', '19gax3o-114-cit-b7641b'],
+    groups: ['PSOE', null, 'PP'],
   },
   {
     id: 'f-2025-12-23-afi-3eebaf',
@@ -2212,13 +2214,11 @@ const LOTE_4: Lote4Case[] = [
       'tender|Servicio de limpieza de piscina cubierta',
       'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
     ],
-    claims: [
-      '19gax3o-051-cit-c80e68',
-      '19gax3o-055-cit-a80e52',
-      '19gax3o-132-cit-35c4f5',
-      '19gax3o-143-cit-a3a7a1',
-    ],
-    groups: ['VOX', 'VOX', null, null],
+    // The row that used to lead this list was retracted on 2026-08-10: its
+    // text appears nowhere in the current transcript and carried a clause
+    // duplicated inside itself, the signature of the superseded engine looping.
+    claims: ['19gax3o-055-cit-a80e52', '19gax3o-132-cit-35c4f5', '19gax3o-143-cit-a3a7a1'],
+    groups: ['VOX', null, null],
   },
   {
     id: 'f-2025-12-01-acu-51aaa3',
@@ -2756,8 +2756,20 @@ describe('published pleno findings — lote 5, attributions the corpus itself re
     const other = byId('f-2026-05-11-cit-a0a379')
     const survivor = other.quotes.find((q) => q.text.includes('trajo una noticia'))
     expect(survivor?.speakerGroup).toBe('PSOE')
-    // …and untouched by this batch.
-    expect(other.corrections?.map((c) => c.field)).toEqual(['summary', 'summary', 'crossChecked.1'])
+    // …and untouched by lote 5: its log still opens with the three entries it
+    // had before, and lote 5 appended none of its own. Read as a window rather
+    // than as the whole list, which is what the ledger's append-only design
+    // requires — the 2026-08-10 re-anchoring later added one entry here, and an
+    // earlier batch going red because a later one did its job is not a defect
+    // (see `batchWindow`).
+    expect(other.corrections?.slice(0, 3).map((c) => c.field)).toEqual([
+      'summary',
+      'summary',
+      'crossChecked.1',
+    ])
+    // And what came after did not touch the row this block is about: the fira
+    // sentence is still the text lote 5 left, still marked, never re-anchored.
+    expect(other.corrections?.slice(3).every((c) => c.field !== 'quote.3.text')).toBe(true)
   })
 })
 
@@ -2927,5 +2939,216 @@ describe('published pleno findings — the redacted name is not in the file', ()
     // same string and anyone holding the parent commit can take that summary,
     // re-run `sha256Short(JSON.stringify(text))` and walk the log.
     expect(summaryRows[0].corrected).toBe(summaryRows[1].original)
+  })
+})
+
+// ─── El reanclaje del 2026-08-10 ─────────────────────────────────────────────
+
+/**
+ * 95 literales marcados «no consta en la transcripción revisada» leídos uno a
+ * uno contra la transcripción vigente de su sesión. Casi todos lo estaban por
+ * la misma causa: el motor sustituido **traducía al castellano** las
+ * intervenciones dichas en valencià, así que lo que la página publicaba entre
+ * comillas como verbatim era una traducción automática. Reanclar devuelve la
+ * lengua en que se habló — un cambio visible en pantalla, y una reparación de
+ * fidelidad, no de estilo.
+ *
+ * La tanda se lee de `tests/fixtures/quote-reanchor_2026-08-10.json`, donde
+ * cada cita va como **digest y nunca como prosa**: el fichero se commitea, el
+ * material son declaraciones publicadas sobre cargos vivos, y un fichero de
+ * pruebas no es sitio para una segunda copia de ellas. Un auditor rehace
+ * cualquier fila con `sha256Short(texto)` y el commit padre delante.
+ */
+interface ReanchorRow {
+  tag: string
+  findingId: string
+  verdict: 'reanclar' | 'ambiguo' | 'retirar'
+  applied: boolean
+  skipReason?: string | null
+  attributionContradicted: boolean
+  publishedBefore: boolean
+  textBefore: string
+  textAfter?: string
+}
+const BATCH = JSON.parse(
+  readFileSync(resolve('tests/fixtures/quote-reanchor_2026-08-10.json'), 'utf8'),
+) as { counts: Record<string, number>; rows: ReanchorRow[] }
+
+/** The provenance snapshot as published beside the file, for the chip axis. */
+const PROVENANCE = JSON.parse(
+  readFileSync(resolve('public/data/finding-quote-provenance.json'), 'utf8'),
+) as { quotes: Record<string, Array<{ status: string }>> }
+
+const transcriptCache = new Map<string, string>()
+const transcriptOf = (plenoId: string): string => {
+  if (!transcriptCache.has(plenoId)) {
+    transcriptCache.set(
+      plenoId,
+      readFileSync(resolve(`public/data/pleno-transcripts/${plenoId}.txt`), 'utf8'),
+    )
+  }
+  return transcriptCache.get(plenoId)!
+}
+/** Where in the published file does this digest live now? */
+const findQuoteByDigest = (findingId: string, digest: string): number =>
+  byId(findingId).quotes.findIndex((q) => sha256Short(q.text) === digest)
+
+/** The two reasons this batch signed, byte for byte as the ledger carries them. */
+const batchRows = allCorrections.filter(
+  (c) =>
+    c.reason.startsWith('Reanclaje a la transcripción vigente') ||
+    c.reason.startsWith('Se retira un literal que no consta'),
+)
+
+describe('published pleno findings — el reanclaje del 2026-08-10', () => {
+  it('la tanda hizo trabajo, y exactamente el que dice haber hecho', () => {
+    // Regla 2 de docs/DATA_INTEGRITY.md: una pasada tiene que demostrar que
+    // hizo trabajo, y contar por separado lo aplicado, lo saltado y por qué.
+    // Sin esto, todo lo que sigue es verde sobre una selección vacía.
+    expect(BATCH.rows).toHaveLength(95)
+    expect(BATCH.rows.filter((r) => r.verdict === 'reanclar')).toHaveLength(56)
+    expect(BATCH.rows.filter((r) => r.verdict === 'ambiguo')).toHaveLength(36)
+    expect(BATCH.rows.filter((r) => r.verdict === 'retirar')).toHaveLength(3)
+    expect(BATCH.rows.filter((r) => r.applied)).toHaveLength(49)
+    // 46 reanclajes y 3 retiradas en el fichero, con su fila de bitácora cada
+    // uno. Ni un `--field summary`: reescribir la prosa de un sumario sobre un
+    // grupo nombrado no estaba en el alcance de esta tanda.
+    expect(batchRows).toHaveLength(49)
+    expect(batchRows.filter((c) => /^quote\.\d+\.text$/.test(c.field))).toHaveLength(46)
+    expect(batchRows.filter((c) => /^quote\.\d+$/.test(c.field))).toHaveLength(3)
+    // Los diez reanclajes que NO se aplicaron llevan su motivo escrito.
+    const skipped = BATCH.rows.filter((r) => r.verdict === 'reanclar' && !r.applied)
+    expect(skipped).toHaveLength(10)
+    expect(skipped.every((r) => (r.skipReason ?? '').length > 40)).toBe(true)
+  })
+
+  it('cada cita reanclada consta ahora, literal, en la transcripción vigente', () => {
+    let checked = 0
+    for (const r of BATCH.rows.filter((x) => x.applied && x.verdict === 'reanclar')) {
+      const i = findQuoteByDigest(r.findingId, r.textAfter!)
+      expect(i, `${r.tag}: el texto reanclado no está en ${r.findingId}`).toBeGreaterThan(-1)
+      const f = byId(r.findingId)
+      const hay = transcriptOf(f.plenoId)
+      const text = f.quotes[i].text
+      // Las dos formas: la ventana deslizante que usa toda la casa, y la
+      // subcadena entera. La segunda es más estricta que el cotejador y es la
+      // que hace que «reanclado» signifique lo que la página dice que significa.
+      expect(quoteAppearsIn(text, hay), `${r.tag}: no aparece en la vigente`).toBe(true)
+      expect(
+        normaliseForQuoteMatch(hay).includes(normaliseForQuoteMatch(text)),
+        `${r.tag}: aparece a trozos, no como pasaje`,
+      ).toBe(true)
+      // Y cambió de verdad: el literal anterior ya no está en el hallazgo.
+      expect(findQuoteByDigest(r.findingId, r.textBefore), `${r.tag}: el texto no cambió`).toBe(-1)
+      checked += 1
+    }
+    expect(checked).toBe(46)
+  })
+
+  it('las tres retiradas ya no están, y el resto de su hallazgo sí', () => {
+    for (const r of BATCH.rows.filter((x) => x.verdict === 'retirar')) {
+      expect(r.applied).toBe(true)
+      expect(findQuoteByDigest(r.findingId, r.textBefore), `${r.tag}: sigue publicada`).toBe(-1)
+      // Un hallazgo sin literal no es publicable: la retirada quita una fila,
+      // no vacía la ficha.
+      expect(byId(r.findingId).quotes.length).toBeGreaterThan(0)
+    }
+    // Control positivo del comparador de digests: una cita que SÍ sigue
+    // publicada tiene que encontrarse por el suyo. Sin esto, «no está» sería
+    // también lo que devuelve un digest que no casa con nada nunca.
+    const survivor = BATCH.rows.find((x) => x.verdict === 'ambiguo' && x.publishedBefore)!
+    expect(findQuoteByDigest(survivor.findingId, survivor.textBefore)).toBeGreaterThan(-1)
+  })
+
+  it('las 36 ambiguas están intactas, byte a byte', () => {
+    // El resultado correcto para una ambigua es NADA: se queda marcada «no
+    // consta en la transcripción revisada», que es lo que la página debe
+    // decir cuando el pasaje no se puede situar sin dudas o cuando el grupo
+    // atribuido no es el de quien habla.
+    const ambiguous = BATCH.rows.filter((r) => r.verdict === 'ambiguo')
+    expect(ambiguous).toHaveLength(36)
+    let intact = 0
+    for (const r of ambiguous) {
+      expect(r.applied, `${r.tag}: una ambigua no se aplica`).toBe(false)
+      if (!r.publishedBefore) continue // 6ad12d2 ya la había retirado
+      expect(
+        findQuoteByDigest(r.findingId, r.textBefore),
+        `${r.tag}: la cita cambió`,
+      ).toBeGreaterThan(-1)
+      intact += 1
+    }
+    expect(intact).toBe(35)
+    expect(ambiguous.filter((r) => !r.publishedBefore)).toHaveLength(1)
+  })
+
+  it('ninguna cita con la atribución en duda perdió su marca', () => {
+    // La razón de que las 20 filas con la atribución contradicha se marcaran
+    // `ambiguo` y no `reanclar`. Reanclar el texto la haría coincidir con la
+    // transcripción vigente, `compute:finding-quote-provenance` la pasaría a
+    // `en-vigente` y su chip desaparecería — dejando mejor documentada una
+    // atribución que la propia transcripción refuta. El texto y el grupo son
+    // ejes distintos y el chip sólo habla del primero.
+    const doubted = BATCH.rows.filter((r) => r.attributionContradicted)
+    expect(doubted).toHaveLength(20)
+    expect(doubted.filter((r) => r.applied)).toHaveLength(0)
+    let checked = 0
+    for (const r of doubted) {
+      if (!r.publishedBefore) continue
+      const i = findQuoteByDigest(r.findingId, r.textBefore)
+      expect(i, `${r.tag}: la cita ya no está donde estaba`).toBeGreaterThan(-1)
+      const status = PROVENANCE.quotes[r.findingId]?.[i]?.status
+      expect(MARKED_STATUS_IDS, `${r.tag}: perdió el chip`).toContain(status)
+      checked += 1
+    }
+    expect(checked).toBe(19)
+  })
+
+  it('los dos motivos describen el criterio y no el material', () => {
+    // Paso 2 de `revisar-borrador`. Un motivo por forma, no 49 variaciones:
+    // el lector tiene que poder leerlo una vez y saber qué pasó en todas.
+    const reasons = new Set(batchRows.map((c) => c.reason))
+    expect(reasons.size).toBe(2)
+    for (const reason of reasons) {
+      expect(reason.length).toBeGreaterThan(200)
+      // Ninguna mayúscula que no abra frase — dicho con la propia función del
+      // repositorio, alimentada con el motivo COMO SI fuera la fila retirada:
+      // si ni siquiera sus propias mayúsculas la disparan, es que no tiene
+      // ninguna que pueda repetir un nombre de nada. Es estrictamente más
+      // fuerte que comprobarlo contra el texto que se fue, y no necesita
+      // tenerlo delante.
+      expect(reasonEchoesRemoved(reason, { text: reason, ref: null })).toBeNull()
+    }
+    // Control positivo: el guardián dispara cuando hay algo que disparar.
+    expect(
+      reasonEchoesRemoved('Se retira la frase sobre Riba-roja que el acta no recoge', {
+        text: 'Riba-roja',
+        ref: null,
+      }),
+    ).toBe('Riba-roja')
+  })
+
+  it('ningún entrecomillado del sumario se quedó sin cita que lo sostenga', () => {
+    // La consecuencia que decidió qué se aplicaba. Un sumario que pone unas
+    // palabras entre comillas y las atribuye a un grupo necesita que alguna
+    // cita del hallazgo las contenga; reanclar la cita a la que apuntaba deja
+    // el entrecomillado colgando, y arreglarlo es reescribir prosa sobre un
+    // grupo nombrado. Cuatro reanclajes se saltaron por esto.
+    const orphaned = new Set<string>()
+    let phrases = 0
+    for (const f of items) {
+      for (const m of `${f.title}\n${f.summary}`.matchAll(/«([^»]+)»/g)) {
+        phrases += 1
+        if (!f.quotes.some((q) => q.text.includes(m[1].trim()))) orphaned.add(f.id)
+      }
+    }
+    expect(phrases).toBeGreaterThan(15)
+    // Los cuatro que ya lo estaban antes de esta tanda, nominalmente, para que
+    // uno nuevo no pueda esconderse dentro de un recuento.
+    expect([...orphaned].sort()).toEqual([
+      'f-2025-10-06-acu-b00839',
+      'f-2025-10-06-acu-bba0e9',
+      'f-2026-01-19-acu-b1a13f',
+      'f-2026-07-03-cit-df8455',
+    ])
   })
 })

@@ -68,10 +68,21 @@ afterAll(() => {
   cleanup()
 })
 
-/** El primer hallazgo cuyas tres primeras citas están TODAS marcadas. */
+/**
+ * El primer hallazgo cuya PRIMERA cita está marcada.
+ *
+ * Pedía antes que lo estuvieran las tres primeras. Eso se cumplía cuando 90 de
+ * 172 citas estaban marcadas y dejó de cumplirse el 2026-08-10, cuando la tanda
+ * de reanclaje bajó la cifra a 41 y no quedó ni un hallazgo con las tres. El
+ * criterio estricto no medía nada que estas pruebas necesiten: todas
+ * interrogan `quotes[0]`. Y el hallazgo mixto que ahora sale elegido es un
+ * control MEJOR — abajo se comprueba que las citas sanas del mismo hallazgo
+ * siguen sin marca, que es lo que distingue «marca la cita afectada» de
+ * «marca todas las citas».
+ */
 const affected = FINDINGS.items.find((f) => {
-  const rows = (PROVENANCE.quotes[f.id] ?? []).slice(0, 3)
-  return rows.length > 0 && rows.every((r) => MARKED_STATUS_IDS.includes(r.status))
+  const rows = PROVENANCE.quotes[f.id] ?? []
+  return rows.length > 0 && MARKED_STATUS_IDS.includes(rows[0].status)
 })
 
 /** El primer hallazgo cuyas tres primeras citas están TODAS en el texto vigente. */
@@ -139,6 +150,29 @@ describe('la ficha marca la cita afectada', () => {
   it('sigue publicando la cita: marcarla no es retirarla', async () => {
     const { container } = await renderCard(affected)
     expect(container.textContent).toContain(affected.quotes[0].text.slice(0, 40))
+  })
+
+  it('y NO marca las citas sanas del mismo hallazgo', async () => {
+    // El control que el criterio anterior no podía hacer: cuando se exigía que
+    // las tres primeras citas estuvieran marcadas, «marca la afectada» y «marca
+    // todas» daban el mismo verde. Desde el reanclaje del 2026-08-10 los
+    // hallazgos son mixtos, así que la distinción se puede medir de verdad.
+    const { container } = await renderCard(affected)
+    const bq = blockquotes(container)
+    // `FindingCard` corta en tres citas, así que el índice de `blockquote` sólo
+    // coincide con el de la cita dentro de ese tramo. Se busca ahí.
+    const rows = PROVENANCE.quotes[affected.id].slice(0, bq.length)
+    const soundIdx = rows.findIndex((r) => r.status === 'en-vigente')
+    expect(
+      soundIdx,
+      'el hallazgo elegido no tiene ninguna cita sana visible con la que contrastar',
+    ).toBeGreaterThan(-1)
+    for (const text of Object.values(MARK_TEXT)) {
+      expect(bq[soundIdx].textContent).not.toContain(text)
+    }
+    // Y la afectada sí la lleva, en el mismo render: sin esto el «no marca»
+    // pasaría también con la marca apagada del todo.
+    expect(bq[0].textContent).toContain(MARK_TEXT[rows[0].status])
   })
 })
 

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-10T11:28:45.176Z",
+  "generatedAt": "2026-08-10T12:54:25.454Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. La mayoría los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -290,7 +290,7 @@
           "sourceClaimId": "10yl550-191-cit-9aa672"
         },
         {
-          "text": "La norma, la ley del vivienda estatal no es inconstitucional. Es un satombat, no hay ningún recurso. Es constitucional.",
+          "text": "La norma, la ley del bien estatal no es inconstitucional. Está tombada, no hay un recurso, pero es constitucional.",
           "speakerGroup": "PSOE",
           "sourceClaimId": "10yl550-220-acu-0101aa"
         }
@@ -341,6 +341,14 @@
           "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión y cuya fecha más temprana conocida es posterior al pleno.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:47:52.628Z"
+        },
+        {
+          "field": "quote.3.text",
+          "original": "La norma, la ley del vivienda estatal no es inconstitucional. Es un satombat, no hay ningún recurso. Es constitucional.",
+          "corrected": "La norma, la ley del bien estatal no es inconstitucional. Está tombada, no hay un recurso, pero es constitucional.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:08.323Z"
         }
       ]
     },
@@ -438,7 +446,7 @@
           "sourceClaimId": "10yl550-158-cit-73d3cf"
         },
         {
-          "text": "la vivienda que se construye hoy en día o desde hace unos cuantos muchos años en Rivarrocha es vivienda para uso particular",
+          "text": "De fet, la vivenda que ens construís avui en dia o des de ja fa uns quants, molts anys en Ribarrocha és vivenda paús particular.",
           "speakerGroup": null,
           "sourceClaimId": "10yl550-165-cit-3bf9ea"
         },
@@ -507,6 +515,14 @@
           "reason": "Se retira del cotejo el expediente que sostenía la frase documental suprimida: es de otra política municipal, está ejecutado desde hace años y su extracto publicado arrastra el nombre de un particular ajeno a la sesión.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T16:58:22.669Z"
+        },
+        {
+          "field": "quote.1.text",
+          "original": "la vivienda que se construye hoy en día o desde hace unos cuantos muchos años en Rivarrocha es vivienda para uso particular",
+          "corrected": "De fet, la vivenda que ens construís avui en dia o des de ja fa uns quants, molts anys en Ribarrocha és vivenda paús particular.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:10.833Z"
         }
       ]
     },
@@ -530,7 +546,7 @@
           "sourceClaimId": "10yl550-325-cit-0907e6"
         },
         {
-          "text": "se ha establecido la protección civil en el ámbito universitario, integrando la formación de riesgos y emergencias en la educación superior",
+          "text": "A més, s'ha estès la protecció civil a l'àmbit universitari, integrant la formació de riscos i emergències en l'educació superior",
           "speakerGroup": null,
           "sourceClaimId": "10yl550-076-cit-1f4723"
         },
@@ -540,7 +556,7 @@
           "sourceClaimId": "10yl550-028-cit-21892b"
         },
         {
-          "text": "se denega al pueblo de Río Barrocha tener ese centro de formación.",
+          "text": "se denega al pueblo de Riba Rocha tener ese centro de formación.",
           "speakerGroup": "PSOE",
           "sourceClaimId": "10yl550-026-acu-7f904c"
         }
@@ -585,6 +601,22 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:10.892Z"
+        },
+        {
+          "field": "quote.1.text",
+          "original": "se ha establecido la protección civil en el ámbito universitario, integrando la formación de riesgos y emergencias en la educación superior",
+          "corrected": "A més, s'ha estès la protecció civil a l'àmbit universitari, integrant la formació de riscos i emergències en l'educació superior",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:10.100Z"
+        },
+        {
+          "field": "quote.3.text",
+          "original": "se denega al pueblo de Río Barrocha tener ese centro de formación.",
+          "corrected": "se denega al pueblo de Riba Rocha tener ese centro de formación.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:10.485Z"
         }
       ]
     },
@@ -603,7 +635,7 @@
       ],
       "quotes": [
         {
-          "text": "No hay acceso peatonal. No hay acera.",
+          "text": "no haya acceso peatonal, no hay acera",
           "speakerGroup": "PP",
           "sourceClaimId": "10yl550-032-cit-7f7619"
         },
@@ -674,6 +706,14 @@
           "reason": "Se retira del cotejo el expediente que sostenía la frase documental suprimida: describe una actuación de otra naturaleza y en otro emplazamiento que la reclamada en la intervención.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T16:58:23.354Z"
+        },
+        {
+          "field": "quote.0.text",
+          "original": "No hay acceso peatonal. No hay acera.",
+          "corrected": "no haya acceso peatonal, no hay acera",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:11.202Z"
         }
       ]
     },
@@ -697,7 +737,7 @@
           "sourceClaimId": "10yl550-263-cit-a0a379"
         },
         {
-          "text": "ustedes se lo han cargado",
+          "text": "vostés se la han carregat.",
           "speakerGroup": "PP",
           "sourceClaimId": "10yl550-278-acu-ac00a4"
         },
@@ -758,6 +798,14 @@
           "reason": "Se retira del cotejo el expediente que sostenía la frase documental suprimida: consta anulado y con importe final cero, de modo que no documenta la celebración cuya existencia se discute en la sesión.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T16:58:24.038Z"
+        },
+        {
+          "field": "quote.1.text",
+          "original": "ustedes se lo han cargado",
+          "corrected": "vostés se la han carregat.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:11.604Z"
         }
       ]
     },
@@ -786,12 +834,12 @@
           "sourceClaimId": "10yl550-101-acu-701882"
         },
         {
-          "text": "en el espacio abierto que se está haciendo desde el ayuntamiento, en las diferentes zonas del municipio, se va a hablar de una unidad de policía de urbanización.",
+          "text": "I finalment, en l'espai obert que s'està fent des de l'Ajuntament en les diferents zones del municipi es va parlar de una unitat de policia de urbanitzacions.",
           "speakerGroup": "PP",
           "sourceClaimId": "10yl550-320-cit-a652c5"
         },
         {
-          "text": "esos dos vallones inundables que nos van a permitir sobre todo a los bomberos ahora que se acosta el verano",
+          "text": "També això és dos vadents inundables que ens van permetre, sobretot als bombers, ara que s'acosta l'estiu",
           "speakerGroup": null,
           "sourceClaimId": "10yl550-099-cit-423e57"
         }
@@ -839,6 +887,22 @@
           "reason": "El sumario convertía en un verbo factivo —«señala el desvío»— lo que el hablante dijo con dos reservas propias, «por lo que entiendo» y «al parecer». Publicado así, atribuía a un grupo la constatación de un movimiento de fondos que la intervención sólo planteaba como conjetura, y la transcripción está además degradada en ese punto. Se devuelven al sumario los matizadores del hablante.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T16:58:21.954Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "en el espacio abierto que se está haciendo desde el ayuntamiento, en las diferentes zonas del municipio, se va a hablar de una unidad de policía de urbanización.",
+          "corrected": "I finalment, en l'espai obert que s'està fent des de l'Ajuntament en les diferents zones del municipi es va parlar de una unitat de policia de urbanitzacions.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:09.369Z"
+        },
+        {
+          "field": "quote.3.text",
+          "original": "esos dos vallones inundables que nos van a permitir sobre todo a los bomberos ahora que se acosta el verano",
+          "corrected": "També això és dos vadents inundables que ens van permetre, sobretot als bombers, ara que s'acosta l'estiu",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:09.721Z"
         }
       ]
     },
@@ -857,7 +921,7 @@
       ],
       "quotes": [
         {
-          "text": "no recogen tampoco al votar, en contra de los presupuestos",
+          "text": "no recolzen tampoc al votar en contra dels pressupostos",
           "speakerGroup": "PSOE",
           "sourceClaimId": "10yl550-330-acu-7c65c5"
         },
@@ -920,6 +984,14 @@
           "reason": "Corrección de atribución. «El PP señala que votaron en contra» procede de «el día 16 de marzo ustedes votaron en contra»: el hablante del PP reprochaba el voto a otra bancada, y la sintaxis del sumario invertía el reproche sobre quien lo hacía. Un pronombre de segunda persona en una transcripción no identifica a quién se dirigía, así que se conserva el deíctico citando literalmente. Se retira además la frase que hacía votar en contra al PSOE, procedente de un fragmento roto que no significa nada en castellano y que, sumado a lo anterior, dejaba a los dos grupos votando en contra del mismo presupuesto. La corrección previa del Plan Económico y Financiero no se toca.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T17:47:10.878Z"
+        },
+        {
+          "field": "quote.0.text",
+          "original": "no recogen tampoco al votar, en contra de los presupuestos",
+          "corrected": "no recolzen tampoc al votar en contra dels pressupostos",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:09.017Z"
         }
       ]
     },
@@ -947,7 +1019,7 @@
           "sourceClaimId": "10yl550-253-acu-39e059"
         },
         {
-          "text": "el informe técnico y la valoración que hace de este Plan no es positivo",
+          "text": "l'informe tècnic i la valoració que fa d'aquest pla no és positiva",
           "speakerGroup": null,
           "sourceClaimId": "10yl550-257-acu-666f3a"
         }
@@ -1006,6 +1078,14 @@
           "reason": "Se retira del cotejo el expediente que sostenía la frase documental suprimida: su adjudicación es posterior a la sesión, así que no pudo estar sobre la mesa en ella.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T16:58:20.158Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "el informe técnico y la valoración que hace de este Plan no es positivo",
+          "corrected": "l'informe tècnic i la valoració que fa d'aquest pla no és positiva",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:08.674Z"
         }
       ]
     },
@@ -1339,7 +1419,7 @@
           "sourceClaimId": "k4olcs-133-acu-e1bac8"
         },
         {
-          "text": "nosotros podríamos no haber dado cuenta de este informe, el alcalde no está obligado a este informe",
+          "text": "Nosaltres podem no haver donat compte d'aquest informe, nosaltres no està obligat a aquest informe.",
           "speakerGroup": null,
           "sourceClaimId": "k4olcs-146-acu-8c6db4"
         }
@@ -1395,6 +1475,14 @@
           "reason": "Se retira del cotejo el expediente que nombraba la frase suprimida: la aposición lo presentaba como objeto del debate y de una votación de esa sesión, y ni la fecha del expediente ni el registro de votos lo sostienen.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:22:26.952Z"
+        },
+        {
+          "field": "quote.3.text",
+          "original": "nosotros podríamos no haber dado cuenta de este informe, el alcalde no está obligado a este informe",
+          "corrected": "Nosaltres podem no haver donat compte d'aquest informe, nosaltres no està obligat a aquest informe.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:11.977Z"
         }
       ]
     },
@@ -1416,7 +1504,7 @@
           "sourceClaimId": "ma87e0-104-cit-377216"
         },
         {
-          "text": "el proyecto y construcción del edificio polivalente Chemachor",
+          "text": "el proyecto y construcción del edificio polivalente de Chema Chor",
           "speakerGroup": "PSOE",
           "sourceClaimId": "ma87e0-162-cit-092d3e"
         }
@@ -1449,6 +1537,14 @@
           "reason": "El matiz exculpaba lo que no estaba en discusión y daba por firme lo que el documento no sostiene. El extracto dice «Edificio Polivalente», genérico, y no nombra la Chemmachor: la identificación es precisamente lo que falta acreditar, y el sumario la afirmaba —«del mismo edificio polivalente», «el vínculo documental existe»—. «El proyecto está activo» tampoco tenía apoyo: el extracto no trae campo de estado alguno. El matiz pasa a recaer sobre la identificación, que es la duda real. El cotejo se mantiene: el documento es real y se describe bien; lo que sobraba era darlo por identificado.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T17:47:11.357Z"
+        },
+        {
+          "field": "quote.1.text",
+          "original": "el proyecto y construcción del edificio polivalente Chemachor",
+          "corrected": "el proyecto y construcción del edificio polivalente de Chema Chor",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:12.319Z"
         }
       ]
     },
@@ -1464,7 +1560,7 @@
       ],
       "quotes": [
         {
-          "text": "No tiene el Centro de Salud",
+          "text": "No teniu el centre de salut",
           "speakerGroup": null,
           "sourceClaimId": "ma87e0-195-cit-56214f"
         }
@@ -1489,6 +1585,14 @@
           "reason": "«La ausencia de obras mayores en el registro corrobora parcialmente la queja» es una corroboración por silencio, y falsa: un centro de salud no es competencia municipal —lo construye y amplía la administración autonómica—, de modo que su ausencia del registro de contratación del ayuntamiento es lo esperable exista o no la ampliación, y no informa de nada. El argumento se apoyaba además en un corpus que este hallazgo documenta con una sola fila. «Corrobora» es también el verbo que se retiró de la escala de evidencia porque esta tubería no establece corroboración en ningún punto. Se suprime la frase entera; la anterior basta por sí sola.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T17:47:11.603Z"
+        },
+        {
+          "field": "quote.0.text",
+          "original": "No tiene el Centro de Salud",
+          "corrected": "No teniu el centre de salut",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:13.036Z"
         }
       ]
     },
@@ -1504,7 +1608,7 @@
       ],
       "quotes": [
         {
-          "text": "no tiene el pabellón de Escoto",
+          "text": "no teniu pavelló d'escoto",
           "speakerGroup": null,
           "sourceClaimId": "ma87e0-195-cit-436a7e"
         }
@@ -1521,7 +1625,16 @@
       "curatorName": "civicpulse-auto",
       "publishedAt": "2026-04-24",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "quote.0.text",
+          "original": "no tiene el pabellón de Escoto",
+          "corrected": "no teniu pavelló d'escoto",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:12.675Z"
+        }
+      ]
     },
     {
       "id": "f-2026-03-16-cit-75b31f",
@@ -1535,7 +1648,7 @@
       ],
       "quotes": [
         {
-          "text": "el Rivadona o el Plan de Empleo Ciudad Jardín",
+          "text": "el Ribadona o el pla d'empleo Ciutat Jardín",
           "speakerGroup": null,
           "sourceClaimId": "ma87e0-151-cit-75b31f"
         }
@@ -1552,7 +1665,16 @@
       "curatorName": "civicpulse-auto",
       "publishedAt": "2026-04-24",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "quote.0.text",
+          "original": "el Rivadona o el Plan de Empleo Ciudad Jardín",
+          "corrected": "el Ribadona o el pla d'empleo Ciutat Jardín",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:13.393Z"
+        }
+      ]
     },
     {
       "id": "f-2026-03-16-cit-528973",
@@ -1722,7 +1844,7 @@
           "sourceClaimId": "19gax3o-025-afi-5b06c8"
         },
         {
-          "text": "hemos aprobado la guía rivalizada, el trabajo de los sistemas dinámicos de adquisición",
+          "text": "hem aprovat la guia rivalesita, el treball dels sistemes dinàmics d'adquisició",
           "speakerGroup": "PSOE",
           "sourceClaimId": "19gax3o-017-cit-1a1dad"
         },
@@ -1785,6 +1907,14 @@
           "reason": "El sumario ponía en boca del hablante el nombre propio de un plan que la cita no menciona: dice «lo planificado», y el nombre procede del título de un expediente cotejado. El contexto de la intervención apunta además a otro plan, y la evidencia no permite decidir cuál. Se devuelve la frase a la literalidad de la cita.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T16:58:28.170Z"
+        },
+        {
+          "field": "quote.1.text",
+          "original": "hemos aprobado la guía rivalizada, el trabajo de los sistemas dinámicos de adquisición",
+          "corrected": "hem aprovat la guia rivalesita, el treball dels sistemes dinàmics d'adquisició",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:15.890Z"
         }
       ]
     },
@@ -1803,7 +1933,7 @@
       ],
       "quotes": [
         {
-          "text": "una piscina que comenzó en el año 2005 que se inauguró en el 2012, 13 perdón, en diciembre de 2012 concretamente",
+          "text": "una piscina que ha comenzado en 2005, que se inaugura en 2012, 13, perdón, diciembre de 2012 concretamente, que es el 13,",
           "speakerGroup": "PSOE",
           "sourceClaimId": "19gax3o-149-cit-3fd230"
         },
@@ -1813,7 +1943,7 @@
           "sourceClaimId": "19gax3o-132-acu-a3b10d"
         },
         {
-          "text": "el pabellón que es una instalación de primer orden que ustedes votaron en contra porque era demasiado grande",
+          "text": "El pabelló que és una instal·lació de primer ordre en què vostès votaren en contra, perquè era massa gran,",
           "speakerGroup": null,
           "sourceClaimId": "19gax3o-147-acu-01da0f"
         }
@@ -1867,6 +1997,22 @@
           "reason": "Se retira una de las dos copias de la misma intervención: la copia larga contiene entera a la otra, y la coletilla que añade no consta en la transcripción vigente, que en ese punto dice algo distinto y de sentido contrario.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T11:27:52.877Z"
+        },
+        {
+          "field": "quote.0.text",
+          "original": "una piscina que comenzó en el año 2005 que se inauguró en el 2012, 13 perdón, en diciembre de 2012 concretamente",
+          "corrected": "una piscina que ha comenzado en 2005, que se inaugura en 2012, 13, perdón, diciembre de 2012 concretamente, que es el 13,",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:16.248Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "el pabellón que es una instalación de primer orden que ustedes votaron en contra porque era demasiado grande",
+          "corrected": "El pabelló que és una instal·lació de primer ordre en què vostès votaren en contra, perquè era massa gran,",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:16.602Z"
         }
       ]
     },
@@ -1900,7 +2046,7 @@
           "sourceClaimId": "19gax3o-176-acu-e24507"
         },
         {
-          "text": "hay contratos que se repiten en el 24, en el 25 y en el 26. Entonces, habría que plantearse si es necesario esa contratación si no se ha hecho en el 24, no se ha hecho en el 25.",
+          "text": "n'hi ha contractes que se repetixen en el 24, en el 25 i en el 26. Entonces hauria que plantejar-se, és necessària eixa contratació si no s'ha fet en el 24, no s'ha fet en el 25?",
           "speakerGroup": null,
           "sourceClaimId": "19gax3o-021-acu-20b3ec"
         }
@@ -1956,6 +2102,14 @@
           "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión y cuya fecha más temprana conocida es posterior al pleno.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:47:52.964Z"
+        },
+        {
+          "field": "quote.3.text",
+          "original": "hay contratos que se repiten en el 24, en el 25 y en el 26. Entonces, habría que plantearse si es necesario esa contratación si no se ha hecho en el 24, no se ha hecho en el 25.",
+          "corrected": "n'hi ha contractes que se repetixen en el 24, en el 25 i en el 26. Entonces hauria que plantejar-se, és necessària eixa contratació si no s'ha fet en el 24, no s'ha fet en el 25?",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:13.745Z"
         }
       ]
     },
@@ -1987,11 +2141,6 @@
           "text": "para subsanar los problemas que tiene el pabellón y el complejo esportivo",
           "speakerGroup": "PP",
           "sourceClaimId": "19gax3o-114-cit-b7641b"
-        },
-        {
-          "text": "Aquí en Riva Roja, en el pleno, no hay una agenda de reconstrucción, no hay una agenda de reconstrucción,",
-          "speakerGroup": "VOX",
-          "sourceClaimId": "19gax3o-050-acu-8d210f"
         }
       ],
       "crossChecked": [
@@ -2032,6 +2181,14 @@
           "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión, cuyo vínculo con lo debatido es una coincidencia léxica y cuya fecha más temprana conocida es posterior al pleno.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:22:27.189Z"
+        },
+        {
+          "field": "quote.3",
+          "original": "cita · sha256:cb419b327865",
+          "corrected": "retirada del hallazgo",
+          "reason": "Se retira un literal que no consta en ningún punto de la transcripción vigente y cuya forma, una cláusula repetida sobre sí misma, es firma de alucinación del motor que se sustituyó. El tramo de la sesión está cubierto sin huecos y el fichero vigente pesa más que el que reemplazó, así que la ausencia no es falta de cobertura. No hay en la vigente un pasaje equivalente al que reanclarla.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:18.720Z"
         }
       ]
     },
@@ -2049,11 +2206,6 @@
         "19gax3o-143-cit-a3a7a1"
       ],
       "quotes": [
-        {
-          "text": "Aquí en Riva Roja, en el pleno, no hay una agenda de reconstrucción, no hay una agenda de reconstrucción, y en cualquier otro municipio de España.",
-          "speakerGroup": "VOX",
-          "sourceClaimId": "19gax3o-051-cit-c80e68"
-        },
         {
           "text": "un plan de reconstrucción nacional centrado en infraestructuras hidráulicas, protección civil eficaz, ayudas directas",
           "speakerGroup": "VOX",
@@ -2116,6 +2268,14 @@
           "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión y cuya fecha más temprana conocida es posterior al pleno.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:47:53.294Z"
+        },
+        {
+          "field": "quote.0",
+          "original": "cita · sha256:ea6e83348e16",
+          "corrected": "retirada del hallazgo",
+          "reason": "Se retira un literal que no consta en ningún punto de la transcripción vigente y cuya forma, una cláusula repetida sobre sí misma, es firma de alucinación del motor que se sustituyó. El tramo de la sesión está cubierto sin huecos y el fichero vigente pesa más que el que reemplazó, así que la ausencia no es falta de cobertura. No hay en la vigente un pasaje equivalente al que reanclarla.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:18.366Z"
         }
       ]
     },
@@ -2134,14 +2294,9 @@
       ],
       "quotes": [
         {
-          "text": "y del parquet que efectivamente estaba cambiando y lo vamos a cambiar",
+          "text": "i del parquet que efectivament estava canviant i ho anem a canviar.",
           "speakerGroup": "PSOE",
           "sourceClaimId": "19gax3o-146-cit-8b29a9"
-        },
-        {
-          "text": "la agenda de reconstrucción es la que más se ha hecho en el país",
-          "speakerGroup": "VOX",
-          "sourceClaimId": "19gax3o-053-cit-3fa2de"
         },
         {
           "text": "los pueblos que estábamos en la DANA no teníamos tiempo material para plasmar en un documento la convocatoria.",
@@ -2192,6 +2347,22 @@
           "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión, cuyo vínculo con lo debatido es una coincidencia léxica y cuya fecha más temprana conocida es posterior al pleno.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:22:26.006Z"
+        },
+        {
+          "field": "quote.0.text",
+          "original": "y del parquet que efectivamente estaba cambiando y lo vamos a cambiar",
+          "corrected": "i del parquet que efectivament estava canviant i ho anem a canviar.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:17.659Z"
+        },
+        {
+          "field": "quote.1",
+          "original": "cita · sha256:7cc9067a95d8",
+          "corrected": "retirada del hallazgo",
+          "reason": "Se retira un literal que no consta en ningún punto de la transcripción vigente y cuya forma, una cláusula repetida sobre sí misma, es firma de alucinación del motor que se sustituyó. El tramo de la sesión está cubierto sin huecos y el fichero vigente pesa más que el que reemplazó, así que la ausencia no es falta de cobertura. No hay en la vigente un pasaje equivalente al que reanclarla.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:18.018Z"
         }
       ]
     },
@@ -2215,12 +2386,12 @@
           "sourceClaimId": "19gax3o-114-afi-5238db"
         },
         {
-          "text": "vamos a recolzar este plan de contratación 2026",
+          "text": "Nosaltres des del grup municipal de compromís anem a recolzar aquest pla de contractació 2026 i l'aplicació és ben senzilla.",
           "speakerGroup": "Compromís",
           "sourceClaimId": "19gax3o-010-cit-c48425"
         },
         {
-          "text": "se había hecho una crítica política referente a la modificación de crédito",
+          "text": "Que de això volia eh parlar en eixe moment que no era així, perquè no havia dit, s'havia fet una críptica política referent a la modificació de crèdit, però no feia referència a la meua intenció de vot.",
           "speakerGroup": null,
           "sourceClaimId": "19gax3o-186-acu-71dffe"
         },
@@ -2313,6 +2484,22 @@
           "reason": "Se retira del cotejo el expediente que nombraba la frase suprimida y cuya fecha más temprana conocida es, además, posterior a la de la sesión.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:22:25.773Z"
+        },
+        {
+          "field": "quote.1.text",
+          "original": "vamos a recolzar este plan de contratación 2026",
+          "corrected": "Nosaltres des del grup municipal de compromís anem a recolzar aquest pla de contractació 2026 i l'aplicació és ben senzilla.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:15.179Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "se había hecho una crítica política referente a la modificación de crédito",
+          "corrected": "Que de això volia eh parlar en eixe moment que no era així, perquè no havia dit, s'havia fet una críptica política referent a la modificació de crèdit, però no feia referència a la meua intenció de vot.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:15.536Z"
         }
       ]
     },
@@ -2331,12 +2518,12 @@
       ],
       "quotes": [
         {
-          "text": "El tema de la instalación de térmicas",
+          "text": "El tema de la instal·lació de tèrmics de la malla i del pavelló",
           "speakerGroup": null,
           "sourceClaimId": "19gax3o-119-cit-543cc1"
         },
         {
-          "text": "¿por qué no estaban previstas estas actuaciones?",
+          "text": "per què no estaven previstes aquestes actuacions en el pressupost de l'any 2025",
           "speakerGroup": null,
           "sourceClaimId": "19gax3o-114-acu-961675"
         },
@@ -2397,6 +2584,22 @@
           "reason": "Se retira el expediente que la frase suprimida nombraba: no guarda relación con ninguno de los puntos debatidos y sólo estaba ahí para sostener el vínculo que se ha borrado. El otro cotejo se mantiene, porque sí versa sobre el asunto del que se habló.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T17:47:07.917Z"
+        },
+        {
+          "field": "quote.0.text",
+          "original": "El tema de la instalación de térmicas",
+          "corrected": "El tema de la instal·lació de tèrmics de la malla i del pavelló",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:16.953Z"
+        },
+        {
+          "field": "quote.1.text",
+          "original": "¿por qué no estaban previstas estas actuaciones?",
+          "corrected": "per què no estaven previstes aquestes actuacions en el pressupost de l'any 2025",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:17.306Z"
         }
       ]
     },
@@ -2414,12 +2617,12 @@
       ],
       "quotes": [
         {
-          "text": "no tengo ningún correo tuyo pero bueno, puede ser que los que he enviado cuando tenga el correo contestaré la verdad no lo he hecho",
+          "text": "No he rebut cap correu referent a la pregunta, si no suposo que m'ho podràs demostrar que sí que l'has enviat, però jo no l'he llegit i estic mirant i no sé del 20 del 12 al 31 del 12 no tinc ningun correu teu, però bueno, pot ser que l'has enviat.",
           "speakerGroup": "PP",
           "sourceClaimId": "19gax3o-157-acu-d2b7bb"
         },
         {
-          "text": "como consecuencia de un incumplimiento de la empresa muy grave en enero",
+          "text": "como consecuencia del incumplimiento de la empresa, greu. molt greu, en gener,",
           "speakerGroup": null,
           "sourceClaimId": "19gax3o-173-acu-e3d549"
         },
@@ -2491,6 +2694,22 @@
           "reason": "Se retira del cotejo el expediente que sostenía la frase documental suprimida: su adjudicación es posterior a la sesión, así que no pudo respaldar lo dicho ese día, y su único nexo con lo debatido es una palabra compartida.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T16:58:27.820Z"
+        },
+        {
+          "field": "quote.0.text",
+          "original": "no tengo ningún correo tuyo pero bueno, puede ser que los que he enviado cuando tenga el correo contestaré la verdad no lo he hecho",
+          "corrected": "No he rebut cap correu referent a la pregunta, si no suposo que m'ho podràs demostrar que sí que l'has enviat, però jo no l'he llegit i estic mirant i no sé del 20 del 12 al 31 del 12 no tinc ningun correu teu, però bueno, pot ser que l'has enviat.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:14.466Z"
+        },
+        {
+          "field": "quote.1.text",
+          "original": "como consecuencia de un incumplimiento de la empresa muy grave en enero",
+          "corrected": "como consecuencia del incumplimiento de la empresa, greu. molt greu, en gener,",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:14.825Z"
         }
       ]
     },
@@ -2508,7 +2727,7 @@
       ],
       "quotes": [
         {
-          "text": "ustedes posteriormente y si en un vídeo diciendo que está trabajando FCC contrato de emergencia",
+          "text": "Vostè posteriorment ha fet un vídeo dient que està treballant FCC. Contracte d'urgència, d'emergència només tenim dels dies...",
           "speakerGroup": null,
           "sourceClaimId": "19gax3o-161-acu-b1a13f"
         },
@@ -2553,6 +2772,14 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:17.086Z"
+        },
+        {
+          "field": "quote.0.text",
+          "original": "ustedes posteriormente y si en un vídeo diciendo que está trabajando FCC contrato de emergencia",
+          "corrected": "Vostè posteriorment ha fet un vídeo dient que està treballant FCC. Contracte d'urgència, d'emergència només tenim dels dies...",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:14.085Z"
         }
       ]
     },
@@ -2581,7 +2808,7 @@
           "sourceClaimId": "1qi8axv-020-acu-75c8b8"
         },
         {
-          "text": "este incumplimiento del contrato va en contra de los vecinos y vecinas de nuestro municipio.",
+          "text": "aquest incompliment del contracte va en contra dels veïns i veïnes del nostre municipi.",
           "speakerGroup": "Compromís",
           "sourceClaimId": "1qi8axv-023-acu-3aa6fd"
         },
@@ -2613,6 +2840,14 @@
           "reason": "La cita que sostenía la frase no tiene grupo atribuido, y el sumario la asignaba a la oposición: un centinela no es un valor, y la inferencia plausible es justo lo que la regla prohíbe. Se cita al hablante literalmente y se suprime «(grupo no mayoritario)», que tampoco tiene fuente. Se corrige de paso una palabra inglesa en prosa publicada.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:22:26.242Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "este incumplimiento del contrato va en contra de los vecinos y vecinas de nuestro municipio.",
+          "corrected": "aquest incompliment del contracte va en contra dels veïns i veïnes del nostre municipi.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:19.072Z"
         }
       ]
     },
@@ -2722,7 +2957,7 @@
           "sourceClaimId": "1qi8axv-122-afi-3eebaf"
         },
         {
-          "text": "un contrato para la asistencia técnica y el recorzamiento para el control y supervisión de las prestaciones del contrato",
+          "text": "un contracte per a l'assistència tècnica i el recolzament per al control i supervisió de la prestació d'aquest contracte",
           "speakerGroup": "Compromís",
           "sourceClaimId": "1qi8axv-023-cit-3e6224"
         },
@@ -2780,6 +3015,14 @@
           "reason": "El extracto no dice qué es lo que no existía en el contrato anterior; el sustantivo «condiciones» lo aportaba el redactor. Se cita al hablante literalmente y se hace explícito que la referencia queda sin determinar.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:22:27.426Z"
+        },
+        {
+          "field": "quote.1.text",
+          "original": "un contrato para la asistencia técnica y el recorzamiento para el control y supervisión de las prestaciones del contrato",
+          "corrected": "un contracte per a l'assistència tècnica i el recolzament per al control i supervisió de la prestació d'aquest contracte",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:19.791Z"
         }
       ]
     },
@@ -2808,7 +3051,7 @@
           "sourceClaimId": "1qi8axv-113-acu-192a53"
         },
         {
-          "text": "en nuestra intención de voto de hoy ha sido abstención",
+          "text": "en l'exercici de vot de hui ha sigut abstenció en el que feia referència al ple",
           "speakerGroup": null,
           "sourceClaimId": "1qi8axv-071-acu-8906e2"
         },
@@ -2869,6 +3112,14 @@
           "reason": "Se retira el expediente que la frase suprimida fijaba como objeto del debate. Ninguna de las citas lo nombra, y mantenerlo bajo el hallazgo seguiría dirigiendo hacia su adjudicataria un reproche de incumplimiento que la fuente no localiza en ningún contrato.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T17:47:08.639Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "en nuestra intención de voto de hoy ha sido abstención",
+          "corrected": "en l'exercici de vot de hui ha sigut abstenció en el que feia referència al ple",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:19.431Z"
         }
       ]
     },
@@ -3041,7 +3292,7 @@
           "sourceClaimId": "qz6weg-185-acu-cb9c22"
         },
         {
-          "text": "Hoy tenemos a pleno una propuesta de acuerdo que parte de una demanda ciudadana",
+          "text": "Avui duem a ple una proposta d'acord que parteix d'una demanda ciutadana",
           "speakerGroup": "PSOE",
           "sourceClaimId": "qz6weg-061-cit-2a0511"
         }
@@ -3086,6 +3337,14 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:19.159Z"
+        },
+        {
+          "field": "quote.3.text",
+          "original": "Hoy tenemos a pleno una propuesta de acuerdo que parte de una demanda ciudadana",
+          "corrected": "Avui duem a ple una proposta d'acord que parteix d'una demanda ciutadana",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:20.494Z"
         }
       ]
     },
@@ -3109,17 +3368,17 @@
           "sourceClaimId": "qz6weg-039-cit-bef239"
         },
         {
-          "text": "se crearon los conservatorios y el auditorio",
+          "text": "es creen els conservatoris i l'auditori.",
           "speakerGroup": "PSOE",
           "sourceClaimId": "qz6weg-041-cit-29853c"
         },
         {
-          "text": "ustedes votaron en contra del auditorio y del conservatorio",
+          "text": "Vostès votaren en contra de l'auditori i dels conservatoris, de les dues coses.",
           "speakerGroup": "PSOE",
           "sourceClaimId": "qz6weg-041-acu-8fa62c"
         },
         {
-          "text": "Memoria Democrática de Riva Rocha de Turía",
+          "text": "Benvinguts als membres de l'Associació de Memòria Democràtica de Ribera Rocha de Turia a aquest ple.",
           "speakerGroup": "Compromís",
           "sourceClaimId": "qz6weg-080-cit-008981"
         }
@@ -3156,7 +3415,32 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-06",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "quote.1.text",
+          "original": "se crearon los conservatorios y el auditorio",
+          "corrected": "es creen els conservatoris i l'auditori.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:20.852Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "ustedes votaron en contra del auditorio y del conservatorio",
+          "corrected": "Vostès votaren en contra de l'auditori i dels conservatoris, de les dues coses.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:21.203Z"
+        },
+        {
+          "field": "quote.3.text",
+          "original": "Memoria Democrática de Riva Rocha de Turía",
+          "corrected": "Benvinguts als membres de l'Associació de Memòria Democràtica de Ribera Rocha de Turia a aquest ple.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:21.564Z"
+        }
+      ]
     },
     {
       "id": "f-2025-12-01-acu-34560f",
@@ -3261,7 +3545,7 @@
       ],
       "quotes": [
         {
-          "text": "después de la catástrofe de la DANA, ustedes han hecho salvoconductos para donarles a los trabajadores y trabajadoras para que puedan ir a trabajar en alerta roja.",
+          "text": "després de la catàstrofe de la Dana vostès han fet salvo conductors per a donar-li als treballadors i treballadores per a que puguen anar a treballar en alerta rotxa.",
           "speakerGroup": "PSOE",
           "sourceClaimId": "qz6weg-193-acu-7589c9"
         }
@@ -3323,6 +3607,14 @@
           "reason": "El sumario contaba dos intervinientes donde la sesión registra uno: las dos citas eran la misma frase, y de esa duplicación salía un grupo sin identificar que nunca habló. Retirada la copia, el sumario informa de un solo grupo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T11:27:44.852Z"
+        },
+        {
+          "field": "quote.0.text",
+          "original": "después de la catástrofe de la DANA, ustedes han hecho salvoconductos para donarles a los trabajadores y trabajadoras para que puedan ir a trabajar en alerta roja.",
+          "corrected": "després de la catàstrofe de la Dana vostès han fet salvo conductors per a donar-li als treballadors i treballadores per a que puguen anar a treballar en alerta rotxa.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:20.139Z"
         }
       ]
     },
@@ -3340,7 +3632,7 @@
       ],
       "quotes": [
         {
-          "text": "la responsabilidad no es única y exclusivamente de la Generalitat Valenciana.",
+          "text": "De todas formas, decir que la responsabilidad no es única y exclusivamente la Generalitat Valenciana en el CECOPI.",
           "speakerGroup": "PP",
           "sourceClaimId": "1du4rf5-115-acu-431140"
         },
@@ -3350,7 +3642,7 @@
           "sourceClaimId": "1du4rf5-237-cit-e34df3"
         },
         {
-          "text": "Es reclamar formalmente al presidente del Partido Popular, Bertón Núñez Fejó, y a sus órganos correspondientes, la dimisión inmediata del presidente de la Generalitat Valenciana, Carlos Mazón, y la vicepresidenta y consejera de Servicios Sociales, Susana Camarero, por su responsabilidad política en la gestión de las ganas del 29 de octubre de 2024.",
+          "text": "És reclamar formalment al president del Partit Popular, Alberto Núñez Feijó, i als organs corresponents la dimissió immediata del president de la Generalitat valenciana, Carlos Mazón, i la vicepresidenta i consellera de Serveis Socials, Susana Camarero, per la seva responsabilitat política en la gestió de la gana del 29 d'octubre del 2024.",
           "speakerGroup": "Compromís",
           "sourceClaimId": "1du4rf5-111-acu-4f6c40"
         }
@@ -3405,6 +3697,22 @@
           "reason": "La cita sobre la iniciativa legislativa popular no dice de qué trata, y procede de un segmento muy posterior al del debate sobre el temporal; «sobre este tema» era un vínculo temático que ponía el sumario. Se suprime y se dice qué no consta.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:22:29.113Z"
+        },
+        {
+          "field": "quote.0.text",
+          "original": "la responsabilidad no es única y exclusivamente de la Generalitat Valenciana.",
+          "corrected": "De todas formas, decir que la responsabilidad no es única y exclusivamente la Generalitat Valenciana en el CECOPI.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:21.924Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "Es reclamar formalmente al presidente del Partido Popular, Bertón Núñez Fejó, y a sus órganos correspondientes, la dimisión inmediata del presidente de la Generalitat Valenciana, Carlos Mazón, y la vicepresidenta y consejera de Servicios Sociales, Susana Camarero, por su responsabilidad política en la gestión de las ganas del 29 de octubre de 2024.",
+          "corrected": "És reclamar formalment al president del Partit Popular, Alberto Núñez Feijó, i als organs corresponents la dimissió immediata del president de la Generalitat valenciana, Carlos Mazón, i la vicepresidenta i consellera de Serveis Socials, Susana Camarero, per la seva responsabilitat política en la gestió de la gana del 29 d'octubre del 2024.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:22.274Z"
         }
       ]
     },
@@ -3423,7 +3731,7 @@
       ],
       "quotes": [
         {
-          "text": "de los grupos de apoyo psicológico, social, jurídico y en otros ámbitos. Y trasladar todos estos puntos de acuerdo al Ministerio de Igualdad, a la Delegación de Gobierno, a la Generalitat Valenciana, Federación Valenciana de Municipios y Provincias, al Consejo de Igualdad de Río Roja y a todas las asociaciones de nuestro municipio que trabajan por y para las mujeres.",
+          "text": "els recursos municipals de suport psicològic, social, jurídic i altres àmbits. I traslladar tots estos punts d'acords al Ministeri d'Igualtat, a la Delegació de Govern, a la Generalitat Valenciana, Federació Valenciana de Municipis i Províncies, al Consell d'Igualtat de Ribarroig i a totes les associacions del nostre municipi que treballen per i per les dones.",
           "speakerGroup": "PP",
           "sourceClaimId": "otxq2c-037-cit-6c4d24"
         },
@@ -3511,6 +3819,14 @@
           "reason": "Se retira del cotejo el expediente que nombraba la frase suprimida: ninguna cita del hallazgo menciona un contrato, y el término compartido designa en la sesión el acompañamiento a víctimas y no la defensa procesal del ayuntamiento.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:22:29.587Z"
+        },
+        {
+          "field": "quote.0.text",
+          "original": "de los grupos de apoyo psicológico, social, jurídico y en otros ámbitos. Y trasladar todos estos puntos de acuerdo al Ministerio de Igualdad, a la Delegación de Gobierno, a la Generalitat Valenciana, Federación Valenciana de Municipios y Provincias, al Consejo de Igualdad de Río Roja y a todas las asociaciones de nuestro municipio que trabajan por y para las mujeres.",
+          "corrected": "els recursos municipals de suport psicològic, social, jurídic i altres àmbits. I traslladar tots estos punts d'acords al Ministeri d'Igualtat, a la Delegació de Govern, a la Generalitat Valenciana, Federació Valenciana de Municipis i Províncies, al Consell d'Igualtat de Ribarroig i a totes les associacions del nostre municipi que treballen per i per les dones.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:23.690Z"
         }
       ]
     },
@@ -3539,7 +3855,7 @@
           "sourceClaimId": "otxq2c-075-cit-c869c8"
         },
         {
-          "text": "el sistema de pulseras telemáticas de control de todos los agresores, el sistema COMETA, sistema del Centro de Control de Medidas Telemáticas de Añuñamiento.",
+          "text": "el sistema de polseres telemàtiques de control de tots els agressors, l'anomenat sistema COMETA. Sistema del Centre de Control de Mesures Telemàtiques d'Aïllament.",
           "speakerGroup": "PP",
           "sourceClaimId": "otxq2c-033-cit-bfa19f"
         }
@@ -3598,6 +3914,14 @@
           "reason": "Se retira del cotejo una referencia cuyo único vínculo con lo debatido es una coincidencia de palabras en el título, y que el resumen presentaba como contexto de la sesión.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-09T15:46:26.902Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "el sistema de pulseras telemáticas de control de todos los agresores, el sistema COMETA, sistema del Centro de Control de Medidas Telemáticas de Añuñamiento.",
+          "corrected": "el sistema de polseres telemàtiques de control de tots els agressors, l'anomenat sistema COMETA. Sistema del Centre de Control de Mesures Telemàtiques d'Aïllament.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:23.336Z"
         }
       ]
     },
@@ -3621,7 +3945,7 @@
           "sourceClaimId": "otxq2c-042-acu-bba0e9"
         },
         {
-          "text": "Recientemente se ha tenido constancia de errores que ha tenido la migración de datos y el control de la localización en el sistema",
+          "text": "Recentment s'ha tingut constància d'errors que ha tingut la migració de dades i el control de la localització en el sistema que pertany al control d'aquestes polseres.",
           "speakerGroup": "PP",
           "sourceClaimId": "otxq2c-033-acu-f6e1d4"
         },
@@ -3690,6 +4014,14 @@
           "reason": "El sumario reproducía el nombre de un particular ajeno a la corporación y le adosaba un hecho grave que ninguna fuente de este sitio puede comprobar, para acto seguido dejarlo abierto diciendo que el registro municipal ni lo respalda ni lo desmiente. La atribución de bloque permite informar de lo que dijo un grupo; no obliga a repetir el nombre. El registro guarda la huella de lo retirado y no el texto: un tachado en esta misma página se lo devolvería al lector.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-10T11:28:45.174Z"
+        },
+        {
+          "field": "quote.1.text",
+          "original": "Recientemente se ha tenido constancia de errores que ha tenido la migración de datos y el control de la localización en el sistema",
+          "corrected": "Recentment s'ha tingut constància d'errors que ha tingut la migració de dades i el control de la localització en el sistema que pertany al control d'aquestes polseres.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:22.983Z"
         }
       ]
     },
@@ -3713,7 +4045,7 @@
           "sourceClaimId": "otxq2c-078-acu-b00839"
         },
         {
-          "text": "Han entrado por una banda y se han ido así por la otra porque no podían decir si habían incumplido las órdenes de ayunamiento.",
+          "text": "Han entrat per una banda i s'han anat així per l'altra perquè no podien dir si havien incomplert les ordres d'allunyament.",
           "speakerGroup": "PP",
           "sourceClaimId": "otxq2c-088-acu-248640"
         },
@@ -3776,6 +4108,14 @@
           "reason": "La cita es un punto de acuerdo formulado en infinitivo, y su contexto lo dice con todas las letras; el sumario lo publicaba como una denuncia ya presentada. Se cita al hablante literalmente para que la propuesta no se lea como un acto consumado. La advertencia sobre el expediente de videovigilancia no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:22:26.477Z"
+        },
+        {
+          "field": "quote.1.text",
+          "original": "Han entrado por una banda y se han ido así por la otra porque no podían decir si habían incumplido las órdenes de ayunamiento.",
+          "corrected": "Han entrat per una banda i s'han anat així per l'altra perquè no podien dir si havien incomplert les ordres d'allunyament.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:22.629Z"
         }
       ]
     },
@@ -3804,7 +4144,7 @@
           "sourceClaimId": "c8kr44-160-cit-e59f43"
         },
         {
-          "text": "que por fin ya tenemos un contrato para la recogida de residuos sólidos urbanos en el municipio.",
+          "text": "que per fi ja tenim un contracte per a la recollida de residus sòlids urbans en el municipi.",
           "speakerGroup": "Compromís",
           "sourceClaimId": "c8kr44-047-cit-8dec6a"
         },
@@ -3860,6 +4200,14 @@
           "reason": "Se retira del cotejo el expediente que nombraba la frase suprimida y cuya fecha más temprana conocida es, además, posterior a la de la sesión.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:48:08.615Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "que por fin ya tenemos un contrato para la recogida de residuos sólidos urbanos en el municipio.",
+          "corrected": "que per fi ja tenim un contracte per a la recollida de residus sòlids urbans en el municipi.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:24.746Z"
         }
       ]
     },
@@ -3888,12 +4236,12 @@
           "sourceClaimId": "c8kr44-119-cit-e9c4b9"
         },
         {
-          "text": "como dice Eva, hemos estado un par de días, o tres, y está solventado, el mantenimiento",
+          "text": "com diu Eva, s'hem avançat un parell de dies, tres, i està solventat",
           "speakerGroup": "PSOE",
           "sourceClaimId": "c8kr44-242-cit-671430"
         },
         {
-          "text": "hemos estado un par de días, o tres, y está solventado, el mantenimiento que han hecho los colegios ha sido un mantenimiento adecuado, así como lo han traído a todos los directores, para hablar con Paki, para todo el mundo, hemos vuelto a mejorar las escuelas",
+          "text": "s'hem avançat un parell de dies, tres, i està solventat, els manteniments que han fet els col·legis ha sigut un manteniment adequat, així ja ens ho han traslladat totes les directores per anar a Menpaqui, per a tot el món, en tornar a millorar les escoles",
           "speakerGroup": "PSOE",
           "sourceClaimId": "c8kr44-243-cit-be89b4"
         }
@@ -3941,6 +4289,22 @@
           "reason": "Se retira el expediente que la frase suprimida nombraba: es la limpieza de una instalación deportiva y el debate es sobre la limpieza de las aulas. Existía para sostener el vínculo que se ha borrado.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T17:47:09.617Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "como dice Eva, hemos estado un par de días, o tres, y está solventado, el mantenimiento",
+          "corrected": "com diu Eva, s'hem avançat un parell de dies, tres, i està solventat",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:24.039Z"
+        },
+        {
+          "field": "quote.3.text",
+          "original": "hemos estado un par de días, o tres, y está solventado, el mantenimiento que han hecho los colegios ha sido un mantenimiento adecuado, así como lo han traído a todos los directores, para hablar con Paki, para todo el mundo, hemos vuelto a mejorar las escuelas",
+          "corrected": "s'hem avançat un parell de dies, tres, i està solventat, els manteniments que han fet els col·legis ha sigut un manteniment adequat, així ja ens ho han traslladat totes les directores per anar a Menpaqui, per a tot el món, en tornar a millorar les escoles",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:24.390Z"
         }
       ]
     },
@@ -3963,12 +4327,12 @@
           "sourceClaimId": "rmtyr-141-acu-144947"
         },
         {
-          "text": "hace más de 200 días tendría que haber sido aprobado antes de que finalizara el año 2024",
+          "text": "Si tenim en compte la dana o el que fa més de 200 dies, hauria d'haver estat aprovat abans que finalitzara l'any 2024.",
           "speakerGroup": "PP",
           "sourceClaimId": "rmtyr-021-acu-e0e848"
         },
         {
-          "text": "nuestras propuestas se han quedado en el caixón. Así ha pasado en el presupuesto del 2024",
+          "text": "I ens dol un poc que moltes vegades les nostres propostes s'hagin quedat en el caixó. Així ha passat en el pressupost del 2024 i creiem que també va passar en el 2025,",
           "speakerGroup": "Compromís",
           "sourceClaimId": "rmtyr-189-acu-61aa87"
         }
@@ -4014,6 +4378,22 @@
           "reason": "Se retira del cotejo un expediente cuya fecha más temprana conocida es posterior a la de la sesión: un procedimiento que aún no constaba el día del debate no pudo ser lo que el pleno debatía.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:47:54.289Z"
+        },
+        {
+          "field": "quote.1.text",
+          "original": "hace más de 200 días tendría que haber sido aprobado antes de que finalizara el año 2024",
+          "corrected": "Si tenim en compte la dana o el que fa més de 200 dies, hauria d'haver estat aprovat abans que finalitzara l'any 2024.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:25.099Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "nuestras propuestas se han quedado en el caixón. Así ha pasado en el presupuesto del 2024",
+          "corrected": "I ens dol un poc que moltes vegades les nostres propostes s'hagin quedat en el caixó. Així ha passat en el pressupost del 2024 i creiem que també va passar en el 2025,",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-10T12:54:25.454Z"
         }
       ]
     }

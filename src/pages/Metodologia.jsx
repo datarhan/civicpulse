@@ -930,6 +930,24 @@ export default function Metodologia() {
           <strong>ninguna</strong> de las dos transcripciones es un problema distinto —posible
           invención, no desgaste— y no se publica con marca: se bloquea.
         </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Un reanclaje puede cambiar el idioma de la cita en pantalla</strong>, y conviene
+          saber por qué. El motor que se sustituyó traducía al castellano intervenciones
+          pronunciadas en valencià, así que lo que esta página publicaba entre comillas como literal
+          era, en muchos casos, una traducción automática. Al reanclar contra la transcripción
+          vigente se recupera la lengua en que se habló. No es una decisión de estilo ni un cambio
+          de criterio lingüístico: el contenido citado se queda siempre en su idioma de origen, y la
+          cita que ahora se lee en valencià es la que se ajusta a lo que se dijo. Las dos versiones
+          quedan a la vista en la bitácora de la ficha.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          Dos cosas que un reanclaje <em>no</em> hace. No toca la atribución: cuando el pasaje se
+          localiza sin dudas pero quien habla no es del grupo al que la ficha atribuye la cita, no
+          se reancla —se deja la marca puesta—, porque afinar el texto de una cita mal atribuida
+          deja mejor documentado un error más grave. Y no reescribe el resumen: si el resumen de la
+          ficha entrecomilla un tramo de la cita, reanclarla dejaría ese entrecomillado sin
+          respaldo, así que tampoco se reancla hasta que una persona revise las dos cosas juntas.
+        </p>
       </Card>
 
       <Card id="citas-contraste" style={{ marginTop: 14, scrollMarginTop: 24 }}>

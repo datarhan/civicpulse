@@ -56,9 +56,19 @@ const QUEUE = buildReanchorQueue(FINDINGS.items, PROVENANCE, CORPUS, {
   generatedAt: '2026-08-10T00:00:00.000Z',
 })
 
+/**
+ * La cola se VACÍA a medida que se reancla, así que un suelo fijo sobre su
+ * tamaño caduca en cuanto una tanda hace su trabajo: el 2026-08-10 pasó de 92
+ * filas a 43. Lo que no puede caducar es que haya filas que leer — sin eso,
+ * «ninguna fila trae un candidato elegido» sería verde sobre cero filas. El
+ * tamaño exacto lo fija la comparación con el snapshot de procedencia, más
+ * abajo; esto es sólo el «se midió algo».
+ */
+const QUEUE_FLOOR = 10
+
 describe('la cola PROPONE y no elige', () => {
   it('ninguna fila llega con un candidato seleccionado', () => {
-    expect(QUEUE.rows.length).toBeGreaterThan(50)
+    expect(QUEUE.rows.length).toBeGreaterThan(QUEUE_FLOOR)
     for (const r of QUEUE.rows) expect(r.seleccion).toBeNull()
     // Y no por otro nombre: ninguna fila trae una marca de «éste es».
     const serialised = JSON.stringify(QUEUE)
@@ -66,7 +76,7 @@ describe('la cola PROPONE y no elige', () => {
   })
 
   it('propone de verdad: casi todas las filas traen pasajes que leer', () => {
-    expect(QUEUE.stats.conCandidatos).toBeGreaterThan(50)
+    expect(QUEUE.stats.conCandidatos).toBeGreaterThan(QUEUE_FLOOR)
     expect(QUEUE.stats.conCandidatos + QUEUE.stats.sinCandidatos).toBe(QUEUE.rows.length)
     for (const r of QUEUE.rows) {
       for (const c of r.candidates) {
@@ -140,12 +150,61 @@ describe('la cola encola exactamente lo que la página marca', () => {
   })
 })
 
+/**
+ * El caso de manual, PLANTADO y no leído del fichero publicado.
+ *
+ * Lo estaba: la cita de `f-2026-05-11-acu-1adbf3` decía «Es un satombat» y la
+ * cola la traía. El 2026-08-10 se reancló, y con ella 45 más — el fichero deja
+ * de contener el ejemplo justo cuando el trabajo se hace bien, y una prueba que
+ * lo busca ahí se vuelve roja por haber acertado. Peor todavía sería el arreglo
+ * fácil: re-apuntarla a la siguiente cita degradada que quede, y volver a
+ * romperla en la próxima tanda.
+ *
+ * Así que la cita entra plantada y las transcripciones siguen siendo las de
+ * verdad — que es donde tiene que estar la exigencia: `10yl550` sigue diciendo
+ * `satombat` en el texto sustituido y `tombada` en el vigente, y la cola tiene
+ * que llevar al curador del uno al otro.
+ */
 describe('el caso de manual: «satombat» → «Está tombada»', () => {
-  const row = QUEUE.rows.find((r) => r.publishedQuote.includes('satombat'))
+  const PLANTED = {
+    id: 'f-plantado-satombat',
+    plenoId: '10yl550',
+    plenoDate: '2026-05-11',
+    title: 'Caso plantado: un literal degradado por el motor sustituido',
+    severity: 'informational' as const,
+    quotes: [
+      {
+        text: 'La norma, la ley del vivienda estatal no es inconstitucional. Es un satombat, no hay ningún recurso. Es constitucional.',
+        speakerGroup: 'PSOE' as const,
+        sourceClaimId: '10yl550-000-plantado',
+      },
+    ],
+  }
+  const PLANTED_QUEUE = buildReanchorQueue(
+    [PLANTED],
+    { quotes: { [PLANTED.id]: [{ status: 'solo-en-sustituida', gate: null }] } },
+    CORPUS,
+    { generatedAt: '2026-08-10T00:00:00.000Z' },
+  )
+  const row = PLANTED_QUEUE.rows.find((r) => r.publishedQuote.includes('satombat'))
 
   it('la cita degradada está encolada', () => {
     expect(row).toBeTruthy()
     expect(row!.plenoId).toBe('10yl550')
+  })
+
+  it('y el fichero publicado ya no la trae: la tanda del 2026-08-10 la reancló', () => {
+    // El control negativo del plantado. Sin él, «la cola encuentra el caso»
+    // podría estar midiendo una cita que sigue publicada degradada.
+    expect(FINDINGS.items.flatMap((f) => f.quotes).some((q) => /satombat/i.test(q.text))).toBe(
+      false,
+    )
+    // Y el reanclaje fue al texto vigente, no a cualquier cosa.
+    const reanchored = FINDINGS.items
+      .find((f) => f.id === 'f-2026-05-11-acu-1adbf3')!
+      .quotes.find((q) => /tombada/i.test(q.text))
+    expect(reanchored, 'f-2026-05-11-acu-1adbf3 ya no lleva el literal reanclado').toBeTruthy()
+    expect(SESSIONS.get('10yl550')!.current).toContain('tombada')
   })
 
   it('el pasaje real del texto nuevo está entre los candidatos', () => {

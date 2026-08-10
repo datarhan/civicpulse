@@ -176,7 +176,11 @@ describe('control positivo — la regla no puede ser «marcarlo todo»', () => {
       const current = SESSIONS.get(finding.plenoId)!.current
       expect(current === null || quoteAppearsIn(text, current)).toBe(false)
     }
-    expect(checked).toBeGreaterThan(50)
+    // Un suelo, no un recuento: cada tanda de reanclaje vacía este lado del
+    // control a propósito (el 2026-08-10 pasó de 92 citas marcadas a 43), así
+    // que un número fijo aquí se rompería por haber hecho el trabajo. Lo que
+    // no puede caer a cero sin avisar es que se haya comprobado algo.
+    expect(checked).toBeGreaterThan(10)
   })
 
   it('la muestra real trae los dos lados: hay marcadas y hay sin marcar', () => {
