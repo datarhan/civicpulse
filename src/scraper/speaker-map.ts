@@ -129,6 +129,13 @@ export interface SpeakerMap {
    * different facts, and folding them together is `DATA_INTEGRITY.md` rule 2.
    */
   stats: {
+    /**
+     * Chunks in the SESSION, not in the run that produced this file. A 25-chunk
+     * session capped at 16 by the daily quota records 25 here and 16 below, and
+     * `chunksTranscribed < chunksExpected` is what tells the backlog the
+     * session is unfinished. Recording the run's plan instead made a capped run
+     * indistinguishable from a complete one.
+     */
     chunksExpected: number
     chunksTranscribed: number
     /**
@@ -239,6 +246,28 @@ export function parseSpeakerMapResponse(raw: string): ParsedSpeakerMapResponse {
   }
 
   return { segments, candidates }
+}
+
+/**
+ * Has this session been mapped all the way through?
+ *
+ * A map FILE is not a finished map. A 25-chunk session against a 20-request
+ * daily quota writes a partial one and is meant to come back tomorrow, so a
+ * backlog that selects on the file existing leaves every long session
+ * permanently unfinished — its tail unreachable at any quota. That was the
+ * behaviour until this existed.
+ *
+ * Anything unreadable, unlabelled or inconsistent counts as **unfinished**. The
+ * cost of re-running a finished session is some quota; the cost of skipping an
+ * unfinished one is a session nobody ever revisits.
+ */
+export function isMapComplete(map: unknown): boolean {
+  const s = (map as { stats?: { chunksTranscribed?: unknown; chunksExpected?: unknown } })?.stats
+  const done = s?.chunksTranscribed
+  const total = s?.chunksExpected
+  if (typeof done !== 'number' || typeof total !== 'number') return false
+  if (!Number.isFinite(done) || !Number.isFinite(total) || total <= 0) return false
+  return done >= total
 }
 
 /**

@@ -76,15 +76,24 @@ interface Args {
   maxChunks: number
   audio: string | null
   keepAudio: boolean
+  /** Ignore any existing map and rebuild from chunk 0. */
+  restart: boolean
 }
 
 function parseArgs(argv: string[]): Args {
-  const out: Args = { plenoId: '', maxChunks: Infinity, audio: null, keepAudio: false }
+  const out: Args = {
+    plenoId: '',
+    maxChunks: Infinity,
+    audio: null,
+    keepAudio: false,
+    restart: false,
+  }
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i]
     if (a === '--chunks') out.maxChunks = Number(argv[++i])
     else if (a === '--audio') out.audio = argv[++i]
     else if (a === '--keep-audio') out.keepAudio = true
+    else if (a === '--restart') out.restart = true
     else if (!a.startsWith('--') && !out.plenoId) out.plenoId = a
     else {
       process.stderr.write(`[speaker-map] unknown flag ${a}\n`)
@@ -363,9 +372,53 @@ async function main() {
     )
 
     const prompt = buildSpeakerMapPrompt()
-    const segments: RawSegment[] = []
-    const rows: SpeakerMapRow[] = []
-    const rejected: RejectedCandidate[] = []
+
+    // ── Resume ──────────────────────────────────────────────────────────
+    // A 25-chunk session against a 20-request daily quota cannot finish in one
+    // run, so an unfinished map is the NORMAL state, not an error. Carry the
+    // previous run's work forward and skip the chunks it already covered;
+    // without this the run restarts at chunk 0 every day and the tail of a long
+    // session is unreachable at any quota.
+    //
+    // Chunks are keyed by index, which is stable because the same audio split
+    // at the same `SPEAKER_MAP_CHUNK_SECONDS` yields the same segments. A
+    // change to that constant invalidates the resume, so it is recorded in the
+    // map and checked here.
+    const priorPath = join(OUT_DIR, `${args.plenoId}.json`)
+    let prior: SpeakerMap | null = null
+    if (!args.restart && existsSync(priorPath)) {
+      try {
+        const p = JSON.parse(readFileSync(priorPath, 'utf8')) as SpeakerMap
+        if (p.chunkSeconds === SPEAKER_MAP_CHUNK_SECONDS) prior = p
+        else {
+          process.stdout.write(
+            `[speaker-map] existing map used ${p.chunkSeconds}s chunks, now ${SPEAKER_MAP_CHUNK_SECONDS}s — starting over\n`,
+          )
+        }
+      } catch {
+        process.stdout.write('[speaker-map] existing map unreadable — starting over\n')
+      }
+    }
+
+    // A chunk is done when the previous run produced segments inside its time
+    // window. Deriving it from the segments rather than trusting a counter
+    // means a truncated write cannot make the run skip work it never did.
+    const doneChunks = new Set<number>()
+    if (prior) {
+      for (const seg of prior.segments) {
+        doneChunks.add(Math.floor(seg.start / SPEAKER_MAP_CHUNK_SECONDS))
+      }
+      process.stdout.write(
+        `[speaker-map] resuming: ${doneChunks.size} chunk(s) already mapped, ` +
+          `${prior.rows.length} row(s) carried forward\n`,
+      )
+    }
+
+    const segments: RawSegment[] = prior ? [...prior.segments] : []
+    const rows: SpeakerMapRow[] = prior ? [...prior.rows] : []
+    const rejected: RejectedCandidate[] = prior
+      ? prior.rejected.map((r) => ({ ...r }) as RejectedCandidate)
+      : []
     const failedChunks: Array<{ chunk: number; why: string }> = []
     let quotaExhausted: string | null = null
     const adjudicated: Record<AdjudicationOutcome, number> = {
@@ -378,6 +431,10 @@ async function main() {
     let done = 0
 
     for (let i = 0; i < planned; i++) {
+      if (doneChunks.has(i)) {
+        done += 1
+        continue
+      }
       const path = join(chunkDir, chunks[i])
       const offset = i * SPEAKER_MAP_CHUNK_SECONDS
       const chunkDur = durationOf(path)
@@ -501,7 +558,10 @@ async function main() {
       rows,
       rejected,
       stats: {
-        chunksExpected: planned,
+        // The SESSION's chunk count, not this run's plan. A capped run that
+        // wrote 16 of 25 must not look complete — that is what tells the
+        // backlog to come back tomorrow.
+        chunksExpected: chunks.length,
         chunksTranscribed: done,
         failedChunks,
         labelsSeen,
@@ -530,6 +590,22 @@ async function main() {
         existingAsItems = null
       }
     }
+    // Nothing transcribed and nothing carried forward means there is no map to
+    // write. `decideSnapshotWrite` would allow it — 0 over 0 does not shrink
+    // anything — but a 0-row file on disk looks like a result, and the backlog,
+    // the reconciler and a reader all have to special-case it. No file is the
+    // honest representation of "this never ran".
+    if (done === 0 && !prior) {
+      process.stdout.write(
+        `\n[speaker-map] NOT WRITING ${out}\n` +
+          `  no chunk produced a transcript and there was no earlier map, so there is\n` +
+          `  nothing to record. An empty map would read as "nobody was identifiable".\n` +
+          `  ${quotaExhausted ? 'Cause: quota. Retry after the free tier rolls over (00:00 Pacific).' : 'See the failures above.'}\n`,
+      )
+      process.exitCode = 1
+      return
+    }
+
     const decision = decideSnapshotWrite({
       incomingCount: rows.length,
       // Any chunk without a transcript means this run is not evidence that a

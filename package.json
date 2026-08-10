@@ -179,7 +179,8 @@
     "retract:guessed-attributions": "npx tsx scripts/retract-guessed-attributions.ts",
     "check:data-graph": "npx tsx scripts/check-data-graph.ts",
     "refresh": "npx tsx scripts/refresh.ts",
-    "reconcile:attribution": "npx tsx scripts/reconcile-attribution.ts"
+    "reconcile:attribution": "npx tsx scripts/reconcile-attribution.ts",
+    "speaker-map:backlog": "npx tsx scripts/speaker-map-backlog.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

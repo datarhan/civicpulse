@@ -228,23 +228,12 @@ fi
 # invents a plausible map. A 429 therefore stops the run; it never degrades.
 SPEAKER_MAP_BUDGET="${SPEAKER_MAP_BUDGET:-18}"
 if [ "$SPEAKER_MAP_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
-  MAP_TARGETS=$(node -e '
-    const fs=require("fs");
-    const dir="public/data/pleno-transcripts";
-    const have=fs.existsSync("pleno-speaker-map")
-      ? new Set(fs.readdirSync("pleno-speaker-map").filter(f=>f.endsWith(".json")).map(f=>f.replace(/\.json$/,"")))
-      : new Set();
-    const plenos=JSON.parse(fs.readFileSync("public/data/plenos.json","utf8")).items||[];
-    const byId=new Map(plenos.map(p=>[p.id,p.date||""]));
-    const ids=fs.readdirSync(dir).filter(f=>f.endsWith(".txt")).map(f=>f.replace(/\.txt$/,""))
-      .filter(id=>!have.has(id))
-      .sort((a,b)=>String(byId.get(b)||"").localeCompare(String(byId.get(a)||"")));
-    process.stdout.write(ids.join("\n"));
-  ' 2>/dev/null || true)
+  MAP_TARGETS=$(npm run --silent speaker-map:backlog 2>/dev/null || true)
   if [ -n "$MAP_TARGETS" ]; then
     REMAINING="$SPEAKER_MAP_BUDGET"
     MAPPED=0
-    log "speaker-map backlog: $(echo "$MAP_TARGETS" | wc -l | tr -d ' ') session(s) without a map · budget ${SPEAKER_MAP_BUDGET} chunk(s)"
+    PARTIAL=$(npm run --silent speaker-map:backlog -- --why 2>/dev/null | grep -c parcial || true)
+    log "speaker-map backlog: $(echo "$MAP_TARGETS" | wc -l | tr -d ' ') session(s) unfinished ($PARTIAL of them partial, resuming) · budget ${SPEAKER_MAP_BUDGET} chunk(s)"
     while IFS= read -r mid; do
       [ -z "$mid" ] && continue
       if [ "$REMAINING" -le 0 ]; then
