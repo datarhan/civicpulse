@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T06:07:03.128Z",
+  "generatedAt": "2026-08-10T20:02:50.962Z",
   "source": "derived: tenders.json assignees + officials.json · overrides: entity-overrides.json",
   "stats": {
     "companies": 373,
@@ -6058,5 +6058,10 @@
       "party": "Compromís",
       "role": "concejal"
     }
-  ]
+  ],
+  "builtFrom": {
+    "entity-overrides.json": "a41cc20172e9",
+    "officials.json": "f81fa2cc1203",
+    "tenders.json": "3f0f613a36a8"
+  }
 }

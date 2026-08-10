@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T06:07:01.742Z",
+  "generatedAt": "2026-08-10T20:01:46.849Z",
   "source": {
     "tenders": "2026-08-10T05:52:34.973Z",
     "geo": "2026-08-10T05:53:56.628Z"
@@ -3811,5 +3811,13 @@
         "sourceId": "carrer-de-les-animes"
       }
     }
-  ]
+  ],
+  "builtFrom": {
+    "civic-poi.json": "4f2d30b0f6f4",
+    "gazetteer-supplement.json": "813c38c1dc80",
+    "geo.json": "25f8e272ccd5",
+    "place-overrides.json": "5a4641410141",
+    "streets.json": "ec93ccd4bc01",
+    "tenders.json": "3f0f613a36a8"
+  }
 }

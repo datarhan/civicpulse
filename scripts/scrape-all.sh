@@ -184,37 +184,32 @@ for s in "${SCRAPERS[@]}"; do
   fi
 done
 
-# compute:dept-stats runs unconditionally so the landing page's
-# overdue counter stays fresh even when an upstream scraper choked.
+# ── Derivations, driven by the dependency graph ─────────────────────────
+# These three used to run unconditionally, one hard-coded block each. That was
+# safe but blind: it could not tell that press-trust.json had gone stale because
+# press.json was rescraped this morning, and it recomputed the other two whether
+# or not anything they read had moved.
+#
+# `npm run refresh` walks src/scraper/data-graph.ts, rebuilds the derived nodes
+# whose inputs actually changed, and stamps each output with the hashes it was
+# built from. It also NAMES the work this environment cannot do — the LLM tier
+# lives on the laptop crons — so a green CI run cannot look complete when it is
+# not. See docs/OPERATIONS.md.
 echo ""
 echo "================================================================"
-echo "[scrape-all] running: compute:dept-stats"
+echo "[scrape-all] running: refresh (dependency-driven derivations)"
 echo "================================================================"
-if ! npm run compute:dept-stats; then
-  echo "[scrape-all] FAILED: compute:dept-stats"
-  failures+=("compute:dept-stats")
+if ! npm run refresh; then
+  echo "[scrape-all] FAILED: refresh"
+  failures+=("refresh")
 fi
 
+# The graph declares what the deterministic tier cannot reach. Printed even on
+# success, because "nothing to report" and "an LLM stage is overdue and this
+# runner has no model" must not look the same in the nightly log.
 echo ""
-echo "================================================================"
-echo "[scrape-all] running: compute:tender-geo"
-echo "================================================================"
-if ! npm run compute:tender-geo; then
-  echo "[scrape-all] FAILED: compute:tender-geo"
-  failures+=("compute:tender-geo")
-fi
-
-echo ""
-echo "================================================================"
-echo "[scrape-all] running: compute:entities"
-echo "================================================================"
-# Canonical company/people registry (name-variant merge + curated
-# aliases). Deterministic, no network — inputs are tenders.json +
-# officials.json + entity-overrides.json already on disk.
-if ! npm run compute:entities; then
-  echo "[scrape-all] FAILED: compute:entities"
-  failures+=("compute:entities")
-fi
+echo "[scrape-all] LLM-tier backlog the laptop crons still owe:"
+npm run --silent refresh -- --list llm | sed 's/^/  · /' || true
 
 echo ""
 echo "================================================================"

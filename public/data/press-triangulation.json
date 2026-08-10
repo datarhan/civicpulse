@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09T09:38:11.798Z",
+  "generatedAt": "2026-08-10T20:02:51.315Z",
   "clusters": [
     {
       "clusterId": "1urv1oi",
@@ -12,11 +12,32 @@
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
         "El Periódico de Aquí",
-        "Las Provincias",
-        "Periòdic del Camp de Túria"
+        "Periòdic del Camp de Túria",
+        "lasprovincias.es"
       ],
-      "earliestDate": "2026-07-29T12:21:23.000Z",
+      "earliestDate": "2026-07-29T07:00:00.000Z",
       "latestDate": "2026-08-03T17:35:23.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
+    {
+      "clusterId": "1cnqqro",
+      "articleIds": [
+        "1hs4vrb",
+        "7242dc"
+      ],
+      "outlets": [
+        "El Periódico de Aquí",
+        "Levante-EMV"
+      ],
+      "earliestDate": "2026-07-21T07:00:00.000Z",
+      "latestDate": "2026-07-22T12:38:58.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
@@ -48,27 +69,6 @@
       }
     },
     {
-      "clusterId": "46zdbr",
-      "articleIds": [
-        "l5r394",
-        "lrwh4v"
-      ],
-      "outlets": [
-        "El Periódico de Aquí",
-        "levante-emv.com"
-      ],
-      "earliestDate": "2026-08-04T16:14:00.000Z",
-      "latestDate": "2026-08-04T17:01:58.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
       "clusterId": "v06nlo",
       "articleIds": [
         "1cdyfns",
@@ -76,7 +76,7 @@
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "levante-emv.com"
+        "Levante-EMV"
       ],
       "earliestDate": "2026-08-05T12:13:09.000Z",
       "latestDate": "2026-08-05T13:50:30.000Z",
