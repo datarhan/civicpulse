@@ -105,6 +105,99 @@ export interface SpeakerMap {
   }
 }
 
+// ── Parsing the model's response ────────────────────────────────────────────
+
+/** One `[start → end] (SPEAKER_NN) text` line, as the model emitted it. */
+export interface RawSegment {
+  start: number
+  end: number
+  speaker: string
+  text: string
+}
+
+/**
+ * One identity line, parsed but **not judged**. `party` may be unacredited,
+ * `heardAs` may be a mishearing, the relation may not hold. Deciding that is
+ * `speaker-map-validate.ts`'s job, and keeping the two apart is what lets the
+ * validator's gates be tested against real model output rather than against
+ * whatever the parser already filtered out.
+ */
+export interface SpeakerCandidate {
+  label: string
+  heardAs: string | null
+  party: string | null
+  evidence: SpeakerEvidence | null
+}
+
+export interface ParsedSpeakerMapResponse {
+  segments: RawSegment[]
+  candidates: SpeakerCandidate[]
+}
+
+const IDENTITY_HEADER = '=== HABLANTES ==='
+
+/** `[12.4 → 18.9] (SPEAKER_03) texto`. The arrow is U+2192, per the prompt. */
+const SEGMENT_RE = /^\[\s*(\d+(?:\.\d+)?)\s*→\s*(\d+(?:\.\d+)?)\s*\]\s*\((SPEAKER_\d+)\)\s*(.*)$/
+
+/** `SPEAKER_01 @432.0 "…"` — who uttered the evidence, and when. */
+const EVIDENCE_RE = /^(SPEAKER_\d+)\s*@\s*(\d+(?:\.\d+)?)\s*["“](.*)["”]\s*$/
+
+const RELATIONS: readonly EvidenceRelation[] = ['turn-grant', 'reply', 'back-reference']
+
+/** The model writes «sin identificar» for a field it cannot acredit. */
+function orNull(field: string): string | null {
+  const v = field.trim()
+  if (!v) return null
+  return /^sin\s+identificar$/i.test(v) ? null : v
+}
+
+/**
+ * Split a model response into segments and identity candidates.
+ *
+ * Pure and total: never throws, never fetches. A line it cannot read whole is
+ * **dropped**, not half-read — a candidate missing its evidence would look to
+ * the validator like a row whose citation simply failed a gate, when in fact
+ * nobody ever cited anything.
+ */
+export function parseSpeakerMapResponse(raw: string): ParsedSpeakerMapResponse {
+  const [bodyPart, identityPart = ''] = (raw ?? '').split(IDENTITY_HEADER)
+
+  const segments: RawSegment[] = []
+  for (const line of bodyPart.split('\n')) {
+    const m = SEGMENT_RE.exec(line.trim())
+    if (!m) continue
+    const start = Number(m[1])
+    const end = Number(m[2])
+    if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) continue
+    segments.push({ start, end, speaker: m[3], text: m[4].trim() })
+  }
+
+  const candidates: SpeakerCandidate[] = []
+  for (const line of identityPart.split('\n')) {
+    const fields = line.split('|').map((f) => f.trim())
+    if (fields.length < 5) continue
+    const [label, name, party, ev, rel] = fields
+    if (!/^SPEAKER_\d+$/.test(label)) continue
+
+    const relation = rel.replace(/^rel:\s*/i, '').trim() as EvidenceRelation
+    if (!RELATIONS.includes(relation)) continue
+
+    const em = EVIDENCE_RE.exec(ev)
+    if (!em) continue
+    const at = Number(em[2])
+    if (!Number.isFinite(at)) continue
+
+    candidates.push({
+      label,
+      heardAs: orNull(name),
+      party: orNull(party),
+      evidence: { spokenBy: em[1], at, quote: em[3].trim(), relation },
+    })
+  }
+
+  return { segments, candidates }
+}
+
 /**
  * The bloc for a label, or null when the map does not vouch for it.
  *
