@@ -1,7 +1,7 @@
 {
   "_comment": "DERIVADO, no curado. Dice de qué transcripción procede cada literal publicado en /hallazgos: de la vigente, sólo de la que se sustituyó al re-transcribir la sesión, o de ninguna de las dos de forma concluyente. No modifica ninguna cita y no es una corrección: el único escritor de public/data/pleno-findings.json sigue siendo `npm run correct-pleno-finding`. Se regenera con `npm run compute:finding-quote-provenance`.",
   "version": "finding-quote-provenance-v1",
-  "generatedAt": "2026-08-10T01:14:55.522Z",
+  "generatedAt": "2026-08-10T06:07:08.634Z",
   "source": {
     "findings": "public/data/pleno-findings.json",
     "findingsGeneratedAt": "2026-08-09T18:48:08.617Z",
