@@ -34,6 +34,7 @@ describe('runRelationsChecks', () => {
     expect(rs['relations-quejas-tenders'].status).toBe('skipped')
     expect(rs['manifest-chunks'].status).toBe('skipped')
     expect(rs['findings-quote-provenance'].status).toBe('skipped')
+    expect(rs['findings-quote-contrast'].status).toBe('skipped')
   })
 
   describe('findings-quote-provenance', () => {
@@ -86,6 +87,149 @@ describe('runRelationsChecks', () => {
       )
       expect(rs['findings-quote-provenance'].status).toBe('broken')
       expect(rs['findings-quote-provenance'].broken[0]).toContain('estado-inventado')
+    })
+  })
+
+  describe('findings-quote-contrast', () => {
+    // Una cita sin veredicto de la puerta se pinta SIN marca, o sea como una
+    // afirmación que alguien comprobó. Y un veredicto que se quedó viejo es
+    // peor: el motor de veredictos re-juzga solo, así que la página puede
+    // acabar diciendo «acusación no contrastada» de algo que ya tiene datos —
+    // o, al revés, callándose sobre una acusación que los perdió.
+    const findings = {
+      items: [
+        {
+          id: 'f1',
+          quotes: [
+            { text: 'una', sourceClaimId: 'c-ok' },
+            { text: 'otra', sourceClaimId: 'c-acu' },
+          ],
+        },
+      ],
+    }
+    // `verificado` sobre una afirmación ordinaria → shown.
+    // `sin-datos` sobre una acusación pública → hidden.
+    const verified = {
+      items: [
+        {
+          claim: { id: 'c-ok', type: 'cita_verificable' },
+          verification: { verdict: 'verificado' },
+        },
+        {
+          claim: { id: 'c-acu', type: 'acusacion_publica', accusationSubtype: 'factual' },
+          verification: { verdict: 'sin-datos' },
+        },
+      ],
+    }
+
+    it('acepta un hallazgo cuyas marcas coinciden con el verificador', () => {
+      const rs = byName(
+        runRelationsChecks({
+          findings,
+          verified,
+          quoteProvenance: {
+            quotes: {
+              f1: [
+                { status: 'en-vigente', gate: 'shown' },
+                { status: 'en-vigente', gate: 'hidden' },
+              ],
+            },
+          },
+        }),
+      )
+      expect(rs['findings-quote-contrast'].status).toBe('ok')
+      expect(rs['findings-quote-contrast'].checked).toBe(2)
+    })
+
+    it('señala la cita que se quedó sin veredicto de la puerta', () => {
+      const rs = byName(
+        runRelationsChecks({
+          findings,
+          verified,
+          quoteProvenance: {
+            quotes: { f1: [{ status: 'en-vigente', gate: 'shown' }, { status: 'en-vigente' }] },
+          },
+        }),
+      )
+      expect(rs['findings-quote-contrast'].status).toBe('broken')
+      expect(rs['findings-quote-contrast'].level).toBe('error')
+      expect(rs['findings-quote-contrast'].broken[0]).toContain('f1[1]')
+      expect(rs['findings-quote-contrast'].broken[0]).toContain('no editorial-gate verdict')
+    })
+
+    it('señala una marca que dejó de coincidir con el veredicto vigente', () => {
+      const rs = byName(
+        runRelationsChecks({
+          findings,
+          verified,
+          quoteProvenance: {
+            quotes: {
+              f1: [
+                { status: 'en-vigente', gate: 'shown' },
+                // La acusación se marcó como publicable: exactamente la forma
+                // de una marca que se quedó vieja tras un re-juicio.
+                { status: 'en-vigente', gate: 'shown' },
+              ],
+            },
+          },
+        }),
+      )
+      expect(rs['findings-quote-contrast'].status).toBe('broken')
+      expect(rs['findings-quote-contrast'].broken[0]).toContain('f1[1]')
+      expect(rs['findings-quote-contrast'].broken[0]).toContain('verifier now says hidden')
+    })
+
+    it('señala un veredicto que la página no sabe rotular', () => {
+      const rs = byName(
+        runRelationsChecks({
+          findings,
+          verified,
+          quoteProvenance: {
+            quotes: {
+              f1: [
+                { status: 'en-vigente', gate: 'shown' },
+                { status: 'en-vigente', gate: 'quizas' },
+              ],
+            },
+          },
+        }),
+      )
+      expect(rs['findings-quote-contrast'].status).toBe('broken')
+      expect(rs['findings-quote-contrast'].broken[0]).toContain('quizas')
+    })
+
+    it('señala una cita cuya afirmación ya no está en el verificador', () => {
+      const rs = byName(
+        runRelationsChecks({
+          findings,
+          verified: { items: [verified.items[0]] },
+          quoteProvenance: {
+            quotes: {
+              f1: [
+                { status: 'en-vigente', gate: 'shown' },
+                { status: 'en-vigente', gate: 'hidden' },
+              ],
+            },
+          },
+        }),
+      )
+      expect(rs['findings-quote-contrast'].status).toBe('broken')
+      expect(rs['findings-quote-contrast'].broken[0]).toContain('absent from the verifier')
+    })
+
+    it('sin citas que examinar dice `empty`, no `ok`', () => {
+      // La diferencia entre «comprobado y correcto» y «no había nada que
+      // comprobar»: una travesía que no case con nada no puede informar de
+      // integridad.
+      const rs = byName(
+        runRelationsChecks({
+          findings: { items: [{ id: 'f1', quotes: [] }] },
+          verified,
+          quoteProvenance: { quotes: {} },
+        }),
+      )
+      expect(rs['findings-quote-contrast'].status).toBe('empty')
+      expect(rs['findings-quote-contrast'].checked).toBe(0)
     })
   })
 

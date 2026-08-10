@@ -171,6 +171,7 @@
     "suggest:area-fit": "npx tsx scripts/suggest-area-fit.ts",
     "triage:finding-support": "npx tsx scripts/triage-finding-support.ts",
     "triage:quote-reanchor": "npx tsx scripts/triage-quote-reanchor.ts",
+    "triage:finding-exception": "npx tsx scripts/triage-finding-exception.ts",
     "promote-area-fit": "npx tsx scripts/promote-area-fit.ts",
     "migrate:area-fit-short": "npx tsx scripts/migrate-area-fit-short.ts",
     "migrate:area-fit-portfolio-key": "npx tsx scripts/migrate-area-fit-portfolio-key.ts"

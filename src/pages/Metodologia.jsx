@@ -58,10 +58,27 @@ function useQuoteProvenanceDisclosure() {
   return data?.stats ?? null
 }
 
+/**
+ * How many published verbatims the editorial gate would withhold from
+ * `/plenos`, read live from the same derived snapshot.
+ *
+ * The most volatile figure on this page: the verdict engine re-judges claims on
+ * a schedule of its own, so a claim grounded overnight moves between these
+ * three buckets without anybody editing anything. Typing the number here would
+ * be a false statement about how many published accusations are uncontrasted,
+ * on the page that IS the editorial contract.
+ */
+function useQuoteContrastDisclosure() {
+  const { data } = useFindingQuoteProvenance()
+  const stats = data?.contraste?.stats ?? null
+  return stats?.porContraste ? stats : null
+}
+
 export default function Metodologia() {
   const authorship = useAuthorshipDisclosure()
   const adjudication = useAdjudicationDisclosure()
   const quoteProvenance = useQuoteProvenanceDisclosure()
+  const quoteContrast = useQuoteContrastDisclosure()
   return (
     <div
       className="cp-page"
@@ -912,6 +929,86 @@ export default function Metodologia() {
           ficha, con el texto anterior tachado y el motivo. Una cita que no aparece en{' '}
           <strong>ninguna</strong> de las dos transcripciones es un problema distinto —posible
           invención, no desgaste— y no se publica con marca: se bloquea.
+        </p>
+      </Card>
+
+      <Card id="citas-contraste" style={{ marginTop: 14, scrollMarginTop: 24 }}>
+        <SectionHead
+          eyebrow="Citas y datos municipales"
+          title="Por qué una acusación puede estar publicada sin contrastar"
+        />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Cada afirmación que extraemos de un pleno se coteja automáticamente con la base documental
+          del ayuntamiento: contratos, subvenciones, presupuesto y promesas publicadas. Una{' '}
+          <strong>puerta editorial</strong> decide después qué puede salir a la vista, y su regla es
+          fallar del lado prudente: si el cotejo no encontró datos, la afirmación no se presenta
+          como comprobada. En{' '}
+          <a href="/plenos" style={{ color: 'var(--civic)' }}>
+            el registro de declaraciones del pleno
+          </a>{' '}
+          esa puerta hace tres cosas distintas — publica la afirmación con sus datos, la publica
+          etiquetada como sin contraste, o <strong>no la publica</strong>. Lo último se reserva a
+          las acusaciones públicas que el cotejo no pudo respaldar, y a los desmentidos que asigna
+          una máquina, que son pistas para un redactor y no veredictos.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>
+            Un hallazgo es la excepción que esa puerta concede, y la concede porque delante hay una
+            persona.
+          </strong>{' '}
+          Promover una declaración a hallazgo es un acto editorial: alguien lee la frase, la sitúa
+          en su contexto documental y firma. Por eso una cita puede aparecer en{' '}
+          <a href="/hallazgos" style={{ color: 'var(--civic)' }}>
+            /hallazgos
+          </a>{' '}
+          aunque la puerta la retenga en el registro.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          En estas fichas <strong>la excepción la tomó una máquina</strong>. El proceso automático
+          que redacta la mayoría de los hallazgos venía promoviendo declaraciones sin comprobar qué
+          decía la puerta, y esta página no consultaba la puerta al pintarlas. Lo declaramos en vez
+          de borrar nada: retirar citas ya publicadas sería un acto editorial mayor que el que las
+          publicó, tomado por el mismo tipo de proceso. Las fichas afectadas están en una cola de
+          revisión humana con una sola pregunta —<em>¿merece este hallazgo la excepción?</em>— y
+          hasta que una persona la responda, cada cita afectada lleva su marca.
+        </p>
+        <ul style={{ margin: '8px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
+          <li>
+            <strong>«acusación no contrastada»</strong> — lo que se afirma es una acusación pública
+            sobre la gestión municipal y el cotejo no encontró ningún dato que la respalde{' '}
+            <em>ni que la desmienta</em>. Lo que el lector debe concluir: se dijo, lo publicamos, y
+            no sabemos si es cierto. No estamos diciendo que sea falsa.
+          </li>
+          <li>
+            <strong>«sin contraste en los datos»</strong> — lo mismo, pero la afirmación no es una
+            acusación. Se distingue a propósito: que no haya datos sobre una cifra de presupuesto y
+            que no los haya sobre una adjudicación a dedo no significan lo mismo, y la puerta las
+            separa por eso.
+          </li>
+        </ul>
+        {quoteContrast && (
+          <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+            Hoy, de {quoteContrast.citasConClaim} literales publicados en /hallazgos, el cotejo
+            encontró datos sobre <strong>{quoteContrast.porContraste.shown}</strong>;{' '}
+            <strong>{quoteContrast.porContraste.toggle}</strong> se publican sin contraste y{' '}
+            <strong>{quoteContrast.porContraste.hidden}</strong> son acusaciones que la puerta
+            retiene en el registro de declaraciones.{' '}
+            <strong>{quoteContrast.hallazgosSinCitaMostrable}</strong> fichas no tienen ni una sola
+            cita que la puerta publicaría, y {quoteContrast.hallazgosSoloConCitasOcultas} están
+            hechas por entero de citas que retiene. Las cifras se leen del fichero derivado{' '}
+            <code>finding-quote-provenance.json</code> al mostrar esta página, no están escritas
+            aquí: cambian cada vez que el verificador vuelve a juzgar una declaración.
+          </p>
+        )}
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          La marca es un cálculo, no una opinión: se obtiene preguntando a la misma puerta que
+          gobierna el registro, sobre el mismo veredicto vigente del verificador —el determinista
+          más las revisiones posteriores, que es lo que se publica—.{' '}
+          <code>npm run check:relations</code> vuelve a preguntárselo en cada pasada nocturna y se
+          pone en rojo si la marca publicada deja de coincidir, para que no pueda quedarse vieja en
+          silencio. <strong>Ninguna cita se ha retirado ni reescrito</strong>, y el único escritor
+          del fichero de hallazgos sigue siendo la CLI de correcciones, que deja el cambio en la
+          bitácora pública de la ficha.
         </p>
       </Card>
 

@@ -1151,6 +1151,56 @@ function handleQuoteReanchorQueueRead(req, res, cwd) {
   })
 }
 
+/**
+ * GET /api/curator/finding-exception-queue — los hallazgos publicados que no
+ * citan ni un literal que la puerta editorial de /plenos mostraría.
+ *
+ * Lee editorial/finding-exception-queue.json, GITIGNORED y jamás servido por
+ * Vercel, por la misma razón que las otras dos colas: son acusaciones sin
+ * contrastar junto a atribuciones de grupo político. Bajo public/ serían
+ * fetchables por URL en cuanto se escribieran.
+ *
+ * Sólo lectura, y a propósito. Ni `correct-pleno-finding` ni nada que retire
+ * una cita está en el allowlist de acciones, y no se añaden aquí: decidir que
+ * un hallazgo publicado sobre un grupo con nombre se corrige o se retira es el
+ * acto editorial que la puerta reservaba a una persona, y no se hace desde un
+ * botón del navegador. La pantalla enseña el comando exacto; lo ejecuta una
+ * persona en su terminal.
+ *
+ * El fichero puede no existir (nadie ha corrido `npm run
+ * triage:finding-exception`) → cola vacía, no un error.
+ */
+function handleFindingExceptionQueueRead(req, res, cwd) {
+  if (req.method !== 'GET') {
+    sendJson(res, 405, { error: 'method not allowed' })
+    return
+  }
+  {
+    const originErr = checkOrigin(req)
+    if (originErr) {
+      sendJson(res, 403, { error: originErr })
+      return
+    }
+  }
+  const path = resolve(cwd, 'editorial/finding-exception-queue.json')
+  let queue = {}
+  if (existsSync(path)) {
+    try {
+      queue = JSON.parse(readFileSync(path, 'utf8'))
+    } catch (err) {
+      process.stderr.write(`[finding-exception-queue] fichero ilegible: ${err.message}\n`)
+      queue = {}
+    }
+  }
+  sendJson(res, 200, {
+    generatedAt: typeof queue.generatedAt === 'string' ? queue.generatedAt : null,
+    queueVersion: queue.queueVersion ?? null,
+    sourceSnapshot: queue.sourceSnapshot ?? null,
+    stats: queue.stats ?? null,
+    rows: Array.isArray(queue.rows) ? queue.rows : [],
+  })
+}
+
 function handlePromiseQueueRead(req, res, cwd) {
   if (req.method !== 'GET') {
     sendJson(res, 405, { error: 'method not allowed' })
@@ -1531,6 +1581,17 @@ export function viteCuratorPlugin(opts = {}) {
         if (!req.url || req.url === '/' || req.url === '') {
           try {
             handleQuoteReanchorQueueRead(req, res, cwd)
+          } catch (err) {
+            sendJson(res, 500, { error: err.message })
+          }
+        } else {
+          next()
+        }
+      })
+      server.middlewares.use('/api/curator/finding-exception-queue', (req, res, next) => {
+        if (!req.url || req.url === '/' || req.url === '') {
+          try {
+            handleFindingExceptionQueueRead(req, res, cwd)
           } catch (err) {
             sendJson(res, 500, { error: err.message })
           }

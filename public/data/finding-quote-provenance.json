@@ -1,7 +1,7 @@
 {
-  "_comment": "DERIVADO, no curado. Dice de qué transcripción procede cada literal publicado en /hallazgos: de la vigente, sólo de la que se sustituyó al re-transcribir la sesión, o de ninguna de las dos de forma concluyente. No modifica ninguna cita y no es una corrección: el único escritor de public/data/pleno-findings.json sigue siendo `npm run correct-pleno-finding`. Se regenera con `npm run compute:finding-quote-provenance`.",
-  "version": "finding-quote-provenance-v1",
-  "generatedAt": "2026-08-10T06:07:08.634Z",
+  "_comment": "DERIVADO, no curado. Dos cosas por cada literal publicado en /hallazgos. (1) `quotes[id][i].status`: de qué transcripción procede — de la vigente, sólo de la que se sustituyó al re-transcribir la sesión, o de ninguna de las dos de forma concluyente. (2) `quotes[id][i].gate`: qué haría con la afirmación que sostiene esa cita la puerta editorial de src/scraper/claim-public-gate.ts, que gobierna /plenos y que /hallazgos no consultaba — `shown`, `toggle` o `hidden`, su propio vocabulario. Ninguna de las dos modifica una cita y ninguna es una corrección: el único escritor de public/data/pleno-findings.json sigue siendo `npm run correct-pleno-finding`. Se regenera con `npm run compute:finding-quote-provenance`.",
+  "version": "finding-quote-provenance-v2",
+  "generatedAt": "2026-08-10T08:57:13.814Z",
   "source": {
     "findings": "public/data/pleno-findings.json",
     "findingsGeneratedAt": "2026-08-09T18:48:08.617Z",
@@ -35,6 +35,44 @@
       "meaning": "No hay fichero de transcripción vigente para esa sesión: no hay nada contra lo que cotejar."
     }
   ],
+  "contraste": {
+    "source": {
+      "base": "public/data/pleno-claims-verified-base.json",
+      "overlay": "public/data/pleno-claims-overlay.json"
+    },
+    "states": [
+      {
+        "id": "shown",
+        "meaning": "El verificador encontró datos municipales sobre la afirmación que sostiene esta cita: la puerta editorial la publicaría en /plenos tal cual.",
+        "marks": false
+      },
+      {
+        "id": "toggle",
+        "meaning": "El verificador no encontró ningún dato municipal que confirme ni desmienta la afirmación que sostiene esta cita. No es una acusación; en /plenos se publica etiquetada como sin contraste.",
+        "marks": true
+      },
+      {
+        "id": "hidden",
+        "meaning": "La afirmación que sostiene esta cita es una acusación pública que el verificador no pudo contrastar con ningún dato municipal (o un `contradicho` asignado por máquina). En /plenos no se publica; en un hallazgo se publica porque alguien la promovió.",
+        "marks": true
+      }
+    ],
+    "stats": {
+      "citasConClaim": 177,
+      "citasSinClaim": 0,
+      "porContraste": {
+        "shown": 16,
+        "toggle": 86,
+        "hidden": 75
+      },
+      "citasConVeredictoDeOverlay": 137,
+      "citasReclasificadasPorElOverlay": 135,
+      "hallazgosSinCitaMostrable": 39,
+      "hallazgosSoloConCitasOcultas": 11,
+      "claimsEnCorpus": 6359,
+      "entradasDeOverlay": 1425
+    }
+  },
   "stats": {
     "findings": 52,
     "quotes": 177,
@@ -127,639 +165,816 @@
   "quotes": {
     "f-2026-07-03-cit-1e90e0": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       }
     ],
     "f-2026-07-03-cit-df8455": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       }
     ],
     "f-2026-05-11-acu-a870a4": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "shown"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       }
     ],
     "f-2026-05-11-acu-1adbf3": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       }
     ],
     "f-2026-05-11-cit-bb5f00": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       }
     ],
     "f-2026-05-11-cit-73d3cf": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       }
     ],
     "f-2026-05-11-cit-0907e6": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       }
     ],
     "f-2026-05-11-cit-7f7619": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       }
     ],
     "f-2026-05-11-cit-a0a379": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       }
     ],
     "f-2026-05-11-acu-ea9d47": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       }
     ],
     "f-2026-05-11-acu-7c65c5": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       }
     ],
     "f-2026-05-11-acu-1e1bfa": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       }
     ],
     "f-2026-05-11-acu-da7902": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       }
     ],
     "f-2026-04-20-cit-b9b013": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "shown"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       }
     ],
     "f-2026-04-20-cit-25e6ea": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       }
     ],
     "f-2026-04-20-acu-93c1e8": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       }
     ],
     "f-2026-04-20-cit-947479": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "shown"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       }
     ],
     "f-2026-03-16-cit-377216": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "shown"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       }
     ],
     "f-2026-03-16-cit-56214f": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       }
     ],
     "f-2026-03-16-cit-436a7e": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       }
     ],
     "f-2026-03-16-cit-75b31f": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       }
     ],
     "f-2026-03-16-cit-528973": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       }
     ],
     "f-2026-03-09-afi-a9546e": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       }
     ],
     "f-2026-03-09-acu-d94904": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
         "status": "sin-determinar",
-        "reason": "transcripcion-actual-mas-corta"
+        "reason": "transcripcion-actual-mas-corta",
+        "gate": "hidden"
       },
       {
         "status": "sin-determinar",
-        "reason": "transcripcion-actual-mas-corta"
+        "reason": "transcripcion-actual-mas-corta",
+        "gate": "hidden"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       }
     ],
     "f-2026-01-19-afi-5b06c8": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "shown"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "shown"
       }
     ],
     "f-2026-01-19-cit-3fd230": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       }
     ],
     "f-2026-01-19-acu-2c074a": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       }
     ],
     "f-2026-01-19-cit-cc8758": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "shown"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       }
     ],
     "f-2026-01-19-cit-c80e68": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "shown"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       }
     ],
     "f-2026-01-19-cit-8b29a9": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       }
     ],
     "f-2026-01-19-afi-5238db": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       }
     ],
     "f-2026-01-19-cit-543cc1": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "shown"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "shown"
       }
     ],
     "f-2026-01-19-acu-d2b7bb": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       }
     ],
     "f-2026-01-19-acu-b1a13f": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "shown"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       }
     ],
     "f-2025-12-23-acu-a1ba00": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       }
     ],
     "f-2025-12-23-cit-c905c3": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       }
     ],
     "f-2025-12-23-afi-3eebaf": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       }
     ],
     "f-2025-12-23-acu-cd77e9": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       }
     ],
     "f-2025-12-01-cit-d89862": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       }
     ],
     "f-2025-12-01-cit-66cd62": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       }
     ],
     "f-2025-12-01-cit-66709b": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       }
     ],
     "f-2025-12-01-cit-bef239": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "shown"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       }
     ],
     "f-2025-12-01-acu-34560f": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       }
     ],
     "f-2025-12-01-acu-51aaa3": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       }
     ],
     "f-2025-11-03-acu-431140": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "shown"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "shown"
       }
     ],
     "f-2025-10-06-cit-6c4d24": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       }
     ],
     "f-2025-10-06-cit-591d40": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "shown"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       }
     ],
     "f-2025-10-06-acu-bba0e9": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       }
     ],
     "f-2025-10-06-acu-b00839": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       }
     ],
     "f-2025-09-08-cit-d6d194": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "shown"
       },
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "toggle"
       }
     ],
     "f-2025-09-08-acu-70a34f": [
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "toggle"
       }
     ],
     "f-2025-07-31-acu-144947": [
       {
-        "status": "en-vigente"
+        "status": "en-vigente",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       },
       {
-        "status": "solo-en-sustituida"
+        "status": "solo-en-sustituida",
+        "gate": "hidden"
       }
     ]
   },

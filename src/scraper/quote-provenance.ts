@@ -50,8 +50,32 @@
  * is one matcher AND one classifier: `check:finding-quotes` and the compute
  * script both call `classifyQuoteProvenance`, so the gate and the published
  * snapshot cannot disagree about what a quote's status is.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * A SECOND AXIS, IN THE SAME SNAPSHOT
+ *
+ * «¿Salieron estas palabras del mejor texto que tenemos?» and «¿respalda algún
+ * dato municipal lo que dicen?» are different questions, and a quote can fail
+ * both. The second one is `quote-contrast.ts`, which asks the editorial gate
+ * (`claim-public-gate.ts`) what it would do with the claim behind each
+ * verbatim — 75 of the 177 are accusations that gate withholds from `/plenos`.
+ *
+ * They live in ONE file and one row because they describe the same quote and
+ * the reader meets them in the same blockquote: a parallel snapshot would need
+ * a parallel hook, a parallel chip and a parallel drift gate, and the two would
+ * eventually disagree about which quotes exist. This module owns the transcript
+ * axis and the row assembly; `quote-contrast.ts` owns the gate axis. Neither
+ * restates the other's decision tree.
  */
+import type { ClaimVisibility } from './claim-public-gate'
 import { quoteAppearsIn, quoteCoverage } from './quote-match'
+import {
+  buildQuoteContrast,
+  contrastSanityFailure,
+  QUOTE_CONTRAST_STATES,
+  type QuoteContrastStats,
+  type VerifierCorpus,
+} from './quote-contrast'
 
 /**
  * The three publishable states. Exported as the single definition — nothing
@@ -195,12 +219,21 @@ export function classifyQuoteProvenance(quote: string, s: SessionTexts): QuotePr
 
 // ─── The published snapshot ─────────────────────────────────────────────────
 
-export const PROVENANCE_VERSION = 'finding-quote-provenance-v1'
+/** v2 adds the `gate` axis to every row — see the header's second section. */
+export const PROVENANCE_VERSION = 'finding-quote-provenance-v2'
 
 /** One published quote's row. `reason` is omitted unless there is one. */
 export interface QuoteProvenanceEntry {
   status: QuoteProvenanceStatus
   reason?: UndeterminedReason
+  /**
+   * What `claim-public-gate.ts` would do with the claim behind this quote,
+   * in the gate's own vocabulary. `null` only when the quote's `sourceClaimId`
+   * is missing from the verifier corpus, which `contrastSanityFailure` refuses
+   * to write — so a published file never carries one, and `check:relations`
+   * reds if one appears.
+   */
+  gate: ClaimVisibility | null
 }
 
 export interface ProvenanceSessionRow {
@@ -234,6 +267,17 @@ export interface QuoteProvenanceSnapshot {
   }
   statuses: typeof QUOTE_PROVENANCE_STATUSES
   undeterminedReasons: typeof UNDETERMINED_REASONS
+  /**
+   * The gate axis. A sibling block rather than more keys in `stats` because
+   * `stats` is a flat bag of scalars that `diffProvenance` walks key by key,
+   * and `porContraste` is a map — folding it in would compare two objects by
+   * identity and silently never differ.
+   */
+  contraste: {
+    source: { base: string; overlay: string }
+    states: typeof QUOTE_CONTRAST_STATES
+    stats: QuoteContrastStats
+  }
   stats: {
     findings: number
     /** Every quote slot in the snapshot — the denominator nothing may drop. */
@@ -263,7 +307,7 @@ export interface QuoteProvenanceSnapshot {
 export interface ProvenanceFinding {
   id: string
   plenoId: string
-  quotes?: Array<{ text?: string }>
+  quotes?: Array<{ text?: string; sourceClaimId?: string | null }>
 }
 
 /**
@@ -297,20 +341,47 @@ export function provenanceSanityFailure(stats: QuoteProvenanceSnapshot['stats'])
 }
 
 /**
- * Build the whole snapshot. Pure: `sessions` is already-read text, so this is
- * unit-testable against fixtures and the same function serves the check.
+ * Both axes' sanity in one call, so a caller cannot check the transcript half
+ * and forget the gate half. `compute:finding-quote-provenance` and
+ * `check:finding-quotes` call THIS and nothing else — the per-axis functions
+ * stay exported for the unit tests that inject broken stats into each.
+ *
+ * The order matters only in what it reports first; either failure blocks a
+ * write. The gate half is where the base-vs-merged mistake would surface.
+ */
+export function snapshotSanityFailure(snap: QuoteProvenanceSnapshot): string | null {
+  return provenanceSanityFailure(snap.stats) ?? contrastSanityFailure(snap.contraste.stats)
+}
+
+/**
+ * Build the whole snapshot. Pure: `sessions` is already-read text and `corpus`
+ * already-merged verifier items, so this is unit-testable against fixtures and
+ * the same function serves the check.
+ *
+ * `corpus` is REQUIRED, not optional. An optional verifier corpus would mean an
+ * absent one produces a snapshot with every `gate` null, which renders as an
+ * unmarked — i.e. contrasted — quote on a page about named political groups.
+ * Every caller passes it, and an empty one is refused by
+ * `contrastSanityFailure` before anything is written.
  */
 export function buildQuoteProvenance(
   findings: ProvenanceFinding[],
   sessions: ReadonlyMap<string, SessionTexts>,
+  corpus: VerifierCorpus,
   opts: {
     generatedAt: string
     findingsGeneratedAt: string
     findingsPath?: string
     transcriptsPath?: string
     supersededPath?: string
+    basePath?: string
+    overlayPath?: string
   },
 ): QuoteProvenanceSnapshot {
+  // The gate axis, computed over the same findings in the same order. Rows are
+  // indexed by the quote's OWN position, so a quote the transcript axis leaves
+  // unresolved cannot shift the gate rows underneath the rest.
+  const contrast = buildQuoteContrast(findings, corpus)
   const quotes: Record<string, QuoteProvenanceEntry[]> = {}
   const unresolved: UnresolvedQuote[] = []
   const sessionRows: Record<string, ProvenanceSessionRow> = {}
@@ -367,10 +438,11 @@ export function buildQuoteProvenance(
         else if (outcome.reason === 'transcripcion-actual-mas-corta') porMasCorta += 1
         else porFalta += 1
       }
+      const gate = contrast.rows[f.id]?.[i]?.gate ?? null
       rows.push(
         outcome.reason === null
-          ? { status: outcome.status }
-          : { status: outcome.status, reason: outcome.reason },
+          ? { status: outcome.status, gate }
+          : { status: outcome.status, reason: outcome.reason, gate },
       )
     })
     quotes[f.id] = rows
@@ -379,10 +451,13 @@ export function buildQuoteProvenance(
   const sessionList = Object.values(sessionRows)
   return {
     _comment:
-      'DERIVADO, no curado. Dice de qué transcripción procede cada literal publicado en /hallazgos: ' +
-      'de la vigente, sólo de la que se sustituyó al re-transcribir la sesión, o de ninguna de las dos ' +
-      'de forma concluyente. No modifica ninguna cita y no es una corrección: el único escritor de ' +
-      'public/data/pleno-findings.json sigue siendo `npm run correct-pleno-finding`. ' +
+      'DERIVADO, no curado. Dos cosas por cada literal publicado en /hallazgos. (1) `quotes[id][i].status`: ' +
+      'de qué transcripción procede — de la vigente, sólo de la que se sustituyó al re-transcribir la ' +
+      'sesión, o de ninguna de las dos de forma concluyente. (2) `quotes[id][i].gate`: qué haría con la ' +
+      'afirmación que sostiene esa cita la puerta editorial de src/scraper/claim-public-gate.ts, que ' +
+      'gobierna /plenos y que /hallazgos no consultaba — `shown`, `toggle` o `hidden`, su propio ' +
+      'vocabulario. Ninguna de las dos modifica una cita y ninguna es una corrección: el único escritor ' +
+      'de public/data/pleno-findings.json sigue siendo `npm run correct-pleno-finding`. ' +
       'Se regenera con `npm run compute:finding-quote-provenance`.',
     version: PROVENANCE_VERSION,
     generatedAt: opts.generatedAt,
@@ -394,6 +469,14 @@ export function buildQuoteProvenance(
     },
     statuses: QUOTE_PROVENANCE_STATUSES,
     undeterminedReasons: UNDETERMINED_REASONS,
+    contraste: {
+      source: {
+        base: opts.basePath ?? 'public/data/pleno-claims-verified-base.json',
+        overlay: opts.overlayPath ?? 'public/data/pleno-claims-overlay.json',
+      },
+      states: QUOTE_CONTRAST_STATES,
+      stats: contrast.stats,
+    },
     stats: {
       findings: findings.length,
       quotes: total,
@@ -425,6 +508,12 @@ export function buildQuoteProvenance(
  * say so. `check:finding-quotes` re-derives and calls this, so the page and the
  * bytes cannot drift apart quietly.
  *
+ * Both axes, for the same reason. A `gate` that stopped tracking the verifier
+ * is worse than a stale transcript status: the verdict engine re-judges claims
+ * on its own schedule, and a quote whose mark says «acusación no contrastada»
+ * after the claim was grounded — or, far worse, one that lost its mark after
+ * being ungrounded — is a false statement about a named political group.
+ *
  * Compares the semantic content only: `generatedAt` moves on every run and a
  * timestamp mismatch is not a defect. Returns the differences as sentences,
  * empty when they agree.
@@ -445,6 +534,26 @@ export function diffProvenance(
     // and it is a liveness signal rather than a claim about a quote.
     if (k === 'bytesLeidos') continue
     if (pStats[k] !== v) out.push(`stats.${k}: publicado ${String(pStats[k])} ≠ derivado ${v}`)
+  }
+  // The gate axis. `porContraste` is a map, so it is walked rather than
+  // compared — `{} !== {}` would make this branch permanently silent, which is
+  // the failure mode the whole function exists to prevent.
+  const pContrast = ((published.contraste?.stats ?? {}) as Record<string, unknown>) || {}
+  for (const [k, v] of Object.entries(derived.contraste.stats)) {
+    if (k === 'porContraste') {
+      const pMap = (pContrast.porContraste ?? {}) as Record<string, unknown>
+      for (const [gate, n] of Object.entries(derived.contraste.stats.porContraste)) {
+        if (pMap[gate] !== n) {
+          out.push(
+            `contraste.porContraste.${gate}: publicado ${String(pMap[gate])} ≠ derivado ${n}`,
+          )
+        }
+      }
+      continue
+    }
+    if (pContrast[k] !== v) {
+      out.push(`contraste.stats.${k}: publicado ${String(pContrast[k])} ≠ derivado ${v}`)
+    }
   }
   const pQuotes = (published.quotes ?? {}) as Record<string, QuoteProvenanceEntry[]>
   const ids = new Set([...Object.keys(pQuotes), ...Object.keys(derived.quotes)])
@@ -468,6 +577,11 @@ export function diffProvenance(
         out.push(
           `${id}[${i}]: publicado ${a[i]?.status ?? '—'}${a[i]?.reason ? `/${a[i].reason}` : ''} ` +
             `≠ derivado ${b[i].status}${b[i].reason ? `/${b[i].reason}` : ''}`,
+        )
+      }
+      if ((a[i]?.gate ?? null) !== b[i].gate) {
+        out.push(
+          `${id}[${i}]: puerta publicada ${String(a[i]?.gate ?? '—')} ≠ derivada ${String(b[i].gate)}`,
         )
       }
     }

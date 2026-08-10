@@ -16,7 +16,20 @@
  */
 import type { VerifiedClaimItem } from './pleno-claims-chunks'
 
-export type ClaimVisibility = 'shown' | 'toggle' | 'hidden'
+/**
+ * The three outcomes, as a value rather than only a type.
+ *
+ * Exported so a caller can build a `Record<ClaimVisibility, …>` — reader
+ * wording, a counter per outcome — and be broken by the compiler when a fourth
+ * outcome appears, instead of hand-copying the list. Copying a shape into a
+ * caller is what kept six suites in this repo green while production matched
+ * nothing (docs/DATA_INTEGRITY.md rule 1).
+ *
+ * The union is DERIVED from this array, so the two cannot drift apart.
+ */
+export const CLAIM_VISIBILITIES = ['shown', 'toggle', 'hidden'] as const
+
+export type ClaimVisibility = (typeof CLAIM_VISIBILITIES)[number]
 
 /** Verdicts that mean the verifier found corroborating/contradicting data. */
 export const DATA_GROUNDED_VERDICTS: ReadonlySet<string> = new Set([

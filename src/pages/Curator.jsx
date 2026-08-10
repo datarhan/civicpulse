@@ -21,6 +21,7 @@ import { PromiseDraftRow, PromisePendingRow } from './curator/promise-queue'
 import { AreaFitRow } from './curator/area-fit-queue'
 import { FindingSupportRow, FindingSupportStyles } from './curator/finding-support-queue'
 import { QuoteReanchorRow, QuoteReanchorStyles } from './curator/quote-reanchor-queue'
+import { FindingExceptionRow, FindingExceptionStyles } from './curator/finding-exception-queue'
 import { VoiceEnrollmentSection, VoiceIDAssignmentsSection } from './curator/voice'
 
 export default function Curator() {
@@ -30,6 +31,7 @@ export default function Curator() {
   const areaFitQueue = useJsonResource('/api/curator/area-fit-queue')
   const findingSupportQueue = useJsonResource('/api/curator/finding-support-queue')
   const quoteReanchorQueue = useJsonResource('/api/curator/quote-reanchor-queue')
+  const findingExceptionQueue = useJsonResource('/api/curator/finding-exception-queue')
   const pendingPromises = useJsonResource('/data/promises.json')
   const [openBundle, setOpenBundle] = useState(null)
   const [refreshing, setRefreshing] = useState(false)
@@ -106,6 +108,8 @@ export default function Curator() {
   const findingSupportStats = findingSupportQueue.data?.stats ?? null
   const quoteReanchorRows = quoteReanchorQueue.data?.rows ?? []
   const quoteReanchorStats = quoteReanchorQueue.data?.stats ?? null
+  const findingExceptionRows = findingExceptionQueue.data?.rows ?? []
+  const findingExceptionStats = findingExceptionQueue.data?.stats ?? null
 
   // Promise auto-curator review queue. Fast-track drafts ("listo para
   // publicar") float to the top so the curator sees the ready ones first.
@@ -575,6 +579,63 @@ export default function Curator() {
         )}
         {quoteReanchorRows.map((r) => (
           <QuoteReanchorRow key={r.key} row={r} />
+        ))}
+      </Card>
+
+      <Card style={{ padding: 16, marginBottom: 18 }}>
+        <FindingExceptionStyles />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <SectionHead title="Hallazgos · ¿merece este hallazgo la excepción?" />
+          <span
+            className="mono"
+            style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+          >
+            {findingExceptionStats
+              ? `${findingExceptionStats.encolados}/${findingExceptionStats.hallazgosConCitas} en cola · ` +
+                `${findingExceptionStats.sinNingunaCitaContrastada} sin ninguna cita contrastada · ` +
+                `${findingExceptionStats.citasEnCola} literales`
+              : ''}
+          </span>
+          <button
+            onClick={() => findingExceptionQueue.refresh()}
+            disabled={findingExceptionQueue.loading}
+            style={{
+              padding: '5px 10px',
+              fontSize: 11,
+              border: '1px solid var(--border2)',
+              background: 'var(--paper)',
+              borderRadius: 6,
+              cursor: findingExceptionQueue.loading ? 'not-allowed' : 'pointer',
+            }}
+          >
+            {findingExceptionQueue.loading ? 'Refreshing…' : 'Refresh'}
+          </button>
+        </div>
+        <p style={{ fontSize: 11.5, color: 'var(--ink60)', lineHeight: 1.5, margin: '4px 0 10px' }}>
+          La puerta editorial de <code>claim-public-gate.ts</code> retiene de{' '}
+          <strong>/plenos</strong> las acusaciones públicas que el verificador no pudo contrastar.
+          Promover una declaración a hallazgo es la excepción que esa puerta concede,{' '}
+          <strong>y la concede porque delante hay una persona</strong>. Estas fichas no citan ni un
+          literal que la puerta mostraría, y el firmante que aparece en cada una dice quién tomó la
+          excepción. La cola <strong>presenta la evidencia y no elige</strong>: no puntúa, no ordena
+          por gravedad —el orden es cronológico— y ninguna fila llega con decisión. Si tras leerla
+          decides matizar el sumario o retirar un literal, ejecuta{' '}
+          <code>npm run correct-pleno-finding</code> tú mismo: queda en la bitácora pública de la
+          ficha.
+        </p>
+        {findingExceptionQueue.loading && <p style={{ fontSize: 12 }}>Loading…</p>}
+        {findingExceptionQueue.error && (
+          <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
+            {String(findingExceptionQueue.error)}
+          </p>
+        )}
+        {!findingExceptionQueue.loading && findingExceptionRows.length === 0 && (
+          <p style={{ fontSize: 12, color: 'var(--ink60)' }}>
+            Cola vacía. Constrúyela con <code>npm run triage:finding-exception</code>.
+          </p>
+        )}
+        {findingExceptionRows.map((r) => (
+          <FindingExceptionRow key={r.findingId} row={r} />
         ))}
       </Card>
 

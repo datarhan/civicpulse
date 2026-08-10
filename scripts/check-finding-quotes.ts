@@ -46,10 +46,11 @@ import {
   buildQuoteProvenance,
   classifyQuoteProvenance,
   diffProvenance,
-  provenanceSanityFailure,
+  snapshotSanityFailure,
   type QuoteProvenanceSnapshot,
 } from '../src/scraper/quote-provenance'
 import { loadSessionTexts } from './lib/transcript-corpus'
+import { loadVerifiedCorpus } from './lib/verified-corpus'
 
 const FINDINGS = resolve('public/data/pleno-findings.json')
 const PROVENANCE = resolve('public/data/finding-quote-provenance.json')
@@ -117,7 +118,14 @@ function main() {
   // Re-derive the published provenance snapshot and compare. Runs whatever the
   // output mode, because a stale marker on a published page is worse than a
   // drifted quote in a report nobody reads.
-  const derived = buildQuoteProvenance(findings, sessions, {
+  //
+  // Both axes, so both marks are re-derived here: the gate half needs the
+  // verifier corpus (base ⊕ overlay, ~10 MB parsed once), which is the price of
+  // having ONE thing that can tell a curator the page has stopped tracking the
+  // data. Splitting it out would leave the `gate` marks with no drift gate at
+  // all, and the verdict engine re-judges claims on its own schedule.
+  const corpus = loadVerifiedCorpus()
+  const derived = buildQuoteProvenance(findings, sessions, corpus, {
     generatedAt: new Date().toISOString(),
     findingsGeneratedAt: raw.generatedAt ?? '',
   })
@@ -128,8 +136,10 @@ function main() {
   // Assert the run MEASURED something before it reports what it found. A
   // matcher that silently matched nothing would mark all 177 quotes and read as
   // thorough — the same shape as the two front-end suites that were green while
-  // evaluating nothing.
-  const sanity = provenanceSanityFailure(derived.stats)
+  // evaluating nothing. The gate half adds the base-vs-merged trap: reading
+  // `pleno-claims-verified-base.json` alone also matches everything and also
+  // looks thorough, and gives the opposite answer for 135 of the 177.
+  const sanity = snapshotSanityFailure(derived)
 
   if (asJson) {
     console.log(
@@ -141,6 +151,7 @@ function main() {
           undeterminedCount: undetermined.length,
           driftedCount: drifted.length,
           noTranscript,
+          contraste: derived.contraste.stats,
           provenanceDrift,
           sanity,
           supersededOnly,
@@ -163,6 +174,22 @@ function main() {
       `  NOT found anywhere      : ${drifted.length}\n` +
       `  transcript missing      : ${noTranscript}\n`,
   )
+  {
+    // The gate axis, on the same quotes. Reported next to the transcript
+    // figures because they are two answers about the same 177 verbatims and a
+    // curator reading one without the other gets half the picture.
+    const c = derived.contraste.stats
+    console.log(
+      `[finding-quotes] editorial gate (claim-public-gate) on the same quotes\n` +
+        `  would be shown on /plenos: ${c.porContraste.shown}\n` +
+        `  ungrounded, not accusation: ${c.porContraste.toggle}\n` +
+        `  ungrounded accusation    : ${c.porContraste.hidden}\n` +
+        `  findings with no showable quote: ${c.hallazgosSinCitaMostrable} ` +
+        `(${c.hallazgosSoloConCitasOcultas} entirely withheld)\n` +
+        `  overlay reached ${c.citasConVeredictoDeOverlay} quote(s); ` +
+        `${c.citasReclasificadasPorElOverlay} would land elsewhere on the base alone\n`,
+    )
+  }
   for (const d of drifted) {
     console.log(`  ✗ ${d.plenoId}  ${d.findingId}   (longest run present: ${d.coverage})`)
     console.log(`      “${d.quote}”`)
@@ -190,8 +217,9 @@ function main() {
   if (provenanceDrift.length > 0) {
     console.error(
       `\n[finding-quotes] public/data/finding-quote-provenance.json no coincide con las ` +
-        `transcripciones (${provenanceDrift.length} diferencia(s)). /hallazgos estaría marcando ` +
-        `un estado que ya no es cierto. Regenera con \`npm run compute:finding-quote-provenance\`:`,
+        `transcripciones o con el veredicto vigente del verificador (${provenanceDrift.length} ` +
+        `diferencia(s)). /hallazgos estaría marcando un estado que ya no es cierto. ` +
+        `Regenera con \`npm run compute:finding-quote-provenance\`:`,
     )
     for (const d of provenanceDrift.slice(0, 10)) console.error(`  · ${d}`)
     if (provenanceDrift.length > 10) console.error(`  · … y ${provenanceDrift.length - 10} más`)

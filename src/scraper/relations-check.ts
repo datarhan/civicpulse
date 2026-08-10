@@ -28,6 +28,11 @@ import {
   isSiteRelativeRef,
   VOTE_SOURCE_KIND_IDS,
 } from './pleno-votes'
+import {
+  classifyClaimVisibility,
+  CLAIM_VISIBILITIES,
+  type ClaimVisibilityInput,
+} from './claim-public-gate'
 import { QUOTE_PROVENANCE_STATUS_IDS } from './quote-provenance'
 
 export type CheckLevel = 'error' | 'warn'
@@ -54,7 +59,14 @@ export interface RelationCheckResult {
 }
 
 export interface RelationsCheckInputs {
-  verified?: { items?: Array<{ claim?: { id?: string } }> } | null
+  /**
+   * `pleno-claims-verified.json` — the PUBLISHED ledger, i.e. already
+   * `mergeVerified(base, overlay)`. Typed as `ClaimVisibilityInput & {id}` so
+   * items can be handed to `classifyClaimVisibility` directly: the gate's
+   * parameter is structural precisely so no caller builds an adapter out of the
+   * fields it thinks the gate reads, and an adapter here would fail OPEN.
+   */
+  verified?: { items?: Array<ClaimVisibilityInput & { claim?: { id?: string } }> } | null
   overlay?: { entries?: Record<string, unknown> } | null
   manifest?: {
     plenos?: Array<{ plenoId?: string; chunkPath?: string; itemCount?: number }>
@@ -69,7 +81,7 @@ export interface RelationsCheckInputs {
       sourceClaimIds?: string[]
       relatedPromiseIds?: string[]
       /** Published verbatims — see `findings-quote-provenance`. */
-      quotes?: Array<{ text?: string }>
+      quotes?: Array<{ text?: string; sourceClaimId?: string | null }>
       /** «Documentos cotejados» — see the two findings-crosschecked-* checks. */
       crossChecked?: Array<{ kind?: string; ref?: string }>
     }>
@@ -80,7 +92,8 @@ export interface RelationsCheckInputs {
    */
   quoteProvenance?: {
     stats?: { quotes?: number }
-    quotes?: Record<string, Array<{ status?: string; reason?: string }>>
+    contraste?: { stats?: { porContraste?: Record<string, number> } }
+    quotes?: Record<string, Array<{ status?: string; reason?: string; gate?: string | null }>>
   } | null
   plenos?: { items?: Array<{ id?: string }> } | null
   votes?: {
@@ -235,6 +248,11 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
   const verifiedIds = new Set(
     (verified?.items ?? []).map((it) => it?.claim?.id).filter((id): id is string => !!id),
   )
+  const verifiedById = new Map<string, ClaimVisibilityInput>(
+    (verified?.items ?? [])
+      .filter((it): it is ClaimVisibilityInput & { claim: { id: string } } => !!it?.claim?.id)
+      .map((it) => [it.claim.id, it]),
+  )
   const promiseIds = new Set(
     (promises?.items ?? []).map((p) => p?.id).filter((id): id is string => !!id),
   )
@@ -322,6 +340,71 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
       }
       return { checked, broken }
     }),
+
+    /**
+     * Every verbatim `/hallazgos` publishes must also carry the editorial
+     * gate's verdict on the claim behind it, and that verdict must still be the
+     * one the live verifier output produces.
+     *
+     * `claim-public-gate.ts` governs `/plenos`; `/hallazgos` never consulted
+     * it. Of the 177 published quotes it would show 16, toggle 86 and HIDE 75 —
+     * every one of the 75 an `acusacion_publica` the verifier could not ground.
+     * The page now says so, which makes the mark load-bearing: a quote with no
+     * `gate`, or with a stale one, renders as an accusation somebody checked.
+     *
+     * Re-derived here rather than trusted, because the verdict engine re-judges
+     * claims on a schedule of its own — a claim regrounded overnight leaves the
+     * page asserting «no contrastada» about a named political group with data
+     * sitting in the same repo. `verified` is the published ledger, i.e.
+     * `mergeVerified(base, overlay)`, the same composition the snapshot is
+     * built from; a disagreement between them is itself the defect.
+     *
+     * `checked` counts every published quote (177), so a traversal that matched
+     * nothing reports `empty` instead of a confident `ok`.
+     */
+    check(
+      'findings-quote-contrast',
+      'error',
+      findings != null && quoteProvenance != null && verified != null,
+      () => {
+        let checked = 0
+        const broken: string[] = []
+        for (const f of findings?.items ?? []) {
+          const rows = quoteProvenance?.quotes?.[f?.id ?? ''] ?? null
+          const quotes = f?.quotes ?? []
+          if (quotes.length === 0) continue
+          if (rows == null) {
+            checked += quotes.length
+            broken.push(`${f?.id ?? '?'} has ${quotes.length} quote(s) and no provenance row`)
+            continue
+          }
+          quotes.forEach((q, i) => {
+            checked += 1
+            const id = f?.id ?? '?'
+            const gate = rows[i]?.gate
+            if (gate == null) {
+              broken.push(`${id}[${i}] carries no editorial-gate verdict`)
+              return
+            }
+            if (!CLAIM_VISIBILITIES.includes(gate as never)) {
+              broken.push(`${id}[${i}] carries unknown gate verdict "${gate}"`)
+              return
+            }
+            const claimId = q?.sourceClaimId
+            const item = claimId ? verifiedById.get(claimId) : undefined
+            if (item == null) {
+              broken.push(`${id}[${i}] quotes claim ${claimId ?? '—'}, absent from the verifier`)
+              return
+            }
+            const live = classifyClaimVisibility(item)
+            if (live !== gate) {
+              broken.push(`${id}[${i}] published gate ${gate}, verifier now says ${live}`)
+            }
+          })
+        }
+        return { checked, broken }
+      },
+    ),
 
     check('findings-promises', 'error', findings != null && promises != null, () => {
       let checked = 0

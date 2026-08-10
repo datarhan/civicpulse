@@ -326,6 +326,10 @@ export default function Hallazgos() {
   // the same session-cached snapshot.
   const { data: provenanceSnapshot } = useFindingQuoteProvenance()
   const provStats = provenanceSnapshot?.stats ?? null
+  // The gate axis of the same snapshot. Null until it loads, and the paragraph
+  // below simply does not render — a figure from a half-loaded snapshot about
+  // how many published accusations are uncontrasted would be worse than none.
+  const gateStats = provenanceSnapshot?.contraste?.stats ?? null
 
   const items = useMemo(() => data?.items ?? [], [data])
 
@@ -668,6 +672,36 @@ export default function Hallazgos() {
               style={{ color: 'var(--civic)', textDecoration: 'underline' }}
             >
               Qué significa cada marca →
+            </a>
+          </div>
+        )}
+        {/* Same rule as above: counted from the derived snapshot at render
+            time. This one moves every time the verdict engine re-judges a
+            claim, which is a background job — a number typed here would go
+            false on its own, on a page that names political groups. */}
+        {gateStats && gateStats.porContraste && (
+          <div style={{ marginTop: 8 }}>
+            <strong style={{ color: 'var(--ink)' }}>Citas y datos municipales.</strong> Las
+            afirmaciones que sostienen estas citas se cotejan automáticamente con los datos del
+            ayuntamiento. De las {gateStats.citasConClaim} de aquí, el cotejo encontró algún dato
+            sobre <strong style={{ color: 'var(--ink)' }}>{gateStats.porContraste.shown}</strong>;
+            para <strong style={{ color: 'var(--ink)' }}>{gateStats.porContraste.toggle}</strong> no
+            encontró nada que las confirme ni que las desmienta, y otras{' '}
+            <strong style={{ color: 'var(--ink)' }}>{gateStats.porContraste.hidden}</strong> son
+            acusaciones públicas sin ese contraste, que en{' '}
+            {/* Underlined, not just tinted: a link inside a paragraph that is
+                distinguished by colour alone is a serious axe violation
+                (link-in-text-block), and the axe gate caught this one. */}
+            <Link to="/plenos" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
+              el registro de declaraciones
+            </Link>{' '}
+            no se publican. Llevan su marca al lado. No hemos retirado ninguna, y no decimos que
+            ninguna sea falsa.{' '}
+            <a
+              href="/metodologia#citas-contraste"
+              style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+            >
+              Por qué se publican aquí →
             </a>
           </div>
         )}

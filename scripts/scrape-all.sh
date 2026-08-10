@@ -252,12 +252,13 @@ if ! npm run check:json; then
   soft_failures+=("check:json")
 fi
 
-# Which transcript each published verbatim actually comes from. Derived from
-# the findings snapshot and the transcript corpus, and it must run BEFORE
-# check:corpus below: that gate re-derives the same classification and fails
-# when the committed file disagrees, which is exactly what a night that
-# re-transcribed a session would produce. Reads two snapshots, writes a third,
-# never touches pleno-findings.json.
+# Which transcript each published verbatim comes from, and what the editorial
+# gate would do with the claim behind it. Derived from the findings snapshot,
+# the transcript corpus and the verifier corpus (base ⊕ overlay), and it must
+# run BEFORE check:corpus below: that gate re-derives the same classification
+# and fails when the committed file disagrees, which is exactly what a night
+# that re-transcribed a session — or re-judged a claim — would produce. Reads
+# four snapshots, writes a fifth, never touches pleno-findings.json.
 if ! npm run compute:finding-quote-provenance; then
   echo "[scrape-all] SOFT-FAILED: compute:finding-quote-provenance — /hallazgos puede quedar con marcas viejas"
   soft_failures+=("compute:finding-quote-provenance")

@@ -3,6 +3,7 @@ import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePle
 import { useTenders } from '../hooks/useTenders'
 import { useFindingQuoteProvenance, provenanceFor } from '../hooks/useFindingQuoteProvenance'
 import { QUOTE_PROVENANCE_STATUS_IDS } from '../scraper/quote-provenance'
+import { CLAIM_VISIBILITIES } from '../scraper/claim-public-gate'
 import { blocLabel } from '../lib/party-label.js'
 import { refDateIndexFor, refDate } from '../lib/crosschecked-date.js'
 import { fmtDateShort } from '../lib/formatters'
@@ -187,38 +188,157 @@ const PROVENANCE_MARK = {
   },
 }
 
-// The enum is imported, never restated: a hand-copied list of states is how six
-// tests in this repo stayed green while production matched nothing
-// (docs/DATA_INTEGRITY.md rule 1). A new state must break this on sight.
-if (import.meta.env?.DEV && QUOTE_PROVENANCE_STATUS_IDS.some((id) => !(id in PROVENANCE_MARK))) {
-  throw new Error(
-    'PlenoFindings: falta la redacción de lectura para un estado de procedencia nuevo — ' +
-      QUOTE_PROVENANCE_STATUS_IDS.filter((id) => !(id in PROVENANCE_MARK)).join(', '),
-  )
+/**
+ * The second mark, and the one that took longer to notice.
+ *
+ * `src/scraper/claim-public-gate.ts` calls itself the «single source of truth
+ * for what the machine-extracted verifier output may surface to the public»,
+ * and it fails safe. `/plenos` obeys it. `/hallazgos` never consulted it: of
+ * the 177 verbatims published here the gate would show 16, toggle 86 and HIDE
+ * 75 — every one of those 75 an `acusacion_publica` the verifier could not
+ * ground in any municipal record. So this page was publishing, unqualified,
+ * accusations by named political groups that the same site withholds one click
+ * away.
+ *
+ * The gate's own header says promotion into a finding is the sanctioned way
+ * past it, «precisely because a person is standing in it». For most of these,
+ * the person was `auto-curation-v1`. That is a curation problem, queued for a
+ * human by `triage:finding-exception`; it is not fixed by deleting quotes,
+ * which would be a larger editorial act taken by the same kind of process.
+ * What the reader was owed is the missing fact, and this is it.
+ *
+ * TWO marks, not one, because the gate keeps them apart on purpose: an
+ * ungrounded ACCUSATION and an ungrounded ordinary claim are different things,
+ * and collapsing them would tell a reader that «el presupuesto sube un 3 %» is
+ * unproven in the same way «se adjudicó a dedo» is.
+ *
+ * Neither says the claim is false. `sin-datos` is the verifier reporting that
+ * the municipal record neither confirms nor refutes it — the same «ninguno las
+ * respalda ni las desmiente» a curator already writes into some summaries — and
+ * the wording below stays inside that. Keyed by the gate's OWN enum, so a
+ * fourth outcome cannot arrive unworded.
+ */
+const CONTRAST_MARK = {
+  shown: null,
+  toggle: {
+    tone: 'ghost',
+    chip: 'sin contraste en los datos',
+    title:
+      'El verificador no halló ningún dato municipal que confirme ni desmienta lo que se afirma aquí.',
+    note: 'no es una acusación; en el registro de declaraciones del pleno sale publicada con esta misma etiqueta.',
+  },
+  hidden: {
+    tone: 'warn',
+    chip: 'acusación no contrastada',
+    title:
+      'Es una acusación pública que el verificador no pudo contrastar con ningún dato municipal. No decimos que sea falsa.',
+    note:
+      'es una acusación pública sobre la gestión municipal, y en el registro de declaraciones del ' +
+      'pleno una acusación sin contrastar no se publica. Aquí aparece porque alguien promovió la ' +
+      'ficha: el pie dice quién.',
+  },
 }
 
-/** The chip that sits beside one quote. Renders nothing for a sound quote. */
+/**
+ * The two axes, and what a card says about each once.
+ *
+ * `lead` exists because of a real duplication: 18 of the 52 cards carry both
+ * contrast marks, and giving each its own self-contained sentence made the card
+ * say «no hay dato que lo confirme ni que lo desmienta» twice, two lines apart.
+ * The shared half is stated once per axis and each mark adds only its
+ * difference. The transcript axis has no lead — its two notes are about
+ * different sessions' file sizes and share no clause.
+ */
+const MARK_AXES = [
+  {
+    id: 'transcripcion',
+    marks: PROVENANCE_MARK,
+    key: (e) => e?.status,
+    lead: null,
+    href: '/metodologia#citas-transcripcion',
+    linkText: 'Cómo se comprueba una cita →',
+  },
+  {
+    id: 'contraste',
+    marks: CONTRAST_MARK,
+    key: (e) => e?.gate,
+    lead:
+      'Estas citas se cotejaron automáticamente con la base documental municipal —contratos, ' +
+      'subvenciones, presupuesto y promesas publicadas— y no apareció ningún dato que las ' +
+      'confirme ni que las desmienta. Eso no las convierte en falsas: quiere decir que no lo sabemos.',
+    href: '/metodologia#citas-contraste',
+    linkText: 'Qué significa que una cita no esté contrastada →',
+  },
+]
+
+// The enums are imported, never restated: a hand-copied list of states is how
+// six tests in this repo stayed green while production matched nothing
+// (docs/DATA_INTEGRITY.md rule 1). A new state must break this on sight.
+if (import.meta.env?.DEV) {
+  const missing = [
+    ...QUOTE_PROVENANCE_STATUS_IDS.filter((id) => !(id in PROVENANCE_MARK)),
+    ...CLAIM_VISIBILITIES.filter((id) => !(id in CONTRAST_MARK)),
+  ]
+  if (missing.length > 0) {
+    throw new Error(
+      'PlenoFindings: falta la redacción de lectura para un estado nuevo — ' + missing.join(', '),
+    )
+  }
+}
+
+/**
+ * Every mark one quote carries, in reading order: first where the words come
+ * from, then whether any municipal data backs what they say. That order is not
+ * decorative — you cannot usefully ask the second question about a verbatim
+ * until the first one is answered.
+ *
+ * The chip row and the footnote both derive from this one function, so the two
+ * cannot disagree about which marks a quote has.
+ */
+export function quoteMarks(entry) {
+  const out = []
+  for (const axis of MARK_AXES) {
+    const key = axis.key(entry)
+    const mark = key ? axis.marks[key] : null
+    if (mark) out.push({ key, axis: axis.id, ...mark })
+  }
+  return out
+}
+
+/** The chips beside one quote. Renders nothing for a quote with no marks. */
 export function QuoteProvenanceMark({ entry }) {
-  const mark = entry ? PROVENANCE_MARK[entry.status] : null
-  if (!mark) return null
+  const marks = quoteMarks(entry)
+  if (marks.length === 0) return null
   return (
-    <Pill tone={mark.tone} size="xs" style={{ fontStyle: 'normal', marginLeft: 6 }}>
-      <span title={mark.title}>{mark.chip}</span>
-    </Pill>
+    // A flex row on its own line, not chips trailing the text: a quote can
+    // carry both marks (86 of the 177 do), and two pills pushed onto the end of
+    // an italic sentence stop being readable at 375px.
+    <span style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginTop: 5 }}>
+      {marks.map((m) => (
+        <Pill key={m.key} tone={m.tone} size="xs" style={{ fontStyle: 'normal' }}>
+          <span title={m.title}>{m.chip}</span>
+        </Pill>
+      ))}
+    </span>
   )
 }
 
 /**
- * One sentence per distinct mark present on a card, below its quotes. A chip
- * alone says «something is off» without saying what a reader should conclude,
- * and this is prose about named political groups.
+ * What the reader should conclude, below the quotes, once per distinct mark. A
+ * chip alone says «something is off» without saying what to do with it, and
+ * this is prose about named political groups.
  */
 export function QuoteProvenanceNote({ entries }) {
-  const seen = []
-  for (const e of entries ?? []) {
-    if (PROVENANCE_MARK[e?.status] && !seen.includes(e.status)) seen.push(e.status)
+  const groups = []
+  for (const axis of MARK_AXES) {
+    const seen = []
+    for (const e of entries ?? []) {
+      const key = axis.key(e)
+      if (key && axis.marks[key] && !seen.includes(key)) seen.push(key)
+    }
+    if (seen.length > 0) groups.push({ axis, seen })
   }
-  if (seen.length === 0) return null
+  if (groups.length === 0) return null
   return (
     <div
       style={{
@@ -232,21 +352,30 @@ export function QuoteProvenanceNote({ entries }) {
         color: 'var(--ink70)',
       }}
     >
-      {seen.map((s) => (
-        <div key={s} style={{ marginTop: 2 }}>
-          <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>
-            {PROVENANCE_MARK[s].chip}
-          </strong>
-          {' — '}
-          {PROVENANCE_MARK[s].note}
+      {groups.map(({ axis, seen }, gi) => (
+        <div
+          key={axis.id}
+          // A rule between the axes: run together, the two explanations read as
+          // one long paragraph about one problem, and they are two problems.
+          style={
+            gi === 0
+              ? undefined
+              : { marginTop: 8, paddingTop: 8, borderTop: '1px solid var(--border2)' }
+          }
+        >
+          {axis.lead && <div style={{ marginBottom: 2 }}>{axis.lead}</div>}
+          {seen.map((s) => (
+            <div key={s} style={{ marginTop: 2 }}>
+              <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>{axis.marks[s].chip}</strong>
+              {' — '}
+              {axis.marks[s].note}
+            </div>
+          ))}
+          <a href={axis.href} style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
+            {axis.linkText}
+          </a>
         </div>
       ))}
-      <a
-        href="/metodologia#citas-transcripcion"
-        style={{ color: 'var(--civic)', textDecoration: 'underline' }}
-      >
-        Cómo se comprueba una cita →
-      </a>
     </div>
   )
 }

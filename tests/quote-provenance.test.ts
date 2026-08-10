@@ -32,6 +32,7 @@ import {
 import { quoteAppearsIn } from '../src/scraper/quote-match'
 import { validateFindingsSnapshot } from '../src/scraper/pleno-finding'
 import { loadSessionTexts } from '../scripts/lib/transcript-corpus'
+import { loadVerifiedCorpus } from '../scripts/lib/verified-corpus'
 
 const ROOT = join(__dirname, '..')
 const FINDINGS = validateFindingsSnapshot(
@@ -49,7 +50,16 @@ const SESSIONS = loadSessionTexts(
   },
 )
 
-const DERIVED = buildQuoteProvenance(FINDINGS.items, SESSIONS, {
+// base ⊕ overlay, the same composition the published ledger ships. Loading it
+// here rather than stubbing it is the point: the second axis of this snapshot
+// is «what would the editorial gate do», and a stub would answer that question
+// with whatever the test author expected.
+const CORPUS = loadVerifiedCorpus({
+  basePath: join(ROOT, 'public/data/pleno-claims-verified-base.json'),
+  overlayPath: join(ROOT, 'public/data/pleno-claims-overlay.json'),
+})
+
+const DERIVED = buildQuoteProvenance(FINDINGS.items, SESSIONS, CORPUS, {
   generatedAt: '2026-08-10T00:00:00.000Z',
   findingsGeneratedAt: FINDINGS.generatedAt,
 })
@@ -336,7 +346,7 @@ describe('diffProvenance — la marca publicada no puede quedarse callada', () =
     )!
     expect(id).toBeTruthy()
     const stale = JSON.parse(JSON.stringify(DERIVED)) as QuoteProvenanceSnapshot
-    stale.quotes[id][0] = { status: 'en-vigente' }
+    stale.quotes[id][0] = { status: 'en-vigente', gate: DERIVED.quotes[id][0].gate }
     const out = diffProvenance(stale, DERIVED)
     // Puede además desajustar los totales; lo que importa es que NOMBRE la fila.
     expect(out.some((m) => m.startsWith(`${id}[0]`))).toBe(true)

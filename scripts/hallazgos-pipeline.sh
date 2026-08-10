@@ -242,8 +242,13 @@ env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY GEMINI_BIN=/nonexistent-disabled \
 # that no longer exists. Both change what /hallazgos must mark, so the derived
 # snapshot is regenerated here, in the same run, before the commit — otherwise
 # the page would carry a marker (or no marker) about a state of the world that
-# ended thirty seconds ago. It reads two snapshots and writes a third; it never
+# ended thirty seconds ago. It reads four snapshots and writes a fifth; it never
 # touches pleno-findings.json.
+#
+# It runs AFTER the verify step above on purpose: the second axis of that
+# snapshot is what the editorial gate would do with each quote's claim, read
+# from base ⊕ overlay. Re-judging a claim moves its mark, so deriving before the
+# verifier would publish yesterday's answer about today's accusations.
 npm run compute:finding-quote-provenance \
   || log "warn: compute:finding-quote-provenance non-zero — /hallazgos puede quedar con marcas viejas"
 
