@@ -398,6 +398,33 @@ export function isMapComplete(map: unknown): boolean {
 }
 
 /**
+ * Where a session stands in the speaker-map backlog, or null when it is done.
+ *
+ * `blocked` is the state that was missing. The backlog enumerates
+ * `public/data/pleno-transcripts`, which holds two different things under one
+ * extension: real diarized transcripts, and acta text with placeholder
+ * `[0.0 → 0.0]` stamps and no speaker labels. 23 of the 44 files are the
+ * latter, and `extract:speaker-map` cannot run on them at all — it scores its
+ * coverage gate against that transcript and refuses without a usable one. They
+ * were being reported as "sin empezar", which overstates the workable corpus
+ * by more than half and makes any quota budget built on the list wrong.
+ *
+ * "Cannot start" and "not started yet" are different facts, and a backlog that
+ * folds them together is `DATA_INTEGRITY.md` rule 2 in miniature.
+ */
+export type BacklogState = 'absent' | 'partial' | 'blocked'
+
+export function classifyBacklogState(opts: {
+  /** Does this session have a transcript the coverage gate can score against? */
+  referenceUsable: boolean
+  map: unknown
+}): BacklogState | null {
+  if (isMapComplete(opts.map)) return null
+  if (!opts.referenceUsable) return 'blocked'
+  return opts.map ? 'partial' : 'absent'
+}
+
+/**
  * The bloc for a label, or null when the map does not vouch for it.
  *
  * Returns null for weak rows too. A caller asking "which bloc is this" during
