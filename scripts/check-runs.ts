@@ -52,6 +52,17 @@ export const EXPECTED_PASSES: ExpectedPass[] = [
     everyHours: 48,
     scheduler: 'hallazgos-pipeline (diario 09:30)',
   },
+  {
+    // Nothing watched this until 2026-08-11, and it is about to run unattended
+    // for weeks against a 21-session backlog. Its failure modes are all quiet
+    // ones: no GEMINI_API_KEY skips the step with a log line, an exhausted
+    // quota stops it, and a backlog query that returns nothing looks identical
+    // to a backlog that is finished. Same 48h slack as the pass beside it —
+    // one missed night is quiet, two are loud.
+    script: 'extract-speaker-map',
+    everyHours: 48,
+    scheduler: 'hallazgos-pipeline (diario 09:30)',
+  },
 ]
 
 export interface OverduePass extends ExpectedPass {

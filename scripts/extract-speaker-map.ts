@@ -67,6 +67,8 @@ import {
   type OfficialsDoc,
 } from '../src/scraper/corporation-seats'
 import { parseDiarizedTranscript } from '../src/scraper/voice-id'
+import { startRun, formatManifest } from '../src/scraper/run-manifest'
+import { getRunStats } from '../src/llm/client'
 
 const OUT_DIR = resolve('pleno-speaker-map')
 const MODEL = process.env.SPEAKER_MAP_MODEL || 'gemini-3.5-flash'
@@ -310,6 +312,30 @@ async function main() {
   const work = join(tmpdir(), `speaker-map-${args.plenoId}-${process.pid}`)
   mkdirSync(work, { recursive: true })
 
+  // Transcription goes out over curl, NOT through src/llm/client, so
+  // `getRunStats()` cannot see it — it only counts the adjudication calls.
+  // Reporting the raw stats would leave a run with judged>0 and calls===0,
+  // which `assessManifest` flags as `judged-without-calls`: an ERROR, on
+  // every successful run. A check that is always red is one everybody
+  // switches off. These are real API calls; count them as such and add the
+  // client's own on top.
+  let apiCalls = 0
+  let apiOk = 0
+  let apiFailed = 0
+  const runLog = startRun('extract-speaker-map', {
+    backend: 'gemini-api',
+    model: MODEL,
+    getStats: () => {
+      const s = getRunStats()
+      return {
+        ...s,
+        calls: s.calls + apiCalls,
+        ok: s.ok + apiOk,
+        failed: s.failed + apiFailed,
+      }
+    },
+  })
+
   try {
     let audio = args.audio
     if (!audio) {
@@ -508,6 +534,9 @@ async function main() {
         `[speaker-map] attempting ${toAttempt.length} chunk(s): ${toAttempt.join(', ')}\n`,
       )
     }
+    // What this run SET OUT to do. The four manifest buckets below must add
+    // back up to it, which is what makes "it did nothing" impossible to hide.
+    runLog.attempt(toAttempt.length)
     for (const i of toAttempt) {
       attempted += 1
       const path = join(chunkDir, chunks[i])
@@ -537,7 +566,9 @@ async function main() {
       let lastWhy = ''
       for (let attempt = 1; attempt <= 3; attempt++) {
         try {
+          apiCalls += 1
           const candidate = parseSpeakerMapResponse(transcribeChunk(path, apiKey, prompt))
+          apiOk += 1
           coverage = referenceCoverage(
             candidate.segments.map((s) => ({ ...s, start: s.start + offset, end: s.end + offset })),
             reference,
@@ -550,6 +581,7 @@ async function main() {
           }
           lastWhy = `covered ${(coverage * 100).toFixed(0)}% (floor ${SPEAKER_MAP_COVERAGE_FLOOR * 100}%)`
         } catch (err) {
+          apiFailed += 1
           // A daily quota is not a flake. Retrying burns nothing but time and
           // makes the log lie about what happened, so stop the whole run and
           // say plainly that it must resume later.
@@ -563,6 +595,10 @@ async function main() {
       }
       if (quotaExhausted) {
         failedChunks.push({ chunk: i, why: 'quota exhausted, never attempted further' })
+        runLog.skip('quota-exhausted')
+        // The rest of the plan was never reached — a different fact from a
+        // chunk the model looked at and failed.
+        runLog.neverAttempt(toAttempt.length - toAttempt.indexOf(i) - 1)
         process.stdout.write(`QUOTA\n`)
         break
       }
@@ -572,6 +608,10 @@ async function main() {
         // chunk, and a stretch with no map simply produces no attribution —
         // which is the honest outcome, not a wrong one.
         failedChunks.push({ chunk: i, why: lastWhy })
+        // Bucket by KIND, not by the formatted message — «covered 9%» and
+        // «covered 2%» are one failure mode, and a reason-per-percentage
+        // makes the tally unreadable.
+        runLog.skip(lastWhy.startsWith('covered ') ? 'below-coverage-floor' : 'transcribe-failed')
         process.stdout.write(`GAP · ${lastWhy}\n`)
         continue
       }
@@ -592,16 +632,16 @@ async function main() {
       // them. It never proposes anyone, and a backend that does not answer
       // leaves the row exactly as weak as it was.
       if (!SKIP_ADJUDICATION && v.rows.some((r) => r.weak)) {
-        const run = await adjudicateWeakRows({
+        const adj = await adjudicateWeakRows({
           rows: v.rows,
           segments: parsed.segments,
           max: ADJUDICATE_MAX,
         })
-        v.rows = applyAdjudications(v.rows, run.results)
-        for (const k of Object.keys(run.tally) as AdjudicationOutcome[]) {
-          adjudicated[k] += run.tally[k]
+        v.rows = applyAdjudications(v.rows, adj.results)
+        for (const k of Object.keys(adj.tally) as AdjudicationOutcome[]) {
+          adjudicated[k] += adj.tally[k]
         }
-        adjudicationSkipped += run.skipped
+        adjudicationSkipped += adj.skipped
       }
 
       for (const s of parsed.segments) {
@@ -625,6 +665,7 @@ async function main() {
       }
       for (const rj of v.rejected) rejected.push({ ...rj, label: globalLabel(i, rj.label) })
       completed.add(i)
+      runLog.judge()
       process.stdout.write(
         `${parsed.segments.length} seg · ${v.rows.length} row(s) · ${v.rejected.length} rejected\n`,
       )
@@ -770,6 +811,17 @@ async function main() {
       )
     }
   } finally {
+    // In `finally` so EVERY exit path records — including the early return
+    // when `decideSnapshotWrite` refuses, and a throw. A pass that dies
+    // silently is the one `check:runs` exists to notice, so it must not be the
+    // one path that writes no manifest.
+    const { manifest, findings } = runLog.finish({
+      exitCode: typeof process.exitCode === 'number' ? process.exitCode : 0,
+    })
+    process.stdout.write(`\n${formatManifest(manifest)}\n`)
+    for (const f of findings) {
+      process.stdout.write(`  ${f.level.toUpperCase()} [${f.code}] ${f.message}\n`)
+    }
     if (!args.keepAudio) rmSync(work, { recursive: true, force: true })
     else process.stdout.write(`[speaker-map] kept working dir ${work}\n`)
   }
