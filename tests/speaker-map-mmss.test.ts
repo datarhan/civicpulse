@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest'
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { decodeElapsed, parseSpeakerMapResponse } from '../src/scraper/speaker-map'
 
 /**
@@ -109,5 +111,74 @@ describe('parseSpeakerMapResponse · M.SS in the wild', () => {
       [588, 599],
     ])
     expect(parsed.candidates[0].evidence?.at).toBe(280)
+  })
+})
+
+/**
+ * The same defect against the REAL responses, not strings I typed.
+ *
+ * `tests/fixtures/gemini-speaker-map-mmss_2026-08-11.txt` is verbatim what the
+ * API returned for `15uvjew` chunk 1 on 2026-08-11 — the response the pipeline
+ * scored «covered 2%» and threw away three times. Its clean sibling is chunk 6
+ * from the same session and the same run. Committing both is the repo's own
+ * cadence: fixtures are the RED contract.
+ *
+ * Each assertion here carries a control, because a fixture can rot into
+ * something that no longer reproduces anything and the test would still pass.
+ */
+describe('parseSpeakerMapResponse · the real captured responses', () => {
+  const mmss = readFileSync(
+    resolve('tests/fixtures/gemini-speaker-map-mmss_2026-08-11.txt'),
+    'utf8',
+  )
+  const clean = readFileSync(
+    resolve('tests/fixtures/gemini-speaker-map-clean_2026-08-11.txt'),
+    'utf8',
+  )
+  const stamps = (raw: string) =>
+    [...raw.matchAll(/^\[([0-9.]+) → ([0-9.]+)\]/gm)].flatMap((m) => [m[1], m[2]])
+
+  it('CONTROL · the mmss fixture still contains the slip it was captured for', () => {
+    // If this fails the fixture was replaced and the test below proves nothing.
+    const twoDecimal = stamps(mmss).filter((v) => v.split('.')[1]?.length === 2)
+    expect(twoDecimal.length).toBeGreaterThan(50)
+    expect(twoDecimal.every((v) => Number(v.split('.')[1]) <= 59)).toBe(true)
+    // Read naively as decimals it collapses — that is the bug, still present.
+    const naiveLast = Number(stamps(mmss).at(-1))
+    expect(naiveLast / 600).toBeLessThan(0.05)
+  })
+
+  it('recovers the full 600 s chunk the pipeline discarded as "covered 2%"', () => {
+    const parsed = parseSpeakerMapResponse(mmss)
+    expect(parsed.segments).toHaveLength(43)
+    expect(parsed.segments.at(-1)!.end).toBeCloseTo(599, 3)
+  })
+
+  it('keeps the recovered segments in time order', () => {
+    const starts = parseSpeakerMapResponse(mmss).segments.map((s) => s.start)
+    expect(starts).toEqual([...starts].sort((a, b) => a - b))
+  })
+
+  it('decodes the evidence timestamps of the mmss response too', () => {
+    // Block 2 cited «@ 6.53» for «Segona intervenció, Rafa» — 6 min 53 s.
+    const ats = parseSpeakerMapResponse(mmss)
+      .candidates.map((c) => c.evidence?.at)
+      .filter((n): n is number => typeof n === 'number')
+    expect(ats.length).toBeGreaterThan(0)
+    expect(Math.max(...ats)).toBeGreaterThan(60)
+  })
+
+  it('CONTROL · the clean fixture has no two-decimal stamp to decode', () => {
+    const twoDecimal = stamps(clean).filter((v) => v.split('.')[1]?.length === 2)
+    expect(stamps(clean).length).toBeGreaterThan(100)
+    expect(twoDecimal).toEqual([])
+  })
+
+  it('leaves every timestamp of the clean response exactly as it arrived', () => {
+    const parsed = parseSpeakerMapResponse(clean)
+    const asWritten = stamps(clean).map(Number)
+    const asParsed = parsed.segments.flatMap((s) => [s.start, s.end])
+    expect(asParsed).toEqual(asWritten)
+    expect(parsed.segments.at(-1)!.end).toBeCloseTo(599, 3)
   })
 })
