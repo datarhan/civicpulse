@@ -119,9 +119,34 @@ cannot publish it _is_ a failure. Under `CRON_GIT_ALLOW_BRANCH=1` or the
 started on, not `main`.
 
 Install helpers: `scripts/cron-install-hallazgos.sh`,
-`scripts/cron-install-press-lab.sh`. Run them from Terminal — launchd agents
-under `~/Documents/` die with exit 78 on macOS TCC, which is why these are cron
-rather than launchd.
+`scripts/cron-install-press-lab.sh`. Run them from Terminal.
+
+### Why the repo lives in `~/dev/`, not `~/Documents/`
+
+macOS TCC protects `~/Documents`, `~/Desktop` and `~/Downloads`, and the two
+schedulers fail there in opposite directions. Measured on 2026-08-11 with a
+one-shot probe agent:
+
+| | cron | launchd user agent |
+| --- | --- | --- |
+| read the repo under `~/Documents/` | ✓ (FDA granted to cron) | ✗ denied — `pwd` came back empty |
+| unlock the login keychain | ✗ `Not logged in` | ✓ `claude -p` exits 0 |
+
+Neither could do both, and that cost nine days: from 2026-08-03 the
+`claude` credential moved into the login keychain, cron stopped being able to
+read it, and `hallazgos-pipeline` deferred every morning while
+`press-lab-pipeline` no-opped its LLM steps. No transcription, no extraction,
+no findings, and `monitor:health` printing `✓ sin avisos` throughout because it
+measures source freshness and the deterministic scrapers kept running.
+
+Moving the checkout out of `~/Documents/` removes the TCC half for every
+scheduler at once, without granting Full Disk Access to `/bin/bash` — a
+permission that would apply to every bash script on the machine, not just
+these. Keep the repo outside the three protected directories.
+
+The 2026-07 plan documents under `docs/superpowers/plans/` still say
+`~/Documents/CivicPulse`; they are a record of what was true then and are left
+alone deliberately.
 
 `launchctl list` may still show `com.civicpulse.munigraph.{bot,export}` in that
 failed state. They are leftovers from before the bot moved to Fly.io and the

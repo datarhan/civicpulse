@@ -8,11 +8,11 @@
   <key>ProgramArguments</key>
   <array>
     <string>/bin/bash</string>
-    <string>/Users/sergeilutchenko/Documents/CivicPulse/scripts/auto-curate-promises-daily.sh</string>
+    <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/auto-curate-promises-daily.sh</string>
   </array>
 
   <key>WorkingDirectory</key>
-  <string>/Users/sergeilutchenko/Documents/CivicPulse</string>
+  <string>/Users/sergeilutchenko/dev/CivicPulse</string>
 
   <key>EnvironmentVariables</key>
   <dict>
@@ -31,10 +31,10 @@
   </dict>
 
   <key>StandardOutPath</key>
-  <string>/Users/sergeilutchenko/Documents/CivicPulse/scripts/logs/auto-curate-promises.out.log</string>
+  <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/logs/auto-curate-promises.out.log</string>
 
   <key>StandardErrorPath</key>
-  <string>/Users/sergeilutchenko/Documents/CivicPulse/scripts/logs/auto-curate-promises.err.log</string>
+  <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/logs/auto-curate-promises.err.log</string>
 
   <key>ProcessType</key>
   <string>Background</string>
