@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.civicpulse.hallazgos</string>
+
+  <!-- launchd, not cron, and this is the whole reason: the pipeline's LLM
+       steps need the `claude` credential, which lives in the login keychain.
+       A cron job cannot unlock it — `env -i … claude -p ok` exits 1 with
+       "Not logged in" — so from 2026-08-03 this pipeline deferred every
+       morning for nine days. A launchd USER agent runs inside the Aqua
+       session and can.
+
+       The other half of that trade used to be TCC: an agent could not read a
+       repo under ~/Documents (measured — WorkingDirectory silently did not
+       take and `pwd` came back empty). Moving the checkout to ~/dev removed
+       it, so an agent now gets both. See docs/OPERATIONS.md. -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/hallazgos-pipeline.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/sergeilutchenko/dev/CivicPulse</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <!-- ~/.local/bin is where `claude` lives; without it the preflight probe
+         fails for the boring reason instead of the interesting one. -->
+    <key>PATH</key>
+    <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin:/Users/sergeilutchenko/.local/bin</string>
+  </dict>
+
+  <!-- Daily at 09:30, the hour the cron line used. macOS coalesces into the
+       next wake if the Mac is asleep, so a closed lid delays the run rather
+       than skipping it. -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key><integer>9</integer>
+    <key>Minute</key><integer>30</integer>
+  </dict>
+
+  <!-- Same file the cron line appended to, so the nine-day deferral streak and
+       whatever comes next read as one history. -->
+  <key>StandardOutPath</key>
+  <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/logs/hallazgos-pipeline.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/logs/hallazgos-pipeline.log</string>
+
+  <key>ProcessType</key>
+  <string>Background</string>
+</dict>
+</plist>

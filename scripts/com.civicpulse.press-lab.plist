@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.civicpulse.press-lab</string>
+
+  <!-- launchd for the same reason as com.civicpulse.hallazgos: the LLM steps
+       need the login keychain, which a cron job cannot unlock. This pipeline
+       failed less loudly than that one — it warns and no-ops its LLM steps
+       rather than deferring — which is why nine days of empty extractions went
+       unnoticed. See docs/OPERATIONS.md. -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/press-lab-pipeline.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/sergeilutchenko/dev/CivicPulse</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin:/Users/sergeilutchenko/.local/bin</string>
+  </dict>
+
+  <!-- Daily at 10:15, the hour the cron line used — 45 minutes after
+       hallazgos, so the two do not contend for the Max burst-rate limit. -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key><integer>10</integer>
+    <key>Minute</key><integer>15</integer>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/logs/press-lab-pipeline.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/logs/press-lab-pipeline.log</string>
+
+  <key>ProcessType</key>
+  <string>Background</string>
+</dict>
+</plist>
