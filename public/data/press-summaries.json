@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T08:45:34.352Z",
+  "generatedAt": "2026-08-11T08:45:41.435Z",
   "source": {
     "description": "Neutral editorial summaries for press articles audited by the lab",
     "contract": "src/scraper/press-summary-llm.ts"
