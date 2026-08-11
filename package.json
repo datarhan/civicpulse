@@ -181,7 +181,8 @@
     "refresh": "npx tsx scripts/refresh.ts",
     "reconcile:attribution": "npx tsx scripts/reconcile-attribution.ts",
     "speaker-map:backlog": "npx tsx scripts/speaker-map-backlog.ts",
-    "review:finding-exception": "npx tsx scripts/review-finding-exception.ts"
+    "review:finding-exception": "npx tsx scripts/review-finding-exception.ts",
+    "check:summary-gate": "npx tsx scripts/check-summary-gate.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
