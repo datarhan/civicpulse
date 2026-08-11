@@ -207,6 +207,73 @@ function orNull(field: string): string | null {
 }
 
 /**
+ * Decode a run of elapsed-time strings, tolerating the model's M.SS slip.
+ *
+ * The prompt asks for seconds with one decimal and says «Nunca mm:ss». The
+ * model disregards it: measured on `15uvjew` chunk 1 (2026-08-11), it wrote the
+ * first minute as seconds and then switched notation mid-transcript —
+ *
+ *     [48.5 → 59.5]   seconds, as asked
+ *     [1.19 → 1.26]   1 min 19 s, written M.SS
+ *     [9.36 → 9.59]   9 min 59 s = 599 s, the end of a 600 s chunk
+ *
+ * Read as decimals that transcript "ends" at 9.6 s, scores 1.6 % against the
+ * coverage floor and is discarded — the «covered 2%» that run recorded. The
+ * response was complete (`finishReason: STOP`, 43 segments, verified against
+ * the published transcript: at t=891 s both hold the same sentence). It was
+ * then re-requested twice and discarded twice more, because a retry cannot fix
+ * a notation the model uses consistently.
+ *
+ * The rule is the conservative one: **prefer seconds; read M.SS only when the
+ * seconds reading would run time backwards**, and only when the fraction is a
+ * possible `SS` (≤ 59). A well-formed response never runs backwards, so this
+ * cannot touch one — chunk 6's 134 timestamps, all one-decimal, come through
+ * unchanged. Where neither reading moves forwards the raw seconds value is
+ * kept: a wrong timestamp is worse than a rejected chunk, and the coverage
+ * floor is what catches the remainder.
+ *
+ * This matters beyond coverage. `at` is the second a curator listens to in
+ * order to check a published attribution, so decoding it wrong would point
+ * them at a different sentence.
+ */
+export function decodeElapsed(raws: readonly string[]): number[] {
+  const out: number[] = []
+  let last = -Infinity
+  for (const raw of raws) {
+    const seconds = Number(raw)
+    if (!Number.isFinite(seconds)) {
+      out.push(Number.NaN)
+      continue
+    }
+    let value = seconds
+    if (seconds < last) {
+      const [whole, frac] = raw.split('.')
+      // Exactly two digits after the point, and a legal seconds field.
+      if (frac?.length === 2 && Number(frac) <= 59) {
+        const asClock = Number(whole) * 60 + Number(frac)
+        if (asClock >= last) value = asClock
+      }
+    }
+    out.push(value)
+    if (value > last) last = value
+  }
+  return out
+}
+
+/**
+ * One evidence timestamp, in a response already shown to use M.SS.
+ *
+ * Only applied when the transcript block established the notation — on its own
+ * `1.56` is genuinely ambiguous, and guessing would move a curator's listening
+ * point to a different sentence.
+ */
+function decodeEvidenceAt(raw: string): number {
+  const [whole, frac] = raw.split('.')
+  if (frac?.length === 2 && Number(frac) <= 59) return Number(whole) * 60 + Number(frac)
+  return Number(raw)
+}
+
+/**
  * Split a model response into segments and identity candidates.
  *
  * Pure and total: never throws, never fetches. A line it cannot read whole is
@@ -217,15 +284,28 @@ function orNull(field: string): string | null {
 export function parseSpeakerMapResponse(raw: string): ParsedSpeakerMapResponse {
   const [bodyPart, identityPart = ''] = (raw ?? '').split(IDENTITY_HEADER)
 
-  const segments: RawSegment[] = []
+  // Collect the raw timestamp strings before converting any of them: the M.SS
+  // slip is only visible across the sequence, never in a single value.
+  const rows: Array<{ startRaw: string; endRaw: string; speaker: string; text: string }> = []
   for (const line of bodyPart.split('\n')) {
     const m = SEGMENT_RE.exec(line.trim())
     if (!m) continue
-    const start = Number(m[1])
-    const end = Number(m[2])
-    if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) continue
-    segments.push({ start, end, speaker: m[3], text: m[4].trim() })
+    rows.push({ startRaw: m[1], endRaw: m[2], speaker: m[3], text: m[4].trim() })
   }
+  const rawTimes = rows.flatMap((r) => [r.startRaw, r.endRaw])
+  const decoded = decodeElapsed(rawTimes)
+  // Did the transcript need clock decoding? One response uses one notation, so
+  // this is what tells the identity block below how to read ITS timestamps —
+  // those are not in time order, so they cannot be decoded on their own.
+  const usedClock = decoded.some((v, i) => v !== Number(rawTimes[i]))
+
+  const segments: RawSegment[] = []
+  rows.forEach((r, i) => {
+    const start = decoded[i * 2]
+    const end = decoded[i * 2 + 1]
+    if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) return
+    segments.push({ start, end, speaker: r.speaker, text: r.text })
+  })
 
   const candidates: SpeakerCandidate[] = []
   for (const line of identityPart.split('\n')) {
@@ -239,7 +319,11 @@ export function parseSpeakerMapResponse(raw: string): ParsedSpeakerMapResponse {
 
     const em = EVIDENCE_RE.exec(ev)
     if (!em) continue
-    const at = Number(em[2])
+    // Read `at` in whatever notation the transcript above turned out to use.
+    // These are in candidate order, not time order, so the sequence cannot
+    // decode them — but a response that wrote M.SS in block 1 wrote it in
+    // block 2 as well (chunk 1 cited «@ 1.56» for a line at 1 min 56 s).
+    const at = usedClock ? decodeEvidenceAt(em[2]) : Number(em[2])
     if (!Number.isFinite(at)) continue
 
     candidates.push({
