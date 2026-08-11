@@ -1,7 +1,8 @@
 {
   "plenoId": "15uvjew",
-  "generatedAt": "2026-08-11T13:52:12.655Z",
+  "generatedAt": "2026-08-11T20:43:58.440Z",
   "model": "gemini-3.5-flash",
+  "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
   "segments": [
     {
@@ -741,138 +742,6 @@
       "end": 1801,
       "speaker": "c02/SPEAKER_01",
       "text": "que eliminarán parte del CO2 que emiten las empresas, que compensaremos con las empresas"
-    },
-    {
-      "start": 1801,
-      "end": 1805,
-      "speaker": "c02/SPEAKER_01",
-      "text": "por las directivas europeas, como bien ha dicho José Ángel,"
-    },
-    {
-      "start": 1805,
-      "end": 1810,
-      "speaker": "c02/SPEAKER_01",
-      "text": "y que haremos un pueblo más verde y un pueblo más eficaz y eficiente"
-    },
-    {
-      "start": 1810,
-      "end": 1815,
-      "speaker": "c02/SPEAKER_01",
-      "text": "en la lucha contra el cambio climático con la competitividad de nuestras empresas"
-    },
-    {
-      "start": 1815,
-      "end": 1819,
-      "speaker": "c02/SPEAKER_01",
-      "text": "porque se beneficiarán de eso en concreto que Vox no está de acuerdo"
-    },
-    {
-      "start": 1819,
-      "end": 1823,
-      "speaker": "c02/SPEAKER_01",
-      "text": "y espero que los otros sí. Estoy convencido de que, por supuesto,"
-    },
-    {
-      "start": 1823,
-      "end": 1828,
-      "speaker": "c02/SPEAKER_01",
-      "text": "Esquerra Unida Podem y Compromís lo están, otros tengo dudas."
-    },
-    {
-      "start": 1828,
-      "end": 1832,
-      "speaker": "c02/SPEAKER_01",
-      "text": "Por tanto, en ese sentido, agradecer el trabajo de todos y de todas."
-    },
-    {
-      "start": 1832,
-      "end": 1837,
-      "speaker": "c02/SPEAKER_01",
-      "text": "Hoy es un día importante, muy importante, en el principal contrato"
-    },
-    {
-      "start": 1837,
-      "end": 1842,
-      "speaker": "c02/SPEAKER_01",
-      "text": "que tiene Riba-roja de Túria y que nos ha costado muchísimo pelear, ¿vale?"
-    },
-    {
-      "start": 1842,
-      "end": 1845,
-      "speaker": "c02/SPEAKER_01",
-      "text": "Vamos a pasar a la votación, gracias."
-    },
-    {
-      "start": 1845,
-      "end": 1849,
-      "speaker": "c02/SPEAKER_01",
-      "text": "Vot... queda aprobada por veintiún votos a favor y una abstención. ¿Grupo Socialista?"
-    },
-    {
-      "start": 1849,
-      "end": 1850,
-      "speaker": "c02/SPEAKER_03",
-      "text": "A favor."
-    },
-    {
-      "start": 1850,
-      "end": 1851,
-      "speaker": "c02/SPEAKER_01",
-      "text": "Partido Popular."
-    },
-    {
-      "start": 1851,
-      "end": 1852,
-      "speaker": "c02/SPEAKER_04",
-      "text": "A favor."
-    },
-    {
-      "start": 1852,
-      "end": 1854,
-      "speaker": "c02/SPEAKER_01",
-      "text": "Espera la gente, para que os entienda."
-    },
-    {
-      "start": 1854,
-      "end": 1856,
-      "speaker": "c02/SPEAKER_04",
-      "text": "Sí, sí, yo he dicho que el voto es el mismo, igual."
-    },
-    {
-      "start": 1856,
-      "end": 1857,
-      "speaker": "c02/SPEAKER_01",
-      "text": "Abstención."
-    },
-    {
-      "start": 1857,
-      "end": 1859,
-      "speaker": "c02/SPEAKER_01",
-      "text": "¿Esquerra Unida Podem?"
-    },
-    {
-      "start": 1859,
-      "end": 1860,
-      "speaker": "c02/SPEAKER_05",
-      "text": "A favor."
-    },
-    {
-      "start": 1860,
-      "end": 1861,
-      "speaker": "c02/SPEAKER_01",
-      "text": "¿Y Compromís?"
-    },
-    {
-      "start": 1861,
-      "end": 1862,
-      "speaker": "c02/SPEAKER_06",
-      "text": "A favor."
-    },
-    {
-      "start": 1862,
-      "end": 1863,
-      "speaker": "c02/SPEAKER_01",
-      "text": "Vale."
     },
     {
       "start": 2400,
@@ -2225,78 +2094,6 @@
       "text": "perquè com ha dit el regidor del Partit Popular, totes les accions que ha comentat se queden a zero,"
     },
     {
-      "start": 4804.9,
-      "end": 4814.9,
-      "speaker": "c07/SPEAKER_05",
-      "text": "i destaque altra volta el pla de de refugis climàtics, que a més és una de les qüestions que vàrem abordar a l'hora de la negociació dels pressupostos amb Esquerra Unida Podem."
-    },
-    {
-      "start": 4814.9,
-      "end": 4824.9,
-      "speaker": "c07/SPEAKER_05",
-      "text": "De fet, eh contestant també al Partit Popular per lo que comentava abans que vàrem votar a favor del pressupost,"
-    },
-    {
-      "start": 4824.9,
-      "end": 4833.9,
-      "speaker": "c07/SPEAKER_05",
-      "text": "també vàrem votar a favor del pressupost per els eh pla de refugis climàtics, que ara se te queden a l'any que ve."
-    },
-    {
-      "start": 4833.9,
-      "end": 4842.9,
-      "speaker": "c07/SPEAKER_05",
-      "text": "Per tant, també aprofitant eh el vot a favor que tenim eh per part d'Esquerra Unida Podem, lo que demanem és que açò se faça, siga una realitat,"
-    },
-    {
-      "start": 4842.9,
-      "end": 4851.9,
-      "speaker": "c07/SPEAKER_05",
-      "text": "que s'haguera fet ja i perquè jo crec que este punt té dos errors: u, que no s'ha fet, i dos, que ara que no s'ha fet,"
-    },
-    {
-      "start": 4851.9,
-      "end": 4861.9,
-      "speaker": "c07/SPEAKER_05",
-      "text": "lo que fa és eh eixa inversió se queda a zero. Per tant, crec que és un error, crec que sí que afecta al final"
-    },
-    {
-      "start": 4861.9,
-      "end": 4870.9,
-      "speaker": "c07/SPEAKER_05",
-      "text": "eh lo que ha passat en els contenedors, el contracte de residus afecta directament a actuacions i crec que que s'ha d'explicar."
-    },
-    {
-      "start": 4870.9,
-      "end": 4880.9,
-      "speaker": "c07/SPEAKER_05",
-      "text": "I per suposat nosaltres no anem a votar a favor d'esta proposta perquè no coincidim en lo que ha elegit el Partit Socialista."
-    },
-    {
-      "start": 4880.9,
-      "end": 4890.9,
-      "speaker": "c07/SPEAKER_05",
-      "text": "Crec que han hagut actuacions que s'han quedat i que haurien de que s'han llevat i haurien de quedar-se,"
-    },
-    {
-      "start": 4890.9,
-      "end": 4900,
-      "speaker": "c07/SPEAKER_05",
-      "text": "i per tant nosaltres hui no votarem a favor i lo que preguem és que totes estes actuacions estiguen dins del pressupost de l'any dos mil vint-i-set, que és com haurien d'estar. Gràcies."
-    },
-    {
-      "start": 4900,
-      "end": 4903.9,
-      "speaker": "c07/SPEAKER_02",
-      "text": "Compromís."
-    },
-    {
-      "start": 4903.9,
-      "end": 4910,
-      "speaker": "c07/SPEAKER_06",
-      "text": "Gràcies, senyor alcalde. Anem a veure, hui portem per urgència..."
-    },
-    {
       "start": 5400,
       "end": 5405.1,
       "speaker": "c09/SPEAKER_01",
@@ -3087,12 +2884,6 @@
       "end": 6600,
       "speaker": "c10/SPEAKER_03",
       "text": "Teníem que canviar-los ja. I per a canviar-los, la única fórmula que teníem legal era esta. No perquè no tinguem diners, que diners n'hi han. Ara anem a ingressar dos milions i pico, més un milió i pico. No és un tema de tensió de tresoreria,"
-    },
-    {
-      "start": 6600,
-      "end": 6615,
-      "speaker": "c10/SPEAKER_03",
-      "text": "és un tema que mos obliguen a anar a un pla d'inversions per a comprar eixos contenidors. Si no..."
     }
   ],
   "rows": [
@@ -3403,27 +3194,27 @@
   ],
   "stats": {
     "chunksExpected": 17,
-    "chunksTranscribed": 7,
+    "chunksTranscribed": 8,
     "failedChunks": [
       {
         "chunk": 1,
-        "why": "covered 2% (floor 85%)"
+        "why": "quota exhausted, never attempted further"
       },
       {
         "chunk": 3,
-        "why": "covered 9% (floor 85%)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 6,
-        "why": "covered 0% (floor 85%)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 8,
-        "why": "covered 9% (floor 85%)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 11,
-        "why": "quota exhausted, never attempted further"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 12,
@@ -3440,13 +3231,9 @@
       {
         "chunk": 15,
         "why": "never attempted (quota exhausted earlier in the run)"
-      },
-      {
-        "chunk": 16,
-        "why": "never attempted (quota exhausted earlier in the run)"
       }
     ],
-    "labelsSeen": 42,
+    "labelsSeen": 0,
     "rowsAccepted": 12,
     "rowsRejected": 22,
     "rejectedBy": {
@@ -3456,6 +3243,7 @@
       "evidence-outside-transcript": 6,
       "label-collision": 2
     },
-    "coverage": 0.6851193600387037
+    "attemptedThisRun": 1,
+    "coverage": 0.4282451125516822
   }
 }
