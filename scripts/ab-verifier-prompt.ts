@@ -45,7 +45,8 @@ function parseArgs(argv: string[]) {
 
 async function main() {
   const opts = parseArgs(process.argv.slice(2))
-  if (!process.env.LLM_BACKEND) process.env.LLM_BACKEND = 'gemini'
+  // agy, not the retired gemini CLI — see loadConfigFromEnv's cascade comment.
+  if (!process.env.LLM_BACKEND) process.env.LLM_BACKEND = 'agy'
   resetBudget()
   const cfg = loadConfigFromEnv()
   process.stdout.write(

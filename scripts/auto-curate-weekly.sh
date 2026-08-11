@@ -74,14 +74,12 @@ cron_git_pull_rebase "git pull inicial"
 export LLM_BACKEND="${LLM_BACKEND:-claude-code}"
 export CLAUDE_CODE_MODEL="${CLAUDE_CODE_MODEL:-claude-sonnet-5}"
 export AGY_MODEL="${AGY_MODEL:-gemini-3.5-flash-medium}"  # only read if LLM_BACKEND=agy
-# Gemini stays as a fallback target. GOOGLE_GENAI_USE_GCA=true so the
-# chain can switch to Pro plan auth if claude-code hits a quota wall.
-# gemini-2.5-pro is the highest tier the gemini CLI Pro subscription
-# accepts on this account (3.x isn't reachable, 2.0/lite are
-# downgrades). Verified by probing `gemini -m <model> -p ...` against
-# the live CLI. Re-test if Google ships 3.x to this tier.
-export GOOGLE_GENAI_USE_GCA="${GOOGLE_GENAI_USE_GCA:-true}"
-export GEMINI_MODEL="${GEMINI_MODEL:-gemini-2.5-pro}"
+# The gemini CLI is no longer a fallback target and its env (GEMINI_MODEL,
+# GOOGLE_GENAI_USE_GCA) is gone from here. agy replaced it, and the install
+# that remains cannot authenticate without a browser — it hangs for the full
+# watchdog instead of failing. gemini-2.5-pro, the value this used to export,
+# is also no longer a model agy recognises; it went on working only because
+# AGY_MODEL above happens to be set explicitly.
 
 # Run the curator with a 5-finding cap (matches the on-demand default).
 echo "[$(date '+%F %T')] invoking npm run auto-curate -- --max 5"

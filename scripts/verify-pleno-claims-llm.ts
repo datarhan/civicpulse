@@ -93,8 +93,10 @@ async function main() {
     process.exit(1)
   }
 
-  // Default to gemini when LLM_BACKEND is unset — this is the $0 path.
-  if (!process.env.LLM_BACKEND) process.env.LLM_BACKEND = 'gemini'
+  // Default to agy when LLM_BACKEND is unset — this is the $0 path. It used to
+  // name the gemini CLI, which agy replaced; that binary can no longer
+  // authenticate non-interactively and burns the 180 s watchdog per call.
+  if (!process.env.LLM_BACKEND) process.env.LLM_BACKEND = 'agy'
   resetBudget()
   const config = loadConfigFromEnv()
   process.stdout.write(

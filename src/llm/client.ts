@@ -248,20 +248,22 @@ export function loadConfigFromEnv(): ClientConfig {
   // cross-backend fallback order in callLLM.
   //   1. openai       — if OPENAI_API_KEY is set (metered, fastest)
   //   2. anthropic    — if ANTHROPIC_API_KEY is set (metered)
-  //   3. gemini       — if gemini CLI is installed (Pro subscription, $0)
-  //   4. agy          — if the agy CLI is installed ($0, Google subscription)
-  //   5. claude-code  — if the claude CLI is installed ($0, Max plan)
-  //   6. ollama       — local, last resort only (user directive 2026-07-07:
+  //   3. agy          — if the agy CLI is installed ($0, Google subscription)
+  //   4. claude-code  — if the claude CLI is installed ($0, Max plan)
+  //   5. ollama       — local, last resort only (user directive 2026-07-07:
   //                     local qwen inference must never run unless nothing
   //                     else is even installed, or LLM_BACKEND=ollama is set)
+  //
+  // The legacy `gemini` CLI is NOT in this cascade. agy replaced it, and the
+  // install that remains cannot authenticate non-interactively: it prints
+  // «Opening authentication page in your browser» and waits on an OAuth
+  // callback that never arrives under `stdio: ['ignore', …]`, burning the full
+  // 180 s watchdog per call. Reachable only via an explicit LLM_BACKEND=gemini.
   const binOnPath = (bin: string): boolean =>
     bin.includes('/')
       ? existsSync(bin)
       : (process.env.PATH || '').split(':').some((d) => d && existsSync(`${d}/${bin}`))
   const envBackend = process.env.LLM_BACKEND as Backend | undefined
-  const geminiBinPath =
-    process.env.GEMINI_BIN ||
-    (process.env.HOME || '') + '/.local/civicpulse-gemini/node_modules/.bin/gemini'
   let backend: Backend
   if (envBackend) {
     backend = envBackend
@@ -269,8 +271,6 @@ export function loadConfigFromEnv(): ClientConfig {
     backend = 'openai'
   } else if (process.env.ANTHROPIC_API_KEY) {
     backend = 'anthropic'
-  } else if (existsSync(geminiBinPath)) {
-    backend = 'gemini'
   } else if (binOnPath(process.env.AGY_BIN || 'agy')) {
     backend = 'agy'
   } else if (binOnPath(process.env.CLAUDE_CODE_BIN || 'claude')) {
@@ -299,11 +299,21 @@ export function loadConfigFromEnv(): ClientConfig {
       process.env.GEMINI_BIN ||
       (process.env.HOME || '') + '/.local/civicpulse-gemini/node_modules/.bin/gemini',
     // agy CLI (Google's agentic CLI · replaces the legacy gemini CLI). Binary
-    // defaults to `agy` on PATH. Model falls back to GEMINI_MODEL then
-    // gemini-2.5-pro so a single env var can steer both gemini and agy. Never
-    // affects auto-selection above — reached only via LLM_BACKEND=agy.
+    // defaults to `agy` on PATH. AGY_MODEL is the only knob: GEMINI_MODEL no
+    // longer feeds this. Steering two CLIs from one variable stopped being a
+    // convenience the moment one of them was retired — all it could still do
+    // was let a stale value for the dead backend choose the live one's model,
+    // and the value in circulation (gemini-2.5-pro) is one agy rejects.
     agyBin: process.env.AGY_BIN || 'agy',
-    agyModel: process.env.AGY_MODEL || process.env.GEMINI_MODEL || 'gemini-2.5-pro',
+    // agy bakes the reasoning effort into the model id — «gemini-3.5-flash» on
+    // its own is rejected with «requires --effort (available: low, medium,
+    // high)», while «gemini-3.5-flash-medium» is accepted as a single --model
+    // value. That is why callAgy passes no --effort flag.
+    //
+    // The previous default, gemini-2.5-pro, is no longer a model agy knows:
+    // «not recognized as a known model or custom model in settings», exit 1
+    // before the prompt is sent. Verified 2026-08-11 against agy's own list.
+    agyModel: process.env.AGY_MODEL || 'gemini-3.5-flash-medium',
     cacheDir: resolve('.llm-cache'),
     maxTokensPerRun: Number(process.env.LLM_MAX_TOKENS_PER_RUN || 500_000),
     zeroCostOnly: process.env.LLM_ZERO_COST_ONLY === '1',
@@ -350,9 +360,14 @@ export function buildBackendChain(config: ClientConfig): Backend[] {
 
   const chain: Backend[] = [config.backend]
   const capped$0Primary = config.backend === 'agy' || config.backend === 'gemini'
+  // No `gemini` in either order. It was gated on `existsSync(geminiBin)`, which
+  // proves the file is on disk and nothing about whether it can answer — and
+  // the install on this machine cannot: it blocks on an interactive OAuth
+  // prompt until the 180 s watchdog kills it. In the last chain slot that is
+  // three dead minutes added to every genuine failure, which is what it cost.
   const order: Backend[] = capped$0Primary
-    ? ['claude-code', 'openai', 'anthropic', 'gemini']
-    : ['openai', 'anthropic', 'gemini']
+    ? ['claude-code', 'openai', 'anthropic']
+    : ['openai', 'anthropic']
 
   for (const b of order) {
     if (b === config.backend) continue
@@ -360,7 +375,6 @@ export function buildBackendChain(config: ClientConfig): Backend[] {
     if (b === 'claude-code' && !commandExists(config.claudeCodeBin)) continue
     if (b === 'openai' && !config.openaiApiKey) continue
     if (b === 'anthropic' && !config.anthropicApiKey) continue
-    if (b === 'gemini' && !existsSync(config.geminiBin)) continue
     chain.push(b)
   }
   return chain

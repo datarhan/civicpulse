@@ -99,4 +99,39 @@ describe('buildBackendChain', () => {
       expect(chain.filter((b) => b === 'gemini')).toHaveLength(1)
     })
   })
+
+  /**
+   * The gemini CLI is opt-in, like ollama and agy — never auto-chained.
+   *
+   * `existsSync(geminiBin)` was the only gate, and it proves the file is on
+   * disk, not that it can answer. Measured 2026-08-11 against both the PATH
+   * copy and the sandboxed one this repo points at: `gemini -p … -o json`
+   * prints «Opening authentication page in your browser» and then waits on an
+   * OAuth callback that, with `stdio: ['ignore', …]` and no browser, never
+   * arrives. The call hangs until the 180 s watchdog kills it. Setting
+   * GEMINI_API_KEY does not change this — the CLI still wants the browser.
+   *
+   * So an installed-but-unauthenticated gemini is not a backend that might
+   * work; it is three guaranteed dead minutes per call, in the last chain slot
+   * where it delays every real failure. The cron wrappers already pass
+   * GEMINI_BIN=/nonexistent-disabled, which is the habit this file's own
+   * comment says cannot be asserted in a test. This asserts it instead.
+   */
+  describe('gemini is opt-in, never auto-chained', () => {
+    it('is not appended as a fallback to a $0 primary', () => {
+      expect(buildBackendChain(cfg({ backend: 'agy' }))).not.toContain('gemini')
+    })
+
+    it('is not appended as a fallback to a metered primary', () => {
+      expect(buildBackendChain(cfg({ backend: 'openai' }))).not.toContain('gemini')
+      expect(buildBackendChain(cfg({ backend: 'anthropic' }))).not.toContain('gemini')
+    })
+
+    it('still runs as an explicit primary — an opt-in is not a leak', () => {
+      // Same rule the metered backends get: the flag guards silent fallback,
+      // not a deliberate choice. Someone who sets LLM_BACKEND=gemini gets
+      // gemini, and the watchdog reports what happened.
+      expect(buildBackendChain(cfg({ backend: 'gemini' }))[0]).toBe('gemini')
+    })
+  })
 })
