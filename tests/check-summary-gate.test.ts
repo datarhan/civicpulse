@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { findGateLeaks } from '../scripts/check-summary-gate'
+import { findGateLeaks, findHollowFindings, findNearMisses } from '../scripts/check-summary-gate'
 
 const finding = (summary: string, quotes: Array<{ text: string }>) => ({
   id: 'f-1',
@@ -103,5 +103,73 @@ describe('findGateLeaks', () => {
 
   it('is empty and safe with no quotes at all', () => {
     expect(findGateLeaks([finding('un sumario', [])], gates())).toEqual([])
+  })
+})
+
+/**
+ * The class the leak rule only ever saw a corner of.
+ *
+ * A summary can convey a withheld accusation perfectly well without
+ * reproducing its words, so on 2026-08-11 the leak rule found 3 hollow
+ * findings and missed 8. All 11 were withdrawn; this is what stops the
+ * auto-curator republishing the shape.
+ */
+describe('findHollowFindings', () => {
+  it('reports a finding whose every quote the gate withholds', () => {
+    const f = finding('El PSOE denuncia una conducta concreta del PP.', [
+      { text: 'una cita' },
+      { text: 'otra cita' },
+    ])
+    expect(findHollowFindings([f], gates('hidden', 'hidden'))).toEqual(['f-1'])
+  })
+
+  it.each([
+    ['one quote survives as shown', gates('hidden', 'shown')],
+    ['one quote survives as toggle', gates('hidden', 'toggle')],
+  ])('leaves it alone when %s', (_label, g) => {
+    const f = finding('un sumario cualquiera', [{ text: 'una cita' }, { text: 'otra cita' }])
+    expect(findHollowFindings([f], g)).toEqual([])
+  })
+
+  /**
+   * A finding with no quotes rests on documents, not on speech. Reporting it
+   * would flag every documentary finding on the site.
+   */
+  it('does not report a finding that never had quotes', () => {
+    expect(findHollowFindings([finding('un sumario documental', [])], gates())).toEqual([])
+  })
+
+  /** An unknown gate is not a publishable one — fail towards reporting. */
+  it('treats a missing gate verdict as not publishable', () => {
+    const f = finding('un sumario', [{ text: 'una cita' }])
+    expect(findHollowFindings([f], gates(null))).toEqual(['f-1'])
+  })
+})
+
+describe('findNearMisses', () => {
+  it('reports a 6-word shared run that the 8-word blocking rule misses', () => {
+    const quote = 'nosotros efectivamente contratamos de manera verbal y por emergencia'
+    const summary =
+      'El grupo señala que se realizaron contrataciones de manera verbal y por emergencia.'
+    const g = gates('hidden')
+    expect(findGateLeaks([finding(summary, [{ text: quote }])], g)).toEqual([])
+    expect(
+      findNearMisses([finding(summary, [{ text: quote }])], g).map((l) => l.quoteIndex),
+    ).toEqual([0])
+  })
+
+  /** The two lists partition; a curator reading both must not see one row twice. */
+  it('never repeats a row the blocking rule already reports', () => {
+    const quote =
+      'No ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas'
+    const f = finding(`El PSOE afirmó que «${quote}».`, [{ text: quote }])
+    expect(findGateLeaks([f], gates('hidden'))).toHaveLength(1)
+    expect(findNearMisses([f], gates('hidden'))).toEqual([])
+  })
+
+  it('ignores a quote the gate publishes', () => {
+    const quote = 'nosotros efectivamente contratamos de manera verbal y por emergencia'
+    const summary = 'Se realizaron contrataciones de manera verbal y por emergencia.'
+    expect(findNearMisses([finding(summary, [{ text: quote }])], gates('toggle'))).toEqual([])
   })
 })

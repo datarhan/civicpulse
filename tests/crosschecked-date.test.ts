@@ -222,6 +222,6 @@ describe('the published findings resolve', () => {
       const dated = refs.filter((r) => refDate(r, index, f.plenoDate))
       expect(dated.length, `${f.id}: ningún cotejo fechable`).toBeGreaterThan(0)
     }
-    expect(checked).toBeGreaterThan(40)
+    expect(checked).toBeGreaterThan(30)
   })
 })

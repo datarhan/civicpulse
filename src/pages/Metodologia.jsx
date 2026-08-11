@@ -1264,6 +1264,32 @@ export default function Metodologia() {
             copias de la misma prosa, y dejarlas deshace la retirada.
           </li>
           <li>
+            <strong>Retirar el hallazgo entero</strong> es una operación distinta de corregirlo, y
+            existe desde el 11 de agosto de 2026 (<code>npm run retract-finding</code>). Se usa
+            cuando la ficha no se puede enunciar: cuando el filtro editorial retiene <em>todas</em>{' '}
+            sus citas, lo que quede en el sumario habla de grupos con nombre sin una sola
+            intervención que la página pueda enseñar, y reescribir la prosa no arregla eso. El
+            hallazgo sale de la lista y deja de contar en cualquier cifra; en su lugar queda una
+            entrada firmada con la fecha, el motivo, de qué pleno era y cuántas citas y documentos
+            tenía. <strong>No queda el texto</strong>, sino su huella{' '}
+            <code>hallazgo · sha256:…</code>: la retirada existe precisamente porque ese texto no
+            debe seguir publicado, y una lápida que lo reprodujera lo dejaría accesible en la misma
+            página. Quien conserve una copia puede recalcular la huella y comprobar que coincide.
+            Por lo mismo <strong>no hay vuelta atrás</strong>: no se guarda nada que restaurar, y
+            volver a publicar significa un hallazgo nuevo, con id nuevo y sus propias pruebas.
+          </li>
+          <li>
+            <strong>Qué se retiró el 11 de agosto de 2026.</strong> Una comprobación nueva —
+            <code>check:summary-gate</code>— buscó lo contrario de lo que acabó encontrando: si
+            algún sumario reproducía literalmente una cita que el filtro oculta. Encontró nueve, en
+            siete fichas. Al repararlas apareció la clase de verdad: un sumario puede transmitir
+            perfectamente la acusación retenida sin repetir sus palabras, y había once hallazgos
+            —todos informativos, nueve firmados por el redactor automático y dos por una persona—
+            cuyas citas estaban retenidas <em>al completo</em>. Se retiraron los once y se
+            reescribieron cuatro sumarios más. La comprobación ahora bloquea las dos formas, así que
+            el redactor automático no puede volver a publicarlas.
+          </li>
+          <li>
             Las refutaciones del medio citado pasan por el formulario público{' '}
             <code>finding-response</code> y se publican verbatim.
           </li>

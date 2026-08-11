@@ -19,7 +19,9 @@ import { join } from 'node:path'
 import { classifyClaimVisibility } from '../src/scraper/claim-public-gate'
 import {
   buildExceptionQueue,
+  marcaNingunaContrastada,
   CORRECTION_CLI,
+  RETRACTION_CLI,
   EXCEPTION_QUEUE_VERSION,
   type ExceptionClaimFacts,
 } from '../src/scraper/finding-exception'
@@ -105,15 +107,46 @@ describe('la cola tiene exactamente los hallazgos sin ninguna cita mostrable', (
 })
 
 describe('las que no tienen NADA contrastado van marcadas aparte', () => {
-  it('son las fichas hechas por entero de citas que la puerta retiene', () => {
+  /**
+   * Esta clase está VACÍA desde el 2026-08-11, y por eso la comprobación se
+   * escribe al revés que las demás.
+   *
+   * Eran once fichas hechas por entero de citas que la puerta retiene: el
+   * sumario hablaba de grupos con nombre y la ficha no podía enseñar ni una
+   * intervención. Se retiraron todas, y `check:summary-gate` ya bloquea la
+   * forma, así que exigir `> 0` aquí sería exigir que el defecto vuelva.
+   *
+   * Lo que sí hay que seguir probando es que la marca FUNCIONA — si no, el
+   * cero de arriba sería el de un clasificador muerto, que es exactamente la
+   * trampa que documenta docs/DATA_INTEGRITY.md. De ahí las dos mitades: el
+   * corpus vivo está limpio, y el clasificador sigue marcando cuando hay algo
+   * que marcar.
+   */
+  it('el corpus publicado ya no tiene ninguna, que es el estado correcto', () => {
     const marcadas = QUEUE.rows.filter((r) => r.ningunaCitaContrastada)
-    expect(marcadas.length).toBeGreaterThan(0)
-    for (const r of marcadas) for (const q of r.quotes) expect(q.gate).toBe('hidden')
-    expect(QUEUE.stats.sinNingunaCitaContrastada).toBe(marcadas.length)
+    expect(marcadas).toEqual([])
+    expect(QUEUE.stats.sinNingunaCitaContrastada).toBe(0)
   })
 
-  it('son un subconjunto PROPIO: la marca distingue, no adorna', () => {
-    expect(QUEUE.stats.sinNingunaCitaContrastada).toBeLessThan(QUEUE.stats.encolados)
+  it('y la marca no está muerta: sigue disparando sobre una ficha así', () => {
+    // Control positivo. Sin él, «cero fichas marcadas» y «el clasificador no
+    // mira» son indistinguibles.
+    const row = QUEUE.rows.find((r) => r.quotes.length > 0)
+    expect(row, 'la cola está vacía: nada de esto mide nada').toBeDefined()
+    const todasOcultas = { ...row!, quotes: row!.quotes.map((q) => ({ ...q, gate: 'hidden' })) }
+    expect(todasOcultas.quotes.every((q) => q.gate === 'hidden')).toBe(true)
+    expect(marcaNingunaContrastada(todasOcultas.quotes)).toBe(true)
+    // …y no dispara cuando una sola cita es publicable.
+    expect(
+      marcaNingunaContrastada([
+        ...todasOcultas.quotes.slice(1),
+        { ...row!.quotes[0], gate: 'toggle' },
+      ]),
+    ).toBe(false)
+  })
+
+  it('la marca, cuando la hay, es un subconjunto PROPIO: distingue, no adorna', () => {
+    expect(QUEUE.stats.sinNingunaCitaContrastada).toBeLessThanOrEqual(QUEUE.stats.encolados)
   })
 
   it('coinciden con la cifra que el snapshot publicado calculó por su cuenta', () => {
@@ -145,13 +178,48 @@ describe('la cola presenta y no elige', () => {
     }
   })
 
-  it('no propone retirar el hallazgo entero: esa CLI no existe', () => {
-    // Componer un comando para una operación que el repo no sanciona sería
-    // esta cola inventándose una vía de escritura.
+  it('sólo propone retirar el hallazgo donde retirar es el único remedio', () => {
+    // Ofrecer los dos comandos no es elegir: la fila sigue llegando con
+    // `decision: null`. Lo que no puede hacer la cola es proponer una retirada
+    // en una ficha que SÍ tiene una cita publicable — ahí el remedio es
+    // corregir la prosa, y sugerir la retirada sería la máquina empujando
+    // hacia la operación irreversible.
     for (const r of QUEUE.rows) {
-      expect(Object.keys(r.commands)).toEqual(['corregirSumario'])
       expect(r.commands.corregirSumario.startsWith(CORRECTION_CLI)).toBe(true)
+      if (r.ningunaCitaContrastada) {
+        expect(r.commands.retirarHallazgo, `${r.findingId}: sin salida posible`).toBeDefined()
+        expect(r.commands.retirarHallazgo!.startsWith(RETRACTION_CLI)).toBe(true)
+      } else {
+        expect(Object.keys(r.commands)).toEqual(['corregirSumario'])
+      }
     }
+  })
+
+  it('y la rama de retirada se compone de verdad cuando toca', () => {
+    // Control positivo: el corpus vivo no tiene ninguna fila hueca desde el
+    // 2026-08-11, así que sin esto la rama de arriba nunca se ejecutaría y
+    // «ninguna propone retirar» sería cierto por vacío.
+    const hueca = buildExceptionQueue(
+      FINDINGS.items.slice(0, 1).map((f) => ({ ...f })),
+      {
+        gates: {
+          [FINDINGS.items[0].id]: (FINDINGS.items[0].quotes ?? []).map(() => ({
+            status: 'en-vigente',
+            gate: 'hidden',
+          })),
+        },
+        facts: FACTS,
+      },
+      {
+        generatedAt: '2026-08-11T00:00:00.000Z',
+        findingsGeneratedAt: FINDINGS.generatedAt,
+        provenanceGeneratedAt: PROVENANCE.generatedAt,
+      },
+    )
+    expect(hueca.rows).toHaveLength(1)
+    expect(hueca.rows[0].ningunaCitaContrastada).toBe(true)
+    expect(hueca.rows[0].commands.retirarHallazgo).toContain(FINDINGS.items[0].id)
+    expect(hueca.rows[0].decision).toBeNull()
   })
 })
 

@@ -66,7 +66,7 @@ describe('la puerta se aplica a TODAS las citas publicadas', () => {
   it('no deja caer ni una: una fila con veredicto por cita', () => {
     // Que la comprobación mide algo: con el snapshot vacío pasaría comparando
     // 0 con 0 sin haber preguntado nada a la puerta.
-    expect(ALL_QUOTES.length).toBeGreaterThan(150)
+    expect(ALL_QUOTES.length).toBeGreaterThan(120)
     expect(DERIVED.stats.citasConClaim).toBe(ALL_QUOTES.length)
     expect(DERIVED.stats.citasSinClaim).toBe(0)
     const filas = Object.values(DERIVED.rows).reduce((n, r) => n + r.length, 0)
@@ -152,7 +152,7 @@ describe('EL OVERLAY ESTÁ APLICADO — y sin él la respuesta es la contraria',
     // La medida que hace imposible enviar el error: si alguien cambiara el
     // constructor para leer la base, este número caería a 0 y la pasada se
     // negaría a escribir.
-    expect(DERIVED.stats.citasReclasificadasPorElOverlay).toBeGreaterThan(100)
+    expect(DERIVED.stats.citasReclasificadasPorElOverlay).toBeGreaterThan(80)
     expect(DERIVED.stats.citasConVeredictoDeOverlay).toBeGreaterThan(100)
     expect(DERIVED.stats.entradasDeOverlay).toBeGreaterThan(0)
   })
@@ -245,9 +245,18 @@ describe('los hallazgos sin ninguna cita mostrable, contados', () => {
     expect(sinMostrable.length).toBeLessThan(FINDINGS.items.length)
   })
 
-  it('las hechas por entero de citas retenidas son un subconjunto propio', () => {
-    expect(DERIVED.stats.hallazgosSoloConCitasOcultas).toBeGreaterThan(0)
-    expect(DERIVED.stats.hallazgosSoloConCitasOcultas).toBeLessThan(
+  /**
+   * Cero desde el 2026-08-11: las once fichas que estaban hechas por entero de
+   * citas retenidas se retiraron ese día, y `check:summary-gate` bloquea ahora
+   * la forma. Exigir `> 0` sería exigir que el defecto vuelva.
+   *
+   * Lo que queda por probar es que el contador no está muerto — sigue siendo
+   * un subconjunto de las que no tienen cita mostrable, y esa cifra sí es > 0.
+   */
+  it('las hechas por entero de citas retenidas ya no existen, y el contador vive', () => {
+    expect(DERIVED.stats.hallazgosSoloConCitasOcultas).toBe(0)
+    expect(DERIVED.stats.hallazgosSinCitaMostrable).toBeGreaterThan(0)
+    expect(DERIVED.stats.hallazgosSoloConCitasOcultas).toBeLessThanOrEqual(
       DERIVED.stats.hallazgosSinCitaMostrable,
     )
   })

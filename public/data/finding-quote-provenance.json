@@ -1,10 +1,10 @@
 {
   "_comment": "DERIVADO, no curado. Dos cosas por cada literal publicado en /hallazgos. (1) `quotes[id][i].status`: de qué transcripción procede — de la vigente, sólo de la que se sustituyó al re-transcribir la sesión, o de ninguna de las dos de forma concluyente. (2) `quotes[id][i].gate`: qué haría con la afirmación que sostiene esa cita la puerta editorial de src/scraper/claim-public-gate.ts, que gobierna /plenos y que /hallazgos no consultaba — `shown`, `toggle` o `hidden`, su propio vocabulario. Ninguna de las dos modifica una cita y ninguna es una corrección: el único escritor de public/data/pleno-findings.json sigue siendo `npm run correct-pleno-finding`. Se regenera con `npm run compute:finding-quote-provenance`.",
   "version": "finding-quote-provenance-v2",
-  "generatedAt": "2026-08-10T22:29:29.167Z",
+  "generatedAt": "2026-08-11T08:34:00.391Z",
   "source": {
     "findings": "public/data/pleno-findings.json",
-    "findingsGeneratedAt": "2026-08-10T12:54:25.454Z",
+    "findingsGeneratedAt": "2026-08-11T08:31:45.736Z",
     "transcripts": "public/data/pleno-transcripts",
     "superseded": "public/data/pleno-transcripts/superseded"
   },
@@ -58,35 +58,35 @@
       }
     ],
     "stats": {
-      "citasConClaim": 169,
+      "citasConClaim": 134,
       "citasSinClaim": 0,
       "porContraste": {
         "shown": 16,
         "toggle": 83,
-        "hidden": 70
+        "hidden": 35
       },
-      "citasConVeredictoDeOverlay": 129,
-      "citasReclasificadasPorElOverlay": 127,
-      "hallazgosSinCitaMostrable": 39,
-      "hallazgosSoloConCitasOcultas": 11,
+      "citasConVeredictoDeOverlay": 102,
+      "citasReclasificadasPorElOverlay": 100,
+      "hallazgosSinCitaMostrable": 28,
+      "hallazgosSoloConCitasOcultas": 0,
       "claimsEnCorpus": 6359,
       "entradasDeOverlay": 1425
     }
   },
   "stats": {
-    "findings": 52,
-    "quotes": 169,
-    "enVigente": 126,
-    "soloEnSustituida": 41,
-    "sinDeterminar": 2,
-    "sinDeterminarPorTranscripcionMasCorta": 2,
+    "findings": 41,
+    "quotes": 134,
+    "enVigente": 102,
+    "soloEnSustituida": 32,
+    "sinDeterminar": 0,
+    "sinDeterminarPorTranscripcionMasCorta": 0,
     "sinDeterminarPorFaltaDeTranscripcion": 0,
-    "findingsConCitaMarcada": 29,
-    "sesionesConCitas": 12,
-    "sesionesRetranscritas": 11,
+    "findingsConCitaMarcada": 21,
+    "sesionesConCitas": 11,
+    "sesionesRetranscritas": 10,
     "sesionesNoComparables": 1,
     "sinClasificar": 0,
-    "bytesLeidos": 4246710
+    "bytesLeidos": 3880319
   },
   "sessions": {
     "1237hbp": {
@@ -153,12 +153,6 @@
       "retranscrita": true,
       "bytesVigente": 174976,
       "bytesSustituida": 168596,
-      "comparable": true
-    },
-    "rmtyr": {
-      "retranscrita": true,
-      "bytesVigente": 199969,
-      "bytesSustituida": 179519,
       "comparable": true
     }
   },
@@ -357,30 +351,6 @@
         "gate": "hidden"
       }
     ],
-    "f-2026-05-11-acu-1e1bfa": [
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "solo-en-sustituida",
-        "gate": "hidden"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      }
-    ],
-    "f-2026-05-11-acu-da7902": [
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      }
-    ],
     "f-2026-04-20-cit-b9b013": [
       {
         "status": "en-vigente",
@@ -411,24 +381,6 @@
       {
         "status": "en-vigente",
         "gate": "toggle"
-      }
-    ],
-    "f-2026-04-20-acu-93c1e8": [
-      {
-        "status": "solo-en-sustituida",
-        "gate": "hidden"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "solo-en-sustituida",
-        "gate": "hidden"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
       }
     ],
     "f-2026-04-20-cit-947479": [
@@ -489,26 +441,6 @@
         "gate": "toggle"
       }
     ],
-    "f-2026-03-09-acu-d94904": [
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "sin-determinar",
-        "reason": "transcripcion-actual-mas-corta",
-        "gate": "hidden"
-      },
-      {
-        "status": "sin-determinar",
-        "reason": "transcripcion-actual-mas-corta",
-        "gate": "hidden"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      }
-    ],
     "f-2026-01-19-afi-5b06c8": [
       {
         "status": "en-vigente",
@@ -530,24 +462,6 @@
       },
       {
         "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      }
-    ],
-    "f-2026-01-19-acu-2c074a": [
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "solo-en-sustituida",
-        "gate": "hidden"
-      },
-      {
-        "status": "solo-en-sustituida",
         "gate": "hidden"
       },
       {
@@ -633,20 +547,6 @@
         "gate": "shown"
       }
     ],
-    "f-2026-01-19-acu-d2b7bb": [
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "solo-en-sustituida",
-        "gate": "hidden"
-      }
-    ],
     "f-2026-01-19-acu-b1a13f": [
       {
         "status": "en-vigente",
@@ -655,24 +555,6 @@
       {
         "status": "solo-en-sustituida",
         "gate": "shown"
-      },
-      {
-        "status": "solo-en-sustituida",
-        "gate": "hidden"
-      }
-    ],
-    "f-2025-12-23-acu-a1ba00": [
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
       },
       {
         "status": "solo-en-sustituida",
@@ -709,24 +591,6 @@
       {
         "status": "en-vigente",
         "gate": "toggle"
-      }
-    ],
-    "f-2025-12-23-acu-cd77e9": [
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "solo-en-sustituida",
-        "gate": "hidden"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
       }
     ],
     "f-2025-12-01-cit-d89862": [
@@ -811,12 +675,6 @@
         "gate": "hidden"
       }
     ],
-    "f-2025-12-01-acu-51aaa3": [
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      }
-    ],
     "f-2025-11-03-acu-431140": [
       {
         "status": "en-vigente",
@@ -861,20 +719,6 @@
       {
         "status": "en-vigente",
         "gate": "toggle"
-      }
-    ],
-    "f-2025-10-06-acu-bba0e9": [
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "solo-en-sustituida",
-        "gate": "hidden"
       }
     ],
     "f-2025-10-06-acu-b00839": [
@@ -930,24 +774,10 @@
         "status": "en-vigente",
         "gate": "toggle"
       }
-    ],
-    "f-2025-07-31-acu-144947": [
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      }
     ]
   },
   "unresolved": [],
   "builtFrom": {
-    "pleno-findings.json": "94a4c9f535c9"
+    "pleno-findings.json": "8c2883ce2822"
   }
 }

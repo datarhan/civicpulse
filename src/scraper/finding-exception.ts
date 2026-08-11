@@ -43,6 +43,7 @@ import type { ClaimVisibility } from './claim-public-gate'
 
 export const EXCEPTION_QUEUE_VERSION = 'finding-exception-v1'
 export const CORRECTION_CLI = 'npm run correct-pleno-finding'
+export const RETRACTION_CLI = 'npm run retract-finding'
 
 /** One published quote, with both verdicts a curator needs to see at once. */
 export interface ExceptionQuote {
@@ -91,12 +92,20 @@ export interface ExceptionRow {
    */
   decision: null
   /**
-   * The exact command a person would run to qualify the published prose.
-   * Composed, never executed. There is deliberately no whole-finding
-   * retraction command: no such CLI exists, and inventing a shell line for one
-   * would be this file proposing an operation the repo does not sanction.
+   * The exact commands a person would run. Composed, never executed.
+   *
+   * `retirarHallazgo` appears ONLY on a row the gate has hollowed out — every
+   * quote withheld — because that is the one case where correcting the prose
+   * cannot work: there is nothing publishable left for a rewritten summary to
+   * rest on, and `applyFindingRedaction` refuses to redact to a stub for
+   * exactly that reason. Offering both is not deciding between them; the row
+   * still arrives undecided, as every row does, and a person still picks.
+   *
+   * (It said «no such CLI exists» here until 2026-08-11, and that was true:
+   * eleven hollow findings stayed published because the only sanctioned
+   * remedy was one that could not apply to them.)
    */
-  commands: { corregirSumario: string }
+  commands: { corregirSumario: string; retirarHallazgo?: string }
 }
 
 export interface ExceptionQueue {
@@ -155,6 +164,17 @@ export interface ExceptionClaimFacts {
  * recomputed here, so the queue and the marks on `/hallazgos` cannot disagree
  * about which quotes are affected — the same rule `quote-reanchor` follows.
  */
+/**
+ * Una ficha hecha POR ENTERO de citas que la puerta retiene.
+ *
+ * Exportada, no reescrita en el test: el 2026-08-11 esta clase se vació —se
+ * retiraron las once que había— y una prueba que restate el predicado se
+ * quedaría verde midiendo su propia copia. La regla 1 de
+ * docs/DATA_INTEGRITY.md, que costó €53,5M la última vez.
+ */
+export const marcaNingunaContrastada = (quotes: Array<{ gate: string }>): boolean =>
+  quotes.length > 0 && quotes.every((q) => q.gate === 'hidden')
+
 export function buildExceptionQueue(
   findings: ExceptionFinding[],
   lookups: {
@@ -219,13 +239,20 @@ export function buildExceptionQueue(
       publishedAt: f.publishedAt ?? '',
       quotes,
       citasMostrables,
-      ningunaCitaContrastada: quotes.every((q) => q.gate === 'hidden'),
+      ningunaCitaContrastada: marcaNingunaContrastada(quotes),
       conReplica: f.response != null,
       decision: null,
       commands: {
         corregirSumario:
           `${CORRECTION_CLI} -- ${f.id} --field summary ` +
           '--new "<el sumario corregido>" --reason "<por qué, ≥20 caracteres>" --editor "<tu nombre>"',
+        ...(marcaNingunaContrastada(quotes)
+          ? {
+              retirarHallazgo:
+                `${RETRACTION_CLI} -- ${f.id} ` +
+                '--reason "<el criterio, nunca el material — se publica>" --editor "<tu nombre>"',
+            }
+          : {}),
       },
     })
   }

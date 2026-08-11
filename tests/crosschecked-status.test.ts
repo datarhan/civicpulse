@@ -221,7 +221,7 @@ describe('the real snapshot', () => {
   it('indexes the whole procurement register', () => {
     // Positive control. Without it every assertion below is vacuous.
     expect(index.size).toBeGreaterThan(400)
-    expect(tenderRefs.length).toBeGreaterThan(100)
+    expect(tenderRefs.length).toBeGreaterThan(80)
   })
 
   it('resolves every published tender ref to one of the three answers', () => {

@@ -78,7 +78,7 @@ describe('buildSupportQueue · los extractos viajan byte a byte', () => {
       })
     }
     // La suite no puede declararse verde sin haber comparado extractos reales.
-    expect(compared).toBeGreaterThan(150)
+    expect(compared).toBeGreaterThan(120)
     expect(compared).toBe(SNAPSHOT.items.reduce((n, f) => n + f.crossChecked.length, 0))
   })
 
@@ -141,9 +141,27 @@ describe('buildSupportQueue · los casos tabulados, todos reparados', () => {
     },
   ]
 
+  /**
+   * Dos de los tres reparados —`d2b7bb` y `1e1bfa`— se retiraron enteros el
+   * 2026-08-11: la puerta editorial retenía TODAS sus citas, así que no había
+   * sumario que corregir. La reparación siguió siendo correcta; lo que ya no
+   * existe es la ficha. Se comprueba la lápida en vez de la prosa, por la
+   * misma razón por la que estas filas no se borran: un caso que desaparece de
+   * una lista no distingue «se arregló» de «se dejó de mirar».
+   */
+  const RETIRADOS = new Set(
+    (SNAPSHOT.retractions ?? []).map((r: { findingId: string }) => r.findingId),
+  )
+  const expectLapidado = (id: string): void => {
+    const r = (SNAPSHOT.retractions ?? []).find((x: { findingId: string }) => x.findingId === id)
+    expect(r, `${id}: ni en la cola ni en el registro de retiradas`).toBeDefined()
+    expect(r!.digest).toMatch(/^hallazgo · sha256:[0-9a-f]{12}$/)
+  }
+
   it.each(REPARADOS)(
     '$id ya no afirma el vínculo documental que se le tabuló',
     ({ id, claimGone, claimKept }) => {
+      if (RETIRADOS.has(id)) return expectLapidado(id)
       const row = build().rows.find((r) => r.id === id)
       expect(row, 'el hallazgo reparado sigue teniendo que estar en la cola').toBeDefined()
       expect(row!.summary).not.toContain(claimGone)
@@ -157,6 +175,7 @@ describe('buildSupportQueue · los casos tabulados, todos reparados', () => {
   it.each(REPARADOS)(
     '$id ya no cuelga del documento con el que colisionaba',
     ({ id, document }) => {
+      if (RETIRADOS.has(id)) return expectLapidado(id)
       const row = build().rows.find((r) => r.id === id)!
       // Que se está mirando una lista de verdad, no una vacía —que es como una
       // aserción de ausencia pasa sin haber comprobado nada.
@@ -342,7 +361,17 @@ describe('classifyClaimShape · propiedad léxica, nunca un pronóstico', () => 
       const defectuoso = (finding!.corrections ?? []).find(
         (c) => c.field === 'summary' && c.original.includes(expediente.split(',')[0]),
       )
-      expect(defectuoso, `${id}: la bitácora no conserva el sumario defectuoso`).toBeDefined()
+      // Si el sumario se REDACTÓ después, la bitácora guarda un digest en vez
+      // de la prosa: `--redact` barre las copias precisamente para que el
+      // original tachado no vuelva a publicarse en /hallazgos. Sin esta salida,
+      // el test exigiría la fuga.
+      if (!defectuoso) {
+        const digest = (finding!.corrections ?? []).find(
+          (c) => c.field === 'summary' && /^sumario · sha256:[0-9a-f]{12}$/.test(c.original),
+        )
+        expect(digest, `${id}: la bitácora no conserva ni el sumario ni su digest`).toBeDefined()
+        return
+      }
 
       // 1. La etiqueta que el clasificador le dio, y sigue dándole.
       const antes = classifyClaimShape(defectuoso!.original)
@@ -525,20 +554,30 @@ describe('classifyClaimShape · propiedad léxica, nunca un pronóstico', () => 
   })
 })
 
+/** Ids retirados del fichero publicado, para los bloques de más abajo. */
+const RETIRADOS_GLOBAL = new Set(
+  (SNAPSHOT.retractions ?? []).map((r: { findingId: string }) => r.findingId),
+)
+
 describe('revisiones previas · sólo lo que un commit nombra', () => {
   it('etiqueta los hallazgos que la auditoría dio por sostenidos, y los nombra', () => {
     const queue = build()
     const upheld = queue.rows.filter((r) => r.priorReview?.outcome === 'upheld').map((r) => r.id)
-    expect(upheld).toEqual(
-      expect.arrayContaining([
-        'f-2026-07-03-cit-df8455',
-        'f-2026-01-19-acu-2c074a',
-        'f-2025-12-23-cit-c905c3',
-      ]),
-    )
+    // `2c074a` la dio por sostenida la auditoría y se retiró entera el
+    // 2026-08-11 — la puerta retenía sus cuatro citas. Sale de la cola con el
+    // hallazgo; los demás nombrados siguen.
+    const NOMBRADOS = [
+      'f-2026-07-03-cit-df8455',
+      'f-2026-01-19-acu-2c074a',
+      'f-2025-12-23-cit-c905c3',
+    ].filter((id) => !RETIRADOS_GLOBAL.has(id))
+    expect(NOMBRADOS.length).toBeGreaterThan(0)
+    expect(upheld).toEqual(expect.arrayContaining(NOMBRADOS))
     // Nada de deducir por eliminación: la auditoría dio 10 por sostenidos pero
-    // sólo nombró 4, así que sólo 4 pueden llevar etiqueta.
-    expect(upheld).toHaveLength(4)
+    // sólo nombró 4, así que sólo 4 pueden llevar etiqueta — menos las retiradas.
+    expect(upheld).toHaveLength(
+      4 - Object.keys(PRIOR_REVIEWS).filter((id) => RETIRADOS_GLOBAL.has(id)).length,
+    )
     for (const r of queue.rows) {
       if (r.priorReview) expect(r.priorReview.sourceCommit).toMatch(/^[0-9a-f]{7,40}$/)
     }
@@ -548,13 +587,22 @@ describe('revisiones previas · sólo lo que un commit nombra', () => {
     const ids = new Set(SNAPSHOT.items.map((f) => f.id))
     const labelled = Object.keys(PRIOR_REVIEWS)
     expect(labelled.length).toBeGreaterThan(0)
-    for (const id of labelled) expect(ids.has(id), `${id} ya no existe`).toBe(true)
+    // Publicado o lapidado: lo que no puede es haberse esfumado sin registro.
+    for (const id of labelled) {
+      expect(
+        ids.has(id) || RETIRADOS_GLOBAL.has(id),
+        `${id} no está ni publicado ni en el registro de retiradas`,
+      ).toBe(true)
+    }
   })
 
   it('el resto se encola sin etiqueta, no como «ya revisado»', () => {
     const queue = build()
     const unlabelled = queue.rows.filter((r) => r.priorReview === null)
-    expect(unlabelled.length).toBe(SNAPSHOT.items.length - Object.keys(PRIOR_REVIEWS).length)
+    expect(unlabelled.length).toBe(
+      SNAPSHOT.items.length -
+        Object.keys(PRIOR_REVIEWS).filter((id) => !RETIRADOS_GLOBAL.has(id)).length,
+    )
     expect(unlabelled.length).toBeGreaterThan(0)
   })
 })

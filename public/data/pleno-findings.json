@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-10T12:54:25.454Z",
+  "generatedAt": "2026-08-11T08:31:45.736Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. La mayoría los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -911,7 +911,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Pleno de Riba-roja de Túria 2026-05-11: Debate sobre presupuestos y financiamiento",
-      "summary": "El PP reprocha a la bancada contraria que «el día 16 de marzo ustedes votaron en contra un presupuesto donde llevaba 550.000 euros para el comercio local», sin que la transcripción registre a quién se dirigía. En el debate se menciona además el seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento, por lo que la referencia queda documentada como intervención en el pleno.",
+      "summary": "En la sesión hubo un cruce de reproches entre grupos sobre el sentido del voto en el presupuesto de marzo. Esas intervenciones no se reproducen aquí: son acusaciones que ningún registro municipal respalda ni desmiente, y la transcripción tampoco registra a quién se dirigían. Sí queda constancia del seguimiento de un Plan Económico y Financiero mencionado en el debate; la contratación municipal publicada no recoge ningún expediente de ese seguimiento.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-330-acu-7c65c5",
@@ -971,16 +971,16 @@
       "corrections": [
         {
           "field": "summary",
-          "original": "El PP señala que votaron en contra de un presupuesto que incluía 550.000 euros para el comercio local, mientras que el PSOE afirma no recoger al votar en contra de los presupuestos. El registro municipal incluye el seguimiento del Plan Económico y Financiero aprobado en 2025.",
-          "corrected": "El PP señala que votaron en contra de un presupuesto que incluía 550.000 euros para el comercio local, mientras que el PSOE afirma no recoger al votar en contra de los presupuestos. En el debate se menciona además el seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento, por lo que la referencia queda documentada como intervención en el pleno.",
+          "original": "sumario · sha256:8f74574ca9cf",
+          "corrected": "sumario · sha256:2fd52acc9b16",
           "reason": "El sumario afirmaba que «el registro municipal incluye el seguimiento del Plan Económico y Financiero aprobado en 2025». Ninguno de los expedientes citados es ese seguimiento: son un suministro de módulos de presupuestos y RPT, un plan de acción local de 2022 y unas obras de escollera en Paretotes. Además, la intervención de la que procede dice «que aprobaremos en el 2025», en futuro, de modo que se presentaba como registro existente lo que era una intención declarada en el pleno.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-02T15:09:37.135Z"
         },
         {
           "field": "summary",
-          "original": "El PP señala que votaron en contra de un presupuesto que incluía 550.000 euros para el comercio local, mientras que el PSOE afirma no recoger al votar en contra de los presupuestos. En el debate se menciona además el seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento, por lo que la referencia queda documentada como intervención en el pleno.",
-          "corrected": "El PP reprocha a la bancada contraria que «el día 16 de marzo ustedes votaron en contra un presupuesto donde llevaba 550.000 euros para el comercio local», sin que la transcripción registre a quién se dirigía. En el debate se menciona además el seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento, por lo que la referencia queda documentada como intervención en el pleno.",
+          "original": "sumario · sha256:2fd52acc9b16",
+          "corrected": "sumario · sha256:b542f2fb4bf9",
           "reason": "Corrección de atribución. «El PP señala que votaron en contra» procede de «el día 16 de marzo ustedes votaron en contra»: el hablante del PP reprochaba el voto a otra bancada, y la sintaxis del sumario invertía el reproche sobre quien lo hacía. Un pronombre de segunda persona en una transcripción no identifica a quién se dirigía, así que se conserva el deíctico citando literalmente. Se retira además la frase que hacía votar en contra al PSOE, procedente de un fragmento roto que no significa nada en castellano y que, sumado a lo anterior, dejaba a los dos grupos votando en contra del mismo presupuesto. La corrección previa del Plan Económico y Financiero no se toca.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T17:47:10.878Z"
@@ -992,184 +992,14 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:09.017Z"
-        }
-      ]
-    },
-    {
-      "id": "f-2026-05-11-acu-1e1bfa",
-      "plenoId": "10yl550",
-      "plenoDate": "2026-05-11",
-      "title": "Pleno 2026-05-11: un grupo no identificado señala informes técnicos sin respuesta del equipo de gobierno",
-      "summary": "En el pleno del 11 de mayo de 2026, un grupo no identificado denuncia que el informe sobre las necesidades del Departamento de Tesorería, ya planteadas el año anterior, sigue sin respuesta por parte del equipo de gobierno, y señala que la valoración técnica de este Plan no es positiva. VOX, por su parte, centra su intervención en criticar al gobierno central en materia de transportes.",
-      "severity": "informational",
-      "sourceClaimIds": [
-        "10yl550-096-acu-1e1bfa",
-        "10yl550-253-acu-39e059",
-        "10yl550-257-acu-666f3a"
-      ],
-      "quotes": [
-        {
-          "text": "Su ministro de Transportes, que es algo también fundamental para las emergencias, está ahora mismo sentado en el banquillo por todas las tropelías que no le voy a recordar para que no se les caiga la cara de vergüenza.",
-          "speakerGroup": "VOX",
-          "sourceClaimId": "10yl550-096-acu-1e1bfa"
-        },
-        {
-          "text": "es verdad que eso sí que se habla en comisiones informativas, pero creo que es importante decir públicamente que este informe habla de las necesidades del Departamento de Tesorería, que el año pasado hablaba de las mismas necesidades y que lo que se encuentra es que desde el equipo de gobierno no se están dando respuesta.",
-          "speakerGroup": null,
-          "sourceClaimId": "10yl550-253-acu-39e059"
-        },
-        {
-          "text": "l'informe tècnic i la valoració que fa d'aquest pla no és positiva",
-          "speakerGroup": null,
-          "sourceClaimId": "10yl550-257-acu-666f3a"
-        }
-      ],
-      "crossChecked": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8nJHtO7mD29LAIVZdUs8KA%3D%3D",
-          "snippet": "Servicio de limpieza de caminos y viales como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de RAVI OBRAS, TRANSPORTES Y EXCAVACIONES S.L.  con CIF B1250…"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=00nKUKuSmc97h85%2Fpmmsfw%3D%3D",
-          "snippet": "Contrato de suministro por renting de vehículo tractor destinado al departamento de obras y servicios, por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación con criterio medioambien…"
-        },
-        {
-          "kind": "pleno-video",
-          "ref": "https://www.youtube.com/watch?v=5yWcojyo4Lc",
-          "snippet": "Vídeo del pleno 2026-05-11 · YouTube"
-        }
-      ],
-      "contradiction": [],
-      "relatedPromiseIds": [],
-      "curatorName": "auto-curation-v1",
-      "publishedAt": "2026-07-07",
-      "response": null,
-      "corrections": [
-        {
-          "field": "title",
-          "original": "Pleno 2026-05-11: Otro señala informes técnicos sin respuesta del equipo de gobierno",
-          "corrected": "Pleno 2026-05-11: un grupo no identificado señala informes técnicos sin respuesta del equipo de gobierno",
-          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-01T18:55:12.272Z"
         },
         {
           "field": "summary",
-          "original": "En el pleno del 11 de mayo de 2026, el grupo Otro denuncia que el informe sobre las necesidades del Departamento de Tesorería, ya planteadas el año anterior, sigue sin respuesta por parte del equipo de gobierno, y señala que la valoración técnica de este Plan no es positiva, en referencia al registro «Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria». VOX, por su parte, centra su intervención en criticar al gobierno central en materia de transportes, desviando parte del debate hacia la política nacional.",
-          "corrected": "En el pleno del 11 de mayo de 2026, un grupo no identificado denuncia que el informe sobre las necesidades del Departamento de Tesorería, ya planteadas el año anterior, sigue sin respuesta por parte del equipo de gobierno, y señala que la valoración técnica de este Plan no es positiva, en referencia al registro «Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria». VOX, por su parte, centra su intervención en criticar al gobierno central en materia de transportes, desviando parte del debate hacia la política nacional.",
-          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-01T18:55:12.617Z"
-        },
-        {
-          "field": "summary",
-          "original": "En el pleno del 11 de mayo de 2026, un grupo no identificado denuncia que el informe sobre las necesidades del Departamento de Tesorería, ya planteadas el año anterior, sigue sin respuesta por parte del equipo de gobierno, y señala que la valoración técnica de este Plan no es positiva, en referencia al registro «Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria». VOX, por su parte, centra su intervención en criticar al gobierno central en materia de transportes, desviando parte del debate hacia la política nacional.",
-          "corrected": "En el pleno del 11 de mayo de 2026, un grupo no identificado denuncia que el informe sobre las necesidades del Departamento de Tesorería, ya planteadas el año anterior, sigue sin respuesta por parte del equipo de gobierno, y señala que la valoración técnica de este Plan no es positiva. VOX, por su parte, centra su intervención en criticar al gobierno central en materia de transportes.",
-          "reason": "Dos arreglos en el mismo sumario. La coletilla documental ataba la valoración técnica citada a un expediente que ninguna cita nombra y cuya adjudicación es posterior a la sesión, de modo que no pudo ser lo valorado en ella; se retira. Y describir la intervención como una desviación del debate era un juicio sobre la intención de un grupo, no un hecho documentado; se deja la descripción neutra de lo que trató.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T16:58:19.756Z"
-        },
-        {
-          "field": "crossChecked.2",
-          "original": "documento cotejado · sha256:ba889a8679a0",
-          "corrected": "retirado del hallazgo",
-          "reason": "Se retira del cotejo el expediente que sostenía la frase documental suprimida: su adjudicación es posterior a la sesión, así que no pudo estar sobre la mesa en ella.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T16:58:20.158Z"
-        },
-        {
-          "field": "quote.2.text",
-          "original": "el informe técnico y la valoración que hace de este Plan no es positivo",
-          "corrected": "l'informe tècnic i la valoració que fa d'aquest pla no és positiva",
-          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T12:54:08.674Z"
-        }
-      ]
-    },
-    {
-      "id": "f-2026-05-11-acu-da7902",
-      "plenoId": "10yl550",
-      "plenoDate": "2026-05-11",
-      "title": "Pleno 2026-05-11: el PSOE reprocha al PP el uso del nombre de la Asociación Abrupa",
-      "summary": "El grupo PSOE denuncia que el PP no se ha puesto en contacto con la Asociación Abrupa y le solicita rectificar y pedir disculpas por utilizar su logotipo y nombre sin su consentimiento.",
-      "severity": "informational",
-      "sourceClaimIds": [
-        "10yl550-274-acu-da7902",
-        "10yl550-274-acu-4cb575",
-        "10yl550-294-acu-c8a5f4"
-      ],
-      "quotes": [
-        {
-          "text": "en ningún momento el Partido Popular se ha puesto en contacto con ellos",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "10yl550-274-acu-da7902"
-        },
-        {
-          "text": "rectifique y pida disculpas a la Asociación Abrupa, primero por utilizar su logotipo y su nombre de forma partidista sin su consentimiento",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "10yl550-274-acu-4cb575"
-        }
-      ],
-      "crossChecked": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wCzvqvQUutaXQV0WE7lYPw%3D%3D",
-          "snippet": "contrato de servicios Biblioteca Aprenem Compartit en el municipio de Riba-roja de Túria, por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con criterios socio-laborales como criterio…"
-        },
-        {
-          "kind": "pleno-video",
-          "ref": "https://www.youtube.com/watch?v=5yWcojyo4Lc",
-          "snippet": "Vídeo del pleno 2026-05-11 · YouTube"
-        }
-      ],
-      "contradiction": [],
-      "relatedPromiseIds": [],
-      "curatorName": "auto-curation-v1",
-      "publishedAt": "2026-07-07",
-      "response": null,
-      "corrections": [
-        {
-          "field": "summary",
-          "original": "El grupo PSOE denuncia que el PP no se ha puesto en contacto con la Asociación Abrupa y le solicita rectificar y pedir disculpas por utilizar su logotipo y nombre sin su consentimiento. El grupo PP, por su parte, señala su intervención previa sobre la fira de 2025. El registro municipal incluye el «Contrato de servicio alumbrado ornamental navideño año 2025-2026».",
-          "corrected": "El grupo PSOE denuncia que el PP no se ha puesto en contacto con la Asociación Abrupa y le solicita rectificar y pedir disculpas por utilizar su logotipo y nombre sin su consentimiento. El grupo PP, por su parte, señala su intervención previa sobre la fira de 2025.",
-          "reason": "La frase documental era cierta y ajena: el expediente existe, pero no toca ninguno de los dos asuntos que el hallazgo documenta. Cerrando el sumario funcionaba como el documento del caso y sugería un contraste de gasto que el hallazgo ni afirma ni sostiene. Se retira.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T16:58:21.241Z"
-        },
-        {
-          "field": "crossChecked.1",
-          "original": "documento cotejado · sha256:b30b92084fcb",
-          "corrected": "retirado del hallazgo",
-          "reason": "Se retira del cotejo el expediente que sostenía la frase documental suprimida: no toca ninguno de los dos asuntos que el hallazgo documenta, y publicarlo junto a ellos insinúa un contraste de gasto que nada acredita.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T16:58:21.612Z"
-        },
-        {
-          "field": "quote.2",
-          "original": "cita · sha256:ae0143dab9ae",
-          "corrected": "retirada del hallazgo",
-          "reason": "Se retira una cita cuyo grupo atribuido es incompatible con su propio texto, que habla de esa formación en tercera persona. La misma frase se publica en otro hallazgo de la sesión con la atribución que la transcripción sostiene.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T11:28:13.355Z"
-        },
-        {
-          "field": "title",
-          "original": "Pleno 2026-05-11: PSOE y PP debaten sobre la Asociación Abrupa y la fira 2025",
-          "corrected": "Pleno 2026-05-11: el PSOE reprocha al PP el uso del nombre de la Asociación Abrupa",
-          "reason": "El titular anunciaba un debate entre dos grupos sobre dos asuntos. Retirada la única cita que sostenía la segunda mitad, el hallazgo documenta una sola intervención sobre un solo asunto, y el titular pasa a decir eso.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T11:28:24.744Z"
-        },
-        {
-          "field": "summary",
-          "original": "El grupo PSOE denuncia que el PP no se ha puesto en contacto con la Asociación Abrupa y le solicita rectificar y pedir disculpas por utilizar su logotipo y nombre sin su consentimiento. El grupo PP, por su parte, señala su intervención previa sobre la fira de 2025.",
-          "corrected": "El grupo PSOE denuncia que el PP no se ha puesto en contacto con la Asociación Abrupa y le solicita rectificar y pedir disculpas por utilizar su logotipo y nombre sin su consentimiento.",
-          "reason": "La segunda frase descansaba entera en una cita retirada por llevar un grupo atribuido que su propio texto desmiente. Sin esa cita nada en el hallazgo acredita esa intervención, así que la frase se va en lugar de quedarse sin fuente.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T11:28:25.315Z"
+          "original": "sumario · sha256:b542f2fb4bf9",
+          "corrected": "En la sesión hubo un cruce de reproches entre grupos sobre el sentido del voto en el presupuesto de marzo. Esas intervenciones no se reproducen aquí: son acusaciones que ningún registro municipal respalda ni desmiente, y la transcripción tampoco registra a quién se dirigían. Sí queda constancia del seguimiento de un Plan Económico y Financiero mencionado en el debate; la contratación municipal publicada no recoge ningún expediente de ese seguimiento.",
+          "reason": "El sumario reproducía literalmente una intervención que la puerta editorial retiene por ser una acusación que ningún registro respalda.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-11T08:25:33.587Z"
         }
       ]
     },
@@ -1309,92 +1139,11 @@
       ]
     },
     {
-      "id": "f-2026-04-20-acu-93c1e8",
-      "plenoId": "k4olcs",
-      "plenoDate": "2026-04-20",
-      "title": "Debate sobre educación y gestión de centros escolares en el pleno de Riba-roja de Túria del 2026-04-20",
-      "summary": "Durante la sesión, el PSOE señala la falta de personal y recursos en los centros educativos, mientras que VOX y el PP denuncian deficiencias históricas y peores resultados en el periodo anterior.",
-      "severity": "informational",
-      "sourceClaimIds": [
-        "k4olcs-064-acu-93c1e8",
-        "k4olcs-049-acu-d8609a",
-        "k4olcs-060-acu-897268",
-        "k4olcs-048-acu-3746d4"
-      ],
-      "quotes": [
-        {
-          "text": "la denominada libertad educativa impulsada por el PP y Vox a través de la Ley 1-2024 que ha sustituido el modelo plurilingüe del botánico por un sistema de consultas de lengua base",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "k4olcs-064-acu-93c1e8"
-        },
-        {
-          "text": "En la Comunidad Valenciana bajo gobiernos del PSOE en el 2015-2023 estos resultados de PISA indican que son consistentemente peores",
-          "speakerGroup": "PP",
-          "sourceClaimId": "k4olcs-049-acu-d8609a"
-        },
-        {
-          "text": "Estamos hablando de centros sin el personal necesario, de sustituciones que no llegan tarde o no llegan, de sobrecarga laboral y de falta de recursos para atender adecuadamente al alumnado.",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "k4olcs-060-acu-897268"
-        },
-        {
-          "text": "prácticamente los barracones era algo normal y no han hecho nada,",
-          "speakerGroup": "VOX",
-          "sourceClaimId": "k4olcs-048-acu-3746d4"
-        }
-      ],
-      "crossChecked": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-          "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de…"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JMTkgha0kaB7h85%2Fpmmsfw%3D%3D",
-          "snippet": "El objeto del contrato es la elaboración y redacción del Plan de Movilidad Urbana Sostenible (PMUS) de Riba-roja de Túria, por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación y mejoras…"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=nmlFJLo3lIkeC9GJQOEBkQ%3D%3D",
-          "snippet": "DESINFECCIÓN, DESINSECTACIÓN Y DESRATIZACIÓN (DDD ) de la red pública de saneamiento municipal del término de Ribarroja del Túria y de los centros, dependencias e instalaciones especificadas en el Pliego , así como el tratamiento de simú…"
-        },
-        {
-          "kind": "pleno-video",
-          "ref": "https://www.youtube.com/watch?v=M1ywm72VHdo",
-          "snippet": "Vídeo del pleno 2026-04-20 · YouTube"
-        }
-      ],
-      "contradiction": [],
-      "relatedPromiseIds": [],
-      "curatorName": "auto-curation-v1",
-      "publishedAt": "2026-07-03",
-      "response": null,
-      "corrections": [
-        {
-          "field": "summary",
-          "original": "Durante la sesión, el PSOE señala la falta de personal y recursos en los centros educativos, mientras que VOX y el PP denuncian deficiencias históricas y peores resultados en el periodo anterior. En relación con el ámbito escolar, el registro municipal incluye la licitación del \"Servicio de comedor social para familias y atención específica durante los periodos de vacaciones escolares para menores, en el centro municipal de Bienestar Social del Ayuntamient\".",
-          "corrected": "Durante la sesión, el PSOE señala la falta de personal y recursos en los centros educativos, mientras que VOX y el PP denuncian deficiencias históricas y peores resultados en el periodo anterior.",
-          "reason": "El sumario situaba «en relación con el ámbito escolar» un contrato de otra área municipal, de años antes, cuyo único nexo con el debate era un adjetivo dentro de su título. Lo debatido era política educativa autonómica, que el registro municipal de contratación no documenta. Se retira la frase; las citas sostienen por sí solas el resto.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T16:58:25.062Z"
-        },
-        {
-          "field": "crossChecked.3",
-          "original": "documento cotejado · sha256:35648a04de72",
-          "corrected": "retirado del hallazgo",
-          "reason": "Se retira del cotejo el expediente que sostenía la frase documental suprimida: pertenece a otra área municipal y su único nexo con lo debatido es un adjetivo dentro de su título.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T16:58:25.405Z"
-        }
-      ]
-    },
-    {
       "id": "f-2026-04-20-cit-947479",
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
       "title": "Debate sobre transparencia y el sistema del salón de plenos en Riba-roja de Túria (2026-04-20)",
-      "summary": "En la sesión, el grupo PP señaló que los informes técnicos de la intervención son desfavorables. Por su parte, una formación no identificada manifestó que la alcaldía no estaba obligada a dar cuenta de dicho informe.",
+      "summary": "La sesión aprobó una actuación de cartelería digital por 35.252,87 euros junto al sistema de debate, captura y grabación de vídeo del salón de plenos. Hubo además una discrepancia sobre el sentido de los informes técnicos de intervención y sobre el deber de dar cuenta de ellos; esas intervenciones no se reproducen aquí porque ningún registro municipal las respalda ni las desmiente.",
       "severity": "informational",
       "sourceClaimIds": [
         "k4olcs-019-cit-947479",
@@ -1454,16 +1203,16 @@
       "corrections": [
         {
           "field": "summary",
-          "original": "En la sesión, el grupo PP señaló que los informes técnicos de la intervención son desfavorables. Por su parte, la formación Otro manifestó que la alcaldía no estaba obligada a dar cuenta de dicho informe en el debate sobre la cartelería digital y el «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam». El debate sobre la adjudicación del sistema concluyó con la abstención de varios grupos municipales.",
-          "corrected": "En la sesión, el grupo PP señaló que los informes técnicos de la intervención son desfavorables. Por su parte, una formación no identificada manifestó que la alcaldía no estaba obligada a dar cuenta de dicho informe en el debate sobre la cartelería digital y el «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam». El debate sobre la adjudicación del sistema concluyó con la abstención de varios grupos municipales.",
+          "original": "sumario · sha256:83f6028448ca",
+          "corrected": "sumario · sha256:91b93c33fb60",
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:13.303Z"
         },
         {
           "field": "summary",
-          "original": "En la sesión, el grupo PP señaló que los informes técnicos de la intervención son desfavorables. Por su parte, una formación no identificada manifestó que la alcaldía no estaba obligada a dar cuenta de dicho informe en el debate sobre la cartelería digital y el «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam». El debate sobre la adjudicación del sistema concluyó con la abstención de varios grupos municipales.",
-          "corrected": "En la sesión, el grupo PP señaló que los informes técnicos de la intervención son desfavorables. Por su parte, una formación no identificada manifestó que la alcaldía no estaba obligada a dar cuenta de dicho informe.",
+          "original": "sumario · sha256:91b93c33fb60",
+          "corrected": "sumario · sha256:28b511117b82",
           "reason": "Se suprimen dos frases. La primera metía por aposición, entre comillas y truncado, el título de un expediente en un punto del orden del día que las pruebas no unen: el informe desfavorable y la respuesta de la alcaldía son segmentos muy posteriores al de la cartelería. La segunda afirmaba un resultado de votación comprobablemente falso: ese expediente estaba formalizado dos años antes de la sesión, y la única adjudicación votada aquel día se aprobó por unanimidad, sin ninguna abstención.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:22:26.709Z"
@@ -1483,6 +1232,14 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:11.977Z"
+        },
+        {
+          "field": "summary",
+          "original": "sumario · sha256:28b511117b82",
+          "corrected": "La sesión aprobó una actuación de cartelería digital por 35.252,87 euros junto al sistema de debate, captura y grabación de vídeo del salón de plenos. Hubo además una discrepancia sobre el sentido de los informes técnicos de intervención y sobre el deber de dar cuenta de ellos; esas intervenciones no se reproducen aquí porque ningún registro municipal las respalda ni las desmiente.",
+          "reason": "El sumario reproducía una valoración de informes técnicos que la puerta editorial retiene por no estar anclada en ningún registro.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-11T08:25:44.388Z"
         }
       ]
     },
@@ -1783,49 +1540,6 @@
       ]
     },
     {
-      "id": "f-2026-03-09-acu-d94904",
-      "plenoId": "1sqj7is",
-      "plenoDate": "2026-03-09",
-      "title": "Debate sobre irregularidades procedimentales en reconocimientos extrajudiciales",
-      "summary": "En la sesión de marzo 2026 el PP acusa al equipo de gobierno de adjudicar contratos verbales sin expediente administrativo previo, de omitir la función interventora y de falta de planificación en la tramitación administrativa de expedientes de reconocimiento extrajudicial de créditos. PSOE responde que el PP 'en contadas ocasiones vota a favor de pagar a los proveedores'. No se incluye corroboración documental directa: los datos municipales publicados (PLACSP, BDNS, presupuesto) no permiten verificar ni contradecir las acusaciones procedimentales, que quedan como debate entre grupos pendiente de informe de fiscalización.",
-      "severity": "informational",
-      "sourceClaimIds": [
-        "1sqj7is-008-acu-d94904",
-        "1sqj7is-008-acu-4a7fa7",
-        "1sqj7is-007-acu-e23010",
-        "1sqj7is-021-acu-84150b"
-      ],
-      "quotes": [
-        {
-          "text": "la adjudicación de contratos verbales sin que haya… Y ha habido un expediente administrativo previo a eso, comporta los informes, la falta de procedimiento de licitación pública",
-          "speakerGroup": "PP",
-          "sourceClaimId": "1sqj7is-008-acu-d94904"
-        },
-        {
-          "text": "la omisión de la función interventora, el gasto sin procedimiento de contratación",
-          "speakerGroup": "PP",
-          "sourceClaimId": "1sqj7is-008-acu-4a7fa7"
-        },
-        {
-          "text": "los informes técnicos lo que dicen es que hay una falta de planificación de la tramitación administrativa,",
-          "speakerGroup": "PP",
-          "sourceClaimId": "1sqj7is-007-acu-e23010"
-        },
-        {
-          "text": "en contadas ocasiones voten a favor de pagar a los proveedores, en contadas ocasiones. Hoy parece que han despertado y parece que hoy van a votar a favor, pero en contadas ocasiones.",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "1sqj7is-021-acu-84150b"
-        }
-      ],
-      "crossChecked": [],
-      "contradiction": [],
-      "relatedPromiseIds": [],
-      "curatorName": "civicpulse-curator",
-      "publishedAt": "2026-04-24",
-      "response": null,
-      "corrections": []
-    },
-    {
       "id": "f-2026-01-19-afi-5b06c8",
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
@@ -2013,103 +1727,6 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:16.602Z"
-        }
-      ]
-    },
-    {
-      "id": "f-2026-01-19-acu-2c074a",
-      "plenoId": "19gax3o",
-      "plenoDate": "2026-01-19",
-      "title": "Debate sobre transparencia y contratación en el pleno de Riba-roja de Túria del 2026-01-19",
-      "summary": "Durante la sesión, el grupo municipal no identificado señala que se realizaron contrataciones de manera verbal y por emergencia. Esta declaración se relaciona con el expediente titulado \"Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del tempora\". Además, otra intervención, sin atribución determinada, manifiesta que existen contratos reiterados entre 2024 y 2026 cuya necesidad debería replantearse.",
-      "severity": "informational",
-      "sourceClaimIds": [
-        "19gax3o-008-acu-2c074a",
-        "19gax3o-090-acu-73f537",
-        "19gax3o-176-acu-e24507",
-        "19gax3o-021-acu-20b3ec"
-      ],
-      "quotes": [
-        {
-          "text": "no fixa ningún objetivo mínimo, no hay un porcentaje mínimo de ejecución",
-          "speakerGroup": null,
-          "sourceClaimId": "19gax3o-008-acu-2c074a"
-        },
-        {
-          "text": "¿El socialista? A favor. ¿El Partido Popular? A extensión. ¿Vox? En contra. Escargón y Podem. A favor. ¿Qué compromiso? A favor.",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "19gax3o-090-acu-73f537"
-        },
-        {
-          "text": "nosotros efectivamente contratamos de manera verbal y por emergencia",
-          "speakerGroup": null,
-          "sourceClaimId": "19gax3o-176-acu-e24507"
-        },
-        {
-          "text": "n'hi ha contractes que se repetixen en el 24, en el 25 i en el 26. Entonces hauria que plantejar-se, és necessària eixa contratació si no s'ha fet en el 24, no s'ha fet en el 25?",
-          "speakerGroup": null,
-          "sourceClaimId": "19gax3o-021-acu-20b3ec"
-        }
-      ],
-      "crossChecked": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y1ffHTdiBUTnSoTX3z%2F7wA%3D%3D",
-          "snippet": "El objeto del contrato es la prestación de un servicio de de atención directa en las áreas industriales que implique más información al empresariado, en cuanto a gestiones administrativas municipales, subvenciones de entes públicos y un…"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-          "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de…"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=031ONMu5JSn%2B3JAijKO%2Bkg%3D%3D",
-          "snippet": "El objeto contratación es la adquisición de vestuario laboral y EPIs para el personal del Taller de Empleo Riba-roja Bonica VI FOTAE/2024/25/46, proyecto de formación y empleo que se desarrollará en el Ayuntamiento de Riba-roja de Túria…"
-        },
-        {
-          "kind": "pleno-video",
-          "ref": "https://www.youtube.com/watch?v=2RV4hvVGmlA",
-          "snippet": "Vídeo del pleno 2026-01-19 · YouTube"
-        }
-      ],
-      "contradiction": [],
-      "relatedPromiseIds": [],
-      "curatorName": "auto-curation-v1",
-      "publishedAt": "2026-07-03",
-      "response": null,
-      "corrections": [
-        {
-          "field": "summary",
-          "original": "Durante la sesión, el grupo municipal Otro señala que se realizaron contrataciones de manera verbal y por emergencia. Esta declaración se relaciona con el expediente titulado \"Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del tempora\". Además, el mismo grupo manifiesta que existen contratos reiterados entre 2024 y 2026 cuya necesidad debería replantearse.",
-          "corrected": "Durante la sesión, el grupo municipal no identificado señala que se realizaron contrataciones de manera verbal y por emergencia. Esta declaración se relaciona con el expediente titulado \"Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del tempora\". Además, el mismo grupo manifiesta que existen contratos reiterados entre 2024 y 2026 cuya necesidad debería replantearse.",
-          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-01T18:55:14.332Z"
-        },
-        {
-          "field": "summary",
-          "original": "Durante la sesión, el grupo municipal no identificado señala que se realizaron contrataciones de manera verbal y por emergencia. Esta declaración se relaciona con el expediente titulado \"Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del tempora\". Además, el mismo grupo manifiesta que existen contratos reiterados entre 2024 y 2026 cuya necesidad debería replantearse.",
-          "corrected": "Durante la sesión, el grupo municipal no identificado señala que se realizaron contrataciones de manera verbal y por emergencia. Esta declaración se relaciona con el expediente titulado \"Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del tempora\". Además, otra intervención, sin atribución determinada, manifiesta que existen contratos reiterados entre 2024 y 2026 cuya necesidad debería replantearse.",
-          "reason": "«El mismo grupo» fundía dos intervenciones cuya atribución el proceso no pudo determinar: ambas constan sin grupo. Afirmar que hablaba el mismo actor fabrica una atribución que ningún dato acredita, y el contenido apunta en sentido contrario, porque una admite en primera persona lo que la otra reprocha. Se sustituye por una descripción que no atribuye.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T16:58:26.788Z"
-        },
-        {
-          "field": "crossChecked.0",
-          "original": "documento cotejado · sha256:4db4f0ba8799",
-          "corrected": "retirado del hallazgo",
-          "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión y cuya fecha más temprana conocida es posterior al pleno.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T18:47:52.964Z"
-        },
-        {
-          "field": "quote.3.text",
-          "original": "hay contratos que se repiten en el 24, en el 25 y en el 26. Entonces, habría que plantearse si es necesario esa contratación si no se ha hecho en el 24, no se ha hecho en el 25.",
-          "corrected": "n'hi ha contractes que se repetixen en el 24, en el 25 i en el 26. Entonces hauria que plantejar-se, és necessària eixa contratació si no s'ha fet en el 24, no s'ha fet en el 25?",
-          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T12:54:13.745Z"
         }
       ]
     },
@@ -2604,116 +2221,6 @@
       ]
     },
     {
-      "id": "f-2026-01-19-acu-d2b7bb",
-      "plenoId": "19gax3o",
-      "plenoDate": "2026-01-19",
-      "title": "Pleno de 2026-01-19: PP dice no haber recibido correos, un grupo no identificado cita un incumplimiento empresarial en enero",
-      "summary": "En el debate sobre transparencia del pleno del 19 de enero de 2026, el grupo PP afirma no haber recibido correos electrónicos de su interlocutor, mientras el grupo PSOE pregunta por un presunto cambio de voto de abstención a favor. Un grupo no identificado señala, por su parte, un incumplimiento empresarial calificado de grave ocurrido en enero.",
-      "severity": "informational",
-      "sourceClaimIds": [
-        "19gax3o-157-acu-d2b7bb",
-        "19gax3o-173-acu-e3d549",
-        "19gax3o-154-acu-3fbc54"
-      ],
-      "quotes": [
-        {
-          "text": "No he rebut cap correu referent a la pregunta, si no suposo que m'ho podràs demostrar que sí que l'has enviat, però jo no l'he llegit i estic mirant i no sé del 20 del 12 al 31 del 12 no tinc ningun correu teu, però bueno, pot ser que l'has enviat.",
-          "speakerGroup": "PP",
-          "sourceClaimId": "19gax3o-157-acu-d2b7bb"
-        },
-        {
-          "text": "como consecuencia del incumplimiento de la empresa, greu. molt greu, en gener,",
-          "speakerGroup": null,
-          "sourceClaimId": "19gax3o-173-acu-e3d549"
-        },
-        {
-          "text": "Esquerrón ya ha votado a favor habías dicho abstención, no?",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "19gax3o-154-acu-3fbc54"
-        }
-      ],
-      "crossChecked": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fmHzgB33HDSXQV0WE7lYPw%3D%3D",
-          "snippet": "Caminos Rurales (4 rurales) · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
-          "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto si…"
-        },
-        {
-          "kind": "pleno-video",
-          "ref": "https://www.youtube.com/watch?v=2RV4hvVGmlA",
-          "snippet": "Vídeo del pleno 2026-01-19 · YouTube"
-        }
-      ],
-      "contradiction": [],
-      "relatedPromiseIds": [],
-      "curatorName": "auto-curation-v1",
-      "publishedAt": "2026-07-07",
-      "response": null,
-      "corrections": [
-        {
-          "field": "title",
-          "original": "Pleno de 2026-01-19: PP niega correos, Otro cita un incumplimiento empresarial en enero",
-          "corrected": "Pleno de 2026-01-19: PP niega correos, un grupo no identificado cita un incumplimiento empresarial en enero",
-          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-01T18:55:16.403Z"
-        },
-        {
-          "field": "summary",
-          "original": "En el debate sobre transparencia del pleno del 19 de enero de 2026, el grupo PP afirma no haber enviado correos electrónicos a su interlocutor, mientras el grupo PSOE pregunta por un presunto cambio de voto de abstención a favor. El grupo Otro señala, por su parte, un incumplimiento empresarial calificado de grave ocurrido en enero. El registro municipal incluye el expediente de contrato menor «Migración e implantación del correo corporativo en la plataforma Microsoft 365», que corrobora la referencia a la gestión del correo electrónico municipal.",
-          "corrected": "En el debate sobre transparencia del pleno del 19 de enero de 2026, el grupo PP afirma no haber enviado correos electrónicos a su interlocutor, mientras el grupo PSOE pregunta por un presunto cambio de voto de abstención a favor. Un grupo no identificado señala, por su parte, un incumplimiento empresarial calificado de grave ocurrido en enero. El registro municipal incluye el expediente de contrato menor «Migración e implantación del correo corporativo en la plataforma Microsoft 365», que corrobora la referencia a la gestión del correo electrónico municipal.",
-          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-01T18:55:16.743Z"
-        },
-        {
-          "field": "title",
-          "original": "Pleno de 2026-01-19: PP niega correos, un grupo no identificado cita un incumplimiento empresarial en enero",
-          "corrected": "Pleno de 2026-01-19: PP dice no haber recibido correos, un grupo no identificado cita un incumplimiento empresarial en enero",
-          "reason": "El titular reproducía la misma inversión que el sumario: la cita niega haber recibido correos, no haberlos enviado. Se corrige la dirección para que el encabezado no atribuya a un grupo municipal una afirmación que no hizo.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T16:58:27.129Z"
-        },
-        {
-          "field": "summary",
-          "original": "En el debate sobre transparencia del pleno del 19 de enero de 2026, el grupo PP afirma no haber enviado correos electrónicos a su interlocutor, mientras el grupo PSOE pregunta por un presunto cambio de voto de abstención a favor. Un grupo no identificado señala, por su parte, un incumplimiento empresarial calificado de grave ocurrido en enero. El registro municipal incluye el expediente de contrato menor «Migración e implantación del correo corporativo en la plataforma Microsoft 365», que corrobora la referencia a la gestión del correo electrónico municipal.",
-          "corrected": "En el debate sobre transparencia del pleno del 19 de enero de 2026, el grupo PP afirma no haber recibido correos electrónicos de su interlocutor, mientras el grupo PSOE pregunta por un presunto cambio de voto de abstención a favor. Un grupo no identificado señala, por su parte, un incumplimiento empresarial calificado de grave ocurrido en enero.",
-          "reason": "Dos arreglos. El sumario invertía la dirección de lo dicho: la cita niega haber recibido correos, no haberlos enviado, y publicarlo al revés atribuye a un grupo municipal una afirmación que no hizo. Y la frase documental decía «corrobora» sobre un expediente que sólo comparte una palabra con lo debatido y cuya adjudicación es posterior a la sesión; se retira.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T16:58:27.473Z"
-        },
-        {
-          "field": "crossChecked.0",
-          "original": "documento cotejado · sha256:bca3ba52b1a7",
-          "corrected": "retirado del hallazgo",
-          "reason": "Se retira del cotejo el expediente que sostenía la frase documental suprimida: su adjudicación es posterior a la sesión, así que no pudo respaldar lo dicho ese día, y su único nexo con lo debatido es una palabra compartida.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T16:58:27.820Z"
-        },
-        {
-          "field": "quote.0.text",
-          "original": "no tengo ningún correo tuyo pero bueno, puede ser que los que he enviado cuando tenga el correo contestaré la verdad no lo he hecho",
-          "corrected": "No he rebut cap correu referent a la pregunta, si no suposo que m'ho podràs demostrar que sí que l'has enviat, però jo no l'he llegit i estic mirant i no sé del 20 del 12 al 31 del 12 no tinc ningun correu teu, però bueno, pot ser que l'has enviat.",
-          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T12:54:14.466Z"
-        },
-        {
-          "field": "quote.1.text",
-          "original": "como consecuencia de un incumplimiento de la empresa muy grave en enero",
-          "corrected": "como consecuencia del incumplimiento de la empresa, greu. molt greu, en gener,",
-          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T12:54:14.825Z"
-        }
-      ]
-    },
-    {
       "id": "f-2026-01-19-acu-b1a13f",
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
@@ -2780,74 +2287,6 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:14.085Z"
-        }
-      ]
-    },
-    {
-      "id": "f-2025-12-23-acu-a1ba00",
-      "plenoId": "1qi8axv",
-      "plenoDate": "2025-12-23",
-      "title": "Sesión urgente sobre incumplimiento del contrato de recogida de residuos",
-      "summary": "El pleno urgente de 23 de diciembre de 2025 fue convocado, según un grupo no identificado y Compromís, por un presunto incumplimiento del contrato municipal de recogida de residuos. Una intervención sin grupo atribuido en la transcripción sostiene que, además del incumplimiento contractual, «también tiene una responsabilidad política el equipo de gobierno»; PSOE replica que la responsabilidad recae exclusivamente en la empresa. Los datos municipales publicados (PLACSP, BDNS, presupuesto) aún no incluyen expediente de fiscalización del incumplimiento; el hallazgo queda pendiente del informe técnico municipal y de la réplica formal de los grupos implicados.",
-      "severity": "informational",
-      "sourceClaimIds": [
-        "1qi8axv-068-acu-a1ba00",
-        "1qi8axv-020-acu-75c8b8",
-        "1qi8axv-023-acu-3aa6fd",
-        "1qi8axv-024-acu-2778ad"
-      ],
-      "quotes": [
-        {
-          "text": "el pleno este se convoca fundamentalmente por el incumplimiento del contrato de la basura.",
-          "speakerGroup": null,
-          "sourceClaimId": "1qi8axv-068-acu-a1ba00"
-        },
-        {
-          "text": "Aquí hay dos cuestiones, un incumplimiento del contrato, pero también tiene una responsabilidad política el equipo de gobierno.",
-          "speakerGroup": null,
-          "sourceClaimId": "1qi8axv-020-acu-75c8b8"
-        },
-        {
-          "text": "aquest incompliment del contracte va en contra dels veïns i veïnes del nostre municipi.",
-          "speakerGroup": "Compromís",
-          "sourceClaimId": "1qi8axv-023-acu-3aa6fd"
-        },
-        {
-          "text": "Es culpa de la empresa. Ni el veinte y veinte de Riva Rocha tienen cap culpa.",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "1qi8axv-024-acu-2778ad"
-        }
-      ],
-      "crossChecked": [],
-      "contradiction": [],
-      "relatedPromiseIds": [],
-      "curatorName": "civicpulse-curator",
-      "publishedAt": "2026-04-24",
-      "response": null,
-      "corrections": [
-        {
-          "field": "summary",
-          "original": "El pleno urgente de 23 de diciembre de 2025 fue convocado, según Otro (grupo no mayoritario) y Compromís, por un presunto incumplimiento del contrato municipal de recogida de residuos. La oposición atribuye al equipo de gobierno responsabilidad política además de la contractual de la empresa adjudicataria; PSOE replica que la responsabilidad recae exclusivamente en la empresa. Los datos municipales publicados (PLACSP, BDNS, presupuesto) aún no incluyen expediente de fiscalización del incumplimiento; la finding queda pendiente del informe técnico municipal y de la réplica formal de los grupos implicados.",
-          "corrected": "El pleno urgente de 23 de diciembre de 2025 fue convocado, según un grupo no identificado (grupo no mayoritario) y Compromís, por un presunto incumplimiento del contrato municipal de recogida de residuos. La oposición atribuye al equipo de gobierno responsabilidad política además de la contractual de la empresa adjudicataria; PSOE replica que la responsabilidad recae exclusivamente en la empresa. Los datos municipales publicados (PLACSP, BDNS, presupuesto) aún no incluyen expediente de fiscalización del incumplimiento; la finding queda pendiente del informe técnico municipal y de la réplica formal de los grupos implicados.",
-          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-01T18:55:17.430Z"
-        },
-        {
-          "field": "summary",
-          "original": "El pleno urgente de 23 de diciembre de 2025 fue convocado, según un grupo no identificado (grupo no mayoritario) y Compromís, por un presunto incumplimiento del contrato municipal de recogida de residuos. La oposición atribuye al equipo de gobierno responsabilidad política además de la contractual de la empresa adjudicataria; PSOE replica que la responsabilidad recae exclusivamente en la empresa. Los datos municipales publicados (PLACSP, BDNS, presupuesto) aún no incluyen expediente de fiscalización del incumplimiento; la finding queda pendiente del informe técnico municipal y de la réplica formal de los grupos implicados.",
-          "corrected": "El pleno urgente de 23 de diciembre de 2025 fue convocado, según un grupo no identificado y Compromís, por un presunto incumplimiento del contrato municipal de recogida de residuos. Una intervención sin grupo atribuido en la transcripción sostiene que, además del incumplimiento contractual, «también tiene una responsabilidad política el equipo de gobierno»; PSOE replica que la responsabilidad recae exclusivamente en la empresa. Los datos municipales publicados (PLACSP, BDNS, presupuesto) aún no incluyen expediente de fiscalización del incumplimiento; el hallazgo queda pendiente del informe técnico municipal y de la réplica formal de los grupos implicados.",
-          "reason": "La cita que sostenía la frase no tiene grupo atribuido, y el sumario la asignaba a la oposición: un centinela no es un valor, y la inferencia plausible es justo lo que la regla prohíbe. Se cita al hablante literalmente y se suprime «(grupo no mayoritario)», que tampoco tiene fuente. Se corrige de paso una palabra inglesa en prosa publicada.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T18:22:26.242Z"
-        },
-        {
-          "field": "quote.2.text",
-          "original": "este incumplimiento del contrato va en contra de los vecinos y vecinas de nuestro municipio.",
-          "corrected": "aquest incompliment del contracte va en contra dels veïns i veïnes del nostre municipi.",
-          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T12:54:19.072Z"
         }
       ]
     },
@@ -3023,103 +2462,6 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:19.791Z"
-        }
-      ]
-    },
-    {
-      "id": "f-2025-12-23-acu-cd77e9",
-      "plenoId": "1qi8axv",
-      "plenoDate": "2025-12-23",
-      "title": "Debate sobre transparencia y adjudicaciones en el pleno municipal del 2025-12-23",
-      "summary": "Durante la sesión del 2025-12-23, el PSOE señala que la empresa no ha cumplido con lo acordado. Una intervención del PP expresa su voto en contra a título individual y excluye expresamente al resto de su grupo («Yo, no el resto del PP»), mientras que un grupo no identificado explica su abstención y afirma que ninguna empresa competidora impugnó la adjudicación.",
-      "severity": "informational",
-      "sourceClaimIds": [
-        "1qi8axv-060-acu-cd77e9",
-        "1qi8axv-113-acu-192a53",
-        "1qi8axv-071-acu-8906e2",
-        "1qi8axv-045-acu-e5dbbb"
-      ],
-      "quotes": [
-        {
-          "text": "la empresa no ha cumplido.",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "1qi8axv-060-acu-cd77e9"
-        },
-        {
-          "text": "Yo, no el resto del PP. Yo, no. Por unanimidad, la mía es no.",
-          "speakerGroup": "PP",
-          "sourceClaimId": "1qi8axv-113-acu-192a53"
-        },
-        {
-          "text": "en l'exercici de vot de hui ha sigut abstenció en el que feia referència al ple",
-          "speakerGroup": null,
-          "sourceClaimId": "1qi8axv-071-acu-8906e2"
-        },
-        {
-          "text": "ninguna otra de las grandísimas empresas que concurrieron y concurrieron muchas, impugnó esta adjudicación.",
-          "speakerGroup": null,
-          "sourceClaimId": "1qi8axv-045-acu-e5dbbb"
-        }
-      ],
-      "crossChecked": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
-          "snippet": "LOTE 3 : Enlace camino c/ Dolçaina – c/ Tabalet · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y1ffHTdiBUTnSoTX3z%2F7wA%3D%3D",
-          "snippet": "El objeto del contrato es la prestación de un servicio de de atención directa en las áreas industriales que implique más información al empresariado, en cuanto a gestiones administrativas municipales, subvenciones de entes públicos y un…"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ydq0aOmEzXd7h85%2Fpmmsfw%3D%3D",
-          "snippet": "Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación…"
-        },
-        {
-          "kind": "pleno-video",
-          "ref": "https://www.youtube.com/watch?v=OGM7-9SLePc",
-          "snippet": "Vídeo del pleno 2025-12-23 · YouTube"
-        }
-      ],
-      "contradiction": [],
-      "relatedPromiseIds": [],
-      "curatorName": "auto-curation-v1",
-      "publishedAt": "2026-07-04",
-      "response": null,
-      "corrections": [
-        {
-          "field": "summary",
-          "original": "Durante la sesión del 2025-12-23, el PSOE señala que la empresa no ha cumplido con lo acordado. El grupo PP manifiesta su negativa, mientras que el grupo Otro explica su abstención y afirma que ninguna empresa competidora impugnó la adjudicación. El debate se enmarca en la documentación del «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam».",
-          "corrected": "Durante la sesión del 2025-12-23, el PSOE señala que la empresa no ha cumplido con lo acordado. El grupo PP manifiesta su negativa, mientras que un grupo no identificado explica su abstención y afirma que ninguna empresa competidora impugnó la adjudicación. El debate se enmarca en la documentación del «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam».",
-          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-01T18:55:18.463Z"
-        },
-        {
-          "field": "summary",
-          "original": "Durante la sesión del 2025-12-23, el PSOE señala que la empresa no ha cumplido con lo acordado. El grupo PP manifiesta su negativa, mientras que un grupo no identificado explica su abstención y afirma que ninguna empresa competidora impugnó la adjudicación. El debate se enmarca en la documentación del «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam».",
-          "corrected": "Durante la sesión del 2025-12-23, el PSOE señala que la empresa no ha cumplido con lo acordado. Una intervención del PP expresa su voto en contra a título individual y excluye expresamente al resto de su grupo («Yo, no el resto del PP»), mientras que un grupo no identificado explica su abstención y afirma que ninguna empresa competidora impugnó la adjudicación.",
-          "reason": "Dos defectos. El grave es de atribución: «El grupo PP manifiesta su negativa» procedía de una intervención que separaba expresamente su voto del de su grupo —«Yo, no el resto del PP»—, de modo que el sumario publicaba lo contrario de lo que la cita dice. Se reescribe como voto individual, que es lo único que la fuente acredita. El segundo es el conector documental: ninguna de las cuatro citas nombra el sistema de voto electrónico ni ese expediente, y fijarlo hacía recaer un «no ha cumplido» sobre su adjudicataria.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T17:47:08.399Z"
-        },
-        {
-          "field": "crossChecked.2",
-          "original": "documento cotejado · sha256:64e9033a0253",
-          "corrected": "retirado del hallazgo",
-          "reason": "Se retira el expediente que la frase suprimida fijaba como objeto del debate. Ninguna de las citas lo nombra, y mantenerlo bajo el hallazgo seguiría dirigiendo hacia su adjudicataria un reproche de incumplimiento que la fuente no localiza en ningún contrato.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T17:47:08.639Z"
-        },
-        {
-          "field": "quote.2.text",
-          "original": "en nuestra intención de voto de hoy ha sido abstención",
-          "corrected": "en l'exercici de vot de hui ha sigut abstenció en el que feia referència al ple",
-          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T12:54:19.431Z"
         }
       ]
     },
@@ -3447,7 +2789,7 @@
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "01-12-2025: Pleno debate sobre pagos a proveedores y ley de contratación",
-      "summary": "Dos intervenciones sin grupo atribuido en la transcripción sostienen, respectivamente, que «El PP de la Generalitat no paga» y que no se aplica la ley de contratación: «si ustedes pagan mal, tienen que pagar intereses, pero no están pagándolos». El artículo 198 que se invoca establece intereses por retrasos en los pagos, y la transcripción no identifica a quién se dirige ese «ustedes». Además, se menciona el incremento de cuotas de Seguridad Social sin exenciones.",
+      "summary": "El debate incluyó reproches sobre plazos de pago a proveedores y sobre la aplicación del artículo 198 de la ley de contratos, que establece intereses por retrasos en los pagos. Las intervenciones concretas no se reproducen: son acusaciones sin grupo atribuido en la transcripción y que ningún registro municipal respalda ni desmiente. Se mencionaron también el bono de comercio y el incremento de cuotas de la Seguridad Social.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-220-acu-34560f",
@@ -3507,16 +2849,16 @@
       "corrections": [
         {
           "field": "summary",
-          "original": "El grupo Otro afirma que la Generalitat no está cumpliendo con sus pagos y advierte sobre el incumplimiento del artículo 198 de la ley de contratación, que establece intereses por retrasos en los pagos. Además, se menciona el incremento de cuotas de Seguridad Social sin exenciones.",
-          "corrected": "Un grupo no identificado afirma que la Generalitat no está cumpliendo con sus pagos y advierte sobre el incumplimiento del artículo 198 de la ley de contratación, que establece intereses por retrasos en los pagos. Además, se menciona el incremento de cuotas de Seguridad Social sin exenciones.",
+          "original": "sumario · sha256:f74847b62caf",
+          "corrected": "sumario · sha256:c2570885f214",
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:19.505Z"
         },
         {
           "field": "summary",
-          "original": "Un grupo no identificado afirma que la Generalitat no está cumpliendo con sus pagos y advierte sobre el incumplimiento del artículo 198 de la ley de contratación, que establece intereses por retrasos en los pagos. Además, se menciona el incremento de cuotas de Seguridad Social sin exenciones.",
-          "corrected": "Dos intervenciones sin grupo atribuido en la transcripción sostienen, respectivamente, que «El PP de la Generalitat no paga» y que no se aplica la ley de contratación: «si ustedes pagan mal, tienen que pagar intereses, pero no están pagándolos». El artículo 198 que se invoca establece intereses por retrasos en los pagos, y la transcripción no identifica a quién se dirige ese «ustedes». Además, se menciona el incremento de cuotas de Seguridad Social sin exenciones.",
+          "original": "sumario · sha256:c2570885f214",
+          "corrected": "sumario · sha256:0422e8a7d925",
           "reason": "El sumario fundía dos citas distintas, ambas sin grupo atribuido, en un solo sujeto y en una sola acusación, y ponía a la administración autonómica como destinataria del reproche sobre el artículo 198 cuando la cita se dirige a un «ustedes» que la transcripción no identifica. Se separan las dos intervenciones y se conserva el deíctico citando literal.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:22:27.663Z"
@@ -3528,93 +2870,14 @@
           "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión y cuya fecha más temprana conocida es posterior al pleno.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:22:27.898Z"
-        }
-      ]
-    },
-    {
-      "id": "f-2025-12-01-acu-51aaa3",
-      "plenoId": "qz6weg",
-      "plenoDate": "2025-12-01",
-      "title": "Salvoconductos a trabajadores tras la DANA a debate en el pleno 2025-12-01",
-      "summary": "Según el registro del pleno, el grupo PSOE manifiesta que el consistorio habría emitido salvoconductos para que trabajadores y trabajadoras acudieran a sus puestos durante la alerta roja posterior a la DANA. El debate queda documentado junto al contrato verbal de servicio para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) derivado del temporal.",
-      "severity": "informational",
-      "sourceClaimIds": [
-        "qz6weg-179-acu-51aaa3",
-        "qz6weg-192-acu-975308",
-        "qz6weg-193-acu-7589c9"
-      ],
-      "quotes": [
-        {
-          "text": "després de la catàstrofe de la Dana vostès han fet salvo conductors per a donar-li als treballadors i treballadores per a que puguen anar a treballar en alerta rotxa.",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "qz6weg-193-acu-7589c9"
-        }
-      ],
-      "crossChecked": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-          "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de…"
         },
-        {
-          "kind": "pleno-video",
-          "ref": "https://www.youtube.com/watch?v=fmbfOgTHGYs",
-          "snippet": "Vídeo del pleno 2025-12-01 · YouTube"
-        }
-      ],
-      "contradiction": [],
-      "relatedPromiseIds": [],
-      "curatorName": "auto-curation-v1",
-      "publishedAt": "2026-07-07",
-      "response": null,
-      "corrections": [
         {
           "field": "summary",
-          "original": "Según el registro del pleno, los grupos PSOE y Otro manifiestan que el consistorio habría emitido salvoconductos para que trabajadores y trabajadoras acudieran a sus puestos durante la alerta roja posterior a la DANA. El debate queda documentado junto al contrato verbal de servicio para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) derivado del temporal.",
-          "corrected": "Según el registro del pleno, los grupos PSOE y un grupo no identificado manifiestan que el consistorio habría emitido salvoconductos para que trabajadores y trabajadoras acudieran a sus puestos durante la alerta roja posterior a la DANA. El debate queda documentado junto al contrato verbal de servicio para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) derivado del temporal.",
-          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-01T18:55:19.852Z"
-        },
-        {
-          "field": "quote.0",
-          "original": "cita · sha256:109e6ab0bb0d",
-          "corrected": "retirada del hallazgo",
-          "reason": "Se retira una cita sin atribución de grupo que el resumen no utiliza y que imputa un hecho grave a una persona identificable.",
+          "original": "sumario · sha256:0422e8a7d925",
+          "corrected": "El debate incluyó reproches sobre plazos de pago a proveedores y sobre la aplicación del artículo 198 de la ley de contratos, que establece intereses por retrasos en los pagos. Las intervenciones concretas no se reproducen: son acusaciones sin grupo atribuido en la transcripción y que ningún registro municipal respalda ni desmiente. Se mencionaron también el bono de comercio y el incremento de cuotas de la Seguridad Social.",
+          "reason": "El sumario reproducía dos intervenciones que la puerta editorial retiene por ser acusaciones sin grupo atribuido ni anclaje documental.",
           "editor": "Sergei Lutchenko",
-          "correctedAt": "2026-08-09T15:46:25.197Z"
-        },
-        {
-          "field": "crossChecked.1",
-          "original": "documento cotejado · sha256:0970b4bbbccd",
-          "corrected": "retirado del hallazgo",
-          "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión y cuya fecha más temprana conocida es posterior al pleno.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T18:47:53.626Z"
-        },
-        {
-          "field": "quote.0",
-          "original": "cita · sha256:5195187eb6ea",
-          "corrected": "retirada del hallazgo",
-          "reason": "Se retira una de las dos copias de la misma intervención: su texto está contenido íntegro en la otra cita del hallazgo, que además sí lleva grupo atribuido. Publicadas juntas, una sola voz se leía como dos.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T11:27:32.151Z"
-        },
-        {
-          "field": "summary",
-          "original": "Según el registro del pleno, los grupos PSOE y un grupo no identificado manifiestan que el consistorio habría emitido salvoconductos para que trabajadores y trabajadoras acudieran a sus puestos durante la alerta roja posterior a la DANA. El debate queda documentado junto al contrato verbal de servicio para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) derivado del temporal.",
-          "corrected": "Según el registro del pleno, el grupo PSOE manifiesta que el consistorio habría emitido salvoconductos para que trabajadores y trabajadoras acudieran a sus puestos durante la alerta roja posterior a la DANA. El debate queda documentado junto al contrato verbal de servicio para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) derivado del temporal.",
-          "reason": "El sumario contaba dos intervinientes donde la sesión registra uno: las dos citas eran la misma frase, y de esa duplicación salía un grupo sin identificar que nunca habló. Retirada la copia, el sumario informa de un solo grupo.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T11:27:44.852Z"
-        },
-        {
-          "field": "quote.0.text",
-          "original": "después de la catástrofe de la DANA, ustedes han hecho salvoconductos para donarles a los trabajadores y trabajadoras para que puedan ir a trabajar en alerta roja.",
-          "corrected": "després de la catàstrofe de la Dana vostès han fet salvo conductors per a donar-li als treballadors i treballadores per a que puguen anar a treballar en alerta rotxa.",
-          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T12:54:20.139Z"
+          "correctedAt": "2026-08-11T08:26:35.856Z"
         }
       ]
     },
@@ -3926,111 +3189,11 @@
       ]
     },
     {
-      "id": "f-2025-10-06-acu-bba0e9",
-      "plenoId": "otxq2c",
-      "plenoDate": "2025-10-06",
-      "title": "Pleno del 2025-10-06: Debate sobre seguridad",
-      "summary": "Durante la sesión del pleno del 6 de octubre de 2025, el grupo PSOE afirmó que «no ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas», mientras que el PP señaló errores en la migración de datos y el control de localización en el sistema, destacando que «falla el sistema cometa del Gobierno de España». Se cotejaron con estas intervenciones expedientes del registro municipal de contratación; ninguno las respalda ni las desmiente.",
-      "severity": "informational",
-      "sourceClaimIds": [
-        "otxq2c-042-acu-bba0e9",
-        "otxq2c-116-acu-ee87cb",
-        "otxq2c-033-acu-f6e1d4",
-        "otxq2c-065-acu-231d81"
-      ],
-      "quotes": [
-        {
-          "text": "No ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas.",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "otxq2c-042-acu-bba0e9"
-        },
-        {
-          "text": "Recentment s'ha tingut constància d'errors que ha tingut la migració de dades i el control de la localització en el sistema que pertany al control d'aquestes polseres.",
-          "speakerGroup": "PP",
-          "sourceClaimId": "otxq2c-033-acu-f6e1d4"
-        },
-        {
-          "text": "Porque estamos hablando de que falla el sistema cometa del Gobierno de España.",
-          "speakerGroup": "PP",
-          "sourceClaimId": "otxq2c-065-acu-231d81"
-        }
-      ],
-      "crossChecked": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-          "snippet": "Mantenimiento sistema inteligente de gestión de esperas y colas. · Ayuntamiento de Riba-roja de Túria · IDM Sistemas de Comunicación, S.L. · it · estado: unknown"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
-          "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto si…"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pf57K5DzK64BPRBxZ4nJ%2Fg%3D%3D",
-          "snippet": "contrato de servicio de asistencia técnica al Ayuntamiento de Riba-roja de Túria en el seno del proyecto Guardian, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con condición especial de ejecu…"
-        },
-        {
-          "kind": "pleno-video",
-          "ref": "https://www.youtube.com/watch?v=x85-nqbxcnY",
-          "snippet": "Vídeo del pleno 2025-10-06 · YouTube"
-        }
-      ],
-      "contradiction": [],
-      "relatedPromiseIds": [],
-      "curatorName": "auto-curation-v1",
-      "publishedAt": "2026-07-03",
-      "response": null,
-      "corrections": [
-        {
-          "field": "summary",
-          "original": "sumario · sha256:cd5db2eac3bf",
-          "corrected": "sumario · sha256:73c1855e0425",
-          "reason": "El registro de un contrato de gestión de esperas y colas no corrobora un debate sobre seguridad y violencia de género. El verificador no establece corroboración en ningún caso: sólo deja constancia de qué documentos se cotejaron.",
-          "editor": "Sergei Lutchenko",
-          "correctedAt": "2026-08-05T07:24:19.960Z"
-        },
-        {
-          "field": "crossChecked.1",
-          "original": "documento cotejado · sha256:724a69f2b25e",
-          "corrected": "retirado del hallazgo",
-          "reason": "Se retira del cotejo una referencia que identifica por su nombre a un particular sin papel en la sesión, cuyo vínculo con lo debatido es una coincidencia léxica y cuyo expediente es posterior al pleno.",
-          "editor": "Sergei Lutchenko",
-          "correctedAt": "2026-08-09T15:46:25.548Z"
-        },
-        {
-          "field": "quote.1",
-          "original": "cita · sha256:9c4af4fd7783",
-          "corrected": "retirada del hallazgo",
-          "reason": "Se retira una cita que nombra a un particular ajeno a la corporación y le imputa un hecho grave que ninguna fuente de este sitio puede comprobar ni descartar. La atribución de bloque permite informar de que un grupo dijo algo; no obliga a reproducir el nombre.",
-          "editor": "Sergei Lutchenko",
-          "correctedAt": "2026-08-10T11:28:33.848Z"
-        },
-        {
-          "field": "summary",
-          "original": "sumario · sha256:73c1855e0425",
-          "corrected": "Durante la sesión del pleno del 6 de octubre de 2025, el grupo PSOE afirmó que «no ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas», mientras que el PP señaló errores en la migración de datos y el control de localización en el sistema, destacando que «falla el sistema cometa del Gobierno de España». Se cotejaron con estas intervenciones expedientes del registro municipal de contratación; ninguno las respalda ni las desmiente.",
-          "reason": "El sumario reproducía el nombre de un particular ajeno a la corporación y le adosaba un hecho grave que ninguna fuente de este sitio puede comprobar, para acto seguido dejarlo abierto diciendo que el registro municipal ni lo respalda ni lo desmiente. La atribución de bloque permite informar de lo que dijo un grupo; no obliga a repetir el nombre. El registro guarda la huella de lo retirado y no el texto: un tachado en esta misma página se lo devolvería al lector.",
-          "editor": "Sergei Lutchenko",
-          "correctedAt": "2026-08-10T11:28:45.174Z"
-        },
-        {
-          "field": "quote.1.text",
-          "original": "Recientemente se ha tenido constancia de errores que ha tenido la migración de datos y el control de la localización en el sistema",
-          "corrected": "Recentment s'ha tingut constància d'errors que ha tingut la migració de dades i el control de la localització en el sistema que pertany al control d'aquestes polseres.",
-          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T12:54:22.983Z"
-        }
-      ]
-    },
-    {
       "id": "f-2025-10-06-acu-b00839",
       "plenoId": "otxq2c",
       "plenoDate": "2025-10-06",
       "title": "Debate de seguridad en el pleno 2025-10-06: videovigilancia y sistema COMETA",
-      "summary": "En la sesión plenaria del 06-10-2025, VOX manifiesta que considera esencial el sistema COMETA en materia de seguridad, PSOE plantea como punto de acuerdo «Denunciar públicamente a la Consejería esas ampliaciones que nos han hecho» y PP apunta dudas sobre el cumplimiento de ciertas órdenes. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+      "summary": "En la sesión, VOX manifestó que considera esencial el sistema COMETA en materia de seguridad, y hubo intervenciones sobre actuaciones ante la Consejería y sobre el cumplimiento de órdenes de alejamiento que no se reproducen aquí: ningún registro municipal las respalda ni las desmiente. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
       "severity": "informational",
       "sourceClaimIds": [
         "otxq2c-078-acu-b00839",
@@ -4095,16 +3258,16 @@
       "corrections": [
         {
           "field": "summary",
-          "original": "En la sesión plenaria del 06-10-2025, VOX manifiesta que considera esencial el sistema COMETA en materia de seguridad, PSOE señala que denuncia ante la Consejería determinadas ampliaciones y PP apunta dudas sobre el cumplimiento de ciertas órdenes. Según el registro municipal, consta el «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que documenta la actividad municipal en este ámbito.",
-          "corrected": "En la sesión plenaria del 06-10-2025, VOX manifiesta que considera esencial el sistema COMETA en materia de seguridad, PSOE señala que denuncia ante la Consejería determinadas ampliaciones y PP apunta dudas sobre el cumplimiento de ciertas órdenes. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+          "original": "sumario · sha256:2ec3d002119f",
+          "corrected": "sumario · sha256:146cd34766b1",
           "reason": "El sumario citaba un contrato de videovigilancia en el polígono Masía Baló como algo que «documenta la actividad municipal en este ámbito» a propósito del sistema COMETA. COMETA es el sistema estatal de seguimiento telemático de medidas de alejamiento; un contrato de cámaras en suelo industrial no lo documenta. Los dos asuntos se enlazaron sólo por la palabra «seguridad». Se mantiene la cita del contrato pero se explicita que no respalda lo debatido.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-02T14:51:20.688Z"
         },
         {
           "field": "summary",
-          "original": "En la sesión plenaria del 06-10-2025, VOX manifiesta que considera esencial el sistema COMETA en materia de seguridad, PSOE señala que denuncia ante la Consejería determinadas ampliaciones y PP apunta dudas sobre el cumplimiento de ciertas órdenes. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
-          "corrected": "En la sesión plenaria del 06-10-2025, VOX manifiesta que considera esencial el sistema COMETA en materia de seguridad, PSOE plantea como punto de acuerdo «Denunciar públicamente a la Consejería esas ampliaciones que nos han hecho» y PP apunta dudas sobre el cumplimiento de ciertas órdenes. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+          "original": "sumario · sha256:146cd34766b1",
+          "corrected": "sumario · sha256:efd59a80ff4f",
           "reason": "La cita es un punto de acuerdo formulado en infinitivo, y su contexto lo dice con todas las letras; el sumario lo publicaba como una denuncia ya presentada. Se cita al hablante literalmente para que la propuesta no se lea como un acto consumado. La advertencia sobre el expediente de videovigilancia no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:22:26.477Z"
@@ -4116,6 +3279,14 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:22.629Z"
+        },
+        {
+          "field": "summary",
+          "original": "sumario · sha256:efd59a80ff4f",
+          "corrected": "En la sesión, VOX manifestó que considera esencial el sistema COMETA en materia de seguridad, y hubo intervenciones sobre actuaciones ante la Consejería y sobre el cumplimiento de órdenes de alejamiento que no se reproducen aquí: ningún registro municipal las respalda ni las desmiente. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+          "reason": "El sumario reproducía un punto de acuerdo que la puerta editorial retiene por no constar respaldado en ningún registro municipal.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-11T08:26:45.618Z"
         }
       ]
     },
@@ -4307,98 +3478,140 @@
           "correctedAt": "2026-08-10T12:54:24.390Z"
         }
       ]
-    },
-    {
-      "id": "f-2025-07-31-acu-144947",
-      "plenoId": "rmtyr",
-      "plenoDate": "2025-07-31",
-      "title": "Debate fiscal en el pleno del 2025-07-31: el PP y Compromís señalan discrepancias sobre el presupuesto de 2024",
-      "summary": "En la sesión del 2025-07-31, el PP señala retrasos en la aprobación del presupuesto y afirma haber recurrido a entidades provinciales para reclamar fondos de 2024. Por su parte, Compromís manifiesta que sus propuestas presupuestarias para dicho ejercicio no fueron atendidas.",
-      "severity": "informational",
-      "sourceClaimIds": [
-        "rmtyr-141-acu-144947",
-        "rmtyr-021-acu-e0e848",
-        "rmtyr-189-acu-61aa87"
-      ],
-      "quotes": [
-        {
-          "text": "les ofrecimos ir a Diputación, ir a Generalitat, a que nos pagaran lo que era nuestro del 2024. Aún estamos esperándolo.",
-          "speakerGroup": "PP",
-          "sourceClaimId": "rmtyr-141-acu-144947"
-        },
-        {
-          "text": "Si tenim en compte la dana o el que fa més de 200 dies, hauria d'haver estat aprovat abans que finalitzara l'any 2024.",
-          "speakerGroup": "PP",
-          "sourceClaimId": "rmtyr-021-acu-e0e848"
-        },
-        {
-          "text": "I ens dol un poc que moltes vegades les nostres propostes s'hagin quedat en el caixó. Així ha passat en el pressupost del 2024 i creiem que també va passar en el 2025,",
-          "speakerGroup": "Compromís",
-          "sourceClaimId": "rmtyr-189-acu-61aa87"
-        }
-      ],
-      "crossChecked": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-          "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de…"
-        },
-        {
-          "kind": "pleno-video",
-          "ref": "https://www.youtube.com/watch?v=hiZ6YplwNzA",
-          "snippet": "Vídeo del pleno 2025-07-31 · YouTube"
-        }
-      ],
-      "contradiction": [],
-      "relatedPromiseIds": [],
-      "curatorName": "auto-curation-v1",
-      "publishedAt": "2026-07-31",
-      "response": null,
-      "corrections": [
-        {
-          "field": "summary",
-          "original": "En la sesión del 2025-07-31, el PP señala retrasos en la aprobación del presupuesto y afirma haber recurrido a entidades provinciales para reclamar fondos de 2024. Por su parte, Compromís manifiesta que sus propuestas presupuestarias para dicho ejercicio no fueron atendidas. El debate coincide con gestiones provinciales reflejadas en el contrato basado en acuerdo marco para servicios Postales de Carta Certificada y ordinaria, envíos publicitarios y paquetes postales a la Diputación Provincial de Valencia, al Conso.",
-          "corrected": "En la sesión del 2025-07-31, el PP señala retrasos en la aprobación del presupuesto y afirma haber recurrido a entidades provinciales para reclamar fondos de 2024. Por su parte, Compromís manifiesta que sus propuestas presupuestarias para dicho ejercicio no fueron atendidas.",
-          "reason": "«Gestiones provinciales reflejadas en» inventaba una categoría intermedia para tender un puente entre un debate presupuestario y un contrato de servicios postales: cartas certificadas y paquetería no reflejan ninguna gestión de cobro de fondos. Lo único compartido era la palabra «provincial». La frase se publicaba además cortada a mitad de palabra, como si el corte fuera su final. Se suprime entera.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T17:47:09.889Z"
-        },
-        {
-          "field": "crossChecked.0",
-          "original": "documento cotejado · sha256:ebe64b5bd331",
-          "corrected": "retirado del hallazgo",
-          "reason": "Se retira el expediente que la frase suprimida nombraba. Un contrato de servicios postales no documenta un debate sobre el retraso de un presupuesto ni sobre la reclamación de fondos, y sólo estaba ahí para sostener el conector borrado.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T17:47:10.136Z"
-        },
-        {
-          "field": "crossChecked.0",
-          "original": "documento cotejado · sha256:b30b92084fcb",
-          "corrected": "retirado del hallazgo",
-          "reason": "Se retira del cotejo un expediente cuya fecha más temprana conocida es posterior a la de la sesión: un procedimiento que aún no constaba el día del debate no pudo ser lo que el pleno debatía.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T18:47:54.289Z"
-        },
-        {
-          "field": "quote.1.text",
-          "original": "hace más de 200 días tendría que haber sido aprobado antes de que finalizara el año 2024",
-          "corrected": "Si tenim en compte la dana o el que fa més de 200 dies, hauria d'haver estat aprovat abans que finalitzara l'any 2024.",
-          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T12:54:25.099Z"
-        },
-        {
-          "field": "quote.2.text",
-          "original": "nuestras propuestas se han quedado en el caixón. Así ha pasado en el presupuesto del 2024",
-          "corrected": "I ens dol un poc que moltes vegades les nostres propostes s'hagin quedat en el caixó. Així ha passat en el pressupost del 2024 i creiem que també va passar en el 2025,",
-          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T12:54:25.454Z"
-        }
-      ]
     }
   ],
-  "builtFrom": {
-    "pleno-claims-verified.json": "e647d67b9a3f"
-  }
+  "retractions": [
+    {
+      "findingId": "f-2025-12-23-acu-a1ba00",
+      "reason": "Ninguna de sus cuatro citas supera la puerta editorial y no coteja ningún documento, así que no queda nada publicable sobre lo que sostener el sumario.",
+      "editor": "Sergei Lutchenko",
+      "retractedAt": "2026-08-11T08:24:46.713Z",
+      "digest": "hallazgo · sha256:6f1f20cfbd6d",
+      "quoteCount": 4,
+      "crossCheckedCount": 0,
+      "severity": "informational",
+      "plenoId": "1qi8axv",
+      "plenoDate": "2025-12-23"
+    },
+    {
+      "findingId": "f-2025-12-23-acu-cd77e9",
+      "reason": "Sus cuatro citas quedan retenidas por la puerta editorial; los documentos cotejados no contrastan entonces ninguna afirmación publicable.",
+      "editor": "Sergei Lutchenko",
+      "retractedAt": "2026-08-11T08:24:53.081Z",
+      "digest": "hallazgo · sha256:fe9faf651e8d",
+      "quoteCount": 4,
+      "crossCheckedCount": 4,
+      "severity": "informational",
+      "plenoId": "1qi8axv",
+      "plenoDate": "2025-12-23"
+    },
+    {
+      "findingId": "f-2025-10-06-acu-bba0e9",
+      "reason": "Las tres citas quedan retenidas por la puerta editorial, de modo que el sumario atribuía a dos grupos afirmaciones que la ficha no puede mostrar ni sostener.",
+      "editor": "Sergei Lutchenko",
+      "retractedAt": "2026-08-11T08:25:00.817Z",
+      "digest": "hallazgo · sha256:ec7eba02ed96",
+      "quoteCount": 3,
+      "crossCheckedCount": 4,
+      "severity": "informational",
+      "plenoId": "otxq2c",
+      "plenoDate": "2025-10-06"
+    },
+    {
+      "findingId": "f-2026-05-11-acu-1e1bfa",
+      "reason": "Las tres citas quedan retenidas por la puerta editorial y una sólo consta en una transcripción sustituida, así que el sumario atribuye a dos grupos afirmaciones que la ficha no puede mostrar.",
+      "editor": "Sergei Lutchenko",
+      "retractedAt": "2026-08-11T08:30:30.305Z",
+      "digest": "hallazgo · sha256:48d1f5e579d7",
+      "quoteCount": 3,
+      "crossCheckedCount": 3,
+      "severity": "informational",
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11"
+    },
+    {
+      "findingId": "f-2026-05-11-acu-da7902",
+      "reason": "Sus dos citas quedan retenidas por la puerta editorial, de modo que el sumario reprocha una conducta concreta a un grupo sin poder mostrar ni una sola intervención que la sostenga.",
+      "editor": "Sergei Lutchenko",
+      "retractedAt": "2026-08-11T08:30:39.249Z",
+      "digest": "hallazgo · sha256:3738b6a356fd",
+      "quoteCount": 2,
+      "crossCheckedCount": 2,
+      "severity": "informational",
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11"
+    },
+    {
+      "findingId": "f-2026-04-20-acu-93c1e8",
+      "reason": "Las cuatro citas quedan retenidas por la puerta editorial y dos sólo constan en una transcripción sustituida; el sumario contrapone entonces posturas de tres grupos sin nada publicable detrás.",
+      "editor": "Sergei Lutchenko",
+      "retractedAt": "2026-08-11T08:30:47.371Z",
+      "digest": "hallazgo · sha256:2b9155e910ba",
+      "quoteCount": 4,
+      "crossCheckedCount": 4,
+      "severity": "informational",
+      "plenoId": "k4olcs",
+      "plenoDate": "2026-04-20"
+    },
+    {
+      "findingId": "f-2026-03-09-acu-d94904",
+      "reason": "No coteja ningún documento y sus cuatro citas quedan retenidas por la puerta editorial; la propia ficha admitía que los datos municipales no permiten verificar ni contradecir lo que relata.",
+      "editor": "Sergei Lutchenko",
+      "retractedAt": "2026-08-11T08:30:55.742Z",
+      "digest": "hallazgo · sha256:c2bf06829dd3",
+      "quoteCount": 4,
+      "crossCheckedCount": 0,
+      "severity": "informational",
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09"
+    },
+    {
+      "findingId": "f-2026-01-19-acu-2c074a",
+      "reason": "Las cuatro citas quedan retenidas por la puerta editorial y dos sólo constan en una transcripción sustituida; el sumario reproducía además el contenido de una de ellas.",
+      "editor": "Sergei Lutchenko",
+      "retractedAt": "2026-08-11T08:31:03.064Z",
+      "digest": "hallazgo · sha256:cdf99a465d4d",
+      "quoteCount": 4,
+      "crossCheckedCount": 4,
+      "severity": "informational",
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19"
+    },
+    {
+      "findingId": "f-2026-01-19-acu-d2b7bb",
+      "reason": "Las tres citas quedan retenidas por la puerta editorial y una sólo consta en una transcripción sustituida, así que el sumario atribuye conductas a dos grupos sin nada publicable detrás.",
+      "editor": "Sergei Lutchenko",
+      "retractedAt": "2026-08-11T08:31:10.678Z",
+      "digest": "hallazgo · sha256:c132c294323a",
+      "quoteCount": 3,
+      "crossCheckedCount": 3,
+      "severity": "informational",
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19"
+    },
+    {
+      "findingId": "f-2025-12-01-acu-51aaa3",
+      "reason": "Su única cita queda retenida por la puerta editorial, de modo que la actuación municipal que el sumario relata no se apoya en ninguna intervención publicable.",
+      "editor": "Sergei Lutchenko",
+      "retractedAt": "2026-08-11T08:31:35.487Z",
+      "digest": "hallazgo · sha256:7c021e19c4c9",
+      "quoteCount": 1,
+      "crossCheckedCount": 2,
+      "severity": "informational",
+      "plenoId": "qz6weg",
+      "plenoDate": "2025-12-01"
+    },
+    {
+      "findingId": "f-2025-07-31-acu-144947",
+      "reason": "Las tres citas quedan retenidas por la puerta editorial, así que el sumario atribuye posiciones presupuestarias a dos grupos sin poder mostrar ninguna intervención.",
+      "editor": "Sergei Lutchenko",
+      "retractedAt": "2026-08-11T08:31:45.734Z",
+      "digest": "hallazgo · sha256:be8c4d983e3c",
+      "quoteCount": 3,
+      "crossCheckedCount": 2,
+      "severity": "informational",
+      "plenoId": "rmtyr",
+      "plenoDate": "2025-07-31"
+    }
+  ]
 }

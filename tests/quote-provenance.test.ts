@@ -73,7 +73,7 @@ describe('el snapshot cubre TODAS las citas publicadas', () => {
   it('no deja caer ni una: filas + no clasificadas = citas del snapshot', () => {
     // Que la comprobación mide algo: con el snapshot vacío esta prueba pasaría
     // comparando 0 con 0 sin haber examinado nada.
-    expect(ALL_QUOTES.length).toBeGreaterThan(150)
+    expect(ALL_QUOTES.length).toBeGreaterThan(120)
     const rows = Object.values(DERIVED.quotes).reduce((n, r) => n + r.length, 0)
     expect(rows + DERIVED.unresolved.length).toBe(ALL_QUOTES.length)
     expect(DERIVED.stats.quotes).toBe(ALL_QUOTES.length)
@@ -116,8 +116,18 @@ describe('los tres estados son alcanzables, y cada uno sobre datos reales', () =
     expect(DERIVED.stats.soloEnSustituida).toBeGreaterThan(0)
   })
 
-  it('«sin determinar» ocurre, y sale de una sesión cuyo texto nuevo es MÁS CORTO', () => {
-    expect(DERIVED.stats.sinDeterminar).toBeGreaterThan(0)
+  /**
+   * Este estado se quedó sin ejemplares el 2026-08-11: sus dos únicas filas
+   * estaban en `d94904`, retirado ese día junto con los otros diez hallazgos
+   * cuyas citas retiene la puerta editorial al completo.
+   *
+   * Así que no se exige `> 0` — sería exigir que vuelva un hallazgo que se
+   * retiró a propósito. Lo que se exige es lo que sigue siendo comprobable: si
+   * hay filas, cumplen la regla; y la contabilidad cuadra en cualquier caso.
+   * La alcanzabilidad del estado la prueban los tests de unidad del módulo,
+   * que no dependen de qué haya publicado hoy.
+   */
+  it('«sin determinar», si lo hay, sale de una sesión cuyo texto nuevo es MÁS CORTO', () => {
     expect(DERIVED.stats.sinDeterminarPorTranscripcionMasCorta).toBe(DERIVED.stats.sinDeterminar)
     // Y esas filas viven en sesiones que el snapshot marca como no comparables:
     // el estado no puede aparecer en una sesión donde la pasada nueva dice más.
