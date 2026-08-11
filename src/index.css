@@ -36,6 +36,12 @@
      above a contrast the axe-core AA e2e gate already passed, so distinctness is
      gained with zero contrast regression. */
   --ink80: rgba(11, 15, 25, 0.82); /* strong secondary */
+  /* Used 99 times across 28 components and defined nowhere until 2026-08-11.
+     An undefined custom property makes the whole `color` declaration invalid,
+     so every one of those sites silently inherited its parent's colour —
+     usually full --ink, i.e. the opposite of the de-emphasis intended.
+     Midpoint of the 60↔80 step. Contrast on --paper: 8.10:1, AA with room. */
+  --ink70: rgba(11, 15, 25, 0.73); /* secondary, one step stronger than 60 */
   --ink60: rgba(11, 15, 25, 0.64); /* secundario */
   --ink50: rgba(11, 15, 25, 0.62); /* meta */
   --ink40: rgba(11, 15, 25, 0.6); /* tenue */
@@ -96,6 +102,7 @@ html.dark {
   --intel-ink: #c8aef5;
 
   --ink80: rgba(241, 245, 249, 0.88);
+  --ink70: rgba(241, 245, 249, 0.8); /* 10.59:1 on --paper */
   --ink60: rgba(241, 245, 249, 0.72);
   --ink50: rgba(241, 245, 249, 0.68);
   --ink40: rgba(241, 245, 249, 0.58);
