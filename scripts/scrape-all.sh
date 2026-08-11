@@ -184,36 +184,45 @@ for s in "${SCRAPERS[@]}"; do
   fi
 done
 
-# compute:dept-stats runs unconditionally so the landing page's
-# overdue counter stays fresh even when an upstream scraper choked.
+# ── Derivations, driven by the dependency graph ─────────────────────────
+# These three used to run unconditionally, one hard-coded block each. That was
+# safe but blind: it could not tell that press-trust.json had gone stale because
+# press.json was rescraped this morning, and it recomputed the other two whether
+# or not anything they read had moved.
+#
+# `npm run refresh` walks src/scraper/data-graph.ts, rebuilds the derived nodes
+# whose inputs actually changed, and stamps each output with the hashes it was
+# built from. It also NAMES the work this environment cannot do — the LLM tier
+# lives on the laptop crons — so a green CI run cannot look complete when it is
+# not. See docs/OPERATIONS.md.
 echo ""
 echo "================================================================"
-echo "[scrape-all] running: compute:dept-stats"
+echo "[scrape-all] running: refresh (dependency-driven derivations)"
 echo "================================================================"
-if ! npm run compute:dept-stats; then
-  echo "[scrape-all] FAILED: compute:dept-stats"
-  failures+=("compute:dept-stats")
+if ! npm run refresh; then
+  echo "[scrape-all] FAILED: refresh"
+  failures+=("refresh")
 fi
 
+# The graph declares what the deterministic tier cannot reach. Printed even on
+# success, because "nothing to report" and "an LLM stage is overdue and this
+# runner has no model" must not look the same in the nightly log.
+#
+# And a bare heading with nothing under it reads as "nothing owed", which is the
+# very failure this block exists to prevent. So say which of the two it is:
+# today the graph declares no `llm` nodes at all, so an empty list means the
+# tier is UNMODELLED, not idle.
 echo ""
-echo "================================================================"
-echo "[scrape-all] running: compute:tender-geo"
-echo "================================================================"
-if ! npm run compute:tender-geo; then
-  echo "[scrape-all] FAILED: compute:tender-geo"
-  failures+=("compute:tender-geo")
-fi
-
-echo ""
-echo "================================================================"
-echo "[scrape-all] running: compute:entities"
-echo "================================================================"
-# Canonical company/people registry (name-variant merge + curated
-# aliases). Deterministic, no network — inputs are tenders.json +
-# officials.json + entity-overrides.json already on disk.
-if ! npm run compute:entities; then
-  echo "[scrape-all] FAILED: compute:entities"
-  failures+=("compute:entities")
+LLM_BACKLOG=$(npm run --silent refresh -- --list llm 2>/dev/null || true)
+if [ -n "$LLM_BACKLOG" ]; then
+  echo "[scrape-all] LLM-tier backlog the laptop crons still owe:"
+  echo "$LLM_BACKLOG" | sed 's/^/  · /'
+elif npx tsx -e 'import{DATA_GRAPH}from"./src/scraper/data-graph.ts";process.exit(DATA_GRAPH.some(n=>n.tier==="llm")?0:1)' 2>/dev/null; then
+  echo "[scrape-all] LLM tier: every declared node is fresh."
+else
+  echo "[scrape-all] LLM tier: NOT MODELLED in data-graph.ts yet — this says nothing"
+  echo "[scrape-all]   about whether transcription, speaker maps or extraction are overdue."
+  echo "[scrape-all]   Those still run from the laptop crons on their own backlogs."
 fi
 
 echo ""

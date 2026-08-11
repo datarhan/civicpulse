@@ -16,7 +16,6 @@ const ENROLLED = [
 
 const baseClaim: PlenoClaimExtraction = {
   type: 'afirmacion_numerica',
-  speakerGroup: 'PSOE',
   speakerSlug: null,
   verbatim: 'Hemos asignado 46 millones al presupuesto del año.',
   context: 'El alcalde explica el cierre presupuestario y cita la cifra que se ha consignado.',
@@ -50,6 +49,7 @@ describe('extractClaimsWithLlm · speakerSlug validation', () => {
         currentSeats: [{ bloc: 'PSOE', seats: 11 }],
         allowedSpeakers: ENROLLED,
         windowChars: 5000,
+        resolveBloc: () => 'PSOE',
       },
       callerOnce('robert-raga-gadea'),
     )
@@ -67,6 +67,7 @@ describe('extractClaimsWithLlm · speakerSlug validation', () => {
         currentSeats: [{ bloc: 'PSOE', seats: 11 }],
         allowedSpeakers: ENROLLED,
         windowChars: 5000,
+        resolveBloc: () => 'PSOE',
       },
       callerOnce('not-an-enrolled-councillor'),
     )
@@ -76,7 +77,10 @@ describe('extractClaimsWithLlm · speakerSlug validation', () => {
   })
 
   it('strips speakerSlug when party disagrees with speakerGroup', async () => {
-    // Robert is PSOE but the LLM (somehow) emits speakerGroup=PP — mismatch.
+    // Robert is PSOE but the speaker map puts this quote in PP's mouth. The
+    // slug and the bloc now come from two independent sources, so they CAN
+    // disagree — and when they do, the individual attribution is the one that
+    // goes, not the evidence-backed bloc.
     const res = await extractClaimsWithLlm(
       SAMPLE_TRANSCRIPT,
       {
@@ -85,8 +89,9 @@ describe('extractClaimsWithLlm · speakerSlug validation', () => {
         currentSeats: [{ bloc: 'PSOE', seats: 11 }],
         allowedSpeakers: ENROLLED,
         windowChars: 5000,
+        resolveBloc: () => 'PP',
       },
-      callerOnce('robert-raga-gadea', { speakerGroup: 'PP' }),
+      callerOnce('robert-raga-gadea'),
     )
     expect(res.items).toHaveLength(1)
     expect(res.items[0].speakerSlug).toBeUndefined()
@@ -102,8 +107,9 @@ describe('extractClaimsWithLlm · speakerSlug validation', () => {
         currentSeats: [{ bloc: 'PSOE', seats: 11 }],
         allowedSpeakers: ENROLLED,
         windowChars: 5000,
+        resolveBloc: () => null,
       },
-      callerOnce('robert-raga-gadea', { speakerGroup: null }),
+      callerOnce('robert-raga-gadea'),
     )
     expect(res.items).toHaveLength(1)
     expect(res.items[0].speakerSlug).toBe('robert-raga-gadea')

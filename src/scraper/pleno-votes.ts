@@ -962,7 +962,7 @@ export function validateVote(v: unknown, idx = -1): PlenoVote {
     // `null` gets its own dedupe key rather than the string "null", which a
     // bloc could never be: two unattributed tuples are indistinguishable, so
     // a second one is a duplicate exactly as a second PSOE row would be.
-    const key = vo.bloc === null ? ' sin-identificar' : (vo.bloc as string)
+    const key = vo.bloc === null ? '\u0000sin-identificar' : (vo.bloc as string)
     must(
       !seenBlocs.has(key),
       `bloc ${vo.bloc === null ? '(sin identificar)' : vo.bloc} listed more than once${vc}`,

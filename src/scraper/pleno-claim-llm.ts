@@ -59,6 +59,20 @@ export interface ClaimExtractionOptions {
    * progress reporting from long-running CLIs.
    */
   onWindow?: (info: { index: number; total: number; claimsKept: number }) => void
+  /**
+   * Which bloc said this verbatim, from `pleno-speaker-map/`.
+   *
+   * The model no longer answers this — it never could. Its window is ~1200
+   * characters and, measured on pleno 10yl550, 1% of windows contain the
+   * turn-grant that establishes who is speaking while 41% merely name a party,
+   * which in a debate is usually the party under attack. Asked anyway, it
+   * reached for the name in the text.
+   *
+   * Absent or returning null ⇒ `speakerGroup: null`, which is an honest
+   * "nobody is claiming to know" and the answer the eval rewards over a guess.
+   * Build one with `blocResolverFor` in `speaker-map-align.ts`.
+   */
+  resolveBloc?: (verbatim: string) => string | null
 }
 
 export interface ClaimExtractionResult {
@@ -146,13 +160,44 @@ function semanticCollapse<
   return [...byBucket.values()]
 }
 
-function splitClaimWindows(transcript: string, windowChars: number, step: number): string[] {
-  const out: string[] = []
+/**
+ * Cut the transcript into overlapping windows, **on line boundaries**.
+ *
+ * The old version sliced at raw character offsets, which lands inside a
+ * `[123.4 → 130.2] (SPEAKER_05)` tag about as often as not — the model was
+ * routinely handed fragments like `AKER_05) …texto` and a half-eaten
+ * timestamp. Splitting on lines costs nothing and keeps every window made of
+ * whole, well-formed transcript lines.
+ *
+ * Windows still overlap by roughly `windowChars - step`, so a claim spanning a
+ * boundary is seen whole at least once; `semanticCollapse` removes the
+ * duplicates that overlap produces.
+ */
+export function splitClaimWindows(transcript: string, windowChars: number, step: number): string[] {
   if (transcript.length <= windowChars) return [transcript]
-  for (let start = 0; start < transcript.length; start += step) {
-    const end = Math.min(transcript.length, start + windowChars)
-    out.push(transcript.slice(start, end))
-    if (end === transcript.length) break
+  const lines = transcript.split('\n')
+  const out: string[] = []
+  let start = 0
+  while (start < lines.length) {
+    let end = start
+    let size = 0
+    // At least one line per window, even if that single line is longer than
+    // windowChars — dropping it would silently lose a stretch of debate.
+    while (end < lines.length && (end === start || size + lines[end].length + 1 <= windowChars)) {
+      size += lines[end].length + 1
+      end += 1
+    }
+    out.push(lines.slice(start, end).join('\n'))
+    if (end >= lines.length) break
+
+    // Step forward by roughly `step` characters, measured in whole lines.
+    let advanced = 0
+    let next = start
+    while (next < end - 1 && advanced + lines[next].length + 1 <= step) {
+      advanced += lines[next].length + 1
+      next += 1
+    }
+    start = next > start ? next : start + 1
   }
   return out
 }
@@ -224,14 +269,16 @@ export async function extractClaimsWithLlm(
       const typeAbbr = raw.type.slice(0, 3)
       const shortHash = keyHash(key)
       const id = `${opts.plenoId}-${String(i).padStart(3, '0')}-${typeAbbr}-${shortHash}`
-      const validatedSlug = validateSlug(raw.speakerSlug, raw.speakerGroup)
+      // Joined from the speaker map, never inferred from the window's content.
+      const speakerGroup = (opts.resolveBloc?.(raw.verbatim) ?? null) as PlenoClaim['speakerGroup']
+      const validatedSlug = validateSlug(raw.speakerSlug, speakerGroup)
       items.push({
         id,
         plenoId: opts.plenoId,
         plenoDate: opts.plenoDate,
         segmentIndex: i,
         type: raw.type,
-        speakerGroup: raw.speakerGroup,
+        speakerGroup,
         ...(validatedSlug ? { speakerSlug: validatedSlug } : {}),
         verbatim: raw.verbatim.trim(),
         context: raw.context.trim(),
