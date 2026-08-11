@@ -126,6 +126,20 @@ export const DATA_GRAPH: readonly DataNode[] = [
     note: 'press trust / triangulation / coverage gaps — one command, three files',
   },
   {
+    // Named `scrape:*` but it fetches nothing — it joins quejas to situated
+    // contracts from snapshots already on disk. `scrape-all.sh` calls it
+    // straight after the derivations and its own comment says "pure +
+    // deterministic (no LLM/network)", so it belongs here rather than among
+    // the scrapers.
+    id: 'queja-contract-relations.json',
+    tier: 'derived',
+    reads: ['promises.json', 'quejas.json', 'tender-geo.json', 'tenders.json'],
+    writes: ['queja-contract-relations.json'],
+    command: 'npm run scrape:queja-contract-relations',
+    script: 'scripts/scrape-queja-contract-relations.ts',
+    note: 'quejas ⇄ contratos, the three neutral views on /quejas',
+  },
+  {
     // AGGREGATE. The graph answers "is LLM work owed at all"; which sessions,
     // in what order, within what quota, stays with `hallazgos-pipeline.sh`.
     // Modelling one node per pleno would mean generating the graph, and a

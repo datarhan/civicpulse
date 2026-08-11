@@ -227,14 +227,13 @@ fi
 
 echo ""
 echo "================================================================"
-echo "[scrape-all] running: scrape:queja-contract-relations (best-effort)"
+echo "[scrape-all] queja-contract-relations: now owned by the graph"
 echo "================================================================"
-# Depends on tender-geo.json (situated places) + the bot's quejas.json. Pure +
-# deterministic (no LLM/network); soft-fail so a flake never blocks the commit.
-if ! npm run scrape:queja-contract-relations; then
-  echo "[scrape-all] SOFT-FAILED: scrape:queja-contract-relations — best-effort, not counted"
-  soft_failures+=("scrape:queja-contract-relations")
-fi
+# It reads tender-geo.json, tenders.json, quejas.json and promises.json and
+# fetches nothing, so it is a `derived` node like any other and `refresh`
+# above already rebuilt it — in topological order, AFTER tender-geo, which it
+# depends on and which the explicit call here used to merely assume.
+echo "[scrape-all] (see the refresh report above)"
 
 echo ""
 echo "================================================================"
