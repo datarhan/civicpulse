@@ -279,6 +279,79 @@ export function FindingDetailCard({ f, permalink }) {
   )
 }
 
+/**
+ * Findings withdrawn from publication.
+ *
+ * A retraction that leaves no trace is indistinguishable from a page that was
+ * never published, which is how a site quietly edits its own record. So the
+ * gap is stated: how many, from which session, on what date, signed, and why.
+ *
+ * What it deliberately does NOT show is the withdrawn text. These are
+ * retracted because the editorial gate withheld every quote in them — an
+ * accusation about a named political group that no record supports — so
+ * reprinting it here would restore exactly the publication the retraction
+ * removed. The snapshot holds a digest for that reason (see
+ * `finding-retraction.ts`); there is nothing here to render even if the page
+ * wanted to.
+ */
+function RetractionLedger({ retractions }) {
+  if (!retractions?.length) return null
+  const ordered = [...retractions].sort((a, b) => b.retractedAt.localeCompare(a.retractedAt))
+  return (
+    <section
+      style={{
+        marginTop: 30,
+        padding: 14,
+        border: '1px solid var(--border)',
+        borderRadius: 8,
+        fontSize: 11.5,
+        color: 'var(--ink70)',
+        lineHeight: 1.55,
+      }}
+    >
+      <div
+        className="mono"
+        style={{
+          fontSize: 11,
+          color: 'var(--ink50)',
+          letterSpacing: '.1em',
+          textTransform: 'uppercase',
+          fontWeight: 600,
+          marginBottom: 8,
+        }}
+      >
+        Hallazgos retirados · {ordered.length}
+      </div>
+      <p style={{ margin: '0 0 10px' }}>
+        Publicados y después retirados. No se reproduce lo que decían: se retiraron porque ninguna
+        de sus citas superaba la puerta editorial, así que republicar el texto aquí devolvería a la
+        web exactamente aquello que la retirada quita. Queda la huella —{' '}
+        <span className="mono">sha256</span> del original, por si alguien conserva una copia y
+        quiere comprobar que coincide.
+      </p>
+      <ol style={{ margin: 0, paddingLeft: 18, display: 'grid', gap: 8 }}>
+        {ordered.map((r) => (
+          <li key={r.findingId}>
+            <div className="mono" style={{ fontSize: 9.5, color: 'var(--ink60)', marginBottom: 2 }}>
+              {r.findingId} · pleno {r.plenoDate} · retirado {r.retractedAt.slice(0, 10)} ·{' '}
+              {r.editor}
+            </div>
+            <div>
+              {r.quoteCount} cita(s) y {r.crossCheckedCount} documento(s) cotejado(s) ·{' '}
+              <span className="mono" style={{ color: 'var(--ink60)' }}>
+                {r.digest}
+              </span>
+            </div>
+            <div style={{ marginTop: 2, fontStyle: 'italic', fontSize: 10.5 }}>
+              Motivo: {r.reason}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )
+}
+
 function Chip({ active, label, count, onClick }) {
   return (
     <button
@@ -621,6 +694,8 @@ export default function Hallazgos() {
           </section>
         ))
       )}
+
+      <RetractionLedger retractions={data?.retractions ?? []} />
 
       <div
         style={{

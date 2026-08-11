@@ -74,6 +74,7 @@
     "sindic:add": "npx tsx scripts/add-sindic-resolucion.ts",
     "pleno-vote": "npx tsx scripts/apply-pleno-vote.ts",
     "retract-vote": "npx tsx scripts/retract-pleno-vote.ts",
+    "retract-finding": "npx tsx scripts/retract-pleno-finding.ts",
     "promote-vote": "npx tsx scripts/promote-pleno-vote-suggestion.ts",
     "compute:dept-stats": "npx tsx scripts/compute-dept-stats.ts",
     "compute:tender-geo": "npx tsx scripts/compute-tender-geo.ts",

@@ -37,6 +37,9 @@
 import { stripSimilarityAnnotation } from '../llm/candidate-annotation'
 import { sha256Short } from './hash'
 import { SPEAKER_GROUPS, type SpeakerGroup } from './pleno-votes'
+// Cyclic with `finding-retraction.ts`, and safe: that module reads this one's
+// exports only inside function bodies, never at module scope.
+import { validateFindingRetraction, type FindingRetraction } from './finding-retraction'
 
 export type FindingSeverity = 'informational' | 'notable' | 'critical'
 
@@ -335,6 +338,12 @@ export interface PlenoFindingsSnapshot {
   contactUrl: string
   methodologyUrl: string
   items: PlenoFinding[]
+  /**
+   * Findings withdrawn from publication, as digests. Absent until the first
+   * retraction. See `finding-retraction.ts` for why this holds no prose —
+   * unlike the vote ledger, which tombstones its originals verbatim.
+   */
+  retractions?: FindingRetraction[]
 }
 
 // ─── Validator ──────────────────────────────────────────────────────────────
@@ -742,6 +751,23 @@ export function validateFindingsSnapshot(json: string): PlenoFindingsSnapshot {
   }
   const conflicts = findAttributionConflicts(items)
   must(conflicts.length === 0, conflicts.join('; '))
+
+  // Absent until the first withdrawal, so an empty file stays valid.
+  let retractions: FindingRetraction[] | undefined
+  if (raw.retractions !== undefined) {
+    must(Array.isArray(raw.retractions), 'retractions must be array')
+    retractions = (raw.retractions as unknown[]).map((r, i) => validateFindingRetraction(r, i))
+    const withdrawn = new Set<string>()
+    for (const r of retractions) {
+      must(!withdrawn.has(r.findingId), `duplicate retraction for ${r.findingId}`)
+      withdrawn.add(r.findingId)
+      // Published AND withdrawn is not a state. It would render the finding
+      // while the ledger said it was gone, and `isRetracted` would be right
+      // about a page a reader can still read.
+      must(!seen.has(r.findingId), `${r.findingId} is both published and retracted`)
+    }
+  }
+
   return {
     version: raw.version as string,
     generatedAt: raw.generatedAt as string,
@@ -749,6 +775,7 @@ export function validateFindingsSnapshot(json: string): PlenoFindingsSnapshot {
     contactUrl: raw.contactUrl as string,
     methodologyUrl: raw.methodologyUrl as string,
     items,
+    ...(retractions ? { retractions } : {}),
   }
 }
 
