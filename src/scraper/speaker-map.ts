@@ -150,7 +150,12 @@ export interface SpeakerMap {
     rowsRejected: number
     /** Reason → count, so a run can say WHY it dropped what it dropped. */
     rejectedBy: Record<string, number>
-    /** Share of the session's duration the transcript actually spans. */
+    /**
+     * Share of the session's SPEECH the map recovered — measured against the
+     * published transcript, not against the session's duration. Silence is not
+     * missing data, and a chunk that is mostly silence is not a chunk that was
+     * mostly missed. See `referenceCoverage`.
+     */
     coverage: number
   }
 }
@@ -246,6 +251,128 @@ export function parseSpeakerMapResponse(raw: string): ParsedSpeakerMapResponse {
   }
 
   return { segments, candidates }
+}
+
+/**
+ * Seconds of speech the segments cover inside `[from, to)`.
+ *
+ * The union of their spans, clipped to the window. Overlaps count once — two
+ * councillors talking over each other cover that stretch, not twice it — and
+ * the input is not assumed sorted, because the model does not reliably emit it
+ * in order.
+ */
+export function speechSeconds(segments: readonly RawSegment[], from: number, to: number): number {
+  const spans = segments
+    .map((s) => ({ start: Math.max(from, s.start), end: Math.min(to, s.end) }))
+    .filter((s) => Number.isFinite(s.start) && Number.isFinite(s.end) && s.end > s.start)
+    .sort((a, b) => a.start - b.start)
+  if (!spans.length) return 0
+  let covered = 0
+  let curStart = spans[0].start
+  let curEnd = spans[0].end
+  for (const s of spans.slice(1)) {
+    if (s.start <= curEnd) curEnd = Math.max(curEnd, s.end)
+    else {
+      covered += curEnd - curStart
+      curStart = s.start
+      curEnd = s.end
+    }
+  }
+  return covered + (curEnd - curStart)
+}
+
+/**
+ * A window holding less speech than this is treated as silence: there is
+ * nothing in it to miss, so nothing to judge a transcript against.
+ */
+export const SILENT_WINDOW_SECONDS = 5
+
+/**
+ * Least speech a reference must carry before it can judge a session.
+ *
+ * A pleno is hours long; anything under a minute is not a short session, it is
+ * a file that did not parse.
+ */
+export const MIN_REFERENCE_SPEECH_SECONDS = 60
+
+/**
+ * Can this reference judge a session at all?
+ *
+ * `referenceCoverage` answers 1 for a window the reference says is silent,
+ * which is right for the tail of a session and catastrophic for an empty
+ * reference: every window then looks silent and the gate passes exactly what
+ * it exists to catch. Fail closed — an unusable reference means "cannot
+ * judge", never "nothing to miss".
+ *
+ * Not hypothetical. 23 of the 44 files in `public/data/pleno-transcripts` are
+ * acta text rather than diarized audio: placeholder `[0.0 → 0.0]` stamps, no
+ * speaker labels. `parseDiarizedTranscript` drops every line and returns [],
+ * and `existsSync` on the path cannot tell them from the real thing.
+ */
+export function isUsableReference(reference: readonly RawSegment[]): boolean {
+  if (!reference.length) return false
+  return speechSeconds(reference, 0, Number.MAX_SAFE_INTEGER) >= MIN_REFERENCE_SPEECH_SECONDS
+}
+
+/**
+ * How much of a window's speech the map actually recovered, 0–1.
+ *
+ * The denominator is the PUBLISHED transcript's speech in the same window, not
+ * the window's duration. That distinction is the whole point, and it was paid
+ * for twice:
+ *
+ *   · `segments.at(-1).end / duration`, the original, measured where the last
+ *     timestamp landed. One segment near the end of a chunk scored 100 %.
+ *   · union-of-segments / duration, the obvious repair, scores silence as
+ *     missing data. `15uvjew` does not begin until 545 s, so chunk 0 holds 34 s
+ *     of speech in 600 s of audio; the map found 40 s of it — a complete
+ *     reading — and that rule scores it 7 % and rejects it, then spends three
+ *     retries re-rejecting it on every future run.
+ *
+ * Against the published transcript the two cases separate cleanly. On the same
+ * run: chunk 0, 34 s of speech, map found 40 s → complete. Chunks 1, 3, 6 and
+ * 8 held 518 s, 501 s, 546 s and 530 s and the map found nothing → truncated.
+ *
+ * A window the transcript says is silent returns 1. It cannot be judged
+ * missing, and scoring it otherwise fails the tail of every session forever.
+ */
+export function referenceCoverage(
+  mapSegments: readonly RawSegment[],
+  referenceSegments: readonly RawSegment[],
+  from: number,
+  to: number,
+): number {
+  const expected = speechSeconds(referenceSegments, from, to)
+  if (expected < SILENT_WINDOW_SECONDS) return 1
+  return Math.min(1, speechSeconds(mapSegments, from, to) / expected)
+}
+
+/**
+ * Which chunks a resume may legitimately skip.
+ *
+ * Resume used to treat a chunk as done if the prior map held any segment in
+ * its window. Against a gate that could not tell a dense chunk from a sparse
+ * one that was as good a proxy as existed. Against a real one it would make
+ * the correction inert: every chunk already written, here and across the other
+ * 43 sessions, would keep the verdict the old metric gave it. Correcting a
+ * gate has to re-open what the old one decided, or nothing already on disk
+ * changes.
+ */
+export function resumableChunks(
+  mapSegments: readonly RawSegment[],
+  referenceSegments: readonly RawSegment[],
+  chunkSeconds: number,
+  chunkCount: number,
+  floor: number,
+): Set<number> {
+  const done = new Set<number>()
+  for (let i = 0; i < chunkCount; i++) {
+    const from = i * chunkSeconds
+    if (referenceCoverage(mapSegments, referenceSegments, from, from + chunkSeconds) >= floor) {
+      done.add(i)
+    }
+  }
+  return done
 }
 
 /**

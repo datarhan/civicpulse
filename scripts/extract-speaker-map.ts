@@ -34,6 +34,10 @@ import { tmpdir } from 'node:os'
 import {
   parseSpeakerMapResponse,
   globalLabel,
+  referenceCoverage,
+  speechSeconds,
+  isUsableReference,
+  resumableChunks,
   type RawSegment,
   type SpeakerMap,
   type SpeakerMapRow,
@@ -59,6 +63,7 @@ import {
   type OfficialLike,
   type OfficialsDoc,
 } from '../src/scraper/corporation-seats'
+import { parseDiarizedTranscript } from '../src/scraper/voice-id'
 
 const OUT_DIR = resolve('pleno-speaker-map')
 const MODEL = process.env.SPEAKER_MAP_MODEL || 'gemini-3.5-flash'
@@ -324,6 +329,33 @@ async function main() {
     }
     if (!existsSync(audio)) throw new Error(`no audio at ${audio}`)
 
+    // The published transcript is the reference the coverage gate scores
+    // against: it is the record of WHERE SPEECH IS, so a chunk that is mostly
+    // silence is not mistaken for a chunk that was mostly missed. Required,
+    // not optional — without it the gate cannot tell those apart, and guessing
+    // either way is how 15uvjew chunk 0 was misjudged twice. Every session in
+    // the backlog has one.
+    const transcriptPath = resolve('public/data/pleno-transcripts', `${args.plenoId}.txt`)
+    const reference: RawSegment[] = existsSync(transcriptPath)
+      ? parseDiarizedTranscript(readFileSync(transcriptPath, 'utf8'))
+      : []
+    // Fail CLOSED. The file existing proves nothing: 23 of the 44 files in that
+    // directory are acta text with placeholder [0.0 → 0.0] stamps and no
+    // speaker labels, which parse to zero segments. An empty reference makes
+    // every window look silent, and referenceCoverage answers 1 for silence —
+    // so the gate would pass precisely the truncated chunks it exists to stop.
+    if (!isUsableReference(reference)) {
+      throw new Error(
+        `no usable diarized transcript for ${args.plenoId} at ${transcriptPath} ` +
+          `(${reference.length} parsed line(s)). The coverage gate scores against it and cannot ` +
+          `run without one — transcribe this session before mapping its speakers.`,
+      )
+    }
+    process.stdout.write(
+      `[speaker-map] reference: ${reference.length} published line(s), ` +
+        `${Math.round(speechSeconds(reference, 0, Number.MAX_SAFE_INTEGER))}s of speech\n`,
+    )
+
     const total = durationOf(audio)
     const chunkDir = join(work, 'chunks')
     mkdirSync(chunkDir, { recursive: true })
@@ -400,22 +432,52 @@ async function main() {
       }
     }
 
-    // A chunk is done when the previous run produced segments inside its time
-    // window. Deriving it from the segments rather than trusting a counter
-    // means a truncated write cannot make the run skip work it never did.
-    const doneChunks = new Set<number>()
+    // A chunk is done when the previous run's segments for it clear the SAME
+    // coverage floor a fresh chunk must clear. Deriving it from the segments
+    // rather than trusting a counter means a truncated write cannot make the
+    // run skip work it never did — and scoring them means a chunk admitted by
+    // the old last-timestamp metric is re-opened rather than inherited. See
+    // `resumableChunks`.
+    const doneChunks = prior
+      ? resumableChunks(
+          prior.segments,
+          reference,
+          SPEAKER_MAP_CHUNK_SECONDS,
+          chunks.length,
+          SPEAKER_MAP_COVERAGE_FLOOR,
+        )
+      : new Set<number>()
+
+    // Carry forward ONLY the re-verified chunks. A chunk being re-attempted
+    // must not keep its old segments as well as gain new ones, or the map ends
+    // up holding both readings of the same minutes.
+    const chunkOfLabel = (label: string): number => Number(label.slice(1, label.indexOf('/')))
+    const keptSegments = prior
+      ? prior.segments.filter((s) =>
+          doneChunks.has(Math.floor(s.start / SPEAKER_MAP_CHUNK_SECONDS)),
+        )
+      : []
+    const keptRows = prior ? prior.rows.filter((r) => doneChunks.has(chunkOfLabel(r.label))) : []
     if (prior) {
-      for (const seg of prior.segments) {
-        doneChunks.add(Math.floor(seg.start / SPEAKER_MAP_CHUNK_SECONDS))
-      }
+      const reopened = new Set(
+        prior.segments
+          .map((s) => Math.floor(s.start / SPEAKER_MAP_CHUNK_SECONDS))
+          .filter((i) => !doneChunks.has(i)),
+      )
       process.stdout.write(
         `[speaker-map] resuming: ${doneChunks.size} chunk(s) already mapped, ` +
-          `${prior.rows.length} row(s) carried forward\n`,
+          `${keptRows.length} row(s) carried forward` +
+          (reopened.size
+            ? ` · ${reopened.size} chunk(s) RE-OPENED below the ${SPEAKER_MAP_COVERAGE_FLOOR * 100}% floor ` +
+              `(${[...reopened].sort((a, b) => a - b).join(', ')}), ` +
+              `${prior.rows.length - keptRows.length} row(s) dropped with them`
+            : '') +
+          `\n`,
       )
     }
 
-    const segments: RawSegment[] = prior ? [...prior.segments] : []
-    const rows: SpeakerMapRow[] = prior ? [...prior.rows] : []
+    const segments: RawSegment[] = [...keptSegments]
+    const rows: SpeakerMapRow[] = [...keptRows]
     const rejected: RejectedCandidate[] = prior
       ? prior.rejected.map((r) => ({ ...r }) as RejectedCandidate)
       : []
@@ -448,14 +510,25 @@ async function main() {
       // runs over byte-identical audio returned 83% and 101% of the same chunk.
       // So a short answer earns a retry; only a chunk that keeps coming back
       // short is recorded as missing.
+      //
+      // Coverage is measured against the speech the PUBLISHED transcript puts
+      // in this window, not against the window's length — silence is not
+      // missing data. 15uvjew does not begin until 545 s, so chunk 0 holds 34 s
+      // of speech in 600 s; both the old last-timestamp rule and a naive
+      // union/duration rule get it wrong, in opposite directions. See
+      // `referenceCoverage`.
       let parsed: ReturnType<typeof parseSpeakerMapResponse> | null = null
       let coverage = 0
       let lastWhy = ''
       for (let attempt = 1; attempt <= 3; attempt++) {
         try {
           const candidate = parseSpeakerMapResponse(transcribeChunk(path, apiKey, prompt))
-          const spanned = candidate.segments.length ? candidate.segments.at(-1)!.end : 0
-          coverage = chunkDur > 0 ? spanned / chunkDur : 0
+          coverage = referenceCoverage(
+            candidate.segments.map((s) => ({ ...s, start: s.start + offset, end: s.end + offset })),
+            reference,
+            offset,
+            offset + chunkDur,
+          )
           if (coverage >= SPEAKER_MAP_COVERAGE_FLOOR) {
             parsed = candidate
             break
@@ -548,7 +621,6 @@ async function main() {
       }
     }
 
-    const spanned = segments.length ? segments.at(-1)!.end : 0
     const map: SpeakerMap = {
       plenoId: args.plenoId,
       generatedAt: new Date().toISOString(),
@@ -568,7 +640,12 @@ async function main() {
         rowsAccepted: rows.length,
         rowsRejected: rejected.length,
         rejectedBy: rejectionTally(rejected),
-        coverage: total > 0 ? Math.min(1, spanned / total) : 0,
+        // Share of the session's SPEECH the map recovered, on the same basis
+        // as the per-chunk gate. The last timestamp over the duration reported
+        // 68.5% for a run holding 7 of 17 chunks — it measured how far into
+        // the session the final segment fell, which one late chunk maximises
+        // however much is missing before it.
+        coverage: referenceCoverage(segments, reference, 0, total),
       },
     }
 
