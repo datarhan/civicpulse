@@ -137,6 +137,16 @@ function loadAgendaFor(plenoId: string) {
   return p?.agenda ?? []
 }
 
+/**
+ * Window-level outcomes across the whole run, for the manifest.
+ *
+ * The manifest's attempted/judged counters are per PLENO, so a session whose
+ * backend refused on 40% of its windows still reads 1-of-1 judged — which is
+ * what happened on 2026-08-11 (14 zero-token failures, 144 short-circuited
+ * calls, exit 0). Claims are only as complete as the windows that answered.
+ */
+const windowTally = { answered: 0, unanswered: 0 }
+
 async function runOne(
   plenoId: string,
   plenos: PlenoMeta[],
@@ -219,8 +229,15 @@ async function runOne(
     },
   })
   process.stdout.write(
-    `[extract·claims] ${plenoId}: ${res.stats.segmentsScanned} windows · ${res.stats.claimsEmitted} kept · ${res.stats.droppedLowConfidence} dropped\n`,
+    `[extract·claims] ${plenoId}: ${res.stats.segmentsScanned} windows ` +
+      `(${res.stats.windowsAnswered} answered` +
+      // Never silent. A window with no answer is not a window with nothing in
+      // it, and the claim set is only as complete as the answered ones.
+      `${res.stats.windowsUnanswered ? `, ${res.stats.windowsUnanswered} NO ANSWER` : ''}) · ` +
+      `${res.stats.claimsEmitted} kept · ${res.stats.droppedLowConfidence} dropped\n`,
   )
+  windowTally.answered += res.stats.windowsAnswered
+  windowTally.unanswered += res.stats.windowsUnanswered
   return res.items
 }
 
@@ -546,6 +563,10 @@ async function main() {
   const total = writeSnapshot()
   process.stdout.write(`[extract·claims] done — ${total} claim(s) total → ${OUT_PATH}\n`)
 
+  // Window-level truth beside the pleno-level counters, so a degraded backend
+  // cannot hide behind "1 of 1 judged".
+  run.record('windowsAnswered', windowTally.answered)
+  if (windowTally.unanswered > 0) run.record('windowsUnanswered', windowTally.unanswered)
   const { manifest, findings } = run.finish()
   process.stdout.write(`\n${formatManifest(manifest)}\n`)
   for (const f of findings) {

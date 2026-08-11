@@ -148,3 +148,67 @@ describe('extractClaimsWithLlm · speakerSlug validation', () => {
     expect(res.items[0].speakerSlug).toBeUndefined()
   })
 })
+
+/**
+ * A window that got no answer is not a window with nothing in it.
+ *
+ * `if (!response) return 0` treated the two identically, and
+ * `segmentsScanned: windows.length` then reported every window as scanned.
+ * `callLLM` returns null when the backend refused, when the circuit breaker is
+ * open, or when every retry failed — so a degraded backend produced a smaller
+ * set of claims and a run that looked complete.
+ *
+ * Live on 2026-08-11: the 13:52 run exited 0 with `attempted 1 · judged 1` and
+ * `319 claims`, while its own LLM stats recorded 14 zero-token failures and
+ * **144 short-circuited calls**. Roughly 40% of the transcript's windows never
+ * got an answer. Nothing in the output said so, because the pleno-level count
+ * is 1-of-1 either way and `segmentsScanned` counts iterations.
+ *
+ * `docs/DATA_INTEGRITY.md` rule 2, and the reason `/hallazgos` findings are
+ * only as complete as the windows that actually answered.
+ */
+describe('extractClaimsWithLlm · a window with no answer', () => {
+  const opts = {
+    plenoId: 'test',
+    plenoDate: '2026-04-29',
+    currentSeats: [{ bloc: 'PSOE', seats: 11 }],
+    allowedSpeakers: ENROLLED,
+    windowChars: 120,
+    resolveBloc: () => 'PSOE',
+  }
+
+  it('counts an unanswered window apart from one that answered with nothing', async () => {
+    let n = 0
+    const res = await extractClaimsWithLlm(
+      SAMPLE_TRANSCRIPT,
+      opts,
+      // Odd windows refuse (null), even ones answer with no claims.
+      async (): Promise<any> => (++n % 2 ? null : { claims: [] }),
+    )
+    expect(res.stats.windowsUnanswered).toBeGreaterThan(0)
+    expect(res.stats.windowsAnswered).toBeGreaterThan(0)
+    expect(res.stats.windowsAnswered + res.stats.windowsUnanswered).toBe(res.stats.segmentsScanned)
+  })
+
+  it('reports zero unanswered when every window replies', async () => {
+    const res = await extractClaimsWithLlm(
+      SAMPLE_TRANSCRIPT,
+      opts,
+      async (): Promise<any> => ({
+        claims: [],
+      }),
+    )
+    expect(res.stats.windowsUnanswered).toBe(0)
+    expect(res.stats.windowsAnswered).toBe(res.stats.segmentsScanned)
+  })
+
+  it('reports every window unanswered when the backend is dead', async () => {
+    // The shape that shipped as success: a totally dead backend used to be
+    // indistinguishable from a transcript containing no claims at all.
+    const res = await extractClaimsWithLlm(SAMPLE_TRANSCRIPT, opts, async (): Promise<any> => null)
+    expect(res.items).toEqual([])
+    expect(res.stats.windowsAnswered).toBe(0)
+    expect(res.stats.windowsUnanswered).toBe(res.stats.segmentsScanned)
+    expect(res.stats.segmentsScanned).toBeGreaterThan(0)
+  })
+})

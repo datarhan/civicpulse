@@ -79,9 +79,19 @@ export interface ClaimExtractionResult {
   items: PlenoClaim[]
   stats: {
     transcriptLength: number
+    /** Windows the run iterated over. NOT how many were judged — see below. */
     segmentsScanned: number
     claimsEmitted: number
     droppedLowConfidence: number
+    /** Windows the model actually answered, with or without claims. */
+    windowsAnswered: number
+    /**
+     * Windows that got NO answer: backend refused, breaker open, retries
+     * exhausted. Claims are only as complete as `windowsAnswered`, and this
+     * is the number that says so — `segmentsScanned` counts iterations and
+     * reports a full scan either way.
+     */
+    windowsUnanswered: number
   }
 }
 
@@ -212,6 +222,8 @@ export async function extractClaimsWithLlm(
   const step = opts.windowStep ?? Math.floor(windowChars / 2)
   const concurrency = Math.max(1, opts.concurrency ?? 1)
   const windows = splitClaimWindows(transcript, windowChars, step)
+  let windowsAnswered = 0
+  let windowsUnanswered = 0
 
   const systemPrompt = buildPlenoClaimSystemPrompt({
     plenoDate: opts.plenoDate,
@@ -256,7 +268,16 @@ export async function extractClaimsWithLlm(
       schema: PlenoClaimResponseSchema,
       input: { plenoId: opts.plenoId, windowIndex: i, windowHash: windowHash(window) },
     })
-    if (!response) return 0
+    // THREE outcomes, not two. `caller` returns null when the backend refused,
+    // when the circuit breaker is already open, or when every retry failed —
+    // and a window that got no answer is not a window with nothing in it.
+    // Collapsing them is what let a run short-circuit 144 of its calls and
+    // still report a full scan. See `windowsUnanswered`.
+    if (!response) {
+      windowsUnanswered += 1
+      return 0
+    }
+    windowsAnswered += 1
     let kept = 0
     for (const raw of response.claims) {
       if (raw.confidence < minConfidence) {
@@ -326,6 +347,8 @@ export async function extractClaimsWithLlm(
       segmentsScanned: windows.length,
       claimsEmitted: collapsed.length,
       droppedLowConfidence,
+      windowsAnswered,
+      windowsUnanswered,
     },
   }
 }
