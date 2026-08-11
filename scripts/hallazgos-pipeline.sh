@@ -245,7 +245,13 @@ if [ "$SPEAKER_MAP_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
       fi
       log "speaker map for $mid (up to ${REMAINING} chunk(s))…"
       if npm run extract:speaker-map -- "$mid" --chunks "$REMAINING"; then
-        SPENT=$(node -e 'try{const m=require("./pleno-speaker-map/"+process.argv[1]+".json");process.stdout.write(String(m.stats.chunksTranscribed||0))}catch(e){process.stdout.write("0")}' "$mid" 2>/dev/null || echo 0)
+        # What the run COST, not what the map now holds. chunksTranscribed
+        # counts chunks carried forward for free, so subtracting it charged a
+        # session resuming at 16/17 a full 17 against an 18-chunk budget and
+        # stopped the loop before it reached the next session. Falls back to
+        # chunksTranscribed only for maps written before the field existed —
+        # `?? ` and not `|| `, because 0 attempts is a real, and cheap, answer.
+        SPENT=$(node -e 'try{const m=require("./pleno-speaker-map/"+process.argv[1]+".json");process.stdout.write(String(m.stats.attemptedThisRun ?? m.stats.chunksTranscribed ?? 0))}catch(e){process.stdout.write("0")}' "$mid" 2>/dev/null || echo 0)
         EXPECTED=$(node -e 'try{const m=require("./pleno-speaker-map/"+process.argv[1]+".json");process.stdout.write(String(m.stats.chunksExpected||0))}catch(e){process.stdout.write("0")}' "$mid" 2>/dev/null || echo 0)
         REMAINING=$((REMAINING - SPENT))
         MAPPED=$((MAPPED+1))

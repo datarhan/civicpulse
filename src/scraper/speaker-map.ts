@@ -157,6 +157,18 @@ export interface SpeakerMap {
     /** Reason → count, so a run can say WHY it dropped what it dropped. */
     rejectedBy: Record<string, number>
     /**
+     * Chunks THIS run sent to the model — the only number that reflects what
+     * it cost. `chunksTranscribed` counts everything now complete, including
+     * chunks carried forward for free, so a budget that subtracts it charges a
+     * run for work it never did: a session resuming at 16/17 and mapping one
+     * chunk billed 17 against an 18-chunk budget and stopped the nightly
+     * pipeline before it reached the next session.
+     *
+     * Optional because a map written before this existed genuinely does not
+     * know. Absent means "unknown", and a caller must not read it as zero.
+     */
+    attemptedThisRun?: number
+    /**
      * Share of the session's SPEECH the map recovered — measured against the
      * published transcript, not against the session's duration. Silence is not
      * missing data, and a chunk that is mostly silence is not a chunk that was
@@ -485,6 +497,37 @@ export function isMapComplete(map: unknown): boolean {
   if (typeof done !== 'number' || typeof total !== 'number') return false
   if (!Number.isFinite(done) || !Number.isFinite(total) || total <= 0) return false
   return done >= total
+}
+
+/**
+ * Which chunks a run should attempt, in order, within its budget.
+ *
+ * Replaces `planned = Math.min(chunks.length, maxChunks)` followed by a loop
+ * over `0..planned-1`. That bounded the INDEX RANGE rather than the amount of
+ * work, and resume skips already-done chunks from inside the same range — so
+ * once a session was longer than the budget, everything past `maxChunks - 1`
+ * became unreachable **at any quota, forever**.
+ *
+ * `hallazgos-pipeline.sh` passes `--chunks "$REMAINING"` from an 18-chunk
+ * budget, so this was live nightly. Measured 2026-08-11 across the 21 mappable
+ * sessions, 8 exceeded it: `1sqj7is` 29 chunks, `1du4rf5` 27, `rx4hb4` 26,
+ * `10yl550` 25, `qz6weg` 24, `brxx5g` and `anrfd5` 20, `rmtyr` 19. Every one
+ * of them would have stalled at chunk 17 on every future run.
+ *
+ * The same defect `isMapComplete` was written to prevent — "its tail
+ * unreachable at any quota" — through a different door. A budget limits
+ * ATTEMPTS; it must never limit how far into the session a run may look.
+ */
+export function chunksToAttempt(
+  totalChunks: number,
+  doneChunks: ReadonlySet<number>,
+  maxAttempts: number,
+): number[] {
+  const out: number[] = []
+  for (let i = 0; i < totalChunks && out.length < maxAttempts; i++) {
+    if (!doneChunks.has(i)) out.push(i)
+  }
+  return out
 }
 
 /**

@@ -8,7 +8,29 @@
  * would invent the answer).
  *
  * Every rule below is here because the measured output was wrong without it.
- * Do not "tidy" one away without re-running `eval:speaker-map`.
+ * Do not "tidy" one away.
+ *
+ * ## What actually checks this
+ *
+ * This used to say «sin re-ejecutar `eval:speaker-map`». **That script has
+ * never existed** — `package.json` has `eval:extractor` and nothing else — so
+ * the instruction named a gate nobody could run, which is the same class of
+ * problem as a test that measures nothing. The real gates, both cheap:
+ *
+ *   · `tests/speaker-map-mmss.test.ts` replays two REAL captured responses
+ *     (`tests/fixtures/gemini-speaker-map-{mmss,clean}_2026-08-11.txt`) through
+ *     the shipped parser. Verified by ablation: strip `decodeElapsed` and 8 of
+ *     its 16 assertions fail.
+ *   · `tests/speaker-map-coverage.test.ts` pins the coverage gate and the
+ *     resume/budget planners against the measured `15uvjew` numbers.
+ *
+ * Neither can tell you whether a WORDING change moves the model, because both
+ * replay fixed responses. That question needs a live run against known-bad
+ * chunks and costs quota (~20 requests/day, free tier). The v2 timestamp rule
+ * below is **unmeasured on that axis** — `decodeElapsed` is what makes the
+ * pipeline correct regardless, and the prompt is defence in depth. Each map
+ * records `promptVersion`, so a run's `failedChunks` can be attributed to a
+ * wording after the fact.
  */
 
 /**
@@ -23,8 +45,8 @@
  * counter-example. v1 already said «Nunca mm:ss» and the model wrote `1.19` for
  * 79 s anyway, so the wording alone is not load-bearing — `decodeElapsed`
  * absorbs the slip on the way in, and this is defence in depth. Whether it
- * lowers the rate is UNMEASURED: it needs an `eval:speaker-map` run against
- * chunks known to have slipped (15uvjew chunk 1 is the reproducer).
+ * lowers the rate is UNMEASURED; see the note at the top of this file for why
+ * no offline gate can answer that, and what a live run would have to do.
  */
 export const SPEAKER_MAP_PROMPT_VERSION = 'speaker-map-v2'
 

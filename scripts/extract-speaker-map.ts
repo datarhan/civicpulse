@@ -39,6 +39,7 @@ import {
   isUsableReference,
   resumableChunks,
   unattemptedChunks,
+  chunksToAttempt,
   type RawSegment,
   type SpeakerMap,
   type SpeakerMapRow,
@@ -399,10 +400,9 @@ async function main() {
       )
     }
 
-    const planned = Math.min(chunks.length, args.maxChunks)
     process.stdout.write(
       `[speaker-map] ${Math.round(total)}s · ${chunks.length} chunk(s) of ` +
-        `${SPEAKER_MAP_CHUNK_SECONDS}s · processing ${planned} · model ${MODEL}\n`,
+        `${SPEAKER_MAP_CHUNK_SECONDS}s · budget ${args.maxChunks === Infinity ? 'unlimited' : `${args.maxChunks} attempt(s)`} · model ${MODEL}\n`,
     )
 
     const prompt = buildSpeakerMapPrompt()
@@ -495,16 +495,27 @@ async function main() {
     // Chunk INDICES that hold a usable transcript, carried-forward or new — not
     // a counter. A counter cannot say WHICH, and the quota break needs to know.
     const completed = new Set<number>()
+    /** Chunks this run actually sent to the model — what it cost, not what it holds. */
+    let attempted = 0
 
-    for (let i = 0; i < planned; i++) {
-      if (doneChunks.has(i)) {
-        completed.add(i)
-        continue
-      }
+    for (const i of doneChunks) completed.add(i)
+    // The budget limits ATTEMPTS, never how far into the session we look —
+    // capping the index range is what left 8 of 21 sessions with a permanently
+    // unreachable tail. See `chunksToAttempt`.
+    const toAttempt = chunksToAttempt(chunks.length, doneChunks, args.maxChunks)
+    if (toAttempt.length) {
+      process.stdout.write(
+        `[speaker-map] attempting ${toAttempt.length} chunk(s): ${toAttempt.join(', ')}\n`,
+      )
+    }
+    for (const i of toAttempt) {
+      attempted += 1
       const path = join(chunkDir, chunks[i])
       const offset = i * SPEAKER_MAP_CHUNK_SECONDS
       const chunkDur = durationOf(path)
-      process.stdout.write(`[speaker-map]   chunk ${i + 1}/${planned} (${Math.round(chunkDur)}s)… `)
+      process.stdout.write(
+        `[speaker-map]   chunk ${i + 1}/${chunks.length} (${Math.round(chunkDur)}s)… `,
+      )
 
       // Coverage, per chunk, before anything is kept. The same floor the
       // OpenAI path already applies — a partial chunk reads downstream as a
@@ -619,14 +630,22 @@ async function main() {
       )
     }
 
-    if (quotaExhausted) {
-      // Every chunk with no verdict yet, by INDEX. The old arithmetic
-      // (`done + failedChunks.length`) assumed the loop had walked in order
-      // from zero, which a resume makes false — see `unattemptedChunks`.
-      const failedIdx = new Set(failedChunks.map((f) => f.chunk))
-      for (const i of unattemptedChunks(planned, completed, failedIdx)) {
-        failedChunks.push({ chunk: i, why: 'never attempted (quota exhausted earlier in the run)' })
-      }
+    // Every chunk with no verdict yet, by INDEX. The old arithmetic
+    // (`done + failedChunks.length`) assumed the loop had walked in order from
+    // zero, which a resume makes false — see `unattemptedChunks`. This runs
+    // unconditionally now: a run stopped by its BUDGET left those chunks
+    // unaccounted for entirely, which reads downstream as "nothing there".
+    const failedIdx = new Set(failedChunks.map((f) => f.chunk))
+    const leftover = unattemptedChunks(chunks.length, completed, failedIdx)
+    // Stopped by its own budget rather than by the API. Worth saying out loud:
+    // it is the one "incomplete" outcome that costs nothing and needs no fix.
+    const budgetSpent = !quotaExhausted && leftover.length > 0
+    if (leftover.length) {
+      // Two different facts, and a resumable one must not read as a failure.
+      const why = quotaExhausted
+        ? 'never attempted (quota exhausted earlier in the run)'
+        : 'never attempted (chunk budget spent; resumes next run)'
+      for (const i of leftover) failedChunks.push({ chunk: i, why })
     }
 
     const map: SpeakerMap = {
@@ -649,6 +668,10 @@ async function main() {
         rowsAccepted: rows.length,
         rowsRejected: rejected.length,
         rejectedBy: rejectionTally(rejected),
+        // What this run COST, as opposed to what the map now holds. The
+        // nightly budget subtracts this; chunksTranscribed would charge it for
+        // chunks carried forward at no cost.
+        attemptedThisRun: attempted,
         // Share of the session's SPEECH the map recovered, on the same basis
         // as the per-chunk gate. The last timestamp over the duration reported
         // 68.5% for a run holding 7 of 17 chunks — it measured how far into
@@ -717,9 +740,9 @@ async function main() {
 
     process.stdout.write(
       `\n[speaker-map] ${out}\n` +
-        `  chunks        ${completed.size}/${planned} transcribed` +
+        `  chunks        ${completed.size}/${chunks.length} transcribed` +
         `${failedChunks.length ? `, ${failedChunks.length} GAP(S): ${failedChunks.map((f) => f.chunk).join(', ')}` : ''}` +
-        `${planned < chunks.length ? ` (${chunks.length} in session, limited by --chunks)` : ''}\n` +
+        `${budgetSpent ? ` · budget spent (${args.maxChunks} attempt(s)), rest resumes next run` : ''}\n` +
         `  coverage      ${(map.stats.coverage * 100).toFixed(1)}% of ${Math.round(total)}s\n` +
         `  labels seen   ${labelsSeen}\n` +
         `  rows accepted ${rows.length}  (${rows.filter((r) => r.weak).length} weak)\n` +
@@ -739,7 +762,7 @@ async function main() {
         quotaExhausted
           ? `\n  No rows because the run never ran: the API quota was exhausted before\n` +
               `  any chunk completed. This says nothing about who spoke.\n  ${quotaExhausted}\n`
-          : failedChunks.length === planned
+          : failedChunks.length === chunks.length
             ? `\n  No rows because no chunk produced a usable transcript. See failedChunks.\n`
             : `\n  No rows, and that is a real finding rather than a silent pass:\n` +
               `  ${labelsSeen} labels were seen and every candidate failed a gate.\n` +
