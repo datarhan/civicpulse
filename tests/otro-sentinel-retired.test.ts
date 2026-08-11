@@ -95,14 +95,37 @@ describe('Otro sentinel — published data', () => {
     for (const v of new Set(named)) expect(SPEAKER_GROUPS).toContain(v)
   })
 
+  /**
+   * This snapshot is legitimately empty right now, and the control has to
+   * survive that without going blind.
+   *
+   * `82a3b41` retracted the 1,415 attributions the extractor had guessed, and
+   * `retract-guessed-attributions.ts` lists this file among its TARGETS. A
+   * bundle is a group of claims sharing a bloc, so with `speakerGroup` nulled
+   * there is nothing left to group: the count went 3 → 0 in `2668a9c` and
+   * stays there until the speaker map restores attribution by joining rather
+   * than guessing. Nothing is broken; the domain is empty on purpose.
+   *
+   * `withBlocs.length > 0` could not tell that from a walker that had stopped
+   * reading the file, so it failed on honest data. The control below can: it
+   * checks the walker recovered exactly what the snapshot SAYS it holds, which
+   * a walker returning [] from a populated file still fails.
+   */
   it('leaves no bundle attributing itself to the sentinel via blocs[]', () => {
     const p = join(DATA, 'auto-curation-bundles.json')
     if (!existsSync(p)) return
     const doc = JSON.parse(readFileSync(p, 'utf8'))
     const bundles = [...(doc.bundles ?? []), ...(doc.archived ?? [])]
+
+    // Positive control: the walker read the file faithfully.
+    expect(bundles.length).toBe((doc.bundleCount ?? 0) + (doc.archivedCount ?? 0))
+
+    // `blocs` is required on the bundle type (`auto-curate.ts:41`), so where
+    // there are bundles at all, every one of them must carry it — otherwise
+    // the loop below passes by having nothing to look at.
     const withBlocs = bundles.filter((b: { blocs?: unknown }) => Array.isArray(b.blocs))
-    // Positive control: there is something to check.
-    expect(withBlocs.length).toBeGreaterThan(0)
+    expect(withBlocs.length).toBe(bundles.length)
+
     for (const b of withBlocs) {
       expect(b.blocs).not.toContain('Otro')
       expect(b.blocs.length).toBeGreaterThan(0)
