@@ -26,6 +26,7 @@
  * discrepar la página y la cola.
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { isReviewed, type ExceptionReviewLog } from '../src/scraper/finding-exception-review'
 import { resolve } from 'node:path'
 
 import {
@@ -117,6 +118,30 @@ function main() {
     process.exit(1)
   }
 
+  // Rows a person has already judged and kept. Filtered from what is PRESENTED,
+  // never from `stats.encolados` — that number is cross-checked against the
+  // provenance snapshot above, and more importantly "already reviewed" and "not
+  // in scope" are different facts. Both are printed.
+  //
+  // The review is bound to the summary it judged, so editing a summary puts the
+  // row back: what was cleared is specific words, not an id.
+  let reviewLog: ExceptionReviewLog | null = null
+  const REVIEWS = 'editorial/finding-exception-reviews.json'
+  if (existsSync(resolve(REVIEWS))) {
+    try {
+      reviewLog = JSON.parse(readFileSync(resolve(REVIEWS), 'utf8')) as ExceptionReviewLog
+    } catch {
+      console.error(
+        `[finding-exception] ${REVIEWS} ilegible — se trata como si no hubiera revisiones`,
+      )
+    }
+  }
+  const summaryOf = new Map(queue.rows.map((r) => [r.findingId, r.summary]))
+  const pendientes = queue.rows.filter(
+    (r) => !isReviewed(reviewLog, r.findingId, summaryOf.get(r.findingId) ?? ''),
+  )
+  const yaRevisados = queue.rows.length - pendientes.length
+
   const s = queue.stats
   console.log(
     `[finding-exception] ${s.encolados}/${s.hallazgosConCitas} hallazgo(s) con citas no tienen ` +
@@ -134,8 +159,13 @@ function main() {
         .join(', '),
   )
   console.log(
+    `  · ${yaRevisados} ya revisado(s) y conservado(s) — fuera de la cola, no fuera del alcance\n` +
+      `  · ${pendientes.length} pendiente(s) de que alguien decida`,
+  )
+  console.log(
     '[finding-exception] la cola PRESENTA la evidencia; no puntúa, no recomienda y no elige ' +
-      'ninguna fila. Decide una persona, y escribe `npm run correct-pleno-finding`.',
+      'ninguna fila. Decide una persona, y escribe `npm run correct-pleno-finding` ' +
+      '(o `npm run review:finding-exception` si el hallazgo merece la excepción).',
   )
 
   if (dryRun) {
@@ -143,7 +173,10 @@ function main() {
     return
   }
   mkdirSync(resolve('editorial'), { recursive: true })
-  writeFileSync(resolve(OUT), JSON.stringify(queue, null, 2) + '\n')
+  writeFileSync(
+    resolve(OUT),
+    JSON.stringify({ ...queue, revisados: yaRevisados, rows: pendientes }, null, 2) + '\n',
+  )
   console.log(`[finding-exception] escrito ${OUT} (gitignored, nunca bajo public/)`)
 }
 
