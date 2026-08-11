@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-11T08:31:45.736Z",
+  "generatedAt": "2026-08-11T09:06:43.855Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. La mayoría los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -265,7 +265,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Pleno del Ayuntamiento de Riba-roja de Túria del 2026-05-11 sobre vivienda",
-      "summary": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE afirmó que se han perdido subvenciones importantes debido a la falta de compromiso con la agenda europea. Además, el PSOE señaló que Riba Roja es un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda.",
+      "summary": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE sostuvo que Riba-roja es técnicamente un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. El debate incluyó además reproches sobre subvenciones europeas que no se detallan aquí: la transcripción de esas intervenciones está degradada y ninguna cita mostrable las sostiene.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-062-acu-1adbf3",
@@ -349,6 +349,14 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:08.323Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE afirmó que se han perdido subvenciones importantes debido a la falta de compromiso con la agenda europea. Además, el PSOE señaló que Riba Roja es un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda.",
+          "corrected": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE sostuvo que Riba-roja es técnicamente un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. El debate incluyó además reproches sobre subvenciones europeas que no se detallan aquí: la transcripción de esas intervenciones está degradada y ninguna cita mostrable las sostiene.",
+          "reason": "La primera frase se apoyaba sólo en intervenciones que la puerta editorial retiene y cuya transcripción está degradada; la única cita mostrable de la ficha sostiene la segunda, no aquella.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-11T09:06:43.855Z"
         }
       ]
     },

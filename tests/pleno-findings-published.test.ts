@@ -123,7 +123,7 @@ const expectWithdrawn = (id: string): void => {
  * eleven findings were withdrawn — every one whose quotes the editorial gate
  * withheld in full — taking 42 correction rows and 14 removals with them.
  */
-const TOTAL_CORRECTIONS = 141
+const TOTAL_CORRECTIONS = 142
 const TOTAL_REMOVALS = 35
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -2323,7 +2323,7 @@ const LOTE_4: Lote4Case[] = [
     // Prose untouched: lote 1 already deleted the sentence that asserted a
     // documentary link, and what is left is quotes about housing.
     drops: [],
-    keeps: ['Riba Roja es un mercado de vivienda tensionado'],
+    keeps: ['mercado de vivienda tensionado'],
     refs: [
       'tender|El objeto del contrato es la prestación ',
       'tender|Contrato derivado del sistema dinámico d',
