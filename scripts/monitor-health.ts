@@ -155,7 +155,16 @@ async function gather(): Promise<Observations> {
   const openaiCause = await diagnoseOpenAI()
 
   const integrity: { check: string; message: string }[] = []
-  for (const c of ['check:json', 'check:relations']) {
+  // `check:runs` is here because everything else on this screen measures how
+  // FRESH the data looks, and on 2026-08-11 that was the difference between
+  // «✓ sin avisos» and nine days with no LLM work at all: the deterministic
+  // scrapers kept every source young while the nightly extraction had been
+  // dead since 08-03. Source freshness cannot see a pass that never ran; only
+  // the run manifests can.
+  // `check:queues` for the sibling reason: a worklist that still names
+  // withdrawn findings overstates the backlog, and a backlog nobody trusts is
+  // a backlog nobody works. Reports; the fix is re-running the triage pass.
+  for (const c of ['check:json', 'check:relations', 'check:runs', 'check:queues']) {
     const msg = runCheck(c)
     if (msg) integrity.push({ check: c, message: msg })
   }
