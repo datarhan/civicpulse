@@ -143,6 +143,10 @@ TARGETS=$(TRANSCRIBE_BLOCKLIST="$TRANSCRIBE_BLOCKLIST" node -e '
 
 NEW=0
 COUNT=0
+# Counted so the final line can say it. A map that covers part of a session is
+# a useful, resumable result — but it is not a ✓, and 2026-08-11 shipped one
+# under a ✓.
+PARTIAL_MAPS=0
 if [ -n "$TARGETS" ]; then
   while IFS= read -r id; do
     [ -z "$id" ] && continue
@@ -242,9 +246,20 @@ if [ "$SPEAKER_MAP_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
       log "speaker map for $mid (up to ${REMAINING} chunk(s))…"
       if npm run extract:speaker-map -- "$mid" --chunks "$REMAINING"; then
         SPENT=$(node -e 'try{const m=require("./pleno-speaker-map/"+process.argv[1]+".json");process.stdout.write(String(m.stats.chunksTranscribed||0))}catch(e){process.stdout.write("0")}' "$mid" 2>/dev/null || echo 0)
+        EXPECTED=$(node -e 'try{const m=require("./pleno-speaker-map/"+process.argv[1]+".json");process.stdout.write(String(m.stats.chunksExpected||0))}catch(e){process.stdout.write("0")}' "$mid" 2>/dev/null || echo 0)
         REMAINING=$((REMAINING - SPENT))
         MAPPED=$((MAPPED+1))
-        log "✓ $mid mapped ($SPENT chunk(s) spent, $REMAINING left)"
+        # A ✓ beside a map covering 7 of 17 chunks is how the 2026-08-11 run
+        # read as clean. `extract:speaker-map` exits 0 whenever it writes a map
+        # at all — partial is a legitimate, resumable outcome, and refusing to
+        # write it would throw away the chunks that did succeed — so the exit
+        # code cannot carry this. The line has to read the stats itself.
+        if [ "${EXPECTED:-0}" -gt 0 ] && [ "${SPENT:-0}" -lt "${EXPECTED:-0}" ]; then
+          PARTIAL_MAPS=$((PARTIAL_MAPS+1))
+          log "⚠ $mid mapeado PARCIAL ($SPENT/$EXPECTED chunk(s) · ver failedChunks) · $REMAINING left"
+        else
+          log "✓ $mid mapped ($SPENT/$EXPECTED chunk(s), $REMAINING left)"
+        fi
         # Re-extract so the claims actually carry the attribution the map
         # just established. Same $0 policy as every other model call here.
         if env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$mid"; then
@@ -369,4 +384,34 @@ if ! git push origin main; then
   git push origin main
 fi
 
-log "done · ${NEW} transcribed · ${NEW_FINDINGS} new finding(s) pushed"
+# ── the last line anybody reads ──────────────────────────────────────────────
+#
+# On 2026-08-11 this said `done · 0 transcribed · 0 new finding(s) pushed`, and
+# every word of it was true. Underneath: the speaker map covered 7 of 17 chunks
+# before Gemini's daily quota ran out, the circuit breaker short-circuited 144
+# of 363 extraction windows, and 14 calls were refused outright by a backend.
+# Three truthful lines that together read as a clean night.
+#
+# So the summary now asks the run's own manifest. `check:runs` already knows —
+# it distinguishes "never attempted" from "attempted and failed", which is the
+# whole point of rule 2 in docs/DATA_INTEGRITY.md — and it was reporting all of
+# this the moment the run ended. Nothing was reading it.
+#
+# --soft so the verdict is FETCHED, never fatal: this runs after the push, and
+# a degraded run whose data landed correctly must not exit non-zero and get
+# retried. The word in the log is the deliverable.
+RUN_VERDICT=""
+if RUN_REPORT=$(npm run --silent check:runs -- --since 6 --soft 2>&1); then
+  RUN_ERRORS=$(printf '%s\n' "$RUN_REPORT" | grep -c 'ERROR \[' || true)
+  RUN_WARNS=$(printf '%s\n' "$RUN_REPORT" | grep -c 'WARN \[' || true)
+  if [ "${RUN_ERRORS:-0}" -gt 0 ] || [ "${RUN_WARNS:-0}" -gt 0 ]; then
+    RUN_VERDICT=" · DEGRADADO: ${RUN_ERRORS} error(es), ${RUN_WARNS} aviso(s) en el manifiesto"
+  fi
+fi
+[ "${PARTIAL_MAPS:-0}" -gt 0 ] && RUN_VERDICT="${RUN_VERDICT} · ${PARTIAL_MAPS} mapa(s) parcial(es)"
+
+log "done · ${NEW} transcribed · ${NEW_FINDINGS} new finding(s) pushed${RUN_VERDICT}"
+if [ -n "$RUN_VERDICT" ]; then
+  log "   la pasada NO fue limpia — \`npm run check:runs\` lo detalla:"
+  printf '%s\n' "$RUN_REPORT" | grep -E '^\s+(ERROR|WARN) \[' | sed 's/^/   /'
+fi
