@@ -482,6 +482,33 @@ export function isMapComplete(map: unknown): boolean {
 }
 
 /**
+ * Chunks a capped run never got to: neither finished nor tried and failed.
+ *
+ * Replaces `for (let i = done + failedChunks.length; i < planned; i++)`, which
+ * derived a chunk INDEX from two counts. That only holds while chunks are
+ * processed in order from zero, and a resume breaks it — the done set is
+ * scattered, so a quota `break` early in the loop marked every later index
+ * unattempted, including chunks whose segments were in the file being written.
+ *
+ * Observed 2026-08-11: a run that resumed with «8 chunk(s) already mapped»
+ * reported «1/17 transcribed, 16 GAP(S)» one line later. The segments survived;
+ * the account of them did not. Done, attempted and never-attempted have to stay
+ * separable — `DATA_INTEGRITY.md` rule 2 — and a count cannot stand in for a
+ * position.
+ */
+export function unattemptedChunks(
+  planned: number,
+  completed: ReadonlySet<number>,
+  failed: ReadonlySet<number>,
+): number[] {
+  const out: number[] = []
+  for (let i = 0; i < planned; i++) {
+    if (!completed.has(i) && !failed.has(i)) out.push(i)
+  }
+  return out
+}
+
+/**
  * Where a session stands in the speaker-map backlog, or null when it is done.
  *
  * `blocked` is the state that was missing. The backlog enumerates

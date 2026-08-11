@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import {
   speechSeconds,
   isUsableReference,
+  unattemptedChunks,
   referenceCoverage,
   resumableChunks,
   type RawSegment,
@@ -172,5 +173,42 @@ describe('isUsableReference', () => {
   it('accepts a real diarized transcript', () => {
     const real = Array.from({ length: 200 }, (_, i) => seg(i * 10, i * 10 + 9))
     expect(isUsableReference(real)).toBe(true)
+  })
+})
+
+/**
+ * What a quota-capped run may call "never attempted".
+ *
+ * The fill was `for (let i = done + failedChunks.length; i < planned; i++)` —
+ * a chunk INDEX derived from two counts, which only holds while chunks are
+ * processed strictly in order from zero. A resume breaks that: the done set is
+ * scattered (0, 2, 4, 5, 7, 9, 10, 16 on `15uvjew`), so when the quota `break`
+ * landed at index 1 the arithmetic started the fill at 2 and marked everything
+ * above it unattempted — including seven chunks whose segments were sitting in
+ * the same file it was writing.
+ *
+ * Observed 2026-08-11: a run that resumed with «8 chunk(s) already mapped»
+ * reported «1/17 transcribed, 16 GAP(S)» one line later. The segments were
+ * fine; the account of them was false, which is DATA_INTEGRITY.md rule 2 —
+ * done, attempted and never-attempted have to be separable, and a count cannot
+ * stand in for a position.
+ */
+describe('unattemptedChunks', () => {
+  it('names only the chunks that are neither finished nor already failed', () => {
+    expect(unattemptedChunks(6, new Set([0, 2]), new Set([1]))).toEqual([3, 4, 5])
+  })
+
+  it('does not claim a scattered done-set was never attempted — the real case', () => {
+    // Resume held 0,2,4,5,7,9,10,16; quota broke at chunk 1.
+    const done = new Set([0, 2, 4, 5, 7, 9, 10, 16])
+    expect(unattemptedChunks(17, done, new Set([1]))).toEqual([3, 6, 8, 11, 12, 13, 14, 15])
+  })
+
+  it('is empty when every chunk is accounted for', () => {
+    expect(unattemptedChunks(3, new Set([0, 1, 2]), new Set())).toEqual([])
+  })
+
+  it('is empty when the run finished everything it planned', () => {
+    expect(unattemptedChunks(2, new Set([0]), new Set([1]))).toEqual([])
   })
 })

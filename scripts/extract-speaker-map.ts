@@ -38,6 +38,7 @@ import {
   speechSeconds,
   isUsableReference,
   resumableChunks,
+  unattemptedChunks,
   type RawSegment,
   type SpeakerMap,
   type SpeakerMapRow,
@@ -490,11 +491,13 @@ async function main() {
     }
     let adjudicationSkipped = 0
     let labelsSeen = 0
-    let done = 0
+    // Chunk INDICES that hold a usable transcript, carried-forward or new — not
+    // a counter. A counter cannot say WHICH, and the quota break needs to know.
+    const completed = new Set<number>()
 
     for (let i = 0; i < planned; i++) {
       if (doneChunks.has(i)) {
-        done += 1
+        completed.add(i)
         continue
       }
       const path = join(chunkDir, chunks[i])
@@ -609,14 +612,18 @@ async function main() {
         })
       }
       for (const rj of v.rejected) rejected.push({ ...rj, label: globalLabel(i, rj.label) })
-      done += 1
+      completed.add(i)
       process.stdout.write(
         `${parsed.segments.length} seg · ${v.rows.length} row(s) · ${v.rejected.length} rejected\n`,
       )
     }
 
     if (quotaExhausted) {
-      for (let i = done + failedChunks.length; i < planned; i++) {
+      // Every chunk with no verdict yet, by INDEX. The old arithmetic
+      // (`done + failedChunks.length`) assumed the loop had walked in order
+      // from zero, which a resume makes false — see `unattemptedChunks`.
+      const failedIdx = new Set(failedChunks.map((f) => f.chunk))
+      for (const i of unattemptedChunks(planned, completed, failedIdx)) {
         failedChunks.push({ chunk: i, why: 'never attempted (quota exhausted earlier in the run)' })
       }
     }
@@ -634,7 +641,7 @@ async function main() {
         // wrote 16 of 25 must not look complete — that is what tells the
         // backlog to come back tomorrow.
         chunksExpected: chunks.length,
-        chunksTranscribed: done,
+        chunksTranscribed: completed.size,
         failedChunks,
         labelsSeen,
         rowsAccepted: rows.length,
@@ -672,7 +679,7 @@ async function main() {
     // anything — but a 0-row file on disk looks like a result, and the backlog,
     // the reconciler and a reader all have to special-case it. No file is the
     // honest representation of "this never ran".
-    if (done === 0 && !prior) {
+    if (completed.size === 0 && !prior) {
       process.stdout.write(
         `\n[speaker-map] NOT WRITING ${out}\n` +
           `  no chunk produced a transcript and there was no earlier map, so there is\n` +
@@ -708,7 +715,7 @@ async function main() {
 
     process.stdout.write(
       `\n[speaker-map] ${out}\n` +
-        `  chunks        ${done}/${planned} transcribed` +
+        `  chunks        ${completed.size}/${planned} transcribed` +
         `${failedChunks.length ? `, ${failedChunks.length} GAP(S): ${failedChunks.map((f) => f.chunk).join(', ')}` : ''}` +
         `${planned < chunks.length ? ` (${chunks.length} in session, limited by --chunks)` : ''}\n` +
         `  coverage      ${(map.stats.coverage * 100).toFixed(1)}% of ${Math.round(total)}s\n` +
