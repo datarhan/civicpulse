@@ -288,10 +288,10 @@ async function main() {
     process.exit(1)
   }
 
-  // Default backend: gemini Pro CLI ($0 under subscription). Caller can
-  // override via env. Same fallback chain as the auto-curate cron.
-  process.env.GOOGLE_GENAI_USE_GCA = process.env.GOOGLE_GENAI_USE_GCA ?? 'true'
-  process.env.LLM_BACKEND = process.env.LLM_BACKEND ?? 'gemini'
+  // Default backend: agy ($0 under the Google subscription), which replaced
+  // the gemini CLI this used to name. Caller can override via env. Same
+  // fallback chain as the auto-curate cron.
+  process.env.LLM_BACKEND = process.env.LLM_BACKEND ?? 'agy'
 
   const vocab = buildVocab()
   process.stderr.write(

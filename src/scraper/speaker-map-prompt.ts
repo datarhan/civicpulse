@@ -11,8 +11,22 @@
  * Do not "tidy" one away without re-running `eval:speaker-map`.
  */
 
-/** Bump when the prompt changes — it is part of the response cache key. */
-export const SPEAKER_MAP_PROMPT_VERSION = 'speaker-map-v1'
+/**
+ * Bump when the prompt changes. Recorded in each map as provenance: it is what
+ * tells you which wording produced a given session's segments.
+ *
+ * It is NOT a cache key, whatever it used to say — `extract-speaker-map.ts`
+ * caches nothing, every chunk is a fresh request. Nothing read this constant at
+ * all until the map started carrying it, which is why the claim went unnoticed.
+ *
+ * v2 (2026-08-11): the timestamp rule now forbids minutes with a worked
+ * counter-example. v1 already said «Nunca mm:ss» and the model wrote `1.19` for
+ * 79 s anyway, so the wording alone is not load-bearing — `decodeElapsed`
+ * absorbs the slip on the way in, and this is defence in depth. Whether it
+ * lowers the rate is UNMEASURED: it needs an `eval:speaker-map` run against
+ * chunks known to have slipped (15uvjew chunk 1 is the reproducer).
+ */
+export const SPEAKER_MAP_PROMPT_VERSION = 'speaker-map-v2'
 
 /**
  * Chunk length in seconds.
@@ -47,7 +61,9 @@ Una línea por segmento de habla. Formato EXACTO, sin desviarse ni un carácter:
 
 [INICIO → FIN] (SPEAKER_NN) texto literal
 
-- \`INICIO\` y \`FIN\` en segundos desde el inicio de ESTE audio, con un decimal: \`[12.4 → 18.9]\`. Nunca mm:ss.
+- \`INICIO\` y \`FIN\` en **segundos totales** desde el inicio de ESTE audio, con UN decimal: \`[12.4 → 18.9]\`.
+- **Nunca en minutos.** Ni \`mm:ss\` ni \`m.ss\`. A los 79 segundos se escribe \`79.0\`, jamás \`1.19\`. A los 599 se escribe \`599.0\`, jamás \`9.59\`. El número sigue creciendo después de 60: \`59.5\`, \`60.0\`, \`61.0\`… hasta ~600.
+- Si el sello que vas a escribir es MENOR que el anterior, has cambiado de notación a mitad de la transcripción. Vuelve a segundos totales.
 - \`FIN\` siempre mayor que \`INICIO\`. Los segmentos van en orden y no se solapan.
 - Segmenta por unidades naturales de habla, de 2 a 15 segundos. Una intervención larga son muchas líneas, no una sola.
 - \`SPEAKER_NN\` con dos dígitos, numerando por orden de primera aparición.
@@ -60,6 +76,7 @@ Después de la transcripción, la línea \`=== HABLANTES ===\` y debajo una lín
 SPEAKER_NN | nombre o cargo | partido | QUIEN_LO_DICE @SEGUNDO "cita literal" | rel: TIPO
 
 - \`QUIEN_LO_DICE\` es el SPEAKER_NN que PRONUNCIA la cita, que casi nunca es el mismo al que identifica. Este campo es obligatorio.
+- \`@SEGUNDO\` en segundos totales, igual que el bloque 1: \`@116.0\`, jamás \`@1.56\`. Tiene que caer dentro del segmento de \`QUIEN_LO_DICE\`.
 - \`TIPO\` es uno de:
   - \`turn-grant\` — la cita cede la palabra al hablante identificado, que interviene JUSTO DESPUÉS. Ej: la presidencia dice «Compromís, Rafa».
   - \`reply\` — la cita responde o agradece al hablante identificado, que ha intervenido JUSTO ANTES. Ej: «Sí, gràcies, alcalde».

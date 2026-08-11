@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { isMapComplete } from '../src/scraper/speaker-map'
+import { isMapComplete, classifyBacklogState } from '../src/scraper/speaker-map'
 
 const stats = (chunksTranscribed: unknown, chunksExpected: unknown) => ({
   stats: { chunksTranscribed, chunksExpected },
@@ -49,5 +49,46 @@ describe('isMapComplete', () => {
   it('does not treat an all-failed run as done', () => {
     // 0 of 25 transcribed: the quota died before the first chunk.
     expect(isMapComplete(stats(0, 25))).toBe(false)
+  })
+})
+
+/**
+ * The backlog listed all 44 sessions as workable. 23 of them are not.
+ *
+ * `public/data/pleno-transcripts` holds two different things under one
+ * extension: real diarized audio transcripts, and acta (written minutes) text
+ * carrying placeholder `[0.0 → 0.0]` stamps and no speaker labels. The backlog
+ * enumerated the directory, so it reported the acta-only sessions as «sin
+ * empezar» — sessions that cannot be started at all, because
+ * `extract:speaker-map` scores its coverage gate against that transcript and
+ * refuses to run without a usable one.
+ *
+ * Planning a quota budget off that list overstates the workable corpus by more
+ * than half. «Cannot start» and «not started yet» are different facts and the
+ * backlog has to say which — DATA_INTEGRITY.md rule 2.
+ */
+describe('classifyBacklogState', () => {
+  const complete = { stats: { chunksTranscribed: 25, chunksExpected: 25 } }
+  const partial = { stats: { chunksTranscribed: 7, chunksExpected: 17 } }
+
+  it('reports a session with no usable transcript as blocked, not unstarted', () => {
+    expect(classifyBacklogState({ referenceUsable: false, map: null })).toBe('blocked')
+  })
+
+  it('still reports it blocked when a partial map exists from an earlier attempt', () => {
+    expect(classifyBacklogState({ referenceUsable: false, map: partial })).toBe('blocked')
+  })
+
+  it('excludes a finished session whatever its transcript looks like', () => {
+    expect(classifyBacklogState({ referenceUsable: true, map: complete })).toBe(null)
+    expect(classifyBacklogState({ referenceUsable: false, map: complete })).toBe(null)
+  })
+
+  it('reports a mappable session with no map as absent', () => {
+    expect(classifyBacklogState({ referenceUsable: true, map: null })).toBe('absent')
+  })
+
+  it('reports a mappable session with an unfinished map as partial', () => {
+    expect(classifyBacklogState({ referenceUsable: true, map: partial })).toBe('partial')
   })
 })

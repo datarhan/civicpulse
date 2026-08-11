@@ -461,13 +461,31 @@ describe('LLM client · agy backend config', () => {
     expect(loadConfigFromEnv().backend).toBe('agy')
   })
 
-  it('defaults agyBin to "agy" and agyModel to "gemini-2.5-pro"', () => {
+  /**
+   * The default has to be a model `agy` still recognises, and `gemini-2.5-pro`
+   * is not one. Measured 2026-08-11:
+   *
+   *   $ agy -p … --model gemini-2.5-pro --sandbox
+   *   Error: invalid model selection … not recognized as a known model
+   *   exit 1
+   *
+   * So every agy call that did not set AGY_MODEL explicitly failed on argv,
+   * before the prompt was ever sent. `hallazgos-pipeline.sh` and
+   * `auto-curate-weekly.sh` were unaffected only because they happen to export
+   * `gemini-3.5-flash-medium` themselves — agy takes the effort baked into the
+   * model string, which is why no `--effort` flag is needed here.
+   *
+   * The old assertion pinned the broken value and stayed green, which is the
+   * failure mode DATA_INTEGRITY.md rule 1 is about: a test restating a constant
+   * cannot notice that the constant stopped being true upstream.
+   */
+  it('defaults agyBin to "agy" and agyModel to a model agy recognises', () => {
     delete process.env.AGY_BIN
     delete process.env.AGY_MODEL
     delete process.env.GEMINI_MODEL
     const config = loadConfigFromEnv()
     expect(config.agyBin).toBe('agy')
-    expect(config.agyModel).toBe('gemini-2.5-pro')
+    expect(config.agyModel).toBe('gemini-3.5-flash-medium')
   })
 
   it('honors AGY_BIN and AGY_MODEL overrides', () => {
@@ -478,10 +496,83 @@ describe('LLM client · agy backend config', () => {
     expect(config.agyModel).toBe('gemini-3.0-pro')
   })
 
-  it('falls back agyModel to GEMINI_MODEL when AGY_MODEL is unset', () => {
+  /**
+   * GEMINI_MODEL used to stand in for AGY_MODEL so one env var could steer
+   * both CLIs. With the gemini CLI retired there is no "both" left — all the
+   * variable can still do is let a stale value for a dead backend silently
+   * pick the model of a live one. `auto-curate-weekly.sh` exported
+   * GEMINI_MODEL=gemini-2.5-pro for exactly that reason, and gemini-2.5-pro is
+   * a model agy now rejects outright. AGY_MODEL is the only knob.
+   */
+  it('ignores GEMINI_MODEL — a retired backend cannot pick agy’s model', () => {
     delete process.env.AGY_MODEL
-    process.env.GEMINI_MODEL = 'gemini-2.5-flash'
-    expect(loadConfigFromEnv().agyModel).toBe('gemini-2.5-flash')
+    process.env.GEMINI_MODEL = 'gemini-2.5-pro'
+    expect(loadConfigFromEnv().agyModel).toBe('gemini-3.5-flash-medium')
+  })
+})
+
+/**
+ * The legacy `gemini` CLI is retired — `agy` is Google's CLI now, and the
+ * comment on callAgy has said so since it was written. What kept gemini alive
+ * was `existsSync(geminiBinPath)` in the auto-select cascade, a check that
+ * proves the file is on disk and nothing about whether it can answer.
+ *
+ * Measured 2026-08-11, both the PATH copy and the sandboxed one this repo
+ * points at: `gemini -p … -o json` prints «Opening authentication page in your
+ * browser» and waits on an OAuth callback that never arrives, because stdin is
+ * `ignore` and nothing opens a browser. Three minutes per call, then the
+ * watchdog. GEMINI_API_KEY does not change it.
+ *
+ * Note the outer beforeEach points GEMINI_BIN at a nonexistent path so the rest
+ * of the suite is isolated from a real install — which is exactly why nothing
+ * here ever noticed. These tests point it at a file that DOES exist.
+ */
+describe('LLM client · the retired gemini CLI is never auto-selected', () => {
+  const ENV_KEYS = [
+    'LLM_BACKEND',
+    'OPENAI_API_KEY',
+    'ANTHROPIC_API_KEY',
+    'GEMINI_BIN',
+    'AGY_BIN',
+    'CLAUDE_CODE_BIN',
+  ] as const
+  let savedEnv: Record<string, string | undefined>
+
+  beforeEach(() => {
+    savedEnv = {}
+    for (const k of ENV_KEYS) savedEnv[k] = process.env[k]
+    delete process.env.LLM_BACKEND
+    delete process.env.OPENAI_API_KEY
+    delete process.env.ANTHROPIC_API_KEY
+    // A gemini binary that really is on disk — the situation on this machine,
+    // and the one the rest of the suite deliberately hides from itself.
+    process.env.GEMINI_BIN = '/usr/bin/env'
+  })
+  afterEach(() => {
+    for (const k of ENV_KEYS) {
+      if (savedEnv[k] === undefined) delete process.env[k]
+      else process.env[k] = savedEnv[k]
+    }
+  })
+
+  it('falls through an installed gemini binary to agy, its replacement', () => {
+    process.env.AGY_BIN = '/bin/sh'
+    process.env.CLAUDE_CODE_BIN = '/bin/sh'
+    expect(loadConfigFromEnv().backend).toBe('agy')
+  })
+
+  it('falls through to claude-code when agy is absent too', () => {
+    process.env.AGY_BIN = '/nonexistent/agy'
+    process.env.CLAUDE_CODE_BIN = '/bin/sh'
+    expect(loadConfigFromEnv().backend).toBe('claude-code')
+  })
+
+  it('still honours an explicit LLM_BACKEND=gemini', () => {
+    // Retiring the auto-path is not the same as removing the transport. An
+    // operator who names the backend gets it, and the watchdog reports what
+    // happened — same rule the metered backends get.
+    process.env.LLM_BACKEND = 'gemini'
+    expect(loadConfigFromEnv().backend).toBe('gemini')
   })
 })
 

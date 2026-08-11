@@ -106,6 +106,12 @@ export interface SpeakerMap {
   generatedAt: string
   /** Model that produced the raw identity block, for provenance. */
   model: string
+  /**
+   * Prompt wording that produced these segments. Optional because maps written
+   * before it existed genuinely do not know — absent means "v1 or earlier",
+   * never "current".
+   */
+  promptVersion?: string
   /** Chunk length used, so a re-run with different chunking is comparable. */
   chunkSeconds: number
   /**
@@ -150,7 +156,12 @@ export interface SpeakerMap {
     rowsRejected: number
     /** Reason → count, so a run can say WHY it dropped what it dropped. */
     rejectedBy: Record<string, number>
-    /** Share of the session's duration the transcript actually spans. */
+    /**
+     * Share of the session's SPEECH the map recovered — measured against the
+     * published transcript, not against the session's duration. Silence is not
+     * missing data, and a chunk that is mostly silence is not a chunk that was
+     * mostly missed. See `referenceCoverage`.
+     */
     coverage: number
   }
 }
@@ -202,6 +213,73 @@ function orNull(field: string): string | null {
 }
 
 /**
+ * Decode a run of elapsed-time strings, tolerating the model's M.SS slip.
+ *
+ * The prompt asks for seconds with one decimal and says «Nunca mm:ss». The
+ * model disregards it: measured on `15uvjew` chunk 1 (2026-08-11), it wrote the
+ * first minute as seconds and then switched notation mid-transcript —
+ *
+ *     [48.5 → 59.5]   seconds, as asked
+ *     [1.19 → 1.26]   1 min 19 s, written M.SS
+ *     [9.36 → 9.59]   9 min 59 s = 599 s, the end of a 600 s chunk
+ *
+ * Read as decimals that transcript "ends" at 9.6 s, scores 1.6 % against the
+ * coverage floor and is discarded — the «covered 2%» that run recorded. The
+ * response was complete (`finishReason: STOP`, 43 segments, verified against
+ * the published transcript: at t=891 s both hold the same sentence). It was
+ * then re-requested twice and discarded twice more, because a retry cannot fix
+ * a notation the model uses consistently.
+ *
+ * The rule is the conservative one: **prefer seconds; read M.SS only when the
+ * seconds reading would run time backwards**, and only when the fraction is a
+ * possible `SS` (≤ 59). A well-formed response never runs backwards, so this
+ * cannot touch one — chunk 6's 134 timestamps, all one-decimal, come through
+ * unchanged. Where neither reading moves forwards the raw seconds value is
+ * kept: a wrong timestamp is worse than a rejected chunk, and the coverage
+ * floor is what catches the remainder.
+ *
+ * This matters beyond coverage. `at` is the second a curator listens to in
+ * order to check a published attribution, so decoding it wrong would point
+ * them at a different sentence.
+ */
+export function decodeElapsed(raws: readonly string[]): number[] {
+  const out: number[] = []
+  let last = -Infinity
+  for (const raw of raws) {
+    const seconds = Number(raw)
+    if (!Number.isFinite(seconds)) {
+      out.push(Number.NaN)
+      continue
+    }
+    let value = seconds
+    if (seconds < last) {
+      const [whole, frac] = raw.split('.')
+      // Exactly two digits after the point, and a legal seconds field.
+      if (frac?.length === 2 && Number(frac) <= 59) {
+        const asClock = Number(whole) * 60 + Number(frac)
+        if (asClock >= last) value = asClock
+      }
+    }
+    out.push(value)
+    if (value > last) last = value
+  }
+  return out
+}
+
+/**
+ * One evidence timestamp, in a response already shown to use M.SS.
+ *
+ * Only applied when the transcript block established the notation — on its own
+ * `1.56` is genuinely ambiguous, and guessing would move a curator's listening
+ * point to a different sentence.
+ */
+function decodeEvidenceAt(raw: string): number {
+  const [whole, frac] = raw.split('.')
+  if (frac?.length === 2 && Number(frac) <= 59) return Number(whole) * 60 + Number(frac)
+  return Number(raw)
+}
+
+/**
  * Split a model response into segments and identity candidates.
  *
  * Pure and total: never throws, never fetches. A line it cannot read whole is
@@ -212,15 +290,28 @@ function orNull(field: string): string | null {
 export function parseSpeakerMapResponse(raw: string): ParsedSpeakerMapResponse {
   const [bodyPart, identityPart = ''] = (raw ?? '').split(IDENTITY_HEADER)
 
-  const segments: RawSegment[] = []
+  // Collect the raw timestamp strings before converting any of them: the M.SS
+  // slip is only visible across the sequence, never in a single value.
+  const rows: Array<{ startRaw: string; endRaw: string; speaker: string; text: string }> = []
   for (const line of bodyPart.split('\n')) {
     const m = SEGMENT_RE.exec(line.trim())
     if (!m) continue
-    const start = Number(m[1])
-    const end = Number(m[2])
-    if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) continue
-    segments.push({ start, end, speaker: m[3], text: m[4].trim() })
+    rows.push({ startRaw: m[1], endRaw: m[2], speaker: m[3], text: m[4].trim() })
   }
+  const rawTimes = rows.flatMap((r) => [r.startRaw, r.endRaw])
+  const decoded = decodeElapsed(rawTimes)
+  // Did the transcript need clock decoding? One response uses one notation, so
+  // this is what tells the identity block below how to read ITS timestamps —
+  // those are not in time order, so they cannot be decoded on their own.
+  const usedClock = decoded.some((v, i) => v !== Number(rawTimes[i]))
+
+  const segments: RawSegment[] = []
+  rows.forEach((r, i) => {
+    const start = decoded[i * 2]
+    const end = decoded[i * 2 + 1]
+    if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) return
+    segments.push({ start, end, speaker: r.speaker, text: r.text })
+  })
 
   const candidates: SpeakerCandidate[] = []
   for (const line of identityPart.split('\n')) {
@@ -234,7 +325,11 @@ export function parseSpeakerMapResponse(raw: string): ParsedSpeakerMapResponse {
 
     const em = EVIDENCE_RE.exec(ev)
     if (!em) continue
-    const at = Number(em[2])
+    // Read `at` in whatever notation the transcript above turned out to use.
+    // These are in candidate order, not time order, so the sequence cannot
+    // decode them — but a response that wrote M.SS in block 1 wrote it in
+    // block 2 as well (chunk 1 cited «@ 1.56» for a line at 1 min 56 s).
+    const at = usedClock ? decodeEvidenceAt(em[2]) : Number(em[2])
     if (!Number.isFinite(at)) continue
 
     candidates.push({
@@ -246,6 +341,128 @@ export function parseSpeakerMapResponse(raw: string): ParsedSpeakerMapResponse {
   }
 
   return { segments, candidates }
+}
+
+/**
+ * Seconds of speech the segments cover inside `[from, to)`.
+ *
+ * The union of their spans, clipped to the window. Overlaps count once — two
+ * councillors talking over each other cover that stretch, not twice it — and
+ * the input is not assumed sorted, because the model does not reliably emit it
+ * in order.
+ */
+export function speechSeconds(segments: readonly RawSegment[], from: number, to: number): number {
+  const spans = segments
+    .map((s) => ({ start: Math.max(from, s.start), end: Math.min(to, s.end) }))
+    .filter((s) => Number.isFinite(s.start) && Number.isFinite(s.end) && s.end > s.start)
+    .sort((a, b) => a.start - b.start)
+  if (!spans.length) return 0
+  let covered = 0
+  let curStart = spans[0].start
+  let curEnd = spans[0].end
+  for (const s of spans.slice(1)) {
+    if (s.start <= curEnd) curEnd = Math.max(curEnd, s.end)
+    else {
+      covered += curEnd - curStart
+      curStart = s.start
+      curEnd = s.end
+    }
+  }
+  return covered + (curEnd - curStart)
+}
+
+/**
+ * A window holding less speech than this is treated as silence: there is
+ * nothing in it to miss, so nothing to judge a transcript against.
+ */
+export const SILENT_WINDOW_SECONDS = 5
+
+/**
+ * Least speech a reference must carry before it can judge a session.
+ *
+ * A pleno is hours long; anything under a minute is not a short session, it is
+ * a file that did not parse.
+ */
+export const MIN_REFERENCE_SPEECH_SECONDS = 60
+
+/**
+ * Can this reference judge a session at all?
+ *
+ * `referenceCoverage` answers 1 for a window the reference says is silent,
+ * which is right for the tail of a session and catastrophic for an empty
+ * reference: every window then looks silent and the gate passes exactly what
+ * it exists to catch. Fail closed — an unusable reference means "cannot
+ * judge", never "nothing to miss".
+ *
+ * Not hypothetical. 23 of the 44 files in `public/data/pleno-transcripts` are
+ * acta text rather than diarized audio: placeholder `[0.0 → 0.0]` stamps, no
+ * speaker labels. `parseDiarizedTranscript` drops every line and returns [],
+ * and `existsSync` on the path cannot tell them from the real thing.
+ */
+export function isUsableReference(reference: readonly RawSegment[]): boolean {
+  if (!reference.length) return false
+  return speechSeconds(reference, 0, Number.MAX_SAFE_INTEGER) >= MIN_REFERENCE_SPEECH_SECONDS
+}
+
+/**
+ * How much of a window's speech the map actually recovered, 0–1.
+ *
+ * The denominator is the PUBLISHED transcript's speech in the same window, not
+ * the window's duration. That distinction is the whole point, and it was paid
+ * for twice:
+ *
+ *   · `segments.at(-1).end / duration`, the original, measured where the last
+ *     timestamp landed. One segment near the end of a chunk scored 100 %.
+ *   · union-of-segments / duration, the obvious repair, scores silence as
+ *     missing data. `15uvjew` does not begin until 545 s, so chunk 0 holds 34 s
+ *     of speech in 600 s of audio; the map found 40 s of it — a complete
+ *     reading — and that rule scores it 7 % and rejects it, then spends three
+ *     retries re-rejecting it on every future run.
+ *
+ * Against the published transcript the two cases separate cleanly. On the same
+ * run: chunk 0, 34 s of speech, map found 40 s → complete. Chunks 1, 3, 6 and
+ * 8 held 518 s, 501 s, 546 s and 530 s and the map found nothing → truncated.
+ *
+ * A window the transcript says is silent returns 1. It cannot be judged
+ * missing, and scoring it otherwise fails the tail of every session forever.
+ */
+export function referenceCoverage(
+  mapSegments: readonly RawSegment[],
+  referenceSegments: readonly RawSegment[],
+  from: number,
+  to: number,
+): number {
+  const expected = speechSeconds(referenceSegments, from, to)
+  if (expected < SILENT_WINDOW_SECONDS) return 1
+  return Math.min(1, speechSeconds(mapSegments, from, to) / expected)
+}
+
+/**
+ * Which chunks a resume may legitimately skip.
+ *
+ * Resume used to treat a chunk as done if the prior map held any segment in
+ * its window. Against a gate that could not tell a dense chunk from a sparse
+ * one that was as good a proxy as existed. Against a real one it would make
+ * the correction inert: every chunk already written, here and across the other
+ * 43 sessions, would keep the verdict the old metric gave it. Correcting a
+ * gate has to re-open what the old one decided, or nothing already on disk
+ * changes.
+ */
+export function resumableChunks(
+  mapSegments: readonly RawSegment[],
+  referenceSegments: readonly RawSegment[],
+  chunkSeconds: number,
+  chunkCount: number,
+  floor: number,
+): Set<number> {
+  const done = new Set<number>()
+  for (let i = 0; i < chunkCount; i++) {
+    const from = i * chunkSeconds
+    if (referenceCoverage(mapSegments, referenceSegments, from, from + chunkSeconds) >= floor) {
+      done.add(i)
+    }
+  }
+  return done
 }
 
 /**
@@ -268,6 +485,60 @@ export function isMapComplete(map: unknown): boolean {
   if (typeof done !== 'number' || typeof total !== 'number') return false
   if (!Number.isFinite(done) || !Number.isFinite(total) || total <= 0) return false
   return done >= total
+}
+
+/**
+ * Chunks a capped run never got to: neither finished nor tried and failed.
+ *
+ * Replaces `for (let i = done + failedChunks.length; i < planned; i++)`, which
+ * derived a chunk INDEX from two counts. That only holds while chunks are
+ * processed in order from zero, and a resume breaks it — the done set is
+ * scattered, so a quota `break` early in the loop marked every later index
+ * unattempted, including chunks whose segments were in the file being written.
+ *
+ * Observed 2026-08-11: a run that resumed with «8 chunk(s) already mapped»
+ * reported «1/17 transcribed, 16 GAP(S)» one line later. The segments survived;
+ * the account of them did not. Done, attempted and never-attempted have to stay
+ * separable — `DATA_INTEGRITY.md` rule 2 — and a count cannot stand in for a
+ * position.
+ */
+export function unattemptedChunks(
+  planned: number,
+  completed: ReadonlySet<number>,
+  failed: ReadonlySet<number>,
+): number[] {
+  const out: number[] = []
+  for (let i = 0; i < planned; i++) {
+    if (!completed.has(i) && !failed.has(i)) out.push(i)
+  }
+  return out
+}
+
+/**
+ * Where a session stands in the speaker-map backlog, or null when it is done.
+ *
+ * `blocked` is the state that was missing. The backlog enumerates
+ * `public/data/pleno-transcripts`, which holds two different things under one
+ * extension: real diarized transcripts, and acta text with placeholder
+ * `[0.0 → 0.0]` stamps and no speaker labels. 23 of the 44 files are the
+ * latter, and `extract:speaker-map` cannot run on them at all — it scores its
+ * coverage gate against that transcript and refuses without a usable one. They
+ * were being reported as "sin empezar", which overstates the workable corpus
+ * by more than half and makes any quota budget built on the list wrong.
+ *
+ * "Cannot start" and "not started yet" are different facts, and a backlog that
+ * folds them together is `DATA_INTEGRITY.md` rule 2 in miniature.
+ */
+export type BacklogState = 'absent' | 'partial' | 'blocked'
+
+export function classifyBacklogState(opts: {
+  /** Does this session have a transcript the coverage gate can score against? */
+  referenceUsable: boolean
+  map: unknown
+}): BacklogState | null {
+  if (isMapComplete(opts.map)) return null
+  if (!opts.referenceUsable) return 'blocked'
+  return opts.map ? 'partial' : 'absent'
 }
 
 /**

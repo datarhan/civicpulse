@@ -106,16 +106,12 @@ async function main() {
   // Curators are reviewing the draft anyway, so we optimise for prose
   // quality over cold-start latency. Same default as the weekly cron.
   //
-  // The fallback chain (claude-code → openai → anthropic → gemini →
-  // ollama) catches Max-window collisions; gemini stays as the
-  // pragmatic fallback because the project has Pro plan auth wired.
+  // The fallback chain (claude-code → openai → anthropic) catches Max-window
+  // collisions. No gemini: agy replaced that CLI and the leftover install
+  // hangs on an interactive OAuth prompt. No ollama either — it has never been
+  // auto-chained since the 2026-07-07 directive.
   process.env.LLM_BACKEND = process.env.LLM_BACKEND ?? 'claude-code'
   process.env.CLAUDE_CODE_MODEL = process.env.CLAUDE_CODE_MODEL ?? 'sonnet'
-  process.env.GOOGLE_GENAI_USE_GCA = process.env.GOOGLE_GENAI_USE_GCA ?? 'true'
-  // gemini-2.5-pro is the highest tier the user's gemini CLI Pro
-  // subscription accepts (3.x is 404 on this account, 2.0/lite are
-  // downgrades).
-  process.env.GEMINI_MODEL = process.env.GEMINI_MODEL ?? 'gemini-2.5-pro'
 
   resetBudget()
 
