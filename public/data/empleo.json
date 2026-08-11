@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T06:04:57.993Z",
+  "generatedAt": "2026-08-11T05:45:27.562Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
@@ -9,19 +9,169 @@
     "total": 56,
     "openTotal": 56,
     "inRibaRoja": 40,
-    "closingSoon": 6,
+    "closingSoon": 5,
     "withDetail": 56,
     "byMonth": {
-      "2026-08": 10,
+      "2026-08": 12,
       "2026-07": 25,
-      "2026-06": 12,
-      "2026-05": 3,
+      "2026-06": 11,
+      "2026-05": 2,
       "2026-04": 3,
       "2026-02": 2,
       "2025-11": 1
     }
   },
   "items": [
+    {
+      "id": "2468",
+      "fo": 2468,
+      "codigo": "2026/00168",
+      "titulo": "Enfermera/o",
+      "publishedAt": "2026-08-10",
+      "deadline": "2026-10-10",
+      "location": "L'Eliana Eliana (l') (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2468",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00168"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Enfermera/o"
+          },
+          {
+            "label": "Observaciones",
+            "value": "No es necesaria experiencia ni vehículo ya que el metro \"parada l'Eliana\" está justo en la puerta de la residencia. Inicio 01/07/2026. Turnos de 12 horas."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "L'Eliana, Municipio: Eliana (l'), Provincia: Valencia, CP: 46185"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "Turnos de 12 horas. 40 horas semanales"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          }
+        ],
+        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "1",
+        "observaciones": "No es necesaria experiencia ni vehículo ya que el metro \"parada l'Eliana\" está justo en la puerta de la residencia. Inicio 01/07/2026. Turnos de 12 horas.",
+        "municipio": "Eliana (l')",
+        "provincia": "Valencia",
+        "cp": "46185",
+        "jornada": "Completa",
+        "horario": "Turnos de 12 horas. 40 horas semanales",
+        "salario": "Según convenio",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2375",
+      "fo": 2375,
+      "codigo": "2026/00077",
+      "titulo": "Operario/a peón muestreador",
+      "publishedAt": "2026-08-10",
+      "deadline": "2026-10-10",
+      "location": "Pol. Ind. Entrevies Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2375",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00077"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a peón muestreador"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Formación a cargo de la empresa No requiere titulación. Se valorarán conocimientos en las áreas citadas y formación en PRL. Imprescindible carnet de conducir"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "ACTIVIDADES PROFESIONALES, CIENTÍFICAS Y TÉCNICAS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Pol. Ind. Entrevies, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Horario",
+            "value": "7:30-13:30 / 15:00-17:00"
+          },
+          {
+            "label": "Salario",
+            "value": "15000-18000"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Toma de muestra en obra y fabricación de probetas de hormigón fresco, marcado, traslado, desmolde, limpieza y guardado de las mimas. - Toma de muestra en obra de acero, áridos, cementos, morteros, hormigón endurecido, prefabricados, etc. - Auxiliar para realización ensayos sobre materiales: preparación de muestras de acero, áridos, cementos, morteros, prefabricados, etc. - Pruebas de servicio en cubiertas, fachadas, saneamiento y fontanería. - Limpieza y mantenimiento de los equipos y las instalaciones."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "numPuestos": "2",
+        "categoria": "PEONES",
+        "observaciones": "Formación a cargo de la empresa No requiere titulación. Se valorarán conocimientos en las áreas citadas y formación en PRL. Imprescindible carnet de conducir",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa Turnos: Turno partido",
+        "horario": "7:30-13:30 / 15:00-17:00",
+        "salario": "15000-18000",
+        "funciones": "- Toma de muestra en obra y fabricación de probetas de hormigón fresco, marcado, traslado, desmolde, limpieza y guardado de las mimas. - Toma de muestra en obra de acero, áridos, cementos, morteros, hormigón endurecido, prefabricados, etc. - Auxiliar para realización ensayos sobre materiales: preparación de muestras de acero, áridos, cementos, morteros, prefabricados, etc. - Pruebas de servicio en cubiertas, fachadas, saneamiento y fontanería. - Limpieza y mantenimiento de los equipos y las instalaciones.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2515",
       "fo": 2515,
@@ -3217,74 +3367,6 @@
       }
     },
     {
-      "id": "2468",
-      "fo": 2468,
-      "codigo": "2026/00168",
-      "titulo": "Enfermera/o",
-      "publishedAt": "2026-06-18",
-      "deadline": "2026-08-18",
-      "location": "L'Eliana Eliana (l') (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2468",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00168"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Enfermera/o"
-          },
-          {
-            "label": "Observaciones",
-            "value": "No es necesaria experiencia ni vehículo ya que el metro \"parada l'Eliana\" está justo en la puerta de la residencia. Inicio 01/07/2026. Turnos de 12 horas."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "L'Eliana, Municipio: Eliana (l'), Provincia: Valencia, CP: 46185"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "Turnos de 12 horas. 40 horas semanales"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "1",
-        "observaciones": "No es necesaria experiencia ni vehículo ya que el metro \"parada l'Eliana\" está justo en la puerta de la residencia. Inicio 01/07/2026. Turnos de 12 horas.",
-        "municipio": "Eliana (l')",
-        "provincia": "Valencia",
-        "cp": "46185",
-        "jornada": "Completa",
-        "horario": "Turnos de 12 horas. 40 horas semanales",
-        "salario": "Según convenio",
-        "ocupaciones": []
-      }
-    },
-    {
       "id": "2467",
       "fo": 2467,
       "codigo": "2026/00167",
@@ -3765,88 +3847,6 @@
             "experiencia": "6 Meses"
           }
         ]
-      }
-    },
-    {
-      "id": "2375",
-      "fo": 2375,
-      "codigo": "2026/00077",
-      "titulo": "Operario/a peón muestreador",
-      "publishedAt": "2026-05-25",
-      "deadline": "2026-09-27",
-      "location": "Pol. Ind. Entrevies Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2375",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00077"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a peón muestreador"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Formación a cargo de la empresa No requiere titulación. Se valorarán conocimientos en las áreas citadas y formación en PRL. Imprescindible carnet de conducir"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "ACTIVIDADES PROFESIONALES, CIENTÍFICAS Y TÉCNICAS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Pol. Ind. Entrevies, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "7:30-13:30 / 15:00-17:00"
-          },
-          {
-            "label": "Salario",
-            "value": "15000-18000"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Toma de muestra en obra y fabricación de probetas de hormigón fresco, marcado, traslado, desmolde, limpieza y guardado de las mimas. - Toma de muestra en obra de acero, áridos, cementos, morteros, hormigón endurecido, prefabricados, etc. - Auxiliar para realización ensayos sobre materiales: preparación de muestras de acero, áridos, cementos, morteros, prefabricados, etc. - Pruebas de servicio en cubiertas, fachadas, saneamiento y fontanería. - Limpieza y mantenimiento de los equipos y las instalaciones."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "numPuestos": "2",
-        "categoria": "PEONES",
-        "observaciones": "Formación a cargo de la empresa No requiere titulación. Se valorarán conocimientos en las áreas citadas y formación en PRL. Imprescindible carnet de conducir",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa Turnos: Turno partido",
-        "horario": "7:30-13:30 / 15:00-17:00",
-        "salario": "15000-18000",
-        "funciones": "- Toma de muestra en obra y fabricación de probetas de hormigón fresco, marcado, traslado, desmolde, limpieza y guardado de las mimas. - Toma de muestra en obra de acero, áridos, cementos, morteros, hormigón endurecido, prefabricados, etc. - Auxiliar para realización ensayos sobre materiales: preparación de muestras de acero, áridos, cementos, morteros, prefabricados, etc. - Pruebas de servicio en cubiertas, fachadas, saneamiento y fontanería. - Limpieza y mantenimiento de los equipos y las instalaciones.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
       }
     },
     {
