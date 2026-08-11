@@ -106,6 +106,12 @@ export interface SpeakerMap {
   generatedAt: string
   /** Model that produced the raw identity block, for provenance. */
   model: string
+  /**
+   * Prompt wording that produced these segments. Optional because maps written
+   * before it existed genuinely do not know — absent means "v1 or earlier",
+   * never "current".
+   */
+  promptVersion?: string
   /** Chunk length used, so a re-run with different chunking is comparable. */
   chunkSeconds: number
   /**

@@ -50,6 +50,7 @@ import {
 } from '../src/scraper/speaker-map-validate'
 import {
   buildSpeakerMapPrompt,
+  SPEAKER_MAP_PROMPT_VERSION,
   SPEAKER_MAP_CHUNK_SECONDS,
   SPEAKER_MAP_COVERAGE_FLOOR,
 } from '../src/scraper/speaker-map-prompt'
@@ -632,6 +633,7 @@ async function main() {
       plenoId: args.plenoId,
       generatedAt: new Date().toISOString(),
       model: MODEL,
+      promptVersion: SPEAKER_MAP_PROMPT_VERSION,
       chunkSeconds: SPEAKER_MAP_CHUNK_SECONDS,
       segments,
       rows,
