@@ -3,6 +3,7 @@ import {
   speechSeconds,
   isUsableReference,
   unattemptedChunks,
+  chunksToAttempt,
   referenceCoverage,
   resumableChunks,
   type RawSegment,
@@ -210,5 +211,60 @@ describe('unattemptedChunks', () => {
 
   it('is empty when the run finished everything it planned', () => {
     expect(unattemptedChunks(2, new Set([0]), new Set([1]))).toEqual([])
+  })
+})
+
+/**
+ * Which chunks a capped run may attempt.
+ *
+ * `--chunks N` was applied as `planned = Math.min(chunks.length, N)` and the
+ * loop then ran `0..planned-1`. That bounds the INDEX RANGE, not the amount of
+ * work: resume skips already-done chunks from inside the same range, so once a
+ * session is longer than the budget everything past `N-1` is unreachable **at
+ * any quota, forever**.
+ *
+ * `hallazgos-pipeline.sh` passes `--chunks "$REMAINING"` with an 18-chunk
+ * budget, so this was live in the nightly run. Measured 2026-08-11 over the 21
+ * mappable sessions: 8 exceed 18 chunks — `1sqj7is` 29, `1du4rf5` 27, `rx4hb4`
+ * 26, `10yl550` 25, `qz6weg` 24, `brxx5g` and `anrfd5` 20, `rmtyr` 19. Their
+ * tails could never be transcribed.
+ *
+ * This is the same defect `isMapComplete` exists to prevent — "its tail
+ * unreachable at any quota" — arriving through a different door. The budget is
+ * a limit on ATTEMPTS, never on how far into the session a run may look.
+ */
+describe('chunksToAttempt', () => {
+  const range = (n: number) => new Set(Array.from({ length: n }, (_, i) => i))
+
+  it('reaches the tail of a session longer than the budget — the real 1sqj7is case', () => {
+    // 29 chunks, first 18 already mapped, budget 18. The old rule attempted
+    // nothing at all here and reported the session done-as-far-as-planned.
+    expect(chunksToAttempt(29, range(18), 18)).toEqual([18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28])
+  })
+
+  it('caps the number of attempts, not how far it looks', () => {
+    expect(chunksToAttempt(29, new Set(), 3)).toEqual([0, 1, 2])
+  })
+
+  it('skips finished chunks without spending budget on them', () => {
+    // 8 done and scattered (the real 15uvjew resume), budget 18 → the 9 gaps.
+    const done = new Set([0, 2, 4, 5, 7, 9, 10, 16])
+    expect(chunksToAttempt(17, done, 18)).toEqual([1, 3, 6, 8, 11, 12, 13, 14, 15])
+  })
+
+  it('counts a skipped chunk against nothing — budget 2 still reaches past them', () => {
+    expect(chunksToAttempt(10, new Set([0, 1, 2, 3, 4]), 2)).toEqual([5, 6])
+  })
+
+  it('attempts everything outstanding when uncapped', () => {
+    expect(chunksToAttempt(4, new Set([1]), Infinity)).toEqual([0, 2, 3])
+  })
+
+  it('attempts nothing when the budget is spent', () => {
+    expect(chunksToAttempt(5, new Set(), 0)).toEqual([])
+  })
+
+  it('is empty when the session is already complete', () => {
+    expect(chunksToAttempt(3, range(3), 18)).toEqual([])
   })
 })
