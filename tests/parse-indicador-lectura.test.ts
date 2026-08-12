@@ -149,3 +149,33 @@ describe('scraper/indicador-lectura', () => {
     expect(leerIndicadorMunicipal(sinPares).donde).toBeNull()
   })
 })
+
+describe('el tramo del percentil no promete tipicidad', () => {
+  it('no dice «en el grueso del grupo» cuando la cifra está lejos de la mediana', () => {
+    // La banda de pavimentación va de 0,07 a 1,29 €/m²: diecinueve veces de un
+    // cuartil a otro. Caer dentro del intercuartílico no es parecerse a nadie, y
+    // la misma tarjeta avisa de que la cifra está a la mitad de la mediana. El
+    // lector recibía las dos cosas a la vez, y lo cazó la revisión de superficies.
+    const pav = indicadores.find((i) => i.servicio === 'a1532/150P')!
+    expect(pav.pares!.percentil).toBeLessThan(50)
+    expect(pav.valor! / pav.pares!.mediana).toBeLessThan(0.6)
+
+    const l = leerIndicador(pav)
+    const texto = [l.donde ?? '', ...pav.caveats].join(' ')
+    expect(texto).not.toMatch(/grueso del grupo/)
+    expect(texto).toMatch(/por debajo de la mediana/)
+  })
+
+  it('sigue distinguiendo los extremos de los dos lados de la mediana', () => {
+    const base = indicadores.find((i) => i.pares)!
+    const donde = (percentil: number) =>
+      leerIndicador({ ...base, pares: { ...base.pares!, percentil } }).donde ?? ''
+    expect(donde(5)).toMatch(/casi todos/)
+    expect(donde(95)).toMatch(/casi todos/)
+    expect(donde(20)).toMatch(/tres de cada cuatro/)
+    expect(donde(44)).toMatch(/por debajo de la mediana/)
+    expect(donde(60)).toMatch(/por encima de la mediana/)
+    // Y ninguna de las seis frases promete tipicidad.
+    for (const p of [5, 20, 44, 60, 80, 95]) expect(donde(p)).not.toMatch(/grueso/)
+  })
+})
