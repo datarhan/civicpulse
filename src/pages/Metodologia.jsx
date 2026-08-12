@@ -1547,13 +1547,28 @@ export default function Metodologia() {
           el desperdicio que nace de la falta de competencia y de la rigidez del procedimiento. Sale
           de los contratos y de la ejecución presupuestaria que este sitio ya descargaba. Cada cifra
           lleva el periodo que cubre, porque los contratos abarcan casi una década y un porcentaje
-          sin fecha se lee como «este año». Ninguno de estos indicadores de fricción lleva
-          comparación con otros municipios: no existe una fuente que la respalde, y un percentil
-          inventado sería peor que la ausencia — el plazo de pago y el gasto por habitante sí la
-          llevan, y por eso se explican aparte, arriba. Un contrato menor o un solo licitador no son
-          irregularidades —el primero es un instrumento legal por debajo de los umbrales de la Ley
-          9/2017 y el segundo ocurre en mercados con un único proveedor capaz—; lo que miden es
-          cuánta concurrencia hubo.
+          sin fecha se lee como «este año». Sólo algunos llevan comparación con otros municipios: la
+          lleva el indicador que tiene detrás una fuente que aplica la misma medida a todos, y donde
+          no la hay se dice en la propia tarjeta, porque un percentil inventado sería peor que la
+          ausencia. Un contrato menor o un solo licitador no son irregularidades —el primero es un
+          instrumento legal por debajo de los umbrales de la Ley 9/2017 y el segundo ocurre en
+          mercados con un único proveedor capaz—; lo que miden es cuánta concurrencia hubo.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Dónde vive cada mitad.</strong>{' '}
+          <a href="/eficiencia" style={{ color: 'var(--civic)' }}>
+            /eficiencia
+          </a>{' '}
+          publica lo que sale del coste efectivo de los servicios: el cociente de cada servicio y el
+          recuento de denominadores que el ayuntamiento no vuelve a medir.{' '}
+          <a href="/gestion" style={{ color: 'var(--civic)' }}>
+            /gestion
+          </a>{' '}
+          publica lo que sale de las otras cuatro fuentes —las series PMP, CONPREL, el perfil de
+          contratante y el estado de ejecución—: plazos, concurrencia y ejecución. El corte es por
+          fuente y no por tema, y lo declara cada indicador al construirse, para que no dependa de
+          una lista escrita aparte que se quedaría vieja. Cada ficha firmada va con la cifra que
+          congela, en la página donde esa cifra se publica.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>Límites conocidos.</strong> Las magnitudes las rellena cada ayuntamiento, y no

@@ -1,5 +1,6 @@
 import { Card } from '../components/Primitives'
 import { CoberturaEficiencia } from '../components/eficiencia/CoberturaEficiencia'
+import { ResumenPosiciones } from '../components/eficiencia/ResumenPosiciones'
 import { ServicioCard } from '../components/eficiencia/ServicioCard'
 import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
 import { HallazgosEficiencia } from '../components/eficiencia/HallazgosEficiencia'
@@ -26,6 +27,9 @@ export default function Eficiencia() {
   const { loading, error, data } = useIndicadores()
   const { data: hallazgos } = useEficienciaFindings()
   const indicadores = data?.indicadores ?? []
+  const municipalesDeAqui = (data?.municipales ?? []).filter((m) => m.panel === 'coste-efectivo')
+  const idsDeAqui = [...indicadores.map((i) => i.id), ...municipalesDeAqui.map((m) => m.id)]
+  const firmados = (hallazgos?.items ?? []).filter((f) => idsDeAqui.includes(f.indicadorId)).length
 
   const conRatio = indicadores
     .filter((i) => i.valor !== null)
@@ -55,6 +59,23 @@ export default function Eficiencia() {
       </h1>
       <p style={{ color: 'var(--ink60)', maxWidth: '64ch' }}>{t('eficiencia.intro')}</p>
 
+      {/* Índice, no conclusión.
+          Las fichas firmadas siguen AL FINAL y por el motivo de siempre: una
+          ficha es una lectura del panel, y el panel se lee primero. Pero
+          «después» y «sólo si llegas» no son lo mismo, y quien entra desde un
+          enlace no llegaba nunca. Esto dice cuántas hay y dónde están, sin
+          decir qué concluyen. */}
+      {firmados > 0 && (
+        <p style={{ margin: '6px 0 0', fontSize: 12.5 }}>
+          <a href="#hallazgos" style={{ color: 'var(--civic)' }}>
+            {firmados === 1
+              ? '1 hallazgo firmado sobre estas cifras'
+              : `${firmados} hallazgos firmados sobre estas cifras`}{' '}
+            ↓
+          </a>
+        </p>
+      )}
+
       {loading && <p style={{ color: 'var(--ink60)' }}>Cargando…</p>}
       {error && <p style={{ color: 'var(--ink60)' }}>No se pudo cargar el panel.</p>}
       {!loading && !error && indicadores.length === 0 && (
@@ -71,13 +92,28 @@ export default function Eficiencia() {
         />
       )}
 
+      {/* El resumen va DESPUÉS de la cobertura y antes de las fichas: primero
+          qué cubre esta página, luego dónde queda cada cosa, luego el detalle.
+          Al revés, diez puntos aparecerían antes de decir que hay tres
+          servicios sobre los que esta página no puede dividir nada. */}
+      <ResumenPosiciones indicadores={indicadores} />
+
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 18 }}>
         {conRatio.map((i) => (
           <ServicioCard key={i.id} indicador={i} formatea={formateaCon(i.unidad)} />
         ))}
       </div>
 
-      <PanelMunicipal municipales={data?.municipales} />
+      {/* Sólo lo que sale del MISMO cuaderno que las tarjetas de arriba: el
+          recuento de denominadores mide las declaraciones del coste efectivo y
+          habla de estos diez cocientes. Los plazos, la concurrencia y la
+          ejecución salen de otras cuatro fuentes y viven en /gestion. El reparto
+          lo declara cada indicador al construirse, no esta página. */}
+      <PanelMunicipal
+        municipales={municipalesDeAqui}
+        titulo="Sobre la declaración de estas cifras"
+        intro="Los cocientes de arriba salen de dos cantidades que el ayuntamiento declara cada entrega; esto mide con qué frecuencia vuelve a medir la de abajo."
+      />
 
       {bloqueados.length > 0 && (
         <>
@@ -103,7 +139,13 @@ export default function Eficiencia() {
           el panel se lee primero. Un hallazgo en cabecera convertiría la página
           en la conclusión de otro en vez de en las cifras con las que el lector
           puede sacar la suya. */}
-      {!loading && !error && <HallazgosEficiencia data={hallazgos} />}
+      {!loading && !error && (
+        <HallazgosEficiencia
+          data={hallazgos}
+          indicadorIds={idsDeAqui}
+          otroPanel={{ to: '/gestion', nombre: 'cómo funciona la casa por dentro' }}
+        />
+      )}
 
       <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 28 }}>
         Cómo se calcula, qué se descarta y por qué no hay nota global:{' '}

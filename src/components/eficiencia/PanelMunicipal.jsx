@@ -1,6 +1,6 @@
 import { Card, Pill } from '../Primitives'
 import { Sparkline } from '../Charts'
-import { leerIndicadorMunicipal } from '../../scraper/indicador-lectura'
+import { leerIndicadorMunicipal, lecturaVisible } from '../../scraper/indicador-lectura'
 import { Lectura } from './Lectura'
 
 const DIMENSION = {
@@ -44,7 +44,7 @@ const crudo = (v, formato) =>
  * «este año», y eso bastaría para convertir una cifra correcta en una
  * afirmación falsa.
  */
-export function PanelMunicipal({ municipales }) {
+export function PanelMunicipal({ municipales, titulo, intro }) {
   const items = (municipales ?? []).filter((m) => m.valor !== null)
   if (!items.length) return null
   // La frase de arriba SALE de los datos en vez de repetirlos. Escrita a mano
@@ -57,13 +57,18 @@ export function PanelMunicipal({ municipales }) {
   return (
     <>
       <h2 style={{ fontSize: 15, fontWeight: 650, margin: '28px 0 4px', letterSpacing: '-.01em' }}>
-        Cómo funciona la casa por dentro
+        {titulo}
       </h2>
       <p style={{ margin: '0 0 12px', fontSize: 13, color: 'var(--ink60)', maxWidth: '64ch' }}>
-        Cuánto tarda en pagar, cuánto dedica por vecino, cuánta competencia hubo en sus contratos y
-        qué distancia hay entre el presupuesto que se aprobó y el que se ejecutó. Son medidas de
-        plazo y de fricción, no de coste.{' '}
-        {conPares.length > 0 && (
+        {intro}{' '}
+        {/* Sólo con dos o más: con una sola tarjeta la frase se convierte en un
+            preámbulo de su propio subtítulo, y el porqué de la comparación lo
+            lleva ya cada banda en `pares.descripcion`. Ahí decía además «que el
+            ministerio calcula igual para todos», que era cierto del plazo de
+            pago y falso del recuento de denominadores —ése lo calculamos aquí—:
+            la frase genérica se quedó vieja en cuanto el conjunto dejó de ser
+            homogéneo, que es lo que pasa siempre con las frases genéricas. */}
+        {items.length >= 2 && conPares.length > 0 && (
           <>
             Llevan comparación con otros municipios{' '}
             {conPares.map((m, idx) => (
@@ -72,10 +77,11 @@ export function PanelMunicipal({ municipales }) {
                 <strong>{m.etiqueta.toLowerCase()}</strong>
               </span>
             ))}
-            , que el ministerio calcula igual para todos.{' '}
+            .{' '}
           </>
         )}
-        {sinPares.length > 0 &&
+        {items.length >= 2 &&
+          sinPares.length > 0 &&
           'El resto no la lleva: no existe una fuente que las mida del mismo modo en todas partes.'}
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -175,7 +181,12 @@ export function PanelMunicipal({ municipales }) {
                 {m.descripcion}
               </p>
 
-              <Lectura lectura={leerIndicadorMunicipal(m)} />
+              <Lectura
+                lectura={lecturaVisible(leerIndicadorMunicipal(m), {
+                  cifra: true,
+                  banda: Boolean(m.pares),
+                })}
+              />
 
               {m.caveats?.length > 0 && (
                 <ul

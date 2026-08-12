@@ -7,6 +7,7 @@ import {
   ESTADOS_ADJUDICADOS,
   PROCESOS_SIN_PUBLICIDAD,
   ADJUDICACION_DOMINANTE,
+  PANELES,
 } from '../src/scraper/indicadores-friccion'
 
 const ROOT = join(__dirname, '..')
@@ -239,5 +240,45 @@ describe('denominadores-sin-remedir — la declaración como indicador de fricci
     expect(sin.find((x) => x.id === 'denominadores-sin-remedir')).toBeUndefined()
     // …y el resto del panel sigue construyéndose igual.
     expect(sin.length).toBeGreaterThan(3)
+  })
+})
+
+describe('cada indicador municipal declara en qué página vive', () => {
+  // Publicados, no reconstruidos: lo que hay que vigilar es lo que se sirve.
+  const publicados = JSON.parse(readFileSync(join(ROOT, 'public/data/indicadores.json'), 'utf8'))
+    .municipales as { id: string; panel: string; citas: { etiqueta: string }[] }[]
+
+  it('todos traen un panel del enum, y ningún panel se queda vacío', () => {
+    expect(publicados.length, 'no hay indicadores municipales publicados').toBeGreaterThan(0)
+    for (const m of publicados) {
+      expect(PANELES, `${m.id} no declara un panel válido`).toContain(m.panel)
+    }
+    // La mitad que importa: una página entera puede quedarse sin nada que
+    // enseñar y ninguna comprobación de datos lo notaría, porque todas las
+    // cifras seguirían resolviendo a su celda.
+    for (const p of PANELES) {
+      expect(
+        publicados.filter((m) => m.panel === p).length,
+        `el panel ${p} se queda sin ningún indicador`,
+      ).toBeGreaterThan(0)
+    }
+  })
+
+  it('corta por fuente, no por gusto', () => {
+    // La regla, no la lista: lo que mide las declaraciones del coste efectivo
+    // va con los cocientes que salen de ese mismo cuaderno; lo que mide plazos,
+    // concurrencia y ejecución va aparte. Comprobar la asignación indicador a
+    // indicador sería copiar aquí la decisión en vez de vigilarla.
+    for (const m of publicados.filter((x) => x.panel === 'coste-efectivo')) {
+      expect(m.citas[0]?.etiqueta.toLowerCase(), `${m.id} no cita el coste efectivo`).toMatch(
+        /coste efectivo/,
+      )
+    }
+    for (const m of publicados.filter((x) => x.panel === 'gestion')) {
+      expect(
+        m.citas[0]?.etiqueta.toLowerCase(),
+        `${m.id} cita el coste efectivo y vive fuera de /eficiencia`,
+      ).not.toMatch(/coste efectivo/)
+    }
   })
 })

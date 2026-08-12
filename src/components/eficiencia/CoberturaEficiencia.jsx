@@ -1,5 +1,6 @@
 import { Card } from '../Primitives'
 import { useT } from '../../i18n'
+import { LeyendaEscalones } from './Escalones'
 
 /**
  * Qué parte de su propio dominio enseña esta página.
@@ -74,6 +75,7 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
         <span className="mono">{universe.comparables}</span> tienen suficientes municipios
         comparables para situarlos.
       </p>
+      <LeyendaEscalones indicadores={indicadores} />
       {congelados.length > 0 && (
         <p
           style={{
@@ -99,8 +101,8 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
           un denominador que el ayuntamiento no vuelve a medir: declara la misma cantidad
           {desde ? ` desde ${desde}` : ''} entrega tras entrega, mientras actualiza el coste en cada
           una. Un coste unitario así puede subir sin que el servicio haya cambiado, y su serie no se
-          puede leer como gestión. Cada tarjeta dice desde cuándo y cuántos municipios comparables
-          hacen lo mismo.{' '}
+          puede leer como gestión. Cada tarjeta va marcada con el año desde el que no se remide, y
+          lleva dentro cuántos municipios comparables hacen lo mismo.{' '}
           <a
             href="/laboratorio/frontera"
             style={{ color: 'var(--civic)', textDecoration: 'underline' }}

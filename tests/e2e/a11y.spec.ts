@@ -31,6 +31,7 @@ const STRICT_ROUTES = [
   '/quejas/q-no-existe',
   '/cambios',
   '/eficiencia',
+  '/gestion',
   '/laboratorio',
   '/laboratorio/agentes',
   '/laboratorio/frontera',

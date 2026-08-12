@@ -132,8 +132,22 @@ function FichaEficiencia({ ficha }) {
   )
 }
 
-export function HallazgosEficiencia({ data }) {
-  const items = data?.items ?? []
+/**
+ * @param data      el snapshot entero de fichas firmadas
+ * @param indicadorIds ids de los indicadores que vive esta página. Cada ficha
+ *   se enseña junto a la cifra que congela, no en un cajón común: la ficha del
+ *   plazo de pago sin el panel del plazo de pago delante es una afirmación sin
+ *   su comprobación al lado.
+ * @param otroPanel  a dónde van las fichas que no son de aquí. Es lo que
+ *   convierte «no hay ninguna» en algo cierto: sin ese enlace, una página
+ *   diciendo «todavía no hay ninguna ficha firmada» mientras la de al lado tiene
+ *   dos es exactamente la mentira por omisión que esta sección existe para
+ *   evitar.
+ */
+export function HallazgosEficiencia({ data, indicadorIds, otroPanel }) {
+  const todas = data?.items ?? []
+  const items = indicadorIds ? todas.filter((f) => indicadorIds.includes(f.indicadorId)) : todas
+  const enOtroSitio = todas.length - items.length
   const retiradas = data?.retractions ?? []
 
   return (
@@ -152,9 +166,20 @@ export function HallazgosEficiencia({ data }) {
           {/* Un hueco se lee como «no hay nada que contar». Esto dice qué
               significa el vacío, que es que nadie ha firmado todavía. */}
           <p style={{ margin: 0, fontSize: 13, color: 'var(--ink60)' }}>
-            Todavía no hay ninguna ficha firmada. El panel de arriba señala por sí solo dónde se
-            sale cada cifra; un hallazgo exige además que alguien haya comprobado el expediente y
-            puesto su nombre, y eso no ha ocurrido aún.
+            Todavía no hay ninguna ficha firmada sobre estas cifras. El panel de arriba señala por
+            sí solo dónde se sale cada una; un hallazgo exige además que alguien haya comprobado el
+            expediente y puesto su nombre, y eso no ha ocurrido aún.
+            {enOtroSitio > 0 && otroPanel && (
+              <>
+                {' '}
+                Sí hay{' '}
+                <a href={otroPanel.to} style={{ color: 'var(--civic)' }}>
+                  {enOtroSitio === 1 ? 'una firmada' : `${enOtroSitio} firmadas`} en{' '}
+                  {otroPanel.nombre}
+                </a>
+                .
+              </>
+            )}
           </p>
         </Card>
       ) : (
@@ -163,6 +188,17 @@ export function HallazgosEficiencia({ data }) {
             <FichaEficiencia key={f.id} ficha={f} />
           ))}
         </div>
+      )}
+
+      {items.length > 0 && enOtroSitio > 0 && otroPanel && (
+        <p style={{ margin: '10px 0 0', fontSize: 12.5, color: 'var(--ink60)' }}>
+          Hay{' '}
+          <a href={otroPanel.to} style={{ color: 'var(--civic)' }}>
+            {enOtroSitio === 1 ? 'otra ficha firmada' : `otras ${enOtroSitio} fichas firmadas`} en{' '}
+            {otroPanel.nombre}
+          </a>
+          .
+        </p>
       )}
 
       {retiradas.length > 0 && (

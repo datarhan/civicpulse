@@ -36,6 +36,7 @@ const CATALOGUE = {
     'nav.empleo': 'Empleo',
     'nav.empleoPublico': 'Empleo público',
     'nav.eficiencia': 'Eficiencia',
+    'nav.gestion': 'Gestión',
     'eficiencia.eyebrow': 'Ayuntamiento · coste efectivo de los servicios',
     'eficiencia.title': '¿Cuánto cuesta y qué se obtiene?',
     'eficiencia.intro':
@@ -568,6 +569,7 @@ const CATALOGUE = {
     'nav.empleo': 'Ocupació',
     'nav.empleoPublico': 'Ocupació pública',
     'nav.eficiencia': 'Eficiència',
+    'nav.gestion': 'Gestió',
     'eficiencia.eyebrow': 'Ajuntament · cost efectiu dels serveis',
     'eficiencia.title': 'Quant costa i què se n\u2019obté?',
     'eficiencia.intro':

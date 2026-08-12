@@ -1,7 +1,13 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { leerIndicador, leerIndicadorMunicipal } from '../src/scraper/indicador-lectura'
+import {
+  leerIndicador,
+  leerIndicadorMunicipal,
+  lecturaVisible,
+  chipDeclaracion,
+  GLOSA_TIER,
+} from '../src/scraper/indicador-lectura'
 import type { Indicador } from '../src/scraper/indicadores'
 import type { IndicadorMunicipal } from '../src/scraper/indicadores-friccion'
 
@@ -147,6 +153,132 @@ describe('scraper/indicador-lectura', () => {
   it('no inventa comparación cuando no hay banda', () => {
     const sinPares = municipales.find((m) => !m.pares && m.valor !== null)!
     expect(leerIndicadorMunicipal(sinPares).donde).toBeNull()
+  })
+})
+
+describe('la lectura no repite lo que la tarjeta ya enseña', () => {
+  // La tarjeta imprimía «81.965 €/efectivo en la entrega de 2024» en cuerpo 30,
+  // la fórmula debajo, la banda con mediana y percentil, y ACTO SEGUIDO la
+  // misma cifra y la misma posición otra vez en prosa. Cuatro apariciones del
+  // mismo número en una tarjeta. Lo que no se deduce mirando —«esto es un
+  // precio, no un rendimiento»— quedaba sepultado entre las repeticiones.
+  it('calla la cifra y la posición cuando el número y la banda están en pantalla', () => {
+    const conBanda = indicadores.find((i) => i.valor !== null && i.pares)!
+    const l = leerIndicador(conBanda)
+    const v = lecturaVisible(l, { cifra: true, banda: true })
+    expect(v.que).toBeNull()
+    expect(v.donde).toBeNull()
+
+    // Control, y es la mitad que importa: lo que NO se deduce mirando sigue
+    // entero. Sin esto, una función que devolviera todo a null pasaría.
+    expect(v.como).toBe(l.como)
+    expect(v.avisos).toEqual(l.avisos)
+    expect(v.como.length).toBeGreaterThan(30)
+  })
+
+  it('conserva el motivo cuando no hay cifra que lo repita', () => {
+    // Una tarjeta bloqueada no tiene número ni banda: ahí `que` ES el
+    // contenido («no hay coste por unidad porque el servicio está concedido»).
+    const bloqueado = indicadores.find((i) => i.valor === null)!
+    const l = leerIndicador(bloqueado)
+    const v = lecturaVisible(l, { cifra: false, banda: false })
+    expect(v.que).toBe(l.que)
+    expect(v.que!.length).toBeGreaterThan(15)
+  })
+
+  it('conserva «no hay comparación» cuando no hay banda que lo diga', () => {
+    // Hoy los diez cocientes publicados tienen banda, así que el caso se
+    // construye quitándosela a uno real en vez de saltarse la prueba: un test
+    // que se salta cuando el dato no colabora es un test que no mide.
+    const base = indicadores.find((i) => i.valor !== null && i.pares)!
+    const sinBanda = { ...base, pares: undefined, modoGestion: 'directa' as const }
+    const v = lecturaVisible(leerIndicador(sinBanda), { cifra: true, banda: false })
+    expect(v.donde).toMatch(/No hay comparación/)
+  })
+})
+
+describe('la leyenda de escalones', () => {
+  it('glosa cada escalón que el panel publica de verdad', () => {
+    // `entrada` / `carga de trabajo` / `producto` llegaban al lector como una
+    // chapa suelta junto a «gestión directa», sin nada que dijera qué son.
+    const enUso = new Set(indicadores.filter((i) => i.valor !== null).map((i) => i.tier))
+    expect(enUso.size, 'ningún escalón en uso en el panel publicado').toBeGreaterThan(0)
+    for (const tier of enUso) {
+      expect(GLOSA_TIER[tier], `el escalón ${tier} no tiene glosa`).toBeTruthy()
+      // Si la glosa crece hasta la frase larga de COMO_SE_LEE, la leyenda deja
+      // de ser una leyenda y vuelve el problema que esto vino a resolver.
+      expect(GLOSA_TIER[tier].length, `la glosa de ${tier} ya no es una glosa`).toBeLessThan(60)
+    }
+  })
+
+  it('no dice lo mismo que la frase larga de la ficha', () => {
+    // Dos redacciones de lo mismo en la misma página es la repetición que se
+    // acaba de quitar; la glosa tiene que ser un resumen, no una copia.
+    for (const tier of Object.keys(GLOSA_TIER) as (keyof typeof GLOSA_TIER)[]) {
+      const largo = leerIndicador({
+        ...indicadores.find((i) => i.valor !== null)!,
+        tier,
+      }).como
+      expect(largo).not.toBe(GLOSA_TIER[tier])
+      expect(largo.length).toBeGreaterThan(GLOSA_TIER[tier].length)
+    }
+  })
+})
+
+describe('el denominador congelado se marca, no se repite entero', () => {
+  // El párrafo de ~55 palabras salía idéntico en las diez tarjetas: 550
+  // palabras de casi la misma frase en una página que ya iba por las trece
+  // pantallas. A esa densidad no refuerza, anestesia — y es el hallazgo que
+  // más importa de los que hay aquí. Se cuenta entero arriba una vez, y en la
+  // tarjeta queda una marca que dice desde cuándo.
+  it('marca cada cociente cuyo denominador nadie vuelve a medir', () => {
+    const congelados = indicadores.filter(
+      (i) => i.valor !== null && i.declaracion?.denominador?.congelada,
+    )
+    expect(congelados.length, 'el fixture no trae ningún denominador congelado').toBeGreaterThan(0)
+
+    for (const i of congelados) {
+      const chip = chipDeclaracion(i)!
+      expect(chip, `${i.servicio} sin marca`).not.toBeNull()
+      // La marca dice el MISMO año que la salvedad larga, o las dos se van
+      // separando en cuanto alguien toque una.
+      expect(chip.texto).toContain(String(i.declaracion!.denominador.desde))
+      expect(chip.texto).toMatch(/denominador|cifras|coste/)
+    }
+  })
+
+  it('no marca lo que no está congelado', () => {
+    // Control: sin esto, un `chipDeclaracion` que devolviera siempre una marca
+    // pasaría la prueba de arriba con las diez tarjetas mintiendo a la vez.
+    const base = indicadores.find((i) => i.valor !== null && i.declaracion)!
+    const vivo = {
+      ...base,
+      declaracion: {
+        ...base.declaracion!,
+        numerador: { ...base.declaracion!.numerador, congelada: false },
+        denominador: { ...base.declaracion!.denominador, congelada: false },
+      },
+    }
+    expect(chipDeclaracion(vivo)).toBeNull()
+    expect(chipDeclaracion({ ...base, declaracion: null })).toBeNull()
+  })
+
+  it('distingue qué mitad se quedó parada', () => {
+    // Decir «el cociente puede subir» cuando lo congelado es el coste sería
+    // falso al revés, y es la distinción que caveatDeclaracion ya hace.
+    const base = indicadores.find((i) => i.valor !== null && i.declaracion)!
+    const con = (num: boolean, den: boolean) =>
+      chipDeclaracion({
+        ...base,
+        declaracion: {
+          ...base.declaracion!,
+          numerador: { ...base.declaracion!.numerador, congelada: num, desde: 2019 },
+          denominador: { ...base.declaracion!.denominador, congelada: den, desde: 2019 },
+        },
+      })!.texto
+    expect(con(false, true)).toMatch(/^denominador de 2019$/)
+    expect(con(true, false)).toMatch(/^coste de 2019$/)
+    expect(con(true, true)).toMatch(/^las dos cifras de 2019$/)
   })
 })
 

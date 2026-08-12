@@ -41,6 +41,13 @@ export const Ic = {
       <path d="M3 17V5M3 17h14M7 14V9M11 14V6M15 14v-3" />
     </svg>
   ),
+  // Plazos y trámite: /gestion mide cuánto se tarda y cuánta concurrencia hubo.
+  clock: (p) => (
+    <svg {...p} viewBox="0 0 20 20" {...common}>
+      <circle cx="10" cy="10" r="7" />
+      <path d="M10 6v4l2.5 2" />
+    </svg>
+  ),
   search: (p) => (
     <svg {...p} viewBox="0 0 20 20" {...common}>
       <circle cx="9" cy="9" r="5.5" />

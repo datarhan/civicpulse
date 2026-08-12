@@ -68,6 +68,7 @@ const ROUTES: Route[] = [
   // estricta las hubiera mirado nunca. Es «verde por no ejecutarse», el defecto
   // que este repo ya ha pagado varias veces.
   { path: '/eficiencia', ready: /Cobertura de este panel|servicios que este panel sigue/ },
+  { path: '/gestion', ready: /Plazos, concurrencia y ejecución/ },
   { path: '/laboratorio/frontera', ready: /series de unidad física/ },
   { path: '/nosotros', ready: /es el municipio piloto/ },
   { path: '/about', ready: /All funding is disclosed publicly/ },

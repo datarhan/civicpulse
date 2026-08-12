@@ -36,6 +36,83 @@ export interface Lectura {
   avisos: string[]
 }
 
+/** Lo que la tarjeta ya enseña por su cuenta, alrededor de la lectura. */
+export interface YaEnPantalla {
+  /** La cifra en grande y su fórmula: numerador ÷ denominador · entrega. */
+  cifra: boolean
+  /** La banda de pares, con mediana, cuartiles y percentil escritos. */
+  banda: boolean
+}
+
+/** Una lectura de la que se han descontado las frases redundantes. */
+export interface LecturaVisible {
+  que: string | null
+  donde: string | null
+  como: string
+  avisos: string[]
+}
+
+/**
+ * La misma lectura, sin lo que el lector ya tiene delante.
+ *
+ * `que` y `donde` son ciertos y siguen haciendo falta —una tarjeta bloqueada no
+ * tiene más contenido que su `que`, y «no hay comparación» sólo se dice ahí—,
+ * pero cuando la cifra está en cuerpo 30 dos líneas más arriba y la banda ya
+ * imprime mediana, cuartiles y percentil, repetirlos en prosa no informa: empuja
+ * hacia abajo la única frase del bloque que no se deduce mirando.
+ *
+ * Se midió sobre la página publicada: «81.965» aparecía cuatro veces dentro de
+ * su propia tarjeta, y «…que prestan el servicio de la misma forma» diez veces
+ * en la página, una por tarjeta, justo debajo del rótulo de la banda que dice lo
+ * mismo. Diez pantallas de las trece eran repetición.
+ *
+ * `como` y `avisos` NUNCA se descuentan: son lo que la geometría no puede
+ * enseñar, y el motivo entero de que este bloque exista.
+ */
+export function lecturaVisible(lectura: Lectura, ya: YaEnPantalla): LecturaVisible {
+  return {
+    que: ya.cifra ? null : lectura.que,
+    donde: ya.banda ? null : lectura.donde,
+    como: lectura.como,
+    avisos: lectura.avisos,
+  }
+}
+
+/** Una marca corta y siempre visible en la cabecera de la tarjeta. */
+export interface ChipDeclaracion {
+  texto: string
+  /** Qué mitad del cociente se quedó parada. */
+  mitad: 'denominador' | 'numerador' | 'ambas'
+}
+
+/**
+ * La marca de «esta cifra descansa sobre una cantidad vieja», en tres palabras.
+ *
+ * La salvedad larga —que el ayuntamiento repite la cantidad desde tal año,
+ * cuántas entregas seguidas, y cuántos comparables hacen lo mismo— sigue entera
+ * en `indicador.caveats`, porque es el hallazgo que más importa de esta página y
+ * no se toca. Lo que cambia es dónde: contada una vez arriba y desplegable en
+ * cada tarjeta, en lugar de diez párrafos casi idénticos en fila.
+ *
+ * El año va DENTRO de la marca a propósito. Sin él la marca sería un adorno que
+ * cada tarjeta repite igual, y con él sigue diciendo lo único que distingue a
+ * una tarjeta de otra sin tener que abrir nada.
+ */
+export function chipDeclaracion(i: Indicador): ChipDeclaracion | null {
+  const d = i.declaracion
+  if (!d) return null
+  const num = d.numerador.congelada
+  const den = d.denominador.congelada
+  if (!num && !den) return null
+  // Con las dos paradas se toma la más antigua: es desde cuándo el cociente
+  // entero dejó de remedirse.
+  const desde = num && den ? Math.min(d.numerador.desde ?? 0, d.denominador.desde ?? 0) : null
+
+  if (num && den) return { texto: `las dos cifras de ${desde}`, mitad: 'ambas' }
+  if (den) return { texto: `denominador de ${d.denominador.desde}`, mitad: 'denominador' }
+  return { texto: `coste de ${d.numerador.desde}`, mitad: 'numerador' }
+}
+
 /**
  * Lo que cada escalón permite concluir, escrito una vez.
  *
@@ -50,6 +127,26 @@ const COMO_SE_LEE: Record<Tier, string> = {
   output:
     'Mide lo que el servicio entrega por cada euro. Sigue sin decir si el resultado es bueno: la fuente no publica ningún indicador de resultado con el que contrastarlo.',
   outcome: 'Mide el efecto sobre el municipio, no sólo lo que se produjo.',
+}
+
+/**
+ * El escalón en cinco palabras, para quien todavía no ha leído una ficha.
+ *
+ * `entrada` / `carga de trabajo` / `producto` son la distinción de Hatry, o sea
+ * la columna vertebral de esta página, y llegaban al lector como una chapa
+ * suelta al lado de «gestión directa»: se leían como una etiqueta arbitraria.
+ * La frase larga está en `COMO_SE_LEE` y sale en cada tarjeta; esto es lo mismo
+ * comprimido para la leyenda de arriba, donde todavía no hay ninguna tarjeta.
+ *
+ * `Record<Tier, string>` a propósito: si el enum gana un escalón, esto no
+ * compila. Una leyenda que se queda sin una de sus entradas es peor que no
+ * tenerla, porque las otras tres siguen aparentando que la lista está completa.
+ */
+export const GLOSA_TIER: Record<Tier, string> = {
+  input: 'divide un gasto entre otro gasto',
+  carga: 'el divisor es la demanda que atiende',
+  output: 'lo que el servicio entrega por euro',
+  outcome: 'el efecto sobre el municipio',
 }
 
 const fmt = (v: number, unidad: string) =>

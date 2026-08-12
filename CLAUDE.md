@@ -91,7 +91,8 @@ JSON. Two things are not the SPA and are easy to mistake for exceptions:
 
 ### Routes
 
-Public: `/` `/cargos` `/cargos/:slug` `/presupuesto` `/eficiencia` `/plenos` `/plenos/:id`
+Public: `/` `/cargos` `/cargos/:slug` `/presupuesto` `/eficiencia` `/gestion` `/plenos`
+`/plenos/:id`
 `/promesas` `/departamentos` `/departamentos/:slug` `/hallazgos`
 `/declaraciones` `/reportajes` `/datos` `/empleo` `/empleo/:id`
 `/empleo-publico` `/quejas` `/quejas/dashboard` `/quejas/:id` `/cambios`
@@ -225,8 +226,14 @@ Five surfaces make claims about named elected officials: `/promesas`,
 any change to them as legally material. The rules below are encoded in schema
 validators and CLIs — if you find yourself working around one, stop.
 
-`/eficiencia` is the sixth legally material surface and the only one that names
-**nobody**. Its findings describe a service's unit cost, so
+`/eficiencia` and its sibling `/gestion` are the sixth legally material surface
+and the only ones that name **nobody**. They are one feature split by SOURCE —
+`/eficiencia` is everything from the *coste efectivo* return, `/gestion` is the
+PMP series, CONPREL, the contractor profile and the execution statement — behind
+one flag, sharing `eficiencia-findings.json`; each ficha renders on the page
+where its indicator lives, and every municipal indicator declares its own
+`panel` so the split cannot drift into a hand-kept list. Their findings describe
+a service's unit cost or a municipal process, so
 `eficiencia-finding.ts` has no field for a person and actively rejects
 `pleno-finding.ts`'s (`individualSpeaker`, `speakerGroup`, `quotes`, `severity`)
 in case a row is ever copied across. Right of reply is institutional —

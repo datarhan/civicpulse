@@ -21,6 +21,7 @@ const Cargos = lazy(() => import('./pages/Cargos'))
 const CargoDetalle = lazy(() => import('./pages/CargoDetalle'))
 const Presupuesto = lazy(() => import('./pages/Presupuesto'))
 const Eficiencia = EFICIENCIA_ENABLED ? lazy(() => import('./pages/Eficiencia')) : null
+const Gestion = EFICIENCIA_ENABLED ? lazy(() => import('./pages/Gestion')) : null
 const Plenos = lazy(() => import('./pages/Plenos'))
 const PlenoDetalle = lazy(() => import('./pages/PlenoDetalle'))
 const Datos = lazy(() => import('./pages/Datos'))
@@ -126,6 +127,7 @@ function InnerShell({ onOpenCmdK }) {
               <Route path="/cargos/:slug" element={<CargoDetalle />} />
               <Route path="/presupuesto" element={<Presupuesto />} />
               {Eficiencia && <Route path="/eficiencia" element={<Eficiencia />} />}
+              {Gestion && <Route path="/gestion" element={<Gestion />} />}
               <Route path="/plenos" element={<Plenos />} />
               <Route path="/plenos/:id" element={<PlenoDetalle />} />
               <Route path="/datos" element={<Datos />} />
