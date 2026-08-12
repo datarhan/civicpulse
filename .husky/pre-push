@@ -28,7 +28,13 @@ set +e
 cd "$(git rev-parse --show-toplevel)" || exit 0
 
 # What is actually being pushed?
-RANGE="origin/main..HEAD"
+#
+# `PREPUSH_RANGE` existe para poder EJECUTAR este gancho sin empujar nada:
+#   PREPUSH_RANGE=HEAD~3..HEAD sh .husky/pre-push
+# Un control que sólo se ejerce empujando de verdad es un control que nadie
+# prueba, y este repositorio ya ha pagado dos veces por guardas sin dientes
+# comprobados. No cambia nada en un push real, donde la variable no está.
+RANGE="${PREPUSH_RANGE:-origin/main..HEAD}"
 git rev-parse --verify origin/main >/dev/null 2>&1 || RANGE="HEAD"
 CHANGED=$(git diff --name-only "$RANGE" 2>/dev/null)
 [ -z "$CHANGED" ] && exit 0
@@ -78,7 +84,19 @@ echo "[pre-push] este push toca $N_RUTAS ruta(s): $(printf '%s ' $RUTAS)"
 PRESUPUESTO=$((N_RUTAS * 150))
 [ "$PRESUPUESTO" -gt 480 ] && PRESUPUESTO=480
 echo "[pre-push] leyendo esas páginas como un lector (hasta ${PRESUPUESTO}s)…"
-npm run build >/dev/null 2>&1 || { echo "[pre-push] build falló; se omite la revisión."; exit 0; }
+# CON LAS BANDERAS DE LANZAMIENTO, las mismas que pone el despliegue.
+#
+# Sin ellas /eficiencia y /gestion no se montan, App.jsx manda cualquier ruta
+# desconocida a `/`, y la revisión leía la PORTADA creyendo leer la ruta pedida:
+# «cobertura 100% · nada que señalar» sobre otra página. Medido — pidió
+# /eficiencia y midió 7.570 caracteres, que son los de `/`.
+#
+# El script ahora además compara dónde aterrizó con lo que pidió y lo canta como
+# NO MONTADA en vez de revisarlo, así que esto son dos capas y no una: la
+# bandera evita el caso, y la comprobación evita que vuelva en silencio si
+# alguien añade una ruta tras otra bandera.
+VITE_ENABLE_PERIODISTAS=true VITE_ENABLE_EFICIENCIA=true \
+  npm run build >/dev/null 2>&1 || { echo "[pre-push] build falló; se omite la revisión."; exit 0; }
 
 # Its OWN port, never the 4173 a developer runs `npm run preview` on. Sharing it
 # was not a cosmetic clash: `--strictPort` made this preview exit instantly, the

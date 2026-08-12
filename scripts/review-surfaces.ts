@@ -222,6 +222,8 @@ async function main() {
   const partial: string[] = []
   /** Routes the clock never reached. Named, never folded into "unchanged". */
   const ranOut: string[] = []
+  /** Rutas que la build no monta: se pidió una y el navegador acabó en otra. */
+  const noMontadas: Array<{ route: string; aterrizaje: string }> = []
   /** Live findings from a previous review of byte-identical text. */
   let remembered = 0
   const pct = (n: number) => `${Math.round(n * 100)}%`
@@ -259,6 +261,31 @@ async function main() {
     await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })
     // Give the snapshot store a beat to resolve before reading the text.
     await page.waitForTimeout(1200)
+
+    // ¿Sigue el navegador donde le pedimos que fuera?
+    //
+    // App.jsx manda cualquier ruta desconocida a `/`, y una ruta tras bandera no
+    // existe en una build sin la bandera. El gancho de pre-push construía sin
+    // ellas, así que pedía /eficiencia, aterrizaba en la portada, la leía entera
+    // y publicaba «cobertura 100% · nada que señalar» sobre una página que no
+    // era la pedida. Verde por haber medido otra cosa, que es el modo de fallo
+    // nº2 de docs/DATA_INTEGRITY.md con otro disfraz.
+    //
+    // No se cachea y cuenta como SIN REVISAR: decir «no está montada» es un
+    // resultado, decir «limpia» es mentira.
+    const aterrizaje = new URL(page.url()).pathname
+    if (aterrizaje !== route) {
+      noMontadas.push({ route, aterrizaje })
+      if (!asJson) {
+        console.log(`\n── ${route}`)
+        console.log(
+          `   NO ESTÁ MONTADA en esta build: la navegación acabó en ${aterrizaje}. ` +
+            'No se ha revisado (¿falta una bandera de lanzamiento en el build?).',
+        )
+      }
+      continue
+    }
+
     // The WHOLE page. No `.slice()` here, ever — see `chunkRenderedText`.
     const renderedText = await page.locator('body').innerText()
 
@@ -435,7 +462,8 @@ async function main() {
         (totalDropped > 0 ? ` · ${totalDropped} descartado(s) por no citar literalmente` : '') +
         (partial.length > 0 ? ` · ${partial.length} PARCIAL(ES)` : '') +
         (unreviewed.length > 0 ? ` · ${unreviewed.length} SIN REVISAR` : '') +
-        (ranOut.length > 0 ? ` · ${ranOut.length} NO ALCANZADA(S) POR TIEMPO` : ''),
+        (ranOut.length > 0 ? ` · ${ranOut.length} NO ALCANZADA(S) POR TIEMPO` : '') +
+        (noMontadas.length > 0 ? ` · ${noMontadas.length} NO MONTADA(S) EN ESTA BUILD` : ''),
     )
     // The total is stated even when everything went fine. «revisada» without a
     // figure is what let 66% of /metodologia go unread for three runs.
@@ -453,6 +481,13 @@ async function main() {
     if (unreviewed.length > 0) {
       console.log(`           sin revisar: ${unreviewed.join(', ')}`)
     }
+    if (noMontadas.length > 0) {
+      console.log(
+        '           NO MONTADAS (no se han revisado, y una build sin su bandera es ' +
+          'la causa más probable): ' +
+          noMontadas.map((n) => `${n.route} → ${n.aterrizaje}`).join(', '),
+      )
+    }
     // The sentence the whole budget mechanism has to be able to say out loud.
     // A bounded check that does not name what it left out is the truncation bug
     // again, wearing a clock instead of a `.slice(0, 12000)`.
@@ -467,7 +502,17 @@ async function main() {
   // the site, and must not exit 0 as though it had. The pre-push hook ignores
   // this code by construction — nothing here may block a push — but a person or
   // a CI job reading it gets the truth.
-  if (total > 0 || unreviewed.length > 0 || partial.length > 0 || ranOut.length > 0)
+  // `noMontadas` entra por el mismo motivo: se pidió una ruta y no se revisó.
+  // Que la causa sea una bandera apagada no la convierte en revisada, y salir 0
+  // haría que un CI sin las banderas diera por leídas las páginas que no montó
+  // — exactamente el verde que este bloque existe para no dar.
+  if (
+    total > 0 ||
+    unreviewed.length > 0 ||
+    partial.length > 0 ||
+    ranOut.length > 0 ||
+    noMontadas.length > 0
+  )
     process.exitCode = 1
 }
 
