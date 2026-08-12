@@ -41,7 +41,8 @@ export function ServicioCard({ indicador, formatea }) {
   const g = GESTION[i.modoGestion] ?? GESTION['sin-clasificar']
   const motivo = i.numerador.motivo ?? i.denominador.motivo
   const cita = i.citas?.[0]
-  const puntos = i.serie.filter((p) => p.estado === 'declarado').length
+  const declarados = i.serie.filter((p) => p.estado === 'declarado')
+  const puntos = declarados.length
 
   return (
     <Card>
@@ -78,8 +79,27 @@ export function ServicioCard({ indicador, formatea }) {
               maximumFractionDigits: 0,
             })}{' '}
             ÷ {i.denominador.valor.toLocaleString('es-ES')}{' '}
-            {i.unidad.replace(/^€\//, '').replace(/^\//, '')}
+            {i.unidad.replace(/^€\//, '').replace(/^\//, '')} · entrega {cita?.entrega}
           </div>
+
+          {/* Con dos entregas no se dibuja una línea: dos puntos no son una
+              tendencia. Se enseñan los dos, cada uno con su año, y que el
+              lector saque la conclusión — que en alumbrado es que la entrega
+              de 2021 venía incompleta. */}
+          {declarados.length >= 2 && (
+            <p
+              className="mono"
+              style={{ fontSize: 12, margin: '8px 0 0', color: 'var(--ink70, var(--ink60))' }}
+            >
+              {declarados.map((p, idx) => (
+                <span key={p.anio}>
+                  {idx > 0 && ' → '}
+                  {p.anio}: {formatea(p.valor)}
+                </span>
+              ))}
+            </p>
+          )}
+
           <BandaPares indicador={i} formatea={formatea} />
           {puntos < 2 && (
             <p style={{ fontSize: 11.5, color: 'var(--ink50)', margin: '10px 0 0' }}>

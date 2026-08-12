@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T08:12:51.926Z",
+  "generatedAt": "2026-08-12T08:31:05.419Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2021,
   "source": {
@@ -22,9 +22,10 @@
       2024
     ],
     "entregasObtenidas": [
-      2021
+      2021,
+      2024
     ],
-    "motivoFaltantes": "El ministerio sólo publica volcado masivo de 2021. El resto de entregas sólo son accesibles por la aplicación de consulta, cuya página de resultado no contiene los costes y cuyo botón de descarga no se puede reconstruir como POST."
+    "motivoFaltantes": "El ministerio sólo publica volcado masivo de 2021. El resto de entregas sólo salen del informe por ente de la aplicación de consulta, cuyo botón de descarga no se deja reconstruir como POST: hay que pedirlo desde un navegador y dejar el fichero en .cache/cesel/informes."
   },
   "indicadores": [
     {
@@ -238,6 +239,11 @@
           "anio": 2021,
           "valor": 72.43064232178752,
           "estado": "declarado"
+        },
+        {
+          "anio": 2024,
+          "valor": 66.93595408796672,
+          "estado": "declarado"
         }
       ],
       "caveats": [
@@ -450,6 +456,11 @@
           "anio": 2021,
           "valor": 0.9639521714285715,
           "estado": "declarado"
+        },
+        {
+          "anio": 2024,
+          "valor": 1.5866440571428573,
+          "estado": "declarado"
         }
       ],
       "caveats": [
@@ -654,6 +665,11 @@
         {
           "anio": 2021,
           "valor": 0.9702314180469863,
+          "estado": "declarado"
+        },
+        {
+          "anio": 2024,
+          "valor": 2.0221881747891346,
           "estado": "declarado"
         }
       ],
@@ -974,6 +990,11 @@
         {
           "anio": 2021,
           "valor": 0.19643506947634465,
+          "estado": "declarado"
+        },
+        {
+          "anio": 2024,
+          "valor": 0.31524740928513706,
           "estado": "declarado"
         }
       ],
@@ -1343,6 +1364,11 @@
           "anio": 2021,
           "valor": 13.73365551930397,
           "estado": "declarado"
+        },
+        {
+          "anio": 2024,
+          "valor": 16.607863648722134,
+          "estado": "declarado"
         }
       ],
       "caveats": [
@@ -1704,6 +1730,11 @@
           "anio": 2021,
           "valor": 21.763794860434206,
           "estado": "declarado"
+        },
+        {
+          "anio": 2024,
+          "valor": 147.24836508639788,
+          "estado": "declarado"
         }
       ],
       "caveats": [
@@ -2035,6 +2066,11 @@
         {
           "anio": 2021,
           "valor": 5.676152759560084,
+          "estado": "declarado"
+        },
+        {
+          "anio": 2024,
+          "valor": 4.54578448188881,
           "estado": "declarado"
         }
       ],
@@ -2395,6 +2431,11 @@
           "anio": 2021,
           "valor": 19414.34425099121,
           "estado": "declarado"
+        },
+        {
+          "anio": 2024,
+          "valor": 33685.87588346837,
+          "estado": "declarado"
         }
       ],
       "caveats": [
@@ -2732,6 +2773,11 @@
         {
           "anio": 2021,
           "valor": 77.99620811452863,
+          "estado": "declarado"
+        },
+        {
+          "anio": 2024,
+          "valor": 100.34672136784197,
           "estado": "declarado"
         }
       ],
@@ -3113,6 +3159,11 @@
           "anio": 2021,
           "valor": 47521.718653846154,
           "estado": "declarado"
+        },
+        {
+          "anio": 2024,
+          "valor": 81964.66115384616,
+          "estado": "declarado"
         }
       ],
       "caveats": [
@@ -3153,6 +3204,11 @@
           "anio": 2021,
           "valor": null,
           "estado": "no-declarado"
+        },
+        {
+          "anio": 2024,
+          "valor": null,
+          "estado": "no-declarado"
         }
       ],
       "caveats": [],
@@ -3189,6 +3245,11 @@
       "serie": [
         {
           "anio": 2021,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2024,
           "valor": null,
           "estado": "no-declarado"
         }
@@ -3229,6 +3290,11 @@
           "anio": 2021,
           "valor": null,
           "estado": "no-declarado"
+        },
+        {
+          "anio": 2024,
+          "valor": null,
+          "estado": "no-declarado"
         }
       ],
       "caveats": [],
@@ -3249,7 +3315,8 @@
     "noSePresta": 0,
     "comparables": 10,
     "aniosDisponibles": [
-      2021
+      2021,
+      2024
     ]
   },
   "municipales": [

@@ -22,9 +22,14 @@ const COMPARABLE = SNAP.indicadores.find((i: { pares: unknown }) => i.pares)
 test.describe('Eficiencia (/eficiencia)', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/eficiencia', { waitUntil: 'domcontentloaded' })
+    // `isVisible()` no espera: con la SPA a medio hidratar devuelve false y el
+    // test se salta en silencio, que es la misma avería que una guarda hueca
+    // —verde sin haber medido nada—. Hay que esperar de verdad y sólo saltar
+    // cuando la ruta no existe.
     const montada = await page
       .getByRole('heading', { name: /Cuánto cuesta y qué se obtiene/i })
-      .isVisible()
+      .waitFor({ state: 'visible', timeout: 8000 })
+      .then(() => true)
       .catch(() => false)
     test.skip(!montada, '/eficiencia no está montada — reconstruye con VITE_ENABLE_EFICIENCIA=true')
   })

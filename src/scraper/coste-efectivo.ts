@@ -191,3 +191,119 @@ export function parseCeselWorkbook(
   }
   return out
 }
+
+/**
+ * Parse a per-entity CESEL report — the file the consulta hands over when you
+ * pick one ente and one entrega and press the Excel button.
+ *
+ * Tercera forma de entrada, y la única vía a las entregas que el ministerio no
+ * vuelca en masa (sólo publica 2021 entero). No es la tabla plana nacional sino
+ * un informe con ocho hojas, tres de las cuales importan, duplicadas por
+ * sufijo:
+ *
+ *   CE1a/CE1b → programa → tipo de gestión
+ *   CE2a/CE2b → programa → coste, con el total en la columna `coste_efectivo`
+ *   CE3a/CE3b → programa → unidad física + nº de unidades
+ *
+ * El sufijo de la hoja ES el prefijo del programa: `165` en CE2a es el mismo
+ * servicio que `a165` en el volcado nacional, y `151/150P` en CE2b es
+ * `b151/150P`. Sin esa traducción el registro de denominadores no casaría con
+ * nada y los servicios desaparecerían de la página en silencio.
+ *
+ * Las columnas se localizan por el TEXTO de su cabecera, no por índice: las
+ * hojas `a` y `b` tienen distinto número de columnas de coste.
+ */
+export function parseCeselInforme(
+  buffer: Buffer | ArrayBuffer,
+  opts: { anio: number; ine: string; nombre?: string },
+): CesteRow[] {
+  const wb = XLSX.read(buffer, { type: 'buffer' })
+
+  const leerHoja = (nombre: string): { head: string[]; filas: unknown[][] } | null => {
+    const hoja = wb.Sheets[nombre]
+    if (!hoja) return null
+    const rows: unknown[][] = XLSX.utils.sheet_to_json(hoja, { header: 1, raw: true, defval: null })
+    const i = rows.findIndex((r) => String(r?.[0] ?? '').trim() === 'IdInforme')
+    if (i < 0) return null
+    return { head: rows[i].map((h) => String(h ?? '').trim()), filas: rows.slice(i + 1) }
+  }
+
+  const col = (head: string[], re: RegExp) => head.findIndex((h) => re.test(h))
+  const out: CesteRow[] = []
+  const enteAA = `17-${opts.ine.slice(0, 2)}-${opts.ine.slice(2)}-AA-000`
+
+  /**
+   * El informe trae al ente principal Y a sus entidades dependientes: en 2024
+   * Riba-roja aparece junto a una Comunidad de Usuarios (`17-00-040-JJ-000`)
+   * que declara «No se presta el servicio» para casi todo. Quedarse con la
+   * última fila de cada programa —que es lo que hace un `Map.set` ingenuo—
+   * convertía el ayuntamiento entero en «no se presta».
+   *
+   * El volcado nacional publica la fila del ayuntamiento sola, así que para que
+   * las dos formas de entrada signifiquen lo mismo hay que filtrar por ente.
+   */
+  const soloAyuntamiento = (head: string[], filas: unknown[][]) => {
+    const iEnte = col(head, /^C[oó]digo Ente$/i)
+    if (iEnte < 0) return filas
+    return filas.filter((r) => String(r?.[iEnte] ?? '').trim() === enteAA)
+  }
+
+  for (const sufijo of ['a', 'b'] as const) {
+    const ce1 = leerHoja(`CE1${sufijo}`)
+    const ce2 = leerHoja(`CE2${sufijo}`)
+    const ce3 = leerHoja(`CE3${sufijo}`)
+    if (!ce2) continue
+
+    const iProg2 = col(ce2.head, /^Grupo de programa/i)
+    const iCoste = col(ce2.head, /^coste_efectivo$/i)
+    if (iProg2 < 0 || iCoste < 0) continue
+
+    const gestion = new Map<string, string>()
+    if (ce1) {
+      const iProg1 = col(ce1.head, /^Grupo de programa/i)
+      const iTipo = col(ce1.head, /^Tipo de Gesti/i)
+      if (iProg1 >= 0 && iTipo >= 0) {
+        for (const r of soloAyuntamiento(ce1.head, ce1.filas)) {
+          const p = String(r?.[iProg1] ?? '').trim()
+          if (p) gestion.set(p, String(r[iTipo] ?? '').trim())
+        }
+      }
+    }
+
+    const unidades = new Map<string, UnidadFisica[]>()
+    if (ce3) {
+      const iProg3 = col(ce3.head, /^Grupo de programa/i)
+      const iAtr = col(ce3.head, /^Unidades f[ií]sicas/i)
+      const iVal = col(ce3.head, /^N[ºo°]? ?unidades$/i)
+      if (iProg3 >= 0 && iAtr >= 0 && iVal >= 0) {
+        for (const r of soloAyuntamiento(ce3.head, ce3.filas)) {
+          const p = String(r?.[iProg3] ?? '').trim()
+          if (!p) continue
+          const lista = unidades.get(p) ?? []
+          lista.push({ atributo: atributoKey(r[iAtr]), valor: numeric(r[iVal]) })
+          unidades.set(p, lista)
+        }
+      }
+    }
+
+    for (const r of soloAyuntamiento(ce2.head, ce2.filas)) {
+      const programa = String(r?.[iProg2] ?? '').trim()
+      if (!programa) continue
+      const codGestionRaw = gestion.get(programa) ?? ''
+      const modoGestion = clasificarGestion(codGestionRaw)
+      out.push({
+        anio: opts.anio,
+        ine: opts.ine,
+        ente: `17-${opts.ine.slice(0, 2)}-${opts.ine.slice(2)}-AA-000`,
+        nombre: opts.nombre ?? '',
+        // El sufijo de la hoja es el prefijo del programa en el volcado nacional.
+        programa: sufijo + programa,
+        modoGestion,
+        codGestionRaw,
+        costeTotal: modoGestion === 'no-se-presta' ? null : numeric(r[iCoste]),
+        unidades: unidades.get(programa) ?? [],
+      })
+    }
+  }
+  return out
+}

@@ -27,10 +27,10 @@
  *
  * Usage: npm run scrape:coste-efectivo [-- --refetch]
  */
-import { mkdir, readFile, writeFile, stat } from 'node:fs/promises'
+import { mkdir, readFile, writeFile, stat, readdir } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { parseCeselWorkbook, type CesteRow } from '../src/scraper/coste-efectivo'
+import { parseCeselWorkbook, parseCeselInforme, type CesteRow } from '../src/scraper/coste-efectivo'
 import { parseConprelRoster, type ConprelMunicipio } from '../src/scraper/budget'
 import { startRun, NO_LLM_STATS } from '../src/scraper/run-manifest'
 
@@ -169,6 +169,36 @@ async function main() {
   rec.judge()
   rec.record('filas', todas.length)
 
+  // Informes por ente descargados a mano de la consulta (ver el encabezado):
+  // son la única vía a las entregas que el ministerio no vuelca en masa.
+  // Nombre: cesel-informe-<ine>-<anio>.xlsx
+  const informesDir = join(CACHE_DIR, 'informes')
+  let ficheros: string[] = []
+  try {
+    ficheros = (await readdir(informesDir)).filter((f) => f.endsWith('.xlsx'))
+  } catch {
+    /* sin informes descargados todavía */
+  }
+  for (const f of ficheros) {
+    const m = /cesel-informe-(\d{5})-(\d{4})\.xlsx$/.exec(f)
+    if (!m || m[1] !== INE) continue
+    const anio = Number(m[2])
+    if (anio === ANIO_VOLCADO) continue // el volcado manda para su propia entrega
+    const filas = parseCeselInforme(await readFile(join(informesDir, f)), {
+      anio,
+      ine: INE,
+      nombre: filasMunicipio[0].nombre,
+    })
+    if (!filas.length) {
+      console.warn(`[cesel] ${f}: 0 filas, se ignora`)
+      continue
+    }
+    filasMunicipio.push(...filas)
+    rec.judge()
+    console.log(`[cesel] entrega ${anio}: ${filas.length} filas desde informe por ente`)
+  }
+  filasMunicipio.sort((a, b) => a.anio - b.anio || a.programa.localeCompare(b.programa))
+
   const nombre = filasMunicipio[0].nombre
   const snapshot = {
     generatedAt: new Date().toISOString(),
@@ -184,15 +214,15 @@ async function main() {
     },
     cobertura: {
       entregasPublicadas: Object.values(ENTREGAS).sort(),
-      entregasObtenidas: [ANIO_VOLCADO],
+      entregasObtenidas: [...new Set(filasMunicipio.map((f) => f.anio))].sort(),
       motivoFaltantes:
         'El ministerio sólo publica volcado masivo de 2021. El resto de entregas ' +
-        'sólo son accesibles por la aplicación de consulta, cuya página de ' +
-        'resultado no contiene los costes y cuyo botón de descarga no se puede ' +
-        'reconstruir como POST.',
+        'sólo salen del informe por ente de la aplicación de consulta, cuyo botón ' +
+        'de descarga no se deja reconstruir como POST: hay que pedirlo desde un ' +
+        'navegador y dejar el fichero en .cache/cesel/informes.',
     },
     stats: {
-      anios: [ANIO_VOLCADO],
+      anios: [...new Set(filasMunicipio.map((f) => f.anio))].sort(),
       filasMunicipio: filasMunicipio.length,
       filasPares: filasPares.length,
       miembros: miembros.length,

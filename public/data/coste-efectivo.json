@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T07:00:12.840Z",
+  "generatedAt": "2026-08-12T08:30:56.490Z",
   "source": {
     "volcado": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
     "consulta": "https://serviciostelematicosext.hacienda.gob.es/sgcief/Cesel/Consulta/Consulta.aspx",
@@ -14,293 +14,17 @@
         "ine": "46214",
         "ente": "17-46-214-AA-000",
         "nombre": "Riba-roja de Túria",
-        "programa": "a160",
-        "modoGestion": "concesion",
-        "codGestionRaw": "Gestión indirecta mediante concesión, gestionando el concesionario el servicio a su riesgo y ventura",
-        "costeTotal": 0,
-        "unidades": [
-          {
-            "atributo": "Longitud del tramo: metros lineales.",
-            "valor": 245270
-          },
-          {
-            "atributo": "Nº viviendas con servicio",
-            "valor": 10308
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "a1623",
-        "modoGestion": "otra",
-        "codGestionRaw": "Gestión mancomunada/comarcal/por la Diputación/otro tipo de agrupación municipal + otra forma de gestión (*)",
-        "costeTotal": 2405.78,
-        "unidades": [
-          {
-            "atributo": "Capacidad de almacenamiento de la instalación (vertedero) (metros cúbicos)",
-            "valor": 176
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "a171/170P",
+        "programa": "a135/130P",
         "modoGestion": "directa",
         "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 718015.88,
+        "costeTotal": 3229.61,
         "unidades": [
           {
-            "atributo": "Superficie: suma en metros cuadrados de la superficie total (tanto la cubierta como al aire libre)",
-            "valor": 740046
-          },
-          {
-            "atributo": "Superficie: suma en kilómetros cuadrados de parques y jardines públicos (tanto la cubierta como al aire libre)",
-            "valor": 0.74
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "b132/130P",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 2471129.37,
-        "unidades": [
-          {
-            "atributo": "Nº efectivos asignados al servicio",
-            "valor": 52
-          },
-          {
-            "atributo": "Nº vehículos adscritos al servicio",
-            "valor": 15
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "b323/324/320P",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 2495254.69,
-        "unidades": [
-          {
-            "atributo": "Nº aulas",
-            "valor": 64
-          },
-          {
-            "atributo": "Superficie en metros cuadrados de los edificios",
-            "valor": 31992
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "a164",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 56256.35,
-        "unidades": [
-          {
-            "atributo": "Superficie total del cementerio: metros cuadrados",
-            "valor": 9911
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "b321/322/320P",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 0,
-        "unidades": [
-          {
-            "atributo": "Superficie nuevos terrenos destinados a centros educativos",
-            "valor": 0
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "b334/330P",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 276528.81,
-        "unidades": [
-          {
-            "atributo": "Nº efectivos en plantilla asignados al servicio",
-            "valor": 3
-          },
-          {
-            "atributo": "Nº campañas realizadas al año",
-            "valor": 0
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "b333/330P",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 168784.34,
-        "unidades": [
-          {
-            "atributo": "Nº personas en plantilla adscritas al servicio",
-            "valor": 7
-          },
-          {
-            "atributo": "Superficie: suma en metros cuadrados de superficies de todas las instalaciones culturales",
-            "valor": 5727
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "b336/330P",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 112843.37,
-        "unidades": [
-          {
-            "atributo": "Nº personas en plantilla adscritas al servicio",
-            "valor": 1
-          },
-          {
-            "atributo": "Nº bienes culturales protegidos",
-            "valor": 31
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "b4311/430P",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 22504.26,
-        "unidades": [
-          {
-            "atributo": "Estimación anual personas asistentes",
-            "valor": 14000
-          },
-          {
-            "atributo": "Nº ferias anuales",
-            "valor": 2
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "a163",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 674766.52,
-        "unidades": [
-          {
-            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "atributo": "Superficie (metros cuadrados) de las instalaciones del centro de protección civil o centro de salvamento y socorrismo.",
             "valor": 0
           },
           {
-            "atributo": "Superficie en metros cuadrados con servicio de limpieza",
-            "valor": 700000
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "a1721/170P",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 1964894.95,
-        "unidades": [
-          {
-            "atributo": "Nº personas en plantilla adscritas al servicio",
-            "valor": 0
-          },
-          {
-            "atributo": "Nº personas en plantilla adscritas al servicio",
-            "valor": 16
-          },
-          {
-            "atributo": "Superficie en kilómetros cuadrados del núcleo urbano",
-            "valor": 1.43
-          },
-          {
-            "atributo": "Superficie en kilómetros cuadrados del núcleo urbano",
-            "valor": 12.89
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "b1521/150P",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 0,
-        "unidades": [
-          {
-            "atributo": "Nº viviendas de protección pública",
-            "valor": 104
-          },
-          {
-            "atributo": "Superficie de terrenos destinados a edificación de vivienda pública (metros cuadrados)",
-            "valor": 0
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "b164",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 52844.33,
-        "unidades": [
-          {
-            "atributo": "Nº efectivos en plantilla asignados al servicio",
-            "valor": 1
-          },
-          {
-            "atributo": "Nº vehículos adscritos al servicio",
+            "atributo": "Nº personas en plantilla del servicio de protección civil",
             "valor": 0
           }
         ]
@@ -330,14 +54,14 @@
         "ine": "46214",
         "ente": "17-46-214-AA-000",
         "nombre": "Riba-roja de Túria",
-        "programa": "a1622",
+        "programa": "a1531/150P",
         "modoGestion": "directa",
         "codGestionRaw": "Gestión directa por la entidad local",
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Producción anual residuos urbanos: toneladas",
-            "valor": 11059.41
+            "atributo": "Puntos kilométricos: P.K correspondientes al inicio y final del tramo del municipio (en km)",
+            "valor": 30.86
           }
         ]
       },
@@ -346,18 +70,14 @@
         "ine": "46214",
         "ente": "17-46-214-AA-000",
         "nombre": "Riba-roja de Túria",
-        "programa": "a342/340P",
+        "programa": "a1532/150P",
         "modoGestion": "directa",
         "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 689912.45,
+        "costeTotal": 209536.11,
         "unidades": [
           {
-            "atributo": "Nº personas en plantilla adscritas al servicio",
-            "valor": 11
-          },
-          {
-            "atributo": "Superficie: suma de superficies de todas las instalaciones",
-            "valor": 122312
+            "atributo": "Superficie de los tramos pavimentados (metros cuadrados)",
+            "valor": 1066694
           }
         ]
       },
@@ -366,54 +86,18 @@
         "ine": "46214",
         "ente": "17-46-214-AA-000",
         "nombre": "Riba-roja de Túria",
-        "programa": "b337/330P",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 217497.4,
-        "unidades": [
-          {
-            "atributo": "Nº personas en plantilla adscritas al servicio",
-            "valor": 4
-          },
-          {
-            "atributo": "Superficie: suma de superficies en metros cuadrados de todas las instalaciones de tiempo libre",
-            "valor": 1832
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "b4313/430P",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
+        "programa": "a160",
+        "modoGestion": "concesion",
+        "codGestionRaw": "Gestión indirecta mediante concesión, gestionando el concesionario el servicio a su riesgo y ventura",
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº licencias o permisos concedidas",
-            "valor": 120
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "a135/130P",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 3229.61,
-        "unidades": [
-          {
-            "atributo": "Superficie (metros cuadrados) de las instalaciones del centro de protección civil o centro de salvamento y socorrismo.",
-            "valor": 0
+            "atributo": "Longitud del tramo: metros lineales.",
+            "valor": 245270
           },
           {
-            "atributo": "Nº personas en plantilla del servicio de protección civil",
-            "valor": 0
+            "atributo": "Nº viviendas con servicio",
+            "valor": 10308
           }
         ]
       },
@@ -470,6 +154,74 @@
         "ine": "46214",
         "ente": "17-46-214-AA-000",
         "nombre": "Riba-roja de Túria",
+        "programa": "a1622",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Producción anual residuos urbanos: toneladas",
+            "valor": 11059.41
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a1623",
+        "modoGestion": "otra",
+        "codGestionRaw": "Gestión mancomunada/comarcal/por la Diputación/otro tipo de agrupación municipal + otra forma de gestión (*)",
+        "costeTotal": 2405.78,
+        "unidades": [
+          {
+            "atributo": "Capacidad de almacenamiento de la instalación (vertedero) (metros cúbicos)",
+            "valor": 176
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a163",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 674766.52,
+        "unidades": [
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 0
+          },
+          {
+            "atributo": "Superficie en metros cuadrados con servicio de limpieza",
+            "valor": 700000
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a164",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 56256.35,
+        "unidades": [
+          {
+            "atributo": "Superficie total del cementerio: metros cuadrados",
+            "valor": 9911
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
         "programa": "a165",
         "modoGestion": "directa",
         "codGestionRaw": "Gestión directa por la entidad local",
@@ -486,6 +238,26 @@
           {
             "atributo": "Potencia instalada",
             "valor": 657
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a171/170P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 718015.88,
+        "unidades": [
+          {
+            "atributo": "Superficie: suma en metros cuadrados de la superficie total (tanto la cubierta como al aire libre)",
+            "valor": 740046
+          },
+          {
+            "atributo": "Superficie: suma en kilómetros cuadrados de parques y jardines públicos (tanto la cubierta como al aire libre)",
+            "valor": 0.74
           }
         ]
       },
@@ -514,38 +286,26 @@
         "ine": "46214",
         "ente": "17-46-214-AA-000",
         "nombre": "Riba-roja de Túria",
-        "programa": "b134/130P",
+        "programa": "a1721/170P",
         "modoGestion": "directa",
         "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 0,
+        "costeTotal": 1964894.95,
         "unidades": [
           {
-            "atributo": "Nº efectivos en plantilla asignados al servicio",
+            "atributo": "Nº personas en plantilla adscritas al servicio",
             "valor": 0
           },
           {
-            "atributo": "Nº vehículos adscritos al servicio",
-            "valor": 0
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "b4312/430P",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 40613.57,
-        "unidades": [
-          {
-            "atributo": "Nº puestos",
+            "atributo": "Nº personas en plantilla adscritas al servicio",
             "valor": 16
           },
           {
-            "atributo": "Superficie total en metros cuadrados",
-            "valor": 681
+            "atributo": "Superficie en kilómetros cuadrados del núcleo urbano",
+            "valor": 1.43
+          },
+          {
+            "atributo": "Superficie en kilómetros cuadrados del núcleo urbano",
+            "valor": 12.89
           }
         ]
       },
@@ -554,30 +314,26 @@
         "ine": "46214",
         "ente": "17-46-214-AA-000",
         "nombre": "Riba-roja de Túria",
-        "programa": "b432/430P",
+        "programa": "a1721/170P",
         "modoGestion": "directa",
         "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 197976.29,
+        "costeTotal": 282412.19,
         "unidades": [
           {
-            "atributo": "Nº efectivos en plantilla asignados al servicio",
-            "valor": 4
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "a1531/150P",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 0,
-        "unidades": [
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 0
+          },
           {
-            "atributo": "Puntos kilométricos: P.K correspondientes al inicio y final del tramo del municipio (en km)",
-            "valor": 30.86
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 16
+          },
+          {
+            "atributo": "Superficie en kilómetros cuadrados del núcleo urbano",
+            "valor": 1.43
+          },
+          {
+            "atributo": "Superficie en kilómetros cuadrados del núcleo urbano",
+            "valor": 12.89
           }
         ]
       },
@@ -650,6 +406,26 @@
         "ine": "46214",
         "ente": "17-46-214-AA-000",
         "nombre": "Riba-roja de Túria",
+        "programa": "a342/340P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 689912.45,
+        "unidades": [
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 11
+          },
+          {
+            "atributo": "Superficie: suma de superficies de todas las instalaciones",
+            "valor": 122312
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
         "programa": "a4411/440P",
         "modoGestion": "directa",
         "codGestionRaw": "Gestión directa por la entidad local",
@@ -674,6 +450,46 @@
         "ine": "46214",
         "ente": "17-46-214-AA-000",
         "nombre": "Riba-roja de Túria",
+        "programa": "b132/130P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 2471129.37,
+        "unidades": [
+          {
+            "atributo": "Nº efectivos asignados al servicio",
+            "valor": 52
+          },
+          {
+            "atributo": "Nº vehículos adscritos al servicio",
+            "valor": 15
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b134/130P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Nº efectivos en plantilla asignados al servicio",
+            "valor": 0
+          },
+          {
+            "atributo": "Nº vehículos adscritos al servicio",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
         "programa": "b151/150P",
         "modoGestion": "directa",
         "codGestionRaw": "Gestión directa por la entidad local",
@@ -686,6 +502,26 @@
           {
             "atributo": "Superficie urbanizable (kilómetros cuadrados)",
             "valor": 6.04
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b1521/150P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Nº viviendas de protección pública",
+            "valor": 104
+          },
+          {
+            "atributo": "Superficie de terrenos destinados a edificación de vivienda pública (metros cuadrados)",
+            "valor": 0
           }
         ]
       },
@@ -738,82 +574,18 @@
         "ine": "46214",
         "ente": "17-46-214-AA-000",
         "nombre": "Riba-roja de Túria",
-        "programa": "b341/340P",
+        "programa": "b164",
         "modoGestion": "directa",
         "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 791818.66,
+        "costeTotal": 52844.33,
         "unidades": [
-          {
-            "atributo": "Nº campañas realizadas al año",
-            "valor": 0
-          },
           {
             "atributo": "Nº efectivos en plantilla asignados al servicio",
-            "valor": 17
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "b491/492",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 526522.11,
-        "unidades": [
+            "valor": 1
+          },
           {
-            "atributo": "Nº campañas realizadas al año",
+            "atributo": "Nº vehículos adscritos al servicio",
             "valor": 0
-          },
-          {
-            "atributo": "Nº efectivos en plantilla asignados al servicio",
-            "valor": 7
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "a1532/150P",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 209536.11,
-        "unidades": [
-          {
-            "atributo": "Superficie de los tramos pavimentados (metros cuadrados)",
-            "valor": 1066694
-          }
-        ]
-      },
-      {
-        "anio": 2021,
-        "ine": "46214",
-        "ente": "17-46-214-AA-000",
-        "nombre": "Riba-roja de Túria",
-        "programa": "a1721/170P",
-        "modoGestion": "directa",
-        "codGestionRaw": "Gestión directa por la entidad local",
-        "costeTotal": 282412.19,
-        "unidades": [
-          {
-            "atributo": "Nº personas en plantilla adscritas al servicio",
-            "valor": 0
-          },
-          {
-            "atributo": "Nº personas en plantilla adscritas al servicio",
-            "valor": 16
-          },
-          {
-            "atributo": "Superficie en kilómetros cuadrados del núcleo urbano",
-            "valor": 1.43
-          },
-          {
-            "atributo": "Superficie en kilómetros cuadrados del núcleo urbano",
-            "valor": 12.89
           }
         ]
       },
@@ -842,6 +614,42 @@
         "ine": "46214",
         "ente": "17-46-214-AA-000",
         "nombre": "Riba-roja de Túria",
+        "programa": "b321/322/320P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Superficie nuevos terrenos destinados a centros educativos",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b323/324/320P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 2495254.69,
+        "unidades": [
+          {
+            "atributo": "Nº aulas",
+            "valor": 64
+          },
+          {
+            "atributo": "Superficie en metros cuadrados de los edificios",
+            "valor": 31992
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
         "programa": "b325/320P",
         "modoGestion": "directa",
         "codGestionRaw": "Gestión directa por la entidad local",
@@ -850,6 +658,106 @@
           {
             "atributo": "Nº efectivos en plantilla asignados al servicio",
             "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b333/330P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 168784.34,
+        "unidades": [
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 7
+          },
+          {
+            "atributo": "Superficie: suma en metros cuadrados de superficies de todas las instalaciones culturales",
+            "valor": 5727
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b334/330P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 276528.81,
+        "unidades": [
+          {
+            "atributo": "Nº efectivos en plantilla asignados al servicio",
+            "valor": 3
+          },
+          {
+            "atributo": "Nº campañas realizadas al año",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b336/330P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 112843.37,
+        "unidades": [
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 1
+          },
+          {
+            "atributo": "Nº bienes culturales protegidos",
+            "valor": 31
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b337/330P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 217497.4,
+        "unidades": [
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 4
+          },
+          {
+            "atributo": "Superficie: suma de superficies en metros cuadrados de todas las instalaciones de tiempo libre",
+            "valor": 1832
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b341/340P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 791818.66,
+        "unidades": [
+          {
+            "atributo": "Nº campañas realizadas al año",
+            "valor": 0
+          },
+          {
+            "atributo": "Nº efectivos en plantilla asignados al servicio",
+            "valor": 17
           }
         ]
       },
@@ -878,6 +786,78 @@
         "ine": "46214",
         "ente": "17-46-214-AA-000",
         "nombre": "Riba-roja de Túria",
+        "programa": "b4311/430P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 22504.26,
+        "unidades": [
+          {
+            "atributo": "Estimación anual personas asistentes",
+            "valor": 14000
+          },
+          {
+            "atributo": "Nº ferias anuales",
+            "valor": 2
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b4312/430P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 40613.57,
+        "unidades": [
+          {
+            "atributo": "Nº puestos",
+            "valor": 16
+          },
+          {
+            "atributo": "Superficie total en metros cuadrados",
+            "valor": 681
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b4313/430P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Nº licencias o permisos concedidas",
+            "valor": 120
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b432/430P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 197976.29,
+        "unidades": [
+          {
+            "atributo": "Nº efectivos en plantilla asignados al servicio",
+            "valor": 4
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
         "programa": "b45",
         "modoGestion": "directa",
         "codGestionRaw": "Gestión directa por la entidad local",
@@ -885,6 +865,906 @@
         "unidades": [
           {
             "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2021,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b491/492",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 526522.11,
+        "unidades": [
+          {
+            "atributo": "Nº campañas realizadas al año",
+            "valor": 0
+          },
+          {
+            "atributo": "Nº efectivos en plantilla asignados al servicio",
+            "valor": 7
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a135/130P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 1265.39,
+        "unidades": [
+          {
+            "atributo": "Nº personas en plantilla del servicio de protección civil",
+            "valor": 0
+          },
+          {
+            "atributo": "Superficie (metros cuadrados) de las instalaciones del centro de protección civil o centro de salvamento y socorrismo.",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a136/130P",
+        "modoGestion": "mancomunada",
+        "codGestionRaw": "Gestión mancomunada/comarcal/por la Diputación/otro tipo de agrupación municipal",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Nº personas en plantilla del servicio de parque de bomberos.",
+            "valor": 0
+          },
+          {
+            "atributo": "Vehículos destinados a extinción de incendios",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a1531/150P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Puntos kilométricos: P.K correspondientes al inicio y final del tramo del municipio (en km)",
+            "valor": 30.86
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a1532/150P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 336272.52,
+        "unidades": [
+          {
+            "atributo": "Superficie de los tramos pavimentados (metros cuadrados)",
+            "valor": 1066694
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a160",
+        "modoGestion": "concesion",
+        "codGestionRaw": "Gestión indirecta mediante concesión, gestionando el concesionario el servicio a su riesgo y ventura",
+        "costeTotal": 514318.78,
+        "unidades": [
+          {
+            "atributo": "Longitud del tramo: metros lineales.",
+            "valor": 296490
+          },
+          {
+            "atributo": "Nº viviendas con servicio",
+            "valor": 10775
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a161",
+        "modoGestion": "concesion",
+        "codGestionRaw": "Gestión indirecta mediante concesión, gestionando el concesionario el servicio a su riesgo y ventura",
+        "costeTotal": 1898034.08,
+        "unidades": [
+          {
+            "atributo": "Longitud de la red: metros lineales",
+            "valor": 270630
+          },
+          {
+            "atributo": "Nº viviendas conectadas y no conectadas",
+            "valor": 11325
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a1621",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 740272.16,
+        "unidades": [
+          {
+            "atributo": "Producción anual residuos urbanos: toneladas",
+            "valor": 11059.41
+          },
+          {
+            "atributo": "Nº contenedores",
+            "valor": 657
+          },
+          {
+            "atributo": "Periodicidad (1 - DI, 2 - AL, 3 - SE, 4 - QU, 5 - OT, 6 - NO)",
+            "valor": 5
+          },
+          {
+            "atributo": "Kilómetros lineales del trayecto de recogida",
+            "valor": 220
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a1622",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Producción anual residuos urbanos: toneladas",
+            "valor": 11059.41
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a1623",
+        "modoGestion": "mancomunada",
+        "codGestionRaw": "Gestión mancomunada/comarcal/por la Diputación/otro tipo de agrupación municipal",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Capacidad de almacenamiento de la instalación (vertedero) (metros cúbicos)",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a163",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 1110650.84,
+        "unidades": [
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 0
+          },
+          {
+            "atributo": "Superficie en metros cuadrados con servicio de limpieza",
+            "valor": 700000
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a164",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 45053.27,
+        "unidades": [
+          {
+            "atributo": "Superficie total del cementerio: metros cuadrados",
+            "valor": 9911
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a165",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 664679.12,
+        "unidades": [
+          {
+            "atributo": "Potencia instalada",
+            "valor": 657
+          },
+          {
+            "atributo": "Superficie iluminada: metros lineales",
+            "valor": 120000
+          },
+          {
+            "atributo": "Nº puntos de luz",
+            "valor": 4514
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a171/170P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Superficie: suma en metros cuadrados de la superficie total (tanto la cubierta como al aire libre)",
+            "valor": 740046
+          },
+          {
+            "atributo": "Superficie: suma en kilómetros cuadrados de parques y jardines públicos (tanto la cubierta como al aire libre)",
+            "valor": 0.74
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a171/170P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 1496512.27,
+        "unidades": [
+          {
+            "atributo": "Superficie: suma en metros cuadrados de la superficie total (tanto la cubierta como al aire libre)",
+            "valor": 740046
+          },
+          {
+            "atributo": "Superficie: suma en kilómetros cuadrados de parques y jardines públicos (tanto la cubierta como al aire libre)",
+            "valor": 0.74
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a1721/170P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 16
+          },
+          {
+            "atributo": "Superficie en kilómetros cuadrados del núcleo urbano",
+            "valor": 1.43
+          },
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 0
+          },
+          {
+            "atributo": "Superficie en kilómetros cuadrados del núcleo urbano",
+            "valor": 12.89
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a1721/170P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 574944.17,
+        "unidades": [
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 16
+          },
+          {
+            "atributo": "Superficie en kilómetros cuadrados del núcleo urbano",
+            "valor": 1.43
+          },
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 0
+          },
+          {
+            "atributo": "Superficie en kilómetros cuadrados del núcleo urbano",
+            "valor": 12.89
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a231",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 3337103.81,
+        "unidades": [
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 11
+          },
+          {
+            "atributo": "Superficie en metros cuadrados de: Centros de Asistencia Social",
+            "valor": 840
+          },
+          {
+            "atributo": "Nº Residencias de Ancianos",
+            "valor": 0
+          },
+          {
+            "atributo": "Nº Guarderías Infantiles (no los parvularios ni docentes preescolares)",
+            "valor": 1
+          },
+          {
+            "atributo": "Nº Albergues municipales",
+            "valor": 0
+          },
+          {
+            "atributo": "Nº Centros de rehabilitación toxicómanos en régimen abierto o con estancia",
+            "valor": 0
+          },
+          {
+            "atributo": "Nº otros centros de atención social",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a3321/330P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 244334.89,
+        "unidades": [
+          {
+            "atributo": "Superficie en metros cuadrados",
+            "valor": 512
+          },
+          {
+            "atributo": "Nº publicaciones que constituyen los fondos bibliotecarios",
+            "valor": 65657
+          },
+          {
+            "atributo": "Nº préstamos por fondo biblitotecario",
+            "valor": 14712
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a342/340P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 1141586.57,
+        "unidades": [
+          {
+            "atributo": "Superficie: suma de superficies de todas las instalaciones",
+            "valor": 122312
+          },
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 11
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "a4411/440P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 736952.43,
+        "unidades": [
+          {
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 181.7
+          },
+          {
+            "atributo": "Nº total de viajeros al año",
+            "valor": 0
+          },
+          {
+            "atributo": "Nº total de autobuses",
+            "valor": 5
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b132/130P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 4262162.38,
+        "unidades": [
+          {
+            "atributo": "Nº efectivos asignados al servicio",
+            "valor": 52
+          },
+          {
+            "atributo": "Nº vehículos adscritos al servicio",
+            "valor": 15
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b134/130P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 7113.57,
+        "unidades": [
+          {
+            "atributo": "Nº efectivos en plantilla asignados al servicio",
+            "valor": 0
+          },
+          {
+            "atributo": "Nº vehículos adscritos al servicio",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b151/150P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 1954117.66,
+        "unidades": [
+          {
+            "atributo": "Superficie urbanizada (kilómetros cuadrados)",
+            "valor": 58.01
+          },
+          {
+            "atributo": "Superficie urbanizable (kilómetros cuadrados)",
+            "valor": 6.04
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b1521/150P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Nº viviendas de protección pública",
+            "valor": 104
+          },
+          {
+            "atributo": "Superficie de terrenos destinados a edificación de vivienda pública (metros cuadrados)",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b1522/150P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 0
+          },
+          {
+            "atributo": "Nº edificios con actuaciones de conservación y rehabilitación",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b160",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Longitud del tramo: metros lineales.",
+            "valor": 70275
+          },
+          {
+            "atributo": "Nº viviendas con servicio",
+            "valor": 11317
+          },
+          {
+            "atributo": "Caudal en metros cúbicos de desagüe",
+            "valor": 2005578
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b164",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 45053.27,
+        "unidades": [
+          {
+            "atributo": "Nº efectivos en plantilla asignados al servicio",
+            "valor": 1
+          },
+          {
+            "atributo": "Nº vehículos adscritos al servicio",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b311",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 109867.2,
+        "unidades": [
+          {
+            "atributo": "Nº efectivos asignados al servicio",
+            "valor": 0
+          },
+          {
+            "atributo": "Nº campañas anuales",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b321/322/320P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Superficie nuevos terrenos destinados a centros educativos",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b323/324/320P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 3210292.31,
+        "unidades": [
+          {
+            "atributo": "Nº aulas",
+            "valor": 64
+          },
+          {
+            "atributo": "Superficie en metros cuadrados de los edificios",
+            "valor": 31992
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b325/320P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Nº efectivos en plantilla asignados al servicio",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b333/330P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 204366.27,
+        "unidades": [
+          {
+            "atributo": "Superficie: suma en metros cuadrados de superficies de todas las instalaciones culturales",
+            "valor": 5727
+          },
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 7
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b334/330P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 548814.24,
+        "unidades": [
+          {
+            "atributo": "Nº efectivos en plantilla asignados al servicio",
+            "valor": 3
+          },
+          {
+            "atributo": "Nº campañas realizadas al año",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b336/330P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 77232.24,
+        "unidades": [
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 1
+          },
+          {
+            "atributo": "Nº bienes culturales protegidos",
+            "valor": 31
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b337/330P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 253633.73,
+        "unidades": [
+          {
+            "atributo": "Superficie: suma de superficies en metros cuadrados de todas las instalaciones de tiempo libre",
+            "valor": 1832
+          },
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 4
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b341/340P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 1180331.82,
+        "unidades": [
+          {
+            "atributo": "Nº efectivos en plantilla asignados al servicio",
+            "valor": 17
+          },
+          {
+            "atributo": "Nº campañas realizadas al año",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b342/340P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 1141586.57,
+        "unidades": [
+          {
+            "atributo": "Superficie: suma de superficies de todas las instalaciones",
+            "valor": 122312
+          },
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 11
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b4311/430P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 153223.69,
+        "unidades": [
+          {
+            "atributo": "Nº ferias anuales",
+            "valor": 2
+          },
+          {
+            "atributo": "Estimación anual personas asistentes",
+            "valor": 14000
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b4312/430P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 240770.89,
+        "unidades": [
+          {
+            "atributo": "Nº puestos",
+            "valor": 16
+          },
+          {
+            "atributo": "Superficie total en metros cuadrados",
+            "valor": 681
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b4313/430P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Nº licencias o permisos concedidas",
+            "valor": 120
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b432/430P",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 281943.45,
+        "unidades": [
+          {
+            "atributo": "Nº efectivos en plantilla asignados al servicio",
+            "valor": 4
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b45",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 0,
+        "unidades": [
+          {
+            "atributo": "Nº personas en plantilla adscritas al servicio",
+            "valor": 0
+          }
+        ]
+      },
+      {
+        "anio": 2024,
+        "ine": "46214",
+        "ente": "17-46-214-AA-000",
+        "nombre": "Riba-roja de Túria",
+        "programa": "b491/492",
+        "modoGestion": "directa",
+        "codGestionRaw": "Gestión directa por la entidad local",
+        "costeTotal": 917497.37,
+        "unidades": [
+          {
+            "atributo": "Nº efectivos en plantilla asignados al servicio",
+            "valor": 7
+          },
+          {
+            "atributo": "Nº campañas realizadas al año",
             "valor": 0
           }
         ]
@@ -899,7 +1779,7 @@
       "popMax": 40000,
       "tipoEnte": "AA"
     },
-    "resolvedAt": "2026-08-12T07:00:12.840Z",
+    "resolvedAt": "2026-08-12T08:30:56.490Z",
     "anio": 2021,
     "miembros": [
       {
@@ -50341,15 +51221,17 @@
       2024
     ],
     "entregasObtenidas": [
-      2021
+      2021,
+      2024
     ],
-    "motivoFaltantes": "El ministerio sólo publica volcado masivo de 2021. El resto de entregas sólo son accesibles por la aplicación de consulta, cuya página de resultado no contiene los costes y cuyo botón de descarga no se puede reconstruir como POST."
+    "motivoFaltantes": "El ministerio sólo publica volcado masivo de 2021. El resto de entregas sólo salen del informe por ente de la aplicación de consulta, cuyo botón de descarga no se deja reconstruir como POST: hay que pedirlo desde un navegador y dejar el fichero en .cache/cesel/informes."
   },
   "stats": {
     "anios": [
-      2021
+      2021,
+      2024
     ],
-    "filasMunicipio": 43,
+    "filasMunicipio": 86,
     "filasPares": 2424,
     "miembros": 60
   }
