@@ -12,8 +12,10 @@
  *      that re-validates the WHOLE snapshot before writing, so an invariant
  *      (verbatim quote ≥20 chars, evidence on a `critical` finding, a `dueBy`
  *      backed by a clause from the acta) cannot slip. A direct write skips the
- *      validator AND the audit trail, on files that make claims about named
- *      elected officials.
+ *      validator AND the audit trail, on files this project treats as legally
+ *      material. Most of them make claims about named elected officials; some
+ *      —place-overrides, entity-overrides, eficiencia-findings— deliberately
+ *      name nobody, and the deny message must not say otherwise.
  *
  *   2. Anything under public/ is published. Vercel serves the whole directory,
  *      so a file there is fetchable by URL whether or not a page links to it.

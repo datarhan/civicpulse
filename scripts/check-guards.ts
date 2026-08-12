@@ -283,6 +283,72 @@ const INJECTIONS: Array<{
       return JSON.stringify(d, null, 2) + '\n'
     },
   },
+  {
+    guard: 'check:indicadores',
+    file: 'public/data/indicadores.json',
+    describe: 'un coste unitario que ya no sale de la celda que dice citar',
+    // Toda cifra de /eficiencia lleva su celda (`cesel:2024:CE2:a1621:Econ14`)
+    // y el gate la resuelve contra el volcado. Multiplicar el numerador por
+    // diez sin tocar la celda es exactamente lo que pasaría si alguien editara
+    // el snapshot a mano: el número publicado deja de tener detrás lo que dice
+    // tener, y ninguna otra comprobación lo notaría.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const i = d.indicadores?.find(
+        (x: { valor: number | null; numerador?: { valor?: number } }) =>
+          x.valor !== null && typeof x.numerador?.valor === 'number',
+      )
+      if (!i) throw new Error('sin indicador con cociente que corromper')
+      i.numerador.valor *= 10
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
+  {
+    guard: 'check:eficiencia-findings',
+    file: 'public/data/eficiencia-findings.json',
+    describe: 'una ficha firmada que afirma una cifra que su fuente ya no dice',
+    // La avería propia de esta familia: el ministerio revisa una entrega y la
+    // ficha se queda afirmando la de antes, sin que nadie toque la página. Se
+    // inyecta una ficha entera porque el fichero puede estar vacío —cero fichas
+    // es el estado normal antes de la primera firma— y un gate que sólo se
+    // puede probar cuando ya hay algo publicado no está probado.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const panel = JSON.parse(readFileSync(resolve(ROOT, 'public/data/indicadores.json'), 'utf8'))
+      const m = panel.municipales?.find((x: { valor: number | null }) => x.valor !== null)
+      if (!m) throw new Error('sin indicador municipal con valor')
+      d.items = [
+        {
+          id: 'ef-inyectada',
+          candidatoId: `cand-${m.id}-inyectada`,
+          indicadorId: m.id,
+          familia: 'municipal',
+          titulo: 'Ficha inyectada por check:guards para comprobar que el gate tiene dientes',
+          cuerpo:
+            'Esta ficha existe sólo durante la inyección de fallos y afirma deliberadamente una ' +
+            'cifra que el panel vivo no sostiene. Si el gate no se queja de ella, no está ' +
+            'comprobando que lo publicado siga coincidiendo con su fuente.',
+          motivos: ['umbral-legal'],
+          fiabilidad: 'alta',
+          medicion: {
+            indicadorId: m.id,
+            periodo: m.periodo,
+            // La misma cifra, movida: mismo periodo, otro valor → `contradice`.
+            valor: (m.formato === 'porcentaje' ? m.valor * 100 : m.valor) * 3 + 1,
+            unidad: 'días',
+            fuentes: [m.numerador.fuente, m.denominador.fuente],
+          },
+          caveats: [],
+          citas: [{ url: 'https://www.hacienda.gob.es/', etiqueta: 'Ministerio de Hacienda' }],
+          curatorName: 'check-guards',
+          publishedAt: new Date().toISOString().slice(0, 10),
+          response: null,
+          corrections: [],
+        },
+      ]
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
 ]
 
 function gitIsClean(file: string): boolean {
