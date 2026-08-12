@@ -22,6 +22,9 @@
  * Módulo puro: recibe los snapshots ya leídos, no toca red ni disco.
  */
 import type { Magnitud } from './indicadores'
+import type { CesteRow } from './coste-efectivo'
+import { SERVICIOS } from './indicador-registry'
+import { medirDeclaracionCongelada, MIN_ENTREGAS_CONGELADA } from './declaracion-congelada'
 
 /**
  * Estados en los que un contrato ya está adjudicado.
@@ -157,6 +160,17 @@ export interface FriccionInput {
       anio?: number
       miembros?: { ine: string; nombre: string; poblacion: number; gastoPorHabitante: number }[]
     }
+  }
+  /**
+   * public/data/coste-efectivo.json — opcional.
+   *
+   * Sin él, el indicador de denominadores sin remedir NO se emite. Un cero se
+   * leería como «el ayuntamiento lo remide todo», que es justo la afirmación
+   * contraria a la que sostiene el dato ausente.
+   */
+  costeEfectivo?: {
+    municipio?: { ine?: string; filas?: CesteRow[] }
+    pares?: { filas?: CesteRow[] }
   }
   /** public/data/pmp.json — opcional: el panel se dibuja igual sin él. */
   pmp?: {
@@ -473,5 +487,126 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
     citas: [citaEje],
   })
 
+  // ── 6. ¿Vuelve el ayuntamiento a MEDIR lo que declara? ────────────────────
+  //
+  //  Es fricción de manual —control interno débil, la X-ineficiencia de
+  //  Leibenstein— y no una afirmación sobre ningún servicio: mide la
+  //  DECLARACIÓN. Un cociente cuyo numerador se actualiza cada entrega y cuyo
+  //  denominador es una copia sólo puede subir, y sube porque nadie volvió a
+  //  contar.
+  //
+  //  No lleva `referencia` a propósito. Ninguna norma obliga a remedir, y
+  //  fabricar un umbral («debería ser cero») convertiría una elección nuestra en
+  //  el límite contra el que se juzga a un ayuntamiento. Lo que sí existe es la
+  //  banda: los mismos municipios comparables declaran los mismos servicios, así
+  //  que la comparación la sostiene la población, no una opinión.
+  if (input.costeEfectivo) {
+    const d = medirDenominadores(input.costeEfectivo)
+    if (d) out.push(d)
+  }
+
   return out
+}
+
+/**
+ * La proporción de servicios cuyo denominador el municipio repite entrega tras
+ * entrega, y la misma proporción para cada municipio de la banda.
+ *
+ * Las dos mitades se miden con `medirDeclaracionCongelada`, la misma función que
+ * produce la salvedad de cada tarjeta de `/eficiencia`. Un segundo criterio aquí
+ * dejaría al indicador comparando una cosa mientras la tarjeta avisa de otra.
+ */
+function medirDenominadores(fuente: NonNullable<FriccionInput['costeEfectivo']>) {
+  const filas = [...(fuente.pares?.filas ?? []), ...(fuente.municipio?.filas ?? [])]
+  if (!filas.length) return null
+  const anios = [...new Set(filas.map((f) => f.anio))].sort((a, b) => a - b)
+  const entrega = anios[anios.length - 1]
+  const programas = Object.keys(SERVICIOS)
+  const propio = fuente.municipio?.ine ?? '46214'
+
+  // Sólo cuentan los servicios en los que el cociente EXISTE en la entrega
+  // vigente: hay coste y hay unidad. Donde no hay cociente —una concesión que
+  // declara 0 €, un transporte sin viajeros— la unidad no divide nada, y que
+  // esté o no congelada no le hace daño a ninguna cifra publicada. Meterlos
+  // diluiría justo lo que se quiere medir.
+  //
+  // El criterio se aplica IGUAL a la banda, leyendo sus propias filas, así que
+  // la comparación no depende en nada de qué publique este sitio.
+  const hayCociente = new Set<string>()
+  for (const f of filas) {
+    if (f.anio !== entrega) continue
+    if (f.modoGestion !== 'directa') continue
+    if (!((f.costeTotal ?? 0) > 0)) continue
+    const def = SERVICIOS[f.programa]
+    if (!def) continue
+    const u = f.unidades.find((x) => x.atributo === def.denominador)
+    if (!u || !(u.valor > 0)) continue
+    hayCociente.add(`${f.ine}|${f.programa}`)
+  }
+
+  const series = medirDeclaracionCongelada(filas, programas, anios).series.filter(
+    (s) => s.magnitud === 'unidad' && hayCociente.has(`${s.ine}|${s.programa}`),
+  )
+  const porIne = new Map<string, { total: number; congeladas: number }>()
+  for (const s of series) {
+    const acc = porIne.get(s.ine) ?? { total: 0, congeladas: 0 }
+    acc.total++
+    if (s.congelada) acc.congeladas++
+    porIne.set(s.ine, acc)
+  }
+  const mio = porIne.get(propio)
+  if (!mio || mio.total === 0) return null
+
+  // Sólo entran municipios con serie suficiente en al menos la mitad de los
+  // servicios que se le miden a Riba-roja: comparar su 10 de 10 contra un
+  // municipio del que sólo se pueden medir dos sería comparar dos cosas.
+  const vals = [...porIne.entries()]
+    .filter(([ine, a]) => ine !== propio && a.total >= mio.total / 2)
+    .map(([, a]) => a.congeladas / a.total)
+    .sort((a, b) => a - b)
+  const q = (p: number) => {
+    if (!vals.length) return 0
+    const pos = (vals.length - 1) * p
+    const lo = Math.floor(pos)
+    const hi = Math.ceil(pos)
+    return lo === hi ? vals[lo] : vals[lo] + (pos - lo) * (vals[hi] - vals[lo])
+  }
+  const valor = mio.congeladas / mio.total
+
+  return {
+    id: 'denominadores-sin-remedir',
+    dimension: 'friccion' as const,
+    etiqueta: 'Denominadores que el ayuntamiento no vuelve a medir',
+    descripcion:
+      'De los servicios en los que hay coste unitario —hay coste y hay unidad en la última ' +
+      'entrega—, en cuántos repite el ayuntamiento la misma unidad física entrega tras entrega ' +
+      'mientras actualiza el coste.',
+    numerador: declarado(mio.congeladas, `cesel:${entrega}:CE3:denominadores-congelados`),
+    denominador: declarado(mio.total, `cesel:${entrega}:CE3:denominadores-medibles`),
+    valor,
+    formato: 'porcentaje' as const,
+    periodo: String(entrega),
+    pares:
+      vals.length >= 15
+        ? {
+            conjunto: 'cv-15k-40k',
+            n: vals.length,
+            percentil: Math.round((100 * vals.filter((v) => v <= valor).length) / vals.length),
+            p25: q(0.25),
+            mediana: q(0.5),
+            p75: q(0.75),
+          }
+        : undefined,
+    caveats: [
+      'Esto mide la DECLARACIÓN, no el servicio: una cantidad estable puede ser perfectamente correcta, y repetirla no prueba que nadie la haya comprobado.',
+      `Una serie cuenta como sin remedir cuando sus últimas ${MIN_ENTREGAS_CONGELADA} entregas o más traen el mismo valor hasta el cuarto decimal. Repetir cifra dos años seguidos es normal y no cuenta.`,
+      'Lo que sí se puede afirmar es lo que le pasa al cociente: si el coste se actualiza cada entrega y la unidad no, el coste unitario sube sin que el servicio haya cambiado, y su serie no se puede leer como gestión.',
+    ],
+    citas: [
+      {
+        url: 'https://www.hacienda.gob.es/es-ES/Areas%20Tematicas/Administracion%20Electronica/OVEELL/Paginas/CosteEfectivoServicios.aspx',
+        etiqueta: 'Coste efectivo de los servicios · Ministerio de Hacienda',
+      },
+    ],
+  }
 }
