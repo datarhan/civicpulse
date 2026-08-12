@@ -249,6 +249,21 @@ describe('reader-review — un presupuesto de tiempo compra prisa, no silencio',
     expect(b.budgetSeconds).toBe(90)
   })
 
+  it('reconoce --rotate sin tragárselo como ruta', () => {
+    // El gancho de pre-push le pasa las rutas que ESTE push puede haber roto y,
+    // si no caben en el presupuesto, tienen que entrar por las más olvidadas —
+    // si no, las últimas de la lista no se leen nunca. Una bandera que el
+    // parser ignorase en silencio dejaría el orden fijo sin que nadie lo note,
+    // que es la avería que la bandera viene a arreglar.
+    const r = parseReviewArgs(['--budget-seconds', '300', '--rotate', '/eficiencia', '/gestion'])
+    expect(r.rotate).toBe(true)
+    expect(r.routes).toEqual(['/eficiencia', '/gestion'])
+    expect(r.budgetSeconds).toBe(300)
+    // Y por defecto NO rota: un conjunto explícito conserva el orden de quien
+    // llama salvo que lo pida.
+    expect(parseReviewArgs(['/eficiencia']).rotate).toBe(false)
+  })
+
   it('sin bandera y sin entorno NO hay límite — el pase completo sigue siendo el pase completo', () => {
     expect(parseReviewArgs(['/'], undefined).budgetSeconds).toBe(0)
     expect(parseReviewArgs([], '45').budgetSeconds).toBe(45)

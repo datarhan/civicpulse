@@ -107,7 +107,15 @@ export function parseReviewArgs(argv: string[], budgetEnv?: string) {
     }
   }
   if (!Number.isFinite(budgetSeconds) || budgetSeconds <= 0) budgetSeconds = 0
-  return { routes, budgetSeconds, json: argv.includes('--json'), force: argv.includes('--force') }
+  return {
+    routes,
+    budgetSeconds,
+    json: argv.includes('--json'),
+    force: argv.includes('--force'),
+    // Ordena por «hace más que no se lee» antes de gastar el presupuesto. Sólo
+    // significa algo junto a `--budget-seconds`: sin techo se leen todas.
+    rotate: argv.includes('--rotate'),
+  }
 }
 
 /**

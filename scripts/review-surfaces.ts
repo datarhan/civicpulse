@@ -18,6 +18,12 @@
  * SIN REVISAR, neither is cached, and the run exits non-zero. Without the flag
  * nothing is bounded and the full review is exactly what it was.
  *
+ * `--rotate` ordena por «hace más que no se lee» antes de gastar el
+ * presupuesto. Sólo tiene sentido junto a `--budget-seconds`, y existe para el
+ * gancho de pre-push: le pasa las rutas que ese push puede haber roto y, si no
+ * caben todas, las últimas de la lista no pueden ser siempre las mismas. Sin él
+ * un conjunto explícito conserva el orden de quien llama.
+ *
  * Renders with Playwright rather than reading JSX, because the defect being
  * hunted only exists once the page is assembled: two true numbers side by side
  * whose juxtaposition implies something false. You cannot see that in source.
@@ -148,21 +154,25 @@ async function main() {
     budgetSeconds,
     json: asJson,
     force,
+    rotate: rotar,
   } = parseReviewArgs(process.argv.slice(2), process.env.REVIEW_BUDGET_SECONDS)
   const cache = force ? {} : loadCache()
-  // Oldest first, but ONLY under a budget and ONLY for the default set. A budget
-  // starves whatever sits at the end of the list, and a fixed order starves the
-  // same routes every time — which is a route that is never reviewed and nobody
-  // notices, the exact failure this whole file exists to avoid. An explicit
-  // route list is the caller's order and is left alone.
-  const routes =
-    named.length || !budgetSeconds
-      ? named.length
-        ? named
-        : DEFAULT_ROUTES
-      : [...DEFAULT_ROUTES].sort((a, b) =>
-          (readCacheEntry(cache[a])?.at ?? '').localeCompare(readCacheEntry(cache[b])?.at ?? ''),
-        )
+  // Oldest first, but ONLY under a budget. A budget starves whatever sits at the
+  // end of the list, and a fixed order starves the same routes every time —
+  // which is a route that is never reviewed and nobody notices, the exact
+  // failure this whole file exists to avoid.
+  //
+  // Un conjunto explícito conserva el orden de quien llama, porque quien nombra
+  // rutas a mano las quiere en ese orden — salvo que pida `--rotate`, que es lo
+  // que hace el gancho de pre-push: le pasa las rutas que este push puede haber
+  // roto, y si no caben en el presupuesto tiene que empezar por las que lleven
+  // más tiempo sin leerse, o las últimas de la lista no se leen NUNCA.
+  const porAntiguedad = (lista: string[]) =>
+    [...lista].sort((a, b) =>
+      (readCacheEntry(cache[a])?.at ?? '').localeCompare(readCacheEntry(cache[b])?.at ?? ''),
+    )
+  const base = named.length ? named : DEFAULT_ROUTES
+  const routes = !budgetSeconds ? base : rotar || !named.length ? porAntiguedad(base) : base
   /** Wall clock, not a per-call timeout: the caller's patience is the budget. */
   const startedAt = Date.now()
   const deadline = budgetSeconds ? startedAt + budgetSeconds * 1000 : Infinity

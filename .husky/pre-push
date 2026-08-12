@@ -31,8 +31,24 @@ cd "$(git rev-parse --show-toplevel)" || exit 0
 RANGE="origin/main..HEAD"
 git rev-parse --verify origin/main >/dev/null 2>&1 || RANGE="HEAD"
 CHANGED=$(git diff --name-only "$RANGE" 2>/dev/null)
+[ -z "$CHANGED" ] && exit 0
 
-echo "$CHANGED" | grep -qE '^public/data/.*\.json$|^src/(pages|variants|components)/|^src/i18n\.jsx$' || exit 0
+# QUÉ rutas, no cuáles tocaba la lista fija.
+#
+# Antes esto era un grep que decidía SI correr, y a continuación se revisaba el
+# conjunto por defecto —seis rutas— con 60 segundos. Medido: una ruta cuesta del
+# orden de un minuto, así que cada push leía UNA y la rotación tardaba media
+# docena de pushes en dar la vuelta. Los tres defectos de /hallazgos de hoy los
+# encontró una pasada a mano; el gancho llevaba tres pushes sin llegar a esa
+# página.
+#
+# Ahora se pregunta al grafo de imports qué rutas puede haber roto ESTE push, y
+# se revisan ésas, todas. Casi siempre son una o dos. El grep de antes además
+# ignoraba src/hooks, src/lib y src/scraper —de donde sale la mitad de la prosa
+# derivada—, así que un cambio ahí no disparaba nada.
+RUTAS=$(printf '%s\n' "$CHANGED" | npx tsx scripts/routes-for-changes.ts --stdin 2>/dev/null)
+[ -z "$RUTAS" ] && exit 0
+N_RUTAS=$(printf '%s\n' "$RUTAS" | wc -l | tr -d ' ')
 
 # Needs a $0 backend. If claude-code is not usable, say so and move on rather
 # than silently skipping — a check nobody knows was skipped is worse than none.
@@ -42,7 +58,26 @@ if ! command -v claude >/dev/null 2>&1; then
 fi
 
 STARTED=$(date +%s)
-echo "[pre-push] datos o copy modificados — leyendo las páginas como un lector…"
+echo "[pre-push] este push toca $N_RUTAS ruta(s): $(printf '%s ' $RUTAS)"
+
+# El presupuesto se ESCALA con lo que hay que leer, en vez de ser un 60 fijo que
+# repartir entre seis rutas que nadie tocó.
+#
+# 150s por ruta, del PEOR caso medido y no de la media: /quejas 60s, /eficiencia
+# 128s, /plenos 141s. Con la media, la mitad de los pushes saldrían PARCIAL sin
+# que pase nada raro, y una alarma que salta cuando todo va bien se apaga sola.
+#
+# Ser generoso no cuesta nada: el presupuesto es un TECHO, no una duración. Un
+# push de una ruta que tarda 60s termina en 60s con 150 concedidos. Sólo se paga
+# cuando de verdad hace falta.
+#
+# Techo global en 480s, con holgura sobre los 600 a los que git mata el gancho.
+# Quien toca i18n.jsx o el armazón toca veintitantas rutas, no caben, y entonces
+# `--rotate` empieza por las más olvidadas y el resumen lo dice en voz alta en
+# lugar de leer una y callarse.
+PRESUPUESTO=$((N_RUTAS * 150))
+[ "$PRESUPUESTO" -gt 480 ] && PRESUPUESTO=480
+echo "[pre-push] leyendo esas páginas como un lector (hasta ${PRESUPUESTO}s)…"
 npm run build >/dev/null 2>&1 || { echo "[pre-push] build falló; se omite la revisión."; exit 0; }
 
 # Its OWN port, never the 4173 a developer runs `npm run preview` on. Sharing it
@@ -80,17 +115,21 @@ if [ -z "$READY" ]; then
   exit 0
 fi
 
-# BOUNDED, and it says what the bound cost. The full review measured 568s across
-# six routes — git waits ten minutes and then kills the hook, which is how this
-# came to block. 60s buys the routes it can reach; the script names the ones it
-# could not and refuses to cache a fragment it did not read. `npm run
-# review:surfaces` with no budget is still the complete pass, on demand.
+# ACOTADA, y dice lo que costó la cota. Git mata el gancho a los diez minutos,
+# que es como esto llegó a bloquear una vez. El presupuesto ya va escalado a las
+# rutas que este push toca, así que lo normal es que sobre; cuando no sobra, el
+# script nombra las que no alcanzó y se niega a cachear un fragmento que no
+# leyó. `--rotate` es lo que impide que, cuando no quepan, sean siempre las
+# mismas: empieza por las que lleven más tiempo sin leerse.
+#
+# `npm run review:surfaces` sin presupuesto sigue siendo la pasada completa
+# sobre el conjunto por defecto, a demanda.
 set -a; [ -f .env ] && . ./.env >/dev/null 2>&1; set +a
 env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY \
     GEMINI_BIN=/nonexistent-disabled AGY_BIN=/nonexistent-disabled \
     LLM_BACKEND=claude-code LLM_CONCURRENCY=1 \
     REVIEW_BASE_URL="http://127.0.0.1:$PORT" \
-    npm run --silent review:surfaces -- --budget-seconds 60 2>&1 | tee "$LOG"
+    npm run --silent review:surfaces -- --budget-seconds "$PRESUPUESTO" --rotate $RUTAS 2>&1 | tee "$LOG"
 
 # No `|| true` on that: it was there before and it never protected anything —
 # the status leaked around it through the trap. `set +e` is what protects it.
@@ -102,8 +141,19 @@ env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY \
 # anything, and found in fault injection printing «parcial por diseño» over a
 # Playwright crash. A hook that cannot block must at minimum refuse to imply it
 # looked.
+#
+# Y distingue COMPLETA de PARCIAL. Decía «parcial por diseño» siempre, incluso
+# cuando había leído entero lo que tocaba: un resumen que se declara incompleto
+# pase lo que pase no informa de nada, y entrena a no leerlo — que es la misma
+# avería, en la otra dirección, que un verde que no midió nada.
 if grep -q '^\[review\]' "$LOG" 2>/dev/null; then
-  echo "[pre-push] revisión informativa ($(( $(date +%s) - STARTED ))s), parcial por diseño — el push continúa pase lo que pase."
+  DURACION=$(( $(date +%s) - STARTED ))
+  if grep -qE 'NO se llegó a|PARCIAL' "$LOG" 2>/dev/null; then
+    echo "[pre-push] ⚠︎ revisión PARCIAL (${DURACION}s): no dio tiempo a todas las rutas que toca este push."
+    echo "[pre-push]   Las que faltan van arriba. Pásalas con: npm run review:surfaces -- <ruta>"
+  else
+    echo "[pre-push] revisión completa de las $N_RUTAS ruta(s) que toca este push (${DURACION}s) — informativa, nunca bloquea."
+  fi
 else
   echo "[pre-push] ⚠︎ la revisión NO llegó a emitir resumen — NO SE REVISÓ NADA ($(( $(date +%s) - STARTED ))s)."
   echo "[pre-push]   El push continúa igualmente, porque este gancho nunca bloquea, pero nadie ha leído estas páginas."
