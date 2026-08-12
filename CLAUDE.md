@@ -215,6 +215,17 @@ zero violations from a rule that never ran (Leaflet tiles defeat background
 resolution). **Assert that the check evaluated something**, not just that it
 found nothing.
 
+**A front-end change is not done until it has been looked at in a browser.**
+Build it, serve it, open it, and measure the thing you changed against the thing
+it is supposed to line up with — then check it in dark mode and at 375px. The
+suites cannot see a layout. The band that marks the missing 2020 entrega on
+`/eficiencia` shipped covering exactly half the hole it marks — 90px floating
+inside a 181px gap, blank on both sides — with the whole unit suite, the axe
+pass and the mobile spec green, because every one of them asserts about data and
+text. A `getBoundingClientRect()` on both edges is what caught it, one commit
+too late, and the user saw it before the tests ever could. "Green" and "right"
+are different claims; only one of them is about what a reader sees.
+
 Never write a row count, euro total or test count into a doc. Every one that was
 here was wrong when audited on 2026-08-03, some by 4×. Snapshots carry a `stats`
 block; the suites report their own totals.

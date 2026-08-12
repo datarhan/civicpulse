@@ -1,7 +1,12 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { tramosSerie, escalaSerie, huecosSerie } from '../src/components/eficiencia/SerieServicio'
+import {
+  tramosSerie,
+  escalaSerie,
+  huecosSerie,
+  anclasHueco,
+} from '../src/components/eficiencia/SerieServicio'
 
 const ROOT = join(__dirname, '..')
 const pub = JSON.parse(readFileSync(join(ROOT, 'public/data/indicadores.json'), 'utf8'))
@@ -155,5 +160,38 @@ describe('el hueco del calendario se marca, no sólo se deja en blanco', () => {
         { desde: 2020, hasta: 2020 },
       ])
     }
+  })
+})
+
+describe('la banda del hueco ocupa el hueco entero', () => {
+  it('va de punto pintado a punto pintado, no del ancho del año que falta', () => {
+    // Medido sobre la publicada: la línea terminaba en 362 px y reanudaba en
+    // 543, y la banda iba de 407 a 497 — la mitad del hueco, flotando en el
+    // centro con blanco a los dos lados. Se leía como un rectángulo suelto.
+    expect(anclasHueco({ desde: 2020, hasta: 2020 })).toEqual({ izq: 2019, der: 2021 })
+  })
+
+  it('abraza también un hueco de varios años', () => {
+    expect(anclasHueco({ desde: 2017, hasta: 2019 })).toEqual({ izq: 2016, der: 2020 })
+  })
+
+  it('sobre el panel publicado: las anclas son años que existen de verdad', () => {
+    // Si un ancla cayera fuera de la serie, la banda se saldría del gráfico o
+    // taparía un punto pintado. Por construcción no puede pasar, y esto lo
+    // comprueba sobre el dato real en vez de fiarse de la construcción.
+    const conSerie = indicadores.filter((i) => i.valor !== null && declarados(i).length >= 2)
+    expect(conSerie.length).toBeGreaterThan(0)
+    let bandas = 0
+    for (const i of conSerie) {
+      const puntos = declarados(i)
+      const anios = new Set(puntos.map((p) => p.anio))
+      for (const h of huecosSerie(puntos)) {
+        const { izq, der } = anclasHueco(h)
+        expect(anios.has(izq), `${i.servicio}: ancla izquierda ${izq} no está pintada`).toBe(true)
+        expect(anios.has(der), `${i.servicio}: ancla derecha ${der} no está pintada`).toBe(true)
+        bandas++
+      }
+    }
+    expect(bandas, 'ninguna banda comprobada — la prueba no mide nada').toBeGreaterThan(0)
   })
 })

@@ -93,6 +93,23 @@ export function huecosSerie(puntos) {
 }
 
 /**
+ * Los dos años PINTADOS que abrazan un hueco.
+ *
+ * La banda tiene que ocupar el hueco entero, de punto a punto, y no el año que
+ * falta: medido sobre la página publicada, un hueco de 2020 deja 181 px entre
+ * el final de la línea en 2019 y su reanudación en 2021, y una banda de 2019,5
+ * a 2020,5 son 90 px flotando en el centro con blanco a los dos lados. Se leía
+ * como un rectángulo gris suelto en vez de como «aquí no hay entrega», que es
+ * exactamente el defecto que la banda venía a arreglar.
+ *
+ * `desde - 1` y `hasta + 1` están pintados siempre por construcción: un hueco
+ * sólo se declara ENTRE dos años presentes, y los que faltan van agrupados.
+ */
+export function anclasHueco(hueco) {
+  return { izq: hueco.desde - 1, der: hueco.hasta + 1 }
+}
+
+/**
  * El rango vertical, SÓLO sobre lo que se dibuja.
  *
  * Es la decisión que hace posible el gráfico. Meter aquí los 67,7 millones de
@@ -162,13 +179,17 @@ export function SerieServicio({ puntos, formatea, unidad }) {
             title={`No hay entrega de ${nombraHueco(h)} en este panel: el ministerio la publicó, pero aquí no se ha obtenido. La línea no la cruza porque interpolarla sería inventarla.`}
             style={{
               position: 'absolute',
-              left: `${px(h.desde - 0.5)}%`,
-              width: `${px(h.hasta + 0.5) - px(h.desde - 0.5)}%`,
+              left: `${px(anclasHueco(h).izq)}%`,
+              width: `${px(anclasHueco(h).der) - px(anclasHueco(h).izq)}%`,
               top: 0,
               bottom: 0,
               background: 'var(--soft)',
-              borderLeft: '1px dashed var(--border2)',
-              borderRight: '1px dashed var(--border2)',
+              // `--border`, no `--border2`: medido sobre la página publicada el
+              // discontinuo salía en rgb(238,240,243) sobre un fondo de
+              // rgb(243,244,246) —invisible—, así que la banda no tenía límites
+              // y con ellos el borde ES el mensaje: hasta aquí llega la línea.
+              borderLeft: '1px dashed var(--border)',
+              borderRight: '1px dashed var(--border)',
               display: 'flex',
               alignItems: 'flex-end',
               justifyContent: 'center',
