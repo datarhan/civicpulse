@@ -184,7 +184,8 @@
     "speaker-map:backlog": "npx tsx scripts/speaker-map-backlog.ts",
     "review:finding-exception": "npx tsx scripts/review-finding-exception.ts",
     "check:summary-gate": "npx tsx scripts/check-summary-gate.ts",
-    "check:queues": "npx tsx scripts/check-queues.ts"
+    "check:queues": "npx tsx scripts/check-queues.ts",
+    "scrape:coste-efectivo": "npx tsx scripts/scrape-coste-efectivo.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

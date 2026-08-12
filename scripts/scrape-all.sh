@@ -13,6 +13,14 @@
 # so CI surfaces the breakage even when most adapters succeed.
 set -uo pipefail
 
+# DELIBERATELY ABSENT: scrape:coste-efectivo.
+#
+# Its source is the ~45 MB CESEL national workbook, and the ministry publishes
+# one entrega a year. A nightly re-download would be 45 MB a night against a
+# public administration for data that cannot have changed — the opposite of the
+# "keep scrapers polite" rule. It caches locally, but a CI runner starts cold
+# every time. Run it by hand when a new entrega lands: npm run scrape:coste-efectivo
+
 SCRAPERS=(
   scrape:officials
   scrape:transparency
