@@ -188,3 +188,56 @@ describe('licitador-unico — el denominador dice cuánto dejó fuera', () => {
     expect(adjudicadosSinDeclarar).toBe(true)
   })
 })
+
+describe('denominadores-sin-remedir — la declaración como indicador de fricción', () => {
+  const costeEfectivo = JSON.parse(
+    readFileSync(join(ROOT, 'public/data/coste-efectivo.json'), 'utf8'),
+  )
+  const conCoste = construirIndicadoresMunicipales({
+    tenders,
+    budgetExecution,
+    budget,
+    costeEfectivo,
+  })
+  const i = conCoste.find((x) => x.id === 'denominadores-sin-remedir')!
+
+  it('mide qué parte de los cocientes descansa en una cifra que nadie remide', () => {
+    // No hay norma que obligue a volver a medir, así que esto NO puede tener
+    // umbral legal. Lo que sí hay es población comparable.
+    expect(i).toBeDefined()
+    expect(i.dimension).toBe('friccion')
+    expect(i.referencia).toBeUndefined()
+    expect(i.formato).toBe('porcentaje')
+    expect(i.numerador.valor).toBeGreaterThan(0)
+    expect(i.denominador.valor).toBeGreaterThan(0)
+    expect(i.valor).toBeCloseTo(i.numerador.valor! / i.denominador.valor!, 9)
+    // El periodo nunca implícito: es una entrega concreta del ministerio.
+    expect(i.periodo).toMatch(/\d{4}/)
+  })
+
+  it('se compara contra la banda entera, no contra una opinión', () => {
+    expect(i.pares).toBeDefined()
+    expect(i.pares!.n).toBeGreaterThanOrEqual(15)
+    expect(i.pares!.percentil).toBeGreaterThanOrEqual(0)
+    expect(i.pares!.percentil).toBeLessThanOrEqual(100)
+    expect(i.pares!.p25).toBeLessThanOrEqual(i.pares!.mediana)
+    expect(i.pares!.mediana).toBeLessThanOrEqual(i.pares!.p75)
+  })
+
+  it('dice que una cifra estable puede ser correcta', () => {
+    // El indicador habla de la DECLARACIÓN, no del servicio. Sin esta salvedad
+    // se lee como una acusación de gestión, que es lo que el dato no sostiene.
+    const texto = i.caveats.join(' ')
+    expect(texto).toMatch(/declaraci|declara/i)
+    expect(texto).toMatch(/puede ser correcta|puede no haber cambiado|estable/i)
+  })
+
+  it('no aparece sin los datos del coste efectivo, en vez de inventarse un cero', () => {
+    // Un cero aquí se leería como «el ayuntamiento lo remide todo», que es la
+    // afirmación contraria a la que sostiene el dato ausente.
+    const sin = construirIndicadoresMunicipales({ tenders, budgetExecution, budget })
+    expect(sin.find((x) => x.id === 'denominadores-sin-remedir')).toBeUndefined()
+    // …y el resto del panel sigue construyéndose igual.
+    expect(sin.length).toBeGreaterThan(3)
+  })
+})
