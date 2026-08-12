@@ -24,6 +24,10 @@ import { fileURLToPath } from 'node:url'
 import type { CesteRow } from '../src/scraper/coste-efectivo'
 import { MIN_PARES, situacion, type Indicador } from '../src/scraper/indicadores'
 import { SERVICIOS } from '../src/scraper/indicador-registry'
+import {
+  construirIndicadoresMunicipales,
+  type IndicadorMunicipal,
+} from '../src/scraper/indicadores-friccion'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -144,7 +148,61 @@ async function main() {
     }
   }
 
-  // 7. La cobertura es una partición: los cubos tienen que sumar el registro.
+  // 7. Los indicadores municipales se RECALCULAN desde los snapshots de origen
+  //    y se comparan con lo publicado. Aquí sí se reproduce el cálculo, porque
+  //    son agregados: la pregunta que responde es «¿esta cifra sigue saliendo
+  //    de los datos que hay hoy en el repositorio?». Un snapshot de contratos
+  //    actualizado sin recomputar el panel deja la página mintiendo en silencio,
+  //    y eso es exactamente lo que esta comprobación caza.
+  const municipales: IndicadorMunicipal[] = pub.municipales ?? []
+  if (!municipales.length) fail('indicadores.json no publica indicadores municipales')
+  const recalculados = construirIndicadoresMunicipales({
+    tenders: JSON.parse(await readFile(join(ROOT, 'public/data/tenders.json'), 'utf8')),
+    budgetExecution: JSON.parse(
+      await readFile(join(ROOT, 'public/data/budget-execution.json'), 'utf8'),
+    ),
+  })
+  for (const publicado of municipales) {
+    comprobaciones++
+    const esperado = recalculados.find((r) => r.id === publicado.id)
+    if (!esperado) {
+      fail(`${publicado.id}: publicado pero ya no se calcula desde las fuentes`)
+      continue
+    }
+    for (const campo of ['numerador', 'denominador'] as const) {
+      comprobaciones++
+      if (publicado[campo].valor !== esperado[campo].valor) {
+        fail(
+          `${publicado.id}: ${campo} publica ${publicado[campo].valor} y las fuentes de hoy dan ` +
+            `${esperado[campo].valor} — el panel está desfasado respecto a su origen`,
+        )
+      }
+      if (publicado[campo].estado !== 'declarado' && publicado[campo].valor !== null) {
+        fail(`${publicado.id}: ${campo} está ${publicado[campo].estado} y aun así publica valor`)
+      }
+    }
+    comprobaciones++
+    if (publicado.valor !== null) {
+      const propio = publicado.numerador.valor! / publicado.denominador.valor!
+      if (Math.abs(publicado.valor - propio) > 1e-9) {
+        fail(`${publicado.id}: el valor publicado no es numerador/denominador`)
+      }
+    }
+    // Un porcentaje sin periodo se lee como «este año». Los contratos abarcan
+    // casi una década.
+    comprobaciones++
+    if (!publicado.periodo || /sin declarar/.test(publicado.periodo)) {
+      fail(`${publicado.id}: publica una cifra sin declarar el periodo que cubre`)
+    }
+  }
+  for (const r of recalculados) {
+    comprobaciones++
+    if (!municipales.some((m) => m.id === r.id)) {
+      fail(`${r.id}: se calcula desde las fuentes pero no se publica`)
+    }
+  }
+
+  // 8. La cobertura es una partición: los cubos tienen que sumar el registro.
   comprobaciones++
   const u = pub.universe
   const suma = u.conRatio + u.enConcesion + u.sinUnidad + u.sinCoste + u.noSePresta

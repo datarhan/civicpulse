@@ -11,6 +11,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { construirIndicadores, situacion } from '../src/scraper/indicadores'
+import { construirIndicadoresMunicipales } from '../src/scraper/indicadores-friccion'
 import { SERVICIOS } from '../src/scraper/indicador-registry'
 import { startRun, NO_LLM_STATS } from '../src/scraper/run-manifest'
 
@@ -18,6 +19,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const IN = join(ROOT, 'public/data/coste-efectivo.json')
 const OUT = join(ROOT, 'public/data/indicadores.json')
+
+const leer = async (rel: string) => JSON.parse(await readFile(join(ROOT, rel), 'utf8'))
 
 async function main() {
   const fuente = JSON.parse(await readFile(IN, 'utf8'))
@@ -46,6 +49,18 @@ async function main() {
   }
   rec.record('comparables', snap.universe.comparables)
 
+  // Dimensión 4 — fricción institucional y salud fiscal. Cero fuentes nuevas:
+  // los contratos y la ejecución presupuestaria ya están descargados.
+  const municipales = construirIndicadoresMunicipales({
+    tenders: await leer('public/data/tenders.json'),
+    budgetExecution: await leer('public/data/budget-execution.json'),
+  })
+  for (const m of municipales) {
+    rec.attempt()
+    if (m.valor !== null) rec.judge()
+    else rec.skip('municipal-sin-datos')
+  }
+
   const salida = {
     generatedAt: new Date().toISOString(),
     conjunto: fuente.pares.conjunto,
@@ -53,10 +68,12 @@ async function main() {
     source: fuente.source,
     cobertura: fuente.cobertura,
     ...snap,
+    municipales,
     stats: {
       indicadores: snap.indicadores.length,
       conRatio: snap.universe.conRatio,
       comparables: snap.universe.comparables,
+      municipales: municipales.filter((m) => m.valor !== null).length,
     },
   }
 
@@ -77,6 +94,15 @@ async function main() {
     console.log(
       `  ${i.servicio!.padEnd(15)} ${cifra.padStart(22)}  ${i.pares ? `pares n=${i.pares.n} p${i.pares.percentil}` : ''}`,
     )
+  }
+  for (const m of municipales) {
+    const cifra =
+      m.valor === null
+        ? '—'
+        : m.formato === 'porcentaje'
+          ? `${(m.valor * 100).toFixed(1)} %`
+          : m.valor.toFixed(2)
+    console.log(`  ${m.id.padEnd(30)} ${cifra.padStart(9)}  (${m.periodo})`)
   }
   if (Object.keys(SERVICIOS).length !== snap.indicadores.length) {
     throw new Error('[indicadores] el registro y la salida no cuadran')

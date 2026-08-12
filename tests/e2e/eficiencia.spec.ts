@@ -85,6 +85,28 @@ test.describe('Eficiencia (/eficiencia)', () => {
     await expect(page.getByText(COMPARABLE.pares.miembros[0].nombre).first()).toBeVisible()
   })
 
+  test('publishes the friction panel with a period on every figure', async ({ page }) => {
+    const municipales = (SNAP.municipales ?? []).filter(
+      (m: { valor: number | null }) => m.valor !== null,
+    )
+    expect(municipales.length).toBeGreaterThan(0)
+
+    await expect(
+      page.getByRole('heading', { name: /Cómo funciona la casa por dentro/i }),
+    ).toBeVisible({ timeout: 8000 })
+    for (const m of municipales) {
+      await expect(page.getByRole('heading', { name: m.etiqueta })).toBeVisible()
+      // A percentage with no period reads as "this year"; the contracts span
+      // almost a decade, so the period is load-bearing, not decoration.
+      await expect(page.getByText(m.periodo, { exact: true }).first()).toBeVisible()
+    }
+
+    // No peer band may appear here: there is no national dataset of municipal
+    // single-bidder rates, so a percentile would be unsupported.
+    const comparables = SNAP.indicadores.filter((i: { pares: unknown }) => i.pares).length
+    await expect(page.getByText(/Ver los municipios comparados/i)).toHaveCount(comparables)
+  })
+
   test('axe evaluates the page and finds nothing blocking', async ({ page }) => {
     await page.goto('/eficiencia', { waitUntil: 'domcontentloaded' })
     await page.waitForTimeout(900)

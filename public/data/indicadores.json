@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T07:18:44.084Z",
+  "generatedAt": "2026-08-12T07:57:50.194Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2021,
   "source": {
@@ -3252,9 +3252,153 @@
       2021
     ]
   },
+  "municipales": [
+    {
+      "id": "licitador-unico",
+      "dimension": "friccion",
+      "etiqueta": "Contratos con un solo licitador",
+      "descripcion": "De los contratos adjudicados que declaran cuántas ofertas recibieron, cuántos recibieron exactamente una.",
+      "numerador": {
+        "valor": 332,
+        "estado": "declarado",
+        "fuente": "tenders:adjudicados:numberOfProposals=1"
+      },
+      "denominador": {
+        "valor": 699,
+        "estado": "declarado",
+        "fuente": "tenders:adjudicados:conOfertasDeclaradas"
+      },
+      "valor": 0.474964234620887,
+      "formato": "porcentaje",
+      "periodo": "2017–2026",
+      "caveats": [
+        "Un licitador único no es irregular por sí mismo: hay mercados con un solo proveedor capaz. Es el indicador que la Comisión Europea usa para vigilar la competencia en compra pública, y lo que mide es cuánta de ella hubo."
+      ],
+      "citas": [
+        {
+          "url": "https://ribalicita.ribarroja.es",
+          "etiqueta": "Perfil de contratante (Gobierto)"
+        }
+      ]
+    },
+    {
+      "id": "sin-publicidad-abierta",
+      "dimension": "friccion",
+      "etiqueta": "Adjudicado sin llamada abierta",
+      "descripcion": "Contratos menores y negociados sin publicidad, sobre el total de adjudicados. Los derivados de un acuerdo marco o de un SDA no cuentan: su licitación sí se publicó.",
+      "numerador": {
+        "valor": 285,
+        "estado": "declarado",
+        "fuente": "tenders:adjudicados:sinPublicidad"
+      },
+      "denominador": {
+        "valor": 699,
+        "estado": "declarado",
+        "fuente": "tenders:adjudicados"
+      },
+      "valor": 0.40772532188841204,
+      "formato": "porcentaje",
+      "periodo": "2017–2026",
+      "caveats": [
+        "El contrato menor es un instrumento legal por debajo de los umbrales de la Ley 9/2017. Esto no mide irregularidad: mide qué parte de la contratación se resuelve sin concurrencia abierta."
+      ],
+      "citas": [
+        {
+          "url": "https://ribalicita.ribarroja.es",
+          "etiqueta": "Perfil de contratante (Gobierto)"
+        }
+      ]
+    },
+    {
+      "id": "concentracion-proveedores",
+      "dimension": "friccion",
+      "etiqueta": "Importe en manos de los cinco mayores proveedores",
+      "descripcion": "Qué parte del importe adjudicado en el periodo se concentra en las cinco empresas que más recibieron.",
+      "numerador": {
+        "valor": 84638787.42,
+        "estado": "declarado",
+        "fuente": "tenders:adjudicados:top5Importe"
+      },
+      "denominador": {
+        "valor": 123681882.78999996,
+        "estado": "declarado",
+        "fuente": "tenders:adjudicados:importeTotal"
+      },
+      "valor": 0.6843264794384525,
+      "formato": "porcentaje",
+      "periodo": "2017–2026",
+      "caveats": [
+        "Suma importes de adjudicación de años distintos y de contratos de duración muy distinta, así que mide concentración del importe adjudicado en el periodo, no gasto anual.",
+        "Una sola adjudicación —HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE S.A.— supone el 45 % del importe del periodo. Las concesiones se adjudican por todo su plazo de una vez, así que su importe no es comparable con el de un contrato anual."
+      ],
+      "citas": [
+        {
+          "url": "https://ribalicita.ribarroja.es",
+          "etiqueta": "Perfil de contratante (Gobierto)"
+        }
+      ]
+    },
+    {
+      "id": "modificaciones-presupuestarias",
+      "dimension": "fiscal",
+      "etiqueta": "Modificaciones sobre el presupuesto aprobado",
+      "descripcion": "Crédito añadido durante el ejercicio, sobre el crédito inicial que aprobó el pleno.",
+      "numerador": {
+        "valor": 24523314.93,
+        "estado": "declarado",
+        "fuente": "budget-execution:2025:gastos.total.modificaciones"
+      },
+      "denominador": {
+        "valor": 37599838.15,
+        "estado": "declarado",
+        "fuente": "budget-execution:2025:gastos.total.inicial"
+      },
+      "valor": 0.6522186300953532,
+      "formato": "porcentaje",
+      "periodo": "2025 (a 31/12/2025)",
+      "caveats": [
+        "Las modificaciones son legales y a veces inevitables —una subvención que llega a mitad de año hay que incorporarla—. Lo que mide es cuánto se aleja el presupuesto ejecutado del que se aprobó y se debatió."
+      ],
+      "citas": [
+        {
+          "url": "https://www.ribarroja.es/es/1_gestion_presupuestaria/2_estados_ejecucion_presupuesto",
+          "etiqueta": "Estado de ejecución 2025"
+        }
+      ]
+    },
+    {
+      "id": "ejecucion-presupuestaria",
+      "dimension": "fiscal",
+      "etiqueta": "Ejecución del presupuesto de gastos",
+      "descripcion": "Gasto reconocido sobre el crédito definitivo, inicial más modificaciones.",
+      "numerador": {
+        "valor": 18909465.12,
+        "estado": "declarado",
+        "fuente": "budget-execution:2025:gastos.total.ejecutado"
+      },
+      "denominador": {
+        "valor": 62123153.08,
+        "estado": "declarado",
+        "fuente": "budget-execution:2025:gastos.total.actual"
+      },
+      "valor": 0.3043867573117073,
+      "formato": "porcentaje",
+      "periodo": "2025 (a 31/12/2025)",
+      "caveats": [
+        "Es una foto del listado publicado, no el cierre del ejercicio: un porcentaje bajo a mitad de año no significa lo mismo que a 31 de diciembre."
+      ],
+      "citas": [
+        {
+          "url": "https://www.ribarroja.es/es/1_gestion_presupuestaria/2_estados_ejecucion_presupuesto",
+          "etiqueta": "Estado de ejecución 2025"
+        }
+      ]
+    }
+  ],
   "stats": {
     "indicadores": 13,
     "conRatio": 10,
-    "comparables": 10
+    "comparables": 10,
+    "municipales": 5
   }
 }

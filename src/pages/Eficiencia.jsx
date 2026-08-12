@@ -1,6 +1,7 @@
 import { Card } from '../components/Primitives'
 import { CoberturaEficiencia } from '../components/eficiencia/CoberturaEficiencia'
 import { ServicioCard } from '../components/eficiencia/ServicioCard'
+import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useT } from '../i18n'
 
@@ -68,6 +69,8 @@ export default function Eficiencia() {
           <ServicioCard key={i.id} indicador={i} formatea={formateaCon(i.unidad)} />
         ))}
       </div>
+
+      <PanelMunicipal municipales={data?.municipales} />
 
       {bloqueados.length > 0 && (
         <>

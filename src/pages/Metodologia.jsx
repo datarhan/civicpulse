@@ -1429,6 +1429,21 @@ export default function Metodologia() {
           unidad de servicio.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>La cuarta dimensión no es la satisfacción ciudadana.</strong> Medirla exigiría una
+          encuesta representativa que no existe: el ayuntamiento publicó un barómetro de servicios
+          en 2026, pero el portal que lo alojaba fue dado de baja, y el buzón de quejas es
+          autoseleccionado —quien escribe no es una muestra—. En su lugar se publica lo que sí tiene
+          fuente: la <strong>fricción institucional</strong> que Leibenstein llamó X-ineficiencia,
+          el desperdicio que nace de la falta de competencia y de la rigidez del procedimiento. Sale
+          de los contratos y de la ejecución presupuestaria que este sitio ya descargaba. Cada cifra
+          lleva el periodo que cubre, porque los contratos abarcan casi una década y un porcentaje
+          sin fecha se lee como «este año». Ninguna lleva comparación con otros municipios: no
+          existe una fuente que la respalde, y un percentil inventado sería peor que la ausencia. Un
+          contrato menor o un solo licitador no son irregularidades —el primero es un instrumento
+          legal por debajo de los umbrales de la Ley 9/2017 y el segundo ocurre en mercados con un
+          único proveedor capaz—; lo que miden es cuánta concurrencia hubo.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>Límites conocidos.</strong> Las magnitudes las rellena cada ayuntamiento, y no
           todos entienden lo mismo por «superficie urbanizada» o «superficie con servicio de
           limpieza»: Riba-roja declara 58,01 km² urbanizados, prácticamente todo su término. Cuando
