@@ -6,6 +6,7 @@ import {
   escalaSerie,
   huecosSerie,
   anclasHueco,
+  puntosSueltos,
 } from '../src/components/eficiencia/SerieServicio'
 
 const ROOT = join(__dirname, '..')
@@ -193,5 +194,52 @@ describe('la banda del hueco ocupa el hueco entero', () => {
       }
     }
     expect(bandas, 'ninguna banda comprobada — la prueba no mide nada').toBeGreaterThan(0)
+  })
+})
+
+describe('ninguna entrega publicada se queda sin dibujar', () => {
+  it('encuentra el punto que queda aislado entre una cifra imposible y un hueco', () => {
+    // Alumbrado: 2018 es inverosímil y 2020 no existe, así que 2019 queda solo.
+    // `tramosSerie` le da un tramo de un punto y el render descartaba los
+    // tramos de longitud < 2 — una cifra publicada, limpia y verificada que no
+    // aparecía en ningún sitio del gráfico.
+    const puntos = [
+      { anio: 2016, valor: 12.83 },
+      { anio: 2017, valor: 15.26 },
+      { anio: 2018, valor: 1.01, atipico: true },
+      { anio: 2019, valor: 11.31 },
+      { anio: 2021, valor: 21.76 },
+      { anio: 2022, valor: 64.09 },
+    ]
+    expect(puntosSueltos(puntos).map((p) => p.anio)).toEqual([2019])
+  })
+
+  it('no llama suelto a un punto que va dentro de una línea', () => {
+    // Control: sin esto, un `puntosSueltos` que devolviera todos los puntos
+    // pasaría la prueba de arriba y pintaría un lunar sobre cada vértice.
+    const puntos = [2021, 2022, 2023].map((anio) => ({ anio, valor: anio }))
+    expect(puntosSueltos(puntos)).toEqual([])
+  })
+
+  it('sobre el panel publicado: toda entrega limpia acaba en una línea o en un lunar', () => {
+    const conSerie = indicadores.filter((i) => i.valor !== null && declarados(i).length >= 2)
+    expect(conSerie.length).toBeGreaterThan(0)
+    let sueltos = 0
+    for (const i of conSerie) {
+      const puntos = declarados(i)
+      const limpios = puntos.filter((p) => !p.atipico)
+      const enLinea = tramosSerie(puntos)
+        .filter((t) => t.length >= 2)
+        .flat().length
+      const solos = puntosSueltos(puntos)
+      sueltos += solos.length
+      expect(
+        enLinea + solos.length,
+        `${i.servicio} publica ${limpios.length} entregas limpias y sólo dibuja ${enLinea + solos.length}`,
+      ).toBe(limpios.length)
+    }
+    // Y el caso existe de verdad en el dato: si algún día deja de existir, esta
+    // prueba pasa por no medir nada y conviene enterarse.
+    expect(sueltos, 'ninguna serie publicada tiene un punto aislado').toBeGreaterThan(0)
   })
 })

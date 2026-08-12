@@ -110,6 +110,24 @@ export function anclasHueco(hueco) {
 }
 
 /**
+ * Entregas limpias que quedan aisladas y a las que una línea no llega.
+ *
+ * Alumbrado publica 11,31 €/punto de luz en 2019, verificado contra sus pares y
+ * sin marcar como inverosímil — y no aparecía en el gráfico. Queda entre la
+ * entrega imposible de 2018 y el año sin entrega de 2020, así que su tramo mide
+ * un punto y el render descartaba los tramos de menos de dos. Una cifra
+ * publicada que no se dibuja en ningún sitio es el mismo defecto que la banda
+ * vino a arreglar, un nivel más abajo: el dato está y la página no lo enseña.
+ *
+ * Se pintan como lunar. Un punto sin línea es exactamente lo que son.
+ */
+export function puntosSueltos(puntos) {
+  return tramosSerie(puntos)
+    .filter((t) => t.length === 1)
+    .map((t) => t[0])
+}
+
+/**
  * El rango vertical, SÓLO sobre lo que se dibuja.
  *
  * Es la decisión que hace posible el gráfico. Meter aquí los 67,7 millones de
@@ -271,6 +289,25 @@ export function SerieServicio({ puntos, formatea, unidad }) {
             background: 'var(--civic)',
           }}
         />
+        {/* Las entregas que ninguna línea alcanza. Mismo color que la línea:
+            son la serie, no una anomalía. */}
+        {puntosSueltos(puntos).map((p) => (
+          <span
+            key={`solo-${p.anio}`}
+            title={`${p.anio}: ${formatea(p.valor)} — entrega aislada: la anterior no se puede leer como coste y la siguiente no existe, así que no hay línea que la una a nada.`}
+            style={{
+              position: 'absolute',
+              left: `${px(p.anio)}%`,
+              top: `${py(p.valor)}%`,
+              width: 5,
+              height: 5,
+              marginLeft: -2.5,
+              marginTop: -2.5,
+              borderRadius: 999,
+              background: 'var(--civic)',
+            }}
+          />
+        ))}
         {atipicos.map((p) => (
           // Fuera de la escala, en el borde, y visiblemente no en la línea: la
           // cifra es oficial y por eso no se esconde, pero no se puede leer
