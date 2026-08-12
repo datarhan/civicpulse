@@ -118,10 +118,38 @@ describe('scraper/indicador-desviacion', () => {
   })
 
   it('sí propone el que se ALEJA de sus pares', () => {
-    const edificios = cand('b323-324-320p-coste-unitario')!
-    const mov = edificios.desviaciones.find((d) => d.motivo === 'movimiento')!
+    // Ya no hay ninguno real: los diez servicios con cociente tienen el
+    // denominador congelado, y la regla se niega a afirmar un movimiento cuyo
+    // punto final divide un coste de hoy entre una cantidad de 2019. Se prueba
+    // con la misma serie a la que se le devuelve un denominador vivo, para que
+    // la regla de divergencia siga ejercitada: si dejara de emitir por otro
+    // motivo, esta prueba lo diría.
+    const plantilla = indicadores.find((i) => i.id === 'b323-324-320p-coste-unitario')!
+    const conDenominadorVivo = {
+      ...plantilla,
+      id: 'sintetico-vivo',
+      declaracion: plantilla.declaracion
+        ? {
+            ...plantilla.declaracion,
+            denominador: { ...plantilla.declaracion.denominador, congelada: false },
+          }
+        : null,
+    }
+    const solo = detectarDesviaciones({
+      indicadores: [conDenominadorVivo],
+      municipales: [],
+      anioBase: pub.anioBase,
+    })
+    const mov = solo.candidatos
+      .flatMap((c) => c.desviaciones)
+      .find((d) => d.motivo === 'movimiento')!
+    expect(mov).toBeDefined()
     expect(mov.veces).toBeGreaterThanOrEqual(UMBRALES.movimientoRelativo)
     expect(mov.detalle).toMatch(/mediana/)
+
+    // Y con el denominador tal cual está en la fuente, NO se propone.
+    expect(cand('b323-324-320p-coste-unitario')).toBeUndefined()
+    expect(det.rechazos['denominador-congelado']).toBeGreaterThan(0)
   })
 
   it('no propone nada de un servicio cuya celda actual está bloqueada', () => {
@@ -192,9 +220,12 @@ describe('scraper/indicador-desviacion', () => {
     const pmp = cand('periodo-medio-pago')!
     expect(pmp.fiabilidad).toBe('alta')
     expect(pmp.desviaciones.find((d) => d.motivo === 'umbral-legal')!.fiabilidad).toBe('alta')
-    const urbanismo = cand('b151-150p-coste-unitario')!
-    expect(urbanismo.fiabilidad).toBe('debil')
     for (const c of det.candidatos) expect(FIABILIDADES).toContain(c.fiabilidad)
+    // Los dos candidatos de servicio que sostenían la otra mitad de esta
+    // comparación —urbanismo ×4,9 y centros docentes ×3,5— ya no se emiten: su
+    // denominador lleva sin remedirse desde 2019. Que la cola de servicios esté
+    // vacía es el resultado, no un fallo de la prueba.
+    expect(det.candidatos.every((c) => c.familia === 'municipal')).toBe(true)
   })
 
   it('pone lo firme arriba de la cola', () => {

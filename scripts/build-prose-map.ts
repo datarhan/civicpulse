@@ -70,10 +70,29 @@ function main() {
   const texto = new Map(todos.map((f) => [f, readFileSync(f, 'utf8')]))
 
   // 1. módulo → snapshots que menciona literalmente
+  //
+  //    …más los que DESCRIBE sin cargar. `/metodologia` explica en prosa lo que
+  //    dicen `indicadores.json` y `dea.json` sin leer ninguno de los dos, así
+  //    que el recordatorio no se disparaba justo en el documento que es el
+  //    contrato editorial publicado. El marcador
+  //    `/* prosa-describe: indicadores.json, dea.json */` lo declara.
+  //
+  //    Sí, es una lista escrita a mano; la diferencia con la tabla central que
+  //    esto vino a sustituir es que vive DENTRO del fichero que contiene la
+  //    prosa, así que no puede alejarse de lo que describe sin que alguien la
+  //    esté mirando. Y `--check` sigue rojo si diverge.
   const snapshotsDe = new Map<string, Set<string>>()
   for (const [f, t] of texto) {
     const encontrados = [...t.matchAll(/['"`]\/data\/([\w-]+\.json)['"`]/g)].map((m) => m[1])
-    if (encontrados.length) snapshotsDe.set(f, new Set(encontrados))
+    const declarados = [...t.matchAll(/prosa-describe:\s*([^*\n]+)/g)].flatMap((m) =>
+      m[1]
+        .split(',')
+        .map((x) => x.trim())
+        .filter((x) => /^[\w-]+\.json$/.test(x)),
+    )
+    if (encontrados.length || declarados.length) {
+      snapshotsDe.set(f, new Set([...encontrados, ...declarados]))
+    }
   }
 
   // 2. grafo de imports

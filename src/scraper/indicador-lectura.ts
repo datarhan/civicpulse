@@ -58,11 +58,25 @@ const fmt = (v: number, unidad: string) =>
     maximumFractionDigits: v >= 1000 ? 0 : 2,
   })} ${unidad}`
 
-/** Tramo del percentil, en palabras y sin ranking. */
+/**
+ * Tramo del percentil, en palabras y sin ranking.
+ *
+ * El tramo central decía «en el grueso del grupo», que afirma TIPICIDAD a
+ * partir de un PUESTO. Con bandas tan abiertas como las de esta fuente —la de
+ * pavimentación va de 0,07 a 1,29 €/m², diecinueve veces de un cuartil a otro—
+ * caer dentro del intercuartílico no significa parecerse a nadie. Y la misma
+ * tarjeta avisaba dos líneas más abajo de que la cifra está a la mitad de la
+ * mediana, así que el lector recibía las dos cosas a la vez. Lo cazó la
+ * revisión de superficies.
+ *
+ * Ahora el tramo central dice lo único que el percentil sostiene: de qué lado
+ * de la mediana cae. No promete tipicidad y no puede contradecir a la salvedad.
+ */
 function tramo(percentil: number): string {
   if (percentil <= 10) return 'por debajo de casi todos'
   if (percentil <= 25) return 'más bajo que tres de cada cuatro'
-  if (percentil < 75) return 'en el grueso del grupo'
+  if (percentil < 50) return 'por debajo de la mediana del grupo'
+  if (percentil < 75) return 'por encima de la mediana del grupo'
   if (percentil < 90) return 'más alto que tres de cada cuatro'
   return 'por encima de casi todos'
 }

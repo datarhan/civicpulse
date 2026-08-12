@@ -70,3 +70,20 @@ describe('nav — entradaNavActiva', () => {
     expect(comprobadas).toBeGreaterThan(15)
   })
 })
+
+describe('nav — sin campos que no lee nadie', () => {
+  it('ninguna entrada arrastra un `shortcut`', () => {
+    // El campo estuvo en las 20 entradas sin que un solo módulo de src/ lo
+    // leyera, con dos valores duplicados que nadie podía notar porque no hacían
+    // nada. Una tabla inerte que aparenta ser funcional es peor que no tenerla:
+    // el siguiente que la lea creerá que los atajos existen.
+    let revisadas = 0
+    for (const n of [...NAV, ...NAV_SECONDARY]) {
+      expect(n, `${n.to} no debe declarar atajos que no implementa nadie`).not.toHaveProperty(
+        'shortcut',
+      )
+      revisadas++
+    }
+    expect(revisadas).toBeGreaterThan(15)
+  })
+})

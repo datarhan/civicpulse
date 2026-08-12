@@ -54,7 +54,8 @@
       "/quejas"
     ],
     "dea.json": [
-      "/laboratorio/frontera"
+      "/laboratorio/frontera",
+      "/metodologia"
     ],
     "dedicaciones.json": [
       "/cargos",
@@ -95,7 +96,8 @@
       "/quejas"
     ],
     "indicadores.json": [
-      "/eficiencia"
+      "/eficiencia",
+      "/metodologia"
     ],
     "ispa.json": [
       "/cargos"

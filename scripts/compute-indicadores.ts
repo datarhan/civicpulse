@@ -56,6 +56,9 @@ async function main() {
     budgetExecution: await leer('public/data/budget-execution.json'),
     pmp: await leer('public/data/pmp.json').catch(() => undefined),
     budget: await leer('public/data/budget.json').catch(() => undefined),
+    // El mismo snapshot que alimenta el panel de servicios, ahora también para
+    // medir si alguien vuelve a contar lo que declara.
+    costeEfectivo: fuente,
   })
   for (const m of municipales) {
     rec.attempt()

@@ -20,7 +20,6 @@ export const NAV = [
     label: 'Panel',
     railLabel: 'Mirador',
     icon: Ic.home,
-    shortcut: 'G H',
   },
   {
     to: '/cambios',
@@ -28,7 +27,6 @@ export const NAV = [
     labelKey: 'nav.cambios',
     label: 'Novedades',
     icon: Ic.chart,
-    shortcut: 'G N',
   },
   {
     to: '/cargos',
@@ -36,7 +34,6 @@ export const NAV = [
     labelKey: 'nav.cargos',
     label: 'Cargos',
     icon: Ic.people,
-    shortcut: 'G C',
   },
   {
     to: '/presupuesto',
@@ -44,7 +41,6 @@ export const NAV = [
     labelKey: 'nav.presup',
     label: 'Presupuesto',
     icon: Ic.coin,
-    shortcut: 'G P',
   },
   // Coste unitario por servicio frente a municipios comparables. Va detrás de
   // /presupuesto porque es la otra mitad de la misma pregunta: qué se gasta, y
@@ -57,7 +53,6 @@ export const NAV = [
           labelKey: 'nav.eficiencia',
           label: 'Eficiencia',
           icon: Ic.chart,
-          shortcut: 'G I',
         },
       ]
     : []),
@@ -67,7 +62,6 @@ export const NAV = [
     labelKey: 'nav.plenos',
     label: 'Plenos',
     icon: Ic.scale,
-    shortcut: 'G L',
   },
   {
     to: '/promesas',
@@ -75,7 +69,6 @@ export const NAV = [
     labelKey: 'nav.promesas',
     label: 'Promesas',
     icon: Ic.scale,
-    shortcut: 'G R',
   },
   {
     to: '/departamentos',
@@ -83,7 +76,6 @@ export const NAV = [
     labelKey: 'nav.departamentos',
     label: 'Departamentos',
     icon: Ic.building,
-    shortcut: 'G E',
   },
   {
     to: '/hallazgos',
@@ -91,7 +83,6 @@ export const NAV = [
     labelKey: 'nav.hallazgos',
     label: 'Hallazgos',
     icon: Ic.warn,
-    shortcut: 'G F',
   },
   {
     to: '/reportajes',
@@ -99,7 +90,6 @@ export const NAV = [
     labelKey: 'nav.reportajes',
     label: 'Reportajes',
     icon: Ic.list ?? Ic.warn,
-    shortcut: 'G J',
   },
   {
     to: '/declaraciones',
@@ -107,7 +97,6 @@ export const NAV = [
     labelKey: 'nav.declaraciones',
     label: 'Declaraciones',
     icon: Ic.list ?? Ic.warn,
-    shortcut: 'G L',
   },
   {
     to: '/datos',
@@ -115,7 +104,6 @@ export const NAV = [
     labelKey: 'nav.datos',
     label: 'Datos',
     icon: Ic.chart,
-    shortcut: 'G D',
   },
   {
     to: '/quejas',
@@ -123,7 +111,6 @@ export const NAV = [
     labelKey: 'nav.quejas',
     label: 'Quejas',
     icon: Ic.warn,
-    shortcut: 'G Q',
   },
   {
     to: '/empleo',
@@ -131,7 +118,6 @@ export const NAV = [
     labelKey: 'nav.empleo',
     label: 'Empleo',
     icon: Ic.building,
-    shortcut: 'G O',
   },
   {
     to: '/empleo-publico',
@@ -139,7 +125,6 @@ export const NAV = [
     labelKey: 'nav.empleoPublico',
     label: 'Empleo público',
     icon: Ic.building,
-    shortcut: 'G U',
   },
   {
     to: '/laboratorio',
@@ -147,7 +132,6 @@ export const NAV = [
     labelKey: 'nav.laboratorio',
     label: 'Laboratorio',
     icon: Ic.lab,
-    shortcut: 'G B',
   },
   // La frontera NO va tras bandera. Es el experimento más sujeto a
   // malinterpretación de todo el sitio y por eso la página entera está
@@ -161,9 +145,6 @@ export const NAV = [
     labelKey: 'nav.frontera',
     label: 'Frontera',
     icon: Ic.lab,
-    // 'G F' ya es de /hallazgos. 'G V' por «envolvente», que es como se llama
-    // la técnica en castellano.
-    shortcut: 'G V',
   },
   // "Periodistas" (the AI journalist agent) is the highest legal-sensitivity
   // surface — it drafts biographies of named living officials. Hidden from
@@ -177,7 +158,6 @@ export const NAV = [
           labelKey: 'nav.agentes',
           label: 'Periodistas',
           icon: Ic.lab,
-          shortcut: 'G A',
         },
       ]
     : []),
@@ -192,7 +172,6 @@ export const NAV = [
           labelKey: 'nav.curator',
           label: 'Curator (dev)',
           icon: Ic.settings ?? Ic.warn,
-          shortcut: 'G C',
         },
       ]
     : []),
@@ -202,7 +181,6 @@ export const NAV = [
     labelKey: 'nav.nosotros',
     label: 'Quiénes somos',
     icon: Ic.people,
-    shortcut: 'G S',
   },
 ]
 

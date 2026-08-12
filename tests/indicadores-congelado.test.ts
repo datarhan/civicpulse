@@ -16,7 +16,7 @@ import { describe, it, expect } from 'vitest'
 import { construirIndicadores } from '../src/scraper/indicadores'
 import { SERVICIOS } from '../src/scraper/indicador-registry'
 import { MIN_ENTREGAS_CONGELADA } from '../src/scraper/declaracion-congelada'
-import { detectarDesviaciones } from '../src/scraper/indicador-desviacion'
+import { detectarDesviaciones, RECHAZOS } from '../src/scraper/indicador-desviacion'
 import type { CesteRow } from '../src/scraper/coste-efectivo'
 
 const ANIOS = [2019, 2020, 2021, 2022, 2023, 2024]
@@ -167,5 +167,65 @@ describe('scraper/indicador-desviacion — techo por denominador congelado', () 
     const mio = candidatos.filter((c) => c.indicadorId === 'a1621-coste-unitario')
     expect(mio.length).toBeGreaterThan(0)
     expect(mio.some((c) => c.fiabilidad === 'alta')).toBe(true)
+  })
+})
+
+describe('scraper/indicador-desviacion — el movimiento necesita un denominador que pueda moverse', () => {
+  /** Un servicio que se aleja de sus pares con fuerza, año a año. */
+  const paresQuietos = Array.from({ length: 16 }, (_, k) =>
+    ANIOS.map((a) => fila(`462${String(k).padStart(2, '0')}`, a, 700000, 9000)),
+  ).flat()
+
+  function conMovimiento(unidadPorAnio: (i: number) => number) {
+    // El coste se multiplica por seis a lo largo de la ventana: contra unos
+    // pares quietos, eso es un movimiento enorme y la regla lo emitiría.
+    const propiasMov = ANIOS.map((a, i) => fila('46214', a, 300000 + i * 340000, unidadPorAnio(i)))
+    return construirIndicadores({
+      municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: propiasMov },
+      pares: {
+        conjunto: 'cv-15k-40k',
+        miembros: [...new Set(paresQuietos.map((f) => f.ine))].map((ine) => ({
+          ine,
+          nombre: `Municipio ${ine}`,
+          poblacion: 20000,
+        })),
+        filas: paresQuietos,
+      },
+      citaUrl: 'https://www.hacienda.gob.es/',
+    })
+  }
+
+  it('con el denominador vivo, el movimiento sí genera candidato', () => {
+    // EL CONTROL. Sin él, una regla que rechazara todo pasaría la prueba de
+    // abajo, y la guarda no estaría midiendo nada.
+    const snap = conMovimiento((i) => 9000 + i * 220)
+    expect(byId(snap, 'a1621-coste-unitario').declaracion!.denominador.congelada).toBe(false)
+    const { candidatos } = detectarDesviaciones({
+      indicadores: snap.indicadores,
+      municipales: [],
+      anioBase: 2024,
+    })
+    const mio = candidatos.find((c) => c.indicadorId === 'a1621-coste-unitario')
+    expect(mio?.desviaciones.some((d) => d.motivo === 'movimiento')).toBe(true)
+  })
+
+  it('con el denominador congelado, deja de generarlo', () => {
+    // Es el caso de urbanismo y de centros docentes: «la distancia a sus pares
+    // se multiplica por 4,9» con el punto final dividiendo un coste de hoy
+    // entre una cantidad de 2019. El movimiento es del numerador; atribuirlo a
+    // la gestión sería publicar como hallazgo la falta de medición.
+    const snap = conMovimiento(() => 9000)
+    expect(byId(snap, 'a1621-coste-unitario').declaracion!.denominador.congelada).toBe(true)
+    const det = detectarDesviaciones({
+      indicadores: snap.indicadores,
+      municipales: [],
+      anioBase: 2024,
+    })
+    const mio = det.candidatos.find((c) => c.indicadorId === 'a1621-coste-unitario')
+    expect(mio?.desviaciones.some((d) => d.motivo === 'movimiento') ?? false).toBe(false)
+    // Y el rechazo se CUENTA con su motivo: una regla que se calla es
+    // indistinguible de una que no corrió.
+    expect(RECHAZOS).toContain('denominador-congelado')
+    expect(det.rechazos['denominador-congelado']).toBeGreaterThan(0)
   })
 })

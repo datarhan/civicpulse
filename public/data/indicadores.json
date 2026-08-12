@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T14:18:33.908Z",
+  "generatedAt": "2026-08-12T16:05:28.032Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -4388,12 +4388,50 @@
           "etiqueta": "Estado de ejecución 2025"
         }
       ]
+    },
+    {
+      "id": "denominadores-sin-remedir",
+      "dimension": "friccion",
+      "etiqueta": "Denominadores que el ayuntamiento no vuelve a medir",
+      "descripcion": "De los servicios en los que hay coste unitario —hay coste y hay unidad en la última entrega—, en cuántos repite el ayuntamiento la misma unidad física entrega tras entrega mientras actualiza el coste.",
+      "numerador": {
+        "valor": 10,
+        "estado": "declarado",
+        "fuente": "coste-efectivo:2024:denominadores-congelados"
+      },
+      "denominador": {
+        "valor": 10,
+        "estado": "declarado",
+        "fuente": "coste-efectivo:2024:denominadores-medibles"
+      },
+      "valor": 1,
+      "formato": "porcentaje",
+      "periodo": "2024",
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 51,
+        "percentil": 100,
+        "p25": 0.4017857142857143,
+        "mediana": 0.5714285714285714,
+        "p75": 0.75
+      },
+      "caveats": [
+        "Esto mide la DECLARACIÓN, no el servicio: una cantidad estable puede ser perfectamente correcta, y repetirla no prueba que nadie la haya comprobado.",
+        "Una serie cuenta como sin remedir cuando sus últimas 4 entregas o más traen el mismo valor hasta el cuarto decimal. Repetir cifra dos años seguidos es normal y no cuenta.",
+        "Lo que sí se puede afirmar es lo que le pasa al cociente: si el coste se actualiza cada entrega y la unidad no, el coste unitario sube sin que el servicio haya cambiado, y su serie no se puede leer como gestión."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/es-ES/Areas%20Tematicas/Administracion%20Electronica/OVEELL/Paginas/CosteEfectivoServicios.aspx",
+          "etiqueta": "Coste efectivo de los servicios · Ministerio de Hacienda"
+        }
+      ]
     }
   ],
   "stats": {
     "indicadores": 13,
     "conRatio": 10,
     "comparables": 10,
-    "municipales": 7
+    "municipales": 8
   }
 }
