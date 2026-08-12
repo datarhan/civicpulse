@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T09:42:15.956Z",
+  "generatedAt": "2026-08-12T11:11:39.806Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -1238,7 +1238,7 @@
       ],
       "caveats": [
         "Es el gasto de un ejercicio sobre todo el pavimento existente, no el coste de asfaltar un metro nuevo.",
-        "Esta cifra queda muy por debajo de la mediana de sus pares (×0.5). Una diferencia así suele venir de que cada ayuntamiento declara «Superficie de los tramos pavimentados (metros cuadrados)» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación."
+        "Esta cifra queda muy por debajo de la mediana de sus pares (×0,5). Una diferencia así suele venir de que cada ayuntamiento declara «Superficie de los tramos pavimentados (metros cuadrados)» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación."
       ],
       "citas": [
         {
@@ -2790,7 +2790,7 @@
       ],
       "caveats": [
         "La superficie urbanizada es el territorio que hay que planificar, no un producto del servicio.",
-        "Esta cifra queda muy por debajo de la mediana de sus pares (×0.2). Una diferencia así suele venir de que cada ayuntamiento declara «Superficie urbanizada (kilómetros cuadrados)» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación."
+        "Esta cifra queda muy por debajo de la mediana de sus pares (×0,2). Una diferencia así suele venir de que cada ayuntamiento declara «Superficie urbanizada (kilómetros cuadrados)» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación."
       ],
       "citas": [
         {
@@ -3140,7 +3140,7 @@
       ],
       "caveats": [
         "El ayuntamiento mantiene los edificios; la enseñanza es competencia autonómica, así que esto no mide resultados educativos.",
-        "Esta cifra queda muy por encima de la mediana de sus pares (×3.1). Una diferencia así suele venir de que cada ayuntamiento declara «Superficie en metros cuadrados de los edificios» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación."
+        "Esta cifra queda muy por encima de la mediana de sus pares (×3,1). Una diferencia así suele venir de que cada ayuntamiento declara «Superficie en metros cuadrados de los edificios» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación."
       ],
       "citas": [
         {

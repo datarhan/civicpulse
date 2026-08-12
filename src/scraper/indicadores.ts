@@ -425,7 +425,10 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       if (razon > DIVERGENCIA_EXTREMA || razon < 1 / DIVERGENCIA_EXTREMA) {
         caveats.push(
           `Esta cifra queda ${razon > 1 ? 'muy por encima' : 'muy por debajo'} de la mediana de sus pares ` +
-            `(×${razon.toFixed(1)}). Una diferencia así suele venir de que cada ayuntamiento declara ` +
+            // `toFixed` escribe el punto decimal inglés, y esta frase se publica
+            // en /eficiencia al lado de cifras que Intl formatea bien.
+            `(×${razon.toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}). ` +
+            `Una diferencia así suele venir de que cada ayuntamiento declara ` +
             `«${def.denominador}» a su manera, no de que el servicio se gestione mejor o peor. ` +
             `El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas ` +
             `es la comparación.`,
