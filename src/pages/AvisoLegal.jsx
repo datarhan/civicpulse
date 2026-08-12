@@ -1,4 +1,5 @@
 import { Card, SectionHead } from '../components/Primitives'
+import { fmtDateLong } from '../lib/formatters'
 
 export default function AvisoLegal() {
   return (
@@ -367,9 +368,16 @@ export default function AvisoLegal() {
         </p>
       </Card>
 
+      {/* La fecha sale de git en el build, no escrita a mano — igual que en
+          /metodologia y por una razón más fuerte: esto es un aviso legal, y
+          decía «2 de julio» mientras el fichero incorporaba compromisos
+          nuevos. Una fecha de vigencia que va por detrás de lo vigente es
+          justo lo contrario de lo que una fecha de vigencia sirve. */}
       <p style={{ marginTop: 22, fontSize: 12, color: 'var(--ink50)' }}>
-        Versión vigente: 2 de julio de 2026. Las modificaciones a este aviso legal quedan trazadas
-        en el historial git del repositorio.
+        {__REVISION_AVISO_LEGAL__ ? (
+          <>Versión vigente: {fmtDateLong(__REVISION_AVISO_LEGAL__)}. </>
+        ) : null}
+        Las modificaciones a este aviso legal quedan trazadas en el historial git del repositorio.
       </p>
     </div>
   )

@@ -120,7 +120,22 @@ describe('scraper/indicadores-friccion', () => {
     // Gastar más por vecino no es peor ni mejor: si la tarjeta no lo dice, se
     // lee como una nota. Es la misma disciplina que el coste por policía.
     expect(g.caveats.some((c) => /medida de ENTRADA/i.test(c))).toBe(true)
-    expect(g.caveats.some((c) => /presupuesto aprobado, no gasto realizado/i.test(c))).toBe(true)
+    expect(g.caveats.some((c) => /no gasto ejecutado/i.test(c))).toBe(true)
+  })
+
+  it('no encadena el gasto por habitante con el porcentaje de ejecución', () => {
+    // La salvedad decía «Es presupuesto aprobado, no gasto realizado. La
+    // ejecución de este mismo ejercicio aparece más abajo», que afirma
+    // exactamente la reconciliación que la salvedad de la ejecución se niega a
+    // hacer en la misma página: las dos cifras dicen ser el mismo ejercicio,
+    // difieren en casi cuatro millones, y llamar a una «lo aprobado» y a la
+    // otra «lo definitivo» sería inventarse la explicación.
+    const gasto = byId('gasto-por-habitante')
+    const ejecucion = byId('ejecucion-presupuestaria')
+    // Una página no puede sostener las dos frases, así que se comprueban juntas.
+    expect(ejecucion.caveats.some((c) => /inventarse la reconciliación/i.test(c))).toBe(true)
+    expect(gasto.caveats.some((c) => /presupuesto aprobado/i.test(c))).toBe(false)
+    expect(gasto.caveats.some((c) => /sigue sin explicación/i.test(c))).toBe(true)
   })
 
   it('no compara el gasto por habitante sin banda que lo sostenga', () => {

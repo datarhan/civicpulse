@@ -280,7 +280,15 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
           : undefined,
       caveats: [
         'Es una medida de ENTRADA: cuánto se presupuesta por vecino. Gastar más no es peor ni mejor —puede ser más servicio o menos eficiencia— y esta cifra sola no distingue las dos cosas.',
-        'Es presupuesto aprobado, no gasto realizado. La ejecución de este mismo ejercicio aparece más abajo.',
+        // Decía «Es presupuesto aprobado, no gasto realizado. La ejecución de
+        // este mismo ejercicio aparece más abajo», que afirma exactamente la
+        // reconciliación que la salvedad de `ejecucion-presupuestaria` se
+        // niega a hacer doce tarjetas más abajo, en esta misma página: las dos
+        // cifras dicen ser el mismo ejercicio, difieren en casi cuatro
+        // millones, y llamar a una «lo aprobado» y a la otra «lo definitivo»
+        // sería inventarse la explicación. Una página no puede sostener las
+        // dos frases.
+        'Es una cifra presupuestaria de la publicación del ministerio, no gasto ejecutado. No es el punto de partida del porcentaje de ejecución que aparece más abajo: aquélla parte del crédito del listado municipal, las dos dicen ser el mismo ejercicio y la diferencia entre ambas sigue sin explicación.',
         'Sale de la publicación del ministerio, la misma fila cuyos ingresos y gastos no cuadran entre sí; /presupuesto lo explica.',
       ],
       citas: [

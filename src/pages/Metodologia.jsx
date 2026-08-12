@@ -1,4 +1,5 @@
 import { Card, SectionHead } from '../components/Primitives'
+import { fmtDateLong } from '../lib/formatters'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { useFindingQuoteProvenance } from '../hooks/useFindingQuoteProvenance'
 import { authorshipBreakdown } from '../scraper/finding-authorship'
@@ -1627,10 +1628,17 @@ export default function Metodologia() {
         </p>
       </Card>
 
+      {/* La fecha sale de git en el build, no escrita a mano. La anterior decía
+          el 14 de julio con seis ediciones posteriores encima, y la coletilla
+          que describía «el último cambio» describía uno de hace un mes: una
+          fecha a mano que certifica actualidad se queda vieja justo cuando más
+          importa que no lo esté. Sin git no se escribe ninguna, que es mejor
+          que escribir una inventada. */}
       <p style={{ marginTop: 22, fontSize: 12, color: 'var(--ink50)' }}>
-        Última revisión de este documento: 14 de julio de 2026 (suplemento curado del callejero con
-        procedencia obligatoria para lugares ausentes de OSM). Cambios futuros sólo mediante PR
-        público.
+        {__REVISION_METODOLOGIA__ ? (
+          <>Última revisión de este documento: {fmtDateLong(__REVISION_METODOLOGIA__)}. </>
+        ) : null}
+        Cambios futuros sólo mediante PR público.
       </p>
     </div>
   )

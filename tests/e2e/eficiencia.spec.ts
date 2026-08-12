@@ -122,6 +122,34 @@ test.describe('Eficiencia (/eficiencia)', () => {
     await expect(page.getByText(/Ver los municipios comparados/i)).toHaveCount(comparables)
   })
 
+  test('the signed-findings section says what its emptiness means', async ({ page }) => {
+    // Cero fichas es el estado normal antes de la primera firma. Un hueco se
+    // lee como «no hay nada que contar», que es la mentira por omisión que el
+    // resto de la página existe para no cometer: la sección tiene que decir
+    // que lo que falta es una firma, no un hallazgo.
+    const FICHAS = JSON.parse(readFileSync('public/data/eficiencia-findings.json', 'utf8'))
+    await expect(page.getByRole('heading', { name: /Hallazgos firmados/i })).toBeVisible({
+      timeout: 8000,
+    })
+
+    if (FICHAS.items.length === 0) {
+      await expect(page.getByText(/Todavía no hay ninguna ficha firmada/i)).toBeVisible()
+      return
+    }
+    // Con fichas publicadas: cada una enseña su medición congelada y su
+    // periodo, que es lo que permite volver a comprobarla contra la fuente.
+    for (const f of FICHAS.items) {
+      await expect(page.getByRole('heading', { name: f.titulo })).toBeVisible()
+      await expect(page.getByText(f.medicion.periodo, { exact: false }).first()).toBeVisible()
+    }
+    // Y ninguna nombra a nadie: el esquema no tiene dónde, y esto lo comprueba
+    // sobre lo que de verdad se sirve.
+    const html = await page.content()
+    for (const campo of ['individualSpeaker', 'speakerGroup']) {
+      expect(html, `${campo} no puede aparecer en una ficha de eficiencia`).not.toContain(campo)
+    }
+  })
+
   test('axe evaluates the page and finds nothing blocking', async ({ page }) => {
     await page.goto('/eficiencia', { waitUntil: 'domcontentloaded' })
     await page.waitForTimeout(900)

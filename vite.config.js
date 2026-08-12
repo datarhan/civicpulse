@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { viteCuratorPlugin } from './vite-curator-plugin.js'
+import { buildDefines } from './build-defines.js'
 
 // `apply: 'serve'` on viteCuratorPlugin already prevents it from running in
 // production builds, but we ALSO gate registration on the mode here as
@@ -8,6 +9,7 @@ import { viteCuratorPlugin } from './vite-curator-plugin.js'
 // endpoints could leak into a deployed bundle.
 export default defineConfig(({ mode }) => ({
   plugins: [react(), ...(mode === 'development' ? [viteCuratorPlugin()] : [])],
+  define: buildDefines(),
   server: {
     port: 5173,
     open: false,

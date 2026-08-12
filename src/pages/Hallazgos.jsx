@@ -541,7 +541,13 @@ export default function Hallazgos() {
             <strong>cuánto cuesta cada servicio</strong> —que no citan a nadie porque no los dijo
             nadie: salen de las cifras que el ayuntamiento remite al ministerio— se publican junto a
             los datos de los que salen, en{' '}
-            <Link to="/eficiencia#hallazgos" style={{ color: 'var(--civic)' }}>
+            {/* Subrayado, no sólo color: un enlace dentro de un bloque de
+                texto que sólo se distingue por el tono falla WCAG 1.4.1, y axe
+                lo caza en cuanto se despliega. */}
+            <Link
+              to="/eficiencia#hallazgos"
+              style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+            >
               eficiencia
             </Link>
             .

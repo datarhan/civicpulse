@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T11:11:39.806Z",
+  "generatedAt": "2026-08-12T11:41:21.450Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -4016,7 +4016,7 @@
       },
       "caveats": [
         "Es una medida de ENTRADA: cuánto se presupuesta por vecino. Gastar más no es peor ni mejor —puede ser más servicio o menos eficiencia— y esta cifra sola no distingue las dos cosas.",
-        "Es presupuesto aprobado, no gasto realizado. La ejecución de este mismo ejercicio aparece más abajo.",
+        "Es una cifra presupuestaria de la publicación del ministerio, no gasto ejecutado. No es el punto de partida del porcentaje de ejecución que aparece más abajo: aquélla parte del crédito del listado municipal, las dos dicen ser el mismo ejercicio y la diferencia entre ambas sigue sin explicación.",
         "Sale de la publicación del ministerio, la misma fila cuyos ingresos y gastos no cuadran entre sí; /presupuesto lo explica."
       ],
       "citas": [
