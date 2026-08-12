@@ -259,12 +259,23 @@ function fiabilidadComparativa(valor: number, mediana: number): Fiabilidad {
 }
 
 /** Posición dentro de la banda de pares. `null` si la banda no da para hablar. */
+/**
+ * `queSon` describe CONTRA QUIÉN se compara, y lo pone quien lo sabe.
+ *
+ * Esta regla la comparten las dos familias, y la frase estaba clavada: «en N
+ * municipios que prestan el servicio del mismo modo». Para un servicio es
+ * cierta —los pares se filtran por modo de gestión antes de calcular ningún
+ * percentil— y para el plazo de pago o los denominadores sin remedir no
+ * significa nada, porque ahí no hay servicio ni modo que compartir. Nunca llegó
+ * a una ficha publicada, pero el borrador es de donde copia un curador.
+ */
 function reglaPosicion(
   percentil: number,
   n: number,
   valor: number,
   mediana: number,
   unidad: string,
+  queSon: string,
   ctx: Contexto,
 ): Desviacion | null {
   if (n < UMBRALES.minPares) return null
@@ -285,7 +296,7 @@ function reglaPosicion(
     veces: razon >= 1 ? razon : razon > 0 ? 1 / razon : 0,
     detalle:
       `${cifra(valor, unidad)} frente a una mediana de ${cifra(mediana, unidad)} en ` +
-      `${entero(n)} municipios que prestan el servicio del mismo modo ` +
+      `${entero(n)} municipios ${queSon} ` +
       `(percentil ${percentil}).`,
   }
 }
@@ -515,7 +526,15 @@ export function detectarDesviaciones(input: EntradaDeteccion): Deteccion {
     const antes = { ...ctx.reglas }
     const desviaciones: Desviacion[] = []
     if (i.pares) {
-      const d = reglaPosicion(i.pares.percentil, i.pares.n, i.valor, i.pares.mediana, i.unidad, ctx)
+      const d = reglaPosicion(
+        i.pares.percentil,
+        i.pares.n,
+        i.valor,
+        i.pares.mediana,
+        i.unidad,
+        'que prestan el servicio del mismo modo',
+        ctx,
+      )
       if (d) desviaciones.push(d)
     }
     const mov = reglaMovimiento(i, input.anioBase, i.unidad, ctx)
@@ -600,6 +619,10 @@ export function detectarDesviaciones(input: EntradaDeteccion): Deteccion {
         valor,
         m.pares.mediana * escala,
         m.formato === 'porcentaje' ? '%' : unidad,
+        // Lo pone el propio indicador, que es quien construyó la banda. Un mapa
+        // aquí, indexado por `conjunto`, sería una tabla central que se queda
+        // vieja en cuanto alguien añada un indicador y no la toque.
+        m.pares.descripcion ?? 'comparables',
         ctx,
       )
       if (d) desviaciones.push(d)

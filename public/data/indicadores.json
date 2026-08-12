@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T16:05:28.032Z",
+  "generatedAt": "2026-08-12T16:29:40.775Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -4190,6 +4190,7 @@
       ],
       "pares": {
         "conjunto": "municipios que publican PMP con la misma norma",
+        "descripcion": "que publican su plazo de pago con la misma norma",
         "n": 6013,
         "percentil": 94,
         "p25": 7.69,
@@ -4227,6 +4228,7 @@
       "periodo": "2025",
       "pares": {
         "conjunto": "cv-15k-40k",
+        "descripcion": "de la misma banda de población",
         "n": 59,
         "percentil": 88,
         "p25": 925.4006757404256,
@@ -4409,6 +4411,7 @@
       "periodo": "2024",
       "pares": {
         "conjunto": "cv-15k-40k",
+        "descripcion": "de la misma banda de población de los que se puede medir lo mismo",
         "n": 51,
         "percentil": 100,
         "p25": 0.4017857142857143,

@@ -70,6 +70,12 @@ export interface IndicadorMunicipal {
   /** Reparto de pares, cuando existe una fuente que lo respalde. */
   pares?: {
     conjunto: string
+    /**
+     * Contra quién se compara, en palabras que encajen tras «en N municipios».
+     * La escribe el indicador que construye la banda: sólo él sabe qué tienen
+     * en común esos municipios.
+     */
+    descripcion?: string
     n: number
     percentil: number
     p25: number
@@ -229,6 +235,7 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
         dist && typeof ultimo.percentil === 'number'
           ? {
               conjunto: 'municipios que publican PMP con la misma norma',
+              descripcion: 'que publican su plazo de pago con la misma norma',
               n: dist.n,
               percentil: ultimo.percentil,
               p25: dist.p25,
@@ -285,6 +292,7 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
         vals.length >= 15
           ? {
               conjunto: bud?.pares?.conjunto ?? 'cv-15k-40k',
+              descripcion: 'de la misma banda de población',
               n: vals.length,
               percentil: Math.round((100 * vals.filter((v) => v <= propio).length) / vals.length),
               p25: q(0.25),
@@ -594,6 +602,7 @@ function medirDenominadores(fuente: NonNullable<FriccionInput['costeEfectivo']>)
       vals.length >= 15
         ? {
             conjunto: 'cv-15k-40k',
+            descripcion: 'de la misma banda de población de los que se puede medir lo mismo',
             n: vals.length,
             percentil: Math.round((100 * vals.filter((v) => v <= valor).length) / vals.length),
             p25: q(0.25),
