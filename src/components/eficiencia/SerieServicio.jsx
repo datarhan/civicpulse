@@ -199,15 +199,21 @@ export function SerieServicio({ puntos, formatea, unidad }) {
               position: 'absolute',
               left: `${px(anclasHueco(h).izq)}%`,
               width: `${px(anclasHueco(h).der) - px(anclasHueco(h).izq)}%`,
-              top: 0,
+              // Pegada al SUELO y de 14px, no de alto completo.
+              //
+              // Con relleno macizo y de arriba abajo era un rectángulo gris que
+              // ocupaba un quinto del gráfico, y un rectángulo relleno dentro de
+              // un gráfico de líneas es la gramática de una BARRA: en recogida
+              // de residuos se leía como que 2020 tuvo un valor enorme, que es
+              // lo contrario de lo que significa. La ausencia pesaba más que el
+              // dato, en las diez tarjetas a la vez.
+              //
+              // Una ausencia tiene que leerse como ausencia: el hueco lo dice el
+              // hueco, y esto sólo lo rotula. Regla punteada al ras del suelo
+              // —un tramo de eje sin nada encima— y el año debajo.
               bottom: 0,
-              background: 'var(--soft)',
-              // `--border`, no `--border2`: medido sobre la página publicada el
-              // discontinuo salía en rgb(238,240,243) sobre un fondo de
-              // rgb(243,244,246) —invisible—, así que la banda no tenía límites
-              // y con ellos el borde ES el mensaje: hasta aquí llega la línea.
-              borderLeft: '1px dashed var(--border)',
-              borderRight: '1px dashed var(--border)',
+              height: 14,
+              borderTop: '1px dotted var(--border)',
               display: 'flex',
               alignItems: 'flex-end',
               justifyContent: 'center',
@@ -216,7 +222,7 @@ export function SerieServicio({ puntos, formatea, unidad }) {
           >
             <span
               className="mono"
-              style={{ fontSize: 9, color: 'var(--ink50)', lineHeight: 1.4, whiteSpace: 'nowrap' }}
+              style={{ fontSize: 9, color: 'var(--ink50)', lineHeight: 1.2, whiteSpace: 'nowrap' }}
             >
               {nombraHueco(h)}
             </span>
@@ -319,7 +325,14 @@ export function SerieServicio({ puntos, formatea, unidad }) {
             style={{
               position: 'absolute',
               left: `${px(p.anio)}%`,
-              top: 0,
+              // Arriba si se sale por arriba, abajo si se sale por abajo.
+              //
+              // Iba siempre arriba, y para alumbrado eso era engañoso: su
+              // entrega imposible de 2018 es 1,01 €/punto de luz, o sea
+              // ridículamente BAJA, y la marca en el techo la insinuaba altísima.
+              // No es un punto de la serie —por eso no va sobre la línea— pero
+              // el lado por el que se sale sí es un hecho.
+              ...(p.valor > y1 ? { top: 0 } : { bottom: 16 }),
               transform: 'translateX(-50%)',
               fontSize: 10,
               color: 'var(--warn-ink)',
