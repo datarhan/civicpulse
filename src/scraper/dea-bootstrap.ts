@@ -62,6 +62,17 @@ export interface IntervaloConfianza {
   inferior: number
   superior: number
   alfa: number
+  /**
+   * El extremo calculado se salía de (0, 1] y se ha recortado.
+   *
+   * No es cosmético. Con pocas unidades y muchas salidas el percentil se va por
+   * debajo de cero, y un «0,000» impreso se lee como una medición —«la
+   * eficiencia podría ser nula»— cuando lo que dice el dato es que **esta
+   * especificación no acota nada por abajo**. Publicar el recorte sin decirlo
+   * convierte una ausencia de información en una cifra.
+   */
+  truncadoInferior: boolean
+  truncadoSuperior: boolean
 }
 
 export interface PuntuacionBootstrap {
@@ -217,8 +228,10 @@ export function bootstrapDea(
     // estimado. El percentil directo de θ̂* cae al otro lado y es el fallo
     // clásico al implementar esto.
     const dif = rep.map((t) => t - theta).sort((a, b) => a - b)
-    const superior = Math.min(1, theta - percentil(dif, alfa / 2))
-    const inferior = Math.max(1e-6, theta - percentil(dif, 1 - alfa / 2))
+    const crudoSuperior = theta - percentil(dif, alfa / 2)
+    const crudoInferior = theta - percentil(dif, 1 - alfa / 2)
+    const superior = Math.min(1, crudoSuperior)
+    const inferior = Math.max(1e-6, crudoInferior)
     const razonSesgo = errorEstandar > 0 ? Math.abs(sesgo) / errorEstandar : 0
     return {
       id: d.id,
@@ -226,7 +239,13 @@ export function bootstrapDea(
       thetaCorregido: theta - sesgo,
       sesgo,
       errorEstandar,
-      ic: { inferior: Math.min(inferior, superior), superior, alfa },
+      ic: {
+        inferior: Math.min(inferior, superior),
+        superior,
+        alfa,
+        truncadoInferior: crudoInferior < inferior - 1e-12,
+        truncadoSuperior: crudoSuperior > superior + 1e-12,
+      },
       razonSesgo,
       correccionRecomendada: razonSesgo > RAZON_SESGO_MINIMA,
     }

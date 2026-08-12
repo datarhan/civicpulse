@@ -102,6 +102,24 @@ describe('scraper/dea-bootstrap', () => {
     expect(comprobados).toBe(DMUS.length)
   })
 
+  it('avisa cuando el extremo del intervalo se salía de la escala', () => {
+    // Un «0,000» impreso se lee como «la eficiencia podría ser nula». Lo que
+    // dice el dato es que esta muestra no acota nada por abajo, que es otra
+    // cosa: una ausencia de información, no una cifra.
+    const boot = bootstrapDea(DMUS, 'vrs', OPTS)
+    for (const p of boot.puntuaciones) {
+      expect(typeof p.ic.truncadoInferior).toBe('boolean')
+      expect(typeof p.ic.truncadoSuperior).toBe('boolean')
+      if (p.ic.truncadoInferior) expect(p.ic.inferior).toBeLessThan(0.01)
+      if (p.ic.truncadoSuperior) expect(p.ic.superior).toBeCloseTo(1, 8)
+    }
+    // Esta muestra sintética tiene dispersión suficiente y no se sale por
+    // ninguno de los dos lados; el caso que sí lo hace es real y está fijado en
+    // tests/dea-especificacion.test.ts («cuatro-servicios»), donde quince
+    // unidades y cuatro salidas dejan un intervalo que no acota por abajo.
+    expect(boot.puntuaciones.every((p) => !p.ic.truncadoInferior)).toBe(true)
+  })
+
   it('estrecha el intervalo al subir el nivel de confianza… al revés', () => {
     // α mayor = confianza menor = intervalo más estrecho.
     const estrecho = bootstrapDea(DMUS, 'vrs', { ...OPTS, alfa: 0.2 })
