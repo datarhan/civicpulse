@@ -78,10 +78,32 @@ describe('scraper/indicadores', () => {
   })
 
   it('refuses a cost when a programa has contradictory duplicate rows', () => {
+    // a1721 declares 1.964.894,95 AND 282.412,19 for the same programa, both
+    // under direct management. Two live claims, no way to choose.
     const m = resolverCoste(mias, 'a1721/170P', 2021)
     expect(m.estado).toBe('no-declarado')
     expect(m.motivo).toBe('filas-duplicadas')
     expect(m.valor).toBeNull()
+  })
+
+  it('does not let a zero-cost row poison a real one', () => {
+    // Parques y jardines declares 718.015,88 AND 0, both direct. A zero cost is
+    // «no lo declaré» exactly as it is on the CE3 side — treating it as a rival
+    // claim would apply the opposite rule to the two halves of one module, and
+    // would blank a 700k€ service that has a good denominator and 60+ peers.
+    const m = resolverCoste(mias, 'a171/170P', 2021)
+    expect(m.estado).toBe('declarado')
+    expect(m.valor).toBe(718015.88)
+    expect(byId('a171-170p-coste-unitario').valor).toBeCloseTo(718015.88 / 740046, 6)
+  })
+
+  it('still refuses when every row for a programa declares zero', () => {
+    const filas = mias
+      .filter((f) => f.programa === 'a171/170P')
+      .map((f) => ({ ...f, costeTotal: 0 }))
+    const m = resolverCoste(filas, 'a171/170P', 2021)
+    expect(m.estado).toBe('no-declarado')
+    expect(m.motivo).toBe('cero-sin-declarar')
   })
 
   it('refuses a unit when the same attribute is declared twice differently', () => {

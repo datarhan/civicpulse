@@ -199,16 +199,23 @@ export function resolverCoste(filas: CesteRow[], programa: string, anio: number)
     return { valor: null, estado: 'no-declarado', motivo: 'concesion', fuente }
   }
 
-  const distintos = new Set(rows.map((r) => r.costeTotal))
+  // Una fila con coste 0 no es una afirmación rival: es la misma «no lo
+  // declaré» que ya se aplica a las unidades de CE3. Parques y jardines viene
+  // con 718.015,88 € y 0 €, las dos en gestión directa; tratar el 0 como un
+  // segundo dato aplicaría la regla contraria a las dos mitades de este mismo
+  // módulo y borraría un servicio de 700 mil euros con buen denominador.
+  //
+  // Dos costes POSITIVOS distintos sí son dos afirmaciones (a1721 declara
+  // 1.964.894,95 y 282.412,19), y ahí no hay forma honesta de elegir.
+  const positivas = rows.filter((r) => (r.costeTotal ?? 0) > 0)
+  if (!positivas.length) {
+    return { valor: null, estado: 'no-declarado', motivo: 'cero-sin-declarar', fuente }
+  }
+  const distintos = new Set(positivas.map((r) => r.costeTotal))
   if (distintos.size > 1) {
     return { valor: null, estado: 'no-declarado', motivo: 'filas-duplicadas', fuente }
   }
-
-  const coste = rows[0].costeTotal
-  if (coste === null || coste <= 0) {
-    return { valor: null, estado: 'no-declarado', motivo: 'cero-sin-declarar', fuente }
-  }
-  return { valor: coste, estado: 'declarado', fuente }
+  return { valor: positivas[0].costeTotal!, estado: 'declarado', fuente }
 }
 
 /**
