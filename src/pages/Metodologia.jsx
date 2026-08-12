@@ -5,6 +5,17 @@ import { useFindingQuoteProvenance } from '../hooks/useFindingQuoteProvenance'
 import { authorshipBreakdown } from '../scraper/finding-authorship'
 import { STATUS_TIER } from '../scraper/promise-auto-curate'
 
+/*
+ * prosa-describe: indicadores.json, dea.json
+ *
+ * Esta página EXPLICA lo que dicen esos dos snapshots sin cargarlos: las
+ * secciones #eficiencia y #frontera describen sus cifras, sus umbrales y su
+ * comportamiento. El mapa de prosa se deriva del grafo de imports, así que sin
+ * esta declaración una revisión del ministerio movería las cifras y el
+ * recordatorio de prosa vieja no diría nada — precisamente en el documento que
+ * es el contrato editorial publicado.
+ */
+
 /**
  * Los estados de promesa de un escalón de riesgo, leídos del mapa que DECIDE.
  *
