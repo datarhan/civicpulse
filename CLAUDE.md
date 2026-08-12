@@ -217,6 +217,15 @@ Five surfaces make claims about named elected officials: `/promesas`,
 any change to them as legally material. The rules below are encoded in schema
 validators and CLIs — if you find yourself working around one, stop.
 
+`/eficiencia` is the sixth legally material surface and the only one that names
+**nobody**. Its findings describe a service's unit cost, so
+`eficiencia-finding.ts` has no field for a person and actively rejects
+`pleno-finding.ts`'s (`individualSpeaker`, `speakerGroup`, `quotes`, `severity`)
+in case a row is ever copied across. Right of reply is institutional —
+ayuntamiento / intervención / concesionario / ministerio. Keep it that way: a
+unit cost hung on a named councillor is a materially different claim from one
+hung on a service, and only the second is what the ministry's return supports.
+
 The first two are also **enforced, not just documented**:
 `.claude/hooks/guard-curated-writes.mjs` denies a direct write to a curated file
 (naming the CLI that owns it) and asks before a new draft-shaped file appears
@@ -246,9 +255,22 @@ distinguishable from a map with nothing to say.
 **Curated files are never written by automation.** `promises.json`,
 `pleno-votes.json`, `pleno-findings.json`, `journalist-reports.json`,
 `quejas-responses.json`, `sindic.json`, `dedicaciones.json`, `plantilla.json`,
-`place-overrides.json`, `entity-overrides.json`. Route algorithmic output
-through the curator CLI so the validator and git history stay authoritative.
-The full list and its CLIs: `docs/DATA_SOURCES.md`.
+`place-overrides.json`, `entity-overrides.json`, `eficiencia-findings.json`.
+Route algorithmic output through the curator CLI so the validator and git
+history stay authoritative. The full list and its CLIs: `docs/DATA_SOURCES.md`.
+
+**A verbatim stays put; a number does not.** That is the one way the efficiency
+findings differ in kind from every other claim here. A quote from a March pleno
+will read the same in ten years, so `check:citations` only has to confirm it is
+still where it says. «62,68 días» can go false with nobody touching the page,
+because the ministry revises an entrega. So each ficha freezes its measurement —
+value, period, source cell — and `check:eficiencia-findings` re-reads the live
+panel with **four** outcomes, not two: `coincide`; `movido` (the panel advanced a
+period — a notice, since the ficha says which period it speaks of);
+`contradice` (the same period now says something else); `sin-indicador`. The last
+two exit 1. Fold "I could not find it" into "matches" and the gate prints its own
+all-clear, which is the `r?.findings ?? []` defect again. Apply the same shape to
+any future claim type whose subject is a figure rather than a sentence.
 
 **Anything under `public/` is published.** Vercel serves the whole directory, so
 a file there is fetchable by URL whether or not a page links to it. "Not

@@ -49,8 +49,7 @@ export const CURATED = {
   'gazetteer-supplement.json': 'curated — each row needs OSM-id/URL provenance',
   'area-fit.json': 'npm run promote-area-fit',
   'requisitos-cargo.json': 'curated + cited — hand-edit via PR, never programmatically',
-  'eficiencia-findings.json':
-    'npm run promote-indicador / correct-indicador / retract-indicador',
+  'eficiencia-findings.json': 'npm run promote-indicador / correct-indicador / retract-indicador',
 }
 
 const DRAFTY = /(suggestion|draft|borrador|propuesta)/i
@@ -65,12 +64,21 @@ export const canonical = (p) =>
     .replace(/\/{2,}/g, '/')
     .replace(/^\.\//, '')
 
+// The reason has to be true of EVERY file in CURATED, not of the ones it was
+// written for. It used to end "…a file that makes claims about named elected
+// officials", which is false of `place-overrides.json` (places),
+// `entity-overrides.json` (companies) and `eficiencia-findings.json`, whose
+// whole design is that it can never name a person. A guard that states a
+// wrong reason is one whose reasons people stop reading — the same defect
+// this repo just fixed on /eficiencia, where a caveat excused a figure with a
+// motive that was not the real one. What IS true of all of them is the part
+// that matters: the CLI is the validator and the audit trail.
 const denyCurated = (name) => ({
   decision: 'deny',
   reason:
     `${name} is curated: schema-validated, human-edited, and never written by ` +
     `automation. A direct write skips the validator and the audit trail on a ` +
-    `file that makes claims about named elected officials.\n\n` +
+    `file this project treats as legally material.\n\n` +
     `Use instead:  ${CURATED[name]}\n\n` +
     `The CLI re-validates the whole snapshot before writing, so an invariant ` +
     `cannot silently slip. Shelling out to achieve the same edit is the same ` +

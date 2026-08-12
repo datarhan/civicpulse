@@ -280,6 +280,30 @@ if ! npm run compute:finding-quote-provenance; then
   soft_failures+=("compute:finding-quote-provenance")
 fi
 
+# El panel de /eficiencia, recompuesto sobre lo que se acaba de descargar.
+#
+# NO estaba aquí, y eso significaba que sólo se recomputaba cuando alguien
+# corría el comando a mano. La mitad de fricción del panel se deriva de
+# tenders.json, budget-execution.json, budget.json y pmp.json —los cuatro se
+# refrescan de noche—, así que la página publicaba porcentajes calculados
+# sobre una instantánea de contratos de hace semanas sin que nada lo dijera.
+# Composición pura: sin red, sin LLM, sin coste.
+#
+# `scrape:coste-efectivo` sigue deliberadamente ausente (ver la cabecera): ese
+# sí baja un volcado enorme y sólo cambia cuando el ministerio publica entrega.
+if ! npm run compute:indicadores; then
+  echo "[scrape-all] SOFT-FAILED: compute:indicadores — /eficiencia puede quedar con cifras viejas"
+  soft_failures+=("compute:indicadores")
+fi
+
+# Y la cola de curación detrás, para que lo que se le propone a una persona
+# describa el panel de hoy y no el de la última vez que alguien se acordó.
+# Escribe en editorial/, que está gitignorado: nada de esto se publica.
+if ! npm run draft:indicadores; then
+  echo "[scrape-all] SOFT-FAILED: draft:indicadores — la cola de /eficiencia puede quedar vieja"
+  soft_failures+=("draft:indicadores")
+fi
+
 echo ""
 echo "================================================================"
 echo "[scrape-all] running: check:transcripts + check:finding-quotes (report-only)"
@@ -319,6 +343,21 @@ fi
 if ! npm run check:vocabulary; then
   echo "[scrape-all] SOFT-FAILED: check:vocabulary — upstream vocabulary drifted"
   soft_failures+=("check:vocabulary")
+fi
+
+# ¿Sigue cada cifra de /eficiencia resolviendo a su celda, y sigue diciendo el
+# panel lo que afirman las fichas firmadas? Lo segundo es propio de esta
+# familia: una cita de pleno se queda quieta, un número no, y el ministerio
+# revisa entregas. Report-only como los demás: la respuesta a una cifra que se
+# movió es que un curador decida entre refrescar la medición y retirar la
+# ficha, nunca una edición automática de prosa publicada.
+if ! npm run check:indicadores; then
+  echo "[scrape-all] SOFT-FAILED: check:indicadores — cifra publicada sin celda que la respalde"
+  soft_failures+=("check:indicadores")
+fi
+if ! npm run check:eficiencia-findings; then
+  echo "[scrape-all] SOFT-FAILED: check:eficiencia-findings — ficha firmada que su fuente ya no sostiene"
+  soft_failures+=("check:eficiencia-findings")
 fi
 
 # Which snapshots have quietly stopped refreshing. Distinct from a scraper

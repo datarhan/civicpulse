@@ -87,13 +87,25 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
   ...['participa.json', 'elections.json', 'geo.json', 'civic-poi.json', 'streets.json'].map(
     (file) => ({ file, cls: 'derived' as const, maxAgeDays: 45 }),
   ),
+  // `indicadores.json` se recompone en la nocturna desde tenders, la ejecución
+  // presupuestaria, el presupuesto y el PMP, así que envejece como ellos. Se
+  // añadió el 2026-08-12 junto con el paso que lo recompone: hasta entonces
+  // sólo se regeneraba cuando alguien corría el comando a mano, y /eficiencia
+  // publicaba porcentajes calculados sobre contratos de semanas atrás sin que
+  // nada lo dijera.
+  { file: 'indicadores.json', cls: 'derived' as const, maxAgeDays: 3 },
   ...[
     'promises.json',
     'pleno-votes.json',
     'sindic.json',
     'dedicaciones.json',
     'plantilla.json',
+    'eficiencia-findings.json',
   ].map((file) => ({ file, cls: 'curated' as const, maxAgeDays: 120 })),
+  // DELIBERADAMENTE FUERA: `coste-efectivo.json` y `pmp.json`. Su ritmo lo
+  // marca el ministerio —una entrega al año y un trimestre respectivamente— y
+  // no hay clase con ese presupuesto. Meterlos con un plazo corto los dejaría
+  // rojos de forma permanente, que es como se consigue que nadie lea el check.
 ]
 
 export function classifyFreshness(
