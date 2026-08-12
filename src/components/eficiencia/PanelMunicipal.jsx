@@ -1,6 +1,6 @@
 import { Card, Pill } from '../Primitives'
 import { Sparkline } from '../Charts'
-import { leerIndicadorMunicipal } from '../../scraper/indicador-lectura'
+import { leerIndicadorMunicipal, lecturaVisible } from '../../scraper/indicador-lectura'
 import { Lectura } from './Lectura'
 
 const DIMENSION = {
@@ -175,7 +175,12 @@ export function PanelMunicipal({ municipales }) {
                 {m.descripcion}
               </p>
 
-              <Lectura lectura={leerIndicadorMunicipal(m)} />
+              <Lectura
+                lectura={lecturaVisible(leerIndicadorMunicipal(m), {
+                  cifra: true,
+                  banda: Boolean(m.pares),
+                })}
+              />
 
               {m.caveats?.length > 0 && (
                 <ul

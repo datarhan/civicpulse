@@ -36,6 +36,48 @@ export interface Lectura {
   avisos: string[]
 }
 
+/** Lo que la tarjeta ya enseña por su cuenta, alrededor de la lectura. */
+export interface YaEnPantalla {
+  /** La cifra en grande y su fórmula: numerador ÷ denominador · entrega. */
+  cifra: boolean
+  /** La banda de pares, con mediana, cuartiles y percentil escritos. */
+  banda: boolean
+}
+
+/** Una lectura de la que se han descontado las frases redundantes. */
+export interface LecturaVisible {
+  que: string | null
+  donde: string | null
+  como: string
+  avisos: string[]
+}
+
+/**
+ * La misma lectura, sin lo que el lector ya tiene delante.
+ *
+ * `que` y `donde` son ciertos y siguen haciendo falta —una tarjeta bloqueada no
+ * tiene más contenido que su `que`, y «no hay comparación» sólo se dice ahí—,
+ * pero cuando la cifra está en cuerpo 30 dos líneas más arriba y la banda ya
+ * imprime mediana, cuartiles y percentil, repetirlos en prosa no informa: empuja
+ * hacia abajo la única frase del bloque que no se deduce mirando.
+ *
+ * Se midió sobre la página publicada: «81.965» aparecía cuatro veces dentro de
+ * su propia tarjeta, y «…que prestan el servicio de la misma forma» diez veces
+ * en la página, una por tarjeta, justo debajo del rótulo de la banda que dice lo
+ * mismo. Diez pantallas de las trece eran repetición.
+ *
+ * `como` y `avisos` NUNCA se descuentan: son lo que la geometría no puede
+ * enseñar, y el motivo entero de que este bloque exista.
+ */
+export function lecturaVisible(lectura: Lectura, ya: YaEnPantalla): LecturaVisible {
+  return {
+    que: ya.cifra ? null : lectura.que,
+    donde: ya.banda ? null : lectura.donde,
+    como: lectura.como,
+    avisos: lectura.avisos,
+  }
+}
+
 /**
  * Lo que cada escalón permite concluir, escrito una vez.
  *

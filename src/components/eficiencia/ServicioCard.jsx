@@ -1,7 +1,7 @@
 import { Card, Pill } from '../Primitives'
 import { useT } from '../../i18n'
 import { BandaPares } from './BandaPares'
-import { leerIndicador } from '../../scraper/indicador-lectura'
+import { leerIndicador, lecturaVisible } from '../../scraper/indicador-lectura'
 import { Lectura } from './Lectura'
 
 const GESTION = {
@@ -43,7 +43,12 @@ export function ServicioCard({ indicador, formatea }) {
   const g = GESTION[i.modoGestion] ?? GESTION['sin-clasificar']
   const motivo = i.numerador.motivo ?? i.denominador.motivo
   const cita = i.citas?.[0]
-  const lectura = leerIndicador(i)
+  // La cifra en cuerpo 30 y la banda ya dicen «cuánto» y «dónde queda»; la
+  // lectura sólo aporta lo que ninguna de las dos puede enseñar.
+  const lectura = lecturaVisible(leerIndicador(i), {
+    cifra: i.valor !== null,
+    banda: Boolean(i.pares),
+  })
   const declarados = i.serie.filter((p) => p.estado === 'declarado')
   const puntos = declarados.length
 

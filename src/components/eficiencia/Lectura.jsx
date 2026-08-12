@@ -9,9 +9,14 @@
  * indicador. No hay modelo detrás: la rejilla de frases es cerrada y la parte
  * con criterio depende del escalón, no del valor, así que se escribe una vez y
  * no puede desviarse de la cifra que describe.
+ *
+ * `que` y `donde` llegan a `null` cuando la tarjeta ya los enseña por su cuenta
+ * —la cifra en grande, la banda con su percentil—, que es lo normal en un
+ * servicio con pares. Ver `lecturaVisible`.
  */
 export function Lectura({ lectura }) {
   if (!lectura) return null
+  const cabecera = [lectura.que, lectura.donde].filter(Boolean).join(' ')
   return (
     <div
       style={{
@@ -22,11 +27,14 @@ export function Lectura({ lectura }) {
         borderRadius: '0 4px 4px 0',
       }}
     >
-      <p style={{ margin: 0, fontSize: 13, color: 'var(--ink)' }}>
-        <strong>{lectura.que}</strong>
-        {lectura.donde ? ` ${lectura.donde}` : ''}
-      </p>
-      <p style={{ margin: '6px 0 0', fontSize: 12.5, color: 'var(--ink70, var(--ink60))' }}>
+      {cabecera && (
+        <p style={{ margin: '0 0 6px', fontSize: 13, color: 'var(--ink)' }}>
+          {lectura.que ? <strong>{lectura.que}</strong> : null}
+          {lectura.que && lectura.donde ? ' ' : ''}
+          {lectura.donde ?? ''}
+        </p>
+      )}
+      <p style={{ margin: 0, fontSize: 12.5, color: 'var(--ink70, var(--ink60))' }}>
         {lectura.como}
       </p>
       {lectura.avisos?.length > 0 && (
