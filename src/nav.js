@@ -149,6 +149,22 @@ export const NAV = [
     icon: Ic.lab,
     shortcut: 'G B',
   },
+  // La frontera NO va tras bandera. Es el experimento más sujeto a
+  // malinterpretación de todo el sitio y por eso la página entera está
+  // construida para decir lo que no es; esconderla tras un flag daría el
+  // resultado contrario al de /eficiencia, donde la bandera protegía una cifra
+  // sobre un ayuntamiento con nombre. Aquí no se nombra a nadie salvo a
+  // Riba-roja, y el aviso es la primera tarjeta.
+  {
+    to: '/laboratorio/frontera',
+    id: 'frontera',
+    labelKey: 'nav.frontera',
+    label: 'Frontera',
+    icon: Ic.lab,
+    // 'G F' ya es de /hallazgos. 'G V' por «envolvente», que es como se llama
+    // la técnica en castellano.
+    shortcut: 'G V',
+  },
   // "Periodistas" (the AI journalist agent) is the highest legal-sensitivity
   // surface — it drafts biographies of named living officials. Hidden from
   // production builds unless VITE_ENABLE_PERIODISTAS=true — same flag that
@@ -196,3 +212,28 @@ export const NAV_SECONDARY = [
   { to: '/metodologia', label: 'Metodología', labelKey: 'sidebar.footer.method' },
   { to: '/aviso-legal', label: 'Aviso legal', labelKey: 'sidebar.footer.legal' },
 ]
+
+/**
+ * Qué entrada de navegación describe una ruta. Es lo que rotula la miga de pan.
+ *
+ * `NAV.find((n) => pathname.startsWith(n.to))` parece lo obvio y estuvo mal
+ * durante toda la vida de la barra: la primera entrada es `/`, y **toda** ruta
+ * empieza por `/`, así que la miga decía «Panel» en cada página del sitio. Un
+ * fallo silencioso de manual —el rótulo existía, era legible y era falso—, y
+ * ninguna suite lo cazaba porque ninguna leía la miga.
+ *
+ * Dos correcciones, y las dos hacen falta:
+ *
+ * 1. **Frontera de segmento.** `/cargos` no puede rotular `/cargos-de-otro`.
+ * 2. **La coincidencia más específica gana.** Sin esto `/laboratorio/frontera`
+ *    diría «Laboratorio», que es cierto y no es lo que el lector necesita.
+ */
+export function entradaNavActiva(pathname, entradas = [...NAV, ...NAV_SECONDARY]) {
+  return (
+    entradas
+      .filter((n) =>
+        n.to === '/' ? pathname === '/' : pathname === n.to || pathname.startsWith(`${n.to}/`),
+      )
+      .sort((a, b) => b.to.length - a.to.length)[0] ?? null
+  )
+}

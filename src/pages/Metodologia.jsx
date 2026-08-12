@@ -3,6 +3,37 @@ import { fmtDateLong } from '../lib/formatters'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { useFindingQuoteProvenance } from '../hooks/useFindingQuoteProvenance'
 import { authorshipBreakdown } from '../scraper/finding-authorship'
+import { STATUS_TIER } from '../scraper/promise-auto-curate'
+
+/**
+ * Los estados de promesa de un escalón de riesgo, leídos del mapa que DECIDE.
+ *
+ * La frase estaba escrita a mano y decía que «los veredictos acusatorios y el
+ * estado inviable nunca se auto-publican», nombrando dos categorías cuando el
+ * código retiene cuatro: `parcial` y `cumplida` —los dos veredictos fuertes, los
+ * que certifican que algo se hizo— también esperan a una persona. La prosa
+ * infravaloraba las propias salvaguardas del sitio en el documento que es su
+ * contrato editorial, y ninguna prueba podía cazarlo porque el dato estaba bien
+ * y la frase mal.
+ *
+ * Derivarla de `STATUS_TIER` es la regla de CLAUDE.md aplicada donde se puede
+ * aplicar: cambiar la política ahora reescribe la página sola.
+ */
+function EstadosPorEscalon({ tier }) {
+  const estados = Object.entries(STATUS_TIER)
+    .filter(([, t]) => t === tier)
+    .map(([estado]) => estado)
+  return (
+    <>
+      {estados.map((e, i) => (
+        <span key={e}>
+          {i > 0 && (i === estados.length - 1 ? ' y ' : ', ')}
+          <em>{e}</em>
+        </span>
+      ))}
+    </>
+  )
+}
 
 /**
  * How many published findings a machine wrote, counted from the snapshot at
@@ -120,13 +151,14 @@ export default function Metodologia() {
           </li>
           <li>
             <strong>Conservadurismo en los estados.</strong> El estado por defecto es{' '}
-            <em>documentada</em>. Los estados no acusatorios pueden auto-publicarse cuando una
-            propuesta supera el umbral de confianza (≥0,70) <em>y</em> queda anclada a su fuente
-            (URL que resuelve + cita textual presente); se marcan en su ficha con «publicada
-            automáticamente · revisión pendiente» hasta que un curador los revisa. El veredicto{' '}
-            <em>no-ejecutada</em> (incumplimiento) nunca se auto-publica: queda listo para publicar
-            con un solo clic humano. El estado <em>inviable</em> es siempre exclusivamente humano,
-            con justificación documental.
+            <em>documentada</em>. Sólo <EstadosPorEscalon tier="auto" /> pueden auto-publicarse, y
+            aun así hace falta que la propuesta supere el umbral de confianza (≥0,70) <em>y</em>{' '}
+            quede anclada a su fuente (URL que resuelve + cita textual presente); se marcan en su
+            ficha con «publicada automáticamente · revisión pendiente» hasta que un curador los
+            revisa. <EstadosPorEscalon tier="fast-track" /> quedan listos para publicar con un solo
+            clic humano —incluidos los dos veredictos fuertes, <em>parcial</em> y <em>cumplida</em>,
+            que certifican que algo se hizo—. <EstadosPorEscalon tier="human-only" /> es siempre
+            exclusivamente humano, con justificación documental.
           </li>
           <li>
             <strong>Transparencia del algoritmo.</strong> Un proceso diario escanea prensa y plenos
@@ -134,8 +166,8 @@ export default function Metodologia() {
             Cada propuesta pasa una verificación determinista de anclaje; las que superan el umbral
             de confianza (≥0,70) y quedan ancladas a su fuente se auto-publican etiquetadas como
             «publicada automáticamente · revisión pendiente», y las demás se muestran como
-            "propuesta automática · pendiente de revisión humana" y esperan en cola. Los veredictos
-            acusatorios (incumplimiento) y el estado <em>inviable</em> nunca se auto-publican (ver{' '}
+            "propuesta automática · pendiente de revisión humana" y esperan en cola. Todo lo que no
+            sea <EstadosPorEscalon tier="auto" /> pasa siempre por una persona (ver{' '}
             <a href="#auto-curacion-promesas" style={{ color: 'var(--civic)' }}>
               auto-curación
             </a>
@@ -240,9 +272,9 @@ export default function Metodologia() {
             presente); lo que no lo supera espera revisión humana en cola.
           </li>
           <li>
-            No auto-publica veredictos acusatorios: <em>no-ejecutada</em> (incumplimiento) queda
-            como propuesta lista para publicar con un solo clic humano, e <em>inviable</em> es
-            siempre exclusivamente humano.
+            No auto-publica ningún veredicto fuerte: <EstadosPorEscalon tier="fast-track" /> quedan
+            como propuesta lista para publicar con un solo clic humano, e{' '}
+            <EstadosPorEscalon tier="human-only" /> es siempre exclusivamente humano.
           </li>
           <li>
             No genera titulares ni resúmenes originales. Sólo cita la cabecera literal de las
@@ -1545,6 +1577,59 @@ export default function Metodologia() {
           recoger la basura, no quién lo decidió. El derecho de réplica es institucional: responden
           el ayuntamiento, la intervención, el concesionario o el ministerio, y su respuesta literal
           se publica junto a la ficha.
+        </p>
+      </Card>
+
+      <Card style={{ marginTop: 14 }} id="frontera">
+        <SectionHead
+          eyebrow="Laboratorio · análisis envolvente de datos"
+          title="La única cifra de este sitio que no sale de una fuente"
+        />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Todo lo demás que se publica aquí es una transcripción o una división de números que
+          alguien más publicó: se puede rehacer con la fuente al lado. La puntuación de{' '}
+          <a href="/laboratorio/frontera" style={{ color: 'var(--civic)' }}>
+            /laboratorio/frontera
+          </a>{' '}
+          no. Sale de un modelo con decisiones nuestras dentro —qué servicios entran en la cesta,
+          qué rendimientos a escala se suponen, qué se hace con quien declara a medias— y esas
+          decisiones mueven el número: con la misma fuente y cuatro cestas igual de defendibles, la
+          distancia de Riba-roja a la frontera recorre media escala. Por eso está en el laboratorio,
+          por eso la página dice qué no es antes de enseñar ninguna cifra, y por eso publica el
+          método entero.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>No se nombra a ningún otro municipio.</strong> En{' '}
+          <a href="/eficiencia" style={{ color: 'var(--civic)' }}>
+            /eficiencia
+          </a>{' '}
+          los municipios comparados sí van con nombre, porque allí la cifra es una división de dos
+          números que publica el ministerio y esconder contra quién se compara rompería el contrato
+          de enseñar el trabajo. Aquí la cifra es el veredicto de un modelo de este sitio:
+          publicarla con nombres sería firmar una afirmación sobre veinte ayuntamientos que no
+          tienen aquí derecho de réplica. Se publican la puntuación propia, la distribución sin
+          nombres y el método completo, de modo que cualquiera pueda rehacer la tabla que aquí no
+          aparece. <code>check:dea</code> recalcula el experimento desde su fuente antes de cada
+          despliegue y falla si deja de reproducirse o si un tercero aparece nombrado.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Una puntuación de 1 no es «eficiente».</strong> Es «ninguna combinación de los
+          municipios observados lo hizo mejor», que con veinte observaciones es fácil: basta ser el
+          único con una combinación rara. La página marca cuáles están en la frontera sin que nadie
+          se apoye en ellas. Además, la frontera estimada cae siempre por dentro de la verdadera
+          —sólo se ve a quien declara—, así que todas las puntuaciones están sesgadas al alza por
+          construcción; se publica la corrección de sesgo y su intervalo, y cuando el intervalo se
+          sale de la escala se dice, en vez de imprimir el recorte como si fuera el dato.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Lo más útil del experimento no es una puntuación.</strong> Al recorrer las diez
+          entregas del coste efectivo aparece que la mayoría de las series de unidad física repiten
+          exactamente el mismo valor entrega tras entrega, mientras que prácticamente ninguna serie
+          de coste se queda quieta. Los cinco denominadores de Riba-roja llevan desde 2018 o 2019
+          sin cambiar. Eso invalida cualquier lectura temporal de un coste unitario: si el numerador
+          se actualiza y el denominador es una copia, el cociente sólo puede subir. No es una
+          acusación —la cifra puede ser correcta y estable—, es un dato sobre la calidad de la
+          declaración, y va antes que ninguna puntuación en la página.
         </p>
       </Card>
 

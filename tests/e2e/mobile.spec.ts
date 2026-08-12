@@ -63,6 +63,12 @@ const ROUTES: Route[] = [
   { path: '/quejas/q-no-existe', ready: /no aparece en el snapshot actual/ },
   { path: '/cambios', ready: /Total: \d+ cambios · ventana de \d+ días/ },
   { path: '/laboratorio', ready: /TITULARES MONITORIZADOS \d+/ },
+  // /eficiencia y /laboratorio/frontera se publicaron sin entrar en esta lista
+  // ni en la de axe: dos rutas que iban al público sin que ninguna pasada
+  // estricta las hubiera mirado nunca. Es «verde por no ejecutarse», el defecto
+  // que este repo ya ha pagado varias veces.
+  { path: '/eficiencia', ready: /Cobertura de este panel|servicios que este panel sigue/ },
+  { path: '/laboratorio/frontera', ready: /series de unidad física/ },
   { path: '/nosotros', ready: /es el municipio piloto/ },
   { path: '/about', ready: /All funding is disclosed publicly/ },
   { path: '/metodologia', ready: /Última revisión de este documento/ },

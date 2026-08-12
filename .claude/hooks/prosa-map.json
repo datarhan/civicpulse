@@ -53,6 +53,9 @@
       "/lab-health",
       "/quejas"
     ],
+    "dea.json": [
+      "/laboratorio/frontera"
+    ],
     "dedicaciones.json": [
       "/cargos",
       "/cargos/:slug"
@@ -151,6 +154,7 @@
       "/laboratorio",
       "/laboratorio/agentes",
       "/laboratorio/agentes/:assignmentId",
+      "/laboratorio/frontera",
       "/metodologia",
       "/nosotros",
       "/plenos",
@@ -260,6 +264,7 @@
       "/hallazgos",
       "/lab-health",
       "/laboratorio",
+      "/laboratorio/frontera",
       "/plenos",
       "/presupuesto",
       "/promesas",

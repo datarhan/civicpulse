@@ -116,6 +116,56 @@ overwrites it. Change the bot's SQLite instead.
 - **Source** — Ayuntamiento estados de ejecución PDFs (SICALWIN)
 - **Surfaces** — `/presupuesto` "Ejecución presupuestaria"
 
+### Coste efectivo de los servicios (art. 116 ter LRSAL)
+
+- **Pipeline** — `coste-efectivo.ts` → `coste-efectivo.json` → `indicadores.ts` →
+  `indicadores.json`
+- **Source** — Ministerio de Hacienda, CESEL. Two shapes, one row type: the
+  national workbook (whole peer universe, one GET, ~45 MB — cached under
+  `.cache/`, **never committed**) and the ASP.NET consulta app (the only way to
+  reach the other entregas). Sheets CE2 = cost, CE3 = physical units, joined on
+  `(Ente, Programa)`.
+- **Peers** — `cv-15k-40k`, sized from `parseConprelRoster`. Ten entregas
+  (2014–2024) for both the town and the band.
+- **Surfaces** — `/eficiencia` (unit cost per service, peer band, own series)
+- **Gate** — `check:indicadores`: every published figure resolves back to the
+  cell it cites
+- **The five traps** that shape the parser — a concession books €0, a zero means
+  "I did not declare", a service can have contradictory duplicate rows, not every
+  CE3 attribute is a quantity (one is a periodicity CODE), and tonnage is demand
+  rather than achievement. See `docs/superpowers/specs/2026-08-12-medicion-eficiencia-design.md`.
+
+### Periodo medio de pago (PMP)
+
+- **Pipeline** — `pmp.ts` → `pmp.json`
+- **Source** — Ministerio de Hacienda, RD 1040/2017 quarterly returns. 30-day
+  legal threshold.
+- **Surfaces** — `/eficiencia` municipal panel; the first signed
+  `eficiencia-finding`
+- **Cadence** — deliberately OUT of `snapshot-cadence.ts`: the ministry sets the
+  rhythm (one entrega a year, one quarter respectively) and no freshness class
+  has that budget. A short deadline would leave them permanently red, which is
+  how a check earns a reputation nobody reads.
+
+### Frontera del gasto (DEA · laboratory experiment)
+
+- **Pipeline** — `lp-simplex.ts` + `dea.ts` + `dea-bootstrap.ts` +
+  `dea-especificacion.ts` + `declaracion-congelada.ts` → `compute:dea` →
+  `dea.json`
+- **Source** — no new fetch: recomposed from `coste-efectivo.json`
+- **Surfaces** — `/laboratorio/frontera`, `/metodologia#frontera`
+- **Gate** — `check:dea`, which asks two things a unit test cannot: does the
+  score still reproduce from source with the published seed, and does the served
+  JSON name any municipality other than Riba-roja
+- **Why it is not on `/eficiencia`** — every other figure here is a
+  transcription or a division of published numbers. A DEA score is this site's
+  own model output, and its modelling choices move it. Read the block in
+  `CLAUDE.md` under "Legally material surfaces" before touching it.
+- **The measurement worth knowing** — across the ten entregas, most physical-unit
+  series repeat the same value entrega after entrega while essentially no cost
+  series does. That asymmetry, not any θ, is the useful result: a unit cost whose
+  denominator is a copy can only rise.
+
 ### Municipal hiring (procesos selectivos)
 
 - **Pipeline** — `procesos-selectivos.ts` → `procesos-selectivos.json`

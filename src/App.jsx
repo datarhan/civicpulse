@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import { Sidebar, NAV } from './components/Sidebar'
+import { Sidebar } from './components/Sidebar'
+import { entradaNavActiva } from './nav'
 import { Topbar } from './components/Topbar'
 import { CmdK } from './components/CmdK'
 import { TweaksPanel, TweaksButton } from './components/TweaksPanel'
@@ -32,6 +33,7 @@ const DepartamentoDetalle = lazy(() => import('./pages/DepartamentoDetalle'))
 const Hallazgos = lazy(() => import('./pages/Hallazgos'))
 const Declaraciones = lazy(() => import('./pages/Declaraciones'))
 const Laboratorio = lazy(() => import('./pages/Laboratorio'))
+const Frontera = lazy(() => import('./pages/Frontera'))
 const Metodologia = lazy(() => import('./pages/Metodologia'))
 const LabHealth = lazy(() => import('./pages/LabHealth'))
 const AvisoLegal = lazy(() => import('./pages/AvisoLegal'))
@@ -80,7 +82,7 @@ function Loading() {
 function InnerShell({ onOpenCmdK }) {
   const location = useLocation()
   const t = useT()
-  const active = NAV.find((n) => location.pathname.startsWith(n.to))
+  const active = entradaNavActiva(location.pathname)
   const crumb = active ? t(active.labelKey) : 'CivicPulse'
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
@@ -139,6 +141,7 @@ function InnerShell({ onOpenCmdK }) {
               <Route path="/quejas/dashboard" element={<QuejasDashboard />} />
               <Route path="/quejas/:id" element={<QuejaDetail />} />
               <Route path="/laboratorio" element={<Laboratorio />} />
+              <Route path="/laboratorio/frontera" element={<Frontera />} />
               {Agentes && <Route path="/laboratorio/agentes" element={<Agentes />} />}
               {AgenteReporte && (
                 <Route path="/laboratorio/agentes/:assignmentId" element={<AgenteReporte />} />

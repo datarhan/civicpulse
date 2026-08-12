@@ -53,9 +53,19 @@ interface GuardRow {
   wiredIn: string[]
   /** Test files that import a module this guard's script depends on. */
   testedBy: string[]
-  /** null = not exercised this run */
+  /** null = not exercised this run. Falso si CUALQUIERA de sus inyecciones no disparó. */
   firesOnFault: boolean | null
   injection?: string
+  /**
+   * Una fila por inyección escrita para esta guarda.
+   *
+   * La tabla admite varias inyecciones con el mismo `guard` —una guarda con dos
+   * responsabilidades necesita dos— y el bucle las ejecutaba todas, pero
+   * escribía el resultado en el MISMO campo: la segunda pisaba a la primera y
+   * su veredicto se tiraba. Una inyección que se ejecuta y cuyo resultado nadie
+   * lee es el patrón que este script existe para cazar, cometido por el script.
+   */
+  injections?: { describe: string; fired: boolean | null; note?: string }[]
   note?: string
   verdict?: InjectionVerdict
 }
@@ -350,6 +360,48 @@ const INJECTIONS: Array<{
     },
   },
   {
+    guard: 'check:dea',
+    file: 'public/data/dea.json',
+    describe: 'una puntuación de frontera que ya no se reproduce desde su fuente',
+    // La avería propia de esta superficie: la cifra sale de un remuestreo de
+    // dos mil réplicas, así que no hay documento con el que cotejarla. Lo único
+    // que la sostiene es que se puede volver a calcular con la semilla
+    // publicada. Se mueve θ un poco —no un orden de magnitud— porque el fallo
+    // real es una revisión del ministerio que desplaza la cifra sin que nadie
+    // toque la página, y un gate que sólo caza catástrofes no caza nada.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const e = d.especificaciones?.find((x: { propia: unknown }) => x.propia)
+      if (!e) throw new Error('sin especificación publicada que corromper')
+      e.propia.theta = e.propia.theta * 0.97
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
+  {
+    guard: 'check:dea',
+    file: 'public/data/dea.json',
+    describe: 'un municipio ajeno nombrado en el experimento de frontera',
+    // La otra mitad del gate, y la que de verdad importa: la regla editorial de
+    // esta página es que no se nombra a nadie salvo a Riba-roja. Se rompe sin
+    // querer con un campo de diagnóstico —los `id` del conjunto de referencia
+    // son códigos INE— y el efecto es publicar el veredicto de un modelo
+    // nuestro sobre veinte ayuntamientos sin derecho de réplica. Se inyecta un
+    // INE real de la banda, no uno inventado, para que el gate tenga que
+    // buscarlo contra la fuente y no contra una lista suya.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const fuente = JSON.parse(
+        readFileSync(resolve(ROOT, 'public/data/coste-efectivo.json'), 'utf8'),
+      )
+      const ajeno = (fuente.pares.filas as { ine: string }[]).find((f) => f.ine !== '46214')
+      if (!ajeno) throw new Error('sin municipio par con el que probar')
+      const e = d.especificaciones?.find((x: { propia: unknown }) => x.propia)
+      if (!e) throw new Error('sin especificación publicada que corromper')
+      e.propia.referenciasDetalle = [{ ine: ajeno.ine, lambda: 0.5 }]
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
+  {
     guard: 'check:summary-gate',
     file: 'public/data/pleno-findings.json',
     describe: 'un sumario que reimprime, palabra por palabra, una cita que la puerta retiene',
@@ -481,22 +533,27 @@ function main(): void {
     for (const inj of INJECTIONS) {
       const row = rows.find((r) => r.name === inj.guard)
       if (!row) continue
-      row.injection = inj.describe
+      row.injections = row.injections ?? []
+      const registro: { describe: string; fired: boolean | null; note?: string } = {
+        describe: inj.describe,
+        fired: null,
+      }
+      row.injections.push(registro)
       const path = resolve(ROOT, inj.file)
       if (!existsSync(path)) {
-        row.note = `${inj.file} missing — not exercised`
+        registro.note = `${inj.file} missing — not exercised`
         continue
       }
       if (!gitIsClean(inj.file)) {
-        row.note = `${inj.file} has uncommitted changes — refusing to inject`
+        registro.note = `${inj.file} has uncommitted changes — refusing to inject`
         continue
       }
       const original = readFileSync(path, 'utf8')
       try {
         writeFileSync(path, inj.corrupt(original), 'utf8')
-        row.firesOnFault = guardFails(inj.guard)
+        registro.fired = guardFails(inj.guard)
       } catch (e) {
-        row.note = `injection failed: ${(e as Error).message}`
+        registro.note = `injection failed: ${(e as Error).message}`
       } finally {
         // Restore from git, then PROVE it was restored. A fault-injection
         // harness that leaves the fault behind is worse than no harness.
@@ -517,6 +574,16 @@ function main(): void {
   // a plain wiring run, so four written injections read as four missing ones.
   const defined = new Set(INJECTIONS.map((i) => i.guard))
   for (const r of rows) {
+    // Una guarda con dos responsabilidades sólo está probada si las dos
+    // inyecciones disparan. Quedarse con la última daría por probada una
+    // guarda que caza la mitad de lo que promete.
+    if (r.injections?.length) {
+      r.injection = r.injections.map((i) => i.describe).join(' · ')
+      r.note = r.injections.find((i) => i.note)?.note
+      r.firesOnFault = r.injections.some((i) => i.fired === null)
+        ? null
+        : r.injections.every((i) => i.fired === true)
+    }
     r.verdict = classifyInjection({
       hasInjection: defined.has(r.name),
       fired: r.firesOnFault,
@@ -571,7 +638,11 @@ function main(): void {
               ? 'sin inyección, a propósito'
               : '⚠ sin inyección'
     out(`  ${r.name.padEnd(w)}  ${label}`)
-    if (r.injection) out(`  ${' '.repeat(w)}  inyectado: ${r.injection}`)
+    for (const i of r.injections ?? []) {
+      const marca = i.fired === true ? '✓' : i.fired === false ? '✗' : '—'
+      out(`  ${' '.repeat(w)}  ${marca} inyectado: ${i.describe}${i.note ? ` (${i.note})` : ''}`)
+    }
+    if (!r.injections?.length && r.injection) out(`  ${' '.repeat(w)}  inyectado: ${r.injection}`)
     else if (v.state === 'not-injectable') out(`  ${' '.repeat(w)}  ${v.detail}`)
   }
   if (!inject) {

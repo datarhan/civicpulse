@@ -94,6 +94,14 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
   // publicaba porcentajes calculados sobre contratos de semanas atrás sin que
   // nada lo dijera.
   { file: 'indicadores.json', cls: 'derived' as const, maxAgeDays: 3 },
+  // `dea.json` sale del mismo `coste-efectivo.json` y lo recompone la misma
+  // nocturna, así que envejece igual. Va aparte de `coste-efectivo.json`
+  // —excluido más abajo— porque lo que se vigila aquí no es el ritmo del
+  // ministerio sino el de NUESTRO recálculo: si el volcado se revisa y nadie
+  // rehace la frontera, la página publica una puntuación que ya no se
+  // reproduce, y ése es justo el fallo que `check:dea` no puede ver solo (mide
+  // que reproduce, no que sea reciente).
+  { file: 'dea.json', cls: 'derived' as const, maxAgeDays: 3 },
   ...[
     'promises.json',
     'pleno-votes.json',
