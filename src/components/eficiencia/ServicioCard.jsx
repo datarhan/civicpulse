@@ -1,6 +1,7 @@
 import { Card, Pill } from '../Primitives'
 import { useT } from '../../i18n'
 import { BandaPares } from './BandaPares'
+import { SerieServicio } from './SerieServicio'
 import { leerIndicador, lecturaVisible, chipDeclaracion } from '../../scraper/indicador-lectura'
 import { Lectura } from './Lectura'
 
@@ -52,6 +53,11 @@ export function ServicioCard({ indicador, formatea }) {
   const declarados = i.serie.filter((p) => p.estado === 'declarado')
   const puntos = declarados.length
   const chip = chipDeclaracion(i)
+  // Avisos y salvedades comparten destino: los primeros los cuenta ahora el
+  // gráfico (la tendencia es la forma; la entrega imposible, el ⚠ del borde), y
+  // las segundas son el texto largo que se leía una vez y se saltaba nueve.
+  const salvedades = [...lectura.avisos, ...(i.caveats ?? [])]
+  const plegable = salvedades.length + (declarados.length >= 2 ? 1 : 0)
 
   return (
     <Card>
@@ -94,37 +100,10 @@ export function ServicioCard({ indicador, formatea }) {
             {i.unidad.replace(/^€\//, '').replace(/^\//, '')} · entrega {cita?.entrega}
           </div>
 
-          {/* La serie va como lista de años, no como gráfico: una entrega
-              inverosímil —limpieza viaria a 67 millones de euros por metro
-              cuadrado en 2015— aplastaría cualquier escala. Y no se esconde,
-              porque es la cifra oficial: se marca y la salvedad la explica. */}
-          {declarados.length >= 2 && (
-            <p
-              className="mono"
-              style={{ fontSize: 12, margin: '8px 0 0', color: 'var(--ink70, var(--ink60))' }}
-            >
-              {declarados.map((p, idx) => (
-                <span key={p.anio}>
-                  {idx > 0 && ' · '}
-                  <span
-                    style={
-                      p.atipico
-                        ? { color: 'var(--warn-ink)', textDecoration: 'underline dotted' }
-                        : undefined
-                    }
-                    title={
-                      p.atipico
-                        ? `Cifra inverosímil: los municipios comparables declararon una mediana de ${formatea(p.medianaPares)} ese año`
-                        : undefined
-                    }
-                  >
-                    {p.anio}: {formatea(p.valor)}
-                    {p.atipico ? ' ⚠' : ''}
-                  </span>
-                </span>
-              ))}
-            </p>
-          )}
+          {/* La serie va dibujada, con las entregas inverosímiles fuera de la
+              escala y marcadas donde estaban. Las cifras exactas, año por año,
+              siguen en el desplegable de abajo. */}
+          <SerieServicio puntos={declarados} formatea={formatea} unidad={i.unidad} />
 
           <BandaPares indicador={i} formatea={formatea} />
           {puntos < 2 && (
@@ -152,16 +131,65 @@ export function ServicioCard({ indicador, formatea }) {
         </div>
       )}
 
-      <Lectura lectura={lectura} />
+      <Lectura lectura={lectura} conAvisos={false} />
 
-      {i.caveats?.length > 0 && (
-        <ul style={{ margin: '12px 0 0', paddingLeft: 18, color: 'var(--ink60)', fontSize: 12 }}>
-          {i.caveats.map((c) => (
-            <li key={c} style={{ marginBottom: 3 }}>
-              {c}
-            </li>
-          ))}
-        </ul>
+      {/* Lo que la tarjeta guardaba abierto y nadie leía.
+
+          Ninguna de estas frases se borra —son el contenido de esta página, no
+          su letra pequeña—, pero tenerlas las diez abiertas a la vez daba trece
+          pantallas de las que diez eran repetición, y enterraba la salvedad de
+          la tarjeta once bajo la de la tarjeta uno. Va en <details> y no
+          desmontado: el texto sigue en el DOM, así que la búsqueda del
+          navegador lo encuentra y lo despliega.
+
+          El recuento en el resumen es la parte que hace que se abra: «(4)»
+          promete algo concreto donde «ver más» no promete nada. */}
+      {plegable > 0 && (
+        <details style={{ marginTop: 10 }}>
+          <summary style={{ cursor: 'pointer', fontSize: 12.5, color: 'var(--civic)' }}>
+            {declarados.length >= 2 ? 'Serie completa y salvedades' : 'Salvedades'} ({plegable})
+          </summary>
+
+          {declarados.length >= 2 && (
+            <p
+              className="mono"
+              style={{ fontSize: 12, margin: '10px 0 0', color: 'var(--ink70, var(--ink60))' }}
+            >
+              {declarados.map((p, idx) => (
+                <span key={p.anio}>
+                  {idx > 0 && ' · '}
+                  <span
+                    style={
+                      p.atipico
+                        ? { color: 'var(--warn-ink)', textDecoration: 'underline dotted' }
+                        : undefined
+                    }
+                    title={
+                      p.atipico
+                        ? `Cifra inverosímil: los municipios comparables declararon una mediana de ${formatea(p.medianaPares)} ese año`
+                        : undefined
+                    }
+                  >
+                    {p.anio}: {formatea(p.valor)}
+                    {p.atipico ? ' ⚠' : ''}
+                  </span>
+                </span>
+              ))}
+            </p>
+          )}
+
+          {salvedades.length > 0 && (
+            <ul
+              style={{ margin: '10px 0 0', paddingLeft: 18, color: 'var(--ink60)', fontSize: 12 }}
+            >
+              {salvedades.map((c) => (
+                <li key={c} style={{ marginBottom: 3 }}>
+                  {c}
+                </li>
+              ))}
+            </ul>
+          )}
+        </details>
       )}
 
       {cita && (

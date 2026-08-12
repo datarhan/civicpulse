@@ -14,7 +14,7 @@
  * —la cifra en grande, la banda con su percentil—, que es lo normal en un
  * servicio con pares. Ver `lecturaVisible`.
  */
-export function Lectura({ lectura }) {
+export function Lectura({ lectura, conAvisos = true }) {
   if (!lectura) return null
   const cabecera = [lectura.que, lectura.donde].filter(Boolean).join(' ')
   return (
@@ -37,7 +37,7 @@ export function Lectura({ lectura }) {
       <p style={{ margin: 0, fontSize: 12.5, color: 'var(--ink70, var(--ink60))' }}>
         {lectura.como}
       </p>
-      {lectura.avisos?.length > 0 && (
+      {conAvisos && lectura.avisos?.length > 0 && (
         <ul style={{ margin: '6px 0 0', paddingLeft: 18, fontSize: 12, color: 'var(--ink60)' }}>
           {lectura.avisos.map((a) => (
             <li key={a}>{a}</li>
