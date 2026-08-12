@@ -4,6 +4,7 @@ import { useTenders } from '../hooks/useTenders'
 import { useFindingQuoteProvenance, provenanceFor } from '../hooks/useFindingQuoteProvenance'
 import { QUOTE_PROVENANCE_STATUS_IDS } from '../scraper/quote-provenance'
 import { CLAIM_VISIBILITIES } from '../scraper/claim-public-gate'
+import { isMachineAuthored } from '../scraper/finding-authorship'
 import { blocLabel } from '../lib/party-label.js'
 import { refDateIndexFor, refDate } from '../lib/crosschecked-date.js'
 import {
@@ -294,6 +295,34 @@ const PROVENANCE_MARK = {
  * the wording below stays inside that. Keyed by the gate's OWN enum, so a
  * fourth outcome cannot arrive unworded.
  */
+/**
+ * Quién dejó pasar una acusación que nadie pudo contrastar.
+ *
+ * Decía «Aquí aparece porque **alguien** promovió la ficha: el pie dice quién»,
+ * y «alguien» es una persona. Sobre una acusación pública contra la gestión
+ * municipal, eso le dice al lector que un humano miró este caso y asumió la
+ * responsabilidad de publicarlo igualmente — una excepción deliberada. Las 19
+ * fichas que llevan la marca las firma `auto-curation-v1`: no hubo excepción ni
+ * hubo nadie. Lo promovió el mismo proceso que redactó el texto.
+ *
+ * Ninguna comprobación de datos podía cazarlo, porque el dato estaba bien y la
+ * frase mal. Lo cazó leer la página.
+ *
+ * Ahora sale del propio pie en lugar de insinuarlo, así que no puede volver a
+ * separarse de él: el día que una persona promueva una de éstas, la nota dirá su
+ * nombre porque lo lee de la ficha.
+ */
+export function notaAcusacionSinContrastar(curatorName) {
+  const base =
+    'es una acusación pública sobre la gestión municipal, y en el registro de declaraciones del ' +
+    'pleno una acusación sin contrastar no se publica. Aquí aparece igualmente'
+  const quien = (curatorName ?? '').trim()
+  if (!quien) return `${base}; el pie de la ficha dice quién la editó.`
+  return isMachineAuthored(quien)
+    ? `${base}, y la ficha la editó un proceso automático (${quien}), no una persona.`
+    : `${base}, y la ficha la editó ${quien}.`
+}
+
 const CONTRAST_MARK = {
   shown: null,
   toggle: {
@@ -308,10 +337,7 @@ const CONTRAST_MARK = {
     chip: 'acusación no contrastada',
     title:
       'Es una acusación pública que el verificador no pudo contrastar con ningún dato municipal. No decimos que sea falsa.',
-    note:
-      'es una acusación pública sobre la gestión municipal, y en el registro de declaraciones del ' +
-      'pleno una acusación sin contrastar no se publica. Aquí aparece porque alguien promovió la ' +
-      'ficha: el pie dice quién.',
+    note: notaAcusacionSinContrastar,
   },
 }
 
@@ -405,7 +431,7 @@ export function QuoteProvenanceMark({ entry }) {
  * chip alone says «something is off» without saying what to do with it, and
  * this is prose about named political groups.
  */
-export function QuoteProvenanceNote({ entries }) {
+export function QuoteProvenanceNote({ entries, curatorName }) {
   const groups = []
   for (const axis of MARK_AXES) {
     const seen = []
@@ -445,7 +471,12 @@ export function QuoteProvenanceNote({ entries }) {
             <div key={s} style={{ marginTop: 2 }}>
               <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>{axis.marks[s].chip}</strong>
               {' — '}
-              {axis.marks[s].note}
+              {/* Una nota puede ser una frase fija o depender de la propia
+                  ficha. La de «acusación no contrastada» tiene que leer el pie:
+                  afirmar a secas que alguien lo decidió es lo que estaba mal. */}
+              {typeof axis.marks[s].note === 'function'
+                ? axis.marks[s].note(curatorName)
+                : axis.marks[s].note}
             </div>
           ))}
           <a href={axis.href} style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
@@ -526,7 +557,7 @@ export function FindingCard({ f }) {
           ))}
           {/* Only the three quotes this card shows are marked, so the note must
               describe those and not the finding's full list. */}
-          <QuoteProvenanceNote entries={prov.slice(0, 3)} />
+          <QuoteProvenanceNote entries={prov.slice(0, 3)} curatorName={f.curatorName} />
         </div>
       )}
       <RefList refs={f.crossChecked} kind="crossChecked" plenoDate={f.plenoDate} />

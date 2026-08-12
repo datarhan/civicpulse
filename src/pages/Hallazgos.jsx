@@ -156,7 +156,7 @@ export function FindingDetailCard({ f, permalink }) {
               <QuoteProvenanceMark entry={prov[i]} />
             </blockquote>
           ))}
-          <QuoteProvenanceNote entries={prov} />
+          <QuoteProvenanceNote entries={prov} curatorName={f.curatorName} />
         </div>
       )}
       <RefList refs={f.crossChecked} kind="crossChecked" plenoDate={f.plenoDate} />
