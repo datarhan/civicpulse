@@ -360,6 +360,31 @@ if ! npm run check:eficiencia-findings; then
   soft_failures+=("check:eficiencia-findings")
 fi
 
+# Tres guardas que existían y no invocaba NADIE — ni un workflow, ni un
+# pipeline, ni un hook. Es el modo de fallo 1 que el propio `check:guards`
+# documenta («la guarda es correcta y nada la ejecuta»), y lo destapó él
+# mismo. Las tres son puras, sin red y de milisegundos:
+#
+#   check:summary-gate  ¿reproduce un sumario publicado una cita que la puerta
+#                       editorial retiene? Es una comprobación de seguridad
+#                       sobre prosa publicada, y era la que más falta hacía.
+#   check:data-graph    ¿sigue el grafo de dependencias escrito a mano
+#                       describiendo lo que los scripts hacen de verdad?
+#   check:queues        ¿describen las colas del curador lo que hay publicado,
+#                       o hablan de hallazgos que ya se retiraron?
+if ! npm run check:summary-gate; then
+  echo "[scrape-all] SOFT-FAILED: check:summary-gate — un sumario reproduce una cita retenida"
+  soft_failures+=("check:summary-gate")
+fi
+if ! npm run check:data-graph; then
+  echo "[scrape-all] SOFT-FAILED: check:data-graph — el grafo de dependencias no describe el código"
+  soft_failures+=("check:data-graph")
+fi
+if ! npm run check:queues; then
+  echo "[scrape-all] SOFT-FAILED: check:queues — cola de curación que habla de lo que ya no existe"
+  soft_failures+=("check:queues")
+fi
+
 # Which snapshots have quietly stopped refreshing. Distinct from a scraper
 # FAILING: six adapters are unreachable from GitHub runners and marked
 # best-effort, so the nightly goes green while their data ages with no working

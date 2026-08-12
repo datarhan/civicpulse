@@ -69,17 +69,35 @@ adapter names to the `case` switch.
 | Workflow                          | Trigger                                                                                                                                                                                                                       |
 | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `e2e.yml`                         | push / PR — Playwright, sets `VITE_ENABLE_PERIODISTAS=true` (absent locally, so `/cargos`'s Biografía spec always reds on a local run)                                                                                        |
-| `deploy-vercel.yml`               | `workflow_run` after a green nightly, plus push                                                                                                                                                                               |
+| `deploy-vercel.yml`               | push, plus `workflow_run` after **every** workflow that pushes to `main` (see below)                                                                                                                                          |
 | `batch-reminder.yml`              | Mondays 08:00 UTC — nudges the queja batch registrar                                                                                                                                                                          |
 | `pull-quejas.yml`                 | daily 04:00 UTC (before the scrape) — pulls the bot's `/export/quejas.json` from Fly.io into `public/data/`. Live since 2026-08-02; gated on `vars.BOT_EXPORT_URL`, so unsetting that variable silently stops queja refreshes |
 | `ingest-finding-responses.yml`    | issue labelled `derecho-replica`                                                                                                                                                                                              |
 | `ingest-journalist-responses.yml` | issue labelled `derecho-replica` **and** `periodista`                                                                                                                                                                         |
 | `ingest-pleno-votes.yml`          | issue from the `pleno-vote.yml` form                                                                                                                                                                                          |
 | `ingest-queja-responses.yml`      | issue from the `queja-response.yml` form                                                                                                                                                                                      |
+| `ingest-eficiencia-responses.yml` | issue labelled `derecho-replica` **and** `eficiencia`                                                                                                                                                                         |
 
 Each ingest workflow parses the structured form, calls the matching curator CLI,
 commits, and closes the issue with a permalink. Git history is the sole audit
 trail.
+
+Two of them share the `derecho-replica` label, so the discriminator is the
+second one: `ingest-finding-responses.yml` now **excludes** `eficiencia` and
+`ingest-eficiencia-responses.yml` requires it. Without that, both fire on the
+same issue and the pleno ingester comments «no se pudieron extraer los campos
+obligatorios» on a perfectly valid reply — indistinguishable, to whoever wrote
+it, from a rejection.
+
+### Every pusher must appear in `deploy-vercel.yml`
+
+The `workflow_run` list held **one** workflow of six until 2026-08-12. The other
+five — the four right-of-reply ingesters and `pull-quejas.yml` — committed to
+`main` and deployed nothing, because GitHub does not chain workflows after a
+`GITHUB_TOKEN` push. The visible consequence: a group exercised its legal right
+to reply, the bot commented «✅ Réplica publicada · visible en …», and it was
+not visible until the nightly happened to push again. `tests/deploy-triggers.test.js`
+re-derives the list from the workflow directory and reds on a missing pusher.
 
 ## Local crons (the curator's laptop)
 
@@ -127,10 +145,10 @@ macOS TCC protects `~/Documents`, `~/Desktop` and `~/Downloads`, and the two
 schedulers fail there in opposite directions. Measured on 2026-08-11 with a
 one-shot probe agent:
 
-| | cron | launchd user agent |
-| --- | --- | --- |
+|                                    | cron                    | launchd user agent               |
+| ---------------------------------- | ----------------------- | -------------------------------- |
 | read the repo under `~/Documents/` | ✓ (FDA granted to cron) | ✗ denied — `pwd` came back empty |
-| unlock the login keychain | ✗ `Not logged in` | ✓ `claude -p` exits 0 |
+| unlock the login keychain          | ✗ `Not logged in`       | ✓ `claude -p` exits 0            |
 
 Neither could do both, and that cost nine days: from 2026-08-03 the
 `claude` credential moved into the login keychain, cron stopped being able to
@@ -173,18 +191,29 @@ Full setup, secrets and volume creation: the header of `bot/fly.toml` and
 
 All report-only inside `scrape:all`; run any of them directly.
 
-| Command                           | Catches                                                            |
-| --------------------------------- | ------------------------------------------------------------------ |
-| `check:relations`                 | cross-snapshot FK breakage (findings→claims, votes→plenos, …)      |
-| `check:cadence`                   | snapshots past their expected refresh interval                     |
-| `check:runs`                      | a run that reported success without doing work                     |
-| `check:citations`                 | a published claim whose citation no longer holds                   |
-| `check:guards`                    | a guard in this table that nothing invokes                         |
-| `check:drift`, `check:vocabulary` | upstream shape / vocabulary changes                                |
-| `check:corpus`, `check:retrieval` | embedding corpus integrity, self-retrieval probe                   |
-| `check:transcripts`               | degenerate transcripts in the published corpus                     |
-| `check:json`                      | unparseable snapshot or merge-conflict marker (also in pre-commit) |
-| `check:automation`                | which action classes are gated, and on what measurement            |
+| Command                           | Catches                                                              |
+| --------------------------------- | -------------------------------------------------------------------- |
+| `check:relations`                 | cross-snapshot FK breakage (findings→claims, votes→plenos, …)        |
+| `check:cadence`                   | snapshots past their expected refresh interval                       |
+| `check:runs`                      | a run that reported success without doing work                       |
+| `check:citations`                 | a published claim whose citation no longer holds                     |
+| `check:guards`                    | a guard in this table that nothing invokes                           |
+| `check:drift`, `check:vocabulary` | upstream shape / vocabulary changes                                  |
+| `check:corpus`, `check:retrieval` | embedding corpus integrity, self-retrieval probe                     |
+| `check:transcripts`               | degenerate transcripts in the published corpus                       |
+| `check:json`                      | unparseable snapshot or merge-conflict marker (also in pre-commit)   |
+| `check:automation`                | which action classes are gated, and on what measurement              |
+| `check:summary-gate`              | a published summary reproducing a quote the editorial gate withholds |
+| `check:data-graph`                | the hand-written dependency graph drifting from what scripts do      |
+| `check:queues`                    | a curator worklist describing findings that no longer exist          |
+| `check:indicadores`               | a `/eficiencia` figure that no longer resolves to its source cell    |
+| `check:eficiencia-findings`       | a signed ficha asserting a figure its source has since revised       |
+
+`check:guards` is the one that keeps this table honest, and on 2026-08-12 it
+found three of these — `summary-gate`, `data-graph`, `queues` — defined,
+tested, and invoked by **nothing**: not a workflow, not a pipeline, not a hook.
+That is its own documented failure mode 1. All 21 are wired now; three still
+have no fault injection, and it says so rather than counting them as proven.
 
 Baselines (`.vocabulary-census.json`, `.transcript-check-baseline.json`) are
 **committed on purpose**. Gitignored, CI would write a fresh one each night and
