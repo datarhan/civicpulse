@@ -389,7 +389,9 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
     formato: 'porcentaje',
     periodo: eje?.fechaListado ? `${anio} (a ${eje.fechaListado})` : anio,
     caveats: [
-      'Es una foto del listado publicado, no el cierre del ejercicio: un porcentaje bajo a mitad de año no significa lo mismo que a 31 de diciembre.',
+      '«Ejecutado» son obligaciones reconocidas netas, la medida estándar de ejecución presupuestaria; no son pagos hechos.',
+      'El denominador es el crédito DEFINITIVO, que incluye las modificaciones incorporadas a lo largo del ejercicio —algunas a final de año, cuando ya no da tiempo a gastarlas—. Buena parte de un porcentaje bajo es crédito inflado, no sólo gasto que no se hizo: el capítulo de inversiones reales partió de cero crédito inicial, incorporó 22,06 M€ por modificación y ejecutó el 4,7 %.',
+      'Compararlo con la cifra de presupuesto que aparece en /presupuesto no funciona: aquella es el presupuesto aprobado según la publicación del ministerio y ésta es el crédito definitivo del propio listado municipal.',
     ],
     citas: [citaEje],
   })
