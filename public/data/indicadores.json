@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T12:29:34.717Z",
+  "generatedAt": "2026-08-12T14:18:33.908Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -312,9 +312,26 @@
           "medianaPares": 122.63646633346139
         }
       ],
+      "declaracion": {
+        "numerador": {
+          "congelada": false,
+          "repeticionesFinales": 1,
+          "desde": null,
+          "entregas": 9
+        },
+        "denominador": {
+          "congelada": true,
+          "repeticionesFinales": 5,
+          "desde": 2019,
+          "entregas": 10
+        },
+        "paresCongelados": 15,
+        "paresMedibles": 54
+      },
       "caveats": [
         "La tonelada mide cuánta basura genera el municipio, no lo bien que se recoge: más toneladas no es peor gestión.",
-        "La fuente no publica tasa de reciclaje, así que no hay dato de resultado con el que contrastar el coste."
+        "La fuente no publica tasa de reciclaje, así que no hay dato de resultado con el que contrastar el coste.",
+        "El ayuntamiento declara la misma cifra de producción anual residuos urbanos: toneladas desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 15 de 54 municipios comparables hacen lo mismo con esta misma cifra."
       ],
       "citas": [
         {
@@ -585,9 +602,26 @@
           "medianaPares": 1.2538666138140138
         }
       ],
+      "declaracion": {
+        "numerador": {
+          "congelada": false,
+          "repeticionesFinales": 1,
+          "desde": null,
+          "entregas": 9
+        },
+        "denominador": {
+          "congelada": true,
+          "repeticionesFinales": 6,
+          "desde": 2018,
+          "entregas": 10
+        },
+        "paresCongelados": 31,
+        "paresMedibles": 52
+      },
       "caveats": [
         "La superficie es la declarada con servicio, no la superficie total del municipio.",
-        "El ministerio publica cifras inverosímiles para 2015: se apartan más de 20 veces de lo que declararon los municipios comparables ese mismo año. Se muestran porque son las oficiales, pero no se pueden leer como coste."
+        "El ministerio publica cifras inverosímiles para 2015: se apartan más de 20 veces de lo que declararon los municipios comparables ese mismo año. Se muestran porque son las oficiales, pero no se pueden leer como coste.",
+        "El ayuntamiento declara la misma cifra de superficie en metros cuadrados con servicio de limpieza desde 2018 —6 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 31 de 52 municipios comparables hacen lo mismo con esta misma cifra."
       ],
       "citas": [
         {
@@ -874,8 +908,25 @@
           "medianaPares": 3.3825849990613297
         }
       ],
+      "declaracion": {
+        "numerador": {
+          "congelada": false,
+          "repeticionesFinales": 1,
+          "desde": null,
+          "entregas": 8
+        },
+        "denominador": {
+          "congelada": true,
+          "repeticionesFinales": 5,
+          "desde": 2019,
+          "entregas": 10
+        },
+        "paresCongelados": 44,
+        "paresMedibles": 56
+      },
       "caveats": [
-        "Un metro cuadrado de césped y uno de zona pavimentada cuestan distinto de mantener; la fuente no los separa."
+        "Un metro cuadrado de césped y uno de zona pavimentada cuestan distinto de mantener; la fuente no los separa.",
+        "El ayuntamiento declara la misma cifra de superficie: suma en metros cuadrados de la superficie total (tanto la cubierta como al aire libre) desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 44 de 56 municipios comparables hacen lo mismo con esta misma cifra."
       ],
       "citas": [
         {
@@ -1236,9 +1287,26 @@
           "medianaPares": 0.6065020741891891
         }
       ],
+      "declaracion": {
+        "numerador": {
+          "congelada": false,
+          "repeticionesFinales": 1,
+          "desde": null,
+          "entregas": 10
+        },
+        "denominador": {
+          "congelada": true,
+          "repeticionesFinales": 5,
+          "desde": 2019,
+          "entregas": 10
+        },
+        "paresCongelados": 38,
+        "paresMedibles": 57
+      },
       "caveats": [
         "Es el gasto de un ejercicio sobre todo el pavimento existente, no el coste de asfaltar un metro nuevo.",
-        "Esta cifra queda muy por debajo de la mediana de sus pares (×0,5). Una diferencia así suele venir de que cada ayuntamiento declara «Superficie de los tramos pavimentados (metros cuadrados)» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación."
+        "Esta cifra queda muy por debajo de la mediana de sus pares (×0,5). Una diferencia así suele venir de que cada ayuntamiento declara «Superficie de los tramos pavimentados (metros cuadrados)» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación.",
+        "El ayuntamiento declara la misma cifra de superficie de los tramos pavimentados (metros cuadrados) desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 38 de 57 municipios comparables hacen lo mismo con esta misma cifra."
       ],
       "citas": [
         {
@@ -1648,9 +1716,26 @@
           "medianaPares": 13.417194350328613
         }
       ],
+      "declaracion": {
+        "numerador": {
+          "congelada": false,
+          "repeticionesFinales": 1,
+          "desde": null,
+          "entregas": 10
+        },
+        "denominador": {
+          "congelada": true,
+          "repeticionesFinales": 5,
+          "desde": 2019,
+          "entregas": 10
+        },
+        "paresCongelados": 14,
+        "paresMedibles": 58
+      },
       "caveats": [
         "El préstamo es sólo uno de los usos de una biblioteca: no cuenta consultas en sala, actividades ni uso de los equipos.",
-        "El ministerio publica cifras inverosímiles para 2014: se apartan más de 20 veces de lo que declararon los municipios comparables ese mismo año. Se muestran porque son las oficiales, pero no se pueden leer como coste."
+        "El ministerio publica cifras inverosímiles para 2014: se apartan más de 20 veces de lo que declararon los municipios comparables ese mismo año. Se muestran porque son las oficiales, pero no se pueden leer como coste.",
+        "El ayuntamiento declara la misma cifra de nº préstamos por fondo biblitotecario desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 14 de 58 municipios comparables hacen lo mismo con esta misma cifra."
       ],
       "citas": [
         {
@@ -2042,9 +2127,26 @@
           "medianaPares": 140.90679210172277
         }
       ],
+      "declaracion": {
+        "numerador": {
+          "congelada": false,
+          "repeticionesFinales": 1,
+          "desde": null,
+          "entregas": 10
+        },
+        "denominador": {
+          "congelada": true,
+          "repeticionesFinales": 5,
+          "desde": 2019,
+          "entregas": 10
+        },
+        "paresCongelados": 34,
+        "paresMedibles": 58
+      },
       "caveats": [
         "Cuenta puntos de luz, no consumo ni potencia: una red renovada y una vieja se cuentan igual.",
-        "El ministerio publica cifras inverosímiles para 2018: se apartan más de 20 veces de lo que declararon los municipios comparables ese mismo año. Se muestran porque son las oficiales, pero no se pueden leer como coste."
+        "El ministerio publica cifras inverosímiles para 2018: se apartan más de 20 veces de lo que declararon los municipios comparables ese mismo año. Se muestran porque son las oficiales, pero no se pueden leer como coste.",
+        "El ayuntamiento declara la misma cifra de nº puntos de luz desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 34 de 58 municipios comparables hacen lo mismo con esta misma cifra."
       ],
       "citas": [
         {
@@ -2405,7 +2507,25 @@
           "medianaPares": 4.5763738181818185
         }
       ],
-      "caveats": [],
+      "declaracion": {
+        "numerador": {
+          "congelada": false,
+          "repeticionesFinales": 1,
+          "desde": null,
+          "entregas": 10
+        },
+        "denominador": {
+          "congelada": true,
+          "repeticionesFinales": 5,
+          "desde": 2019,
+          "entregas": 10
+        },
+        "paresCongelados": 47,
+        "paresMedibles": 57
+      },
+      "caveats": [
+        "El ayuntamiento declara la misma cifra de superficie total del cementerio: metros cuadrados desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 47 de 57 municipios comparables hacen lo mismo con esta misma cifra."
+      ],
       "citas": [
         {
           "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
@@ -2788,9 +2908,26 @@
           "medianaPares": 140007.9249930916
         }
       ],
+      "declaracion": {
+        "numerador": {
+          "congelada": false,
+          "repeticionesFinales": 1,
+          "desde": null,
+          "entregas": 9
+        },
+        "denominador": {
+          "congelada": true,
+          "repeticionesFinales": 5,
+          "desde": 2019,
+          "entregas": 9
+        },
+        "paresCongelados": 46,
+        "paresMedibles": 58
+      },
       "caveats": [
         "La superficie urbanizada es el territorio que hay que planificar, no un producto del servicio.",
-        "Esta cifra queda muy por debajo de la mediana de sus pares (×0,2). Una diferencia así suele venir de que cada ayuntamiento declara «Superficie urbanizada (kilómetros cuadrados)» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación."
+        "Esta cifra queda muy por debajo de la mediana de sus pares (×0,2). Una diferencia así suele venir de que cada ayuntamiento declara «Superficie urbanizada (kilómetros cuadrados)» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación.",
+        "El ayuntamiento declara la misma cifra de superficie urbanizada (kilómetros cuadrados) desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 46 de 58 municipios comparables hacen lo mismo con esta misma cifra."
       ],
       "citas": [
         {
@@ -3138,9 +3275,26 @@
           "medianaPares": 32.511283664017384
         }
       ],
+      "declaracion": {
+        "numerador": {
+          "congelada": false,
+          "repeticionesFinales": 1,
+          "desde": null,
+          "entregas": 9
+        },
+        "denominador": {
+          "congelada": true,
+          "repeticionesFinales": 5,
+          "desde": 2019,
+          "entregas": 10
+        },
+        "paresCongelados": 38,
+        "paresMedibles": 55
+      },
       "caveats": [
         "El ayuntamiento mantiene los edificios; la enseñanza es competencia autonómica, así que esto no mide resultados educativos.",
-        "Esta cifra queda muy por encima de la mediana de sus pares (×3,1). Una diferencia así suele venir de que cada ayuntamiento declara «Superficie en metros cuadrados de los edificios» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación."
+        "Esta cifra queda muy por encima de la mediana de sus pares (×3,1). Una diferencia así suele venir de que cada ayuntamiento declara «Superficie en metros cuadrados de los edificios» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación.",
+        "El ayuntamiento declara la misma cifra de superficie en metros cuadrados de los edificios desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 38 de 55 municipios comparables hacen lo mismo con esta misma cifra."
       ],
       "citas": [
         {
@@ -3530,8 +3684,25 @@
           "medianaPares": 65308.06150943396
         }
       ],
+      "declaracion": {
+        "numerador": {
+          "congelada": false,
+          "repeticionesFinales": 1,
+          "desde": null,
+          "entregas": 9
+        },
+        "denominador": {
+          "congelada": true,
+          "repeticionesFinales": 5,
+          "desde": 2019,
+          "entregas": 9
+        },
+        "paresCongelados": 16,
+        "paresMedibles": 57
+      },
       "caveats": [
-        "Coste por efectivo es un PRECIO, no un rendimiento: divide un gasto entre otro gasto. Un cuerpo mejor pagado sale «más caro» sin que eso diga nada de la seguridad."
+        "Coste por efectivo es un PRECIO, no un rendimiento: divide un gasto entre otro gasto. Un cuerpo mejor pagado sale «más caro» sin que eso diga nada de la seguridad.",
+        "El ayuntamiento declara la misma cifra de nº efectivos asignados al servicio desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 16 de 57 municipios comparables hacen lo mismo con esta misma cifra."
       ],
       "citas": [
         {
@@ -3619,6 +3790,22 @@
           "estado": "no-declarado"
         }
       ],
+      "declaracion": {
+        "numerador": {
+          "congelada": false,
+          "repeticionesFinales": 1,
+          "desde": null,
+          "entregas": 9
+        },
+        "denominador": {
+          "congelada": false,
+          "repeticionesFinales": 2,
+          "desde": null,
+          "entregas": 4
+        },
+        "paresCongelados": 8,
+        "paresMedibles": 25
+      },
       "caveats": [],
       "citas": [
         {
@@ -3702,6 +3889,22 @@
           "estado": "no-declarado"
         }
       ],
+      "declaracion": {
+        "numerador": {
+          "congelada": false,
+          "repeticionesFinales": 0,
+          "desde": null,
+          "entregas": 0
+        },
+        "denominador": {
+          "congelada": false,
+          "repeticionesFinales": 1,
+          "desde": null,
+          "entregas": 10
+        },
+        "paresCongelados": 15,
+        "paresMedibles": 55
+      },
       "caveats": [],
       "citas": [
         {
@@ -3785,6 +3988,22 @@
           "estado": "no-declarado"
         }
       ],
+      "declaracion": {
+        "numerador": {
+          "congelada": false,
+          "repeticionesFinales": 0,
+          "desde": null,
+          "entregas": 0
+        },
+        "denominador": {
+          "congelada": false,
+          "repeticionesFinales": 1,
+          "desde": null,
+          "entregas": 10
+        },
+        "paresCongelados": 23,
+        "paresMedibles": 56
+      },
       "caveats": [],
       "citas": [
         {
@@ -4045,7 +4264,8 @@
       "formato": "porcentaje",
       "periodo": "2017–2026",
       "caveats": [
-        "Un licitador único no es irregular por sí mismo: hay mercados con un solo proveedor capaz. Es el indicador que la Comisión Europea usa para vigilar la competencia en compra pública, y lo que mide es cuánta de ella hubo."
+        "Un licitador único no es irregular por sí mismo: hay mercados con un solo proveedor capaz. Es el indicador que la Comisión Europea usa para vigilar la competencia en compra pública, y lo que mide es cuánta de ella hubo.",
+        "Ningún contrato adjudicado se queda fuera: los 699 declaran cuántas ofertas recibieron, así que el denominador coincide con el total de adjudicados."
       ],
       "citas": [
         {

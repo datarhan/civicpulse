@@ -67,6 +67,30 @@ test.describe('Eficiencia (/eficiencia)', () => {
     expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
   })
 
+  test('avisa de los cocientes cuyo denominador nadie vuelve a medir', async ({ page }) => {
+    // La avería que esto vigila no es un número mal: es una tarjeta que deja de
+    // avisar. El cociente publicado seguiría resolviendo perfectamente a su
+    // celda, así que ninguna otra comprobación de datos lo notaría.
+    const congelados = SNAP.indicadores.filter(
+      (i: { valor: number | null; declaracion?: { denominador?: { congelada?: boolean } } }) =>
+        i.valor !== null && i.declaracion?.denominador?.congelada,
+    )
+    if (congelados.length === 0) {
+      // Que el ayuntamiento vuelva a medir es el desenlace bueno, y entonces la
+      // franja NO debe aparecer. Se comprueba también esa dirección.
+      await expect(
+        page.getByText(/denominador que el ayuntamiento no vuelve a medir/i),
+      ).toHaveCount(0)
+      return
+    }
+    await expect(page.getByText(/denominador que el ayuntamiento no vuelve a medir/i)).toBeVisible({
+      timeout: 8000,
+    })
+    // Y cada tarjeta afectada dice desde cuándo, no sólo que pasa algo.
+    const desde = congelados[0].declaracion.denominador.desde
+    await expect(page.getByText(new RegExp(`desde ${desde}`)).first()).toBeVisible()
+  })
+
   test('a concession shows no ratio and no peer position', async ({ page }) => {
     // THE trap this page was designed around: the council books €0 for water
     // because the concessionaire bears it, so a naive divide would publish

@@ -24,6 +24,7 @@ import { fileURLToPath } from 'node:url'
 import type { CesteRow } from '../src/scraper/coste-efectivo'
 import { MIN_PARES, situacion, type Indicador } from '../src/scraper/indicadores'
 import { SERVICIOS } from '../src/scraper/indicador-registry'
+import { medirDeclaracionCongelada } from '../src/scraper/declaracion-congelada'
 import {
   construirIndicadoresMunicipales,
   type IndicadorMunicipal,
@@ -78,6 +79,7 @@ async function main() {
   const pub = JSON.parse(await readFile(join(ROOT, 'public/data/indicadores.json'), 'utf8'))
   const propias: CesteRow[] = base.municipio.filas
   const indicadores: Indicador[] = pub.indicadores
+  const aniosDisponibles = [...new Set(propias.map((f) => f.anio))].sort((a, b) => a - b)
 
   if (!indicadores.length) fail('indicadores.json no publica ningún indicador')
   if (indicadores.length !== Object.keys(SERVICIOS).length) {
@@ -146,6 +148,56 @@ async function main() {
         fail(`${i.id}: la serie ${p.anio} está ${p.estado} y lleva valor`)
       }
     }
+
+    // 6 bis. El bloque de declaración se recalcula desde la fuente, y la
+    //        salvedad que produce va con él.
+    //
+    //        La avería que esto vigila no es un número mal: es una tarjeta que
+    //        deja de avisar. El ayuntamiento actualiza por fin sus toneladas, o
+    //        —lo probable— alguien toca el motor y la salvedad desaparece de
+    //        diez fichas a la vez sin que ninguna otra comprobación lo note,
+    //        porque el cociente publicado seguiría resolviendo perfectamente a
+    //        su celda. Aviso y dato tienen que ir o venir juntos.
+    comprobaciones++
+    const def = SERVICIOS[i.servicio!]
+    const esperada = medirDeclaracionCongelada(
+      propias,
+      [i.servicio!],
+      aniosDisponibles,
+    ).series.find((s) => s.magnitud === 'unidad')
+    const publicada = i.declaracion?.denominador
+    if (!esperada) {
+      if (publicada)
+        fail(`${i.id}: publica declaración del denominador y la fuente no da para ella`)
+    } else if (!publicada) {
+      fail(`${i.id}: la fuente permite medir la declaración del denominador y no se publica`)
+    } else {
+      if (publicada.congelada !== esperada.congelada) {
+        fail(
+          `${i.id}: publica denominador ${publicada.congelada ? 'congelado' : 'vivo'} y la fuente ` +
+            `dice ${esperada.congelada ? 'congelado' : 'vivo'}`,
+        )
+      }
+      if (publicada.desde !== esperada.congeladaDesde) {
+        fail(
+          `${i.id}: publica congelado desde ${publicada.desde} y la fuente dice ${esperada.congeladaDesde}`,
+        )
+      }
+      comprobaciones++
+      // El aviso al lector, no sólo el campo. Una salvedad que se pierde deja la
+      // cifra igual de publicada y al lector sin lo que necesita para leerla.
+      const avisa = i.caveats.some((c) => /mism[ao] cifra|no ha actualizado|mismo coste/i.test(c))
+      const debeAvisar = esperada.congelada || (i.declaracion?.numerador.congelada ?? false)
+      if (debeAvisar && !avisa) {
+        fail(
+          `${i.id}: el denominador lleva sin cambiar desde ${esperada.congeladaDesde} y la ficha no lo dice`,
+        )
+      }
+      if (!debeAvisar && avisa) {
+        fail(`${i.id}: avisa de una cifra sin remedir que la fuente no confirma`)
+      }
+    }
+    if (def === undefined) fail(`${i.id}: servicio fuera del registro`)
   }
 
   // 7. Los indicadores municipales se RECALCULAN desde los snapshots de origen

@@ -514,7 +514,12 @@ export function detectarDesviaciones(input: EntradaDeteccion): Deteccion {
       unidad: i.unidad,
       periodo: entrega ? String(entrega) : String(input.anioBase),
       desviaciones: ordenar(desviaciones),
-      fiabilidad: mejorFiabilidad(desviaciones),
+      // Un denominador que el ayuntamiento no vuelve a medir NO puede sostener
+      // una ficha firmada como fiable, por limpia que salga la comparación con
+      // los pares: el cociente que se compara lleva el coste de este año y la
+      // cantidad de hace seis. Es un TECHO aplicado después de la regla
+      // comparativa, no un criterio más que pudiera subir la fiabilidad.
+      fiabilidad: i.declaracion?.denominador?.congelada ? 'debil' : mejorFiabilidad(desviaciones),
       ...(i.pares
         ? {
             pares: {
