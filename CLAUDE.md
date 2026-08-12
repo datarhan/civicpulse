@@ -223,6 +223,18 @@ The first two are also **enforced, not just documented**:
 under `public/`. Both had already been broken in production, which is the bar
 for moving a rule out of this file and into a hook.
 
+A second hook clears the same bar for a different failure: **prose goes stale
+when the data moves**. Three sentences on `/eficiencia`, `/metodologia` and the
+municipal panel each kept asserting something that had stopped being true one
+commit earlier — a caveat excusing a figure with the wrong reason, "there is no
+time series" after ten entregas shipped, "only PMP has a comparison" as a second
+one gained peers. No test caught any of them: the data was right and the guards
+check data. `.claude/hooks/remind-stale-copy.mjs` names the routes whose prose
+describes a snapshot at the moment that snapshot is rewritten. It reminds, never
+blocks — a reminder that can fail an edit is one people switch off. The better
+fix, where it applies, is to derive the sentence from the data instead of
+restating it, as `PanelMunicipal` now does with the list of compared indicators.
+
 **Curated files are never written by automation.** `promises.json`,
 `pleno-votes.json`, `pleno-findings.json`, `journalist-reports.json`,
 `quejas-responses.json`, `sindic.json`, `dedicaciones.json`, `plantilla.json`,

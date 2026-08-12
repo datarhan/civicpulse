@@ -1,0 +1,151 @@
+import { describe, it, expect } from 'vitest'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
+import { leerIndicador, leerIndicadorMunicipal } from '../src/scraper/indicador-lectura'
+import type { Indicador } from '../src/scraper/indicadores'
+import type { IndicadorMunicipal } from '../src/scraper/indicadores-friccion'
+
+const ROOT = join(__dirname, '..')
+const pub = JSON.parse(readFileSync(join(ROOT, 'public/data/indicadores.json'), 'utf8'))
+const indicadores: Indicador[] = pub.indicadores
+const municipales: IndicadorMunicipal[] = pub.municipales
+const byId = (id: string) => indicadores.find((i) => i.id === id)!
+const munById = (id: string) => municipales.find((m) => m.id === id)!
+
+describe('scraper/indicador-lectura', () => {
+  it('da una lectura a cada indicador publicado, sin dejar ninguno mudo', () => {
+    for (const i of indicadores) {
+      const l = leerIndicador(i)
+      expect(l.que.length).toBeGreaterThan(15)
+      expect(l.como.length).toBeGreaterThan(30)
+      expect(Array.isArray(l.avisos)).toBe(true)
+    }
+    for (const m of municipales) {
+      const l = leerIndicadorMunicipal(m)
+      expect(l.que.length).toBeGreaterThan(5)
+      expect(l.como.length).toBeGreaterThan(30)
+    }
+  })
+
+  it('la frase de «cómo se lee» depende del escalón, no del valor', () => {
+    // Es la que impide que la tarjeta se lea como una calificación, y por eso
+    // tiene que ser la misma para todos los indicadores del mismo escalón.
+    const porTier = new Map<string, Set<string>>()
+    for (const i of indicadores.filter((x) => x.valor !== null)) {
+      const s = porTier.get(i.tier) ?? new Set()
+      s.add(leerIndicador(i).como)
+      porTier.set(i.tier, s)
+    }
+    for (const [tier, frases] of porTier) {
+      expect(frases.size, `el escalón ${tier} tiene ${frases.size} redacciones distintas`).toBe(1)
+    }
+  })
+
+  it('avisa de que un coste por efectivo es un precio, no un rendimiento', () => {
+    // El caso que motivó todo esto: percentil 85 en «coste por policía» se lee
+    // como una nota si nadie dice que divide un gasto entre otro gasto.
+    const policia = byId('b132-130p-coste-unitario')
+    expect(policia.tier).toBe('input')
+    expect(leerIndicador(policia).como).toMatch(/precio y no un rendimiento/i)
+  })
+
+  it('avisa de que el tonelaje es demanda, no logro', () => {
+    const residuos = byId('a1621-coste-unitario')
+    expect(residuos.tier).toBe('carga')
+    expect(leerIndicador(residuos).como).toMatch(/demanda que el servicio atiende/i)
+  })
+
+  it('sitúa entre pares sin publicar un puesto', () => {
+    const conPares = indicadores.find((i) => i.pares)!
+    const l = leerIndicador(conPares)
+    expect(l.donde).toMatch(/municipios valencianos de tamaño parecido/i)
+    expect(l.donde).toMatch(/mediana/i)
+    // Un ranking es una tabla de clasificación con otro nombre.
+    expect(l.donde).not.toMatch(/puesto|posición \d|nº ?\d/i)
+  })
+
+  it('explica la tarjeta bloqueada en vez de dejarla sin lectura', () => {
+    const agua = byId('a161-coste-unitario')
+    const l = leerIndicador(agua)
+    expect(l.que).toMatch(/concedido/i)
+    expect(l.como).toMatch(/hecho sobre la declaración/i)
+    expect(l.donde).toBeNull()
+  })
+
+  it('marca las entregas que no pueden ser un coste, y no las cuenta como tendencia', () => {
+    const conAtipicas = indicadores.find((i) => i.serie.some((p) => p.atipico))
+    if (!conAtipicas) return // el fixture podría no traer ninguna
+    const l = leerIndicador(conAtipicas)
+    expect(l.avisos.some((a) => /no puede.* ser un coste|no pueden ser un coste/i.test(a))).toBe(
+      true,
+    )
+    // La tendencia se calcula sobre los puntos limpios: si entrara la cifra
+    // disparatada, diría que el servicio subió un 6.000.000 %.
+    const tendencia = l.avisos.find((a) => /sube|baja/.test(a))
+    if (tendencia) expect(tendencia).not.toMatch(/\d{5,} %/)
+  })
+
+  it('sólo afirma tendencia entre entregas que se pudieron contrastar', () => {
+    // Alumbrado arranca en 9,10 €/punto de luz en 2014, un año sin banda de
+    // pares con la que comprobarlo. Anclar ahí daba «sube un 1517 %», que no es
+    // una subida de coste sino un cambio en cómo se declara.
+    for (const i of indicadores.filter((x) => x.valor !== null)) {
+      const l = leerIndicador(i)
+      const tendencia = l.avisos.find((a) => /Entre \d{4} y \d{4}/.test(a))
+      if (!tendencia) continue
+      const [, desde] = /Entre (\d{4}) y (\d{4})/.exec(tendencia)!
+      const punto = i.serie.find((p) => p.anio === Number(desde))!
+      expect(
+        punto.medianaPares,
+        `${i.servicio} ancla la tendencia en ${desde}, sin comprobar`,
+      ).toBeDefined()
+      expect(punto.atipico).toBeFalsy()
+    }
+  })
+
+  it('cuenta la tendencia contra los pares cuando la posición relativa se mueve', () => {
+    // Alumbrado sube un 1517 % en diez años y la mediana de sus pares apenas se
+    // mueve: no se encareció, se puso a declarar como los demás. Sin esta
+    // frase, el porcentaje absoluto cuenta la historia al revés.
+    const l = leerIndicador(byId('a165-coste-unitario'))
+    const relativo = l.avisos.find((x) => /Medido contra sus pares/.test(x))
+    expect(relativo, 'falta la lectura relativa en alumbrado').toBeDefined()
+    expect(relativo).toMatch(/veces la mediana/)
+    expect(relativo).toMatch(/cuánto se declara y no en cuánto cuesta/)
+  })
+
+  it('no añade la lectura relativa cuando la posición apenas se mueve', () => {
+    // La policía va de 1,01× a 1,26× la mediana: eso es movimiento real, no un
+    // cambio de criterio contable, y la frase sobraría.
+    const l = leerIndicador(byId('b132-130p-coste-unitario'))
+    expect(l.avisos.some((x) => /Medido contra sus pares/.test(x))).toBe(false)
+  })
+
+  it('escribe los decimales en español', () => {
+    // «2.1 veces» es un punto decimal inglés en una interfaz en español, al
+    // lado de cifras que Intl formatea bien.
+    const l = leerIndicadorMunicipal(munById('periodo-medio-pago'))
+    const veces = l.avisos.find((a) => /veces el límite/.test(a))!
+    expect(veces).toMatch(/\d,\d veces/)
+    expect(veces).not.toMatch(/\d\.\d veces/)
+  })
+
+  it('mide el plazo de pago contra el límite legal, no contra nuestra opinión', () => {
+    const pmp = munById('periodo-medio-pago')
+    const l = leerIndicadorMunicipal(pmp)
+    expect(l.que).toMatch(/días/)
+    expect(l.avisos.some((a) => /veces el límite/i.test(a))).toBe(true)
+    expect(l.como).toMatch(/lo fija la ley/i)
+  })
+
+  it('dice que el gasto por habitante es dedicación y no logro', () => {
+    const l = leerIndicadorMunicipal(munById('gasto-por-habitante'))
+    expect(l.como).toMatch(/no lo que se consigue/i)
+    expect(l.donde).toMatch(/municipios/)
+  })
+
+  it('no inventa comparación cuando no hay banda', () => {
+    const sinPares = municipales.find((m) => !m.pares && m.valor !== null)!
+    expect(leerIndicadorMunicipal(sinPares).donde).toBeNull()
+  })
+})

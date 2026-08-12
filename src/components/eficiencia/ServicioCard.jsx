@@ -1,6 +1,8 @@
 import { Card, Pill } from '../Primitives'
 import { useT } from '../../i18n'
 import { BandaPares } from './BandaPares'
+import { leerIndicador } from '../../scraper/indicador-lectura'
+import { Lectura } from './Lectura'
 
 const GESTION = {
   directa: { label: 'gestión directa', tone: 'neutral' },
@@ -41,6 +43,7 @@ export function ServicioCard({ indicador, formatea }) {
   const g = GESTION[i.modoGestion] ?? GESTION['sin-clasificar']
   const motivo = i.numerador.motivo ?? i.denominador.motivo
   const cita = i.citas?.[0]
+  const lectura = leerIndicador(i)
   const declarados = i.serie.filter((p) => p.estado === 'declarado')
   const puntos = declarados.length
 
@@ -139,6 +142,8 @@ export function ServicioCard({ indicador, formatea }) {
           )}
         </div>
       )}
+
+      <Lectura lectura={lectura} />
 
       {i.caveats?.length > 0 && (
         <ul style={{ margin: '12px 0 0', paddingLeft: 18, color: 'var(--ink60)', fontSize: 12 }}>
