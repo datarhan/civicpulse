@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import { Sidebar, NAV } from './components/Sidebar'
+import { Sidebar } from './components/Sidebar'
+import { entradaNavActiva } from './nav'
 import { Topbar } from './components/Topbar'
 import { CmdK } from './components/CmdK'
 import { TweaksPanel, TweaksButton } from './components/TweaksPanel'
@@ -81,7 +82,7 @@ function Loading() {
 function InnerShell({ onOpenCmdK }) {
   const location = useLocation()
   const t = useT()
-  const active = NAV.find((n) => location.pathname.startsWith(n.to))
+  const active = entradaNavActiva(location.pathname)
   const crumb = active ? t(active.labelKey) : 'CivicPulse'
   const [sidebarOpen, setSidebarOpen] = useState(false)
 

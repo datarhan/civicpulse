@@ -85,7 +85,7 @@ export function DeclaracionCongelada({ declaracion }) {
             <tbody>
               {propias.map((p) => (
                 <tr key={p.programa} style={{ borderTop: '1px solid var(--border2)' }}>
-                  <td style={{ padding: '6px 8px 6px 0' }}>{p.programa}</td>
+                  <td style={{ padding: '6px 8px 6px 0' }}>{p.label ?? p.programa}</td>
                   <td className="mono" style={{ padding: '6px 8px', textAlign: 'right' }}>
                     {p.valor === null ? '—' : p.valor.toLocaleString('es-ES')}
                   </td>

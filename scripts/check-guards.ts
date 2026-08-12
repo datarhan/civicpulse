@@ -350,6 +350,48 @@ const INJECTIONS: Array<{
     },
   },
   {
+    guard: 'check:dea',
+    file: 'public/data/dea.json',
+    describe: 'una puntuación de frontera que ya no se reproduce desde su fuente',
+    // La avería propia de esta superficie: la cifra sale de un remuestreo de
+    // dos mil réplicas, así que no hay documento con el que cotejarla. Lo único
+    // que la sostiene es que se puede volver a calcular con la semilla
+    // publicada. Se mueve θ un poco —no un orden de magnitud— porque el fallo
+    // real es una revisión del ministerio que desplaza la cifra sin que nadie
+    // toque la página, y un gate que sólo caza catástrofes no caza nada.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const e = d.especificaciones?.find((x: { propia: unknown }) => x.propia)
+      if (!e) throw new Error('sin especificación publicada que corromper')
+      e.propia.theta = e.propia.theta * 0.97
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
+  {
+    guard: 'check:dea',
+    file: 'public/data/dea.json',
+    describe: 'un municipio ajeno nombrado en el experimento de frontera',
+    // La otra mitad del gate, y la que de verdad importa: la regla editorial de
+    // esta página es que no se nombra a nadie salvo a Riba-roja. Se rompe sin
+    // querer con un campo de diagnóstico —los `id` del conjunto de referencia
+    // son códigos INE— y el efecto es publicar el veredicto de un modelo
+    // nuestro sobre veinte ayuntamientos sin derecho de réplica. Se inyecta un
+    // INE real de la banda, no uno inventado, para que el gate tenga que
+    // buscarlo contra la fuente y no contra una lista suya.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const fuente = JSON.parse(
+        readFileSync(resolve(ROOT, 'public/data/coste-efectivo.json'), 'utf8'),
+      )
+      const ajeno = (fuente.pares.filas as { ine: string }[]).find((f) => f.ine !== '46214')
+      if (!ajeno) throw new Error('sin municipio par con el que probar')
+      const e = d.especificaciones?.find((x: { propia: unknown }) => x.propia)
+      if (!e) throw new Error('sin especificación publicada que corromper')
+      e.propia.referenciasDetalle = [{ ine: ajeno.ine, lambda: 0.5 }]
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
+  {
     guard: 'check:summary-gate',
     file: 'public/data/pleno-findings.json',
     describe: 'un sumario que reimprime, palabra por palabra, una cita que la puerta retiene',

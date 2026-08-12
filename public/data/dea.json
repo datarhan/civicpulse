@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T13:11:27.617Z",
+  "generatedAt": "2026-08-12T13:21:00.742Z",
   "fuente": {
     "snapshot": "coste-efectivo.json",
     "entrega": 2024,
@@ -25,6 +25,8 @@
     "propias": [
       {
         "programa": "a1621",
+        "label": "Recogida de residuos",
+        "unidad": "€/t",
         "magnitud": "unidad",
         "congelada": true,
         "entregas": 10,
@@ -36,6 +38,8 @@
       },
       {
         "programa": "a1621",
+        "label": "Recogida de residuos",
+        "unidad": "€/t",
         "magnitud": "coste",
         "congelada": false,
         "entregas": 9,
@@ -47,6 +51,8 @@
       },
       {
         "programa": "a163",
+        "label": "Limpieza viaria",
+        "unidad": "€/m²",
         "magnitud": "unidad",
         "congelada": true,
         "entregas": 10,
@@ -58,6 +64,8 @@
       },
       {
         "programa": "a163",
+        "label": "Limpieza viaria",
+        "unidad": "€/m²",
         "magnitud": "coste",
         "congelada": false,
         "entregas": 9,
@@ -69,6 +77,8 @@
       },
       {
         "programa": "a165",
+        "label": "Alumbrado público",
+        "unidad": "€/punto de luz",
         "magnitud": "unidad",
         "congelada": true,
         "entregas": 10,
@@ -80,6 +90,8 @@
       },
       {
         "programa": "a165",
+        "label": "Alumbrado público",
+        "unidad": "€/punto de luz",
         "magnitud": "coste",
         "congelada": false,
         "entregas": 10,
@@ -91,6 +103,8 @@
       },
       {
         "programa": "a171/170P",
+        "label": "Parques y jardines",
+        "unidad": "€/m²",
         "magnitud": "unidad",
         "congelada": true,
         "entregas": 10,
@@ -102,6 +116,8 @@
       },
       {
         "programa": "a171/170P",
+        "label": "Parques y jardines",
+        "unidad": "€/m²",
         "magnitud": "coste",
         "congelada": false,
         "entregas": 8,
@@ -113,6 +129,8 @@
       },
       {
         "programa": "a164",
+        "label": "Cementerio y servicios funerarios",
+        "unidad": "€/m²",
         "magnitud": "unidad",
         "congelada": true,
         "entregas": 10,
@@ -124,6 +142,8 @@
       },
       {
         "programa": "a164",
+        "label": "Cementerio y servicios funerarios",
+        "unidad": "€/m²",
         "magnitud": "coste",
         "congelada": false,
         "entregas": 10,

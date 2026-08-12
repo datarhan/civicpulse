@@ -25,6 +25,7 @@ import {
   serieEspecificacion,
 } from '../src/scraper/dea-especificacion'
 import { REGLA_GRADOS_LIBERTAD } from '../src/scraper/dea'
+import { SERVICIOS } from '../src/scraper/indicador-registry'
 import { RAZON_SESGO_MINIMA } from '../src/scraper/dea-bootstrap'
 import {
   medirDeclaracionCongelada,
@@ -129,6 +130,11 @@ async function main() {
       // recuento, igual que con las puntuaciones.
       propias: propias.map((s) => ({
         programa: s.programa,
+        // El código del programa («a1721/170P») es lo que trae el ministerio y
+        // no dice nada a nadie. La etiqueta sale del registro curado, no de una
+        // segunda tabla escrita a mano aquí.
+        label: SERVICIOS[s.programa]?.label ?? s.programa,
+        unidad: SERVICIOS[s.programa]?.unidad ?? null,
         magnitud: s.magnitud,
         congelada: s.congelada,
         entregas: s.entregas,

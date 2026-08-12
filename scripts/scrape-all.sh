@@ -296,6 +296,14 @@ if ! npm run compute:indicadores; then
   soft_failures+=("compute:indicadores")
 fi
 
+# El experimento de frontera sale del MISMO snapshot, así que envejece con él.
+# Se recompone aquí y no a mano: si el ministerio revisa una entrega, la
+# puntuación publicada deja de reproducirse y `check:dea` lo dice esa noche.
+if ! npm run compute:dea; then
+  echo "[scrape-all] SOFT-FAILED: compute:dea — /laboratorio/frontera puede quedar con cifras viejas"
+  soft_failures+=("compute:dea")
+fi
+
 # Y la cola de curación detrás, para que lo que se le propone a una persona
 # describa el panel de hoy y no el de la última vez que alguien se acordó.
 # Escribe en editorial/, que está gitignorado: nada de esto se publica.
@@ -358,6 +366,10 @@ fi
 if ! npm run check:eficiencia-findings; then
   echo "[scrape-all] SOFT-FAILED: check:eficiencia-findings — ficha firmada que su fuente ya no sostiene"
   soft_failures+=("check:eficiencia-findings")
+fi
+if ! npm run check:dea; then
+  echo "[scrape-all] SOFT-FAILED: check:dea — la frontera no se reproduce, o nombra a un tercero"
+  soft_failures+=("check:dea")
 fi
 
 # Tres guardas que existían y no invocaba NADIE — ni un workflow, ni un

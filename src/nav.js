@@ -212,3 +212,28 @@ export const NAV_SECONDARY = [
   { to: '/metodologia', label: 'Metodología', labelKey: 'sidebar.footer.method' },
   { to: '/aviso-legal', label: 'Aviso legal', labelKey: 'sidebar.footer.legal' },
 ]
+
+/**
+ * Qué entrada de navegación describe una ruta. Es lo que rotula la miga de pan.
+ *
+ * `NAV.find((n) => pathname.startsWith(n.to))` parece lo obvio y estuvo mal
+ * durante toda la vida de la barra: la primera entrada es `/`, y **toda** ruta
+ * empieza por `/`, así que la miga decía «Panel» en cada página del sitio. Un
+ * fallo silencioso de manual —el rótulo existía, era legible y era falso—, y
+ * ninguna suite lo cazaba porque ninguna leía la miga.
+ *
+ * Dos correcciones, y las dos hacen falta:
+ *
+ * 1. **Frontera de segmento.** `/cargos` no puede rotular `/cargos-de-otro`.
+ * 2. **La coincidencia más específica gana.** Sin esto `/laboratorio/frontera`
+ *    diría «Laboratorio», que es cierto y no es lo que el lector necesita.
+ */
+export function entradaNavActiva(pathname, entradas = [...NAV, ...NAV_SECONDARY]) {
+  return (
+    entradas
+      .filter((n) =>
+        n.to === '/' ? pathname === '/' : pathname === n.to || pathname.startsWith(`${n.to}/`),
+      )
+      .sort((a, b) => b.to.length - a.to.length)[0] ?? null
+  )
+}
