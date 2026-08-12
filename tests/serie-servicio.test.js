@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { tramosSerie, escalaSerie } from '../src/components/eficiencia/SerieServicio'
+import { tramosSerie, escalaSerie, huecosSerie } from '../src/components/eficiencia/SerieServicio'
 
 const ROOT = join(__dirname, '..')
 const pub = JSON.parse(readFileSync(join(ROOT, 'public/data/indicadores.json'), 'utf8'))
@@ -110,5 +110,50 @@ describe('sobre el panel publicado', () => {
       { anio: 2024, valor: 147.25 },
     ]
     expect(escalaSerie(puntos).lo).toBe(0)
+  })
+})
+
+describe('el hueco del calendario se marca, no sólo se deja en blanco', () => {
+  it('encuentra los años sin entrega dentro del tramo publicado', () => {
+    const puntos = [2018, 2019, 2021, 2022].map((anio) => ({ anio, valor: 1 }))
+    expect(huecosSerie(puntos)).toEqual([{ desde: 2020, hasta: 2020 }])
+  })
+
+  it('agrupa un hueco de varios años en una sola marca', () => {
+    const puntos = [2016, 2020, 2021].map((anio) => ({ anio, valor: 1 }))
+    expect(huecosSerie(puntos)).toEqual([{ desde: 2017, hasta: 2019 }])
+  })
+
+  it('no inventa huecos en una serie continua', () => {
+    // Control: sin esto, un `huecosSerie` que devolviera siempre algo pasaría
+    // las dos pruebas de arriba y pintaría una banda sobre datos que sí están.
+    const puntos = [2021, 2022, 2023].map((anio) => ({ anio, valor: 1 }))
+    expect(huecosSerie(puntos)).toEqual([])
+  })
+
+  it('una entrega inverosímil NO es un hueco de calendario', () => {
+    // La línea también se corta ahí, pero por otro motivo y con otra marca: el
+    // año existe y su cifra está publicada. Confundir las dos cosas diría que
+    // el ministerio no publicó 2018 de alumbrado, y sí lo publicó.
+    const puntos = [
+      { anio: 2017, valor: 15 },
+      { anio: 2018, valor: 1.01, atipico: true },
+      { anio: 2019, valor: 11 },
+    ]
+    expect(huecosSerie(puntos)).toEqual([])
+  })
+
+  it('sobre el panel publicado: el hueco es 2020 y es de todas las series', () => {
+    // No es una rareza de una tarjeta: el ministerio publicó la entrega de 2020
+    // y aquí no se ha obtenido, así que las diez se parten por el mismo sitio.
+    // Eso es lo que hace que parezca una avería de dibujo en vez de un dato.
+    const conSerie = indicadores.filter((i) => i.valor !== null && declarados(i).length >= 2)
+    expect(conSerie.length).toBeGreaterThan(0)
+    for (const i of conSerie) {
+      const huecos = huecosSerie(declarados(i))
+      expect(huecos, `${i.servicio} tiene un hueco distinto de 2020`).toEqual([
+        { desde: 2020, hasta: 2020 },
+      ])
+    }
   })
 })

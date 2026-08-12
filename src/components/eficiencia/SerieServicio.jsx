@@ -60,6 +60,39 @@ export function tramosSerie(puntos) {
 }
 
 /**
+ * Los años sin entrega dentro del tramo publicado.
+ *
+ * La línea se rompía en el hueco —correcto: unir 2019 con 2021 afirmaría una
+ * interpolación que nadie ha medido— pero nada decía por qué. Y como las diez
+ * series carecen exactamente del mismo año, las diez tarjetas se partían por el
+ * mismo sitio, que es justo lo que hace que un dato parezca una avería de
+ * dibujo. Una señal deliberada que todo el mundo lee como rotura es una señal
+ * fallida.
+ *
+ * Un año atípico NO es un hueco: la entrega existe y su cifra está publicada,
+ * sólo que fuera de la escala y con su propia marca. Meterlos en el mismo saco
+ * diría que el ministerio no publicó 2018 de alumbrado, y sí lo publicó.
+ */
+export function huecosSerie(puntos) {
+  const anios = puntos.map((p) => p.anio).sort((a, b) => a - b)
+  if (anios.length < 2) return []
+  const presentes = new Set(anios)
+  const huecos = []
+  let actual = null
+  for (let a = anios[0] + 1; a < anios[anios.length - 1]; a++) {
+    if (presentes.has(a)) {
+      if (actual) huecos.push(actual)
+      actual = null
+      continue
+    }
+    if (actual) actual.hasta = a
+    else actual = { desde: a, hasta: a }
+  }
+  if (actual) huecos.push(actual)
+  return huecos
+}
+
+/**
  * El rango vertical, SÓLO sobre lo que se dibuja.
  *
  * Es la decisión que hace posible el gráfico. Meter aquí los 67,7 millones de
@@ -108,12 +141,48 @@ export function SerieServicio({ puntos, formatea, unidad }) {
     puntos.map((p) => (typeof p.medianaPares === 'number' ? { ...p, valor: p.medianaPares } : p)),
   )
   const atipicos = puntos.filter((p) => p.atipico)
+  const huecos = huecosSerie(puntos)
   const ultimo = limpios[limpios.length - 1]
   const primero = limpios[0]
+  const nombraHueco = (h) => (h.desde === h.hasta ? `${h.desde}` : `${h.desde}–${h.hasta}`)
 
   return (
     <div style={{ marginTop: 10 }}>
       <div style={{ position: 'relative', height: ALTO }}>
+        {/* La banda del año que falta, DEBAJO de la línea.
+
+            Sin ella el corte se lee como una imagen rota, y con más motivo aquí
+            que en cualquier otro sitio: las diez series carecen del mismo año,
+            así que las diez tarjetas se parten por el mismo punto. El año va
+            escrito, pegado al suelo del gráfico, para que se lea como una
+            anotación del eje y no como el valor de ese año. */}
+        {huecos.map((h) => (
+          <span
+            key={h.desde}
+            title={`No hay entrega de ${nombraHueco(h)} en este panel: el ministerio la publicó, pero aquí no se ha obtenido. La línea no la cruza porque interpolarla sería inventarla.`}
+            style={{
+              position: 'absolute',
+              left: `${px(h.desde - 0.5)}%`,
+              width: `${px(h.hasta + 0.5) - px(h.desde - 0.5)}%`,
+              top: 0,
+              bottom: 0,
+              background: 'var(--soft)',
+              borderLeft: '1px dashed var(--border2)',
+              borderRight: '1px dashed var(--border2)',
+              display: 'flex',
+              alignItems: 'flex-end',
+              justifyContent: 'center',
+              overflow: 'hidden',
+            }}
+          >
+            <span
+              className="mono"
+              style={{ fontSize: 9, color: 'var(--ink50)', lineHeight: 1.4, whiteSpace: 'nowrap' }}
+            >
+              {nombraHueco(h)}
+            </span>
+          </span>
+        ))}
         <svg
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
@@ -128,6 +197,9 @@ export function SerieServicio({ puntos, formatea, unidad }) {
                 } con cifras que no pueden ser un coste, fuera de la escala: ${atipicos
                   .map((p) => p.anio)
                   .join(', ')}.`
+              : '') +
+            (huecos.length
+              ? ` Sin entrega de ${huecos.map(nombraHueco).join(' ni ')}: la línea se corta ahí en vez de cruzarla.`
               : '') +
             (conMediana.length >= 2 ? ' Al fondo, la mediana de los municipios comparables.' : '')
           }
