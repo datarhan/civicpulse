@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T15:37:28.734Z",
+  "generatedAt": "2026-08-12T16:05:28.032Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -4397,12 +4397,12 @@
       "numerador": {
         "valor": 10,
         "estado": "declarado",
-        "fuente": "cesel:2024:CE3:denominadores-congelados"
+        "fuente": "coste-efectivo:2024:denominadores-congelados"
       },
       "denominador": {
         "valor": 10,
         "estado": "declarado",
-        "fuente": "cesel:2024:CE3:denominadores-medibles"
+        "fuente": "coste-efectivo:2024:denominadores-medibles"
       },
       "valor": 1,
       "formato": "porcentaje",

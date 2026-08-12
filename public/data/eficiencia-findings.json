@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "generatedAt": "2026-08-12T12:22:53.416Z",
+  "generatedAt": "2026-08-12T16:05:35.927Z",
   "legalNotice": "Cada ficha parte de cifras oficiales publicadas por el Ministerio de Hacienda en cumplimiento del artículo 116 ter de la LRSAL y del Real Decreto 1040/2017. Describe un servicio municipal, nunca a una persona. El ayuntamiento, la intervención, el concesionario o el ministerio pueden ejercer derecho de réplica literal y su respuesta se publica junto a la ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?template=eficiencia-finding-response.yml",
   "methodologyUrl": "/metodologia#eficiencia",
@@ -49,6 +49,49 @@
         {
           "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2017-15446",
           "etiqueta": "Norma: 30 días, plazo legal"
+        }
+      ],
+      "curatorName": "civicpulse-curator",
+      "publishedAt": "2026-08-12",
+      "response": null,
+      "corrections": []
+    },
+    {
+      "id": "ef-2026-08-12-denominadores-sin-remedir",
+      "candidatoId": "cand-denominadores-sin-remedir-v1-2026-08-12",
+      "indicadorId": "denominadores-sin-remedir",
+      "familia": "municipal",
+      "titulo": "Los diez costes unitarios que publica el ayuntamiento dividen entre una cantidad que lleva cinco años sin volver a medirse",
+      "cuerpo": "Todos los costes unitarios que publica esta página son una división: lo que costó un servicio, entre la cantidad de servicio prestado. La primera mitad la actualiza el ayuntamiento cada entrega. La segunda, no.\n\nEn la entrega de 2024, los diez servicios de Riba-roja en los que existe coste unitario —hay coste declarado y hay unidad física declarada— traen la misma unidad física que ya venía en entregas anteriores. Las 11.059,41 toneladas de residuos, los 700.000 metros cuadrados con servicio de limpieza y los 4.514 puntos de luz se repiten sin variar un decimal desde 2018 o 2019, según el servicio, mientras el coste de esos mismos servicios cambia todos los años.\n\nEso tiene una consecuencia aritmética que no depende de ninguna interpretación: cuando el numerador se actualiza y el denominador se copia, el coste unitario sólo puede moverse por el numerador. Puede subir sin que el servicio haya cambiado, y su serie a lo largo de las entregas no se puede leer como una medida de gestión.\n\n**No es una rareza local, y tampoco es lo normal.** La comparación se hace contra los 51 municipios de la banda —Comunitat Valenciana, entre 15.000 y 40.000 habitantes— de los que se puede medir lo mismo, es decir, aquellos con coste unitario en 2024 en al menos la mitad de servicios que Riba-roja. Entre ellos, la mediana repite el 57 % de sus denominadores. Riba-roja repite el 100 %. Otros tres municipios están igualmente al 100 %, así que no es el único, pero está en el extremo alto de un reparto muy abierto: hay un municipio que no repite ninguno.\n\n**Lo que esta ficha no dice.** No dice que las cifras sean falsas: una cantidad estable puede ser perfectamente correcta, y hay magnitudes —los puntos de luz de un municipio, la superficie de sus edificios escolares— que pueden pasar años sin moverse de verdad. Tampoco dice que ningún servicio esté mal gestionado: la declaración no es el servicio. Y no señala a nadie: el coste efectivo lo rinde la entidad local en su conjunto, y quién lo cumplimenta no consta en la fuente.\n\nLo que sí sostiene el dato es más estrecho y más comprobable: que la mitad de abajo de cada división que aquí se publica lleva entre cinco y seis entregas sin volver a medirse, que ocurre en los diez servicios a la vez, y que la mayoría de los comparables actualiza más denominadores que éste.",
+      "motivos": [
+        "posicion-alta"
+      ],
+      "fiabilidad": "alta",
+      "medicion": {
+        "indicadorId": "denominadores-sin-remedir",
+        "periodo": "2024",
+        "valor": 100,
+        "unidad": "%",
+        "pares": {
+          "conjunto": "cv-15k-40k",
+          "n": 51,
+          "percentil": 100,
+          "mediana": 57.14285714285714
+        },
+        "fuentes": [
+          "coste-efectivo:2024:denominadores-congelados",
+          "coste-efectivo:2024:denominadores-medibles"
+        ]
+      },
+      "caveats": [
+        "Esto mide la DECLARACIÓN, no el servicio: una cantidad estable puede ser perfectamente correcta, y repetirla no prueba que nadie la haya comprobado.",
+        "Una serie cuenta como sin remedir cuando sus últimas 4 entregas o más traen el mismo valor hasta el cuarto decimal. Repetir cifra dos años seguidos es normal y no cuenta.",
+        "Lo que sí se puede afirmar es lo que le pasa al cociente: si el coste se actualiza cada entrega y la unidad no, el coste unitario sube sin que el servicio haya cambiado, y su serie no se puede leer como gestión."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/es-ES/Areas%20Tematicas/Administracion%20Electronica/OVEELL/Paginas/CosteEfectivoServicios.aspx",
+          "etiqueta": "Coste efectivo de los servicios · Ministerio de Hacienda"
         }
       ],
       "curatorName": "civicpulse-curator",

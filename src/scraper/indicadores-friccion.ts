@@ -581,8 +581,12 @@ function medirDenominadores(fuente: NonNullable<FriccionInput['costeEfectivo']>)
       'De los servicios en los que hay coste unitario —hay coste y hay unidad en la última ' +
       'entrega—, en cuántos repite el ayuntamiento la misma unidad física entrega tras entrega ' +
       'mientras actualiza el coste.',
-    numerador: declarado(mio.congeladas, `cesel:${entrega}:CE3:denominadores-congelados`),
-    denominador: declarado(mio.total, `cesel:${entrega}:CE3:denominadores-medibles`),
+    // Provenance de agregado, NO de celda. El prefijo `cesel:` está reservado a
+    // celdas literales del volcado y `check:eficiencia-findings` las resuelve
+    // una a una; usarlo aquí hacía que un recuento derivado se presentara como
+    // una casilla del ministerio, y la guarda lo cazó al primer intento.
+    numerador: declarado(mio.congeladas, `coste-efectivo:${entrega}:denominadores-congelados`),
+    denominador: declarado(mio.total, `coste-efectivo:${entrega}:denominadores-medibles`),
     valor,
     formato: 'porcentaje' as const,
     periodo: String(entrega),
