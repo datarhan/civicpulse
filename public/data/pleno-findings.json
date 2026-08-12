@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-11T09:06:43.855Z",
+  "generatedAt": "2026-08-12T18:00:50.293Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -1317,7 +1317,7 @@
       "id": "f-2026-03-16-cit-56214f",
       "plenoId": "ma87e0",
       "plenoDate": "2026-03-16",
-      "title": "Centro de Salud · obra registrada, no ampliación mencionada en el discurso",
+      "title": "Centro de Salud · suministro puntual registrado, no la ampliación mencionada en el discurso",
       "summary": "En la intervención se afirma que el municipio 'no tiene el Centro de Salud' en el sentido de ampliación o nueva dotación esperada. La base municipal de contratación sí registra un contrato menor para suministro de una carpa de triaje en la zona exterior del Centro de Salud — es una dotación puntual que no equivale a la inversión que el orador echa en falta.",
       "severity": "informational",
       "sourceClaimIds": [
@@ -1358,6 +1358,14 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:13.036Z"
+        },
+        {
+          "field": "title",
+          "original": "Centro de Salud · obra registrada, no ampliación mencionada en el discurso",
+          "corrected": "Centro de Salud · suministro puntual registrado, no la ampliación mencionada en el discurso",
+          "reason": "el documento cotejado es un contrato menor de suministro, no una obra; el título contradecía su propio resumen",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-12T18:00:50.293Z"
         }
       ]
     },

@@ -122,8 +122,16 @@ const expectWithdrawn = (id: string): void => {
  * withdrawing a finding takes its whole corrections log with it. On 2026-08-11
  * eleven findings were withdrawn — every one whose quotes the editorial gate
  * withheld in full — taking 42 correction rows and 14 removals with them.
+ *
+ * +1 el 2026-08-12, y no viene de un lote: la revisión de superficies leyó
+ * `/hallazgos` entera y vio que el TÍTULO de f-2026-03-16-cit-56214f decía
+ * «obra registrada» sobre un contrato menor de SUMINISTRO —una carpa de
+ * triaje—, contradiciendo a su propio resumen, que lo describe bien. `obra` y
+ * `suministro` son categorías distintas de la Ley 9/2017. La ficha ya llevaba
+ * dos correcciones y el título había sobrevivido a las dos: ninguna
+ * comprobación de datos mira un titular.
  */
-const TOTAL_CORRECTIONS = 142
+const TOTAL_CORRECTIONS = 143
 const TOTAL_REMOVALS = 35
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
