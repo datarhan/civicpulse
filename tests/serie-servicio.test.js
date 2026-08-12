@@ -7,6 +7,7 @@ import {
   huecosSerie,
   anclasHueco,
   puntosSueltos,
+  puentesHueco,
 } from '../src/components/eficiencia/SerieServicio'
 
 const ROOT = join(__dirname, '..')
@@ -241,5 +242,51 @@ describe('ninguna entrega publicada se queda sin dibujar', () => {
     // Y el caso existe de verdad en el dato: si algún día deja de existir, esta
     // prueba pasa por no medir nada y conviene enterarse.
     expect(sueltos, 'ninguna serie publicada tiene un punto aislado').toBeGreaterThan(0)
+  })
+})
+
+describe('el puente punteado sobre el año que falta', () => {
+  it('une el último punto medido con el siguiente', () => {
+    const puntos = [
+      { anio: 2018, valor: 1 },
+      { anio: 2019, valor: 2 },
+      { anio: 2021, valor: 3 },
+    ]
+    const [p] = puentesHueco(puntos)
+    expect(p.desde.anio).toBe(2019)
+    expect(p.hasta.anio).toBe(2021)
+  })
+
+  it('NO ancla en una entrega inverosímil', () => {
+    // Su cifra está fuera de la escala a propósito: un puente hasta ella
+    // dibujaría una pendiente hacia un valor que la propia tarjeta declara
+    // ilegible. Sin puente, y el rótulo del año se queda solo.
+    const puntos = [
+      { anio: 2018, valor: 1 },
+      { anio: 2019, valor: 67_676_714, atipico: true },
+      { anio: 2021, valor: 3 },
+    ]
+    expect(puentesHueco(puntos)).toEqual([])
+  })
+
+  it('no puentea donde no hay hueco', () => {
+    // Control: sin esto, un `puentesHueco` que devolviera siempre un tramo
+    // pintaría un punteado sobre datos que sí están medidos.
+    const puntos = [2021, 2022, 2023].map((anio) => ({ anio, valor: anio }))
+    expect(puentesHueco(puntos)).toEqual([])
+  })
+
+  it('sobre el panel publicado: las diez cruzan 2020 y ninguna inventa el ancla', () => {
+    const conSerie = indicadores.filter((i) => i.valor !== null && declarados(i).length >= 2)
+    expect(conSerie.length).toBeGreaterThan(0)
+    for (const i of conSerie) {
+      const puntos = declarados(i)
+      const [p] = puentesHueco(puntos)
+      expect(p, `${i.servicio} se queda sin puente sobre su hueco`).toBeDefined()
+      expect(p.desde.anio).toBe(2019)
+      expect(p.hasta.anio).toBe(2021)
+      expect(p.desde.atipico).toBeFalsy()
+      expect(p.hasta.atipico).toBeFalsy()
+    }
   })
 })

@@ -15,8 +15,12 @@
  * 1. **El eje X es el AÑO, no la posición en el array.** Falta la entrega de
  *    2020 en todas las series, y repartir los puntos a intervalos iguales
  *    dibujaría una década de nueve años.
- * 2. **La línea se corta en los huecos.** Unir 2019 con 2021 con un tramo recto
- *    afirma una interpolación que nadie ha medido.
+ * 2. **El hueco se cruza punteado, no continuo.** Unir 2019 con 2021 con un
+ *    tramo macizo afirmaría una interpolación que nadie ha medido; el convenio
+ *    de siempre —continuo es medido, punteado no— dice lo que de verdad pasa, y
+ *    el año va rotulado debajo para que se sepa cuál falta. Se probó antes
+ *    dejarlo en blanco (se leía como una imagen rota) y con un bloque relleno
+ *    (se leía como una barra, o sea como un valor enorme).
  * 3. **La mediana de los pares va detrás, punteada.** Ya está publicada por
  *    punto (`medianaPares`) y ya se describe en prosa —«pasa de 0,07 a 1,05
  *    veces la mediana»—; dibujarla es lo que convierte esa frase en algo que se
@@ -110,14 +114,43 @@ export function anclasHueco(hueco) {
 }
 
 /**
+ * El tramo punteado que cruza un año sin entrega.
+ *
+ * Se resistió al principio —unir 2019 con 2021 afirma una interpolación que
+ * nadie ha medido— y la objeción valía para una línea CONTINUA, no para el
+ * convenio de toda la vida: continuo es medido, punteado es no medido. Sin nada
+ * que cruce, el corte se lee como una imagen rota (así empezó esto); con un
+ * bloque relleno, como una barra. Un punteado dice justo lo que pasa, y el año
+ * sigue rotulado debajo para que se sepa QUÉ falta.
+ *
+ * Nunca ancla en una entrega inverosímil. Su cifra está fuera de la escala a
+ * propósito, así que un puente hasta ella dibujaría una pendiente hacia un valor
+ * que la propia tarjeta declara ilegible. Cuando eso pasa no hay puente, y el
+ * rótulo del año se queda solo.
+ */
+export function puentesHueco(puntos) {
+  const legibles = new Map(
+    puntos.filter((p) => !p.atipico && typeof p.valor === 'number').map((p) => [p.anio, p]),
+  )
+  return huecosSerie(puntos)
+    .map((h) => {
+      const { izq, der } = anclasHueco(h)
+      const a = legibles.get(izq)
+      const b = legibles.get(der)
+      return a && b ? { desde: a, hasta: b } : null
+    })
+    .filter(Boolean)
+}
+
+/**
  * Entregas limpias que quedan aisladas y a las que una línea no llega.
  *
  * Alumbrado publica 11,31 €/punto de luz en 2019, verificado contra sus pares y
  * sin marcar como inverosímil — y no aparecía en el gráfico. Queda entre la
  * entrega imposible de 2018 y el año sin entrega de 2020, así que su tramo mide
  * un punto y el render descartaba los tramos de menos de dos. Una cifra
- * publicada que no se dibuja en ningún sitio es el mismo defecto que la banda
- * vino a arreglar, un nivel más abajo: el dato está y la página no lo enseña.
+ * publicada que no se dibuja en ningún sitio es el mismo defecto que el hueco
+ * sin rotular, un nivel más abajo: el dato está y la página no lo enseña.
  *
  * Se pintan como lunar. Un punto sin línea es exactamente lo que son.
  */
@@ -199,21 +232,17 @@ export function SerieServicio({ puntos, formatea, unidad }) {
               position: 'absolute',
               left: `${px(anclasHueco(h).izq)}%`,
               width: `${px(anclasHueco(h).der) - px(anclasHueco(h).izq)}%`,
-              // Pegada al SUELO y de 14px, no de alto completo.
+              // Sólo el rótulo, pegado al suelo. Sin relleno y sin regla.
               //
-              // Con relleno macizo y de arriba abajo era un rectángulo gris que
-              // ocupaba un quinto del gráfico, y un rectángulo relleno dentro de
-              // un gráfico de líneas es la gramática de una BARRA: en recogida
-              // de residuos se leía como que 2020 tuvo un valor enorme, que es
-              // lo contrario de lo que significa. La ausencia pesaba más que el
-              // dato, en las diez tarjetas a la vez.
-              //
-              // Una ausencia tiene que leerse como ausencia: el hueco lo dice el
-              // hueco, y esto sólo lo rotula. Regla punteada al ras del suelo
-              // —un tramo de eje sin nada encima— y el año debajo.
+              // Fue primero un rectángulo gris de arriba abajo, y un rectángulo
+              // relleno dentro de un gráfico de líneas es la gramática de una
+              // BARRA: en recogida de residuos se leía como que 2020 tuvo un
+              // valor enorme, lo contrario de lo que significa. Luego una regla
+              // punteada al ras del suelo, que ya no engañaba pero seguía
+              // subrayando el vacío. Ahora la forma la lleva el puente
+              // punteado, y aquí sólo queda decir QUÉ año falta.
               bottom: 0,
-              height: 14,
-              borderTop: '1px dotted var(--border)',
+              height: 12,
               display: 'flex',
               alignItems: 'flex-end',
               justifyContent: 'center',
@@ -222,7 +251,18 @@ export function SerieServicio({ puntos, formatea, unidad }) {
           >
             <span
               className="mono"
-              style={{ fontSize: 9, color: 'var(--ink50)', lineHeight: 1.2, whiteSpace: 'nowrap' }}
+              style={{
+                fontSize: 9,
+                color: 'var(--ink50)',
+                lineHeight: 1.2,
+                whiteSpace: 'nowrap',
+                // Tapa el punteado por detrás. En alumbrado el puente cae justo
+                // a la altura del rótulo y la línea le pasaba por encima de las
+                // cifras; un rótulo sobre una línea necesita fondo o no se lee.
+                background: 'var(--paper)',
+                padding: '0 3px',
+                borderRadius: 2,
+              }}
             >
               {nombraHueco(h)}
             </span>
@@ -244,7 +284,7 @@ export function SerieServicio({ puntos, formatea, unidad }) {
                   .join(', ')}.`
               : '') +
             (huecos.length
-              ? ` Sin entrega de ${huecos.map(nombraHueco).join(' ni ')}: la línea se corta ahí en vez de cruzarla.`
+              ? ` Sin entrega de ${huecos.map(nombraHueco).join(' ni ')}: ese tramo va punteado porque nadie lo midió.`
               : '') +
             (conMediana.length >= 2 ? ' Al fondo, la mediana de los municipios comparables.' : '')
           }
@@ -262,6 +302,22 @@ export function SerieServicio({ puntos, formatea, unidad }) {
                 vectorEffect="non-scaling-stroke"
               />
             ))}
+          {/* El puente va DEBAJO de los tramos medidos y más fino: si se
+              cruzan, manda la línea de verdad. Azul como la serie —es la misma
+              serie— y punteado corto, distinto del rayado largo y gris de la
+              mediana de pares, para que no se confundan. */}
+          {puentesHueco(puntos).map((p) => (
+            <path
+              key={`puente-${p.desde.anio}`}
+              d={`M${px(p.desde.anio).toFixed(2)},${py(p.desde.valor).toFixed(2)} L${px(p.hasta.anio).toFixed(2)},${py(p.hasta.valor).toFixed(2)}`}
+              stroke="var(--civic)"
+              strokeWidth="1.25"
+              strokeDasharray="1.5 3"
+              strokeLinecap="round"
+              fill="none"
+              vectorEffect="non-scaling-stroke"
+            />
+          ))}
           {tramos
             .filter((t) => t.length >= 2)
             .map((t) => (
