@@ -31,25 +31,45 @@
  * Módulo puro y sin estado, como curated-paths.mjs: el runner sólo lee la
  * llamada e imprime el veredicto, y así esto se puede probar sin hooks.
  */
+import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import { dirname, join } from 'node:path'
 
 /**
  * Qué páginas describen con palabras cada snapshot.
  *
- * Se amplía cuando una página empieza a explicar un dato nuevo. Un snapshot que
- * no aparece aquí no dispara nada: la lista dice «esto lleva prosa detrás», no
- * «esto es importante».
+ * NO se mantiene a mano. Lo deriva `scripts/build-prose-map.ts` del código —
+ * qué hook declara qué fichero, qué módulos llegan a ese hook siguiendo los
+ * imports, y qué ruta monta cada página en App.jsx— y una prueba lo regenera y
+ * lo compara con lo committeado.
+ *
+ * La primera versión de este fichero SÍ traía la tabla escrita a mano, con
+ * nueve entradas. El código tenía sesenta y cuatro. Una tabla a mano dentro de
+ * un control contra el desfase es la broma que este repositorio ya se ha
+ * gastado dos veces.
  */
-export const PROSA_POR_SNAPSHOT = [
-  { snapshot: 'indicadores.json', rutas: ['/eficiencia', '/metodologia'] },
-  { snapshot: 'coste-efectivo.json', rutas: ['/eficiencia', '/metodologia'] },
-  { snapshot: 'pmp.json', rutas: ['/eficiencia', '/metodologia'] },
-  { snapshot: 'budget.json', rutas: ['/presupuesto'] },
-  { snapshot: 'budget-execution.json', rutas: ['/presupuesto', '/eficiencia'] },
-  { snapshot: 'tenders.json', rutas: ['/', '/presupuesto', '/eficiencia'] },
-  { snapshot: 'quejas.json', rutas: ['/quejas'] },
-  { snapshot: 'promises.json', rutas: ['/promesas'] },
-  { snapshot: 'pleno-findings.json', rutas: ['/hallazgos'] },
-]
+function cargarMapa() {
+  try {
+    const aqui = dirname(fileURLToPath(import.meta.url))
+    return JSON.parse(readFileSync(join(aqui, 'prosa-map.json'), 'utf8')).snapshots ?? {}
+  } catch {
+    return null
+  }
+}
+
+const cargado = cargarMapa()
+
+/**
+ * `true` si el mapa se leyó de verdad.
+ *
+ * Sin esto, un mapa que no carga y un mapa sin nada que avisar dan exactamente
+ * el mismo silencio — que es el defecto que el propio curated-paths.mjs
+ * describe en su cabecera: «un control que no se puede distinguir de su propia
+ * ausencia no es un control». Hay una prueba que exige que esto sea cierto.
+ */
+export const MAPA_CARGADO = cargado !== null
+
+export const PROSA_POR_SNAPSHOT = cargado ?? {}
 
 /** `public/data/x.json` → `x.json`; cualquier otra cosa → null. */
 export function snapshotDe(ruta) {
@@ -65,8 +85,7 @@ export function snapshotDe(ruta) {
 export function rutasAfectadas(ruta) {
   const snap = snapshotDe(ruta)
   if (!snap) return []
-  const fila = PROSA_POR_SNAPSHOT.find((f) => f.snapshot === snap)
-  return fila ? fila.rutas : []
+  return PROSA_POR_SNAPSHOT[snap] ?? []
 }
 
 /**
@@ -74,6 +93,8 @@ export function rutasAfectadas(ruta) {
  *
  * @param {{tool_name?: string, tool_input?: Record<string, unknown>}} payload
  */
+const MAX_RUTAS = 4
+
 export function decideRecordatorio(payload) {
   const tool = payload?.tool_name
   if (tool !== 'Write' && tool !== 'Edit' && tool !== 'MultiEdit') return null
@@ -81,9 +102,14 @@ export function decideRecordatorio(payload) {
   const rutas = rutasAfectadas(typeof ruta === 'string' ? ruta : '')
   if (!rutas.length) return null
   const snap = snapshotDe(ruta)
+  // Con más de un puñado de rutas el aviso deja de señalar y pasa a ser ruido,
+  // así que se nombran unas pocas y se dice cuántas quedan.
+  const muestra = rutas.slice(0, MAX_RUTAS)
+  const resto = rutas.length - muestra.length
   return (
-    `[prosa] ${snap} ha cambiado. Estas páginas lo describen con palabras: ${rutas.join(', ')}.\n` +
-    `        La prosa no la comprueba ningún test —los datos sí—, así que si alguna frase afirmaba\n` +
-    `        algo sobre este dato, vuelve a leerla:  npm run review:surfaces -- ${rutas[0]}`
+    `[prosa] ${snap} ha cambiado. Lo describen con palabras: ${muestra.join(', ')}` +
+    `${resto > 0 ? ` y ${resto} ruta(s) más` : ''}.\n` +
+    `        Ningún test comprueba la prosa —los datos sí—, así que si alguna frase afirmaba algo\n` +
+    `        sobre este dato, vuelve a leerla:  npm run review:surfaces -- ${muestra.join(' ')}`
   )
 }

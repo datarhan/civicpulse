@@ -235,6 +235,14 @@ blocks — a reminder that can fail an edit is one people switch off. The better
 fix, where it applies, is to derive the sentence from the data instead of
 restating it, as `PanelMunicipal` now does with the list of compared indicators.
 
+Its snapshot→routes map is **derived, not hand-kept** (`npm run build:prose-map`
+walks hook literals, the import graph and `App.jsx`'s routes). The first version
+was a hand-written table of nine entries; the code had sixty-four. A hand-kept
+table inside a control against staleness goes stale itself, which is the joke
+this repo has already told twice. A test regenerates it with `--check` and fails
+on drift, and the module exports `MAPA_CARGADO` so a map that fails to load is
+distinguishable from a map with nothing to say.
+
 **Curated files are never written by automation.** `promises.json`,
 `pleno-votes.json`, `pleno-findings.json`, `journalist-reports.json`,
 `quejas-responses.json`, `sindic.json`, `dedicaciones.json`, `plantilla.json`,

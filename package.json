@@ -189,7 +189,8 @@
     "compute:indicadores": "npx tsx scripts/compute-indicadores.ts",
     "check:indicadores": "npx tsx scripts/check-indicadores.ts",
     "scrape:pmp": "npx tsx scripts/scrape-pmp.ts",
-    "fetch:cesel-ccaa": "npx tsx scripts/fetch-cesel-ccaa.ts"
+    "fetch:cesel-ccaa": "npx tsx scripts/fetch-cesel-ccaa.ts",
+    "build:prose-map": "npx tsx scripts/build-prose-map.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

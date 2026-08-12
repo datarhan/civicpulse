@@ -6,6 +6,7 @@ import {
   rutasAfectadas,
   snapshotDe,
   PROSA_POR_SNAPSHOT,
+  MAPA_CARGADO,
 } from '../.claude/hooks/stale-copy-paths.mjs'
 
 // El recordatorio existe porque tres frases se quedaron viejas en una sola
@@ -31,18 +32,44 @@ describe('hooks/stale-copy — a qué snapshot le sigue prosa', () => {
 
   it('nombra las páginas que describen ese dato con palabras', () => {
     expect(rutasAfectadas('public/data/indicadores.json')).toContain('/eficiencia')
-    expect(rutasAfectadas('public/data/indicadores.json')).toContain('/metodologia')
-    expect(rutasAfectadas('public/data/budget.json')).toEqual(['/presupuesto'])
+    expect(rutasAfectadas('public/data/budget.json')).toContain('/presupuesto')
+    expect(rutasAfectadas('public/data/quejas.json')).toContain('/quejas')
   })
 
-  it('calla ante un snapshot sin prosa detrás: la lista no es un ranking de importancia', () => {
-    expect(rutasAfectadas('public/data/streets.json')).toEqual([])
+  it('el mapa está DERIVADO del código y sigue al día', () => {
+    // La primera versión traía nueve entradas escritas a mano; el código tenía
+    // sesenta y cuatro. Una tabla a mano dentro de un control contra el desfase
+    // se desfasa sola, así que aquí se regenera y se compara.
+    const r = spawnSync('npx', ['tsx', 'scripts/build-prose-map.ts', '--check'], {
+      cwd: resolve(__dirname, '..'),
+      encoding: 'utf8',
+    })
+    expect(r.stderr + r.stdout).not.toMatch(/no coincide/)
+    expect(r.status).toBe(0)
+  })
+
+  it('el mapa se carga de verdad, y no calla por no encontrarlo', () => {
+    // Un mapa que no carga y un mapa sin nada que avisar dan el mismo silencio.
+    expect(MAPA_CARGADO).toBe(true)
+  })
+
+  it('cubre bastante más que la tabla a mano que sustituyó', () => {
+    expect(Object.keys(PROSA_POR_SNAPSHOT).length).toBeGreaterThan(40)
+  })
+
+  it('calla ante un snapshot que ninguna página lee', () => {
+    // place-overrides.json lo consumen los CLIs, no el navegador: no hay prosa
+    // que se pueda quedar vieja, y avisar sería ruido. El mapa dice «esto lleva
+    // prosa detrás», no «esto importa».
+    expect(rutasAfectadas('public/data/place-overrides.json')).toEqual([])
     expect(
       decideRecordatorio({
         tool_name: 'Write',
-        tool_input: { file_path: 'public/data/streets.json' },
+        tool_input: { file_path: 'public/data/place-overrides.json' },
       }),
     ).toBeNull()
+    // …y sí avisa de uno que sí se lee, para que el silencio signifique algo.
+    expect(rutasAfectadas('public/data/streets.json')).toContain('/datos')
   })
 
   it('sólo se activa al escribir, no al leer', () => {
@@ -62,12 +89,22 @@ describe('hooks/stale-copy — a qué snapshot le sigue prosa', () => {
     expect(aviso).toContain('review:surfaces')
   })
 
-  it('cada entrada de la tabla apunta a rutas con pinta de ruta', () => {
-    for (const fila of PROSA_POR_SNAPSHOT) {
-      expect(fila.snapshot).toMatch(/\.json$/)
-      expect(fila.rutas.length).toBeGreaterThan(0)
-      for (const r of fila.rutas) expect(r).toMatch(/^\//)
+  it('cada entrada apunta a rutas con pinta de ruta', () => {
+    for (const [snap, rutas] of Object.entries(PROSA_POR_SNAPSHOT)) {
+      expect(snap).toMatch(/\.json$/)
+      expect(rutas.length).toBeGreaterThan(0)
+      for (const r of rutas) expect(r).toMatch(/^\//)
     }
+  })
+
+  it('recorta el aviso cuando un snapshot toca demasiadas rutas', () => {
+    // tenders.json lo leen once páginas: nombrarlas todas deja de señalar nada.
+    const aviso = decideRecordatorio({
+      tool_name: 'Write',
+      tool_input: { file_path: 'public/data/tenders.json' },
+    })
+    expect(aviso).toMatch(/ruta\(s\) más/)
+    expect(aviso.split('review:surfaces')[1].trim().split(/\s+/).length).toBeLessThanOrEqual(5)
   })
 })
 
