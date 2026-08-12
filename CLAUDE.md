@@ -96,6 +96,7 @@ Public: `/` `/cargos` `/cargos/:slug` `/presupuesto` `/eficiencia` `/plenos` `/p
 `/declaraciones` `/reportajes` `/datos` `/empleo` `/empleo/:id`
 `/empleo-publico` `/quejas` `/quejas/dashboard` `/quejas/:id` `/cambios`
 `/laboratorio` `/laboratorio/agentes` `/laboratorio/agentes/:assignmentId`
+`/laboratorio/frontera`
 `/nosotros` `/about` `/blog/:slug` `/lab-health` `/metodologia` `/aviso-legal`,
 catch-all → `/`.
 
@@ -233,7 +234,26 @@ ayuntamiento / intervención / concesionario / ministerio. Keep it that way: a
 unit cost hung on a named councillor is a materially different claim from one
 hung on a service, and only the second is what the ministry's return supports.
 
-The first two are also **enforced, not just documented**:
+`/laboratorio/frontera` is a different animal and the boundary matters.
+Everything else here transcribes or divides numbers somebody else published; a
+DEA score is **our model's verdict**, and its modelling choices move it — four
+defensible baskets send Riba-roja's score across half the scale. Three rules,
+all enforced by `check:dea` and its e2e spec:
+
+1. **No other municipality is ever named.** `/eficiencia` does name its peers,
+   because there the figure is the ministry's own division and hiding the
+   comparison set would break the show-your-work contract. Here, naming would
+   sign a claim about twenty councils that have no right of reply on this site.
+   The full method ships instead, so anyone can rebuild the table we refuse to
+   publish.
+2. **Specifications that fail are published as failed.** A page showing only the
+   basket that worked is showing the result instead of the method.
+3. **It never generates a finding.** `eficiencia-finding.ts` freezes a
+   measurement from the published panel; a DEA score is not one, and routing it
+   into the signed-findings pipeline would launder a model output into the
+   legally material surfaces.
+
+The first two families are also **enforced, not just documented**:
 `.claude/hooks/guard-curated-writes.mjs` denies a direct write to a curated file
 (naming the CLI that owns it) and asks before a new draft-shaped file appears
 under `public/`. Both had already been broken in production, which is the bar

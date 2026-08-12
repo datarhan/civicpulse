@@ -208,6 +208,7 @@ All report-only inside `scrape:all`; run any of them directly.
 | `check:queues`                    | a curator worklist describing findings that no longer exist          |
 | `check:indicadores`               | a `/eficiencia` figure that no longer resolves to its source cell    |
 | `check:eficiencia-findings`       | a signed ficha asserting a figure its source has since revised       |
+| `check:dea`                       | a frontier score that no longer reproduces, or names a third party   |
 
 `check:guards` is the one that keeps this table honest, and on 2026-08-12 it
 found three of these — `summary-gate`, `data-graph`, `queues` — defined,

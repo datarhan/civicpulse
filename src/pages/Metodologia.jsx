@@ -1548,6 +1548,59 @@ export default function Metodologia() {
         </p>
       </Card>
 
+      <Card style={{ marginTop: 14 }} id="frontera">
+        <SectionHead
+          eyebrow="Laboratorio · análisis envolvente de datos"
+          title="La única cifra de este sitio que no sale de una fuente"
+        />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Todo lo demás que se publica aquí es una transcripción o una división de números que
+          alguien más publicó: se puede rehacer con la fuente al lado. La puntuación de{' '}
+          <a href="/laboratorio/frontera" style={{ color: 'var(--civic)' }}>
+            /laboratorio/frontera
+          </a>{' '}
+          no. Sale de un modelo con decisiones nuestras dentro —qué servicios entran en la cesta,
+          qué rendimientos a escala se suponen, qué se hace con quien declara a medias— y esas
+          decisiones mueven el número: con la misma fuente y cuatro cestas igual de defendibles, la
+          distancia de Riba-roja a la frontera recorre media escala. Por eso está en el laboratorio,
+          por eso la página dice qué no es antes de enseñar ninguna cifra, y por eso publica el
+          método entero.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>No se nombra a ningún otro municipio.</strong> En{' '}
+          <a href="/eficiencia" style={{ color: 'var(--civic)' }}>
+            /eficiencia
+          </a>{' '}
+          los municipios comparados sí van con nombre, porque allí la cifra es una división de dos
+          números que publica el ministerio y esconder contra quién se compara rompería el contrato
+          de enseñar el trabajo. Aquí la cifra es el veredicto de un modelo de este sitio:
+          publicarla con nombres sería firmar una afirmación sobre veinte ayuntamientos que no
+          tienen aquí derecho de réplica. Se publican la puntuación propia, la distribución sin
+          nombres y el método completo, de modo que cualquiera pueda rehacer la tabla que aquí no
+          aparece. <code>check:dea</code> recalcula el experimento desde su fuente antes de cada
+          despliegue y falla si deja de reproducirse o si un tercero aparece nombrado.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Una puntuación de 1 no es «eficiente».</strong> Es «ninguna combinación de los
+          municipios observados lo hizo mejor», que con veinte observaciones es fácil: basta ser el
+          único con una combinación rara. La página marca cuáles están en la frontera sin que nadie
+          se apoye en ellas. Además, la frontera estimada cae siempre por dentro de la verdadera
+          —sólo se ve a quien declara—, así que todas las puntuaciones están sesgadas al alza por
+          construcción; se publica la corrección de sesgo y su intervalo, y cuando el intervalo se
+          sale de la escala se dice, en vez de imprimir el recorte como si fuera el dato.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Lo más útil del experimento no es una puntuación.</strong> Al recorrer las diez
+          entregas del coste efectivo aparece que la mayoría de las series de unidad física repiten
+          exactamente el mismo valor entrega tras entrega, mientras que prácticamente ninguna serie
+          de coste se queda quieta. Los cinco denominadores de Riba-roja llevan desde 2018 o 2019
+          sin cambiar. Eso invalida cualquier lectura temporal de un coste unitario: si el numerador
+          se actualiza y el denominador es una copia, el cociente sólo puede subir. No es una
+          acusación —la cifra puede ser correcta y estable—, es un dato sobre la calidad de la
+          declaración, y va antes que ninguna puntuación en la página.
+        </p>
+      </Card>
+
       <Card style={{ marginTop: 14 }} id="gasto-por-concejalia">
         <SectionHead
           eyebrow="Transparencia · gasto por concejalía"

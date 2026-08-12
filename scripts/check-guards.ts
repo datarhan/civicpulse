@@ -53,9 +53,19 @@ interface GuardRow {
   wiredIn: string[]
   /** Test files that import a module this guard's script depends on. */
   testedBy: string[]
-  /** null = not exercised this run */
+  /** null = not exercised this run. Falso si CUALQUIERA de sus inyecciones no disparó. */
   firesOnFault: boolean | null
   injection?: string
+  /**
+   * Una fila por inyección escrita para esta guarda.
+   *
+   * La tabla admite varias inyecciones con el mismo `guard` —una guarda con dos
+   * responsabilidades necesita dos— y el bucle las ejecutaba todas, pero
+   * escribía el resultado en el MISMO campo: la segunda pisaba a la primera y
+   * su veredicto se tiraba. Una inyección que se ejecuta y cuyo resultado nadie
+   * lee es el patrón que este script existe para cazar, cometido por el script.
+   */
+  injections?: { describe: string; fired: boolean | null; note?: string }[]
   note?: string
   verdict?: InjectionVerdict
 }
@@ -523,22 +533,27 @@ function main(): void {
     for (const inj of INJECTIONS) {
       const row = rows.find((r) => r.name === inj.guard)
       if (!row) continue
-      row.injection = inj.describe
+      row.injections = row.injections ?? []
+      const registro: { describe: string; fired: boolean | null; note?: string } = {
+        describe: inj.describe,
+        fired: null,
+      }
+      row.injections.push(registro)
       const path = resolve(ROOT, inj.file)
       if (!existsSync(path)) {
-        row.note = `${inj.file} missing — not exercised`
+        registro.note = `${inj.file} missing — not exercised`
         continue
       }
       if (!gitIsClean(inj.file)) {
-        row.note = `${inj.file} has uncommitted changes — refusing to inject`
+        registro.note = `${inj.file} has uncommitted changes — refusing to inject`
         continue
       }
       const original = readFileSync(path, 'utf8')
       try {
         writeFileSync(path, inj.corrupt(original), 'utf8')
-        row.firesOnFault = guardFails(inj.guard)
+        registro.fired = guardFails(inj.guard)
       } catch (e) {
-        row.note = `injection failed: ${(e as Error).message}`
+        registro.note = `injection failed: ${(e as Error).message}`
       } finally {
         // Restore from git, then PROVE it was restored. A fault-injection
         // harness that leaves the fault behind is worse than no harness.
@@ -559,6 +574,16 @@ function main(): void {
   // a plain wiring run, so four written injections read as four missing ones.
   const defined = new Set(INJECTIONS.map((i) => i.guard))
   for (const r of rows) {
+    // Una guarda con dos responsabilidades sólo está probada si las dos
+    // inyecciones disparan. Quedarse con la última daría por probada una
+    // guarda que caza la mitad de lo que promete.
+    if (r.injections?.length) {
+      r.injection = r.injections.map((i) => i.describe).join(' · ')
+      r.note = r.injections.find((i) => i.note)?.note
+      r.firesOnFault = r.injections.some((i) => i.fired === null)
+        ? null
+        : r.injections.every((i) => i.fired === true)
+    }
     r.verdict = classifyInjection({
       hasInjection: defined.has(r.name),
       fired: r.firesOnFault,
@@ -613,7 +638,11 @@ function main(): void {
               ? 'sin inyección, a propósito'
               : '⚠ sin inyección'
     out(`  ${r.name.padEnd(w)}  ${label}`)
-    if (r.injection) out(`  ${' '.repeat(w)}  inyectado: ${r.injection}`)
+    for (const i of r.injections ?? []) {
+      const marca = i.fired === true ? '✓' : i.fired === false ? '✗' : '—'
+      out(`  ${' '.repeat(w)}  ${marca} inyectado: ${i.describe}${i.note ? ` (${i.note})` : ''}`)
+    }
+    if (!r.injections?.length && r.injection) out(`  ${' '.repeat(w)}  inyectado: ${r.injection}`)
     else if (v.state === 'not-injectable') out(`  ${' '.repeat(w)}  ${v.detail}`)
   }
   if (!inject) {
