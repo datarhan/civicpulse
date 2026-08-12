@@ -188,6 +188,8 @@
     "scrape:coste-efectivo": "npx tsx scripts/scrape-coste-efectivo.ts",
     "compute:indicadores": "npx tsx scripts/compute-indicadores.ts",
     "check:indicadores": "npx tsx scripts/check-indicadores.ts",
+    "compute:dea": "npx tsx scripts/compute-dea.ts",
+    "check:dea": "npx tsx scripts/check-dea.ts",
     "scrape:pmp": "npx tsx scripts/scrape-pmp.ts",
     "fetch:cesel-ccaa": "npx tsx scripts/fetch-cesel-ccaa.ts",
     "build:prose-map": "npx tsx scripts/build-prose-map.ts",

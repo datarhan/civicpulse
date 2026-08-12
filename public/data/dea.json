@@ -1,0 +1,881 @@
+{
+  "generatedAt": "2026-08-12T13:11:27.617Z",
+  "fuente": {
+    "snapshot": "coste-efectivo.json",
+    "entrega": 2024,
+    "volcado": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+    "conjunto": "cv-15k-40k"
+  },
+  "modelo": {
+    "orientacion": "entrada",
+    "reglaGradosLibertad": "n ≥ max(m·s, 3(m+s)) — Cooper, Seiford y Tone, «Data Envelopment Analysis» (2007)",
+    "bootstrap": "Simar y Wilson (1998), homogéneo y suavizado con reflexión en 1",
+    "replicas": 2000,
+    "alfa": 0.05,
+    "razonSesgoMinima": 0.3333333333333333,
+    "inePropio": "46214"
+  },
+  "declaracion": {
+    "minEntregas": 4,
+    "entregas": 10,
+    "unidadSeries": 282,
+    "unidadCongeladas": 176,
+    "costeSeries": 234,
+    "costeCongeladas": 4,
+    "propias": [
+      {
+        "programa": "a1621",
+        "magnitud": "unidad",
+        "congelada": true,
+        "entregas": 10,
+        "valor": 11059.41,
+        "repeticionesFinales": 5,
+        "congeladaDesde": 2019,
+        "desde": 2014,
+        "hasta": 2024
+      },
+      {
+        "programa": "a1621",
+        "magnitud": "coste",
+        "congelada": false,
+        "entregas": 9,
+        "valor": 740272.16,
+        "repeticionesFinales": 1,
+        "congeladaDesde": null,
+        "desde": 2015,
+        "hasta": 2024
+      },
+      {
+        "programa": "a163",
+        "magnitud": "unidad",
+        "congelada": true,
+        "entregas": 10,
+        "valor": 700000,
+        "repeticionesFinales": 6,
+        "congeladaDesde": 2018,
+        "desde": 2014,
+        "hasta": 2024
+      },
+      {
+        "programa": "a163",
+        "magnitud": "coste",
+        "congelada": false,
+        "entregas": 9,
+        "valor": 1110650.84,
+        "repeticionesFinales": 1,
+        "congeladaDesde": null,
+        "desde": 2015,
+        "hasta": 2024
+      },
+      {
+        "programa": "a165",
+        "magnitud": "unidad",
+        "congelada": true,
+        "entregas": 10,
+        "valor": 4514,
+        "repeticionesFinales": 5,
+        "congeladaDesde": 2019,
+        "desde": 2014,
+        "hasta": 2024
+      },
+      {
+        "programa": "a165",
+        "magnitud": "coste",
+        "congelada": false,
+        "entregas": 10,
+        "valor": 664679.12,
+        "repeticionesFinales": 1,
+        "congeladaDesde": null,
+        "desde": 2014,
+        "hasta": 2024
+      },
+      {
+        "programa": "a171/170P",
+        "magnitud": "unidad",
+        "congelada": true,
+        "entregas": 10,
+        "valor": 740046,
+        "repeticionesFinales": 5,
+        "congeladaDesde": 2019,
+        "desde": 2014,
+        "hasta": 2024
+      },
+      {
+        "programa": "a171/170P",
+        "magnitud": "coste",
+        "congelada": false,
+        "entregas": 8,
+        "valor": 1496512.27,
+        "repeticionesFinales": 1,
+        "congeladaDesde": null,
+        "desde": 2016,
+        "hasta": 2024
+      },
+      {
+        "programa": "a164",
+        "magnitud": "unidad",
+        "congelada": true,
+        "entregas": 10,
+        "valor": 9911,
+        "repeticionesFinales": 5,
+        "congeladaDesde": 2019,
+        "desde": 2014,
+        "hasta": 2024
+      },
+      {
+        "programa": "a164",
+        "magnitud": "coste",
+        "congelada": false,
+        "entregas": 10,
+        "valor": 45053.27,
+        "repeticionesFinales": 1,
+        "congeladaDesde": null,
+        "desde": 2014,
+        "hasta": 2024
+      }
+    ]
+  },
+  "especificaciones": [
+    {
+      "id": "residuos-limpieza-alumbrado",
+      "titulo": "Residuos, limpieza viaria y alumbrado",
+      "porQue": "Los tres servicios que más municipios de la banda prestan de forma directa y declaran completos. Es la cesta con más unidades comparables, y por eso la lectura principal.",
+      "anio": 2024,
+      "rendimientos": "vrs",
+      "programas": [
+        {
+          "programa": "a1621",
+          "label": "Recogida de residuos",
+          "denominador": "Producción anual residuos urbanos: toneladas",
+          "unidad": "€/t"
+        },
+        {
+          "programa": "a163",
+          "label": "Limpieza viaria",
+          "denominador": "Superficie en metros cuadrados con servicio de limpieza",
+          "unidad": "€/m²"
+        },
+        {
+          "programa": "a165",
+          "label": "Alumbrado público",
+          "denominador": "Nº puntos de luz",
+          "unidad": "€/punto de luz"
+        }
+      ],
+      "cobertura": {
+        "banda": 56,
+        "incluidas": 24,
+        "excluidas": {
+          "sin-filas": 0,
+          "no-se-presta": 0,
+          "modo-no-directa": 21,
+          "coste-no-declarado": 10,
+          "unidad-no-declarada": 1
+        }
+      },
+      "gradosLibertad": {
+        "n": 24,
+        "entradas": 1,
+        "salidas": 3,
+        "minimo": 12,
+        "cumple": true
+      },
+      "estado": "publicada",
+      "motivoEstado": null,
+      "bootstrap": {
+        "replicas": 2000,
+        "replicasResueltas": 2000,
+        "alfa": 0.05,
+        "banda": 0.10770373426734574,
+        "semilla": 2372759162
+      },
+      "propia": {
+        "theta": 0.5277107886707897,
+        "thetaCorregido": 0.4527497637865937,
+        "sesgo": 0.07496102488419598,
+        "errorEstandar": 0.06686228780678785,
+        "ic": {
+          "inferior": 0.2831840648581373,
+          "superior": 0.5237632341086587,
+          "alfa": 0.05,
+          "truncadoInferior": false,
+          "truncadoSuperior": false
+        },
+        "razonSesgo": 1.1211256351384666,
+        "correccionRecomendada": true,
+        "intervaloAcotaPorAbajo": true,
+        "thetaCrs": 0.5025164160894564,
+        "escala": 0.9522572342233263,
+        "referencias": 3,
+        "autorreferente": false,
+        "percentil": 16.666666666666664
+      },
+      "distribucion": {
+        "n": 24,
+        "eficientes": 9,
+        "autorreferentes": 2,
+        "p10": 0.5170171279119424,
+        "p25": 0.5740202240388981,
+        "mediana": 0.8450100027721298,
+        "p75": 0.9999999999999998,
+        "p90": 1,
+        "histograma": [
+          {
+            "desde": 0,
+            "hasta": 0.1,
+            "n": 0
+          },
+          {
+            "desde": 0.1,
+            "hasta": 0.2,
+            "n": 0
+          },
+          {
+            "desde": 0.2,
+            "hasta": 0.3,
+            "n": 0
+          },
+          {
+            "desde": 0.3,
+            "hasta": 0.4,
+            "n": 1
+          },
+          {
+            "desde": 0.4,
+            "hasta": 0.5,
+            "n": 1
+          },
+          {
+            "desde": 0.5,
+            "hasta": 0.6,
+            "n": 5
+          },
+          {
+            "desde": 0.6,
+            "hasta": 0.7,
+            "n": 2
+          },
+          {
+            "desde": 0.7,
+            "hasta": 0.8,
+            "n": 1
+          },
+          {
+            "desde": 0.8,
+            "hasta": 0.9,
+            "n": 4
+          },
+          {
+            "desde": 0.9,
+            "hasta": 1,
+            "n": 10
+          }
+        ]
+      },
+      "serie": [
+        {
+          "anio": 2014,
+          "n": 15,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2015,
+          "n": 19,
+          "estado": "publicada",
+          "theta": 0.6079554544144496,
+          "thetaCorregido": 0.5678119864626873,
+          "eficientes": 7
+        },
+        {
+          "anio": 2016,
+          "n": 22,
+          "estado": "publicada",
+          "theta": 0.6197257465454611,
+          "thetaCorregido": 0.5766888837323304,
+          "eficientes": 8
+        },
+        {
+          "anio": 2017,
+          "n": 22,
+          "estado": "publicada",
+          "theta": 0.5962938728677911,
+          "thetaCorregido": 0.5504547122004861,
+          "eficientes": 7
+        },
+        {
+          "anio": 2018,
+          "n": 22,
+          "estado": "publicada",
+          "theta": 0.7485593217342873,
+          "thetaCorregido": 0.6918107055918796,
+          "eficientes": 9
+        },
+        {
+          "anio": 2019,
+          "n": 23,
+          "estado": "publicada",
+          "theta": 0.8919481058583879,
+          "thetaCorregido": 0.8230168679159152,
+          "eficientes": 6
+        },
+        {
+          "anio": 2021,
+          "n": 24,
+          "estado": "publicada",
+          "theta": 0.9077260265492153,
+          "thetaCorregido": 0.8565622893079742,
+          "eficientes": 8
+        },
+        {
+          "anio": 2022,
+          "n": 25,
+          "estado": "publicada",
+          "theta": 0.6809100280350194,
+          "thetaCorregido": 0.6312909934072547,
+          "eficientes": 6
+        },
+        {
+          "anio": 2023,
+          "n": 24,
+          "estado": "publicada",
+          "theta": 0.8275599762049187,
+          "thetaCorregido": 0.7408360648885406,
+          "eficientes": 9
+        },
+        {
+          "anio": 2024,
+          "n": 24,
+          "estado": "publicada",
+          "theta": 0.5277107886707897,
+          "thetaCorregido": 0.4527497637865937,
+          "eficientes": 9
+        }
+      ],
+      "panel": {
+        "miembros": 10,
+        "incluyePropio": false,
+        "serie": []
+      }
+    },
+    {
+      "id": "residuos-limpieza",
+      "titulo": "Residuos y limpieza viaria",
+      "porQue": "La misma muestra con una salida menos. Sirve para ver cuánto de la puntuación depende de añadir dimensiones: cada salida nueva da una vía más de ser extremo en algo.",
+      "anio": 2024,
+      "rendimientos": "vrs",
+      "programas": [
+        {
+          "programa": "a1621",
+          "label": "Recogida de residuos",
+          "denominador": "Producción anual residuos urbanos: toneladas",
+          "unidad": "€/t"
+        },
+        {
+          "programa": "a163",
+          "label": "Limpieza viaria",
+          "denominador": "Superficie en metros cuadrados con servicio de limpieza",
+          "unidad": "€/m²"
+        }
+      ],
+      "cobertura": {
+        "banda": 56,
+        "incluidas": 24,
+        "excluidas": {
+          "sin-filas": 0,
+          "no-se-presta": 0,
+          "modo-no-directa": 21,
+          "coste-no-declarado": 10,
+          "unidad-no-declarada": 1
+        }
+      },
+      "gradosLibertad": {
+        "n": 24,
+        "entradas": 1,
+        "salidas": 2,
+        "minimo": 9,
+        "cumple": true
+      },
+      "estado": "publicada",
+      "motivoEstado": null,
+      "bootstrap": {
+        "replicas": 2000,
+        "replicasResueltas": 1981,
+        "alfa": 0.05,
+        "banda": 0.15975930524439608,
+        "semilla": 94158220
+      },
+      "propia": {
+        "theta": 0.42648676586998324,
+        "thetaCorregido": 0.3317791972487233,
+        "sesgo": 0.09470756862125995,
+        "errorEstandar": 0.08655774992357548,
+        "ic": {
+          "inferior": 0.09020088563060907,
+          "superior": 0.4224994158031965,
+          "alfa": 0.05,
+          "truncadoInferior": false,
+          "truncadoSuperior": false
+        },
+        "razonSesgo": 1.0941546967762008,
+        "correccionRecomendada": true,
+        "intervaloAcotaPorAbajo": true,
+        "thetaCrs": 0.19950093483796996,
+        "escala": 0.46777755091886924,
+        "referencias": 2,
+        "autorreferente": false,
+        "percentil": 41.66666666666667
+      },
+      "distribucion": {
+        "n": 24,
+        "eficientes": 7,
+        "autorreferentes": 0,
+        "p10": 0.191270605167888,
+        "p25": 0.27121754356880423,
+        "mediana": 0.5933915665137093,
+        "p75": 0.9999999999999997,
+        "p90": 1,
+        "histograma": [
+          {
+            "desde": 0,
+            "hasta": 0.1,
+            "n": 0
+          },
+          {
+            "desde": 0.1,
+            "hasta": 0.2,
+            "n": 3
+          },
+          {
+            "desde": 0.2,
+            "hasta": 0.3,
+            "n": 4
+          },
+          {
+            "desde": 0.3,
+            "hasta": 0.4,
+            "n": 3
+          },
+          {
+            "desde": 0.4,
+            "hasta": 0.5,
+            "n": 1
+          },
+          {
+            "desde": 0.5,
+            "hasta": 0.6,
+            "n": 2
+          },
+          {
+            "desde": 0.6,
+            "hasta": 0.7,
+            "n": 1
+          },
+          {
+            "desde": 0.7,
+            "hasta": 0.8,
+            "n": 2
+          },
+          {
+            "desde": 0.8,
+            "hasta": 0.9,
+            "n": 0
+          },
+          {
+            "desde": 0.9,
+            "hasta": 1,
+            "n": 8
+          }
+        ]
+      },
+      "serie": [
+        {
+          "anio": 2014,
+          "n": 15,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2015,
+          "n": 19,
+          "estado": "publicada",
+          "theta": 0.3746285842110594,
+          "thetaCorregido": 0.34770714878822107,
+          "eficientes": 7
+        },
+        {
+          "anio": 2016,
+          "n": 22,
+          "estado": "publicada",
+          "theta": 0.3921414061111703,
+          "thetaCorregido": 0.3533243744296399,
+          "eficientes": 7
+        },
+        {
+          "anio": 2017,
+          "n": 23,
+          "estado": "publicada",
+          "theta": 0.40332631866408136,
+          "thetaCorregido": 0.3744379055660251,
+          "eficientes": 7
+        },
+        {
+          "anio": 2018,
+          "n": 23,
+          "estado": "publicada",
+          "theta": 0.4768275092269142,
+          "thetaCorregido": 0.43126101176611953,
+          "eficientes": 7
+        },
+        {
+          "anio": 2019,
+          "n": 24,
+          "estado": "publicada",
+          "theta": 0.5849930516956516,
+          "thetaCorregido": 0.5101673875735431,
+          "eficientes": 6
+        },
+        {
+          "anio": 2021,
+          "n": 24,
+          "estado": "publicada",
+          "theta": 0.700802710579016,
+          "thetaCorregido": 0.6386286755129739,
+          "eficientes": 8
+        },
+        {
+          "anio": 2022,
+          "n": 25,
+          "estado": "publicada",
+          "theta": 0.5850239006139851,
+          "thetaCorregido": 0.5447453790872174,
+          "eficientes": 5
+        },
+        {
+          "anio": 2023,
+          "n": 25,
+          "estado": "publicada",
+          "theta": 0.6967232254145399,
+          "thetaCorregido": 0.5822625933732802,
+          "eficientes": 6
+        },
+        {
+          "anio": 2024,
+          "n": 24,
+          "estado": "publicada",
+          "theta": 0.42648676586998324,
+          "thetaCorregido": 0.3317791972487233,
+          "eficientes": 7
+        }
+      ],
+      "panel": {
+        "miembros": 10,
+        "incluyePropio": false,
+        "serie": []
+      }
+    },
+    {
+      "id": "cuatro-servicios",
+      "titulo": "Residuos, limpieza, parques y alumbrado",
+      "porQue": "Añade parques y jardines, que muchos municipios de la banda no declaran completo. Queda justo en el mínimo de grados de libertad: la muestra se parte casi por la mitad para ganar una dimensión.",
+      "anio": 2024,
+      "rendimientos": "vrs",
+      "programas": [
+        {
+          "programa": "a1621",
+          "label": "Recogida de residuos",
+          "denominador": "Producción anual residuos urbanos: toneladas",
+          "unidad": "€/t"
+        },
+        {
+          "programa": "a163",
+          "label": "Limpieza viaria",
+          "denominador": "Superficie en metros cuadrados con servicio de limpieza",
+          "unidad": "€/m²"
+        },
+        {
+          "programa": "a171/170P",
+          "label": "Parques y jardines",
+          "denominador": "Superficie: suma en metros cuadrados de la superficie total (tanto la cubierta como al aire libre)",
+          "unidad": "€/m²"
+        },
+        {
+          "programa": "a165",
+          "label": "Alumbrado público",
+          "denominador": "Nº puntos de luz",
+          "unidad": "€/punto de luz"
+        }
+      ],
+      "cobertura": {
+        "banda": 56,
+        "incluidas": 11,
+        "excluidas": {
+          "sin-filas": 0,
+          "no-se-presta": 0,
+          "modo-no-directa": 25,
+          "coste-no-declarado": 18,
+          "unidad-no-declarada": 2
+        }
+      },
+      "gradosLibertad": {
+        "n": 11,
+        "entradas": 1,
+        "salidas": 4,
+        "minimo": 15,
+        "cumple": false
+      },
+      "estado": "insuficiente",
+      "motivoEstado": "Grados de libertad: 11 unidades comparables para 4 salidas, y la regla pide 15. Con menos, casi todo el mundo sale en la frontera y la puntuación mide el tamaño de la muestra en vez de la gestión.",
+      "bootstrap": null,
+      "propia": null,
+      "distribucion": null,
+      "serie": [
+        {
+          "anio": 2014,
+          "n": 3,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2015,
+          "n": 7,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2016,
+          "n": 9,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2017,
+          "n": 9,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2018,
+          "n": 12,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2019,
+          "n": 15,
+          "estado": "publicada",
+          "theta": 1,
+          "thetaCorregido": 0.7050520190998875,
+          "eficientes": 7
+        },
+        {
+          "anio": 2021,
+          "n": 15,
+          "estado": "publicada",
+          "theta": 1,
+          "thetaCorregido": 0.8066609279631562,
+          "eficientes": 8
+        },
+        {
+          "anio": 2022,
+          "n": 13,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2023,
+          "n": 14,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2024,
+          "n": 11,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        }
+      ],
+      "panel": {
+        "miembros": 0,
+        "incluyePropio": false,
+        "serie": []
+      }
+    },
+    {
+      "id": "cinco-servicios",
+      "titulo": "Los cuatro anteriores más cementerio",
+      "porQue": "Se incluye a propósito aunque no pueda publicarse. Con cinco salidas harían falta 18 unidades y la exigencia de declaración completa deja bastantes menos: es el límite real de la fuente, y esconderlo daría una idea falsa de hasta dónde llega este método.",
+      "anio": 2024,
+      "rendimientos": "vrs",
+      "programas": [
+        {
+          "programa": "a1621",
+          "label": "Recogida de residuos",
+          "denominador": "Producción anual residuos urbanos: toneladas",
+          "unidad": "€/t"
+        },
+        {
+          "programa": "a163",
+          "label": "Limpieza viaria",
+          "denominador": "Superficie en metros cuadrados con servicio de limpieza",
+          "unidad": "€/m²"
+        },
+        {
+          "programa": "a171/170P",
+          "label": "Parques y jardines",
+          "denominador": "Superficie: suma en metros cuadrados de la superficie total (tanto la cubierta como al aire libre)",
+          "unidad": "€/m²"
+        },
+        {
+          "programa": "a165",
+          "label": "Alumbrado público",
+          "denominador": "Nº puntos de luz",
+          "unidad": "€/punto de luz"
+        },
+        {
+          "programa": "a164",
+          "label": "Cementerio y servicios funerarios",
+          "denominador": "Superficie total del cementerio: metros cuadrados",
+          "unidad": "€/m²"
+        }
+      ],
+      "cobertura": {
+        "banda": 56,
+        "incluidas": 10,
+        "excluidas": {
+          "sin-filas": 0,
+          "no-se-presta": 0,
+          "modo-no-directa": 26,
+          "coste-no-declarado": 18,
+          "unidad-no-declarada": 2
+        }
+      },
+      "gradosLibertad": {
+        "n": 10,
+        "entradas": 1,
+        "salidas": 5,
+        "minimo": 18,
+        "cumple": false
+      },
+      "estado": "insuficiente",
+      "motivoEstado": "Grados de libertad: 10 unidades comparables para 5 salidas, y la regla pide 18. Con menos, casi todo el mundo sale en la frontera y la puntuación mide el tamaño de la muestra en vez de la gestión.",
+      "bootstrap": null,
+      "propia": null,
+      "distribucion": null,
+      "serie": [
+        {
+          "anio": 2014,
+          "n": 3,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2015,
+          "n": 5,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2016,
+          "n": 7,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2017,
+          "n": 7,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2018,
+          "n": 9,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2019,
+          "n": 12,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2021,
+          "n": 11,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2022,
+          "n": 10,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2023,
+          "n": 12,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        },
+        {
+          "anio": 2024,
+          "n": 10,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
+        }
+      ],
+      "panel": {
+        "miembros": 0,
+        "incluyePropio": false,
+        "serie": []
+      }
+    }
+  ],
+  "stats": {
+    "especificaciones": 4,
+    "publicadas": 2,
+    "insuficientes": 2,
+    "banda": 56,
+    "entrega": 2024
+  }
+}

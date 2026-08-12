@@ -120,6 +120,12 @@ export interface EntradaAnalisis {
   miembrosBanda: number
   replicas?: number
   alfa?: number
+  /**
+   * Restringe la muestra a estos municipios. Sirve para el panel equilibrado:
+   * la misma frontera de un año a otro necesita las MISMAS unidades, o el
+   * movimiento de la puntuación mezcla dos cosas distintas.
+   */
+  restringirA?: Set<string>
 }
 
 export interface Exclusion {
@@ -152,6 +158,7 @@ export function construirDmus(
   // orden de las columnas decide cuál sale. Un snapshot que cambia porque el
   // Map iteró distinto sería indistinguible de un cambio de dato.
   for (const ine of [...porIne.keys()].sort()) {
+    if (entrada.restringirA && !entrada.restringirA.has(ine)) continue
     const filas = porIne.get(ine)!
     let motivo: MotivoExclusion | null = null
     let coste = 0
@@ -256,6 +263,66 @@ export interface AnalisisEspecificacion {
   } | null
   propia: PuntuacionPropia | null
   distribucion: DistribucionAnonima | null
+}
+
+export interface PuntoSerie {
+  anio: number
+  /** Unidades comparables ESE año. Sin esto la serie no se puede leer. */
+  n: number
+  estado: EstadoEspecificacion
+  theta: number | null
+  thetaCorregido: number | null
+  eficientes: number | null
+}
+
+/**
+ * Los municipios que declaran la cesta completa y en gestión directa en TODAS
+ * las entregas pedidas. Es el panel equilibrado.
+ *
+ * Sin él una serie de puntuaciones no significa nada: la frontera se reestima
+ * cada año contra quien haya declarado ese año, y pasar de 24 a 19 unidades
+ * mueve la puntuación de todo el mundo sin que nadie haya cambiado de gestión.
+ * Con las mismas unidades los dos años, lo que se mueve es el reparto real.
+ */
+export function panelEquilibrado(
+  spec: EspecificacionDea,
+  filas: CesteRow[],
+  anios: number[],
+): Set<string> {
+  let comun: Set<string> | null = null
+  for (const anio of anios) {
+    const { incluidas } = construirDmus(spec, { filas, anio, miembrosBanda: 0 })
+    const esteAnio = new Set(incluidas.map((d) => d.id))
+    comun = comun === null ? esteAnio : new Set([...comun].filter((x) => esteAnio.has(x)))
+  }
+  return comun ?? new Set<string>()
+}
+
+/**
+ * La misma especificación entrega a entrega.
+ *
+ * Se publica junto al corte transversal porque la diferencia entre las dos
+ * series —la de muestra variable y la del panel equilibrado— es lo que separa
+ * «el municipio se movió» de «se movió quién declaraba».
+ */
+export function serieEspecificacion(
+  spec: EspecificacionDea,
+  entrada: Omit<EntradaAnalisis, 'anio'> & { anios: number[] },
+): PuntoSerie[] {
+  return entrada.anios
+    .slice()
+    .sort((a, b) => a - b)
+    .map((anio) => {
+      const a = analizarEspecificacion(spec, { ...entrada, anio })
+      return {
+        anio,
+        n: a.cobertura.incluidas,
+        estado: a.estado,
+        theta: a.propia?.theta ?? null,
+        thetaCorregido: a.propia?.thetaCorregido ?? null,
+        eficientes: a.distribucion?.eficientes ?? null,
+      }
+    })
 }
 
 function percentilDe(ordenados: number[], p: number): number {
