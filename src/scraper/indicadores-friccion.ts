@@ -50,8 +50,26 @@ export const ADJUDICACION_DOMINANTE = 0.25
 export type DimensionMunicipal = 'respuesta' | 'fiscal' | 'friccion'
 export type FormatoValor = 'porcentaje' | 'euros' | 'numero' | 'dias'
 
+/**
+ * En qué página vive cada indicador municipal, cortado por FUENTE.
+ *
+ * Los siete de gestión salen de las series PMP, de CONPREL, del perfil de
+ * contratante y del estado de ejecución; `denominadores-sin-remedir` mide las
+ * declaraciones del coste efectivo, es decir exactamente el mismo cuaderno del
+ * que salen los diez cocientes de /eficiencia, y habla de ellos.
+ *
+ * Lo declara cada indicador al construirse y no una tabla central: quien monta
+ * la cifra es el único que sabe de dónde la ha sacado, y una tabla de ids
+ * escrita aparte se queda vieja la primera vez que alguien añada uno. Mismo
+ * criterio que `pares.descripcion`.
+ */
+export const PANELES = ['coste-efectivo', 'gestion'] as const
+export type Panel = (typeof PANELES)[number]
+
 export interface IndicadorMunicipal {
   id: string
+  /** Obligatorio a propósito: sin él, un indicador nuevo no compila. */
+  panel: Panel
   dimension: DimensionMunicipal
   etiqueta: string
   /** Qué mide, en una frase: la cifra no puede depender de su titular. */
@@ -214,6 +232,7 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
     const dist = ultimo.distribucion ?? undefined
     out.push({
       id: 'periodo-medio-pago',
+      panel: 'gestion',
       dimension: 'respuesta',
       etiqueta: 'Periodo medio de pago a proveedores',
       descripcion:
@@ -279,6 +298,7 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
     const anio = bud?.snapshot?.year ?? bud?.pares?.anio
     out.push({
       id: 'gasto-por-habitante',
+      panel: 'gestion',
       dimension: 'fiscal',
       etiqueta: 'Gasto presupuestado por habitante',
       descripcion:
@@ -330,6 +350,7 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
   const sinDeclarar = adjudicados.length - conOfertas.length
   out.push({
     id: 'licitador-unico',
+    panel: 'gestion',
     dimension: 'friccion',
     etiqueta: 'Contratos con un solo licitador',
     descripcion:
@@ -364,6 +385,7 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
   )
   out.push({
     id: 'sin-publicidad-abierta',
+    panel: 'gestion',
     dimension: 'friccion',
     etiqueta: 'Adjudicado sin llamada abierta',
     descripcion:
@@ -416,6 +438,7 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
   }
   out.push({
     id: 'concentracion-proveedores',
+    panel: 'gestion',
     dimension: 'friccion',
     etiqueta: 'Importe en manos de los cinco mayores proveedores',
     descripcion:
@@ -450,6 +473,7 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
 
   out.push({
     id: 'modificaciones-presupuestarias',
+    panel: 'gestion',
     dimension: 'fiscal',
     etiqueta: 'Modificaciones sobre el presupuesto aprobado',
     descripcion:
@@ -473,6 +497,7 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
 
   out.push({
     id: 'ejecucion-presupuestaria',
+    panel: 'gestion',
     dimension: 'fiscal',
     etiqueta: 'Ejecución del presupuesto de gastos',
     descripcion: 'Gasto reconocido sobre el crédito definitivo, inicial más modificaciones.',
@@ -524,7 +549,9 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
  * produce la salvedad de cada tarjeta de `/eficiencia`. Un segundo criterio aquí
  * dejaría al indicador comparando una cosa mientras la tarjeta avisa de otra.
  */
-function medirDenominadores(fuente: NonNullable<FriccionInput['costeEfectivo']>) {
+function medirDenominadores(
+  fuente: NonNullable<FriccionInput['costeEfectivo']>,
+): IndicadorMunicipal | null {
   const filas = [...(fuente.pares?.filas ?? []), ...(fuente.municipio?.filas ?? [])]
   if (!filas.length) return null
   const anios = [...new Set(filas.map((f) => f.anio))].sort((a, b) => a - b)
@@ -583,6 +610,7 @@ function medirDenominadores(fuente: NonNullable<FriccionInput['costeEfectivo']>)
 
   return {
     id: 'denominadores-sin-remedir',
+    panel: 'coste-efectivo',
     dimension: 'friccion' as const,
     etiqueta: 'Denominadores que el ayuntamiento no vuelve a medir',
     descripcion:

@@ -1,0 +1,105 @@
+import { Card } from '../components/Primitives'
+import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
+import { HallazgosEficiencia } from '../components/eficiencia/HallazgosEficiencia'
+import { useIndicadores } from '../hooks/useIndicadores'
+import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
+
+/**
+ * /gestion — plazos, concurrencia y ejecución. Cómo funciona la casa por dentro.
+ *
+ * Vivía dentro de /eficiencia, y era el 28 % de una página que ya iba por las
+ * trece pantallas. Se separa por FUENTE, que es lo único que hace del corte algo
+ * comprobable y no una cuestión de gusto: /eficiencia sale entera del coste
+ * efectivo de los servicios, y esto de las series PMP, de CONPREL, del perfil de
+ * contratante y del estado de ejecución. Cada indicador declara su panel al
+ * construirse (`indicadores-friccion.ts`), así que el reparto no puede
+ * desincronizarse con una tabla escrita aparte.
+ *
+ * La distinción no es de presentación. Un coste unitario responde «qué cuesta
+ * esto»; el plazo de pago y la concurrencia responden «cómo se decide y cuánto
+ * se tarda», que es la X-ineficiencia de Leibenstein: el desperdicio que nace de
+ * la falta de competencia y del control interno débil, no del precio.
+ *
+ * Sin nota global, igual que su hermana. Y las fichas firmadas van con la cifra
+ * que congelan: una afirmación sobre el plazo de pago sin el panel del plazo de
+ * pago delante es una afirmación sin su comprobación al lado.
+ */
+export default function Gestion() {
+  const { loading, error, data } = useIndicadores()
+  const { data: hallazgos } = useEficienciaFindings()
+
+  const municipales = (data?.municipales ?? []).filter((m) => m.panel === 'gestion')
+  const ids = municipales.map((m) => m.id)
+  const firmados = (hallazgos?.items ?? []).filter((f) => ids.includes(f.indicadorId)).length
+
+  return (
+    <div className="cp-page" style={{ padding: 24, maxWidth: 900, margin: '0 auto' }}>
+      <div
+        className="mono"
+        style={{
+          fontSize: 10.5,
+          color: 'var(--ink50)',
+          textTransform: 'uppercase',
+          letterSpacing: '.08em',
+        }}
+      >
+        Ayuntamiento · plazos, concurrencia y ejecución
+      </div>
+      <h1 style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+        Cómo funciona la casa por dentro
+      </h1>
+      <p style={{ color: 'var(--ink60)', maxWidth: '64ch' }}>
+        Cuánto tarda en pagar, cuánto dedica por vecino, cuánta competencia hubo en sus contratos y
+        qué distancia hay entre el presupuesto que se aprobó y el que se ejecutó. Son medidas de
+        plazo y de fricción, no de coste: lo que cuesta cada servicio está en{' '}
+        <a href="/eficiencia" style={{ color: 'var(--civic)' }}>
+          eficiencia
+        </a>
+        .
+      </p>
+
+      {firmados > 0 && (
+        <p style={{ margin: '6px 0 0', fontSize: 12.5 }}>
+          <a href="#hallazgos" style={{ color: 'var(--civic)' }}>
+            {firmados === 1
+              ? '1 hallazgo firmado sobre estas cifras'
+              : `${firmados} hallazgos firmados sobre estas cifras`}{' '}
+            ↓
+          </a>
+        </p>
+      )}
+
+      {loading && <p style={{ color: 'var(--ink60)' }}>Cargando…</p>}
+      {error && <p style={{ color: 'var(--ink60)' }}>No se pudo cargar el panel.</p>}
+      {!loading && !error && municipales.length === 0 && (
+        <Card style={{ marginTop: 16 }}>
+          <p style={{ margin: 0, color: 'var(--ink60)' }}>
+            Todavía no hay indicadores de gestión calculados.
+          </p>
+        </Card>
+      )}
+
+      <PanelMunicipal
+        municipales={municipales}
+        titulo="Plazos, concurrencia y ejecución"
+        intro="Cada cifra lleva su periodo, porque los contratos abarcan casi una década y la ejecución es de un ejercicio."
+      />
+
+      {!loading && !error && (
+        <HallazgosEficiencia
+          data={hallazgos}
+          indicadorIds={ids}
+          otroPanel={{ to: '/eficiencia', nombre: 'el coste de los servicios' }}
+        />
+      )}
+
+      <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 28 }}>
+        Cómo se calcula y qué se descarta:{' '}
+        <a href="/metodologia#eficiencia" style={{ color: 'var(--civic)' }}>
+          metodología
+        </a>
+        .
+      </p>
+    </div>
+  )
+}

@@ -140,7 +140,8 @@ overwrites it. Change the bot's SQLite instead.
 - **Pipeline** — `pmp.ts` → `pmp.json`
 - **Source** — Ministerio de Hacienda, RD 1040/2017 quarterly returns. 30-day
   legal threshold.
-- **Surfaces** — `/eficiencia` municipal panel; the first signed
+- **Surfaces** — `/gestion` (municipal panel: plazos, concurrencia, ejecución);
+  the first signed
   `eficiencia-finding`
 - **Cadence** — deliberately OUT of `snapshot-cadence.ts`: the ministry sets the
   rhythm (one entrega a year, one quarter respectively) and no freshness class

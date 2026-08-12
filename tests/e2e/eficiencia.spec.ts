@@ -3,6 +3,9 @@ import AxeBuilder from '@axe-core/playwright'
 import { readFileSync } from 'node:fs'
 import { chipDeclaracion, GLOSA_TIER } from '../../src/scraper/indicador-lectura'
 import type { Indicador } from '../../src/scraper/indicadores'
+import type { IndicadorMunicipal } from '../../src/scraper/indicadores-friccion'
+
+type MunicipalLike = Pick<IndicadorMunicipal, 'id' | 'panel' | 'valor' | 'etiqueta' | 'periodo'>
 
 // Read the committed snapshot rather than hard-coding figures: a spec that
 // restates the shape it is meant to check is failure mode 1 of
@@ -23,6 +26,22 @@ const COMPARABLE = [...SNAP.indicadores]
       (b.numerador.valor ?? 0) - (a.numerador.valor ?? 0),
   )
   .find((i: { pares: unknown }) => i.pares)
+
+// Las fichas que vive ESTA página, derivadas del mismo `panel` que usa la
+// página. Antes se daban por hechas todas las del fichero, y eso dejó de ser
+// cierto al separar /gestion: la comprobación cruzada —cada spec exige que las
+// de la otra NO estén— es lo que impide que las dos listas se desincronicen.
+const IDS_AQUI: string[] = [
+  ...SNAP.indicadores.map((i: Indicador) => i.id),
+  ...(SNAP.municipales ?? [])
+    .filter((m: MunicipalLike) => m.panel === 'coste-efectivo')
+    .map((m: MunicipalLike) => m.id),
+]
+const FICHAS = JSON.parse(readFileSync('public/data/eficiencia-findings.json', 'utf8'))
+const MIAS = FICHAS.items.filter((f: { indicadorId: string }) => IDS_AQUI.includes(f.indicadorId))
+const AJENAS = FICHAS.items.filter(
+  (f: { indicadorId: string }) => !IDS_AQUI.includes(f.indicadorId),
+)
 
 // The route is behind EFICIENCIA_ENABLED, and the e2e server serves a
 // production build — so this needs `VITE_ENABLE_EFICIENCIA=true npm run build`.
@@ -177,20 +196,33 @@ test.describe('Eficiencia (/eficiencia)', () => {
     await expect(page.getByText(COMPARABLE.pares.miembros[0].nombre).first()).toBeVisible()
   })
 
-  test('publishes the friction panel with a period on every figure', async ({ page }) => {
-    const municipales = (SNAP.municipales ?? []).filter(
-      (m: { valor: number | null }) => m.valor !== null,
+  test('sólo trae los indicadores que salen del mismo cuaderno', async ({ page }) => {
+    // El corte con /gestion es por FUENTE, y lo declara cada indicador al
+    // construirse. Esto comprueba que la página respeta ese reparto en las dos
+    // direcciones: enseñar aquí el plazo de pago devolvería la mezcla que la
+    // separación vino a deshacer, y esconder el recuento de denominadores
+    // dejaría los diez cocientes sin la cifra que habla de ellos.
+    const aqui = (SNAP.municipales ?? []).filter(
+      (m: MunicipalLike) => m.valor !== null && m.panel === 'coste-efectivo',
     )
-    expect(municipales.length).toBeGreaterThan(0)
+    const alli = (SNAP.municipales ?? []).filter(
+      (m: MunicipalLike) => m.valor !== null && m.panel === 'gestion',
+    )
+    expect(aqui.length, 'ningún indicador de coste efectivo').toBeGreaterThan(0)
+    expect(alli.length, 'ningún indicador de gestión — no habría nada que separar').toBeGreaterThan(
+      0,
+    )
 
-    await expect(
-      page.getByRole('heading', { name: /Cómo funciona la casa por dentro/i }),
-    ).toBeVisible({ timeout: 8000 })
-    for (const m of municipales) {
-      await expect(page.getByRole('heading', { name: m.etiqueta })).toBeVisible()
-      // A percentage with no period reads as "this year"; the contracts span
-      // almost a decade, so the period is load-bearing, not decoration.
+    for (const m of aqui) {
+      await expect(page.getByRole('heading', { name: m.etiqueta })).toBeVisible({ timeout: 8000 })
+      // Un porcentaje sin periodo se lee como «este año».
       await expect(page.getByText(m.periodo, { exact: true }).first()).toBeVisible()
+    }
+    for (const m of alli) {
+      await expect(
+        page.getByRole('heading', { name: m.etiqueta }),
+        `${m.id} es de /gestion y se está publicando en /eficiencia`,
+      ).toHaveCount(0)
     }
 
     // No peer band may appear here: there is no national dataset of municipal
@@ -200,16 +232,16 @@ test.describe('Eficiencia (/eficiencia)', () => {
   })
 
   test('la cabecera indexa los hallazgos sin adelantar lo que dicen', async ({ page }) => {
-    const FICHAS = JSON.parse(readFileSync('public/data/eficiencia-findings.json', 'utf8'))
-    if (FICHAS.items.length === 0) {
-      // Sin fichas no hay índice: un enlace a una sección vacía es peor que
-      // ningún enlace.
+    if (MIAS.length === 0) {
+      // Sin fichas propias no hay índice: un enlace a una sección vacía es peor
+      // que ningún enlace.
       await expect(page.locator('a[href="#hallazgos"]')).toHaveCount(0)
       return
     }
     const enlace = page.locator('a[href="#hallazgos"]').first()
     await expect(enlace).toBeVisible({ timeout: 8000 })
-    await expect(enlace).toContainText(String(FICHAS.items.length))
+    // Cuenta las de ESTA página, no las del fichero: /gestion tiene las suyas.
+    await expect(enlace).toContainText(String(MIAS.length))
 
     // Índice, no conclusión: las fichas siguen al final porque son una lectura
     // del panel y el panel se lee primero. El índice dice cuántas hay y dónde,
@@ -250,20 +282,30 @@ test.describe('Eficiencia (/eficiencia)', () => {
     // lee como «no hay nada que contar», que es la mentira por omisión que el
     // resto de la página existe para no cometer: la sección tiene que decir
     // que lo que falta es una firma, no un hallazgo.
-    const FICHAS = JSON.parse(readFileSync('public/data/eficiencia-findings.json', 'utf8'))
     await expect(page.getByRole('heading', { name: /Hallazgos firmados/i })).toBeVisible({
       timeout: 8000,
     })
 
-    if (FICHAS.items.length === 0) {
+    if (MIAS.length === 0) {
       await expect(page.getByText(/Todavía no hay ninguna ficha firmada/i)).toBeVisible()
-      return
     }
     // Con fichas publicadas: cada una enseña su medición congelada y su
     // periodo, que es lo que permite volver a comprobarla contra la fuente.
-    for (const f of FICHAS.items) {
+    for (const f of MIAS) {
       await expect(page.getByRole('heading', { name: f.titulo })).toBeVisible()
       await expect(page.getByText(f.medicion.periodo, { exact: false }).first()).toBeVisible()
+    }
+    // Las de la otra página no se cuelan aquí, y esta lo dice en vez de
+    // callarlo: «no hay ninguna» mientras la hermana tiene dos sería la mentira
+    // por omisión que toda esta sección existe para no cometer.
+    for (const f of AJENAS) {
+      await expect(
+        page.getByRole('heading', { name: f.titulo }),
+        `${f.id} habla de un indicador que no vive aquí`,
+      ).toHaveCount(0)
+    }
+    if (AJENAS.length > 0) {
+      await expect(page.locator('a[href="/gestion"]').first()).toBeVisible()
     }
     // Y ninguna nombra a nadie: el esquema no tiene dónde, y esto lo comprueba
     // sobre lo que de verdad se sirve.

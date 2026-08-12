@@ -62,7 +62,8 @@
       "/cargos/:slug"
     ],
     "eficiencia-findings.json": [
-      "/eficiencia"
+      "/eficiencia",
+      "/gestion"
     ],
     "elections.json": [
       "/cargos/:slug",
@@ -97,6 +98,7 @@
     ],
     "indicadores.json": [
       "/eficiencia",
+      "/gestion",
       "/metodologia"
     ],
     "ispa.json": [
@@ -151,6 +153,7 @@
       "/empleo",
       "/empleo-publico",
       "/empleo/:id",
+      "/gestion",
       "/hallazgos",
       "/lab-health",
       "/laboratorio",

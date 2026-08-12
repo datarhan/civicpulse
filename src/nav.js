@@ -54,6 +54,19 @@ export const NAV = [
           label: 'Eficiencia',
           icon: Ic.chart,
         },
+        // La otra mitad del panel, separada por FUENTE: /eficiencia sale entera
+        // del coste efectivo de los servicios y esto de las series PMP, de
+        // CONPREL, del perfil de contratante y del estado de ejecución. Iba
+        // dentro y era el 28 % de una página de trece pantallas. Comparte
+        // bandera con /eficiencia a propósito: son la misma función y una
+        // bandera propia sería una ruta que se despliega sin ejercitarse.
+        {
+          to: '/gestion',
+          id: 'gestion',
+          labelKey: 'nav.gestion',
+          label: 'Gestión',
+          icon: Ic.clock,
+        },
       ]
     : []),
   {

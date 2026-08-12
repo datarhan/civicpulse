@@ -27,7 +27,9 @@ export default function Eficiencia() {
   const { loading, error, data } = useIndicadores()
   const { data: hallazgos } = useEficienciaFindings()
   const indicadores = data?.indicadores ?? []
-  const firmados = hallazgos?.items?.length ?? 0
+  const municipalesDeAqui = (data?.municipales ?? []).filter((m) => m.panel === 'coste-efectivo')
+  const idsDeAqui = [...indicadores.map((i) => i.id), ...municipalesDeAqui.map((m) => m.id)]
+  const firmados = (hallazgos?.items ?? []).filter((f) => idsDeAqui.includes(f.indicadorId)).length
 
   const conRatio = indicadores
     .filter((i) => i.valor !== null)
@@ -102,7 +104,16 @@ export default function Eficiencia() {
         ))}
       </div>
 
-      <PanelMunicipal municipales={data?.municipales} />
+      {/* Sólo lo que sale del MISMO cuaderno que las tarjetas de arriba: el
+          recuento de denominadores mide las declaraciones del coste efectivo y
+          habla de estos diez cocientes. Los plazos, la concurrencia y la
+          ejecución salen de otras cuatro fuentes y viven en /gestion. El reparto
+          lo declara cada indicador al construirse, no esta página. */}
+      <PanelMunicipal
+        municipales={municipalesDeAqui}
+        titulo="Sobre la declaración de estas cifras"
+        intro="Los cocientes de arriba salen de dos cantidades que el ayuntamiento declara cada entrega; esto mide con qué frecuencia vuelve a medir la de abajo."
+      />
 
       {bloqueados.length > 0 && (
         <>
@@ -128,7 +139,13 @@ export default function Eficiencia() {
           el panel se lee primero. Un hallazgo en cabecera convertiría la página
           en la conclusión de otro en vez de en las cifras con las que el lector
           puede sacar la suya. */}
-      {!loading && !error && <HallazgosEficiencia data={hallazgos} />}
+      {!loading && !error && (
+        <HallazgosEficiencia
+          data={hallazgos}
+          indicadorIds={idsDeAqui}
+          otroPanel={{ to: '/gestion', nombre: 'cómo funciona la casa por dentro' }}
+        />
+      )}
 
       <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 28 }}>
         Cómo se calcula, qué se descarta y por qué no hay nota global:{' '}
