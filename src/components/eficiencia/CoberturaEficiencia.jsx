@@ -28,10 +28,18 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
   // leen como decoración. Lo que hace falta arriba es el recuento.
   const conRatio = indicadores.filter((i) => i.valor !== null)
   const congelados = conRatio.filter((i) => i.declaracion?.denominador?.congelada)
-  const desde = congelados
+  const anios = congelados
     .map((i) => i.declaracion.denominador.desde)
     .filter((a) => Number.isFinite(a))
-    .sort((a, b) => a - b)[0]
+    .sort((a, b) => a - b)
+  // Un solo año cuando coinciden; el rango cuando no. «Desde 2018» con la mitad
+  // congelada en 2019 es una fecha más antigua de la que sostiene el dato.
+  const desde =
+    anios.length === 0
+      ? null
+      : anios[0] === anios[anios.length - 1]
+        ? `${anios[0]}`
+        : `${anios[0]}-${anios[anios.length - 1]}`
 
   const filas = [
     { n: universe.conRatio, k: 'conRatio' },
@@ -76,14 +84,23 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
             color: 'var(--ink70, var(--ink60))',
           }}
         >
-          <strong className="mono">
-            {congelados.length} de {conRatio.length}
-          </strong>{' '}
-          de estos cocientes tienen un denominador que el ayuntamiento no vuelve a medir: declara la
-          misma cantidad{desde ? ` desde ${desde}` : ''} entrega tras entrega, mientras actualiza el
-          coste en cada una. Un coste unitario así puede subir sin que el servicio haya cambiado, y
-          su serie no se puede leer como gestión. Cada tarjeta dice desde cuándo y cuántos
-          municipios comparables hacen lo mismo.{' '}
+          {congelados.length === conRatio.length ? (
+            <>
+              Los <strong className="mono">{conRatio.length}</strong> cocientes de arriba tienen
+            </>
+          ) : (
+            <>
+              <strong className="mono">
+                {congelados.length} de {conRatio.length}
+              </strong>{' '}
+              de estos cocientes tienen
+            </>
+          )}{' '}
+          un denominador que el ayuntamiento no vuelve a medir: declara la misma cantidad
+          {desde ? ` desde ${desde}` : ''} entrega tras entrega, mientras actualiza el coste en cada
+          una. Un coste unitario así puede subir sin que el servicio haya cambiado, y su serie no se
+          puede leer como gestión. Cada tarjeta dice desde cuándo y cuántos municipios comparables
+          hacen lo mismo.{' '}
           <a
             href="/laboratorio/frontera"
             style={{ color: 'var(--civic)', textDecoration: 'underline' }}
