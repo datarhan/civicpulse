@@ -391,7 +391,7 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
     caveats: [
       '«Ejecutado» son obligaciones reconocidas netas, la medida estándar de ejecución presupuestaria; no son pagos hechos.',
       'El denominador es el crédito DEFINITIVO, que incluye las modificaciones incorporadas a lo largo del ejercicio —algunas a final de año, cuando ya no da tiempo a gastarlas—. Buena parte de un porcentaje bajo es crédito inflado, no sólo gasto que no se hizo: el capítulo de inversiones reales partió de cero crédito inicial, incorporó 22,06 M€ por modificación y ejecutó el 4,7 %.',
-      'Compararlo con la cifra de presupuesto que aparece en /presupuesto no funciona: aquella es el presupuesto aprobado según la publicación del ministerio y ésta es el crédito definitivo del propio listado municipal.',
+      'No cuadra con la cifra de /presupuesto: aquélla viene de la publicación del ministerio y da 41,58 M€ de gasto para 2025, y el propio listado municipal parte de un crédito inicial de 37,60 M€. Las dos dicen ser el mismo ejercicio y difieren en casi cuatro millones; no sabemos cuál de las dos lo explica, y decir que una es «lo aprobado» y la otra «lo definitivo» sería inventarse la reconciliación.',
     ],
     citas: [citaEje],
   })

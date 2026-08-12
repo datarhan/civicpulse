@@ -193,6 +193,36 @@ describe('scraper/indicadores', () => {
     expect(biblioteca.caveats.some((c) => /mediana de sus pares/.test(c))).toBe(false)
   })
 
+  it('marks an entrega as implausible against that year\u2019s peers, without deleting it', () => {
+    // El fixture es de 2021 y no trae serie multi-año, así que se comprueba la
+    // regla sobre datos sintéticos: la fuente publica cifras que no son costes
+    // —limpieza viaria a 67 millones de euros por m²— y borrarlas sería
+    // reescribir al ministerio. Se marcan.
+    const base = mias.filter((f) => f.programa === 'a163' && f.anio === 2021)
+    const disparatado = base.map((f) => ({ ...f, anio: 2022, costeTotal: 6.7e10 }))
+    const snap2 = construirIndicadores({
+      municipio: { ine: '46214', nombre: 'Riba-roja', filas: [...mias, ...disparatado] },
+      pares: {
+        conjunto: 'cv-15k-40k',
+        anios: [2021],
+        miembros,
+        filas: [
+          ...rows,
+          ...rows.filter((r) => r.ine !== '46214').map((r) => ({ ...r, anio: 2022 })),
+        ],
+      },
+      citaUrl: CITA,
+    })
+    const limpieza = snap2.indicadores.find((i) => i.servicio === 'a163')!
+    const punto = limpieza.serie.find((p) => p.anio === 2022)!
+    expect(punto.valor).not.toBeNull() // no se borra
+    expect(punto.atipico).toBe(true)
+    expect(punto.medianaPares).toBeGreaterThan(0)
+    expect(limpieza.caveats.some((c) => /inveros[ií]miles/.test(c))).toBe(true)
+    // …y una entrega normal no se marca, para que la marca signifique algo.
+    expect(limpieza.serie.find((p) => p.anio === 2021)?.atipico).toBeUndefined()
+  })
+
   it('states its own coverage as a partition that adds up', () => {
     // A coverage strip whose buckets overlap or leave a remainder reads as
     // completeness with extra confidence. These five must tile the registry.

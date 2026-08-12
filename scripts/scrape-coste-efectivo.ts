@@ -32,6 +32,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parseCeselWorkbook, parseCeselInforme, type CesteRow } from '../src/scraper/coste-efectivo'
 import { parseConprelRoster, type ConprelMunicipio } from '../src/scraper/budget'
+import { SERVICIOS } from '../src/scraper/indicador-registry'
 import { startRun, NO_LLM_STATS } from '../src/scraper/run-manifest'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -148,15 +149,26 @@ async function main() {
   miembros = await bandaDePares()
   console.log(`[cesel] banda ${CONJUNTO}: ${miembros.length} municipios`)
   const soloEntes = new Set(miembros.map((m) => m.ine))
+  const enRegistro = (programa: string) => programa in SERVICIOS
+  /**
+   * De un par sólo se usa la magnitud que el registro divide. Guardar las demás
+   * multiplicaba por tres el peso de un fichero que se sirve entero desde
+   * public/, sin que ninguna de ellas llegue nunca a leerse.
+   */
+  const podar = (r: CesteRow): CesteRow => ({
+    ...r,
+    unidades: r.unidades.filter((u) => u.atributo === SERVICIOS[r.programa]?.denominador),
+  })
 
   const buf = await volcado(refetch)
   const todas = parseCeselWorkbook(buf, { anio: ANIO_VOLCADO, soloEntes })
   filasMunicipio = todas.filter((r) => r.ine === INE)
-  filasPares = todas.filter((r) => r.ine !== INE)
+  filasPares = todas.filter((r) => r.ine !== INE && enRegistro(r.programa)).map(podar)
   if (!filasMunicipio.length) throw new Error(`[cesel] el volcado no trae filas de ${INE}`)
   rec.judge()
   rec.record('filas', todas.length)
   const aniosConDatos = new Set<number>([ANIO_VOLCADO])
+  const noPresentadas: number[] = []
 
   // Informes de la consulta descargados a mano (ver el encabezado). Dos
   // variantes, misma función de lectura:
@@ -180,11 +192,27 @@ async function main() {
       const filas = parseCeselInforme(await readFile(join(dir, f)), { anio, soloEntes })
       const propias = filas.filter((r) => r.ine === INE)
       if (!propias.length) {
-        console.warn(`[cesel] ${f}: sin filas de ${INE}, se ignora`)
+        // Tenemos el fichero y el municipio NO está en él: eso no es un hueco
+        // nuestro, es una entrega que el ayuntamiento no presentó. Colapsar los
+        // dos estados en «falta el dato» borraría un hecho sobre su rendición
+        // de cuentas — regla 3 de DATA_INTEGRITY, un centinela no es un valor.
+        const universo = new Set(filas.map((r) => r.ine)).size
+        if (universo > 50) {
+          noPresentadas.push(anio)
+          console.warn(
+            `[cesel] entrega ${anio}: el fichero trae ${universo} municipios y ${INE} NO está — ` +
+              `no presentó`,
+          )
+        } else {
+          console.warn(`[cesel] ${f}: fichero sospechoso (${universo} municipios), se ignora`)
+        }
         continue
       }
       filasMunicipio.push(...propias)
-      filasPares.push(...filas.filter((r) => r.ine !== INE))
+      // Sólo los servicios del registro: es lo único que el motor compara, y
+      // publicar el resto convertía el snapshot en un volcado de 15 MB bajo
+      // public/, que se sirve entero tanto si alguien lo pide como si no.
+      filasPares.push(...filas.filter((r) => r.ine !== INE && enRegistro(r.programa)).map(podar))
       aniosConDatos.add(anio)
       rec.judge()
       console.log(
@@ -204,8 +232,14 @@ async function main() {
   // que miente es peor que no tenerlo, porque check:runs se lo cree.
   for (const [id, anio] of Object.entries(ENTREGAS)) {
     rec.attempt()
-    if (!aniosConDatos.has(anio)) {
-      rec.skip('entrega-sin-volcado-publico')
+    if (aniosConDatos.has(anio)) continue
+    if (noPresentadas.includes(anio)) {
+      // Estado propio: el dato existe como obligación y el ayuntamiento no lo
+      // presentó. No es lo mismo que no haberlo podido descargar.
+      rec.skip('entrega-no-presentada-por-el-municipio')
+      console.warn(`[cesel] entrega ${id} (${anio}): el municipio no la presentó`)
+    } else {
+      rec.skip('entrega-sin-descargar')
       console.warn(`[cesel] entrega ${id} (${anio}): sin descargar — falta el fichero`)
     }
   }
@@ -226,6 +260,7 @@ async function main() {
     cobertura: {
       entregasPublicadas: Object.values(ENTREGAS).sort(),
       entregasObtenidas: [...new Set(filasMunicipio.map((f) => f.anio))].sort(),
+      entregasNoPresentadas: [...noPresentadas].sort(),
       motivoFaltantes:
         'El ministerio sólo publica volcado masivo de 2021. El resto de entregas ' +
         'sólo salen del informe por ente de la aplicación de consulta, cuyo botón ' +

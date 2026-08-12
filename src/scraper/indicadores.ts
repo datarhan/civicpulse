@@ -96,6 +96,15 @@ export interface PuntoSerie {
   anio: number
   valor: number | null
   estado: EstadoCelda
+  /**
+   * La entrega declara la cifra, pero está a órdenes de magnitud de lo que
+   * declararon sus pares ESE MISMO año. No se borra —es lo que publica el
+   * ministerio— pero se marca, porque una serie con un punto de 67 millones de
+   * euros por metro cuadrado no se lee: se descarta entera.
+   */
+  atipico?: boolean
+  /** Mediana de los pares de ese año, que es contra lo que se juzga. */
+  medianaPares?: number
 }
 
 export interface Indicador {
@@ -183,6 +192,23 @@ export const MIN_PARES = 15
  * de juicio que este proyecto deja automatizar sin curador.
  */
 export const DIVERGENCIA_EXTREMA = 2
+
+/**
+ * Cuántas veces la mediana de sus pares tiene que superar (o quedarse por
+ * debajo de) una entrega para considerarla un error de declaración.
+ *
+ * Veinte es deliberadamente generoso: no pretende cazar variación real —un
+ * servicio puede duplicarse de precio— sino los errores de orden de magnitud
+ * que la fuente trae de fábrica. Riba-roja declara limpieza viaria a 67.676.714
+ * €/m² en 2015 y biblioteca a 13.686.406 €/préstamo en 2014; con pares cuya
+ * mediana anda por 1 €/m², eso no es una gestión cara, es una casilla mal
+ * rellenada.
+ *
+ * El juicio se ancla en datos externos —los pares de ESE año— y no en la propia
+ * serie, que es lo que permite distinguir «este municipio se disparó» de «esta
+ * casilla está mal».
+ */
+export const ATIPICO_FACTOR = 20
 
 /** Modos en los que el coste declarado ES el coste que soporta el ayuntamiento. */
 const MODOS_COMPARABLES: ReadonlySet<ModoGestion> = new Set<ModoGestion>([
@@ -272,6 +298,25 @@ function percentil(ordenados: number[], q: number): number {
   return lo === hi ? ordenados[lo] : ordenados[lo] + (ordenados[hi] - ordenados[lo]) * (i - lo)
 }
 
+/** Mediana de los pares que declaran las dos celdas ese año, o null. */
+function medianaDePares(
+  pares: ConstruirInput['pares'],
+  programa: string,
+  anio: number,
+  atributo: string,
+): number | null {
+  const vals: number[] = []
+  for (const m of pares.miembros) {
+    const suyas = pares.filas.filter((f) => f.ine === m.ine)
+    const n = resolverCoste(suyas, programa, anio)
+    const d = resolverUnidad(suyas, programa, anio, atributo)
+    if (n.estado === 'declarado' && d.estado === 'declarado') vals.push(n.valor! / d.valor!)
+  }
+  if (vals.length < MIN_PARES) return null
+  vals.sort((a, b) => a - b)
+  return percentil(vals, 0.5)
+}
+
 export interface ConstruirInput {
   municipio: { ine: string; nombre: string; filas: CesteRow[] }
   pares: {
@@ -301,8 +346,13 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
     const numerador = resolverCoste(municipio.filas, programa, anioBase)
     const denominador = resolverUnidad(municipio.filas, programa, anioBase, def.denominador)
 
-    const modoGestion: ModoGestion = propias[0]?.modoGestion ?? 'sin-clasificar'
-    const codGestionRaw = propias[0]?.codGestionRaw ?? ''
+    // El modo de gestión es el de la entrega que TITULA, no el de la primera
+    // fila del array. Con una sola entrega daban lo mismo; con diez años, el
+    // array empieza en 2014 y la limpieza viaria estaba entonces concedida:
+    // la tarjeta de 2024 se declaraba concesión y perdía su cociente.
+    const propiaBase = propias.find((f) => f.anio === anioBase)
+    const modoGestion: ModoGestion = propiaBase?.modoGestion ?? 'sin-clasificar'
+    const codGestionRaw = propiaBase?.codGestionRaw ?? ''
 
     const valor =
       numerador.estado === 'declarado' && denominador.estado === 'declarado'
@@ -315,11 +365,21 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       const n = resolverCoste(municipio.filas, programa, anio)
       const d = resolverUnidad(municipio.filas, programa, anio, def.denominador)
       const ok = n.estado === 'declarado' && d.estado === 'declarado'
-      return {
+      const valor = ok ? n.valor! / d.valor! : null
+      const punto: PuntoSerie = {
         anio,
-        valor: ok ? n.valor! / d.valor! : null,
+        valor,
         estado: ok ? 'declarado' : n.estado === 'no-se-presta' ? 'no-se-presta' : 'no-declarado',
       }
+      if (valor !== null) {
+        const mediana = medianaDePares(pares, programa, anio, def.denominador)
+        if (mediana !== null && mediana > 0) {
+          punto.medianaPares = mediana
+          const razon = valor / mediana
+          if (razon > ATIPICO_FACTOR || razon < 1 / ATIPICO_FACTOR) punto.atipico = true
+        }
+      }
+      return punto
     })
 
     // Pares: mismo servicio, MISMO MODO DE GESTIÓN, y sólo los que resuelven
@@ -371,6 +431,15 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
             `es la comparación.`,
         )
       }
+    }
+
+    const atipicas = serie.filter((p) => p.atipico).map((p) => p.anio)
+    if (atipicas.length) {
+      caveats.push(
+        `El ministerio publica cifras inverosímiles para ${atipicas.join(', ')}: se apartan más de ` +
+          `${ATIPICO_FACTOR} veces de lo que declararon los municipios comparables ese mismo año. ` +
+          `Se muestran porque son las oficiales, pero no se pueden leer como coste.`,
+      )
     }
 
     indicadores.push({

@@ -82,10 +82,10 @@ export function ServicioCard({ indicador, formatea }) {
             {i.unidad.replace(/^€\//, '').replace(/^\//, '')} · entrega {cita?.entrega}
           </div>
 
-          {/* Con dos entregas no se dibuja una línea: dos puntos no son una
-              tendencia. Se enseñan los dos, cada uno con su año, y que el
-              lector saque la conclusión — que en alumbrado es que la entrega
-              de 2021 venía incompleta. */}
+          {/* La serie va como lista de años, no como gráfico: una entrega
+              inverosímil —limpieza viaria a 67 millones de euros por metro
+              cuadrado en 2015— aplastaría cualquier escala. Y no se esconde,
+              porque es la cifra oficial: se marca y la salvedad la explica. */}
           {declarados.length >= 2 && (
             <p
               className="mono"
@@ -93,8 +93,22 @@ export function ServicioCard({ indicador, formatea }) {
             >
               {declarados.map((p, idx) => (
                 <span key={p.anio}>
-                  {idx > 0 && ' → '}
-                  {p.anio}: {formatea(p.valor)}
+                  {idx > 0 && ' · '}
+                  <span
+                    style={
+                      p.atipico
+                        ? { color: 'var(--warn-ink)', textDecoration: 'underline dotted' }
+                        : undefined
+                    }
+                    title={
+                      p.atipico
+                        ? `Cifra inverosímil: los municipios comparables declararon una mediana de ${formatea(p.medianaPares)} ese año`
+                        : undefined
+                    }
+                  >
+                    {p.anio}: {formatea(p.valor)}
+                    {p.atipico ? ' ⚠' : ''}
+                  </span>
                 </span>
               ))}
             </p>
