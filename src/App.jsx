@@ -7,7 +7,7 @@ import { TweaksPanel, TweaksButton } from './components/TweaksPanel'
 import { SkipLink } from './components/SkipLink'
 import { useHashScroll } from './hooks/useHashScroll'
 import { useT } from './i18n'
-import { PERIODISTAS_ENABLED } from './flags'
+import { PERIODISTAS_ENABLED, EFICIENCIA_ENABLED } from './flags'
 
 // Route-level code-split. DirectionD is the landing page and carries
 // Leaflet + CartoDB tile deps — lazy-loading drops initial JS to
@@ -19,6 +19,7 @@ const QuejaDetail = lazy(() => import('./pages/QuejaDetail'))
 const Cargos = lazy(() => import('./pages/Cargos'))
 const CargoDetalle = lazy(() => import('./pages/CargoDetalle'))
 const Presupuesto = lazy(() => import('./pages/Presupuesto'))
+const Eficiencia = EFICIENCIA_ENABLED ? lazy(() => import('./pages/Eficiencia')) : null
 const Plenos = lazy(() => import('./pages/Plenos'))
 const PlenoDetalle = lazy(() => import('./pages/PlenoDetalle'))
 const Datos = lazy(() => import('./pages/Datos'))
@@ -122,6 +123,7 @@ function InnerShell({ onOpenCmdK }) {
               <Route path="/cargos" element={<Cargos />} />
               <Route path="/cargos/:slug" element={<CargoDetalle />} />
               <Route path="/presupuesto" element={<Presupuesto />} />
+              {Eficiencia && <Route path="/eficiencia" element={<Eficiencia />} />}
               <Route path="/plenos" element={<Plenos />} />
               <Route path="/plenos/:id" element={<PlenoDetalle />} />
               <Route path="/datos" element={<Datos />} />

@@ -167,6 +167,23 @@ export interface IndicadoresSnapshot {
  */
 export const MIN_PARES = 15
 
+/**
+ * Cuánto puede alejarse de la mediana antes de que la comparación diga más de
+ * cómo declara cada ayuntamiento que de lo que cuesta el servicio.
+ *
+ * Medido sobre la entrega 2021: cinco de diez indicadores comparables de
+ * Riba-roja caen fuera de este factor, en las dos direcciones. Eso no es que un
+ * municipio sea cuatro veces mejor barriendo: es que «superficie urbanizada» o
+ * «superficie con servicio de limpieza» las rellena cada casa a su manera
+ * —Riba-roja declara 58,01 km² urbanizados, prácticamente todo su término—.
+ *
+ * El cociente en sí está bien y lleva su celda detrás; lo que aquí se debilita
+ * es la LECTURA de la comparación. Por eso esto añade una salvedad y nunca
+ * retira el dato: sólo baja la fuerza de la afirmación, que es la única clase
+ * de juicio que este proyecto deja automatizar sin curador.
+ */
+export const DIVERGENCIA_EXTREMA = 2
+
 /** Modos en los que el coste declarado ES el coste que soporta el ayuntamiento. */
 const MODOS_COMPARABLES: ReadonlySet<ModoGestion> = new Set<ModoGestion>([
   'directa',
@@ -331,6 +348,23 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       }
     }
 
+    // Una divergencia enorme frente a la mediana casi nunca es una diferencia
+    // de gestión: es que cada ayuntamiento rellena la magnitud a su manera.
+    // Decirlo debilita la lectura, nunca la refuerza.
+    const caveats = [...def.caveats]
+    if (resumen && valor !== null && resumen.mediana > 0) {
+      const razon = valor / resumen.mediana
+      if (razon > DIVERGENCIA_EXTREMA || razon < 1 / DIVERGENCIA_EXTREMA) {
+        caveats.push(
+          `Esta cifra queda ${razon > 1 ? 'muy por encima' : 'muy por debajo'} de la mediana de sus pares ` +
+            `(×${razon.toFixed(1)}). Una diferencia así suele venir de que cada ayuntamiento declara ` +
+            `«${def.denominador}» a su manera, no de que el servicio se gestione mejor o peor. ` +
+            `El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas ` +
+            `es la comparación.`,
+        )
+      }
+    }
+
     indicadores.push({
       id: `${programa.replace(/[^a-z0-9]/gi, '-').toLowerCase()}-coste-unitario`,
       dimension: 'operativa',
@@ -346,7 +380,7 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       comparable: resumen !== null,
       pares: resumen,
       serie,
-      caveats: def.caveats,
+      caveats,
       citas: [{ url: citaUrl, entrega: anioBase }],
     })
   }

@@ -9,6 +9,7 @@ import {
   resolverUnidad,
   MIN_PARES,
   situacion,
+  DIVERGENCIA_EXTREMA,
 } from '../src/scraper/indicadores'
 
 const FIXTURE = join(__dirname, 'fixtures', 'cesel_2021_cv_slice.xlsx')
@@ -172,6 +173,24 @@ describe('scraper/indicadores', () => {
     // Assert the peer comparison actually ran for somebody. Without this the
     // whole block passes vacuously on a snapshot where nothing is comparable.
     expect(conPares).toBeGreaterThan(0)
+  })
+
+  it('warns when a peer comparison diverges enough to be a declaration artifact', () => {
+    // Alumbrado lands at about a quarter of the peer median. Read naively that
+    // says Riba-roja lights its streets four times more efficiently than 52
+    // comparable towns; far more likely is that «puntos de luz» and what gets
+    // booked against the programa are filled in differently town to town.
+    const alumbrado = byId('a165-coste-unitario')
+    expect(alumbrado.valor! / alumbrado.pares!.mediana).toBeLessThan(1 / DIVERGENCIA_EXTREMA)
+    expect(alumbrado.caveats.some((c) => /mediana de sus pares/.test(c))).toBe(true)
+
+    // …and a service sitting close to the median gets no such warning, so the
+    // caveat means something when it does appear.
+    const biblioteca = byId('a3321-330p-coste-unitario')
+    const razon = biblioteca.valor! / biblioteca.pares!.mediana
+    expect(razon).toBeGreaterThan(1 / DIVERGENCIA_EXTREMA)
+    expect(razon).toBeLessThan(DIVERGENCIA_EXTREMA)
+    expect(biblioteca.caveats.some((c) => /mediana de sus pares/.test(c))).toBe(false)
   })
 
   it('states its own coverage as a partition that adds up', () => {
