@@ -143,6 +143,32 @@ export function puentesHueco(puntos) {
 }
 
 /**
+ * La serie de la MEDIANA DE PARES, que no es la nuestra con otro valor.
+ *
+ * Se construía con `{...p, valor: p.medianaPares}`, y eso arrastraba dos cosas
+ * que no le pertenecen:
+ *
+ * 1. **`atipico`**, que es una propiedad de NUESTRA entrega. La mediana de los
+ *    comparables de 2018 es una cifra perfectamente buena; que la de Riba-roja
+ *    ese año sea 1,01 €/punto de luz no la estropea. La línea gris se cortaba
+ *    ahí sin motivo, en el único servicio donde más falta hace ver contra qué
+ *    se compara.
+ * 2. **el valor del servicio** cuando no había mediana: el punto entraba tal
+ *    cual, así que la línea de la mediana habría dibujado nuestra propia cifra
+ *    haciéndola pasar por la de los pares. Hoy todos los puntos publicados
+ *    traen mediana, así que no se ve; es una trampa esperando a la primera
+ *    entrega que no la traiga.
+ *
+ * Aquí sólo entran años con mediana declarada, y sin más equipaje.
+ */
+export function serieMediana(puntos) {
+  return puntos.map((p) => ({
+    anio: p.anio,
+    valor: typeof p.medianaPares === 'number' ? p.medianaPares : null,
+  }))
+}
+
+/**
  * Entregas limpias que quedan aisladas y a las que una línea no llega.
  *
  * Alumbrado publica 11,31 €/punto de luz en 2019, verificado contra sus pares y
@@ -205,9 +231,9 @@ export function SerieServicio({ puntos, formatea, unidad }) {
       .join(' ')
 
   const tramos = tramosSerie(puntos)
-  const tramosMediana = tramosSerie(
-    puntos.map((p) => (typeof p.medianaPares === 'number' ? { ...p, valor: p.medianaPares } : p)),
-  )
+  const mediana = serieMediana(puntos)
+  const tramosMediana = tramosSerie(mediana)
+  const puentesMediana = puentesHueco(mediana)
   const atipicos = puntos.filter((p) => p.atipico)
   const huecos = huecosSerie(puntos)
   const ultimo = limpios[limpios.length - 1]
@@ -289,12 +315,27 @@ export function SerieServicio({ puntos, formatea, unidad }) {
             (conMediana.length >= 2 ? ' Al fondo, la mediana de los municipios comparables.' : '')
           }
         >
+          {/* El puente de la mediana, con el mismo criterio que el de la
+              serie: más fino y punteado corto, para que se distinga del rayado
+              largo de los tramos que sí están medidos. */}
+          {puentesMediana.map((p) => (
+            <path
+              key={`pm-${p.desde.anio}`}
+              d={`M${px(p.desde.anio).toFixed(2)},${py(p.desde.valor).toFixed(2)} L${px(p.hasta.anio).toFixed(2)},${py(p.hasta.valor).toFixed(2)}`}
+              stroke="var(--ink40, rgba(127,127,127,.55))"
+              strokeWidth="0.75"
+              strokeDasharray="1 3"
+              strokeLinecap="round"
+              fill="none"
+              vectorEffect="non-scaling-stroke"
+            />
+          ))}
           {tramosMediana
             .filter((t) => t.length >= 2)
             .map((t) => (
               <path
                 key={`m${t[0].anio}`}
-                d={camino(t, (p) => p.medianaPares)}
+                d={camino(t, (p) => p.valor)}
                 stroke="var(--ink40, rgba(127,127,127,.55))"
                 strokeWidth="1"
                 strokeDasharray="3 3"

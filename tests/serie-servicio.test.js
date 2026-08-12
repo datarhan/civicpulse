@@ -8,6 +8,7 @@ import {
   anclasHueco,
   puntosSueltos,
   puentesHueco,
+  serieMediana,
 } from '../src/components/eficiencia/SerieServicio'
 
 const ROOT = join(__dirname, '..')
@@ -287,6 +288,61 @@ describe('el puente punteado sobre el año que falta', () => {
       expect(p.hasta.anio).toBe(2021)
       expect(p.desde.atipico).toBeFalsy()
       expect(p.hasta.atipico).toBeFalsy()
+    }
+  })
+})
+
+describe('la mediana de pares es su propia serie', () => {
+  const puntos = [
+    { anio: 2017, valor: 15.26, medianaPares: 130 },
+    { anio: 2018, valor: 1.01, atipico: true, medianaPares: 133 },
+    { anio: 2019, valor: 11.31, medianaPares: 135 },
+    { anio: 2021, valor: 21.76, medianaPares: 138 },
+  ]
+
+  it('no se corta porque NUESTRA entrega de ese año sea imposible', () => {
+    // `atipico` es una propiedad de la cifra de Riba-roja. La mediana de los
+    // comparables de 2018 es perfectamente buena: que la nuestra sea 1,01
+    // €/punto de luz no la estropea. La línea gris se cortaba ahí sin motivo,
+    // y justo en el servicio donde más falta hace ver contra qué se compara.
+    const tramos = tramosSerie(serieMediana(puntos))
+    // 2021 va aparte porque falta 2020 — ése es el corte legítimo. Lo que se
+    // comprueba aquí es que 2018 NO parte nada: 2017-2018-2019 van seguidos.
+    expect(tramos.map((t) => t.map((p) => p.anio))).toEqual([[2017, 2018, 2019], [2021]])
+    // Y sobre la serie del SERVICIO el corte de 2018 sigue existiendo, que es
+    // lo correcto ahí: sin este control, borrar `atipico` de `tramosSerie`
+    // pasaría esta prueba y dibujaría la cifra imposible como si fuera buena.
+    expect(tramosSerie(puntos).map((t) => t.map((p) => p.anio))).toEqual([[2017], [2019], [2021]])
+  })
+
+  it('no hace pasar nuestra cifra por la de los pares', () => {
+    // Con `{...p, valor: p.medianaPares}`, un punto SIN mediana entraba tal
+    // cual y la línea de la mediana dibujaba nuestro propio valor. Hoy no se
+    // ve porque todos los puntos publicados traen mediana; es una trampa
+    // esperando a la primera entrega que no la traiga.
+    const sinMediana = [{ anio: 2014, valor: 9.1 }, ...puntos]
+    const m = serieMediana(sinMediana)
+    expect(m[0]).toEqual({ anio: 2014, valor: null })
+    expect(m.every((p) => p.valor === null || p.valor >= 130)).toBe(true)
+  })
+
+  it('cruza el año sin entrega igual que la serie', () => {
+    const [p] = puentesHueco(serieMediana(puntos))
+    expect(p.desde.anio).toBe(2019)
+    expect(p.hasta.anio).toBe(2021)
+    expect(p.desde.valor).toBe(135)
+  })
+
+  it('sobre el panel publicado: una sola línea de mediana, con su puente', () => {
+    const conSerie = indicadores.filter((i) => i.valor !== null && declarados(i).length >= 2)
+    expect(conSerie.length).toBeGreaterThan(0)
+    for (const i of conSerie) {
+      const m = serieMediana(declarados(i))
+      // Dos tramos y un puente: el único corte es 2020. Antes alumbrado tenía
+      // tres, porque su 2018 atípico partía también la línea de los pares.
+      const tramos = tramosSerie(m).filter((t) => t.length >= 2)
+      expect(tramos.length, `${i.servicio}: la mediana se parte de más`).toBeLessThanOrEqual(2)
+      expect(puentesHueco(m).length, `${i.servicio}: la mediana no cruza su hueco`).toBe(1)
     }
   })
 })
