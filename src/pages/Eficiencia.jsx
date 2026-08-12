@@ -1,5 +1,6 @@
 import { Card } from '../components/Primitives'
 import { CoberturaEficiencia } from '../components/eficiencia/CoberturaEficiencia'
+import { ResumenPosiciones } from '../components/eficiencia/ResumenPosiciones'
 import { ServicioCard } from '../components/eficiencia/ServicioCard'
 import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
 import { HallazgosEficiencia } from '../components/eficiencia/HallazgosEficiencia'
@@ -70,6 +71,12 @@ export default function Eficiencia() {
           indicadores={indicadores}
         />
       )}
+
+      {/* El resumen va DESPUÉS de la cobertura y antes de las fichas: primero
+          qué cubre esta página, luego dónde queda cada cosa, luego el detalle.
+          Al revés, diez puntos aparecerían antes de decir que hay tres
+          servicios sobre los que esta página no puede dividir nada. */}
+      <ResumenPosiciones indicadores={indicadores} />
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 18 }}>
         {conRatio.map((i) => (

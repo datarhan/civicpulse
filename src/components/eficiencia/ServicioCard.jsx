@@ -60,7 +60,9 @@ export function ServicioCard({ indicador, formatea }) {
   const plegable = salvedades.length + (declarados.length >= 2 ? 1 : 0)
 
   return (
-    <Card>
+    // El id es el destino de los enlaces del resumen de arriba; el margen de
+    // scroll deja la cabecera de la tarjeta por debajo de la barra fija.
+    <Card id={`s-${i.id}`} style={{ scrollMarginTop: 76 }}>
       <div
         style={{
           display: 'flex',

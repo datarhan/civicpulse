@@ -103,6 +103,47 @@ test.describe('Eficiencia (/eficiencia)', () => {
     }
   })
 
+  test('sitúa los servicios juntos antes de pedir que se lean uno a uno', async ({ page }) => {
+    // La página tenía todos los percentiles calculados y no los enseñaba
+    // juntos en ningún sitio: había que recorrer trece pantallas para saber
+    // cuáles son los dos caros. El resumen no añade ninguna afirmación —cada
+    // punto es el percentil que su propia ficha ya publica— así que lo que hay
+    // que vigilar es que no se desincronice de las fichas.
+    const situados = SNAP.indicadores.filter((i: Indicador) => i.valor !== null && i.pares)
+    expect(situados.length, 'ningún servicio situado en el snapshot').toBeGreaterThan(0)
+
+    await expect(page.getByText(/Dónde queda cada servicio/i)).toBeVisible({ timeout: 8000 })
+
+    // Un enlace por servicio situado, ni uno más.
+    const enlaces = page.locator('a[href^="#s-"]')
+    await expect(enlaces).toHaveCount(situados.length)
+
+    // Y cada enlace tiene destino: un ancla rota no da error, sencillamente no
+    // hace nada, y nadie se entera.
+    for (const i of situados) {
+      await expect(
+        page.locator(`#s-${i.id}`),
+        `el resumen enlaza a #s-${i.id} y esa ficha no existe`,
+      ).toHaveCount(1)
+    }
+
+    // El total es el de los servicios CON cociente, no el del panel entero: es
+    // la diferencia entre una suma correcta y una que se cuela tres servicios
+    // sin coste utilizable.
+    const conRatio = SNAP.indicadores.filter((i: Indicador) => i.valor !== null)
+    const total = conRatio.reduce((s: number, i: Indicador) => s + (i.numerador.valor ?? 0), 0)
+    await expect(
+      page.getByText(
+        total.toLocaleString('es-ES', {
+          style: 'currency',
+          currency: 'EUR',
+          maximumFractionDigits: 0,
+        }),
+        { exact: false },
+      ),
+    ).toBeVisible()
+  })
+
   test('a concession shows no ratio and no peer position', async ({ page }) => {
     // THE trap this page was designed around: the council books €0 for water
     // because the concessionaire bears it, so a naive divide would publish
