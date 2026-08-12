@@ -27,6 +27,7 @@ export default function Eficiencia() {
   const { loading, error, data } = useIndicadores()
   const { data: hallazgos } = useEficienciaFindings()
   const indicadores = data?.indicadores ?? []
+  const firmados = hallazgos?.items?.length ?? 0
 
   const conRatio = indicadores
     .filter((i) => i.valor !== null)
@@ -55,6 +56,23 @@ export default function Eficiencia() {
         {t('eficiencia.title')}
       </h1>
       <p style={{ color: 'var(--ink60)', maxWidth: '64ch' }}>{t('eficiencia.intro')}</p>
+
+      {/* Índice, no conclusión.
+          Las fichas firmadas siguen AL FINAL y por el motivo de siempre: una
+          ficha es una lectura del panel, y el panel se lee primero. Pero
+          «después» y «sólo si llegas» no son lo mismo, y quien entra desde un
+          enlace no llegaba nunca. Esto dice cuántas hay y dónde están, sin
+          decir qué concluyen. */}
+      {firmados > 0 && (
+        <p style={{ margin: '6px 0 0', fontSize: 12.5 }}>
+          <a href="#hallazgos" style={{ color: 'var(--civic)' }}>
+            {firmados === 1
+              ? '1 hallazgo firmado sobre estas cifras'
+              : `${firmados} hallazgos firmados sobre estas cifras`}{' '}
+            ↓
+          </a>
+        </p>
+      )}
 
       {loading && <p style={{ color: 'var(--ink60)' }}>Cargando…</p>}
       {error && <p style={{ color: 'var(--ink60)' }}>No se pudo cargar el panel.</p>}

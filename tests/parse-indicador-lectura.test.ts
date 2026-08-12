@@ -6,6 +6,7 @@ import {
   leerIndicadorMunicipal,
   lecturaVisible,
   chipDeclaracion,
+  GLOSA_TIER,
 } from '../src/scraper/indicador-lectura'
 import type { Indicador } from '../src/scraper/indicadores'
 import type { IndicadorMunicipal } from '../src/scraper/indicadores-friccion'
@@ -193,6 +194,34 @@ describe('la lectura no repite lo que la tarjeta ya enseña', () => {
     const sinBanda = { ...base, pares: undefined, modoGestion: 'directa' as const }
     const v = lecturaVisible(leerIndicador(sinBanda), { cifra: true, banda: false })
     expect(v.donde).toMatch(/No hay comparación/)
+  })
+})
+
+describe('la leyenda de escalones', () => {
+  it('glosa cada escalón que el panel publica de verdad', () => {
+    // `entrada` / `carga de trabajo` / `producto` llegaban al lector como una
+    // chapa suelta junto a «gestión directa», sin nada que dijera qué son.
+    const enUso = new Set(indicadores.filter((i) => i.valor !== null).map((i) => i.tier))
+    expect(enUso.size, 'ningún escalón en uso en el panel publicado').toBeGreaterThan(0)
+    for (const tier of enUso) {
+      expect(GLOSA_TIER[tier], `el escalón ${tier} no tiene glosa`).toBeTruthy()
+      // Si la glosa crece hasta la frase larga de COMO_SE_LEE, la leyenda deja
+      // de ser una leyenda y vuelve el problema que esto vino a resolver.
+      expect(GLOSA_TIER[tier].length, `la glosa de ${tier} ya no es una glosa`).toBeLessThan(60)
+    }
+  })
+
+  it('no dice lo mismo que la frase larga de la ficha', () => {
+    // Dos redacciones de lo mismo en la misma página es la repetición que se
+    // acaba de quitar; la glosa tiene que ser un resumen, no una copia.
+    for (const tier of Object.keys(GLOSA_TIER) as (keyof typeof GLOSA_TIER)[]) {
+      const largo = leerIndicador({
+        ...indicadores.find((i) => i.valor !== null)!,
+        tier,
+      }).como
+      expect(largo).not.toBe(GLOSA_TIER[tier])
+      expect(largo.length).toBeGreaterThan(GLOSA_TIER[tier].length)
+    }
   })
 })
 

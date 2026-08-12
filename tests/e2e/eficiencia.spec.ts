@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { readFileSync } from 'node:fs'
-import { chipDeclaracion } from '../../src/scraper/indicador-lectura'
+import { chipDeclaracion, GLOSA_TIER } from '../../src/scraper/indicador-lectura'
 import type { Indicador } from '../../src/scraper/indicadores'
 
 // Read the committed snapshot rather than hard-coding figures: a spec that
@@ -197,6 +197,52 @@ test.describe('Eficiencia (/eficiencia)', () => {
     // single-bidder rates, so a percentile would be unsupported.
     const comparables = SNAP.indicadores.filter((i: { pares: unknown }) => i.pares).length
     await expect(page.getByText(/Ver los municipios comparados/i)).toHaveCount(comparables)
+  })
+
+  test('la cabecera indexa los hallazgos sin adelantar lo que dicen', async ({ page }) => {
+    const FICHAS = JSON.parse(readFileSync('public/data/eficiencia-findings.json', 'utf8'))
+    if (FICHAS.items.length === 0) {
+      // Sin fichas no hay índice: un enlace a una sección vacía es peor que
+      // ningún enlace.
+      await expect(page.locator('a[href="#hallazgos"]')).toHaveCount(0)
+      return
+    }
+    const enlace = page.locator('a[href="#hallazgos"]').first()
+    await expect(enlace).toBeVisible({ timeout: 8000 })
+    await expect(enlace).toContainText(String(FICHAS.items.length))
+
+    // Índice, no conclusión: las fichas siguen al final porque son una lectura
+    // del panel y el panel se lee primero. El índice dice cuántas hay y dónde,
+    // nunca qué concluyen.
+    const texto = (await enlace.textContent()) ?? ''
+    for (const f of FICHAS.items) {
+      expect(texto, 'el índice de cabecera está adelantando el titular de una ficha').not.toContain(
+        f.titulo.slice(0, 25),
+      )
+    }
+  })
+
+  test('explica qué son los escalones antes de usarlos como chapa', async ({ page }) => {
+    const enUso = [
+      ...new Set(
+        SNAP.indicadores.filter((i: Indicador) => i.valor !== null).map((i: Indicador) => i.tier),
+      ),
+    ] as (keyof typeof GLOSA_TIER)[]
+    expect(enUso.length).toBeGreaterThan(0)
+    for (const tier of enUso) {
+      await expect(
+        page.getByText(GLOSA_TIER[tier], { exact: false }).first(),
+        `el escalón ${tier} se usa como chapa y no se explica en ningún sitio`,
+      ).toBeVisible({ timeout: 8000 })
+    }
+    // Y no se anuncia un escalón que ninguna ficha usa: la fuente no publica
+    // ningún indicador de resultado, y listarlo sugeriría que sí.
+    const ausentes = (Object.keys(GLOSA_TIER) as (keyof typeof GLOSA_TIER)[]).filter(
+      (t) => !enUso.includes(t),
+    )
+    for (const tier of ausentes) {
+      await expect(page.getByText(GLOSA_TIER[tier], { exact: false })).toHaveCount(0)
+    }
   })
 
   test('the signed-findings section says what its emptiness means', async ({ page }) => {

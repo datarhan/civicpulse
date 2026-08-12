@@ -1,5 +1,6 @@
 import { Card } from '../Primitives'
 import { useT } from '../../i18n'
+import { LeyendaEscalones } from './Escalones'
 
 /**
  * Qué parte de su propio dominio enseña esta página.
@@ -74,6 +75,7 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
         <span className="mono">{universe.comparables}</span> tienen suficientes municipios
         comparables para situarlos.
       </p>
+      <LeyendaEscalones indicadores={indicadores} />
       {congelados.length > 0 && (
         <p
           style={{

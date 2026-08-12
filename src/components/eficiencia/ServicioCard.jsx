@@ -2,6 +2,7 @@ import { Card, Pill } from '../Primitives'
 import { useT } from '../../i18n'
 import { BandaPares } from './BandaPares'
 import { SerieServicio } from './SerieServicio'
+import { TIER_TONE } from './Escalones'
 import { leerIndicador, lecturaVisible, chipDeclaracion } from '../../scraper/indicador-lectura'
 import { Lectura } from './Lectura'
 
@@ -35,8 +36,6 @@ const MOTIVO = {
     'La misma magnitud está declarada dos veces con valores distintos en la misma entrega.',
   ausente: 'La entrega no trae esta magnitud.',
 }
-
-const TIER_TONE = { input: 'ghost', carga: 'neutral', output: 'ok', outcome: 'intel' }
 
 export function ServicioCard({ indicador, formatea }) {
   const t = useT()

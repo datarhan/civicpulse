@@ -129,6 +129,26 @@ const COMO_SE_LEE: Record<Tier, string> = {
   outcome: 'Mide el efecto sobre el municipio, no sólo lo que se produjo.',
 }
 
+/**
+ * El escalón en cinco palabras, para quien todavía no ha leído una ficha.
+ *
+ * `entrada` / `carga de trabajo` / `producto` son la distinción de Hatry, o sea
+ * la columna vertebral de esta página, y llegaban al lector como una chapa
+ * suelta al lado de «gestión directa»: se leían como una etiqueta arbitraria.
+ * La frase larga está en `COMO_SE_LEE` y sale en cada tarjeta; esto es lo mismo
+ * comprimido para la leyenda de arriba, donde todavía no hay ninguna tarjeta.
+ *
+ * `Record<Tier, string>` a propósito: si el enum gana un escalón, esto no
+ * compila. Una leyenda que se queda sin una de sus entradas es peor que no
+ * tenerla, porque las otras tres siguen aparentando que la lista está completa.
+ */
+export const GLOSA_TIER: Record<Tier, string> = {
+  input: 'divide un gasto entre otro gasto',
+  carga: 'el divisor es la demanda que atiende',
+  output: 'lo que el servicio entrega por euro',
+  outcome: 'el efecto sobre el municipio',
+}
+
 const fmt = (v: number, unidad: string) =>
   `${v.toLocaleString('es-ES', {
     minimumFractionDigits: v >= 1000 ? 0 : 2,
