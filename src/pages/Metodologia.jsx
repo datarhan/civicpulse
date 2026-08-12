@@ -1429,6 +1429,24 @@ export default function Metodologia() {
           unidad de servicio.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Qué entregas hay, y por qué no están todas.</strong> El ministerio publica once
+          ejercicios (2014–2024) pero sólo vuelca uno entero en abierto. Los demás salen de su
+          aplicación de consulta, en un fichero por comunidad autónoma que hay que pedir desde un
+          navegador. Cada tarjeta titula con la entrega <strong>más reciente</strong> de la que hay
+          datos y se compara con los municipios de <strong>esa misma entrega</strong>: enfrentar la
+          cifra de un año con los pares de otro sería un error de categoría. La franja de cobertura
+          dice qué ejercicios se han conseguido, y la tarjeta enseña los que tiene con su año
+          delante — dos puntos no se dibujan como una línea, porque dos puntos no son una tendencia.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          Comparar entregas entre sí sirve además para detectar cuándo una viene mal. El alumbrado
+          público pasa de 21,76 a 147,25 € por punto de luz entre 2021 y 2024, y no es que se haya
+          encarecido siete veces: la entrega de 2021 declaraba 98 mil euros para 4.514 puntos de luz
+          frente a 664 mil en 2024. La salvedad automática que avisa cuando una cifra se aleja más
+          del doble de la mediana de sus pares ya señalaba esa tarjeta antes de que hubiera una
+          segunda entrega con la que contrastarla.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>El plazo de pago es la única cifra del panel con umbral legal.</strong> El periodo
           medio de pago a proveedores lo calcula el Ministerio de Hacienda con la metodología del RD
           1040/2017 para miles de ayuntamientos a la vez, y la Ley 3/2004 fija los 30 días como
@@ -1459,11 +1477,9 @@ export default function Metodologia() {
           todos entienden lo mismo por «superficie urbanizada» o «superficie con servicio de
           limpieza»: Riba-roja declara 58,01 km² urbanizados, prácticamente todo su término. Cuando
           una cifra se aleja más del doble de la mediana de sus pares, la tarjeta lo advierte,
-          porque una diferencia así suele venir de cómo se declara y no de cómo se gestiona. El
-          ministerio además sólo publica un volcado masivo de una entrega, así que hoy no hay serie
-          temporal y la página lo dice en su franja de cobertura. Toda cifra publicada lleva la
-          celda exacta de la que sale, y <code>check:indicadores</code> comprueba que resuelve antes
-          de cada despliegue.
+          porque una diferencia así suele venir de cómo se declara y no de cómo se gestiona. Toda
+          cifra publicada lleva la celda exacta de la que sale, y <code>check:indicadores</code>{' '}
+          comprueba que resuelve antes de cada despliegue.
         </p>
       </Card>
 

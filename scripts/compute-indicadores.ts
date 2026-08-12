@@ -24,7 +24,7 @@ const leer = async (rel: string) => JSON.parse(await readFile(join(ROOT, rel), '
 
 async function main() {
   const fuente = JSON.parse(await readFile(IN, 'utf8'))
-  const anioBase = fuente.pares.anio as number
+  // La entrega que titula la sale del motor: la más reciente con datos.
 
   const rec = startRun('compute-indicadores', {
     mode: 'compose',
@@ -34,9 +34,9 @@ async function main() {
   const snap = construirIndicadores({
     municipio: fuente.municipio,
     pares: fuente.pares,
-    anioBase,
     citaUrl: fuente.source.volcado,
   })
+  const anioBase = snap.indicadores[0]?.citas[0]?.entrega ?? 0
 
   // Attempted = every service in the registry. Judged = the ones that produced
   // a ratio. Everything else is skipped WITH ITS REASON, so a page that shows

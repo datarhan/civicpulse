@@ -25,7 +25,7 @@ const miembros = [...new Set(rows.map((r) => r.ine))].map((ine) => ({
 
 const snap = construirIndicadores({
   municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: mias },
-  pares: { conjunto: 'cv-15k-40k', anio: 2021, miembros, filas: rows },
+  pares: { conjunto: 'cv-15k-40k', anios: [2021], miembros, filas: rows },
   anioBase: 2021,
   citaUrl: CITA,
 })

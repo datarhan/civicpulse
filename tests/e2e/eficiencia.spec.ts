@@ -10,7 +10,17 @@ const CON_RATIO = SNAP.indicadores.filter((i: { valor: number | null }) => i.val
 const CONCESION = SNAP.indicadores.filter(
   (i: { numerador: { motivo?: string } }) => i.numerador.motivo === 'concesion',
 )
-const COMPARABLE = SNAP.indicadores.find((i: { pares: unknown }) => i.pares)
+// La página ordena las tarjetas por coste descendente, así que «la primera
+// tarjeta con pares» NO es la primera del array. Buscarla por orden de array
+// pasaba por casualidad mientras las dos coincidían, y dejó de pasar en cuanto
+// entró la entrega de 2024. Se replica el orden de la página.
+const COMPARABLE = [...SNAP.indicadores]
+  .filter((i: { valor: number | null }) => i.valor !== null)
+  .sort(
+    (a: { numerador: { valor: number } }, b: { numerador: { valor: number } }) =>
+      (b.numerador.valor ?? 0) - (a.numerador.valor ?? 0),
+  )
+  .find((i: { pares: unknown }) => i.pares)
 
 // The route is behind EFICIENCIA_ENABLED, and the e2e server serves a
 // production build — so this needs `VITE_ENABLE_EFICIENCIA=true npm run build`.

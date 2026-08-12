@@ -586,7 +586,7 @@ const CATALOGUE = {
     'eficiencia.pares.valor': 'Cost unitari',
     'eficiencia.bloqueados.titulo': 'Serveis sense cost unitari, i per què',
     'eficiencia.serie.ausente':
-      'Sense sèrie: el ministeri només publica una entrega de manera massiva.',
+      'Una sola entrega amb dades per a aquest servei: sense segon punt no hi ha evolució a mostrar.',
     'eficiencia.tier.input': 'entrada',
     'eficiencia.tier.carga': 'càrrega de treball',
     'eficiencia.tier.output': 'producte',

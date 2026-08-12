@@ -276,17 +276,23 @@ export interface ConstruirInput {
   municipio: { ine: string; nombre: string; filas: CesteRow[] }
   pares: {
     conjunto: string
-    anio: number
+    /** Años para los que hay filas de pares. */
+    anios?: number[]
     miembros: { ine: string; nombre: string; poblacion: number }[]
     filas: CesteRow[]
   }
-  anioBase: number
+  /** Entrega que titula la tarjeta. Por omisión, la más reciente con datos. */
+  anioBase?: number
   citaUrl: string
 }
 
 export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot {
-  const { municipio, pares, anioBase, citaUrl } = input
+  const { municipio, pares, citaUrl } = input
   const aniosDisponibles = [...new Set(municipio.filas.map((f) => f.anio))].sort((a, b) => a - b)
+  // La tarjeta titula con la entrega MÁS RECIENTE que haya. Titular con la más
+  // antigua porque es la que tiene pares publicaría a sabiendas una cifra vieja
+  // —y en alumbrado, una que la propia fuente corrigió después—.
+  const anioBase = input.anioBase ?? aniosDisponibles[aniosDisponibles.length - 1] ?? 0
 
   const indicadores: Indicador[] = []
 
@@ -322,14 +328,16 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
     let resumen: ParesResumen | null = null
     const puedeCompararse = valor !== null && MODOS_COMPARABLES.has(modoGestion)
     if (puedeCompararse) {
+      // Comparar 2024 contra pares de 2021 sería un error de categoría; si no
+      // hay pares de la entrega que titula, no hay banda y punto.
       const miembros: ParMiembro[] = []
       for (const m of pares.miembros) {
         if (m.ine === municipio.ine) continue
         const suyas = pares.filas.filter((f) => f.ine === m.ine)
-        const fila = suyas.find((f) => f.programa === programa)
+        const fila = suyas.find((f) => f.programa === programa && f.anio === anioBase)
         if (!fila || fila.modoGestion !== modoGestion) continue
-        const n = resolverCoste(suyas, programa, pares.anio)
-        const d = resolverUnidad(suyas, programa, pares.anio, def.denominador)
+        const n = resolverCoste(suyas, programa, anioBase)
+        const d = resolverUnidad(suyas, programa, anioBase, def.denominador)
         if (n.estado !== 'declarado' || d.estado !== 'declarado') continue
         miembros.push({ ...m, valor: n.valor! / d.valor! })
       }

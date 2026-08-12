@@ -149,18 +149,6 @@ async function main() {
   console.log(`[cesel] banda ${CONJUNTO}: ${miembros.length} municipios`)
   const soloEntes = new Set(miembros.map((m) => m.ine))
 
-  // Every entrega is attempted in the sense that we know it exists and want it.
-  for (const [id, anio] of Object.entries(ENTREGAS)) {
-    rec.attempt()
-    if (anio !== ANIO_VOLCADO) {
-      // NOT «unchanged» and NOT «empty» — never obtained. The consulta's result
-      // page has no cost data and its download button cannot be reconstructed
-      // as a POST; see the header. Recorded so check:runs can see the hole.
-      rec.skip('entrega-sin-volcado-publico')
-      console.warn(`[cesel] entrega ${id} (${anio}): sin ruta de descarga — no obtenida`)
-    }
-  }
-
   const buf = await volcado(refetch)
   const todas = parseCeselWorkbook(buf, { anio: ANIO_VOLCADO, soloEntes })
   filasMunicipio = todas.filter((r) => r.ine === INE)
@@ -168,36 +156,59 @@ async function main() {
   if (!filasMunicipio.length) throw new Error(`[cesel] el volcado no trae filas de ${INE}`)
   rec.judge()
   rec.record('filas', todas.length)
+  const aniosConDatos = new Set<number>([ANIO_VOLCADO])
 
-  // Informes por ente descargados a mano de la consulta (ver el encabezado):
-  // son la única vía a las entregas que el ministerio no vuelca en masa.
-  // Nombre: cesel-informe-<ine>-<anio>.xlsx
-  const informesDir = join(CACHE_DIR, 'informes')
-  let ficheros: string[] = []
-  try {
-    ficheros = (await readdir(informesDir)).filter((f) => f.endsWith('.xlsx'))
-  } catch {
-    /* sin informes descargados todavía */
-  }
-  for (const f of ficheros) {
-    const m = /cesel-informe-(\d{5})-(\d{4})\.xlsx$/.exec(f)
-    if (!m || m[1] !== INE) continue
-    const anio = Number(m[2])
-    if (anio === ANIO_VOLCADO) continue // el volcado manda para su propia entrega
-    const filas = parseCeselInforme(await readFile(join(informesDir, f)), {
-      anio,
-      ine: INE,
-      nombre: filasMunicipio[0].nombre,
-    })
-    if (!filas.length) {
-      console.warn(`[cesel] ${f}: 0 filas, se ignora`)
-      continue
+  // Informes de la consulta descargados a mano (ver el encabezado). Dos
+  // variantes, misma función de lectura:
+  //   ccaa/cesel-ccaa<CCAA>-<anio>.xlsx  → toda la comunidad: municipio Y PARES
+  //   informes/cesel-informe-<ine>-<anio>.xlsx → sólo el municipio
+  // La de comunidad es la única que da pares de otros años; sin ella la
+  // comparación quedaría anclada a 2021 para siempre.
+  const leerInformes = async (sub: string, re: RegExp) => {
+    const dir = join(CACHE_DIR, sub)
+    let ficheros: string[] = []
+    try {
+      ficheros = (await readdir(dir)).filter((f) => f.endsWith('.xlsx'))
+    } catch {
+      return
     }
-    filasMunicipio.push(...filas)
-    rec.judge()
-    console.log(`[cesel] entrega ${anio}: ${filas.length} filas desde informe por ente`)
+    for (const f of ficheros.sort()) {
+      const m = re.exec(f)
+      if (!m) continue
+      const anio = Number(m[m.length - 1])
+      if (aniosConDatos.has(anio)) continue
+      const filas = parseCeselInforme(await readFile(join(dir, f)), { anio, soloEntes })
+      const propias = filas.filter((r) => r.ine === INE)
+      if (!propias.length) {
+        console.warn(`[cesel] ${f}: sin filas de ${INE}, se ignora`)
+        continue
+      }
+      filasMunicipio.push(...propias)
+      filasPares.push(...filas.filter((r) => r.ine !== INE))
+      aniosConDatos.add(anio)
+      rec.judge()
+      console.log(
+        `[cesel] entrega ${anio}: ${propias.length} filas propias · ` +
+          `${new Set(filas.map((r) => r.ine)).size} municipios`,
+      )
+    }
   }
+  await leerInformes('ccaa', /cesel-ccaa\d+-(\d{4})\.xlsx$/)
+  await leerInformes('informes', new RegExp(`cesel-informe-${INE}-(\\d{4})\\.xlsx$`))
+
   filasMunicipio.sort((a, b) => a.anio - b.anio || a.programa.localeCompare(b.programa))
+
+  // La contabilidad va AQUÍ, cuando ya se sabe qué entregas se consiguieron.
+  // Hacerlo antes de leer los informes hacía que el manifiesto declarase «no
+  // obtenida» una entrega que a la línea siguiente se obtenía: un manifiesto
+  // que miente es peor que no tenerlo, porque check:runs se lo cree.
+  for (const [id, anio] of Object.entries(ENTREGAS)) {
+    rec.attempt()
+    if (!aniosConDatos.has(anio)) {
+      rec.skip('entrega-sin-volcado-publico')
+      console.warn(`[cesel] entrega ${id} (${anio}): sin descargar — falta el fichero`)
+    }
+  }
 
   const nombre = filasMunicipio[0].nombre
   const snapshot = {
@@ -208,7 +219,7 @@ async function main() {
       conjunto: CONJUNTO,
       criterios: { ccaa: CCAA_ID, popMin: POP_MIN, popMax: POP_MAX, tipoEnte: 'AA' },
       resolvedAt: new Date().toISOString(),
-      anio: ANIO_VOLCADO,
+      anios: [...aniosConDatos].sort(),
       miembros,
       filas: filasPares,
     },

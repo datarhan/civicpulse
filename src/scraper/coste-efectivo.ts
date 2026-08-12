@@ -193,115 +193,128 @@ export function parseCeselWorkbook(
 }
 
 /**
- * Parse a per-entity CESEL report — the file the consulta hands over when you
- * pick one ente and one entrega and press the Excel button.
+ * Parse a CESEL *report* — the shape the consulta hands over, as opposed to the
+ * flat national dump.
  *
- * Tercera forma de entrada, y la única vía a las entregas que el ministerio no
- * vuelca en masa (sólo publica 2021 entero). No es la tabla plana nacional sino
- * un informe con ocho hojas, tres de las cuales importan, duplicadas por
- * sufijo:
+ * Cubre las dos variantes del informe, que difieren en cómo reparten las hojas:
  *
- *   CE1a/CE1b → programa → tipo de gestión
- *   CE2a/CE2b → programa → coste, con el total en la columna `coste_efectivo`
- *   CE3a/CE3b → programa → unidad física + nº de unidades
+ *   por ENTE      CE1a (gestión) + CE2a (coste) + CE3a (unidades), cabecera que
+ *                 empieza por `IdInforme`, un solo ente y sus dependientes.
+ *   por COMUNIDAD «CE1a y CE2a» (gestión y coste juntos) + CE3a, cabecera que
+ *                 empieza por `Provincia`, todos los entes de la comunidad.
+ *
+ * Las dos son la única vía a las entregas que el ministerio no vuelca en masa
+ * —sólo publica 2021 entero— y la de comunidad es además la única que da PARES
+ * de otros años, sin los cuales una comparación quedaría anclada a 2021 para
+ * siempre.
  *
  * El sufijo de la hoja ES el prefijo del programa: `165` en CE2a es el mismo
- * servicio que `a165` en el volcado nacional, y `151/150P` en CE2b es
- * `b151/150P`. Sin esa traducción el registro de denominadores no casaría con
- * nada y los servicios desaparecerían de la página en silencio.
+ * servicio que `a165` en el volcado nacional. Sin esa traducción el registro de
+ * denominadores no casaría con nada y los servicios desaparecerían en silencio.
  *
- * Las columnas se localizan por el TEXTO de su cabecera, no por índice: las
- * hojas `a` y `b` tienen distinto número de columnas de coste.
+ * Ni las columnas ni la fila de cabecera se localizan por índice: las hojas `a`
+ * y `b` no tienen el mismo número de columnas de coste y las dos variantes
+ * empiezan la tabla a distinta altura.
  */
 export function parseCeselInforme(
   buffer: Buffer | ArrayBuffer,
-  opts: { anio: number; ine: string; nombre?: string },
+  opts: { anio: number; soloEntes?: Set<string> },
 ): CesteRow[] {
   const wb = XLSX.read(buffer, { type: 'buffer' })
 
-  const leerHoja = (nombre: string): { head: string[]; filas: unknown[][] } | null => {
+  interface Tabla {
+    head: string[]
+    filas: unknown[][]
+  }
+  const leer = (nombre: string): Tabla | null => {
     const hoja = wb.Sheets[nombre]
     if (!hoja) return null
     const rows: unknown[][] = XLSX.utils.sheet_to_json(hoja, { header: 1, raw: true, defval: null })
-    const i = rows.findIndex((r) => String(r?.[0] ?? '').trim() === 'IdInforme')
+    // La cabecera es la fila que contiene la columna del programa; buscarla en
+    // vez de fijar el índice cubre las dos variantes de una vez.
+    const i = rows.findIndex((r) =>
+      (r ?? []).some((c) => /^Grupo de programa/i.test(String(c ?? '').trim())),
+    )
     if (i < 0) return null
     return { head: rows[i].map((h) => String(h ?? '').trim()), filas: rows.slice(i + 1) }
   }
+  const col = (t: Tabla, re: RegExp) => t.head.findIndex((h) => re.test(h))
 
-  const col = (head: string[], re: RegExp) => head.findIndex((h) => re.test(h))
   const out: CesteRow[] = []
-  const enteAA = `17-${opts.ine.slice(0, 2)}-${opts.ine.slice(2)}-AA-000`
-
-  /**
-   * El informe trae al ente principal Y a sus entidades dependientes: en 2024
-   * Riba-roja aparece junto a una Comunidad de Usuarios (`17-00-040-JJ-000`)
-   * que declara «No se presta el servicio» para casi todo. Quedarse con la
-   * última fila de cada programa —que es lo que hace un `Map.set` ingenuo—
-   * convertía el ayuntamiento entero en «no se presta».
-   *
-   * El volcado nacional publica la fila del ayuntamiento sola, así que para que
-   * las dos formas de entrada signifiquen lo mismo hay que filtrar por ente.
-   */
-  const soloAyuntamiento = (head: string[], filas: unknown[][]) => {
-    const iEnte = col(head, /^C[oó]digo Ente$/i)
-    if (iEnte < 0) return filas
-    return filas.filter((r) => String(r?.[iEnte] ?? '').trim() === enteAA)
-  }
 
   for (const sufijo of ['a', 'b'] as const) {
-    const ce1 = leerHoja(`CE1${sufijo}`)
-    const ce2 = leerHoja(`CE2${sufijo}`)
-    const ce3 = leerHoja(`CE3${sufijo}`)
-    if (!ce2) continue
+    const costes = leer(`CE${1}${sufijo} y CE2${sufijo}`) ?? leer(`CE2${sufijo}`)
+    if (!costes) continue
+    const iProg = col(costes, /^Grupo de programa/i)
+    const iCoste = col(costes, /^coste_efectivo$/i)
+    const iEnte = col(costes, /^C[oó]digo Ente$/i)
+    const iNombre = col(costes, /^Nombre Ente$/i)
+    if (iProg < 0 || iCoste < 0 || iEnte < 0) continue
 
-    const iProg2 = col(ce2.head, /^Grupo de programa/i)
-    const iCoste = col(ce2.head, /^coste_efectivo$/i)
-    if (iProg2 < 0 || iCoste < 0) continue
-
+    // La gestión viene en la misma hoja (variante comunidad) o en CE1 aparte.
+    const iGestionAqui = col(costes, /^Tipo de Gesti/i)
     const gestion = new Map<string, string>()
-    if (ce1) {
-      const iProg1 = col(ce1.head, /^Grupo de programa/i)
-      const iTipo = col(ce1.head, /^Tipo de Gesti/i)
-      if (iProg1 >= 0 && iTipo >= 0) {
-        for (const r of soloAyuntamiento(ce1.head, ce1.filas)) {
-          const p = String(r?.[iProg1] ?? '').trim()
-          if (p) gestion.set(p, String(r[iTipo] ?? '').trim())
+    if (iGestionAqui < 0) {
+      const ce1 = leer(`CE1${sufijo}`)
+      if (ce1) {
+        const p1 = col(ce1, /^Grupo de programa/i)
+        const e1 = col(ce1, /^C[oó]digo Ente$/i)
+        const g1 = col(ce1, /^Tipo de Gesti/i)
+        if (p1 >= 0 && g1 >= 0) {
+          for (const r of ce1.filas) {
+            const clave = `${e1 >= 0 ? String(r?.[e1] ?? '').trim() : ''}|${String(r?.[p1] ?? '').trim()}`
+            gestion.set(clave, String(r?.[g1] ?? '').trim())
+          }
         }
       }
     }
 
+    // Unidades físicas, siempre en CE3.
+    const ce3 = leer(`CE3${sufijo}`)
     const unidades = new Map<string, UnidadFisica[]>()
     if (ce3) {
-      const iProg3 = col(ce3.head, /^Grupo de programa/i)
-      const iAtr = col(ce3.head, /^Unidades f[ií]sicas/i)
-      const iVal = col(ce3.head, /^N[ºo°]? ?unidades$/i)
-      if (iProg3 >= 0 && iAtr >= 0 && iVal >= 0) {
-        for (const r of soloAyuntamiento(ce3.head, ce3.filas)) {
-          const p = String(r?.[iProg3] ?? '').trim()
-          if (!p) continue
-          const lista = unidades.get(p) ?? []
-          lista.push({ atributo: atributoKey(r[iAtr]), valor: numeric(r[iVal]) })
-          unidades.set(p, lista)
+      const p3 = col(ce3, /^Grupo de programa/i)
+      const e3 = col(ce3, /^C[oó]digo Ente$/i)
+      const a3 = col(ce3, /^Unidades f[ií]sicas/i)
+      const v3 = col(ce3, /^N[ºo°]? ?unidades$/i)
+      if (p3 >= 0 && a3 >= 0 && v3 >= 0) {
+        for (const r of ce3.filas) {
+          const ente = e3 >= 0 ? String(r?.[e3] ?? '').trim() : ''
+          const programa = String(r?.[p3] ?? '').trim()
+          if (!programa) continue
+          const clave = `${ente}|${programa}`
+          const lista = unidades.get(clave) ?? []
+          lista.push({ atributo: atributoKey(r?.[a3]), valor: numeric(r?.[v3]) })
+          unidades.set(clave, lista)
         }
       }
     }
 
-    for (const r of soloAyuntamiento(ce2.head, ce2.filas)) {
-      const programa = String(r?.[iProg2] ?? '').trim()
+    for (const r of costes.filas) {
+      const ente = String(r?.[iEnte] ?? '').trim()
+      const ine = ineFromEnte(ente)
+      // Sólo ayuntamientos. El informe por ente trae además a sus entidades
+      // dependientes —Riba-roja aparece junto a una Comunidad de Usuarios que
+      // declara «no se presta» en casi todo—, y quedarse con la última fila de
+      // cada programa convertía al ayuntamiento entero en un servicio ausente.
+      if (!ine) continue
+      if (opts.soloEntes && !opts.soloEntes.has(ine)) continue
+      const programa = String(r?.[iProg] ?? '').trim()
       if (!programa) continue
-      const codGestionRaw = gestion.get(programa) ?? ''
+      const clave = `${ente}|${programa}`
+      const codGestionRaw =
+        iGestionAqui >= 0 ? String(r?.[iGestionAqui] ?? '').trim() : (gestion.get(clave) ?? '')
       const modoGestion = clasificarGestion(codGestionRaw)
       out.push({
         anio: opts.anio,
-        ine: opts.ine,
-        ente: `17-${opts.ine.slice(0, 2)}-${opts.ine.slice(2)}-AA-000`,
-        nombre: opts.nombre ?? '',
-        // El sufijo de la hoja es el prefijo del programa en el volcado nacional.
+        ine,
+        ente,
+        nombre: iNombre >= 0 ? String(r?.[iNombre] ?? '').trim() : '',
         programa: sufijo + programa,
         modoGestion,
         codGestionRaw,
-        costeTotal: modoGestion === 'no-se-presta' ? null : numeric(r[iCoste]),
-        unidades: unidades.get(programa) ?? [],
+        costeTotal: modoGestion === 'no-se-presta' ? null : numeric(r?.[iCoste]),
+        unidades: unidades.get(clave) ?? [],
       })
     }
   }
