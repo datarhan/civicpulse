@@ -1,7 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { leerIndicador, leerIndicadorMunicipal } from '../src/scraper/indicador-lectura'
+import {
+  leerIndicador,
+  leerIndicadorMunicipal,
+  lecturaVisible,
+} from '../src/scraper/indicador-lectura'
 import type { Indicador } from '../src/scraper/indicadores'
 import type { IndicadorMunicipal } from '../src/scraper/indicadores-friccion'
 
@@ -147,6 +151,47 @@ describe('scraper/indicador-lectura', () => {
   it('no inventa comparación cuando no hay banda', () => {
     const sinPares = municipales.find((m) => !m.pares && m.valor !== null)!
     expect(leerIndicadorMunicipal(sinPares).donde).toBeNull()
+  })
+})
+
+describe('la lectura no repite lo que la tarjeta ya enseña', () => {
+  // La tarjeta imprimía «81.965 €/efectivo en la entrega de 2024» en cuerpo 30,
+  // la fórmula debajo, la banda con mediana y percentil, y ACTO SEGUIDO la
+  // misma cifra y la misma posición otra vez en prosa. Cuatro apariciones del
+  // mismo número en una tarjeta. Lo que no se deduce mirando —«esto es un
+  // precio, no un rendimiento»— quedaba sepultado entre las repeticiones.
+  it('calla la cifra y la posición cuando el número y la banda están en pantalla', () => {
+    const conBanda = indicadores.find((i) => i.valor !== null && i.pares)!
+    const l = leerIndicador(conBanda)
+    const v = lecturaVisible(l, { cifra: true, banda: true })
+    expect(v.que).toBeNull()
+    expect(v.donde).toBeNull()
+
+    // Control, y es la mitad que importa: lo que NO se deduce mirando sigue
+    // entero. Sin esto, una función que devolviera todo a null pasaría.
+    expect(v.como).toBe(l.como)
+    expect(v.avisos).toEqual(l.avisos)
+    expect(v.como.length).toBeGreaterThan(30)
+  })
+
+  it('conserva el motivo cuando no hay cifra que lo repita', () => {
+    // Una tarjeta bloqueada no tiene número ni banda: ahí `que` ES el
+    // contenido («no hay coste por unidad porque el servicio está concedido»).
+    const bloqueado = indicadores.find((i) => i.valor === null)!
+    const l = leerIndicador(bloqueado)
+    const v = lecturaVisible(l, { cifra: false, banda: false })
+    expect(v.que).toBe(l.que)
+    expect(v.que!.length).toBeGreaterThan(15)
+  })
+
+  it('conserva «no hay comparación» cuando no hay banda que lo diga', () => {
+    // Hoy los diez cocientes publicados tienen banda, así que el caso se
+    // construye quitándosela a uno real en vez de saltarse la prueba: un test
+    // que se salta cuando el dato no colabora es un test que no mide.
+    const base = indicadores.find((i) => i.valor !== null && i.pares)!
+    const sinBanda = { ...base, pares: undefined, modoGestion: 'directa' as const }
+    const v = lecturaVisible(leerIndicador(sinBanda), { cifra: true, banda: false })
+    expect(v.donde).toMatch(/No hay comparación/)
   })
 })
 
