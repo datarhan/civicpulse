@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T07:57:50.194Z",
+  "generatedAt": "2026-08-12T08:06:47.985Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2021,
   "source": {
@@ -3254,6 +3254,178 @@
   },
   "municipales": [
     {
+      "id": "periodo-medio-pago",
+      "dimension": "respuesta",
+      "etiqueta": "Periodo medio de pago a proveedores",
+      "descripcion": "Días que tarda el ayuntamiento en pagar a sus proveedores, calculado por el Ministerio de Hacienda con la metodología del RD 1040/2017.",
+      "numerador": {
+        "valor": 62.68,
+        "estado": "declarado",
+        "fuente": "pmp:2026-T1:dias"
+      },
+      "denominador": {
+        "valor": 1,
+        "estado": "declarado",
+        "fuente": "pmp:2026-T1:unidad"
+      },
+      "valor": 62.68,
+      "formato": "dias",
+      "periodo": "2026-T1",
+      "referencia": {
+        "valor": 30,
+        "etiqueta": "30 días, plazo legal",
+        "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2017-15446"
+      },
+      "serie": [
+        {
+          "periodo": "2018-T2",
+          "valor": 29.08
+        },
+        {
+          "periodo": "2018-T3",
+          "valor": 18.42
+        },
+        {
+          "periodo": "2018-T4",
+          "valor": 19.66
+        },
+        {
+          "periodo": "2019-T1",
+          "valor": 15.95
+        },
+        {
+          "periodo": "2019-T2",
+          "valor": 27.44
+        },
+        {
+          "periodo": "2019-T3",
+          "valor": 33.66
+        },
+        {
+          "periodo": "2019-T4",
+          "valor": 26.07
+        },
+        {
+          "periodo": "2020-T1",
+          "valor": 40.7
+        },
+        {
+          "periodo": "2020-T2",
+          "valor": 49.47
+        },
+        {
+          "periodo": "2020-T3",
+          "valor": 48.31
+        },
+        {
+          "periodo": "2020-T4",
+          "valor": 37.84
+        },
+        {
+          "periodo": "2021-T1",
+          "valor": 51.31
+        },
+        {
+          "periodo": "2021-T2",
+          "valor": 44.14
+        },
+        {
+          "periodo": "2021-T3",
+          "valor": 39.13
+        },
+        {
+          "periodo": "2021-T4",
+          "valor": 27.04
+        },
+        {
+          "periodo": "2022-T1",
+          "valor": 29.82
+        },
+        {
+          "periodo": "2022-T2",
+          "valor": 30.43
+        },
+        {
+          "periodo": "2022-T3",
+          "valor": 33.56
+        },
+        {
+          "periodo": "2022-T4",
+          "valor": 18.77
+        },
+        {
+          "periodo": "2023-T1",
+          "valor": 26.96
+        },
+        {
+          "periodo": "2023-T2",
+          "valor": 27.1
+        },
+        {
+          "periodo": "2023-T3",
+          "valor": 32.91
+        },
+        {
+          "periodo": "2023-T4",
+          "valor": 45.07
+        },
+        {
+          "periodo": "2024-T1",
+          "valor": 78.65
+        },
+        {
+          "periodo": "2024-T2",
+          "valor": 104.73
+        },
+        {
+          "periodo": "2024-T3",
+          "valor": 89.9
+        },
+        {
+          "periodo": "2024-T4",
+          "valor": 61.23
+        },
+        {
+          "periodo": "2025-T1",
+          "valor": 67.21
+        },
+        {
+          "periodo": "2025-T2",
+          "valor": 77.89
+        },
+        {
+          "periodo": "2025-T3",
+          "valor": 76.76
+        },
+        {
+          "periodo": "2025-T4",
+          "valor": 67.46
+        },
+        {
+          "periodo": "2026-T1",
+          "valor": 62.68
+        }
+      ],
+      "pares": {
+        "conjunto": "municipios que publican PMP con la misma norma",
+        "n": 6013,
+        "percentil": 94,
+        "p25": 7.69,
+        "mediana": 15.47,
+        "p75": 27.14
+      },
+      "caveats": [
+        "Riba-roja reporta por trimestres, no por meses: es lo que corresponde a los municipios fuera del modelo de cesión.",
+        "El plazo legal de 30 días es una referencia de la norma, no una sanción automática. Superarlo obliga a la entidad a publicar un plan de tesorería."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/pmp/pmp-series-rd-1040-2017.xlsx",
+          "etiqueta": "Ministerio de Hacienda · series PMP"
+        }
+      ]
+    },
+    {
       "id": "licitador-unico",
       "dimension": "friccion",
       "etiqueta": "Contratos con un solo licitador",
@@ -3399,6 +3571,6 @@
     "indicadores": 13,
     "conRatio": 10,
     "comparables": 10,
-    "municipales": 5
+    "municipales": 6
   }
 }

@@ -187,7 +187,8 @@
     "check:queues": "npx tsx scripts/check-queues.ts",
     "scrape:coste-efectivo": "npx tsx scripts/scrape-coste-efectivo.ts",
     "compute:indicadores": "npx tsx scripts/compute-indicadores.ts",
-    "check:indicadores": "npx tsx scripts/check-indicadores.ts"
+    "check:indicadores": "npx tsx scripts/check-indicadores.ts",
+    "scrape:pmp": "npx tsx scripts/scrape-pmp.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

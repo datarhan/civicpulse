@@ -1,0 +1,417 @@
+{
+  "generatedAt": "2026-08-12T08:04:57.339Z",
+  "source": {
+    "serie": "https://www.hacienda.gob.es/cdi/pmp/pmp-series-rd-1040-2017.xlsx",
+    "norma": "https://www.boe.es/buscar/act.php?id=BOE-A-2017-15446",
+    "hoja": "Tabla 6.3"
+  },
+  "plazoLegalDias": 30,
+  "municipio": {
+    "ine": "46214",
+    "nombre": "Riba-roja de Túria"
+  },
+  "ultimo": {
+    "periodo": "2026-T1",
+    "dias": 62.68,
+    "percentil": 94,
+    "distribucion": {
+      "periodo": "2026-T1",
+      "n": 6013,
+      "p25": 7.69,
+      "mediana": 15.47,
+      "p75": 27.14
+    }
+  },
+  "serie": [
+    {
+      "periodo": "2018-T2",
+      "dias": 29.08,
+      "percentil": 77,
+      "distribucion": {
+        "periodo": "2018-T2",
+        "n": 5012,
+        "p25": 5.9275,
+        "mediana": 14.195,
+        "p75": 27.8425
+      }
+    },
+    {
+      "periodo": "2018-T3",
+      "dias": 18.42,
+      "percentil": 61,
+      "distribucion": {
+        "periodo": "2018-T3",
+        "n": 5101,
+        "p25": 5.55,
+        "mediana": 13.92,
+        "p75": 27.04
+      }
+    },
+    {
+      "periodo": "2018-T4",
+      "dias": 19.66,
+      "percentil": 68,
+      "distribucion": {
+        "periodo": "2018-T4",
+        "n": 5279,
+        "p25": 4.85,
+        "mediana": 11.85,
+        "p75": 23.825
+      }
+    },
+    {
+      "periodo": "2019-T1",
+      "dias": 15.95,
+      "percentil": 45,
+      "distribucion": {
+        "periodo": "2019-T1",
+        "n": 4820,
+        "p25": 9.0075,
+        "mediana": 17.810000000000002,
+        "p75": 29.9175
+      }
+    },
+    {
+      "periodo": "2019-T2",
+      "dias": 27.44,
+      "percentil": 75,
+      "distribucion": {
+        "periodo": "2019-T2",
+        "n": 4960,
+        "p25": 6.057499999999999,
+        "mediana": 14.065000000000001,
+        "p75": 27.3525
+      }
+    },
+    {
+      "periodo": "2019-T3",
+      "dias": 33.66,
+      "percentil": 80,
+      "distribucion": {
+        "periodo": "2019-T3",
+        "n": 4980,
+        "p25": 5.717499999999999,
+        "mediana": 14.075,
+        "p75": 27.71
+      }
+    },
+    {
+      "periodo": "2019-T4",
+      "dias": 26.07,
+      "percentil": 75,
+      "distribucion": {
+        "periodo": "2019-T4",
+        "n": 5242,
+        "p25": 5.22,
+        "mediana": 12.535,
+        "p75": 25.725
+      }
+    },
+    {
+      "periodo": "2020-T1",
+      "dias": 40.7,
+      "percentil": 81,
+      "distribucion": {
+        "periodo": "2020-T1",
+        "n": 4937,
+        "p25": 8.88,
+        "mediana": 18.15,
+        "p75": 31.88
+      }
+    },
+    {
+      "periodo": "2020-T2",
+      "dias": 49.47,
+      "percentil": 85,
+      "distribucion": {
+        "periodo": "2020-T2",
+        "n": 4964,
+        "p25": 5.4275,
+        "mediana": 13.864999999999998,
+        "p75": 28.535
+      }
+    },
+    {
+      "periodo": "2020-T3",
+      "dias": 48.31,
+      "percentil": 87,
+      "distribucion": {
+        "periodo": "2020-T3",
+        "n": 5078,
+        "p25": 4.9725,
+        "mediana": 12.705,
+        "p75": 26.2475
+      }
+    },
+    {
+      "periodo": "2020-T4",
+      "dias": 37.84,
+      "percentil": 87,
+      "distribucion": {
+        "periodo": "2020-T4",
+        "n": 5310,
+        "p25": 4.17,
+        "mediana": 10.375,
+        "p75": 21.947499999999998
+      }
+    },
+    {
+      "periodo": "2021-T1",
+      "dias": 51.31,
+      "percentil": 88,
+      "distribucion": {
+        "periodo": "2021-T1",
+        "n": 5054,
+        "p25": 8.17,
+        "mediana": 16.450000000000003,
+        "p75": 28.615000000000002
+      }
+    },
+    {
+      "periodo": "2021-T2",
+      "dias": 44.14,
+      "percentil": 88,
+      "distribucion": {
+        "periodo": "2021-T2",
+        "n": 5005,
+        "p25": 5.11,
+        "mediana": 12.33,
+        "p75": 23.98
+      }
+    },
+    {
+      "periodo": "2021-T3",
+      "dias": 39.13,
+      "percentil": 87,
+      "distribucion": {
+        "periodo": "2021-T3",
+        "n": 5215,
+        "p25": 4.56,
+        "mediana": 11.84,
+        "p75": 23.39
+      }
+    },
+    {
+      "periodo": "2021-T4",
+      "dias": 27.04,
+      "percentil": 84,
+      "distribucion": {
+        "periodo": "2021-T4",
+        "n": 5490,
+        "p25": 3.7,
+        "mediana": 9.6,
+        "p75": 19.7975
+      }
+    },
+    {
+      "periodo": "2022-T1",
+      "dias": 29.82,
+      "percentil": 81,
+      "distribucion": {
+        "periodo": "2022-T1",
+        "n": 5941,
+        "p25": 7.03,
+        "mediana": 14.96,
+        "p75": 25.9
+      }
+    },
+    {
+      "periodo": "2022-T2",
+      "dias": 30.43,
+      "percentil": 85,
+      "distribucion": {
+        "periodo": "2022-T2",
+        "n": 6028,
+        "p25": 4.52,
+        "mediana": 11.565000000000001,
+        "p75": 22.16
+      }
+    },
+    {
+      "periodo": "2022-T3",
+      "dias": 33.56,
+      "percentil": 87,
+      "distribucion": {
+        "periodo": "2022-T3",
+        "n": 5944,
+        "p25": 4.42,
+        "mediana": 11.225000000000001,
+        "p75": 21.564999999999998
+      }
+    },
+    {
+      "periodo": "2022-T4",
+      "dias": 18.77,
+      "percentil": 70,
+      "distribucion": {
+        "periodo": "2022-T4",
+        "n": 6311,
+        "p25": 4.18,
+        "mediana": 10.65,
+        "p75": 21.395
+      }
+    },
+    {
+      "periodo": "2023-T1",
+      "dias": 26.96,
+      "percentil": 74,
+      "distribucion": {
+        "periodo": "2023-T1",
+        "n": 5827,
+        "p25": 7.525,
+        "mediana": 15.89,
+        "p75": 27.425
+      }
+    },
+    {
+      "periodo": "2023-T2",
+      "dias": 27.1,
+      "percentil": 79,
+      "distribucion": {
+        "periodo": "2023-T2",
+        "n": 6116,
+        "p25": 5.3175,
+        "mediana": 12.56,
+        "p75": 24.1475
+      }
+    },
+    {
+      "periodo": "2023-T3",
+      "dias": 32.91,
+      "percentil": 84,
+      "distribucion": {
+        "periodo": "2023-T3",
+        "n": 6091,
+        "p25": 5.17,
+        "mediana": 12.96,
+        "p75": 25.270000000000003
+      }
+    },
+    {
+      "periodo": "2023-T4",
+      "dias": 45.07,
+      "percentil": 90,
+      "distribucion": {
+        "periodo": "2023-T4",
+        "n": 6315,
+        "p25": 4.8,
+        "mediana": 11.87,
+        "p75": 23.755000000000003
+      }
+    },
+    {
+      "periodo": "2024-T1",
+      "dias": 78.65,
+      "percentil": 93,
+      "distribucion": {
+        "periodo": "2024-T1",
+        "n": 6001,
+        "p25": 8.57,
+        "mediana": 17.56,
+        "p75": 30
+      }
+    },
+    {
+      "periodo": "2024-T2",
+      "dias": 104.73,
+      "percentil": 95,
+      "distribucion": {
+        "periodo": "2024-T2",
+        "n": 6303,
+        "p25": 5.695,
+        "mediana": 13.83,
+        "p75": 26.49
+      }
+    },
+    {
+      "periodo": "2024-T3",
+      "dias": 89.9,
+      "percentil": 95,
+      "distribucion": {
+        "periodo": "2024-T3",
+        "n": 6200,
+        "p25": 5.1675,
+        "mediana": 12.79,
+        "p75": 24.035
+      }
+    },
+    {
+      "periodo": "2024-T4",
+      "dias": 61.23,
+      "percentil": 94,
+      "distribucion": {
+        "periodo": "2024-T4",
+        "n": 6519,
+        "p25": 4.45,
+        "mediana": 11.24,
+        "p75": 21.875
+      }
+    },
+    {
+      "periodo": "2025-T1",
+      "dias": 67.21,
+      "percentil": 94,
+      "distribucion": {
+        "periodo": "2025-T1",
+        "n": 6104,
+        "p25": 8.3975,
+        "mediana": 16.04,
+        "p75": 27.42
+      }
+    },
+    {
+      "periodo": "2025-T2",
+      "dias": 77.89,
+      "percentil": 95,
+      "distribucion": {
+        "periodo": "2025-T2",
+        "n": 5831,
+        "p25": 6.465,
+        "mediana": 13.95,
+        "p75": 25.1
+      }
+    },
+    {
+      "periodo": "2025-T3",
+      "dias": 76.76,
+      "percentil": 95,
+      "distribucion": {
+        "periodo": "2025-T3",
+        "n": 6395,
+        "p25": 5.23,
+        "mediana": 12.58,
+        "p75": 23.475
+      }
+    },
+    {
+      "periodo": "2025-T4",
+      "dias": 67.46,
+      "percentil": 95,
+      "distribucion": {
+        "periodo": "2025-T4",
+        "n": 6554,
+        "p25": 4.54,
+        "mediana": 10.86,
+        "p75": 21.505000000000003
+      }
+    },
+    {
+      "periodo": "2026-T1",
+      "dias": 62.68,
+      "percentil": 94,
+      "distribucion": {
+        "periodo": "2026-T1",
+        "n": 6013,
+        "p25": 7.69,
+        "mediana": 15.47,
+        "p75": 27.14
+      }
+    }
+  ],
+  "stats": {
+    "puntos": 32,
+    "desde": "2018-T2",
+    "hasta": "2026-T1",
+    "universo": 6013
+  }
+}

@@ -60,6 +60,19 @@ export interface IndicadorMunicipal {
   formato: FormatoValor
   /** El periodo que cubre. Nunca implícito: los contratos abarcan años. */
   periodo: string
+  /** Umbral legal o de referencia, cuando la norma fija uno (PMP: 30 días). */
+  referencia?: { valor: number; etiqueta: string; fuente: string }
+  /** Serie propia, cuando la fuente la publica. Sin puntos inventados. */
+  serie?: { periodo: string; valor: number }[]
+  /** Reparto de pares, cuando existe una fuente que lo respalde. */
+  pares?: {
+    conjunto: string
+    n: number
+    percentil: number
+    p25: number
+    mediana: number
+    p75: number
+  }
   caveats: string[]
   citas: { url: string; etiqueta: string }[]
 }
@@ -136,6 +149,18 @@ export interface FriccionInput {
     }
     source?: string
   }
+  /** public/data/pmp.json — opcional: el panel se dibuja igual sin él. */
+  pmp?: {
+    plazoLegalDias?: number
+    source?: { serie?: string; norma?: string }
+    ultimo?: {
+      periodo?: string
+      dias?: number
+      percentil?: number | null
+      distribucion?: { n: number; p25: number; mediana: number; p75: number } | null
+    }
+    serie?: { periodo: string; dias: number }[]
+  }
 }
 
 const CITA_CONTRATOS = {
@@ -150,6 +175,57 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
     (ESTADOS_ADJUDICADOS as readonly string[]).includes(c.status ?? ''),
   )
   const periodo = periodoDe(adjudicados)
+
+  // ── 0. Plazo de pago. El único indicador del panel con umbral LEGAL, serie y
+  //       pares de verdad: no hace falta que nadie opine si la cifra es alta.
+  const pmp = input.pmp
+  const ultimo = pmp?.ultimo
+  if (pmp && ultimo && typeof ultimo.dias === 'number' && ultimo.periodo) {
+    const limite = pmp.plazoLegalDias ?? 30
+    const dist = ultimo.distribucion ?? undefined
+    out.push({
+      id: 'periodo-medio-pago',
+      dimension: 'respuesta',
+      etiqueta: 'Periodo medio de pago a proveedores',
+      descripcion:
+        'Días que tarda el ayuntamiento en pagar a sus proveedores, calculado por el Ministerio de Hacienda con la metodología del RD 1040/2017.',
+      numerador: declarado(ultimo.dias, `pmp:${ultimo.periodo}:dias`),
+      // El denominador de un plazo es el propio plazo: la magnitud ya viene en
+      // días. Se declara igualmente para que la comprobación sea uniforme.
+      denominador: declarado(1, `pmp:${ultimo.periodo}:unidad`),
+      valor: ultimo.dias,
+      formato: 'dias',
+      periodo: ultimo.periodo,
+      referencia: {
+        valor: limite,
+        etiqueta: `${limite} días, plazo legal`,
+        fuente: pmp.source?.norma ?? 'https://www.boe.es/buscar/act.php?id=BOE-A-2017-15446',
+      },
+      serie: (pmp.serie ?? []).map((p) => ({ periodo: p.periodo, valor: p.dias })),
+      pares:
+        dist && typeof ultimo.percentil === 'number'
+          ? {
+              conjunto: 'municipios que publican PMP con la misma norma',
+              n: dist.n,
+              percentil: ultimo.percentil,
+              p25: dist.p25,
+              mediana: dist.mediana,
+              p75: dist.p75,
+            }
+          : undefined,
+      caveats: [
+        'Riba-roja reporta por trimestres, no por meses: es lo que corresponde a los municipios fuera del modelo de cesión.',
+        'El plazo legal de 30 días es una referencia de la norma, no una sanción automática. Superarlo obliga a la entidad a publicar un plan de tesorería.',
+      ],
+      citas: [
+        {
+          url:
+            pmp.source?.serie ?? 'https://www.hacienda.gob.es/cdi/pmp/pmp-series-rd-1040-2017.xlsx',
+          etiqueta: 'Ministerio de Hacienda · series PMP',
+        },
+      ],
+    })
+  }
 
   // ── 1. Competencia: ¿cuántos contratos se resolvieron con un solo licitador?
   const conOfertas = adjudicados.filter(

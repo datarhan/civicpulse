@@ -1429,6 +1429,17 @@ export default function Metodologia() {
           unidad de servicio.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>El plazo de pago es la única cifra del panel con umbral legal.</strong> El periodo
+          medio de pago a proveedores lo calcula el Ministerio de Hacienda con la metodología del RD
+          1040/2017 para miles de ayuntamientos a la vez, y la Ley 3/2004 fija los 30 días como
+          referencia. Eso lo convierte en el único indicador que reúne las tres cosas: umbral que no
+          ponemos nosotros, serie trimestral desde 2018, y una comparación respaldada por una fuente
+          que aplica la misma norma a todos. Riba-roja reporta por trimestres, como corresponde a
+          los municipios fuera del modelo de cesión; sus columnas mensuales vienen vacías y se dejan
+          vacías. Superar el plazo no es una sanción automática: obliga a la entidad a publicar un
+          plan de tesorería.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>La cuarta dimensión no es la satisfacción ciudadana.</strong> Medirla exigiría una
           encuesta representativa que no existe: el ayuntamiento publicó un barómetro de servicios
           en 2026, pero el portal que lo alojaba fue dado de baja, y el buzón de quejas es

@@ -161,6 +161,7 @@ async function main() {
     budgetExecution: JSON.parse(
       await readFile(join(ROOT, 'public/data/budget-execution.json'), 'utf8'),
     ),
+    pmp: JSON.parse(await readFile(join(ROOT, 'public/data/pmp.json'), 'utf8')),
   })
   for (const publicado of municipales) {
     comprobaciones++
