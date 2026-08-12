@@ -60,3 +60,34 @@ describe('workflows — todo lo que empuja a main dispara despliegue', () => {
     for (const d of declarados) expect(nombres, `«${d}» no es ningún workflow`).toContain(d)
   })
 })
+
+/**
+ * Las banderas de lanzamiento viven a mano en DOS ficheros, y tienen que decir
+ * lo mismo.
+ *
+ * `e2e.yml` las pone «por paridad con producción»: sin la bandera, la ruta no
+ * se monta, su spec se SALTA sola —seis pruebas y una pasada de axe— y la
+ * página llega a producción sin que nada la haya ejercitado en CI. Una suite
+ * que se pone verde por no ejecutarse es exactamente el defecto que este
+ * repositorio lleva pagando desde que se auditó, y la paridad que lo evita
+ * estaba confiada a que alguien se acordara de editar los dos sitios.
+ */
+describe('workflows — las banderas de producción se prueban en CI', () => {
+  const banderas = (texto) =>
+    new Set([...texto.matchAll(/^\s+(VITE_ENABLE_[A-Z_]+):\s*'true'$/gm)].map((m) => m[1]))
+
+  const enDeploy = banderas(leer(DEPLOY))
+  const enE2e = banderas(leer('e2e.yml'))
+
+  it('mide algo: el despliegue enciende alguna bandera', () => {
+    expect(enDeploy.size).toBeGreaterThan(0)
+  })
+
+  it('toda bandera encendida en producción lo está también en e2e', () => {
+    const soloProd = [...enDeploy].filter((b) => !enE2e.has(b))
+    expect(
+      soloProd,
+      'se despliegan en producción y su spec se salta en CI — la ruta llega al público sin que nada la ejercite',
+    ).toEqual([])
+  })
+})

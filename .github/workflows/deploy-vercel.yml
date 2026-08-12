@@ -94,6 +94,14 @@ jobs:
           # ships /laboratorio/agentes + /laboratorio/agentes/:id. The
           # /curator surface stays dev-only (separate isDev gate).
           VITE_ENABLE_PERIODISTAS: 'true'
+          # Launch flag flipped 2026-08-12 (operator decision, after the
+          # findings pipeline shipped): ships /eficiencia and the pointer to it
+          # from /hallazgos. The page names no person by construction — its
+          # schema has no field for one — and every figure carries the ministry
+          # cell it came from, re-checked by check:indicadores before each
+          # deploy. It publishes with zero signed fichas; that is the honest
+          # state, and the section says so rather than leaving a gap.
+          VITE_ENABLE_EFICIENCIA: 'true'
         run: vercel build --prod --token="$VERCEL_TOKEN"
 
       - name: Deploy prebuilt bundle

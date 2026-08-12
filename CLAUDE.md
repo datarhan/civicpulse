@@ -47,12 +47,19 @@ them here — the hand-kept list drifted from reality every time it was tried.
 
 The e2e suite covers per-route specs, `chrome.spec.ts` (Cmd+K, dark mode,
 i18n, sidebar), a 375px mobile shell, and an axe-core WCAG 2.1 AA strict pass.
-CI sets `VITE_ENABLE_PERIODISTAS=true`; it is absent locally, so `/cargos`'s
-Biografía spec always fails on a local full run. That is the flag, not a defect.
-`/eficiencia` is gated the same way (`VITE_ENABLE_EFICIENCIA`) but its spec
-**skips** rather than fails when the flag is off — one always-red spec is
+CI sets `VITE_ENABLE_PERIODISTAS=true` and `VITE_ENABLE_EFICIENCIA=true`; both
+are absent locally, so `/cargos`'s Biografía spec always fails on a local full
+run. That is the flag, not a defect. `/eficiencia` is gated the same way but its
+spec **skips** rather than fails when the flag is off — one always-red spec is
 already one too many. The flag is read at BUILD time, and `vite preview` is
 reused between runs, so rebuild before expecting the spec to run.
+
+**A launch flag belongs in both workflows or neither.** `e2e.yml` sets them for
+parity with `deploy-vercel.yml`, and the pair was hand-kept: turn one on alone
+and the route ships to the public while its whole spec skips itself in CI —
+green by not running, which is the defect this repo keeps paying for.
+`tests/deploy-triggers.test.js` compares the two and reds on a flag that
+deploys without being exercised.
 
 ## Architecture
 

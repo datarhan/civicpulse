@@ -53,6 +53,13 @@ jobs:
           # this var), so e2e must test the same route set — incl. the
           # /cargos «Biografía →» link into the published agent report.
           VITE_ENABLE_PERIODISTAS: 'true'
+          # Same parity, same reason. Without this the route is unmounted here,
+          # `eficiencia.spec.ts` SKIPS itself — six specs and an axe pass — and
+          # the page ships to production having been exercised by nothing in
+          # CI. A suite that goes green by not running is the defect this repo
+          # keeps paying for. tests/deploy-triggers.test.js compares the two
+          # workflows so the pair cannot drift apart again.
+          VITE_ENABLE_EFICIENCIA: 'true'
 
       - name: Run Playwright tests
         run: npm run test:e2e

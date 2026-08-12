@@ -349,6 +349,97 @@ const INJECTIONS: Array<{
       return JSON.stringify(d, null, 2) + '\n'
     },
   },
+  {
+    guard: 'check:summary-gate',
+    file: 'public/data/pleno-findings.json',
+    describe: 'un sumario que reimprime, palabra por palabra, una cita que la puerta retiene',
+    // La avería exacta que produjo este gate: `claim-public-gate.ts` promete
+    // que una cita `hidden` «nunca entra en un fichero desplegado», y
+    // pleno-findings.json ES un fichero desplegado. La puerta se aplicaba a la
+    // LISTA DE CITAS y nadie miraba el sumario de al lado, así que la misma
+    // acusación se publicaba sobre el mismo grupo con las mismas palabras,
+    // perdiendo sólo las comillas. Se midieron 9 fugas en 7 hallazgos.
+    //
+    // La cita retenida se busca en la instantánea de procedencia, que es donde
+    // vive el veredicto de la puerta — recomputarlo aquí sería un segundo
+    // clasificador, y dos clasificadores es como una página y su cola de
+    // revisión empiezan a discrepar sobre qué está oculto.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const prov = JSON.parse(
+        readFileSync(resolve(ROOT, 'public/data/finding-quote-provenance.json'), 'utf8'),
+      ) as { quotes: Record<string, Array<{ gate?: string }>> }
+      for (const [findingId, veredictos] of Object.entries(prov.quotes ?? {})) {
+        const idx = veredictos.findIndex((q) => q.gate === 'hidden')
+        if (idx < 0) continue
+        const f = d.items?.find((x: { id: string }) => x.id === findingId)
+        const texto = f?.quotes?.[idx]?.text
+        if (!f || !texto) continue
+        f.summary = `${f.summary} El grupo afirmó: «${texto}»`
+        return JSON.stringify(d, null, 2) + '\n'
+      }
+      throw new Error('sin cita retenida que filtrar — ¿cambió el formato de la procedencia?')
+    },
+  },
+  {
+    guard: 'check:queues',
+    file: 'public/data/pleno-findings.json',
+    describe: 'una cola de curación que sigue hablando de un hallazgo que ya no está publicado',
+    // El incidente del 2026-08-11: se retiraron once hallazgos y un tercio de
+    // un backlog aparente de 175 filas pasó a ser filas sobre hallazgos que ya
+    // no existían. Nada publicado estaba mal; la cola mentía sobre su propio
+    // tamaño, que es como una cola deja de trabajarse.
+    //
+    // Se inyecta por el CORPUS y no por la cola: los worklists viven en
+    // editorial/, que está gitignorado, y este arnés restaura con git — así que
+    // no podría deshacer el daño. Quitar el hallazgo al que apuntan produce
+    // exactamente la misma huérfana.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const colaPath = resolve(ROOT, 'editorial/finding-support-queue.json')
+      if (!existsSync(colaPath)) {
+        // No es un defecto: editorial/ está gitignorado, así que en CI o en un
+        // clon nuevo no hay colas y `check:queues` informa «sin fichero — nada
+        // que revisar». Decirlo con estas palabras evita que alguien lo
+        // depure como si fuera una avería.
+        throw new Error(
+          'no hay editorial/finding-support-queue.json (gitignorado; en CI nunca existe) — ' +
+            'genera una cola con `npm run triage:finding-support` para ejercitar esta inyección',
+        )
+      }
+      const cola = JSON.parse(readFileSync(colaPath, 'utf8')) as {
+        rows?: Array<{ id?: string }>
+        items?: Array<{ id?: string }>
+      }
+      const filas = cola.rows ?? cola.items ?? []
+      const citado = filas
+        .map((r) => r.id)
+        .find((id) => d.items.some((f: { id: string }) => f.id === id))
+      if (!citado) throw new Error('la cola no nombra ningún hallazgo vivo que quitar')
+      d.items = d.items.filter((f: { id: string }) => f.id !== citado)
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
+  {
+    guard: 'check:data-graph',
+    file: 'src/scraper/data-graph.ts',
+    describe: 'una arista declarada que el script no lee — el grafo describiendo otro código',
+    // El grafo es una declaración de dependencias escrita a mano, y una
+    // declaración a mano de algo que el código ya sabe es una forma reescrita:
+    // se desfasa quedándose verde, que es la regla 1 de DATA_INTEGRITY y lo que
+    // costó 53,5 M€ de una página publicada. Este gate es lo único que hace
+    // creíble el grafo, así que tiene que gritar cuando el grafo miente.
+    corrupt: (s) => {
+      const marca = '    reads: ['
+      const i = s.indexOf(marca)
+      if (i < 0) throw new Error('no encuentro un bloque `reads:` que corromper')
+      return (
+        s.slice(0, i + marca.length) +
+        "\n      'inventado-por-check-guards.json'," +
+        s.slice(i + marca.length)
+      )
+    },
+  },
 ]
 
 function gitIsClean(file: string): boolean {
