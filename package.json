@@ -190,7 +190,13 @@
     "check:indicadores": "npx tsx scripts/check-indicadores.ts",
     "scrape:pmp": "npx tsx scripts/scrape-pmp.ts",
     "fetch:cesel-ccaa": "npx tsx scripts/fetch-cesel-ccaa.ts",
-    "build:prose-map": "npx tsx scripts/build-prose-map.ts"
+    "build:prose-map": "npx tsx scripts/build-prose-map.ts",
+    "draft:indicadores": "npx tsx scripts/draft-indicador-candidates.ts",
+    "promote-indicador": "npx tsx scripts/promote-indicador.ts",
+    "correct-indicador": "npx tsx scripts/correct-indicador.ts",
+    "retract-indicador": "npx tsx scripts/retract-indicador.ts",
+    "check:eficiencia-findings": "npx tsx scripts/check-eficiencia-findings.ts",
+    "indicador-reply": "npx tsx scripts/reply-indicador.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

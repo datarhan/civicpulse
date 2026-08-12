@@ -1,6 +1,6 @@
 name: Derecho de réplica — informe periodístico
 description: Formaliza la respuesta oficial de una persona o grupo aludido en un informe publicado en /laboratorio/agentes.
-title: "[derecho-replica] <report-id> · <from>"
+title: '[derecho-replica] <report-id> · <from>'
 labels: [derecho-replica, periodista]
 body:
   - type: markdown
@@ -39,7 +39,7 @@ body:
     attributes:
       label: Portavoz o firmante (opcional)
       description: Nombre y cargo de la persona firmante. No se publica; sólo se usa para la verificación interna del origen.
-      placeholder: "ej. Alcalde de Riba-roja"
+      placeholder: 'ej. Alcalde de Riba-roja'
 
   - type: textarea
     id: quote

@@ -1,0 +1,70 @@
+name: Derecho de réplica — hallazgo de eficiencia
+description: Respuesta oficial del ayuntamiento, la intervención, el concesionario o el ministerio a una ficha publicada en /eficiencia.
+title: '[replica-eficiencia] <finding-id>'
+labels: [derecho-replica, eficiencia]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Las fichas de `/eficiencia` describen **cifras de coste de un servicio municipal**. No nombran a ninguna persona ni a ningún grupo político, y no afirman mala gestión: dicen dónde se separa una cifra de lo que declaran municipios comparables, o de un umbral que fija una norma.
+
+        Por eso quien replica aquí es **la institución que lleva el servicio o la cifra**, no un grupo. La respuesta se publica íntegra y verbatim junto a la ficha, sin resumir ni parafrasear.
+
+        Plazo de revisión: 24 h hábiles. Resolución: 72 h. Historial público en git.
+
+  - type: input
+    id: finding-id
+    attributes:
+      label: ID de la ficha
+      description: El identificador que aparece al pie de la ficha (formato `ef-YYYY-MM-DD-…`).
+      placeholder: ef-2026-08-12-periodo-medio-pago
+    validations:
+      required: true
+
+  - type: dropdown
+    id: respondente
+    attributes:
+      label: Quién responde
+      description: |
+        Sólo instituciones. Si eres un cargo electo y quieres responder a título político, el canal es el derecho de réplica de `/hallazgos`, que sí atribuye declaraciones a grupos.
+      options:
+        - ayuntamiento
+        - intervencion
+        - concesionario
+        - ministerio
+    validations:
+      required: true
+
+  - type: input
+    id: responder-name
+    attributes:
+      label: Firmante (opcional)
+      description: Cargo de quien firma la réplica. No se publica; se usa sólo para verificar internamente el origen.
+      placeholder: 'ej. Intervención General del Ayuntamiento'
+
+  - type: textarea
+    id: quote
+    attributes:
+      label: Texto literal de la réplica (verbatim, ≥20 caracteres)
+      description: |
+        Se publica exactamente como lo escribas, hasta 2.000 caracteres. Si la cifra que publicamos es incorrecta o la fuente ministerial se ha revisado, dilo aquí: además de publicar la réplica, corregimos o retiramos la ficha.
+      placeholder: |
+        "El periodo medio de pago del primer trimestre recoge facturas del cierre del ejercicio anterior convalidadas en enero. El plan de tesorería aprobado el 14 de febrero de 2026 prevé volver al plazo legal antes del tercer trimestre."
+    validations:
+      required: true
+
+  - type: input
+    id: source-url
+    attributes:
+      label: URL de la fuente (opcional)
+      description: Acuerdo, informe, plan de tesorería o nota oficial que respalde la réplica. El enlace se publica junto al texto.
+      placeholder: 'https://www.ribarroja.es/…'
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        **Ingreso automatizado**: al etiquetarse como `derecho-replica` + `eficiencia`, un workflow escribe la réplica en `public/data/eficiencia-findings.json` a través del validador de `src/scraper/eficiencia-finding.ts`, comitea al historial público y cierra el issue.
+
+        Una réplica posterior sustituye a la anterior en la ficha —muestra tu posición vigente—; todas quedan en el historial de git.

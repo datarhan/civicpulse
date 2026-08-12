@@ -16,10 +16,16 @@ permissions:
 jobs:
   ingest:
     runs-on: ubuntu-latest
+    # `eficiencia` excluye: esa plantilla comparte la etiqueta `derecho-replica`
+    # pero tiene otros campos y otro CLI. Sin este filtro las dos ingestas
+    # disparan sobre el mismo issue y ésta comenta «no se pudieron extraer los
+    # campos obligatorios» sobre una réplica perfectamente válida — que para
+    # quien la escribió es indistinguible de un rechazo.
     if: >
       github.event_name == 'workflow_dispatch' ||
-      (github.event.label.name == 'derecho-replica') ||
-      (github.event.action == 'edited' && contains(github.event.issue.labels.*.name, 'derecho-replica'))
+      (!contains(github.event.issue.labels.*.name, 'eficiencia') &&
+        ((github.event.label.name == 'derecho-replica') ||
+         (github.event.action == 'edited' && contains(github.event.issue.labels.*.name, 'derecho-replica'))))
     steps:
       - uses: actions/checkout@v5
         with:

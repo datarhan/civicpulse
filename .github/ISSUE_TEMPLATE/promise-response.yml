@@ -1,6 +1,6 @@
 name: Derecho de réplica — promesa
 description: Formaliza la respuesta oficial de un partido o cargo a una promesa publicada en /promesas.
-title: "[derecho-replica] <promesa-id> · <partido>"
+title: '[derecho-replica] <promesa-id> · <partido>'
 labels: [derecho-replica, promesa]
 body:
   - type: markdown
@@ -55,7 +55,7 @@ body:
     id: source-publisher
     attributes:
       label: Medio o canal de publicación de la fuente (opcional)
-      placeholder: "Nota de prensa del grupo municipal / tweet oficial / etc."
+      placeholder: 'Nota de prensa del grupo municipal / tweet oficial / etc.'
     validations:
       required: false
 
@@ -64,7 +64,7 @@ body:
     attributes:
       label: Fecha de la respuesta (YYYY-MM-DD)
       description: Fecha en que el grupo emitió la declaración.
-      placeholder: "2026-04-20"
+      placeholder: '2026-04-20'
     validations:
       required: true
 

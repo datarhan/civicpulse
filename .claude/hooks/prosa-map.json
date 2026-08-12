@@ -57,6 +57,9 @@
       "/cargos",
       "/cargos/:slug"
     ],
+    "eficiencia-findings.json": [
+      "/eficiencia"
+    ],
     "elections.json": [
       "/cargos/:slug",
       "/datos"

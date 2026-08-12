@@ -1480,11 +1480,13 @@ export default function Metodologia() {
           el desperdicio que nace de la falta de competencia y de la rigidez del procedimiento. Sale
           de los contratos y de la ejecución presupuestaria que este sitio ya descargaba. Cada cifra
           lleva el periodo que cubre, porque los contratos abarcan casi una década y un porcentaje
-          sin fecha se lee como «este año». Ninguna lleva comparación con otros municipios: no
-          existe una fuente que la respalde, y un percentil inventado sería peor que la ausencia. Un
-          contrato menor o un solo licitador no son irregularidades —el primero es un instrumento
-          legal por debajo de los umbrales de la Ley 9/2017 y el segundo ocurre en mercados con un
-          único proveedor capaz—; lo que miden es cuánta concurrencia hubo.
+          sin fecha se lee como «este año». Ninguno de estos indicadores de fricción lleva
+          comparación con otros municipios: no existe una fuente que la respalde, y un percentil
+          inventado sería peor que la ausencia — el plazo de pago y el gasto por habitante sí la
+          llevan, y por eso se explican aparte, arriba. Un contrato menor o un solo licitador no son
+          irregularidades —el primero es un instrumento legal por debajo de los umbrales de la Ley
+          9/2017 y el segundo ocurre en mercados con un único proveedor capaz—; lo que miden es
+          cuánta concurrencia hubo.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>Límites conocidos.</strong> Las magnitudes las rellena cada ayuntamiento, y no
@@ -1494,6 +1496,54 @@ export default function Metodologia() {
           porque una diferencia así suele venir de cómo se declara y no de cómo se gestiona. Toda
           cifra publicada lleva la celda exacta de la que sale, y <code>check:indicadores</code>{' '}
           comprueba que resuelve antes de cada despliegue.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>De una cifra que se sale a un hallazgo firmado.</strong> Un proceso automático
+          recorre el panel y señala qué cifras se salen: fuera del percentil 10–90 de sus
+          comparables, por encima de un umbral que fije una norma, o alejándose de la mediana de sus
+          pares con los años. Eso produce un <em>candidato</em>, que no es un hallazgo: dice dónde
+          se sale la cifra y contra qué se mide, y no afirma ninguna causa. Los candidatos viven
+          fuera de este sitio, sin publicar, hasta que una persona comprueba el expediente, escribe
+          el texto y lo firma con su nombre. Nada automático publica aquí, y no lo hará mientras no
+          haya precisión medida para esta clase de afirmación.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          Tres decisiones de ese proceso que conviene conocer, porque determinan qué no verá nunca
+          en{' '}
+          <a href="/eficiencia#hallazgos" style={{ color: 'var(--civic)' }}>
+            los hallazgos de eficiencia
+          </a>
+          . Primera: los indicadores etiquetados como <em>entrada</em> no generan candidatos. El
+          coste por efectivo de policía está por encima de tres de cada cuatro municipios
+          comparables y sube, y aun así señalarlo diría «la policía es cara» cuando lo que mide es
+          cuánto cobra un policía. Segunda: un servicio que se <em>acerca</em> a la mediana de sus
+          pares tampoco genera candidato, por mucho que se mueva. El alumbrado público multiplica
+          por catorce su posición relativa en diez años y lo que cambió fue cuánto se declara, no
+          cuánto cuesta; acercarse a los demás es la firma de un cambio de criterio contable.
+          Tercera: cuando la comparación depende de una magnitud que cada ayuntamiento rellena a su
+          manera, la ficha lo dice en su propio cuerpo, y no en esta página.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Una ficha publicada se vuelve a comprobar.</strong> La cita de un pleno se queda
+          quieta para siempre; una cifra no. El ministerio revisa una entrega y un hallazgo puede
+          quedarse afirmando el número de antes sin que nadie toque la página. Por eso cada ficha
+          congela su medición —valor, periodo y celda de origen— y{' '}
+          <code>check:eficiencia-findings</code> la vuelve a contrastar contra el panel vivo antes
+          de cada despliegue, distinguiendo cuatro desenlaces: coincide, el panel avanzó de periodo
+          (aviso, no error: la ficha dice de qué periodo habla), el mismo periodo pasó a valer otra
+          cosa, o el indicador desapareció. Los dos últimos bloquean el despliegue. Una ficha nunca
+          se reescribe en silencio: corregirla deja fila pública con el texto anterior, y retirarla
+          deja el digesto —que permite comprobar cuál se fue sin republicar lo que decía—.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Estas fichas no nombran a nadie.</strong> Hablan de un servicio municipal, y el
+          esquema no tiene ningún campo donde poner una persona ni un grupo político — rechaza los
+          del formato de los hallazgos de pleno por si alguien copiara una ficha de un sitio a otro.
+          Colgar un coste unitario de un cargo con nombre es materialmente distinto de colgarlo de
+          un servicio, y es lo único que la fuente respalda: el ministerio publica lo que costó
+          recoger la basura, no quién lo decidió. El derecho de réplica es institucional: responden
+          el ayuntamiento, la intervención, el concesionario o el ministerio, y su respuesta literal
+          se publica junto a la ficha.
         </p>
       </Card>
 

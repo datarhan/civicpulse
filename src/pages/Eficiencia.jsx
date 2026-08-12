@@ -2,7 +2,9 @@ import { Card } from '../components/Primitives'
 import { CoberturaEficiencia } from '../components/eficiencia/CoberturaEficiencia'
 import { ServicioCard } from '../components/eficiencia/ServicioCard'
 import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
+import { HallazgosEficiencia } from '../components/eficiencia/HallazgosEficiencia'
 import { useIndicadores } from '../hooks/useIndicadores'
+import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useT } from '../i18n'
 
 /**
@@ -22,6 +24,7 @@ import { useT } from '../i18n'
 export default function Eficiencia() {
   const t = useT()
   const { loading, error, data } = useIndicadores()
+  const { data: hallazgos } = useEficienciaFindings()
   const indicadores = data?.indicadores ?? []
 
   const conRatio = indicadores
@@ -91,6 +94,12 @@ export default function Eficiencia() {
           </div>
         </>
       )}
+
+      {/* Al final, y no arriba: una ficha firmada es una lectura del panel, y
+          el panel se lee primero. Un hallazgo en cabecera convertiría la página
+          en la conclusión de otro en vez de en las cifras con las que el lector
+          puede sacar la suya. */}
+      {!loading && !error && <HallazgosEficiencia data={hallazgos} />}
 
       <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 28 }}>
         Cómo se calcula, qué se descarta y por qué no hay nota global:{' '}

@@ -49,6 +49,8 @@ export const CURATED = {
   'gazetteer-supplement.json': 'curated — each row needs OSM-id/URL provenance',
   'area-fit.json': 'npm run promote-area-fit',
   'requisitos-cargo.json': 'curated + cited — hand-edit via PR, never programmatically',
+  'eficiencia-findings.json':
+    'npm run promote-indicador / correct-indicador / retract-indicador',
 }
 
 const DRAFTY = /(suggestion|draft|borrador|propuesta)/i
