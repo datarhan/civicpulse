@@ -112,6 +112,11 @@ export const RECHAZOS = [
   'movimiento-pequeno',
   'movimiento-corto',
   'movimiento-antiguo',
+  /**
+   * El punto final del movimiento divide un coste actualizado entre una
+   * cantidad que el ayuntamiento no vuelve a declarar. Ver `reglaMovimiento`.
+   */
+  'denominador-congelado',
 ] as const
 export type Rechazo = (typeof RECHAZOS)[number]
 
@@ -350,6 +355,28 @@ function reglaMovimiento(i: Indicador, anioBase: number, unidad: string, ctx: Co
   // no en cuánto cuesta. Ver la cabecera.
   if (!seAleja(relA, relB)) {
     sube(ctx.rechazos, 'convergente')
+    return null
+  }
+  // ÚLTIMA puerta, y va última a propósito: lo que cuenta este rechazo es
+  // «habría sido candidato, si alguien hubiera vuelto a medir el denominador».
+  // Adelantarla robaría casos a `convergente` y a `movimiento-pequeno`, que
+  // dejarían de ejercitarse sobre datos reales — y una regla que no corre no
+  // está probada.
+  //
+  // El punto final de una afirmación de movimiento tiene que ser una medición
+  // fresca. Si `b` cae dentro del tramo en el que el ayuntamiento repite el
+  // mismo denominador, `relB` es un coste de hoy dividido entre una cantidad de
+  // hace años: lo que se movió fue el numerador, y decir que el servicio «se
+  // alejó de sus pares» atribuye a la gestión lo que hizo la falta de medición.
+  //
+  // No es hipotético. Los dos únicos candidatos de servicio que llegó a haber
+  // —urbanismo (×4,9) y centros docentes (×3,5)— eran exactamente esto, y la
+  // mediana contra la que se medían estaba igual de contaminada: 46 de 58 y 38
+  // de 55 municipios comparables congelan también la suya. Rebajarlos a `debil`
+  // no bastaba; la regla no debe emitirlos.
+  const congelado = i.declaracion?.denominador
+  if (congelado?.congelada && congelado.desde !== null && b.anio >= congelado.desde) {
+    sube(ctx.rechazos, 'denominador-congelado')
     return null
   }
   return {
