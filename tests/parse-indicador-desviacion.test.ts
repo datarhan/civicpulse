@@ -265,3 +265,42 @@ describe('scraper/indicador-desviacion', () => {
     expect(vacio.reglas.posicion).toBe(0)
   })
 })
+
+describe('el borrador describe bien contra QUIÉN se compara', () => {
+  it('no le cuelga «el mismo modo de gestión» a un indicador municipal', () => {
+    // `reglaPosicion` la comparten las dos familias. Para un servicio la frase
+    // es cierta —los pares se filtran por modo de gestión antes de calcular
+    // ningún percentil—; para el plazo de pago o para los denominadores sin
+    // remedir no significa nada, porque ahí no hay servicio ni modo. Nunca
+    // llegó a una ficha publicada, pero el borrador es de donde un curador
+    // copia.
+    const municipales = det.candidatos.filter((c) => c.familia === 'municipal')
+    expect(municipales.length).toBeGreaterThan(0)
+    let revisados = 0
+    for (const c of municipales) {
+      for (const d of c.desviaciones.filter((x) => x.motivo?.startsWith('posicion'))) {
+        expect(d.detalle).not.toMatch(/prestan el servicio del mismo modo/)
+        // Y dice algo, no se queda en «en 51 municipios .»
+        expect(d.detalle).toMatch(/en \d[\d.]* municipios \S/)
+        revisados++
+      }
+      expect(c.borrador.cuerpo).not.toMatch(/prestan el servicio del mismo modo/)
+    }
+    expect(revisados).toBeGreaterThan(0)
+  })
+
+  it('sí se la cuelga a un servicio, que es donde es cierta', () => {
+    // El control: si la frase desapareciera de las dos familias, la corrección
+    // habría borrado información en vez de colocarla.
+    const base = indicadores.find((i) => i.pares)!
+    const solo = detectarDesviaciones({
+      indicadores: [{ ...base, pares: { ...base.pares!, percentil: 97 } }],
+      municipales: [],
+      anioBase: pub.anioBase,
+    })
+    const pos = solo.candidatos
+      .flatMap((c) => c.desviaciones)
+      .find((d) => d.motivo?.startsWith('posicion'))!
+    expect(pos.detalle).toMatch(/prestan el servicio del mismo modo/)
+  })
+})
