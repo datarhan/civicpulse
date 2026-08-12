@@ -110,6 +110,16 @@ describe('scraper/budget — parseConprelRoster', () => {
     expect(rr!.nombre).toBe(budget!.name)
   })
 
+  it('carries the totals each municipality declares, for the per-capita comparison', () => {
+    const rr = roster.find((m) => m.ine === '46214')!
+    const budget = parseConprelBudget(readFileSync(FIXTURE), { ineCode: '46214', year: 2024 })!
+    expect(rr.gastoTotal).toBe(budget.totalExpense)
+    expect(rr.ingresoTotal).toBe(budget.totalRevenue)
+    // Casi todos declaran gasto; exigirlo de todos rompería con un municipio
+    // que no remitió, que es un dato en sí mismo y no un fallo de lectura.
+    expect(roster.filter((m) => m.gastoTotal > 0).length / roster.length).toBeGreaterThan(0.9)
+  })
+
   it('has no duplicate INE codes', () => {
     expect(new Set(roster.map((m) => m.ine)).size).toBe(roster.length)
   })

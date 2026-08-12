@@ -149,6 +149,15 @@ export interface FriccionInput {
     }
     source?: string
   }
+  /** public/data/budget.json — con su banda de municipios comparables. */
+  budget?: {
+    snapshot?: { year?: number; population?: number; totalExpense?: number }
+    pares?: {
+      conjunto?: string
+      anio?: number
+      miembros?: { ine: string; nombre: string; poblacion: number; gastoPorHabitante: number }[]
+    }
+  }
   /** public/data/pmp.json — opcional: el panel se dibuja igual sin él. */
   pmp?: {
     plazoLegalDias?: number
@@ -222,6 +231,62 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
           url:
             pmp.source?.serie ?? 'https://www.hacienda.gob.es/cdi/pmp/pmp-series-rd-1040-2017.xlsx',
           etiqueta: 'Ministerio de Hacienda · series PMP',
+        },
+      ],
+    })
+  }
+
+  // ── 0b. Gasto por habitante. Es una ENTRADA, no un rendimiento: gastar más
+  //        por vecino no es peor ni mejor, y sin esa etiqueta la tarjeta se lee
+  //        como una nota. Lo que sí dice es en qué parte del pelotón está.
+  const bud = input.budget
+  const gastoTotal = num(bud?.snapshot?.totalExpense)
+  const poblacion = num(bud?.snapshot?.population)
+  const miembrosPc = bud?.pares?.miembros ?? []
+  if (gastoTotal > 0 && poblacion > 0) {
+    const propio = gastoTotal / poblacion
+    const vals = miembrosPc
+      .map((m) => m.gastoPorHabitante)
+      .filter((v) => v > 0)
+      .sort((a, b) => a - b)
+    const q = (p: number) => {
+      const i = (vals.length - 1) * p
+      const lo = Math.floor(i)
+      const hi = Math.ceil(i)
+      return lo === hi ? vals[lo] : vals[lo] + (vals[hi] - vals[lo]) * (i - lo)
+    }
+    const anio = bud?.snapshot?.year ?? bud?.pares?.anio
+    out.push({
+      id: 'gasto-por-habitante',
+      dimension: 'fiscal',
+      etiqueta: 'Gasto presupuestado por habitante',
+      descripcion:
+        'Presupuesto de gastos dividido entre la población, frente a los municipios valencianos de tamaño parecido en el mismo ejercicio.',
+      numerador: declarado(gastoTotal, `budget:${anio}:snapshot.totalExpense`),
+      denominador: declarado(poblacion, `budget:${anio}:snapshot.population`),
+      valor: propio,
+      formato: 'euros',
+      periodo: String(anio ?? 'sin declarar'),
+      pares:
+        vals.length >= 15
+          ? {
+              conjunto: bud?.pares?.conjunto ?? 'cv-15k-40k',
+              n: vals.length,
+              percentil: Math.round((100 * vals.filter((v) => v <= propio).length) / vals.length),
+              p25: q(0.25),
+              mediana: q(0.5),
+              p75: q(0.75),
+            }
+          : undefined,
+      caveats: [
+        'Es una medida de ENTRADA: cuánto se presupuesta por vecino. Gastar más no es peor ni mejor —puede ser más servicio o menos eficiencia— y esta cifra sola no distingue las dos cosas.',
+        'Es presupuesto aprobado, no gasto realizado. La ejecución de este mismo ejercicio aparece más abajo.',
+        'Sale de la publicación del ministerio, la misma fila cuyos ingresos y gastos no cuadran entre sí; /presupuesto lo explica.',
+      ],
+      citas: [
+        {
+          url: 'https://www.hacienda.gob.es/es-ES/CDI/Paginas/InformacionPresupuestaria/InformacionEELLs/Presupuestos%20EELL.aspx',
+          etiqueta: 'CONPREL · presupuestos de las entidades locales',
         },
       ],
     })

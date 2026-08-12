@@ -14,13 +14,14 @@ const tenders = JSON.parse(readFileSync(join(ROOT, 'public/data/tenders.json'), 
 const budgetExecution = JSON.parse(
   readFileSync(join(ROOT, 'public/data/budget-execution.json'), 'utf8'),
 )
+const budget = JSON.parse(readFileSync(join(ROOT, 'public/data/budget.json'), 'utf8'))
 
-const indicadores = construirIndicadoresMunicipales({ tenders, budgetExecution })
+const indicadores = construirIndicadoresMunicipales({ tenders, budgetExecution, budget })
 const byId = (id: string) => indicadores.find((i) => i.id === id)!
 
 describe('scraper/indicadores-friccion', () => {
-  it('evaluated something — five municipal indicators, all with a period', () => {
-    expect(indicadores).toHaveLength(5)
+  it('evaluated something — every municipal indicator carries a period', () => {
+    expect(indicadores.length).toBeGreaterThanOrEqual(6)
     for (const i of indicadores) {
       expect(i.periodo).not.toBe('')
       expect(i.periodo).not.toBe('periodo sin declarar')
@@ -105,6 +106,30 @@ describe('scraper/indicadores-friccion', () => {
     expect(mod.dimension).toBe('fiscal')
     // The listing date matters: 30 % executed in June is not 30 % in December.
     expect(eje.periodo).toContain(String(budgetExecution.latest.year))
+  })
+
+  it('sitúa el gasto por habitante entre municipios del mismo tamaño', () => {
+    const g = byId('gasto-por-habitante')
+    expect(g.valor).toBeCloseTo(budget.snapshot.totalExpense / budget.snapshot.population, 6)
+    expect(g.dimension).toBe('fiscal')
+    expect(g.formato).toBe('euros')
+    expect(g.periodo).toBe(String(budget.snapshot.year))
+    expect(g.pares!.n).toBeGreaterThanOrEqual(15)
+    expect(g.pares!.p25).toBeLessThanOrEqual(g.pares!.mediana)
+    expect(g.pares!.mediana).toBeLessThanOrEqual(g.pares!.p75)
+    // Gastar más por vecino no es peor ni mejor: si la tarjeta no lo dice, se
+    // lee como una nota. Es la misma disciplina que el coste por policía.
+    expect(g.caveats.some((c) => /medida de ENTRADA/i.test(c))).toBe(true)
+    expect(g.caveats.some((c) => /presupuesto aprobado, no gasto realizado/i.test(c))).toBe(true)
+  })
+
+  it('no compara el gasto por habitante sin banda que lo sostenga', () => {
+    const sinPares = construirIndicadoresMunicipales({
+      tenders,
+      budgetExecution,
+      budget: { snapshot: budget.snapshot, pares: { miembros: [] } },
+    })
+    expect(sinPares.find((m) => m.id === 'gasto-por-habitante')!.pares).toBeUndefined()
   })
 
   it('refuses a value when the source is empty rather than publishing zero', () => {

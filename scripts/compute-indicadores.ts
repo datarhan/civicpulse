@@ -55,6 +55,7 @@ async function main() {
     tenders: await leer('public/data/tenders.json'),
     budgetExecution: await leer('public/data/budget-execution.json'),
     pmp: await leer('public/data/pmp.json').catch(() => undefined),
+    budget: await leer('public/data/budget.json').catch(() => undefined),
   })
   for (const m of municipales) {
     rec.attempt()

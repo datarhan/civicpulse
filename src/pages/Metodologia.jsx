@@ -1458,6 +1458,20 @@ export default function Metodologia() {
           plan de tesorería.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>El gasto por habitante es una entrada, no una nota.</strong> El presupuesto de
+          gastos dividido entre la población se compara con los mismos municipios valencianos de
+          15.000 a 40.000 habitantes, del mismo ejercicio y de la misma publicación del ministerio,
+          que es la única forma de que la comparación signifique algo. Pero mide lo que se dedica
+          por vecino, no lo que se consigue con ello: gastar más puede ser más servicio o menos
+          eficiencia, y esta cifra sola no distingue las dos cosas. Es además presupuesto aprobado y
+          no gasto realizado, y sale de la misma fila cuyos ingresos y gastos no cuadran entre sí —
+          lo que{' '}
+          <a href="/presupuesto#descuadre" style={{ color: 'var(--civic)' }}>
+            /presupuesto
+          </a>{' '}
+          explica.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>La cuarta dimensión no es la satisfacción ciudadana.</strong> Medirla exigiría una
           encuesta representativa que no existe: el ayuntamiento publicó un barómetro de servicios
           en 2026, pero el portal que lo alojaba fue dado de baja, y el buzón de quejas es

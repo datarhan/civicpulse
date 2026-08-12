@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T09:18:53.218Z",
+  "generatedAt": "2026-08-12T09:42:15.956Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -3989,6 +3989,44 @@
       ]
     },
     {
+      "id": "gasto-por-habitante",
+      "dimension": "fiscal",
+      "etiqueta": "Gasto presupuestado por habitante",
+      "descripcion": "Presupuesto de gastos dividido entre la población, frente a los municipios valencianos de tamaño parecido en el mismo ejercicio.",
+      "numerador": {
+        "valor": 41578252.26,
+        "estado": "declarado",
+        "fuente": "budget:2025:snapshot.totalExpense"
+      },
+      "denominador": {
+        "valor": 24616,
+        "estado": "declarado",
+        "fuente": "budget:2025:snapshot.population"
+      },
+      "valor": 1689.0742712057197,
+      "formato": "euros",
+      "periodo": "2025",
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 59,
+        "percentil": 88,
+        "p25": 925.4006757404256,
+        "mediana": 1055.3535052521008,
+        "p75": 1337.1236546940017
+      },
+      "caveats": [
+        "Es una medida de ENTRADA: cuánto se presupuesta por vecino. Gastar más no es peor ni mejor —puede ser más servicio o menos eficiencia— y esta cifra sola no distingue las dos cosas.",
+        "Es presupuesto aprobado, no gasto realizado. La ejecución de este mismo ejercicio aparece más abajo.",
+        "Sale de la publicación del ministerio, la misma fila cuyos ingresos y gastos no cuadran entre sí; /presupuesto lo explica."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/es-ES/CDI/Paginas/InformacionPresupuestaria/InformacionEELLs/Presupuestos%20EELL.aspx",
+          "etiqueta": "CONPREL · presupuestos de las entidades locales"
+        }
+      ]
+    },
+    {
       "id": "licitador-unico",
       "dimension": "friccion",
       "etiqueta": "Contratos con un solo licitador",
@@ -4136,6 +4174,6 @@
     "indicadores": 13,
     "conRatio": 10,
     "comparables": 10,
-    "municipales": 6
+    "municipales": 7
   }
 }

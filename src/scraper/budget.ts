@@ -157,6 +157,10 @@ export interface ConprelMunicipio {
   ine: string
   nombre: string
   poblacion: number
+  /** Total de gastos del presupuesto inicial, columna «Total gastos». */
+  gastoTotal: number
+  /** Total de ingresos, para poder ver si la fila cuadra consigo misma. */
+  ingresoTotal: number
 }
 
 /**
@@ -203,7 +207,10 @@ export function parseConprelRoster(
     // check in the tests would go red first.
     if (seen.has(ine)) continue
     seen.add(ine)
-    out.push({ ine, nombre, poblacion })
+    // Mismas columnas que usa parseConprelBudget: 15 total ingresos, 25 total
+    // gastos. Se leen aquí para poder comparar el gasto por habitante contra
+    // municipios del mismo tamaño sin descargar nada más.
+    out.push({ ine, nombre, poblacion, gastoTotal: num(row[25]), ingresoTotal: num(row[15]) })
   }
   return out
 }
