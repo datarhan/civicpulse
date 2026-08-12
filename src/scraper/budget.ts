@@ -152,3 +152,65 @@ export function parseConprelBudget(
 
   return null
 }
+
+export interface ConprelMunicipio {
+  ine: string
+  nombre: string
+  poblacion: number
+  /** Total de gastos del presupuesto inicial, columna «Total gastos». */
+  gastoTotal: number
+  /** Total de ingresos, para poder ver si la fila cuadra consigo misma. */
+  ingresoTotal: number
+}
+
+/**
+ * Every municipality in the CONPREL sheet, with its population.
+ *
+ * `parseConprelBudget` walks these same rows and stops at the one it wants;
+ * this reads all of them. It exists because CESEL — the coste efectivo return
+ * behind /eficiencia — carries no population, so "municipios de tamaño
+ * parecido" has to be sized from somewhere, and the file is already on disk.
+ *
+ * Column layout is documented on `parseConprelBudget`: 0 Pr | 1 Cor | 3 Nombre
+ * | 4 Pobla. Province 00 is the "varias/consorcios" bucket, not a municipality.
+ */
+export function parseConprelRoster(
+  buffer: Buffer | ArrayBuffer,
+  opts: { sheetName?: string } = {},
+): ConprelMunicipio[] {
+  const wb = XLSX.read(buffer, { type: 'buffer' })
+  const sheet = wb.Sheets[opts.sheetName ?? 'Comunitat Valenciana']
+  if (!sheet) return []
+
+  const rows: unknown[][] = XLSX.utils.sheet_to_json(sheet, {
+    header: 1,
+    raw: true,
+    defval: null,
+  })
+
+  const out: ConprelMunicipio[] = []
+  const seen = new Set<string>()
+  for (const row of rows) {
+    if (!row || row.length < 30) continue
+    const pr = String(row[0] ?? '')
+      .replace(/\D/g, '')
+      .padStart(2, '0')
+    const cor = String(row[1] ?? '')
+      .replace(/\D/g, '')
+      .padStart(3, '0')
+    const nombre = String(row[3] ?? '').trim()
+    const poblacion = num(row[4])
+    if (pr === '00' || !nombre || poblacion <= 0) continue
+    const ine = pr + cor
+    // A repeated INE code would mean the sheet changed shape under us; keeping
+    // the first and dropping the rest is safe here only because the duplicate
+    // check in the tests would go red first.
+    if (seen.has(ine)) continue
+    seen.add(ine)
+    // Mismas columnas que usa parseConprelBudget: 15 total ingresos, 25 total
+    // gastos. Se leen aquí para poder comparar el gasto por habitante contra
+    // municipios del mismo tamaño sin descargar nada más.
+    out.push({ ine, nombre, poblacion, gastoTotal: num(row[25]), ingresoTotal: num(row[15]) })
+  }
+  return out
+}

@@ -1,7 +1,7 @@
 name: Registrar voto de pleno
 description: Transcribir un acuerdo votado en pleno con cita al acta oficial.
-title: "[Voto pleno] "
-labels: ["pleno-vote"]
+title: '[Voto pleno] '
+labels: ['pleno-vote']
 body:
   - type: markdown
     attributes:
@@ -15,24 +15,24 @@ body:
   - type: input
     id: pleno-id
     attributes:
-      label: "ID del pleno"
-      description: "El id que aparece en public/data/plenos.json (columna `id`), e.g. `k4olcs`."
-      placeholder: "k4olcs"
+      label: 'ID del pleno'
+      description: 'El id que aparece en public/data/plenos.json (columna `id`), e.g. `k4olcs`.'
+      placeholder: 'k4olcs'
     validations:
       required: true
 
   - type: input
     id: item-number
     attributes:
-      label: "Número de punto en el orden del día"
-      placeholder: "3"
+      label: 'Número de punto en el orden del día'
+      placeholder: '3'
     validations:
       required: true
 
   - type: dropdown
     id: outcome
     attributes:
-      label: "Resultado de la votación"
+      label: 'Resultado de la votación'
       options:
         - aprobado
         - rechazado
@@ -44,16 +44,16 @@ body:
   - type: textarea
     id: title
     attributes:
-      label: "Título del acuerdo (verbatim)"
-      description: "Cita literal del punto tal y como aparece en el acta."
-      placeholder: "Aprobación inicial del presupuesto municipal para el ejercicio 2026."
+      label: 'Título del acuerdo (verbatim)'
+      description: 'Cita literal del punto tal y como aparece en el acta.'
+      placeholder: 'Aprobación inicial del presupuesto municipal para el ejercicio 2026.'
     validations:
       required: true
 
   - type: textarea
     id: votes
     attributes:
-      label: "Votos por grupo"
+      label: 'Votos por grupo'
       description: |
         Un grupo por línea en formato `BLOC:direction[:seats]`, por ejemplo:
         ```
@@ -73,7 +73,7 @@ body:
       # dos veces y la que había (…/plenos/2026/acta-20-abril.pdf) devuelve 404,
       # así que hacía de modelo de una ruta que ya no existe. El texto de esta
       # etiqueta lo lee ingest-pleno-votes.yml por su literal — cámbialo allí a la vez.
-      label: "URL del acta oficial"
+      label: 'URL del acta oficial'
       description: |
         Enlace al documento donde consta el acuerdo. Preferiblemente el acta;
         si no está publicada, el portal de sesiones (regmeet.com) o el vídeo de
@@ -86,38 +86,38 @@ body:
   - type: input
     id: department
     attributes:
-      label: "Departamento / concejalía (opcional)"
-      placeholder: "Hacienda"
+      label: 'Departamento / concejalía (opcional)'
+      placeholder: 'Hacienda'
 
   - type: input
     id: expediente
     attributes:
-      label: "Expediente (opcional)"
-      placeholder: "4305/2026/GEN"
+      label: 'Expediente (opcional)'
+      placeholder: '4305/2026/GEN'
 
   - type: input
     id: due-by
     attributes:
-      label: "Plazo de ejecución (opcional, ISO YYYY-MM-DD)"
+      label: 'Plazo de ejecución (opcional, ISO YYYY-MM-DD)'
       description: |
         Fecha por la que el acuerdo debe estar ejecutado, si el acta lo indica
         explícitamente. Si rellenas este campo, es obligatorio rellenar también
         la cita literal del plazo en el campo siguiente.
-      placeholder: "2026-10-20"
+      placeholder: '2026-10-20'
 
   - type: textarea
     id: due-by-source
     attributes:
-      label: "Cita literal del plazo (obligatoria si hay fecha, ≥20 caracteres)"
+      label: 'Cita literal del plazo (obligatoria si hay fecha, ≥20 caracteres)'
       description: |
         Texto exacto del acta que fija el plazo, por ejemplo:
         «con plazo de ejecución de 6 meses desde la aprobación». Sin cita
         verbatim el plazo no se publica — es una garantía editorial contra
         las atribuciones sin base documental.
-      placeholder: "con plazo de ejecución de 6 meses desde la aprobación"
+      placeholder: 'con plazo de ejecución de 6 meses desde la aprobación'
 
   - type: textarea
     id: note
     attributes:
-      label: "Nota editorial (opcional)"
-      description: "Por ejemplo: «Votación nominal» o «Con voto de calidad del Alcalde»."
+      label: 'Nota editorial (opcional)'
+      description: 'Por ejemplo: «Votación nominal» o «Con voto de calidad del Alcalde».'

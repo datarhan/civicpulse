@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T05:51:50.774Z",
+  "generatedAt": "2026-08-12T12:29:27.491Z",
   "source": "https://serviciostelematicosext.hacienda.gob.es/SGFAL/CONPREL/Consulta/DescargaFichero?CCAA=17&TipoDato=Presupuestos&Ejercicio=2025&TipoPublicacion=Definitiva",
   "kind": "presupuesto-inicial",
   "snapshot": {
@@ -131,5 +131,370 @@
       }
     ],
     "source": "https://serviciostelematicosext.hacienda.gob.es/SGFAL/CONPREL/Consulta/DescargaFichero?CCAA=17&TipoDato=Presupuestos&Ejercicio=2025&TipoPublicacion=Definitiva"
+  },
+  "pares": {
+    "conjunto": "cv-15k-40k",
+    "criterios": {
+      "ccaa": 17,
+      "popMin": 15000,
+      "popMax": 40000
+    },
+    "anio": 2025,
+    "miembros": [
+      {
+        "ine": "03011",
+        "nombre": "Alfàs del Pi (l')",
+        "poblacion": 21080,
+        "gastoPorHabitante": 1329.2979772296017
+      },
+      {
+        "ine": "03015",
+        "nombre": "Almoradí",
+        "poblacion": 22965,
+        "gastoPorHabitante": 786.5390158937514
+      },
+      {
+        "ine": "03018",
+        "nombre": "Altea",
+        "poblacion": 24592,
+        "gastoPorHabitante": 1442.0507498373454
+      },
+      {
+        "ine": "03019",
+        "nombre": "Aspe",
+        "poblacion": 22397,
+        "gastoPorHabitante": 1000.118212707059
+      },
+      {
+        "ine": "03047",
+        "nombre": "Calp",
+        "poblacion": 27616,
+        "gastoPorHabitante": 1988.4092192931635
+      },
+      {
+        "ine": "03049",
+        "nombre": "Callosa de Segura",
+        "poblacion": 19988,
+        "gastoPorHabitante": 698.1748674204523
+      },
+      {
+        "ine": "03050",
+        "nombre": "Campello (el)",
+        "poblacion": 31419,
+        "gastoPorHabitante": 1245.8703332378498
+      },
+      {
+        "ine": "03059",
+        "nombre": "Crevillent",
+        "poblacion": 30921,
+        "gastoPorHabitante": 1149.4086436402445
+      },
+      {
+        "ine": "03076",
+        "nombre": "Guardamar del Segura",
+        "poblacion": 18564,
+        "gastoPorHabitante": 1254.236863283775
+      },
+      {
+        "ine": "03079",
+        "nombre": "Ibi",
+        "poblacion": 24500,
+        "gastoPorHabitante": 754.4961906122448
+      },
+      {
+        "ine": "03082",
+        "nombre": "Jávea/Xàbia",
+        "poblacion": 30642,
+        "gastoPorHabitante": 1530.252594478167
+      },
+      {
+        "ine": "03090",
+        "nombre": "Mutxamel",
+        "poblacion": 28621,
+        "gastoPorHabitante": 1028.6782432479647
+      },
+      {
+        "ine": "03093",
+        "nombre": "Novelda",
+        "poblacion": 26606,
+        "gastoPorHabitante": 1170.8395925731038
+      },
+      {
+        "ine": "03094",
+        "nombre": "Nucia (la)",
+        "poblacion": 19121,
+        "gastoPorHabitante": 1749.0877192615449
+      },
+      {
+        "ine": "03104",
+        "nombre": "Petrer",
+        "poblacion": 34022,
+        "gastoPorHabitante": 919.5970774792781
+      },
+      {
+        "ine": "03113",
+        "nombre": "Rojales",
+        "poblacion": 17652,
+        "gastoPorHabitante": 885.7833106730116
+      },
+      {
+        "ine": "03119",
+        "nombre": "Sant Joan d'Alacant",
+        "poblacion": 26834,
+        "gastoPorHabitante": 1219.9739900872028
+      },
+      {
+        "ine": "03121",
+        "nombre": "Santa Pola",
+        "poblacion": 39709,
+        "gastoPorHabitante": 1012.875102621572
+      },
+      {
+        "ine": "03139",
+        "nombre": "Villajoyosa/Vila Joiosa (la)",
+        "poblacion": 37449,
+        "gastoPorHabitante": 1344.949332158402
+      },
+      {
+        "ine": "03140",
+        "nombre": "Villena",
+        "poblacion": 34712,
+        "gastoPorHabitante": 1050.5902313321042
+      },
+      {
+        "ine": "03902",
+        "nombre": "Pilar de la Horadada",
+        "poblacion": 24316,
+        "gastoPorHabitante": 1717.1864385589738
+      },
+      {
+        "ine": "12009",
+        "nombre": "Almassora",
+        "poblacion": 29159,
+        "gastoPorHabitante": 1606.7374395555403
+      },
+      {
+        "ine": "12027",
+        "nombre": "Benicarló",
+        "poblacion": 30296,
+        "gastoPorHabitante": 1941.7290074597306
+      },
+      {
+        "ine": "12028",
+        "nombre": "Benicasim/Benicàssim",
+        "poblacion": 20539,
+        "gastoPorHabitante": 1730.3932095038708
+      },
+      {
+        "ine": "12032",
+        "nombre": "Borriana/Burriana",
+        "poblacion": 37915,
+        "gastoPorHabitante": 1065.4897908479495
+      },
+      {
+        "ine": "12084",
+        "nombre": "Onda",
+        "poblacion": 26190,
+        "gastoPorHabitante": 1432.4880106911035
+      },
+      {
+        "ine": "12126",
+        "nombre": "Vall d'Uixó (la)",
+        "poblacion": 32242,
+        "gastoPorHabitante": 1583.6356463618881
+      },
+      {
+        "ine": "12138",
+        "nombre": "Vinaròs",
+        "poblacion": 30529,
+        "gastoPorHabitante": 1576.3700088440498
+      },
+      {
+        "ine": "46005",
+        "nombre": "Alaquàs",
+        "poblacion": 30166,
+        "gastoPorHabitante": 926.6622717629119
+      },
+      {
+        "ine": "46007",
+        "nombre": "Albal",
+        "poblacion": 17365,
+        "gastoPorHabitante": 846.2852674920817
+      },
+      {
+        "ine": "46013",
+        "nombre": "Alboraia/Alboraya",
+        "poblacion": 26273,
+        "gastoPorHabitante": 1062.100622311879
+      },
+      {
+        "ine": "46021",
+        "nombre": "Aldaia",
+        "poblacion": 34630,
+        "gastoPorHabitante": 875.7064666474156
+      },
+      {
+        "ine": "46022",
+        "nombre": "Alfafar",
+        "poblacion": 22270,
+        "gastoPorHabitante": 1023.1813004041312
+      },
+      {
+        "ine": "46029",
+        "nombre": "Algemesí",
+        "poblacion": 28306,
+        "gastoPorHabitante": 843.5662502649616
+      },
+      {
+        "ine": "46054",
+        "nombre": "Benetússer",
+        "poblacion": 16734,
+        "gastoPorHabitante": 924.1390797179395
+      },
+      {
+        "ine": "46070",
+        "nombre": "Bétera",
+        "poblacion": 28560,
+        "gastoPorHabitante": 1055.3535052521008
+      },
+      {
+        "ine": "46083",
+        "nombre": "Carcaixent",
+        "poblacion": 21934,
+        "gastoPorHabitante": 1019.3426415610468
+      },
+      {
+        "ine": "46085",
+        "nombre": "Carlet",
+        "poblacion": 16857,
+        "gastoPorHabitante": 983.8518022186629
+      },
+      {
+        "ine": "46094",
+        "nombre": "Catarroja",
+        "poblacion": 30604,
+        "gastoPorHabitante": 1275.6742494445173
+      },
+      {
+        "ine": "46102",
+        "nombre": "Quart de Poblet",
+        "poblacion": 26967,
+        "gastoPorHabitante": 1509.2149664404642
+      },
+      {
+        "ine": "46105",
+        "nombre": "Cullera",
+        "poblacion": 24702,
+        "gastoPorHabitante": 1736.226807141122
+      },
+      {
+        "ine": "46110",
+        "nombre": "Xirivella",
+        "poblacion": 32093,
+        "gastoPorHabitante": 797.9048334527779
+      },
+      {
+        "ine": "46111",
+        "nombre": "Chiva",
+        "poblacion": 17951,
+        "gastoPorHabitante": 902.3647445824745
+      },
+      {
+        "ine": "46116",
+        "nombre": "Eliana (l')",
+        "poblacion": 19839,
+        "gastoPorHabitante": 1007.7011356419175
+      },
+      {
+        "ine": "46145",
+        "nombre": "Xàtiva",
+        "poblacion": 31008,
+        "gastoPorHabitante": 1264.1534910345717
+      },
+      {
+        "ine": "46147",
+        "nombre": "Llíria",
+        "poblacion": 25333,
+        "gastoPorHabitante": 995.406301267122
+      },
+      {
+        "ine": "46159",
+        "nombre": "Manises",
+        "poblacion": 32609,
+        "gastoPorHabitante": 1021.4971326934282
+      },
+      {
+        "ine": "46164",
+        "nombre": "Massamagrell",
+        "poblacion": 17566,
+        "gastoPorHabitante": 740.9199590117272
+      },
+      {
+        "ine": "46171",
+        "nombre": "Moncada",
+        "poblacion": 22213,
+        "gastoPorHabitante": 969.3826016296763
+      },
+      {
+        "ine": "46181",
+        "nombre": "Oliva",
+        "poblacion": 26813,
+        "gastoPorHabitante": 1129.3792563308843
+      },
+      {
+        "ine": "46184",
+        "nombre": "Ontinyent",
+        "poblacion": 37012,
+        "gastoPorHabitante": 1747.2614287258186
+      },
+      {
+        "ine": "46186",
+        "nombre": "Paiporta",
+        "poblacion": 28136,
+        "gastoPorHabitante": 774.3973752487916
+      },
+      {
+        "ine": "46194",
+        "nombre": "Picassent",
+        "poblacion": 23202,
+        "gastoPorHabitante": 1206.9119489699162
+      },
+      {
+        "ine": "46202",
+        "nombre": "Pobla de Vallbona (la)",
+        "poblacion": 27471,
+        "gastoPorHabitante": 1287.4187153725748
+      },
+      {
+        "ine": "46205",
+        "nombre": "Puçol",
+        "poblacion": 21659,
+        "gastoPorHabitante": 931.0966341936378
+      },
+      {
+        "ine": "46213",
+        "nombre": "Requena",
+        "poblacion": 20982,
+        "gastoPorHabitante": 894.0310265942236
+      },
+      {
+        "ine": "46230",
+        "nombre": "Silla",
+        "poblacion": 20482,
+        "gastoPorHabitante": 914.4653012401133
+      },
+      {
+        "ine": "46235",
+        "nombre": "Sueca",
+        "poblacion": 29194,
+        "gastoPorHabitante": 1273.0825707337124
+      },
+      {
+        "ine": "46238",
+        "nombre": "Tavernes de la Valldigna",
+        "poblacion": 17866,
+        "gastoPorHabitante": 1036.593854808015
+      }
+    ]
   }
 }

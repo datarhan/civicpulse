@@ -32,6 +32,27 @@ import type { RunStats } from '../llm/client'
 
 export const MANIFEST_DIR = '.run-manifests'
 
+/**
+ * LLM traffic for a pass that makes none.
+ *
+ * `startRun` was built for the LLM passes, so `getStats` returns the client's
+ * `RunStats` and `formatManifest` reads `llm.tokens` off it. A deterministic
+ * scraper has no client to ask, and passing its own counters instead crashes
+ * the formatter — which is how `check:runs` broke the first time a plain
+ * adapter was instrumented. Zero calls is also the honest reading: the pass
+ * really did make none.
+ */
+export const NO_LLM_STATS: RunStats = Object.freeze({
+  calls: 0,
+  cacheHits: 0,
+  ok: 0,
+  failed: 0,
+  zeroTokenFailures: 0,
+  shortCircuited: 0,
+  tokens: 0,
+  costUSD: 0,
+})
+
 /** Backends whose reported cost is an API-equivalent estimate, not money spent. */
 const SUBSCRIPTION_BACKENDS: ReadonlySet<string> = new Set(['claude-code', 'gemini', 'agy'])
 
@@ -112,7 +133,13 @@ export function assessManifest(m: RunManifest): ManifestFinding[] {
   }
 
   // Claimed judgements with no traffic to back them.
-  if (m.judged > 0 && m.llm.calls === 0 && m.llm.cacheHits === 0) {
+  //
+  // Only meaningful for a pass that HAS a backend. A deterministic adapter — a
+  // plain scraper — judges items with no LLM anywhere, and cannot suffer the
+  // failure this rule looks for (a backend that went quiet while the script's
+  // own counters kept climbing). Firing on it would paint every non-LLM pass
+  // red forever, which is the failure mode this whole file argues against.
+  if (m.backend && m.judged > 0 && m.llm.calls === 0 && m.llm.cacheHits === 0) {
     out.push({
       level: 'error',
       code: 'judged-without-calls',
@@ -175,18 +202,22 @@ export function formatManifest(m: RunManifest): string {
   const outcome = Object.entries(m.outcome)
     .map(([k, v]) => `${k}=${v}`)
     .join(' ')
+  // A manifest from an older or buggier build may carry a partial `llm` block.
+  // check:runs formats EVERY manifest on disk, so throwing here blinds the gate
+  // entirely instead of degrading one line of its output.
+  const llm = { ...NO_LLM_STATS, ...(m.llm ?? {}) }
   return [
     `${m.script}${m.mode ? ` (${m.mode})` : ''} · ${m.backend ?? 'no-backend'}${m.model ? `/${m.model}` : ''}`,
     `  attempted ${m.attempted} · judged ${m.judged} · never-attempted ${m.neverAttempted}` +
       (skipped ? ` · skipped ${skipped}` : ''),
     outcome ? `  outcome: ${outcome}` : '',
-    `  llm: ${m.llm.calls} calls (${m.llm.ok} ok, ${m.llm.failed} failed, ` +
-      `${m.llm.zeroTokenFailures} zero-token) · ${m.llm.cacheHits} cache hits · ` +
-      `${m.llm.tokens.toLocaleString('en-US')} tokens · ` +
+    `  llm: ${llm.calls} calls (${llm.ok} ok, ${llm.failed} failed, ` +
+      `${llm.zeroTokenFailures} zero-token) · ${llm.cacheHits} cache hits · ` +
+      `${llm.tokens.toLocaleString('en-US')} tokens · ` +
       // claude-code on a Max plan bills nothing; its reported cost is an
       // API-equivalent estimate. Printing it as money once made a $0 night read
       // as $16.51.
-      `${SUBSCRIPTION_BACKENDS.has(m.backend ?? '') ? `~$${m.llm.costUSD.toFixed(4)} est. (subscription, not billed)` : `$${m.llm.costUSD.toFixed(4)}`}`,
+      `${SUBSCRIPTION_BACKENDS.has(m.backend ?? '') ? `~$${llm.costUSD.toFixed(4)} est. (subscription, not billed)` : `$${llm.costUSD.toFixed(4)}`}`,
   ]
     .filter(Boolean)
     .join('\n')

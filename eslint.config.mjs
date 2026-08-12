@@ -41,6 +41,11 @@ export default [
         ...globals.browser,
         ...globals.node,
         ...globals.es2023,
+        // Constantes que Vite resuelve en el build (`define` en
+        // vite.config.js). Declaradas para TypeScript en
+        // src/build-globals.d.ts; esto es lo mismo para ESLint.
+        __REVISION_METODOLOGIA__: 'readonly',
+        __REVISION_AVISO_LEGAL__: 'readonly',
       },
       parserOptions: {
         ecmaFeatures: { jsx: true },
@@ -57,12 +62,17 @@ export default [
       'react/display-name': 'off',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      'no-unused-vars': 'off',                        // TS handles this better
+      'no-unused-vars': 'off', // TS handles this better
       '@typescript-eslint/no-unused-vars': [
         'warn',
-        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', ignoreRestSiblings: true, caughtErrors: 'none' },
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+          caughtErrors: 'none',
+        },
       ],
-      '@typescript-eslint/no-explicit-any': 'off',    // used intentionally at a few LLM/IO boundaries
+      '@typescript-eslint/no-explicit-any': 'off', // used intentionally at a few LLM/IO boundaries
       '@typescript-eslint/no-empty-object-type': 'off',
       'no-empty': ['error', { allowEmptyCatch: true }],
       'no-case-declarations': 'off',

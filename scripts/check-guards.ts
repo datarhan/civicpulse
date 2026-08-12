@@ -283,6 +283,163 @@ const INJECTIONS: Array<{
       return JSON.stringify(d, null, 2) + '\n'
     },
   },
+  {
+    guard: 'check:indicadores',
+    file: 'public/data/indicadores.json',
+    describe: 'un coste unitario que ya no sale de la celda que dice citar',
+    // Toda cifra de /eficiencia lleva su celda (`cesel:2024:CE2:a1621:Econ14`)
+    // y el gate la resuelve contra el volcado. Multiplicar el numerador por
+    // diez sin tocar la celda es exactamente lo que pasaría si alguien editara
+    // el snapshot a mano: el número publicado deja de tener detrás lo que dice
+    // tener, y ninguna otra comprobación lo notaría.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const i = d.indicadores?.find(
+        (x: { valor: number | null; numerador?: { valor?: number } }) =>
+          x.valor !== null && typeof x.numerador?.valor === 'number',
+      )
+      if (!i) throw new Error('sin indicador con cociente que corromper')
+      i.numerador.valor *= 10
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
+  {
+    guard: 'check:eficiencia-findings',
+    file: 'public/data/eficiencia-findings.json',
+    describe: 'una ficha firmada que afirma una cifra que su fuente ya no dice',
+    // La avería propia de esta familia: el ministerio revisa una entrega y la
+    // ficha se queda afirmando la de antes, sin que nadie toque la página. Se
+    // inyecta una ficha entera porque el fichero puede estar vacío —cero fichas
+    // es el estado normal antes de la primera firma— y un gate que sólo se
+    // puede probar cuando ya hay algo publicado no está probado.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const panel = JSON.parse(readFileSync(resolve(ROOT, 'public/data/indicadores.json'), 'utf8'))
+      const m = panel.municipales?.find((x: { valor: number | null }) => x.valor !== null)
+      if (!m) throw new Error('sin indicador municipal con valor')
+      d.items = [
+        {
+          id: 'ef-inyectada',
+          candidatoId: `cand-${m.id}-inyectada`,
+          indicadorId: m.id,
+          familia: 'municipal',
+          titulo: 'Ficha inyectada por check:guards para comprobar que el gate tiene dientes',
+          cuerpo:
+            'Esta ficha existe sólo durante la inyección de fallos y afirma deliberadamente una ' +
+            'cifra que el panel vivo no sostiene. Si el gate no se queja de ella, no está ' +
+            'comprobando que lo publicado siga coincidiendo con su fuente.',
+          motivos: ['umbral-legal'],
+          fiabilidad: 'alta',
+          medicion: {
+            indicadorId: m.id,
+            periodo: m.periodo,
+            // La misma cifra, movida: mismo periodo, otro valor → `contradice`.
+            valor: (m.formato === 'porcentaje' ? m.valor * 100 : m.valor) * 3 + 1,
+            unidad: 'días',
+            fuentes: [m.numerador.fuente, m.denominador.fuente],
+          },
+          caveats: [],
+          citas: [{ url: 'https://www.hacienda.gob.es/', etiqueta: 'Ministerio de Hacienda' }],
+          curatorName: 'check-guards',
+          publishedAt: new Date().toISOString().slice(0, 10),
+          response: null,
+          corrections: [],
+        },
+      ]
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
+  {
+    guard: 'check:summary-gate',
+    file: 'public/data/pleno-findings.json',
+    describe: 'un sumario que reimprime, palabra por palabra, una cita que la puerta retiene',
+    // La avería exacta que produjo este gate: `claim-public-gate.ts` promete
+    // que una cita `hidden` «nunca entra en un fichero desplegado», y
+    // pleno-findings.json ES un fichero desplegado. La puerta se aplicaba a la
+    // LISTA DE CITAS y nadie miraba el sumario de al lado, así que la misma
+    // acusación se publicaba sobre el mismo grupo con las mismas palabras,
+    // perdiendo sólo las comillas. Se midieron 9 fugas en 7 hallazgos.
+    //
+    // La cita retenida se busca en la instantánea de procedencia, que es donde
+    // vive el veredicto de la puerta — recomputarlo aquí sería un segundo
+    // clasificador, y dos clasificadores es como una página y su cola de
+    // revisión empiezan a discrepar sobre qué está oculto.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const prov = JSON.parse(
+        readFileSync(resolve(ROOT, 'public/data/finding-quote-provenance.json'), 'utf8'),
+      ) as { quotes: Record<string, Array<{ gate?: string }>> }
+      for (const [findingId, veredictos] of Object.entries(prov.quotes ?? {})) {
+        const idx = veredictos.findIndex((q) => q.gate === 'hidden')
+        if (idx < 0) continue
+        const f = d.items?.find((x: { id: string }) => x.id === findingId)
+        const texto = f?.quotes?.[idx]?.text
+        if (!f || !texto) continue
+        f.summary = `${f.summary} El grupo afirmó: «${texto}»`
+        return JSON.stringify(d, null, 2) + '\n'
+      }
+      throw new Error('sin cita retenida que filtrar — ¿cambió el formato de la procedencia?')
+    },
+  },
+  {
+    guard: 'check:queues',
+    file: 'public/data/pleno-findings.json',
+    describe: 'una cola de curación que sigue hablando de un hallazgo que ya no está publicado',
+    // El incidente del 2026-08-11: se retiraron once hallazgos y un tercio de
+    // un backlog aparente de 175 filas pasó a ser filas sobre hallazgos que ya
+    // no existían. Nada publicado estaba mal; la cola mentía sobre su propio
+    // tamaño, que es como una cola deja de trabajarse.
+    //
+    // Se inyecta por el CORPUS y no por la cola: los worklists viven en
+    // editorial/, que está gitignorado, y este arnés restaura con git — así que
+    // no podría deshacer el daño. Quitar el hallazgo al que apuntan produce
+    // exactamente la misma huérfana.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const colaPath = resolve(ROOT, 'editorial/finding-support-queue.json')
+      if (!existsSync(colaPath)) {
+        // No es un defecto: editorial/ está gitignorado, así que en CI o en un
+        // clon nuevo no hay colas y `check:queues` informa «sin fichero — nada
+        // que revisar». Decirlo con estas palabras evita que alguien lo
+        // depure como si fuera una avería.
+        throw new Error(
+          'no hay editorial/finding-support-queue.json (gitignorado; en CI nunca existe) — ' +
+            'genera una cola con `npm run triage:finding-support` para ejercitar esta inyección',
+        )
+      }
+      const cola = JSON.parse(readFileSync(colaPath, 'utf8')) as {
+        rows?: Array<{ id?: string }>
+        items?: Array<{ id?: string }>
+      }
+      const filas = cola.rows ?? cola.items ?? []
+      const citado = filas
+        .map((r) => r.id)
+        .find((id) => d.items.some((f: { id: string }) => f.id === id))
+      if (!citado) throw new Error('la cola no nombra ningún hallazgo vivo que quitar')
+      d.items = d.items.filter((f: { id: string }) => f.id !== citado)
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
+  {
+    guard: 'check:data-graph',
+    file: 'src/scraper/data-graph.ts',
+    describe: 'una arista declarada que el script no lee — el grafo describiendo otro código',
+    // El grafo es una declaración de dependencias escrita a mano, y una
+    // declaración a mano de algo que el código ya sabe es una forma reescrita:
+    // se desfasa quedándose verde, que es la regla 1 de DATA_INTEGRITY y lo que
+    // costó 53,5 M€ de una página publicada. Este gate es lo único que hace
+    // creíble el grafo, así que tiene que gritar cuando el grafo miente.
+    corrupt: (s) => {
+      const marca = '    reads: ['
+      const i = s.indexOf(marca)
+      if (i < 0) throw new Error('no encuentro un bloque `reads:` que corromper')
+      return (
+        s.slice(0, i + marca.length) +
+        "\n      'inventado-por-check-guards.json'," +
+        s.slice(i + marca.length)
+      )
+    },
+  },
 ]
 
 function gitIsClean(file: string): boolean {

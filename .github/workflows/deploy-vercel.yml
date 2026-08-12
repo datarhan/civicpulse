@@ -19,14 +19,32 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  # Also fire when the nightly scrape pushes a fresh data commit. GitHub
+  # Also fire when a bot workflow pushes a fresh data commit. GitHub
   # deliberately doesn't trigger downstream workflows for pushes made with
   # the default GITHUB_TOKEN (anti-loop protection), so without this hook
-  # the bot's "chore(data): nightly real-data refresh" commits would never
-  # cause a Vercel deploy — and the deployed site stays frozen on whatever
-  # the last human push was.
+  # the bot's commits would never cause a Vercel deploy — and the deployed
+  # site stays frozen on whatever the last human push was.
+  #
+  # EVERY workflow that pushes to main belongs in this list. It held only the
+  # nightly scrape until 2026-08-12, which meant the four right-of-reply
+  # ingesters and the quejas pull all committed to main and deployed nothing:
+  # a group exercised its legal right to reply, the bot commented «✅ Réplica
+  # publicada · visible en …», and it was not visible — not until the nightly
+  # run happened to push again. The trap was already written down in the
+  # comment above; it was just only fixed for one of six.
+  #
+  # tests/deploy-triggers.test.js re-derives this list from the workflow
+  # directory and fails when a new pusher is missing, because a hand-kept list
+  # of workflows is exactly the thing this repo has watched go stale twice.
   workflow_run:
-    workflows: ['Nightly real-data refresh']
+    workflows:
+      - 'Nightly real-data refresh'
+      - 'Ingest eficiencia responses'
+      - 'Ingest finding responses'
+      - 'Ingest journalist-report responses'
+      - 'Ingest pleno votes'
+      - 'Ingest queja responses'
+      - 'Pull quejas.json from bot'
     types: [completed]
     branches: [main]
 
@@ -76,6 +94,14 @@ jobs:
           # ships /laboratorio/agentes + /laboratorio/agentes/:id. The
           # /curator surface stays dev-only (separate isDev gate).
           VITE_ENABLE_PERIODISTAS: 'true'
+          # Launch flag flipped 2026-08-12 (operator decision, after the
+          # findings pipeline shipped): ships /eficiencia and the pointer to it
+          # from /hallazgos. The page names no person by construction — its
+          # schema has no field for one — and every figure carries the ministry
+          # cell it came from, re-checked by check:indicadores before each
+          # deploy. It publishes with zero signed fichas; that is the honest
+          # state, and the section says so rather than leaving a gap.
+          VITE_ENABLE_EFICIENCIA: 'true'
         run: vercel build --prod --token="$VERCEL_TOKEN"
 
       - name: Deploy prebuilt bundle

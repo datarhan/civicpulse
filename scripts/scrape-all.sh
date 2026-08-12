@@ -13,6 +13,14 @@
 # so CI surfaces the breakage even when most adapters succeed.
 set -uo pipefail
 
+# DELIBERATELY ABSENT: scrape:coste-efectivo.
+#
+# Its source is the ~45 MB CESEL national workbook, and the ministry publishes
+# one entrega a year. A nightly re-download would be 45 MB a night against a
+# public administration for data that cannot have changed — the opposite of the
+# "keep scrapers polite" rule. It caches locally, but a CI runner starts cold
+# every time. Run it by hand when a new entrega lands: npm run scrape:coste-efectivo
+
 SCRAPERS=(
   scrape:officials
   scrape:transparency
@@ -272,6 +280,30 @@ if ! npm run compute:finding-quote-provenance; then
   soft_failures+=("compute:finding-quote-provenance")
 fi
 
+# El panel de /eficiencia, recompuesto sobre lo que se acaba de descargar.
+#
+# NO estaba aquí, y eso significaba que sólo se recomputaba cuando alguien
+# corría el comando a mano. La mitad de fricción del panel se deriva de
+# tenders.json, budget-execution.json, budget.json y pmp.json —los cuatro se
+# refrescan de noche—, así que la página publicaba porcentajes calculados
+# sobre una instantánea de contratos de hace semanas sin que nada lo dijera.
+# Composición pura: sin red, sin LLM, sin coste.
+#
+# `scrape:coste-efectivo` sigue deliberadamente ausente (ver la cabecera): ese
+# sí baja un volcado enorme y sólo cambia cuando el ministerio publica entrega.
+if ! npm run compute:indicadores; then
+  echo "[scrape-all] SOFT-FAILED: compute:indicadores — /eficiencia puede quedar con cifras viejas"
+  soft_failures+=("compute:indicadores")
+fi
+
+# Y la cola de curación detrás, para que lo que se le propone a una persona
+# describa el panel de hoy y no el de la última vez que alguien se acordó.
+# Escribe en editorial/, que está gitignorado: nada de esto se publica.
+if ! npm run draft:indicadores; then
+  echo "[scrape-all] SOFT-FAILED: draft:indicadores — la cola de /eficiencia puede quedar vieja"
+  soft_failures+=("draft:indicadores")
+fi
+
 echo ""
 echo "================================================================"
 echo "[scrape-all] running: check:transcripts + check:finding-quotes (report-only)"
@@ -311,6 +343,46 @@ fi
 if ! npm run check:vocabulary; then
   echo "[scrape-all] SOFT-FAILED: check:vocabulary — upstream vocabulary drifted"
   soft_failures+=("check:vocabulary")
+fi
+
+# ¿Sigue cada cifra de /eficiencia resolviendo a su celda, y sigue diciendo el
+# panel lo que afirman las fichas firmadas? Lo segundo es propio de esta
+# familia: una cita de pleno se queda quieta, un número no, y el ministerio
+# revisa entregas. Report-only como los demás: la respuesta a una cifra que se
+# movió es que un curador decida entre refrescar la medición y retirar la
+# ficha, nunca una edición automática de prosa publicada.
+if ! npm run check:indicadores; then
+  echo "[scrape-all] SOFT-FAILED: check:indicadores — cifra publicada sin celda que la respalde"
+  soft_failures+=("check:indicadores")
+fi
+if ! npm run check:eficiencia-findings; then
+  echo "[scrape-all] SOFT-FAILED: check:eficiencia-findings — ficha firmada que su fuente ya no sostiene"
+  soft_failures+=("check:eficiencia-findings")
+fi
+
+# Tres guardas que existían y no invocaba NADIE — ni un workflow, ni un
+# pipeline, ni un hook. Es el modo de fallo 1 que el propio `check:guards`
+# documenta («la guarda es correcta y nada la ejecuta»), y lo destapó él
+# mismo. Las tres son puras, sin red y de milisegundos:
+#
+#   check:summary-gate  ¿reproduce un sumario publicado una cita que la puerta
+#                       editorial retiene? Es una comprobación de seguridad
+#                       sobre prosa publicada, y era la que más falta hacía.
+#   check:data-graph    ¿sigue el grafo de dependencias escrito a mano
+#                       describiendo lo que los scripts hacen de verdad?
+#   check:queues        ¿describen las colas del curador lo que hay publicado,
+#                       o hablan de hallazgos que ya se retiraron?
+if ! npm run check:summary-gate; then
+  echo "[scrape-all] SOFT-FAILED: check:summary-gate — un sumario reproduce una cita retenida"
+  soft_failures+=("check:summary-gate")
+fi
+if ! npm run check:data-graph; then
+  echo "[scrape-all] SOFT-FAILED: check:data-graph — el grafo de dependencias no describe el código"
+  soft_failures+=("check:data-graph")
+fi
+if ! npm run check:queues; then
+  echo "[scrape-all] SOFT-FAILED: check:queues — cola de curación que habla de lo que ya no existe"
+  soft_failures+=("check:queues")
 fi
 
 # Which snapshots have quietly stopped refreshing. Distinct from a scraper

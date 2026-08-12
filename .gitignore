@@ -54,3 +54,6 @@ public/data/pleno-claims-regrounding-flags.json
 # Alert de-duplication state for check:transcription-health (local, per-machine).
 .transcription-health-state.json
 .health-monitor-state.json
+
+# Raw upstream payloads cached while iterating (CESEL national workbook is ~45 MB)
+.cache/

@@ -1,0 +1,219 @@
+import { Card, Pill } from '../Primitives'
+import { Sparkline } from '../Charts'
+import { leerIndicadorMunicipal } from '../../scraper/indicador-lectura'
+import { Lectura } from './Lectura'
+
+const DIMENSION = {
+  friccion: { label: 'fricción institucional', tone: 'warn' },
+  fiscal: { label: 'salud fiscal', tone: 'civic' },
+  respuesta: { label: 'respuesta', tone: 'intel' },
+}
+
+const fmt = (v, formato) => {
+  if (v === null || v === undefined) return '—'
+  if (formato === 'porcentaje')
+    return `${(v * 100).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
+  if (formato === 'euros')
+    return v.toLocaleString('es-ES', {
+      style: 'currency',
+      currency: 'EUR',
+      maximumFractionDigits: 0,
+    })
+  if (formato === 'dias') return `${v.toLocaleString('es-ES', { maximumFractionDigits: 1 })} días`
+  return v.toLocaleString('es-ES')
+}
+
+const crudo = (v, formato) =>
+  formato === 'porcentaje' || formato === 'numero'
+    ? v.toLocaleString('es-ES', { maximumFractionDigits: 0 })
+    : v.toLocaleString('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 })
+
+/**
+ * Plazo de pago, fricción institucional (la X-ineficiencia de Leibenstein) y
+ * salud fiscal.
+ *
+ * La comparación aparece SÓLO donde hay una fuente que la sostenga: el periodo
+ * medio de pago y el gasto por habitante, que el ministerio calcula con la
+ * misma norma para todos. No existe un conjunto equivalente de tasas de
+ * licitador único, así que esas cifras se leen contra sí mismas y contra el
+ * criterio del lector, nunca contra un percentil que no podríamos respaldar. Un
+ * `pares` ausente no es un hueco pendiente: es la respuesta.
+ *
+ * Cada tarjeta lleva su PERIODO en la cabecera. Los contratos abarcan de 2017 a
+ * 2026 y la ejecución es de un ejercicio: un porcentaje sin periodo se lee como
+ * «este año», y eso bastaría para convertir una cifra correcta en una
+ * afirmación falsa.
+ */
+export function PanelMunicipal({ municipales }) {
+  const items = (municipales ?? []).filter((m) => m.valor !== null)
+  if (!items.length) return null
+  // La frase de arriba SALE de los datos en vez de repetirlos. Escrita a mano
+  // decía «sólo el periodo medio de pago lleva comparación» y dejó de ser
+  // cierta en cuanto entró el gasto por habitante: una prosa que reafirma una
+  // propiedad que el dato ya conoce sólo puede quedarse vieja.
+  const conPares = items.filter((m) => m.pares)
+  const sinPares = items.filter((m) => !m.pares)
+
+  return (
+    <>
+      <h2 style={{ fontSize: 15, fontWeight: 650, margin: '28px 0 4px', letterSpacing: '-.01em' }}>
+        Cómo funciona la casa por dentro
+      </h2>
+      <p style={{ margin: '0 0 12px', fontSize: 13, color: 'var(--ink60)', maxWidth: '64ch' }}>
+        Cuánto tarda en pagar, cuánto dedica por vecino, cuánta competencia hubo en sus contratos y
+        qué distancia hay entre el presupuesto que se aprobó y el que se ejecutó. Son medidas de
+        plazo y de fricción, no de coste.{' '}
+        {conPares.length > 0 && (
+          <>
+            Llevan comparación con otros municipios{' '}
+            {conPares.map((m, idx) => (
+              <span key={m.id}>
+                {idx > 0 && (idx === conPares.length - 1 ? ' y ' : ', ')}
+                <strong>{m.etiqueta.toLowerCase()}</strong>
+              </span>
+            ))}
+            , que el ministerio calcula igual para todos.{' '}
+          </>
+        )}
+        {sinPares.length > 0 &&
+          'El resto no la lleva: no existe una fuente que las mida del mismo modo en todas partes.'}
+      </p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {items.map((m) => {
+          const d = DIMENSION[m.dimension] ?? DIMENSION.friccion
+          return (
+            <Card key={m.id}>
+              <div
+                style={{
+                  display: 'flex',
+                  gap: 10,
+                  alignItems: 'baseline',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                }}
+              >
+                <h3 style={{ fontSize: 15, fontWeight: 650, margin: 0 }}>{m.etiqueta}</h3>
+                <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                  <Pill tone={d.tone}>{d.label}</Pill>
+                  <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+                    {m.periodo}
+                  </span>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 10 }}>
+                <span
+                  className="mono"
+                  style={{
+                    fontSize: 28,
+                    fontWeight: 600,
+                    letterSpacing: '-.02em',
+                    color:
+                      m.referencia && m.valor > m.referencia.valor ? 'var(--warn-ink)' : undefined,
+                  }}
+                >
+                  {fmt(m.valor, m.formato)}
+                </span>
+                {m.formato === 'dias' ? (
+                  m.referencia && (
+                    // El umbral es de la norma, no nuestro: por eso se enseña
+                    // junto a la cifra y con su enlace, en vez de convertirse en
+                    // un semáforo que juzgue por el lector.
+                    <span className="mono" style={{ fontSize: 12, color: 'var(--ink60)' }}>
+                      {m.valor > m.referencia.valor ? '×' : ''}
+                      {m.valor > m.referencia.valor
+                        ? (m.valor / m.referencia.valor).toFixed(1)
+                        : ''}{' '}
+                      el límite de{' '}
+                      <a
+                        href={m.referencia.fuente}
+                        style={{ color: 'var(--civic)' }}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
+                        {m.referencia.etiqueta}
+                      </a>
+                    </span>
+                  )
+                ) : (
+                  <span className="mono" style={{ fontSize: 12, color: 'var(--ink60)' }}>
+                    {crudo(m.numerador.valor, m.formato)} de {crudo(m.denominador.valor, m.formato)}
+                  </span>
+                )}
+              </div>
+
+              {m.serie?.length >= 2 && (
+                <div style={{ marginTop: 10 }}>
+                  <Sparkline data={m.serie.map((p) => p.valor)} color="var(--warn-ink)" h={40} />
+                  <div
+                    className="mono"
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      fontSize: 10,
+                      color: 'var(--ink50)',
+                      marginTop: 3,
+                    }}
+                  >
+                    <span>{m.serie[0].periodo}</span>
+                    <span>{m.serie[m.serie.length - 1].periodo}</span>
+                  </div>
+                </div>
+              )}
+
+              {m.pares && (
+                <p
+                  className="mono"
+                  style={{ fontSize: 11.5, color: 'var(--ink60)', margin: '8px 0 0' }}
+                >
+                  Mediana de {m.pares.n.toLocaleString('es-ES')} municipios:{' '}
+                  {fmt(m.pares.mediana, m.formato)} · aquí, percentil {m.pares.percentil}
+                </p>
+              )}
+
+              <p style={{ margin: '8px 0 0', fontSize: 13, color: 'var(--ink70, var(--ink60))' }}>
+                {m.descripcion}
+              </p>
+
+              <Lectura lectura={leerIndicadorMunicipal(m)} />
+
+              {m.caveats?.length > 0 && (
+                <ul
+                  style={{
+                    margin: '10px 0 0',
+                    paddingLeft: 18,
+                    color: 'var(--ink60)',
+                    fontSize: 12,
+                  }}
+                >
+                  {m.caveats.map((c) => (
+                    <li key={c} style={{ marginBottom: 3 }}>
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {m.citas?.length > 0 && (
+                <p
+                  className="mono"
+                  style={{ fontSize: 10.5, color: 'var(--ink50)', margin: '10px 0 0' }}
+                >
+                  Fuente:{' '}
+                  <a
+                    href={m.citas[0].url}
+                    style={{ color: 'var(--civic)' }}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    {m.citas[0].etiqueta} ↗
+                  </a>
+                </p>
+              )}
+            </Card>
+          )
+        })}
+      </div>
+    </>
+  )
+}

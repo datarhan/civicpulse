@@ -1,5 +1,5 @@
 import { Ic } from './components/Icons'
-import { PERIODISTAS_ENABLED } from './flags'
+import { PERIODISTAS_ENABLED, EFICIENCIA_ENABLED } from './flags'
 
 // Single source of truth for site navigation. BOTH the labelled Sidebar
 // (InnerShell routes) and the icon-only LeftRail (the `/` landing) render from
@@ -46,6 +46,21 @@ export const NAV = [
     icon: Ic.coin,
     shortcut: 'G P',
   },
+  // Coste unitario por servicio frente a municipios comparables. Va detrás de
+  // /presupuesto porque es la otra mitad de la misma pregunta: qué se gasta, y
+  // qué se obtiene. Oculto en producción salvo VITE_ENABLE_EFICIENCIA=true.
+  ...(EFICIENCIA_ENABLED
+    ? [
+        {
+          to: '/eficiencia',
+          id: 'eficiencia',
+          labelKey: 'nav.eficiencia',
+          label: 'Eficiencia',
+          icon: Ic.chart,
+          shortcut: 'G I',
+        },
+      ]
+    : []),
   {
     to: '/plenos',
     id: 'plenos',

@@ -1,0 +1,60 @@
+{
+  "version": "1",
+  "generatedAt": "2026-08-12T12:22:53.416Z",
+  "legalNotice": "Cada ficha parte de cifras oficiales publicadas por el Ministerio de Hacienda en cumplimiento del artículo 116 ter de la LRSAL y del Real Decreto 1040/2017. Describe un servicio municipal, nunca a una persona. El ayuntamiento, la intervención, el concesionario o el ministerio pueden ejercer derecho de réplica literal y su respuesta se publica junto a la ficha.",
+  "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?template=eficiencia-finding-response.yml",
+  "methodologyUrl": "/metodologia#eficiencia",
+  "items": [
+    {
+      "id": "ef-2026-08-12-periodo-medio-pago",
+      "candidatoId": "cand-periodo-medio-pago-v1-2026-08-12",
+      "indicadorId": "periodo-medio-pago",
+      "familia": "municipal",
+      "titulo": "El plazo de pago a proveedores lleva once trimestres seguidos por encima del límite legal",
+      "cuerpo": "El Ministerio de Hacienda sitúa el periodo medio de pago a proveedores del Ayuntamiento de Riba-roja de Túria en 62,68 días en el primer trimestre de 2026, frente a los 30 días que fija el Real Decreto 1040/2017. Es el undécimo trimestre consecutivo por encima de ese plazo: la serie no baja de 30 días desde el tercer trimestre de 2023, y de los treinta y dos trimestres publicados desde 2018 sólo once quedaron dentro del límite.\n\nLa comparación la hace el propio ministerio, que aplica la misma metodología a 6.013 municipios: la mediana está en 15,47 días y tres de cada cuatro ayuntamientos pagan en 27,14 días o menos, es decir, dentro del plazo. Riba-roja queda en el percentil 94.\n\nLa cifra viene bajando desde el máximo de 104,73 días del segundo trimestre de 2024, y eso forma parte del hallazgo tanto como lo anterior: son once trimestres seguidos fuera del plazo y, a la vez, una mejora sostenida que ha recortado el retraso casi a la mitad en dos años.\n\nSuperar los 30 días no acarrea una sanción automática. Lo que la norma establece es que la entidad debe publicar un plan de tesorería. Este hallazgo no afirma ninguna causa ni atribuye la cifra a ningún cargo: describe lo que el ayuntamiento remite al ministerio y lo que el ministerio publica.",
+      "motivos": [
+        "umbral-legal",
+        "posicion-alta"
+      ],
+      "fiabilidad": "alta",
+      "medicion": {
+        "indicadorId": "periodo-medio-pago",
+        "periodo": "2026-T1",
+        "valor": 62.68,
+        "unidad": "días",
+        "referencia": {
+          "valor": 30,
+          "etiqueta": "30 días, plazo legal"
+        },
+        "pares": {
+          "conjunto": "municipios que publican PMP con la misma norma",
+          "n": 6013,
+          "percentil": 94,
+          "mediana": 15.47
+        },
+        "fuentes": [
+          "pmp:2026-T1:dias",
+          "pmp:2026-T1:unidad"
+        ]
+      },
+      "caveats": [
+        "Riba-roja reporta por trimestres, no por meses: es lo que corresponde a los municipios fuera del modelo de cesión.",
+        "El plazo legal de 30 días es una referencia de la norma, no una sanción automática. Superarlo obliga a la entidad a publicar un plan de tesorería."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/pmp/pmp-series-rd-1040-2017.xlsx",
+          "etiqueta": "Ministerio de Hacienda · series PMP"
+        },
+        {
+          "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2017-15446",
+          "etiqueta": "Norma: 30 días, plazo legal"
+        }
+      ],
+      "curatorName": "civicpulse-curator",
+      "publishedAt": "2026-08-12",
+      "response": null,
+      "corrections": []
+    }
+  ]
+}

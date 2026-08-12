@@ -1,4 +1,5 @@
 import { Card, SectionHead } from '../components/Primitives'
+import { fmtDateLong } from '../lib/formatters'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { useFindingQuoteProvenance } from '../hooks/useFindingQuoteProvenance'
 import { authorshipBreakdown } from '../scraper/finding-authorship'
@@ -1350,6 +1351,203 @@ export default function Metodologia() {
         </p>
       </Card>
 
+      <Card style={{ marginTop: 14 }} id="eficiencia">
+        <SectionHead
+          eyebrow="Coste unitario de los servicios"
+          title="Cuánto cuesta y qué se obtiene"
+        />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Toda entidad local está obligada a calcular cada año el{' '}
+          <strong>coste efectivo de sus servicios</strong> (art. 116 ter LRSAL, criterios en la{' '}
+          <a
+            href="https://www.boe.es/buscar/doc.php?id=BOE-A-2014-11492"
+            style={{ color: 'var(--civic)' }}
+          >
+            Orden HAP/2075/2014
+          </a>
+          ) y remitirlo al Ministerio de Hacienda, que lo publica. La declaración trae dos tablas:
+          el coste de cada servicio y las <strong>unidades físicas</strong> que ese servicio maneja
+          —toneladas de residuos, puntos de luz, metros de red, metros cuadrados con servicio de
+          limpieza—.{' '}
+          <a href="/eficiencia" style={{ color: 'var(--civic)' }}>
+            /eficiencia
+          </a>{' '}
+          divide la primera entre las segundas. Nada más.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>No se publica ninguna nota global</strong>, ni por dimensión ni de conjunto, ni un
+          puesto del municipio en una tabla. Un índice 0–100 convierte la ponderación elegida en la
+          noticia, y la ponderación la habríamos elegido nosotros. Se publican los componentes y se
+          rechaza la suma, igual que en{' '}
+          <a href="/metodologia#encaje" style={{ color: 'var(--civic)' }}>
+            encaje declarado
+          </a>
+          .
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          Cada celda queda en uno de tres estados —<code>declarado</code>,{' '}
+          <code>no&nbsp;declarado</code>, <code>no&nbsp;se&nbsp;presta</code>— y el cociente sólo
+          existe cuando las dos están declaradas. Cuatro situaciones bloquean un coste unitario, y
+          las cuatro se muestran en la página en vez de esconder la tarjeta:
+        </p>
+        <ul style={{ margin: '10px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
+          <li>
+            <strong>Concesión.</strong> Si el servicio lo presta un concesionario a su riesgo y
+            ventura, el ayuntamiento declara 0 € porque el coste lo soporta el concesionario y lo
+            recupera vía tarifa. Dividir ahí publicaría que el agua es gratis. No se calcula
+            cociente ni se compara.
+          </li>
+          <li>
+            <strong>Cero sin declarar.</strong> Una unidad física a cero junto a un gasto real
+            significa «no se declaró», no «no hubo».
+          </li>
+          <li>
+            <strong>Filas duplicadas.</strong> Cuando el ministerio publica dos costes distintos
+            para el mismo servicio, elegir uno sería un volado disfrazado de dato.
+          </li>
+          <li>
+            <strong>Magnitud ambigua.</strong> Cuando el mismo atributo viene dos veces con valores
+            distintos en la misma entrega.
+          </li>
+        </ul>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          La comparación se hace contra municipios de la Comunitat Valenciana de entre 15.000 y
+          40.000 habitantes, y <strong>sólo dentro del mismo modo de gestión</strong>: comparar una
+          gestión directa con una concesión es un error de categoría, no una diferencia de
+          eficiencia. Hace falta un mínimo de quince municipios comparables para dibujar la banda;
+          por debajo, la posición diría más de quién declaró ese año que del municipio. Se publica
+          la banda intercuartílica con el marcador propio, nunca un puesto, y el desglose nombra a
+          todos los municipios comparados: son cifras oficiales y esconder contra quién se compara
+          rompería el contrato de mostrar el trabajo.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Qué mide cada cifra.</strong> Cada indicador va etiquetado como entrada, carga de
+          trabajo, producto o resultado. La distinción importa: el coste por efectivo de policía
+          divide un gasto entre otro gasto y es un <em>precio</em>, no un rendimiento; las toneladas
+          de basura miden cuánta genera el municipio, no lo bien que se recoge. La fuente no publica
+          ningún indicador de resultado —ni tasa de reciclaje, ni estado del firme—, así que esta
+          página no puede decir si el dinero se convirtió en algo bueno, sólo cuánto costó cada
+          unidad de servicio.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Qué entregas hay, y por qué no están todas.</strong> El ministerio publica once
+          ejercicios (2014–2024) pero sólo vuelca uno entero en abierto. Los demás salen de su
+          aplicación de consulta, en un fichero por comunidad autónoma que hay que pedir desde un
+          navegador. Cada tarjeta titula con la entrega <strong>más reciente</strong> de la que hay
+          datos y se compara con los municipios de <strong>esa misma entrega</strong>: enfrentar la
+          cifra de un año con los pares de otro sería un error de categoría. La franja de cobertura
+          dice qué ejercicios se han conseguido, y la tarjeta enseña los que tiene con su año
+          delante — dos puntos no se dibujan como una línea, porque dos puntos no son una tendencia.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          Comparar entregas entre sí sirve además para detectar cuándo una viene mal. El alumbrado
+          público pasa de 21,76 a 147,25 € por punto de luz entre 2021 y 2024, y no es que se haya
+          encarecido siete veces: la entrega de 2021 declaraba 98 mil euros para 4.514 puntos de luz
+          frente a 664 mil en 2024. La salvedad automática que avisa cuando una cifra se aleja más
+          del doble de la mediana de sus pares ya señalaba esa tarjeta antes de que hubiera una
+          segunda entrega con la que contrastarla.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>El plazo de pago es la única cifra del panel con umbral legal.</strong> El periodo
+          medio de pago a proveedores lo calcula el Ministerio de Hacienda con la metodología del RD
+          1040/2017 para miles de ayuntamientos a la vez, y la Ley 3/2004 fija los 30 días como
+          referencia. Eso lo convierte en el único indicador que reúne las tres cosas: umbral que no
+          ponemos nosotros, serie trimestral desde 2018, y una comparación respaldada por una fuente
+          que aplica la misma norma a todos. Riba-roja reporta por trimestres, como corresponde a
+          los municipios fuera del modelo de cesión; sus columnas mensuales vienen vacías y se dejan
+          vacías. Superar el plazo no es una sanción automática: obliga a la entidad a publicar un
+          plan de tesorería.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>El gasto por habitante es una entrada, no una nota.</strong> El presupuesto de
+          gastos dividido entre la población se compara con los mismos municipios valencianos de
+          15.000 a 40.000 habitantes, del mismo ejercicio y de la misma publicación del ministerio,
+          que es la única forma de que la comparación signifique algo. Pero mide lo que se dedica
+          por vecino, no lo que se consigue con ello: gastar más puede ser más servicio o menos
+          eficiencia, y esta cifra sola no distingue las dos cosas. Es además presupuesto aprobado y
+          no gasto realizado, y sale de la misma fila cuyos ingresos y gastos no cuadran entre sí —
+          lo que{' '}
+          <a href="/presupuesto#descuadre" style={{ color: 'var(--civic)' }}>
+            /presupuesto
+          </a>{' '}
+          explica.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>La cuarta dimensión no es la satisfacción ciudadana.</strong> Medirla exigiría una
+          encuesta representativa que no existe: el ayuntamiento publicó un barómetro de servicios
+          en 2026, pero el portal que lo alojaba fue dado de baja, y el buzón de quejas es
+          autoseleccionado —quien escribe no es una muestra—. En su lugar se publica lo que sí tiene
+          fuente: la <strong>fricción institucional</strong> que Leibenstein llamó X-ineficiencia,
+          el desperdicio que nace de la falta de competencia y de la rigidez del procedimiento. Sale
+          de los contratos y de la ejecución presupuestaria que este sitio ya descargaba. Cada cifra
+          lleva el periodo que cubre, porque los contratos abarcan casi una década y un porcentaje
+          sin fecha se lee como «este año». Ninguno de estos indicadores de fricción lleva
+          comparación con otros municipios: no existe una fuente que la respalde, y un percentil
+          inventado sería peor que la ausencia — el plazo de pago y el gasto por habitante sí la
+          llevan, y por eso se explican aparte, arriba. Un contrato menor o un solo licitador no son
+          irregularidades —el primero es un instrumento legal por debajo de los umbrales de la Ley
+          9/2017 y el segundo ocurre en mercados con un único proveedor capaz—; lo que miden es
+          cuánta concurrencia hubo.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Límites conocidos.</strong> Las magnitudes las rellena cada ayuntamiento, y no
+          todos entienden lo mismo por «superficie urbanizada» o «superficie con servicio de
+          limpieza»: Riba-roja declara 58,01 km² urbanizados, prácticamente todo su término. Cuando
+          una cifra se aleja más del doble de la mediana de sus pares, la tarjeta lo advierte,
+          porque una diferencia así suele venir de cómo se declara y no de cómo se gestiona. Toda
+          cifra publicada lleva la celda exacta de la que sale, y <code>check:indicadores</code>{' '}
+          comprueba que resuelve antes de cada despliegue.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>De una cifra que se sale a un hallazgo firmado.</strong> Un proceso automático
+          recorre el panel y señala qué cifras se salen: fuera del percentil 10–90 de sus
+          comparables, por encima de un umbral que fije una norma, o alejándose de la mediana de sus
+          pares con los años. Eso produce un <em>candidato</em>, que no es un hallazgo: dice dónde
+          se sale la cifra y contra qué se mide, y no afirma ninguna causa. Los candidatos viven
+          fuera de este sitio, sin publicar, hasta que una persona comprueba el expediente, escribe
+          el texto y lo firma con su nombre. Nada automático publica aquí, y no lo hará mientras no
+          haya precisión medida para esta clase de afirmación.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          Tres decisiones de ese proceso que conviene conocer, porque determinan qué no verá nunca
+          en{' '}
+          <a href="/eficiencia#hallazgos" style={{ color: 'var(--civic)' }}>
+            los hallazgos de eficiencia
+          </a>
+          . Primera: los indicadores etiquetados como <em>entrada</em> no generan candidatos. El
+          coste por efectivo de policía está por encima de tres de cada cuatro municipios
+          comparables y sube, y aun así señalarlo diría «la policía es cara» cuando lo que mide es
+          cuánto cobra un policía. Segunda: un servicio que se <em>acerca</em> a la mediana de sus
+          pares tampoco genera candidato, por mucho que se mueva. El alumbrado público multiplica
+          por catorce su posición relativa en diez años y lo que cambió fue cuánto se declara, no
+          cuánto cuesta; acercarse a los demás es la firma de un cambio de criterio contable.
+          Tercera: cuando la comparación depende de una magnitud que cada ayuntamiento rellena a su
+          manera, la ficha lo dice en su propio cuerpo, y no en esta página.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Una ficha publicada se vuelve a comprobar.</strong> La cita de un pleno se queda
+          quieta para siempre; una cifra no. El ministerio revisa una entrega y un hallazgo puede
+          quedarse afirmando el número de antes sin que nadie toque la página. Por eso cada ficha
+          congela su medición —valor, periodo y celda de origen— y{' '}
+          <code>check:eficiencia-findings</code> la vuelve a contrastar contra el panel vivo antes
+          de cada despliegue, distinguiendo cuatro desenlaces: coincide, el panel avanzó de periodo
+          (aviso, no error: la ficha dice de qué periodo habla), el mismo periodo pasó a valer otra
+          cosa, o el indicador desapareció. Los dos últimos bloquean el despliegue. Una ficha nunca
+          se reescribe en silencio: corregirla deja fila pública con el texto anterior, y retirarla
+          deja el digesto —que permite comprobar cuál se fue sin republicar lo que decía—.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Estas fichas no nombran a nadie.</strong> Hablan de un servicio municipal, y el
+          esquema no tiene ningún campo donde poner una persona ni un grupo político — rechaza los
+          del formato de los hallazgos de pleno por si alguien copiara una ficha de un sitio a otro.
+          Colgar un coste unitario de un cargo con nombre es materialmente distinto de colgarlo de
+          un servicio, y es lo único que la fuente respalda: el ministerio publica lo que costó
+          recoger la basura, no quién lo decidió. El derecho de réplica es institucional: responden
+          el ayuntamiento, la intervención, el concesionario o el ministerio, y su respuesta literal
+          se publica junto a la ficha.
+        </p>
+      </Card>
+
       <Card style={{ marginTop: 14 }} id="gasto-por-concejalia">
         <SectionHead
           eyebrow="Transparencia · gasto por concejalía"
@@ -1430,10 +1628,17 @@ export default function Metodologia() {
         </p>
       </Card>
 
+      {/* La fecha sale de git en el build, no escrita a mano. La anterior decía
+          el 14 de julio con seis ediciones posteriores encima, y la coletilla
+          que describía «el último cambio» describía uno de hace un mes: una
+          fecha a mano que certifica actualidad se queda vieja justo cuando más
+          importa que no lo esté. Sin git no se escribe ninguna, que es mejor
+          que escribir una inventada. */}
       <p style={{ marginTop: 22, fontSize: 12, color: 'var(--ink50)' }}>
-        Última revisión de este documento: 14 de julio de 2026 (suplemento curado del callejero con
-        procedencia obligatoria para lugares ausentes de OSM). Cambios futuros sólo mediante PR
-        público.
+        {__REVISION_METODOLOGIA__ ? (
+          <>Última revisión de este documento: {fmtDateLong(__REVISION_METODOLOGIA__)}. </>
+        ) : null}
+        Cambios futuros sólo mediante PR público.
       </p>
     </div>
   )

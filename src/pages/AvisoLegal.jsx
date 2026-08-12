@@ -1,4 +1,5 @@
 import { Card, SectionHead } from '../components/Primitives'
+import { fmtDateLong } from '../lib/formatters'
 
 export default function AvisoLegal() {
   return (
@@ -69,6 +70,46 @@ export default function AvisoLegal() {
             Nada se borra en silencio.
           </li>
         </ul>
+      </Card>
+
+      <Card style={{ marginTop: 14 }}>
+        <SectionHead
+          eyebrow="Coste de los servicios"
+          title="Qué afirmamos, y qué no, cuando una cifra se sale de su banda"
+        />
+        <p>
+          En <code>/eficiencia</code> publicamos fichas sobre cifras que se separan de lo que
+          declaran municipios comparables, o que superan un umbral que fija una norma.{' '}
+          <strong>
+            Una ficha describe un servicio municipal y nunca a una persona ni a un grupo político
+          </strong>
+          : el formato en que se guardan no tiene ningún campo donde poner un nombre, y rechaza los
+          del formato de los hallazgos de pleno. La fuente respalda lo que costó recoger la basura,
+          no quién lo decidió.
+        </p>
+        <p>
+          Ninguna ficha afirma una causa, y en particular ninguna afirma mala gestión, despilfarro
+          ni irregularidad. Que una cifra se salga de su banda es una pregunta con los números
+          puestos: puede responder a una diferencia real de coste, a una decisión legítima, o a que
+          cada ayuntamiento rellena esa casilla a su manera —lo que ocurre a menudo, y la ficha lo
+          advierte cuando es el caso—.
+        </p>
+        <p>
+          <strong>Ninguna se publica de forma automática.</strong> Un proceso señala candidatos y
+          los deja sin publicar; el texto lo escribe y lo firma una persona con su nombre visible,
+          tras comprobar el expediente. Cada ficha congela la cifra y el periodo de los que habla, y
+          una comprobación automática la contrasta contra la fuente antes de cada despliegue: si el
+          ministerio revisa esa entrega y el número deja de coincidir, el despliegue se detiene.
+          Corregir una ficha deja fila pública con el texto anterior; retirarla la quita de la
+          página y deja constancia comprobable de cuál se fue.
+        </p>
+        <p>
+          El derecho de réplica es <strong>institucional</strong>: el ayuntamiento, la intervención,
+          la empresa concesionaria del servicio o el ministerio pueden remitir una respuesta
+          literal, que se publica íntegra junto a la ficha. Las vías y los plazos son los mismos
+          descritos más arriba. Todo el proceso se detiene durante el periodo electoral (LOREG art.
+          50).
+        </p>
       </Card>
 
       <Card style={{ marginTop: 14 }}>
@@ -327,9 +368,16 @@ export default function AvisoLegal() {
         </p>
       </Card>
 
+      {/* La fecha sale de git en el build, no escrita a mano — igual que en
+          /metodologia y por una razón más fuerte: esto es un aviso legal, y
+          decía «2 de julio» mientras el fichero incorporaba compromisos
+          nuevos. Una fecha de vigencia que va por detrás de lo vigente es
+          justo lo contrario de lo que una fecha de vigencia sirve. */}
       <p style={{ marginTop: 22, fontSize: 12, color: 'var(--ink50)' }}>
-        Versión vigente: 2 de julio de 2026. Las modificaciones a este aviso legal quedan trazadas
-        en el historial git del repositorio.
+        {__REVISION_AVISO_LEGAL__ ? (
+          <>Versión vigente: {fmtDateLong(__REVISION_AVISO_LEGAL__)}. </>
+        ) : null}
+        Las modificaciones a este aviso legal quedan trazadas en el historial git del repositorio.
       </p>
     </div>
   )

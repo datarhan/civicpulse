@@ -56,6 +56,7 @@ Everything produced by the convention above. Safe to delete and rebuild.
 | `entity-overrides.json`                             | `src/scraper/entities.ts` · `npm run entity-alias`                                                                            |
 | `area-fit.json`                                     | `src/scraper/area-fit.ts` · `npm run promote-area-fit`                                                                        |
 | `requisitos-cargo.json`                             | curated · cited al BOE · hand-edit via PR                                                                                     |
+| `eficiencia-findings.json`                          | `src/scraper/eficiencia-finding.ts` · `npm run promote-indicador`, `correct-indicador`, `retract-indicador`                   |
 
 Each CLI re-validates the whole snapshot before writing, so an invariant
 (≥20-char verbatim quote, ≥10-char title) cannot silently slip. Route

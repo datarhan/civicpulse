@@ -1,0 +1,4179 @@
+{
+  "generatedAt": "2026-08-12T12:29:34.717Z",
+  "conjunto": "cv-15k-40k",
+  "anioBase": 2024,
+  "source": {
+    "volcado": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+    "consulta": "https://serviciostelematicosext.hacienda.gob.es/sgcief/Cesel/Consulta/Consulta.aspx",
+    "orden": "https://www.boe.es/buscar/doc.php?id=BOE-A-2014-11492"
+  },
+  "cobertura": {
+    "entregasPublicadas": [
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "entregasObtenidas": [
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "entregasNoPresentadas": [
+      2020
+    ],
+    "motivoFaltantes": "El ministerio sólo publica volcado masivo de 2021. El resto de entregas sólo salen del informe por ente de la aplicación de consulta, cuyo botón de descarga no se deja reconstruir como POST: hay que pedirlo desde un navegador y dejar el fichero en .cache/cesel/informes."
+  },
+  "indicadores": [
+    {
+      "id": "a1621-coste-unitario",
+      "dimension": "operativa",
+      "tier": "carga",
+      "servicio": "a1621",
+      "etiqueta": "Recogida de residuos",
+      "numerador": {
+        "valor": 740272.16,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE2:a1621:Econ14"
+      },
+      "denominador": {
+        "valor": 11059.41,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE3:a1621:Producción anual residuos urbanos: toneladas"
+      },
+      "valor": 66.93595408796672,
+      "unidad": "€/t",
+      "modoGestion": "directa",
+      "codGestionRaw": "Gestión directa por la entidad local",
+      "comparable": true,
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 30,
+        "modoGestion": "directa",
+        "percentil": 13,
+        "p25": 88.20862316264642,
+        "mediana": 129.66849802182315,
+        "p75": 192.84209340866414,
+        "miembros": [
+          {
+            "ine": "03015",
+            "nombre": "Almoradí",
+            "poblacion": 22965,
+            "valor": 0.3460651350528144
+          },
+          {
+            "ine": "03019",
+            "nombre": "Aspe",
+            "poblacion": 22397,
+            "valor": 28.477057668273524
+          },
+          {
+            "ine": "03047",
+            "nombre": "Calp",
+            "poblacion": 27616,
+            "valor": 215.13676640548908
+          },
+          {
+            "ine": "03049",
+            "nombre": "Callosa de Segura",
+            "poblacion": 19988,
+            "valor": 95.21350790806609
+          },
+          {
+            "ine": "03050",
+            "nombre": "Campello (el)",
+            "poblacion": 31419,
+            "valor": 170.7106504492398
+          },
+          {
+            "ine": "03079",
+            "nombre": "Ibi",
+            "poblacion": 24500,
+            "valor": 87.22361851092896
+          },
+          {
+            "ine": "03082",
+            "nombre": "Jávea/Xàbia",
+            "poblacion": 30642,
+            "valor": 195.46146215355017
+          },
+          {
+            "ine": "03090",
+            "nombre": "Mutxamel",
+            "poblacion": 28621,
+            "valor": 55.02192529504698
+          },
+          {
+            "ine": "03093",
+            "nombre": "Novelda",
+            "poblacion": 26606,
+            "valor": 151.43563052361492
+          },
+          {
+            "ine": "03140",
+            "nombre": "Villena",
+            "poblacion": 34712,
+            "valor": 178.8205141783396
+          },
+          {
+            "ine": "12009",
+            "nombre": "Almassora",
+            "poblacion": 29159,
+            "valor": 148.2624283345225
+          },
+          {
+            "ine": "12027",
+            "nombre": "Benicarló",
+            "poblacion": 30296,
+            "valor": 91.16363711779881
+          },
+          {
+            "ine": "12032",
+            "nombre": "Borriana/Burriana",
+            "poblacion": 37915,
+            "valor": 266.45084508231645
+          },
+          {
+            "ine": "12084",
+            "nombre": "Onda",
+            "poblacion": 26190,
+            "valor": 280.86113011384754
+          },
+          {
+            "ine": "46007",
+            "nombre": "Albal",
+            "poblacion": 17365,
+            "valor": 74.60920947107122
+          },
+          {
+            "ine": "46013",
+            "nombre": "Alboraia/Alboraya",
+            "poblacion": 26273,
+            "valor": 114.86070683332426
+          },
+          {
+            "ine": "46021",
+            "nombre": "Aldaia",
+            "poblacion": 34630,
+            "valor": 79.28217176022947
+          },
+          {
+            "ine": "46022",
+            "nombre": "Alfafar",
+            "poblacion": 22270,
+            "valor": 220.38946572789396
+          },
+          {
+            "ine": "46029",
+            "nombre": "Algemesí",
+            "poblacion": 28306,
+            "valor": 105.88379850046859
+          },
+          {
+            "ine": "46054",
+            "nombre": "Benetússer",
+            "poblacion": 16734,
+            "valor": 4.426507410579111
+          },
+          {
+            "ine": "46110",
+            "nombre": "Xirivella",
+            "poblacion": 32093,
+            "valor": 124.94278287301505
+          },
+          {
+            "ine": "46116",
+            "nombre": "Eliana (l')",
+            "poblacion": 19839,
+            "valor": 140.29087303914383
+          },
+          {
+            "ine": "46145",
+            "nombre": "Xàtiva",
+            "poblacion": 31008,
+            "valor": 222.70877782710724
+          },
+          {
+            "ine": "46159",
+            "nombre": "Manises",
+            "poblacion": 32609,
+            "valor": 211.48088727272724
+          },
+          {
+            "ine": "46181",
+            "nombre": "Oliva",
+            "poblacion": 26813,
+            "valor": 184.983987174006
+          },
+          {
+            "ine": "46186",
+            "nombre": "Paiporta",
+            "poblacion": 28136,
+            "valor": 71.87328268156425
+          },
+          {
+            "ine": "46194",
+            "nombre": "Picassent",
+            "poblacion": 23202,
+            "valor": 97.89469412891748
+          },
+          {
+            "ine": "46230",
+            "nombre": "Silla",
+            "poblacion": 20482,
+            "valor": 134.39421317063125
+          },
+          {
+            "ine": "46235",
+            "nombre": "Sueca",
+            "poblacion": 29194,
+            "valor": 351.27525984655745
+          },
+          {
+            "ine": "46238",
+            "nombre": "Tavernes de la Valldigna",
+            "poblacion": 17866,
+            "valor": 120.33014979390771
+          }
+        ]
+      },
+      "serie": [
+        {
+          "anio": 2014,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2015,
+          "valor": 141.20270819996094,
+          "estado": "declarado",
+          "medianaPares": 96.81349444865518
+        },
+        {
+          "anio": 2016,
+          "valor": 112.4277653056305,
+          "estado": "declarado",
+          "medianaPares": 83.37299254526778
+        },
+        {
+          "anio": 2017,
+          "valor": 112.82869243684794,
+          "estado": "declarado",
+          "medianaPares": 76.1732615209017
+        },
+        {
+          "anio": 2018,
+          "valor": 105.04384536214295,
+          "estado": "declarado",
+          "medianaPares": 86.94774101268237
+        },
+        {
+          "anio": 2019,
+          "valor": 78.22006960588313,
+          "estado": "declarado",
+          "medianaPares": 81.65751660303314
+        },
+        {
+          "anio": 2021,
+          "valor": 72.43064232178752,
+          "estado": "declarado",
+          "medianaPares": 89.97782859946699
+        },
+        {
+          "anio": 2022,
+          "valor": 82.53151569568358,
+          "estado": "declarado",
+          "medianaPares": 91.75635870111591
+        },
+        {
+          "anio": 2023,
+          "valor": 45.40648913459217,
+          "estado": "declarado",
+          "medianaPares": 106.30438484085668
+        },
+        {
+          "anio": 2024,
+          "valor": 66.93595408796672,
+          "estado": "declarado",
+          "medianaPares": 122.63646633346139
+        }
+      ],
+      "caveats": [
+        "La tonelada mide cuánta basura genera el municipio, no lo bien que se recoge: más toneladas no es peor gestión.",
+        "La fuente no publica tasa de reciclaje, así que no hay dato de resultado con el que contrastar el coste."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+          "entrega": 2024
+        }
+      ]
+    },
+    {
+      "id": "a163-coste-unitario",
+      "dimension": "operativa",
+      "tier": "output",
+      "servicio": "a163",
+      "etiqueta": "Limpieza viaria",
+      "numerador": {
+        "valor": 1110650.84,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE2:a163:Econ14"
+      },
+      "denominador": {
+        "valor": 700000,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE3:a163:Superficie en metros cuadrados con servicio de limpieza"
+      },
+      "valor": 1.5866440571428573,
+      "unidad": "€/m²",
+      "modoGestion": "directa",
+      "codGestionRaw": "Gestión directa por la entidad local",
+      "comparable": true,
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 28,
+        "modoGestion": "directa",
+        "percentil": 64,
+        "p25": 0.8220141507935217,
+        "mediana": 1.318248090590181,
+        "p75": 2.2212006625808356,
+        "miembros": [
+          {
+            "ine": "03015",
+            "nombre": "Almoradí",
+            "poblacion": 22965,
+            "valor": 0.47854987742787103
+          },
+          {
+            "ine": "03019",
+            "nombre": "Aspe",
+            "poblacion": 22397,
+            "valor": 0.6055872009077783
+          },
+          {
+            "ine": "03047",
+            "nombre": "Calp",
+            "poblacion": 27616,
+            "valor": 2.257750586417692
+          },
+          {
+            "ine": "03050",
+            "nombre": "Campello (el)",
+            "poblacion": 31419,
+            "valor": 2.209017354635217
+          },
+          {
+            "ine": "03079",
+            "nombre": "Ibi",
+            "poblacion": 24500,
+            "valor": 0.9760418864468864
+          },
+          {
+            "ine": "03082",
+            "nombre": "Jávea/Xàbia",
+            "poblacion": 30642,
+            "valor": 55.998148799999996
+          },
+          {
+            "ine": "03090",
+            "nombre": "Mutxamel",
+            "poblacion": 28621,
+            "valor": 0.858970983887081
+          },
+          {
+            "ine": "03093",
+            "nombre": "Novelda",
+            "poblacion": 26606,
+            "valor": 53.90839147982062
+          },
+          {
+            "ine": "03113",
+            "nombre": "Rojales",
+            "poblacion": 17652,
+            "valor": 0.26987581866567734
+          },
+          {
+            "ine": "12009",
+            "nombre": "Almassora",
+            "poblacion": 29159,
+            "valor": 0.45452037577155263
+          },
+          {
+            "ine": "12027",
+            "nombre": "Benicarló",
+            "poblacion": 30296,
+            "valor": 1.9584286561240911
+          },
+          {
+            "ine": "12032",
+            "nombre": "Borriana/Burriana",
+            "poblacion": 37915,
+            "valor": 3.618192513661202
+          },
+          {
+            "ine": "46007",
+            "nombre": "Albal",
+            "poblacion": 17365,
+            "valor": 8.5017092
+          },
+          {
+            "ine": "46021",
+            "nombre": "Aldaia",
+            "poblacion": 34630,
+            "valor": 0.5186009390876243
+          },
+          {
+            "ine": "46022",
+            "nombre": "Alfafar",
+            "poblacion": 22270,
+            "valor": 1.4961646630561072
+          },
+          {
+            "ine": "46029",
+            "nombre": "Algemesí",
+            "poblacion": 28306,
+            "valor": 1.3980882102587893
+          },
+          {
+            "ine": "46094",
+            "nombre": "Catarroja",
+            "poblacion": 30604,
+            "valor": 1.6605448807458325
+          },
+          {
+            "ine": "46110",
+            "nombre": "Xirivella",
+            "poblacion": 32093,
+            "valor": 0.878040755572346
+          },
+          {
+            "ine": "46116",
+            "nombre": "Eliana (l')",
+            "poblacion": 19839,
+            "valor": 0.8221703034689006
+          },
+          {
+            "ine": "46159",
+            "nombre": "Manises",
+            "poblacion": 32609,
+            "valor": 1.2089359568856697
+          },
+          {
+            "ine": "46181",
+            "nombre": "Oliva",
+            "poblacion": 26813,
+            "valor": 1.365940285031829
+          },
+          {
+            "ine": "46184",
+            "nombre": "Ontinyent",
+            "poblacion": 37012,
+            "valor": 1.298797270742358
+          },
+          {
+            "ine": "46194",
+            "nombre": "Picassent",
+            "poblacion": 23202,
+            "valor": 0.8695023712969964
+          },
+          {
+            "ine": "46205",
+            "nombre": "Puçol",
+            "poblacion": 21659,
+            "valor": 0.821545692767385
+          },
+          {
+            "ine": "46213",
+            "nombre": "Requena",
+            "poblacion": 20982,
+            "valor": 0.16541666666666666
+          },
+          {
+            "ine": "46230",
+            "nombre": "Silla",
+            "poblacion": 20482,
+            "valor": 2.2890509974411417
+          },
+          {
+            "ine": "46235",
+            "nombre": "Sueca",
+            "poblacion": 29194,
+            "valor": 1.337698910438004
+          },
+          {
+            "ine": "46238",
+            "nombre": "Tavernes de la Valldigna",
+            "poblacion": 17866,
+            "valor": 101.91817186644772
+          }
+        ]
+      },
+      "serie": [
+        {
+          "anio": 2014,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2015,
+          "valor": 67676714,
+          "estado": "declarado",
+          "medianaPares": 0.8970735905728097,
+          "atipico": true
+        },
+        {
+          "anio": 2016,
+          "valor": 1.0177685,
+          "estado": "declarado",
+          "medianaPares": 0.9193782068777292
+        },
+        {
+          "anio": 2017,
+          "valor": 1.046217380952381,
+          "estado": "declarado",
+          "medianaPares": 0.7025602776643682
+        },
+        {
+          "anio": 2018,
+          "valor": 1.0944458857142858,
+          "estado": "declarado",
+          "medianaPares": 0.8992097182399512
+        },
+        {
+          "anio": 2019,
+          "valor": 0.8788484571428572,
+          "estado": "declarado",
+          "medianaPares": 0.7951274330001701
+        },
+        {
+          "anio": 2021,
+          "valor": 0.9639521714285715,
+          "estado": "declarado",
+          "medianaPares": 0.844870290661123
+        },
+        {
+          "anio": 2022,
+          "valor": 1.529355357142857,
+          "estado": "declarado",
+          "medianaPares": 0.9606751235330598
+        },
+        {
+          "anio": 2023,
+          "valor": 1.2075904142857143,
+          "estado": "declarado",
+          "medianaPares": 1.0471473112305323
+        },
+        {
+          "anio": 2024,
+          "valor": 1.5866440571428573,
+          "estado": "declarado",
+          "medianaPares": 1.2538666138140138
+        }
+      ],
+      "caveats": [
+        "La superficie es la declarada con servicio, no la superficie total del municipio.",
+        "El ministerio publica cifras inverosímiles para 2015: se apartan más de 20 veces de lo que declararon los municipios comparables ese mismo año. Se muestran porque son las oficiales, pero no se pueden leer como coste."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+          "entrega": 2024
+        }
+      ]
+    },
+    {
+      "id": "a171-170p-coste-unitario",
+      "dimension": "operativa",
+      "tier": "output",
+      "servicio": "a171/170P",
+      "etiqueta": "Parques y jardines",
+      "numerador": {
+        "valor": 1496512.27,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE2:a171/170P:Econ14"
+      },
+      "denominador": {
+        "valor": 740046,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE3:a171/170P:Superficie: suma en metros cuadrados de la superficie total (tanto la cubierta como al aire libre)"
+      },
+      "valor": 2.0221881747891346,
+      "unidad": "€/m²",
+      "modoGestion": "directa",
+      "codGestionRaw": "Gestión directa por la entidad local",
+      "comparable": true,
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 31,
+        "modoGestion": "directa",
+        "percentil": 19,
+        "p25": 2.2022527722484453,
+        "mediana": 3.3825849990613297,
+        "p75": 8.292970042490309,
+        "miembros": [
+          {
+            "ine": "03011",
+            "nombre": "Alfàs del Pi (l')",
+            "poblacion": 21080,
+            "valor": 3.7184688648648647
+          },
+          {
+            "ine": "03015",
+            "nombre": "Almoradí",
+            "poblacion": 22965,
+            "valor": 234.79253500000002
+          },
+          {
+            "ine": "03047",
+            "nombre": "Calp",
+            "poblacion": 27616,
+            "valor": 14.52836256081767
+          },
+          {
+            "ine": "03049",
+            "nombre": "Callosa de Segura",
+            "poblacion": 19988,
+            "valor": 9.15196962249901
+          },
+          {
+            "ine": "03050",
+            "nombre": "Campello (el)",
+            "poblacion": 31419,
+            "valor": 2.088309392096067
+          },
+          {
+            "ine": "03076",
+            "nombre": "Guardamar del Segura",
+            "poblacion": 18564,
+            "valor": 3.094998654162181
+          },
+          {
+            "ine": "03082",
+            "nombre": "Jávea/Xàbia",
+            "poblacion": 30642,
+            "valor": 7.848591301369863
+          },
+          {
+            "ine": "03090",
+            "nombre": "Mutxamel",
+            "poblacion": 28621,
+            "valor": 78.11098491570542
+          },
+          {
+            "ine": "03093",
+            "nombre": "Novelda",
+            "poblacion": 26606,
+            "valor": 4.31737
+          },
+          {
+            "ine": "03104",
+            "nombre": "Petrer",
+            "poblacion": 34022,
+            "valor": 41.854858789215335
+          },
+          {
+            "ine": "03113",
+            "nombre": "Rojales",
+            "poblacion": 17652,
+            "valor": 1.3041550748970576
+          },
+          {
+            "ine": "03121",
+            "nombre": "Santa Pola",
+            "poblacion": 39709,
+            "valor": 3.1966547184567258
+          },
+          {
+            "ine": "03140",
+            "nombre": "Villena",
+            "poblacion": 34712,
+            "valor": 0.34738887484518255
+          },
+          {
+            "ine": "03902",
+            "nombre": "Pilar de la Horadada",
+            "poblacion": 24316,
+            "valor": 5.019762347211386
+          },
+          {
+            "ine": "12009",
+            "nombre": "Almassora",
+            "poblacion": 29159,
+            "valor": 2.437838626877552
+          },
+          {
+            "ine": "12028",
+            "nombre": "Benicasim/Benicàssim",
+            "poblacion": 20539,
+            "valor": 7.414855641362514
+          },
+          {
+            "ine": "12084",
+            "nombre": "Onda",
+            "poblacion": 26190,
+            "valor": 2.456213170836006
+          },
+          {
+            "ine": "12126",
+            "nombre": "Vall d'Uixó (la)",
+            "poblacion": 32242,
+            "valor": 0.39874060046652793
+          },
+          {
+            "ine": "46007",
+            "nombre": "Albal",
+            "poblacion": 17365,
+            "valor": 1.857978469294528
+          },
+          {
+            "ine": "46021",
+            "nombre": "Aldaia",
+            "poblacion": 34630,
+            "valor": 2.0424765941780736
+          },
+          {
+            "ine": "46022",
+            "nombre": "Alfafar",
+            "poblacion": 22270,
+            "valor": 3.138172554865705
+          },
+          {
+            "ine": "46083",
+            "nombre": "Carcaixent",
+            "poblacion": 21934,
+            "valor": 8.737348783610754
+          },
+          {
+            "ine": "46085",
+            "nombre": "Carlet",
+            "poblacion": 16857,
+            "valor": 0.47509881606274973
+          },
+          {
+            "ine": "46111",
+            "nombre": "Chiva",
+            "poblacion": 17951,
+            "valor": 23.583527525387492
+          },
+          {
+            "ine": "46145",
+            "nombre": "Xàtiva",
+            "poblacion": 31008,
+            "valor": 3.3825849990613297
+          },
+          {
+            "ine": "46159",
+            "nombre": "Manises",
+            "poblacion": 32609,
+            "valor": 5.332583846153846
+          },
+          {
+            "ine": "46181",
+            "nombre": "Oliva",
+            "poblacion": 26813,
+            "valor": 0.2824308288827024
+          },
+          {
+            "ine": "46184",
+            "nombre": "Ontinyent",
+            "poblacion": 37012,
+            "valor": 15.652632518185806
+          },
+          {
+            "ine": "46194",
+            "nombre": "Picassent",
+            "poblacion": 23202,
+            "valor": 3.3008726587788537
+          },
+          {
+            "ine": "46213",
+            "nombre": "Requena",
+            "poblacion": 20982,
+            "valor": 5.433220347081534
+          },
+          {
+            "ine": "46230",
+            "nombre": "Silla",
+            "poblacion": 20482,
+            "valor": 2.3161961524008237
+          }
+        ]
+      },
+      "serie": [
+        {
+          "anio": 2014,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2015,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2016,
+          "valor": 2.3021474989453528,
+          "estado": "declarado",
+          "medianaPares": 2.2728872719080875
+        },
+        {
+          "anio": 2017,
+          "valor": 2.5198831592967754,
+          "estado": "declarado",
+          "medianaPares": 2.4925114982932555
+        },
+        {
+          "anio": 2018,
+          "valor": 2.7787928198662373,
+          "estado": "declarado",
+          "medianaPares": 3.45046313723038
+        },
+        {
+          "anio": 2019,
+          "valor": 0.7540598422260237,
+          "estado": "declarado",
+          "medianaPares": 2.4831062080686115
+        },
+        {
+          "anio": 2021,
+          "valor": 0.9702314180469863,
+          "estado": "declarado",
+          "medianaPares": 2.424275280099452
+        },
+        {
+          "anio": 2022,
+          "valor": 2.266029787337544,
+          "estado": "declarado",
+          "medianaPares": 3.1448461977050814
+        },
+        {
+          "anio": 2023,
+          "valor": 2.19371330971318,
+          "estado": "declarado",
+          "medianaPares": 2.967179627020558
+        },
+        {
+          "anio": 2024,
+          "valor": 2.0221881747891346,
+          "estado": "declarado",
+          "medianaPares": 3.3825849990613297
+        }
+      ],
+      "caveats": [
+        "Un metro cuadrado de césped y uno de zona pavimentada cuestan distinto de mantener; la fuente no los separa."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+          "entrega": 2024
+        }
+      ]
+    },
+    {
+      "id": "a1532-150p-coste-unitario",
+      "dimension": "operativa",
+      "tier": "output",
+      "servicio": "a1532/150P",
+      "etiqueta": "Pavimentación de vías públicas",
+      "numerador": {
+        "valor": 336272.52,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE2:a1532/150P:Econ14"
+      },
+      "denominador": {
+        "valor": 1066694,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE3:a1532/150P:Superficie de los tramos pavimentados (metros cuadrados)"
+      },
+      "valor": 0.31524740928513706,
+      "unidad": "€/m²",
+      "modoGestion": "directa",
+      "codGestionRaw": "Gestión directa por la entidad local",
+      "comparable": true,
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 43,
+        "modoGestion": "directa",
+        "percentil": 44,
+        "p25": 0.06680074739670051,
+        "mediana": 0.6483005789608913,
+        "p75": 1.2921045032182041,
+        "miembros": [
+          {
+            "ine": "03011",
+            "nombre": "Alfàs del Pi (l')",
+            "poblacion": 21080,
+            "valor": 0.22107388983050846
+          },
+          {
+            "ine": "03015",
+            "nombre": "Almoradí",
+            "poblacion": 22965,
+            "valor": 3.0596315259556586
+          },
+          {
+            "ine": "03018",
+            "nombre": "Altea",
+            "poblacion": 24592,
+            "valor": 0.033477340637279626
+          },
+          {
+            "ine": "03019",
+            "nombre": "Aspe",
+            "poblacion": 22397,
+            "valor": 0.00019396972375074407
+          },
+          {
+            "ine": "03047",
+            "nombre": "Calp",
+            "poblacion": 27616,
+            "valor": 5.7393749820644534e-9
+          },
+          {
+            "ine": "03049",
+            "nombre": "Callosa de Segura",
+            "poblacion": 19988,
+            "valor": 0.7109019011332456
+          },
+          {
+            "ine": "03050",
+            "nombre": "Campello (el)",
+            "poblacion": 31419,
+            "valor": 0.007047591765692282
+          },
+          {
+            "ine": "03079",
+            "nombre": "Ibi",
+            "poblacion": 24500,
+            "valor": 1.1922257344561227
+          },
+          {
+            "ine": "03082",
+            "nombre": "Jávea/Xàbia",
+            "poblacion": 30642,
+            "valor": 0.60923377
+          },
+          {
+            "ine": "03090",
+            "nombre": "Mutxamel",
+            "poblacion": 28621,
+            "valor": 0.2947672123891085
+          },
+          {
+            "ine": "03093",
+            "nombre": "Novelda",
+            "poblacion": 26606,
+            "valor": 2.8968156833203733
+          },
+          {
+            "ine": "03104",
+            "nombre": "Petrer",
+            "poblacion": 34022,
+            "valor": 0.036536137667304014
+          },
+          {
+            "ine": "03113",
+            "nombre": "Rojales",
+            "poblacion": 17652,
+            "valor": 0.0604090375232012
+          },
+          {
+            "ine": "03119",
+            "nombre": "Sant Joan d'Alacant",
+            "poblacion": 26834,
+            "valor": 0.09828439891228735
+          },
+          {
+            "ine": "03121",
+            "nombre": "Santa Pola",
+            "poblacion": 39709,
+            "valor": 0.05120459377852247
+          },
+          {
+            "ine": "03139",
+            "nombre": "Villajoyosa/Vila Joiosa (la)",
+            "poblacion": 37449,
+            "valor": 0.20872923925501433
+          },
+          {
+            "ine": "03140",
+            "nombre": "Villena",
+            "poblacion": 34712,
+            "valor": 0.6569063544451581
+          },
+          {
+            "ine": "03902",
+            "nombre": "Pilar de la Horadada",
+            "poblacion": 24316,
+            "valor": 0.00006345334310489217
+          },
+          {
+            "ine": "12009",
+            "nombre": "Almassora",
+            "poblacion": 29159,
+            "valor": 0.07319245727019982
+          },
+          {
+            "ine": "12032",
+            "nombre": "Borriana/Burriana",
+            "poblacion": 37915,
+            "valor": 1092.683648310388
+          },
+          {
+            "ine": "12084",
+            "nombre": "Onda",
+            "poblacion": 26190,
+            "valor": 556.6183659090909
+          },
+          {
+            "ine": "12126",
+            "nombre": "Vall d'Uixó (la)",
+            "poblacion": 32242,
+            "valor": 0.4362157057533812
+          },
+          {
+            "ine": "46007",
+            "nombre": "Albal",
+            "poblacion": 17365,
+            "valor": 2.730412921348315
+          },
+          {
+            "ine": "46021",
+            "nombre": "Aldaia",
+            "poblacion": 34630,
+            "valor": 4.566229125741264
+          },
+          {
+            "ine": "46022",
+            "nombre": "Alfafar",
+            "poblacion": 22270,
+            "valor": 1.299334250689562
+          },
+          {
+            "ine": "46029",
+            "nombre": "Algemesí",
+            "poblacion": 28306,
+            "valor": 0.30101916557612757
+          },
+          {
+            "ine": "46070",
+            "nombre": "Bétera",
+            "poblacion": 28560,
+            "valor": 0.7707989752436507
+          },
+          {
+            "ine": "46085",
+            "nombre": "Carlet",
+            "poblacion": 16857,
+            "valor": 45.026620163200846
+          },
+          {
+            "ine": "46110",
+            "nombre": "Xirivella",
+            "poblacion": 32093,
+            "valor": 0.0069672969543147206
+          },
+          {
+            "ine": "46111",
+            "nombre": "Chiva",
+            "poblacion": 17951,
+            "valor": 0.023611271504265677
+          },
+          {
+            "ine": "46116",
+            "nombre": "Eliana (l')",
+            "poblacion": 19839,
+            "valor": 0.8127312741052369
+          },
+          {
+            "ine": "46145",
+            "nombre": "Xàtiva",
+            "poblacion": 31008,
+            "valor": 1.5545197307692307
+          },
+          {
+            "ine": "46159",
+            "nombre": "Manises",
+            "poblacion": 32609,
+            "valor": 1.159676762654947
+          },
+          {
+            "ine": "46164",
+            "nombre": "Massamagrell",
+            "poblacion": 17566,
+            "valor": 0.7880292834938554
+          },
+          {
+            "ine": "46171",
+            "nombre": "Moncada",
+            "poblacion": 22213,
+            "valor": 0.019129089068825912
+          },
+          {
+            "ine": "46181",
+            "nombre": "Oliva",
+            "poblacion": 26813,
+            "valor": 1.2267240441800427
+          },
+          {
+            "ine": "46186",
+            "nombre": "Paiporta",
+            "poblacion": 28136,
+            "valor": 8.209330263157895
+          },
+          {
+            "ine": "46194",
+            "nombre": "Picassent",
+            "poblacion": 23202,
+            "valor": 1.03915190710889
+          },
+          {
+            "ine": "46205",
+            "nombre": "Puçol",
+            "poblacion": 21659,
+            "valor": 2.5095619435155236
+          },
+          {
+            "ine": "46213",
+            "nombre": "Requena",
+            "poblacion": 20982,
+            "valor": 0.12675434270219146
+          },
+          {
+            "ine": "46230",
+            "nombre": "Silla",
+            "poblacion": 20482,
+            "valor": 1.284874755746846
+          },
+          {
+            "ine": "46235",
+            "nombre": "Sueca",
+            "poblacion": 29194,
+            "valor": 0.28678711536458634
+          },
+          {
+            "ine": "46238",
+            "nombre": "Tavernes de la Valldigna",
+            "poblacion": 17866,
+            "valor": 0.6483005789608913
+          }
+        ]
+      },
+      "serie": [
+        {
+          "anio": 2014,
+          "valor": 0.24365927638190957,
+          "estado": "declarado",
+          "medianaPares": 0.4925282729410799
+        },
+        {
+          "anio": 2015,
+          "valor": 0.38699865636242853,
+          "estado": "declarado",
+          "medianaPares": 0.30618742302473645
+        },
+        {
+          "anio": 2016,
+          "valor": 0.14092548090701268,
+          "estado": "declarado",
+          "medianaPares": 0.4659752992279307
+        },
+        {
+          "anio": 2017,
+          "valor": 0.5496362163117722,
+          "estado": "declarado",
+          "medianaPares": 0.5337176352390147
+        },
+        {
+          "anio": 2018,
+          "valor": 0.5655578569614242,
+          "estado": "declarado",
+          "medianaPares": 0.5082231629570746
+        },
+        {
+          "anio": 2019,
+          "valor": 0.6932492636126198,
+          "estado": "declarado",
+          "medianaPares": 0.5339971447067469
+        },
+        {
+          "anio": 2021,
+          "valor": 0.19643506947634465,
+          "estado": "declarado",
+          "medianaPares": 0.5415909203357931
+        },
+        {
+          "anio": 2022,
+          "valor": 0.2656775232634664,
+          "estado": "declarado",
+          "medianaPares": 0.4261197306074066
+        },
+        {
+          "anio": 2023,
+          "valor": 0.3160660414326883,
+          "estado": "declarado",
+          "medianaPares": 0.5987564337066078
+        },
+        {
+          "anio": 2024,
+          "valor": 0.31524740928513706,
+          "estado": "declarado",
+          "medianaPares": 0.6065020741891891
+        }
+      ],
+      "caveats": [
+        "Es el gasto de un ejercicio sobre todo el pavimento existente, no el coste de asfaltar un metro nuevo.",
+        "Esta cifra queda muy por debajo de la mediana de sus pares (×0,5). Una diferencia así suele venir de que cada ayuntamiento declara «Superficie de los tramos pavimentados (metros cuadrados)» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+          "entrega": 2024
+        }
+      ]
+    },
+    {
+      "id": "a3321-330p-coste-unitario",
+      "dimension": "operativa",
+      "tier": "output",
+      "servicio": "a3321/330P",
+      "etiqueta": "Biblioteca pública",
+      "numerador": {
+        "valor": 244334.89,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE2:a3321/330P:Econ14"
+      },
+      "denominador": {
+        "valor": 14712,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE3:a3321/330P:Nº préstamos por fondo biblitotecario"
+      },
+      "valor": 16.607863648722134,
+      "unidad": "€/préstamo",
+      "modoGestion": "directa",
+      "codGestionRaw": "Gestión directa por la entidad local",
+      "comparable": true,
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 51,
+        "modoGestion": "directa",
+        "percentil": 63,
+        "p25": 8.218810016532354,
+        "mediana": 13.417194350328613,
+        "p75": 24.594432241040863,
+        "miembros": [
+          {
+            "ine": "03011",
+            "nombre": "Alfàs del Pi (l')",
+            "poblacion": 21080,
+            "valor": 9.894307409111828
+          },
+          {
+            "ine": "03015",
+            "nombre": "Almoradí",
+            "poblacion": 22965,
+            "valor": 133.25343333333333
+          },
+          {
+            "ine": "03018",
+            "nombre": "Altea",
+            "poblacion": 24592,
+            "valor": 39.30004880136986
+          },
+          {
+            "ine": "03019",
+            "nombre": "Aspe",
+            "poblacion": 22397,
+            "valor": 16.238365692742697
+          },
+          {
+            "ine": "03047",
+            "nombre": "Calp",
+            "poblacion": 27616,
+            "valor": 49.7579587020649
+          },
+          {
+            "ine": "03050",
+            "nombre": "Campello (el)",
+            "poblacion": 31419,
+            "valor": 13.353615151515152
+          },
+          {
+            "ine": "03076",
+            "nombre": "Guardamar del Segura",
+            "poblacion": 18564,
+            "valor": 0.8441661328208414
+          },
+          {
+            "ine": "03079",
+            "nombre": "Ibi",
+            "poblacion": 24500,
+            "valor": 1.0922745098039215
+          },
+          {
+            "ine": "03082",
+            "nombre": "Jávea/Xàbia",
+            "poblacion": 30642,
+            "valor": 15.3377060325911
+          },
+          {
+            "ine": "03090",
+            "nombre": "Mutxamel",
+            "poblacion": 28621,
+            "valor": 7.722931626104086
+          },
+          {
+            "ine": "03093",
+            "nombre": "Novelda",
+            "poblacion": 26606,
+            "valor": 14.007978458762745
+          },
+          {
+            "ine": "03104",
+            "nombre": "Petrer",
+            "poblacion": 34022,
+            "valor": 0.5474684474412171
+          },
+          {
+            "ine": "03119",
+            "nombre": "Sant Joan d'Alacant",
+            "poblacion": 26834,
+            "valor": 7.591371355412228
+          },
+          {
+            "ine": "03121",
+            "nombre": "Santa Pola",
+            "poblacion": 39709,
+            "valor": 15.79999334853668
+          },
+          {
+            "ine": "03139",
+            "nombre": "Villajoyosa/Vila Joiosa (la)",
+            "poblacion": 37449,
+            "valor": 12.268193908937311
+          },
+          {
+            "ine": "03140",
+            "nombre": "Villena",
+            "poblacion": 34712,
+            "valor": 9.790988869446874
+          },
+          {
+            "ine": "03902",
+            "nombre": "Pilar de la Horadada",
+            "poblacion": 24316,
+            "valor": 56.735314343845374
+          },
+          {
+            "ine": "12009",
+            "nombre": "Almassora",
+            "poblacion": 29159,
+            "valor": 8.13540264964972
+          },
+          {
+            "ine": "12027",
+            "nombre": "Benicarló",
+            "poblacion": 30296,
+            "valor": 10.372854794831104
+          },
+          {
+            "ine": "12028",
+            "nombre": "Benicasim/Benicàssim",
+            "poblacion": 20539,
+            "valor": 17.600534698521045
+          },
+          {
+            "ine": "12032",
+            "nombre": "Borriana/Burriana",
+            "poblacion": 37915,
+            "valor": 10.587256564117217
+          },
+          {
+            "ine": "12084",
+            "nombre": "Onda",
+            "poblacion": 26190,
+            "valor": 47.91607845817387
+          },
+          {
+            "ine": "12126",
+            "nombre": "Vall d'Uixó (la)",
+            "poblacion": 32242,
+            "valor": 823173.6
+          },
+          {
+            "ine": "46007",
+            "nombre": "Albal",
+            "poblacion": 17365,
+            "valor": 20.174198970840482
+          },
+          {
+            "ine": "46013",
+            "nombre": "Alboraia/Alboraya",
+            "poblacion": 26273,
+            "valor": 38.229980638915784
+          },
+          {
+            "ine": "46021",
+            "nombre": "Aldaia",
+            "poblacion": 34630,
+            "valor": 60.481524568618305
+          },
+          {
+            "ine": "46022",
+            "nombre": "Alfafar",
+            "poblacion": 22270,
+            "valor": 30.481744994438262
+          },
+          {
+            "ine": "46029",
+            "nombre": "Algemesí",
+            "poblacion": 28306,
+            "valor": 17.560517753968696
+          },
+          {
+            "ine": "46054",
+            "nombre": "Benetússer",
+            "poblacion": 16734,
+            "valor": 20.147584047462097
+          },
+          {
+            "ine": "46070",
+            "nombre": "Bétera",
+            "poblacion": 28560,
+            "valor": 13.672296085170593
+          },
+          {
+            "ine": "46083",
+            "nombre": "Carcaixent",
+            "poblacion": 21934,
+            "valor": 11.671547508731914
+          },
+          {
+            "ine": "46085",
+            "nombre": "Carlet",
+            "poblacion": 16857,
+            "valor": 8.302217383414987
+          },
+          {
+            "ine": "46094",
+            "nombre": "Catarroja",
+            "poblacion": 30604,
+            "valor": 10.796756804838996
+          },
+          {
+            "ine": "46102",
+            "nombre": "Quart de Poblet",
+            "poblacion": 26967,
+            "valor": 1.3551301567970773
+          },
+          {
+            "ine": "46105",
+            "nombre": "Cullera",
+            "poblacion": 24702,
+            "valor": 0.7550568003075955
+          },
+          {
+            "ine": "46110",
+            "nombre": "Xirivella",
+            "poblacion": 32093,
+            "valor": 16.570204816992224
+          },
+          {
+            "ine": "46111",
+            "nombre": "Chiva",
+            "poblacion": 17951,
+            "valor": 11.498035803083043
+          },
+          {
+            "ine": "46116",
+            "nombre": "Eliana (l')",
+            "poblacion": 19839,
+            "valor": 10.521981328166286
+          },
+          {
+            "ine": "46145",
+            "nombre": "Xàtiva",
+            "poblacion": 31008,
+            "valor": 7.453156788014193
+          },
+          {
+            "ine": "46159",
+            "nombre": "Manises",
+            "poblacion": 32609,
+            "valor": 13.417194350328613
+          },
+          {
+            "ine": "46164",
+            "nombre": "Massamagrell",
+            "poblacion": 17566,
+            "valor": 7.4160440695472545
+          },
+          {
+            "ine": "46171",
+            "nombre": "Moncada",
+            "poblacion": 22213,
+            "valor": 4.176694644284573
+          },
+          {
+            "ine": "46181",
+            "nombre": "Oliva",
+            "poblacion": 26813,
+            "valor": 24.171156526652855
+          },
+          {
+            "ine": "46184",
+            "nombre": "Ontinyent",
+            "poblacion": 37012,
+            "valor": 25.017707955428868
+          },
+          {
+            "ine": "46186",
+            "nombre": "Paiporta",
+            "poblacion": 28136,
+            "valor": 21.503448039215687
+          },
+          {
+            "ine": "46194",
+            "nombre": "Picassent",
+            "poblacion": 23202,
+            "valor": 3.8316077022999924
+          },
+          {
+            "ine": "46205",
+            "nombre": "Puçol",
+            "poblacion": 21659,
+            "valor": 0.6509926393270241
+          },
+          {
+            "ine": "46213",
+            "nombre": "Requena",
+            "poblacion": 20982,
+            "valor": 9.568035606060606
+          },
+          {
+            "ine": "46230",
+            "nombre": "Silla",
+            "poblacion": 20482,
+            "valor": 39.85515976951283
+          },
+          {
+            "ine": "46235",
+            "nombre": "Sueca",
+            "poblacion": 29194,
+            "valor": 736468.5416666667
+          },
+          {
+            "ine": "46238",
+            "nombre": "Tavernes de la Valldigna",
+            "poblacion": 17866,
+            "valor": 33.68458414089492
+          }
+        ]
+      },
+      "serie": [
+        {
+          "anio": 2014,
+          "valor": 13686406,
+          "estado": "declarado",
+          "medianaPares": 10.371343704306666,
+          "atipico": true
+        },
+        {
+          "anio": 2015,
+          "valor": 6.054349306652624,
+          "estado": "declarado",
+          "medianaPares": 7.2472774098601915
+        },
+        {
+          "anio": 2016,
+          "valor": 1.4034520513985869,
+          "estado": "declarado",
+          "medianaPares": 8.546655399395126
+        },
+        {
+          "anio": 2017,
+          "valor": 8.796113492658879,
+          "estado": "declarado",
+          "medianaPares": 9.371231416209906
+        },
+        {
+          "anio": 2018,
+          "valor": 8.315137177151431,
+          "estado": "declarado",
+          "medianaPares": 10.263854494355277
+        },
+        {
+          "anio": 2019,
+          "valor": 12.162851413811854,
+          "estado": "declarado",
+          "medianaPares": 9.674529629794844
+        },
+        {
+          "anio": 2021,
+          "valor": 13.73365551930397,
+          "estado": "declarado",
+          "medianaPares": 13.36802443056576
+        },
+        {
+          "anio": 2022,
+          "valor": 22.23561106579663,
+          "estado": "declarado",
+          "medianaPares": 11.150065930389086
+        },
+        {
+          "anio": 2023,
+          "valor": 22.950117591082112,
+          "estado": "declarado",
+          "medianaPares": 11.620669291338583
+        },
+        {
+          "anio": 2024,
+          "valor": 16.607863648722134,
+          "estado": "declarado",
+          "medianaPares": 13.417194350328613
+        }
+      ],
+      "caveats": [
+        "El préstamo es sólo uno de los usos de una biblioteca: no cuenta consultas en sala, actividades ni uso de los equipos.",
+        "El ministerio publica cifras inverosímiles para 2014: se apartan más de 20 veces de lo que declararon los municipios comparables ese mismo año. Se muestran porque son las oficiales, pero no se pueden leer como coste."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+          "entrega": 2024
+        }
+      ]
+    },
+    {
+      "id": "a165-coste-unitario",
+      "dimension": "operativa",
+      "tier": "output",
+      "servicio": "a165",
+      "etiqueta": "Alumbrado público",
+      "numerador": {
+        "valor": 664679.12,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE2:a165:Econ14"
+      },
+      "denominador": {
+        "valor": 4514,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE3:a165:Nº puntos de luz"
+      },
+      "valor": 147.24836508639788,
+      "unidad": "€/punto de luz",
+      "modoGestion": "directa",
+      "codGestionRaw": "Gestión directa por la entidad local",
+      "comparable": true,
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 48,
+        "modoGestion": "directa",
+        "percentil": 56,
+        "p25": 102.82632594080707,
+        "mediana": 140.90679210172277,
+        "p75": 188.59546349895157,
+        "miembros": [
+          {
+            "ine": "03011",
+            "nombre": "Alfàs del Pi (l')",
+            "poblacion": 21080,
+            "valor": 106.20863249594814
+          },
+          {
+            "ine": "03015",
+            "nombre": "Almoradí",
+            "poblacion": 22965,
+            "valor": 174.0978693877551
+          },
+          {
+            "ine": "03018",
+            "nombre": "Altea",
+            "poblacion": 24592,
+            "valor": 114.71584803921569
+          },
+          {
+            "ine": "03019",
+            "nombre": "Aspe",
+            "poblacion": 22397,
+            "valor": 100.40791954022988
+          },
+          {
+            "ine": "03047",
+            "nombre": "Calp",
+            "poblacion": 27616,
+            "valor": 717.1312562534741
+          },
+          {
+            "ine": "03050",
+            "nombre": "Campello (el)",
+            "poblacion": 31419,
+            "valor": 188.38503492595697
+          },
+          {
+            "ine": "03076",
+            "nombre": "Guardamar del Segura",
+            "poblacion": 18564,
+            "valor": 252.02639751552795
+          },
+          {
+            "ine": "03079",
+            "nombre": "Ibi",
+            "poblacion": 24500,
+            "valor": 254.06134358047015
+          },
+          {
+            "ine": "03082",
+            "nombre": "Jávea/Xàbia",
+            "poblacion": 30642,
+            "valor": 118.33547053941908
+          },
+          {
+            "ine": "03090",
+            "nombre": "Mutxamel",
+            "poblacion": 28621,
+            "valor": 151.04259631184956
+          },
+          {
+            "ine": "03093",
+            "nombre": "Novelda",
+            "poblacion": 26606,
+            "valor": 257.825073404856
+          },
+          {
+            "ine": "03113",
+            "nombre": "Rojales",
+            "poblacion": 17652,
+            "valor": 146.4877765268787
+          },
+          {
+            "ine": "03121",
+            "nombre": "Santa Pola",
+            "poblacion": 39709,
+            "valor": 377.7638594775807
+          },
+          {
+            "ine": "03139",
+            "nombre": "Villajoyosa/Vila Joiosa (la)",
+            "poblacion": 37449,
+            "valor": 117.04660779881323
+          },
+          {
+            "ine": "03140",
+            "nombre": "Villena",
+            "poblacion": 34712,
+            "valor": 33.6761101905551
+          },
+          {
+            "ine": "03902",
+            "nombre": "Pilar de la Horadada",
+            "poblacion": 24316,
+            "valor": 114.74015314068177
+          },
+          {
+            "ine": "12009",
+            "nombre": "Almassora",
+            "poblacion": 29159,
+            "valor": 4.569813269765594
+          },
+          {
+            "ine": "12027",
+            "nombre": "Benicarló",
+            "poblacion": 30296,
+            "valor": 185.6887981540931
+          },
+          {
+            "ine": "12028",
+            "nombre": "Benicasim/Benicàssim",
+            "poblacion": 20539,
+            "valor": 232.46266333333332
+          },
+          {
+            "ine": "12032",
+            "nombre": "Borriana/Burriana",
+            "poblacion": 37915,
+            "valor": 9.464901284863679
+          },
+          {
+            "ine": "12084",
+            "nombre": "Onda",
+            "poblacion": 26190,
+            "valor": 32.56565745520802
+          },
+          {
+            "ine": "12126",
+            "nombre": "Vall d'Uixó (la)",
+            "poblacion": 32242,
+            "valor": 156.27091556591557
+          },
+          {
+            "ine": "46007",
+            "nombre": "Albal",
+            "poblacion": 17365,
+            "valor": 195.05287407407408
+          },
+          {
+            "ine": "46013",
+            "nombre": "Alboraia/Alboraya",
+            "poblacion": 26273,
+            "valor": 10.811399172699069
+          },
+          {
+            "ine": "46021",
+            "nombre": "Aldaia",
+            "poblacion": 34630,
+            "valor": 150.11414837398374
+          },
+          {
+            "ine": "46022",
+            "nombre": "Alfafar",
+            "poblacion": 22270,
+            "valor": 159.24097943534332
+          },
+          {
+            "ine": "46029",
+            "nombre": "Algemesí",
+            "poblacion": 28306,
+            "valor": 111.32960769230769
+          },
+          {
+            "ine": "46054",
+            "nombre": "Benetússer",
+            "poblacion": 16734,
+            "valor": 329.0899043478261
+          },
+          {
+            "ine": "46070",
+            "nombre": "Bétera",
+            "poblacion": 28560,
+            "valor": 137.4261647203442
+          },
+          {
+            "ine": "46083",
+            "nombre": "Carcaixent",
+            "poblacion": 21934,
+            "valor": 222.13363186813189
+          },
+          {
+            "ine": "46085",
+            "nombre": "Carlet",
+            "poblacion": 16857,
+            "valor": 144.38741948310138
+          },
+          {
+            "ine": "46094",
+            "nombre": "Catarroja",
+            "poblacion": 30604,
+            "valor": 189.22674921793538
+          },
+          {
+            "ine": "46102",
+            "nombre": "Quart de Poblet",
+            "poblacion": 26967,
+            "valor": 56.904512328767126
+          },
+          {
+            "ine": "46110",
+            "nombre": "Xirivella",
+            "poblacion": 32093,
+            "valor": 107.98279440628066
+          },
+          {
+            "ine": "46111",
+            "nombre": "Chiva",
+            "poblacion": 17951,
+            "valor": 90.30477521008403
+          },
+          {
+            "ine": "46116",
+            "nombre": "Eliana (l')",
+            "poblacion": 19839,
+            "valor": 128.46744078567303
+          },
+          {
+            "ine": "46145",
+            "nombre": "Xàtiva",
+            "poblacion": 31008,
+            "valor": 78.40765573770491
+          },
+          {
+            "ine": "46159",
+            "nombre": "Manises",
+            "poblacion": 32609,
+            "valor": 123.83257613168723
+          },
+          {
+            "ine": "46171",
+            "nombre": "Moncada",
+            "poblacion": 22213,
+            "valor": 237.61244892681665
+          },
+          {
+            "ine": "46181",
+            "nombre": "Oliva",
+            "poblacion": 26813,
+            "valor": 146.2795729386892
+          },
+          {
+            "ine": "46184",
+            "nombre": "Ontinyent",
+            "poblacion": 37012,
+            "valor": 230.43129925925925
+          },
+          {
+            "ine": "46186",
+            "nombre": "Paiporta",
+            "poblacion": 28136,
+            "valor": 101.27725936811169
+          },
+          {
+            "ine": "46194",
+            "nombre": "Picassent",
+            "poblacion": 23202,
+            "valor": 187.45107750000003
+          },
+          {
+            "ine": "46205",
+            "nombre": "Puçol",
+            "poblacion": 21659,
+            "valor": 153.07008510638298
+          },
+          {
+            "ine": "46213",
+            "nombre": "Requena",
+            "poblacion": 20982,
+            "valor": 33.89175434782609
+          },
+          {
+            "ine": "46230",
+            "nombre": "Silla",
+            "poblacion": 20482,
+            "valor": 103.34268146503885
+          },
+          {
+            "ine": "46235",
+            "nombre": "Sueca",
+            "poblacion": 29194,
+            "valor": 69.48056666666666
+          },
+          {
+            "ine": "46238",
+            "nombre": "Tavernes de la Valldigna",
+            "poblacion": 17866,
+            "valor": 115.53472212866286
+          }
+        ]
+      },
+      "serie": [
+        {
+          "anio": 2014,
+          "valor": 9.104068221720592,
+          "estado": "declarado",
+          "medianaPares": 127.9374419856596
+        },
+        {
+          "anio": 2015,
+          "valor": 16.797851260294486,
+          "estado": "declarado",
+          "medianaPares": 125.6770309463298
+        },
+        {
+          "anio": 2016,
+          "valor": 12.827339655602696,
+          "estado": "declarado",
+          "medianaPares": 113.15681779647718
+        },
+        {
+          "anio": 2017,
+          "valor": 15.255819815323184,
+          "estado": "declarado",
+          "medianaPares": 117.60360244648007
+        },
+        {
+          "anio": 2018,
+          "valor": 1.0096730721237834,
+          "estado": "declarado",
+          "medianaPares": 116.71139844617092,
+          "atipico": true
+        },
+        {
+          "anio": 2019,
+          "valor": 11.30738369517058,
+          "estado": "declarado",
+          "medianaPares": 110.22460897435899
+        },
+        {
+          "anio": 2021,
+          "valor": 21.763794860434206,
+          "estado": "declarado",
+          "medianaPares": 91.95195192307693
+        },
+        {
+          "anio": 2022,
+          "valor": 64.0948737261852,
+          "estado": "declarado",
+          "medianaPares": 112.29325364667747
+        },
+        {
+          "anio": 2023,
+          "valor": 137.79055161719097,
+          "estado": "declarado",
+          "medianaPares": 147.39653112126683
+        },
+        {
+          "anio": 2024,
+          "valor": 147.24836508639788,
+          "estado": "declarado",
+          "medianaPares": 140.90679210172277
+        }
+      ],
+      "caveats": [
+        "Cuenta puntos de luz, no consumo ni potencia: una red renovada y una vieja se cuentan igual.",
+        "El ministerio publica cifras inverosímiles para 2018: se apartan más de 20 veces de lo que declararon los municipios comparables ese mismo año. Se muestran porque son las oficiales, pero no se pueden leer como coste."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+          "entrega": 2024
+        }
+      ]
+    },
+    {
+      "id": "a164-coste-unitario",
+      "dimension": "operativa",
+      "tier": "output",
+      "servicio": "a164",
+      "etiqueta": "Cementerio y servicios funerarios",
+      "numerador": {
+        "valor": 45053.27,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE2:a164:Econ14"
+      },
+      "denominador": {
+        "valor": 9911,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE3:a164:Superficie total del cementerio: metros cuadrados"
+      },
+      "valor": 4.54578448188881,
+      "unidad": "€/m²",
+      "modoGestion": "directa",
+      "codGestionRaw": "Gestión directa por la entidad local",
+      "comparable": true,
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 43,
+        "modoGestion": "directa",
+        "percentil": 49,
+        "p25": 2.222063467601893,
+        "mediana": 4.5763738181818185,
+        "p75": 7.640291714253083,
+        "miembros": [
+          {
+            "ine": "03011",
+            "nombre": "Alfàs del Pi (l')",
+            "poblacion": 21080,
+            "valor": 0.3250077802476977
+          },
+          {
+            "ine": "03015",
+            "nombre": "Almoradí",
+            "poblacion": 22965,
+            "valor": 0.3355377522431464
+          },
+          {
+            "ine": "03018",
+            "nombre": "Altea",
+            "poblacion": 24592,
+            "valor": 4.228666461348937
+          },
+          {
+            "ine": "03019",
+            "nombre": "Aspe",
+            "poblacion": 22397,
+            "valor": 0.08869966294128083
+          },
+          {
+            "ine": "03047",
+            "nombre": "Calp",
+            "poblacion": 27616,
+            "valor": 20.639439979589234
+          },
+          {
+            "ine": "03050",
+            "nombre": "Campello (el)",
+            "poblacion": 31419,
+            "valor": 3.685934692088538
+          },
+          {
+            "ine": "03076",
+            "nombre": "Guardamar del Segura",
+            "poblacion": 18564,
+            "valor": 0.7964898829507304
+          },
+          {
+            "ine": "03079",
+            "nombre": "Ibi",
+            "poblacion": 24500,
+            "valor": 0.12557333906224824
+          },
+          {
+            "ine": "03082",
+            "nombre": "Jávea/Xàbia",
+            "poblacion": 30642,
+            "valor": 6.42609022556391
+          },
+          {
+            "ine": "03090",
+            "nombre": "Mutxamel",
+            "poblacion": 28621,
+            "valor": 5.362294320317394
+          },
+          {
+            "ine": "03093",
+            "nombre": "Novelda",
+            "poblacion": 26606,
+            "valor": 3.3621165031934304
+          },
+          {
+            "ine": "03104",
+            "nombre": "Petrer",
+            "poblacion": 34022,
+            "valor": 4.5763738181818185
+          },
+          {
+            "ine": "03113",
+            "nombre": "Rojales",
+            "poblacion": 17652,
+            "valor": 3.964577876106195
+          },
+          {
+            "ine": "03119",
+            "nombre": "Sant Joan d'Alacant",
+            "poblacion": 26834,
+            "valor": 15.386586580086579
+          },
+          {
+            "ine": "03121",
+            "nombre": "Santa Pola",
+            "poblacion": 39709,
+            "valor": 0.1012199561123935
+          },
+          {
+            "ine": "03139",
+            "nombre": "Villajoyosa/Vila Joiosa (la)",
+            "poblacion": 37449,
+            "valor": 9.425453513452153
+          },
+          {
+            "ine": "03140",
+            "nombre": "Villena",
+            "poblacion": 34712,
+            "valor": 1.0594494325214874
+          },
+          {
+            "ine": "12009",
+            "nombre": "Almassora",
+            "poblacion": 29159,
+            "valor": 5.610390519678191
+          },
+          {
+            "ine": "12027",
+            "nombre": "Benicarló",
+            "poblacion": 30296,
+            "valor": 4.824240205453254
+          },
+          {
+            "ine": "12028",
+            "nombre": "Benicasim/Benicàssim",
+            "poblacion": 20539,
+            "valor": 16.717947723095772
+          },
+          {
+            "ine": "12032",
+            "nombre": "Borriana/Burriana",
+            "poblacion": 37915,
+            "valor": 11.791966180758017
+          },
+          {
+            "ine": "12084",
+            "nombre": "Onda",
+            "poblacion": 26190,
+            "valor": 6.7799772727272725
+          },
+          {
+            "ine": "12126",
+            "nombre": "Vall d'Uixó (la)",
+            "poblacion": 32242,
+            "valor": 5.256398847919354
+          },
+          {
+            "ine": "46007",
+            "nombre": "Albal",
+            "poblacion": 17365,
+            "valor": 5.687269053117783
+          },
+          {
+            "ine": "46021",
+            "nombre": "Aldaia",
+            "poblacion": 34630,
+            "valor": 5.631826305008123
+          },
+          {
+            "ine": "46029",
+            "nombre": "Algemesí",
+            "poblacion": 28306,
+            "valor": 3.4731930064859204
+          },
+          {
+            "ine": "46054",
+            "nombre": "Benetússer",
+            "poblacion": 16734,
+            "valor": 5.1409625000000005
+          },
+          {
+            "ine": "46070",
+            "nombre": "Bétera",
+            "poblacion": 28560,
+            "valor": 10.699421506612996
+          },
+          {
+            "ine": "46083",
+            "nombre": "Carcaixent",
+            "poblacion": 21934,
+            "valor": 2.2404446511627905
+          },
+          {
+            "ine": "46085",
+            "nombre": "Carlet",
+            "poblacion": 16857,
+            "valor": 3.6167279411764706
+          },
+          {
+            "ine": "46105",
+            "nombre": "Cullera",
+            "poblacion": 24702,
+            "valor": 11.017153
+          },
+          {
+            "ine": "46111",
+            "nombre": "Chiva",
+            "poblacion": 17951,
+            "valor": 1.087908875739645
+          },
+          {
+            "ine": "46116",
+            "nombre": "Eliana (l')",
+            "poblacion": 19839,
+            "valor": 0.026125937520874925
+          },
+          {
+            "ine": "46145",
+            "nombre": "Xàtiva",
+            "poblacion": 31008,
+            "valor": 0.5789489499192246
+          },
+          {
+            "ine": "46164",
+            "nombre": "Massamagrell",
+            "poblacion": 17566,
+            "valor": 10.215008573483047
+          },
+          {
+            "ine": "46171",
+            "nombre": "Moncada",
+            "poblacion": 22213,
+            "valor": 6.372827980922098
+          },
+          {
+            "ine": "46181",
+            "nombre": "Oliva",
+            "poblacion": 26813,
+            "valor": 2.7836790250160357
+          },
+          {
+            "ine": "46184",
+            "nombre": "Ontinyent",
+            "poblacion": 37012,
+            "valor": 11.622634761353401
+          },
+          {
+            "ine": "46186",
+            "nombre": "Paiporta",
+            "poblacion": 28136,
+            "valor": 4.036056145431146
+          },
+          {
+            "ine": "46194",
+            "nombre": "Picassent",
+            "poblacion": 23202,
+            "valor": 11.004378571428573
+          },
+          {
+            "ine": "46213",
+            "nombre": "Requena",
+            "poblacion": 20982,
+            "valor": 2.2036822840409958
+          },
+          {
+            "ine": "46230",
+            "nombre": "Silla",
+            "poblacion": 20482,
+            "valor": 8.500606155778893
+          },
+          {
+            "ine": "46238",
+            "nombre": "Tavernes de la Valldigna",
+            "poblacion": 17866,
+            "valor": 4.388524609559867
+          }
+        ]
+      },
+      "serie": [
+        {
+          "anio": 2014,
+          "valor": 2.1449505537974685,
+          "estado": "declarado",
+          "medianaPares": 3.7950342655271894
+        },
+        {
+          "anio": 2015,
+          "valor": 3.3098833069620253,
+          "estado": "declarado",
+          "medianaPares": 3.22509416087813
+        },
+        {
+          "anio": 2016,
+          "valor": 3.595829707278481,
+          "estado": "declarado",
+          "medianaPares": 3.3412283675920036
+        },
+        {
+          "anio": 2017,
+          "valor": 3.2583969541139246,
+          "estado": "declarado",
+          "medianaPares": 3.214383971533702
+        },
+        {
+          "anio": 2018,
+          "valor": 2.316031399317406,
+          "estado": "declarado",
+          "medianaPares": 3.856452261306533
+        },
+        {
+          "anio": 2019,
+          "valor": 5.601526586620927,
+          "estado": "declarado",
+          "medianaPares": 3.943296423230522
+        },
+        {
+          "anio": 2021,
+          "valor": 5.676152759560084,
+          "estado": "declarado",
+          "medianaPares": 4.356683653846154
+        },
+        {
+          "anio": 2022,
+          "valor": 7.505400060538796,
+          "estado": "declarado",
+          "medianaPares": 4.647157024693367
+        },
+        {
+          "anio": 2023,
+          "valor": 7.831538694379982,
+          "estado": "declarado",
+          "medianaPares": 4.471789228395664
+        },
+        {
+          "anio": 2024,
+          "valor": 4.54578448188881,
+          "estado": "declarado",
+          "medianaPares": 4.5763738181818185
+        }
+      ],
+      "caveats": [],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+          "entrega": 2024
+        }
+      ]
+    },
+    {
+      "id": "b151-150p-coste-unitario",
+      "dimension": "operativa",
+      "tier": "carga",
+      "servicio": "b151/150P",
+      "etiqueta": "Urbanismo: planeamiento y gestión",
+      "numerador": {
+        "valor": 1954117.66,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE2:b151/150P:Econ14"
+      },
+      "denominador": {
+        "valor": 58.01,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE3:b151/150P:Superficie urbanizada (kilómetros cuadrados)"
+      },
+      "valor": 33685.87588346837,
+      "unidad": "€/km²",
+      "modoGestion": "directa",
+      "codGestionRaw": "Gestión directa por la entidad local",
+      "comparable": true,
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 47,
+        "modoGestion": "directa",
+        "percentil": 23,
+        "p25": 42083.759059409,
+        "mediana": 140694.41502683365,
+        "p75": 232258.9092594957,
+        "miembros": [
+          {
+            "ine": "03011",
+            "nombre": "Alfàs del Pi (l')",
+            "poblacion": 21080,
+            "valor": 140694.41502683365
+          },
+          {
+            "ine": "03015",
+            "nombre": "Almoradí",
+            "poblacion": 22965,
+            "valor": 129512.79199999999
+          },
+          {
+            "ine": "03018",
+            "nombre": "Altea",
+            "poblacion": 24592,
+            "valor": 125044.171460177
+          },
+          {
+            "ine": "03019",
+            "nombre": "Aspe",
+            "poblacion": 22397,
+            "valor": 13782.99120234604
+          },
+          {
+            "ine": "03047",
+            "nombre": "Calp",
+            "poblacion": 27616,
+            "valor": 98744.76427703524
+          },
+          {
+            "ine": "03049",
+            "nombre": "Callosa de Segura",
+            "poblacion": 19988,
+            "valor": 5776.200000000001
+          },
+          {
+            "ine": "03050",
+            "nombre": "Campello (el)",
+            "poblacion": 31419,
+            "valor": 403594.3986486486
+          },
+          {
+            "ine": "03079",
+            "nombre": "Ibi",
+            "poblacion": 24500,
+            "valor": 253408.5731707317
+          },
+          {
+            "ine": "03082",
+            "nombre": "Jávea/Xàbia",
+            "poblacion": 30642,
+            "valor": 497.0173924180328
+          },
+          {
+            "ine": "03090",
+            "nombre": "Mutxamel",
+            "poblacion": 28621,
+            "valor": 50387.48380700595
+          },
+          {
+            "ine": "03093",
+            "nombre": "Novelda",
+            "poblacion": 26606,
+            "valor": 136889.63855421686
+          },
+          {
+            "ine": "03104",
+            "nombre": "Petrer",
+            "poblacion": 34022,
+            "valor": 199.31220180682436
+          },
+          {
+            "ine": "03113",
+            "nombre": "Rojales",
+            "poblacion": 17652,
+            "valor": 187995.5925925926
+          },
+          {
+            "ine": "03119",
+            "nombre": "Sant Joan d'Alacant",
+            "poblacion": 26834,
+            "valor": 240268.58615384618
+          },
+          {
+            "ine": "03121",
+            "nombre": "Santa Pola",
+            "poblacion": 39709,
+            "valor": 1.80601393483124
+          },
+          {
+            "ine": "03139",
+            "nombre": "Villajoyosa/Vila Joiosa (la)",
+            "poblacion": 37449,
+            "valor": 224249.23236514523
+          },
+          {
+            "ine": "03140",
+            "nombre": "Villena",
+            "poblacion": 34712,
+            "valor": 154.179290499391
+          },
+          {
+            "ine": "03902",
+            "nombre": "Pilar de la Horadada",
+            "poblacion": 24316,
+            "valor": 413140.21181262727
+          },
+          {
+            "ine": "12009",
+            "nombre": "Almassora",
+            "poblacion": 29159,
+            "valor": 205551.9005524862
+          },
+          {
+            "ine": "12028",
+            "nombre": "Benicasim/Benicàssim",
+            "poblacion": 20539,
+            "valor": 204.4445221363317
+          },
+          {
+            "ine": "12032",
+            "nombre": "Borriana/Burriana",
+            "poblacion": 37915,
+            "valor": 177925.76833976834
+          },
+          {
+            "ine": "12084",
+            "nombre": "Onda",
+            "poblacion": 26190,
+            "valor": 49720.949375
+          },
+          {
+            "ine": "12126",
+            "nombre": "Vall d'Uixó (la)",
+            "poblacion": 32242,
+            "valor": 212041.57085828343
+          },
+          {
+            "ine": "46013",
+            "nombre": "Alboraia/Alboraya",
+            "poblacion": 26273,
+            "valor": 192361.16
+          },
+          {
+            "ine": "46021",
+            "nombre": "Aldaia",
+            "poblacion": 34630,
+            "valor": 340033.7099447514
+          },
+          {
+            "ine": "46022",
+            "nombre": "Alfafar",
+            "poblacion": 22270,
+            "valor": 259602.9578313253
+          },
+          {
+            "ine": "46029",
+            "nombre": "Algemesí",
+            "poblacion": 28306,
+            "valor": 348725.53846153844
+          },
+          {
+            "ine": "46054",
+            "nombre": "Benetússer",
+            "poblacion": 16734,
+            "valor": 263465.1818181818
+          },
+          {
+            "ine": "46070",
+            "nombre": "Bétera",
+            "poblacion": 28560,
+            "valor": 34446.568743818
+          },
+          {
+            "ine": "46083",
+            "nombre": "Carcaixent",
+            "poblacion": 21934,
+            "valor": 174697.922829582
+          },
+          {
+            "ine": "46085",
+            "nombre": "Carlet",
+            "poblacion": 16857,
+            "valor": 0.16452905863303985
+          },
+          {
+            "ine": "46094",
+            "nombre": "Catarroja",
+            "poblacion": 30604,
+            "valor": 139321.4349593496
+          },
+          {
+            "ine": "46105",
+            "nombre": "Cullera",
+            "poblacion": 24702,
+            "valor": 328775.5798969072
+          },
+          {
+            "ine": "46110",
+            "nombre": "Xirivella",
+            "poblacion": 32093,
+            "valor": 1252105.824
+          },
+          {
+            "ine": "46111",
+            "nombre": "Chiva",
+            "poblacion": 17951,
+            "valor": 59630.61838440112
+          },
+          {
+            "ine": "46116",
+            "nombre": "Eliana (l')",
+            "poblacion": 19839,
+            "valor": 77708.28005657709
+          },
+          {
+            "ine": "46145",
+            "nombre": "Xàtiva",
+            "poblacion": 31008,
+            "valor": 233.76270083102494
+          },
+          {
+            "ine": "46159",
+            "nombre": "Manises",
+            "poblacion": 32609,
+            "valor": 270174.9932126697
+          },
+          {
+            "ine": "46164",
+            "nombre": "Massamagrell",
+            "poblacion": 17566,
+            "valor": 110635.73191489361
+          },
+          {
+            "ine": "46171",
+            "nombre": "Moncada",
+            "poblacion": 22213,
+            "valor": 17694.081534772184
+          },
+          {
+            "ine": "46181",
+            "nombre": "Oliva",
+            "poblacion": 26813,
+            "valor": 156294.05498721226
+          },
+          {
+            "ine": "46184",
+            "nombre": "Ontinyent",
+            "poblacion": 37012,
+            "valor": 78107.51702786378
+          },
+          {
+            "ine": "46186",
+            "nombre": "Paiporta",
+            "poblacion": 28136,
+            "valor": 2393292.164383562
+          },
+          {
+            "ine": "46194",
+            "nombre": "Picassent",
+            "poblacion": 23202,
+            "valor": 11.544059433310299
+          },
+          {
+            "ine": "46205",
+            "nombre": "Puçol",
+            "poblacion": 21659,
+            "valor": 186523.8578088578
+          },
+          {
+            "ine": "46230",
+            "nombre": "Silla",
+            "poblacion": 20482,
+            "valor": 194469.5286195286
+          },
+          {
+            "ine": "46235",
+            "nombre": "Sueca",
+            "poblacion": 29194,
+            "valor": 144288.3795180723
+          }
+        ]
+      },
+      "serie": [
+        {
+          "anio": 2014,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2015,
+          "valor": 136618.1806167401,
+          "estado": "declarado",
+          "medianaPares": 114861.35319148935
+        },
+        {
+          "anio": 2016,
+          "valor": 220496.07488986786,
+          "estado": "declarado",
+          "medianaPares": 130642.96463022509
+        },
+        {
+          "anio": 2017,
+          "valor": 118282.80176211454,
+          "estado": "declarado",
+          "medianaPares": 109085.57872340425
+        },
+        {
+          "anio": 2018,
+          "valor": 64611.179042904296,
+          "estado": "declarado",
+          "medianaPares": 124198.62016574586
+        },
+        {
+          "anio": 2019,
+          "valor": 14549.812790898122,
+          "estado": "declarado",
+          "medianaPares": 131035.24969380134
+        },
+        {
+          "anio": 2021,
+          "valor": 19414.34425099121,
+          "estado": "declarado",
+          "medianaPares": 133821.32525001912
+        },
+        {
+          "anio": 2022,
+          "valor": 19656.10739527668,
+          "estado": "declarado",
+          "medianaPares": 156056.68204987783
+        },
+        {
+          "anio": 2023,
+          "valor": 25690.42699534563,
+          "estado": "declarado",
+          "medianaPares": 136948.85637016152
+        },
+        {
+          "anio": 2024,
+          "valor": 33685.87588346837,
+          "estado": "declarado",
+          "medianaPares": 140007.9249930916
+        }
+      ],
+      "caveats": [
+        "La superficie urbanizada es el territorio que hay que planificar, no un producto del servicio.",
+        "Esta cifra queda muy por debajo de la mediana de sus pares (×0,2). Una diferencia así suele venir de que cada ayuntamiento declara «Superficie urbanizada (kilómetros cuadrados)» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+          "entrega": 2024
+        }
+      ]
+    },
+    {
+      "id": "b323-324-320p-coste-unitario",
+      "dimension": "operativa",
+      "tier": "carga",
+      "servicio": "b323/324/320P",
+      "etiqueta": "Centros docentes de enseñanza infantil y primaria",
+      "numerador": {
+        "valor": 3210292.31,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE2:b323/324/320P:Econ14"
+      },
+      "denominador": {
+        "valor": 31992,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE3:b323/324/320P:Superficie en metros cuadrados de los edificios"
+      },
+      "valor": 100.34672136784197,
+      "unidad": "€/m²",
+      "modoGestion": "directa",
+      "codGestionRaw": "Gestión directa por la entidad local",
+      "comparable": true,
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 41,
+        "modoGestion": "directa",
+        "percentil": 85,
+        "p25": 9.791738119340101,
+        "mediana": 32.511283664017384,
+        "p75": 65.59588145180297,
+        "miembros": [
+          {
+            "ine": "03011",
+            "nombre": "Alfàs del Pi (l')",
+            "poblacion": 21080,
+            "valor": 7.701568302161216
+          },
+          {
+            "ine": "03015",
+            "nombre": "Almoradí",
+            "poblacion": 22965,
+            "valor": 7.49214126984127
+          },
+          {
+            "ine": "03018",
+            "nombre": "Altea",
+            "poblacion": 24592,
+            "valor": 13.510108777749227
+          },
+          {
+            "ine": "03019",
+            "nombre": "Aspe",
+            "poblacion": 22397,
+            "valor": 0.3533777018670122
+          },
+          {
+            "ine": "03047",
+            "nombre": "Calp",
+            "poblacion": 27616,
+            "valor": 44.31896453900709
+          },
+          {
+            "ine": "03049",
+            "nombre": "Callosa de Segura",
+            "poblacion": 19988,
+            "valor": 6.90842335114621
+          },
+          {
+            "ine": "03076",
+            "nombre": "Guardamar del Segura",
+            "poblacion": 18564,
+            "valor": 64.7828964414907
+          },
+          {
+            "ine": "03082",
+            "nombre": "Jávea/Xàbia",
+            "poblacion": 30642,
+            "valor": 128.88573196659075
+          },
+          {
+            "ine": "03090",
+            "nombre": "Mutxamel",
+            "poblacion": 28621,
+            "valor": 62.608433219584995
+          },
+          {
+            "ine": "03093",
+            "nombre": "Novelda",
+            "poblacion": 26606,
+            "valor": 68.71032710280375
+          },
+          {
+            "ine": "03104",
+            "nombre": "Petrer",
+            "poblacion": 34022,
+            "valor": 45.90448135974063
+          },
+          {
+            "ine": "03119",
+            "nombre": "Sant Joan d'Alacant",
+            "poblacion": 26834,
+            "valor": 65.59588145180297
+          },
+          {
+            "ine": "03139",
+            "nombre": "Villajoyosa/Vila Joiosa (la)",
+            "poblacion": 37449,
+            "valor": 19.82773261037955
+          },
+          {
+            "ine": "03140",
+            "nombre": "Villena",
+            "poblacion": 34712,
+            "valor": 6.828204
+          },
+          {
+            "ine": "03902",
+            "nombre": "Pilar de la Horadada",
+            "poblacion": 24316,
+            "valor": 32.511283664017384
+          },
+          {
+            "ine": "12009",
+            "nombre": "Almassora",
+            "poblacion": 29159,
+            "valor": 38.32280076441047
+          },
+          {
+            "ine": "12028",
+            "nombre": "Benicasim/Benicàssim",
+            "poblacion": 20539,
+            "valor": 157.38001255910166
+          },
+          {
+            "ine": "12032",
+            "nombre": "Borriana/Burriana",
+            "poblacion": 37915,
+            "valor": 0.000016516367720410927
+          },
+          {
+            "ine": "12084",
+            "nombre": "Onda",
+            "poblacion": 26190,
+            "valor": 6.709319076788449
+          },
+          {
+            "ine": "12126",
+            "nombre": "Vall d'Uixó (la)",
+            "poblacion": 32242,
+            "valor": 710.7069804400978
+          },
+          {
+            "ine": "46007",
+            "nombre": "Albal",
+            "poblacion": 17365,
+            "valor": 82.6048373454782
+          },
+          {
+            "ine": "46013",
+            "nombre": "Alboraia/Alboraya",
+            "poblacion": 26273,
+            "valor": 0.12881324576819905
+          },
+          {
+            "ine": "46022",
+            "nombre": "Alfafar",
+            "poblacion": 22270,
+            "valor": 29.753788679731823
+          },
+          {
+            "ine": "46029",
+            "nombre": "Algemesí",
+            "poblacion": 28306,
+            "valor": 1.7735678307588985
+          },
+          {
+            "ine": "46054",
+            "nombre": "Benetússer",
+            "poblacion": 16734,
+            "valor": 12.848643241215456
+          },
+          {
+            "ine": "46070",
+            "nombre": "Bétera",
+            "poblacion": 28560,
+            "valor": 206.04299253984402
+          },
+          {
+            "ine": "46083",
+            "nombre": "Carcaixent",
+            "poblacion": 21934,
+            "valor": 924.1049966561576
+          },
+          {
+            "ine": "46085",
+            "nombre": "Carlet",
+            "poblacion": 16857,
+            "valor": 14.35061952039102
+          },
+          {
+            "ine": "46094",
+            "nombre": "Catarroja",
+            "poblacion": 30604,
+            "valor": 61.55559552358113
+          },
+          {
+            "ine": "46111",
+            "nombre": "Chiva",
+            "poblacion": 17951,
+            "valor": 34.11815734311542
+          },
+          {
+            "ine": "46116",
+            "nombre": "Eliana (l')",
+            "poblacion": 19839,
+            "valor": 76.3076527665473
+          },
+          {
+            "ine": "46159",
+            "nombre": "Manises",
+            "poblacion": 32609,
+            "valor": 582.0221242958386
+          },
+          {
+            "ine": "46164",
+            "nombre": "Massamagrell",
+            "poblacion": 17566,
+            "valor": 2.732790179262516
+          },
+          {
+            "ine": "46181",
+            "nombre": "Oliva",
+            "poblacion": 26813,
+            "valor": 31.383497176303614
+          },
+          {
+            "ine": "46184",
+            "nombre": "Ontinyent",
+            "poblacion": 37012,
+            "valor": 80.78029755178908
+          },
+          {
+            "ine": "46186",
+            "nombre": "Paiporta",
+            "poblacion": 28136,
+            "valor": 64.43529391034514
+          },
+          {
+            "ine": "46194",
+            "nombre": "Picassent",
+            "poblacion": 23202,
+            "valor": 26.09570223325062
+          },
+          {
+            "ine": "46205",
+            "nombre": "Puçol",
+            "poblacion": 21659,
+            "valor": 40.117605723660226
+          },
+          {
+            "ine": "46213",
+            "nombre": "Requena",
+            "poblacion": 20982,
+            "valor": 9.791738119340101
+          },
+          {
+            "ine": "46230",
+            "nombre": "Silla",
+            "poblacion": 20482,
+            "valor": 15.603328497554811
+          },
+          {
+            "ine": "46235",
+            "nombre": "Sueca",
+            "poblacion": 29194,
+            "valor": 16.130762944302216
+          }
+        ]
+      },
+      "serie": [
+        {
+          "anio": 2014,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2015,
+          "valor": 27.47876453962387,
+          "estado": "declarado",
+          "medianaPares": 30.89012082816276
+        },
+        {
+          "anio": 2016,
+          "valor": 37.182088270464185,
+          "estado": "declarado",
+          "medianaPares": 34.561813826601906
+        },
+        {
+          "anio": 2017,
+          "valor": 69.20816664854875,
+          "estado": "declarado",
+          "medianaPares": 37.09055252315548
+        },
+        {
+          "anio": 2018,
+          "valor": 126.13036797477986,
+          "estado": "declarado",
+          "medianaPares": 38.340242029737475
+        },
+        {
+          "anio": 2019,
+          "valor": 81.08121342835709,
+          "estado": "declarado",
+          "medianaPares": 35.337895286785454
+        },
+        {
+          "anio": 2021,
+          "valor": 77.99620811452863,
+          "estado": "declarado",
+          "medianaPares": 35.98518817362624
+        },
+        {
+          "anio": 2022,
+          "valor": 99.14305451362841,
+          "estado": "declarado",
+          "medianaPares": 36.296389726479845
+        },
+        {
+          "anio": 2023,
+          "valor": 84.64400818954738,
+          "estado": "declarado",
+          "medianaPares": 34.95423617307482
+        },
+        {
+          "anio": 2024,
+          "valor": 100.34672136784197,
+          "estado": "declarado",
+          "medianaPares": 32.511283664017384
+        }
+      ],
+      "caveats": [
+        "El ayuntamiento mantiene los edificios; la enseñanza es competencia autonómica, así que esto no mide resultados educativos.",
+        "Esta cifra queda muy por encima de la mediana de sus pares (×3,1). Una diferencia así suele venir de que cada ayuntamiento declara «Superficie en metros cuadrados de los edificios» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+          "entrega": 2024
+        }
+      ]
+    },
+    {
+      "id": "b132-130p-coste-unitario",
+      "dimension": "operativa",
+      "tier": "input",
+      "servicio": "b132/130P",
+      "etiqueta": "Seguridad y orden público (policía local)",
+      "numerador": {
+        "valor": 4262162.38,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE2:b132/130P:Econ14"
+      },
+      "denominador": {
+        "valor": 52,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE3:b132/130P:Nº efectivos asignados al servicio"
+      },
+      "valor": 81964.66115384616,
+      "unidad": "€/efectivo",
+      "modoGestion": "directa",
+      "codGestionRaw": "Gestión directa por la entidad local",
+      "comparable": true,
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 48,
+        "modoGestion": "directa",
+        "percentil": 85,
+        "p25": 55167.56694098241,
+        "mediana": 65496.23552744425,
+        "p75": 75277.88835016834,
+        "miembros": [
+          {
+            "ine": "03011",
+            "nombre": "Alfàs del Pi (l')",
+            "poblacion": 21080,
+            "valor": 57720.153023255814
+          },
+          {
+            "ine": "03019",
+            "nombre": "Aspe",
+            "poblacion": 22397,
+            "valor": 831.027027027027
+          },
+          {
+            "ine": "03047",
+            "nombre": "Calp",
+            "poblacion": 27616,
+            "valor": 74786.06878787879
+          },
+          {
+            "ine": "03050",
+            "nombre": "Campello (el)",
+            "poblacion": 31419,
+            "valor": 70865.07293103448
+          },
+          {
+            "ine": "03076",
+            "nombre": "Guardamar del Segura",
+            "poblacion": 18564,
+            "valor": 24833.520465116275
+          },
+          {
+            "ine": "03079",
+            "nombre": "Ibi",
+            "poblacion": 24500,
+            "valor": 50542.375151515145
+          },
+          {
+            "ine": "03082",
+            "nombre": "Jávea/Xàbia",
+            "poblacion": 30642,
+            "valor": 53266.75
+          },
+          {
+            "ine": "03090",
+            "nombre": "Mutxamel",
+            "poblacion": 28621,
+            "valor": 55693.431136363644
+          },
+          {
+            "ine": "03093",
+            "nombre": "Novelda",
+            "poblacion": 26606,
+            "valor": 71397.39021276595
+          },
+          {
+            "ine": "03104",
+            "nombre": "Petrer",
+            "poblacion": 34022,
+            "valor": 73209.75370370371
+          },
+          {
+            "ine": "03113",
+            "nombre": "Rojales",
+            "poblacion": 17652,
+            "valor": 61445.953783783785
+          },
+          {
+            "ine": "03119",
+            "nombre": "Sant Joan d'Alacant",
+            "poblacion": 26834,
+            "valor": 83622.96558139534
+          },
+          {
+            "ine": "03121",
+            "nombre": "Santa Pola",
+            "poblacion": 39709,
+            "valor": 223987.32892857143
+          },
+          {
+            "ine": "03139",
+            "nombre": "Villajoyosa/Vila Joiosa (la)",
+            "poblacion": 37449,
+            "valor": 66568.98263888889
+          },
+          {
+            "ine": "03140",
+            "nombre": "Villena",
+            "poblacion": 34712,
+            "valor": 123320.5975
+          },
+          {
+            "ine": "03902",
+            "nombre": "Pilar de la Horadada",
+            "poblacion": 24316,
+            "valor": 73863.5425
+          },
+          {
+            "ine": "12027",
+            "nombre": "Benicarló",
+            "poblacion": 30296,
+            "valor": 62769.875714285714
+          },
+          {
+            "ine": "12028",
+            "nombre": "Benicasim/Benicàssim",
+            "poblacion": 20539,
+            "valor": 53589.97435483871
+          },
+          {
+            "ine": "12032",
+            "nombre": "Borriana/Burriana",
+            "poblacion": 37915,
+            "valor": 77880.97162162163
+          },
+          {
+            "ine": "12084",
+            "nombre": "Onda",
+            "poblacion": 26190,
+            "valor": 67264.4862
+          },
+          {
+            "ine": "12126",
+            "nombre": "Vall d'Uixó (la)",
+            "poblacion": 32242,
+            "valor": 65308.06150943396
+          },
+          {
+            "ine": "46007",
+            "nombre": "Albal",
+            "poblacion": 17365,
+            "valor": 76753.34703703703
+          },
+          {
+            "ine": "46013",
+            "nombre": "Alboraia/Alboraya",
+            "poblacion": 26273,
+            "valor": 58146.832500000004
+          },
+          {
+            "ine": "46021",
+            "nombre": "Aldaia",
+            "poblacion": 34630,
+            "valor": 46919.63348837209
+          },
+          {
+            "ine": "46022",
+            "nombre": "Alfafar",
+            "poblacion": 22270,
+            "valor": 67638.51736842106
+          },
+          {
+            "ine": "46029",
+            "nombre": "Algemesí",
+            "poblacion": 28306,
+            "valor": 63982.27653061224
+          },
+          {
+            "ine": "46054",
+            "nombre": "Benetússer",
+            "poblacion": 16734,
+            "valor": 83495.394
+          },
+          {
+            "ine": "46070",
+            "nombre": "Bétera",
+            "poblacion": 28560,
+            "valor": 72300.59025641026
+          },
+          {
+            "ine": "46083",
+            "nombre": "Carcaixent",
+            "poblacion": 21934,
+            "valor": 42344.66675
+          },
+          {
+            "ine": "46085",
+            "nombre": "Carlet",
+            "poblacion": 16857,
+            "valor": 65105.04964285714
+          },
+          {
+            "ine": "46094",
+            "nombre": "Catarroja",
+            "poblacion": 30604,
+            "valor": 40053.96692307692
+          },
+          {
+            "ine": "46102",
+            "nombre": "Quart de Poblet",
+            "poblacion": 26967,
+            "valor": 43740.357209302325
+          },
+          {
+            "ine": "46110",
+            "nombre": "Xirivella",
+            "poblacion": 32093,
+            "valor": 58306.97355555556
+          },
+          {
+            "ine": "46111",
+            "nombre": "Chiva",
+            "poblacion": 17951,
+            "valor": 58056.68685714286
+          },
+          {
+            "ine": "46116",
+            "nombre": "Eliana (l')",
+            "poblacion": 19839,
+            "valor": 83599.4812
+          },
+          {
+            "ine": "46145",
+            "nombre": "Xàtiva",
+            "poblacion": 31008,
+            "valor": 65684.40954545455
+          },
+          {
+            "ine": "46159",
+            "nombre": "Manises",
+            "poblacion": 32609,
+            "valor": 57534.72213114754
+          },
+          {
+            "ine": "46164",
+            "nombre": "Massamagrell",
+            "poblacion": 17566,
+            "valor": 67423.926875
+          },
+          {
+            "ine": "46171",
+            "nombre": "Moncada",
+            "poblacion": 22213,
+            "valor": 62503.89743589744
+          },
+          {
+            "ine": "46181",
+            "nombre": "Oliva",
+            "poblacion": 26813,
+            "valor": 79624.29413793102
+          },
+          {
+            "ine": "46184",
+            "nombre": "Ontinyent",
+            "poblacion": 37012,
+            "valor": 80236.31523809524
+          },
+          {
+            "ine": "46186",
+            "nombre": "Paiporta",
+            "poblacion": 28136,
+            "valor": 89772.65108108107
+          },
+          {
+            "ine": "46194",
+            "nombre": "Picassent",
+            "poblacion": 23202,
+            "valor": 50739.33487804878
+          },
+          {
+            "ine": "46205",
+            "nombre": "Puçol",
+            "poblacion": 21659,
+            "valor": 78926.48529411765
+          },
+          {
+            "ine": "46213",
+            "nombre": "Requena",
+            "poblacion": 20982,
+            "valor": 32658.06264705882
+          },
+          {
+            "ine": "46230",
+            "nombre": "Silla",
+            "poblacion": 20482,
+            "valor": 84645.82464285714
+          },
+          {
+            "ine": "46235",
+            "nombre": "Sueca",
+            "poblacion": 29194,
+            "valor": 4004.8811666666666
+          },
+          {
+            "ine": "46238",
+            "nombre": "Tavernes de la Valldigna",
+            "poblacion": 17866,
+            "valor": 65934.78918918919
+          }
+        ]
+      },
+      "serie": [
+        {
+          "anio": 2014,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2015,
+          "valor": 46645.33571428571,
+          "estado": "declarado",
+          "medianaPares": 46318.38231861999
+        },
+        {
+          "anio": 2016,
+          "valor": 50263.10511111111,
+          "estado": "declarado",
+          "medianaPares": 45390.44968903941
+        },
+        {
+          "anio": 2017,
+          "valor": 36051.99911111111,
+          "estado": "declarado",
+          "medianaPares": 47050.82175402299
+        },
+        {
+          "anio": 2018,
+          "valor": 58628.86266666666,
+          "estado": "declarado",
+          "medianaPares": 50350.38987373737
+        },
+        {
+          "anio": 2019,
+          "valor": 50729.35769230769,
+          "estado": "declarado",
+          "medianaPares": 51711.341875
+        },
+        {
+          "anio": 2021,
+          "valor": 47521.718653846154,
+          "estado": "declarado",
+          "medianaPares": 54506.58189215686
+        },
+        {
+          "anio": 2022,
+          "valor": 72971.60480769232,
+          "estado": "declarado",
+          "medianaPares": 56965.494999999995
+        },
+        {
+          "anio": 2023,
+          "valor": 84025.62769230768,
+          "estado": "declarado",
+          "medianaPares": 61927.37353682171
+        },
+        {
+          "anio": 2024,
+          "valor": 81964.66115384616,
+          "estado": "declarado",
+          "medianaPares": 65308.06150943396
+        }
+      ],
+      "caveats": [
+        "Coste por efectivo es un PRECIO, no un rendimiento: divide un gasto entre otro gasto. Un cuerpo mejor pagado sale «más caro» sin que eso diga nada de la seguridad."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+          "entrega": 2024
+        }
+      ]
+    },
+    {
+      "id": "a4411-440p-coste-unitario",
+      "dimension": "operativa",
+      "tier": "output",
+      "servicio": "a4411/440P",
+      "etiqueta": "Transporte colectivo urbano",
+      "numerador": {
+        "valor": 736952.43,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE2:a4411/440P:Econ14"
+      },
+      "denominador": {
+        "valor": null,
+        "estado": "no-declarado",
+        "motivo": "cero-sin-declarar",
+        "fuente": "cesel:2024:CE3:a4411/440P:Nº total de viajeros al año"
+      },
+      "valor": null,
+      "unidad": "€/viajero",
+      "modoGestion": "directa",
+      "codGestionRaw": "Gestión directa por la entidad local",
+      "comparable": false,
+      "pares": null,
+      "serie": [
+        {
+          "anio": 2014,
+          "valor": null,
+          "estado": "no-se-presta"
+        },
+        {
+          "anio": 2015,
+          "valor": 1.3602824757106873,
+          "estado": "declarado",
+          "medianaPares": 3.482686858316222
+        },
+        {
+          "anio": 2016,
+          "valor": 1.968788233177402,
+          "estado": "declarado",
+          "medianaPares": 3.319504632929437
+        },
+        {
+          "anio": 2017,
+          "valor": 3.2386857499999997,
+          "estado": "declarado",
+          "medianaPares": 4.212096363804589
+        },
+        {
+          "anio": 2018,
+          "valor": 6.84245525,
+          "estado": "declarado",
+          "medianaPares": 3.5306441987416726
+        },
+        {
+          "anio": 2019,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2021,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2022,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2023,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2024,
+          "valor": null,
+          "estado": "no-declarado"
+        }
+      ],
+      "caveats": [],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+          "entrega": 2024
+        }
+      ]
+    },
+    {
+      "id": "a161-coste-unitario",
+      "dimension": "operativa",
+      "tier": "output",
+      "servicio": "a161",
+      "etiqueta": "Abastecimiento domiciliario de agua potable",
+      "numerador": {
+        "valor": null,
+        "estado": "no-declarado",
+        "motivo": "concesion",
+        "fuente": "cesel:2024:CE2:a161:Econ14"
+      },
+      "denominador": {
+        "valor": 270630,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE3:a161:Longitud de la red: metros lineales"
+      },
+      "valor": null,
+      "unidad": "€/m de red",
+      "modoGestion": "concesion",
+      "codGestionRaw": "Gestión indirecta mediante concesión, gestionando el concesionario el servicio a su riesgo y ventura",
+      "comparable": false,
+      "pares": null,
+      "serie": [
+        {
+          "anio": 2014,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2015,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2016,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2017,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2018,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2019,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2021,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2022,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2023,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2024,
+          "valor": null,
+          "estado": "no-declarado"
+        }
+      ],
+      "caveats": [],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+          "entrega": 2024
+        }
+      ]
+    },
+    {
+      "id": "a160-coste-unitario",
+      "dimension": "operativa",
+      "tier": "output",
+      "servicio": "a160",
+      "etiqueta": "Alcantarillado",
+      "numerador": {
+        "valor": null,
+        "estado": "no-declarado",
+        "motivo": "concesion",
+        "fuente": "cesel:2024:CE2:a160:Econ14"
+      },
+      "denominador": {
+        "valor": 296490,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE3:a160:Longitud del tramo: metros lineales."
+      },
+      "valor": null,
+      "unidad": "€/m de red",
+      "modoGestion": "concesion",
+      "codGestionRaw": "Gestión indirecta mediante concesión, gestionando el concesionario el servicio a su riesgo y ventura",
+      "comparable": false,
+      "pares": null,
+      "serie": [
+        {
+          "anio": 2014,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2015,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2016,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2017,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2018,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2019,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2021,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2022,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2023,
+          "valor": null,
+          "estado": "no-declarado"
+        },
+        {
+          "anio": 2024,
+          "valor": null,
+          "estado": "no-declarado"
+        }
+      ],
+      "caveats": [],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+          "entrega": 2024
+        }
+      ]
+    }
+  ],
+  "universe": {
+    "serviciosEnRegistro": 13,
+    "conRatio": 10,
+    "enConcesion": 2,
+    "sinUnidad": 1,
+    "sinCoste": 0,
+    "noSePresta": 0,
+    "comparables": 10,
+    "aniosDisponibles": [
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2021,
+      2022,
+      2023,
+      2024
+    ]
+  },
+  "municipales": [
+    {
+      "id": "periodo-medio-pago",
+      "dimension": "respuesta",
+      "etiqueta": "Periodo medio de pago a proveedores",
+      "descripcion": "Días que tarda el ayuntamiento en pagar a sus proveedores, calculado por el Ministerio de Hacienda con la metodología del RD 1040/2017.",
+      "numerador": {
+        "valor": 62.68,
+        "estado": "declarado",
+        "fuente": "pmp:2026-T1:dias"
+      },
+      "denominador": {
+        "valor": 1,
+        "estado": "declarado",
+        "fuente": "pmp:2026-T1:unidad"
+      },
+      "valor": 62.68,
+      "formato": "dias",
+      "periodo": "2026-T1",
+      "referencia": {
+        "valor": 30,
+        "etiqueta": "30 días, plazo legal",
+        "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2017-15446"
+      },
+      "serie": [
+        {
+          "periodo": "2018-T2",
+          "valor": 29.08
+        },
+        {
+          "periodo": "2018-T3",
+          "valor": 18.42
+        },
+        {
+          "periodo": "2018-T4",
+          "valor": 19.66
+        },
+        {
+          "periodo": "2019-T1",
+          "valor": 15.95
+        },
+        {
+          "periodo": "2019-T2",
+          "valor": 27.44
+        },
+        {
+          "periodo": "2019-T3",
+          "valor": 33.66
+        },
+        {
+          "periodo": "2019-T4",
+          "valor": 26.07
+        },
+        {
+          "periodo": "2020-T1",
+          "valor": 40.7
+        },
+        {
+          "periodo": "2020-T2",
+          "valor": 49.47
+        },
+        {
+          "periodo": "2020-T3",
+          "valor": 48.31
+        },
+        {
+          "periodo": "2020-T4",
+          "valor": 37.84
+        },
+        {
+          "periodo": "2021-T1",
+          "valor": 51.31
+        },
+        {
+          "periodo": "2021-T2",
+          "valor": 44.14
+        },
+        {
+          "periodo": "2021-T3",
+          "valor": 39.13
+        },
+        {
+          "periodo": "2021-T4",
+          "valor": 27.04
+        },
+        {
+          "periodo": "2022-T1",
+          "valor": 29.82
+        },
+        {
+          "periodo": "2022-T2",
+          "valor": 30.43
+        },
+        {
+          "periodo": "2022-T3",
+          "valor": 33.56
+        },
+        {
+          "periodo": "2022-T4",
+          "valor": 18.77
+        },
+        {
+          "periodo": "2023-T1",
+          "valor": 26.96
+        },
+        {
+          "periodo": "2023-T2",
+          "valor": 27.1
+        },
+        {
+          "periodo": "2023-T3",
+          "valor": 32.91
+        },
+        {
+          "periodo": "2023-T4",
+          "valor": 45.07
+        },
+        {
+          "periodo": "2024-T1",
+          "valor": 78.65
+        },
+        {
+          "periodo": "2024-T2",
+          "valor": 104.73
+        },
+        {
+          "periodo": "2024-T3",
+          "valor": 89.9
+        },
+        {
+          "periodo": "2024-T4",
+          "valor": 61.23
+        },
+        {
+          "periodo": "2025-T1",
+          "valor": 67.21
+        },
+        {
+          "periodo": "2025-T2",
+          "valor": 77.89
+        },
+        {
+          "periodo": "2025-T3",
+          "valor": 76.76
+        },
+        {
+          "periodo": "2025-T4",
+          "valor": 67.46
+        },
+        {
+          "periodo": "2026-T1",
+          "valor": 62.68
+        }
+      ],
+      "pares": {
+        "conjunto": "municipios que publican PMP con la misma norma",
+        "n": 6013,
+        "percentil": 94,
+        "p25": 7.69,
+        "mediana": 15.47,
+        "p75": 27.14
+      },
+      "caveats": [
+        "Riba-roja reporta por trimestres, no por meses: es lo que corresponde a los municipios fuera del modelo de cesión.",
+        "El plazo legal de 30 días es una referencia de la norma, no una sanción automática. Superarlo obliga a la entidad a publicar un plan de tesorería."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/pmp/pmp-series-rd-1040-2017.xlsx",
+          "etiqueta": "Ministerio de Hacienda · series PMP"
+        }
+      ]
+    },
+    {
+      "id": "gasto-por-habitante",
+      "dimension": "fiscal",
+      "etiqueta": "Gasto presupuestado por habitante",
+      "descripcion": "Presupuesto de gastos dividido entre la población, frente a los municipios valencianos de tamaño parecido en el mismo ejercicio.",
+      "numerador": {
+        "valor": 41578252.26,
+        "estado": "declarado",
+        "fuente": "budget:2025:snapshot.totalExpense"
+      },
+      "denominador": {
+        "valor": 24616,
+        "estado": "declarado",
+        "fuente": "budget:2025:snapshot.population"
+      },
+      "valor": 1689.0742712057197,
+      "formato": "euros",
+      "periodo": "2025",
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 59,
+        "percentil": 88,
+        "p25": 925.4006757404256,
+        "mediana": 1055.3535052521008,
+        "p75": 1337.1236546940017
+      },
+      "caveats": [
+        "Es una medida de ENTRADA: cuánto se presupuesta por vecino. Gastar más no es peor ni mejor —puede ser más servicio o menos eficiencia— y esta cifra sola no distingue las dos cosas.",
+        "Es una cifra presupuestaria de la publicación del ministerio, no gasto ejecutado. No es el punto de partida del porcentaje de ejecución que aparece más abajo: aquélla parte del crédito del listado municipal, las dos dicen ser el mismo ejercicio y la diferencia entre ambas sigue sin explicación.",
+        "Sale de la publicación del ministerio, la misma fila cuyos ingresos y gastos no cuadran entre sí; /presupuesto lo explica."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/es-ES/CDI/Paginas/InformacionPresupuestaria/InformacionEELLs/Presupuestos%20EELL.aspx",
+          "etiqueta": "CONPREL · presupuestos de las entidades locales"
+        }
+      ]
+    },
+    {
+      "id": "licitador-unico",
+      "dimension": "friccion",
+      "etiqueta": "Contratos con un solo licitador",
+      "descripcion": "De los contratos adjudicados que declaran cuántas ofertas recibieron, cuántos recibieron exactamente una.",
+      "numerador": {
+        "valor": 332,
+        "estado": "declarado",
+        "fuente": "tenders:adjudicados:numberOfProposals=1"
+      },
+      "denominador": {
+        "valor": 699,
+        "estado": "declarado",
+        "fuente": "tenders:adjudicados:conOfertasDeclaradas"
+      },
+      "valor": 0.474964234620887,
+      "formato": "porcentaje",
+      "periodo": "2017–2026",
+      "caveats": [
+        "Un licitador único no es irregular por sí mismo: hay mercados con un solo proveedor capaz. Es el indicador que la Comisión Europea usa para vigilar la competencia en compra pública, y lo que mide es cuánta de ella hubo."
+      ],
+      "citas": [
+        {
+          "url": "https://ribalicita.ribarroja.es",
+          "etiqueta": "Perfil de contratante (Gobierto)"
+        }
+      ]
+    },
+    {
+      "id": "sin-publicidad-abierta",
+      "dimension": "friccion",
+      "etiqueta": "Adjudicado sin llamada abierta",
+      "descripcion": "Contratos menores y negociados sin publicidad, sobre el total de adjudicados. Los derivados de un acuerdo marco o de un SDA no cuentan: su licitación sí se publicó.",
+      "numerador": {
+        "valor": 285,
+        "estado": "declarado",
+        "fuente": "tenders:adjudicados:sinPublicidad"
+      },
+      "denominador": {
+        "valor": 699,
+        "estado": "declarado",
+        "fuente": "tenders:adjudicados"
+      },
+      "valor": 0.40772532188841204,
+      "formato": "porcentaje",
+      "periodo": "2017–2026",
+      "caveats": [
+        "El contrato menor es un instrumento legal por debajo de los umbrales de la Ley 9/2017. Esto no mide irregularidad: mide qué parte de la contratación se resuelve sin concurrencia abierta."
+      ],
+      "citas": [
+        {
+          "url": "https://ribalicita.ribarroja.es",
+          "etiqueta": "Perfil de contratante (Gobierto)"
+        }
+      ]
+    },
+    {
+      "id": "concentracion-proveedores",
+      "dimension": "friccion",
+      "etiqueta": "Importe en manos de los cinco mayores proveedores",
+      "descripcion": "Qué parte del importe adjudicado en el periodo se concentra en las cinco empresas que más recibieron.",
+      "numerador": {
+        "valor": 84638787.42,
+        "estado": "declarado",
+        "fuente": "tenders:adjudicados:top5Importe"
+      },
+      "denominador": {
+        "valor": 123681882.78999996,
+        "estado": "declarado",
+        "fuente": "tenders:adjudicados:importeTotal"
+      },
+      "valor": 0.6843264794384525,
+      "formato": "porcentaje",
+      "periodo": "2017–2026",
+      "caveats": [
+        "Suma importes de adjudicación de años distintos y de contratos de duración muy distinta, así que mide concentración del importe adjudicado en el periodo, no gasto anual.",
+        "Una sola adjudicación —HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE S.A.— supone el 45 % del importe del periodo. Las concesiones se adjudican por todo su plazo de una vez, así que su importe no es comparable con el de un contrato anual."
+      ],
+      "citas": [
+        {
+          "url": "https://ribalicita.ribarroja.es",
+          "etiqueta": "Perfil de contratante (Gobierto)"
+        }
+      ]
+    },
+    {
+      "id": "modificaciones-presupuestarias",
+      "dimension": "fiscal",
+      "etiqueta": "Modificaciones sobre el presupuesto aprobado",
+      "descripcion": "Crédito añadido durante el ejercicio, sobre el crédito inicial que aprobó el pleno.",
+      "numerador": {
+        "valor": 24523314.93,
+        "estado": "declarado",
+        "fuente": "budget-execution:2025:gastos.total.modificaciones"
+      },
+      "denominador": {
+        "valor": 37599838.15,
+        "estado": "declarado",
+        "fuente": "budget-execution:2025:gastos.total.inicial"
+      },
+      "valor": 0.6522186300953532,
+      "formato": "porcentaje",
+      "periodo": "2025 (a 31/12/2025)",
+      "caveats": [
+        "Las modificaciones son legales y a veces inevitables —una subvención que llega a mitad de año hay que incorporarla—. Lo que mide es cuánto se aleja el presupuesto ejecutado del que se aprobó y se debatió."
+      ],
+      "citas": [
+        {
+          "url": "https://www.ribarroja.es/es/1_gestion_presupuestaria/2_estados_ejecucion_presupuesto",
+          "etiqueta": "Estado de ejecución 2025"
+        }
+      ]
+    },
+    {
+      "id": "ejecucion-presupuestaria",
+      "dimension": "fiscal",
+      "etiqueta": "Ejecución del presupuesto de gastos",
+      "descripcion": "Gasto reconocido sobre el crédito definitivo, inicial más modificaciones.",
+      "numerador": {
+        "valor": 18909465.12,
+        "estado": "declarado",
+        "fuente": "budget-execution:2025:gastos.total.ejecutado"
+      },
+      "denominador": {
+        "valor": 62123153.08,
+        "estado": "declarado",
+        "fuente": "budget-execution:2025:gastos.total.actual"
+      },
+      "valor": 0.3043867573117073,
+      "formato": "porcentaje",
+      "periodo": "2025 (a 31/12/2025)",
+      "caveats": [
+        "«Ejecutado» son obligaciones reconocidas netas, la medida estándar de ejecución presupuestaria; no son pagos hechos.",
+        "El denominador es el crédito DEFINITIVO, que incluye las modificaciones incorporadas a lo largo del ejercicio —algunas a final de año, cuando ya no da tiempo a gastarlas—. Buena parte de un porcentaje bajo es crédito inflado, no sólo gasto que no se hizo: el capítulo de inversiones reales partió de cero crédito inicial, incorporó 22,06 M€ por modificación y ejecutó el 4,7 %.",
+        "No cuadra con la cifra de /presupuesto: aquélla viene de la publicación del ministerio y da 41,58 M€ de gasto para 2025, y el propio listado municipal parte de un crédito inicial de 37,60 M€. Las dos dicen ser el mismo ejercicio y difieren en casi cuatro millones; no sabemos cuál de las dos lo explica, y decir que una es «lo aprobado» y la otra «lo definitivo» sería inventarse la reconciliación."
+      ],
+      "citas": [
+        {
+          "url": "https://www.ribarroja.es/es/1_gestion_presupuestaria/2_estados_ejecucion_presupuesto",
+          "etiqueta": "Estado de ejecución 2025"
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "indicadores": 13,
+    "conRatio": 10,
+    "comparables": 10,
+    "municipales": 7
+  }
+}

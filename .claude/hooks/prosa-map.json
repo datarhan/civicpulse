@@ -1,0 +1,385 @@
+{
+  "_comentario": "Generado por scripts/build-prose-map.ts — no editar a mano. tests/stale-copy-paths.test.js falla si el código cambia y esto no.",
+  "generadoDe": "src",
+  "snapshots": {
+    "area-fit.json": [
+      "/cargos",
+      "/cargos/:slug",
+      "/departamentos"
+    ],
+    "asociaciones.json": [
+      "/datos"
+    ],
+    "auto-curation-queue.json": [
+      "/curator"
+    ],
+    "bdns.json": [
+      "/cambios",
+      "/datos",
+      "/lab-health",
+      "/presupuesto"
+    ],
+    "boe.json": [
+      "/datos",
+      "/lab-health"
+    ],
+    "bop.json": [
+      "/datos",
+      "/lab-health",
+      "/quejas"
+    ],
+    "budget-execution.json": [
+      "/datos",
+      "/presupuesto"
+    ],
+    "budget.json": [
+      "/datos",
+      "/lab-health",
+      "/presupuesto"
+    ],
+    "civic-poi.json": [
+      "/datos"
+    ],
+    "consell-cv.json": [
+      "/datos",
+      "/lab-health",
+      "/quejas"
+    ],
+    "cpv-labels.json": [
+      "/presupuesto"
+    ],
+    "ctbg.json": [
+      "/datos",
+      "/lab-health",
+      "/quejas"
+    ],
+    "dedicaciones.json": [
+      "/cargos",
+      "/cargos/:slug"
+    ],
+    "eficiencia-findings.json": [
+      "/eficiencia"
+    ],
+    "elections.json": [
+      "/cargos/:slug",
+      "/datos"
+    ],
+    "empleo.json": [
+      "/datos",
+      "/empleo",
+      "/empleo/:id"
+    ],
+    "entities.json": [
+      "/presupuesto"
+    ],
+    "factcheck.json": [
+      "/lab-health",
+      "/laboratorio"
+    ],
+    "finding-quote-provenance.json": [
+      "/curator",
+      "/hallazgos",
+      "/metodologia",
+      "/plenos/:id"
+    ],
+    "finding-response-issues.json": [
+      "/curator"
+    ],
+    "geo.json": [
+      "/datos",
+      "/lab-health",
+      "/presupuesto",
+      "/quejas"
+    ],
+    "indicadores.json": [
+      "/eficiencia"
+    ],
+    "ispa.json": [
+      "/cargos"
+    ],
+    "journalist-assignments.json": [
+      "/cargos",
+      "/cargos/:slug",
+      "/laboratorio/agentes",
+      "/laboratorio/agentes/:assignmentId"
+    ],
+    "journalist-reports.json": [
+      "/cargos",
+      "/cargos/:slug",
+      "/laboratorio/agentes",
+      "/laboratorio/agentes/:assignmentId"
+    ],
+    "metro-network.json": [
+      "/lab-health"
+    ],
+    "metro-schedule.json": [
+      "/lab-health"
+    ],
+    "obras.json": [
+      "/datos",
+      "/presupuesto"
+    ],
+    "officials-social.json": [
+      "/cargos"
+    ],
+    "officials.json": [
+      "/cargos",
+      "/cargos/:slug",
+      "/datos",
+      "/departamentos",
+      "/departamentos/:slug",
+      "/lab-health",
+      "/laboratorio/agentes/:assignmentId",
+      "/quejas/:id",
+      "/quejas/dashboard"
+    ],
+    "padron.json": [
+      "/cambios",
+      "/cargos",
+      "/cargos/:slug",
+      "/curator",
+      "/datos",
+      "/declaraciones",
+      "/departamentos",
+      "/departamentos/:slug",
+      "/eficiencia",
+      "/empleo",
+      "/empleo-publico",
+      "/empleo/:id",
+      "/hallazgos",
+      "/lab-health",
+      "/laboratorio",
+      "/laboratorio/agentes",
+      "/laboratorio/agentes/:assignmentId",
+      "/metodologia",
+      "/nosotros",
+      "/plenos",
+      "/plenos/:id",
+      "/presupuesto",
+      "/promesas",
+      "/quejas",
+      "/quejas/:id",
+      "/quejas/dashboard",
+      "/reportajes",
+      "/reportajes/inteligencia-turistica",
+      "/reportajes/reconstruccion-dana"
+    ],
+    "paro.json": [
+      "/datos",
+      "/lab-health"
+    ],
+    "participa.json": [
+      "/cambios",
+      "/datos",
+      "/lab-health",
+      "/plenos"
+    ],
+    "plantilla.json": [
+      "/cargos"
+    ],
+    "pleno-findings.json": [
+      "/curator",
+      "/datos",
+      "/hallazgos",
+      "/lab-health",
+      "/metodologia",
+      "/nosotros",
+      "/plenos",
+      "/plenos/:id"
+    ],
+    "pleno-videos.json": [
+      "/lab-health",
+      "/plenos/:id"
+    ],
+    "pleno-votes.json": [
+      "/cargos/:slug",
+      "/datos",
+      "/departamentos",
+      "/departamentos/:slug",
+      "/lab-health",
+      "/plenos/:id"
+    ],
+    "plenos-agendas.json": [
+      "/cargos/:slug",
+      "/datos",
+      "/departamentos",
+      "/departamentos/:slug",
+      "/lab-health",
+      "/plenos",
+      "/plenos/:id"
+    ],
+    "plenos.json": [
+      "/cambios",
+      "/datos",
+      "/declaraciones",
+      "/lab-health",
+      "/nosotros",
+      "/plenos",
+      "/plenos/:id"
+    ],
+    "press-claims-suggestions.json": [
+      "/lab-health"
+    ],
+    "press-claims-verified.json": [
+      "/lab-health",
+      "/laboratorio"
+    ],
+    "press-coverage-gaps.json": [
+      "/lab-health",
+      "/laboratorio"
+    ],
+    "press-findings.json": [
+      "/lab-health",
+      "/laboratorio"
+    ],
+    "press-link-rot.json": [
+      "/lab-health",
+      "/laboratorio",
+      "/promesas"
+    ],
+    "press-summaries.json": [
+      "/lab-health",
+      "/laboratorio"
+    ],
+    "press-triangulation.json": [
+      "/lab-health",
+      "/laboratorio"
+    ],
+    "press-trust.json": [
+      "/lab-health",
+      "/laboratorio"
+    ],
+    "press.json": [
+      "/cambios",
+      "/cargos",
+      "/datos",
+      "/declaraciones",
+      "/departamentos",
+      "/empleo",
+      "/empleo/:id",
+      "/hallazgos",
+      "/lab-health",
+      "/laboratorio",
+      "/plenos",
+      "/presupuesto",
+      "/promesas",
+      "/quejas"
+    ],
+    "procesos-selectivos.json": [
+      "/datos",
+      "/empleo-publico"
+    ],
+    "promise-suggestions.json": [
+      "/cargos",
+      "/cargos/:slug",
+      "/datos",
+      "/declaraciones",
+      "/departamentos",
+      "/departamentos/:slug",
+      "/hallazgos",
+      "/lab-health",
+      "/laboratorio/agentes/:assignmentId",
+      "/promesas"
+    ],
+    "promises.json": [
+      "/cargos",
+      "/cargos/:slug",
+      "/curator",
+      "/datos",
+      "/declaraciones",
+      "/departamentos",
+      "/departamentos/:slug",
+      "/hallazgos",
+      "/lab-health",
+      "/laboratorio/agentes/:assignmentId",
+      "/promesas"
+    ],
+    "queja-contract-relations-approved.json": [
+      "/presupuesto",
+      "/quejas/:id"
+    ],
+    "queja-contract-relations.json": [
+      "/presupuesto",
+      "/quejas/:id"
+    ],
+    "quejas-responses.json": [
+      "/cambios",
+      "/cargos",
+      "/cargos/:slug",
+      "/datos",
+      "/departamentos",
+      "/departamentos/:slug",
+      "/lab-health",
+      "/nosotros",
+      "/presupuesto",
+      "/quejas",
+      "/quejas/:id",
+      "/quejas/dashboard"
+    ],
+    "quejas.json": [
+      "/cambios",
+      "/cargos",
+      "/cargos/:slug",
+      "/datos",
+      "/departamentos",
+      "/departamentos/:slug",
+      "/lab-health",
+      "/nosotros",
+      "/presupuesto",
+      "/quejas",
+      "/quejas/:id",
+      "/quejas/dashboard"
+    ],
+    "requisitos-cargo.json": [
+      "/cargos",
+      "/cargos/:slug",
+      "/departamentos"
+    ],
+    "sindic.json": [
+      "/lab-health",
+      "/quejas"
+    ],
+    "sindicatura.json": [
+      "/datos",
+      "/lab-health",
+      "/quejas"
+    ],
+    "spain-ticker.json": [
+      "/lab-health"
+    ],
+    "streets.json": [
+      "/datos"
+    ],
+    "tender-geo.json": [
+      "/presupuesto",
+      "/quejas"
+    ],
+    "tenders-ted.json": [
+      "/datos",
+      "/lab-health",
+      "/presupuesto"
+    ],
+    "tenders.json": [
+      "/cambios",
+      "/cargos/:slug",
+      "/curator",
+      "/datos",
+      "/departamentos",
+      "/departamentos/:slug",
+      "/hallazgos",
+      "/lab-health",
+      "/nosotros",
+      "/plenos/:id",
+      "/presupuesto"
+    ],
+    "transparency-docs.json": [
+      "/cargos/:slug",
+      "/datos",
+      "/lab-health"
+    ],
+    "wikidata.json": [
+      "/datos",
+      "/lab-health"
+    ]
+  }
+}

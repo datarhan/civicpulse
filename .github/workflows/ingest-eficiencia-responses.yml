@@ -1,0 +1,126 @@
+name: Ingest eficiencia responses
+
+# Derecho de réplica sobre una ficha de /eficiencia: issue → CLI con validador
+# delante → commit en el historial público.
+#
+# Comparte la etiqueta `derecho-replica` con la ingesta de hallazgos de pleno,
+# así que las dos se distinguen por `eficiencia`: ésta la exige, aquélla la
+# excluye. Sin eso ambas disparan sobre el mismo issue y la otra comenta un
+# error sobre una réplica válida.
+#
+# Todo dato que venga del issue viaja por `env:` y se lee como variable de
+# shell, nunca interpolado en el `run:` — el cuerpo de un issue lo escribe
+# cualquiera, y `${{ github.event.issue.body }}` dentro de un `run:` es
+# ejecución de comandos con otro nombre.
+
+on:
+  issues:
+    types: [labeled, edited]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: Issue number to re-process
+        required: true
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (contains(github.event.issue.labels.*.name, 'eficiencia') &&
+        contains(github.event.issue.labels.*.name, 'derecho-replica'))
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci --no-audit --no-fund
+
+      - name: Extract fields from issue body
+        id: parse
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
+        run: |
+          set -euo pipefail
+          BODY=$(gh issue view "$ISSUE_NUMBER" --json body -q .body)
+
+          field() {
+            awk -v h="$1" 'BEGIN{cap=0} $0 == "### " h {cap=1; next} /^### /{cap=0} cap' <<< "$BODY" \
+              | sed '/^$/d' | awk '{$1=$1;print}' | head -n 60
+          }
+
+          FINDING_ID=$(field 'ID de la ficha' | head -n1)
+          RESPONDENTE=$(field 'Quién responde' | head -n1)
+          QUOTE=$(field 'Texto literal de la réplica (verbatim, ≥20 caracteres)' | tr '\n' ' ' | sed 's/  */ /g' | awk '{$1=$1;print}')
+          SOURCE_URL=$(field 'URL de la fuente (opcional)' | head -n1)
+
+          if [ -z "$FINDING_ID" ] || [ -z "$RESPONDENTE" ] || [ -z "$QUOTE" ]; then
+            echo "::error::Missing finding-id / respondente / quote"
+            gh issue comment "$ISSUE_NUMBER" --body ":warning: No se pudieron extraer los campos obligatorios (ID de la ficha, quién responde, texto). Revisa la plantilla y vuelve a enviar."
+            exit 1
+          fi
+
+          echo "finding_id=$FINDING_ID"   >> "$GITHUB_OUTPUT"
+          echo "respondente=$RESPONDENTE" >> "$GITHUB_OUTPUT"
+          {
+            echo "quote<<EOFQUOTE"
+            echo "$QUOTE"
+            echo "EOFQUOTE"
+          } >> "$GITHUB_OUTPUT"
+          echo "source_url=$SOURCE_URL"   >> "$GITHUB_OUTPUT"
+
+      - name: Apply via indicador-reply CLI
+        env:
+          FINDING_ID: ${{ steps.parse.outputs.finding_id }}
+          RESPONDENTE: ${{ steps.parse.outputs.respondente }}
+          QUOTE: ${{ steps.parse.outputs.quote }}
+          SOURCE_URL: ${{ steps.parse.outputs.source_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
+        run: |
+          set -euo pipefail
+          if [ -n "$SOURCE_URL" ]; then
+            npm run indicador-reply -- "$FINDING_ID" "$RESPONDENTE" "$QUOTE" "$SOURCE_URL" || {
+              gh issue comment "$ISSUE_NUMBER" --body ":x: El validador rechazó la réplica. Comprueba que el texto tenga ≥20 caracteres, que el ID de la ficha sea correcto y que la ficha siga publicada."
+              exit 1
+            }
+          else
+            npm run indicador-reply -- "$FINDING_ID" "$RESPONDENTE" "$QUOTE" || {
+              gh issue comment "$ISSUE_NUMBER" --body ":x: El validador rechazó la réplica. Comprueba que el texto tenga ≥20 caracteres, que el ID de la ficha sea correcto y que la ficha siga publicada."
+              exit 1
+            }
+          fi
+
+      - name: Commit + push if diff
+        run: |
+          set -euo pipefail
+          if git diff --quiet public/data/eficiencia-findings.json; then
+            echo "No diff to commit."
+            exit 0
+          fi
+          git config user.name  "civicpulse-bot"
+          git config user.email "bot@civicpulse"
+          git add public/data/eficiencia-findings.json
+          git commit -m "feat(eficiencia): ingest réplica from #${ISSUE_NUMBER}"
+          git push
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
+
+      - name: Close the issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
+          FINDING_ID: ${{ steps.parse.outputs.finding_id }}
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --body ":white_check_mark: Réplica publicada en la ficha \`${FINDING_ID}\`. Visible en https://civicpulse-virid.vercel.app/eficiencia#hallazgos"
+          gh issue close "$ISSUE_NUMBER" --reason completed

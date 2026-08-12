@@ -1,6 +1,7 @@
 import { Card, ExtLink, Pill, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useBudget, formatEuros, EXPENSE_COLORS, PROGRAM_COLORS } from '../hooks/useBudget'
+import { contrastarPresupuesto, TOLERANCIA_EQUILIBRIO } from '../scraper/budget-contraste'
 import { useBudgetExecution } from '../hooks/useBudgetExecution'
 import { useObras } from '../hooks/useObras'
 import { useBdns } from '../hooks/useBdns'
@@ -150,6 +151,15 @@ function RealBudgetHeader() {
   // statement from a different exercise would manufacture a discrepancy that
   // does not exist, which is the same defect this note exists to fix.
   const exec = execData?.latest
+  // Segundo desajuste, independiente del anterior y dentro de una sola fuente:
+  // el presupuesto que publica el ministerio no cuadra ingresos contra gastos.
+  // Se calcula con el módulo probado en vez de a ojo aquí, para que la cifra
+  // que se publica sea la misma que la que comprueba la suite.
+  const contraste = contrastarPresupuesto(s, exec)
+  const desequilibrio =
+    contraste && Math.abs(contraste.desequilibrioConprel) >= TOLERANCIA_EQUILIBRIO
+      ? contraste.desequilibrioConprel
+      : null
   const execInicial =
     exec && exec.year === s.year && exec.gastos?.total?.inicial > 0
       ? exec.gastos.total.inicial
@@ -278,14 +288,23 @@ function RealBudgetHeader() {
               fontWeight: 700,
               marginTop: 4,
               letterSpacing: '-.01em',
-              color: s.balance >= 0 ? 'var(--ok)' : 'var(--crit)',
+              // Ni verde ni rojo: un presupuesto que no cuadra no es una buena
+              // noticia ni una mala, es un descuadre. Pintarlo de «ok» era lo
+              // que convertía un defecto de la fuente en un colchón fiscal.
+              color: desequilibrio !== null ? 'var(--warn-ink)' : 'var(--ink)',
             }}
           >
             {s.balance >= 0 ? '+' : ''}
             {formatEuros(s.balance, { compact: true })}
           </div>
           <div style={{ fontSize: 11, color: 'var(--ink60)', marginTop: 2 }}>
-            {s.balance >= 0 ? 'superávit' : 'déficit'}
+            {desequilibrio !== null ? (
+              <a href="#descuadre" style={{ color: 'var(--warn-ink)' }}>
+                no cuadra ↓
+              </a>
+            ) : (
+              'ingresos = gastos'
+            )}
           </div>
         </Card>
         <Card>
@@ -334,6 +353,27 @@ function RealBudgetHeader() {
           </>
         )}
       </p>
+      {desequilibrio !== null && (
+        <p
+          id="descuadre"
+          style={{
+            fontSize: 11.5,
+            color: 'var(--ink60)',
+            lineHeight: 1.55,
+            margin: '0 0 16px',
+          }}
+        >
+          Y hay un segundo desajuste, dentro de la propia fuente del ministerio: le atribuye a
+          Riba-roja <span className="mono">{formatEuros(s.totalRevenue)}</span> de ingresos frente a{' '}
+          <span className="mono">{formatEuros(s.totalExpense)}</span> de gastos,{' '}
+          <span className="mono">{formatEuros(Math.abs(desequilibrio))}</span> de diferencia. Un
+          presupuesto general se aprueba <strong>sin déficit inicial</strong> (art. 165.4 del texto
+          refundido de la Ley de Haciendas Locales), y la exigencia vale en los dos sentidos:
+          tampoco debería sobrar. En ese mismo fichero, otras entidades cuadran al céntimo. No
+          sabemos si el descuadre está en lo que remitió el ayuntamiento o en cómo lo publica el
+          ministerio; se deja a la vista porque la cifra de arriba sale de esa misma fila.
+        </p>
+      )}
     </>
   )
 }

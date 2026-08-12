@@ -47,8 +47,19 @@ them here — the hand-kept list drifted from reality every time it was tried.
 
 The e2e suite covers per-route specs, `chrome.spec.ts` (Cmd+K, dark mode,
 i18n, sidebar), a 375px mobile shell, and an axe-core WCAG 2.1 AA strict pass.
-CI sets `VITE_ENABLE_PERIODISTAS=true`; it is absent locally, so `/cargos`'s
-Biografía spec always fails on a local full run. That is the flag, not a defect.
+CI sets `VITE_ENABLE_PERIODISTAS=true` and `VITE_ENABLE_EFICIENCIA=true`; both
+are absent locally, so `/cargos`'s Biografía spec always fails on a local full
+run. That is the flag, not a defect. `/eficiencia` is gated the same way but its
+spec **skips** rather than fails when the flag is off — one always-red spec is
+already one too many. The flag is read at BUILD time, and `vite preview` is
+reused between runs, so rebuild before expecting the spec to run.
+
+**A launch flag belongs in both workflows or neither.** `e2e.yml` sets them for
+parity with `deploy-vercel.yml`, and the pair was hand-kept: turn one on alone
+and the route ships to the public while its whole spec skips itself in CI —
+green by not running, which is the defect this repo keeps paying for.
+`tests/deploy-triggers.test.js` compares the two and reds on a flag that
+deploys without being exercised.
 
 ## Architecture
 
@@ -80,7 +91,7 @@ JSON. Two things are not the SPA and are easy to mistake for exceptions:
 
 ### Routes
 
-Public: `/` `/cargos` `/cargos/:slug` `/presupuesto` `/plenos` `/plenos/:id`
+Public: `/` `/cargos` `/cargos/:slug` `/presupuesto` `/eficiencia` `/plenos` `/plenos/:id`
 `/promesas` `/departamentos` `/departamentos/:slug` `/hallazgos`
 `/declaraciones` `/reportajes` `/datos` `/empleo` `/empleo/:id`
 `/empleo-publico` `/quejas` `/quejas/dashboard` `/quejas/:id` `/cambios`
@@ -213,18 +224,60 @@ Five surfaces make claims about named elected officials: `/promesas`,
 any change to them as legally material. The rules below are encoded in schema
 validators and CLIs — if you find yourself working around one, stop.
 
+`/eficiencia` is the sixth legally material surface and the only one that names
+**nobody**. Its findings describe a service's unit cost, so
+`eficiencia-finding.ts` has no field for a person and actively rejects
+`pleno-finding.ts`'s (`individualSpeaker`, `speakerGroup`, `quotes`, `severity`)
+in case a row is ever copied across. Right of reply is institutional —
+ayuntamiento / intervención / concesionario / ministerio. Keep it that way: a
+unit cost hung on a named councillor is a materially different claim from one
+hung on a service, and only the second is what the ministry's return supports.
+
 The first two are also **enforced, not just documented**:
 `.claude/hooks/guard-curated-writes.mjs` denies a direct write to a curated file
 (naming the CLI that owns it) and asks before a new draft-shaped file appears
 under `public/`. Both had already been broken in production, which is the bar
 for moving a rule out of this file and into a hook.
 
+A second hook clears the same bar for a different failure: **prose goes stale
+when the data moves**. Three sentences on `/eficiencia`, `/metodologia` and the
+municipal panel each kept asserting something that had stopped being true one
+commit earlier — a caveat excusing a figure with the wrong reason, "there is no
+time series" after ten entregas shipped, "only PMP has a comparison" as a second
+one gained peers. No test caught any of them: the data was right and the guards
+check data. `.claude/hooks/remind-stale-copy.mjs` names the routes whose prose
+describes a snapshot at the moment that snapshot is rewritten. It reminds, never
+blocks — a reminder that can fail an edit is one people switch off. The better
+fix, where it applies, is to derive the sentence from the data instead of
+restating it, as `PanelMunicipal` now does with the list of compared indicators.
+
+Its snapshot→routes map is **derived, not hand-kept** (`npm run build:prose-map`
+walks hook literals, the import graph and `App.jsx`'s routes). The first version
+was a hand-written table of nine entries; the code had sixty-four. A hand-kept
+table inside a control against staleness goes stale itself, which is the joke
+this repo has already told twice. A test regenerates it with `--check` and fails
+on drift, and the module exports `MAPA_CARGADO` so a map that fails to load is
+distinguishable from a map with nothing to say.
+
 **Curated files are never written by automation.** `promises.json`,
 `pleno-votes.json`, `pleno-findings.json`, `journalist-reports.json`,
 `quejas-responses.json`, `sindic.json`, `dedicaciones.json`, `plantilla.json`,
-`place-overrides.json`, `entity-overrides.json`. Route algorithmic output
-through the curator CLI so the validator and git history stay authoritative.
-The full list and its CLIs: `docs/DATA_SOURCES.md`.
+`place-overrides.json`, `entity-overrides.json`, `eficiencia-findings.json`.
+Route algorithmic output through the curator CLI so the validator and git
+history stay authoritative. The full list and its CLIs: `docs/DATA_SOURCES.md`.
+
+**A verbatim stays put; a number does not.** That is the one way the efficiency
+findings differ in kind from every other claim here. A quote from a March pleno
+will read the same in ten years, so `check:citations` only has to confirm it is
+still where it says. «62,68 días» can go false with nobody touching the page,
+because the ministry revises an entrega. So each ficha freezes its measurement —
+value, period, source cell — and `check:eficiencia-findings` re-reads the live
+panel with **four** outcomes, not two: `coincide`; `movido` (the panel advanced a
+period — a notice, since the ficha says which period it speaks of);
+`contradice` (the same period now says something else); `sin-indicador`. The last
+two exit 1. Fold "I could not find it" into "matches" and the gate prints its own
+all-clear, which is the `r?.findings ?? []` defect again. Apply the same shape to
+any future claim type whose subject is a figure rather than a sentence.
 
 **Anything under `public/` is published.** Vercel serves the whole directory, so
 a file there is fetchable by URL whether or not a page links to it. "Not

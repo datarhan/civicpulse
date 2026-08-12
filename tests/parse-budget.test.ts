@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { parseConprelBudget } from '../src/scraper/budget'
+import { parseConprelBudget, parseConprelRoster } from '../src/scraper/budget'
 
 const FIXTURE = join(__dirname, 'fixtures', 'conprel_CV_2024.xls')
 
@@ -79,5 +79,67 @@ describe('scraper/budget — parseConprelBudget', () => {
     const buf = readFileSync(FIXTURE)
     const missing = parseConprelBudget(buf, { ineCode: '00001', year: 2024 })
     expect(missing).toBeNull()
+  })
+})
+
+// The peer-set sizing dependency for /eficiencia: CESEL carries no population,
+// so «municipios de tamaño parecido» has to come from somewhere. It comes from
+// the rows parseConprelBudget already walks — column 4 is `Pobla` — so this is
+// a second reader over the same sheet, not a second download.
+describe('scraper/budget — parseConprelRoster', () => {
+  let roster: ReturnType<typeof parseConprelRoster>
+
+  beforeAll(() => {
+    roster = parseConprelRoster(readFileSync(FIXTURE))
+  })
+
+  it('returns every CV municipality with a positive population', () => {
+    expect(roster.length).toBeGreaterThan(400)
+    for (const m of roster) {
+      expect(m.ine).toMatch(/^\d{5}$/)
+      expect(m.nombre.length).toBeGreaterThan(1)
+      expect(m.poblacion).toBeGreaterThan(0)
+    }
+  })
+
+  it('agrees with parseConprelBudget on Riba-roja, so the two readers cannot drift', () => {
+    const rr = roster.find((m) => m.ine === '46214')
+    const budget = parseConprelBudget(readFileSync(FIXTURE), { ineCode: '46214', year: 2024 })
+    expect(rr).toBeDefined()
+    expect(rr!.poblacion).toBe(budget!.population)
+    expect(rr!.nombre).toBe(budget!.name)
+  })
+
+  it('carries the totals each municipality declares, for the per-capita comparison', () => {
+    const rr = roster.find((m) => m.ine === '46214')!
+    const budget = parseConprelBudget(readFileSync(FIXTURE), { ineCode: '46214', year: 2024 })!
+    expect(rr.gastoTotal).toBe(budget.totalExpense)
+    expect(rr.ingresoTotal).toBe(budget.totalRevenue)
+    // Casi todos declaran gasto; exigirlo de todos rompería con un municipio
+    // que no remitió, que es un dato en sí mismo y no un fallo de lectura.
+    expect(roster.filter((m) => m.gastoTotal > 0).length / roster.length).toBeGreaterThan(0.9)
+  })
+
+  it('has no duplicate INE codes', () => {
+    expect(new Set(roster.map((m) => m.ine)).size).toBe(roster.length)
+  })
+
+  it('covers the three CV provinces, not just Valencia', () => {
+    const provincias = new Set(roster.map((m) => m.ine.slice(0, 2)))
+    expect(provincias).toContain('46') // Valencia
+    expect(provincias).toContain('03') // Alicante
+    expect(provincias).toContain('12') // Castellón
+  })
+
+  it('yields a peer band big enough for the n>=15 floor to survive filtering', () => {
+    const band = roster.filter((m) => m.poblacion >= 15_000 && m.poblacion <= 40_000)
+    // cv-15k-40k is the committed conjunto; if the source ever shrinks below
+    // this the peer comparison silently stops rendering, so pin it here.
+    expect(band.length).toBeGreaterThanOrEqual(40)
+    expect(band.some((m) => m.ine === '46214')).toBe(true)
+  })
+
+  it('returns an empty roster for a sheet that is not there, rather than throwing', () => {
+    expect(parseConprelRoster(readFileSync(FIXTURE), { sheetName: 'No existe' })).toEqual([])
   })
 })

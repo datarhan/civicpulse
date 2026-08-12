@@ -14,7 +14,12 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { parseConprelBudget, type BudgetSnapshot } from '../src/scraper/budget'
+import {
+  parseConprelBudget,
+  parseConprelRoster,
+  type BudgetSnapshot,
+  type ConprelMunicipio,
+} from '../src/scraper/budget'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -32,6 +37,13 @@ function conprelUrl(year: number): string {
     `?CCAA=${CCAA_ID}&TipoDato=Presupuestos&Ejercicio=${year}&TipoPublicacion=Definitiva`
   )
 }
+
+/** Banda de comparación, el mismo conjunto committeado que usa /eficiencia. */
+const CONJUNTO = 'cv-15k-40k'
+const POP_MIN = 15_000
+const POP_MAX = 40_000
+
+let bandaDelUltimo: ConprelMunicipio[] = []
 
 async function tryYear(year: number): Promise<BudgetSnapshot | null> {
   const url = conprelUrl(year)
@@ -56,6 +68,12 @@ async function tryYear(year: number): Promise<BudgetSnapshot | null> {
       return null
     }
   }
+  // Del mismo fichero sale la banda de municipios comparables: el gasto por
+  // habitante no significa nada suelto, y descargarlo aparte sería pedir dos
+  // veces lo mismo.
+  bandaDelUltimo = parseConprelRoster(buf).filter(
+    (m) => m.poblacion >= POP_MIN && m.poblacion <= POP_MAX && m.gastoTotal > 0,
+  )
   const snapshot = parseConprelBudget(buf, { ineCode: INE_CODE, year })
   if (!snapshot) {
     console.warn(`[budget] ${year}: INE ${INE_CODE} not found in XLS`)
@@ -80,10 +98,25 @@ async function main() {
     source: latest.source,
     kind: 'presupuesto-inicial',
     snapshot: latest,
+    pares: {
+      conjunto: CONJUNTO,
+      criterios: { ccaa: CCAA_ID, popMin: POP_MIN, popMax: POP_MAX },
+      anio: latest.year,
+      miembros: bandaDelUltimo
+        .filter((m) => m.ine !== INE_CODE)
+        .map((m) => ({
+          ine: m.ine,
+          nombre: m.nombre,
+          poblacion: m.poblacion,
+          gastoPorHabitante: m.gastoTotal / m.poblacion,
+        }))
+        .sort((a, b) => a.ine.localeCompare(b.ine)),
+    },
   }
   await mkdir(dirname(OUT), { recursive: true })
   await writeFile(OUT, JSON.stringify(payload, null, 2) + '\n')
   console.log(`[budget] wrote ${OUT}`)
+  console.log(`[budget] banda ${CONJUNTO}: ${payload.pares.miembros.length} municipios comparables`)
   console.log(
     `[budget] ${latest.year} total: €${latest.totalRevenue.toLocaleString('es-ES')} ingresos / ` +
       `€${latest.totalExpense.toLocaleString('es-ES')} gastos`,

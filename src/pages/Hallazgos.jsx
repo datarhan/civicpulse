@@ -15,6 +15,7 @@ import { findingMatchesArea } from '../lib/finding-area'
 import { DEPARTMENT_LABEL } from '../scraper/departments'
 import { useT } from '../i18n'
 import { blocLabel } from '../lib/party-label.js'
+import { EFICIENCIA_ENABLED } from '../flags'
 
 function MiniStat({ label, value, tone }) {
   const color =
@@ -522,6 +523,37 @@ export default function Hallazgos() {
           <DataAsOf iso={data?.generatedAt} label="Hallazgos" />
         </div>
       </div>
+
+      {/* Los hallazgos de eficiencia NO se mezclan aquí, y el puntero existe
+          para que eso no los esconda.
+
+          Esta página es sobre lo que dijo alguien: filtra por grupo y por
+          pleno, y emite ClaimReview —marcado de verificación de la afirmación
+          de una persona—. Una ficha de eficiencia no tiene quien la dijera:
+          habla de lo que costó un servicio. Meterla en este flujo obligaría a
+          rellenar la mitad del esquema con atribuciones inventadas y a emitir
+          un ClaimReview sobre la declaración de nadie. Vive donde está su
+          evidencia, y desde aquí se llega en un clic. */}
+      {EFICIENCIA_ENABLED && (
+        <Card style={{ marginBottom: 18, background: 'var(--soft)' }}>
+          <div style={{ fontSize: 12.5, color: 'var(--ink60)', lineHeight: 1.55 }}>
+            Esta página verifica <strong>declaraciones en pleno</strong>. Los hallazgos sobre{' '}
+            <strong>cuánto cuesta cada servicio</strong> —que no citan a nadie porque no los dijo
+            nadie: salen de las cifras que el ayuntamiento remite al ministerio— se publican junto a
+            los datos de los que salen, en{' '}
+            {/* Subrayado, no sólo color: un enlace dentro de un bloque de
+                texto que sólo se distingue por el tono falla WCAG 1.4.1, y axe
+                lo caza en cuanto se despliega. */}
+            <Link
+              to="/eficiencia#hallazgos"
+              style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+            >
+              eficiencia
+            </Link>
+            .
+          </div>
+        </Card>
+      )}
 
       {/* Summary stats */}
       <div

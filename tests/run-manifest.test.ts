@@ -128,6 +128,54 @@ describe('assessManifest — the incidents this exists to catch', () => {
   })
 })
 
+// A deterministic adapter (a plain scraper) has no backend to fall silent, so
+// the LLM-shaped alarms must not fire on it. Firing them would make check:runs
+// permanently red for every non-LLM pass — and this file's own thesis is that a
+// check nobody can keep green is a check everybody switches off.
+describe('assessManifest — deterministic passes have no LLM to blame', () => {
+  const deterministic = (over: Record<string, unknown> = {}) => ({
+    script: 'scrape-coste-efectivo',
+    runId: 'r',
+    startedAt: 'a',
+    endedAt: 'b',
+    mode: 'volcado',
+    backend: null,
+    model: null,
+    attempted: 11,
+    judged: 1,
+    neverAttempted: 0,
+    skipped: { 'entrega-sin-volcado-publico': 10 },
+    outcome: { filas: 2467 },
+    llm: {
+      calls: 0,
+      cacheHits: 0,
+      ok: 0,
+      failed: 0,
+      zeroTokenFailures: 0,
+      shortCircuited: 0,
+      tokens: 0,
+      costUSD: 0,
+    },
+    exitCode: 0,
+    ...over,
+  })
+
+  it('does not accuse a backendless pass of judging without calls', () => {
+    const codes = assessManifest(deterministic() as never).map((f) => f.code)
+    expect(codes).not.toContain('judged-without-calls')
+  })
+
+  it('still accuses an LLM pass that judged with no traffic', () => {
+    const codes = assessManifest(deterministic({ backend: 'openai' }) as never).map((f) => f.code)
+    expect(codes).toContain('judged-without-calls')
+  })
+
+  it('still accounts for every attempted item', () => {
+    const codes = assessManifest(deterministic({ judged: 0 }) as never).map((f) => f.code)
+    expect(codes).toContain('unaccounted-items')
+  })
+})
+
 describe('assessManifest — coverage and accounting', () => {
   it('flags items that fall through every bucket', () => {
     const m = manifest({
@@ -216,6 +264,22 @@ describe('startRun', () => {
     run.judge(3)
     const { findings } = run.finish({ write: false })
     expect(findings).toEqual([])
+  })
+
+  // check:runs reads every manifest on disk, so ONE malformed file used to
+  // take the whole gate down with a TypeError — a gate that crashes reports
+  // nothing, which is worse than a gate that is merely red. A manifest written
+  // by an older or buggier build must degrade to a line, not an exception.
+  it('formats a manifest whose llm block is missing or partial', () => {
+    const run = startRun('demo', { getStats: stats })
+    run.attempt(1)
+    run.judge(1)
+    const { manifest: m } = run.finish({ write: false })
+    const sinLlm = { ...m, llm: undefined } as unknown as typeof m
+    expect(() => formatManifest(sinLlm)).not.toThrow()
+    expect(formatManifest(sinLlm)).toContain('attempted 1')
+    const parcial = { ...m, llm: { calls: 2 } } as unknown as typeof m
+    expect(() => formatManifest(parcial)).not.toThrow()
   })
 
   it('formats a human-readable summary', () => {
