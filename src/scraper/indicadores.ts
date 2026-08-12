@@ -29,7 +29,8 @@
  * Módulo puro: sin red, sin lectura de ficheros. Los CLIs le pasan los datos.
  */
 import type { CesteRow, ModoGestion } from './coste-efectivo'
-import { SERVICIOS } from './indicador-registry'
+import { SERVICIOS, type ServicioDef } from './indicador-registry'
+import { medirDeclaracionCongelada } from './declaracion-congelada'
 
 /**
  * El escalón de Hatry, y la razón de que este panel no sea otro cuadro de
@@ -107,6 +108,38 @@ export interface PuntoSerie {
   medianaPares?: number
 }
 
+export interface DeclaracionMagnitud {
+  /** Repite el mismo valor en las últimas `MIN_ENTREGAS_CONGELADA` entregas o más. */
+  congelada: boolean
+  repeticionesFinales: number
+  /** Primera entrega del tramo repetido. */
+  desde: number | null
+  /** Entregas en las que la celda resolvió a un valor positivo. */
+  entregas: number
+}
+
+/**
+ * Con qué frecuencia vuelve el ayuntamiento a MEDIR cada mitad del cociente.
+ *
+ * Es la pregunta que ninguna guarda de datos puede hacer, porque la cifra
+ * publicada resuelve perfectamente a la celda que cita y la celda dice justo
+ * eso. Lo que falla es lo que la tarjeta deja entender: si el coste se actualiza
+ * cada entrega y la unidad física no, el €/t sube sin que el servicio haya
+ * cambiado.
+ *
+ * `paresCongelados` no es decoración. Sin él la salvedad se lee como «este
+ * ayuntamiento es especialmente descuidado», y la mitad de la banda hace lo
+ * mismo: la diferencia entre un defecto local y uno de la fuente es la noticia.
+ */
+export interface DeclaracionIndicador {
+  numerador: DeclaracionMagnitud
+  denominador: DeclaracionMagnitud
+  /** Comparables que también repiten su denominador. */
+  paresCongelados: number
+  /** Comparables con serie suficiente para poder decirlo. */
+  paresMedibles: number
+}
+
 export interface Indicador {
   id: string
   dimension: Dimension
@@ -123,6 +156,8 @@ export interface Indicador {
   comparable: boolean
   pares: ParesResumen | null
   serie: PuntoSerie[]
+  /** `null` cuando no hay entregas suficientes para afirmar nada. */
+  declaracion: DeclaracionIndicador | null
   caveats: string[]
   citas: { url: string; entrega: number }[]
 }
@@ -331,6 +366,100 @@ export interface ConstruirInput {
   citaUrl: string
 }
 
+/**
+ * Mide la declaración del municipio y la de sus comparables para un programa.
+ *
+ * Devuelve `null` cuando ninguna de las dos magnitudes propias llega al mínimo
+ * de entregas: repetir cifra dos años es normal y marcarlo sería ruido, y el
+ * ruido en una salvedad es cómo se consigue que nadie las lea.
+ */
+function medirDeclaracion(
+  propias: CesteRow[],
+  paresFilas: CesteRow[],
+  programa: string,
+): DeclaracionIndicador | null {
+  const anios = [...new Set([...propias, ...paresFilas].map((f) => f.anio))].sort((a, b) => a - b)
+  const mia = medirDeclaracionCongelada(propias, [programa], anios)
+  const num = mia.series.find((s) => s.magnitud === 'coste')
+  const den = mia.series.find((s) => s.magnitud === 'unidad')
+  if (!num && !den) return null
+
+  const vacia: DeclaracionMagnitud = {
+    congelada: false,
+    repeticionesFinales: 0,
+    desde: null,
+    entregas: 0,
+  }
+  const traducir = (s?: (typeof mia.series)[number]): DeclaracionMagnitud =>
+    s
+      ? {
+          congelada: s.congelada,
+          repeticionesFinales: s.repeticionesFinales,
+          desde: s.congeladaDesde,
+          entregas: s.entregas,
+        }
+      : vacia
+
+  // Los comparables, medidos con la MISMA función. Un segundo criterio aquí
+  // dejaría la salvedad diciendo «la mitad de la banda hace lo mismo» con una
+  // definición de «lo mismo» distinta de la que se acaba de aplicar.
+  const deLosPares = medirDeclaracionCongelada(paresFilas, [programa], anios).series.filter(
+    (s) => s.magnitud === 'unidad',
+  )
+
+  return {
+    numerador: traducir(num),
+    denominador: traducir(den),
+    paresCongelados: deLosPares.filter((s) => s.congelada).length,
+    paresMedibles: deLosPares.length,
+  }
+}
+
+/**
+ * La salvedad, derivada del dato y no escrita a mano.
+ *
+ * Tres casos, y decir el equivocado sería una acusación que la fuente no
+ * sostiene:
+ *
+ * - **Sólo el denominador congelado.** El caso grave: el cociente sube sin que
+ *   el servicio cambie.
+ * - **Las dos magnitudes congeladas.** El cociente no sube; sencillamente es
+ *   viejo. Decir lo primero aquí sería falso.
+ * - **Sólo el coste congelado.** Raro, y merece constar: el numerador es el que
+ *   se quedó atrás.
+ */
+function caveatDeclaracion(d: DeclaracionIndicador, def: ServicioDef): string | null {
+  const conPares =
+    d.paresMedibles > 0
+      ? ` No es una rareza local: ${d.paresCongelados} de ${d.paresMedibles} municipios comparables ` +
+        'hacen lo mismo con esta misma cifra.'
+      : ''
+
+  if (d.denominador.congelada && d.numerador.congelada) {
+    return (
+      `El ayuntamiento no ha actualizado ninguna de las dos cifras de este servicio desde ` +
+      `${d.denominador.desde}: ni el coste ni ${def.denominador.toLowerCase()}. El cociente no es ` +
+      `de este año, es el de entonces repetido.${conPares}`
+    )
+  }
+  if (d.denominador.congelada) {
+    return (
+      `El ayuntamiento declara la misma cifra de ${def.denominador.toLowerCase()} desde ` +
+      `${d.denominador.desde} —${d.denominador.repeticionesFinales} entregas seguidas— mientras ` +
+      `actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya ` +
+      `cambiado: nadie ha vuelto a medir el denominador.${conPares}`
+    )
+  }
+  if (d.numerador.congelada) {
+    return (
+      `El ayuntamiento declara el mismo coste desde ${d.numerador.desde} ` +
+      `(${d.numerador.repeticionesFinales} entregas seguidas) aunque sí actualiza la unidad ` +
+      `física. Es el numerador el que se quedó atrás.`
+    )
+  }
+  return null
+}
+
 export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot {
   const { municipio, pares, citaUrl } = input
   const aniosDisponibles = [...new Set(municipio.filas.map((f) => f.anio))].sort((a, b) => a - b)
@@ -445,6 +574,13 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       )
     }
 
+    // ── ¿Vuelve alguien a medir esto? ────────────────────────────────────────
+    const declaracion = medirDeclaracion(municipio.filas, pares.filas, programa)
+    if (declaracion) {
+      const frase = caveatDeclaracion(declaracion, def)
+      if (frase) caveats.push(frase)
+    }
+
     indicadores.push({
       id: `${programa.replace(/[^a-z0-9]/gi, '-').toLowerCase()}-coste-unitario`,
       dimension: 'operativa',
@@ -460,6 +596,7 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       comparable: resumen !== null,
       pares: resumen,
       serie,
+      declaracion,
       caveats,
       citas: [{ url: citaUrl, entrega: anioBase }],
     })

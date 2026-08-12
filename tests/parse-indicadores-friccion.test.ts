@@ -172,3 +172,19 @@ describe('scraper/indicadores-friccion', () => {
     }
   })
 })
+
+describe('licitador-unico — el denominador dice cuánto dejó fuera', () => {
+  it('declara «cero excluidos» en vez de callarse', () => {
+    // La salvedad sólo salía cuando había exclusiones. Al no haberlas la página
+    // callaba, y su denominador coincidía exactamente con el de la tarjeta de al
+    // lado —que sí es «sobre el total de adjudicados»—: un lector no podía
+    // distinguir «el filtro no dejó fuera a nadie» de «no hubo filtro». Lo cazó
+    // la revisión de superficies.
+    const i = byId('licitador-unico')
+    const texto = i.caveats.join(' ')
+    expect(texto).toMatch(/quedan fuera del cálculo|Ningún contrato adjudicado se queda fuera/)
+    // Y en la dirección de hoy: con todos declarando, lo dice.
+    const adjudicadosSinDeclarar = i.denominador.valor !== null && i.denominador.valor > 0
+    expect(adjudicadosSinDeclarar).toBe(true)
+  })
+})

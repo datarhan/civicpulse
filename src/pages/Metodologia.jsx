@@ -1407,6 +1407,29 @@ export default function Metodologia() {
           divide la primera entre las segundas. Nada más.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>La mitad de abajo de esa división casi nunca se vuelve a medir.</strong> Al
+          recorrer las diez entregas publicadas aparece que la mayoría de las unidades físicas
+          repiten exactamente el mismo valor entrega tras entrega, mientras que prácticamente ningún
+          coste se queda quieto. Riba-roja declara las mismas toneladas de residuos, los mismos
+          metros cuadrados de limpieza y los mismos puntos de luz desde 2018-2019, con el coste
+          actualizado cada año. Un cociente así{' '}
+          <em>puede subir sin que el servicio haya cambiado</em>, y su serie no se puede leer como
+          gestión: mide el precio, no el rendimiento. Cada tarjeta afectada lo dice, con el año
+          desde el que la cifra no se mueve y cuántos municipios comparables hacen lo mismo —porque
+          no es una rareza local—, y esa salvedad se deriva del dato: si el ayuntamiento vuelve a
+          medir, desaparece sola. <code>check:indicadores</code> falla si el aviso y el dato dejan
+          de ir juntos, en cualquiera de las dos direcciones. La medición completa está en{' '}
+          <a href="/laboratorio/frontera" style={{ color: 'var(--civic)' }}>
+            /laboratorio/frontera
+          </a>
+          .
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          Esto tiene una consecuencia sobre lo que se puede firmar: un candidato a hallazgo cuyo
+          denominador lleve años sin remedirse <strong>nunca alcanza fiabilidad alta</strong>, por
+          limpia que salga la comparación con sus pares. Es un techo, no un criterio más.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>No se publica ninguna nota global</strong>, ni por dimensión ni de conjunto, ni un
           puesto del municipio en una tabla. Un índice 0–100 convierte la ponderación elegida en la
           noticia, y la ponderación la habríamos elegido nosotros. Se publican los componentes y se

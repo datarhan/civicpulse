@@ -323,11 +323,15 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
     periodo,
     caveats: [
       'Un licitador único no es irregular por sí mismo: hay mercados con un solo proveedor capaz. Es el indicador que la Comisión Europea usa para vigilar la competencia en compra pública, y lo que mide es cuánta de ella hubo.',
-      ...(sinDeclarar > 0
-        ? [
-            `${sinDeclarar} contratos adjudicados no declaran número de ofertas y quedan fuera del cálculo.`,
-          ]
-        : []),
+      // Las DOS direcciones. La salvedad sólo se emitía cuando había exclusiones,
+      // así que al no haberlas la página callaba —y su denominador coincidía
+      // exactamente con el de la tarjeta de al lado, que sí es «sobre el total
+      // de adjudicados»—. Un lector no puede distinguir «el filtro no dejó
+      // fuera a nadie» de «no se aplicó ningún filtro», y la descripción promete
+      // un subconjunto. Cero excluidos es una respuesta, no la ausencia de una.
+      sinDeclarar > 0
+        ? `${sinDeclarar} contratos adjudicados no declaran número de ofertas y quedan fuera del cálculo.`
+        : `Ningún contrato adjudicado se queda fuera: los ${conOfertas.length} declaran cuántas ofertas recibieron, así que el denominador coincide con el total de adjudicados.`,
     ],
     citas: [CITA_CONTRATOS],
   })

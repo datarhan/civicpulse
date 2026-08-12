@@ -16,11 +16,22 @@ import { useT } from '../../i18n'
  * cinco cubos son una PARTICIÓN comprobada por check:indicadores: si no
  * sumaran, la franja mentiría con más aplomo que el silencio.
  */
-export function CoberturaEficiencia({ universe, cobertura }) {
+export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
   const t = useT()
   // Sin bloque `universe` no se dice nada, antes que insinuar una cobertura que
   // no se puede respaldar.
   if (!universe) return null
+
+  // Cuántos de los cocientes publicados descansan sobre un denominador que el
+  // ayuntamiento no vuelve a medir. Va aquí y no repetido en cada tarjeta: cada
+  // ficha lleva ya su salvedad concreta, y diez avisos idénticos en fila se
+  // leen como decoración. Lo que hace falta arriba es el recuento.
+  const conRatio = indicadores.filter((i) => i.valor !== null)
+  const congelados = conRatio.filter((i) => i.declaracion?.denominador?.congelada)
+  const desde = congelados
+    .map((i) => i.declaracion.denominador.desde)
+    .filter((a) => Number.isFinite(a))
+    .sort((a, b) => a - b)[0]
 
   const filas = [
     { n: universe.conRatio, k: 'conRatio' },
@@ -55,6 +66,33 @@ export function CoberturaEficiencia({ universe, cobertura }) {
         <span className="mono">{universe.comparables}</span> tienen suficientes municipios
         comparables para situarlos.
       </p>
+      {congelados.length > 0 && (
+        <p
+          style={{
+            margin: '10px 0 0',
+            paddingLeft: 10,
+            borderLeft: '3px solid var(--warn)',
+            fontSize: 13,
+            color: 'var(--ink70, var(--ink60))',
+          }}
+        >
+          <strong className="mono">
+            {congelados.length} de {conRatio.length}
+          </strong>{' '}
+          de estos cocientes tienen un denominador que el ayuntamiento no vuelve a medir: declara la
+          misma cantidad{desde ? ` desde ${desde}` : ''} entrega tras entrega, mientras actualiza el
+          coste en cada una. Un coste unitario así puede subir sin que el servicio haya cambiado, y
+          su serie no se puede leer como gestión. Cada tarjeta dice desde cuándo y cuántos
+          municipios comparables hacen lo mismo.{' '}
+          <a
+            href="/laboratorio/frontera"
+            style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+          >
+            La medición completa
+          </a>
+          .
+        </p>
+      )}
       {cobertura && (
         <p style={{ margin: '8px 0 0', fontSize: 12, color: 'var(--ink60)' }}>
           Entregas publicadas por el ministerio:{' '}

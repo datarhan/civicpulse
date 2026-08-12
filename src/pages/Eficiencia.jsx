@@ -64,7 +64,11 @@ export default function Eficiencia() {
       )}
 
       {indicadores.length > 0 && (
-        <CoberturaEficiencia universe={data?.universe} cobertura={data?.cobertura} />
+        <CoberturaEficiencia
+          universe={data?.universe}
+          cobertura={data?.cobertura}
+          indicadores={indicadores}
+        />
       )}
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 18 }}>
