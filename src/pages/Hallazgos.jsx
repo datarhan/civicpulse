@@ -513,11 +513,18 @@ export default function Hallazgos() {
           }}
         >
           Cada hallazgo toma una o más afirmaciones literales de un pleno y las sitúa en su contexto
-          documental (contratos, subvenciones, presupuesto, promesas). La mayoría los redacta un
-          proceso automático bajo reglas fijas; el pie de cada ficha dice quién la editó, y un
-          nombre como «auto-curation-v1» significa que el texto lo escribió una máquina. Cada ficha
-          lista los documentos con los que se ha cotejado —lo corroboren o no— y da derecho de
-          réplica literal al grupo afectado.
+          documental (contratos, subvenciones, presupuesto, promesas). Los redacta un proceso
+          automático bajo reglas fijas, salvo los que llevan la firma de una persona; el pie de cada
+          ficha dice quién la editó, y un nombre como «auto-curation-v1» significa que el texto lo
+          escribió una máquina. Cada ficha lista los documentos con los que se ha cotejado —lo
+          corroboren o no— y da derecho de réplica literal al grupo afectado.
+          {/* Sin cuantificador, y sin repetir aquí la cifra. Decía «la mayoría»
+              con 40 de 41 escritos por una máquina, y eso deja al lector
+              concluyendo que una parte apreciable llevó criterio humano. Pero
+              la cifra exacta ya la declara, derivada, el recuadro «Cómo se
+              escribe un hallazgo» de más abajo: ponerla también aquí sería
+              decir dos veces el mismo número en la misma página. Este párrafo
+              dice cuál es la regla y cuál la excepción; el recuadro, cuántas. */}
         </p>
         <div style={{ marginTop: 10 }}>
           <DataAsOf iso={data?.generatedAt} label="Hallazgos" />

@@ -853,8 +853,12 @@ export default function Metodologia() {
             en el overlay. Nunca marca <em>contradicho</em>.
           </li>
           <li>
-            <strong>Hallazgos editoriales.</strong> La mayoría los redacta un proceso automático
-            bajo reglas fijas, no una persona
+            {/* Sin cuantificador de entrada: la cifra exacta viene justo
+                detrás, derivada, y «la mayoría» delante de «40 de 41» sólo
+                podía rebajarla. Cuando no hay dato, la frase dice la excepción
+                en vez de callarla. */}
+            <strong>Hallazgos editoriales.</strong> Los redacta un proceso automático bajo reglas
+            fijas, no una persona
             {authorship ? (
               <>
                 : de los {authorship.total} publicados,{' '}
@@ -867,7 +871,9 @@ export default function Metodologia() {
                 ))}
                 )
               </>
-            ) : null}
+            ) : (
+              <> salvo los que llevan la firma de una persona</>
+            )}
             . El pie de cada ficha dice quién la editó, y un nombre así significa que el título y el
             resumen los escribió una máquina. Cuando un veredicto merece contexto se escribe un
             hallazgo en <code>pleno-findings.json</code> con título, resumen (≥40 caracteres), citas

@@ -98,3 +98,57 @@ describe('finding-authorship — against the real published snapshot', () => {
     expect(b.machine).toBeGreaterThan(b.human)
   })
 })
+
+describe('la prosa no rebaja la proporción que acaba de calcular', () => {
+  const snap = JSON.parse(
+    readFileSync(resolve(__dirname, '../public/data/pleno-findings.json'), 'utf8'),
+  )
+
+  /**
+   * Cuantificadores que describen «más de la mitad, y bastantes no».
+   *
+   * Con 40 de 41 fichas escritas por una máquina, «la mayoría» deja al lector
+   * concluyendo que una parte apreciable pasó por criterio humano. Lo cazó la
+   * revisión de superficies, y ninguna comprobación de datos podía cazarlo: el
+   * recuento estaba bien y la frase, mal. Es el defecto de esta familia entero.
+   */
+  const REBAJA = /la mayor[íi]a|muchos de|buena parte|gran parte|en su mayor[íi]a/i
+
+  /** A partir de aquí, un cuantificador de mayoría simple es una rebaja. */
+  const CASI_TODOS = 0.9
+
+  it('el aviso legal del registro no dice «la mayoría» cuando son casi todas', () => {
+    const b = authorshipBreakdown(snap.items)
+    expect(b.total, 'el registro publicado está vacío').toBeGreaterThan(0)
+    expect(typeof snap.legalNotice).toBe('string')
+
+    const cuota = b.machine / b.total
+    if (cuota >= CASI_TODOS) {
+      expect(
+        snap.legalNotice,
+        `${b.machine} de ${b.total} fichas (${Math.round(cuota * 100)} %) las escribe una máquina, ` +
+          'y el aviso legal las presenta como «la mayoría»',
+      ).not.toMatch(REBAJA)
+    } else {
+      // La otra dirección importa igual: si algún día la mitad las firma una
+      // persona, el aviso NO puede seguir diciendo que las escribe una máquina
+      // sin más. El control impide que este test pase por no medir nada.
+      expect(snap.legalNotice.length).toBeGreaterThan(40)
+    }
+  })
+
+  it('el aviso legal sigue diciendo cómo se distingue una de otra', () => {
+    // Quitar el cuantificador no puede llevarse por delante lo que de verdad
+    // permite comprobarlo ficha a ficha.
+    expect(snap.legalNotice).toMatch(/qui[ée]n la edit[óo]|indica qui[ée]n/i)
+    const firmasAutomaticas = [
+      ...new Set(snap.items.map((f: { curatorName?: string }) => f.curatorName ?? '')),
+    ].filter((n): n is string => typeof n === 'string' && /auto/i.test(n))
+    for (const nombre of firmasAutomaticas) {
+      expect(
+        snap.legalNotice.includes(nombre) || /auto-curation/i.test(snap.legalNotice),
+        'el aviso legal no da ningún ejemplo de firma automática',
+      ).toBe(true)
+    }
+  })
+})
