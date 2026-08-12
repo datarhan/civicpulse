@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { readFileSync } from 'node:fs'
+import { chipDeclaracion } from '../../src/scraper/indicador-lectura'
+import type { Indicador } from '../../src/scraper/indicadores'
 
 // Read the committed snapshot rather than hard-coding figures: a spec that
 // restates the shape it is meant to check is failure mode 1 of
@@ -71,9 +73,12 @@ test.describe('Eficiencia (/eficiencia)', () => {
     // La avería que esto vigila no es un número mal: es una tarjeta que deja de
     // avisar. El cociente publicado seguiría resolviendo perfectamente a su
     // celda, así que ninguna otra comprobación de datos lo notaría.
+    //
+    // La marca se pide a `chipDeclaracion` en vez de rescribir aquí su regla:
+    // un test que restata la forma que vigila es el fallo nº1 de
+    // docs/DATA_INTEGRITY.md, y ya costó 298 contratos una vez.
     const congelados = SNAP.indicadores.filter(
-      (i: { valor: number | null; declaracion?: { denominador?: { congelada?: boolean } } }) =>
-        i.valor !== null && i.declaracion?.denominador?.congelada,
+      (i: Indicador) => i.valor !== null && chipDeclaracion(i),
     )
     if (congelados.length === 0) {
       // Que el ayuntamiento vuelva a medir es el desenlace bueno, y entonces la
@@ -83,12 +88,19 @@ test.describe('Eficiencia (/eficiencia)', () => {
       ).toHaveCount(0)
       return
     }
+    // La franja de arriba lo cuenta entero, una vez.
     await expect(page.getByText(/denominador que el ayuntamiento no vuelve a medir/i)).toBeVisible({
       timeout: 8000,
     })
-    // Y cada tarjeta afectada dice desde cuándo, no sólo que pasa algo.
-    const desde = congelados[0].declaracion.denominador.desde
-    await expect(page.getByText(new RegExp(`desde ${desde}`)).first()).toBeVisible()
+    // Y cada tarjeta afectada lo lleva marcado con su año, visible sin abrir
+    // nada: es lo que condiciona cómo se lee el resto de la tarjeta, así que no
+    // puede quedarse dentro del desplegable con las demás salvedades.
+    for (const i of congelados) {
+      await expect(
+        page.getByText(chipDeclaracion(i)!.texto, { exact: true }).first(),
+        `${i.servicio} publica su cociente sin marcar el denominador parado`,
+      ).toBeVisible()
+    }
   })
 
   test('a concession shows no ratio and no peer position', async ({ page }) => {

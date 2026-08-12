@@ -78,6 +78,41 @@ export function lecturaVisible(lectura: Lectura, ya: YaEnPantalla): LecturaVisib
   }
 }
 
+/** Una marca corta y siempre visible en la cabecera de la tarjeta. */
+export interface ChipDeclaracion {
+  texto: string
+  /** Qué mitad del cociente se quedó parada. */
+  mitad: 'denominador' | 'numerador' | 'ambas'
+}
+
+/**
+ * La marca de «esta cifra descansa sobre una cantidad vieja», en tres palabras.
+ *
+ * La salvedad larga —que el ayuntamiento repite la cantidad desde tal año,
+ * cuántas entregas seguidas, y cuántos comparables hacen lo mismo— sigue entera
+ * en `indicador.caveats`, porque es el hallazgo que más importa de esta página y
+ * no se toca. Lo que cambia es dónde: contada una vez arriba y desplegable en
+ * cada tarjeta, en lugar de diez párrafos casi idénticos en fila.
+ *
+ * El año va DENTRO de la marca a propósito. Sin él la marca sería un adorno que
+ * cada tarjeta repite igual, y con él sigue diciendo lo único que distingue a
+ * una tarjeta de otra sin tener que abrir nada.
+ */
+export function chipDeclaracion(i: Indicador): ChipDeclaracion | null {
+  const d = i.declaracion
+  if (!d) return null
+  const num = d.numerador.congelada
+  const den = d.denominador.congelada
+  if (!num && !den) return null
+  // Con las dos paradas se toma la más antigua: es desde cuándo el cociente
+  // entero dejó de remedirse.
+  const desde = num && den ? Math.min(d.numerador.desde ?? 0, d.denominador.desde ?? 0) : null
+
+  if (num && den) return { texto: `las dos cifras de ${desde}`, mitad: 'ambas' }
+  if (den) return { texto: `denominador de ${d.denominador.desde}`, mitad: 'denominador' }
+  return { texto: `coste de ${d.numerador.desde}`, mitad: 'numerador' }
+}
+
 /**
  * Lo que cada escalón permite concluir, escrito una vez.
  *

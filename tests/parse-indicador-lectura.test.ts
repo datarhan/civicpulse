@@ -5,6 +5,7 @@ import {
   leerIndicador,
   leerIndicadorMunicipal,
   lecturaVisible,
+  chipDeclaracion,
 } from '../src/scraper/indicador-lectura'
 import type { Indicador } from '../src/scraper/indicadores'
 import type { IndicadorMunicipal } from '../src/scraper/indicadores-friccion'
@@ -192,6 +193,63 @@ describe('la lectura no repite lo que la tarjeta ya enseña', () => {
     const sinBanda = { ...base, pares: undefined, modoGestion: 'directa' as const }
     const v = lecturaVisible(leerIndicador(sinBanda), { cifra: true, banda: false })
     expect(v.donde).toMatch(/No hay comparación/)
+  })
+})
+
+describe('el denominador congelado se marca, no se repite entero', () => {
+  // El párrafo de ~55 palabras salía idéntico en las diez tarjetas: 550
+  // palabras de casi la misma frase en una página que ya iba por las trece
+  // pantallas. A esa densidad no refuerza, anestesia — y es el hallazgo que
+  // más importa de los que hay aquí. Se cuenta entero arriba una vez, y en la
+  // tarjeta queda una marca que dice desde cuándo.
+  it('marca cada cociente cuyo denominador nadie vuelve a medir', () => {
+    const congelados = indicadores.filter(
+      (i) => i.valor !== null && i.declaracion?.denominador?.congelada,
+    )
+    expect(congelados.length, 'el fixture no trae ningún denominador congelado').toBeGreaterThan(0)
+
+    for (const i of congelados) {
+      const chip = chipDeclaracion(i)!
+      expect(chip, `${i.servicio} sin marca`).not.toBeNull()
+      // La marca dice el MISMO año que la salvedad larga, o las dos se van
+      // separando en cuanto alguien toque una.
+      expect(chip.texto).toContain(String(i.declaracion!.denominador.desde))
+      expect(chip.texto).toMatch(/denominador|cifras|coste/)
+    }
+  })
+
+  it('no marca lo que no está congelado', () => {
+    // Control: sin esto, un `chipDeclaracion` que devolviera siempre una marca
+    // pasaría la prueba de arriba con las diez tarjetas mintiendo a la vez.
+    const base = indicadores.find((i) => i.valor !== null && i.declaracion)!
+    const vivo = {
+      ...base,
+      declaracion: {
+        ...base.declaracion!,
+        numerador: { ...base.declaracion!.numerador, congelada: false },
+        denominador: { ...base.declaracion!.denominador, congelada: false },
+      },
+    }
+    expect(chipDeclaracion(vivo)).toBeNull()
+    expect(chipDeclaracion({ ...base, declaracion: null })).toBeNull()
+  })
+
+  it('distingue qué mitad se quedó parada', () => {
+    // Decir «el cociente puede subir» cuando lo congelado es el coste sería
+    // falso al revés, y es la distinción que caveatDeclaracion ya hace.
+    const base = indicadores.find((i) => i.valor !== null && i.declaracion)!
+    const con = (num: boolean, den: boolean) =>
+      chipDeclaracion({
+        ...base,
+        declaracion: {
+          ...base.declaracion!,
+          numerador: { ...base.declaracion!.numerador, congelada: num, desde: 2019 },
+          denominador: { ...base.declaracion!.denominador, congelada: den, desde: 2019 },
+        },
+      })!.texto
+    expect(con(false, true)).toMatch(/^denominador de 2019$/)
+    expect(con(true, false)).toMatch(/^coste de 2019$/)
+    expect(con(true, true)).toMatch(/^las dos cifras de 2019$/)
   })
 })
 

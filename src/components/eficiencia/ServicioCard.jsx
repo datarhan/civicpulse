@@ -1,7 +1,7 @@
 import { Card, Pill } from '../Primitives'
 import { useT } from '../../i18n'
 import { BandaPares } from './BandaPares'
-import { leerIndicador, lecturaVisible } from '../../scraper/indicador-lectura'
+import { leerIndicador, lecturaVisible, chipDeclaracion } from '../../scraper/indicador-lectura'
 import { Lectura } from './Lectura'
 
 const GESTION = {
@@ -51,6 +51,7 @@ export function ServicioCard({ indicador, formatea }) {
   })
   const declarados = i.serie.filter((p) => p.estado === 'declarado')
   const puntos = declarados.length
+  const chip = chipDeclaracion(i)
 
   return (
     <Card>
@@ -64,7 +65,10 @@ export function ServicioCard({ indicador, formatea }) {
         }}
       >
         <h2 style={{ fontSize: 16, fontWeight: 650, margin: 0 }}>{i.etiqueta}</h2>
-        <div style={{ display: 'flex', gap: 6 }}>
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+          {/* La marca del denominador parado va PRIMERA y en tono de aviso:
+              es lo que condiciona cómo se lee todo lo demás de la tarjeta. */}
+          {chip && <Pill tone="warn">{chip.texto}</Pill>}
           <Pill tone={g.tone}>{g.label}</Pill>
           <Pill tone={TIER_TONE[i.tier] ?? 'neutral'}>{t(`eficiencia.tier.${i.tier}`)}</Pill>
         </div>
