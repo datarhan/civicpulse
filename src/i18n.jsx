@@ -70,6 +70,7 @@ const CATALOGUE = {
     'nav.laboratorio': 'Laboratorio',
     'nav.nosotros': 'Quiénes somos',
     'nav.agentes': 'Periodistas',
+    'nav.frontera': 'Frontera',
     'nav.section': 'Navegación',
 
     // Reportajes (índice de piezas long-form)
@@ -601,6 +602,7 @@ const CATALOGUE = {
     'nav.laboratorio': 'Laboratori',
     'nav.nosotros': 'Qui som',
     'nav.agentes': 'Periodistes',
+    'nav.frontera': 'Frontera',
     'nav.section': 'Navegació',
 
     // Reportatges (índex de peces long-form)

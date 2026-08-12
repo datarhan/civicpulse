@@ -17,6 +17,7 @@
  */
 
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import { usePressLab } from '../hooks/usePressLab'
 import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
@@ -711,6 +712,20 @@ export default function Laboratorio() {
         <div style={{ marginTop: 10 }}>
           <DataAsOf iso={lab.generatedAt} label="Laboratorio" />
         </div>
+        {/* El laboratorio tiene más de un experimento dentro. Sin este puntero
+            la frontera sólo se alcanza por la barra lateral, y un experimento
+            que se encuentra por casualidad se lee peor que uno presentado. */}
+        <p style={{ margin: '10px 0 0', fontSize: 13, color: 'var(--ink60)' }}>
+          Otro experimento del laboratorio:{' '}
+          <Link
+            to="/laboratorio/frontera"
+            style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+          >
+            la frontera del gasto
+          </Link>{' '}
+          — qué dice, y qué no puede decir, comparar el coste de los servicios con el de los
+          municipios de tamaño parecido.
+        </p>
       </div>
 
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 18 }}>

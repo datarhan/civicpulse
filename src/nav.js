@@ -149,6 +149,22 @@ export const NAV = [
     icon: Ic.lab,
     shortcut: 'G B',
   },
+  // La frontera NO va tras bandera. Es el experimento más sujeto a
+  // malinterpretación de todo el sitio y por eso la página entera está
+  // construida para decir lo que no es; esconderla tras un flag daría el
+  // resultado contrario al de /eficiencia, donde la bandera protegía una cifra
+  // sobre un ayuntamiento con nombre. Aquí no se nombra a nadie salvo a
+  // Riba-roja, y el aviso es la primera tarjeta.
+  {
+    to: '/laboratorio/frontera',
+    id: 'frontera',
+    labelKey: 'nav.frontera',
+    label: 'Frontera',
+    icon: Ic.lab,
+    // 'G F' ya es de /hallazgos. 'G V' por «envolvente», que es como se llama
+    // la técnica en castellano.
+    shortcut: 'G V',
+  },
   // "Periodistas" (the AI journalist agent) is the highest legal-sensitivity
   // surface — it drafts biographies of named living officials. Hidden from
   // production builds unless VITE_ENABLE_PERIODISTAS=true — same flag that
