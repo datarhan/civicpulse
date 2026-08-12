@@ -49,6 +49,10 @@ The e2e suite covers per-route specs, `chrome.spec.ts` (Cmd+K, dark mode,
 i18n, sidebar), a 375px mobile shell, and an axe-core WCAG 2.1 AA strict pass.
 CI sets `VITE_ENABLE_PERIODISTAS=true`; it is absent locally, so `/cargos`'s
 Biografía spec always fails on a local full run. That is the flag, not a defect.
+`/eficiencia` is gated the same way (`VITE_ENABLE_EFICIENCIA`) but its spec
+**skips** rather than fails when the flag is off — one always-red spec is
+already one too many. The flag is read at BUILD time, and `vite preview` is
+reused between runs, so rebuild before expecting the spec to run.
 
 ## Architecture
 
@@ -80,7 +84,7 @@ JSON. Two things are not the SPA and are easy to mistake for exceptions:
 
 ### Routes
 
-Public: `/` `/cargos` `/cargos/:slug` `/presupuesto` `/plenos` `/plenos/:id`
+Public: `/` `/cargos` `/cargos/:slug` `/presupuesto` `/eficiencia` `/plenos` `/plenos/:id`
 `/promesas` `/departamentos` `/departamentos/:slug` `/hallazgos`
 `/declaraciones` `/reportajes` `/datos` `/empleo` `/empleo/:id`
 `/empleo-publico` `/quejas` `/quejas/dashboard` `/quejas/:id` `/cambios`

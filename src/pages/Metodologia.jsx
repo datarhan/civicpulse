@@ -1350,6 +1350,97 @@ export default function Metodologia() {
         </p>
       </Card>
 
+      <Card style={{ marginTop: 14 }} id="eficiencia">
+        <SectionHead
+          eyebrow="Coste unitario de los servicios"
+          title="Cuánto cuesta y qué se obtiene"
+        />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Toda entidad local está obligada a calcular cada año el{' '}
+          <strong>coste efectivo de sus servicios</strong> (art. 116 ter LRSAL, criterios en la{' '}
+          <a
+            href="https://www.boe.es/buscar/doc.php?id=BOE-A-2014-11492"
+            style={{ color: 'var(--civic)' }}
+          >
+            Orden HAP/2075/2014
+          </a>
+          ) y remitirlo al Ministerio de Hacienda, que lo publica. La declaración trae dos tablas:
+          el coste de cada servicio y las <strong>unidades físicas</strong> que ese servicio maneja
+          —toneladas de residuos, puntos de luz, metros de red, metros cuadrados con servicio de
+          limpieza—.{' '}
+          <a href="/eficiencia" style={{ color: 'var(--civic)' }}>
+            /eficiencia
+          </a>{' '}
+          divide la primera entre las segundas. Nada más.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>No se publica ninguna nota global</strong>, ni por dimensión ni de conjunto, ni un
+          puesto del municipio en una tabla. Un índice 0–100 convierte la ponderación elegida en la
+          noticia, y la ponderación la habríamos elegido nosotros. Se publican los componentes y se
+          rechaza la suma, igual que en{' '}
+          <a href="/metodologia#encaje" style={{ color: 'var(--civic)' }}>
+            encaje declarado
+          </a>
+          .
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          Cada celda queda en uno de tres estados —<code>declarado</code>,{' '}
+          <code>no&nbsp;declarado</code>, <code>no&nbsp;se&nbsp;presta</code>— y el cociente sólo
+          existe cuando las dos están declaradas. Cuatro situaciones bloquean un coste unitario, y
+          las cuatro se muestran en la página en vez de esconder la tarjeta:
+        </p>
+        <ul style={{ margin: '10px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
+          <li>
+            <strong>Concesión.</strong> Si el servicio lo presta un concesionario a su riesgo y
+            ventura, el ayuntamiento declara 0 € porque el coste lo soporta el concesionario y lo
+            recupera vía tarifa. Dividir ahí publicaría que el agua es gratis. No se calcula
+            cociente ni se compara.
+          </li>
+          <li>
+            <strong>Cero sin declarar.</strong> Una unidad física a cero junto a un gasto real
+            significa «no se declaró», no «no hubo».
+          </li>
+          <li>
+            <strong>Filas duplicadas.</strong> Cuando el ministerio publica dos costes distintos
+            para el mismo servicio, elegir uno sería un volado disfrazado de dato.
+          </li>
+          <li>
+            <strong>Magnitud ambigua.</strong> Cuando el mismo atributo viene dos veces con valores
+            distintos en la misma entrega.
+          </li>
+        </ul>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          La comparación se hace contra municipios de la Comunitat Valenciana de entre 15.000 y
+          40.000 habitantes, y <strong>sólo dentro del mismo modo de gestión</strong>: comparar una
+          gestión directa con una concesión es un error de categoría, no una diferencia de
+          eficiencia. Hace falta un mínimo de quince municipios comparables para dibujar la banda;
+          por debajo, la posición diría más de quién declaró ese año que del municipio. Se publica
+          la banda intercuartílica con el marcador propio, nunca un puesto, y el desglose nombra a
+          todos los municipios comparados: son cifras oficiales y esconder contra quién se compara
+          rompería el contrato de mostrar el trabajo.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Qué mide cada cifra.</strong> Cada indicador va etiquetado como entrada, carga de
+          trabajo, producto o resultado. La distinción importa: el coste por efectivo de policía
+          divide un gasto entre otro gasto y es un <em>precio</em>, no un rendimiento; las toneladas
+          de basura miden cuánta genera el municipio, no lo bien que se recoge. La fuente no publica
+          ningún indicador de resultado —ni tasa de reciclaje, ni estado del firme—, así que esta
+          página no puede decir si el dinero se convirtió en algo bueno, sólo cuánto costó cada
+          unidad de servicio.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Límites conocidos.</strong> Las magnitudes las rellena cada ayuntamiento, y no
+          todos entienden lo mismo por «superficie urbanizada» o «superficie con servicio de
+          limpieza»: Riba-roja declara 58,01 km² urbanizados, prácticamente todo su término. Cuando
+          una cifra se aleja más del doble de la mediana de sus pares, la tarjeta lo advierte,
+          porque una diferencia así suele venir de cómo se declara y no de cómo se gestiona. El
+          ministerio además sólo publica un volcado masivo de una entrega, así que hoy no hay serie
+          temporal y la página lo dice en su franja de cobertura. Toda cifra publicada lleva la
+          celda exacta de la que sale, y <code>check:indicadores</code> comprueba que resuelve antes
+          de cada despliegue.
+        </p>
+      </Card>
+
       <Card style={{ marginTop: 14 }} id="gasto-por-concejalia">
         <SectionHead
           eyebrow="Transparencia · gasto por concejalía"
