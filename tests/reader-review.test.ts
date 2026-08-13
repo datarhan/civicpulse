@@ -180,7 +180,13 @@ describe('reader-review — a big page is split, never trimmed', () => {
 
   it('hard-splits a single line too long to fit, rather than dropping it', () => {
     const chunks = chunkRenderedText('z'.repeat(25_000))
-    expect(chunks).toHaveLength(3)
+    // Derivado de la constante, no copiado de ella: decía 3 porque 25.000/12.000
+    // daban 3, y al bajar el fragmento a 6.000 —por el vigilante de 180 s, no por
+    // el modelo— el test se puso rojo sin que nada se hubiera roto. Restar una
+    // forma en vez de importarla es el defecto que docs/DATA_INTEGRITY.md cuenta
+    // seis veces; aquí sólo costó un rojo falso porque lo demás sí se importa.
+    expect(chunks).toHaveLength(Math.ceil(25_000 / REVIEW_CHUNK_CHARS))
+    // Lo que de verdad se comprueba: no se pierde un carácter.
     expect(chunks.join('').length).toBe(25_000)
   })
 

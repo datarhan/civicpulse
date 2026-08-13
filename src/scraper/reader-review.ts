@@ -51,8 +51,28 @@ export type ReaderCaller = (input: SurfaceInput) => Promise<ReaderFinding[] | nu
  *
  * Not a page limit — a CALL limit. The caller splits and reviews every fragment;
  * see `chunkRenderedText`.
+ *
+ * El tamaño lo fija el VIGILANTE, no el modelo. `src/llm/client.ts` mata la
+ * llamada a los 180 s, así que un fragmento que no quepa en ese reloj no falla
+ * a veces: no puede terminar nunca. Medido el 2026-08-13 sobre las 84 llamadas
+ * reales del día (la caché guarda `latencyMs`):
+ *
+ *     segundos ≈ 4,6 + 10,5 · miles de tokens   →   ~95 tokens/s
+ *     techo de 180 s  ⇒  ~16.700 tokens por llamada
+ *
+ * A 12.000 caracteres un fragmento denso pasa de ese techo. Se vio en
+ * `/reportajes/reconstruccion-dana`: 10.101 caracteres en UNA llamada tardan
+ * 206 s medidos contra el CLI pelado —termina, y bien— pero el vigilante la
+ * mata a los 180 s, así que la ruta salía «ningún backend respondió» todas las
+ * veces. Cuatro de las 84 llamadas de hoy pasaron de 150 s: la herramienta
+ * estaba corriendo pegada a su propio techo.
+ *
+ * 6.000 deja el fragmento denso peor en ~105 s, un tercio por debajo del reloj.
+ * Sale más caro en llamadas y no en tokens —el texto se reparte, no se repite—
+ * y el coste fijo de 4,6 s por llamada es ruido al lado de un timeout que se
+ * come la cobertura entera de una ruta.
  */
-export const REVIEW_CHUNK_CHARS = 12_000
+export const REVIEW_CHUNK_CHARS = 6_000
 
 /**
  * What `review-surfaces` remembers about a route between runs.
@@ -269,11 +289,22 @@ export async function reviewSurfaceDetailed(
   if (!input.renderedText.trim()) {
     return { findings: [], dropped: [], consulted: false, reason: 'empty-page', attempts: 0 }
   }
-  // Un reintento rescata un fallo TRANSITORIO del backend, que es el que se ve
-  // aquí: el vigilante del CLI mata a los 180 s y lanza un `Error` PLANO, así
-  // que el bucle de reintentos de `callLLM` —que sólo honra `RetryableError`—
-  // no lo toca. Medido: «all backends exhausted (claude-code) after 1 total
-  // attempts», y una ruta entera sin cobertura por una llamada lenta.
+  // Un reintento rescata un fallo TRANSITORIO del backend: el vigilante del CLI
+  // mata a los 180 s y lanza un `Error` PLANO, así que el bucle de reintentos de
+  // `callLLM` —que sólo honra `RetryableError`— no lo toca. Medido: «all
+  // backends exhausted (claude-code) after 1 total attempts».
+  //
+  // Lo que este reintento NO arregla, y creí que sí: un fragmento demasiado
+  // grande para el reloj. Ese timeout es determinista —el mismo texto vuelve a
+  // tardar lo mismo— así que insistir cuesta 180 s más y falla igual. De eso se
+  // ocupa `REVIEW_CHUNK_CHARS`, que ahora se dimensiona contra el vigilante.
+  // Diagnostiqué el caso de `/reportajes/reconstruccion-dana` al revés: bisecar
+  // el texto parecía señalar una frase, pero las respuestas «rápidas» de la
+  // bisección eran ACIERTOS DE CACHÉ (`.llm-cache` es content-addressed y
+  // `--force` sólo salta la caché de rutas, no la de respuestas). La llamada más
+  // rápida real del día tardó 5,4 s; ningún fragmento de 10.000 caracteres
+  // vuelve en 4. Una comparación contra una caché que no sabes que está ahí no
+  // mide el contenido, mide la caché.
   //
   // Las llamadas fallidas NO se cachean, de modo que el segundo intento es un
   // intento de verdad y no la misma respuesta servida dos veces.
