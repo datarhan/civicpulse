@@ -120,7 +120,17 @@ function factsFor(route: string): Record<string, unknown> {
   const findings = read('pleno-findings.json')
   const common = {
     'contratos: total adjudicado (acumulado, todos los años)': tenders?.stats?.awardedTotalEuros,
-    'contratos: nº de contratos': tenders?.stats?.awardedContracts,
+    // Las dos cifras, y ETIQUETADAS. Decía «contratos: nº de contratos: 699»,
+    // que es el recuento de ADJUDICADOS con nombre de total — y el primer
+    // barrido completo lo cobró: señaló «805 contratos» en /datos, que es un
+    // catálogo de snapshots donde 805 es exactamente el número de filas del
+    // fichero. Un falso positivo nacido de una premisa mal rotulada, en la
+    // herramienta cuyo trabajo entero es cazar rótulos que no cuadran con su
+    // cifra. Con las dos delante, el modelo puede distinguir de cuál habla la
+    // página en vez de suponer.
+    'contratos: nº ADJUDICADOS (awarded + formalized)': tenders?.stats?.awardedContracts,
+    'contratos: nº de FILAS del snapshot (incluye anulados, revocados, desistidos)':
+      tenders?.contracts?.length,
     'contratos: rango de fechas de adjudicación': '2017 → 2026 (acumulado, NO anual)',
     'presupuesto: gasto total (UN año)': budget?.snapshot?.totalExpense,
     'presupuesto: ejercicio': budget?.snapshot?.year,
