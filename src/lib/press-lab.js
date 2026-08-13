@@ -35,7 +35,14 @@ export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.n
   return {
     windowDays: WINDOW_DAYS,
     monitoredCount: inWindow.length, // headlines tracked in the rolling window
-    auditedCount: auditedIds.size, // distinct articles with ≥1 verified claim
+    // Artículos con ≥1 afirmación ANALIZADA, sea cual sea su veredicto. El
+    // comentario decía «with ≥1 verified claim» y la etiqueta de /laboratorio
+    // repetía lo mismo, pero `auditedIds` mete el articleId de toda fila del
+    // corpus sin mirar `verdict`. Con un artículo, una claim y cero
+    // verificadas, la página decía «1 · con ≥1 afirmación verificada» justo
+    // encima de «TASA DE VERIFICACIÓN 0% · 0 de 1». Se contradecía sola en la
+    // misma pantalla.
+    auditedCount: auditedIds.size,
     totalClaims,
     verificadoClaims: verificado,
     contradichoClaims: contradicho,

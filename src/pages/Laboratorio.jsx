@@ -157,8 +157,16 @@ function TrustIndicators({ indicators }) {
 function ClaimLedger({ claims }) {
   if (!claims || claims.length === 0) {
     return (
+      // Quién no las encontró, y que eso no prueba que no las haya.
+      //
+      // Decía «Sin afirmaciones contrastables identificadas en el titular», que
+      // es una afirmación sobre EL TITULAR. Y el titular que lo destapó dice
+      // «Riba-roja adjudica el contrato para el suministro de agua potable por
+      // 55,6 millones para 17 años»: cifra, plazo y objeto, justo lo que esta
+      // página contrasta contra los contratos de PLACSP. Lo que pasó es que el
+      // extractor no sacó nada, que es un hecho sobre el extractor.
       <div style={{ fontSize: 12, color: 'var(--ink60)', fontStyle: 'italic' }}>
-        Sin afirmaciones contrastables identificadas en el titular.
+        El extractor no sacó ninguna afirmación de este titular. No es lo mismo que no las tenga.
       </div>
     )
   }
@@ -737,7 +745,7 @@ export default function Laboratorio() {
         <KPI
           label="Artículos auditados"
           value={fmtNumber(summary.auditedCount)}
-          hint="con ≥1 afirmación verificada"
+          hint="con ≥1 afirmación analizada"
         />
         <KPI
           label="Tasa de verificación"
