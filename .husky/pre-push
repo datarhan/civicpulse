@@ -66,23 +66,23 @@ fi
 STARTED=$(date +%s)
 echo "[pre-push] este push toca $N_RUTAS ruta(s): $(printf '%s ' $RUTAS)"
 
-# El presupuesto se ESCALA con lo que hay que leer, en vez de ser un 60 fijo que
-# repartir entre seis rutas que nadie tocó.
+# El presupuesto se ESCALA con lo que hay que leer, pero con un techo BAJO.
 #
-# 150s por ruta, del PEOR caso medido y no de la media: /quejas 60s, /eficiencia
-# 128s, /plenos 141s. Con la media, la mitad de los pushes saldrían PARCIAL sin
-# que pase nada raro, y una alarma que salta cuando todo va bien se apaga sola.
+# 150s por ruta sale del peor caso medido (/quejas 60s, /eficiencia 128s,
+# /plenos 141s) y es un TECHO, no una duración: una ruta rápida sigue tardando
+# lo que tarda.
 #
-# Ser generoso no cuesta nada: el presupuesto es un TECHO, no una duración. Un
-# push de una ruta que tarda 60s termina en 60s con 150 concedidos. Sólo se paga
-# cuando de verdad hace falta.
+# El tope global es 180s y no 480 porque desde que existe el barrido nocturno
+# esto ya no es el único lector del sitio, es el rápido. Con 480 un push que
+# tocaba siete rutas se quedaba cinco minutos y medio parado, y un gancho que
+# hace eso se salta con --no-verify a la tercera — que es como se pierde un
+# control, no fallando sino cansando. Lo que no quepa aquí lo lee el barrido a
+# las 07:30, y `--rotate` hace que las que se queden fuera hoy entren mañana.
 #
-# Techo global en 480s, con holgura sobre los 600 a los que git mata el gancho.
-# Quien toca i18n.jsx o el armazón toca veintitantas rutas, no caben, y entonces
-# `--rotate` empieza por las más olvidadas y el resumen lo dice en voz alta en
-# lugar de leer una y callarse.
+# Si quieres la pasada entera y sin prisa sobre lo que acabas de tocar:
+#   npm run review:surfaces -- <ruta>
 PRESUPUESTO=$((N_RUTAS * 150))
-[ "$PRESUPUESTO" -gt 480 ] && PRESUPUESTO=480
+[ "$PRESUPUESTO" -gt 180 ] && PRESUPUESTO=180
 echo "[pre-push] leyendo esas páginas como un lector (hasta ${PRESUPUESTO}s)…"
 # CON LAS BANDERAS DE LANZAMIENTO, las mismas que pone el despliegue.
 #
