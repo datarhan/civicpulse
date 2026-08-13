@@ -285,6 +285,66 @@ export function MachineProposal({ confidence, decidedBy = 'un curador humano', c
   )
 }
 
+/**
+ * Una de las tres bandas de una ficha de evidencia. Brandbook §08.
+ *
+ * «Hoy la cita, el cotejo, la ausencia de rastro y la réplica comparten tamaño,
+ * peso y color. El lector no distingue lo que alguien dijo de lo que está
+ * comprobado — que es lo único que este medio vende.» Las bandas van numeradas
+ * y siempre en el mismo orden: 1 lo que se dijo · 2 contra qué se cotejó ·
+ * 3 derecho de réplica.
+ *
+ * La banda se dibuja aunque no tenga contenido, y ahí está el detalle que
+ * importa: una ficha sin documentos cotejados tiene que DECIRLO, porque si la
+ * banda desaparece el lector no puede distinguir «se cotejó y no salió nada» de
+ * «no se cotejó». El texto de ese vacío lo pone la llamada, no este componente,
+ * y describe el REGISTRO —qué se publica— nunca el mundo: el esquema de
+ * `pleno-findings.json` no separa esos dos casos, así que afirmar «sin rastro»
+ * desde un array vacío sería fabricar un veredicto con un dato que no existe.
+ *
+ * @param {object} p
+ * @param {number} p.n
+ * @param {string} p.title
+ * @param {React.ReactNode} p.children
+ */
+export function EvidenceBand({ n, title, children }) {
+  return (
+    <section style={{ marginTop: 14 }}>
+      <div
+        className="mono"
+        style={{
+          fontSize: 11,
+          fontWeight: 700,
+          letterSpacing: '.08em',
+          textTransform: 'uppercase',
+          color: 'var(--ink50)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 7,
+          marginBottom: 6,
+        }}
+      >
+        <span
+          style={{
+            display: 'inline-grid',
+            placeItems: 'center',
+            width: 17,
+            height: 17,
+            borderRadius: '50%',
+            background: 'var(--civic)',
+            color: 'var(--civic-on)',
+            fontSize: 10,
+          }}
+        >
+          {n}
+        </span>
+        {title}
+      </div>
+      {children}
+    </section>
+  )
+}
+
 export function SectionHead({ eyebrow, title, right }) {
   return (
     <div

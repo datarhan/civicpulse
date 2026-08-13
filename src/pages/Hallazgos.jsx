@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { Card, Pill, ExtLink, Quote } from '../components/Primitives'
+import { Card, Pill, ExtLink, Quote, EvidenceBand } from '../components/Primitives'
 import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import DataAsOf from '../components/DataAsOf'
 // One RefList, not two. It was duplicated verbatim here and in PlenoFindings,
@@ -123,76 +123,97 @@ export function FindingDetailCard({ f, permalink }) {
       >
         {f.summary}
       </p>
-      {f.quotes?.length > 0 && (
-        <div style={{ marginTop: 8 }}>
-          {f.quotes.map((q, i) => (
-            // §08: sin speakerGroup la cita no se queda muda, dice «sin
-            // atribuir». Antes se omitía la línea entera y una cita sin dueño
-            // se leía igual que una atribuida.
-            <Quote
-              key={i}
-              text={q.text}
-              attribution={q.speakerGroup ? blocLabel(q.speakerGroup) : null}
-              tone={PARTY_TONE[q.speakerGroup]}
-              marks={<QuoteProvenanceMark entry={prov[i]} />}
-            />
-          ))}
-          <QuoteProvenanceNote entries={prov} curatorName={f.curatorName} />
-        </div>
-      )}
-      <RefList refs={f.crossChecked} kind="crossChecked" plenoDate={f.plenoDate} />
-      <RefList refs={f.contradiction} kind="contradiction" plenoDate={f.plenoDate} />
-      {f.response ? (
-        <div
-          style={{
-            marginTop: 10,
-            padding: '8px 10px',
-            background: 'var(--soft)',
-            borderRadius: 6,
-            fontSize: 12,
-            lineHeight: 1.5,
-            color: 'var(--ink)',
-          }}
-        >
+      {/* §08: tres bandas, numeradas, siempre en este orden. El material ya
+          estaba en la ficha y en esta secuencia; lo que faltaba era que se
+          distinguiera lo que alguien DIJO de lo que está COMPROBADO. */}
+      <EvidenceBand n={1} title="Lo que se dijo">
+        {f.quotes?.length > 0 ? (
+          <>
+            {f.quotes.map((q, i) => (
+              // Sin speakerGroup la cita no se queda muda, dice «sin atribuir».
+              // Antes se omitía la línea y una cita sin dueño se leía igual que
+              // una atribuida.
+              <Quote
+                key={i}
+                text={q.text}
+                attribution={q.speakerGroup ? blocLabel(q.speakerGroup) : null}
+                tone={PARTY_TONE[q.speakerGroup]}
+                marks={<QuoteProvenanceMark entry={prov[i]} />}
+              />
+            ))}
+            <QuoteProvenanceNote entries={prov} curatorName={f.curatorName} />
+          </>
+        ) : (
+          <div style={{ fontSize: 12, color: 'var(--ink50)' }}>
+            Esta ficha no publica ningún literal.
+          </div>
+        )}
+      </EvidenceBand>
+
+      <EvidenceBand n={2} title="Contra qué se cotejó">
+        {f.crossChecked?.length || f.contradiction?.length ? (
+          <>
+            <RefList refs={f.crossChecked} kind="crossChecked" plenoDate={f.plenoDate} />
+            <RefList refs={f.contradiction} kind="contradiction" plenoDate={f.plenoDate} />
+          </>
+        ) : (
+          // Describe el REGISTRO, no el mundo. `pleno-findings.json` no separa
+          // «se cotejó y no salió nada» de «no se cotejó», así que decir «sin
+          // rastro» aquí sería fabricar un veredicto con un dato que no existe.
+          <div style={{ fontSize: 12, color: 'var(--ink50)' }}>
+            Esta ficha no publica ningún documento cotejado. Eso no dice que no exista: dice que
+            aquí no consta.
+          </div>
+        )}
+      </EvidenceBand>
+
+      <EvidenceBand n={3} title="Derecho de réplica">
+        {f.response ? (
           <div
-            className="mono"
             style={{
-              fontSize: 9,
-              letterSpacing: '.1em',
-              textTransform: 'uppercase',
-              color: PARTY_TONE[f.response.from] || 'var(--ink50)',
-              marginBottom: 2,
-              fontWeight: 700,
+              padding: '8px 10px',
+              background: 'var(--soft)',
+              borderRadius: 12,
+              fontSize: 12,
+              lineHeight: 1.5,
+              color: 'var(--ink)',
             }}
           >
-            Réplica de {f.response.from} · {f.response.respondedAt}
-          </div>
-          «{f.response.quote}»
-          {f.response.sourceUrl && (
-            <div style={{ marginTop: 4 }}>
-              <ExtLink
-                href={f.response.sourceUrl}
-                style={{ fontSize: 11, color: 'var(--civic)', textDecoration: 'none' }}
-              >
-                Fuente →
-              </ExtLink>
+            <div
+              className="mono"
+              style={{
+                fontSize: 11,
+                letterSpacing: '.08em',
+                textTransform: 'uppercase',
+                color: 'var(--ink50)',
+                marginBottom: 4,
+                fontWeight: 700,
+              }}
+            >
+              Réplica de {f.response.from} · {f.response.respondedAt}
             </div>
-          )}
-        </div>
-      ) : (
-        <div
-          style={{
-            marginTop: 10,
-            fontSize: 11,
-            color: 'var(--ink50)',
-          }}
-        >
-          ¿Eres el grupo afectado? Contacta con la redacción para ejercer derecho de réplica · ver{' '}
-          <a href="/aviso-legal" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
-            /aviso-legal
-          </a>
-        </div>
-      )}
+            <Quote text={f.response.quote} attribution={f.response.from} />
+            {f.response.sourceUrl && (
+              <div style={{ marginTop: 4 }}>
+                <ExtLink
+                  href={f.response.sourceUrl}
+                  style={{ fontSize: 11, color: 'var(--civic)', textDecoration: 'none' }}
+                >
+                  Fuente →
+                </ExtLink>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div style={{ fontSize: 12, color: 'var(--ink50)' }}>
+            Abierto desde {f.publishedAt} · sin respuesta. ¿Eres el grupo afectado? Contacta con la
+            redacción para ejercerlo · ver{' '}
+            <a href="/aviso-legal" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
+              /aviso-legal
+            </a>
+          </div>
+        )}
+      </EvidenceBand>
       {f.corrections?.length > 0 && (
         <details
           style={{
