@@ -491,10 +491,13 @@ export default function ReconstruccionDana() {
         </p>
         <p>
           Entre esas dos fechas, un análisis de la contratación municipal permite seguir el rastro
-          del dinero contrato a contrato, y en muchos casos calle a calle. De los 14,05 millones que
-          el Ayuntamiento adjudicó entre 2018 y 2026,{' '}
-          <b>73 contratos por 2,24 millones referencian expresamente la DANA</b> en su título. Es
-          una cifra conservadora —el suelo trazable, no el total de la reconstrucción—, pero{' '}
+          del dinero contrato a contrato, y en muchos casos calle a calle. De los{' '}
+          {eurC(t.totalAwarded)} que el Ayuntamiento adjudicó entre 2018 y 2026,{' '}
+          <b>
+            {t.danaContracts} contratos por {eurC(t.danaAmount)} referencian expresamente la DANA
+          </b>{' '}
+          en su título. Es una cifra conservadora —el suelo trazable, no el total de la
+          reconstrucción—, pero{' '}
           <b>extiende en 16 meses la última cuenta pública del propio Ayuntamiento</b>, que en 2024
           cifró en 63 contratos de emergencia y 2.048.621 euros su respuesta inmediata a la riada.
         </p>

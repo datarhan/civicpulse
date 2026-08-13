@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-13T06:09:32.447Z",
+  "generatedAt": "2026-08-13T08:40:17.484Z",
   "clusters": [
     {
       "clusterId": "10if6vd",
@@ -13,12 +13,17 @@
       ],
       "earliestDate": "2026-08-10T09:09:31.000Z",
       "latestDate": "2026-08-10T13:17:56.000Z",
-      "amountDrift": null,
+      "amountDrift": {
+        "min": 55600000,
+        "max": 55600000,
+        "spread": 0,
+        "spreadPct": 0
+      },
       "verdictMix": {
-        "verificado": 0,
+        "verificado": 1,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 2,
         "promesa-repetida": 0
       }
     },
@@ -34,12 +39,17 @@
       ],
       "earliestDate": "2026-08-11T08:56:32.000Z",
       "latestDate": "2026-08-11T09:42:46.000Z",
-      "amountDrift": null,
+      "amountDrift": {
+        "min": 6000,
+        "max": 6000,
+        "spread": 0,
+        "spreadPct": 0
+      },
       "verdictMix": {
-        "verificado": 0,
+        "verificado": 2,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 2,
         "promesa-repetida": 0
       }
     },
@@ -102,7 +112,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 3,
         "promesa-repetida": 0
       }
     }
