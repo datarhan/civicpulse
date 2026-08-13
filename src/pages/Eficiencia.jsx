@@ -46,7 +46,7 @@ export default function Eficiencia() {
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -54,7 +54,14 @@ export default function Eficiencia() {
       >
         {t('eficiencia.eyebrow')}
       </div>
-      <h1 style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+      <h1
+        style={{
+          fontSize: 'var(--fs-page)',
+          fontWeight: 700,
+          letterSpacing: '-.015em',
+          marginTop: 2,
+        }}
+      >
         {t('eficiencia.title')}
       </h1>
       <p style={{ color: 'var(--ink50)', maxWidth: '64ch' }}>{t('eficiencia.intro')}</p>
@@ -66,7 +73,7 @@ export default function Eficiencia() {
           enlace no llegaba nunca. Esto dice cuántas hay y dónde están, sin
           decir qué concluyen. */}
       {firmados > 0 && (
-        <p style={{ margin: '6px 0 0', fontSize: 12.5 }}>
+        <p style={{ margin: '6px 0 0', fontSize: 'var(--fs-meta)' }}>
           <a href="#hallazgos" style={{ color: 'var(--civic)' }}>
             {firmados === 1
               ? '1 hallazgo firmado sobre estas cifras'
@@ -119,7 +126,7 @@ export default function Eficiencia() {
         <>
           <h2
             style={{
-              fontSize: 15,
+              fontSize: 'var(--fs-body)',
               fontWeight: 650,
               margin: '28px 0 4px',
               letterSpacing: '-.01em',
@@ -147,7 +154,7 @@ export default function Eficiencia() {
         />
       )}
 
-      <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 28 }}>
+      <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 28 }}>
         Cómo se calcula, qué se descarta y por qué no hay nota global:{' '}
         <a href="/metodologia#eficiencia" style={{ color: 'var(--civic)' }}>
           metodología

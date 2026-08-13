@@ -18,7 +18,7 @@ export default function EmpleoPublico() {
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -26,7 +26,14 @@ export default function EmpleoPublico() {
       >
         {t('empleoPublico.eyebrow')}
       </div>
-      <h1 style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+      <h1
+        style={{
+          fontSize: 'var(--fs-page)',
+          fontWeight: 700,
+          letterSpacing: '-.015em',
+          marginTop: 2,
+        }}
+      >
         {t('empleoPublico.title')}
       </h1>
       <p style={{ color: 'var(--ink50)', maxWidth: '64ch' }}>

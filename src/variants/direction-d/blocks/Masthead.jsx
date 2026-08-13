@@ -12,7 +12,7 @@ export function EditorialMasthead({ now }) {
           justifyContent: 'space-between',
           gap: 12,
           fontFamily: MONO,
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: PALETTE.ink60,
           letterSpacing: '.1em',
           textTransform: 'uppercase',
@@ -33,7 +33,7 @@ export function EditorialMasthead({ now }) {
         style={{
           margin: 0,
           fontFamily: SERIF,
-          fontSize: 34,
+          fontSize: 'var(--fs-display)',
           fontWeight: 900,
           letterSpacing: '-.03em',
           lineHeight: 0.95,
@@ -44,7 +44,7 @@ export function EditorialMasthead({ now }) {
       <div
         style={{
           fontFamily: MONO,
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           color: PALETTE.accent,
           letterSpacing: '.18em',
           textTransform: 'uppercase',
@@ -73,7 +73,7 @@ export function QuejaCTA() {
       <div
         style={{
           fontFamily: MONO,
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           color: PALETTE.civic,
           letterSpacing: '.14em',
           textTransform: 'uppercase',
@@ -87,7 +87,7 @@ export function QuejaCTA() {
         style={{
           margin: '0 0 10px',
           fontFamily: SERIF,
-          fontSize: 22,
+          fontSize: 'var(--fs-card)',
           lineHeight: 1.15,
           fontWeight: 600,
           letterSpacing: '-.01em',
@@ -96,7 +96,14 @@ export function QuejaCTA() {
       >
         {t('landing.queja.title')}
       </h2>
-      <div style={{ fontSize: 12.5, color: PALETTE.ink60, marginBottom: 12, lineHeight: 1.45 }}>
+      <div
+        style={{
+          fontSize: 'var(--fs-meta)',
+          color: PALETTE.ink60,
+          marginBottom: 12,
+          lineHeight: 1.45,
+        }}
+      >
         {t('landing.queja.body1')}{' '}
         <span
           style={{
@@ -123,7 +130,7 @@ export function QuejaCTA() {
           background: PALETTE.civic,
           color: '#fff',
           fontFamily: SANS,
-          fontSize: 13.5,
+          fontSize: 'var(--fs-aux)',
           fontWeight: 600,
           borderRadius: 'var(--r-input)',
           textDecoration: 'none',
@@ -136,7 +143,7 @@ export function QuejaCTA() {
         href="/aviso-legal"
         style={{
           marginLeft: 10,
-          fontSize: 11.5,
+          fontSize: 'var(--fs-micro)',
           color: PALETTE.civic,
           textDecoration: 'underline',
           textUnderlineOffset: 2,

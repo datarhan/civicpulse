@@ -68,7 +68,7 @@ function RefDate({ date, t }) {
     <span
       className="mono"
       style={{
-        fontSize: 9.5,
+        fontSize: 'var(--fs-micro)',
         // No opacity: this is text inside a tinted chip, and opacity there
         // drops it below AA against the tint at any theme.
         color: known ? 'var(--ink70)' : 'var(--ink50)',
@@ -129,7 +129,7 @@ function RefStatus({ status, t }) {
     <span
       className="mono"
       style={{
-        fontSize: 9.5,
+        fontSize: 'var(--fs-micro)',
         // No opacity: tinted chip, and opacity drops the text below AA
         // against the tint at either theme.
         color: known ? tone.fg : 'var(--ink50)',
@@ -171,7 +171,7 @@ export function RefList({ refs, kind, plenoDate }) {
       <div
         className="mono"
         style={{
-          fontSize: 9,
+          fontSize: 'var(--fs-micro)',
           letterSpacing: '.1em',
           textTransform: 'uppercase',
           color: tone,
@@ -184,7 +184,10 @@ export function RefList({ refs, kind, plenoDate }) {
         const isUrl = /^https?:\/\//.test(r.ref)
         const body = (
           <>
-            <span className="mono" style={{ fontSize: 9.5, color: 'var(--ink50)', marginRight: 6 }}>
+            <span
+              className="mono"
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginRight: 6 }}
+            >
               {r.kind.toUpperCase()}
             </span>{' '}
             <RefDate date={refDate(r, index, plenoDate)} t={t} />{' '}
@@ -196,7 +199,7 @@ export function RefList({ refs, kind, plenoDate }) {
                 has a field of its own, and the tail printed the raw sentinel
                 «unknown» to a reader on 16 of these. Display only — the
                 committed snippet is untouched. */}
-            <span style={{ fontSize: 12 }}>{snippetWithoutStatus(r.snippet)}</span>
+            <span style={{ fontSize: 'var(--fs-meta)' }}>{snippetWithoutStatus(r.snippet)}</span>
           </>
         )
         return isUrl ? (
@@ -451,7 +454,7 @@ export function QuoteProvenanceNote({ entries, curatorName }) {
         borderLeft: '3px solid var(--warn)',
         background: 'var(--soft)',
         borderRadius: 'var(--r-input)',
-        fontSize: 11,
+        fontSize: 'var(--fs-micro)',
         lineHeight: 1.5,
         color: 'var(--ink70)',
       }}
@@ -507,16 +510,18 @@ export function FindingCard({ f }) {
             <Pill tone={SEVERITY_TONE[f.severity] || 'neutral'} size="xs">
               {SEVERITY_LABEL[f.severity] || f.severity}
             </Pill>
-            <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+            <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               {f.plenoDate} · editado por {f.curatorName}
             </span>
           </div>
-          <div style={{ fontSize: 14, fontWeight: 600, lineHeight: 1.35 }}>{f.title}</div>
+          <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600, lineHeight: 1.35 }}>
+            {f.title}
+          </div>
         </div>
       </div>
       <p
         style={{
-          fontSize: 12.5,
+          fontSize: 'var(--fs-meta)',
           color: 'var(--ink70)',
           marginTop: 8,
           lineHeight: 1.55,
@@ -548,7 +553,7 @@ export function FindingCard({ f }) {
             padding: '8px 10px',
             background: 'var(--soft)',
             borderRadius: 'var(--r-input)',
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             lineHeight: 1.5,
             color: 'var(--ink)',
           }}
@@ -556,7 +561,7 @@ export function FindingCard({ f }) {
           <div
             className="mono"
             style={{
-              fontSize: 9,
+              fontSize: 'var(--fs-micro)',
               letterSpacing: '.1em',
               textTransform: 'uppercase',
               color: 'var(--ink50)',
@@ -585,7 +590,7 @@ export function PlenoFindingsSection() {
       />
       <p
         style={{
-          fontSize: 12,
+          fontSize: 'var(--fs-meta)',
           color: 'var(--ink50)',
           marginTop: 4,
           marginBottom: 10,

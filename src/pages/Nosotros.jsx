@@ -12,10 +12,15 @@ const CONTACT_EMAIL = 'slutchenko@gmail.com'
 function StatCell({ value, label, loading }) {
   return (
     <div style={{ flex: '1 1 120px', minWidth: 120 }}>
-      <div className="mono" style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.02em' }}>
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-page)', fontWeight: 700, letterSpacing: '-.02em' }}
+      >
         {loading ? '—' : value.toLocaleString('es-ES')}
       </div>
-      <div style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 2 }}>{label}</div>
+      <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
+        {label}
+      </div>
     </div>
   )
 }
@@ -41,7 +46,14 @@ function ImpactStrip() {
         <StatCell value={s.quejasCount} label="quejas ciudadanas" loading={loading} />
       </div>
       {s.lastFindingAt && (
-        <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 10, marginBottom: 0 }}>
+        <p
+          style={{
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink50)',
+            marginTop: 10,
+            marginBottom: 0,
+          }}
+        >
           Último hallazgo publicado: <span className="mono">{s.lastFindingAt}</span>. Cada cifra
           enlaza con su fuente primaria en las secciones correspondientes del panel.
         </p>
@@ -75,7 +87,7 @@ function OperatorPhoto() {
           color: 'var(--civic)',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: 24,
+          fontSize: 'var(--fs-page)',
           fontWeight: 700,
         }}
       >
@@ -89,12 +101,18 @@ export default function Nosotros() {
   return (
     <div
       className="cp-page"
-      style={{ padding: '24px', maxWidth: 860, margin: '0 auto', fontSize: 14, lineHeight: 1.6 }}
+      style={{
+        padding: '24px',
+        maxWidth: 860,
+        margin: '0 auto',
+        fontSize: 'var(--fs-body)',
+        lineHeight: 1.6,
+      }}
     >
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -102,7 +120,14 @@ export default function Nosotros() {
       >
         Transparencia editorial
       </div>
-      <h1 style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+      <h1
+        style={{
+          fontSize: 'var(--fs-page)',
+          fontWeight: 700,
+          letterSpacing: '-.015em',
+          marginTop: 2,
+        }}
+      >
         Quiénes somos
       </h1>
 

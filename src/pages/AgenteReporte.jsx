@@ -84,7 +84,7 @@ function CorrectionLog({ corrections }) {
   return (
     <Card>
       <SectionHead title="Bitácora de correcciones" />
-      <ol style={{ margin: 0, padding: 0, listStyle: 'none', fontSize: 12.5 }}>
+      <ol style={{ margin: 0, padding: 0, listStyle: 'none', fontSize: 'var(--fs-meta)' }}>
         {corrections.map((c, i) => (
           <li
             key={`${c.field}-${i}`}
@@ -93,7 +93,7 @@ function CorrectionLog({ corrections }) {
               borderBottom: i < corrections.length - 1 ? '1px solid var(--border)' : 'none',
             }}
           >
-            <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+            <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               {c.correctedAt} · {c.editor} · {c.field}
             </div>
             <div style={{ marginTop: 4, color: 'var(--ink50)' }}>
@@ -116,7 +116,7 @@ function ResponseBlock({ response, reportId }) {
     return (
       <Card>
         <SectionHead title="Derecho de réplica" />
-        <p style={{ margin: 0, fontSize: 13, color: 'var(--ink50)', lineHeight: 1.5 }}>
+        <p style={{ margin: 0, fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.5 }}>
           ¿Es persona o grupo aludido por este informe? Puede ejercer derecho de réplica enviando
           una cita literal por el formulario público; se publica sin edición editorial.
         </p>
@@ -127,7 +127,7 @@ function ResponseBlock({ response, reportId }) {
           style={{
             display: 'inline-block',
             marginTop: 10,
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             padding: '6px 12px',
             borderRadius: 'var(--r-input)',
             border: '1px solid var(--border)',
@@ -148,7 +148,7 @@ function ResponseBlock({ response, reportId }) {
           padding: '4px 12px',
           borderLeft: '3px solid var(--civic)',
           color: 'var(--ink)',
-          fontSize: 14,
+          fontSize: 'var(--fs-body)',
           fontWeight: 500,
           lineHeight: 1.5,
           maxWidth: '68ch',
@@ -156,7 +156,10 @@ function ResponseBlock({ response, reportId }) {
       >
         «{response.quote}»
       </blockquote>
-      <div className="mono" style={{ marginTop: 8, fontSize: 10.5, color: 'var(--ink50)' }}>
+      <div
+        className="mono"
+        style={{ marginTop: 8, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+      >
         {response.respondedAt}
         {response.sourceUrl && (
           <ExtLink href={response.sourceUrl} style={{ marginLeft: 8, color: 'var(--ink50)' }}>
@@ -184,14 +187,22 @@ function CuratorNotesBlock({ notes }) {
     <Card>
       <SectionHead title="Notas de curaduría" />
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-        <p style={{ margin: 0, flex: 1, fontSize: 12, color: 'var(--ink50)', fontStyle: 'italic' }}>
+        <p
+          style={{
+            margin: 0,
+            flex: 1,
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink50)',
+            fontStyle: 'italic',
+          }}
+        >
           Registro público del trabajo editorial sobre este informe: verificaciones, correcciones y
           señales en seguimiento.
         </p>
         <button
           onClick={() => setOpen((v) => !v)}
           style={{
-            fontSize: 11,
+            fontSize: 'var(--fs-micro)',
             padding: '4px 10px',
             borderRadius: 'var(--r-input)',
             border: '1px solid var(--border)',
@@ -212,7 +223,7 @@ function CuratorNotesBlock({ notes }) {
             <li
               key={i}
               style={{
-                fontSize: 12,
+                fontSize: 'var(--fs-meta)',
                 lineHeight: 1.55,
                 color: 'var(--ink50)',
                 paddingLeft: 10,
@@ -341,7 +352,7 @@ export default function AgenteReporte() {
 
           {report.curatorNotes && <CuratorNotesBlock notes={report.curatorNotes} />}
 
-          <div style={{ marginTop: 12, fontSize: 11, color: 'var(--ink50)' }}>
+          <div style={{ marginTop: 12, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             <Link to="/laboratorio/agentes" style={{ color: 'var(--ink50)' }}>
               ← volver al índice
             </Link>

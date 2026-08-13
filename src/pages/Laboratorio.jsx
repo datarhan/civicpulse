@@ -68,7 +68,7 @@ function KPI({ label, value, hint }) {
       <div
         className="mono"
         style={{
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink70)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -76,10 +76,14 @@ function KPI({ label, value, hint }) {
       >
         {label}
       </div>
-      <div className="mono" style={{ fontSize: 22, fontWeight: 600, marginTop: 4 }}>
+      <div className="mono" style={{ fontSize: 'var(--fs-card)', fontWeight: 600, marginTop: 4 }}>
         {value}
       </div>
-      {hint && <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 4 }}>{hint}</div>}
+      {hint && (
+        <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 4 }}>
+          {hint}
+        </div>
+      )}
     </div>
   )
 }
@@ -88,7 +92,7 @@ function VerdictMix({ counts }) {
   const entries = Object.entries(counts).filter(([, n]) => n > 0)
   if (entries.length === 0) {
     return (
-      <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+      <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
         sin claims auditados
       </span>
     )
@@ -122,7 +126,7 @@ function TrustIndicators({ indicators }) {
         flexWrap: 'wrap',
         gap: 6,
         marginTop: 8,
-        fontSize: 10.5,
+        fontSize: 'var(--fs-micro)',
       }}
     >
       {entries.map(([k, label]) => {
@@ -145,7 +149,7 @@ function TrustIndicators({ indicators }) {
               color: on ? 'var(--ok-ink)' : 'var(--ink50)',
             }}
           >
-            <span style={{ fontSize: 9 }}>{on ? '●' : '○'}</span>
+            <span style={{ fontSize: 'var(--fs-micro)' }}>{on ? '●' : '○'}</span>
             {label}
           </span>
         )
@@ -165,7 +169,7 @@ function ClaimLedger({ claims }) {
       // 55,6 millones para 17 años»: cifra, plazo y objeto, justo lo que esta
       // página contrasta contra los contratos de PLACSP. Lo que pasó es que el
       // extractor no sacó nada, que es un hecho sobre el extractor.
-      <div style={{ fontSize: 12, color: 'var(--ink50)', fontStyle: 'italic' }}>
+      <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', fontStyle: 'italic' }}>
         El extractor no sacó ninguna afirmación de este titular. No es lo mismo que no las tenga.
       </div>
     )
@@ -182,14 +186,14 @@ function ClaimLedger({ claims }) {
               <Pill tone={VERDICT_TONE[v.verdict] || 'neutral'} size="xs">
                 {VERDICT_LABEL[v.verdict] || v.verdict}
               </Pill>
-              <span style={{ fontSize: 13, lineHeight: 1.4 }}>«{c.verbatim}»</span>
+              <span style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.4 }}>«{c.verbatim}»</span>
             </div>
             {evidence && (
               <div
                 style={{
                   marginTop: 4,
                   paddingLeft: 12,
-                  fontSize: 12,
+                  fontSize: 'var(--fs-meta)',
                   color: 'var(--ink70)',
                 }}
               >
@@ -200,7 +204,10 @@ function ClaimLedger({ claims }) {
         )
       })}
       {claims.length > 4 && (
-        <li className="mono" style={{ fontSize: 11, color: 'var(--ink50)', paddingLeft: 4 }}>
+        <li
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', paddingLeft: 4 }}
+        >
           +{claims.length - 4} afirmaciones más en este artículo
         </li>
       )}
@@ -228,7 +235,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
         <span
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--civic)',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
@@ -245,7 +252,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
           <span
             className="mono"
             style={{
-              fontSize: 9.5,
+              fontSize: 'var(--fs-micro)',
               padding: '1px 5px',
               borderRadius: 'var(--r-input)',
               background: 'var(--soft)',
@@ -261,7 +268,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
           <span
             className="mono"
             style={{
-              fontSize: 9.5,
+              fontSize: 'var(--fs-micro)',
               padding: '1px 5px',
               borderRadius: 'var(--r-input)',
               background: 'var(--warn-soft)',
@@ -273,7 +280,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
             OFICIAL
           </span>
         )}
-        <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink70)' }}>
+        <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink70)' }}>
           {fmtDate(article.date)}
         </span>
         <span style={{ flex: 1 }} />
@@ -282,7 +289,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
       <ExtLink
         href={article.link}
         style={{
-          fontSize: 15.5,
+          fontSize: 'var(--fs-head)',
           fontWeight: 600,
           lineHeight: 1.35,
           color: 'inherit',
@@ -297,7 +304,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
           <div
             className="mono"
             style={{
-              fontSize: 9.5,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink70)',
               textTransform: 'uppercase',
               letterSpacing: '.08em',
@@ -311,7 +318,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
           <p
             style={{
               margin: '4px 0 0',
-              fontSize: 13,
+              fontSize: 'var(--fs-aux)',
               color: 'var(--ink70)',
               lineHeight: 1.55,
             }}
@@ -331,7 +338,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
             padding: '6px 10px',
             background: 'var(--soft)',
             borderRadius: 'var(--r-input)',
-            fontSize: 11.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink70)',
           }}
         >
@@ -351,7 +358,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
           display: 'flex',
           gap: 14,
           marginTop: 10,
-          fontSize: 11.5,
+          fontSize: 'var(--fs-micro)',
         }}
       >
         <ExtLink
@@ -397,14 +404,14 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
 function OutletScoreboard({ outlets }) {
   if (!outlets || outlets.length === 0) {
     return (
-      <div style={{ fontSize: 12, color: 'var(--ink50)' }}>
+      <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
         Sin medios con suficiente cobertura para una tabla de fiabilidad.
       </div>
     )
   }
   return (
     <table
-      style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}
+      style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-meta)' }}
       aria-label="Tabla de fiabilidad por medio"
     >
       <thead>
@@ -426,7 +433,7 @@ function OutletScoreboard({ outlets }) {
               {isOfficialOutlet(o.outlet) && (
                 <span
                   className="mono"
-                  style={{ marginLeft: 6, fontSize: 9.5, color: 'var(--warn-ink)' }}
+                  style={{ marginLeft: 6, fontSize: 'var(--fs-micro)', color: 'var(--warn-ink)' }}
                   title="Fuente institucional: notas de prensa del propio Ayuntamiento"
                 >
                   OFICIAL
@@ -464,7 +471,14 @@ function FactCheckRail({ factcheck }) {
   const items = factcheck?.items ?? []
   if (items.length === 0) {
     return (
-      <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 8, lineHeight: 1.55 }}>
+      <div
+        style={{
+          fontSize: 'var(--fs-meta)',
+          color: 'var(--ink50)',
+          marginTop: 8,
+          lineHeight: 1.55,
+        }}
+      >
         Sin verificaciones de terceros indexadas para Riba-roja en este periodo. Fuente: Google Fact
         Check Tools API (Newtral, Maldita, EFE Verifica, AFP Factual). Configurar{' '}
         <code>GOOGLE_FACT_CHECK_API_KEY</code> en .env para activar.
@@ -476,7 +490,7 @@ function FactCheckRail({ factcheck }) {
       {items.slice(0, 6).map((row) => {
         const tone = VERDICT_TONE[row.normalizedVerdict] || 'neutral'
         return (
-          <li key={row.id} style={{ fontSize: 12, lineHeight: 1.45 }}>
+          <li key={row.id} style={{ fontSize: 'var(--fs-meta)', lineHeight: 1.45 }}>
             <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', flexWrap: 'wrap' }}>
               <Pill tone={tone} size="xs">
                 {row.verdict || VERDICT_LABEL[row.normalizedVerdict] || row.normalizedVerdict}
@@ -484,7 +498,7 @@ function FactCheckRail({ factcheck }) {
               <span
                 className="mono"
                 style={{
-                  fontSize: 10,
+                  fontSize: 'var(--fs-micro)',
                   color: 'var(--civic)',
                   textTransform: 'uppercase',
                   fontWeight: 700,
@@ -493,7 +507,7 @@ function FactCheckRail({ factcheck }) {
               >
                 {row.reviewerName}
               </span>
-              <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+              <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
                 {row.reviewDate.slice(0, 10)}
               </span>
             </div>
@@ -504,7 +518,7 @@ function FactCheckRail({ factcheck }) {
         )
       })}
       {items.length > 6 && (
-        <li className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+        <li className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           +{items.length - 6} verificaciones más
         </li>
       )}
@@ -520,7 +534,7 @@ function CoverageGaps({ items, stats }) {
     // candidate was skipped and the card still congratulated the local press.
     const examined = stats?.candidatesExamined
     return (
-      <div style={{ fontSize: 12, color: 'var(--ink50)' }}>
+      <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
         {examined === 0
           ? 'No hubo plenos ni promesas nuevas en los últimos 14 días, así que no hay nada que comparar con la cobertura.'
           : 'Sin lagunas detectadas en los últimos 14 días.'}
@@ -530,11 +544,11 @@ function CoverageGaps({ items, stats }) {
   return (
     <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'grid', gap: 6 }}>
       {items.slice(0, 8).map((it) => (
-        <li key={it.refId} style={{ fontSize: 12 }}>
+        <li key={it.refId} style={{ fontSize: 'var(--fs-meta)' }}>
           <span
             className="mono"
             style={{
-              fontSize: 9.5,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink70)',
               textTransform: 'uppercase',
               marginRight: 6,
@@ -546,7 +560,7 @@ function CoverageGaps({ items, stats }) {
         </li>
       ))}
       {items.length > 8 && (
-        <li className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+        <li className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           +{items.length - 8} más
         </li>
       )}
@@ -668,7 +682,7 @@ export default function Laboratorio() {
         <div
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink70)',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
@@ -678,7 +692,7 @@ export default function Laboratorio() {
         </div>
         <h1
           style={{
-            fontSize: 26,
+            fontSize: 'var(--fs-page)',
             fontWeight: 700,
             letterSpacing: '-.015em',
             margin: '2px 0 6px',
@@ -689,7 +703,7 @@ export default function Laboratorio() {
         <p
           style={{
             margin: 0,
-            fontSize: 13.5,
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink70)',
             lineHeight: 1.55,
             maxWidth: 820,
@@ -723,7 +737,7 @@ export default function Laboratorio() {
         {/* El laboratorio tiene más de un experimento dentro. Sin este puntero
             la frontera sólo se alcanza por la barra lateral, y un experimento
             que se encuentra por casualidad se lee peor que uno presentado. */}
-        <p style={{ margin: '10px 0 0', fontSize: 13, color: 'var(--ink50)' }}>
+        <p style={{ margin: '10px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
           Otro experimento del laboratorio:{' '}
           <Link
             to="/laboratorio/frontera"
@@ -774,7 +788,7 @@ export default function Laboratorio() {
             border: '1px solid var(--border2)',
             background: 'var(--warn-soft)',
             borderRadius: 'var(--r-input)',
-            fontSize: 13,
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink70)',
             lineHeight: 1.55,
           }}
@@ -795,7 +809,7 @@ export default function Laboratorio() {
           flexWrap: 'wrap',
           alignItems: 'center',
           marginBottom: 14,
-          fontSize: 12.5,
+          fontSize: 'var(--fs-meta)',
         }}
       >
         <label style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
@@ -841,7 +855,10 @@ export default function Laboratorio() {
             <option value="sin-datos">Sin registro</option>
           </select>
         </label>
-        <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)', marginLeft: 'auto' }}>
+        <span
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 'auto' }}
+        >
           {visible.length} de {summary.monitoredCount} · ventana 30 días
         </span>
       </div>
@@ -861,7 +878,7 @@ export default function Laboratorio() {
                 eyebrow="Sin resultados"
                 title="No hay artículos que coincidan con el filtro"
               />
-              <p style={{ fontSize: 13, color: 'var(--ink70)', marginTop: 6 }}>
+              <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', marginTop: 6 }}>
                 Si acabas de instalar el laboratorio, ejecuta{' '}
                 <code>npm run extract:press-claims</code> + <code>npm run verify:press-claims</code>{' '}
                 + <code>npm run summarize:press</code> +{' '}
@@ -928,12 +945,12 @@ export default function Laboratorio() {
                 }}
               >
                 {lab.findings.slice(0, 5).map((f) => (
-                  <li key={f.id} style={{ fontSize: 12 }}>
+                  <li key={f.id} style={{ fontSize: 'var(--fs-meta)' }}>
                     <ClaimReviewJsonLd finding={f} />
                     <span
                       className="mono"
                       style={{
-                        fontSize: 9.5,
+                        fontSize: 'var(--fs-micro)',
                         color: 'var(--ink70)',
                         marginRight: 6,
                       }}
@@ -952,7 +969,7 @@ export default function Laboratorio() {
                         <summary
                           style={{
                             cursor: 'pointer',
-                            fontSize: 10.5,
+                            fontSize: 'var(--fs-micro)',
                             color: 'var(--ink70)',
                             textTransform: 'uppercase',
                             letterSpacing: '.06em',
@@ -966,7 +983,7 @@ export default function Laboratorio() {
                             paddingLeft: 18,
                             display: 'grid',
                             gap: 8,
-                            fontSize: 11.5,
+                            fontSize: 'var(--fs-micro)',
                           }}
                         >
                           {f.corrections.map((c, idx) => (
@@ -974,7 +991,7 @@ export default function Laboratorio() {
                               <div
                                 className="mono"
                                 style={{
-                                  fontSize: 9.5,
+                                  fontSize: 'var(--fs-micro)',
                                   color: 'var(--ink50)',
                                   marginBottom: 2,
                                 }}
@@ -997,7 +1014,7 @@ export default function Laboratorio() {
                                   marginTop: 2,
                                   fontStyle: 'italic',
                                   color: 'var(--ink70)',
-                                  fontSize: 10.5,
+                                  fontSize: 'var(--fs-micro)',
                                 }}
                               >
                                 Motivo: {c.reason}
@@ -1018,7 +1035,7 @@ export default function Laboratorio() {
               padding: 12,
               background: 'var(--soft)',
               borderRadius: 'var(--r-input)',
-              fontSize: 11.5,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink70)',
               lineHeight: 1.55,
             }}

@@ -83,7 +83,7 @@ export function SectionHeader({ tone = 'neutral', title, meta, badge, style }) {
         className="mono"
         style={{
           margin: 0,
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           color: t.ink,
           letterSpacing: '.12em',
           textTransform: 'uppercase',
@@ -99,7 +99,7 @@ export function SectionHeader({ tone = 'neutral', title, meta, badge, style }) {
           style={{
             // .55 measured 4.0–4.1 against the tinted washes. .70 clears the
             // floor on all of them and still reads as secondary to the title.
-            fontSize: 10,
+            fontSize: 'var(--fs-micro)',
             color: 'rgba(11,15,25,.70)',
             marginLeft: 'auto',
             whiteSpace: 'nowrap',

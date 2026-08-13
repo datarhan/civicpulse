@@ -65,7 +65,7 @@ export default function SpendingTypeBreakdown({ contracts, snapshot }) {
             display: 'flex',
             alignItems: 'center',
             gap: 8,
-            fontSize: 12.5,
+            fontSize: 'var(--fs-meta)',
             padding: '3px 0',
           }}
         >
@@ -83,13 +83,18 @@ export default function SpendingTypeBreakdown({ contracts, snapshot }) {
           </span>
           <span
             className="mono"
-            style={{ width: 44, textAlign: 'right', color: 'var(--ink50)', fontSize: 11 }}
+            style={{
+              width: 44,
+              textAlign: 'right',
+              color: 'var(--ink50)',
+              fontSize: 'var(--fs-micro)',
+            }}
           >
             {((r.amount / total) * 100).toFixed(0)}%
           </span>
         </div>
       ))}
-      <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 8 }}>
+      <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 8 }}>
         Recuperación DANA ≈ {danaPct.toFixed(0)}% del importe adjudicado.
       </div>
     </div>

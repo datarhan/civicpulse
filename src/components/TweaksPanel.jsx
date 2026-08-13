@@ -7,7 +7,7 @@ function TwkSelect({ label, value, onChange, opts }) {
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.06em',
@@ -24,7 +24,7 @@ function TwkSelect({ label, value, onChange, opts }) {
             style={{
               padding: '5px 9px',
               borderRadius: 'var(--r-input)',
-              fontSize: 11.5,
+              fontSize: 'var(--fs-micro)',
               background: value === o.v ? 'var(--civic)' : 'var(--soft)',
               color: value === o.v ? 'white' : 'var(--ink70)',
               fontWeight: value === o.v ? 600 : 500,
@@ -41,7 +41,7 @@ function TwkSelect({ label, value, onChange, opts }) {
 function TwkToggle({ label, value, onChange }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-      <div style={{ fontSize: 12.5 }}>{label}</div>
+      <div style={{ fontSize: 'var(--fs-meta)' }}>{label}</div>
       <button
         onClick={() => onChange(!value)}
         style={{
@@ -100,13 +100,25 @@ export function TweaksPanel({ open, onClose, state, onChange }) {
         }}
       >
         <Ic.settings width={14} height={14} style={{ color: 'var(--ink50)' }} />
-        <div style={{ fontSize: 12.5, fontWeight: 600, flex: 1 }}>{t('tweaks.title')}</div>
-        <button onClick={onClose} className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+        <div style={{ fontSize: 'var(--fs-meta)', fontWeight: 600, flex: 1 }}>
+          {t('tweaks.title')}
+        </div>
+        <button
+          onClick={onClose}
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+        >
           {t('tweaks.close')}
         </button>
       </div>
       <div
-        style={{ padding: 14, display: 'flex', flexDirection: 'column', gap: 14, fontSize: 12.5 }}
+        style={{
+          padding: 14,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 14,
+          fontSize: 'var(--fs-meta)',
+        }}
       >
         <TwkSelect
           label={t('tweaks.lang.label')}

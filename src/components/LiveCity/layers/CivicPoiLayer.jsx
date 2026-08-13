@@ -43,7 +43,7 @@ export function CivicPoiLayer({ dimmed = false }) {
           >
             {!dimmed && (
               <Tooltip direction="top">
-                <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 12 }}>
+                <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }}>
                   <strong>{p.name}</strong>
                   <br />
                   <span style={{ color: cat.color, fontWeight: 600 }}>{cat.label}</span>

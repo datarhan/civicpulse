@@ -59,14 +59,14 @@ export function VoteProvenance({ provenance }) {
               gap: 6,
               alignItems: 'baseline',
               flexWrap: 'wrap',
-              fontSize: 11,
+              fontSize: 'var(--fs-micro)',
               lineHeight: 1.45,
             }}
           >
             <span
               className="mono"
               style={{
-                fontSize: 9.5,
+                fontSize: 'var(--fs-micro)',
                 letterSpacing: 0.3,
                 color: 'var(--ink50)',
                 textTransform: 'uppercase',
@@ -79,12 +79,14 @@ export function VoteProvenance({ provenance }) {
               {VOTE_SOURCE_KINDS[ref.kind]?.label ?? ref.kind} →
             </ExtLink>
             {ref.locator && (
-              <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+              <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
                 {ref.locator}
               </span>
             )}
             {note && (
-              <span style={{ fontSize: 10.5, color: 'var(--ink50)', fontStyle: 'italic' }}>
+              <span
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', fontStyle: 'italic' }}
+              >
                 {note}
               </span>
             )}

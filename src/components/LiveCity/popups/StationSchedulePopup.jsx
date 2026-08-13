@@ -45,13 +45,13 @@ export function StationSchedulePopup({ name, match, rawStation }) {
               display: 'grid',
               placeItems: 'center',
               fontFamily: 'DM Mono, monospace',
-              fontSize: 9,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 800,
             }}
           >
             {station.line}
           </span>
-          <span style={{ fontWeight: 700, fontSize: 14 }}>{station.label}</span>
+          <span style={{ fontWeight: 700, fontSize: 'var(--fs-body)' }}>{station.label}</span>
         </div>
         {sched ? (
           <div style={{ borderTop: '1px solid #DCD7C8', paddingTop: 4 }}>
@@ -60,13 +60,19 @@ export function StationSchedulePopup({ name, match, rawStation }) {
                 key={d.heading}
                 style={{ display: 'flex', alignItems: 'baseline', gap: 8, padding: '4px 0' }}
               >
-                <span style={{ fontSize: 11, color: 'rgba(11,15,25,.55)', minWidth: 120 }}>
+                <span
+                  style={{
+                    fontSize: 'var(--fs-micro)',
+                    color: 'rgba(11,15,25,.55)',
+                    minWidth: 120,
+                  }}
+                >
                   → {d.heading}
                 </span>
                 <span
                   style={{
                     fontFamily: 'DM Mono, monospace',
-                    fontSize: 13,
+                    fontSize: 'var(--fs-aux)',
                     fontWeight: 700,
                     color: '#0B0F19',
                   }}
@@ -77,13 +83,15 @@ export function StationSchedulePopup({ name, match, rawStation }) {
                 <span
                   style={{
                     fontFamily: 'DM Mono, monospace',
-                    fontSize: 11,
+                    fontSize: 'var(--fs-micro)',
                     color: '#B45309',
                   }}
                 >
                   {d.minutesAway === 0 ? 'ahora' : `${d.minutesAway} min`}
                 </span>
-                <span style={{ fontSize: 10, color: 'rgba(11,15,25,.45)' }}>aprox</span>
+                <span style={{ fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.45)' }}>
+                  aprox
+                </span>
               </div>
             ))}
           </div>
@@ -94,10 +102,22 @@ export function StationSchedulePopup({ name, match, rawStation }) {
                 key={h}
                 style={{ display: 'flex', alignItems: 'baseline', gap: 8, padding: '3px 0' }}
               >
-                <span style={{ fontSize: 11.5, color: 'rgba(11,15,25,.55)', minWidth: 110 }}>
+                <span
+                  style={{
+                    fontSize: 'var(--fs-micro)',
+                    color: 'rgba(11,15,25,.55)',
+                    minWidth: 110,
+                  }}
+                >
                   → {h}
                 </span>
-                <span style={{ fontSize: 11, color: 'rgba(11,15,25,.55)', fontStyle: 'italic' }}>
+                <span
+                  style={{
+                    fontSize: 'var(--fs-micro)',
+                    color: 'rgba(11,15,25,.55)',
+                    fontStyle: 'italic',
+                  }}
+                >
                   ver horario en metrovalencia.es
                 </span>
               </div>
@@ -107,7 +127,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
         <div
           style={{
             marginTop: 8,
-            fontSize: 11,
+            fontSize: 'var(--fs-micro)',
             color: 'rgba(11,15,25,.65)',
           }}
         >
@@ -119,7 +139,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
           <div
             style={{
               marginTop: 4,
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               color: 'rgba(11,15,25,.55)',
               fontFamily: 'DM Mono, monospace',
               letterSpacing: '.04em',
@@ -133,7 +153,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
           style={{
             marginTop: 6,
             display: 'inline-block',
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             color: 'var(--civic)',
             textDecoration: 'none',
           }}
@@ -161,20 +181,20 @@ export function StationSchedulePopup({ name, match, rawStation }) {
               display: 'grid',
               placeItems: 'center',
               fontFamily: 'DM Mono, monospace',
-              fontSize: 8,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 800,
             }}
           >
             RE
           </span>
-          <span style={{ fontWeight: 700, fontSize: 14 }}>{name}</span>
+          <span style={{ fontWeight: 700, fontSize: 'var(--fs-body)' }}>{name}</span>
         </div>
-        <div style={{ borderTop: '1px solid #DCD7C8', paddingTop: 6, fontSize: 12 }}>
+        <div style={{ borderTop: '1px solid #DCD7C8', paddingTop: 6, fontSize: 'var(--fs-meta)' }}>
           <div style={{ color: 'rgba(11,15,25,.75)', marginBottom: 4 }}>
             Estación sobre la línea de Adif (ferrocarril convencional). No forma parte de L9
             Metrovalencia.
           </div>
-          <div style={{ color: 'rgba(11,15,25,.55)', fontSize: 11.5 }}>
+          <div style={{ color: 'rgba(11,15,25,.55)', fontSize: 'var(--fs-micro)' }}>
             {rawStation?.operator || 'Adif · Red convencional'}
           </div>
         </div>
@@ -185,7 +205,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
           style={{
             marginTop: 8,
             display: 'inline-block',
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             color: 'var(--civic)',
             textDecoration: 'none',
           }}
@@ -201,11 +221,13 @@ export function StationSchedulePopup({ name, match, rawStation }) {
   const sched = computeStationSchedule(meta, now)
   const row = (dirLabel, dep, isApprox) => (
     <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, padding: '4px 0' }}>
-      <span style={{ fontSize: 11, color: 'rgba(11,15,25,.55)', minWidth: 96 }}>→ {dirLabel}</span>
+      <span style={{ fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.55)', minWidth: 96 }}>
+        → {dirLabel}
+      </span>
       <span
         style={{
           fontFamily: 'DM Mono, monospace',
-          fontSize: 13,
+          fontSize: 'var(--fs-aux)',
           fontWeight: 700,
           color: '#0B0F19',
         }}
@@ -213,10 +235,14 @@ export function StationSchedulePopup({ name, match, rawStation }) {
         {dep.label}
         {dep.afterMidnight ? ' (mañana)' : ''}
       </span>
-      <span style={{ fontFamily: 'DM Mono, monospace', fontSize: 11, color: '#B45309' }}>
+      <span
+        style={{ fontFamily: 'DM Mono, monospace', fontSize: 'var(--fs-micro)', color: '#B45309' }}
+      >
         {dep.minutesAway === 0 ? 'ahora' : `${dep.minutesAway} min`}
       </span>
-      {isApprox && <span style={{ fontSize: 10, color: 'rgba(11,15,25,.45)' }}>aprox</span>}
+      {isApprox && (
+        <span style={{ fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.45)' }}>aprox</span>
+      )}
     </div>
   )
 
@@ -240,17 +266,17 @@ export function StationSchedulePopup({ name, match, rawStation }) {
             display: 'grid',
             placeItems: 'center',
             fontFamily: 'DM Mono, monospace',
-            fontSize: 8,
+            fontSize: 'var(--fs-micro)',
             fontWeight: 800,
           }}
         >
           L9
         </span>
-        <span style={{ fontWeight: 700, fontSize: 14 }}>{meta.label}</span>
+        <span style={{ fontWeight: 700, fontSize: 'var(--fs-body)' }}>{meta.label}</span>
         {meta.terminus && (
           <span
             style={{
-              fontSize: 9,
+              fontSize: 'var(--fs-micro)',
               fontFamily: 'DM Mono, monospace',
               background: '#EEF4FF',
               color: 'var(--civic)',
@@ -272,7 +298,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
       <div
         style={{
           marginTop: 6,
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           color: 'rgba(11,15,25,.55)',
           fontFamily: 'DM Mono, monospace',
           letterSpacing: '.04em',
@@ -287,7 +313,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
         style={{
           marginTop: 4,
           display: 'inline-block',
-          fontSize: 12,
+          fontSize: 'var(--fs-meta)',
           color: 'var(--civic)',
           textDecoration: 'none',
         }}

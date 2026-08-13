@@ -27,7 +27,7 @@ export function NetworkLegend() {
       <span
         style={{
           fontFamily: "'DM Mono', monospace",
-          fontSize: 8.5,
+          fontSize: 'var(--fs-micro)',
           color: 'rgba(11,15,25,.62)',
           letterSpacing: '.1em',
           textTransform: 'uppercase',
@@ -47,7 +47,7 @@ export function NetworkLegend() {
               // colour. White measured 1.54:1 on L10, 1.79 on L1, 1.87 on L8.
               color: readableInk(l.color),
               fontFamily: "'DM Mono', monospace",
-              fontSize: 8.5,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 800,
               padding: '1px 4px',
               borderRadius: 'var(--r-input)',

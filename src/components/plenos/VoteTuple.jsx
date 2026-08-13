@@ -29,7 +29,7 @@ export function VoteTuple({ v }) {
         gap: 6,
         padding: '2px 8px',
         borderRadius: 'var(--r-pill)',
-        fontSize: 10.5,
+        fontSize: 'var(--fs-micro)',
         background: bg,
         color: toneVar,
         fontWeight: 600,

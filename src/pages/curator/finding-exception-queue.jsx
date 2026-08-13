@@ -62,7 +62,7 @@ function Label({ children }) {
     <div
       className="mono"
       style={{
-        fontSize: 10,
+        fontSize: 'var(--fs-micro)',
         letterSpacing: '.06em',
         textTransform: 'uppercase',
         color: 'var(--ink50)',
@@ -79,7 +79,7 @@ function Command({ cmd }) {
     <code
       style={{
         display: 'block',
-        fontSize: 10.5,
+        fontSize: 'var(--fs-micro)',
         lineHeight: 1.5,
         padding: '6px 8px',
         background: 'var(--soft)',
@@ -97,10 +97,20 @@ function QuoteRow({ q }) {
   return (
     <div className="feq-quote">
       <div>
-        <div style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--ink70)', fontStyle: 'italic' }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-meta)',
+            lineHeight: 1.5,
+            color: 'var(--ink70)',
+            fontStyle: 'italic',
+          }}
+        >
           «{q.text}»
         </div>
-        <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginTop: 4 }}>
+        <div
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 4 }}
+        >
           [{q.index}] {q.speakerGroup || 'sin grupo atribuido'} · {q.claimId || 'sin claim'}
         </div>
       </div>
@@ -108,10 +118,10 @@ function QuoteRow({ q }) {
         <Pill tone={GATE_TONE[q.gate] || 'neutral'} size="xs">
           {GATE_LABEL[q.gate] || `puerta: ${q.gate ?? 'sin veredicto'}`}
         </Pill>
-        <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+        <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           verificador: {q.verdict ?? '—'}
         </span>
-        <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+        <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           {q.claimType ?? '—'}
           {q.accusationSubtype ? ` · ${q.accusationSubtype}` : ''}
         </span>
@@ -119,7 +129,7 @@ function QuoteRow({ q }) {
             transcripción superada, el curador lo tiene que saber aquí y no en
             otra pantalla. */}
         {q.transcriptStatus && q.transcriptStatus !== 'en-vigente' && (
-          <span className="mono" style={{ fontSize: 10, color: 'var(--warn-ink)' }}>
+          <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--warn-ink)' }}>
             transcripción: {q.transcriptStatus}
           </span>
         )}
@@ -140,7 +150,7 @@ export function FindingExceptionRow({ row }) {
       }}
     >
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-        <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+        <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           {row.plenoDate} · {row.plenoId}
         </span>
         <Pill tone="neutral" size="xs">
@@ -161,16 +171,21 @@ export function FindingExceptionRow({ row }) {
             con réplica
           </Pill>
         )}
-        <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginLeft: 'auto' }}>
+        <span
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 'auto' }}
+        >
           {row.citasMostrables}/{row.quotes.length} mostrables
         </span>
       </div>
-      <div style={{ fontSize: 13.5, fontWeight: 600, lineHeight: 1.35, marginTop: 6 }}>
+      <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 600, lineHeight: 1.35, marginTop: 6 }}>
         {row.title}
       </div>
       <div style={{ marginTop: 8 }}>
         <Label>Sumario publicado — es lo que se está juzgando</Label>
-        <div style={{ fontSize: 12, lineHeight: 1.55, color: 'var(--ink70)' }}>{row.summary}</div>
+        <div style={{ fontSize: 'var(--fs-meta)', lineHeight: 1.55, color: 'var(--ink70)' }}>
+          {row.summary}
+        </div>
       </div>
       <div style={{ marginTop: 10 }}>
         <Label>
@@ -186,7 +201,7 @@ export function FindingExceptionRow({ row }) {
         className="mono"
         style={{
           marginTop: 4,
-          fontSize: 11,
+          fontSize: 'var(--fs-micro)',
           padding: '4px 10px',
           border: '1px solid var(--border2)',
           background: 'var(--paper)',

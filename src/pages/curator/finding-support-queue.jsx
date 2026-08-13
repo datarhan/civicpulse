@@ -60,7 +60,7 @@ function Label({ children }) {
     <div
       className="mono"
       style={{
-        fontSize: 10,
+        fontSize: 'var(--fs-micro)',
         letterSpacing: '.06em',
         textTransform: 'uppercase',
         color: 'var(--ink50)',
@@ -93,7 +93,7 @@ function ExcerptCard({ ref_, kind, excerpt }) {
           rel="noreferrer noopener"
           className="mono"
           style={{
-            fontSize: 10,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--civic)',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -105,7 +105,9 @@ function ExcerptCard({ ref_, kind, excerpt }) {
       </div>
       {/* Verbatim del snapshot: ni recortado ni re-envuelto. Lo que el curador
           juzga tiene que ser byte a byte lo que el lector tiene delante. */}
-      <div style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--ink70)' }}>{excerpt}</div>
+      <div style={{ fontSize: 'var(--fs-meta)', lineHeight: 1.5, color: 'var(--ink70)' }}>
+        {excerpt}
+      </div>
     </div>
   )
 }
@@ -138,7 +140,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
       }}
     >
       <div style={{ display: 'flex', gap: 8, alignItems: 'baseline', flexWrap: 'wrap' }}>
-        <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+        <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           {row.plenoDate} · {row.id}
         </span>
         <Pill tone={SHAPE_TONE[row.claimShape] ?? 'neutral'} size="xs">
@@ -155,20 +157,27 @@ export function FindingSupportRow({ row, verdictOptions }) {
           </Pill>
         )}
         {row.corrections?.length > 0 && (
-          <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+          <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             {row.corrections.length} corrección(es) en la bitácora
           </span>
         )}
       </div>
 
-      <div style={{ fontSize: 13.5, fontWeight: 600, margin: '6px 0 2px', lineHeight: 1.35 }}>
+      <div
+        style={{
+          fontSize: 'var(--fs-aux)',
+          fontWeight: 600,
+          margin: '6px 0 2px',
+          lineHeight: 1.35,
+        }}
+      >
         {row.title}
       </div>
 
       {row.priorReview && (
         <div
           style={{
-            fontSize: 11.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             fontStyle: 'italic',
             lineHeight: 1.45,
@@ -190,7 +199,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
           <Label>Sumario publicado</Label>
           <div
             style={{
-              fontSize: 13,
+              fontSize: 'var(--fs-aux)',
               lineHeight: 1.55,
               padding: '8px 10px',
               border: '1px solid var(--border2)',
@@ -206,9 +215,12 @@ export function FindingSupportRow({ row, verdictOptions }) {
               {row.documentaryConnectors.map((c, i) => (
                 <div
                   key={`${c.name}-${i}`}
-                  style={{ fontSize: 11.5, color: 'var(--ink50)', lineHeight: 1.45 }}
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', lineHeight: 1.45 }}
                 >
-                  <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+                  <span
+                    className="mono"
+                    style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                  >
                     [{c.name}]
                   </span>{' '}
                   {c.sentence}
@@ -217,7 +229,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
             </div>
           )}
           {row.hedges?.length > 0 && (
-            <div style={{ marginTop: 6, fontSize: 11.5, color: 'var(--ink50)' }}>
+            <div style={{ marginTop: 6, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               <Label>Matices detectados</Label>
               {row.hedges.map((h) => `${h.name}: «${h.match}»`).join(' · ')}
             </div>
@@ -228,10 +240,18 @@ export function FindingSupportRow({ row, verdictOptions }) {
               {row.quotes.map((q, i) => (
                 <div
                   key={i}
-                  style={{ fontSize: 12, color: 'var(--ink70)', lineHeight: 1.5, marginBottom: 6 }}
+                  style={{
+                    fontSize: 'var(--fs-meta)',
+                    color: 'var(--ink70)',
+                    lineHeight: 1.5,
+                    marginBottom: 6,
+                  }}
                 >
                   «{q.text}»{' '}
-                  <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+                  <span
+                    className="mono"
+                    style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                  >
                     {q.speakerGroup ?? 'grupo no identificado'}
                   </span>
                   {/* Lo que el lector ya ve junto a esta cita en /hallazgos.
@@ -251,7 +271,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
             <ExcerptCard key={`${c.ref}-${i}`} ref_={c.ref} kind={c.kind} excerpt={c.excerpt} />
           ))}
           {(row.crossChecked ?? []).length === 0 && (
-            <div style={{ fontSize: 12, color: 'var(--ink50)' }}>
+            <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
               Ningún documento cotejado. El sumario no puede apoyarse en uno.
             </div>
           )}
@@ -272,7 +292,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
         <label
           className="mono"
           htmlFor={`verdict-${row.id}`}
-          style={{ fontSize: 10.5, color: 'var(--ink50)' }}
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
         >
           ¿Lo sostiene?
         </label>
@@ -282,7 +302,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
           onChange={(e) => setVerdict(e.target.value)}
           style={{
             padding: '5px 8px',
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             borderRadius: 'var(--r-input)',
             border: '1px solid var(--border2)',
             background: 'var(--card)',
@@ -296,7 +316,9 @@ export function FindingSupportRow({ row, verdictOptions }) {
           ))}
         </select>
         {chosen && (
-          <span style={{ fontSize: 11.5, color: 'var(--ink50)', flex: 1, minWidth: 220 }}>
+          <span
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', flex: 1, minWidth: 220 }}
+          >
             {chosen.question}
           </span>
         )}
@@ -309,7 +331,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
             <code
               style={{
                 flex: 1,
-                fontSize: 11,
+                fontSize: 'var(--fs-micro)',
                 lineHeight: 1.5,
                 padding: '8px 10px',
                 background: 'var(--soft)',
@@ -324,7 +346,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
               onClick={copy}
               style={{
                 padding: '5px 12px',
-                fontSize: 12,
+                fontSize: 'var(--fs-meta)',
                 fontWeight: 600,
                 borderRadius: 'var(--r-input)',
                 border: '1px solid var(--border2)',
@@ -336,7 +358,14 @@ export function FindingSupportRow({ row, verdictOptions }) {
               {copied ? 'Copiado' : 'Copiar'}
             </button>
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 4, lineHeight: 1.45 }}>
+          <div
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              marginTop: 4,
+              lineHeight: 1.45,
+            }}
+          >
             Esta pantalla no escribe en <code>public/data/pleno-findings.json</code>. El único
             escritor es la CLI, que exige un motivo de ≥20 caracteres y deja fila pública en la
             bitácora.

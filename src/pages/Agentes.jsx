@@ -28,8 +28,10 @@ export default function Agentes() {
   return (
     <div style={{ padding: '24px 0', display: 'grid', gap: 16 }}>
       <header>
-        <h1 style={{ margin: 0, fontSize: 22, color: 'var(--ink)' }}>Periodistas IA</h1>
-        <p style={{ margin: '6px 0 0 0', fontSize: 13, color: 'var(--ink50)' }}>
+        <h1 style={{ margin: 0, fontSize: 'var(--fs-card)', color: 'var(--ink)' }}>
+          Periodistas IA
+        </h1>
+        <p style={{ margin: '6px 0 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
           Cada informe nace de una asignación que un agente automático investiga, redacta y
           autoverifica. La curaduría humana revisa antes de publicar. Las fuentes citadas se
           archivan en Wayback cuando es posible.
@@ -39,9 +41,9 @@ export default function Agentes() {
       <Card>
         <SectionHead title="Asignaciones" />
         {loading ? (
-          <div style={{ color: 'var(--ink50)', fontSize: 13 }}>Cargando…</div>
+          <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>Cargando…</div>
         ) : visibleAssignments.length === 0 ? (
-          <div style={{ color: 'var(--ink50)', fontSize: 13 }}>
+          <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>
             Aún no hay asignaciones. Un curador puede crear la primera con{' '}
             <code>npm run journalist:assign</code>.
           </div>
@@ -63,19 +65,24 @@ export default function Agentes() {
                     {report ? (
                       <Link
                         to={`/laboratorio/agentes/${a.id}`}
-                        style={{ fontSize: 15, fontWeight: 600, color: 'var(--ink)' }}
+                        style={{ fontSize: 'var(--fs-body)', fontWeight: 600, color: 'var(--ink)' }}
                       >
                         {a.subject.name}
                       </Link>
                     ) : (
-                      <span style={{ fontSize: 15, fontWeight: 600, color: 'var(--ink)' }}>
+                      <span
+                        style={{ fontSize: 'var(--fs-body)', fontWeight: 600, color: 'var(--ink)' }}
+                      >
                         {a.subject.name}
                       </span>
                     )}
                     <Pill tone={ASSIGNMENT_STATUS_TONE[a.status] || 'ghost'}>
                       {ASSIGNMENT_STATUS_LABEL[a.status] || a.status}
                     </Pill>
-                    <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+                    <span
+                      className="mono"
+                      style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                    >
                       {a.kind}
                     </span>
                     {report && report.legalSensitivity !== 'low' && (
@@ -85,10 +92,15 @@ export default function Agentes() {
                       </Pill>
                     )}
                   </div>
-                  <div style={{ fontSize: 12.5, color: 'var(--ink50)', lineHeight: 1.5 }}>
+                  <div
+                    style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.5 }}
+                  >
                     {a.brief}
                   </div>
-                  <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+                  <div
+                    className="mono"
+                    style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                  >
                     creada {a.createdAt.slice(0, 10)}
                     {a.lastRunAt && <span> · última ejecución {a.lastRunAt.slice(0, 10)}</span>}
                     {report && (
@@ -99,7 +111,7 @@ export default function Agentes() {
                     )}
                   </div>
                   {a.lastErrorMsg && (
-                    <div style={{ fontSize: 11.5, color: 'var(--crit, #d92d20)' }}>
+                    <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--crit, #d92d20)' }}>
                       {a.lastErrorMsg}
                     </div>
                   )}
@@ -117,7 +129,7 @@ export default function Agentes() {
             margin: 0,
             paddingLeft: 18,
             color: 'var(--ink70)',
-            fontSize: 13,
+            fontSize: 'var(--fs-aux)',
             lineHeight: 1.6,
           }}
         >

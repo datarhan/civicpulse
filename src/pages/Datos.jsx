@@ -311,16 +311,27 @@ function DatasetsCatalog() {
             }}
           >
             <div style={{ minWidth: 0, flex: 1 }}>
-              <div style={{ fontSize: 14.5, fontWeight: 600, letterSpacing: '-.005em' }}>
+              <div
+                style={{ fontSize: 'var(--fs-body)', fontWeight: 600, letterSpacing: '-.005em' }}
+              >
                 {d.name}
               </div>
-              <div className="mono" style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 3 }}>
+              <div
+                className="mono"
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 3 }}
+              >
                 {d.rows}
               </div>
-              <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}>
+              <div
+                className="mono"
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+              >
                 Fuente: {d.source}
               </div>
-              <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginTop: 2 }}>
+              <div
+                className="mono"
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+              >
                 Actualizado {d.updated}
               </div>
             </div>
@@ -348,7 +359,7 @@ function DatasetsCatalog() {
               rel="noreferrer"
               className="mono"
               style={{
-                fontSize: 10.5,
+                fontSize: 'var(--fs-micro)',
                 color: 'var(--civic)',
                 textDecoration: 'none',
                 fontWeight: 600,
@@ -381,7 +392,7 @@ function WikidataCard() {
       <div
         className="mono"
         style={{
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.06em',
@@ -389,7 +400,7 @@ function WikidataCard() {
       >
         {label}
       </div>
-      <div className="mono" style={{ fontSize: 15, fontWeight: 700, marginTop: 3 }}>
+      <div className="mono" style={{ fontSize: 'var(--fs-body)', fontWeight: 700, marginTop: 3 }}>
         {value}
       </div>
     </div>
@@ -397,7 +408,14 @@ function WikidataCard() {
   return (
     <Card>
       <SectionHead eyebrow={`Identidad del municipio · Wikidata ${f.qid}`} title={f.label} />
-      <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 2, marginBottom: 12 }}>
+      <div
+        style={{
+          fontSize: 'var(--fs-meta)',
+          color: 'var(--ink50)',
+          marginTop: 2,
+          marginBottom: 12,
+        }}
+      >
         {f.description} · actualizado {generated}
       </div>
       <div
@@ -432,7 +450,7 @@ function WikidataCard() {
           display: 'flex',
           gap: 14,
           flexWrap: 'wrap',
-          fontSize: 11.5,
+          fontSize: 'var(--fs-micro)',
         }}
       >
         <div>
@@ -487,7 +505,7 @@ function PopulationChart() {
   if (loading)
     return (
       <Card>
-        <div style={{ color: 'var(--ink50)', fontSize: 13 }}>Cargando padrón INE…</div>
+        <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>Cargando padrón INE…</div>
       </Card>
     )
   if (error || !data) return null
@@ -550,16 +568,21 @@ function PopulationChart() {
         style={{ display: 'flex', gap: 20, alignItems: 'baseline', marginTop: 4, marginBottom: 4 }}
       >
         <div>
-          <div className="mono" style={{ fontSize: 28, fontWeight: 800, letterSpacing: '-.01em' }}>
+          <div
+            className="mono"
+            style={{ fontSize: 'var(--fs-page)', fontWeight: 800, letterSpacing: '-.01em' }}
+          >
             {latest.value.toLocaleString('es-ES')}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>habitantes · {latest.year}</div>
+          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+            habitantes · {latest.year}
+          </div>
         </div>
         <div>
           <div
             className="mono"
             style={{
-              fontSize: 14,
+              fontSize: 'var(--fs-body)',
               fontWeight: 700,
               color: data.growth.decadePct >= 0 ? 'var(--ok-ink)' : 'var(--crit-ink)',
             }}
@@ -567,9 +590,9 @@ function PopulationChart() {
             {data.growth.decadePct >= 0 ? '+' : ''}
             {data.growth.decadePct.toFixed(1)}%
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>10 años</div>
+          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>10 años</div>
         </div>
-        <div style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--ink50)' }}>
+        <div style={{ marginLeft: 'auto', fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           actualizado {generated} · INE Tempus3 tabla 2903
         </div>
       </div>
@@ -615,7 +638,7 @@ function PopulationChart() {
           <circle key={i} cx={xAt(i)} cy={yAt(p.value)} r="2" fill="var(--civic)" />
         ))}
       </svg>
-      <div style={{ display: 'flex', gap: 20, marginTop: 14, fontSize: 12 }}>
+      <div style={{ display: 'flex', gap: 20, marginTop: 14, fontSize: 'var(--fs-meta)' }}>
         <div>
           <span className="mono" style={{ fontWeight: 700 }}>
             {men[men.length - 1]?.value.toLocaleString('es-ES')}
@@ -628,7 +651,7 @@ function PopulationChart() {
           </span>{' '}
           <span style={{ color: 'var(--ink50)' }}>mujeres</span>
         </div>
-        <div style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--ink50)' }}>
+        <div style={{ marginLeft: 'auto', fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           fuente:{' '}
           <ExtLink href={data.source} style={{ color: 'var(--civic)' }}>
             ine.es
@@ -655,7 +678,7 @@ function TransparencyDocsCard() {
             <div
               className="mono"
               style={{
-                fontSize: 10.5,
+                fontSize: 'var(--fs-micro)',
                 color: 'var(--ink50)',
                 textTransform: 'uppercase',
                 letterSpacing: '.06em',
@@ -671,7 +694,7 @@ function TransparencyDocsCard() {
                   href={d.url}
                   className="mono"
                   style={{
-                    fontSize: 11,
+                    fontSize: 'var(--fs-micro)',
                     color: 'var(--civic)',
                     textDecoration: 'none',
                     border: '1px solid var(--border)',
@@ -687,7 +710,10 @@ function TransparencyDocsCard() {
           </div>
         ))}
       </div>
-      <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginTop: 10 }}>
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 10 }}
+      >
         Catálogo de enlaces a los PDF oficiales · sin extracción de datos sensibles ·{' '}
         {fmtDateShort(data.generatedAt)}
       </div>
@@ -729,7 +755,7 @@ function AsociacionesCard() {
           <div
             key={i}
             style={{
-              fontSize: 12.5,
+              fontSize: 'var(--fs-meta)',
               color: 'var(--ink70)',
               padding: '3px 0',
               borderBottom: '1px solid var(--border2)',
@@ -740,7 +766,14 @@ function AsociacionesCard() {
           </div>
         ))}
       </div>
-      <p style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 10, marginBottom: 0 }}>
+      <p
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          marginTop: 10,
+          marginBottom: 0,
+        }}
+      >
         Fuente: Registro Municipal de Asociaciones · Ayuntamiento de Riba-roja de Túria.
       </p>
     </Card>
@@ -783,7 +816,7 @@ export default function Datos() {
         <div
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
@@ -791,14 +824,23 @@ export default function Datos() {
         >
           {t('datos.eyebrow')}
         </div>
-        <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-page)',
+            fontWeight: 700,
+            letterSpacing: '-.015em',
+            marginTop: 2,
+          }}
+        >
           {t('datos.title')}
         </div>
-        <div style={{ fontSize: 13.5, color: 'var(--ink50)', marginTop: 4, maxWidth: 620 }}>
+        <div
+          style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4, maxWidth: 620 }}
+        >
           Todo lo que alimenta CivicPulse, descargable y consultable vía API. Periodismo,
           investigación y transparencia.
         </div>
-        <div style={{ marginTop: 8, fontSize: 12 }}>
+        <div style={{ marginTop: 8, fontSize: 'var(--fs-meta)' }}>
           <a
             href="/lab-health"
             style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}
@@ -831,7 +873,7 @@ export default function Datos() {
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',

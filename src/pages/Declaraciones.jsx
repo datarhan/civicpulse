@@ -36,7 +36,7 @@ function MiniStat({ label, value, tone }) {
       <div
         className="mono"
         style={{
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.06em',
@@ -44,7 +44,10 @@ function MiniStat({ label, value, tone }) {
       >
         {label}
       </div>
-      <div className="mono" style={{ fontSize: 18, fontWeight: 600, color, marginTop: 2 }}>
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-head)', fontWeight: 600, color, marginTop: 2 }}
+      >
         {value.toLocaleString('es-ES')}
       </div>
     </div>
@@ -76,7 +79,7 @@ function FilterChip({ active, label, count, onClick, tone }) {
       style={{
         padding: '4px 10px',
         borderRadius: 'var(--r-input)',
-        fontSize: 11.5,
+        fontSize: 'var(--fs-micro)',
         fontWeight: active ? 600 : 500,
         border: '1px solid ' + (active ? 'transparent' : 'var(--border2)'),
         background: active ? activeBg : 'transparent',
@@ -87,7 +90,7 @@ function FilterChip({ active, label, count, onClick, tone }) {
     >
       {label}
       {count != null && (
-        <span className="mono" style={{ marginLeft: 6, fontSize: 10.5 }}>
+        <span className="mono" style={{ marginLeft: 6, fontSize: 'var(--fs-micro)' }}>
           {count.toLocaleString('es-ES')}
         </span>
       )}
@@ -124,7 +127,7 @@ function ClaimRow({ item, plenoTitle }) {
         <span
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: speakerColor,
             fontWeight: 700,
             letterSpacing: '.04em',
@@ -132,19 +135,24 @@ function ClaimRow({ item, plenoTitle }) {
         >
           {c.speakerGroup ? blocLabel(c.speakerGroup) : 'sin atribuir'}
         </span>
-        <span style={{ fontSize: 11, color: 'var(--ink50)' }}>· {c.topic}</span>
+        <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>· {c.topic}</span>
         <span style={{ flex: 1 }} />
         <Link
           to={`/plenos`}
-          style={{ fontSize: 11, color: 'var(--ink50)', textDecoration: 'none' }}
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', textDecoration: 'none' }}
           title={plenoTitle ?? c.plenoId}
         >
           {c.plenoDate}
         </Link>
       </div>
-      <div style={{ fontSize: 13.5, lineHeight: 1.5, marginBottom: 6 }}>«{c.verbatim}»</div>
+      <div style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.5, marginBottom: 6 }}>
+        «{c.verbatim}»
+      </div>
       {ent.length > 0 && (
-        <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginBottom: 6 }}>
+        <div
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 6 }}
+        >
           {ent.join(' · ')}
         </div>
       )}
@@ -154,7 +162,7 @@ function ClaimRow({ item, plenoTitle }) {
             marginTop: 6,
             paddingTop: 6,
             borderTop: '1px dashed var(--border2)',
-            fontSize: 11.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             lineHeight: 1.5,
           }}
@@ -162,7 +170,7 @@ function ClaimRow({ item, plenoTitle }) {
           <div
             className="mono"
             style={{
-              fontSize: 9,
+              fontSize: 'var(--fs-micro)',
               letterSpacing: '.1em',
               textTransform: 'uppercase',
               color: 'var(--ink50)',
@@ -178,7 +186,7 @@ function ClaimRow({ item, plenoTitle }) {
             <div key={i} style={{ marginTop: 2 }}>
               <span
                 className="mono"
-                style={{ fontSize: 10, color: 'var(--ink50)', marginRight: 6 }}
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginRight: 6 }}
               >
                 [{e.kind}]
               </span>
@@ -273,12 +281,16 @@ export default function Declaraciones() {
 
   if (claims.loading) {
     return (
-      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 13 }}>{t('common.loading')}</div>
+      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>
+        {t('common.loading')}
+      </div>
     )
   }
   if (claims.error) {
     return (
-      <div style={{ padding: 32, color: 'var(--crit)', fontSize: 13 }}>{claims.error.message}</div>
+      <div style={{ padding: 32, color: 'var(--crit)', fontSize: 'var(--fs-aux)' }}>
+        {claims.error.message}
+      </div>
     )
   }
 
@@ -289,7 +301,7 @@ export default function Declaraciones() {
       <SectionHead eyebrow={t('declaraciones.eyebrow')} title={t('declaraciones.title')} />
       <p
         style={{
-          fontSize: 13,
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           lineHeight: 1.55,
           maxWidth: 780,
@@ -341,7 +353,7 @@ export default function Declaraciones() {
           <span
             className="mono"
             style={{
-              fontSize: 9.5,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               textTransform: 'uppercase',
               letterSpacing: '.08em',
@@ -378,7 +390,7 @@ export default function Declaraciones() {
           <span
             className="mono"
             style={{
-              fontSize: 9.5,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               textTransform: 'uppercase',
               letterSpacing: '.08em',
@@ -413,7 +425,7 @@ export default function Declaraciones() {
           <span
             className="mono"
             style={{
-              fontSize: 9.5,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               textTransform: 'uppercase',
               letterSpacing: '.08em',
@@ -449,13 +461,13 @@ export default function Declaraciones() {
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
               color: 'var(--ink)',
-              fontSize: 12.5,
+              fontSize: 'var(--fs-meta)',
             }}
           />
         </div>
       </div>
 
-      <div style={{ fontSize: 12, color: 'var(--ink50)', marginBottom: 8 }}>
+      <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginBottom: 8 }}>
         {filtered.length.toLocaleString('es-ES')} {t('declaraciones.matchCount')}
       </div>
 
@@ -475,7 +487,7 @@ export default function Declaraciones() {
               border: '1px solid var(--border2)',
               background: 'var(--soft)',
               color: 'var(--ink)',
-              fontSize: 12.5,
+              fontSize: 'var(--fs-meta)',
               cursor: 'pointer',
             }}
           >
@@ -486,7 +498,14 @@ export default function Declaraciones() {
       )}
       {filtered.length === 0 && (
         <Card>
-          <div style={{ padding: 16, textAlign: 'center', color: 'var(--ink50)', fontSize: 13 }}>
+          <div
+            style={{
+              padding: 16,
+              textAlign: 'center',
+              color: 'var(--ink50)',
+              fontSize: 'var(--fs-aux)',
+            }}
+          >
             {t('declaraciones.empty')}
           </div>
         </Card>

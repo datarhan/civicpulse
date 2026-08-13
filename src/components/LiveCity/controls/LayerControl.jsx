@@ -33,7 +33,7 @@ const cardStyle = {
 
 const titleStyle = {
   fontFamily: "'DM Mono', monospace",
-  fontSize: 8.5,
+  fontSize: 'var(--fs-micro)',
   color: 'rgba(11,15,25,.62)',
   letterSpacing: '.12em',
   textTransform: 'uppercase',
@@ -47,7 +47,7 @@ function chipStyle(on) {
     display: 'inline-flex',
     alignItems: 'center',
     gap: 5,
-    fontSize: 12,
+    fontSize: 'var(--fs-meta)',
     fontWeight: 600,
     padding: '4px 9px',
     borderRadius: 'var(--r-pill)',

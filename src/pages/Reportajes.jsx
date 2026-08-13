@@ -26,7 +26,7 @@ function ReportajeCard({ slug, readLabel }) {
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -43,7 +43,7 @@ function ReportajeCard({ slug, readLabel }) {
       <h2
         style={{
           fontFamily: SERIF,
-          fontSize: 24,
+          fontSize: 'var(--fs-page)',
           fontWeight: 600,
           letterSpacing: '-.015em',
           lineHeight: 1.15,
@@ -54,13 +54,25 @@ function ReportajeCard({ slug, readLabel }) {
           {m.titulo}
         </Link>
       </h2>
-      <p style={{ fontSize: 14.5, color: 'var(--ink50)', lineHeight: 1.5, margin: '0 0 12px' }}>
+      <p
+        style={{
+          fontSize: 'var(--fs-body)',
+          color: 'var(--ink50)',
+          lineHeight: 1.5,
+          margin: '0 0 12px',
+        }}
+      >
         {m.subtitulo}
       </p>
       <Link
         to={href}
         className="mono"
-        style={{ fontSize: 12, color: 'var(--civic)', textDecoration: 'none', fontWeight: 600 }}
+        style={{
+          fontSize: 'var(--fs-meta)',
+          color: 'var(--civic)',
+          textDecoration: 'none',
+          fontWeight: 600,
+        }}
       >
         {readLabel}
       </Link>
@@ -75,7 +87,7 @@ export default function Reportajes() {
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -86,7 +98,7 @@ export default function Reportajes() {
       <h1
         style={{
           fontFamily: SERIF,
-          fontSize: 'clamp(28px, 4.5vw, 38px)',
+          fontSize: 'var(--type-display)',
           fontWeight: 600,
           letterSpacing: '-.015em',
           lineHeight: 1.1,
@@ -95,7 +107,14 @@ export default function Reportajes() {
       >
         {t('reportajes.title')}
       </h1>
-      <p style={{ fontSize: 15.5, color: 'var(--ink50)', lineHeight: 1.55, margin: '0 0 24px' }}>
+      <p
+        style={{
+          fontSize: 'var(--fs-head)',
+          color: 'var(--ink50)',
+          lineHeight: 1.55,
+          margin: '0 0 24px',
+        }}
+      >
         {t('reportajes.intro')}
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>

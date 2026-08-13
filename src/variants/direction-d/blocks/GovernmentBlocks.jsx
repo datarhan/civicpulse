@@ -39,7 +39,7 @@ export function CoalitionRing() {
               placeItems: 'center',
               color: 'white',
               fontFamily: MONO,
-              fontSize: 8.5,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 700,
             }}
           >
@@ -47,7 +47,15 @@ export function CoalitionRing() {
           </div>
         ))}
       </div>
-      <div style={{ display: 'flex', gap: 10, marginTop: 6, flexWrap: 'wrap', fontSize: 10.5 }}>
+      <div
+        style={{
+          display: 'flex',
+          gap: 10,
+          marginTop: 6,
+          flexWrap: 'wrap',
+          fontSize: 'var(--fs-micro)',
+        }}
+      >
         {items.map(({ p, n }) => (
           <span key={p} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
             <span
@@ -93,7 +101,7 @@ export function PromesasBlockD() {
             <span
               className="mono"
               style={{
-                fontSize: 9,
+                fontSize: 'var(--fs-micro)',
                 color: PALETTE.crit,
                 background: 'rgba(220,38,38,.08)',
                 padding: '1px 6px',
@@ -108,13 +116,21 @@ export function PromesasBlockD() {
           )
         }
       />
-      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', fontSize: 11, marginBottom: 8 }}>
+      <div
+        style={{
+          display: 'flex',
+          gap: 6,
+          flexWrap: 'wrap',
+          fontSize: 'var(--fs-micro)',
+          marginBottom: 8,
+        }}
+      >
         {parties.map(([party, n]) => (
           <span
             key={party}
             style={{
               fontFamily: MONO,
-              fontSize: 10.5,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 700,
               color: 'white',
               background: partyColor(party),
@@ -126,12 +142,24 @@ export function PromesasBlockD() {
           </span>
         ))}
       </div>
-      <div style={{ fontSize: 11.5, color: PALETTE.ink80, lineHeight: 1.45, marginBottom: 6 }}>
+      <div
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: PALETTE.ink80,
+          lineHeight: 1.45,
+          marginBottom: 6,
+        }}
+      >
         {t('landing.promesas.blurb')}
       </div>
       <a
         href="/promesas"
-        style={{ color: PALETTE.accent, textDecoration: 'none', fontSize: 11.5, fontWeight: 600 }}
+        style={{
+          color: PALETTE.accent,
+          textDecoration: 'none',
+          fontSize: 'var(--fs-micro)',
+          fontWeight: 600,
+        }}
       >
         {t('landing.promesas.cta')}
       </a>
@@ -161,7 +189,7 @@ export function DepartamentosBlockD() {
             <span
               className="mono"
               style={{
-                fontSize: 9.5,
+                fontSize: 'var(--fs-micro)',
                 color: PALETTE.warnInk,
                 background: 'rgba(217,119,6,.10)',
                 padding: '1px 6px',
@@ -188,7 +216,7 @@ export function DepartamentosBlockD() {
           <div
             className="mono"
             style={{
-              fontSize: 9,
+              fontSize: 'var(--fs-micro)',
               color: PALETTE.ink50,
               textTransform: 'uppercase',
               letterSpacing: '.1em',
@@ -196,7 +224,10 @@ export function DepartamentosBlockD() {
           >
             Concejalías
           </div>
-          <div className="mono" style={{ fontSize: 18, fontWeight: 700, color: PALETTE.ink }}>
+          <div
+            className="mono"
+            style={{ fontSize: 'var(--fs-head)', fontWeight: 700, color: PALETTE.ink }}
+          >
             {totalDepts}
           </div>
         </div>
@@ -205,7 +236,7 @@ export function DepartamentosBlockD() {
             <div
               className="mono"
               style={{
-                fontSize: 9,
+                fontSize: 'var(--fs-micro)',
                 color: PALETTE.ink50,
                 textTransform: 'uppercase',
                 letterSpacing: '.1em',
@@ -213,7 +244,10 @@ export function DepartamentosBlockD() {
             >
               Con responsable
             </div>
-            <div className="mono" style={{ fontSize: 18, fontWeight: 700, color: PALETTE.ink }}>
+            <div
+              className="mono"
+              style={{ fontSize: 'var(--fs-head)', fontWeight: 700, color: PALETTE.ink }}
+            >
               {coverage}/{totalDepts}
             </div>
           </div>
@@ -223,7 +257,7 @@ export function DepartamentosBlockD() {
             <div
               className="mono"
               style={{
-                fontSize: 9,
+                fontSize: 'var(--fs-micro)',
                 color: PALETTE.ink50,
                 textTransform: 'uppercase',
                 letterSpacing: '.1em',
@@ -231,18 +265,33 @@ export function DepartamentosBlockD() {
             >
               Concejales
             </div>
-            <div className="mono" style={{ fontSize: 18, fontWeight: 700, color: PALETTE.ink }}>
+            <div
+              className="mono"
+              style={{ fontSize: 'var(--fs-head)', fontWeight: 700, color: PALETTE.ink }}
+            >
               {totalOfficials}
             </div>
           </div>
         )}
       </div>
-      <div style={{ fontSize: 11.5, color: PALETTE.ink80, lineHeight: 1.45, marginBottom: 6 }}>
+      <div
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: PALETTE.ink80,
+          lineHeight: 1.45,
+          marginBottom: 6,
+        }}
+      >
         {t('landing.rendicion.blurb')}
       </div>
       <a
         href="/departamentos"
-        style={{ color: PALETTE.accent, textDecoration: 'none', fontSize: 11.5, fontWeight: 600 }}
+        style={{
+          color: PALETTE.accent,
+          textDecoration: 'none',
+          fontSize: 'var(--fs-micro)',
+          fontWeight: 600,
+        }}
       >
         {t('landing.rendicion.cta')}
       </a>

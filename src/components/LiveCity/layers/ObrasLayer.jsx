@@ -28,18 +28,23 @@ function renderObraDetail(o) {
     <div key={o.id} style={{ marginBottom: 6 }}>
       <strong>{o.nombre}</strong>
       {o.programa && (
-        <span style={{ fontSize: 10, marginLeft: 6, opacity: 0.7 }}>
+        <span style={{ fontSize: 'var(--fs-micro)', marginLeft: 6, opacity: 0.7 }}>
           {PROGRAMA_LABEL[o.programa] ?? o.programa}
         </span>
       )}
-      <div style={{ fontSize: 12, marginTop: 2 }}>
+      <div style={{ fontSize: 'var(--fs-meta)', marginTop: 2 }}>
         {o.empresa ? `${o.empresa}` : ''}
         {importe != null ? ` · ${fmtEur(importe)} ${importeLabel}` : ''}
         {typeof o.bajaPct === 'number' ? ` · baja ${o.bajaPct}%` : ''}
         {o.plazoMeses ? ` · ${o.plazoMeses} meses` : ''}
         {fecha ? ` · ${fecha}` : ''}
       </div>
-      <a href={o.fichaUrl} target="_blank" rel="noopener noreferrer" style={{ fontSize: 11 }}>
+      <a
+        href={o.fichaUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ fontSize: 'var(--fs-micro)' }}
+      >
         Ver ficha ↗
       </a>
     </div>

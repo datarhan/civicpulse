@@ -51,7 +51,7 @@ function VoiceEnrollmentSection() {
         <SectionHead title="Voice ID enrollment" />
         <span
           className="mono"
-          style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 'auto' }}
         >
           {voices.data
             ? `${enrolledCount}/${total} councillors enrolled · generated ${shortDate(voices.data.generatedAt)}`
@@ -62,7 +62,7 @@ function VoiceEnrollmentSection() {
           disabled={voices.loading}
           style={{
             padding: '5px 10px',
-            fontSize: 11,
+            fontSize: 'var(--fs-micro)',
             border: '1px solid var(--border2)',
             background: 'var(--paper)',
             borderRadius: 'var(--r-input)',
@@ -72,14 +72,21 @@ function VoiceEnrollmentSection() {
           {voices.loading ? 'Loading…' : 'Refresh'}
         </button>
       </div>
-      <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 4, marginBottom: 10 }}>
+      <p
+        style={{
+          fontSize: 'var(--fs-meta)',
+          color: 'var(--ink50)',
+          marginTop: 4,
+          marginBottom: 10,
+        }}
+      >
         Per-councillor voiceprint database (192-dim ECAPA-TDNN embeddings). Enroll from any public
         audio URL — Instagram reel, YouTube clip, official statement. Stored locally in{' '}
         <code>.voiceprints/</code> (gitignored). Used for individual claim attribution at extraction
         time once integration ships; today this is the enrollment tool only.
       </p>
       {voices.error && (
-        <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
+        <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
           Cannot load /api/curator/voiceprints: {voices.error}
         </p>
       )}
@@ -101,7 +108,7 @@ function VoiceEnrollmentSection() {
             >
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-                  <span style={{ fontSize: 13, fontWeight: 600 }}>{r.name}</span>
+                  <span style={{ fontSize: 'var(--fs-aux)', fontWeight: 600 }}>{r.name}</span>
                   <PartyChip party={r.party} />
                   {r.role === 'alcalde' && (
                     <Pill tone="warn" size="sm">
@@ -111,7 +118,7 @@ function VoiceEnrollmentSection() {
                   {enrolled && (
                     <span
                       className="mono"
-                      style={{ fontSize: 10, color: 'var(--ok-ink)' }}
+                      style={{ fontSize: 'var(--fs-micro)', color: 'var(--ok-ink)' }}
                       title={`enrolled ${r.enrollment.enrolledAt}`}
                     >
                       ✓ {Math.round(r.enrollment.durationSec)}s · {r.enrollment.embeddingDim}-dim
@@ -119,7 +126,7 @@ function VoiceEnrollmentSection() {
                   )}
                 </div>
                 {enrolled && r.enrollment.sourceUrl && (
-                  <div style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}>
+                  <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
                     <ExtLink href={r.enrollment.sourceUrl} style={{ color: 'inherit' }}>
                       source ↗
                     </ExtLink>
@@ -132,7 +139,7 @@ function VoiceEnrollmentSection() {
                   disabled={deleting === r.slug}
                   style={{
                     padding: '4px 10px',
-                    fontSize: 11,
+                    fontSize: 'var(--fs-micro)',
                     border: '1px solid var(--border2)',
                     background: 'var(--paper)',
                     borderRadius: 'var(--r-input)',
@@ -150,7 +157,7 @@ function VoiceEnrollmentSection() {
                 }}
                 style={{
                   padding: '4px 10px',
-                  fontSize: 11,
+                  fontSize: 'var(--fs-micro)',
                   border: '1px solid var(--border2)',
                   background: 'var(--paper)',
                   borderRadius: 'var(--r-input)',
@@ -179,11 +186,13 @@ function VoiceEnrollmentSection() {
           aria-modal="true"
         >
           <Card style={{ width: 'min(560px, 100%)', padding: 18 }}>
-            <div className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+            <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               {enrollFor.role ?? '—'} · {enrollFor.party ?? '—'}
             </div>
-            <h3 style={{ margin: '4px 0 12px', fontSize: 16 }}>Enroll voice: {enrollFor.name}</h3>
-            <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 0 }}>
+            <h3 style={{ margin: '4px 0 12px', fontSize: 'var(--fs-head)' }}>
+              Enroll voice: {enrollFor.name}
+            </h3>
+            <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 0 }}>
               Paste any public audio URL with this person speaking — yt-dlp will extract the audio.
               Recommended: <b>≥30 s</b> of clear, uninterrupted speech (interview, statement, press
               conference). The downloaded clip is cached in <code>.voiceprints/audio/</code> for
@@ -201,7 +210,7 @@ function VoiceEnrollmentSection() {
                 padding: '8px 10px',
                 border: '1px solid var(--border2)',
                 borderRadius: 'var(--r-input)',
-                fontSize: 13,
+                fontSize: 'var(--fs-aux)',
                 background: 'var(--paper)',
                 color: 'var(--ink)',
                 marginTop: 8,
@@ -214,7 +223,7 @@ function VoiceEnrollmentSection() {
                   padding: '8px 10px',
                   border: '1px solid var(--crit-ink)',
                   borderRadius: 'var(--r-input)',
-                  fontSize: 11,
+                  fontSize: 'var(--fs-micro)',
                   background: 'var(--soft)',
                   color: 'var(--crit-ink)',
                   whiteSpace: 'pre-wrap',
@@ -316,10 +325,10 @@ function PlenoAssignmentRow({ plenoId, assignment, voiceprintRows, onOverride, b
   return (
     <tr style={{ borderTop: '1px dashed var(--border2)' }}>
       <td style={{ padding: '8px 6px', verticalAlign: 'top' }}>
-        <div className="mono" style={{ fontSize: 11, fontWeight: 600 }}>
+        <div className="mono" style={{ fontSize: 'var(--fs-micro)', fontWeight: 600 }}>
           {assignment.speaker}
         </div>
-        <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+        <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           {assignment.durationSec.toFixed(0)}s · {assignment.segmentCount} seg
         </div>
         <audio
@@ -337,31 +346,47 @@ function PlenoAssignmentRow({ plenoId, assignment, voiceprintRows, onOverride, b
           </Pill>
           {eff.name ? (
             <>
-              <span style={{ fontSize: 12.5 }}>{eff.name}</span>
+              <span style={{ fontSize: 'var(--fs-meta)' }}>{eff.name}</span>
               <PartyChip party={eff.party} />
             </>
           ) : (
-            <span style={{ fontSize: 12, color: 'var(--ink50)' }}>—</span>
+            <span style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>—</span>
           )}
         </div>
         {eff.cosine != null && (
-          <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginTop: 3 }}>
+          <div
+            className="mono"
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 3 }}
+          >
             cos={eff.cosine.toFixed(3)} · margin={(eff.margin ?? 0).toFixed(3)}
           </div>
         )}
         {assignment.curatorOverride && assignment.match && (
-          <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginTop: 2 }}>
+          <div
+            className="mono"
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+          >
             (auto would be {assignment.match.tier} · {assignment.match.name})
           </div>
         )}
         {assignment.curatorOverride?.reason && (
-          <div style={{ fontSize: 11, fontStyle: 'italic', color: 'var(--ink50)', marginTop: 3 }}>
+          <div
+            style={{
+              fontSize: 'var(--fs-micro)',
+              fontStyle: 'italic',
+              color: 'var(--ink50)',
+              marginTop: 3,
+            }}
+          >
             «{assignment.curatorOverride.reason}»
           </div>
         )}
       </td>
       <td style={{ padding: '8px 6px', verticalAlign: 'top' }}>
-        <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', lineHeight: 1.6 }}>
+        <div
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', lineHeight: 1.6 }}
+        >
           {(assignment.topCandidates ?? []).slice(0, 3).map((c) => (
             <div key={c.slug}>
               {c.name} · {c.cosine.toFixed(3)}
@@ -387,7 +412,7 @@ function PlenoAssignmentRow({ plenoId, assignment, voiceprintRows, onOverride, b
           style={{
             width: '100%',
             padding: '4px 6px',
-            fontSize: 11,
+            fontSize: 'var(--fs-micro)',
             border: '1px solid var(--border2)',
             background: 'var(--paper)',
             borderRadius: 'var(--r-input)',
@@ -445,7 +470,7 @@ function PlenoAssignmentsCard({ plenoSummary, voiceprintRows, onChanged }) {
         />
         <span
           className="mono"
-          style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 'auto' }}
         >
           {plenoSummary.totalSpeakers} cluster(s) · {plenoSummary.highConfidenceCount} high ·{' '}
           {plenoSummary.mediumConfidenceCount} medium · {plenoSummary.unmatchedCount} unmatched
@@ -454,21 +479,23 @@ function PlenoAssignmentsCard({ plenoSummary, voiceprintRows, onChanged }) {
             : ''}
         </span>
       </div>
-      {detail.loading && <div style={{ fontSize: 12, color: 'var(--ink50)' }}>Loading…</div>}
+      {detail.loading && (
+        <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>Loading…</div>
+      )}
       {detail.error && (
-        <div style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
+        <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
           Cannot load detail: {detail.error}
         </div>
       )}
       {err && (
-        <div style={{ fontSize: 11.5, color: 'var(--crit-ink)', marginBottom: 6 }}>
+        <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--crit-ink)', marginBottom: 6 }}>
           Override failed: {err}
         </div>
       )}
       {assignments.length > 0 && (
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-meta)' }}>
           <thead>
-            <tr style={{ textAlign: 'left', color: 'var(--ink50)', fontSize: 10.5 }}>
+            <tr style={{ textAlign: 'left', color: 'var(--ink50)', fontSize: 'var(--fs-micro)' }}>
               <th
                 style={{
                   padding: '6px',
@@ -543,7 +570,7 @@ function VoiceIDAssignmentsSection() {
         <SectionHead title="Voice ID assignments per pleno" />
         <span
           className="mono"
-          style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 'auto' }}
         >
           {plenos.length} pleno(s) · generated{' '}
           {list.data?.generatedAt ? shortDate(list.data.generatedAt) : '—'}
@@ -553,7 +580,7 @@ function VoiceIDAssignmentsSection() {
           disabled={list.loading}
           style={{
             padding: '5px 10px',
-            fontSize: 11,
+            fontSize: 'var(--fs-micro)',
             border: '1px solid var(--border2)',
             background: 'var(--paper)',
             borderRadius: 'var(--r-input)',
@@ -563,18 +590,20 @@ function VoiceIDAssignmentsSection() {
           {list.loading ? 'Loading…' : 'Refresh'}
         </button>
       </div>
-      <div style={{ fontSize: 12, color: 'var(--ink50)', lineHeight: 1.5, marginTop: 4 }}>
+      <div
+        style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.5, marginTop: 4 }}
+      >
         Per-pleno cluster→councillor map produced by <code>npm run identify-pleno-speakers</code>.
         High-tier matches feed the LLM extractor as <code>speakerSlug</code>; medium and low stay
         editorial signal only. Override low-confidence rows here before re-running the extractor.
       </div>
       {list.error && (
-        <div style={{ fontSize: 12, color: 'var(--crit-ink)', marginTop: 8 }}>
+        <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)', marginTop: 8 }}>
           Cannot load /api/curator/pleno-speakers: {list.error}
         </div>
       )}
       {plenos.length === 0 && !list.loading && !list.error && (
-        <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 8 }}>
+        <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 8 }}>
           No <code>pleno-speakers/&lt;id&gt;.json</code> files yet. Run{' '}
           <code>
             WHISPER_DIARIZE=1 WHISPER_IDENTIFY=1 bash scripts/transcribe-pleno.sh &lt;id&gt;
@@ -604,18 +633,22 @@ function VoiceIDAssignmentsSection() {
                     gap: 10,
                   }}
                 >
-                  <span style={{ fontSize: 13, fontWeight: 600 }}>
+                  <span style={{ fontSize: 'var(--fs-aux)', fontWeight: 600 }}>
                     {p.plenoDate ? `${p.plenoDate} · ` : ''}
                     {p.plenoTitle ?? p.plenoId}
                   </span>
                   <span
                     className="mono"
-                    style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+                    style={{
+                      fontSize: 'var(--fs-micro)',
+                      color: 'var(--ink50)',
+                      marginLeft: 'auto',
+                    }}
                   >
                     {p.totalSpeakers} cluster(s) · {p.highConfidenceCount} high
                     {p.curatorOverrideCount > 0 ? ` · ${p.curatorOverrideCount} curator` : ''}
                   </span>
-                  <span style={{ fontSize: 11, color: 'var(--ink50)' }}>
+                  <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
                     {isExpanded ? '▾' : '▸'}
                   </span>
                 </button>

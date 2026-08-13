@@ -37,11 +37,14 @@ function Medicion({ medicion }) {
         padding: '8px 10px',
         background: 'var(--soft)',
         borderRadius: 'var(--r-input)',
-        fontSize: 12.5,
+        fontSize: 'var(--fs-meta)',
         color: 'var(--ink70, var(--ink50))',
       }}
     >
-      <span className="mono" style={{ fontSize: 14, color: 'var(--ink)', fontWeight: 600 }}>
+      <span
+        className="mono"
+        style={{ fontSize: 'var(--fs-body)', color: 'var(--ink)', fontWeight: 600 }}
+      >
         {num(medicion.valor)} {medicion.unidad}
       </span>{' '}
       en <strong>{medicion.periodo}</strong>
@@ -75,15 +78,36 @@ function FichaEficiencia({ ficha }) {
         {/* Una comparación floja se dice en la ficha, no en otra página. */}
         {ficha.fiabilidad === 'debil' && <Pill tone="neutral">comparación con reservas</Pill>}
       </div>
-      <h3 style={{ fontSize: 16, fontWeight: 650, margin: '8px 0 0', letterSpacing: '-.01em' }}>
+      <h3
+        style={{
+          fontSize: 'var(--fs-head)',
+          fontWeight: 650,
+          margin: '8px 0 0',
+          letterSpacing: '-.01em',
+        }}
+      >
         {ficha.titulo}
       </h3>
       <Medicion medicion={ficha.medicion} />
-      <p style={{ fontSize: 13.5, color: 'var(--ink)', margin: '10px 0 0', lineHeight: 1.55 }}>
+      <p
+        style={{
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink)',
+          margin: '10px 0 0',
+          lineHeight: 1.55,
+        }}
+      >
         {ficha.cuerpo}
       </p>
       {ficha.caveats?.length > 0 && (
-        <ul style={{ margin: '8px 0 0', paddingLeft: 18, fontSize: 12, color: 'var(--ink50)' }}>
+        <ul
+          style={{
+            margin: '8px 0 0',
+            paddingLeft: 18,
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink50)',
+          }}
+        >
           {ficha.caveats.map((c) => (
             <li key={c}>{c}</li>
           ))}
@@ -101,15 +125,19 @@ function FichaEficiencia({ ficha }) {
         >
           <div
             className="mono"
-            style={{ fontSize: 10, textTransform: 'uppercase', color: 'var(--ink50)' }}
+            style={{
+              fontSize: 'var(--fs-micro)',
+              textTransform: 'uppercase',
+              color: 'var(--ink50)',
+            }}
           >
             Réplica · {ficha.response.from}
           </div>
-          <p style={{ margin: '4px 0 0', fontSize: 13 }}>«{ficha.response.quote}»</p>
+          <p style={{ margin: '4px 0 0', fontSize: 'var(--fs-aux)' }}>«{ficha.response.quote}»</p>
         </div>
       )}
       {ficha.corrections?.length > 0 && (
-        <div style={{ marginTop: 10, fontSize: 12, color: 'var(--ink50)' }}>
+        <div style={{ marginTop: 10, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
           {ficha.corrections.map((c) => (
             <p key={`${c.field}-${c.correctedAt}`} style={{ margin: '4px 0 0' }}>
               <strong>Corregido el {c.correctedAt}</strong> ({c.field}):{' '}
@@ -119,7 +147,7 @@ function FichaEficiencia({ ficha }) {
           ))}
         </div>
       )}
-      <div style={{ marginTop: 10, fontSize: 11.5, color: 'var(--ink50)' }}>
+      <div style={{ marginTop: 10, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
         {ficha.citas.map((c, i) => (
           <span key={c.url}>
             {i > 0 && ' · '}
@@ -152,10 +180,24 @@ export function HallazgosEficiencia({ data, indicadorIds, otroPanel }) {
 
   return (
     <section id="hallazgos" style={{ marginTop: 32 }}>
-      <h2 style={{ fontSize: 15, fontWeight: 650, margin: '0 0 4px', letterSpacing: '-.01em' }}>
+      <h2
+        style={{
+          fontSize: 'var(--fs-body)',
+          fontWeight: 650,
+          margin: '0 0 4px',
+          letterSpacing: '-.01em',
+        }}
+      >
         Hallazgos firmados
       </h2>
-      <p style={{ fontSize: 12.5, color: 'var(--ink50)', maxWidth: '64ch', margin: '0 0 10px' }}>
+      <p
+        style={{
+          fontSize: 'var(--fs-meta)',
+          color: 'var(--ink50)',
+          maxWidth: '64ch',
+          margin: '0 0 10px',
+        }}
+      >
         Una ficha por cifra, sobre un servicio y nunca sobre una persona. Cada una congela la
         medición de la que habla —valor, periodo y celda de origen— para que se pueda volver a
         comprobar contra la fuente cuando ésta se mueva.
@@ -165,7 +207,7 @@ export function HallazgosEficiencia({ data, indicadorIds, otroPanel }) {
         <Card>
           {/* Un hueco se lee como «no hay nada que contar». Esto dice qué
               significa el vacío, que es que nadie ha firmado todavía. */}
-          <p style={{ margin: 0, fontSize: 13, color: 'var(--ink50)' }}>
+          <p style={{ margin: 0, fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
             Todavía no hay ninguna ficha firmada sobre estas cifras. El panel de arriba señala por
             sí solo dónde se sale cada una; un hallazgo exige además que alguien haya comprobado el
             expediente y puesto su nombre, y eso no ha ocurrido aún.
@@ -191,7 +233,7 @@ export function HallazgosEficiencia({ data, indicadorIds, otroPanel }) {
       )}
 
       {items.length > 0 && enOtroSitio > 0 && otroPanel && (
-        <p style={{ margin: '10px 0 0', fontSize: 12.5, color: 'var(--ink50)' }}>
+        <p style={{ margin: '10px 0 0', fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
           Hay{' '}
           <a href={otroPanel.to} style={{ color: 'var(--civic)' }}>
             {enOtroSitio === 1 ? 'otra ficha firmada' : `otras ${enOtroSitio} fichas firmadas`} en{' '}
@@ -202,7 +244,7 @@ export function HallazgosEficiencia({ data, indicadorIds, otroPanel }) {
       )}
 
       {retiradas.length > 0 && (
-        <div style={{ marginTop: 12, fontSize: 12, color: 'var(--ink50)' }}>
+        <div style={{ marginTop: 12, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
           <strong>
             {retiradas.length} ficha{retiradas.length === 1 ? '' : 's'} retirada
             {retiradas.length === 1 ? '' : 's'}.
@@ -212,7 +254,7 @@ export function HallazgosEficiencia({ data, indicadorIds, otroPanel }) {
           <ul style={{ margin: '6px 0 0', paddingLeft: 18 }}>
             {retiradas.map((r) => (
               <li key={r.findingId}>
-                <span className="mono" style={{ fontSize: 11 }}>
+                <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
                   {r.findingId}
                 </span>{' '}
                 — {r.reason} ({r.retractedAt})

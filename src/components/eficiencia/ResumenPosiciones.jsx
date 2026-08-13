@@ -40,7 +40,7 @@ export function ResumenPosiciones({ indicadores = [] }) {
       <div
         className="mono"
         style={{
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           textTransform: 'uppercase',
           letterSpacing: '.07em',
           color: 'var(--ink50)',
@@ -48,7 +48,13 @@ export function ResumenPosiciones({ indicadores = [] }) {
       >
         Dónde queda cada servicio
       </div>
-      <p style={{ margin: '8px 0 0', fontSize: 13.5, color: 'var(--ink70, var(--ink50))' }}>
+      <p
+        style={{
+          margin: '8px 0 0',
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink70, var(--ink50))',
+        }}
+      >
         Los <strong className="mono">{conRatio.length}</strong> servicios con coste unitario
         declaran{' '}
         <strong className="mono">
@@ -80,7 +86,7 @@ export function ResumenPosiciones({ indicadores = [] }) {
               borderRadius: 'var(--r-input)',
             }}
           >
-            <span style={{ fontSize: 12.5, lineHeight: 1.25 }}>{i.etiqueta}</span>
+            <span style={{ fontSize: 'var(--fs-meta)', lineHeight: 1.25 }}>{i.etiqueta}</span>
 
             {/* La pista es decoración de la cifra que va al lado: el percentil
                 está escrito, así que un lector de pantalla no pierde nada. */}
@@ -119,7 +125,7 @@ export function ResumenPosiciones({ indicadores = [] }) {
 
             <span
               className="mono"
-              style={{ fontSize: 11, color: 'var(--ink50)', textAlign: 'right' }}
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', textAlign: 'right' }}
             >
               p{i.pares.percentil}
             </span>
@@ -133,7 +139,7 @@ export function ResumenPosiciones({ indicadores = [] }) {
           display: 'grid',
           gridTemplateColumns: 'minmax(0,1fr) clamp(96px, 34%, 280px) 34px',
           gap: 10,
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           marginTop: 4,
         }}
@@ -147,7 +153,7 @@ export function ResumenPosiciones({ indicadores = [] }) {
       </div>
 
       {sinSituar > 0 && (
-        <p style={{ margin: '10px 0 0', fontSize: 12, color: 'var(--ink50)' }}>
+        <p style={{ margin: '10px 0 0', fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
           {sinSituar === 1
             ? 'Un servicio más tiene coste unitario pero no llega a quince municipios comparables, así que no se sitúa.'
             : `${sinSituar} servicios más tienen coste unitario pero no llegan a quince municipios comparables, así que no se sitúan.`}

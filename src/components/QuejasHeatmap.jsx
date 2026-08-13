@@ -91,7 +91,7 @@ export default function QuejasHeatmap() {
               }}
             >
               <Tooltip direction="top" sticky>
-                <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 12 }}>
+                <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }}>
                   <strong>{prettyNeighborhood(n.name || n.slug)}</strong>
                   <br />
                   {n.total} queja{n.total === 1 ? '' : 's'} ·{' '}

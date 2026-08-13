@@ -29,7 +29,7 @@ function StatTile({ label, value, tone = 'neutral', sub }) {
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -39,11 +39,21 @@ function StatTile({ label, value, tone = 'neutral', sub }) {
       </div>
       <div
         className="mono"
-        style={{ fontSize: 28, fontWeight: 800, color, marginTop: 4, letterSpacing: '-.02em' }}
+        style={{
+          fontSize: 'var(--fs-page)',
+          fontWeight: 800,
+          color,
+          marginTop: 4,
+          letterSpacing: '-.02em',
+        }}
       >
         {value}
       </div>
-      {sub && <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 3 }}>{sub}</div>}
+      {sub && (
+        <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 3 }}>
+          {sub}
+        </div>
+      )}
     </Card>
   )
 }
@@ -60,7 +70,7 @@ function Bar({ label, n, max, color, subline }) {
         padding: '4px 0',
       }}
     >
-      <span style={{ fontSize: 13 }}>{label}</span>
+      <span style={{ fontSize: 'var(--fs-aux)' }}>{label}</span>
       <div
         style={{
           position: 'relative',
@@ -81,12 +91,24 @@ function Bar({ label, n, max, color, subline }) {
       </div>
       <span
         className="mono"
-        style={{ fontSize: 12, color: 'var(--ink50)', minWidth: 24, textAlign: 'right' }}
+        style={{
+          fontSize: 'var(--fs-meta)',
+          color: 'var(--ink50)',
+          minWidth: 24,
+          textAlign: 'right',
+        }}
       >
         {n}
       </span>
       {subline && (
-        <div style={{ gridColumn: '1 / 4', fontSize: 10.5, color: 'var(--ink50)', marginTop: -2 }}>
+        <div
+          style={{
+            gridColumn: '1 / 4',
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--ink50)',
+            marginTop: -2,
+          }}
+        >
           {subline}
         </div>
       )}
@@ -135,7 +157,7 @@ function SlaPanel({ byConcejal, officials }) {
                 <span
                   className="mono"
                   style={{
-                    fontSize: 9,
+                    fontSize: 'var(--fs-micro)',
                     fontWeight: 700,
                     letterSpacing: '.1em',
                     textTransform: 'uppercase',
@@ -151,7 +173,7 @@ function SlaPanel({ byConcejal, officials }) {
               )}
               <div
                 style={{
-                  fontSize: 13.5,
+                  fontSize: 'var(--fs-aux)',
                   fontWeight: 500,
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
@@ -163,20 +185,20 @@ function SlaPanel({ byConcejal, officials }) {
             </div>
             <div
               className="mono"
-              style={{ fontSize: 12, color: 'var(--ok-ink)', textAlign: 'right' }}
+              style={{ fontSize: 'var(--fs-meta)', color: 'var(--ok-ink)', textAlign: 'right' }}
             >
               ✓ {e.resueltas}
             </div>
             <div
               className="mono"
-              style={{ fontSize: 12, color: 'var(--civic)', textAlign: 'right' }}
+              style={{ fontSize: 'var(--fs-meta)', color: 'var(--civic)', textAlign: 'right' }}
             >
               ⏳ {e.pendientes}
             </div>
             <div
               className="mono"
               style={{
-                fontSize: 12,
+                fontSize: 'var(--fs-meta)',
                 color: e.silencios > 0 ? 'var(--crit)' : 'var(--ink50)',
                 textAlign: 'right',
               }}
@@ -186,7 +208,14 @@ function SlaPanel({ byConcejal, officials }) {
           </div>
         ))}
       </div>
-      <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 10, lineHeight: 1.5 }}>
+      <div
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          marginTop: 10,
+          lineHeight: 1.5,
+        }}
+      >
         ✓ resueltas · ⏳ pendientes (capturadas + registradas + en trámite) · ⚠ silencios (&gt;plazo
         LPACAP sin respuesta). Las quejas se asignan al área municipal competente automáticamente;
         el responsable político figura como titular de esa área.
@@ -303,7 +332,9 @@ function ReadyToEscalate({ items }) {
         eyebrow="Acción urgente · moderador"
         title="Quejas cerca de o en silencio administrativo"
       />
-      <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 4, lineHeight: 1.5 }}>
+      <div
+        style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 4, lineHeight: 1.5 }}
+      >
         Quejas registradas en sede cuyo plazo LPACAP lleva ≥80% consumido. Candidatas para{' '}
         <code>/escalar Q-XXXX</code> si no llega respuesta antes del vencimiento — se generará el
         template para el Síndic de Greuges CV.
@@ -328,13 +359,13 @@ function ReadyToEscalate({ items }) {
                 textDecoration: 'none',
               }}
             >
-              <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+              <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
                 {q.service_request_id}
               </span>
               <div style={{ minWidth: 0 }}>
                 <div
                   style={{
-                    fontSize: 13.5,
+                    fontSize: 'var(--fs-aux)',
                     fontWeight: 500,
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
@@ -345,7 +376,7 @@ function ReadyToEscalate({ items }) {
                 </div>
                 <div
                   className="mono"
-                  style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
                 >
                   {CATEGORY_LABEL[q.service_code] || q.service_code}
                   {q.concejalia_area ? ' · ' + q.concejalia_area : ''}
@@ -355,7 +386,7 @@ function ReadyToEscalate({ items }) {
               <span
                 className="mono"
                 style={{
-                  fontSize: 12,
+                  fontSize: 'var(--fs-meta)',
                   color: overBy > 0 ? 'var(--crit-ink)' : 'var(--warn-ink)',
                   fontWeight: 700,
                   textAlign: 'right',
@@ -403,13 +434,13 @@ function TopPending({ items }) {
               textDecoration: 'none',
             }}
           >
-            <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+            <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               {q.service_request_id}
             </span>
             <div style={{ minWidth: 0 }}>
               <div
                 style={{
-                  fontSize: 13.5,
+                  fontSize: 'var(--fs-aux)',
                   fontWeight: 500,
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
@@ -418,14 +449,22 @@ function TopPending({ items }) {
               >
                 {q.description}
               </div>
-              <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}>
+              <div
+                className="mono"
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+              >
                 {CATEGORY_LABEL[q.service_code] || q.service_code}
                 {q.address_string ? ` · ${prettyNeighborhood(q.address_string)}` : ''}
               </div>
             </div>
             <span
               className="mono"
-              style={{ fontSize: 12, color: 'var(--civic)', fontWeight: 700, textAlign: 'right' }}
+              style={{
+                fontSize: 'var(--fs-meta)',
+                color: 'var(--civic)',
+                fontWeight: 700,
+                textAlign: 'right',
+              }}
             >
               👍 {q.apoyos}
             </span>
@@ -451,7 +490,7 @@ export default function QuejasDashboard() {
         className="cp-page"
         style={{ padding: '24px 24px 48px', maxWidth: 1100, margin: '0 auto' }}
       >
-        <div style={{ color: 'var(--ink50)', fontSize: 13 }}>Cargando feed…</div>
+        <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>Cargando feed…</div>
       </div>
     )
   }
@@ -462,7 +501,7 @@ export default function QuejasDashboard() {
         style={{ padding: '24px 24px 48px', maxWidth: 1100, margin: '0 auto' }}
       >
         <Card>
-          <div style={{ color: 'var(--warn-ink)', fontSize: 13 }}>
+          <div style={{ color: 'var(--warn-ink)', fontSize: 'var(--fs-aux)' }}>
             No se pudo cargar /data/quejas.json.
           </div>
         </Card>
@@ -502,7 +541,7 @@ export default function QuejasDashboard() {
         <div
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
@@ -510,10 +549,19 @@ export default function QuejasDashboard() {
         >
           {t('dashboard.eyebrow')}
         </div>
-        <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-page)',
+            fontWeight: 700,
+            letterSpacing: '-.015em',
+            marginTop: 2,
+          }}
+        >
           {t('dashboard.title')}
         </div>
-        <div style={{ fontSize: 13.5, color: 'var(--ink50)', marginTop: 4, maxWidth: 720 }}>
+        <div
+          style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4, maxWidth: 720 }}
+        >
           Vista agregada de todas las quejas capturadas vía{' '}
           <a
             href={TELEGRAM_BOT_URL}
@@ -536,7 +584,14 @@ export default function QuejasDashboard() {
       {stats.total === 0 ? (
         <Card>
           <SectionHead eyebrow="Sin datos" title="El canal está abierto, aún no hay quejas" />
-          <div style={{ fontSize: 14, color: 'var(--ink70)', marginTop: 8, lineHeight: 1.55 }}>
+          <div
+            style={{
+              fontSize: 'var(--fs-body)',
+              color: 'var(--ink70)',
+              marginTop: 8,
+              lineHeight: 1.55,
+            }}
+          >
             Este dashboard muestra métricas cuando haya quejas registradas. Presenta la primera vía{' '}
             <a
               href={TELEGRAM_BOT_URL}

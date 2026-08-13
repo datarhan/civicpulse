@@ -61,10 +61,10 @@ export default function ContractorLeaderboard({ contracts }) {
               width: '100%',
             }}
           >
-            <span style={{ flex: 1, fontSize: 12.5, fontWeight: 500 }}>
+            <span style={{ flex: 1, fontSize: 'var(--fs-meta)', fontWeight: 500 }}>
               {t.assignee}
               {t.variantCount > 1 && (
-                <span style={{ fontSize: 10, color: 'var(--ink50)', marginLeft: 6 }}>
+                <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 6 }}>
                   · {t.variantCount} razones sociales
                 </span>
               )}
@@ -77,17 +77,27 @@ export default function ContractorLeaderboard({ contracts }) {
                 borderRadius: 'var(--r-input)',
               }}
             />
-            <span className="mono" style={{ fontWeight: 700, fontSize: 12 }}>
+            <span className="mono" style={{ fontWeight: 700, fontSize: 'var(--fs-meta)' }}>
               {fmtEur(t.amount)}
             </span>
-            <span style={{ fontSize: 10.5, color: 'var(--ink50)', width: 70, textAlign: 'right' }}>
+            <span
+              style={{
+                fontSize: 'var(--fs-micro)',
+                color: 'var(--ink50)',
+                width: 70,
+                textAlign: 'right',
+              }}
+            >
               {t.count} contrato{t.count === 1 ? '' : 's'}
             </span>
           </button>
           {open === t.assignee && (
             <div style={{ paddingLeft: 8, marginTop: 4 }}>
               {(byAssignee.get(t.assignee) || []).slice(0, 20).map((c) => (
-                <div key={c.id} style={{ fontSize: 11.5, color: 'var(--ink50)', padding: '3px 0' }}>
+                <div
+                  key={c.id}
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', padding: '3px 0' }}
+                >
                   {c.title.length > 90 ? c.title.slice(0, 90) + '…' : c.title} —{' '}
                   <span className="mono">{fmtEur(contractAmount(c))}</span>
                 </div>

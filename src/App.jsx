@@ -74,7 +74,7 @@ function loadTweaks() {
 function Loading() {
   const t = useT()
   return (
-    <div style={{ padding: '40px 24px', color: 'var(--ink50)', fontSize: 13 }}>
+    <div style={{ padding: '40px 24px', color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>
       {t('common.loading')}
     </div>
   )

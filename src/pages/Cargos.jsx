@@ -42,7 +42,7 @@ function SocialLinks({ slug }) {
               border: '1px solid var(--border2)',
               background: 'var(--soft)',
               color: 'var(--ink70)',
-              fontSize: 11,
+              fontSize: 'var(--fs-micro)',
               textDecoration: 'none',
             }}
           >
@@ -73,7 +73,7 @@ function QuejaBadge({ slug }) {
         display: 'flex',
         gap: 12,
         alignItems: 'center',
-        fontSize: 11.5,
+        fontSize: 'var(--fs-micro)',
       }}
     >
       <Link
@@ -119,7 +119,7 @@ function DepartmentLinks({ portfolios }) {
         display: 'flex',
         flexWrap: 'wrap',
         gap: 6,
-        fontSize: 11,
+        fontSize: 'var(--fs-micro)',
       }}
     >
       {slugs.slice(0, 4).map((slug) => (
@@ -128,7 +128,7 @@ function DepartmentLinks({ portfolios }) {
           to={`/departamentos/${slug}`}
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             padding: '2px 7px',
             background: 'var(--civic-soft)',
             color: 'var(--civic)',
@@ -161,7 +161,7 @@ function RetribucionBadge({ official }) {
         display: 'flex',
         alignItems: 'center',
         gap: 8,
-        fontSize: 11.5,
+        fontSize: 'var(--fs-micro)',
         color: 'var(--ink50)',
       }}
     >
@@ -174,7 +174,7 @@ function RetribucionBadge({ official }) {
           href={data.source.url}
           title={`${d.role} — ${data.source.title}`}
           className="mono"
-          style={{ color: 'var(--civic)', marginLeft: 'auto', fontSize: 10.5 }}
+          style={{ color: 'var(--civic)', marginLeft: 'auto', fontSize: 'var(--fs-micro)' }}
         >
           acuerdo ↗
         </ExtLink>
@@ -193,7 +193,10 @@ function SalaryGrowth({ official }) {
   if (!dedicacionForSlug(dedic, official.slug)) return null
   if (official.role !== 'alcalde') {
     return (
-      <div className="mono" style={{ marginTop: 6, fontSize: 10, color: 'var(--ink50)' }}>
+      <div
+        className="mono"
+        style={{ marginTop: 6, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+      >
         Salario fijado en el acuerdo de 2023 · sin variación interanual disponible
       </div>
     )
@@ -206,7 +209,7 @@ function SalaryGrowth({ official }) {
       title="Variación del salario del alcalde según ISPA (importe percibido por año). 1, 5 y 10 años no disponibles: la serie ISPA cubre 2020-2024 y los años electorales 2019/2023 son anómalos."
       style={{
         marginTop: 6,
-        fontSize: 10,
+        fontSize: 'var(--fs-micro)',
         color: 'var(--ink50)',
         display: 'flex',
         gap: 10,
@@ -245,7 +248,7 @@ function RetribucionesPanel() {
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -257,18 +260,20 @@ function RetribucionesPanel() {
       </div>
       <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap', marginBottom: 12 }}>
         <div>
-          <div className="mono" style={{ fontSize: 18, fontWeight: 800 }}>
+          <div className="mono" style={{ fontSize: 'var(--fs-head)', fontWeight: 800 }}>
             {s.conDedicacion} / {s.total}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>
+          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             con dedicación · {s.sinDedicacion} solo asistencias
           </div>
         </div>
         <div>
-          <div className="mono" style={{ fontSize: 18, fontWeight: 800 }}>
+          <div className="mono" style={{ fontSize: 'var(--fs-head)', fontWeight: 800 }}>
             {formatEuros(s.totalAnnualEuros)}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>coste anual de la corporación</div>
+          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+            coste anual de la corporación
+          </div>
         </div>
       </div>
       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 12 }}>
@@ -279,7 +284,7 @@ function RetribucionesPanel() {
               key={i}
               className="mono"
               style={{
-                fontSize: 11,
+                fontSize: 'var(--fs-micro)',
                 border: '1px solid var(--border)',
                 borderRadius: 'var(--r-input)',
                 padding: '3px 8px',
@@ -292,7 +297,10 @@ function RetribucionesPanel() {
       </div>
       {trend.length >= 2 && (
         <div style={{ marginBottom: 12 }}>
-          <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginBottom: 5 }}>
+          <div
+            className="mono"
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 5 }}
+          >
             Retribución del alcalde por año (ISPA)
           </div>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'baseline' }}>
@@ -301,7 +309,7 @@ function RetribucionesPanel() {
               const up = prev && t.amountEuros > prev.amountEuros
               const down = prev && t.amountEuros < prev.amountEuros
               return (
-                <span key={t.year} className="mono" style={{ fontSize: 11.5 }}>
+                <span key={t.year} className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
                   <span style={{ color: 'var(--ink50)' }}>{t.year}</span>{' '}
                   <span style={{ fontWeight: 700 }}>{formatEuros(t.amountEuros)}</span>{' '}
                   {prev && (
@@ -317,7 +325,7 @@ function RetribucionesPanel() {
           </div>
         </div>
       )}
-      <div style={{ fontSize: 11, color: 'var(--ink50)', lineHeight: 1.5 }}>
+      <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', lineHeight: 1.5 }}>
         {data.source?.note}{' '}
         {data.source?.home && (
           <ExtLink href={data.source.home} style={{ color: 'var(--civic)' }}>
@@ -338,7 +346,7 @@ function PlantillaCard() {
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -350,13 +358,15 @@ function PlantillaCard() {
       </div>
       <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap', alignItems: 'baseline' }}>
         <div>
-          <div className="mono" style={{ fontSize: 22, fontWeight: 800 }}>
+          <div className="mono" style={{ fontSize: 'var(--fs-card)', fontWeight: 800 }}>
             {data.total}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>empleados públicos</div>
+          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+            empleados públicos
+          </div>
         </div>
         {typeof data.women === 'number' && typeof data.men === 'number' && (
-          <div style={{ fontSize: 12, color: 'var(--ink70)' }}>
+          <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}>
             <span className="mono" style={{ fontWeight: 700 }}>
               {data.women}
             </span>{' '}
@@ -368,7 +378,14 @@ function PlantillaCard() {
           </div>
         )}
       </div>
-      <div style={{ fontSize: 11, color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}>
+      <div
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          lineHeight: 1.5,
+          marginTop: 8,
+        }}
+      >
         {data.note}{' '}
         {data.source?.url && (
           <ExtLink href={data.source.url} style={{ color: 'var(--civic)' }}>
@@ -382,12 +399,15 @@ function PlantillaCard() {
             marginTop: 12,
             paddingTop: 10,
             borderTop: '1px solid var(--border)',
-            fontSize: 11.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             lineHeight: 1.5,
           }}
         >
-          <span className="mono" style={{ fontSize: 15, fontWeight: 800, color: 'var(--ink)' }}>
+          <span
+            className="mono"
+            style={{ fontSize: 'var(--fs-body)', fontWeight: 800, color: 'var(--ink)' }}
+          >
             {data.authorized.approx ? '≈' : ''}
             {data.authorized.plazas}
           </span>{' '}
@@ -460,7 +480,7 @@ function OfficialCard({ o, big = false, bioRoute }) {
             <span
               className="mono"
               style={{
-                fontSize: 9,
+                fontSize: 'var(--fs-micro)',
                 fontWeight: 700,
                 letterSpacing: '.12em',
                 textTransform: 'uppercase',
@@ -476,7 +496,7 @@ function OfficialCard({ o, big = false, bioRoute }) {
               <span
                 className="mono"
                 style={{
-                  fontSize: 9,
+                  fontSize: 'var(--fs-micro)',
                   fontWeight: 700,
                   letterSpacing: '.1em',
                   textTransform: 'uppercase',
@@ -487,13 +507,26 @@ function OfficialCard({ o, big = false, bioRoute }) {
               </span>
             )}
           </div>
-          <div style={{ fontSize: big ? 17 : 14, fontWeight: 600, lineHeight: 1.2 }}>
+          <div
+            style={{
+              fontSize: big ? 'var(--fs-head)' : 'var(--fs-body)',
+              fontWeight: 600,
+              lineHeight: 1.2,
+            }}
+          >
             <Link to={`/cargos/${o.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
               {o.name}
             </Link>
           </div>
           {o.portfolios.length > 0 && (
-            <div style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 4, lineHeight: 1.35 }}>
+            <div
+              style={{
+                fontSize: 'var(--fs-micro)',
+                color: 'var(--ink50)',
+                marginTop: 4,
+                lineHeight: 1.35,
+              }}
+            >
               {o.portfolios.slice(0, 4).join(' · ')}
               {o.portfolios.length > 4 && ' · …'}
             </div>
@@ -508,7 +541,7 @@ function OfficialCard({ o, big = false, bioRoute }) {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          fontSize: 11.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
         }}
       >
@@ -584,7 +617,7 @@ function CompositionBar({ composition, total }) {
               placeItems: 'center',
               color: 'white',
               fontFamily: "'DM Mono', monospace",
-              fontSize: 9,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 700,
             }}
           >
@@ -592,7 +625,15 @@ function CompositionBar({ composition, total }) {
           </div>
         ))}
       </div>
-      <div style={{ display: 'flex', gap: 14, marginTop: 8, flexWrap: 'wrap', fontSize: 11 }}>
+      <div
+        style={{
+          display: 'flex',
+          gap: 14,
+          marginTop: 8,
+          flexWrap: 'wrap',
+          fontSize: 'var(--fs-micro)',
+        }}
+      >
         {items.map(({ p, n }) => (
           <div key={p} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: partyColor(p) }} />
@@ -616,7 +657,7 @@ function CorporacionMunicipal() {
 
   if (loading) {
     return (
-      <div style={{ marginBottom: 28, color: 'var(--ink50)', fontSize: 13 }}>
+      <div style={{ marginBottom: 28, color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>
         Cargando Corporación Municipal…
       </div>
     )
@@ -630,7 +671,7 @@ function CorporacionMunicipal() {
           border: '1px solid var(--warn-soft)',
           borderRadius: 'var(--r-input)',
           color: 'var(--warn)',
-          fontSize: 13,
+          fontSize: 'var(--fs-aux)',
         }}
       >
         No se pudo cargar la Corporación Municipal. Ejecuta <code>npm run scrape:officials</code>{' '}
@@ -649,7 +690,7 @@ function CorporacionMunicipal() {
         <div
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
@@ -657,7 +698,7 @@ function CorporacionMunicipal() {
         >
           Corporación Municipal
         </div>
-        <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+        <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           · datos reales de ribarroja.es · actualizado {generatedDate}
         </div>
         <DataAsOf iso={data.generatedAt} label="Officials" />
@@ -676,7 +717,7 @@ function CorporacionMunicipal() {
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -712,7 +753,7 @@ export default function Cargos() {
         <div
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
@@ -720,10 +761,19 @@ export default function Cargos() {
         >
           {t('cargos.eyebrow')}
         </div>
-        <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-page)',
+            fontWeight: 700,
+            letterSpacing: '-.015em',
+            marginTop: 2,
+          }}
+        >
           {t('cargos.title')}
         </div>
-        <div style={{ fontSize: 13.5, color: 'var(--ink50)', marginTop: 4, maxWidth: 620 }}>
+        <div
+          style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4, maxWidth: 620 }}
+        >
           Titulares del Ayuntamiento, sus departamentos, presupuesto asignado, promesas adquiridas y
           rendimiento operacional.
         </div>

@@ -125,12 +125,18 @@ export default function Metodologia() {
   return (
     <div
       className="cp-page"
-      style={{ padding: '24px', maxWidth: 860, margin: '0 auto', fontSize: 14, lineHeight: 1.6 }}
+      style={{
+        padding: '24px',
+        maxWidth: 860,
+        margin: '0 auto',
+        fontSize: 'var(--fs-body)',
+        lineHeight: 1.6,
+      }}
     >
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -138,7 +144,14 @@ export default function Metodologia() {
       >
         Documento editorial público
       </div>
-      <h1 style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+      <h1
+        style={{
+          fontSize: 'var(--fs-page)',
+          fontWeight: 700,
+          letterSpacing: '-.015em',
+          marginTop: 2,
+        }}
+      >
         Metodología del tracker de promesas
       </h1>
       <p style={{ color: 'var(--ink70)' }}>
@@ -198,7 +211,14 @@ export default function Metodologia() {
 
       <Card style={{ marginTop: 14 }}>
         <SectionHead eyebrow="Taxonomía de estados" title="Qué significa cada estado" />
-        <table style={{ width: '100%', fontSize: 13, borderCollapse: 'collapse', marginTop: 6 }}>
+        <table
+          style={{
+            width: '100%',
+            fontSize: 'var(--fs-aux)',
+            borderCollapse: 'collapse',
+            marginTop: 6,
+          }}
+        >
           <thead>
             <tr style={{ borderBottom: '1px solid var(--border2)', textAlign: 'left' }}>
               <th style={{ padding: '6px 0' }}>Estado</th>
@@ -527,7 +547,7 @@ export default function Metodologia() {
           eyebrow="Qué se publica sin revisión humana"
           title="Política de automatización"
         />
-        <div style={{ padding: '0 14px 14px', fontSize: 13, lineHeight: 1.6 }}>
+        <div style={{ padding: '0 14px 14px', fontSize: 'var(--fs-aux)', lineHeight: 1.6 }}>
           <p style={{ marginTop: 0 }}>
             Hasta agosto de 2026 casi todo lo que escribía una máquina esperaba aprobación humana.
             Esa regla parecía prudente y funcionaba como una cola: los borradores se acumulaban sin
@@ -588,7 +608,7 @@ export default function Metodologia() {
           eyebrow="Qué trae al puesto quien dirige cada área"
           title="Encaje declarado · y qué NO significa"
         />
-        <div style={{ padding: '0 14px 14px', fontSize: 13, lineHeight: 1.6 }}>
+        <div style={{ padding: '0 14px 14px', fontSize: 'var(--fs-aux)', lineHeight: 1.6 }}>
           <p style={{ marginTop: 0 }}>
             En la ficha de cada concejal con delegación aparece, área por área, si lo que declara en
             su CV publicado guarda relación con la materia de esa área. Es un cruce entre dos cosas
@@ -1140,7 +1160,7 @@ export default function Metodologia() {
           presupuesto CONPREL, plenos, padrón INE, paro SEPE). La fuente primaria siempre gana.
         </p>
 
-        <h3 style={{ marginTop: 16, fontSize: 15 }}>Escala de veredictos</h3>
+        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-body)' }}>Escala de veredictos</h3>
         <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
           <li>
             <strong>Verificado.</strong> El número, fecha o hecho citado coincide con el documento
@@ -1170,7 +1190,7 @@ export default function Metodologia() {
           </li>
         </ul>
 
-        <h3 style={{ marginTop: 16, fontSize: 15 }}>Disciplina antilibellos</h3>
+        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-body)' }}>Disciplina antilibellos</h3>
         <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
           <li>
             <strong>Acusaciones opinativas.</strong> Cuando el LLM extrae una "acusación pública"
@@ -1223,7 +1243,9 @@ export default function Metodologia() {
           </li>
         </ul>
 
-        <h3 style={{ marginTop: 16, fontSize: 15 }}>Preservación de fuentes (Wayback)</h3>
+        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-body)' }}>
+          Preservación de fuentes (Wayback)
+        </h3>
         <p style={{ marginTop: 6 }}>
           Una tarea diaria recorre cada URL citada y la archiva en Internet Archive (
           <code>web.archive.org</code>). El snapshot resultante se publica junto al enlace original
@@ -1232,7 +1254,7 @@ export default function Metodologia() {
           puede acceder a la copia congelada.
         </p>
 
-        <h3 style={{ marginTop: 16, fontSize: 15 }}>ClaimReview (schema.org)</h3>
+        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-body)' }}>ClaimReview (schema.org)</h3>
         <p style={{ marginTop: 6 }}>
           Un hallazgo que lleva una <strong>referencia de contradicción</strong> se publica además
           como datos estructurados{' '}
@@ -1279,7 +1301,7 @@ export default function Metodologia() {
           contradicción el mismo día.
         </p>
 
-        <h3 style={{ marginTop: 16, fontSize: 15 }}>Política de correcciones</h3>
+        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-body)' }}>Política de correcciones</h3>
         <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
           <li>
             Cada modificación posterior al primer publicado a <code>title</code>,{' '}
@@ -1345,8 +1367,8 @@ export default function Metodologia() {
           </li>
         </ul>
 
-        <h3 style={{ marginTop: 16, fontSize: 15 }}>Fuentes auditadas</h3>
-        <ul style={{ margin: '6px 0 0', paddingLeft: 20, fontSize: 13.5 }}>
+        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-body)' }}>Fuentes auditadas</h3>
+        <ul style={{ margin: '6px 0 0', paddingLeft: 20, fontSize: 'var(--fs-aux)' }}>
           <li>
             <strong>PLACSP / Gobierto</strong> — contratos municipales adjudicados y en licitación.
           </li>
@@ -1379,7 +1401,7 @@ export default function Metodologia() {
             curatorial; no llega al verificador automático.
           </li>
         </ul>
-        <p style={{ marginTop: 8, fontSize: 13.5 }}>
+        <p style={{ marginTop: 8, fontSize: 'var(--fs-aux)' }}>
           La página{' '}
           <a href="/lab-health" style={{ color: 'var(--civic)' }}>
             Diagnóstico de fuentes →
@@ -1389,8 +1411,8 @@ export default function Metodologia() {
           ningún script.
         </p>
 
-        <h3 style={{ marginTop: 16, fontSize: 15 }}>Alineación con IFCN</h3>
-        <p style={{ marginTop: 6, fontSize: 13.5 }}>
+        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-body)' }}>Alineación con IFCN</h3>
+        <p style={{ marginTop: 6, fontSize: 'var(--fs-aux)' }}>
           Este apartado cubre los cinco pilares del Código de Principios de IFCN: (1) compromiso con
           la <em>no partisanía</em> y la equidad — el mismo criterio se aplica a cada bloc; (2)
           transparencia de fuentes — cada hallazgo cita documento + fecha + URL primaria; (3)
@@ -1693,7 +1715,14 @@ export default function Metodologia() {
           eyebrow="Transparencia · gasto por concejalía"
           title="Cómo se asigna un contrato a un área"
         />
-        <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
           La cifra de contratación que aparece en cada ficha de{' '}
           <a href="/departamentos" style={{ color: 'var(--civic)' }}>
             /departamentos
@@ -1705,7 +1734,14 @@ export default function Metodologia() {
           códigos genéricos (98 «servicios diversos», 79 «servicios empresariales») no asignan área:
           dicen que el expediente no precisa de qué se trata, y eso no es una respuesta.
         </p>
-        <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
           Antes se asignaba por la categoría del portal, que es una etiqueta gruesa. El{' '}
           <strong>4 de agosto de 2026</strong> se corrigió: 40 contratos figuraban bajo{' '}
           <em>Salud</em> sin ser gasto sanitario —alumbrado ornamental de Navidad, clases de inglés,
@@ -1721,7 +1757,14 @@ export default function Metodologia() {
           eyebrow="Transparencia · mapa del gasto"
           title="Mapa del gasto: qué situamos y qué no"
         />
-        <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
           No existe un campo de «lugar de ejecución» en la fuente (Gobierto/PLACSP): el título del
           contrato es la única señal de ubicación. Por eso situamos un contrato en el mapa solo
           cuando su título <strong>nombra</strong> un lugar concreto —una calle o camino, un
@@ -1733,7 +1776,14 @@ export default function Metodologia() {
           la licitación enumera los sitios de varios lotes, no se puede saber qué lote va dónde y
           preferimos no situar. El pin declara el objeto de la licitación («Lote de: …»).
         </p>
-        <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
           El emparejamiento es deliberadamente <strong>conservador</strong> —preferimos no situar un
           contrato antes que situarlo mal—: descartamos el nombre del municipio y de la provincia
           («Riba-roja de Túria», «València», que aparecen en casi todas las direcciones), las
@@ -1744,13 +1794,27 @@ export default function Metodologia() {
           sin lugar citado (servicios, suministros y obras sin ubicación) nunca se reparte por el
           mapa.
         </p>
-        <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
           Cada punto abre la ficha del contrato con el dato que ya publica el expediente:
           adjudicatario, importe de licitación → adjudicación (la baja), objeto (código CPV
           traducido), procedimiento, número de licitadores y plazo. La etiqueta CPV usa el
           vocabulario oficial CPV-2008 de la UE.
         </p>
-        <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
           Para los títulos que el emparejamiento automático no consigue situar (abreviaturas,
           castellano/valenciano), un modelo de lenguaje propone el nombre del lugar citado. Ese
           nombre se resuelve <strong>siempre</strong> contra el mismo callejero —el modelo nunca
@@ -1758,7 +1822,14 @@ export default function Metodologia() {
           persona la revisa y la aprueba. Es una ayuda de cobertura, no una fuente: el listado
           automático nunca sustituye a la revisión humana.
         </p>
-        <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
           El callejero se completa con un <strong>suplemento curado</strong> de lugares que
           OpenStreetMap aún no recoge o solo recoge en valenciano (el Mercat Municipal, el Castell,
           el Pavelló, polígonos y urbanizaciones): cada entrada es editada a mano, cita su
@@ -1774,7 +1845,7 @@ export default function Metodologia() {
           fecha a mano que certifica actualidad se queda vieja justo cuando más
           importa que no lo esté. Sin git no se escribe ninguna, que es mejor
           que escribir una inventada. */}
-      <p style={{ marginTop: 22, fontSize: 12, color: 'var(--ink50)' }}>
+      <p style={{ marginTop: 22, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
         {__REVISION_METODOLOGIA__ ? (
           <>Última revisión de este documento: {fmtDateLong(__REVISION_METODOLOGIA__)}. </>
         ) : null}

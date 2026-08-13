@@ -40,7 +40,7 @@ function DepartmentCard({ bucket, frozen, contratacionYears }) {
             <div style={{ flex: 1, minWidth: 0 }}>
               <div
                 style={{
-                  fontSize: 15,
+                  fontSize: 'var(--fs-body)',
                   fontWeight: 600,
                   letterSpacing: '-.01em',
                   marginBottom: 4,
@@ -60,10 +60,15 @@ function DepartmentCard({ bucket, frozen, contratacionYears }) {
                 // false affordance that silently lands the reader on the
                 // department page. The route to the person is the explicit row
                 // below.
-                <div style={{ fontSize: 12, color: 'var(--ink50)' }}>
+                <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
                   <span
                     className="mono"
-                    style={{ fontSize: 10, color: partyColor, fontWeight: 700, marginRight: 6 }}
+                    style={{
+                      fontSize: 'var(--fs-micro)',
+                      color: partyColor,
+                      fontWeight: 700,
+                      marginRight: 6,
+                    }}
                   >
                     {official.party}
                   </span>
@@ -72,7 +77,11 @@ function DepartmentCard({ bucket, frozen, contratacionYears }) {
               ) : (
                 <div
                   className="mono"
-                  style={{ fontSize: 10.5, color: 'var(--ink50)', letterSpacing: '.04em' }}
+                  style={{
+                    fontSize: 'var(--fs-micro)',
+                    color: 'var(--ink50)',
+                    letterSpacing: '.04em',
+                  }}
                 >
                   {t('departamentos.card.sinResponsable')}
                 </div>
@@ -89,7 +98,7 @@ function DepartmentCard({ bucket, frozen, contratacionYears }) {
               display: 'grid',
               gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
               gap: 8,
-              fontSize: 11.5,
+              fontSize: 'var(--fs-micro)',
             }}
           >
             <Stat
@@ -171,7 +180,7 @@ function DepartmentCard({ bucket, frozen, contratacionYears }) {
         {official && (
           <Link
             to={`/cargos/${official.slug}`}
-            style={{ fontSize: 11.5, color: 'var(--civic)', textDecoration: 'none' }}
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--civic)', textDecoration: 'none' }}
           >
             {t('departamentos.card.verResponsable')} →
           </Link>
@@ -191,7 +200,7 @@ function Stat({ label, value, tone, muted, sub }) {
       <div
         className="mono"
         style={{
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink70)',
           textTransform: 'uppercase',
           letterSpacing: '.06em',
@@ -201,12 +210,15 @@ function Stat({ label, value, tone, muted, sub }) {
       </div>
       <div
         className="mono"
-        style={{ fontSize: 16, fontWeight: 600, color, opacity: muted ? 0.55 : 1 }}
+        style={{ fontSize: 'var(--fs-head)', fontWeight: 600, color, opacity: muted ? 0.55 : 1 }}
       >
         {value}
       </div>
       {sub && (
-        <div className="mono" style={{ fontSize: 9, color: 'var(--ink50)', marginTop: 1 }}>
+        <div
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 1 }}
+        >
           {sub}
         </div>
       )}
@@ -230,7 +242,7 @@ function EncajeAggregate() {
   return (
     <p
       style={{
-        fontSize: 12.5,
+        fontSize: 'var(--fs-meta)',
         color: 'var(--ink50)',
         lineHeight: 1.55,
         maxWidth: 780,
@@ -259,12 +271,16 @@ export default function Departamentos() {
 
   if (stats.loading) {
     return (
-      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 13 }}>{t('common.loading')}</div>
+      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>
+        {t('common.loading')}
+      </div>
     )
   }
   if (stats.error) {
     return (
-      <div style={{ padding: 32, color: 'var(--crit)', fontSize: 13 }}>{stats.error.message}</div>
+      <div style={{ padding: 32, color: 'var(--crit)', fontSize: 'var(--fs-aux)' }}>
+        {stats.error.message}
+      </div>
     )
   }
 
@@ -314,7 +330,7 @@ export default function Departamentos() {
       />
       <p
         style={{
-          fontSize: 13,
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           lineHeight: 1.55,
           maxWidth: 780,

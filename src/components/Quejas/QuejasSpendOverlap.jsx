@@ -16,7 +16,7 @@ const fmtEur = (n) =>
 
 const HEAD = {
   fontWeight: 700,
-  fontSize: 10.5,
+  fontSize: 'var(--fs-micro)',
   textTransform: 'uppercase',
   letterSpacing: '.06em',
   color: 'var(--ink50)',
@@ -66,7 +66,7 @@ export default function QuejasSpendOverlap() {
       />
       <div
         style={{
-          fontSize: 12,
+          fontSize: 'var(--fs-meta)',
           color: 'var(--ink50)',
           marginTop: 6,
           marginBottom: 10,
@@ -99,7 +99,7 @@ export default function QuejasSpendOverlap() {
           display: 'grid',
           gridTemplateColumns: '1fr auto auto',
           gap: '7px 16px',
-          fontSize: 13,
+          fontSize: 'var(--fs-aux)',
           alignItems: 'baseline',
         }}
       >
@@ -116,7 +116,7 @@ export default function QuejasSpendOverlap() {
                 <span
                   style={{
                     marginLeft: 6,
-                    fontSize: 9,
+                    fontSize: 'var(--fs-micro)',
                     fontWeight: 700,
                     color: 'var(--ink50)',
                     background: 'var(--soft)',

@@ -213,8 +213,8 @@ export default function Curator() {
   return (
     <div style={{ padding: '24px 28px', maxWidth: 1100, margin: '0 auto' }}>
       <div style={{ marginBottom: 20 }}>
-        <h1 style={{ margin: 0, fontSize: 22 }}>Curator</h1>
-        <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 4 }}>
+        <h1 style={{ margin: 0, fontSize: 'var(--fs-card)' }}>Curator</h1>
+        <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 4 }}>
           Dev-only dashboard. Surfaces queues that need human review and runs the existing CLIs
           locally via the Vite middleware. Mutations land in the same JSON files the production
           scrapers write — git history is the audit trail. Production builds tree-shake this route
@@ -227,7 +227,7 @@ export default function Curator() {
           <SectionHead title="Contradicho queue" />
           <span
             className="mono"
-            style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 'auto' }}
           >
             {queue.data
               ? `${queueBundles.length} live · ${archivedBundles.length} archived · generated ${shortDate(queue.data.generatedAt)}`
@@ -238,7 +238,7 @@ export default function Curator() {
               onClick={() => setShowArchived((v) => !v)}
               style={{
                 padding: '5px 10px',
-                fontSize: 11,
+                fontSize: 'var(--fs-micro)',
                 border: '1px solid var(--border2)',
                 background: showArchived ? 'var(--soft)' : 'var(--paper)',
                 borderRadius: 'var(--r-input)',
@@ -253,7 +253,7 @@ export default function Curator() {
             disabled={refreshing}
             style={{
               padding: '5px 10px',
-              fontSize: 11,
+              fontSize: 'var(--fs-micro)',
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
               borderRadius: 'var(--r-input)',
@@ -263,15 +263,15 @@ export default function Curator() {
             {refreshing ? 'Refreshing…' : 'Refresh'}
           </button>
         </div>
-        {queue.loading && <p style={{ fontSize: 12 }}>Loading…</p>}
+        {queue.loading && <p style={{ fontSize: 'var(--fs-meta)' }}>Loading…</p>}
         {queue.error && (
-          <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
             Cannot load {QUEUE_URL}: {queue.error}. Run <code>npm run refresh:curate-queue</code> to
             generate it.
           </p>
         )}
         {!queue.loading && !queue.error && queueBundles.length === 0 && (
-          <p style={{ fontSize: 12, color: 'var(--ink50)' }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
             No quarantined bundles. The verifier didn't surface any contradicho claims that passed
             the auto-curate gates this run.
           </p>
@@ -290,7 +290,7 @@ export default function Curator() {
             <div
               className="mono"
               style={{
-                fontSize: 10.5,
+                fontSize: 'var(--fs-micro)',
                 color: 'var(--ink50)',
                 textTransform: 'uppercase',
                 letterSpacing: '.08em',
@@ -306,7 +306,7 @@ export default function Curator() {
                   marginBottom: 8,
                   border: '1px solid var(--crit-ink)',
                   borderRadius: 'var(--r-input)',
-                  fontSize: 11.5,
+                  fontSize: 'var(--fs-micro)',
                   color: 'var(--crit-ink)',
                   background: 'var(--soft)',
                 }}
@@ -335,11 +335,17 @@ export default function Curator() {
                     flexWrap: 'wrap',
                   }}
                 >
-                  <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+                  <span
+                    className="mono"
+                    style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                  >
                     {b.plenoId} · {b.topic} · score={b.score?.toFixed?.(2) ?? b.score}
                   </span>
                   {b.archive?.archivedAt && (
-                    <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+                    <span
+                      className="mono"
+                      style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                    >
                       archived {shortDate(b.archive.archivedAt)}
                     </span>
                   )}
@@ -349,7 +355,7 @@ export default function Curator() {
                     disabled={unarchiving === `${b.plenoId}/${b.topic}`}
                     style={{
                       padding: '4px 10px',
-                      fontSize: 11,
+                      fontSize: 'var(--fs-micro)',
                       border: '1px solid var(--border2)',
                       background: 'var(--paper)',
                       borderRadius: 'var(--r-input)',
@@ -359,9 +365,9 @@ export default function Curator() {
                     {unarchiving === `${b.plenoId}/${b.topic}` ? 'Restoring…' : 'Un-archive'}
                   </button>
                 </div>
-                <div style={{ fontSize: 12.5 }}>{b.plenoTitle}</div>
+                <div style={{ fontSize: 'var(--fs-meta)' }}>{b.plenoTitle}</div>
                 {b.archive?.reason && (
-                  <div style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 4 }}>
+                  <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 4 }}>
                     Reason: {b.archive.reason}
                   </div>
                 )}
@@ -376,7 +382,7 @@ export default function Curator() {
           <SectionHead title="Right-of-reply (GH issues)" />
           <span
             className="mono"
-            style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 'auto' }}
           >
             {issues.data
               ? `${ghIssues.length} open · generated ${shortDate(issues.data.generatedAt)}`
@@ -387,7 +393,7 @@ export default function Curator() {
             disabled={refreshing}
             style={{
               padding: '5px 10px',
-              fontSize: 11,
+              fontSize: 'var(--fs-micro)',
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
               borderRadius: 'var(--r-input)',
@@ -397,15 +403,15 @@ export default function Curator() {
             {refreshing ? 'Refreshing…' : 'Refresh'}
           </button>
         </div>
-        {issues.loading && <p style={{ fontSize: 12 }}>Loading…</p>}
+        {issues.loading && <p style={{ fontSize: 'var(--fs-meta)' }}>Loading…</p>}
         {issues.error && (
-          <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
             Cannot load {ISSUES_URL}: {issues.error}. Run <code>npm run refresh:gh-issues</code> to
             generate it.
           </p>
         )}
         {issues.data?.error && (
-          <p style={{ fontSize: 12, color: 'var(--ink50)', lineHeight: 1.5 }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.5 }}>
             <span style={{ color: 'var(--warn-ink, var(--ink))' }}>Refresh skipped.</span>{' '}
             {issues.data.error.includes('GITHUB_TOKEN')
               ? 'The repository is private — set GITHUB_TOKEN in .env (a fine-grained PAT with read access is enough) and re-run npm run refresh:gh-issues. Right-of-reply still works as a curator workflow; replies arrive through editorial contact and are applied with `npm run finding-reply`.'
@@ -413,7 +419,7 @@ export default function Curator() {
           </p>
         )}
         {!issues.loading && !issues.error && ghIssues.length === 0 && !issues.data?.error && (
-          <p style={{ fontSize: 12, color: 'var(--ink50)' }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
             No open <code>derecho-replica</code> issues.
           </p>
         )}
@@ -427,7 +433,7 @@ export default function Curator() {
           <SectionHead title="Encaje declarado · cola de revisión" />
           <span
             className="mono"
-            style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 'auto' }}
           >
             {areaFitQueue.data
               ? `${areaFitRows.length} en cola · ${areaFitPublished.size} publicadas · ${areaFitQueue.data.backend ?? '?'}`
@@ -438,7 +444,7 @@ export default function Curator() {
             disabled={areaFitQueue.loading}
             style={{
               padding: '5px 10px',
-              fontSize: 11,
+              fontSize: 'var(--fs-micro)',
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
               borderRadius: 'var(--r-input)',
@@ -448,17 +454,26 @@ export default function Curator() {
             {areaFitQueue.loading ? 'Refreshing…' : 'Refresh'}
           </button>
         </div>
-        <p style={{ fontSize: 11.5, color: 'var(--ink50)', lineHeight: 1.5, margin: '4px 0 10px' }}>
+        <p
+          style={{
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--ink50)',
+            lineHeight: 1.5,
+            margin: '4px 0 10px',
+          }}
+        >
           Cada fila nombra a una persona viva, así que ninguna se publica sin firma. Revisa la
           evidencia citada y el criterio: la nota del curador se publica, así que describe el
           criterio, nunca el material descartado.
         </p>
-        {areaFitQueue.loading && <p style={{ fontSize: 12 }}>Loading…</p>}
+        {areaFitQueue.loading && <p style={{ fontSize: 'var(--fs-meta)' }}>Loading…</p>}
         {areaFitQueue.error && (
-          <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>{String(areaFitQueue.error)}</p>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
+            {String(areaFitQueue.error)}
+          </p>
         )}
         {!areaFitQueue.loading && areaFitRows.length === 0 && (
-          <p style={{ fontSize: 12, color: 'var(--ink50)' }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
             Cola vacía. Genera propuestas con{' '}
             <code>LLM_BACKEND=claude-code npm run suggest:area-fit</code>.
           </p>
@@ -480,7 +495,7 @@ export default function Curator() {
           <SectionHead title="Hallazgos · ¿lo sostiene o sólo se le parece?" />
           <span
             className="mono"
-            style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 'auto' }}
           >
             {findingSupportStats
               ? `${findingSupportStats.queued}/${findingSupportStats.queued} en cola · ` +
@@ -493,7 +508,7 @@ export default function Curator() {
             disabled={findingSupportQueue.loading}
             style={{
               padding: '5px 10px',
-              fontSize: 11,
+              fontSize: 'var(--fs-micro)',
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
               borderRadius: 'var(--r-input)',
@@ -503,21 +518,28 @@ export default function Curator() {
             {findingSupportQueue.loading ? 'Refreshing…' : 'Refresh'}
           </button>
         </div>
-        <p style={{ fontSize: 11.5, color: 'var(--ink50)', lineHeight: 1.5, margin: '4px 0 10px' }}>
+        <p
+          style={{
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--ink50)',
+            lineHeight: 1.5,
+            margin: '4px 0 10px',
+          }}
+        >
           Cada hallazgo publicado, con su sumario y el extracto que cita <strong>al lado</strong>,
           porque la pregunta es si el extracto lo sostiene o sólo se le parece. La cola presenta
           evidencia: no puntúa, no ordena por fuerza y no recomienda — el cribado léxico que lo
           intentó quedó medido sin poder discriminante. Y no escribe: el único escritor del snapshot
           publicado es <code>npm run correct-pleno-finding</code>.
         </p>
-        {findingSupportQueue.loading && <p style={{ fontSize: 12 }}>Loading…</p>}
+        {findingSupportQueue.loading && <p style={{ fontSize: 'var(--fs-meta)' }}>Loading…</p>}
         {findingSupportQueue.error && (
-          <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
             {String(findingSupportQueue.error)}
           </p>
         )}
         {!findingSupportQueue.loading && findingSupportRows.length === 0 && (
-          <p style={{ fontSize: 12, color: 'var(--ink50)' }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
             Cola vacía. Constrúyela con <code>npm run triage:finding-support</code>.
           </p>
         )}
@@ -532,7 +554,7 @@ export default function Curator() {
           <SectionHead title="Hallazgos · reanclar citas de una transcripción superada" />
           <span
             className="mono"
-            style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 'auto' }}
           >
             {quoteReanchorStats
               ? `${quoteReanchorStats.encoladas}/${quoteReanchorStats.marcadas} en cola · ` +
@@ -545,7 +567,7 @@ export default function Curator() {
             disabled={quoteReanchorQueue.loading}
             style={{
               padding: '5px 10px',
-              fontSize: 11,
+              fontSize: 'var(--fs-micro)',
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
               borderRadius: 'var(--r-input)',
@@ -555,7 +577,14 @@ export default function Curator() {
             {quoteReanchorQueue.loading ? 'Refreshing…' : 'Refresh'}
           </button>
         </div>
-        <p style={{ fontSize: 11.5, color: 'var(--ink50)', lineHeight: 1.5, margin: '4px 0 10px' }}>
+        <p
+          style={{
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--ink50)',
+            lineHeight: 1.5,
+            margin: '4px 0 10px',
+          }}
+        >
           Estas citas constan en la transcripción que su sesión tenía <strong>antes</strong> de
           volverse a transcribir, y no en la vigente. La cola{' '}
           <strong>propone pasajes y no elige ninguno</strong>: el orden es solapamiento de palabras
@@ -566,14 +595,14 @@ export default function Curator() {
           <code>npm run correct-pleno-finding</code> tú mismo: queda en la bitácora pública de la
           ficha.
         </p>
-        {quoteReanchorQueue.loading && <p style={{ fontSize: 12 }}>Loading…</p>}
+        {quoteReanchorQueue.loading && <p style={{ fontSize: 'var(--fs-meta)' }}>Loading…</p>}
         {quoteReanchorQueue.error && (
-          <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
             {String(quoteReanchorQueue.error)}
           </p>
         )}
         {!quoteReanchorQueue.loading && quoteReanchorRows.length === 0 && (
-          <p style={{ fontSize: 12, color: 'var(--ink50)' }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
             Cola vacía. Constrúyela con <code>npm run triage:quote-reanchor</code>.
           </p>
         )}
@@ -588,7 +617,7 @@ export default function Curator() {
           <SectionHead title="Hallazgos · ¿merece este hallazgo la excepción?" />
           <span
             className="mono"
-            style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 'auto' }}
           >
             {findingExceptionStats
               ? `${findingExceptionStats.encolados}/${findingExceptionStats.hallazgosConCitas} en cola · ` +
@@ -601,7 +630,7 @@ export default function Curator() {
             disabled={findingExceptionQueue.loading}
             style={{
               padding: '5px 10px',
-              fontSize: 11,
+              fontSize: 'var(--fs-micro)',
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
               borderRadius: 'var(--r-input)',
@@ -611,7 +640,14 @@ export default function Curator() {
             {findingExceptionQueue.loading ? 'Refreshing…' : 'Refresh'}
           </button>
         </div>
-        <p style={{ fontSize: 11.5, color: 'var(--ink50)', lineHeight: 1.5, margin: '4px 0 10px' }}>
+        <p
+          style={{
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--ink50)',
+            lineHeight: 1.5,
+            margin: '4px 0 10px',
+          }}
+        >
           La puerta editorial de <code>claim-public-gate.ts</code> retiene de{' '}
           <strong>/plenos</strong> las acusaciones públicas que el verificador no pudo contrastar.
           Promover una declaración a hallazgo es la excepción que esa puerta concede,{' '}
@@ -623,14 +659,14 @@ export default function Curator() {
           <code>npm run correct-pleno-finding</code> tú mismo: queda en la bitácora pública de la
           ficha.
         </p>
-        {findingExceptionQueue.loading && <p style={{ fontSize: 12 }}>Loading…</p>}
+        {findingExceptionQueue.loading && <p style={{ fontSize: 'var(--fs-meta)' }}>Loading…</p>}
         {findingExceptionQueue.error && (
-          <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
             {String(findingExceptionQueue.error)}
           </p>
         )}
         {!findingExceptionQueue.loading && findingExceptionRows.length === 0 && (
-          <p style={{ fontSize: 12, color: 'var(--ink50)' }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
             Cola vacía. Constrúyela con <code>npm run triage:finding-exception</code>.
           </p>
         )}
@@ -644,7 +680,7 @@ export default function Curator() {
           <SectionHead title="Promesas · cola de revisión" />
           <span
             className="mono"
-            style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 'auto' }}
           >
             {promiseQueue.data
               ? `${promiseDrafts.length} en cola · ${promiseQueue.data.archivedCount ?? 0} archivadas · generada ${shortDate(promiseQueue.data.generatedAt)}`
@@ -655,7 +691,7 @@ export default function Curator() {
             disabled={promiseQueue.loading}
             style={{
               padding: '5px 10px',
-              fontSize: 11,
+              fontSize: 'var(--fs-micro)',
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
               borderRadius: 'var(--r-input)',
@@ -665,9 +701,9 @@ export default function Curator() {
             {promiseQueue.loading ? 'Refreshing…' : 'Refresh'}
           </button>
         </div>
-        {promiseQueue.loading && <p style={{ fontSize: 12 }}>Loading…</p>}
+        {promiseQueue.loading && <p style={{ fontSize: 'var(--fs-meta)' }}>Loading…</p>}
         {promiseQueue.error && (
-          <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
             Cannot load the promise queue: {promiseQueue.error}. The endpoint is dev-only — run{' '}
             <code>npm run auto-curate-promises</code> to populate it.
           </p>
@@ -679,7 +715,7 @@ export default function Curator() {
               margin: '8px 0',
               border: '1px solid var(--crit-ink)',
               borderRadius: 'var(--r-input)',
-              fontSize: 11.5,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--crit-ink)',
               background: 'var(--soft)',
             }}
@@ -688,7 +724,7 @@ export default function Curator() {
           </div>
         )}
         {!promiseQueue.loading && !promiseQueue.error && promiseDrafts.length === 0 && (
-          <p style={{ fontSize: 12, color: 'var(--ink50)' }}>La cola está vacía.</p>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>La cola está vacía.</p>
         )}
         {promiseDrafts.map((d) => (
           <PromiseDraftRow
@@ -706,7 +742,7 @@ export default function Curator() {
           <SectionHead title="Promesas auto-publicadas · pendientes de revisión" />
           <span
             className="mono"
-            style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 'auto' }}
           >
             {pendingPromises.data
               ? `${pending.length} pendiente${pending.length === 1 ? '' : 's'} · ${
@@ -719,7 +755,7 @@ export default function Curator() {
             disabled={pendingPromises.loading}
             style={{
               padding: '5px 10px',
-              fontSize: 11,
+              fontSize: 'var(--fs-micro)',
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
               borderRadius: 'var(--r-input)',
@@ -729,14 +765,14 @@ export default function Curator() {
             {pendingPromises.loading ? 'Refreshing…' : 'Refresh'}
           </button>
         </div>
-        {pendingPromises.loading && <p style={{ fontSize: 12 }}>Loading…</p>}
+        {pendingPromises.loading && <p style={{ fontSize: 'var(--fs-meta)' }}>Loading…</p>}
         {pendingPromises.error && (
-          <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
             Cannot load promises.json: {pendingPromises.error}.
           </p>
         )}
         {!pendingPromises.loading && !pendingPromises.error && pending.length === 0 && (
-          <p style={{ fontSize: 12, color: 'var(--ink50)' }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
             No hay promesas auto-publicadas pendientes de revisión.
           </p>
         )}
@@ -761,7 +797,7 @@ export default function Curator() {
 
       {refreshResult && !refreshResult.ok && (
         <Card style={{ padding: 12, marginBottom: 18, borderColor: 'var(--crit-ink)' }}>
-          <div className="mono" style={{ fontSize: 11, color: 'var(--crit-ink)' }}>
+          <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--crit-ink)' }}>
             Refresh failed: {refreshResult.error}
           </div>
         </Card>

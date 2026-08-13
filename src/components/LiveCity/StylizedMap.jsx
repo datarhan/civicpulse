@@ -31,7 +31,7 @@ function MapAttribution() {
         bottom: 8,
         left: 16,
         fontFamily: "'DM Mono', monospace",
-        fontSize: 9,
+        fontSize: 'var(--fs-micro)',
         color: 'rgba(11,15,25,.62)',
         letterSpacing: '.08em',
         textTransform: 'uppercase',

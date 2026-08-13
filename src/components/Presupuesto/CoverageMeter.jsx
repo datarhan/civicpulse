@@ -21,7 +21,7 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
   const span = yearMin && yearMax ? `${yearMin}–${yearMax}` : null
   return (
     <div>
-      <div style={{ fontSize: 12.5, lineHeight: 1.4 }}>
+      <div style={{ fontSize: 'var(--fs-meta)', lineHeight: 1.4 }}>
         De <strong>{fmtEur(total)}</strong> adjudicados en contratos (sin IVA)
         {span ? (
           <>
@@ -45,7 +45,14 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
         <div style={{ width: pct + '%', background: 'var(--civic)' }} />
         <div style={{ flex: 1, background: 'var(--soft)' }} />
       </div>
-      <div style={{ fontSize: 11, color: 'var(--ink50)', fontStyle: 'italic', lineHeight: 1.4 }}>
+      <div
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          fontStyle: 'italic',
+          lineHeight: 1.4,
+        }}
+      >
         El resto son contratos adjudicados cuyo título no nombra una zona (servicios, suministros y
         obras sin lugar citado): no se inventa una ubicación. Un contrato que cita dos zonas suma en
         ambas, pero cuenta una sola vez aquí.
@@ -61,7 +68,7 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
               display: 'flex',
               alignItems: 'center',
               gap: 8,
-              fontSize: 12,
+              fontSize: 'var(--fs-meta)',
             }}
           >
             <span style={{ flex: 1 }}>{z.name}</span>
@@ -73,7 +80,7 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
                 borderRadius: 'var(--r-input)',
               }}
             />
-            <span className="mono" style={{ fontWeight: 700, fontSize: 11 }}>
+            <span className="mono" style={{ fontWeight: 700, fontSize: 'var(--fs-micro)' }}>
               {fmtEur(z.amount)}
             </span>
           </button>

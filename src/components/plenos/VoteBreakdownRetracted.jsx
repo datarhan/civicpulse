@@ -28,11 +28,18 @@ export function VoteBreakdownRetracted({ retraction }) {
     >
       <div
         className="mono"
-        style={{ fontSize: 10, letterSpacing: 0.3, color: 'var(--ink50)', marginBottom: 3 }}
+        style={{
+          fontSize: 'var(--fs-micro)',
+          letterSpacing: 0.3,
+          color: 'var(--ink50)',
+          marginBottom: 3,
+        }}
       >
         DESGLOSE POR GRUPOS RETIRADO{day ? ` · ${day}` : ''}
       </div>
-      <div style={{ fontSize: 11.5, color: 'var(--ink70)', lineHeight: 1.45 }}>{reason}</div>
+      <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink70)', lineHeight: 1.45 }}>
+        {reason}
+      </div>
     </div>
   )
 }

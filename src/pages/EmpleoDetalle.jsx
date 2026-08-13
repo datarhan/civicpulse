@@ -22,7 +22,7 @@ function Tile({ label, value, tone }) {
       <div
         className="mono"
         style={{
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.06em',
@@ -30,7 +30,15 @@ function Tile({ label, value, tone }) {
       >
         {label}
       </div>
-      <div style={{ fontSize: 14, fontWeight: 600, color, marginTop: 3, lineHeight: 1.35 }}>
+      <div
+        style={{
+          fontSize: 'var(--fs-body)',
+          fontWeight: 600,
+          color,
+          marginTop: 3,
+          lineHeight: 1.35,
+        }}
+      >
         {value}
       </div>
     </div>
@@ -47,13 +55,13 @@ function FieldRow({ label, value }) {
         gap: 12,
         padding: '9px 0',
         borderBottom: '1px solid var(--border2)',
-        fontSize: 13,
+        fontSize: 'var(--fs-aux)',
       }}
     >
       <div
         className="mono"
         style={{
-          fontSize: 11,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.04em',
@@ -74,7 +82,10 @@ export default function EmpleoDetalle() {
 
   if (loading) {
     return (
-      <div className="cp-page" style={{ padding: '24px', color: 'var(--ink50)', fontSize: 13 }}>
+      <div
+        className="cp-page"
+        style={{ padding: '24px', color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}
+      >
         …
       </div>
     )
@@ -86,7 +97,10 @@ export default function EmpleoDetalle() {
         className="cp-page"
         style={{ padding: '24px 24px 48px', maxWidth: 800, margin: '0 auto' }}
       >
-        <Link to="/empleo" style={{ fontSize: 13, color: 'var(--civic)', textDecoration: 'none' }}>
+        <Link
+          to="/empleo"
+          style={{ fontSize: 'var(--fs-aux)', color: 'var(--civic)', textDecoration: 'none' }}
+        >
           ← {t('empleo.back')}
         </Link>
         <div
@@ -95,7 +109,7 @@ export default function EmpleoDetalle() {
             padding: 16,
             border: '1px solid var(--border2)',
             borderRadius: 'var(--r-card)',
-            fontSize: 13,
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             lineHeight: 1.6,
           }}
@@ -115,7 +129,10 @@ export default function EmpleoDetalle() {
       <div
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}
       >
-        <Link to="/empleo" style={{ fontSize: 13, color: 'var(--civic)', textDecoration: 'none' }}>
+        <Link
+          to="/empleo"
+          style={{ fontSize: 'var(--fs-aux)', color: 'var(--civic)', textDecoration: 'none' }}
+        >
           ← {t('empleo.back')}
         </Link>
         {data?.generatedAt && <DataAsOf iso={data.generatedAt} label="Empleo" />}
@@ -123,7 +140,7 @@ export default function EmpleoDetalle() {
 
       <div style={{ marginTop: 14, marginBottom: 8 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
-          <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+          <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             {offer.codigo}
           </span>
           <Pill tone={OFERTA_STATUS_TONE[offer.status] || offer.statusTone || 'neutral'} size="xs">
@@ -135,7 +152,14 @@ export default function EmpleoDetalle() {
             </Pill>
           )}
         </div>
-        <h1 style={{ fontSize: 25, fontWeight: 700, letterSpacing: '-.02em', margin: '6px 0 0' }}>
+        <h1
+          style={{
+            fontSize: 'var(--fs-page)',
+            fontWeight: 700,
+            letterSpacing: '-.02em',
+            margin: '6px 0 0',
+          }}
+        >
           {offer.titulo}
         </h1>
       </div>
@@ -170,7 +194,7 @@ export default function EmpleoDetalle() {
           borderRadius: 'var(--r-input)',
           background: 'var(--ink)',
           color: 'var(--paper)',
-          fontSize: 13,
+          fontSize: 'var(--fs-aux)',
           fontWeight: 600,
           textDecoration: 'none',
           marginBottom: 18,
@@ -207,7 +231,7 @@ export default function EmpleoDetalle() {
                   alignItems: 'baseline',
                   gap: 8,
                   flexWrap: 'wrap',
-                  fontSize: 13,
+                  fontSize: 'var(--fs-aux)',
                 }}
               >
                 <span style={{ fontWeight: 600, color: 'var(--ink70)' }}>{oc.nombre}</span>
@@ -223,12 +247,19 @@ export default function EmpleoDetalle() {
       )}
 
       {!d && (
-        <div style={{ fontSize: 12.5, color: 'var(--ink50)', lineHeight: 1.5 }}>
+        <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.5 }}>
           {t('empleoDetail.noDetail')}
         </div>
       )}
 
-      <div style={{ marginTop: 16, fontSize: 11.5, color: 'var(--ink50)', lineHeight: 1.5 }}>
+      <div
+        style={{
+          marginTop: 16,
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          lineHeight: 1.5,
+        }}
+      >
         {t('empleo.sourceNote')}
       </div>
     </div>

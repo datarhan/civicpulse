@@ -53,7 +53,7 @@ export function Topbar({ crumb, onOpenCmdK, onOpenSidebar }) {
         <span
           className="mono cp-topbar-muni"
           style={{
-            fontSize: 11,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
@@ -68,7 +68,7 @@ export function Topbar({ crumb, onOpenCmdK, onOpenSidebar }) {
         <span
           className="cp-topbar-crumb"
           style={{
-            fontSize: 13.5,
+            fontSize: 'var(--fs-aux)',
             fontWeight: 500,
             whiteSpace: 'nowrap',
             overflow: 'hidden',
@@ -91,7 +91,7 @@ export function Topbar({ crumb, onOpenCmdK, onOpenSidebar }) {
           borderRadius: 'var(--r-input)',
           background: 'var(--soft)',
           color: 'var(--ink50)',
-          fontSize: 12.5,
+          fontSize: 'var(--fs-meta)',
           minWidth: 280,
         }}
       >
@@ -102,7 +102,7 @@ export function Topbar({ crumb, onOpenCmdK, onOpenSidebar }) {
         <span
           className="mono cp-topbar-search-kbd"
           style={{
-            fontSize: 10,
+            fontSize: 'var(--fs-micro)',
             padding: '2px 5px',
             background: 'var(--paper)',
             border: '1px solid var(--border)',

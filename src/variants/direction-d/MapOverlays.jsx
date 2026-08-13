@@ -45,14 +45,14 @@ function EventTicker() {
           }}
           title={`${ev.kindLabel} · ${ev.date}`}
         >
-          <span style={{ fontSize: 16, lineHeight: 1 }} aria-hidden="true">
+          <span style={{ fontSize: 'var(--fs-head)', lineHeight: 1 }} aria-hidden="true">
             {ev.icon}
           </span>
           <div style={{ minWidth: 0, flex: 1 }}>
             <div
               style={{
                 fontFamily: MONO,
-                fontSize: 9,
+                fontSize: 'var(--fs-micro)',
                 color: 'rgba(255,255,255,.55)',
                 letterSpacing: '.12em',
               }}
@@ -63,7 +63,7 @@ function EventTicker() {
             <div
               style={{
                 fontFamily: SANS,
-                fontSize: 13,
+                fontSize: 'var(--fs-aux)',
                 fontWeight: 600,
                 color: '#E2E8F0',
                 marginTop: 2,
@@ -78,7 +78,7 @@ function EventTicker() {
           <span
             style={{
               fontFamily: MONO,
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               color: '#F5B544',
               letterSpacing: '.06em',
               flexShrink: 0,

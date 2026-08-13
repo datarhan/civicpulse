@@ -26,7 +26,7 @@ function EmptyNote({ children }) {
         padding: 14,
         background: 'var(--soft)',
         borderRadius: 'var(--r-input)',
-        fontSize: 12,
+        fontSize: 'var(--fs-meta)',
         color: 'var(--ink50)',
         lineHeight: 1.5,
       }}
@@ -51,7 +51,7 @@ function Tile({ label, value, sub, tone }) {
       <div
         className="mono"
         style={{
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.06em',
@@ -59,10 +59,17 @@ function Tile({ label, value, sub, tone }) {
       >
         {label}
       </div>
-      <div className="mono" style={{ fontSize: 20, fontWeight: 600, color, marginTop: 2 }}>
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-card)', fontWeight: 600, color, marginTop: 2 }}
+      >
         {value}
       </div>
-      {sub && <div style={{ fontSize: 10, color: 'var(--ink50)', marginTop: 1 }}>{sub}</div>}
+      {sub && (
+        <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 1 }}>
+          {sub}
+        </div>
+      )}
     </div>
   )
 }
@@ -100,7 +107,7 @@ function TranscriptPanel({ plenoId }) {
           councillor said. Say which one the reader is looking at. */}
       <div
         style={{
-          fontSize: 11.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           marginBottom: 8,
           lineHeight: 1.5,
@@ -115,7 +122,7 @@ function TranscriptPanel({ plenoId }) {
       <pre
         style={{
           whiteSpace: 'pre-wrap',
-          fontSize: 12,
+          fontSize: 'var(--fs-meta)',
           lineHeight: 1.6,
           color: 'var(--ink70)',
           background: 'var(--soft)',
@@ -168,7 +175,12 @@ function VoteOutcomeBar({ votes }) {
         {segs.map((s) => (
           <span
             key={s.k}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 11.5 }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 5,
+              fontSize: 'var(--fs-micro)',
+            }}
           >
             <span
               style={{ width: 9, height: 9, borderRadius: 'var(--r-input)', background: s.color }}
@@ -190,7 +202,7 @@ function OLabel({ children }) {
     <div
       className="mono"
       style={{
-        fontSize: 10,
+        fontSize: 'var(--fs-micro)',
         color: 'var(--ink50)',
         textTransform: 'uppercase',
         letterSpacing: '.06em',
@@ -221,7 +233,7 @@ function DeclMixBar({ items }) {
         {g > 0 && <div style={{ flex: g, background: 'var(--ok)' }} />}
         {s > 0 && <div style={{ flex: s, background: 'var(--ink50)' }} />}
       </div>
-      <div style={{ display: 'flex', gap: 14, marginTop: 8, fontSize: 11.5 }}>
+      <div style={{ display: 'flex', gap: 14, marginTop: 8, fontSize: 'var(--fs-micro)' }}>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
           <span
             style={{ width: 9, height: 9, borderRadius: 'var(--r-input)', background: 'var(--ok)' }}
@@ -294,13 +306,13 @@ export default function PlenoDetalle() {
   const aprobados = votes.filter((v) => v.outcome === 'aprobado').length
 
   if (plenosLoading) {
-    return <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 13 }}>…</div>
+    return <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>…</div>
   }
   if (!pleno) {
     return (
       <div className="cp-page" style={{ padding: '24px', maxWidth: 900, margin: '0 auto' }}>
         <SectionHead eyebrow="Plenos" title={t('plenoDetail.notFound')} />
-        <Link to="/plenos" style={{ color: 'var(--civic)', fontSize: 13 }}>
+        <Link to="/plenos" style={{ color: 'var(--civic)', fontSize: 'var(--fs-aux)' }}>
           {t('plenoDetail.back')}
         </Link>
       </div>
@@ -322,7 +334,10 @@ export default function PlenoDetalle() {
 
   return (
     <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 980, margin: '0 auto' }}>
-      <Link to="/plenos" style={{ color: 'var(--civic)', fontSize: 12, textDecoration: 'none' }}>
+      <Link
+        to="/plenos"
+        style={{ color: 'var(--civic)', fontSize: 'var(--fs-meta)', textDecoration: 'none' }}
+      >
         {t('plenoDetail.back')}
       </Link>
 
@@ -336,7 +351,7 @@ export default function PlenoDetalle() {
           flexWrap: 'wrap',
         }}
       >
-        <div style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-.015em' }}>
+        <div style={{ fontSize: 'var(--fs-page)', fontWeight: 700, letterSpacing: '-.015em' }}>
           {fmtDateLong(pleno.date)}
         </div>
         <Pill tone={PLENO_TONE[pleno.kind] || 'ghost'} size="xs">
@@ -347,7 +362,7 @@ export default function PlenoDetalle() {
             href={video.url}
             title={video.title}
             className="mono"
-            style={{ fontSize: 12, color: 'var(--civic)' }}
+            style={{ fontSize: 'var(--fs-meta)', color: 'var(--civic)' }}
           >
             {t('plenoDetail.video')} ↗
           </ExtLink>
@@ -414,7 +429,7 @@ export default function PlenoDetalle() {
                 border: 'none',
                 borderBottom: `2px solid ${active ? 'var(--civic)' : 'transparent'}`,
                 color: active ? 'var(--ink)' : 'var(--ink50)',
-                fontSize: 12.5,
+                fontSize: 'var(--fs-meta)',
                 fontWeight: active ? 700 : 500,
                 padding: '10px 12px',
                 cursor: 'pointer',
@@ -428,7 +443,7 @@ export default function PlenoDetalle() {
               {tb.count != null && (
                 <span
                   style={{
-                    fontSize: 10,
+                    fontSize: 'var(--fs-micro)',
                     fontWeight: 700,
                     padding: '1px 6px',
                     borderRadius: 'var(--r-pill)',
@@ -447,7 +462,7 @@ export default function PlenoDetalle() {
       {/* Tab content */}
       {tab === 'resumen' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-          <div style={{ fontSize: 13.5, color: 'var(--ink70)', lineHeight: 1.55 }}>
+          <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.55 }}>
             {agendaKnown ? (
               <>
                 <strong style={{ color: 'var(--ink)' }}>{agendaItems.length}</strong> puntos en el
@@ -523,7 +538,9 @@ export default function PlenoDetalle() {
                     >
                       {f.severity}
                     </Pill>
-                    <span style={{ fontSize: 13, color: 'var(--ink)', fontWeight: 600 }}>
+                    <span
+                      style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink)', fontWeight: 600 }}
+                    >
                       {f.title}
                     </span>
                   </button>
@@ -574,14 +591,17 @@ export default function PlenoDetalle() {
                       marginBottom: 6,
                     }}
                   >
-                    <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+                    <span
+                      className="mono"
+                      style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                    >
                       {fmtDateShort(rec.plenoDate)}
                     </span>
                     <Pill tone={OUTCOME_TONE[rec.outcome]} size="xs">
                       {OUTCOME_LABEL[rec.outcome]}
                     </Pill>
                   </div>
-                  <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>
+                  <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600, marginBottom: 8 }}>
                     {rec.itemNumber}. {rec.title}
                   </div>
                   {rec.votesRetracted ? (

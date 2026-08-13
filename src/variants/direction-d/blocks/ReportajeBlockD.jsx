@@ -89,7 +89,7 @@ export function ReportajeBlockD() {
                   alignItems: 'baseline',
                   gap: 6,
                   flexWrap: 'wrap',
-                  fontSize: 9.5,
+                  fontSize: 'var(--fs-micro)',
                   color: PALETTE.ink50,
                   letterSpacing: '.1em',
                   textTransform: 'uppercase',
@@ -104,7 +104,7 @@ export function ReportajeBlockD() {
             <div
               style={{
                 fontFamily: SERIF,
-                fontSize: 16,
+                fontSize: 'var(--fs-head)',
                 fontWeight: 700,
                 letterSpacing: '-.015em',
                 lineHeight: 1.22,
@@ -122,7 +122,7 @@ export function ReportajeBlockD() {
               <p
                 style={{
                   margin: 0,
-                  fontSize: 12,
+                  fontSize: 'var(--fs-meta)',
                   color: PALETTE.ink60,
                   lineHeight: 1.45,
                 }}
@@ -142,7 +142,7 @@ export function ReportajeBlockD() {
                     // The column's established metadata-chip idiom (same shape
                     // as the LOREG and plazos-vencidos badges). As plain text it
                     // read as a second kicker competing with the topic line.
-                    fontSize: 9,
+                    fontSize: 'var(--fs-micro)',
                     color: PALETTE.amber,
                     background: 'rgba(180,83,9,.10)',
                     padding: '2px 6px',
@@ -167,7 +167,7 @@ export function ReportajeBlockD() {
       <div
         style={{
           fontFamily: MONO,
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: PALETTE.ink60,
           letterSpacing: '.06em',
           marginTop: 4,

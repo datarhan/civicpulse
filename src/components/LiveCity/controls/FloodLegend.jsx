@@ -13,7 +13,7 @@ const cardStyle = {
 
 const titleStyle = {
   fontFamily: "'DM Mono', monospace",
-  fontSize: 8.5,
+  fontSize: 'var(--fs-micro)',
   color: 'rgba(11,15,25,.62)',
   letterSpacing: '.1em',
   textTransform: 'uppercase',
@@ -30,7 +30,7 @@ export function FloodLegend() {
   return (
     <div style={cardStyle}>
       <div style={titleStyle}>{t('map.flood.title')}</div>
-      <div style={{ fontSize: 11, color: 'rgba(11,15,25,.7)', lineHeight: 1.35 }}>
+      <div style={{ fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.7)', lineHeight: 1.35 }}>
         Zonas oficiales de peligrosidad · <strong>PATRICOVA</strong> (Generalitat Valenciana / ICV).
         Tonos más intensos = mayor riesgo.
       </div>

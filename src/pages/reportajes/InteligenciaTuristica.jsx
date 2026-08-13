@@ -10,14 +10,19 @@ function SecHead({ num, kicker, title }) {
     <div style={{ margin: '34px 0 12px' }}>
       <div
         className="mono"
-        style={{ fontSize: 11.5, color: 'var(--ink50)', letterSpacing: '.04em', marginBottom: 6 }}
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          letterSpacing: '.04em',
+          marginBottom: 6,
+        }}
       >
         {num} · {kicker}
       </div>
       <h2
         style={{
           fontFamily: SERIF,
-          fontSize: 25,
+          fontSize: 'var(--fs-page)',
           fontWeight: 600,
           letterSpacing: '-.01em',
           lineHeight: 1.15,
@@ -34,7 +39,7 @@ function SecHead({ num, kicker, title }) {
 function Tabla({ cols, rows, caption }) {
   const th = {
     textAlign: 'left',
-    fontSize: 11,
+    fontSize: 'var(--fs-micro)',
     textTransform: 'uppercase',
     letterSpacing: '.06em',
     color: 'var(--ink50)',
@@ -44,7 +49,7 @@ function Tabla({ cols, rows, caption }) {
     whiteSpace: 'nowrap',
   }
   const td = {
-    fontSize: 13,
+    fontSize: 'var(--fs-aux)',
     color: 'var(--ink70)',
     padding: '8px 10px',
     borderBottom: '1px solid var(--border)',
@@ -58,7 +63,7 @@ function Tabla({ cols, rows, caption }) {
             style={{
               captionSide: 'top',
               textAlign: 'left',
-              fontSize: 12,
+              fontSize: 'var(--fs-meta)',
               color: 'var(--ink50)',
               paddingBottom: 8,
             }}
@@ -113,7 +118,7 @@ function Callout({ title, children }) {
     >
       <div
         style={{
-          fontSize: 12,
+          fontSize: 'var(--fs-meta)',
           textTransform: 'uppercase',
           letterSpacing: '.1em',
           color: 'var(--warn-ink)',
@@ -123,7 +128,9 @@ function Callout({ title, children }) {
       >
         {title}
       </div>
-      <div style={{ fontSize: 14, color: 'var(--ink70)', lineHeight: 1.5 }}>{children}</div>
+      <div style={{ fontSize: 'var(--fs-body)', color: 'var(--ink70)', lineHeight: 1.5 }}>
+        {children}
+      </div>
     </div>
   )
 }
@@ -137,13 +144,13 @@ function eur(n) {
 }
 
 const cap = () => ({
-  fontSize: 12.5,
+  fontSize: 'var(--fs-meta)',
   color: 'var(--ink50)',
   margin: '10px 0 4px',
   lineHeight: 1.45,
 })
 const boxH = () => ({
-  fontSize: 12,
+  fontSize: 'var(--fs-meta)',
   textTransform: 'uppercase',
   letterSpacing: '.1em',
   color: 'var(--ink50)',
@@ -151,7 +158,12 @@ const boxH = () => ({
   fontWeight: 700,
 })
 const boxUl = () => ({ margin: 0, paddingLeft: 18 })
-const boxLi = () => ({ fontSize: 13, color: 'var(--ink50)', marginBottom: 8, lineHeight: 1.45 })
+const boxLi = () => ({
+  fontSize: 'var(--fs-aux)',
+  color: 'var(--ink50)',
+  marginBottom: 8,
+  lineHeight: 1.45,
+})
 
 export default function InteligenciaTuristica() {
   const { loading, error, data } = useReportaje('inteligencia-turistica')
@@ -174,7 +186,13 @@ export default function InteligenciaTuristica() {
   return (
     <div
       className="cp-page"
-      style={{ padding: '24px', maxWidth: 760, margin: '0 auto', fontSize: 16, lineHeight: 1.62 }}
+      style={{
+        padding: '24px',
+        maxWidth: 760,
+        margin: '0 auto',
+        fontSize: 'var(--fs-head)',
+        lineHeight: 1.62,
+      }}
     >
       {m.estado !== 'publicado' && (
         <div
@@ -184,7 +202,7 @@ export default function InteligenciaTuristica() {
             color: 'var(--warn-ink)',
             borderRadius: 'var(--r-card)',
             padding: '10px 14px',
-            fontSize: 12.5,
+            fontSize: 'var(--fs-meta)',
             marginBottom: 22,
           }}
         >
@@ -197,7 +215,7 @@ export default function InteligenciaTuristica() {
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -208,7 +226,7 @@ export default function InteligenciaTuristica() {
       <h1
         style={{
           fontFamily: SERIF,
-          fontSize: 'clamp(30px, 5vw, 42px)',
+          fontSize: 'var(--type-display)',
           fontWeight: 600,
           letterSpacing: '-.015em',
           lineHeight: 1.08,
@@ -217,7 +235,14 @@ export default function InteligenciaTuristica() {
       >
         {m.titulo}
       </h1>
-      <p style={{ fontSize: 18, color: 'var(--ink50)', lineHeight: 1.5, margin: '0 0 26px' }}>
+      <p
+        style={{
+          fontSize: 'var(--fs-head)',
+          color: 'var(--ink50)',
+          lineHeight: 1.5,
+          margin: '0 0 26px',
+        }}
+      >
         {m.subtitulo}
       </p>
 
@@ -240,11 +265,23 @@ export default function InteligenciaTuristica() {
           <div key={i} style={{ background: 'var(--paper)', padding: '16px 14px' }}>
             <div
               className="mono"
-              style={{ fontSize: 22, fontWeight: 500, color: 'var(--ink)', lineHeight: 1 }}
+              style={{
+                fontSize: 'var(--fs-card)',
+                fontWeight: 500,
+                color: 'var(--ink)',
+                lineHeight: 1,
+              }}
             >
               {s.n}
             </div>
-            <div style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 7, lineHeight: 1.3 }}>
+            <div
+              style={{
+                fontSize: 'var(--fs-micro)',
+                color: 'var(--ink50)',
+                marginTop: 7,
+                lineHeight: 1.3,
+              }}
+            >
               {s.l}
             </div>
           </div>
@@ -267,7 +304,7 @@ export default function InteligenciaTuristica() {
               style={{
                 borderLeft: '3px solid var(--civic)',
                 padding: '6px 14px',
-                fontSize: 14.5,
+                fontSize: 'var(--fs-body)',
                 color: 'var(--ink70)',
                 fontStyle: 'italic',
                 background: 'var(--soft)',
@@ -438,7 +475,7 @@ export default function InteligenciaTuristica() {
                 padding: '16px 18px',
               }}
             >
-              <h3 style={{ fontSize: 14.5, margin: '0 0 10px', color: 'var(--ink)' }}>
+              <h3 style={{ fontSize: 'var(--fs-body)', margin: '0 0 10px', color: 'var(--ink)' }}>
                 {e.titulo}
               </h3>
               <ul style={boxUl()}>
@@ -462,7 +499,7 @@ export default function InteligenciaTuristica() {
         </p>
         <ul>
           {data.compra.panel.map((b, i) => (
-            <li key={i} style={{ marginBottom: 7, fontSize: 15 }}>
+            <li key={i} style={{ marginBottom: 7, fontSize: 'var(--fs-body)' }}>
               {b}
             </li>
           ))}
@@ -476,7 +513,7 @@ export default function InteligenciaTuristica() {
         <p>De los informes de movilidad:</p>
         <ul>
           {data.compra.movilidad.map((b, i) => (
-            <li key={i} style={{ marginBottom: 7, fontSize: 15 }}>
+            <li key={i} style={{ marginBottom: 7, fontSize: 'var(--fs-body)' }}>
               {b}
             </li>
           ))}
@@ -491,7 +528,7 @@ export default function InteligenciaTuristica() {
         <SecHead num="06" kicker="La escala" title="El turismo que se quiere medir" />
         <ul>
           {data.baseline.bullets.map((b, i) => (
-            <li key={i} style={{ marginBottom: 7, fontSize: 15 }}>
+            <li key={i} style={{ marginBottom: 7, fontSize: 'var(--fs-body)' }}>
               {b}
             </li>
           ))}
@@ -503,7 +540,7 @@ export default function InteligenciaTuristica() {
             borderLeft: '3px solid var(--civic)',
             background: 'var(--soft)',
             borderRadius: '0 var(--r-input) var(--r-input) 0',
-            fontSize: 17,
+            fontSize: 'var(--fs-head)',
             fontWeight: 500,
             lineHeight: 1.5,
             maxWidth: '68ch',
@@ -511,7 +548,14 @@ export default function InteligenciaTuristica() {
           }}
         >
           {data.baseline.plenoQuote}
-          <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 8, fontWeight: 400 }}>
+          <div
+            style={{
+              fontSize: 'var(--fs-meta)',
+              color: 'var(--ink50)',
+              marginTop: 8,
+              fontWeight: 400,
+            }}
+          >
             {data.baseline.plenoQuoteFuente}
           </div>
         </blockquote>
@@ -519,7 +563,7 @@ export default function InteligenciaTuristica() {
         <SecHead num="07" kicker="El contexto" title="Un plan turístico atravesado por la DANA" />
         <ul>
           {data.dana.bullets.map((b, i) => (
-            <li key={i} style={{ marginBottom: 7, fontSize: 15 }}>
+            <li key={i} style={{ marginBottom: 7, fontSize: 'var(--fs-body)' }}>
               {b}
             </li>
           ))}
@@ -532,7 +576,7 @@ export default function InteligenciaTuristica() {
         </p>
         <ol>
           {data.preguntas.map((q, i) => (
-            <li key={i} style={{ marginBottom: 8, fontSize: 15 }}>
+            <li key={i} style={{ marginBottom: 8, fontSize: 'var(--fs-body)' }}>
               {q}
             </li>
           ))}
@@ -591,7 +635,14 @@ export default function InteligenciaTuristica() {
         </div>
       </div>
 
-      <p style={{ fontSize: 13, color: 'var(--ink50)', margin: '16px 0 0', lineHeight: 1.5 }}>
+      <p
+        style={{
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink50)',
+          margin: '16px 0 0',
+          lineHeight: 1.5,
+        }}
+      >
         Datos a {m.fechaDatos}. El derecho de réplica está abierto para el Ayuntamiento y las
         empresas citadas: cualquier respuesta se publicará íntegra. Contacto y correcciones:{' '}
         <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>

@@ -36,7 +36,7 @@ export function CitationPopover({ num, src }) {
         onFocus={() => setOpen(true)}
         onBlur={() => setOpen(false)}
         style={{
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textDecoration: 'none',
           padding: '1px 6px',
@@ -63,7 +63,7 @@ export function CitationPopover({ num, src }) {
             border: '1px solid var(--border)',
             background: 'var(--paper)',
             color: 'var(--ink70)',
-            fontSize: 11.5,
+            fontSize: 'var(--fs-micro)',
             lineHeight: 1.5,
             boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
             pointerEvents: 'none',

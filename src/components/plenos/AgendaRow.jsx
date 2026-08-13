@@ -26,7 +26,7 @@ export function AgendaRow({ item }) {
         gap: 10,
         padding: '6px 0',
         borderBottom: '1px dashed var(--border2)',
-        fontSize: 12.5,
+        fontSize: 'var(--fs-meta)',
       }}
     >
       <div className="mono" style={{ color: 'var(--ink50)', textAlign: 'right' }}>
@@ -38,7 +38,7 @@ export function AgendaRow({ item }) {
             <span
               className="mono"
               style={{
-                fontSize: 9.5,
+                fontSize: 'var(--fs-micro)',
                 color: 'var(--civic)',
                 letterSpacing: '.08em',
                 textTransform: 'uppercase',
@@ -49,7 +49,7 @@ export function AgendaRow({ item }) {
             </span>
           )}
           {item.expediente && (
-            <span className="mono" style={{ fontSize: 9.5, color: 'var(--ink50)' }}>
+            <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               Expte. {item.expediente}
             </span>
           )}

@@ -28,12 +28,18 @@ export default function About() {
     <div
       className="cp-page"
       lang="en"
-      style={{ padding: '24px', maxWidth: 860, margin: '0 auto', fontSize: 14, lineHeight: 1.6 }}
+      style={{
+        padding: '24px',
+        maxWidth: 860,
+        margin: '0 auto',
+        fontSize: 'var(--fs-body)',
+        lineHeight: 1.6,
+      }}
     >
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -41,7 +47,14 @@ export default function About() {
       >
         For international partners &amp; funders
       </div>
-      <h1 style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+      <h1
+        style={{
+          fontSize: 'var(--fs-page)',
+          fontWeight: 700,
+          letterSpacing: '-.015em',
+          marginTop: 2,
+        }}
+      >
         CivicPulse — municipal accountability infrastructure
       </h1>
 
@@ -74,7 +87,7 @@ export default function About() {
       <Card style={{ marginTop: 14 }}>
         <SectionHead eyebrow="The thesis" title="Scale what's safe to scale" />
         <div style={{ overflowX: 'auto' }}>
-          <table style={{ borderCollapse: 'collapse', width: '100%', fontSize: 13 }}>
+          <table style={{ borderCollapse: 'collapse', width: '100%', fontSize: 'var(--fs-aux)' }}>
             <thead>
               <tr>
                 {['Tier', 'Scope', 'Content'].map((h) => (

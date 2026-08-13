@@ -73,7 +73,14 @@ function AreaSpend({ slugs }) {
         title={t('cargos.detalle.area.title')}
       />
       <Card>
-        <div style={{ fontSize: 12.5, color: 'var(--ink70)', marginBottom: 12, lineHeight: 1.5 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink70)',
+            marginBottom: 12,
+            lineHeight: 1.5,
+          }}
+        >
           {t('cargos.detalle.area.intro')}
         </div>
         {rows.map((b) => (
@@ -85,7 +92,7 @@ function AreaSpend({ slugs }) {
               alignItems: 'baseline',
               padding: '7px 0',
               borderTop: '1px solid var(--border2)',
-              fontSize: 13,
+              fontSize: 'var(--fs-aux)',
             }}
           >
             <Link
@@ -98,14 +105,19 @@ function AreaSpend({ slugs }) {
               <span className="mono" style={{ fontWeight: 600 }}>
                 {(b.contratacion.importeEur / 1e6).toFixed(2).replace('.', ',')} M€
               </span>
-              <span style={{ color: 'var(--ink50)', fontSize: 11, marginLeft: 8 }}>
+              <span style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)', marginLeft: 8 }}>
                 {b.contratacion.contratos} {t('departamentos.card.contratos')}
               </span>
             </span>
           </div>
         ))}
         <div
-          style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 10, lineHeight: 1.5 }}
+          style={{
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--ink50)',
+            marginTop: 10,
+            lineHeight: 1.5,
+          }}
           className="mono"
         >
           {t('cargos.detalle.area.note')} · {totalN} ·{' '}
@@ -140,20 +152,23 @@ function Retribucion({ slug }) {
       <Card>
         {d ? (
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>
-            <span className="mono" style={{ fontSize: 22, fontWeight: 700 }}>
+            <span className="mono" style={{ fontSize: 'var(--fs-card)', fontWeight: 700 }}>
               {d.amountEuros.toLocaleString('es-ES')} €
             </span>
             <Pill tone="neutral" size="xs">
               {d.dedicacion}
             </Pill>
-            <span style={{ fontSize: 12, color: 'var(--ink50)' }}>{d.role}</span>
+            <span style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>{d.role}</span>
           </div>
         ) : (
-          <div style={{ fontSize: 13, color: 'var(--ink50)' }}>
+          <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
             {t('cargos.detalle.pago.sinDedicacion')}
           </div>
         )}
-        <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 10 }}>
+        <div
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 10 }}
+        >
           {data.source?.note || data.note || t('cargos.detalle.pago.fuente')}
         </div>
       </Card>
@@ -186,7 +201,14 @@ function AreaActivity({ slugs }) {
         title={t('cargos.detalle.actividad.title')}
       />
       <Card>
-        <div style={{ fontSize: 12.5, color: 'var(--ink70)', marginBottom: 12, lineHeight: 1.5 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink70)',
+            marginBottom: 12,
+            lineHeight: 1.5,
+          }}
+        >
           {t('cargos.detalle.actividad.intro')}
         </div>
         {rows.map((b) => (
@@ -200,7 +222,7 @@ function AreaActivity({ slugs }) {
               flexWrap: 'wrap',
               padding: '8px 0',
               borderTop: '1px solid var(--border2)',
-              fontSize: 13,
+              fontSize: 'var(--fs-aux)',
             }}
           >
             <Link
@@ -209,7 +231,7 @@ function AreaActivity({ slugs }) {
             >
               {locale === 'ca' ? b.labelCa : b.labelEs} →
             </Link>
-            <span style={{ fontSize: 11.5, color: 'var(--ink50)' }}>
+            <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               <span className="mono">{b.plenoVotes.total}</span>{' '}
               {t('cargos.detalle.actividad.votos')}
               {' · '}
@@ -254,14 +276,17 @@ function Mandato({ party }) {
       />
       <Card>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>
-          <span className="mono" style={{ fontSize: 22, fontWeight: 700 }}>
+          <span className="mono" style={{ fontSize: 'var(--fs-card)', fontWeight: 700 }}>
             {String(share.pct).replace('.', ',')} %
           </span>
-          <span style={{ fontSize: 13, color: 'var(--ink70)' }}>
+          <span style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)' }}>
             {share.ballotLabel} · {t('cargos.detalle.mandato.municipales')} {share.year}
           </span>
         </div>
-        <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 8 }}>
+        <div
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 8 }}
+        >
           {t('cargos.detalle.mandato.note')}
           {share.abstencionPct
             ? ` · ${t('cargos.detalle.mandato.abstencion')} ${String(share.abstencionPct).replace('.', ',')} %`
@@ -293,10 +318,16 @@ function FichaOficial({ official, roster }) {
         title={t('cargos.detalle.ficha.title')}
       />
       <Card>
-        <ExtLink href={doc.url} style={{ color: 'var(--civic)', fontWeight: 500, fontSize: 13.5 }}>
+        <ExtLink
+          href={doc.url}
+          style={{ color: 'var(--civic)', fontWeight: 500, fontSize: 'var(--fs-aux)' }}
+        >
           {doc.title} ↗
         </ExtLink>
-        <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 8 }}>
+        <div
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 8 }}
+        >
           {t('cargos.detalle.ficha.note')}
         </div>
       </Card>
@@ -318,7 +349,7 @@ function MiniStat({ label, value, tone }) {
       <div
         className="mono"
         style={{
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.06em',
@@ -326,7 +357,10 @@ function MiniStat({ label, value, tone }) {
       >
         {label}
       </div>
-      <div className="mono" style={{ fontSize: 18, fontWeight: 600, color, marginTop: 2 }}>
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-head)', fontWeight: 600, color, marginTop: 2 }}
+      >
         {value}
       </div>
     </div>
@@ -345,7 +379,9 @@ export default function CargoDetalle() {
 
   if (officialsSnap.loading) {
     return (
-      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 13 }}>{t('common.loading')}</div>
+      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>
+        {t('common.loading')}
+      </div>
     )
   }
 
@@ -357,7 +393,7 @@ export default function CargoDetalle() {
         <Link
           to="/cargos"
           style={{
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             color: 'var(--civic)',
             textDecoration: 'none',
             marginBottom: 18,
@@ -400,7 +436,7 @@ export default function CargoDetalle() {
       <Link
         to="/cargos"
         style={{
-          fontSize: 12,
+          fontSize: 'var(--fs-meta)',
           color: 'var(--civic)',
           textDecoration: 'none',
           marginBottom: 18,
@@ -441,7 +477,7 @@ export default function CargoDetalle() {
             <span
               className="mono"
               style={{
-                fontSize: 9,
+                fontSize: 'var(--fs-micro)',
                 fontWeight: 700,
                 letterSpacing: '.12em',
                 textTransform: 'uppercase',
@@ -457,7 +493,7 @@ export default function CargoDetalle() {
               <span
                 className="mono"
                 style={{
-                  fontSize: 9,
+                  fontSize: 'var(--fs-micro)',
                   fontWeight: 700,
                   letterSpacing: '.1em',
                   textTransform: 'uppercase',
@@ -468,18 +504,25 @@ export default function CargoDetalle() {
               </span>
             )}
           </div>
-          <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-.01em' }}>
+          <div style={{ fontSize: 'var(--fs-card)', fontWeight: 700, letterSpacing: '-.01em' }}>
             {official.name}
           </div>
           {official.portfolios?.length > 0 && (
-            <div style={{ fontSize: 13, color: 'var(--ink50)', marginTop: 4, lineHeight: 1.4 }}>
+            <div
+              style={{
+                fontSize: 'var(--fs-aux)',
+                color: 'var(--ink50)',
+                marginTop: 4,
+                lineHeight: 1.4,
+              }}
+            >
               {official.portfolios.join(' · ')}
             </div>
           )}
           {/* Both links sit inside a run of text, so colour alone cannot
               distinguish them (axe: link-in-text-block, WCAG 1.4.1). The email
               is rendered in the body ink to begin with. Underline them. */}
-          <div style={{ display: 'flex', gap: 14, marginTop: 8, fontSize: 12 }}>
+          <div style={{ display: 'flex', gap: 14, marginTop: 8, fontSize: 'var(--fs-meta)' }}>
             <a
               href={`mailto:${official.email || 'alcaldia@ribarroja.es'}`}
               className="mono"
@@ -554,7 +597,7 @@ export default function CargoDetalle() {
                 to={`/departamentos/${s}`}
                 className="mono"
                 style={{
-                  fontSize: 11.5,
+                  fontSize: 'var(--fs-micro)',
                   padding: '5px 10px',
                   background: 'var(--civic-soft)',
                   color: 'var(--civic)',
@@ -579,14 +622,14 @@ export default function CargoDetalle() {
           right={
             <Link
               to="/promesas"
-              style={{ fontSize: 12, color: 'var(--civic)', textDecoration: 'none' }}
+              style={{ fontSize: 'var(--fs-meta)', color: 'var(--civic)', textDecoration: 'none' }}
             >
               {t('cargos.detalle.promesas.viewAll')}
             </Link>
           }
         />
         {partyPromises.length === 0 ? (
-          <p style={{ fontSize: 12.5, color: 'var(--ink50)', marginTop: 8 }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 8 }}>
             {t('cargos.detalle.promesas.empty')}
           </p>
         ) : (
@@ -602,13 +645,13 @@ export default function CargoDetalle() {
                   }}
                 >
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: 13.5, fontWeight: 600 }}>{p.title}</div>
+                    <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 600 }}>{p.title}</div>
                     <blockquote
                       style={{
                         margin: '6px 0 0',
                         padding: '6px 10px',
                         borderLeft: '3px solid var(--civic)',
-                        fontSize: 14,
+                        fontSize: 'var(--fs-body)',
                         fontWeight: 500,
                         color: 'var(--ink)',
                         lineHeight: 1.5,
@@ -619,7 +662,7 @@ export default function CargoDetalle() {
                     </blockquote>
                     <div
                       className="mono"
-                      style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 6 }}
+                      style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 6 }}
                     >
                       {p.madeAt} · {p.source.publisher}
                     </div>
@@ -633,7 +676,11 @@ export default function CargoDetalle() {
             {partyPromises.length > 6 && (
               <Link
                 to="/promesas"
-                style={{ fontSize: 12, color: 'var(--civic)', textDecoration: 'none' }}
+                style={{
+                  fontSize: 'var(--fs-meta)',
+                  color: 'var(--civic)',
+                  textDecoration: 'none',
+                }}
               >
                 {t('cargos.detalle.promesas.more').replace('{n}', partyPromises.length - 6)}
               </Link>
@@ -649,7 +696,7 @@ export default function CargoDetalle() {
           title={t('cargos.detalle.agenda.title')}
         />
         {agendaItems.length === 0 ? (
-          <p style={{ fontSize: 12.5, color: 'var(--ink50)', marginTop: 8 }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 8 }}>
             {t('cargos.detalle.agenda.empty')}
           </p>
         ) : (
@@ -661,13 +708,13 @@ export default function CargoDetalle() {
                   padding: '8px 12px',
                   border: '1px solid var(--border2)',
                   borderRadius: 'var(--r-input)',
-                  fontSize: 12.5,
+                  fontSize: 'var(--fs-meta)',
                   lineHeight: 1.45,
                 }}
               >
                 <div
                   className="mono"
-                  style={{ fontSize: 10, color: 'var(--ink50)', marginBottom: 2 }}
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 2 }}
                 >
                   {it.plenoDate} · punto {it.number}
                   {it.department ? ` · ${it.department}` : ''}
@@ -677,7 +724,10 @@ export default function CargoDetalle() {
               </div>
             ))}
             {agendaItems.length > 12 && (
-              <div className="mono" style={{ fontSize: 11, color: 'var(--ink50)', paddingTop: 4 }}>
+              <div
+                className="mono"
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', paddingTop: 4 }}
+              >
                 {t('cargos.detalle.agenda.more').replace('{n}', agendaItems.length - 12)}
               </div>
             )}
@@ -694,7 +744,11 @@ export default function CargoDetalle() {
             quejaStats.total > 0 ? (
               <Link
                 to="/quejas"
-                style={{ fontSize: 12, color: 'var(--civic)', textDecoration: 'none' }}
+                style={{
+                  fontSize: 'var(--fs-meta)',
+                  color: 'var(--civic)',
+                  textDecoration: 'none',
+                }}
               >
                 {t('cargos.detalle.quejas.viewAll')}
               </Link>
@@ -702,7 +756,7 @@ export default function CargoDetalle() {
           }
         />
         {quejaStats.total === 0 ? (
-          <p style={{ fontSize: 12.5, color: 'var(--ink50)', marginTop: 8 }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 8 }}>
             {t('cargos.detalle.quejas.empty')}
           </p>
         ) : (
@@ -732,7 +786,7 @@ export default function CargoDetalle() {
           padding: 14,
           background: 'var(--soft)',
           borderRadius: 'var(--r-input)',
-          fontSize: 11.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           lineHeight: 1.55,
         }}

@@ -34,7 +34,7 @@ export function BandaPares({ indicador, formatea }) {
       <div
         className="mono"
         style={{
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           textTransform: 'uppercase',
           letterSpacing: '.07em',
           color: 'var(--ink50)',
@@ -97,7 +97,7 @@ export function BandaPares({ indicador, formatea }) {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           marginTop: 5,
         }}
@@ -111,14 +111,14 @@ export function BandaPares({ indicador, formatea }) {
       </div>
 
       <details style={{ marginTop: 8 }}>
-        <summary style={{ cursor: 'pointer', fontSize: 12.5, color: 'var(--civic)' }}>
+        <summary style={{ cursor: 'pointer', fontSize: 'var(--fs-meta)', color: 'var(--civic)' }}>
           {t('eficiencia.pares.ver')}
         </summary>
-        <p style={{ fontSize: 12, color: 'var(--ink50)', margin: '8px 0' }}>
+        <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '8px 0' }}>
           {t('eficiencia.pares.nota')}
         </p>
         <div style={{ overflowX: 'auto' }}>
-          <table style={{ borderCollapse: 'collapse', fontSize: 12.5, width: '100%' }}>
+          <table style={{ borderCollapse: 'collapse', fontSize: 'var(--fs-meta)', width: '100%' }}>
             <thead>
               <tr style={{ textAlign: 'left', color: 'var(--ink50)' }}>
                 <th style={{ padding: '4px 10px 4px 0' }}>{t('eficiencia.pares.municipio')}</th>

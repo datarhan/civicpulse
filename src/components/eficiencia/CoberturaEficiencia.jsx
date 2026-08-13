@@ -55,7 +55,7 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
       <div
         className="mono"
         style={{
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           textTransform: 'uppercase',
           letterSpacing: '.07em',
           color: 'var(--ink50)',
@@ -63,7 +63,13 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
       >
         {t('eficiencia.cobertura.titulo')}
       </div>
-      <p style={{ margin: '8px 0 0', fontSize: 13.5, color: 'var(--ink70, var(--ink50))' }}>
+      <p
+        style={{
+          margin: '8px 0 0',
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink70, var(--ink50))',
+        }}
+      >
         De los <strong className="mono">{universe.serviciosEnRegistro}</strong> servicios que este
         panel sigue:{' '}
         {filas.map((f, idx) => (
@@ -82,7 +88,7 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
             margin: '10px 0 0',
             paddingLeft: 10,
             borderLeft: '3px solid var(--warn)',
-            fontSize: 13,
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink70, var(--ink50))',
           }}
         >
@@ -113,7 +119,7 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
         </p>
       )}
       {cobertura && (
-        <p style={{ margin: '8px 0 0', fontSize: 12, color: 'var(--ink50)' }}>
+        <p style={{ margin: '8px 0 0', fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
           Entregas publicadas por el ministerio:{' '}
           <span className="mono">{cobertura.entregasPublicadas?.join(', ')}</span>. Obtenidas aquí:{' '}
           <span className="mono">{cobertura.entregasObtenidas?.join(', ')}</span>.{' '}

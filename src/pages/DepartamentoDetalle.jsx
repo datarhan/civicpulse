@@ -40,7 +40,9 @@ function VotesSection({ slug, frozen }) {
   )
   if (votes.length === 0) {
     return (
-      <p style={{ fontSize: 12.5, color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}>
+      <p
+        style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}
+      >
         {t('departamentos.detalle.empty.votes')}
       </p>
     )
@@ -59,8 +61,13 @@ function VotesSection({ slug, frozen }) {
             }}
           >
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 13.5, fontWeight: 600, lineHeight: 1.4 }}>{v.title}</div>
-              <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 4 }}>
+              <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 600, lineHeight: 1.4 }}>
+                {v.title}
+              </div>
+              <div
+                className="mono"
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 4 }}
+              >
                 {v.plenoDate} · punto {v.itemNumber}
                 {v.expediente ? ` · exp. ${v.expediente}` : ''}
               </div>
@@ -83,14 +90,17 @@ function VotesSection({ slug, frozen }) {
               {v.outcome === 'aprobado' ? (
                 <PlazoVencidoBadge dueBy={v.dueBy} frozen={frozen} note={v.dueBySource} />
               ) : (
-                <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+                <span
+                  className="mono"
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                >
                   plazo: {v.dueBy}
                 </span>
               )}
               {v.dueBySource && (
                 <span
                   style={{
-                    fontSize: 11.5,
+                    fontSize: 'var(--fs-micro)',
                     fontWeight: 500,
                     color: 'var(--ink70)',
                     paddingLeft: 8,
@@ -119,7 +129,9 @@ function PromisesSection({ slug, frozen }) {
   const items = (snap.data?.items ?? []).filter((p) => promiseDeptSlug(p) === slug)
   if (items.length === 0) {
     return (
-      <p style={{ fontSize: 12.5, color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}>
+      <p
+        style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}
+      >
         {t('departamentos.detalle.empty.promesas')}
       </p>
     )
@@ -141,17 +153,24 @@ function PromisesSection({ slug, frozen }) {
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div
                   className="mono"
-                  style={{ fontSize: 10, fontWeight: 700, color: partyColor, marginBottom: 3 }}
+                  style={{
+                    fontSize: 'var(--fs-micro)',
+                    fontWeight: 700,
+                    color: partyColor,
+                    marginBottom: 3,
+                  }}
                 >
                   {p.party}
                 </div>
-                <div style={{ fontSize: 13.5, fontWeight: 600, lineHeight: 1.4 }}>{p.title}</div>
+                <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 600, lineHeight: 1.4 }}>
+                  {p.title}
+                </div>
                 <blockquote
                   style={{
                     margin: '6px 0 0',
                     padding: '6px 10px',
                     borderLeft: '3px solid var(--civic)',
-                    fontSize: 14,
+                    fontSize: 'var(--fs-body)',
                     fontWeight: 500,
                     color: 'var(--ink)',
                     lineHeight: 1.5,
@@ -170,7 +189,10 @@ function PromisesSection({ slug, frozen }) {
                 <PlazoVencidoBadge dueBy={p.dueBy} frozen={frozen} />
               </div>
             )}
-            <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 8 }}>
+            <div
+              className="mono"
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 8 }}
+            >
               {p.madeAt} · {p.source.publisher}
             </div>
           </Card>
@@ -200,11 +222,14 @@ function UnvotedAgendasSection({ slug, votesSnap }) {
             padding: '8px 12px',
             border: '1px solid var(--border2)',
             borderRadius: 'var(--r-input)',
-            fontSize: 12.5,
+            fontSize: 'var(--fs-meta)',
             lineHeight: 1.45,
           }}
         >
-          <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginBottom: 2 }}>
+          <div
+            className="mono"
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 2 }}
+          >
             {it.plenoDate} · punto {it.number}
             {it.expediente ? ` · exp. ${it.expediente}` : ''} · debatido, sin voto transcrito
           </div>
@@ -224,7 +249,9 @@ function QuejasSection({ slug }) {
     .filter((q) => q.state !== 'resuelta' && q.state !== 'cerrada_no_registrada')
   if (items.length === 0) {
     return (
-      <p style={{ fontSize: 12.5, color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}>
+      <p
+        style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}
+      >
         {t('departamentos.detalle.empty.quejas')}
       </p>
     )
@@ -248,8 +275,8 @@ function QuejasSection({ slug }) {
           }}
         >
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 13, fontWeight: 500 }}>{q.title || q.id}</div>
-            <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+            <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 500 }}>{q.title || q.id}</div>
+            <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               {q.createdAt?.slice(0, 10)}
             </div>
           </div>
@@ -300,7 +327,7 @@ function VerdictMixBar({ d }) {
         <span
           className="mono"
           style={{
-            fontSize: 10,
+            fontSize: 'var(--fs-micro)',
             textTransform: 'uppercase',
             letterSpacing: '.06em',
             color: 'var(--ink50)',
@@ -308,8 +335,8 @@ function VerdictMixBar({ d }) {
         >
           Verificación de declaraciones
         </span>
-        <span style={{ fontSize: 11.5, color: 'var(--ink50)' }}>
-          <strong className="mono" style={{ fontSize: 16, color: 'var(--ink)' }}>
+        <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+          <strong className="mono" style={{ fontSize: 'var(--fs-head)', color: 'var(--ink)' }}>
             {pct}%
           </strong>{' '}
           con evidencia · {total} en total
@@ -336,7 +363,12 @@ function VerdictMixBar({ d }) {
         {visible.map((s) => (
           <span
             key={s.label}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 11.5 }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 5,
+              fontSize: 'var(--fs-micro)',
+            }}
           >
             <span
               style={{
@@ -369,7 +401,9 @@ export default function DepartamentoDetalle() {
 
   if (stats.loading) {
     return (
-      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 13 }}>{t('common.loading')}</div>
+      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>
+        {t('common.loading')}
+      </div>
     )
   }
 
@@ -380,7 +414,7 @@ export default function DepartamentoDetalle() {
         <Link
           to="/departamentos"
           style={{
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             color: 'var(--civic)',
             textDecoration: 'none',
             marginBottom: 18,
@@ -403,7 +437,7 @@ export default function DepartamentoDetalle() {
       <Link
         to="/departamentos"
         style={{
-          fontSize: 12,
+          fontSize: 'var(--fs-meta)',
           color: 'var(--civic)',
           textDecoration: 'none',
           marginBottom: 18,
@@ -435,12 +469,15 @@ export default function DepartamentoDetalle() {
             />
           )}
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+            <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               {t('departamentos.card.responsable')}
             </div>
-            <div style={{ fontSize: 14, fontWeight: 600 }}>{official.name}</div>
+            <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600 }}>{official.name}</div>
           </div>
-          <span className="mono" style={{ fontSize: 11, fontWeight: 700, color: partyColor }}>
+          <span
+            className="mono"
+            style={{ fontSize: 'var(--fs-micro)', fontWeight: 700, color: partyColor }}
+          >
             {official.party}
           </span>
         </div>
@@ -452,7 +489,7 @@ export default function DepartamentoDetalle() {
             borderRadius: 'var(--r-input)',
             marginTop: 8,
             color: 'var(--ink50)',
-            fontSize: 12.5,
+            fontSize: 'var(--fs-meta)',
           }}
         >
           {t('departamentos.card.sinResponsable')}
@@ -526,7 +563,7 @@ export default function DepartamentoDetalle() {
           padding: '10px 14px',
           background: 'var(--soft)',
           borderRadius: 'var(--r-input)',
-          fontSize: 11.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           lineHeight: 1.55,
         }}
@@ -535,7 +572,7 @@ export default function DepartamentoDetalle() {
           className="mono"
           style={{
             cursor: 'pointer',
-            fontSize: 10,
+            fontSize: 'var(--fs-micro)',
             textTransform: 'uppercase',
             letterSpacing: '.06em',
             color: 'var(--ink50)',
@@ -570,7 +607,7 @@ function MiniStat({ label, value, tone }) {
       <div
         className="mono"
         style={{
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.06em',
@@ -578,7 +615,10 @@ function MiniStat({ label, value, tone }) {
       >
         {label}
       </div>
-      <div className="mono" style={{ fontSize: 18, fontWeight: 600, color, marginTop: 2 }}>
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-head)', fontWeight: 600, color, marginTop: 2 }}
+      >
         {value}
       </div>
     </div>

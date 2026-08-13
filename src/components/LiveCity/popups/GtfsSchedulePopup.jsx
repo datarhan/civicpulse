@@ -33,18 +33,20 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
               display: 'grid',
               placeItems: 'center',
               fontFamily: 'DM Mono, monospace',
-              fontSize: 9,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 800,
             }}
           >
             {ln}
           </span>
         ))}
-        <span style={{ fontWeight: 700, fontSize: 14 }}>{station?.label || name}</span>
+        <span style={{ fontWeight: 700, fontSize: 'var(--fs-body)' }}>
+          {station?.label || name}
+        </span>
         {isTerminus && (
           <span
             style={{
-              fontSize: 9,
+              fontSize: 'var(--fs-micro)',
               fontFamily: 'DM Mono, monospace',
               background: '#EEF4FF',
               color: 'var(--civic)',
@@ -67,7 +69,7 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
           >
             <span
               style={{
-                fontSize: 10.5,
+                fontSize: 'var(--fs-micro)',
                 color: readableInk(d.line === 'L2' ? '#B4397F' : '#A47E52'),
                 background: d.line === 'L2' ? '#B4397F' : '#A47E52',
                 padding: '1px 5px',
@@ -78,13 +80,15 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
             >
               {d.line}
             </span>
-            <span style={{ fontSize: 11, color: 'rgba(11,15,25,.55)', minWidth: 128 }}>
+            <span
+              style={{ fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.55)', minWidth: 128 }}
+            >
               → {d.heading}
             </span>
             <span
               style={{
                 fontFamily: 'DM Mono, monospace',
-                fontSize: 13,
+                fontSize: 'var(--fs-aux)',
                 fontWeight: 700,
                 color: '#0B0F19',
               }}
@@ -95,7 +99,7 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
             <span
               style={{
                 fontFamily: 'DM Mono, monospace',
-                fontSize: 11,
+                fontSize: 'var(--fs-micro)',
                 color: '#B45309',
               }}
             >
@@ -107,7 +111,7 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
       <div
         style={{
           marginTop: 8,
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           color: 'rgba(11,15,25,.55)',
           fontFamily: 'DM Mono, monospace',
           letterSpacing: '.04em',
@@ -124,7 +128,7 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
         style={{
           marginTop: 4,
           display: 'inline-block',
-          fontSize: 12,
+          fontSize: 'var(--fs-meta)',
           color: 'var(--civic)',
           textDecoration: 'none',
         }}

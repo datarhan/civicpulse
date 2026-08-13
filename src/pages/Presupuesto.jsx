@@ -13,7 +13,7 @@ function ChapterRow({ label, amount, total, color }) {
   const pct = total > 0 ? (amount / total) * 100 : 0
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, fontSize: 13 }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, fontSize: 'var(--fs-aux)' }}>
         <span
           style={{
             width: 10,
@@ -24,12 +24,17 @@ function ChapterRow({ label, amount, total, color }) {
           }}
         />
         <span style={{ flex: 1, fontWeight: 500 }}>{label}</span>
-        <span className="mono" style={{ fontSize: 13, fontWeight: 700 }}>
+        <span className="mono" style={{ fontSize: 'var(--fs-aux)', fontWeight: 700 }}>
           {formatEuros(amount, { compact: true })}
         </span>
         <span
           className="mono"
-          style={{ fontSize: 11, color: 'var(--ink50)', width: 48, textAlign: 'right' }}
+          style={{
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--ink50)',
+            width: 48,
+            textAlign: 'right',
+          }}
         >
           {pct.toFixed(1)}%
         </span>
@@ -61,7 +66,14 @@ function RealSubsidies() {
         eyebrow={`BDNS · ${data.stats.total} convocatorias · ${data.stats.granted} municipales`}
         title="Subvenciones · Base Nacional"
       />
-      <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 2, marginBottom: 10 }}>
+      <div
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          marginTop: 2,
+          marginBottom: 10,
+        }}
+      >
         Datos reales de MinHac BDNS · pap.hacienda.gob.es
       </div>
       {items.map((s, i) => (
@@ -76,11 +88,11 @@ function RealSubsidies() {
             <Pill tone="civic" size="xs">
               BDNS {s.bdnsCode}
             </Pill>
-            <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+            <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               {fmt(s.date)}
             </span>
           </div>
-          <div style={{ fontSize: 12.5, lineHeight: 1.4 }}>
+          <div style={{ fontSize: 'var(--fs-meta)', lineHeight: 1.4 }}>
             <ExtLink href={s.sourceUrl} style={{ color: 'inherit', textDecoration: 'none' }}>
               {s.description.length > 180 ? s.description.slice(0, 180) + '…' : s.description}
             </ExtLink>
@@ -114,7 +126,7 @@ function RealBudgetHeader() {
             <div
               className="mono"
               style={{
-                fontSize: 10.5,
+                fontSize: 'var(--fs-micro)',
                 color: 'var(--ink50)',
                 textTransform: 'uppercase',
                 letterSpacing: '.08em',
@@ -122,12 +134,19 @@ function RealBudgetHeader() {
             >
               Transparencia fiscal
             </div>
-            <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+            <div
+              style={{
+                fontSize: 'var(--fs-page)',
+                fontWeight: 700,
+                letterSpacing: '-.015em',
+                marginTop: 2,
+              }}
+            >
               Presupuesto municipal
             </div>
           </div>
         </div>
-        <div style={{ marginBottom: 16, fontSize: 13, color: 'var(--ink50)' }}>
+        <div style={{ marginBottom: 16, fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
           {loading
             ? 'Cargando datos reales de MinHac (CONPREL)…'
             : 'No se pudo cargar el presupuesto real.'}
@@ -181,7 +200,7 @@ function RealBudgetHeader() {
           <div
             className="mono"
             style={{
-              fontSize: 10.5,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               textTransform: 'uppercase',
               letterSpacing: '.08em',
@@ -189,10 +208,17 @@ function RealBudgetHeader() {
           >
             Transparencia fiscal · ejercicio {s.year} · CONPREL MinHac
           </div>
-          <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+          <div
+            style={{
+              fontSize: 'var(--fs-page)',
+              fontWeight: 700,
+              letterSpacing: '-.015em',
+              marginTop: 2,
+            }}
+          >
             Presupuesto municipal {s.year}
           </div>
-          <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 4 }}>
+          <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 4 }}>
             Datos reales de la Dirección General de Fondos Comunitarios y Coordinación Financiera
             con las Entidades Locales. Actualizado {generatedDate}.
           </div>
@@ -229,7 +255,7 @@ function RealBudgetHeader() {
           <div
             className="mono"
             style={{
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               textTransform: 'uppercase',
               letterSpacing: '.06em',
@@ -239,11 +265,16 @@ function RealBudgetHeader() {
           </div>
           <div
             className="mono"
-            style={{ fontSize: 22, fontWeight: 700, marginTop: 4, letterSpacing: '-.01em' }}
+            style={{
+              fontSize: 'var(--fs-card)',
+              fontWeight: 700,
+              marginTop: 4,
+              letterSpacing: '-.01em',
+            }}
           >
             {formatEuros(s.totalRevenue, { compact: true })}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 2 }}>
+          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
             {formatEuros(s.totalRevenue)}
           </div>
         </Card>
@@ -251,7 +282,7 @@ function RealBudgetHeader() {
           <div
             className="mono"
             style={{
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               textTransform: 'uppercase',
               letterSpacing: '.06em',
@@ -261,11 +292,16 @@ function RealBudgetHeader() {
           </div>
           <div
             className="mono"
-            style={{ fontSize: 22, fontWeight: 700, marginTop: 4, letterSpacing: '-.01em' }}
+            style={{
+              fontSize: 'var(--fs-card)',
+              fontWeight: 700,
+              marginTop: 4,
+              letterSpacing: '-.01em',
+            }}
           >
             {formatEuros(s.totalExpense, { compact: true })}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 2 }}>
+          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
             {formatEuros(s.totalExpense)}
           </div>
         </Card>
@@ -273,7 +309,7 @@ function RealBudgetHeader() {
           <div
             className="mono"
             style={{
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               textTransform: 'uppercase',
               letterSpacing: '.06em',
@@ -284,7 +320,7 @@ function RealBudgetHeader() {
           <div
             className="mono"
             style={{
-              fontSize: 22,
+              fontSize: 'var(--fs-card)',
               fontWeight: 700,
               marginTop: 4,
               letterSpacing: '-.01em',
@@ -297,7 +333,7 @@ function RealBudgetHeader() {
             {s.balance >= 0 ? '+' : ''}
             {formatEuros(s.balance, { compact: true })}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 2 }}>
+          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
             {desequilibrio !== null ? (
               <a href="#descuadre" style={{ color: 'var(--warn-ink)' }}>
                 no cuadra ↓
@@ -311,7 +347,7 @@ function RealBudgetHeader() {
           <div
             className="mono"
             style={{
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               textTransform: 'uppercase',
               letterSpacing: '.06em',
@@ -321,18 +357,23 @@ function RealBudgetHeader() {
           </div>
           <div
             className="mono"
-            style={{ fontSize: 22, fontWeight: 700, marginTop: 4, letterSpacing: '-.01em' }}
+            style={{
+              fontSize: 'var(--fs-card)',
+              fontWeight: 700,
+              marginTop: 4,
+              letterSpacing: '-.01em',
+            }}
           >
             {formatEuros(perCapita)}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 2 }}>
+          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
             {s.population.toLocaleString('es-ES')} habitantes
           </div>
         </Card>
       </div>
       <p
         style={{
-          fontSize: 11.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           lineHeight: 1.55,
           margin: '0 0 16px',
@@ -357,7 +398,7 @@ function RealBudgetHeader() {
         <p
           id="descuadre"
           style={{
-            fontSize: 11.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             lineHeight: 1.55,
             margin: '0 0 16px',
@@ -490,10 +531,13 @@ function EjecucionSection() {
           },
         ].map((s) => (
           <div key={s.k} style={{ flex: '1 1 220px' }}>
-            <div className="mono" style={{ fontSize: 22, fontWeight: 600, color: 'var(--civic)' }}>
+            <div
+              className="mono"
+              style={{ fontSize: 'var(--fs-card)', fontWeight: 600, color: 'var(--civic)' }}
+            >
               {s.pc}%
             </div>
-            <div style={{ fontSize: 12.5, color: 'var(--ink50)', marginTop: 4 }}>
+            <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 4 }}>
               {s.k} · <span className="mono">{eur(s.e)}</span> de{' '}
               <span className="mono">{eur(s.a)}</span>
             </div>
@@ -509,7 +553,7 @@ function EjecucionSection() {
                 style={{
                   display: 'flex',
                   justifyContent: 'space-between',
-                  fontSize: 12.5,
+                  fontSize: 'var(--fs-meta)',
                   marginBottom: 3,
                 }}
               >
@@ -559,7 +603,14 @@ function EjecucionSection() {
           )
         })}
       </div>
-      <p style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 12, marginBottom: 0 }}>
+      <p
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          marginTop: 12,
+          marginBottom: 0,
+        }}
+      >
         Ejecutado = obligaciones reconocidas netas sobre presupuesto definitivo. Fuente:
         Ayuntamiento de Riba-roja · estados de ejecución presupuestaria.
       </p>
@@ -587,7 +638,14 @@ function ObrasEnCursoSection() {
         eyebrow="Urbanismo · infraestructuras"
         title="Obras de infraestructura · fichas municipales 2019–2024"
       />
-      <p style={{ fontSize: 12.5, color: 'var(--ink50)', margin: '2px 0 8px', maxWidth: '68ch' }}>
+      <p
+        style={{
+          fontSize: 'var(--fs-meta)',
+          color: 'var(--ink50)',
+          margin: '2px 0 8px',
+          maxWidth: '68ch',
+        }}
+      >
         {obras.length} obras publicadas por el Ayuntamiento en fichas oficiales:{' '}
         {renove.length > 0 &&
           `${renove.length} actuaciones del Plan RENOVE de adecuación de viales (ejecutadas 2023–2024) y `}
@@ -604,7 +662,7 @@ function ObrasEnCursoSection() {
         }}
       >
         <Pill tone="warn">Últimas fichas publicadas: feb 2024</Pill>
-        <span style={{ fontSize: 12, color: 'var(--ink50)' }}>
+        <span style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
           obras ya ejecutadas · no refleja obras posteriores
         </span>
       </div>
@@ -632,7 +690,10 @@ function ObrasEnCursoSection() {
                   )}
                 </span>
               </div>
-              <div className="mono" style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 3 }}>
+              <div
+                className="mono"
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 3 }}
+              >
                 {o.empresa ? `${o.empresa} · ` : ''}
                 {importe != null ? `${eur(importe)} ${importeLabel}` : ''}
                 {o.plazoMeses ? ` · ${o.plazoMeses} meses` : ''}
@@ -644,7 +705,11 @@ function ObrasEnCursoSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mono"
-                style={{ fontSize: 10.5, color: 'var(--civic)', textDecoration: 'underline' }}
+                style={{
+                  fontSize: 'var(--fs-micro)',
+                  color: 'var(--civic)',
+                  textDecoration: 'underline',
+                }}
               >
                 Ver ficha ↗
               </a>
@@ -652,7 +717,14 @@ function ObrasEnCursoSection() {
           )
         })}
       </div>
-      <p style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 10, marginBottom: 0 }}>
+      <p
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          marginTop: 10,
+          marginBottom: 0,
+        }}
+      >
         Fuente: Ayuntamiento de Riba-roja de Túria — Portal de Transparencia («obras de
         infraestructuras en curso») y página del Plan RENOVE de adecuación de viales.
       </p>

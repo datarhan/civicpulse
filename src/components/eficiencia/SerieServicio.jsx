@@ -278,7 +278,7 @@ export function SerieServicio({ puntos, formatea, unidad }) {
             <span
               className="mono"
               style={{
-                fontSize: 9,
+                fontSize: 'var(--fs-micro)',
                 color: 'var(--ink50)',
                 lineHeight: 1.2,
                 whiteSpace: 'nowrap',
@@ -431,7 +431,7 @@ export function SerieServicio({ puntos, formatea, unidad }) {
               // el lado por el que se sale sí es un hecho.
               ...(p.valor > y1 ? { top: 0 } : { bottom: 16 }),
               transform: 'translateX(-50%)',
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--warn-ink)',
               lineHeight: 1,
             }}
@@ -446,7 +446,7 @@ export function SerieServicio({ puntos, formatea, unidad }) {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           marginTop: 4,
         }}

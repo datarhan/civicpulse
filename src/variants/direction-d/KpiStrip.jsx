@@ -59,7 +59,7 @@ function Kpi({ label, value, delta, tone, sub, spark, sparkColor, serif }) {
       <div
         style={{
           fontFamily: MONO,
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           color: PALETTE.ink50,
           letterSpacing: '.12em',
           textTransform: 'uppercase',
@@ -71,7 +71,7 @@ function Kpi({ label, value, delta, tone, sub, spark, sparkColor, serif }) {
         <span
           style={{
             fontFamily: serif ? SERIF : MONO,
-            fontSize: serif ? 26 : 18,
+            fontSize: serif ? 'var(--fs-page)' : 'var(--fs-head)',
             fontWeight: 800,
             color,
             letterSpacing: '-.015em',
@@ -84,7 +84,7 @@ function Kpi({ label, value, delta, tone, sub, spark, sparkColor, serif }) {
           <span
             style={{
               fontFamily: MONO,
-              fontSize: 10.5,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 700,
               color: delta.startsWith('▲')
                 ? PALETTE.okInk
@@ -100,7 +100,9 @@ function Kpi({ label, value, delta, tone, sub, spark, sparkColor, serif }) {
       {(sub || spark) && (
         <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 4 }}>
           {sub && (
-            <span style={{ fontFamily: MONO, fontSize: 10, color: PALETTE.ink50 }}>{sub}</span>
+            <span style={{ fontFamily: MONO, fontSize: 'var(--fs-micro)', color: PALETTE.ink50 }}>
+              {sub}
+            </span>
           )}
           {spark && <MiniSpark data={spark} color={sparkColor || fill} />}
         </div>

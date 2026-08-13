@@ -9,7 +9,7 @@ import { COMARCA_COORDS } from '../../lib/comarca-coords'
 const EmpleoMap = lazy(() => import('./EmpleoMap'))
 
 const eyebrow = {
-  fontSize: 9.5,
+  fontSize: 'var(--fs-micro)',
   color: 'var(--ink50)',
   textTransform: 'uppercase',
   letterSpacing: '.06em',
@@ -29,17 +29,25 @@ function Kpi({ label, value, sub, tone }) {
       <div className="mono" style={eyebrow}>
         {label}
       </div>
-      <div className="mono" style={{ fontSize: 22, fontWeight: 700, color, marginTop: 3 }}>
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-card)', fontWeight: 700, color, marginTop: 3 }}
+      >
         {value}
       </div>
-      {sub && <div style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 1 }}>{sub}</div>}
+      {sub && (
+        <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 1 }}>
+          {sub}
+        </div>
+      )}
     </div>
   )
 }
 
 /** Horizontal bar list — one row per {label,count}, width ∝ count/max. */
 function BarList({ rows, empty }) {
-  if (!rows.length) return <div style={{ fontSize: 11.5, color: 'var(--ink50)' }}>{empty}</div>
+  if (!rows.length)
+    return <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>{empty}</div>
   const max = Math.max(...rows.map((r) => r.count)) || 1
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -51,7 +59,7 @@ function BarList({ rows, empty }) {
           <div style={{ minWidth: 0 }}>
             <div
               style={{
-                fontSize: 11,
+                fontSize: 'var(--fs-micro)',
                 color: 'var(--ink70)',
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
@@ -80,7 +88,10 @@ function BarList({ rows, empty }) {
               />
             </div>
           </div>
-          <div className="mono" style={{ fontSize: 11, color: 'var(--ink50)', textAlign: 'right' }}>
+          <div
+            className="mono"
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', textAlign: 'right' }}
+          >
             {r.count}
           </div>
         </div>
@@ -147,14 +158,17 @@ export default function EmpleoStats({ stats, t, totalAll, offers }) {
         <div
           style={{
             marginTop: 10,
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             color: 'var(--ink70)',
             display: 'flex',
             alignItems: 'baseline',
             gap: 6,
           }}
         >
-          <span className="mono" style={{ fontSize: 14, fontWeight: 700, color: 'var(--civic)' }}>
+          <span
+            className="mono"
+            style={{ fontSize: 'var(--fs-body)', fontWeight: 700, color: 'var(--civic)' }}
+          >
             {stats.vehiclePct}%
           </span>
           {t('empleo.kpi.vehicle')}
@@ -181,7 +195,7 @@ export default function EmpleoStats({ stats, t, totalAll, offers }) {
                   display: 'flex',
                   justifyContent: 'space-between',
                   marginTop: 4,
-                  fontSize: 9.5,
+                  fontSize: 'var(--fs-micro)',
                   color: 'var(--ink50)',
                 }}
                 className="mono"
@@ -191,7 +205,9 @@ export default function EmpleoStats({ stats, t, totalAll, offers }) {
               </div>
             </>
           ) : (
-            <div style={{ fontSize: 11.5, color: 'var(--ink50)' }}>{t('empleo.stats.thin')}</div>
+            <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+              {t('empleo.stats.thin')}
+            </div>
           )}
         </Panel>
         <Panel title={t('empleo.chart.byContract')}>
@@ -208,7 +224,7 @@ export default function EmpleoStats({ stats, t, totalAll, offers }) {
           type="button"
           onClick={() => setShowMap((v) => !v)}
           style={{
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             color: 'var(--civic)',
             background: 'none',
             border: 'none',
@@ -221,7 +237,9 @@ export default function EmpleoStats({ stats, t, totalAll, offers }) {
         </button>
         {showMap && (
           <div style={{ marginTop: 10 }}>
-            <Suspense fallback={<div style={{ fontSize: 11.5, color: 'var(--ink50)' }}>…</div>}>
+            <Suspense
+              fallback={<div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>…</div>}
+            >
               <EmpleoMap points={mapPoints} t={t} />
             </Suspense>
           </div>

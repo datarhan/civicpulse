@@ -83,7 +83,7 @@ export function MoneyTimeSlider({
         <span
           style={{
             fontFamily: "'DM Mono', monospace",
-            fontSize: 8.5,
+            fontSize: 'var(--fs-micro)',
             color: 'rgba(11,15,25,.62)',
             letterSpacing: '.1em',
             textTransform: 'uppercase',
@@ -99,7 +99,7 @@ export function MoneyTimeSlider({
             style={{
               all: 'unset',
               cursor: 'pointer',
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 700,
               padding: '2px 7px',
               borderRadius: 'var(--r-pill)',
@@ -117,7 +117,7 @@ export function MoneyTimeSlider({
             style={{
               all: 'unset',
               cursor: 'pointer',
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 700,
               padding: '2px 7px',
               borderRadius: 'var(--r-pill)',
@@ -138,7 +138,7 @@ export function MoneyTimeSlider({
             setPlaying((p) => !p)
           }}
           aria-label={playing ? t('map.money.pause') : t('map.money.play')}
-          style={{ all: 'unset', cursor: 'pointer', fontSize: 15, lineHeight: 1 }}
+          style={{ all: 'unset', cursor: 'pointer', fontSize: 'var(--fs-body)', lineHeight: 1 }}
         >
           {playing ? '⏸' : '▶'}
         </button>
@@ -165,10 +165,15 @@ export function MoneyTimeSlider({
           alignItems: 'baseline',
         }}
       >
-        <span className="mono" style={{ fontSize: 11, fontWeight: 700, color: '#0B0F19' }}>
+        <span
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', fontWeight: 700, color: '#0B0F19' }}
+        >
           {label}
         </span>
-        <span style={{ fontSize: 9.5, color: 'rgba(11,15,25,.62)' }}>{t('map.money.accum')}</span>
+        <span style={{ fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.62)' }}>
+          {t('map.money.accum')}
+        </span>
       </div>
       <MoneyCoverage snapshot={snapshot} />
     </div>

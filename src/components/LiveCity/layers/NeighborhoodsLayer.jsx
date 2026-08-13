@@ -35,7 +35,7 @@ export function NeighborhoodsLayer() {
         return (
           <Marker key={n.id} position={n.centroid} icon={icon} title={prettyNeighborhood(n.name)}>
             <Tooltip direction="top" offset={[0, -4]}>
-              <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 12 }}>
+              <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }}>
                 <strong>{prettyNeighborhood(n.name)}</strong>
                 <br />
                 {agg.population ? `${agg.population.toLocaleString('es-ES')} hab.` : 'Barrio OSM'}

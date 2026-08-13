@@ -19,13 +19,13 @@ const HEALTH_LABEL = {
 
 const labelStyle = {
   fontFamily: "'DM Mono', monospace",
-  fontSize: 8.5,
+  fontSize: 'var(--fs-micro)',
   color: 'rgba(11,15,25,.5)',
   letterSpacing: '.08em',
   textTransform: 'uppercase',
 }
-const valueStyle = { fontSize: 12.5, color: '#0B0F19', marginTop: 1 }
-const subStyle = { fontSize: 10.5, color: 'rgba(11,15,25,.55)' }
+const valueStyle = { fontSize: 'var(--fs-meta)', color: '#0B0F19', marginTop: 1 }
+const subStyle = { fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.55)' }
 
 /**
  * Aggregated civic card for one neighborhood: population (always), located
@@ -36,7 +36,7 @@ export function NeighborhoodPopup({ agg }) {
   const { name, population, contractCount, amount, danaAmount, quejas, health } = agg
   return (
     <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 210, maxWidth: 280 }}>
-      <div style={{ fontSize: 15, fontWeight: 700 }}>{prettyNeighborhood(name)}</div>
+      <div style={{ fontSize: 'var(--fs-body)', fontWeight: 700 }}>{prettyNeighborhood(name)}</div>
       <div style={{ marginTop: 7, display: 'grid', gap: 8 }}>
         <div>
           <div style={labelStyle}>Población</div>
@@ -83,7 +83,7 @@ export function NeighborhoodPopup({ agg }) {
               {HEALTH_LABEL[health.level] && (
                 <span
                   style={{
-                    fontSize: 9.5,
+                    fontSize: 'var(--fs-micro)',
                     fontWeight: 700,
                     color: health.color,
                     border: `1px solid ${health.color}`,

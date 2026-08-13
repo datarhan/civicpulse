@@ -26,7 +26,7 @@ export function DeclaracionCongelada({ declaracion }) {
       <div
         className="mono"
         style={{
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           textTransform: 'uppercase',
           letterSpacing: '.07em',
           color: 'var(--ink50)',
@@ -34,7 +34,14 @@ export function DeclaracionCongelada({ declaracion }) {
       >
         Lo que hay que leer antes que ninguna cifra
       </div>
-      <h2 style={{ fontSize: 17, fontWeight: 650, margin: '4px 0 8px', letterSpacing: '-.01em' }}>
+      <h2
+        style={{
+          fontSize: 'var(--fs-head)',
+          fontWeight: 650,
+          margin: '4px 0 8px',
+          letterSpacing: '-.01em',
+        }}
+      >
         Casi nadie vuelve a medir el denominador
       </h2>
 
@@ -61,7 +68,7 @@ export function DeclaracionCongelada({ declaracion }) {
           <div
             className="mono"
             style={{
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               textTransform: 'uppercase',
               letterSpacing: '.07em',
               color: 'var(--ink50)',
@@ -71,7 +78,7 @@ export function DeclaracionCongelada({ declaracion }) {
             Riba-roja de Túria · {propiasCongeladas.length} de {propias.length} denominadores sin
             cambiar
           </div>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-aux)' }}>
             <thead>
               <tr style={{ textAlign: 'left', color: 'var(--ink50)' }}>
                 <th style={{ padding: '4px 8px 4px 0', fontWeight: 500 }}>Servicio</th>
@@ -101,7 +108,14 @@ export function DeclaracionCongelada({ declaracion }) {
               ))}
             </tbody>
           </table>
-          <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 8, marginBottom: 0 }}>
+          <p
+            style={{
+              fontSize: 'var(--fs-meta)',
+              color: 'var(--ink50)',
+              marginTop: 8,
+              marginBottom: 0,
+            }}
+          >
             Medido sobre {entregas} entregas del coste efectivo de los servicios. Una serie cuenta
             como sin cambiar cuando sus últimas {minEntregas} entregas o más traen el mismo valor
             hasta el cuarto decimal.

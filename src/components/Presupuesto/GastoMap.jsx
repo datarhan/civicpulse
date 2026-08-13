@@ -51,7 +51,7 @@ export default function GastoMap({ snapshot, sliderTime, danaOnly, selectedZone,
           display: 'grid',
           placeItems: 'center',
           color: 'var(--ink50)',
-          fontSize: 13,
+          fontSize: 'var(--fs-aux)',
           border: '1px solid var(--border2)',
           borderRadius: 'var(--r-card)',
         }}
@@ -112,7 +112,7 @@ export default function GastoMap({ snapshot, sliderTime, danaOnly, selectedZone,
               eventHandlers={{ click: () => onSelectZone(z.slug) }}
             >
               <Tooltip direction="top">
-                <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 12 }}>
+                <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }}>
                   <strong>{z.name}</strong>
                   <br />
                   {fmtEur(z.live.amount)} · {z.live.count} obra{z.live.count === 1 ? '' : 's'}

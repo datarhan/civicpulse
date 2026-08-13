@@ -32,7 +32,7 @@ export function StickyToc({ items }) {
       <div
         className="mono"
         style={{
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           letterSpacing: '.08em',
           textTransform: 'uppercase',
           color: 'var(--ink50)',
@@ -48,7 +48,7 @@ export function StickyToc({ items }) {
               href={`#${it.id}`}
               style={{
                 display: 'block',
-                fontSize: 12.5,
+                fontSize: 'var(--fs-meta)',
                 padding: '4px 8px',
                 borderRadius: 'var(--r-input)',
                 color: activeId === it.id ? 'var(--ink)' : 'var(--ink50)',
@@ -117,7 +117,7 @@ export function FactsSidebar({ report, subjectName, assignment }) {
           <>
             {c.role}
             <br />
-            <span style={{ color: 'var(--ink50)', fontSize: 11 }}>
+            <span style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)' }}>
               {c.org} · desde {c.startYear}
             </span>
           </>
@@ -134,7 +134,7 @@ export function FactsSidebar({ report, subjectName, assignment }) {
           {education[0].institution && (
             <>
               <br />
-              <span style={{ color: 'var(--ink50)', fontSize: 11 }}>
+              <span style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)' }}>
                 {education[0].institution}
               </span>
             </>
@@ -176,7 +176,7 @@ export function FactsSidebar({ report, subjectName, assignment }) {
       <div
         className="mono"
         style={{
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           letterSpacing: '.08em',
           textTransform: 'uppercase',
           color: 'var(--ink50)',
@@ -191,7 +191,7 @@ export function FactsSidebar({ report, subjectName, assignment }) {
             <dt
               className="mono"
               style={{
-                fontSize: 10,
+                fontSize: 'var(--fs-micro)',
                 color: 'var(--ink50)',
                 textTransform: 'uppercase',
                 letterSpacing: '.06em',
@@ -200,7 +200,9 @@ export function FactsSidebar({ report, subjectName, assignment }) {
             >
               {r.label}
             </dt>
-            <dd style={{ margin: '2px 0 0 0', color: 'var(--ink70)', fontSize: 13 }}>{r.value}</dd>
+            <dd style={{ margin: '2px 0 0 0', color: 'var(--ink70)', fontSize: 'var(--fs-aux)' }}>
+              {r.value}
+            </dd>
           </div>
         ))}
       </dl>
@@ -218,7 +220,7 @@ export function LegalSensitivityBadge({ level, warnings }) {
     <Card>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
         <Pill tone={tone}>{LEGAL_SENSITIVITY_LABEL[level] || level}</Pill>
-        <span style={{ fontSize: 12, color: 'var(--ink50)' }}>
+        <span style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
           Este informe trata sobre figuras vivas o asuntos legalmente sensibles. Las afirmaciones se
           publican con derecho de réplica abierto.
         </span>
@@ -227,7 +229,7 @@ export function LegalSensitivityBadge({ level, warnings }) {
             onClick={() => setOpen((v) => !v)}
             style={{
               marginLeft: 'auto',
-              fontSize: 11,
+              fontSize: 'var(--fs-micro)',
               padding: '4px 10px',
               borderRadius: 'var(--r-input)',
               border: '1px solid var(--border)',
@@ -242,10 +244,24 @@ export function LegalSensitivityBadge({ level, warnings }) {
       </div>
       {open && warnings && (
         <div style={{ marginTop: 10 }}>
-          <p style={{ margin: 0, fontSize: 11.5, fontStyle: 'italic', color: 'var(--ink50)' }}>
+          <p
+            style={{
+              margin: 0,
+              fontSize: 'var(--fs-micro)',
+              fontStyle: 'italic',
+              color: 'var(--ink50)',
+            }}
+          >
             Límites de verificación que el proceso editorial señala en lugar de omitir:
           </p>
-          <ul style={{ margin: '6px 0 0 0', padding: 0, listStyle: 'none', fontSize: 11.5 }}>
+          <ul
+            style={{
+              margin: '6px 0 0 0',
+              padding: 0,
+              listStyle: 'none',
+              fontSize: 'var(--fs-micro)',
+            }}
+          >
             {warnings.map((w, i) => (
               <li key={i} style={{ padding: '2px 0', color: 'var(--ink50)' }}>
                 · {w}

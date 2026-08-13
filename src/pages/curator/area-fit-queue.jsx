@@ -32,7 +32,7 @@ function Assessment({ title, a }) {
         <span
           className="mono"
           style={{
-            fontSize: 10,
+            fontSize: 'var(--fs-micro)',
             letterSpacing: '.06em',
             textTransform: 'uppercase',
             color: 'var(--ink50)',
@@ -49,7 +49,7 @@ function Assessment({ title, a }) {
             margin: '4px 0 0 104px',
             padding: 0,
             listStyle: 'none',
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             lineHeight: 1.5,
             color: 'var(--ink70)',
           }}
@@ -57,7 +57,7 @@ function Assessment({ title, a }) {
           {a.evidence.map((ev) => (
             <li key={ev.label}>
               ↳ {ev.label}{' '}
-              <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+              <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
                 [{ev.sourceIds.join(', ')}]
               </span>
             </li>
@@ -68,7 +68,7 @@ function Assessment({ title, a }) {
         <div
           style={{
             margin: '4px 0 0 104px',
-            fontSize: 11.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             fontStyle: 'italic',
             lineHeight: 1.45,
@@ -120,8 +120,8 @@ export function AreaFitRow({ row, official, published, onDone }) {
       }}
     >
       <div style={{ display: 'flex', gap: 8, alignItems: 'baseline', flexWrap: 'wrap' }}>
-        <strong style={{ fontSize: 13.5 }}>{official?.name ?? row.officialSlug}</strong>
-        <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+        <strong style={{ fontSize: 'var(--fs-aux)' }}>{official?.name ?? row.officialSlug}</strong>
+        <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           {row.portfolio}
         </span>
         {published && (
@@ -152,7 +152,7 @@ export function AreaFitRow({ row, official, published, onDone }) {
           aria-label="Nombre del curador que firma esta fila"
           style={{
             padding: '5px 8px',
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             borderRadius: 'var(--r-input)',
             border: '1px solid var(--border2)',
             background: 'var(--card)',
@@ -167,7 +167,7 @@ export function AreaFitRow({ row, official, published, onDone }) {
           aria-label="Nota del curador, se publica junto a la fila"
           style={{
             padding: '5px 8px',
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             borderRadius: 'var(--r-input)',
             border: '1px solid var(--border2)',
             background: 'var(--card)',
@@ -204,7 +204,10 @@ export function AreaFitRow({ row, official, published, onDone }) {
         )}
       </div>
       {err && (
-        <div style={{ marginTop: 6, fontSize: 12, color: 'var(--crit-ink)' }} role="alert">
+        <div
+          style={{ marginTop: 6, fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}
+          role="alert"
+        >
           {err}
         </div>
       )}
@@ -215,7 +218,7 @@ export function AreaFitRow({ row, official, published, onDone }) {
 function btn(color) {
   return {
     padding: '5px 12px',
-    fontSize: 12,
+    fontSize: 'var(--fs-meta)',
     fontWeight: 600,
     borderRadius: 'var(--r-input)',
     border: '1px solid var(--border2)',

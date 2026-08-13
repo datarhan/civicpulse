@@ -102,7 +102,7 @@ export function AlcaldeBox() {
           <div
             className="mono"
             style={{
-              fontSize: 9.5,
+              fontSize: 'var(--fs-micro)',
               color: PALETTE.ink60,
               letterSpacing: '.12em',
               textTransform: 'uppercase',
@@ -110,14 +110,21 @@ export function AlcaldeBox() {
           >
             {t('landing.alcalde.role')}
           </div>
-          <h2 style={{ fontSize: 15, fontWeight: 700, margin: '2px 0 0', letterSpacing: '-.01em' }}>
+          <h2
+            style={{
+              fontSize: 'var(--fs-body)',
+              fontWeight: 700,
+              margin: '2px 0 0',
+              letterSpacing: '-.01em',
+            }}
+          >
             {mayor.name}
           </h2>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
             <span
               className="mono"
               style={{
-                fontSize: 9,
+                fontSize: 'var(--fs-micro)',
                 fontWeight: 700,
                 letterSpacing: '.12em',
                 textTransform: 'uppercase',
@@ -129,7 +136,7 @@ export function AlcaldeBox() {
             >
               {mayor.party}
             </span>
-            <span className="mono" style={{ fontSize: 10, color: PALETTE.ink60 }}>
+            <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink60 }}>
               {mayor.email}
             </span>
           </div>
@@ -142,7 +149,7 @@ export function AlcaldeBox() {
             display: 'flex',
             gap: 14,
             marginTop: 10,
-            fontSize: 11,
+            fontSize: 'var(--fs-micro)',
             color: PALETTE.ink80,
             fontFamily: MONO,
           }}
@@ -185,7 +192,7 @@ export function AlcaldeBox() {
               href={`/departamentos/${slug}`}
               className="mono"
               style={{
-                fontSize: 9.5,
+                fontSize: 'var(--fs-micro)',
                 padding: '2px 7px',
                 background: '#EEF4FF',
                 color: PALETTE.civic,
@@ -206,7 +213,7 @@ export function AlcaldeBox() {
           <div
             className="mono"
             style={{
-              fontSize: 8.5,
+              fontSize: 'var(--fs-micro)',
               color: PALETTE.ink50,
               letterSpacing: '.12em',
               textTransform: 'uppercase',
@@ -221,7 +228,7 @@ export function AlcaldeBox() {
               flexWrap: 'wrap',
               columnGap: 14,
               rowGap: 4,
-              fontSize: 10.5,
+              fontSize: 'var(--fs-micro)',
               fontFamily: MONO,
               color: PALETTE.ink60,
             }}

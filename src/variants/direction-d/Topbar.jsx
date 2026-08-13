@@ -39,8 +39,10 @@ function Header({ now }) {
             strokeLinecap="round"
           />
         </svg>
-        <div style={{ fontWeight: 700, letterSpacing: '-.01em', fontSize: 15 }}>CivicPulse</div>
-        <span style={{ color: PALETTE.ink40, fontSize: 13 }}>·</span>
+        <div style={{ fontWeight: 700, letterSpacing: '-.01em', fontSize: 'var(--fs-body)' }}>
+          CivicPulse
+        </div>
+        <span style={{ color: PALETTE.ink40, fontSize: 'var(--fs-aux)' }}>·</span>
         {/* Dropped below 560px: the region is the least load-bearing crumb on a
             site about one municipality, and it is what makes the brand block
             too wide to fit beside the town name. */}
@@ -48,7 +50,7 @@ function Header({ now }) {
           className="d-region"
           style={{
             fontFamily: MONO,
-            fontSize: 10,
+            fontSize: 'var(--fs-micro)',
             color: PALETTE.ink50,
             textTransform: 'uppercase',
             letterSpacing: '.12em',
@@ -59,11 +61,11 @@ function Header({ now }) {
         <span className="d-region" style={{ color: PALETTE.ink40 }}>
           ›
         </span>
-        <span style={{ fontSize: 13.5, fontWeight: 600 }}>Riba-roja de Túria</span>
+        <span style={{ fontSize: 'var(--fs-aux)', fontWeight: 600 }}>Riba-roja de Túria</span>
         <span
           style={{
             fontFamily: MONO,
-            fontSize: 9,
+            fontSize: 'var(--fs-micro)',
             color: 'white',
             background: PALETTE.accent,
             padding: '2px 6px',
@@ -89,7 +91,7 @@ function Header({ now }) {
           borderRadius: 'var(--r-input)',
           background: PALETTE.bg,
           color: PALETTE.ink50,
-          fontSize: 12.5,
+          fontSize: 'var(--fs-meta)',
           minWidth: 260,
           border: '1px solid ' + PALETTE.hair,
           cursor: 'pointer',
@@ -101,7 +103,7 @@ function Header({ now }) {
         <span
           style={{
             fontFamily: MONO,
-            fontSize: 10,
+            fontSize: 'var(--fs-micro)',
             padding: '2px 5px',
             background: PALETTE.paper,
             border: '1px solid ' + PALETTE.hair,
@@ -120,13 +122,20 @@ function Header({ now }) {
           lineHeight: 1.2,
         }}
       >
-        <span style={{ fontFamily: MONO, fontSize: 14, fontWeight: 700, color: PALETTE.ink }}>
+        <span
+          style={{
+            fontFamily: MONO,
+            fontSize: 'var(--fs-body)',
+            fontWeight: 700,
+            color: PALETTE.ink,
+          }}
+        >
           {fmtClock(now)}
         </span>
         <span
           style={{
             fontFamily: MONO,
-            fontSize: 9.5,
+            fontSize: 'var(--fs-micro)',
             color: PALETTE.ink50,
             letterSpacing: '.08em',
             textTransform: 'uppercase',
@@ -145,7 +154,7 @@ function Header({ now }) {
           color: 'white',
           display: 'grid',
           placeItems: 'center',
-          fontSize: 11,
+          fontSize: 'var(--fs-micro)',
           fontWeight: 700,
         }}
       >
@@ -248,14 +257,17 @@ function LiveStrip() {
           onClick={() => setExpanded(expanded === 'weather' ? null : 'weather')}
           style={chipStyle(expanded === 'weather')}
         >
-          <span style={{ fontSize: 15, lineHeight: 1 }} aria-hidden="true">
+          <span style={{ fontSize: 'var(--fs-body)', lineHeight: 1 }} aria-hidden="true">
             {emoji}
           </span>
-          <span className="mono" style={{ fontSize: 12, fontWeight: 700, color: PALETTE.ink }}>
+          <span
+            className="mono"
+            style={{ fontSize: 'var(--fs-meta)', fontWeight: 700, color: PALETTE.ink }}
+          >
             {weather.tempC != null ? `${weather.tempC}°` : '—'}
           </span>
           {weather.todayMin != null && weather.todayMax != null && (
-            <span className="mono" style={{ fontSize: 10.5, color: PALETTE.ink50 }}>
+            <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink50 }}>
               {Math.round(weather.todayMin)}°/{Math.round(weather.todayMax)}°
             </span>
           )}
@@ -282,10 +294,13 @@ function LiveStrip() {
               }}
               aria-hidden="true"
             />
-            <span className="mono" style={{ fontSize: 11, fontWeight: 700, color: PALETTE.ink }}>
+            <span
+              className="mono"
+              style={{ fontSize: 'var(--fs-micro)', fontWeight: 700, color: PALETTE.ink }}
+            >
               AQI {air.eaqi ?? '–'}
             </span>
-            <span style={{ fontSize: 11.5, color: PALETTE.ink50 }}>{aqi.label}</span>
+            <span style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink50 }}>{aqi.label}</span>
           </button>
         </>
       )}
@@ -312,7 +327,7 @@ function LiveStrip() {
                 display: 'grid',
                 placeItems: 'center',
                 fontFamily: MONO,
-                fontSize: 9,
+                fontSize: 'var(--fs-micro)',
                 fontWeight: 800,
                 flexShrink: 0,
               }}
@@ -320,13 +335,13 @@ function LiveStrip() {
             >
               L9
             </span>
-            <span className="mono" style={{ fontSize: 10.5, color: PALETTE.ink50 }}>
+            <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink50 }}>
               → {metro.heading || 'València'}
             </span>
-            <span className="mono" style={{ fontSize: 12, fontWeight: 700 }}>
+            <span className="mono" style={{ fontSize: 'var(--fs-meta)', fontWeight: 700 }}>
               {metro.departureLabel}
             </span>
-            <span className="mono" style={{ fontSize: 10.5, color: PALETTE.ink50 }}>
+            <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink50 }}>
               {metro.minutesAway === 0 ? 'ahora' : `${metro.minutesAway} min`}
               {metro.afterMidnight ? ' (mañana)' : ''}
             </span>
@@ -358,7 +373,7 @@ function DetailRow({ k, v }) {
         justifyContent: 'space-between',
         gap: 12,
         padding: '3px 0',
-        fontSize: 12.5,
+        fontSize: 'var(--fs-meta)',
         borderBottom: '1px dashed ' + PALETTE.hair,
       }}
     >
@@ -421,7 +436,7 @@ function LiveDetails({ section, weather, wmoLabel, emoji, air, aqi, metro, onClo
           <div style={{ padding: '8px 0 2px' }}>
             <div
               style={{
-                fontSize: 10.5,
+                fontSize: 'var(--fs-micro)',
                 color: PALETTE.ink50,
                 marginBottom: 4,
                 letterSpacing: '.06em',
@@ -467,7 +482,7 @@ function LiveDetails({ section, weather, wmoLabel, emoji, air, aqi, metro, onClo
             background: '#FFF7E6',
             border: '1px solid #F3D9A8',
             borderRadius: 'var(--r-input)',
-            fontSize: 11.5,
+            fontSize: 'var(--fs-micro)',
             color: '#7C4A00',
           }}
         >
@@ -478,7 +493,7 @@ function LiveDetails({ section, weather, wmoLabel, emoji, air, aqi, metro, onClo
             href="https://www.metrovalencia.es"
             target="_blank"
             rel="noreferrer"
-            style={{ fontSize: 12, color: PALETTE.civic }}
+            style={{ fontSize: 'var(--fs-meta)', color: PALETTE.civic }}
           >
             Ver horario oficial →
           </a>
@@ -513,7 +528,9 @@ function LiveDetails({ section, weather, wmoLabel, emoji, air, aqi, metro, onClo
           marginBottom: 8,
         }}
       >
-        <div style={{ fontSize: 13, fontWeight: 700, color: PALETTE.ink }}>{title}</div>
+        <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 700, color: PALETTE.ink }}>
+          {title}
+        </div>
         <button
           type="button"
           aria-label="Cerrar"
@@ -536,7 +553,7 @@ function LiveDetails({ section, weather, wmoLabel, emoji, air, aqi, metro, onClo
       {body}
       <div
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: PALETTE.ink50,
           fontFamily: MONO,
           letterSpacing: '.04em',

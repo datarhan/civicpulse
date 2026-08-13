@@ -1,6 +1,6 @@
 const ctrl = {
   padding: '7px 10px',
-  fontSize: 12.5,
+  fontSize: 'var(--fs-meta)',
   border: '1px solid var(--border)',
   borderRadius: 'var(--r-input)',
   background: 'var(--paper)',
@@ -121,7 +121,7 @@ export default function EmpleoFilters({
             display: 'inline-flex',
             alignItems: 'center',
             gap: 6,
-            fontSize: 12.5,
+            fontSize: 'var(--fs-meta)',
             color: 'var(--ink70)',
             cursor: 'pointer',
             whiteSpace: 'nowrap',
@@ -143,7 +143,7 @@ export default function EmpleoFilters({
           alignItems: 'center',
           justifyContent: 'space-between',
           gap: 10,
-          fontSize: 12,
+          fontSize: 'var(--fs-meta)',
           color: 'var(--ink50)',
         }}
       >
@@ -155,7 +155,7 @@ export default function EmpleoFilters({
             type="button"
             onClick={onClear}
             style={{
-              fontSize: 12,
+              fontSize: 'var(--fs-meta)',
               color: 'var(--civic)',
               background: 'none',
               border: 'none',

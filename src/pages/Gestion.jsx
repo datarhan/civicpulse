@@ -37,7 +37,7 @@ export default function Gestion() {
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -45,7 +45,14 @@ export default function Gestion() {
       >
         Ayuntamiento · plazos, concurrencia y ejecución
       </div>
-      <h1 style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+      <h1
+        style={{
+          fontSize: 'var(--fs-page)',
+          fontWeight: 700,
+          letterSpacing: '-.015em',
+          marginTop: 2,
+        }}
+      >
         Cómo funciona la casa por dentro
       </h1>
       <p style={{ color: 'var(--ink50)', maxWidth: '64ch' }}>
@@ -59,7 +66,7 @@ export default function Gestion() {
       </p>
 
       {firmados > 0 && (
-        <p style={{ margin: '6px 0 0', fontSize: 12.5 }}>
+        <p style={{ margin: '6px 0 0', fontSize: 'var(--fs-meta)' }}>
           <a href="#hallazgos" style={{ color: 'var(--civic)' }}>
             {firmados === 1
               ? '1 hallazgo firmado sobre estas cifras'
@@ -93,7 +100,7 @@ export default function Gestion() {
         />
       )}
 
-      <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 28 }}>
+      <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 28 }}>
         Cómo se calcula y qué se descarta:{' '}
         <a href="/metodologia#eficiencia" style={{ color: 'var(--civic)' }}>
           metodología

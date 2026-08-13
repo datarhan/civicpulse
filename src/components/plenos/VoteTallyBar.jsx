@@ -54,7 +54,12 @@ export function VoteTallyBar({ tally }) {
           >
             <span
               className="mono"
-              style={{ fontSize: 9, fontWeight: 700, color: '#fff', whiteSpace: 'nowrap' }}
+              style={{
+                fontSize: 'var(--fs-micro)',
+                fontWeight: 700,
+                color: '#fff',
+                whiteSpace: 'nowrap',
+              }}
             >
               {named ? v.bloc : '?'}
             </span>
@@ -72,7 +77,12 @@ export function DirectionLegend() {
       {Object.entries(DIR_COLOR).map(([k, c]) => (
         <span
           key={k}
-          style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 11 }}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 5,
+            fontSize: 'var(--fs-micro)',
+          }}
         >
           <span style={{ width: 9, height: 9, borderRadius: 'var(--r-input)', background: c }} />
           <span style={{ color: 'var(--ink70)' }}>{DIRECTION_LABEL[k] || k}</span>

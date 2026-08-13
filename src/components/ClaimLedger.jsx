@@ -33,7 +33,7 @@ function EvidenceRow({ e }) {
       <span
         className="mono"
         style={{
-          fontSize: 9,
+          fontSize: 'var(--fs-micro)',
           fontWeight: 700,
           letterSpacing: '.1em',
           color: 'var(--ink50)',
@@ -42,9 +42,12 @@ function EvidenceRow({ e }) {
       >
         {kindLabel.toUpperCase()}
       </span>
-      <span style={{ fontSize: 12, color: 'var(--ink)' }}>{e.snippet}</span>
+      <span style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink)' }}>{e.snippet}</span>
       {typeof e.similarity === 'number' && (
-        <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginLeft: 6 }}>
+        <span
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 6 }}
+        >
           sim {e.similarity.toFixed(2)}
         </span>
       )}
@@ -84,7 +87,7 @@ function ClaimCard({ item }) {
               <span
                 className="mono"
                 style={{
-                  fontSize: 9,
+                  fontSize: 'var(--fs-micro)',
                   fontWeight: 700,
                   letterSpacing: '.1em',
                   color: 'var(--ink50)',
@@ -94,13 +97,13 @@ function ClaimCard({ item }) {
                 {blocLabel(claim.speakerGroup)}
               </span>
             )}
-            <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+            <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               {claim.plenoDate}
             </span>
             {claim.entities.amountEuros && (
               <span
                 className="mono"
-                style={{ fontSize: 10.5, fontWeight: 700, color: 'var(--ink)' }}
+                style={{ fontSize: 'var(--fs-micro)', fontWeight: 700, color: 'var(--ink)' }}
               >
                 {formatEuros(claim.entities.amountEuros)}
               </span>
@@ -108,7 +111,7 @@ function ClaimCard({ item }) {
             {claim.entities.count && claim.entities.countUnit && (
               <span
                 className="mono"
-                style={{ fontSize: 10.5, fontWeight: 700, color: 'var(--ink)' }}
+                style={{ fontSize: 'var(--fs-micro)', fontWeight: 700, color: 'var(--ink)' }}
               >
                 {claim.entities.count} {claim.entities.countUnit}
               </span>
@@ -119,7 +122,7 @@ function ClaimCard({ item }) {
               margin: '4px 0 0',
               padding: '6px 10px',
               borderLeft: '3px solid var(--civic)',
-              fontSize: 14,
+              fontSize: 'var(--fs-body)',
               fontWeight: 500,
               color: 'var(--ink)',
               lineHeight: 1.5,
@@ -133,7 +136,9 @@ function ClaimCard({ item }) {
           {VERDICT_LABEL[verification.verdict] || verification.verdict}
         </Pill>
       </div>
-      <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 8, lineHeight: 1.5 }}>
+      <div
+        style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 8, lineHeight: 1.5 }}
+      >
         {verification.summary}
       </div>
       {verification.evidence.length > 0 && (
@@ -153,7 +158,7 @@ function ClaimCard({ item }) {
         className="mono"
         style={{
           marginTop: 8,
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           letterSpacing: '.06em',
         }}
@@ -197,7 +202,7 @@ export function ClaimLedger({ filter, limit = 20, emptyHint, items, showSummary 
 
   if (loading) {
     return (
-      <div style={{ padding: 12, fontSize: 12, color: 'var(--ink50)' }}>
+      <div style={{ padding: 12, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
         Cargando verificaciones…
       </div>
     )
@@ -209,7 +214,7 @@ export function ClaimLedger({ filter, limit = 20, emptyHint, items, showSummary 
           padding: 14,
           background: 'var(--soft)',
           borderRadius: 'var(--r-input)',
-          fontSize: 12,
+          fontSize: 'var(--fs-meta)',
           color: 'var(--ink50)',
           lineHeight: 1.5,
         }}
@@ -225,7 +230,7 @@ export function ClaimLedger({ filter, limit = 20, emptyHint, items, showSummary 
         <div
           className="mono"
           style={{
-            fontSize: 11,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             letterSpacing: '.03em',
             paddingBottom: 2,
@@ -247,7 +252,7 @@ export function ClaimLedger({ filter, limit = 20, emptyHint, items, showSummary 
           className="mono"
           style={{
             alignSelf: 'flex-start',
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             padding: '6px 12px',
             borderRadius: 'var(--r-input)',
             border: '1px solid var(--border2)',
@@ -273,7 +278,7 @@ export function ClaimLedgerSection({ filter, limit, title, eyebrow, hint }) {
       {hint && (
         <p
           style={{
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             color: 'var(--ink50)',
             marginTop: 4,
             marginBottom: 10,

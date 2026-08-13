@@ -176,11 +176,11 @@ export function CmdK({ open, onClose, onOpen }) {
               outline: 0,
               background: 'transparent',
               color: 'var(--ink)',
-              fontSize: 15,
+              fontSize: 'var(--fs-body)',
               fontFamily: 'inherit',
             }}
           />
-          <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+          <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             esc
           </span>
         </div>
@@ -206,7 +206,7 @@ export function CmdK({ open, onClose, onOpen }) {
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div
                   style={{
-                    fontSize: 13.5,
+                    fontSize: 'var(--fs-aux)',
                     fontWeight: 500,
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
@@ -215,7 +215,9 @@ export function CmdK({ open, onClose, onOpen }) {
                 >
                   {x.label}
                 </div>
-                {x.sub && <div style={{ fontSize: 11.5, color: 'var(--ink50)' }}>{x.sub}</div>}
+                {x.sub && (
+                  <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>{x.sub}</div>
+                )}
               </div>
               <Pill tone="ghost" size="xs">
                 {x.kind}
@@ -228,7 +230,7 @@ export function CmdK({ open, onClose, onOpen }) {
                 padding: '24px 16px',
                 textAlign: 'center',
                 color: 'var(--ink50)',
-                fontSize: 13,
+                fontSize: 'var(--fs-aux)',
               }}
             >
               Sin resultados para "{q}"

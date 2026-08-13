@@ -18,7 +18,7 @@ export function ParticipaBlock() {
         <div
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
@@ -26,7 +26,7 @@ export function ParticipaBlock() {
         >
           Participación ciudadana
         </div>
-        <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+        <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           · datos reales de participa.ribarroja.es · {data.stats.total} posts · actualizado{' '}
           {generated}
         </div>
@@ -43,7 +43,7 @@ export function ParticipaBlock() {
             borderRadius: 'var(--r-input)',
             background: 'var(--warn-soft)',
             border: '1px solid var(--border2)',
-            fontSize: 11.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink70)',
             lineHeight: 1.5,
           }}
@@ -76,7 +76,7 @@ export function ParticipaBlock() {
                   background: i.kind === 'survey' ? 'var(--civic-soft)' : 'var(--ok-soft)',
                   display: 'grid',
                   placeItems: 'center',
-                  fontSize: 18,
+                  fontSize: 'var(--fs-head)',
                   flexShrink: 0,
                 }}
               >
@@ -87,7 +87,10 @@ export function ParticipaBlock() {
                   <Pill tone={i.kind === 'survey' ? 'civic' : 'ok'} size="xs">
                     {KIND_LABEL[i.kind] || 'Aviso'}
                   </Pill>
-                  <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+                  <span
+                    className="mono"
+                    style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                  >
                     {fmtDate(i.date)}
                   </span>
                 </div>
@@ -96,7 +99,7 @@ export function ParticipaBlock() {
                   style={{
                     color: 'inherit',
                     textDecoration: 'none',
-                    fontSize: 14,
+                    fontSize: 'var(--fs-body)',
                     fontWeight: 600,
                     lineHeight: 1.3,
                   }}
@@ -107,7 +110,7 @@ export function ParticipaBlock() {
             </div>
             <div
               style={{
-                fontSize: 12,
+                fontSize: 'var(--fs-meta)',
                 color: 'var(--ink50)',
                 lineHeight: 1.45,
                 display: '-webkit-box',
@@ -118,7 +121,7 @@ export function ParticipaBlock() {
             >
               {i.excerpt}
             </div>
-            <div style={{ marginTop: 10, fontSize: 11 }}>
+            <div style={{ marginTop: 10, fontSize: 'var(--fs-micro)' }}>
               <ExtLink
                 href={i.link}
                 style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}

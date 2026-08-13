@@ -45,18 +45,28 @@ function StatusChangeDraftRow({ draft, onApprove, onReject, busy }) {
         {draft.decision && (
           <Pill tone={DECISION_TONE[draft.decision] ?? 'neutral'}>{draft.decision}</Pill>
         )}
-        <span className="mono" style={{ marginLeft: 'auto', fontSize: 11 }}>
+        <span className="mono" style={{ marginLeft: 'auto', fontSize: 'var(--fs-micro)' }}>
           conf {Number(draft.confidence ?? 0).toFixed(2)}
         </span>
       </div>
-      <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginBottom: 4 }}>
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 4 }}
+      >
         {draft.draftId}
       </div>
-      <div style={{ fontSize: 13.5, marginBottom: 4 }}>
+      <div style={{ fontSize: 'var(--fs-aux)', marginBottom: 4 }}>
         Promesa: <span className="mono">{draft.promiseId}</span>
       </div>
       {ev.quote && (
-        <div style={{ fontSize: 12, color: 'var(--ink50)', lineHeight: 1.4, marginBottom: 6 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink50)',
+            lineHeight: 1.4,
+            marginBottom: 6,
+          }}
+        >
           «{String(ev.quote).slice(0, 180)}…»
         </div>
       )}
@@ -64,7 +74,7 @@ function StatusChangeDraftRow({ draft, onApprove, onReject, busy }) {
         {ev.url && (
           <ExtLink
             href={ev.url}
-            style={{ fontSize: 11.5, color: 'var(--civic)', textDecoration: 'none' }}
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--civic)', textDecoration: 'none' }}
           >
             Evidencia: {ev.publisher || ev.kind || 'fuente'} →
           </ExtLink>
@@ -75,7 +85,7 @@ function StatusChangeDraftRow({ draft, onApprove, onReject, busy }) {
             disabled={busy}
             style={{
               padding: '5px 12px',
-              fontSize: 11.5,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 600,
               border: '1px solid var(--border)',
               background: 'var(--ink)',
@@ -92,7 +102,7 @@ function StatusChangeDraftRow({ draft, onApprove, onReject, busy }) {
             disabled={busy}
             style={{
               padding: '5px 12px',
-              fontSize: 11.5,
+              fontSize: 'var(--fs-micro)',
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
               borderRadius: 'var(--r-input)',
@@ -139,22 +149,32 @@ function PromiseDraftRow({ draft, onApprove, onReject, busy }) {
       >
         <PartyChip party={p.party} />
         {p.madeAt && (
-          <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+          <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             {shortDate(p.madeAt)}
           </span>
         )}
         <Pill tone={grounded ? 'ok' : 'warn'}>{grounded ? 'anclada' : 'sin anclar'}</Pill>
         {decision && <Pill tone={DECISION_TONE[decision] ?? 'neutral'}>{decision}</Pill>}
-        <span className="mono" style={{ marginLeft: 'auto', fontSize: 11 }}>
+        <span className="mono" style={{ marginLeft: 'auto', fontSize: 'var(--fs-micro)' }}>
           conf {Number(draft.confidence ?? 0).toFixed(2)}
         </span>
       </div>
-      <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginBottom: 4 }}>
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 4 }}
+      >
         {draft.draftId}
       </div>
-      <div style={{ fontSize: 13.5, marginBottom: 4 }}>{p.title}</div>
+      <div style={{ fontSize: 'var(--fs-aux)', marginBottom: 4 }}>{p.title}</div>
       {p.quote && (
-        <div style={{ fontSize: 12, color: 'var(--ink50)', lineHeight: 1.4, marginBottom: 6 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink50)',
+            lineHeight: 1.4,
+            marginBottom: 6,
+          }}
+        >
           «{p.quote.slice(0, 180)}…»
         </div>
       )}
@@ -162,7 +182,7 @@ function PromiseDraftRow({ draft, onApprove, onReject, busy }) {
         {p.source?.url && (
           <ExtLink
             href={p.source.url}
-            style={{ fontSize: 11.5, color: 'var(--civic)', textDecoration: 'none' }}
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--civic)', textDecoration: 'none' }}
           >
             Fuente: {p.source.publisher || 'origen'} →
           </ExtLink>
@@ -173,7 +193,7 @@ function PromiseDraftRow({ draft, onApprove, onReject, busy }) {
             disabled={busy}
             style={{
               padding: '5px 12px',
-              fontSize: 11.5,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 600,
               border: '1px solid var(--border)',
               background: 'var(--ink)',
@@ -190,7 +210,7 @@ function PromiseDraftRow({ draft, onApprove, onReject, busy }) {
             disabled={busy}
             style={{
               padding: '5px 12px',
-              fontSize: 11.5,
+              fontSize: 'var(--fs-micro)',
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
               borderRadius: 'var(--r-input)',
@@ -234,17 +254,27 @@ function PromisePendingRow({ promise, onRetract, onMarkReviewed, busy }) {
       >
         <PartyChip party={promise.party} />
         <Pill tone="warn">revisión pendiente</Pill>
-        <span className="mono" style={{ marginLeft: 'auto', fontSize: 11 }}>
+        <span className="mono" style={{ marginLeft: 'auto', fontSize: 'var(--fs-micro)' }}>
           conf {Number(auto.confidence ?? 0).toFixed(2)}
         </span>
       </div>
-      <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginBottom: 4 }}>
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 4 }}
+      >
         auto-publicada {shortDate(auto.at)}
         {auto.by ? ` · ${auto.by}` : ''}
       </div>
-      <div style={{ fontSize: 13.5, marginBottom: 4 }}>{promise.title}</div>
+      <div style={{ fontSize: 'var(--fs-aux)', marginBottom: 4 }}>{promise.title}</div>
       {promise.quote && (
-        <div style={{ fontSize: 12, color: 'var(--ink50)', lineHeight: 1.4, marginBottom: 6 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink50)',
+            lineHeight: 1.4,
+            marginBottom: 6,
+          }}
+        >
           «{promise.quote.slice(0, 180)}…»
         </div>
       )}
@@ -252,7 +282,7 @@ function PromisePendingRow({ promise, onRetract, onMarkReviewed, busy }) {
         {promise.source?.url && (
           <ExtLink
             href={promise.source.url}
-            style={{ fontSize: 11.5, color: 'var(--civic)', textDecoration: 'none' }}
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--civic)', textDecoration: 'none' }}
           >
             Fuente: {promise.source.publisher || 'origen'} →
           </ExtLink>
@@ -263,7 +293,7 @@ function PromisePendingRow({ promise, onRetract, onMarkReviewed, busy }) {
             disabled={busy}
             style={{
               padding: '5px 12px',
-              fontSize: 11.5,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 600,
               border: '1px solid var(--border)',
               background: 'var(--ink)',
@@ -280,7 +310,7 @@ function PromisePendingRow({ promise, onRetract, onMarkReviewed, busy }) {
             disabled={busy}
             style={{
               padding: '5px 12px',
-              fontSize: 11.5,
+              fontSize: 'var(--fs-micro)',
               border: '1px solid var(--crit)',
               background: 'var(--paper)',
               color: 'var(--crit-ink)',

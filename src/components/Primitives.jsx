@@ -24,7 +24,7 @@ export function Pill({ tone = 'neutral', children, size = 'sm', style = {} }) {
         borderRadius: 'var(--r-pill)',
         background: t.bg,
         color: t.fg,
-        fontSize: size === 'xs' ? 10 : 11,
+        fontSize: 'var(--fs-micro)',
         fontWeight: 600,
         letterSpacing: '.02em',
         lineHeight: 1,
@@ -155,7 +155,11 @@ export function Card({ children, style = {}, pad = true, hover = false, ...rest 
 export function Quote({ text, attribution, tone, marks, source, size = 'card', style = {} }) {
   const esHabla = attribution !== undefined
   const etiqueta = attribution ?? 'sin atribuir'
-  const cuerpo = size === 'page' ? 17 : 14
+  // Pasos de la escala, no números. Esto decía `17 : 14`: el 17 no era ningún
+  // paso y, por ser píxeles absolutos, era además el único tamaño de la página
+  // que no se movía con el control de densidad. Lo escribí yo mismo un rato
+  // antes de construir la escala, que es justo cómo se acumulan los veintiocho.
+  const cuerpo = size === 'page' ? 'var(--fs-head)' : 'var(--fs-body)'
   return (
     <figure
       style={{
@@ -183,7 +187,7 @@ export function Quote({ text, attribution, tone, marks, source, size = 'card', s
           className="mono"
           style={{
             marginTop: 4,
-            fontSize: 11,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             display: 'flex',
             gap: 8,
@@ -261,13 +265,13 @@ export function MachineProposal({ confidence, decidedBy = 'un curador humano', c
         background: 'var(--intel-soft)',
         border: '1px dashed var(--intel)',
         borderRadius: 'var(--r-card)',
-        fontSize: 12,
+        fontSize: 'var(--fs-meta)',
       }}
     >
       <div
         className="mono"
         style={{
-          fontSize: 11,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--intel-ink)',
           letterSpacing: '.08em',
           textTransform: 'uppercase',
@@ -278,7 +282,7 @@ export function MachineProposal({ confidence, decidedBy = 'un curador humano', c
         Propuesta automática · pendiente de revisión humana · confianza {pct}%
       </div>
       <div style={{ color: 'var(--ink70)', lineHeight: 1.5 }}>{children}</div>
-      <div style={{ marginTop: 6, fontSize: 11, color: 'var(--ink50)' }}>
+      <div style={{ marginTop: 6, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
         No está publicada: sólo {decidedBy} puede aplicarla.
       </div>
     </div>
@@ -313,7 +317,7 @@ export function EvidenceBand({ n, title, children }) {
       <div
         className="mono"
         style={{
-          fontSize: 11,
+          fontSize: 'var(--fs-micro)',
           fontWeight: 700,
           letterSpacing: '.08em',
           textTransform: 'uppercase',
@@ -333,7 +337,7 @@ export function EvidenceBand({ n, title, children }) {
             borderRadius: '50%',
             background: 'var(--civic)',
             color: 'var(--civic-on)',
-            fontSize: 10,
+            fontSize: 'var(--fs-micro)',
           }}
         >
           {n}
@@ -361,7 +365,7 @@ export function SectionHead({ eyebrow, title, right }) {
           <div
             className="mono"
             style={{
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               textTransform: 'uppercase',
               letterSpacing: '.08em',
@@ -372,7 +376,7 @@ export function SectionHead({ eyebrow, title, right }) {
         )}
         <div
           style={{
-            fontSize: 15,
+            fontSize: 'var(--fs-body)',
             fontWeight: 600,
             letterSpacing: '-.01em',
             marginTop: eyebrow ? 3 : 0,
@@ -390,7 +394,7 @@ export function Button({ variant = 'ghost', children, ...rest }) {
   const base = {
     padding: '7px 12px',
     borderRadius: 'var(--r-input)',
-    fontSize: 13,
+    fontSize: 'var(--fs-aux)',
     fontWeight: 500,
     display: 'inline-flex',
     alignItems: 'center',
@@ -416,7 +420,12 @@ export function LinkArrow({ children, ...rest }) {
   return (
     <button
       {...rest}
-      style={{ fontSize: 12, color: 'var(--civic)', fontWeight: 500, cursor: 'pointer' }}
+      style={{
+        fontSize: 'var(--fs-meta)',
+        color: 'var(--civic)',
+        fontWeight: 500,
+        cursor: 'pointer',
+      }}
     >
       {children}
     </button>

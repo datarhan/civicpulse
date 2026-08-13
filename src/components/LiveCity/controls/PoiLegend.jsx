@@ -15,7 +15,7 @@ const cardStyle = {
 
 const titleStyle = {
   fontFamily: "'DM Mono', monospace",
-  fontSize: 8.5,
+  fontSize: 'var(--fs-micro)',
   color: 'rgba(11,15,25,.62)',
   letterSpacing: '.1em',
   textTransform: 'uppercase',
@@ -34,7 +34,10 @@ export function PoiLegend() {
       <div style={titleStyle}>{t('map.poi.title')}</div>
       <div style={{ display: 'grid', gap: 3 }}>
         {[...grouped.entries()].map(([key, { label, color, items }]) => (
-          <div key={key} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11 }}>
+          <div
+            key={key}
+            style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 'var(--fs-micro)' }}
+          >
             <span
               style={{
                 width: 9,
@@ -55,7 +58,7 @@ export function PoiLegend() {
       <div
         style={{
           marginTop: 5,
-          fontSize: 9,
+          fontSize: 'var(--fs-micro)',
           color: 'rgba(11,15,25,.62)',
           fontFamily: "'DM Mono', monospace",
         }}

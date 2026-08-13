@@ -36,7 +36,9 @@ export function PlacePopup({ place, assignments, contractsById, danaOnly, obrasO
   const total = works.reduce((s, w) => s + w.a.amount, 0)
   return (
     <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 260, maxWidth: 320 }}>
-      <div style={{ fontSize: 15, fontWeight: 700, color: '#0B0F19' }}>{place.name}</div>
+      <div style={{ fontSize: 'var(--fs-body)', fontWeight: 700, color: '#0B0F19' }}>
+        {place.name}
+      </div>
       <div
         style={{
           display: 'flex',
@@ -46,12 +48,15 @@ export function PlacePopup({ place, assignments, contractsById, danaOnly, obrasO
           marginTop: 1,
         }}
       >
-        <span className="mono" style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--civic)' }}>
+        <span
+          className="mono"
+          style={{ fontSize: 'var(--fs-meta)', fontWeight: 700, color: 'var(--civic)' }}
+        >
           {fmtEur(total)} · {works.length} obra{works.length === 1 ? '' : 's'}
         </span>
         <span
           style={{
-            fontSize: 9,
+            fontSize: 'var(--fs-micro)',
             fontWeight: 700,
             textTransform: 'uppercase',
             letterSpacing: '.05em',
@@ -76,7 +81,13 @@ export function PlacePopup({ place, assignments, contractsById, danaOnly, obrasO
               cpvDict={cpvDict}
             />
             {a.parentTitle && (
-              <div style={{ fontSize: 10, color: 'rgba(11,15,25,.55)', margin: '2px 2px 8px' }}>
+              <div
+                style={{
+                  fontSize: 'var(--fs-micro)',
+                  color: 'rgba(11,15,25,.55)',
+                  margin: '2px 2px 8px',
+                }}
+              >
                 Lote de: «{a.parentTitle}»
               </div>
             )}
@@ -86,7 +97,7 @@ export function PlacePopup({ place, assignments, contractsById, danaOnly, obrasO
       <div
         style={{
           marginTop: 2,
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           color: 'rgba(11,15,25,.5)',
           fontFamily: 'DM Mono, monospace',
           letterSpacing: '.03em',

@@ -47,7 +47,7 @@ function HealthRow({ row }) {
         alignItems: 'center',
         padding: '8px 0',
         borderBottom: '1px solid var(--border)',
-        fontSize: 12.5,
+        fontSize: 'var(--fs-meta)',
       }}
     >
       <Pill tone={tone} size="xs">
@@ -64,7 +64,7 @@ function HealthRow({ row }) {
         <div
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -75,13 +75,13 @@ function HealthRow({ row }) {
           {row.path}
         </div>
       </div>
-      <div className="mono" style={{ fontSize: 11, color: 'var(--ink70)' }}>
+      <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink70)' }}>
         {age}
       </div>
-      <div className="mono" style={{ fontSize: 11, color: 'var(--ink70)' }}>
+      <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink70)' }}>
         {row.count != null ? `${row.count.toLocaleString('es-ES')} filas` : '—'}
       </div>
-      <div className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+      <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
         {formatBytes(row.sizeBytes)}
       </div>
     </div>
@@ -101,7 +101,7 @@ function Stat({ label, value, tone }) {
       <div
         className="mono"
         style={{
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.06em',
@@ -155,7 +155,7 @@ export default function LabHealth() {
         <div
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
@@ -165,7 +165,7 @@ export default function LabHealth() {
         </div>
         <h1
           style={{
-            fontSize: 26,
+            fontSize: 'var(--fs-page)',
             fontWeight: 700,
             letterSpacing: '-.015em',
             marginTop: 2,
@@ -176,7 +176,7 @@ export default function LabHealth() {
         </h1>
         <p
           style={{
-            fontSize: 13.5,
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             marginTop: 6,
             maxWidth: 780,
@@ -191,11 +191,11 @@ export default function LabHealth() {
       </div>
 
       {loading ? (
-        <div style={{ color: 'var(--ink50)', fontSize: 13 }}>Comprobando fuentes…</div>
+        <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>Comprobando fuentes…</div>
       ) : (
         <>
           <Card style={{ marginBottom: 14 }}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, fontSize: 13 }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, fontSize: 'var(--fs-aux)' }}>
               <Stat label="Fuentes" value={stats.total} tone="neutral" />
               <Stat label="Frescas (<36h)" value={stats.ok} tone="ok" />
               <Stat label="Recientes (<7d)" value={stats.civic} tone="civic" />
@@ -228,7 +228,14 @@ export default function LabHealth() {
             </Card>
           ))}
 
-          <p style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 16, lineHeight: 1.55 }}>
+          <p
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              marginTop: 16,
+              lineHeight: 1.55,
+            }}
+          >
             Los snapshots se refrescan vía GitHub Actions cada noche a las 04:30 UTC ·{' '}
             <a
               href="/metodologia#laboratorio-prensa"

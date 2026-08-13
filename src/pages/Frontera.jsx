@@ -40,7 +40,7 @@ export default function Frontera() {
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -48,7 +48,14 @@ export default function Frontera() {
       >
         Laboratorio · experimento
       </div>
-      <h1 style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+      <h1
+        style={{
+          fontSize: 'var(--fs-page)',
+          fontWeight: 700,
+          letterSpacing: '-.015em',
+          marginTop: 2,
+        }}
+      >
         La frontera del gasto
       </h1>
       <p style={{ color: 'var(--ink50)', maxWidth: '66ch' }}>
@@ -58,7 +65,9 @@ export default function Frontera() {
       </p>
 
       <Card style={{ marginTop: 14, borderLeft: '3px solid var(--intel)' }}>
-        <p style={{ margin: 0, fontSize: 13.5, color: 'var(--ink70)', maxWidth: '66ch' }}>
+        <p
+          style={{ margin: 0, fontSize: 'var(--fs-aux)', color: 'var(--ink70)', maxWidth: '66ch' }}
+        >
           <strong>Esto no es una nota ni un ranking.</strong> El resto del sitio publica cifras que
           se pueden rehacer desde su fuente. Esta página publica el resultado de un modelo con
           decisiones nuestras dentro, y con la misma fuente y otra cesta de servicios igual de
@@ -89,11 +98,23 @@ export default function Frontera() {
       {especificaciones.length > 0 && (
         <>
           <h2
-            style={{ fontSize: 15, fontWeight: 650, margin: '28px 0 0', letterSpacing: '-.01em' }}
+            style={{
+              fontSize: 'var(--fs-body)',
+              fontWeight: 650,
+              margin: '28px 0 0',
+              letterSpacing: '-.01em',
+            }}
           >
             Cuatro cestas defendibles, cuatro resultados
           </h2>
-          <p style={{ margin: '4px 0 0', color: 'var(--ink50)', fontSize: 13.5, maxWidth: '66ch' }}>
+          <p
+            style={{
+              margin: '4px 0 0',
+              color: 'var(--ink50)',
+              fontSize: 'var(--fs-aux)',
+              maxWidth: '66ch',
+            }}
+          >
             Cada una usa el coste efectivo total de sus servicios como único recurso y la unidad
             física de cada servicio como producto. Todas exigen gestión directa: un municipio con la
             limpieza concesionada declara coste cero, y colado en la muestra saldría insuperable y
@@ -108,7 +129,12 @@ export default function Frontera() {
       {principal && (
         <>
           <h2
-            style={{ fontSize: 15, fontWeight: 650, margin: '28px 0 0', letterSpacing: '-.01em' }}
+            style={{
+              fontSize: 'var(--fs-body)',
+              fontWeight: 650,
+              margin: '28px 0 0',
+              letterSpacing: '-.01em',
+            }}
           >
             Qué pasa al mirarlo en el tiempo
           </h2>
@@ -119,7 +145,12 @@ export default function Frontera() {
       {data?.modelo && (
         <>
           <h2
-            style={{ fontSize: 15, fontWeight: 650, margin: '28px 0 0', letterSpacing: '-.01em' }}
+            style={{
+              fontSize: 'var(--fs-body)',
+              fontWeight: 650,
+              margin: '28px 0 0',
+              letterSpacing: '-.01em',
+            }}
           >
             El método, entero
           </h2>
@@ -128,7 +159,7 @@ export default function Frontera() {
               style={{
                 margin: 0,
                 paddingLeft: 18,
-                fontSize: 13.5,
+                fontSize: 'var(--fs-aux)',
                 color: 'var(--ink70)',
                 lineHeight: 1.65,
               }}

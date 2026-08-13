@@ -71,7 +71,7 @@ export default function GastoDashboard() {
         eyebrow="Mapa del gasto · contratos situables"
         title="¿A dónde va el dinero en contratos?"
       />
-      <div style={{ fontSize: 11, color: 'var(--ink50)', marginBottom: 10 }}>
+      <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 10 }}>
         El total de abajo es <strong>todo el gasto en contratos, no solo obras</strong>:
         {obrasPct != null ? ` las obras son el ${pct0(obrasPct)} %` : ' el grueso'} y el resto son
         servicios de ámbito municipal, suministros y otros —el desglose completo está en «Tipos de
@@ -148,7 +148,7 @@ export default function GastoDashboard() {
               style={{
                 all: 'unset',
                 cursor: 'pointer',
-                fontSize: 12.5,
+                fontSize: 'var(--fs-meta)',
                 padding: '8px 12px',
                 borderBottom: tab === t.id ? '2px solid var(--civic)' : '2px solid transparent',
                 color: tab === t.id ? 'var(--civic)' : 'var(--ink50)',

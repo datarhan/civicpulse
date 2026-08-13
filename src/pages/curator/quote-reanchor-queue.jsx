@@ -61,7 +61,7 @@ function Label({ children }) {
     <div
       className="mono"
       style={{
-        fontSize: 10,
+        fontSize: 'var(--fs-micro)',
         letterSpacing: '.06em',
         textTransform: 'uppercase',
         color: 'var(--ink50)',
@@ -90,13 +90,13 @@ function CandidateCard({ c }) {
         <Pill tone="ghost" size="xs">
           #{c.rank}
         </Pill>
-        <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink70)' }}>
+        <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink70)' }}>
           {c.timecode}
         </span>
-        <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+        <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           {c.speakers?.length > 0 ? c.speakers.join(' · ') : 'sin hablante etiquetado'}
         </span>
-        <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+        <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           solapamiento léxico {Math.round((c.contentOverlap ?? 0) * 100)}%
         </span>
         {c.matchesSupersededTimecode && (
@@ -107,9 +107,18 @@ function CandidateCard({ c }) {
       </div>
       {/* Verbatim de la transcripción vigente: ni recortado ni re-envuelto. Es
           el texto que el curador copiaría al comando de corrección. */}
-      <div style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--ink70)' }}>{c.text}</div>
+      <div style={{ fontSize: 'var(--fs-meta)', lineHeight: 1.5, color: 'var(--ink70)' }}>
+        {c.text}
+      </div>
       {c.missingWords?.length > 0 && (
-        <div style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 4, lineHeight: 1.45 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--ink50)',
+            marginTop: 4,
+            lineHeight: 1.45,
+          }}
+        >
           <span className="mono" style={{ color: 'var(--ink50)' }}>
             no aparecen aquí:
           </span>{' '}
@@ -145,14 +154,14 @@ export function QuoteReanchorRow({ row }) {
       }}
     >
       <div style={{ display: 'flex', gap: 8, alignItems: 'baseline', flexWrap: 'wrap' }}>
-        <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+        <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           {row.plenoDate} · {row.findingId} · cita {row.quoteIndex}
         </span>
         <Pill tone={STATUS_TONE[row.status] ?? 'neutral'} size="xs">
           {STATUS_LABEL[row.status] ?? row.status}
         </Pill>
         {row.reason && (
-          <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+          <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             {row.reason}
           </span>
         )}
@@ -163,7 +172,14 @@ export function QuoteReanchorRow({ row }) {
         )}
       </div>
 
-      <div style={{ fontSize: 13.5, fontWeight: 600, margin: '6px 0 2px', lineHeight: 1.35 }}>
+      <div
+        style={{
+          fontSize: 'var(--fs-aux)',
+          fontWeight: 600,
+          margin: '6px 0 2px',
+          lineHeight: 1.35,
+        }}
+      >
         {row.title}
       </div>
 
@@ -172,7 +188,7 @@ export function QuoteReanchorRow({ row }) {
           <Label>Literal publicado</Label>
           <div
             style={{
-              fontSize: 13,
+              fontSize: 'var(--fs-aux)',
               lineHeight: 1.55,
               padding: '8px 10px',
               border: '1px solid var(--border2)',
@@ -197,7 +213,7 @@ export function QuoteReanchorRow({ row }) {
                 className="mono"
                 style={{
                   padding: '3px 8px',
-                  fontSize: 10.5,
+                  fontSize: 'var(--fs-micro)',
                   borderRadius: 'var(--r-input)',
                   border: '1px solid var(--border2)',
                   background: 'var(--card)',
@@ -210,7 +226,7 @@ export function QuoteReanchorRow({ row }) {
               {open && (
                 <div
                   style={{
-                    fontSize: 11.5,
+                    fontSize: 'var(--fs-micro)',
                     lineHeight: 1.5,
                     color: 'var(--ink50)',
                     marginTop: 6,
@@ -235,7 +251,7 @@ export function QuoteReanchorRow({ row }) {
             <CandidateCard key={`${c.rank}-${c.startSeconds}`} c={c} />
           ))}
           {(row.candidates ?? []).length === 0 && (
-            <div style={{ fontSize: 12, color: 'var(--ink50)' }}>
+            <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
               Ningún pasaje del texto nuevo comparte vocabulario con esta cita. Puede que el tramo
               no esté cubierto: no la reanclas, la retiras o la dejas marcada.
             </div>
@@ -249,7 +265,7 @@ export function QuoteReanchorRow({ row }) {
           <code
             style={{
               flex: 1,
-              fontSize: 11,
+              fontSize: 'var(--fs-micro)',
               lineHeight: 1.5,
               padding: '8px 10px',
               background: 'var(--soft)',
@@ -264,7 +280,7 @@ export function QuoteReanchorRow({ row }) {
             onClick={copy}
             style={{
               padding: '5px 12px',
-              fontSize: 12,
+              fontSize: 'var(--fs-meta)',
               fontWeight: 600,
               borderRadius: 'var(--r-input)',
               border: '1px solid var(--border2)',
@@ -276,7 +292,14 @@ export function QuoteReanchorRow({ row }) {
             {copied ? 'Copiado' : 'Copiar'}
           </button>
         </div>
-        <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 4, lineHeight: 1.45 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--ink50)',
+            marginTop: 4,
+            lineHeight: 1.45,
+          }}
+        >
           Esta pantalla no escribe en <code>public/data/pleno-findings.json</code>. El único
           escritor es la CLI, que exige un motivo de ≥20 caracteres y deja el texto anterior tachado
           en la bitácora pública de la ficha.

@@ -70,7 +70,7 @@ function TimelineItem({ date, label, tone = 'neutral', detail }) {
         padding: '10px 0',
       }}
     >
-      <div className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+      <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
         {fmtDate(date)}
       </div>
       <div style={{ position: 'relative', height: '100%' }}>
@@ -97,9 +97,12 @@ function TimelineItem({ date, label, tone = 'neutral', detail }) {
         />
       </div>
       <div>
-        <div style={{ fontSize: 13.5, fontWeight: 500 }}>{label}</div>
+        <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 500 }}>{label}</div>
         {detail && (
-          <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}>
+          <div
+            className="mono"
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+          >
             {detail}
           </div>
         )}
@@ -121,7 +124,7 @@ function CorrelationsCard({ quejaId }) {
       />
       <div
         style={{
-          fontSize: 12,
+          fontSize: 'var(--fs-meta)',
           color: 'var(--ink50)',
           marginTop: 6,
           marginBottom: 10,
@@ -155,7 +158,7 @@ function CorrelationsCard({ quejaId }) {
               <span
                 className="mono"
                 style={{
-                  fontSize: 9.5,
+                  fontSize: 'var(--fs-micro)',
                   padding: '1px 6px',
                   borderRadius: 'var(--r-input)',
                   textTransform: 'uppercase',
@@ -169,7 +172,14 @@ function CorrelationsCard({ quejaId }) {
                 {l.relationLabel}
               </span>
             </div>
-            <div style={{ fontSize: 12, color: 'var(--ink70)', marginBottom: 4, lineHeight: 1.4 }}>
+            <div
+              style={{
+                fontSize: 'var(--fs-meta)',
+                color: 'var(--ink70)',
+                marginBottom: 4,
+                lineHeight: 1.4,
+              }}
+            >
               {place && (
                 <>
                   zona: <strong>{place}</strong>
@@ -185,7 +195,7 @@ function CorrelationsCard({ quejaId }) {
             <ExtLink
               href={l.tenderPermalink}
               style={{
-                fontSize: 11,
+                fontSize: 'var(--fs-micro)',
                 color: 'var(--civic)',
                 textDecoration: 'underline',
                 textUnderlineOffset: 2,
@@ -218,7 +228,7 @@ export default function QuejaDetail() {
         className="cp-page"
         style={{ padding: '24px 24px 48px', maxWidth: 900, margin: '0 auto' }}
       >
-        <div style={{ color: 'var(--ink50)', fontSize: 13 }}>Cargando…</div>
+        <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>Cargando…</div>
       </div>
     )
   }
@@ -231,7 +241,7 @@ export default function QuejaDetail() {
       >
         <Card>
           <SectionHead eyebrow="No encontrada" title={`Queja ${id}`} />
-          <div style={{ fontSize: 14, color: 'var(--ink70)', marginTop: 8 }}>
+          <div style={{ fontSize: 'var(--fs-body)', color: 'var(--ink70)', marginTop: 8 }}>
             Esta queja no aparece en el snapshot actual. Puede que haya sido archivada o que el
             identificador sea incorrecto.
           </div>
@@ -301,7 +311,7 @@ export default function QuejaDetail() {
   return (
     <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 900, margin: '0 auto' }}>
       <div style={{ marginBottom: 10 }}>
-        <Link to="/quejas" style={{ fontSize: 12, color: 'var(--civic)' }}>
+        <Link to="/quejas" style={{ fontSize: 'var(--fs-meta)', color: 'var(--civic)' }}>
           ← Feed de quejas
         </Link>
       </div>
@@ -320,7 +330,7 @@ export default function QuejaDetail() {
             <div
               className="mono"
               style={{
-                fontSize: 11,
+                fontSize: 'var(--fs-micro)',
                 color: 'var(--ink50)',
                 letterSpacing: '.08em',
                 textTransform: 'uppercase',
@@ -328,7 +338,14 @@ export default function QuejaDetail() {
             >
               Queja ciudadana · {queja.service_request_id}
             </div>
-            <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-.01em', marginTop: 4 }}>
+            <div
+              style={{
+                fontSize: 'var(--fs-card)',
+                fontWeight: 700,
+                letterSpacing: '-.01em',
+                marginTop: 4,
+              }}
+            >
               {queja.description.split('\n')[0].slice(0, 120)}
             </div>
           </div>
@@ -347,7 +364,7 @@ export default function QuejaDetail() {
             display: 'flex',
             gap: 14,
             flexWrap: 'wrap',
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             color: 'var(--ink50)',
           }}
         >
@@ -387,7 +404,7 @@ export default function QuejaDetail() {
               <div
                 className="mono"
                 style={{
-                  fontSize: 10,
+                  fontSize: 'var(--fs-micro)',
                   color: 'var(--ink50)',
                   letterSpacing: '.08em',
                   textTransform: 'uppercase',
@@ -395,11 +412,11 @@ export default function QuejaDetail() {
               >
                 Responsable político
               </div>
-              <div style={{ fontSize: 14, fontWeight: 600 }}>{concejal.name}</div>
+              <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600 }}>{concejal.name}</div>
               <span
                 className="mono"
                 style={{
-                  fontSize: 9,
+                  fontSize: 'var(--fs-micro)',
                   fontWeight: 700,
                   letterSpacing: '.12em',
                   textTransform: 'uppercase',
@@ -420,7 +437,7 @@ export default function QuejaDetail() {
         <SectionHead eyebrow="Texto de la queja" title="Detalle ciudadano (verbatim)" />
         <div
           style={{
-            fontSize: 14,
+            fontSize: 'var(--fs-body)',
             lineHeight: 1.55,
             color: 'var(--ink70)',
             marginTop: 8,
@@ -450,7 +467,7 @@ export default function QuejaDetail() {
             />
             <figcaption
               style={{
-                fontSize: 12,
+                fontSize: 'var(--fs-meta)',
                 color: 'var(--ink50)',
                 marginTop: 6,
                 lineHeight: 1.5,
@@ -474,7 +491,7 @@ export default function QuejaDetail() {
               <div
                 className="mono"
                 style={{
-                  fontSize: 10,
+                  fontSize: 'var(--fs-micro)',
                   color: 'var(--ink50)',
                   textTransform: 'uppercase',
                   letterSpacing: '.06em',
@@ -482,7 +499,7 @@ export default function QuejaDetail() {
               >
                 Registrada
               </div>
-              <div style={{ fontSize: 15, fontWeight: 600, marginTop: 2 }}>
+              <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600, marginTop: 2 }}>
                 {fmtDate(queja.registered_at)}
               </div>
             </div>
@@ -490,7 +507,7 @@ export default function QuejaDetail() {
               <div
                 className="mono"
                 style={{
-                  fontSize: 10,
+                  fontSize: 'var(--fs-micro)',
                   color: 'var(--ink50)',
                   textTransform: 'uppercase',
                   letterSpacing: '.06em',
@@ -498,13 +515,15 @@ export default function QuejaDetail() {
               >
                 Plazo máximo
               </div>
-              <div style={{ fontSize: 15, fontWeight: 600, marginTop: 2 }}>{plazo} días</div>
+              <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600, marginTop: 2 }}>
+                {plazo} días
+              </div>
             </div>
             <div>
               <div
                 className="mono"
                 style={{
-                  fontSize: 10,
+                  fontSize: 'var(--fs-micro)',
                   color: 'var(--ink50)',
                   textTransform: 'uppercase',
                   letterSpacing: '.06em',
@@ -514,7 +533,7 @@ export default function QuejaDetail() {
               </div>
               <div
                 style={{
-                  fontSize: 15,
+                  fontSize: 'var(--fs-body)',
                   fontWeight: 700,
                   marginTop: 2,
                   color:
@@ -533,7 +552,7 @@ export default function QuejaDetail() {
                 <div
                   className="mono"
                   style={{
-                    fontSize: 10,
+                    fontSize: 'var(--fs-micro)',
                     color: 'var(--ink50)',
                     textTransform: 'uppercase',
                     letterSpacing: '.06em',
@@ -541,7 +560,10 @@ export default function QuejaDetail() {
                 >
                   Asiento sede
                 </div>
-                <div className="mono" style={{ fontSize: 13, fontWeight: 600, marginTop: 2 }}>
+                <div
+                  className="mono"
+                  style={{ fontSize: 'var(--fs-aux)', fontWeight: 600, marginTop: 2 }}
+                >
                   {queja.registro_entry_number}
                 </div>
               </div>
@@ -571,7 +593,7 @@ export default function QuejaDetail() {
                 <div
                   className="mono"
                   style={{
-                    fontSize: 10,
+                    fontSize: 'var(--fs-micro)',
                     color: 'var(--ink50)',
                     letterSpacing: '.08em',
                     textTransform: 'uppercase',
@@ -580,12 +602,17 @@ export default function QuejaDetail() {
                   {r.role} · {r.firmante} · {fmt(r.appliedAt)}
                 </div>
                 <div
-                  style={{ fontSize: 14, marginTop: 6, lineHeight: 1.55, whiteSpace: 'pre-wrap' }}
+                  style={{
+                    fontSize: 'var(--fs-body)',
+                    marginTop: 6,
+                    lineHeight: 1.55,
+                    whiteSpace: 'pre-wrap',
+                  }}
                 >
                   {r.text}
                 </div>
                 {r.source_url && (
-                  <div style={{ marginTop: 6, fontSize: 12 }}>
+                  <div style={{ marginTop: 6, fontSize: 'var(--fs-meta)' }}>
                     <ExtLink href={r.source_url} style={{ color: 'var(--civic)' }}>
                       Fuente primaria →
                     </ExtLink>
@@ -603,7 +630,7 @@ export default function QuejaDetail() {
           style={{
             paddingLeft: 20,
             marginTop: 8,
-            fontSize: 13.5,
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink70)',
             lineHeight: 1.6,
           }}

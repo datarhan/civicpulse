@@ -67,7 +67,7 @@ export function MoneyLayer({ snapshot, at, danaOnly, obrasOnly, contractsById })
             }}
           >
             <Tooltip direction="top">
-              <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 12 }}>
+              <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }}>
                 <strong>{p.name}</strong>
                 <br />
                 {fmtEur(p.amount)} · {p.count} obra{p.count === 1 ? '' : 's'}

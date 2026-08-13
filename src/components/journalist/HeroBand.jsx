@@ -56,7 +56,7 @@ function KeyFactsStrip({ report, tone }) {
           <div
             className="mono"
             style={{
-              fontSize: 9.5,
+              fontSize: 'var(--fs-micro)',
               textTransform: 'uppercase',
               letterSpacing: '.07em',
               color: 'var(--ink50)',
@@ -67,7 +67,7 @@ function KeyFactsStrip({ report, tone }) {
           <div
             style={{
               marginTop: 3,
-              fontSize: 14.5,
+              fontSize: 'var(--fs-body)',
               fontWeight: 650,
               color: `var(--${tone}, var(--ink))`,
             }}
@@ -164,7 +164,7 @@ export function HeroBand({ subjectName, portraitPayload, report, party, soulDown
                 display: 'flex',
                 gap: 18,
                 flexWrap: 'wrap',
-                fontSize: 12.5,
+                fontSize: 'var(--fs-meta)',
                 color: 'var(--ink50)',
               }}
             >
@@ -215,7 +215,7 @@ export function HeroBand({ subjectName, portraitPayload, report, party, soulDown
 }
 
 const heroActionStyle = {
-  fontSize: 12,
+  fontSize: 'var(--fs-meta)',
   padding: '8px 14px',
   borderRadius: 'var(--r-input)',
   border: '1px solid var(--border)',

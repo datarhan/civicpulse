@@ -78,7 +78,9 @@ export function FullNetwork() {
           >
             <Popup closeButton={true} autoPan={true}>
               <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 180 }}>
-                <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 6 }}>{s.name}</div>
+                <div style={{ fontWeight: 700, fontSize: 'var(--fs-body)', marginBottom: 6 }}>
+                  {s.name}
+                </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
                   {refs.map((r) => (
                     <span
@@ -87,7 +89,7 @@ export function FullNetwork() {
                         background: colors[r] || '#64748B',
                         color: readableInk(colors[r] || '#64748B'),
                         fontFamily: 'DM Mono, monospace',
-                        fontSize: 10,
+                        fontSize: 'var(--fs-micro)',
                         fontWeight: 800,
                         padding: '2px 6px',
                         borderRadius: 'var(--r-input)',
@@ -104,7 +106,7 @@ export function FullNetwork() {
                   style={{
                     marginTop: 8,
                     display: 'inline-block',
-                    fontSize: 12,
+                    fontSize: 'var(--fs-meta)',
                     color: 'var(--civic)',
                     textDecoration: 'none',
                   }}

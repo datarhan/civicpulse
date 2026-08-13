@@ -40,12 +40,19 @@ export function EmpleoBlockD() {
             key={o.id}
             style={{ padding: '10px 0', borderTop: i === 0 ? 'none' : '1px solid ' + PALETTE.hair }}
           >
-            <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.35, marginBottom: 2 }}>
+            <div
+              style={{
+                fontSize: 'var(--fs-aux)',
+                fontWeight: 600,
+                lineHeight: 1.35,
+                marginBottom: 2,
+              }}
+            >
               <Link to={`/empleo/${o.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                 {o.titulo}
               </Link>
             </div>
-            <div className="mono" style={{ fontSize: 10, color: PALETTE.ink60 }}>
+            <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink60 }}>
               {muni.length > 30 ? muni.slice(0, 30) + '…' : muni}
               {o.deadline ? ` · cierra ${fmt(o.deadline)}` : ''}
             </div>
@@ -57,7 +64,7 @@ export function EmpleoBlockD() {
         style={{
           display: 'inline-block',
           marginTop: 6,
-          fontSize: 11.5,
+          fontSize: 'var(--fs-micro)',
           color: PALETTE.civic,
           textDecoration: 'none',
           fontWeight: 600,
@@ -116,7 +123,7 @@ export function LiveContracts() {
         <div
           className="mono"
           style={{
-            fontSize: 10,
+            fontSize: 'var(--fs-micro)',
             color: PALETTE.ink60,
             marginTop: -6,
             marginBottom: 8,
@@ -138,7 +145,7 @@ export function LiveContracts() {
             <span
               className="mono"
               style={{
-                fontSize: 10,
+                fontSize: 'var(--fs-micro)',
                 color: PALETTE.accent,
                 letterSpacing: '.1em',
                 textTransform: 'uppercase',
@@ -147,16 +154,25 @@ export function LiveContracts() {
             >
               {c.categoryTitle || c.contractType || 'Contrato'}
             </span>
-            <span className="mono" style={{ fontSize: 10, color: PALETTE.ink50 }}>
+            <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink50 }}>
               {formatTenderDate(c.awardDate)}
             </span>
           </div>
-          <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.35, marginBottom: 2 }}>
+          <div
+            style={{
+              fontSize: 'var(--fs-aux)',
+              fontWeight: 600,
+              lineHeight: 1.35,
+              marginBottom: 2,
+            }}
+          >
             <ExtLink href={c.permalink} style={{ color: 'inherit', textDecoration: 'none' }}>
               {c.title.length > 100 ? c.title.slice(0, 100) + '…' : c.title}
             </ExtLink>
           </div>
-          <div style={{ display: 'flex', gap: 10, fontSize: 11.5, color: PALETTE.ink60 }}>
+          <div
+            style={{ display: 'flex', gap: 10, fontSize: 'var(--fs-micro)', color: PALETTE.ink60 }}
+          >
             <span>{c.contractor || 'Sin adjudicatario'}</span>
             <span
               style={{ marginLeft: 'auto', fontWeight: 700, color: PALETTE.ink }}
@@ -205,19 +221,26 @@ export function ParticipaBlockD() {
               background: it.kind === 'survey' ? 'rgba(14,91,98,.12)' : 'rgba(22,163,74,.12)',
               display: 'grid',
               placeItems: 'center',
-              fontSize: 14,
+              fontSize: 'var(--fs-body)',
               flexShrink: 0,
             }}
           >
             {KIND_ICON[it.kind] || '📢'}
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.3, marginBottom: 2 }}>
+            <div
+              style={{
+                fontSize: 'var(--fs-aux)',
+                fontWeight: 600,
+                lineHeight: 1.3,
+                marginBottom: 2,
+              }}
+            >
               <ExtLink href={it.link} style={{ color: 'inherit', textDecoration: 'none' }}>
                 {it.title.length > 80 ? it.title.slice(0, 80) + '…' : it.title}
               </ExtLink>
             </div>
-            <div className="mono" style={{ fontSize: 10, color: PALETTE.ink60 }}>
+            <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink60 }}>
               {fmt(it.date)} · {it.categories[0] || 'aviso'}
             </div>
           </div>
@@ -252,7 +275,7 @@ export function PressBlockD() {
             <span
               className="mono"
               style={{
-                fontSize: 10,
+                fontSize: 'var(--fs-micro)',
                 color: p.official ? PALETTE.civic : PALETTE.accent,
                 letterSpacing: '.08em',
                 textTransform: 'uppercase',
@@ -266,7 +289,7 @@ export function PressBlockD() {
                 className="mono"
                 title="Fuente primaria · Ayuntamiento"
                 style={{
-                  fontSize: 8.5,
+                  fontSize: 'var(--fs-micro)',
                   fontWeight: 700,
                   letterSpacing: '.08em',
                   textTransform: 'uppercase',
@@ -279,11 +302,11 @@ export function PressBlockD() {
                 Oficial
               </span>
             )}
-            <span className="mono" style={{ fontSize: 10, color: PALETTE.ink50 }}>
+            <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink50 }}>
               {pressTimeAgo(p.date)}
             </span>
           </div>
-          <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.35 }}>
+          <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 600, lineHeight: 1.35 }}>
             <ExtLink href={p.link} style={{ color: 'inherit', textDecoration: 'none' }}>
               {p.title.length > 110 ? p.title.slice(0, 110) + '…' : p.title}
             </ExtLink>
@@ -323,7 +346,7 @@ export function EventsBlockD() {
             style={{
               flexShrink: 0,
               width: 46,
-              fontSize: 11,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 700,
               color: PALETTE.civic,
               lineHeight: 1.2,
@@ -333,13 +356,20 @@ export function EventsBlockD() {
             {formatEventWhen(e.eventDate, e.eventDateText)}
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.3, marginBottom: 2 }}>
+            <div
+              style={{
+                fontSize: 'var(--fs-aux)',
+                fontWeight: 600,
+                lineHeight: 1.3,
+                marginBottom: 2,
+              }}
+            >
               <ExtLink href={e.link} style={{ color: 'inherit', textDecoration: 'none' }}>
                 {e.title.length > 80 ? e.title.slice(0, 80) + '…' : e.title}
               </ExtLink>
             </div>
             {e.eventDateText && (
-              <div className="mono" style={{ fontSize: 10, color: PALETTE.ink60 }}>
+              <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink60 }}>
                 {e.eventDateText}
               </div>
             )}

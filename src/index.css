@@ -73,14 +73,45 @@
   --font-body: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
-  /* Phase D — editorial-longform typography + spacing tokens. Used by
-     the redesigned /laboratorio/agentes/:id report page. */
-  --type-display: clamp(28px, 4vw, 44px); /* hero H1 */
-  --type-h2: clamp(20px, 2.5vw, 28px); /* section heading */
-  --type-h3: clamp(16px, 1.8vw, 20px);
-  --type-lede: clamp(15px, 1.4vw, 18px); /* narrative body */
-  --type-meta: 11px; /* date/source meta */
-  --type-mono: 12.5px;
+  /* Ocho pasos, y un suelo de 11 px. Brandbook §03.
+
+     La producción llegó a publicar VEINTIOCHO tamaños distintos en 1.437
+     sitios, 519 de ellos con medio punto —10,5 · 11,5 · 12,5 · 13,5— y con un
+     suelo real de 8 px. Medio punto no es una decisión de diseño: es lo que
+     pasa cuando alguien empuja una línea para que quepa. Y 435 sitios estaban
+     por debajo de 11 px, que es donde §11 pone el mínimo legible.
+
+     Los pasos se nombran por función, no por medida, para que elegir uno sea
+     una decisión editorial y no un ajuste.
+
+     Y van en REM, no en píxeles, porque §11 promete «densidad ajustable: la
+     escala se reescala desde la raíz». El panel de ajustes lleva un control de
+     densidad que mueve el font-size de <html> a 13,5 / 14 / 15 px… y hasta
+     ahora no cambiaba ni una letra, porque los 1.437 tamaños del producto
+     estaban en píxeles absolutos. El control existía y no hacía nada.
+
+     `max(11px, …)` en el escalón micro no es un adorno: a densidad compacta la
+     raíz baja a 13,5 y el paso caería a 10,6 px, por debajo del suelo. El
+     máximo hace que el suelo aguante en las tres densidades, que es la única
+     forma de cumplir §03 y §11 a la vez. */
+  --fs-display: 2.4286rem; /* 34px · portada de sección */
+  --fs-page: 1.8571rem; /* 26px · título de página */
+  --fs-card: 1.4286rem; /* 20px · titular de ficha */
+  --fs-head: 1.1429rem; /* 16px · encabezado de bloque */
+  --fs-body: 1rem; /* 14px · cuerpo por defecto */
+  --fs-aux: 0.9286rem; /* 13px · descripción auxiliar */
+  --fs-meta: 0.8571rem; /* 12px · fecha, fuente, contador */
+  --fs-micro: max(11px, 0.7857rem); /* 11px · eyebrow y etiqueta — el suelo */
+
+  /* Pieza larga (/laboratorio/agentes/:id): aquí el cuerpo SÍ escala con el
+     ancho, porque una columna de lectura no es un cuadro de mando. Pero los dos
+     extremos de cada clamp son pasos de la escala de arriba, así que sigue sin
+     existir un tamaño que no esté en ella. Antes interpolaban a 44 y 18 px, dos
+     medidas que no eran ningún paso. Se borran --type-h2, --type-meta y
+     --type-mono: cero usos entre los tres, y el último con medio punto. */
+  --type-display: clamp(26px, 4vw, 34px); /* page → display */
+  --type-h3: clamp(16px, 1.8vw, 20px); /* head → card */
+  --type-lede: clamp(14px, 1.4vw, 16px); /* body → head */
   --reading-w: min(720px, 90vw); /* narrative column max-width */
   --gap-section: 48px;
   --gap-block: 24px;
@@ -131,7 +162,7 @@ body,
 }
 
 body {
-  font-size: 14px;
+  font-size: var(--fs-body);
   line-height: 1.4;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -395,7 +426,7 @@ body.cp-kiosk .cp-live-container {
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
   border-top: none !important;
   font-family: 'DM Mono', monospace !important;
-  font-size: 10px !important;
+  font-size: var(--fs-micro) !important;
   padding: 2px 6px !important;
 }
 
@@ -460,14 +491,14 @@ body.cp-kiosk .cp-live-container {
 }
 .cp-hood-mhs {
   font-family: 'DM Mono', monospace;
-  font-size: 17px;
+  font-size: var(--fs-head);
   font-weight: 800;
   font-variant-numeric: tabular-nums;
   line-height: 1;
 }
 .cp-hood-name {
   font-family: 'Outfit', system-ui, sans-serif;
-  font-size: 10px;
+  font-size: var(--fs-micro);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -539,7 +570,7 @@ body.cp-kiosk .cp-live-container {
     display: none !important;
   }
   .cp-topbar-crumb {
-    font-size: 12.5px !important;
+    font-size: var(--fs-meta) !important;
   }
   .cp-topbar-muni {
     display: none !important;
@@ -591,7 +622,7 @@ body.cp-kiosk .cp-live-container {
   top: -2px;
   left: 14px;
   font-family: 'DM Mono', monospace;
-  font-size: 9.5px;
+  font-size: var(--fs-micro);
   font-weight: 600;
   color: rgba(11, 15, 25, 0.72);
   background: rgba(255, 255, 255, 0.78);
@@ -665,7 +696,7 @@ body.cp-kiosk .cp-live-container {
   padding: 10px 16px;
   background: var(--civic);
   color: var(--civic-on);
-  font-size: 14px;
+  font-size: var(--fs-body);
   font-weight: 600;
   border-radius: 0 0 var(--r-input) 0;
   text-decoration: none;

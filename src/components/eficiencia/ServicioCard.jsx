@@ -71,7 +71,7 @@ export function ServicioCard({ indicador, formatea }) {
           flexWrap: 'wrap',
         }}
       >
-        <h2 style={{ fontSize: 16, fontWeight: 650, margin: 0 }}>{i.etiqueta}</h2>
+        <h2 style={{ fontSize: 'var(--fs-head)', fontWeight: 650, margin: 0 }}>{i.etiqueta}</h2>
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
           {/* La marca del denominador parado va PRIMERA y en tono de aviso:
               es lo que condiciona cómo se lee todo lo demás de la tarjeta. */}
@@ -86,12 +86,15 @@ export function ServicioCard({ indicador, formatea }) {
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginTop: 10 }}>
             <span
               className="mono"
-              style={{ fontSize: 30, fontWeight: 600, letterSpacing: '-.02em' }}
+              style={{ fontSize: 'var(--fs-page)', fontWeight: 600, letterSpacing: '-.02em' }}
             >
               {formatea(i.valor)}
             </span>
           </div>
-          <div className="mono" style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 2 }}>
+          <div
+            className="mono"
+            style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 2 }}
+          >
             {i.numerador.valor.toLocaleString('es-ES', {
               style: 'currency',
               currency: 'EUR',
@@ -108,19 +111,22 @@ export function ServicioCard({ indicador, formatea }) {
 
           <BandaPares indicador={i} formatea={formatea} />
           {puntos < 2 && (
-            <p style={{ fontSize: 11.5, color: 'var(--ink50)', margin: '10px 0 0' }}>
+            <p style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', margin: '10px 0 0' }}>
               {t('eficiencia.serie.ausente')}
             </p>
           )}
         </>
       ) : (
         <div style={{ marginTop: 10 }}>
-          <p style={{ margin: 0, fontSize: 13, color: 'var(--ink70, var(--ink50))' }}>
+          <p style={{ margin: 0, fontSize: 'var(--fs-aux)', color: 'var(--ink70, var(--ink50))' }}>
             {MOTIVO[motivo] ??
               'La fuente no permite calcular un coste unitario para este servicio.'}
           </p>
           {i.numerador.estado === 'declarado' && (
-            <p className="mono" style={{ fontSize: 12, color: 'var(--ink50)', margin: '8px 0 0' }}>
+            <p
+              className="mono"
+              style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '8px 0 0' }}
+            >
               Coste declarado:{' '}
               {i.numerador.valor.toLocaleString('es-ES', {
                 style: 'currency',
@@ -147,14 +153,18 @@ export function ServicioCard({ indicador, formatea }) {
           promete algo concreto donde «ver más» no promete nada. */}
       {plegable > 0 && (
         <details style={{ marginTop: 10 }}>
-          <summary style={{ cursor: 'pointer', fontSize: 12.5, color: 'var(--civic)' }}>
+          <summary style={{ cursor: 'pointer', fontSize: 'var(--fs-meta)', color: 'var(--civic)' }}>
             {declarados.length >= 2 ? 'Serie completa y salvedades' : 'Salvedades'} ({plegable})
           </summary>
 
           {declarados.length >= 2 && (
             <p
               className="mono"
-              style={{ fontSize: 12, margin: '10px 0 0', color: 'var(--ink70, var(--ink50))' }}
+              style={{
+                fontSize: 'var(--fs-meta)',
+                margin: '10px 0 0',
+                color: 'var(--ink70, var(--ink50))',
+              }}
             >
               {declarados.map((p, idx) => (
                 <span key={p.anio}>
@@ -181,7 +191,12 @@ export function ServicioCard({ indicador, formatea }) {
 
           {salvedades.length > 0 && (
             <ul
-              style={{ margin: '10px 0 0', paddingLeft: 18, color: 'var(--ink50)', fontSize: 12 }}
+              style={{
+                margin: '10px 0 0',
+                paddingLeft: 18,
+                color: 'var(--ink50)',
+                fontSize: 'var(--fs-meta)',
+              }}
             >
               {salvedades.map((c) => (
                 <li key={c} style={{ marginBottom: 3 }}>
@@ -194,7 +209,10 @@ export function ServicioCard({ indicador, formatea }) {
       )}
 
       {cita && (
-        <p className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', margin: '10px 0 0' }}>
+        <p
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', margin: '10px 0 0' }}
+        >
           Fuente: coste efectivo {cita.entrega} ·{' '}
           <a
             href={cita.url}

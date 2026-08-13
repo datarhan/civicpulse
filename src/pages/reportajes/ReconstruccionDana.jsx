@@ -57,7 +57,7 @@ function Timeline({ data }) {
                 y={mT + ih - bh - 5}
                 textAnchor="middle"
                 className="mono"
-                style={{ fontSize: 9.5, fill: 'var(--ink50)' }}
+                style={{ fontSize: 'var(--fs-micro)', fill: 'var(--ink50)' }}
               >
                 {eurC(d.amount)}
               </text>
@@ -68,7 +68,7 @@ function Timeline({ data }) {
                 y={H - 9}
                 textAnchor="middle"
                 className="mono"
-                style={{ fontSize: 9, fill: 'var(--ink50)' }}
+                style={{ fontSize: 'var(--fs-micro)', fill: 'var(--ink50)' }}
               >
                 {MES[mo] + ' ' + d.month.slice(2, 4)}
               </text>
@@ -147,7 +147,7 @@ function MapaContratos({ boundary, bbox, places, danaPlaces }) {
               x={x + r + 4}
               y={y + 3}
               className="mono"
-              style={{ fontSize: 8.5, fill: 'var(--ink)', fontWeight: 500 }}
+              style={{ fontSize: 'var(--fs-micro)', fill: 'var(--ink)', fontWeight: 500 }}
             >
               {p.name}
             </text>
@@ -171,7 +171,7 @@ function Barras({ rows }) {
               justifyContent: 'space-between',
               alignItems: 'baseline',
               gap: 12,
-              fontSize: 13,
+              fontSize: 'var(--fs-aux)',
               marginBottom: 5,
             }}
           >
@@ -185,10 +185,16 @@ function Barras({ rows }) {
             >
               {r.label}
             </span>
-            <span className="mono" style={{ color: 'var(--ink50)', fontSize: 12.5, flexShrink: 0 }}>
+            <span
+              className="mono"
+              style={{ color: 'var(--ink50)', fontSize: 'var(--fs-meta)', flexShrink: 0 }}
+            >
               {eurC(r.value)}
               {r.count != null && (
-                <span style={{ color: 'var(--ink50)', fontSize: 11 }}> · {r.count}</span>
+                <span style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)' }}>
+                  {' '}
+                  · {r.count}
+                </span>
               )}
             </span>
           </div>
@@ -221,14 +227,19 @@ function SecHead({ num, kicker, title }) {
     <div style={{ margin: '34px 0 12px' }}>
       <div
         className="mono"
-        style={{ fontSize: 11.5, color: 'var(--ink50)', letterSpacing: '.04em', marginBottom: 6 }}
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          letterSpacing: '.04em',
+          marginBottom: 6,
+        }}
       >
         {num} · {kicker}
       </div>
       <h2
         style={{
           fontFamily: SERIF,
-          fontSize: 25,
+          fontSize: 'var(--fs-page)',
           fontWeight: 600,
           letterSpacing: '-.01em',
           lineHeight: 1.15,
@@ -264,7 +275,10 @@ const FUNDERS = [
 function Funders() {
   return (
     <div style={{ margin: '4px 0 8px' }}>
-      <div className="mono" style={{ fontSize: 11.5, color: 'var(--ink50)', marginBottom: 8 }}>
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 8 }}
+      >
         Importes anunciados <span style={{ color: 'var(--warn-ink)' }}>· no sumar</span>
       </div>
       <div
@@ -290,14 +304,16 @@ function Funders() {
               alignItems: 'baseline',
             }}
           >
-            <div style={{ fontSize: 13.5, color: 'var(--ink)' }}>
+            <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink)' }}>
               {f.who}
-              <div style={{ color: 'var(--ink50)', fontSize: 11.5, marginTop: 2 }}>{f.sub}</div>
+              <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)', marginTop: 2 }}>
+                {f.sub}
+              </div>
             </div>
             <div
               className="mono"
               style={{
-                fontSize: 13.5,
+                fontSize: 'var(--fs-aux)',
                 color: 'var(--civic)',
                 fontWeight: 500,
                 whiteSpace: 'nowrap',
@@ -308,7 +324,7 @@ function Funders() {
           </div>
         ))}
       </div>
-      <p style={{ fontSize: 13, color: 'var(--ink50)', margin: '10px 0 0' }}>
+      <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '10px 0 0' }}>
         Cofinancian obras solapadas: <b style={{ color: 'var(--ink50)' }}>no deben sumarse</b> en
         una única cifra de reconstrucción.
       </p>
@@ -318,7 +334,12 @@ function Funders() {
 
 /* ---- Callout ámbar: lo que sigue sin ejecutarse ---- */
 function Callout() {
-  const li = { marginBottom: 7, color: 'var(--ink70)', fontSize: 14.5, lineHeight: 1.45 }
+  const li = {
+    marginBottom: 7,
+    color: 'var(--ink70)',
+    fontSize: 'var(--fs-body)',
+    lineHeight: 1.45,
+  }
   const em = { color: 'var(--warn-ink)' }
   return (
     <div
@@ -332,7 +353,7 @@ function Callout() {
     >
       <div
         style={{
-          fontSize: 12,
+          fontSize: 'var(--fs-meta)',
           textTransform: 'uppercase',
           letterSpacing: '.1em',
           color: 'var(--warn-ink)',
@@ -384,7 +405,13 @@ export default function ReconstruccionDana() {
   return (
     <div
       className="cp-page"
-      style={{ padding: '24px', maxWidth: 760, margin: '0 auto', fontSize: 16, lineHeight: 1.62 }}
+      style={{
+        padding: '24px',
+        maxWidth: 760,
+        margin: '0 auto',
+        fontSize: 'var(--fs-head)',
+        lineHeight: 1.62,
+      }}
     >
       {m.estado !== 'publicado' && (
         <div
@@ -394,7 +421,7 @@ export default function ReconstruccionDana() {
             color: 'var(--warn-ink)',
             borderRadius: 'var(--r-card)',
             padding: '10px 14px',
-            fontSize: 12.5,
+            fontSize: 'var(--fs-meta)',
             marginBottom: 22,
           }}
         >
@@ -407,7 +434,7 @@ export default function ReconstruccionDana() {
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -418,7 +445,7 @@ export default function ReconstruccionDana() {
       <h1
         style={{
           fontFamily: SERIF,
-          fontSize: 'clamp(30px, 5vw, 42px)',
+          fontSize: 'var(--type-display)',
           fontWeight: 600,
           letterSpacing: '-.015em',
           lineHeight: 1.08,
@@ -427,7 +454,14 @@ export default function ReconstruccionDana() {
       >
         {m.titulo}
       </h1>
-      <p style={{ fontSize: 18, color: 'var(--ink50)', lineHeight: 1.5, margin: '0 0 26px' }}>
+      <p
+        style={{
+          fontSize: 'var(--fs-head)',
+          color: 'var(--ink50)',
+          lineHeight: 1.5,
+          margin: '0 0 26px',
+        }}
+      >
         {m.subtitulo}
       </p>
 
@@ -470,7 +504,7 @@ export default function ReconstruccionDana() {
             <div
               className="mono"
               style={{
-                fontSize: 22,
+                fontSize: 'var(--fs-card)',
                 fontWeight: 500,
                 color: s.tone || 'var(--ink)',
                 lineHeight: 1,
@@ -478,7 +512,14 @@ export default function ReconstruccionDana() {
             >
               {s.n}
             </div>
-            <div style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 7, lineHeight: 1.3 }}>
+            <div
+              style={{
+                fontSize: 'var(--fs-micro)',
+                color: 'var(--ink50)',
+                marginTop: 7,
+                lineHeight: 1.3,
+              }}
+            >
               {s.l}
             </div>
           </div>
@@ -729,7 +770,14 @@ export default function ReconstruccionDana() {
         </div>
       </div>
 
-      <p style={{ fontSize: 13, color: 'var(--ink50)', margin: '16px 0 0', lineHeight: 1.5 }}>
+      <p
+        style={{
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink50)',
+          margin: '16px 0 0',
+          lineHeight: 1.5,
+        }}
+      >
         Este medio solicitó la versión del Ayuntamiento de Riba-roja, que no respondió dentro del
         plazo. El derecho de réplica sigue abierto: se publicará íntegro si se recibe. Contacto y
         correcciones:{' '}
@@ -743,11 +791,16 @@ export default function ReconstruccionDana() {
 }
 
 function cap() {
-  return { fontSize: 12.5, color: 'var(--ink50)', margin: '10px 0 4px', lineHeight: 1.45 }
+  return {
+    fontSize: 'var(--fs-meta)',
+    color: 'var(--ink50)',
+    margin: '10px 0 4px',
+    lineHeight: 1.45,
+  }
 }
 function boxH() {
   return {
-    fontSize: 12,
+    fontSize: 'var(--fs-meta)',
     textTransform: 'uppercase',
     letterSpacing: '.1em',
     color: 'var(--ink50)',
@@ -759,5 +812,5 @@ function boxUl() {
   return { margin: 0, paddingLeft: 18 }
 }
 function boxLi() {
-  return { fontSize: 13, color: 'var(--ink50)', marginBottom: 8, lineHeight: 1.45 }
+  return { fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginBottom: 8, lineHeight: 1.45 }
 }

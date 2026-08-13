@@ -15,7 +15,7 @@ function ContradichoBundleRow({ bundle, onOpen }) {
       }}
     >
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6 }}>
-        <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+        <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           {bundle.plenoId} · {shortDate(bundle.plenoDate)}
         </span>
         <Pill tone="warn">{bundle.topic}</Pill>
@@ -24,7 +24,7 @@ function ContradichoBundleRow({ bundle, onOpen }) {
             key={b}
             className="mono"
             style={{
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               padding: '1px 6px',
               background: 'var(--soft)',
               borderRadius: 'var(--r-input)',
@@ -37,9 +37,9 @@ function ContradichoBundleRow({ bundle, onOpen }) {
           score={bundle.score.toFixed(2)}
         </span>
       </div>
-      <div style={{ fontSize: 13.5, marginBottom: 4 }}>{bundle.plenoTitle}</div>
+      <div style={{ fontSize: 'var(--fs-aux)', marginBottom: 4 }}>{bundle.plenoTitle}</div>
       {bundle.quotes[0] && (
-        <div style={{ fontSize: 12, color: 'var(--ink50)', lineHeight: 1.4 }}>
+        <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.4 }}>
           <VerdictPill verdict={bundle.quotes[0].verdict} />{' '}
           <span style={{ marginLeft: 6 }}>«{bundle.quotes[0].verbatim.slice(0, 180)}…»</span>
         </div>
@@ -63,12 +63,22 @@ function IssueRow({ issue }) {
         background: 'var(--paper)',
       }}
     >
-      <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginBottom: 4 }}>
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 4 }}
+      >
         #{issue.number} · {shortDate(issue.createdAt)} · @{issue.authorLogin}
       </div>
-      <div style={{ fontSize: 13.5, fontWeight: 600 }}>{issue.title}</div>
+      <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 600 }}>{issue.title}</div>
       {issue.bodyExcerpt && (
-        <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 4, lineHeight: 1.4 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink50)',
+            marginTop: 4,
+            lineHeight: 1.4,
+          }}
+        >
           {issue.bodyExcerpt.slice(0, 200)}…
         </div>
       )}

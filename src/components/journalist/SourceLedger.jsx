@@ -46,7 +46,7 @@ export function SourceLedger({ sources }) {
         cursor: 'pointer',
         userSelect: 'none',
         color: 'var(--ink50)',
-        fontSize: 10.5,
+        fontSize: 'var(--fs-micro)',
         textTransform: 'uppercase',
         letterSpacing: '.06em',
         borderBottom: '1px solid var(--border)',
@@ -62,7 +62,14 @@ export function SourceLedger({ sources }) {
     <Card>
       <SectionHead title="Fuentes consultadas" />
       <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12.5, minWidth: 720 }}>
+        <table
+          style={{
+            width: '100%',
+            borderCollapse: 'collapse',
+            fontSize: 'var(--fs-meta)',
+            minWidth: 720,
+          }}
+        >
           <thead>
             <tr>
               {header('#', 'num')}
@@ -76,7 +83,7 @@ export function SourceLedger({ sources }) {
                   textAlign: 'left',
                   padding: '8px 10px',
                   color: 'var(--ink50)',
-                  fontSize: 10.5,
+                  fontSize: 'var(--fs-micro)',
                   textTransform: 'uppercase',
                   letterSpacing: '.06em',
                   borderBottom: '1px solid var(--border)',
@@ -147,7 +154,12 @@ function SourceRow({ src, num }) {
               entire job is being checkable. */}
           {src.previousUrl && (
             <div
-              style={{ fontSize: '0.72rem', color: 'var(--ink50)', marginTop: 2, lineHeight: 1.3 }}
+              style={{
+                fontSize: 'var(--fs-micro)',
+                color: 'var(--ink50)',
+                marginTop: 2,
+                lineHeight: 1.3,
+              }}
             >
               reubicada {src.relocatedAt?.slice(0, 10) ?? ''}
             </div>
@@ -163,12 +175,12 @@ function SourceRow({ src, num }) {
             <ExtLink
               href={src.archiveUrl}
               onClick={(e) => e.stopPropagation()}
-              style={{ color: 'var(--ink50)', fontSize: 11.5 }}
+              style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)' }}
             >
               Wayback ↗
             </ExtLink>
           ) : src.localPath ? (
-            <span className="mono" style={{ color: 'var(--ink50)', fontSize: 10.5 }}>
+            <span className="mono" style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)' }}>
               local
             </span>
           ) : (
@@ -182,7 +194,7 @@ function SourceRow({ src, num }) {
             {src.excerpt && (
               <span
                 style={{
-                  fontSize: 13,
+                  fontSize: 'var(--fs-aux)',
                   fontWeight: 500,
                   color: 'var(--ink70)',
                   paddingLeft: 10,
@@ -201,7 +213,11 @@ function SourceRow({ src, num }) {
             {src.previousUrl && (
               <div
                 className="mono"
-                style={{ fontSize: 11, color: 'var(--ink50)', marginTop: src.excerpt ? 8 : 0 }}
+                style={{
+                  fontSize: 'var(--fs-micro)',
+                  color: 'var(--ink50)',
+                  marginTop: src.excerpt ? 8 : 0,
+                }}
               >
                 Publicada originalmente en {src.previousUrl} — el publicador la movió; el extracto
                 citado se verificó literalmente en la dirección actual.

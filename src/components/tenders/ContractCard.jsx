@@ -57,7 +57,7 @@ export function ContractCard(props) {
     >
       {/* Title + located amount */}
       <div style={{ display: 'flex', gap: 8, alignItems: 'baseline' }}>
-        <div style={{ flex: 1, fontSize: 12.5, fontWeight: 600, lineHeight: 1.3 }}>
+        <div style={{ flex: 1, fontSize: 'var(--fs-meta)', fontWeight: 600, lineHeight: 1.3 }}>
           <ExtLink href={c.permalink} style={{ color: 'inherit', textDecoration: 'none' }}>
             {c.title}
           </ExtLink>
@@ -65,7 +65,7 @@ export function ContractCard(props) {
             <span
               style={{
                 marginLeft: 6,
-                fontSize: 9,
+                fontSize: 'var(--fs-micro)',
                 fontWeight: 700,
                 color: '#A85F00',
                 background: 'rgba(224,134,0,.16)',
@@ -78,7 +78,10 @@ export function ContractCard(props) {
             </span>
           )}
         </div>
-        <span className="mono" style={{ fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap' }}>
+        <span
+          className="mono"
+          style={{ fontSize: 'var(--fs-meta)', fontWeight: 700, whiteSpace: 'nowrap' }}
+        >
           {fmtEur(shown)}
         </span>
       </div>
@@ -88,7 +91,7 @@ export function ContractCard(props) {
         <div
           style={{
             marginTop: 4,
-            fontSize: 11.5,
+            fontSize: 'var(--fs-micro)',
             color: INK70,
             display: 'flex',
             gap: 6,
@@ -102,7 +105,7 @@ export function ContractCard(props) {
             <span
               className="mono"
               style={{
-                fontSize: 10,
+                fontSize: 'var(--fs-micro)',
                 fontWeight: 700,
                 padding: '1px 5px',
                 borderRadius: 'var(--r-input)',
@@ -120,7 +123,7 @@ export function ContractCard(props) {
 
       {/* CPV target labels */}
       {cpvLabels.length > 0 && (
-        <div style={{ marginTop: 3, fontSize: 10.5, color: INK55, lineHeight: 1.3 }}>
+        <div style={{ marginTop: 3, fontSize: 'var(--fs-micro)', color: INK55, lineHeight: 1.3 }}>
           {cpvLabels.join(' · ')}
         </div>
       )}
@@ -128,7 +131,7 @@ export function ContractCard(props) {
       {/* Meta: date · status · tipo · procedimiento · nº licitadores · plazo · provenance */}
       <div
         style={{
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           color: INK45,
           marginTop: 4,
           display: 'flex',
@@ -160,7 +163,7 @@ export function ContractCard(props) {
         <div style={{ marginTop: 6, paddingTop: 6, borderTop: '1px solid #E6E1D4' }}>
           <div
             style={{
-              fontSize: 9.5,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 700,
               textTransform: 'uppercase',
               letterSpacing: '.06em',
@@ -176,7 +179,7 @@ export function ContractCard(props) {
               href={`/quejas/${r.quejaId}`}
               style={{
                 display: 'block',
-                fontSize: 11,
+                fontSize: 'var(--fs-micro)',
                 color: INK70,
                 textDecoration: 'none',
                 marginBottom: 2,
@@ -186,7 +189,7 @@ export function ContractCard(props) {
               <span
                 className="mono"
                 style={{
-                  fontSize: 9,
+                  fontSize: 'var(--fs-micro)',
                   fontWeight: 700,
                   padding: '0 4px',
                   borderRadius: 'var(--r-input)',

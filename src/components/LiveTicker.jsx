@@ -64,13 +64,13 @@ function Chip({ icon, label, value, delta, deltaTone, extra, onClick, accent, ar
         color: INK,
         fontFamily: SANS,
         cursor: 'pointer',
-        fontSize: 12,
+        fontSize: 'var(--fs-meta)',
         whiteSpace: 'nowrap',
         flexShrink: 0,
       }}
     >
       {icon && (
-        <span style={{ fontSize: 13, lineHeight: 1 }} aria-hidden="true">
+        <span style={{ fontSize: 'var(--fs-aux)', lineHeight: 1 }} aria-hidden="true">
           {icon}
         </span>
       )}
@@ -78,7 +78,7 @@ function Chip({ icon, label, value, delta, deltaTone, extra, onClick, accent, ar
         <span
           style={{
             fontFamily: MONO,
-            fontSize: 9.5,
+            fontSize: 'var(--fs-micro)',
             color: INK_DIM,
             letterSpacing: '.14em',
             textTransform: 'uppercase',
@@ -91,7 +91,7 @@ function Chip({ icon, label, value, delta, deltaTone, extra, onClick, accent, ar
       <span
         style={{
           fontFamily: MONO,
-          fontSize: 12,
+          fontSize: 'var(--fs-meta)',
           fontWeight: 700,
           color: accent || INK,
           letterSpacing: '-.01em',
@@ -103,7 +103,7 @@ function Chip({ icon, label, value, delta, deltaTone, extra, onClick, accent, ar
         <span
           style={{
             fontFamily: MONO,
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             fontWeight: 700,
             color: toneColor(deltaTone),
           }}
@@ -115,7 +115,7 @@ function Chip({ icon, label, value, delta, deltaTone, extra, onClick, accent, ar
         <span
           style={{
             fontFamily: MONO,
-            fontSize: 10,
+            fontSize: 'var(--fs-micro)',
             color: INK_DIM,
           }}
         >
@@ -347,13 +347,13 @@ function PressChip({ p, onClick }) {
       }}
       aria-label={`Noticia de ${p.source}: ${p.title}`}
     >
-      <span style={{ fontSize: 13 }} aria-hidden="true">
+      <span style={{ fontSize: 'var(--fs-aux)' }} aria-hidden="true">
         📰
       </span>
       <span
         style={{
           fontFamily: MONO,
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           color: '#F87171',
           letterSpacing: '.14em',
           textTransform: 'uppercase',
@@ -362,10 +362,12 @@ function PressChip({ p, onClick }) {
       >
         {p.source}
       </span>
-      <span style={{ fontSize: 12, fontWeight: 600, color: INK }}>
+      <span style={{ fontSize: 'var(--fs-meta)', fontWeight: 600, color: INK }}>
         {p.title.length > 80 ? p.title.slice(0, 80) + '…' : p.title}
       </span>
-      <span style={{ fontFamily: MONO, fontSize: 10, color: INK_DIM }}>{pressTimeAgo(p.date)}</span>
+      <span style={{ fontFamily: MONO, fontSize: 'var(--fs-micro)', color: INK_DIM }}>
+        {pressTimeAgo(p.date)}
+      </span>
     </button>
   )
 }
@@ -412,7 +414,7 @@ function DetailPanel({ item, onClose }) {
         <div
           style={{
             fontFamily: MONO,
-            fontSize: 10,
+            fontSize: 'var(--fs-micro)',
             color: INK_DIM,
             letterSpacing: '.14em',
             textTransform: 'uppercase',
@@ -435,7 +437,7 @@ function DetailPanel({ item, onClose }) {
             border: 'none',
             color: INK_DIM,
             cursor: 'pointer',
-            fontSize: 14,
+            fontSize: 'var(--fs-body)',
             lineHeight: 1,
           }}
         >
@@ -444,7 +446,7 @@ function DetailPanel({ item, onClose }) {
       </div>
       <div
         style={{
-          fontSize: 14,
+          fontSize: 'var(--fs-body)',
           fontWeight: 700,
           lineHeight: 1.25,
           marginBottom: 10,
@@ -466,7 +468,7 @@ function DetailPanel({ item, onClose }) {
           <div
             style={{
               fontFamily: MONO,
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               color: INK_DIM,
               letterSpacing: '.12em',
               textTransform: 'uppercase',
@@ -481,7 +483,7 @@ function DetailPanel({ item, onClose }) {
               display: 'flex',
               justifyContent: 'space-between',
               fontFamily: MONO,
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               color: INK_DIM,
               marginTop: 2,
             }}
@@ -507,13 +509,13 @@ function DetailPanel({ item, onClose }) {
               style={{
                 padding: '4px 0',
                 borderTop: idx === 0 ? 'none' : '1px dashed rgba(255,255,255,.1)',
-                fontSize: 11.5,
+                fontSize: 'var(--fs-micro)',
               }}
             >
               <span
                 style={{
                   fontFamily: MONO,
-                  fontSize: 10,
+                  fontSize: 'var(--fs-micro)',
                   fontWeight: 700,
                   color: WARN,
                   marginRight: 6,
@@ -528,7 +530,7 @@ function DetailPanel({ item, onClose }) {
             <div
               style={{
                 fontFamily: MONO,
-                fontSize: 10,
+                fontSize: 'var(--fs-micro)',
                 color: INK_DIM,
                 marginTop: 4,
               }}
@@ -553,7 +555,7 @@ function DetailPanel({ item, onClose }) {
             <div
               style={{
                 fontFamily: MONO,
-                fontSize: 10,
+                fontSize: 'var(--fs-micro)',
                 color: INK_DIM,
                 letterSpacing: '.12em',
                 textTransform: 'uppercase',
@@ -571,7 +573,7 @@ function DetailPanel({ item, onClose }) {
           href={url}
           style={{
             display: 'inline-block',
-            fontSize: 11.5,
+            fontSize: 'var(--fs-micro)',
             color: CIVIC,
             textDecoration: 'none',
             fontFamily: MONO,
@@ -677,7 +679,7 @@ export default function LiveTicker() {
           <span
             style={{
               fontFamily: MONO,
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 800,
               color: '#FCA5A5',
               letterSpacing: '.14em',

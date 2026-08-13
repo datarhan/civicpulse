@@ -24,7 +24,7 @@ function FreezeBanner({ snap }) {
         background: 'rgba(220, 38, 38, 0.06)',
         border: '1px solid rgba(220, 38, 38, 0.35)',
         borderRadius: 'var(--r-input)',
-        fontSize: 13,
+        fontSize: 'var(--fs-aux)',
         color: 'var(--ink)',
         lineHeight: 1.45,
       }}
@@ -54,7 +54,7 @@ function LegalFooter({ snap }) {
         padding: 14,
         background: 'var(--soft)',
         borderRadius: 'var(--r-input)',
-        fontSize: 12,
+        fontSize: 'var(--fs-meta)',
         color: 'var(--ink50)',
         lineHeight: 1.5,
       }}
@@ -84,7 +84,10 @@ function CompositionBar({ items }) {
   const total = items.length
   return (
     <div style={{ marginBottom: 18 }}>
-      <div className="mono" style={{ fontSize: 11, color: 'var(--ink50)', marginBottom: 6 }}>
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 6 }}
+      >
         {total} compromisos en seguimiento · distribución por partido
       </div>
       <div
@@ -105,7 +108,7 @@ function CompositionBar({ items }) {
               background: PARTY_TONE[party] || '#64748B',
               display: 'grid',
               placeItems: 'center',
-              fontSize: 9,
+              fontSize: 'var(--fs-micro)',
               color: 'white',
               fontWeight: 700,
             }}
@@ -115,7 +118,15 @@ function CompositionBar({ items }) {
           </div>
         ))}
       </div>
-      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 8, fontSize: 11 }}>
+      <div
+        style={{
+          display: 'flex',
+          gap: 12,
+          flexWrap: 'wrap',
+          marginTop: 8,
+          fontSize: 'var(--fs-micro)',
+        }}
+      >
         {entries.map(([party, n]) => (
           <span key={party} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
             <span
@@ -151,7 +162,7 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
         <span
           className="mono"
           style={{
-            fontSize: 10,
+            fontSize: 'var(--fs-micro)',
             fontWeight: 700,
             letterSpacing: '.1em',
             textTransform: 'uppercase',
@@ -166,7 +177,7 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
         <span
           className="mono"
           style={{
-            fontSize: 10,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             letterSpacing: '.08em',
             textTransform: 'uppercase',
@@ -174,16 +185,21 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
         >
           {TOPIC_LABEL[p.topic] || p.topic}
         </span>
-        <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginLeft: 'auto' }}>
+        <span
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 'auto' }}
+        >
           {fmt(p.madeAt)}
         </span>
       </div>
-      <div style={{ fontSize: 15.5, fontWeight: 600, lineHeight: 1.3, marginBottom: 8 }}>
+      <div
+        style={{ fontSize: 'var(--fs-head)', fontWeight: 600, lineHeight: 1.3, marginBottom: 8 }}
+      >
         {p.title}
       </div>
       <blockquote
         style={{
-          fontSize: 14,
+          fontSize: 'var(--fs-body)',
           fontWeight: 500,
           color: 'var(--ink)',
           lineHeight: 1.5,
@@ -196,7 +212,13 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
         «{p.quote}»
       </blockquote>
       <div
-        style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 6, fontSize: 11.5 }}
+        style={{
+          display: 'flex',
+          gap: 10,
+          alignItems: 'center',
+          marginBottom: 6,
+          fontSize: 'var(--fs-micro)',
+        }}
       >
         {/* A promise attributes a verbatim quote to a named party, so a citation
             that no longer resolves is not cosmetic: it is the evidence half of
@@ -220,12 +242,16 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
           (citationArchive(citations, p.source.url) ? (
             <ExtLink
               href={citationArchive(citations, p.source.url)}
-              style={{ color: 'var(--warn-ink)', fontSize: 11, textDecoration: 'underline' }}
+              style={{
+                color: 'var(--warn-ink)',
+                fontSize: 'var(--fs-micro)',
+                textDecoration: 'underline',
+              }}
             >
               copia archivada ↗
             </ExtLink>
           ) : (
-            <span style={{ color: 'var(--crit-ink)', fontSize: 11 }}>
+            <span style={{ color: 'var(--crit-ink)', fontSize: 'var(--fs-micro)' }}>
               enlace roto · sin copia archivada
             </span>
           ))}
@@ -240,11 +266,11 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
       </div>
 
       {p.evidence.length > 0 && (
-        <div style={{ marginTop: 10, fontSize: 11.5 }}>
+        <div style={{ marginTop: 10, fontSize: 'var(--fs-micro)' }}>
           <div
             className="mono"
             style={{
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               letterSpacing: '.08em',
               textTransform: 'uppercase',
@@ -254,7 +280,10 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
             Evidencia curada · {p.evidence.length}
           </div>
           {p.evidence.map((e, i) => (
-            <div key={i} style={{ fontSize: 11.5, color: 'var(--ink50)', marginBottom: 3 }}>
+            <div
+              key={i}
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 3 }}
+            >
               <span className="mono">{e.date}</span> · {e.publisher} ·{' '}
               <ExtLink href={e.url} style={{ color: 'var(--civic)' }}>
                 ver
@@ -269,10 +298,10 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
           El motor propone estado:{' '}
           <strong style={{ color: 'var(--ink)' }}>{STATUS_LABEL[suggestion.proposedStatus]}</strong>
           .
-          <div style={{ marginTop: 6, fontSize: 11, color: 'var(--ink50)' }}>
+          <div style={{ marginTop: 6, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             Fundamentación ({suggestion.reasoning.length} evidencias):
           </div>
-          <ul style={{ margin: '4px 0 0', paddingLeft: 16, fontSize: 11 }}>
+          <ul style={{ margin: '4px 0 0', paddingLeft: 16, fontSize: 'var(--fs-micro)' }}>
             {suggestion.reasoning.slice(0, 3).map((r, i) => (
               <li key={i} style={{ marginBottom: 2 }}>
                 <span className="mono">{r.date}</span> · {r.publisher || r.kind} ·{' '}
@@ -293,14 +322,14 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
             borderLeft: '3px solid var(--intel)',
             background: 'var(--intel-soft)',
             borderRadius: 'var(--r-input)',
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             color: 'var(--ink70)',
           }}
         >
           <div
             className="mono"
             style={{
-              fontSize: 9.5,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--intel-ink)',
               letterSpacing: '.1em',
               textTransform: 'uppercase',
@@ -311,13 +340,20 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
             Evidencia sugerida por LLM · {llmItems.length} fuente{llmItems.length === 1 ? '' : 's'}{' '}
             · pendiente de revisión
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)', marginBottom: 5, lineHeight: 1.45 }}>
+          <div
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              marginBottom: 5,
+              lineHeight: 1.45,
+            }}
+          >
             Estas citas han sido identificadas automáticamente por el modelo a partir de prensa,
             actas de pleno, licitaciones, subvenciones y presupuesto.{' '}
             <strong>No publican estado</strong>; un curador debe verificarlas antes de incorporarlas
             al registro.
           </div>
-          <ul style={{ margin: '4px 0 0', paddingLeft: 16, fontSize: 11 }}>
+          <ul style={{ margin: '4px 0 0', paddingLeft: 16, fontSize: 'var(--fs-micro)' }}>
             {llmItems.slice(0, 4).map((ev, i) => {
               const isTranscript = ev.corpus === 'pleno_transcript'
               return (
@@ -345,11 +381,16 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
                   >
                     {ev.quote.length > 90 ? ev.quote.slice(0, 90) + '…' : ev.quote}
                   </ExtLink>{' '}
-                  <span className="mono" style={{ color: 'var(--ink50)', fontSize: 10 }}>
+                  <span
+                    className="mono"
+                    style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)' }}
+                  >
                     (conf. {(ev.confidence * 100).toFixed(0)}%)
                   </span>
                   {isTranscript && (
-                    <span style={{ fontSize: 10, color: 'var(--ink50)', marginLeft: 4 }}>
+                    <span
+                      style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 4 }}
+                    >
                       · sin atribución de orador
                     </span>
                   )}
@@ -367,7 +408,7 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
             padding: 10,
             background: 'var(--soft)',
             borderRadius: 'var(--r-input)',
-            fontSize: 11.5,
+            fontSize: 'var(--fs-micro)',
           }}
         >
           <strong>Respuesta del grupo {p.response.from}:</strong> «{p.response.quote}»
@@ -389,7 +430,7 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
           borderTop: '1px solid var(--border2)',
           display: 'flex',
           gap: 12,
-          fontSize: 11,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
         }}
       >
@@ -458,7 +499,7 @@ export default function Promesas() {
         <div
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
@@ -466,10 +507,19 @@ export default function Promesas() {
         >
           {t('promesas.eyebrow')}
         </div>
-        <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-page)',
+            fontWeight: 700,
+            letterSpacing: '-.015em',
+            marginTop: 2,
+          }}
+        >
           {t('promesas.title')}
         </div>
-        <div style={{ fontSize: 13.5, color: 'var(--ink50)', marginTop: 4, maxWidth: 780 }}>
+        <div
+          style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4, maxWidth: 780 }}
+        >
           Compromisos públicos atribuidos a partidos y cargos del Ayuntamiento de Riba-roja de
           Túria, cada uno enlazado a su fuente primaria y con cadena de evidencia trazable. Los
           estados se mantienen en <strong>documentada</strong> o <strong>en verificación</strong>{' '}
@@ -495,7 +545,7 @@ export default function Promesas() {
             border: '1px solid var(--border2)',
             borderRadius: 'var(--r-input)',
             background: 'white',
-            fontSize: 13,
+            fontSize: 'var(--fs-aux)',
           }}
         >
           <option value="all">Todos los partidos ({items.length})</option>
@@ -514,7 +564,7 @@ export default function Promesas() {
             border: '1px solid var(--border2)',
             borderRadius: 'var(--r-input)',
             background: 'white',
-            fontSize: 13,
+            fontSize: 'var(--fs-aux)',
           }}
         >
           <option value="all">Todas las áreas</option>
@@ -524,7 +574,10 @@ export default function Promesas() {
             </option>
           ))}
         </select>
-        <div style={{ marginLeft: 'auto', fontSize: 12, color: 'var(--ink50)' }} className="mono">
+        <div
+          style={{ marginLeft: 'auto', fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}
+          className="mono"
+        >
           {filtered.length} resultados
         </div>
       </div>

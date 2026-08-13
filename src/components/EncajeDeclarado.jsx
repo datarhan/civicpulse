@@ -113,7 +113,7 @@ function Aviso({ aviso, quote = false }) {
         marginTop: 6,
         paddingLeft: 8,
         borderLeft: '2px solid var(--warn)',
-        fontSize: 10.5,
+        fontSize: 'var(--fs-micro)',
         color: 'var(--ink70)',
         lineHeight: 1.45,
       }}
@@ -121,7 +121,7 @@ function Aviso({ aviso, quote = false }) {
       <span
         className="mono"
         style={{
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           letterSpacing: '.08em',
           textTransform: 'uppercase',
           color: 'var(--warn-ink)',
@@ -155,7 +155,7 @@ function RespaldoLine({ value, style = {} }) {
   const t = useT()
   if (!RESPALDO_CON_COPIA.includes(value)) return null
   return (
-    <div style={{ fontSize: 10.5, color: 'var(--ink50)', lineHeight: 1.45, ...style }}>
+    <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', lineHeight: 1.45, ...style }}>
       {t(`encaje.respaldo.${value}`)}
     </div>
   )
@@ -174,7 +174,7 @@ function RespaldoLine({ value, style = {} }) {
 function ComparadoLine({ style = {} }) {
   const t = useT()
   return (
-    <div style={{ fontSize: 10.5, color: 'var(--ink50)', lineHeight: 1.45, ...style }}>
+    <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', lineHeight: 1.45, ...style }}>
       {t('encaje.card.sinCita')}
     </div>
   )
@@ -185,7 +185,10 @@ function RespaldoMark({ value }) {
   const t = useT()
   if (!RESPALDO_CON_COPIA.includes(value)) return null
   return (
-    <span className="mono" style={{ fontSize: 9.5, color: 'var(--ink50)', whiteSpace: 'nowrap' }}>
+    <span
+      className="mono"
+      style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', whiteSpace: 'nowrap' }}
+    >
       {t(`encaje.respaldo.mark.${value}`)}
     </span>
   )
@@ -250,7 +253,7 @@ export function EncajeCard({ official, bioRoute }) {
       <div
         className="mono"
         style={{
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           letterSpacing: '.12em',
           textTransform: 'uppercase',
           color: 'var(--ink50)',
@@ -286,7 +289,7 @@ export function EncajeCard({ official, bioRoute }) {
                 display: 'flex',
                 alignItems: 'baseline',
                 gap: 8,
-                fontSize: 11.5,
+                fontSize: 'var(--fs-micro)',
                 lineHeight: 1.5,
               }}
             >
@@ -304,7 +307,13 @@ export function EncajeCard({ official, bioRoute }) {
                 <span style={{ color: 'var(--ink)', minWidth: 0 }}>
                   <TruncatedList items={credenciales} />
                   {areas.length > 0 && (
-                    <span style={{ display: 'block', color: 'var(--ink50)', fontSize: 11 }}>
+                    <span
+                      style={{
+                        display: 'block',
+                        color: 'var(--ink50)',
+                        fontSize: 'var(--fs-micro)',
+                      }}
+                    >
                       {t('encaje.card.soloEn')} <TruncatedList items={areas} />
                     </span>
                   )}
@@ -336,7 +345,14 @@ export function EncajeCard({ official, bioRoute }) {
         citesNothing(rows) && <ComparadoLine style={{ marginTop: 7 }} />
       )}
 
-      <div style={{ marginTop: 4, fontSize: 10.5, color: 'var(--ink50)', lineHeight: 1.45 }}>
+      <div
+        style={{
+          marginTop: 4,
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          lineHeight: 1.45,
+        }}
+      >
         {/* Underlined, not just tinted. These sit INSIDE a sentence, and WCAG
           2.1 AA (link-in-text-block) requires a link in running text to be
           distinguishable without relying on colour — axe flags all 22 of them
@@ -370,7 +386,7 @@ export function SinDelegacion() {
         marginTop: 10,
         paddingTop: 10,
         borderTop: '1px dashed var(--border2)',
-        fontSize: 11,
+        fontSize: 'var(--fs-micro)',
         color: 'var(--ink50)',
         lineHeight: 1.45,
       }}
@@ -404,7 +420,7 @@ export function EncajeMatrix({ official, bioRoute }) {
       <div
         className="mono"
         style={{
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           letterSpacing: '.14em',
           textTransform: 'uppercase',
           color: 'var(--ink50)',
@@ -412,10 +428,17 @@ export function EncajeMatrix({ official, bioRoute }) {
       >
         {t('encaje.eyebrow')}
       </div>
-      <h2 style={{ fontSize: 19, fontWeight: 600, margin: '6px 0 4px' }}>
+      <h2 style={{ fontSize: 'var(--fs-card)', fontWeight: 600, margin: '6px 0 4px' }}>
         {t('encaje.matrix.title')}
       </h2>
-      <p style={{ fontSize: 13, color: 'var(--ink50)', lineHeight: 1.55, margin: '0 0 14px' }}>
+      <p
+        style={{
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink50)',
+          lineHeight: 1.55,
+          margin: '0 0 14px',
+        }}
+      >
         {t('encaje.matrix.intro')}
       </p>
 
@@ -449,11 +472,15 @@ export function EncajeMatrix({ official, bioRoute }) {
                   flexWrap: 'wrap',
                 }}
               >
-                <strong style={{ fontSize: 14 }}>{r.portfolio}</strong>
+                <strong style={{ fontSize: 'var(--fs-body)' }}>{r.portfolio}</strong>
                 {dept && (
                   <Link
                     to={`/departamentos/${dept}`}
-                    style={{ fontSize: 11.5, color: 'var(--civic)', textDecoration: 'none' }}
+                    style={{
+                      fontSize: 'var(--fs-micro)',
+                      color: 'var(--civic)',
+                      textDecoration: 'none',
+                    }}
                   >
                     {t('encaje.matrix.dept')} →
                   </Link>
@@ -469,7 +496,7 @@ export function EncajeMatrix({ official, bioRoute }) {
                       <span
                         className="mono"
                         style={{
-                          fontSize: 10,
+                          fontSize: 'var(--fs-micro)',
                           letterSpacing: '.06em',
                           textTransform: 'uppercase',
                           color: 'var(--ink50)',
@@ -491,7 +518,7 @@ export function EncajeMatrix({ official, bioRoute }) {
                           margin: '5px 0 0 120px',
                           padding: 0,
                           listStyle: 'none',
-                          fontSize: 12,
+                          fontSize: 'var(--fs-meta)',
                           color: 'var(--ink70)',
                           lineHeight: 1.5,
                         }}
@@ -499,7 +526,10 @@ export function EncajeMatrix({ official, bioRoute }) {
                         {a.evidence.map((ev) => (
                           <li key={ev.label}>
                             {ev.label}{' '}
-                            <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+                            <span
+                              className="mono"
+                              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                            >
                               [{ev.sourceIds.join(', ')}]
                             </span>
                           </li>
@@ -507,7 +537,7 @@ export function EncajeMatrix({ official, bioRoute }) {
                       </ul>
                     )}
                     {a.value === 'no-consta' && bioRoute && (
-                      <div style={{ margin: '4px 0 0 120px', fontSize: 11.5 }}>
+                      <div style={{ margin: '4px 0 0 120px', fontSize: 'var(--fs-micro)' }}>
                         <Link
                           to={bioRoute}
                           style={{ color: 'var(--civic)', textDecoration: 'underline' }}
@@ -526,7 +556,7 @@ export function EncajeMatrix({ official, bioRoute }) {
                     marginTop: 10,
                     paddingTop: 8,
                     borderTop: '1px dashed var(--border2)',
-                    fontSize: 11.5,
+                    fontSize: 'var(--fs-micro)',
                     color: 'var(--ink50)',
                     lineHeight: 1.5,
                   }}
@@ -534,7 +564,7 @@ export function EncajeMatrix({ official, bioRoute }) {
                   {r.curatorNotes}
                 </div>
               )}
-              <div style={{ marginTop: 6, fontSize: 10.5, color: 'var(--ink50)' }}>
+              <div style={{ marginTop: 6, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
                 {t('encaje.matrix.signed')} {r.curatedBy} · {r.curatedAt}
               </div>
             </div>
@@ -545,7 +575,9 @@ export function EncajeMatrix({ official, bioRoute }) {
       {/* BELOW the áreas, not above them. The sentence describes the citations
           listed in the grid; rendered before it, "lo que aquí se cita" pointed
           backwards at the intro paragraph, which cites nothing. */}
-      {shared && <RespaldoLine value={shared} style={{ fontSize: 12, marginTop: 10 }} />}
+      {shared && (
+        <RespaldoLine value={shared} style={{ fontSize: 'var(--fs-meta)', marginTop: 10 }} />
+      )}
     </section>
   )
 }
@@ -572,7 +604,7 @@ export function QueExigeLaLey() {
       <div
         className="mono"
         style={{
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           letterSpacing: '.14em',
           textTransform: 'uppercase',
           color: 'var(--ink50)',
@@ -580,7 +612,7 @@ export function QueExigeLaLey() {
       >
         {t('encaje.ley.eyebrow')}
       </div>
-      <h2 style={{ fontSize: 19, fontWeight: 600, margin: '6px 0 12px' }}>
+      <h2 style={{ fontSize: 'var(--fs-card)', fontWeight: 600, margin: '6px 0 12px' }}>
         {t('encaje.ley.title')}
       </h2>
 
@@ -604,8 +636,8 @@ export function QueExigeLaLey() {
                 flexWrap: 'wrap',
               }}
             >
-              <strong style={{ fontSize: 14 }}>{L(role.label)}</strong>
-              <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+              <strong style={{ fontSize: 'var(--fs-body)' }}>{L(role.label)}</strong>
+              <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
                 {L(role.acceso)}
               </span>
             </div>
@@ -614,7 +646,7 @@ export function QueExigeLaLey() {
               style={{
                 margin: '8px 0 0',
                 paddingLeft: 18,
-                fontSize: 12.5,
+                fontSize: 'var(--fs-meta)',
                 color: 'var(--ink70)',
                 lineHeight: 1.6,
               }}
@@ -628,7 +660,11 @@ export function QueExigeLaLey() {
                       <ExtLink
                         href={src.url}
                         title={src.excerpt}
-                        style={{ color: 'var(--civic)', textDecoration: 'none', fontSize: 11 }}
+                        style={{
+                          color: 'var(--civic)',
+                          textDecoration: 'none',
+                          fontSize: 'var(--fs-micro)',
+                        }}
                       >
                         ↗
                       </ExtLink>
@@ -650,7 +686,7 @@ export function QueExigeLaLey() {
               <span
                 className="mono"
                 style={{
-                  fontSize: 10,
+                  fontSize: 'var(--fs-micro)',
                   letterSpacing: '.06em',
                   textTransform: 'uppercase',
                   color: 'var(--ink50)',
@@ -666,7 +702,7 @@ export function QueExigeLaLey() {
               <p
                 style={{
                   margin: '7px 0 0',
-                  fontSize: 12,
+                  fontSize: 'var(--fs-meta)',
                   color: 'var(--ink50)',
                   lineHeight: 1.55,
                 }}

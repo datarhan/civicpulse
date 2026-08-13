@@ -26,7 +26,7 @@ export function PlazoVencidoBadge({ dueBy, frozen = false, note }) {
       <Pill tone="warn" size="xs">
         ⚠ {t('plazo.vencido')}
       </Pill>
-      <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+      <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
         {dueBy}
       </span>
     </span>

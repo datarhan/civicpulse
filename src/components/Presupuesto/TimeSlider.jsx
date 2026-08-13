@@ -43,7 +43,7 @@ export default function TimeSlider({ min, max, value, onChange }) {
           setPlaying((p) => !p)
         }}
         aria-label={playing ? 'Pausar línea de tiempo' : 'Reproducir línea de tiempo'}
-        style={{ all: 'unset', cursor: 'pointer', fontSize: 16 }}
+        style={{ all: 'unset', cursor: 'pointer', fontSize: 'var(--fs-head)' }}
       >
         {playing ? '⏸' : '▶'}
       </button>
@@ -61,7 +61,7 @@ export default function TimeSlider({ min, max, value, onChange }) {
         aria-valuetext={label}
         style={{ flex: 1 }}
       />
-      <span className="mono" style={{ fontSize: 11, width: 92, textAlign: 'right' }}>
+      <span className="mono" style={{ fontSize: 'var(--fs-micro)', width: 92, textAlign: 'right' }}>
         {label}
       </span>
     </div>

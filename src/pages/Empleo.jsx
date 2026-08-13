@@ -61,7 +61,9 @@ function OfferRow({ o, t }) {
         style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
       >
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
-          <span style={{ fontSize: 14, fontWeight: 600, letterSpacing: '-.01em' }}>{o.titulo}</span>
+          <span style={{ fontSize: 'var(--fs-body)', fontWeight: 600, letterSpacing: '-.01em' }}>
+            {o.titulo}
+          </span>
           {(() => {
             // Never show the portal's "Abierta" on an offer whose closing date
             // has passed — it rendered right beside a "cerrada" chip.
@@ -82,7 +84,7 @@ function OfferRow({ o, t }) {
             gap: 8,
             flexWrap: 'wrap',
             marginTop: 4,
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             color: 'var(--ink50)',
           }}
         >
@@ -135,7 +137,7 @@ function OfferRow({ o, t }) {
           <div
             style={{
               marginTop: 6,
-              fontSize: 11.5,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               whiteSpace: 'nowrap',
               overflow: 'hidden',
@@ -152,7 +154,7 @@ function OfferRow({ o, t }) {
           <div
             style={{
               marginTop: 7,
-              fontSize: 12.5,
+              fontSize: 'var(--fs-meta)',
               color: 'var(--ink70)',
               lineHeight: 1.45,
               ...(expanded
@@ -176,7 +178,7 @@ function OfferRow({ o, t }) {
           onClick={() => setExpanded((v) => !v)}
           style={{
             marginTop: 4,
-            fontSize: 11.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--civic)',
             background: 'none',
             border: 'none',
@@ -195,7 +197,7 @@ function OfferRow({ o, t }) {
 function Pager({ page, totalPages, onPage, t }) {
   if (totalPages <= 1) return null
   const btn = (enabled) => ({
-    fontSize: 12.5,
+    fontSize: 'var(--fs-meta)',
     padding: '6px 12px',
     borderRadius: 'var(--r-input)',
     border: '1px solid var(--border)',
@@ -221,7 +223,7 @@ function Pager({ page, totalPages, onPage, t }) {
       >
         ← {t('empleo.prev')}
       </button>
-      <span className="mono" style={{ fontSize: 12, color: 'var(--ink50)' }}>
+      <span className="mono" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
         {t('empleo.page')} {page} / {totalPages}
       </span>
       <button
@@ -288,7 +290,7 @@ export default function Empleo() {
         <div
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
@@ -297,7 +299,14 @@ export default function Empleo() {
           {t('empleo.eyebrow')}
         </div>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap' }}>
-          <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+          <div
+            style={{
+              fontSize: 'var(--fs-page)',
+              fontWeight: 700,
+              letterSpacing: '-.015em',
+              marginTop: 2,
+            }}
+          >
             {t('empleo.title')}
           </div>
           {data?.generatedAt && <DataAsOf iso={data.generatedAt} label="Empleo" />}
@@ -308,7 +317,7 @@ export default function Empleo() {
             title={t('empleo.rss')}
             className="mono"
             style={{
-              fontSize: 10.5,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 700,
               color: 'var(--civic)',
               textDecoration: 'none',
@@ -321,7 +330,14 @@ export default function Empleo() {
             RSS
           </a>
         </div>
-        <div style={{ fontSize: 13, color: 'var(--ink50)', marginTop: 6, lineHeight: 1.5 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink50)',
+            marginTop: 6,
+            lineHeight: 1.5,
+          }}
+        >
           {t('empleo.intro')}
         </div>
       </div>
@@ -343,14 +359,16 @@ export default function Empleo() {
       {hasData && <EmpleoStats stats={stats} totalAll={items.length} offers={filtered} t={t} />}
 
       <Card pad={false} style={{ padding: '4px 14px' }}>
-        {loading && <div style={{ padding: 12, fontSize: 12, color: 'var(--ink50)' }}>…</div>}
+        {loading && (
+          <div style={{ padding: 12, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>…</div>
+        )}
         {error && (
-          <div style={{ padding: 12, fontSize: 13, color: 'var(--warn-ink)' }}>
+          <div style={{ padding: 12, fontSize: 'var(--fs-aux)', color: 'var(--warn-ink)' }}>
             {t('empleo.error')} <code>npm run scrape:empleo</code>
           </div>
         )}
         {!loading && !error && pageData.items.length === 0 && (
-          <div style={{ padding: 14, fontSize: 13, color: 'var(--ink50)' }}>
+          <div style={{ padding: 14, fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
             {t('empleo.empty')}
           </div>
         )}
@@ -361,7 +379,14 @@ export default function Empleo() {
 
       <Pager page={pageData.page} totalPages={pageData.totalPages} onPage={setPage} t={t} />
 
-      <div style={{ marginTop: 12, fontSize: 11.5, color: 'var(--ink50)', lineHeight: 1.5 }}>
+      <div
+        style={{
+          marginTop: 12,
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          lineHeight: 1.5,
+        }}
+      >
         {t('empleo.sourceNote')}
       </div>
     </div>

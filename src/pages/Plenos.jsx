@@ -38,7 +38,7 @@ function TopDepartmentsCard({ agendas }) {
         right={
           <Link
             to="/departamentos"
-            style={{ fontSize: 12, color: 'var(--civic)', textDecoration: 'none' }}
+            style={{ fontSize: 'var(--fs-meta)', color: 'var(--civic)', textDecoration: 'none' }}
           >
             Ver dashboard por departamento →
           </Link>
@@ -51,7 +51,7 @@ function TopDepartmentsCard({ agendas }) {
             to={d.departmentSlug ? `/departamentos/${d.departmentSlug}` : '/departamentos'}
             className="mono"
             style={{
-              fontSize: 11,
+              fontSize: 'var(--fs-micro)',
               padding: '3px 8px',
               background: 'var(--civic-soft)',
               color: 'var(--civic)',
@@ -81,7 +81,7 @@ function Count({ n, label, tone, titulo }) {
   return (
     <span
       className="mono"
-      style={{ fontSize: 11, color: tone, marginLeft: 8 }}
+      style={{ fontSize: 'var(--fs-micro)', color: tone, marginLeft: 8 }}
       title={titulo ? `${n} ${titulo}` : undefined}
       aria-label={titulo ? `${n} ${titulo}` : undefined}
     >
@@ -105,7 +105,7 @@ function SessionRow({ row, t }) {
         color: 'inherit',
       }}
     >
-      <span className="mono" style={{ fontSize: 12, color: 'var(--ink50)' }}>
+      <span className="mono" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
         {fmtDateLong(row.date)}
       </span>
       <span style={{ minWidth: 0 }}>
@@ -127,7 +127,7 @@ function SessionRow({ row, t }) {
         />
         <Count n={row.findings} label={t('plenosIndex.findings')} tone="var(--intel-ink)" />
       </span>
-      <span className="mono" style={{ fontSize: 14, color: 'var(--ink50)' }}>
+      <span className="mono" style={{ fontSize: 'var(--fs-body)', color: 'var(--ink50)' }}>
         →
       </span>
     </Link>
@@ -161,7 +161,7 @@ export default function Plenos() {
         <div
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
@@ -169,7 +169,14 @@ export default function Plenos() {
         >
           {t('plenos.eyebrow')}
         </div>
-        <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-page)',
+            fontWeight: 700,
+            letterSpacing: '-.015em',
+            marginTop: 2,
+          }}
+        >
           {t('plenos.title')}
         </div>
       </div>
@@ -180,7 +187,7 @@ export default function Plenos() {
         <div
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
@@ -191,7 +198,9 @@ export default function Plenos() {
         {plenosData?.generatedAt && <DataAsOf iso={plenosData.generatedAt} label="Plenos" />}
       </div>
       <Card>
-        {loading && <div style={{ padding: 12, fontSize: 12, color: 'var(--ink50)' }}>…</div>}
+        {loading && (
+          <div style={{ padding: 12, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>…</div>
+        )}
         {rows.map((row) => (
           <SessionRow key={row.id} row={row} t={t} />
         ))}
@@ -200,7 +209,7 @@ export default function Plenos() {
       <div style={{ marginTop: 14 }}>
         <Link
           to="/declaraciones"
-          style={{ fontSize: 13, color: 'var(--civic)', textDecoration: 'none' }}
+          style={{ fontSize: 'var(--fs-aux)', color: 'var(--civic)', textDecoration: 'none' }}
         >
           {t('plenosIndex.crossSession')}
         </Link>

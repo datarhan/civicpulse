@@ -60,14 +60,14 @@ export function MoneyCoverage({ snapshot }) {
         paddingTop: 6,
         borderTop: '1px solid #E6E1D4',
         fontFamily: "'Outfit', system-ui, sans-serif",
-        fontSize: 10.5,
+        fontSize: 'var(--fs-micro)',
         lineHeight: 1.4,
         color: 'rgba(11,15,25,.72)',
       }}
     >
       <div
         className="mono"
-        style={{ fontSize: 10.5, color: 'rgba(11,15,25,.86)', fontWeight: 700 }}
+        style={{ fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.86)', fontWeight: 700 }}
       >
         {fmtM(u.locatedAmount)} {t('map.money.of')} {fmtM(u.totalAmount)}
         {span ? ` (${span})` : ''} · {pct < 1 ? '<1' : fmtPct(pct)}%

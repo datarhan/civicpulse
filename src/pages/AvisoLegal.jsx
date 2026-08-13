@@ -5,12 +5,18 @@ export default function AvisoLegal() {
   return (
     <div
       className="cp-page"
-      style={{ padding: '24px', maxWidth: 860, margin: '0 auto', fontSize: 14, lineHeight: 1.6 }}
+      style={{
+        padding: '24px',
+        maxWidth: 860,
+        margin: '0 auto',
+        fontSize: 'var(--fs-body)',
+        lineHeight: 1.6,
+      }}
     >
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -18,7 +24,14 @@ export default function AvisoLegal() {
       >
         Transparencia editorial
       </div>
-      <h1 style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+      <h1
+        style={{
+          fontSize: 'var(--fs-page)',
+          fontWeight: 700,
+          letterSpacing: '-.015em',
+          marginTop: 2,
+        }}
+      >
         Aviso legal y política editorial
       </h1>
 
@@ -373,7 +386,7 @@ export default function AvisoLegal() {
           decía «2 de julio» mientras el fichero incorporaba compromisos
           nuevos. Una fecha de vigencia que va por detrás de lo vigente es
           justo lo contrario de lo que una fecha de vigencia sirve. */}
-      <p style={{ marginTop: 22, fontSize: 12, color: 'var(--ink50)' }}>
+      <p style={{ marginTop: 22, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
         {__REVISION_AVISO_LEGAL__ ? (
           <>Versión vigente: {fmtDateLong(__REVISION_AVISO_LEGAL__)}. </>
         ) : null}

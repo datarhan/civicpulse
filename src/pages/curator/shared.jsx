@@ -19,10 +19,13 @@ class SectionErrorBoundary extends Component {
     if (this.state.error) {
       return (
         <Card style={{ padding: 12, marginBottom: 18, borderColor: 'var(--crit-ink)' }}>
-          <div className="mono" style={{ fontSize: 11, color: 'var(--crit-ink)', marginBottom: 6 }}>
+          <div
+            className="mono"
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--crit-ink)', marginBottom: 6 }}
+          >
             ⚠ {this.props.label} crashed
           </div>
-          <pre style={{ fontSize: 11, whiteSpace: 'pre-wrap', margin: 0 }}>
+          <pre style={{ fontSize: 'var(--fs-micro)', whiteSpace: 'pre-wrap', margin: 0 }}>
             {String(this.state.error?.stack || this.state.error || 'unknown error')}
           </pre>
         </Card>

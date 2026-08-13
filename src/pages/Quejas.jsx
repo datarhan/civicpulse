@@ -37,7 +37,14 @@ function SindicCard() {
         title="Resoluciones del Síndic sobre Riba-roja de Túria"
       />
       {items.length === 0 ? (
-        <div style={{ fontSize: 13, color: 'var(--ink70)', lineHeight: 1.55, marginTop: 8 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70)',
+            lineHeight: 1.55,
+            marginTop: 8,
+          }}
+        >
           Aún no hay resoluciones del Síndic de Greuges CV registradas contra el Ayuntamiento de
           Riba-roja de Túria en nuestro registro curado. El Síndic publica sus resoluciones en{' '}
           <a
@@ -57,11 +64,14 @@ function SindicCard() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
                 <span
                   className="mono"
-                  style={{ fontSize: 11, color: 'var(--civic)', fontWeight: 700 }}
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--civic)', fontWeight: 700 }}
                 >
                   Expte {r.expediente}
                 </span>
-                <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+                <span
+                  className="mono"
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                >
                   {fmtDateShort(r.fecha)}
                 </span>
                 <Pill tone={SINDIC_SENTIDO_TONE[r.sentido] || 'ghost'} size="xs">
@@ -71,11 +81,18 @@ function SindicCard() {
                   {SINDIC_MATERIA_LABEL[r.materia] || r.materia}
                 </Pill>
               </div>
-              <div style={{ fontSize: 13.5, fontWeight: 500 }}>{r.titulo}</div>
-              <div style={{ fontSize: 12.5, color: 'var(--ink70)', marginTop: 4, lineHeight: 1.5 }}>
+              <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 500 }}>{r.titulo}</div>
+              <div
+                style={{
+                  fontSize: 'var(--fs-meta)',
+                  color: 'var(--ink70)',
+                  marginTop: 4,
+                  lineHeight: 1.5,
+                }}
+              >
                 {r.resumen}
               </div>
-              <div style={{ marginTop: 6, fontSize: 11, display: 'flex', gap: 14 }}>
+              <div style={{ marginTop: 6, fontSize: 'var(--fs-micro)', display: 'flex', gap: 14 }}>
                 <ExtLink href={r.urlPdf} style={{ color: 'var(--civic)' }}>
                   PDF del Síndic →
                 </ExtLink>
@@ -90,7 +107,10 @@ function SindicCard() {
               </div>
             </div>
           ))}
-          <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 6 }}>
+          <div
+            className="mono"
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 6 }}
+          >
             Lista curada manualmente · actualizado {fmtDateShort(data.generatedAt)}. Fuente:{' '}
             <a
               href="https://www.elsindic.com"
@@ -118,16 +138,28 @@ function Findings({ f, year }) {
     }
     groups[idx.get(d.category)][1].push(d)
   }
-  const liStyle = { fontSize: 12, color: 'var(--ink70)', lineHeight: 1.45, marginBottom: 3 }
+  const liStyle = {
+    fontSize: 'var(--fs-meta)',
+    color: 'var(--ink70)',
+    lineHeight: 1.45,
+    marginBottom: 3,
+  }
   const headStyle = {
-    fontSize: 10.5,
+    fontSize: 'var(--fs-micro)',
     fontWeight: 700,
     textTransform: 'uppercase',
     letterSpacing: '.04em',
   }
   return (
     <details style={{ marginTop: 6 }}>
-      <summary style={{ cursor: 'pointer', fontSize: 12, color: 'var(--civic)', fontWeight: 600 }}>
+      <summary
+        style={{
+          cursor: 'pointer',
+          fontSize: 'var(--fs-meta)',
+          color: 'var(--civic)',
+          fontWeight: 600,
+        }}
+      >
         {f.deficienciesCount} deficiencias · {f.recommendationsCount} recomendaciones (ejercicios{' '}
         {year === 2020 ? '2017-2019' : year})
       </summary>
@@ -158,7 +190,10 @@ function Findings({ f, year }) {
             </ol>
           </div>
         )}
-        <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginTop: 6 }}>
+        <div
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 6 }}
+        >
           Extraído del informe firmado de la Sindicatura · última auditoría específica del
           municipio.
         </div>
@@ -174,7 +209,7 @@ function Art218({ a }) {
         display: 'inline-flex',
         alignItems: 'center',
         gap: 6,
-        fontSize: 11.5,
+        fontSize: 'var(--fs-micro)',
         color: 'var(--ink70)',
       }}
     >
@@ -202,7 +237,7 @@ function Art218({ a }) {
     >
       <div
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           fontWeight: 700,
           textTransform: 'uppercase',
           letterSpacing: '.04em',
@@ -231,7 +266,7 @@ function Art218({ a }) {
           {a.ai ? 'Comunicó anomalías de ingresos' : 'Sin anomalías de ingresos'}
         </Flag>
       </div>
-      <div style={{ marginTop: 6, fontSize: 10.5 }}>
+      <div style={{ marginTop: 6, fontSize: 'var(--fs-micro)' }}>
         <ExtLink href={a.sourceUrl} style={{ color: 'var(--civic)' }}>
           Informe de control interno EELL {a.ejercicio} →
         </ExtLink>
@@ -250,17 +285,22 @@ function SindicaturaCard() {
   const Report = ({ r, dedicatedRow }) => (
     <div key={r.id} style={{ padding: '9px 0', borderTop: '1px dotted var(--border2)' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
-        <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', fontWeight: 700 }}>
+        <span
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', fontWeight: 700 }}
+        >
           {r.year}
         </span>
         <Pill tone={dedicatedRow ? 'intel' : 'ghost'} size="xs">
           {dedicatedRow ? 'Auditoría específica' : 'Entidades locales'}
         </Pill>
       </div>
-      <div style={{ fontSize: 13, fontWeight: dedicatedRow ? 600 : 500, lineHeight: 1.4 }}>
+      <div
+        style={{ fontSize: 'var(--fs-aux)', fontWeight: dedicatedRow ? 600 : 500, lineHeight: 1.4 }}
+      >
         {r.title}
       </div>
-      <div style={{ marginTop: 5, fontSize: 11 }}>
+      <div style={{ marginTop: 5, fontSize: 'var(--fs-micro)' }}>
         <ExtLink href={r.url} style={{ color: 'var(--civic)' }}>
           PDF de la Sindicatura →
         </ExtLink>
@@ -275,7 +315,14 @@ function SindicaturaCard() {
         title="Auditorías del órgano de control externo sobre Riba-roja"
       />
       {dedicated.length === 0 && sectoral.length === 0 ? (
-        <div style={{ fontSize: 13, color: 'var(--ink70)', lineHeight: 1.55, marginTop: 8 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70)',
+            lineHeight: 1.55,
+            marginTop: 8,
+          }}
+        >
           Aún no consta ninguna fiscalización de la{' '}
           <a
             href="https://www.sindicom.gva.es/informes"
@@ -289,7 +336,14 @@ function SindicaturaCard() {
         </div>
       ) : (
         <div style={{ marginTop: 8 }}>
-          <div style={{ fontSize: 12, color: 'var(--ink50)', lineHeight: 1.5, marginBottom: 4 }}>
+          <div
+            style={{
+              fontSize: 'var(--fs-meta)',
+              color: 'var(--ink50)',
+              lineHeight: 1.5,
+              marginBottom: 4,
+            }}
+          >
             La Sindicatura audita <em>a posteriori</em> si el dinero público se gestionó
             correctamente — el complemento fiscalizador al Síndic de Greuges y el CTBG.
           </div>
@@ -300,7 +354,12 @@ function SindicaturaCard() {
           {sectoral.length > 0 && (
             <details style={{ marginTop: 8 }}>
               <summary
-                style={{ cursor: 'pointer', fontSize: 12, color: 'var(--civic)', fontWeight: 600 }}
+                style={{
+                  cursor: 'pointer',
+                  fontSize: 'var(--fs-meta)',
+                  color: 'var(--civic)',
+                  fontWeight: 600,
+                }}
               >
                 Riba-roja como entidad auditada en {st.sectoralRelevant ?? sectoral.length} barridos
                 sectoriales de entidades locales
@@ -315,7 +374,7 @@ function SindicaturaCard() {
                 {st.sectoralRelevant > sectoral.length && (
                   <div
                     className="mono"
-                    style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 6 }}
+                    style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 6 }}
                   >
                     Mostrando los {sectoral.length} más recientes de {st.sectoralRelevant}.
                   </div>
@@ -323,7 +382,10 @@ function SindicaturaCard() {
               </div>
             </details>
           )}
-          <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 8 }}>
+          <div
+            className="mono"
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 8 }}
+          >
             {st.dedicated ?? dedicated.length} auditoría(s) específica(s) · {st.sectoralTotal ?? 0}{' '}
             menciones en total · actualizado {fmtDateShort(data.generatedAt)}. Fuente:{' '}
             <a
@@ -368,7 +430,7 @@ function ConsellCvCard() {
           <div
             className="mono"
             style={{
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               textTransform: 'uppercase',
               letterSpacing: '.06em',
@@ -376,10 +438,13 @@ function ConsellCvCard() {
           >
             Registro analizado
           </div>
-          <div className="mono" style={{ fontSize: 18, fontWeight: 700, marginTop: 2 }}>
+          <div
+            className="mono"
+            style={{ fontSize: 'var(--fs-head)', fontWeight: 700, marginTop: 2 }}
+          >
             {stats.totalEntries.toLocaleString('es-ES')}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>
+          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             resoluciones · {stats.years.length} año(s)
           </div>
         </div>
@@ -387,7 +452,7 @@ function ConsellCvCard() {
           <div
             className="mono"
             style={{
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               textTransform: 'uppercase',
               letterSpacing: '.06em',
@@ -398,7 +463,7 @@ function ConsellCvCard() {
           <div
             className="mono"
             style={{
-              fontSize: 18,
+              fontSize: 'var(--fs-head)',
               fontWeight: 800,
               marginTop: 2,
               // Variantes -ink: a 18 px, aunque vaya en 800, WCAG sigue
@@ -410,13 +475,13 @@ function ConsellCvCard() {
           >
             {stats.matchedEntries}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>
+          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             {stats.matchedEntries === 0
               ? 'sin reclamaciones transparencia resueltas'
               : `${Object.keys(stats.bySentido).length} sentidos distintos`}
           </div>
         </div>
-        <div style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--ink50)' }}>
+        <div style={{ marginLeft: 'auto', fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           Comprobado {when} ·{' '}
           <ExtLink
             href={data.source?.portal || 'https://conselltransparencia.gva.es'}
@@ -432,12 +497,17 @@ function ConsellCvCard() {
             <div key={i} style={{ padding: '10px 0', borderTop: '1px dotted var(--border2)' }}>
               <div
                 className="mono"
-                style={{ fontSize: 11, color: 'var(--civic)', fontWeight: 700 }}
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--civic)', fontWeight: 700 }}
               >
                 Nº {m.numero} · Expte {m.expediente} · {m.fecha}
               </div>
-              <div style={{ fontSize: 13, fontWeight: 500, marginTop: 2 }}>{m.motivo || '—'}</div>
-              <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}>
+              <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 500, marginTop: 2 }}>
+                {m.motivo || '—'}
+              </div>
+              <div
+                className="mono"
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+              >
                 <span style={{ color: sentidoColor(m.sentido), fontWeight: 600 }}>{m.sentido}</span>
                 {m.materia && <> · {m.materia}</>}
               </div>
@@ -446,7 +516,14 @@ function ConsellCvCard() {
         </div>
       )}
       {stats.matchedEntries === 0 && (
-        <div style={{ marginTop: 12, fontSize: 12.5, color: 'var(--ink50)', lineHeight: 1.55 }}>
+        <div
+          style={{
+            marginTop: 12,
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink50)',
+            lineHeight: 1.55,
+          }}
+        >
           El Consell de Transparència CV es el órgano autonómico que resuelve reclamaciones
           municipales de transparencia (art. 24 Ley 19/2013 + Ley 1/2022). Un "0" aquí es un dato en
           sí mismo: no se ha escalado formalmente ningún silencio del Ayuntamiento de Riba-roja en
@@ -473,7 +550,7 @@ function CtbgCard() {
           <div
             className="mono"
             style={{
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               textTransform: 'uppercase',
               letterSpacing: '.06em',
@@ -481,10 +558,13 @@ function CtbgCard() {
           >
             Registro analizado
           </div>
-          <div className="mono" style={{ fontSize: 18, fontWeight: 700, marginTop: 2 }}>
+          <div
+            className="mono"
+            style={{ fontSize: 'var(--fs-head)', fontWeight: 700, marginTop: 2 }}
+          >
             {stats.totalEntries.toLocaleString('es-ES')}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>
+          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             resoluciones · {stats.years.length} años
           </div>
         </div>
@@ -492,7 +572,7 @@ function CtbgCard() {
           <div
             className="mono"
             style={{
-              fontSize: 10,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               textTransform: 'uppercase',
               letterSpacing: '.06em',
@@ -503,7 +583,7 @@ function CtbgCard() {
           <div
             className="mono"
             style={{
-              fontSize: 18,
+              fontSize: 'var(--fs-head)',
               fontWeight: 800,
               marginTop: 2,
               // Variantes -ink: a 18 px, aunque vaya en 800, WCAG sigue
@@ -515,13 +595,13 @@ function CtbgCard() {
           >
             {stats.matchedEntries}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>
+          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             {stats.matchedEntries === 0
               ? 'sin resoluciones (ámbito estatal)'
               : `${Object.keys(stats.bySentido).length} sentidos distintos`}
           </div>
         </div>
-        <div style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--ink50)' }}>
+        <div style={{ marginLeft: 'auto', fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           Comprobado {when} ·{' '}
           <ExtLink href={data.source?.url} style={{ color: 'var(--civic)' }}>
             XLSX oficial
@@ -534,12 +614,17 @@ function CtbgCard() {
             <div key={i} style={{ padding: '10px 0', borderTop: '1px dotted var(--border2)' }}>
               <div
                 className="mono"
-                style={{ fontSize: 11, color: 'var(--civic)', fontWeight: 700 }}
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--civic)', fontWeight: 700 }}
               >
                 {m.resolucion} · {m.mesResolucion} {m.sheetYear}
               </div>
-              <div style={{ fontSize: 13, fontWeight: 500, marginTop: 2 }}>{m.asunto}</div>
-              <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}>
+              <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 500, marginTop: 2 }}>
+                {m.asunto}
+              </div>
+              <div
+                className="mono"
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+              >
                 {m.sentido} · {m.organismo}
               </div>
             </div>
@@ -547,7 +632,14 @@ function CtbgCard() {
         </div>
       )}
       {stats.matchedEntries === 0 && (
-        <div style={{ marginTop: 12, fontSize: 12.5, color: 'var(--ink50)', lineHeight: 1.55 }}>
+        <div
+          style={{
+            marginTop: 12,
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink50)',
+            lineHeight: 1.55,
+          }}
+        >
           El CTBG gestiona reclamaciones de ámbito estatal. Las reclamaciones municipales se
           tramitan ante el
           <strong> Consell de Transparència de la Comunitat Valenciana</strong>. El Síndic de
@@ -575,7 +667,14 @@ function EmptyState() {
           eyebrow="Estado"
           title="El canal de quejas ciudadanas ya está abierto — no hay datos todavía"
         />
-        <div style={{ fontSize: 14, color: 'var(--ink70)', lineHeight: 1.55, marginTop: 8 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-body)',
+            color: 'var(--ink70)',
+            lineHeight: 1.55,
+            marginTop: 8,
+          }}
+        >
           <p>
             CivicPulse opera su propio canal de quejas ciudadanas vía el bot de Telegram{' '}
             <a
@@ -601,7 +700,7 @@ function EmptyState() {
         <SectionHead eyebrow="Cómo funciona" title="De la queja al escalado" />
         <ol
           style={{
-            fontSize: 13.5,
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink70)',
             marginTop: 8,
             lineHeight: 1.6,
@@ -632,7 +731,14 @@ function EmptyState() {
 
       <Card style={{ marginTop: 14 }}>
         <SectionHead eyebrow="Contratos editoriales" title="Qué publicamos y qué no" />
-        <div style={{ fontSize: 13, color: 'var(--ink70)', marginTop: 8, lineHeight: 1.55 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70)',
+            marginTop: 8,
+            lineHeight: 1.55,
+          }}
+        >
           <ul style={{ paddingLeft: 20 }}>
             <li>
               Publicamos: categoría, barrio (agregado), estado, apoyos, área municipal responsable,
@@ -682,7 +788,7 @@ function StatCard({ label, value, tone = 'neutral', sub }) {
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -692,11 +798,21 @@ function StatCard({ label, value, tone = 'neutral', sub }) {
       </div>
       <div
         className="mono"
-        style={{ fontSize: 26, fontWeight: 800, color, marginTop: 4, letterSpacing: '-.02em' }}
+        style={{
+          fontSize: 'var(--fs-page)',
+          fontWeight: 800,
+          color,
+          marginTop: 4,
+          letterSpacing: '-.02em',
+        }}
       >
         {value}
       </div>
-      {sub && <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 3 }}>{sub}</div>}
+      {sub && (
+        <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 3 }}>
+          {sub}
+        </div>
+      )}
     </Card>
   )
 }
@@ -779,14 +895,21 @@ function DashboardView({ data }) {
           <SectionHead eyebrow="Por categoría" title="Qué se reporta más" />
           <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 6 }}>
             {sortedCats.length === 0 && (
-              <div style={{ fontSize: 12, color: 'var(--ink50)' }}>—</div>
+              <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>—</div>
             )}
             {sortedCats.map(([cat, n]) => (
               <div key={cat} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ flex: 1, fontSize: 13 }}>{CATEGORY_LABEL[cat] || cat}</span>
+                <span style={{ flex: 1, fontSize: 'var(--fs-aux)' }}>
+                  {CATEGORY_LABEL[cat] || cat}
+                </span>
                 <span
                   className="mono"
-                  style={{ fontSize: 12, color: 'var(--ink50)', minWidth: 24, textAlign: 'right' }}
+                  style={{
+                    fontSize: 'var(--fs-meta)',
+                    color: 'var(--ink50)',
+                    minWidth: 24,
+                    textAlign: 'right',
+                  }}
                 >
                   {n}
                 </span>
@@ -815,14 +938,21 @@ function DashboardView({ data }) {
           <SectionHead eyebrow="Por barrio" title="Dónde pasa" />
           <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 6 }}>
             {sortedNeigh.length === 0 && (
-              <div style={{ fontSize: 12, color: 'var(--ink50)' }}>—</div>
+              <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>—</div>
             )}
             {sortedNeigh.map(([slug, n]) => (
               <div key={slug} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ flex: 1, fontSize: 13 }}>{prettyNeighborhood(slug)}</span>
+                <span style={{ flex: 1, fontSize: 'var(--fs-aux)' }}>
+                  {prettyNeighborhood(slug)}
+                </span>
                 <span
                   className="mono"
-                  style={{ fontSize: 12, color: 'var(--ink50)', minWidth: 24, textAlign: 'right' }}
+                  style={{
+                    fontSize: 'var(--fs-meta)',
+                    color: 'var(--ink50)',
+                    minWidth: 24,
+                    textAlign: 'right',
+                  }}
                 >
                   {n}
                 </span>
@@ -853,7 +983,7 @@ function DashboardView({ data }) {
         <SectionHead eyebrow="Quejas recientes · feed público" title="Últimas 30 quejas" />
         <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 8 }}>
           {items.length === 0 && (
-            <div style={{ fontSize: 13, color: 'var(--ink50)' }}>
+            <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
               Aún no hay quejas registradas.
             </div>
           )}
@@ -872,13 +1002,13 @@ function DashboardView({ data }) {
                 textDecoration: 'none',
               }}
             >
-              <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+              <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
                 {it.service_request_id}
               </span>
               <div style={{ minWidth: 0 }}>
                 <div
                   style={{
-                    fontSize: 13.5,
+                    fontSize: 'var(--fs-aux)',
                     fontWeight: 500,
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
@@ -889,7 +1019,7 @@ function DashboardView({ data }) {
                 </div>
                 <div
                   className="mono"
-                  style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
                 >
                   {CATEGORY_LABEL[it.service_code] || it.service_code}
                   {it.address_string ? ` · ${prettyNeighborhood(it.address_string)}` : ''}
@@ -898,7 +1028,7 @@ function DashboardView({ data }) {
               </div>
               <span
                 className="mono"
-                style={{ fontSize: 11, color: 'var(--ink50)', textAlign: 'right' }}
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', textAlign: 'right' }}
               >
                 👍 {it.apoyos}
               </span>
@@ -912,7 +1042,7 @@ function DashboardView({ data }) {
             </Link>
           ))}
         </div>
-        <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 12 }}>
+        <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 12 }}>
           Snapshot: {data.generatedAt ? new Date(data.generatedAt).toLocaleString('es-ES') : '—'} ·{' '}
           Fuente: {data.source?.platform} · Formato: {data.source?.spec}
         </div>
@@ -935,7 +1065,7 @@ function BopCard() {
         title="Anuncios del Ayuntamiento en el Boletín Oficial de la Provincia"
       />
       {anuncios.length === 0 ? (
-        <div style={{ marginTop: 10, fontSize: 13, color: 'var(--ink50)' }}>
+        <div style={{ marginTop: 10, fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
           {/* The window we ASKED for and the window we actually read are not the
               same number — 21 of 30 bulletins loaded on the current snapshot —
               and saying "in the last 30 days" implies we looked at all 30. */}
@@ -952,11 +1082,11 @@ function BopCard() {
             >
               <div
                 className="mono"
-                style={{ fontSize: 10, color: 'var(--ink50)', marginBottom: 2 }}
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 2 }}
               >
                 {formatBopDate(a.date)} · Reg. {a.regNumber}
               </div>
-              <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.35 }}>
+              <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 600, lineHeight: 1.35 }}>
                 <ExtLink href={a.pdfUrl} style={{ color: 'inherit', textDecoration: 'none' }}>
                   {a.title}
                 </ExtLink>
@@ -965,7 +1095,7 @@ function BopCard() {
           ))}
         </div>
       )}
-      <div style={{ marginTop: 10, fontSize: 11, color: 'var(--ink50)' }}>
+      <div style={{ marginTop: 10, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
         {data.stats?.total ?? 0} anuncio(s) · comprobado {when} ·{' '}
         <ExtLink href={data.source?.home} style={{ color: 'var(--civic)' }}>
           BOP oficial
@@ -989,7 +1119,7 @@ export default function Quejas() {
         <div
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
@@ -997,10 +1127,19 @@ export default function Quejas() {
         >
           {t('quejas.eyebrow')}
         </div>
-        <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-page)',
+            fontWeight: 700,
+            letterSpacing: '-.015em',
+            marginTop: 2,
+          }}
+        >
           {t('quejas.title')}
         </div>
-        <div style={{ fontSize: 13.5, color: 'var(--ink50)', marginTop: 4, maxWidth: 620 }}>
+        <div
+          style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4, maxWidth: 620 }}
+        >
           Canal público de quejas para Riba-roja. Presenta vía Telegram ·{' '}
           <a
             href={TELEGRAM_BOT_URL}
@@ -1023,10 +1162,12 @@ export default function Quejas() {
         </div>
       </div>
 
-      {loading && <div style={{ color: 'var(--ink50)', fontSize: 13 }}>Cargando feed…</div>}
+      {loading && (
+        <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>Cargando feed…</div>
+      )}
       {error && (
         <Card>
-          <div style={{ color: 'var(--warn)', fontSize: 13 }}>
+          <div style={{ color: 'var(--warn)', fontSize: 'var(--fs-aux)' }}>
             No se pudo cargar /data/quejas.json. Puede que el bot aún no haya publicado su primer
             snapshot.
           </div>

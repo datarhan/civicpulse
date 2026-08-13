@@ -36,7 +36,14 @@ export function EspecificacionCard({ e, principal }) {
   return (
     <Card style={{ marginTop: 14 }}>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
-        <h3 style={{ fontSize: 15.5, fontWeight: 650, margin: 0, letterSpacing: '-.01em' }}>
+        <h3
+          style={{
+            fontSize: 'var(--fs-head)',
+            fontWeight: 650,
+            margin: 0,
+            letterSpacing: '-.01em',
+          }}
+        >
           {e.titulo}
         </h3>
         {principal && <Pill tone="civic">lectura principal</Pill>}
@@ -45,7 +52,14 @@ export function EspecificacionCard({ e, principal }) {
         </Pill>
       </div>
 
-      <p style={{ margin: '6px 0 10px', color: 'var(--ink50)', fontSize: 13.5, maxWidth: '66ch' }}>
+      <p
+        style={{
+          margin: '6px 0 10px',
+          color: 'var(--ink50)',
+          fontSize: 'var(--fs-aux)',
+          maxWidth: '66ch',
+        }}
+      >
         {e.porQue}
       </p>
 
@@ -53,7 +67,7 @@ export function EspecificacionCard({ e, principal }) {
       <div
         className="mono"
         style={{
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           textTransform: 'uppercase',
           letterSpacing: '.07em',
           color: 'var(--ink50)',
@@ -61,8 +75,15 @@ export function EspecificacionCard({ e, principal }) {
       >
         Comparables
       </div>
-      <p style={{ margin: '2px 0 0', fontSize: 13.5, color: 'var(--ink70)', maxWidth: '66ch' }}>
-        <span className="mono" style={{ fontSize: 16, fontWeight: 650 }}>
+      <p
+        style={{
+          margin: '2px 0 0',
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink70)',
+          maxWidth: '66ch',
+        }}
+      >
+        <span className="mono" style={{ fontSize: 'var(--fs-head)', fontWeight: 650 }}>
           {cob.incluidas}
         </span>{' '}
         de {cob.banda} municipios de la banda. Se caen{' '}
@@ -74,7 +95,7 @@ export function EspecificacionCard({ e, principal }) {
         ))}
         .
       </p>
-      <p style={{ margin: '6px 0 0', fontSize: 12.5, color: 'var(--ink50)' }}>
+      <p style={{ margin: '6px 0 0', fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
         Regla de grados de libertad: {e.gradosLibertad.n} unidades para {e.gradosLibertad.salidas}{' '}
         salidas, hacen falta {e.gradosLibertad.minimo}.{' '}
         {e.gradosLibertad.cumple ? 'Se cumple.' : 'No se cumple.'}
@@ -84,7 +105,7 @@ export function EspecificacionCard({ e, principal }) {
         <p
           style={{
             margin: '10px 0 0',
-            fontSize: 13.5,
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink70)',
             padding: '8px 10px',
             borderLeft: '3px solid var(--border2)',
@@ -123,7 +144,14 @@ export function EspecificacionCard({ e, principal }) {
             />
           </div>
 
-          <p style={{ margin: '12px 0 0', fontSize: 13, color: 'var(--ink50)', maxWidth: '66ch' }}>
+          <p
+            style={{
+              margin: '12px 0 0',
+              fontSize: 'var(--fs-aux)',
+              color: 'var(--ink50)',
+              maxWidth: '66ch',
+            }}
+          >
             {e.propia.theta >= 0.999 ? (
               <>
                 Ninguna combinación de los municipios observados habría producido lo mismo con
@@ -160,7 +188,7 @@ function Cifra({ rotulo, valor, nota }) {
       <div
         className="mono"
         style={{
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           textTransform: 'uppercase',
           letterSpacing: '.07em',
           color: 'var(--ink50)',
@@ -168,10 +196,15 @@ function Cifra({ rotulo, valor, nota }) {
       >
         {rotulo}
       </div>
-      <div className="mono" style={{ fontSize: 22, fontWeight: 650, letterSpacing: '-.02em' }}>
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-card)', fontWeight: 650, letterSpacing: '-.02em' }}
+      >
         {valor}
       </div>
-      <div style={{ fontSize: 11.5, color: 'var(--ink50)', maxWidth: '30ch' }}>{nota}</div>
+      <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', maxWidth: '30ch' }}>
+        {nota}
+      </div>
     </div>
   )
 }
@@ -191,7 +224,7 @@ function Histograma({ d, propia }) {
       <div
         className="mono"
         style={{
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           textTransform: 'uppercase',
           letterSpacing: '.07em',
           color: 'var(--ink50)',
@@ -202,7 +235,7 @@ function Histograma({ d, propia }) {
       <div style={{ display: 'flex', gap: 3, alignItems: 'flex-end', height: 64, marginTop: 8 }}>
         {d.histograma.map((h, i) => (
           <div key={h.desde} style={{ flex: 1, textAlign: 'center' }}>
-            <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+            <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               {h.n || ''}
             </div>
             <div
@@ -224,7 +257,7 @@ function Histograma({ d, propia }) {
             style={{
               flex: 1,
               textAlign: 'center',
-              fontSize: 9,
+              fontSize: 'var(--fs-micro)',
               color: i === tramoPropio ? 'var(--civic)' : 'var(--ink50)',
             }}
           >
@@ -232,7 +265,7 @@ function Histograma({ d, propia }) {
           </div>
         ))}
       </div>
-      <p style={{ fontSize: 12, color: 'var(--ink50)', margin: '8px 0 0' }}>
+      <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '8px 0 0' }}>
         Riba-roja cae en el tramo marcado. No se publica qué municipio es cada barra: la puntuación
         sale de un modelo de este sitio, no de una cifra del ministerio, y nombrarlos sería firmar
         una afirmación sobre ellos sin darles derecho de réplica. Mediana{' '}

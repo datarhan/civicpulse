@@ -30,7 +30,7 @@ export function SerieFrontera({ especificacion }) {
       <div
         className="mono"
         style={{
-          fontSize: 10,
+          fontSize: 'var(--fs-micro)',
           textTransform: 'uppercase',
           letterSpacing: '.07em',
           color: 'var(--ink50)',
@@ -38,7 +38,14 @@ export function SerieFrontera({ especificacion }) {
       >
         Entrega a entrega · {e.titulo}
       </div>
-      <p style={{ margin: '6px 0 10px', fontSize: 13.5, color: 'var(--ink70)', maxWidth: '66ch' }}>
+      <p
+        style={{
+          margin: '6px 0 10px',
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink70)',
+          maxWidth: '66ch',
+        }}
+      >
         Dos columnas para la misma cifra. La primera compara contra quien declarase ese año, así que
         mezcla el movimiento del municipio con el de la muestra. La segunda usa sólo los{' '}
         {e.panel?.miembros ?? 0} municipios que declaran la cesta completa en todas las entregas, de
@@ -53,7 +60,14 @@ export function SerieFrontera({ especificacion }) {
       </p>
 
       <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13, minWidth: 420 }}>
+        <table
+          style={{
+            width: '100%',
+            borderCollapse: 'collapse',
+            fontSize: 'var(--fs-aux)',
+            minWidth: 420,
+          }}
+        >
           <thead>
             <tr style={{ textAlign: 'left', color: 'var(--ink50)' }}>
               <th style={{ padding: '4px 8px 4px 0', fontWeight: 500 }}>Entrega</th>
@@ -98,7 +112,14 @@ export function SerieFrontera({ especificacion }) {
         </table>
       </div>
 
-      <p style={{ fontSize: 12, color: 'var(--ink50)', margin: '10px 0 0', maxWidth: '66ch' }}>
+      <p
+        style={{
+          fontSize: 'var(--fs-meta)',
+          color: 'var(--ink50)',
+          margin: '10px 0 0',
+          maxWidth: '66ch',
+        }}
+      >
         Un «sin puntuación» quiere decir que esa entrega no llegaba a grados de libertad o que
         Riba-roja no declaraba la cesta completa. No se interpola: un hueco es un hueco.
       </p>

@@ -29,7 +29,7 @@ function WindowToggle({ current, onChange }) {
           style={{
             padding: '4px 10px',
             borderRadius: 'var(--r-input)',
-            fontSize: 12,
+            fontSize: 'var(--fs-meta)',
             fontWeight: current === o.days ? 600 : 500,
             background: current === o.days ? 'var(--paper)' : 'transparent',
             color: current === o.days ? 'var(--ink)' : 'var(--ink50)',
@@ -69,7 +69,7 @@ function KindCard({ kind, items, formatDate }) {
               borderTop: i === 0 ? 'none' : '1px dotted var(--border2)',
             }}
           >
-            <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+            <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               {formatDate ? formatDate(it.date) : it.date}
             </span>
             <div style={{ minWidth: 0 }}>
@@ -79,7 +79,7 @@ function KindCard({ kind, items, formatDate }) {
                   style={{
                     color: 'var(--ink70)',
                     textDecoration: 'none',
-                    fontSize: 13,
+                    fontSize: 'var(--fs-aux)',
                     fontWeight: 500,
                   }}
                 >
@@ -91,7 +91,7 @@ function KindCard({ kind, items, formatDate }) {
                   style={{
                     color: 'var(--ink70)',
                     textDecoration: 'none',
-                    fontSize: 13,
+                    fontSize: 'var(--fs-aux)',
                     fontWeight: 500,
                   }}
                 >
@@ -101,7 +101,7 @@ function KindCard({ kind, items, formatDate }) {
               {it.subtitle && (
                 <div
                   className="mono"
-                  style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
                 >
                   {it.subtitle}
                 </div>
@@ -114,7 +114,10 @@ function KindCard({ kind, items, formatDate }) {
           </div>
         ))}
         {items.length > 10 && (
-          <div className="mono" style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 4 }}>
+          <div
+            className="mono"
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 4 }}
+          >
             + {items.length - 10} más · ver {KIND_LABEL_ES[kind] || kind} completo
           </div>
         )}
@@ -150,7 +153,7 @@ export default function Cambios() {
           <div
             className="mono"
             style={{
-              fontSize: 10.5,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               textTransform: 'uppercase',
               letterSpacing: '.08em',
@@ -158,10 +161,24 @@ export default function Cambios() {
           >
             {t('cambios.eyebrow') || 'Esta semana en Riba-roja'}
           </div>
-          <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+          <div
+            style={{
+              fontSize: 'var(--fs-page)',
+              fontWeight: 700,
+              letterSpacing: '-.015em',
+              marginTop: 2,
+            }}
+          >
             {t('cambios.title') || 'Novedades'}
           </div>
-          <div style={{ fontSize: 13.5, color: 'var(--ink50)', marginTop: 4, maxWidth: 720 }}>
+          <div
+            style={{
+              fontSize: 'var(--fs-aux)',
+              color: 'var(--ink50)',
+              marginTop: 4,
+              maxWidth: 720,
+            }}
+          >
             Todo lo que ha cambiado en los últimos {windowDays} días: quejas nuevas, plenos,
             contratos adjudicados, subvenciones, prensa y participación ciudadana. Cada tarjeta
             lleva un botón verde (WA) para compartir por WhatsApp.
@@ -176,7 +193,7 @@ export default function Cambios() {
             eyebrow="Sin cambios"
             title={`Sin novedades en los últimos ${windowDays} días`}
           />
-          <div style={{ fontSize: 13, color: 'var(--ink50)', marginTop: 6 }}>
+          <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 6 }}>
             No se han registrado quejas, plenos, contratos, subvenciones ni prensa en este periodo.
             Prueba a ampliar la ventana a 14 o 30 días.
           </div>
@@ -199,7 +216,14 @@ export default function Cambios() {
               <KindCard key={k} kind={k} items={byKind[k]} formatDate={formatDate} />
             ))}
           </div>
-          <div style={{ marginTop: 18, fontSize: 12, color: 'var(--ink50)', textAlign: 'center' }}>
+          <div
+            style={{
+              marginTop: 18,
+              fontSize: 'var(--fs-meta)',
+              color: 'var(--ink50)',
+              textAlign: 'center',
+            }}
+          >
             Total: {totalCount} cambio{totalCount === 1 ? '' : 's'} · ventana de {windowDays} días ·
             cada evento enlazable, compartible y con cita a la fuente.
           </div>
@@ -208,7 +232,9 @@ export default function Cambios() {
 
       {loading && (
         <Card>
-          <div style={{ fontSize: 13, color: 'var(--ink50)' }}>Cargando novedades…</div>
+          <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
+            Cargando novedades…
+          </div>
         </Card>
       )}
     </div>

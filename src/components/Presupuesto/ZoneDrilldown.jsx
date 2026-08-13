@@ -36,12 +36,17 @@ export default function ZoneDrilldown({
     <div>
       <button
         onClick={onClear}
-        style={{ all: 'unset', cursor: 'pointer', fontSize: 11, color: 'var(--civic)' }}
+        style={{
+          all: 'unset',
+          cursor: 'pointer',
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--civic)',
+        }}
       >
         ← todas las zonas
       </button>
-      <div style={{ fontSize: 16, fontWeight: 700, marginTop: 4 }}>{zone.name}</div>
-      <div className="mono" style={{ fontSize: 13, fontWeight: 700 }}>
+      <div style={{ fontSize: 'var(--fs-head)', fontWeight: 700, marginTop: 4 }}>{zone.name}</div>
+      <div className="mono" style={{ fontSize: 'var(--fs-aux)', fontWeight: 700 }}>
         {fmtEur(total)} · {works.length} obra{works.length === 1 ? '' : 's'}
       </div>
       <div style={{ marginTop: 8, maxHeight: 360, overflowY: 'auto' }}>

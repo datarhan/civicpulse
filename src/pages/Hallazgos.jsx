@@ -31,7 +31,7 @@ function MiniStat({ label, value, tone }) {
       <div
         className="mono"
         style={{
-          fontSize: 9.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.06em',
@@ -39,7 +39,10 @@ function MiniStat({ label, value, tone }) {
       >
         {label}
       </div>
-      <div className="mono" style={{ fontSize: 18, fontWeight: 600, color, marginTop: 2 }}>
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-head)', fontWeight: 600, color, marginTop: 2 }}
+      >
         {value}
       </div>
     </div>
@@ -67,14 +70,14 @@ export function FindingDetailCard({ f, permalink }) {
         <Pill tone={SEVERITY_TONE[f.severity] || 'neutral'} size="xs">
           {SEVERITY_LABEL[f.severity] || f.severity}
         </Pill>
-        <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+        <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           {f.plenoDate} · pleno {f.plenoId} · editado por {f.curatorName}
         </span>
         <a
           href={permalink}
           style={{
             marginLeft: 'auto',
-            fontSize: 11,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--civic)',
             textDecoration: 'none',
           }}
@@ -83,7 +86,7 @@ export function FindingDetailCard({ f, permalink }) {
           #{f.id.slice(-12)}
         </a>
       </div>
-      <div style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.35 }}>{f.title}</div>
+      <div style={{ fontSize: 'var(--fs-head)', fontWeight: 600, lineHeight: 1.35 }}>{f.title}</div>
       {f.individualSpeaker && (
         <div
           style={{
@@ -94,14 +97,14 @@ export function FindingDetailCard({ f, permalink }) {
             padding: '3px 8px',
             background: 'var(--soft)',
             borderRadius: 'var(--r-card)',
-            fontSize: 11.5,
+            fontSize: 'var(--fs-micro)',
           }}
           title="Atribución individual confirmada por curaduría editorial"
         >
           <span
             className="mono"
             style={{
-              fontSize: 9,
+              fontSize: 'var(--fs-micro)',
               fontWeight: 700,
               letterSpacing: '.08em',
               textTransform: 'uppercase',
@@ -115,7 +118,7 @@ export function FindingDetailCard({ f, permalink }) {
       )}
       <p
         style={{
-          fontSize: 13,
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink70)',
           marginTop: 8,
           lineHeight: 1.55,
@@ -144,7 +147,7 @@ export function FindingDetailCard({ f, permalink }) {
             <QuoteProvenanceNote entries={prov} curatorName={f.curatorName} />
           </>
         ) : (
-          <div style={{ fontSize: 12, color: 'var(--ink50)' }}>
+          <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
             Esta ficha no publica ningún literal.
           </div>
         )}
@@ -160,7 +163,7 @@ export function FindingDetailCard({ f, permalink }) {
           // Describe el REGISTRO, no el mundo. `pleno-findings.json` no separa
           // «se cotejó y no salió nada» de «no se cotejó», así que decir «sin
           // rastro» aquí sería fabricar un veredicto con un dato que no existe.
-          <div style={{ fontSize: 12, color: 'var(--ink50)' }}>
+          <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
             Esta ficha no publica ningún documento cotejado. Eso no dice que no exista: dice que
             aquí no consta.
           </div>
@@ -174,7 +177,7 @@ export function FindingDetailCard({ f, permalink }) {
               padding: '8px 10px',
               background: 'var(--soft)',
               borderRadius: 'var(--r-card)',
-              fontSize: 12,
+              fontSize: 'var(--fs-meta)',
               lineHeight: 1.5,
               color: 'var(--ink)',
             }}
@@ -182,7 +185,7 @@ export function FindingDetailCard({ f, permalink }) {
             <div
               className="mono"
               style={{
-                fontSize: 11,
+                fontSize: 'var(--fs-micro)',
                 letterSpacing: '.08em',
                 textTransform: 'uppercase',
                 color: 'var(--ink50)',
@@ -197,7 +200,11 @@ export function FindingDetailCard({ f, permalink }) {
               <div style={{ marginTop: 4 }}>
                 <ExtLink
                   href={f.response.sourceUrl}
-                  style={{ fontSize: 11, color: 'var(--civic)', textDecoration: 'none' }}
+                  style={{
+                    fontSize: 'var(--fs-micro)',
+                    color: 'var(--civic)',
+                    textDecoration: 'none',
+                  }}
                 >
                   Fuente →
                 </ExtLink>
@@ -205,7 +212,7 @@ export function FindingDetailCard({ f, permalink }) {
             )}
           </div>
         ) : (
-          <div style={{ fontSize: 12, color: 'var(--ink50)' }}>
+          <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
             Abierto desde {f.publishedAt} · sin respuesta. ¿Eres el grupo afectado? Contacta con la
             redacción para ejercerlo · ver{' '}
             <a href="/aviso-legal" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
@@ -225,7 +232,7 @@ export function FindingDetailCard({ f, permalink }) {
           <summary
             style={{
               cursor: 'pointer',
-              fontSize: 10.5,
+              fontSize: 'var(--fs-micro)',
               color: 'var(--ink70)',
               textTransform: 'uppercase',
               letterSpacing: '.06em',
@@ -239,7 +246,7 @@ export function FindingDetailCard({ f, permalink }) {
               paddingLeft: 18,
               display: 'grid',
               gap: 8,
-              fontSize: 11.5,
+              fontSize: 'var(--fs-micro)',
             }}
           >
             {f.corrections.map((c, idx) => (
@@ -247,7 +254,7 @@ export function FindingDetailCard({ f, permalink }) {
                 <div
                   className="mono"
                   style={{
-                    fontSize: 9.5,
+                    fontSize: 'var(--fs-micro)',
                     color: 'var(--ink50)',
                     marginBottom: 2,
                   }}
@@ -268,7 +275,7 @@ export function FindingDetailCard({ f, permalink }) {
                     marginTop: 2,
                     fontStyle: 'italic',
                     color: 'var(--ink70)',
-                    fontSize: 10.5,
+                    fontSize: 'var(--fs-micro)',
                   }}
                 >
                   Motivo: {c.reason}
@@ -307,7 +314,7 @@ function RetractionLedger({ retractions }) {
         padding: 14,
         border: '1px solid var(--border)',
         borderRadius: 'var(--r-input)',
-        fontSize: 11.5,
+        fontSize: 'var(--fs-micro)',
         color: 'var(--ink70)',
         lineHeight: 1.55,
       }}
@@ -315,7 +322,7 @@ function RetractionLedger({ retractions }) {
       <div
         className="mono"
         style={{
-          fontSize: 11,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           letterSpacing: '.1em',
           textTransform: 'uppercase',
@@ -335,7 +342,10 @@ function RetractionLedger({ retractions }) {
       <ol style={{ margin: 0, paddingLeft: 18, display: 'grid', gap: 8 }}>
         {ordered.map((r) => (
           <li key={r.findingId}>
-            <div className="mono" style={{ fontSize: 9.5, color: 'var(--ink50)', marginBottom: 2 }}>
+            <div
+              className="mono"
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 2 }}
+            >
               {r.findingId} · pleno {r.plenoDate} · retirado {r.retractedAt.slice(0, 10)} ·{' '}
               {r.editor}
             </div>
@@ -345,7 +355,7 @@ function RetractionLedger({ retractions }) {
                 {r.digest}
               </span>
             </div>
-            <div style={{ marginTop: 2, fontStyle: 'italic', fontSize: 10.5 }}>
+            <div style={{ marginTop: 2, fontStyle: 'italic', fontSize: 'var(--fs-micro)' }}>
               Motivo: {r.reason}
             </div>
           </li>
@@ -364,7 +374,7 @@ function Chip({ active, label, count, onClick }) {
       style={{
         padding: '4px 10px',
         borderRadius: 'var(--r-card)',
-        fontSize: 11,
+        fontSize: 'var(--fs-micro)',
         fontWeight: 600,
         letterSpacing: '.02em',
         border: '1px solid ' + (active ? 'var(--civic)' : 'var(--border2)'),
@@ -376,7 +386,11 @@ function Chip({ active, label, count, onClick }) {
       {label}
       {typeof count === 'number' && (
         <span
-          style={{ marginLeft: 6, fontSize: 10, color: active ? 'var(--civic)' : 'var(--ink50)' }}
+          style={{
+            marginLeft: 6,
+            fontSize: 'var(--fs-micro)',
+            color: active ? 'var(--civic)' : 'var(--ink50)',
+          }}
         >
           {count}
         </span>
@@ -458,11 +472,17 @@ export default function Hallazgos() {
 
   if (loading) {
     return (
-      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 13 }}>{t('common.loading')}</div>
+      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>
+        {t('common.loading')}
+      </div>
     )
   }
   if (error) {
-    return <div style={{ padding: 32, color: 'var(--crit)', fontSize: 13 }}>{error.message}</div>
+    return (
+      <div style={{ padding: 32, color: 'var(--crit)', fontSize: 'var(--fs-aux)' }}>
+        {error.message}
+      </div>
+    )
   }
 
   return (
@@ -476,16 +496,25 @@ export default function Hallazgos() {
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap' }}>
             <span
               className="mono"
-              style={{ fontSize: 10.5, color: 'var(--ink50)', letterSpacing: '.06em' }}
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', letterSpacing: '.06em' }}
             >
               {t('hallazgos.area.filtered')}
             </span>
-            <strong style={{ fontSize: 14 }}>{DEPARTMENT_LABEL[areaFilter].es}</strong>
-            <Link to="/hallazgos" style={{ fontSize: 12, color: 'var(--civic)' }}>
+            <strong style={{ fontSize: 'var(--fs-body)' }}>
+              {DEPARTMENT_LABEL[areaFilter].es}
+            </strong>
+            <Link to="/hallazgos" style={{ fontSize: 'var(--fs-meta)', color: 'var(--civic)' }}>
               {t('hallazgos.area.clear')}
             </Link>
           </div>
-          <div style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 6, lineHeight: 1.5 }}>
+          <div
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              marginTop: 6,
+              lineHeight: 1.5,
+            }}
+          >
             {t('hallazgos.area.note')}
           </div>
         </Card>
@@ -494,7 +523,7 @@ export default function Hallazgos() {
         <div
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
@@ -502,12 +531,19 @@ export default function Hallazgos() {
         >
           Verificación editorial
         </div>
-        <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
+        <div
+          style={{
+            fontSize: 'var(--fs-page)',
+            fontWeight: 700,
+            letterSpacing: '-.015em',
+            marginTop: 2,
+          }}
+        >
           Hallazgos sobre declaraciones en pleno
         </div>
         <p
           style={{
-            fontSize: 13,
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             marginTop: 6,
             maxWidth: 720,
@@ -545,7 +581,7 @@ export default function Hallazgos() {
           evidencia, y desde aquí se llega en un clic. */}
       {EFICIENCIA_ENABLED && (
         <Card style={{ marginBottom: 18, background: 'var(--soft)' }}>
-          <div style={{ fontSize: 12.5, color: 'var(--ink50)', lineHeight: 1.55 }}>
+          <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.55 }}>
             Esta página verifica <strong>declaraciones en pleno</strong>. Los hallazgos sobre{' '}
             <strong>cuánto cuesta cada servicio</strong> —que no citan a nadie porque no los dijo
             nadie: salen de las cifras que el ayuntamiento remite al ministerio— se publican junto a
@@ -604,7 +640,7 @@ export default function Hallazgos() {
             <span
               className="mono"
               style={{
-                fontSize: 9.5,
+                fontSize: 'var(--fs-micro)',
                 color: 'var(--ink50)',
                 textTransform: 'uppercase',
                 letterSpacing: '.1em',
@@ -633,7 +669,7 @@ export default function Hallazgos() {
               <span
                 className="mono"
                 style={{
-                  fontSize: 9.5,
+                  fontSize: 'var(--fs-micro)',
                   color: 'var(--ink50)',
                   textTransform: 'uppercase',
                   letterSpacing: '.1em',
@@ -665,7 +701,7 @@ export default function Hallazgos() {
               <span
                 className="mono"
                 style={{
-                  fontSize: 9.5,
+                  fontSize: 'var(--fs-micro)',
                   color: 'var(--ink50)',
                   textTransform: 'uppercase',
                   letterSpacing: '.1em',
@@ -702,7 +738,7 @@ export default function Hallazgos() {
             padding: 16,
             background: 'var(--soft)',
             borderRadius: 'var(--r-input)',
-            fontSize: 13,
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             lineHeight: 1.5,
           }}
@@ -717,7 +753,7 @@ export default function Hallazgos() {
             <div
               className="mono"
               style={{
-                fontSize: 11,
+                fontSize: 'var(--fs-micro)',
                 color: 'var(--ink50)',
                 letterSpacing: '.1em',
                 textTransform: 'uppercase',
@@ -744,7 +780,7 @@ export default function Hallazgos() {
           padding: 14,
           background: 'var(--soft)',
           borderRadius: 'var(--r-input)',
-          fontSize: 11.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           lineHeight: 1.55,
         }}

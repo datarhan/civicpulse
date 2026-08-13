@@ -29,7 +29,7 @@ function CityChip() {
           background: '#E8DDD2',
           display: 'grid',
           placeItems: 'center',
-          fontSize: 9,
+          fontSize: 'var(--fs-micro)',
           fontWeight: 700,
           color: '#6B4C2A',
         }}
@@ -37,8 +37,8 @@ function CityChip() {
         RR
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontSize: 12.5, fontWeight: 600 }}>Riba-roja de Túria</div>
-        <div className="mono" style={{ fontSize: 9.5, color: 'var(--ink50)' }}>
+        <div style={{ fontSize: 'var(--fs-meta)', fontWeight: 600 }}>Riba-roja de Túria</div>
+        <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           Camp de Túria · {pop ? pop.toLocaleString('es-ES') : '—'}
         </div>
       </div>
@@ -99,7 +99,7 @@ export function Sidebar({ open = false, onClose }) {
           />
           <circle cx="54" cy="34" r="2.6" fill="white" />
         </svg>
-        <div style={{ fontWeight: 700, letterSpacing: '-.01em', fontSize: 15 }}>
+        <div style={{ fontWeight: 700, letterSpacing: '-.01em', fontSize: 'var(--fs-body)' }}>
           Civic<span style={{ color: 'var(--civic)' }}>Pulse</span>
         </div>
       </div>
@@ -110,7 +110,7 @@ export function Sidebar({ open = false, onClose }) {
         <div
           className="mono"
           style={{
-            fontSize: 10,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             padding: '10px 8px 6px',
             textTransform: 'uppercase',
@@ -136,7 +136,7 @@ export function Sidebar({ open = false, onClose }) {
               fontWeight: isActive ? 600 : 500,
               marginBottom: 1,
               textAlign: 'left',
-              fontSize: 13.5,
+              fontSize: 'var(--fs-aux)',
               transition: 'background .15s',
             })}
             onMouseEnter={(e) => {
@@ -159,7 +159,7 @@ export function Sidebar({ open = false, onClose }) {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: 4,
-                  fontSize: 9,
+                  fontSize: 'var(--fs-micro)',
                   color: 'var(--crit)',
                   fontWeight: 700,
                   letterSpacing: '.08em',
@@ -178,7 +178,7 @@ export function Sidebar({ open = false, onClose }) {
               </span>
             )}
             {n.badge && !n.liveBadge && (
-              <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+              <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
                 {n.badge}
               </span>
             )}
@@ -194,11 +194,11 @@ export function Sidebar({ open = false, onClose }) {
       >
         <div
           className="mono"
-          style={{ fontSize: 10, color: 'var(--ink50)', letterSpacing: '.08em' }}
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', letterSpacing: '.08em' }}
         >
           {t('sidebar.footer.tag')}
         </div>
-        <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 3 }}>
+        <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 3 }}>
           {NAV_SECONDARY.map((n, i) => (
             <span key={n.to}>
               {i > 0 && ' · '}

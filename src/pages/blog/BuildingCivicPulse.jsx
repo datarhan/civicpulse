@@ -10,14 +10,19 @@ function SecHead({ num, kicker, title }) {
     <div style={{ margin: '38px 0 12px' }}>
       <div
         className="mono"
-        style={{ fontSize: 11.5, color: 'var(--ink50)', letterSpacing: '.04em', marginBottom: 6 }}
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          letterSpacing: '.04em',
+          marginBottom: 6,
+        }}
       >
         {num} · {kicker}
       </div>
       <h2
         style={{
           fontFamily: SERIF,
-          fontSize: 25,
+          fontSize: 'var(--fs-page)',
           fontWeight: 600,
           letterSpacing: '-.01em',
           lineHeight: 1.15,
@@ -46,12 +51,18 @@ export default function BuildingCivicPulse() {
     <div
       className="cp-page"
       lang="en"
-      style={{ padding: '24px', maxWidth: 760, margin: '0 auto', fontSize: 16, lineHeight: 1.62 }}
+      style={{
+        padding: '24px',
+        maxWidth: 760,
+        margin: '0 auto',
+        fontSize: 'var(--fs-head)',
+        lineHeight: 1.62,
+      }}
     >
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
@@ -62,7 +73,7 @@ export default function BuildingCivicPulse() {
       <h1
         style={{
           fontFamily: SERIF,
-          fontSize: 'clamp(30px, 5vw, 42px)',
+          fontSize: 'var(--type-display)',
           fontWeight: 600,
           letterSpacing: '-.015em',
           lineHeight: 1.08,
@@ -72,7 +83,14 @@ export default function BuildingCivicPulse() {
         I built a full accountability stack for my Spanish town, solo, with AI — the interesting
         part is what stops it from lying
       </h1>
-      <p style={{ fontSize: 18, color: 'var(--ink50)', lineHeight: 1.5, margin: '0 0 30px' }}>
+      <p
+        style={{
+          fontSize: 'var(--fs-head)',
+          color: 'var(--ink50)',
+          lineHeight: 1.5,
+          margin: '0 0 30px',
+        }}
+      >
         The headline is that an AI wrote most of the code. That&rsquo;s the least interesting thing
         here. The interesting thing is the engineering that keeps an AI-assisted watchdog from
         quietly manufacturing a defamation suit with a real person&rsquo;s name on it.
@@ -109,7 +127,7 @@ export default function BuildingCivicPulse() {
         <pre
           style={{
             fontFamily: "'DM Mono', monospace",
-            fontSize: 12.5,
+            fontSize: 'var(--fs-meta)',
             lineHeight: 1.7,
             background: 'var(--soft)',
             border: '1px solid var(--border)',
@@ -262,7 +280,7 @@ export default function BuildingCivicPulse() {
         >
           <h3
             style={{
-              fontSize: 12,
+              fontSize: 'var(--fs-meta)',
               textTransform: 'uppercase',
               letterSpacing: '.1em',
               color: 'var(--ink50)',
@@ -272,7 +290,7 @@ export default function BuildingCivicPulse() {
           >
             Try it / break it
           </h3>
-          <p style={{ margin: '0 0 10px', fontSize: 14.5 }}>
+          <p style={{ margin: '0 0 10px', fontSize: 'var(--fs-body)' }}>
             It&rsquo;s live at{' '}
             <a href="https://civicpulse.es" style={LINK}>
               civicpulse.es
@@ -282,7 +300,7 @@ export default function BuildingCivicPulse() {
               github.com/datarhan/civicpulse
             </a>
             . It runs fully offline on the committed snapshots &mdash;{' '}
-            <span className="mono" style={{ fontSize: 13 }}>
+            <span className="mono" style={{ fontSize: 'var(--fs-aux)' }}>
               npm install &amp;&amp; npm run dev
             </span>{' '}
             &mdash; no keys, no backend. The methodology is{' '}
@@ -295,14 +313,21 @@ export default function BuildingCivicPulse() {
             </a>
             .
           </p>
-          <p style={{ margin: 0, fontSize: 14.5 }}>
+          <p style={{ margin: 0, fontSize: 'var(--fs-body)' }}>
             If you work in civic tech or data journalism &mdash; or just care about the ~6,800 towns
             nobody&rsquo;s watching &mdash; I&rsquo;d like to hear where this breaks, technically or
             editorially. That&rsquo;s the whole point of doing it in the open.
           </p>
         </div>
 
-        <p style={{ fontSize: 13, color: 'var(--ink50)', margin: '18px 0 0', lineHeight: 1.5 }}>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink50)',
+            margin: '18px 0 0',
+            lineHeight: 1.5,
+          }}
+        >
           Sergei Lutchenko ·{' '}
           <a href="mailto:slutchenko@gmail.com" style={LINK}>
             slutchenko@gmail.com

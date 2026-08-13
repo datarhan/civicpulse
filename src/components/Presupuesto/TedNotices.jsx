@@ -43,7 +43,7 @@ export function TedNotices() {
         <div
           className="mono"
           style={{
-            fontSize: 10.5,
+            fontSize: 'var(--fs-micro)',
             color: 'var(--ink50)',
             textTransform: 'uppercase',
             letterSpacing: '.07em',
@@ -51,12 +51,19 @@ export function TedNotices() {
         >
           {t('presupuesto.ted.eyebrow')}
         </div>
-        <div style={{ fontSize: 13, color: 'var(--ink70)' }}>
+        <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)' }}>
           {items.length} {t('presupuesto.ted.notices')}
           {span ? ` ${span}` : ''} · {valued.length} {t('presupuesto.ted.valued')} · {eur(total)}
         </div>
       </div>
-      <div style={{ fontSize: 12, color: 'var(--ink50)', margin: '8px 0 12px', lineHeight: 1.5 }}>
+      <div
+        style={{
+          fontSize: 'var(--fs-meta)',
+          color: 'var(--ink50)',
+          margin: '8px 0 12px',
+          lineHeight: 1.5,
+        }}
+      >
         {t('presupuesto.ted.intro')}
       </div>
       {rows.map((n) => (
@@ -69,7 +76,7 @@ export function TedNotices() {
             gap: 10,
             padding: '7px 0',
             borderTop: '1px solid var(--border2)',
-            fontSize: 12.5,
+            fontSize: 'var(--fs-meta)',
           }}
         >
           <span style={{ minWidth: 0 }}>
@@ -84,7 +91,10 @@ export function TedNotices() {
             <span className="mono" style={{ fontWeight: 600 }}>
               {n.totalValueEur ? eur(n.totalValueEur) : '—'}
             </span>
-            <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 8 }}>
+            <span
+              className="mono"
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 8 }}
+            >
               {n.dateApproximate ? '≈' : ''}
               {String(n.publicationDate).slice(0, 4)}
             </span>
@@ -93,7 +103,12 @@ export function TedNotices() {
       ))}
       <div
         className="mono"
-        style={{ fontSize: 10, color: 'var(--ink50)', marginTop: 10, lineHeight: 1.5 }}
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          marginTop: 10,
+          lineHeight: 1.5,
+        }}
       >
         {t('presupuesto.ted.note')}
       </div>

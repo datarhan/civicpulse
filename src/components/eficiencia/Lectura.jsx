@@ -28,17 +28,24 @@ export function Lectura({ lectura, conAvisos = true }) {
       }}
     >
       {cabecera && (
-        <p style={{ margin: '0 0 6px', fontSize: 13, color: 'var(--ink)' }}>
+        <p style={{ margin: '0 0 6px', fontSize: 'var(--fs-aux)', color: 'var(--ink)' }}>
           {lectura.que ? <strong>{lectura.que}</strong> : null}
           {lectura.que && lectura.donde ? ' ' : ''}
           {lectura.donde ?? ''}
         </p>
       )}
-      <p style={{ margin: 0, fontSize: 12.5, color: 'var(--ink70, var(--ink50))' }}>
+      <p style={{ margin: 0, fontSize: 'var(--fs-meta)', color: 'var(--ink70, var(--ink50))' }}>
         {lectura.como}
       </p>
       {conAvisos && lectura.avisos?.length > 0 && (
-        <ul style={{ margin: '6px 0 0', paddingLeft: 18, fontSize: 12, color: 'var(--ink50)' }}>
+        <ul
+          style={{
+            margin: '6px 0 0',
+            paddingLeft: 18,
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink50)',
+          }}
+        >
           {lectura.avisos.map((a) => (
             <li key={a}>{a}</li>
           ))}

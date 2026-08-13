@@ -20,7 +20,7 @@ export function BoeCard() {
       <div
         className="mono"
         style={{
-          fontSize: 10.5,
+          fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.07em',
@@ -28,19 +28,32 @@ export function BoeCard() {
       >
         {t('datos.boe.eyebrow')}
       </div>
-      <div style={{ fontSize: 12.5, color: 'var(--ink50)', margin: '6px 0 12px', lineHeight: 1.5 }}>
+      <div
+        style={{
+          fontSize: 'var(--fs-meta)',
+          color: 'var(--ink50)',
+          margin: '6px 0 12px',
+          lineHeight: 1.5,
+        }}
+      >
         {t('datos.boe.intro')}
       </div>
       {items.length === 0 ? (
-        <div style={{ fontSize: 12.5, color: 'var(--ink50)' }}>{t('datos.boe.empty')}</div>
+        <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+          {t('datos.boe.empty')}
+        </div>
       ) : (
         items.map((b) => (
           <div
             key={b.id}
-            style={{ padding: '8px 0', borderTop: '1px solid var(--border2)', fontSize: 12.5 }}
+            style={{
+              padding: '8px 0',
+              borderTop: '1px solid var(--border2)',
+              fontSize: 'var(--fs-meta)',
+            }}
           >
             <div style={{ display: 'flex', gap: 8, alignItems: 'baseline', flexWrap: 'wrap' }}>
-              <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+              <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
                 {fmtDateShort(b.publicacionDate)}
               </span>
               <ExtLink href={b.urlHtml} style={{ color: 'var(--civic)', textDecoration: 'none' }}>
@@ -51,7 +64,10 @@ export function BoeCard() {
               {String(b.titulo || '').slice(0, 190)}
             </div>
             {b.departamento && (
-              <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginTop: 3 }}>
+              <div
+                className="mono"
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 3 }}
+              >
                 {b.departamento}
               </div>
             )}

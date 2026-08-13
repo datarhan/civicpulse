@@ -12,7 +12,7 @@ const fmtEur = (n) =>
   }).format(n)
 
 const INP = {
-  fontSize: 12,
+  fontSize: 'var(--fs-meta)',
   padding: '5px 8px',
   border: '1px solid var(--border2)',
   borderRadius: 'var(--r-input)',
@@ -67,11 +67,13 @@ export default function ContractsExplorer({ contracts, snapshot }) {
           <option value="services">Servicios</option>
           <option value="supplies">Suministros</option>
         </select>
-        <label style={{ fontSize: 12, display: 'flex', alignItems: 'center', gap: 4 }}>
+        <label
+          style={{ fontSize: 'var(--fs-meta)', display: 'flex', alignItems: 'center', gap: 4 }}
+        >
           <input type="checkbox" checked={dana} onChange={(e) => setDana(e.target.checked)} /> DANA
         </label>
       </div>
-      <div style={{ fontSize: 11, color: 'var(--ink50)', marginBottom: 6 }}>
+      <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 6 }}>
         {rows.length} resultado{rows.length === 1 ? '' : 's'} (máx. 60)
       </div>
       {rows.map((c) => (
@@ -84,14 +86,14 @@ export default function ContractsExplorer({ contracts, snapshot }) {
             padding: '8px 0',
             borderBottom: '1px solid var(--border2)',
             alignItems: 'center',
-            fontSize: 12.5,
+            fontSize: 'var(--fs-meta)',
           }}
         >
           <div style={{ minWidth: 0 }}>
             <ExtLink href={c.permalink} style={{ color: 'inherit', textDecoration: 'none' }}>
               {c.title.length > 100 ? c.title.slice(0, 100) + '…' : c.title}
             </ExtLink>
-            <div style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+            <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               {c.assignee || '—'} · {fmtDateShort(c.awardDate) || '—'}
             </div>
           </div>

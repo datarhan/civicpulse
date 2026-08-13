@@ -308,10 +308,12 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
           }}
         >
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+            <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               {bundle.plenoId} · {shortDate(bundle.plenoDate)} · {bundle.topic}
             </div>
-            <div style={{ fontSize: 16, fontWeight: 600, marginTop: 2 }}>{bundle.plenoTitle}</div>
+            <div style={{ fontSize: 'var(--fs-head)', fontWeight: 600, marginTop: 2 }}>
+              {bundle.plenoTitle}
+            </div>
           </div>
           <button
             onClick={onClose}
@@ -341,21 +343,27 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
                 <VerdictPill verdict={q.verdict} />
-                <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+                <span
+                  className="mono"
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                >
                   {q.speakerGroup ?? '—'} · conf={q.confidence.toFixed(2)} · {q.claimId}
                 </span>
               </div>
-              <div style={{ fontSize: 13.5, lineHeight: 1.5 }}>«{q.verbatim}»</div>
+              <div style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.5 }}>«{q.verbatim}»</div>
               {q.evidence?.length > 0 && (
                 <div
                   style={{ marginTop: 8, paddingTop: 6, borderTop: '1px dashed var(--border2)' }}
                 >
                   {q.evidence.map((e, i) => (
-                    <div key={i} style={{ fontSize: 11.5, lineHeight: 1.4, marginTop: 2 }}>
+                    <div
+                      key={i}
+                      style={{ fontSize: 'var(--fs-micro)', lineHeight: 1.4, marginTop: 2 }}
+                    >
                       <span
                         className="mono"
                         style={{
-                          fontSize: 9.5,
+                          fontSize: 'var(--fs-micro)',
                           color: 'var(--ink50)',
                           marginRight: 6,
                           textTransform: 'uppercase',
@@ -376,7 +384,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
           ))}
 
           <SectionHead title="Additional evidence (optional)" />
-          <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 0 }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 0 }}>
             Paste a URL (HTML article or PDF). The server fetches it, extracts text, and includes it
             in the next LLM draft. Audio and video evidence are <b>not yet supported</b> here —
             transcription needs an async job pipeline that's a follow-up task. Evidence lives in
@@ -401,7 +409,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 padding: '7px 10px',
                 border: '1px solid var(--border2)',
                 borderRadius: 'var(--r-input)',
-                fontSize: 12.5,
+                fontSize: 'var(--fs-meta)',
                 background: 'var(--paper)',
                 color: 'var(--ink)',
               }}
@@ -415,7 +423,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 background: fetchingEvidence ? 'var(--soft)' : 'var(--paper)',
                 borderRadius: 'var(--r-input)',
                 cursor: !evidenceUrl.trim() || fetchingEvidence ? 'not-allowed' : 'pointer',
-                fontSize: 12,
+                fontSize: 'var(--fs-meta)',
               }}
             >
               {fetchingEvidence ? 'Fetching…' : 'Add URL'}
@@ -428,7 +436,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 marginTop: 6,
                 border: '1px solid var(--crit-ink)',
                 borderRadius: 'var(--r-input)',
-                fontSize: 11.5,
+                fontSize: 'var(--fs-micro)',
                 background: 'var(--soft)',
                 color: 'var(--crit-ink)',
               }}
@@ -457,7 +465,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                         {ev.kind}
                       </Pill>
                       {ev.title && (
-                        <span style={{ fontSize: 12.5, fontWeight: 600 }}>
+                        <span style={{ fontSize: 'var(--fs-meta)', fontWeight: 600 }}>
                           {ev.title.slice(0, 100)}
                         </span>
                       )}
@@ -465,13 +473,19 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                         <ExtLink
                           href={ev.sourceUrl}
                           className="mono"
-                          style={{ fontSize: 10, color: 'var(--ink50)' }}
+                          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
                         >
                           source ↗
                         </ExtLink>
                       )}
                     </div>
-                    <div style={{ fontSize: 11.5, color: 'var(--ink50)', lineHeight: 1.4 }}>
+                    <div
+                      style={{
+                        fontSize: 'var(--fs-micro)',
+                        color: 'var(--ink50)',
+                        lineHeight: 1.4,
+                      }}
+                    >
                       {ev.snippet.slice(0, 240)}
                       {ev.snippet.length > 240 ? '…' : ''}
                     </div>
@@ -481,7 +495,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                         alignItems: 'center',
                         gap: 6,
                         marginTop: 6,
-                        fontSize: 11,
+                        fontSize: 'var(--fs-micro)',
                         color: 'var(--ink50)',
                         cursor: 'pointer',
                         userSelect: 'none',
@@ -505,7 +519,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                       border: '1px solid var(--border2)',
                       background: 'var(--paper)',
                       borderRadius: 'var(--r-input)',
-                      fontSize: 11,
+                      fontSize: 'var(--fs-micro)',
                       cursor: 'pointer',
                     }}
                   >
@@ -526,7 +540,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
             <div
               className="mono"
               style={{
-                fontSize: 10.5,
+                fontSize: 'var(--fs-micro)',
                 color: 'var(--ink50)',
                 textTransform: 'uppercase',
                 letterSpacing: '.08em',
@@ -535,7 +549,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
             >
               Audio / video evidence (transcribed via Whisper)
             </div>
-            <p style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 0 }}>
+            <p style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 0 }}>
               Paste an absolute path to a local audio or video file (under your home directory). The
               server validates the file (size cap 500&nbsp;MB, magic-byte mime sniff), spawns a
               detached transcription job, and the snippet appears in the evidence list when ready.
@@ -552,7 +566,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                   padding: '7px 10px',
                   border: '1px solid var(--border2)',
                   borderRadius: 'var(--r-input)',
-                  fontSize: 12.5,
+                  fontSize: 'var(--fs-meta)',
                   background: 'var(--paper)',
                   color: 'var(--ink)',
                 }}
@@ -564,7 +578,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                   padding: '7px 10px',
                   border: '1px solid var(--border2)',
                   borderRadius: 'var(--r-input)',
-                  fontSize: 12,
+                  fontSize: 'var(--fs-meta)',
                   background: 'var(--paper)',
                   color: 'var(--ink)',
                 }}
@@ -581,7 +595,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                   background: 'var(--paper)',
                   borderRadius: 'var(--r-input)',
                   cursor: !mediaPath.trim() ? 'not-allowed' : 'pointer',
-                  fontSize: 12,
+                  fontSize: 'var(--fs-meta)',
                 }}
               >
                 Transcribe
@@ -594,7 +608,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                   marginTop: 6,
                   border: '1px solid var(--crit-ink)',
                   borderRadius: 'var(--r-input)',
-                  fontSize: 11.5,
+                  fontSize: 'var(--fs-micro)',
                   background: 'var(--soft)',
                   color: 'var(--crit-ink)',
                 }}
@@ -627,10 +641,13 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                       }}
                     >
                       <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontSize: 12, fontWeight: 600 }}>
+                        <div style={{ fontSize: 'var(--fs-meta)', fontWeight: 600 }}>
                           {j.path.split('/').pop()}
                         </div>
-                        <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+                        <div
+                          className="mono"
+                          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                        >
                           {j.kind} · {j.status}
                           {j.progress ? ` · ${j.progress}` : ''}
                           {j.error ? ` · ${j.error.slice(0, 120)}` : ''}
@@ -641,7 +658,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                           onClick={() => cancelTranscribeJob(j.jobId)}
                           style={{
                             padding: '4px 10px',
-                            fontSize: 11,
+                            fontSize: 'var(--fs-micro)',
                             border: '1px solid var(--border2)',
                             background: 'var(--paper)',
                             borderRadius: 'var(--r-input)',
@@ -656,7 +673,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                           onClick={() => dismissTranscribeJob(j.jobId)}
                           style={{
                             padding: '4px 10px',
-                            fontSize: 11,
+                            fontSize: 'var(--fs-micro)',
                             border: '1px solid var(--border2)',
                             background: 'var(--paper)',
                             borderRadius: 'var(--r-input)',
@@ -674,7 +691,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
           </div>
 
           <SectionHead title="Editorial draft" />
-          <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 0 }}>
+          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 0 }}>
             Severity defaults to <b>notable</b> for contradicho-bearing bundles (auto-curation never
             publishes contradicho material — manual review is the whole point of this queue).
           </p>
@@ -689,7 +706,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 color: 'var(--ink)',
                 borderRadius: 'var(--r-input)',
                 cursor: drafting || running ? 'not-allowed' : 'pointer',
-                fontSize: 12,
+                fontSize: 'var(--fs-meta)',
               }}
             >
               {drafting
@@ -698,7 +715,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                   ? `Re-draft with ${evidence.length} evidence`
                   : 'Generate draft with LLM'}
             </button>
-            <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+            <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               defaults to gemini · LLM_BACKEND env overrides
             </span>
           </div>
@@ -709,7 +726,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 marginBottom: 8,
                 border: '1px solid var(--crit-ink)',
                 borderRadius: 'var(--r-input)',
-                fontSize: 11.5,
+                fontSize: 'var(--fs-micro)',
                 background: 'var(--soft)',
                 color: 'var(--crit-ink)',
               }}
@@ -719,7 +736,12 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
           )}
           <label
             className="mono"
-            style={{ fontSize: 10.5, color: 'var(--ink50)', display: 'block', marginTop: 8 }}
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              display: 'block',
+              marginTop: 8,
+            }}
           >
             Title (10–200 chars)
           </label>
@@ -733,7 +755,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
               padding: '8px 10px',
               border: `1px solid ${title && !titleValid ? 'var(--crit-ink)' : 'var(--border2)'}`,
               borderRadius: 'var(--r-input)',
-              fontSize: 13,
+              fontSize: 'var(--fs-aux)',
               fontFamily: 'inherit',
               background: 'var(--paper)',
               color: 'var(--ink)',
@@ -741,7 +763,12 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
           />
           <label
             className="mono"
-            style={{ fontSize: 10.5, color: 'var(--ink50)', display: 'block', marginTop: 8 }}
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              display: 'block',
+              marginTop: 8,
+            }}
           >
             Summary (40–2000 chars)
           </label>
@@ -756,7 +783,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
               padding: '8px 10px',
               border: `1px solid ${summary && !summaryValid ? 'var(--crit-ink)' : 'var(--border2)'}`,
               borderRadius: 'var(--r-input)',
-              fontSize: 13,
+              fontSize: 'var(--fs-aux)',
               fontFamily: 'inherit',
               background: 'var(--paper)',
               color: 'var(--ink)',
@@ -765,7 +792,12 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
           />
           <label
             className="mono"
-            style={{ fontSize: 10.5, color: 'var(--ink50)', display: 'block', marginTop: 8 }}
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              display: 'block',
+              marginTop: 8,
+            }}
           >
             Severity
           </label>
@@ -777,7 +809,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
               padding: '6px 10px',
               border: '1px solid var(--border2)',
               borderRadius: 'var(--r-input)',
-              fontSize: 13,
+              fontSize: 'var(--fs-aux)',
               background: 'var(--paper)',
               color: 'var(--ink)',
             }}
@@ -794,7 +826,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 padding: '8px 10px',
                 border: '1px solid var(--ok-ink)',
                 borderRadius: 'var(--r-input)',
-                fontSize: 11.5,
+                fontSize: 'var(--fs-micro)',
                 background: 'var(--soft)',
                 color: 'var(--ink50)',
               }}
@@ -848,7 +880,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                   color: 'var(--ink50)',
                   borderRadius: 'var(--r-input)',
                   cursor: archiving || running || committing ? 'not-allowed' : 'pointer',
-                  fontSize: 12.5,
+                  fontSize: 'var(--fs-meta)',
                 }}
                 title="Mark this bundle reviewed and skip it. Doesn't publish anything."
               >
@@ -880,7 +912,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                     padding: '6px 10px',
                     border: '1px solid var(--border2)',
                     borderRadius: 'var(--r-input)',
-                    fontSize: 12,
+                    fontSize: 'var(--fs-meta)',
                     background: 'var(--paper)',
                     color: 'var(--ink)',
                   }}
@@ -894,7 +926,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                     background: 'var(--paper)',
                     borderRadius: 'var(--r-input)',
                     cursor: archiving ? 'not-allowed' : 'pointer',
-                    fontSize: 12,
+                    fontSize: 'var(--fs-meta)',
                   }}
                 >
                   {archiving ? 'Archiving…' : 'Confirm archive'}
@@ -911,7 +943,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                     background: 'var(--paper)',
                     borderRadius: 'var(--r-input)',
                     cursor: archiving ? 'not-allowed' : 'pointer',
-                    fontSize: 12,
+                    fontSize: 'var(--fs-meta)',
                   }}
                 >
                   Cancel
@@ -926,7 +958,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 padding: '8px 10px',
                 border: '1px solid var(--crit-ink)',
                 borderRadius: 'var(--r-input)',
-                fontSize: 11.5,
+                fontSize: 'var(--fs-micro)',
                 color: 'var(--crit-ink)',
                 background: 'var(--soft)',
               }}
@@ -942,11 +974,11 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 padding: 10,
                 border: `1px solid ${result.ok && result.exitCode === 0 ? 'var(--ok-ink)' : 'var(--crit-ink)'}`,
                 borderRadius: 'var(--r-input)',
-                fontSize: 11.5,
+                fontSize: 'var(--fs-micro)',
                 background: 'var(--soft)',
               }}
             >
-              <div className="mono" style={{ fontSize: 10.5, marginBottom: 4 }}>
+              <div className="mono" style={{ fontSize: 'var(--fs-micro)', marginBottom: 4 }}>
                 exit={result.exitCode ?? '?'} · {result.durationMs}ms
                 {result.timedOut ? ' · TIMED OUT' : ''}
               </div>
@@ -969,11 +1001,11 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 padding: 10,
                 border: `1px solid ${commitResult.ok && commitResult.exitCode === 0 ? 'var(--ok-ink)' : 'var(--crit-ink)'}`,
                 borderRadius: 'var(--r-input)',
-                fontSize: 11.5,
+                fontSize: 'var(--fs-micro)',
                 background: 'var(--soft)',
               }}
             >
-              <div className="mono" style={{ fontSize: 10.5, marginBottom: 4 }}>
+              <div className="mono" style={{ fontSize: 'var(--fs-micro)', marginBottom: 4 }}>
                 git {commitResult.ok ? `· ${commitResult.durationMs}ms` : 'failed'}
                 {commitResult.failedAt ? ` · failed at ${commitResult.failedAt}` : ''}
               </div>
