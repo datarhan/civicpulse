@@ -199,7 +199,8 @@
     "correct-indicador": "npx tsx scripts/correct-indicador.ts",
     "retract-indicador": "npx tsx scripts/retract-indicador.ts",
     "check:eficiencia-findings": "npx tsx scripts/check-eficiencia-findings.ts",
-    "indicador-reply": "npx tsx scripts/reply-indicador.ts"
+    "indicador-reply": "npx tsx scripts/reply-indicador.ts",
+    "render:og": "node scripts/render-og.mjs"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

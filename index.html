@@ -19,10 +19,18 @@
       content="Quejas ciudadanas con reloj legal LPACAP y escalado automático al Síndic de Greuges CV. 16 fuentes abiertas nightly-refreshed."
     />
     <meta property="og:url" content="https://civicpulse.es/" />
-    <meta property="og:image" content="https://civicpulse.es/og.svg" />
-    <meta property="og:image:type" content="image/svg+xml" />
+    <!-- PNG, no SVG: Facebook, WhatsApp, X y LinkedIn no renderizan SVG como
+         og:image. La tarjeta más vista del proyecto se estaba sirviendo en un
+         formato que esas plataformas descartan. public/og.svg sigue siendo la
+         fuente; `npm run render:og` la rasteriza. -->
+    <meta property="og:image" content="https://civicpulse.es/og.png" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="CivicPulse · Riba-roja de Túria — qué hace el ayuntamiento, con una cita por cada afirmación"
+    />
     <meta property="og:locale" content="es_ES" />
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -31,7 +39,7 @@
       name="twitter:description"
       content="Quejas ciudadanas con reloj legal LPACAP y escalado al Síndic de Greuges CV."
     />
-    <meta name="twitter:image" content="https://civicpulse.es/og.svg" />
+    <meta name="twitter:image" content="https://civicpulse.es/og.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

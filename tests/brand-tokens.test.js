@@ -56,7 +56,9 @@ const DIFERIDOS = {
     motivo: 'serie construction',
     ola: 3,
   },
-  'public/og.svg': { n: 2, motivo: 'la tarjeta se reescribe entera', ola: 2 },
+  // public/og.svg salió de la lista: la tarjeta se reescribió (§12, ola 2).
+  // Esta aserción la cazó, en la dirección contraria a la habitual — arreglada
+  // sin dar de baja —, que es justo para lo que falla en los dos sentidos.
 }
 
 function bloque(selector) {

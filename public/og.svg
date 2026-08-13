@@ -1,46 +1,79 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0B0F19"/>
-      <stop offset="100%" stop-color="#1E3A8A"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img"
+     aria-label="CivicPulse · Riba-roja de Túria — qué hace el ayuntamiento, con una cita por cada afirmación">
+  <!--
+    Brandbook v3 §12. La tarjeta que circula fuera del sitio es la pieza más
+    vista del proyecto y era la única que ninguna regla gobernaba. Lo que había
+    antes incumplía seis:
 
-  <!-- CivicPulse mark -->
-  <rect x="80" y="80" width="80" height="80" rx="18" fill="#2463EB"/>
-  <path d="M110 110 Q 120 110, 124 98 T 140 86 Q 146 82, 150 100 T 166 122 Q 172 128, 182 110"
-        fill="none" stroke="white" stroke-width="6" stroke-linecap="round"/>
+      · fondo en degradado de ink a azul marino; la regla es ink plano
+      · un latido que no era el monograma —otra curva, sin punto vivo— en el
+        hexadecimal del PP anterior al retono
+      · titular en la serif que §03 retira, a 76/800, y con eslogan
+      · dos acentos, ámbar y azul claro, que no pertenecían a la paleta
+      · una etiqueta de fase de producto
+      · un pie con el subdominio de despliegue, cuando index.html publica
+        og:url = civicpulse.es. La tarjeta se contradecía con el propio sitio.
 
-  <!-- Brand -->
-  <text x="190" y="120" font-family="Outfit, system-ui, sans-serif" font-size="44" font-weight="700" fill="white"
-        letter-spacing="-1">CivicPulse</text>
-  <text x="190" y="152" font-family="DM Mono, ui-monospace, monospace" font-size="18" fill="#60A5FA"
-        letter-spacing="2">RIBA-ROJA DE TÚRIA · MVP</text>
+    Ninguno de esos valores se repite aquí: nombrarlos volvería a meter en el
+    fichero justo lo que se acaba de sacar, y un barrido de paleta los leería
+    como si siguieran pintando algo. El registro está en git.
 
-  <!-- Main title -->
-  <text x="80" y="310" font-family="Fraunces, Georgia, serif" font-size="76" font-weight="800" fill="white"
-        letter-spacing="-2">
-    Tus quejas ciudadanas,
+    Dos decisiones que las reglas no resolvían solas:
+
+    1. §01 dice «sobre ink el cuadro se mantiene en petróleo» y «el latido nunca
+       cambia de color». Sobre un fondo oscuro las dos chocan: el petróleo claro
+       da 2,45:1 contra el ink, y un latido blanco sobre el petróleo oscuro da
+       2,47:1. Se conservan las dos quedándose con el cuadro en petróleo claro:
+       el elemento que de verdad se lee es el latido, y blanco sobre ese cuadro
+       está a 7,80:1. El texto sí usa el petróleo de tema oscuro (7,77:1), por
+       el mismo motivo por el que el token civic cambia de valor en html.dark.
+       (Sin el nombre entre guiones: un doble guion es ilegal dentro de un
+       comentario XML y rompe el fichero entero. Ocurrió al escribir esto.)
+
+    2. §12 pide que el titular sea «la cifra con su denominador». Esta tarjeta
+       es la del SITIO, estática y versionada en git: nada la regenera. Una
+       cifra cocida aquí envejecería en silencio, que es justo lo que prohíbe
+       §00 («ninguna cifra sin su fecha de captura»). Así que no lleva cifra.
+       Una tarjeta POR HALLAZGO —con pastilla de veredicto, cifra, permalink y
+       fecha— es una pieza generada, no este fichero.
+  -->
+  <rect width="1200" height="630" fill="#0B0F19"/>
+
+  <!-- Monograma canónico: el pulso, dentro del cuadro, con su punto vivo. -->
+  <g transform="translate(80 74) scale(1.5)">
+    <rect width="64" height="64" rx="14" fill="#0E5B62"/>
+    <path d="M10 34 L20 34 L24 26 L32 44 L38 30 L42 34 L54 34"
+          fill="none" stroke="#FFFFFF" stroke-width="3.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="54" cy="34" r="2.6" fill="#FFFFFF"/>
+  </g>
+
+  <!-- «Civic» en ink, «Pulse» en petróleo. Nunca todo de un color. -->
+  <text x="200" y="128" font-family="Outfit, system-ui, sans-serif" font-size="52" font-weight="700"
+        letter-spacing="-1.2">
+    <tspan fill="#F1F5F9">Civic</tspan><tspan fill="#4FB3BD">Pulse</tspan>
   </text>
-  <text x="80" y="400" font-family="Fraunces, Georgia, serif" font-size="76" font-weight="800" fill="#F5B544"
-        letter-spacing="-2">
-    con reloj legal.
+  <text x="202" y="163" font-family="DM Mono, ui-monospace, monospace" font-size="17"
+        fill="#9DA2AB" letter-spacing="2.4">RIBA-ROJA DE TÚRIA · INE 46214</text>
+
+  <!-- Titular: qué hace el sitio. Sin eslogan, sin serif, sin cifra que caduque. -->
+  <text x="80" y="316" font-family="Outfit, system-ui, sans-serif" font-size="62" font-weight="700"
+        fill="#F1F5F9" letter-spacing="-1.8">Qué hace el ayuntamiento,</text>
+  <text x="80" y="392" font-family="Outfit, system-ui, sans-serif" font-size="62" font-weight="700"
+        letter-spacing="-1.8"><tspan fill="#F1F5F9">con una </tspan><tspan fill="#4FB3BD">cita por cada afirmación</tspan><tspan fill="#F1F5F9">.</tspan></text>
+
+  <text x="80" y="450" font-family="Outfit, system-ui, sans-serif" font-size="25" fill="#9DA2AB">
+    Presupuesto, contratos, votaciones de pleno, promesas y quejas vecinales.
   </text>
 
-  <!-- Sub -->
-  <text x="80" y="475" font-family="Outfit, system-ui, sans-serif" font-size="26" fill="#E2E8F0">
-    Telegram → sede electrónica → Síndic de Greuges CV
-  </text>
-  <text x="80" y="510" font-family="DM Mono, ui-monospace, monospace" font-size="18" fill="#94A3B8"
-        letter-spacing="1">
-    LPACAP · Ley 19/2013 · datos abiertos · bot @munigraph_bot
-  </text>
+  <!-- Filete de petróleo: el mismo recurso con el que §03b marca la cita. -->
+  <rect x="80" y="502" width="4" height="60" fill="#4FB3BD"/>
 
-  <!-- Footer chip -->
-  <rect x="80" y="545" width="450" height="38" rx="6" fill="rgba(36,99,235,.25)" stroke="#60A5FA" stroke-width="1"/>
-  <text x="100" y="570" font-family="DM Mono, ui-monospace, monospace" font-size="14" fill="#60A5FA"
-        letter-spacing="2">
-    CIVICPULSE-VIRID.VERCEL.APP
-  </text>
+  <!-- Los obligatorios del kit de prensa: permalink, metodología, réplica, licencia. -->
+  <text x="104" y="526" font-family="DM Mono, ui-monospace, monospace" font-size="19"
+        fill="#F1F5F9" letter-spacing="1.2">civicpulse.es</text>
+  <text x="104" y="556" font-family="DM Mono, ui-monospace, monospace" font-size="15"
+        fill="#9DA2AB" letter-spacing="1">metodología publicada · derecho de réplica abierto</text>
+  <text x="1120" y="556" text-anchor="end" font-family="DM Mono, ui-monospace, monospace" font-size="15"
+        fill="#9DA2AB" letter-spacing="1">AGPL-3.0-only</text>
 </svg>
