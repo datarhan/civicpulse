@@ -50,15 +50,18 @@ const PARTIDOS = Object.fromEntries(
  *  falta rediseñar la rampa entera, que es §07 y es la ola 3. Inventar un azul
  *  a medio camino sería colar una decisión de paleta dentro de una limpieza. */
 const DIFERIDOS = {
-  'src/hooks/useBudget.js': { n: 2, motivo: 'EXPENSE_COLORS / PROGRAM_COLORS', ola: 3 },
-  'src/components/Presupuesto/SpendingTypeBreakdown.jsx': {
-    n: 1,
-    motivo: 'serie construction',
-    ola: 3,
-  },
-  // public/og.svg salió de la lista: la tarjeta se reescribió (§12, ola 2).
-  // Esta aserción la cazó, en la dirección contraria a la habitual — arreglada
-  // sin dar de baja —, que es justo para lo que falla en los dos sentidos.
+  // VACÍO. Ya no queda ni un hexadecimal de partido fuera de party-colors.js.
+  //
+  // Los últimos tres eran series de gráfico, y el arreglo no fue encontrarles
+  // un azul de repuesto —se midieron cinco y los cinco caían a menos de 20° de
+  // tono del PP o del propio petróleo—. Fue leer bien §07: una barra de
+  // MAGNITUD lleva un solo color, y las filas del presupuesto ya van
+  // etiquetadas, así que los dos arcoíris no codificaban nada. La única barra
+  // que sí necesita distinguir —la composición apilada por tipo de gasto—
+  // pasó a una rampa de un solo tono.
+  //
+  // Esta aserción cazó las dos veces que se arregló algo sin darlo de baja, que
+  // es la dirección en la que casi ningún guard falla.
 }
 
 function bloque(selector) {

@@ -59,7 +59,11 @@ export default function TimeSlider({ min, max, value, onChange }) {
         }}
         aria-label="Línea de tiempo del gasto situado"
         aria-valuetext={label}
-        style={{ flex: 1 }}
+        // Sin accentColor el navegador pinta el control con SU azul de sistema.
+        // Es el gemelo del deslizador del aterrizaje, que sí lo declaraba: un
+        // control de tiempo sobre dinero público quedaba en un azul que no es
+        // de la paleta y que nadie eligió.
+        style={{ flex: 1, accentColor: 'var(--civic)' }}
       />
       <span className="mono" style={{ fontSize: 'var(--fs-micro)', width: 92, textAlign: 'right' }}>
         {label}

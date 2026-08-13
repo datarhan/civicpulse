@@ -24,24 +24,10 @@ export function formatEuros(amount, opts = {}) {
   }).format(amount)
 }
 
-// Canonical colour per expense chapter (used by the /presupuesto bar charts).
-export const EXPENSE_COLORS = [
-  '#2463EB', // 1 Personal
-  '#16A34A', // 2 Bienes corrientes
-  '#F59E0B', // 3 Gastos financieros
-  '#7C3AED', // 4 Transferencias corrientes
-  '#8B5CF6', // 5 Fondo contingencia
-  '#DB2777', // 6 Inversiones reales
-  '#06B6D4', // 7 Transferencias capital
-  '#A16207', // 8 Activos financieros
-  '#64748B', // 9 Pasivos financieros
-]
-
-export const PROGRAM_COLORS = [
-  '#64748B', // Deuda pública
-  '#2463EB', // Servicios públicos básicos
-  '#16A34A', // Protección y promoción social
-  '#F59E0B', // Bienes públicos preferentes
-  '#7C3AED', // Actuaciones carácter económico
-  '#06B6D4', // Actuaciones carácter general
-]
+// §07: «Magnitud · un solo color». Aquí había dos arcoíris —nueve colores por
+// capítulo y seis por área— sobre filas que YA llevan su nombre escrito al
+// lado: `Cap.1 · Personal`, y debajo el porcentaje. El color no codificaba
+// nada que la etiqueta no dijera ya, y a cambio metía dos colisiones dentro de
+// un gráfico de dinero público: el azul del PP en el capítulo 1 y el morado
+// --intel —que en este sistema significa «esto lo ha escrito una máquina»— en
+// el 4. Una barra de magnitud va en el color de marca y se acabó.

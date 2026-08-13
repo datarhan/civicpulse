@@ -17,13 +17,24 @@ const TYPE_LABEL = {
   patrimonial: 'Patrimonial',
   other: 'Otros',
 }
+// Esta barra SÍ es una composición apilada con leyenda, así que el color aquí
+// distingue de verdad y no puede reducirse a uno. Lo que no puede es ser un
+// arcoíris: llevaba el azul exacto del PP en «obra» y el morado --intel —que en
+// este sistema significa «esto lo ha escrito una máquina»— en «gestión de
+// servicios», dos significados prestados dentro de un gráfico de dinero.
+//
+// Una rampa de un solo tono resuelve las dos cosas: los seis pasos son
+// petróleo (tono 185°, el de la marca), se distinguen entre sí por luminancia
+// —1,39:1 el par más justo— y ninguno se parece a un partido ni a un tono
+// semántico. Que sea ordenada es además lo correcto para repartir una sola
+// magnitud: el dinero.
 const TYPE_COLOR = {
-  construction: '#2463EB',
-  services: '#0EA5A4',
-  supplies: '#D97706',
-  public_services_management: '#7C3AED',
-  patrimonial: '#64748B',
-  other: '#94A3B8',
+  construction: '#0A4449',
+  services: '#0E5B62',
+  supplies: '#15757E',
+  public_services_management: '#2D97A1',
+  patrimonial: '#63BAC2',
+  other: '#A8D9DE',
 }
 
 export default function SpendingTypeBreakdown({ contracts, snapshot }) {

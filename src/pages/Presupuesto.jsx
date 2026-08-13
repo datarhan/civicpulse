@@ -1,6 +1,6 @@
 import { Card, ExtLink, Pill, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
-import { useBudget, formatEuros, EXPENSE_COLORS, PROGRAM_COLORS } from '../hooks/useBudget'
+import { useBudget, formatEuros } from '../hooks/useBudget'
 import { contrastarPresupuesto, TOLERANCIA_EQUILIBRIO } from '../scraper/budget-contraste'
 import { useBudgetExecution } from '../hooks/useBudgetExecution'
 import { useObras } from '../hooks/useObras'
@@ -9,7 +9,9 @@ import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 import GastoDashboard from '../components/Presupuesto/GastoDashboard'
 import { TedNotices } from '../components/Presupuesto/TedNotices'
 
-function ChapterRow({ label, amount, total, color }) {
+// §07: la barra de magnitud lleva un solo color, el de marca. Antes recibía
+// uno de nueve por capítulo, sobre una fila que ya dice `Cap.1 · Personal`.
+function ChapterRow({ label, amount, total }) {
   const pct = total > 0 ? (amount / total) * 100 : 0
   return (
     <div>
@@ -18,7 +20,7 @@ function ChapterRow({ label, amount, total, color }) {
           style={{
             width: 10,
             height: 10,
-            background: color,
+            background: 'var(--civic)',
             borderRadius: 'var(--r-pill)',
             flexShrink: 0,
           }}
@@ -48,7 +50,7 @@ function ChapterRow({ label, amount, total, color }) {
           overflow: 'hidden',
         }}
       >
-        <div style={{ width: pct + '%', height: '100%', background: color }} />
+        <div style={{ width: pct + '%', height: '100%', background: 'var(--civic)' }} />
       </div>
     </div>
   )
@@ -446,7 +448,6 @@ function BudgetCharts() {
                   label={`Cap.${c.code} · ${c.label}`}
                   amount={c.amount}
                   total={s.totalExpense}
-                  color={EXPENSE_COLORS[parseInt(c.code, 10) - 1] || '#64748B'}
                 />
               ))}
           </div>
@@ -466,7 +467,6 @@ function BudgetCharts() {
                   label={g.label}
                   amount={g.amount}
                   total={s.totalExpense}
-                  color={PROGRAM_COLORS[s.expenseByProgram.indexOf(g)] || '#64748B'}
                 />
               ))}
           </div>
@@ -488,7 +488,6 @@ function BudgetCharts() {
                   label={`Cap.${c.code} · ${c.label}`}
                   amount={c.amount}
                   total={s.totalRevenue}
-                  color={EXPENSE_COLORS[parseInt(c.code, 10) - 1] || '#64748B'}
                 />
               ))}
           </div>
