@@ -10,13 +10,20 @@ const PALETTE = {
   bg: '#FAF8F2',
   paper: '#FFFFFF',
   ink: '#0B0F19',
-  ink80: 'rgba(11,15,25,.82)',
-  ink60: 'rgba(11,15,25,.68)',
-  ink50: 'rgba(11,15,25,.65)',
-  ink40: 'rgba(11,15,25,.60)',
+  // Los mismos dos alfas que la escala compartida de index.css. Esta paleta
+  // llevaba una segunda escala paralela —.82 / .68 / .65 / .60— que discrepaba
+  // de la del sitio: la misma familia de sinónimos, dos veces. Las cuatro
+  // claves se conservan porque 54 sitios del aterrizaje las nombran, pero sólo
+  // llevan dos valores.
+  ink80: 'rgba(11,15,25,.78)',
+  ink60: 'rgba(11,15,25,.62)',
+  ink50: 'rgba(11,15,25,.62)',
+  ink40: 'rgba(11,15,25,.62)',
   rule: '#1F1F1F',
   hair: '#DCD7C8',
-  civic: '#2463EB',
+  // Petróleo, como la marca compartida. El valor anterior era el de
+  // PARTY_COLORS.PP. 7,35:1 sobre el papel cálido de esta portada.
+  civic: '#0E5B62',
   accent: '#B0291F',
   accent2: '#1E3A8A',
   // FILL vs INK, the same split index.css already makes with `--ok` /

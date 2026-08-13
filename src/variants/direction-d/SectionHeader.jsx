@@ -37,7 +37,7 @@
 export const SECTION_TONES = {
   reportajes: { bar: '#0B0F19', wash: 'rgba(11,15,25,.06)', ink: '#0B0F19' },
   pleno: { bar: '#1E3A8A', wash: 'rgba(30,58,138,.07)', ink: '#1E3A8A' },
-  promesas: { bar: '#2463EB', wash: 'rgba(36,99,235,.08)', ink: '#1E4FBB' },
+  promesas: { bar: '#0E5B62', wash: 'rgba(14,91,98,.08)', ink: '#0A4449' },
   rendicion: { bar: '#B45309', wash: 'rgba(180,83,9,.10)', ink: '#92400E' },
   prensa: { bar: '#B0291F', wash: 'rgba(176,41,31,.08)', ink: '#8F221A' },
   contratos: { bar: '#16A34A', wash: 'rgba(22,163,74,.09)', ink: '#166534' },

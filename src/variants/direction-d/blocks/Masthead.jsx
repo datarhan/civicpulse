@@ -127,7 +127,7 @@ export function QuejaCTA() {
           fontWeight: 600,
           borderRadius: 7,
           textDecoration: 'none',
-          boxShadow: '0 2px 6px rgba(36,99,235,.25)',
+          boxShadow: '0 2px 6px rgba(14,91,98,.25)',
         }}
       >
         {t('landing.queja.cta')}

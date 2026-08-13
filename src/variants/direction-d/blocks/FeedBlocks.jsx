@@ -202,7 +202,7 @@ export function ParticipaBlockD() {
               width: 28,
               height: 28,
               borderRadius: 6,
-              background: it.kind === 'survey' ? 'rgba(36,99,235,.12)' : 'rgba(22,163,74,.12)',
+              background: it.kind === 'survey' ? 'rgba(14,91,98,.12)' : 'rgba(22,163,74,.12)',
               display: 'grid',
               placeItems: 'center',
               fontSize: 14,
