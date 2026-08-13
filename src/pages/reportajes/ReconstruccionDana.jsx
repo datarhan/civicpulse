@@ -453,9 +453,16 @@ export default function ReconstruccionDana() {
           // would have left the count saying 73 next to the corrected 2,75 M€.
           { n: String(t.danaContracts), l: `contratos ref. DANA · ${eurC(t.danaAmount)}` },
           { n: String(t.situatedContracts), l: `geolocalizados · ${eurC(t.situatedAmount)}` },
+          // Decía «0 órganos que fiscalizan los contratos municipales», y es falso: la
+          // Sindicatura de Comptes es el órgano de control externo de las entidades locales,
+          // programa «la fiscalización de la contratación en las entidades locales durante
+          // 2023 y 2024» —2024 es el año de la riada— y revisa los reparos de los
+          // interventores locales. Lo que sí es cero, y es lo que sostiene el reportaje, es
+          // el alcance MUNICIPAL de los informes DANA: los dos especiales están acotados al
+          // sector autonómico por su propio título.
           {
             n: '0',
-            l: 'órganos que fiscalizan los contratos municipales',
+            l: 'informes DANA de la Sindicatura que alcanzan al tramo municipal',
             tone: 'var(--warn-ink)',
           },
         ].map((s, i) => (
@@ -492,9 +499,12 @@ export default function ReconstruccionDana() {
         <p>
           Entre esas dos fechas, un análisis de la contratación municipal permite seguir el rastro
           del dinero contrato a contrato, y en muchos casos calle a calle. De los{' '}
-          {eurC(t.totalAwarded)} que el Ayuntamiento adjudicó entre 2018 y 2026 —sin contar la
-          concesión del agua, que se adjudica por sus diecisiete años de una vez y por sí sola pesa
-          casi tanto como todo lo demás junto—,{' '}
+          {/* «entre 2018 y 2026» era falso: el denominador congelado son los 698 contratos
+              adjudicados del snapshot del 02-08-2026, y su adjudicación más antigua es del
+              03-07-2017. 2017 aporta 15 contratos y 3,35 M€ — el 4,9% de la cifra. */}
+          {eurC(t.totalAwarded)} que el Ayuntamiento adjudicó entre julio de 2017 y julio de 2026
+          —sin contar la concesión del agua, que se adjudica por sus diecisiete años de una vez y
+          por sí sola pesa casi tanto como todo lo demás junto—,{' '}
           <b>
             {t.danaContracts} contratos por {eurC(t.danaAmount)} referencian expresamente la DANA
           </b>{' '}
@@ -591,22 +601,44 @@ export default function ReconstruccionDana() {
         </p>
         <Funders />
         <p>
-          El presupuesto municipal de reconstrucción para 2025 —43,5 millones— recibió su aprobación
-          inicial en el pleno extraordinario y urgente del 31 de julio de 2025, con los votos a
-          favor del gobierno del PSPV, el rechazo del PP y la abstención de Compromís, Esquerra
-          Unida-Podem y Vox.
+          {/* Decía «el presupuesto municipal de reconstrucción para 2025 —43,5 millones—», que
+              invitaba a leerlo como una partida de reconstrucción. No lo es: 43,5 M€ es el
+              presupuesto ENTERO del municipio para 2025 (nuestro propio dato de ingresos, 43.516.817
+              €), y por eso superaba al gasto municipal de todo el año, 41,58 M€ — una comparación
+              imposible que el reportaje dejaba en pie. La prensa lo tituló «presupuesto para la
+              reconstrucción» y aquí se tomó al pie de la letra. */}
+          El presupuesto municipal de 2025 —43,5 millones, cuatro más que el ejercicio anterior—
+          recibió su aprobación inicial en el pleno extraordinario y urgente del 31 de julio de
+          2025, con los votos a favor del gobierno del PSPV, el rechazo del PP y la abstención de
+          Compromís, Esquerra Unida-Podem y Vox. Llegó con siete meses de retraso, y el retraso es
+          el dato: el Ayuntamiento lo atribuyó a los daños de la riada y presentó las cuentas como
+          el presupuesto de la reconstrucción. No es una partida de 43,5 millones para reconstruir
+          —es el presupuesto entero del municipio, cuyo gasto liquidado en todo 2025 fue de 41,58
+          millones—, sino el año completo ordenado alrededor de ella.
         </p>
 
-        <SecHead num="06" kicker="El vacío" title="Quién audita esto — nadie, todavía" />
+        <SecHead num="06" kicker="El vacío" title="Quién audita esto, y con qué lupa" />
         <p>
           Ese caudal de dinero público llega, en su tramo municipal, sin un control externo
-          específico. La Sindicatura de Comptes anunció la fiscalización de los contratos y
-          subvenciones ligados a la DANA, pero acotada al <b>sector autonómico</b> —la ferroviaria
-          FGV y la pública VAERSA, donde ya detectó sobrecostes y falta de transparencia—, no a los
-          ayuntamientos. Los contratos de emergencia municipales, adjudicados a menudo sin
-          concurrencia por la urgencia de la catástrofe, quedan por ahora fuera de esa mirada.
-          Tampoco el visor infoDANA del Gobierno, que detalla las ayudas <i>pueblo a pueblo</i>,
-          desciende al contrato concreto ni a la calle.
+          <i>específico de la DANA</i>. La Sindicatura de Comptes anunció la fiscalización de los
+          contratos y subvenciones ligados a la riada, pero acotada al <b>sector autonómico</b> —la
+          ferroviaria FGV y la pública VAERSA, donde ya detectó sobrecostes y falta de
+          transparencia—, no a los ayuntamientos: sus dos informes especiales llevan «en el sector
+          autonómico» en el propio título. Los contratos de emergencia municipales, adjudicados a
+          menudo sin concurrencia por la urgencia de la catástrofe, quedan fuera de <i>esa</i>
+          mirada. Tampoco el visor infoDANA del Gobierno, que detalla las ayudas{' '}
+          <i>pueblo a pueblo</i>, desciende al contrato concreto ni a la calle.
+        </p>
+        <p>
+          Eso no significa que nadie mire. La Sindicatura es el órgano de control externo de las
+          entidades locales, a la que los ayuntamientos rinden su Cuenta General, y su programa
+          anual incluye{' '}
+          <b>la fiscalización de la contratación en las entidades locales durante 2023 y 2024</b>{' '}
+          —2024 es el año de la riada— además de la revisión de los reparos de los interventores
+          locales. La diferencia es el foco: esa fiscalización mira la contratación municipal en
+          general y por muestreo, no el gasto de la reconstrucción como tal. Un contrato de
+          emergencia de Riba-roja puede entrar en ella, pero ningún informe publicado hasta hoy
+          responde a la pregunta de cuánto se gastó aquí en reconstruirse y en qué.
         </p>
 
         <SecHead num="07" kicker="Lo pendiente" title="Lo que sigue sin ejecutarse" />
