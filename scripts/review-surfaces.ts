@@ -180,7 +180,19 @@ async function main() {
     rotate: rotar,
     all: todas,
   } = parseReviewArgs(process.argv.slice(2), process.env.REVIEW_BUDGET_SECONDS)
-  const cache = force ? {} : loadCache()
+  // `--force` significa «vuelve a leer ESTAS rutas», no «olvida el fichero».
+  //
+  // Era `force ? {} : loadCache()`, y como al final se escribe la caché
+  // entera, un `--force /eficiencia` borraba de un plumazo el registro de las
+  // otras veintiséis: hash, señalamientos vivos y fecha. Se descubrió al
+  // estrenar `check:surfaces` — la caché tenía dos entradas donde había habido
+  // once, y las nueve que faltaban se las había llevado un `--force` de dos
+  // rutas media hora antes. Con el barrido nocturno alimentando el digest,
+  // eso equivale a borrar la memoria de qué páginas se han leído.
+  //
+  // Ahora se carga siempre y lo que `--force` salta es el atajo de «sin
+  // cambios», más abajo, sólo para las rutas de esta pasada.
+  const cache = loadCache()
   // Oldest first, but ONLY under a budget. A budget starves whatever sits at the
   // end of the list, and a fixed order starves the same routes every time —
   // which is a route that is never reviewed and nobody notices, the exact
@@ -316,7 +328,7 @@ async function main() {
 
     const h = hashOf(renderedText)
     const prev = readCacheEntry(cache[route])
-    if (prev && prev.hash === h) {
+    if (!force && prev && prev.hash === h) {
       skipped += 1
       remembered += prev.findings.length
       if (!asJson) {
