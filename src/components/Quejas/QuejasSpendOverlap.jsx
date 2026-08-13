@@ -67,7 +67,7 @@ export default function QuejasSpendOverlap() {
       <div
         style={{
           fontSize: 12,
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           marginTop: 6,
           marginBottom: 10,
           lineHeight: 1.5,
@@ -128,10 +128,10 @@ export default function QuejasSpendOverlap() {
                 </span>
               )}
             </div>
-            <div className="mono" style={{ textAlign: 'right', color: 'var(--ink80)' }}>
+            <div className="mono" style={{ textAlign: 'right', color: 'var(--ink70)' }}>
               {r.quejas || '—'}
             </div>
-            <div className="mono" style={{ textAlign: 'right', color: 'var(--ink80)' }}>
+            <div className="mono" style={{ textAlign: 'right', color: 'var(--ink70)' }}>
               {r.amount ? fmtEur(r.amount) : '—'}
             </div>
           </Fragment>

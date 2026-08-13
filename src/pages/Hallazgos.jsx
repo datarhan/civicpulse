@@ -116,7 +116,7 @@ export function FindingDetailCard({ f, permalink }) {
       <p
         style={{
           fontSize: 13,
-          color: 'var(--ink80)',
+          color: 'var(--ink70)',
           marginTop: 8,
           lineHeight: 1.55,
         }}
@@ -246,7 +246,7 @@ export function FindingDetailCard({ f, permalink }) {
                   className="mono"
                   style={{
                     fontSize: 9.5,
-                    color: 'var(--ink60)',
+                    color: 'var(--ink50)',
                     marginBottom: 2,
                   }}
                 >
@@ -255,7 +255,7 @@ export function FindingDetailCard({ f, permalink }) {
                 <div
                   style={{
                     textDecoration: 'line-through',
-                    color: 'var(--ink60)',
+                    color: 'var(--ink50)',
                   }}
                 >
                   {c.original}
@@ -333,13 +333,13 @@ function RetractionLedger({ retractions }) {
       <ol style={{ margin: 0, paddingLeft: 18, display: 'grid', gap: 8 }}>
         {ordered.map((r) => (
           <li key={r.findingId}>
-            <div className="mono" style={{ fontSize: 9.5, color: 'var(--ink60)', marginBottom: 2 }}>
+            <div className="mono" style={{ fontSize: 9.5, color: 'var(--ink50)', marginBottom: 2 }}>
               {r.findingId} · pleno {r.plenoDate} · retirado {r.retractedAt.slice(0, 10)} ·{' '}
               {r.editor}
             </div>
             <div>
               {r.quoteCount} cita(s) y {r.crossCheckedCount} documento(s) cotejado(s) ·{' '}
-              <span className="mono" style={{ color: 'var(--ink60)' }}>
+              <span className="mono" style={{ color: 'var(--ink50)' }}>
                 {r.digest}
               </span>
             </div>
@@ -367,7 +367,7 @@ function Chip({ active, label, count, onClick }) {
         letterSpacing: '.02em',
         border: '1px solid ' + (active ? 'var(--civic)' : 'var(--border2)'),
         background: active ? 'var(--civic-soft)' : 'var(--paper)',
-        color: active ? 'var(--civic)' : 'var(--ink60)',
+        color: active ? 'var(--civic)' : 'var(--ink50)',
         cursor: 'pointer',
       }}
     >
@@ -483,7 +483,7 @@ export default function Hallazgos() {
               {t('hallazgos.area.clear')}
             </Link>
           </div>
-          <div style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 6, lineHeight: 1.5 }}>
+          <div style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 6, lineHeight: 1.5 }}>
             {t('hallazgos.area.note')}
           </div>
         </Card>
@@ -506,7 +506,7 @@ export default function Hallazgos() {
         <p
           style={{
             fontSize: 13,
-            color: 'var(--ink60)',
+            color: 'var(--ink50)',
             marginTop: 6,
             maxWidth: 720,
             lineHeight: 1.55,
@@ -543,7 +543,7 @@ export default function Hallazgos() {
           evidencia, y desde aquí se llega en un clic. */}
       {EFICIENCIA_ENABLED && (
         <Card style={{ marginBottom: 18, background: 'var(--soft)' }}>
-          <div style={{ fontSize: 12.5, color: 'var(--ink60)', lineHeight: 1.55 }}>
+          <div style={{ fontSize: 12.5, color: 'var(--ink50)', lineHeight: 1.55 }}>
             Esta página verifica <strong>declaraciones en pleno</strong>. Los hallazgos sobre{' '}
             <strong>cuánto cuesta cada servicio</strong> —que no citan a nadie porque no los dijo
             nadie: salen de las cifras que el ayuntamiento remite al ministerio— se publican junto a
@@ -701,7 +701,7 @@ export default function Hallazgos() {
             background: 'var(--soft)',
             borderRadius: 8,
             fontSize: 13,
-            color: 'var(--ink60)',
+            color: 'var(--ink50)',
             lineHeight: 1.5,
           }}
         >
@@ -743,7 +743,7 @@ export default function Hallazgos() {
           background: 'var(--soft)',
           borderRadius: 8,
           fontSize: 11.5,
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           lineHeight: 1.55,
         }}
       >

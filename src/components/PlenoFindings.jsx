@@ -71,7 +71,7 @@ function RefDate({ date, t }) {
         fontSize: 9.5,
         // No opacity: this is text inside a tinted chip, and opacity there
         // drops it below AA against the tint at any theme.
-        color: known ? 'var(--ink70)' : 'var(--ink60)',
+        color: known ? 'var(--ink70)' : 'var(--ink50)',
         background: 'var(--soft)',
         border: known ? 'none' : '1px dashed var(--border2)',
         padding: '1px 5px',
@@ -107,14 +107,14 @@ function RefDate({ date, t }) {
  * snippets still say in their own text, and what `snippetWithoutStatus` takes
  * off the display copy.
  */
-// `--ink80`, not the `--ink70` the chip beside this one asks for: that token is
+// `--ink70`, not the `--ink70` the chip beside this one asks for: that token is
 // used 99 times across src/ and is DEFINED NOWHERE, so it silently falls back
 // to the inherited colour. Repointing all 99 is a site-wide visual change and
 // not this branch's business; adding a hundredth is avoidable.
 const REF_STATUS_TONE = {
   cancelled: { fg: 'var(--warn-ink)', bg: 'var(--warn-soft)' },
-  committed: { fg: 'var(--ink80)', bg: 'var(--soft)' },
-  'in-flight': { fg: 'var(--ink80)', bg: 'var(--soft)' },
+  committed: { fg: 'var(--ink70)', bg: 'var(--soft)' },
+  'in-flight': { fg: 'var(--ink70)', bg: 'var(--soft)' },
 }
 
 function RefStatus({ status, t }) {
@@ -131,7 +131,7 @@ function RefStatus({ status, t }) {
         fontSize: 9.5,
         // No opacity: tinted chip, and opacity drops the text below AA
         // against the tint at either theme.
-        color: known ? tone.fg : 'var(--ink60)',
+        color: known ? tone.fg : 'var(--ink50)',
         background: known ? tone.bg : 'var(--soft)',
         border: known ? 'none' : '1px dashed var(--border2)',
         padding: '1px 5px',
@@ -164,7 +164,7 @@ export function RefList({ refs, kind, plenoDate }) {
   if (!refs || refs.length === 0) return null
   const isCrossChecked = kind === 'crossChecked'
   const label = t(isCrossChecked ? 'findings.refs.crossChecked' : 'findings.refs.contradiction')
-  const tone = isCrossChecked ? 'var(--ink60)' : 'var(--crit-ink)'
+  const tone = isCrossChecked ? 'var(--ink50)' : 'var(--crit-ink)'
   return (
     <div style={{ marginTop: 6 }}>
       <div
@@ -516,7 +516,7 @@ export function FindingCard({ f }) {
       <p
         style={{
           fontSize: 12.5,
-          color: 'var(--ink80)',
+          color: 'var(--ink70)',
           marginTop: 8,
           lineHeight: 1.55,
         }}
@@ -607,7 +607,7 @@ export function PlenoFindingsSection() {
       <p
         style={{
           fontSize: 12,
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           marginTop: 4,
           marginBottom: 10,
           maxWidth: 720,

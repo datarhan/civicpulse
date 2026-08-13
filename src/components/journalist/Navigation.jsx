@@ -51,7 +51,7 @@ export function StickyToc({ items }) {
                 fontSize: 12.5,
                 padding: '4px 8px',
                 borderRadius: 4,
-                color: activeId === it.id ? 'var(--ink)' : 'var(--ink60)',
+                color: activeId === it.id ? 'var(--ink)' : 'var(--ink50)',
                 background: activeId === it.id ? 'var(--soft)' : 'transparent',
                 borderLeft: `2px solid ${activeId === it.id ? 'var(--civic)' : 'transparent'}`,
                 textDecoration: 'none',
@@ -200,7 +200,7 @@ export function FactsSidebar({ report, subjectName, assignment }) {
             >
               {r.label}
             </dt>
-            <dd style={{ margin: '2px 0 0 0', color: 'var(--ink80)', fontSize: 13 }}>{r.value}</dd>
+            <dd style={{ margin: '2px 0 0 0', color: 'var(--ink70)', fontSize: 13 }}>{r.value}</dd>
           </div>
         ))}
       </dl>
@@ -218,7 +218,7 @@ export function LegalSensitivityBadge({ level, warnings }) {
     <Card>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
         <Pill tone={tone}>{LEGAL_SENSITIVITY_LABEL[level] || level}</Pill>
-        <span style={{ fontSize: 12, color: 'var(--ink60)' }}>
+        <span style={{ fontSize: 12, color: 'var(--ink50)' }}>
           Este informe trata sobre figuras vivas o asuntos legalmente sensibles. Las afirmaciones se
           publican con derecho de réplica abierto.
         </span>
@@ -232,7 +232,7 @@ export function LegalSensitivityBadge({ level, warnings }) {
               borderRadius: 6,
               border: '1px solid var(--border)',
               background: 'transparent',
-              color: 'var(--ink60)',
+              color: 'var(--ink50)',
               cursor: 'pointer',
             }}
           >
@@ -242,12 +242,12 @@ export function LegalSensitivityBadge({ level, warnings }) {
       </div>
       {open && warnings && (
         <div style={{ marginTop: 10 }}>
-          <p style={{ margin: 0, fontSize: 11.5, fontStyle: 'italic', color: 'var(--ink60)' }}>
+          <p style={{ margin: 0, fontSize: 11.5, fontStyle: 'italic', color: 'var(--ink50)' }}>
             Límites de verificación que el proceso editorial señala en lugar de omitir:
           </p>
           <ul style={{ margin: '6px 0 0 0', padding: 0, listStyle: 'none', fontSize: 11.5 }}>
             {warnings.map((w, i) => (
-              <li key={i} style={{ padding: '2px 0', color: 'var(--ink60)' }}>
+              <li key={i} style={{ padding: '2px 0', color: 'var(--ink50)' }}>
                 · {w}
               </li>
             ))}

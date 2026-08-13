@@ -34,11 +34,11 @@ export function Lectura({ lectura, conAvisos = true }) {
           {lectura.donde ?? ''}
         </p>
       )}
-      <p style={{ margin: 0, fontSize: 12.5, color: 'var(--ink70, var(--ink60))' }}>
+      <p style={{ margin: 0, fontSize: 12.5, color: 'var(--ink70, var(--ink50))' }}>
         {lectura.como}
       </p>
       {conAvisos && lectura.avisos?.length > 0 && (
-        <ul style={{ margin: '6px 0 0', paddingLeft: 18, fontSize: 12, color: 'var(--ink60)' }}>
+        <ul style={{ margin: '6px 0 0', paddingLeft: 18, fontSize: 12, color: 'var(--ink50)' }}>
           {lectura.avisos.map((a) => (
             <li key={a}>{a}</li>
           ))}

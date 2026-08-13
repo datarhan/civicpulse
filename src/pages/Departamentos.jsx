@@ -19,7 +19,7 @@ function DepartmentCard({ bucket, frozen, contratacionYears }) {
   const { locale } = useLocale()
   const label = locale === 'ca' ? bucket.labelCa : bucket.labelEs
   const official = bucket.responsableOfficial
-  const partyColor = official?.party ? PARTY_TONE[official.party] || 'var(--ink60)' : null
+  const partyColor = official?.party ? PARTY_TONE[official.party] || 'var(--ink50)' : null
   const vencidos = bucket.plenoVotes.plazosVencidos + bucket.promesas.plazosVencidos
 
   return (
@@ -60,7 +60,7 @@ function DepartmentCard({ bucket, frozen, contratacionYears }) {
                 // false affordance that silently lands the reader on the
                 // department page. The route to the person is the explicit row
                 // below.
-                <div style={{ fontSize: 12, color: 'var(--ink60)' }}>
+                <div style={{ fontSize: 12, color: 'var(--ink50)' }}>
                   <span
                     className="mono"
                     style={{ fontSize: 10, color: partyColor, fontWeight: 700, marginRight: 6 }}
@@ -192,7 +192,7 @@ function Stat({ label, value, tone, muted, sub }) {
         className="mono"
         style={{
           fontSize: 9.5,
-          color: 'var(--ink80)',
+          color: 'var(--ink70)',
           textTransform: 'uppercase',
           letterSpacing: '.06em',
         }}
@@ -231,7 +231,7 @@ function EncajeAggregate() {
     <p
       style={{
         fontSize: 12.5,
-        color: 'var(--ink60)',
+        color: 'var(--ink50)',
         lineHeight: 1.55,
         maxWidth: 780,
         margin: '-12px 0 22px',
@@ -315,7 +315,7 @@ export default function Departamentos() {
       <p
         style={{
           fontSize: 13,
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           lineHeight: 1.55,
           maxWidth: 780,
           marginTop: 4,

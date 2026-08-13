@@ -72,13 +72,13 @@ export default function BuildingCivicPulse() {
         I built a full accountability stack for my Spanish town, solo, with AI — the interesting
         part is what stops it from lying
       </h1>
-      <p style={{ fontSize: 18, color: 'var(--ink60)', lineHeight: 1.5, margin: '0 0 30px' }}>
+      <p style={{ fontSize: 18, color: 'var(--ink50)', lineHeight: 1.5, margin: '0 0 30px' }}>
         The headline is that an AI wrote most of the code. That&rsquo;s the least interesting thing
         here. The interesting thing is the engineering that keeps an AI-assisted watchdog from
         quietly manufacturing a defamation suit with a real person&rsquo;s name on it.
       </p>
 
-      <article style={{ color: 'var(--ink80)' }}>
+      <article style={{ color: 'var(--ink70)' }}>
         <p>
           Around 6,800 of Spain&rsquo;s ~8,100 municipalities have no dedicated press coverage. Not
           &ldquo;declining&rdquo; coverage &mdash; none. No reporter sits through the council
@@ -302,7 +302,7 @@ export default function BuildingCivicPulse() {
           </p>
         </div>
 
-        <p style={{ fontSize: 13, color: 'var(--ink60)', margin: '18px 0 0', lineHeight: 1.5 }}>
+        <p style={{ fontSize: 13, color: 'var(--ink50)', margin: '18px 0 0', lineHeight: 1.5 }}>
           Sergei Lutchenko ·{' '}
           <a href="mailto:slutchenko@gmail.com" style={LINK}>
             slutchenko@gmail.com

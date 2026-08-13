@@ -96,11 +96,11 @@ function CorrectionLog({ corrections }) {
             <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
               {c.correctedAt} · {c.editor} · {c.field}
             </div>
-            <div style={{ marginTop: 4, color: 'var(--ink60)' }}>
+            <div style={{ marginTop: 4, color: 'var(--ink50)' }}>
               <s>{c.original.slice(0, 200)}</s> →{' '}
-              <span style={{ color: 'var(--ink80)' }}>{c.corrected.slice(0, 200)}</span>
+              <span style={{ color: 'var(--ink70)' }}>{c.corrected.slice(0, 200)}</span>
             </div>
-            <div style={{ marginTop: 4, fontStyle: 'italic', color: 'var(--ink60)' }}>
+            <div style={{ marginTop: 4, fontStyle: 'italic', color: 'var(--ink50)' }}>
               {c.reason}
             </div>
           </li>
@@ -116,7 +116,7 @@ function ResponseBlock({ response, reportId }) {
     return (
       <Card>
         <SectionHead title="Derecho de réplica" />
-        <p style={{ margin: 0, fontSize: 13, color: 'var(--ink60)', lineHeight: 1.5 }}>
+        <p style={{ margin: 0, fontSize: 13, color: 'var(--ink50)', lineHeight: 1.5 }}>
           ¿Es persona o grupo aludido por este informe? Puede ejercer derecho de réplica enviando
           una cita literal por el formulario público; se publica sin edición editorial.
         </p>
@@ -131,7 +131,7 @@ function ResponseBlock({ response, reportId }) {
             padding: '6px 12px',
             borderRadius: 6,
             border: '1px solid var(--border)',
-            color: 'var(--ink80)',
+            color: 'var(--ink70)',
           }}
         >
           Responder como persona o grupo afectado →
@@ -156,7 +156,7 @@ function ResponseBlock({ response, reportId }) {
       <div className="mono" style={{ marginTop: 8, fontSize: 10.5, color: 'var(--ink50)' }}>
         {response.respondedAt}
         {response.sourceUrl && (
-          <ExtLink href={response.sourceUrl} style={{ marginLeft: 8, color: 'var(--ink60)' }}>
+          <ExtLink href={response.sourceUrl} style={{ marginLeft: 8, color: 'var(--ink50)' }}>
             Fuente ↗
           </ExtLink>
         )}
@@ -181,7 +181,7 @@ function CuratorNotesBlock({ notes }) {
     <Card>
       <SectionHead title="Notas de curaduría" />
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-        <p style={{ margin: 0, flex: 1, fontSize: 12, color: 'var(--ink60)', fontStyle: 'italic' }}>
+        <p style={{ margin: 0, flex: 1, fontSize: 12, color: 'var(--ink50)', fontStyle: 'italic' }}>
           Registro público del trabajo editorial sobre este informe: verificaciones, correcciones y
           señales en seguimiento.
         </p>
@@ -193,7 +193,7 @@ function CuratorNotesBlock({ notes }) {
             borderRadius: 6,
             border: '1px solid var(--border)',
             background: 'transparent',
-            color: 'var(--ink60)',
+            color: 'var(--ink50)',
             cursor: 'pointer',
             whiteSpace: 'nowrap',
           }}
@@ -211,7 +211,7 @@ function CuratorNotesBlock({ notes }) {
               style={{
                 fontSize: 12,
                 lineHeight: 1.55,
-                color: 'var(--ink60)',
+                color: 'var(--ink50)',
                 paddingLeft: 10,
                 borderLeft: '2px solid var(--border)',
               }}
@@ -259,7 +259,7 @@ export default function AgenteReporte() {
   if (!report) {
     return (
       <div style={{ padding: '40px 24px' }}>
-        <p style={{ color: 'var(--ink60)' }}>
+        <p style={{ color: 'var(--ink50)' }}>
           No hay informe publicado para esta asignación todavía.
         </p>
         <p>
@@ -339,7 +339,7 @@ export default function AgenteReporte() {
           {report.curatorNotes && <CuratorNotesBlock notes={report.curatorNotes} />}
 
           <div style={{ marginTop: 12, fontSize: 11, color: 'var(--ink50)' }}>
-            <Link to="/laboratorio/agentes" style={{ color: 'var(--ink60)' }}>
+            <Link to="/laboratorio/agentes" style={{ color: 'var(--ink50)' }}>
               ← volver al índice
             </Link>
             <span style={{ marginLeft: 12 }}>

@@ -84,7 +84,7 @@ export function VoteProvenance({ provenance }) {
               </span>
             )}
             {note && (
-              <span style={{ fontSize: 10.5, color: 'var(--ink60)', fontStyle: 'italic' }}>
+              <span style={{ fontSize: 10.5, color: 'var(--ink50)', fontStyle: 'italic' }}>
                 {note}
               </span>
             )}

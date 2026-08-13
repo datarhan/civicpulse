@@ -59,7 +59,7 @@ function TimelineItem({ date, label, tone = 'neutral', detail }) {
           ? 'var(--crit)'
           : tone === 'civic'
             ? 'var(--civic)'
-            : 'var(--ink60)'
+            : 'var(--ink50)'
   return (
     <div
       style={{
@@ -70,7 +70,7 @@ function TimelineItem({ date, label, tone = 'neutral', detail }) {
         padding: '10px 0',
       }}
     >
-      <div className="mono" style={{ fontSize: 11, color: 'var(--ink60)' }}>
+      <div className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
         {fmtDate(date)}
       </div>
       <div style={{ position: 'relative', height: '100%' }}>
@@ -122,7 +122,7 @@ function CorrelationsCard({ quejaId }) {
       <div
         style={{
           fontSize: 12,
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           marginTop: 6,
           marginBottom: 10,
           lineHeight: 1.5,
@@ -348,7 +348,7 @@ export default function QuejaDetail() {
             gap: 14,
             flexWrap: 'wrap',
             fontSize: 12,
-            color: 'var(--ink60)',
+            color: 'var(--ink50)',
           }}
         >
           <span>📂 {CATEGORY_LABEL[category] || category}</span>
@@ -388,7 +388,7 @@ export default function QuejaDetail() {
                 className="mono"
                 style={{
                   fontSize: 10,
-                  color: 'var(--ink60)',
+                  color: 'var(--ink50)',
                   letterSpacing: '.08em',
                   textTransform: 'uppercase',
                 }}
@@ -422,7 +422,7 @@ export default function QuejaDetail() {
           style={{
             fontSize: 14,
             lineHeight: 1.55,
-            color: 'var(--ink80)',
+            color: 'var(--ink70)',
             marginTop: 8,
             whiteSpace: 'pre-wrap',
           }}
@@ -572,7 +572,7 @@ export default function QuejaDetail() {
                   className="mono"
                   style={{
                     fontSize: 10,
-                    color: 'var(--ink60)',
+                    color: 'var(--ink50)',
                     letterSpacing: '.08em',
                     textTransform: 'uppercase',
                   }}

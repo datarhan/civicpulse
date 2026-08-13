@@ -11,7 +11,7 @@ export function VoteTuple({ v }) {
         ? 'var(--crit-ink)'
         : tone === 'warn'
           ? 'var(--warn-ink)'
-          : 'var(--ink60)'
+          : 'var(--ink50)'
   const bg =
     tone === 'ok'
       ? 'var(--ok-soft)'

@@ -146,10 +146,10 @@ function Retribucion({ slug }) {
             <Pill tone="neutral" size="xs">
               {d.dedicacion}
             </Pill>
-            <span style={{ fontSize: 12, color: 'var(--ink60)' }}>{d.role}</span>
+            <span style={{ fontSize: 12, color: 'var(--ink50)' }}>{d.role}</span>
           </div>
         ) : (
-          <div style={{ fontSize: 13, color: 'var(--ink60)' }}>
+          <div style={{ fontSize: 13, color: 'var(--ink50)' }}>
             {t('cargos.detalle.pago.sinDedicacion')}
           </div>
         )}
@@ -209,7 +209,7 @@ function AreaActivity({ slugs }) {
             >
               {locale === 'ca' ? b.labelCa : b.labelEs} →
             </Link>
-            <span style={{ fontSize: 11.5, color: 'var(--ink60)' }}>
+            <span style={{ fontSize: 11.5, color: 'var(--ink50)' }}>
               <span className="mono">{b.plenoVotes.total}</span>{' '}
               {t('cargos.detalle.actividad.votos')}
               {' · '}
@@ -472,7 +472,7 @@ export default function CargoDetalle() {
             {official.name}
           </div>
           {official.portfolios?.length > 0 && (
-            <div style={{ fontSize: 13, color: 'var(--ink60)', marginTop: 4, lineHeight: 1.4 }}>
+            <div style={{ fontSize: 13, color: 'var(--ink50)', marginTop: 4, lineHeight: 1.4 }}>
               {official.portfolios.join(' · ')}
             </div>
           )}
@@ -483,7 +483,7 @@ export default function CargoDetalle() {
             <a
               href={`mailto:${official.email || 'alcaldia@ribarroja.es'}`}
               className="mono"
-              style={{ color: 'var(--ink80)', textDecoration: 'underline' }}
+              style={{ color: 'var(--ink70)', textDecoration: 'underline' }}
             >
               {official.email || 'alcaldia@ribarroja.es'}
             </a>
@@ -672,7 +672,7 @@ export default function CargoDetalle() {
                   {it.department ? ` · ${it.department}` : ''}
                   {it.expediente ? ` · exp. ${it.expediente}` : ''}
                 </div>
-                <div style={{ color: 'var(--ink80)' }}>{it.title}</div>
+                <div style={{ color: 'var(--ink70)' }}>{it.title}</div>
               </div>
             ))}
             {agendaItems.length > 12 && (
@@ -732,7 +732,7 @@ export default function CargoDetalle() {
           background: 'var(--soft)',
           borderRadius: 8,
           fontSize: 11.5,
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           lineHeight: 1.55,
         }}
       >

@@ -80,7 +80,7 @@ function QuejaBadge({ slug }) {
         to="/quejas"
         className="mono"
         style={{
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           letterSpacing: '.06em',
           textTransform: 'uppercase',
           textDecoration: 'none',
@@ -162,7 +162,7 @@ function RetribucionBadge({ official }) {
         alignItems: 'center',
         gap: 8,
         fontSize: 11.5,
-        color: 'var(--ink60)',
+        color: 'var(--ink50)',
       }}
     >
       <span className="mono" style={{ fontWeight: 700, color: 'var(--ink)' }}>
@@ -219,7 +219,7 @@ function SalaryGrowth({ official }) {
         <span key={w.years}>
           {w.years} a.{' '}
           {w.pct === null ? (
-            <span style={{ color: 'var(--ink40)' }}>—</span>
+            <span style={{ color: 'var(--ink50)' }}>—</span>
           ) : (
             <span
               style={{ color: w.pct >= 0 ? 'var(--ok-ink)' : 'var(--crit-ink)', fontWeight: 700 }}
@@ -246,7 +246,7 @@ function RetribucionesPanel() {
         className="mono"
         style={{
           fontSize: 10.5,
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
           fontWeight: 700,
@@ -306,7 +306,7 @@ function RetribucionesPanel() {
                   <span style={{ fontWeight: 700 }}>{formatEuros(t.amountEuros)}</span>{' '}
                   {prev && (
                     <span
-                      style={{ color: up ? 'var(--ok)' : down ? 'var(--crit)' : 'var(--ink60)' }}
+                      style={{ color: up ? 'var(--ok)' : down ? 'var(--crit)' : 'var(--ink50)' }}
                     >
                       {up ? '↑' : down ? '↓' : '→'}
                     </span>
@@ -339,7 +339,7 @@ function PlantillaCard() {
         className="mono"
         style={{
           fontSize: 10.5,
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
           fontWeight: 700,
@@ -383,7 +383,7 @@ function PlantillaCard() {
             paddingTop: 10,
             borderTop: '1px solid var(--border)',
             fontSize: 11.5,
-            color: 'var(--ink60)',
+            color: 'var(--ink50)',
             lineHeight: 1.5,
           }}
         >
@@ -437,7 +437,7 @@ function OfficialCard({ o, big = false, bioRoute }) {
               display: 'grid',
               placeItems: 'center',
               background: 'var(--soft)',
-              color: 'var(--ink60)',
+              color: 'var(--ink50)',
               fontWeight: 700,
             }}
           >
@@ -493,7 +493,7 @@ function OfficialCard({ o, big = false, bioRoute }) {
             </Link>
           </div>
           {o.portfolios.length > 0 && (
-            <div style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 4, lineHeight: 1.35 }}>
+            <div style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 4, lineHeight: 1.35 }}>
               {o.portfolios.slice(0, 4).join(' · ')}
               {o.portfolios.length > 4 && ' · …'}
             </div>
@@ -591,7 +591,7 @@ function CompositionBar({ composition, total }) {
           <div key={p} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
             <span style={{ width: 8, height: 8, borderRadius: '50%', background: partyColor(p) }} />
             <span style={{ fontWeight: 600 }}>{p}</span>
-            <span className="mono" style={{ color: 'var(--ink60)' }}>
+            <span className="mono" style={{ color: 'var(--ink50)' }}>
               {n}
             </span>
           </div>
@@ -717,7 +717,7 @@ export default function Cargos() {
         <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
           {t('cargos.title')}
         </div>
-        <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 620 }}>
+        <div style={{ fontSize: 13.5, color: 'var(--ink50)', marginTop: 4, maxWidth: 620 }}>
           Titulares del Ayuntamiento, sus departamentos, presupuesto asignado, promesas adquiridas y
           rendimiento operacional.
         </div>

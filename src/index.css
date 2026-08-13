@@ -48,13 +48,10 @@
      medida para estos tokens compartidos es .60–.82. La aspiración de .45/.30 del
      brandbook no se persigue aquí. Lo vigila tests/brand-tokens.test.js, que lee
      estos valores en vez de repetirlos. */
-  --ink80: rgba(11, 15, 25, 0.82); /* retirado en el paso siguiente */
-  --ink70: rgba(11, 15, 25, 0.78); /* secundario, cuerpo largo */
-  --ink60: rgba(11, 15, 25, 0.64); /* retirado en el paso siguiente */
-  --ink50: rgba(11, 15, 25, 0.62); /* meta, eyebrow, etiqueta */
-  --ink40: rgba(11, 15, 25, 0.6); /* retirado en el paso siguiente */
-  --ink20: rgba(11, 15, 25, 0.12); /* bordes */
-  --ink10: rgba(11, 15, 25, 0.06); /* wash */
+  --ink70: rgba(11, 15, 25, 0.78); /* secundario, cuerpo largo — 9,74:1 */
+  --ink50: rgba(11, 15, 25, 0.62); /* meta, eyebrow, etiqueta — 5,41:1 */
+  --ink20: rgba(11, 15, 25, 0.12); /* bordes — no es texto */
+  --ink10: rgba(11, 15, 25, 0.06); /* wash — no es texto */
 
   /* Radius diet — Brandbook v2 §04 ("Tres radios"). One scale, no free-for-all:
      8 en inputs · 12 en tarjetas · 20 en pills/CTA. */
@@ -110,11 +107,10 @@ html.dark {
   --intel-soft: #1f1830;
   --intel-ink: #c8aef5;
 
-  --ink80: rgba(241, 245, 249, 0.88);
+  /* Los mismos dos alfas que en claro. Oscuro queda algo más alto en ratio
+     porque tinta clara sobre fondo oscuro separa más deprisa; las dos pasan. */
   --ink70: rgba(241, 245, 249, 0.78); /* 10,09:1 sobre --paper */
-  --ink60: rgba(241, 245, 249, 0.72);
-  --ink50: rgba(241, 245, 249, 0.68);
-  --ink40: rgba(241, 245, 249, 0.58);
+  --ink50: rgba(241, 245, 249, 0.62); /* 6,80:1 sobre --paper */
   --ink20: rgba(241, 245, 249, 0.14);
   --ink10: rgba(241, 245, 249, 0.07);
 }

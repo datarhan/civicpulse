@@ -85,7 +85,7 @@ export default function About() {
                       textAlign: 'left',
                       padding: '6px 10px 6px 0',
                       borderBottom: '1px solid var(--border)',
-                      color: 'var(--ink60)',
+                      color: 'var(--ink50)',
                       fontWeight: 600,
                     }}
                   >

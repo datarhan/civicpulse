@@ -45,7 +45,7 @@ export function EspecificacionCard({ e, principal }) {
         </Pill>
       </div>
 
-      <p style={{ margin: '6px 0 10px', color: 'var(--ink60)', fontSize: 13.5, maxWidth: '66ch' }}>
+      <p style={{ margin: '6px 0 10px', color: 'var(--ink50)', fontSize: 13.5, maxWidth: '66ch' }}>
         {e.porQue}
       </p>
 
@@ -123,7 +123,7 @@ export function EspecificacionCard({ e, principal }) {
             />
           </div>
 
-          <p style={{ margin: '12px 0 0', fontSize: 13, color: 'var(--ink60)', maxWidth: '66ch' }}>
+          <p style={{ margin: '12px 0 0', fontSize: 13, color: 'var(--ink50)', maxWidth: '66ch' }}>
             {e.propia.theta >= 0.999 ? (
               <>
                 Ninguna combinación de los municipios observados habría producido lo mismo con

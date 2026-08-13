@@ -55,7 +55,7 @@ function LegalFooter({ snap }) {
         background: 'var(--soft)',
         borderRadius: 8,
         fontSize: 12,
-        color: 'var(--ink60)',
+        color: 'var(--ink50)',
         lineHeight: 1.5,
       }}
     >
@@ -122,7 +122,7 @@ function CompositionBar({ items }) {
               }}
             />
             <span style={{ fontWeight: 600 }}>{party}</span>
-            <span className="mono" style={{ color: 'var(--ink60)' }}>
+            <span className="mono" style={{ color: 'var(--ink50)' }}>
               {n}
             </span>
           </span>
@@ -246,7 +246,7 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
             Evidencia curada · {p.evidence.length}
           </div>
           {p.evidence.map((e, i) => (
-            <div key={i} style={{ fontSize: 11.5, color: 'var(--ink60)', marginBottom: 3 }}>
+            <div key={i} style={{ fontSize: 11.5, color: 'var(--ink50)', marginBottom: 3 }}>
               <span className="mono">{e.date}</span> · {e.publisher} ·{' '}
               <ExtLink href={e.url} style={{ color: 'var(--civic)' }}>
                 ver
@@ -289,7 +289,7 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
             . Esta propuesta no está publicada; sólo un curador humano puede aplicar un cambio de
             estado.
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink60)' }}>
+          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>
             Fundamentación ({suggestion.reasoning.length} evidencias):
           </div>
           <ul style={{ margin: '4px 0 0', paddingLeft: 16, fontSize: 11 }}>
@@ -314,7 +314,7 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
             background: 'var(--intel-soft)',
             borderRadius: 4,
             fontSize: 12,
-            color: 'var(--ink80)',
+            color: 'var(--ink70)',
           }}
         >
           <div
@@ -331,7 +331,7 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
             Evidencia sugerida por LLM · {llmItems.length} fuente{llmItems.length === 1 ? '' : 's'}{' '}
             · pendiente de revisión
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink60)', marginBottom: 5, lineHeight: 1.45 }}>
+          <div style={{ fontSize: 11, color: 'var(--ink50)', marginBottom: 5, lineHeight: 1.45 }}>
             Estas citas han sido identificadas automáticamente por el modelo a partir de prensa,
             actas de pleno, licitaciones, subvenciones y presupuesto.{' '}
             <strong>No publican estado</strong>; un curador debe verificarlas antes de incorporarlas
@@ -489,7 +489,7 @@ export default function Promesas() {
         <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
           {t('promesas.title')}
         </div>
-        <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 780 }}>
+        <div style={{ fontSize: 13.5, color: 'var(--ink50)', marginTop: 4, maxWidth: 780 }}>
           Compromisos públicos atribuidos a partidos y cargos del Ayuntamiento de Riba-roja de
           Túria, cada uno enlazado a su fuente primaria y con cadena de evidencia trazable. Los
           estados se mantienen en <strong>documentada</strong> o <strong>en verificación</strong>{' '}

@@ -109,7 +109,7 @@ function CandidateCard({ c }) {
           el texto que el curador copiaría al comando de corrección. */}
       <div style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--ink70)' }}>{c.text}</div>
       {c.missingWords?.length > 0 && (
-        <div style={{ fontSize: 10.5, color: 'var(--ink60)', marginTop: 4, lineHeight: 1.45 }}>
+        <div style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 4, lineHeight: 1.45 }}>
           <span className="mono" style={{ color: 'var(--ink50)' }}>
             no aparecen aquí:
           </span>{' '}
@@ -212,7 +212,7 @@ export function QuoteReanchorRow({ row }) {
                   style={{
                     fontSize: 11.5,
                     lineHeight: 1.5,
-                    color: 'var(--ink60)',
+                    color: 'var(--ink50)',
                     marginTop: 6,
                     padding: '8px 10px',
                     background: 'var(--soft)',
@@ -235,7 +235,7 @@ export function QuoteReanchorRow({ row }) {
             <CandidateCard key={`${c.rank}-${c.startSeconds}`} c={c} />
           ))}
           {(row.candidates ?? []).length === 0 && (
-            <div style={{ fontSize: 12, color: 'var(--ink60)' }}>
+            <div style={{ fontSize: 12, color: 'var(--ink50)' }}>
               Ningún pasaje del texto nuevo comparte vocabulario con esta cita. Puede que el tramo
               no esté cubierto: no la reanclas, la retiras o la dejas marcada.
             </div>
@@ -276,7 +276,7 @@ export function QuoteReanchorRow({ row }) {
             {copied ? 'Copiado' : 'Copiar'}
           </button>
         </div>
-        <div style={{ fontSize: 11, color: 'var(--ink60)', marginTop: 4, lineHeight: 1.45 }}>
+        <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 4, lineHeight: 1.45 }}>
           Esta pantalla no escribe en <code>public/data/pleno-findings.json</code>. El único
           escritor es la CLI, que exige un motivo de ≥20 caracteres y deja el texto anterior tachado
           en la bitácora pública de la ficha.

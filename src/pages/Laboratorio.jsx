@@ -69,7 +69,7 @@ function KPI({ label, value, hint }) {
         className="mono"
         style={{
           fontSize: 9.5,
-          color: 'var(--ink80)',
+          color: 'var(--ink70)',
           textTransform: 'uppercase',
           letterSpacing: '.08em',
         }}
@@ -79,7 +79,7 @@ function KPI({ label, value, hint }) {
       <div className="mono" style={{ fontSize: 22, fontWeight: 600, marginTop: 4 }}>
         {value}
       </div>
-      {hint && <div style={{ fontSize: 11, color: 'var(--ink60)', marginTop: 4 }}>{hint}</div>}
+      {hint && <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 4 }}>{hint}</div>}
     </div>
   )
 }
@@ -88,7 +88,7 @@ function VerdictMix({ counts }) {
   const entries = Object.entries(counts).filter(([, n]) => n > 0)
   if (entries.length === 0) {
     return (
-      <span className="mono" style={{ fontSize: 11, color: 'var(--ink60)' }}>
+      <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
         sin claims auditados
       </span>
     )
@@ -138,11 +138,11 @@ function TrustIndicators({ indicators }) {
               padding: '2px 7px',
               borderRadius: 11,
               background: on ? 'var(--ok-soft)' : 'var(--soft)',
-              // Inactive chips keep the muted --ink60 ink but DROP the extra
+              // Inactive chips keep the muted --ink50 ink but DROP the extra
               // 0.7 opacity, which compounded the translucency down to a
-              // 2.7:1 contrast against --soft. Full --ink60 is 5.2:1 (light) /
+              // 2.7:1 contrast against --soft. Full --ink50 is 5.2:1 (light) /
               // 8.2:1 (dark) — WCAG AA, still visibly muted vs the active state.
-              color: on ? 'var(--ok-ink)' : 'var(--ink60)',
+              color: on ? 'var(--ok-ink)' : 'var(--ink50)',
             }}
           >
             <span style={{ fontSize: 9 }}>{on ? '●' : '○'}</span>
@@ -165,7 +165,7 @@ function ClaimLedger({ claims }) {
       // 55,6 millones para 17 años»: cifra, plazo y objeto, justo lo que esta
       // página contrasta contra los contratos de PLACSP. Lo que pasó es que el
       // extractor no sacó nada, que es un hecho sobre el extractor.
-      <div style={{ fontSize: 12, color: 'var(--ink60)', fontStyle: 'italic' }}>
+      <div style={{ fontSize: 12, color: 'var(--ink50)', fontStyle: 'italic' }}>
         El extractor no sacó ninguna afirmación de este titular. No es lo mismo que no las tenga.
       </div>
     )
@@ -200,7 +200,7 @@ function ClaimLedger({ claims }) {
         )
       })}
       {claims.length > 4 && (
-        <li className="mono" style={{ fontSize: 11, color: 'var(--ink60)', paddingLeft: 4 }}>
+        <li className="mono" style={{ fontSize: 11, color: 'var(--ink50)', paddingLeft: 4 }}>
           +{claims.length - 4} afirmaciones más en este artículo
         </li>
       )}
@@ -249,7 +249,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
               padding: '1px 5px',
               borderRadius: 3,
               background: 'var(--soft)',
-              color: 'var(--ink60)',
+              color: 'var(--ink50)',
               letterSpacing: '.06em',
             }}
             title="Este artículo ya no aparece en el feed del medio; la ficha se reconstruye a partir de las declaraciones que le auditamos"
@@ -273,7 +273,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
             OFICIAL
           </span>
         )}
-        <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink80)' }}>
+        <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink70)' }}>
           {fmtDate(article.date)}
         </span>
         <span style={{ flex: 1 }} />
@@ -312,7 +312,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
             style={{
               margin: '4px 0 0',
               fontSize: 13,
-              color: 'var(--ink80)',
+              color: 'var(--ink70)',
               lineHeight: 1.55,
             }}
           >
@@ -332,7 +332,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
             background: 'var(--soft)',
             borderRadius: 6,
             fontSize: 11.5,
-            color: 'var(--ink80)',
+            color: 'var(--ink70)',
           }}
         >
           Cobertura comparada · {triangulation.outlets.length} medios:{' '}
@@ -397,7 +397,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
 function OutletScoreboard({ outlets }) {
   if (!outlets || outlets.length === 0) {
     return (
-      <div style={{ fontSize: 12, color: 'var(--ink60)' }}>
+      <div style={{ fontSize: 12, color: 'var(--ink50)' }}>
         Sin medios con suficiente cobertura para una tabla de fiabilidad.
       </div>
     )
@@ -408,7 +408,7 @@ function OutletScoreboard({ outlets }) {
       aria-label="Tabla de fiabilidad por medio"
     >
       <thead>
-        <tr style={{ textAlign: 'left', color: 'var(--ink80)' }}>
+        <tr style={{ textAlign: 'left', color: 'var(--ink70)' }}>
           <th style={{ padding: '4px 0', fontWeight: 600 }}>Medio</th>
           <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Artículos</th>
           <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Verificado</th>
@@ -464,7 +464,7 @@ function FactCheckRail({ factcheck }) {
   const items = factcheck?.items ?? []
   if (items.length === 0) {
     return (
-      <div style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 8, lineHeight: 1.55 }}>
+      <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 8, lineHeight: 1.55 }}>
         Sin verificaciones de terceros indexadas para Riba-roja en este periodo. Fuente: Google Fact
         Check Tools API (Newtral, Maldita, EFE Verifica, AFP Factual). Configurar{' '}
         <code>GOOGLE_FACT_CHECK_API_KEY</code> en .env para activar.
@@ -493,7 +493,7 @@ function FactCheckRail({ factcheck }) {
               >
                 {row.reviewerName}
               </span>
-              <span className="mono" style={{ fontSize: 10, color: 'var(--ink60)' }}>
+              <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
                 {row.reviewDate.slice(0, 10)}
               </span>
             </div>
@@ -504,7 +504,7 @@ function FactCheckRail({ factcheck }) {
         )
       })}
       {items.length > 6 && (
-        <li className="mono" style={{ fontSize: 11, color: 'var(--ink60)' }}>
+        <li className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
           +{items.length - 6} verificaciones más
         </li>
       )}
@@ -520,7 +520,7 @@ function CoverageGaps({ items, stats }) {
     // candidate was skipped and the card still congratulated the local press.
     const examined = stats?.candidatesExamined
     return (
-      <div style={{ fontSize: 12, color: 'var(--ink60)' }}>
+      <div style={{ fontSize: 12, color: 'var(--ink50)' }}>
         {examined === 0
           ? 'No hubo plenos ni promesas nuevas en los últimos 14 días, así que no hay nada que comparar con la cobertura.'
           : 'Sin lagunas detectadas en los últimos 14 días.'}
@@ -535,7 +535,7 @@ function CoverageGaps({ items, stats }) {
             className="mono"
             style={{
               fontSize: 9.5,
-              color: 'var(--ink80)',
+              color: 'var(--ink70)',
               textTransform: 'uppercase',
               marginRight: 6,
             }}
@@ -546,7 +546,7 @@ function CoverageGaps({ items, stats }) {
         </li>
       ))}
       {items.length > 8 && (
-        <li className="mono" style={{ fontSize: 11, color: 'var(--ink60)' }}>
+        <li className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
           +{items.length - 8} más
         </li>
       )}
@@ -651,7 +651,7 @@ export default function Laboratorio() {
 
   if (lab.loading) {
     return (
-      <div className="cp-page" style={{ padding: 24, color: 'var(--ink60)' }}>
+      <div className="cp-page" style={{ padding: 24, color: 'var(--ink50)' }}>
         Cargando laboratorio…
       </div>
     )
@@ -669,7 +669,7 @@ export default function Laboratorio() {
           className="mono"
           style={{
             fontSize: 10.5,
-            color: 'var(--ink80)',
+            color: 'var(--ink70)',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
           }}
@@ -723,7 +723,7 @@ export default function Laboratorio() {
         {/* El laboratorio tiene más de un experimento dentro. Sin este puntero
             la frontera sólo se alcanza por la barra lateral, y un experimento
             que se encuentra por casualidad se lee peor que uno presentado. */}
-        <p style={{ margin: '10px 0 0', fontSize: 13, color: 'var(--ink60)' }}>
+        <p style={{ margin: '10px 0 0', fontSize: 13, color: 'var(--ink50)' }}>
           Otro experimento del laboratorio:{' '}
           <Link
             to="/laboratorio/frontera"
@@ -775,7 +775,7 @@ export default function Laboratorio() {
             background: 'var(--warn-soft)',
             borderRadius: 8,
             fontSize: 13,
-            color: 'var(--ink80)',
+            color: 'var(--ink70)',
             lineHeight: 1.55,
           }}
         >
@@ -841,7 +841,7 @@ export default function Laboratorio() {
             <option value="sin-datos">Sin registro</option>
           </select>
         </label>
-        <span className="mono" style={{ fontSize: 11, color: 'var(--ink60)', marginLeft: 'auto' }}>
+        <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)', marginLeft: 'auto' }}>
           {visible.length} de {summary.monitoredCount} · ventana 30 días
         </span>
       </div>
@@ -934,7 +934,7 @@ export default function Laboratorio() {
                       className="mono"
                       style={{
                         fontSize: 9.5,
-                        color: 'var(--ink80)',
+                        color: 'var(--ink70)',
                         marginRight: 6,
                       }}
                     >
@@ -975,7 +975,7 @@ export default function Laboratorio() {
                                 className="mono"
                                 style={{
                                   fontSize: 9.5,
-                                  color: 'var(--ink60)',
+                                  color: 'var(--ink50)',
                                   marginBottom: 2,
                                 }}
                               >
@@ -984,7 +984,7 @@ export default function Laboratorio() {
                               <div
                                 style={{
                                   textDecoration: 'line-through',
-                                  color: 'var(--ink60)',
+                                  color: 'var(--ink50)',
                                 }}
                               >
                                 {c.original}

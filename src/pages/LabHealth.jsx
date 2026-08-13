@@ -177,7 +177,7 @@ export default function LabHealth() {
         <p
           style={{
             fontSize: 13.5,
-            color: 'var(--ink60)',
+            color: 'var(--ink50)',
             marginTop: 6,
             maxWidth: 780,
             lineHeight: 1.55,

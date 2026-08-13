@@ -61,7 +61,7 @@ function TopDepartmentsCard({ agendas }) {
             }}
           >
             {deptName(d)}
-            <span style={{ marginLeft: 5, color: 'var(--ink60)' }}>· {d.count}</span>
+            <span style={{ marginLeft: 5, color: 'var(--ink50)' }}>· {d.count}</span>
           </Link>
         ))}
       </div>
@@ -105,14 +105,14 @@ function SessionRow({ row, t }) {
         color: 'inherit',
       }}
     >
-      <span className="mono" style={{ fontSize: 12, color: 'var(--ink60)' }}>
+      <span className="mono" style={{ fontSize: 12, color: 'var(--ink50)' }}>
         {fmtDateLong(row.date)}
       </span>
       <span style={{ minWidth: 0 }}>
         <Pill tone={PLENO_TONE[row.kind] || 'ghost'} size="xs">
           {PLENO_LABEL[row.kind] || row.kind}
         </Pill>
-        <Count n={row.agendaCount} label={t('plenosIndex.points')} tone="var(--ink60)" />
+        <Count n={row.agendaCount} label={t('plenosIndex.points')} tone="var(--ink50)" />
         <Count
           n={row.verificado}
           label="✓"
@@ -127,7 +127,7 @@ function SessionRow({ row, t }) {
         />
         <Count n={row.findings} label={t('plenosIndex.findings')} tone="var(--intel-ink)" />
       </span>
-      <span className="mono" style={{ fontSize: 14, color: 'var(--ink40)' }}>
+      <span className="mono" style={{ fontSize: 14, color: 'var(--ink50)' }}>
         →
       </span>
     </Link>

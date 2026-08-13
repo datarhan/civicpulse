@@ -48,7 +48,7 @@ export function ResumenPosiciones({ indicadores = [] }) {
       >
         Dónde queda cada servicio
       </div>
-      <p style={{ margin: '8px 0 0', fontSize: 13.5, color: 'var(--ink70, var(--ink60))' }}>
+      <p style={{ margin: '8px 0 0', fontSize: 13.5, color: 'var(--ink70, var(--ink50))' }}>
         Los <strong className="mono">{conRatio.length}</strong> servicios con coste unitario
         declaran{' '}
         <strong className="mono">
@@ -100,7 +100,7 @@ export function ResumenPosiciones({ indicadores = [] }) {
                   top: 1,
                   bottom: 1,
                   width: 1,
-                  background: 'var(--ink40, rgba(127,127,127,.45))',
+                  background: 'var(--ink50, rgba(127,127,127,.45))',
                 }}
               />
               <span
@@ -119,7 +119,7 @@ export function ResumenPosiciones({ indicadores = [] }) {
 
             <span
               className="mono"
-              style={{ fontSize: 11, color: 'var(--ink60)', textAlign: 'right' }}
+              style={{ fontSize: 11, color: 'var(--ink50)', textAlign: 'right' }}
             >
               p{i.pares.percentil}
             </span>
@@ -147,7 +147,7 @@ export function ResumenPosiciones({ indicadores = [] }) {
       </div>
 
       {sinSituar > 0 && (
-        <p style={{ margin: '10px 0 0', fontSize: 12, color: 'var(--ink60)' }}>
+        <p style={{ margin: '10px 0 0', fontSize: 12, color: 'var(--ink50)' }}>
           {sinSituar === 1
             ? 'Un servicio más tiene coste unitario pero no llega a quince municipios comparables, así que no se sitúa.'
             : `${sinSituar} servicios más tienen coste unitario pero no llegan a quince municipios comparables, así que no se sitúan.`}

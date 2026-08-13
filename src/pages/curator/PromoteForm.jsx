@@ -376,7 +376,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
           ))}
 
           <SectionHead title="Additional evidence (optional)" />
-          <p style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 0 }}>
+          <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 0 }}>
             Paste a URL (HTML article or PDF). The server fetches it, extracts text, and includes it
             in the next LLM draft. Audio and video evidence are <b>not yet supported</b> here —
             transcription needs an async job pipeline that's a follow-up task. Evidence lives in
@@ -471,7 +471,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                         </ExtLink>
                       )}
                     </div>
-                    <div style={{ fontSize: 11.5, color: 'var(--ink60)', lineHeight: 1.4 }}>
+                    <div style={{ fontSize: 11.5, color: 'var(--ink50)', lineHeight: 1.4 }}>
                       {ev.snippet.slice(0, 240)}
                       {ev.snippet.length > 240 ? '…' : ''}
                     </div>
@@ -482,7 +482,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                         gap: 6,
                         marginTop: 6,
                         fontSize: 11,
-                        color: 'var(--ink60)',
+                        color: 'var(--ink50)',
                         cursor: 'pointer',
                         userSelect: 'none',
                       }}
@@ -535,7 +535,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
             >
               Audio / video evidence (transcribed via Whisper)
             </div>
-            <p style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 0 }}>
+            <p style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 0 }}>
               Paste an absolute path to a local audio or video file (under your home directory). The
               server validates the file (size cap 500&nbsp;MB, magic-byte mime sniff), spawns a
               detached transcription job, and the snippet appears in the evidence list when ready.
@@ -674,7 +674,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
           </div>
 
           <SectionHead title="Editorial draft" />
-          <p style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 0 }}>
+          <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 0 }}>
             Severity defaults to <b>notable</b> for contradicho-bearing bundles (auto-curation never
             publishes contradicho material — manual review is the whole point of this queue).
           </p>
@@ -796,7 +796,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 borderRadius: 6,
                 fontSize: 11.5,
                 background: 'var(--soft)',
-                color: 'var(--ink60)',
+                color: 'var(--ink50)',
               }}
             >
               <b>{corroborationPayload.length}</b> evidence will be embedded as{' '}
@@ -845,7 +845,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                   padding: '9px 14px',
                   border: '1px dashed var(--border2)',
                   background: 'transparent',
-                  color: 'var(--ink60)',
+                  color: 'var(--ink50)',
                   borderRadius: 6,
                   cursor: archiving || running || committing ? 'not-allowed' : 'pointer',
                   fontSize: 12.5,

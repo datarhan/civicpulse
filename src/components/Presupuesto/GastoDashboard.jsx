@@ -151,7 +151,7 @@ export default function GastoDashboard() {
                 fontSize: 12.5,
                 padding: '8px 12px',
                 borderBottom: tab === t.id ? '2px solid var(--civic)' : '2px solid transparent',
-                color: tab === t.id ? 'var(--civic)' : 'var(--ink60)',
+                color: tab === t.id ? 'var(--civic)' : 'var(--ink50)',
                 fontWeight: tab === t.id ? 700 : 500,
               }}
             >

@@ -87,7 +87,7 @@ export default function ContractorLeaderboard({ contracts }) {
           {open === t.assignee && (
             <div style={{ paddingLeft: 8, marginTop: 4 }}>
               {(byAssignee.get(t.assignee) || []).slice(0, 20).map((c) => (
-                <div key={c.id} style={{ fontSize: 11.5, color: 'var(--ink60)', padding: '3px 0' }}>
+                <div key={c.id} style={{ fontSize: 11.5, color: 'var(--ink50)', padding: '3px 0' }}>
                   {c.title.length > 90 ? c.title.slice(0, 90) + '…' : c.title} —{' '}
                   <span className="mono">{fmtEur(contractAmount(c))}</span>
                 </div>

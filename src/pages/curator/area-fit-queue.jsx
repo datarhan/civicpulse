@@ -69,7 +69,7 @@ function Assessment({ title, a }) {
           style={{
             margin: '4px 0 0 104px',
             fontSize: 11.5,
-            color: 'var(--ink60)',
+            color: 'var(--ink50)',
             fontStyle: 'italic',
             lineHeight: 1.45,
           }}
@@ -188,7 +188,7 @@ export function AreaFitRow({ row, official, published, onDone }) {
           type="button"
           disabled={!!busy}
           onClick={() => run('reject')}
-          style={btn('var(--ink60)')}
+          style={btn('var(--ink50)')}
         >
           {busy === 'reject' ? '…' : 'Rechazar'}
         </button>

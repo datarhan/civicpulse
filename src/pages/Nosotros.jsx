@@ -15,7 +15,7 @@ function StatCell({ value, label, loading }) {
       <div className="mono" style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.02em' }}>
         {loading ? '—' : value.toLocaleString('es-ES')}
       </div>
-      <div style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 2 }}>{label}</div>
+      <div style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 2 }}>{label}</div>
     </div>
   )
 }
@@ -41,7 +41,7 @@ function ImpactStrip() {
         <StatCell value={s.quejasCount} label="quejas ciudadanas" loading={loading} />
       </div>
       {s.lastFindingAt && (
-        <p style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 10, marginBottom: 0 }}>
+        <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 10, marginBottom: 0 }}>
           Último hallazgo publicado: <span className="mono">{s.lastFindingAt}</span>. Cada cifra
           enlaza con su fuente primaria en las secciones correspondientes del panel.
         </p>

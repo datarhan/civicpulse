@@ -48,7 +48,7 @@ export default function Gestion() {
       <h1 style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
         Cómo funciona la casa por dentro
       </h1>
-      <p style={{ color: 'var(--ink60)', maxWidth: '64ch' }}>
+      <p style={{ color: 'var(--ink50)', maxWidth: '64ch' }}>
         Cuánto tarda en pagar, cuánto dedica por vecino, cuánta competencia hubo en sus contratos y
         qué distancia hay entre el presupuesto que se aprobó y el que se ejecutó. Son medidas de
         plazo y de fricción, no de coste: lo que cuesta cada servicio está en{' '}
@@ -69,11 +69,11 @@ export default function Gestion() {
         </p>
       )}
 
-      {loading && <p style={{ color: 'var(--ink60)' }}>Cargando…</p>}
-      {error && <p style={{ color: 'var(--ink60)' }}>No se pudo cargar el panel.</p>}
+      {loading && <p style={{ color: 'var(--ink50)' }}>Cargando…</p>}
+      {error && <p style={{ color: 'var(--ink50)' }}>No se pudo cargar el panel.</p>}
       {!loading && !error && municipales.length === 0 && (
         <Card style={{ marginTop: 16 }}>
-          <p style={{ margin: 0, color: 'var(--ink60)' }}>
+          <p style={{ margin: 0, color: 'var(--ink50)' }}>
             Todavía no hay indicadores de gestión calculados.
           </p>
         </Card>

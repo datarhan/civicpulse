@@ -314,7 +314,7 @@ function DatasetsCatalog() {
               <div style={{ fontSize: 14.5, fontWeight: 600, letterSpacing: '-.005em' }}>
                 {d.name}
               </div>
-              <div className="mono" style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 3 }}>
+              <div className="mono" style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 3 }}>
                 {d.rows}
               </div>
               <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}>
@@ -324,7 +324,7 @@ function DatasetsCatalog() {
                 Actualizado {d.updated}
               </div>
             </div>
-            <Ic.chart width={16} height={16} style={{ color: 'var(--ink40)', flexShrink: 0 }} />
+            <Ic.chart width={16} height={16} style={{ color: 'var(--ink50)', flexShrink: 0 }} />
           </div>
           <div
             style={{
@@ -397,7 +397,7 @@ function WikidataCard() {
   return (
     <Card>
       <SectionHead eyebrow={`Identidad del municipio · Wikidata ${f.qid}`} title={f.label} />
-      <div style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 2, marginBottom: 12 }}>
+      <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 2, marginBottom: 12 }}>
         {f.description} · actualizado {generated}
       </div>
       <div
@@ -656,7 +656,7 @@ function TransparencyDocsCard() {
               className="mono"
               style={{
                 fontSize: 10.5,
-                color: 'var(--ink60)',
+                color: 'var(--ink50)',
                 textTransform: 'uppercase',
                 letterSpacing: '.06em',
                 marginBottom: 6,
@@ -730,7 +730,7 @@ function AsociacionesCard() {
             key={i}
             style={{
               fontSize: 12.5,
-              color: 'var(--ink80)',
+              color: 'var(--ink70)',
               padding: '3px 0',
               borderBottom: '1px solid var(--border2)',
             }}
@@ -794,7 +794,7 @@ export default function Datos() {
         <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
           {t('datos.title')}
         </div>
-        <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 620 }}>
+        <div style={{ fontSize: 13.5, color: 'var(--ink50)', marginTop: 4, maxWidth: 620 }}>
           Todo lo que alimenta CivicPulse, descargable y consultable vía API. Periodismo,
           investigación y transparencia.
         </div>

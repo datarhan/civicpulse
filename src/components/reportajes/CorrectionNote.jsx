@@ -50,7 +50,7 @@ export function CorrectionNote({ correcciones }) {
             margin: '0 0 26px',
             fontSize: 13.5,
             lineHeight: 1.6,
-            color: 'var(--ink80)',
+            color: 'var(--ink70)',
           }}
         >
           {trozos(c.texto).map((parrafo, i) => (

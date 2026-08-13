@@ -142,7 +142,7 @@ export function HeroBand({ subjectName, portraitPayload, report, party, soulDown
               style={{
                 margin: '8px 0 0 0',
                 fontSize: 'var(--type-lede)',
-                color: 'var(--ink60)',
+                color: 'var(--ink50)',
               }}
             >
               {lastCareer.role} en {lastCareer.org}
@@ -165,7 +165,7 @@ export function HeroBand({ subjectName, portraitPayload, report, party, soulDown
                 gap: 18,
                 flexWrap: 'wrap',
                 fontSize: 12.5,
-                color: 'var(--ink60)',
+                color: 'var(--ink50)',
               }}
             >
               {identity.dateOfBirth && (
@@ -220,6 +220,6 @@ const heroActionStyle = {
   borderRadius: 6,
   border: '1px solid var(--border)',
   background: 'var(--paper)',
-  color: 'var(--ink80)',
+  color: 'var(--ink70)',
   textDecoration: 'none',
 }

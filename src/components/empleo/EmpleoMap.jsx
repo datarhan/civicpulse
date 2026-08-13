@@ -26,7 +26,7 @@ function FitBounds({ points }) {
 export default function EmpleoMap({ points, t }) {
   if (!points || points.length === 0) {
     return (
-      <div style={{ fontSize: 11.5, color: 'var(--ink40)', padding: '8px 0' }}>
+      <div style={{ fontSize: 11.5, color: 'var(--ink50)', padding: '8px 0' }}>
         {t('empleo.mapEmpty')}
       </div>
     )

@@ -38,7 +38,7 @@ function Medicion({ medicion }) {
         background: 'var(--soft)',
         borderRadius: 4,
         fontSize: 12.5,
-        color: 'var(--ink70, var(--ink60))',
+        color: 'var(--ink70, var(--ink50))',
       }}
     >
       <span className="mono" style={{ fontSize: 14, color: 'var(--ink)', fontWeight: 600 }}>
@@ -83,7 +83,7 @@ function FichaEficiencia({ ficha }) {
         {ficha.cuerpo}
       </p>
       {ficha.caveats?.length > 0 && (
-        <ul style={{ margin: '8px 0 0', paddingLeft: 18, fontSize: 12, color: 'var(--ink60)' }}>
+        <ul style={{ margin: '8px 0 0', paddingLeft: 18, fontSize: 12, color: 'var(--ink50)' }}>
           {ficha.caveats.map((c) => (
             <li key={c}>{c}</li>
           ))}
@@ -109,7 +109,7 @@ function FichaEficiencia({ ficha }) {
         </div>
       )}
       {ficha.corrections?.length > 0 && (
-        <div style={{ marginTop: 10, fontSize: 12, color: 'var(--ink60)' }}>
+        <div style={{ marginTop: 10, fontSize: 12, color: 'var(--ink50)' }}>
           {ficha.corrections.map((c) => (
             <p key={`${c.field}-${c.correctedAt}`} style={{ margin: '4px 0 0' }}>
               <strong>Corregido el {c.correctedAt}</strong> ({c.field}):{' '}
@@ -155,7 +155,7 @@ export function HallazgosEficiencia({ data, indicadorIds, otroPanel }) {
       <h2 style={{ fontSize: 15, fontWeight: 650, margin: '0 0 4px', letterSpacing: '-.01em' }}>
         Hallazgos firmados
       </h2>
-      <p style={{ fontSize: 12.5, color: 'var(--ink60)', maxWidth: '64ch', margin: '0 0 10px' }}>
+      <p style={{ fontSize: 12.5, color: 'var(--ink50)', maxWidth: '64ch', margin: '0 0 10px' }}>
         Una ficha por cifra, sobre un servicio y nunca sobre una persona. Cada una congela la
         medición de la que habla —valor, periodo y celda de origen— para que se pueda volver a
         comprobar contra la fuente cuando ésta se mueva.
@@ -165,7 +165,7 @@ export function HallazgosEficiencia({ data, indicadorIds, otroPanel }) {
         <Card>
           {/* Un hueco se lee como «no hay nada que contar». Esto dice qué
               significa el vacío, que es que nadie ha firmado todavía. */}
-          <p style={{ margin: 0, fontSize: 13, color: 'var(--ink60)' }}>
+          <p style={{ margin: 0, fontSize: 13, color: 'var(--ink50)' }}>
             Todavía no hay ninguna ficha firmada sobre estas cifras. El panel de arriba señala por
             sí solo dónde se sale cada una; un hallazgo exige además que alguien haya comprobado el
             expediente y puesto su nombre, y eso no ha ocurrido aún.
@@ -191,7 +191,7 @@ export function HallazgosEficiencia({ data, indicadorIds, otroPanel }) {
       )}
 
       {items.length > 0 && enOtroSitio > 0 && otroPanel && (
-        <p style={{ margin: '10px 0 0', fontSize: 12.5, color: 'var(--ink60)' }}>
+        <p style={{ margin: '10px 0 0', fontSize: 12.5, color: 'var(--ink50)' }}>
           Hay{' '}
           <a href={otroPanel.to} style={{ color: 'var(--civic)' }}>
             {enOtroSitio === 1 ? 'otra ficha firmada' : `otras ${enOtroSitio} fichas firmadas`} en{' '}
@@ -202,7 +202,7 @@ export function HallazgosEficiencia({ data, indicadorIds, otroPanel }) {
       )}
 
       {retiradas.length > 0 && (
-        <div style={{ marginTop: 12, fontSize: 12, color: 'var(--ink60)' }}>
+        <div style={{ marginTop: 12, fontSize: 12, color: 'var(--ink50)' }}>
           <strong>
             {retiradas.length} ficha{retiradas.length === 1 ? '' : 's'} retirada
             {retiradas.length === 1 ? '' : 's'}.

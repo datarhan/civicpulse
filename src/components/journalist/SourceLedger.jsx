@@ -109,16 +109,16 @@ function SourceRow({ src, num }) {
       >
         <td
           className="mono"
-          style={{ padding: '8px 10px', color: 'var(--ink60)', verticalAlign: 'top' }}
+          style={{ padding: '8px 10px', color: 'var(--ink50)', verticalAlign: 'top' }}
         >
           [{num}]
         </td>
-        <td style={{ padding: '8px 10px', color: 'var(--ink80)', verticalAlign: 'top' }}>
+        <td style={{ padding: '8px 10px', color: 'var(--ink70)', verticalAlign: 'top' }}>
           {src.url ? (
             <ExtLink
               href={src.url}
               onClick={(e) => e.stopPropagation()}
-              style={{ color: 'var(--ink80)' }}
+              style={{ color: 'var(--ink70)' }}
             >
               {src.title}
             </ExtLink>
@@ -126,18 +126,18 @@ function SourceRow({ src, num }) {
             src.title
           )}
         </td>
-        <td style={{ padding: '8px 10px', color: 'var(--ink60)', verticalAlign: 'top' }}>
+        <td style={{ padding: '8px 10px', color: 'var(--ink50)', verticalAlign: 'top' }}>
           {src.publisher ?? '—'}
         </td>
         <td
           className="mono"
-          style={{ padding: '8px 10px', color: 'var(--ink60)', verticalAlign: 'top' }}
+          style={{ padding: '8px 10px', color: 'var(--ink50)', verticalAlign: 'top' }}
         >
           {src.publishedAt ?? '—'}
         </td>
         <td
           className="mono"
-          style={{ padding: '8px 10px', color: 'var(--ink60)', verticalAlign: 'top' }}
+          style={{ padding: '8px 10px', color: 'var(--ink50)', verticalAlign: 'top' }}
         >
           {src.retrievedAt?.slice(0, 10) ?? '—'}
           {/* The date is when we read the DOCUMENT; the link above may point
@@ -163,7 +163,7 @@ function SourceRow({ src, num }) {
             <ExtLink
               href={src.archiveUrl}
               onClick={(e) => e.stopPropagation()}
-              style={{ color: 'var(--ink60)', fontSize: 11.5 }}
+              style={{ color: 'var(--ink50)', fontSize: 11.5 }}
             >
               Wayback ↗
             </ExtLink>
@@ -180,7 +180,7 @@ function SourceRow({ src, num }) {
         <tr>
           <td colSpan={7} style={{ padding: '4px 16px 12px 38px', background: 'var(--soft)' }}>
             {src.excerpt && (
-              <span style={{ fontSize: 12, fontStyle: 'italic', color: 'var(--ink60)' }}>
+              <span style={{ fontSize: 12, fontStyle: 'italic', color: 'var(--ink50)' }}>
                 «{src.excerpt}»
               </span>
             )}

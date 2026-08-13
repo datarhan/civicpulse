@@ -63,7 +63,7 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
       >
         {t('eficiencia.cobertura.titulo')}
       </div>
-      <p style={{ margin: '8px 0 0', fontSize: 13.5, color: 'var(--ink70, var(--ink60))' }}>
+      <p style={{ margin: '8px 0 0', fontSize: 13.5, color: 'var(--ink70, var(--ink50))' }}>
         De los <strong className="mono">{universe.serviciosEnRegistro}</strong> servicios que este
         panel sigue:{' '}
         {filas.map((f, idx) => (
@@ -83,7 +83,7 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
             paddingLeft: 10,
             borderLeft: '3px solid var(--warn)',
             fontSize: 13,
-            color: 'var(--ink70, var(--ink60))',
+            color: 'var(--ink70, var(--ink50))',
           }}
         >
           {congelados.length === conRatio.length ? (
@@ -113,7 +113,7 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
         </p>
       )}
       {cobertura && (
-        <p style={{ margin: '8px 0 0', fontSize: 12, color: 'var(--ink60)' }}>
+        <p style={{ margin: '8px 0 0', fontSize: 12, color: 'var(--ink50)' }}>
           Entregas publicadas por el ministerio:{' '}
           <span className="mono">{cobertura.entregasPublicadas?.join(', ')}</span>. Obtenidas aquí:{' '}
           <span className="mono">{cobertura.entregasObtenidas?.join(', ')}</span>.{' '}

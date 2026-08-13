@@ -57,7 +57,7 @@ export default function Eficiencia() {
       <h1 style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
         {t('eficiencia.title')}
       </h1>
-      <p style={{ color: 'var(--ink60)', maxWidth: '64ch' }}>{t('eficiencia.intro')}</p>
+      <p style={{ color: 'var(--ink50)', maxWidth: '64ch' }}>{t('eficiencia.intro')}</p>
 
       {/* Índice, no conclusión.
           Las fichas firmadas siguen AL FINAL y por el motivo de siempre: una
@@ -76,11 +76,11 @@ export default function Eficiencia() {
         </p>
       )}
 
-      {loading && <p style={{ color: 'var(--ink60)' }}>Cargando…</p>}
-      {error && <p style={{ color: 'var(--ink60)' }}>No se pudo cargar el panel.</p>}
+      {loading && <p style={{ color: 'var(--ink50)' }}>Cargando…</p>}
+      {error && <p style={{ color: 'var(--ink50)' }}>No se pudo cargar el panel.</p>}
       {!loading && !error && indicadores.length === 0 && (
         <Card style={{ marginTop: 16 }}>
-          <p style={{ margin: 0, color: 'var(--ink60)' }}>{t('eficiencia.empty')}</p>
+          <p style={{ margin: 0, color: 'var(--ink50)' }}>{t('eficiencia.empty')}</p>
         </Card>
       )}
 

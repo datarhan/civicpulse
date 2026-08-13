@@ -29,7 +29,7 @@ export function Topbar({ crumb, onOpenCmdK, onOpenSidebar }) {
           height: 36,
           borderRadius: 8,
           placeItems: 'center',
-          color: 'var(--ink80)',
+          color: 'var(--ink70)',
           background: 'var(--soft)',
           flexShrink: 0,
         }}
@@ -62,7 +62,7 @@ export function Topbar({ crumb, onOpenCmdK, onOpenSidebar }) {
         >
           Riba-roja de Túria
         </span>
-        <span className="cp-topbar-muni" style={{ color: 'var(--ink40)' }}>
+        <span className="cp-topbar-muni" style={{ color: 'var(--ink50)' }}>
           /
         </span>
         <span

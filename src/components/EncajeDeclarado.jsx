@@ -144,7 +144,7 @@ function RespaldoLine({ value, style = {} }) {
   const t = useT()
   if (!RESPALDO_CON_COPIA.includes(value)) return null
   return (
-    <div style={{ fontSize: 10.5, color: 'var(--ink60)', lineHeight: 1.45, ...style }}>
+    <div style={{ fontSize: 10.5, color: 'var(--ink50)', lineHeight: 1.45, ...style }}>
       {t(`encaje.respaldo.${value}`)}
     </div>
   )
@@ -163,7 +163,7 @@ function RespaldoLine({ value, style = {} }) {
 function ComparadoLine({ style = {} }) {
   const t = useT()
   return (
-    <div style={{ fontSize: 10.5, color: 'var(--ink60)', lineHeight: 1.45, ...style }}>
+    <div style={{ fontSize: 10.5, color: 'var(--ink50)', lineHeight: 1.45, ...style }}>
       {t('encaje.card.sinCita')}
     </div>
   )
@@ -174,7 +174,7 @@ function RespaldoMark({ value }) {
   const t = useT()
   if (!RESPALDO_CON_COPIA.includes(value)) return null
   return (
-    <span className="mono" style={{ fontSize: 9.5, color: 'var(--ink60)', whiteSpace: 'nowrap' }}>
+    <span className="mono" style={{ fontSize: 9.5, color: 'var(--ink50)', whiteSpace: 'nowrap' }}>
       {t(`encaje.respaldo.mark.${value}`)}
     </span>
   )
@@ -279,7 +279,7 @@ export function EncajeCard({ official, bioRoute }) {
                 lineHeight: 1.5,
               }}
             >
-              <span style={{ color: 'var(--ink60)', flexShrink: 0, minWidth: 104 }}>
+              <span style={{ color: 'var(--ink50)', flexShrink: 0, minWidth: 104 }}>
                 {t(`encaje.field.${field}`)}
               </span>
               {/* The Pill remains the whole answer for `sin-relacion-declarada`
@@ -293,7 +293,7 @@ export function EncajeCard({ official, bioRoute }) {
                 <span style={{ color: 'var(--ink)', minWidth: 0 }}>
                   <TruncatedList items={credenciales} />
                   {areas.length > 0 && (
-                    <span style={{ display: 'block', color: 'var(--ink60)', fontSize: 11 }}>
+                    <span style={{ display: 'block', color: 'var(--ink50)', fontSize: 11 }}>
                       {t('encaje.card.soloEn')} <TruncatedList items={areas} />
                     </span>
                   )}
@@ -404,7 +404,7 @@ export function EncajeMatrix({ official, bioRoute }) {
       <h2 style={{ fontSize: 19, fontWeight: 600, margin: '6px 0 4px' }}>
         {t('encaje.matrix.title')}
       </h2>
-      <p style={{ fontSize: 13, color: 'var(--ink60)', lineHeight: 1.55, margin: '0 0 14px' }}>
+      <p style={{ fontSize: 13, color: 'var(--ink50)', lineHeight: 1.55, margin: '0 0 14px' }}>
         {t('encaje.matrix.intro')}
       </p>
 
@@ -516,7 +516,7 @@ export function EncajeMatrix({ official, bioRoute }) {
                     paddingTop: 8,
                     borderTop: '1px dashed var(--border2)',
                     fontSize: 11.5,
-                    color: 'var(--ink60)',
+                    color: 'var(--ink50)',
                     lineHeight: 1.5,
                   }}
                 >
@@ -656,7 +656,7 @@ export function QueExigeLaLey() {
                 style={{
                   margin: '7px 0 0',
                   fontSize: 12,
-                  color: 'var(--ink60)',
+                  color: 'var(--ink50)',
                   lineHeight: 1.55,
                 }}
               >

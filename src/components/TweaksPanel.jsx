@@ -26,7 +26,7 @@ function TwkSelect({ label, value, onChange, opts }) {
               borderRadius: 6,
               fontSize: 11.5,
               background: value === o.v ? 'var(--civic)' : 'var(--soft)',
-              color: value === o.v ? 'white' : 'var(--ink80)',
+              color: value === o.v ? 'white' : 'var(--ink70)',
               fontWeight: value === o.v ? 600 : 500,
             }}
           >
@@ -101,7 +101,7 @@ export function TweaksPanel({ open, onClose, state, onChange }) {
       >
         <Ic.settings width={14} height={14} style={{ color: 'var(--ink50)' }} />
         <div style={{ fontSize: 12.5, fontWeight: 600, flex: 1 }}>{t('tweaks.title')}</div>
-        <button onClick={onClose} className="mono" style={{ fontSize: 10, color: 'var(--ink40)' }}>
+        <button onClick={onClose} className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
           {t('tweaks.close')}
         </button>
       </div>
@@ -152,7 +152,7 @@ export function TweaksButton({ onOpen }) {
         boxShadow: '0 4px 12px rgba(11,15,25,.08)',
         display: 'grid',
         placeItems: 'center',
-        color: 'var(--ink60)',
+        color: 'var(--ink50)',
         zIndex: 30,
       }}
     >

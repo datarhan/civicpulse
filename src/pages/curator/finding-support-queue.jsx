@@ -169,7 +169,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
         <div
           style={{
             fontSize: 11.5,
-            color: 'var(--ink60)',
+            color: 'var(--ink50)',
             fontStyle: 'italic',
             lineHeight: 1.45,
             marginBottom: 6,
@@ -206,7 +206,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
               {row.documentaryConnectors.map((c, i) => (
                 <div
                   key={`${c.name}-${i}`}
-                  style={{ fontSize: 11.5, color: 'var(--ink60)', lineHeight: 1.45 }}
+                  style={{ fontSize: 11.5, color: 'var(--ink50)', lineHeight: 1.45 }}
                 >
                   <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
                     [{c.name}]
@@ -217,7 +217,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
             </div>
           )}
           {row.hedges?.length > 0 && (
-            <div style={{ marginTop: 6, fontSize: 11.5, color: 'var(--ink60)' }}>
+            <div style={{ marginTop: 6, fontSize: 11.5, color: 'var(--ink50)' }}>
               <Label>Matices detectados</Label>
               {row.hedges.map((h) => `${h.name}: «${h.match}»`).join(' · ')}
             </div>
@@ -251,7 +251,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
             <ExcerptCard key={`${c.ref}-${i}`} ref_={c.ref} kind={c.kind} excerpt={c.excerpt} />
           ))}
           {(row.crossChecked ?? []).length === 0 && (
-            <div style={{ fontSize: 12, color: 'var(--ink60)' }}>
+            <div style={{ fontSize: 12, color: 'var(--ink50)' }}>
               Ningún documento cotejado. El sumario no puede apoyarse en uno.
             </div>
           )}
@@ -296,7 +296,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
           ))}
         </select>
         {chosen && (
-          <span style={{ fontSize: 11.5, color: 'var(--ink60)', flex: 1, minWidth: 220 }}>
+          <span style={{ fontSize: 11.5, color: 'var(--ink50)', flex: 1, minWidth: 220 }}>
             {chosen.question}
           </span>
         )}
@@ -336,7 +336,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
               {copied ? 'Copiado' : 'Copiar'}
             </button>
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink60)', marginTop: 4, lineHeight: 1.45 }}>
+          <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 4, lineHeight: 1.45 }}>
             Esta pantalla no escribe en <code>public/data/pleno-findings.json</code>. El único
             escritor es la CLI, que exige un motivo de ≥20 caracteres y deja fila pública en la
             bitácora.

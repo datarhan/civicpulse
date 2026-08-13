@@ -61,7 +61,7 @@ function SindicCard() {
                 >
                   Expte {r.expediente}
                 </span>
-                <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink60)' }}>
+                <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
                   {fmtDateShort(r.fecha)}
                 </span>
                 <Pill tone={SINDIC_SENTIDO_TONE[r.sentido] || 'ghost'} size="xs">
@@ -134,7 +134,7 @@ function Findings({ f, year }) {
       <div style={{ marginTop: 6, borderLeft: '2px solid var(--border2)', paddingLeft: 10 }}>
         {groups.map(([cat, items]) => (
           <div key={cat} style={{ marginBottom: 8 }}>
-            <div style={{ ...headStyle, color: 'var(--ink60)' }}>{cat}</div>
+            <div style={{ ...headStyle, color: 'var(--ink50)' }}>{cat}</div>
             <ul style={{ margin: '3px 0 0', paddingLeft: 18 }}>
               {items.map((d) => (
                 <li key={d.n} style={liStyle}>
@@ -184,7 +184,7 @@ function Art218({ a }) {
           height: 8,
           borderRadius: '50%',
           flexShrink: 0,
-          background: ok ? 'var(--ok)' : notable ? 'var(--warn)' : 'var(--ink40)',
+          background: ok ? 'var(--ok)' : notable ? 'var(--warn)' : 'var(--ink50)',
         }}
       />
       {children}
@@ -206,7 +206,7 @@ function Art218({ a }) {
           fontWeight: 700,
           textTransform: 'uppercase',
           letterSpacing: '.04em',
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           marginBottom: 6,
         }}
       >
@@ -250,7 +250,7 @@ function SindicaturaCard() {
   const Report = ({ r, dedicatedRow }) => (
     <div key={r.id} style={{ padding: '9px 0', borderTop: '1px dotted var(--border2)' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
-        <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink60)', fontWeight: 700 }}>
+        <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', fontWeight: 700 }}>
           {r.year}
         </span>
         <Pill tone={dedicatedRow ? 'intel' : 'ghost'} size="xs">
@@ -289,7 +289,7 @@ function SindicaturaCard() {
         </div>
       ) : (
         <div style={{ marginTop: 8 }}>
-          <div style={{ fontSize: 12, color: 'var(--ink60)', lineHeight: 1.5, marginBottom: 4 }}>
+          <div style={{ fontSize: 12, color: 'var(--ink50)', lineHeight: 1.5, marginBottom: 4 }}>
             La Sindicatura audita <em>a posteriori</em> si el dinero público se gestionó
             correctamente — el complemento fiscalizador al Síndic de Greuges y el CTBG.
           </div>
@@ -355,7 +355,7 @@ function ConsellCvCard() {
   const sentidoColor = (s) => {
     if (/desestimat/i.test(s)) return 'var(--ok)'
     if (/estimat/i.test(s)) return 'var(--warn)'
-    return 'var(--ink60)'
+    return 'var(--ink50)'
   }
   return (
     <Card style={{ marginTop: 14 }}>
@@ -442,7 +442,7 @@ function ConsellCvCard() {
         </div>
       )}
       {stats.matchedEntries === 0 && (
-        <div style={{ marginTop: 12, fontSize: 12.5, color: 'var(--ink60)', lineHeight: 1.55 }}>
+        <div style={{ marginTop: 12, fontSize: 12.5, color: 'var(--ink50)', lineHeight: 1.55 }}>
           El Consell de Transparència CV es el órgano autonómico que resuelve reclamaciones
           municipales de transparencia (art. 24 Ley 19/2013 + Ley 1/2022). Un "0" aquí es un dato en
           sí mismo: no se ha escalado formalmente ningún silencio del Ayuntamiento de Riba-roja en
@@ -539,7 +539,7 @@ function CtbgCard() {
         </div>
       )}
       {stats.matchedEntries === 0 && (
-        <div style={{ marginTop: 12, fontSize: 12.5, color: 'var(--ink60)', lineHeight: 1.55 }}>
+        <div style={{ marginTop: 12, fontSize: 12.5, color: 'var(--ink50)', lineHeight: 1.55 }}>
           El CTBG gestiona reclamaciones de ámbito estatal. Las reclamaciones municipales se
           tramitan ante el
           <strong> Consell de Transparència de la Comunitat Valenciana</strong>. El Síndic de
@@ -778,7 +778,7 @@ function DashboardView({ data }) {
                 <span style={{ flex: 1, fontSize: 13 }}>{CATEGORY_LABEL[cat] || cat}</span>
                 <span
                   className="mono"
-                  style={{ fontSize: 12, color: 'var(--ink60)', minWidth: 24, textAlign: 'right' }}
+                  style={{ fontSize: 12, color: 'var(--ink50)', minWidth: 24, textAlign: 'right' }}
                 >
                   {n}
                 </span>
@@ -814,7 +814,7 @@ function DashboardView({ data }) {
                 <span style={{ flex: 1, fontSize: 13 }}>{prettyNeighborhood(slug)}</span>
                 <span
                   className="mono"
-                  style={{ fontSize: 12, color: 'var(--ink60)', minWidth: 24, textAlign: 'right' }}
+                  style={{ fontSize: 12, color: 'var(--ink50)', minWidth: 24, textAlign: 'right' }}
                 >
                   {n}
                 </span>
@@ -864,7 +864,7 @@ function DashboardView({ data }) {
                 textDecoration: 'none',
               }}
             >
-              <span className="mono" style={{ fontSize: 11, color: 'var(--ink60)' }}>
+              <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
                 {it.service_request_id}
               </span>
               <div style={{ minWidth: 0 }}>
@@ -890,7 +890,7 @@ function DashboardView({ data }) {
               </div>
               <span
                 className="mono"
-                style={{ fontSize: 11, color: 'var(--ink60)', textAlign: 'right' }}
+                style={{ fontSize: 11, color: 'var(--ink50)', textAlign: 'right' }}
               >
                 👍 {it.apoyos}
               </span>
@@ -992,7 +992,7 @@ export default function Quejas() {
         <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
           {t('quejas.title')}
         </div>
-        <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 620 }}>
+        <div style={{ fontSize: 13.5, color: 'var(--ink50)', marginTop: 4, maxWidth: 620 }}>
           Canal público de quejas para Riba-roja. Presenta vía Telegram ·{' '}
           <a
             href={TELEGRAM_BOT_URL}

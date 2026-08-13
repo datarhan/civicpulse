@@ -29,7 +29,7 @@ export function NarrativeBlock({ payload, sourceMap }) {
           marginTop: 10,
           fontSize: 'var(--type-lede)',
           lineHeight: 1.65,
-          color: 'var(--ink80)',
+          color: 'var(--ink70)',
           whiteSpace: 'pre-wrap',
         }}
       >
@@ -43,7 +43,7 @@ export function NarrativeBlock({ payload, sourceMap }) {
 // ─── Section: identity card ──────────────────────────────────────────────
 
 export function IdentityCard({ payload, sourceMap }) {
-  const cellStyle = { fontSize: 13, color: 'var(--ink80)', padding: '6px 0' }
+  const cellStyle = { fontSize: 13, color: 'var(--ink70)', padding: '6px 0' }
   const labelStyle = {
     fontSize: 10.5,
     letterSpacing: '.06em',
@@ -106,7 +106,7 @@ export function IdentityCard({ payload, sourceMap }) {
               <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
                 {payload.family.map((f, i) => (
                   <li key={i}>
-                    <span style={{ color: 'var(--ink60)' }}>{f.relation}</span>
+                    <span style={{ color: 'var(--ink50)' }}>{f.relation}</span>
                     {f.name && <span>: {f.name}</span>}
                     <CitationPills ids={f.sourceIds} sourceMap={sourceMap} />
                   </li>
@@ -134,9 +134,9 @@ export function EducationList({ payload, sourceMap }) {
               {formatYearSpan(e.startYear, e.endYear) || '—'}
             </span>
             <div style={{ flex: 1 }}>
-              <div style={{ color: 'var(--ink80)', fontSize: 13.5 }}>{e.degree}</div>
+              <div style={{ color: 'var(--ink70)', fontSize: 13.5 }}>{e.degree}</div>
               {e.institution && (
-                <div style={{ color: 'var(--ink60)', fontSize: 12 }}>{e.institution}</div>
+                <div style={{ color: 'var(--ink50)', fontSize: 12 }}>{e.institution}</div>
               )}
             </div>
             <CitationPills ids={e.sourceIds} sourceMap={sourceMap} />
@@ -182,11 +182,11 @@ export function CareerLadder({ payload, sourceMap, label, openLabel = 'presente'
                   border: '2px solid var(--paper)',
                 }}
               />
-              <div className="mono" style={{ fontSize: 11, color: 'var(--ink60)' }}>
+              <div className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
                 {span || '—'}
               </div>
               <div style={{ marginTop: 2, fontSize: 14, color: 'var(--ink)' }}>{c.role}</div>
-              <div style={{ color: 'var(--ink60)', fontSize: 12.5 }}>
+              <div style={{ color: 'var(--ink50)', fontSize: 12.5 }}>
                 {c.org}
                 <CitationPills ids={c.sourceIds} sourceMap={sourceMap} />
               </div>
@@ -205,7 +205,7 @@ export function LegalRecord({ payload, sourceMap }) {
   return (
     <Card style={{ borderLeft: '4px solid var(--crit)' }}>
       <SectionHead title="Procesos judiciales" />
-      <p style={{ margin: 0, fontSize: 12, color: 'var(--ink60)', fontStyle: 'italic' }}>
+      <p style={{ margin: 0, fontSize: 12, color: 'var(--ink50)', fontStyle: 'italic' }}>
         ⚠ Esta sección activa la sensibilidad legal alta. Las afirmaciones se citan verbatim del
         registro público y aceptan derecho de réplica abierto.
       </p>
@@ -222,7 +222,7 @@ export function LegalRecord({ payload, sourceMap }) {
               >
                 {l.caseRef}
               </span>
-              <span style={{ fontSize: 12, color: 'var(--ink60)' }}>{l.court}</span>
+              <span style={{ fontSize: 12, color: 'var(--ink50)' }}>{l.court}</span>
               {l.date && (
                 <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
                   · {l.date}
@@ -231,7 +231,7 @@ export function LegalRecord({ payload, sourceMap }) {
               <CitationPills ids={l.sourceIds} sourceMap={sourceMap} />
             </div>
             {l.outcome && (
-              <div style={{ marginTop: 4, fontSize: 12.5, color: 'var(--ink80)' }}>
+              <div style={{ marginTop: 4, fontSize: 12.5, color: 'var(--ink70)' }}>
                 <strong>Resultado:</strong> {l.outcome}
               </div>
             )}
@@ -240,7 +240,7 @@ export function LegalRecord({ payload, sourceMap }) {
                 margin: '6px 0 0 0',
                 padding: '4px 12px',
                 borderLeft: '3px solid var(--crit-soft)',
-                color: 'var(--ink60)',
+                color: 'var(--ink50)',
                 fontStyle: 'italic',
                 fontSize: 12.5,
               }}
@@ -281,10 +281,10 @@ export function FinancialPanel({ payload, sourceMap }) {
         <tbody>
           {payload.items.map((f, i) => (
             <tr key={i} style={{ borderTop: '1px solid var(--border)' }}>
-              <td className="mono" style={{ padding: '8px 8px 8px 0', color: 'var(--ink60)' }}>
+              <td className="mono" style={{ padding: '8px 8px 8px 0', color: 'var(--ink50)' }}>
                 {f.year}
               </td>
-              <td style={{ padding: '8px', color: 'var(--ink80)' }}>
+              <td style={{ padding: '8px', color: 'var(--ink70)' }}>
                 <div style={{ fontWeight: 500 }}>
                   {f.metric === 'salary'
                     ? 'Salario público'
@@ -292,7 +292,7 @@ export function FinancialPanel({ payload, sourceMap }) {
                       ? 'Bienes declarados'
                       : 'Actividad empresarial'}
                 </div>
-                <div style={{ color: 'var(--ink60)', fontSize: 11.5 }}>{f.description}</div>
+                <div style={{ color: 'var(--ink50)', fontSize: 11.5 }}>{f.description}</div>
               </td>
               <td
                 className="mono"
@@ -329,7 +329,7 @@ export function OnlinePresenceRow({ payload, sourceMap }) {
             <Pill tone="intel" size="sm">
               {a.platform}
             </Pill>
-            <ExtLink href={a.url} style={{ color: 'var(--ink80)' }}>
+            <ExtLink href={a.url} style={{ color: 'var(--ink70)' }}>
               {a.handle}
             </ExtLink>
             {a.verifiedAt && (
@@ -359,8 +359,8 @@ export function AwardsList({ payload, sourceMap }) {
               {a.year ?? '—'}
             </span>
             <div style={{ flex: 1 }}>
-              <div style={{ color: 'var(--ink80)' }}>{a.name}</div>
-              <div style={{ color: 'var(--ink60)', fontSize: 11.5 }}>{a.awardedBy}</div>
+              <div style={{ color: 'var(--ink70)' }}>{a.name}</div>
+              <div style={{ color: 'var(--ink50)', fontSize: 11.5 }}>{a.awardedBy}</div>
             </div>
             <CitationPills ids={a.sourceIds} sourceMap={sourceMap} />
           </li>
@@ -384,13 +384,13 @@ export function PublicationsList({ payload, sourceMap }) {
               {p.year ?? '—'}
             </span>
             <div style={{ flex: 1 }}>
-              <div style={{ color: 'var(--ink80)' }}>
+              <div style={{ color: 'var(--ink70)' }}>
                 «{p.title}»
                 <CitationPills ids={p.sourceIds} sourceMap={sourceMap} />
               </div>
-              <div style={{ color: 'var(--ink60)', fontSize: 11.5 }}>
+              <div style={{ color: 'var(--ink50)', fontSize: 11.5 }}>
                 {p.url ? (
-                  <ExtLink href={p.url} style={{ color: 'var(--ink60)' }}>
+                  <ExtLink href={p.url} style={{ color: 'var(--ink50)' }}>
                     {p.venue} ↗
                   </ExtLink>
                 ) : (
@@ -412,14 +412,14 @@ export function GapsDetected({ payload }) {
   return (
     <Card style={{ borderLeft: '4px solid var(--warn)' }}>
       <SectionHead title="Lagunas detectadas" />
-      <p style={{ margin: 0, fontSize: 12, color: 'var(--ink60)', fontStyle: 'italic' }}>
+      <p style={{ margin: 0, fontSize: 12, color: 'var(--ink50)', fontStyle: 'italic' }}>
         Lo que el agente buscó y no pudo verificar en fuentes accesibles. Honestidad por defecto.
       </p>
       <ul style={{ margin: '10px 0 0 0', padding: 0, listStyle: 'none', display: 'grid', gap: 6 }}>
         {payload.missing.map((g, i) => (
           <li key={i} style={{ fontSize: 12.5 }}>
-            <span style={{ fontWeight: 500, color: 'var(--ink80)' }}>{g.field}:</span>{' '}
-            <span style={{ color: 'var(--ink60)' }}>{g.reason}</span>
+            <span style={{ fontWeight: 500, color: 'var(--ink70)' }}>{g.field}:</span>{' '}
+            <span style={{ color: 'var(--ink50)' }}>{g.reason}</span>
           </li>
         ))}
       </ul>
@@ -435,7 +435,7 @@ export function CareerTimeline({ payload, sourceMap }) {
   return (
     <Card>
       <SectionHead title="Cronología" />
-      <p style={{ margin: '0 0 6px 0', fontSize: 12, color: 'var(--ink60)', fontStyle: 'italic' }}>
+      <p style={{ margin: '0 0 6px 0', fontSize: 12, color: 'var(--ink50)', fontStyle: 'italic' }}>
         Hitos documentados de la biografía y del cargo, cada uno con su fuente.
       </p>
       <ol style={{ margin: 0, padding: 0, listStyle: 'none' }}>
@@ -453,7 +453,7 @@ export function CareerTimeline({ payload, sourceMap }) {
             <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)', minWidth: 88 }}>
               {formatEventDate(e.date)}
             </span>
-            <span style={{ fontSize: 13, color: 'var(--ink80)' }}>
+            <span style={{ fontSize: 13, color: 'var(--ink70)' }}>
               {e.label}
               <CitationPills ids={e.sourceIds} sourceMap={sourceMap} />
             </span>
@@ -522,7 +522,7 @@ export function RelationshipGraph({ payload, sourceMap }) {
                 y={pos.y + r + 14}
                 textAnchor="middle"
                 fontSize={Math.max(10, size * 0.022)}
-                fill="var(--ink80)"
+                fill="var(--ink70)"
               >
                 {n.label}
               </text>
@@ -546,7 +546,7 @@ export function RelationshipGraph({ payload, sourceMap }) {
               borderRadius: 6,
               border: '1px solid var(--border)',
               background: 'transparent',
-              color: 'var(--ink60)',
+              color: 'var(--ink50)',
               cursor: 'pointer',
             }}
           >
@@ -561,9 +561,9 @@ export function RelationshipGraph({ payload, sourceMap }) {
             const fromLabel = nodes.find((n) => n.id === e.from)?.label ?? e.from
             const toLabel = nodes.find((n) => n.id === e.to)?.label ?? e.to
             return (
-              <li key={i} style={{ color: 'var(--ink60)', padding: '3px 0' }}>
-                <span style={{ color: 'var(--ink80)' }}>{fromLabel}</span> · {e.relation} ·{' '}
-                <span style={{ color: 'var(--ink80)' }}>{toLabel}</span>
+              <li key={i} style={{ color: 'var(--ink50)', padding: '3px 0' }}>
+                <span style={{ color: 'var(--ink70)' }}>{fromLabel}</span> · {e.relation} ·{' '}
+                <span style={{ color: 'var(--ink70)' }}>{toLabel}</span>
                 <CitationPills ids={e.sourceIds} sourceMap={sourceMap} />
               </li>
             )
@@ -615,7 +615,7 @@ export function RelationshipGraph({ payload, sourceMap }) {
                   borderRadius: 6,
                   border: '1px solid var(--border)',
                   background: 'transparent',
-                  color: 'var(--ink60)',
+                  color: 'var(--ink50)',
                   cursor: 'pointer',
                 }}
               >
@@ -686,7 +686,7 @@ export function PressSparklineBlock({ payload }) {
             <span className="mono" style={{ color: 'var(--ink50)', minWidth: 78 }}>
               {h.date}
             </span>
-            <ExtLink href={h.url} style={{ color: 'var(--ink80)', flex: 1 }}>
+            <ExtLink href={h.url} style={{ color: 'var(--ink70)', flex: 1 }}>
               {h.title}
             </ExtLink>
           </li>
@@ -744,7 +744,7 @@ export function PromiseMiniBoard({ payload }) {
                     </span>
                   </>
                 ) : (
-                  <span style={{ color: 'var(--ink60)' }}>{id} →</span>
+                  <span style={{ color: 'var(--ink50)' }}>{id} →</span>
                 )}
               </Link>
             </li>
@@ -768,7 +768,7 @@ export function QuoteCard({ payload, sourceMap, withHead = false }) {
             style={{
               margin: '0 0 10px 0',
               fontSize: 12,
-              color: 'var(--ink60)',
+              color: 'var(--ink50)',
               fontStyle: 'italic',
             }}
           >
@@ -789,7 +789,7 @@ export function QuoteCard({ payload, sourceMap, withHead = false }) {
       >
         “{payload.verbatim}”
       </blockquote>
-      <div style={{ marginTop: 10, fontSize: 12, color: 'var(--ink60)' }}>
+      <div style={{ marginTop: 10, fontSize: 12, color: 'var(--ink50)' }}>
         — <strong>{payload.attributedTo}</strong>
         {payload.date && <span className="mono"> · {formatEventDate(payload.date)}</span>}
         <CitationPills ids={[payload.sourceId]} sourceMap={sourceMap} />

@@ -51,7 +51,7 @@ export default function Frontera() {
       <h1 style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
         La frontera del gasto
       </h1>
-      <p style={{ color: 'var(--ink60)', maxWidth: '66ch' }}>
+      <p style={{ color: 'var(--ink50)', maxWidth: '66ch' }}>
         Dado lo que gastó cada ayuntamiento de la comarca comparable y lo que declaró producir a
         cambio, ¿existe alguna combinación de los demás que produjera al menos lo mismo con menos
         dinero? Es lo único que mide el análisis envolvente de datos, y es menos de lo que suena.
@@ -72,11 +72,11 @@ export default function Frontera() {
         </p>
       </Card>
 
-      {loading && <p style={{ color: 'var(--ink60)' }}>Cargando…</p>}
-      {error && <p style={{ color: 'var(--ink60)' }}>No se pudo cargar el experimento.</p>}
+      {loading && <p style={{ color: 'var(--ink50)' }}>Cargando…</p>}
+      {error && <p style={{ color: 'var(--ink50)' }}>No se pudo cargar el experimento.</p>}
       {!loading && !error && especificaciones.length === 0 && (
         <Card style={{ marginTop: 16 }}>
-          <p style={{ margin: 0, color: 'var(--ink60)' }}>
+          <p style={{ margin: 0, color: 'var(--ink50)' }}>
             El experimento todavía no se ha ejecutado sobre esta instalación. Se genera con{' '}
             <code className="mono">npm run compute:dea</code>.
           </p>
@@ -93,7 +93,7 @@ export default function Frontera() {
           >
             Cuatro cestas defendibles, cuatro resultados
           </h2>
-          <p style={{ margin: '4px 0 0', color: 'var(--ink60)', fontSize: 13.5, maxWidth: '66ch' }}>
+          <p style={{ margin: '4px 0 0', color: 'var(--ink50)', fontSize: 13.5, maxWidth: '66ch' }}>
             Cada una usa el coste efectivo total de sus servicios como único recurso y la unidad
             física de cada servicio como producto. Todas exigen gestión directa: un municipio con la
             limpieza concesionada declara coste cero, y colado en la muestra saldría insuperable y

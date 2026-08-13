@@ -34,7 +34,7 @@ function ContradichoBundleRow({ bundle, onOpen }) {
       </div>
       <div style={{ fontSize: 13.5, marginBottom: 4 }}>{bundle.plenoTitle}</div>
       {bundle.quotes[0] && (
-        <div style={{ fontSize: 12, color: 'var(--ink60)', lineHeight: 1.4 }}>
+        <div style={{ fontSize: 12, color: 'var(--ink50)', lineHeight: 1.4 }}>
           <VerdictPill verdict={bundle.quotes[0].verdict} />{' '}
           <span style={{ marginLeft: 6 }}>«{bundle.quotes[0].verbatim.slice(0, 180)}…»</span>
         </div>
@@ -63,7 +63,7 @@ function IssueRow({ issue }) {
       </div>
       <div style={{ fontSize: 13.5, fontWeight: 600 }}>{issue.title}</div>
       {issue.bodyExcerpt && (
-        <div style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 4, lineHeight: 1.4 }}>
+        <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 4, lineHeight: 1.4 }}>
           {issue.bodyExcerpt.slice(0, 200)}…
         </div>
       )}

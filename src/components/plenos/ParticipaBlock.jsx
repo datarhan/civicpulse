@@ -108,7 +108,7 @@ export function ParticipaBlock() {
             <div
               style={{
                 fontSize: 12,
-                color: 'var(--ink60)',
+                color: 'var(--ink50)',
                 lineHeight: 1.45,
                 display: '-webkit-box',
                 WebkitLineClamp: 3,

@@ -87,7 +87,7 @@ function ClaimCard({ item }) {
                   fontSize: 9,
                   fontWeight: 700,
                   letterSpacing: '.1em',
-                  color: 'var(--ink60)',
+                  color: 'var(--ink50)',
                   textTransform: 'uppercase',
                 }}
               >
@@ -120,7 +120,7 @@ function ClaimCard({ item }) {
               padding: '6px 10px',
               borderLeft: '3px solid var(--border)',
               fontSize: 13,
-              color: 'var(--ink80)',
+              color: 'var(--ink70)',
               lineHeight: 1.45,
               fontStyle: 'italic',
             }}
@@ -132,7 +132,7 @@ function ClaimCard({ item }) {
           {VERDICT_LABEL[verification.verdict] || verification.verdict}
         </Pill>
       </div>
-      <div style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 8, lineHeight: 1.5 }}>
+      <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 8, lineHeight: 1.5 }}>
         {verification.summary}
       </div>
       {verification.evidence.length > 0 && (
@@ -209,7 +209,7 @@ export function ClaimLedger({ filter, limit = 20, emptyHint, items, showSummary 
           background: 'var(--soft)',
           borderRadius: 8,
           fontSize: 12,
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           lineHeight: 1.5,
         }}
       >
@@ -225,7 +225,7 @@ export function ClaimLedger({ filter, limit = 20, emptyHint, items, showSummary 
           className="mono"
           style={{
             fontSize: 11,
-            color: 'var(--ink60)',
+            color: 'var(--ink50)',
             letterSpacing: '.03em',
             paddingBottom: 2,
           }}
@@ -273,7 +273,7 @@ export function ClaimLedgerSection({ filter, limit, title, eyebrow, hint }) {
         <p
           style={{
             fontSize: 12,
-            color: 'var(--ink60)',
+            color: 'var(--ink50)',
             marginTop: 4,
             marginBottom: 10,
             lineHeight: 1.5,

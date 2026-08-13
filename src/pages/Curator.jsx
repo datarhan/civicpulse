@@ -214,7 +214,7 @@ export default function Curator() {
     <div style={{ padding: '24px 28px', maxWidth: 1100, margin: '0 auto' }}>
       <div style={{ marginBottom: 20 }}>
         <h1 style={{ margin: 0, fontSize: 22 }}>Curator</h1>
-        <p style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 4 }}>
+        <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 4 }}>
           Dev-only dashboard. Surfaces queues that need human review and runs the existing CLIs
           locally via the Vite middleware. Mutations land in the same JSON files the production
           scrapers write — git history is the audit trail. Production builds tree-shake this route
@@ -271,7 +271,7 @@ export default function Curator() {
           </p>
         )}
         {!queue.loading && !queue.error && queueBundles.length === 0 && (
-          <p style={{ fontSize: 12, color: 'var(--ink60)' }}>
+          <p style={{ fontSize: 12, color: 'var(--ink50)' }}>
             No quarantined bundles. The verifier didn't surface any contradicho claims that passed
             the auto-curate gates this run.
           </p>
@@ -361,7 +361,7 @@ export default function Curator() {
                 </div>
                 <div style={{ fontSize: 12.5 }}>{b.plenoTitle}</div>
                 {b.archive?.reason && (
-                  <div style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 4 }}>
+                  <div style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 4 }}>
                     Reason: {b.archive.reason}
                   </div>
                 )}
@@ -405,7 +405,7 @@ export default function Curator() {
           </p>
         )}
         {issues.data?.error && (
-          <p style={{ fontSize: 12, color: 'var(--ink60)', lineHeight: 1.5 }}>
+          <p style={{ fontSize: 12, color: 'var(--ink50)', lineHeight: 1.5 }}>
             <span style={{ color: 'var(--warn-ink, var(--ink))' }}>Refresh skipped.</span>{' '}
             {issues.data.error.includes('GITHUB_TOKEN')
               ? 'The repository is private — set GITHUB_TOKEN in .env (a fine-grained PAT with read access is enough) and re-run npm run refresh:gh-issues. Right-of-reply still works as a curator workflow; replies arrive through editorial contact and are applied with `npm run finding-reply`.'
@@ -413,7 +413,7 @@ export default function Curator() {
           </p>
         )}
         {!issues.loading && !issues.error && ghIssues.length === 0 && !issues.data?.error && (
-          <p style={{ fontSize: 12, color: 'var(--ink60)' }}>
+          <p style={{ fontSize: 12, color: 'var(--ink50)' }}>
             No open <code>derecho-replica</code> issues.
           </p>
         )}
@@ -448,7 +448,7 @@ export default function Curator() {
             {areaFitQueue.loading ? 'Refreshing…' : 'Refresh'}
           </button>
         </div>
-        <p style={{ fontSize: 11.5, color: 'var(--ink60)', lineHeight: 1.5, margin: '4px 0 10px' }}>
+        <p style={{ fontSize: 11.5, color: 'var(--ink50)', lineHeight: 1.5, margin: '4px 0 10px' }}>
           Cada fila nombra a una persona viva, así que ninguna se publica sin firma. Revisa la
           evidencia citada y el criterio: la nota del curador se publica, así que describe el
           criterio, nunca el material descartado.
@@ -458,7 +458,7 @@ export default function Curator() {
           <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>{String(areaFitQueue.error)}</p>
         )}
         {!areaFitQueue.loading && areaFitRows.length === 0 && (
-          <p style={{ fontSize: 12, color: 'var(--ink60)' }}>
+          <p style={{ fontSize: 12, color: 'var(--ink50)' }}>
             Cola vacía. Genera propuestas con{' '}
             <code>LLM_BACKEND=claude-code npm run suggest:area-fit</code>.
           </p>
@@ -503,7 +503,7 @@ export default function Curator() {
             {findingSupportQueue.loading ? 'Refreshing…' : 'Refresh'}
           </button>
         </div>
-        <p style={{ fontSize: 11.5, color: 'var(--ink60)', lineHeight: 1.5, margin: '4px 0 10px' }}>
+        <p style={{ fontSize: 11.5, color: 'var(--ink50)', lineHeight: 1.5, margin: '4px 0 10px' }}>
           Cada hallazgo publicado, con su sumario y el extracto que cita <strong>al lado</strong>,
           porque la pregunta es si el extracto lo sostiene o sólo se le parece. La cola presenta
           evidencia: no puntúa, no ordena por fuerza y no recomienda — el cribado léxico que lo
@@ -517,7 +517,7 @@ export default function Curator() {
           </p>
         )}
         {!findingSupportQueue.loading && findingSupportRows.length === 0 && (
-          <p style={{ fontSize: 12, color: 'var(--ink60)' }}>
+          <p style={{ fontSize: 12, color: 'var(--ink50)' }}>
             Cola vacía. Constrúyela con <code>npm run triage:finding-support</code>.
           </p>
         )}
@@ -555,7 +555,7 @@ export default function Curator() {
             {quoteReanchorQueue.loading ? 'Refreshing…' : 'Refresh'}
           </button>
         </div>
-        <p style={{ fontSize: 11.5, color: 'var(--ink60)', lineHeight: 1.5, margin: '4px 0 10px' }}>
+        <p style={{ fontSize: 11.5, color: 'var(--ink50)', lineHeight: 1.5, margin: '4px 0 10px' }}>
           Estas citas constan en la transcripción que su sesión tenía <strong>antes</strong> de
           volverse a transcribir, y no en la vigente. La cola{' '}
           <strong>propone pasajes y no elige ninguno</strong>: el orden es solapamiento de palabras
@@ -573,7 +573,7 @@ export default function Curator() {
           </p>
         )}
         {!quoteReanchorQueue.loading && quoteReanchorRows.length === 0 && (
-          <p style={{ fontSize: 12, color: 'var(--ink60)' }}>
+          <p style={{ fontSize: 12, color: 'var(--ink50)' }}>
             Cola vacía. Constrúyela con <code>npm run triage:quote-reanchor</code>.
           </p>
         )}
@@ -611,7 +611,7 @@ export default function Curator() {
             {findingExceptionQueue.loading ? 'Refreshing…' : 'Refresh'}
           </button>
         </div>
-        <p style={{ fontSize: 11.5, color: 'var(--ink60)', lineHeight: 1.5, margin: '4px 0 10px' }}>
+        <p style={{ fontSize: 11.5, color: 'var(--ink50)', lineHeight: 1.5, margin: '4px 0 10px' }}>
           La puerta editorial de <code>claim-public-gate.ts</code> retiene de{' '}
           <strong>/plenos</strong> las acusaciones públicas que el verificador no pudo contrastar.
           Promover una declaración a hallazgo es la excepción que esa puerta concede,{' '}
@@ -630,7 +630,7 @@ export default function Curator() {
           </p>
         )}
         {!findingExceptionQueue.loading && findingExceptionRows.length === 0 && (
-          <p style={{ fontSize: 12, color: 'var(--ink60)' }}>
+          <p style={{ fontSize: 12, color: 'var(--ink50)' }}>
             Cola vacía. Constrúyela con <code>npm run triage:finding-exception</code>.
           </p>
         )}
@@ -688,7 +688,7 @@ export default function Curator() {
           </div>
         )}
         {!promiseQueue.loading && !promiseQueue.error && promiseDrafts.length === 0 && (
-          <p style={{ fontSize: 12, color: 'var(--ink60)' }}>La cola está vacía.</p>
+          <p style={{ fontSize: 12, color: 'var(--ink50)' }}>La cola está vacía.</p>
         )}
         {promiseDrafts.map((d) => (
           <PromiseDraftRow
@@ -736,7 +736,7 @@ export default function Curator() {
           </p>
         )}
         {!pendingPromises.loading && !pendingPromises.error && pending.length === 0 && (
-          <p style={{ fontSize: 12, color: 'var(--ink60)' }}>
+          <p style={{ fontSize: 12, color: 'var(--ink50)' }}>
             No hay promesas auto-publicadas pendientes de revisión.
           </p>
         )}

@@ -75,7 +75,7 @@ export function BandaPares({ indicador, formatea }) {
             top: 2,
             bottom: 2,
             width: 2,
-            background: 'var(--ink40, rgba(127,127,127,.6))',
+            background: 'var(--ink50, rgba(127,127,127,.6))',
           }}
         />
         {/* el municipio */}
@@ -98,7 +98,7 @@ export function BandaPares({ indicador, formatea }) {
           display: 'flex',
           justifyContent: 'space-between',
           fontSize: 10.5,
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           marginTop: 5,
         }}
       >
@@ -114,7 +114,7 @@ export function BandaPares({ indicador, formatea }) {
         <summary style={{ cursor: 'pointer', fontSize: 12.5, color: 'var(--civic)' }}>
           {t('eficiencia.pares.ver')}
         </summary>
-        <p style={{ fontSize: 12, color: 'var(--ink60)', margin: '8px 0' }}>
+        <p style={{ fontSize: 12, color: 'var(--ink50)', margin: '8px 0' }}>
           {t('eficiencia.pares.nota')}
         </p>
         <div style={{ overflowX: 'auto' }}>
@@ -130,7 +130,7 @@ export function BandaPares({ indicador, formatea }) {
               {p.miembros.map((m) => (
                 <tr key={m.ine}>
                   <td style={{ padding: '3px 10px 3px 0' }}>{m.nombre}</td>
-                  <td className="mono" style={{ padding: '3px 10px 3px 0', color: 'var(--ink60)' }}>
+                  <td className="mono" style={{ padding: '3px 10px 3px 0', color: 'var(--ink50)' }}>
                     {m.poblacion ? m.poblacion.toLocaleString('es-ES') : '—'}
                   </td>
                   <td className="mono" style={{ padding: '3px 0' }}>

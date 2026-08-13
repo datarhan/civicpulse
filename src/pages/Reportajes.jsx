@@ -54,7 +54,7 @@ function ReportajeCard({ slug, readLabel }) {
           {m.titulo}
         </Link>
       </h2>
-      <p style={{ fontSize: 14.5, color: 'var(--ink60)', lineHeight: 1.5, margin: '0 0 12px' }}>
+      <p style={{ fontSize: 14.5, color: 'var(--ink50)', lineHeight: 1.5, margin: '0 0 12px' }}>
         {m.subtitulo}
       </p>
       <Link
@@ -95,7 +95,7 @@ export default function Reportajes() {
       >
         {t('reportajes.title')}
       </h1>
-      <p style={{ fontSize: 15.5, color: 'var(--ink60)', lineHeight: 1.55, margin: '0 0 24px' }}>
+      <p style={{ fontSize: 15.5, color: 'var(--ink50)', lineHeight: 1.55, margin: '0 0 24px' }}>
         {t('reportajes.intro')}
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>

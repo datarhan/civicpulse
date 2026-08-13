@@ -192,7 +192,7 @@ function RealBudgetHeader() {
           <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
             Presupuesto municipal {s.year}
           </div>
-          <div style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 4 }}>
+          <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 4 }}>
             Datos reales de la Dirección General de Fondos Comunitarios y Coordinación Financiera
             con las Entidades Locales. Actualizado {generatedDate}.
           </div>
@@ -243,7 +243,7 @@ function RealBudgetHeader() {
           >
             {formatEuros(s.totalRevenue, { compact: true })}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink60)', marginTop: 2 }}>
+          <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 2 }}>
             {formatEuros(s.totalRevenue)}
           </div>
         </Card>
@@ -265,7 +265,7 @@ function RealBudgetHeader() {
           >
             {formatEuros(s.totalExpense, { compact: true })}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink60)', marginTop: 2 }}>
+          <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 2 }}>
             {formatEuros(s.totalExpense)}
           </div>
         </Card>
@@ -297,7 +297,7 @@ function RealBudgetHeader() {
             {s.balance >= 0 ? '+' : ''}
             {formatEuros(s.balance, { compact: true })}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink60)', marginTop: 2 }}>
+          <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 2 }}>
             {desequilibrio !== null ? (
               <a href="#descuadre" style={{ color: 'var(--warn-ink)' }}>
                 no cuadra ↓
@@ -325,7 +325,7 @@ function RealBudgetHeader() {
           >
             {formatEuros(perCapita)}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink60)', marginTop: 2 }}>
+          <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 2 }}>
             {s.population.toLocaleString('es-ES')} habitantes
           </div>
         </Card>
@@ -333,7 +333,7 @@ function RealBudgetHeader() {
       <p
         style={{
           fontSize: 11.5,
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           lineHeight: 1.55,
           margin: '0 0 16px',
         }}
@@ -358,7 +358,7 @@ function RealBudgetHeader() {
           id="descuadre"
           style={{
             fontSize: 11.5,
-            color: 'var(--ink60)',
+            color: 'var(--ink50)',
             lineHeight: 1.55,
             margin: '0 0 16px',
           }}
@@ -493,7 +493,7 @@ function EjecucionSection() {
             <div className="mono" style={{ fontSize: 22, fontWeight: 600, color: 'var(--civic)' }}>
               {s.pc}%
             </div>
-            <div style={{ fontSize: 12.5, color: 'var(--ink60)', marginTop: 4 }}>
+            <div style={{ fontSize: 12.5, color: 'var(--ink50)', marginTop: 4 }}>
               {s.k} · <span className="mono">{eur(s.e)}</span> de{' '}
               <span className="mono">{eur(s.a)}</span>
             </div>
@@ -523,7 +523,7 @@ function EjecucionSection() {
                 >
                   {c.label}
                 </span>
-                <span className="mono" style={{ color: 'var(--ink60)', flexShrink: 0 }}>
+                <span className="mono" style={{ color: 'var(--ink50)', flexShrink: 0 }}>
                   {cp}% · {eur(c.ejecutado)}
                 </span>
               </div>
@@ -587,7 +587,7 @@ function ObrasEnCursoSection() {
         eyebrow="Urbanismo · infraestructuras"
         title="Obras de infraestructura · fichas municipales 2019–2024"
       />
-      <p style={{ fontSize: 12.5, color: 'var(--ink60)', margin: '2px 0 8px', maxWidth: '68ch' }}>
+      <p style={{ fontSize: 12.5, color: 'var(--ink50)', margin: '2px 0 8px', maxWidth: '68ch' }}>
         {obras.length} obras publicadas por el Ayuntamiento en fichas oficiales:{' '}
         {renove.length > 0 &&
           `${renove.length} actuaciones del Plan RENOVE de adecuación de viales (ejecutadas 2023–2024) y `}
@@ -604,7 +604,7 @@ function ObrasEnCursoSection() {
         }}
       >
         <Pill tone="warn">Últimas fichas publicadas: feb 2024</Pill>
-        <span style={{ fontSize: 12, color: 'var(--ink60)' }}>
+        <span style={{ fontSize: 12, color: 'var(--ink50)' }}>
           obras ya ejecutadas · no refleja obras posteriores
         </span>
       </div>
@@ -632,7 +632,7 @@ function ObrasEnCursoSection() {
                   )}
                 </span>
               </div>
-              <div className="mono" style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 3 }}>
+              <div className="mono" style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 3 }}>
                 {o.empresa ? `${o.empresa} · ` : ''}
                 {importe != null ? `${eur(importe)} ${importeLabel}` : ''}
                 {o.plazoMeses ? ` · ${o.plazoMeses} meses` : ''}

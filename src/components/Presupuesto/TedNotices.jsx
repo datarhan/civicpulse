@@ -56,7 +56,7 @@ export function TedNotices() {
           {span ? ` ${span}` : ''} · {valued.length} {t('presupuesto.ted.valued')} · {eur(total)}
         </div>
       </div>
-      <div style={{ fontSize: 12, color: 'var(--ink60)', margin: '8px 0 12px', lineHeight: 1.5 }}>
+      <div style={{ fontSize: 12, color: 'var(--ink50)', margin: '8px 0 12px', lineHeight: 1.5 }}>
         {t('presupuesto.ted.intro')}
       </div>
       {rows.map((n) => (

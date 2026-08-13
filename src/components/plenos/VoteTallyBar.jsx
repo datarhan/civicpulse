@@ -7,7 +7,7 @@ const DIR_COLOR = {
   a_favor: 'var(--ok)',
   en_contra: 'var(--crit)',
   abstencion: 'var(--warn)',
-  ausente: 'var(--ink40)',
+  ausente: 'var(--ink50)',
 }
 const DIR_ORDER = { a_favor: 0, abstencion: 1, ausente: 2, en_contra: 3 }
 
@@ -37,7 +37,7 @@ export function VoteTallyBar({ tally }) {
             title={`${blocLabel(v.bloc)} · ${DIRECTION_LABEL[v.direction] || v.direction} · ${seats}`}
             style={{
               flex: seats,
-              background: DIR_COLOR[v.direction] || 'var(--ink40)',
+              background: DIR_COLOR[v.direction] || 'var(--ink50)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',

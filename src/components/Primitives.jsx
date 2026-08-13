@@ -8,7 +8,7 @@ const TONES = {
   warn: { bg: 'var(--warn-soft)', fg: 'var(--warn-ink)' },
   crit: { bg: 'var(--crit-soft)', fg: 'var(--crit-ink)' },
   intel: { bg: 'var(--intel-soft)', fg: 'var(--intel-ink)' },
-  ghost: { bg: 'transparent', fg: 'var(--ink60)', border: '1px solid var(--border)' },
+  ghost: { bg: 'transparent', fg: 'var(--ink50)', border: '1px solid var(--border)' },
 }
 
 export function Pill({ tone = 'neutral', children, size = 'sm', style = {} }) {

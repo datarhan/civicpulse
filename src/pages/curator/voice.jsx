@@ -72,7 +72,7 @@ function VoiceEnrollmentSection() {
           {voices.loading ? 'Loading…' : 'Refresh'}
         </button>
       </div>
-      <p style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 4, marginBottom: 10 }}>
+      <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 4, marginBottom: 10 }}>
         Per-councillor voiceprint database (192-dim ECAPA-TDNN embeddings). Enroll from any public
         audio URL — Instagram reel, YouTube clip, official statement. Stored locally in{' '}
         <code>.voiceprints/</code> (gitignored). Used for individual claim attribution at extraction
@@ -183,7 +183,7 @@ function VoiceEnrollmentSection() {
               {enrollFor.role ?? '—'} · {enrollFor.party ?? '—'}
             </div>
             <h3 style={{ margin: '4px 0 12px', fontSize: 16 }}>Enroll voice: {enrollFor.name}</h3>
-            <p style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 0 }}>
+            <p style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 0 }}>
               Paste any public audio URL with this person speaking — yt-dlp will extract the audio.
               Recommended: <b>≥30 s</b> of clear, uninterrupted speech (interview, statement, press
               conference). The downloaded clip is cached in <code>.voiceprints/audio/</code> for
@@ -355,13 +355,13 @@ function PlenoAssignmentRow({ plenoId, assignment, voiceprintRows, onOverride, b
           </div>
         )}
         {assignment.curatorOverride?.reason && (
-          <div style={{ fontSize: 11, fontStyle: 'italic', color: 'var(--ink60)', marginTop: 3 }}>
+          <div style={{ fontSize: 11, fontStyle: 'italic', color: 'var(--ink50)', marginTop: 3 }}>
             «{assignment.curatorOverride.reason}»
           </div>
         )}
       </td>
       <td style={{ padding: '8px 6px', verticalAlign: 'top' }}>
-        <div className="mono" style={{ fontSize: 10, color: 'var(--ink60)', lineHeight: 1.6 }}>
+        <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', lineHeight: 1.6 }}>
           {(assignment.topCandidates ?? []).slice(0, 3).map((c) => (
             <div key={c.slug}>
               {c.name} · {c.cosine.toFixed(3)}
@@ -454,7 +454,7 @@ function PlenoAssignmentsCard({ plenoSummary, voiceprintRows, onChanged }) {
             : ''}
         </span>
       </div>
-      {detail.loading && <div style={{ fontSize: 12, color: 'var(--ink60)' }}>Loading…</div>}
+      {detail.loading && <div style={{ fontSize: 12, color: 'var(--ink50)' }}>Loading…</div>}
       {detail.error && (
         <div style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
           Cannot load detail: {detail.error}
@@ -563,7 +563,7 @@ function VoiceIDAssignmentsSection() {
           {list.loading ? 'Loading…' : 'Refresh'}
         </button>
       </div>
-      <div style={{ fontSize: 12, color: 'var(--ink60)', lineHeight: 1.5, marginTop: 4 }}>
+      <div style={{ fontSize: 12, color: 'var(--ink50)', lineHeight: 1.5, marginTop: 4 }}>
         Per-pleno cluster→councillor map produced by <code>npm run identify-pleno-speakers</code>.
         High-tier matches feed the LLM extractor as <code>speakerSlug</code>; medium and low stay
         editorial signal only. Override low-confidence rows here before re-running the extractor.
@@ -574,7 +574,7 @@ function VoiceIDAssignmentsSection() {
         </div>
       )}
       {plenos.length === 0 && !list.loading && !list.error && (
-        <div style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 8 }}>
+        <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 8 }}>
           No <code>pleno-speakers/&lt;id&gt;.json</code> files yet. Run{' '}
           <code>
             WHISPER_DIARIZE=1 WHISPER_IDENTIFY=1 bash scripts/transcribe-pleno.sh &lt;id&gt;

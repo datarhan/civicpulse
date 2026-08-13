@@ -83,7 +83,7 @@ function OfferRow({ o, t }) {
             flexWrap: 'wrap',
             marginTop: 4,
             fontSize: 12,
-            color: 'var(--ink60)',
+            color: 'var(--ink50)',
           }}
         >
           <span className="mono" style={{ color: 'var(--ink50)' }}>
@@ -136,13 +136,13 @@ function OfferRow({ o, t }) {
             style={{
               marginTop: 6,
               fontSize: 11.5,
-              color: 'var(--ink60)',
+              color: 'var(--ink50)',
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
             }}
           >
-            <span style={{ color: 'var(--ink40)' }}>{t('empleo.card.occ')}</span> {occ.nombre}
+            <span style={{ color: 'var(--ink50)' }}>{t('empleo.card.occ')}</span> {occ.nombre}
             {occ.experiencia ? ` · ${t('empleo.card.exp')} ${occ.experiencia}` : ''}
             {extraOcc > 0 ? ` · +${extraOcc}` : ''}
           </div>
@@ -221,7 +221,7 @@ function Pager({ page, totalPages, onPage, t }) {
       >
         ← {t('empleo.prev')}
       </button>
-      <span className="mono" style={{ fontSize: 12, color: 'var(--ink60)' }}>
+      <span className="mono" style={{ fontSize: 12, color: 'var(--ink50)' }}>
         {t('empleo.page')} {page} / {totalPages}
       </span>
       <button
@@ -321,7 +321,7 @@ export default function Empleo() {
             RSS
           </a>
         </div>
-        <div style={{ fontSize: 13, color: 'var(--ink60)', marginTop: 6, lineHeight: 1.5 }}>
+        <div style={{ fontSize: 13, color: 'var(--ink50)', marginTop: 6, lineHeight: 1.5 }}>
           {t('empleo.intro')}
         </div>
       </div>
@@ -350,7 +350,7 @@ export default function Empleo() {
           </div>
         )}
         {!loading && !error && pageData.items.length === 0 && (
-          <div style={{ padding: 14, fontSize: 13, color: 'var(--ink60)' }}>
+          <div style={{ padding: 14, fontSize: 13, color: 'var(--ink50)' }}>
             {t('empleo.empty')}
           </div>
         )}

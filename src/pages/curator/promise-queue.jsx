@@ -56,7 +56,7 @@ function StatusChangeDraftRow({ draft, onApprove, onReject, busy }) {
         Promesa: <span className="mono">{draft.promiseId}</span>
       </div>
       {ev.quote && (
-        <div style={{ fontSize: 12, color: 'var(--ink60)', lineHeight: 1.4, marginBottom: 6 }}>
+        <div style={{ fontSize: 12, color: 'var(--ink50)', lineHeight: 1.4, marginBottom: 6 }}>
           «{String(ev.quote).slice(0, 180)}…»
         </div>
       )}
@@ -154,7 +154,7 @@ function PromiseDraftRow({ draft, onApprove, onReject, busy }) {
       </div>
       <div style={{ fontSize: 13.5, marginBottom: 4 }}>{p.title}</div>
       {p.quote && (
-        <div style={{ fontSize: 12, color: 'var(--ink60)', lineHeight: 1.4, marginBottom: 6 }}>
+        <div style={{ fontSize: 12, color: 'var(--ink50)', lineHeight: 1.4, marginBottom: 6 }}>
           «{p.quote.slice(0, 180)}…»
         </div>
       )}
@@ -244,7 +244,7 @@ function PromisePendingRow({ promise, onRetract, onMarkReviewed, busy }) {
       </div>
       <div style={{ fontSize: 13.5, marginBottom: 4 }}>{promise.title}</div>
       {promise.quote && (
-        <div style={{ fontSize: 12, color: 'var(--ink60)', lineHeight: 1.4, marginBottom: 6 }}>
+        <div style={{ fontSize: 12, color: 'var(--ink50)', lineHeight: 1.4, marginBottom: 6 }}>
           «{promise.quote.slice(0, 180)}…»
         </div>
       )}

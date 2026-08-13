@@ -37,7 +37,7 @@ export function CitationPopover({ num, src }) {
         onBlur={() => setOpen(false)}
         style={{
           fontSize: 10,
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           textDecoration: 'none',
           padding: '1px 6px',
           borderRadius: 999,
@@ -62,7 +62,7 @@ export function CitationPopover({ num, src }) {
             borderRadius: 8,
             border: '1px solid var(--border)',
             background: 'var(--paper)',
-            color: 'var(--ink80)',
+            color: 'var(--ink70)',
             fontSize: 11.5,
             lineHeight: 1.5,
             boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
@@ -71,7 +71,7 @@ export function CitationPopover({ num, src }) {
         >
           <div style={{ fontWeight: 600, color: 'var(--ink)' }}>{src.title}</div>
           {src.publisher && (
-            <div style={{ marginTop: 2, color: 'var(--ink60)' }}>{src.publisher}</div>
+            <div style={{ marginTop: 2, color: 'var(--ink50)' }}>{src.publisher}</div>
           )}
           {src.excerpt && (
             <div
@@ -79,7 +79,7 @@ export function CitationPopover({ num, src }) {
                 marginTop: 6,
                 paddingTop: 6,
                 borderTop: '1px solid var(--border)',
-                color: 'var(--ink60)',
+                color: 'var(--ink50)',
                 fontStyle: 'italic',
               }}
             >

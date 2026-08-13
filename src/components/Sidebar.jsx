@@ -111,7 +111,7 @@ export function Sidebar({ open = false, onClose }) {
           className="mono"
           style={{
             fontSize: 10,
-            color: 'var(--ink40)',
+            color: 'var(--ink50)',
             padding: '10px 8px 6px',
             textTransform: 'uppercase',
             letterSpacing: '.1em',
@@ -132,7 +132,7 @@ export function Sidebar({ open = false, onClose }) {
               padding: '8px 10px',
               borderRadius: 8,
               background: isActive ? 'var(--civic-soft)' : 'transparent',
-              color: isActive ? 'var(--civic)' : 'var(--ink80)',
+              color: isActive ? 'var(--civic)' : 'var(--ink70)',
               fontWeight: isActive ? 600 : 500,
               marginBottom: 1,
               textAlign: 'left',
@@ -198,7 +198,7 @@ export function Sidebar({ open = false, onClose }) {
         >
           {t('sidebar.footer.tag')}
         </div>
-        <div style={{ fontSize: 11, color: 'var(--ink60)', marginTop: 3 }}>
+        <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 3 }}>
           {NAV_SECONDARY.map((n, i) => (
             <span key={n.to}>
               {i > 0 && ' · '}

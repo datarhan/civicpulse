@@ -28,11 +28,11 @@ export function BoeCard() {
       >
         {t('datos.boe.eyebrow')}
       </div>
-      <div style={{ fontSize: 12.5, color: 'var(--ink60)', margin: '6px 0 12px', lineHeight: 1.5 }}>
+      <div style={{ fontSize: 12.5, color: 'var(--ink50)', margin: '6px 0 12px', lineHeight: 1.5 }}>
         {t('datos.boe.intro')}
       </div>
       {items.length === 0 ? (
-        <div style={{ fontSize: 12.5, color: 'var(--ink60)' }}>{t('datos.boe.empty')}</div>
+        <div style={{ fontSize: 12.5, color: 'var(--ink50)' }}>{t('datos.boe.empty')}</div>
       ) : (
         items.map((b) => (
           <div

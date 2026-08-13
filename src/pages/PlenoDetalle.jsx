@@ -27,7 +27,7 @@ function EmptyNote({ children }) {
         background: 'var(--soft)',
         borderRadius: 8,
         fontSize: 12,
-        color: 'var(--ink60)',
+        color: 'var(--ink50)',
         lineHeight: 1.5,
       }}
     >
@@ -95,7 +95,7 @@ function TranscriptPanel({ plenoId }) {
       <div
         style={{
           fontSize: 11.5,
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           marginBottom: 8,
           lineHeight: 1.5,
         }}
@@ -136,7 +136,7 @@ function VoteOutcomeBar({ votes }) {
     { k: 'aprobado', color: 'var(--ok)' },
     { k: 'rechazado', color: 'var(--crit)' },
     { k: 'retirado', color: 'var(--warn)' },
-    { k: 'aplazado', color: 'var(--ink40)' },
+    { k: 'aplazado', color: 'var(--ink50)' },
   ].filter((s) => counts[s.k] > 0)
   if (segs.length === 0) return null
   return (
@@ -203,7 +203,7 @@ function DeclMixBar({ items }) {
         }}
       >
         {g > 0 && <div style={{ flex: g, background: 'var(--ok)' }} />}
-        {s > 0 && <div style={{ flex: s, background: 'var(--ink40)' }} />}
+        {s > 0 && <div style={{ flex: s, background: 'var(--ink50)' }} />}
       </div>
       <div style={{ display: 'flex', gap: 14, marginTop: 8, fontSize: 11.5 }}>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
@@ -214,7 +214,7 @@ function DeclMixBar({ items }) {
           </strong>
         </span>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-          <span style={{ width: 9, height: 9, borderRadius: 2, background: 'var(--ink40)' }} />
+          <span style={{ width: 9, height: 9, borderRadius: 2, background: 'var(--ink50)' }} />
           <span style={{ color: 'var(--ink70)' }}>sin contraste</span>
           <strong className="mono" style={{ color: 'var(--ink)' }}>
             {s}
@@ -388,7 +388,7 @@ export default function PlenoDetalle() {
                 background: 'transparent',
                 border: 'none',
                 borderBottom: `2px solid ${active ? 'var(--civic)' : 'transparent'}`,
-                color: active ? 'var(--ink)' : 'var(--ink60)',
+                color: active ? 'var(--ink)' : 'var(--ink50)',
                 fontSize: 12.5,
                 fontWeight: active ? 700 : 500,
                 padding: '10px 12px',

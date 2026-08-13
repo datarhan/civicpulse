@@ -57,7 +57,7 @@ function Timeline({ data }) {
                 y={mT + ih - bh - 5}
                 textAnchor="middle"
                 className="mono"
-                style={{ fontSize: 9.5, fill: 'var(--ink60)' }}
+                style={{ fontSize: 9.5, fill: 'var(--ink50)' }}
               >
                 {eurC(d.amount)}
               </text>
@@ -185,7 +185,7 @@ function Barras({ rows }) {
             >
               {r.label}
             </span>
-            <span className="mono" style={{ color: 'var(--ink60)', fontSize: 12.5, flexShrink: 0 }}>
+            <span className="mono" style={{ color: 'var(--ink50)', fontSize: 12.5, flexShrink: 0 }}>
               {eurC(r.value)}
               {r.count != null && (
                 <span style={{ color: 'var(--ink50)', fontSize: 11 }}> · {r.count}</span>
@@ -309,7 +309,7 @@ function Funders() {
         ))}
       </div>
       <p style={{ fontSize: 13, color: 'var(--ink50)', margin: '10px 0 0' }}>
-        Cofinancian obras solapadas: <b style={{ color: 'var(--ink60)' }}>no deben sumarse</b> en
+        Cofinancian obras solapadas: <b style={{ color: 'var(--ink50)' }}>no deben sumarse</b> en
         una única cifra de reconstrucción.
       </p>
     </div>
@@ -318,7 +318,7 @@ function Funders() {
 
 /* ---- Callout ámbar: lo que sigue sin ejecutarse ---- */
 function Callout() {
-  const li = { marginBottom: 7, color: 'var(--ink80)', fontSize: 14.5, lineHeight: 1.45 }
+  const li = { marginBottom: 7, color: 'var(--ink70)', fontSize: 14.5, lineHeight: 1.45 }
   const em = { color: 'var(--warn-ink)' }
   return (
     <div
@@ -368,13 +368,13 @@ export default function ReconstruccionDana() {
   if (loading)
     return (
       <div className="cp-page" style={{ padding: 24, maxWidth: 760, margin: '0 auto' }}>
-        <p style={{ color: 'var(--ink60)' }}>Cargando reportaje…</p>
+        <p style={{ color: 'var(--ink50)' }}>Cargando reportaje…</p>
       </div>
     )
   if (error || !data)
     return (
       <div className="cp-page" style={{ padding: 24, maxWidth: 760, margin: '0 auto' }}>
-        <p style={{ color: 'var(--ink60)' }}>No se pudo cargar el reportaje.</p>
+        <p style={{ color: 'var(--ink50)' }}>No se pudo cargar el reportaje.</p>
       </div>
     )
 
@@ -427,7 +427,7 @@ export default function ReconstruccionDana() {
       >
         {m.titulo}
       </h1>
-      <p style={{ fontSize: 18, color: 'var(--ink60)', lineHeight: 1.5, margin: '0 0 26px' }}>
+      <p style={{ fontSize: 18, color: 'var(--ink50)', lineHeight: 1.5, margin: '0 0 26px' }}>
         {m.subtitulo}
       </p>
 
@@ -478,14 +478,14 @@ export default function ReconstruccionDana() {
             >
               {s.n}
             </div>
-            <div style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 7, lineHeight: 1.3 }}>
+            <div style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 7, lineHeight: 1.3 }}>
               {s.l}
             </div>
           </div>
         ))}
       </div>
 
-      <article style={{ color: 'var(--ink80)' }}>
+      <article style={{ color: 'var(--ink70)' }}>
         <p>
           En los días que siguieron a la DANA del 29 de octubre de 2024, el Ayuntamiento de
           Riba-roja de Túria firmó contratos casi a diario. Palas para despejar caminos, camiones
@@ -729,7 +729,7 @@ export default function ReconstruccionDana() {
         </div>
       </div>
 
-      <p style={{ fontSize: 13, color: 'var(--ink60)', margin: '16px 0 0', lineHeight: 1.5 }}>
+      <p style={{ fontSize: 13, color: 'var(--ink50)', margin: '16px 0 0', lineHeight: 1.5 }}>
         Este medio solicitó la versión del Ayuntamiento de Riba-roja, que no respondió dentro del
         plazo. El derecho de réplica sigue abierto: se publicará íntegro si se recibe. Contacto y
         correcciones:{' '}
@@ -759,5 +759,5 @@ function boxUl() {
   return { margin: 0, paddingLeft: 18 }
 }
 function boxLi() {
-  return { fontSize: 13, color: 'var(--ink60)', marginBottom: 8, lineHeight: 1.45 }
+  return { fontSize: 13, color: 'var(--ink50)', marginBottom: 8, lineHeight: 1.45 }
 }

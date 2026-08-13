@@ -180,7 +180,7 @@ export function CmdK({ open, onClose, onOpen }) {
               fontFamily: 'inherit',
             }}
           />
-          <span className="mono" style={{ fontSize: 10, color: 'var(--ink40)' }}>
+          <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
             esc
           </span>
         </div>

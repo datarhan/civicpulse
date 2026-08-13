@@ -52,7 +52,7 @@ function MiniStat({ label, value, tone }) {
 }
 
 function FilterChip({ active, label, count, onClick, tone }) {
-  const inactiveColor = 'var(--ink60)'
+  const inactiveColor = 'var(--ink50)'
   const activeBg =
     tone === 'ok'
       ? 'var(--ok-soft)'
@@ -99,7 +99,7 @@ function ClaimRow({ item, plenoTitle }) {
   const c = item.claim
   const v = item.verification
   const speakerColor = c.speakerGroup
-    ? PARTY_TONE[c.speakerGroup] || 'var(--ink60)'
+    ? PARTY_TONE[c.speakerGroup] || 'var(--ink50)'
     : 'var(--ink50)'
   const ent = []
   if (c.entities?.amountEuros) ent.push('€' + c.entities.amountEuros.toLocaleString('es-ES'))
@@ -144,7 +144,7 @@ function ClaimRow({ item, plenoTitle }) {
       </div>
       <div style={{ fontSize: 13.5, lineHeight: 1.5, marginBottom: 6 }}>«{c.verbatim}»</div>
       {ent.length > 0 && (
-        <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink60)', marginBottom: 6 }}>
+        <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginBottom: 6 }}>
           {ent.join(' · ')}
         </div>
       )}
@@ -155,7 +155,7 @@ function ClaimRow({ item, plenoTitle }) {
             paddingTop: 6,
             borderTop: '1px dashed var(--border2)',
             fontSize: 11.5,
-            color: 'var(--ink60)',
+            color: 'var(--ink50)',
             lineHeight: 1.5,
           }}
         >
@@ -290,7 +290,7 @@ export default function Declaraciones() {
       <p
         style={{
           fontSize: 13,
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           lineHeight: 1.55,
           maxWidth: 780,
           marginTop: 4,

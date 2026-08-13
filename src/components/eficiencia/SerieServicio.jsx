@@ -322,7 +322,7 @@ export function SerieServicio({ puntos, formatea, unidad }) {
             <path
               key={`pm-${p.desde.anio}`}
               d={`M${px(p.desde.anio).toFixed(2)},${py(p.desde.valor).toFixed(2)} L${px(p.hasta.anio).toFixed(2)},${py(p.hasta.valor).toFixed(2)}`}
-              stroke="var(--ink40, rgba(127,127,127,.55))"
+              stroke="var(--ink50, rgba(127,127,127,.55))"
               strokeWidth="0.75"
               strokeDasharray="1 3"
               strokeLinecap="round"
@@ -336,7 +336,7 @@ export function SerieServicio({ puntos, formatea, unidad }) {
               <path
                 key={`m${t[0].anio}`}
                 d={camino(t, (p) => p.valor)}
-                stroke="var(--ink40, rgba(127,127,127,.55))"
+                stroke="var(--ink50, rgba(127,127,127,.55))"
                 strokeWidth="1"
                 strokeDasharray="3 3"
                 fill="none"

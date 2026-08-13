@@ -45,7 +45,7 @@ function Tabla({ cols, rows, caption }) {
   }
   const td = {
     fontSize: 13,
-    color: 'var(--ink80)',
+    color: 'var(--ink70)',
     padding: '8px 10px',
     borderBottom: '1px solid var(--border)',
     verticalAlign: 'top',
@@ -123,7 +123,7 @@ function Callout({ title, children }) {
       >
         {title}
       </div>
-      <div style={{ fontSize: 14, color: 'var(--ink80)', lineHeight: 1.5 }}>{children}</div>
+      <div style={{ fontSize: 14, color: 'var(--ink70)', lineHeight: 1.5 }}>{children}</div>
     </div>
   )
 }
@@ -151,7 +151,7 @@ const boxH = () => ({
   fontWeight: 700,
 })
 const boxUl = () => ({ margin: 0, paddingLeft: 18 })
-const boxLi = () => ({ fontSize: 13, color: 'var(--ink60)', marginBottom: 8, lineHeight: 1.45 })
+const boxLi = () => ({ fontSize: 13, color: 'var(--ink50)', marginBottom: 8, lineHeight: 1.45 })
 
 export default function InteligenciaTuristica() {
   const { loading, error, data } = useReportaje('inteligencia-turistica')
@@ -159,13 +159,13 @@ export default function InteligenciaTuristica() {
   if (loading)
     return (
       <div className="cp-page" style={{ padding: 24, maxWidth: 760, margin: '0 auto' }}>
-        <p style={{ color: 'var(--ink60)' }}>Cargando reportaje…</p>
+        <p style={{ color: 'var(--ink50)' }}>Cargando reportaje…</p>
       </div>
     )
   if (error || !data)
     return (
       <div className="cp-page" style={{ padding: 24, maxWidth: 760, margin: '0 auto' }}>
-        <p style={{ color: 'var(--ink60)' }}>No se pudo cargar el reportaje.</p>
+        <p style={{ color: 'var(--ink50)' }}>No se pudo cargar el reportaje.</p>
       </div>
     )
 
@@ -217,7 +217,7 @@ export default function InteligenciaTuristica() {
       >
         {m.titulo}
       </h1>
-      <p style={{ fontSize: 18, color: 'var(--ink60)', lineHeight: 1.5, margin: '0 0 26px' }}>
+      <p style={{ fontSize: 18, color: 'var(--ink50)', lineHeight: 1.5, margin: '0 0 26px' }}>
         {m.subtitulo}
       </p>
 
@@ -244,14 +244,14 @@ export default function InteligenciaTuristica() {
             >
               {s.n}
             </div>
-            <div style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 7, lineHeight: 1.3 }}>
+            <div style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 7, lineHeight: 1.3 }}>
               {s.l}
             </div>
           </div>
         ))}
       </div>
 
-      <article style={{ color: 'var(--ink80)' }}>
+      <article style={{ color: 'var(--ink70)' }}>
         <SecHead num="01" kicker="El anuncio" title="«Un proyecto pionero»" />
         <p>
           El 7 de julio de 2026, la web del Ayuntamiento de Riba-roja de Túria publicó una nota sin
@@ -268,7 +268,7 @@ export default function InteligenciaTuristica() {
                 borderLeft: '3px solid var(--civic)',
                 padding: '6px 14px',
                 fontSize: 14.5,
-                color: 'var(--ink80)',
+                color: 'var(--ink70)',
                 fontStyle: 'italic',
                 background: 'var(--soft)',
                 borderRadius: '0 8px 8px 0',
@@ -505,7 +505,7 @@ export default function InteligenciaTuristica() {
             borderRadius: '0 8px 8px 0',
             fontSize: 14.5,
             fontStyle: 'italic',
-            color: 'var(--ink80)',
+            color: 'var(--ink70)',
           }}
         >
           {data.baseline.plenoQuote}
@@ -589,7 +589,7 @@ export default function InteligenciaTuristica() {
         </div>
       </div>
 
-      <p style={{ fontSize: 13, color: 'var(--ink60)', margin: '16px 0 0', lineHeight: 1.5 }}>
+      <p style={{ fontSize: 13, color: 'var(--ink50)', margin: '16px 0 0', lineHeight: 1.5 }}>
         Datos a {m.fechaDatos}. El derecho de réplica está abierto para el Ayuntamiento y las
         empresas citadas: cualquier respuesta se publicará íntegra. Contacto y correcciones:{' '}
         <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>

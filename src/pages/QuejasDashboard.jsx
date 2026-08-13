@@ -81,7 +81,7 @@ function Bar({ label, n, max, color, subline }) {
       </div>
       <span
         className="mono"
-        style={{ fontSize: 12, color: 'var(--ink60)', minWidth: 24, textAlign: 'right' }}
+        style={{ fontSize: 12, color: 'var(--ink50)', minWidth: 24, textAlign: 'right' }}
       >
         {n}
       </span>
@@ -177,7 +177,7 @@ function SlaPanel({ byConcejal, officials }) {
               className="mono"
               style={{
                 fontSize: 12,
-                color: e.silencios > 0 ? 'var(--crit)' : 'var(--ink40)',
+                color: e.silencios > 0 ? 'var(--crit)' : 'var(--ink50)',
                 textAlign: 'right',
               }}
             >
@@ -228,7 +228,7 @@ function StateBreakdown({ byState, total }) {
                     ? 'var(--civic)'
                     : tone === 'intel'
                       ? 'var(--civic)'
-                      : 'var(--ink40)'
+                      : 'var(--ink50)'
           return <Bar key={s} label={STATE_LABEL[s] || s} n={n} max={max} color={color} />
         })}
       </div>
@@ -303,7 +303,7 @@ function ReadyToEscalate({ items }) {
         eyebrow="Acción urgente · moderador"
         title="Quejas cerca de o en silencio administrativo"
       />
-      <div style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 4, lineHeight: 1.5 }}>
+      <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 4, lineHeight: 1.5 }}>
         Quejas registradas en sede cuyo plazo LPACAP lleva ≥80% consumido. Candidatas para{' '}
         <code>/escalar Q-XXXX</code> si no llega respuesta antes del vencimiento — se generará el
         template para el Síndic de Greuges CV.
@@ -328,7 +328,7 @@ function ReadyToEscalate({ items }) {
                 textDecoration: 'none',
               }}
             >
-              <span className="mono" style={{ fontSize: 11, color: 'var(--ink60)' }}>
+              <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
                 {q.service_request_id}
               </span>
               <div style={{ minWidth: 0 }}>
@@ -403,7 +403,7 @@ function TopPending({ items }) {
               textDecoration: 'none',
             }}
           >
-            <span className="mono" style={{ fontSize: 11, color: 'var(--ink60)' }}>
+            <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
               {q.service_request_id}
             </span>
             <div style={{ minWidth: 0 }}>
@@ -513,7 +513,7 @@ export default function QuejasDashboard() {
         <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
           {t('dashboard.title')}
         </div>
-        <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 720 }}>
+        <div style={{ fontSize: 13.5, color: 'var(--ink50)', marginTop: 4, maxWidth: 720 }}>
           Vista agregada de todas las quejas capturadas vía{' '}
           <a
             href={TELEGRAM_BOT_URL}

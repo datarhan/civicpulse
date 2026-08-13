@@ -144,7 +144,7 @@ export default function EmpleoFilters({
           justifyContent: 'space-between',
           gap: 10,
           fontSize: 12,
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
         }}
       >
         <span className="mono">

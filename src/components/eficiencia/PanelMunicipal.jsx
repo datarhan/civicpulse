@@ -59,7 +59,7 @@ export function PanelMunicipal({ municipales, titulo, intro }) {
       <h2 style={{ fontSize: 15, fontWeight: 650, margin: '28px 0 4px', letterSpacing: '-.01em' }}>
         {titulo}
       </h2>
-      <p style={{ margin: '0 0 12px', fontSize: 13, color: 'var(--ink60)', maxWidth: '64ch' }}>
+      <p style={{ margin: '0 0 12px', fontSize: 13, color: 'var(--ink50)', maxWidth: '64ch' }}>
         {intro}{' '}
         {/* Sólo con dos o más: con una sola tarjeta la frase se convierte en un
             preámbulo de su propio subtítulo, y el porqué de la comparación lo
@@ -125,7 +125,7 @@ export function PanelMunicipal({ municipales, titulo, intro }) {
                     // El umbral es de la norma, no nuestro: por eso se enseña
                     // junto a la cifra y con su enlace, en vez de convertirse en
                     // un semáforo que juzgue por el lector.
-                    <span className="mono" style={{ fontSize: 12, color: 'var(--ink60)' }}>
+                    <span className="mono" style={{ fontSize: 12, color: 'var(--ink50)' }}>
                       {m.valor > m.referencia.valor ? '×' : ''}
                       {m.valor > m.referencia.valor
                         ? (m.valor / m.referencia.valor).toFixed(1)
@@ -142,7 +142,7 @@ export function PanelMunicipal({ municipales, titulo, intro }) {
                     </span>
                   )
                 ) : (
-                  <span className="mono" style={{ fontSize: 12, color: 'var(--ink60)' }}>
+                  <span className="mono" style={{ fontSize: 12, color: 'var(--ink50)' }}>
                     {crudo(m.numerador.valor, m.formato)} de {crudo(m.denominador.valor, m.formato)}
                   </span>
                 )}
@@ -170,14 +170,14 @@ export function PanelMunicipal({ municipales, titulo, intro }) {
               {m.pares && (
                 <p
                   className="mono"
-                  style={{ fontSize: 11.5, color: 'var(--ink60)', margin: '8px 0 0' }}
+                  style={{ fontSize: 11.5, color: 'var(--ink50)', margin: '8px 0 0' }}
                 >
                   Mediana de {m.pares.n.toLocaleString('es-ES')} municipios:{' '}
                   {fmt(m.pares.mediana, m.formato)} · aquí, percentil {m.pares.percentil}
                 </p>
               )}
 
-              <p style={{ margin: '8px 0 0', fontSize: 13, color: 'var(--ink70, var(--ink60))' }}>
+              <p style={{ margin: '8px 0 0', fontSize: 13, color: 'var(--ink70, var(--ink50))' }}>
                 {m.descripcion}
               </p>
 
@@ -193,7 +193,7 @@ export function PanelMunicipal({ municipales, titulo, intro }) {
                   style={{
                     margin: '10px 0 0',
                     paddingLeft: 18,
-                    color: 'var(--ink60)',
+                    color: 'var(--ink50)',
                     fontSize: 12,
                   }}
                 >

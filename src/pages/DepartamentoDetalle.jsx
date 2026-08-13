@@ -83,12 +83,12 @@ function VotesSection({ slug, frozen }) {
               {v.outcome === 'aprobado' ? (
                 <PlazoVencidoBadge dueBy={v.dueBy} frozen={frozen} note={v.dueBySource} />
               ) : (
-                <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink60)' }}>
+                <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
                   plazo: {v.dueBy}
                 </span>
               )}
               {v.dueBySource && (
-                <span style={{ fontSize: 11, color: 'var(--ink60)', fontStyle: 'italic' }}>
+                <span style={{ fontSize: 11, color: 'var(--ink50)', fontStyle: 'italic' }}>
                   «{v.dueBySource}»
                 </span>
               )}
@@ -119,7 +119,7 @@ function PromisesSection({ slug, frozen }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 12 }}>
       {items.map((p) => {
-        const partyColor = PARTY_TONE[p.party] || 'var(--ink60)'
+        const partyColor = PARTY_TONE[p.party] || 'var(--ink50)'
         return (
           <Card key={p.id}>
             <div
@@ -199,7 +199,7 @@ function UnvotedAgendasSection({ slug, votesSnap }) {
             {it.plenoDate} · punto {it.number}
             {it.expediente ? ` · exp. ${it.expediente}` : ''} · debatido, sin voto transcrito
           </div>
-          <div style={{ color: 'var(--ink80)' }}>{it.title}</div>
+          <div style={{ color: 'var(--ink70)' }}>{it.title}</div>
         </div>
       ))}
     </div>
@@ -264,7 +264,7 @@ function VerdictMixBar({ d }) {
     { n: d.verificado || 0, color: 'var(--ok)', label: 'Verificado' },
     { n: d.parcial || 0, color: 'var(--warn)', label: 'Parcial' },
     { n: d.contradicho || 0, color: 'var(--crit)', label: 'Contradicho' },
-    { n: d.sinDatos || 0, color: 'var(--ink40)', label: 'Sin contraste' },
+    { n: d.sinDatos || 0, color: 'var(--ink50)', label: 'Sin contraste' },
   ]
   const total = segs.reduce((a, s) => a + s.n, 0)
   if (total === 0) return null
@@ -299,7 +299,7 @@ function VerdictMixBar({ d }) {
         >
           Verificación de declaraciones
         </span>
-        <span style={{ fontSize: 11.5, color: 'var(--ink60)' }}>
+        <span style={{ fontSize: 11.5, color: 'var(--ink50)' }}>
           <strong className="mono" style={{ fontSize: 16, color: 'var(--ink)' }}>
             {pct}%
           </strong>{' '}
@@ -381,7 +381,7 @@ export default function DepartamentoDetalle() {
 
   const label = locale === 'ca' ? bucket.labelCa : bucket.labelEs
   const official = bucket.responsableOfficial
-  const partyColor = official?.party ? PARTY_TONE[official.party] || 'var(--ink60)' : null
+  const partyColor = official?.party ? PARTY_TONE[official.party] || 'var(--ink50)' : null
 
   return (
     <div style={{ padding: '28px 28px 48px', maxWidth: 920, margin: '0 auto' }}>
@@ -436,7 +436,7 @@ export default function DepartamentoDetalle() {
             background: 'var(--soft)',
             borderRadius: 8,
             marginTop: 8,
-            color: 'var(--ink60)',
+            color: 'var(--ink50)',
             fontSize: 12.5,
           }}
         >
@@ -512,7 +512,7 @@ export default function DepartamentoDetalle() {
           background: 'var(--soft)',
           borderRadius: 8,
           fontSize: 11.5,
-          color: 'var(--ink60)',
+          color: 'var(--ink50)',
           lineHeight: 1.55,
         }}
       >

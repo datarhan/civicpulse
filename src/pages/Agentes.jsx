@@ -29,7 +29,7 @@ export default function Agentes() {
     <div style={{ padding: '24px 0', display: 'grid', gap: 16 }}>
       <header>
         <h1 style={{ margin: 0, fontSize: 22, color: 'var(--ink)' }}>Periodistas IA</h1>
-        <p style={{ margin: '6px 0 0 0', fontSize: 13, color: 'var(--ink60)' }}>
+        <p style={{ margin: '6px 0 0 0', fontSize: 13, color: 'var(--ink50)' }}>
           Cada informe nace de una asignación que un agente automático investiga, redacta y
           autoverifica. La curaduría humana revisa antes de publicar. Las fuentes citadas se
           archivan en Wayback cuando es posible.
@@ -85,7 +85,7 @@ export default function Agentes() {
                       </Pill>
                     )}
                   </div>
-                  <div style={{ fontSize: 12.5, color: 'var(--ink60)', lineHeight: 1.5 }}>
+                  <div style={{ fontSize: 12.5, color: 'var(--ink50)', lineHeight: 1.5 }}>
                     {a.brief}
                   </div>
                   <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>

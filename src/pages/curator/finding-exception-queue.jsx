@@ -97,7 +97,7 @@ function QuoteRow({ q }) {
   return (
     <div className="feq-quote">
       <div>
-        <div style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--ink80)', fontStyle: 'italic' }}>
+        <div style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--ink70)', fontStyle: 'italic' }}>
           «{q.text}»
         </div>
         <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginTop: 4 }}>
@@ -108,7 +108,7 @@ function QuoteRow({ q }) {
         <Pill tone={GATE_TONE[q.gate] || 'neutral'} size="xs">
           {GATE_LABEL[q.gate] || `puerta: ${q.gate ?? 'sin veredicto'}`}
         </Pill>
-        <span className="mono" style={{ fontSize: 10, color: 'var(--ink60)' }}>
+        <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
           verificador: {q.verdict ?? '—'}
         </span>
         <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
@@ -140,7 +140,7 @@ export function FindingExceptionRow({ row }) {
       }}
     >
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
-        <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink60)' }}>
+        <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
           {row.plenoDate} · {row.plenoId}
         </span>
         <Pill tone="neutral" size="xs">
@@ -170,7 +170,7 @@ export function FindingExceptionRow({ row }) {
       </div>
       <div style={{ marginTop: 8 }}>
         <Label>Sumario publicado — es lo que se está juzgando</Label>
-        <div style={{ fontSize: 12, lineHeight: 1.55, color: 'var(--ink80)' }}>{row.summary}</div>
+        <div style={{ fontSize: 12, lineHeight: 1.55, color: 'var(--ink70)' }}>{row.summary}</div>
       </div>
       <div style={{ marginTop: 10 }}>
         <Label>

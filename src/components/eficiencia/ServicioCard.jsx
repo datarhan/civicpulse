@@ -91,7 +91,7 @@ export function ServicioCard({ indicador, formatea }) {
               {formatea(i.valor)}
             </span>
           </div>
-          <div className="mono" style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 2 }}>
+          <div className="mono" style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 2 }}>
             {i.numerador.valor.toLocaleString('es-ES', {
               style: 'currency',
               currency: 'EUR',
@@ -115,12 +115,12 @@ export function ServicioCard({ indicador, formatea }) {
         </>
       ) : (
         <div style={{ marginTop: 10 }}>
-          <p style={{ margin: 0, fontSize: 13, color: 'var(--ink70, var(--ink60))' }}>
+          <p style={{ margin: 0, fontSize: 13, color: 'var(--ink70, var(--ink50))' }}>
             {MOTIVO[motivo] ??
               'La fuente no permite calcular un coste unitario para este servicio.'}
           </p>
           {i.numerador.estado === 'declarado' && (
-            <p className="mono" style={{ fontSize: 12, color: 'var(--ink60)', margin: '8px 0 0' }}>
+            <p className="mono" style={{ fontSize: 12, color: 'var(--ink50)', margin: '8px 0 0' }}>
               Coste declarado:{' '}
               {i.numerador.valor.toLocaleString('es-ES', {
                 style: 'currency',
@@ -154,7 +154,7 @@ export function ServicioCard({ indicador, formatea }) {
           {declarados.length >= 2 && (
             <p
               className="mono"
-              style={{ fontSize: 12, margin: '10px 0 0', color: 'var(--ink70, var(--ink60))' }}
+              style={{ fontSize: 12, margin: '10px 0 0', color: 'var(--ink70, var(--ink50))' }}
             >
               {declarados.map((p, idx) => (
                 <span key={p.anio}>
@@ -181,7 +181,7 @@ export function ServicioCard({ indicador, formatea }) {
 
           {salvedades.length > 0 && (
             <ul
-              style={{ margin: '10px 0 0', paddingLeft: 18, color: 'var(--ink60)', fontSize: 12 }}
+              style={{ margin: '10px 0 0', paddingLeft: 18, color: 'var(--ink50)', fontSize: 12 }}
             >
               {salvedades.map((c) => (
                 <li key={c} style={{ marginBottom: 3 }}>

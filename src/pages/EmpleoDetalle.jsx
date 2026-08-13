@@ -55,7 +55,7 @@ function FieldRow({ label, value }) {
       >
         {label}
       </div>
-      <div style={{ color: 'var(--ink80)', lineHeight: 1.5, whiteSpace: 'pre-wrap' }}>{value}</div>
+      <div style={{ color: 'var(--ink70)', lineHeight: 1.5, whiteSpace: 'pre-wrap' }}>{value}</div>
     </div>
   )
 }
@@ -90,7 +90,7 @@ export default function EmpleoDetalle() {
             border: '1px solid var(--border2)',
             borderRadius: 10,
             fontSize: 13,
-            color: 'var(--ink60)',
+            color: 'var(--ink50)',
             lineHeight: 1.6,
           }}
         >
@@ -204,7 +204,7 @@ export default function EmpleoDetalle() {
                   fontSize: 13,
                 }}
               >
-                <span style={{ fontWeight: 600, color: 'var(--ink80)' }}>{oc.nombre}</span>
+                <span style={{ fontWeight: 600, color: 'var(--ink70)' }}>{oc.nombre}</span>
                 {oc.experiencia && (
                   <Pill tone="neutral" size="xs">
                     {t('empleoDetail.experience')}: {oc.experiencia}

@@ -32,7 +32,7 @@ function WindowToggle({ current, onChange }) {
             fontSize: 12,
             fontWeight: current === o.days ? 600 : 500,
             background: current === o.days ? 'var(--paper)' : 'transparent',
-            color: current === o.days ? 'var(--ink)' : 'var(--ink60)',
+            color: current === o.days ? 'var(--ink)' : 'var(--ink50)',
             boxShadow: current === o.days ? '0 1px 2px rgba(0,0,0,.06)' : 'none',
           }}
         >
@@ -69,7 +69,7 @@ function KindCard({ kind, items, formatDate }) {
               borderTop: i === 0 ? 'none' : '1px dotted var(--border2)',
             }}
           >
-            <span className="mono" style={{ fontSize: 11, color: 'var(--ink60)' }}>
+            <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
               {formatDate ? formatDate(it.date) : it.date}
             </span>
             <div style={{ minWidth: 0 }}>
@@ -77,7 +77,7 @@ function KindCard({ kind, items, formatDate }) {
                 <ExtLink
                   href={it.url}
                   style={{
-                    color: 'var(--ink80)',
+                    color: 'var(--ink70)',
                     textDecoration: 'none',
                     fontSize: 13,
                     fontWeight: 500,
@@ -89,7 +89,7 @@ function KindCard({ kind, items, formatDate }) {
                 <Link
                   to={it.url}
                   style={{
-                    color: 'var(--ink80)',
+                    color: 'var(--ink70)',
                     textDecoration: 'none',
                     fontSize: 13,
                     fontWeight: 500,
@@ -161,7 +161,7 @@ export default function Cambios() {
           <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
             {t('cambios.title') || 'Novedades'}
           </div>
-          <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 720 }}>
+          <div style={{ fontSize: 13.5, color: 'var(--ink50)', marginTop: 4, maxWidth: 720 }}>
             Todo lo que ha cambiado en los últimos {windowDays} días: quejas nuevas, plenos,
             contratos adjudicados, subvenciones, prensa y participación ciudadana. Cada tarjeta
             lleva un botón verde (WA) para compartir por WhatsApp.
@@ -176,7 +176,7 @@ export default function Cambios() {
             eyebrow="Sin cambios"
             title={`Sin novedades en los últimos ${windowDays} días`}
           />
-          <div style={{ fontSize: 13, color: 'var(--ink60)', marginTop: 6 }}>
+          <div style={{ fontSize: 13, color: 'var(--ink50)', marginTop: 6 }}>
             No se han registrado quejas, plenos, contratos, subvenciones ni prensa en este periodo.
             Prueba a ampliar la ventana a 14 o 30 días.
           </div>
