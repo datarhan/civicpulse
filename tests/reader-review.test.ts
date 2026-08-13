@@ -336,3 +336,69 @@ describe('--all: la lista de rutas sale del código, no de una lista a mano', ()
     expect(r.routes).toEqual([])
   })
 })
+
+describe('un fallo transitorio del backend no cuesta la ruta entera', () => {
+  // El vigilante del CLI mata a los 180 s y lanza un `Error` PLANO, así que el
+  // bucle de reintentos de callLLM —que sólo honra RetryableError— no lo toca:
+  // «all backends exhausted (claude-code) after 1 total attempts», y
+  // /reportajes/reconstruccion-dana se quedó SIN REVISAR por una llamada lenta.
+  const bueno = [
+    {
+      quote: 'Presup. 2025 €41,6M · Contratos adj. €68,0M',
+      inference: 'que el pueblo adjudica más de lo que presupuesta en un año',
+      contradictedBy: 'los contratos son acumulados 2017-2026',
+      severity: 'misleading' as const,
+    },
+  ]
+
+  it('reintenta una vez y la ruta sale consultada', async () => {
+    let n = 0
+    const r = await reviewSurfaceDetailed(
+      input,
+      async () => {
+        n += 1
+        return n === 1 ? null : bueno
+      },
+      { retries: 1 },
+    )
+    expect(r.consulted).toBe(true)
+    expect(r.attempts).toBe(2)
+    expect(r.findings).toHaveLength(1)
+  })
+
+  it('si falla siempre, sigue siendo NO consultada', async () => {
+    // El control. Sin él, «reintentar» se convertiría en «insistir hasta que
+    // salga algo», y una página que nadie pudo leer volvería a pasar por limpia.
+    let n = 0
+    const r = await reviewSurfaceDetailed(
+      input,
+      async () => {
+        n += 1
+        return null
+      },
+      { retries: 1 },
+    )
+    expect(r.consulted).toBe(false)
+    expect(r.reason).toBe('no-answer')
+    expect(n).toBe(2)
+    expect(r.attempts).toBe(2)
+  })
+
+  it('por defecto NO reintenta: quien llama decide, porque él sabe si le cabe', async () => {
+    let n = 0
+    const r = await reviewSurfaceDetailed(input, async () => {
+      n += 1
+      return null
+    })
+    expect(n).toBe(1)
+    expect(r.attempts).toBe(1)
+  })
+
+  it('una página vacía no gasta ni un intento', async () => {
+    const call = vi.fn()
+    const r = await reviewSurfaceDetailed({ ...input, renderedText: '  ' }, call, { retries: 3 })
+    expect(call).not.toHaveBeenCalled()
+    expect(r.attempts).toBe(0)
+    expect(r.reason).toBe('empty-page')
+  })
+})

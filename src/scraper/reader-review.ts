@@ -250,22 +250,50 @@ export interface SurfaceResult {
    * had four recorded instances of.
    */
   consulted: boolean
+  /**
+   * Llamadas gastadas en este fragmento. 1 salvo que hiciera falta reintentar.
+   *
+   * Se devuelve para que quien llama pueda DECIRLO. Una pasada que necesitó dos
+   * intentos no es lo mismo que una limpia a la primera, y callarlo escondería
+   * que el backend flaquea justo cuando eso es lo que hay que saber.
+   */
+  attempts: number
   reason?: 'empty-page' | 'no-answer'
 }
 
 export async function reviewSurfaceDetailed(
   input: SurfaceInput,
   call: ReaderCaller,
+  opts: { retries?: number } = {},
 ): Promise<SurfaceResult> {
   if (!input.renderedText.trim()) {
-    return { findings: [], dropped: [], consulted: false, reason: 'empty-page' }
+    return { findings: [], dropped: [], consulted: false, reason: 'empty-page', attempts: 0 }
   }
-  const raw = await call(input)
-  if (!raw) return { findings: [], dropped: [], consulted: false, reason: 'no-answer' }
+  // Un reintento rescata un fallo TRANSITORIO del backend, que es el que se ve
+  // aquí: el vigilante del CLI mata a los 180 s y lanza un `Error` PLANO, así
+  // que el bucle de reintentos de `callLLM` —que sólo honra `RetryableError`—
+  // no lo toca. Medido: «all backends exhausted (claude-code) after 1 total
+  // attempts», y una ruta entera sin cobertura por una llamada lenta.
+  //
+  // Las llamadas fallidas NO se cachean, de modo que el segundo intento es un
+  // intento de verdad y no la misma respuesta servida dos veces.
+  //
+  // Por defecto CERO: quien llama decide, porque sólo él sabe si le queda
+  // presupuesto. Insistir sin límite convertiría «reintentar» en «insistir
+  // hasta que salga algo», que es otra forma de no aceptar un no por respuesta.
+  const intentos = Math.max(1, 1 + (opts.retries ?? 0))
+  let raw: ReaderFinding[] | null = null
+  let attempts = 0
+  for (let i = 0; i < intentos; i += 1) {
+    attempts = i + 1
+    raw = await call(input)
+    if (raw) break
+  }
+  if (!raw) return { findings: [], dropped: [], consulted: false, reason: 'no-answer', attempts }
   const { kept, dropped } = partitionFindings(raw, input)
   // The dropped ones travel with the result, not just their count. On the first
   // run that reported them, four of six routes had printed "nada que señalar"
   // while holding five discarded findings between them; a bare number tells you
   // something is hidden without letting you judge whether it mattered.
-  return { findings: kept, dropped, consulted: true }
+  return { findings: kept, dropped, consulted: true, attempts }
 }

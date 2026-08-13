@@ -242,6 +242,8 @@ async function main() {
   }> = []
   let skipped = 0
   let totalDropped = 0
+  /** Llamadas de más gastadas en rescatar fragmentos que fallaron a la primera. */
+  let reintentos = 0
   const unreviewed: string[] = []
   /** Routes where SOME fragments were reviewed and some were not. */
   const partial: string[] = []
@@ -353,31 +355,40 @@ async function main() {
       }
       const input: SurfaceInput = { route, renderedText: chunk, facts }
       const calledAt = Date.now()
-      const r = await reviewSurfaceDetailed(input, async (i) => {
-        const res = await callLLM({
-          systemPrompt: buildReaderReviewSystemPrompt(),
-          userPrompt: buildReaderReviewUserPrompt({
-            ...i,
-            part: { index: index + 1, total: chunks.length },
-          }),
-          schema: ReaderReviewSchema,
-          promptVersion: READER_REVIEW_PROMPT_VERSION,
-          // CONTENT-ADDRESSED, and it has to be: `cacheKey` in src/llm/client.ts
-          // hashes this `input` and NOT the prompt text, so keying on the route
-          // alone would serve fragment 1's answer for every other fragment of
-          // the same page — an entire page "reviewed" by one cached call.
-          input: { route: i.route, fragment: hashOf(chunk) },
-        })
-        // `callLLM` returns null once every backend is exhausted. Coercing that
-        // to `[]` here — which this line did — made an unreviewable run print
-        // «nada que señalar» for all six routes. Nobody looked is not a clean
-        // page, and this check runs on pre-push, where that reads as approval.
-        return res ? res.findings : null
-      })
+      const r = await reviewSurfaceDetailed(
+        input,
+        async (i) => {
+          const res = await callLLM({
+            systemPrompt: buildReaderReviewSystemPrompt(),
+            userPrompt: buildReaderReviewUserPrompt({
+              ...i,
+              part: { index: index + 1, total: chunks.length },
+            }),
+            schema: ReaderReviewSchema,
+            promptVersion: READER_REVIEW_PROMPT_VERSION,
+            // CONTENT-ADDRESSED, and it has to be: `cacheKey` in src/llm/client.ts
+            // hashes this `input` and NOT the prompt text, so keying on the route
+            // alone would serve fragment 1's answer for every other fragment of
+            // the same page — an entire page "reviewed" by one cached call.
+            input: { route: i.route, fragment: hashOf(chunk) },
+          })
+          // `callLLM` returns null once every backend is exhausted. Coercing that
+          // to `[]` here — which this line did — made an unreviewable run print
+          // «nada que señalar» for all six routes. Nobody looked is not a clean
+          // page, and this check runs on pre-push, where that reads as approval.
+          return res ? res.findings : null
+        },
+        // Un reintento, y sólo si cabe. `noTimeToStart` estima con la llamada MÁS
+        // LENTA vista, no con la media, justo para no empezar lo que no termina;
+        // un segundo intento consume otro hueco de ésos, así que se pide sólo
+        // cuando queda sitio para él.
+        { retries: noTimeToStart() ? 0 : 1 },
+      )
       // The slowest, not the average: the budget is a promise about the worst
       // case, and averaging a fast cached fragment with a slow live one is how
       // an estimate ends up cheerfully starting the call that blows it.
       slowestCallMs = Math.max(slowestCallMs, Date.now() - calledAt)
+      if (r.attempts > 1) reintentos += r.attempts - 1
       if (!r.consulted) {
         reason ??= r.reason
         continue
@@ -485,6 +496,9 @@ async function main() {
         `${total} señalamiento(s) para revisión humana` +
         (remembered > 0 ? ` (${remembered} heredado(s) de una revisión anterior)` : '') +
         (totalDropped > 0 ? ` · ${totalDropped} descartado(s) por no citar literalmente` : '') +
+        // Se dice. Una pasada que necesitó dos intentos no es lo mismo que una
+        // limpia a la primera, y callarlo escondería que el backend flaquea.
+        (reintentos > 0 ? ` · ${reintentos} reintento(s) de backend` : '') +
         (partial.length > 0 ? ` · ${partial.length} PARCIAL(ES)` : '') +
         (unreviewed.length > 0 ? ` · ${unreviewed.length} SIN REVISAR` : '') +
         (ranOut.length > 0 ? ` · ${ranOut.length} NO ALCANZADA(S) POR TIEMPO` : '') +
