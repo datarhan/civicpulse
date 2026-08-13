@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { collectErrors, appErrors } from './_console'
 
 test.describe('Reportaje · reconstrucción DANA (/reportajes/reconstruccion-dana)', () => {
   test('renders the article, KPIs, charts and the right-of-reply notice', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/reportajes/reconstruccion-dana', { waitUntil: 'domcontentloaded' })
 
@@ -23,6 +20,6 @@ test.describe('Reportaje · reconstrucción DANA (/reportajes/reconstruccion-dan
     // The three data visualisations render as inline SVG.
     expect(await page.locator('svg[role="img"]').count()).toBeGreaterThanOrEqual(2)
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 })

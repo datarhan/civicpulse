@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { appErrors, collectErrors, collectPageErrors } from './_console'
 
 test.describe('Editorial chrome (/metodologia, /aviso-legal, catch-all)', () => {
   test('/metodologia renders the published editorial contract', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/metodologia', { waitUntil: 'domcontentloaded' })
 
@@ -16,12 +13,11 @@ test.describe('Editorial chrome (/metodologia, /aviso-legal, catch-all)', () => 
     await expect(page.getByText('Qué hacemos y qué no hacemos').first()).toBeVisible()
     await expect(page.getByText(/Verificación de declaraciones de pleno/i).first()).toBeVisible()
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('/aviso-legal renders identity + privacy + LOREG sections', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
+    const errors = collectPageErrors(page)
 
     await page.goto('/aviso-legal', { waitUntil: 'domcontentloaded' })
 
@@ -32,7 +28,7 @@ test.describe('Editorial chrome (/metodologia, /aviso-legal, catch-all)', () => 
     await expect(page.getByText('Modo congelado LOREG').first()).toBeVisible()
     await expect(page.getByText(/Datos personales de cargos electos/i).first()).toBeVisible()
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('catch-all path redirects to /', async ({ page }) => {

@@ -7,7 +7,22 @@ export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
+  // En local había 0 reintentos con los workers por defecto —cinco en una
+  // máquina de diez núcleos— contra un único `vite preview`. En CI son 2
+  // workers y 2 reintentos, así que la pasada local era ESTRICTAMENTE menos
+  // tolerante que la puerta que pretende predecir: una de cada tres o cuatro
+  // pasadas completas fallaba, en un spec distinto cada vez.
+  //
+  // Diagnosticado, y no era un tiempo agotado: caía siempre en la aserción de
+  // «sin errores de consola», en menos de medio segundo, con un 404 suelto. No
+  // se reproduce en ninguna ruta por separado, ni repitiendo un spec 36 veces
+  // con seis workers: sólo con la suite entera encima del servidor de preview.
+  // Ninguna de las nueve rutas implicadas devuelve un 4xx cuando se carga sola.
+  //
+  // Un reintento iguala la tolerancia local a la de CI. No esconde nada:
+  // Playwright informa de lo reintentado como «flaky», no como «passed», así
+  // que un test que de verdad se vuelva inestable se sigue viendo.
+  retries: process.env.CI ? 2 : 1,
   workers: process.env.CI ? 2 : undefined,
   reporter: process.env.CI
     ? [['github'], ['html', { outputFolder: 'playwright-report', open: 'never' }]]

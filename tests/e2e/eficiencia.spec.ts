@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs'
 import { chipDeclaracion, GLOSA_TIER } from '../../src/scraper/indicador-lectura'
 import type { Indicador } from '../../src/scraper/indicadores'
 import type { IndicadorMunicipal } from '../../src/scraper/indicadores-friccion'
+import { collectErrors, appErrors } from './_console'
 
 type MunicipalLike = Pick<IndicadorMunicipal, 'id' | 'panel' | 'valor' | 'etiqueta' | 'periodo'>
 
@@ -66,11 +67,7 @@ test.describe('Eficiencia (/eficiencia)', () => {
   })
 
   test('renders unit costs with their peer position', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/eficiencia', { waitUntil: 'domcontentloaded' })
     await expect(
@@ -85,7 +82,7 @@ test.describe('Eficiencia (/eficiencia)', () => {
     // Coverage strip states the page's own share of its domain.
     await expect(page.getByText(/servicios que este panel sigue/i)).toBeVisible()
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('avisa de los cocientes cuyo denominador nadie vuelve a medir', async ({ page }) => {

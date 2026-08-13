@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { collectErrors, appErrors } from './_console'
 
 test.describe('Cargos (/cargos)', () => {
   test('renders the corporación grid with mayor + party breakdown', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
 
@@ -20,7 +17,7 @@ test.describe('Cargos (/cargos)', () => {
     const detailLink = page.locator('a[href^="/cargos/"]').first()
     await expect(detailLink).toBeVisible({ timeout: 8000 })
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('the alcalde card links Biografía to the published journalist report', async ({ page }) => {

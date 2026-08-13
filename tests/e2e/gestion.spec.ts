@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { readFileSync } from 'node:fs'
 import type { IndicadorMunicipal } from '../../src/scraper/indicadores-friccion'
+import { collectErrors, appErrors } from './_console'
 
 type MunicipalLike = Pick<IndicadorMunicipal, 'id' | 'panel' | 'valor' | 'etiqueta' | 'periodo'>
 
@@ -25,11 +26,7 @@ test.describe('Gestión (/gestion)', () => {
   })
 
   test('publica cada indicador de gestión con su periodo', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
     await page.goto('/gestion', { waitUntil: 'domcontentloaded' })
 
     expect(AQUI.length, 'ningún indicador de gestión en el snapshot').toBeGreaterThan(0)
@@ -39,7 +36,7 @@ test.describe('Gestión (/gestion)', () => {
       // un porcentaje sin periodo convierte una cifra correcta en falsa.
       await expect(page.getByText(m.periodo, { exact: true }).first()).toBeVisible()
     }
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('no se trae los costes unitarios de la página hermana', async ({ page }) => {

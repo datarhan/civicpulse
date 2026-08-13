@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { appErrors, collectErrors, collectPageErrors } from './_console'
 
 test.describe('Cambios (/cambios)', () => {
   test('renders the rolling-window header + window toggle', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/cambios', { waitUntil: 'domcontentloaded' })
 
@@ -19,7 +16,7 @@ test.describe('Cambios (/cambios)', () => {
     await expect(page.getByRole('button', { name: '14 días' })).toBeVisible()
     await expect(page.getByRole('button', { name: '30 días' })).toBeVisible()
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('window toggle updates without crashing', async ({ page }) => {
@@ -32,8 +29,7 @@ test.describe('Cambios (/cambios)', () => {
 
 test.describe('Queja detail (/quejas/:id)', () => {
   test('unknown id renders the not-found state with a back link', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
+    const errors = collectPageErrors(page)
 
     // quejas.json currently has 0 items, so every /quejas/<id> hits this branch.
     await page.goto('/quejas/q-no-existe', { waitUntil: 'domcontentloaded' })

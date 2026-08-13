@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { collectErrors, appErrors } from './_console'
 
 test.describe('LabHealth (/lab-health)', () => {
   test('renders header + stats row + at least one source row', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/lab-health', { waitUntil: 'domcontentloaded' })
 
@@ -27,7 +24,7 @@ test.describe('LabHealth (/lab-health)', () => {
     // Methodology backlink renders at the foot of the page.
     await expect(page.getByRole('link', { name: /Metodología/i }).first()).toBeVisible()
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('linked from /datos header', async ({ page }) => {

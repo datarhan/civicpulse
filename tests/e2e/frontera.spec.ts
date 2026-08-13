@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { readFileSync } from 'node:fs'
+import { collectErrors, appErrors } from './_console'
 
 // Se lee el snapshot en vez de reescribir sus cifras: una spec que restituye la
 // forma que debe comprobar es el modo de fallo 1 de docs/DATA_INTEGRITY.md, y
@@ -21,11 +22,7 @@ test.describe('Frontera (/laboratorio/frontera)', () => {
   })
 
   test('avisa de lo que NO es antes de enseñar ninguna cifra', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
     await page.goto('/laboratorio/frontera', { waitUntil: 'domcontentloaded' })
 
     await expect(page.getByText(/no es una nota ni un ranking/i)).toBeVisible({ timeout: 8000 })
@@ -39,7 +36,7 @@ test.describe('Frontera (/laboratorio/frontera)', () => {
     expect(posPuntuacion).toBeGreaterThan(-1)
     expect(posAviso).toBeLessThan(posPuntuacion)
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('pone la calidad de la declaración antes que las puntuaciones', async ({ page }) => {

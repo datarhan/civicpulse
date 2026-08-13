@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { collectErrors, appErrors } from './_console'
 
 test.describe('Blog — Building CivicPulse (/blog/building-civicpulse-with-ai, English)', () => {
   test('renders the engineering post with its section structure', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/blog/building-civicpulse-with-ai', { waitUntil: 'domcontentloaded' })
 
@@ -22,6 +19,6 @@ test.describe('Blog — Building CivicPulse (/blog/building-civicpulse-with-ai, 
     ).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Try it / break it' })).toBeVisible()
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 })

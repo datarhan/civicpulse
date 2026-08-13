@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { collectErrors, appErrors } from './_console'
 
 test.describe('Reportajes index (/reportajes)', () => {
   test('lists both published reportajes and navigates to the newest', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/reportajes', { waitUntil: 'domcontentloaded' })
 
@@ -27,7 +24,7 @@ test.describe('Reportajes index (/reportajes)', () => {
       timeout: 8000,
     })
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 })
 

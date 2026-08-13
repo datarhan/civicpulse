@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { collectErrors, appErrors } from './_console'
 
 test.describe('Presupuesto (/presupuesto)', () => {
   test('renders money map dashboard + spend charts + subsidies', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
 
@@ -22,7 +19,7 @@ test.describe('Presupuesto (/presupuesto)', () => {
     await expect(page.getByText('Subvenciones · Base Nacional').first()).toBeVisible()
     await expect(page.getByText(/€/).first()).toBeVisible()
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('the money-map heading matches what the figure under it counts', async ({ page }) => {

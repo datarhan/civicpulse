@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { collectErrors, appErrors } from './_console'
 
 test.describe('Landing (/)', () => {
   test('renders editorial column + KPI strip with real data', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/', { waitUntil: 'domcontentloaded' })
 
@@ -23,7 +20,7 @@ test.describe('Landing (/)', () => {
     // Map tiles loaded (Leaflet attribution link appears when tiles are live)
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 8000 })
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('every cumulative contract figure carries its period in visible text', async ({ page }) => {

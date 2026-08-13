@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { collectErrors, appErrors } from './_console'
 
 test.describe('About (/about, English)', () => {
   test('renders the funder-facing thesis page', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/about', { waitUntil: 'domcontentloaded' })
 
@@ -17,6 +14,6 @@ test.describe('About (/about, English)', () => {
     await expect(page.getByText('T1 · Auto').first()).toBeVisible()
     await expect(page.getByText('Operator and independence').first()).toBeVisible()
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 })

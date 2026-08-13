@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { appErrors, collectErrors, collectPageErrors } from './_console'
 
 test.describe('Hallazgos (/hallazgos)', () => {
   test('renders dashboard with at least one promoted finding', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/hallazgos', { waitUntil: 'domcontentloaded' })
 
@@ -28,7 +25,7 @@ test.describe('Hallazgos (/hallazgos)', () => {
     const firstPermalink = page.locator('a[href^="/hallazgos#f-"]').first()
     await expect(firstPermalink).toBeVisible()
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('severity filter toggles the visible set', async ({ page }) => {
@@ -154,8 +151,7 @@ test.describe('Hallazgos (/hallazgos)', () => {
 
 test.describe('Cargo detail (/cargos/:slug)', () => {
   test('renders a councillor detail page from /cargos', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
+    const errors = collectPageErrors(page)
 
     // The mayor's slug is stable — officials.json always has role=alcalde
     await page.goto('/cargos/robert-raga-gadea', { waitUntil: 'domcontentloaded' })
@@ -177,7 +173,7 @@ test.describe('Cargo detail (/cargos/:slug)', () => {
       timeout: 5000,
     })
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('unknown slug shows not-found state (no crash)', async ({ page }) => {

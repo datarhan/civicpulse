@@ -1,13 +1,10 @@
 import { test, expect } from '@playwright/test'
 import { agendaHasDepartments } from './_agenda'
+import { appErrors, collectErrors, collectPageErrors } from './_console'
 
 test.describe('Departamentos (/departamentos)', () => {
   test('index renders dept cards with responsible officials', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/departamentos', { waitUntil: 'domcontentloaded' })
 
@@ -25,7 +22,7 @@ test.describe('Departamentos (/departamentos)', () => {
     // so the string must appear at least once.
     await expect(page.getByText(/Sin concejal asignado/i).first()).toBeVisible()
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('«Ver responsable» belongs to its own card, not the next concejalía', async ({ page }) => {
@@ -117,8 +114,7 @@ test.describe('Departamentos (/departamentos)', () => {
   })
 
   test('detail page /departamentos/:slug renders four sections', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
+    const errors = collectPageErrors(page)
 
     await page.goto('/departamentos/urbanismo', { waitUntil: 'domcontentloaded' })
 
@@ -139,12 +135,11 @@ test.describe('Departamentos (/departamentos)', () => {
       '/metodologia',
     )
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('unknown slug shows not-found state (not a crash)', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
+    const errors = collectPageErrors(page)
 
     await page.goto('/departamentos/no-existe-este-slug', { waitUntil: 'domcontentloaded' })
 

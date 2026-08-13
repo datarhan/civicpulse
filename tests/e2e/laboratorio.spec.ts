@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { collectErrors, appErrors } from './_console'
 
 test.describe('Laboratorio (/laboratorio)', () => {
   test('renders header, KPI strip, and dashboard rail', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/laboratorio', { waitUntil: 'domcontentloaded' })
 
@@ -30,7 +27,7 @@ test.describe('Laboratorio (/laboratorio)', () => {
     await expect(page.getByText(/Medios monitorizados/i).first()).toBeVisible()
     await expect(page.getByText(/Lo que la prensa local no está siguiendo/i).first()).toBeVisible()
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   // Honesty invariant (data-independent): the "Tasa de verificación" KPI shows

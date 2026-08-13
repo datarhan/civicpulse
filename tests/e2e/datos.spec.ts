@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { collectErrors, appErrors } from './_console'
 
 test.describe('Datos (/datos)', () => {
   test('renders Wikidata + padrón chart + dataset catalog', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/datos', { waitUntil: 'domcontentloaded' })
 
@@ -21,6 +18,6 @@ test.describe('Datos (/datos)', () => {
       page.getByText(/Catálogo de datasets · snapshots JSON regenerados por el pipeline/i).first(),
     ).toBeVisible()
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 })

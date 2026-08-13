@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { readFileSync } from 'node:fs'
+import { collectErrors, appErrors } from './_console'
 
 const PENDING_REVIEW_COUNT = JSON.parse(
   readFileSync('public/data/promises.json', 'utf8'),
@@ -10,11 +11,7 @@ const PENDING_REVIEW_COUNT = JSON.parse(
 
 test.describe('Promesas (/promesas)', () => {
   test('renders tracker header + composition bar + filters + cards', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/promesas', { waitUntil: 'domcontentloaded' })
 
@@ -34,7 +31,7 @@ test.describe('Promesas (/promesas)', () => {
     await expect(page.getByRole('link', { name: /Metodolog/i }).first()).toBeVisible()
     await expect(page.getByRole('link', { name: /Aviso legal/i }).first()).toBeVisible()
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('party filter narrows the visible card set', async ({ page }) => {

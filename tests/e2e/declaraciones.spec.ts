@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { collectErrors, appErrors } from './_console'
 
 test.describe('Declaraciones (/declaraciones)', () => {
   test('renders the global verified-claims browse page', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/declaraciones', { waitUntil: 'domcontentloaded' })
 
@@ -25,7 +22,7 @@ test.describe('Declaraciones (/declaraciones)', () => {
     // At least one claim card renders (we have 4658+ claims at time of writing).
     await expect(page.locator('text=/«[^»]+»/').first()).toBeVisible({ timeout: 8000 })
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('verdict filter narrows the visible set', async ({ page }) => {

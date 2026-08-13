@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { collectErrors, appErrors } from './_console'
 
 test.describe('Nosotros (/nosotros)', () => {
   test('renders identity, funding transparency and impact sections', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/nosotros', { waitUntil: 'domcontentloaded' })
 
@@ -19,6 +16,6 @@ test.describe('Nosotros (/nosotros)', () => {
     // Funding-independence commitment is the page's editorial core.
     await expect(page.getByText(/Sin publicidad/).first()).toBeVisible()
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 })

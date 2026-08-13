@@ -1,12 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { collectErrors, appErrors } from './_console'
 
 test.describe('Empleo (/empleo)', () => {
   test('renders stats + charts and paginates the list', async ({ page }) => {
-    const errors: string[] = []
-    page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => {
-      if (m.type() === 'error') errors.push(m.text())
-    })
+    const errors = collectErrors(page)
 
     await page.goto('/empleo', { waitUntil: 'domcontentloaded' })
 
@@ -25,7 +22,7 @@ test.describe('Empleo (/empleo)', () => {
     await page.getByRole('button', { name: /Siguiente/ }).click()
     await expect(page.getByText(/Página 2 \/ \d+/)).toBeVisible()
 
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+    expect(appErrors(errors)).toEqual([])
   })
 
   test('opens the lazy municipality map on demand', async ({ page }) => {
