@@ -171,18 +171,35 @@ La aserción 6 es la que este repo ha pagado más caro: es la forma
 `r?.findings ?? []`. Un guard contra la staleness que se queda mudo por un typo
 es el chiste que este repositorio ya ha contado dos veces.
 
-### Conjunto diferido (6 sitios · codifican datos, no marca)
+### Conjunto diferido (6 ficheros · 9 usos · codifican datos, no marca)
 
-| Fichero:línea | Uso | Ola |
-| ------------- | --- | --- |
-| `src/hooks/useBudget.js:29` | `EXPENSE_COLORS[0]` — capítulo 1 Personal | 3 (§07) |
-| `src/hooks/useBudget.js:42` | `PROGRAM_COLORS[1]` — servicios públicos básicos | 3 (§07) |
-| `src/components/Presupuesto/SpendingTypeBreakdown.jsx:21` | serie `construction` | 3 (§07) |
-| `src/components/Presupuesto/GastoMap.jsx:96` | pin DANA vs. normal | 3 (§07) |
-| `src/components/LiveCity/layers/MoneyLayer.jsx:43` | pin DANA vs. normal | 3 (§07) |
-| `src/components/empleo/EmpleoMap.jsx:58` | polígono de empleo | 3 (§07) |
+| Fichero:línea | Usos | Uso | Ola |
+| ------------- | ---- | --- | --- |
+| `src/hooks/useBudget.js:29,42` | 2 | `EXPENSE_COLORS[0]`, `PROGRAM_COLORS[1]` | 3 (§07) |
+| `src/components/Presupuesto/SpendingTypeBreakdown.jsx:21` | 1 | serie `construction` | 3 (§07) |
+| `src/components/Presupuesto/GastoMap.jsx:96` | 1 | pin DANA vs. normal | 3 (§07) |
+| `src/components/LiveCity/layers/MoneyLayer.jsx:43` | 1 | pin DANA vs. normal | 3 (§07) |
+| `src/components/empleo/EmpleoMap.jsx:58` | 2 | polígono de empleo (`color` + `fillColor`) | 3 (§07) |
+| `public/og.svg:12,41` | 2 | la tarjeta se reescribe entera | 2 |
 
-`public/og.svg` (2 usos) va en la ola 2, que reescribe la tarjeta entera.
+> **Corregido al ejecutar.** Este cuadro decía 8 usos porque el inventario a
+> mano contó **líneas de grep**, no apariciones: `EmpleoMap.jsx:58` lleva dos en
+> la misma línea. Lo cazó la aserción 2 del guard la primera vez que corrió, que
+> es para lo que está. El total del repo es 33, no 32.
+
+### El sentinela no es un partido
+
+`PARTY_COLORS.Otro` es `#64748B`, y `partyColor()` devuelve ese mismo valor para
+una formación desconocida: es el sentinela, no una marca. Esa pizarra es además
+un gris de interfaz corriente, presente en doce sitios sin relación con la
+política (`/presupuesto`, `/promesas`, la red de metro, la calidad del aire).
+
+El guard lo excluye, pero **derivándolo** —pregunta a `partyColor()` por una
+formación inventada y descarta ese color— en vez de escribir «salta Otro». Si un
+día `Otro` deja de ser el fallback, vuelve a vigilarse solo. La aserción 6b es
+el control de esa derivación: comprueba que quitó exactamente uno y que `PP`
+sigue dentro, porque una derivación que vaciara la lista dejaría la aserción 1
+verde por no mirar a nadie.
 
 ---
 
