@@ -61,6 +61,27 @@ export interface GrafoRutas {
   rutas: string[]
 }
 
+/**
+ * Rutas que existen en la build de producción y se pueden pedir tal cual.
+ *
+ * Fuera quedan dos clases, y las dos por motivo:
+ *
+ * · las que llevan `:` necesitan un id real, y elegir CUÁL es una decisión
+ *   editorial (¿qué concejal representa a `/cargos/:slug`?). Sus índices entran.
+ * · `/curator` no existe en producción —se excluye en dos sitios
+ *   independientes— así que pedirla sólo da un NO MONTADA. El gancho de
+ *   pre-push lo estaba haciendo en cada push que tocara algo que la página del
+ *   curador importa.
+ *
+ * Vive aquí porque ya había tres copias de este filtro —review-surfaces,
+ * check-surfaces y la que le faltaba a routes-for-changes— y una copia que se
+ * arregla mientras las otras siguen mal es el duplicado favorito de este
+ * repositorio.
+ */
+export function rutasPublicas(grafo: GrafoRutas): string[] {
+  return grafo.rutas.filter((r) => !r.includes(':') && r !== '/curator')
+}
+
 export function construirGrafoRutas(src: string): GrafoRutas {
   const todos = ficheros(src)
   const texto = new Map(todos.map((f) => [f, readFileSync(f, 'utf8')]))

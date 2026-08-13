@@ -20,21 +20,14 @@
  */
 import { readFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { construirGrafoRutas } from './lib/route-graph'
+import { construirGrafoRutas, rutasPublicas } from './lib/route-graph'
 import { medirFrescura, parteFrescura, DIAS_FRESCURA } from '../src/scraper/surface-freshness'
 import type { ReviewCacheEntry } from '../src/scraper/reader-review'
 
 const CACHE = resolve('.review-cache.json')
 
-/** Las mismas 27 que barre el nocturno: del grafo, no de una lista. */
-function rutasPublicas(): string[] {
-  return construirGrafoRutas(resolve('src')).rutas.filter(
-    (r) => !r.includes(':') && r !== '/curator',
-  )
-}
-
 function main() {
-  const rutas = rutasPublicas()
+  const rutas = rutasPublicas(construirGrafoRutas(resolve('src')))
   // Un fichero ausente NO es un fichero vacío que da todo por bueno: es cero
   // revisiones, y `medirFrescura` lo cuenta como «ninguna leída».
   const cache: Record<string, string | ReviewCacheEntry> = existsSync(CACHE)

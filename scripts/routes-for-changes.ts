@@ -26,7 +26,7 @@
 import { readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { construirGrafoRutas } from './lib/route-graph'
+import { construirGrafoRutas, rutasPublicas } from './lib/route-graph'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -66,12 +66,15 @@ function main() {
     : rutasArg
 
   const grafo = construirGrafoRutas(SRC)
+  // Sólo lo que existe en producción: pedir /curator daba un NO MONTADA en
+  // cada push que tocara algo que la página del curador importa.
+  const publicas = new Set(rutasPublicas(grafo))
   const rutas = new Set<string>()
   const sinRuta: string[] = []
   for (const e of entradas) {
     const r = rutasDeFichero(e, grafo)
     if (r.length === 0) sinRuta.push(e)
-    for (const x of r) rutas.add(x)
+    for (const x of r) if (publicas.has(x)) rutas.add(x)
   }
 
   const ordenadas = [...rutas].sort()
