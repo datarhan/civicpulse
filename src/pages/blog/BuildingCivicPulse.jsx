@@ -113,7 +113,7 @@ export default function BuildingCivicPulse() {
             lineHeight: 1.7,
             background: 'var(--soft)',
             border: '1px solid var(--border)',
-            borderRadius: 10,
+            borderRadius: 'var(--r-card)',
             padding: '14px 16px',
             overflowX: 'auto',
             color: 'var(--ink70)',
@@ -255,7 +255,7 @@ export default function BuildingCivicPulse() {
           style={{
             background: 'var(--soft)',
             border: '1px solid var(--border)',
-            borderRadius: 12,
+            borderRadius: 'var(--r-card)',
             padding: '20px 22px',
             margin: '32px 0 0',
           }}

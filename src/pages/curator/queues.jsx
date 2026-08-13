@@ -8,7 +8,7 @@ function ContradichoBundleRow({ bundle, onOpen }) {
       style={{
         padding: '12px 14px',
         border: '1px solid var(--border2)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
         marginBottom: 10,
         cursor: 'pointer',
         background: 'var(--paper)',
@@ -23,7 +23,12 @@ function ContradichoBundleRow({ bundle, onOpen }) {
           <span
             key={b}
             className="mono"
-            style={{ fontSize: 10, padding: '1px 6px', background: 'var(--soft)', borderRadius: 4 }}
+            style={{
+              fontSize: 10,
+              padding: '1px 6px',
+              background: 'var(--soft)',
+              borderRadius: 'var(--r-input)',
+            }}
           >
             {b}
           </span>
@@ -51,7 +56,7 @@ function IssueRow({ issue }) {
         display: 'block',
         padding: '10px 14px',
         border: '1px solid var(--border2)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
         marginBottom: 8,
         textDecoration: 'none',
         color: 'inherit',

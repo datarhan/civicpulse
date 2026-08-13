@@ -55,7 +55,7 @@ function TopDepartmentsCard({ agendas }) {
               padding: '3px 8px',
               background: 'var(--civic-soft)',
               color: 'var(--civic)',
-              borderRadius: 3,
+              borderRadius: 'var(--r-input)',
               letterSpacing: '.05em',
               textDecoration: 'none',
             }}

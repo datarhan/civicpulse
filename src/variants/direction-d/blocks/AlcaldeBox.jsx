@@ -91,7 +91,7 @@ export function AlcaldeBox() {
             style={{
               width: 52,
               height: 52,
-              borderRadius: 8,
+              borderRadius: 'var(--r-input)',
               objectFit: 'cover',
               border: `2px solid ${partyColor(mayor.party)}44`,
               flexShrink: 0,
@@ -124,7 +124,7 @@ export function AlcaldeBox() {
                 background: partyColor(mayor.party),
                 color: 'white',
                 padding: '2px 6px',
-                borderRadius: 3,
+                borderRadius: 'var(--r-pill)',
               }}
             >
               {mayor.party}
@@ -189,7 +189,7 @@ export function AlcaldeBox() {
                 padding: '2px 7px',
                 background: '#EEF4FF',
                 color: PALETTE.civic,
-                borderRadius: 3,
+                borderRadius: 'var(--r-input)',
                 letterSpacing: '.04em',
                 textDecoration: 'none',
                 fontWeight: 600,

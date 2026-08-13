@@ -62,7 +62,7 @@ function KPI({ label, value, hint }) {
         minWidth: 140,
         padding: '12px 14px',
         border: '1px solid var(--border2)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
       }}
     >
       <div
@@ -136,7 +136,7 @@ function TrustIndicators({ indicators }) {
               alignItems: 'center',
               gap: 4,
               padding: '2px 7px',
-              borderRadius: 11,
+              borderRadius: 'var(--r-card)',
               background: on ? 'var(--ok-soft)' : 'var(--soft)',
               // Inactive chips keep the muted --ink50 ink but DROP the extra
               // 0.7 opacity, which compounded the translucency down to a
@@ -247,7 +247,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
             style={{
               fontSize: 9.5,
               padding: '1px 5px',
-              borderRadius: 3,
+              borderRadius: 'var(--r-input)',
               background: 'var(--soft)',
               color: 'var(--ink50)',
               letterSpacing: '.06em',
@@ -263,7 +263,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
             style={{
               fontSize: 9.5,
               padding: '1px 5px',
-              borderRadius: 3,
+              borderRadius: 'var(--r-input)',
               background: 'var(--warn-soft)',
               color: 'var(--warn-ink)',
               letterSpacing: '.06em',
@@ -330,7 +330,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
             marginTop: 10,
             padding: '6px 10px',
             background: 'var(--soft)',
-            borderRadius: 6,
+            borderRadius: 'var(--r-input)',
             fontSize: 11.5,
             color: 'var(--ink70)',
           }}
@@ -773,7 +773,7 @@ export default function Laboratorio() {
             padding: '12px 14px',
             border: '1px solid var(--border2)',
             background: 'var(--warn-soft)',
-            borderRadius: 8,
+            borderRadius: 'var(--r-input)',
             fontSize: 13,
             color: 'var(--ink70)',
             lineHeight: 1.55,
@@ -807,7 +807,7 @@ export default function Laboratorio() {
             style={{
               padding: '4px 8px',
               border: '1px solid var(--border2)',
-              borderRadius: 5,
+              borderRadius: 'var(--r-input)',
               background: 'var(--paper)',
               color: 'var(--ink)',
             }}
@@ -829,7 +829,7 @@ export default function Laboratorio() {
             style={{
               padding: '4px 8px',
               border: '1px solid var(--border2)',
-              borderRadius: 5,
+              borderRadius: 'var(--r-input)',
               background: 'var(--paper)',
               color: 'var(--ink)',
             }}
@@ -1017,7 +1017,7 @@ export default function Laboratorio() {
             style={{
               padding: 12,
               background: 'var(--soft)',
-              borderRadius: 8,
+              borderRadius: 'var(--r-input)',
               fontSize: 11.5,
               color: 'var(--ink70)',
               lineHeight: 1.55,

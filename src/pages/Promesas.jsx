@@ -23,7 +23,7 @@ function FreezeBanner({ snap }) {
         marginBottom: 16,
         background: 'rgba(220, 38, 38, 0.06)',
         border: '1px solid rgba(220, 38, 38, 0.35)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
         fontSize: 13,
         color: 'var(--ink)',
         lineHeight: 1.45,
@@ -53,7 +53,7 @@ function LegalFooter({ snap }) {
         marginTop: 40,
         padding: 14,
         background: 'var(--soft)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
         fontSize: 12,
         color: 'var(--ink50)',
         lineHeight: 1.5,
@@ -88,7 +88,13 @@ function CompositionBar({ items }) {
         {total} compromisos en seguimiento · distribución por partido
       </div>
       <div
-        style={{ display: 'flex', width: '100%', height: 10, borderRadius: 5, overflow: 'hidden' }}
+        style={{
+          display: 'flex',
+          width: '100%',
+          height: 10,
+          borderRadius: 'var(--r-pill)',
+          overflow: 'hidden',
+        }}
       >
         {entries.map(([party, n]) => (
           <div
@@ -152,7 +158,7 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
             background: color,
             color: 'white',
             padding: '2px 7px',
-            borderRadius: 3,
+            borderRadius: 'var(--r-pill)',
           }}
         >
           {p.party}
@@ -286,7 +292,7 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
             padding: 10,
             borderLeft: '3px solid var(--intel)',
             background: 'var(--intel-soft)',
-            borderRadius: 4,
+            borderRadius: 'var(--r-input)',
             fontSize: 12,
             color: 'var(--ink70)',
           }}
@@ -360,7 +366,7 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
             marginTop: 10,
             padding: 10,
             background: 'var(--soft)',
-            borderRadius: 6,
+            borderRadius: 'var(--r-input)',
             fontSize: 11.5,
           }}
         >
@@ -487,7 +493,7 @@ export default function Promesas() {
           style={{
             padding: '6px 10px',
             border: '1px solid var(--border2)',
-            borderRadius: 6,
+            borderRadius: 'var(--r-input)',
             background: 'white',
             fontSize: 13,
           }}
@@ -506,7 +512,7 @@ export default function Promesas() {
           style={{
             padding: '6px 10px',
             border: '1px solid var(--border2)',
-            borderRadius: 6,
+            borderRadius: 'var(--r-input)',
             background: 'white',
             fontSize: 13,
           }}

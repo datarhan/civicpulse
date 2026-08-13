@@ -25,7 +25,7 @@ export const MAP_LAYERS = [
 const cardStyle = {
   background: 'rgba(255,255,255,.94)',
   border: '1px solid #DCD7C8',
-  borderRadius: 9,
+  borderRadius: 'var(--r-input)',
   padding: '7px 9px',
   fontFamily: "'Outfit', system-ui, sans-serif",
   boxShadow: '0 4px 16px rgba(11,15,25,.16)',
@@ -50,7 +50,7 @@ function chipStyle(on) {
     fontSize: 12,
     fontWeight: 600,
     padding: '4px 9px',
-    borderRadius: 999,
+    borderRadius: 'var(--r-pill)',
     border: `1px solid ${on ? 'var(--civic)' : '#C9C3B4'}`,
     background: on ? 'var(--civic)' : 'transparent',
     color: on ? '#FFFFFF' : 'rgba(11,15,25,.7)',

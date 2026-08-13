@@ -35,7 +35,7 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
       <div
         style={{
           height: 14,
-          borderRadius: 7,
+          borderRadius: 'var(--r-pill)',
           overflow: 'hidden',
           display: 'flex',
           border: '1px solid var(--border2)',
@@ -70,7 +70,7 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
                 height: 6,
                 width: Math.max(6, (z.amount / maxAmt) * 80),
                 background: 'var(--civic)',
-                borderRadius: 3,
+                borderRadius: 'var(--r-input)',
               }}
             />
             <span className="mono" style={{ fontWeight: 700, fontSize: 11 }}>

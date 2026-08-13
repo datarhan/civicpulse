@@ -49,7 +49,7 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
               background: '#EEF4FF',
               color: 'var(--civic)',
               padding: '2px 5px',
-              borderRadius: 3,
+              borderRadius: 'var(--r-input)',
               letterSpacing: '.06em',
               textTransform: 'uppercase',
               marginLeft: 'auto',
@@ -71,7 +71,7 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
                 color: readableInk(d.line === 'L2' ? '#B4397F' : '#A47E52'),
                 background: d.line === 'L2' ? '#B4397F' : '#A47E52',
                 padding: '1px 5px',
-                borderRadius: 3,
+                borderRadius: 'var(--r-input)',
                 fontFamily: 'DM Mono, monospace',
                 fontWeight: 700,
               }}

@@ -23,7 +23,7 @@ function TwkSelect({ label, value, onChange, opts }) {
             onClick={() => onChange(o.v)}
             style={{
               padding: '5px 9px',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               fontSize: 11.5,
               background: value === o.v ? 'var(--civic)' : 'var(--soft)',
               color: value === o.v ? 'white' : 'var(--ink70)',
@@ -47,7 +47,7 @@ function TwkToggle({ label, value, onChange }) {
         style={{
           width: 34,
           height: 20,
-          borderRadius: 20,
+          borderRadius: 'var(--r-pill)',
           padding: 2,
           background: value ? 'var(--civic)' : 'var(--border)',
           display: 'flex',
@@ -146,7 +146,7 @@ export function TweaksButton({ onOpen }) {
         right: 20,
         width: 40,
         height: 40,
-        borderRadius: 999,
+        borderRadius: 'var(--r-pill)',
         background: 'var(--paper)',
         border: '1px solid var(--border)',
         boxShadow: '0 4px 12px rgba(11,15,25,.08)',

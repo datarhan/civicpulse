@@ -79,7 +79,7 @@ function CandidateCard({ c }) {
       style={{
         padding: '8px 10px',
         border: '1px solid var(--border2)',
-        borderRadius: 6,
+        borderRadius: 'var(--r-input)',
         marginBottom: 6,
         background: 'var(--card)',
       }}
@@ -139,7 +139,7 @@ export function QuoteReanchorRow({ row }) {
       style={{
         padding: '12px 14px',
         border: '1px solid var(--border2)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
         marginBottom: 10,
         background: 'var(--paper)',
       }}
@@ -176,7 +176,7 @@ export function QuoteReanchorRow({ row }) {
               lineHeight: 1.55,
               padding: '8px 10px',
               border: '1px solid var(--border2)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               background: 'var(--card)',
               fontStyle: 'italic',
             }}
@@ -198,7 +198,7 @@ export function QuoteReanchorRow({ row }) {
                 style={{
                   padding: '3px 8px',
                   fontSize: 10.5,
-                  borderRadius: 6,
+                  borderRadius: 'var(--r-input)',
                   border: '1px solid var(--border2)',
                   background: 'var(--card)',
                   color: 'var(--ink70)',
@@ -216,7 +216,7 @@ export function QuoteReanchorRow({ row }) {
                     marginTop: 6,
                     padding: '8px 10px',
                     background: 'var(--soft)',
-                    borderRadius: 6,
+                    borderRadius: 'var(--r-input)',
                   }}
                 >
                   {row.supersededAt.text}
@@ -253,7 +253,7 @@ export function QuoteReanchorRow({ row }) {
               lineHeight: 1.5,
               padding: '8px 10px',
               background: 'var(--soft)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               wordBreak: 'break-all',
             }}
           >
@@ -266,7 +266,7 @@ export function QuoteReanchorRow({ row }) {
               padding: '5px 12px',
               fontSize: 12,
               fontWeight: 600,
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               border: '1px solid var(--border2)',
               background: 'var(--card)',
               color: 'var(--ink70)',

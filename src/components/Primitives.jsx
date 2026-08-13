@@ -21,7 +21,7 @@ export function Pill({ tone = 'neutral', children, size = 'sm', style = {} }) {
         alignItems: 'center',
         gap: 4,
         padding: size === 'xs' ? '2px 6px' : '3px 8px',
-        borderRadius: 999,
+        borderRadius: 'var(--r-pill)',
         background: t.bg,
         color: t.fg,
         fontSize: size === 'xs' ? 10 : 11,
@@ -99,7 +99,7 @@ export function Card({ children, style = {}, pad = true, hover = false, ...rest 
       style={{
         background: 'var(--paper)',
         border: '1px solid var(--border2)',
-        borderRadius: 12,
+        borderRadius: 'var(--r-card)',
         padding: pad ? 18 : 0,
         transition: 'border-color .15s',
         ...style,
@@ -205,7 +205,7 @@ export function Quote({ text, attribution, tone, marks, source, size = 'card', s
                   color: '#fff',
                   fontWeight: 700,
                   padding: '1px 6px',
-                  borderRadius: 4,
+                  borderRadius: 'var(--r-input)',
                 }}
               >
                 {etiqueta}
@@ -260,7 +260,7 @@ export function MachineProposal({ confidence, decidedBy = 'un curador humano', c
         padding: 12,
         background: 'var(--intel-soft)',
         border: '1px dashed var(--intel)',
-        borderRadius: 12,
+        borderRadius: 'var(--r-card)',
         fontSize: 12,
       }}
     >
@@ -389,7 +389,7 @@ export function SectionHead({ eyebrow, title, right }) {
 export function Button({ variant = 'ghost', children, ...rest }) {
   const base = {
     padding: '7px 12px',
-    borderRadius: 7,
+    borderRadius: 'var(--r-input)',
     fontSize: 13,
     fontWeight: 500,
     display: 'inline-flex',
@@ -482,7 +482,7 @@ export function ShareWA({ text, url, size = 10.5 }) {
         alignItems: 'center',
         gap: 4,
         padding: '2px 7px',
-        borderRadius: 999,
+        borderRadius: 'var(--r-pill)',
         background: '#DCFCE7',
         color: '#15803D',
         fontSize: size,

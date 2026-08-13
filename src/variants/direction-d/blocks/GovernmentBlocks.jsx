@@ -23,7 +23,7 @@ export function CoalitionRing() {
           display: 'flex',
           width: '100%',
           height: 12,
-          borderRadius: 6,
+          borderRadius: 'var(--r-input)',
           overflow: 'hidden',
           border: `1px solid ${PALETTE.hair}`,
         }}
@@ -97,7 +97,7 @@ export function PromesasBlockD() {
                 color: PALETTE.crit,
                 background: 'rgba(220,38,38,.08)',
                 padding: '1px 6px',
-                borderRadius: 3,
+                borderRadius: 'var(--r-input)',
                 letterSpacing: '.08em',
                 textTransform: 'uppercase',
                 fontWeight: 700,
@@ -119,7 +119,7 @@ export function PromesasBlockD() {
               color: 'white',
               background: partyColor(party),
               padding: '2px 7px',
-              borderRadius: 3,
+              borderRadius: 'var(--r-pill)',
             }}
           >
             {party} · {n}
@@ -165,7 +165,7 @@ export function DepartamentosBlockD() {
                 color: PALETTE.warnInk,
                 background: 'rgba(217,119,6,.10)',
                 padding: '1px 6px',
-                borderRadius: 3,
+                borderRadius: 'var(--r-input)',
                 letterSpacing: '.08em',
                 textTransform: 'uppercase',
                 fontWeight: 700,

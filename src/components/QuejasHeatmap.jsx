@@ -52,7 +52,7 @@ export default function QuejasHeatmap() {
     <div
       style={{
         height: 360,
-        borderRadius: 10,
+        borderRadius: 'var(--r-card)',
         overflow: 'hidden',
         border: '1px solid var(--border2)',
         marginBottom: 14,

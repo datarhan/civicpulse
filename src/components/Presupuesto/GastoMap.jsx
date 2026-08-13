@@ -53,7 +53,7 @@ export default function GastoMap({ snapshot, sliderTime, danaOnly, selectedZone,
           color: 'var(--ink50)',
           fontSize: 13,
           border: '1px solid var(--border2)',
-          borderRadius: 10,
+          borderRadius: 'var(--r-card)',
         }}
       >
         {/* «Contratos», not «obras»: the layer paints every award whose title
@@ -71,7 +71,7 @@ export default function GastoMap({ snapshot, sliderTime, danaOnly, selectedZone,
       aria-label="Mapa interactivo del gasto municipal por zona"
       style={{
         height: 360,
-        borderRadius: 10,
+        borderRadius: 'var(--r-card)',
         overflow: 'hidden',
         border: '1px solid var(--border2)',
       }}

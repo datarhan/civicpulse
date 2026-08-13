@@ -87,7 +87,7 @@ export function NeighborhoodPopup({ agg }) {
                     fontWeight: 700,
                     color: health.color,
                     border: `1px solid ${health.color}`,
-                    borderRadius: 999,
+                    borderRadius: 'var(--r-pill)',
                     padding: '1px 6px',
                   }}
                 >

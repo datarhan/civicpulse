@@ -13,7 +13,7 @@ export function NetworkLegend() {
         right: 12,
         background: 'rgba(255,255,255,.92)',
         border: '1px solid #DCD7C8',
-        borderRadius: 7,
+        borderRadius: 'var(--r-input)',
         padding: '5px 8px',
         fontFamily: "'Outfit', system-ui, sans-serif",
         zIndex: 400,
@@ -50,7 +50,7 @@ export function NetworkLegend() {
               fontSize: 8.5,
               fontWeight: 800,
               padding: '1px 4px',
-              borderRadius: 3,
+              borderRadius: 'var(--r-input)',
               lineHeight: 1.3,
             }}
           >

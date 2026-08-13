@@ -12,7 +12,13 @@ function Tile({ label, value, tone }) {
   const color =
     tone === 'crit' ? 'var(--crit-ink)' : tone === 'warn' ? 'var(--warn-ink)' : 'var(--ink)'
   return (
-    <div style={{ padding: '10px 12px', border: '1px solid var(--border2)', borderRadius: 10 }}>
+    <div
+      style={{
+        padding: '10px 12px',
+        border: '1px solid var(--border2)',
+        borderRadius: 'var(--r-card)',
+      }}
+    >
       <div
         className="mono"
         style={{
@@ -88,7 +94,7 @@ export default function EmpleoDetalle() {
             marginTop: 14,
             padding: 16,
             border: '1px solid var(--border2)',
-            borderRadius: 10,
+            borderRadius: 'var(--r-card)',
             fontSize: 13,
             color: 'var(--ink50)',
             lineHeight: 1.6,
@@ -161,7 +167,7 @@ export default function EmpleoDetalle() {
           alignItems: 'center',
           gap: 6,
           padding: '9px 14px',
-          borderRadius: 8,
+          borderRadius: 'var(--r-input)',
           background: 'var(--ink)',
           color: 'var(--paper)',
           fontSize: 13,

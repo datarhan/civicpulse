@@ -146,7 +146,7 @@ export function ReportajeBlockD() {
                     color: PALETTE.amber,
                     background: 'rgba(180,83,9,.10)',
                     padding: '2px 6px',
-                    borderRadius: 3,
+                    borderRadius: 'var(--r-input)',
                     letterSpacing: '.08em',
                     textTransform: 'uppercase',
                     fontWeight: 700,

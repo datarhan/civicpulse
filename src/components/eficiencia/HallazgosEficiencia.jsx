@@ -36,7 +36,7 @@ function Medicion({ medicion }) {
         marginTop: 10,
         padding: '8px 10px',
         background: 'var(--soft)',
-        borderRadius: 4,
+        borderRadius: 'var(--r-input)',
         fontSize: 12.5,
         color: 'var(--ink70, var(--ink50))',
       }}
@@ -96,7 +96,7 @@ function FichaEficiencia({ ficha }) {
             padding: '8px 10px',
             borderLeft: '2px solid var(--ok)',
             background: 'var(--soft)',
-            borderRadius: '0 4px 4px 0',
+            borderRadius: '0 var(--r-input) var(--r-input) 0',
           }}
         >
           <div

@@ -65,7 +65,7 @@ function VoiceEnrollmentSection() {
             fontSize: 11,
             border: '1px solid var(--border2)',
             background: 'var(--paper)',
-            borderRadius: 6,
+            borderRadius: 'var(--r-input)',
             cursor: voices.loading ? 'not-allowed' : 'pointer',
           }}
         >
@@ -95,7 +95,7 @@ function VoiceEnrollmentSection() {
                 gap: 10,
                 padding: '8px 10px',
                 border: `1px solid ${enrolled ? 'var(--ok-ink)' : 'var(--border2)'}`,
-                borderRadius: 6,
+                borderRadius: 'var(--r-input)',
                 background: enrolled ? 'var(--soft)' : 'var(--paper)',
               }}
             >
@@ -135,7 +135,7 @@ function VoiceEnrollmentSection() {
                     fontSize: 11,
                     border: '1px solid var(--border2)',
                     background: 'var(--paper)',
-                    borderRadius: 4,
+                    borderRadius: 'var(--r-input)',
                     cursor: deleting === r.slug ? 'not-allowed' : 'pointer',
                   }}
                 >
@@ -153,7 +153,7 @@ function VoiceEnrollmentSection() {
                   fontSize: 11,
                   border: '1px solid var(--border2)',
                   background: 'var(--paper)',
-                  borderRadius: 4,
+                  borderRadius: 'var(--r-input)',
                   cursor: 'pointer',
                 }}
               >
@@ -200,7 +200,7 @@ function VoiceEnrollmentSection() {
                 width: '100%',
                 padding: '8px 10px',
                 border: '1px solid var(--border2)',
-                borderRadius: 6,
+                borderRadius: 'var(--r-input)',
                 fontSize: 13,
                 background: 'var(--paper)',
                 color: 'var(--ink)',
@@ -213,7 +213,7 @@ function VoiceEnrollmentSection() {
                   marginTop: 8,
                   padding: '8px 10px',
                   border: '1px solid var(--crit-ink)',
-                  borderRadius: 6,
+                  borderRadius: 'var(--r-input)',
                   fontSize: 11,
                   background: 'var(--soft)',
                   color: 'var(--crit-ink)',
@@ -234,7 +234,7 @@ function VoiceEnrollmentSection() {
                   border: 'none',
                   background: enrollUrl.trim() && !enrolling ? 'var(--civic-ink)' : 'var(--soft)',
                   color: enrollUrl.trim() && !enrolling ? '#fff' : 'var(--ink50)',
-                  borderRadius: 6,
+                  borderRadius: 'var(--r-input)',
                   cursor: enrollUrl.trim() && !enrolling ? 'pointer' : 'not-allowed',
                   fontWeight: 600,
                 }}
@@ -256,7 +256,7 @@ function VoiceEnrollmentSection() {
                   padding: '9px 14px',
                   border: '1px solid var(--border2)',
                   background: 'var(--paper)',
-                  borderRadius: 6,
+                  borderRadius: 'var(--r-input)',
                   cursor: enrolling ? 'not-allowed' : 'pointer',
                 }}
               >
@@ -390,7 +390,7 @@ function PlenoAssignmentRow({ plenoId, assignment, voiceprintRows, onOverride, b
             fontSize: 11,
             border: '1px solid var(--border2)',
             background: 'var(--paper)',
-            borderRadius: 4,
+            borderRadius: 'var(--r-input)',
             cursor: busy ? 'not-allowed' : 'pointer',
           }}
         >
@@ -556,7 +556,7 @@ function VoiceIDAssignmentsSection() {
             fontSize: 11,
             border: '1px solid var(--border2)',
             background: 'var(--paper)',
-            borderRadius: 6,
+            borderRadius: 'var(--r-input)',
             cursor: list.loading ? 'not-allowed' : 'pointer',
           }}
         >
@@ -597,7 +597,7 @@ function VoiceIDAssignmentsSection() {
                     padding: '8px 10px',
                     border: '1px solid var(--border2)',
                     background: isExpanded ? 'var(--soft)' : 'var(--paper)',
-                    borderRadius: 6,
+                    borderRadius: 'var(--r-input)',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',

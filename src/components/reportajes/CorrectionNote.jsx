@@ -45,7 +45,7 @@ export function CorrectionNote({ correcciones }) {
             border: '1px solid var(--border2)',
             borderLeft: '3px solid var(--crit)',
             background: 'var(--crit-soft)',
-            borderRadius: 10,
+            borderRadius: 'var(--r-card)',
             padding: '12px 14px',
             margin: '0 0 26px',
             fontSize: 13.5,

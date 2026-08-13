@@ -255,7 +255,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
               background: '#EEF4FF',
               color: 'var(--civic)',
               padding: '2px 5px',
-              borderRadius: 3,
+              borderRadius: 'var(--r-input)',
               letterSpacing: '.06em',
               textTransform: 'uppercase',
               marginLeft: 'auto',

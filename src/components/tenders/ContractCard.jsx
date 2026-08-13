@@ -49,7 +49,7 @@ export function ContractCard(props) {
       style={{
         background: '#FBFAF7',
         border: '1px solid #E6E1D4',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
         padding: '8px 9px',
         marginBottom: 6,
         color: INK,
@@ -70,7 +70,7 @@ export function ContractCard(props) {
                 color: '#A85F00',
                 background: 'rgba(224,134,0,.16)',
                 padding: '1px 5px',
-                borderRadius: 3,
+                borderRadius: 'var(--r-input)',
                 whiteSpace: 'nowrap',
               }}
             >
@@ -105,7 +105,7 @@ export function ContractCard(props) {
                 fontSize: 10,
                 fontWeight: 700,
                 padding: '1px 5px',
-                borderRadius: 3,
+                borderRadius: 'var(--r-input)',
                 color: baja >= 0 ? '#0F7B3E' : '#B4232A',
                 background: baja >= 0 ? 'rgba(22,163,74,.14)' : 'rgba(220,38,38,.12)',
               }}
@@ -189,7 +189,7 @@ export function ContractCard(props) {
                   fontSize: 9,
                   fontWeight: 700,
                   padding: '0 4px',
-                  borderRadius: 3,
+                  borderRadius: 'var(--r-input)',
                   background: 'rgba(22,163,74,.12)',
                   color: '#0F7B3E',
                   marginRight: 5,

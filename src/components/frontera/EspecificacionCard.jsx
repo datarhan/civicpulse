@@ -210,7 +210,7 @@ function Histograma({ d, propia }) {
                 height: `${(h.n / max) * 40}px`,
                 minHeight: h.n ? 2 : 0,
                 background: i === tramoPropio ? 'var(--civic)' : 'var(--border2)',
-                borderRadius: 2,
+                borderRadius: 'var(--r-input)',
               }}
             />
           </div>

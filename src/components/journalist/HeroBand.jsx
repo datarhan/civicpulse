@@ -47,7 +47,7 @@ function KeyFactsStrip({ report, tone }) {
           style={{
             textDecoration: 'none',
             padding: '8px 14px',
-            borderRadius: 8,
+            borderRadius: 'var(--r-input)',
             border: '1px solid var(--border)',
             background: 'var(--paper)',
             minWidth: 120,
@@ -115,7 +115,7 @@ export function HeroBand({ subjectName, portraitPayload, report, party, soulDown
             width={200}
             height={264}
             style={{
-              borderRadius: 8,
+              borderRadius: 'var(--r-input)',
               objectFit: 'cover',
               background: 'var(--soft)',
               border: `4px solid var(--${tone})`,
@@ -217,7 +217,7 @@ export function HeroBand({ subjectName, portraitPayload, report, party, soulDown
 const heroActionStyle = {
   fontSize: 12,
   padding: '8px 14px',
-  borderRadius: 6,
+  borderRadius: 'var(--r-input)',
   border: '1px solid var(--border)',
   background: 'var(--paper)',
   color: 'var(--ink70)',

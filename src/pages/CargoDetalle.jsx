@@ -312,7 +312,7 @@ function MiniStat({ label, value, tone }) {
       style={{
         padding: '10px 12px',
         border: '1px solid var(--border2)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
       }}
     >
       <div
@@ -429,7 +429,7 @@ export default function CargoDetalle() {
             style={{
               width: 88,
               height: 88,
-              borderRadius: 12,
+              borderRadius: 'var(--r-card)',
               objectFit: 'cover',
               border: `2px solid ${color}33`,
               flexShrink: 0,
@@ -448,7 +448,7 @@ export default function CargoDetalle() {
                 background: color,
                 color: 'white',
                 padding: '2px 7px',
-                borderRadius: 3,
+                borderRadius: 'var(--r-pill)',
               }}
             >
               {official.party}
@@ -558,7 +558,7 @@ export default function CargoDetalle() {
                   padding: '5px 10px',
                   background: 'var(--civic-soft)',
                   color: 'var(--civic)',
-                  borderRadius: 5,
+                  borderRadius: 'var(--r-input)',
                   textDecoration: 'none',
                   fontWeight: 600,
                   letterSpacing: '.02em',
@@ -660,7 +660,7 @@ export default function CargoDetalle() {
                 style={{
                   padding: '8px 12px',
                   border: '1px solid var(--border2)',
-                  borderRadius: 8,
+                  borderRadius: 'var(--r-input)',
                   fontSize: 12.5,
                   lineHeight: 1.45,
                 }}
@@ -731,7 +731,7 @@ export default function CargoDetalle() {
           marginTop: 20,
           padding: 14,
           background: 'var(--soft)',
-          borderRadius: 8,
+          borderRadius: 'var(--r-input)',
           fontSize: 11.5,
           color: 'var(--ink50)',
           lineHeight: 1.55,

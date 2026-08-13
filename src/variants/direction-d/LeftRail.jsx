@@ -20,7 +20,7 @@ function RailLink({ item }) {
         height: 40,
         display: 'grid',
         placeItems: 'center',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
         background: isActive ? '#EEF4FF' : 'transparent',
         color: isActive ? PALETTE.civic : PALETTE.ink60,
         cursor: 'pointer',
@@ -49,7 +49,7 @@ function RailLink({ item }) {
                 top: 8,
                 bottom: 8,
                 width: 3,
-                borderRadius: '0 3px 3px 0',
+                borderRadius: '0 var(--r-input) var(--r-input) 0',
                 background: PALETTE.civic,
               }}
             />

@@ -42,7 +42,7 @@ export default function SpendingTypeBreakdown({ contracts, snapshot }) {
         style={{
           display: 'flex',
           height: 16,
-          borderRadius: 8,
+          borderRadius: 'var(--r-pill)',
           overflow: 'hidden',
           marginBottom: 10,
         }}
@@ -73,7 +73,7 @@ export default function SpendingTypeBreakdown({ contracts, snapshot }) {
             style={{
               width: 10,
               height: 10,
-              borderRadius: 2,
+              borderRadius: 'var(--r-input)',
               background: TYPE_COLOR[r.type] || '#94A3B8',
             }}
           />

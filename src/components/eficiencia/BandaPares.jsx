@@ -48,7 +48,7 @@ export function BandaPares({ indicador, formatea }) {
           position: 'relative',
           height: 26,
           marginTop: 8,
-          borderRadius: 3,
+          borderRadius: 'var(--r-input)',
           background: 'var(--bg2, rgba(127,127,127,.12))',
         }}
         role="img"
@@ -64,7 +64,7 @@ export function BandaPares({ indicador, formatea }) {
             bottom: 0,
             background: 'var(--civic)',
             opacity: 0.18,
-            borderRadius: 3,
+            borderRadius: 'var(--r-input)',
           }}
         />
         {/* mediana */}
@@ -87,7 +87,7 @@ export function BandaPares({ indicador, formatea }) {
             bottom: -2,
             width: 3,
             background: 'var(--civic)',
-            borderRadius: 2,
+            borderRadius: 'var(--r-input)',
           }}
         />
       </div>

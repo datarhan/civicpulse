@@ -39,8 +39,16 @@ describe('Card prop passthrough', () => {
         y
       </Card>,
     )
-    expect(html).toContain('border-radius:12px')
+    // El token, no el número. Esta línea decía `border-radius:12px` y se cayó
+    // en cuanto Card pasó a usar `var(--r-card)` — que es exactamente el
+    // cambio que se quería. Un test que fija el VALOR de un token convierte
+    // adoptar la escala en una regresión, así que aquí se comprueba que Card
+    // usa el token y, aparte, que ese token vale lo que el brandbook dice,
+    // leyéndolo de index.css en vez de repetirlo.
+    expect(html).toContain('border-radius:var(--r-card)')
     expect(html).toContain('margin-top:14px')
+    const css = readFileSync(join(__dirname, '..', 'src/index.css'), 'utf8')
+    expect(css).toMatch(/--r-card:\s*12px/)
   })
 
   it('still honours pad=false', () => {

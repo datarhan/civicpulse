@@ -19,7 +19,7 @@ function WindowToggle({ current, onChange }) {
         gap: 4,
         background: 'var(--soft)',
         padding: 2,
-        borderRadius: 7,
+        borderRadius: 'var(--r-input)',
       }}
     >
       {WINDOW_OPTIONS.map((o) => (
@@ -28,7 +28,7 @@ function WindowToggle({ current, onChange }) {
           onClick={() => onChange(o.days)}
           style={{
             padding: '4px 10px',
-            borderRadius: 5,
+            borderRadius: 'var(--r-input)',
             fontSize: 12,
             fontWeight: current === o.days ? 600 : 500,
             background: current === o.days ? 'var(--paper)' : 'transparent',

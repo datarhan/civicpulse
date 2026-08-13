@@ -25,7 +25,7 @@ function MiniStat({ label, value, tone }) {
       style={{
         padding: '10px 12px',
         border: '1px solid var(--border2)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
       }}
     >
       <div
@@ -93,7 +93,7 @@ export function FindingDetailCard({ f, permalink }) {
             marginTop: 6,
             padding: '3px 8px',
             background: 'var(--soft)',
-            borderRadius: 12,
+            borderRadius: 'var(--r-card)',
             fontSize: 11.5,
           }}
           title="Atribución individual confirmada por curaduría editorial"
@@ -173,7 +173,7 @@ export function FindingDetailCard({ f, permalink }) {
             style={{
               padding: '8px 10px',
               background: 'var(--soft)',
-              borderRadius: 12,
+              borderRadius: 'var(--r-card)',
               fontSize: 12,
               lineHeight: 1.5,
               color: 'var(--ink)',
@@ -306,7 +306,7 @@ function RetractionLedger({ retractions }) {
         marginTop: 30,
         padding: 14,
         border: '1px solid var(--border)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
         fontSize: 11.5,
         color: 'var(--ink70)',
         lineHeight: 1.55,
@@ -363,7 +363,7 @@ function Chip({ active, label, count, onClick }) {
       className="mono"
       style={{
         padding: '4px 10px',
-        borderRadius: 14,
+        borderRadius: 'var(--r-card)',
         fontSize: 11,
         fontWeight: 600,
         letterSpacing: '.02em',
@@ -596,7 +596,7 @@ export default function Hallazgos() {
             gap: 8,
             padding: 12,
             border: '1px solid var(--border2)',
-            borderRadius: 8,
+            borderRadius: 'var(--r-input)',
             marginBottom: 18,
           }}
         >
@@ -701,7 +701,7 @@ export default function Hallazgos() {
           style={{
             padding: 16,
             background: 'var(--soft)',
-            borderRadius: 8,
+            borderRadius: 'var(--r-input)',
             fontSize: 13,
             color: 'var(--ink50)',
             lineHeight: 1.5,
@@ -743,7 +743,7 @@ export default function Hallazgos() {
           marginTop: 30,
           padding: 14,
           background: 'var(--soft)',
-          borderRadius: 8,
+          borderRadius: 'var(--r-input)',
           fontSize: 11.5,
           color: 'var(--ink50)',
           lineHeight: 1.55,

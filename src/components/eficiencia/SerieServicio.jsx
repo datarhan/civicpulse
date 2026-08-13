@@ -287,7 +287,7 @@ export function SerieServicio({ puntos, formatea, unidad }) {
                 // cifras; un rótulo sobre una línea necesita fondo o no se lee.
                 background: 'var(--paper)',
                 padding: '0 3px',
-                borderRadius: 2,
+                borderRadius: 'var(--r-input)',
               }}
             >
               {nombraHueco(h)}
@@ -388,7 +388,7 @@ export function SerieServicio({ puntos, formatea, unidad }) {
             height: 6,
             marginLeft: -3,
             marginTop: -3,
-            borderRadius: 999,
+            borderRadius: 'var(--r-pill)',
             background: 'var(--civic)',
           }}
         />
@@ -406,7 +406,7 @@ export function SerieServicio({ puntos, formatea, unidad }) {
               height: 5,
               marginLeft: -2.5,
               marginTop: -2.5,
-              borderRadius: 999,
+              borderRadius: 'var(--r-pill)',
               background: 'var(--civic)',
             }}
           />

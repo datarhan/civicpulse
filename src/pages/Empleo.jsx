@@ -197,7 +197,7 @@ function Pager({ page, totalPages, onPage, t }) {
   const btn = (enabled) => ({
     fontSize: 12.5,
     padding: '6px 12px',
-    borderRadius: 8,
+    borderRadius: 'var(--r-input)',
     border: '1px solid var(--border)',
     background: 'var(--paper)',
     color: enabled ? 'var(--ink)' : 'var(--ink30)',
@@ -313,7 +313,7 @@ export default function Empleo() {
               color: 'var(--civic)',
               textDecoration: 'none',
               border: '1px solid var(--border)',
-              borderRadius: 999,
+              borderRadius: 'var(--r-pill)',
               padding: '2px 8px',
               letterSpacing: '.06em',
             }}

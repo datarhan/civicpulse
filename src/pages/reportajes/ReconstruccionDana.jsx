@@ -196,7 +196,7 @@ function Barras({ rows }) {
             style={{
               height: 8,
               background: 'var(--soft)',
-              borderRadius: 5,
+              borderRadius: 'var(--r-pill)',
               overflow: 'hidden',
             }}
           >
@@ -205,7 +205,7 @@ function Barras({ rows }) {
                 height: '100%',
                 width: Math.max(3, (r.value / max) * 100) + '%',
                 background: 'var(--civic)',
-                borderRadius: 5,
+                borderRadius: 'var(--r-input)',
               }}
             />
           </div>
@@ -274,7 +274,7 @@ function Funders() {
           gap: 1,
           background: 'var(--border)',
           border: '1px solid var(--border)',
-          borderRadius: 10,
+          borderRadius: 'var(--r-card)',
           overflow: 'hidden',
         }}
       >
@@ -325,7 +325,7 @@ function Callout() {
       style={{
         background: 'var(--warn-soft)',
         border: '1px solid var(--warn)',
-        borderRadius: 12,
+        borderRadius: 'var(--r-card)',
         padding: '18px 22px',
         margin: '16px 0 8px',
       }}
@@ -392,7 +392,7 @@ export default function ReconstruccionDana() {
             background: 'var(--warn-soft)',
             border: '1px solid var(--warn)',
             color: 'var(--warn-ink)',
-            borderRadius: 10,
+            borderRadius: 'var(--r-card)',
             padding: '10px 14px',
             fontSize: 12.5,
             marginBottom: 22,
@@ -441,7 +441,7 @@ export default function ReconstruccionDana() {
           gap: 1,
           background: 'var(--border)',
           border: '1px solid var(--border)',
-          borderRadius: 10,
+          borderRadius: 'var(--r-card)',
           overflow: 'hidden',
           margin: '0 0 30px',
         }}
@@ -673,7 +673,7 @@ export default function ReconstruccionDana() {
           style={{
             background: 'var(--soft)',
             border: '1px solid var(--border)',
-            borderRadius: 12,
+            borderRadius: 'var(--r-card)',
             padding: '18px 20px',
           }}
         >
@@ -700,7 +700,7 @@ export default function ReconstruccionDana() {
           style={{
             background: 'var(--soft)',
             border: '1px solid var(--warn)',
-            borderRadius: 12,
+            borderRadius: 'var(--r-card)',
             padding: '18px 20px',
           }}
         >

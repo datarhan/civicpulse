@@ -29,7 +29,7 @@ function StatusChangeDraftRow({ draft, onApprove, onReject, busy }) {
       style={{
         padding: '12px 14px',
         border: '1px solid var(--border2)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
         marginBottom: 10,
         background: 'var(--paper)',
       }}
@@ -80,7 +80,7 @@ function StatusChangeDraftRow({ draft, onApprove, onReject, busy }) {
               border: '1px solid var(--border)',
               background: 'var(--ink)',
               color: 'var(--paper)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               cursor: busy ? 'not-allowed' : 'pointer',
               opacity: busy ? 0.6 : 1,
             }}
@@ -95,7 +95,7 @@ function StatusChangeDraftRow({ draft, onApprove, onReject, busy }) {
               fontSize: 11.5,
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               cursor: busy ? 'not-allowed' : 'pointer',
               opacity: busy ? 0.6 : 1,
             }}
@@ -129,7 +129,7 @@ function PromiseDraftRow({ draft, onApprove, onReject, busy }) {
       style={{
         padding: '12px 14px',
         border: '1px solid var(--border2)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
         marginBottom: 10,
         background: 'var(--paper)',
       }}
@@ -178,7 +178,7 @@ function PromiseDraftRow({ draft, onApprove, onReject, busy }) {
               border: '1px solid var(--border)',
               background: 'var(--ink)',
               color: 'var(--paper)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               cursor: busy ? 'not-allowed' : 'pointer',
               opacity: busy ? 0.6 : 1,
             }}
@@ -193,7 +193,7 @@ function PromiseDraftRow({ draft, onApprove, onReject, busy }) {
               fontSize: 11.5,
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               cursor: busy ? 'not-allowed' : 'pointer',
               opacity: busy ? 0.6 : 1,
             }}
@@ -224,7 +224,7 @@ function PromisePendingRow({ promise, onRetract, onMarkReviewed, busy }) {
       style={{
         padding: '12px 14px',
         border: '1px solid var(--border2)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
         marginBottom: 10,
         background: 'var(--paper)',
       }}
@@ -268,7 +268,7 @@ function PromisePendingRow({ promise, onRetract, onMarkReviewed, busy }) {
               border: '1px solid var(--border)',
               background: 'var(--ink)',
               color: 'var(--paper)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               cursor: busy ? 'not-allowed' : 'pointer',
               opacity: busy ? 0.6 : 1,
             }}
@@ -284,7 +284,7 @@ function PromisePendingRow({ promise, onRetract, onMarkReviewed, busy }) {
               border: '1px solid var(--crit)',
               background: 'var(--paper)',
               color: 'var(--crit-ink)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               cursor: busy ? 'not-allowed' : 'pointer',
               opacity: busy ? 0.6 : 1,
             }}

@@ -36,7 +36,7 @@ export default function EmpleoMap({ points, t }) {
     <div
       style={{
         height: 280,
-        borderRadius: 10,
+        borderRadius: 'var(--r-card)',
         overflow: 'hidden',
         border: '1px solid var(--border2)',
       }}

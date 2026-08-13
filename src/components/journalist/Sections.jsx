@@ -544,7 +544,7 @@ export function RelationshipGraph({ payload, sourceMap }) {
             style={{
               fontSize: 11,
               padding: '4px 10px',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               border: '1px solid var(--border)',
               background: 'transparent',
               color: 'var(--ink50)',
@@ -590,7 +590,7 @@ export function RelationshipGraph({ payload, sourceMap }) {
             onClick={(e) => e.stopPropagation()}
             style={{
               background: 'var(--paper)',
-              borderRadius: 10,
+              borderRadius: 'var(--r-card)',
               padding: 20,
               maxWidth: 880,
               width: '95vw',
@@ -613,7 +613,7 @@ export function RelationshipGraph({ payload, sourceMap }) {
                 style={{
                   fontSize: 12,
                   padding: '6px 12px',
-                  borderRadius: 6,
+                  borderRadius: 'var(--r-input)',
                   border: '1px solid var(--border)',
                   background: 'transparent',
                   color: 'var(--ink50)',

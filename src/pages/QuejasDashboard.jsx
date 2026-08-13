@@ -66,7 +66,7 @@ function Bar({ label, n, max, color, subline }) {
           position: 'relative',
           height: 8,
           background: 'var(--border2)',
-          borderRadius: 4,
+          borderRadius: 'var(--r-pill)',
           overflow: 'hidden',
         }}
       >
@@ -142,7 +142,7 @@ function SlaPanel({ byConcejal, officials }) {
                     background: partyColor(e.party),
                     color: 'white',
                     padding: '2px 5px',
-                    borderRadius: 3,
+                    borderRadius: 'var(--r-pill)',
                     flexShrink: 0,
                   }}
                 >

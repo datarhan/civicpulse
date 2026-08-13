@@ -201,7 +201,7 @@ export function ParticipaBlockD() {
             style={{
               width: 28,
               height: 28,
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               background: it.kind === 'survey' ? 'rgba(14,91,98,.12)' : 'rgba(22,163,74,.12)',
               display: 'grid',
               placeItems: 'center',
@@ -273,7 +273,7 @@ export function PressBlockD() {
                   color: 'white',
                   background: PALETTE.civic,
                   padding: '1px 5px',
-                  borderRadius: 3,
+                  borderRadius: 'var(--r-input)',
                 }}
               >
                 Oficial

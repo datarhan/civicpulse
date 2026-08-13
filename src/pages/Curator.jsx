@@ -241,7 +241,7 @@ export default function Curator() {
                 fontSize: 11,
                 border: '1px solid var(--border2)',
                 background: showArchived ? 'var(--soft)' : 'var(--paper)',
-                borderRadius: 6,
+                borderRadius: 'var(--r-input)',
                 cursor: 'pointer',
               }}
             >
@@ -256,7 +256,7 @@ export default function Curator() {
               fontSize: 11,
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               cursor: refreshing ? 'not-allowed' : 'pointer',
             }}
           >
@@ -305,7 +305,7 @@ export default function Curator() {
                   padding: '6px 10px',
                   marginBottom: 8,
                   border: '1px solid var(--crit-ink)',
-                  borderRadius: 6,
+                  borderRadius: 'var(--r-input)',
                   fontSize: 11.5,
                   color: 'var(--crit-ink)',
                   background: 'var(--soft)',
@@ -320,7 +320,7 @@ export default function Curator() {
                 style={{
                   padding: '10px 12px',
                   border: '1px solid var(--border2)',
-                  borderRadius: 6,
+                  borderRadius: 'var(--r-input)',
                   marginBottom: 6,
                   background: 'var(--soft)',
                   opacity: 0.85,
@@ -352,7 +352,7 @@ export default function Curator() {
                       fontSize: 11,
                       border: '1px solid var(--border2)',
                       background: 'var(--paper)',
-                      borderRadius: 4,
+                      borderRadius: 'var(--r-input)',
                       cursor: unarchiving === `${b.plenoId}/${b.topic}` ? 'not-allowed' : 'pointer',
                     }}
                   >
@@ -390,7 +390,7 @@ export default function Curator() {
               fontSize: 11,
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               cursor: refreshing ? 'not-allowed' : 'pointer',
             }}
           >
@@ -441,7 +441,7 @@ export default function Curator() {
               fontSize: 11,
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               cursor: areaFitQueue.loading ? 'not-allowed' : 'pointer',
             }}
           >
@@ -496,7 +496,7 @@ export default function Curator() {
               fontSize: 11,
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               cursor: findingSupportQueue.loading ? 'not-allowed' : 'pointer',
             }}
           >
@@ -548,7 +548,7 @@ export default function Curator() {
               fontSize: 11,
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               cursor: quoteReanchorQueue.loading ? 'not-allowed' : 'pointer',
             }}
           >
@@ -604,7 +604,7 @@ export default function Curator() {
               fontSize: 11,
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               cursor: findingExceptionQueue.loading ? 'not-allowed' : 'pointer',
             }}
           >
@@ -658,7 +658,7 @@ export default function Curator() {
               fontSize: 11,
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               cursor: promiseQueue.loading ? 'not-allowed' : 'pointer',
             }}
           >
@@ -678,7 +678,7 @@ export default function Curator() {
               padding: '6px 10px',
               margin: '8px 0',
               border: '1px solid var(--crit-ink)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               fontSize: 11.5,
               color: 'var(--crit-ink)',
               background: 'var(--soft)',
@@ -722,7 +722,7 @@ export default function Curator() {
               fontSize: 11,
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               cursor: pendingPromises.loading ? 'not-allowed' : 'pointer',
             }}
           >

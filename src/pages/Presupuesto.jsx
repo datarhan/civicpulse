@@ -19,7 +19,7 @@ function ChapterRow({ label, amount, total, color }) {
             width: 10,
             height: 10,
             background: color,
-            borderRadius: 2,
+            borderRadius: 'var(--r-pill)',
             flexShrink: 0,
           }}
         />
@@ -38,7 +38,7 @@ function ChapterRow({ label, amount, total, color }) {
         style={{
           height: 5,
           background: 'var(--soft)',
-          borderRadius: 5,
+          borderRadius: 'var(--r-pill)',
           marginTop: 5,
           overflow: 'hidden',
         }}
@@ -531,7 +531,7 @@ function EjecucionSection() {
                 style={{
                   height: 7,
                   background: 'var(--soft)',
-                  borderRadius: 4,
+                  borderRadius: 'var(--r-pill)',
                   overflow: 'hidden',
                 }}
               >
@@ -540,7 +540,7 @@ function EjecucionSection() {
                     height: '100%',
                     width: `${Math.max(2, (c.actual / maxCh) * 100)}%`,
                     background: 'var(--border)',
-                    borderRadius: 4,
+                    borderRadius: 'var(--r-input)',
                     position: 'relative',
                   }}
                 >
@@ -550,7 +550,7 @@ function EjecucionSection() {
                       inset: 0,
                       width: `${cp}%`,
                       background: 'var(--civic)',
-                      borderRadius: 4,
+                      borderRadius: 'var(--r-input)',
                     }}
                   />
                 </div>

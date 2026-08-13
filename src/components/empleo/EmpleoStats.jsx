@@ -19,7 +19,13 @@ function Kpi({ label, value, sub, tone }) {
   const color =
     tone === 'crit' ? 'var(--crit-ink)' : tone === 'civic' ? 'var(--civic)' : 'var(--ink)'
   return (
-    <div style={{ padding: '10px 12px', border: '1px solid var(--border2)', borderRadius: 10 }}>
+    <div
+      style={{
+        padding: '10px 12px',
+        border: '1px solid var(--border2)',
+        borderRadius: 'var(--r-card)',
+      }}
+    >
       <div className="mono" style={eyebrow}>
         {label}
       </div>
@@ -57,14 +63,19 @@ function BarList({ rows, empty }) {
               {r.label}
             </div>
             <div
-              style={{ height: 6, background: 'var(--soft)', borderRadius: 3, overflow: 'hidden' }}
+              style={{
+                height: 6,
+                background: 'var(--soft)',
+                borderRadius: 'var(--r-pill)',
+                overflow: 'hidden',
+              }}
             >
               <div
                 style={{
                   height: '100%',
                   width: `${Math.max(4, (r.count / max) * 100)}%`,
                   background: 'var(--civic)',
-                  borderRadius: 3,
+                  borderRadius: 'var(--r-input)',
                 }}
               />
             </div>

@@ -36,7 +36,7 @@ function EventTicker() {
             backdropFilter: 'blur(14px)',
             WebkitBackdropFilter: 'blur(14px)',
             border: '1px solid rgba(96,165,250,.22)',
-            borderRadius: 10,
+            borderRadius: 'var(--r-card)',
             padding: '9px 13px',
             color: 'white',
             textDecoration: 'none',

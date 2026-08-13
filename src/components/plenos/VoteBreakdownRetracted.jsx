@@ -21,7 +21,7 @@ export function VoteBreakdownRetracted({ retraction }) {
       style={{
         marginTop: 8,
         padding: '8px 10px',
-        borderRadius: 6,
+        borderRadius: 'var(--r-input)',
         border: '1px dashed var(--border2)',
         background: 'var(--soft)',
       }}

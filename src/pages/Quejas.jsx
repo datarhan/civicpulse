@@ -197,7 +197,7 @@ function Art218({ a }) {
         padding: '9px 11px',
         background: 'var(--soft)',
         border: '1px solid var(--border2)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
       }}
     >
       <div
@@ -795,7 +795,7 @@ function DashboardView({ data }) {
                     width: 80,
                     height: 6,
                     background: 'var(--border2)',
-                    borderRadius: 3,
+                    borderRadius: 'var(--r-pill)',
                     overflow: 'hidden',
                   }}
                 >
@@ -831,7 +831,7 @@ function DashboardView({ data }) {
                     width: 80,
                     height: 6,
                     background: 'var(--border2)',
-                    borderRadius: 3,
+                    borderRadius: 'var(--r-pill)',
                     overflow: 'hidden',
                   }}
                 >

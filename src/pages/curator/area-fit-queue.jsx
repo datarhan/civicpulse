@@ -114,7 +114,7 @@ export function AreaFitRow({ row, official, published, onDone }) {
       style={{
         padding: '12px 14px',
         border: `1px solid ${published ? 'var(--ok-bg)' : 'var(--border2)'}`,
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
         marginBottom: 10,
         background: 'var(--paper)',
       }}
@@ -153,7 +153,7 @@ export function AreaFitRow({ row, official, published, onDone }) {
           style={{
             padding: '5px 8px',
             fontSize: 12,
-            borderRadius: 6,
+            borderRadius: 'var(--r-input)',
             border: '1px solid var(--border2)',
             background: 'var(--card)',
             color: 'var(--ink)',
@@ -168,7 +168,7 @@ export function AreaFitRow({ row, official, published, onDone }) {
           style={{
             padding: '5px 8px',
             fontSize: 12,
-            borderRadius: 6,
+            borderRadius: 'var(--r-input)',
             border: '1px solid var(--border2)',
             background: 'var(--card)',
             color: 'var(--ink)',
@@ -217,7 +217,7 @@ function btn(color) {
     padding: '5px 12px',
     fontSize: 12,
     fontWeight: 600,
-    borderRadius: 6,
+    borderRadius: 'var(--r-input)',
     border: '1px solid var(--border2)',
     background: 'var(--card)',
     color,

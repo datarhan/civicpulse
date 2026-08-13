@@ -15,7 +15,7 @@ const INP = {
   fontSize: 12,
   padding: '5px 8px',
   border: '1px solid var(--border2)',
-  borderRadius: 6,
+  borderRadius: 'var(--r-input)',
   background: 'var(--paper)',
   color: 'var(--ink)',
 }

@@ -25,7 +25,7 @@ function EmptyNote({ children }) {
       style={{
         padding: 14,
         background: 'var(--soft)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
         fontSize: 12,
         color: 'var(--ink50)',
         lineHeight: 1.5,
@@ -41,7 +41,13 @@ function Tile({ label, value, sub, tone }) {
   const color =
     tone === 'warn' ? 'var(--warn-ink)' : tone === 'crit' ? 'var(--crit-ink)' : 'var(--ink)'
   return (
-    <div style={{ padding: '10px 12px', border: '1px solid var(--border2)', borderRadius: 10 }}>
+    <div
+      style={{
+        padding: '10px 12px',
+        border: '1px solid var(--border2)',
+        borderRadius: 'var(--r-card)',
+      }}
+    >
       <div
         className="mono"
         style={{
@@ -114,7 +120,7 @@ function TranscriptPanel({ plenoId }) {
           color: 'var(--ink70)',
           background: 'var(--soft)',
           padding: 14,
-          borderRadius: 10,
+          borderRadius: 'var(--r-card)',
           maxHeight: '64vh',
           overflow: 'auto',
           margin: 0,
@@ -141,7 +147,15 @@ function VoteOutcomeBar({ votes }) {
   if (segs.length === 0) return null
   return (
     <div style={{ marginBottom: 14 }}>
-      <div style={{ display: 'flex', height: 10, borderRadius: 5, overflow: 'hidden', gap: 2 }}>
+      <div
+        style={{
+          display: 'flex',
+          height: 10,
+          borderRadius: 'var(--r-pill)',
+          overflow: 'hidden',
+          gap: 2,
+        }}
+      >
         {segs.map((s) => (
           <div
             key={s.k}
@@ -156,7 +170,9 @@ function VoteOutcomeBar({ votes }) {
             key={s.k}
             style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 11.5 }}
           >
-            <span style={{ width: 9, height: 9, borderRadius: 2, background: s.color }} />
+            <span
+              style={{ width: 9, height: 9, borderRadius: 'var(--r-input)', background: s.color }}
+            />
             <span style={{ color: 'var(--ink70)' }}>{OUTCOME_LABEL[s.k]}</span>
             <strong className="mono" style={{ color: 'var(--ink)' }}>
               {counts[s.k]}
@@ -197,7 +213,7 @@ function DeclMixBar({ items }) {
         style={{
           display: 'flex',
           height: 10,
-          borderRadius: 5,
+          borderRadius: 'var(--r-pill)',
           overflow: 'hidden',
           background: 'var(--soft)',
         }}
@@ -207,14 +223,23 @@ function DeclMixBar({ items }) {
       </div>
       <div style={{ display: 'flex', gap: 14, marginTop: 8, fontSize: 11.5 }}>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-          <span style={{ width: 9, height: 9, borderRadius: 2, background: 'var(--ok)' }} />
+          <span
+            style={{ width: 9, height: 9, borderRadius: 'var(--r-input)', background: 'var(--ok)' }}
+          />
           <span style={{ color: 'var(--ink70)' }}>con evidencia</span>
           <strong className="mono" style={{ color: 'var(--ink)' }}>
             {g}
           </strong>
         </span>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-          <span style={{ width: 9, height: 9, borderRadius: 2, background: 'var(--ink50)' }} />
+          <span
+            style={{
+              width: 9,
+              height: 9,
+              borderRadius: 'var(--r-input)',
+              background: 'var(--ink50)',
+            }}
+          />
           <span style={{ color: 'var(--ink70)' }}>sin contraste</span>
           <strong className="mono" style={{ color: 'var(--ink)' }}>
             {s}
@@ -406,7 +431,7 @@ export default function PlenoDetalle() {
                     fontSize: 10,
                     fontWeight: 700,
                     padding: '1px 6px',
-                    borderRadius: 999,
+                    borderRadius: 'var(--r-pill)',
                     background: active ? 'var(--civic-soft)' : 'var(--soft)',
                     color: active ? 'var(--civic-ink)' : 'var(--ink50)',
                   }}
@@ -478,7 +503,7 @@ export default function PlenoDetalle() {
                       appearance: 'none',
                       background: 'var(--soft)',
                       border: '1px solid var(--border2)',
-                      borderRadius: 8,
+                      borderRadius: 'var(--r-input)',
                       padding: '8px 12px',
                       cursor: 'pointer',
                       display: 'flex',

@@ -196,7 +196,7 @@ export function CmdK({ open, onClose, onOpen }) {
                 gap: 10,
                 width: '100%',
                 padding: '9px 10px',
-                borderRadius: 7,
+                borderRadius: 'var(--r-input)',
                 textAlign: 'left',
               }}
               onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--soft)')}

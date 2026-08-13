@@ -106,7 +106,7 @@ function Callout({ title, children }) {
       style={{
         background: 'var(--warn-soft)',
         border: '1px solid var(--warn)',
-        borderRadius: 12,
+        borderRadius: 'var(--r-card)',
         padding: '16px 20px',
         margin: '16px 0 8px',
       }}
@@ -182,7 +182,7 @@ export default function InteligenciaTuristica() {
             background: 'var(--warn-soft)',
             border: '1px solid var(--warn)',
             color: 'var(--warn-ink)',
-            borderRadius: 10,
+            borderRadius: 'var(--r-card)',
             padding: '10px 14px',
             fontSize: 12.5,
             marginBottom: 22,
@@ -231,7 +231,7 @@ export default function InteligenciaTuristica() {
           gap: 1,
           background: 'var(--border)',
           border: '1px solid var(--border)',
-          borderRadius: 10,
+          borderRadius: 'var(--r-card)',
           overflow: 'hidden',
           margin: '0 0 30px',
         }}
@@ -271,7 +271,7 @@ export default function InteligenciaTuristica() {
                 color: 'var(--ink70)',
                 fontStyle: 'italic',
                 background: 'var(--soft)',
-                borderRadius: '0 8px 8px 0',
+                borderRadius: '0 var(--r-input) var(--r-input) 0',
               }}
             >
               {c}
@@ -434,7 +434,7 @@ export default function InteligenciaTuristica() {
               style={{
                 background: 'var(--soft)',
                 border: '1px solid var(--border)',
-                borderRadius: 12,
+                borderRadius: 'var(--r-card)',
                 padding: '16px 18px',
               }}
             >
@@ -502,7 +502,7 @@ export default function InteligenciaTuristica() {
             padding: '12px 18px',
             borderLeft: '3px solid var(--civic)',
             background: 'var(--soft)',
-            borderRadius: '0 8px 8px 0',
+            borderRadius: '0 var(--r-input) var(--r-input) 0',
             fontSize: 17,
             fontWeight: 500,
             lineHeight: 1.5,
@@ -552,7 +552,7 @@ export default function InteligenciaTuristica() {
           style={{
             background: 'var(--soft)',
             border: '1px solid var(--border)',
-            borderRadius: 12,
+            borderRadius: 'var(--r-card)',
             padding: '18px 20px',
           }}
         >
@@ -576,7 +576,7 @@ export default function InteligenciaTuristica() {
           style={{
             background: 'var(--soft)',
             border: '1px solid var(--warn)',
-            borderRadius: 12,
+            borderRadius: 'var(--r-card)',
             padding: '18px 20px',
           }}
         >

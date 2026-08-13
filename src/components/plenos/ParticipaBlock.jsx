@@ -40,7 +40,7 @@ export function ParticipaBlock() {
           style={{
             padding: '9px 12px',
             marginBottom: 10,
-            borderRadius: 8,
+            borderRadius: 'var(--r-input)',
             background: 'var(--warn-soft)',
             border: '1px solid var(--border2)',
             fontSize: 11.5,
@@ -72,7 +72,7 @@ export function ParticipaBlock() {
                 style={{
                   width: 36,
                   height: 36,
-                  borderRadius: 8,
+                  borderRadius: 'var(--r-input)',
                   background: i.kind === 'survey' ? 'var(--civic-soft)' : 'var(--ok-soft)',
                   display: 'grid',
                   placeItems: 'center',

@@ -67,7 +67,7 @@ function Header({ now }) {
             color: 'white',
             background: PALETTE.accent,
             padding: '2px 6px',
-            borderRadius: 3,
+            borderRadius: 'var(--r-input)',
             fontWeight: 700,
             letterSpacing: '.08em',
             marginLeft: 4,
@@ -86,7 +86,7 @@ function Header({ now }) {
           alignItems: 'center',
           gap: 8,
           padding: '6px 10px',
-          borderRadius: 7,
+          borderRadius: 'var(--r-input)',
           background: PALETTE.bg,
           color: PALETTE.ink50,
           fontSize: 12.5,
@@ -105,7 +105,7 @@ function Header({ now }) {
             padding: '2px 5px',
             background: PALETTE.paper,
             border: '1px solid ' + PALETTE.hair,
-            borderRadius: 4,
+            borderRadius: 'var(--r-input)',
           }}
         >
           ⌘K
@@ -214,7 +214,7 @@ function LiveStrip() {
     background: active ? '#EEF4FF' : 'transparent',
     border: 'none',
     padding: '2px 6px',
-    borderRadius: 5,
+    borderRadius: 'var(--r-input)',
     font: 'inherit',
     color: 'inherit',
   })
@@ -229,7 +229,7 @@ function LiveStrip() {
         alignItems: 'center',
         gap: 10,
         padding: '4px 10px',
-        borderRadius: 7,
+        borderRadius: 'var(--r-input)',
         background: PALETTE.bg,
         border: '1px solid ' + PALETTE.hair,
         fontFamily: SANS,
@@ -466,7 +466,7 @@ function LiveDetails({ section, weather, wmoLabel, emoji, air, aqi, metro, onClo
             padding: '6px 8px',
             background: '#FFF7E6',
             border: '1px solid #F3D9A8',
-            borderRadius: 6,
+            borderRadius: 'var(--r-input)',
             fontSize: 11.5,
             color: '#7C4A00',
           }}
@@ -499,7 +499,7 @@ function LiveDetails({ section, weather, wmoLabel, emoji, air, aqi, metro, onClo
         maxWidth: 340,
         background: PALETTE.paper,
         border: '1px solid ' + PALETTE.hair,
-        borderRadius: 10,
+        borderRadius: 'var(--r-card)',
         boxShadow: '0 12px 32px rgba(11,15,25,.12)',
         padding: '14px 16px 12px',
         fontFamily: SANS,
@@ -521,7 +521,7 @@ function LiveDetails({ section, weather, wmoLabel, emoji, air, aqi, metro, onClo
           style={{
             width: 22,
             height: 22,
-            borderRadius: 5,
+            borderRadius: 'var(--r-input)',
             display: 'grid',
             placeItems: 'center',
             color: PALETTE.ink50,

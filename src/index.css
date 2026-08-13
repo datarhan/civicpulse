@@ -178,7 +178,7 @@ textarea {
 
 ::-webkit-scrollbar-thumb {
   background: var(--ink20);
-  border-radius: 10px;
+  border-radius: var(--r-card);
   border: 2px solid var(--surf);
 }
 
@@ -192,32 +192,11 @@ textarea {
   font-variant-numeric: tabular-nums;
 }
 
-/* Direction C (Civic Briefing) — newsroom palette, scoped to .briefing-root */
-.briefing-root {
-  --cb-paper: #fbfaf5;
-  --cb-paper2: #f5f3eb;
-  --cb-ink: #111111;
-  --cb-ink80: #2b2b2b;
-  --cb-ink60: #555555;
-  --cb-ink40: #888888;
-  --cb-ink20: #d0cec4;
-  --cb-rule: #1f1f1f;
-  --cb-hair: #d8d5ca;
-  --cb-accent: #b0291f;
-  --cb-accent2: #1e3a8a;
-  --cb-green: #3f6b44;
-  --cb-amber: #b45309;
-}
-
-.briefing-root ::selection {
-  background: var(--cb-accent);
-  color: var(--cb-paper);
-}
-
-.cb-serif {
-  font-family: 'Fraunces', Georgia, serif;
-  font-optical-sizing: auto;
-}
+/* La paleta de la «Direction C (Civic Briefing)» vivía aquí: doce tokens, un
+   ::selection propio y una clase de serif, todo scoped a `.briefing-root`.
+   `/briefing` es una de las rutas legadas que se retiraron, y ni la clase ni
+   ninguno de los tokens tenía una sola referencia fuera de este fichero. Era
+   una paleta entera para una pantalla que ya no existe. */
 
 @keyframes cp-fade-in {
   from {
@@ -360,12 +339,12 @@ body.cp-kiosk .cp-live-container {
 }
 .cp-ticker-chip:hover {
   background: rgba(96, 165, 250, 0.12) !important;
-  border-radius: 4px;
+  border-radius: var(--r-input);
 }
 .cp-ticker-chip:focus-visible {
   outline: 2px solid #60a5fa;
   outline-offset: 1px;
-  border-radius: 4px;
+  border-radius: var(--r-input);
 }
 @media (prefers-reduced-motion: reduce) {
   .cp-ticker-track {
@@ -390,7 +369,7 @@ body.cp-kiosk .cp-live-container {
   margin: 80px 14px !important;
   border: 1px solid rgba(96, 165, 250, 0.18) !important;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
-  border-radius: 8px !important;
+  border-radius: var(--r-input) !important;
   overflow: hidden !important;
 }
 .cp-stylized-map .leaflet-control-zoom a {
@@ -495,7 +474,7 @@ body.cp-kiosk .cp-live-container {
   color: rgba(11, 15, 25, 0.82);
   background: rgba(255, 255, 255, 0.92);
   padding: 3px 8px;
-  border-radius: 10px;
+  border-radius: var(--r-card);
   white-space: nowrap;
   box-shadow: 0 2px 6px rgba(11, 15, 25, 0.12);
   border: 1px solid rgba(11, 15, 25, 0.06);
@@ -617,7 +596,7 @@ body.cp-kiosk .cp-live-container {
   color: rgba(11, 15, 25, 0.72);
   background: rgba(255, 255, 255, 0.78);
   padding: 1px 4px;
-  border-radius: 2px;
+  border-radius: var(--r-input);
   white-space: nowrap;
   letter-spacing: 0.02em;
 }
@@ -688,7 +667,7 @@ body.cp-kiosk .cp-live-container {
   color: var(--civic-on);
   font-size: 14px;
   font-weight: 600;
-  border-radius: 0 0 8px 0;
+  border-radius: 0 0 var(--r-input) 0;
   text-decoration: none;
 }
 .cp-skip-link:focus {

@@ -24,7 +24,7 @@ export function Lectura({ lectura, conAvisos = true }) {
         padding: '10px 12px',
         borderLeft: '2px solid var(--civic)',
         background: 'var(--soft)',
-        borderRadius: '0 4px 4px 0',
+        borderRadius: '0 var(--r-input) var(--r-input) 0',
       }}
     >
       {cabecera && (

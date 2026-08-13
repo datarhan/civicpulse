@@ -157,7 +157,7 @@ function CorrelationsCard({ quejaId }) {
                 style={{
                   fontSize: 9.5,
                   padding: '1px 6px',
-                  borderRadius: 3,
+                  borderRadius: 'var(--r-input)',
                   textTransform: 'uppercase',
                   letterSpacing: '.08em',
                   fontWeight: 700,
@@ -377,7 +377,7 @@ export default function QuejaDetail() {
                 style={{
                   width: 38,
                   height: 38,
-                  borderRadius: 6,
+                  borderRadius: 'var(--r-input)',
                   objectFit: 'cover',
                   flexShrink: 0,
                 }}
@@ -406,7 +406,7 @@ export default function QuejaDetail() {
                   background: partyColor(concejal.party),
                   color: 'white',
                   padding: '2px 6px',
-                  borderRadius: 3,
+                  borderRadius: 'var(--r-pill)',
                 }}
               >
                 {concejal.party}

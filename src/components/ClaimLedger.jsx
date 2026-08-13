@@ -208,7 +208,7 @@ export function ClaimLedger({ filter, limit = 20, emptyHint, items, showSummary 
         style={{
           padding: 14,
           background: 'var(--soft)',
-          borderRadius: 8,
+          borderRadius: 'var(--r-input)',
           fontSize: 12,
           color: 'var(--ink50)',
           lineHeight: 1.5,
@@ -249,7 +249,7 @@ export function ClaimLedger({ filter, limit = 20, emptyHint, items, showSummary 
             alignSelf: 'flex-start',
             fontSize: 12,
             padding: '6px 12px',
-            borderRadius: 6,
+            borderRadius: 'var(--r-input)',
             border: '1px solid var(--border2)',
             background: 'transparent',
             color: 'var(--civic)',

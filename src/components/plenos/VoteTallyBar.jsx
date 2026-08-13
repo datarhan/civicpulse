@@ -24,7 +24,15 @@ export function VoteTallyBar({ tally }) {
     (a, b) => (DIR_ORDER[a.direction] ?? 9) - (DIR_ORDER[b.direction] ?? 9),
   )
   return (
-    <div style={{ display: 'flex', height: 20, borderRadius: 5, overflow: 'hidden', gap: 1 }}>
+    <div
+      style={{
+        display: 'flex',
+        height: 20,
+        borderRadius: 'var(--r-pill)',
+        overflow: 'hidden',
+        gap: 1,
+      }}
+    >
       {sorted.map((v) => {
         const seats = v.seats || SEATS[v.bloc] || 1
         // `bloc: null` = the source records the vote but names no group. The
@@ -66,7 +74,7 @@ export function DirectionLegend() {
           key={k}
           style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 11 }}
         >
-          <span style={{ width: 9, height: 9, borderRadius: 2, background: c }} />
+          <span style={{ width: 9, height: 9, borderRadius: 'var(--r-input)', background: c }} />
           <span style={{ color: 'var(--ink70)' }}>{DIRECTION_LABEL[k] || k}</span>
         </span>
       ))}

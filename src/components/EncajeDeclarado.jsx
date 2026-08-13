@@ -435,7 +435,7 @@ export function EncajeMatrix({ official, bioRoute }) {
               key={r.portfolio}
               style={{
                 border: '1px solid var(--border2)',
-                borderRadius: 10,
+                borderRadius: 'var(--r-card)',
                 padding: '12px 14px',
                 background: 'var(--card)',
               }}
@@ -590,7 +590,7 @@ export function QueExigeLaLey() {
             key={role.id}
             style={{
               border: '1px solid var(--border2)',
-              borderRadius: 10,
+              borderRadius: 'var(--r-card)',
               padding: '12px 14px',
               background: 'var(--card)',
             }}

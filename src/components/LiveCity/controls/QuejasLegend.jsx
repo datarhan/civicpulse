@@ -4,7 +4,7 @@ import { useT } from '../../../i18n'
 const cardStyle = {
   background: 'rgba(255,255,255,.94)',
   border: '1px solid #DCD7C8',
-  borderRadius: 9,
+  borderRadius: 'var(--r-input)',
   padding: '7px 9px',
   fontFamily: "'Outfit', system-ui, sans-serif",
   boxShadow: '0 4px 16px rgba(11,15,25,.16)',

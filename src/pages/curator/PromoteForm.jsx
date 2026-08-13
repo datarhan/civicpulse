@@ -319,7 +319,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
               padding: '6px 10px',
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               cursor: 'pointer',
             }}
           >
@@ -335,7 +335,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
               style={{
                 padding: '10px 12px',
                 border: '1px solid var(--border2)',
-                borderRadius: 6,
+                borderRadius: 'var(--r-input)',
                 marginBottom: 8,
               }}
             >
@@ -400,7 +400,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 flex: 1,
                 padding: '7px 10px',
                 border: '1px solid var(--border2)',
-                borderRadius: 6,
+                borderRadius: 'var(--r-input)',
                 fontSize: 12.5,
                 background: 'var(--paper)',
                 color: 'var(--ink)',
@@ -413,7 +413,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 padding: '7px 12px',
                 border: '1px solid var(--border2)',
                 background: fetchingEvidence ? 'var(--soft)' : 'var(--paper)',
-                borderRadius: 6,
+                borderRadius: 'var(--r-input)',
                 cursor: !evidenceUrl.trim() || fetchingEvidence ? 'not-allowed' : 'pointer',
                 fontSize: 12,
               }}
@@ -427,7 +427,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 padding: '6px 10px',
                 marginTop: 6,
                 border: '1px solid var(--crit-ink)',
-                borderRadius: 6,
+                borderRadius: 'var(--r-input)',
                 fontSize: 11.5,
                 background: 'var(--soft)',
                 color: 'var(--crit-ink)',
@@ -447,7 +447,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                     alignItems: 'flex-start',
                     padding: '8px 10px',
                     border: '1px solid var(--border2)',
-                    borderRadius: 6,
+                    borderRadius: 'var(--r-input)',
                     marginBottom: 6,
                   }}
                 >
@@ -504,7 +504,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                       padding: '2px 8px',
                       border: '1px solid var(--border2)',
                       background: 'var(--paper)',
-                      borderRadius: 4,
+                      borderRadius: 'var(--r-input)',
                       fontSize: 11,
                       cursor: 'pointer',
                     }}
@@ -551,7 +551,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                   flex: 1,
                   padding: '7px 10px',
                   border: '1px solid var(--border2)',
-                  borderRadius: 6,
+                  borderRadius: 'var(--r-input)',
                   fontSize: 12.5,
                   background: 'var(--paper)',
                   color: 'var(--ink)',
@@ -563,7 +563,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 style={{
                   padding: '7px 10px',
                   border: '1px solid var(--border2)',
-                  borderRadius: 6,
+                  borderRadius: 'var(--r-input)',
                   fontSize: 12,
                   background: 'var(--paper)',
                   color: 'var(--ink)',
@@ -579,7 +579,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                   padding: '7px 12px',
                   border: '1px solid var(--border2)',
                   background: 'var(--paper)',
-                  borderRadius: 6,
+                  borderRadius: 'var(--r-input)',
                   cursor: !mediaPath.trim() ? 'not-allowed' : 'pointer',
                   fontSize: 12,
                 }}
@@ -593,7 +593,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                   padding: '6px 10px',
                   marginTop: 6,
                   border: '1px solid var(--crit-ink)',
-                  borderRadius: 6,
+                  borderRadius: 'var(--r-input)',
                   fontSize: 11.5,
                   background: 'var(--soft)',
                   color: 'var(--crit-ink)',
@@ -621,7 +621,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                         alignItems: 'center',
                         padding: '8px 10px',
                         border: `1px solid ${tone}`,
-                        borderRadius: 6,
+                        borderRadius: 'var(--r-input)',
                         marginBottom: 6,
                         background: 'var(--soft)',
                       }}
@@ -644,7 +644,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                             fontSize: 11,
                             border: '1px solid var(--border2)',
                             background: 'var(--paper)',
-                            borderRadius: 4,
+                            borderRadius: 'var(--r-input)',
                             cursor: 'pointer',
                           }}
                         >
@@ -659,7 +659,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                             fontSize: 11,
                             border: '1px solid var(--border2)',
                             background: 'var(--paper)',
-                            borderRadius: 4,
+                            borderRadius: 'var(--r-input)',
                             cursor: 'pointer',
                           }}
                         >
@@ -687,7 +687,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 border: '1px solid var(--border2)',
                 background: drafting ? 'var(--soft)' : 'var(--paper)',
                 color: 'var(--ink)',
-                borderRadius: 6,
+                borderRadius: 'var(--r-input)',
                 cursor: drafting || running ? 'not-allowed' : 'pointer',
                 fontSize: 12,
               }}
@@ -708,7 +708,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 padding: '8px 10px',
                 marginBottom: 8,
                 border: '1px solid var(--crit-ink)',
-                borderRadius: 6,
+                borderRadius: 'var(--r-input)',
                 fontSize: 11.5,
                 background: 'var(--soft)',
                 color: 'var(--crit-ink)',
@@ -732,7 +732,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
               width: '100%',
               padding: '8px 10px',
               border: `1px solid ${title && !titleValid ? 'var(--crit-ink)' : 'var(--border2)'}`,
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               fontSize: 13,
               fontFamily: 'inherit',
               background: 'var(--paper)',
@@ -755,7 +755,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
               width: '100%',
               padding: '8px 10px',
               border: `1px solid ${summary && !summaryValid ? 'var(--crit-ink)' : 'var(--border2)'}`,
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               fontSize: 13,
               fontFamily: 'inherit',
               background: 'var(--paper)',
@@ -776,7 +776,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
             style={{
               padding: '6px 10px',
               border: '1px solid var(--border2)',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               fontSize: 13,
               background: 'var(--paper)',
               color: 'var(--ink)',
@@ -793,7 +793,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 marginTop: 12,
                 padding: '8px 10px',
                 border: '1px solid var(--ok-ink)',
-                borderRadius: 6,
+                borderRadius: 'var(--r-input)',
                 fontSize: 11.5,
                 background: 'var(--soft)',
                 color: 'var(--ink50)',
@@ -814,7 +814,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 border: 'none',
                 background: ready ? 'var(--civic-ink)' : 'var(--soft)',
                 color: ready ? '#fff' : 'var(--ink50)',
-                borderRadius: 6,
+                borderRadius: 'var(--r-input)',
                 cursor: ready ? 'pointer' : 'not-allowed',
                 fontWeight: 600,
               }}
@@ -829,7 +829,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 border: '1px solid var(--border2)',
                 background: 'var(--paper)',
                 color: 'var(--ink)',
-                borderRadius: 6,
+                borderRadius: 'var(--r-input)',
                 cursor:
                   committing || !result?.ok || result.exitCode !== 0 ? 'not-allowed' : 'pointer',
               }}
@@ -846,7 +846,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                   border: '1px dashed var(--border2)',
                   background: 'transparent',
                   color: 'var(--ink50)',
-                  borderRadius: 6,
+                  borderRadius: 'var(--r-input)',
                   cursor: archiving || running || committing ? 'not-allowed' : 'pointer',
                   fontSize: 12.5,
                 }}
@@ -864,7 +864,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                   marginTop: 6,
                   padding: '8px 10px',
                   border: '1px dashed var(--border2)',
-                  borderRadius: 6,
+                  borderRadius: 'var(--r-input)',
                   background: 'var(--soft)',
                 }}
               >
@@ -879,7 +879,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                     flex: 1,
                     padding: '6px 10px',
                     border: '1px solid var(--border2)',
-                    borderRadius: 4,
+                    borderRadius: 'var(--r-input)',
                     fontSize: 12,
                     background: 'var(--paper)',
                     color: 'var(--ink)',
@@ -892,7 +892,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                     padding: '6px 12px',
                     border: '1px solid var(--border2)',
                     background: 'var(--paper)',
-                    borderRadius: 4,
+                    borderRadius: 'var(--r-input)',
                     cursor: archiving ? 'not-allowed' : 'pointer',
                     fontSize: 12,
                   }}
@@ -909,7 +909,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                     padding: '6px 12px',
                     border: '1px solid var(--border2)',
                     background: 'var(--paper)',
-                    borderRadius: 4,
+                    borderRadius: 'var(--r-input)',
                     cursor: archiving ? 'not-allowed' : 'pointer',
                     fontSize: 12,
                   }}
@@ -925,7 +925,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 marginTop: 8,
                 padding: '8px 10px',
                 border: '1px solid var(--crit-ink)',
-                borderRadius: 6,
+                borderRadius: 'var(--r-input)',
                 fontSize: 11.5,
                 color: 'var(--crit-ink)',
                 background: 'var(--soft)',
@@ -941,7 +941,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 marginTop: 14,
                 padding: 10,
                 border: `1px solid ${result.ok && result.exitCode === 0 ? 'var(--ok-ink)' : 'var(--crit-ink)'}`,
-                borderRadius: 6,
+                borderRadius: 'var(--r-input)',
                 fontSize: 11.5,
                 background: 'var(--soft)',
               }}
@@ -968,7 +968,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                 marginTop: 8,
                 padding: 10,
                 border: `1px solid ${commitResult.ok && commitResult.exitCode === 0 ? 'var(--ok-ink)' : 'var(--crit-ink)'}`,
-                borderRadius: 6,
+                borderRadius: 'var(--r-input)',
                 fontSize: 11.5,
                 background: 'var(--soft)',
               }}

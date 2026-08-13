@@ -27,7 +27,7 @@ export function Topbar({ crumb, onOpenCmdK, onOpenSidebar }) {
         style={{
           width: 36,
           height: 36,
-          borderRadius: 8,
+          borderRadius: 'var(--r-input)',
           placeItems: 'center',
           color: 'var(--ink70)',
           background: 'var(--soft)',
@@ -88,7 +88,7 @@ export function Topbar({ crumb, onOpenCmdK, onOpenSidebar }) {
           alignItems: 'center',
           gap: 8,
           padding: '6px 10px',
-          borderRadius: 7,
+          borderRadius: 'var(--r-input)',
           background: 'var(--soft)',
           color: 'var(--ink50)',
           fontSize: 12.5,
@@ -106,7 +106,7 @@ export function Topbar({ crumb, onOpenCmdK, onOpenSidebar }) {
             padding: '2px 5px',
             background: 'var(--paper)',
             border: '1px solid var(--border)',
-            borderRadius: 4,
+            borderRadius: 'var(--r-input)',
           }}
         >
           ⌘K

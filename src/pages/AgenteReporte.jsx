@@ -129,7 +129,7 @@ function ResponseBlock({ response, reportId }) {
             marginTop: 10,
             fontSize: 12,
             padding: '6px 12px',
-            borderRadius: 6,
+            borderRadius: 'var(--r-input)',
             border: '1px solid var(--border)',
             color: 'var(--ink70)',
           }}
@@ -193,7 +193,7 @@ function CuratorNotesBlock({ notes }) {
           style={{
             fontSize: 11,
             padding: '4px 10px',
-            borderRadius: 6,
+            borderRadius: 'var(--r-input)',
             border: '1px solid var(--border)',
             background: 'transparent',
             color: 'var(--ink50)',
@@ -297,7 +297,7 @@ export default function AgenteReporte() {
           padding: 32px 24px;
         }
         .cp-toc { position: sticky; top: 80px; align-self: start; }
-        .cp-facts { position: sticky; top: 80px; align-self: start; padding: 18px; border: 1px solid var(--border); border-radius: 10px; background: var(--paper); }
+        .cp-facts { position: sticky; top: 80px; align-self: start; padding: 18px; border: 1px solid var(--border); border-radius: var(--r-card); background: var(--paper); }
         .cp-main { display: grid; gap: var(--gap-block); min-width: 0; max-width: var(--reading-w); margin: 0 auto; width: 100%; }
         .cp-ledger { max-width: 1300px; margin: 0 auto; padding: 0 24px 48px; }
         @media (max-width: 1100px) {

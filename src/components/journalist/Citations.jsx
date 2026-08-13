@@ -40,7 +40,7 @@ export function CitationPopover({ num, src }) {
           color: 'var(--ink50)',
           textDecoration: 'none',
           padding: '1px 6px',
-          borderRadius: 999,
+          borderRadius: 'var(--r-pill)',
           background: 'var(--soft)',
           fontVariantNumeric: 'tabular-nums',
         }}
@@ -59,7 +59,7 @@ export function CitationPopover({ num, src }) {
             minWidth: 260,
             maxWidth: 360,
             padding: 10,
-            borderRadius: 8,
+            borderRadius: 'var(--r-input)',
             border: '1px solid var(--border)',
             background: 'var(--paper)',
             color: 'var(--ink70)',

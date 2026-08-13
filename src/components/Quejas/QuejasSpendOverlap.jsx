@@ -121,7 +121,7 @@ export default function QuejasSpendOverlap() {
                     color: 'var(--ink50)',
                     background: 'var(--soft)',
                     padding: '1px 5px',
-                    borderRadius: 3,
+                    borderRadius: 'var(--r-input)',
                   }}
                 >
                   sin gasto situado

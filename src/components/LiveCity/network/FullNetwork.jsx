@@ -90,7 +90,7 @@ export function FullNetwork() {
                         fontSize: 10,
                         fontWeight: 800,
                         padding: '2px 6px',
-                        borderRadius: 3,
+                        borderRadius: 'var(--r-input)',
                       }}
                     >
                       {r}

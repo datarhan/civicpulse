@@ -22,7 +22,7 @@ export function RetiredSourceNote({ upstream }) {
         color: 'var(--warn-ink)',
         background: 'var(--warn-soft)',
         border: '1px solid var(--border2)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
         padding: '8px 10px',
         margin: '8px 0',
       }}

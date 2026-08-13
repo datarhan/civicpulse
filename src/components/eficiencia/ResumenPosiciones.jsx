@@ -77,7 +77,7 @@ export function ResumenPosiciones({ indicadores = [] }) {
               padding: '3px 0',
               color: 'inherit',
               textDecoration: 'none',
-              borderRadius: 4,
+              borderRadius: 'var(--r-input)',
             }}
           >
             <span style={{ fontSize: 12.5, lineHeight: 1.25 }}>{i.etiqueta}</span>
@@ -90,7 +90,7 @@ export function ResumenPosiciones({ indicadores = [] }) {
                 position: 'relative',
                 height: 12,
                 background: 'var(--bg2, rgba(127,127,127,.12))',
-                borderRadius: 999,
+                borderRadius: 'var(--r-pill)',
               }}
             >
               <span
@@ -111,7 +111,7 @@ export function ResumenPosiciones({ indicadores = [] }) {
                   width: 10,
                   height: 10,
                   marginLeft: -5,
-                  borderRadius: 999,
+                  borderRadius: 'var(--r-pill)',
                   background: 'var(--civic)',
                 }}
               />

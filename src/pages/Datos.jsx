@@ -675,7 +675,7 @@ function TransparencyDocsCard() {
                     color: 'var(--civic)',
                     textDecoration: 'none',
                     border: '1px solid var(--border)',
-                    borderRadius: 4,
+                    borderRadius: 'var(--r-input)',
                     padding: '3px 8px',
                   }}
                 >

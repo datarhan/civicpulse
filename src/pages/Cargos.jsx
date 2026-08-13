@@ -38,7 +38,7 @@ function SocialLinks({ slug }) {
               alignItems: 'center',
               gap: 5,
               padding: '3px 8px',
-              borderRadius: 999,
+              borderRadius: 'var(--r-pill)',
               border: '1px solid var(--border2)',
               background: 'var(--soft)',
               color: 'var(--ink70)',
@@ -132,7 +132,7 @@ function DepartmentLinks({ portfolios }) {
             padding: '2px 7px',
             background: 'var(--civic-soft)',
             color: 'var(--civic)',
-            borderRadius: 3,
+            borderRadius: 'var(--r-input)',
             letterSpacing: '.04em',
             textDecoration: 'none',
           }}
@@ -281,7 +281,7 @@ function RetribucionesPanel() {
               style={{
                 fontSize: 11,
                 border: '1px solid var(--border)',
-                borderRadius: 4,
+                borderRadius: 'var(--r-input)',
                 padding: '3px 8px',
                 color: 'var(--ink70)',
               }}
@@ -421,7 +421,7 @@ function OfficialCard({ o, big = false, bioRoute }) {
             style={{
               width: big ? 72 : 52,
               height: big ? 72 : 52,
-              borderRadius: 10,
+              borderRadius: 'var(--r-card)',
               objectFit: 'cover',
               flexShrink: 0,
               border: `2px solid ${color}22`,
@@ -432,7 +432,7 @@ function OfficialCard({ o, big = false, bioRoute }) {
             style={{
               width: big ? 72 : 52,
               height: big ? 72 : 52,
-              borderRadius: 10,
+              borderRadius: 'var(--r-card)',
               flexShrink: 0,
               display: 'grid',
               placeItems: 'center',
@@ -467,7 +467,7 @@ function OfficialCard({ o, big = false, bioRoute }) {
                 background: color,
                 color: 'white',
                 padding: '2px 6px',
-                borderRadius: 3,
+                borderRadius: 'var(--r-pill)',
               }}
             >
               {o.party}
@@ -565,7 +565,13 @@ function CompositionBar({ composition, total }) {
   return (
     <div style={{ marginTop: 14 }}>
       <div
-        style={{ display: 'flex', width: '100%', height: 14, borderRadius: 7, overflow: 'hidden' }}
+        style={{
+          display: 'flex',
+          width: '100%',
+          height: 14,
+          borderRadius: 'var(--r-pill)',
+          overflow: 'hidden',
+        }}
       >
         {items.map(({ p, n }) => (
           <div
@@ -622,7 +628,7 @@ function CorporacionMunicipal() {
           marginBottom: 28,
           padding: 12,
           border: '1px solid var(--warn-soft)',
-          borderRadius: 8,
+          borderRadius: 'var(--r-input)',
           color: 'var(--warn)',
           fontSize: 13,
         }}

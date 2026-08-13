@@ -19,7 +19,7 @@ function ReportajeCard({ slug, readLabel }) {
       style={{
         background: 'var(--paper)',
         border: '1px solid var(--border)',
-        borderRadius: 12,
+        borderRadius: 'var(--r-card)',
         padding: '22px 24px',
       }}
     >

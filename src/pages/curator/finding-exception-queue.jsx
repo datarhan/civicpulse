@@ -38,7 +38,7 @@ export function FindingExceptionStyles() {
         align-items: start;
         padding: 8px 10px;
         border: 1px solid var(--border2);
-        border-radius: 6px;
+        border-radius: var(--r-input);
         margin-bottom: 6px;
         background: var(--card);
       }
@@ -83,7 +83,7 @@ function Command({ cmd }) {
         lineHeight: 1.5,
         padding: '6px 8px',
         background: 'var(--soft)',
-        borderRadius: 4,
+        borderRadius: 'var(--r-input)',
         color: 'var(--ink70)',
         wordBreak: 'break-word',
       }}
@@ -135,7 +135,7 @@ export function FindingExceptionRow({ row }) {
       style={{
         padding: '10px 12px',
         border: '1px solid var(--border2)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
         marginBottom: 10,
       }}
     >
@@ -190,7 +190,7 @@ export function FindingExceptionRow({ row }) {
           padding: '4px 10px',
           border: '1px solid var(--border2)',
           background: 'var(--paper)',
-          borderRadius: 6,
+          borderRadius: 'var(--r-input)',
           color: 'var(--civic)',
           cursor: 'pointer',
         }}

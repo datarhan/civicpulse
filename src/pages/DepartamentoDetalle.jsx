@@ -199,7 +199,7 @@ function UnvotedAgendasSection({ slug, votesSnap }) {
           style={{
             padding: '8px 12px',
             border: '1px solid var(--border2)',
-            borderRadius: 8,
+            borderRadius: 'var(--r-input)',
             fontSize: 12.5,
             lineHeight: 1.45,
           }}
@@ -239,7 +239,7 @@ function QuejasSection({ slug }) {
             textDecoration: 'none',
             padding: '8px 12px',
             border: '1px solid var(--border2)',
-            borderRadius: 8,
+            borderRadius: 'var(--r-input)',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -285,7 +285,7 @@ function VerdictMixBar({ d }) {
         marginTop: 16,
         padding: '14px 16px',
         border: '1px solid var(--border2)',
-        borderRadius: 10,
+        borderRadius: 'var(--r-card)',
       }}
     >
       <div
@@ -319,7 +319,7 @@ function VerdictMixBar({ d }) {
         style={{
           display: 'flex',
           height: 12,
-          borderRadius: 6,
+          borderRadius: 'var(--r-pill)',
           overflow: 'hidden',
           background: 'var(--soft)',
         }}
@@ -339,7 +339,13 @@ function VerdictMixBar({ d }) {
             style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 11.5 }}
           >
             <span
-              style={{ width: 9, height: 9, borderRadius: 2, background: s.color, flexShrink: 0 }}
+              style={{
+                width: 9,
+                height: 9,
+                borderRadius: 'var(--r-input)',
+                background: s.color,
+                flexShrink: 0,
+              }}
             />
             <span style={{ color: 'var(--ink70)' }}>{s.label}</span>
             <strong className="mono" style={{ color: 'var(--ink)' }}>
@@ -418,7 +424,7 @@ export default function DepartamentoDetalle() {
             marginTop: 8,
             padding: '12px 14px',
             background: 'var(--soft)',
-            borderRadius: 8,
+            borderRadius: 'var(--r-input)',
           }}
         >
           {official.photoUrl && (
@@ -443,7 +449,7 @@ export default function DepartamentoDetalle() {
           style={{
             padding: '12px 14px',
             background: 'var(--soft)',
-            borderRadius: 8,
+            borderRadius: 'var(--r-input)',
             marginTop: 8,
             color: 'var(--ink50)',
             fontSize: 12.5,
@@ -519,7 +525,7 @@ export default function DepartamentoDetalle() {
           marginTop: 40,
           padding: '10px 14px',
           background: 'var(--soft)',
-          borderRadius: 8,
+          borderRadius: 'var(--r-input)',
           fontSize: 11.5,
           color: 'var(--ink50)',
           lineHeight: 1.55,
@@ -558,7 +564,7 @@ function MiniStat({ label, value, tone }) {
       style={{
         padding: '10px 12px',
         border: '1px solid var(--border2)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
       }}
     >
       <div

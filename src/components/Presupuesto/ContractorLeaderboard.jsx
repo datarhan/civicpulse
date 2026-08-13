@@ -74,7 +74,7 @@ export default function ContractorLeaderboard({ contracts }) {
                 height: 6,
                 width: Math.max(6, (t.amount / max) * 120),
                 background: 'var(--civic)',
-                borderRadius: 3,
+                borderRadius: 'var(--r-input)',
               }}
             />
             <span className="mono" style={{ fontWeight: 700, fontSize: 12 }}>

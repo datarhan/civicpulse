@@ -57,7 +57,7 @@ export function PlacePopup({ place, assignments, contractsById, danaOnly, obrasO
             letterSpacing: '.05em',
             color: 'rgba(11,15,25,.5)',
             border: '1px solid #DCD7C8',
-            borderRadius: 3,
+            borderRadius: 'var(--r-input)',
             padding: '1px 5px',
           }}
         >

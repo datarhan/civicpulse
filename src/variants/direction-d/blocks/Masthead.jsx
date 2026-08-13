@@ -67,7 +67,7 @@ export function QuejaCTA() {
         padding: '14px 16px',
         background: '#EEF4FF',
         border: '1px solid #C7D7F8',
-        borderRadius: 10,
+        borderRadius: 'var(--r-card)',
       }}
     >
       <div
@@ -103,7 +103,7 @@ export function QuejaCTA() {
             fontFamily: MONO,
             background: '#fff',
             padding: '1px 5px',
-            borderRadius: 3,
+            borderRadius: 'var(--r-input)',
             border: '1px solid #DDE3EA',
           }}
         >
@@ -125,7 +125,7 @@ export function QuejaCTA() {
           fontFamily: SANS,
           fontSize: 13.5,
           fontWeight: 600,
-          borderRadius: 7,
+          borderRadius: 'var(--r-input)',
           textDecoration: 'none',
           boxShadow: '0 2px 6px rgba(14,91,98,.25)',
         }}

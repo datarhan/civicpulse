@@ -2,7 +2,7 @@ const ctrl = {
   padding: '7px 10px',
   fontSize: 12.5,
   border: '1px solid var(--border)',
-  borderRadius: 8,
+  borderRadius: 'var(--r-input)',
   background: 'var(--paper)',
   color: 'var(--ink)',
   maxWidth: '100%',
@@ -44,7 +44,7 @@ export default function EmpleoFilters({
     <div
       style={{
         border: '1px solid var(--border2)',
-        borderRadius: 12,
+        borderRadius: 'var(--r-card)',
         padding: 12,
         marginBottom: 12,
         display: 'flex',

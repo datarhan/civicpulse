@@ -28,7 +28,7 @@ export function VoteTuple({ v }) {
         alignItems: 'center',
         gap: 6,
         padding: '2px 8px',
-        borderRadius: 999,
+        borderRadius: 'var(--r-pill)',
         fontSize: 10.5,
         background: bg,
         color: toneVar,

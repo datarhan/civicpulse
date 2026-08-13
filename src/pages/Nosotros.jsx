@@ -58,7 +58,7 @@ function OperatorPhoto() {
         alt="Sergei Lutchenko, responsable de CivicPulse"
         width={72}
         height={72}
-        style={{ width: 72, height: 72, borderRadius: 12, objectFit: 'cover' }}
+        style={{ width: 72, height: 72, borderRadius: 'var(--r-card)', objectFit: 'cover' }}
         onError={(e) => {
           e.currentTarget.style.display = 'none'
           e.currentTarget.nextSibling.style.display = 'flex'
@@ -70,7 +70,7 @@ function OperatorPhoto() {
           display: 'none',
           width: 72,
           height: 72,
-          borderRadius: 12,
+          borderRadius: 'var(--r-card)',
           background: 'var(--civic-soft)',
           color: 'var(--civic)',
           alignItems: 'center',

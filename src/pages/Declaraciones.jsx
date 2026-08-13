@@ -30,7 +30,7 @@ function MiniStat({ label, value, tone }) {
       style={{
         padding: '10px 12px',
         border: '1px solid var(--border2)',
-        borderRadius: 8,
+        borderRadius: 'var(--r-input)',
       }}
     >
       <div
@@ -75,7 +75,7 @@ function FilterChip({ active, label, count, onClick, tone }) {
       onClick={onClick}
       style={{
         padding: '4px 10px',
-        borderRadius: 6,
+        borderRadius: 'var(--r-input)',
         fontSize: 11.5,
         fontWeight: active ? 600 : 500,
         border: '1px solid ' + (active ? 'transparent' : 'var(--border2)'),
@@ -333,7 +333,7 @@ export default function Declaraciones() {
           marginBottom: 14,
           padding: 10,
           border: '1px solid var(--border2)',
-          borderRadius: 8,
+          borderRadius: 'var(--r-input)',
           background: 'var(--soft)',
         }}
       >
@@ -445,7 +445,7 @@ export default function Declaraciones() {
             style={{
               width: '100%',
               padding: '6px 10px',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               border: '1px solid var(--border2)',
               background: 'var(--paper)',
               color: 'var(--ink)',
@@ -471,7 +471,7 @@ export default function Declaraciones() {
             onClick={() => setShown((n) => n + PAGE_SIZE)}
             style={{
               padding: '8px 16px',
-              borderRadius: 6,
+              borderRadius: 'var(--r-input)',
               border: '1px solid var(--border2)',
               background: 'var(--soft)',
               color: 'var(--ink)',
