@@ -79,8 +79,9 @@ export function CitationPopover({ num, src }) {
                 marginTop: 6,
                 paddingTop: 6,
                 borderTop: '1px solid var(--border)',
-                color: 'var(--ink50)',
-                fontStyle: 'italic',
+                color: 'var(--ink70)',
+                fontWeight: 500,
+                maxWidth: '68ch',
               }}
             >
               «{src.excerpt.slice(0, 220)}»

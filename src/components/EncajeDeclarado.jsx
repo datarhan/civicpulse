@@ -133,7 +133,18 @@ function Aviso({ aviso, quote = false }) {
       </span>
       {isArea && <div style={{ marginTop: 2 }}>{t('encaje.aviso.area')}</div>}
       {showsVerbatim && (
-        <div style={{ marginTop: 2, fontStyle: 'italic' }}>«&nbsp;{aviso.verbatim}&nbsp;»</div>
+        <div
+          style={{
+            marginTop: 4,
+            paddingLeft: 10,
+            borderLeft: '3px solid var(--civic)',
+            fontWeight: 500,
+            color: 'var(--ink)',
+            maxWidth: '68ch',
+          }}
+        >
+          «&nbsp;{aviso.verbatim}&nbsp;»
+        </div>
       )}
     </div>
   )

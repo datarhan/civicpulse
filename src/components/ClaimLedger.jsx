@@ -118,11 +118,12 @@ function ClaimCard({ item }) {
             style={{
               margin: '4px 0 0',
               padding: '6px 10px',
-              borderLeft: '3px solid var(--border)',
-              fontSize: 13,
-              color: 'var(--ink70)',
-              lineHeight: 1.45,
-              fontStyle: 'italic',
+              borderLeft: '3px solid var(--civic)',
+              fontSize: 14,
+              fontWeight: 500,
+              color: 'var(--ink)',
+              lineHeight: 1.5,
+              maxWidth: '68ch',
             }}
           >
             «{claim.verbatim}»

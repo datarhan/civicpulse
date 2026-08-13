@@ -110,6 +110,116 @@ export function Card({ children, style = {}, pad = true, hover = false, ...rest 
   )
 }
 
+/**
+ * La cita literal. Brandbook §03b.
+ *
+ * El titular del brandbook dice que la cita es lo único que este medio vende, y
+ * hasta ahora se componía con una cursiva que la tipografía no tiene: index.html
+ * carga `Outfit:wght@400;500;600;700`, sin eje `ital`, y treinta y cuatro sitios
+ * del producto pedían `fontStyle: 'italic'`. El navegador responde inclinando la
+ * romana por transformación geométrica —contraformas deformadas, terminales
+ * rotas, peso aparente menor—. En un párrafo decorativo es un descuido; sobre la
+ * declaración literal de un cargo público es la pieza peor compuesta del sitio.
+ *
+ * La regla: la cita no se inclina, se marca. Filete de petróleo, comillas
+ * latinas, peso 500 y un cuerpo por encima del resumen editorial que la
+ * introduce — que es lo que la separa de él. Medida máxima de 68 caracteres: el
+ * brandbook fijaba anchos de página y nunca la medida, así que a 14 px dentro de
+ * un contenedor de 1400 la línea llegaba a 200 caracteres.
+ *
+ * `attribution` distingue tres casos, y la diferencia es editorial, no cosmética
+ * (§08: «si no se sabe quién habló: sin atribuir, nunca un grupo de relleno»):
+ *
+ *   attribution="PSOE"   habla un bloc identificado
+ *   attribution={null}   es habla, y NO se sabe de quién → imprime «sin atribuir»
+ *   sin la prop          no es habla (extracto de un documento) → no se atribuye
+ *
+ * `marks` va DENTRO del blockquote y `source` fuera, y la diferencia no es de
+ * maquetación. Un `mark` CALIFICA ese literal —«no consta en la transcripción
+ * revisada», «acusación no contrastada»— y 75 de los 177 literales de
+ * /hallazgos sostienen acusaciones públicas que la puerta editorial retiene.
+ * Sacar esa marca del blockquote deja la cita leyéndose como si nadie la
+ * hubiera puesto en duda. `source` sólo dice de dónde viene, y eso sí es pie.
+ * Lo defiende tests/components/finding-quote-contrast.test.jsx, que lo cazó
+ * cuando este componente lo movió al pie.
+ *
+ * @param {object} p
+ * @param {string} p.text         el verbatim, sin comillas: las pone el componente
+ * @param {string|null} [p.attribution]
+ * @param {string} [p.tone]       color del bloc, si lo hay
+ * @param {React.ReactNode} [p.marks]  calificaciones DE ESTE literal
+ * @param {React.ReactNode} [p.source] procedencia: sesión, minuto
+ * @param {'card'|'page'} [p.size]
+ * @param {object} [p.style]
+ */
+export function Quote({ text, attribution, tone, marks, source, size = 'card', style = {} }) {
+  const esHabla = attribution !== undefined
+  const etiqueta = attribution ?? 'sin atribuir'
+  const cuerpo = size === 'page' ? 17 : 14
+  return (
+    <figure
+      style={{
+        margin: '8px 0 0',
+        padding: '2px 0 2px 12px',
+        borderLeft: '3px solid var(--civic)',
+        maxWidth: '68ch',
+        ...style,
+      }}
+    >
+      <blockquote
+        style={{
+          margin: 0,
+          fontSize: cuerpo,
+          // Sin fontStyle. Es el punto entero de este componente.
+          fontWeight: 500,
+          color: 'var(--ink)',
+          lineHeight: 1.5,
+        }}
+      >
+        «{text}»{marks}
+      </blockquote>
+      {(esHabla || source) && (
+        <figcaption
+          className="mono"
+          style={{
+            marginTop: 4,
+            fontSize: 11,
+            color: 'var(--ink50)',
+            display: 'flex',
+            gap: 8,
+            flexWrap: 'wrap',
+          }}
+        >
+          {esHabla &&
+            (tone ? (
+              // El color de partido va de RELLENO con el blanco encima, nunca
+              // de color de texto. Lo dicen las dos fuentes a la vez: §02c
+              // («en oscuro se mantienen idénticos, con el blanco a 700
+              // encima») y el propio docstring de party-colors.js, que dice que
+              // están oscurecidos para que el blanco a ≥9px bold cumpla AA.
+              // Como texto suspenden los siete en modo oscuro —de 1,93:1 a
+              // 3,71:1— y ese era el estado publicado.
+              <span
+                style={{
+                  background: tone,
+                  color: '#fff',
+                  fontWeight: 700,
+                  padding: '1px 6px',
+                  borderRadius: 4,
+                }}
+              >
+                {etiqueta}
+              </span>
+            ) : (
+              <span style={{ fontWeight: attribution ? 700 : 400 }}>{etiqueta}</span>
+            ))}
+          {source && <span>{source}</span>}
+        </figcaption>
+      )}
+    </figure>
+  )
+}
+
 export function SectionHead({ eyebrow, title, right }) {
   return (
     <div

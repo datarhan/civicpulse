@@ -88,7 +88,15 @@ function VotesSection({ slug, frozen }) {
                 </span>
               )}
               {v.dueBySource && (
-                <span style={{ fontSize: 11, color: 'var(--ink50)', fontStyle: 'italic' }}>
+                <span
+                  style={{
+                    fontSize: 11.5,
+                    fontWeight: 500,
+                    color: 'var(--ink70)',
+                    paddingLeft: 8,
+                    borderLeft: '2px solid var(--civic)',
+                  }}
+                >
                   «{v.dueBySource}»
                 </span>
               )}
@@ -142,11 +150,12 @@ function PromisesSection({ slug, frozen }) {
                   style={{
                     margin: '6px 0 0',
                     padding: '6px 10px',
-                    borderLeft: '3px solid var(--border)',
-                    fontSize: 12,
-                    color: 'var(--ink70)',
+                    borderLeft: '3px solid var(--civic)',
+                    fontSize: 14,
+                    fontWeight: 500,
+                    color: 'var(--ink)',
                     lineHeight: 1.5,
-                    fontStyle: 'italic',
+                    maxWidth: '68ch',
                   }}
                 >
                   «{p.quote}»

@@ -177,9 +177,11 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
       </div>
       <blockquote
         style={{
-          fontSize: 13,
-          fontStyle: 'italic',
-          color: 'var(--ink70)',
+          fontSize: 14,
+          fontWeight: 500,
+          color: 'var(--ink)',
+          lineHeight: 1.5,
+          maxWidth: '68ch',
           borderLeft: `3px solid ${color}`,
           paddingLeft: 10,
           margin: '6px 0 10px',

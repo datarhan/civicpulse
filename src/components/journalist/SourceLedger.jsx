@@ -180,7 +180,17 @@ function SourceRow({ src, num }) {
         <tr>
           <td colSpan={7} style={{ padding: '4px 16px 12px 38px', background: 'var(--soft)' }}>
             {src.excerpt && (
-              <span style={{ fontSize: 12, fontStyle: 'italic', color: 'var(--ink50)' }}>
+              <span
+                style={{
+                  fontSize: 13,
+                  fontWeight: 500,
+                  color: 'var(--ink70)',
+                  paddingLeft: 10,
+                  borderLeft: '3px solid var(--civic)',
+                  display: 'inline-block',
+                  maxWidth: '68ch',
+                }}
+              >
                 «{src.excerpt}»
               </span>
             )}

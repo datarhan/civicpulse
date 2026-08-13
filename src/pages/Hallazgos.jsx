@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { Card, Pill, ExtLink } from '../components/Primitives'
+import { Card, Pill, ExtLink, Quote } from '../components/Primitives'
 import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import DataAsOf from '../components/DataAsOf'
 // One RefList, not two. It was duplicated verbatim here and in PlenoFindings,
@@ -126,35 +126,16 @@ export function FindingDetailCard({ f, permalink }) {
       {f.quotes?.length > 0 && (
         <div style={{ marginTop: 8 }}>
           {f.quotes.map((q, i) => (
-            <blockquote
+            // §08: sin speakerGroup la cita no se queda muda, dice «sin
+            // atribuir». Antes se omitía la línea entera y una cita sin dueño
+            // se leía igual que una atribuida.
+            <Quote
               key={i}
-              style={{
-                margin: '6px 0 0',
-                padding: '6px 10px',
-                borderLeft: '3px solid var(--border)',
-                fontSize: 12,
-                color: 'var(--ink70)',
-                lineHeight: 1.5,
-                fontStyle: 'italic',
-              }}
-            >
-              «{q.text}»{' '}
-              {q.speakerGroup && (
-                <span
-                  className="mono"
-                  style={{
-                    fontSize: 10,
-                    fontStyle: 'normal',
-                    color: PARTY_TONE[q.speakerGroup] || 'var(--ink50)',
-                    marginLeft: 6,
-                    fontWeight: 700,
-                  }}
-                >
-                  {blocLabel(q.speakerGroup)}
-                </span>
-              )}
-              <QuoteProvenanceMark entry={prov[i]} />
-            </blockquote>
+              text={q.text}
+              attribution={q.speakerGroup ? blocLabel(q.speakerGroup) : null}
+              tone={PARTY_TONE[q.speakerGroup]}
+              marks={<QuoteProvenanceMark entry={prov[i]} />}
+            />
           ))}
           <QuoteProvenanceNote entries={prov} curatorName={f.curatorName} />
         </div>

@@ -146,12 +146,15 @@ function ResponseBlock({ response, reportId }) {
         style={{
           margin: 0,
           padding: '4px 12px',
-          borderLeft: '3px solid var(--ok)',
+          borderLeft: '3px solid var(--civic)',
           color: 'var(--ink)',
-          fontStyle: 'italic',
+          fontSize: 14,
+          fontWeight: 500,
+          lineHeight: 1.5,
+          maxWidth: '68ch',
         }}
       >
-        “{response.quote}”
+        «{response.quote}»
       </blockquote>
       <div className="mono" style={{ marginTop: 8, fontSize: 10.5, color: 'var(--ink50)' }}>
         {response.respondedAt}

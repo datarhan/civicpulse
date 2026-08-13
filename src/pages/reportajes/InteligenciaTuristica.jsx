@@ -500,16 +500,18 @@ export default function InteligenciaTuristica() {
           style={{
             margin: '16px 0',
             padding: '12px 18px',
-            borderLeft: '3px solid var(--border2, var(--border))',
+            borderLeft: '3px solid var(--civic)',
             background: 'var(--soft)',
             borderRadius: '0 8px 8px 0',
-            fontSize: 14.5,
-            fontStyle: 'italic',
-            color: 'var(--ink70)',
+            fontSize: 17,
+            fontWeight: 500,
+            lineHeight: 1.5,
+            maxWidth: '68ch',
+            color: 'var(--ink)',
           }}
         >
           {data.baseline.plenoQuote}
-          <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 8, fontStyle: 'normal' }}>
+          <div style={{ fontSize: 12, color: 'var(--ink50)', marginTop: 8, fontWeight: 400 }}>
             {data.baseline.plenoQuoteFuente}
           </div>
         </blockquote>

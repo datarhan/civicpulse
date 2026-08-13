@@ -1,4 +1,4 @@
-import { Card, Pill, SectionHead, ExtLink } from './Primitives'
+import { Card, Pill, SectionHead, ExtLink, Quote } from './Primitives'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
 import { useTenders } from '../hooks/useTenders'
 import { useFindingQuoteProvenance, provenanceFor } from '../hooks/useFindingQuoteProvenance'
@@ -107,10 +107,11 @@ function RefDate({ date, t }) {
  * snippets still say in their own text, and what `snippetWithoutStatus` takes
  * off the display copy.
  */
-// `--ink70`, not the `--ink70` the chip beside this one asks for: that token is
-// used 99 times across src/ and is DEFINED NOWHERE, so it silently falls back
-// to the inherited colour. Repointing all 99 is a site-wide visual change and
-// not this branch's business; adding a hundredth is avoidable.
+// `--ink70` es hoy un tier real y definido —.78 en claro, el secundario de la
+// escala— así que este chip lo usa sin reparos. El comentario anterior avisaba
+// de que estaba sin definir y caía al color heredado: cierto cuando se escribió,
+// falso desde que la escala se arregló. Se corrige aquí porque un comentario que
+// desaconseja usar un token perfectamente bueno se obedece igual que una regla.
 const REF_STATUS_TONE = {
   cancelled: { fg: 'var(--warn-ink)', bg: 'var(--warn-soft)' },
   committed: { fg: 'var(--ink70)', bg: 'var(--soft)' },
@@ -526,34 +527,12 @@ export function FindingCard({ f }) {
       {f.quotes?.length > 0 && (
         <div style={{ marginTop: 8 }}>
           {f.quotes.slice(0, 3).map((q, i) => (
-            <blockquote
+            <Quote
               key={i}
-              style={{
-                margin: '6px 0 0',
-                padding: '6px 10px',
-                borderLeft: '3px solid var(--border)',
-                fontSize: 12,
-                color: 'var(--ink70)',
-                lineHeight: 1.5,
-                fontStyle: 'italic',
-              }}
-            >
-              «{q.text}»{' '}
-              {q.speakerGroup && (
-                <span
-                  className="mono"
-                  style={{
-                    fontSize: 10,
-                    fontStyle: 'normal',
-                    color: 'var(--ink50)',
-                    marginLeft: 6,
-                  }}
-                >
-                  {blocLabel(q.speakerGroup)}
-                </span>
-              )}
-              <QuoteProvenanceMark entry={prov[i]} />
-            </blockquote>
+              text={q.text}
+              attribution={q.speakerGroup ? blocLabel(q.speakerGroup) : null}
+              marks={<QuoteProvenanceMark entry={prov[i]} />}
+            />
           ))}
           {/* Only the three quotes this card shows are marked, so the note must
               describe those and not the finding's full list. */}

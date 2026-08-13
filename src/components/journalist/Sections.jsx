@@ -239,10 +239,11 @@ export function LegalRecord({ payload, sourceMap }) {
               style={{
                 margin: '6px 0 0 0',
                 padding: '4px 12px',
-                borderLeft: '3px solid var(--crit-soft)',
-                color: 'var(--ink50)',
-                fontStyle: 'italic',
-                fontSize: 12.5,
+                borderLeft: '3px solid var(--civic)',
+                color: 'var(--ink70)',
+                fontWeight: 500,
+                fontSize: 13,
+                maxWidth: '68ch',
               }}
             >
               «{l.verbatimRef}»
@@ -782,12 +783,13 @@ export function QuoteCard({ payload, sourceMap, withHead = false }) {
           padding: '8px 16px',
           borderLeft: '3px solid var(--civic)',
           color: 'var(--ink)',
-          fontStyle: 'italic',
-          fontSize: 16,
-          lineHeight: 1.55,
+          fontWeight: 500,
+          fontSize: 17,
+          lineHeight: 1.5,
+          maxWidth: '68ch',
         }}
       >
-        “{payload.verbatim}”
+        «{payload.verbatim}»
       </blockquote>
       <div style={{ marginTop: 10, fontSize: 12, color: 'var(--ink50)' }}>
         — <strong>{payload.attributedTo}</strong>

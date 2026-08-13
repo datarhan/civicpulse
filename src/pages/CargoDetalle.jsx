@@ -607,11 +607,12 @@ export default function CargoDetalle() {
                       style={{
                         margin: '6px 0 0',
                         padding: '6px 10px',
-                        borderLeft: '3px solid var(--border)',
-                        fontSize: 12,
-                        color: 'var(--ink70)',
+                        borderLeft: '3px solid var(--civic)',
+                        fontSize: 14,
+                        fontWeight: 500,
+                        color: 'var(--ink)',
                         lineHeight: 1.5,
-                        fontStyle: 'italic',
+                        maxWidth: '68ch',
                       }}
                     >
                       «{p.quote}»
