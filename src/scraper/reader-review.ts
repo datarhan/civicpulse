@@ -166,10 +166,68 @@ export function parseReviewArgs(argv: string[], budgetEnv?: string) {
  * half a claim, and the grounding filter would drop any quote spanning the seam.
  * A single line longer than `size` is hard-split rather than dropped: losing
  * text is the one thing this must never do.
+ *
+ * Las fronteras las decide el CONTENIDO, no el reparto. Ésta es la parte que
+ * hace útil a la caché por fragmento, que ya existía y no servía de nada:
+ * `client.ts` teclea cada llamada con `{route, fragment: hashOf(chunk)}`, así
+ * que un fragmento idéntico vuelve de `.llm-cache` al instante. Con el reparto
+ * voraz eso casi nunca pasaba —insertar un párrafo arriba corría todas las
+ * fronteras de abajo y ninguno era ya idéntico—, de modo que tocar dos párrafos
+ * de una pieza costaba releerla entera. Medido el 13-08-2026 sobre una página
+ * de 28k en cinco fragmentos: una inserción de 40 caracteres dejaba 4 de 5
+ * intactos (cabía en la holgura), una de 400 dejaba CERO. Que aguante o no
+ * según quepa en el hueco sobrante no es estabilidad, es suerte.
+ *
+ * Así que se corta después de una línea que `esFrontera` acepta —cosa que
+ * depende sólo de esa línea—, con un mínimo para no fabricar migajas (cada
+ * llamada cuesta ~4,6 s fijos) y el máximo de siempre, que lo manda el vigilante
+ * de 180 s. Las líneas de más abajo deciden su frontera por su propio contenido,
+ * no por cuánto se acumuló antes, así que una inserción perturba su fragmento y
+ * el resto vuelve a cuadrar.
+ *
+ * Medido sobre el texto renderizado de verdad, insertando un párrafo arriba:
+ *
+ *     reparto voraz          0 de 5 fragmentos intactos
+ *     fronteras por contenido  3 de 4     (y 4 de 6 en una página sintética de 28k)
+ *
+ * El mínimo es el precio: suprime la frontera que habría vuelto a cuadrar y por
+ * eso no sobrevive el 100%. Con mínimo 45% sobrevivían 2 de 8; con 12%, dos
+ * tercios. Bajarlo más sólo compra migajas.
+ *
+ * El fallo es hacia MÁS relectura, nunca hacia menos: si una frontera se mueve,
+ * el fragmento se relee. Nada se deja de mirar por culpa de esto, y por eso los
+ * parámetros se pueden tocar sin que nadie se quede sin revisar.
  */
+const CORTE_MINIMO = 0.12 // del máximo: por debajo no se corta, para no hacer migajas
+const OBJETIVO_FRONTERA = 3_000 // caracteres esperados entre fronteras
+
+/**
+ * ¿Termina aquí un fragmento? Lo decide ESTA línea y nada más.
+ *
+ * La probabilidad es proporcional a la longitud de la línea, y ese detalle es
+ * el que hace que funcione en páginas reales. Una regla del tipo «una de cada N
+ * líneas» parece equivalente y no lo es: la mediana de línea en la pieza DANA
+ * renderizada son 10 caracteres —etiquetas de KPI, cifras sueltas— frente a los
+ * ~70 de un texto corrido, así que la misma N daba fronteras cada 1.200
+ * caracteres en una página y cada 4.000 en otra. Ponderando por longitud, los
+ * caracteres esperados entre cortes salen ≈ OBJETIVO_FRONTERA en las dos.
+ */
+function esFrontera(linea: string): boolean {
+  // fnv-1a sobre la línea. Barato, estable entre pasadas y entre máquinas: la
+  // caché depende de que la misma página dé exactamente los mismos cortes hoy y
+  // mañana, así que aquí no puede entrar nada aleatorio ni dependiente de orden.
+  let h = 0x811c9dc5
+  for (let i = 0; i < linea.length; i += 1) {
+    h ^= linea.charCodeAt(i)
+    h = Math.imul(h, 0x01000193) >>> 0
+  }
+  return (h % 100_000) / 100_000 < linea.length / OBJETIVO_FRONTERA
+}
+
 export function chunkRenderedText(text: string, size = REVIEW_CHUNK_CHARS): string[] {
   if (!text.trim()) return []
   if (text.length <= size) return [text]
+  const minimo = Math.floor(size * CORTE_MINIMO)
   const chunks: string[] = []
   let current: string[] = []
   let length = 0
@@ -188,6 +246,9 @@ export function chunkRenderedText(text: string, size = REVIEW_CHUNK_CHARS): stri
     if (length && length + line.length + 1 > size) flush()
     current.push(line)
     length += line.length + 1
+    // Frontera por contenido, una vez pasado el mínimo. El máximo sigue siendo
+    // el corte duro de arriba: esto adelanta la frontera, nunca la retrasa.
+    if (length >= minimo && esFrontera(line)) flush()
   }
   flush()
   return chunks.filter((c) => c.trim())

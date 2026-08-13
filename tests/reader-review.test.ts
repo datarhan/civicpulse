@@ -173,9 +173,66 @@ describe('reader-review — a big page is split, never trimmed', () => {
   it('splits on line boundaries so a claim is not cut in half', () => {
     const line = 'a'.repeat(4_000)
     const chunks = chunkRenderedText([line, line, line, line].join('\n'), 9_000)
-    // 4 lines of 4k in 9k fragments: 2 + 2, never 2¼.
-    expect(chunks).toHaveLength(2)
+    // Lo que importa no es CUÁNTOS trozos salen —eso lo decide el contenido—
+    // sino que ninguna línea se parta por la mitad: un modelo no puede juzgar
+    // media afirmación, y el filtro de literalidad tiraría cualquier cita que
+    // cruzara la costura. La versión anterior fijaba «2» porque el reparto era
+    // voraz; era una aserción sobre el empaquetado, no sobre la costura.
     for (const c of chunks) expect(c.split('\n').every((l) => l.length === 4_000)).toBe(true)
+    expect(chunks.join('\n').split('\n')).toHaveLength(4)
+  })
+
+  // El motivo por el que las fronteras las decide el CONTENIDO y no el reparto
+  // voraz. El 13-08-2026 toqué dos párrafos de una pieza de 13.825 caracteres y
+  // se releyó entera; en otra no toqué la prosa —sólo cómo se pinta una nota— y
+  // se releyeron sus 28.633. La caché por fragmento YA existía (client.ts la
+  // teclea con `{route, fragment: hashOf(chunk)}`), pero no servía de nada:
+  // insertar una línea arriba corría todas las fronteras siguientes, así que
+  // todos los fragmentos salían «nuevos» y ninguno acertaba en caché.
+  it('un párrafo insertado arriba no mueve las fronteras de abajo', () => {
+    const pagina = Array.from(
+      { length: 400 },
+      (_, i) => `Párrafo ${i} con bastante texto para que el reparto tenga donde elegir.`,
+    )
+    const antes = chunkRenderedText(pagina.join('\n'))
+    expect(antes.length).toBeGreaterThan(4)
+    // Del tamaño de un párrafo de verdad. Medido con el reparto voraz: 40
+    // caracteres dejaban 4 de 5 fragmentos intactos —cabían en la holgura del
+    // primero— pero a partir de ~400 se desbordaba el fragmento y quedaban CERO.
+    // Que la estabilidad dependa de si la edición cabe en el hueco que quedaba
+    // no es estabilidad; es suerte.
+    const parrafo = 'Frase nueva de la corrección. '.repeat(14)
+    const despues = chunkRenderedText([pagina[0], parrafo, ...pagina.slice(1)].join('\n'))
+    const comunes = despues.filter((c) => antes.includes(c)).length
+    // Medido: el reparto voraz dejaba 0; con fronteras por contenido sobreviven
+    // dos tercios. No se fija el número exacto —depende del texto— sino que la
+    // mayoría aguante, que es lo que convierte la caché por fragmento en algo
+    // más que decoración.
+    expect(comunes).toBeGreaterThanOrEqual(Math.ceil(antes.length * 0.6))
+  })
+
+  it('las fronteras no dependen del perfil de líneas de la página', () => {
+    // Una regla «una de cada N líneas» daba fronteras cada ~1.200 caracteres en
+    // una página de líneas cortas y cada ~4.000 en una de texto corrido; la
+    // mediana de línea en un reportaje renderizado son 10 caracteres. Ponderar
+    // por longitud iguala las dos.
+    const cortas = Array.from({ length: 1_500 }, (_, i) => `${i}`).join('\n')
+    const largas = Array.from({ length: 120 }, (_, i) => `Párrafo ${i}. ${'texto '.repeat(30)}`)
+      .join('\n')
+      .slice(0, cortas.length)
+    const medias = (t: string) => {
+      const cs = chunkRenderedText(t)
+      return cs.reduce((s, c) => s + c.length, 0) / cs.length
+    }
+    const a = medias(cortas)
+    const b = medias(largas)
+    // Dentro de un factor 2 la una de la otra, sobre textos de la misma longitud.
+    expect(Math.max(a, b) / Math.min(a, b)).toBeLessThan(2)
+  })
+
+  it('sigue sin perder nada cuando el texto cambia', () => {
+    const pagina = Array.from({ length: 300 }, (_, i) => `Línea ${i} de la página.`).join('\n')
+    expect(strip(chunkRenderedText(pagina).join(''))).toBe(strip(pagina))
   })
 
   it('hard-splits a single line too long to fit, rather than dropping it', () => {

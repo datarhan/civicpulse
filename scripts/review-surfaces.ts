@@ -52,7 +52,7 @@ import {
   type ReviewCacheEntry,
 } from '../src/scraper/reader-review'
 import { authorshipBreakdown } from '../src/scraper/finding-authorship'
-import { callLLM } from '../src/llm/client'
+import { callLLM, getRunStats } from '../src/llm/client'
 import {
   buildReaderReviewSystemPrompt,
   buildReaderReviewUserPrompt,
@@ -374,6 +374,7 @@ async function main() {
     const dropped: ReaderFinding[] = []
     let charsReviewed = 0
     let chunksReviewed = 0
+    let deCache = 0
     let reason: string | undefined = chunks.length ? undefined : 'empty-page'
 
     for (const [index, chunk] of chunks.entries()) {
@@ -386,6 +387,10 @@ async function main() {
       }
       const input: SurfaceInput = { route, renderedText: chunk, facts }
       const calledAt = Date.now()
+      // `callLLM` no dice si contestó la caché; lo dice su contador. Se mira
+      // antes y después porque es lo único que distingue «lo he leído» de «ya
+      // lo tenía leído», y esa distinción es justo la que hay que imprimir.
+      const aciertosAntes = getRunStats().cacheHits
       const r = await reviewSurfaceDetailed(
         input,
         async (i) => {
@@ -425,6 +430,7 @@ async function main() {
         continue
       }
       chunksReviewed += 1
+      if (getRunStats().cacheHits > aciertosAntes) deCache += 1
       charsReviewed += chunk.length
       findings.push(...r.findings)
       dropped.push(...r.dropped)
@@ -477,7 +483,13 @@ async function main() {
       // it was that nothing in the output said so.
       console.log(
         `   cobertura: ${num(charsReviewed)} de ${num(renderedText.length)} caracteres ` +
-          `(${pct(coverage)}) · ${chunksReviewed}/${chunks.length} fragmento(s)`,
+          `(${pct(coverage)}) · ${chunksReviewed}/${chunks.length} fragmento(s)` +
+          // Un fragmento servido de `.llm-cache` está CUBIERTO pero no se ha
+          // leído ahora, y las dos cosas no son la misma. Callarlo sería el
+          // `consulted: true` que sale de una caché: cobertura del 100% sin una
+          // sola llamada, que es exactamente la forma de todos los verdes huecos
+          // que documenta docs/DATA_INTEGRITY.md. Se cuentan por separado.
+          (deCache > 0 ? ` (${chunksReviewed - deCache} leído(s) ahora, ${deCache} de caché)` : ''),
       )
       if (!complete) {
         console.log(
