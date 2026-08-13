@@ -220,6 +220,71 @@ export function Quote({ text, attribution, tone, marks, source, size = 'card', s
   )
 }
 
+/**
+ * Lo que propone una máquina y todavía no ha firmado nadie. Brandbook §06b.
+ *
+ * Es el componente con más carga legal del producto y no estaba en la
+ * biblioteca. La arquitectura de dos ficheros —publicado y sugerido— no protege
+ * de nada si en pantalla una inferencia de máquina se parece a un estado
+ * curado, así que las tres reglas van aquí dentro y no en la llamada:
+ *
+ * 1. **Caja discontinua**, en morado intel. En este sitio un contorno
+ *    discontinuo significa siempre lo mismo: esto no es una afirmación
+ *    publicada en firme. Lo comparten la fecha que no consta, el estado que no
+ *    consta y la votación retirada. (El brandbook lo llama «la única línea
+ *    discontinua del sistema»; eso no es cierto aquí — hay dieciséis filetes
+ *    discontinuos que sólo separan filas. La regla verdadera y comprobable es
+ *    sobre la CAJA, no sobre la línea.)
+ * 2. **Nunca sustituye la pastilla de estado** ni ocupa su sitio. Por eso este
+ *    componente no acepta ni pinta un veredicto: sólo lo que la máquina
+ *    propone, dicho como propuesta.
+ * 3. **Sin porcentaje no se publica.** Si no llega una confianza utilizable,
+ *    devuelve `null` en vez de dibujar una propuesta sin declarar cuánto se fía
+ *    de sí misma. Preferir no enseñar nada a enseñarlo sin la cifra es la parte
+ *    que hace de esto una regla y no una decoración.
+ *
+ * @param {object} p
+ * @param {number} p.confidence  0–1. Fuera de rango o ausente ⇒ no se publica.
+ * @param {string} [p.decidedBy] a quién corresponde decidir
+ * @param {React.ReactNode} p.children
+ */
+export function MachineProposal({ confidence, decidedBy = 'un curador humano', children }) {
+  const usable = typeof confidence === 'number' && Number.isFinite(confidence)
+  const pct = usable ? Math.round(confidence * 100) : null
+  if (pct === null || pct <= 0 || pct > 100) return null
+  return (
+    <div
+      data-machine-proposal
+      style={{
+        marginTop: 12,
+        padding: 12,
+        background: 'var(--intel-soft)',
+        border: '1px dashed var(--intel)',
+        borderRadius: 12,
+        fontSize: 12,
+      }}
+    >
+      <div
+        className="mono"
+        style={{
+          fontSize: 11,
+          color: 'var(--intel-ink)',
+          letterSpacing: '.08em',
+          textTransform: 'uppercase',
+          marginBottom: 6,
+          fontWeight: 700,
+        }}
+      >
+        Propuesta automática · pendiente de revisión humana · confianza {pct}%
+      </div>
+      <div style={{ color: 'var(--ink70)', lineHeight: 1.5 }}>{children}</div>
+      <div style={{ marginTop: 6, fontSize: 11, color: 'var(--ink50)' }}>
+        No está publicada: sólo {decidedBy} puede aplicarla.
+      </div>
+    </div>
+  )
+}
+
 export function SectionHead({ eyebrow, title, right }) {
   return (
     <div

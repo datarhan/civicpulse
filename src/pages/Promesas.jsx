@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Card, Pill, ExtLink } from '../components/Primitives'
+import { Card, Pill, ExtLink, MachineProposal } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import {
   usePromises,
@@ -259,39 +259,11 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
       )}
 
       {showSuggestion && (
-        <div
-          style={{
-            marginTop: 12,
-            padding: 10,
-            background: 'rgba(14, 91, 98, 0.05)',
-            border: '1px dashed rgba(14, 91, 98, 0.35)',
-            borderRadius: 6,
-            fontSize: 11.5,
-          }}
-        >
-          <div
-            className="mono"
-            style={{
-              fontSize: 9.5,
-              color: 'var(--civic)',
-              letterSpacing: '.1em',
-              textTransform: 'uppercase',
-              marginBottom: 5,
-              fontWeight: 700,
-            }}
-          >
-            Propuesta automática · pendiente de revisión humana · confianza{' '}
-            {(suggestion.confidence * 100).toFixed(0)}%
-          </div>
-          <div style={{ marginBottom: 6, color: 'var(--ink70)' }}>
-            El motor propone estado:{' '}
-            <strong style={{ color: 'var(--ink)' }}>
-              {STATUS_LABEL[suggestion.proposedStatus]}
-            </strong>
-            . Esta propuesta no está publicada; sólo un curador humano puede aplicar un cambio de
-            estado.
-          </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>
+        <MachineProposal confidence={suggestion.confidence}>
+          El motor propone estado:{' '}
+          <strong style={{ color: 'var(--ink)' }}>{STATUS_LABEL[suggestion.proposedStatus]}</strong>
+          .
+          <div style={{ marginTop: 6, fontSize: 11, color: 'var(--ink50)' }}>
             Fundamentación ({suggestion.reasoning.length} evidencias):
           </div>
           <ul style={{ margin: '4px 0 0', paddingLeft: 16, fontSize: 11 }}>
@@ -304,7 +276,7 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
               </li>
             ))}
           </ul>
-        </div>
+        </MachineProposal>
       )}
 
       {showLlm && (
