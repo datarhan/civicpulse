@@ -50,6 +50,55 @@ export function contrastRatio(a, b) {
 }
 
 /**
+ * @param {string} value `rgb(r,g,b)` or `rgba(r,g,b,a)`, spaces or commas
+ * @returns {{ rgb: [number,number,number], a: number }}
+ */
+export function parseRgba(value) {
+  const m = String(value)
+    .trim()
+    .match(/^rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)(?:[,/\s]+([\d.]+))?\s*\)$/i)
+  if (!m) throw new Error(`no es un color rgba(): ${value}`)
+  return {
+    rgb: /** @type {[number,number,number]} */ ([Number(m[1]), Number(m[2]), Number(m[3])]),
+    a: m[4] === undefined ? 1 : Number(m[4]),
+  }
+}
+
+/**
+ * Composite a translucent colour over an opaque background.
+ *
+ * The ink scale is alpha, not hex, so nothing can be said about its contrast
+ * until it is flattened onto the surface it actually sits on — and the answer
+ * differs per surface (--paper, --surf, --soft).
+ *
+ * @param {string} value rgba colour
+ * @param {string} backgroundHex opaque background
+ * @returns {string} opaque `#rrggbb`
+ */
+export function flatten(value, backgroundHex) {
+  const { rgb, a } = parseRgba(value)
+  const bg = parseHex(backgroundHex)
+  return (
+    '#' +
+    rgb
+      .map((c, i) => Math.round(a * c + (1 - a) * bg[i]))
+      .map((c) => c.toString(16).padStart(2, '0'))
+      .join('')
+  )
+}
+
+/**
+ * Contrast of a possibly-translucent colour against an opaque background.
+ * @param {string} value hex or rgba
+ * @param {string} backgroundHex
+ * @returns {number}
+ */
+export function contrastRatioOver(value, backgroundHex) {
+  const v = String(value).trim()
+  return contrastRatio(v.startsWith('#') ? v : flatten(v, backgroundHex), backgroundHex)
+}
+
+/**
  * The more legible of black/white on `background` — whichever scores higher,
  * so it degrades gracefully on a mid-tone where NEITHER reaches 4.5:1 rather
  * than pretending there is a right answer.

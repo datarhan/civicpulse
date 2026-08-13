@@ -3,6 +3,9 @@ import {
   contrastRatio,
   luminance,
   parseHex,
+  parseRgba,
+  flatten,
+  contrastRatioOver,
   readableInk,
   meetsAA,
   INK_DARK,
@@ -32,6 +35,37 @@ describe('contrastRatio', () => {
 
   it('is 1 for a colour against itself', () => {
     expect(contrastRatio('#B45309', '#B45309')).toBeCloseTo(1, 6)
+  })
+})
+
+describe('flatten / contrastRatioOver — la escala de tinta es rgba, no hex', () => {
+  // Los tiers de --ink son rgba con alfa. Medir su contraste exige componerlos
+  // sobre el fondo real primero; sin esto, el guard de marca no puede afirmar
+  // nada sobre --ink70 ni --ink50. La maths ya existía duplicada en este mismo
+  // fichero (`blendOverPaper`), que es la copia local que este repo prohíbe.
+  it('compone un rgba sobre un fondo opaco', () => {
+    expect(flatten('rgba(11,15,25,1)', '#FFFFFF')).toBe('#0b0f19')
+    expect(flatten('rgba(11,15,25,0)', '#FFFFFF')).toBe('#ffffff')
+    expect(flatten('rgba(0,0,0,.5)', '#FFFFFF')).toBe('#808080')
+  })
+
+  it('acepta las dos formas que escribe el CSS de este repo', () => {
+    expect(parseRgba('rgba(11, 15, 25, 0.62)').a).toBeCloseTo(0.62, 5)
+    expect(parseRgba('rgba(241,245,249,.78)').rgb).toEqual([241, 245, 249])
+    expect(parseRgba('rgb(11,15,25)').a).toBe(1)
+  })
+
+  it('se niega a adivinar sobre algo que no es un color rgba', () => {
+    // Control: si devolviese un valor por defecto, un token mal escrito
+    // pasaría el guard con un contraste inventado en vez de romperlo.
+    expect(() => parseRgba('#0b0f19')).toThrow(/no es un color rgba/)
+    expect(() => parseRgba('var(--ink)')).toThrow(/no es un color rgba/)
+  })
+
+  it('mide contraste tanto de un hex como de un rgba', () => {
+    expect(contrastRatioOver('#0b0f19', '#ffffff')).toBeCloseTo(19.15, 1)
+    expect(contrastRatioOver('rgba(11,15,25,.62)', '#ffffff')).toBeCloseTo(5.41, 1)
+    expect(contrastRatioOver('rgba(241,245,249,.62)', '#12182a')).toBeCloseTo(6.8, 1)
   })
 })
 
@@ -78,19 +112,9 @@ describe('landing palette meets AA where it is used as text', () => {
     // effective background enough to push a 4.7:1 pairing under 4.5.
     for (const [name, tone] of Object.entries(SECTION_TONES)) {
       if (!tone.ink.startsWith('#')) continue // neutral uses an rgba ink
-      const effective = blendOverPaper(tone.wash, PAPER)
+      const effective = flatten(tone.wash, PAPER)
       const ratio = contrastRatio(tone.ink, effective)
       expect(ratio, `${name}: ${tone.ink} on ${effective}`).toBeGreaterThanOrEqual(4.5)
     }
   })
 })
-
-/** Flatten an `rgba(r,g,b,a)` wash over an opaque backdrop. */
-function blendOverPaper(wash, paper) {
-  const m = /rgba?\(([^)]+)\)/.exec(wash)
-  if (!m) return wash
-  const [r, g, b, a = 1] = m[1].split(',').map(Number)
-  const base = parseHex(paper)
-  const out = [r, g, b].map((v, i) => Math.round(v * a + base[i] * (1 - a)))
-  return '#' + out.map((v) => v.toString(16).padStart(2, '0')).join('')
-}
