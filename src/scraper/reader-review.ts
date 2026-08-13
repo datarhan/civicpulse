@@ -115,6 +115,11 @@ export function parseReviewArgs(argv: string[], budgetEnv?: string) {
     // Ordena por «hace más que no se lee» antes de gastar el presupuesto. Sólo
     // significa algo junto a `--budget-seconds`: sin techo se leen todas.
     rotate: argv.includes('--rotate'),
+    // Todas las rutas públicas montadas, sacadas del grafo de rutas en vez de
+    // la lista escrita a mano. `DEFAULT_ROUTES` son 6 de las 28 que existen:
+    // quien creía estar haciendo «la pasada completa» leía menos de un cuarto
+    // del sitio. Lo usa el barrido nocturno.
+    all: argv.includes('--all'),
   }
 }
 

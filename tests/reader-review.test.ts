@@ -317,3 +317,22 @@ describe('reader-review — la caché no puede hacer desaparecer un señalamient
     expect(readCacheEntry({ hash: 'ok' } as never)).toEqual({ hash: 'ok', findings: [] })
   })
 })
+
+describe('--all: la lista de rutas sale del código, no de una lista a mano', () => {
+  it('reconoce la bandera sin tragársela como ruta', () => {
+    const r = parseReviewArgs(['--all'])
+    expect(r.all).toBe(true)
+    expect(r.routes).toEqual([])
+    // Control: por defecto NO. Una bandera que se colara sola convertiría cada
+    // pasada rápida en una de veintisiete rutas.
+    expect(parseReviewArgs(['/plenos']).all).toBe(false)
+  })
+
+  it('convive con las otras banderas', () => {
+    const r = parseReviewArgs(['--all', '--budget-seconds', '600', '--rotate'])
+    expect(r.all).toBe(true)
+    expect(r.rotate).toBe(true)
+    expect(r.budgetSeconds).toBe(600)
+    expect(r.routes).toEqual([])
+  })
+})

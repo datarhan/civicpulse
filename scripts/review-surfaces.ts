@@ -41,6 +41,7 @@ import { readFileSync, existsSync, writeFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { resolve } from 'node:path'
 import { chromium } from '@playwright/test'
+import { construirGrafoRutas } from './lib/route-graph'
 import {
   reviewSurfaceDetailed,
   chunkRenderedText,
@@ -148,6 +149,28 @@ function factsFor(route: string): Record<string, unknown> {
 
 const DEFAULT_ROUTES = ['/', '/presupuesto', '/plenos', '/hallazgos', '/promesas', '/quejas']
 
+/**
+ * Todas las rutas públicas montadas, del grafo y no de una lista.
+ *
+ * `DEFAULT_ROUTES` son seis; `App.jsx` monta treinta y cuatro. Quien ejecutaba
+ * `npm run review:surfaces` creyendo hacer la pasada completa leía menos de una
+ * cuarta parte del sitio, y la lista no tenía forma de enterarse de una ruta
+ * nueva — /gestion nació ayer y nadie la habría leído nunca por aquí.
+ *
+ * Fuera quedan dos clases, y las dos por un motivo y no por olvido:
+ *
+ * · las que llevan `:` necesitan un id real, y elegir CUÁL es una decisión
+ *   editorial (¿qué concejal representa a /cargos/:slug?), no de fontanería;
+ *   sus índices sí entran.
+ * · `/curator` no existe en la build de producción —se excluye en dos sitios
+ *   independientes—, así que pedirla sólo daría un NO MONTADA cada noche.
+ */
+function rutasPublicas(): string[] {
+  return construirGrafoRutas(resolve('src')).rutas.filter(
+    (r) => !r.includes(':') && r !== '/curator',
+  )
+}
+
 async function main() {
   const {
     routes: named,
@@ -155,6 +178,7 @@ async function main() {
     json: asJson,
     force,
     rotate: rotar,
+    all: todas,
   } = parseReviewArgs(process.argv.slice(2), process.env.REVIEW_BUDGET_SECONDS)
   const cache = force ? {} : loadCache()
   // Oldest first, but ONLY under a budget. A budget starves whatever sits at the
@@ -171,7 +195,8 @@ async function main() {
     [...lista].sort((a, b) =>
       (readCacheEntry(cache[a])?.at ?? '').localeCompare(readCacheEntry(cache[b])?.at ?? ''),
     )
-  const base = named.length ? named : DEFAULT_ROUTES
+  const publicas = rutasPublicas()
+  const base = named.length ? named : todas ? publicas : DEFAULT_ROUTES
   const routes = !budgetSeconds ? base : rotar || !named.length ? porAntiguedad(base) : base
   /** Wall clock, not a per-call timeout: the caller's patience is the budget. */
   const startedAt = Date.now()
@@ -452,7 +477,7 @@ async function main() {
     const chars = all.reduce((n, r) => n + r.chars, 0)
     const read = all.reduce((n, r) => n + r.charsReviewed, 0)
     console.log(
-      `\n[review] ${routes.length} ruta(s) · ${spent()}s` +
+      `\n[review] ${routes.length} de ${publicas.length} ruta(s) públicas · ${spent()}s` +
         (budgetSeconds ? ` de un presupuesto de ${budgetSeconds}s` : ' (sin límite de tiempo)') +
         ` · ${skipped} sin cambios · ` +
         `${all.filter((r) => r.consulted && r.chunksReviewed === r.chunks).length} revisada(s) ` +
