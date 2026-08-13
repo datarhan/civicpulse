@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-13T12:26:48.991Z",
+  "generatedAt": "2026-08-13T12:59:32.888Z",
   "feeds": [
     {
       "url": "https://www.ribarroja.es/es/noticias/rss.xml",
@@ -23,7 +23,7 @@
   "stats": {
     "total": 153,
     "sources": 19,
-    "latestDate": "2026-08-13T09:51:38.000Z",
+    "latestDate": "2026-08-13T12:27:03.000Z",
     "carriedForward": 0
   },
   "sources": [
@@ -48,6 +48,15 @@
     "rfet.es"
   ],
   "items": [
+    {
+      "id": "1k7hpxd",
+      "title": "Riba-roja restablix la conducció definitiva d’aigua potable amb la zona nord danyada per la DANA",
+      "link": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+      "source": "Periòdic del Camp de Túria",
+      "sourceHost": "infoturia.com",
+      "date": "2026-08-13T12:27:03.000Z",
+      "fingerprint": "83junr"
+    },
     {
       "id": "t56pik",
       "title": "Riba-roja restablece la conducción definitiva de agua potable con la zona norte dañada por la Dana",
@@ -307,15 +316,6 @@
       "fingerprint": "gbc0gc",
       "official": true,
       "section": "Fiestas"
-    },
-    {
-      "id": "1q7j56p",
-      "title": "Riba-roja reconeix l’alumnat i el professorat del Conservatori pels seus èxits en concursos de piano",
-      "link": "https://www.infoturia.com/riba-roja-de-turia/85215-riba-roja-reconeix-lalumnat-i-el-professorat-del-conservatori-pels-seus-exits-en-concursos-de-piano.html",
-      "source": "Periòdic del Camp de Túria",
-      "sourceHost": "infoturia.com",
-      "date": "2026-07-31T11:25:58.000Z",
-      "fingerprint": "61kw5k"
     },
     {
       "id": "1vofow",
@@ -630,6 +630,15 @@
       "sourceHost": "lasprovincias.es",
       "date": "2026-07-14T07:00:00.000Z",
       "fingerprint": "b16f78"
+    },
+    {
+      "id": "kdfnm4",
+      "title": "La urbanización València la Vella en Riba-roja reclama medidas urgentes contra el riesgo de incendios",
+      "link": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQajlQN2RXaDV0RFZpSW8tQmRGQmRhR3Q3bi1mcWNjeHBoeHkxb2VjMnRiM3UyTDl6MEZzRGtBX3hsQUVHNnNOZTJvT3pZbHFvTnljZlNGUG1jTUFaZUxzLUFnc2NnZ2JZUnVST3dKMUxiQktCVk1sajd4eXB6Nk1pdmhRQWFDbUloRHJ2bl9YQlZlSGNDMFZkSWw1Tmc3LU0xV1pKNWxBelNwRnpaMmU0bC10Mk8wZXlmMzBCdTZlQkRXOWlsdmFQOW9iWHQ4ZmdqcEE4cUFrcXZGM3h0d181Vm9KZ3ZzUdIB6wFBVV95cUxPSHZ3WUdXT1ZEVDBXSHg3T0htZ3EybVZHbWE5eU5oQ1dTbXhDb2R5anJSR0NiNFdUNERuN1p2YUliSWJpSkh6c09oOFY1MUVFZVYzWlR0WG5pTGlSWjlITWN6a2sxLUNzYTNFYVM0MjNKUWpJbklBbHc1QWk1V1p0UXMybTQwV1owd3psOWZjWjZQODE2dDdUUC1sWVF0VGZHYVd1M3Nrc3RFem9QVlRHb2tpX0JfNTh5aTY1NmlpM2wydWpZOUxUdDh0VWloa2luZ050VW4tclhpNGxTZmlvTUw0ZmtyX3A0OEln?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-07-14T07:00:00.000Z",
+      "fingerprint": "1b8xpa4"
     },
     {
       "id": "1xngaeb",
@@ -1434,15 +1443,6 @@
       "sourceHost": "valenciaplaza.com",
       "date": "2026-03-12T07:00:00.000Z",
       "fingerprint": "1u6b6k2"
-    },
-    {
-      "id": "pu7tdk",
-      "title": "Riba-roja de Túria proyecta una nueva pista de atletismo en la parcela municipal de Paretotes",
-      "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOVVJoUFJwQW1rc1NwSDhkb2tnQUJiWDZpUDZvMEE0c05lN2ZmZnZPbnFQNl9MR0VwRk1HMmpKeloydUp5UXNaY3BLa1p4bmZoZHZhT3NEOHJSSHNNUHVqQzlTOU10cW9jeTVPWXJFc05tTkloWlpFRXMwS2pNeWxVRTFQN21jaDE1V1pjNkdYeHpUcEh5YnpZRmczeGVkZVFfVGVDNTR0cy13Ym1BQ1hKZ3JGR2FQbmdsR0JxbWtWb0NHMXdtd3NiUDdfVHFkdVBXeVHSAdcBQVVfeXFMTm1JaTF6VFBFcENSajVnbWpmdlRaUEFQa3J4NkE0a292ZjdYTTRLN3MwMjB5MWtXdjJYRTU0Q2IzMEd1M0l4bkt4T0drS0tlQ0pXLWV2RkpOcThpbTEtZkJyZ3YydmRTSU52SE5Ydkl2MUJlR2tZeHpUN0xld2k2Y2I1SXJoZDFKcUxnVnJRamQwbjBTNDFnTXk2Y0hhd05zUmQ4QzhENldCTmFkQ29mWHhnRkJlVEJOcnZkTS1TT2dSS1d2aVRHbXRHa0d6OFRWanpXMGVMOUU?oc=5",
-      "source": "Levante-EMV",
-      "sourceHost": "levante-emv.com",
-      "date": "2026-03-11T07:00:00.000Z",
-      "fingerprint": "5h5aic"
     },
     {
       "id": "dk9x1c",
