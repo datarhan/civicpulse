@@ -112,6 +112,25 @@ const read = (f: string) =>
  * dumping whole snapshots would bury the model and invite it to pattern-match
  * rather than check. These are the figures a reader is being asked to trust.
  */
+/** La adjudicación más grande del registro, con su título, sin IVA. */
+function mayorAdjudicacion(tenders: {
+  contracts?: {
+    status?: string
+    title?: string
+    finalAmountNoTaxes?: number
+    finalAmount?: number
+  }[]
+}): string | undefined {
+  const adj = (tenders?.contracts ?? []).filter((c) =>
+    ['awarded', 'formalized'].includes(c.status ?? ''),
+  )
+  if (!adj.length) return undefined
+  const imp = (c: { finalAmountNoTaxes?: number; finalAmount?: number }) =>
+    Number(c.finalAmountNoTaxes) || Number(c.finalAmount) || 0
+  const top = adj.reduce((a, b) => (imp(b) > imp(a) ? b : a))
+  return `${(imp(top) / 1e6).toFixed(2)} M€ — ${String(top.title ?? '').slice(0, 90)}`
+}
+
 function factsFor(route: string): Record<string, unknown> {
   const tenders = read('tenders.json')
   const budget = read('budget.json')
@@ -132,6 +151,18 @@ function factsFor(route: string): Record<string, unknown> {
     'contratos: nº de FILAS del snapshot (incluye anulados, revocados, desistidos)':
       tenders?.contracts?.length,
     'contratos: rango de fechas de adjudicación': '2017 → 2026 (acumulado, NO anual)',
+    // La mayor adjudicación suelta, porque una pieza puede legítimamente
+    // excluirla y el modelo no tenía cómo saberlo.
+    //
+    // /reportajes/reconstruccion-dana publica 68,00 M€ «sin contar la concesión
+    // del agua». Sin este hecho, el reviewer veía 68,00 contra los 123,68 del
+    // total y tenía que decidir sin datos si la exclusión cuadra — una pregunta
+    // genuinamente difícil que le costaba MÁS de tres minutos y acababa en
+    // timeout: la página se quedaba SIN REVISAR con el backend sano (`claude -p
+    // ok` en 4 s). Medido: 9.959 caracteres sin la frase → 4 s; 9.987 con ella
+    // → colgado. No era longitud ni puntuación, era la pregunta.
+    'contratos: mayor adjudicación individual (una concesión se adjudica por todo su plazo de una vez, así que una pieza puede excluirla del denominador)':
+      mayorAdjudicacion(tenders),
     'presupuesto: gasto total (UN año)': budget?.snapshot?.totalExpense,
     'presupuesto: ejercicio': budget?.snapshot?.year,
   }
