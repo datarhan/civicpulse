@@ -10,9 +10,20 @@
   --border: #e5e7eb;
   --border2: #eef0f3;
 
-  --civic: #2463eb;
-  --civic-soft: #eef4ff;
-  --civic-ink: #1e4fbb;
+  /* Petróleo, no azul. El valor anterior era, hexadecimal a hexadecimal,
+     PARTY_COLORS.PP —el valor vive allí y no se repite aquí—: en /promesas la
+     pastilla de atribución del PP se pintaba con el color del logo del sitio.
+     Un medio que atribuye afirmaciones a partidos no puede compartir identidad
+     cromática con uno de ellos. Sube además el contraste sobre papel de 5,17:1
+     a 7,80:1. Lo vigila tests/brand-tokens.test.js. */
+  --civic: #0e5b62;
+  --civic-soft: #e6f2f2;
+  --civic-ink: #0a4449;
+  /* La tinta legible sobre una superficie --civic SÓLIDA. Fijar #fff a mano
+     daba 3,23:1 en oscuro sobre el enlace de salto al contenido (WCAG 2.4.1) y
+     ::selection, y axe no puede verlo: el enlace vive en left:-9999px hasta
+     recibir foco y ::selection no es un nodo que evalúe. */
+  --civic-on: #ffffff;
   --ok: #16a34a;
   --ok-soft: #ecfdf3;
   --ok-ink: #15803d;
@@ -26,25 +37,22 @@
   --intel-soft: #f5f0ff;
   --intel-ink: #6d28d9;
 
-  /* Ink scale — Brandbook v2 §02 ("la escala no escala" fix). Production
-     shipped ink50 === ink60 === .62 and ink40 === .60 — the literal bug is that
-     three tiers collapsed onto two values, so the scale had no middle. This
-     restores a monotonic, all-distinct ramp. The brandbook's aspirational .45
-     (meta) / .30 (deshab) stops fail WCAG AA on the small mono meta labels these
-     shared tokens paint (that is precisely why prod pinned them high), so the
-     text tiers stay inside the AA-safe band .60–.82 — every value here is at or
-     above a contrast the axe-core AA e2e gate already passed, so distinctness is
-     gained with zero contrast regression. */
-  --ink80: rgba(11, 15, 25, 0.82); /* strong secondary */
-  /* Used 99 times across 28 components and defined nowhere until 2026-08-11.
-     An undefined custom property makes the whole `color` declaration invalid,
-     so every one of those sites silently inherited its parent's colour —
-     usually full --ink, i.e. the opposite of the de-emphasis intended.
-     Midpoint of the 60↔80 step. Contrast on --paper: 8.10:1, AA with room. */
-  --ink70: rgba(11, 15, 25, 0.73); /* secondary, one step stronger than 60 */
-  --ink60: rgba(11, 15, 25, 0.64); /* secundario */
-  --ink50: rgba(11, 15, 25, 0.62); /* meta */
-  --ink40: rgba(11, 15, 25, 0.6); /* tenue */
+  /* Tres tiers de texto, y sólo tres. La producción llegó a tener cinco con
+     cuatro valores dentro de trece centésimas —.82 / .73 / .64 / .62 / .60—, de
+     modo que --ink60 y --ink50 eran el mismo gris. La fusión es POR VALOR: nadie
+     se mueve más de cinco centésimas, así que retira sinónimos sin reestilizar
+     nada. Reasignar por rol construiría una jerarquía que hoy no existe y es
+     una pasada aparte.
+
+     --ink50 no baja de .62: a .52 daría 3,84:1 y suspendería AA. La banda segura
+     medida para estos tokens compartidos es .60–.82. La aspiración de .45/.30 del
+     brandbook no se persigue aquí. Lo vigila tests/brand-tokens.test.js, que lee
+     estos valores en vez de repetirlos. */
+  --ink80: rgba(11, 15, 25, 0.82); /* retirado en el paso siguiente */
+  --ink70: rgba(11, 15, 25, 0.78); /* secundario, cuerpo largo */
+  --ink60: rgba(11, 15, 25, 0.64); /* retirado en el paso siguiente */
+  --ink50: rgba(11, 15, 25, 0.62); /* meta, eyebrow, etiqueta */
+  --ink40: rgba(11, 15, 25, 0.6); /* retirado en el paso siguiente */
   --ink20: rgba(11, 15, 25, 0.12); /* bordes */
   --ink10: rgba(11, 15, 25, 0.06); /* wash */
 
@@ -89,9 +97,10 @@ html.dark {
   --border: #232b44;
   --border2: #1c2339;
 
-  --civic: #5b8def;
-  --civic-soft: #1e2a4a;
-  --civic-ink: #9bb7f5;
+  --civic: #4fb3bd;
+  --civic-soft: #10333a;
+  --civic-ink: #8ed8e0;
+  --civic-on: #0b0f19; /* tinta oscura: sobre petróleo claro el blanco daba 2,25:1 */
   --ok-soft: #0f2a1c;
   --ok-ink: #8bebb0;
   --warn-soft: #2a1e0f;
@@ -102,7 +111,7 @@ html.dark {
   --intel-ink: #c8aef5;
 
   --ink80: rgba(241, 245, 249, 0.88);
-  --ink70: rgba(241, 245, 249, 0.8); /* 10.59:1 on --paper */
+  --ink70: rgba(241, 245, 249, 0.78); /* 10,09:1 sobre --paper */
   --ink60: rgba(241, 245, 249, 0.72);
   --ink50: rgba(241, 245, 249, 0.68);
   --ink40: rgba(241, 245, 249, 0.58);
@@ -163,7 +172,7 @@ textarea {
 
 ::selection {
   background: var(--civic);
-  color: white;
+  color: var(--civic-on);
 }
 
 ::-webkit-scrollbar {
@@ -680,7 +689,7 @@ body.cp-kiosk .cp-live-container {
   z-index: 10000;
   padding: 10px 16px;
   background: var(--civic);
-  color: #fff;
+  color: var(--civic-on);
   font-size: 14px;
   font-weight: 600;
   border-radius: 0 0 8px 0;
