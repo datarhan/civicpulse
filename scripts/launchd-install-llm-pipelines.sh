@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-# Install (or remove) the two LLM pipelines as launchd USER agents.
+# Install (or remove) the three LLM pipelines as launchd USER agents.
 #
 #   bash scripts/launchd-install-llm-pipelines.sh            # install + load
 #   bash scripts/launchd-install-llm-pipelines.sh uninstall  # unload + remove
 #   bash scripts/launchd-install-llm-pipelines.sh probe      # can an agent do the job?
 #
-# ## Why these two are agents and the other three stay in cron
+# ## Why these three are agents and the rest stay in cron
 #
-# Only these two need the `claude` credential, and it lives in the login
+# Only these need the `claude` credential, and it lives in the login
 # keychain. A cron job cannot unlock it: `env -i … claude -p ok` exits 1 with
 # "Not logged in". That is what stopped both pipelines from 2026-08-03 —
 # `hallazgos` deferred every morning, `press-lab` no-opped its LLM steps — for
@@ -28,7 +28,7 @@ set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd -P)"
 AGENTS="$HOME/Library/LaunchAgents"
-LABELS=(com.civicpulse.hallazgos com.civicpulse.press-lab)
+LABELS=(com.civicpulse.hallazgos com.civicpulse.press-lab com.civicpulse.review-sweep)
 
 mkdir -p "$AGENTS" "$REPO_DIR/scripts/logs"
 
@@ -106,9 +106,9 @@ for label in "${LABELS[@]}"; do
 done
 
 echo
-echo "Horario: hallazgos 09:30 · press-lab 10:15, a diario."
+echo "Horario: review-sweep 07:30 · hallazgos 09:30 · press-lab 10:15, a diario."
 echo
 echo "QUITA las líneas equivalentes del crontab o correrán las dos cosas:"
-echo "  crontab -e   # borrar hallazgos-pipeline.sh y press-lab-pipeline.sh"
+echo "  crontab -e   # borrar hallazgos-pipeline.sh, press-lab-pipeline.sh y review-sweep.sh"
 echo
 echo "Comprobar mañana:  npm run check:runs   (sale 1 si la nocturna no corrió)"

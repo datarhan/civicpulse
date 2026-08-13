@@ -38,6 +38,19 @@ export interface FrozenFigure {
   value: number
   /** Which live anchor it is supposed to track. */
   anchor: string
+  /**
+   * Qué mide la cifra congelada que el ancla NO mide.
+   *
+   * Presente = la comparación no es de iguales, y la diferencia no es deriva.
+   * `reconstruccion-dana.totals.totalAwarded` excluye la concesión del agua
+   * —diecisiete años adjudicados de una vez, 55,69 M€— y el ancla
+   * `tenders.stats.awardedTotalEuros` la incluye: 123,68 − 55,69 = 68,00
+   * exacto, y 699 − 1 = 698 contratos. El check llevaba tiempo diciendo
+   * «divergente ×1.8» y pidiendo una nota de corrección que no habría
+   * arreglado nada, porque no ha derivado nada. Una alarma permanente es una
+   * alarma que se silencia.
+   */
+  scope?: string
 }
 
 export interface DriftRow {
@@ -46,7 +59,9 @@ export interface DriftRow {
   frozen: number
   live: number
   ratio: number
-  severity: 'ok' | 'drifted'
+  /** Copiado de la cifra: por qué esta comparación no es de iguales. */
+  scope?: string
+  severity: 'ok' | 'drifted' | 'scoped'
 }
 
 /**
@@ -115,7 +130,12 @@ export function detectDrift(
       frozen: f.value,
       live: a.value,
       ratio: Math.round(ratio * 1000) / 1000,
-      severity: rel > DRIFT_THRESHOLD ? 'drifted' : 'ok',
+      scope: f.scope,
+      // `scoped` NUNCA es `drifted`: la cifra y el ancla miden cosas
+      // distintas, así que su distancia no dice nada sobre si la pieza
+      // envejeció. Se sigue imprimiendo —con su motivo— en vez de ocultarse:
+      // esconderla dejaría la cifra sin vigilancia de ningún tipo.
+      severity: f.scope ? 'scoped' : rel > DRIFT_THRESHOLD ? 'drifted' : 'ok',
     })
   }
   return { rows, skipped }

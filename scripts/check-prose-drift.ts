@@ -54,6 +54,9 @@ function main() {
         where: 'reconstruccion-dana.totals.totalAwarded',
         value: dana.totals.totalAwarded,
         anchor: 'awardedTotal',
+        scope:
+          'excluye la concesión del agua (17 años adjudicados de una vez, 55,69 M€); ' +
+          'el ancla la incluye. 123,68 − 55,69 = 68,00 y 699 − 1 = 698 contratos',
       },
       {
         where: 'reconstruccion-dana.totals.situatedAmount',
@@ -65,12 +68,27 @@ function main() {
 
   const { rows, skipped } = detectDrift(frozen, anchors)
   const bad = rows.filter((r) => r.severity === 'drifted')
+  const acotadas = rows.filter((r) => r.severity === 'scoped')
   console.log(
     `[drift] ${frozen.length} cifra(s) en la lista · ${rows.length} comparada(s) · ` +
       `${bad.length} divergente(s)` +
+      (acotadas.length > 0 ? ` · ${acotadas.length} de alcance distinto` : '') +
       (skipped.length > 0 ? ` · ${skipped.length} SIN comparar` : '') +
       '\n',
   )
+
+  // Se imprimen, no se ocultan: la cifra sigue vigilada y quien lea el parte ve
+  // por qué su distancia al ancla no es deriva. Ocultarlas dejaría la cifra sin
+  // vigilancia de ningún tipo, que es peor que una alarma mal etiquetada.
+  for (const r of acotadas) {
+    console.log(`  · ${r.where}`)
+    console.log(
+      `      congelado ${r.frozen.toLocaleString('es-ES')} · ` +
+        `vivo ${Math.round(r.live).toLocaleString('es-ES')} — NO es deriva:`,
+    )
+    console.log(`      ${r.scope}`)
+    console.log('')
+  }
 
   // A figure that fell out of the comparison is not a clean figure. Printed
   // before the drifts because it is the more dangerous of the two: a drift is

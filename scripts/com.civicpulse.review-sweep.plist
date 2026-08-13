@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.civicpulse.review-sweep</string>
+
+  <!-- Agente y no línea de cron, por el mismo motivo exacto que hallazgos y
+       press-lab: el barrido llama a `claude`, cuya credencial vive en el
+       llavero de la sesión. Un cron no puede abrirlo — `env -i … claude -p ok`
+       sale 1 con "Not logged in"— así que el preflight del script habría
+       diferido la pasada TODAS las mañanas. Habría fallado en la dirección
+       segura (lo dice en el log y no gasta en un backend de pago), pero no
+       habría leído una sola página en su vida.
+
+       Se instaló primero como cron por inercia; el propio
+       launchd-install-llm-pipelines.sh ya tenía escrita la regla que lo
+       desmiente: agentes para lo que necesita credencial, cron para lo
+       determinista. -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/review-sweep.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/sergeilutchenko/dev/CivicPulse</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <!-- ~/.local/bin es donde vive `claude`; sin él el preflight falla por el
+         motivo aburrido en vez de por el interesante. -->
+    <key>PATH</key>
+    <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin:/Users/sergeilutchenko/.local/bin</string>
+  </dict>
+
+  <!-- 07:30 diario, y el orden importa: la nocturna de GitHub (04:30 UTC ≈
+       06:30 local) ya ha comiteado los datos del día y scrape-ci-blocked
+       (06:45) ha refrescado lo que los runners no alcanzan. A las 07:30 el
+       sitio que se lee es el del día. Va antes que hallazgos (09:30) y
+       press-lab (10:15), así que los tres no se pisan.
+
+       macOS agrupa en el siguiente despertar si el Mac está dormido, de modo
+       que una tapa cerrada retrasa la pasada en vez de saltársela. -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key><integer>7</integer>
+    <key>Minute</key><integer>30</integer>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/logs/review-sweep.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/logs/review-sweep.log</string>
+
+  <key>ProcessType</key>
+  <string>Background</string>
+</dict>
+</plist>

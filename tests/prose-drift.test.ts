@@ -96,3 +96,50 @@ describe('prose-drift — a figure it stopped watching must not vanish', () => {
     expect(rows.length + skipped.length).toBe(input.length)
   })
 })
+
+describe('una cifra de alcance distinto no es una cifra que derivó', () => {
+  const anchors = { awardedTotal: { label: 'tenders.stats.awardedTotalEuros', value: 123_681_883 } }
+
+  it('no la llama divergente por mucho que se separe del ancla', () => {
+    // El caso real: `reconstruccion-dana.totals.totalAwarded` excluye la
+    // concesión del agua —17 años adjudicados de una vez— y el ancla la
+    // incluye. 123,68 − 55,69 = 68,00 exacto, y 699 − 1 = 698 contratos. No ha
+    // derivado nada: miden cosas distintas. El check decía «divergente ×1.8» y
+    // pedía una nota de corrección que no habría arreglado nada — y una alarma
+    // permanente es una alarma que se silencia.
+    const [row] = detectDrift(
+      [
+        {
+          where: 'reconstruccion-dana.totals.totalAwarded',
+          value: 67_996_704,
+          anchor: 'awardedTotal',
+          scope: 'excluye la concesión del agua; el ancla la incluye',
+        },
+      ],
+      anchors,
+    ).rows
+    expect(row.severity).toBe('scoped')
+    expect(row.scope).toMatch(/concesión del agua/)
+  })
+
+  it('sin `scope`, la MISMA cifra sí es divergente', () => {
+    // El control. Sin él, marcar todo como `scoped` silenciaría el check
+    // entero y pasaría la prueba de arriba.
+    const [row] = detectDrift(
+      [{ where: 'x', value: 67_996_704, anchor: 'awardedTotal' }],
+      anchors,
+    ).rows
+    expect(row.severity).toBe('drifted')
+  })
+
+  it('`scope` no convierte en válida una cifra que no se pudo comparar', () => {
+    // Un ancla ausente sigue siendo «SIN comparar», no «de alcance distinto»:
+    // son dos cosas diferentes y confundirlas devolvería el silencio.
+    const r = detectDrift(
+      [{ where: 'x', value: 10, anchor: 'no-existe', scope: 'lo que sea' }],
+      anchors,
+    )
+    expect(r.rows).toHaveLength(0)
+    expect(r.skipped).toHaveLength(1)
+  })
+})
