@@ -1,31 +1,6 @@
 {
-  "generatedAt": "2026-08-12T06:08:02.199Z",
+  "generatedAt": "2026-08-13T06:09:32.447Z",
   "clusters": [
-    {
-      "clusterId": "1urv1oi",
-      "articleIds": [
-        "1sauhls",
-        "1xgs7rs",
-        "j1s6zk",
-        "se650n"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "El Periódico de Aquí",
-        "Las Provincias",
-        "Periòdic del Camp de Túria"
-      ],
-      "earliestDate": "2026-07-29T07:00:00.000Z",
-      "latestDate": "2026-08-03T17:35:23.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
     {
       "clusterId": "10if6vd",
       "articleIds": [
@@ -38,27 +13,6 @@
       ],
       "earliestDate": "2026-08-10T09:09:31.000Z",
       "latestDate": "2026-08-10T13:17:56.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "1cnqqro",
-      "articleIds": [
-        "1hs4vrb",
-        "7242dc"
-      ],
-      "outlets": [
-        "El Periódico de Aquí",
-        "Levante-EMV"
-      ],
-      "earliestDate": "2026-07-21T07:00:00.000Z",
-      "latestDate": "2026-07-22T12:38:58.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
@@ -111,17 +65,17 @@
       }
     },
     {
-      "clusterId": "1svsczg",
+      "clusterId": "2dlf6c",
       "articleIds": [
-        "l5r394",
-        "lrwh4v"
+        "1sauhls",
+        "se650n"
       ],
       "outlets": [
-        "El Periódico de Aquí",
-        "Levante-EMV"
+        "Las Provincias",
+        "Periòdic del Camp de Túria"
       ],
-      "earliestDate": "2026-08-04T16:14:00.000Z",
-      "latestDate": "2026-08-04T17:01:58.000Z",
+      "earliestDate": "2026-07-29T07:00:00.000Z",
+      "latestDate": "2026-08-03T17:35:23.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
@@ -154,7 +108,7 @@
     }
   ],
   "stats": {
-    "totalClusters": 7,
-    "triangulated3Plus": 1
+    "totalClusters": 5,
+    "triangulated3Plus": 0
   }
 }

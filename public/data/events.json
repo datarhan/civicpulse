@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-08-12T05:53:34.384Z",
+  "generatedAt": "2026-08-13T05:55:43.795Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 21,
-    "nextDate": "2026-08-19T20:00:00.000Z"
+    "upcoming": 22,
+    "nextDate": "2026-08-14T18:00:00.000Z"
   },
   "events": [
     {
@@ -221,16 +221,6 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Supergirl_0.jpg?itok=0emNQUN_"
     },
     {
-      "id": "17f23b0",
-      "title": "Cine 'Las obejas detectives'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27las-obejas-detectives%27-0",
-      "eventDate": "2026-07-26T20:00:00.000Z",
-      "eventDateText": "26 de julio de 2026 22:00",
-      "publishedDate": "2026-05-21T15:48:16.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/las%20ovejas%20dectetives_0.jpg?itok=u2F2R4JE"
-    },
-    {
       "id": "epr2hz",
       "title": "Cine 'Patrick'",
       "link": "https://www.ribarroja.es/es/evento/cine-%27patrick%27",
@@ -299,6 +289,16 @@
       "publishedDate": "2026-05-21T15:59:32.000Z",
       "excerpt": "Película gratuita",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/coco.jpg?itok=TnN1fQ52"
+    },
+    {
+      "id": "1uk7sw6",
+      "title": "Partit Trofeu Mare de Déu d'Agost de 14 d'agost de 2026",
+      "link": "https://www.ribarroja.es/va/evento/partit-trofeu-mare-de-d%C3%A9u-d%27agost-de-14-d%27agost-de-2026",
+      "eventDate": "2026-08-14T18:00:00.000Z",
+      "eventDateText": "14 de agosto de 2026 20:00",
+      "publishedDate": "2026-08-12T09:23:45.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Estadio%20de%20F%C3%BAtbol.jpg?itok=Er1HTUwW"
     },
     {
       "id": "bcssg",

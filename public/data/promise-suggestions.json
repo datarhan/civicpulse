@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T06:07:42.120Z",
+  "generatedAt": "2026-08-13T06:09:12.466Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -121,7 +121,7 @@
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
-          "publisher": "comunica.gva.es",
+          "publisher": "Comunica GVA",
           "matchedKeywords": [
             "inversion",
             "millon",
@@ -152,7 +152,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -188,6 +188,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNTTNEZzBxcE9NTUNYNzV4bDh0dW1veWxGRHNOT0l0bkM0LTFyaEQzZmhiWVFOY1hQTFZrYkg0SGpiV1cxSEEwQTVqdFdVZkpYLVNhYU5jdVFOUlhwaFh5akZqNDZsamdyYWRMSFRrN0VKbW9DVnNfbkM2Zl9tZ3MtMEV3MUlPWTdUVHpmeU1hRXRtUWZjdVphZEN2MUlvaV9hWUUtcHF4ajRnd0FoVDFQQVN6NzVqWGNoYy16TFRadjBDenRWc25NSzRWRkhza25XTGRlNi1KbnBKdDlWTFBWV29jV0MwRXJqMExjMNIB8gFBVV95cUxPTi1qYUtLWnhKTDNnTnNTSlUyMnZKejkweHdteTlOTjJYeGNaMFpZRW1rZE9DUFJ6Z012VG9VYm5mYkc2X2ZEOEFkeFM4ZnFNQ3F2XzNBV2JiQ1B0ZFM3cjNsaHpfbEVWeGdRWmNuTHBSdmNNRjdyZ1RzbVA2c1laWjNpeUpjSXlXYzlnZmdiSnhseXZrRFN6YjRaYzc1Q1FmVmRBWUY5ZXlBZlFOcDR2MnlmanVrV1hNSzBnNERJRmczOFZqYXJTd0s0N0FwYlhQazEyd0pDeUZXSmxUdk9fTWlrU1RxZm83ZXRrelE3TFlJUQ?oc=5",
+          "date": "2026-07-28",
+          "quote": "Las exhumaciones del cementerio musulmán de Riba-roja se realizaron por las obras de la mota tras la dana",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "dana",
+            "tras"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNdkwxcWJZOXRjajlDelVISGFiVVZxS0VDckdqNk4zLVhKcTh6X1BSZzc4UGpUTy10UmtpdDRyUVdyMjJNS01WSmF6NS1BbFJSVU42WVhGVTdMS3E3NVFQbVg4ODRTMnFqOERPVk13eGlycng0UGwzSzc5cDdzZl82SVE2U1EwVXR6RUNVVFdyLURCZXNmdFp0OTBLUWd0ckk4dDFibGhnaTJVWDJZeGdtcGtSeDMxOTNrN1Y0WHBXcU85VkYyZkHSAcsBQVVfeXFMUEJDNE1fTnAxTURibnlfS2llY1lZU011TGg4eDNzTDByeWM0RlBYVjN5RXRnYzl1aW5TN2RYM0ViU0V3NzhOMnFIZUJmZlE5ZjRQby12THl4UTR3Q0U1cncydVpETjlhYVEzMmdLS3hQWmZwM0tUbVVwV1RKYi1KV0tiVnpxM0YwVGFTeEFPcklmWHhtQVZGR0ZWdi1IWmtSVHRBSUt1UlliaWNxYjV1N29KcHVGYUNxd2JIeEdvaUpTdWp5TC1jN3d5dE0?oc=5",
           "date": "2026-06-30",
           "quote": "Riba-roja desmonta el puente militar que conectó a más de 3.500 vecinos tras la dana",
@@ -211,7 +222,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -223,7 +234,7 @@
           "date": "2026-07-07",
           "quote": "La Generalitat y el Ayuntamiento de Riba-roja de Túria colaboran en el desarrollo de suelo para viviendas e industrias en zonas seguras",
           "kind": "press",
-          "publisher": "comunica.gva.es",
+          "publisher": "Comunica GVA",
           "matchedKeywords": [
             "suelo",
             "vivienda"
@@ -253,7 +264,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -307,7 +318,7 @@
         {
           "url": "https://regmeet.com/aytoribarroja/participaciones/74791edf1f8e8b8289a5067737630874?idioma=castellano",
           "date": "2026-05-11",
-          "quote": "Dación cuenta al Pleno de la información trimestral correspondiente al Primer Trimestre de 2026: Cálculo del Período Medio de Pago aproveedores e Informe trimestral de seguimiento de deuda comercial",
+          "quote": "Comercio · Dación cuenta al Pleno de la información trimestral correspondiente al Primer Trimestre de 2026: Cálculo del Período Medio de Pago aproveedores e Informe trimestral de seguimiento de deuda comercial",
           "kind": "pleno",
           "matchedKeywords": [
             "2026",
@@ -326,7 +337,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -361,7 +372,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -410,7 +421,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -418,7 +429,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -426,7 +437,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -491,7 +502,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -514,7 +525,7 @@
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
-          "publisher": "comunica.gva.es",
+          "publisher": "Comunica GVA",
           "matchedKeywords": [
             "avanza",
             "inversion"
@@ -522,7 +533,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -562,7 +573,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -606,7 +617,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -650,7 +661,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -680,7 +691,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -711,7 +722,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -729,21 +740,10 @@
             "puente",
             "militar"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPa3hra0tUWGlfMmY5VFdaRXJ2cWpEMVpza3d0d2VaZVpDeHRBbGdGN2t2LXlvaHJMU0JmVEE2MW02U1pRN2R0QXd6N2hKM21faUlpT0xubEI3M094aEJkT05ORV9GdjBIVzdLdENWREx0ODhmRFR2MGFxdk42NkFFYlNUSUxtNUpTOHk1VGszSGdWVDlJMmZPRmdHNlp2WlpwUV9nLWFVc1B5aG9hbnROY0JQd9IBuAFBVV95cUxOMDFtSk13c3lPY2cyMV9iSUJ4Rnd6WnJZR2VWRjNua1VWWUE3NUt3VE4yTHp6dm96SzhGUUNqalZwSklOMHFwdk1rVlNwbWNSNHhPek44X2RMTjB5cmZPSWFFZWQ1aDJGa1J2SWlTSE1rWE8xekhtb1pXT2RuRExocnV5UFFJMVM5emVsNkRnQ1Nsd0VsU2xySXhUYlVmQkx4MFlQbmw3WHU0ZnJGSDJxRklQM3NYLUps?oc=5",
-          "date": "2026-06-30",
-          "quote": "El Ejército inicia el desmontaje del puente militar en Riba-roja",
-          "kind": "press",
-          "publisher": "Las Provincias",
-          "matchedKeywords": [
-            "puente",
-            "militar"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -763,7 +763,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -782,7 +782,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -835,7 +835,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -869,7 +869,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -900,7 +900,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -942,7 +942,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-12T06:07:41.995Z"
+      "generatedAt": "2026-08-13T06:09:12.347Z"
     }
   ],
   "llmEvidence": [],
