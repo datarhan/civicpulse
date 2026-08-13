@@ -93,7 +93,8 @@ export default function GastoMap({ snapshot, sliderTime, danaOnly, selectedZone,
         <Boundary />
         {zones.map((z) => {
           const danaHeavy = danaOnly || (z.danaAmount > 0 && z.danaAmount >= z.amount * 0.5)
-          const color = danaHeavy ? '#E08600' : '#2463EB'
+          // Petróleo, no el hex del PP. Atributo SVG: var(--civic) no resuelve.
+          const color = danaHeavy ? '#E08600' : '#0E5B62'
           const radius = moneyRadiusMeters(z.live.amount)
           const sel = selectedZone === z.slug
           return (

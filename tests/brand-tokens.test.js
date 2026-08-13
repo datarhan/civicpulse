@@ -38,10 +38,17 @@ const PARTIDOS = Object.fromEntries(
   Object.entries(PARTY_COLORS).filter(([, hex]) => hex.toLowerCase() !== SENTINELA.toLowerCase()),
 )
 
-/** Los sitios que AÚN pintan un hex de partido, con motivo y ola. Codifican un
- *  dato (serie de gráfico, pin, polígono), no la marca; su retono es §07, ola 3.
- *  Se declaran uno a uno: «omitido con motivo» se informa aparte, nunca se
- *  pliega sobre «limpio». */
+/** Los sitios que AÚN pintan un hex de partido, con motivo y ola. Se declaran
+ *  uno a uno: «omitido con motivo» se informa aparte, nunca se pliega sobre
+ *  «limpio».
+ *
+ *  Los pines y polígonos SALIERON de esta lista: son rellenos de un solo color
+ *  que se leen como marca —55 círculos en la portada— y pasaron a petróleo.
+ *  Lo que queda son series categóricas de gráfico, y ahí no hay retono trivial:
+ *  se midieron cinco azules de sustitución y los cinco caen a menos de 20° de
+ *  tono del PP o del propio petróleo. No existe un «azul de repuesto»; hace
+ *  falta rediseñar la rampa entera, que es §07 y es la ola 3. Inventar un azul
+ *  a medio camino sería colar una decisión de paleta dentro de una limpieza. */
 const DIFERIDOS = {
   'src/hooks/useBudget.js': { n: 2, motivo: 'EXPENSE_COLORS / PROGRAM_COLORS', ola: 3 },
   'src/components/Presupuesto/SpendingTypeBreakdown.jsx': {
@@ -49,10 +56,6 @@ const DIFERIDOS = {
     motivo: 'serie construction',
     ola: 3,
   },
-  'src/components/Presupuesto/GastoMap.jsx': { n: 1, motivo: 'pin DANA vs normal', ola: 3 },
-  'src/components/LiveCity/layers/MoneyLayer.jsx': { n: 1, motivo: 'pin DANA vs normal', ola: 3 },
-  // Dos en la misma línea: `color` y `fillColor` del mismo polígono.
-  'src/components/empleo/EmpleoMap.jsx': { n: 2, motivo: 'polígono de empleo', ola: 3 },
   'public/og.svg': { n: 2, motivo: 'la tarjeta se reescribe entera', ola: 2 },
 }
 

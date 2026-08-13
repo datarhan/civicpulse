@@ -55,7 +55,8 @@ export default function EmpleoMap({ points, t }) {
             key={p.name}
             center={p.coord}
             radius={7 + (p.count / max) * 16}
-            pathOptions={{ color: '#2463EB', fillColor: '#2463EB', fillOpacity: 0.45, weight: 1.5 }}
+            // Petróleo, no el hex del PP. Atributo SVG: var(--civic) no resuelve.
+            pathOptions={{ color: '#0E5B62', fillColor: '#0E5B62', fillOpacity: 0.45, weight: 1.5 }}
           >
             <Tooltip direction="top">
               <strong>{p.name}</strong>: {p.count} {p.count === 1 ? 'oferta' : 'ofertas'}

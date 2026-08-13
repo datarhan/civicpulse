@@ -70,7 +70,14 @@ export function SectionGlyph({ to, size = 18, style }) {
         lineHeight: 1,
         // §02: nav glyphs are never tinted by a semantic colour — civic rides
         // the nav's currentColor; only the AI surface keeps its intel purple.
-        color: tone === 'intel' ? 'var(--intel)' : 'currentColor',
+        //
+        // --intel-ink, no --intel: la base #7c3aed vale igual en los dos temas
+        // porque html.dark no la redefine, y sobre el papel oscuro daba 3,10:1.
+        // axe no lo veía —este span es aria-hidden—, así que el fallo sólo
+        // aparece midiendo. La variante -ink es la misma familia morada
+        // ajustada por tema: 7,1:1 en claro y 9,1:1 en oscuro. Es la regla que
+        // este repo ya tiene escrita para los tonos semánticos como texto.
+        color: tone === 'intel' ? 'var(--intel-ink)' : 'currentColor',
         ...style,
       }}
     >

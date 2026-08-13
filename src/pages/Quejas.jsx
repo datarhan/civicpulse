@@ -401,7 +401,11 @@ function ConsellCvCard() {
               fontSize: 18,
               fontWeight: 800,
               marginTop: 2,
-              color: stats.matchedEntries > 0 ? 'var(--crit)' : 'var(--ok)',
+              // Variantes -ink: a 18 px, aunque vaya en 800, WCAG sigue
+              // considerándolo texto pequeño —su umbral de negrita es 18,66 px—
+              // y --ok daba 3,3:1 sobre blanco. La regla del repo dice «tonos
+              // base sólo en ≥18px/bold»; esta cifra cae justo en ese hueco.
+              color: stats.matchedEntries > 0 ? 'var(--crit-ink)' : 'var(--ok-ink)',
             }}
           >
             {stats.matchedEntries}
@@ -502,7 +506,11 @@ function CtbgCard() {
               fontSize: 18,
               fontWeight: 800,
               marginTop: 2,
-              color: stats.matchedEntries > 0 ? 'var(--crit)' : 'var(--ok)',
+              // Variantes -ink: a 18 px, aunque vaya en 800, WCAG sigue
+              // considerándolo texto pequeño —su umbral de negrita es 18,66 px—
+              // y --ok daba 3,3:1 sobre blanco. La regla del repo dice «tonos
+              // base sólo en ≥18px/bold»; esta cifra cae justo en ese hueco.
+              color: stats.matchedEntries > 0 ? 'var(--crit-ink)' : 'var(--ok-ink)',
             }}
           >
             {stats.matchedEntries}

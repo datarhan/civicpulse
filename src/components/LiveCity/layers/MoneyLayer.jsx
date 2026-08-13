@@ -40,7 +40,10 @@ export function MoneyLayer({ snapshot, at, danaOnly, obrasOnly, contractsById })
     <>
       <FitToPins points={places.map((p) => p.point)} />
       {places.map((p) => {
-        const color = p.dana ? '#E08600' : '#2463EB'
+        // Petróleo, no el hex del PP. Leaflet escribe esto en un atributo SVG,
+        // donde var(--civic) no resuelve, así que el literal es obligado.
+        // §07: la magnitud lleva un solo color; el ámbar marca el subconjunto DANA.
+        const color = p.dana ? '#E08600' : '#0E5B62'
         return (
           <CircleMarker
             key={p.sourceId}
