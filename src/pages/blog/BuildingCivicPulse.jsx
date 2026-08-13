@@ -94,10 +94,10 @@ export default function BuildingCivicPulse() {
           </a>
           , ~24,600 people, near Valencia. Council sessions transcribed and turned into verifiable
           claims; an electoral-promise tracker with the verbatim quote and its source; a
-          citizen-complaint pipeline with the actual legal deadlines the town hall is bound by;
-          every public euro the town awarded, mapped street by street. One person, mostly with an AI
-          coding agent. Here is how it&rsquo;s built and, more importantly, how it&rsquo;s
-          disciplined.
+          citizen-complaint pipeline with the actual legal deadlines the town hall is bound by; the
+          public money the town awarded, mapped wherever a contract names a place. One person,
+          mostly with an AI coding agent. Here is how it&rsquo;s built and, more importantly, how
+          it&rsquo;s disciplined.
         </p>
 
         <SecHead num="01" kicker="Architecture" title="No backend, on purpose" />

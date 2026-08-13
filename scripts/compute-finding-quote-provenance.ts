@@ -36,6 +36,14 @@ import {
   type QuoteProvenanceSnapshot,
 } from '../src/scraper/quote-provenance'
 import { loadSessionTexts, SUPERSEDED_DIR, TRANSCRIPTS_DIR } from './lib/transcript-corpus'
+// El corpus del verificador llega por `loadVerifiedCorpus`, así que el escáner
+// léxico de `script-io.ts` no puede verlo: los literales viven en lib/. Es el
+// caso para el que existe el marcador. Sin él, el grafo declaraba este nodo
+// como si sólo dependiera de los hallazgos — y la nocturna llevaba tres noches
+// roja porque el base no existe en CI, que es justo lo que una arista declarada
+// habría hecho evidente.
+// data-graph: reads pleno-claims-verified-base.json
+// data-graph: reads pleno-claims-overlay.json
 import { loadVerifiedCorpus, VERIFIED_BASE, VERIFIED_OVERLAY } from './lib/verified-corpus'
 
 const FINDINGS = 'public/data/pleno-findings.json'

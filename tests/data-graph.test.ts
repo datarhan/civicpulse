@@ -126,8 +126,19 @@ describe('stalenessInputs', () => {
   })
 
   it('does the same for the provenance node, which diffs against itself', () => {
+    // La REGLA, no la lista. Estaba escrita como `toEqual(['pleno-findings.json'])`
+    // y se puso roja al declarar las dos entradas que al nodo le faltaban —el
+    // corpus del verificador, que llega por un loader de lib/ y que el grafo no
+    // mencionaba—. Una lista copiada a mano que se rompe cuando el grafo se
+    // vuelve MÁS correcto es la forma restated-shape del modo de fallo 1 de
+    // DATA_INTEGRITY: se arregla afirmando la propiedad.
     const prov = DATA_GRAPH.find((n) => n.id === 'finding-quote-provenance.json')!
-    expect(stalenessInputs(prov)).toEqual(['pleno-findings.json'])
+    expect(prov.reads).toContain('finding-quote-provenance.json')
+    expect(stalenessInputs(prov)).not.toContain('finding-quote-provenance.json')
+    expect(stalenessInputs(prov)).toEqual(prov.reads.filter((r) => r !== prov.id))
+    // Y sigue midiendo algo: el nodo tiene entradas además de sí mismo.
+    expect(stalenessInputs(prov).length).toBeGreaterThan(0)
+    expect(stalenessInputs(prov)).toContain('pleno-findings.json')
   })
 })
 

@@ -110,7 +110,19 @@ export const DATA_GRAPH: readonly DataNode[] = [
     id: 'finding-quote-provenance.json',
     tier: 'derived',
     // Also reads its own previous output, to diff against.
-    reads: ['finding-quote-provenance.json', 'pleno-findings.json'],
+    //
+    // Y el corpus del verificador, que faltaba aquí: es lo que decide qué marca
+    // lleva cada cita, y el nodo lo declaraba como si sólo dependiera de los
+    // hallazgos. Con la entrada declarada, el grafo sabe que este nodo no puede
+    // construirse sin ella — que es lo que la nocturna descubrió a golpes
+    // durante tres noches. El base está gitignorado y `scrape-all.sh` lo
+    // reproduce con `verify:pleno-claims --base-only` cuando falta.
+    reads: [
+      'finding-quote-provenance.json',
+      'pleno-findings.json',
+      'pleno-claims-verified-base.json',
+      'pleno-claims-overlay.json',
+    ],
     writes: ['finding-quote-provenance.json'],
     command: 'npm run compute:finding-quote-provenance',
     script: 'scripts/compute-finding-quote-provenance.ts',

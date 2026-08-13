@@ -1,6 +1,6 @@
 {
   "plenoId": "15uvjew",
-  "generatedAt": "2026-08-11T20:43:58.440Z",
+  "generatedAt": "2026-08-13T08:08:08.050Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -2884,6 +2884,3258 @@
       "end": 6600,
       "speaker": "c10/SPEAKER_03",
       "text": "Teníem que canviar-los ja. I per a canviar-los, la única fórmula que teníem legal era esta. No perquè no tinguem diners, que diners n'hi han. Ara anem a ingressar dos milions i pico, més un milió i pico. No és un tema de tensió de tresoreria,"
+    },
+    {
+      "start": 608,
+      "end": 613,
+      "speaker": "c01/SPEAKER_00",
+      "text": "S'aprova per unanimitat. Passem al següent punt, contractació, adjudicació del contracte de concessió del servici..."
+    },
+    {
+      "start": 613,
+      "end": 614.5,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Hi ha un, el tres."
+    },
+    {
+      "start": 614.5,
+      "end": 615.5,
+      "speaker": "c01/SPEAKER_00",
+      "text": "No?"
+    },
+    {
+      "start": 615.5,
+      "end": 617,
+      "speaker": "c01/SPEAKER_01",
+      "text": "El dia del comerç."
+    },
+    {
+      "start": 617,
+      "end": 628,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Ah, sí, correcte, és que estos de foment econòmic són dos. El punt tercer, el correlatiu a la declaració del vint-i-cinc d'octubre com a Dia del Comerç. José Ángel."
+    },
+    {
+      "start": 628,
+      "end": 641,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Sí, en este cas el que fem és que igual que en el ple del Consell de la Generalitat feu en el dos mil vint-i-u, eh, i en col·laboració i en el apoyo econòmic que fem des de l'Ajuntament a l'Associació de Comerciants d'Agrupa,"
+    },
+    {
+      "start": 641,
+      "end": 652,
+      "speaker": "c01/SPEAKER_01",
+      "text": "és declarar institucionalment des de l'Ajuntament de Riba-roja el vint-i-cinc d'octubre com a Dia del Comerç Local de de Riba-roja. Des de l'Ajuntament de Riba-roja, pues, com sabeu, recolzem en tot lo que podem i al màxim"
+    },
+    {
+      "start": 652,
+      "end": 663,
+      "speaker": "c01/SPEAKER_01",
+      "text": "a lo que és el comerç local i també a la hosteleria i la restauració. Eh, i vist el tema, eh, podem dir que enguany són més de cinc-cents cinquanta mil euros lo que va a destinar este Ajuntament"
+    },
+    {
+      "start": 663,
+      "end": 678,
+      "speaker": "c01/SPEAKER_01",
+      "text": "en inversions destinades a a fomentar el consum dels nostres comerços, hosteleria i restauració de de Riba-roja. I per tant, pues, sempre estarem ahí recolzant tant a l'Associació Agrupa com a la resta de comerciants de del municipi. Gràcies."
+    },
+    {
+      "start": 678,
+      "end": 681,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Paraules? Alberto."
+    },
+    {
+      "start": 681,
+      "end": 693,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Hola, bona vesprada. Gràcies, senyor alcalde. Eh, res, una coseta, una pregunta. Això s'ha fet en acord de l'Associació de Comerciants d'Agrupa o soles se'ls se'ls va traslladar?"
+    },
+    {
+      "start": 693,
+      "end": 708,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Sé que estan en conversacions en ells per lo de la fira del comerç i tal, pero saber si este, esta instauració d'este dia, que bueno, que ja se celebra d'alguna forma tant en el poble com en la comunitat autònoma,"
+    },
+    {
+      "start": 708,
+      "end": 716,
+      "speaker": "c01/SPEAKER_02",
+      "text": "si estava consensuat en ells o si soles es van a transmetre que se va a fer este dia. Sols eixe dubte."
+    },
+    {
+      "start": 716,
+      "end": 719,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Paraules? José Ángel."
+    },
+    {
+      "start": 719,
+      "end": 733,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Sí, en les reunions que mantenim constantment en ells, els comentàrem que seria bo, eh, que des de de forma institucional s'institucionalitzara el dia vint-i-cinc d'octubre com a dia del comerç local,"
+    },
+    {
+      "start": 733,
+      "end": 747,
+      "speaker": "c01/SPEAKER_01",
+      "text": "ja que ells fan ja tres, quatre anys que estan fent, celebren el vint-i-cinc d'octubre i ja dic, en col·laboració i i en el recolzament econòmic del propi Ajuntament en la subvenció que li dona."
+    },
+    {
+      "start": 747,
+      "end": 758,
+      "speaker": "c01/SPEAKER_01",
+      "text": "I aleshores és una manera de inclús, pues, eh, donar-li més importància de cara de forma institucional a eixe dia vint-i-cinc. Aleshores, les conversacions que mantenim en ells és que anàvem a fer esta proposta i ells estaven d'acord. Gràcies."
+    },
+    {
+      "start": 758,
+      "end": 771,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Més paraules? Passem a la votació."
+    },
+    {
+      "start": 771,
+      "end": 782,
+      "speaker": "c01/SPEAKER_00",
+      "text": "S'aprova per unanimitat. Passem al següent punt. Ara sí, el punt quatre, contractació, adjudicació del contracte de concessió del servici públic de proveïment d'aigua. José Ángel."
+    },
+    {
+      "start": 782,
+      "end": 795,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Sí, bueno, per fi adjudiquem el contracte de concessió del servici públic d'aigua potable, clavegueram, eh, control de vertits i depuració del municipi de Riba-roja."
+    },
+    {
+      "start": 795,
+      "end": 809,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Per contextualitzar el tema, perquè esto lleva tela, eh, venim d'una sentència de l'any dos mil setze en la que anul·la el contracte aprovat en l'any dos mil dotze."
+    },
+    {
+      "start": 809,
+      "end": 823,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Con los informes preceptivos inicia una nueva licitación una vez recibida esa sentencia, y como resultado de la nueva licitación en que se presentan siete empresas, es decir, siete ofertas,"
+    },
+    {
+      "start": 823,
+      "end": 837,
+      "speaker": "c01/SPEAKER_01",
+      "text": "ya en el dos mil veinte se clasifican las ofertas, siendo la mejor oferta de calidad-precio la presentada por la mercantil Hidraqua, Gestión Integral de Aguas."
+    },
+    {
+      "start": 837,
+      "end": 849,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Eh, este resultado es impugnado en el juzgado y dicta y se dicta suspensión de la adjudicación por parte del juzgado."
+    },
+    {
+      "start": 849,
+      "end": 861,
+      "speaker": "c01/SPEAKER_01",
+      "text": "En el pleno de febrero del veintiuno se acuerda la suspensión del procedimiento de contratación del servicio dada la la sentencia."
+    },
+    {
+      "start": 861,
+      "end": 876,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Tras los recursos, ya el veintitrés de febrero del dos mil veintitrés, la Sala de lo Contencioso-Administrativo del Tribunal Supremo dicta sentencia contra el recurso de casación de la mercantil Global Omnium"
+    },
+    {
+      "start": 876,
+      "end": 891,
+      "speaker": "c01/SPEAKER_01",
+      "text": "y confirma íntegramente la sentencia del Tribunal Superior de Justicia de la Comunidad Valenciana a favor del Ayuntamiento de Riba-roja. A partir de ahí, a partir de ahí, la mesa de contratación ratifica el informe de valoración"
+    },
+    {
+      "start": 891,
+      "end": 905,
+      "speaker": "c01/SPEAKER_01",
+      "text": "realizado por los servicios técnicos con la puntuación final de las siete ofertas, siendo la propuesta de Hidraqua la mejor clasificada. Y siendo aprobada la clasificación en sesión plenaria del veinte de abril de este año."
+    },
+    {
+      "start": 905,
+      "end": 919,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Y ya con todos los informes técnicos, jurídicos y de fiscalización favorables, proponemos hoy al pleno adjudicar el contrato de concesión del servicio público de agua potable, alcantarillado, control de vertidos"
+    },
+    {
+      "start": 919,
+      "end": 931,
+      "speaker": "c01/SPEAKER_01",
+      "text": "y depuración del municipio de Riba-roja a la mercantil Hidraqua, Gestión Integral de Aguas de Levante, S.A. Con las características de la oferta que dio como resultado ser la mejor oferta,"
+    },
+    {
+      "start": 931,
+      "end": 944,
+      "speaker": "c01/SPEAKER_01",
+      "text": "el valor estimado del contrato es de cincuenta y cinco millones seiscientos ochenta y cinco mil euros más IVA, duración diecisiete años, requerir a la mercantil que en el plazo de entre el presente acuerdo"
+    },
+    {
+      "start": 944,
+      "end": 958,
+      "speaker": "c01/SPEAKER_01",
+      "text": "y la formalización del contrato proceda al abono a favor del Ayuntamiento de Riba-roja de la cantidad de dos coma tres millones de euros en concepto de canon, además de requerir a la mercantil la ejecución de las obras"
+    },
+    {
+      "start": 958,
+      "end": 971,
+      "speaker": "c01/SPEAKER_01",
+      "text": "comprometidas en el contrato dentro de los tres primeros años de prestación del servicio. En este caso, eh, como el Ayuntamiento ya realizó una de las obras comprometidas, que es la urbanización de Entre Naranjos,"
+    },
+    {
+      "start": 971,
+      "end": 985,
+      "speaker": "c01/SPEAKER_01",
+      "text": "la mercantil deberá abonar al Ayuntamiento el coste previsto de dicha obra, eh, valorada en más de uno coma dos millones de euros, que se sumarían a los dos coma tres millones de canon."
+    },
+    {
+      "start": 985,
+      "end": 999,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Por lo que es de gran importancia y trascendencia el presente acuerdo, que cierra una etapa de seis años desde las licitaciones, desde los litigios, pero de diez de diez desde que la sentencia anuló el contrato del dos mil doce,"
+    },
+    {
+      "start": 999,
+      "end": 1013,
+      "speaker": "c01/SPEAKER_01",
+      "text": "y que por fin se da la razón al Ayuntamiento y puede formalizar el contrato del servicio de agua potable e ingresar el canon por importe de dos coma tres millones de euros más el uno coma dos millones de euros"
+    },
+    {
+      "start": 1013,
+      "end": 1018,
+      "speaker": "c01/SPEAKER_01",
+      "text": "sobre la obra realizada en Entre Naranjos. Muchas gracias."
+    },
+    {
+      "start": 1018,
+      "end": 1026,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Eh, paraules? Paraules? José Ángel."
+    },
+    {
+      "start": 1026,
+      "end": 1040,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Vaig a ser curt perquè, bueno, esta esta lo que duem hui al ple, pues, és de transcendència de transcendència i molt important per a l'Ajuntament de Riba-roja i tots els veïns."
+    },
+    {
+      "start": 1040,
+      "end": 1054,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Des del dos mil setze al dos mil vint-i-sis, deu anys des de que s'anul·là la la el contracte, eh, i des de que s'inicià el nostre, eh, ja en el dos mil dèneu, pues, hasta ara,"
+    },
+    {
+      "start": 1054,
+      "end": 1068,
+      "speaker": "c01/SPEAKER_01",
+      "text": "i per fi, eh, l'Ajuntament li han donat la raó i per fi l'Ajuntament de Riba-roja i els veïns van a tindre un contracte com toca sobre el servici d'aigua potable. Gràcies."
+    },
+    {
+      "start": 1068,
+      "end": 1073,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Alguna paraula més? Segona intervenció, Rafa."
+    },
+    {
+      "start": 1073,
+      "end": 1087,
+      "speaker": "c01/SPEAKER_03",
+      "text": "Gràcies, senyor alcalde. Bona vesprada a totes i a tots. Bueno, dir que pues que este contracte, l'aprovació d'este contracte que supose que se farà hui, ha sigut més llarg que un dia sense pa."
+    },
+    {
+      "start": 1087,
+      "end": 1101,
+      "speaker": "c01/SPEAKER_03",
+      "text": "Eh, recorde el dos mil setze, eh, l'equip de govern que formàvem el Partit Socialista, Compromís i Esquerra Unida, eh, mos arribà la sentència i, bueno, pues, estiguérem barallant durant quasi tres anys"
+    },
+    {
+      "start": 1101,
+      "end": 1115,
+      "speaker": "c01/SPEAKER_03",
+      "text": "per presentar un nou contracte il·lusionant que anava a millorar tot el el sistema d'abastiment d'aigua i, eh, fer les obres que teníem previstes per a millorar també eixe subministrament."
+    },
+    {
+      "start": 1115,
+      "end": 1129,
+      "speaker": "c01/SPEAKER_03",
+      "text": "Però es trobàrem en la en la cruda realitat que tenen les les grans empreses que no estan mai d'acord quan no els toca de d'eixir la loteria."
+    },
+    {
+      "start": 1129,
+      "end": 1143,
+      "speaker": "c01/SPEAKER_03",
+      "text": "Evidentment, i per sort, hem tingut, eh, una sentència favorable i hui, definitivament, podrem aprovar este contracte que, com deia el regidor, porta rodant des del dos mil disset inicialment"
+    },
+    {
+      "start": 1143,
+      "end": 1153,
+      "speaker": "c01/SPEAKER_03",
+      "text": "i des del dos mil dèneu quan l'aprovàrem en este ple per alguns partits, no per tots. Gràcies."
+    },
+    {
+      "start": 1153,
+      "end": 1168,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Alguna paraula més? Sí, te passes de davant, pero bueno, tens ahí dos minuts. Si algú més en esta segona intervenció que parle."
+    },
+    {
+      "start": 1168,
+      "end": 1182,
+      "speaker": "c01/SPEAKER_04",
+      "text": "Gracias, alcalde, y disculpe. A ver, en este tipo de contrato, en en el que nosotros nos vamos a abstener, lo que sí que hemos detectado en en lo que son las cláusulas"
+    },
+    {
+      "start": 1182,
+      "end": 1196,
+      "speaker": "c01/SPEAKER_04",
+      "text": "es que hay algunos componentes ideológicos como riesgos, como ejecuciones de carácter sociales y ambientales que entendemos que son criterios políticos, y esto lo que puede hacer,"
+    },
+    {
+      "start": 1196,
+      "end": 1200,
+      "speaker": "c01/SPEAKER_04",
+      "text": "a lo mejor, es un riesgo de encarecimiento para el ciudadano."
+    },
+    {
+      "start": 1200,
+      "end": 1214,
+      "speaker": "c01/SPEAKER_04",
+      "text": "Eh, desde luego nosotros defendemos unos servicios públicos que se tienen que gestionar con austeridad y con competencia, y no como laboratorios de políticas sociales o ecológicas."
+    },
+    {
+      "start": 1214,
+      "end": 1228,
+      "speaker": "c01/SPEAKER_04",
+      "text": "Es cierto que se tiene que firmar ese contrato, pero es lo que lo que entendemos. Y aunque es un procedimiento al, aunque es un procedimiento abierto y desde luego por una mejor relación calidad-precio,"
+    },
+    {
+      "start": 1228,
+      "end": 1242,
+      "speaker": "c01/SPEAKER_04",
+      "text": "la multiplicidad de esos criterios subjetivos abre la puerta a interpretaciones discrecionales. Eh, resumiendo, este contrato puede parecer algo como un contrato ideológico"
+    },
+    {
+      "start": 1242,
+      "end": 1259,
+      "speaker": "c01/SPEAKER_04",
+      "text": "y puede interferir en la contratación pública. Nos vamos a abstener porque es una es un tipo de de es un contrato que hay que firmar, pero por lo que..."
+    },
+    {
+      "start": 1800,
+      "end": 1805.5,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Sin más puntos del día, el punto, ¿sin qué?"
+    },
+    {
+      "start": 1805.5,
+      "end": 1812,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Propuesta de acuerdo relativo al expediente de minimización de impacto territorial, referencia catastral, Teresa."
+    },
+    {
+      "start": 1812,
+      "end": 1817,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Sí, buenas tardes. Traemos nuevamente una propuesta, una solicitud de minimización individualizada,"
+    },
+    {
+      "start": 1817,
+      "end": 1822,
+      "speaker": "c03/SPEAKER_02",
+      "text": "en este caso en la zona de diseminados del Pla de Totxar."
+    },
+    {
+      "start": 1822,
+      "end": 1826,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Se trata de una vivienda unifamiliar de primera residencia,"
+    },
+    {
+      "start": 1826,
+      "end": 1831,
+      "speaker": "c03/SPEAKER_02",
+      "text": "no consta en el Ayuntamiento expediente alguno de restauración de la legalidad."
+    },
+    {
+      "start": 1831,
+      "end": 1836,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Cumple las tres premisas que sabéis que son los primeros condicionantes que se miran"
+    },
+    {
+      "start": 1836,
+      "end": 1841,
+      "speaker": "c03/SPEAKER_02",
+      "text": "cuando alguien viene a solicitarlo, que es densidad inferior a tres viviendas por hectárea,"
+    },
+    {
+      "start": 1841,
+      "end": 1846,
+      "speaker": "c03/SPEAKER_02",
+      "text": "legalizar la obra únicamente que existe como tal y siempre obra posterior al dos mil catorce,"
+    },
+    {
+      "start": 1846,
+      "end": 1851,
+      "speaker": "c03/SPEAKER_02",
+      "text": "perdón, anterior al dos mil catorce, y el uso residencial,"
+    },
+    {
+      "start": 1851,
+      "end": 1856,
+      "speaker": "c03/SPEAKER_02",
+      "text": "y la edificación ha de haber sido finalizada, como os he comentado, antes del veinte de agosto del dos mil catorce."
+    },
+    {
+      "start": 1856,
+      "end": 1861,
+      "speaker": "c03/SPEAKER_02",
+      "text": "En el documento que nos aporta el solicitante queda acreditado precisamente el cumplimiento de esos tres condiciones."
+    },
+    {
+      "start": 1861,
+      "end": 1866,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Al no estar afectado por zona inundable, no precisa de informe previo vinculante."
+    },
+    {
+      "start": 1866,
+      "end": 1871,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Esto es una condición que se ha puesto con el tema de las inundaciones para unos informes concretos"
+    },
+    {
+      "start": 1871,
+      "end": 1876,
+      "speaker": "c03/SPEAKER_02",
+      "text": "si es que fuese estuviese en esa zona, pero en este caso no es así."
+    },
+    {
+      "start": 1876,
+      "end": 1881,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Vistos los informes tanto de la arquitecta municipal como del vicesecretario con fecha uno de julio,"
+    },
+    {
+      "start": 1881,
+      "end": 1886,
+      "speaker": "c03/SPEAKER_02",
+      "text": "proponemos al pleno, en primer lugar, declarar la situación individualizada de la minimización;"
+    },
+    {
+      "start": 1886,
+      "end": 1891,
+      "speaker": "c03/SPEAKER_02",
+      "text": "en segundo, requerir al interesado para que realice la solicitud de licencia de minimización de impacto;"
+    },
+    {
+      "start": 1891,
+      "end": 1896,
+      "speaker": "c03/SPEAKER_02",
+      "text": "en tercero, las condiciones edificatorias a las que debe ajustarse la posterior licencia de la legalización"
+    },
+    {
+      "start": 1896,
+      "end": 1901,
+      "speaker": "c03/SPEAKER_02",
+      "text": "serán las indicadas en el punto tres que vienen aquí en la propuesta;"
+    },
+    {
+      "start": 1901,
+      "end": 1906,
+      "speaker": "c03/SPEAKER_02",
+      "text": "en el cuarto, dar traslado del presente acuerdo al departamento de secretaría y urbanismo a los efectos oportunos;"
+    },
+    {
+      "start": 1906,
+      "end": 1911,
+      "speaker": "c03/SPEAKER_02",
+      "text": "en quinto, la presente declaración se otorga dejando a salvo el derecho de propiedad y sin perjuicios a terceros;"
+    },
+    {
+      "start": 1911,
+      "end": 1916,
+      "speaker": "c03/SPEAKER_02",
+      "text": "en sexto lugar, notificar a los interesados el acuerdo así como del informe técnico,"
+    },
+    {
+      "start": 1916,
+      "end": 1920,
+      "speaker": "c03/SPEAKER_02",
+      "text": "haciéndoles ofrecimiento de recurso potestativo de reposición;"
+    },
+    {
+      "start": 1920,
+      "end": 1924,
+      "speaker": "c03/SPEAKER_02",
+      "text": "y séptimo, facultar al alcalde para la firma de cuantos actos sean precisos para la efectividad de este acuerdo. Nada más."
+    },
+    {
+      "start": 1924,
+      "end": 1929,
+      "speaker": "c03/SPEAKER_01",
+      "text": "¿Alguna voz? ¿Alguna palabra, Teresa?"
+    },
+    {
+      "start": 1929,
+      "end": 1935,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Bueno, pues como siempre digo en el caso de que ya traemos a una minimización,"
+    },
+    {
+      "start": 1935,
+      "end": 1941,
+      "speaker": "c03/SPEAKER_02",
+      "text": "esta creo que es ya la que hace quince, catorce o quince."
+    },
+    {
+      "start": 1941,
+      "end": 1947,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Somos verdaderos fans de esta ley, de conseguir la minimización para las zonas de diseminados."
+    },
+    {
+      "start": 1947,
+      "end": 1953,
+      "speaker": "c03/SPEAKER_02",
+      "text": "También quiero poner en valor el esfuerzo que se hace desde el departamento de urbanismo y secretaría,"
+    },
+    {
+      "start": 1953,
+      "end": 1959,
+      "speaker": "c03/SPEAKER_02",
+      "text": "porque en otros ayuntamientos, y quiero que lo sepan también nuestros vecinos,"
+    },
+    {
+      "start": 1959,
+      "end": 1965,
+      "speaker": "c03/SPEAKER_02",
+      "text": "en otros ayuntamientos se les tira la puerta cuando van a preguntar por la propuesta de minimización, o sea, no quieren ni oírlo."
+    },
+    {
+      "start": 1965,
+      "end": 1971,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Sin embargo, aquí, y quiero aprovechar el pleno para decirles a todos los de la a todos los de las minimizaciones,"
+    },
+    {
+      "start": 1971,
+      "end": 1977,
+      "speaker": "c03/SPEAKER_02",
+      "text": "a todos los que viven en diseminados, que el departamento de urbanismo está abierto para todas las consultas que tengan que hacer a este respecto."
+    },
+    {
+      "start": 1977,
+      "end": 1983,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Es una oportunidad muy importante que tienen. De hecho, en el Espai Obert que hacemos en todos los diseminados así lo hacemos saber."
+    },
+    {
+      "start": 1983,
+      "end": 1988,
+      "speaker": "c03/SPEAKER_02",
+      "text": "También es verdad que después de esos Espais Oberts siempre tenemos consultas al respecto."
+    },
+    {
+      "start": 1988,
+      "end": 1993,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Y es una manera de no mirar al lado, de lado, a una situación que que que aparece en todos los municipios"
+    },
+    {
+      "start": 1993,
+      "end": 1997,
+      "speaker": "c03/SPEAKER_02",
+      "text": "y es una forma de dignificar la vivienda y el estado en el que viven las personas. Nada más."
+    },
+    {
+      "start": 1997,
+      "end": 2003,
+      "speaker": "c03/SPEAKER_01",
+      "text": "¿Alguna palabra más? Pasemos a la votación de este punto."
+    },
+    {
+      "start": 2016,
+      "end": 2018.5,
+      "speaker": "c03/SPEAKER_01",
+      "text": "¿Falta un voto? No, no, vale. ¿Grupo Ciudadanos?"
+    },
+    {
+      "start": 2018.5,
+      "end": 2019.5,
+      "speaker": "c03/SPEAKER_03",
+      "text": "A favor."
+    },
+    {
+      "start": 2019.5,
+      "end": 2021,
+      "speaker": "c03/SPEAKER_01",
+      "text": "¿Partido Popular?"
+    },
+    {
+      "start": 2021,
+      "end": 2022,
+      "speaker": "c03/SPEAKER_04",
+      "text": "A favor."
+    },
+    {
+      "start": 2022,
+      "end": 2023,
+      "speaker": "c03/SPEAKER_01",
+      "text": "¿Vox?"
+    },
+    {
+      "start": 2023,
+      "end": 2024,
+      "speaker": "c03/SPEAKER_05",
+      "text": "A favor."
+    },
+    {
+      "start": 2024,
+      "end": 2025,
+      "speaker": "c03/SPEAKER_01",
+      "text": "¿Esquerra Unida - Podem?"
+    },
+    {
+      "start": 2025,
+      "end": 2026,
+      "speaker": "c03/SPEAKER_06",
+      "text": "Abstención."
+    },
+    {
+      "start": 2026,
+      "end": 2027,
+      "speaker": "c03/SPEAKER_01",
+      "text": "¿Y Compromís?"
+    },
+    {
+      "start": 2027,
+      "end": 2028,
+      "speaker": "c03/SPEAKER_07",
+      "text": "Abstención."
+    },
+    {
+      "start": 2028,
+      "end": 2038,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Pasemos al siguiente punto del orden del día, que es el punto dieciséis, felicitación a la corporación municipal, una del conservatorio profesional municipal de música de Riba-roja de Túria, de L'Eliana..."
+    },
+    {
+      "start": 2038,
+      "end": 2040.5,
+      "speaker": "c03/SPEAKER_08",
+      "text": "dictaminar, primero votamos la"
+    },
+    {
+      "start": 2040.5,
+      "end": 2048,
+      "speaker": "c03/SPEAKER_01",
+      "text": "dictaminarlo, sí, que sí, la inclusión en el orden del día porque no ha pasado por comisión informativa."
+    },
+    {
+      "start": 2048,
+      "end": 2053,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Vamos a votar la inclusión del orden del día de este punto. Votación. Bueno, votamos."
+    },
+    {
+      "start": 2053,
+      "end": 2057,
+      "speaker": "c03/SPEAKER_08",
+      "text": "Sí, dictaminar no, pues es obligatorio dictaminar."
+    },
+    {
+      "start": 2057,
+      "end": 2063,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Votamos, vamos a votar de este punto. Votamos inclusión."
+    },
+    {
+      "start": 2063,
+      "end": 2068,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Ah, perdón, perdón, que a lo mejor no lo puso. Ya está, ya está, perdón. Vale, vamos a votar."
+    },
+    {
+      "start": 2081,
+      "end": 2085,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Vale, veinte votos a favor y una abstención. ¿Grupo Ciudadanos?"
+    },
+    {
+      "start": 2085,
+      "end": 2086,
+      "speaker": "c03/SPEAKER_03",
+      "text": "A favor."
+    },
+    {
+      "start": 2086,
+      "end": 2087.5,
+      "speaker": "c03/SPEAKER_01",
+      "text": "¿Partido Popular?"
+    },
+    {
+      "start": 2087.5,
+      "end": 2088.5,
+      "speaker": "c03/SPEAKER_04",
+      "text": "A favor."
+    },
+    {
+      "start": 2088.5,
+      "end": 2089.5,
+      "speaker": "c03/SPEAKER_01",
+      "text": "¿Vox?"
+    },
+    {
+      "start": 2089.5,
+      "end": 2090.5,
+      "speaker": "c03/SPEAKER_05",
+      "text": "A favor."
+    },
+    {
+      "start": 2090.5,
+      "end": 2092,
+      "speaker": "c03/SPEAKER_01",
+      "text": "¿Esquerra Unida - Podem?"
+    },
+    {
+      "start": 2092,
+      "end": 2093,
+      "speaker": "c03/SPEAKER_06",
+      "text": "A favor."
+    },
+    {
+      "start": 2093,
+      "end": 2094.5,
+      "speaker": "c03/SPEAKER_01",
+      "text": "¿Y Compromís?"
+    },
+    {
+      "start": 2094.5,
+      "end": 2095.5,
+      "speaker": "c03/SPEAKER_07",
+      "text": "A favor."
+    },
+    {
+      "start": 2095.5,
+      "end": 2104,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Pasemos al siguiente punto del orden del día, no, debatirlo. Debatirlo. Eva, por favor."
+    },
+    {
+      "start": 2104,
+      "end": 2106,
+      "speaker": "c03/SPEAKER_09",
+      "text": "¿No? Ah, vale, como encara estaba ahí."
+    },
+    {
+      "start": 2106,
+      "end": 2112,
+      "speaker": "c03/SPEAKER_09",
+      "text": "Bien, primer de tot disculpeu que vaig a sense dictaminar, son notícies que vaig veure durant el cap de setmana,"
+    },
+    {
+      "start": 2112,
+      "end": 2118,
+      "speaker": "c03/SPEAKER_09",
+      "text": "després vaig parlar amb Juanjo, el director del conservatori, el preparar-ho sobretot el entre diumenge i dilluns,"
+    },
+    {
+      "start": 2118,
+      "end": 2123,
+      "speaker": "c03/SPEAKER_09",
+      "text": "i ja no no va entrar a les comissions."
+    },
+    {
+      "start": 2123,
+      "end": 2129,
+      "speaker": "c03/SPEAKER_09",
+      "text": "Pero me va resultó interesante y agradable dur la propuesta en este ple porque si no ya para septiembre"
+    },
+    {
+      "start": 2129,
+      "end": 2135,
+      "speaker": "c03/SPEAKER_09",
+      "text": "se demoraba mucho en el tiempo y le llevaba un poquet de força al fet que estos alumnes han sido guardonados en en este momento, antes del estío."
+    },
+    {
+      "start": 2135,
+      "end": 2141,
+      "speaker": "c03/SPEAKER_09",
+      "text": "Doncs això, des de la corporació, bueno, sí, òbviament si la proposta és aceptada per tots,"
+    },
+    {
+      "start": 2141,
+      "end": 2147,
+      "speaker": "c03/SPEAKER_09",
+      "text": "la idea és reconèixer l'alumnat del conservatori professional municipal de música de Riba-roja de Túria,"
+    },
+    {
+      "start": 2147,
+      "end": 2153,
+      "speaker": "c03/SPEAKER_09",
+      "text": "reconèixer el seu esforç, dedicació i talent i tot el resultats destacats que estan aconseguint en l'àmbit autonòmic, estatal, inclús internacional."
+    },
+    {
+      "start": 2153,
+      "end": 2159,
+      "speaker": "c03/SPEAKER_09",
+      "text": "I sobretot destacar que els tres alumnes que han sigut guardonats són també veïns i veïnes de Riba-roja de Túria."
+    },
+    {
+      "start": 2159,
+      "end": 2165,
+      "speaker": "c03/SPEAKER_09",
+      "text": "Sobre tot aquests èxits donen ressaltar que són fruit del talent, del compromís de les famílies, del professorat,"
+    },
+    {
+      "start": 2165,
+      "end": 2171,
+      "speaker": "c03/SPEAKER_09",
+      "text": "però també del compromís polític de comptar amb un conservatori propio en trenta-six cursos escolars ja de trajectòria"
+    },
+    {
+      "start": 2171,
+      "end": 2177,
+      "speaker": "c03/SPEAKER_09",
+      "text": "que contribueix sobremanera a dinamitzar la vida sociocultural del nostre municipi mitjançant concerts,"
+    },
+    {
+      "start": 2177,
+      "end": 2183,
+      "speaker": "c03/SPEAKER_09",
+      "text": "audicions i nombroses col·laboracions no solament dins del municipi, sinó la seua projecció exterior que li donen identitat a Riba-roja."
+    },
+    {
+      "start": 2183,
+      "end": 2189,
+      "speaker": "c03/SPEAKER_09",
+      "text": "Que este esforç, esta trajectòria ha sigut possible gràcies a l'esforç contingut de l'equip de govern en este cas,"
+    },
+    {
+      "start": 2189,
+      "end": 2195,
+      "speaker": "c03/SPEAKER_09",
+      "text": "de les altres corporacions municipals que han passat al llarg dels anys."
+    },
+    {
+      "start": 2195,
+      "end": 2201,
+      "speaker": "c03/SPEAKER_09",
+      "text": "I per tot això es proposa: primer, felicitar a Ariadna Rosselló Sánchez, alumna del conservatori professional municipal de música"
+    },
+    {
+      "start": 2201,
+      "end": 2207,
+      "speaker": "c03/SPEAKER_09",
+      "text": "per haver aconseguit el segon premi al concurs internacional d'Orbetello, Itàlia,"
+    },
+    {
+      "start": 2207,
+      "end": 2213,
+      "speaker": "c03/SPEAKER_09",
+      "text": "primer premi al concurs internacional Franz Liszt, categoria en línia,"
+    },
+    {
+      "start": 2213,
+      "end": 2219,
+      "speaker": "c03/SPEAKER_09",
+      "text": "primer premi absolut al concurs de Joves Valors Valencians que fem ací a Riba-roja,"
+    },
+    {
+      "start": 2219,
+      "end": 2225,
+      "speaker": "c03/SPEAKER_09",
+      "text": "primer premi al concurs internacional Gonzalo Soriano, categoria C, Sant Joan d'Alacant."
+    },
+    {
+      "start": 2225,
+      "end": 2231,
+      "speaker": "c03/SPEAKER_09",
+      "text": "Segon, felicitar Paula Martí Pérez, alumna del conservatori professional de música"
+    },
+    {
+      "start": 2231,
+      "end": 2237,
+      "speaker": "c03/SPEAKER_09",
+      "text": "per haver aconseguit primer premi absolut al concurs de Joves Valors Valencians, Riba-roja de Túria,"
+    },
+    {
+      "start": 2237,
+      "end": 2243,
+      "speaker": "c03/SPEAKER_09",
+      "text": "tercer premi al concurs nacional de piano de Carlet, València."
+    },
+    {
+      "start": 2243,
+      "end": 2249,
+      "speaker": "c03/SPEAKER_09",
+      "text": "En tercer lloc, felicitar Manel Belda Agustín, alumne del conservatori professional de música de Riba-roja"
+    },
+    {
+      "start": 2249,
+      "end": 2255,
+      "speaker": "c03/SPEAKER_09",
+      "text": "per haver aconseguit primer premi al concurs de Joves Valors Valencians, Riba-roja de Túria,"
+    },
+    {
+      "start": 2255,
+      "end": 2261,
+      "speaker": "c03/SPEAKER_09",
+      "text": "segon premi al concurs internacional de piano Sant Joan d'Alacant."
+    },
+    {
+      "start": 2261,
+      "end": 2267,
+      "speaker": "c03/SPEAKER_09",
+      "text": "Felicitar el professorat del conservatori professional municipal per aconseguir o contribuir a aquesta excel·lència educativa i musical."
+    },
+    {
+      "start": 2267,
+      "end": 2273,
+      "speaker": "c03/SPEAKER_09",
+      "text": "Felicitar les famílies d'Ariadna, de Paula i de Manel pel suport, la dedicació i el compromís a la formació dels seus fills i filles."
+    },
+    {
+      "start": 2273,
+      "end": 2279,
+      "speaker": "c03/SPEAKER_09",
+      "text": "I per últim, manifestar el desig que aquests èxits, reflex del talent de la nostra joventut i de la qualitat dels nostres conservatoris,"
+    },
+    {
+      "start": 2279,
+      "end": 2285,
+      "speaker": "c03/SPEAKER_09",
+      "text": "tinguen continuïtat en el temps i reiterar el nostre compromís amb el manteniment del conservatori propi"
+    },
+    {
+      "start": 2285,
+      "end": 2291,
+      "speaker": "c03/SPEAKER_09",
+      "text": "que continue oferint formació de qualitat i siga un referent educatiu i cultural a la comarca,"
+    },
+    {
+      "start": 2291,
+      "end": 2302,
+      "speaker": "c03/SPEAKER_09",
+      "text": "autònoma, inclús, com hem dit, internacional."
+    },
+    {
+      "start": 2302,
+      "end": 2305,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Gràcies. Paraules? Albert, tu."
+    },
+    {
+      "start": 2305,
+      "end": 2310,
+      "speaker": "c03/SPEAKER_10",
+      "text": "Gràcies. A nosaltres per suposat que anem a felicitar a Manel, a Paula i a Ariadna,"
+    },
+    {
+      "start": 2310,
+      "end": 2315,
+      "speaker": "c03/SPEAKER_10",
+      "text": "però en la en la proposta de d'acord, eh, no sabem si si és una errata o no,"
+    },
+    {
+      "start": 2315,
+      "end": 2320,
+      "speaker": "c03/SPEAKER_10",
+      "text": "pero el primer premi absolut per dos alumnes, o és que és en diferent any?"
+    },
+    {
+      "start": 2320,
+      "end": 2325,
+      "speaker": "c03/SPEAKER_10",
+      "text": "O és que pots tindre varios primers premis absoluts?"
+    },
+    {
+      "start": 2325,
+      "end": 2330,
+      "speaker": "c03/SPEAKER_10",
+      "text": "I per exemple, Manel i Paula sabem que és piano perquè han guanyat un concurs internacional de piano els dos,"
+    },
+    {
+      "start": 2330,
+      "end": 2339,
+      "speaker": "c03/SPEAKER_10",
+      "text": "però també estaria bé que sabérem Ariadna quin instrument toca."
+    },
+    {
+      "start": 2339,
+      "end": 2341.5,
+      "speaker": "c03/SPEAKER_09",
+      "text": "Sí, piano. Ariadna és piano."
+    },
+    {
+      "start": 2341.5,
+      "end": 2344,
+      "speaker": "c03/SPEAKER_10",
+      "text": "Ah, perdó."
+    },
+    {
+      "start": 2344,
+      "end": 2350,
+      "speaker": "c03/SPEAKER_10",
+      "text": "No, y i la fecha si són del dos mil vint-i-six els concursos, dos mil vint-i-cinc, eh, no sé,"
+    },
+    {
+      "start": 2350,
+      "end": 2356,
+      "speaker": "c03/SPEAKER_10",
+      "text": "un referent acadèmic mola que estiga primer premi, concurs internacional dos mil vint-i-cinc, Sant Joan d'Alacant, dos mil vint-i-six."
+    },
+    {
+      "start": 2356,
+      "end": 2362,
+      "speaker": "c03/SPEAKER_10",
+      "text": "Però bé, que per la nostra banda, vamos, un aplaudiment per a ells, per als tres,"
+    },
+    {
+      "start": 2362,
+      "end": 2368,
+      "speaker": "c03/SPEAKER_10",
+      "text": "per a les famílies que ho suporten i per al conservatori i tots els que treballen en ell."
+    },
+    {
+      "start": 2368,
+      "end": 2374,
+      "speaker": "c03/SPEAKER_10",
+      "text": "Però bueno, tirem en falta que no sabem si és una errata que dos alumnes tinguen el mateix primer premi o és de diferent any,"
+    },
+    {
+      "start": 2374,
+      "end": 2380,
+      "speaker": "c03/SPEAKER_10",
+      "text": "o és possible que siga el mateix premi,"
+    },
+    {
+      "start": 2380,
+      "end": 2387,
+      "speaker": "c03/SPEAKER_10",
+      "text": "i l'instrument que toquen i l'any dels premis aconseguits. Gràcies."
+    },
+    {
+      "start": 2387,
+      "end": 2391,
+      "speaker": "c03/SPEAKER_01",
+      "text": "¿Més paraules? Eva."
+    },
+    {
+      "start": 2391,
+      "end": 2399,
+      "speaker": "c03/SPEAKER_09",
+      "text": "Sí, com heu xat un poquet, perdó, són de piano, que ho tenien en el primer paràgraf desenvolupat, i són del dos mil..."
+    },
+    {
+      "start": 3600,
+      "end": 3610.2,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Con respecto a lo de Casa cuarenta y siete, esta par... este suelo nosotros lo ofrecimos ya en el dos mil veintidós, o sea, antes de que se llamara Plan Vive ya estaba esta opción de poder, esa relación público-privada."
+    },
+    {
+      "start": 3610.2,
+      "end": 3619,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Luego en el dos mil veintitrés esto se se paquetizó dentro del Plan Vive y había que utilizar una plataforma, por eso lo lo trajimos a pleno."
+    },
+    {
+      "start": 3619,
+      "end": 3633,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Pero sí que es verdad que en las reuniones que hemos tenido precisamente en Conselleria cuando nos hablaban de esto, nuestro suelo podía no ser lo apetecible que quisieran porque los promotores van a a promociones de cien, doscientas viviendas para que esto les salga rentable."
+    },
+    {
+      "start": 3633,
+      "end": 3642,
+      "speaker": "c06/SPEAKER_01",
+      "text": "¿Qué pasó? Sin sin dejar de lado el estar en la opción de Plan Vive, nos surgió el plan de Casa cuarenta y siete y en la primera convocatoria que hubo nos presentamos."
+    },
+    {
+      "start": 3642,
+      "end": 3653,
+      "speaker": "c06/SPEAKER_01",
+      "text": "No cumplíamos uno de los requisitos, o sea, todo cumplíamos todos excepto uno que era tener la parcela que fuese como mínimo de dos mil quinientos metros cuadrados. La nuestra tiene mil y poco, pero aun así lo presentamos"
+    },
+    {
+      "start": 3653,
+      "end": 3704,
+      "speaker": "c06/SPEAKER_01",
+      "text": "porque dentro de las reuniones que se tenían con Casa cuarenta y siete antes de esta primera convocatoria no éramos el único municipio, o sea, es muy raro que un municipio tenga un suelo urbano de dos mil quinientos metros, francamente. ¿Qué ha pasado? Nosotros en Casa cuarenta y siete nos han desestimado en esta primera convocatoria por no cumplir esa premisa de los dos mil quinientos. De hecho, en esta segunda convocatoria que han lanzado, ese condicionante ya no está."
+    },
+    {
+      "start": 3704,
+      "end": 3717,
+      "speaker": "c06/SPEAKER_01",
+      "text": "O sea, tenían dos condicionantes: uno que era el de los dos mil quinientos que ha desaparecido, y otro condicionante que era de más de treinta viviendas, que nosotros en la propuesta de Casa cuarenta y siete pusimos treinta y dos, y ahora lo habían bajado a veinticinco."
+    },
+    {
+      "start": 3717,
+      "end": 3734,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Por eso nosotros no no hemos querido, hemos jugado con ese suelo en ambos en ambas opciones. Afortunadamente, dentro del Plan Vive, al ser de pueblo DANA, tenemos unas condiciones óptimas para poder estar ahí,"
+    },
+    {
+      "start": 3734,
+      "end": 3745,
+      "speaker": "c06/SPEAKER_01",
+      "text": "pero no descartamos Casa cuarenta y siete, ¿eh? Casa cuarenta y siete estamos por una parte, que si lo habréis visto hemos hecho publicidad para la la el edificio que nos íbamos a a quedar el Ayuntamiento dentro de las ayudas del Plan ADHA,"
+    },
+    {
+      "start": 3745,
+      "end": 3801,
+      "speaker": "c06/SPEAKER_01",
+      "text": "que al final lo absorbió el Ministerio de Vivienda para ponerlo a disposición primero de la gente afectada por la DANA y después que la ha sacado ahora en alquiler. Han salido ya una aprobación provisional y en esta semana nos han contestado que saldrá la definitiva de esas veintidós viviendas, pero seguimos ahí tanto para suelo como para viviendas que puedan haber."
+    },
+    {
+      "start": 3801,
+      "end": 3817,
+      "speaker": "c06/SPEAKER_01",
+      "text": "O sea, no no descartamos, Alberto, por lo que tú comentas de Casa cuarenta y siete. Este se ha desbancado porque no cumplíamos ese objetivo de los metros, pero no nos encaja por Plan Vive y estamos viendo opciones encima de la mesa con Casa cuarenta y siete para alternativas que también podamos ir por ahí,"
+    },
+    {
+      "start": 3817,
+      "end": 3836,
+      "speaker": "c06/SPEAKER_01",
+      "text": "porque tanto Plan Vive como Casa cuarenta y siete los fondos son europeos de esa inyección que están dando a España para el tema de la vivienda. Nada más."
+    },
+    {
+      "start": 3836,
+      "end": 3839,
+      "speaker": "c06/SPEAKER_02",
+      "text": "Més paraules? Alberto."
+    },
+    {
+      "start": 3839,
+      "end": 3857,
+      "speaker": "c06/SPEAKER_03",
+      "text": "Sí, Teresa, solo una una puntualización. Este entiendo, si están viendo más opciones, no era el único solar donado o o o con posibilidad de donarse el suelo a Casa cuarenta y siete y al Plan Vive. Entiendo que hay más solares,"
+    },
+    {
+      "start": 3857,
+      "end": 3862,
+      "speaker": "c06/SPEAKER_03",
+      "text": "porque si estamos viendo otras posibilidades... ¿Y cuáles son esos solares o esos o ese suelo? Gracias."
+    },
+    {
+      "start": 3862,
+      "end": 3866,
+      "speaker": "c06/SPEAKER_02",
+      "text": "Alguna qüestió més? Última intervenció, Teresa."
+    },
+    {
+      "start": 3866,
+      "end": 3879,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Dentro de Casa cuarenta y siete es que ha tenido varias opciones. Si entráis en la página web, que además es muy muy intuitiva, primero estaba lo de poder optar a a ofertas al sorteo de viviendas que tenían."
+    },
+    {
+      "start": 3879,
+      "end": 3892,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Otra alternativa que tenían es que cualquier empresa privada que tuviese suelo podía ofertarlo a Casa cuarenta y siete y a precio de mercado Casa cuarenta y siete se lo iba a comprar, tanto suelo como posibilidad de"
+    },
+    {
+      "start": 3892,
+      "end": 3902,
+      "speaker": "c06/SPEAKER_01",
+      "text": "de viviendas, o sea, existían las dos alternativas que que cualquier particular podía ofrecerlas a Casa cuarenta y siete."
+    },
+    {
+      "start": 3902,
+      "end": 3918,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Ahora tenemos también una alternativa que estamos barajando con ellos de suelos que sean tanto suelos dotacionales, que por ser población DANA de sistema general podríamos ofrecerlos, que antes no teníamos esa alternativa."
+    },
+    {
+      "start": 3918,
+      "end": 3928,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Oye, tenemos este suelo dotacional que para vivienda de alquiler podría podría ser optativo. Y en esa línea estamos. Sí que tenemos otros suelos,"
+    },
+    {
+      "start": 3928,
+      "end": 3946,
+      "speaker": "c06/SPEAKER_01",
+      "text": "pero tenemos suelos que podrían ser podrían convertirse en viviendas, pero eran en zonas en urbanizaciones, en zonas residencial que no son potenciales. Tú no puedes plantear un edificio, pues no sé, en Traver o en Valencia la Vella."
+    },
+    {
+      "start": 3946,
+      "end": 3957,
+      "speaker": "c06/SPEAKER_01",
+      "text": "O sea, como suelo óptimo el que teníamos era este. Ahora en estas segundas convocatorias están dando otras alternativas y por eso estamos viendo pues estamos viendo con ellos posibles opciones que podamos barajar para para entrar ahí. ¿Vale?"
+    },
+    {
+      "start": 3957,
+      "end": 3962,
+      "speaker": "c06/SPEAKER_02",
+      "text": "Ara que queda explicat, anem a passar a la votació d'este punt."
+    },
+    {
+      "start": 3962,
+      "end": 3971,
+      "speaker": "c06/SPEAKER_02",
+      "text": "Pues aprobado por unanimidad, pasemos al siguiente punto del orden del día que también... no, primero estamos en el mismo punto pero en otro punto, en otra propuesta de emergencia, de urgencia, perdón, de intervención."
+    },
+    {
+      "start": 3971,
+      "end": 3980,
+      "speaker": "c06/SPEAKER_02",
+      "text": "Propuesta de acuerdo modificación del plan anual de inversiones. José Ángel tiene la palabra. La justificación de la urgencia."
+    },
+    {
+      "start": 3980,
+      "end": 3983,
+      "speaker": "c06/SPEAKER_04",
+      "text": "Gracias, alcalde."
+    },
+    {
+      "start": 3983,
+      "end": 4007,
+      "speaker": "c06/SPEAKER_04",
+      "text": "Bueno, en este en este caso la urgencia también, como anteriormente, viene dado a que es una modificación presupuestaria y por tanto tiene que publicarse y por tanto cuanto antes se se realice la propuesta, se apruebe la propuesta, se publique, pues antes entrará en vigor"
+    },
+    {
+      "start": 4007,
+      "end": 4019,
+      "speaker": "c06/SPEAKER_04",
+      "text": "y como sabréis, una de las de la lo que la raíz de toda esta modificación, que son la compra de los contenedores, pues se podrá ejecutar la el pago de los mismos. Gracias."
+    },
+    {
+      "start": 4019,
+      "end": 4023,
+      "speaker": "c06/SPEAKER_02",
+      "text": "Paraules de la emergència o urgència."
+    },
+    {
+      "start": 4023,
+      "end": 4038,
+      "speaker": "c06/SPEAKER_02",
+      "text": "Passem al punt, a votar este punt. A votar la urgència. Vots a favor de votar la urgència."
+    },
+    {
+      "start": 4038,
+      "end": 4051,
+      "speaker": "c06/SPEAKER_02",
+      "text": "A favor per votar. Onze vots a favor, deu abstencions. ¿Socialista?"
+    },
+    {
+      "start": 4051,
+      "end": 4052,
+      "speaker": "c06/SPEAKER_01",
+      "text": "A favor."
+    },
+    {
+      "start": 4052,
+      "end": 4053,
+      "speaker": "c06/SPEAKER_02",
+      "text": "¿Partido Popular?"
+    },
+    {
+      "start": 4053,
+      "end": 4054,
+      "speaker": "c06/SPEAKER_04",
+      "text": "Abstención."
+    },
+    {
+      "start": 4054,
+      "end": 4055,
+      "speaker": "c06/SPEAKER_02",
+      "text": "¿Vox?"
+    },
+    {
+      "start": 4055,
+      "end": 4056,
+      "speaker": "c06/SPEAKER_03",
+      "text": "Abstención."
+    },
+    {
+      "start": 4056,
+      "end": 4057,
+      "speaker": "c06/SPEAKER_02",
+      "text": "¿Esquerra Unida Podem?"
+    },
+    {
+      "start": 4057,
+      "end": 4058,
+      "speaker": "c06/SPEAKER_05",
+      "text": "Abstención."
+    },
+    {
+      "start": 4058,
+      "end": 4060,
+      "speaker": "c06/SPEAKER_02",
+      "text": "¿Y Compromís?"
+    },
+    {
+      "start": 4060,
+      "end": 4061,
+      "speaker": "c06/SPEAKER_06",
+      "text": "A favor."
+    },
+    {
+      "start": 4061,
+      "end": 4064,
+      "speaker": "c06/SPEAKER_02",
+      "text": "Passem al següent, passem a desenvolupar el punt."
+    },
+    {
+      "start": 4064,
+      "end": 4067,
+      "speaker": "c06/SPEAKER_04",
+      "text": "Sí, vale, gracias."
+    },
+    {
+      "start": 4067,
+      "end": 4079,
+      "speaker": "c06/SPEAKER_04",
+      "text": "Bueno, pues todos sabemos que el dieciséis de marzo aprobamos el presupuesto para este ejercicio en el que se incluía el plan de inversiones por valor de cinco millones novecientos cincuenta y seis mil euros."
+    },
+    {
+      "start": 4079,
+      "end": 4091,
+      "speaker": "c06/SPEAKER_04",
+      "text": "Una parte de estas inversiones, su fuente de financiación es el préstamo, concretamente para un millón setecientos ochenta mil euros."
+    },
+    {
+      "start": 4091,
+      "end": 4106,
+      "speaker": "c06/SPEAKER_04",
+      "text": "En este caso lo que traemos es una modificación del plan de inversiones de la parte financiada por préstamo y el motivo de esta modificación, como he comentado en la en el argumento de la de la urgencia, es sobre todo por la compra de los contenedores."
+    },
+    {
+      "start": 4106,
+      "end": 4116,
+      "speaker": "c06/SPEAKER_04",
+      "text": "Compra de contenedores que todos sabemos y hemos debatido aquí que es necesario, era necesario y es necesario cambiarlos cuanto antes."
+    },
+    {
+      "start": 4116,
+      "end": 4127,
+      "speaker": "c06/SPEAKER_04",
+      "text": "Esta compra equivale a quinientos cinco mil euros de inversión, con lo cual teníamos que hacer sí o sí una modificación dentro del propio presupuesto para hacer la para financiar el pago de estas de la adquisición de estos contenedores."
+    },
+    {
+      "start": 4127,
+      "end": 4143,
+      "speaker": "c06/SPEAKER_04",
+      "text": "Estos contenedores, que es un problema que viene del propio contrato de de la RSU, cuando la empresa adjudicataria no cumplió ni con el servicio, servicio pésimo, pero además tampoco cumplió con el cambio de los contenedores de RSU que estaban incluidos en el propio pliego"
+    },
+    {
+      "start": 4143,
+      "end": 4150,
+      "speaker": "c06/SPEAKER_04",
+      "text": "y que sin duda iban a mejorar el propio el servicio de de recogida."
+    },
+    {
+      "start": 4150,
+      "end": 4168,
+      "speaker": "c06/SPEAKER_04",
+      "text": "Bueno, pues una de las maneras de financiar la adquisición de esos contenedores, que que sabéis que se han hecho por a través de la emergencia, de un contrato de emergencia, y que durante el mes de septiembre y octubre se podrán ya se veremos la el cambio de esos contenedores, de los contenedores viejos por los nuevos,"
+    },
+    {
+      "start": 4168,
+      "end": 4173,
+      "speaker": "c06/SPEAKER_04",
+      "text": "pero esos contenedores hay que pagarlos."
+    },
+    {
+      "start": 4173,
+      "end": 4185,
+      "speaker": "c06/SPEAKER_04",
+      "text": "Y la forma de pago es a través de una inversión como la que se va a realizar, una inversión tan importante de quinientos cinco mil euros. Inversión importante económicamente, pero inversión también importante por la necesidad imperiosa de de cambiar lo que hay"
+    },
+    {
+      "start": 4185,
+      "end": 4199,
+      "speaker": "c06/SPEAKER_04",
+      "text": "y por mejorar el servicio que que tenemos, como he dicho, por culpa del pésimo servicio y el incumplimiento de la empresa adjudicataria."
+    },
+    {
+      "start": 4199,
+      "end": 4214,
+      "speaker": "c06/SPEAKER_04",
+      "text": "Con lo cual, lo que realizamos en esta modificación el plan de inversiones, fundamentalmente la base es el cambio de de el plan de inversiones por la compra de los contenedores con un importe de quinientos cinco mil euros, pero también hay una serie de de condicionantes."
+    },
+    {
+      "start": 4214,
+      "end": 4227,
+      "speaker": "c06/SPEAKER_04",
+      "text": "Al hacer ese cambio, también nos obliga a hacer otros cambios dentro del plan de inversiones, porque efectivamente, claro, si tienes un millón setecientos ochenta mil euros de límite, tienes que reducir en el plan de inversiones en algunas de las aplicaciones presupuestarias."
+    },
+    {
+      "start": 4227,
+      "end": 4243,
+      "speaker": "c06/SPEAKER_04",
+      "text": "Esas reducciones de las aplicaciones presupuestarias suponían el incluso no poder hacerlo. No podías dejar una aplicación pues como los caminos de rurales de dejarlo en veinticinco mil euros cuando la necesidad de setenta y cinco mil euros. Y a la vez, esa"
+    },
+    {
+      "start": 4243,
+      "end": 4258,
+      "speaker": "c06/SPEAKER_04",
+      "text": "pasados transcurridos estos meses, por ejemplo, pongo como ejemplo la inversión en los caminos rurales, esta inversión se liquidará en el ejercicio dos mil veintisiete, con lo cual no tenía razón estar en esta, por poner un ejemplo."
+    },
+    {
+      "start": 4258,
+      "end": 4271,
+      "speaker": "c06/SPEAKER_04",
+      "text": "Entonces, dentro de estas modificaciones, también incluimos, además de la compra de los contenedores, la adecuación del centro social Santa Mónica por un importe de treinta y seis mil euros,"
+    },
+    {
+      "start": 4271,
+      "end": 4282,
+      "speaker": "c06/SPEAKER_04",
+      "text": "el incremento en la inversión en seguridad con los sistemas de vigilancia en urbanizaciones con un total de cuarenta y cinco mil euros,"
+    },
+    {
+      "start": 4282,
+      "end": 4290,
+      "speaker": "c06/SPEAKER_04",
+      "text": "adecuación acceso a carretera por zona norte con cincuenta mil euros,"
+    },
+    {
+      "start": 4290,
+      "end": 4298,
+      "speaker": "c06/SPEAKER_04",
+      "text": "inversión en iluminación para zonas de diseminados con otros cincuenta mil euros,"
+    },
+    {
+      "start": 4298,
+      "end": 4314,
+      "speaker": "c06/SPEAKER_04",
+      "text": "y la inversión en la eliminación de los contenedores soterrados, que también estaban incluidos en el en el pliego del contrato de RSU, con una dotación de cuarenta y dos mil euros."
+    },
+    {
+      "start": 4314,
+      "end": 4327,
+      "speaker": "c06/SPEAKER_04",
+      "text": "En cuanto a aquello que que aquellas inversiones que han sufrido cambios, estas inversiones se van a realizar a través de fondos propios"
+    },
+    {
+      "start": 4327,
+      "end": 4340,
+      "speaker": "c06/SPEAKER_04",
+      "text": "con otras modificaciones presupuestarias o incluyéndolas en el propio presupuesto del ejercicio dos mil veintisiete, como pueden ser los propios caminos rurales."
+    },
+    {
+      "start": 4340,
+      "end": 4346,
+      "speaker": "c06/SPEAKER_04",
+      "text": "Incluso en algunas partidas las aumentaremos de lo que había inicialmente."
+    },
+    {
+      "start": 6600,
+      "end": 6619,
+      "speaker": "c11/SPEAKER_01",
+      "text": "lo que paríem i ja està, i no hem de dur-ho a ple. Per tant, en eixe sentit, hem fet lo correcte. Treballar per a que a finals de setembre, principis d'octubre tinguem tots els contenidors canviats i l'any que ve una nova adjudicació i una nova contrata que ho faça en, com volem, en una bona prestació de serveis públics. I per últim,"
+    },
+    {
+      "start": 6619,
+      "end": 6661,
+      "speaker": "c11/SPEAKER_01",
+      "text": "i això va per a Vox. Quan jo parle de que vostès és un perill si governen en l'àmbit climatològic i del negacionisme, per a mi ho és. Per a mi ho és. No estic parlant de Teresa, estic parlant de lo que estic parlant. Jo crec, sincerament, que no evolucionar en el tema de l'agenda vint-i-trenta, del canvi climàtic, pense que és un error i és un perill si ho apliquen allà on governen. I el temps ho dirà, i en alguns llocs ja s'està veient. Eliminar partides, xiringuitos que vostès diuen, de millorar la gestió forestal, de millorar els bombers, sí, perquè vostès tenen una responsabilitat ací, si estan governant amb el Partit Popular, i duien emergències, i tinguérem un incendi ací. Ací tinguérem un incendi i governaven vostès, el secretari autonòmic que era de Vox."
+    },
+    {
+      "start": 6661,
+      "end": 6692,
+      "speaker": "c11/SPEAKER_01",
+      "text": "I què va fer? Dimitir. Dimitir. Pense per què va dimitir. Pense per què va dimitir, val? Per tant, en eixe sentit, el perill si vostès governen és en quant a la gestió de lluita contra el canvi climàtic, clarament. Perill important, que mata, i està comprovat científicament, i vostès r que r. Per tant, encasille les coses on jo vull dir. Ara, jo mai li he dit a vostè"
+    },
+    {
+      "start": 6692,
+      "end": 6716,
+      "speaker": "c11/SPEAKER_01",
+      "text": "ni fatxa, ni feixista, ni a favor de Franco, jamai. Però vostè ens diu als socialistes corruptes, filoetarres, ens diu de todo. Vostè i el seu jefe. I per educació, i perquè sóc l'alcalde, jamai m'he tret d'açò. Però jamai limitaré la llibertat d'expressió d'un regidor que després pot ser rectificat en via del propi ple i si toca penalment, que cadascun fa lo que té que fer. Per tant, les paraules que diu cadascun, en el seu context."
+    },
+    {
+      "start": 6716,
+      "end": 6740,
+      "speaker": "c11/SPEAKER_01",
+      "text": "No l'he rectificat a vostè quan ens ha dit filoetarres, i no he rectificat a Compromís quan ha fet una comparativa que té més perill que no sé què. No ho he fet, i no ho vaig a fer amb ningun regidor. Salvo que siguen insults personals de eres lo que siga, i llavors pare el ple. Per tant, quede clar en eixe sentit, vale? I"
+    },
+    {
+      "start": 6740,
+      "end": 6768,
+      "speaker": "c11/SPEAKER_01",
+      "text": "i per a acabar este punt, que és un dels punts més importants del ple pel que veig, jo lògicament, jo crec que el responsable del PP que ha fet la intervenció ha vingut, com diu José Ángel, en un paperet apuntat i no ha entès de lo que ha dit pràcticament res. Bueno, sí que ho ha entès, pero ha volgut anar en una altra línia. Ho han dit clarament. Primer, la compra dels contenidors, dur-los al carrer, replegar-los, i segon, tot lo que queda d'eixes partides d'inversions, pues possiblement ho farem en modificacions de crèdit. I per a acabar, els refugis climàtics,"
+    },
+    {
+      "start": 6768,
+      "end": 6795,
+      "speaker": "c11/SPEAKER_01",
+      "text": "lo que va dir l'alcalde i Tere, a part de ser un orgull i entrar dins del pla de refugis climàtics, era adequar instal·lacions que tenim com a refugi climàtic. Per tant, nosaltres ja estem treballant en refugis climàtics, no d'ara. Quan feren el ciclovia de n'Ample, els pins i les taules que n'hi han davant del pàdel és un refugi climàtic. I així en diria diversos més que hem fet. Lo que estem fent en el PSTD, una inversió de, pagada, pagada pel finançament europeu al cent per cent, és un refugi, diversos refugis climàtics,"
+    },
+    {
+      "start": 6795,
+      "end": 6820,
+      "speaker": "c11/SPEAKER_01",
+      "text": "que és en el barranc dels Moros, i s'està fent-se ja. Per tant, i per la por de que no complim, no, no, és que nosaltres opinem igual o més que vostè en les polítiques verdes, igual o més que el seu partit. Igual o més. No ens quedem darrere, no canviem una cosa per refugi climàtic o per polítiques verdes i l'agenda vint-i-trenta, al revés, les liderem en este poble. Les liderem ací, en este poble. I pot, en fi, podem repassar quan vulga els plans que estem fent i en què estem"
+    },
+    {
+      "start": 6820,
+      "end": 6848,
+      "speaker": "c11/SPEAKER_01",
+      "text": "treballant en el PACES, com el PEMUS i altres plans que van en la línia que vostè diu. Per tant, no sols li dic que estiga tranquil, és que damunt el passarem el pla. Estiga tranquil en això. Ara, si vota no, vota no als contenidors. Eixa és la realitat per a nosaltres. Cada u que faça el que crea convenient. No als contenidors, al canvi dels contenidors per a poder comprar-los i dur-los al lloc, val? Passem al següent punt, anem a votar i passem al següent punt."
+    },
+    {
+      "start": 6848,
+      "end": 6879,
+      "speaker": "c11/SPEAKER_01",
+      "text": "S'aprova per dotze vots a favor i nou abstencions. Grup Socialista?"
+    },
+    {
+      "start": 6879,
+      "end": 6880,
+      "speaker": "c11/SPEAKER_02",
+      "text": "A favor."
+    },
+    {
+      "start": 6880,
+      "end": 6881,
+      "speaker": "c11/SPEAKER_01",
+      "text": "Partit Popular?"
+    },
+    {
+      "start": 6881,
+      "end": 6882,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Abstenció."
+    },
+    {
+      "start": 6882,
+      "end": 6883,
+      "speaker": "c11/SPEAKER_01",
+      "text": "Vox?"
+    },
+    {
+      "start": 6883,
+      "end": 6884,
+      "speaker": "c11/SPEAKER_04",
+      "text": "Abstenció."
+    },
+    {
+      "start": 6884,
+      "end": 6885,
+      "speaker": "c11/SPEAKER_01",
+      "text": "Esquerra Unida Podem?"
+    },
+    {
+      "start": 6885,
+      "end": 6886,
+      "speaker": "c11/SPEAKER_05",
+      "text": "Abstenció."
+    },
+    {
+      "start": 6886,
+      "end": 6887,
+      "speaker": "c11/SPEAKER_01",
+      "text": "Compromís?"
+    },
+    {
+      "start": 6887,
+      "end": 6888,
+      "speaker": "c11/SPEAKER_06",
+      "text": "A favor."
+    },
+    {
+      "start": 6888,
+      "end": 6903,
+      "speaker": "c11/SPEAKER_01",
+      "text": "Passem al següent punt de l'ordre del dia, que és precs i, no, donar compte de les resolucions, no? No. Donar compte, correcte, són els donar comptes. Donar compte. Val, tenim el punt huit de tresoreria, donar compte de l'aprovació del pla de tresoreria. José Ángel."
+    },
+    {
+      "start": 6903,
+      "end": 6918,
+      "speaker": "c11/SPEAKER_07",
+      "text": "No res, bueno, com teniu ahí, també a les comissions informatives, el pla de tresoreria, com fa tots els anys la tresorera. Gràcies."
+    },
+    {
+      "start": 6918,
+      "end": 6928,
+      "speaker": "c11/SPEAKER_01",
+      "text": "Alguna qüestió a este punt? Salva, no? José Manuel."
+    },
+    {
+      "start": 6928,
+      "end": 6955,
+      "speaker": "c11/SPEAKER_08",
+      "text": "Gràcies. Vale. Jo sobre el, pues, també el contingut, no de lo que diu el pla, o siga, lo que diu l'informe de tresoreria, el pla de tresoreria, per donar-li contingut perquè, eh, en este sentit, l'informe tècnic no és positiu front a lo que, a lo que diu a la salut econòmica de, de l'Ajuntament. L'informe parla d'una clara insuficiència en fons líquids, això ho diu l'informe. Sí que també parla de que, eh, lo que es preveu tancar l'exercici vint-i-sis amb un saldo positiu de dèneu milions d'euros,"
+    },
+    {
+      "start": 6955,
+      "end": 6985,
+      "speaker": "c11/SPEAKER_08",
+      "text": "pero també fa referència este informe a que gran part d'eixos diners no són de lliure disposició perquè, com sabem, molts d'eixos diners venen de subvencions, tancades com és la DANA, fons europeus, etcètera. Vale? També, eh, l'informe lo que també diu és que en el vint-i-sis, eh, els pagaments totals ascendiran a més de cinquanta-quatre milions i que els ingressos seran de cinquanta-un milions, per tant, hi ha un desfasament de quasi tres milions d'euros."
+    },
+    {
+      "start": 6985,
+      "end": 7014,
+      "speaker": "c11/SPEAKER_08",
+      "text": "També parla del període mitjà de pagament, que és una qüestió que ja sabem que no, no va bé, que és, eh, que està fora del termini legal des de que va començar la legislatura, i lo que fa referència és que no és una cosa puntual sinó que, bueno, que porta molts mesos, no? Eh, estan fora. També fa referència als, a, als requeriments que té l'Ajuntament per part d'Hisenda per no complir en la part legal des de l'any vint-i-quatre, vint-i-cinc i en l'últim en maig del vint-i-sis."
+    },
+    {
+      "start": 7014,
+      "end": 7045,
+      "speaker": "c11/SPEAKER_08",
+      "text": "I en este sentit, també lo que fa la, el propi informe és, eh, parlar de proposar mesures que haurien de ser, eh, urgents, no? Com contindre la despesa, evitar continuar aprovant reconeixements extrajudicials de crèdit, reforçar la recaptació dels ingressos estructurals, millorar la gestió administrativa i adoptar mesures immediates per a reduir estes tensions. També l'informe lo que diu és que seria important que en la pròpia resolució d'alcaldia d'açò estigueren mesures incloses, és a dir, si hi ha una, un diagnòstic, que és lo que fa la tresorera on diu que hi ha una falta"
+    },
+    {
+      "start": 7045,
+      "end": 7075,
+      "speaker": "c11/SPEAKER_08",
+      "text": "o que hi ha més ingressos, o siga, més gasto que ingrés, ella, eh, o siga, la tresoreria lo que fa és proposar-nos unes mesures, pero en la resolució de l'alcaldia no hi ha una, unes mesures concretes i no hi ha un pla d'actuació, objectius, etcètera. Per tant, eh, nosaltres lo que demanem és en estes mesures, o siga, en este diagnòstic que fa la tresorera, quines mesures concretes va fer l'Ajuntament, l'equip de govern, per poder evitar o millorar esta situació. Gràcies."
+    },
+    {
+      "start": 7075,
+      "end": 7080,
+      "speaker": "c11/SPEAKER_01",
+      "text": "Més paraules? José Ángel. És un donar compte, eh."
+    },
+    {
+      "start": 7080,
+      "end": 7111,
+      "speaker": "c11/SPEAKER_07",
+      "text": "Sí, per això no he entrat, perquè és una estimació que fa la tresorera. L'informe que ha fet la tresorera ha anat molt en bisturí a on t'ha interessat, pero no a tots els puestos, eh? Però si agarres i estudies el propi informe de la tresorera, eh, podràs comprovar que lo que hem aprovat hui ací de l'aigua no està inclòs en ingressos. I és que, i si agarres el, l'informe de l'exercici passat del dos mil vint-i-cinc de la tresorera, era un còpia i pega. Però si te'n vas al del vint-i-quatre era un còpia i pega. Però si te'n vas al del vint-i-tres era un còpia i pega."
+    },
+    {
+      "start": 7111,
+      "end": 7140,
+      "speaker": "c11/SPEAKER_07",
+      "text": "Ho dic perquè són estimacions, i, i la tresorera lo que fa en el seu propi informe, per això és un donar compte, ella lo que, lo que fa és que se va a la prudència, eh? Ella agarra el, en base al principi de prudència en quant a ingressos, no? En ingressos. Però al mateix temps, si veus el quadre de tresoreria, voràs que en ingressos no està lo estipulat i lo que està pressupostat. No. Però en quant a gastos sí, executa el cent per cent. Per tant, quan es, realment es fan les liquidacions pressupostàries,"
+    },
+    {
+      "start": 7140,
+      "end": 7170,
+      "speaker": "c11/SPEAKER_07",
+      "text": "no té res que veure l'estimació que fa la tresorera en la realitat. Me'n vaig a l'exemple de l'exercici passat. Este exercici del dos mil vint-i-cinc, en l'estimació de la tresorera era de ingressos de un resultat de un saldo final líquid de quinze milions d'euros. El resultat final va ser de vint-i-dos milions cent i pico mil pavos, euros."
+    },
+    {
+      "start": 7200,
+      "end": 7208.9,
+      "speaker": "c12/SPEAKER_00",
+      "text": "en lo qual, eixes diferències, euros, i eixes diferències pues no estan en eixes estimacions, però per què? Perquè ella va al base de prudència."
+    },
+    {
+      "start": 7208.9,
+      "end": 7224.5,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Pessimista en ingressos i optimista en gastos. Soles en el capítol u sempre tenim un remanent de un coma cinc milions d'euros aproximadament de mitja, però si tu agarres el seu quadro de tresoreria voràs que fica el cent per cent, al igual que en la resta de capítols."
+    },
+    {
+      "start": 7224.5,
+      "end": 7232.5,
+      "speaker": "c12/SPEAKER_00",
+      "text": "En lo qual, pues bueno, és una estimació i ella també ho diu en el propi informe, diu: \"Esto es una estimación que si tengo que cambiarla, la cambio\"."
+    },
+    {
+      "start": 7232.5,
+      "end": 7247.5,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Pero además te diu: \"Ojo, que efectivamente por la tesorería\", pero también te diu una cosa, diu: \"Ojo, que teniu marge de maniobra, tant en el ICIO com en el import d'activitats econòmiques\", no ho diu, però també les plusvàlues."
+    },
+    {
+      "start": 7247.5,
+      "end": 7259.5,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Duguem soles huit mesos de retràs en les plusvàlues, els altres ajuntaments van van en un any i any i pico de retràs, ací podem donar-li l'enhorabona perquè soles són huit mesos de retràs en la liquidació de plusvàlues, vull dir,"
+    },
+    {
+      "start": 7259.5,
+      "end": 7316,
+      "speaker": "c12/SPEAKER_00",
+      "text": "que d'això sempre n'hi ha molt de marge i que són estimacions que fa i que, mira, soles en el pago en quan diu que part d'eixos deu milions són de són de la reconstrucció i de turisme."
+    },
+    {
+      "start": 7316,
+      "end": 7324.5,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Pues si tu te vas al propi quadro de tresoreria i al saldos, voràs que de turisme ja s'han ja s'han pagat, liquidat sis-cents mil euros."
+    },
+    {
+      "start": 7324.5,
+      "end": 7346.5,
+      "speaker": "c12/SPEAKER_00",
+      "text": "En lo qual ja el marge inclús és major. Ja no no soles tens que comptar els dos coma tres milions més u coma dos milions, sinó ja tens que incloure sis-cents mil euros mès dins de la la liquides del propi ajuntament que no està reflectit en este quadro de tresoreria. En lo qual, pues això, són estimacions i que varien pues sempre a favor del propi ajuntament. Gràcies."
+    },
+    {
+      "start": 7346.5,
+      "end": 7348.5,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Més qüestions?"
+    },
+    {
+      "start": 7348.5,
+      "end": 7352.5,
+      "speaker": "c12/SPEAKER_01",
+      "text": "José Manuel."
+    },
+    {
+      "start": 7352.5,
+      "end": 7398,
+      "speaker": "c12/SPEAKER_02",
+      "text": "A veure, jo entenc lo que lo que diu José Ángel i que hi ha coses que després es tanquen diferent. A veure, nosaltres, òbviament, en lo que treballem són en els informes tècnics i és que l'informe tècnic és clar, encara que siga una estimació, jo no dic que hi haja una clara insuficiència de fons líquids, és que no ho dic jo, jo solament estic parlant de un informe que suposadament és objectiu, que fa una tècnica d'este ajuntament i, per tant, és una realitat."
+    },
+    {
+      "start": 7398,
+      "end": 7443,
+      "speaker": "c12/SPEAKER_02",
+      "text": "A més, el PMP també és una realitat que que és eixina, vull dir, és és un dato objectiu i que al final nosaltres de lo que estem parlant són de un informe tècnic que no és positiu. Vull dir, pot tancar després en altres qüestions, pero nosaltres amb este informe què què podem fer? Vull dir, ací és una dació de comptes, que per supost és per a donar comptes, pero es dona compte d'una situació."
+    },
+    {
+      "start": 7443,
+      "end": 7498,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Pot canviar? Pot canviar, pero el donar compte, el el paper de lo que estem parlant i l'informe és lo que diu. Jo no he dit res en la meua intervenció que no que no estiguera dit per un informe tècnic, encara que siga una estimació. No he dit ninguna mentira ni m'he inventat res, absolutament. De fet, en el propi informe lo que diu és que la la resolució d'alcaldia hauria d'estar més completa, això ho diu l'informe."
+    },
+    {
+      "start": 7498,
+      "end": 7546,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Podia també dir, podia estar més completa, però és una estimació, no ho sé. Però lo que diu l'informe és lo que diu. Per tant, nosaltres, en este cas jo, com a persona que està a l'oposició, crec que tinc tota la responsabilitat de, quan venen estos informes, traslladar-ho i, sobretot, fer una crítica que pot ser constructiva, però que la realitat objectiva de l'informe és la que és. Gràcies."
+    },
+    {
+      "start": 7546,
+      "end": 7550,
+      "speaker": "c12/SPEAKER_01",
+      "text": "José Ángel, un minut."
+    },
+    {
+      "start": 7550,
+      "end": 7613.5,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Sí, sí, si és objectiu. També és objectiu lo que he dit que també va en l'informe. Per a vosté és objectiu soles una part de l'informe, el resto no, soles la crítica, lo positiu no és important. Tan objectiu és com haver-se informat en les comissions informatives i haver preguntat, que allí estava la tresorera perquè li haguera dit, i també és objectiu lo que hem aprovat hui."
+    },
+    {
+      "start": 7613.5,
+      "end": 7702,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Dos coma tres milions i u coma dos, és objectiu o no és objectiu? O si agarra el saldo de hui, que són cinc milions i mig d'euros, també és objectiu, eh? I i vorà que ja hem invertit, ja hem pagat més de sis-cents mil euros del PSTD i ella diu que això té que estar retés quan ja s'han pagat, això és objectiu també, són datos, jo no me'ls invente, estan allí. Però claro, sempre ací se fa la crítica, queda de lujo, va la gent i diu que les conclusions són les que són, no? Quan la pròpia tresorera diu: \"Esto es una estimación, la puedo cambiar cuando haga cuando proceda\", que és la mateixa copia i pega de l'exercici passat, de l'anterior, de l'anterior i de l'anterior. Això és objectiu, eh? Se pot se pot comprovar també. En lo qual, bueno, tot és objectiu, però tot, no soles una part de de l'informe. Gràcies."
+    },
+    {
+      "start": 7702,
+      "end": 7722.5,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Jo crec que l'important de tot açò és que, claro, se pot dir molt educadament tot, pero no dir-ho tot. En fi, jo sí que dic una cosa, mireu, es donar comptes, i anem a veure els rols estos, que voleu que també jo acurte, tal, pues parlarem de diverses coses. Entre altres coses, donar comptes, teniu les comissions informatives que tots cobreu."
+    },
+    {
+      "start": 7722.5,
+      "end": 7821.5,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Comissió informativa se cobra i és lògicament, faltaria més. I ahí és on hi ha que discutir estos temes i després vindre ací polit. I aleshores fer un anàlisi, que el ací cadascú fa lo que vol perquè és un punt, vale? Però eixos tres minuts de temps que que anem a al donar comptes, que no és un punt de l'ordre del dia de debat, això no és de debat, és un donar comptes, vale? Significa que jo crec que tindria que vindre polit i després ja, com a grup, pues en el donar comptes posicionar-se, pues mira, açò ens pareix açò, açò, o el que siga. Però mos ha fet un repàs de l'informe de tresoreria que l'han llegit ja tots i que sabem la part eixa que tu has dit, no has dit l'altra que diu José, i per tant, sí que és veritat que, respectant les intervencions, eh? Que també és un poc injust i i i generar el debat de no dir l'informe al complet, dir al percentatge que un vol, també si hi ha les càmeres davant, i d'eixe allargar el punt, perquè el regidor vol defensar el treball, perquè és objectiu que hui haguem de dir que anem a ingressar quasi quatre milions."
+    },
+    {
+      "start": 7821.5,
+      "end": 7923,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Això és súper objectiu. I t'ha dit que sis-cents mil euros més, per tant, l'informe ja està passat. L'informe, que si volem objectius, ja se devalua l'informe, pero sense que anar a preguntar a ningú, eh? Només en què tingues eixes dades d'este ple, te'ls repasses i és objectiu total, tu i el teu grup. A veure, vale, açò diu açò, de esta fecha i què i què i què significa la u? Pues ho sabeu tots de la comissió de contractació, pues quatre milions d'ingressos. Aleshores ja no és objectiu. Vull dir que jo pense que en poc pues el regidor d'Hisenda té que defensar la seua parcel·la perquè pensa que, bueno, pues clar que és un paper, val? Però teniu les comissions informatives, que és important per a dur-ho un poc més polit, eh? No és per res. Però si anem a obrim un debat de tots els portaveus en el donar comptes seria molt complexe. No ho fa que siga ningun ajuntament, val? Passem a a donar més comptes, en este cas de secretaria, que és de el compte de la memòria de secretaria 2025, que este és document magnífic que tenim ací, que han presentat, molt ben maquetat i que està tot. Eh, alguna qüestió? Vale."
+    },
+    {
+      "start": 7923,
+      "end": 8001,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Bueno, eh, sí, jo soles agrair el treball que ha fet este el departament de secretaria, com fa tots os anys, de la memòria de secretaria. Este document arreplega més de quaranta milions d'euros del pressupost del 2025 que se varen executar, este és tot, arreplega això, en lo qual pues, ademés de d'agrair el treball de la secretaria per fer este este treball, eh, fer extensiu el treball de tots els regidors i tots els tècnics i treballadors de l'ajuntament perquè han fet que açò siga possible, clar, i més de quaranta milions d'euros d'execució pressupostària. Gràcies."
+    },
+    {
+      "start": 8001,
+      "end": 8005,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Alguna qüestió a este punt? Eh, Alberto."
+    },
+    {
+      "start": 8005,
+      "end": 8035,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Eh, sí, mos comente que és que no n'hi ha res en l'expedient del pleno, el podem veure a partir de hui, a partir de quan iscam d'ací, pero no hem pogut echarle un vistazo, nada, entonces, perquè no està ni en l'expedient del pleno ni hem rebut ningun document digital en referència a esto, entonces, pues molt bé, però és que no no està ni la dació de comptes, que suposo que deuria d'anar una dació en compte i no està."
+    },
+    {
+      "start": 8035,
+      "end": 8038.5,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Nosaltres no ho hem vist ningú, però"
+    },
+    {
+      "start": 8038.5,
+      "end": 8153,
+      "speaker": "c12/SPEAKER_04",
+      "text": "A lo millor hi ha hagut algun error, però s'ha s'ha pujat una dació en compte. Sí que és veritat que hi hagué un error en la convocatòria, que per això us vam mandar luego una resolució, perquè no no s'havia posat el punt, pero sí que està la proposta d'acord de dació en compte i i la memòria en digital, bueno, a parte de que la teníeu a disposició en secretaria des del dia de la comissió, que ha hagut algun regidor que sí que la va recollir eh con antelación. No obstant, eh si voleu que us la mandem també en eh perquè no hàgeu pogut accedir, que us la mandem, fem arribar per correu electrònic o per qualsevol altre medi, no tenim inconvenient, eh? Però la memòria estava a disposició vostra des del dia de les comissions informatives en paper, perquè per un any i gràcies al servici de publicacions, que tinc que donar les gràcies a Alejandro i a tot l'equip, que la veritat que han fet un esforç especial, la teníem ací el dilluns perquè el dimarts en les comissions, a partir de eixe dia ja estiguera a disposició els vint-i-un exemplars. Ha hagut a lo millor ha sigut algun petit malentès, pero us la fem arribar de de qualsevol altre medi que que que que vulgueu, perquè és una pena que, de tots els modes, se publicarà també en en la web en en obert, eh? Però demà mateix us la fem arribar per per correu o pel medi que que que vulgueu."
+    },
+    {
+      "start": 8153,
+      "end": 8157,
+      "speaker": "c12/SPEAKER_01",
+      "text": "D'acord, este tema ací. Vox volia parlar també, José."
+    },
+    {
+      "start": 8157,
+      "end": 8159,
+      "speaker": "c12/SPEAKER_05",
+      "text": "Muchas gracias."
+    },
+    {
+      "start": 7800,
+      "end": 7802.9,
+      "speaker": "c13/SPEAKER_00",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 7802.9,
+      "end": 7805.8,
+      "speaker": "c13/SPEAKER_01",
+      "text": "¿Ya? ¿Ya habla?"
+    },
+    {
+      "start": 7805.8,
+      "end": 7814.5,
+      "speaker": "c13/SPEAKER_02",
+      "text": "A ver, es un enorme trabajo y además en el punto nueve, art i cultura, la verdad es que hay que reconocer la parte de art i cultura que se hace en el Ayuntamiento, que es extensa."
+    },
+    {
+      "start": 7814.5,
+      "end": 7827.5,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Luego hay otros capítulos relacionados con el ODS, que bueno, pues para qué vamos a entrar otra vez en detalle, ¿verdad? Pero, pero es un trabajo, eso sí, creo que además de ese enorme trabajo y de maquetación y de impresión,"
+    },
+    {
+      "start": 7827.5,
+      "end": 7839.5,
+      "speaker": "c13/SPEAKER_02",
+      "text": "no sé, si os parece bien, en un punto que se pudiera llevar al pleno, en vez de hacerlo en soporte papel, y si es exclusivamente digital para las siguientes ocasiones, pues a lo mejor hacemos ahorrar algo a los contribuyentes,"
+    },
+    {
+      "start": 7839.5,
+      "end": 7857.5,
+      "speaker": "c13/SPEAKER_02",
+      "text": "si entre todos los miembros de la corporación toman toman esa decisión. Esto es lo único que quería decir, gracias."
+    },
+    {
+      "start": 7857.5,
+      "end": 7859.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "¿Alguna cuestión más de este punto?"
+    },
+    {
+      "start": 7861.5,
+      "end": 7871.5,
+      "speaker": "c13/SPEAKER_03",
+      "text": "Sí, jo simplement volia agrair el treball al departament de secretaria i no he pogut tampoc veure-la digitalment, però bueno, si no per correu i si no físicament, però per això important agrair el treball."
+    },
+    {
+      "start": 7871.5,
+      "end": 7878,
+      "speaker": "c13/SPEAKER_03",
+      "text": "I com és una dació de comptes, no me vaig a detindre més temps."
+    },
+    {
+      "start": 7878,
+      "end": 7879.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Gràcies. ¿Alguna qüestió més?"
+    },
+    {
+      "start": 7879.5,
+      "end": 7883,
+      "speaker": "c13/SPEAKER_04",
+      "text": "Sí, gràcies, senyor alcalde. Anem a veure, jo..."
+    },
+    {
+      "start": 7883,
+      "end": 7891.5,
+      "speaker": "c13/SPEAKER_04",
+      "text": "vam rebre un WhatsApp el dimarts passat i jo el dimecres me vaig acostar per l'Ajuntament i vaig arreplegar la memòria."
+    },
+    {
+      "start": 7891.5,
+      "end": 7901.5,
+      "speaker": "c13/SPEAKER_04",
+      "text": "A mi sí que m'ha donat temps a a veure-la. En principi, agrair la informació que se'ns dona en esta memòria,"
+    },
+    {
+      "start": 7901.5,
+      "end": 7911.5,
+      "speaker": "c13/SPEAKER_04",
+      "text": "felicitar a tots els departaments que han estat implicats en en la seua execució, com ha de dir la secretària, també al departament de publicació, perquè si no, no no ho hauríem tingut en en les nostres en les nostres mans."
+    },
+    {
+      "start": 7911.5,
+      "end": 7925.5,
+      "speaker": "c13/SPEAKER_04",
+      "text": "I sí que trobe a faltar informació d'algunes àrees d'este Ajuntament. I preguntaria, encara que és un donar compte, però està molt completa la memòria, pero a mi m'hauria agradat que tots els departaments d'este Ajuntament hagueren participat en ella."
+    },
+    {
+      "start": 7925.5,
+      "end": 7932.5,
+      "speaker": "c13/SPEAKER_04",
+      "text": "Si pot ser, m'agradaria saber per què no han participat, si pot ser. Gràcies."
+    },
+    {
+      "start": 7932.5,
+      "end": 7935,
+      "speaker": "c13/SPEAKER_00",
+      "text": "¿Alguna qüestió més? ¿José?"
+    },
+    {
+      "start": 7935,
+      "end": 7938.5,
+      "speaker": "c13/SPEAKER_05",
+      "text": "No, simplement que en les comissions informatives es va comentar que..."
+    },
+    {
+      "start": 7938.5,
+      "end": 7949,
+      "speaker": "c13/SPEAKER_05",
+      "text": "simplement que estaria que en les comissions informatives es va dir que estaria a disposició dels regidors a arreplegar este este format en secretaria el dimarts de la setmana passada. Gràcies."
+    },
+    {
+      "start": 7949,
+      "end": 7956.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Bueno, a veure, per a que quede clar un poc i que no quede un poc de nebulosa, no passa res."
+    },
+    {
+      "start": 7956.5,
+      "end": 7963.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "En comissions tot el món se va dir que tenia el perceptiu document, val?"
+    },
+    {
+      "start": 7963.5,
+      "end": 7971.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "S'ha intentat enviar-ho al ple en el document corresponent, pot ser que n'hi hagués una errata, no passa res."
+    },
+    {
+      "start": 7971.5,
+      "end": 7981.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Jo sempre aconsello que trigueu les coses en les comissions informatives, trigueu les coses, no per res, perquè estan per a d'això. I després, si n'hi ha un tema que has de dur al ple, pues a partir del que has parlat en les comissions informatives, pues ho dus al ple."
+    },
+    {
+      "start": 7981.5,
+      "end": 7985.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "I aleshores, si s'ha tingut un fallo, se va resoldre, val?"
+    },
+    {
+      "start": 7985.5,
+      "end": 7997.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Però lo important, jo pense que, bueno, pues va en la línia... Bueno, jo felicitar a tot el món, perquè com se felicitem tots, pues també als regidors que van demanar a secretaria. Així fem complet tot."
+    },
+    {
+      "start": 7997.5,
+      "end": 8001,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Però sobretot, el més important, n'hi ha un tema, jo crec que sí que és de calat."
+    },
+    {
+      "start": 8001,
+      "end": 8007.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Mireu, l'Estat espanyol, el Govern d'Espanya, que governa el meu partit en coalició, o el partit que jo milite,"
+    },
+    {
+      "start": 8007.5,
+      "end": 8017.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "i el Govern de la Generalitat, que governa, no governa, però quasi, el Partit Popular, o mana, vull dir, no?"
+    },
+    {
+      "start": 8017.5,
+      "end": 8021.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Mireu lo que s'ha executat el pressupost."
+    },
+    {
+      "start": 8021.5,
+      "end": 8026.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Nosaltres estem parlant d'un nivell d'execució del vint-i-cinc."
+    },
+    {
+      "start": 8026.5,
+      "end": 8030.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Per a executar el pressupost hi ha que treballar molt."
+    },
+    {
+      "start": 8030.5,
+      "end": 8034.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Després t'equivoques en coses, pero hi ha que treballar. Significa que les partides pressupostàries les dus totes endavant i executes pràcticament, pues un noranta-nou per cent en el pressupost que tenim, val?"
+    },
+    {
+      "start": 8034.5,
+      "end": 8049.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "I això jo pense que, bueno, pues és d'agrair a tots els funcionaris, empleats públics que fan els expedients, i a les iniciatives de tots els regidors i regidores en col·laboració, de vegades, en aportacions de l'oposició, per dur els expedients endavant."
+    },
+    {
+      "start": 8049.5,
+      "end": 8057.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "I això pense que és molt important d'este document, més enllà de tot lo que fa cada àrea, que també se pot fiscalitzar lògicament. Però executar, pues quaranta-un milions d'euros pràcticament de contractes, és molt de diners, val?"
+    },
+    {
+      "start": 8057.5,
+      "end": 8063.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "En un poble com el nostre. En fi, això volia destacar, val? Passem al següent punt de l'ordre del dia."
+    },
+    {
+      "start": 8063.5,
+      "end": 8065.5,
+      "speaker": "c13/SPEAKER_04",
+      "text": "Jo voldria fer una aclaració."
+    },
+    {
+      "start": 8065.5,
+      "end": 8066.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Sí."
+    },
+    {
+      "start": 8066.5,
+      "end": 8067.5,
+      "speaker": "c13/SPEAKER_04",
+      "text": "Val."
+    },
+    {
+      "start": 8067.5,
+      "end": 8070.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "A veure, per ordre. Com són dos aclaracions... Alberto."
+    },
+    {
+      "start": 8070.5,
+      "end": 8075.5,
+      "speaker": "c13/SPEAKER_06",
+      "text": "A veure, és que ho hem parlat antes. És que no n'hi ha dació de comptes d'este punt."
+    },
+    {
+      "start": 8075.5,
+      "end": 8079.5,
+      "speaker": "c13/SPEAKER_06",
+      "text": "No existix en el en l'expedient del ple la dació de comptes d'este punt."
+    },
+    {
+      "start": 8079.5,
+      "end": 8082.5,
+      "speaker": "c13/SPEAKER_07",
+      "text": "Sí, sí que està, sí que està. Lo que passa és que ha hagut un error, o siga, la dació..."
+    },
+    {
+      "start": 8082.5,
+      "end": 8089.5,
+      "speaker": "c13/SPEAKER_06",
+      "text": "Joder, acabo de verlo yo en el en el expediente del pleno. O yo no tengo acceso a todo el expediente del pleno o..."
+    },
+    {
+      "start": 8089.5,
+      "end": 8098.5,
+      "speaker": "c13/SPEAKER_07",
+      "text": "Ha hagut un error, hi ha hagut un error i el punt el punt de la dació de comptes, com vam dir, o siga, la dació de comptes està. Apaga apaga el micròfon."
+    },
+    {
+      "start": 8098.5,
+      "end": 8103.5,
+      "speaker": "c13/SPEAKER_07",
+      "text": "A veure. Eh, la dació de comptes està, la dació de comptes està. Lo que ocorre és lo següent, a veure, els expedients, cada departament tramita uns expedients i vosaltres no teniu accés a eixos expedients."
+    },
+    {
+      "start": 8103.5,
+      "end": 8114.5,
+      "speaker": "c13/SPEAKER_07",
+      "text": "Lo teniu en el moment en el que se obre una convocatòria d'un òrgan col·legiat i aleshores la plataforma enganxa eixe expedient i aleshores lo teniu visible."
+    },
+    {
+      "start": 8114.5,
+      "end": 8125.5,
+      "speaker": "c13/SPEAKER_07",
+      "text": "Jo crec, penso jo, que com el ordre del dia quan se convocà no agafà eixe punt, que és el error que vam tindre, el expedient està, però no lo han enganxat per a que vosaltres dins de l'expedient de ple eixe punt lo vinguéreu al tindre que fer eixa resolució complementària."
+    },
+    {
+      "start": 8125.5,
+      "end": 8138.5,
+      "speaker": "c13/SPEAKER_07",
+      "text": "Penso, per lo que me dius de que tu no lo veus i que jo lo tinc ací, aleshores jo sí que lo veig, vosaltres no lo veieu. Aleshores, jo crec que ha hagut de ser eixe eixe eixe error. Penso jo que ha pogut ser això, eh? És lo que se m'ocurre, però el expedient estar està."
+    },
+    {
+      "start": 8138.5,
+      "end": 8148.5,
+      "speaker": "c13/SPEAKER_07",
+      "text": "Lo que passa és que a lo millor al no enganxar eixe punt no lo teniu en la vostra forma d'accés, pero no passa nada, o siga, esto es un dació de comptes, la memòria la teníeu disponible en paper des del moment en què se convocà perquè així lo comentem a les comissions informatives i ací està,"
+    },
+    {
+      "start": 8148.5,
+      "end": 8158.5,
+      "speaker": "c13/SPEAKER_07",
+      "text": "i jo demà mateix us la faig arribar per correu, al marge de que va a estar publicada en la web, però jo demà us la us la faig arribar per correu electrònic i penso que a lo millor el error ha pogut ser això, per lo que jo imagine, eh? Si no la teniu ningú."
+    },
+    {
+      "start": 8158.5,
+      "end": 8160.5,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Ah, ¿tú lo tienes? Ah, bueno, pues entonces..."
+    },
+    {
+      "start": 8160.5,
+      "end": 8163.5,
+      "speaker": "c13/SPEAKER_07",
+      "text": "Ah, pues entonces ja no ja no lo sé, perquè lo tens tu, no sé."
+    },
+    {
+      "start": 8163.5,
+      "end": 8173.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "No passa res, a veure, que hem entrat ací en un batibull i la gent se va marejar. Val, eh, no passa res. Este punt s'ha donat compte ara, si n'hi ha algun regidor que com ja sap on està, ho va tindre el document eixe i se vol repetir al pròxim ple, donar compte d'això, no passa res."
+    },
+    {
+      "start": 8173.5,
+      "end": 8177.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Val, en principi, pareix que alguns tenen, altres no, pues... Holgado."
+    },
+    {
+      "start": 8177.5,
+      "end": 8179.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "I última intervenció i passem de punt."
+    },
+    {
+      "start": 8179.5,
+      "end": 8189.5,
+      "speaker": "c13/SPEAKER_04",
+      "text": "No, no, era fer-li una aclaració, senyor alcalde. Sí, perquè en algunes coses té raó quan diu que hem de parlar-ho en les comissions informatives, però en este punt crec que no té raó perquè en en per a les comissions informatives no teníem el el expedient."
+    },
+    {
+      "start": 8189.5,
+      "end": 8198.5,
+      "speaker": "c13/SPEAKER_04",
+      "text": "Se se podia parlar d'este punt després de les comissions informatives. Vale, gràcies. És, com vosté també fa aclaracions, jo..."
+    },
+    {
+      "start": 8198.5,
+      "end": 8200.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "No, no, benvinguda siga."
+    },
+    {
+      "start": 8200.5,
+      "end": 8213.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Jo lo que volia saber, que m'ha quedat clar, és que en comissions informatives se va parlar de que n'hi hauria un punt que és este, i per tant, la documentació estava en secretaria, qui volguera podia anar a arreplegar-ho, que un que no ha pogut, no, però estava en secretaria, i este punt se sabia que anava al ple, val? A partir d'ací,"
+    },
+    {
+      "start": 8213.5,
+      "end": 8221.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "si si ademés José Luis el té, uns sí i altres no, pues a veure com se pot rectificar i ja està, val? No té més que este punt, no? Val."
+    },
+    {
+      "start": 8221.5,
+      "end": 8231.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Passem, si voleu, al punt següent, que és donar compte de les resolucions de la vint-i-dos seixanta-dos a la vint-i-quatre cinquanta-set. Partit Popular, Vox, Esquerra Unida - Podem, Compromís."
+    },
+    {
+      "start": 8231.5,
+      "end": 8234.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Precs i preguntes. Partit Popular."
+    },
+    {
+      "start": 8234.5,
+      "end": 8235.5,
+      "speaker": "c13/SPEAKER_06",
+      "text": "Sí."
+    },
+    {
+      "start": 8235.5,
+      "end": 8241.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Yo..."
+    },
+    {
+      "start": 8241.5,
+      "end": 8252.5,
+      "speaker": "c13/SPEAKER_06",
+      "text": "Yo, bueno, eh tots els components del ple estem ací des de les cinc i mitja. Yo ara pregaria, pregaria que si el govern té tan clar lo que se va a aprovar perquè ho teniu clar perquè en sou onze i aneu a aprovar lo que vulgueu,"
+    },
+    {
+      "start": 8252.5,
+      "end": 8262.5,
+      "speaker": "c13/SPEAKER_06",
+      "text": "al menos tinguéreu el decoro de no publicar-ho abans de que finalitze el ple, perquè José Ángel eix en xarxes socials des de fa més d'una hora dient que s'ha aprovat este dijous un punt que s'ha aprovat."
+    },
+    {
+      "start": 8262.5,
+      "end": 8264.5,
+      "speaker": "c13/SPEAKER_06",
+      "text": "Sí, pero a veure, un poc..."
+    },
+    {
+      "start": 8264.5,
+      "end": 8276.5,
+      "speaker": "c13/SPEAKER_06",
+      "text": "de decoro que estem en el ple, està ací des de les cinc i mitja i no l'ha gravat després de les cinc i mitja. Que jo entenc com funcionen les xarxes socials, que al final tot és una mentira, però al menos la mentira que se trasllade a quan acabe el ple."
+    },
+    {
+      "start": 8276.5,
+      "end": 8280.5,
+      "speaker": "c13/SPEAKER_06",
+      "text": "Ah, no, o si no, per a mostra un botó. A veure, és que... I una altra cosa, en respecte a..."
+    },
+    {
+      "start": 8280.5,
+      "end": 8290.5,
+      "speaker": "c13/SPEAKER_06",
+      "text": "el canvi climàtic. Se mos diu que s'han plantat en l'Ajuntament de Riba-roja o per en el terme de Riba-roja milers d'arbres, d'arbres durant..."
+    },
+    {
+      "start": 8290.5,
+      "end": 8298.5,
+      "speaker": "c13/SPEAKER_06",
+      "text": "este temps. Mos podeu dir la localització geogràfica d'eixos milers d'arbres on s'han plantat?"
+    },
+    {
+      "start": 8298.5,
+      "end": 8308.5,
+      "speaker": "c13/SPEAKER_06",
+      "text": "Però un informe tècnic que mos diga \"ací mil cinc-cents, allà dos mil, ací set-cents\", per saber anar a veure com van eixos arbres."
+    },
+    {
+      "start": 8308.5,
+      "end": 8314.5,
+      "speaker": "c13/SPEAKER_06",
+      "text": "Perquè són molts milers d'arbres els que parlem i i algo deuria haver-hi."
+    },
+    {
+      "start": 8314.5,
+      "end": 8317.5,
+      "speaker": "c13/SPEAKER_06",
+      "text": "Per la meua part, ninguna més."
+    },
+    {
+      "start": 8317.5,
+      "end": 8319.5,
+      "speaker": "c13/SPEAKER_00",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8319.5,
+      "end": 8321.5,
+      "speaker": "c13/SPEAKER_06",
+      "text": "Bueno, disculpa, i un altre prec."
+    },
+    {
+      "start": 8321.5,
+      "end": 8325.5,
+      "speaker": "c13/SPEAKER_06",
+      "text": "Vosaltres no haveu dit no a la..."
+    },
+    {
+      "start": 8400,
+      "end": 8410.8,
+      "speaker": "c14/SPEAKER_00",
+      "text": "la compra de contenidors. Vosaltres no haveu mentit dient que vostès dien, vostè dia, que no se gastarien mai recursos propis i se van a gastar recursos propis."
+    },
+    {
+      "start": 8410.8,
+      "end": 8421.8,
+      "speaker": "c14/SPEAKER_00",
+      "text": "I en la, en la modificació del pla anual d'inversions s'han modificat els cinc-cents mil euros dels contenidors més cent vuitanta mil euros més."
+    },
+    {
+      "start": 8421.8,
+      "end": 8436.4,
+      "speaker": "c14/SPEAKER_00",
+      "text": "Perquè si la modificació del pla anual d'inversions haguera sigut per a comprar, per a, per a comprar els cinc-cents mil euros que valen els contenidors, hagueren dit que sí. Però vostès han juntat els contenidors a tres coses que els interessa."
+    },
+    {
+      "start": 8436.4,
+      "end": 8451.8,
+      "speaker": "c14/SPEAKER_00",
+      "text": "I la ciutadania té que saber que això és aixina, que no soles s'ha modificat per a comprar els contenidors, s'ha modificat per a fer més coses que els interessava i han llevat coses d'on no els interessava. Gràcies."
+    },
+    {
+      "start": 8451.8,
+      "end": 8455.4,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Més preguntes del Partit Popular? Juan."
+    },
+    {
+      "start": 8455.4,
+      "end": 8461,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Yo solo es un ruego de dar continuidad a lo que ha dicho el portavoz del Partit Popular."
+    },
+    {
+      "start": 8461,
+      "end": 8468,
+      "speaker": "c14/SPEAKER_02",
+      "text": "En tres ocasiones han dicho ustedes, dice, \"si hiciéramos una encuesta el noventa por ciento diría sí a la compra\". Por supuesto."
+    },
+    {
+      "start": 8468,
+      "end": 8478,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Si hicieran una encuesta paralela, más del cien por cien dirían que la culpa es de quien gestiona, y gestionar el gobierno socialista que son ustedes."
+    },
+    {
+      "start": 8478,
+      "end": 8486,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Y lo que votamos aquí hoy son quinientos mil euros, sí, pero la realidad no la quieran enmascarar."
+    },
+    {
+      "start": 8486,
+      "end": 8492,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Lo que se vota es la consecuencia de una nefasta gestión que están haciendo."
+    },
+    {
+      "start": 8492,
+      "end": 8496,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Más que nada para que no confundan. Yo no lo he visto porque estoy atento al pleno,"
+    },
+    {
+      "start": 8496,
+      "end": 8505,
+      "speaker": "c14/SPEAKER_02",
+      "text": "pero seguramente, les iba a decir, seguramente en el vídeo que hagan luego más tarde, pero si ya han colgado en redes sociales, que la gente no se equivoque. Es decir,"
+    },
+    {
+      "start": 8505,
+      "end": 8511,
+      "speaker": "c14/SPEAKER_02",
+      "text": "el Partido Popular no vota en contra de unos presupuestos, todo lo contrario. Hicimos bien en votar abstención,"
+    },
+    {
+      "start": 8511,
+      "end": 8516,
+      "speaker": "c14/SPEAKER_02",
+      "text": "en votar abstención viendo cómo actúan ustedes, porque hoy tenemos que volver a votar."
+    },
+    {
+      "start": 8516,
+      "end": 8517.5,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Gracias."
+    },
+    {
+      "start": 8517.5,
+      "end": 8524,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Més preguntes del Partit Popular o precs o... Passem a contestar. José Ángel."
+    },
+    {
+      "start": 8524,
+      "end": 8531,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Bueno, pues ja que parlen del pla d'inversions, pues mira, anem a parlar del pla d'inversions, se veu que no havia acabat el punt."
+    },
+    {
+      "start": 8531,
+      "end": 8538,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Perquè ara estan intranquils. No, ara lo que passa..."
+    },
+    {
+      "start": 8538,
+      "end": 8540,
+      "speaker": "c14/SPEAKER_00",
+      "text": "[inaudible] una pregunta."
+    },
+    {
+      "start": 8540,
+      "end": 8541.5,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Sí."
+    },
+    {
+      "start": 8541.5,
+      "end": 8543,
+      "speaker": "c14/SPEAKER_00",
+      "text": "Un momentet, un momentet."
+    },
+    {
+      "start": 8543,
+      "end": 8544.5,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Apaga el micro."
+    },
+    {
+      "start": 8544.5,
+      "end": 8548,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Bueno, teniu el torn de paraules, José Ángel."
+    },
+    {
+      "start": 8548,
+      "end": 8551,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Has tornat a interrompre la seua intervenció."
+    },
+    {
+      "start": 8551,
+      "end": 8555,
+      "speaker": "c14/SPEAKER_00",
+      "text": "Però que no és preguntar res, no és preguntar res, sol és esclarir."
+    },
+    {
+      "start": 8555,
+      "end": 8564,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Vaig a intentar tornar a explicar com funciona un pleno, i duus ja tres anys en este pleno i altres estan ací com a policia."
+    },
+    {
+      "start": 8564,
+      "end": 8568,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Els plenos funcionen de la següent manera: quan té la paraula u, se li atén i se respecta."
+    },
+    {
+      "start": 8568,
+      "end": 8576,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Quan acaba de parlar u en el seu temps, si algú ha de parlar per al·lucions o per preguntes, demana la paraula a la presidència, la demana, \"vull parlar\"."
+    },
+    {
+      "start": 8576,
+      "end": 8584,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Lo que no fa u és, en poca educació, interrompre sempre que parla un altre, això no se deu de fer."
+    },
+    {
+      "start": 8584,
+      "end": 8589,
+      "speaker": "c14/SPEAKER_01",
+      "text": "No se deu de fer, i tu ho fas constantment. És més, jo pense que ja és un vici."
+    },
+    {
+      "start": 8589,
+      "end": 8592,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Si vols eixir en eixe vídeo, allà tu. Jo..."
+    },
+    {
+      "start": 8592,
+      "end": 8594,
+      "speaker": "c14/SPEAKER_00",
+      "text": "Però no te dones conter que no, no pares."
+    },
+    {
+      "start": 8594,
+      "end": 8599,
+      "speaker": "c14/SPEAKER_00",
+      "text": "Però no te dones conter que els rucs i els precs no se contesta?"
+    },
+    {
+      "start": 8599,
+      "end": 8605,
+      "speaker": "c14/SPEAKER_00",
+      "text": "És que crec que no ho entenen, no sé, hi ha ruegos y preguntas. A las preguntas se requiere una contestación y a los ruegos no."
+    },
+    {
+      "start": 8605,
+      "end": 8610,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Ja has acabat sense tindre el torn? No, ara vaig, te vaig a dir."
+    },
+    {
+      "start": 8610,
+      "end": 8613,
+      "speaker": "c14/SPEAKER_00",
+      "text": "No, no, no, no res, no se deu tampoc."
+    },
+    {
+      "start": 8613,
+      "end": 8619,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Però no te dones conter que la irreverència ja és absoluta i la falta de respecte?"
+    },
+    {
+      "start": 8619,
+      "end": 8625,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Xe, a tu no t'estan dient, el regidor contestarà lo que considere o no."
+    },
+    {
+      "start": 8625,
+      "end": 8634,
+      "speaker": "c14/SPEAKER_01",
+      "text": "I després n'hi ha un, i després quan u vol parlar, perquè considera que ho ha fet l'altre, per al·lucions, demana sempre autorització a la presidència."
+    },
+    {
+      "start": 8634,
+      "end": 8641,
+      "speaker": "c14/SPEAKER_01",
+      "text": "I la presidència, en base al debat, la diu, la atorga o no. Lo que no fa u és interrompre constantment,"
+    },
+    {
+      "start": 8641,
+      "end": 8648,
+      "speaker": "c14/SPEAKER_01",
+      "text": "perquè li agrada o no li agrada lo que diu el que està davant. Això no és correcte."
+    },
+    {
+      "start": 8648,
+      "end": 8654,
+      "speaker": "c14/SPEAKER_01",
+      "text": "I per tant, tens que formar-te en dur els plenos, deuries, i t'ho dic pel teu bé, a mi fes lo que vulgues, val?"
+    },
+    {
+      "start": 8654,
+      "end": 8659,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Però cada viatge que interrompisques pararé el ple, i ho diré."
+    },
+    {
+      "start": 8659,
+      "end": 8665,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Bueno, pues molt bé, pues eixe és el respecte a tots els que estan mirant-nos, al regidor que està parlant, explicant les coses, i al resto del plenari."
+    },
+    {
+      "start": 8665,
+      "end": 8671,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Acaba de contestar o dir lo que consideres, i a partir d'ahí n'hi hauran més respostes o no, depén de lo que, les al·lucions que n'hi hagen si n'hi han al·lucions, si no tampoc."
+    },
+    {
+      "start": 8671,
+      "end": 8679,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Pues per al·lucions o per un prec per a defendre'm i per a defendre a l'equip de govern d'eixes al·lucions que estan fent. No sé, prengueu-lo com vulgueu."
+    },
+    {
+      "start": 8679,
+      "end": 8685,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Lo que està clar és lo següent: vostès han votat no. Això és una evidència i és objectiu."
+    },
+    {
+      "start": 8685,
+      "end": 8691,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Votar en no en el pressupost a eixes inversions que n'hi havien en el pla d'inversions, i hui han tornat a votar no."
+    },
+    {
+      "start": 8691,
+      "end": 8693,
+      "speaker": "c14/SPEAKER_03",
+      "text": "I han votat..."
+    },
+    {
+      "start": 8693,
+      "end": 8695,
+      "speaker": "c14/SPEAKER_00",
+      "text": "Sí, per favor. Abstenció."
+    },
+    {
+      "start": 8695,
+      "end": 8697,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Sí, per favor."
+    },
+    {
+      "start": 8697,
+      "end": 8701,
+      "speaker": "c14/SPEAKER_00",
+      "text": "És que, home, és que no poden dir-se, dir mentires. Estan dient mentires, hem votat abstenció."
+    },
+    {
+      "start": 8701,
+      "end": 8704,
+      "speaker": "c14/SPEAKER_01",
+      "text": "No, teu, te vaig a dir una cosa, eh? Apaga el micro eixe."
+    },
+    {
+      "start": 8718,
+      "end": 8723,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Quan ell acabe de parlar, demanes la paraula i segurament te la donaré. Lo que no pots fer és bracejar, interrompre, a més ara alineat Juan també. Home, per favor, escolteu, s'equivoque o no s'equivoque en lo que diu."
+    },
+    {
+      "start": 8723,
+      "end": 8731,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Diga que ha votat abstenció o en contra, lo que diga és respectable, i pot ser no compartit, que és educació en el ple."
+    },
+    {
+      "start": 8731,
+      "end": 8739,
+      "speaker": "c14/SPEAKER_01",
+      "text": "I quan acabe, demana la paraula, \"per favor, rectifique que hem votat a favor\" o lo que siga. Però no pot bracejar i començar ahí l'altre \"no, no tens raó\". Això no, no funciona aixina les normes democràtiques d'un ple, ni el ROM ni el ROF."
+    },
+    {
+      "start": 8739,
+      "end": 8746,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Per favor, perquè és un insult a la intel·ligència i una falta d'educació manifesta per part als veïns que ens estan escoltant-nos i als que estem ací."
+    },
+    {
+      "start": 8746,
+      "end": 8750,
+      "speaker": "c14/SPEAKER_01",
+      "text": "En què que se s'equivoque el regidor en lo que està dient."
+    },
+    {
+      "start": 8750,
+      "end": 8755,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Si n'hi ha que acabe lo que tinga que dir, s'equivoque o no, i després si cal, ja demana la paraula per a rectificar."
+    },
+    {
+      "start": 8755,
+      "end": 8762,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Però tinguem un poc de respecte al propi ple, i és contínua, i fa un minut que estàvem parlant i ara, ara de viatge. Va, acaba la la intervenció, José."
+    },
+    {
+      "start": 8762,
+      "end": 8765,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Rectifique."
+    },
+    {
+      "start": 8765,
+      "end": 8771,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Vostès els dona igual que se compren o no els contenidors, això és lo que han votat. \"M'abstinc, facen vostès lo que consideren\", eso es lo que han votado, lo que han votat vostès, eh?"
+    },
+    {
+      "start": 8771,
+      "end": 8776,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Llavors rectifique, crec que rectificar és de savis, eh?"
+    },
+    {
+      "start": 8776,
+      "end": 8784,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Vostès votaren en el pressupost, el pla d'inversions i en el pressupost no, i hui s'han abstingut i els, amb lo qual, els els dona igual."
+    },
+    {
+      "start": 8784,
+      "end": 8789,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Eh, això per una part. Però luego también voy a voy a puntualizar una cosa porque han dicho aquí los concejales que la información la tenían desde las once de la mañana de hoy."
+    },
+    {
+      "start": 8789,
+      "end": 8798,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Miren, el viernes a las diecinueve y cincuenta y un minutos les envié un un correo a todos los portavoces, y lo voy a leer:"
+    },
+    {
+      "start": 8798,
+      "end": 8803,
+      "speaker": "c14/SPEAKER_03",
+      "text": "\"Buenas tardes, tal y como comentamos en las comisiones informativas, que ya lo comentamos el pasado martes,"
+    },
+    {
+      "start": 8803,
+      "end": 8807,
+      "speaker": "c14/SPEAKER_03",
+      "text": "os adjunto las dos propuestas que llevamos al pleno de urgencia."
+    },
+    {
+      "start": 8807,
+      "end": 8812,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Uno, modificación plan de inversiones en cuanto a las inversiones con fuente de financiación de préstamo."
+    },
+    {
+      "start": 8812,
+      "end": 8818,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Financiación contrato de emergencia contenedores de RSU y los cambios en el plan de inversiones."
+    },
+    {
+      "start": 8818,
+      "end": 8824,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Y dos, BEP, incorporación a las bases de ejecución presupuestaria línea de financiación mediante subvención rehabilitación campanario parroquia Asunción de Nuestra Señora."
+    },
+    {
+      "start": 8824,
+      "end": 8828,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Quedo a vuestra disposición para cualquier consulta y aclaración\"."
+    },
+    {
+      "start": 8828,
+      "end": 8832,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Eso el viernes a las siete y cincuenta y un minutos de la tarde."
+    },
+    {
+      "start": 8832,
+      "end": 8837,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Ayer domingo por la tarde el interventor del Ayuntamiento estaba acabando el informe oficial para llevarlo hoy por urgencia."
+    },
+    {
+      "start": 8837,
+      "end": 8844,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Con lo cual, eh, desde el viernes por lo menos tenían la información que es la que hemos traído hoy al pleno, y no desde esta mañana a las once de la mañana como como han dicho."
+    },
+    {
+      "start": 8844,
+      "end": 8852,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Por otra parte, creo que, eh, Juan, has tenido ahí un error en el sentido de que el vídeo que yo que han lanzado mío esta mañana no habla de contenedores,"
+    },
+    {
+      "start": 8852,
+      "end": 8857,
+      "speaker": "c14/SPEAKER_03",
+      "text": "habla de comercio, y lo primero que digo en el vídeo es que esta tarde al pleno llevamos esta propuesta."
+    },
+    {
+      "start": 8857,
+      "end": 8860,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Eso es lo que digo en el vídeo."
+    },
+    {
+      "start": 8860,
+      "end": 8866,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Y no voy diciendo mentiras de que si me he reunido con no sé quién y no sé cuánto y que hemos pedido no sé cuánto,"
+    },
+    {
+      "start": 8866,
+      "end": 8869,
+      "speaker": "c14/SPEAKER_03",
+      "text": "como hacen ustedes en algunos vídeos."
+    },
+    {
+      "start": 8869,
+      "end": 8873,
+      "speaker": "c14/SPEAKER_03",
+      "text": "Con lo con lo cual, eh, rectifico. Efectivamente,"
+    },
+    {
+      "start": 8873,
+      "end": 8878,
+      "speaker": "c14/SPEAKER_03",
+      "text": "a ustedes les da igual que se compren los contenedores, eh, como han hecho en otras ocasiones, que han votado en contra"
+    },
+    {
+      "start": 8878,
+      "end": 8883,
+      "speaker": "c14/SPEAKER_03",
+      "text": "de comprar Pacadar, han votado en contra de la rehabilitación del Trinquet,"
+    },
+    {
+      "start": 8883,
+      "end": 8889,
+      "speaker": "c14/SPEAKER_03",
+      "text": "o han votado en contra precisamente de una de las ingresos que vamos a tener hoy,"
+    },
+    {
+      "start": 8889,
+      "end": 8894,
+      "speaker": "c14/SPEAKER_03",
+      "text": "que es la inversión en Entrenaranjos. También votaron ustedes en contra. Lo digo porque la ciudadanía tiene que recordar"
+    },
+    {
+      "start": 8894,
+      "end": 8900,
+      "speaker": "c14/SPEAKER_03",
+      "text": "sus votos de no, no, no, y en otras ocasiones pues a ustedes les da igual que se adquieran o no los contenedores como es lo que han votado hoy. Gracias."
+    },
+    {
+      "start": 8900,
+      "end": 8906,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Més contestacions a les preguntes?"
+    },
+    {
+      "start": 8906,
+      "end": 8908,
+      "speaker": "c14/SPEAKER_04",
+      "text": "No, no, que falta una, és que falten..."
+    },
+    {
+      "start": 8908,
+      "end": 8914,
+      "speaker": "c14/SPEAKER_04",
+      "text": "Bueno, jo vaig a parlar sobre el canvi climàtic i els arbres que estàs dient tu, eh, són arbres i arbustos, val?"
+    },
+    {
+      "start": 8914,
+      "end": 8919,
+      "speaker": "c14/SPEAKER_04",
+      "text": "I n'hi han tres maneres de plantar arbres en el poble, val? Des de que jo sóc regidor."
+    },
+    {
+      "start": 8919,
+      "end": 8928,
+      "speaker": "c14/SPEAKER_04",
+      "text": "Per una part, era Confederació que tingué una inversió molt important de lo que és el Pont Vell fins a Via Marchante, durant"
+    },
+    {
+      "start": 8928,
+      "end": 8938,
+      "speaker": "c14/SPEAKER_04",
+      "text": "un any i mig, dos, n'hi hagué inversions de Conselleria i n'hi gué una inversió de Confederació de que llevaren tota la canya, ficaren el geotèxtil i es començaren a plantar i es plantaren quasi tots."
+    },
+    {
+      "start": 8938,
+      "end": 8944,
+      "speaker": "c14/SPEAKER_04",
+      "text": "Altra manera de plantar arbres és quan celebrem el Dia de l'Arbre. Dia de l'Arbre que és el trenta-u de gener, lo que fem és moltes,"
+    },
+    {
+      "start": 8944,
+      "end": 8954,
+      "speaker": "c14/SPEAKER_04",
+      "text": "moltes en escoles, fem un dia general i aixina portem varios anys i se planten molt de arbres ahí."
+    },
+    {
+      "start": 8954,
+      "end": 8960,
+      "speaker": "c14/SPEAKER_04",
+      "text": "Altra manera de plantar els arbres és per mitjà de..."
+    },
+    {
+      "start": 9000,
+      "end": 9012.2,
+      "speaker": "c15/SPEAKER_00",
+      "text": "de Parcs i Jardins que va, va generar, va llevant i va... Sí que n'hi ha una relació, jo te la faré arribar, on te va, on te va dient cada, les quanties i,"
+    },
+    {
+      "start": 9012.2,
+      "end": 9027.8,
+      "speaker": "c15/SPEAKER_00",
+      "text": "de Parcs i Jardins que va, va generar, va llevant i va... Sí que n'hi ha una relació, jo te la faré arribar, on te va, on te va dient cada, les quanties i,"
+    },
+    {
+      "start": 9027.8,
+      "end": 9033,
+      "speaker": "c15/SPEAKER_00",
+      "text": "Jo te la faré arribar un, un llistat."
+    },
+    {
+      "start": 9033,
+      "end": 9037.8,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Vale, molt bé. Tant, més de onze mil arbres i arbustos que s'han plantat."
+    },
+    {
+      "start": 9037.8,
+      "end": 9047,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Pel que fa a Confederació i els consellers és perquè ho hem impulsat nosaltres, i que hem anat a, a pegar fort, i tots els ciclovies que estem, hem anat implementant-ho, per tant,"
+    },
+    {
+      "start": 9047,
+      "end": 9054,
+      "speaker": "c15/SPEAKER_01",
+      "text": "fi, si se necessita saber on estan, pues li ho direm i fem un planet i el podem acompanyar i tot."
+    },
+    {
+      "start": 9054,
+      "end": 9058,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Més preguntes... S'havien acabat del PP, pero bueno."
+    },
+    {
+      "start": 9058,
+      "end": 9063,
+      "speaker": "c15/SPEAKER_02",
+      "text": "Vale, va, venga. Era una cosa per al·lusió. Sí, sí, sí. Una pregunta, o sea..."
+    },
+    {
+      "start": 9107,
+      "end": 9116,
+      "speaker": "c15/SPEAKER_02",
+      "text": "Dóna igual, no passa res. Vosté està segur que nosaltres votarem en contra de lo del trinquet? Eixa és la pregunta."
+    },
+    {
+      "start": 9116,
+      "end": 9132,
+      "speaker": "c15/SPEAKER_02",
+      "text": "I després, una cosa al senyor alcalde, que vale, nosaltres farem mal en bracejar, a lo millor, és possible, sí, ho fem, i ho fem mal, pero de vegades mire també al fondo esquerre que allí també cabotegen, no bracegen, pero cabotegen."
+    },
+    {
+      "start": 9132,
+      "end": 9135,
+      "speaker": "c15/SPEAKER_02",
+      "text": "Llavors, també un poc n'hi ha que tindre un poquet de tot, vale? Gràcies."
+    },
+    {
+      "start": 9135,
+      "end": 9137,
+      "speaker": "c15/SPEAKER_01",
+      "text": "José Ángel, una qüestió."
+    },
+    {
+      "start": 9137,
+      "end": 9141,
+      "speaker": "c15/SPEAKER_03",
+      "text": "Sí, clar. Quan un fa una proposta de compra de algo, necessita finançar-la."
+    },
+    {
+      "start": 9141,
+      "end": 9147,
+      "speaker": "c15/SPEAKER_03",
+      "text": "I la proposta anava afegida la compra i la finançació."
+    },
+    {
+      "start": 9147,
+      "end": 9157,
+      "speaker": "c15/SPEAKER_03",
+      "text": "I vostés no sé com anaven a pagar-ho, pero si no se finançava en un préstec no se podia, no se podia pagar la compra, i vostés votaren en contra a tot lo que he dit. Gràcies."
+    },
+    {
+      "start": 9157,
+      "end": 9158,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Gràcies."
+    },
+    {
+      "start": 9158,
+      "end": 9165,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Efectivament, votar en contra del trinquet o votar... que després, això no vol dir que tinguen, que vagen en contra del trinquet, això ja és absurd dir-ho."
+    },
+    {
+      "start": 9165,
+      "end": 9171,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Lo que passa que un, bueno, quan eixe és el vot, pues manifesta lo que manifesta, vale? Entonces, eh, com quan parla..."
+    },
+    {
+      "start": 9171,
+      "end": 9180,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Nosaltres farem, diguem, els gestos que vosté veu, poden ser gesticular, perquè això és humà, una persona sense voler."
+    },
+    {
+      "start": 9180,
+      "end": 9191,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Lo que no voran és que un regidor de l'infinit es comence a parlar darrere, que interrompisquen el ple, que... això no ho hem vist encara en tota la legislatura perquè no ha passat, vale? Ni ho hem vist en Vox, ni en Compromís, ni en Esquerra Unida Podem."
+    },
+    {
+      "start": 9191,
+      "end": 9199,
+      "speaker": "c15/SPEAKER_01",
+      "text": "No ho hem vist en ningú. Per tant, jo no... Clar que un pot gesticular d'un momentet, pues clar que sí, pero lo que no pot ser és, sense paraula, agarrar-la pel teu compter, parlar sense tindre la localització,"
+    },
+    {
+      "start": 9199,
+      "end": 9208,
+      "speaker": "c15/SPEAKER_01",
+      "text": "la que toca, val? Perquè és, ja dic, no és un falta de respecte a la presidència o a l'alcaldia, és a tot el ple, i és que ens miren i és que ens escolten, val?"
+    },
+    {
+      "start": 9208,
+      "end": 9212,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Llavors, per això jo pense que en això tenim que, bueno, pues buscar altres formes, diguem, més recatades de dur el ple, val?"
+    },
+    {
+      "start": 9212,
+      "end": 9215,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Eh, tu ja has contestat, per tant, el PP ja està. Entraríem en Vox."
+    },
+    {
+      "start": 9215,
+      "end": 9221,
+      "speaker": "c15/SPEAKER_04",
+      "text": "Gracias. Es una consulta, Raquel, por el tema de la colonia felina"
+    },
+    {
+      "start": 9221,
+      "end": 9230,
+      "speaker": "c15/SPEAKER_04",
+      "text": "de la que está enfrente de Baltasar Gracián, en la zona de La Mallá, que nos han, bueno, es una observación,"
+    },
+    {
+      "start": 9230,
+      "end": 9233,
+      "speaker": "c15/SPEAKER_04",
+      "text": "con petición, y luego, sobre este mismo punto,"
+    },
+    {
+      "start": 9233,
+      "end": 9241,
+      "speaker": "c15/SPEAKER_04",
+      "text": "el dieciocho de mayo una, una ciudadana del municipio presentó una instancia y todavía no se le ha contestado,"
+    },
+    {
+      "start": 9241,
+      "end": 9251,
+      "speaker": "c15/SPEAKER_04",
+      "text": "diciendo que por parte del departamento de Bienestar Animal que tengan en cuenta la situación insostenible de la zona debido a la proximidad de la colonia felina afectando a higiene y salubridad."
+    },
+    {
+      "start": 9251,
+      "end": 9255,
+      "speaker": "c15/SPEAKER_04",
+      "text": "Entonces, es por ver qué nos podías contar. Ya está."
+    },
+    {
+      "start": 9255,
+      "end": 9257,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Sí, sí, avant, Raquel."
+    },
+    {
+      "start": 9257,
+      "end": 9264,
+      "speaker": "c15/SPEAKER_05",
+      "text": "Gracias, José Luis. Eh, sí, las colonias felinas son un reto que llevamos ahora desde el Ayuntamiento porque la ley del nueve veintitrés nos obliga a las competencias municipales"
+    },
+    {
+      "start": 9264,
+      "end": 9271,
+      "speaker": "c15/SPEAKER_05",
+      "text": "a gestionar íntegramente las colonias felinas del municipio. De hecho, lo hacemos gracias a las cinco asociaciones felinas que tenemos,"
+    },
+    {
+      "start": 9271,
+      "end": 9277,
+      "speaker": "c15/SPEAKER_05",
+      "text": "junto con una comisión que creamos de bienestar animal y el plan que aprobamos aquí en pleno de colonias felinas."
+    },
+    {
+      "start": 9277,
+      "end": 9284,
+      "speaker": "c15/SPEAKER_05",
+      "text": "Entonces, desde mayo me extraña mucho que no se haya respondido cuando llevamos las instancias al día."
+    },
+    {
+      "start": 9284,
+      "end": 9291,
+      "speaker": "c15/SPEAKER_05",
+      "text": "Entonces, sí que te pediría que me facilitases, si no es ahora cuando terminemos, los datos de esta vecina para poder solventarla cuanto antes."
+    },
+    {
+      "start": 9291,
+      "end": 9299,
+      "speaker": "c15/SPEAKER_05",
+      "text": "Y sin más, normalmente todas las colonias se van, las llevamos al día, en este caso operadas, se hace el protocolo CER, captura, esterilización y suelta"
+    },
+    {
+      "start": 9299,
+      "end": 9303,
+      "speaker": "c15/SPEAKER_05",
+      "text": "o retorno, entonces me extraña mucho. Simplemente es pasarme los datos y, y lo veríamos, vale? Gracias."
+    },
+    {
+      "start": 9303,
+      "end": 9305,
+      "speaker": "c15/SPEAKER_04",
+      "text": "Gracias."
+    },
+    {
+      "start": 9305,
+      "end": 9308,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Alguna qüestió més? José Manuel, de Compromís."
+    },
+    {
+      "start": 9308,
+      "end": 9313,
+      "speaker": "c15/SPEAKER_06",
+      "text": "Sí. Eh, una pregunta i un parell de precs."
+    },
+    {
+      "start": 9313,
+      "end": 9321,
+      "speaker": "c15/SPEAKER_06",
+      "text": "Una pregunta que fa referència al tema del catastre. Eh, fa poc es va jubilar el treballador que n'hi havia"
+    },
+    {
+      "start": 9321,
+      "end": 9329,
+      "speaker": "c15/SPEAKER_06",
+      "text": "en el catastre i la pregunta és si se va a substituir al treballador o se va a eliminar la plaça o què."
+    },
+    {
+      "start": 9329,
+      "end": 9332,
+      "speaker": "c15/SPEAKER_06",
+      "text": "Eixa era la pregunta."
+    },
+    {
+      "start": 9332,
+      "end": 9337,
+      "speaker": "c15/SPEAKER_06",
+      "text": "I després, en quant a precs,"
+    },
+    {
+      "start": 9337,
+      "end": 9344,
+      "speaker": "c15/SPEAKER_06",
+      "text": "mirant un poc la web, eh, me fa gràcia que, per exemple, en un dels, en una de les finestres"
+    },
+    {
+      "start": 9344,
+      "end": 9352,
+      "speaker": "c15/SPEAKER_06",
+      "text": "diga que en julio del dos mil siete el Ayuntamiento de Orilla Roja del Turia y la Generalitat Valenciana firmaron un convenio del objeto,"
+    },
+    {
+      "start": 9352,
+      "end": 9359,
+      "speaker": "c15/SPEAKER_06",
+      "text": "el objeto del cual era prestación de servicios de tal, tal, tal, y torna a dir, a partir de ese momento el Ayuntamiento de Orilla Roja..."
+    },
+    {
+      "start": 9359,
+      "end": 9364,
+      "speaker": "c15/SPEAKER_06",
+      "text": "La veritat és que me danya un poc la vista."
+    },
+    {
+      "start": 9364,
+      "end": 9370,
+      "speaker": "c15/SPEAKER_06",
+      "text": "Eixe seria el prec de que revisaren la web per a que eixes faltes no existiren."
+    },
+    {
+      "start": 9370,
+      "end": 9377,
+      "speaker": "c15/SPEAKER_06",
+      "text": "I l'últim prec seria que, al igual que envien les convocatòries dels plens en els dos idiomes, en castellà i en valencià,"
+    },
+    {
+      "start": 9377,
+      "end": 9384,
+      "speaker": "c15/SPEAKER_06",
+      "text": "quan se faça una rectificació també ho podien fer i no solament en castellà. Gràcies."
+    },
+    {
+      "start": 9384,
+      "end": 9386,
+      "speaker": "c15/SPEAKER_06",
+      "text": "I en algun document més, pero bueno."
+    },
+    {
+      "start": 9386,
+      "end": 9390,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Alguna contestació al respecte, José Ángel, de tot lo que ha dit?"
+    },
+    {
+      "start": 9390,
+      "end": 9395,
+      "speaker": "c15/SPEAKER_03",
+      "text": "Sí, n'hi ha previst que n'hi haja una persona que duga catastre i també padró. Gràcies."
+    },
+    {
+      "start": 9395,
+      "end": 9401,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Sí, s'ha fet el trànsit, vull dir, que no és fàcil, però bueno, ja estem ahí treballant i en breu jo pense que ja n'hi ha una persona que s'encarregarà de catastre."
+    },
+    {
+      "start": 9401,
+      "end": 9408,
+      "speaker": "c15/SPEAKER_01",
+      "text": "I després n'hi havia algo de la Orilla, no? Bueno, hem fet una translació, és una errata, allò lògicament, perquè si aneu a la web n'hi hauran Riba-roja de Túria mil,"
+    },
+    {
+      "start": 9408,
+      "end": 9415,
+      "speaker": "c15/SPEAKER_01",
+      "text": "però n'hi haurà una que és la Orilla. De totes maneres, disculpes a la ciutadania que ha vist eixa errata,"
+    },
+    {
+      "start": 9415,
+      "end": 9421,
+      "speaker": "c15/SPEAKER_01",
+      "text": "però bueno, també, també està bé que quan reviseu la web, quan reviseu la web, pues que ens aviseu d'alguna errata que puga tindre per a poder rectificar-la i ja està, val?"
+    },
+    {
+      "start": 9421,
+      "end": 9427,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Eh, en principi el ple hauria acabat. Simplement dir-vos que hui he fet la resolució d'adjudicació dels contenidors,"
+    },
+    {
+      "start": 9427,
+      "end": 9432,
+      "speaker": "c15/SPEAKER_01",
+      "text": "que per a mi és lo més important en estos moments, val?"
+    },
+    {
+      "start": 9432,
+      "end": 9437,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Ixa resolució s'havien presentat dos empreses, val?"
+    },
+    {
+      "start": 9437,
+      "end": 9444,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Al final se n'ha quedat una empresa que complia en els garanties tècnics que havíem demanat nosaltres, que a més ens alegrem també, no? Perquè és Sulo, ha estat afectada per la DANA"
+    },
+    {
+      "start": 9444,
+      "end": 9451,
+      "speaker": "c15/SPEAKER_01",
+      "text": "i està ací a Riba-roja de Túria, per tant, va a comprar eixos tres-cents vint contenidors, si no m'equivoque, de càrrega trasera, i té un termini de..."
+    },
+    {
+      "start": 9451,
+      "end": 9458,
+      "speaker": "c15/SPEAKER_01",
+      "text": "De lateral, perdó, de càrrega lateral, val? Tres-cents vint, i té un termini de pues un parell de mesos per a poder canviar els contenidors, val?"
+    },
+    {
+      "start": 9458,
+      "end": 9464,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Crec que un poquet menys, val? Però no obstant, ja estan ells en marxa per si de cas, que sàpien que entre... lo normal és que a finals de setembre, octubre,"
+    },
+    {
+      "start": 9464,
+      "end": 9471,
+      "speaker": "c15/SPEAKER_01",
+      "text": "ja la part, una de la part més importants estiga canviat el poble, i que el contracte va en marxa per a adjudicar-lo en gener, el contracte de neteja viària i residus."
+    },
+    {
+      "start": 9471,
+      "end": 9481,
+      "speaker": "c15/SPEAKER_01",
+      "text": "I dir-los a la gent, als veïns i veïnes, i informar als grups polítics que en setembre els direm la bonificació de la taxa del dos mil vint-i-six, que bonificarà la part del vint-i-six i la del vint-i-cinc,"
+    },
+    {
+      "start": 9481,
+      "end": 9489,
+      "speaker": "c15/SPEAKER_01",
+      "text": "que ja hem anat lluitant en això, bonificació del vint-i-six i vint-i-cinc, conforme hem dit en totes les reunions que hem tingut, en tots els llocs que hem anat des de fa molt de temps."
+    },
+    {
+      "start": 9489,
+      "end": 9494,
+      "speaker": "c15/SPEAKER_01",
+      "text": "En setembre ja ho farem públic i en base als informes tècnics, no de forma política, vale?"
+    },
+    {
+      "start": 9494,
+      "end": 9501,
+      "speaker": "c15/SPEAKER_01",
+      "text": "Aixina que, ¿el públic vol dir algo? ¿No? Pues encantats. Benvingut, eh? Que jo sé que estàs... ell està en el PLV, pel lloc de la Policia Local de València,"
+    },
+    {
+      "start": 9501,
+      "end": 9510,
+      "speaker": "c15/SPEAKER_01",
+      "text": "i també està, eleva, no? La part, diguem, de tindre el contacte permanent, val? Que hem aprovat un punt important. Gràcies per vindre, vale? Bueno, es tanca el ple. Que tingueu bones vacances tots i totes."
     }
   ],
   "rows": [
@@ -3078,6 +6330,342 @@
       ],
       "namesIndividual": true,
       "weak": false
+    },
+    {
+      "label": "c03/SPEAKER_02",
+      "bloc": "PSOE",
+      "slug": "teresa-pozuelo-martin",
+      "heardAs": "Teresa",
+      "evidence": [
+        {
+          "spokenBy": "c03/SPEAKER_01",
+          "at": 1805.5,
+          "quote": "referencia catastral, Teresa.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c03/SPEAKER_05",
+      "bloc": "VOX",
+      "slug": "jose-luis-fernandez-santamaria",
+      "heardAs": null,
+      "evidence": [
+        {
+          "spokenBy": "c03/SPEAKER_01",
+          "at": 2022,
+          "quote": "¿Vox?",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c03/SPEAKER_07",
+      "bloc": "Compromís",
+      "slug": "rafael-folgado-navarro",
+      "heardAs": null,
+      "evidence": [
+        {
+          "spokenBy": "c03/SPEAKER_01",
+          "at": 2026,
+          "quote": "¿Y Compromís?",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c03/SPEAKER_10",
+      "bloc": "PP",
+      "slug": "alberto-gimeno-calvo",
+      "heardAs": "Albert",
+      "evidence": [
+        {
+          "spokenBy": "c03/SPEAKER_01",
+          "at": 2302,
+          "quote": "Albert, tu.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c06/SPEAKER_01",
+      "bloc": "PSOE",
+      "slug": "teresa-pozuelo-martin",
+      "heardAs": "Teresa",
+      "evidence": [
+        {
+          "spokenBy": "c06/SPEAKER_02",
+          "at": 3862,
+          "quote": "Alguna qüestió més? Última intervenció, Teresa.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c06/SPEAKER_03",
+      "bloc": "PP",
+      "slug": "alberto-gimeno-calvo",
+      "heardAs": "Alberto",
+      "evidence": [
+        {
+          "spokenBy": "c06/SPEAKER_02",
+          "at": 3836,
+          "quote": "Més paraules? Alberto.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c06/SPEAKER_04",
+      "bloc": "PSOE",
+      "slug": "jose-angel-hernandez-carrizosa",
+      "heardAs": "José Ángel",
+      "evidence": [
+        {
+          "spokenBy": "c06/SPEAKER_02",
+          "at": 3971,
+          "quote": "José Ángel tiene la palabra.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c06/SPEAKER_05",
+      "bloc": "EU-Podem",
+      "slug": "jose-manuel-gallardo-martinez",
+      "heardAs": null,
+      "evidence": [
+        {
+          "spokenBy": "c06/SPEAKER_02",
+          "at": 4056,
+          "quote": "¿Esquerra Unida Podem?",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c06/SPEAKER_06",
+      "bloc": "Compromís",
+      "slug": "rafael-folgado-navarro",
+      "heardAs": null,
+      "evidence": [
+        {
+          "spokenBy": "c06/SPEAKER_02",
+          "at": 4058,
+          "quote": "¿Y Compromís?",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c11/SPEAKER_04",
+      "bloc": "VOX",
+      "slug": "jose-luis-fernandez-santamaria",
+      "heardAs": "regidor",
+      "evidence": [
+        {
+          "spokenBy": "c11/SPEAKER_01",
+          "at": 6882,
+          "quote": "Vox?",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c11/SPEAKER_05",
+      "bloc": "EU-Podem",
+      "slug": "jose-manuel-gallardo-martinez",
+      "heardAs": "regidor",
+      "evidence": [
+        {
+          "spokenBy": "c11/SPEAKER_01",
+          "at": 6884,
+          "quote": "Esquerra Unida Podem?",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c11/SPEAKER_06",
+      "bloc": "Compromís",
+      "slug": "rafael-folgado-navarro",
+      "heardAs": "regidor",
+      "evidence": [
+        {
+          "spokenBy": "c11/SPEAKER_01",
+          "at": 6886,
+          "quote": "Compromís?",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c11/SPEAKER_07",
+      "bloc": "PSOE",
+      "slug": "jose-angel-hernandez-carrizosa",
+      "heardAs": "José Ángel",
+      "evidence": [
+        {
+          "spokenBy": "c11/SPEAKER_01",
+          "at": 6901,
+          "quote": "José Ángel.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c12/SPEAKER_03",
+      "bloc": "PP",
+      "slug": "alberto-gimeno-calvo",
+      "heardAs": "Alberto",
+      "evidence": [
+        {
+          "spokenBy": "c12/SPEAKER_01",
+          "at": 8001,
+          "quote": "Eh, Alberto.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c12/SPEAKER_05",
+      "bloc": "VOX",
+      "slug": "jose-luis-fernandez-santamaria",
+      "heardAs": "José",
+      "evidence": [
+        {
+          "spokenBy": "c12/SPEAKER_01",
+          "at": 8153,
+          "quote": "Vox volia parlar també, José.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c13/SPEAKER_06",
+      "bloc": "PP",
+      "slug": "alberto-gimeno-calvo",
+      "heardAs": "Alberto",
+      "evidence": [
+        {
+          "spokenBy": "c13/SPEAKER_00",
+          "at": 8069,
+          "quote": "A veure, per ordre. Com són dos aclaracions... Alberto.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c14/SPEAKER_02",
+      "bloc": "PP",
+      "slug": "juan-boix-martinez",
+      "heardAs": "Juan",
+      "evidence": [
+        {
+          "spokenBy": "c14/SPEAKER_01",
+          "at": 8451.8,
+          "quote": "Més preguntes del Partit Popular? Juan.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c14/SPEAKER_03",
+      "bloc": "PSOE",
+      "slug": "jose-angel-hernandez-carrizosa",
+      "heardAs": "José Ángel",
+      "evidence": [
+        {
+          "spokenBy": "c14/SPEAKER_01",
+          "at": 8517.5,
+          "quote": "Passem a contestar. José Ángel.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c15/SPEAKER_03",
+      "bloc": "PSOE",
+      "slug": "jose-angel-hernandez-carrizosa",
+      "heardAs": "José Ángel",
+      "evidence": [
+        {
+          "spokenBy": "c15/SPEAKER_01",
+          "at": 9135,
+          "quote": "José Ángel, una qüestió.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c15/SPEAKER_05",
+      "bloc": "PSOE",
+      "slug": "raquel-pamblanco-paredes",
+      "heardAs": "Raquel",
+      "evidence": [
+        {
+          "spokenBy": "c15/SPEAKER_01",
+          "at": 9255,
+          "quote": "Sí, sí, avant, Raquel.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c15/SPEAKER_06",
+      "bloc": "Compromís",
+      "slug": "rafael-folgado-navarro",
+      "heardAs": "José Manuel",
+      "evidence": [
+        {
+          "spokenBy": "c15/SPEAKER_01",
+          "at": 9305,
+          "quote": "José Manuel, de Compromís.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
     }
   ],
   "rejected": [
@@ -3190,60 +6778,134 @@
       "label": "c10/SPEAKER_03",
       "reason": "unresolvable",
       "detail": "heard \"alcalde\" matches nobody"
+    },
+    {
+      "label": "c03/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "heard \"alcalde\" matches nobody"
+    },
+    {
+      "label": "c03/SPEAKER_03",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c03/SPEAKER_04",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c03/SPEAKER_06",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c03/SPEAKER_09",
+      "reason": "ambiguous",
+      "detail": "heard \"Eva\" fits 2: Eva Lara Catalá, Salvador Evaristo Ferrer Cortina"
+    },
+    {
+      "label": "c06/SPEAKER_02",
+      "reason": "unresolvable",
+      "detail": "heard \"alcalde\" matches nobody"
+    },
+    {
+      "label": "c11/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "heard \"alcalde\" matches nobody"
+    },
+    {
+      "label": "c11/SPEAKER_02",
+      "reason": "unresolvable",
+      "detail": "heard \"regidora\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c11/SPEAKER_03",
+      "reason": "unresolvable",
+      "detail": "heard \"regidor\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c11/SPEAKER_08",
+      "reason": "ambiguous",
+      "detail": "heard \"José Manuel\" fits 2: José Manuel Vila Oltra, José Manuel Gallardo Martínez"
+    },
+    {
+      "label": "c12/SPEAKER_01",
+      "reason": "relation-contradicted",
+      "detail": "turn-grant, but 346s is followed by SPEAKER_00"
+    },
+    {
+      "label": "c12/SPEAKER_02",
+      "reason": "ambiguous",
+      "detail": "heard \"José Manuel\" fits 2: José Manuel Vila Oltra, José Manuel Gallardo Martínez"
+    },
+    {
+      "label": "c12/SPEAKER_04",
+      "reason": "unresolvable",
+      "detail": "heard \"sin identificar (secretaria)\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c13/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "heard \"alcalde\" matches nobody"
+    },
+    {
+      "label": "c13/SPEAKER_02",
+      "reason": "ambiguous",
+      "detail": "heard \"José Luis\" fits 2: José Luis Ramos March, José Luis Fernández Santamaría"
+    },
+    {
+      "label": "c13/SPEAKER_04",
+      "reason": "relation-contradicted",
+      "detail": "turn-grant, but 376s is followed by SPEAKER_00"
+    },
+    {
+      "label": "c13/SPEAKER_05",
+      "reason": "ambiguous",
+      "detail": "heard \"José\" fits 6: José Luis Ramos March, José Ángel Hernández Carrizosa, José Manuel Vila Oltra, María José Pradas Ramo, José Luis Fernández Santamaría, José Manuel Gallardo Martínez"
+    },
+    {
+      "label": "c13/SPEAKER_07",
+      "reason": "unresolvable",
+      "detail": "heard \"secretària\" matches nobody"
+    },
+    {
+      "label": "c14/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "heard \"portavoz\" (PP) matches nobody"
+    },
+    {
+      "label": "c14/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "heard \"presidente\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c15/SPEAKER_01",
+      "reason": "ambiguous",
+      "detail": "heard \"José Luis\" fits 2: José Luis Ramos March, José Luis Fernández Santamaría"
     }
   ],
   "stats": {
     "chunksExpected": 17,
-    "chunksTranscribed": 8,
+    "chunksTranscribed": 16,
     "failedChunks": [
       {
-        "chunk": 1,
-        "why": "quota exhausted, never attempted further"
-      },
-      {
-        "chunk": 3,
-        "why": "never attempted (quota exhausted earlier in the run)"
-      },
-      {
-        "chunk": 6,
-        "why": "never attempted (quota exhausted earlier in the run)"
-      },
-      {
         "chunk": 8,
-        "why": "never attempted (quota exhausted earlier in the run)"
-      },
-      {
-        "chunk": 11,
-        "why": "never attempted (quota exhausted earlier in the run)"
-      },
-      {
-        "chunk": 12,
-        "why": "never attempted (quota exhausted earlier in the run)"
-      },
-      {
-        "chunk": 13,
-        "why": "never attempted (quota exhausted earlier in the run)"
-      },
-      {
-        "chunk": 14,
-        "why": "never attempted (quota exhausted earlier in the run)"
-      },
-      {
-        "chunk": 15,
-        "why": "never attempted (quota exhausted earlier in the run)"
+        "why": "covered 66% (floor 85%)"
       }
     ],
-    "labelsSeen": 0,
-    "rowsAccepted": 12,
-    "rowsRejected": 22,
+    "labelsSeen": 55,
+    "rowsAccepted": 33,
+    "rowsRejected": 43,
     "rejectedBy": {
-      "relation-contradicted": 4,
-      "unresolvable": 8,
+      "relation-contradicted": 6,
+      "unresolvable": 21,
       "evidence-speaker-mismatch": 2,
       "evidence-outside-transcript": 6,
-      "label-collision": 2
+      "label-collision": 2,
+      "ambiguous": 6
     },
-    "attemptedThisRun": 1,
-    "coverage": 0.4282451125516822
+    "attemptedThisRun": 9,
+    "coverage": 0.9988515134500542
   }
 }

@@ -102,6 +102,24 @@ async function main() {
         .join(' · ') +
       ` → base\n`,
   )
+  // `--base-only`: escribir el base y PARAR.
+  //
+  // Existe para CI, y sólo para CI. El base está gitignorado —8,6 MB
+  // reproducibles— así que un runner recién clonado no lo tiene, y desde el
+  // 2026-08-11 tres ficheros de prueba y `compute:finding-quote-provenance` lo
+  // exigen: la nocturna llevaba tres noches roja y el despliegue bloqueado por
+  // eso. CI necesita que el fichero EXISTA; no necesita republicar nada.
+  //
+  // Sin la bandera, esto reescribe además verified.json, los trozos que lee la
+  // SPA y factcheck.json, que sí están committeados. Que la nocturna empiece a
+  // republicar verdictos cada madrugada es una decisión editorial —los verdictos
+  // pueden subir, no sólo bajar— y no algo que deba colarse de rebote al
+  // arreglar un runner. Se decide aparte o no se decide.
+  if (process.argv.includes('--base-only')) {
+    process.stdout.write('[verify]   --base-only: no se tocan verified.json ni los trozos\n')
+    return
+  }
+
   // Merge base ⊕ overlay → verified.json + chunks (the SPA reads the chunks).
   try {
     const r = await rebuildVerified()

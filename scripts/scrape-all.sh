@@ -203,6 +203,35 @@ done
 # built from. It also NAMES the work this environment cannot do — the LLM tier
 # lives on the laptop crons — so a green CI run cannot look complete when it is
 # not. See docs/OPERATIONS.md.
+# El corpus del verificador, si este entorno no lo tiene.
+#
+# `pleno-claims-verified-base.json` está gitignorado —8,6 MB reproducibles— y su
+# comentario en .gitignore promete desde siempre «reproducible via `npm run
+# verify:pleno-claims`». Nadie cumplía esa promesa: verify sólo aparecía en
+# hallazgos-pipeline.sh, el cron del portátil. Así que un runner recién clonado
+# no lo tenía nunca, y desde el 2026-08-11 —cuando tres pruebas y
+# `compute:finding-quote-provenance` empezaron a exigirlo— la nocturna salía
+# roja TODAS las noches y la Health gate bloqueaba el despliegue. Tres noches
+# publicando datos frescos que no llegaban a la web.
+#
+# Determinista, sin LLM y sin red; su entrada (pleno-claims-suggestions.json)
+# está committeada. Medido: 73s, que cabe de sobra en los 22 min del paso.
+#
+# `--base-only` a propósito: CI necesita que el fichero EXISTA, no republicar
+# verified.json ni los trozos que lee la SPA. Que la nocturna reescriba verdictos
+# cada madrugada es una decisión editorial aparte, no un efecto secundario de
+# arreglar un runner.
+if [ ! -f public/data/pleno-claims-verified-base.json ]; then
+  echo ""
+  echo "================================================================"
+  echo "[scrape-all] running: verify:pleno-claims --base-only (corpus ausente)"
+  echo "================================================================"
+  if ! npm run verify:pleno-claims -- --base-only; then
+    echo "[scrape-all] FAILED: verify:pleno-claims — sin corpus, la procedencia de citas no se puede recomputar"
+    failures+=("verify:pleno-claims")
+  fi
+fi
+
 echo ""
 echo "================================================================"
 echo "[scrape-all] running: refresh (dependency-driven derivations)"
