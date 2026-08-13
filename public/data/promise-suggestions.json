@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-13T06:09:12.466Z",
+  "generatedAt": "2026-08-13T12:45:42.759Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -140,19 +140,19 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOQ1cxd0Fab3ZtTWtiNmNuVGV2UEE5THFidVRJRm5xM3g2S2MweVUwemZYV3ZVc2o1VWM0TUdOam0xY1M0U2M3bWtOeVNncEsxeEZLUEx4RGFQOU1iNjJwaDFqUUN2MmpORGZyNFcwbHgzOUdNcXZVcmJfdlpKeHJLanZERGNfNUQtc1lMZF9xdFVic2E5NDRhRXZGSDBkM0tDZk9nOWNVOWFFV3RyNzNXR3Z3MTZjX1ZLS01PZHQ2VDY3Z0FTMGpHR253cEF6WUtmaXR3Yi1BREJUU0s1OFVWZlJsTG9UQzlWN1E3Xw?oc=5",
-          "date": "2026-08-07",
-          "quote": "Un plan de restauración ambiental en la cuenca del Turia beneficiará a más de 177.000 vecinos frente a fenómenos climáticos extremos",
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
+          "date": "2026-07-27",
+          "quote": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027 con una inversión de 61.000 euros en artes escénicas",
           "kind": "press",
-          "publisher": "noticiascv.com",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
           "matchedKeywords": [
-            "plan",
-            "climatico"
+            "inversion",
+            "euro"
           ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -188,17 +188,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNTTNEZzBxcE9NTUNYNzV4bDh0dW1veWxGRHNOT0l0bkM0LTFyaEQzZmhiWVFOY1hQTFZrYkg0SGpiV1cxSEEwQTVqdFdVZkpYLVNhYU5jdVFOUlhwaFh5akZqNDZsamdyYWRMSFRrN0VKbW9DVnNfbkM2Zl9tZ3MtMEV3MUlPWTdUVHpmeU1hRXRtUWZjdVphZEN2MUlvaV9hWUUtcHF4ajRnd0FoVDFQQVN6NzVqWGNoYy16TFRadjBDenRWc25NSzRWRkhza25XTGRlNi1KbnBKdDlWTFBWV29jV0MwRXJqMExjMNIB8gFBVV95cUxPTi1qYUtLWnhKTDNnTnNTSlUyMnZKejkweHdteTlOTjJYeGNaMFpZRW1rZE9DUFJ6Z012VG9VYm5mYkc2X2ZEOEFkeFM4ZnFNQ3F2XzNBV2JiQ1B0ZFM3cjNsaHpfbEVWeGdRWmNuTHBSdmNNRjdyZ1RzbVA2c1laWjNpeUpjSXlXYzlnZmdiSnhseXZrRFN6YjRaYzc1Q1FmVmRBWUY5ZXlBZlFOcDR2MnlmanVrV1hNSzBnNERJRmczOFZqYXJTd0s0N0FwYlhQazEyd0pDeUZXSmxUdk9fTWlrU1RxZm83ZXRrelE3TFlJUQ?oc=5",
-          "date": "2026-07-28",
-          "quote": "Las exhumaciones del cementerio musulmán de Riba-roja se realizaron por las obras de la mota tras la dana",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "dana",
-            "tras"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNdkwxcWJZOXRjajlDelVISGFiVVZxS0VDckdqNk4zLVhKcTh6X1BSZzc4UGpUTy10UmtpdDRyUVdyMjJNS01WSmF6NS1BbFJSVU42WVhGVTdMS3E3NVFQbVg4ODRTMnFqOERPVk13eGlycng0UGwzSzc5cDdzZl82SVE2U1EwVXR6RUNVVFdyLURCZXNmdFp0OTBLUWd0ckk4dDFibGhnaTJVWDJZeGdtcGtSeDMxOTNrN1Y0WHBXcU85VkYyZkHSAcsBQVVfeXFMUEJDNE1fTnAxTURibnlfS2llY1lZU011TGg4eDNzTDByeWM0RlBYVjN5RXRnYzl1aW5TN2RYM0ViU0V3NzhOMnFIZUJmZlE5ZjRQby12THl4UTR3Q0U1cncydVpETjlhYVEzMmdLS3hQWmZwM0tUbVVwV1RKYi1KV0tiVnpxM0YwVGFTeEFPcklmWHhtQVZGR0ZWdi1IWmtSVHRBSUt1UlliaWNxYjV1N29KcHVGYUNxd2JIeEdvaUpTdWp5TC1jN3d5dE0?oc=5",
           "date": "2026-06-30",
           "quote": "Riba-roja desmonta el puente militar que conectó a más de 3.500 vecinos tras la dana",
@@ -222,7 +211,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -264,7 +253,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -337,7 +326,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -372,7 +361,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -421,7 +410,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -429,7 +418,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -437,7 +426,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -502,24 +491,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
       "proposedStatus": "documentada",
       "confidence": 0.175,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQajlQN2RXaDV0RFZpSW8tQmRGQmRhR3Q3bi1mcWNjeHBoeHkxb2VjMnRiM3UyTDl6MEZzRGtBX3hsQUVHNnNOZTJvT3pZbHFvTnljZlNGUG1jTUFaZUxzLUFnc2NnZ2JZUnVST3dKMUxiQktCVk1sajd4eXB6Nk1pdmhRQWFDbUloRHJ2bl9YQlZlSGNDMFZkSWw1Tmc3LU0xV1pKNWxBelNwRnpaMmU0bC10Mk8wZXlmMzBCdTZlQkRXOWlsdmFQOW9iWHQ4ZmdqcEE4cUFrcXZGM3h0d181Vm9KZ3ZzUdIB6wFBVV95cUxPSHZ3WUdXT1ZEVDBXSHg3T0htZ3EybVZHbWE5eU5oQ1dTbXhDb2R5anJSR0NiNFdUNERuN1p2YUliSWJpSkh6c09oOFY1MUVFZVYzWlR0WG5pTGlSWjlITWN6a2sxLUNzYTNFYVM0MjNKUWpJbklBbHc1QWk1V1p0UXMybTQwV1owd3psOWZjWjZQODE2dDdUUC1sWVF0VGZHYVd1M3Nrc3RFem9QVlRHb2tpX0JfNTh5aTY1NmlpM2wydWpZOUxUdDh0VWloa2luZ050VW4tclhpNGxTZmlvTUw0ZmtyX3A0OEln?oc=5",
-          "date": "2026-07-14",
-          "quote": "La urbanización València la Vella en Riba-roja reclama medidas urgentes contra el riesgo de incendios",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "contra",
-            "riesgo"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
           "date": "2026-04-08",
@@ -533,7 +511,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -573,7 +551,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -617,7 +595,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -661,7 +639,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -691,7 +669,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -722,7 +700,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -743,7 +721,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -763,7 +741,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -782,7 +760,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -835,7 +813,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -869,7 +847,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -900,7 +878,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -942,7 +920,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T06:09:12.347Z"
+      "generatedAt": "2026-08-13T12:45:42.609Z"
     }
   ],
   "llmEvidence": [],

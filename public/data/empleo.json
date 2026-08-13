@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-08-13T06:07:21.886Z",
+  "generatedAt": "2026-08-13T12:43:53.429Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 56,
-    "openTotal": 56,
+    "total": 57,
+    "openTotal": 57,
     "inRibaRoja": 40,
     "closingSoon": 8,
-    "withDetail": 56,
+    "withDetail": 57,
     "byMonth": {
-      "2026-08": 12,
+      "2026-08": 13,
       "2026-07": 25,
       "2026-06": 11,
       "2026-05": 2,
@@ -22,6 +22,88 @@
     }
   },
   "items": [
+    {
+      "id": "2281",
+      "fo": 2281,
+      "codigo": "2025/00311",
+      "titulo": "Técnico/a de climatización",
+      "publishedAt": "2026-08-13",
+      "deadline": "2026-10-13",
+      "location": "P.I. LA LLOMA Paiporta (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2281",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2025/00311"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Técnico/a de climatización"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se valorará: - Formación en PRL 20 horas - IPRL trabajos en altura"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "SUMINISTRO DE ENERGÍA ELÉCTRICA, GAS, VAPOR Y AIRE ACONDICIONADO"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 1ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "P.I. LA LLOMA, Municipio: Paiporta, Provincia: Valencia, CP: 46960"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Horario",
+            "value": "08:30-14 / 16:00-19:00 de lunes a viernes"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio industria del metal"
+          },
+          {
+            "label": "Funciones",
+            "value": "Desempeñará sus tareas de manera independiente o conjunta en trabajos dedicados al montaje, mantenimiento, diagnóstico, reparación y puesta en marcha de equipos y sistemas de climatización, aire acondicionado, calefacción, tratamiento de aire, ventilación."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "numPuestos": "2",
+        "categoria": "OFICIAL DE 1ª",
+        "observaciones": "Se valorará: - Formación en PRL 20 horas - IPRL trabajos en altura",
+        "municipio": "Paiporta",
+        "provincia": "Valencia",
+        "cp": "46960",
+        "jornada": "Completa Turnos: Turno partido",
+        "horario": "08:30-14 / 16:00-19:00 de lunes a viernes",
+        "salario": "Según convenio industria del metal",
+        "funciones": "Desempeñará sus tareas de manera independiente o conjunta en trabajos dedicados al montaje, mantenimiento, diagnóstico, reparación y puesta en marcha de equipos y sistemas de climatización, aire acondicionado, calefacción, tratamiento de aire, ventilación.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2468",
       "fo": 2468,
@@ -958,11 +1040,11 @@
           },
           {
             "label": "Tipo de contrato",
-            "value": "INDIFERENTE"
+            "value": "CONTRATO INDEFINIDO"
           },
           {
             "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
+            "value": "Más de 6 meses"
           },
           {
             "label": "Número de puestos",
@@ -1001,8 +1083,8 @@
             "value": "Tarjeta tacógrafo digital"
           }
         ],
-        "tipoContrato": "INDIFERENTE",
-        "duracion": "De 1 a 6 meses",
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
         "numPuestos": "2",
         "categoria": "PEONES",
         "observaciones": "Experiencia mínima de un año Permiso C CAP TARJETA TACÓGRAFO DIGITAL",
