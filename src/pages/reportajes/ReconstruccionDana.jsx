@@ -652,7 +652,12 @@ export default function ReconstruccionDana() {
           Ayuntamiento, y una factura que la administración aún salda a plazos: el Consistorio ha
           cifrado en torno a los 22 millones de euros los daños del municipio. Este análisis no
           atribuye a nadie una mala gestión: pone sobre la mesa, con datos abiertos y verificables,
-          adónde ha ido el dinero de la reconstrucción y qué queda por hacer.
+          {/* Decía «adónde ha ido el dinero de la reconstrucción», y a dos líneas de los 22 M€ de
+              daños eso se lee como el total. Lo que se traza son 2,75 M€ en contratos que dicen
+              «DANA» en el título: el suelo, como la propia pieza advierte más arriba. La frase de
+              cierre es donde el lector se queda con la idea, así que ahí el matiz no es opcional. */}
+          qué parte de ese dinero deja rastro en el registro público de contratos —2,75 de esos 22
+          millones— y qué queda por hacer.
         </p>
       </article>
 
