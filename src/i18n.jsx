@@ -253,6 +253,8 @@ const CATALOGUE = {
     'plenosIndex.crossSession': 'Verificación de declaraciones (todas las sesiones) →',
     'plenosIndex.points': 'puntos',
     'plenosIndex.findings': 'hallazgos',
+    'plenosIndex.verificadas': 'declaraciones verificadas',
+    'plenosIndex.contradichas': 'declaraciones contradichas',
 
     // Pleno detail (/plenos/:id)
     'plenoDetail.notFound': 'Sesión no encontrada',
@@ -779,6 +781,8 @@ const CATALOGUE = {
     'plenosIndex.crossSession': 'Verificació de declaracions (totes les sessions) →',
     'plenosIndex.points': 'punts',
     'plenosIndex.findings': 'troballes',
+    'plenosIndex.verificadas': 'declaracions verificades',
+    'plenosIndex.contradichas': 'declaracions contradites',
 
     // Pleno detail (/plenos/:id)
     'plenoDetail.notFound': 'Sessió no trobada',

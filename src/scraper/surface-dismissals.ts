@@ -45,6 +45,12 @@ export interface RegistroDescartes {
 const normaliza = (s: string) => s.replace(/\s+/g, ' ').trim().toLowerCase()
 
 /**
+ * Solape mínimo para que un descarte valga. Por debajo de esto, una cita corta
+ * podría caer dentro de una larga por casualidad y silenciar otra cosa.
+ */
+export const SOLAPE_MINIMO = 25
+
+/**
  * ¿Está este señalamiento descartado para esta ruta?
  *
  * Comparación por cita normalizada. No hay coincidencia parcial a propósito:
@@ -59,7 +65,24 @@ export function estaDescartado(
   if (!registro?.items?.length) return false
   const q = normaliza(finding.quote ?? '')
   if (!q) return false
-  return registro.items.some((d) => d.route === route && normaliza(d.quote) === q)
+  return registro.items.some((d) => {
+    if (d.route !== route) return false
+    const dq = normaliza(d.quote)
+    if (dq === q) return true
+    // Contención, no igualdad exacta.
+    //
+    // Medido: se descartó «Contratos públicos 805 contratos Fuente: Gobierto ·
+    // PLACSP» y el barrido siguiente citó «Contratos públicos 805 contratos» —
+    // el mismo defecto, un trozo más corto— y el descarte no aplicó. Un
+    // silenciador que sólo funciona si el modelo recorta igual dos veces no
+    // silencia nada, y la alarma vuelve a ser permanente.
+    //
+    // El suelo de SOLAPE_MINIMO evita lo contrario: que un fragmento corto caiga
+    // dentro de una cita larga por casualidad y tape algo que nadie revisó.
+    const corta = q.length <= dq.length ? q : dq
+    const larga = q.length <= dq.length ? dq : q
+    return corta.length >= SOLAPE_MINIMO && larga.includes(corta)
+  })
 }
 
 /** Los que siguen en pie tras aplicar el registro. */

@@ -84,3 +84,29 @@ describe('descartar un señalamiento revisado', () => {
     expect(validarDescartes(registro).items).toHaveLength(1)
   })
 })
+
+describe('el descarte sobrevive a que el modelo recorte distinto', () => {
+  it('aplica cuando la cita nueva es un trozo de la descartada', () => {
+    // Medido: se descartó «…805 contratos Fuente: Gobierto · PLACSP» y el
+    // barrido siguiente citó «…805 contratos» a secas. Mismo defecto, recorte
+    // distinto. Con igualdad exacta el descarte no valía nada.
+    expect(estaDescartado('/datos', f('Contratos públicos\n805 contratos'), registro)).toBe(true)
+  })
+
+  it('aplica también al revés: la nueva contiene a la descartada', () => {
+    expect(
+      estaDescartado(
+        '/datos',
+        f('Contratos públicos\n805 contratos\nFuente: Gobierto · PLACSP\nAbrir →'),
+        registro,
+      ),
+    ).toBe(true)
+  })
+
+  it('NO aplica a un fragmento demasiado corto', () => {
+    // El suelo. Sin él, «805» caería dentro de la cita larga y silenciaría
+    // cualquier señalamiento futuro que mencionara ese número.
+    expect(estaDescartado('/datos', f('805'), registro)).toBe(false)
+    expect(estaDescartado('/datos', f('contratos'), registro)).toBe(false)
+  })
+})

@@ -69,10 +69,22 @@ function TopDepartmentsCard({ agendas }) {
   )
 }
 
-function Count({ n, label, tone }) {
+// `title` y `aria-label` porque dos de estas marcas son un GLIFO SUELTO.
+//
+// «18 puntos» y «5 hallazgos» se explican solos; «7 ✓» no. La revisión de
+// superficies lo leyó como «votaciones registradas» —lo son sólo 7 sesiones de
+// 61— cuando en realidad cuenta declaraciones verificadas. Da igual cuál de las
+// dos lecturas: un contador sin rótulo, en fila con otros que sí lo llevan,
+// invita a suponer, y aquí suponer sale caro.
+function Count({ n, label, tone, titulo }) {
   if (!n) return null
   return (
-    <span className="mono" style={{ fontSize: 11, color: tone, marginLeft: 8 }}>
+    <span
+      className="mono"
+      style={{ fontSize: 11, color: tone, marginLeft: 8 }}
+      title={titulo ? `${n} ${titulo}` : undefined}
+      aria-label={titulo ? `${n} ${titulo}` : undefined}
+    >
       {n} {label}
     </span>
   )
@@ -101,8 +113,18 @@ function SessionRow({ row, t }) {
           {PLENO_LABEL[row.kind] || row.kind}
         </Pill>
         <Count n={row.agendaCount} label={t('plenosIndex.points')} tone="var(--ink60)" />
-        <Count n={row.verificado} label="✓" tone="var(--ok-ink)" />
-        <Count n={row.contradicho} label="✗" tone="var(--crit-ink)" />
+        <Count
+          n={row.verificado}
+          label="✓"
+          tone="var(--ok-ink)"
+          titulo={t('plenosIndex.verificadas')}
+        />
+        <Count
+          n={row.contradicho}
+          label="✗"
+          tone="var(--crit-ink)"
+          titulo={t('plenosIndex.contradichas')}
+        />
         <Count n={row.findings} label={t('plenosIndex.findings')} tone="var(--intel-ink)" />
       </span>
       <span className="mono" style={{ fontSize: 14, color: 'var(--ink40)' }}>
