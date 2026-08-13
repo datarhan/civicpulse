@@ -164,7 +164,19 @@ async function gather(): Promise<Observations> {
   // `check:queues` for the sibling reason: a worklist that still names
   // withdrawn findings overstates the backlog, and a backlog nobody trusts is
   // a backlog nobody works. Reports; the fix is re-running the triage pass.
-  for (const c of ['check:json', 'check:relations', 'check:runs', 'check:queues']) {
+  // `check:surfaces` cierra el hueco que los otros cuatro no pueden ver: ellos
+  // comprueban que el DATO cuadre, y los cuatro defectos corregidos el
+  // 2026-08-12 tenían el dato bien y la frase mal. La lectura la hace el
+  // barrido nocturno (scripts/review-sweep.sh); esto sólo comprueba que esté
+  // ocurriendo y que lo encontrado no lleve días sin arreglar. Es barato: mira
+  // la caché, no llama a ningún modelo.
+  for (const c of [
+    'check:json',
+    'check:relations',
+    'check:runs',
+    'check:queues',
+    'check:surfaces',
+  ]) {
     const msg = runCheck(c)
     if (msg) integrity.push({ check: c, message: msg })
   }
