@@ -492,7 +492,9 @@ export default function ReconstruccionDana() {
         <p>
           Entre esas dos fechas, un análisis de la contratación municipal permite seguir el rastro
           del dinero contrato a contrato, y en muchos casos calle a calle. De los{' '}
-          {eurC(t.totalAwarded)} que el Ayuntamiento adjudicó entre 2018 y 2026,{' '}
+          {eurC(t.totalAwarded)} que el Ayuntamiento adjudicó entre 2018 y 2026 —sin contar la
+          concesión del agua, que se adjudica por sus diecisiete años de una vez y por sí sola pesa
+          casi tanto como todo lo demás junto—,{' '}
           <b>
             {t.danaContracts} contratos por {eurC(t.danaAmount)} referencian expresamente la DANA
           </b>{' '}

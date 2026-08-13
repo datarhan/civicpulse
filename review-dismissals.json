@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "_comentario": "Señalamientos de `review:surfaces` que una persona miró y descartó. Se ancla en la CITA exacta, no en la ruta: si la página cambia o el modelo señala otra frase, el aviso vuelve. Comprobado por tests/surface-dismissals.test.ts; lo aplica check:surfaces. NO va bajo public/ — no se publica.",
+  "items": [
+    {
+      "route": "/datos",
+      "quote": "Contratos públicos\n805 contratos\nFuente: Gobierto · PLACSP",
+      "reason": "/datos es el catálogo de snapshots («Corporación municipal · 21 cargos», «Subvenciones BDNS · 173 convocatorias») y 805 es exactamente el número de filas de tenders.json. Habla de lo que este proyecto ha ingerido, no de lo que el ayuntamiento adjudicó — que son 699. Distinto del defecto histórico «CONTRATOS ADJUDICADOS · 804», que sí afirmaba adjudicación. Verificado contra el snapshot y contra la página renderizada.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-08-13"
+    },
+    {
+      "route": "/nosotros",
+      "quote": "805\ncontratos indexados",
+      "reason": "Mismo caso que /datos: el rótulo dice «indexados» y va junto a «plenos indexados», «hallazgos publicados» y «quejas ciudadanas», o sea un panel de lo que este proyecto contiene. 805 filas están indexadas de verdad. No afirma adjudicación en ningún punto.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-08-13"
+    }
+  ]
+}

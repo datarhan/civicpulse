@@ -19,6 +19,7 @@
  * PURO: recibe la caché ya leída. No toca disco ni red.
  */
 import { readCacheEntry, type ReviewCacheEntry, type ReaderFinding } from './reader-review'
+import { sinDescartar, type RegistroDescartes } from './surface-dismissals'
 
 /** Días tras los cuales una página cuenta como no leída. */
 export const DIAS_FRESCURA = 3
@@ -57,6 +58,7 @@ export function medirFrescura(
   rutas: string[],
   cache: Record<string, string | ReviewCacheEntry>,
   ahora: Date,
+  descartes: RegistroDescartes | null = null,
 ): FrescuraSuperficies {
   const estados: EstadoRuta[] = rutas.map((route) => {
     const e = readCacheEntry(cache[route])
@@ -64,7 +66,11 @@ export function medirFrescura(
     const t = at ? Date.parse(at) : NaN
     return {
       route,
-      findings: e?.findings ?? [],
+      // Los que una persona ya miró y descartó no cuentan. Sin esto un falso
+      // positivo es eterno: el barrido lo vuelve a señalar cada mañana, el
+      // check sigue rojo y el digest lo repite hasta que se aprende a
+      // ignorarlo. Ver `surface-dismissals.ts`.
+      findings: sinDescartar(route, e?.findings ?? [], descartes),
       at,
       diasDesde: Number.isFinite(t) ? (ahora.getTime() - t) / 86_400_000 : null,
     }

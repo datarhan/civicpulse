@@ -22,9 +22,15 @@ import { readFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { construirGrafoRutas, rutasPublicas } from './lib/route-graph'
 import { medirFrescura, parteFrescura, DIAS_FRESCURA } from '../src/scraper/surface-freshness'
+import {
+  validarDescartes,
+  descartesHuerfanos,
+  type RegistroDescartes,
+} from '../src/scraper/surface-dismissals'
 import type { ReviewCacheEntry } from '../src/scraper/reader-review'
 
 const CACHE = resolve('.review-cache.json')
+const DESCARTES = resolve('review-dismissals.json')
 
 function main() {
   const rutas = rutasPublicas(construirGrafoRutas(resolve('src')))
@@ -34,9 +40,32 @@ function main() {
     ? JSON.parse(readFileSync(CACHE, 'utf8'))
     : {}
 
-  const f = medirFrescura(rutas, cache, new Date())
+  // Un registro ilegible NO se trata como «sin descartes»: eso silenciaría el
+  // hecho de que alguien lo rompió, y el fichero existe justo para no silenciar
+  // por accidente.
+  const descartes: RegistroDescartes | null = existsSync(DESCARTES)
+    ? validarDescartes(JSON.parse(readFileSync(DESCARTES, 'utf8')))
+    : null
+
+  const f = medirFrescura(rutas, cache, new Date(), descartes)
   const parte = parteFrescura(f)
   const leidas = rutas.length - f.sinLeer.length - f.rancias.length
+
+  // Descartes que ya no corresponden a ningún señalamiento vivo: sobran, y
+  // siguen armados por si esa frase vuelve por otro motivo.
+  const vivos = new Map(
+    rutas.map((r) => [
+      r,
+      (cache[r] && typeof cache[r] === 'object' ? cache[r].findings : []) ?? [],
+    ]),
+  )
+  const huerfanos = descartesHuerfanos(descartes, vivos)
+  if (huerfanos.length > 0) {
+    console.error(
+      `[check-surfaces] ${huerfanos.length} descarte(s) sin señalamiento vivo (sobran): ` +
+        huerfanos.map((d) => `${d.route} «${d.quote.slice(0, 40).replace(/\n/g, ' ')}»`).join(', '),
+    )
+  }
 
   if (!parte) {
     // El recuento va SIEMPRE, también cuando todo está bien. «✓ sin avisos» sin
