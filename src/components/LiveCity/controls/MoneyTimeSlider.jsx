@@ -103,8 +103,8 @@ export function MoneyTimeSlider({
               fontWeight: 700,
               padding: '2px 7px',
               borderRadius: 999,
-              border: `1px solid ${obrasOnly ? '#2463EB' : '#C9C3B4'}`,
-              background: obrasOnly ? 'rgba(36,99,235,.14)' : 'transparent',
+              border: `1px solid ${obrasOnly ? 'var(--civic)' : '#C9C3B4'}`,
+              background: obrasOnly ? 'rgba(14,91,98,.14)' : 'transparent',
               color: obrasOnly ? '#1D4FBB' : 'rgba(11,15,25,.62)',
             }}
           >
@@ -154,7 +154,7 @@ export function MoneyTimeSlider({
           }}
           aria-label="Línea de tiempo del gasto situado por zona"
           aria-valuetext={label}
-          style={{ flex: 1, accentColor: '#2463EB' }}
+          style={{ flex: 1, accentColor: 'var(--civic)' }}
         />
       </div>
       <div

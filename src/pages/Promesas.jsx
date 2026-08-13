@@ -261,8 +261,8 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
           style={{
             marginTop: 12,
             padding: 10,
-            background: 'rgba(36, 99, 235, 0.05)',
-            border: '1px dashed rgba(36, 99, 235, 0.35)',
+            background: 'rgba(14, 91, 98, 0.05)',
+            border: '1px dashed rgba(14, 91, 98, 0.35)',
             borderRadius: 6,
             fontSize: 11.5,
           }}

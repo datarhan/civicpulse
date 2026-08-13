@@ -51,8 +51,8 @@ function chipStyle(on) {
     fontWeight: 600,
     padding: '4px 9px',
     borderRadius: 999,
-    border: `1px solid ${on ? '#2463EB' : '#C9C3B4'}`,
-    background: on ? '#2463EB' : 'transparent',
+    border: `1px solid ${on ? 'var(--civic)' : '#C9C3B4'}`,
+    background: on ? 'var(--civic)' : 'transparent',
     color: on ? '#FFFFFF' : 'rgba(11,15,25,.7)',
     transition: 'background .12s, color .12s, border-color .12s',
   }

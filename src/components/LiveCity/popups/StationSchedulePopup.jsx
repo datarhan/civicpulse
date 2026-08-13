@@ -134,7 +134,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
             marginTop: 6,
             display: 'inline-block',
             fontSize: 12,
-            color: '#2463EB',
+            color: 'var(--civic)',
             textDecoration: 'none',
           }}
         >
@@ -186,7 +186,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
             marginTop: 8,
             display: 'inline-block',
             fontSize: 12,
-            color: '#2463EB',
+            color: 'var(--civic)',
             textDecoration: 'none',
           }}
         >
@@ -253,7 +253,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
               fontSize: 9,
               fontFamily: 'DM Mono, monospace',
               background: '#EEF4FF',
-              color: '#2463EB',
+              color: 'var(--civic)',
               padding: '2px 5px',
               borderRadius: 3,
               letterSpacing: '.06em',
@@ -288,7 +288,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
           marginTop: 4,
           display: 'inline-block',
           fontSize: 12,
-          color: '#2463EB',
+          color: 'var(--civic)',
           textDecoration: 'none',
         }}
       >

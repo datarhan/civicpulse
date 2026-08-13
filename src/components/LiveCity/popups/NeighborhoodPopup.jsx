@@ -75,7 +75,7 @@ export function NeighborhoodPopup({ agg }) {
             >
               <span>
                 {quejas.total} · <span style={{ color: '#16A34A' }}>✓{quejas.resueltas}</span>{' '}
-                <span style={{ color: '#2463EB' }}>⏳{quejas.pendientes}</span>
+                <span style={{ color: 'var(--civic)' }}>⏳{quejas.pendientes}</span>
                 {quejas.silencios > 0 && (
                   <span style={{ color: '#DC2626' }}> ⚠{quejas.silencios}</span>
                 )}

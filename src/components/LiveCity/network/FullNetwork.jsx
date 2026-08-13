@@ -105,7 +105,7 @@ export function FullNetwork() {
                     marginTop: 8,
                     display: 'inline-block',
                     fontSize: 12,
-                    color: '#2463EB',
+                    color: 'var(--civic)',
                     textDecoration: 'none',
                   }}
                 >

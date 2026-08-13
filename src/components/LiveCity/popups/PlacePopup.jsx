@@ -46,7 +46,7 @@ export function PlacePopup({ place, assignments, contractsById, danaOnly, obrasO
           marginTop: 1,
         }}
       >
-        <span className="mono" style={{ fontSize: 12.5, fontWeight: 700, color: '#2463EB' }}>
+        <span className="mono" style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--civic)' }}>
           {fmtEur(total)} · {works.length} obra{works.length === 1 ? '' : 's'}
         </span>
         <span

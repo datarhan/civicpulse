@@ -96,7 +96,7 @@ export default function QuejasHeatmap() {
                   <br />
                   {n.total} queja{n.total === 1 ? '' : 's'} ·{' '}
                   <span style={{ color: '#16A34A' }}>✓ {n.resueltas}</span> ·{' '}
-                  <span style={{ color: '#2463EB' }}>⏳ {n.pendientes}</span>
+                  <span style={{ color: 'var(--civic)' }}>⏳ {n.pendientes}</span>
                   {n.silencios > 0 && (
                     <>
                       {' '}
