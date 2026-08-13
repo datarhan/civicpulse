@@ -221,6 +221,12 @@ done
 # verified.json ni los trozos que lee la SPA. Que la nocturna reescriba verdictos
 # cada madrugada es una decisión editorial aparte, no un efecto secundario de
 # arreglar un runner.
+#
+# En la nocturna esto es un NO-OP: el workflow lo hace antes, en su propio paso,
+# porque aquí dentro compite por los 22 min del scrape y el 2026-08-13 murió por
+# eso —los adaptadores se comieron el reloj y la regeneración cayó a los 44
+# segundos de empezar—. La guarda se queda para cualquier otro que ejecute
+# `npm run scrape:all` en una máquina sin el corpus.
 if [ ! -f public/data/pleno-claims-verified-base.json ]; then
   echo ""
   echo "================================================================"

@@ -47,6 +47,28 @@ jobs:
       - name: Install deps
         run: npm ci
 
+      # El corpus del verificador, ANTES del scrape y con su propio reloj.
+      #
+      # `pleno-claims-verified-base.json` está gitignorado y es reproducible
+      # (determinista, sin LLM, sin red). Sin él fallan tres ficheros de prueba y
+      # el nodo `finding-quote-provenance.json` de `refresh` — que es lo que dejó
+      # la nocturna roja del 08-11 al 08-13, con el despliegue bloqueado.
+      #
+      # Vivía dentro de `scrape-all.sh`, y el 2026-08-13 el primer intento murió
+      # así: los adaptadores se comieron los 22 min del paso y el reloj cayó a
+      # los 44 segundos de empezar la regeneración. No es un scraper, es un
+      # PRERREQUISITO de los tests y de refresh; compitiendo por el presupuesto
+      # del scrape, una noche lenta de red lo mata. Con paso propio no puede
+      # quedarse sin tiempo, y si falla se ve dónde.
+      - name: Verifier corpus (deterministic, reproducible)
+        timeout-minutes: 6
+        run: |
+          if [ ! -f public/data/pleno-claims-verified-base.json ]; then
+            npm run verify:pleno-claims -- --base-only
+          else
+            echo "corpus ya presente — nada que reproducir"
+          fi
+
       - name: Run scraper(s)
         id: scrape
         # Time-box the scrape BELOW the job timeout: exceeding this fails
