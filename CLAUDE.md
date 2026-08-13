@@ -226,6 +226,17 @@ text. A `getBoundingClientRect()` on both edges is what caught it, one commit
 too late, and the user saw it before the tests ever could. "Green" and "right"
 are different claims; only one of them is about what a reader sees.
 
+The same split governs the reader-review. `review:surfaces` asks whether a page
+*says* something true, which no data check can — the four defects fixed on
+2026-08-12 all had their figure right and their sentence wrong. It runs in two
+places, and the division matters: the **pre-push hook** reads the routes that
+push can have broken, derived from the import graph, every time; the **nightly
+sweep** (`scripts/review-sweep.sh`, local cron — git hooks do not run in
+Actions, and Actions has no $0 LLM backend) reads all 27 public routes, because
+the nightly commits data and nobody pushes those pages. `check:surfaces` reports
+into the existing `monitor:health` digest when a page goes unread or a flag is
+left standing.
+
 Never write a row count, euro total or test count into a doc. Every one that was
 here was wrong when audited on 2026-08-03, some by 4×. Snapshots carry a `stats`
 block; the suites report their own totals.

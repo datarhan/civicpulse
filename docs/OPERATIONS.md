@@ -106,6 +106,7 @@ Anything needing an LLM backend or a residential IP runs here, not in CI.
 | When               | Script                                                                                                                                                              |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 06:45 daily        | `scrape-ci-blocked.sh` — the 7 adapters runners cannot reach (`paro`, `pleno-agendas`, `asociaciones`, `obras`, `procesos-selectivos`, `sindicatura`, `consell-cv`) |
+| 07:30 daily        | `review-sweep.sh` — reads all 27 public routes as a visitor (report-only, commits nothing)                                                                           |
 | 09:00 daily        | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                   |
 | 09:30 daily        | `hallazgos-pipeline.sh` — transcribe → extract → verify → auto-curate → push                                                                                        |
 | 10:15 daily        | `press-lab-pipeline.sh` — `/laboratorio` press fact-check pass                                                                                                      |
@@ -113,7 +114,9 @@ Anything needing an LLM backend or a residential IP runs here, not in CI.
 
 `scrape-ci-blocked.sh`, `auto-curate-promises-daily.sh`, `hallazgos-pipeline.sh`,
 `press-lab-pipeline.sh` and the currently disabled `auto-curate-weekly.sh` all
-commit and push, and all share `scripts/lib/cron-git.sh`. It **refuses to run
+commit and push, and all share `scripts/lib/cron-git.sh`. `review-sweep.sh`
+shares the branch guard and nothing else: it is report-only and writes no
+commit, because a reader-review finding is a lead for a person, not data. It **refuses to run
 off `main`** — before the pull and before any model call — because on a feature
 branch they would rebase _that_ branch onto `origin/main`, commit there, and
 then push an untouched local `main`, so the run's work would never reach the
@@ -206,6 +209,7 @@ All report-only inside `scrape:all`; run any of them directly.
 | `check:summary-gate`              | a published summary reproducing a quote the editorial gate withholds |
 | `check:data-graph`                | the hand-written dependency graph drifting from what scripts do      |
 | `check:queues`                    | a curator worklist describing findings that no longer exist          |
+| `check:surfaces`                  | public pages nobody has read lately, or a reader-review flag left standing |
 | `check:indicadores`               | a `/eficiencia` figure that no longer resolves to its source cell    |
 | `check:eficiencia-findings`       | a signed ficha asserting a figure its source has since revised       |
 | `check:dea`                       | a frontier score that no longer reproduces, or names a third party   |
