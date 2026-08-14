@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-08-13T08:40:16.342Z",
+  "generatedAt": "2026-08-14T08:23:32.160Z",
   "source": {
     "description": "Neutral editorial summaries for press articles audited by the lab",
     "contract": "src/scraper/press-summary-llm.ts"
   },
   "stats": {
     "total": 0,
-    "requested": 14,
+    "requested": 15,
     "summarized": 0,
-    "skippedNoBody": 14,
+    "skippedNoBody": 15,
     "llmUnavailable": 0
   },
   "items": []

@@ -1,26 +1,975 @@
 {
-  "generatedAt": "2026-08-13T08:40:15.101Z",
+  "generatedAt": "2026-08-14T08:23:30.518Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 27,
+    "total": 51,
     "byVerdict": {
-      "verificado": 3,
-      "parcial": 2,
+      "verificado": 2,
+      "parcial": 5,
       "contradicho": 0,
-      "sin-datos": 22,
+      "sin-datos": 44,
       "promesa-repetida": 0
     }
   },
   "items": [
     {
       "claim": {
+        "id": "1k7hpxd-0-pro",
+        "articleId": "1k7hpxd",
+        "articleFingerprint": "83junr",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleDate": "2026-08-13T12:27:03.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "body",
+        "type": "promesa",
+        "attributedSource": "outlet",
+        "verbatim": "treballa estos dies en el pont de la CV-336 sobre el riu per culminar les obres durant la pròxima setmana",
+        "context": "L'empresa encarregada de la gestió integral de l'aigua treballa estos dies en el pont de la CV-336 sobre el riu per culminar les obres durant la pròxima setmana.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "CV-336"
+        },
+        "confidence": 0.5,
+        "reasoning": "Fija un plazo relativo ('pròxima setmana') para finalizar las obras, verificable si se cumple o no.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1k7hpxd-0-pro",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "83junr"
+      }
+    },
+    {
+      "claim": {
+        "id": "1k7hpxd-1-dat",
+        "articleId": "1k7hpxd",
+        "articleFingerprint": "83junr",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleDate": "2026-08-13T12:27:03.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "després dels danys ocasionats per la DANA d’octubre de 2024 en el viaducte de la carretera CV-336",
+        "context": "La intervenció substituïx la derivació provisional instal·lada després dels danys ocasionats per la DANA d’octubre de 2024 en el viaducte de la carretera CV-336.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "date": "2024-10",
+          "referencedEntity": "DANA / CV-336"
+        },
+        "confidence": 0.9,
+        "reasoning": "Cita una fecha y causa concreta (DANA octubre 2024) verificable con registros oficiales del suceso.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1k7hpxd-1-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "83junr"
+      }
+    },
+    {
+      "claim": {
+        "id": "1k7hpxd-2-dat",
+        "articleId": "1k7hpxd",
+        "articleFingerprint": "83junr",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleDate": "2026-08-13T12:27:03.000Z",
+        "segmentIndex": 2,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "El Molinet, Santa Mònica, Montealcedo, Parc Montealcedo, Entrenaranjos, Santa Rosa i El Clot",
+        "context": "va obligar a plantejar una solució provisional que va evitar que els veïns i veïnes de la zona nord (El Molinet, Santa Mònica, Montealcedo, Parc Montealcedo, Entrenaranjos, Santa Rosa i El Clot) pogueren quedar en algun moment sense subministrament d’aigua potable.",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 7,
+          "countUnit": "urbanitzacions",
+          "referencedEntity": "zona nord de Riba-roja de Túria"
+        },
+        "confidence": 0.85,
+        "reasoning": "Enumera un número concreto de urbanizaciones afectadas, verificable con datos municipales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1k7hpxd-2-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "83junr"
+      }
+    },
+    {
+      "claim": {
+        "id": "1k7hpxd-3-dat",
+        "articleId": "1k7hpxd",
+        "articleFingerprint": "83junr",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleDate": "2026-08-13T12:27:03.000Z",
+        "segmentIndex": 3,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "Durant els primers dies, van comptar amb el subministrament del depòsit de l’Eliana.",
+        "context": "va obligar a plantejar una solució provisional... Durant els primers dies, van comptar amb el subministrament del depòsit de l’Eliana.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "depòsit de l'Eliana"
+        },
+        "confidence": 0.8,
+        "reasoning": "Afirma un hecho concreto y verificable sobre el origen del suministro de emergencia.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1k7hpxd-3-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "83junr"
+      }
+    },
+    {
+      "claim": {
+        "id": "1k7hpxd-4-num",
+        "articleId": "1k7hpxd",
+        "articleFingerprint": "83junr",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleDate": "2026-08-13T12:27:03.000Z",
+        "segmentIndex": 4,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "una canonada d’acer inoxidable austenític d’alta resistència, grau 316L, amb un diàmetre nominal de 400 mil·límetres",
+        "context": "L’actuació consistix en la instal·lació d’una canonada d’acer inoxidable austenític d’alta resistència, grau 316L, amb un diàmetre nominal de 400 mil·límetres.",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 400,
+          "countUnit": "mil·límetres",
+          "referencedEntity": "canonada acer inoxidable 316L"
+        },
+        "confidence": 0.9,
+        "reasoning": "Especifica una cifra técnica concreta (diámetro nominal) verificable mediante el proyecto de obra.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1k7hpxd-4-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "83junr"
+      }
+    },
+    {
+      "claim": {
+        "id": "1k7hpxd-5-num",
+        "articleId": "1k7hpxd",
+        "articleFingerprint": "83junr",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleDate": "2026-08-13T12:27:03.000Z",
+        "segmentIndex": 5,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "La nova canalització, d’aproximadament 48 metres de longitud, discorre adossada longitudinalment al lateral del tauler del pont",
+        "context": "La nova canalització, d’aproximadament 48 metres de longitud, discorre adossada longitudinalment al lateral del tauler del pont i de manera elevada, la qual cosa evita realitzar suports directes sobre el llit o les ribes del riu Túria.",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 48,
+          "countUnit": "metres",
+          "referencedEntity": "pont CV-336 sobre el riu Túria"
+        },
+        "confidence": 0.85,
+        "reasoning": "Aporta una longitud aproximada verificable, aunque calificada como 'aproximadament'.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1k7hpxd-5-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "83junr"
+      }
+    },
+    {
+      "claim": {
+        "id": "1k7hpxd-6-num",
+        "articleId": "1k7hpxd",
+        "articleFingerprint": "83junr",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleDate": "2026-08-13T12:27:03.000Z",
+        "segmentIndex": 6,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "una ventosa trifuncional de 80 mil·límetres dotada d’una vàlvula de comporta intermèdia que facilitarà les tasques de manteniment",
+        "context": "El muntatge incorpora, així mateix, un maneguet antivibratori per a absorbir els esforços dinàmics del fluid i de la conducció, i amortir el soroll, així com una ventosa trifuncional de 80 mil·límetres dotada d’una vàlvula de comporta intermèdia que facilitarà les tasques de manteniment.",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 80,
+          "countUnit": "mil·límetres",
+          "referencedEntity": "ventosa trifuncional"
+        },
+        "confidence": 0.85,
+        "reasoning": "Detalla una especificación técnica numérica verificable del componente instalado.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1k7hpxd-6-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "83junr"
+      }
+    },
+    {
+      "claim": {
+        "id": "1k7hpxd-7-obr",
+        "articleId": "1k7hpxd",
+        "articleFingerprint": "83junr",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleDate": "2026-08-13T12:27:03.000Z",
+        "segmentIndex": 7,
+        "segmentKind": "body",
+        "type": "cita_obra",
+        "attributedSource": "municipal",
+        "verbatim": "Esta important obra es localitza en una de les zones zero de la DANA, en la qual es va vore greument afectat el pont que connecta el nucli urbà amb la zona nord. Amb esta nova conducció millorem la xarxa d’aigua potable i, en un futur, ens permetrà poder connectar amb l’Eliana",
+        "context": "Durant la visita, l’alcalde ha subratllat la importància de l’actuació: «Esta important obra es localitza en una de les zones zero de la DANA... ens permetrà poder connectar amb l’Eliana».",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "pont CV-336 / l'Eliana"
+        },
+        "confidence": 0.6,
+        "reasoning": "Declaración institucional sobre el alcance y objetivo futuro de la obra, contrastable con el proyecto real.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1k7hpxd-7-obr",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=MHF2SJtZAK%2FgL1BHd3qjQA%3D%3D",
+            "snippet": "Contrato de servicio para la redacción del proyecto de ejecución y estudio de seguridad y salud de la obra de inversión denominada “CENTRO DE DIA PARA PERSONAS CON DIVERSIDAD FUNCIONAL” en el término municipal de l´Eliana través de un contrato específico en el marco del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. · Ayuntamiento de Riba-roja de Túria · architecture · estado: unknown",
+            "similarity": 0.5,
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "83junr"
+      }
+    },
+    {
+      "claim": {
+        "id": "1k7hpxd-8-obr",
+        "articleId": "1k7hpxd",
+        "articleFingerprint": "83junr",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleDate": "2026-08-13T12:27:03.000Z",
+        "segmentIndex": 8,
+        "segmentKind": "body",
+        "type": "cita_obra",
+        "attributedSource": "municipal",
+        "verbatim": "seguim en procés de reconstrucció, amb obres que afecten no només el parc natural del Túria, sinó també l’àrea industrial de Riba-roja de Túria",
+        "context": "Raga ha recordat que «seguim en procés de reconstrucció, amb obres que afecten no només el parc natural del Túria, sinó també l’àrea industrial de Riba-roja de Túria».",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "parc natural del Túria / àrea industrial de Riba-roja de Túria"
+        },
+        "confidence": 0.7,
+        "reasoning": "Afirma un estado de proceso de reconstrucción en curso, contrastable con el listado de obras municipales activas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1k7hpxd-8-obr",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "83junr"
+      }
+    },
+    {
+      "claim": {
+        "id": "1k7hpxd-9-num",
+        "articleId": "1k7hpxd",
+        "articleFingerprint": "83junr",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleDate": "2026-08-13T12:27:03.000Z",
+        "segmentIndex": 9,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "El cost de l’actuació definitiva, que inclou tant la derivació provisional com la restitució definitiva de la conducció, ascendix a 120.000 euros",
+        "context": "El cost de l’actuació definitiva, que inclou tant la derivació provisional com la restitució definitiva de la conducció, ascendix a 120.000 euros.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 120000,
+          "referencedEntity": "restitució conducció aigua potable pont CV-336"
+        },
+        "confidence": 0.9,
+        "reasoning": "Indica una cifra exacta de coste de la obra, verificable mediante contrato o expediente municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1k7hpxd-9-num",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BxX%2F0h%2BKVBsQK2TEfXGy%2BA%3D%3D",
+            "snippet": "Servicio de comunicaciones para organismos adheridos a la Central de Servicios Innovadores y Sostenibles de la Diputación de Valencia · Ayuntamiento de Riba-roja de Túria · telecom · 120.000 €",
+            "similarity": 0.6,
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "83junr"
+      }
+    },
+    {
+      "claim": {
+        "id": "1k7hpxd-10-dat",
+        "articleId": "1k7hpxd",
+        "articleFingerprint": "83junr",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleDate": "2026-08-13T12:27:03.000Z",
+        "segmentIndex": 10,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "finançada íntegrament amb les ajudes directes atorgades en el marc de la Resolució de la Secretaria d’Estat de Medi Ambient, òrgan integrat en el Ministeri per a la Transició Ecològica i el Repte Demogràfic",
+        "context": "Esta actuació està finançada íntegrament amb les ajudes directes atorgades en el marc de la Resolució de la Secretaria d’Estat de Medi Ambient, òrgan integrat en el Ministeri per a la Transició Ecològica i el Repte Demogràfic.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "Secretaria d'Estat de Medi Ambient / Ministeri per a la Transició Ecològica i el Repte Demogràfic"
+        },
+        "confidence": 0.6,
+        "reasoning": "Atribuye la financiación a una resolución ministerial concreta, verificable en el BOE u organismo citado; cita larga (>200 chars) exige confianza moderada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1k7hpxd-10-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "83junr"
+      }
+    },
+    {
+      "claim": {
+        "id": "1k7hpxd-11-num",
+        "articleId": "1k7hpxd",
+        "articleFingerprint": "83junr",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleDate": "2026-08-13T12:27:03.000Z",
+        "segmentIndex": 11,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "la inversió a Riba-roja de Túria a través de l’empresa gestora del cicle de l’aigua és de 4,4 milions d’euros",
+        "context": "En total, la inversió a Riba-roja de Túria a través de l’empresa gestora del cicle de l’aigua és de 4,4 milions d’euros.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 4400000,
+          "referencedEntity": "empresa gestora del cicle de l'aigua"
+        },
+        "confidence": 0.9,
+        "reasoning": "Cifra global de inversión concreta y verificable con la empresa gestora del ciclo del agua.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1k7hpxd-11-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "83junr"
+      }
+    },
+    {
+      "claim": {
+        "id": "1k7hpxd-12-num",
+        "articleId": "1k7hpxd",
+        "articleFingerprint": "83junr",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleDate": "2026-08-13T12:27:03.000Z",
+        "segmentIndex": 12,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "el desmuntatge de la canonada provisional de baixant de 200 mil·límetres actualment en servici i a la col·locació d’una brida cega",
+        "context": "Una vegada completats l’ancoratge i l’alineació longitudinal de la conducció, es procedirà al desmuntatge de la canonada provisional de baixant de 200 mil·límetres actualment en servici i a la col·locació d’una brida cega per a segellar l’antiga derivació.",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 200,
+          "countUnit": "mil·límetres",
+          "referencedEntity": "canonada provisional de baixant"
+        },
+        "confidence": 0.8,
+        "reasoning": "Describe una acción técnica futura con una cifra concreta (200 mm), verificable al completarse la obra.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1k7hpxd-12-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "83junr"
+      }
+    },
+    {
+      "claim": {
+        "id": "t56pik-0-dat",
+        "articleId": "t56pik",
+        "articleFingerprint": "3j7e78",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleDate": "2026-08-13T09:51:38.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "La intervención sustituye la derivación provisional instalada tras los daños ocasionados por la DANA de octubre de 2024 en el viaducto de la carretera CV-336.",
+        "context": "Las obras para la restitución de la conducción de agua potable sobre el puente del río Turia avanzan a buen ritmo con el fin de restablecer de manera definitiva el suministro. La intervención sustituye la derivación provisional instalada tras los daños ocasionados por la DANA de octubre de 2024 en el viaducto de la carretera CV-336.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "date": "2024-10",
+          "referencedEntity": "viaducto CV-336"
+        },
+        "confidence": 0.85,
+        "reasoning": "Afirma una causa y una fecha verificables (daños del puente por la DANA de octubre de 2024) contrastables con registros oficiales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "t56pik-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "3j7e78"
+      }
+    },
+    {
+      "claim": {
+        "id": "t56pik-1-dat",
+        "articleId": "t56pik",
+        "articleFingerprint": "3j7e78",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleDate": "2026-08-13T09:51:38.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "los vecinos y vecinas de la zona norte (El Molinet, Santa Mónica, Montealcedo, Parque Montealcedo, Entrenaranjos, Santa Rosa y El Clot) pudieran quedar en algún momento sin suministro de agua potable",
+        "context": "La afectación de la riada sobre el puente provocó la rotura de la tubería, lo que obligó a proponer una solución provisional que evitó que los vecinos y vecinas de la zona norte (El Molinet, Santa Mónica, Montealcedo, Parque Montealcedo, Entrenaranjos, Santa Rosa y El Clot) pudieran quedar en algún momento sin suministro de agua potable.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 7,
+          "countUnit": "urbanizaciones",
+          "referencedEntity": "zona norte de Riba-roja de Túria"
+        },
+        "confidence": 0.8,
+        "reasoning": "Enumera urbanizaciones concretas afectadas, dato contrastable con los registros municipales del suministro de agua.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "t56pik-1-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "3j7e78"
+      }
+    },
+    {
+      "claim": {
+        "id": "t56pik-2-num",
+        "articleId": "t56pik",
+        "articleFingerprint": "3j7e78",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleDate": "2026-08-13T09:51:38.000Z",
+        "segmentIndex": 2,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "La actuación consiste en la instalación de una tubería de acero inoxidable austenítico de alta resistencia, grado 316L, con un diámetro nominal de 400 milímetros.",
+        "context": "La actuación consiste en la instalación de una tubería de acero inoxidable austenítico de alta resistencia, grado 316L, con un diámetro nominal de 400 milímetros.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 400,
+          "countUnit": "milímetros",
+          "referencedEntity": "tubería de acero inoxidable 316L"
+        },
+        "confidence": 0.9,
+        "reasoning": "Especificación técnica cuantificable del proyecto, contrastable con el proyecto de obra.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "t56pik-2-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "3j7e78"
+      }
+    },
+    {
+      "claim": {
+        "id": "t56pik-3-num",
+        "articleId": "t56pik",
+        "articleFingerprint": "3j7e78",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleDate": "2026-08-13T09:51:38.000Z",
+        "segmentIndex": 3,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "La nueva canalización, de aproximadamente 48 metros de longitud, discurre adosada longitudinalmente al lateral del tablero del puente",
+        "context": "La nueva canalización, de aproximadamente 48 metros de longitud, discurre adosada longitudinalmente al lateral del tablero del puente y de forma elevada, lo que evita realizar apoyos directos sobre el lecho o las márgenes del río Turia.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 48,
+          "countUnit": "metros",
+          "referencedEntity": "canalización de agua potable"
+        },
+        "confidence": 0.85,
+        "reasoning": "Dato técnico de longitud cuantificable y verificable in situ o en el proyecto de obra.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "t56pik-3-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "3j7e78"
+      }
+    },
+    {
+      "claim": {
+        "id": "t56pik-4-num",
+        "articleId": "t56pik",
+        "articleFingerprint": "3j7e78",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleDate": "2026-08-13T09:51:38.000Z",
+        "segmentIndex": 4,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "una ventosa trifuncional de 80 milímetros dotada de una válvula de compuerta intermedia que facilitará las tareas de mantenimiento",
+        "context": "El montaje incorpora, asimismo, un manguito antivibratorio para absorber los esfuerzos dinámicos del fluido y de la conducción, y amortiguar el ruido, así como una ventosa trifuncional de 80 milímetros dotada de una válvula de compuerta intermedia que facilitará las tareas de mantenimiento.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 80,
+          "countUnit": "milímetros",
+          "referencedEntity": "ventosa trifuncional"
+        },
+        "confidence": 0.85,
+        "reasoning": "Especificación técnica concreta del componente instalado, contrastable con el proyecto de obra.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "t56pik-4-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "3j7e78"
+      }
+    },
+    {
+      "claim": {
+        "id": "t56pik-5-num",
+        "articleId": "t56pik",
+        "articleFingerprint": "3j7e78",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleDate": "2026-08-13T09:51:38.000Z",
+        "segmentIndex": 5,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "se procederá al desmontaje de la tubería provisional de bajante de 200 milímetros actualmente en servicio y a la colocación de una brida ciega para sellar la antigua derivación",
+        "context": "Una vez completados el anclaje y la alineación longitudinal de la conducción, se procederá al desmontaje de la tubería provisional de bajante de 200 milímetros actualmente en servicio y a la colocación de una brida ciega para sellar la antigua derivación.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 200,
+          "countUnit": "milímetros",
+          "referencedEntity": "tubería provisional de bajante"
+        },
+        "confidence": 0.8,
+        "reasoning": "Describe una acción técnica futura y concreta con especificaciones verificables una vez ejecutada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "t56pik-5-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "3j7e78"
+      }
+    },
+    {
+      "claim": {
+        "id": "t56pik-6-num",
+        "articleId": "t56pik",
+        "articleFingerprint": "3j7e78",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleDate": "2026-08-13T09:51:38.000Z",
+        "segmentIndex": 6,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "El coste de la actuación definitiva que incluye tanto la derivación provisional como la restitución definitiva de la conducción asciende a 120.000€.",
+        "context": "El coste de la actuación definitiva que incluye tanto la derivación provisional como la restitución definitiva de la conducción asciende a 120.000€. Esta actuación está financiada íntegramente con las ayudas directas otorgadas en el marco de la Resolución de la Secretaría de Estado de Medio Ambiente.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 120000,
+          "referencedEntity": "actuación de restitución de la conducción"
+        },
+        "confidence": 0.9,
+        "reasoning": "Cifra económica concreta y verificable contra presupuestos o contratos municipales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "t56pik-6-num",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BxX%2F0h%2BKVBsQK2TEfXGy%2BA%3D%3D",
+            "snippet": "Servicio de comunicaciones para organismos adheridos a la Central de Servicios Innovadores y Sostenibles de la Diputación de Valencia · Ayuntamiento de Riba-roja de Túria · telecom · 120.000 €",
+            "similarity": 0.6,
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "3j7e78"
+      }
+    },
+    {
+      "claim": {
+        "id": "t56pik-7-dat",
+        "articleId": "t56pik",
+        "articleFingerprint": "3j7e78",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleDate": "2026-08-13T09:51:38.000Z",
+        "segmentIndex": 7,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "Esta actuación está financiada íntegramente con las ayudas directas otorgadas en el marco de la Resolución de la Secretaría de Estado de Medio Ambiente, órgano integrado en el Ministerio para la Transición Ecológica y el Reto Demográfico.",
+        "context": "El coste de la actuación definitiva... asciende a 120.000€. Esta actuación está financiada íntegramente con las ayudas directas otorgadas en el marco de la Resolución de la Secretaría de Estado de Medio Ambiente, órgano integrado en el Ministerio para la Transición Ecológica y el Reto Demográfico.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "Secretaría de Estado de Medio Ambiente (MITECO)"
+        },
+        "confidence": 0.65,
+        "reasoning": "Identifica una fuente de financiación pública contrastable con la resolución oficial citada; cita larga, se limita la confianza.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "t56pik-7-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "3j7e78"
+      }
+    },
+    {
+      "claim": {
+        "id": "t56pik-8-num",
+        "articleId": "t56pik",
+        "articleFingerprint": "3j7e78",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleDate": "2026-08-13T09:51:38.000Z",
+        "segmentIndex": 8,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "En total, la inversión en Riba-roja de Túria a través de la empresa gestora del ciclo de agua es de 4,4 millones de euros.",
+        "context": "Esta actuación está financiada íntegramente con las ayudas directas otorgadas en el marco de la Resolución de la Secretaría de Estado de Medio Ambiente. En total, la inversión en Riba-roja de Túria a través de la empresa gestora del ciclo de agua es de 4,4 millones de euros.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 4400000,
+          "referencedEntity": "empresa gestora del ciclo integral del agua"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra de inversión total explícita, contrastable con las cuentas de la empresa concesionaria del ciclo del agua.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "t56pik-8-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "3j7e78"
+      }
+    },
+    {
+      "claim": {
+        "id": "t56pik-9-dat",
+        "articleId": "t56pik",
+        "articleFingerprint": "3j7e78",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleDate": "2026-08-13T09:51:38.000Z",
+        "segmentIndex": 9,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "esta importante obra se localiza en una de las zonas cero de la Dana, en la que se vio gravemente afectado el puente que conecta el casco urbano con la zona norte",
+        "context": "Durante su visita, el alcalde subrayó la importancia de la actuación: “esta importante obra se localiza en una de las zonas cero de la Dana, en la que se vio gravemente afectado el puente que conecta el casco urbano con la zona norte. Con esta nueva conducción mejoramos la red de agua potable...”",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "puente CV-336"
+        },
+        "confidence": 0.7,
+        "reasoning": "Declaración institucional sobre el alcance del daño del puente, contrastable con informes técnicos de la DANA.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "t56pik-9-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "3j7e78"
+      }
+    },
+    {
+      "claim": {
+        "id": "t56pik-10-pro",
+        "articleId": "t56pik",
+        "articleFingerprint": "3j7e78",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleDate": "2026-08-13T09:51:38.000Z",
+        "segmentIndex": 10,
+        "segmentKind": "body",
+        "type": "promesa",
+        "attributedSource": "municipal",
+        "verbatim": "en un futuro nos permitirá poder conectar con l' Eliana",
+        "context": "Con esta nueva conducción mejoramos la red de agua potable y en un futuro nos permitirá poder conectar con l' Eliana”.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "l'Eliana"
+        },
+        "confidence": 0.75,
+        "reasoning": "Compromiso institucional sobre una futura conexión de red, verificable en próximas actuaciones municipales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "t56pik-10-pro",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "3j7e78"
+      }
+    },
+    {
+      "claim": {
+        "id": "t56pik-11-dat",
+        "articleId": "t56pik",
+        "articleFingerprint": "3j7e78",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleDate": "2026-08-13T09:51:38.000Z",
+        "segmentIndex": 11,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "seguimos en proceso de reconstrucción, con obras que afectan no solo al parque natural del Túria, sino al área industrial de Riba-roja de Túria",
+        "context": "Raga ha recordado que seguimos en proceso de reconstrucción, con obras que afectan no solo al parque natural del Túria, sino al área industrial de Riba-roja de Túria.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "parque natural del Túria / área industrial de Riba-roja"
+        },
+        "confidence": 0.6,
+        "reasoning": "Declara un estado de obras en curso que puede contrastarse con los proyectos municipales activos de reconstrucción.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "t56pik-11-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "3j7e78"
+      }
+    },
+    {
+      "claim": {
         "id": "1xuqiyg-0-num",
         "articleId": "1xuqiyg",
         "articleFingerprint": "1eha1zw",
-        "articleSource": "El Periódico de Aquí",
+        "articleSource": "elperiodicodeaqui.com",
         "articleSourceHost": "elperiodicodeaqui.com",
         "articleUrl": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOLXhoazFWTng1cVdzSEpxYWN1TzdKUjd1UzJTTEI4eEQzUXprOUV3WDhWdE5MdXhNcGduZkN1V3NFaEZOUlRqTjFUdURRcnN5OEc3aGZUc045YmF5MGVmc1dLUE4yTXkxTWJTZFpRMDg0c090Y21LU25nVVYzcERCbDM2YzU5a21Rc0RYVXRhM2pxbDRyU0hmbHExYWlla3ZQSng1T2dR?oc=5",
         "articleDate": "2026-08-11T09:42:46.000Z",
@@ -47,7 +996,7 @@
         "evidence": [],
         "checkedAgainst": [],
         "articleUrl": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOLXhoazFWTng1cVdzSEpxYWN1TzdKUjd1UzJTTEI4eEQzUXprOUV3WDhWdE5MdXhNcGduZkN1V3NFaEZOUlRqTjFUdURRcnN5OEc3aGZUc045YmF5MGVmc1dLUE4yTXkxTWJTZFpRMDg0c090Y21LU25nVVYzcERCbDM2YzU5a21Rc0RYVXRhM2pxbDRyU0hmbHExYWlla3ZQSng1T2dR?oc=5",
-        "articleSource": "El Periódico de Aquí",
+        "articleSource": "elperiodicodeaqui.com",
         "articleSourceHost": "elperiodicodeaqui.com",
         "articleFingerprint": "1eha1zw"
       }
@@ -57,7 +1006,7 @@
         "id": "1xuqiyg-1-num",
         "articleId": "1xuqiyg",
         "articleFingerprint": "1eha1zw",
-        "articleSource": "El Periódico de Aquí",
+        "articleSource": "elperiodicodeaqui.com",
         "articleSourceHost": "elperiodicodeaqui.com",
         "articleUrl": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOLXhoazFWTng1cVdzSEpxYWN1TzdKUjd1UzJTTEI4eEQzUXprOUV3WDhWdE5MdXhNcGduZkN1V3NFaEZOUlRqTjFUdURRcnN5OEc3aGZUc045YmF5MGVmc1dLUE4yTXkxTWJTZFpRMDg0c090Y21LU25nVVYzcERCbDM2YzU5a21Rc0RYVXRhM2pxbDRyU0hmbHExYWlla3ZQSng1T2dR?oc=5",
         "articleDate": "2026-08-11T09:42:46.000Z",
@@ -103,7 +1052,7 @@
           "budget"
         ],
         "articleUrl": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOLXhoazFWTng1cVdzSEpxYWN1TzdKUjd1UzJTTEI4eEQzUXprOUV3WDhWdE5MdXhNcGduZkN1V3NFaEZOUlRqTjFUdURRcnN5OEc3aGZUc045YmF5MGVmc1dLUE4yTXkxTWJTZFpRMDg0c090Y21LU25nVVYzcERCbDM2YzU5a21Rc0RYVXRhM2pxbDRyU0hmbHExYWlla3ZQSng1T2dR?oc=5",
-        "articleSource": "El Periódico de Aquí",
+        "articleSource": "elperiodicodeaqui.com",
         "articleSourceHost": "elperiodicodeaqui.com",
         "articleFingerprint": "1eha1zw"
       }
@@ -289,57 +1238,6 @@
     },
     {
       "claim": {
-        "id": "plfgoc-0-num",
-        "articleId": "plfgoc",
-        "articleFingerprint": "18f1xjw",
-        "articleSource": "Valencia Plaza",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTQ1ZHFLLTNRRXdudEs2RHpkMXdKam1SUjdjM21jRkx3TFZEcVd1eFJ5cloycFVpNHFFeG1UeXYyVHpFcXVyaEsxRVgzajlLdnI2ZmVoT3ZpMDJXa1h2WUN3REplYjJIN3QydlB2TWFWYTBpdnZ4QU5oY1VXTWlITUlCSDQwaGhCY0RocnZYTUR0THVERkJqOWpTMmtzMmNmRDhXaWlIcGNCZmNOaXM1d1BTVUZ4TmhUSm5DTGdmODlyeWw2bUY4UUc2OUN6MUZIZnRjNlZqSGRxeTd1QTVVUFd4bHpJNjhG?oc=5",
-        "articleDate": "2026-08-10T13:17:56.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "Riba-roja adjudica el contrato para el suministro de agua potable por 55,6 millones para 17 años",
-        "context": "Riba-roja adjudica el contrato para el suministro de agua potable por 55,6 millones para 17 años",
-        "topic": "urbanismo",
-        "entities": {
-          "amountEuros": 55600000,
-          "count": 17,
-          "countUnit": "años",
-          "referencedEntity": "contrato de suministro de agua potable de Riba-roja de Túria"
-        },
-        "confidence": 0.75,
-        "reasoning": "El titular afirma una cifra económica concreta (55,6 millones de euros) y una duración concreta (17 años) para un contrato municipal, dato verificable en el expediente de contratación.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "plfgoc-0-num",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
-            "snippet": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. · Ayuntamiento de Riba-roja de Túria · HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE S.A. · public_services · 55.685.179 €",
-            "similarity": 0.86,
-            "stance": "checked"
-          }
-        ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTQ1ZHFLLTNRRXdudEs2RHpkMXdKam1SUjdjM21jRkx3TFZEcVd1eFJ5cloycFVpNHFFeG1UeXYyVHpFcXVyaEsxRVgzajlLdnI2ZmVoT3ZpMDJXa1h2WUN3REplYjJIN3QydlB2TWFWYTBpdnZ4QU5oY1VXTWlITUlCSDQwaGhCY0RocnZYTUR0THVERkJqOWpTMmtzMmNmRDhXaWlIcGNCZmNOaXM1d1BTVUZ4TmhUSm5DTGdmODlyeWw2bUY4UUc2OUN6MUZIZnRjNlZqSGRxeTd1QTVVUFd4bHpJNjhG?oc=5",
-        "articleSource": "Valencia Plaza",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleFingerprint": "18f1xjw"
-      }
-    },
-    {
-      "claim": {
         "id": "neb0p4-0-num",
         "articleId": "neb0p4",
         "articleFingerprint": "1l02fsd",
@@ -387,6 +1285,43 @@
         "articleSource": "Periòdic del Camp de Túria",
         "articleSourceHost": "infoturia.com",
         "articleFingerprint": "1l02fsd"
+      }
+    },
+    {
+      "claim": {
+        "id": "1nvgd1s-0-pro",
+        "articleId": "1nvgd1s",
+        "articleFingerprint": "ylq0ky",
+        "articleSource": "Las Provincias",
+        "articleSourceHost": "lasprovincias.es",
+        "articleUrl": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOLWVOZXpiUi1EeG9vbHRiX1J5NXEyaFNQWmdtT0x3NEFyUDU2Rm1zdTJzZHNYSDI3X3JndUd4d2RXa1h1X0ZpMDl1ajN3UFhzQV8zY2dvWVZjdjlKcUxlLVBDcnNUMEVkWnVQWGZzS2JaQXREQjVZcl9JLXlqaHcxUWhJM2RuZ0Vma1hUa3hqZmFOTlh2VmZ1cUlvNFhvb3ppSGpPLS1YcmJDcXUzc056UnAzU0FOSThKZGtuV20zaEMxNE1nS1HSAcsBQVVfeXFMTnB5ZlExbmphR0xLVUxzb2FHTk1iVHlnd0RQWEVJVUNqcVlrRjFQTVQyUThHQXExZ0d4Q2VyVjhQTTlsZW9vNHdLOWlSR2tQSWJtYm1MZFdnMndaM2dMNjZLUFJHQmRtdnV0QktWUUtPQVM3LXg1WDEwYVFkdE93VFMxNDJhbXNOajBGWkt0Qm1YMmlPZjRHTzZyWVE3TEhtSWdsWUw1TGhNWFhvQVZuZzlpZE1HVkhQM3RxU3lQMHJyM0JKUzlzSWllMUE?oc=5",
+        "articleDate": "2026-08-10T10:53:44.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "promesa",
+        "attributedSource": "outlet",
+        "verbatim": "Riba-roja garantizará el suministro de agua a los polígonos con el desarrollo de un anillo circular",
+        "context": "Titular: Riba-roja garantizará el suministro de agua a los polígonos con el desarrollo de un anillo circular (Las Provincias, 10/08/2026)",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "anillo circular de abastecimiento de agua a los polígonos industriales"
+        },
+        "confidence": 0.4,
+        "reasoning": "El titular anuncia un compromiso de infraestructura futura (anillo circular de agua) cuya ejecución real puede verificarse posteriormente, pero no se dispone del cuerpo del artículo para confirmar detalles, plazos o fuente exacta.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1nvgd1s-0-pro",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOLWVOZXpiUi1EeG9vbHRiX1J5NXEyaFNQWmdtT0x3NEFyUDU2Rm1zdTJzZHNYSDI3X3JndUd4d2RXa1h1X0ZpMDl1ajN3UFhzQV8zY2dvWVZjdjlKcUxlLVBDcnNUMEVkWnVQWGZzS2JaQXREQjVZcl9JLXlqaHcxUWhJM2RuZ0Vma1hUa3hqZmFOTlh2VmZ1cUlvNFhvb3ppSGpPLS1YcmJDcXUzc056UnAzU0FOSThKZGtuV20zaEMxNE1nS1HSAcsBQVVfeXFMTnB5ZlExbmphR0xLVUxzb2FHTk1iVHlnd0RQWEVJVUNqcVlrRjFQTVQyUThHQXExZ0d4Q2VyVjhQTTlsZW9vNHdLOWlSR2tQSWJtYm1MZFdnMndaM2dMNjZLUFJHQmRtdnV0QktWUUtPQVM3LXg1WDEwYVFkdE93VFMxNDJhbXNOajBGWkt0Qm1YMmlPZjRHTzZyWVE3TEhtSWdsWUw1TGhNWFhvQVZuZzlpZE1HVkhQM3RxU3lQMHJyM0JKUzlzSWllMUE?oc=5",
+        "articleSource": "Las Provincias",
+        "articleSourceHost": "lasprovincias.es",
+        "articleFingerprint": "ylq0ky"
       }
     },
     {
@@ -497,43 +1432,6 @@
         "articleSource": "Ayuntamiento de Riba-roja de Túria",
         "articleSourceHost": "ribarroja.es",
         "articleFingerprint": "fxc6ts"
-      }
-    },
-    {
-      "claim": {
-        "id": "bq3ke8-0-num",
-        "articleId": "bq3ke8",
-        "articleFingerprint": "1377kf4",
-        "articleSource": "noticiascv.com",
-        "articleSourceHost": "noticiascv.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOQ1cxd0Fab3ZtTWtiNmNuVGV2UEE5THFidVRJRm5xM3g2S2MweVUwemZYV3ZVc2o1VWM0TUdOam0xY1M0U2M3bWtOeVNncEsxeEZLUEx4RGFQOU1iNjJwaDFqUUN2MmpORGZyNFcwbHgzOUdNcXZVcmJfdlpKeHJLanZERGNfNUQtc1lMZF9xdFVic2E5NDRhRXZGSDBkM0tDZk9nOWNVOWFFV3RyNzNXR3Z3MTZjX1ZLS01PZHQ2VDY3Z0FTMGpHR253cEF6WUtmaXR3Yi1BREJUU0s1OFVWZlJsTG9UQzlWN1E3Xw?oc=5",
-        "articleDate": "2026-08-07T08:51:40.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "beneficiará a más de 177.000 vecinos frente a fenómenos climáticos extremos",
-        "context": "Un plan de restauración ambiental en la cuenca del Turia beneficiará a más de 177.000 vecinos frente a fenómenos climáticos extremos",
-        "topic": "medio-ambiente",
-        "entities": {
-          "count": 177000,
-          "countUnit": "vecinos",
-          "referencedEntity": "cuenca del Turia"
-        },
-        "confidence": 0.55,
-        "reasoning": "Cifra concreta de beneficiarios (177.000 vecinos) atribuida a un plan de restauración, contrastable con datos demográficos y el alcance real del proyecto.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "bq3ke8-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOQ1cxd0Fab3ZtTWtiNmNuVGV2UEE5THFidVRJRm5xM3g2S2MweVUwemZYV3ZVc2o1VWM0TUdOam0xY1M0U2M3bWtOeVNncEsxeEZLUEx4RGFQOU1iNjJwaDFqUUN2MmpORGZyNFcwbHgzOUdNcXZVcmJfdlpKeHJLanZERGNfNUQtc1lMZF9xdFVic2E5NDRhRXZGSDBkM0tDZk9nOWNVOWFFV3RyNzNXR3Z3MTZjX1ZLS01PZHQ2VDY3Z0FTMGpHR253cEF6WUtmaXR3Yi1BREJUU0s1OFVWZlJsTG9UQzlWN1E3Xw?oc=5",
-        "articleSource": "noticiascv.com",
-        "articleSourceHost": "noticiascv.com",
-        "articleFingerprint": "1377kf4"
       }
     },
     {
@@ -1089,5 +1987,5 @@
       }
     }
   ],
-  "sourceGeneratedAt": "2026-08-13T08:40:11.187Z"
+  "sourceGeneratedAt": "2026-08-14T08:23:26.477Z"
 }

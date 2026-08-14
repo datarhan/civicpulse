@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T06:07:54.745Z",
+  "generatedAt": "2026-08-14T08:23:33.396Z",
   "windowDays": 30,
   "articles": [
     {
@@ -12,12 +12,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": false,
+        "municipalSourceMatch": true,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 5
     },
     {
       "articleId": "t56pik",
@@ -29,12 +29,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": false,
+        "municipalSourceMatch": true,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 5
     },
     {
       "articleId": "1micc74",
@@ -187,7 +187,7 @@
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 3
     },
     {
       "articleId": "rlu040",
@@ -928,13 +928,13 @@
       "articleCount": 34,
       "verdictCounts": {
         "verificado": 1,
-        "parcial": 0,
+        "parcial": 1,
         "contradicho": 0,
-        "sin-datos": 17,
+        "sin-datos": 28,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.53,
-      "verifiedRatio": 0.056,
+      "meanTrustScore": 2.62,
+      "verifiedRatio": 0.033,
       "contradictedRatio": 0
     },
     {
@@ -943,12 +943,12 @@
       "articleCount": 10,
       "verdictCounts": {
         "verificado": 0,
-        "parcial": 2,
+        "parcial": 4,
         "contradicho": 0,
-        "sin-datos": 3,
+        "sin-datos": 14,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3.2,
+      "meanTrustScore": 3.5,
       "verifiedRatio": 0,
       "contradictedRatio": 0
     },
@@ -990,12 +990,12 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 1,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.5,
-      "verifiedRatio": null,
-      "contradictedRatio": null
+      "meanTrustScore": 3,
+      "verifiedRatio": 0,
+      "contradictedRatio": 0
     },
     {
       "outlet": "Valenciabonita",
@@ -1027,11 +1027,5 @@
       "verifiedRatio": null,
       "contradictedRatio": null
     }
-  ],
-  "builtFrom": {
-    "plenos-agendas.json": "ead1aea1ab86",
-    "press-claims-verified.json": "60afcd31c56a",
-    "press.json": "d9aea168e0b2",
-    "promises.json": "973df30a62ce"
-  }
+  ]
 }
