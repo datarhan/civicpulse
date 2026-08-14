@@ -13,6 +13,7 @@ import { usePlenos } from '../hooks/usePlenos'
 import { PARTY_TONE } from '../hooks/usePromises'
 import { useT } from '../i18n'
 import { blocLabel } from '../lib/party-label.js'
+import { etiquetaVerificador } from '../lib/claim-provenance.js'
 
 const PAGE_SIZE = 50
 
@@ -174,9 +175,7 @@ function ClaimRow({ item, plenoTitle }) {
             }}
           >
             {v.evidence.length} {v.evidence.length === 1 ? 'evidencia' : 'evidencias'} ·{' '}
-            {v.checkedAgainst?.includes('llm-second-pass')
-              ? 'verificador LLM'
-              : 'verificador determinista'}
+            {etiquetaVerificador(v.checkedAgainst)}
           </div>
           {v.evidence.slice(0, 2).map((e, i) => (
             <div key={i} style={{ marginTop: 2 }}>
