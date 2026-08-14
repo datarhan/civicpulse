@@ -626,6 +626,9 @@ export default function Hallazgos() {
       {/* Filters */}
       {items.length > 0 && (
         <div
+          // Un filtro no se puede accionar sobre un papel, y ocupaba un tercio
+          // de la primera página impresa.
+          data-print-hide
           style={{
             display: 'flex',
             flexDirection: 'column',

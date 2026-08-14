@@ -710,3 +710,100 @@ body.cp-kiosk .cp-live-container {
 main:focus:not(:focus-visible) {
   outline: none;
 }
+
+/* ===========================================================================
+   §«Fuera de alcance» 05 — Impresión.
+
+   El brandbook lo declara sin gobernar: «Un hallazgo se cita en prensa y se
+   imprime. No hay hoja de estilos de impresión ni regla de qué se cae al
+   papel.» No la había: cero reglas @media print en todo el repo.
+
+   Importa más aquí que en un sitio cualquiera. Lo que este medio publica son
+   fichas de evidencia que un periodista imprime o guarda en PDF para citarlas,
+   y en papel se pierden justo las dos cosas que las sostienen: el enlace
+   permanente que identifica la ficha y las URLs de las fuentes, que en pantalla
+   viven dentro de un `href` y sobre papel no existen.
+
+   Qué se cae: el armazón entero. Nada de lo que se cae es contenido.
+   =========================================================================== */
+@media print {
+  /* El tema oscuro sobre papel es una plancha de tinta negra ilegible, y el
+     lector no elige el tema al imprimir: imprime con el que tenía puesto. Se
+     fuerza la paleta clara pase lo que pase. */
+  html.dark,
+  :root {
+    --ink: #0b0f19;
+    --surf: #ffffff;
+    --paper: #ffffff;
+    --soft: #f3f4f6;
+    --border: #d4d4d8;
+    --border2: #e5e5e5;
+    --civic: #0e5b62;
+    --civic-soft: #e6f2f2;
+    --civic-ink: #0a4449;
+    --civic-on: #ffffff;
+    --ink70: rgba(11, 15, 25, 0.78);
+    --ink50: rgba(11, 15, 25, 0.62);
+    --ink20: rgba(11, 15, 25, 0.12);
+    --ink10: rgba(11, 15, 25, 0.06);
+  }
+
+  @page {
+    margin: 16mm 14mm;
+  }
+
+  html,
+  body,
+  #root {
+    background: #fff !important;
+  }
+
+  /* El armazón no es contenido: navegación, buscador, migas, ajustes y el
+     enlace de salto sólo sirven para moverse por una pantalla. */
+  .cp-shell-sidebar,
+  .cp-shell-topbar,
+  .cp-sidebar-backdrop,
+  .cp-hamburger,
+  .cp-skip-link,
+  .cp-topbar-search,
+  .cp-ticker-track,
+  [data-print-hide] {
+    display: none !important;
+  }
+
+  /* El mapa es una tesela de un servicio externo: en papel sale como un cuadro
+     gris o no sale. Se retira y se deja dicho, en vez de imprimir un hueco. */
+  .leaflet-container {
+    display: none !important;
+  }
+  .leaflet-container::after {
+    content: 'Mapa interactivo — no se imprime. Consúltese en civicpulse.es';
+    display: block;
+    font-size: var(--fs-meta);
+    color: var(--ink50);
+  }
+
+  /* Una URL que sólo vive en un href desaparece al imprimir, y con ella la
+     posibilidad de comprobar la cita. Se escribe al lado. Se excluyen los
+     enlaces internos, cuyo destino ya está en el papel o no aporta nada. */
+  a[href^='http']::after {
+    content: ' <' attr(href) '>';
+    font-size: var(--fs-micro);
+    color: var(--ink50);
+    word-break: break-all;
+  }
+
+  /* Una ficha no se parte por la mitad si cabe entera, y su cita menos. */
+  figure,
+  blockquote,
+  section {
+    break-inside: avoid;
+  }
+
+  /* Lo desplegable se imprime abierto: en papel no hay nada que desplegar, y
+     lo que queda cerrado es lo que el lector no sabrá que existía. */
+  details > *,
+  details[open] > * {
+    display: revert !important;
+  }
+}

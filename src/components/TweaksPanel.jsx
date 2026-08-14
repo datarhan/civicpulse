@@ -152,6 +152,8 @@ export function TweaksButton({ onOpen }) {
     <button
       onClick={onOpen}
       aria-label={t('tweaks.open.aria')}
+      // Armazón: en papel no hay ajustes que abrir.
+      data-print-hide
       style={{
         position: 'fixed',
         bottom: 20,
