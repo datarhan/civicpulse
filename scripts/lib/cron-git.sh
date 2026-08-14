@@ -322,6 +322,61 @@ _cron_git_filter_pathspec() {
 }
 
 # ---------------------------------------------------------------------------
+# _cron_git_con_lock <etiqueta> <comando git…>
+#
+# Corre un git que ESCRIBE en el índice, reintentando si lo que le falla es que
+# otro proceso tiene tomado `.git/index.lock`.
+#
+# El push de press-lab lleva reintento desde que se descubrió que compite con el
+# cron de quejas, que corre cada minuto. El commit, tres líneas más arriba en el
+# mismo script, no reintentaba nada — y es la misma carrera. La cobró dos veces:
+# el 2026-08-11 (rc=1) y el 2026-08-14 (rc=128), esta última con los siete pasos
+# completados y el log diciendo «7 ok · 0 fallidos» encima. El otro proceso era
+# yo comiteando a la vez.
+#
+# SÓLO se reintenta el lock. Un hook que rechaza, un pathspec vacío o un fallo
+# de firma no mejoran esperando, y reintentarlos escondería la causa detrás de
+# cinco intentos idénticos.
+#
+# Se busca la RUTA `index.lock`, no el texto del error: git habla el idioma del
+# sistema y el mensaje real de agosto vino en castellano.
+# ---------------------------------------------------------------------------
+_cron_git_con_lock() {
+  local etiqueta="$1"
+  shift
+  # Cinco intentos cada tres segundos. Un `git commit` ajeno dura décimas, así
+  # que quince segundos cubren de sobra la carrera real; y son finitos porque un
+  # index.lock huérfano —de un git que murió— no se suelta NUNCA, y un cron
+  # colgado toda la noche es peor que uno que falla a las nueve de la mañana.
+  local max="${CRON_GIT_LOCK_REINTENTOS:-5}"
+  local espera="${CRON_GIT_LOCK_ESPERA:-3}"
+  local intento=1 rc=0 salida=''
+  while :; do
+    salida="$("$@" 2>&1)"
+    rc=$?
+    if [ "$rc" -eq 0 ]; then
+      [ -n "$salida" ] && printf '%s\n' "$salida"
+      return 0
+    fi
+    case "$salida" in
+      *index.lock*) ;;
+      *)
+        printf '%s\n' "$salida" >&2
+        return "$rc"
+        ;;
+    esac
+    if [ "$intento" -ge "$max" ]; then
+      printf '%s\n' "$salida" >&2
+      cron_git_log "$etiqueta: .git/index.lock seguía tomado tras $intento intento(s) — se abandona"
+      return "$rc"
+    fi
+    cron_git_log "$etiqueta: .git/index.lock tomado por otro proceso — reintento $intento/$max en ${espera}s"
+    sleep "$espera"
+    intento=$((intento + 1))
+  done
+}
+
+# ---------------------------------------------------------------------------
 # cron_git_stage_and_check <pathspec>…
 #
 #   rc 0 — those paths have something to commit; the filtered pathspec is in
@@ -344,7 +399,11 @@ cron_git_stage_and_check() {
     return 1
   fi
   # Tolerated, as before: a path can vanish between the filter and the add.
-  git add -- "${CRON_GIT_PATHSPEC[@]}" 2>/dev/null || true
+  # Con reintento por el mismo motivo que el commit: el `git add` escribe en el
+  # índice y choca con el mismo lock. Que aquí se tolere el fallo lo hace PEOR,
+  # no mejor — un add que no llegó a ejecutarse se convierte, dos líneas más
+  # abajo, en «no hay nada que comitear».
+  _cron_git_con_lock "git add" git add -- "${CRON_GIT_PATHSPEC[@]}" 2>/dev/null || true
   # HEAD, not the index: this is exactly what `git commit -- <pathspec>` commits.
   if git diff --quiet HEAD -- "${CRON_GIT_PATHSPEC[@]}"; then
     return 1
@@ -370,7 +429,7 @@ cron_git_commit_pathspec() {
   # two, and that is window enough.
   cron_git_assert_head "git commit" "${CRON_GIT_PATHSPEC[@]}"
   local rc=0
-  git commit -m "$message" -- "${CRON_GIT_PATHSPEC[@]}" || rc=$?
+  _cron_git_con_lock "git commit" git commit -m "$message" -- "${CRON_GIT_PATHSPEC[@]}" || rc=$?
   if [ "$rc" -ne 0 ]; then
     cron_git_log "ERROR: el commit falló (rc=$rc) sobre: ${CRON_GIT_PATHSPEC[*]}"
     return 2

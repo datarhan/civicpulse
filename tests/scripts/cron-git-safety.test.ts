@@ -89,6 +89,18 @@ if [ -n "\${STUB_ROUNDTRIP_BRANCH:-}" ] && [ ! -e .stub-roundtrip-done ]; then
   git checkout -q "$_back"
   : > .stub-roundtrip-done
   echo "[stub] round-tripped HEAD via \${STUB_ROUNDTRIP_BRANCH} back to $_back"
+fi
+# Otro proceso git tiene tomado el índice justo cuando este cron va a
+# comitear. No es hipotético: el 2026-08-11 y el 2026-08-14 el press-lab
+# completó sus siete pasos y perdió el commit así —«fatal: No se puede crear
+# '.git/index.lock'»—, porque el otro proceso era yo comiteando a la vez.
+# Se toma en el ÚLTIMO paso, que es donde la ventana real está.
+if [ -n "\${STUB_HOLD_LOCK_ON:-}" ] && [ "$name" = "\${STUB_HOLD_LOCK_ON}" ]; then
+  : > .git/index.lock
+  echo "[stub] tomó .git/index.lock durante \${STUB_HOLD_LOCK_SECS:-4}s"
+  # Con los descriptores cerrados: si el subshell conservara la tubería, el
+  # execFileSync del test se quedaría esperando a que muera.
+  ( sleep "\${STUB_HOLD_LOCK_SECS:-4}"; rm -f .git/index.lock ) >/dev/null 2>&1 &
 fi`
 
 /** npm-script → snapshot it writes. Mirrors what each real script produces. */
@@ -768,4 +780,70 @@ describe('scrape-ci-blocked.sh · a failed publish is no longer silent', () => {
     expect(r.log).toContain('[ci-blocked] pushed')
     expect(r.status).toBe(1) // exit = number of failed adapters, as before
   }, 60_000)
+})
+
+// ---------------------------------------------------------------------------
+describe('cron pipelines · un .git/index.lock ajeno no puede tragarse el commit', () => {
+  // El 2026-08-14 press-lab completó sus siete pasos —«7 ok · 0 fallidos»— y al
+  // ir a comitear:
+  //
+  //   fatal: No se puede crear '.git/index.lock': File exists.
+  //   ERROR: el commit falló (rc=128) sobre: … public/data/press-link-rot.json
+  //
+  // El otro proceso git era yo, comiteando a la vez. Ocho de los nueve ficheros
+  // no habían cambiado; press-link-rot.json sí —lleva marca de tiempo— y se
+  // quedó sucio en el árbol, con el trabajo de la pasada sin publicar.
+  //
+  // No fue la primera: el 2026-08-11 pasó lo mismo (rc=1). Y el push, tres
+  // líneas más abajo en el mismo script, LLEVA reintento con pull-rebase desde
+  // que se descubrió que compite con el cron de quejas cada minuto. Es la misma
+  // carrera y sólo estaba resuelta la mitad.
+
+  it('reintenta y acaba comiteando cuando el lock se suelta', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/press-lab-pipeline.sh', {
+      PRESS_LAB_NO_REMOTE: '1',
+      STUB_HOLD_LOCK_ON: 'audit-press-links',
+      STUB_HOLD_LOCK_SECS: '4',
+      CRON_GIT_LOCK_ESPERA: '2',
+    })
+
+    // Las condiciones del reproductor estaban REALMENTE puestas. Sin esto, un
+    // verde significaría «el lock nunca se tomó», que es el falso limpio de
+    // siempre.
+    expect(r.log, 'ningún paso corrió').toContain('[stub] ran ')
+    expect(r.log, 'el lock nunca se llegó a tomar').toContain('tomó .git/index.lock')
+    expect(r.log, 'no hubo reintento: o no chocó, o se rindió a la primera').toMatch(
+      /index\.lock tomado por otro proceso — reintento/,
+    )
+
+    // Y el trabajo se publicó igualmente.
+    expect(r.committed, 'la pasada no llegó a comitear').not.toEqual([])
+    expect(r.committed).toContain('public/data/press-link-rot.json')
+  }, 120_000)
+
+  it('si el lock no se suelta, lo dice y deja el trabajo en el árbol', () => {
+    // Reintentar no puede convertirse en esperar para siempre: un index.lock
+    // huérfano de un git que murió no se suelta nunca, y un cron colgado toda
+    // la noche es peor que uno que falla a las nueve de la mañana. Se agotan
+    // los intentos, se dice en voz alta, y lo generado NO se descarta.
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/press-lab-pipeline.sh', {
+      PRESS_LAB_NO_REMOTE: '1',
+      STUB_HOLD_LOCK_ON: 'audit-press-links',
+      STUB_HOLD_LOCK_SECS: '600',
+      CRON_GIT_LOCK_REINTENTOS: '2',
+      CRON_GIT_LOCK_ESPERA: '1',
+    })
+
+    expect(r.log, 'el lock nunca se llegó a tomar').toContain('tomó .git/index.lock')
+    expect(r.log, 'ni siquiera lo intentó').toMatch(/index\.lock tomado por otro proceso/)
+    expect(r.log, 'se rindió sin decir que se rendía').toMatch(/seguía tomado tras \d+ intento/)
+    expect(r.committed, 'comiteó con el índice bloqueado, lo cual es imposible').toEqual([])
+    // Lo que la pasada generó sigue donde estaba: el árbol de trabajo.
+    const sucio = git(dir, 'status', '--porcelain', '--', 'public/data')
+    expect(sucio, 'la pasada perdió su trabajo además de no publicarlo').toContain(
+      'press-link-rot.json',
+    )
+  }, 120_000)
 })
