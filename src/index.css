@@ -197,6 +197,25 @@ textarea {
   font: inherit;
 }
 
+/* §11 · foco visible. «Anillo de 2 px en petróleo», dice el brandbook — y no
+   existía: la única regla de foco de todo el sitio era la del chip del ticker,
+   con un azul que ni siquiera es de la paleta. Todo lo demás se apoyaba en el
+   anillo por defecto del navegador, que es distinto en cada uno y que cualquier
+   `outline: none` futuro apaga sin dejar rastro.
+
+   `:focus-visible` y no `:focus`: el ratón no debe dejar anillos por la página;
+   el teclado sí, siempre. El color sale del token, así que en oscuro el anillo
+   cambia solo — y los dos pasan de 3:1 contra las tres superficies (WCAG
+   2.4.11): 7,09–7,80 en claro y 7,16–7,77 en oscuro.
+
+   El `offset` es lo que lo hace legible sobre un control ya coloreado: pegado
+   al borde, un anillo del color de marca sobre una pastilla de marca no se ve. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--civic);
+  outline-offset: 2px;
+  border-radius: var(--r-input);
+}
+
 ::selection {
   background: var(--civic);
   color: var(--civic-on);
@@ -373,8 +392,11 @@ body.cp-kiosk .cp-live-container {
   border-radius: var(--r-input);
 }
 .cp-ticker-chip:focus-visible {
-  outline: 2px solid #60a5fa;
-  outline-offset: 1px;
+  /* Heredaba el anillo global; llevaba un azul propio, #60a5fa, que no está en
+     la paleta — era uno de los acentos que se retiraron de og.svg por eso
+     mismo. El offset mayor es lo único suyo: el chip va sobre la banda oscura
+     del ticker y necesita separarse un punto más. */
+  outline-offset: 2px;
   border-radius: var(--r-input);
 }
 @media (prefers-reduced-motion: reduce) {
