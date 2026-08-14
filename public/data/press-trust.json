@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-13T13:13:47.168Z",
+  "generatedAt": "2026-08-14T06:07:54.745Z",
   "windowDays": 30,
   "articles": [
     {
@@ -107,7 +107,7 @@
     {
       "articleId": "1xuqiyg",
       "articleFingerprint": "1eha1zw",
-      "outlet": "El Periódico de Aquí",
+      "outlet": "elperiodicodeaqui.com",
       "outletHost": "elperiodicodeaqui.com",
       "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOLXhoazFWTng1cVdzSEpxYWN1TzdKUjd1UzJTTEI4eEQzUXprOUV3WDhWdE5MdXhNcGduZkN1V3NFaEZOUlRqTjFUdURRcnN5OEc3aGZUc045YmF5MGVmc1dLUE4yTXkxTWJTZFpRMDg0c090Y21LU25nVVYzcERCbDM2YzU5a21Rc0RYVXRhM2pxbDRyU0hmbHExYWlla3ZQSng1T2dR?oc=5",
       "date": "2026-08-11T09:42:46.000Z",
@@ -362,7 +362,7 @@
     {
       "articleId": "l5r394",
       "articleFingerprint": "1svsczg",
-      "outlet": "El Periódico de Aquí",
+      "outlet": "elperiodicodeaqui.com",
       "outletHost": "elperiodicodeaqui.com",
       "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxORV9sMGtGZERWNklSaU9uN2VUUm5BLWFEMmdJQlRhV2ZuZUo0cmNyNnltV0RUcjAzRXRIN19meTJWSGJqNUVnRTFURi1KaTRHTG5WR1RPSWkxUW5Kei00T2tFWmw5TGNOY1JQdDhoWHR2MmhZNm5KOFVSYWpSbEpUS1BkRm9reC1PQ2UxOWxwcFd6U1RZbHBOQXd5RTlCVXpIUzhSNEtMcE44b3piMGdud2dVU1Q3SzNYYm0yOFdRX0VrYlk4YnhZTjhYTkdnaUlwcGc?oc=5",
       "date": "2026-08-04T16:14:00.000Z",
@@ -904,23 +904,6 @@
       "score": 2
     },
     {
-      "articleId": "fyad1o",
-      "articleFingerprint": "vovrto",
-      "outlet": "elperiodic.com",
-      "outletHost": "elperiodic.com",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQblJ3Vy1EZldGOVNaX2NTOUkxbUYxVDc1UGhSaE9WbzZkTHhYdXpxbXZxd2gzUmhwa21ZVzdrQko1dzlPOFBWbTc5VHczejBkNHBmcVB0SEdXcnQ5Wm05d25nQUhielZsNjVUTlZUZmV3Qjh1Q3k1M3B4eFhXYlpWVnRkbUIzM3ZYT1JRVl9OZXRhZjFCVTZXZUNzNGIwLUFXa09lTDhCMGRXaFBXcGIwQUFvbjZldw?oc=5",
-      "date": "2026-07-17T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
       "articleId": "higxho",
       "articleFingerprint": "1sifhiw",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -985,7 +968,7 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "El Periódico de Aquí",
+      "outlet": "elperiodicodeaqui.com",
       "outletHost": "elperiodicodeaqui.com",
       "articleCount": 2,
       "verdictCounts": {
@@ -1043,27 +1026,12 @@
       "meanTrustScore": 1,
       "verifiedRatio": null,
       "contradictedRatio": null
-    },
-    {
-      "outlet": "elperiodic.com",
-      "outletHost": "elperiodic.com",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "a5fa305fa820",
+    "plenos-agendas.json": "ead1aea1ab86",
     "press-claims-verified.json": "60afcd31c56a",
-    "press.json": "0d339ab88215",
+    "press.json": "d9aea168e0b2",
     "promises.json": "973df30a62ce"
   }
 }

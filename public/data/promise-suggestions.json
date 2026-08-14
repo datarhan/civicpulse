@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-13T13:13:22.538Z",
+  "generatedAt": "2026-08-14T06:07:31.011Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -152,7 +152,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -211,7 +211,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -219,22 +219,22 @@
       "confidence": 0.175,
       "reasoning": [
         {
-          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1oTHdpZGFGVG1XSVVMWGZjZ2tkSktrOHVHWWdydEl6SFFwRkpidG13MmQ0R3VuY25ZcENGUUtFRHU1N0xXNXdrTkNhQTkzX0l5Z3NUOFhBQVhvYy1XOHhtTFNhYkJJRFJMUG1OaUVuRQ?oc=5",
+          "url": "https://www.ribarroja.es/es/noticia/la-generalitat-y-el-ayuntamiento-de-riba-roja-colaboran-para-desarrollar-suelo-para-viviendas-e-industrias-en-zonas-seguras",
           "date": "2026-07-07",
-          "quote": "La Generalitat y el Ayuntamiento de Riba-roja de Túria colaboran en el desarrollo de suelo para viviendas e industrias en zonas seguras",
+          "quote": "La Generalitat y el Ayuntamiento de Riba-roja colaboran para desarrollar suelo para viviendas e industrias en zonas seguras",
           "kind": "press",
-          "publisher": "Comunica GVA",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
           "matchedKeywords": [
             "suelo",
             "vivienda"
           ]
         },
         {
-          "url": "https://www.ribarroja.es/es/noticia/la-generalitat-y-el-ayuntamiento-de-riba-roja-colaboran-para-desarrollar-suelo-para-viviendas-e-industrias-en-zonas-seguras",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1oTHdpZGFGVG1XSVVMWGZjZ2tkSktrOHVHWWdydEl6SFFwRkpidG13MmQ0R3VuY25ZcENGUUtFRHU1N0xXNXdrTkNhQTkzX0l5Z3NUOFhBQVhvYy1XOHhtTFNhYkJJRFJMUG1OaUVuRQ?oc=5",
           "date": "2026-07-07",
-          "quote": "La Generalitat y el Ayuntamiento de Riba-roja colaboran para desarrollar suelo para viviendas e industrias en zonas seguras",
+          "quote": "La Generalitat y el Ayuntamiento de Riba-roja de Túria colaboran en el desarrollo de suelo para viviendas e industrias en zonas seguras",
           "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "publisher": "Comunica GVA",
           "matchedKeywords": [
             "suelo",
             "vivienda"
@@ -253,7 +253,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -326,7 +326,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -361,7 +361,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -410,7 +410,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -418,7 +418,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -426,7 +426,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -491,24 +491,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
       "proposedStatus": "documentada",
       "confidence": 0.175,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQajlQN2RXaDV0RFZpSW8tQmRGQmRhR3Q3bi1mcWNjeHBoeHkxb2VjMnRiM3UyTDl6MEZzRGtBX3hsQUVHNnNOZTJvT3pZbHFvTnljZlNGUG1jTUFaZUxzLUFnc2NnZ2JZUnVST3dKMUxiQktCVk1sajd4eXB6Nk1pdmhRQWFDbUloRHJ2bl9YQlZlSGNDMFZkSWw1Tmc3LU0xV1pKNWxBelNwRnpaMmU0bC10Mk8wZXlmMzBCdTZlQkRXOWlsdmFQOW9iWHQ4ZmdqcEE4cUFrcXZGM3h0d181Vm9KZ3ZzUdIB6wFBVV95cUxPSHZ3WUdXT1ZEVDBXSHg3T0htZ3EybVZHbWE5eU5oQ1dTbXhDb2R5anJSR0NiNFdUNERuN1p2YUliSWJpSkh6c09oOFY1MUVFZVYzWlR0WG5pTGlSWjlITWN6a2sxLUNzYTNFYVM0MjNKUWpJbklBbHc1QWk1V1p0UXMybTQwV1owd3psOWZjWjZQODE2dDdUUC1sWVF0VGZHYVd1M3Nrc3RFem9QVlRHb2tpX0JfNTh5aTY1NmlpM2wydWpZOUxUdDh0VWloa2luZ050VW4tclhpNGxTZmlvTUw0ZmtyX3A0OEln?oc=5",
-          "date": "2026-07-14",
-          "quote": "La urbanización València la Vella en Riba-roja reclama medidas urgentes contra el riesgo de incendios",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "contra",
-            "riesgo"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
           "date": "2026-04-08",
@@ -522,7 +511,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -562,7 +551,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -606,7 +595,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -650,7 +639,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -680,7 +669,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -711,7 +700,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -732,7 +721,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -744,7 +733,7 @@
           "date": "2026-06-08",
           "quote": "Riba-roja pide reactivar el proyecto para llevar el metro hasta el casco urbano",
           "kind": "press",
-          "publisher": "El Periódico de Aquí",
+          "publisher": "elperiodicodeaqui.com",
           "matchedKeywords": [
             "metro",
             "proyecto"
@@ -752,7 +741,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -771,7 +760,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -801,17 +790,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQblJ3Vy1EZldGOVNaX2NTOUkxbUYxVDc1UGhSaE9WbzZkTHhYdXpxbXZxd2gzUmhwa21ZVzdrQko1dzlPOFBWbTc5VHczejBkNHBmcVB0SEdXcnQ5Wm05d25nQUhielZsNjVUTlZUZmV3Qjh1Q3k1M3B4eFhXYlpWVnRkbUIzM3ZYT1JRVl9OZXRhZjFCVTZXZUNzNGIwLUFXa09lTDhCMGRXaFBXcGIwQUFvbjZldw?oc=5",
-          "date": "2026-07-17",
-          "quote": "Robert Raga asiste a la constitución de la entidad supramunicipal en Benaguasil",
-          "kind": "press",
-          "publisher": "elperiodic.com",
-          "matchedKeywords": [
-            "robert",
-            "raga"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQLXpNVFF4dXhIbXpqaTJQXzN6dVN4Rl9vSFZndThNUFMtdWluaTNMUUp3dnh2QThhamFZWERDM2s2aWV1R1dqLW1mODV3UnIyeHcyRHkwdmQ2YVlhb3pxRnFJQjJMcEhYYmFBVmlwYjdGWEVFUE1teFBtODZmcVVncDRJaFlYVV9fd3JyRzRqdXBqcmFCLXhFZHZVSWJMcGtJSzN0NVpLSGpaZ1A3b0tZV3hxMWJJRk5aRGh3eTlGeng0MGduVktLcnVzQnU0MHhBSDF1eUZCaWRWSUZMM2prMno2Mi1zdnhxMVFURlp2UTd5bFIwYlpmOWF3a2U0OVhMTklIZXJ4NA?oc=5",
           "date": "2026-07-10",
           "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
@@ -824,7 +802,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -858,7 +836,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -889,7 +867,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -931,7 +909,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-13T13:13:22.389Z"
+      "generatedAt": "2026-08-14T06:07:30.881Z"
     }
   ],
   "llmEvidence": [],
