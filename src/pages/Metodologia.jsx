@@ -383,8 +383,8 @@ export default function Metodologia() {
         </p>
         <ul style={{ margin: '10px 0 0', paddingLeft: 20 }}>
           <li>
-            <strong>Los votos de pleno son el hecho primario.</strong> Son el material más
-            verificable y las promesas electorales son secundarias. Pero un voto no se lee de una
+            <strong>Los votos de pleno son el hecho primario</strong> y las promesas electorales son
+            secundarias. Pero un voto tiene dos mitades y no son igual de firmes, ni se leen de una
             sola fuente, y hasta agosto de 2026 esta página decía que se transcribía «del acta
             oficial». No era cierto: <strong>cada voto cita ahora dos fuentes distintas</strong>. El{' '}
             <strong>resultado</strong> (aprobado, rechazado) procede del portal de sesiones del
@@ -396,8 +396,9 @@ export default function Metodologia() {
             <a href="/departamentos" style={{ color: 'var(--civic)' }}>
               /departamentos
             </a>{' '}
-            ese enlace se rotulaba «Acta oficial». Tres desgloses se comprobaron y resultaron
-            erróneos; están retirados y su retirada consta.
+            ese enlace se rotulaba «Acta oficial». Esa segunda mitad es de lo menos verificable que
+            publica este sitio, no de lo más: tres desgloses se comprobaron y resultaron erróneos;
+            están retirados y su retirada consta.
           </li>
           <li>
             <strong>Un desglose no cotejado se declara como tal.</strong> Mientras no se haya
