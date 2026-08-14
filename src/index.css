@@ -192,9 +192,29 @@ dd a[href],
   text-underline-offset: 2px;
 }
 
+/* §«Fuera de alcance» 03 · formularios. «El radio 8 se declara para inputs y en
+   el brandbook no aparece un input.» El tamaño y el radio ya salían de la
+   escala; la FAMILIA y el placeholder no.
+
+   `select` estaba fuera de esta regla, así que los once selectores de filtro
+   del sitio —los de /promesas entre ellos— se pintaban en la fuente del
+   sistema: Arial sobre una página compuesta en Outfit. Se veía a simple vista y
+   no lo miraba ninguna prueba.
+
+   Y el placeholder era el gris por defecto del navegador, #757575: un valor
+   FIJO que no cambia de tema. Sobre papel claro da 4,61:1 —pasa por poco— y
+   sobre el papel oscuro 3,83:1, que suspende AA. `--ink50` cambia con el tema y
+   da 5,41:1 y 6,80:1. */
 input,
-textarea {
+select,
+textarea,
+option {
   font: inherit;
+}
+
+::placeholder {
+  color: var(--ink50);
+  opacity: 1; /* Firefox lo baja a .54 por su cuenta y hunde el contraste. */
 }
 
 /* §11 · foco visible. «Anillo de 2 px en petróleo», dice el brandbook — y no
