@@ -1,51 +1,11 @@
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
-import { readFileSync } from 'node:fs'
+import { STRICT_ROUTES, FIRST_PLENO_ID } from './_rutas'
 
-// A real pleno id with claims, read from the committed manifest (for /plenos/:id).
-const FIRST_PLENO_ID = JSON.parse(readFileSync('public/data/pleno-claims/index.json', 'utf8'))
-  .plenos?.[0]?.plenoId
-
-// A real job-offer id, read from the committed snapshot (for /empleo/:id).
-const FIRST_OFERTA_ID = JSON.parse(readFileSync('public/data/empleo.json', 'utf8')).items?.[0]?.id
-
-// Routes the suite enforces — must stay free of critical/serious violations.
-const STRICT_ROUTES = [
-  '/',
-  '/cargos',
-  '/cargos/robert-raga-gadea',
-  '/presupuesto',
-  '/plenos',
-  `/plenos/${FIRST_PLENO_ID}`,
-  '/promesas',
-  '/departamentos',
-  '/departamentos/urbanismo',
-  '/hallazgos',
-  '/declaraciones',
-  '/datos',
-  '/empleo',
-  '/empleo-publico',
-  `/empleo/${FIRST_OFERTA_ID}`,
-  '/quejas',
-  '/quejas/dashboard',
-  '/quejas/q-no-existe',
-  '/cambios',
-  '/eficiencia',
-  '/gestion',
-  '/laboratorio',
-  '/laboratorio/agentes',
-  '/laboratorio/frontera',
-  '/nosotros',
-  '/about',
-  '/reportajes',
-  '/reportajes/reconstruccion-dana',
-  '/reportajes/inteligencia-turistica',
-  '/blog/building-civicpulse-with-ai',
-  '/laboratorio/agentes/a-robert-raga-bio',
-  '/lab-health',
-  '/metodologia',
-  '/aviso-legal',
-]
+// La lista vive en `_rutas.ts` desde que una segunda puerta —la de contraste
+// medido— necesitó exactamente la misma: copiarla habría dejado a una de las dos
+// mirando a un sitio menos en cuanto alguien añadiera una ruta.
+void FIRST_PLENO_ID
 
 // Empty by design — when a regression is found, add the path here with a
 // reason citing the axe rule id and a TODO to fix the page, not the test.
