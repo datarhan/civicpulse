@@ -7,21 +7,25 @@ export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  // En local había 0 reintentos con los workers por defecto —cinco en una
-  // máquina de diez núcleos— contra un único `vite preview`. En CI son 2
-  // workers y 2 reintentos, así que la pasada local era ESTRICTAMENTE menos
-  // tolerante que la puerta que pretende predecir: una de cada tres o cuatro
-  // pasadas completas fallaba, en un spec distinto cada vez.
+  // La suite completa fallaba en local una de cada tres o cuatro pasadas, en un
+  // spec distinto cada vez. La causa, reproducida a propósito y no supuesta:
+  // **reconstruir mientras la suite corre**. `npm run test:e2e` no construye
+  // —CI lo hace en un paso aparte— y `vite build` vacía y reescribe `dist/`, así
+  // que cualquier página que cargue dentro de esa ventana pide un asset que
+  // durante un instante no existe y se lleva un 404. Por eso saltaba en un spec
+  // distinto cada vez: en el que tocara estar cargando.
   //
-  // Diagnosticado, y no era un tiempo agotado: caía siempre en la aserción de
-  // «sin errores de consola», en menos de medio segundo, con un 404 suelto. No
-  // se reproduce en ninguna ruta por separado, ni repitiendo un spec 36 veces
-  // con seis workers: sólo con la suite entera encima del servidor de preview.
-  // Ninguna de las nueve rutas implicadas devuelve un 4xx cuando se carga sola.
+  // La prueba: con cinco builds lanzados durante una pasada, 8 flaky en vez de
+  // 0–1. Antes de eso se descartaron el tiempo de espera (caía en <0,5 s), la
+  // carga por sí sola (300 cargas concurrentes, cero 4xx) y la ruta concreta
+  // (ninguna de las nueve implicadas da un 4xx aislada).
   //
-  // Un reintento iguala la tolerancia local a la de CI. No esconde nada:
-  // Playwright informa de lo reintentado como «flaky», no como «passed», así
-  // que un test que de verdad se vuelva inestable se sigue viendo.
+  // CI es inmune: construye y prueba en pasos serializados y no reutiliza
+  // servidor. En local el reintento absorbe la ventana, y no esconde nada —
+  // Playwright informa de lo reintentado como «flaky», no como «passed», que es
+  // la condición para que un reintento sea aceptable.
+  //
+  // Si ves «flaky» aquí: comprueba primero que no había un build en marcha.
   retries: process.env.CI ? 2 : 1,
   workers: process.env.CI ? 2 : undefined,
   reporter: process.env.CI
