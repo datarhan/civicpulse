@@ -314,7 +314,9 @@ function RetribucionesPanel() {
                   <span style={{ fontWeight: 700 }}>{formatEuros(t.amountEuros)}</span>{' '}
                   {prev && (
                     <span
-                      style={{ color: up ? 'var(--ok)' : down ? 'var(--crit)' : 'var(--ink50)' }}
+                      style={{
+                        color: up ? 'var(--ok-ink)' : down ? 'var(--crit-ink)' : 'var(--ink50)',
+                      }}
                     >
                       {up ? '↑' : down ? '↓' : '→'}
                     </span>
@@ -670,7 +672,7 @@ function CorporacionMunicipal() {
           padding: 12,
           border: '1px solid var(--warn-soft)',
           borderRadius: 'var(--r-input)',
-          color: 'var(--warn)',
+          color: 'var(--warn-ink)',
           fontSize: 'var(--fs-aux)',
         }}
       >

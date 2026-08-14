@@ -160,7 +160,7 @@ export function Sidebar({ open = false, onClose }) {
                   alignItems: 'center',
                   gap: 4,
                   fontSize: 'var(--fs-micro)',
-                  color: 'var(--crit)',
+                  color: 'var(--crit-ink)',
                   fontWeight: 700,
                   letterSpacing: '.08em',
                 }}

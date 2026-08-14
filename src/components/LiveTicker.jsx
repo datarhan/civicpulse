@@ -5,6 +5,7 @@ import { useSpainTicker, signArrow } from '../hooks/useSpainTicker'
 import { usePress, timeAgo as pressTimeAgo } from '../hooks/usePress'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePromises, isPromiseFrozen } from '../hooks/usePromises'
+import { readableInk } from '../lib/contrast'
 
 /* ============================================================
    Bloomberg-style auto-scrolling data ticker.
@@ -17,12 +18,26 @@ import { usePromises, isPromiseFrozen } from '../hooks/usePromises'
 
 const SANS = "'Outfit', system-ui, -apple-system, sans-serif"
 const MONO = "'DM Mono', ui-monospace, monospace"
+// La banda del ticker es TRANSLÚCIDA —rgba(14,20,34,.82)— sobre un mapa que se
+// mueve, así que su contraste no es determinable: lo que pase por debajo cambia
+// el resultado. Medido contra el peor caso (la banda sobre el papel cálido del
+// aterrizaje), tres de estos seis suspendían el suelo de 4,5:
+//
+//   INK_DIM  a α.62 daba 4,50 sobre papel y 4,48 sobre el mapa — es decir, caía
+//            a un lado o a otro según lo que hubiera detrás. Sube a α.70 (5,26)
+//            para tener margen sobre cualquier fondo, no para aprobar por poco.
+//   CRIT     #F87171 daba 3,93. Pasa a #FCA5A5 (5,73).
+//   CIVIC    #60A5FA daba 4,28 — y además no es de la paleta: es uno de los
+//            acentos que se retiraron de og.svg por eso mismo, y el mismo azul
+//            que llevaba el anillo de foco antes de §11. Pasa a la familia
+//            petróleo. El petróleo de tema oscuro (#4FB3BD) se queda en 4,41,
+//            así que se usa el claro de esa familia: #7ED4DC (6,39).
 const INK = '#E2E8F0'
-const INK_DIM = 'rgba(226,232,240,.62)'
+const INK_DIM = 'rgba(226,232,240,.70)'
 const OK = '#4ADE80'
 const WARN = '#FBBF24'
-const CRIT = '#F87171'
-const CIVIC = '#60A5FA'
+const CRIT = '#FCA5A5'
+const CIVIC = '#7ED4DC'
 
 const AEMET_COLORS = {
   amarillo: '#F5B544',
@@ -93,8 +108,22 @@ function Chip({ icon, label, value, delta, deltaTone, extra, onClick, accent, ar
           fontFamily: MONO,
           fontSize: 'var(--fs-meta)',
           fontWeight: 700,
-          color: accent || INK,
           letterSpacing: '-.01em',
+          // Un acento es un color AJENO —los niveles de aviso de AEMET— y no se
+          // puede retocar sin falsear el aviso. Pero como color de TEXTO sobre
+          // esta banda oscura el naranja daba 3,86:1. Se conserva el color y se
+          // cambia lo que va encima, que es justo para lo que existe
+          // `readableInk` en src/lib/contrast.js: nació con las chapas de
+          // Metrovalencia, que es el mismo problema — una marca que no es
+          // nuestra y que no se puede recolorear.
+          ...(accent
+            ? {
+                background: accent,
+                color: readableInk(accent),
+                padding: '1px 6px',
+                borderRadius: 'var(--r-input)',
+              }
+            : { color: INK }),
         }}
       >
         {value}
@@ -354,7 +383,9 @@ function PressChip({ p, onClick }) {
         style={{
           fontFamily: MONO,
           fontSize: 'var(--fs-micro)',
-          color: '#F87171',
+          // Era el mismo #F87171 escrito a mano, fuera de la constante y por
+          // tanto fuera del arreglo: seguía a 3,91:1 sobre la banda.
+          color: CRIT,
           letterSpacing: '.14em',
           textTransform: 'uppercase',
           fontWeight: 700,

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { Card, Pill, ExtLink, Quote, EvidenceBand } from '../components/Primitives'
+import { Card, Pill, ExtLink, Quote, EvidenceBand, PartyTag } from '../components/Primitives'
 import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import DataAsOf from '../components/DataAsOf'
 // One RefList, not two. It was duplicated verbatim here and in PlenoFindings,
@@ -101,18 +101,16 @@ export function FindingDetailCard({ f, permalink }) {
           }}
           title="Atribución individual confirmada por curaduría editorial"
         >
-          <span
-            className="mono"
+          <PartyTag
+            tone={PARTY_TONE[f.individualSpeaker.party]}
             style={{
               fontSize: 'var(--fs-micro)',
-              fontWeight: 700,
               letterSpacing: '.08em',
               textTransform: 'uppercase',
-              color: PARTY_TONE[f.individualSpeaker.party] || 'var(--ink50)',
             }}
           >
             {f.individualSpeaker.party}
-          </span>
+          </PartyTag>
           <span>{f.individualSpeaker.name}</span>
         </div>
       )}
@@ -479,7 +477,7 @@ export default function Hallazgos() {
   }
   if (error) {
     return (
-      <div style={{ padding: 32, color: 'var(--crit)', fontSize: 'var(--fs-aux)' }}>
+      <div style={{ padding: 32, color: 'var(--crit-ink)', fontSize: 'var(--fs-aux)' }}>
         {error.message}
       </div>
     )

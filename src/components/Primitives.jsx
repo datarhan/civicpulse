@@ -111,6 +111,55 @@ export function Card({ children, style = {}, pad = true, hover = false, ...rest 
 }
 
 /**
+ * El nombre de una formación política, con su color.
+ *
+ * Existe porque este sitio había escrito la misma decisión cinco veces y la
+ * había escrito mal cuatro: el color de partido iba de COLOR DE TEXTO. Como
+ * texto los siete suspenden AA en modo oscuro —de 1,93:1 a 3,71:1— y eso es lo
+ * que se publicaba en /departamentos, /declaraciones y /hallazgos.
+ *
+ * Van de RELLENO con el blanco encima. Lo dicen las dos fuentes a la vez: §02c
+ * del brandbook («en oscuro se mantienen idénticos, con el blanco a 700
+ * encima») y el propio docstring de `src/lib/party-colors.js`, que explica que
+ * los valores están oscurecidos precisamente para que el blanco a ≥9 px bold
+ * cumpla. Un color ajeno no se reinterpreta por tema; lo que se elige es qué
+ * poner encima.
+ *
+ * Sin `tone` —una formación que no reconocemos— no se inventa una pastilla: se
+ * escribe en tinta neutra, que es lo que un sentinela merece.
+ *
+ * @param {object} p
+ * @param {string} p.children  el nombre de la formación
+ * @param {string} [p.tone]    su color, si lo hay
+ * @param {object} [p.style]
+ */
+export function PartyTag({ children, tone, style = {} }) {
+  if (!tone) {
+    return (
+      <span className="mono" style={{ fontWeight: 700, color: 'var(--ink50)', ...style }}>
+        {children}
+      </span>
+    )
+  }
+  return (
+    <span
+      className="mono"
+      style={{
+        background: tone,
+        color: '#fff',
+        fontWeight: 700,
+        padding: '1px 6px',
+        borderRadius: 'var(--r-input)',
+        whiteSpace: 'nowrap',
+        ...style,
+      }}
+    >
+      {children}
+    </span>
+  )
+}
+
+/**
  * La cita literal. Brandbook §03b.
  *
  * El titular del brandbook dice que la cita es lo único que este medio vende, y
@@ -194,29 +243,10 @@ export function Quote({ text, attribution, tone, marks, source, size = 'card', s
             flexWrap: 'wrap',
           }}
         >
-          {esHabla &&
-            (tone ? (
-              // El color de partido va de RELLENO con el blanco encima, nunca
-              // de color de texto. Lo dicen las dos fuentes a la vez: §02c
-              // («en oscuro se mantienen idénticos, con el blanco a 700
-              // encima») y el propio docstring de party-colors.js, que dice que
-              // están oscurecidos para que el blanco a ≥9px bold cumpla AA.
-              // Como texto suspenden los siete en modo oscuro —de 1,93:1 a
-              // 3,71:1— y ese era el estado publicado.
-              <span
-                style={{
-                  background: tone,
-                  color: '#fff',
-                  fontWeight: 700,
-                  padding: '1px 6px',
-                  borderRadius: 'var(--r-input)',
-                }}
-              >
-                {etiqueta}
-              </span>
-            ) : (
-              <span style={{ fontWeight: attribution ? 700 : 400 }}>{etiqueta}</span>
-            ))}
+          {esHabla && (
+            // La misma pastilla que el resto del sitio, definida una vez arriba.
+            <PartyTag tone={tone}>{etiqueta}</PartyTag>
+          )}
           {source && <span>{source}</span>}
         </figcaption>
       )}

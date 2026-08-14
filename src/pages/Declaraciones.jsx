@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Pill, SectionHead } from '../components/Primitives'
+import { Card, Pill, SectionHead, PartyTag } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import {
   usePlenoClaims,
@@ -101,9 +101,10 @@ function FilterChip({ active, label, count, onClick, tone }) {
 function ClaimRow({ item, plenoTitle }) {
   const c = item.claim
   const v = item.verification
-  const speakerColor = c.speakerGroup
-    ? PARTY_TONE[c.speakerGroup] || 'var(--ink50)'
-    : 'var(--ink50)'
+  // Sin `|| 'var(--ink50)'`: PartyTag ya distingue «hay color de partido» de
+  // «no lo hay», y colar aquí un gris de relleno le haría pintar una pastilla
+  // gris sobre una formación que no reconocemos.
+  const speakerColor = c.speakerGroup ? PARTY_TONE[c.speakerGroup] : undefined
   const ent = []
   if (c.entities?.amountEuros) ent.push('€' + c.entities.amountEuros.toLocaleString('es-ES'))
   if (c.entities?.count)
@@ -124,17 +125,12 @@ function ClaimRow({ item, plenoTitle }) {
         <Pill tone={CLAIM_TYPE_TONE[c.type] ?? 'neutral'} size="xs">
           {CLAIM_TYPE_LABEL[c.type] ?? c.type}
         </Pill>
-        <span
-          className="mono"
-          style={{
-            fontSize: 'var(--fs-micro)',
-            color: speakerColor,
-            fontWeight: 700,
-            letterSpacing: '.04em',
-          }}
+        <PartyTag
+          tone={speakerColor}
+          style={{ fontSize: 'var(--fs-micro)', letterSpacing: '.04em' }}
         >
           {c.speakerGroup ? blocLabel(c.speakerGroup) : 'sin atribuir'}
-        </span>
+        </PartyTag>
         <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>· {c.topic}</span>
         <span style={{ flex: 1 }} />
         <Link
@@ -288,7 +284,7 @@ export default function Declaraciones() {
   }
   if (claims.error) {
     return (
-      <div style={{ padding: 32, color: 'var(--crit)', fontSize: 'var(--fs-aux)' }}>
+      <div style={{ padding: 32, color: 'var(--crit-ink)', fontSize: 'var(--fs-aux)' }}>
         {claims.error.message}
       </div>
     )

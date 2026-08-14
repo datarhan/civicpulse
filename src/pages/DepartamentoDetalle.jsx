@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { Card, Pill, SectionHead } from '../components/Primitives'
+import { Card, Pill, SectionHead, PartyTag } from '../components/Primitives'
 import { PlazoVencidoBadge } from '../components/PlazoVencidoBadge'
 import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import {
@@ -151,17 +151,16 @@ function PromisesSection({ slug, frozen }) {
               }}
             >
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div
-                  className="mono"
+                <PartyTag
+                  tone={partyColor}
                   style={{
                     fontSize: 'var(--fs-micro)',
-                    fontWeight: 700,
-                    color: partyColor,
                     marginBottom: 3,
+                    display: 'inline-block',
                   }}
                 >
                   {p.party}
-                </div>
+                </PartyTag>
                 <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 600, lineHeight: 1.4 }}>
                   {p.title}
                 </div>
@@ -423,7 +422,7 @@ export default function DepartamentoDetalle() {
         >
           {t('departamentos.detalle.back')}
         </Link>
-        <p style={{ color: 'var(--crit)' }}>Departamento no encontrado.</p>
+        <p style={{ color: 'var(--crit-ink)' }}>Departamento no encontrado.</p>
       </div>
     )
   }
@@ -474,12 +473,9 @@ export default function DepartamentoDetalle() {
             </div>
             <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600 }}>{official.name}</div>
           </div>
-          <span
-            className="mono"
-            style={{ fontSize: 'var(--fs-micro)', fontWeight: 700, color: partyColor }}
-          >
+          <PartyTag tone={partyColor} style={{ fontSize: 'var(--fs-micro)' }}>
             {official.party}
-          </span>
+          </PartyTag>
         </div>
       ) : (
         <div

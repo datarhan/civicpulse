@@ -76,18 +76,41 @@ test.describe('Contraste AA medido', () => {
               const s = getComputedStyle(el)
               if (s.visibility === 'hidden' || s.display === 'none' || +s.opacity === 0) continue
 
-              let bgS = s.backgroundColor
+              // El fondo efectivo se resuelve APILANDO capas hasta dar con una
+              // opaca, y componiendo de abajo arriba. Dos formas de equivocarse,
+              // y esta sonda cayó en las dos antes de quedar así:
+              //
+              //   · un degradado da `backgroundColor` transparente, así que hay
+              //     que mirarlo ANTES de subir o se pasa de largo por él y se
+              //     compara contra el fondo del abuelo. El avatar «MP» del
+              //     aterrizaje salía a 1:1, blanco sobre blanco, y está bien.
+              //   · una capa translúcida NO se compone contra el fondo del
+              //     `body`, sino contra lo que tenga debajo. En el aterrizaje
+              //     —que conserva su papel cálido y no sigue el modo oscuro— un
+              //     wash de .06 compuesto contra el `body` oscuro daba negro, y
+              //     con él once fallos que no existían.
+              const capas: string[] = []
               let n: Element | null = el
-              while (bgS === 'rgba(0, 0, 0, 0)' && n?.parentElement) {
+              let hayDegradado = getComputedStyle(el).backgroundImage !== 'none'
+              while (n && !hayDegradado) {
+                const cs = getComputedStyle(n)
+                if (cs.backgroundImage !== 'none') {
+                  hayDegradado = true
+                  break
+                }
+                const c = cs.backgroundColor
+                if (c !== 'rgba(0, 0, 0, 0)') {
+                  capas.push(c)
+                  if ((nums(c)[3] ?? 1) >= 1) break // opaca: deja de importar lo de debajo
+                }
                 n = n.parentElement
-                bgS = getComputedStyle(n).backgroundColor
               }
-              // Un degradado da `backgroundColor` transparente: la sonda subiría
-              // al padre y compararía contra un fondo que no es el que se ve.
-              // Se salta en vez de inventar un veredicto.
-              if (n && getComputedStyle(n).backgroundImage !== 'none') continue
+              // No se inventa un veredicto sobre un fondo que no se puede
+              // resolver: se declara no medible y se salta.
+              if (hayDegradado) continue
 
-              const bg = bgS === 'rgba(0, 0, 0, 0)' ? fondoPagina : flat(bgS, fondoPagina)
+              let bg = fondoPagina
+              for (let i = capas.length - 1; i >= 0; i--) bg = flat(capas[i], bg)
               const fg = flat(s.color, bg)
               const l1 = lum(fg)
               const l2 = lum(bg)
@@ -97,7 +120,7 @@ test.describe('Contraste AA medido', () => {
               const min = px >= 24 || (px >= 18.66 && +s.fontWeight >= 700) ? 3 : 4.5
               if (ratio < min) {
                 fallos.push(
-                  `${ratio.toFixed(2)}:1 (min ${min}) · ${px}px · «${el.textContent!.trim().slice(0, 34)}» · ${s.color} sobre ${bgS}`,
+                  `${ratio.toFixed(2)}:1 (min ${min}) · ${px}px · «${el.textContent!.trim().slice(0, 34)}» · ${s.color} sobre rgb(${bg.map(Math.round).join(', ')})`,
                 )
               }
             }

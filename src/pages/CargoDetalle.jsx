@@ -402,7 +402,7 @@ export default function CargoDetalle() {
         >
           ← {t('cargos.title')}
         </Link>
-        <p style={{ color: 'var(--crit)' }}>{t('cargos.detalle.notFound')}</p>
+        <p style={{ color: 'var(--crit-ink)' }}>{t('cargos.detalle.notFound')}</p>
       </div>
     )
   }

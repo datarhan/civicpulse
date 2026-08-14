@@ -1167,7 +1167,7 @@ export default function Quejas() {
       )}
       {error && (
         <Card>
-          <div style={{ color: 'var(--warn)', fontSize: 'var(--fs-aux)' }}>
+          <div style={{ color: 'var(--warn-ink)', fontSize: 'var(--fs-aux)' }}>
             No se pudo cargar /data/quejas.json. Puede que el bot aún no haya publicado su primer
             snapshot.
           </div>

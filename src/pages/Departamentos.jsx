@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Card, Pill, SectionHead } from '../components/Primitives'
+import { Card, Pill, SectionHead, PartyTag } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import { usePromises, isPromiseFrozen, PARTY_TONE } from '../hooks/usePromises'
@@ -61,17 +61,12 @@ function DepartmentCard({ bucket, frozen, contratacionYears }) {
                 // department page. The route to the person is the explicit row
                 // below.
                 <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-                  <span
-                    className="mono"
-                    style={{
-                      fontSize: 'var(--fs-micro)',
-                      color: partyColor,
-                      fontWeight: 700,
-                      marginRight: 6,
-                    }}
+                  <PartyTag
+                    tone={partyColor}
+                    style={{ fontSize: 'var(--fs-micro)', marginRight: 6 }}
                   >
                     {official.party}
-                  </span>
+                  </PartyTag>
                   {official.name}
                 </div>
               ) : (
@@ -278,7 +273,7 @@ export default function Departamentos() {
   }
   if (stats.error) {
     return (
-      <div style={{ padding: 32, color: 'var(--crit)', fontSize: 'var(--fs-aux)' }}>
+      <div style={{ padding: 32, color: 'var(--crit-ink)', fontSize: 'var(--fs-aux)' }}>
         {stats.error.message}
       </div>
     )

@@ -484,7 +484,7 @@ export default function Promesas() {
   }
   if (error || !data) {
     return (
-      <div className="cp-page" style={{ padding: '24px', color: 'var(--warn)' }}>
+      <div className="cp-page" style={{ padding: '24px', color: 'var(--warn-ink)' }}>
         No se pudo cargar el tracker. Regenera con <code>npm run scrape:promise-suggestions</code>.
       </div>
     )
