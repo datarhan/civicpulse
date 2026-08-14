@@ -130,8 +130,23 @@ const expectWithdrawn = (id: string): void => {
  * `suministro` son categorías distintas de la Ley 9/2017. La ficha ya llevaba
  * dos correcciones y el título había sobrevivido a las dos: ninguna
  * comprobación de datos mira un titular.
+ *
+ * +2 el 2026-08-14, otra vez desde la revisión de superficies y otra vez sobre
+ * lo que un resumen AFIRMA frente a lo que sus propias marcas sostienen:
+ *
+ *   · f-2026-01-19-cit-3fd230 decía «sobre la cual se emitieron votos en contra
+ *     en años anteriores» — una pasiva impersonal que se lee como hecho de
+ *     registro. Las dos citas que la sostienen son acusaciones dirigidas a otro
+ *     grupo («vostès votaren en contra») y la ficha las marca «acusación no
+ *     contrastada». Pasa a estilo indirecto.
+ *   · f-2026-01-19-cit-cc8758 enumeraba la intervención del PP al mismo nivel
+ *     que las demás, cuando su cita lleva «no consta en la transcripción
+ *     revisada». Ahora lo dice la frase, no sólo el chip de debajo.
+ *
+ * Las dos mueven la afirmación HACIA ABAJO —de hecho a lo dicho—, que es la
+ * única dirección en la que algo automático puede tocar prosa publicada.
  */
-const TOTAL_CORRECTIONS = 143
+const TOTAL_CORRECTIONS = 145
 const TOTAL_REMOVALS = 35
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -986,7 +1001,10 @@ const LOTE_2: Lote2Case[] = [
     // A CLEANING contract for the pool cannot date the works, the opening or a
     // vote from 1989. The shared word was «piscina».
     drops: ['Este debate coincide con registros oficiales', 'Servicio de limpieza de piscina'],
-    keeps: ['se inauguró en diciembre de 2012', 'se emitieron votos en contra en años anteriores'],
+    // La segunda frase la reescribió la corrección del 2026-08-14: el fragmento
+    // que sostiene la ficha sigue siendo la acusación sobre el voto, pero ya no
+    // en pasiva impersonal. Se ancla al texto vigente, no al anterior.
+    keeps: ['se inauguró en diciembre de 2012', 'votó en contra de ese pabellón'],
     refs: [
       'tender|Contrato basado en el SDA de obras para ',
       'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
@@ -1748,8 +1766,13 @@ const LOTE_3: Lote3Case[] = [
     added: ['crossChecked.0'],
     priorCorrections: 1,
     drops: [],
+    // La primera la reescribió la corrección del 2026-08-14: la mención del PP
+    // sigue en la ficha —es lo que la sostiene— pero ya no enumerada como asunto
+    // asentado, porque su cita lleva «no consta en la transcripción revisada».
+    // Se ancla al texto vigente.
     keeps: [
-      'el PP mencionó la necesidad de subsanar problemas en el pabellón y el complejo esportivo',
+      'Se atribuye al PP la mención de subsanar problemas',
+      'no consta en la transcripción vigente',
       'VOX, en cambio, denunció la falta de una agenda de reconstrucción',
     ],
     // The Pacadar cotejo STAYS here too, and this is the row where that costs

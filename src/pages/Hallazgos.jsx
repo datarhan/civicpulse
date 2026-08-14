@@ -529,7 +529,21 @@ export default function Hallazgos() {
             letterSpacing: '.08em',
           }}
         >
-          Verificación editorial
+          {/* §00, principio 2: «lo que redacta un proceso automático lo dice en
+              la cabecera, ANTES de que el lector llegue al titular». Aquí ponía
+              «Verificación editorial», que promete justo lo contrario —revisión
+              humana— sobre una página en la que 40 de las 41 fichas las escribe
+              auto-curation-v1. La divulgación existía, pero 250 líneas más
+              abajo, en el pie legal: para cuando el lector la encuentra ya ha
+              leído los hallazgos.
+
+              La cifra se DERIVA del snapshot, igual que la del pie: una escrita
+              a mano se vuelve falsa sola la próxima vez que corra el
+              auto-curador. Mientras carga se queda la etiqueta neutra, que no
+              afirma ni lo uno ni lo otro. Lo cazó `review:surfaces`. */}
+          {authorship && authorship.machine > 0
+            ? `Redacción automática · ${authorship.machine} de ${authorship.total}`
+            : 'Verificación editorial'}
         </div>
         <div
           style={{

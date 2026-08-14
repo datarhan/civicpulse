@@ -7,8 +7,12 @@ test.describe('Hallazgos (/hallazgos)', () => {
 
     await page.goto('/hallazgos', { waitUntil: 'domcontentloaded' })
 
-    // Eyebrow + title
-    await expect(page.getByText(/Verificaci.n editorial/i).first()).toBeVisible()
+    // Eyebrow + title. §00, principio 2: lo que redacta una máquina se anuncia
+    // en la cabecera ANTES del titular, así que la comprobación es sobre eso y
+    // no sobre una cadena concreta — el eyebrow decía «Verificación editorial»,
+    // que promete revisión humana sobre una página en la que 40 de 41 fichas
+    // las firma auto-curation-v1.
+    await expect(page.getByText(/Redacci.n autom.tica · \d+ de \d+/i).first()).toBeVisible()
     await expect(page.getByText(/Hallazgos sobre declaraciones en pleno/i).first()).toBeVisible()
 
     // At least one finding present (promoted in the curate step of this session)
@@ -70,7 +74,7 @@ test.describe('Hallazgos (/hallazgos)', () => {
     const expected = items.filter((f) => (f.contradiction ?? []).length > 0).length
 
     await page.goto('/hallazgos', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByText(/Verificaci.n editorial/i).first()).toBeVisible({
+    await expect(page.getByText(/Redacci.n autom.tica · \d+ de \d+/i).first()).toBeVisible({
       timeout: 8000,
     })
     // The cards mount after the snapshot lands; wait for one so an empty

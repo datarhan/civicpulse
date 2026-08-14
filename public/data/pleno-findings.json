@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-12T18:00:50.293Z",
+  "generatedAt": "2026-08-14T08:51:18.981Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -1653,7 +1653,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate sobre infraestructuras deportivas en el pleno de Riba-roja de Túria del 2026-01-19",
-      "summary": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, un grupo no identificado manifiesta que el pabellón deportivo es una instalación relevante sobre la cual se emitieron votos en contra en años anteriores.",
+      "summary": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, un grupo no identificado sostiene que otro grupo votó en contra de ese pabellón en su día; la ficha lo recoge como acusación sin contrastar, no como votación documentada.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-149-cit-3fd230",
@@ -1743,6 +1743,14 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:16.602Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, un grupo no identificado manifiesta que el pabellón deportivo es una instalación relevante sobre la cual se emitieron votos en contra en años anteriores.",
+          "corrected": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, un grupo no identificado sostiene que otro grupo votó en contra de ese pabellón en su día; la ficha lo recoge como acusación sin contrastar, no como votación documentada.",
+          "reason": "El resumen decía «sobre la cual se emitieron votos en contra en años anteriores»: una pasiva impersonal que se lee como hecho de registro. Las dos citas que lo sostienen son acusaciones dirigidas a otro grupo («vostès votaren en contra») y la propia ficha las marca «acusación no contrastada». Se devuelve a estilo indirecto y se nombra la marca que ya aparece debajo. Lo señaló review:surfaces; corrección instruida por el propietario del sitio.",
+          "editor": "claude-opus-5",
+          "correctedAt": "2026-08-14T08:51:07.027Z"
         }
       ]
     },
@@ -1751,7 +1759,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Pleno del 2026-01-19: Debate sobre urbanismo",
-      "summary": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, un grupo no identificado señaló que se basan en fondos europeos para la reconstrucción tras la DANA, mientras que el PP mencionó la necesidad de subsanar problemas en el pabellón y el complejo esportivo. VOX, en cambio, denunció la falta de una agenda de reconstrucción en Riba Roja.",
+      "summary": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, un grupo no identificado señaló que se basan en fondos europeos para la reconstrucción tras la DANA. Se atribuye al PP la mención de subsanar problemas en el pabellón y el complejo esportivo, con una cita que no consta en la transcripción vigente. VOX, en cambio, denunció la falta de una agenda de reconstrucción en Riba Roja.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-016-cit-cc8758",
@@ -1822,6 +1830,14 @@
           "reason": "Se retira un literal que no consta en ningún punto de la transcripción vigente y cuya forma, una cláusula repetida sobre sí misma, es firma de alucinación del motor que se sustituyó. El tramo de la sesión está cubierto sin huecos y el fichero vigente pesa más que el que reemplazó, así que la ausencia no es falta de cobertura. No hay en la vigente un pasaje equivalente al que reanclarla.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:18.720Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, un grupo no identificado señaló que se basan en fondos europeos para la reconstrucción tras la DANA, mientras que el PP mencionó la necesidad de subsanar problemas en el pabellón y el complejo esportivo. VOX, en cambio, denunció la falta de una agenda de reconstrucción en Riba Roja.",
+          "corrected": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, un grupo no identificado señaló que se basan en fondos europeos para la reconstrucción tras la DANA. Se atribuye al PP la mención de subsanar problemas en el pabellón y el complejo esportivo, con una cita que no consta en la transcripción vigente. VOX, en cambio, denunció la falta de una agenda de reconstrucción en Riba Roja.",
+          "reason": "El resumen enumeraba la intervención del PP al mismo nivel que las demás, como asunto asentado, cuando la cita que la sostiene lleva la marca «no consta en la transcripción revisada»: es literalidad del primer transcriptor, no confirmada contra el texto vigente. Se marca en la propia frase en vez de dejar que sólo lo diga el chip de debajo. Lo señaló review:surfaces; corrección instruida por el propietario del sitio.",
+          "editor": "claude-opus-5",
+          "correctedAt": "2026-08-14T08:51:18.981Z"
         }
       ]
     },
