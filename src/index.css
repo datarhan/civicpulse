@@ -654,8 +654,18 @@ body.cp-kiosk .cp-live-container {
   .cp-charts-grid {
     grid-template-columns: minmax(0, 1fr) !important;
   }
+  /* /laboratorio llevaba `minmax(0, 2fr) minmax(280px, 1fr)` en un estilo
+     inline: el suelo de 280 px de la columna derecha no cabe en 375 y la
+     rejilla no podía colapsar, porque una media query no entra en el prop
+     `style`. Se desbordaba 8 px. Lo destapó un refresco nocturno de datos
+     —cadenas más largas—, no un cambio de código: la maqueta llevaba tiempo
+     al borde y ninguna prueba de datos podía verlo. */
+  .cp-lab-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
   .cp-kpi-grid > *,
-  .cp-charts-grid > * {
+  .cp-charts-grid > *,
+  .cp-lab-grid > * {
     min-width: 0;
   }
 }

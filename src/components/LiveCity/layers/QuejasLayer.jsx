@@ -56,13 +56,17 @@ export function QuejasLayer() {
               <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }}>
                 <strong>{prettyNeighborhood(n.name || n.slug)}</strong>
                 <br />
+                {/* Variantes -ink: el tono base daba 3,3:1 sobre el blanco del
+                    popup, y axe no lo ve porque un popup de Leaflet no existe
+                    hasta que se abre. Es el mismo fallo que ya se corrigió en
+                    /quejas, vivo todavía aquí. */}
                 {n.total} queja{n.total === 1 ? '' : 's'} ·{' '}
-                <span style={{ color: '#16A34A' }}>✓ {n.resueltas}</span> ·{' '}
+                <span style={{ color: 'var(--ok-ink)' }}>✓ {n.resueltas}</span> ·{' '}
                 <span style={{ color: 'var(--civic)' }}>⏳ {n.pendientes}</span>
                 {n.silencios > 0 && (
                   <>
                     {' '}
-                    · <span style={{ color: '#DC2626' }}>⚠ {n.silencios}</span>
+                    · <span style={{ color: 'var(--crit-ink)' }}>⚠ {n.silencios}</span>
                   </>
                 )}
               </div>

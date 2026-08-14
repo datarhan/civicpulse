@@ -864,6 +864,10 @@ export default function Laboratorio() {
       </div>
 
       <div
+        // El suelo de 280 px de la segunda columna no cabe en 375, y un estilo
+        // inline no puede llevar una media query: la rejilla no colapsaba nunca.
+        // Misma solución que .cp-kpi-grid, y por el mismo motivo.
+        className="cp-lab-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: 'minmax(0, 2fr) minmax(280px, 1fr)',
