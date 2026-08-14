@@ -75,6 +75,63 @@ export type ReaderCaller = (input: SurfaceInput) => Promise<ReaderFinding[] | nu
 export const REVIEW_CHUNK_CHARS = 6_000
 
 /**
+ * ¿Se ha caído el servidor que estamos leyendo, o ha fallado ESTA ruta?
+ *
+ * La diferencia decide si la pasada sigue o para. Tratar todo fallo como una
+ * caída interrumpiría la lectura entera por una página lenta; tratar una caída
+ * como un fallo de ruta hace lo que pasó el 2026-08-14, que fue peor: la
+ * excepción escapó del bucle, se perdió el resumen y veintiséis rutas quedaron
+ * sin leer y sin nombrar.
+ *
+ * Deliberadamente conservador. Sólo los errores que significan «no hay nadie
+ * escuchando en ese puerto» cuentan como caída; cualquier otra cosa —un
+ * timeout, una pestaña cerrada, un abort— es un problema de esa ruta y la
+ * siguiente merece su intento.
+ */
+export function clasificarFalloDeNavegacion(err: unknown): 'servidor-caido' | 'ruta' {
+  const msg = err instanceof Error ? err.message : typeof err === 'string' ? err : ''
+  return /ECONNREFUSED|ERR_CONNECTION_REFUSED|ERR_CONNECTION_RESET|ERR_EMPTY_RESPONSE|ERR_CONNECTION_CLOSED|socket hang up/i.test(
+    msg,
+  )
+    ? 'servidor-caido'
+    : 'ruta'
+}
+
+/**
+ * Cada forma que tiene una pasada de tener algo que decir.
+ *
+ * Se recorre, no se repite. La decisión de salida vivía como un `if` de cinco
+ * términos escritos a mano dentro del script, y el defecto que este bloque
+ * arregla fue precisamente una sexta categoría —una ruta que no se pudo
+ * alcanzar— que ese `if` no contemplaba: la pasada murió, salió 1, y ese 1 es
+ * el mismo con el que sale una pasada sana que encontró señalamientos.
+ *
+ * Con la lista exportada, añadir un motivo y olvidarse de cablearlo pone
+ * `tests/reader-review-resiliencia.test.ts` en rojo, porque el test recorre
+ * esto en vez de copiarlo (regla nº1 de docs/DATA_INTEGRITY.md).
+ */
+export const MOTIVOS_PARA_HABLAR = [
+  /** Señalamientos vivos para revisión humana. */
+  'senalamientos',
+  /** Rutas de las que no se revisó ni un fragmento. */
+  'sinRevisar',
+  /** Rutas de las que se revisó una parte. */
+  'parciales',
+  /** Rutas a las que el presupuesto de tiempo no llegó. */
+  'sinTiempo',
+  /** Rutas que esta build no monta (una bandera apagada, casi siempre). */
+  'noMontadas',
+  /** Rutas que no se pudieron cargar: el servidor no respondía. */
+  'inalcanzables',
+] as const
+
+export type Recuento = Record<(typeof MOTIVOS_PARA_HABLAR)[number], number>
+
+/** ¿Tiene esta pasada algo que contar? Entonces no puede salir 0. */
+export const pasadaHabla = (r: Recuento): boolean =>
+  MOTIVOS_PARA_HABLAR.some((m) => (r[m] ?? 0) > 0)
+
+/**
  * What `review-surfaces` remembers about a route between runs.
  *
  * The findings travel WITH the hash. Storing the hash alone retired a route

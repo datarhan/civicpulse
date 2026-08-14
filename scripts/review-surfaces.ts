@@ -47,6 +47,8 @@ import {
   chunkRenderedText,
   parseReviewArgs,
   readCacheEntry,
+  clasificarFalloDeNavegacion,
+  pasadaHabla,
   type SurfaceInput,
   type ReaderFinding,
   type ReviewCacheEntry,
@@ -212,6 +214,7 @@ async function main() {
   // Ahora se carga siempre y lo que `--force` salta es el atajo de «sin
   // cambios», más abajo, sólo para las rutas de esta pasada.
   const cache = loadCache()
+  const persistirCache = () => writeFileSync(CACHE, JSON.stringify(cache, null, 2) + '\n')
   // Oldest first, but ONLY under a budget. A budget starves whatever sits at the
   // end of the list, and a fixed order starves the same routes every time —
   // which is a route that is never reviewed and nobody notices, the exact
@@ -282,6 +285,16 @@ async function main() {
   const ranOut: string[] = []
   /** Rutas que la build no monta: se pidió una y el navegador acabó en otra. */
   const noMontadas: Array<{ route: string; aterrizaje: string }> = []
+  /**
+   * Rutas que no se pudieron cargar. La categoría que faltaba el 2026-08-14,
+   * cuando el preview del barrido nocturno se murió a los diecinueve minutos:
+   * la excepción de `page.goto` escapó del bucle hasta el `catch` de `main()`,
+   * que imprime una línea y sale. Sin resumen, sin nombrar las veintiséis rutas
+   * que quedaban, y con el mismo código de salida que una pasada sana con
+   * señalamientos. El envoltorio registró «terminado (salió 1)» y el parte del
+   * día quedó indistinguible de uno bueno.
+   */
+  const inalcanzables: Array<{ route: string; motivo: string }> = []
   /** Live findings from a previous review of byte-identical text. */
   let remembered = 0
   const pct = (n: number) => `${Math.round(n * 100)}%`
@@ -316,9 +329,39 @@ async function main() {
       // writing anything would not.
       continue
     }
-    await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })
-    // Give the snapshot store a beat to resolve before reading the text.
-    await page.waitForTimeout(1200)
+    // Navegar puede fallar, y hasta hoy fallar aquí tiraba la pasada entera.
+    // Se distinguen los dos casos porque llevan a decisiones opuestas: si el
+    // servidor se ha caído no tiene sentido intentar las veintiséis siguientes
+    // —se nombran todas y se para—, y si ha fallado esta ruta, la siguiente
+    // merece su intento.
+    try {
+      await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })
+      // Give the snapshot store a beat to resolve before reading the text.
+      await page.waitForTimeout(1200)
+    } catch (e) {
+      const motivo = e instanceof Error ? e.message.split('\n')[0] : String(e)
+      inalcanzables.push({ route, motivo })
+      if (!asJson) {
+        console.log(`\n── ${route}`)
+        console.log(`   NO ALCANZADA: ${motivo}`)
+      }
+      if (clasificarFalloDeNavegacion(e) === 'servidor-caido') {
+        // Las que quedaban se nombran una a una. «26 sin revisar» sin la lista
+        // es la truncadura silenciosa que este fichero entero existe para no
+        // cometer: quien lee el parte tiene que poder saber QUÉ no se leyó.
+        const pendientes = routes.slice(routes.indexOf(route) + 1)
+        for (const r of pendientes)
+          inalcanzables.push({ route: r, motivo: 'el servidor dejó de responder antes de llegar' })
+        if (!asJson && pendientes.length > 0) {
+          console.log(
+            `\n   El servidor de ${BASE} dejó de responder. NO se han intentado las ` +
+              `${pendientes.length} ruta(s) restantes: ${pendientes.join(', ')}`,
+          )
+        }
+        break
+      }
+      continue
+    }
 
     // ¿Sigue el navegador donde le pedimos que fuera?
     //
@@ -456,6 +499,14 @@ async function main() {
     // partial pass would retire the unread part of the page permanently.
     if (complete) cache[route] = { hash: h, findings, at: new Date().toISOString() }
     else delete cache[route]
+    // Y se baja al disco AHORA, ruta a ruta, en vez de sólo al terminar el
+    // bucle. El 2026-08-14 el barrido leyó cinco páginas en diecinueve minutos
+    // y murió en la sexta: como la única escritura estaba después del bucle, se
+    // tiraron las cinco. Diecinueve minutos de llamadas al modelo repetidas a
+    // la mañana siguiente, y la caché es lo que `check:surfaces` lee para saber
+    // qué se ha leído — así que además el parte del día no se enteró.
+    // Un fichero de ~10 KB por ruta es barato al lado de eso.
+    persistirCache()
     // Tracked here, not inside the printing branch: `--json` must reach the same
     // exit code as the human output, or CI and a person disagree about the run.
     if (consulted && !complete) partial.push(route)
@@ -522,7 +573,7 @@ async function main() {
   }
 
   await browser.close()
-  writeFileSync(CACHE, JSON.stringify(cache, null, 2) + '\n')
+  persistirCache()
   if (asJson) console.log(JSON.stringify(all, null, 2))
   // Findings replayed from an unchanged page COUNT. They are live defects on a
   // live page; the only thing the cache saved was the call, not the problem.
@@ -545,7 +596,10 @@ async function main() {
         (partial.length > 0 ? ` · ${partial.length} PARCIAL(ES)` : '') +
         (unreviewed.length > 0 ? ` · ${unreviewed.length} SIN REVISAR` : '') +
         (ranOut.length > 0 ? ` · ${ranOut.length} NO ALCANZADA(S) POR TIEMPO` : '') +
-        (noMontadas.length > 0 ? ` · ${noMontadas.length} NO MONTADA(S) EN ESTA BUILD` : ''),
+        (noMontadas.length > 0 ? ` · ${noMontadas.length} NO MONTADA(S) EN ESTA BUILD` : '') +
+        (inalcanzables.length > 0
+          ? ` · ${inalcanzables.length} NO ALCANZADA(S): EL SERVIDOR NO RESPONDÍA`
+          : ''),
     )
     // The total is stated even when everything went fine. «revisada» without a
     // figure is what let 66% of /metodologia go unread for three runs.
@@ -579,6 +633,20 @@ async function main() {
           `${ranOut.join(', ')} — ejecuta \`npm run review:surfaces\` para leerlas enteras.`,
       )
     }
+    // Nombradas, como todo lo demás que no se leyó. La avería del 2026-08-14 no
+    // fue que el servidor se muriera —eso pasa—, fue que nadie pudo saber qué
+    // había quedado sin leer.
+    if (inalcanzables.length > 0) {
+      console.log(
+        `           NO ALCANZADAS (el servidor de ${BASE} no respondía): ` +
+          inalcanzables.map((i) => i.route).join(', '),
+      )
+      console.log(
+        `           el primer fallo fue: ${inalcanzables[0].motivo} — ` +
+          'sus entradas de caché se dejan como estaban: no se han revisado, ' +
+          'pero lo que se supiera de ellas sigue siendo cierto.',
+      )
+    }
   }
   // `ranOut` is in here deliberately: a run that skipped routes did not review
   // the site, and must not exit 0 as though it had. The pre-push hook ignores
@@ -588,12 +656,20 @@ async function main() {
   // Que la causa sea una bandera apagada no la convierte en revisada, y salir 0
   // haría que un CI sin las banderas diera por leídas las páginas que no montó
   // — exactamente el verde que este bloque existe para no dar.
+  //
+  // Era un `if` de cinco términos escritos a mano, y el defecto del 2026-08-14
+  // fue una sexta categoría que no estaba en él. Ahora la lista vive exportada
+  // en `reader-review.ts` y un test la recorre, así que una categoría nueva sin
+  // cablear se pone roja sola en vez de esperar a que un barrido se muera.
   if (
-    total > 0 ||
-    unreviewed.length > 0 ||
-    partial.length > 0 ||
-    ranOut.length > 0 ||
-    noMontadas.length > 0
+    pasadaHabla({
+      senalamientos: total,
+      sinRevisar: unreviewed.length,
+      parciales: partial.length,
+      sinTiempo: ranOut.length,
+      noMontadas: noMontadas.length,
+      inalcanzables: inalcanzables.length,
+    })
   )
     process.exitCode = 1
 }
