@@ -83,10 +83,58 @@ PORT=4189
 while [ "$PORT" -lt 4210 ] && curl -s -o /dev/null --max-time 1 "http://127.0.0.1:$PORT/"; do
   PORT=$((PORT + 1))
 done
-npx vite preview --host 127.0.0.1 --port "$PORT" --strictPort >/dev/null 2>&1 &
-PREVIEW=$!
+# ── El preview, y un vigilante que lo resucita ─────────────────────────────
+# El 2026-08-14 este preview se murió (SIGTERM; sigo sin saber de quién) a los
+# diecinueve minutos de lectura. El lector se encontró la sexta ruta con la
+# conexión rechazada y la pasada terminó ahí: veintiséis páginas sin leer.
+#
+# El lector ya sabe sobrevivir a eso y contarlo —ése es el arreglo de fondo, en
+# review-surfaces.ts—, pero contarlo bien sigue siendo una mañana perdida. Con
+# un vigilante que lo relance, una muerte cuesta UNA ruta en vez de la pasada.
+#
+# El PID vive en un fichero y no en una variable porque el vigilante corre en
+# un subshell: un `PREVIEW=$!` suyo no vuelve al padre, así que el `cleanup` de
+# aquí mataría un PID viejo y dejaría suelto el preview resucitado.
+PIDFILE="$(mktemp -t review-sweep-preview)"
+RELANZFILE="$(mktemp -t review-sweep-relanz)"
+# La salida del lector se guarda además de imprimirse, para poder decir al final
+# QUÉ pasó en vez de repetir el mismo renglón pase lo que pase.
+SALIDA="$(mktemp -t review-sweep-salida)"
+echo 0 > "$RELANZFILE"
+
+arrancar_preview() {
+  npx vite preview --host 127.0.0.1 --port "$PORT" --strictPort >/dev/null 2>&1 &
+  echo $! > "$PIDFILE"
+}
+arrancar_preview
+
+vigilar_preview() {
+  while :; do
+    sleep 10
+    local pid
+    pid="$(cat "$PIDFILE" 2>/dev/null)"
+    # `kill -0` pregunta «¿sigue vivo?» sin mandarle nada.
+    if [ -n "$pid" ] && ! kill -0 "$pid" 2>/dev/null; then
+      local n
+      n=$(( $(cat "$RELANZFILE" 2>/dev/null || echo 0) + 1 ))
+      echo "$n" > "$RELANZFILE"
+      # Se registra cada vez. Un preview que resucita cuatro veces por noche es
+      # un dato sobre esta máquina que hoy no tengo, y sólo aparece si alguien
+      # lo escribe.
+      log "el preview de :$PORT ha muerto — relanzando (nº $n)"
+      arrancar_preview
+    fi
+  done
+}
+vigilar_preview &
+VIGILANTE=$!
+
 cleanup() {
-  [ -n "${PREVIEW:-}" ] && kill "$PREVIEW" 2>/dev/null
+  [ -n "${VIGILANTE:-}" ] && kill "$VIGILANTE" 2>/dev/null
+  local pid
+  pid="$(cat "$PIDFILE" 2>/dev/null)"
+  [ -n "$pid" ] && kill "$pid" 2>/dev/null
+  rm -f "$PIDFILE" "$RELANZFILE" "$SALIDA"
   :
 }
 trap 'cleanup' EXIT
@@ -114,11 +162,27 @@ env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY \
     GEMINI_BIN=/nonexistent-disabled AGY_BIN=/nonexistent-disabled \
     LLM_CONCURRENCY=1 \
     REVIEW_BASE_URL="http://127.0.0.1:$PORT" \
-    npm run --silent review:surfaces -- --all
-RESULTADO=$?
+    npm run --silent review:surfaces -- --all 2>&1 | tee "$SALIDA"
+RESULTADO=${PIPESTATUS[0]}
 
 # El código de salida de review:surfaces es ≠ 0 cuando HAY señalamientos, y eso
 # aquí no es un fallo del barrido: es su producto. Se registra y se sale 0 —
 # nada de esto puede tumbar un cron ni una máquina.
-log "terminado (review:surfaces salió $RESULTADO) · el parte para el digest lo da: npm run check:surfaces"
+#
+# Pero «salió 1» a secas era indistinguible de lo que pasó el 2026-08-14, que
+# fue morirse en la ruta 6 de 27. Un renglón final que dice lo mismo en los dos
+# casos es el mismo defecto que docs/DATA_INTEGRITY.md llama nº2: una pasada
+# tiene que demostrar qué hizo. Así que el desenlace se dice, y se dice a partir
+# de lo que el lector imprimió, no de una suposición.
+RELANZ="$(cat "$RELANZFILE" 2>/dev/null || echo 0)"
+NOTA_RELANZ=""
+[ "${RELANZ:-0}" -gt 0 ] && NOTA_RELANZ=" · el preview hubo que relanzarlo $RELANZ vez/veces"
+if grep -q 'NO ALCANZADA(S): EL SERVIDOR' "$SALIDA" 2>/dev/null; then
+  SIN_LEER="$(grep -c '^   NO ALCANZADA' "$SALIDA" 2>/dev/null || echo '?')"
+  log "terminado INCOMPLETO: el servidor de preview dejó de responder y quedaron rutas sin leer" \
+      "(review:surfaces salió $RESULTADO$NOTA_RELANZ) · la lista de rutas está más arriba en este log" \
+      "· al menos $SIN_LEER intento(s) de navegación fallaron"
+else
+  log "terminado (review:surfaces salió $RESULTADO$NOTA_RELANZ) · el parte para el digest lo da: npm run check:surfaces"
+fi
 exit 0

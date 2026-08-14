@@ -6,6 +6,8 @@ import {
   clasificarFalloDeNavegacion,
   MOTIVOS_PARA_HABLAR,
   pasadaHabla,
+  REINTENTOS_SERVIDOR,
+  ESPERA_SERVIDOR_MS,
   type Recuento,
 } from '../src/scraper/reader-review'
 
@@ -104,6 +106,20 @@ describe('una pasada con algo que decir sale ≠ 0', () => {
   })
 })
 
+describe('se insiste antes de dar por muerto el servidor', () => {
+  // La inyección de fallo baja estos dos por entorno para no tardar cuarenta
+  // segundos, así que los valores que rigen de verdad no los comprueba nadie
+  // más. Puestos a cero, el lector vuelve a rendirse a la primera y el
+  // vigilante que relanza el preview del barrido queda de adorno — sin que
+  // ningún test se ponga rojo. Aquí se ponen.
+  it('los valores por defecto dejan margen a que el vigilante relance el preview', () => {
+    expect(REINTENTOS_SERVIDOR).toBeGreaterThan(0)
+    // El vigilante mira cada 10 s y vite tarda 2-3 s en levantar: la ventana
+    // total tiene que cubrir holgadamente ese ciclo.
+    expect(REINTENTOS_SERVIDOR * ESPERA_SERVIDOR_MS).toBeGreaterThanOrEqual(20_000)
+  })
+})
+
 describe('inyección de fallo: el lector contra un servidor que no existe', () => {
   // La prueba de verdad. Se apunta el lector real a un puerto donde no hay
   // nada y se comprueba que hace las tres cosas que hoy no hizo: nombrar lo que
@@ -125,6 +141,11 @@ describe('inyección de fallo: el lector contra un servidor que no existe', () =
         // probar. Es el defecto que este fichero entero persigue, cometido
         // dentro del test que lo persigue.
         REVIEW_BASE_URL: 'http://127.0.0.1:49999',
+        // Los reintentos SÍ se recorren —el bucle es parte de lo que se prueba—
+        // pero en milisegundos: con los valores de producción este test tardaría
+        // cuarenta segundos en llegar a la primera aserción.
+        REVIEW_SERVER_RETRIES: '2',
+        REVIEW_SERVER_RETRY_MS: '150',
         // Que ninguna clave se cuele: si alguna ruta llegara a leerse, esto
         // dejaría de ser gratis. No debería llegar ninguna.
         OPENAI_API_KEY: '',
@@ -136,6 +157,12 @@ describe('inyección de fallo: el lector contra un servidor que no existe', () =
     // Prueba de trabajo antes que nada: si chromium no arrancó, lo de abajo
     // pasaría por los motivos equivocados.
     expect(salida, 'el lector no llegó a arrancar').not.toBe('')
+    // Insistió antes de rendirse. Sin esto el vigilante que relanza el preview
+    // del barrido no sirve de nada: la ruta que pilla el hueco de diez segundos
+    // se declara inalcanzable y la pasada para con el servidor ya de vuelta.
+    expect(salida, 'se rindió a la primera negativa, sin reintentar').toMatch(
+      /no responde — reintento 2\/2/,
+    )
     // Y la prueba de que se recorrió el camino que se quería recorrer: esta
     // frase sólo la imprime la rama de «servidor caído».
     expect(

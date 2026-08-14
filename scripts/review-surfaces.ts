@@ -49,6 +49,8 @@ import {
   readCacheEntry,
   clasificarFalloDeNavegacion,
   pasadaHabla,
+  REINTENTOS_SERVIDOR,
+  ESPERA_SERVIDOR_MS,
   type SurfaceInput,
   type ReaderFinding,
   type ReviewCacheEntry,
@@ -69,6 +71,16 @@ import { ReaderReviewSchema } from '../src/llm/schemas'
 // on its own free port with an explicit `--host 127.0.0.1`, so it passes the v4
 // URL that matches. Whoever starts the server picks the address.
 const BASE = process.env.REVIEW_BASE_URL || 'http://localhost:4173'
+
+// Sólo para que la inyección de fallo recorra el camino entero en milisegundos.
+// Los defaults —los que rigen de verdad— viven en reader-review.ts y tienen su
+// propio test: puestos a cero, el vigilante del barrido queda en adorno.
+const num0 = (v: string | undefined, porDefecto: number) => {
+  const n = Number(v)
+  return v !== undefined && Number.isFinite(n) && n >= 0 ? n : porDefecto
+}
+const reintentosServidor = num0(process.env.REVIEW_SERVER_RETRIES, REINTENTOS_SERVIDOR)
+const esperaServidorMs = num0(process.env.REVIEW_SERVER_RETRY_MS, ESPERA_SERVIDOR_MS)
 
 /**
  * route → { hash of the rendered text last reviewed, what that review found }.
@@ -334,18 +346,53 @@ async function main() {
     // servidor se ha caído no tiene sentido intentar las veintiséis siguientes
     // —se nombran todas y se para—, y si ha fallado esta ruta, la siguiente
     // merece su intento.
-    try {
-      await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })
-      // Give the snapshot store a beat to resolve before reading the text.
-      await page.waitForTimeout(1200)
-    } catch (e) {
-      const motivo = e instanceof Error ? e.message.split('\n')[0] : String(e)
-      inalcanzables.push({ route, motivo })
-      if (!asJson) {
-        console.log(`\n── ${route}`)
-        console.log(`   NO ALCANZADA: ${motivo}`)
+    //
+    // Antes de darlo por muerto se insiste: el barrido nocturno relanza su
+    // preview a los diez segundos, así que la caída que hoy costó veintiséis
+    // páginas dura menos que este bucle de reintentos.
+    // La cabecera de la ruta, una sola vez: la imprime el primer reintento si
+    // los hubo, y el fallo si no.
+    let cabeceraPuesta = false
+    /** `null` si se logró navegar; el fallo, si no. */
+    const navegar = async (): Promise<{
+      motivo: string
+      clase: 'servidor-caido' | 'ruta'
+    } | null> => {
+      let ultimo = ''
+      for (let intento = 0; ; intento += 1) {
+        try {
+          await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })
+          // Give the snapshot store a beat to resolve before reading the text.
+          await page.waitForTimeout(1200)
+          if (intento > 0 && !asJson)
+            console.log(`   el servidor volvió al reintento ${intento}; se sigue leyendo.`)
+          return null
+        } catch (e) {
+          ultimo = e instanceof Error ? e.message.split('\n')[0] : String(e)
+          if (clasificarFalloDeNavegacion(e) === 'ruta') return { motivo: ultimo, clase: 'ruta' }
+          if (intento >= reintentosServidor) return { motivo: ultimo, clase: 'servidor-caido' }
+          if (!asJson) {
+            if (!cabeceraPuesta) {
+              console.log(`\n── ${route}`)
+              cabeceraPuesta = true
+            }
+            console.log(
+              `   ${BASE} no responde — reintento ${intento + 1}/${reintentosServidor} en ` +
+                `${Math.round(esperaServidorMs / 1000)}s`,
+            )
+          }
+          await page.waitForTimeout(esperaServidorMs)
+        }
       }
-      if (clasificarFalloDeNavegacion(e) === 'servidor-caido') {
+    }
+    const fallo = await navegar()
+    if (fallo) {
+      inalcanzables.push({ route, motivo: fallo.motivo })
+      if (!asJson) {
+        if (!cabeceraPuesta) console.log(`\n── ${route}`)
+        console.log(`   NO ALCANZADA: ${fallo.motivo}`)
+      }
+      if (fallo.clase === 'servidor-caido') {
         // Las que quedaban se nombran una a una. «26 sin revisar» sin la lista
         // es la truncadura silenciosa que este fichero entero existe para no
         // cometer: quien lee el parte tiene que poder saber QUÉ no se leyó.

@@ -132,6 +132,26 @@ export const pasadaHabla = (r: Recuento): boolean =>
   MOTIVOS_PARA_HABLAR.some((m) => (r[m] ?? 0) > 0)
 
 /**
+ * Cuánto se insiste antes de dar por muerto el servidor que se está leyendo.
+ *
+ * Existe porque el barrido nocturno lleva desde hoy un vigilante que relanza su
+ * preview a los diez segundos de verlo caer. Un lector que se rinde a la
+ * primera negativa deja ese vigilante en adorno: la ruta que pilló el hueco se
+ * declara inalcanzable y la pasada para, con el servidor ya de vuelta.
+ *
+ * Cuarenta segundos contra una pasada de veinte minutos no son nada, y son de
+ * sobra para que el vigilante lo vea (≤10 s) y vite arranque (2-3 s).
+ *
+ * Ajustables por entorno para que la inyección de fallo pueda recorrer el
+ * camino entero en milisegundos en vez de en minutos. Los valores por defecto
+ * son los que rigen en producción y `tests/reader-review-resiliencia.test.ts`
+ * los comprueba: un default a cero volvería a dejar el vigilante en adorno sin
+ * que nadie se enterara.
+ */
+export const REINTENTOS_SERVIDOR = 4
+export const ESPERA_SERVIDOR_MS = 10_000
+
+/**
  * What `review-surfaces` remembers about a route between runs.
  *
  * The findings travel WITH the hash. Storing the hash alone retired a route
