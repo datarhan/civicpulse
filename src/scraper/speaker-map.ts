@@ -606,6 +606,53 @@ export function classifyBacklogState(opts: {
 }
 
 /**
+ * What one chunk cost, as the API reports it — not as anything here can derive.
+ *
+ * Audio is billed by duration converted to tokens at a rate the provider owns,
+ * and the thinking budget is invisible from outside. The manifest of a good
+ * night read `15 calls · 3.688 tokens`: those were the text adjudication calls
+ * alone, because the transcription goes out over curl where the LLM client's
+ * accounting cannot see it, while one 20-minute chunk is ~30k input tokens by
+ * itself. Any budget built on that number was out by two orders of magnitude.
+ */
+export interface ChunkUsage {
+  inputTokens: number
+  outputTokens: number
+  /** Reasoning tokens. Billed as output, reported separately by Gemini. */
+  thinkingTokens: number
+}
+
+/**
+ * Read the usage totals out of a `streamGenerateContent?alt=sse` response.
+ *
+ * The one thing that must not go wrong: **every event repeats the RUNNING
+ * totals**, so the last one wins and summing them multiplies the bill by the
+ * number of events — a 30k-token chunk billed as 300k, and a sweep budget that
+ * says no to something affordable. Hence last-wins, asserted by its own test.
+ *
+ * Unparseable or usage-free events contribute nothing rather than throwing: the
+ * caller is mid-transcription and losing a cost figure must never cost a map.
+ */
+export function usageFromSse(sse: string): ChunkUsage {
+  const out: ChunkUsage = { inputTokens: 0, outputTokens: 0, thinkingTokens: 0 }
+  for (const line of sse.split('\n')) {
+    if (!line.startsWith('data: ')) continue
+    let u: Record<string, unknown> | undefined
+    try {
+      u = (JSON.parse(line.slice(6)) as { usageMetadata?: Record<string, unknown> }).usageMetadata
+    } catch {
+      continue
+    }
+    if (!u) continue
+    const n = (v: unknown, fallback: number) => (Number.isFinite(Number(v)) ? Number(v) : fallback)
+    out.inputTokens = n(u.promptTokenCount, out.inputTokens)
+    out.outputTokens = n(u.candidatesTokenCount, out.outputTokens)
+    out.thinkingTokens = n(u.thoughtsTokenCount, out.thinkingTokens)
+  }
+  return out
+}
+
+/**
  * Runs — not retries within a run — a chunk gets before it is written off.
  *
  * Deliberately counted across NIGHTS. Within one run the model is asked up to

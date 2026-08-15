@@ -54,8 +54,10 @@ import {
   recordFailure,
   writtenOffChunks,
   isMapComplete,
+  usageFromSse,
   GIVE_UP_AFTER_ATTEMPTS,
   type FailedChunk,
+  type ChunkUsage,
   type RawSegment,
   type SpeakerMap,
   type SpeakerMapRow,
@@ -247,13 +249,37 @@ function durationOf(path: string): number {
 }
 
 /**
- * One chunk → the model's raw response.
+ * Price per million tokens, supplied rather than assumed.
+ *
+ * Deliberately NOT a table in the repo. Every other price here is a snapshot of
+ * a page that blocks automated fetches and drifts silently, and this one would
+ * be read as an authority the moment somebody sized a twenty-night sweep with
+ * it. Tokens are what this script can honestly measure; the rate belongs to
+ * whoever is holding the bill, and comes in through the environment:
+ *
+ *   GEMINI_USD_PER_MTOK_IN=0.30 GEMINI_USD_PER_MTOK_OUT=2.50 npm run extract:speaker-map …
+ *
+ * Absent, cost reports as $0 — correct on the free tier, and on a metered key
+ * an obvious blank rather than a plausible fiction.
+ */
+const USD_PER_MTOK_IN = Number(process.env.GEMINI_USD_PER_MTOK_IN ?? 0) || 0
+const USD_PER_MTOK_OUT = Number(process.env.GEMINI_USD_PER_MTOK_OUT ?? 0) || 0
+
+const usdFor = (input: number, output: number): number =>
+  (input * USD_PER_MTOK_IN + output * USD_PER_MTOK_OUT) / 1e6
+
+/**
+ * One chunk → the model's raw response, and what it cost.
  *
  * Throws on anything that is not a complete answer. An empty or truncated
  * response must NOT become an empty map row: the caller aborts the pleno
  * rather than publish a map that says the chamber was silent.
  */
-function transcribeChunk(path: string, apiKey: string, prompt: string): string {
+function transcribeChunk(
+  path: string,
+  apiKey: string,
+  prompt: string,
+): { text: string; usage: ChunkUsage } {
   const bytes = Number(sh('stat', ['-f%z', path]).trim())
 
   // Resumable upload. The two-step dance is the documented protocol; a plain
@@ -375,7 +401,7 @@ function transcribeChunk(path: string, apiKey: string, prompt: string): string {
 
   // A null result is not "found nothing". Refuse it loudly.
   if (!text.trim()) throw new Error(`empty response (finishReason=${finish ?? 'none'})`)
-  return text
+  return { text, usage: usageFromSse(sse) }
 }
 
 async function main() {
@@ -414,6 +440,8 @@ async function main() {
   let apiCalls = 0
   let apiOk = 0
   let apiFailed = 0
+  let apiInputTokens = 0
+  let apiOutputTokens = 0
   const runLog = startRun('extract-speaker-map', {
     backend: 'gemini-api',
     model: MODEL,
@@ -424,6 +452,9 @@ async function main() {
         calls: s.calls + apiCalls,
         ok: s.ok + apiOk,
         failed: s.failed + apiFailed,
+        // The audio is the whole bill and it was missing from this number.
+        tokens: s.tokens + apiInputTokens + apiOutputTokens,
+        costUSD: s.costUSD + usdFor(apiInputTokens, apiOutputTokens),
       }
     },
   })
@@ -708,7 +739,14 @@ async function main() {
       for (let attempt = 1; attempt <= 3; attempt++) {
         try {
           apiCalls += 1
-          const candidate = parseSpeakerMapResponse(transcribeChunk(path, apiKey, prompt))
+          const answer = transcribeChunk(path, apiKey, prompt)
+          // Counted on EVERY answer, including the ones a low coverage score is
+          // about to discard — a retried chunk is billed twice and a budget
+          // built on accepted chunks alone would under-count the sweep by the
+          // whole retry rate.
+          apiInputTokens += answer.usage.inputTokens
+          apiOutputTokens += answer.usage.outputTokens + answer.usage.thinkingTokens
+          const candidate = parseSpeakerMapResponse(answer.text)
           apiOk += 1
           coverage = referenceCoverage(
             candidate.segments.map((s) => ({ ...s, start: s.start + offset, end: s.end + offset })),
@@ -946,7 +984,21 @@ async function main() {
         `${adjudicated['not-adjudicated']} NOT adjudicated (backend silent — still weak)` +
         `${adjudicationSkipped ? ` · ${adjudicationSkipped} never sent (cap ${ADJUDICATE_MAX})` : ''}\n` +
         `  rows rejected ${rejected.length}  ${JSON.stringify(map.stats.rejectedBy)}\n` +
-        `  councillors   ${bySlug.size} identified across chunks\n`,
+        `  councillors   ${bySlug.size} identified across chunks\n` +
+        // What a chunk costs, and what that makes the rest of the backlog cost.
+        // The point of the line: sizing the sweep from a number somebody
+        // measured instead of from one somebody remembered.
+        (attempted > 0
+          ? `  tokens        ${(apiInputTokens + apiOutputTokens).toLocaleString('en-US')} over ` +
+            `${attempted} attempt(s) → ${Math.round((apiInputTokens + apiOutputTokens) / attempted).toLocaleString('en-US')}/chunk ` +
+            `(${apiInputTokens.toLocaleString('en-US')} in · ${apiOutputTokens.toLocaleString('en-US')} out+thinking)` +
+            `${
+              USD_PER_MTOK_IN || USD_PER_MTOK_OUT
+                ? ` · $${usdFor(apiInputTokens, apiOutputTokens).toFixed(4)} ` +
+                  `→ $${(usdFor(apiInputTokens, apiOutputTokens) / attempted).toFixed(4)}/chunk`
+                : ' · no rate supplied (GEMINI_USD_PER_MTOK_IN/OUT), so cost reads $0'
+            }\n`
+          : ''),
     )
     for (const [slug, labels] of bySlug) {
       process.stdout.write(`    ${slug.padEnd(34)} ${labels.join(' ')}\n`)
