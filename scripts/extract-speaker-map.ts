@@ -51,6 +51,11 @@ import {
   audioCachePath,
   isReusableAudio,
   AUDIO_CACHE_DIR,
+  recordFailure,
+  writtenOffChunks,
+  isMapComplete,
+  GIVE_UP_AFTER_ATTEMPTS,
+  type FailedChunk,
   type RawSegment,
   type SpeakerMap,
   type SpeakerMapRow,
@@ -584,6 +589,28 @@ async function main() {
         )
       : new Set<number>()
 
+    // Chunks given up on: attempted on GIVE_UP_AFTER_ATTEMPTS separate nights
+    // and failed every time, under the gate still in force. `15uvjew` chunk 8
+    // comes back at exactly 66% against an 85% floor however often it is asked,
+    // and re-asking it nightly for the length of a twenty-night sweep buys
+    // nothing. They are excluded from the plan but NOT from the record: the
+    // hole stays in `failedChunks`, and their segments are still dropped — a
+    // 66% reading published as a whole window is the very thing the floor is
+    // for. Move the prompt or the floor and every one of them reopens.
+    const priorFailures = new Map<number, FailedChunk>(
+      (prior?.stats?.failedChunks ?? []).map((f) => [f.chunk, f]),
+    )
+    const writtenOff = writtenOffChunks(prior?.stats?.failedChunks)
+    if (writtenOff.size) {
+      process.stdout.write(
+        `[speaker-map] ${writtenOff.size} chunk(s) written off after ` +
+          `${GIVE_UP_AFTER_ATTEMPTS} failed run(s) each (${[...writtenOff].sort((a, b) => a - b).join(', ')}) — ` +
+          `declared as gaps, no longer attempted\n`,
+      )
+    }
+    /** Nothing more to do about these: mapped, or given up on. */
+    const settledChunks = new Set<number>([...doneChunks, ...writtenOff])
+
     // Carry forward ONLY the re-verified chunks. A chunk being re-attempted
     // must not keep its old segments as well as gain new ones, or the map ends
     // up holding both readings of the same minutes.
@@ -617,7 +644,13 @@ async function main() {
     const rejected: RejectedCandidate[] = prior
       ? prior.rejected.map((r) => ({ ...r }) as RejectedCandidate)
       : []
-    const failedChunks: Array<{ chunk: number; why: string }> = []
+    // Seeded with the chunks already written off, history intact. Without this
+    // they would fall through to the "never attempted (budget spent)" sweep at
+    // the bottom, losing the attempt count that retired them — and a session
+    // that forgets why it stopped asking starts asking again forever.
+    const failedChunks: FailedChunk[] = [...writtenOff]
+      .sort((a, b) => a - b)
+      .map((i) => ({ ...(priorFailures.get(i) as FailedChunk) }))
     let quotaExhausted: string | null = null
     const adjudicated: Record<AdjudicationOutcome, number> = {
       accepted: 0,
@@ -636,7 +669,7 @@ async function main() {
     // The budget limits ATTEMPTS, never how far into the session we look —
     // capping the index range is what left 8 of 21 sessions with a permanently
     // unreachable tail. See `chunksToAttempt`.
-    const toAttempt = chunksToAttempt(chunks.length, doneChunks, args.maxChunks)
+    const toAttempt = chunksToAttempt(chunks.length, settledChunks, args.maxChunks)
     if (toAttempt.length) {
       process.stdout.write(
         `[speaker-map] attempting ${toAttempt.length} chunk(s): ${toAttempt.join(', ')}\n`,
@@ -715,7 +748,12 @@ async function main() {
         // Record the gap and carry on. Aborting would throw away every other
         // chunk, and a stretch with no map simply produces no attribution —
         // which is the honest outcome, not a wrong one.
-        failedChunks.push({ chunk: i, why: lastWhy })
+        // Folded into what earlier NIGHTS recorded about this same chunk, so a
+        // window the model cannot read stops being asked after a few of them.
+        // Only a genuine attempt counts: the quota and budget cases below push
+        // plain entries, because retiring a chunk for being under-budgeted
+        // would be exactly backwards.
+        failedChunks.push(recordFailure(priorFailures.get(i), i, lastWhy))
         // Bucket by KIND, not by the formatted message — «covered 9%» and
         // «covered 2%» are one failure mode, and a reason-per-percentage
         // makes the tally unreadable.
@@ -883,6 +921,15 @@ async function main() {
       return
     }
     writeFileSync(out, JSON.stringify(map, null, 2) + '\n')
+
+    // The session is done; the audio has no further use. Kept until now
+    // because a long pleno takes several nights and re-fetching hours of it
+    // each time is what the cache exists to stop — but keeping it after the
+    // map closes just fills a disk with somebody else's video.
+    if (cachedAudio && isMapComplete(map)) {
+      rmSync(cachedAudio, { force: true })
+      process.stdout.write(`[speaker-map] session complete — cached audio dropped\n`)
+    }
 
     const bySlug = new Map<string, string[]>()
     for (const r of rows) if (r.slug) bySlug.set(r.slug, [...(bySlug.get(r.slug) ?? []), r.label])

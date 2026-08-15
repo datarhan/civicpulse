@@ -30,6 +30,11 @@
  * Maps live in `pleno-speaker-map/` at the repo root, **never under `public/`**
  * — Vercel serves that whole directory, and these rows name living people.
  */
+// The two settings that decide whether a chunk passes, imported rather than
+// restated: a write-off is stamped with the gate that made it, and a hand-copied
+// version string would keep every stale write-off alive through a prompt change.
+// `speaker-map-prompt` is a leaf — it imports nothing — so there is no cycle.
+import { SPEAKER_MAP_PROMPT_VERSION, SPEAKER_MAP_COVERAGE_FLOOR } from './speaker-map-prompt'
 
 /**
  * How a piece of audio evidence connects to the speaker it identifies.
@@ -150,7 +155,7 @@ export interface SpeakerMap {
      * nobody spoke — `DATA_INTEGRITY.md` rule 2, the same distinction between
      * "never attempted" and "nothing found".
      */
-    failedChunks: Array<{ chunk: number; why: string }>
+    failedChunks: FailedChunk[]
     labelsSeen: number
     rowsAccepted: number
     rowsRejected: number
@@ -490,13 +495,29 @@ export function resumableChunks(
  * cost of re-running a finished session is some quota; the cost of skipping an
  * unfinished one is a session nobody ever revisits.
  */
-export function isMapComplete(map: unknown): boolean {
-  const s = (map as { stats?: { chunksTranscribed?: unknown; chunksExpected?: unknown } })?.stats
+export function isMapComplete(map: unknown, gate: Gate = CURRENT_GATE): boolean {
+  const s = (
+    map as {
+      stats?: {
+        chunksTranscribed?: unknown
+        chunksExpected?: unknown
+        failedChunks?: unknown
+      }
+    }
+  )?.stats
   const done = s?.chunksTranscribed
   const total = s?.chunksExpected
   if (typeof done !== 'number' || typeof total !== 'number') return false
   if (!Number.isFinite(done) || !Number.isFinite(total) || total <= 0) return false
-  return done >= total
+  // Chunks written off count towards finished. They are still declared — the
+  // hole stays in `failedChunks` where anyone can see it — but the session
+  // stops costing a call a night to fail the same way. Only write-offs under
+  // the CURRENT gate count, so fixing the parser or moving the floor puts every
+  // one of them back in the queue.
+  const gaps = Array.isArray(s?.failedChunks)
+    ? writtenOffChunks(s.failedChunks as FailedChunk[], gate).size
+    : 0
+  return done + gaps >= total
 }
 
 /**
@@ -582,6 +603,82 @@ export function classifyBacklogState(opts: {
   if (isMapComplete(opts.map)) return null
   if (!opts.referenceUsable) return 'blocked'
   return opts.map ? 'partial' : 'absent'
+}
+
+/**
+ * Runs — not retries within a run — a chunk gets before it is written off.
+ *
+ * Deliberately counted across NIGHTS. Within one run the model is asked up to
+ * three times in a few seconds; those are the same conditions three times over.
+ * A chunk that fails on three separate nights has failed under three separate
+ * draws from the quota, the network and the model's own variance, which is the
+ * closest thing to evidence available here that the window cannot be read.
+ */
+export const GIVE_UP_AFTER_ATTEMPTS = 3
+
+/** The pair of settings that decide whether a chunk passes. */
+export interface Gate {
+  prompt: string
+  floor: number
+}
+
+const CURRENT_GATE: Gate = {
+  prompt: SPEAKER_MAP_PROMPT_VERSION,
+  floor: SPEAKER_MAP_COVERAGE_FLOOR,
+}
+
+export interface FailedChunk {
+  chunk: number
+  why: string
+  /** Runs that have failed on it. Absent on maps written before this existed. */
+  attempts?: number
+  /**
+   * The gate in force when it was last attempted. Stamped so a write-off can
+   * expire: in August 2026 a third of all chunks were being discarded because
+   * the model wrote M.SS and the parser read decimals, and the two chunks that
+   * had "permanently" failed both passed at 100% the moment that was fixed. A
+   * verdict reached under a broken gate is not one to carry forward.
+   */
+  givenUpUnder?: Gate
+}
+
+const sameGate = (a: Gate | undefined, b: Gate): boolean =>
+  a?.prompt === b.prompt && a?.floor === b.floor
+
+/**
+ * Fold this run's failure into what earlier runs recorded about the same chunk.
+ *
+ * A failure under a DIFFERENT gate restarts the count rather than adding to it:
+ * evidence that one gate cannot read a window says nothing about another.
+ */
+export function recordFailure(
+  prior: FailedChunk | undefined,
+  chunk: number,
+  why: string,
+  gate: Gate = CURRENT_GATE,
+): FailedChunk {
+  const carried = prior && sameGate(prior.givenUpUnder, gate) ? (prior.attempts ?? 0) : 0
+  return { chunk, why, attempts: carried + 1, givenUpUnder: { ...gate } }
+}
+
+/**
+ * Chunks given up on under the gate now in force — not to be attempted again.
+ *
+ * Fails closed on a missing count. Maps written before this existed carry
+ * `failedChunks` with no `attempts`, and reading absence as "given up on" would
+ * retire those sessions on no evidence whatsoever.
+ */
+export function writtenOffChunks(
+  failed: readonly FailedChunk[] | undefined,
+  gate: Gate = CURRENT_GATE,
+): Set<number> {
+  const out = new Set<number>()
+  for (const f of failed ?? []) {
+    if ((f?.attempts ?? 0) >= GIVE_UP_AFTER_ATTEMPTS && sameGate(f?.givenUpUnder, gate)) {
+      out.add(f.chunk)
+    }
+  }
+  return out
 }
 
 /**
