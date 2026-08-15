@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T08:23:33.396Z",
+  "generatedAt": "2026-08-15T08:15:40.308Z",
   "windowDays": 30,
   "articles": [
     {
@@ -902,30 +902,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "higxho",
-      "articleFingerprint": "1sifhiw",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-completa-el-informe-de-diagn%C3%B3stico-dti",
-      "date": "2026-07-15T11:41:52.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 34,
+      "articleCount": 33,
       "verdictCounts": {
         "verificado": 1,
         "parcial": 1,
@@ -933,7 +916,7 @@
         "sin-datos": 28,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.62,
+      "meanTrustScore": 2.64,
       "verifiedRatio": 0.033,
       "contradictedRatio": 0
     },
