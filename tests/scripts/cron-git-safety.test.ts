@@ -121,6 +121,13 @@ const STEP_OUTPUTS: Record<string, string> = {
   'embed:agent-corpus': '',
   'embed:verifier-corpus': '',
   'ifcn:cadence': '',
+  // The speaker-map arm. `speaker-map:backlog` must print a session id or the
+  // step has nothing to do and the branch under test never runs; the stub
+  // handles it specially below.
+  'speaker-map:backlog': '',
+  'extract:speaker-map': '',
+  'extract:pleno-claims': '',
+  refresh: '',
 }
 
 const sandboxes: string[] = []
@@ -200,6 +207,9 @@ if [ -n "\${STUB_STAGE_STRANGER:-}" ] && [ -e "\${STUB_STAGE_STRANGER}" ]; then
 fi
 ${SWITCH_SNIPPET}
 case " \${STUB_FAIL:-} " in *" $name "*) echo "[stub] $name FAILING" >&2; exit 1 ;; esac
+# The speaker-map arm reads this list as its work queue, so it has to name a
+# session or the whole branch is unreachable and its tests pass on nothing.
+if [ "$name" = "speaker-map:backlog" ]; then echo "sandboxpleno"; exit 0; fi
 if [ -n "\${STUB_NOOP:-}" ]; then echo "[stub] $name wrote nothing"; exit 0; fi
 outs=""
 case "$name" in
@@ -723,6 +733,84 @@ describe('hallazgos-pipeline.sh · the other crons’ files stay out', () => {
     // (and then unstage) files another process is writing.
     expect(r.stagedAfter).not.toContain('public/data/quejas.json')
     expect(r.stagedAfter).not.toContain('public/data/promises.json')
+  }, 120_000)
+})
+
+// ---------------------------------------------------------------------------
+/**
+ * Una caída de claude-code no puede costar una noche de cuota de Gemini.
+ *
+ * El preflight de `hallazgos-pipeline.sh` existe por una buena razón: si el
+ * backend de texto no contesta, dejar que cada llamada falle por su cuenta
+ * drena la cadena hasta un fallback medido. Pero hacía `exit 0` sobre la pasada
+ * ENTERA, y el paso de mapas de hablantes no usa ese backend para nada — usa
+ * `GEMINI_API_KEY`, otra clave y otra cuota.
+ *
+ * Pasó el 2026-08-15: claude-code no contestó a las 09:30, la pasada se aplazó
+ * al segundo, y los 20 trozos/día de la capa gratuita de Gemini se perdieron
+ * sin haberlos pedido. Esa cuota no se acumula: una noche saltada alarga en una
+ * noche un barrido de veinte, y no hay forma de recuperarla después.
+ *
+ * La adjudicación de back-references SÍ es texto, y degrada sola — una fila sin
+ * adjudicar se queda `weak` y no produce atribución. La re-extracción posterior
+ * sí necesita el backend, y ya sabe decir «mapa guardado, claims sin atribuir»
+ * y volver mañana.
+ */
+describe('hallazgos-pipeline.sh · un backend caído no se lleva por delante los que están vivos', () => {
+  /** Un `claude` en el PATH que nunca contesta: el preflight tiene que fallar. */
+  function withDeadClaude(dir: string): Record<string, string> {
+    const bin = join(dir, 'fakebin')
+    mkdirSync(bin, { recursive: true })
+    const p = join(bin, 'claude')
+    writeFileSync(p, '#!/bin/sh\necho "quota" >&2\nexit 1\n')
+    chmodSync(p, 0o755)
+    return {
+      PATH: `${bin}:${process.env.PATH}`,
+      LLM_BACKEND: 'claude-code',
+      GEMINI_API_KEY: 'sandbox-key',
+      SPEAKER_MAP_BUDGET: '4',
+    }
+  }
+
+  it('sigue construyendo mapas de hablantes cuando el backend de texto no contesta', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', withDeadClaude(dir))
+
+    // Prueba de que el reproductor se dio: el preflight tiene que haber fallado.
+    expect(r.log, 'el preflight de claude-code no llegó a fallar').toMatch(
+      /claude-code (unavailable|no responde)/i,
+    )
+    // Y aun así llegó al paso que no lo necesita.
+    expect(r.log, 'la pasada murió antes de los mapas de hablantes').toMatch(/speaker-map/i)
+  }, 120_000)
+
+  it('NO llama a los pasos que sí necesitan el backend de texto', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', withDeadClaude(dir))
+
+    // El stub imprime «[stub] ran <paso>» al ejecutarse, así que su ausencia es
+    // comprobable en vez de suponible.
+    expect(r.log, 'se extrajeron claims con el backend caído').not.toContain(
+      '[stub] ran extract:pleno-claims',
+    )
+    expect(r.log, 'se auto-curaron hallazgos con el backend caído').not.toContain(
+      '[stub] ran auto-curate',
+    )
+  }, 120_000)
+
+  it('dice en el log qué se saltó y por qué, en vez de callárselo', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', withDeadClaude(dir))
+    // Una pasada degradada que se lee como una normal es la avería que este
+    // fichero entero persigue.
+    expect(r.log).toMatch(/degradad|sin backend de texto|text backend/i)
+  }, 120_000)
+
+  it('con el backend sano no se salta nada — control', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh')
+    expect(r.log, 'la pasada sana se declaró degradada').not.toMatch(/degradad/i)
+    expect(r.log).toContain('[stub] ran auto-curate')
   }, 120_000)
 })
 

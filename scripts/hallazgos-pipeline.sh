@@ -96,13 +96,29 @@ export CLAUDE_CODE_MODEL="${CLAUDE_CODE_MODEL:-claude-sonnet-5}"
 export AGY_MODEL="${AGY_MODEL:-gemini-3.5-flash-medium}"  # only read if LLM_BACKEND=agy
 
 # Preflight, same as press-lab-pipeline: if the chosen backend cannot answer a
-# one-word prompt, defer the whole run rather than let per-call failures drain
-# the chain to a metered fallback. Cheap, and it turns a silent leak into a
-# skipped night.
+# one-word prompt, skip the steps that need it rather than let per-call failures
+# drain the chain to a metered fallback. Cheap, and it turns a silent leak into
+# a named skip.
+#
+# It used to `exit 0` on the whole run, and that cost real work. The speaker-map
+# step does not touch this backend at all — it runs on `GEMINI_API_KEY`, a
+# different key with a different quota, and that quota is 20 requests a day that
+# do NOT accumulate. On 2026-08-15 claude-code did not answer at 09:30, the run
+# deferred within a second, and a night of Gemini quota went unspent for want of
+# a backend it never needed. A twenty-night sweep cannot afford to lose nights
+# to an unrelated outage.
+#
+# So: TEXT_BACKEND is the gate for the steps that genuinely need it —
+# extraction and auto-curation. The map's own back-reference adjudication also
+# goes through it and degrades safely on its own (an unadjudicated row stays
+# `weak` and yields no attribution), and the post-map re-extraction already
+# knows how to say «map kept, claims still unattributed» and come back tomorrow.
+TEXT_BACKEND=ok
 if [ "$LLM_BACKEND" = claude-code ] &&
    ! claude -p "ok" --strict-mcp-config --model "$CLAUDE_CODE_MODEL" >/dev/null 2>&1; then
-  log "claude-code unavailable (quota or auth) — deferring this run rather than falling back to metered"
-  exit 0
+  TEXT_BACKEND=down
+  log "claude-code unavailable (quota or auth) — pasada DEGRADADA: se saltan extracción y auto-curación,"
+  log "  se mantienen los pasos que no dependen de ese backend (mapas de hablantes, cuota Gemini aparte)"
 fi
 # openai (API, metered ~$0.006/min ≈ $0.72 per 2h pleno) replaced mlx as the
 # default on 2026-07-07: MLX large-v3 pinned the local GPU for ~30 min/run and
@@ -147,6 +163,14 @@ COUNT=0
 # a useful, resumable result — but it is not a ✓, and 2026-08-11 shipped one
 # under a ✓.
 PARTIAL_MAPS=0
+if [ "$TEXT_BACKEND" != ok ]; then
+  # Transcription itself is whisper, not this backend — but its only consumer
+  # is the extraction two lines down, and transcribing a pleno costs ~$0.72 of
+  # metered OpenAI. Paying for a transcript nothing can read tonight is not a
+  # saving of any kind; it waits for a healthy run.
+  log "backlog transcribible: $(echo "${TARGETS:-}" | grep -c . || true) sesión(es) EN ESPERA — sin backend de texto no hay extracción que las consuma"
+  TARGETS=""
+fi
 if [ -n "$TARGETS" ]; then
   while IFS= read -r id; do
     [ -z "$id" ] && continue
@@ -268,7 +292,12 @@ if [ "$SPEAKER_MAP_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
         fi
         # Re-extract so the claims actually carry the attribution the map
         # just established. Same $0 policy as every other model call here.
-        if env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$mid"; then
+        if [ "$TEXT_BACKEND" != ok ]; then
+          # The map is on disk and that is the expensive half. The claims pick
+          # it up on the next healthy night; until then they carry no bloc,
+          # which is honest rather than wrong.
+          log "· $mid mapeado, re-extracción EN ESPERA (sin backend de texto) — el mapa queda guardado"
+        elif env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$mid"; then
           NEW=$((NEW+1)); log "✓ $mid claims re-extracted with map attribution"
           # Tell the graph the work landed. Without this the llm node reports
           # stale forever, and a permanently-stale node trains people to stop
@@ -330,10 +359,14 @@ EMBED_BACKEND=openai npm run embed:verifier-corpus \
 # If agy is throttled and no $0 backend answers, findings are deferred to the
 # next run — a skipped promotion beats a metered one. (Claim extraction above
 # keeps its openai fallback: that's the batch stage, where metered is allowed.)
-log "auto-curating findings (max 5 · agy→claude-code only, metered fallback off)…"
-env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY GEMINI_BIN=/nonexistent-disabled \
-  npm run auto-curate -- --max 5 \
-  || log "warn: auto-curate non-zero (agy throttled + no \$0 fallback) — findings deferred"
+if [ "$TEXT_BACKEND" != ok ]; then
+  log "auto-curación EN ESPERA (sin backend de texto) — los hallazgos esperan a una pasada sana"
+else
+  log "auto-curating findings (max 5 · agy→claude-code only, metered fallback off)…"
+  env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY GEMINI_BIN=/nonexistent-disabled \
+    npm run auto-curate -- --max 5 \
+    || log "warn: auto-curate non-zero (agy throttled + no \$0 fallback) — findings deferred"
+fi
 
 # ---- provenance of every published verbatim ---------------------------
 # A newly promoted finding quotes the transcript that is current TODAY, and a
@@ -415,6 +448,9 @@ if RUN_REPORT=$(npm run --silent check:runs -- --since 6 --soft 2>&1); then
   fi
 fi
 [ "${PARTIAL_MAPS:-0}" -gt 0 ] && RUN_VERDICT="${RUN_VERDICT} · ${PARTIAL_MAPS} mapa(s) parcial(es)"
+# Una pasada que corrió media tubería no puede firmar la línea de una completa.
+[ "$TEXT_BACKEND" != ok ] &&
+  RUN_VERDICT="${RUN_VERDICT} · DEGRADADA: sin backend de texto (extracción y auto-curación en espera)"
 
 log "done · ${NEW} transcribed · ${NEW_FINDINGS} new finding(s) pushed${RUN_VERDICT}"
 if [ -n "$RUN_VERDICT" ]; then
