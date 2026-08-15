@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T15:43:12.593Z",
+  "generatedAt": "2026-08-15T19:03:54.206Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -4323,12 +4323,13 @@
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=05AJhpHeBL57h85%2Fpmmsfw%3D%3D",
             "snippet": "Contrato de servicio “Programa del mayor: actividades formativas, culturales, lúdicas y de promoción de la salud física y mental para el colectivo de mayores” por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas sociales como criterio de adjudicación y con condición especial de ejecución de carácter social. · Ayuntamiento de Riba-roja de Túria · SERGEVAMA, S.L. · culture · estado: formalized",
-            "similarity": 0.5
+            "similarity": 0.5,
+            "stance": "checked"
           }
         ],
         "checkedAgainst": []
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

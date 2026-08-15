@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T15:43:12.593Z",
+  "generatedAt": "2026-08-15T19:03:54.206Z",
   "version": "1",
   "plenoId": "brxx5g",
   "plenoDate": "2026-07-06",
@@ -164,17 +164,20 @@
       },
       "verification": {
         "claimId": "brxx5g-017-cit-b1e46a",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "verdict": "parcial",
+        "summary": "La única evidencia es el contrato de apoyo técnico para DIAGNOSTICAR y REDACTAR el Plan de Igualdad, no un acta ni una votación que acredite su APROBACIÓN, que es lo que la cita afirma. Adjudicar la asistencia para elaborar un plan corrobora que el plan estaba en marcha, no que se aprobara.",
         "evidence": [
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
             "snippet": "Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria, contrato derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales · Ayuntamiento de Riba-roja de Túria · EQUALITY MOMENTUM SL · architecture · estado: awarded",
-            "similarity": 1
+            "similarity": 1,
+            "stance": "checked"
           }
         ],
-        "checkedAgainst": []
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
       },
       "visibility": "shown"
     },
@@ -3568,47 +3571,13 @@
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3u5MceicW%2FxvYnTkQN0%2FZA%3D%3D",
             "snippet": "Servicio de asistencia técnica para el impulso y la gestión de la compra pública de innovación en el Ayuntamiento de Riba-roja de Túria dentro del marco estratégico de Missions Valencia 2030 (Plan estratégico de innovación orientado a Riba-roja de Túria), por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 relativo a lograr que las ciudades sean más inclusivas, seguras, resilientes y sostenible, con mejoras vinculadas al objeto del contrato, siendo su tramitación ordinaria (Ctto. 14/2022). · Ayuntamiento de Riba-roja de Túria · UTE TECHFRIENDLY -LEXLAB INNOVACION LEGAL S.L.. · legal · estado: formalized",
-            "similarity": 0.5
+            "similarity": 0.5,
+            "stance": "checked"
           }
         ],
         "checkedAgainst": []
       },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "brxx5g-176-acu-d27e56",
-        "plenoId": "brxx5g",
-        "plenoDate": "2026-07-06",
-        "segmentIndex": 176,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Tenemos distintos planes donde está reflejado todo esto, a los que siempre han estado negándose.",
-        "context": "Usted mismo se ha referido al plan de Agenda 2030, igual que a nuestro plan estratégico. Tenemos distintos planes donde está reflejado todo esto, a los que siempre han estado negándose. Y, por cierto, señor De Vox, la atmósfera no vive sola,",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "plan de agenda 2030"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Se puede verificar en las actas de votación de los plenos si el grupo aludido votó en contra o rechazó formalmente los planes estratégicos y de la Agenda 2030.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "brxx5g-176-acu-d27e56",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3u5MceicW%2FxvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Servicio de asistencia técnica para el impulso y la gestión de la compra pública de innovación en el Ayuntamiento de Riba-roja de Túria dentro del marco estratégico de Missions Valencia 2030 (Plan estratégico de innovación orientado a Riba-roja de Túria), por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 relativo a lograr que las ciudades sean más inclusivas, seguras, resilientes y sostenible, con mejoras vinculadas al objeto del contrato, siendo su tramitación ordinaria (Ctto. 14/2022). · Ayuntamiento de Riba-roja de Túria · UTE TECHFRIENDLY -LEXLAB INNOVACION LEGAL S.L.. · legal · estado: formalized",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

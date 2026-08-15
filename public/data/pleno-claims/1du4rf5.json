@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T15:43:12.593Z",
+  "generatedAt": "2026-08-15T19:03:54.206Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -5005,19 +5005,14 @@
       },
       "verification": {
         "claimId": "1du4rf5-130-cit-d4ebc4",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · estado: awarded",
-            "similarity": 1
-          }
-        ],
-        "checkedAgainst": []
+        "verdict": "sin-datos",
+        "summary": "La cita es una referencia de fecha, «el fatídico día 29 de octubre de 2024», y el emparejador la dio por verificada contra un contrato de emergencia que menciona esa misma fecha. Coincide la fecha, no la afirmación: el contrato no atestigua nada de lo que la cita sostiene.",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

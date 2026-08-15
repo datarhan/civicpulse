@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-02T15:43:12.493Z",
+  "generatedAt": "2026-08-15T19:03:54.074Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -23106,6 +23106,74 @@
       "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: La afirmación menciona a Pacadar como un tema delicado y relevante para el futuro de Rivarrocha, pero no proporciona datos específicos sobre obras o proyectos concretos. Los candidatos listados presentan contratos relacionados con obras en la zona de Pacadar, como la pavimentación del paseo y el aco",
       "editor": "verdict-engine:claude-code",
       "appliedAt": "2026-08-02T14:12:06.557Z"
+    },
+    "10yl550-054-acu-a487ce": {
+      "verification": {
+        "claimId": "10yl550-054-acu-a487ce",
+        "verdict": "sin-datos",
+        "summary": "El veredicto «verificado» lo produjo una coincidencia léxica: el emparejador determinista casó la palabra «pasarela» de la cita con el título del contrato de la Pasarela del Barranco Mandor (Ctto. 60/2022), cuyo propio estado es void. Es una acusación pública sobre una persona con nombre y apellidos y no puede sostenerse en que una palabra aparezca en el título de un expediente.",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "El veredicto «verificado» lo produjo una coincidencia léxica: el emparejador determinista casó la palabra «pasarela» de la cita con el título del contrato de la Pasarela del Barranco Mandor (Ctto. 60/2022), cuyo propio estado es void. Es una acusación pública sobre una persona con nombre y apellidos y no puede sostenerse en que una palabra aparezca en el título de un expediente.",
+      "editor": "sergei",
+      "appliedAt": "2026-08-15T19:03:29.764Z"
+    },
+    "qz6weg-172-acu-1db003": {
+      "verification": {
+        "claimId": "qz6weg-172-acu-1db003",
+        "verdict": "sin-datos",
+        "summary": "La cita es «Vox dice que no, que no. Vox dice que no.», una transcripción de lo que alguien dijo en la sala, y el emparejador la dio por verificada contra el contrato del sistema de debate y voto electrónico del salón de plenos. No hay proposición que comprobar ni relación entre las dos cosas.",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La cita es «Vox dice que no, que no. Vox dice que no.», una transcripción de lo que alguien dijo en la sala, y el emparejador la dio por verificada contra el contrato del sistema de debate y voto electrónico del salón de plenos. No hay proposición que comprobar ni relación entre las dos cosas.",
+      "editor": "sergei",
+      "appliedAt": "2026-08-15T19:03:36.675Z"
+    },
+    "1du4rf5-130-cit-d4ebc4": {
+      "verification": {
+        "claimId": "1du4rf5-130-cit-d4ebc4",
+        "verdict": "sin-datos",
+        "summary": "La cita es una referencia de fecha, «el fatídico día 29 de octubre de 2024», y el emparejador la dio por verificada contra un contrato de emergencia que menciona esa misma fecha. Coincide la fecha, no la afirmación: el contrato no atestigua nada de lo que la cita sostiene.",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La cita es una referencia de fecha, «el fatídico día 29 de octubre de 2024», y el emparejador la dio por verificada contra un contrato de emergencia que menciona esa misma fecha. Coincide la fecha, no la afirmación: el contrato no atestigua nada de lo que la cita sostiene.",
+      "editor": "sergei",
+      "appliedAt": "2026-08-15T19:03:43.201Z"
+    },
+    "brxx5g-017-cit-b1e46a": {
+      "verification": {
+        "claimId": "brxx5g-017-cit-b1e46a",
+        "verdict": "parcial",
+        "summary": "La única evidencia es el contrato de apoyo técnico para DIAGNOSTICAR y REDACTAR el Plan de Igualdad, no un acta ni una votación que acredite su APROBACIÓN, que es lo que la cita afirma. Adjudicar la asistencia para elaborar un plan corrobora que el plan estaba en marcha, no que se aprobara.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
+            "snippet": "Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria, contrato derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales · Ayuntamiento de Riba-roja de Túria · EQUALITY MOMENTUM SL · architecture · estado: awarded",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es el contrato de apoyo técnico para DIAGNOSTICAR y REDACTAR el Plan de Igualdad, no un acta ni una votación que acredite su APROBACIÓN, que es lo que la cita afirma. Adjudicar la asistencia para elaborar un plan corrobora que el plan estaba en marcha, no que se aprobara.",
+      "editor": "sergei",
+      "appliedAt": "2026-08-15T19:03:54.074Z"
     }
   }
 }

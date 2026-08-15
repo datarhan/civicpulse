@@ -1,10 +1,10 @@
 {
   "_comment": "DERIVADO, no curado. Dos cosas por cada literal publicado en /hallazgos. (1) `quotes[id][i].status`: de qué transcripción procede — de la vigente, sólo de la que se sustituyó al re-transcribir la sesión, o de ninguna de las dos de forma concluyente. (2) `quotes[id][i].gate`: qué haría con la afirmación que sostiene esa cita la puerta editorial de src/scraper/claim-public-gate.ts, que gobierna /plenos y que /hallazgos no consultaba — `shown`, `toggle` o `hidden`, su propio vocabulario. Ninguna de las dos modifica una cita y ninguna es una corrección: el único escritor de public/data/pleno-findings.json sigue siendo `npm run correct-pleno-finding`. Se regenera con `npm run compute:finding-quote-provenance`.",
   "version": "finding-quote-provenance-v2",
-  "generatedAt": "2026-08-14T08:29:19.513Z",
+  "generatedAt": "2026-08-15T19:05:22.380Z",
   "source": {
     "findings": "public/data/pleno-findings.json",
-    "findingsGeneratedAt": "2026-08-12T18:00:50.293Z",
+    "findingsGeneratedAt": "2026-08-14T08:51:18.981Z",
     "transcripts": "public/data/pleno-transcripts",
     "superseded": "public/data/pleno-transcripts/superseded"
   },
@@ -61,16 +61,16 @@
       "citasConClaim": 134,
       "citasSinClaim": 0,
       "porContraste": {
-        "shown": 16,
-        "toggle": 83,
-        "hidden": 35
+        "shown": 14,
+        "toggle": 84,
+        "hidden": 36
       },
-      "citasConVeredictoDeOverlay": 102,
-      "citasReclasificadasPorElOverlay": 100,
-      "hallazgosSinCitaMostrable": 28,
+      "citasConVeredictoDeOverlay": 103,
+      "citasReclasificadasPorElOverlay": 18,
+      "hallazgosSinCitaMostrable": 30,
       "hallazgosSoloConCitasOcultas": 0,
       "claimsEnCorpus": 7098,
-      "entradasDeOverlay": 1425
+      "entradasDeOverlay": 1429
     }
   },
   "stats": {
@@ -200,7 +200,7 @@
       },
       {
         "status": "en-vigente",
-        "gate": "shown"
+        "gate": "hidden"
       },
       {
         "status": "en-vigente",
@@ -750,7 +750,7 @@
       },
       {
         "status": "en-vigente",
-        "gate": "shown"
+        "gate": "toggle"
       },
       {
         "status": "en-vigente",

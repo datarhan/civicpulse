@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T15:43:12.593Z",
+  "generatedAt": "2026-08-15T19:03:54.206Z",
   "version": "1",
   "plenoId": "qz6weg",
   "plenoDate": "2025-12-01",
@@ -7057,41 +7057,6 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "qz6weg-172-acu-1db003",
-        "plenoId": "qz6weg",
-        "plenoDate": "2025-12-01",
-        "segmentIndex": 172,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Vox dice que no, que no. Vox dice que no. Vox dice que no.",
-        "context": "[9330.0 → 9360.0] Vox dice que no, que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no. Vox dice que no.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "voto de vox"
-        },
-        "accusationSubtype": "contra-datos",
-        "confidence": 0.61,
-        "reasoning": "Es una afirmación sobre el sentido del voto de Vox en una propuesta concreta; puede contrastarse con el registro de votación del pleno.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "qz6weg-172-acu-1db003",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
-            "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto simplificado sumario, mejora relación calidad precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental. · Ayuntamiento de Riba-roja de Túria · AMARA MEGAFONIA CCTV VOZ-DATOS, SL · it · estado: formalized",
-            "similarity": 1
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
     },
     {
       "claim": {

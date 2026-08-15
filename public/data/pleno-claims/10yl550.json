@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T15:43:12.593Z",
+  "generatedAt": "2026-08-15T19:03:54.206Z",
   "version": "1",
   "plenoId": "10yl550",
   "plenoDate": "2026-05-11",
@@ -1303,41 +1303,6 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "10yl550-054-acu-a487ce",
-        "plenoId": "10yl550",
-        "plenoDate": "2026-05-11",
-        "segmentIndex": 54,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "¿Dónde está? Bueno. Él ya sabemos dónde está. Bueno. No se sabe muy bien dónde está. La pasarela sí que sabemos que no está.",
-        "context": "Creo que el presidente. Bueno. El expresidente Carlos Mazón. Vino a este municipio. A decir que haría la pasarela. ¿Dónde está? Bueno. Él ya sabemos dónde está. Bueno. No se sabe muy bien dónde está. La pasarela sí que sabemos que no está.",
-        "topic": "movilidad",
-        "entities": {
-          "referencedEntity": "pasarela"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Se menciona un compromiso del expresidente Carlos Mazón sobre la construcción de una pasarela, que se puede verificar si efectivamente se realizó o no.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "10yl550-054-acu-a487ce",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=FT%2F4AEnO7oVvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Contrato de obras de Pasarela en Barranco Mandor de Riba-roja de Túria por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter ambiental contribuyendo al cumplimiento del ODS 9 relativo a desarrollar de infraestructuras fiables, sostenibles, resilientes y de calidad, promover una industrialización inclusiva y sostenible, aumentar el acceso de las pequeñas industrias y otras empresas y de aquí a 2030, modernizar la infraestructura y reconvertir las industrias para que sean sostenibles. (Ctto. 60/2022) · Ayuntamiento de Riba-roja de Túria · construction · estado: void",
-            "similarity": 1
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
     },
     {
       "claim": {

@@ -1,0 +1,93 @@
+{
+  "generatedAt": "2026-08-15T19:03:54.206Z",
+  "version": "1",
+  "plenoId": "1080zow",
+  "plenoDate": "2024-04-15",
+  "items": [
+    {
+      "claim": {
+        "id": "1080zow-003-cit-9fb7e7",
+        "plenoId": "1080zow",
+        "plenoDate": "2024-04-15",
+        "segmentIndex": 3,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "APROBACIÓN DE LA FACTURA Nº 5 DE FECHA 03-072023 EMITIDA POR MIQUEL NAVARRO NAVARRO CON NIF 85026673C, EN CONCEPTO DE \"CABEZA PENSANTE\" TRAS EL DICTAMEN DEL CONSELL JURÍDIC CONSULTIU Y RESOLUCIÓN DE LA REVISIÓN DE OFICIO",
+        "context": "Expediente: 5649/2023/GEN, aprobación de la factura nº 5 emitida por Miquel Navarro Navarro (NIF 85026673C) en concepto de \"cabeza pensante\", tras el dictamen del Consell Jurídic Consultiu y resolución de la revisión de oficio; se ratifica su inclusión en el orden del día por no haber sido dictaminado.",
+        "topic": "transparencia",
+        "entities": {
+          "date": "2023-07-03",
+          "referencedEntity": "factura nº 5 en concepto de \"cabeza pensante\" (cap pensant) emitida por miquel navarro navarro, nif 85026673c, expediente 5649/2023/gen"
+        },
+        "confidence": 0.55,
+        "reasoning": "Cita un expediente municipal concreto (5649/2023/GEN), un proveedor identificado por NIF, un número y fecha de factura, y menciona un dictamen del Consell Jurídic Consultiu tras una revisión de oficio, todo ello contrastable contra las actas y el registro contable municipal; no se menciona el importe en este fragmento.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1080zow-003-cit-9fb7e7",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1080zow-004-afi-118fad",
+        "plenoId": "1080zow",
+        "plenoDate": "2024-04-15",
+        "segmentIndex": 4,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "aprobada por 11 votos a favor (11 PSOE) y 10 abstenciones (7 PP, 1 VOX, 1 EUPV – Unides Podem per Riba-roja y 1 Compromís per Riba-roja: Acord per Guanyar)",
+        "context": "Sometida a votación la ratificación, ésta es aprobada por 11 votos a favor (11 PSOE) y 10 abstenciones (7 PP, 1 VOX, 1 EUPV – Unides Podem per Riba-roja y 1 Compromís per Riba-roja: Acord per Guanyar).",
+        "topic": "other",
+        "entities": {
+          "count": 11,
+          "countUnit": "votos a favor (PSOE)",
+          "referencedEntity": "ratificación de inclusión en el orden del día del expediente 5649/2023/gen (factura cabeza pensante)"
+        },
+        "confidence": 0.9,
+        "reasoning": "El resultado de la votación de ratificación (11 a favor, 10 abstenciones, con desglose por grupo) es un dato concreto verificable contra el acta oficial y el registro de votaciones del pleno.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1080zow-004-afi-118fad",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1080zow-004-cit-220a98",
+        "plenoId": "1080zow",
+        "plenoDate": "2024-04-15",
+        "segmentIndex": 4,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "APROBACIÓN DE LA FACTURA Nº 5 DE FECHA 03-072023 EMITIDA POR MIQUEL NAVARRO NAVARRO CON NIF 85026673C, EN CONCEPTO DE \"CABEZA PENSANTE\"",
+        "context": "2.- Expediente: 5649/2023/GEN, APROBACIÓN DE LA FACTURA Nº 5 DE FECHA 03-072023 EMITIDA POR MIQUEL NAVARRO NAVARRO CON NIF 85026673C, EN CONCEPTO DE \"CABEZA PENSANTE\" TRAS EL DICTAMEN DEL CONSELL JURÍDIC CONSULTIU Y RESOLUCIÓN DE LA REVISIÓN DE OFICIO.",
+        "topic": "cultura",
+        "entities": {
+          "date": "2023-07-03",
+          "referencedEntity": "escultura 'cabeza pensante' de miquel navarro navarro, expediente 5649/2023/gen"
+        },
+        "confidence": 0.85,
+        "reasoning": "Referencia una obra artística concreta (escultura 'Cabeza Pensante') y una factura identificada por número, fecha y NIF del artista, verificable contra el registro contable municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1080zow-004-cit-220a98",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    }
+  ]
+}
