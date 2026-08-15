@@ -30,7 +30,13 @@ import { mkdirSync, writeFileSync, readdirSync, readFileSync, existsSync } from 
 import { resolve, join } from 'node:path'
 import type { RunStats } from '../llm/client'
 
-export const MANIFEST_DIR = '.run-manifests'
+/**
+ * Where manifests land. Overridable ONLY so a test can point a real script's
+ * run somewhere disposable: this directory is `check:runs`'s entire input, so a
+ * test that exercises a failing pass against the default would leave a genuine
+ * red in the health digest and teach everybody to ignore it.
+ */
+export const MANIFEST_DIR = process.env.RUN_MANIFEST_DIR || '.run-manifests'
 
 /**
  * LLM traffic for a pass that makes none.
@@ -66,6 +72,15 @@ export interface RunManifest {
   mode?: string
   backend: string | null
   model: string | null
+  /**
+   * Work outstanding when the run STARTED — the backlog, not the plan.
+   *
+   * Optional, and it has to stay optional: a pass that cannot cheaply count
+   * what it owes omits it and is judged exactly as before. Filling it in with a
+   * guess would be worse than leaving it out, since the whole point is to make
+   * `attempted: 0` falsifiable.
+   */
+  owed?: number
   /** Items the run set out to process. */
   attempted: number
   /** Items a judgement was actually obtained for. */
@@ -116,6 +131,26 @@ export function assessManifest(m: RunManifest): ManifestFinding[] {
         `${m.script} processed ${m.attempted} item(s) and judged NONE. ` +
         `A run like this is indistinguishable from "everything already agreed" ` +
         `unless it is flagged. Check retrieval and the backend.`,
+    })
+  }
+
+  // Work was owed and the run touched none of it.
+  //
+  // Every rule in this function was gated on `attempted > 0`, which left the
+  // cheapest failure of all unjudgeable: a pass that dies during setup attempts
+  // nothing, and "attempted nothing" was indistinguishable from "there was
+  // nothing to attempt". `extract-speaker-map` died on its audio download two
+  // nights running in August 2026 and `check:runs` printed a ✓ over both, while
+  // 21 sessions waited. `owed` is what separates the two, and it is the only
+  // rule here that can fire on a run with no attempts at all.
+  if (typeof m.owed === 'number' && m.owed > 0 && m.attempted === 0) {
+    out.push({
+      level: 'error',
+      code: 'nothing-attempted',
+      message:
+        `${m.script} had ${m.owed} item(s) outstanding and attempted NONE of them. ` +
+        `The run started and stopped without reaching the work — setup, credentials ` +
+        `or a dependency, not the model. A finished backlog reports owed 0; this did not.`,
     })
   }
 
@@ -208,7 +243,8 @@ export function formatManifest(m: RunManifest): string {
   const llm = { ...NO_LLM_STATS, ...(m.llm ?? {}) }
   return [
     `${m.script}${m.mode ? ` (${m.mode})` : ''} · ${m.backend ?? 'no-backend'}${m.model ? `/${m.model}` : ''}`,
-    `  attempted ${m.attempted} · judged ${m.judged} · never-attempted ${m.neverAttempted}` +
+    `  ${typeof m.owed === 'number' ? `owed ${m.owed} · ` : ''}attempted ${m.attempted} · ` +
+      `judged ${m.judged} · never-attempted ${m.neverAttempted}` +
       (skipped ? ` · skipped ${skipped}` : ''),
     outcome ? `  outcome: ${outcome}` : '',
     `  llm: ${llm.calls} calls (${llm.ok} ok, ${llm.failed} failed, ` +
@@ -226,6 +262,12 @@ export function formatManifest(m: RunManifest): string {
 // ─── Builder ────────────────────────────────────────────────────────────────
 
 export interface RunRecorder {
+  /**
+   * How much work was outstanding when this run began. SETS, never accumulates
+   * — a backlog is a level, not an event, and a caller that measures it twice
+   * must not end up claiming twice as much was owed.
+   */
+  owe(n: number): void
   attempt(n?: number): void
   judge(n?: number): void
   neverAttempt(n?: number): void
@@ -255,6 +297,7 @@ export function startRun(
   const now = opts.now ?? (() => new Date())
   const startedAt = now().toISOString()
   const runId = `${startedAt.replace(/[:.]/g, '-')}`
+  let owed: number | undefined
   let attempted = 0
   let judged = 0
   let neverAttempted = 0
@@ -262,6 +305,9 @@ export function startRun(
   const outcome: Record<string, number> = {}
 
   return {
+    owe: (n) => {
+      owed = n
+    },
     attempt: (n = 1) => {
       attempted += n
     },
@@ -286,6 +332,7 @@ export function startRun(
         mode: opts.mode,
         backend: opts.backend ?? process.env.LLM_BACKEND ?? null,
         model: opts.model ?? null,
+        owed,
         attempted,
         judged,
         neverAttempted,

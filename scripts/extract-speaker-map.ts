@@ -28,7 +28,15 @@
  * fetch. Requests go through curl with `--no-buffer` on the SSE endpoint.
  */
 import { execFileSync, spawnSync } from 'node:child_process'
-import { existsSync, mkdirSync, readFileSync, writeFileSync, rmSync, readdirSync } from 'node:fs'
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  writeFileSync,
+  rmSync,
+  readdirSync,
+  statSync,
+} from 'node:fs'
 import { resolve, join } from 'node:path'
 import { tmpdir } from 'node:os'
 import {
@@ -40,6 +48,9 @@ import {
   resumableChunks,
   unattemptedChunks,
   chunksToAttempt,
+  audioCachePath,
+  isReusableAudio,
+  AUDIO_CACHE_DIR,
   type RawSegment,
   type SpeakerMap,
   type SpeakerMapRow,
@@ -68,6 +79,10 @@ import {
 } from '../src/scraper/corporation-seats'
 import { parseDiarizedTranscript } from '../src/scraper/voice-id'
 import { startRun, formatManifest } from '../src/scraper/run-manifest'
+// The backlog the pipeline draws its work from, imported rather than
+// recomputed: `owed` has to mean the same thing on both sides or it stops
+// being a check and becomes a second opinion.
+import { speakerMapBacklog } from './speaker-map-backlog'
 import { getRunStats } from '../src/llm/client'
 
 const OUT_DIR = resolve('pleno-speaker-map')
@@ -119,6 +134,78 @@ function sh(cmd: string, args: string[], opts: { input?: string } = {}): string 
     maxBuffer: 256 * 1024 * 1024,
     input: opts.input,
   })
+}
+
+/**
+ * A run that died before it reached a single chunk, carrying a name for why.
+ *
+ * The name goes into the manifest's `skipped` block. Without it the two nights
+ * this pass spent crashed were recorded as `attempted 0 · skipped {}` — a shape
+ * that reads exactly like a finished backlog, and did, under a ✓, twice.
+ */
+class SetupFailure extends Error {
+  constructor(
+    readonly cause: string,
+    message: string,
+  ) {
+    super(message)
+    this.name = 'SetupFailure'
+  }
+}
+
+/** Attempts at the download before the night is written off. */
+const DOWNLOAD_ATTEMPTS = 3
+/**
+ * Wait between them. The failures seen are refusals, not races, so the wait is
+ * long enough to outlast a throttle rather than to let a lock go. Overridable
+ * ONLY for fault injection — a test that sits out the real backoff is a test
+ * nobody runs.
+ */
+const DOWNLOAD_RETRY_MS = Number(process.env.SPEAKER_MAP_DOWNLOAD_RETRY_MS ?? 30_000)
+
+function waitSync(ms: number): void {
+  if (!(ms > 0)) return
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms)
+}
+
+/**
+ * Fetch a session's audio, saying why when it will not come.
+ *
+ * `--quiet --no-warnings` used to be passed here, so the log of a failed night
+ * held «Command failed: yt-dlp …» and nothing else — the cause of the
+ * 2026-08-13 and 2026-08-14 failures is gone for good because of those two
+ * flags. yt-dlp's own diagnosis is the only thing that can tell a throttle from
+ * an expired signature from a video pulled down, and each of those needs a
+ * different answer.
+ */
+function downloadAudio(url: string, outputTemplate: string): void {
+  let last = ''
+  for (let attempt = 1; attempt <= DOWNLOAD_ATTEMPTS; attempt++) {
+    const r = spawnSync(
+      'yt-dlp',
+      ['-x', '--audio-format', 'mp3', '--audio-quality', '5', '--output', outputTemplate, url],
+      { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 },
+    )
+    if (r.status === 0) return
+    last = (r.stderr || r.error?.message || `exit ${r.status}`)
+      .trim()
+      .split('\n')
+      .slice(-4)
+      .join(' ')
+    process.stdout.write(
+      `[speaker-map] download failed (attempt ${attempt}/${DOWNLOAD_ATTEMPTS}): ${last}\n`,
+    )
+    if (attempt < DOWNLOAD_ATTEMPTS) waitSync(DOWNLOAD_RETRY_MS)
+  }
+  throw new SetupFailure('download-failed', `yt-dlp gave up after ${DOWNLOAD_ATTEMPTS}: ${last}`)
+}
+
+function sizeOrNull(path: string): number | null {
+  try {
+    return statSync(path).size
+  } catch {
+    return null
+  }
 }
 
 /**
@@ -336,27 +423,48 @@ async function main() {
     },
   })
 
+  // Recorded FIRST, before anything that can throw, because it is what makes a
+  // crash legible: `attempted 0` on its own reads the same as a finished sweep.
+  // The count comes from the same function the pipeline uses to pick the work
+  // (`speakerMapBacklog`), minus the sessions it refuses to queue, so the
+  // backlog this run is measured against cannot drift from the one it drew from.
+  try {
+    runLog.owe(speakerMapBacklog().filter((e) => e.state !== 'blocked').length)
+  } catch {
+    // A backlog we cannot count is not a reason to abandon the run; it only
+    // means this manifest is judged the old way.
+  }
+
+  /** Set once the session's audio is cached, so a finished map can drop it. */
+  let cachedAudio: string | null = null
+
   try {
     let audio = args.audio
     if (!audio) {
-      const url = sh('npx', ['tsx', resolve('scripts/resolve-pleno-video.ts'), args.plenoId]).trim()
-      if (!url) throw new Error('could not resolve the session video')
-      process.stdout.write(`[speaker-map] ${args.plenoId} → ${url}\n[speaker-map] downloading…\n`)
-      sh('yt-dlp', [
-        '-x',
-        '--audio-format',
-        'mp3',
-        '--audio-quality',
-        '5',
-        '--output',
-        join(work, 'audio.%(ext)s'),
-        '--quiet',
-        '--no-warnings',
-        url,
-      ])
-      audio = join(work, 'audio.mp3')
+      // Cached between runs, and deliberately outside `work`: a long session
+      // takes several nights of quota, and re-fetching hours of audio to do
+      // eighteen more chunks of it is the waste that most likely got this
+      // pass throttled in the first place.
+      cachedAudio = resolve(audioCachePath(args.plenoId))
+      const cachedBytes = sizeOrNull(cachedAudio)
+      if (isReusableAudio(cachedBytes)) {
+        process.stdout.write(
+          `[speaker-map] audio from cache (${Math.round((cachedBytes ?? 0) / 1e6)} MB) — no download\n`,
+        )
+      } else {
+        const url = sh('npx', [
+          'tsx',
+          resolve('scripts/resolve-pleno-video.ts'),
+          args.plenoId,
+        ]).trim()
+        if (!url) throw new SetupFailure('video-unresolved', 'could not resolve the session video')
+        process.stdout.write(`[speaker-map] ${args.plenoId} → ${url}\n[speaker-map] downloading…\n`)
+        mkdirSync(resolve(AUDIO_CACHE_DIR), { recursive: true })
+        downloadAudio(url, resolve(AUDIO_CACHE_DIR, `${args.plenoId}.%(ext)s`))
+      }
+      audio = cachedAudio
     }
-    if (!existsSync(audio)) throw new Error(`no audio at ${audio}`)
+    if (!existsSync(audio)) throw new SetupFailure('audio-missing', `no audio at ${audio}`)
 
     // The published transcript is the reference the coverage gate scores
     // against: it is the record of WHERE SPEECH IS, so a chunk that is mostly
@@ -810,6 +918,16 @@ async function main() {
               `  See rejectedBy above for which.\n`,
       )
     }
+  } catch (err) {
+    // The `finally` below runs while this throw is unwinding — BEFORE
+    // `main().catch()` down at the bottom of the file gets to call
+    // `process.exit(1)`. So the manifest of a crashed run read
+    // `exitCode: 0`, and `check:runs` printed a ✓ over two dead nights in
+    // August 2026. Setting it here is what makes the record true; the rethrow
+    // keeps the outer handler's message and exit status exactly as they were.
+    process.exitCode = 1
+    runLog.skip(err instanceof SetupFailure ? err.cause : 'unclassified-error')
+    throw err
   } finally {
     // In `finally` so EVERY exit path records — including the early return
     // when `decideSnapshotWrite` refuses, and a throw. A pass that dies

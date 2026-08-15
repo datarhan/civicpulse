@@ -75,6 +75,73 @@ describe('assessManifest — healthy runs', () => {
   })
 })
 
+/**
+ * The hole this file's own thesis left open.
+ *
+ * Every rule below was gated on `attempted > 0`, so a pass that attempted
+ * NOTHING was unfalsifiable — and that is a real shape, not a hypothetical.
+ * `extract-speaker-map` died on its yt-dlp download on 2026-08-13 and again on
+ * 2026-08-14; both nights wrote `attempted 0 · judged 0 · 0 calls`, and
+ * `check:runs` printed a ✓ over each while the backlog sat untouched at 21
+ * sessions.
+ *
+ * «Attempted nothing» is only judgeable against how much was owed, which the
+ * manifest never carried. So it carries it now: `owed` is the work outstanding
+ * when the run started, and a run that had work and attempted none of it is
+ * the "did this run do work?" question with a definite answer for the first
+ * time.
+ *
+ * It stays OPTIONAL on purpose. A pass that cannot cheaply count its backlog
+ * omits it and is judged exactly as before; making it required would have every
+ * other manifest in the repo lying about a number it never measured.
+ */
+describe('assessManifest — a pass that attempted nothing', () => {
+  it('flags a run that had work owed and attempted none of it', () => {
+    const m = manifest({ owed: 21, attempted: 0 })
+    expect(codes(m)).toContain('nothing-attempted')
+  })
+
+  it('names how much was owed, so the line is actionable', () => {
+    const f = assessManifest(manifest({ owed: 21, attempted: 0 })).find(
+      (x) => x.code === 'nothing-attempted',
+    )
+    expect(f!.level).toBe('error')
+    expect(f!.message).toContain('21')
+  })
+
+  // The control that makes the rule mean something. A finished backlog and a
+  // crashed run BOTH read `attempted 0`; only `owed` separates them, so if this
+  // one ever goes red the check is crying wolf at every completed sweep and
+  // will be switched off within the week.
+  it('stays quiet when there was genuinely nothing to do', () => {
+    expect(codes(manifest({ owed: 0, attempted: 0 }))).not.toContain('nothing-attempted')
+  })
+
+  it('stays quiet for a pass that does not report a backlog at all', () => {
+    expect(codes(manifest({ attempted: 0 }))).not.toContain('nothing-attempted')
+  })
+
+  it('stays quiet once the run has attempted something, however little', () => {
+    const m = manifest({
+      owed: 21,
+      attempted: 1,
+      judged: 1,
+      llm: { ...NO_TRAFFIC, calls: 1, ok: 1, tokens: 10 },
+    })
+    expect(codes(m)).not.toContain('nothing-attempted')
+  })
+
+  it('records what was owed through the recorder, and prints it', () => {
+    const run = startRun('demo', { getStats: () => ({ ...NO_TRAFFIC }), backend: 'gemini-api' })
+    run.owe(21)
+    const { manifest: m, findings } = run.finish({ write: false })
+    expect(m.owed).toBe(21)
+    expect(findings.map((f) => f.code)).toContain('nothing-attempted')
+    // A number the human never sees cannot be argued with.
+    expect(formatManifest(m)).toContain('owed 21')
+  })
+})
+
 describe('assessManifest — the incidents this exists to catch', () => {
   it('flags a run that processed items and judged none (the "kept 1017" shape)', () => {
     // Reported `re-judged 1017 · kept 1017` while making zero successful calls.

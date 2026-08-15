@@ -585,6 +585,42 @@ export function classifyBacklogState(opts: {
 }
 
 /**
+ * Where a session's downloaded audio is kept between runs.
+ *
+ * The sweep is a twenty-night job and a long session needs several of them, but
+ * the audio used to live in `tmpdir()/speaker-map-<id>-<pid>` and was deleted
+ * on the way out — so every night re-downloaded a 2-to-4-hour video to work on
+ * eighteen more chunks of it. 59 hours of audio across the backlog, fetched
+ * again and again, and the most likely reason YouTube started refusing on
+ * 2026-08-13.
+ *
+ * Under `.cache/`, which is already gitignored: this is a rebuildable copy of
+ * somebody else's file, not data.
+ */
+export const AUDIO_CACHE_DIR = process.env.SPEAKER_MAP_AUDIO_CACHE || '.cache/speaker-map-audio'
+
+/**
+ * Below this, a cached file is a stub or a truncation rather than a session.
+ * A real 20-minute mp3 is megabytes; nothing legitimate lands here.
+ */
+export const MIN_CACHED_AUDIO_BYTES = 1024
+
+export function audioCachePath(plenoId: string, dir: string = AUDIO_CACHE_DIR): string {
+  return `${dir}/${plenoId}.mp3`
+}
+
+/**
+ * @param bytes size on disk, or null/undefined when the file is not there.
+ *
+ * Fails closed: anything it cannot measure is re-downloaded. Reusing a
+ * half-written file would produce a short session, and a short session is
+ * indistinguishable downstream from a pleno where people stopped talking.
+ */
+export function isReusableAudio(bytes: number | null | undefined): boolean {
+  return typeof bytes === 'number' && Number.isFinite(bytes) && bytes >= MIN_CACHED_AUDIO_BYTES
+}
+
+/**
  * The bloc for a label, or null when the map does not vouch for it.
  *
  * Returns null for weak rows too. A caller asking "which bloc is this" during
