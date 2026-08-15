@@ -653,10 +653,15 @@ async function main() {
       : []
     const keptRows = prior ? prior.rows.filter((r) => doneChunks.has(chunkOfLabel(r.label))) : []
     if (prior) {
+      // RE-OPENED means "below the floor, so it will be asked again". A chunk
+      // written off has also lost its segments, but it is not going to be asked
+      // again — calling it re-opened every night would describe the opposite of
+      // what is happening, and it is the line a curator reads to decide whether
+      // the session is progressing.
       const reopened = new Set(
         prior.segments
           .map((s) => Math.floor(s.start / SPEAKER_MAP_CHUNK_SECONDS))
-          .filter((i) => !doneChunks.has(i)),
+          .filter((i) => !settledChunks.has(i)),
       )
       process.stdout.write(
         `[speaker-map] resuming: ${doneChunks.size} chunk(s) already mapped, ` +
