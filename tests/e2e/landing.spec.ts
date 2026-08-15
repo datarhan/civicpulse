@@ -159,8 +159,34 @@ test.describe('Landing (/)', () => {
     // layer now.
     await expect(control.getByRole('button', { name: /Obras/i })).toHaveCount(0)
 
-    // Civic POIs still render underneath, as context for the spend pins.
-    await expect(page.getByText(/Servicios públicos/i).first()).toBeVisible()
+    // A chip that reads OFF means nothing of that layer is on the map. The
+    // Servicios layer used to paint dimmed underneath the money layer as
+    // "context", so the landing opened with its dots down and its legend card
+    // up while its own chip read OFF. Both halves are asserted: the chip is
+    // off-state AND neither the markers nor the legend exist.
+    const servicios = control.getByRole('button', { name: /^Servicios$/i })
+    await expect(servicios).toHaveAttribute('aria-pressed', 'false')
+    await expect(page.locator('.cp-poi-marker')).toHaveCount(0)
+    await expect(page.locator('.cp-poi-legend')).toHaveCount(0)
+
+    // ...and turning it on paints them, so the counts above are a real absence
+    // and not two selectors that never matched anything.
+    await servicios.click()
+    await expect(page.locator('.cp-poi-marker').first()).toBeVisible({ timeout: 6000 })
+    expect(await page.locator('.cp-poi-marker').count()).toBeGreaterThan(5)
+    await expect(page.locator('.cp-poi-legend')).toBeVisible()
+
+    // The category rides on the silhouette, not on a colour: six greys were one
+    // grey. Assert the legend draws as many DISTINCT shapes as it lists rows —
+    // a ramp that collapsed back to one encoding would satisfy "has a swatch".
+    const siluetas = await page
+      .locator('.cp-poi-legend svg path')
+      .evaluateAll((ps) => ps.map((p) => p.getAttribute('d')))
+    expect(siluetas.length).toBeGreaterThan(3)
+    expect(new Set(siluetas).size).toBe(siluetas.length)
+
+    await servicios.click()
+    await expect(page.locator('.cp-poi-marker')).toHaveCount(0)
 
     // Clicking a money pin opens the contract card with the winner + € detail,
     // and a barrio dot opens the aggregated civic card.

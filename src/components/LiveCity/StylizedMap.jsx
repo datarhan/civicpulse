@@ -48,17 +48,20 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
   // Which data layers are visible. Base layers (boundary / network / barrios)
   // are always on — the 21 barrios are the unit everything else aggregates to.
   //
-  // `money` now opens by default and `poi` does not, reversing the previous
-  // arrangement. The Servicios layer is an OSM directory of schools and parks:
-  // static, unchanging, and already on every general-purpose map. Opening a
-  // municipal-accountability site on it put the least mission-relevant layer in
-  // the most valuable position. The located spend is what this project exists
-  // to show.
+  // `money` opens by default and `poi` does not. The Servicios layer is an OSM
+  // directory of schools and parks: static, unchanging, and already on every
+  // general-purpose map. Opening a municipal-accountability site on it put the
+  // least mission-relevant layer in the most valuable position. The located
+  // spend is what this project exists to show.
   //
-  // POIs are not gone, they are demoted to CONTEXT: whenever the money layer is
-  // on they render dimmed underneath it, because "€64.960 SMART OFFICE" as a
-  // free-floating pin means nothing while "€64.960 at the Casa de Cultura"
-  // means something.
+  // A default OFF here means OFF ON THE MAP TOO. For a while POIs were demoted
+  // to "context" instead of hidden — dimmed underneath the money layer whenever
+  // money was on, which is always on load. The landing therefore opened with
+  // Servicios dots painted and its Servicios chip reading OFF, and the legend
+  // card for a layer nobody had switched on. Whatever the reading is worth, a
+  // control that does not describe the map is the defect LayerControl documents
+  // itself as never having: the chips are the only account the reader gets of
+  // what those marks mean.
   const [layers, setLayers] = useState({
     money: true,
     poi: false,
@@ -121,9 +124,9 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
         <Railways />
 
         {/* POIs BEFORE money: later siblings paint on top in Leaflet's overlay
-            pane, so rendering context after the spend pins put it over them and
-            it swallowed their clicks. Context belongs underneath, literally. */}
-        {(layers.poi || layers.money) && <CivicPoiLayer dimmed={!layers.poi} />}
+            pane, so rendering them after the spend pins put them over the
+            money and they swallowed its clicks. */}
+        {layers.poi && <CivicPoiLayer />}
         {layers.money && (
           <MoneyLayer
             snapshot={snapshot}
@@ -175,7 +178,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
             onToggleObras={setObrasOnly}
           />
         )}
-        {(layers.poi || layers.money) && <PoiLegend />}
+        {layers.poi && <PoiLegend />}
         {layers.quejas && <QuejasLegend />}
         {layers.flood && <FloodLegend />}
       </div>

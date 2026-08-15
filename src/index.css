@@ -674,6 +674,26 @@ body.cp-kiosk .cp-live-container {
   letter-spacing: 0.02em;
 }
 
+/* Civic POIs — one category-shaped silhouette each (lib/civic-poi.js) */
+.cp-poi-marker {
+  background: transparent !important;
+  border: none !important;
+}
+/* Same trick, same reason as the barrio marker above: the icon is a 16×16 box
+   but the silhouette inside it covers roughly half that, and the corners were
+   taking clicks meant for the spend pin underneath. Only what is actually
+   PAINTED should be a target — a triangle should not answer for the square of
+   air around it. Qualified with the Leaflet class because
+   `.leaflet-interactive { pointer-events: auto }` is same-specificity and loads
+   later; the unqualified rule loses. */
+.leaflet-marker-icon.cp-poi-marker {
+  pointer-events: none;
+}
+.cp-poi-marker svg path {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .cp-gasto-grid {
     grid-template-columns: 1fr !important;
