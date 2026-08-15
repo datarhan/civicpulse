@@ -624,13 +624,16 @@ async function main() {
       : new Set<number>()
 
     // Chunks given up on: attempted on GIVE_UP_AFTER_ATTEMPTS separate nights
-    // and failed every time, under the gate still in force. `15uvjew` chunk 8
-    // comes back at exactly 66% against an 85% floor however often it is asked,
-    // and re-asking it nightly for the length of a twenty-night sweep buys
-    // nothing. They are excluded from the plan but NOT from the record: the
-    // hole stays in `failedChunks`, and their segments are still dropped — a
-    // 66% reading published as a whole window is the very thing the floor is
-    // for. Move the prompt or the floor and every one of them reopens.
+    // and failed every time, under the gate still in force. Re-asking one
+    // nightly for the length of a twenty-night sweep spends quota that has
+    // somewhere better to be — but that is ALL it means. Coverage failures are
+    // flaky, not deterministic: `15uvjew` chunk 8 failed at 66% three times and
+    // then passed clean on the fourth. See `GIVE_UP_AFTER_ATTEMPTS`.
+    //
+    // Excluded from the plan, never from the record: the hole stays in
+    // `failedChunks`, and their segments are still dropped — a 66% reading
+    // published as a whole window is the very thing the floor is for. Move the
+    // prompt or the floor and every one of them reopens.
     const priorFailures = new Map<number, FailedChunk>(
       (prior?.stats?.failedChunks ?? []).map((f) => [f.chunk, f]),
     )

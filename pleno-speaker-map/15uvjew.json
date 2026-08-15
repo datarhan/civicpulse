@@ -1,6 +1,6 @@
 {
   "plenoId": "15uvjew",
-  "generatedAt": "2026-08-13T08:08:08.050Z",
+  "generatedAt": "2026-08-15T20:42:27.158Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -6136,6 +6136,540 @@
       "end": 9510,
       "speaker": "c15/SPEAKER_01",
       "text": "i també està, eleva, no? La part, diguem, de tindre el contacte permanent, val? Que hem aprovat un punt important. Gràcies per vindre, vale? Bueno, es tanca el ple. Que tingueu bones vacances tots i totes."
+    },
+    {
+      "start": 4800,
+      "end": 4811.9,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Esta modificació ve donada d'una necessitat i això crec que tots i totes som conscients que tenim eixa necessitat,"
+    },
+    {
+      "start": 4811.9,
+      "end": 4821.8,
+      "speaker": "c08/SPEAKER_00",
+      "text": "que també ve donada per un contracte que l'empresa que adjudicatària no va complir."
+    },
+    {
+      "start": 4821.8,
+      "end": 4839.5,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Això és una concatenació d'actuacions i de situacions que hui ens porten a fer esta modificació de crèdit de les inversions per a poder comprar els contenidors que són necessaris per a la població,"
+    },
+    {
+      "start": 4839.5,
+      "end": 4851.5,
+      "speaker": "c08/SPEAKER_00",
+      "text": "perquè si férem una enquesta als nostres veïns i veïnes, evidentment estarien la majoria a favor de canviar els contenidors."
+    },
+    {
+      "start": 4851.5,
+      "end": 4853.5,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Ara bé,"
+    },
+    {
+      "start": 4853.5,
+      "end": 4859,
+      "speaker": "c08/SPEAKER_00",
+      "text": "fora de les demagògies polítiques que jo crec que han hagut per part d'alguns partits d'este plenari,"
+    },
+    {
+      "start": 4859,
+      "end": 4868,
+      "speaker": "c08/SPEAKER_00",
+      "text": "una la ha aclarat prou bé el company d'Esquerra Unida Podem,"
+    },
+    {
+      "start": 4868,
+      "end": 4881,
+      "speaker": "c08/SPEAKER_00",
+      "text": "que han parlat de lo que de les inversions que es llevaven, però sols se n'han deixat una, que era la del pla de refugis climàtics."
+    },
+    {
+      "start": 4881,
+      "end": 4886,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Amic, el pla de refugis climàtics, clar, com són"
+    },
+    {
+      "start": 4886,
+      "end": 4901,
+      "speaker": "c08/SPEAKER_00",
+      "text": "els verdaders negacionistes d'este del canvi climàtic, pues clar, per això pues se carreguen la unitat d'emergència, la Unitat Valenciana d'Emergència,"
+    },
+    {
+      "start": 4901,
+      "end": 4913,
+      "speaker": "c08/SPEAKER_00",
+      "text": "que segons ells no feia res i eren col·locats del Partit Socialista i de Compromís, pero se n'han anat per l'aire la Serra d'Espadà."
+    },
+    {
+      "start": 4913,
+      "end": 4920,
+      "speaker": "c08/SPEAKER_00",
+      "text": "I jo no sé si vostès coneixen la Serra d'Espadà, però és que l'han visitat i l'han pogut veure i disfrutar,"
+    },
+    {
+      "start": 4920,
+      "end": 4924,
+      "speaker": "c08/SPEAKER_00",
+      "text": "per a nosaltres és un crim."
+    },
+    {
+      "start": 4924,
+      "end": 4934,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Però no només passa ací en esta comunitat en la que manen vostès, és que passa a Castella-La Manxa, és que passa, lo de Madrid ja és, vamos,"
+    },
+    {
+      "start": 4934,
+      "end": 4936.5,
+      "speaker": "c08/SPEAKER_00",
+      "text": "clama al cel."
+    },
+    {
+      "start": 4936.5,
+      "end": 4946,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Es que el alcalde de Madrid és un perill, pero pero un, són més perillosos que un talibán amb una bomba a la mà."
+    },
+    {
+      "start": 4946,
+      "end": 4948,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Senyor meu, per favor."
+    },
+    {
+      "start": 4948,
+      "end": 4949.5,
+      "speaker": "c08/SPEAKER_01",
+      "text": "No digues això, Rafa."
+    },
+    {
+      "start": 4949.5,
+      "end": 4950.5,
+      "speaker": "c08/SPEAKER_02",
+      "text": "Por favor."
+    },
+    {
+      "start": 4950.5,
+      "end": 4951.5,
+      "speaker": "c08/SPEAKER_01",
+      "text": "No digues això, home."
+    },
+    {
+      "start": 4951.5,
+      "end": 4952.5,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Alberto."
+    },
+    {
+      "start": 4952.5,
+      "end": 4954,
+      "speaker": "c08/SPEAKER_01",
+      "text": "No, parla tu."
+    },
+    {
+      "start": 4954,
+      "end": 4963,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Tots els plens, tots els plens interrompixes quan parlen els companys. Dóna ja el partit que siga."
+    },
+    {
+      "start": 4963,
+      "end": 4974,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Per tant, habitua't a respectar la paraula de cadascú i després tindràs un torn. No tots els plens. Abans ha parlat l'alcalde, has interromput."
+    },
+    {
+      "start": 4974,
+      "end": 4978,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Parla no sé qui, a fer un vis-a-vis. Per favor. Sí, Rafa."
+    },
+    {
+      "start": 4978,
+      "end": 4979.5,
+      "speaker": "c08/SPEAKER_02",
+      "text": "No poden dir lo que vullguen."
+    },
+    {
+      "start": 4979.5,
+      "end": 4987,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Però anem a veure, el que no pots parlar eres tu sense demanar la paraula primer, que és lo que fas tots els plens."
+    },
+    {
+      "start": 4987,
+      "end": 5003,
+      "speaker": "c08/SPEAKER_01",
+      "text": "I podran dir lo que consideren que tenen que dir i si pots, i diran lo que creguen en llibertat en la seua llibertat per a dir. I després, si se tenen que rectificar o fer per al·lusions, lo que tinguen que fer."
+    },
+    {
+      "start": 5003,
+      "end": 5018,
+      "speaker": "c08/SPEAKER_01",
+      "text": "O vas a censurar tu ara també qualsevol intervenció de qualsevol regidor? A que tota cosa que compartim o no lo que diguen, i que siga motiu de alguna reprotxe de qualsevol àmbit, civil o penal,"
+    },
+    {
+      "start": 5018,
+      "end": 5027,
+      "speaker": "c08/SPEAKER_01",
+      "text": "pero no seràs tu qui limite la llibertat d'un regidor ací, per suposat. I lo que tens que fer és demanar primer la paraula, que és lo que tens que fer."
+    },
+    {
+      "start": 5027,
+      "end": 5030,
+      "speaker": "c08/SPEAKER_02",
+      "text": "Ha dit un talibán amb una bomba a la mà."
+    },
+    {
+      "start": 5030,
+      "end": 5033,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Però tu no tens, no veus que no tens la paraula?"
+    },
+    {
+      "start": 5033,
+      "end": 5036,
+      "speaker": "c08/SPEAKER_01",
+      "text": "No veus que no té la paraula?"
+    },
+    {
+      "start": 5036,
+      "end": 5042,
+      "speaker": "c08/SPEAKER_01",
+      "text": "No veus que està callada la persona que està siguent al·ludida i eres tu el que estàs eixint?"
+    },
+    {
+      "start": 5042,
+      "end": 5045,
+      "speaker": "c08/SPEAKER_01",
+      "text": "No veus que interrompixes tots els plens?"
+    },
+    {
+      "start": 5045,
+      "end": 5047,
+      "speaker": "c08/SPEAKER_01",
+      "text": "No, és que no tens que ni parlar,"
+    },
+    {
+      "start": 5047,
+      "end": 5048.5,
+      "speaker": "c08/SPEAKER_01",
+      "text": "tens que atendre'm"
+    },
+    {
+      "start": 5048.5,
+      "end": 5058,
+      "speaker": "c08/SPEAKER_01",
+      "text": "i prendre nota i demanar el dit, demanar la paraula: \"Senyor alcalde, per al·lusions vull parlar\", o pel que siga, i no interrompre com sempre fas."
+    },
+    {
+      "start": 5058,
+      "end": 5062,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Per favor. Rafa, acaba la intervenció, per favor."
+    },
+    {
+      "start": 5062,
+      "end": 5064,
+      "speaker": "c08/SPEAKER_01",
+      "text": "I gràcies per la paciència."
+    },
+    {
+      "start": 5064,
+      "end": 5071,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Gràcies, senyor alcalde. La la paciència i el respecte, que no és en doble sentit."
+    },
+    {
+      "start": 5071,
+      "end": 5075,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Però bueno, jo tan sols he fet una comparació."
+    },
+    {
+      "start": 5075,
+      "end": 5079,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Cadascú pot agarrar-ho com com vulga."
+    },
+    {
+      "start": 5079,
+      "end": 5090,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Evidentment, a los hechos me remito. Estem mirant les notícies dia darrere dia i estem mirant com se n'està cremant el nostre país,"
+    },
+    {
+      "start": 5090,
+      "end": 5096,
+      "speaker": "c08/SPEAKER_00",
+      "text": "i no solament dic el País Valencià, sinó l'Estat espanyol."
+    },
+    {
+      "start": 5096,
+      "end": 5100,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Entonces, pues la veritat, i tornant a este punt, perquè jo normalment solc respectar quan algú pren la paraula,"
+    },
+    {
+      "start": 5100,
+      "end": 5111,
+      "speaker": "c08/SPEAKER_00",
+      "text": "crec que en tots els anys que porte de regidor mai m'ha tingut que cridar l'atenció el senyor alcalde, mai."
+    },
+    {
+      "start": 5111,
+      "end": 5117,
+      "speaker": "c08/SPEAKER_00",
+      "text": "i jo sols espere que els demés facen lo mateix quan jo intervinga."
+    },
+    {
+      "start": 5117,
+      "end": 5128,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Comentant lo que estava comentant sobre este punt, la necessitat de d'eixa adquisició dels contenidors,"
+    },
+    {
+      "start": 5128,
+      "end": 5138,
+      "speaker": "c08/SPEAKER_00",
+      "text": "evidentment, pues el Partit Socialista, l'equip de govern, ha decidit fer eixes modificacions. Jo, per exemple, Compromís, hauríem fet unes altres."
+    },
+    {
+      "start": 5138,
+      "end": 5147,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Pero està clar que tenen els vots, tenen la majoria i decidixen en què tenen que modificar."
+    },
+    {
+      "start": 5147,
+      "end": 5153,
+      "speaker": "c08/SPEAKER_00",
+      "text": "Jo espere que quan se porte el pressupost del dos mil vint-i-set,"
+    },
+    {
+      "start": 5153,
+      "end": 5168,
+      "speaker": "c08/SPEAKER_00",
+      "text": "eixes accions que nosaltres hem reclamat, que van sempre en contra o a favorir que no vaja a més eixe canvi climàtic,"
+    },
+    {
+      "start": 5168,
+      "end": 5175,
+      "speaker": "c08/SPEAKER_00",
+      "text": "que estiguen més més bloquejades i se puguen portar i que no passe lo que lo que hui va passar. Gràcies."
+    },
+    {
+      "start": 5175,
+      "end": 5178,
+      "speaker": "c08/SPEAKER_01",
+      "text": "La seua intervenció, dos minuts, José."
+    },
+    {
+      "start": 5178,
+      "end": 5182,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Bé."
+    },
+    {
+      "start": 5182,
+      "end": 5196,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Bueno, voy a empezar por Vox, porque es que echáis de menos a ETA, tío. No sé, quince años sin ETA, fue un gobierno socialista el que acabó con ETA."
+    },
+    {
+      "start": 5196,
+      "end": 5200,
+      "speaker": "c08/SPEAKER_03",
+      "text": "No sé si creéis que hemos negociado los contenedores en Biarritz."
+    },
+    {
+      "start": 5200,
+      "end": 5202,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Pero vamos, y ya lo dejo ahí."
+    },
+    {
+      "start": 5202,
+      "end": 5206,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Me voy a la parte importante, al Partido Popular, bueno, y al resto de partidos."
+    },
+    {
+      "start": 5206,
+      "end": 5211,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Lo he dicho en mi intervención y creo que estará recogido en acta,"
+    },
+    {
+      "start": 5211,
+      "end": 5220,
+      "speaker": "c08/SPEAKER_03",
+      "text": "que aquellas inversiones que han sufrido cambios, bajas, anulaciones, etcétera, estas inversiones se realizarán a través de fondos propios"
+    },
+    {
+      "start": 5220,
+      "end": 5230,
+      "speaker": "c08/SPEAKER_03",
+      "text": "con otras modificaciones presupuestarias o incluyéndolas en el presupuesto del dos mil veintisiete, incluso aumentando el presupuesto inicial."
+    },
+    {
+      "start": 5230,
+      "end": 5240,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Dígase como el plan de refugios climáticos, como he comentado con José Manuel esta misma mañana, que iba a ser así."
+    },
+    {
+      "start": 5240,
+      "end": 5246,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Pero voy más, porque es que uno lleva el discurso ya preparadito y no pregunta,"
+    },
+    {
+      "start": 5246,
+      "end": 5255,
+      "speaker": "c08/SPEAKER_03",
+      "text": "porque si se llama por teléfono se averiguará que resulta que la parte de cultura tiene un, hemos conseguido una subvención de treinta y nueve mil euros para para hacer esas esas inversiones que íbamos a hacer."
+    },
+    {
+      "start": 5255,
+      "end": 5264,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Si preguntara, diría, sabría que en intervención hay una modificación de crédito de sesenta mil euros para las inversiones en educación."
+    },
+    {
+      "start": 5264,
+      "end": 5274,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Si preguntara, sabrían que lo que son los caminos rurales los licita la Diputación a través de un convenio y se pagarán el año que viene,"
+    },
+    {
+      "start": 5274,
+      "end": 5283,
+      "speaker": "c08/SPEAKER_03",
+      "text": "etcétera, etcétera, etcétera. Al igual que los drones, como tuvimos en en el polígono, allí con la universidad se hizo allí una demostración al respecto."
+    },
+    {
+      "start": 5283,
+      "end": 5289,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Pero es que yo, claro, digo, no no estoy un poco alucinando con el Partido Popular,"
+    },
+    {
+      "start": 5289,
+      "end": 5295,
+      "speaker": "c08/SPEAKER_03",
+      "text": "porque no solo es que escucha lo que lo que yo he dicho, sino es que además,"
+    },
+    {
+      "start": 5295,
+      "end": 5301,
+      "speaker": "c08/SPEAKER_03",
+      "text": "o sea, venimos el día dieciséis de marzo y traemos un presupuesto"
+    },
+    {
+      "start": 5301,
+      "end": 5311,
+      "speaker": "c08/SPEAKER_03",
+      "text": "con eso que ha venido usted a defenderlo, vamos, como el adalid y abanderando esas inversiones que retiramos. ¡Pero si las votaron ustedes en contra!"
+    },
+    {
+      "start": 5311,
+      "end": 5313,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Si votaron no."
+    },
+    {
+      "start": 5313,
+      "end": 5324,
+      "speaker": "c08/SPEAKER_03",
+      "text": "No a servicios sociales, no a educación, no a cultura, no a las cámaras de vigilancia en las urbanizaciones, no a los drones, no al edificio polivalente de los abuelos."
+    },
+    {
+      "start": 5324,
+      "end": 5335,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Sigo, y y luego ya, y bueno, el centro de salud antiguo. Y ya hace un mezcladillo como si para enredar a la gente y hacer ruido como si el centro de salud fuera el centro de salud actual,"
+    },
+    {
+      "start": 5335,
+      "end": 5339,
+      "speaker": "c08/SPEAKER_03",
+      "text": "porque no es antiguo, es que es el ridículo de centro de salud que ustedes invirtieron e hicieron ahí."
+    },
+    {
+      "start": 5339,
+      "end": 5350,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Estamos hablando del edificio de la calle Galerí y Pastor, que efectivamente era el edificio antiguo del centro de salud y que va a ser, que lo ha comprado el ayuntamiento para instalaciones del ayuntamiento"
+    },
+    {
+      "start": 5350,
+      "end": 5354,
+      "speaker": "c08/SPEAKER_03",
+      "text": "y que se realizará en el próximo año, como he dicho."
+    },
+    {
+      "start": 5354,
+      "end": 5362,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Pero vamos, vienen ustedes y votan el día dieciséis, no a esas inversiones que ahora, vamos, para ustedes son importantísimas, y votaron no."
+    },
+    {
+      "start": 5362,
+      "end": 5367,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Y ahora venimos con la intención de solucionar un problema,"
+    },
+    {
+      "start": 5367,
+      "end": 5377,
+      "speaker": "c08/SPEAKER_03",
+      "text": "que vienen ustedes a hacer un pleno aquí, que era hacer el cuento y el teatrito, que no traían ninguna propuesta, igual que hoy, que no traéis propuestas, eh,"
+    },
+    {
+      "start": 5377,
+      "end": 5384,
+      "speaker": "c08/SPEAKER_03",
+      "text": "y resulta que venimos con una solución, una solución a ojos de todo vecino para evitar eso que hay, ese problemón que tenemos en la calle, eh,"
+    },
+    {
+      "start": 5384,
+      "end": 5390,
+      "speaker": "c08/SPEAKER_03",
+      "text": "y va y resulta que, claro, eso tampoco están de acuerdo, es no, eso es como la viñeta de Forges que decía:"
+    },
+    {
+      "start": 5390,
+      "end": 5395,
+      "speaker": "c08/SPEAKER_03",
+      "text": "\"¿No? ¿Y por qué no? ¡Porque no!\". Pues ustedes siguen ese ese argumento, el no porque no."
+    },
+    {
+      "start": 5395,
+      "end": 5400,
+      "speaker": "c08/SPEAKER_03",
+      "text": "A Esquerra Unida, pues, oye, José Manuel, mira que yo digo, mira, esto es una crítica constructiva,"
+    },
+    {
+      "start": 5400,
+      "end": 5407,
+      "speaker": "c08/SPEAKER_03",
+      "text": "porque realmente si tú vienes a un, y vosotros aprobasteis el el presupuesto, e iban una serie de cuestiones en las que acordamos."
+    },
+    {
+      "start": 5407,
+      "end": 5417,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Y yo digo, no van, tenemos que quitarlas porque tenemos que invertir en en las en los contenedores porque no hay más remedio, que todos lo vemos, eh, porque es una necesidad imperante,"
+    },
+    {
+      "start": 5417,
+      "end": 5428,
+      "speaker": "c08/SPEAKER_03",
+      "text": "y resulta que digo lo mismo, que van a ir con modificaciones presupuestarias o en el próximo presupuesto de dos mil veintisiete..."
     }
   ],
   "rows": [
@@ -6883,29 +7417,39 @@
       "label": "c15/SPEAKER_01",
       "reason": "ambiguous",
       "detail": "heard \"José Luis\" fits 2: José Luis Ramos March, José Luis Fernández Santamaría"
+    },
+    {
+      "label": "c08/SPEAKER_00",
+      "reason": "ambiguous",
+      "detail": "heard \"Rafa\" fits 2: Rafael Gómez Sánchez, Rafael Folgado Navarro"
+    },
+    {
+      "label": "c08/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "heard \"alcalde\" matches nobody"
+    },
+    {
+      "label": "c08/SPEAKER_03",
+      "reason": "ambiguous",
+      "detail": "heard \"José\" fits 6: José Luis Ramos March, José Ángel Hernández Carrizosa, José Manuel Vila Oltra, María José Pradas Ramo, José Luis Fernández Santamaría, José Manuel Gallardo Martínez"
     }
   ],
   "stats": {
     "chunksExpected": 17,
-    "chunksTranscribed": 16,
-    "failedChunks": [
-      {
-        "chunk": 8,
-        "why": "covered 66% (floor 85%)"
-      }
-    ],
-    "labelsSeen": 55,
+    "chunksTranscribed": 17,
+    "failedChunks": [],
+    "labelsSeen": 4,
     "rowsAccepted": 33,
-    "rowsRejected": 43,
+    "rowsRejected": 46,
     "rejectedBy": {
       "relation-contradicted": 6,
-      "unresolvable": 21,
+      "unresolvable": 22,
       "evidence-speaker-mismatch": 2,
       "evidence-outside-transcript": 6,
       "label-collision": 2,
-      "ambiguous": 6
+      "ambiguous": 8
     },
-    "attemptedThisRun": 9,
-    "coverage": 0.9988515134500542
+    "attemptedThisRun": 1,
+    "coverage": 1
   }
 }

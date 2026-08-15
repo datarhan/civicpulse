@@ -15,14 +15,20 @@ import {
 } from '../src/scraper/speaker-map-prompt'
 
 /**
- * A chunk that cannot be read must stop costing a call every night.
+ * A chunk that keeps failing must stop costing a call every night.
  *
- * `15uvjew` sits at 16 of 17. Chunk 8 covers 66% against an 85% floor and has
- * come back at exactly 66% on every attempt — the model reads that window the
- * same way each time. But `isMapComplete` wants `done >= total`, so the session
- * heads the backlog every night, and every night the pass spends its retries
- * failing identically. Over a twenty-night sweep that is twenty nights of
- * quota buying nothing.
+ * `15uvjew` sat at 16 of 17 with chunk 8 covering 66% against an 85% floor,
+ * three attempts running. `isMapComplete` wants `done >= total`, so the session
+ * headed the backlog every night and every night the pass spent its retries on
+ * it. Over a twenty-night sweep that is twenty nights of quota buying nothing.
+ *
+ * **The premise this was built on turned out to be false, and that is worth
+ * keeping written down.** Three identical 66% readings looked deterministic —
+ * "the model cannot read this window". On the fourth attempt it returned 89
+ * segments and the session closed at 17/17, 100%. Coverage failures here are
+ * FLAKY. So a write-off is a decision to stop spending, not a finding about the
+ * audio, and the tests below are about the spending rule; none of them asserts
+ * that a retired chunk is unreadable, because it may well not be.
  *
  * The fix is NOT to lower the floor. A 66% chunk published as if it were whole
  * is the defect the floor exists to stop: downstream, a gap in a speaker map is
@@ -119,21 +125,30 @@ describe('a session with written-off gaps leaves the queue', () => {
 })
 
 describe('against the map on disk', () => {
-  const real = JSON.parse(readFileSync(resolve('pleno-speaker-map/15uvjew.json'), 'utf8'))
+  // This block pointed at `15uvjew` and its proof-of-work assertion did its
+  // job: on 2026-08-15 the session finished — its "permanently" failing chunk 8
+  // passed on the fourth try — so the file stopped being able to demonstrate
+  // anything about unfinished sessions, and the test said so instead of quietly
+  // measuring a different world. Repointed at a session that is genuinely
+  // unfinished, and one whose gaps are of the kind that must NEVER accumulate.
+  const real = JSON.parse(readFileSync(resolve('pleno-speaker-map/brxx5g.json'), 'utf8'))
 
-  it('15uvjew is unfinished, and its gap has no attempt history yet', () => {
-    // Proof of work for the test below: written before any run has recorded an
-    // attempt count, so the session must still be in the backlog. If this ever
-    // flips to complete, the sweep finished it and the assertion below is
-    // measuring a different world.
+  it('brxx5g is unfinished and its gaps are budget gaps, not failures', () => {
+    // Proof of work. If this flips, the sweep finished the session and
+    // everything below is measuring something else.
     expect(isMapComplete(real)).toBe(false)
     expect(real.stats.failedChunks.length).toBeGreaterThan(0)
+    expect(
+      real.stats.failedChunks.every((f: FailedChunk) => /never attempted/.test(f.why)),
+      'this session now has real coverage failures, so it no longer isolates the budget case',
+    ).toBe(true)
   })
 
   it('does not retire a session on the strength of a count nobody recorded', () => {
-    // The gaps already on disk carry no `attempts`. Treating an absent count as
-    // "given up on" would retire sessions on no evidence at all; they earn it
-    // over the next few nights or not at all.
+    // These gaps are chunks the nightly budget never reached. They carry no
+    // `attempts`, and they must not: retiring a chunk for being under-budgeted
+    // is exactly backwards, and reading an absent count as "given up on" would
+    // do it to every session in the backlog at once.
     expect(writtenOffChunks(real.stats.failedChunks, GATE).size).toBe(0)
   })
 

@@ -163,10 +163,15 @@ night or more:
   session's map closes. A long pleno needs several nights, and re-fetching a
   2-to-4-hour video for each of them is both waste and, most likely, what got
   the downloads refused on 2026-08-13.
-- **A chunk that cannot be read is written off, not retried forever** — after
+- **A chunk that keeps failing is written off, not retried forever** — after
   `GIVE_UP_AFTER_ATTEMPTS` separate nights, stamped with the prompt version and
   coverage floor that gave up on it. Move either and every write-off reopens.
   The hole stays declared in the map's `failedChunks`; what stops is the asking.
+  It is a **spend limit, not a verdict on the audio**: `15uvjew` chunk 8 failed
+  at exactly 66% three times, looked deterministic, and passed clean on the
+  fourth. Coverage failures here are flaky, so a retired chunk may well be
+  readable — which is why the gap stays visible and the gate stamp lets a whole
+  cohort of them back in.
 
 Watch it through `check:runs`, which now has a rule that can fire on a run with
 no attempts at all: a manifest carrying `owed > 0` and `attempted: 0` is an

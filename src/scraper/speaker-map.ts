@@ -660,11 +660,24 @@ export function usageFromSse(sse: string): ChunkUsage {
 /**
  * Runs — not retries within a run — a chunk gets before it is written off.
  *
- * Deliberately counted across NIGHTS. Within one run the model is asked up to
- * three times in a few seconds; those are the same conditions three times over.
- * A chunk that fails on three separate nights has failed under three separate
- * draws from the quota, the network and the model's own variance, which is the
- * closest thing to evidence available here that the window cannot be read.
+ * ## This is a budget decision, NOT a verdict about the audio
+ *
+ * It was built on the opposite belief and the belief was wrong. `15uvjew`
+ * chunk 8 had come back at exactly 66% against an 85% floor on three separate
+ * attempts, which read as determinism — "the model cannot read this window".
+ * On the fourth attempt, 2026-08-15, it returned 89 segments and the session
+ * closed at 17/17, 100%. The same night `brxx5g` chunk 3 passed after failing
+ * at 84%, and its chunk 11 passed on a third try having read 80% then 67% of
+ * the same audio. Coverage failures here are FLAKY, and a run of three is not
+ * evidence of impossibility — it is evidence of a bad streak.
+ *
+ * So what this number means is: after three nights we stop PAYING to ask, not
+ * that the answer is settled. Three is a spend limit at 1/20th of a day's quota
+ * per attempt, chosen with no measurement that says three is better than five;
+ * revisit it with one. Two things keep the mistake cheap: the gap stays
+ * declared in `failedChunks` rather than disappearing, and a write-off is
+ * stamped with its gate, so moving the prompt or the floor puts every retired
+ * chunk back in the queue.
  */
 export const GIVE_UP_AFTER_ATTEMPTS = 3
 
