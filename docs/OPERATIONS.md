@@ -142,6 +142,41 @@ started on, not `main`.
 Install helpers: `scripts/cron-install-hallazgos.sh`,
 `scripts/cron-install-press-lab.sh`. Run them from Terminal.
 
+### The speaker-map sweep: a job measured in weeks, not nights
+
+`hallazgos-pipeline.sh` carries one step that is not a nightly refresh but a
+**multi-week backlog burn**: `extract:speaker-map` works through the sessions
+that have no `pleno-speaker-map/<id>.json`, ~18 chunks a night against the
+Gemini free tier's 20 requests/day. `npm run speaker-map:backlog -- --why`
+reports where it is. Three things follow from the shape, and each one has cost a
+night or more:
+
+- **A backend outage must not stop it.** This step runs on `GEMINI_API_KEY`,
+  which is not the text backend the rest of the pipeline uses, and Gemini's
+  daily quota does not accumulate. The preflight therefore marks the run
+  DEGRADED and skips only the steps that need the text backend (extraction,
+  auto-curation, the post-map re-extraction) rather than exiting. It used to
+  `exit 0` on the whole run, and on 2026-08-15 a claude-code outage cost a full
+  night of unrelated quota — the same shape as the nine-day keychain incident
+  below, at one night a time.
+- **The audio is cached in `.cache/speaker-map-audio/`** and dropped when a
+  session's map closes. A long pleno needs several nights, and re-fetching a
+  2-to-4-hour video for each of them is both waste and, most likely, what got
+  the downloads refused on 2026-08-13.
+- **A chunk that cannot be read is written off, not retried forever** — after
+  `GIVE_UP_AFTER_ATTEMPTS` separate nights, stamped with the prompt version and
+  coverage floor that gave up on it. Move either and every write-off reopens.
+  The hole stays declared in the map's `failedChunks`; what stops is the asking.
+
+Watch it through `check:runs`, which now has a rule that can fire on a run with
+no attempts at all: a manifest carrying `owed > 0` and `attempted: 0` is an
+error (`nothing-attempted`). Every other rule there is gated on `attempted > 0`,
+so a pass that died during setup was unfalsifiable — `extract-speaker-map`
+crashed on its download two nights running and `check:runs` printed a ✓ over
+both. `owed` comes from `speakerMapBacklog()`, the same function the pipeline
+picks its work from. It is optional by design: a pass that cannot cheaply count
+its backlog omits it and is judged as before.
+
 ### Why the repo lives in `~/dev/`, not `~/Documents/`
 
 macOS TCC protects `~/Documents`, `~/Desktop` and `~/Downloads`, and the two
@@ -198,7 +233,7 @@ All report-only inside `scrape:all`; run any of them directly.
 | --------------------------------- | -------------------------------------------------------------------- |
 | `check:relations`                 | cross-snapshot FK breakage (findings→claims, votes→plenos, …)        |
 | `check:cadence`                   | snapshots past their expected refresh interval                       |
-| `check:runs`                      | a run that reported success without doing work                       |
+| `check:runs`                      | a run that reported success without doing work — or without trying   |
 | `check:citations`                 | a published claim whose citation no longer holds                     |
 | `check:guards`                    | a guard in this table that nothing invokes                           |
 | `check:drift`, `check:vocabulary` | upstream shape / vocabulary changes                                  |
