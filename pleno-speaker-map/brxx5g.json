@@ -1,0 +1,1112 @@
+{
+  "plenoId": "brxx5g",
+  "generatedAt": "2026-08-15T20:04:54.143Z",
+  "model": "gemini-3.5-flash",
+  "promptVersion": "speaker-map-v2",
+  "chunkSeconds": 600,
+  "segments": [
+    {
+      "start": 673,
+      "end": 677,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Bueno, que va despaig a tot el seu test."
+    },
+    {
+      "start": 677,
+      "end": 680,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Bueno, espai a tot el seu test."
+    },
+    {
+      "start": 680,
+      "end": 682,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Ja estem tots, val?"
+    },
+    {
+      "start": 682,
+      "end": 684,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Bueno, anem a començar el ple."
+    },
+    {
+      "start": 686,
+      "end": 689,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Anem a començar el ple ordinari."
+    },
+    {
+      "start": 689,
+      "end": 694,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Eh, sabeu que és un ple que mos pilla en ple mundial, que a lo millor tenim una partida, un partit important."
+    },
+    {
+      "start": 694,
+      "end": 700,
+      "speaker": "c01/SPEAKER_00",
+      "text": "I que, bueno, depenent els temps que utilitzeu, escoltarem els gols d'Espanya des d'ací o els celebrarem ahí."
+    },
+    {
+      "start": 700,
+      "end": 707,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Jo pregaria que tot el món s'ajuste als temps i que puguem anar tots ahí baix a celebrar-ho, però si no, no passa res, que el debat seguirà i lo important és el ple, val? I que Espanya guanye."
+    },
+    {
+      "start": 709,
+      "end": 713,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Eh, anem ahí al primer punt de l'ordre del dia, que és l'aprovació de l'acta anterior. Alguna qüestió de l'acta?"
+    },
+    {
+      "start": 713,
+      "end": 718,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Aprovem l'acta, vale."
+    },
+    {
+      "start": 718,
+      "end": 727,
+      "speaker": "c01/SPEAKER_00",
+      "text": "El segon punt, que és aprovació per l'Ajuntament de Riba-roja de la modificació dels estatuts de la Mancomunitat Camp de Túria. José Ángel."
+    },
+    {
+      "start": 727,
+      "end": 730,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Sí, bona vesprada, alcalde."
+    },
+    {
+      "start": 730,
+      "end": 735,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Eh, bueno, lo que hacemos es adaptar los estatutos de la Mancomunitat Camp de Túria a la ley veintiuno barra dos mil dieciocho de mancomunidades de la Comunitat Valenciana."
+    },
+    {
+      "start": 735,
+      "end": 740,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Con esta adaptación lo que hacemos es mejorar la seguridad jurídica de la entidad, regula con mayor claridad el funcionamiento de sus órganos de gobierno,"
+    },
+    {
+      "start": 740,
+      "end": 747,
+      "speaker": "c01/SPEAKER_01",
+      "text": "actualiza el régimen económico y administrativo y establece procedimientos más definidos para cuestiones como la modificación de los propios estatutos, la incorporación o separación"
+    },
+    {
+      "start": 747,
+      "end": 750,
+      "speaker": "c01/SPEAKER_01",
+      "text": "de municipios y el funcionamiento interno de la mancomunitat."
+    },
+    {
+      "start": 750,
+      "end": 755,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Definitiva, mejora la parte jurídica de lo que, cómo funcionan las mancomunidades. Gracias."
+    },
+    {
+      "start": 758,
+      "end": 761,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Alguna qüestió d'este punt de l'ordre del dia?"
+    },
+    {
+      "start": 761,
+      "end": 763,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Passem a la votació."
+    },
+    {
+      "start": 770,
+      "end": 773,
+      "speaker": "c01/SPEAKER_00",
+      "text": "S'aprova per unanimitat. Passem al punt, al següent punt de l'ordre del dia,"
+    },
+    {
+      "start": 773,
+      "end": 779,
+      "speaker": "c01/SPEAKER_00",
+      "text": "el punt tres, que és modificació de les bases d'execució del pressupost municipal dos mil vint-i-sis. José Ángel."
+    },
+    {
+      "start": 779,
+      "end": 787,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Sí. Sí? Bueno, sí, vale."
+    },
+    {
+      "start": 787,
+      "end": 793,
+      "speaker": "c01/SPEAKER_01",
+      "text": "En este caso se, en concreto se modifican tres bases de ejecución presupuestaria y que afectan al departamento de tesorería con intervención."
+    },
+    {
+      "start": 793,
+      "end": 800,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Son la base veintiuno punto seis del reconocimiento de la obligación y tramitación de las facturas presentadas en cuanto a la estimación y proceso de pago de intereses a proveedores."
+    },
+    {
+      "start": 800,
+      "end": 806,
+      "speaker": "c01/SPEAKER_01",
+      "text": "La siguiente base que se modifica es la base veintisiete en cuanto a la ordenación del pago y el pago material"
+    },
+    {
+      "start": 806,
+      "end": 813,
+      "speaker": "c01/SPEAKER_01",
+      "text": "permitiendo la acumulación de fases de autorización, disposición, reconocimiento con la propia orden de pago para los gastos correspondientes a pasivos financieros."
+    },
+    {
+      "start": 813,
+      "end": 819,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Y la base cuarenta y tres, que refuerza el control de la tesorería municipal y se regulan con mayor precisión los arqueos,"
+    },
+    {
+      "start": 819,
+      "end": 824,
+      "speaker": "c01/SPEAKER_01",
+      "text": "clarificando dos tipos de arqueo, tanto el ordinario como el extraordinario."
+    },
+    {
+      "start": 824,
+      "end": 830,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Y por otra parte, los estados de tesorería a fecha del último día de cada mes con dación cuenta en la junta de, de gobierno, perdón. Gracias."
+    },
+    {
+      "start": 833,
+      "end": 836,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Paraules d'este punt?"
+    },
+    {
+      "start": 836,
+      "end": 838,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Alguna qüestió? Passem a la votació."
+    },
+    {
+      "start": 849,
+      "end": 852,
+      "speaker": "c01/SPEAKER_00",
+      "text": "S'aprova per unanimitat."
+    },
+    {
+      "start": 852,
+      "end": 854,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Això fou de veres, eh?"
+    },
+    {
+      "start": 854,
+      "end": 857,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Anem al punt quatre."
+    },
+    {
+      "start": 857,
+      "end": 865,
+      "speaker": "c01/SPEAKER_00",
+      "text": "El punt d'urbanisme. Resolució de la condició d'agent urbanitzador de la UE número dos del sector NPR u, La Gabina. Teresa."
+    },
+    {
+      "start": 865,
+      "end": 868,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Sí, bueno, pues buenas tardes a todos."
+    },
+    {
+      "start": 868,
+      "end": 873,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Si habéis visto el expediente, eh, esta unidad de ejecución se remonta al dos mil,"
+    },
+    {
+      "start": 873,
+      "end": 875,
+      "speaker": "c01/SPEAKER_02",
+      "text": "al dos mil tres."
+    },
+    {
+      "start": 875,
+      "end": 880,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Hemos traído en varios plenos actuaciones, en el expediente tenéis todo el correlato, pero por irnos ya a lo más reciente,"
+    },
+    {
+      "start": 880,
+      "end": 886,
+      "speaker": "c01/SPEAKER_02",
+      "text": "sabéis que en el pleno de, de uno de diciembre de dos mil veinticinco iniciábamos el expediente de resolución de oficio de la adjudicación de la mercantil Atrota"
+    },
+    {
+      "start": 886,
+      "end": 889,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Atrota Belladona para, eh, La Gabina."
+    },
+    {
+      "start": 889,
+      "end": 895,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Después de, de esa aprobación en el pleno y de iniciar el expediente, eh, se presentó por parte del agente urbanizador alegaciones en un documento que presentaron con fecha ocho de enero."
+    },
+    {
+      "start": 895,
+      "end": 901,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Por acuerdo plenario del nueve de febrero resolvimos dichas alegaciones y solicitamos dictamen al Consell Jurídic Consultiu."
+    },
+    {
+      "start": 901,
+      "end": 907,
+      "speaker": "c01/SPEAKER_02",
+      "text": "El Consell, el Consell Jurídic Consultiu, eh, nos presentó expediente, eh, relativo a esa dicha resolución en el que, eh, confirman que procede la resolución de dicha adjudicación del programa."
+    },
+    {
+      "start": 907,
+      "end": 914,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Por todo ello, es lo que traemos a pleno ya después de todos los pasos que se han dado, los siguientes puntos."
+    },
+    {
+      "start": 914,
+      "end": 921,
+      "speaker": "c01/SPEAKER_02",
+      "text": "En primer lugar, declarar el alzamiento de la suspensión del plazo máximo para resolver y notificar el procedimiento de referencia."
+    },
+    {
+      "start": 921,
+      "end": 926,
+      "speaker": "c01/SPEAKER_02",
+      "text": "En segundo lugar, declarar caducidad del programa de esa unidad de ejecución dos de La Gabina."
+    },
+    {
+      "start": 926,
+      "end": 929,
+      "speaker": "c01/SPEAKER_02",
+      "text": "En tercer lugar, resolver la, la adjudicación a dicho agente urbanizador."
+    },
+    {
+      "start": 929,
+      "end": 935,
+      "speaker": "c01/SPEAKER_02",
+      "text": "En cuarto lugar, comunicar al Consell Jurídic Consultiu el presente acuerdo en un plazo de quince días siguientes a la adopción de, del acuerdo plenario."
+    },
+    {
+      "start": 935,
+      "end": 943,
+      "speaker": "c01/SPEAKER_02",
+      "text": "En quinto lugar, una vez se firme en vía administrativa, publicar el presente acuerdo en el Diario Oficial de la Provincia, previa remisión de un certificado del mismo a la Conselleria de Territorio, de Territori, perdón."
+    },
+    {
+      "start": 943,
+      "end": 947,
+      "speaker": "c01/SPEAKER_02",
+      "text": "En sexto lugar, inscribir la caducidad de dicha programa de ese de dicho PAI."
+    },
+    {
+      "start": 947,
+      "end": 952,
+      "speaker": "c01/SPEAKER_02",
+      "text": "En séptimo, notificar el presente acuerdo a Atrota Belladona y a los interesados, a los propietarios a los efectos oportunos."
+    },
+    {
+      "start": 952,
+      "end": 959,
+      "speaker": "c01/SPEAKER_02",
+      "text": "En octavo, declarar que la adjudicación, la actuación integrada de la unidad de ejecución dos se desarrollará por gestión indirecta para la finalización de dicho programa."
+    },
+    {
+      "start": 959,
+      "end": 963,
+      "speaker": "c01/SPEAKER_02",
+      "text": "En noveno, comunicar el presente acuerdo a los departamentos de Urbanismo y Secretaría."
+    },
+    {
+      "start": 963,
+      "end": 970,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Y por último, como siempre, pues, eh, facultar al alcalde para la firma de cuantos actos sean necesarios en todo el trámite. Nada más."
+    },
+    {
+      "start": 970,
+      "end": 972,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Ah, perdón."
+    },
+    {
+      "start": 972,
+      "end": 975,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Paraules d'este punt?"
+    },
+    {
+      "start": 975,
+      "end": 977,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Alguna qüestió més?"
+    },
+    {
+      "start": 977,
+      "end": 979,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Nada, pues, bueno, resolvemos. Es una unidad de ejecución que, como sabéis, eh, ha llevado todo un, un histórico desde el dos mil quince que estamos aquí."
+    },
+    {
+      "start": 979,
+      "end": 986,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Y parece ser que va a ser otra de las unidades que, por mediación de los propios propietarios y agentes externos, pues vayamos a mover junto con otras actuaciones"
+    },
+    {
+      "start": 986,
+      "end": 992,
+      "speaker": "c01/SPEAKER_02",
+      "text": "que en este momento estamos en un, en un momento muy positivo en el que parece que unidades de ejecución se vayan a poner en marcha, tanto directamente como son las propias que genera el ayuntamiento."
+    },
+    {
+      "start": 992,
+      "end": 998,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Sabéis que siempre lo decimos porque los vecinos están muy preocupados por el tema. Son cinco o seis unidades las que tenemos ahí, son veintidós las que tenemos empantanadas,"
+    },
+    {
+      "start": 998,
+      "end": 1004,
+      "speaker": "c01/SPEAKER_02",
+      "text": "pero cinco de ellas, dentro de la medida que podemos, pues iniciar los trámites, más aparte aquellas que se están moviendo de una manera particular. Nada más."
+    },
+    {
+      "start": 1004,
+      "end": 1007,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Bueno, ¿alguna paraula més d'este punt?"
+    },
+    {
+      "start": 1007,
+      "end": 1008,
+      "speaker": "c01/SPEAKER_00",
+      "text": "No?"
+    },
+    {
+      "start": 1008,
+      "end": 1013,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Com que no n'hi ha més paraules, sí que volia dir que"
+    },
+    {
+      "start": 1013,
+      "end": 1016,
+      "speaker": "c01/SPEAKER_00",
+      "text": "perquè pense que el veí té dret a saber-ho."
+    },
+    {
+      "start": 1016,
+      "end": 1020,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Com bé ha dit la regidora, són, eh, vint-i-una o vint-i-dues unitats d'execució que es quedaren empantanades"
+    },
+    {
+      "start": 1020,
+      "end": 1027,
+      "speaker": "c01/SPEAKER_00",
+      "text": "en l'època, eh, que tot el món volia guanyar molts diners en l'urbanisme."
+    },
+    {
+      "start": 1027,
+      "end": 1030,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Ara no tenim vivenda, no tenim vivenda,"
+    },
+    {
+      "start": 1030,
+      "end": 1035,
+      "speaker": "c01/SPEAKER_00",
+      "text": "pero en aquell moment tots, fora del pla general, alguns, no, no, no volien deixar d'especular."
+    },
+    {
+      "start": 1035,
+      "end": 1041,
+      "speaker": "c01/SPEAKER_00",
+      "text": "I jo volia dir que este PAI en concret ha sigut per a mi també una sorpresa quan hem començat a estudiar-lo, perquè es feu sense autorització."
+    },
+    {
+      "start": 1041,
+      "end": 1046,
+      "speaker": "c01/SPEAKER_00",
+      "text": "És a dir, eh, agafaren, l'ajuntament pareixia que no existia,"
+    },
+    {
+      "start": 1046,
+      "end": 1049,
+      "speaker": "c01/SPEAKER_00",
+      "text": "obriren carrers,"
+    },
+    {
+      "start": 1049,
+      "end": 1051,
+      "speaker": "c01/SPEAKER_00",
+      "text": "vamos, ciutat sense llei."
+    },
+    {
+      "start": 1051,
+      "end": 1056,
+      "speaker": "c01/SPEAKER_00",
+      "text": "I tenim vint-i-una unitats d'execució, és lo que significa per a l'urbanisme això."
+    },
+    {
+      "start": 1056,
+      "end": 1061,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Estem parlant de centenars de propietaris i centenars de veïns i veïnes"
+    },
+    {
+      "start": 1061,
+      "end": 1067,
+      "speaker": "c01/SPEAKER_00",
+      "text": "que per una mala praxi urbanística durant la última dècada del Partit Popular,"
+    },
+    {
+      "start": 1067,
+      "end": 1071,
+      "speaker": "c01/SPEAKER_00",
+      "text": "pues han patit i han sofrit lo que és quan governa el Partit Popular."
+    },
+    {
+      "start": 1071,
+      "end": 1073,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Que és, pues això,"
+    },
+    {
+      "start": 1073,
+      "end": 1078,
+      "speaker": "c01/SPEAKER_00",
+      "text": "obrir el sòl, especular i negociar, eh, diríem,"
+    },
+    {
+      "start": 1078,
+      "end": 1084,
+      "speaker": "c01/SPEAKER_00",
+      "text": "de vegades de manera, almenys, sospitosa sobre terrenys d'altres persones."
+    },
+    {
+      "start": 1084,
+      "end": 1089,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Mos ha passat en tota la València la Vella, totes eixes unitats d'actuació,"
+    },
+    {
+      "start": 1089,
+      "end": 1097,
+      "speaker": "c01/SPEAKER_00",
+      "text": "mos ha passat en La Gabina, ens ha passat en Els Pous, ens ha passat en el NPR u, en, en Casco u, perdón, Casco u, Casco cinc,"
+    },
+    {
+      "start": 1097,
+      "end": 1101,
+      "speaker": "c01/SPEAKER_00",
+      "text": "i en, en definitiva, hem trobat, pues això, que volien fer porxinos, tres mil vivendes, que era fora del pla general, i estaven a punt de fer-ho, eh? Si no se'ls carrega el Suprem, haguérem tingut un desastre ahí."
+    },
+    {
+      "start": 1101,
+      "end": 1109,
+      "speaker": "c01/SPEAKER_00",
+      "text": "És normal que alguns estiguen en contra. I"
+    },
+    {
+      "start": 1109,
+      "end": 1116,
+      "speaker": "c01/SPEAKER_00",
+      "text": "eh, eh, per contra o sorpresa, eh, on tenim que actuar, que era en estes unitats per a tindre vivendes, per a haver facilitat els veïns i veïnes que, i propietaris, que tinguen més vivenda i, i que, i defensar els seus interessos, estaven a unes altres coses."
+    },
+    {
+      "start": 1116,
+      "end": 1121,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Per tant, els, els propietaris de, alguns propietaris de La Gabina són els sofridors, eh, de una mala praxi urbanística que han tingut al voltant des de que estem governant."
+    },
+    {
+      "start": 1121,
+      "end": 1124,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Eh, per tant, volia apuntar-ho perquè..."
+    },
+    {
+      "start": 1200,
+      "end": 1211.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "que dir la regidora, però sé que l'esforç que s'està fent de l'urbanisme és tremend en un moment que tenim la DANA, que tenim que tenim tots els expedients de de reconstrucció i, a més, les unitats d'execució, que per sort, sí que és veritat que"
+    },
+    {
+      "start": 1211.5,
+      "end": 1223.2,
+      "speaker": "c02/SPEAKER_00",
+      "text": "n'hi ha demanda tant, bueno, n'hi ha demanda del de la gent, lògicament, però també n'hi ha demanda de la part privada en el sentit de invertir i i crear vivenda nova."
+    },
+    {
+      "start": 1223.2,
+      "end": 1225.8,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Passem a la votació d'este punt, per favor."
+    },
+    {
+      "start": 1241,
+      "end": 1254.8,
+      "speaker": "c02/SPEAKER_00",
+      "text": "S'aprova per unanimitat. Passem al següent punt, el cinquè, que és el punt de d'igualtat, expedient tres quatre dos sobre l'acord relatiu a l'aprovació del tercer pla d'igualtat de l'Ajuntament de Riba-roja. La regidora, Raquel."
+    },
+    {
+      "start": 1254.8,
+      "end": 1268.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Gracias, alcalde. Bueno, hoy traemos a aprobación el tercer plan de igualdad del Ayuntamiento de Riba-roja, una herramienta fundamental para seguir avanzando hacia una administración más justa, igualitaria y comprometida"
+    },
+    {
+      "start": 1268.5,
+      "end": 1274.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "con los derechos de todas las personas que forman parte de nuestra plantilla."
+    },
+    {
+      "start": 1274.5,
+      "end": 1287.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Este plan tiene como objetivo incorporar de manera transversal el principio de igualdad entre mujeres y hombres en la organización y el funcionamiento interno del ayuntamiento,"
+    },
+    {
+      "start": 1287.5,
+      "end": 1298.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "cumplir con la obligación legal y consolidar una cultura organizativa basada en la igualdad de oportunidades, la corresponsabilidad y el respeto."
+    },
+    {
+      "start": 1298.5,
+      "end": 1311.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "El documento ha sido elaborado mediante un proceso de negociación entre la representación legal del personal y la representación del ayuntamiento,"
+    },
+    {
+      "start": 1311.5,
+      "end": 1322.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "constituyéndose la comisión negociadora y acordándose las acciones que se desarrollarán durante los próximos cuatro años."
+    },
+    {
+      "start": 1322.5,
+      "end": 1333.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "El plan se articula en nueve grandes áreas de actuación: el acceso al empleo público y la promoción profesional en condiciones de igualdad,"
+    },
+    {
+      "start": 1333.5,
+      "end": 1347.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "la conciliación corresponsable de la vida personal, familiar y laboral, la formación en igualdad, el cumplimiento del principio de presencia equilibrada,"
+    },
+    {
+      "start": 1347.5,
+      "end": 1360.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "la prevención del acoso sexual y por razón de sexo, las retribuciones, la protección de los derechos laborales de las víctimas de violencia de género,"
+    },
+    {
+      "start": 1360.5,
+      "end": 1372.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "las condiciones de trabajo y la prevención de riesgos laborales y, por último, una comunicación inclusiva e igualitaria."
+    },
+    {
+      "start": 1372.5,
+      "end": 1389.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "La aprobación de este plan se fundamenta en un sólido marco normativo encabezado por la Constitución Española y la Ley Orgánica tres dos mil siete para la igualdad efectiva de mujeres y hombres,"
+    },
+    {
+      "start": 1389.5,
+      "end": 1401.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "así como el resto de la normativa estatal y autonómica que establece la obligación de las administraciones públicas de promover la igualdad real efectiva,"
+    },
+    {
+      "start": 1401.5,
+      "end": 1415.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "de aprobar los planes específicos en el ámbito de empleo público. Además, el expediente cuenta con un informe jurídico favorable de la secretaría municipal. Por todo ello, se propone al pleno:"
+    },
+    {
+      "start": 1415.5,
+      "end": 1428.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "aprobar el tercer plan de igualdad del Ayuntamiento de Riba-roja, proceder a su inscripción en el registro de planes de igualdad, dar traslado del acuerdo a la representación legal del personal,"
+    },
+    {
+      "start": 1428.5,
+      "end": 1441.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "publicar el plan para su conocimiento general y encomendar a la comisión de igualdad el seguimiento y la evaluación de las medidas previstas."
+    },
+    {
+      "start": 1441.5,
+      "end": 1454,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Con este acuerdo, reafirmamos el compromiso de este ayuntamiento con la igualdad de oportunidades, la eliminación de cualquier forma de discriminación"
+    },
+    {
+      "start": 1454,
+      "end": 1459.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "y la mejora continua de las condiciones de trabajo de nuestra plantilla. Gracias."
+    },
+    {
+      "start": 1459.5,
+      "end": 1462,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Hi ha paraules en este aspecte? Adelante."
+    },
+    {
+      "start": 1462,
+      "end": 1475.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Gràcies, senyor alcalde. Bones vespres. Bueno, nosaltres ens hem ficat en contacte amb la regidora, amb Raquel, i amb Vero, la tècnica d'igualtat."
+    },
+    {
+      "start": 1475.5,
+      "end": 1486.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Havíem fullejat el pla d'igualtat i, bueno, dir que si de algo peca és d'igualtat l'Ajuntament de Riba-roja, la veritat."
+    },
+    {
+      "start": 1486.5,
+      "end": 1498.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Bretxa salarial no existix o quasi no existix. Els puestos més alts ocupats estan ocupats, perdó, per dones."
+    },
+    {
+      "start": 1498.5,
+      "end": 1512.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "I la plantilla té, pues, en algunes zones, massa masculinització i en altres zones, massa feminització. O sea, que podem dir que que la igualtat és real, és és verídica."
+    },
+    {
+      "start": 1512.5,
+      "end": 1524.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "I jo soles dir que algunes debilitats que ha parlat amb Raquel també, per exemple, el setanta per cent de la plantilla no coneix informació sobre les mesures de conciliació."
+    },
+    {
+      "start": 1524.5,
+      "end": 1537.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "No sé si si se fa saber o si se fa saber i no presten atenció els treballadors. També hem parlat, per exemple, que no vos ho he comentat, respecte a els habitacles de les dones que necessiten vestuaris."
+    },
+    {
+      "start": 1537.5,
+      "end": 1546.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "No sé com estarà, perquè no he parlat amb ningú, però en la policia les dones tenien un mini vestuari."
+    },
+    {
+      "start": 1546.5,
+      "end": 1559.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "No sé si seguirà igual o no. Primero pregunte, però si seguix igual, n'hi haurà que fer algo per a que per a que canvie, que no sé si s'ha canviat, la veritat, no no he entrat per ahí per a res."
+    },
+    {
+      "start": 1559.5,
+      "end": 1572.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Però bueno, nosaltres votarem a favor d'este pla d'igualtat, és el tercer, la plantilla està molt equilibrada i donar l'enhorabona als sindicats, als treballadors i a l'ajuntament per per este pla. Gràcies."
+    },
+    {
+      "start": 1572.5,
+      "end": 1575.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Gràcies. Més paraules? José Luis, Vox."
+    },
+    {
+      "start": 1575.5,
+      "end": 1589.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Muchas gracias, alcalde. Desde Vox, por supuesto, defendemos la igualdad real entre personas y protección efectiva de víctimas."
+    },
+    {
+      "start": 1589.5,
+      "end": 1601.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "No nos oponemos a medidas útiles contra el acoso o la violencia, pero sí rechazamos planes que politicen la administración,"
+    },
+    {
+      "start": 1601.5,
+      "end": 1612.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "carguen de burocracia el ayuntamiento y prioricen ideologías sobre criterios jurídicos y de eficacia."
+    },
+    {
+      "start": 1612.5,
+      "end": 1623.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Apoyaremos acciones concretas proporcionadas y neutrales que protegen a los trabajadores y optimicen recursos."
+    },
+    {
+      "start": 1623.5,
+      "end": 1637.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Y apostamos por una igualdad jurídica, como marca la Constitución, y el trato igualitario por personas, sin crear políticas que separen por sexo, porque la ley ya garantiza la no discriminación."
+    },
+    {
+      "start": 1637.5,
+      "end": 1652.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Las medidas deben centrarse en proteger las víctimas en concreto, no en políticas de género de género que introducen una ideología en la política municipal. Gracias."
+    },
+    {
+      "start": 1652.5,
+      "end": 1656.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Més paraules? José Manuel, Esquerra Unida Podem."
+    },
+    {
+      "start": 1656.5,
+      "end": 1671.5,
+      "speaker": "c02/SPEAKER_04",
+      "text": "Gràcies. Nosaltres, en primer lloc, volíem agrair a la regidora d'igualtat, també a la tècnica Vero d'igualtat, per un el treball amb l'elaboració d'este pla, dos també per comunicar-se amb nosaltres"
+    },
+    {
+      "start": 1671.5,
+      "end": 1678.5,
+      "speaker": "c02/SPEAKER_04",
+      "text": "i al final pel treball realitzat."
+    },
+    {
+      "start": 1678.5,
+      "end": 1692.5,
+      "speaker": "c02/SPEAKER_04",
+      "text": "Parlant amb Vero i també amb Raquel, bueno, considere que que este pla és una ferramenta molt útil i també és una obligació de de tots els ajuntaments, de l'administració pública."
+    },
+    {
+      "start": 1692.5,
+      "end": 1705.5,
+      "speaker": "c02/SPEAKER_04",
+      "text": "En referència al contingut, considere que és importantíssim quan es parla d'aspectes com la conciliació, la formació en igualtat, la prevenció de l'assetjament sexual i per raó de sexe, la igualtat retributiva"
+    },
+    {
+      "start": 1705.5,
+      "end": 1718.5,
+      "speaker": "c02/SPEAKER_04",
+      "text": "o la presència equilibrada de dones i homes en els òrgans de decisió. Crec que estes qüestions són essencialment importants, però també hem de continuar insistint en que este tema no solament estiga en la part d'igualtat,"
+    },
+    {
+      "start": 1718.5,
+      "end": 1731.5,
+      "speaker": "c02/SPEAKER_04",
+      "text": "sinó que siga transversal en tots els àmbits, a l'igual que en este, en recursos humans, en contractació i en tots els departaments."
+    },
+    {
+      "start": 1731.5,
+      "end": 1745.5,
+      "speaker": "c02/SPEAKER_04",
+      "text": "M'agradaria destacar punts que he vist que són prou interessants o novedosos, com hem parlat també amb Raquel i amb la tècnica, com és l'adaptació dels EPIs o la revisió dels protocols mèdics o la incorporació de la salut menstrual"
+    },
+    {
+      "start": 1745.5,
+      "end": 1759.5,
+      "speaker": "c02/SPEAKER_04",
+      "text": "o el tema del teletreball per a la conciliació, que és molt important i a més és molt novedós. També destacar el percentatge molt alt d'execució de les accions en referència a l'anterior pla d'igualtat,"
+    },
+    {
+      "start": 1759.5,
+      "end": 1774,
+      "speaker": "c02/SPEAKER_04",
+      "text": "per tant, crec que este pla és un èxit, crec que és un molt bon treball per part del departament d'igualtat, per part de la tècnica, per part de la regidora, aixina que agrair esta proposta, este pla, este treball"
+    },
+    {
+      "start": 1774,
+      "end": 1779,
+      "speaker": "c02/SPEAKER_04",
+      "text": "i, per suposat, anem a votar a favor. Gràcies."
+    },
+    {
+      "start": 1779,
+      "end": 1782.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Més paraules? Compromís, Rafa."
+    },
+    {
+      "start": 1782.5,
+      "end": 1797.5,
+      "speaker": "c02/SPEAKER_05",
+      "text": "Gràcies. Bona vesprada a totes i a tots. Bueno, en primer lloc, com com fins ara quasi tots els portaveus, agrair a la regidora i sobretot a la tècnica, que és en la que ens hem pogut reunir per a comentar este pla,"
+    },
+    {
+      "start": 1797.5,
+      "end": 1808.5,
+      "speaker": "c02/SPEAKER_05",
+      "text": "també a la regidora, evidentment, pero bueno, pues veníem de un segon pla d'igualtat molt molt molt ambiciós, val? Este és un poquet més, creguem, més real."
+    },
+    {
+      "start": 1808.5,
+      "end": 1821.5,
+      "speaker": "c02/SPEAKER_05",
+      "text": "Aixina i tot, s'han complit moltes moltes de les propostes que portava l'anterior pla i creguem que eixa és la línia a seguir."
+    },
+    {
+      "start": 1821.5,
+      "end": 1834,
+      "speaker": "c02/SPEAKER_05",
+      "text": "Una línia en la que defensem la igualtat entre hòmens i dones contra el negacionisme i el patriarcat caspós. Gràcies."
+    },
+    {
+      "start": 1834,
+      "end": 1837,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Més paraules? Raquel."
+    },
+    {
+      "start": 1837,
+      "end": 1850,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Bueno, per anar contestant, en el diagnòstic és un diagnòstic que fa com una foto, anem a dir, de com es troba actualment el nostre ajuntament. Les dades que té són molt bones."
+    },
+    {
+      "start": 1850,
+      "end": 1860,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Efectivamente, estem l'ajuntament està composat per una majoria de dones i també, sobretot, d'una majoria en quant a major responsabilitat."
+    },
+    {
+      "start": 1860,
+      "end": 1871,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Això ens fa situar-nos, pues, en un en una posició pionera de cara a molts ajuntaments, pues, que encara estan més masculinitzats. Sí que volia ressaltar les dades de que el setanta-cinc per cent de la plantilla"
+    },
+    {
+      "start": 1871,
+      "end": 1882,
+      "speaker": "c02/SPEAKER_01",
+      "text": "manifesta haver rebut formació i sensibilització en matèria d'igualtat i violència de gènere, és a dir, que tot l'esforç que es fa els tres-cents seixanta-cinc dies de l'any en donar esta formació"
+    },
+    {
+      "start": 1882,
+      "end": 1892,
+      "speaker": "c02/SPEAKER_01",
+      "text": "i en que siga ben rebuda per la plantilla, no?"
+    },
+    {
+      "start": 1892,
+      "end": 1909,
+      "speaker": "c02/SPEAKER_01",
+      "text": "I també una de les dades molt importants que ha reflexat este diagnòstic és el huitanta coma nou per cent de la plantilla considera que l'ajuntament, en quant a l'atenció de les víctimes de violència de gènere, disposa dels mecanismes i recursos adequats per a que les treballadores puguen informar-se i exercir els seus drets de professionalitat i confidencialitat necessàries."
+    },
+    {
+      "start": 1909,
+      "end": 1920,
+      "speaker": "c02/SPEAKER_01",
+      "text": "És a dir, és un diagnòstic molt bo. També en matèria retributiva, efectivament, com comentava el portaveu del Partit Popular,"
+    }
+  ],
+  "rows": [
+    {
+      "label": "c01/SPEAKER_01",
+      "bloc": "PSOE",
+      "slug": "jose-angel-hernandez-carrizosa",
+      "heardAs": "José Ángel",
+      "evidence": [
+        {
+          "spokenBy": "c01/SPEAKER_00",
+          "at": 726,
+          "quote": "José Ángel.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c01/SPEAKER_02",
+      "bloc": "PSOE",
+      "slug": "teresa-pozuelo-martin",
+      "heardAs": "Teresa",
+      "evidence": [
+        {
+          "spokenBy": "c01/SPEAKER_00",
+          "at": 864,
+          "quote": "Teresa.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c02/SPEAKER_01",
+      "bloc": "PSOE",
+      "slug": "raquel-pamblanco-paredes",
+      "heardAs": "Raquel",
+      "evidence": [
+        {
+          "spokenBy": "c02/SPEAKER_00",
+          "at": 1253,
+          "quote": "La regidora, Raquel",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c02/SPEAKER_03",
+      "bloc": "VOX",
+      "slug": "jose-luis-fernandez-santamaria",
+      "heardAs": "José Luis",
+      "evidence": [
+        {
+          "spokenBy": "c02/SPEAKER_00",
+          "at": 1574,
+          "quote": "José Luis, Vox",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c02/SPEAKER_04",
+      "bloc": "EU-Podem",
+      "slug": "jose-manuel-gallardo-martinez",
+      "heardAs": "José Manuel",
+      "evidence": [
+        {
+          "spokenBy": "c02/SPEAKER_00",
+          "at": 1654,
+          "quote": "José Manuel, Esquerra Unida Podem",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c02/SPEAKER_05",
+      "bloc": "Compromís",
+      "slug": "rafael-folgado-navarro",
+      "heardAs": "Rafa",
+      "evidence": [
+        {
+          "spokenBy": "c02/SPEAKER_00",
+          "at": 1781,
+          "quote": "Compromís, Rafa",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    }
+  ],
+  "rejected": [
+    {
+      "label": "c01/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "heard \"alcalde\" matches nobody"
+    },
+    {
+      "label": "c02/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "heard \"alcalde\" matches nobody"
+    },
+    {
+      "label": "c02/SPEAKER_02",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    }
+  ],
+  "stats": {
+    "chunksExpected": 20,
+    "chunksTranscribed": 3,
+    "failedChunks": [
+      {
+        "chunk": 3,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      },
+      {
+        "chunk": 4,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      },
+      {
+        "chunk": 5,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      },
+      {
+        "chunk": 6,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      },
+      {
+        "chunk": 7,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      },
+      {
+        "chunk": 8,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      },
+      {
+        "chunk": 9,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      },
+      {
+        "chunk": 10,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      },
+      {
+        "chunk": 11,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      },
+      {
+        "chunk": 12,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      },
+      {
+        "chunk": 13,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      },
+      {
+        "chunk": 14,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      },
+      {
+        "chunk": 15,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      },
+      {
+        "chunk": 16,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      },
+      {
+        "chunk": 17,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      },
+      {
+        "chunk": 18,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      },
+      {
+        "chunk": 19,
+        "why": "never attempted (chunk budget spent; resumes next run)"
+      }
+    ],
+    "labelsSeen": 9,
+    "rowsAccepted": 6,
+    "rowsRejected": 3,
+    "rejectedBy": {
+      "unresolvable": 3
+    },
+    "attemptedThisRun": 3,
+    "coverage": 0.11651307905285341
+  }
+}

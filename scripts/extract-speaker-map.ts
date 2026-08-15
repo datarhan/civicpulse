@@ -442,6 +442,7 @@ async function main() {
   let apiFailed = 0
   let apiInputTokens = 0
   let apiOutputTokens = 0
+  let apiThinkingTokens = 0
   const runLog = startRun('extract-speaker-map', {
     backend: 'gemini-api',
     model: MODEL,
@@ -453,8 +454,10 @@ async function main() {
         ok: s.ok + apiOk,
         failed: s.failed + apiFailed,
         // The audio is the whole bill and it was missing from this number.
-        tokens: s.tokens + apiInputTokens + apiOutputTokens,
-        costUSD: s.costUSD + usdFor(apiInputTokens, apiOutputTokens),
+        // Thinking is billed as output, so it goes on that side of the sum
+        // however it is reported.
+        tokens: s.tokens + apiInputTokens + apiOutputTokens + apiThinkingTokens,
+        costUSD: s.costUSD + usdFor(apiInputTokens, apiOutputTokens + apiThinkingTokens),
       }
     },
   })
@@ -750,7 +753,13 @@ async function main() {
           // built on accepted chunks alone would under-count the sweep by the
           // whole retry rate.
           apiInputTokens += answer.usage.inputTokens
-          apiOutputTokens += answer.usage.outputTokens + answer.usage.thinkingTokens
+          apiOutputTokens += answer.usage.outputTokens
+          // Kept apart from output even though it is billed as output. The
+          // first probe measured ~68k of output+thinking against ~22k of
+          // input per chunk, and whether that is the answer or the reasoning
+          // decides whether tuning the prompt is worth anything — merged, the
+          // question cannot be asked.
+          apiThinkingTokens += answer.usage.thinkingTokens
           const candidate = parseSpeakerMapResponse(answer.text)
           apiOk += 1
           coverage = referenceCoverage(
@@ -994,15 +1003,23 @@ async function main() {
         // The point of the line: sizing the sweep from a number somebody
         // measured instead of from one somebody remembered.
         (attempted > 0
-          ? `  tokens        ${(apiInputTokens + apiOutputTokens).toLocaleString('en-US')} over ` +
-            `${attempted} attempt(s) → ${Math.round((apiInputTokens + apiOutputTokens) / attempted).toLocaleString('en-US')}/chunk ` +
-            `(${apiInputTokens.toLocaleString('en-US')} in · ${apiOutputTokens.toLocaleString('en-US')} out+thinking)` +
-            `${
-              USD_PER_MTOK_IN || USD_PER_MTOK_OUT
-                ? ` · $${usdFor(apiInputTokens, apiOutputTokens).toFixed(4)} ` +
-                  `→ $${(usdFor(apiInputTokens, apiOutputTokens) / attempted).toFixed(4)}/chunk`
-                : ' · no rate supplied (GEMINI_USD_PER_MTOK_IN/OUT), so cost reads $0'
-            }\n`
+          ? (() => {
+              const billedOut = apiOutputTokens + apiThinkingTokens
+              const total = apiInputTokens + billedOut
+              const usd = usdFor(apiInputTokens, billedOut)
+              return (
+                `  tokens        ${total.toLocaleString('en-US')} over ${attempted} chunk(s) mapped ` +
+                `(${apiCalls} call(s)) → ${Math.round(total / attempted).toLocaleString('en-US')}/chunk\n` +
+                `                ${apiInputTokens.toLocaleString('en-US')} in · ` +
+                `${apiOutputTokens.toLocaleString('en-US')} out · ` +
+                `${apiThinkingTokens.toLocaleString('en-US')} thinking (billed as out)` +
+                `${
+                  USD_PER_MTOK_IN || USD_PER_MTOK_OUT
+                    ? ` · $${usd.toFixed(4)} → $${(usd / attempted).toFixed(4)}/chunk`
+                    : ' · no rate supplied (GEMINI_USD_PER_MTOK_IN/OUT), so cost reads $0'
+                }\n`
+              )
+            })()
           : ''),
     )
     for (const [slug, labels] of bySlug) {
