@@ -20,25 +20,38 @@
 // seis filas que el mapa no puede sostener miente sobre lo que el lector está
 // viendo: enseña seis categorías y entrega una mancha.
 //
-// No hay rampa que arregle eso, porque el canal está agotado por decreto. El
-// croma pertenece a los cinco veredictos y al acento de marca; los hexes que
-// quedan libres los ocupan los partidos (party-colors.js) y las otras capas de
-// este mismo mapa (petróleo #0E5B62 del gasto situado, ámbar #E08600 de DANA).
-// Elegir seis tonos aquí es chocar con algo que sí emite un juicio — que es
-// exactamente cómo Salud acabó una vez en el rojo de «contradicho».
+// La categoría va por DOS canales a la vez: color y forma.
 //
-// Así que la categoría va por FORMA, en una sola tinta. La forma es un canal que
-// este sistema no había gastado: no toma prestado el croma de ningún veredicto,
-// separa a 12 px lo que seis grises no separaban, y deja de confiar el
-// significado al color (WCAG 1.4.1, «uso del color»). Donde se pudo, la silueta
-// dice algo: la cruz es sanidad, el triángulo un árbol, el círculo un balón.
+// La forma se quedó porque es la que sobrevive a lo que el color no aguanta —el
+// solape en el casco urbano, un lector daltónico, una impresión en gris— y
+// porque un cuadrado no se parece a un círculo por muy juntos que caigan. Pero
+// la forma sola, en una tinta única, seguía leyéndose como una nube de marcas
+// negras: se distinguían de una en una, no de un vistazo. De un vistazo es como
+// se lee un mapa.
+//
+// El color es lo que da ese vistazo, y aquí hay una regla real que respetar:
+// §02 reserva el croma —cinco veredictos y un acento de marca— y los hexes de
+// los partidos viven en party-colors.js. Nada de eso se toca. Lo que sí se hace
+// ahora, y antes no, es COMPROBARLO: `tests/lib/civic-poi.test.js` importa
+// PARTY_COLORS y los tokens de veredicto y rechaza cualquier coincidencia, en
+// vez de confiar en que quien edite este fichero se acuerde. La regla que valía
+// la pena de aquella rampa no era «todo gris», era «no robes el croma de un
+// juicio»; eso se conserva, y encima con dientes.
+//
+// Los seis tonos son de mapa, no de pastilla: más apagados y más oscuros que los
+// tokens de veredicto (#C0392B no es el #dc2626 de «contradicho», #2E7D32 no es
+// el #16a34a de «corroborado»), y esquivan el petróleo del gasto y el ámbar de
+// DANA que ya pintan en esta misma capa. Donde se pudo, el par color+forma dice
+// algo: cruz roja es sanidad, triángulo verde un árbol, círculo un balón.
 
-/** Tinta única de la capa. Las siluetas van con halo blanco, así que su
- *  contraste se mide contra el halo (~17:1) y no contra la tesela — la rampa
- *  anterior sí dependía de la tesela, y por eso su extremo claro vivía pegado al
- *  mínimo de 3:1 de WCAG 1.4.11. */
-export const POI_INK = '#0F172A'
+/** Halo blanco de cada silueta. Es lo que hace legible un color medio sobre
+ *  parques, agua y cintas de autovía por igual, y lo que permite medir el
+ *  contraste contra el halo en vez de contra una tesela que cambia bajo el pie.
+ *  No es decoración. */
 export const POI_HALO = '#FFFFFF'
+
+/** Tinta de reserva: sólo la usa una categoría que no esté en el enum. */
+export const POI_INK = '#0F172A'
 
 /** Lado del lienzo SVG de un marcador. Las siluetas están centradas en (8,8). */
 export const POI_VIEWBOX = 16
@@ -60,14 +73,16 @@ export const POI_SHAPES = {
   cruz: 'M6.1 2.5H9.9V6.1H13.5V9.9H9.9V13.5H6.1V9.9H2.5V6.1H6.1Z',
 }
 
-/** Etiqueta + silueta por categoría cívica. Orden = orden de la leyenda. */
+/** Etiqueta + color + silueta por categoría cívica. Orden = orden de la leyenda.
+ *  Los dos canales son REDUNDANTES a propósito: cada uno solo ya identifica la
+ *  categoría, así que perder uno —daltonismo, gris, solape— no cuesta el dato. */
 export const POI_CATEGORIES = {
-  educacion: { label: 'Educación', shape: 'cuadrado' },
-  salud: { label: 'Salud', shape: 'cruz' },
-  verde: { label: 'Zonas verdes', shape: 'triangulo' },
-  deporte: { label: 'Deporte', shape: 'circulo' },
-  cultura: { label: 'Cultura', shape: 'rombo' },
-  civico: { label: 'Servicios públicos', shape: 'trianguloInvertido' },
+  educacion: { label: 'Educación', color: '#1F5FA8', shape: 'cuadrado' },
+  salud: { label: 'Salud', color: '#C0392B', shape: 'cruz' },
+  verde: { label: 'Zonas verdes', color: '#2E7D32', shape: 'triangulo' },
+  deporte: { label: 'Deporte', color: '#7B3FA0', shape: 'circulo' },
+  cultura: { label: 'Cultura', color: '#A3197D', shape: 'rombo' },
+  civico: { label: 'Servicios públicos', color: '#4E5A65', shape: 'trianguloInvertido' },
 }
 
 /**
@@ -85,19 +100,19 @@ export function poiShapePath(category) {
 }
 
 /**
- * Group POIs into a Map<category, {label, shape, path, items[]}>, in
+ * Group POIs into a Map<category, {label, color, shape, path, items[]}>, in
  * POI_CATEGORIES order, omitting categories with no POIs (so the legend never
  * lists an empty bucket).
  * @param {Array<{category:string}>} [pois]
- * @returns {Map<string, {label:string, shape:string, path:string, items:any[]}>}
+ * @returns {Map<string, {label:string, color:string, shape:string, path:string, items:any[]}>}
  */
 export function groupPoiByCategory(pois) {
   const out = new Map()
   for (const key of Object.keys(POI_CATEGORIES)) {
     const items = (pois ?? []).filter((p) => p.category === key)
     if (items.length === 0) continue
-    const { label, shape } = POI_CATEGORIES[key]
-    out.set(key, { label, shape, path: POI_SHAPES[shape], items })
+    const { label, color, shape } = POI_CATEGORIES[key]
+    out.set(key, { label, color, shape, path: POI_SHAPES[shape], items })
   }
   return out
 }

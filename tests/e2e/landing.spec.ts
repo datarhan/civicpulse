@@ -176,14 +176,25 @@ test.describe('Landing (/)', () => {
     expect(await page.locator('.cp-poi-marker').count()).toBeGreaterThan(5)
     await expect(page.locator('.cp-poi-legend')).toBeVisible()
 
-    // The category rides on the silhouette, not on a colour: six greys were one
-    // grey. Assert the legend draws as many DISTINCT shapes as it lists rows —
-    // a ramp that collapsed back to one encoding would satisfy "has a swatch".
-    const siluetas = await page
+    // The category rides on colour AND silhouette, and the legend has to deliver
+    // both: six slate steps were one colour, and a legend row that promises a
+    // distinction the map cannot draw is the defect this replaced. Asserted as
+    // rendered, not as configured — «has a swatch» is what the old ramp passed.
+    const swatches = await page
       .locator('.cp-poi-legend svg path')
-      .evaluateAll((ps) => ps.map((p) => p.getAttribute('d')))
-    expect(siluetas.length).toBeGreaterThan(3)
-    expect(new Set(siluetas).size).toBe(siluetas.length)
+      .evaluateAll((ps) =>
+        ps.map((p) => ({ d: p.getAttribute('d'), fill: p.getAttribute('fill') })),
+      )
+    expect(swatches.length).toBeGreaterThan(3)
+    expect(new Set(swatches.map((s) => s.d)).size).toBe(swatches.length)
+    expect(new Set(swatches.map((s) => s.fill)).size).toBe(swatches.length)
+    // and the marker on the map wears the same fill as the row that explains it
+    const fillsEnMapa = new Set(
+      await page
+        .locator('.cp-poi-marker svg path')
+        .evaluateAll((ps) => ps.map((p) => p.getAttribute('fill'))),
+    )
+    for (const { fill } of swatches) expect([...fillsEnMapa]).toContain(fill)
 
     await servicios.click()
     await expect(page.locator('.cp-poi-marker')).toHaveCount(0)

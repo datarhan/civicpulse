@@ -6,13 +6,14 @@ import { POI_CATEGORIES, POI_HALO, POI_INK, POI_SHAPES, POI_VIEWBOX } from '../.
 
 /**
  * Public-service points of interest (schools, health, parks, sport, culture,
- * civic buildings) from OSM, one category-SHAPED marker each. Hover shows the
- * name + category.
+ * civic buildings) from OSM, one marker each carrying the category in BOTH its
+ * colour and its silhouette. Hover shows the name + category.
  *
- * The category rides on the silhouette, not on a colour — see the §02 note in
- * lib/civic-poi.js for why six greys were one grey and why chroma is not
- * available here. The halo is what makes the ink legible over parks, water and
- * motorway ribbons alike, so it is not decoration.
+ * Two channels, deliberately redundant — see the note in lib/civic-poi.js. The
+ * colour is what makes the layer readable at a glance; the shape is what
+ * survives what colour cannot (a colour-blind reader, a greyscale print, six
+ * markers piled on the same block). The halo is what keeps a mid-tone legible
+ * over parks, water and motorway ribbons alike, so it is not decoration.
  *
  * The layer paints only when its own chip is on. It used to render dimmed
  * underneath the money layer as "context", which meant the landing opened with
@@ -47,11 +48,13 @@ export function CivicPoiLayer() {
         const cat = POI_CATEGORIES[p.category]
         const path = cat ? POI_SHAPES[cat.shape] : POI_SHAPES.circulo
         const unassigned = !cat
+        const fill = cat ? cat.color : 'none'
+        const stroke = unassigned ? POI_INK : POI_HALO
         // divIcon html is raw innerHTML — every value below is a module
         // constant, never the OSM-supplied name or category.
         const icon = L.divIcon({
           className: 'cp-poi-marker',
-          html: `<svg width="${POI_VIEWBOX}" height="${POI_VIEWBOX}" viewBox="0 0 ${POI_VIEWBOX} ${POI_VIEWBOX}" aria-hidden="true" focusable="false"><path d="${path}" fill="${unassigned ? 'none' : POI_INK}" stroke="${unassigned ? POI_INK : POI_HALO}" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
+          html: `<svg width="${POI_VIEWBOX}" height="${POI_VIEWBOX}" viewBox="0 0 ${POI_VIEWBOX} ${POI_VIEWBOX}" aria-hidden="true" focusable="false"><path d="${path}" fill="${fill}" stroke="${stroke}" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
           iconSize: [POI_VIEWBOX, POI_VIEWBOX],
           iconAnchor: [POI_VIEWBOX / 2, POI_VIEWBOX / 2],
         })
@@ -61,7 +64,9 @@ export function CivicPoiLayer() {
               <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }}>
                 <strong>{p.name}</strong>
                 <br />
-                <span style={{ fontWeight: 600 }}>{cat ? cat.label : p.category}</span>
+                <span style={{ color: cat ? cat.color : undefined, fontWeight: 600 }}>
+                  {cat ? cat.label : p.category}
+                </span>
               </div>
             </Tooltip>
           </Marker>

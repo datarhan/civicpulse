@@ -1,6 +1,6 @@
 // @ts-check
 import { useCivicPoi } from '../../../hooks/useCivicPoi'
-import { groupPoiByCategory, POI_HALO, POI_INK, POI_VIEWBOX } from '../../../lib/civic-poi'
+import { groupPoiByCategory, POI_HALO, POI_VIEWBOX } from '../../../lib/civic-poi'
 import { useT } from '../../../i18n'
 
 const cardStyle = {
@@ -23,13 +23,14 @@ const titleStyle = {
 }
 
 /** Legend for the civic-POI layer: one row per present category with its
- *  SILHOUETTE + count. Omits empty categories. Shown only while the layer is on.
+ *  coloured silhouette + count. Omits empty categories. Shown only while the
+ *  layer is on.
  *
- *  The swatch renders the same `d` the map marker does (both read
- *  lib/civic-poi.js), so a legend row cannot come to describe a shape the map
- *  stopped drawing — the failure the old colour ramp shipped in a subtler form,
- *  where six legend swatches promised a distinction the 10px dots could not
- *  make. */
+ *  The swatch renders the same `d` AND the same fill the map marker does (both
+ *  read lib/civic-poi.js), so a legend row cannot come to advertise a mark the
+ *  map stopped drawing. That is the failure the old slate ramp shipped in a
+ *  subtler form: six swatches promising a distinction the 10px dots could not
+ *  make. Here the swatch is the marker, at rest. */
 export function PoiLegend() {
   const t = useT()
   const { data } = useCivicPoi()
@@ -39,7 +40,7 @@ export function PoiLegend() {
     <div className="cp-poi-legend" style={cardStyle}>
       <div style={titleStyle}>{t('map.poi.title')}</div>
       <div style={{ display: 'grid', gap: 3 }}>
-        {[...grouped.entries()].map(([key, { label, path, items }]) => (
+        {[...grouped.entries()].map(([key, { label, color, path, items }]) => (
           <div
             key={key}
             style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 'var(--fs-micro)' }}
@@ -54,7 +55,7 @@ export function PoiLegend() {
             >
               <path
                 d={path}
-                fill={POI_INK}
+                fill={color}
                 stroke={POI_HALO}
                 strokeWidth={1.5}
                 strokeLinejoin="round"
