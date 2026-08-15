@@ -1,6 +1,6 @@
 // @ts-check
 import { useCivicPoi } from '../../../hooks/useCivicPoi'
-import { groupPoiByCategory } from '../../../lib/civic-poi'
+import { groupPoiByCategory, POI_HALO, POI_VIEWBOX } from '../../../lib/civic-poi'
 import { useT } from '../../../i18n'
 
 const cardStyle = {
@@ -22,32 +22,45 @@ const titleStyle = {
   marginBottom: 5,
 }
 
-/** Legend for the civic-POI layer: one row per present category with a colour
- *  swatch + count. Omits empty categories. Shown only while the layer is on. */
+/** Legend for the civic-POI layer: one row per present category with its
+ *  coloured silhouette + count. Omits empty categories. Shown only while the
+ *  layer is on.
+ *
+ *  The swatch renders the same `d` AND the same fill the map marker does (both
+ *  read lib/civic-poi.js), so a legend row cannot come to advertise a mark the
+ *  map stopped drawing. That is the failure the old slate ramp shipped in a
+ *  subtler form: six swatches promising a distinction the 10px dots could not
+ *  make. Here the swatch is the marker, at rest. */
 export function PoiLegend() {
   const t = useT()
   const { data } = useCivicPoi()
   const grouped = groupPoiByCategory(data?.pois)
   if (grouped.size === 0) return null
   return (
-    <div style={cardStyle}>
+    <div className="cp-poi-legend" style={cardStyle}>
       <div style={titleStyle}>{t('map.poi.title')}</div>
       <div style={{ display: 'grid', gap: 3 }}>
-        {[...grouped.entries()].map(([key, { label, color, items }]) => (
+        {[...grouped.entries()].map(([key, { label, color, path, items }]) => (
           <div
             key={key}
             style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 'var(--fs-micro)' }}
           >
-            <span
-              style={{
-                width: 9,
-                height: 9,
-                borderRadius: '50%',
-                background: color,
-                border: '1px solid #0B0F19',
-                flexShrink: 0,
-              }}
-            />
+            <svg
+              width={POI_VIEWBOX}
+              height={POI_VIEWBOX}
+              viewBox={`0 0 ${POI_VIEWBOX} ${POI_VIEWBOX}`}
+              aria-hidden="true"
+              focusable="false"
+              style={{ flexShrink: 0, display: 'block' }}
+            >
+              <path
+                d={path}
+                fill={color}
+                stroke={POI_HALO}
+                strokeWidth={1.5}
+                strokeLinejoin="round"
+              />
+            </svg>
             <span style={{ flex: 1, color: 'rgba(11,15,25,.75)' }}>{label}</span>
             <span className="mono" style={{ fontWeight: 700, color: '#0B0F19' }}>
               {items.length}
