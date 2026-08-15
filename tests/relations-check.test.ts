@@ -113,11 +113,14 @@ describe('runRelationsChecks', () => {
       items: [
         {
           claim: { id: 'c-ok', type: 'cita_verificable' },
-          verification: { verdict: 'verificado' },
+          // Con verificador anotado: la puerta sólo tiene por fundado lo que
+          // dice quién lo comprobó, y sin el campo esta fila caería a `toggle`
+          // por el motivo equivocado.
+          verification: { verdict: 'verificado', checkedAgainst: ['tenders'] },
         },
         {
           claim: { id: 'c-acu', type: 'acusacion_publica', accusationSubtype: 'factual' },
-          verification: { verdict: 'sin-datos' },
+          verification: { verdict: 'sin-datos', checkedAgainst: ['tenders'] },
         },
       ],
     }

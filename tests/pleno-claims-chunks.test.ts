@@ -37,7 +37,10 @@ function mkItem(
       plenoDate,
       segmentIndex,
     },
-    verification: { verdict, confidence: 0.5 },
+    // `checkedAgainst` no es decorado: la puerta pública sólo tiene por fundado
+    // un veredicto que dice quién lo comprobó, así que un fixture sin él estaría
+    // ejercitando el caso raro creyendo ejercitar el normal.
+    verification: { verdict, confidence: 0.5, checkedAgainst: ['tenders'] },
   }
 }
 
@@ -139,7 +142,7 @@ describe('chunker applies the public gate', () => {
       type,
       accusationSubtype,
     },
-    verification: { verdict, confidence: 1 },
+    verification: { verdict, confidence: 1, checkedAgainst: ['tenders'] },
   })
 
   it('excludes hidden items and keeps visibility on survivors', () => {

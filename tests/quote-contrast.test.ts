@@ -115,62 +115,96 @@ describe('la puerta se aplica a TODAS las citas publicadas', () => {
 
 describe('EL OVERLAY ESTÁ APLICADO — y sin él la respuesta es la contraria', () => {
   /**
-   * La claim de referencia: 1237hbp-041-acu-3157f8. La pasada determinista la
-   * dejó en `parcial` (la puerta la mostraría); el motor de veredictos la bajó
-   * a `sin-datos`, y como es una `acusacion_publica` la puerta la retiene. Base
-   * y merge no discrepan en un matiz: discrepan en si se publica o no.
+   * El testigo se BUSCA, no se escribe a mano.
+   *
+   * Era un id fijo, `1237hbp-041-acu-3157f8`, elegido porque la pasada
+   * determinista lo dejaba en `parcial` (la puerta lo mostraría) y el motor de
+   * veredictos lo bajaba a `sin-datos` (la puerta lo retiene, por ser
+   * acusación). El 2026-08-15 dejó de servir: con la puerta pidiendo un
+   * verificador anotado, la base también lo retiene, así que base y merge
+   * coinciden y el testigo dejó de atestiguar nada.
+   *
+   * Un control contra el desfase que se desfasa él mismo es el chiste que este
+   * repositorio ya ha contado dos veces (la tabla escrita a mano dentro del
+   * control de prosa rancia). Así que se busca un testigo vivo entre las 299
+   * citas donde base y merge discrepan, y si no hubiera ninguno el test lo dice
+   * en vez de pasar en verde.
    */
-  const CLAIM = '1237hbp-041-acu-3157f8'
-
-  it('la claim de referencia existe en las DOS mitades del corpus', () => {
-    // Sin esto, un id que dejara de existir convertiría las dos pruebas de
-    // abajo en comparaciones de undefined con undefined.
-    expect(CORPUS.base.get(CLAIM)).toBeTruthy()
-    expect(CORPUS.merged.get(CLAIM)).toBeTruthy()
+  const testigos = [...CORPUS.base.keys()].flatMap((id) => {
+    const b = CORPUS.base.get(id)
+    const m = CORPUS.merged.get(id)
+    if (!b || !m) return []
+    const vb = classifyClaimVisibility(b)
+    const vm = classifyClaimVisibility(m)
+    return vb === 'shown' && vm !== 'shown' ? [{ id, vb, vm }] : []
   })
 
-  it('la base sola y el veredicto vigente NO coinciden en esa claim', () => {
-    const base = classifyClaimVisibility(CORPUS.base.get(CLAIM)!)
-    const merged = classifyClaimVisibility(CORPUS.merged.get(CLAIM)!)
-    expect(base).toBe('shown')
-    expect(merged).toBe('hidden')
+  it('hay citas cuya publicabilidad depende del overlay', () => {
+    // Prueba de trabajo: sin testigos, las dos de abajo no comparan nada.
+    expect(
+      testigos.length,
+      'ninguna cita cambia de publicable a retenida al aplicar el overlay',
+    ).toBeGreaterThan(0)
+  })
+
+  it('en un testigo, base y veredicto vigente discrepan en SI SE PUBLICA', () => {
+    const t = testigos[0]
+    expect(classifyClaimVisibility(CORPUS.base.get(t.id)!)).toBe('shown')
+    expect(classifyClaimVisibility(CORPUS.merged.get(t.id)!)).not.toBe('shown')
   })
 
   it('el snapshot publicado trae el veredicto FUSIONADO, no el de la base', () => {
-    const rows = Object.entries(PUBLISHED.quotes)
-    const found = rows.flatMap(([findingId, entries]) => {
+    // Sobre los testigos que además estén citados por un hallazgo: el fichero
+    // publicado tiene que coincidir con el merge, nunca con la base.
+    const ids = new Set(testigos.map((t) => t.id))
+    const found = Object.entries(PUBLISHED.quotes).flatMap(([findingId, entries]) => {
       const f = FINDINGS.items.find((x) => x.id === findingId)
       return (f?.quotes ?? []).flatMap((q, i) =>
-        q.sourceClaimId === CLAIM ? [{ findingId, gate: entries[i]?.gate }] : [],
+        ids.has(q.sourceClaimId) ? [{ id: q.sourceClaimId, gate: entries[i]?.gate }] : [],
       )
     })
-    expect(found.length).toBeGreaterThan(0)
-    for (const hit of found) expect(hit.gate).toBe('hidden')
+    expect(found.length, 'ningún testigo aparece citado en un hallazgo').toBeGreaterThan(0)
+    for (const hit of found) {
+      expect(hit.gate, `${hit.id} publicado con el veredicto de la base`).not.toBe('shown')
+    }
   })
 
-  it('no es un caso aislado: la base sola reclasificaría a la mayoría', () => {
-    // La medida que hace imposible enviar el error: si alguien cambiara el
-    // constructor para leer la base, este número caería a 0 y la pasada se
-    // negaría a escribir.
-    expect(DERIVED.stats.citasReclasificadasPorElOverlay).toBeGreaterThan(80)
+  it('no es un caso aislado: el overlay decide el veredicto de la mayoría', () => {
+    // La medida directa: sobre cuántas de las citas de hallazgo manda el
+    // overlay. 103 de 134 hoy.
     expect(DERIVED.stats.citasConVeredictoDeOverlay).toBeGreaterThan(100)
     expect(DERIVED.stats.entradasDeOverlay).toBeGreaterThan(0)
+    // Y sobre cuántas ese veredicto cambia además DÓNDE van.
+    //
+    // Este número era >80 y hoy es 18, sin que se haya perdido protección: la
+    // puerta pasó a exigir un verificador anotado, así que las filas de la base
+    // que sólo traían una coincidencia léxica ya se retienen por sí solas y el
+    // overlay no tiene que moverlas. Las dos salvaguardas se solapan; antes una
+    // sola hacía todo el trabajo. Se deja anotado el movimiento en vez de
+    // limarlo, porque el número que importa —el de arriba— no se ha movido.
+    expect(DERIVED.stats.citasReclasificadasPorElOverlay).toBeGreaterThan(10)
   })
 
   it('clasificar la base como si fuera el veredicto vigente da otro sitio', () => {
-    // El control positivo de la prueba anterior: se hace a propósito el error,
-    // y se comprueba que produce un resultado DISTINTO. Sin esto,
-    // «reclasificadas > 100» podría estar midiendo cualquier cosa.
+    // El control positivo: se comete el error a propósito y se comprueba que
+    // produce un resultado DISTINTO.
+    //
+    // Antes comparaba direcciones —«sin overlay se mostrarían cinco veces más»—
+    // y esa premisa se invirtió el 2026-08-15: las filas del overlay llevan
+    // `llm-second-pass` o `curator-downgrade`, o sea un verificador anotado, y
+    // las de la base con coincidencia léxica no llevan ninguno. Sin overlay hoy
+    // se muestran MENOS (8 frente a 14), no más. Una aserción que da por
+    // supuesto el sentido de la diferencia vuelve a romperse a la próxima, así
+    // que se comprueba la FIRMA del error, que es exacta y no tiene sentido.
     const soloBase = buildQuoteContrast(FINDINGS.items, {
       merged: CORPUS.base,
       base: CORPUS.base,
       overlayEntries: CORPUS.overlayEntries,
     })
-    expect(soloBase.stats.porContraste.shown).toBeGreaterThan(DERIVED.stats.porContraste.shown * 5)
-    expect(soloBase.stats.porContraste.hidden).toBeLessThan(DERIVED.stats.porContraste.hidden)
-    expect(soloBase.stats.hallazgosSinCitaMostrable).toBeLessThan(
-      DERIVED.stats.hallazgosSinCitaMostrable,
-    )
+    expect(soloBase.stats.citasConVeredictoDeOverlay).toBe(0)
+    expect(soloBase.stats.citasReclasificadasPorElOverlay).toBe(0)
+    // Y el reparto cambia: leer la base no es una diferencia cosmética.
+    expect(soloBase.stats.porContraste).not.toEqual(DERIVED.stats.porContraste)
   })
 
   it('y la pasada se NIEGA a escribirlo: el overlay tenía entradas y no llegó ninguna', () => {

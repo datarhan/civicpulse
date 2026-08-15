@@ -1,7 +1,15 @@
 import { describe, it, expect } from 'vitest'
 import { classifyClaimVisibility, gateItemsForPublic } from '../src/scraper/claim-public-gate'
 
-const item = (type: string, verdict: string | undefined, accusationSubtype?: string) => ({
+const item = (
+  type: string,
+  verdict: string | undefined,
+  accusationSubtype?: string,
+  // Por defecto, un verificador anotado: es lo que deja el verificador real en
+  // todos sus caminos, y un fixture sin él estaría probando el caso raro
+  // creyendo probar el normal.
+  checkedAgainst: string[] = ['tenders'],
+) => ({
   claim: {
     type,
     accusationSubtype,
@@ -10,7 +18,7 @@ const item = (type: string, verdict: string | undefined, accusationSubtype?: str
     verbatim: 'x',
     segmentIndex: 0,
   },
-  verification: { verdict, confidence: 1 },
+  verification: { verdict, confidence: 1, checkedAgainst },
 })
 
 describe('classifyClaimVisibility', () => {
@@ -97,6 +105,94 @@ describe('claim-public-gate — machine contradicho', () => {
         ...machine,
         verification: { ...machine.verification, source: 'curator' },
       } as never),
+    ).toBe('shown')
+  })
+})
+
+// ---------------------------------------------------------------------------
+describe('claim-public-gate — un veredicto sin verificador anotado no está fundado', () => {
+  /**
+   * `checkedAgainst` es lo que el verificador anota sobre SU PROPIO trabajo: las
+   * fuentes cuyo emparejador llegó a ejecutarse. Se llena así desde que se vio
+   * que rellenarlo al LEER los ficheros hacía que cada fila afirmara haber
+   * consultado PLACSP, TED, BDNS y el presupuesto cuando los bucles que los
+   * consultan van condicionados (ver `note` en claim-verifier.ts). Vacío
+   * significa, literalmente, que no consta nada — y una fila que trae evidencia
+   * y no anota fuente afirma las dos cosas a la vez.
+   *
+   * No es una ampliación de la política de este fichero, es aplicarla: «lo que
+   * no esté EXPLÍCITAMENTE fundado se oculta (acusaciones) o se pliega (el
+   * resto)». Una fila que no dice quién la comprobó no está explícitamente
+   * fundada.
+   *
+   * Lo que estaba en juego, medido el 2026-08-15 al regenerar el corpus:
+   *
+   *     veredictos fuertes             113 → 254
+   *     ACUSACIONES PÚBLICAS fuertes    16 →  65
+   *     de ésas, por coincidencia léxica  3 →  49
+   *
+   * Cuarenta y nueve acusaciones contra grupos municipales cuyo único respaldo
+   * es que una palabra sale en el título de un contrato. El mismo emparejador
+   * que da «verificado» a «Vox dice que no, que no» contra un contrato de voto
+   * electrónico, y «parcial» a «Reducimos en cultura,» — un trozo de discurso.
+   *
+   * Este fichero ya documenta esa avería del emparejador para `contradicho` (el
+   * «2.364 millones para la dana» refutado por un contrato de escombros) y por
+   * eso lo oculta. `verificado` y `parcial` entraban por la puerta de al lado.
+   */
+  it('oculta una acusación cuyo veredicto no anota verificador', () => {
+    expect(
+      classifyClaimVisibility(item('acusacion_publica', 'verificado', 'factual', []) as never),
+    ).toBe('hidden')
+    expect(
+      classifyClaimVisibility(item('acusacion_publica', 'parcial', 'contra-datos', []) as never),
+    ).toBe('hidden')
+  })
+
+  it('pliega tras el desplegable una cita cuyo veredicto no anota verificador', () => {
+    expect(classifyClaimVisibility(item('cita_obra', 'verificado', undefined, []) as never)).toBe(
+      'toggle',
+    )
+    expect(classifyClaimVisibility(item('cita_obra', 'parcial', undefined, []) as never)).toBe(
+      'toggle',
+    )
+  })
+
+  it('falla del lado seguro cuando el campo ni siquiera está', () => {
+    // Es el caso contra el que avisa `ClaimVisibilityInput`: un campo que quien
+    // llama no reenvía llega `undefined`. Aquí eso tiene que OCULTAR, no
+    // publicar.
+    const sinCampo = {
+      claim: { type: 'acusacion_publica', accusationSubtype: 'factual' },
+      verification: { verdict: 'verificado' },
+    }
+    expect(classifyClaimVisibility(sinCampo as never)).toBe('hidden')
+  })
+
+  it('un curador sigue pudiendo publicar lo que firma', () => {
+    // La promoción por curador es la vía sancionada para pasar esta puerta, y no
+    // puede depender de que una máquina anotara algo.
+    const c = item('acusacion_publica', 'verificado', 'factual', [])
+    expect(
+      classifyClaimVisibility({
+        ...c,
+        verification: { ...c.verification, source: 'curator' },
+      } as never),
+    ).toBe('shown')
+  })
+
+  it('sigue publicando lo que SÍ anota quién lo comprobó', () => {
+    // Control: sin esto, un «oculta todo» pasaría estas pruebas y vaciaría la
+    // página entera.
+    expect(
+      classifyClaimVisibility(
+        item('acusacion_publica', 'verificado', 'factual', ['tenders', 'bdns']) as never,
+      ),
+    ).toBe('shown')
+    expect(
+      classifyClaimVisibility(
+        item('cita_obra', 'parcial', undefined, ['llm-second-pass']) as never,
+      ),
     ).toBe('shown')
   })
 })

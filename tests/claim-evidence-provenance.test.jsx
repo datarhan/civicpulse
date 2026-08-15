@@ -33,16 +33,28 @@ import { etiquetaVerificador } from '../src/lib/claim-provenance.js'
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
 
 describe('el sello de procedencia tiene tres estados, no dos', () => {
-  it('nombra al verificador determinista sólo cuando consta', () => {
+  it('nombra al verificador determinista sólo cuando lo es', () => {
     expect(etiquetaVerificador(['tenders', 'tenders-ted', 'bdns', 'budget'])).toBe(
       'verificador determinista',
     )
-    expect(etiquetaVerificador(['curator-downgrade'])).toBe('verificador determinista')
   })
 
-  it('nombra al verificador LLM cuando consta', () => {
+  it('no llama determinista a ningún paso de modelo', () => {
+    // `verdict-engine` es el repaso con gpt-5.4-mini, tan modelo como
+    // `llm-second-pass`. Salía rotulado «determinista» por no estar en la
+    // lista, que es el mismo defecto de este fichero con otro nombre.
     expect(etiquetaVerificador(['llm-second-pass'])).toBe('verificador LLM')
+    expect(etiquetaVerificador(['verdict-engine'])).toBe('verificador LLM')
     expect(etiquetaVerificador(['tenders', 'llm-second-pass'])).toBe('verificador LLM')
+  })
+
+  it('cuando ha corregido una persona, lo dice', () => {
+    // Y va por delante de todo lo demás: si un curador ha bajado el veredicto,
+    // el lector tiene que ver eso, no en qué se apoyaba la máquina corregida.
+    expect(etiquetaVerificador(['curator-downgrade'])).toBe('corregido por un curador')
+    expect(etiquetaVerificador(['curator-downgrade', 'llm-second-pass'])).toBe(
+      'corregido por un curador',
+    )
   })
 
   it('NO llama determinista a lo que no tiene verificador anotado', () => {

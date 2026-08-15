@@ -27,6 +27,20 @@
 export const SIN_VERIFICADOR = 'sin verificador anotado'
 
 /**
+ * Las anotaciones que dejan los verificadores que NO son deterministas.
+ *
+ * `llm-second-pass` y `verdict-engine` son los dos pasos de modelo: el segundo
+ * repasa los veredictos del primero con gpt-5.4-mini y sólo se le hace caso
+ * cuando RETRACTA (ver scripts/verify-pleno-claims-engine.ts). Llamar
+ * «determinista» a cualquiera de los dos es la misma mentira que este fichero
+ * existe para no contar, sólo que con otro nombre.
+ */
+const VERIFICADORES_LLM = ['llm-second-pass', 'verdict-engine']
+
+/** Lo que anota `downgrade-verdict` cuando una persona corrige un veredicto. */
+const CORRECCION_DE_CURADOR = 'curator-downgrade'
+
+/**
  * @param {string[] | null | undefined} checkedAgainst  fuentes que el
  *   verificador dejó anotadas al emitir el veredicto.
  * @returns {string} la procedencia, en minúsculas, tal cual va a la página.
@@ -36,6 +50,10 @@ export function etiquetaVerificador(checkedAgainst) {
   // lista vacía son la misma cosa —nadie anotó nada— y ninguno puede heredar la
   // etiqueta de los que sí.
   if (!Array.isArray(checkedAgainst) || checkedAgainst.length === 0) return SIN_VERIFICADOR
-  if (checkedAgainst.includes('llm-second-pass')) return 'verificador LLM'
+  // El curador va ANTES que los demás: si una persona ha corregido el veredicto,
+  // eso es lo que hay que decir, y no en qué se apoyó la máquina a la que
+  // corrigió.
+  if (checkedAgainst.includes(CORRECCION_DE_CURADOR)) return 'corregido por un curador'
+  if (checkedAgainst.some((c) => VERIFICADORES_LLM.includes(c))) return 'verificador LLM'
   return 'verificador determinista'
 }

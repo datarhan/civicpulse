@@ -88,13 +88,55 @@ function isCuratorPromoted(item: ClaimVisibilityInput): boolean {
  */
 export interface ClaimVisibilityInput {
   claim?: { type?: unknown; accusationSubtype?: unknown } | null
-  verification?: { verdict?: unknown; source?: unknown } | null
+  verification?: { verdict?: unknown; source?: unknown; checkedAgainst?: unknown } | null
+}
+
+/**
+ * ¿Consta QUIÉN comprobó esto?
+ *
+ * `checkedAgainst` es lo que el verificador anota sobre su propio trabajo: las
+ * fuentes cuyo emparejador llegó a ejecutarse. Se llena así desde que se vio que
+ * rellenarlo al LEER los ficheros hacía que cada fila afirmara haber consultado
+ * PLACSP, TED, BDNS y el presupuesto cuando los bucles que los consultan van
+ * condicionados (ver `note` en claim-verifier.ts). Vacío significa, literalmente,
+ * que no consta nada; y una fila que trae evidencia y no anota fuente afirma las
+ * dos cosas a la vez.
+ *
+ * Lo que costaba dejarlo pasar, medido el 2026-08-15 al regenerar el corpus con
+ * dos días de salida del emparejador determinista sin publicar:
+ *
+ *     veredictos fuertes               113 → 254
+ *     ACUSACIONES PÚBLICAS fuertes      16 →  65
+ *     de ésas, por coincidencia léxica    3 →  49
+ *
+ * Cuarenta y nueve acusaciones contra grupos municipales cuyo único respaldo es
+ * que una palabra sale en el título de un contrato. Es el mismo emparejador que
+ * da «verificado» a «Vox dice que no, que no» contra un contrato de voto
+ * electrónico, y «parcial» a «Reducimos en cultura,» — un trozo de discurso.
+ *
+ * O sea: la avería que este fichero ya documenta para `contradicho`, entrando
+ * por la puerta de al lado.
+ *
+ * No amplía la política de arriba, la aplica: «lo que no esté EXPLÍCITAMENTE
+ * fundado se oculta (acusaciones) o se pliega (el resto)». Una fila que no dice
+ * quién la comprobó no está explícitamente fundada. Y falla del lado seguro: el
+ * campo ausente —el caso contra el que avisa `ClaimVisibilityInput`— oculta.
+ */
+function tieneVerificadorAnotado(item: ClaimVisibilityInput): boolean {
+  const ca = item?.verification?.checkedAgainst
+  return Array.isArray(ca) && ca.length > 0
 }
 
 export function classifyClaimVisibility(item: ClaimVisibilityInput): ClaimVisibility {
   const verdict = item?.verification?.verdict
   if (verdict === 'contradicho' && !isCuratorPromoted(item)) return 'hidden'
-  const grounded = typeof verdict === 'string' && DATA_GROUNDED_VERDICTS.has(verdict)
+  const grounded =
+    typeof verdict === 'string' &&
+    DATA_GROUNDED_VERDICTS.has(verdict) &&
+    // La promoción por curador es la vía sancionada para pasar esta puerta y no
+    // puede depender de que una máquina anotara nada: ahí quien responde es una
+    // persona, que es exactamente el trato.
+    (tieneVerificadorAnotado(item) || isCuratorPromoted(item))
   if (item?.claim?.type === 'acusacion_publica') {
     const subtype = item.claim.accusationSubtype ?? 'opinativa' // safe default
     if (subtype === 'opinativa') return 'hidden'

@@ -115,12 +115,23 @@ describe('contra los ficheros reales', () => {
     expect(conBloc.length).toBeGreaterThan(0)
   })
 
-  it('no arrastra ningún bloc fuera del enum ni pisa nada', () => {
-    const r = arrastrarAtribucion(pub, structuredClone(sug))
-    const fuera = r.items
-      .map((i: { speakerGroup?: string | null }) => i.speakerGroup)
-      .filter((g): g is string => !!g && !(SPEAKER_GROUPS as readonly string[]).includes(g))
+  it('no arrastra ningún bloc fuera del enum ni cambia uno vivo', () => {
+    // Idempotente a propósito: una vez aplicado, volver a correrlo tiene que
+    // dejar el fichero igual. Se comprueba comparando bloc a bloc ANTES y
+    // DESPUÉS, no mirando el contador de descartes — ese sube justamente porque
+    // ya está aplicado, y afirmar que vale cero convertía este test en una foto
+    // de un instante en vez de en una invariante.
+    const copia = structuredClone(sug)
+    const antes = copia.map((i: { speakerGroup?: string | null }) => i.speakerGroup ?? null)
+    const r = arrastrarAtribucion(pub, copia)
+    const despues = r.items.map((i: { speakerGroup?: string | null }) => i.speakerGroup ?? null)
+
+    const pisadas = antes.filter((g, i) => g !== null && g !== despues[i])
+    expect(pisadas, 'cambió una atribución que ya estaba viva').toEqual([])
+
+    const fuera = despues.filter(
+      (g): g is string => !!g && !(SPEAKER_GROUPS as readonly string[]).includes(g),
+    )
     expect(fuera, 'apareció un bloc que no está en el enum').toEqual([])
-    expect(r.stats.descartes['destino-ya-atribuido']).toBe(0)
   })
 })
