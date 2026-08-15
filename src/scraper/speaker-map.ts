@@ -541,12 +541,17 @@ export function isMapComplete(map: unknown, gate: Gate = CURRENT_GATE): boolean 
  */
 export function chunksToAttempt(
   totalChunks: number,
-  doneChunks: ReadonlySet<number>,
+  /**
+   * Chunks with nothing left to decide: mapped above the floor, OR written off
+   * after failing on GIVE_UP_AFTER_ATTEMPTS separate nights. Both are settled;
+   * only one of them is finished, and the caller keeps that distinction.
+   */
+  settledChunks: ReadonlySet<number>,
   maxAttempts: number,
 ): number[] {
   const out: number[] = []
   for (let i = 0; i < totalChunks && out.length < maxAttempts; i++) {
-    if (!doneChunks.has(i)) out.push(i)
+    if (!settledChunks.has(i)) out.push(i)
   }
   return out
 }
