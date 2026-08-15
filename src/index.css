@@ -30,6 +30,11 @@
   --warn: #d97706;
   --warn-soft: #fff7ed;
   --warn-ink: #b45309;
+  /* Tinta legible sobre una superficie --warn SÓLIDA, el gemelo de --civic-on.
+     --warn-ink está pensada para texto sobre --warn-soft: puesta sobre --warn
+     da 1,58:1. Esta da 5,94:1, y no necesita variante oscura porque --warn no
+     se redefine en html.dark. */
+  --warn-on: #0b0f19;
   --crit: #dc2626;
   --crit-soft: #fef2f2;
   --crit-ink: #b91c1c;

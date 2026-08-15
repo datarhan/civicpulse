@@ -51,6 +51,7 @@ export const STRICT_ROUTES = [
   '/reportajes',
   '/reportajes/reconstruccion-dana',
   '/reportajes/inteligencia-turistica',
+  '/reportajes/basuras',
   '/blog/building-civicpulse-with-ai',
   '/laboratorio/agentes/a-robert-raga-bio',
   '/lab-health',

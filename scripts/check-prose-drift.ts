@@ -41,6 +41,17 @@ function main() {
       label: 'budget.snapshot.totalExpense',
       value: budget?.snapshot?.totalExpense ?? NaN,
     },
+    // El contrato de RSU adjudicado a Garbialdi (expte. 136/2025, lote 1). El
+    // reportaje de basuras sostiene que el registro público SIGUE dándolo por
+    // vivo pese a la resolución de 09-03-2026: si algún día se corrige, esta
+    // ancla lo delata en vez de dejar la prosa afirmando algo que dejó de ser
+    // cierto.
+    rsuContrato: {
+      label: 'tenders · contrato 4653394 (RSU) finalAmountNoTaxes',
+      value:
+        (tenders?.contracts ?? []).find((c: { id?: string }) => c.id === '4653394')
+          ?.finalAmountNoTaxes ?? NaN,
+    },
   }
 
   // Frozen figures worth tracking. Deliberately an explicit list: scraping every
@@ -62,6 +73,22 @@ function main() {
         where: 'reconstruccion-dana.totals.situatedAmount',
         value: dana.totals.situatedAmount,
         anchor: 'situatedAmount',
+      },
+    )
+  }
+
+  const basuras = read('reportajes/basuras.json')
+  if (basuras?.dinero) {
+    frozen.push(
+      {
+        where: 'basuras.dinero.adjudicadoSinIva',
+        value: basuras.dinero.adjudicadoSinIva,
+        anchor: 'rsuContrato',
+      },
+      {
+        where: 'basuras.censo.totalAdjudicadoMunicipio',
+        value: basuras.censo.totalAdjudicadoMunicipio,
+        anchor: 'awardedTotal',
       },
     )
   }
