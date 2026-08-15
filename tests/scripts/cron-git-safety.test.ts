@@ -128,6 +128,9 @@ const STEP_OUTPUTS: Record<string, string> = {
   'extract:speaker-map': '',
   'extract:pleno-claims': '',
   refresh: '',
+  // Report-only, writes to gitignored `editorial/` — so it must NOT appear in
+  // any commit this suite inspects. Stubbed so the pipeline can reach it.
+  'reconcile:attribution': '',
 }
 
 const sandboxes: string[] = []
@@ -210,6 +213,15 @@ case " \${STUB_FAIL:-} " in *" $name "*) echo "[stub] $name FAILING" >&2; exit 1
 # The speaker-map arm reads this list as its work queue, so it has to name a
 # session or the whole branch is unreachable and its tests pass on nothing.
 if [ "$name" = "speaker-map:backlog" ]; then echo "sandboxpleno"; exit 0; fi
+# The map is written ABOVE the STUB_NOOP gate on purpose. The scenario that
+# matters is a night whose ONLY output is a map — every other step quiet — and
+# a stub that went quiet with them could not produce it.
+if [ "$name" = "extract:speaker-map" ]; then
+  mkdir -p pleno-speaker-map
+  printf '{"plenoId":"%s","stats":{"chunksExpected":3,"chunksTranscribed":1,"attemptedThisRun":1,"failedChunks":[]},"rows":[],"segments":[],"rejected":[]}\\n' "$2" > "pleno-speaker-map/$2.json"
+  echo "[stub] wrote pleno-speaker-map/$2.json"
+  exit 0
+fi
 if [ -n "\${STUB_NOOP:-}" ]; then echo "[stub] $name wrote nothing"; exit 0; fi
 outs=""
 case "$name" in
@@ -811,6 +823,65 @@ describe('hallazgos-pipeline.sh · un backend caído no se lleva por delante los
     const r = runScript(dir, 'scripts/hallazgos-pipeline.sh')
     expect(r.log, 'la pasada sana se declaró degradada').not.toMatch(/degradad/i)
     expect(r.log).toContain('[stub] ran auto-curate')
+  }, 120_000)
+})
+
+// ---------------------------------------------------------------------------
+/**
+ * Un mapa de hablantes que no se comitea es trabajo que no existe.
+ *
+ * El commit del pipeline se engancha a `public/data` (menos los dos ficheros de
+ * las otras crons). `pleno-speaker-map/` vive en la RAÍZ —nunca bajo `public/`,
+ * porque Vercel sirve ese directorio entero y estas filas nombran a personas
+ * vivas— y quedaba fuera del pathspec. Los cuatro commits de mapas que existen
+ * los hizo una persona a mano; ninguna cron ha comiteado uno jamás.
+ *
+ * Con un barrido de ~24 noches por delante eso son dos averías, no una:
+ *
+ *   · una noche cuyo único trabajo es un mapa no ve cambios bajo `public/data`,
+ *     sale por «nothing changed — done (no commit)» y deja el mapa suelto en el
+ *     árbol, a merced del `pull --rebase --autostash` de la noche siguiente;
+ *   · una noche sana comitea el corpus re-extraído CON la atribución que ese
+ *     mapa estableció, y sin el mapa. Irreproducible por construcción.
+ */
+describe('hallazgos-pipeline.sh · los mapas de hablantes entran en el commit', () => {
+  const MAPA = 'pleno-speaker-map/sandboxpleno.json'
+
+  function conMapa(dir: string): Record<string, string> {
+    return { GEMINI_API_KEY: 'sandbox-key', SPEAKER_MAP_BUDGET: '4' }
+  }
+
+  it('comitea el mapa cuando es lo ÚNICO que ha cambiado esa noche', () => {
+    const dir = makeSandbox()
+    // STUB_NOOP calla a todos los demás pasos: es la noche en la que el barrido
+    // avanzó y nada más. Antes de esto, esa noche no comiteaba nada.
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...conMapa(dir),
+      STUB_NOOP: '1',
+    })
+    // Prueba de que el reproductor se dio, antes de afirmar nada sobre el commit.
+    expect(r.log, 'el stub del mapa no llegó a escribir').toContain(`[stub] wrote ${MAPA}`)
+    expect(r.committed, 'la noche del mapa no comiteó nada').toContain(MAPA)
+  }, 120_000)
+
+  it('lo comitea también en una noche normal, junto al corpus que lo usa', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', conMapa(dir))
+    expect(r.committed).toContain(MAPA)
+    // La atribución del corpus sale de ese mapa; comitear uno sin el otro deja
+    // el corpus apoyado en un fichero que no está en el repositorio.
+    expect(r.committed).toContain('public/data/pleno-findings.json')
+  }, 120_000)
+
+  it('y abrir el pathspec no ha dejado entrar a las otras crons — control', () => {
+    const dir = makeSandbox()
+    writeFileSync(join(dir, 'public/data/quejas.json'), '{"items":[{"id":"other-cron"}]}\n')
+    writeFileSync(join(dir, 'public/data/promises.json'), '{"items":[{"id":"other-cron"}]}\n')
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', conMapa(dir))
+    expect(r.committed).toContain(MAPA)
+    expect(r.committed).not.toContain('public/data/quejas.json')
+    expect(r.committed).not.toContain('public/data/promises.json')
+    expect(r.stagedAfter).not.toContain('public/data/quejas.json')
   }, 120_000)
 })
 

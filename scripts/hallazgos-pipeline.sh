@@ -254,7 +254,17 @@ fi
 # No $0 fallback exists for this step. claude-code cannot take audio (`claude -p`
 # has no attachment path), and a text model handed an audio job with no audio
 # invents a plausible map. A 429 therefore stops the run; it never degrades.
-SPEAKER_MAP_BUDGET="${SPEAKER_MAP_BUDGET:-18}"
+# 14, not 18, and the difference is measured. The 2026-08-15 probe needed 4
+# calls for 3 chunks — one retry, n=3, so weak evidence but the only evidence
+# there is. At ~1.33 calls a chunk, 18 chunks asks for ~24 calls against a
+# 20-request quota, so EVERY night would end on a 429 instead of on its budget.
+# That is not harmful in itself (it is recorded as `quota-exhausted` and
+# resumes) but it makes "the quota ran out" the normal ending, and then a quota
+# that genuinely dies at chunk 3 — because something else drank it — reads
+# exactly the same. Rule 3 of DATA_INTEGRITY: a sentinel that is also the
+# ordinary case has stopped saying anything. Raise it only with a fresh
+# measurement of the retry rate.
+SPEAKER_MAP_BUDGET="${SPEAKER_MAP_BUDGET:-14}"
 if [ "$SPEAKER_MAP_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
   MAP_TARGETS=$(npm run --silent speaker-map:backlog 2>/dev/null || true)
   if [ -n "$MAP_TARGETS" ]; then
@@ -384,6 +394,31 @@ fi
 npm run compute:finding-quote-provenance \
   || log "warn: compute:finding-quote-provenance non-zero — /hallazgos puede quedar con marcas viejas"
 
+# ---- published attributions vs the speaker maps (DRY, never applies) --
+# Compares every published `speakerGroup` against the map for its session and
+# reports the split: agrees / contradicted / additive / unknown.
+#
+# DRY, and only dry. `--apply` retracts, and retraction is the one direction
+# automation is allowed to move an attribution — but it is not run here, because
+# the sweep has barely started and the interesting sessions have no map yet.
+# Measured 2026-08-15: 134 published quotes across 11 sessions, and all 11
+# report `no-map`. Nothing to decide, and the CLI says so in those words rather
+# than printing an all-clear.
+#
+# It is wired now, at zero cost, for two reasons: a `contradicted` row is worth
+# hearing about the night it appears rather than in three weeks, and this was
+# otherwise another thing that had been built, tested and invoked by nobody —
+# which is the failure this repo keeps re-finding.
+#
+# Outside the TEXT_BACKEND guard: the dry pass reads snapshots and calls no
+# model. Only `--apply` shells out to `correct-pleno-finding`.
+#
+# Writes `editorial/attribution-queue.json` — gitignored, and NEVER under
+# `public/`: Vercel serves that whole directory, and this queue pairs transcript
+# passages with attributions about named councillors.
+npm run reconcile:attribution --silent \
+  || log "warn: reconcile:attribution non-zero — la cola de atribución no se ha regenerado"
+
 # ---- IFCN weekly-cadence check (informational, never fatal) -----------
 # The IFCN signatory track requires ≥1 published finding per ISO week.
 npm run ifcn:cadence --silent -- --strict \
@@ -400,7 +435,17 @@ npm run ifcn:cadence --silent -- --strict \
 # old `git commit` had no pathspec at all: with anything else staged the guard
 # said "there is work to do" and the commit swept it in (that is how f182c61
 # published a subagent's in-flight test files).
-if ! cron_git_stage_and_check public/data \
+#
+# `pleno-speaker-map` is in here because the maps live at the repo ROOT — never
+# under `public/`, since Vercel serves that whole directory and these rows name
+# living people — and so fell outside a `public/data` pathspec entirely. Every
+# map in git was committed by hand; no cron had ever committed one. With a
+# ~24-night sweep ahead that is two failures: a night whose only work is a map
+# sees no change under public/data and exits by "nothing changed", leaving the
+# map loose in the working tree for the next run's `pull --rebase --autostash`
+# to shuffle; and a healthy night commits the re-extracted corpus carrying
+# attribution that map established, without the map. Irreproducible either way.
+if ! cron_git_stage_and_check public/data pleno-speaker-map \
        ':(exclude)public/data/quejas.json' \
        ':(exclude)public/data/promises.json'; then
   log "nothing changed — done (no commit)"; exit 0
