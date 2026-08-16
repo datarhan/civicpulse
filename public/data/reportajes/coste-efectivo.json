@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "slug": "coste-efectivo",
+    "titulo": "La mitad de abajo de la división",
+    "subtitulo": "Cada año el ayuntamiento declara lo que le cuesta cada servicio y cuánto servicio presta. Lo primero lo actualiza. Lo segundo, no. Tres cosas que aparecen al mirar diez entregas seguidas en vez de una: una entrega sin rendir, trece denominadores congelados y una subida que en buena parte era el nivel de precios.",
+    "seccion": "Reportaje · datos",
+    "municipio": "Riba-roja de Túria",
+    "fechaDatos": "2026-08-16",
+    "publicadoEl": null,
+    "estado": "borrador",
+    "derechoReplica": "abierto",
+    "correcciones": []
+  },
+  "kpis": [
+    { "n": "1 de 11", "l": "entregas del coste efectivo sin rendir por el ayuntamiento: la de 2020" },
+    { "n": "13 de 13", "l": "costes unitarios que dividen entre una cantidad que nadie vuelve a medir" },
+    { "n": "22,8 %", "l": "subió el nivel de precios entre 2014 y 2024: sin deflactar, se leía como gestión" },
+    { "n": "50", "l": "municipios comparables de 15.000 a 40.000 habitantes con los que se coteja cada cifra" }
+  ],
+  "entregas": {
+    "publicadas": [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+    "noPresentadas": [2020],
+    "nota": "El libro de la Comunitat Valenciana de 2020 está descargado y trae unas 90.000 filas: los demás municipios sí figuran. Riba-roja aparece en 6 filas, todas de la tabla CE4 —donde la Mancomunitat Camp de Túria la nombra como municipio al que presta servicio— y en ninguna de las tablas de coste, gestión o unidades físicas. En 2019 y en 2021 declara sus 43 filas completas."
+  },
+  "rendicionCV": {
+    "nota": "Ayuntamientos de la Comunitat Valenciana presentes en las tablas de coste, gestión o unidades (CE1, CE2 o CE3) del libro por comunidad de cada entrega. Recuento propio sobre los ficheros del ministerio.",
+    "porAnio": [
+      { "anio": 2017, "n": 513 },
+      { "anio": 2018, "n": 489 },
+      { "anio": 2019, "n": 490 },
+      { "anio": 2020, "n": 503 },
+      { "anio": 2021, "n": 497 },
+      { "anio": 2022, "n": 495 }
+    ]
+  },
+  "congelados": {
+    "propios": 13,
+    "medibles": 13,
+    "desdeMin": 2018,
+    "desdeMax": 2019,
+    "ejemplos": [
+      { "valor": "11.059,41 t", "que": "residuos declarados, sin variar un decimal" },
+      { "valor": "700.000 m²", "que": "superficie con servicio de limpieza" },
+      { "valor": "4.514", "que": "puntos de luz" }
+    ],
+    "banda": { "n": 50, "p25": 44.9, "mediana": 63.1, "p75": 78.8, "propio": 100 },
+    "bandaNota": "Municipios de la Comunitat Valenciana de 15.000 a 40.000 habitantes de los que se puede medir lo mismo: con coste unitario en 2024 en al menos la mitad de servicios que Riba-roja. El porcentaje es cuántos de sus denominadores repiten idénticos cuatro entregas o más."
+  },
+  "inflacion": {
+    "acumulada": 22.8,
+    "indice": "IPC general nacional, media anual (INE)",
+    "servicios": [
+      { "nombre": "Pavimentación de vías públicas", "tramo": "2014→2024", "nominal": 29.4, "real": 5.3 },
+      { "nombre": "Seguridad y orden público (policía local)", "tramo": "2015→2024", "nominal": 75.7, "real": 42.3 },
+      { "nombre": "Cementerio y servicios funerarios", "tramo": "2014→2024", "nominal": 111.9, "real": 72.5 }
+    ],
+    "nota": "Variación entre la primera y la última entrega con datos comprobables contra sus pares. «Real» es en euros constantes de 2024. La comparación entre municipios no se deflacta: enfrenta un año contra ese mismo año."
+  },
+  "queNoDice": [
+    "No dice que las cifras sean falsas: una cantidad estable puede ser perfectamente correcta, y hay magnitudes que pasan años sin moverse de verdad.",
+    "No dice que ningún servicio esté mal gestionado: la declaración no es el servicio.",
+    "No señala a nadie: el coste efectivo lo rinde la entidad local en su conjunto, y quién cumplimenta el formulario no consta en la fuente."
+  ],
+  "fuentes": [
+    { "label": "Coste efectivo de los servicios · Ministerio de Hacienda (CESEL)", "url": "https://serviciostelematicosext.hacienda.gob.es/sgcief/Cesel/Consulta/Consulta.aspx" },
+    { "label": "Orden HAP/2075/2014, criterios de cálculo del coste efectivo", "url": "https://www.boe.es/buscar/doc.php?id=BOE-A-2014-11492" },
+    { "label": "Art. 116 ter de la Ley de Bases de Régimen Local (obligación de rendir antes del 1 de noviembre)", "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1985-5392" },
+    { "label": "IPC, índice general nacional · INE (API JSON, tabla 24077)", "url": "https://servicios.ine.es/wstempus/js/ES/DATOS_TABLA/24077" },
+    { "label": "El panel completo, servicio por servicio, con su fuente y sus salvedades", "url": "/eficiencia" }
+  ],
+  "metodo": [
+    "Las cifras salen de los libros por comunidad autónoma de la aplicación de consulta del ministerio (once entregas, 2014–2024), leídos con las reglas de filtrado y comparabilidad publicadas en la metodología.",
+    "La no-presentación de 2020 se comprueba por presencia: el fichero está, los demás municipios figuran en él y Riba-roja no aparece en CE1, CE2 ni CE3. No es un hueco de descarga.",
+    "La explicación por la pandemia se descartó con un control: en 2020 presentaron 503 ayuntamientos valencianos, más que en 2018, 2019, 2021 o 2022.",
+    "Un denominador cuenta como congelado cuando sus últimas cuatro entregas o más traen el mismo valor hasta el cuarto decimal; repetir dos años es normal y no cuenta.",
+    "Las variaciones en euros constantes usan la media anual del IPC general del INE con base en la entrega de 2024; las cifras exactas de cada servicio, con su celda de origen, están en /eficiencia.",
+    "Todas las cifras de esta pieza quedaron congeladas el 16 de agosto de 2026; si el ministerio revisa una entrega, la corrección se anota aquí, no se reescribe en silencio."
+  ]
+}

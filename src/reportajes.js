@@ -8,4 +8,9 @@
 // Each slug must have a frozen snapshot at public/data/reportajes/<slug>.json;
 // a pieza only ever renders when its meta.estado === 'publicado' — the
 // honesty gate every consumer of this list must keep.
-export const REPORTAJE_SLUGS = ['basuras', 'inteligencia-turistica', 'reconstruccion-dana']
+export const REPORTAJE_SLUGS = [
+  'coste-efectivo',
+  'basuras',
+  'inteligencia-turistica',
+  'reconstruccion-dana',
+]

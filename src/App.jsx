@@ -45,6 +45,7 @@ const Reportajes = lazy(() => import('./pages/Reportajes'))
 const ReconstruccionDana = lazy(() => import('./pages/reportajes/ReconstruccionDana'))
 const InteligenciaTuristica = lazy(() => import('./pages/reportajes/InteligenciaTuristica'))
 const Basuras = lazy(() => import('./pages/reportajes/Basuras'))
+const CosteEfectivoReportaje = lazy(() => import('./pages/reportajes/CosteEfectivo'))
 const BuildingCivicPulse = lazy(() => import('./pages/blog/BuildingCivicPulse'))
 // /curator is dev-only — see vite-curator-plugin.js. The lazy import
 // is gated below by `import.meta.env.MODE !== 'production'`. Production
@@ -157,6 +158,7 @@ function InnerShell({ onOpenCmdK }) {
               {/* Long-form data reportajes — indexed at /reportajes (in NAV); each pieza keeps
                   its figures frozen in its own JSON snapshot. */}
               <Route path="/reportajes" element={<Reportajes />} />
+              <Route path="/reportajes/coste-efectivo" element={<CosteEfectivoReportaje />} />
               <Route path="/reportajes/reconstruccion-dana" element={<ReconstruccionDana />} />
               <Route
                 path="/reportajes/inteligencia-turistica"

@@ -50,6 +50,7 @@ export const STRICT_ROUTES = [
   '/about',
   '/reportajes',
   '/reportajes/reconstruccion-dana',
+  '/reportajes/coste-efectivo',
   '/reportajes/inteligencia-turistica',
   '/reportajes/basuras',
   '/blog/building-civicpulse-with-ai',
