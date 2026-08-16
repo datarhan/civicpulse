@@ -53,6 +53,7 @@ const AJENAS = FICHAS.items.filter(
 // coverage. The skip names the missing variable so nobody debugs a phantom.
 test.describe('Eficiencia (/eficiencia)', () => {
   test.beforeEach(async ({ page }) => {
+    const errores = collectErrors(page)
     await page.goto('/eficiencia', { waitUntil: 'domcontentloaded' })
     // `isVisible()` no espera: con la SPA a medio hidratar devuelve false y el
     // test se salta en silencio, que es la misma avería que una guarda hueca
@@ -63,6 +64,18 @@ test.describe('Eficiencia (/eficiencia)', () => {
       .waitFor({ state: 'visible', timeout: 8000 })
       .then(() => true)
       .catch(() => false)
+    // «No montada» tiene DOS causas y sólo una es saltable. Con la bandera
+    // apagada la ruta no existe y saltar es correcto; con la página REVENTADA
+    // el h1 tampoco llega, y el salto convertía un crash en nueve specs verdes:
+    // pasó de verdad — un formatea(undefined) tumbó la página entera y esta
+    // suite imprimió «passed» sin haber medido nada. Un error de consola con la
+    // ruta caída es fallo, nunca salto.
+    if (!montada && appErrors(errores).length > 0) {
+      throw new Error(
+        `/eficiencia no montó Y la consola trae errores — la página está rota, no apagada:\n` +
+          appErrors(errores).join('\n'),
+      )
+    }
     test.skip(!montada, '/eficiencia no está montada — reconstruye con VITE_ENABLE_EFICIENCIA=true')
   })
 

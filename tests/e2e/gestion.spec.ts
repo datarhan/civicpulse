@@ -16,12 +16,21 @@ const AQUI = (SNAP.municipales ?? []).filter(
 // tanto el mismo salto explícito cuando la build no la lleva.
 test.describe('Gestión (/gestion)', () => {
   test.beforeEach(async ({ page }) => {
+    const errores = collectErrors(page)
     await page.goto('/gestion', { waitUntil: 'domcontentloaded' })
     const montada = await page
       .getByRole('heading', { name: /Cómo funciona la casa por dentro/i })
       .waitFor({ state: 'visible', timeout: 8000 })
       .then(() => true)
       .catch(() => false)
+    // Mismo endurecimiento que /eficiencia: una página reventada tampoco monta
+    // su h1, y saltar ahí convierte un crash en specs verdes.
+    if (!montada && appErrors(errores).length > 0) {
+      throw new Error(
+        `/gestion no montó Y la consola trae errores — la página está rota, no apagada:\n` +
+          appErrors(errores).join('\n'),
+      )
+    }
     test.skip(!montada, '/gestion no está montada — reconstruye con VITE_ENABLE_EFICIENCIA=true')
   })
 

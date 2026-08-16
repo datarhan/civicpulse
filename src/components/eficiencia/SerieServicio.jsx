@@ -46,7 +46,7 @@ export function tramosSerie(puntos) {
   let actual = []
   let prev = null
   for (const p of puntos) {
-    if (p.atipico || typeof p.valor !== 'number') {
+    if (p.atipico || p.otroModo || typeof p.valor !== 'number') {
       if (actual.length) tramos.push(actual)
       actual = []
       prev = null
@@ -130,7 +130,9 @@ export function anclasHueco(hueco) {
  */
 export function puentesHueco(puntos) {
   const legibles = new Map(
-    puntos.filter((p) => !p.atipico && typeof p.valor === 'number').map((p) => [p.anio, p]),
+    puntos
+      .filter((p) => !p.atipico && !p.otroModo && typeof p.valor === 'number')
+      .map((p) => [p.anio, p]),
   )
   return huecosSerie(puntos)
     .map((h) => {
@@ -253,6 +255,20 @@ export function puntosSueltos(puntos) {
 }
 
 /**
+ * Entregas prestadas bajo OTRO modo de gestión que el que titula (regla 4).
+ *
+ * Se publican —son las cifras oficiales— pero fuera de la línea: un coste bajo
+ * concesión y uno de gestión directa no son la misma magnitud, y unirlos con
+ * un trazo diría que la serie sobrevivió al cambio de régimen. Van como aro
+ * hueco, la marca de «esto es de otra familia», con el modo en el tooltip.
+ * El atípico manda: una cifra inverosímil ya está fuera de la escala y no
+ * necesita una segunda marca.
+ */
+export function puntosOtroModo(puntos) {
+  return puntos.filter((p) => p.otroModo && !p.atipico && typeof p.valor === 'number')
+}
+
+/**
  * El rango vertical, SÓLO sobre lo que se dibuja.
  *
  * Es la decisión que hace posible el gráfico. Meter aquí los 67,7 millones de
@@ -306,6 +322,7 @@ export function SerieServicio({ puntos, formatea, unidad }) {
   const tramosMediana = tramosSerie(mediana)
   const puentesMediana = puentesHueco(mediana)
   const bandas = bandaSerie(puntos)
+  const otrosModos = puntosOtroModo(puntos)
   const atipicos = puntos.filter((p) => p.atipico)
   const huecos = huecosSerie(puntos)
   const ultimo = limpios[limpios.length - 1]
@@ -378,6 +395,11 @@ export function SerieServicio({ puntos, formatea, unidad }) {
               ? ` ${atipicos.length} entrega${atipicos.length > 1 ? 's' : ''} publicada${
                   atipicos.length > 1 ? 's' : ''
                 } con cifras que no pueden ser un coste, fuera de la escala: ${atipicos
+                  .map((p) => p.anio)
+                  .join(', ')}.`
+              : '') +
+            (otrosModos.length
+              ? ` ${otrosModos.length === 1 ? 'Una entrega' : `${otrosModos.length} entregas`} bajo otro modo de gestión, fuera de la línea: ${otrosModos
                   .map((p) => p.anio)
                   .join(', ')}.`
               : '') +
@@ -510,6 +532,28 @@ export function SerieServicio({ puntos, formatea, unidad }) {
               marginTop: -2.5,
               borderRadius: 'var(--r-pill)',
               background: 'var(--civic)',
+            }}
+          />
+        ))}
+        {/* Años de OTRO modo de gestión: aro hueco, no lunar macizo. La cifra
+            es oficial y está en escala, pero es de otra familia (regla 4) y la
+            línea no la toca. */}
+        {otrosModos.map((p) => (
+          <span
+            key={`om-${p.anio}`}
+            title={`${p.anio}: ${formatea(p.valor)} — ese año el servicio se prestaba en ${p.otroModo}, no en el régimen actual: la cifra se publica pero no es comparable con la línea (regla 4).`}
+            style={{
+              position: 'absolute',
+              left: `${px(p.anio)}%`,
+              top: `${py(p.valor)}%`,
+              width: 7,
+              height: 7,
+              marginLeft: -3.5,
+              marginTop: -3.5,
+              borderRadius: 'var(--r-pill)',
+              background: 'var(--paper)',
+              border: '1.5px solid var(--civic)',
+              boxSizing: 'border-box',
             }}
           />
         ))}

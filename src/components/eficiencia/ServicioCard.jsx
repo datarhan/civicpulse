@@ -29,11 +29,11 @@ const MOTIVO = {
   concesion:
     'El servicio está concedido: lo paga el concesionario y lo recupera vía tarifa, así que el coste que declara el ayuntamiento (0 €) no es lo que cuesta el servicio. Compararlo con un municipio de gestión directa diría que aquí es gratis.',
   'cero-sin-declarar':
-    'Hay gasto declarado, pero la unidad física viene a cero. Un cero junto a un presupuesto real significa «no se declaró», no «no hubo».',
+    'Hay gasto declarado, pero la unidad física viene a cero. Un cero junto a un presupuesto real significa «no se declaró», no «no hubo» (regla 3).',
   'filas-duplicadas':
-    'El ministerio publica más de un coste para este mismo servicio. Elegir uno sería un volado disfrazado de dato.',
+    'El ministerio publica más de un coste para este mismo servicio. Elegir uno sería un volado disfrazado de dato (regla 1 de la metodología).',
   'atributo-ambiguo':
-    'La misma magnitud está declarada dos veces con valores distintos en la misma entrega.',
+    'La misma magnitud está declarada dos veces con valores distintos en la misma entrega (regla 2).',
   ausente: 'La entrega no trae esta magnitud.',
 }
 
@@ -201,8 +201,18 @@ export function ServicioCard({ indicador, formatea }) {
                     }
                     title={
                       p.atipico
-                        ? `Cifra inverosímil: los municipios comparables declararon una mediana de ${formatea(p.medianaPares)} ese año`
-                        : undefined
+                        ? // La mediana puede faltar: la cordura de la regla 7
+                          // puede apoyarse en pares de cualquier modo cuando el
+                          // del año no llega a quince, y ésos no se publican
+                          // como comparación. formatea(undefined) tumbaba la
+                          // página entera — y el skip-gate del e2e leyó el
+                          // h1 ausente como «bandera apagada» y calló.
+                          typeof p.medianaPares === 'number'
+                          ? `Cifra inverosímil: los municipios comparables declararon una mediana de ${formatea(p.medianaPares)} ese año`
+                          : 'Cifra inverosímil: se aparta más de veinte veces de lo declarado ese año, sin quince pares del mismo modo que citar (regla 7)'
+                        : p.otroModo
+                          ? `Ese año el servicio se prestaba en ${p.otroModo}: la cifra se publica pero no es comparable con la línea (regla 4)`
+                          : undefined
                     }
                   >
                     {p.anio}: {formatea(p.valor)}
@@ -247,6 +257,13 @@ export function ServicioCard({ indicador, formatea }) {
               ))}
             </ul>
           )}
+          <p style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', margin: '8px 0 0' }}>
+            Las reglas numeradas que citan estas salvedades:{' '}
+            <a href="/metodologia#reglas-eficiencia" style={{ color: 'var(--civic)' }}>
+              reglas de filtrado y comparabilidad
+            </a>
+            .
+          </p>
         </details>
       )}
 

@@ -152,6 +152,13 @@ export interface PuntoSerie {
   /** Los mismos cuartiles en euros constantes, con el factor de `valorReal`. */
   p25ParesReal?: number | null
   p75ParesReal?: number | null
+  /**
+   * El servicio se prestaba ese año bajo OTRO modo de gestión que el que
+   * titula la tarjeta (regla 4). El valor se publica —es la cifra oficial—
+   * pero la línea no lo une con los años del régimen actual: un coste bajo
+   * concesión y uno de gestión directa no son la misma magnitud.
+   */
+  otroModo?: ModoGestion
 }
 
 export interface DeclaracionMagnitud {
@@ -394,10 +401,17 @@ function bandaDePares(
   programa: string,
   anio: number,
   atributo: string,
+  modoGestion?: ModoGestion,
 ): { n: number; p25: number; mediana: number; p75: number } | null {
   const vals: number[] = []
   for (const m of pares.miembros) {
     const suyas = pares.filas.filter((f) => f.ine === m.ine)
+    if (
+      modoGestion &&
+      suyas.find((f) => f.programa === programa && f.anio === anio)?.modoGestion !== modoGestion
+    ) {
+      continue
+    }
     const n = resolverCoste(suyas, programa, anio)
     const d = resolverUnidad(suyas, programa, anio, atributo)
     if (n.estado === 'declarado' && d.estado === 'declarado') vals.push(n.valor! / d.valor!)
@@ -507,8 +521,8 @@ function caveatDeclaracion(d: DeclaracionIndicador, def: ServicioDef): string | 
   const conPares =
     d.paresMedibles > 0
       ? ` No es una rareza local: ${d.paresCongelados} de ${d.paresMedibles} municipios comparables ` +
-        'hacen lo mismo con esta misma cifra.'
-      : ''
+        'hacen lo mismo con esta misma cifra (regla 8).'
+      : ' (regla 8).'
 
   if (d.denominador.congelada && d.numerador.congelada) {
     return (
@@ -627,8 +641,24 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
         valor,
         estado: ok ? 'declarado' : n.estado === 'no-se-presta' ? 'no-se-presta' : 'no-declarado',
       }
+      // El modo de gestión de ESE año, que no tiene por qué ser el que titula:
+      // limpieza viaria estuvo concedida antes de 2016 y directa después, y un
+      // coste bajo concesión no es la misma magnitud que uno de gestión
+      // directa (regla 4). El punto se publica —es la cifra oficial— pero
+      // marcado, y la línea no lo une con los años del otro régimen.
+      const modoDelAnio = municipio.filas.find(
+        (f) => f.anio === anio && f.programa === programa,
+      )?.modoGestion
+      if (ok && modoDelAnio && modoDelAnio !== modoGestion) punto.otroModo = modoDelAnio
       if (valor !== null) {
-        const banda = bandaDePares(pares, programa, anio, def.denominador)
+        // Los pares del año se filtran al modo de gestión DE ESE AÑO — la
+        // regla 4 aplicada verticalmente. Se filtraban sólo en la banda que
+        // titula, así que la mediana punteada de los años de concesión de
+        // limpieza viaria se calculaba contra municipios de gestión directa:
+        // la comparación que la propia página dice no hacer nunca.
+        const banda = modoDelAnio
+          ? bandaDePares(pares, programa, anio, def.denominador, modoDelAnio)
+          : null
         if (banda !== null && banda.mediana > 0) {
           punto.medianaPares = banda.mediana
           punto.p25Pares = banda.p25
@@ -636,6 +666,17 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
           punto.nPares = banda.n
           const razon = valor / banda.mediana
           if (razon > ATIPICO_FACTOR || razon < 1 / ATIPICO_FACTOR) punto.atipico = true
+        } else {
+          // Sin banda del mismo modo, la CORDURA (regla 7) puede apoyarse en
+          // todos los que declararon ese año: nada de eso se publica como
+          // comparación, pero sin este respaldo los 67 millones de €/m² de la
+          // limpieza de 2015 —un año de concesión, sin quince concesiones con
+          // las que compararse— entrarían en la escala como si fueran un coste.
+          const cordura = bandaDePares(pares, programa, anio, def.denominador)
+          if (cordura !== null && cordura.mediana > 0) {
+            const razon = valor / cordura.mediana
+            if (razon > ATIPICO_FACTOR || razon < 1 / ATIPICO_FACTOR) punto.atipico = true
+          }
         }
       }
       // Términos reales. La propia y la de comparación se deflactan con el
@@ -701,9 +742,20 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
             `Una diferencia así suele venir de que cada ayuntamiento declara ` +
             `«${def.denominador}» a su manera, no de que el servicio se gestione mejor o peor. ` +
             `El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas ` +
-            `es la comparación.`,
+            `es la comparación (regla 6 de la metodología).`,
         )
       }
+    }
+
+    const otrosModos = serie.filter((p) => p.otroModo)
+    if (otrosModos.length) {
+      const rangos = otrosModos.map((p) => p.anio).join(', ')
+      const modos = [...new Set(otrosModos.map((p) => p.otroModo))].join(', ')
+      caveats.push(
+        `En ${rangos} el servicio se prestaba bajo otro modo de gestión (${modos}): esos años se ` +
+          `publican pero la línea no los une con los del régimen actual, porque un coste bajo ` +
+          `otro régimen no es la misma magnitud (regla 4).`,
+      )
     }
 
     const atipicas = serie.filter((p) => p.atipico).map((p) => p.anio)
@@ -711,7 +763,7 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       caveats.push(
         `El ministerio publica cifras inverosímiles para ${atipicas.join(', ')}: se apartan más de ` +
           `${ATIPICO_FACTOR} veces de lo que declararon los municipios comparables ese mismo año. ` +
-          `Se muestran porque son las oficiales, pero no se pueden leer como coste.`,
+          `Se muestran porque son las oficiales, pero no se pueden leer como coste (regla 7).`,
       )
     }
 

@@ -1594,7 +1594,9 @@ export default function Metodologia() {
             </li>
             <li>
               Sólo se compara contra municipios que prestan el servicio con el{' '}
-              <em>mismo modo de gestión</em> y declaran las dos cifras en la misma entrega.
+              <em>mismo modo de gestión</em> y declaran las dos cifras en la misma entrega — también
+              a lo largo de la serie: un año prestado bajo otro régimen se publica, pero fuera de la
+              línea y sin mediana de pares.
             </li>
             <li>Sin quince comparables no hay banda ni percentil: la tarjeta no se sitúa.</li>
             <li>

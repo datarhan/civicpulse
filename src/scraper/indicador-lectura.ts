@@ -224,7 +224,7 @@ export function leerIndicador(i: Indicador): Lectura {
     donde = null
   } else {
     donde =
-      'No hay comparación: no llegan a quince los municipios que prestan este servicio del mismo modo y declaran las dos cifras.'
+      'No hay comparación: no llegan a quince los municipios que prestan este servicio del mismo modo y declaran las dos cifras (reglas 4 y 5).'
   }
 
   const declarados = i.serie.filter((p) => p.estado === 'declarado')

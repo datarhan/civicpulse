@@ -264,6 +264,53 @@ describe('scraper/indicadores', () => {
   })
 })
 
+describe('scraper/indicadores · otro modo de gestión en la serie (regla 4)', () => {
+  // Hoy ningún servicio declara cociente bajo un modo distinto del que titula
+  // —los años de concesión de limpieza vienen sin coste—, así que la regla se
+  // prueba construida: el mismo panel con el 2022 de residuos pasado a
+  // otro régimen con coste declarado ('otra'): una concesión no serviría,
+  // porque su coste lo rechaza la trampa 1 antes de llegar aquí. Una guarda sin instancia viva es la primera que se rompe sin
+  // que nadie lo vea.
+  const mias22 = [
+    ...mias,
+    ...mias
+      .filter((f) => f.programa === 'a1621')
+      .map((f) => ({ ...f, anio: 2022, modoGestion: 'otra' as const })),
+  ]
+  const pares22 = [
+    ...rows,
+    ...rows.filter((r) => r.ine !== '46214').map((r) => ({ ...r, anio: 2022 })),
+  ]
+  const snapOM = construirIndicadores({
+    municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: mias22 },
+    pares: { conjunto: 'cv-15k-40k', anios: [2021, 2022], miembros, filas: pares22 },
+    anioBase: 2021,
+    citaUrl: CITA,
+  })
+  const residuos = snapOM.indicadores.find((i) => i.id === 'a1621-coste-unitario')!
+
+  it('marca el año del otro régimen sin borrarlo, y con su modo', () => {
+    const p22 = residuos.serie.find((p) => p.anio === 2022)!
+    expect(p22.estado).toBe('declarado')
+    expect(p22.otroModo).toBe('otra')
+    // Y el año del régimen titular no lleva marca.
+    expect(residuos.serie.find((p) => p.anio === 2021)!.otroModo).toBeUndefined()
+  })
+
+  it('no le calcula mediana contra pares de gestión directa', () => {
+    // Los pares de 2022 siguen en directa; compararle la concesión contra
+    // ellos es exactamente lo que la regla 4 prohíbe en horizontal.
+    const p22 = residuos.serie.find((p) => p.anio === 2022)!
+    expect(p22.medianaPares).toBeUndefined()
+  })
+
+  it('la tarjeta lo cuenta en una salvedad que cita la regla', () => {
+    expect(residuos.caveats.some((c) => /otro modo de gestión/.test(c) && /regla 4/.test(c))).toBe(
+      true,
+    )
+  })
+})
+
 describe('scraper/indicadores · banda plausible del percentil', () => {
   const comparables = snap.indicadores.filter((i) => i.pares)
 
