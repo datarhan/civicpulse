@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T09:10:31.923Z",
+  "generatedAt": "2026-08-16T11:25:22.353Z",
   "source": {
     "volcado": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
     "consulta": "https://serviciostelematicosext.hacienda.gob.es/sgcief/Cesel/Consulta/Consulta.aspx",
@@ -8819,7 +8819,7 @@
       "popMax": 40000,
       "tipoEnte": "AA"
     },
-    "resolvedAt": "2026-08-12T09:10:31.923Z",
+    "resolvedAt": "2026-08-16T11:25:22.353Z",
     "anios": [
       2014,
       2015,
@@ -8836,302 +8836,422 @@
       {
         "ine": "03011",
         "nombre": "Alfàs del Pi (l')",
-        "poblacion": 21080
+        "poblacion": 21080,
+        "gastoTotal": 28021601.360000003,
+        "ingresoTotal": 28021601.36
       },
       {
         "ine": "03015",
         "nombre": "Almoradí",
-        "poblacion": 22965
+        "poblacion": 22965,
+        "gastoTotal": 18062868.5,
+        "ingresoTotal": 18062868.5
       },
       {
         "ine": "03018",
         "nombre": "Altea",
-        "poblacion": 24592
+        "poblacion": 24592,
+        "gastoTotal": 35462912.04,
+        "ingresoTotal": 35531749.15
       },
       {
         "ine": "03019",
         "nombre": "Aspe",
-        "poblacion": 22397
+        "poblacion": 22397,
+        "gastoTotal": 22399647.61,
+        "ingresoTotal": 22399647.61
       },
       {
         "ine": "03047",
         "nombre": "Calp",
-        "poblacion": 27616
+        "poblacion": 27616,
+        "gastoTotal": 54911909,
+        "ingresoTotal": 54911909
       },
       {
         "ine": "03049",
         "nombre": "Callosa de Segura",
-        "poblacion": 19988
+        "poblacion": 19988,
+        "gastoTotal": 13955119.25,
+        "ingresoTotal": 14294969.25
       },
       {
         "ine": "03050",
         "nombre": "Campello (el)",
-        "poblacion": 31419
+        "poblacion": 31419,
+        "gastoTotal": 39144000,
+        "ingresoTotal": 39144000
       },
       {
         "ine": "03059",
         "nombre": "Crevillent",
-        "poblacion": 30921
+        "poblacion": 30921,
+        "gastoTotal": 35540864.67,
+        "ingresoTotal": 35540864.67
       },
       {
         "ine": "03076",
         "nombre": "Guardamar del Segura",
-        "poblacion": 18564
+        "poblacion": 18564,
+        "gastoTotal": 23283653.13,
+        "ingresoTotal": 23283653.13
       },
       {
         "ine": "03079",
         "nombre": "Ibi",
-        "poblacion": 24500
+        "poblacion": 24500,
+        "gastoTotal": 18485156.669999998,
+        "ingresoTotal": 20234845.23
       },
       {
         "ine": "03082",
         "nombre": "Jávea/Xàbia",
-        "poblacion": 30642
+        "poblacion": 30642,
+        "gastoTotal": 46890000,
+        "ingresoTotal": 46890000
       },
       {
         "ine": "03090",
         "nombre": "Mutxamel",
-        "poblacion": 28621
+        "poblacion": 28621,
+        "gastoTotal": 29441800,
+        "ingresoTotal": 29441800
       },
       {
         "ine": "03093",
         "nombre": "Novelda",
-        "poblacion": 26606
+        "poblacion": 26606,
+        "gastoTotal": 31151358.2,
+        "ingresoTotal": 31151358.2
       },
       {
         "ine": "03094",
         "nombre": "Nucia (la)",
-        "poblacion": 19121
+        "poblacion": 19121,
+        "gastoTotal": 33444306.28,
+        "ingresoTotal": 33745309.37
       },
       {
         "ine": "03104",
         "nombre": "Petrer",
-        "poblacion": 34022
+        "poblacion": 34022,
+        "gastoTotal": 31286531.77,
+        "ingresoTotal": 31286531.77
       },
       {
         "ine": "03113",
         "nombre": "Rojales",
-        "poblacion": 17652
+        "poblacion": 17652,
+        "gastoTotal": 15635847,
+        "ingresoTotal": 15635847
       },
       {
         "ine": "03119",
         "nombre": "Sant Joan d'Alacant",
-        "poblacion": 26834
+        "poblacion": 26834,
+        "gastoTotal": 32736782.05,
+        "ingresoTotal": 32736782.05
       },
       {
         "ine": "03121",
         "nombre": "Santa Pola",
-        "poblacion": 39709
+        "poblacion": 39709,
+        "gastoTotal": 40220257.45,
+        "ingresoTotal": 45964057.45
       },
       {
         "ine": "03139",
         "nombre": "Villajoyosa/Vila Joiosa (la)",
-        "poblacion": 37449
+        "poblacion": 37449,
+        "gastoTotal": 50367007.54,
+        "ingresoTotal": 50367007.54
       },
       {
         "ine": "03140",
         "nombre": "Villena",
-        "poblacion": 34712
+        "poblacion": 34712,
+        "gastoTotal": 36468088.11,
+        "ingresoTotal": 36468088.11
       },
       {
         "ine": "03902",
         "nombre": "Pilar de la Horadada",
-        "poblacion": 24316
+        "poblacion": 24316,
+        "gastoTotal": 41755105.440000005,
+        "ingresoTotal": 41755105.44
       },
       {
         "ine": "12009",
         "nombre": "Almassora",
-        "poblacion": 29159
+        "poblacion": 29159,
+        "gastoTotal": 46850857,
+        "ingresoTotal": 47565419.14
       },
       {
         "ine": "12027",
         "nombre": "Benicarló",
-        "poblacion": 30296
+        "poblacion": 30296,
+        "gastoTotal": 58826622.01,
+        "ingresoTotal": 58826622.01
       },
       {
         "ine": "12028",
         "nombre": "Benicasim/Benicàssim",
-        "poblacion": 20539
+        "poblacion": 20539,
+        "gastoTotal": 35540546.13,
+        "ingresoTotal": 35540546.13
       },
       {
         "ine": "12032",
         "nombre": "Borriana/Burriana",
-        "poblacion": 37915
+        "poblacion": 37915,
+        "gastoTotal": 40398045.42,
+        "ingresoTotal": 40398045.42
       },
       {
         "ine": "12084",
         "nombre": "Onda",
-        "poblacion": 26190
+        "poblacion": 26190,
+        "gastoTotal": 37516861,
+        "ingresoTotal": 37516861
       },
       {
         "ine": "12126",
         "nombre": "Vall d'Uixó (la)",
-        "poblacion": 32242
+        "poblacion": 32242,
+        "gastoTotal": 51059580.51,
+        "ingresoTotal": 51059580.51
       },
       {
         "ine": "12138",
         "nombre": "Vinaròs",
-        "poblacion": 30529
+        "poblacion": 30529,
+        "gastoTotal": 48125000,
+        "ingresoTotal": 48125000
       },
       {
         "ine": "46005",
         "nombre": "Alaquàs",
-        "poblacion": 30166
+        "poblacion": 30166,
+        "gastoTotal": 27953694.09,
+        "ingresoTotal": 27953694.09
       },
       {
         "ine": "46007",
         "nombre": "Albal",
-        "poblacion": 17365
+        "poblacion": 17365,
+        "gastoTotal": 14695743.67,
+        "ingresoTotal": 14695743.67
       },
       {
         "ine": "46013",
         "nombre": "Alboraia/Alboraya",
-        "poblacion": 26273
+        "poblacion": 26273,
+        "gastoTotal": 27904569.65,
+        "ingresoTotal": 28527221.65
       },
       {
         "ine": "46021",
         "nombre": "Aldaia",
-        "poblacion": 34630
+        "poblacion": 34630,
+        "gastoTotal": 30325714.94,
+        "ingresoTotal": 30325714.939999998
       },
       {
         "ine": "46022",
         "nombre": "Alfafar",
-        "poblacion": 22270
+        "poblacion": 22270,
+        "gastoTotal": 22786247.560000002,
+        "ingresoTotal": 22786247.56
       },
       {
         "ine": "46029",
         "nombre": "Algemesí",
-        "poblacion": 28306
+        "poblacion": 28306,
+        "gastoTotal": 23877986.28,
+        "ingresoTotal": 23877986.28
       },
       {
         "ine": "46054",
         "nombre": "Benetússer",
-        "poblacion": 16734
+        "poblacion": 16734,
+        "gastoTotal": 15464543.36,
+        "ingresoTotal": 15464543.36
       },
       {
         "ine": "46070",
         "nombre": "Bétera",
-        "poblacion": 28560
+        "poblacion": 28560,
+        "gastoTotal": 30140896.11,
+        "ingresoTotal": 30140896.11
       },
       {
         "ine": "46083",
         "nombre": "Carcaixent",
-        "poblacion": 21934
+        "poblacion": 21934,
+        "gastoTotal": 22358261.5,
+        "ingresoTotal": 22358261.5
       },
       {
         "ine": "46085",
         "nombre": "Carlet",
-        "poblacion": 16857
+        "poblacion": 16857,
+        "gastoTotal": 16584789.83,
+        "ingresoTotal": 16584789.83
       },
       {
         "ine": "46094",
         "nombre": "Catarroja",
-        "poblacion": 30604
+        "poblacion": 30604,
+        "gastoTotal": 39040734.730000004,
+        "ingresoTotal": 39040734.73
       },
       {
         "ine": "46102",
         "nombre": "Quart de Poblet",
-        "poblacion": 26967
+        "poblacion": 26967,
+        "gastoTotal": 40699000,
+        "ingresoTotal": 40699000
       },
       {
         "ine": "46105",
         "nombre": "Cullera",
-        "poblacion": 24702
+        "poblacion": 24702,
+        "gastoTotal": 42888274.589999996,
+        "ingresoTotal": 42888274.589999996
       },
       {
         "ine": "46110",
         "nombre": "Xirivella",
-        "poblacion": 32093
+        "poblacion": 32093,
+        "gastoTotal": 25607159.82,
+        "ingresoTotal": 25607159.82
       },
       {
         "ine": "46111",
         "nombre": "Chiva",
-        "poblacion": 17951
+        "poblacion": 17951,
+        "gastoTotal": 16198349.53,
+        "ingresoTotal": 17447997.84
       },
       {
         "ine": "46116",
         "nombre": "Eliana (l')",
-        "poblacion": 19839
+        "poblacion": 19839,
+        "gastoTotal": 19991782.830000002,
+        "ingresoTotal": 19991782.830000002
       },
       {
         "ine": "46145",
         "nombre": "Xàtiva",
-        "poblacion": 31008
+        "poblacion": 31008,
+        "gastoTotal": 39198871.45,
+        "ingresoTotal": 39198871.45
       },
       {
         "ine": "46147",
         "nombre": "Llíria",
-        "poblacion": 25333
+        "poblacion": 25333,
+        "gastoTotal": 25216627.830000002,
+        "ingresoTotal": 25354927.83
       },
       {
         "ine": "46159",
         "nombre": "Manises",
-        "poblacion": 32609
+        "poblacion": 32609,
+        "gastoTotal": 33310000,
+        "ingresoTotal": 33310000
       },
       {
         "ine": "46164",
         "nombre": "Massamagrell",
-        "poblacion": 17566
+        "poblacion": 17566,
+        "gastoTotal": 13015000,
+        "ingresoTotal": 13080000
       },
       {
         "ine": "46171",
         "nombre": "Moncada",
-        "poblacion": 22213
+        "poblacion": 22213,
+        "gastoTotal": 21532895.73,
+        "ingresoTotal": 21532895.73
       },
       {
         "ine": "46181",
         "nombre": "Oliva",
-        "poblacion": 26813
+        "poblacion": 26813,
+        "gastoTotal": 30282046,
+        "ingresoTotal": 30282046
       },
       {
         "ine": "46184",
         "nombre": "Ontinyent",
-        "poblacion": 37012
+        "poblacion": 37012,
+        "gastoTotal": 64669640,
+        "ingresoTotal": 64669640
       },
       {
         "ine": "46186",
         "nombre": "Paiporta",
-        "poblacion": 28136
+        "poblacion": 28136,
+        "gastoTotal": 21788444.55,
+        "ingresoTotal": 21788544.55
       },
       {
         "ine": "46194",
         "nombre": "Picassent",
-        "poblacion": 23202
+        "poblacion": 23202,
+        "gastoTotal": 28002771.04,
+        "ingresoTotal": 28002771.04
       },
       {
         "ine": "46202",
         "nombre": "Pobla de Vallbona (la)",
-        "poblacion": 27471
+        "poblacion": 27471,
+        "gastoTotal": 35366679.53,
+        "ingresoTotal": 35366679.53
       },
       {
         "ine": "46205",
         "nombre": "Puçol",
-        "poblacion": 21659
+        "poblacion": 21659,
+        "gastoTotal": 20166622,
+        "ingresoTotal": 20166622
       },
       {
         "ine": "46213",
         "nombre": "Requena",
-        "poblacion": 20982
+        "poblacion": 20982,
+        "gastoTotal": 18758559,
+        "ingresoTotal": 18758559
       },
       {
         "ine": "46214",
         "nombre": "Riba-roja de Túria",
-        "poblacion": 24616
+        "poblacion": 24616,
+        "gastoTotal": 41578252.26,
+        "ingresoTotal": 43516817.13
       },
       {
         "ine": "46230",
         "nombre": "Silla",
-        "poblacion": 20482
+        "poblacion": 20482,
+        "gastoTotal": 18730078.3,
+        "ingresoTotal": 18730078.3
       },
       {
         "ine": "46235",
         "nombre": "Sueca",
-        "poblacion": 29194
+        "poblacion": 29194,
+        "gastoTotal": 37166372.57,
+        "ingresoTotal": 40111916.89
       },
       {
         "ine": "46238",
         "nombre": "Tavernes de la Valldigna",
-        "poblacion": 17866
+        "poblacion": 17866,
+        "gastoTotal": 18519785.81,
+        "ingresoTotal": 18548658.94
       }
     ],
     "filas": [
@@ -134702,7 +134822,7 @@
     "entregasNoPresentadas": [
       2020
     ],
-    "motivoFaltantes": "El ministerio sólo publica volcado masivo de 2021. El resto de entregas sólo salen del informe por ente de la aplicación de consulta, cuyo botón de descarga no se deja reconstruir como POST: hay que pedirlo desde un navegador y dejar el fichero en .cache/cesel/informes."
+    "motivoFaltantes": "El ministerio sólo publica volcado masivo de 2021; el resto de entregas se obtienen del informe por comunidad autónoma de la aplicación de consulta, que se pide con `npm run fetch:cesel-ccaa` y se guarda en .cache/cesel/ccaa."
   },
   "stats": {
     "anios": [

@@ -50,6 +50,13 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
     (i.serie ?? []).some((p) => typeof p.valorReal === 'number'),
   ).length
 
+  // El adaptador ya distingue «no hemos podido bajar la entrega» de «el
+  // ayuntamiento no la presentó» —comprueba que el libro esté y que el
+  // municipio no figure en él— y lo publica en `entregasNoPresentadas`. Ese
+  // campo no lo leía nadie, así que el hecho estaba en el dato y no en la
+  // página, mientras la frase de al lado lo atribuía a un problema de descarga.
+  const noPresentadas = cobertura?.entregasNoPresentadas ?? []
+
   const filas = [
     { n: universe.conRatio, k: 'conRatio' },
     { n: universe.enConcesion, k: 'concesion' },
@@ -141,6 +148,33 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
           otros municipios, en cambio, va sin deflactar y a propósito —es de un año contra ese mismo
           año, así que corregirla movería todas las cifras por igual sin cambiar ninguna posición, y
           dejarían de coincidir con la celda del ministerio que citan.
+        </p>
+      )}
+      {noPresentadas.length > 0 && (
+        <p
+          style={{
+            margin: '10px 0 0',
+            paddingLeft: 10,
+            borderLeft: '3px solid var(--warn)',
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70, var(--ink50))',
+          }}
+        >
+          {noPresentadas.length === 1 ? (
+            <>
+              La entrega de <strong className="mono">{noPresentadas[0]}</strong> no falta por un
+              problema de descarga: falta porque el ayuntamiento no la presentó.
+            </>
+          ) : (
+            <>
+              Las entregas de <strong className="mono">{noPresentadas.join(', ')}</strong> no faltan
+              por un problema de descarga: faltan porque el ayuntamiento no las presentó.
+            </>
+          )}{' '}
+          El libro de la Comunitat Valenciana está descargado y los demás municipios sí figuran en
+          él; éste no aparece en ninguna de sus tablas de coste, gestión ni unidades físicas. Rendir
+          el coste efectivo antes del 1 de noviembre es una obligación del artículo 116 ter de la
+          Ley de Bases de Régimen Local.
         </p>
       )}
       {cobertura && (

@@ -261,11 +261,22 @@ async function main() {
       entregasPublicadas: Object.values(ENTREGAS).sort(),
       entregasObtenidas: [...new Set(filasMunicipio.map((f) => f.anio))].sort(),
       entregasNoPresentadas: [...noPresentadas].sort(),
+      // Esta frase habla SÓLO de cómo se obtienen los ficheros. Lo que el
+      // ayuntamiento presentó o dejó de presentar va en `entregasNoPresentadas`,
+      // que se calcula arriba comprobando que el libro esté y el municipio no.
+      //
+      // Iban juntas y era un error de bulto: la frase describía el mecanismo de
+      // descarga y se renderizaba justo detrás de la lista de entregas
+      // obtenidas, así que el lector entendía que 2020 falta porque este sitio
+      // no supo bajarla. Falta porque no está: el libro de la Comunitat
+      // Valenciana de 2020 está descargado, lo presentaron 503 ayuntamientos
+      // valencianos —más que en 2018, 2019, 2021 o 2022— y Riba-roja no figura
+      // en ninguna de sus tablas de coste, gestión ni unidades físicas.
       motivoFaltantes:
-        'El ministerio sólo publica volcado masivo de 2021. El resto de entregas ' +
-        'sólo salen del informe por ente de la aplicación de consulta, cuyo botón ' +
-        'de descarga no se deja reconstruir como POST: hay que pedirlo desde un ' +
-        'navegador y dejar el fichero en .cache/cesel/informes.',
+        'El ministerio sólo publica volcado masivo de 2021; el resto de entregas ' +
+        'se obtienen del informe por comunidad autónoma de la aplicación de ' +
+        'consulta, que se pide con `npm run fetch:cesel-ccaa` y se guarda en ' +
+        '.cache/cesel/ccaa.',
     },
     stats: {
       anios: [...new Set(filasMunicipio.map((f) => f.anio))].sort(),
