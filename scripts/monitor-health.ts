@@ -170,12 +170,25 @@ async function gather(): Promise<Observations> {
   // barrido nocturno (scripts/review-sweep.sh); esto sólo comprueba que esté
   // ocurriendo y que lo encontrado no lleve días sin arreglar. Es barato: mira
   // la caché, no llama a ningún modelo.
+  // Las tres de eficiencia entran por un motivo distinto del de las anteriores:
+  // no es que nadie las ejecutara —el nocturno sí lo hacía— sino que su
+  // veredicto moría en un log. Iban a `soft_failures`, que imprime una línea y
+  // deja la pasada saliendo 0 bajo «all critical scrapers succeeded», y esta
+  // pantalla no las miraba. El desenlace que existen para detectar es una ficha
+  // FIRMADA sobre gasto municipal cuya fuente ya no la sostiene: eso no puede
+  // depender de que alguien lea la salida del nocturno.
+  //   · check:eficiencia-findings — la cifra congelada ya no coincide con el panel
+  //   · check:indicadores          — una cifra publicada sin celda que la respalde
+  //   · check:dea                  — la frontera no se reproduce, o nombra a un tercero
   for (const c of [
     'check:json',
     'check:relations',
     'check:runs',
     'check:queues',
     'check:surfaces',
+    'check:indicadores',
+    'check:eficiencia-findings',
+    'check:dea',
   ]) {
     const msg = runCheck(c)
     if (msg) integrity.push({ check: c, message: msg })
