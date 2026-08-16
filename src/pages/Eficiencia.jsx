@@ -4,6 +4,7 @@ import { ResumenPosiciones } from '../components/eficiencia/ResumenPosiciones'
 import { ServicioCard } from '../components/eficiencia/ServicioCard'
 import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
 import { HallazgosEficiencia } from '../components/eficiencia/HallazgosEficiencia'
+import { Supramunicipal } from '../components/eficiencia/Supramunicipal'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useT } from '../i18n'
@@ -141,6 +142,11 @@ export default function Eficiencia() {
           </div>
         </>
       )}
+
+      {/* CE4 va pegado a los bloqueados porque es su explicación: los ceros de
+          turismo, ferias, deporte y ocio no son funciones inexistentes, son
+          funciones cuya parte supramunicipal rinde la Mancomunitat. */}
+      <Supramunicipal filas={data?.supramunicipales} entrega={data?.anioBase} />
 
       {/* Al final, y no arriba: una ficha firmada es una lectura del panel, y
           el panel se lee primero. Un hallazgo en cabecera convertiría la página

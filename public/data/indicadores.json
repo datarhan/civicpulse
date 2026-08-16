@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T13:07:44.892Z",
+  "generatedAt": "2026-08-16T13:19:40.963Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -37,7 +37,7 @@
       2020
     ],
     "motivoFaltantes": "El ministerio sólo publica volcado masivo de 2021; el resto de entregas se obtienen del informe por comunidad autónoma de la aplicación de consulta, que se pide con `npm run fetch:cesel-ccaa` y se guarda en .cache/cesel/ccaa.",
-    "fuenteGeneratedAt": "2026-08-16T13:07:44.104Z"
+    "fuenteGeneratedAt": "2026-08-16T13:19:40.101Z"
   },
   "indicadores": [
     {
@@ -2104,7 +2104,8 @@
       "caveats": [
         "Divide el gasto del servicio entre su plantilla propia, así que un programa que se presta con más contratación externa y menos personal propio sale «más caro» por efectivo sin que eso diga nada de cuánto deporte se promueve.",
         "Esta cifra queda muy por debajo de la mediana de sus pares (×0,4). Una diferencia así suele venir de que cada ayuntamiento declara «Nº efectivos en plantilla asignados al servicio» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación.",
-        "El ayuntamiento declara la misma cifra de nº efectivos en plantilla asignados al servicio desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 31 de 54 municipios comparables hacen lo mismo con esta misma cifra."
+        "El ayuntamiento declara la misma cifra de nº efectivos en plantilla asignados al servicio desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 31 de 54 municipios comparables hacen lo mismo con esta misma cifra.",
+        "Parte de esta función la presta además Mc. Camp de Turia, que rinde su propio coste efectivo: esta cifra es sólo la parte municipal."
       ],
       "citas": [
         {
@@ -6469,6 +6470,36 @@
           "etiqueta": "Coste efectivo de los servicios · Ministerio de Hacienda"
         }
       ]
+    }
+  ],
+  "supramunicipales": [
+    {
+      "anio": 2024,
+      "entePrincipal": "Mc. Camp de Turia",
+      "programa": "337/330P",
+      "descripcion": "Instalaciones de ocupación del tiempo libre",
+      "municipioServido": "Riba-roja de Túria"
+    },
+    {
+      "anio": 2024,
+      "entePrincipal": "Mc. Camp de Turia",
+      "programa": "341/340P",
+      "descripcion": "Promoción del deporte",
+      "municipioServido": "Riba-roja de Túria"
+    },
+    {
+      "anio": 2024,
+      "entePrincipal": "Mc. Camp de Turia",
+      "programa": "4311/430P",
+      "descripcion": "Ferias",
+      "municipioServido": "Riba-roja de Túria"
+    },
+    {
+      "anio": 2024,
+      "entePrincipal": "Mc. Camp de Turia",
+      "programa": "432/430P",
+      "descripcion": "Información y promoción de la actividad turística de interés y ámbito local",
+      "municipioServido": "Riba-roja de Túria"
     }
   ],
   "stats": {

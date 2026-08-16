@@ -264,6 +264,43 @@ describe('scraper/indicadores', () => {
   })
 })
 
+describe('scraper/indicadores · CE4 supramunicipal', () => {
+  const supra = (anio: number, programa: string) => ({
+    anio,
+    entePrincipal: 'Mc. Camp de Turia',
+    programa,
+    descripcion: 'Promoción del deporte',
+    municipioServido: 'Riba-roja de Túria',
+  })
+  const construir = (filasSupra: ReturnType<typeof supra>[]) =>
+    construirIndicadores({
+      municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: mias },
+      pares: { conjunto: 'cv-15k-40k', anios: [2021], miembros, filas: rows },
+      anioBase: 2021,
+      citaUrl: CITA,
+      supramunicipal: filasSupra,
+    })
+
+  it('la tarjeta cuyo programa casa gana la salvedad, con el ente por su nombre', () => {
+    // CE4 publica el programa SIN prefijo: «1621» tiene que casar con a1621.
+    const snap = construir([supra(2021, '1621')])
+    const residuos = snap.indicadores.find((i) => i.id === 'a1621-coste-unitario')!
+    expect(residuos.caveats.some((c) => /Mc\. Camp de Turia/.test(c))).toBe(true)
+    expect(residuos.caveats.some((c) => /sólo la parte municipal/.test(c))).toBe(true)
+    // Y ninguna otra tarjeta la hereda por vecindad.
+    const otros = snap.indicadores.filter((i) => i.id !== 'a1621-coste-unitario')
+    for (const i of otros) {
+      expect(i.caveats.some((c) => /Camp de Turia/.test(c))).toBe(false)
+    }
+  })
+
+  it('una fila de OTRO año no dispara nada: la salvedad habla del año que titula', () => {
+    const snap = construir([supra(2019, '1621')])
+    const residuos = snap.indicadores.find((i) => i.id === 'a1621-coste-unitario')!
+    expect(residuos.caveats.some((c) => /Camp de Turia/.test(c))).toBe(false)
+  })
+})
+
 describe('scraper/indicadores · euros constantes', () => {
   // Índice inventado y deliberadamente brusco: 2020 vale la mitad que 2021, así
   // que cualquier confusión de dirección salta a la vista en vez de esconderse

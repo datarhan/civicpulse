@@ -47,6 +47,7 @@ async function main() {
     pares: fuente.pares,
     citaUrl: fuente.source.volcado,
     ipc,
+    supramunicipal: fuente.supramunicipal?.filas ?? [],
   })
   const anioBase = snap.indicadores[0]?.citas[0]?.entrega ?? 0
 
@@ -88,6 +89,11 @@ async function main() {
     cobertura: { ...fuente.cobertura, fuenteGeneratedAt: fuente.generatedAt ?? null },
     ...snap,
     municipales,
+    // CE4 del año base: lo que otros entes declaran prestar a este municipio.
+    // La página lo enseña junto a los bloqueados — explica los ceros.
+    supramunicipales: (fuente.supramunicipal?.filas ?? []).filter(
+      (s: { anio: number }) => s.anio === anioBase,
+    ),
     stats: {
       indicadores: snap.indicadores.length,
       conRatio: snap.universe.conRatio,

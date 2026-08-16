@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T13:07:44.104Z",
+  "generatedAt": "2026-08-16T13:19:40.101Z",
   "source": {
     "volcado": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
     "consulta": "https://serviciostelematicosext.hacienda.gob.es/sgcief/Cesel/Consulta/Consulta.aspx",
@@ -8819,7 +8819,7 @@
       "popMax": 40000,
       "tipoEnte": "AA"
     },
-    "resolvedAt": "2026-08-16T13:07:44.104Z",
+    "resolvedAt": "2026-08-16T13:19:40.101Z",
     "anios": [
       2014,
       2015,
@@ -152776,6 +152776,255 @@
     ],
     "motivoFaltantes": "El ministerio sólo publica volcado masivo de 2021; el resto de entregas se obtienen del informe por comunidad autónoma de la aplicación de consulta, que se pide con `npm run fetch:cesel-ccaa` y se guarda en .cache/cesel/ccaa."
   },
+  "supramunicipal": {
+    "filas": [
+      {
+        "anio": 2015,
+        "entePrincipal": "Diputación Prov. de Valencia",
+        "programa": "231",
+        "descripcion": "Evaluación e información de situaciones de necesidad social y la atención inmediata a personas en situación o riesgo de exclusión social",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2016,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "341/340P",
+        "descripcion": "Promoción del deporte",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2016,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "432/430P",
+        "descripcion": "Información y promoción de la actividad turística de interés y ámbito local",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2019,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "231",
+        "descripcion": "Evaluación e información de situaciones de necesidad social y la atención inmediata a personas en situación o riesgo de exclusión social",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2019,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "334/330P",
+        "descripcion": "Promoción de la cultura",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2019,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "337/330P",
+        "descripcion": "Instalaciones de ocupación del tiempo libre",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2019,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "341/340P",
+        "descripcion": "Promoción del deporte",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2019,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "4311/430P",
+        "descripcion": "Ferias",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2019,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "432/430P",
+        "descripcion": "Información y promoción de la actividad turística de interés y ámbito local",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2020,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "1721/170P",
+        "descripcion": "Medio ambiente urbano",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2020,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "231",
+        "descripcion": "Evaluación e información de situaciones de necesidad social y la atención inmediata a personas en situación o riesgo de exclusión social",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2020,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "334/330P",
+        "descripcion": "Promoción de la cultura",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2020,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "341/340P",
+        "descripcion": "Promoción del deporte",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2020,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "4311/430P",
+        "descripcion": "Ferias",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2020,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "432/430P",
+        "descripcion": "Información y promoción de la actividad turística de interés y ámbito local",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2021,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "1721/170P",
+        "descripcion": "Medio ambiente urbano",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2021,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "231",
+        "descripcion": "Evaluación e información de situaciones de necesidad social y la atención inmediata a personas en situación o riesgo de exclusión social",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2021,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "334/330P",
+        "descripcion": "Promoción de la cultura",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2021,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "341/340P",
+        "descripcion": "Promoción del deporte",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2021,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "4311/430P",
+        "descripcion": "Ferias",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2021,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "432/430P",
+        "descripcion": "Información y promoción de la actividad turística de interés y ámbito local",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2022,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "1721/170P",
+        "descripcion": "Medio ambiente urbano",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2022,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "231",
+        "descripcion": "Evaluación e información de situaciones de necesidad social y la atención inmediata a personas en situación o riesgo de exclusión social",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2022,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "337/330P",
+        "descripcion": "Instalaciones de ocupación del tiempo libre",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2022,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "341/340P",
+        "descripcion": "Promoción del deporte",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2022,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "4311/430P",
+        "descripcion": "Ferias",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2022,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "432/430P",
+        "descripcion": "Información y promoción de la actividad turística de interés y ámbito local",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2023,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "337/330P",
+        "descripcion": "Instalaciones de ocupación del tiempo libre",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2023,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "341/340P",
+        "descripcion": "Promoción del deporte",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2023,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "4311/430P",
+        "descripcion": "Ferias",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2023,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "432/430P",
+        "descripcion": "Información y promoción de la actividad turística de interés y ámbito local",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2024,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "337/330P",
+        "descripcion": "Instalaciones de ocupación del tiempo libre",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2024,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "341/340P",
+        "descripcion": "Promoción del deporte",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2024,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "4311/430P",
+        "descripcion": "Ferias",
+        "municipioServido": "Riba-roja de Túria"
+      },
+      {
+        "anio": 2024,
+        "entePrincipal": "Mc. Camp de Turia",
+        "programa": "432/430P",
+        "descripcion": "Información y promoción de la actividad turística de interés y ámbito local",
+        "municipioServido": "Riba-roja de Túria"
+      }
+    ]
+  },
   "stats": {
     "anios": [
       2014,
@@ -152791,6 +153040,7 @@
     ],
     "filasMunicipio": 430,
     "filasPares": 8968,
-    "miembros": 60
+    "miembros": 60,
+    "filasSupramunicipales": 35
   }
 }

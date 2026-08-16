@@ -28,7 +28,7 @@
  *
  * Módulo puro: sin red, sin lectura de ficheros. Los CLIs le pasan los datos.
  */
-import type { CesteRow, ModoGestion } from './coste-efectivo'
+import { programaCe4CasaCon, type Ce4Row, type CesteRow, type ModoGestion } from './coste-efectivo'
 import { SERVICIOS, type ServicioDef } from './indicador-registry'
 import { medirDeclaracionCongelada } from './declaracion-congelada'
 
@@ -390,6 +390,13 @@ export interface ConstruirInput {
    * deflactar y una deflactada se ven idénticas.
    */
   ipc?: Record<number, number>
+  /**
+   * Filas de CE4 que sirven a este municipio. Cuando una casa con el programa
+   * de un indicador en el año que titula, la tarjeta gana la salvedad de que
+   * parte de la función la presta además otro ente — sin ella, el coste
+   * municipal se lee como el coste entero de la función.
+   */
+  supramunicipal?: Ce4Row[]
 }
 
 /**
@@ -632,6 +639,20 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
     if (declaracion) {
       const frase = caveatDeclaracion(declaracion, def)
       if (frase) caveats.push(frase)
+    }
+
+    // ── ¿Presta esta función además un ente supramunicipal? ─────────────────
+    // CE4 del año que titula. Sin esta salvedad, el coste municipal se lee
+    // como el coste entero de la función — y en promoción del deporte la
+    // Mancomunitat Camp de Túria rinde su propia parte.
+    const supra = (input.supramunicipal ?? []).find(
+      (s) => s.anio === anioBase && programaCe4CasaCon(s.programa, programa),
+    )
+    if (supra) {
+      caveats.push(
+        `Parte de esta función la presta además ${supra.entePrincipal}, que rinde su propio ` +
+          `coste efectivo: esta cifra es sólo la parte municipal.`,
+      )
     }
 
     indicadores.push({
