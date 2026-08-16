@@ -1,8 +1,135 @@
 {
-  "generatedAt": "2026-08-14T08:29:17.585Z",
-  "bundleCount": 0,
+  "generatedAt": "2026-08-16T10:19:16.204Z",
+  "bundleCount": 2,
   "archivedCount": 0,
   "contract": "Eligible bundles (no contradicho, all gates passed) that have not yet been promoted. The weekly auto-curate cron promotes the top 5 by score; the rest are listed here for the curator dashboard.",
-  "bundles": [],
+  "bundles": [
+    {
+      "plenoId": "15uvjew",
+      "plenoDate": "2026-07-27",
+      "plenoTitle": "Sesión de fecha 27 de julio de 2026",
+      "topic": "medio-ambiente",
+      "blocs": [
+        "PSOE",
+        "PP"
+      ],
+      "score": 7.3,
+      "quotes": [
+        {
+          "claimId": "15uvjew-137-afi-3bd4bc",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.85,
+          "verbatim": "Esta compra equivalen a 505 mil euros de inversión, con lo cual teníamos que hacer sí o sí una modificación dentro del propio presupuesto para financiar el pago de la adquisición de estos contenedores.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=j0PEgp21LM4UqXM96WStVA%3D%3D",
+              "snippet": "Suministro de renting de siete vehículos: dos vehículos pick-up equipados con material de emergencias, uno de ellos con opción a compra al final del contrato, cuatro tipo SUV híbridos y un vehículo tipo SUV con mampara con opción "
+            }
+          ]
+        },
+        {
+          "claimId": "15uvjew-141-cit-68512b",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.8,
+          "verbatim": "fundamentalmente la base es el cambio del plan de inversiones por la compra de los contenedores con un importe de 505.000 euros",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=j0PEgp21LM4UqXM96WStVA%3D%3D",
+              "snippet": "Suministro de renting de siete vehículos: dos vehículos pick-up equipados con material de emergencias, uno de ellos con opción a compra al final del contrato, cuatro tipo SUV híbridos y un vehículo tipo SUV con mampara con opción "
+            }
+          ]
+        },
+        {
+          "claimId": "15uvjew-197-acu-735415",
+          "speakerGroup": "PP",
+          "verdict": "parcial",
+          "confidence": 0.8,
+          "verbatim": "¿cómo puede ser que ustedes quiten 50.000 euros del plan de refugios climáticos, pero hace dos semanas lo pusieran en marcha?",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ej1RCt%2B7HEsQK2TEfXGy%2BA%3D%3D",
+              "snippet": "Grabación, imagen, comunicación social y mantenimiento de las redes sociales · Ayuntamiento de Riba-roja de Túria · Irispress Social Media, S.L. · culture · 50.000 €"
+            }
+          ]
+        },
+        {
+          "claimId": "15uvjew-148-afi-fbf71b",
+          "speakerGroup": "PP",
+          "verdict": "parcial",
+          "confidence": 0.7,
+          "verbatim": "Mantenimiento y conservación de espacios degradados, cincuenta mil euros desaparece",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HJBVBRq8QhiXQV0WE7lYPw%3D%3D",
+              "snippet": "Servicio de mantenimiento de zonas ajardinadas, viales públicos y espacios públicos de titularidad municipal situados en casco urbano, por procedimiento abierto simplificado, mejor relación calidad-precio, único criterio de adjudi"
+            }
+          ]
+        }
+      ],
+      "itemCount": 4
+    },
+    {
+      "plenoId": "15uvjew",
+      "plenoDate": "2026-07-27",
+      "plenoTitle": "Sesión de fecha 27 de julio de 2026",
+      "topic": "movilidad",
+      "blocs": [
+        "PSOE",
+        "PP"
+      ],
+      "score": 6.5,
+      "quotes": [
+        {
+          "claimId": "15uvjew-148-afi-755647",
+          "speakerGroup": "PP",
+          "verdict": "verificado",
+          "confidence": 0.7,
+          "verbatim": "Caminos rurales, desaparece setenta y cinco mil euros, asfaltado",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h4tiCELtfEdxseVhcqrkhw%3D%3D",
+              "snippet": "Contrato administrativo de obras para el proyecto de “Asfaltado y reasfaltado de viales urbanos y caminos rurales de Riba-roja de Túria” Plan RENOVE , dividido en 6 lotes. · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · const"
+            }
+          ]
+        },
+        {
+          "claimId": "15uvjew-143-cit-ec4198",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.85,
+          "verbatim": "adecuación acceso a carretera por zona norte con 50.000 euros",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=x10BPwYgF7OiEJrVRqloyA%3D%3D",
+              "snippet": "El objeto del contrato es el cambio de juegos infantiles y suelos de protección de la Plaza Vicente Andrés Estellés, en el casco urbano de Riba-roja de Túria, mediante la sustitución total de las actuales estructuras por otras nue"
+            }
+          ]
+        },
+        {
+          "claimId": "15uvjew-144-afi-3a8ca1",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.85,
+          "verbatim": "adecuación acceso a carretera por zona norte con 50.000 euros",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=x10BPwYgF7OiEJrVRqloyA%3D%3D",
+              "snippet": "El objeto del contrato es el cambio de juegos infantiles y suelos de protección de la Plaza Vicente Andrés Estellés, en el casco urbano de Riba-roja de Túria, mediante la sustitución total de las actuales estructuras por otras nue"
+            }
+          ]
+        }
+      ],
+      "itemCount": 3
+    }
+  ],
   "archived": []
 }
