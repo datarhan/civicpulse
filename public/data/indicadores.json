@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T11:34:27.752Z",
+  "generatedAt": "2026-08-16T13:02:42.428Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -36,7 +36,8 @@
     "entregasNoPresentadas": [
       2020
     ],
-    "motivoFaltantes": "El ministerio sólo publica volcado masivo de 2021; el resto de entregas se obtienen del informe por comunidad autónoma de la aplicación de consulta, que se pide con `npm run fetch:cesel-ccaa` y se guarda en .cache/cesel/ccaa."
+    "motivoFaltantes": "El ministerio sólo publica volcado masivo de 2021; el resto de entregas se obtienen del informe por comunidad autónoma de la aplicación de consulta, que se pide con `npm run fetch:cesel-ccaa` y se guarda en .cache/cesel/ccaa.",
+    "fuenteGeneratedAt": "2026-08-16T11:34:26.866Z"
   },
   "indicadores": [
     {

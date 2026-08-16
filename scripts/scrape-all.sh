@@ -388,6 +388,15 @@ if ! npm run check:vocabulary; then
   soft_failures+=("check:vocabulary")
 fi
 
+# ¿Sigue cada snapshot dentro de su propia cadencia? El check existía con sus
+# presupuestos por fichero y NO LO INVOCABA NADIE — el modo de fallo 1 de
+# check:guards, en el propio guardián de la frescura. Soft: un dato viejo
+# avisa, no bloquea el dato bueno de esta noche.
+if ! npm run check:cadence; then
+  echo "[scrape-all] SOFT-FAILED: check:cadence — algún snapshot lleva más de su presupuesto sin refrescarse"
+  soft_failures+=("check:cadence")
+fi
+
 # ¿Sigue cada cifra de /eficiencia resolviendo a su celda, y sigue diciendo el
 # panel lo que afirman las fichas firmadas? Lo segundo es propio de esta
 # familia: una cita de pleno se queda quieta, un número no, y el ministerio

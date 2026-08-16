@@ -45,6 +45,9 @@
       "/lab-health",
       "/quejas"
     ],
+    "coste-efectivo.json": [
+      "/datos"
+    ],
     "cpv-labels.json": [
       "/presupuesto"
     ],
@@ -54,6 +57,7 @@
       "/quejas"
     ],
     "dea.json": [
+      "/datos",
       "/laboratorio/frontera",
       "/metodologia"
     ],
@@ -62,6 +66,7 @@
       "/cargos/:slug"
     ],
     "eficiencia-findings.json": [
+      "/datos",
       "/eficiencia",
       "/gestion"
     ],
@@ -97,9 +102,13 @@
       "/quejas"
     ],
     "indicadores.json": [
+      "/datos",
       "/eficiencia",
       "/gestion",
       "/metodologia"
+    ],
+    "ipc.json": [
+      "/datos"
     ],
     "ispa.json": [
       "/cargos"
@@ -226,6 +235,9 @@
       "/nosotros",
       "/plenos",
       "/plenos/:id"
+    ],
+    "pmp.json": [
+      "/datos"
     ],
     "press-claims-suggestions.json": [
       "/lab-health"

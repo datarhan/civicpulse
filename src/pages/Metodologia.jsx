@@ -1570,6 +1570,56 @@ export default function Metodologia() {
           del doble de la mediana de sus pares ya señalaba esa tarjeta antes de que hubiera una
           segunda entrega con la que contrastarla.
         </p>
+        <div id="reglas-eficiencia" style={{ scrollMarginTop: 24, marginTop: 14 }}>
+          <p style={{ margin: 0, color: 'var(--ink70)' }}>
+            <strong>Reglas de filtrado y comparabilidad · v1 (2026-08).</strong> La literatura sobre
+            el coste efectivo es explícita: las categorías se solapan y hay doble contabilización
+            conocida, así que cualquier trabajo sobre esta fuente debe publicar un procedimiento de
+            filtrado reproducible. Éste es el nuestro, numerado para que cada salvedad del panel
+            pueda citar la regla que la dispara. Cambiarlo es cambiar de versión, no editar en
+            silencio.
+          </p>
+          <ol style={{ margin: '8px 0 0', paddingLeft: 22, color: 'var(--ink70)' }}>
+            <li>
+              Un servicio con más de una fila de coste en la misma entrega queda bloqueado: elegir
+              una sería un volado disfrazado de dato.
+            </li>
+            <li>
+              Una magnitud física declarada dos veces con valores distintos en la misma entrega
+              bloquea el cociente de ese año.
+            </li>
+            <li>
+              Unidad a cero junto a un coste real significa «no se declaró», no «no hubo»: el
+              cociente no se calcula y la ausencia se dice.
+            </li>
+            <li>
+              Sólo se compara contra municipios que prestan el servicio con el{' '}
+              <em>mismo modo de gestión</em> y declaran las dos cifras en la misma entrega.
+            </li>
+            <li>Sin quince comparables no hay banda ni percentil: la tarjeta no se sitúa.</li>
+            <li>
+              Un cociente a más de veinte veces —o menos de una veinteava parte— de la mediana de
+              sus pares se trata como error de declaración, no como coste.
+            </li>
+            <li>
+              Una entrega a más del doble o menos de la mitad de la mediana de sus pares ese año se
+              marca atípica: se publica, fuera de la escala del gráfico.
+            </li>
+            <li>
+              Un denominador cuenta como congelado cuando sus últimas cuatro entregas o más traen el
+              mismo valor hasta el cuarto decimal; repetir dos años es normal y no cuenta.
+            </li>
+            <li>
+              Las series propias se deflactan con la media anual del IPC general (INE) al año de la
+              entrega que titula; la comparación transversal va en corrientes, porque enfrenta un
+              año contra ese mismo año.
+            </li>
+            <li>
+              Los programas que el ministerio publica duplicados en las variantes a/b de un mismo
+              servicio cuentan una sola vez.
+            </li>
+          </ol>
+        </div>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>El plazo de pago es la única cifra del panel con umbral legal.</strong> El periodo
           medio de pago a proveedores lo calcula el Ministerio de Hacienda con la metodología del RD

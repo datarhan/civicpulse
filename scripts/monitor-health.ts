@@ -180,12 +180,19 @@ async function gather(): Promise<Observations> {
   //   · check:eficiencia-findings — la cifra congelada ya no coincide con el panel
   //   · check:indicadores          — una cifra publicada sin celda que la respalde
   //   · check:dea                  — la frontera no se reproduce, o nombra a un tercero
+  // `check:cadence` entra por el mismo motivo que `check:runs`: la frescura de
+  // un fichero no dice si su pasada corrió, y la pasada no dice si el fichero
+  // envejece dentro de SU presupuesto. Existía con presupuestos por fichero y
+  // no lo invocaba nadie, así que `pmp.json` —trimestral, y debajo de una ficha
+  // firmada— podía quedarse quieto para siempre sin que ninguna pantalla lo
+  // dijera.
   for (const c of [
     'check:json',
     'check:relations',
     'check:runs',
     'check:queues',
     'check:surfaces',
+    'check:cadence',
     'check:indicadores',
     'check:eficiencia-findings',
     'check:dea',

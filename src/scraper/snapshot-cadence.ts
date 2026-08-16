@@ -23,13 +23,15 @@
  * Pure — no fs, no clock. The CLI supplies both.
  */
 
-export type FreshnessClass = 'nightly' | 'ci-blocked' | 'curated' | 'derived'
+export type FreshnessClass = 'nightly' | 'ci-blocked' | 'curated' | 'derived' | 'manual'
 
 export interface DatasetExpectation {
   file: string
   cls: FreshnessClass
   /** Days after which this is worth a human's attention. */
   maxAgeDays: number
+  /** Qué correr cuando caduque — para las clases donde no basta con «espera». */
+  hint?: string
 }
 
 export interface SnapshotFacts {
@@ -110,10 +112,34 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     'plantilla.json',
     'eficiencia-findings.json',
   ].map((file) => ({ file, cls: 'curated' as const, maxAgeDays: 120 })),
-  // DELIBERADAMENTE FUERA: `coste-efectivo.json` y `pmp.json`. Su ritmo lo
-  // marca el ministerio —una entrega al año y un trimestre respectivamente— y
-  // no hay clase con ese presupuesto. Meterlos con un plazo corto los dejaría
-  // rojos de forma permanente, que es como se consigue que nadie lea el check.
+  // Clase `manual`: fuentes cuyo ritmo lo marca el ministerio y cuyo refresco
+  // no lo corre nadie más que una persona. Estuvieron DELIBERADAMENTE FUERA con
+  // el argumento de que un plazo corto las dejaría rojas de forma permanente —
+  // cierto, y la respuesta correcta es un presupuesto LARGO, no la ausencia:
+  // fuera del check, que `scrape:pmp` dejara de correrse para siempre no lo
+  // decía nada, y el PMP es trimestral y alimenta una ficha firmada.
+  {
+    file: 'pmp.json',
+    cls: 'manual' as const,
+    // Un trimestre (~91 días) + el margen con el que publica el ministerio.
+    maxAgeDays: 130,
+    hint: 'npm run scrape:pmp',
+  },
+  {
+    file: 'coste-efectivo.json',
+    cls: 'manual' as const,
+    // Una entrega al año, publicada en otoño; 430 cubre el ciclo con margen.
+    maxAgeDays: 430,
+    hint: 'npm run fetch:cesel-ccaa && npm run scrape:coste-efectivo',
+  },
+  {
+    file: 'ipc.json',
+    cls: 'manual' as const,
+    // La media anual sólo cambia cuando el INE cierra un año; con 400 días el
+    // aviso llega cuando de verdad falta la media del año anterior.
+    maxAgeDays: 400,
+    hint: 'npm run scrape:ipc',
+  },
 ]
 
 export function classifyFreshness(
@@ -153,8 +179,9 @@ export function classifyFreshness(
         cls: exp.cls,
         ageDays: f.ageDays,
         status: 'stale',
-        note:
-          exp.cls === 'ci-blocked'
+        note: exp.hint
+          ? `>${exp.maxAgeDays}d — refresh path is manual; run ${exp.hint}`
+          : exp.cls === 'ci-blocked'
             ? `>${exp.maxAgeDays}d — CI cannot reach this source; run scripts/scrape-ci-blocked.sh`
             : `>${exp.maxAgeDays}d for a ${exp.cls} dataset`,
       })

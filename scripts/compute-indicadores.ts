@@ -83,7 +83,9 @@ async function main() {
     conjunto: fuente.pares.conjunto,
     anioBase,
     source: fuente.source,
-    cobertura: fuente.cobertura,
+    // `fuenteGeneratedAt` viaja con la cobertura para que /datos pueda fechar
+    // coste-efectivo.json sin descargar sus 3,9 MB sólo para leer un campo.
+    cobertura: { ...fuente.cobertura, fuenteGeneratedAt: fuente.generatedAt ?? null },
     ...snap,
     municipales,
     stats: {
