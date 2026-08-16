@@ -26,6 +26,24 @@ test.describe('Reportaje · basuras (/reportajes/basuras)', () => {
     await expect(page.getByText(/sigue vivo en el registro/).first()).toBeVisible()
     await expect(page.getByText(/Se mantiene\s+al día/).first()).toBeVisible()
 
+    // The Parla precedent must be PROMINENT, not a footnote: the step-by-step
+    // card, the 19-of-33 figure, and the teniente de alcalde's verbatim quote.
+    await expect(
+      page.getByText(/Parla \(Madrid\), 2014 – 2018 · paso a paso/).first(),
+    ).toBeVisible()
+    await expect(page.getByText(/devuelve 19 inservibles/).first()).toBeVisible()
+    await expect(
+      page.getByText(/un camión de recogida de basuras sin la pluma de la grúa/).first(),
+    ).toBeVisible()
+    // …and told in both directions: the UTE's own 2015 rescission request.
+    await expect(page.getByText(/la propia UTE pide rescindir el contrato/).first()).toBeVisible()
+
+    // The owners section: Olazarán's PNV record, attributed, with its limits.
+    await expect(page.getByText(/Euzkadi Buru Batzar/).first()).toBeVisible()
+    await expect(
+      page.getByText(/trece meses antes de que se abriera la licitación/).first(),
+    ).toBeVisible()
+
     // The service section names real urbanizaciones from the municipal calendar.
     await expect(page.getByText(/Masía de Traver/).first()).toBeVisible()
 

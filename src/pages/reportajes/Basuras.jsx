@@ -487,11 +487,39 @@ export default function Basuras() {
         </p>
 
         {/* 03 */}
-        <SecHead num="03" kicker="El precedente" title="Lo que ya constaba" />
+        <SecHead num="03" kicker="El precedente" title="Lo que ya constaba: Parla, 2014-2018" />
+        <p>Nada de lo que ocurrió en diciembre era inédito. {data.parla.intro}</p>
+        <div
+          style={{
+            background: 'var(--soft)',
+            border: '1px solid var(--border)',
+            borderLeft: '3px solid var(--warn)',
+            borderRadius: 'var(--r-card)',
+            padding: '18px 20px',
+            margin: '16px 0',
+          }}
+        >
+          <h3 style={boxH()}>{data.parla.titulo} · paso a paso</h3>
+          {data.parla.hitos.map((h, i) => (
+            <div key={i} style={{ margin: i === 0 ? '0 0 12px' : '12px 0 0' }}>
+              <div
+                className="mono"
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 3 }}
+              >
+                {h.f}
+              </div>
+              <p style={{ margin: 0, fontSize: 'var(--fs-body)' }}>{h.t}</p>
+            </div>
+          ))}
+        </div>
         <p>
-          Nada de lo que ocurrió en diciembre era inédito. Siete años antes, otro ayuntamiento había
-          vivido con esta misma empresa el mismo tipo de final, y lo había dejado escrito.
+          El estado de la flota devuelta no lo describe este reportaje, sino la primera teniente de
+          alcalde de Parla, en la nota oficial con la que su ayuntamiento despidió el contrato:
         </p>
+        <Cita fuente={data.parla.quien}>«{data.parla.citaVehiculos}»</Cita>
+        <p>Y el criterio, en la misma nota: «{data.parla.citaObligacion}».</p>
+        <p>{data.parla.balance}</p>
+        <p>El rastro de la empresa en otros lugares es más corto, pero existe:</p>
         {data.expedienteGarbialdi.map((e, i) => (
           <div key={i} style={{ margin: '14px 0' }}>
             <div
@@ -515,12 +543,59 @@ export default function Basuras() {
         </Callout>
 
         {/* 04 */}
-        <SecHead num="04" kicker="La venta" title="Quién era la empresa cuando firmó" />
+        <SecHead num="04" kicker="Los dueños" title="La empresa y la política" />
+        <p>
+          La versión que dio origen a este reportaje hablaba de una sociedad pantalla vinculada a un
+          político. No lo es, y el político no es el que decía el rumor — pero la pregunta de quién
+          hay detrás de la empresa tiene una respuesta documentada. La Garbialdi que concurrió en
+          Riba-roja venía de una década dirigida por dos socios: José Luis Castellanos Palacios, su
+          director general, y —hasta su muerte en marzo de 2024— Josu Olazarán. Y Olazarán no era un
+          empresario cualquiera.
+        </p>
+        <div
+          style={{
+            background: 'var(--soft)',
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--r-card)',
+            padding: '18px 20px',
+            margin: '16px 0',
+          }}
+        >
+          <h3 style={boxH()}>
+            {data.politica.olazaran.nombre} ({data.politica.olazaran.vida})
+          </h3>
+          <ul style={boxUl()}>
+            {data.politica.olazaran.cargos.map((c, i) => (
+              <li key={i} style={boxLi()}>
+                {c}
+              </li>
+            ))}
+          </ul>
+          <p style={cap()}>{data.politica.olazaran.fuenteBio}.</p>
+        </div>
+        <p>
+          {data.politica.elSalto.texto}{' '}
+          <span style={{ color: 'var(--ink50)' }}>({data.politica.elSalto.atribucion}.)</span>
+        </p>
+        <p>
+          <strong style={{ color: 'var(--ink)' }}>{data.politica.castellanos.nombre}.</strong>{' '}
+          {data.politica.castellanos.texto}
+        </p>
+        <Callout title="Lo que esto significa aquí — y lo que no">
+          {data.politica.limites.map((l, i) => (
+            <p key={i} style={{ margin: i === 0 ? 0 : '8px 0 0' }}>
+              {l}
+            </p>
+          ))}
+        </Callout>
+
+        {/* 05 */}
+        <SecHead num="05" kicker="La venta" title="Quién era la empresa cuando firmó" />
         <p>
           Mientras se resolvía el concurso, Garbialdi se estaba vendiendo. Sus dueños habían
           encargado la operación a Deloitte a principios de 2024 y el proceso se retrasó por la
-          muerte de uno de los socios, Jesús María «Josu» Olazarán Sagarduy, en marzo de aquel año.
-          El comprador fue {data.venta.comprador}, del grupo danés {data.venta.matriz}.
+          muerte de Olazarán, en marzo de aquel año. El comprador fue {data.venta.comprador}, del
+          grupo danés {data.venta.matriz}.
         </p>
         <Cita
           fuente={`Resolución de la CNMC, expediente ${data.venta.expediente}, 1 de octubre de 2025`}
@@ -557,9 +632,9 @@ export default function Basuras() {
           y publicaremos íntegra la respuesta de cada uno.
         </Callout>
 
-        {/* 05 */}
+        {/* 06 */}
         <SecHead
-          num="05"
+          num="06"
           kicker="El registro"
           title="Un contrato resuelto que sigue vivo en el registro"
         />
@@ -590,8 +665,8 @@ export default function Basuras() {
           al día. Lo que falta es esta anotación.
         </Callout>
 
-        {/* 06 */}
-        <SecHead num="06" kicker="El servicio" title="Lo que te toca, y cuándo" />
+        {/* 07 */}
+        <SecHead num="07" kicker="El servicio" title="Lo que te toca, y cuándo" />
         <p>
           Al margen de quién tenga el contrato, el servicio que un vecino usa se rige por un
           calendario. Riba-roja no es sólo un casco urbano: la recogida cubre{' '}
@@ -655,8 +730,8 @@ export default function Basuras() {
           tres horas antes de lo que dice el calendario.
         </Callout>
 
-        {/* 07 */}
-        <SecHead num="07" kicker="El dinero" title="Lo que cuesta y quién lo paga" />
+        {/* 08 */}
+        <SecHead num="08" kicker="El dinero" title="Lo que cuesta y quién lo paga" />
         <p>
           En 2023 el Ayuntamiento ya intentó sacar este contrato: el expediente 97/2023, con{' '}
           {eur(d.presupuesto2023)} de presupuesto base. No consta adjudicado. Cuando volvió a
@@ -680,9 +755,9 @@ export default function Basuras() {
           pliego si esa reposición correspondía a la concesionaria.
         </p>
 
-        {/* 08 */}
+        {/* 09 */}
         <SecHead
-          num="08"
+          num="09"
           kicker="La comparación"
           title="¿Es caro? La pregunta que los datos no dejan responder"
         />
@@ -733,7 +808,7 @@ export default function Basuras() {
           saberlo antes de usar esa serie para nada.
         </Callout>
 
-        <SecHead num="09" kicker="Lo que sigue abierto" title="Lo que todavía no sabemos" />
+        <SecHead num="10" kicker="Lo que sigue abierto" title="Lo que todavía no sabemos" />
         <ul style={{ paddingLeft: 18 }}>
           <li style={{ marginBottom: 8 }}>
             Si la garantía definitiva se ha incautado, y en qué ha quedado la reclamación de daños.

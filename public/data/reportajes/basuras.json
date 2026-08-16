@@ -5,7 +5,7 @@
     "subtitulo": "Riba-roja sustituyó a la contrata de basuras que llevaba desde 2011 por la oferta mejor puntuada de cuatro. El servicio duró un mes. En el concurso, el precio valía 32 de los 100 puntos: los otros 68 eran promesas, y las promesas son lo que falló.",
     "seccion": "Reportaje · datos",
     "municipio": "Riba-roja de Túria",
-    "fechaDatos": "2026-08-15",
+    "fechaDatos": "2026-08-16",
     "estado": "borrador",
     "derechoReplica": "pendiente",
     "correcciones": []
@@ -33,14 +33,24 @@
       "fuente": "ribarroja.es, 28-03-2011"
     },
     {
+      "fecha": "2014-01",
+      "hito": "Parla (Madrid) entrega su limpieza viaria y recogida de basuras a la UTE Garbialdi-Sadifer, junto con 33 vehículos municipales.",
+      "fuente": "Ayuntamiento de Parla, 27-04-2018"
+    },
+    {
+      "fecha": "2015-01/03",
+      "hito": "Dos huelgas por impagos de nómina en Parla en dos meses; con la ciudad llena de basura, el Ayuntamiento encarga la recogida a la empresa pública Tragsa. En plena huelga, la propia UTE pide rescindir el contrato alegando deuda municipal. Siguió prestando el servicio tres años más.",
+      "fuente": "elEconomista, ene/mar 2015 · Telemadrid, 17-03-2015"
+    },
+    {
       "fecha": "2018-02-02",
       "hito": "Parla excluye la oferta de Garbialdi (8,4 M€) del concurso de basuras y limpieza viaria por «baja desproporcionada o anormal» que «no justifica la viabilidad de la empresa».",
       "fuente": "Mesa de contratación de Parla"
     },
     {
-      "fecha": "2018-04",
-      "hito": "Garbialdi-Sadifer termina su contrato en Parla devolviendo 19 de los 33 vehículos municipales inservibles. Le sucede Urbaser-FCC.",
-      "fuente": "Ayuntamiento de Parla"
+      "fecha": "2018-04-30",
+      "hito": "Garbialdi-Sadifer termina su contrato en Parla devolviendo 19 de los 33 vehículos municipales inservibles: 16 de los 20 de limpieza viaria y 3 de los 13 de recogida. Le sucede Urbaser-FCC por 10.389.177 €, casi 3,5 M€ más que el contrato saliente.",
+      "fuente": "Ayuntamiento de Parla, 27-04-2018"
     },
     {
       "fecha": "2023",
@@ -48,14 +58,19 @@
       "fuente": "PLACSP"
     },
     {
-      "fecha": "2025-07-19",
-      "hito": "Termina la huelga indefinida de la plantilla de Garbialdi en Ugao-Miraballes, convocada por ELA en mayo. Mientras, en Riba-roja se valoraban las ofertas.",
-      "fuente": "Deia / Onda Vasca"
+      "fecha": "2024-03-13",
+      "hito": "Muere Josu Olazarán, socio de Garbialdi y su director desde 2010, exsecretario del Euzkadi Buru Batzar del PNV. La venta de la empresa, encargada a Deloitte a principios de año, se retrasa.",
+      "fuente": "Deia / Wikipedia · elEconomista"
     },
     {
       "fecha": "2025-04-16",
       "hito": "Se abre la licitación 136/2025: 16.632.795,30 € de base, 14 años, dos lotes.",
       "fuente": "TED 249954-2025"
+    },
+    {
+      "fecha": "2025-07-19",
+      "hito": "Termina la huelga indefinida de la plantilla de Garbialdi en Ugao-Miraballes, convocada por ELA en mayo. Mientras, en Riba-roja se valoraban las ofertas.",
+      "fuente": "Deia / Onda Vasca"
     },
     {
       "fecha": "2025-09-10",
@@ -354,15 +369,46 @@
     }
   },
 
+  "parla": {
+    "titulo": "Parla (Madrid), 2014 – 2018",
+    "intro": "Es el precedente que más se parece a lo que Riba-roja vivió en diciembre de 2025, y está documentado de principio a fin — en las dos direcciones.",
+    "hitos": [
+      {
+        "f": "Enero de 2014",
+        "t": "La UTE Garbialdi-Sadifer asume la limpieza viaria y la recogida de basuras de Parla, y recibe 33 vehículos municipales para prestarlas."
+      },
+      {
+        "f": "Enero – marzo de 2015",
+        "t": "Dos huelgas por impagos de nómina en dos meses. Con la ciudad llena de basura, el Ayuntamiento encarga la recogida a la empresa pública Tragsa. La UTE atribuye los impagos a la deuda que el propio Ayuntamiento —uno de los más endeudados de España— mantiene con ella."
+      },
+      {
+        "f": "Marzo de 2015",
+        "t": "En plena huelga, la propia UTE pide rescindir el contrato. Siguió, en todo caso, prestando el servicio tres años más."
+      },
+      {
+        "f": "Mediados de 2017",
+        "t": "El Ayuntamiento de Parla empieza a sancionar a la UTE por incumplimientos del servicio."
+      },
+      {
+        "f": "2 de febrero de 2018",
+        "t": "Su oferta al contrato siguiente —8,4 M€, la más barata— es excluida por «baja desproporcionada o anormal» que «no justifica la viabilidad de la empresa», con «incongruencias graves» en maquinaria valorada por debajo de mercado. Urbaser-FCC y Acciona ofertaban por encima de 10 M€."
+      },
+      {
+        "f": "30 de abril de 2018",
+        "t": "Termina el contrato. De los 33 vehículos municipales recibidos en 2014, la UTE devuelve 19 inservibles: 16 de los 20 de limpieza viaria y 3 de los 13 de recogida."
+      },
+      {
+        "f": "Mayo de 2018",
+        "t": "Entra Urbaser-FCC, por 10.389.177 € — casi 3,5 M€ más que el contrato saliente."
+      }
+    ],
+    "citaVehiculos": "Furgonetas sin puertas, barredoras sin ruedas, asientos destrozados, lunas rotas, ventanillas tapadas con plásticos, cabinas repletas de desperdicios e incluso un camión de recogida de basuras sin la pluma de la grúa",
+    "citaObligacion": "La obligación de la empresa era devolver los vehículos en el estado en que se los entregamos",
+    "quien": "María Jesús Fúnez, primera teniente de alcalde de Parla, 27 de abril de 2018",
+    "balance": "El expediente de Parla tiene dos direcciones, y las dos constan. La empresa operó para un ayuntamiento que, según la propia UTE y según los sindicatos de su plantilla, no pagaba — y fue ella la primera en querer irse, en 2015. Y ese mismo expediente termina con sanciones desde 2017, una oferta excluida por inviable y una flota municipal devuelta destrozada. Ningún juzgado ha repartido las culpas, y este reportaje tampoco. Lo que Parla aporta aquí no es un veredicto sino un aviso: los modos de fallo que Riba-roja documentó en diciembre de 2025 —personal, vehículos, rutas— ya estaban descritos, siete años antes, en los comunicados de otro ayuntamiento."
+  },
+
   "expedienteGarbialdi": [
-    {
-      "titulo": "Parla (Madrid), 2014 – abril de 2018",
-      "texto": "La UTE Garbialdi-Sadifer prestó la limpieza viaria y la recogida de basuras y, al terminar, devolvió 19 de los 33 vehículos municipales inservibles: furgonetas sin puertas, barredoras sin ruedas, cristales rotos y un camión de basura sin el gancho de la grúa. Le sucedió Urbaser-FCC, con 3,5 M€ más de presupuesto."
-    },
-    {
-      "titulo": "Parla, 2 de febrero de 2018",
-      "texto": "La mesa de contratación excluyó la oferta de Garbialdi —8,4 M€, la más barata— del nuevo contrato por «baja desproporcionada o anormal» que «no justifica la viabilidad de la empresa», citando «incongruencias graves» en maquinaria valorada por debajo de mercado. Urbaser-FCC y Acciona ofertaban por encima de 10 M€."
-    },
     {
       "titulo": "Ugao-Miraballes (Bizkaia), mayo – julio de 2025",
       "texto": "Huelga indefinida de la plantilla de limpieza viaria y jardinería, convocada por ELA con respaldo unánime, por unas condiciones que el sindicato describió como precarias durante años. Se cerró con acuerdo el 19 de julio de 2025, mientras en Riba-roja se valoraban las ofertas."
@@ -376,6 +422,34 @@
       "texto": "La UTE Cespa-Garbialdi-Samos se hizo con el contrato de basuras y limpieza viaria, en torno a 41 M€ por cuatro años."
     }
   ],
+
+  "politica": {
+    "olazaran": {
+      "nombre": "Jesús María «Josu» Olazarán Sagarduy",
+      "vida": "Bilbao, 1937 – Dima, 13 de marzo de 2024",
+      "cargos": [
+        "Secretario del Euzkadi Buru Batzar —la ejecutiva nacional del PNV— durante más de veinte años",
+        "Miembro de esa ejecutiva desde 1984",
+        "Juntero en las Juntas Generales de Bizkaia (1979-1983)",
+        "Concejal del Ayuntamiento de Sestao (1983-1987)",
+        "Director de Garbialdi desde 2010; antes cofundó la limpiadora Alfus"
+      ],
+      "fuenteBio": "Necrológica de Deia (16-03-2024) y Auñamendi Eusko Entziklopedia, vía Wikipedia"
+    },
+    "castellanos": {
+      "nombre": "José Luis Castellanos Palacios",
+      "texto": "Director general de la empresa. El registro mercantil dice de él lo que dice de un gestor: administrador mancomunado junto a Olazarán y, desde la junta de julio de 2024 que reordenó la sociedad tras la muerte de su socio, administrador único (BORME-C-2024-3231, convocatoria que él mismo firma). No le hemos encontrado cargo político alguno."
+    },
+    "elSalto": {
+      "texto": "El diario El Salto publicó en marzo de 2023, a raíz de una huelga de las limpiadoras de Osakidetza, que Garbialdi había sido adjudicataria de contratos de limpieza del servicio vasco de salud por más de 50 millones de euros entre 2019 y 2022, y encuadró la cifra en un recuento más amplio —220 millones, según ese diario— de concesiones a empresas vinculadas a excargos del PNV. Aquellos reportajes no recogían ninguna investigación al respecto, y nosotros tampoco la hemos encontrado.",
+      "atribucion": "El Salto, 2 y 14 de marzo de 2023"
+    },
+    "limites": [
+      "Olazarán murió el 13 de marzo de 2024: trece meses antes de que se abriera la licitación de Riba-roja, y cuando la venta de la empresa a ISS ya estaba encargada a Deloitte.",
+      "El perfil político que la comprobación encuentra es vasco y del PNV. Nada lo conecta con el gobierno municipal de Riba-roja (PSPV-PSOE) ni con el caso Ábalos que originó este reportaje.",
+      "Ser dirigente de un partido y empresario no es una irregularidad, y nadie ha establecido ninguna en las adjudicaciones citadas. Lo hacemos constar porque la pregunta de quién es la empresa a la que un pleno confía catorce años de un servicio esencial merece una respuesta documentada."
+    ]
+  },
 
   "fuentes": [
     {
@@ -413,6 +487,38 @@
     {
       "label": "Ministerio de Hacienda · Coste efectivo de los servicios",
       "url": "https://serviciostelematicosext.hacienda.gob.es/sgcief/Cesel/Consulta/Consulta.aspx"
+    },
+    {
+      "label": "Ayuntamiento de Parla · «La empresa Garbialdi finaliza su contrato… devolviendo 19 de los 33 vehículos municipales destrozados» (27-04-2018)",
+      "url": "https://www.ayuntamientoparla.es/noticias/la-empresa-garbialdi-finaliza-su-contrato-de-limpieza-viaria-y-recogida-de-basura-devolviendo-19-de-los-33-vehiculos-municipales-destrozados"
+    },
+    {
+      "label": "Actualidad21 · Crónica del fin del contrato de Parla, con las declaraciones de la teniente de alcalde (27-04-2018)",
+      "url": "https://www.actualidad21.net/la-empresa-de-limpieza-viaria-y-recogida-de-basura-de-parla-finaliza-su-contrato-devolviendo-destrozados-19-de-los-33-vehiculos-municipales/"
+    },
+    {
+      "label": "elEconomista · «La empresa de basuras de Parla pide la rescisión del contrato en plena huelga» (marzo de 2015)",
+      "url": "https://www.eleconomista.es/economia/noticias/6585277/03/15/La-empresa-de-basuras-de-Parla-pide-la-rescision-del-contrato-en-plena-huelga.html"
+    },
+    {
+      "label": "Telemadrid · «UGT denuncia el impago de salarios a los trabajadores de limpiezas y basuras de Parla» (17-03-2015)",
+      "url": "https://www.telemadrid.es/noticias/madrid/UGT-denuncia-trabajadores-limpiezas-Parla-0-1666033407--20150317073602.html"
+    },
+    {
+      "label": "BORME · Convocatoria de junta de GARBIALDI S.A. tras la muerte de Olazarán (BORME-C-2024-3231, 23-05-2024)",
+      "url": "https://www.boe.es/diario_borme/txt.php?id=BORME-C-2024-3231"
+    },
+    {
+      "label": "Wikipedia · Josu Olazaran (biografía, con la necrológica de Deia y la Auñamendi Entziklopedia como referencias)",
+      "url": "https://es.wikipedia.org/wiki/Josu_Olazaran"
+    },
+    {
+      "label": "El Salto · «La huelga de limpieza en Osakidetza destapa la adjudicación de 50 millones a la empresa de un exlíder del PNV» (14-03-2023)",
+      "url": "https://www.elsaltodiario.com/sanidad-publica/huelga-limpieza-osakidetza-externalizacion-50-millones-empresa-pnv"
+    },
+    {
+      "label": "El Salto · «Así se reparten 220 millones en concesiones de Osakidetza entre empresas vinculadas a excargos del PNV» (02-03-2023)",
+      "url": "https://www.elsaltodiario.com/pais-vasco/asi-se-reparten-220-millones-osakidetza-empresas-vinculadas-excargos-pnv"
     }
   ],
 
@@ -427,7 +533,8 @@
     "Comprobamos el 15 de agosto de 2026, contra el registro en vivo, que el contrato de Garbialdi sigue figurando como formalizado y vigente hasta el 10 de noviembre de 2039, sin resolución anotada y sin que aparezca contrato alguno de FCC. Como control, ese mismo registro contenía 805 expedientes —699 de ellos adjudicados o formalizados, el resto anulados, revocados o desistidos— con adjudicaciones anotadas hasta el 6 de agosto de 2026: no está abandonado, le falta esta anotación.",
     "Sobre el origen de este reportaje: nos llegó la versión de que la adjudicataria era una sociedad pantalla vinculada al alcalde a través del caso que afecta a José Luis Ábalos y Santos Cerdán. La comprobamos y no se sostiene. Garbialdi, S.A. se constituyó en 1989, declaró unos 80 millones de euros de facturación y más de 2.600 empleados en 2024, audita PwC, y compitió con FCC, Urbaser y SAV. No aparece en la documentación de la UCO sobre ese caso, que se refiere a Acciona Construcción y a Servinabar 2000 S.L. en obra pública estatal. Publicamos la comprobación porque un rumor comprobado y descartado también es información.",
     "Acciona concurrió una sola vez a este servicio en Riba-roja, en 2011, y perdió. Consta en la nota municipal de aquel año, no en el registro de contratación, que sólo empieza en julio de 2017: es el único contacto con la recogida de basuras del municipio que hemos encontrado, no el único que el registro podría mostrar. No prueba nada, y lo hacemos constar aquí precisamente para que nadie lo «descubra» más tarde y le atribuya un significado.",
-    "El expediente de Garbialdi en otros municipios procede de fuentes públicas anteriores a la adjudicación de Riba-roja. Lo incluimos porque plantea una pregunta sobre la diligencia del órgano de contratación, no para atribuir a la empresa una intención. Hemos dejado fuera una información sobre su vinculación política publicada por un solo medio, porque afecta a una persona fallecida y no hemos podido contrastarla de forma independiente.",
+    "El expediente de Garbialdi en otros municipios procede de fuentes públicas anteriores a la adjudicación de Riba-roja. Lo incluimos porque plantea una pregunta sobre la diligencia del órgano de contratación, no para atribuir a la empresa una intención. El episodio de Parla se cuenta en las dos direcciones a propósito: los impagos y la petición de rescisión de la propia UTE en 2015 constan igual que las sanciones de 2017 y la flota devuelta en 2018, y ningún juzgado ha repartido las culpas.",
+    "Sobre la trayectoria política de Josu Olazarán: una primera versión de este borrador la dejó fuera por proceder de un solo medio. Se incluye ahora porque ha quedado contrastada en fuentes independientes entre sí —la necrológica de Deia y la Auñamendi Entziklopedia (vía Wikipedia) para sus cargos en el PNV, el BORME para su condición de administrador de Garbialdi y la fecha de su muerte, y dos piezas de El Salto para las adjudicaciones de Osakidetza, que citamos con atribución expresa—. Afecta a una persona fallecida, así que nos limitamos a sus cargos públicos y a cifras publicadas; no consta —ni El Salto la recogía— investigación alguna sobre aquellas adjudicaciones, y nada de ello conecta con Riba-roja.",
     "El derecho de réplica está abierto para el Ayuntamiento de Riba-roja, para Garbialdi, para ISS Facility Services, para FCC y para SAV. Cualquier respuesta se publicará íntegra."
   ]
 }
