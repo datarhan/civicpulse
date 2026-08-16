@@ -738,7 +738,7 @@ export default function Laboratorio() {
             la frontera sólo se alcanza por la barra lateral, y un experimento
             que se encuentra por casualidad se lee peor que uno presentado. */}
         <p style={{ margin: '10px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
-          Otro experimento del laboratorio:{' '}
+          Otros experimentos del laboratorio:{' '}
           <Link
             to="/laboratorio/frontera"
             style={{ color: 'var(--civic)', textDecoration: 'underline' }}
@@ -746,7 +746,15 @@ export default function Laboratorio() {
             la frontera del gasto
           </Link>{' '}
           — qué dice, y qué no puede decir, comparar el coste de los servicios con el de los
-          municipios de tamaño parecido.
+          municipios de tamaño parecido — y{' '}
+          <Link
+            to="/laboratorio/coste-esperado"
+            style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+          >
+            el coste esperado
+          </Link>
+          : cuánto gasto cabría esperar en cada servicio para un municipio de esta población, y
+          cuánto se aparta el declarado.
         </p>
       </div>
 

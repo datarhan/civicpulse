@@ -183,6 +183,32 @@ overwrites it. Change the bot's SQLite instead.
   series does. That asymmetry, not any θ, is the useful result: a unit cost whose
   denominator is a copy can only rise.
 
+### Coste esperado (OLS · laboratory experiment)
+
+- **Pipeline** — `coste-esperado.ts` → `compute:coste-esperado` →
+  `coste-esperado.json`
+- **Source** — no new fetch: the cached CCAA-17 books (`.cache/cesel/ccaa/`,
+  parsed WITHOUT `soloEntes` — the whole Comunitat, ~500 municipios) plus the
+  CONPREL census (`conprel-cv.xls`) for population. Refresh path is manual and
+  yearly, same as `coste-efectivo.json`; `snapshot-cadence` carries it in the
+  `manual` class (430d) and it is deliberately NOT recomposed nightly — the
+  inputs only change with the annual entrega, and a nightly recompute would
+  churn a 300 KB file's `generatedAt` for nothing.
+- **Surfaces** — `/laboratorio/coste-esperado`, `/metodologia#coste-esperado`
+- **Gate** — `check:coste-esperado` (critical in the nightly): reproduces the
+  OLS exactly from the anonymous sample published in the snapshot (analytic
+  prediction intervals — no seed, no resampling), re-runs the whole analysis
+  against the cached book when present (and SAYS so when it cannot), and scans
+  the served JSON for any municipality other than Riba-roja against the
+  542-name CONPREL census.
+- **Cleaning** — the panel's own rules applied unchanged: direct management
+  only (regla 4), duplicated cost rows exclude the municipality (regla 1), and
+  declarations beyond ±`ATIPICO_FACTOR` of the service's median €/inhabitant
+  are excluded as implausible (regla 7 — the real book carries councils
+  declaring 1 € of schools cost). The cost+units row pair some programs
+  publish per municipality is NOT a duplicate; duplication is judged among
+  cost-bearing rows only.
+
 ### Municipal hiring (procesos selectivos)
 
 - **Pipeline** — `procesos-selectivos.ts` → `procesos-selectivos.json`

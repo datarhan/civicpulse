@@ -159,6 +159,16 @@ export const NAV = [
     label: 'Frontera',
     icon: Ic.lab,
   },
+  // Mismo criterio que la frontera: veredicto de modelo, sin bandera, con la
+  // página entera construida para decir lo que no es. No nombra a nadie salvo
+  // a Riba-roja y el aviso va antes que ninguna cifra.
+  {
+    to: '/laboratorio/coste-esperado',
+    id: 'coste-esperado',
+    labelKey: 'nav.costeEsperado',
+    label: 'Coste esperado',
+    icon: Ic.lab,
+  },
   // "Periodistas" (the AI journalist agent) is the highest legal-sensitivity
   // surface — it drafts biographies of named living officials. Hidden from
   // production builds unless VITE_ENABLE_PERIODISTAS=true — same flag that

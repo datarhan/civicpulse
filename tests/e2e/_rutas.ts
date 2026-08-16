@@ -46,6 +46,7 @@ export const STRICT_ROUTES = [
   '/laboratorio',
   '/laboratorio/agentes',
   '/laboratorio/frontera',
+  '/laboratorio/coste-esperado',
   '/nosotros',
   '/about',
   '/reportajes',

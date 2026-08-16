@@ -180,6 +180,7 @@ async function gather(): Promise<Observations> {
   //   · check:eficiencia-findings — la cifra congelada ya no coincide con el panel
   //   · check:indicadores          — una cifra publicada sin celda que la respalde
   //   · check:dea                  — la frontera no se reproduce, o nombra a un tercero
+  //   · check:coste-esperado       — la recta no se reproduce, o nombra a un tercero
   // `check:cadence` entra por el mismo motivo que `check:runs`: la frescura de
   // un fichero no dice si su pasada corrió, y la pasada no dice si el fichero
   // envejece dentro de SU presupuesto. Existía con presupuestos por fichero y
@@ -196,6 +197,7 @@ async function gather(): Promise<Observations> {
     'check:indicadores',
     'check:eficiencia-findings',
     'check:dea',
+    'check:coste-esperado',
   ]) {
     const msg = runCheck(c)
     if (msg) integrity.push({ check: c, message: msg })

@@ -428,6 +428,10 @@ if ! npm run check:dea; then
   echo "[scrape-all] FAILED: check:dea — la frontera no se reproduce, o nombra a un tercero"
   failures+=("check:dea")
 fi
+if ! npm run check:coste-esperado; then
+  echo "[scrape-all] FAILED: check:coste-esperado — la recta no se reproduce, o nombra a un tercero"
+  failures+=("check:coste-esperado")
+fi
 
 # Tres guardas que existían y no invocaba NADIE — ni un workflow, ni un
 # pipeline, ni un hook. Es el modo de fallo 1 que el propio `check:guards`

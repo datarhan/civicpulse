@@ -133,6 +133,17 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     hint: 'npm run fetch:cesel-ccaa && npm run scrape:coste-efectivo',
   },
   {
+    file: 'coste-esperado.json',
+    cls: 'manual' as const,
+    // Sale de los libros CCAA-17 cacheados, que cambian con la entrega anual.
+    // NO se recompone en el nocturno a propósito: recalcular sobre la misma
+    // caché sólo cambiaría generatedAt y churnaría un fichero de 300 KB cada
+    // noche. Si los libros se refrescan sin recomponer, check:coste-esperado
+    // (crítica) lo dice esa misma noche — esto sólo vigila el olvido largo.
+    maxAgeDays: 430,
+    hint: 'npm run fetch:cesel-ccaa && npm run compute:coste-esperado',
+  },
+  {
     file: 'criminalidad.json',
     cls: 'manual' as const,
     // Balance T4 anual, publicado a comienzos del año siguiente.

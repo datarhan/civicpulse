@@ -48,6 +48,9 @@
     "coste-efectivo.json": [
       "/datos"
     ],
+    "coste-esperado.json": [
+      "/laboratorio/coste-esperado"
+    ],
     "cpv-labels.json": [
       "/presupuesto"
     ],
@@ -171,6 +174,7 @@
       "/laboratorio",
       "/laboratorio/agentes",
       "/laboratorio/agentes/:assignmentId",
+      "/laboratorio/coste-esperado",
       "/laboratorio/frontera",
       "/metodologia",
       "/nosotros",
@@ -286,6 +290,7 @@
       "/hallazgos",
       "/lab-health",
       "/laboratorio",
+      "/laboratorio/coste-esperado",
       "/laboratorio/frontera",
       "/plenos",
       "/presupuesto",

@@ -1805,6 +1805,41 @@ export default function Metodologia() {
         </p>
       </Card>
 
+      <Card style={{ marginTop: 14 }} id="coste-esperado">
+        <SectionHead
+          eyebrow="Laboratorio · coste esperado"
+          title="Qué gasto cabría esperar para un municipio así"
+        />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          <a href="/laboratorio/coste-esperado" style={{ color: 'var(--civic)' }}>
+            /laboratorio/coste-esperado
+          </a>{' '}
+          responde a la objeción más razonable contra el panel de costes —«nosotros no somos
+          comparables»— comparando contra lo esperable para la población del municipio: para cada
+          servicio, una recta de mínimos cuadrados sobre (ln población, ln gasto) de todos los
+          municipios de la Comunitat Valenciana que lo declaran en gestión directa, con banda de
+          predicción analítica al 95 % (t de Student, sin remuestreo: el análisis se reproduce
+          exacto desde la muestra publicada). Es un modelo, no una fuente citable, así que rigen las
+          tres reglas de la frontera: ningún otro municipio con nombre —la muestra se publica
+          anónima y ordenada por población—, las especificaciones que fallan se publican como
+          fallidas (mínimo muestral de 40; sin declaración propia utilizable), y nada de esa página
+          genera una ficha firmada. <code>check:coste-esperado</code> recalcula la recta desde la
+          muestra publicada y, cuando la caché de libros está, desde el libro entero, y falla si
+          deja de reproducirse o si un tercero aparece nombrado.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          La limpieza es la del panel, aplicada igual: gestión directa sólo (regla 4), un municipio
+          con dos costes para el mismo servicio queda fuera (regla 1), y una declaración a más de
+          veinte veces —o menos de una veinteava parte— de la mediana de euros por habitante del
+          servicio se excluye como inverosímil (regla 7): el libro real trae ayuntamientos
+          declarando 1 € de coste de escuelas. La escalera de impulsores está declarada: la v1 usa
+          sólo log(población) y publica el R² de cada recta a la vista; superficie y renta esperan
+          una fuente municipal utilizable, y cada peldaño se añadirá junto al anterior, no en su
+          lugar. «Dentro de la banda» no es un aprobado: con un solo impulsor las bandas son anchas,
+          y el número legible es cuántas veces lo esperado, con su banda al lado.
+        </p>
+      </Card>
+
       <Card style={{ marginTop: 14 }} id="gasto-por-concejalia">
         <SectionHead
           eyebrow="Transparencia · gasto por concejalía"
