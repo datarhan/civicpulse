@@ -16,7 +16,8 @@ describe('scraper/coste-efectivo · CE4 (servicios supramunicipales)', () => {
       expect(f.anio).toBe(2024)
       expect(f.entePrincipal.length).toBeGreaterThan(3)
       expect(f.programa.length).toBeGreaterThan(2)
-      expect(f.municipioServido.length).toBeGreaterThan(3)
+      // «Sax» existe: tres letras de municipio real. El listón va en 2.
+      expect(f.municipioServido.length).toBeGreaterThan(2)
     }
   })
 
