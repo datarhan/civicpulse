@@ -523,11 +523,67 @@ export interface CotejoMedicion {
 /** Tolerancia relativa: el snapshot redondea al serializar, la ficha no. */
 const TOLERANCIA = 1e-6
 
+/**
+ * ¿Sigue el panel diciendo la COMPARACIÓN que la ficha congeló?
+ *
+ * La medición de una ficha no es sólo su cifra. `Medicion` renderiza además
+ * «· mediana de 51 comparables: 57,14», y esa frase es tan pública y tan
+ * legalmente material como el 100 %: es la que sostiene «no es una rareza
+ * local, y tampoco es lo normal».
+ *
+ * Se comprobaba sólo `valor`. Bastó incorporar al registro dos servicios que el
+ * ayuntamiento ya declaraba para que la banda pasara de repetir el 57 % de sus
+ * denominadores al 62,5 % —la misma proporción propia, otro punto de
+ * comparación— y el cotejo siguiera diciendo «coincide». Una guarda que
+ * comprueba la mitad de lo que la ficha afirma da un visto bueno que la ficha
+ * no tiene.
+ *
+ * Devuelve el detalle del desajuste, o `null` si la comparación sigue en pie.
+ */
+function cotejarPares(
+  f: EficienciaFinding,
+  m: { formato?: string; pares?: { n?: number; percentil?: number; mediana?: number } | null },
+): string | null {
+  const fijada = f.medicion.pares
+  if (!fijada) return null
+  const viva = m.pares
+  if (!viva) {
+    return `la ficha compara contra ${fijada.n} municipios y el panel ya no publica ninguna comparación`
+  }
+  // La mediana de pares vive en la misma unidad que el valor del indicador, así
+  // que arrastra la misma trampa: el panel guarda 0,625 y la ficha publica
+  // 62,5. Sin esta línea la guarda gritaría en cada indicador de porcentaje y
+  // sería la primera que alguien apaga.
+  const escala = m.formato === 'porcentaje' ? 100 : 1
+  const medianaViva = viva.mediana === undefined ? undefined : viva.mediana * escala
+  const desajustes: string[] = []
+  const compara = (etiqueta: string, antes?: number, ahora?: number) => {
+    if (antes === undefined || ahora === undefined) return
+    if (Math.abs(ahora - antes) > Math.abs(antes || 1) * TOLERANCIA) {
+      desajustes.push(
+        `${etiqueta} ${antes.toLocaleString('es-ES', { maximumFractionDigits: 2 })} → ` +
+          `${ahora.toLocaleString('es-ES', { maximumFractionDigits: 2 })}`,
+      )
+    }
+  }
+  compara('n', fijada.n, viva.n)
+  compara('percentil', fijada.percentil, viva.percentil)
+  compara('mediana', fijada.mediana, medianaViva)
+  if (!desajustes.length) return null
+  return `la cifra coincide pero su comparación no: ${desajustes.join(' · ')} — refresca la medición o corrige el cuerpo`
+}
+
 export function cotejarMedicion(
   f: EficienciaFinding,
   panel: {
     indicadores: Array<{ id: string; valor: number | null; citas?: Array<{ entrega: number }> }>
-    municipales: Array<{ id: string; valor: number | null; formato?: string; periodo: string }>
+    municipales: Array<{
+      id: string
+      valor: number | null
+      formato?: string
+      periodo: string
+      pares?: { n?: number; percentil?: number; mediana?: number } | null
+    }>
   },
 ): CotejoMedicion {
   const base = {
@@ -559,14 +615,22 @@ export function cotejarMedicion(
       }
     }
     const coincide = Math.abs(actual - f.medicion.valor) <= Math.abs(f.medicion.valor) * TOLERANCIA
+    if (!coincide) {
+      return {
+        ...base,
+        estado: 'contradice',
+        actual,
+        periodoActual: m.periodo,
+        detalle: `${f.medicion.periodo} valía ${f.medicion.valor} y ahora vale ${actual} — la fuente se revisó`,
+      }
+    }
+    const pares = cotejarPares(f, m)
     return {
       ...base,
-      estado: coincide ? 'coincide' : 'contradice',
+      estado: pares ? 'contradice' : 'coincide',
       actual,
       periodoActual: m.periodo,
-      detalle: coincide
-        ? `${f.medicion.periodo} sigue valiendo lo publicado`
-        : `${f.medicion.periodo} valía ${f.medicion.valor} y ahora vale ${actual} — la fuente se revisó`,
+      detalle: pares ?? `${f.medicion.periodo} sigue valiendo lo publicado`,
     }
   }
 

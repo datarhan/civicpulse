@@ -60,6 +60,25 @@ export const SERVICIOS: Record<string, ServicioDef> = {
       'Un metro cuadrado de césped y uno de zona pavimentada cuestan distinto de mantener; la fuente no los separa.',
     ],
   },
+  'a342/340P': {
+    label: 'Instalaciones deportivas',
+    denominador: 'Superficie: suma de superficies de todas las instalaciones',
+    unidad: '€/m²',
+    tier: 'output',
+    caveats: [
+      'La fuente suma en un solo metro cuadrado el pabellón cubierto, la piscina y el campo al aire libre, que no cuestan lo mismo de mantener.',
+      'El ministerio declara el mismo coste bajo dos programas (a342/340P y b342/340P); aquí se cuenta una sola vez.',
+    ],
+  },
+  'b341/340P': {
+    label: 'Promoción del deporte',
+    denominador: 'Nº efectivos en plantilla asignados al servicio',
+    unidad: '€/efectivo',
+    tier: 'input',
+    caveats: [
+      'Divide el gasto del servicio entre su plantilla propia, así que un programa que se presta con más contratación externa y menos personal propio sale «más caro» por efectivo sin que eso diga nada de cuánto deporte se promueve.',
+    ],
+  },
   'a1532/150P': {
     label: 'Pavimentación de vías públicas',
     denominador: 'Superficie de los tramos pavimentados (metros cuadrados)',

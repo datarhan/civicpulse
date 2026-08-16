@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T11:25:30.415Z",
+  "generatedAt": "2026-08-16T11:34:27.752Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -1165,6 +1165,945 @@
       "caveats": [
         "Un metro cuadrado de césped y uno de zona pavimentada cuestan distinto de mantener; la fuente no los separa.",
         "El ayuntamiento declara la misma cifra de superficie: suma en metros cuadrados de la superficie total (tanto la cubierta como al aire libre) desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 44 de 56 municipios comparables hacen lo mismo con esta misma cifra."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+          "entrega": 2024
+        }
+      ]
+    },
+    {
+      "id": "a342-340p-coste-unitario",
+      "dimension": "operativa",
+      "tier": "output",
+      "servicio": "a342/340P",
+      "etiqueta": "Instalaciones deportivas",
+      "numerador": {
+        "valor": 1141586.57,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE2:a342/340P:Econ14"
+      },
+      "denominador": {
+        "valor": 122312,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE3:a342/340P:Superficie: suma de superficies de todas las instalaciones"
+      },
+      "valor": 9.333397949506182,
+      "unidad": "€/m²",
+      "modoGestion": "directa",
+      "codGestionRaw": "Gestión directa por la entidad local",
+      "comparable": true,
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 39,
+        "modoGestion": "directa",
+        "percentil": 64,
+        "p25": 2.1691651453582654,
+        "mediana": 7.416140605686032,
+        "p75": 13.856556115802334,
+        "miembros": [
+          {
+            "ine": "03011",
+            "nombre": "Alfàs del Pi (l')",
+            "poblacion": 21080,
+            "gastoTotal": 28021601.360000003,
+            "ingresoTotal": 28021601.36,
+            "valor": 2.206261216589201
+          },
+          {
+            "ine": "03015",
+            "nombre": "Almoradí",
+            "poblacion": 22965,
+            "gastoTotal": 18062868.5,
+            "ingresoTotal": 18062868.5,
+            "valor": 2.1320690741273296
+          },
+          {
+            "ine": "03018",
+            "nombre": "Altea",
+            "poblacion": 24592,
+            "gastoTotal": 35462912.04,
+            "ingresoTotal": 35531749.15,
+            "valor": 1.3229922026231162
+          },
+          {
+            "ine": "03019",
+            "nombre": "Aspe",
+            "poblacion": 22397,
+            "gastoTotal": 22399647.61,
+            "ingresoTotal": 22399647.61,
+            "valor": 26.97015628018051
+          },
+          {
+            "ine": "03047",
+            "nombre": "Calp",
+            "poblacion": 27616,
+            "gastoTotal": 54911909,
+            "ingresoTotal": 54911909,
+            "valor": 6.735284181439348
+          },
+          {
+            "ine": "03050",
+            "nombre": "Campello (el)",
+            "poblacion": 31419,
+            "gastoTotal": 39144000,
+            "ingresoTotal": 39144000,
+            "valor": 0.3547377803344866
+          },
+          {
+            "ine": "03076",
+            "nombre": "Guardamar del Segura",
+            "poblacion": 18564,
+            "gastoTotal": 23283653.13,
+            "ingresoTotal": 23283653.13,
+            "valor": 5.305114357800857
+          },
+          {
+            "ine": "03079",
+            "nombre": "Ibi",
+            "poblacion": 24500,
+            "gastoTotal": 18485156.669999998,
+            "ingresoTotal": 20234845.23,
+            "valor": 7.769338481848185
+          },
+          {
+            "ine": "03082",
+            "nombre": "Jávea/Xàbia",
+            "poblacion": 30642,
+            "gastoTotal": 46890000,
+            "ingresoTotal": 46890000,
+            "valor": 34.66267678468824
+          },
+          {
+            "ine": "03090",
+            "nombre": "Mutxamel",
+            "poblacion": 28621,
+            "gastoTotal": 29441800,
+            "ingresoTotal": 29441800,
+            "valor": 2.034230329070211
+          },
+          {
+            "ine": "03093",
+            "nombre": "Novelda",
+            "poblacion": 26606,
+            "gastoTotal": 31151358.2,
+            "ingresoTotal": 31151358.2,
+            "valor": 21.08290729613734
+          },
+          {
+            "ine": "03104",
+            "nombre": "Petrer",
+            "poblacion": 34022,
+            "gastoTotal": 31286531.77,
+            "ingresoTotal": 31286531.77,
+            "valor": 5.607076440666156
+          },
+          {
+            "ine": "03113",
+            "nombre": "Rojales",
+            "poblacion": 17652,
+            "gastoTotal": 15635847,
+            "ingresoTotal": 15635847,
+            "valor": 2.095803850234955
+          },
+          {
+            "ine": "03119",
+            "nombre": "Sant Joan d'Alacant",
+            "poblacion": 26834,
+            "gastoTotal": 32736782.05,
+            "ingresoTotal": 32736782.05,
+            "valor": 11.174810126582278
+          },
+          {
+            "ine": "03121",
+            "nombre": "Santa Pola",
+            "poblacion": 39709,
+            "gastoTotal": 40220257.45,
+            "ingresoTotal": 45964057.45,
+            "valor": 3.6718761927031087
+          },
+          {
+            "ine": "03140",
+            "nombre": "Villena",
+            "poblacion": 34712,
+            "gastoTotal": 36468088.11,
+            "ingresoTotal": 36468088.11,
+            "valor": 8.736527435215734
+          },
+          {
+            "ine": "03902",
+            "nombre": "Pilar de la Horadada",
+            "poblacion": 24316,
+            "gastoTotal": 41755105.440000005,
+            "ingresoTotal": 41755105.44,
+            "valor": 9.041226578947368
+          },
+          {
+            "ine": "12009",
+            "nombre": "Almassora",
+            "poblacion": 29159,
+            "gastoTotal": 46850857,
+            "ingresoTotal": 47565419.14,
+            "valor": 21.697386863723043
+          },
+          {
+            "ine": "12027",
+            "nombre": "Benicarló",
+            "poblacion": 30296,
+            "gastoTotal": 58826622.01,
+            "ingresoTotal": 58826622.01,
+            "valor": 3.7483881009567
+          },
+          {
+            "ine": "12032",
+            "nombre": "Borriana/Burriana",
+            "poblacion": 37915,
+            "gastoTotal": 40398045.42,
+            "ingresoTotal": 40398045.42,
+            "valor": 1.6585823529411763
+          },
+          {
+            "ine": "12084",
+            "nombre": "Onda",
+            "poblacion": 26190,
+            "gastoTotal": 37516861,
+            "ingresoTotal": 37516861,
+            "valor": 8.241900181766418
+          },
+          {
+            "ine": "46022",
+            "nombre": "Alfafar",
+            "poblacion": 22270,
+            "gastoTotal": 22786247.560000002,
+            "ingresoTotal": 22786247.56,
+            "valor": 0.007670818041433528
+          },
+          {
+            "ine": "46029",
+            "nombre": "Algemesí",
+            "poblacion": 28306,
+            "gastoTotal": 23877986.28,
+            "ingresoTotal": 23877986.28,
+            "valor": 10.150050564881967
+          },
+          {
+            "ine": "46054",
+            "nombre": "Benetússer",
+            "poblacion": 16734,
+            "gastoTotal": 15464543.36,
+            "ingresoTotal": 15464543.36,
+            "valor": 41.071780265654645
+          },
+          {
+            "ine": "46070",
+            "nombre": "Bétera",
+            "poblacion": 28560,
+            "gastoTotal": 30140896.11,
+            "ingresoTotal": 30140896.11,
+            "valor": 21.582172706935122
+          },
+          {
+            "ine": "46083",
+            "nombre": "Carcaixent",
+            "poblacion": 21934,
+            "gastoTotal": 22358261.5,
+            "ingresoTotal": 22358261.5,
+            "valor": 17.0324070469848
+          },
+          {
+            "ine": "46085",
+            "nombre": "Carlet",
+            "poblacion": 16857,
+            "gastoTotal": 16584789.83,
+            "ingresoTotal": 16584789.83,
+            "valor": 1.9328181501902946
+          },
+          {
+            "ine": "46102",
+            "nombre": "Quart de Poblet",
+            "poblacion": 26967,
+            "gastoTotal": 40699000,
+            "ingresoTotal": 40699000,
+            "valor": 8.802170989304813
+          },
+          {
+            "ine": "46110",
+            "nombre": "Xirivella",
+            "poblacion": 32093,
+            "gastoTotal": 25607159.82,
+            "ingresoTotal": 25607159.82,
+            "valor": 4.031669287046936
+          },
+          {
+            "ine": "46116",
+            "nombre": "Eliana (l')",
+            "poblacion": 19839,
+            "gastoTotal": 19991782.830000002,
+            "ingresoTotal": 19991782.830000002,
+            "valor": 4.705544627641196
+          },
+          {
+            "ine": "46145",
+            "nombre": "Xàtiva",
+            "poblacion": 31008,
+            "gastoTotal": 39198871.45,
+            "ingresoTotal": 39198871.45,
+            "valor": 54.275183999999996
+          },
+          {
+            "ine": "46159",
+            "nombre": "Manises",
+            "poblacion": 32609,
+            "gastoTotal": 33310000,
+            "ingresoTotal": 33310000,
+            "valor": 12.222578493682446
+          },
+          {
+            "ine": "46164",
+            "nombre": "Massamagrell",
+            "poblacion": 17566,
+            "gastoTotal": 13015000,
+            "ingresoTotal": 13080000,
+            "valor": 7.416140605686032
+          },
+          {
+            "ine": "46171",
+            "nombre": "Moncada",
+            "poblacion": 22213,
+            "gastoTotal": 21532895.73,
+            "ingresoTotal": 21532895.73,
+            "valor": 3.3509814545454546
+          },
+          {
+            "ine": "46186",
+            "nombre": "Paiporta",
+            "poblacion": 28136,
+            "gastoTotal": 21788444.55,
+            "ingresoTotal": 21788544.55,
+            "valor": 11.394285203891064
+          },
+          {
+            "ine": "46194",
+            "nombre": "Picassent",
+            "poblacion": 23202,
+            "gastoTotal": 28002771.04,
+            "ingresoTotal": 28002771.04,
+            "valor": 50.65787589091374
+          },
+          {
+            "ine": "46205",
+            "nombre": "Puçol",
+            "poblacion": 21659,
+            "gastoTotal": 20166622,
+            "ingresoTotal": 20166622,
+            "valor": 1.7596649597916556e-7
+          },
+          {
+            "ine": "46213",
+            "nombre": "Requena",
+            "poblacion": 20982,
+            "gastoTotal": 18758559,
+            "ingresoTotal": 18758559,
+            "valor": 0.7280244718027938
+          },
+          {
+            "ine": "46238",
+            "nombre": "Tavernes de la Valldigna",
+            "poblacion": 17866,
+            "gastoTotal": 18519785.81,
+            "ingresoTotal": 18548658.94,
+            "valor": 15.490533737922224
+          }
+        ]
+      },
+      "serie": [
+        {
+          "anio": 2014,
+          "valor": 23.448789789789792,
+          "estado": "declarado",
+          "medianaPares": 8.374191535136795,
+          "valorReal": 28.806600546728955,
+          "medianaParesReal": 10.287609408291221
+        },
+        {
+          "anio": 2015,
+          "valor": 11.444983634356023,
+          "estado": "declarado",
+          "medianaPares": 7.075994704201798,
+          "valorReal": 14.130746371065639,
+          "medianaParesReal": 8.736498861206572
+        },
+        {
+          "anio": 2016,
+          "valor": 9.765549136367222,
+          "estado": "declarado",
+          "medianaPares": 5.991940513329915,
+          "valorReal": 12.081695856213463,
+          "medianaParesReal": 7.413080601989135
+        },
+        {
+          "anio": 2017,
+          "valor": 15.549903580724033,
+          "estado": "declarado",
+          "medianaPares": 5.907218622015497,
+          "valorReal": 18.868925717779216,
+          "medianaParesReal": 7.1680746313864026
+        },
+        {
+          "anio": 2018,
+          "valor": 15.504538015616374,
+          "estado": "declarado",
+          "medianaPares": 6.888813916604766,
+          "valorReal": 18.503863775162074,
+          "medianaParesReal": 8.221442919286352
+        },
+        {
+          "anio": 2019,
+          "valor": 6.319013996991301,
+          "estado": "declarado",
+          "medianaPares": 6.3051594589800395,
+          "valorReal": 7.489047752017233,
+          "medianaParesReal": 7.472627896514796
+        },
+        {
+          "anio": 2021,
+          "valor": 5.640594953888416,
+          "estado": "declarado",
+          "medianaPares": 6.2096453978145565,
+          "valorReal": 6.505429183192285,
+          "medianaParesReal": 7.161728278392104
+        },
+        {
+          "anio": 2022,
+          "valor": 8.23497882464517,
+          "estado": "declarado",
+          "medianaPares": 9.805406680549334,
+          "valorReal": 8.762391009319675,
+          "medianaParesReal": 10.4333974828491
+        },
+        {
+          "anio": 2023,
+          "valor": 6.45808326247629,
+          "estado": "declarado",
+          "medianaPares": 9.34811676849966,
+          "valorReal": 6.637235004618321,
+          "medianaParesReal": 9.607440059444919
+        },
+        {
+          "anio": 2024,
+          "valor": 9.333397949506182,
+          "estado": "declarado",
+          "medianaPares": 7.769338481848185,
+          "valorReal": 9.333397949506182,
+          "medianaParesReal": 7.769338481848185
+        }
+      ],
+      "declaracion": {
+        "numerador": {
+          "congelada": false,
+          "repeticionesFinales": 1,
+          "desde": null,
+          "entregas": 10
+        },
+        "denominador": {
+          "congelada": true,
+          "repeticionesFinales": 5,
+          "desde": 2019,
+          "entregas": 10
+        },
+        "paresCongelados": 40,
+        "paresMedibles": 56
+      },
+      "caveats": [
+        "La fuente suma en un solo metro cuadrado el pabellón cubierto, la piscina y el campo al aire libre, que no cuestan lo mismo de mantener.",
+        "El ministerio declara el mismo coste bajo dos programas (a342/340P y b342/340P); aquí se cuenta una sola vez.",
+        "El ayuntamiento declara la misma cifra de superficie: suma de superficies de todas las instalaciones desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 40 de 56 municipios comparables hacen lo mismo con esta misma cifra."
+      ],
+      "citas": [
+        {
+          "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
+          "entrega": 2024
+        }
+      ]
+    },
+    {
+      "id": "b341-340p-coste-unitario",
+      "dimension": "operativa",
+      "tier": "input",
+      "servicio": "b341/340P",
+      "etiqueta": "Promoción del deporte",
+      "numerador": {
+        "valor": 1180331.82,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE2:b341/340P:Econ14"
+      },
+      "denominador": {
+        "valor": 17,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE3:b341/340P:Nº efectivos en plantilla asignados al servicio"
+      },
+      "valor": 69431.28352941177,
+      "unidad": "€/efectivo",
+      "modoGestion": "directa",
+      "codGestionRaw": "Gestión directa por la entidad local",
+      "comparable": true,
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 43,
+        "modoGestion": "directa",
+        "percentil": 26,
+        "p25": 69607.48833333334,
+        "mediana": 161044.55,
+        "p75": 300363.58555555553,
+        "miembros": [
+          {
+            "ine": "03011",
+            "nombre": "Alfàs del Pi (l')",
+            "poblacion": 21080,
+            "gastoTotal": 28021601.360000003,
+            "ingresoTotal": 28021601.36,
+            "valor": 55392.04285714286
+          },
+          {
+            "ine": "03015",
+            "nombre": "Almoradí",
+            "poblacion": 22965,
+            "gastoTotal": 18062868.5,
+            "ingresoTotal": 18062868.5,
+            "valor": 238649.525
+          },
+          {
+            "ine": "03018",
+            "nombre": "Altea",
+            "poblacion": 24592,
+            "gastoTotal": 35462912.04,
+            "ingresoTotal": 35531749.15,
+            "valor": 41491.81
+          },
+          {
+            "ine": "03019",
+            "nombre": "Aspe",
+            "poblacion": 22397,
+            "gastoTotal": 22399647.61,
+            "ingresoTotal": 22399647.61,
+            "valor": 220000
+          },
+          {
+            "ine": "03047",
+            "nombre": "Calp",
+            "poblacion": 27616,
+            "gastoTotal": 54911909,
+            "ingresoTotal": 54911909,
+            "valor": 674110.46
+          },
+          {
+            "ine": "03050",
+            "nombre": "Campello (el)",
+            "poblacion": 31419,
+            "gastoTotal": 39144000,
+            "ingresoTotal": 39144000,
+            "valor": 415672.57666666666
+          },
+          {
+            "ine": "03076",
+            "nombre": "Guardamar del Segura",
+            "poblacion": 18564,
+            "gastoTotal": 23283653.13,
+            "ingresoTotal": 23283653.13,
+            "valor": 11069.374399999999
+          },
+          {
+            "ine": "03079",
+            "nombre": "Ibi",
+            "poblacion": 24500,
+            "gastoTotal": 18485156.669999998,
+            "ingresoTotal": 20234845.23,
+            "valor": 42599.16
+          },
+          {
+            "ine": "03090",
+            "nombre": "Mutxamel",
+            "poblacion": 28621,
+            "gastoTotal": 29441800,
+            "ingresoTotal": 29441800,
+            "valor": 399607.04
+          },
+          {
+            "ine": "03104",
+            "nombre": "Petrer",
+            "poblacion": 34022,
+            "gastoTotal": 31286531.77,
+            "ingresoTotal": 31286531.77,
+            "valor": 64144.21428571428
+          },
+          {
+            "ine": "03113",
+            "nombre": "Rojales",
+            "poblacion": 17652,
+            "gastoTotal": 15635847,
+            "ingresoTotal": 15635847,
+            "valor": 77289.7825
+          },
+          {
+            "ine": "03121",
+            "nombre": "Santa Pola",
+            "poblacion": 39709,
+            "gastoTotal": 40220257.45,
+            "ingresoTotal": 45964057.45,
+            "valor": 68876.07666666668
+          },
+          {
+            "ine": "03140",
+            "nombre": "Villena",
+            "poblacion": 34712,
+            "gastoTotal": 36468088.11,
+            "ingresoTotal": 36468088.11,
+            "valor": 272745.65
+          },
+          {
+            "ine": "03902",
+            "nombre": "Pilar de la Horadada",
+            "poblacion": 24316,
+            "gastoTotal": 41755105.440000005,
+            "ingresoTotal": 41755105.44,
+            "valor": 314372.4011111111
+          },
+          {
+            "ine": "12009",
+            "nombre": "Almassora",
+            "poblacion": 29159,
+            "gastoTotal": 46850857,
+            "ingresoTotal": 47565419.14,
+            "valor": 95512.3175
+          },
+          {
+            "ine": "12027",
+            "nombre": "Benicarló",
+            "poblacion": 30296,
+            "gastoTotal": 58826622.01,
+            "ingresoTotal": 58826622.01,
+            "valor": 228648.62
+          },
+          {
+            "ine": "12028",
+            "nombre": "Benicasim/Benicàssim",
+            "poblacion": 20539,
+            "gastoTotal": 35540546.13,
+            "ingresoTotal": 35540546.13,
+            "valor": 31320.88
+          },
+          {
+            "ine": "12032",
+            "nombre": "Borriana/Burriana",
+            "poblacion": 37915,
+            "gastoTotal": 40398045.42,
+            "ingresoTotal": 40398045.42,
+            "valor": 189339.65222222224
+          },
+          {
+            "ine": "12084",
+            "nombre": "Onda",
+            "poblacion": 26190,
+            "gastoTotal": 37516861,
+            "ingresoTotal": 37516861,
+            "valor": 460342.415
+          },
+          {
+            "ine": "12126",
+            "nombre": "Vall d'Uixó (la)",
+            "poblacion": 32242,
+            "gastoTotal": 51059580.51,
+            "ingresoTotal": 51059580.51,
+            "valor": 26754.39875
+          },
+          {
+            "ine": "46007",
+            "nombre": "Albal",
+            "poblacion": 17365,
+            "gastoTotal": 14695743.67,
+            "ingresoTotal": 14695743.67,
+            "valor": 129517.91
+          },
+          {
+            "ine": "46013",
+            "nombre": "Alboraia/Alboraya",
+            "poblacion": 26273,
+            "gastoTotal": 27904569.65,
+            "ingresoTotal": 28527221.65,
+            "valor": 81003.8625
+          },
+          {
+            "ine": "46021",
+            "nombre": "Aldaia",
+            "poblacion": 34630,
+            "gastoTotal": 30325714.94,
+            "ingresoTotal": 30325714.939999998,
+            "valor": 106502263.99999999
+          },
+          {
+            "ine": "46022",
+            "nombre": "Alfafar",
+            "poblacion": 22270,
+            "gastoTotal": 22786247.560000002,
+            "ingresoTotal": 22786247.56,
+            "valor": 272649.34
+          },
+          {
+            "ine": "46054",
+            "nombre": "Benetússer",
+            "poblacion": 16734,
+            "gastoTotal": 15464543.36,
+            "ingresoTotal": 15464543.36,
+            "valor": 13537985
+          },
+          {
+            "ine": "46070",
+            "nombre": "Bétera",
+            "poblacion": 28560,
+            "gastoTotal": 30140896.11,
+            "ingresoTotal": 30140896.11,
+            "valor": 355806.06
+          },
+          {
+            "ine": "46083",
+            "nombre": "Carcaixent",
+            "poblacion": 21934,
+            "gastoTotal": 22358261.5,
+            "ingresoTotal": 22358261.5,
+            "valor": 189815.56
+          },
+          {
+            "ine": "46085",
+            "nombre": "Carlet",
+            "poblacion": 16857,
+            "gastoTotal": 16584789.83,
+            "ingresoTotal": 16584789.83,
+            "valor": 161044.55
+          },
+          {
+            "ine": "46094",
+            "nombre": "Catarroja",
+            "poblacion": 30604,
+            "gastoTotal": 39040734.730000004,
+            "ingresoTotal": 39040734.73,
+            "valor": 103343.872
+          },
+          {
+            "ine": "46102",
+            "nombre": "Quart de Poblet",
+            "poblacion": 26967,
+            "gastoTotal": 40699000,
+            "ingresoTotal": 40699000,
+            "valor": 379076.45333333337
+          },
+          {
+            "ine": "46110",
+            "nombre": "Xirivella",
+            "poblacion": 32093,
+            "gastoTotal": 25607159.82,
+            "ingresoTotal": 25607159.82,
+            "valor": 127054.84
+          },
+          {
+            "ine": "46111",
+            "nombre": "Chiva",
+            "poblacion": 17951,
+            "gastoTotal": 16198349.53,
+            "ingresoTotal": 17447997.84,
+            "valor": 70338.90000000001
+          },
+          {
+            "ine": "46116",
+            "nombre": "Eliana (l')",
+            "poblacion": 19839,
+            "gastoTotal": 19991782.830000002,
+            "ingresoTotal": 19991782.830000002,
+            "valor": 734495.66
+          },
+          {
+            "ine": "46164",
+            "nombre": "Massamagrell",
+            "poblacion": 17566,
+            "gastoTotal": 13015000,
+            "ingresoTotal": 13080000,
+            "valor": 99597.77
+          },
+          {
+            "ine": "46181",
+            "nombre": "Oliva",
+            "poblacion": 26813,
+            "gastoTotal": 30282046,
+            "ingresoTotal": 30282046,
+            "valor": 208004.6625
+          },
+          {
+            "ine": "46184",
+            "nombre": "Ontinyent",
+            "poblacion": 37012,
+            "gastoTotal": 64669640,
+            "ingresoTotal": 64669640,
+            "valor": 340941.68
+          },
+          {
+            "ine": "46186",
+            "nombre": "Paiporta",
+            "poblacion": 28136,
+            "gastoTotal": 21788444.55,
+            "ingresoTotal": 21788544.55,
+            "valor": 44246.672666666665
+          },
+          {
+            "ine": "46194",
+            "nombre": "Picassent",
+            "poblacion": 23202,
+            "gastoTotal": 28002771.04,
+            "ingresoTotal": 28002771.04,
+            "valor": 20499.661571428573
+          },
+          {
+            "ine": "46205",
+            "nombre": "Puçol",
+            "poblacion": 21659,
+            "gastoTotal": 20166622,
+            "ingresoTotal": 20166622,
+            "valor": 77980.45916666667
+          },
+          {
+            "ine": "46213",
+            "nombre": "Requena",
+            "poblacion": 20982,
+            "gastoTotal": 18758559,
+            "ingresoTotal": 18758559,
+            "valor": 79777
+          },
+          {
+            "ine": "46230",
+            "nombre": "Silla",
+            "poblacion": 20482,
+            "gastoTotal": 18730078.3,
+            "ingresoTotal": 18730078.3,
+            "valor": 176856.04
+          },
+          {
+            "ine": "46235",
+            "nombre": "Sueca",
+            "poblacion": 29194,
+            "gastoTotal": 37166372.57,
+            "ingresoTotal": 40111916.89,
+            "valor": 286354.77
+          },
+          {
+            "ine": "46238",
+            "nombre": "Tavernes de la Valldigna",
+            "poblacion": 17866,
+            "gastoTotal": 18519785.81,
+            "ingresoTotal": 18548658.94,
+            "valor": 28270.8
+          }
+        ]
+      },
+      "serie": [
+        {
+          "anio": 2014,
+          "valor": null,
+          "estado": "no-declarado",
+          "valorReal": null,
+          "medianaParesReal": null
+        },
+        {
+          "anio": 2015,
+          "valor": 75562.330625,
+          "estado": "declarado",
+          "medianaPares": 79122.2,
+          "valorReal": 93294.33430234523,
+          "medianaParesReal": 97689.58840312397
+        },
+        {
+          "anio": 2016,
+          "valor": 86080.30428571429,
+          "estado": "declarado",
+          "medianaPares": 99809.12,
+          "valorReal": 106496.42340309662,
+          "medianaParesReal": 123481.37464442605
+        },
+        {
+          "anio": 2017,
+          "valor": 40443.15214285714,
+          "estado": "declarado",
+          "medianaPares": 109095.87,
+          "valorReal": 49075.47044358474,
+          "medianaParesReal": 132381.6483144167
+        },
+        {
+          "anio": 2018,
+          "valor": 82358.53142857143,
+          "estado": "declarado",
+          "medianaPares": 125610.26,
+          "valorReal": 98290.64527699868,
+          "medianaParesReal": 149909.34508733178
+        },
+        {
+          "anio": 2019,
+          "valor": 57189.89647058823,
+          "estado": "declarado",
+          "medianaPares": 88707.5535,
+          "valorReal": 67779.22406962294,
+          "medianaParesReal": 105132.71602855067
+        },
+        {
+          "anio": 2021,
+          "valor": 46577.56823529412,
+          "estado": "declarado",
+          "medianaPares": 99473.94099999999,
+          "valorReal": 53718.99137539215,
+          "medianaParesReal": 114725.60679125639
+        },
+        {
+          "anio": 2022,
+          "valor": 63314.12823529411,
+          "estado": "declarado",
+          "medianaPares": 170785.005,
+          "valorReal": 67369.10438087965,
+          "medianaParesReal": 181722.9921539108
+        },
+        {
+          "anio": 2023,
+          "valor": 64094.83470588235,
+          "estado": "declarado",
+          "medianaPares": 182947.03,
+          "valorReal": 65872.87020545277,
+          "medianaParesReal": 188022.10844233693
+        },
+        {
+          "anio": 2024,
+          "valor": 69431.28352941177,
+          "estado": "declarado",
+          "medianaPares": 161044.55,
+          "valorReal": 69431.28352941177,
+          "medianaParesReal": 161044.55
+        }
+      ],
+      "declaracion": {
+        "numerador": {
+          "congelada": false,
+          "repeticionesFinales": 1,
+          "desde": null,
+          "entregas": 9
+        },
+        "denominador": {
+          "congelada": true,
+          "repeticionesFinales": 5,
+          "desde": 2019,
+          "entregas": 9
+        },
+        "paresCongelados": 31,
+        "paresMedibles": 54
+      },
+      "caveats": [
+        "Divide el gasto del servicio entre su plantilla propia, así que un programa que se presta con más contratación externa y menos personal propio sale «más caro» por efectivo sin que eso diga nada de cuánto deporte se promueve.",
+        "Esta cifra queda muy por debajo de la mediana de sus pares (×0,4). Una diferencia así suele venir de que cada ayuntamiento declara «Nº efectivos en plantilla asignados al servicio» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación.",
+        "El ayuntamiento declara la misma cifra de nº efectivos en plantilla asignados al servicio desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 31 de 54 municipios comparables hacen lo mismo con esta misma cifra."
       ],
       "citas": [
         {
@@ -5094,13 +6033,13 @@
     }
   ],
   "universe": {
-    "serviciosEnRegistro": 13,
-    "conRatio": 10,
+    "serviciosEnRegistro": 15,
+    "conRatio": 12,
     "enConcesion": 2,
     "sinUnidad": 1,
     "sinCoste": 0,
     "noSePresta": 0,
-    "comparables": 10,
+    "comparables": 12,
     "aniosDisponibles": [
       2014,
       2015,
@@ -5485,12 +6424,12 @@
       "etiqueta": "Denominadores que el ayuntamiento no vuelve a medir",
       "descripcion": "De los servicios en los que hay coste unitario —hay coste y hay unidad en la última entrega—, en cuántos repite el ayuntamiento la misma unidad física entrega tras entrega mientras actualiza el coste.",
       "numerador": {
-        "valor": 10,
+        "valor": 12,
         "estado": "declarado",
         "fuente": "coste-efectivo:2024:denominadores-congelados"
       },
       "denominador": {
-        "valor": 10,
+        "valor": 12,
         "estado": "declarado",
         "fuente": "coste-efectivo:2024:denominadores-medibles"
       },
@@ -5502,9 +6441,9 @@
         "descripcion": "de la misma banda de población de los que se puede medir lo mismo",
         "n": 51,
         "percentil": 100,
-        "p25": 0.4017857142857143,
-        "mediana": 0.5714285714285714,
-        "p75": 0.75
+        "p25": 0.4305555555555556,
+        "mediana": 0.625,
+        "p75": 0.775
       },
       "caveats": [
         "Esto mide la DECLARACIÓN, no el servicio: una cantidad estable puede ser perfectamente correcta, y repetirla no prueba que nadie la haya comprobado.",
@@ -5520,9 +6459,9 @@
     }
   ],
   "stats": {
-    "indicadores": 13,
-    "conRatio": 10,
-    "comparables": 10,
+    "indicadores": 15,
+    "conRatio": 12,
+    "comparables": 12,
     "municipales": 8
   }
 }

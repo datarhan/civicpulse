@@ -213,6 +213,65 @@ describe('scraper/eficiencia-finding — ¿sigue diciendo el panel lo que la fic
     expect(c.detalle).toMatch(/la fuente se revisó/)
   })
 
+  it('«contradice» cuando la cifra coincide pero su COMPARACIÓN ya no', () => {
+    // La medición de una ficha no es sólo su cifra: `Medicion` publica además
+    // «mediana de N comparables: X», y esa frase es la que sostiene «no es una
+    // rareza local». Se comprobaba sólo `valor`, así que bastó incorporar al
+    // registro dos servicios que el ayuntamiento ya declaraba para que la banda
+    // cambiara de mediana y el cotejo siguiera diciendo «coincide».
+    const vivo = panel.municipales.find((m: { id: string }) => m.id === 'periodo-medio-pago')
+    const conPares = {
+      ...panel,
+      municipales: panel.municipales.map((m: { id: string }) =>
+        m.id === 'periodo-medio-pago'
+          ? { ...m, pares: { n: 6013, percentil: 94, mediana: 15.47 } }
+          : m,
+      ),
+    }
+    const base = ficha()
+    const desfasada = {
+      ...base,
+      medicion: {
+        ...base.medicion,
+        valor: vivo.valor,
+        pares: { conjunto: 'nacional', n: 6013, percentil: 94, mediana: 11.11 },
+      },
+    }
+    const c = cotejarMedicion(desfasada, conPares)
+    expect(c.estado).toBe('contradice')
+    expect(c.detalle).toMatch(/su comparación no/)
+    expect(c.detalle).toMatch(/mediana/)
+  })
+
+  it('la comparación se coteja en la MISMA unidad que la cifra', () => {
+    // El panel guarda 0,625 con formato porcentaje y la ficha publica 62,5. Sin
+    // reescalar, la guarda gritaría en cada indicador de porcentaje — y una
+    // guarda que se equivoca siempre es la primera que alguien apaga.
+    const conPorcentaje = {
+      ...panel,
+      municipales: panel.municipales.map((m: { id: string }) =>
+        m.id === 'periodo-medio-pago'
+          ? {
+              ...m,
+              formato: 'porcentaje',
+              valor: 1,
+              pares: { n: 51, percentil: 100, mediana: 0.625 },
+            }
+          : m,
+      ),
+    }
+    const base = ficha()
+    const enPorcentaje = {
+      ...base,
+      medicion: {
+        ...base.medicion,
+        valor: 100,
+        pares: { conjunto: 'cv-15k-40k', n: 51, percentil: 100, mediana: 62.5 },
+      },
+    }
+    expect(cotejarMedicion(enPorcentaje, conPorcentaje).estado).toBe('coincide')
+  })
+
   it('«sin-indicador» no se confunde con «coincide»', () => {
     // Colapsar «no lo encontré» dentro de «todo bien» es el defecto que este
     // repositorio ya pagó con `r?.findings ?? []`: un fallo que imprime su

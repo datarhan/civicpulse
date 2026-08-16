@@ -93,10 +93,24 @@ describe('scraper/indicador-desviacion', () => {
     // como desviación diría «la policía es cara» cuando lo que mide es cuánto
     // cobra un policía. Es exactamente la mentira por vecindad que el escalón
     // existe para impedir, así que se descarta ANTES de comparar.
-    const policia = indicadores.find((i) => i.tier === 'input' && i.valor !== null)!
+    // Se elige por id y no con un `find` sobre el tier: en cuanto el registro
+    // incorporó un segundo servicio de escalón `input` —promoción del deporte,
+    // percentil 26— el `find` devolvía ése, la aserción de «se saldría si se
+    // comparara» dejaba de medir nada y la prueba se caía por el sitio
+    // equivocado. Una prueba que depende del ORDEN de un registro comprueba el
+    // orden, no la regla.
+    const policia = indicadores.find((i) => i.id.startsWith('b132-130p'))!
+    expect(policia.tier).toBe('input')
+    expect(policia.valor).not.toBeNull()
     expect(policia.pares!.percentil).toBeGreaterThan(75) // se saldría si se comparara
     expect(cand(policia.id)).toBeUndefined()
-    expect(det.descartes['tier-input']).toBeGreaterThan(0)
+
+    // Y la regla vale para TODOS los de su escalón, no sólo para el que se mira
+    // aquí: ninguno llega a candidato, sea cual sea su percentil.
+    const entradas = indicadores.filter((i) => i.tier === 'input' && i.valor !== null)
+    expect(entradas.length).toBeGreaterThan(1)
+    for (const i of entradas) expect(cand(i.id)).toBeUndefined()
+    expect(det.descartes['tier-input']).toBeGreaterThanOrEqual(entradas.length)
   })
 
   it('nunca compara un servicio concedido', () => {
