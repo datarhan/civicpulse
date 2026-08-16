@@ -500,7 +500,7 @@ export default function CosteEfectivo() {
       <P>
         La explicación cómoda sería la pandemia. No se sostiene: en 2020 rindieron{' '}
         <strong>más</strong> ayuntamientos valencianos que en cualquiera de los cuatro años
-        siguientes comprobados — 503, frente a los 495–497 de 2021 y 2022.
+        siguientes — 503; sólo 2017, con 513, rindió más.
       </P>
       <Figura
         titulo="Ayuntamientos de la Comunitat que rindieron cada entrega"

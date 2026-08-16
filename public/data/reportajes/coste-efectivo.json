@@ -74,6 +74,14 @@
       {
         "anio": 2022,
         "n": 495
+      },
+      {
+        "anio": 2023,
+        "n": 465
+      },
+      {
+        "anio": 2024,
+        "n": 478
       }
     ]
   },
@@ -160,7 +168,7 @@
   "metodo": [
     "Las cifras salen de los libros por comunidad autónoma de la aplicación de consulta del ministerio (once entregas, 2014–2024), leídos con las reglas de filtrado y comparabilidad publicadas en la metodología.",
     "La no-presentación de 2020 se comprueba por presencia: el fichero está, los demás municipios figuran en él y Riba-roja no aparece en CE1, CE2 ni CE3. No es un hueco de descarga.",
-    "La explicación por la pandemia se descartó con un control: en 2020 presentaron 503 ayuntamientos valencianos, más que en 2018, 2019, 2021 o 2022.",
+    "La explicación por la pandemia se descartó con un control: en 2020 rindieron 503 ayuntamientos valencianos, más que en cualquiera de los cuatro años siguientes (2021–2024) y que en 2018 y 2019; sólo 2017, con 513, rindió más.",
     "Un denominador cuenta como congelado cuando sus últimas cuatro entregas o más traen el mismo valor hasta el cuarto decimal; repetir dos años es normal y no cuenta.",
     "Las variaciones en euros constantes usan la media anual del IPC general del INE con base en la entrega de 2024; las cifras exactas de cada servicio, con su celda de origen, están en /eficiencia.",
     "Todas las cifras de esta pieza quedaron congeladas el 16 de agosto de 2026; si el ministerio revisa una entrega, la corrección se anota aquí, no se reescribe en silencio."

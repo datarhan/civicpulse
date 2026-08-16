@@ -134,6 +134,19 @@ overwrites it. Change the bot's SQLite instead.
   "I did not declare", a service can have contradictory duplicate rows, not every
   CE3 attribute is a quantity (one is a periodicity CODE), and tonnage is demand
   rather than achievement. See `docs/superpowers/specs/2026-08-12-medicion-eficiencia-design.md`.
+- **CE4 (supramunicipal)** — `parseCe4` reads sheets CE4a/CE4b of the same CCAA
+  books: which entity declares SERVING this municipality (the Mancomunitat Camp
+  de Túria: turismo, ferias, promoción del deporte, ocio). It is the table that
+  explains the €0 rows, it exists even for the entrega the council itself did
+  not file (2020), and it feeds both the card caveat («sólo la parte
+  municipal») and the «Lo que presta…» block on `/eficiencia`.
+- **Deflactor** — `ipc.ts` → `ipc.json` (`npm run scrape:ipc`): INE Tempus3
+  JSON API, table 24077, annual means of full years only. The series on
+  `/eficiencia` render in constant euros of the titling entrega; the peer
+  cross-section stays nominal on purpose (same-year comparison). The GDP
+  deflator would be the textbook index for public spending; the INE API does
+  not serve it as a series, and no reading on the page depends on the choice —
+  the module docstring carries the full reasoning.
 
 ### Periodo medio de pago (PMP)
 
@@ -143,10 +156,13 @@ overwrites it. Change the bot's SQLite instead.
 - **Surfaces** — `/gestion` (municipal panel: plazos, concurrencia, ejecución);
   the first signed
   `eficiencia-finding`
-- **Cadence** — deliberately OUT of `snapshot-cadence.ts`: the ministry sets the
-  rhythm (one entrega a year, one quarter respectively) and no freshness class
-  has that budget. A short deadline would leave them permanently red, which is
-  how a check earns a reputation nobody reads.
+- **Cadence** — class `manual` in `snapshot-cadence.ts` (130 days), with the
+  refresh command in the stale note. They were deliberately OUT of the check on
+  the argument that a short deadline leaves a quarterly source permanently red —
+  true, and the answer was a LONG budget, not absence: outside the check,
+  `scrape:pmp` silently never being run again was invisible, and PMP feeds a
+  signed finding. `coste-efectivo.json` (430d) and `ipc.json` (400d) carry the
+  same class.
 
 ### Frontera del gasto (DEA · laboratory experiment)
 
