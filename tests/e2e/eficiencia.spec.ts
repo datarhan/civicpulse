@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { readFileSync } from 'node:fs'
 import { chipDeclaracion, GLOSA_TIER } from '../../src/scraper/indicador-lectura'
+import { seriesDibujables, aniosSinEntrega } from '../../src/components/eficiencia/multiples'
 import type { Indicador } from '../../src/scraper/indicadores'
 import type { IndicadorMunicipal } from '../../src/scraper/indicadores-friccion'
 import { collectErrors, appErrors } from './_console'
@@ -143,9 +144,11 @@ test.describe('Eficiencia (/eficiencia)', () => {
 
     await expect(page.getByText(/Dónde queda cada servicio/i)).toBeVisible({ timeout: 8000 })
 
-    // Un enlace por servicio situado, ni uno más.
+    // Un enlace por servicio situado en la franja, más uno por mini-serie de
+    // la rejilla contigua — ni uno más. El recuento de la rejilla no se
+    // restata: lo decide el mismo módulo que usa el componente.
     const enlaces = page.locator('a[href^="#s-"]')
-    await expect(enlaces).toHaveCount(situados.length)
+    await expect(enlaces).toHaveCount(situados.length + seriesDibujables(SNAP.indicadores).length)
 
     // Y cada enlace tiene destino: un ancla rota no da error, sencillamente no
     // hace nada, y nadie se entera.
@@ -171,6 +174,41 @@ test.describe('Eficiencia (/eficiencia)', () => {
         { exact: false },
       ),
     ).toBeVisible()
+  })
+
+  test('la rejilla de mini-series va en el orden de la franja y cada una abre su ficha', async ({
+    page,
+  }) => {
+    // El punto (posición hoy) y la mini-serie (la década) responden preguntas
+    // distintas y van contiguos EN EL MISMO ORDEN: quien localiza un servicio
+    // en la franja lo encuentra en el mismo sitio de la rejilla. El orden
+    // esperado no se restata aquí — lo exporta `multiples.js`, el módulo que
+    // consume el propio componente.
+    const dibujables = seriesDibujables(SNAP.indicadores)
+    expect(dibujables.length, 'sin series dibujables en el snapshot').toBeGreaterThanOrEqual(2)
+
+    await expect(page.getByText(/La década, servicio a servicio/i)).toBeVisible({ timeout: 8000 })
+
+    const minis = page.getByRole('link', { name: /abre su ficha/i })
+    await expect(minis).toHaveCount(dibujables.length)
+    const hrefs = await minis.evaluateAll((els) => els.map((e) => e.getAttribute('href')))
+    expect(hrefs).toEqual(dibujables.map((s) => `#s-${s.indicador.id}`))
+
+    // Cada ancla tiene destino: una rota no da error, sencillamente no hace nada.
+    for (const s of dibujables) {
+      await expect(
+        page.locator(`#s-${s.indicador.id}`),
+        `la rejilla enlaza a #s-${s.indicador.id} y esa ficha no existe`,
+      ).toHaveCount(1)
+    }
+
+    // El pie declara la retícula (escala propia) y nombra los años sin entrega
+    // — derivados del dato, no escritos, para que no puedan quedarse rancios.
+    await expect(page.getByText(/escala vertical propia/i)).toBeVisible()
+    const sinEntrega = aniosSinEntrega(dibujables.map((s) => s.declarados))
+    if (sinEntrega.length > 0) {
+      await expect(page.getByText(`sin entrega de ${sinEntrega.join(', ')}`)).toBeVisible()
+    }
   })
 
   test('a concession shows no ratio and no peer position', async ({ page }) => {

@@ -269,6 +269,16 @@ export function puntosOtroModo(puntos) {
 }
 
 /**
+ * Lo que entra en la escala: entregas con cifra legible, incluidas las de otro
+ * modo de gestión (van en escala, como aro, aunque fuera de la línea). El mismo
+ * criterio decide si una serie se dibuja (≥2 de éstos) tanto en la tarjeta como
+ * en la rejilla de mini-series — exportado para que nadie lo restate.
+ */
+export function puntosEnEscala(puntos) {
+  return puntos.filter((p) => !p.atipico && typeof p.valor === 'number')
+}
+
+/**
  * El rango vertical, SÓLO sobre lo que se dibuja.
  *
  * Es la decisión que hace posible el gráfico. Meter aquí los 67,7 millones de
@@ -277,7 +287,7 @@ export function puntosOtroModo(puntos) {
  * diría que ese coste nunca se movió.
  */
 export function escalaSerie(puntos) {
-  const limpios = puntos.filter((p) => !p.atipico && typeof p.valor === 'number')
+  const limpios = puntosEnEscala(puntos)
   const valores = [
     ...limpios.map((p) => p.valor),
     ...limpios.filter((p) => typeof p.medianaPares === 'number').map((p) => p.medianaPares),
@@ -299,7 +309,7 @@ export function escalaSerie(puntos) {
 }
 
 export function SerieServicio({ puntos, formatea, unidad }) {
-  const limpios = puntos.filter((p) => !p.atipico && typeof p.valor === 'number')
+  const limpios = puntosEnEscala(puntos)
   if (limpios.length < 2) return null
 
   const conMediana = limpios.filter((p) => typeof p.medianaPares === 'number')

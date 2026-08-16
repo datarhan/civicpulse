@@ -1,6 +1,7 @@
 import { Card } from '../components/Primitives'
 import { CoberturaEficiencia } from '../components/eficiencia/CoberturaEficiencia'
 import { ResumenPosiciones } from '../components/eficiencia/ResumenPosiciones'
+import { MultiplesSeries } from '../components/eficiencia/MultiplesSeries'
 import { ServicioCard } from '../components/eficiencia/ServicioCard'
 import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
 import { HallazgosEficiencia } from '../components/eficiencia/HallazgosEficiencia'
@@ -107,6 +108,11 @@ export default function Eficiencia() {
           Al revés, diez puntos aparecerían antes de decir que hay tres
           servicios sobre los que esta página no puede dividir nada. */}
       <ResumenPosiciones indicadores={indicadores} />
+
+      {/* Contigua a la franja y en su mismo orden: el punto (posición hoy) y
+          la mini-serie (la década) contestan preguntas distintas, y fundirlas
+          en un solo gráfico no contestaría ninguna. */}
+      <MultiplesSeries indicadores={indicadores} formateaCon={formateaCon} />
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 18 }}>
         {conRatio.map((i) => (
