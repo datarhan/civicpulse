@@ -35,5 +35,6 @@ test.describe('Landing editorial feed', () => {
       timeout: 10_000,
     })
     await expect(page.getByRole('link', { name: /calle a calle/ }).first()).toBeVisible()
+    await expect(page.getByRole('link', { name: /Quince años/ }).first()).toBeVisible()
   })
 })

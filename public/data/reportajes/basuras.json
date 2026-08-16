@@ -6,8 +6,9 @@
     "seccion": "Reportaje · datos",
     "municipio": "Riba-roja de Túria",
     "fechaDatos": "2026-08-16",
-    "estado": "borrador",
-    "derechoReplica": "pendiente",
+    "publicadoEl": "16 de agosto de 2026",
+    "estado": "publicado",
+    "derechoReplica": "abierto",
     "correcciones": []
   },
 
@@ -74,7 +75,7 @@
     },
     {
       "fecha": "2025-09-10",
-      "hito": "Adjudicación: Garbialdi, S.A. (lote 1) por 17.383.956,74 € con IVA y AUDITESA S.L. (lote 2, supervisión) por 194.810 €. Cuatro ofertas.",
+      "hito": "Adjudicación: Garbialdi, S.A. (lote 1) por 17.383.956,74 € con IVA y AUDITESA S.L. (lote 2, supervisión) por 194.810 € con IVA. Cuatro ofertas.",
       "fuente": "Pleno de 08-09-2025 / PLACSP"
     },
     {
@@ -182,6 +183,8 @@
     "bajaPct": 4.99,
     "bajaEuros": 829198.26,
     "ahorroDeclarado": 731000,
+    "ahorroDosLotesConIva": 736271.76,
+    "ahorroDosLotesSinIva": 840595.94,
     "porAnio": 1128938.75,
     "porHabitante": 45.86,
     "supervisionAuditesa": 194810,
@@ -379,7 +382,7 @@
       },
       {
         "f": "Enero – marzo de 2015",
-        "t": "Dos huelgas por impagos de nómina en dos meses. Con la ciudad llena de basura, el Ayuntamiento encarga la recogida a la empresa pública Tragsa. La UTE atribuye los impagos a la deuda que el propio Ayuntamiento —uno de los más endeudados de España— mantiene con ella."
+        "t": "Dos huelgas por impagos de nómina en dos meses. Con la ciudad llena de basura, el Ayuntamiento encarga la recogida a la empresa pública Tragsa. La UTE atribuye los impagos a la deuda que el propio Ayuntamiento mantiene con ella."
       },
       {
         "f": "Marzo de 2015",
@@ -405,7 +408,7 @@
     "citaVehiculos": "Furgonetas sin puertas, barredoras sin ruedas, asientos destrozados, lunas rotas, ventanillas tapadas con plásticos, cabinas repletas de desperdicios e incluso un camión de recogida de basuras sin la pluma de la grúa",
     "citaObligacion": "La obligación de la empresa era devolver los vehículos en el estado en que se los entregamos",
     "quien": "María Jesús Fúnez, primera teniente de alcalde de Parla, 27 de abril de 2018",
-    "balance": "El expediente de Parla tiene dos direcciones, y las dos constan. La empresa operó para un ayuntamiento que, según la propia UTE y según los sindicatos de su plantilla, no pagaba — y fue ella la primera en querer irse, en 2015. Y ese mismo expediente termina con sanciones desde 2017, una oferta excluida por inviable y una flota municipal devuelta destrozada. Ningún juzgado ha repartido las culpas, y este reportaje tampoco. Lo que Parla aporta aquí no es un veredicto sino un aviso: los modos de fallo que Riba-roja documentó en diciembre de 2025 —personal, vehículos, rutas— ya estaban descritos, siete años antes, en los comunicados de otro ayuntamiento."
+    "balance": "El expediente de Parla tiene dos direcciones, y las dos constan. La empresa operó para un ayuntamiento que, según ella misma, le debía dinero —y fue ella la primera en querer irse, en 2015—, mientras su plantilla, según UGT, encadenaba nóminas sin cobrar. Y ese mismo expediente termina con sanciones desde 2017, una oferta excluida por inviable y una flota municipal devuelta destrozada. Ningún juzgado ha repartido las culpas, y este reportaje tampoco. Lo que Parla aporta aquí no es un veredicto sino un aviso: los modos de fallo que Riba-roja documentó en diciembre de 2025 —personal, vehículos, rutas— ya estaban descritos, siete años antes, en los comunicados de otro ayuntamiento."
   },
 
   "expedienteGarbialdi": [
@@ -441,18 +444,18 @@
       "texto": "Director general de la empresa. El registro mercantil dice de él lo que dice de un gestor: administrador mancomunado junto a Olazarán y, desde la junta de julio de 2024 que reordenó la sociedad tras la muerte de su socio, administrador único (BORME-C-2024-3231, convocatoria que él mismo firma). No le hemos encontrado cargo político alguno."
     },
     "elSalto": {
-      "texto": "El diario El Salto publicó en marzo de 2023, a raíz de una huelga de las limpiadoras de Osakidetza, que Garbialdi había sido adjudicataria de contratos de limpieza del servicio vasco de salud por más de 50 millones de euros entre 2019 y 2022, y encuadró la cifra en un recuento más amplio —220 millones, según ese diario— de concesiones a empresas vinculadas a excargos del PNV. Aquellos reportajes no recogían ninguna investigación al respecto, y nosotros tampoco la hemos encontrado.",
+      "texto": "El diario El Salto publicó en marzo de 2023, a raíz de una huelga de las limpiadoras de Osakidetza, que Garbialdi había sido adjudicataria de contratos de limpieza del servicio vasco de salud por más de 50 millones de euros entre 2019 y 2022, y encuadró la cifra en un recuento más amplio —220 millones, según ese diario— de concesiones a empresas vinculadas a excargos del PNV. Aquellas piezas sí recogían denuncias ante la Inspección de Trabajo y reparos del Tribunal Vasco de Cuentas Públicas a adjudicaciones a la empresa; lo que no recogían —ni nosotros hemos encontrado— es investigación judicial alguna contra la empresa o contra Olazarán por aquellos contratos.",
       "atribucion": "El Salto, 2 y 14 de marzo de 2023"
     },
     "limites": [
       "Olazarán murió el 13 de marzo de 2024: trece meses antes de que se abriera la licitación de Riba-roja, y cuando la venta de la empresa a ISS ya estaba encargada a Deloitte.",
       "El perfil político que la comprobación encuentra es vasco y del PNV. Nada lo conecta con el gobierno municipal de Riba-roja (PSPV-PSOE) ni con el caso Ábalos que originó este reportaje.",
-      "Ser dirigente de un partido y empresario no es una irregularidad, y nadie ha establecido ninguna en las adjudicaciones citadas. Lo hacemos constar porque la pregunta de quién es la empresa a la que un pleno confía catorce años de un servicio esencial merece una respuesta documentada."
+      "Ser dirigente de un partido y empresario no es una irregularidad, y sobre las adjudicaciones citadas no consta investigación judicial; los reparos de fiscalización y las denuncias laborales que sí constan quedan dichos, y atribuidos, arriba. Lo hacemos constar porque la pregunta de quién es la empresa a la que un pleno confía catorce años de un servicio esencial merece una respuesta documentada."
     ]
   },
 
   "preguntas": {
-    "intro": "Un reportaje honesto no acaba en lo que sabe, sino en lo que pregunta. Las dieciocho que siguen no son retóricas: cada una nace de un hecho documentado en esta pieza —se indica debajo de cada una— y cada una tiene respuesta posible en un expediente público. Forman parte del derecho de réplica que esta pieza abre al Ayuntamiento antes de su publicación definitiva, y las respuestas se publicarán íntegras.",
+    "intro": "Un reportaje honesto no acaba en lo que sabe, sino en lo que pregunta. Las dieciocho que siguen no son retóricas: cada una nace de un hecho documentado en esta pieza —se indica debajo de cada una— y cada una tiene respuesta posible en un expediente público. Quedan formuladas públicamente con la publicación de esta pieza; el derecho de réplica del Ayuntamiento y de las empresas citadas está abierto, y las respuestas se publicarán íntegras.",
     "cierre": "Si alguna de estas preguntas tiene una respuesta que deje mal a este reportaje, mejor: se publicará igual de íntegra.",
     "bloques": [
       {
@@ -525,7 +528,7 @@
           },
           {
             "q": "¿En qué fecha exacta advirtió AUDITESA del primer incumplimiento, y cuántos días pasaron hasta la primera actuación municipal?",
-            "base": "AUDITESA cobra 194.810 € por el lote 2, la supervisión de este contrato; sus informes sustentan la penalidad y la resolución."
+            "base": "AUDITESA cobra 194.810 € (IVA incluido) por el lote 2, la supervisión de este contrato; sus informes sustentan la penalidad y la resolución."
           },
           {
             "q": "¿Qué alegaciones de Garbialdi estimó el pleno al fijar la penalidad en 143.539 €, y por qué?",
@@ -536,8 +539,8 @@
             "base": "Comprobado contra el registro en vivo el 15-8-2026: contrato «formalizado» hasta el 10-11-2039, sin resolución anotada y sin contrato de FCC, en un registro que anota otras adjudicaciones hasta el 6-8-2026."
           },
           {
-            "q": "¿Cómo se calcularon los «731.000 € de ahorro» anunciados?",
-            "base": "Con los importes publicados salen 829.198,26 € (sobre el presupuesto base, sin IVA), 722.480,64 € o 931.081,76 € (con IVA). Ninguna combinación da 731.000 €."
+            "q": "¿Cómo se calculó el «ahorro de hasta 731.000 euros» anunciado tras la adjudicación?",
+            "base": "El anuncio (9-9-2025) atribuye el ahorro a «ambos servicios», los dos lotes. La suma de las bajas de los dos lotes con IVA da 736.271,76 €, y sin IVA 840.595,94 €. Ninguna lectura publicada da 731.000 exactos."
           },
           {
             "q": "¿Consta en las actas alguna advertencia —técnica o política— previa a la adjudicación? Y a la vista de diciembre y enero: ¿considera el gobierno municipal que el procedimiento funcionó, o alguien va a asumir alguna responsabilidad?",
@@ -616,6 +619,14 @@
     {
       "label": "El Salto · «Así se reparten 220 millones en concesiones de Osakidetza entre empresas vinculadas a excargos del PNV» (02-03-2023)",
       "url": "https://www.elsaltodiario.com/pais-vasco/asi-se-reparten-220-millones-osakidetza-empresas-vinculadas-excargos-pnv"
+    },
+    {
+      "label": "Valencia Plaza · «Riba-roja ahorra 731.000 euros en la adjudicación del servicio de recogida de residuos sólidos» (09-09-2025)",
+      "url": "https://valenciaplaza.com/valenciaplaza/comarca-y-empresa/riba-roja-ahorra-731000-euros-en-la-adjudicacion-del-servicio-de-recogida-de-residuos-solidos"
+    },
+    {
+      "label": "Noticias para Municipios · «Parla: la Mesa de Contratación anula la oferta más económica, de Garbialdi» (02-02-2018)",
+      "url": "https://noticiasparamunicipios.com/municipios-madrid/parla-la-mesa-contratacion-anula-la-oferta-mas-economica-garbialdi-concurso-basura-limpieza/"
     }
   ],
 
@@ -623,7 +634,7 @@
     "Las cifras de contratación proceden del registro municipal publicado en Riba-licita (Gobierto), que replica la Plataforma de Contratación del Sector Público. Los importes se dan sin IVA salvo que se diga lo contrario, y se cuentan sólo contratos comprometidos (adjudicados o formalizados).",
     "El registro de contratación empieza el 3 de julio de 2017. La concesión de SAV se adjudicó en enero de 2011, así que NO aparece en él: cualquier reparto por empresa que se haga con esos datos infravalora a SAV. Por eso su importe figura como «no consta» y no como cero. Una ausencia en una serie con suelo conocido no es una prueba de inexistencia.",
     "La ponderación de criterios (34/32/12/8/7,5/4/2,5) es la que publica el anuncio de licitación en el DOUE, no una reconstrucción nuestra.",
-    "No hemos podido reproducir los «731.000 € de ahorro» que anunció el Ayuntamiento. Sobre el presupuesto base de licitación, la baja es de 829.198,26 € sin IVA (4,99 %); sobre el importe inicial del contrato con IVA, de 722.480,64 €; sobre el presupuesto con IVA, de 931.081,76 €. Ninguna da 731.000 €. Publicamos la aritmética y la discrepancia, no una acusación: puede haber un criterio de cálculo que no conocemos.",
+    "El «ahorro de hasta 731.000 euros» que anunció el Ayuntamiento (nota recogida por Valencia Plaza el 9-9-2025) se refiere a «ambos servicios», es decir, a los dos lotes. La lectura más cercana que encontramos es la suma de las bajas de los dos lotes con IVA: 722.480,64 € del lote 1 más 13.791,12 € del lote 2, en total 736.271,76 €. Sigue sin dar 731.000 exactos —y sin IVA la suma es 840.595,94 €—, así que publicamos la aritmética y la diferencia, no una acusación: puede haber un redondeo o un criterio que no conocemos. Una versión anterior de este borrador citaba el anuncio como «un ahorro de 731.000 euros», sin el «hasta» y sin el alcance de los dos lotes; se corrigió al cotejar la nota original antes de publicar.",
     "La comparación entre el coste efectivo de 2024 (740.272,16 €) y el contrato (1.128.938,75 €/año) es indicativa, no equivalente: el contrato agrupa recogida, poda y voluminosos, mientras que el programa a1621 del Ministerio es sólo recogida. La damos con esa advertencia porque el orden de magnitud es relevante, no porque las dos cifras midan lo mismo.",
     "No publicamos una tabla de coste por tonelada frente a otros municipios. Los denominadores del propio Ministerio no lo permiten: en la entrega de 2024, la Vall d'Uixó declara 11.572.420 toneladas y l'Alfàs del Pi 12,55. Riba-roja lleva declarando las mismas 11.059,41 toneladas y los mismos 657 contenedores en las cinco entregas publicadas desde 2019, así que cualquier serie de coste unitario suya mide inflación, no eficiencia.",
     "El campo de «modo de gestión» de la declaración ministerial dice «gestión directa por la entidad local» para la recogida de residuos en todos los ejercicios de 2015 a 2024. Es falso: la concesión de SAV estuvo vigente todo ese periodo. Lo señalamos como defecto del dato, no del servicio.",
@@ -631,7 +642,7 @@
     "Sobre el origen de este reportaje: nos llegó la versión de que la adjudicataria era una sociedad pantalla vinculada al alcalde a través del caso que afecta a José Luis Ábalos y Santos Cerdán. La comprobamos y no se sostiene. Garbialdi, S.A. se constituyó en 1989, declaró unos 80 millones de euros de facturación y más de 2.600 empleados en 2024, audita PwC, y compitió con FCC, Urbaser y SAV. No aparece en la documentación de la UCO sobre ese caso, que se refiere a Acciona Construcción y a Servinabar 2000 S.L. en obra pública estatal. Publicamos la comprobación porque un rumor comprobado y descartado también es información.",
     "Acciona concurrió una sola vez a este servicio en Riba-roja, en 2011, y perdió. Consta en la nota municipal de aquel año, no en el registro de contratación, que sólo empieza en julio de 2017: es el único contacto con la recogida de basuras del municipio que hemos encontrado, no el único que el registro podría mostrar. No prueba nada, y lo hacemos constar aquí precisamente para que nadie lo «descubra» más tarde y le atribuya un significado.",
     "El expediente de Garbialdi en otros municipios procede de fuentes públicas anteriores a la adjudicación de Riba-roja. Lo incluimos porque plantea una pregunta sobre la diligencia del órgano de contratación, no para atribuir a la empresa una intención. El episodio de Parla se cuenta en las dos direcciones a propósito: los impagos y la petición de rescisión de la propia UTE en 2015 constan igual que las sanciones de 2017 y la flota devuelta en 2018, y ningún juzgado ha repartido las culpas.",
-    "Sobre la trayectoria política de Josu Olazarán: una primera versión de este borrador la dejó fuera por proceder de un solo medio. Se incluye ahora porque ha quedado contrastada en fuentes independientes entre sí —la necrológica de Deia y la Auñamendi Entziklopedia (vía Wikipedia) para sus cargos en el PNV, el BORME para su condición de administrador de Garbialdi y la fecha de su muerte, y dos piezas de El Salto para las adjudicaciones de Osakidetza, que citamos con atribución expresa—. Afecta a una persona fallecida, así que nos limitamos a sus cargos públicos y a cifras publicadas; no consta —ni El Salto la recogía— investigación alguna sobre aquellas adjudicaciones, y nada de ello conecta con Riba-roja.",
+    "Sobre la trayectoria política de Josu Olazarán: una primera versión de este borrador la dejó fuera por proceder de un solo medio. Se incluye ahora porque ha quedado contrastada en fuentes independientes entre sí —la necrológica de Deia y la Auñamendi Entziklopedia (vía Wikipedia) para sus cargos en el PNV, el BORME para su condición de administrador de Garbialdi y la fecha de su muerte, y dos piezas de El Salto para las adjudicaciones de Osakidetza, que citamos con atribución expresa—. Afecta a una persona fallecida, así que nos limitamos a sus cargos públicos y a cifras publicadas; no consta investigación judicial sobre aquellas adjudicaciones —lo que El Salto sí recogía, denuncias ante la Inspección de Trabajo y reparos del órgano fiscalizador vasco, se cita como suyo—, y nada de ello conecta con Riba-roja.",
     "El derecho de réplica está abierto para el Ayuntamiento de Riba-roja, para Garbialdi, para ISS Facility Services, para FCC y para SAV. Cualquier respuesta se publicará íntegra."
   ]
 }

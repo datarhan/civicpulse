@@ -11,8 +11,10 @@ test.describe('Reportaje · basuras (/reportajes/basuras)', () => {
       timeout: 8000,
     })
 
-    // estado === 'borrador' → the unpublished banner must be up.
-    await expect(page.getByText(/Borrador editorial/).first()).toBeVisible()
+    // estado === 'publicado' → the draft banner must be GONE, and the open
+    // right-of-reply commitment must be on the page instead.
+    expect(await page.getByText(/Borrador editorial/).count()).toBe(0)
+    await expect(page.getByText(/derecho de réplica está abierto/).first()).toBeVisible()
 
     // The load-bearing finding: price was 32 of 100 points, promises 68.
     await expect(page.getByText(/32 \/ 100/).first()).toBeVisible()
@@ -63,16 +65,19 @@ test.describe('Reportaje · basuras (/reportajes/basuras)', () => {
     expect(appErrors(errors)).toEqual([])
   })
 
-  test('a borrador never lists on the /reportajes index', async ({ page }) => {
+  test('publicado: lists on the /reportajes index, newest first', async ({ page }) => {
     await page.goto('/reportajes', { waitUntil: 'domcontentloaded' })
 
     await expect(page.getByRole('heading', { level: 1, name: /Reportajes/ })).toBeVisible({
       timeout: 8000,
     })
-    // The index renders from the same registry, but gates on meta.estado.
-    // Assert the gate evaluated something: published piezas are there…
+    // The index renders from the shared registry, gated on meta.estado — now
+    // that the pieza is publicada it must list, and lead (registry order is
+    // newest first). The older piezas must still be there.
+    await expect(page.getByRole('heading', { name: /Quince años/ }).first()).toBeVisible()
     await expect(page.getByRole('heading', { name: /calle a calle/ })).toBeVisible()
-    // …and the draft is not.
-    await expect(page.getByRole('heading', { name: /Quince años/ })).toHaveCount(0)
+    expect(await page.locator('a[href^="/reportajes/"]').first().getAttribute('href')).toBe(
+      '/reportajes/basuras',
+    )
   })
 })
