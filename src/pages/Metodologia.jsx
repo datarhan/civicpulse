@@ -1535,6 +1535,34 @@ export default function Metodologia() {
           delante — dos puntos no se dibujan como una línea, porque dos puntos no son una tendencia.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Una entrega que falta puede faltar por dos motivos distintos</strong>, y
+          confundirlos borra un hecho sobre la rendición de cuentas del ayuntamiento. Que no hayamos
+          conseguido el fichero es un hueco nuestro. Que el fichero esté, que los demás municipios
+          figuren en él y que éste no aparezca en ninguna de sus tablas es otra cosa: es una entrega
+          que el ayuntamiento no presentó, y rendirla antes del 1 de noviembre es una obligación del
+          artículo 116 ter de la Ley de Bases de Régimen Local. El adaptador distingue los dos casos
+          comprobando el universo del fichero, y la página los dice por separado. La entrega de{' '}
+          <strong>2020</strong> es del segundo tipo: Riba-roja no aparece en las tablas de coste,
+          gestión ni unidades físicas del libro de la Comunitat Valenciana de ese ejercicio,
+          mientras que en 2019 y 2021 declara sus cuarenta y tres filas. No es un efecto de la
+          pandemia — ese año presentaron más ayuntamientos valencianos que en 2018, 2019, 2021 o
+          2022.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Las series van en euros constantes; la comparación con pares, no.</strong> Un
+          coste unitario de 2014 y otro de 2024 no son la misma unidad de cuenta, así que la serie
+          se deflacta con el índice de precios de consumo del INE y se rotula con el año base. Sin
+          eso, un servicio que costara exactamente lo mismo en términos reales aparecía subiendo:
+          pavimentación de vías públicas se leía como un 29 % más cara y en euros constantes sube un
+          5 %. La comparación con otros municipios se queda <em>sin deflactar</em> y a propósito,
+          porque enfrenta un año contra ese mismo año: corregirla movería todas las cifras por el
+          mismo factor sin cambiar ninguna posición, y sólo conseguiría que lo publicado dejara de
+          coincidir con la celda del ministerio que cita. El índice de manual para gasto público
+          sería el deflactor implícito del PIB; se usa el IPC porque la API abierta del INE no sirve
+          aquél como serie anual, y la diferencia entre ambos no cambia ninguna de las lecturas de
+          esta página.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           Comparar entregas entre sí sirve además para detectar cuándo una viene mal. El alumbrado
           público pasa de 21,76 a 147,25 € por punto de luz entre 2021 y 2024, y no es que se haya
           encarecido siete veces: la entrega de 2021 declaraba 98 mil euros para 4.514 puntos de luz
