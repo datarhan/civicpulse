@@ -9,6 +9,7 @@ import {
   puntosSueltos,
   puentesHueco,
   serieMediana,
+  enTerminosReales,
 } from '../src/components/eficiencia/SerieServicio'
 
 const ROOT = join(__dirname, '..')
@@ -344,5 +345,60 @@ describe('la mediana de pares es su propia serie', () => {
       expect(tramos.length, `${i.servicio}: la mediana se parte de más`).toBeLessThanOrEqual(2)
       expect(puentesHueco(m).length, `${i.servicio}: la mediana no cruza su hueco`).toBe(1)
     }
+  })
+})
+
+describe('la serie se dibuja en euros constantes', () => {
+  const conSerie = indicadores.filter((i) => i.valor !== null && declarados(i).length >= 2)
+
+  it('el snapshot publicado trae los términos reales, no sólo los corrientes', () => {
+    // Si esto se rompe, compute:indicadores corrió sin ipc.json y la página
+    // está dibujando corrientes mientras el rótulo puede decir otra cosa.
+    expect(conSerie.length).toBeGreaterThan(0)
+    for (const i of conSerie) {
+      for (const p of declarados(i)) {
+        expect(typeof p.valorReal, `${i.servicio} ${p.anio}: sin valorReal`).toBe('number')
+      }
+    }
+  })
+
+  it('sustituye el valor y su mediana a la vez, o ninguno', () => {
+    for (const i of conSerie) {
+      const { puntos, reales } = enTerminosReales(declarados(i))
+      expect(reales).toBe(true)
+      for (const p of puntos) {
+        expect(p.valor).toBe(p.valorReal)
+        // La mediana de pares tiene que venir del campo real, nunca del
+        // nominal: media serie deflactada contra media sin deflactar dibuja
+        // una distancia que no le ha pasado a nadie.
+        if (typeof p.medianaParesReal === 'number') {
+          expect(p.medianaPares).toBe(p.medianaParesReal)
+        }
+      }
+    }
+  })
+
+  it('el año que titula no se mueve al deflactar', () => {
+    for (const i of conSerie) {
+      const base = i.citas?.[0]?.entrega
+      const p = declarados(i).find((x) => x.anio === base)
+      if (p) expect(p.valorReal).toBeCloseTo(p.valor, 6)
+    }
+  })
+
+  it('sin índice cae a corrientes y lo dice, en vez de fingirlos', () => {
+    const sinIndice = declarados(conSerie[0]).map(({ valorReal, ...resto }) => resto)
+    const salida = enTerminosReales(sinIndice)
+    expect(salida.reales).toBe(false)
+    expect(salida.puntos).toBe(sinIndice)
+  })
+
+  it('un solo año sin deflactar tumba toda la serie a corrientes', () => {
+    // Todo o nada. Mezclar un año corriente con nueve constantes es peor que
+    // no deflactar: la pendiente resultante no es de nadie.
+    const puntos = declarados(conSerie[0]).map((p, idx) =>
+      idx === 1 ? (({ valorReal, ...resto }) => resto)(p) : p,
+    )
+    expect(enTerminosReales(puntos).reales).toBe(false)
   })
 })

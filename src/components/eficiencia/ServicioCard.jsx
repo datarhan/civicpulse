@@ -1,7 +1,7 @@
 import { Card, Pill } from '../Primitives'
 import { useT } from '../../i18n'
 import { BandaPares } from './BandaPares'
-import { SerieServicio } from './SerieServicio'
+import { SerieServicio, enTerminosReales } from './SerieServicio'
 import { TIER_TONE } from './Escalones'
 import { leerIndicador, lecturaVisible, chipDeclaracion } from '../../scraper/indicador-lectura'
 import { Lectura } from './Lectura'
@@ -50,6 +50,7 @@ export function ServicioCard({ indicador, formatea }) {
     banda: Boolean(i.pares),
   })
   const declarados = i.serie.filter((p) => p.estado === 'declarado')
+  const serie = enTerminosReales(declarados)
   const puntos = declarados.length
   const chip = chipDeclaracion(i)
   // Avisos y salvedades comparten destino: los primeros los cuenta ahora el
@@ -106,8 +107,25 @@ export function ServicioCard({ indicador, formatea }) {
 
           {/* La serie va dibujada, con las entregas inverosímiles fuera de la
               escala y marcadas donde estaban. Las cifras exactas, año por año,
-              siguen en el desplegable de abajo. */}
-          <SerieServicio puntos={declarados} formatea={formatea} unidad={i.unidad} />
+              siguen en el desplegable de abajo.
+
+              Va en euros constantes de la entrega que titula. El rótulo no es
+              decorativo: una serie de coste en corrientes y otra deflactada se
+              dibujan igual, y sólo una de las dos se puede leer. Si falta el
+              índice de algún año se dice, y se dibujan los corrientes. */}
+          <SerieServicio puntos={serie.puntos} formatea={formatea} unidad={i.unidad} />
+          <div
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              marginTop: 2,
+              textAlign: 'right',
+            }}
+          >
+            {serie.reales
+              ? `euros constantes de ${cita?.entrega} · IPC general (INE)`
+              : 'euros corrientes: falta el índice de precios de algún año'}
+          </div>
 
           <BandaPares indicador={i} formatea={formatea} />
           {puntos < 2 && (

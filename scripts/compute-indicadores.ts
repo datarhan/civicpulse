@@ -31,10 +31,22 @@ async function main() {
     getStats: () => NO_LLM_STATS,
   })
 
+  // Índice de precios para la serie. Es opcional a propósito: si el snapshot
+  // del IPC no está, la serie sale sólo en corrientes y la página lo rotula,
+  // en vez de fingir euros constantes que nadie ha calculado.
+  let ipc: Record<number, number> | undefined
+  try {
+    ipc = (await leer('public/data/ipc.json')).medias
+    console.log(`[indicadores] IPC cargado · ${Object.keys(ipc ?? {}).length} años`)
+  } catch {
+    console.warn('[indicadores] SIN ipc.json — la serie se publica en euros corrientes')
+  }
+
   const snap = construirIndicadores({
     municipio: fuente.municipio,
     pares: fuente.pares,
     citaUrl: fuente.source.volcado,
+    ipc,
   })
   const anioBase = snap.indicadores[0]?.citas[0]?.entrega ?? 0
 

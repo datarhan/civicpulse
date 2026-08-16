@@ -106,6 +106,24 @@ export interface PuntoSerie {
   atipico?: boolean
   /** Mediana de los pares de ese año, que es contra lo que se juzga. */
   medianaPares?: number
+  /**
+   * El mismo valor en euros constantes del año base, o `null` si no hay índice
+   * para ese año.
+   *
+   * La serie SÓLO se puede leer en términos reales. En corrientes, el 22,8 % de
+   * inflación acumulada entre 2014 y 2024 se lee como si fuera gestión:
+   * pavimentación aparenta subir un 29 % y sube un 5 %. Y como el denominador
+   * de estos cocientes lleva años congelado, sin deflactar había DOS motivos
+   * distintos empujando la misma línea, mezclados y sin separar.
+   */
+  valorReal?: number | null
+  /**
+   * La mediana de los pares del mismo año, deflactada con el MISMO índice.
+   *
+   * Si se deflacta la línea propia y no la de comparación, la distancia entre
+   * ambas deja de significar nada. Van juntas o no va ninguna.
+   */
+  medianaParesReal?: number | null
 }
 
 export interface DeclaracionMagnitud {
@@ -364,6 +382,14 @@ export interface ConstruirInput {
   /** Entrega que titula la tarjeta. Por omisión, la más reciente con datos. */
   anioBase?: number
   citaUrl: string
+  /**
+   * Índice de precios medio por año, para expresar la serie en euros
+   * constantes del año base. Opcional a propósito: sin él la serie sale sólo en
+   * corrientes y `valorReal` viene `null`, que es honesto. Lo que no se hace
+   * nunca es rellenarlo con un factor de 1, porque entonces una serie sin
+   * deflactar y una deflactada se ven idénticas.
+   */
+  ipc?: Record<number, number>
 }
 
 /**
@@ -460,6 +486,27 @@ function caveatDeclaracion(d: DeclaracionIndicador, def: ServicioDef): string | 
   return null
 }
 
+/**
+ * Factor para pasar un importe de `anio` a euros de `anioBase`.
+ *
+ * Se aplica **sólo a la serie temporal**. La comparación con pares es siempre
+ * de un mismo año contra ese mismo año: deflactarla multiplicaría a todos por
+ * la misma constante, no movería ni el percentil ni la posición en la banda, y
+ * sólo serviría para que las cifras publicadas dejaran de coincidir con las
+ * celdas del ministerio que dicen citar.
+ */
+function deflactor(
+  anio: number,
+  anioBase: number,
+  ipc: Record<number, number> | undefined,
+): number | null {
+  if (!ipc) return null
+  const origen = ipc[anio]
+  const base = ipc[anioBase]
+  if (!Number.isFinite(origen) || !Number.isFinite(base) || !origen) return null
+  return base / origen
+}
+
 export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot {
   const { municipio, pares, citaUrl } = input
   const aniosDisponibles = [...new Set(municipio.filas.map((f) => f.anio))].sort((a, b) => a - b)
@@ -508,6 +555,12 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
           if (razon > ATIPICO_FACTOR || razon < 1 / ATIPICO_FACTOR) punto.atipico = true
         }
       }
+      // Términos reales. La propia y la de comparación se deflactan con el
+      // mismo factor y en el mismo sitio, para que no puedan divergir.
+      const factor = deflactor(anio, anioBase, input.ipc)
+      punto.valorReal = valor !== null && factor !== null ? valor * factor : null
+      punto.medianaParesReal =
+        punto.medianaPares !== undefined && factor !== null ? punto.medianaPares * factor : null
       return punto
     })
 

@@ -169,6 +169,40 @@ export function serieMediana(puntos) {
 }
 
 /**
+ * Pasa la serie a euros constantes, o dice que no puede.
+ *
+ * Una serie de coste en euros corrientes no se puede leer como serie. Entre
+ * 2014 y 2024 el nivel de precios subió un 22,8 %, así que pavimentación de
+ * vías públicas aparentaba subir un 29 % cuando en términos reales sube un 5 %:
+ * la inflación se comía veinticuatro de los veintinueve puntos. Y como el
+ * denominador de estos cocientes lleva años sin remedirse, sin deflactar había
+ * DOS motivos distintos empujando la misma línea, mezclados y sin separar.
+ *
+ * Se convierte fuera del gráfico, a propósito. Las siete funciones puras de
+ * este módulo leen `valor` y `medianaPares` y no tienen por qué enterarse de
+ * qué unidad monetaria es ésa: sustituyendo los campos antes de entrar, el
+ * dibujo, sus huecos, su escala y sus pruebas siguen valiendo exactamente igual.
+ *
+ * Todo o nada: si a UN punto declarado le falta su equivalente real, se
+ * devuelve la serie nominal y `reales: false`, y la tarjeta lo rotula. Mezclar
+ * unos años deflactados con otros sin deflactar dibujaría una pendiente que no
+ * le ha pasado a nadie.
+ */
+export function enTerminosReales(puntos) {
+  const declarados = puntos.filter((p) => typeof p.valor === 'number')
+  const completo = declarados.length > 0 && declarados.every((p) => typeof p.valorReal === 'number')
+  if (!completo) return { puntos, reales: false }
+  return {
+    reales: true,
+    puntos: puntos.map((p) => ({
+      ...p,
+      valor: typeof p.valorReal === 'number' ? p.valorReal : p.valor,
+      medianaPares: typeof p.medianaParesReal === 'number' ? p.medianaParesReal : undefined,
+    })),
+  }
+}
+
+/**
  * Entregas limpias que quedan aisladas y a las que una línea no llega.
  *
  * Alumbrado publica 11,31 €/punto de luz en 2019, verificado contra sus pares y

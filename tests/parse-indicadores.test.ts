@@ -243,3 +243,57 @@ describe('scraper/indicadores', () => {
     expect(situacion(byId('a1621-coste-unitario'))).toBe('con-ratio')
   })
 })
+
+describe('scraper/indicadores · euros constantes', () => {
+  // Índice inventado y deliberadamente brusco: 2020 vale la mitad que 2021, así
+  // que cualquier confusión de dirección salta a la vista en vez de esconderse
+  // detrás de un 2 % de inflación real.
+  const IPC = { 2020: 50, 2021: 100 }
+  const conIpc = construirIndicadores({
+    municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: mias },
+    pares: { conjunto: 'cv-15k-40k', anios: [2021], miembros, filas: rows },
+    anioBase: 2021,
+    citaUrl: CITA,
+    ipc: IPC,
+  })
+
+  const conSerie = conIpc.indicadores.find((i) =>
+    i.serie.some((p) => p.valor !== null && p.anio === 2021),
+  )!
+
+  it('deja quieto el año base: un euro de 2021 es un euro de 2021', () => {
+    const p = conSerie.serie.find((x) => x.anio === 2021 && x.valor !== null)!
+    expect(p.valorReal).toBeCloseTo(p.valor!, 6)
+  })
+
+  it('NO deflacta la comparación con pares, que es de un año contra sí mismo', () => {
+    // El percentil y los cuartiles salen de las celdas del ministerio del año
+    // base. Deflactarlos multiplicaría a todos por la misma constante sin mover
+    // la posición, y las cifras publicadas dejarían de coincidir con la celda
+    // que dicen citar.
+    const sinIpc = snap.indicadores.find((i) => i.id === conSerie.id)!
+    expect(conSerie.pares?.percentil).toBe(sinIpc.pares?.percentil)
+    expect(conSerie.pares?.mediana).toBe(sinIpc.pares?.mediana)
+    expect(conSerie.valor).toBe(sinIpc.valor)
+  })
+
+  it('deflacta la mediana de pares con el MISMO factor que la línea propia', () => {
+    // Si una se deflacta y la otra no, la distancia entre ambas deja de
+    // significar nada, que es el defecto que esto existe para impedir.
+    const conMediana = conIpc.indicadores
+      .flatMap((i) => i.serie)
+      .find((p) => p.medianaPares !== undefined && p.valor !== null)
+    expect(conMediana).toBeDefined()
+    const factorValor = conMediana!.valorReal! / conMediana!.valor!
+    const factorMediana = conMediana!.medianaParesReal! / conMediana!.medianaPares!
+    expect(factorMediana).toBeCloseTo(factorValor, 9)
+  })
+
+  it('sin índice devuelve null, nunca el valor sin tocar', () => {
+    // Un valorReal que coincide con el nominal es indistinguible de uno bien
+    // deflactado. Sin índice se dice que no hay, y la página lo rotula.
+    for (const p of snap.indicadores.flatMap((i) => i.serie)) {
+      expect(p.valorReal ?? null).toBeNull()
+    }
+  })
+})
