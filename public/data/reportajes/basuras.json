@@ -451,6 +451,103 @@
     ]
   },
 
+  "preguntas": {
+    "intro": "Un reportaje honesto no acaba en lo que sabe, sino en lo que pregunta. Las dieciocho que siguen no son retóricas: cada una nace de un hecho documentado en esta pieza —se indica debajo de cada una— y cada una tiene respuesta posible en un expediente público. Forman parte del derecho de réplica que esta pieza abre al Ayuntamiento antes de su publicación definitiva, y las respuestas se publicarán íntegras.",
+    "cierre": "Si alguna de estas preguntas tiene una respuesta que deje mal a este reportaje, mejor: se publicará igual de íntegra.",
+    "bloques": [
+      {
+        "titulo": "Sobre el contrato",
+        "destinatario": "Al órgano de contratación y a la Alcaldía",
+        "items": [
+          {
+            "q": "¿Examinó la mesa de contratación el historial de la adjudicataria en otros municipios antes de puntuarla con 95,54 sobre 100, y consta ese examen en el expediente?",
+            "base": "La exclusión de su oferta en Parla por inviabilidad (2-2-2018) y la devolución de 19 de los 33 vehículos municipales (30-4-2018) constaban en documentos públicos; la huelga de Ugao-Miraballes se cerró mientras en Riba-roja se valoraban las ofertas."
+          },
+          {
+            "q": "¿Quién evaluó el proyecto técnico —el criterio que más puntos otorgaba— y qué parte de aquel proyecto llegó a materializarse el 1 de diciembre?",
+            "base": "DOUE 249954-2025: proyecto técnico, 34 puntos; precio, 32. Los informes municipales documentan que lo incumplido fue precisamente lo comprometido: medios personales y materiales."
+          },
+          {
+            "q": "¿Sabía el Ayuntamiento, al firmar el 11 de noviembre, que la totalidad del capital de la adjudicataria había cambiado de manos? Si lo sabía, ¿qué comprobaciones hizo antes de firmar? Y si no lo sabía, ¿cómo pudo no saberlo, con la operación publicada tres semanas antes?",
+            "base": "Adjudicación, 10-9-2025; notificación a la CNMC, 22-9; autorización, 1-10; anuncio público de ISS, 21-10; formalización, 11-11."
+          },
+          {
+            "q": "¿Qué responsabilidades concretas se temía que se eludieran al denegar la sucesión del contratista a ISS, y cuáles se han exigido desde entonces, a Garbialdi o a su nuevo dueño?",
+            "base": "Orden del día del pleno del 7-1-2026: desestimación de la sucesión «por riesgo de la elusión de responsabilidades» (art. 98 de la Ley 9/2017)."
+          },
+          {
+            "q": "¿Se ha incautado la garantía definitiva? ¿Por qué importe? ¿Y en qué estado está la reclamación de daños y perjuicios anunciada?",
+            "base": "El alcalde anunció que se reclamarían daños «con toda la contundencia legal» (7-1-2026); la resolución definitiva fue «por incumplimiento culpable del contratista» (9-3-2026)."
+          },
+          {
+            "q": "¿La resolución fue por incumplimiento culpable o de mutuo acuerdo? Las dos cosas no pueden ser verdad a la vez: ¿por qué el orden del día del pleno dice una y la comunicación oficial la otra?",
+            "base": "Punto 11 del pleno del 9-3-2026: «por incumplimiento culpable del contratista». Nota municipal del 12-3-2026: «de mutuo acuerdo»."
+          }
+        ]
+      },
+      {
+        "titulo": "Sobre el servicio",
+        "destinatario": "A la concejalía responsable del servicio",
+        "items": [
+          {
+            "q": "¿Quién presta hoy la limpieza viaria y el mantenimiento de parques y jardines, y bajo qué contrato? Si hay prórrogas, ¿dónde están publicadas?",
+            "base": "Vencimientos publicados de los contratos de SAV: limpieza viaria, 4-11-2025; parques y jardines, 14-3-2026. Sin sucesor en el registro a 16-8-2026."
+          },
+          {
+            "q": "¿Mediante qué acuerdos pasó la concesión de basuras de 2011, adjudicada para diez años, a durar casi quince? ¿Hubo prórrogas aprobadas, o el servicio se prestó años en precario?",
+            "base": "Nota municipal del 26-1-2011: adjudicación «para los próximos diez años». El servicio siguió en manos de SAV hasta noviembre de 2025."
+          },
+          {
+            "q": "¿Cuánto cuesta el contrato de emergencia de FCC y por qué no está publicado? ¿Y quién cobró qué entre el 4 de enero y el 12 de marzo, cuando FCC «complementaba» un servicio del que Garbialdi seguía siendo «contratista y responsable»?",
+            "base": "Las dos expresiones entrecomilladas son de la nota municipal del 7-1-2026. El contrato de emergencia no figura en el registro de contratación a 16-8-2026."
+          },
+          {
+            "q": "Los 685.296 € en contenedores y sensorización que el Ayuntamiento ha pagado de su bolsillo tras la caída del servicio: ¿eran obligación de la concesionaria según el pliego? Si lo eran, ¿se le reclamará su coste?",
+            "base": "Compras municipales de 2026: 320 contenedores de carga lateral (505.296 €, SULO) y plataforma de sensorización (180.000 €, DISTROMEL). Entre las mejoras comprometidas por la adjudicataria estaba la «reposición adicional de contenedores»."
+          },
+          {
+            "q": "¿A qué hora hay que sacar los enseres: sobre las 21.00, como dice el calendario, o de 18 a 20, como dice el cartel de la misma página? ¿Cuándo se corregirá el documento equivocado?",
+            "base": "Calendario municipal: «sobre las 21:00h». Cartel municipal de la misma página y con la misma fecha: «a partir de les 18 hores» y «de 18 a 20 hores»."
+          },
+          {
+            "q": "¿Se va a aplicar la rebaja proporcional de la tasa de basuras que anunció el alcalde? ¿En qué cuantía, y en qué recibo la verá el contribuyente?",
+            "base": "Raga, 12-3-2026: «vamos a estudiar fórmulas jurídicas para poder rebajar proporcionalmente la tasa de basura el próximo año a los contribuyentes»."
+          }
+        ]
+      },
+      {
+        "titulo": "Sobre los responsables",
+        "destinatario": "A la Alcaldía, y a quien corresponda",
+        "items": [
+          {
+            "q": "¿Qué informes técnicos avalaron la solvencia y la valoración de la oferta ganadora, y consta en el expediente alguna advertencia previa al 1 de diciembre?",
+            "base": "La valoración técnica (34 puntos) y la adjudicación constan en el expediente 136/2025; los incumplimientos se documentaron desde el primer día de servicio."
+          },
+          {
+            "q": "¿En qué fecha exacta advirtió AUDITESA del primer incumplimiento, y cuántos días pasaron hasta la primera actuación municipal?",
+            "base": "AUDITESA cobra 194.810 € por el lote 2, la supervisión de este contrato; sus informes sustentan la penalidad y la resolución."
+          },
+          {
+            "q": "¿Qué alegaciones de Garbialdi estimó el pleno al fijar la penalidad en 143.539 €, y por qué?",
+            "base": "Nota municipal del 12-3-2026: la penalidad se abonará «tras estimar el pleno parte de las alegaciones presentadas»."
+          },
+          {
+            "q": "¿Quién es responsable de que el perfil del contratante siga publicando, cinco meses después, un contrato resuelto como vigente hasta 2039, y cuándo se corregirá?",
+            "base": "Comprobado contra el registro en vivo el 15-8-2026: contrato «formalizado» hasta el 10-11-2039, sin resolución anotada y sin contrato de FCC, en un registro que anota otras adjudicaciones hasta el 6-8-2026."
+          },
+          {
+            "q": "¿Cómo se calcularon los «731.000 € de ahorro» anunciados?",
+            "base": "Con los importes publicados salen 829.198,26 € (sobre el presupuesto base, sin IVA), 722.480,64 € o 931.081,76 € (con IVA). Ninguna combinación da 731.000 €."
+          },
+          {
+            "q": "¿Consta en las actas alguna advertencia —técnica o política— previa a la adjudicación? Y a la vista de diciembre y enero: ¿considera el gobierno municipal que el procedimiento funcionó, o alguien va a asumir alguna responsabilidad?",
+            "base": "Raga, 7-1-2026: el contrato se adjudicó con «transparencia absoluta», evaluado por una mesa de técnicos, una comisión con todos los grupos políticos y el pleno."
+          }
+        ]
+      }
+    ]
+  },
+
   "fuentes": [
     {
       "label": "CNMC · Expediente C/1600/25 ISS/GARBIALDI (resolución de 1 de octubre de 2025)",
