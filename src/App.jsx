@@ -44,6 +44,7 @@ const About = lazy(() => import('./pages/About'))
 const Reportajes = lazy(() => import('./pages/Reportajes'))
 const ReconstruccionDana = lazy(() => import('./pages/reportajes/ReconstruccionDana'))
 const InteligenciaTuristica = lazy(() => import('./pages/reportajes/InteligenciaTuristica'))
+const Basuras = lazy(() => import('./pages/reportajes/Basuras'))
 const BuildingCivicPulse = lazy(() => import('./pages/blog/BuildingCivicPulse'))
 // /curator is dev-only — see vite-curator-plugin.js. The lazy import
 // is gated below by `import.meta.env.MODE !== 'production'`. Production
@@ -161,6 +162,7 @@ function InnerShell({ onOpenCmdK }) {
                 path="/reportajes/inteligencia-turistica"
                 element={<InteligenciaTuristica />}
               />
+              <Route path="/reportajes/basuras" element={<Basuras />} />
               {/* English engineering blog post — unlisted (not in NAV), canonical home for HN/civic-tech. */}
               <Route path="/blog/building-civicpulse-with-ai" element={<BuildingCivicPulse />} />
               <Route path="/metodologia" element={<Metodologia />} />

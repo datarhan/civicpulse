@@ -170,6 +170,7 @@
       "/quejas/:id",
       "/quejas/dashboard",
       "/reportajes",
+      "/reportajes/basuras",
       "/reportajes/inteligencia-turistica",
       "/reportajes/reconstruccion-dana"
     ],

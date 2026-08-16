@@ -1,0 +1,433 @@
+{
+  "meta": {
+    "slug": "basuras",
+    "titulo": "Quince años, y luego un mes",
+    "subtitulo": "Riba-roja sustituyó a la contrata de basuras que llevaba desde 2011 por la oferta mejor puntuada de cuatro. El servicio duró un mes. En el concurso, el precio valía 32 de los 100 puntos: los otros 68 eran promesas, y las promesas son lo que falló.",
+    "seccion": "Reportaje · datos",
+    "municipio": "Riba-roja de Túria",
+    "fechaDatos": "2026-08-15",
+    "estado": "borrador",
+    "derechoReplica": "pendiente",
+    "correcciones": []
+  },
+
+  "kpis": [
+    {
+      "n": "14 a. 9 m.",
+      "l": "duró la contrata anterior: SAV, del 1 de febrero de 2011 a noviembre de 2025"
+    },
+    { "n": "1 mes", "l": "duró la nueva antes de que se abriera el expediente de penalidades" },
+    { "n": "32 / 100", "l": "puntos que valía el precio en el concurso; 68 eran compromisos" },
+    { "n": "17,38 M€", "l": "importe adjudicado con IVA, para catorce años" }
+  ],
+
+  "cronologia": [
+    {
+      "fecha": "2011-02-01",
+      "hito": "SAV (Sociedad Agricultores de la Vega) empieza a prestar la recogida de residuos, adjudicada «para los próximos diez años» tras superar a Vareser, Urbaser, Secopsa y Acciona. Ofertó 55.381,40 €/mes y pagó 150.000 € por la maquinaria existente.",
+      "fuente": "ribarroja.es, 26-01-2011"
+    },
+    {
+      "fecha": "2011-03-28",
+      "hito": "Nacen con esa contrata el horario de depósito de 20.00 a 23.00 y el teléfono gratuito 900 714 318. Los dos siguen vigentes en 2026.",
+      "fuente": "ribarroja.es, 28-03-2011"
+    },
+    {
+      "fecha": "2018-02-02",
+      "hito": "Parla excluye la oferta de Garbialdi (8,4 M€) del concurso de basuras y limpieza viaria por «baja desproporcionada o anormal» que «no justifica la viabilidad de la empresa».",
+      "fuente": "Mesa de contratación de Parla"
+    },
+    {
+      "fecha": "2018-04",
+      "hito": "Garbialdi-Sadifer termina su contrato en Parla devolviendo 19 de los 33 vehículos municipales inservibles. Le sucede Urbaser-FCC.",
+      "fuente": "Ayuntamiento de Parla"
+    },
+    {
+      "fecha": "2023",
+      "hito": "Riba-roja saca el expediente 97/2023 para el mismo servicio, con 11.172.860,70 € de presupuesto base. No consta adjudicado.",
+      "fuente": "PLACSP"
+    },
+    {
+      "fecha": "2025-07-19",
+      "hito": "Termina la huelga indefinida de la plantilla de Garbialdi en Ugao-Miraballes, convocada por ELA en mayo. Mientras, en Riba-roja se valoraban las ofertas.",
+      "fuente": "Deia / Onda Vasca"
+    },
+    {
+      "fecha": "2025-04-16",
+      "hito": "Se abre la licitación 136/2025: 16.632.795,30 € de base, 14 años, dos lotes.",
+      "fuente": "TED 249954-2025"
+    },
+    {
+      "fecha": "2025-09-10",
+      "hito": "Adjudicación: Garbialdi, S.A. (lote 1) por 17.383.956,74 € con IVA y AUDITESA S.L. (lote 2, supervisión) por 194.810 €. Cuatro ofertas.",
+      "fuente": "Pleno de 08-09-2025 / PLACSP"
+    },
+    {
+      "fecha": "2025-09-22",
+      "hito": "ISS Facility Services, S.A. notifica a la CNMC la compra de la totalidad del capital social de Garbialdi. Doce días después de la adjudicación.",
+      "fuente": "CNMC C/1600/25"
+    },
+    {
+      "fecha": "2025-10-01",
+      "hito": "La CNMC autoriza la concentración en primera fase.",
+      "fuente": "CNMC C/1600/25"
+    },
+    {
+      "fecha": "2025-11-04",
+      "hito": "Vence el contrato de limpieza viaria de SAV. No consta sucesor en el registro público.",
+      "fuente": "PLACSP"
+    },
+    {
+      "fecha": "2025-11-11",
+      "hito": "Riba-roja formaliza el contrato con Garbialdi, tres semanas después de que ISS hiciera pública la compra.",
+      "fuente": "PLACSP"
+    },
+    {
+      "fecha": "2025-12-01",
+      "hito": "Empieza el servicio. Falla desde el principio: faltan conductores, hay vehículos averiados, contratos de personal sin formalizar y rutas sin ejecutar.",
+      "fuente": "Informes municipales y de AUDITESA"
+    },
+    {
+      "fecha": "2025-12-23",
+      "hito": "Se inicia el expediente de penalidades, con trámite de audiencia de cinco días.",
+      "fuente": "ribarroja.es"
+    },
+    {
+      "fecha": "2026-01-07",
+      "hito": "Pleno extraordinario y urgente (expediente 615/2025/GEN): eleva a definitiva la penalidad de 143.539 €, inicia la resolución del contrato y desestima la sucesión del contratista a favor de ISS «por riesgo de la elusión de responsabilidades». FCC entra el día 4 sólo a complementar el servicio.",
+      "fuente": "Orden del día del pleno de 07-01-2026"
+    },
+    {
+      "fecha": "2026-03-09",
+      "hito": "El pleno acuerda, como asunto de urgencia, la resolución definitiva del contrato «por incumplimiento culpable del contratista».",
+      "fuente": "Orden del día del pleno de 09-03-2026"
+    },
+    {
+      "fecha": "2026-03-12",
+      "hito": "Entra en vigor el contrato de emergencia de FCC, por un año. La nota municipal describe la resolución como «de mutuo acuerdo».",
+      "fuente": "ribarroja.es, 12-03-2026"
+    },
+    {
+      "fecha": "2026-03-14",
+      "hito": "Vence el contrato de parques y jardines de SAV. Tampoco consta sucesor.",
+      "fuente": "PLACSP"
+    },
+    {
+      "fecha": "2026-06-17",
+      "hito": "El Ayuntamiento adjudica por su cuenta la plataforma de sensorización de contenedores a DISTROMEL (180.000 € con IVA, fondos Next Generation).",
+      "fuente": "PLACSP"
+    },
+    {
+      "fecha": "2026-07-28",
+      "hito": "Y compra 320 contenedores de carga lateral a SULO IBÉRICA por 505.296 € con IVA.",
+      "fuente": "PLACSP"
+    }
+  ],
+
+  "criterios": {
+    "nota": "Ponderación oficial del lote 1, tal y como la publica el anuncio de licitación en el Diario Oficial de la Unión Europea.",
+    "filas": [
+      { "criterio": "Proyecto técnico del servicio", "puntos": 34, "tipo": "compromiso" },
+      { "criterio": "Precio", "puntos": 32, "tipo": "precio" },
+      { "criterio": "Inserción socio-laboral de personas en riesgo de exclusión", "puntos": 12, "tipo": "compromiso" },
+      { "criterio": "Reposición anual de contenedores de carga trasera y lateral", "puntos": 8, "tipo": "compromiso" },
+      { "criterio": "Bolsa económica anual de servicios extraordinarios", "puntos": 7.5, "tipo": "compromiso" },
+      { "criterio": "Programa de reducción o compensación de emisiones", "puntos": 4, "tipo": "compromiso" },
+      { "criterio": "Compensación de maquinaria", "puntos": 2.5, "tipo": "compromiso" }
+    ],
+    "totalPrecio": 32,
+    "totalCompromisos": 68
+  },
+
+  "puntuaciones": [95.54, 90.7, 90.07, 89.06],
+  "licitadores": ["Garbialdi", "FCC Medio Ambiente", "Urbaser", "SAV"],
+
+  "compromisos": [
+    "Seis vehículos híbridos y uno eléctrico",
+    "Una bolsa de 25.000 € anuales para servicios extraordinarios",
+    "Reposición adicional de contenedores",
+    "Contratación de tres personas mayores de 45 años"
+  ],
+  "incumplimientos": [
+    "Falta de conductores",
+    "Vehículos averiados",
+    "Contratos de personal sin formalizar",
+    "Rutas sin ejecutar",
+    "Contenedores desbordados",
+    "Sin limpieza de vertederos incontrolados",
+    "Sin recogida normal de enseres y voluminosos"
+  ],
+
+  "dinero": {
+    "presupuesto2023": 11172860.7,
+    "presupuesto2025": 16632795.3,
+    "subidaPresupuestoPct": 48.87,
+    "adjudicadoSinIva": 15803597.04,
+    "adjudicadoConIva": 17383956.74,
+    "bajaPct": 4.99,
+    "bajaEuros": 829198.26,
+    "ahorroDeclarado": 731000,
+    "porAnio": 1128938.75,
+    "porHabitante": 45.86,
+    "supervisionAuditesa": 194810,
+    "penalidad": 143539,
+    "penalidadPctContrato": 1,
+    "contenedoresSulo": 505296,
+    "sensorizacionDistromel": 180000,
+    "sumaEquipamiento": 685296,
+    "poblacion": 24616
+  },
+
+  "costeEfectivo": {
+    "programa": "a1621 · Recogida de residuos",
+    "nota": "Coste efectivo declarado por el propio Ayuntamiento al Ministerio de Hacienda. En todos estos años la declaración dice «gestión directa por la entidad local», lo que no puede ser cierto: la concesión de SAV estuvo vigente todo el periodo.",
+    "filas": [
+      { "anio": 2019, "coste": 865067.82, "porHabitante": 35.14 },
+      { "anio": 2021, "coste": 801040.17, "porHabitante": 32.54 },
+      { "anio": 2022, "coste": 912749.87, "porHabitante": 37.08 },
+      { "anio": 2023, "coste": 502168.98, "porHabitante": 20.4 },
+      { "anio": 2024, "coste": 740272.16, "porHabitante": 30.07 }
+    ],
+    "contratoPorAnio": 1128938.75,
+    "contratoPorHabitante": 45.86,
+    "variacionPct": 52.5,
+    "toneladasCongeladas": 11059.41,
+    "contenedoresCongelados": 657,
+    "aniosCongelados": [2019, 2021, 2022, 2023, 2024],
+    "paresConDato": 55,
+    "paresConTonelaje": 46,
+    "paresTotales": 60,
+    "tonelajeMax": { "municipio": "Vall d'Uixó (la)", "toneladas": 11572420 },
+    "tonelajeMin": { "municipio": "Alfàs del Pi (l')", "toneladas": 12.55 }
+  },
+
+  "censo": {
+    "contratos": 131,
+    "importe": 29980807.83,
+    "totalAdjudicadoMunicipio": 123681882.79,
+    "cuotaPct": 24.2,
+    "sueloRegistro": "2017-07-03",
+    "concesiones": [
+      {
+        "empresa": "SAV (Sociedad Agricultores de la Vega)",
+        "objeto": "Recogida de residuos urbanos",
+        "adjudicado": "2011-01",
+        "fin": "2025-11",
+        "anios": 14.75,
+        "importe": null,
+        "nota": "Anterior al suelo del registro: no aparece en la contratación publicada. Ofertó 55.381,40 €/mes en 2011."
+      },
+      {
+        "empresa": "SAV (Sociedad Agricultores de la Vega)",
+        "objeto": "Limpieza viaria",
+        "adjudicado": "2021-08-04",
+        "fin": "2025-11-04",
+        "anios": 5,
+        "importe": 3418772.55,
+        "porHabitante": 27.78,
+        "bajaPct": 13.24,
+        "ofertas": 5
+      },
+      {
+        "empresa": "SAV (Sociedad Agricultores de la Vega)",
+        "objeto": "Parques, jardines y zonas verdes",
+        "adjudicado": "2022-01-24",
+        "fin": "2026-03-14",
+        "anios": 4,
+        "importe": 3212524.48,
+        "porHabitante": 32.65,
+        "bajaPct": 15.52,
+        "ofertas": 6
+      },
+      {
+        "empresa": "Garbialdi, S.A.",
+        "objeto": "Viales y zonas verdes de áreas industriales",
+        "adjudicado": "2019-03-30",
+        "fin": "2023-03-20",
+        "anios": 4,
+        "importe": 1234273.4,
+        "porHabitante": 12.54,
+        "bajaPct": null,
+        "ofertas": 7
+      },
+      {
+        "empresa": "Garbialdi, S.A.",
+        "objeto": "Recogida de RSU, poda y voluminosos",
+        "adjudicado": "2025-09-10",
+        "fin": "2039-11-10",
+        "anios": 14,
+        "importe": 15803597.04,
+        "porHabitante": 45.86,
+        "bajaPct": 4.99,
+        "ofertas": 4
+      }
+    ],
+    "dana": {
+      "contratos": 77,
+      "importe": 2827289.84,
+      "empresas": 54,
+      "unaSolaOfertaPct": 92,
+      "contratosVerbales": 28
+    }
+  },
+
+  "venta": {
+    "comprador": "ISS Facility Services, S.A.",
+    "matriz": "ISS Global A/S (Dinamarca)",
+    "objeto": "adquisición del control exclusivo sobre Garbialdi, S.A. mediante la adquisición de la totalidad de su capital social",
+    "expediente": "C/1600/25",
+    "notificada": "2025-09-22",
+    "autorizada": "2025-10-01",
+    "anunciada": "2025-10-21",
+    "vendedores": [
+      "Jesús María «Josu» Olazarán Sagarduy (fallecido en marzo de 2024)",
+      "José Luis Castellanos Palacios, director general"
+    ],
+    "asesor": "Deloitte, con mandato desde principios de 2024",
+    "sucesionDenegada": {
+      "fecha": "2026-01-07",
+      "articulo": "artículo 98 de la Ley 9/2017, de Contratos del Sector Público",
+      "mecanismo": "transmisión de rama de actividad mediante absorción",
+      "motivo": "riesgo de la elusión de responsabilidades"
+    }
+  },
+
+  "registro": {
+    "comprobadoEl": "2026-08-15",
+    "estadoPublicado": "formalized",
+    "adjudicatariaPublicada": "GARBIALDI, S.A.",
+    "finPublicado": "2039-11-10",
+    "importePublicado": 15803597.04,
+    "contratoFccEnRegistro": false,
+    "resolucionEnRegistro": false,
+    "ultimaAdjudicacionDelRegistro": "2026-08-06",
+    "filasEnRegistro": 805,
+    "contratosAdjudicadosEnRegistro": 699
+  },
+
+  "calendario": {
+    "vigenteDesde": "2026-06-15",
+    "telefono": "900 714 318",
+    "puntosDeRecogida": 700,
+    "urbanizaciones": [
+      "El Molinet",
+      "El Clot de Navarrete",
+      "La Vallesa de Mandor",
+      "Montealcedo",
+      "Entrenaranjos",
+      "Gallipont",
+      "Santa Rosa",
+      "Santa Mónica",
+      "Valencia la Vella",
+      "Masía de Traver",
+      "Els Pous",
+      "Reva"
+    ],
+    "urbanizacionesNota": "Son las doce que enumera el calendario municipal de enseres. En el de poda aparece además «Parque Montealcedo» como zona propia dentro de Montealcedo.",
+    "enseres": [
+      { "dia": "Martes", "zona": "Casco urbano y diseminados" },
+      { "dia": "Miércoles", "zona": "Urbanizaciones" },
+      { "dia": "Jueves", "zona": "Casco urbano y diseminados" },
+      { "dia": "Viernes", "zona": "Urbanizaciones" }
+    ],
+    "poda": [
+      { "dia": "Lunes", "zona": "Zona Norte" },
+      { "dia": "Martes", "zona": "Zona Sur" },
+      { "dia": "Miércoles", "zona": "Casco urbano, Pou d'Escoto, Llobatera y resto de diseminados" },
+      { "dia": "Jueves", "zona": "Zona Norte" },
+      { "dia": "Viernes", "zona": "Zona Sur" },
+      { "dia": "Sábado", "zona": "Repaso ocasional en verano" }
+    ],
+    "limites": [
+      "Enseres: máximo 5 bultos el día que corresponda",
+      "Poda: máximo 8 bolsas u 8 hatillos por vivienda y día",
+      "Hasta 15 kg, en bolsas o atado",
+      "No se recogen troncos de más de 30 cm de diámetro"
+    ],
+    "contradiccionHoraria": {
+      "documentoA": "Calendario de enseres y poda (castellano)",
+      "textoA": "sobre las 21:00h, para invadir el menor tiempo posible la calzada",
+      "documentoB": "Cartel «Per una Riba-roja neta!» (valenciano)",
+      "textoB": "a partir de les 18 hores",
+      "textoB2": "de 18 a 20 hores",
+      "nota": "Los dos documentos cuelgan de la misma página municipal y llevan la misma fecha. Los límites de bultos y peso sí coinciden; las horas, no."
+    }
+  },
+
+  "expedienteGarbialdi": [
+    {
+      "titulo": "Parla (Madrid), 2014 – abril de 2018",
+      "texto": "La UTE Garbialdi-Sadifer prestó la limpieza viaria y la recogida de basuras y, al terminar, devolvió 19 de los 33 vehículos municipales inservibles: furgonetas sin puertas, barredoras sin ruedas, cristales rotos y un camión de basura sin el gancho de la grúa. Le sucedió Urbaser-FCC, con 3,5 M€ más de presupuesto."
+    },
+    {
+      "titulo": "Parla, 2 de febrero de 2018",
+      "texto": "La mesa de contratación excluyó la oferta de Garbialdi —8,4 M€, la más barata— del nuevo contrato por «baja desproporcionada o anormal» que «no justifica la viabilidad de la empresa», citando «incongruencias graves» en maquinaria valorada por debajo de mercado. Urbaser-FCC y Acciona ofertaban por encima de 10 M€."
+    },
+    {
+      "titulo": "Ugao-Miraballes (Bizkaia), mayo – julio de 2025",
+      "texto": "Huelga indefinida de la plantilla de limpieza viaria y jardinería, convocada por ELA con respaldo unánime, por unas condiciones que el sindicato describió como precarias durante años. Se cerró con acuerdo el 19 de julio de 2025, mientras en Riba-roja se valoraban las ofertas."
+    },
+    {
+      "titulo": "Gipuzkoa",
+      "texto": "Huelga en la limpieza de comisarías y edificios judiciales, convocada por LAB."
+    },
+    {
+      "titulo": "Barakaldo, 2022",
+      "texto": "La UTE Cespa-Garbialdi-Samos se hizo con el contrato de basuras y limpieza viaria, en torno a 41 M€ por cuatro años."
+    }
+  ],
+
+  "fuentes": [
+    {
+      "label": "CNMC · Expediente C/1600/25 ISS/GARBIALDI (resolución de 1 de octubre de 2025)",
+      "url": "https://www.cnmc.es/expedientes/c160025"
+    },
+    {
+      "label": "DOUE · Anuncio de licitación 249954-2025 (ponderación de criterios)",
+      "url": "https://ted.europa.eu/es/notice/249954-2025/pdf"
+    },
+    {
+      "label": "Ayuntamiento de Riba-roja · «La nueva contrata de basura comenzará a prestar servicio el 1 de febrero» (26-01-2011)",
+      "url": "https://www.ribarroja.es/es/noticia/la-nueva-contrata-de-basura-comenzar%C3%A1-a-prestar-servicio-el-1-de-febrero"
+    },
+    {
+      "label": "Ayuntamiento de Riba-roja · Pleno extraordinario y urgente de 7 de enero de 2026 (orden del día)",
+      "url": "https://www.ribarroja.es/es/aviso/pleno-extraordinario-y-urgente-7-de-enero-de-2026"
+    },
+    {
+      "label": "Ayuntamiento de Riba-roja · Pleno ordinario de 9 de marzo de 2026 (orden del día, punto 11)",
+      "url": "https://www.ribarroja.es/es/aviso/pleno-ordinario-9-de-marzo-de-2026"
+    },
+    {
+      "label": "Ayuntamiento de Riba-roja · «Riba-roja resuelve el contrato de recogida de residuos» (12-03-2026)",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-resuelve-el-contrato-de-recogida-de-residuos-que-adjudic%C3%B3-a-la-empresa-garbialdi%2C-s.a.-por-un-importe-de-17%2C3-millones-de-euros"
+    },
+    {
+      "label": "Ayuntamiento de Riba-roja · Calendario de recogida de enseres y poda",
+      "url": "https://www.ribarroja.es/es/pagina/calendario-recogida-enseres-y-poda"
+    },
+    {
+      "label": "Riba-licita · registro de contratación municipal (Gobierto)",
+      "url": "https://ribalicita.ribarroja.es/"
+    },
+    {
+      "label": "Ministerio de Hacienda · Coste efectivo de los servicios",
+      "url": "https://serviciostelematicosext.hacienda.gob.es/sgcief/Cesel/Consulta/Consulta.aspx"
+    }
+  ],
+
+  "metodo": [
+    "Las cifras de contratación proceden del registro municipal publicado en Riba-licita (Gobierto), que replica la Plataforma de Contratación del Sector Público. Los importes se dan sin IVA salvo que se diga lo contrario, y se cuentan sólo contratos comprometidos (adjudicados o formalizados).",
+    "El registro de contratación empieza el 3 de julio de 2017. La concesión de SAV se adjudicó en enero de 2011, así que NO aparece en él: cualquier reparto por empresa que se haga con esos datos infravalora a SAV. Por eso su importe figura como «no consta» y no como cero. Una ausencia en una serie con suelo conocido no es una prueba de inexistencia.",
+    "La ponderación de criterios (34/32/12/8/7,5/4/2,5) es la que publica el anuncio de licitación en el DOUE, no una reconstrucción nuestra.",
+    "No hemos podido reproducir los «731.000 € de ahorro» que anunció el Ayuntamiento. Sobre el presupuesto base de licitación, la baja es de 829.198,26 € sin IVA (4,99 %); sobre el importe inicial del contrato con IVA, de 722.480,64 €; sobre el presupuesto con IVA, de 931.081,76 €. Ninguna da 731.000 €. Publicamos la aritmética y la discrepancia, no una acusación: puede haber un criterio de cálculo que no conocemos.",
+    "La comparación entre el coste efectivo de 2024 (740.272,16 €) y el contrato (1.128.938,75 €/año) es indicativa, no equivalente: el contrato agrupa recogida, poda y voluminosos, mientras que el programa a1621 del Ministerio es sólo recogida. La damos con esa advertencia porque el orden de magnitud es relevante, no porque las dos cifras midan lo mismo.",
+    "No publicamos una tabla de coste por tonelada frente a otros municipios. Los denominadores del propio Ministerio no lo permiten: en la entrega de 2024, la Vall d'Uixó declara 11.572.420 toneladas y l'Alfàs del Pi 12,55. Riba-roja lleva declarando las mismas 11.059,41 toneladas y los mismos 657 contenedores en las cinco entregas publicadas desde 2019, así que cualquier serie de coste unitario suya mide inflación, no eficiencia.",
+    "El campo de «modo de gestión» de la declaración ministerial dice «gestión directa por la entidad local» para la recogida de residuos en todos los ejercicios de 2015 a 2024. Es falso: la concesión de SAV estuvo vigente todo ese periodo. Lo señalamos como defecto del dato, no del servicio.",
+    "Comprobamos el 15 de agosto de 2026, contra el registro en vivo, que el contrato de Garbialdi sigue figurando como formalizado y vigente hasta el 10 de noviembre de 2039, sin resolución anotada y sin que aparezca contrato alguno de FCC. Como control, ese mismo registro contenía 805 expedientes —699 de ellos adjudicados o formalizados, el resto anulados, revocados o desistidos— con adjudicaciones anotadas hasta el 6 de agosto de 2026: no está abandonado, le falta esta anotación.",
+    "Sobre el origen de este reportaje: nos llegó la versión de que la adjudicataria era una sociedad pantalla vinculada al alcalde a través del caso que afecta a José Luis Ábalos y Santos Cerdán. La comprobamos y no se sostiene. Garbialdi, S.A. se constituyó en 1989, declaró unos 80 millones de euros de facturación y más de 2.600 empleados en 2024, audita PwC, y compitió con FCC, Urbaser y SAV. No aparece en la documentación de la UCO sobre ese caso, que se refiere a Acciona Construcción y a Servinabar 2000 S.L. en obra pública estatal. Publicamos la comprobación porque un rumor comprobado y descartado también es información.",
+    "Acciona concurrió una sola vez a este servicio en Riba-roja, en 2011, y perdió. Consta en la nota municipal de aquel año, no en el registro de contratación, que sólo empieza en julio de 2017: es el único contacto con la recogida de basuras del municipio que hemos encontrado, no el único que el registro podría mostrar. No prueba nada, y lo hacemos constar aquí precisamente para que nadie lo «descubra» más tarde y le atribuya un significado.",
+    "El expediente de Garbialdi en otros municipios procede de fuentes públicas anteriores a la adjudicación de Riba-roja. Lo incluimos porque plantea una pregunta sobre la diligencia del órgano de contratación, no para atribuir a la empresa una intención. Hemos dejado fuera una información sobre su vinculación política publicada por un solo medio, porque afecta a una persona fallecida y no hemos podido contrastarla de forma independiente.",
+    "El derecho de réplica está abierto para el Ayuntamiento de Riba-roja, para Garbialdi, para ISS Facility Services, para FCC y para SAV. Cualquier respuesta se publicará íntegra."
+  ]
+}
