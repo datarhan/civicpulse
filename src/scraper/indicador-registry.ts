@@ -144,10 +144,19 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   },
   'a4411/440P': {
     label: 'Transporte colectivo urbano',
-    denominador: 'Nº total de viajeros al año',
-    unidad: '€/viajero',
-    tier: 'output',
-    caveats: [],
+    // El divisor natural sería «Nº total de viajeros al año» —un producto de
+    // verdad— pero el ayuntamiento lo declara a CERO con 737.000 € de gasto,
+    // así que la tarjeta llevaba años bloqueada en null. La misma entrega
+    // declara los kilómetros de la red, y 23 de los 60 de la banda también:
+    // un €/km es un cociente honesto SI se rotula como carga de red y no como
+    // coste por viaje. El cero de viajeros no desaparece: baja a salvedad,
+    // porque la anomalía es local — 22 pares sí declaran viajeros.
+    denominador: 'Nº total de kms de calzada de la red en trayecto de ida',
+    unidad: '€/km',
+    tier: 'carga',
+    caveats: [
+      'El divisor es la longitud de la red, no cuánta gente la usa: la fuente tiene una casilla de viajeros y este ayuntamiento la declara a cero, mientras 22 de sus comparables sí la rellenan.',
+    ],
   },
   a161: {
     label: 'Abastecimiento domiciliario de agua potable',

@@ -57,7 +57,13 @@ export function ServicioCard({ indicador, formatea }) {
   // gráfico (la tendencia es la forma; la entrega imposible, el ⚠ del borde), y
   // las segundas son el texto largo que se leía una vez y se saltaba nueve.
   const salvedades = [...lectura.avisos, ...(i.caveats ?? [])]
-  const plegable = salvedades.length + (declarados.length >= 2 ? 1 : 0)
+  const conRecuentoDeclaracion = Boolean(
+    i.declaracion?.denominador?.congelada &&
+    typeof i.declaracion.paresCongelados === 'number' &&
+    typeof i.declaracion.paresMedibles === 'number',
+  )
+  const plegable =
+    salvedades.length + (declarados.length >= 2 ? 1 : 0) + (conRecuentoDeclaracion ? 1 : 0)
 
   return (
     // El id es el destino de los enlaces del resumen de arriba; el margen de
@@ -204,6 +210,24 @@ export function ServicioCard({ indicador, formatea }) {
                   </span>
                 </span>
               ))}
+            </p>
+          )}
+
+          {/* Los recuentos de la declaración, como números y no sólo horneados
+              dentro de una frase: `paresCongelados`/`paresMedibles` se
+              calculaban y no los renderizaba nadie, así que la mitad de la
+              salvedad —¿es un defecto local o de la fuente?— quedaba sin su
+              dato. Derivado del snapshot; si el campo falta, la línea no sale. */}
+          {conRecuentoDeclaracion && (
+            <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '10px 0 0' }}>
+              El denominador se declara idéntico desde{' '}
+              <strong className="mono">{i.declaracion.denominador.desde}</strong> (
+              <span className="mono">{i.declaracion.denominador.repeticionesFinales}</span> entregas
+              seguidas) ·{' '}
+              <strong className="mono">
+                {i.declaracion.paresCongelados} de {i.declaracion.paresMedibles}
+              </strong>{' '}
+              comparables medibles hacen lo mismo.
             </p>
           )}
 

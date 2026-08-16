@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T13:02:42.428Z",
+  "generatedAt": "2026-08-16T13:07:44.892Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -37,7 +37,7 @@
       2020
     ],
     "motivoFaltantes": "El ministerio sólo publica volcado masivo de 2021; el resto de entregas se obtienen del informe por comunidad autónoma de la aplicación de consulta, que se pide con `npm run fetch:cesel-ccaa` y se guarda en .cache/cesel/ccaa.",
-    "fuenteGeneratedAt": "2026-08-16T11:34:26.866Z"
+    "fuenteGeneratedAt": "2026-08-16T13:07:44.104Z"
   },
   "indicadores": [
     {
@@ -5674,7 +5674,7 @@
     {
       "id": "a4411-440p-coste-unitario",
       "dimension": "operativa",
-      "tier": "output",
+      "tier": "carga",
       "servicio": "a4411/440P",
       "etiqueta": "Transporte colectivo urbano",
       "numerador": {
@@ -5683,13 +5683,12 @@
         "fuente": "cesel:2024:CE2:a4411/440P:Econ14"
       },
       "denominador": {
-        "valor": null,
-        "estado": "no-declarado",
-        "motivo": "cero-sin-declarar",
-        "fuente": "cesel:2024:CE3:a4411/440P:Nº total de viajeros al año"
+        "valor": 181.7,
+        "estado": "declarado",
+        "fuente": "cesel:2024:CE3:a4411/440P:Nº total de kms de calzada de la red en trayecto de ida"
       },
-      "valor": null,
-      "unidad": "€/viajero",
+      "valor": 4055.8746835443044,
+      "unidad": "€/km",
       "modoGestion": "directa",
       "codGestionRaw": "Gestión directa por la entidad local",
       "comparable": false,
@@ -5704,70 +5703,79 @@
         },
         {
           "anio": 2015,
-          "valor": 1.3602824757106873,
+          "valor": 1.033483698995284,
           "estado": "declarado",
-          "medianaPares": 3.482686858316222,
-          "valorReal": 1.6794962117352592,
-          "medianaParesReal": 4.299959375824745
+          "medianaPares": 484.58183333333335,
+          "atipico": true,
+          "valorReal": 1.2760084676132282,
+          "medianaParesReal": 598.297315367426
         },
         {
           "anio": 2016,
-          "valor": 1.968788233177402,
+          "valor": 1.4958000136696057,
           "estado": "declarado",
-          "medianaPares": 3.319504632929437,
-          "valorReal": 2.4357361072466768,
-          "medianaParesReal": 4.106809029201618
+          "medianaPares": 1245.4991333333332,
+          "atipico": true,
+          "valorReal": 1.8505667806817072,
+          "medianaParesReal": 1540.9007223231833
         },
         {
           "anio": 2017,
-          "valor": 3.2386857499999997,
+          "valor": 1.3636571578947367,
           "estado": "declarado",
-          "medianaPares": 4.212096363804589,
-          "valorReal": 3.929961399614971,
-          "medianaParesReal": 5.111139949657238
+          "medianaPares": 2156.324617108704,
+          "atipico": true,
+          "valorReal": 1.6547205893115666,
+          "medianaParesReal": 2616.577576344583
         },
         {
           "anio": 2018,
-          "valor": 6.84245525,
+          "valor": 2.881033789473684,
           "estado": "declarado",
-          "medianaPares": 3.5306441987416726,
-          "valorReal": 8.166116249714594,
-          "medianaParesReal": 4.213641143404619
+          "medianaPares": 2323.438834951456,
+          "atipico": true,
+          "valorReal": 3.4383647367219345,
+          "medianaParesReal": 2772.9040135578575
         },
         {
           "anio": 2019,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null
+          "valor": 2847.885140341222,
+          "estado": "declarado",
+          "medianaPares": 2843.6013824884794,
+          "valorReal": 3375.2018619409096,
+          "medianaParesReal": 3370.1249200109596
         },
         {
           "anio": 2021,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null
+          "valor": 2674.605228398459,
+          "estado": "declarado",
+          "medianaPares": 3642.339256521532,
+          "valorReal": 3084.684337127853,
+          "medianaParesReal": 4200.794470825746
         },
         {
           "anio": 2022,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null
+          "valor": 4504.645734727574,
+          "estado": "declarado",
+          "medianaPares": 3653.73579109063,
+          "valorReal": 4793.1473931686605,
+          "medianaParesReal": 3887.740615733949
         },
         {
           "anio": 2023,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null
+          "valor": 4081.215630159604,
+          "estado": "declarado",
+          "medianaPares": 6616.983544303797,
+          "valorReal": 4194.431403398184,
+          "medianaParesReal": 6800.543291291734
         },
         {
           "anio": 2024,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null
+          "valor": 4055.8746835443044,
+          "estado": "declarado",
+          "medianaPares": 6427.105715353007,
+          "valorReal": 4055.8746835443044,
+          "medianaParesReal": 6427.105715353007
         }
       ],
       "declaracion": {
@@ -5778,15 +5786,19 @@
           "entregas": 9
         },
         "denominador": {
-          "congelada": false,
-          "repeticionesFinales": 2,
-          "desde": null,
-          "entregas": 4
+          "congelada": true,
+          "repeticionesFinales": 5,
+          "desde": 2019,
+          "entregas": 9
         },
-        "paresCongelados": 8,
+        "paresCongelados": 18,
         "paresMedibles": 25
       },
-      "caveats": [],
+      "caveats": [
+        "El divisor es la longitud de la red, no cuánta gente la usa: la fuente tiene una casilla de viajeros y este ayuntamiento la declara a cero, mientras 22 de sus comparables sí la rellenan.",
+        "El ministerio publica cifras inverosímiles para 2015, 2016, 2017, 2018: se apartan más de 20 veces de lo que declararon los municipios comparables ese mismo año. Se muestran porque son las oficiales, pero no se pueden leer como coste.",
+        "El ayuntamiento declara la misma cifra de nº total de kms de calzada de la red en trayecto de ida desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 18 de 25 municipios comparables hacen lo mismo con esta misma cifra."
+      ],
       "citas": [
         {
           "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
@@ -6035,9 +6047,9 @@
   ],
   "universe": {
     "serviciosEnRegistro": 15,
-    "conRatio": 12,
+    "conRatio": 13,
     "enConcesion": 2,
-    "sinUnidad": 1,
+    "sinUnidad": 0,
     "sinCoste": 0,
     "noSePresta": 0,
     "comparables": 12,
@@ -6425,12 +6437,12 @@
       "etiqueta": "Denominadores que el ayuntamiento no vuelve a medir",
       "descripcion": "De los servicios en los que hay coste unitario —hay coste y hay unidad en la última entrega—, en cuántos repite el ayuntamiento la misma unidad física entrega tras entrega mientras actualiza el coste.",
       "numerador": {
-        "valor": 12,
+        "valor": 13,
         "estado": "declarado",
         "fuente": "coste-efectivo:2024:denominadores-congelados"
       },
       "denominador": {
-        "valor": 12,
+        "valor": 13,
         "estado": "declarado",
         "fuente": "coste-efectivo:2024:denominadores-medibles"
       },
@@ -6440,11 +6452,11 @@
       "pares": {
         "conjunto": "cv-15k-40k",
         "descripcion": "de la misma banda de población de los que se puede medir lo mismo",
-        "n": 51,
+        "n": 50,
         "percentil": 100,
-        "p25": 0.4305555555555556,
-        "mediana": 0.625,
-        "p75": 0.775
+        "p25": 0.4487179487179487,
+        "mediana": 0.6306818181818181,
+        "p75": 0.7875000000000001
       },
       "caveats": [
         "Esto mide la DECLARACIÓN, no el servicio: una cantidad estable puede ser perfectamente correcta, y repetirla no prueba que nadie la haya comprobado.",
@@ -6461,7 +6473,7 @@
   ],
   "stats": {
     "indicadores": 15,
-    "conRatio": 12,
+    "conRatio": 13,
     "comparables": 12,
     "municipales": 8
   }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T11:34:26.866Z",
+  "generatedAt": "2026-08-16T13:07:44.104Z",
   "source": {
     "volcado": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
     "consulta": "https://serviciostelematicosext.hacienda.gob.es/sgcief/Cesel/Consulta/Consulta.aspx",
@@ -8819,7 +8819,7 @@
       "popMax": 40000,
       "tipoEnte": "AA"
     },
-    "resolvedAt": "2026-08-16T11:34:26.867Z",
+    "resolvedAt": "2026-08-16T13:07:44.104Z",
     "anios": [
       2014,
       2015,
@@ -9426,7 +9426,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -9618,7 +9618,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -9874,7 +9874,7 @@
         "costeTotal": 11879.45,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -9954,7 +9954,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -10594,7 +10594,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -11074,7 +11074,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -11442,7 +11442,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -11522,7 +11522,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -11698,7 +11698,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -11858,8 +11858,8 @@
         "costeTotal": 57017.59,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3200
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 120
           }
         ]
       },
@@ -12418,8 +12418,8 @@
         "costeTotal": 87672.8,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 36000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 15.8
           }
         ]
       },
@@ -12546,7 +12546,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -12786,8 +12786,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 7727
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 11760
           }
         ]
       },
@@ -12946,8 +12946,8 @@
         "costeTotal": 1495,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 9519
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 9048
           }
         ]
       },
@@ -13266,7 +13266,7 @@
         "costeTotal": 0.01,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -13490,7 +13490,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -14146,8 +14146,8 @@
         "costeTotal": 290828.86,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 165000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 11.6
           }
         ]
       },
@@ -14162,7 +14162,7 @@
         "costeTotal": 49366.57,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -14450,8 +14450,8 @@
         "costeTotal": 70266.89,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 287368
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 33
           }
         ]
       },
@@ -14498,7 +14498,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -14626,7 +14626,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -14834,8 +14834,8 @@
         "costeTotal": 321307.6,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 30000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 160
           }
         ]
       },
@@ -14978,8 +14978,8 @@
         "costeTotal": 95607.38,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 8136
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 21.71
           }
         ]
       },
@@ -15090,8 +15090,8 @@
         "costeTotal": 108666.82,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 1094
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.77
           }
         ]
       },
@@ -15570,8 +15570,8 @@
         "costeTotal": 17059.02,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3632
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 40
           }
         ]
       },
@@ -15666,8 +15666,8 @@
         "costeTotal": 451580.3,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 48921
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 24.47
           }
         ]
       },
@@ -15794,7 +15794,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -15970,7 +15970,7 @@
         "costeTotal": 33000,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -15986,8 +15986,8 @@
         "costeTotal": 315892.83,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 23916
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 109045.99
           }
         ]
       },
@@ -16370,7 +16370,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -16866,8 +16866,8 @@
         "costeTotal": 103430.72,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 40126
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 62247.36
           }
         ]
       },
@@ -17154,7 +17154,7 @@
         "costeTotal": 136625.73,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -17410,7 +17410,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -17650,7 +17650,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -17714,7 +17714,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -18178,8 +18178,8 @@
         "costeTotal": 83989.48,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 16045
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.04
           }
         ]
       },
@@ -18210,7 +18210,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -18370,7 +18370,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -18626,8 +18626,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 12000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 18
           }
         ]
       },
@@ -18786,7 +18786,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -18866,8 +18866,8 @@
         "costeTotal": 127132.92,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 21726
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 16
           }
         ]
       },
@@ -19378,7 +19378,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -19426,8 +19426,8 @@
         "costeTotal": 179645.02,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 66607
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 10
           }
         ]
       },
@@ -19746,7 +19746,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -20562,7 +20562,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -20674,7 +20674,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -20754,7 +20754,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -21010,8 +21010,8 @@
         "costeTotal": 106100,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 65686
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 47008
           }
         ]
       },
@@ -21122,8 +21122,8 @@
         "costeTotal": 154856.18,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 43232
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 17.25
           }
         ]
       },
@@ -21186,8 +21186,8 @@
         "costeTotal": 184100.9,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 95000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 7.2
           }
         ]
       },
@@ -21378,7 +21378,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -21458,8 +21458,8 @@
         "costeTotal": 195876.13,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 32000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 75
           }
         ]
       },
@@ -21554,8 +21554,8 @@
         "costeTotal": 29757.86,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 484
           }
         ]
       },
@@ -22034,8 +22034,8 @@
         "costeTotal": 336056.91,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 73683
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 33.8
           }
         ]
       },
@@ -22994,7 +22994,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -23154,7 +23154,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -23538,7 +23538,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -23890,7 +23890,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -24082,8 +24082,8 @@
         "costeTotal": 24629.66,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 7680
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 40.01
           }
         ]
       },
@@ -24274,7 +24274,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -24466,7 +24466,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -24658,7 +24658,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -24850,7 +24850,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -25042,8 +25042,8 @@
         "costeTotal": 151312.45,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 7245
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 16517
           }
         ]
       },
@@ -25234,7 +25234,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -25426,8 +25426,8 @@
         "costeTotal": 219482.28,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 74667
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 32.8
           }
         ]
       },
@@ -25618,8 +25618,8 @@
         "costeTotal": 64518.3,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 28143
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 18096
           }
         ]
       },
@@ -25810,7 +25810,7 @@
         "costeTotal": 47185.95,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -26002,8 +26002,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 6000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 17
           }
         ]
       },
@@ -26194,8 +26194,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3629
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 8.5
           }
         ]
       },
@@ -26386,7 +26386,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -26578,7 +26578,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -26770,7 +26770,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -26962,7 +26962,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -27154,7 +27154,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -27346,8 +27346,8 @@
         "costeTotal": 293127.17,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 74000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.71
           }
         ]
       },
@@ -27538,8 +27538,8 @@
         "costeTotal": 208170.47,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 170061
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 11.6
           }
         ]
       },
@@ -27730,7 +27730,7 @@
         "costeTotal": 48907.44,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0.01
           }
         ]
@@ -27922,8 +27922,8 @@
         "costeTotal": 80358.36,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 20394
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 19096
           }
         ]
       },
@@ -28114,7 +28114,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -28306,7 +28306,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -28498,7 +28498,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -28690,8 +28690,8 @@
         "costeTotal": 149518.74,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 63986
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 150
           }
         ]
       },
@@ -28882,7 +28882,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -29074,8 +29074,8 @@
         "costeTotal": 91764.13,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 58926
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 10
           }
         ]
       },
@@ -29266,7 +29266,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -29458,7 +29458,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -29650,7 +29650,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -29842,7 +29842,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -30034,7 +30034,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -30226,7 +30226,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -30418,7 +30418,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -30610,7 +30610,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -30802,8 +30802,8 @@
         "costeTotal": 75922,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 16536
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 10
           }
         ]
       },
@@ -30994,7 +30994,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -31186,7 +31186,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -31378,7 +31378,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -31570,7 +31570,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -31762,7 +31762,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -31954,8 +31954,8 @@
         "costeTotal": 10315.98,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3200
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 120
           }
         ]
       },
@@ -32146,7 +32146,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -32338,7 +32338,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -32530,8 +32530,8 @@
         "costeTotal": 240787.47,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 19488
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 60.65
           }
         ]
       },
@@ -32722,8 +32722,8 @@
         "costeTotal": 122876.69,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 50260
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 10
           }
         ]
       },
@@ -32914,8 +32914,8 @@
         "costeTotal": 133552.68,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 84497
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 6
           }
         ]
       },
@@ -33106,8 +33106,8 @@
         "costeTotal": 87152.48,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 36000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 15
           }
         ]
       },
@@ -33298,7 +33298,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -33490,8 +33490,8 @@
         "costeTotal": 150481.87,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 31707
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 7.2
           }
         ]
       },
@@ -33682,7 +33682,7 @@
         "costeTotal": 11,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -33874,7 +33874,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -34066,8 +34066,8 @@
         "costeTotal": 35651.85,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 8743
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 61.8
           }
         ]
       },
@@ -34258,8 +34258,8 @@
         "costeTotal": 102366.49,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 34398
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 57092
           }
         ]
       },
@@ -34450,7 +34450,7 @@
         "costeTotal": 1556.55,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -34642,7 +34642,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -34834,8 +34834,8 @@
         "costeTotal": 34779.39,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 12000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 18
           }
         ]
       },
@@ -35026,7 +35026,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -38994,7 +38994,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -39186,8 +39186,8 @@
         "costeTotal": 28711.85,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 7680
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 40.01
           }
         ]
       },
@@ -39378,7 +39378,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -39570,7 +39570,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -39762,7 +39762,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -39954,7 +39954,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -40146,8 +40146,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 7245
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 17093
           }
         ]
       },
@@ -40338,7 +40338,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -40530,8 +40530,8 @@
         "costeTotal": 199529.4,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 74142
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 32.8
           }
         ]
       },
@@ -40722,8 +40722,8 @@
         "costeTotal": 44136.5,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 38079
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 18096
           }
         ]
       },
@@ -40914,7 +40914,7 @@
         "costeTotal": 20330.49,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -41106,8 +41106,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 5389
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 17
           }
         ]
       },
@@ -41298,7 +41298,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -41490,7 +41490,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -41682,7 +41682,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -41874,7 +41874,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -42066,8 +42066,8 @@
         "costeTotal": 303448.43,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 76000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.71
           }
         ]
       },
@@ -42258,8 +42258,8 @@
         "costeTotal": 272545.01,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 170061
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 11.6
           }
         ]
       },
@@ -42450,7 +42450,7 @@
         "costeTotal": 38351.8,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0.01
           }
         ]
@@ -42642,8 +42642,8 @@
         "costeTotal": 81375.88,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 20394
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 21413
           }
         ]
       },
@@ -42834,7 +42834,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -43026,7 +43026,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -43218,8 +43218,8 @@
         "costeTotal": 11102.89,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 8865.3
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 7457.3
           }
         ]
       },
@@ -43410,8 +43410,8 @@
         "costeTotal": 159778.77,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 63986
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 150
           }
         ]
       },
@@ -43602,7 +43602,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -43794,8 +43794,8 @@
         "costeTotal": 196024.26,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 58926
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 10
           }
         ]
       },
@@ -43986,7 +43986,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -44178,7 +44178,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -44370,7 +44370,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -44562,7 +44562,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -44754,7 +44754,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -44946,7 +44946,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -45138,7 +45138,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -45330,8 +45330,8 @@
         "costeTotal": 79822.01,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 15932
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 10
           }
         ]
       },
@@ -45522,7 +45522,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -45714,7 +45714,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -45906,7 +45906,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -46098,7 +46098,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -46290,7 +46290,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -46482,8 +46482,8 @@
         "costeTotal": 58149.82,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3200
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 120
           }
         ]
       },
@@ -46674,7 +46674,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -46866,7 +46866,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -47058,8 +47058,8 @@
         "costeTotal": 256611.69,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 19488
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 60.65
           }
         ]
       },
@@ -47250,8 +47250,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 43232
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 17.25
           }
         ]
       },
@@ -47442,8 +47442,8 @@
         "costeTotal": 99279.17,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 89186
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 40146
           }
         ]
       },
@@ -47634,8 +47634,8 @@
         "costeTotal": 125528.37,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 36000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 15
           }
         ]
       },
@@ -47826,7 +47826,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -48018,8 +48018,8 @@
         "costeTotal": 56716.76,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 31707
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 7.2
           }
         ]
       },
@@ -48210,7 +48210,7 @@
         "costeTotal": 0.01,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0.01
           }
         ]
@@ -48402,7 +48402,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -48594,8 +48594,8 @@
         "costeTotal": 33921.37,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 9740
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 61800
           }
         ]
       },
@@ -48786,8 +48786,8 @@
         "costeTotal": 97906.92,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 34332
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 57092
           }
         ]
       },
@@ -48978,8 +48978,8 @@
         "costeTotal": 5688.6,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 400
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 25
           }
         ]
       },
@@ -49170,7 +49170,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -49362,7 +49362,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -53074,7 +53074,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -53266,8 +53266,8 @@
         "costeTotal": 31534.8,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 4049
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 40.01
           }
         ]
       },
@@ -53458,7 +53458,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -53650,7 +53650,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -53842,7 +53842,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -54034,8 +54034,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 28443
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 14.86
           }
         ]
       },
@@ -54226,7 +54226,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -54418,8 +54418,8 @@
         "costeTotal": 181941.63,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 77209
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 32.8
           }
         ]
       },
@@ -54610,8 +54610,8 @@
         "costeTotal": 46611.02,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 38079
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 18096
           }
         ]
       },
@@ -54802,7 +54802,7 @@
         "costeTotal": 18997.68,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -54994,8 +54994,8 @@
         "costeTotal": 37646,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 5719
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 17
           }
         ]
       },
@@ -55186,7 +55186,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -55378,7 +55378,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -55570,7 +55570,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -55762,7 +55762,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -55954,7 +55954,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -56146,7 +56146,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -56338,8 +56338,8 @@
         "costeTotal": 302662.72,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 76000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.71
           }
         ]
       },
@@ -56530,8 +56530,8 @@
         "costeTotal": 245436.57,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 170061
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 11.6
           }
         ]
       },
@@ -56722,7 +56722,7 @@
         "costeTotal": 37277.97,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -56914,8 +56914,8 @@
         "costeTotal": 83601.8,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 20394
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 21413
           }
         ]
       },
@@ -57106,7 +57106,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -57298,7 +57298,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -57490,8 +57490,8 @@
         "costeTotal": 16950.17,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 886500
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 7457.3
           }
         ]
       },
@@ -57682,8 +57682,8 @@
         "costeTotal": 186824.87,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 64122
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 150
           }
         ]
       },
@@ -57874,7 +57874,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -58066,8 +58066,8 @@
         "costeTotal": 195605.13,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 58926
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 10
           }
         ]
       },
@@ -58258,7 +58258,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -58450,7 +58450,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -58642,7 +58642,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -58834,7 +58834,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -59026,7 +59026,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -59218,7 +59218,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -59410,7 +59410,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -59602,7 +59602,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -59794,8 +59794,8 @@
         "costeTotal": 108333.2,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 15932
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 10
           }
         ]
       },
@@ -59986,7 +59986,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -60178,7 +60178,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -60370,7 +60370,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -60562,7 +60562,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -60754,7 +60754,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -60946,8 +60946,8 @@
         "costeTotal": 57414.49,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3200
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 120
           }
         ]
       },
@@ -61138,7 +61138,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -61330,7 +61330,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -61522,8 +61522,8 @@
         "costeTotal": 217286.62,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 19488
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 60.65
           }
         ]
       },
@@ -61714,8 +61714,8 @@
         "costeTotal": 98107.41,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 43232
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 17.25
           }
         ]
       },
@@ -61906,8 +61906,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 85146
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 40404
           }
         ]
       },
@@ -62098,8 +62098,8 @@
         "costeTotal": 91327.83,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 36000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 15
           }
         ]
       },
@@ -62290,7 +62290,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -62482,8 +62482,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 31707
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 7.2
           }
         ]
       },
@@ -62674,7 +62674,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -62866,7 +62866,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -63058,8 +63058,8 @@
         "costeTotal": 38538.11,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 9740
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 61.8
           }
         ]
       },
@@ -63250,8 +63250,8 @@
         "costeTotal": 104600.57,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 36689
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 57092
           }
         ]
       },
@@ -63442,8 +63442,8 @@
         "costeTotal": 6663.3,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 400
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 25
           }
         ]
       },
@@ -63634,7 +63634,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -63826,8 +63826,8 @@
         "costeTotal": 37888.44,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 12000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 18
           }
         ]
       },
@@ -64018,7 +64018,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -67922,7 +67922,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -68114,8 +68114,8 @@
         "costeTotal": 26576.55,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3632
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 40.01
           }
         ]
       },
@@ -68306,7 +68306,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -68498,7 +68498,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -68690,7 +68690,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -68882,8 +68882,8 @@
         "costeTotal": 60000,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 0
           }
         ]
       },
@@ -69074,7 +69074,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -69266,8 +69266,8 @@
         "costeTotal": 173345.76,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 86578
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 33.8
           }
         ]
       },
@@ -69458,8 +69458,8 @@
         "costeTotal": 54331.78,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 38079
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 18096
           }
         ]
       },
@@ -69650,7 +69650,7 @@
         "costeTotal": 67926.41,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -69842,8 +69842,8 @@
         "costeTotal": 57724.81,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 6719
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.77
           }
         ]
       },
@@ -70034,7 +70034,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -70226,7 +70226,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -70418,7 +70418,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -70610,7 +70610,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -70802,7 +70802,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -70994,8 +70994,8 @@
         "costeTotal": 368974.1,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 76000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.71
           }
         ]
       },
@@ -71186,8 +71186,8 @@
         "costeTotal": 257296.35,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 170061
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 11.6
           }
         ]
       },
@@ -71378,7 +71378,7 @@
         "costeTotal": 37277.97,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -71570,8 +71570,8 @@
         "costeTotal": 79549.19,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 19357
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.04
           }
         ]
       },
@@ -71762,7 +71762,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -71954,7 +71954,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -72146,7 +72146,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -72338,8 +72338,8 @@
         "costeTotal": 173871.06,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 30000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 160
           }
         ]
       },
@@ -72530,7 +72530,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -72722,8 +72722,8 @@
         "costeTotal": 173931.41,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 60000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 10
           }
         ]
       },
@@ -72914,7 +72914,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -73106,7 +73106,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -73298,7 +73298,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -73490,7 +73490,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -73682,7 +73682,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -73874,7 +73874,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -74066,7 +74066,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -74258,7 +74258,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -74450,8 +74450,8 @@
         "costeTotal": 75790,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 15932
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 10
           }
         ]
       },
@@ -74642,7 +74642,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -74834,7 +74834,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -75026,7 +75026,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -75218,7 +75218,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -75410,8 +75410,8 @@
         "costeTotal": 54037.5,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3200
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 120
           }
         ]
       },
@@ -75602,7 +75602,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -75794,7 +75794,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -75986,8 +75986,8 @@
         "costeTotal": 191810.79,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 19488
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 60.65
           }
         ]
       },
@@ -76178,8 +76178,8 @@
         "costeTotal": 182097.35,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 43232
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 17.25
           }
         ]
       },
@@ -76370,8 +76370,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 84603
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 40008
           }
         ]
       },
@@ -76562,8 +76562,8 @@
         "costeTotal": 92782.58,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 36000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 15.8
           }
         ]
       },
@@ -76754,7 +76754,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -76946,8 +76946,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 31707
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 7.2
           }
         ]
       },
@@ -77138,7 +77138,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -77330,7 +77330,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -77522,8 +77522,8 @@
         "costeTotal": 53727.12,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 10227
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 61.8
           }
         ]
       },
@@ -77714,8 +77714,8 @@
         "costeTotal": 115404.03,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 50069
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 58061
           }
         ]
       },
@@ -77906,8 +77906,8 @@
         "costeTotal": 35739.85,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 450
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 25
           }
         ]
       },
@@ -78098,7 +78098,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -78290,8 +78290,8 @@
         "costeTotal": 34249.62,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 12000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 18
           }
         ]
       },
@@ -78482,7 +78482,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -82258,7 +82258,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -82450,7 +82450,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -82642,7 +82642,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -82834,7 +82834,7 @@
         "costeTotal": 12352.61,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -83026,7 +83026,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -83218,7 +83218,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -83410,8 +83410,8 @@
         "costeTotal": 172703.5,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 88148
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 33.8
           }
         ]
       },
@@ -83602,8 +83602,8 @@
         "costeTotal": 5159.64,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 38079
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 18096
           }
         ]
       },
@@ -83794,7 +83794,7 @@
         "costeTotal": 75178.91,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -83986,8 +83986,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 9750
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.77
           }
         ]
       },
@@ -84178,7 +84178,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -84370,7 +84370,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -84562,7 +84562,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -84754,7 +84754,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -84946,7 +84946,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -85138,8 +85138,8 @@
         "costeTotal": 363708.87,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 73484
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 24.47
           }
         ]
       },
@@ -85330,8 +85330,8 @@
         "costeTotal": 274839.91,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 170061
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 11.6
           }
         ]
       },
@@ -85522,7 +85522,7 @@
         "costeTotal": 67624.43,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -85714,8 +85714,8 @@
         "costeTotal": 85727.46,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 19200
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.04
           }
         ]
       },
@@ -85906,7 +85906,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -86098,7 +86098,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -86290,8 +86290,8 @@
         "costeTotal": 52247.4,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 287368
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 33
           }
         ]
       },
@@ -86482,8 +86482,8 @@
         "costeTotal": 214374.66,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 30000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 160
           }
         ]
       },
@@ -86674,7 +86674,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -86866,8 +86866,8 @@
         "costeTotal": 173875.54,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 66607
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 10
           }
         ]
       },
@@ -87058,7 +87058,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -87250,7 +87250,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -87442,7 +87442,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -87634,7 +87634,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -87826,7 +87826,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -88018,7 +88018,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -88210,7 +88210,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -88402,7 +88402,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -88594,8 +88594,8 @@
         "costeTotal": 75354.88,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 13735
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 10
           }
         ]
       },
@@ -88786,7 +88786,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -88978,7 +88978,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -89170,7 +89170,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -89362,7 +89362,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -89554,7 +89554,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -89746,8 +89746,8 @@
         "costeTotal": 64945.76,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3200
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 120
           }
         ]
       },
@@ -89938,7 +89938,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -90130,7 +90130,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -90322,8 +90322,8 @@
         "costeTotal": 178008.23,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 19488
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 60.65
           }
         ]
       },
@@ -90514,8 +90514,8 @@
         "costeTotal": 152636.81,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 43232
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 17.25
           }
         ]
       },
@@ -90706,8 +90706,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 89573
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 40308
           }
         ]
       },
@@ -90898,7 +90898,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -91090,8 +91090,8 @@
         "costeTotal": 104486.91,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 31707
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 7.2
           }
         ]
       },
@@ -91282,7 +91282,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -91474,8 +91474,8 @@
         "costeTotal": 143588.52,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 26021
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 61.8
           }
         ]
       },
@@ -91666,8 +91666,8 @@
         "costeTotal": 106552.5,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 47824
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 58197
           }
         ]
       },
@@ -91858,8 +91858,8 @@
         "costeTotal": 41548.56,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 450
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 25
           }
         ]
       },
@@ -92050,7 +92050,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -92242,8 +92242,8 @@
         "costeTotal": 31935.07,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 12000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 18
           }
         ]
       },
@@ -92434,7 +92434,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -96082,7 +96082,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -96274,7 +96274,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -96466,7 +96466,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -96658,7 +96658,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -96850,7 +96850,7 @@
         "costeTotal": 36000,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -97042,8 +97042,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 28443
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 14.86
           }
         ]
       },
@@ -97234,7 +97234,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -97426,8 +97426,8 @@
         "costeTotal": 176113.14,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 93926
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 33.8
           }
         ]
       },
@@ -97618,8 +97618,8 @@
         "costeTotal": 9564.93,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 38079
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 18096
           }
         ]
       },
@@ -97810,7 +97810,7 @@
         "costeTotal": 20782.98,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -98002,8 +98002,8 @@
         "costeTotal": 106482.75,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 9750
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.77
           }
         ]
       },
@@ -98194,7 +98194,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -98386,7 +98386,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -98578,7 +98578,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -98770,7 +98770,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -98962,7 +98962,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -99154,8 +99154,8 @@
         "costeTotal": 338696.28,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 77214
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 24.47
           }
         ]
       },
@@ -99346,8 +99346,8 @@
         "costeTotal": 98358.08,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 170000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 11.6
           }
         ]
       },
@@ -99538,7 +99538,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -99730,8 +99730,8 @@
         "costeTotal": 74047.38,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 19200
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.04
           }
         ]
       },
@@ -99922,7 +99922,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -100114,7 +100114,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -100306,8 +100306,8 @@
         "costeTotal": 58217.77,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 287368
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 33
           }
         ]
       },
@@ -100498,8 +100498,8 @@
         "costeTotal": 237297.73,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 30000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 160
           }
         ]
       },
@@ -100690,7 +100690,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -100882,8 +100882,8 @@
         "costeTotal": 152028.01,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 66607
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 10
           }
         ]
       },
@@ -101074,7 +101074,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -101266,7 +101266,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -101458,7 +101458,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -101650,7 +101650,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -101842,7 +101842,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -102034,7 +102034,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -102226,7 +102226,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -102418,7 +102418,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -102610,8 +102610,8 @@
         "costeTotal": 68885.56,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 9754
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 9.4
           }
         ]
       },
@@ -102802,7 +102802,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -102994,7 +102994,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -103186,7 +103186,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -103378,7 +103378,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -103570,7 +103570,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -103762,8 +103762,8 @@
         "costeTotal": 52921.08,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3200
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 120
           }
         ]
       },
@@ -103954,7 +103954,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -104146,7 +104146,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -104338,7 +104338,7 @@
         "costeTotal": 26078.4,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -104530,8 +104530,8 @@
         "costeTotal": 98187.93,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 43232
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 17.25
           }
         ]
       },
@@ -104722,8 +104722,8 @@
         "costeTotal": 97881.19,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 91437
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 40116
           }
         ]
       },
@@ -104914,8 +104914,8 @@
         "costeTotal": 162578.49,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 36000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 15.8
           }
         ]
       },
@@ -105106,7 +105106,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -105298,8 +105298,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 31707
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 7.2
           }
         ]
       },
@@ -105490,7 +105490,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -105682,7 +105682,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -105874,8 +105874,8 @@
         "costeTotal": 120725.21,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 26021
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 61.8
           }
         ]
       },
@@ -106066,8 +106066,8 @@
         "costeTotal": 107554.61,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 53073
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 54368
           }
         ]
       },
@@ -106258,8 +106258,8 @@
         "costeTotal": 38167.33,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 475
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 25
           }
         ]
       },
@@ -106450,7 +106450,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -106642,8 +106642,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 12000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 18
           }
         ]
       },
@@ -106834,7 +106834,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -110674,7 +110674,7 @@
         "costeTotal": 8000,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -110866,8 +110866,8 @@
         "costeTotal": 1054.76,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3632
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 40
           }
         ]
       },
@@ -111058,7 +111058,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -111250,7 +111250,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -111442,7 +111442,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -111634,7 +111634,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -111826,8 +111826,8 @@
         "costeTotal": 245017.07,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 23916
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 109045.99
           }
         ]
       },
@@ -112018,7 +112018,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -112210,8 +112210,8 @@
         "costeTotal": 329323.48,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 99385
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 33.8
           }
         ]
       },
@@ -112402,7 +112402,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -112594,8 +112594,8 @@
         "costeTotal": 151917.59,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 10094
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.77
           }
         ]
       },
@@ -112786,7 +112786,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -112978,7 +112978,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -113170,7 +113170,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -113362,7 +113362,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -113554,8 +113554,8 @@
         "costeTotal": 255233.37,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 72598
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 24.47
           }
         ]
       },
@@ -113746,8 +113746,8 @@
         "costeTotal": 253639.86,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 165000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 11.6
           }
         ]
       },
@@ -113938,7 +113938,7 @@
         "costeTotal": 60286.07,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -114130,8 +114130,8 @@
         "costeTotal": 95143.28,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 17611
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.04
           }
         ]
       },
@@ -114322,7 +114322,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -114514,7 +114514,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -114706,8 +114706,8 @@
         "costeTotal": 61542.22,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 287368
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 33
           }
         ]
       },
@@ -114898,8 +114898,8 @@
         "costeTotal": 408367.75,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 30000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 160
           }
         ]
       },
@@ -115090,8 +115090,8 @@
         "costeTotal": 118331.11,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 23697
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 16
           }
         ]
       },
@@ -115282,8 +115282,8 @@
         "costeTotal": 191084.48,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 66607
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 10
           }
         ]
       },
@@ -115474,7 +115474,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -115666,7 +115666,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -115858,7 +115858,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -116050,7 +116050,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -116242,7 +116242,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -116434,7 +116434,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -116626,7 +116626,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -116818,7 +116818,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -117010,8 +117010,8 @@
         "costeTotal": 71177.61,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 7753
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 21.71
           }
         ]
       },
@@ -117202,7 +117202,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -117394,7 +117394,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -117586,7 +117586,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -117778,7 +117778,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -117970,7 +117970,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -118162,8 +118162,8 @@
         "costeTotal": 48400,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3500
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 120
           }
         ]
       },
@@ -118354,7 +118354,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -118546,7 +118546,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -118738,7 +118738,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -118930,8 +118930,8 @@
         "costeTotal": 151509.16,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 43232
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 17.25
           }
         ]
       },
@@ -119122,8 +119122,8 @@
         "costeTotal": 20327.37,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 65686
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 47008
           }
         ]
       },
@@ -119314,8 +119314,8 @@
         "costeTotal": 147506.32,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 36000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 15.8
           }
         ]
       },
@@ -119506,7 +119506,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -119698,8 +119698,8 @@
         "costeTotal": 196336.18,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 100000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 7.2
           }
         ]
       },
@@ -119890,7 +119890,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -120082,7 +120082,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -120274,8 +120274,8 @@
         "costeTotal": 195663.94,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 32000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 75
           }
         ]
       },
@@ -120466,8 +120466,8 @@
         "costeTotal": 84572.3,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 52799
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 62610.56
           }
         ]
       },
@@ -120658,8 +120658,8 @@
         "costeTotal": 30005.62,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3025
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 484
           }
         ]
       },
@@ -120850,8 +120850,8 @@
         "costeTotal": 61107.44,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 7727
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 11760
           }
         ]
       },
@@ -121042,8 +121042,8 @@
         "costeTotal": 58080,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 18
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 7
           }
         ]
       },
@@ -121234,7 +121234,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -125010,7 +125010,7 @@
         "costeTotal": 7989.23,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -125202,7 +125202,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -125394,7 +125394,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -125586,7 +125586,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -125778,7 +125778,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -125970,7 +125970,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -126162,8 +126162,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 23916
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 109045.99
           }
         ]
       },
@@ -126354,7 +126354,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -126546,8 +126546,8 @@
         "costeTotal": 318031.94,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 116838
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 33.8
           }
         ]
       },
@@ -126738,8 +126738,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 9519
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 9048
           }
         ]
       },
@@ -126930,7 +126930,7 @@
         "costeTotal": 14049.64,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -127122,8 +127122,8 @@
         "costeTotal": 147830.87,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 10094
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.77
           }
         ]
       },
@@ -127314,7 +127314,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -127506,7 +127506,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -127698,7 +127698,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -127890,7 +127890,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -128082,8 +128082,8 @@
         "costeTotal": 307673.96,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 72598
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 24.47
           }
         ]
       },
@@ -128274,8 +128274,8 @@
         "costeTotal": 331720.75,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 165000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 11.6
           }
         ]
       },
@@ -128466,7 +128466,7 @@
         "costeTotal": 52440.45,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -128658,8 +128658,8 @@
         "costeTotal": 108079.13,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 21822
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.04
           }
         ]
       },
@@ -128850,7 +128850,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -129042,7 +129042,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -129234,8 +129234,8 @@
         "costeTotal": 63207.4,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 287368
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 33
           }
         ]
       },
@@ -129426,8 +129426,8 @@
         "costeTotal": 356101.49,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 30000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 160
           }
         ]
       },
@@ -129618,8 +129618,8 @@
         "costeTotal": 121971.28,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 27908
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 16
           }
         ]
       },
@@ -129810,8 +129810,8 @@
         "costeTotal": 167101.67,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 66607
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 10
           }
         ]
       },
@@ -130002,7 +130002,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -130194,7 +130194,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -130386,7 +130386,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -130578,7 +130578,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -130770,7 +130770,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -130962,7 +130962,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -131154,7 +131154,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -131346,7 +131346,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -131538,8 +131538,8 @@
         "costeTotal": 75564.64,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 10468
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 21.71
           }
         ]
       },
@@ -131730,7 +131730,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -131922,7 +131922,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -132114,7 +132114,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -132306,7 +132306,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -132498,7 +132498,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -132690,7 +132690,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -132882,8 +132882,8 @@
         "costeTotal": 148607.69,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 43232
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 17.25
           }
         ]
       },
@@ -133074,8 +133074,8 @@
         "costeTotal": 48131.36,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 88205
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 47008
           }
         ]
       },
@@ -133266,8 +133266,8 @@
         "costeTotal": 104548.34,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 36000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 15.8
           }
         ]
       },
@@ -133458,7 +133458,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -133650,8 +133650,8 @@
         "costeTotal": 254375.09,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 175000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 7.2
           }
         ]
       },
@@ -133842,7 +133842,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -134034,7 +134034,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -134226,8 +134226,8 @@
         "costeTotal": 264954.03,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 21241
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 78814
           }
         ]
       },
@@ -134418,8 +134418,8 @@
         "costeTotal": 107836.35,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 61914
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 62610.56
           }
         ]
       },
@@ -134610,8 +134610,8 @@
         "costeTotal": 16841.88,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3025
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 484
           }
         ]
       },
@@ -134802,8 +134802,8 @@
         "costeTotal": 20188.19,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 7727
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 11760
           }
         ]
       },
@@ -134994,8 +134994,8 @@
         "costeTotal": 72600,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 18
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 7
           }
         ]
       },
@@ -135186,7 +135186,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -138834,7 +138834,7 @@
         "costeTotal": 32726.49,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -139026,7 +139026,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -139218,7 +139218,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -139410,7 +139410,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -139602,7 +139602,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -139794,7 +139794,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -139986,8 +139986,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 23916
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 109045.99
           }
         ]
       },
@@ -140178,7 +140178,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -140370,8 +140370,8 @@
         "costeTotal": 297452.26,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 114651
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 33.8
           }
         ]
       },
@@ -140562,8 +140562,8 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 9500
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 9048
           }
         ]
       },
@@ -140754,7 +140754,7 @@
         "costeTotal": 15196.05,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 1
           }
         ]
@@ -140946,8 +140946,8 @@
         "costeTotal": 172053.62,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 10094
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 26.77
           }
         ]
       },
@@ -141138,7 +141138,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -141330,7 +141330,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -141522,7 +141522,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -141714,7 +141714,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -141906,7 +141906,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -142098,8 +142098,8 @@
         "costeTotal": 382597.26,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 69355
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 24.47
           }
         ]
       },
@@ -142290,8 +142290,8 @@
         "costeTotal": 266237.06,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 165000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 11.6
           }
         ]
       },
@@ -142482,7 +142482,7 @@
         "costeTotal": 50652.2,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -142674,8 +142674,8 @@
         "costeTotal": 85701.77,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 23543
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 55888
           }
         ]
       },
@@ -142866,7 +142866,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -143058,7 +143058,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -143250,8 +143250,8 @@
         "costeTotal": 80225.01,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 289009
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 33
           }
         ]
       },
@@ -143442,8 +143442,8 @@
         "costeTotal": 268096.52,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 30000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 160
           }
         ]
       },
@@ -143634,8 +143634,8 @@
         "costeTotal": 130314.08,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 32574
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 16
           }
         ]
       },
@@ -143826,7 +143826,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -144018,7 +144018,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -144210,7 +144210,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -144402,7 +144402,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -144594,7 +144594,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -144786,7 +144786,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -144978,7 +144978,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -145170,8 +145170,8 @@
         "costeTotal": 71177.72,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 10800
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 21.71
           }
         ]
       },
@@ -145362,7 +145362,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -145554,7 +145554,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -145746,7 +145746,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -145938,7 +145938,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -146130,7 +146130,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -146322,8 +146322,8 @@
         "costeTotal": 9477.6,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3500
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 120
           }
         ]
       },
@@ -146514,7 +146514,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -146706,7 +146706,7 @@
         "costeTotal": 0,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -146898,8 +146898,8 @@
         "costeTotal": 174274.45,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 43232
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 17.25
           }
         ]
       },
@@ -147090,8 +147090,8 @@
         "costeTotal": 113586.51,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 0
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 47008
           }
         ]
       },
@@ -147282,8 +147282,8 @@
         "costeTotal": 152109.62,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 36000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 15.8
           }
         ]
       },
@@ -147474,7 +147474,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -147666,8 +147666,8 @@
         "costeTotal": 361641.97,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 180000
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 7.2
           }
         ]
       },
@@ -147858,7 +147858,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -148050,7 +148050,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]
@@ -148242,8 +148242,8 @@
         "costeTotal": 307596.56,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 66583
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 78814
           }
         ]
       },
@@ -148434,8 +148434,8 @@
         "costeTotal": 108647.07,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 69020
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 62400
           }
         ]
       },
@@ -148626,8 +148626,8 @@
         "costeTotal": 31564.78,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 3025
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 484
           }
         ]
       },
@@ -148818,8 +148818,8 @@
         "costeTotal": 40312.94,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 7727
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 11760
           }
         ]
       },
@@ -149010,8 +149010,8 @@
         "costeTotal": 78650,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
-            "valor": 18
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
+            "valor": 7
           }
         ]
       },
@@ -149202,7 +149202,7 @@
         "costeTotal": null,
         "unidades": [
           {
-            "atributo": "Nº total de viajeros al año",
+            "atributo": "Nº total de kms de calzada de la red en trayecto de ida",
             "valor": 0
           }
         ]

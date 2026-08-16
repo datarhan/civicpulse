@@ -68,7 +68,24 @@ describe('scraper/indicadores', () => {
   })
 
   it('refuses a ratio when the denominator is an undeclared zero', () => {
-    const bus = byId('a4411-440p-coste-unitario')
+    // El transporte era el ejemplo natural —declaraba viajeros a cero— hasta
+    // que su tarjeta pasó a dividir entre kilómetros de red, que sí declara.
+    // La REGLA sigue necesitando prueba, así que el cero se construye: la
+    // misma fila del autobús con su denominador puesto a 0. Una guarda probada
+    // sólo contra el dato que hoy la dispara deja de estar probada cuando ese
+    // dato se arregla.
+    const conCero = mias.map((f) =>
+      f.programa === 'a4411/440P'
+        ? { ...f, unidades: f.unidades.map((u) => ({ ...u, valor: 0 })) }
+        : f,
+    )
+    const snapCero = construirIndicadores({
+      municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: conCero },
+      pares: { conjunto: 'cv-15k-40k', anios: [2021], miembros, filas: rows },
+      anioBase: 2021,
+      citaUrl: CITA,
+    })
+    const bus = snapCero.indicadores.find((i) => i.id === 'a4411-440p-coste-unitario')!
     expect(bus.numerador.estado).toBe('declarado') // the money is real
     expect(bus.numerador.valor).toBe(485975.77)
     expect(bus.denominador.estado).toBe('no-declarado')
@@ -76,6 +93,7 @@ describe('scraper/indicadores', () => {
     expect(bus.denominador.valor).toBeNull()
     expect(bus.valor).toBeNull()
     expect(bus.pares).toBeNull()
+    expect(situacion(bus)).toBe('sin-unidad')
   })
 
   it('refuses a cost when a programa has contradictory duplicate rows', () => {
@@ -239,7 +257,9 @@ describe('scraper/indicadores', () => {
     const buckets = snap.indicadores.map((i) => situacion(i))
     expect(buckets).toHaveLength(snap.indicadores.length)
     expect(situacion(byId('a161-coste-unitario'))).toBe('concesion')
-    expect(situacion(byId('a4411-440p-coste-unitario'))).toBe('sin-unidad')
+    // El transporte divide ahora entre kilómetros de red, que la entrega sí
+    // declara; el cero de viajeros vive en su salvedad, no en su situación.
+    expect(situacion(byId('a4411-440p-coste-unitario'))).toBe('con-ratio')
     expect(situacion(byId('a1621-coste-unitario'))).toBe('con-ratio')
   })
 })

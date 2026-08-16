@@ -167,12 +167,27 @@ describe('scraper/indicador-desviacion', () => {
   })
 
   it('no propone nada de un servicio cuya celda actual está bloqueada', () => {
-    // Transporte urbano deja de declarar viajeros: la tarjeta no publica
-    // cociente, así que no hay cifra que un hallazgo pueda afirmar.
-    const transporte = indicadores.find((i) => i.id === 'a4411-440p-coste-unitario')!
-    expect(transporte.valor).toBeNull()
-    expect(cand('a4411-440p-coste-unitario')).toBeUndefined()
-    expect(det.descartes['sin-valor']).toBeGreaterThan(0)
+    // El ejemplo vivo era el transporte (viajeros a cero) hasta que su tarjeta
+    // pasó a dividir entre kilómetros de red; hoy los únicos `valor: null` del
+    // panel son concesiones, que se descartan antes por su propia razón. La
+    // regla `sin-valor` se quedaba sin ejecutar, así que se prueba con un
+    // panel construido: el mismo de siempre con una celda comparable anulada.
+    const capado = indicadores.map((i) =>
+      i.id === 'a1621-coste-unitario' ? { ...i, valor: null, pares: null, comparable: false } : i,
+    )
+    const detCapado = detectarDesviaciones({
+      indicadores: capado,
+      municipales,
+      anioBase: pub.anioBase,
+    })
+    expect(detCapado.descartes['sin-valor']).toBeGreaterThan(0)
+    expect(
+      detCapado.candidatos.find((c) => c.indicadorId === 'a1621-coste-unitario'),
+    ).toBeUndefined()
+    // Y las concesiones siguen cayendo bajo SU clave, no bajo ésta: colapsar
+    // los dos motivos es el modo de fallo 3 de DATA_INTEGRITY.
+    expect(det.descartes['no-comparable']).toBeGreaterThan(0)
+    expect(cand('a161-coste-unitario')).toBeUndefined()
   })
 
   it('no afirma un movimiento cuya última observación comprobable es vieja', () => {
