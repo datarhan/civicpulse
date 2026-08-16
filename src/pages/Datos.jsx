@@ -28,6 +28,7 @@ import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useFrontera } from '../hooks/useFrontera'
 import { usePmp } from '../hooks/usePmp'
 import { useIpc } from '../hooks/useIpc'
+import { useCriminalidad } from '../hooks/useCriminalidad'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 import { isIndependentlyVerified } from '../scraper/pleno-votes'
 
@@ -104,6 +105,7 @@ function DatasetsCatalog() {
   const frontera = useFrontera().data
   const pmp = usePmp().data
   const ipc = useIpc().data
+  const crimen = useCriminalidad().data
 
   const items = [
     {
@@ -303,6 +305,14 @@ function DatasetsCatalog() {
       updated: formatDate(fichasEficiencia?.generatedAt),
       source: 'curación editorial · promote-indicador',
       path: '/data/eficiencia-findings.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Criminalidad municipal (resultado)',
+      rows: crimen?.stats?.anios ? `${crimen.stats.anios} años` : '—',
+      updated: formatDate(crimen?.generatedAt),
+      source: 'Portal Estadístico de Criminalidad · refresco manual',
+      path: '/data/criminalidad.json',
       fmt: ['json'],
     },
     {

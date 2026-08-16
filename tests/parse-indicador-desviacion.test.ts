@@ -113,6 +113,25 @@ describe('scraper/indicador-desviacion', () => {
     expect(det.descartes['tier-input']).toBeGreaterThanOrEqual(entradas.length)
   })
 
+  it('un RESULTADO jamás entra en la tubería de fichas firmadas', () => {
+    // Tercera regla del escalón de resultados: colgar un resultado de la
+    // gestión municipal es una afirmación materialmente distinta de las que
+    // este cauce firma. El detector no lee el array `resultados`, y esto lo
+    // fija: si alguien lo enchufa, la prueba lo dice.
+    const conResultados = JSON.parse(
+      readFileSync(join(ROOT, 'public/data/indicadores.json'), 'utf8'),
+    ).resultados
+    expect(conResultados.items.length).toBeGreaterThan(0)
+    for (const r of conResultados.items) {
+      expect(cand(r.id), `${r.id} no debe generar candidato`).toBeUndefined()
+    }
+    // Y la partición evaluados+descartados sigue sumando SOLO los dos arrays
+    // que el detector lee — un resultado colado la rompería.
+    const total = indicadores.length + municipales.length
+    const descartados = Object.values(det.descartes).reduce((a, b) => a + b, 0)
+    expect(det.evaluados + descartados).toBe(total)
+  })
+
   it('nunca compara un servicio concedido', () => {
     for (const c of det.candidatos) {
       if (c.familia !== 'servicio') continue

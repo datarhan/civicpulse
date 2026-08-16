@@ -103,7 +103,7 @@ export function validarResultados(bloque: unknown): ResultadosBloque {
     throw new Error('[resultados] el bloque necesita items[] y ausencias[]')
   }
   for (const raw of b.items) {
-    const r = raw as Record<string, unknown>
+    const r = raw as unknown as Record<string, unknown>
     for (const campo of CAMPOS_PROHIBIDOS) {
       if (campo in r) {
         throw new Error(

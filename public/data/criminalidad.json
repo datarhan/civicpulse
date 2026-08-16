@@ -1,0 +1,64 @@
+{
+  "generatedAt": "2026-08-16T16:31:37.018Z",
+  "fuente": {
+    "nombre": "Portal Estadístico de Criminalidad · Ministerio del Interior",
+    "url": "https://estadisticasdecriminalidad.ses.mir.es/publico/portalestadistico/",
+    "atribucion": "Origen de los datos: Portal Estadístico de Criminalidad"
+  },
+  "municipio": {
+    "ine": "46214",
+    "nombre": "Riba-roja de Túria"
+  },
+  "ultimo": {
+    "anio": 2025,
+    "total": 1566,
+    "tasaPorMil": 63.617159571010724
+  },
+  "serie": [
+    {
+      "anio": 2020,
+      "total": 1040,
+      "tasaPorMil": 45.69219278590572
+    },
+    {
+      "anio": 2021,
+      "total": 1243,
+      "tasaPorMil": 54.519935084872145
+    },
+    {
+      "anio": 2022,
+      "total": 1367,
+      "tasaPorMil": 59.3058568329718
+    },
+    {
+      "anio": 2023,
+      "total": 1441,
+      "tasaPorMil": 61.17597113139461
+    },
+    {
+      "anio": 2024,
+      "total": 1419,
+      "tasaPorMil": 58.56376392901362
+    },
+    {
+      "anio": 2025,
+      "total": 1566,
+      "tasaPorMil": 63.617159571010724
+    }
+  ],
+  "pares": {
+    "conjunto": "cv-15k-40k · >20.000 hab",
+    "n": 45,
+    "percentil": 87,
+    "p25": 40.811658606718076,
+    "mediana": 46.31586754181036,
+    "p75": 57.68373401008265
+  },
+  "stats": {
+    "anios": 6,
+    "desde": 2020,
+    "hasta": 2025,
+    "paresConDato": 45,
+    "paresSinDato": 3
+  }
+}

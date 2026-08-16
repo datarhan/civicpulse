@@ -19,14 +19,17 @@ export const ORDEN_TIER = ['input', 'carga', 'output', 'outcome']
  * Qué significan las chapas de escalón, listando SÓLO las que están en juego.
  *
  * Escribir las cuatro cuando el panel usa tres sería inventarle al lector una
- * categoría que no va a encontrar; peor, `outcome` no aparece en ninguna ficha
- * porque la fuente no publica ni un indicador de resultado, y anunciarlo aquí
- * sugeriría que sí.
+ * categoría que no va a encontrar. `outcome` pasó años oculto aquí porque
+ * CESEL no publica ni un indicador de resultado; desde que el panel trae
+ * resultados de otras fuentes oficiales (criminalidad, del Ministerio del
+ * Interior), la chapa vuelve a la leyenda cuando hay al menos uno.
  */
-export function LeyendaEscalones({ indicadores = [] }) {
+export function LeyendaEscalones({ indicadores = [], conResultados = false }) {
   const t = useT()
   const presentes = ORDEN_TIER.filter((tier) =>
-    indicadores.some((i) => i.valor !== null && i.tier === tier),
+    tier === 'outcome'
+      ? conResultados
+      : indicadores.some((i) => i.valor !== null && i.tier === tier),
   )
   if (presentes.length === 0) return null
 

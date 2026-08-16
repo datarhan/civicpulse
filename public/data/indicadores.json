@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T15:26:05.635Z",
+  "generatedAt": "2026-08-16T16:32:28.168Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -7197,6 +7197,72 @@
       "municipioServido": "Riba-roja de Túria"
     }
   ],
+  "resultados": {
+    "items": [
+      {
+        "id": "crimen-infracciones-por-mil",
+        "servicioRelacionado": "b132-130p-coste-unitario",
+        "etiqueta": "Infracciones penales conocidas",
+        "valor": 63.617159571010724,
+        "unidad": "‰ habitantes/año",
+        "periodo": "2025",
+        "serie": [
+          {
+            "anio": 2020,
+            "valor": 45.69219278590572
+          },
+          {
+            "anio": 2021,
+            "valor": 54.519935084872145
+          },
+          {
+            "anio": 2022,
+            "valor": 59.3058568329718
+          },
+          {
+            "anio": 2023,
+            "valor": 61.17597113139461
+          },
+          {
+            "anio": 2024,
+            "valor": 58.56376392901362
+          },
+          {
+            "anio": 2025,
+            "valor": 63.617159571010724
+          }
+        ],
+        "pares": {
+          "conjunto": "cv-15k-40k · >20.000 hab",
+          "n": 45,
+          "percentil": 87,
+          "p25": 40.811658606718076,
+          "mediana": 46.31586754181036,
+          "p75": 57.68373401008265
+        },
+        "comoSeLee": "Hechos conocidos por TODOS los cuerpos —Policía Nacional, Guardia Civil y policía local— agregados por el Ministerio del Interior. No es un producto del servicio municipal, no depende de su coste y no se puede leer contra la tarjeta de al lado: se publica junto a ella, nunca dividido por ella.",
+        "caveats": [
+          "Son hechos CONOCIDOS (denunciados o registrados), no hechos ocurridos: un cambio en la denuncia mueve la cifra sin que cambie la calle.",
+          "La banda de comparación es propia y menor que la de coste: sólo los municipios de la banda que superan 20.000 habitantes publican en el portal (n=45)."
+        ],
+        "fuente": {
+          "nombre": "Portal Estadístico de Criminalidad · Ministerio del Interior",
+          "url": "https://estadisticasdecriminalidad.ses.mir.es/publico/portalestadistico/",
+          "atribucion": "Origen de los datos: Portal Estadístico de Criminalidad"
+        }
+      }
+    ],
+    "ausencias": [
+      {
+        "tema": "Calidad del aire",
+        "motivo": "No hay ninguna estación de la red valenciana (RVVCCA) dentro del término municipal: ningún código de estación empieza por 46214, y la más cercana está en Vilamarxant. Tomar prestada la del vecino publicaría un aire que nadie midió aquí."
+      },
+      {
+        "tema": "Reciclaje (serie)",
+        "motivo": "La Generalitat publica UN corte con todas las fracciones por municipio (2022, CC-BY); los años posteriores sólo existen en un panel interactivo sin descarga reconstruible. Sin serie comparable, la serie no se publica."
+      }
+    ]
+  },
   "stats": {
     "indicadores": 15,
     "conRatio": 13,

@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import {
   parseBalanceMunicipal,
+  unirBalances,
   TOTAL_2022_EN_ADELANTE,
   TOTAL_2021,
 } from '../src/scraper/criminalidad'
@@ -55,6 +56,23 @@ describe('scraper/criminalidad', () => {
     expect(TOTAL_2021).toBe('TOTAL INFRACCIONES PENALES')
     const quart = filas24.find((m) => m.ine === '46102')!
     expect(quart.totales[2024]).toBeGreaterThan(0)
+  })
+
+  it('las dos eras se unen en UN municipio, con la serie entera', () => {
+    // La rotura silenciosa que ya ocurrió: con el INE de clave, la fila con
+    // código (2024) y la fila por nombre (2021) eran dos municipios distintos
+    // y la serie perdía sus tres primeros años sin decir nada.
+    const unidos = unirBalances([
+      { anioActual: 2021, filas: filas21 },
+      { anioActual: 2024, filas: filas24 },
+    ])
+    const rr = unidos.find((m) => m.ine === '46214')!
+    expect(rr).toBeDefined()
+    expect(Object.keys(rr.totales).map(Number).sort()).toEqual([2020, 2021, 2023, 2024])
+    expect(rr.totales[2020]).toBe(1040)
+    expect(rr.totales[2024]).toBe(1417)
+    // Y no hay un doble fantasma por nombre.
+    expect(unidos.filter((m) => /riba-?roja/i.test(m.nombre))).toHaveLength(1)
   })
 
   it('los miles con punto y los decimales con coma se leen como números', () => {

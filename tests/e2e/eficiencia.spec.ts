@@ -270,6 +270,11 @@ test.describe('Eficiencia (/eficiencia)', () => {
         SNAP.indicadores.filter((i: Indicador) => i.valor !== null).map((i: Indicador) => i.tier),
       ),
     ] as (keyof typeof GLOSA_TIER)[]
+    // `outcome` no sale de las tarjetas de coste sino del bloque de resultados:
+    // presente exactamente cuando el snapshot publica alguno. Pinarlo ausente
+    // era correcto mientras CESEL era la única fuente; ahora la presencia se
+    // DERIVA, igual que el resto.
+    if ((SNAP.resultados?.items?.length ?? 0) > 0) enUso.push('outcome')
     expect(enUso.length).toBeGreaterThan(0)
     for (const tier of enUso) {
       await expect(
@@ -277,13 +282,34 @@ test.describe('Eficiencia (/eficiencia)', () => {
         `el escalón ${tier} se usa como chapa y no se explica en ningún sitio`,
       ).toBeVisible({ timeout: 8000 })
     }
-    // Y no se anuncia un escalón que ninguna ficha usa: la fuente no publica
-    // ningún indicador de resultado, y listarlo sugeriría que sí.
+    // Y no se anuncia un escalón que nada usa: listarlo sugeriría que existe.
     const ausentes = (Object.keys(GLOSA_TIER) as (keyof typeof GLOSA_TIER)[]).filter(
       (t) => !enUso.includes(t),
     )
     for (const tier of ausentes) {
       await expect(page.getByText(GLOSA_TIER[tier], { exact: false })).toHaveCount(0)
+    }
+  })
+
+  test('el resultado se publica AL LADO del coste, con su frase no-causal', async ({ page }) => {
+    // Las tres reglas del escalón, medidas sobre la página: el bloque existe
+    // dentro de la tarjeta a la que acompaña, dice en el cuerpo que no se lee
+    // como causa, declara su N propio, y NINGÚN texto divide un coste por él.
+    for (const r of SNAP.resultados?.items ?? []) {
+      const bloque = page.locator(`#r-${r.servicioRelacionado}`)
+      await expect(bloque).toBeVisible({ timeout: 8000 })
+      await expect(bloque.getByText(/al lado, nunca dividido/i)).toBeVisible()
+      await expect(bloque.getByText(r.comoSeLee.slice(0, 60))).toBeVisible()
+      if (r.pares) {
+        await expect(
+          bloque.getByText(new RegExp(`Mediana de ${r.pares.n} municipios`)),
+        ).toBeVisible()
+      }
+      await expect(bloque.getByText(r.fuente.atribucion)).toBeVisible()
+    }
+    // Las ausencias medidas también se publican.
+    for (const a of SNAP.resultados?.ausencias ?? []) {
+      await expect(page.getByText(a.tema).first()).toBeVisible()
     }
   })
 

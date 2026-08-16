@@ -5,6 +5,7 @@ import { ServicioCard } from '../components/eficiencia/ServicioCard'
 import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
 import { HallazgosEficiencia } from '../components/eficiencia/HallazgosEficiencia'
 import { Supramunicipal } from '../components/eficiencia/Supramunicipal'
+import { AusenciasResultados } from '../components/eficiencia/Resultado'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useT } from '../i18n'
@@ -97,6 +98,7 @@ export default function Eficiencia() {
           universe={data?.universe}
           cobertura={data?.cobertura}
           indicadores={indicadores}
+          conResultados={(data?.resultados?.items ?? []).length > 0}
         />
       )}
 
@@ -108,7 +110,12 @@ export default function Eficiencia() {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 18 }}>
         {conRatio.map((i) => (
-          <ServicioCard key={i.id} indicador={i} formatea={formateaCon(i.unidad)} />
+          <ServicioCard
+            key={i.id}
+            indicador={i}
+            formatea={formateaCon(i.unidad)}
+            resultado={(data?.resultados?.items ?? []).find((r) => r.servicioRelacionado === i.id)}
+          />
         ))}
       </div>
 
@@ -147,6 +154,10 @@ export default function Eficiencia() {
           turismo, ferias, deporte y ocio no son funciones inexistentes, son
           funciones cuya parte supramunicipal rinde la Mancomunitat. */}
       <Supramunicipal filas={data?.supramunicipales} entrega={data?.anioBase} />
+
+      {/* Las ausencias son datos: el resultado que no existe se dice, con su
+          porqué medido, en vez de dejar que el hueco parezca un olvido. */}
+      <AusenciasResultados ausencias={data?.resultados?.ausencias} />
 
       {/* Al final, y no arriba: una ficha firmada es una lectura del panel, y
           el panel se lee primero. Un hallazgo en cabecera convertiría la página

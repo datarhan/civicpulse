@@ -51,6 +51,9 @@
     "cpv-labels.json": [
       "/presupuesto"
     ],
+    "criminalidad.json": [
+      "/datos"
+    ],
     "ctbg.json": [
       "/datos",
       "/lab-health",

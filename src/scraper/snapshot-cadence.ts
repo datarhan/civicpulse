@@ -133,6 +133,13 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     hint: 'npm run fetch:cesel-ccaa && npm run scrape:coste-efectivo',
   },
   {
+    file: 'criminalidad.json',
+    cls: 'manual' as const,
+    // Balance T4 anual, publicado a comienzos del año siguiente.
+    maxAgeDays: 420,
+    hint: 'npm run scrape:criminalidad',
+  },
+  {
     file: 'ipc.json',
     cls: 'manual' as const,
     // La media anual sólo cambia cuando el INE cierra un año; con 400 días el

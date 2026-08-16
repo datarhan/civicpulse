@@ -1623,6 +1623,20 @@ export default function Metodologia() {
           </ol>
         </div>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>El escalón de resultados publica al lado, nunca dentro.</strong> Desde agosto de
+          2026 el panel trae resultados de fuentes oficiales que sí los publican —el primero, las
+          infracciones penales conocidas del Portal Estadístico de Criminalidad— bajo tres reglas
+          que están en el esquema y no sólo aquí escritas: un resultado se publica junto al coste y
+          jamás dividido por él (el tipo no tiene campos de gasto donde meterlo); nunca se lee como
+          causa, porque la fuente agrega a todos los cuerpos policiales y el ayuntamiento no
+          controla la seguridad pública del término; y nunca genera una ficha firmada — la misma
+          disciplina que la frontera del laboratorio. La banda de comparación de un resultado es la
+          SUYA (los municipios de la banda que superan 20.000 habitantes, que son los únicos que el
+          portal publica) y su N se declara aparte. Los resultados que no existen se publican como
+          ausencias con su porqué medido: no hay estación de aire en el término, y la serie de
+          reciclaje posterior a 2022 sólo existe en un panel sin descarga reconstruible.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>El plazo de pago es la única cifra del panel con umbral legal.</strong> El periodo
           medio de pago a proveedores lo calcula el Ministerio de Hacienda con la metodología del RD
           1040/2017 para miles de ayuntamientos a la vez, y la Ley 3/2004 fija los 30 días como

@@ -5,6 +5,7 @@ import { SerieServicio, enTerminosReales } from './SerieServicio'
 import { TIER_TONE } from './Escalones'
 import { leerIndicador, lecturaVisible, chipDeclaracion } from '../../scraper/indicador-lectura'
 import { Lectura } from './Lectura'
+import { Resultado } from './Resultado'
 
 const GESTION = {
   directa: { label: 'gestión directa', tone: 'neutral' },
@@ -37,7 +38,7 @@ const MOTIVO = {
   ausente: 'La entrega no trae esta magnitud.',
 }
 
-export function ServicioCard({ indicador, formatea }) {
+export function ServicioCard({ indicador, formatea, resultado }) {
   const t = useT()
   const i = indicador
   const g = GESTION[i.modoGestion] ?? GESTION['sin-clasificar']
@@ -134,6 +135,9 @@ export function ServicioCard({ indicador, formatea }) {
           </div>
 
           <BandaPares indicador={i} formatea={formatea} />
+
+          {/* El resultado, si esta funcion tiene uno: al lado, nunca dividido. */}
+          <Resultado resultado={resultado} id={`r-${i.id}`} />
           {puntos < 2 && (
             <p style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', margin: '10px 0 0' }}>
               {t('eficiencia.serie.ausente')}

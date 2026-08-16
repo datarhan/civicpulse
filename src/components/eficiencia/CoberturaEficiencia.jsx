@@ -17,7 +17,12 @@ import { LeyendaEscalones } from './Escalones'
  * cinco cubos son una PARTICIÓN comprobada por check:indicadores: si no
  * sumaran, la franja mentiría con más aplomo que el silencio.
  */
-export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
+export function CoberturaEficiencia({
+  universe,
+  cobertura,
+  indicadores = [],
+  conResultados = false,
+}) {
   const t = useT()
   // Sin bloque `universe` no se dice nada, antes que insinuar una cobertura que
   // no se puede respaldar.
@@ -100,7 +105,7 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
         <span className="mono">{universe.comparables}</span> tienen suficientes municipios
         comparables para situarlos.
       </p>
-      <LeyendaEscalones indicadores={indicadores} />
+      <LeyendaEscalones indicadores={indicadores} conResultados={conResultados} />
       {congelados.length > 0 && (
         <p
           style={{
