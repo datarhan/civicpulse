@@ -160,6 +160,15 @@ export default function Eficiencia() {
         />
       )}
 
+      <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 18 }}>
+        Las tres cifras que este panel deja más a la vista —la entrega sin rendir, los denominadores
+        congelados y la inflación que se leía como gestión— están contadas enteras en el reportaje{' '}
+        <a href="/reportajes/coste-efectivo" style={{ color: 'var(--civic)' }}>
+          «La mitad de abajo de la división»
+        </a>
+        .
+      </p>
+
       <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 28 }}>
         Cómo se calcula, qué se descarta y por qué no hay nota global:{' '}
         <a href="/metodologia#eficiencia" style={{ color: 'var(--civic)' }}>

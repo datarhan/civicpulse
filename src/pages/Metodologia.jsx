@@ -1539,14 +1539,14 @@ export default function Metodologia() {
           confundirlos borra un hecho sobre la rendición de cuentas del ayuntamiento. Que no hayamos
           conseguido el fichero es un hueco nuestro. Que el fichero esté, que los demás municipios
           figuren en él y que éste no aparezca en ninguna de sus tablas es otra cosa: es una entrega
-          que el ayuntamiento no presentó, y rendirla antes del 1 de noviembre es una obligación del
-          artículo 116 ter de la Ley de Bases de Régimen Local. El adaptador distingue los dos casos
-          comprobando el universo del fichero, y la página los dice por separado. La entrega de{' '}
-          <strong>2020</strong> es del segundo tipo: Riba-roja no aparece en las tablas de coste,
-          gestión ni unidades físicas del libro de la Comunitat Valenciana de ese ejercicio,
-          mientras que en 2019 y 2021 declara sus cuarenta y tres filas. No es un efecto de la
-          pandemia — ese año presentaron más ayuntamientos valencianos que en 2018, 2019, 2021 o
-          2022.
+          que el ayuntamiento no presentó — calcularla antes del 1 de noviembre y comunicarla al
+          ministerio es una obligación del artículo 116 ter de la Ley de Bases de Régimen Local. El
+          adaptador distingue los dos casos comprobando el universo del fichero, y la página los
+          dice por separado. La entrega de <strong>2020</strong> es del segundo tipo: Riba-roja no
+          aparece en las tablas de coste, gestión ni unidades físicas del libro de la Comunitat
+          Valenciana de ese ejercicio, mientras que en 2019 y 2021 declara sus cuarenta y tres
+          filas. No es un efecto de la pandemia — ese año presentaron más ayuntamientos valencianos
+          que en 2018, 2019, 2021 o 2022.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>Las series van en euros constantes; la comparación con pares, no.</strong> Un

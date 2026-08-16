@@ -484,11 +484,12 @@ export default function CosteEfectivo() {
 
       <SecHead num="01" kicker="Lo que falta" title="De once entregas, una sin rendir" />
       <P>
-        Rendir el coste efectivo de los servicios antes del 1 de noviembre es una obligación del
-        artículo 116 ter de la Ley de Bases de Régimen Local. El ministerio ha publicado once
-        ejercicios. En el libro de la Comunitat Valenciana de 2020, Riba-roja no aparece en ninguna
-        de las tablas de coste, de modo de gestión ni de unidades físicas; en 2019 y en 2021 declara
-        sus cuarenta y tres filas completas.
+        Calcular el coste efectivo de los servicios antes del 1 de noviembre de cada año, y
+        comunicarlo al ministerio para su publicación, es una obligación del artículo 116 ter de la
+        Ley de Bases de Régimen Local. El ministerio ha publicado once ejercicios. En el libro de la
+        Comunitat Valenciana de 2020, Riba-roja no aparece en ninguna de las tablas de coste, de
+        modo de gestión ni de unidades físicas; en 2019 y en 2021 declara sus cuarenta y tres filas
+        completas.
       </P>
       <Figura titulo="Entregas rendidas por el ayuntamiento · 2014–2024" pie={data.entregas.nota}>
         <CasillasEntregas
@@ -497,8 +498,9 @@ export default function CosteEfectivo() {
         />
       </Figura>
       <P>
-        La explicación cómoda sería la pandemia. No se sostiene: 2020 fue el año en que{' '}
-        <strong>más</strong> ayuntamientos valencianos rindieron cuentas de los seis comprobados.
+        La explicación cómoda sería la pandemia. No se sostiene: en 2020 rindieron{' '}
+        <strong>más</strong> ayuntamientos valencianos que en cualquiera de los cuatro años
+        siguientes comprobados — 503, frente a los 495–497 de 2021 y 2022.
       </P>
       <Figura
         titulo="Ayuntamientos de la Comunitat que rindieron cada entrega"

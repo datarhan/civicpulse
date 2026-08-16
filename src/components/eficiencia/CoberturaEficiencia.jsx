@@ -190,9 +190,9 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
             </>
           )}{' '}
           El libro de la Comunitat Valenciana está descargado y los demás municipios sí figuran en
-          él; éste no aparece en ninguna de sus tablas de coste, gestión ni unidades físicas. Rendir
-          el coste efectivo antes del 1 de noviembre es una obligación del artículo 116 ter de la
-          Ley de Bases de Régimen Local.
+          él; éste no aparece en ninguna de sus tablas de coste, gestión ni unidades físicas.
+          Calcularlo antes del 1 de noviembre y comunicarlo al ministerio es una obligación del
+          artículo 116 ter de la Ley de Bases de Régimen Local.
         </p>
       )}
       {cobertura && (

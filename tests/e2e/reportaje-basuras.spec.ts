@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test'
+import { readFileSync } from 'node:fs'
+import { REPORTAJE_SLUGS } from '../../src/reportajes'
 import { collectErrors, appErrors } from './_console'
 
 test.describe('Reportaje · basuras (/reportajes/basuras)', () => {
@@ -71,13 +73,20 @@ test.describe('Reportaje · basuras (/reportajes/basuras)', () => {
     await expect(page.getByRole('heading', { level: 1, name: /Reportajes/ })).toBeVisible({
       timeout: 8000,
     })
-    // The index renders from the shared registry, gated on meta.estado — now
-    // that the pieza is publicada it must list, and lead (registry order is
-    // newest first). The older piezas must still be there.
+    // The index renders from the shared registry, gated on meta.estado — the
+    // pieza must list, and the older piezas must still be there. The LEAD is
+    // derived from the registry instead of pinned to a slug: pinning «basuras»
+    // broke the day coste-efectivo published above it, and the invariant this
+    // protects is «newest published first», not «basuras first».
     await expect(page.getByRole('heading', { name: /Quince años/ }).first()).toBeVisible()
     await expect(page.getByRole('heading', { name: /calle a calle/ })).toBeVisible()
+    const primeraPublicada = REPORTAJE_SLUGS.find(
+      (slug) =>
+        JSON.parse(readFileSync(`public/data/reportajes/${slug}.json`, 'utf8')).meta.estado ===
+        'publicado',
+    )
     expect(await page.locator('a[href^="/reportajes/"]').first().getAttribute('href')).toBe(
-      '/reportajes/basuras',
+      `/reportajes/${primeraPublicada}`,
     )
   })
 })

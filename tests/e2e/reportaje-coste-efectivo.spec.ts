@@ -28,7 +28,9 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     // Hallazgo 1 · la entrega sin rendir, con su control anti-pandemia.
     await expect(page.getByText('sin rendir').first()).toBeVisible()
     await expect(page.getByText(/503/).first()).toBeVisible()
-    await expect(page.getByText(/más.*ayuntamientos valencianos rindieron/s).first()).toBeVisible()
+    await expect(
+      page.getByText(/rindieron.*más.*ayuntamientos valencianos que en cualquiera/s).first(),
+    ).toBeVisible()
 
     // Hallazgo 2 · los denominadores congelados y la franja de comparables.
     await expect(page.getByText(/11\.059,41/).first()).toBeVisible()
