@@ -808,25 +808,32 @@ export default function Basuras() {
           saberlo antes de usar esa serie para nada.
         </Callout>
 
-        <SecHead num="10" kicker="Lo que sigue abierto" title="Lo que todavía no sabemos" />
-        <ul style={{ paddingLeft: 18 }}>
-          <li style={{ marginBottom: 8 }}>
-            Si la garantía definitiva se ha incautado, y en qué ha quedado la reclamación de daños.
-          </li>
-          <li style={{ marginBottom: 8 }}>
-            Cuánto cuesta el contrato de emergencia de FCC, que no figura en el registro público.
-          </li>
-          <li style={{ marginBottom: 8 }}>
-            Si la limpieza viaria y los parques siguen bajo contrato: los de SAV vencieron en
-            noviembre de 2025 y marzo de 2026 y no consta sucesor publicado.
-          </li>
-          <li style={{ marginBottom: 8 }}>
-            Cómo se prorrogó la concesión de 2011 más allá de sus diez años.
-          </li>
-          <li style={{ marginBottom: 8 }}>
-            Si la rebaja de la tasa de basuras que anunció el alcalde llegó a aplicarse.
-          </li>
-        </ul>
+        <SecHead num="10" kicker="El cuestionario" title="Dieciocho preguntas incómodas" />
+        <p>{data.preguntas.intro}</p>
+        {data.preguntas.bloques.map((b, bi) => {
+          const offset = data.preguntas.bloques.slice(0, bi).reduce((s, x) => s + x.items.length, 0)
+          return (
+            <div key={bi} style={{ margin: '22px 0 0' }}>
+              <h3 style={boxH()}>
+                {b.titulo} · {b.destinatario}
+              </h3>
+              {b.items.map((it, i) => (
+                <div key={i} data-pregunta style={{ margin: '0 0 16px' }}>
+                  <p style={{ margin: 0, fontSize: 'var(--fs-body)', color: 'var(--ink)' }}>
+                    <span className="mono" style={{ color: 'var(--ink50)', marginRight: 8 }}>
+                      {offset + i + 1}.
+                    </span>
+                    {it.q}
+                  </p>
+                  <p style={{ ...cap(), margin: '4px 0 0' }}>Se pregunta porque: {it.base}</p>
+                </div>
+              ))}
+            </div>
+          )
+        })}
+        <p style={{ fontStyle: 'italic', color: 'var(--ink50)', fontSize: 'var(--fs-body)' }}>
+          {data.preguntas.cierre}
+        </p>
       </article>
 
       {/* Fuentes + método */}

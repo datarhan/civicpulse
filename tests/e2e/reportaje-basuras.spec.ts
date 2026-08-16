@@ -47,6 +47,12 @@ test.describe('Reportaje · basuras (/reportajes/basuras)', () => {
     // The service section names real urbanizaciones from the municipal calendar.
     await expect(page.getByText(/Masía de Traver/).first()).toBeVisible()
 
+    // The questionnaire: 18 questions, EVERY one carrying its documented base —
+    // a question without a base is an insinuation, and must fail here.
+    await expect(page.getByText(/Dieciocho preguntas incómodas/).first()).toBeVisible()
+    expect(await page.locator('[data-pregunta]').count()).toBe(18)
+    expect(await page.getByText(/Se pregunta porque:/).count()).toBe(18)
+
     // The two-documents-disagree defect.
     await expect(page.getByText(/horas distintas/).first()).toBeVisible()
 
