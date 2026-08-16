@@ -10,6 +10,7 @@ import {
   puentesHueco,
   serieMediana,
   enTerminosReales,
+  bandaSerie,
 } from '../src/components/eficiencia/SerieServicio'
 
 const ROOT = join(__dirname, '..')
@@ -374,6 +375,37 @@ describe('la serie se dibuja en euros constantes', () => {
         if (typeof p.medianaParesReal === 'number') {
           expect(p.medianaPares).toBe(p.medianaParesReal)
         }
+        // Y la banda con ella: los cuatro campos de comparación cambian de
+        // unidad juntos o no cambia ninguno.
+        if (typeof p.p25ParesReal === 'number') {
+          expect(p.p25Pares).toBe(p.p25ParesReal)
+          expect(p.p75Pares).toBe(p.p75ParesReal)
+        }
+      }
+    }
+  })
+
+  it('la banda de pares del año se publica, escalada, y se corta en el hueco', () => {
+    const conBanda = conSerie.filter((i) =>
+      declarados(i).some((p) => typeof p.p25Pares === 'number'),
+    )
+    expect(conBanda.length).toBeGreaterThan(3)
+    for (const i of conBanda) {
+      for (const p of declarados(i)) {
+        if (typeof p.p25Pares !== 'number') continue
+        expect(p.p75Pares).toBeGreaterThanOrEqual(p.p25Pares)
+        expect(p.nPares).toBeGreaterThanOrEqual(15)
+        if (typeof p.valorReal === 'number' && p.valor) {
+          const factor = p.valorReal / p.valor
+          expect(p.p25ParesReal / p.p25Pares).toBeCloseTo(factor, 9)
+          expect(p.p75ParesReal / p.p75Pares).toBeCloseTo(factor, 9)
+        }
+      }
+      // El 2020 sin entrega corta la banda igual que corta la línea:
+      // interpolarla afirmaría una anchura que nadie midió ese año.
+      for (const t of bandaSerie(enTerminosReales(declarados(i)).puntos)) {
+        expect(t.length).toBeGreaterThanOrEqual(2)
+        for (let k = 1; k < t.length; k++) expect(t[k].anio - t[k - 1].anio).toBe(1)
       }
     }
   })

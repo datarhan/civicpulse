@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T13:19:40.963Z",
+  "generatedAt": "2026-08-16T14:34:29.542Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -66,6 +66,10 @@
         "n": 30,
         "modoGestion": "directa",
         "percentil": 13,
+        "percentilBanda": [
+          3,
+          27
+        ],
         "p25": 88.20862316264642,
         "mediana": 129.66849802182315,
         "p75": 192.84209340866414,
@@ -318,79 +322,126 @@
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2015,
           "valor": 141.20270819996094,
           "estado": "declarado",
           "medianaPares": 96.81349444865518,
+          "p25Pares": 56.28874472454645,
+          "p75Pares": 123.70193596748034,
+          "nPares": 30,
           "valorReal": 174.33835820364703,
-          "medianaParesReal": 119.53245011586195
+          "medianaParesReal": 119.53245011586195,
+          "p25ParesReal": 69.49786916781204,
+          "p75ParesReal": 152.73072802996822
         },
         {
           "anio": 2016,
           "valor": 112.4277653056305,
           "estado": "declarado",
           "medianaPares": 83.37299254526778,
+          "p25Pares": 54.399533122528084,
+          "p75Pares": 114.38710125086841,
+          "nPares": 34,
           "valorReal": 139.09285051446366,
-          "medianaParesReal": 103.14700427885899
+          "medianaParesReal": 103.14700427885899,
+          "p25ParesReal": 67.30175689340568,
+          "p75ParesReal": 141.5168924848589
         },
         {
           "anio": 2017,
           "valor": 112.82869243684794,
           "estado": "declarado",
           "medianaPares": 76.1732615209017,
+          "p25Pares": 61.8053592021677,
+          "p75Pares": 123.37745043747924,
+          "nPares": 33,
           "valorReal": 136.9112165469719,
-          "medianaParesReal": 92.43193090281146
+          "medianaParesReal": 92.43193090281146,
+          "p25ParesReal": 74.99729665153744,
+          "p75ParesReal": 149.71153586055783
         },
         {
           "anio": 2018,
           "valor": 105.04384536214295,
           "estado": "declarado",
           "medianaPares": 86.94774101268237,
+          "p25Pares": 51.47256293519015,
+          "p75Pares": 146.77774496644295,
+          "nPares": 33,
           "valorReal": 125.3643935112769,
-          "medianaParesReal": 103.7676294279954
+          "medianaParesReal": 103.7676294279954,
+          "p25ParesReal": 61.429840202391304,
+          "p75ParesReal": 175.17164299568265
         },
         {
           "anio": 2019,
           "valor": 78.22006960588313,
           "estado": "declarado",
           "medianaPares": 81.65751660303314,
+          "p25Pares": 56.73440265328294,
+          "p75Pares": 148.3605999586424,
+          "nPares": 34,
           "valorReal": 92.70336111353559,
-          "medianaParesReal": 96.77728858369818
+          "medianaParesReal": 96.77728858369818,
+          "p25ParesReal": 67.2393906477992,
+          "p75ParesReal": 175.83116893509367
         },
         {
           "anio": 2021,
           "valor": 72.43064232178752,
           "estado": "declarado",
           "medianaPares": 89.97782859946699,
+          "p25Pares": 62.568286254549335,
+          "p75Pares": 138.21777134810765,
+          "nPares": 36,
           "valorReal": 83.53594224891049,
-          "medianaParesReal": 103.77351977874802
+          "medianaParesReal": 103.77351977874802,
+          "p25ParesReal": 72.16145790827971,
+          "p75ParesReal": 159.40976629494133
         },
         {
           "anio": 2022,
           "valor": 82.53151569568358,
           "estado": "declarado",
           "medianaPares": 91.75635870111591,
+          "p25Pares": 70.57366018369585,
+          "p75Pares": 119.95243518126799,
+          "nPares": 37,
           "valorReal": 87.81727634236432,
-          "medianaParesReal": 97.63292774043197
+          "medianaParesReal": 97.63292774043197,
+          "p25ParesReal": 75.09357566745703,
+          "p75ParesReal": 127.6348320936493
         },
         {
           "anio": 2023,
           "valor": 45.40648913459217,
           "estado": "declarado",
           "medianaPares": 106.30438484085668,
+          "p25Pares": 79.48493113609305,
+          "p75Pares": 137.62214307234953,
+          "nPares": 38,
           "valorReal": 46.666096869952376,
-          "medianaParesReal": 109.25334275414842
+          "medianaParesReal": 109.25334275414842,
+          "p25ParesReal": 81.68989866412247,
+          "p75ParesReal": 141.43987748156454
         },
         {
           "anio": 2024,
           "valor": 66.93595408796672,
           "estado": "declarado",
           "medianaPares": 122.63646633346139,
+          "p25Pares": 81.26753344790434,
+          "p75Pares": 183.05629350923533,
+          "nPares": 38,
           "valorReal": 66.93595408796672,
-          "medianaParesReal": 122.63646633346139
+          "medianaParesReal": 122.63646633346139,
+          "p25ParesReal": 81.26753344790434,
+          "p75ParesReal": 183.05629350923533
         }
       ],
       "declaracion": {
@@ -447,6 +498,10 @@
         "n": 28,
         "modoGestion": "directa",
         "percentil": 64,
+        "percentilBanda": [
+          46,
+          82
+        ],
         "p25": 0.8220141507935217,
         "mediana": 1.318248090590181,
         "p75": 2.2212006625808356,
@@ -683,80 +738,127 @@
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2015,
           "valor": 67676714,
           "estado": "declarado",
           "medianaPares": 0.8970735905728097,
+          "p25Pares": 0.43163376647554874,
+          "p75Pares": 1.7176481108861283,
+          "nPares": 34,
           "atipico": true,
           "valorReal": 83558221.77765453,
-          "medianaParesReal": 1.1075873753557197
+          "medianaParesReal": 1.1075873753557197,
+          "p25ParesReal": 0.5329240717255901,
+          "p75ParesReal": 2.120723854668719
         },
         {
           "anio": 2016,
           "valor": 1.0177685,
           "estado": "declarado",
           "medianaPares": 0.9193782068777292,
+          "p25Pares": 0.4631302192582943,
+          "p75Pares": 2.0144127999999997,
+          "nPares": 33,
           "valorReal": 1.2591580153175936,
-          "medianaParesReal": 1.1374319781938715
+          "medianaParesReal": 1.1374319781938715,
+          "p25ParesReal": 0.5729732524782166,
+          "p75ParesReal": 2.4921816928686202
         },
         {
           "anio": 2017,
           "valor": 1.046217380952381,
           "estado": "declarado",
           "medianaPares": 0.7025602776643682,
+          "p25Pares": 0.4101088869605617,
+          "p75Pares": 1.7760398459414826,
+          "nPares": 34,
           "valorReal": 1.2695254310329827,
-          "medianaParesReal": 0.8525170347644082
+          "medianaParesReal": 0.8525170347644082,
+          "p25ParesReal": 0.4976438653839963,
+          "p75ParesReal": 2.1551235833016977
         },
         {
           "anio": 2018,
           "valor": 1.0944458857142858,
           "estado": "declarado",
           "medianaPares": 0.8992097182399512,
+          "p25Pares": 0.5319071071703375,
+          "p75Pares": 6.536107808006079,
+          "nPares": 32,
           "valorReal": 1.3061645279689205,
-          "medianaParesReal": 1.0731602653916585
+          "medianaParesReal": 1.0731602653916585,
+          "p25ParesReal": 0.6348036066735512,
+          "p75ParesReal": 7.800506430910875
         },
         {
           "anio": 2019,
           "valor": 0.8788484571428572,
           "estado": "declarado",
           "medianaPares": 0.7951274330001701,
+          "p25Pares": 0.5928532739313096,
+          "p75Pares": 1.7184629872718873,
+          "nPares": 34,
           "valorReal": 1.0415767500219684,
-          "medianaParesReal": 0.9423538731695191
+          "medianaParesReal": 0.9423538731695191,
+          "p25ParesReal": 0.7026264668072143,
+          "p75ParesReal": 2.0366549872940665
         },
         {
           "anio": 2021,
           "valor": 0.9639521714285715,
           "estado": "declarado",
           "medianaPares": 0.844870290661123,
+          "p25Pares": 0.5698901533727739,
+          "p75Pares": 1.765417915771537,
+          "nPares": 36,
           "valorReal": 1.1117484305250567,
-          "medianaParesReal": 0.9744085313358852
+          "medianaParesReal": 0.9744085313358852,
+          "p25ParesReal": 0.65726755160986,
+          "p75ParesReal": 2.036097490367299
         },
         {
           "anio": 2022,
           "valor": 1.529355357142857,
           "estado": "declarado",
           "medianaPares": 0.9606751235330598,
+          "p25Pares": 0.6286485705549529,
+          "p75Pares": 1.4344966904806586,
+          "nPares": 38,
           "valorReal": 1.6273034717925783,
-          "medianaParesReal": 1.022201907809503
+          "medianaParesReal": 1.022201907809503,
+          "p25ParesReal": 0.6689105946656437,
+          "p75ParesReal": 1.5263695476603916
         },
         {
           "anio": 2023,
           "valor": 1.2075904142857143,
           "estado": "declarado",
           "medianaPares": 1.0471473112305323,
+          "p25Pares": 0.7591717938427383,
+          "p75Pares": 1.4605575891240696,
+          "nPares": 36,
           "valorReal": 1.241089816154737,
-          "medianaParesReal": 1.076195909314782
+          "medianaParesReal": 1.076195909314782,
+          "p25ParesReal": 0.780231749858212,
+          "p75ParesReal": 1.5010744771782523
         },
         {
           "anio": 2024,
           "valor": 1.5866440571428573,
           "estado": "declarado",
           "medianaPares": 1.2538666138140138,
+          "p25Pares": 0.8220141507935217,
+          "p75Pares": 1.735015824590397,
+          "nPares": 36,
           "valorReal": 1.5866440571428573,
-          "medianaParesReal": 1.2538666138140138
+          "medianaParesReal": 1.2538666138140138,
+          "p25ParesReal": 0.8220141507935217,
+          "p75ParesReal": 1.735015824590397
         }
       ],
       "declaracion": {
@@ -813,6 +915,10 @@
         "n": 31,
         "modoGestion": "directa",
         "percentil": 19,
+        "percentilBanda": [
+          6,
+          35
+        ],
         "p25": 2.2022527722484453,
         "mediana": 3.3825849990613297,
         "p75": 8.292970042490309,
@@ -1073,78 +1179,122 @@
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2015,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2016,
           "valor": 2.3021474989453528,
           "estado": "declarado",
           "medianaPares": 2.2728872719080875,
+          "p25Pares": 0.8218385664601491,
+          "p75Pares": 3.419696964757068,
+          "nPares": 24,
           "valorReal": 2.8481599457444324,
-          "medianaParesReal": 2.811959916559028
+          "medianaParesReal": 2.811959916559028,
+          "p25ParesReal": 1.0167583475568536,
+          "p75ParesReal": 4.230764504041055
         },
         {
           "anio": 2017,
           "valor": 2.5198831592967754,
           "estado": "declarado",
           "medianaPares": 2.4925114982932555,
+          "p25Pares": 1.448737306122449,
+          "p75Pares": 4.0868319230769234,
+          "nPares": 21,
           "valorReal": 3.05773523954158,
-          "medianaParesReal": 3.0245212819394323
+          "medianaParesReal": 3.0245212819394323,
+          "p25ParesReal": 1.7579605218701453,
+          "p75ParesReal": 4.959138658144443
         },
         {
           "anio": 2018,
           "valor": 2.7787928198662373,
           "estado": "declarado",
           "medianaPares": 3.45046313723038,
+          "p25Pares": 1.3544856751703405,
+          "p75Pares": 9.662952628277043,
+          "nPares": 28,
           "valorReal": 3.3163454303774835,
-          "medianaParesReal": 4.117949195791701
+          "medianaParesReal": 4.117949195791701,
+          "p25ParesReal": 1.616508559849794,
+          "p75ParesReal": 11.53223391238043
         },
         {
           "anio": 2019,
           "valor": 0.7540598422260237,
           "estado": "declarado",
           "medianaPares": 2.4831062080686115,
+          "p25Pares": 1.3101633333333333,
+          "p75Pares": 5.119118525021949,
+          "nPares": 33,
           "valorReal": 0.8936821739907671,
-          "medianaParesReal": 2.942880166812498
+          "medianaParesReal": 2.942880166812498,
+          "p25ParesReal": 1.5527542383902257,
+          "p75ParesReal": 6.0669786616043435
         },
         {
           "anio": 2021,
           "valor": 0.9702314180469863,
           "estado": "declarado",
           "medianaPares": 2.424275280099452,
+          "p25Pares": 1.2909454094603914,
+          "p75Pares": 4.712167445778538,
+          "nPares": 30,
           "valorReal": 1.118990431507903,
-          "medianaParesReal": 2.795972992951518
+          "medianaParesReal": 2.795972992951518,
+          "p25ParesReal": 1.4888773275277225,
+          "p75ParesReal": 5.434652172059288
         },
         {
           "anio": 2022,
           "valor": 2.266029787337544,
           "estado": "declarado",
           "medianaPares": 3.1448461977050814,
+          "p25Pares": 1.7487300599269808,
+          "p75Pares": 5.6338085528340205,
+          "nPares": 31,
           "valorReal": 2.4111584811843914,
-          "medianaParesReal": 3.346259005062047
+          "medianaParesReal": 3.346259005062047,
+          "p25ParesReal": 1.8607281064249095,
+          "p75ParesReal": 5.994627850631806
         },
         {
           "anio": 2023,
           "valor": 2.19371330971318,
           "estado": "declarado",
           "medianaPares": 2.967179627020558,
+          "p25Pares": 1.7647473232323232,
+          "p75Pares": 4.993214692307693,
+          "nPares": 33,
           "valorReal": 2.2545684497326324,
-          "medianaParesReal": 3.0494912631243714
+          "medianaParesReal": 3.0494912631243714,
+          "p25ParesReal": 1.813702647056428,
+          "p75ParesReal": 5.131729956769165
         },
         {
           "anio": 2024,
           "valor": 2.0221881747891346,
           "estado": "declarado",
           "medianaPares": 3.3825849990613297,
+          "p25Pares": 2.2022527722484453,
+          "p75Pares": 7.631723471366189,
+          "nPares": 35,
           "valorReal": 2.0221881747891346,
-          "medianaParesReal": 3.3825849990613297
+          "medianaParesReal": 3.3825849990613297,
+          "p25ParesReal": 2.2022527722484453,
+          "p75ParesReal": 7.631723471366189
         }
       ],
       "declaracion": {
@@ -1200,6 +1350,10 @@
         "n": 39,
         "modoGestion": "directa",
         "percentil": 64,
+        "percentilBanda": [
+          49,
+          77
+        ],
         "p25": 2.1691651453582654,
         "mediana": 7.416140605686032,
         "p75": 13.856556115802334,
@@ -1524,80 +1678,130 @@
           "valor": 23.448789789789792,
           "estado": "declarado",
           "medianaPares": 8.374191535136795,
+          "p25Pares": 2.651547496549128,
+          "p75Pares": 15.352398286185885,
+          "nPares": 53,
           "valorReal": 28.806600546728955,
-          "medianaParesReal": 10.287609408291221
+          "medianaParesReal": 10.287609408291221,
+          "p25ParesReal": 3.257399219682912,
+          "p75ParesReal": 18.860265661002693
         },
         {
           "anio": 2015,
           "valor": 11.444983634356023,
           "estado": "declarado",
           "medianaPares": 7.075994704201798,
+          "p25Pares": 2.679853555193201,
+          "p75Pares": 13.56853588298302,
+          "nPares": 45,
           "valorReal": 14.130746371065639,
-          "medianaParesReal": 8.736498861206572
+          "medianaParesReal": 8.736498861206572,
+          "p25ParesReal": 3.308727396198188,
+          "p75ParesReal": 16.75262676772928
         },
         {
           "anio": 2016,
           "valor": 9.765549136367222,
           "estado": "declarado",
           "medianaPares": 5.991940513329915,
+          "p25Pares": 2.021153481234676,
+          "p75Pares": 9.362814668246871,
+          "nPares": 50,
           "valorReal": 12.081695856213463,
-          "medianaParesReal": 7.413080601989135
+          "medianaParesReal": 7.413080601989135,
+          "p25ParesReal": 2.5005210969721503,
+          "p75ParesReal": 11.583442733250424
         },
         {
           "anio": 2017,
           "valor": 15.549903580724033,
           "estado": "declarado",
           "medianaPares": 5.907218622015497,
+          "p25Pares": 2.730879382481114,
+          "p75Pares": 11.083200862511317,
+          "nPares": 48,
           "valorReal": 18.868925717779216,
-          "medianaParesReal": 7.1680746313864026
+          "medianaParesReal": 7.1680746313864026,
+          "p25ParesReal": 3.3137671847770807,
+          "p75ParesReal": 13.44883540301767
         },
         {
           "anio": 2018,
           "valor": 15.504538015616374,
           "estado": "declarado",
           "medianaPares": 6.888813916604766,
+          "p25Pares": 2.418505849307456,
+          "p75Pares": 12.411516659488992,
+          "nPares": 47,
           "valorReal": 18.503863775162074,
-          "medianaParesReal": 8.221442919286352
+          "medianaParesReal": 8.221442919286352,
+          "p25ParesReal": 2.886361575555706,
+          "p75ParesReal": 14.812502847812773
         },
         {
           "anio": 2019,
           "valor": 6.319013996991301,
           "estado": "declarado",
           "medianaPares": 6.3051594589800395,
+          "p25Pares": 1.4544561987133728,
+          "p75Pares": 14.304758536713841,
+          "nPares": 51,
           "valorReal": 7.489047752017233,
-          "medianaParesReal": 7.472627896514796
+          "medianaParesReal": 7.472627896514796,
+          "p25ParesReal": 1.7237644877140963,
+          "p75ParesReal": 16.953439225413
         },
         {
           "anio": 2021,
           "valor": 5.640594953888416,
           "estado": "declarado",
           "medianaPares": 6.2096453978145565,
+          "p25Pares": 2.9799002131443806,
+          "p75Pares": 11.081515418635957,
+          "nPares": 54,
           "valorReal": 6.505429183192285,
-          "medianaParesReal": 7.161728278392104
+          "medianaParesReal": 7.161728278392104,
+          "p25ParesReal": 3.4367881345968123,
+          "p75ParesReal": 12.780569139908451
         },
         {
           "anio": 2022,
           "valor": 8.23497882464517,
           "estado": "declarado",
           "medianaPares": 9.805406680549334,
+          "p25Pares": 3.2414568154019094,
+          "p75Pares": 13.818210537586502,
+          "nPares": 52,
           "valorReal": 8.762391009319675,
-          "medianaParesReal": 10.4333974828491
+          "medianaParesReal": 10.4333974828491,
+          "p25ParesReal": 3.449057084563846,
+          "p75ParesReal": 14.703202808132477
         },
         {
           "anio": 2023,
           "valor": 6.45808326247629,
           "estado": "declarado",
           "medianaPares": 9.34811676849966,
+          "p25Pares": 2.2406983904947926,
+          "p75Pares": 16.77431410766574,
+          "nPares": 49,
           "valorReal": 6.637235004618321,
-          "medianaParesReal": 9.607440059444919
+          "medianaParesReal": 9.607440059444919,
+          "p25ParesReal": 2.302856929484899,
+          "p75ParesReal": 17.23964530168842
         },
         {
           "anio": 2024,
           "valor": 9.333397949506182,
           "estado": "declarado",
           "medianaPares": 7.769338481848185,
+          "p25Pares": 2.1691651453582654,
+          "p75Pares": 15.39023552446668,
+          "nPares": 51,
           "valorReal": 9.333397949506182,
-          "medianaParesReal": 7.769338481848185
+          "medianaParesReal": 7.769338481848185,
+          "p25ParesReal": 2.1691651453582654,
+          "p75ParesReal": 15.39023552446668
         }
       ],
       "declaracion": {
@@ -1654,6 +1858,10 @@
         "n": 43,
         "modoGestion": "directa",
         "percentil": 26,
+        "percentilBanda": [
+          12,
+          40
+        ],
         "p25": 69607.48833333334,
         "mediana": 161044.55,
         "p75": 300363.58555555553,
@@ -2010,79 +2218,126 @@
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2015,
           "valor": 75562.330625,
           "estado": "declarado",
           "medianaPares": 79122.2,
+          "p25Pares": 44480.88339285714,
+          "p75Pares": 230067.64833333332,
+          "nPares": 47,
           "valorReal": 93294.33430234523,
-          "medianaParesReal": 97689.58840312397
+          "medianaParesReal": 97689.58840312397,
+          "p25ParesReal": 54919.0895912344,
+          "p75ParesReal": 284056.98869038024
         },
         {
           "anio": 2016,
           "valor": 86080.30428571429,
           "estado": "declarado",
           "medianaPares": 99809.12,
+          "p25Pares": 47097.94,
+          "p75Pares": 260604.53399999999,
+          "nPares": 53,
           "valorReal": 106496.42340309662,
-          "medianaParesReal": 123481.37464442605
+          "medianaParesReal": 123481.37464442605,
+          "p25ParesReal": 58268.406475487405,
+          "p75ParesReal": 322413.4838268293
         },
         {
           "anio": 2017,
           "valor": 40443.15214285714,
           "estado": "declarado",
           "medianaPares": 109095.87,
+          "p25Pares": 46869.66875,
+          "p75Pares": 170525.41,
+          "nPares": 47,
           "valorReal": 49075.47044358474,
-          "medianaParesReal": 132381.6483144167
+          "medianaParesReal": 132381.6483144167,
+          "p25ParesReal": 56873.683715760344,
+          "p75ParesReal": 206922.90968752274
         },
         {
           "anio": 2018,
           "valor": 82358.53142857143,
           "estado": "declarado",
           "medianaPares": 125610.26,
+          "p25Pares": 51630.10166666667,
+          "p75Pares": 233426.08250000002,
+          "nPares": 47,
           "valorReal": 98290.64527699868,
-          "medianaParesReal": 149909.34508733178
+          "medianaParesReal": 149909.34508733178,
+          "p25ParesReal": 61617.85452591499,
+          "p75ParesReal": 278581.9498652139
         },
         {
           "anio": 2019,
           "valor": 57189.89647058823,
           "estado": "declarado",
           "medianaPares": 88707.5535,
+          "p25Pares": 54742.41375,
+          "p75Pares": 255044.93,
+          "nPares": 48,
           "valorReal": 67779.22406962294,
-          "medianaParesReal": 105132.71602855067
+          "medianaParesReal": 105132.71602855067,
+          "p25ParesReal": 64878.56346411558,
+          "p75ParesReal": 302269.25602464715
         },
         {
           "anio": 2021,
           "valor": 46577.56823529412,
           "estado": "declarado",
           "medianaPares": 99473.94099999999,
+          "p25Pares": 52133.858928571426,
+          "p75Pares": 198644.355,
+          "nPares": 50,
           "valorReal": 53718.99137539215,
-          "medianaParesReal": 114725.60679125639
+          "medianaParesReal": 114725.60679125639,
+          "p25ParesReal": 60127.19049655545,
+          "p75ParesReal": 229101.14884291906
         },
         {
           "anio": 2022,
           "valor": 63314.12823529411,
           "estado": "declarado",
           "medianaPares": 170785.005,
+          "p25Pares": 69068.86937500001,
+          "p75Pares": 292875.20208333334,
+          "nPares": 50,
           "valorReal": 67369.10438087965,
-          "medianaParesReal": 181722.9921539108
+          "medianaParesReal": 181722.9921539108,
+          "p25ParesReal": 73492.40998946375,
+          "p75ParesReal": 311632.499880564
         },
         {
           "anio": 2023,
           "valor": 64094.83470588235,
           "estado": "declarado",
           "medianaPares": 182947.03,
+          "p25Pares": 81906.05488636364,
+          "p75Pares": 319669.805,
+          "nPares": 47,
           "valorReal": 65872.87020545277,
-          "medianaParesReal": 188022.10844233693
+          "medianaParesReal": 188022.10844233693,
+          "p25ParesReal": 84178.18607893151,
+          "p75ParesReal": 328537.6687528117
         },
         {
           "anio": 2024,
           "valor": 69431.28352941177,
           "estado": "declarado",
           "medianaPares": 161044.55,
+          "p25Pares": 68876.07666666668,
+          "p75Pares": 314372.4011111111,
+          "nPares": 45,
           "valorReal": 69431.28352941177,
-          "medianaParesReal": 161044.55
+          "medianaParesReal": 161044.55,
+          "p25ParesReal": 68876.07666666668,
+          "p75ParesReal": 314372.4011111111
         }
       ],
       "declaracion": {
@@ -2140,6 +2395,10 @@
         "n": 43,
         "modoGestion": "directa",
         "percentil": 44,
+        "percentilBanda": [
+          30,
+          58
+        ],
         "p25": 0.06680074739670051,
         "mediana": 0.6483005789608913,
         "p75": 1.2921045032182041,
@@ -2496,80 +2755,130 @@
           "valor": 0.24365927638190957,
           "estado": "declarado",
           "medianaPares": 0.4925282729410799,
+          "p25Pares": 0.1822221458825658,
+          "p75Pares": 1.0397719661733615,
+          "nPares": 57,
           "valorReal": 0.2993329509608615,
-          "medianaParesReal": 0.6050659903464114
+          "medianaParesReal": 0.6050659903464114,
+          "p25ParesReal": 0.22385805895588184,
+          "p75ParesReal": 1.2773493198478414
         },
         {
           "anio": 2015,
           "valor": 0.38699865636242853,
           "estado": "declarado",
           "medianaPares": 0.30618742302473645,
+          "p25Pares": 0.05379038275132927,
+          "p75Pares": 0.8100796867382036,
+          "nPares": 51,
           "valorReal": 0.47781456345510687,
-          "medianaParesReal": 0.37803958092039536
+          "medianaParesReal": 0.37803958092039536,
+          "p25ParesReal": 0.06641322348245948,
+          "p75ParesReal": 1.0001788520944401
         },
         {
           "anio": 2016,
           "valor": 0.14092548090701268,
           "estado": "declarado",
           "medianaPares": 0.4659752992279307,
+          "p25Pares": 0.058418792476196114,
+          "p75Pares": 0.9434975886725371,
+          "nPares": 49,
           "valorReal": 0.17434951941089896,
-          "medianaParesReal": 0.5764931150481303
+          "medianaParesReal": 0.5764931150481303,
+          "p25ParesReal": 0.07227428515578686,
+          "p75ParesReal": 1.1672718807959246
         },
         {
           "anio": 2017,
           "valor": 0.5496362163117722,
           "estado": "declarado",
           "medianaPares": 0.5337176352390147,
+          "p25Pares": 0.05977838764842512,
+          "p75Pares": 1.618065821590909,
+          "nPares": 48,
           "valorReal": 0.666952362987267,
-          "medianaParesReal": 0.6476360680510947
+          "medianaParesReal": 0.6476360680510947,
+          "p25ParesReal": 0.0725376816782953,
+          "p75ParesReal": 1.963431067953585
         },
         {
           "anio": 2018,
           "valor": 0.5655578569614242,
           "estado": "declarado",
           "medianaPares": 0.5082231629570746,
+          "p25Pares": 0.1419990561289828,
+          "p75Pares": 2.1668957266780398,
+          "nPares": 48,
           "valorReal": 0.6749640351519214,
-          "medianaParesReal": 0.6065380448787173
+          "medianaParesReal": 0.6065380448787173,
+          "p25ParesReal": 0.16946852516120164,
+          "p75ParesReal": 2.5860779148044344
         },
         {
           "anio": 2019,
           "valor": 0.6932492636126198,
           "estado": "declarado",
           "medianaPares": 0.5339971447067469,
+          "p25Pares": 0.08734432925429662,
+          "p75Pares": 1.255928795307633,
+          "nPares": 50,
           "valorReal": 0.8216118593371807,
-          "medianaParesReal": 0.6328724889759393
+          "medianaParesReal": 0.6328724889759393,
+          "p25ParesReal": 0.10351707607623513,
+          "p75ParesReal": 1.4884775893312978
         },
         {
           "anio": 2021,
           "valor": 0.19643506947634465,
           "estado": "declarado",
           "medianaPares": 0.5415909203357931,
+          "p25Pares": 0.10854338577127244,
+          "p75Pares": 1.2446300193000506,
+          "nPares": 48,
           "valorReal": 0.226553128529976,
-          "medianaParesReal": 0.6246293887980057
+          "medianaParesReal": 0.6246293887980057,
+          "p25ParesReal": 0.12518560811606586,
+          "p75ParesReal": 1.435460712216192
         },
         {
           "anio": 2022,
           "valor": 0.2656775232634664,
           "estado": "declarado",
           "medianaPares": 0.4261197306074066,
+          "p25Pares": 0.18832954149495543,
+          "p75Pares": 1.0242657064638594,
+          "nPares": 49,
           "valorReal": 0.2826929359253604,
-          "medianaParesReal": 0.45341072222234224
+          "medianaParesReal": 0.45341072222234224,
+          "p25ParesReal": 0.20039117480739835,
+          "p75ParesReal": 1.0898651725264277
         },
         {
           "anio": 2023,
           "valor": 0.3160660414326883,
           "estado": "declarado",
           "medianaPares": 0.5987564337066078,
+          "p25Pares": 0.1696232731239932,
+          "p75Pares": 1.1991799990883707,
+          "nPares": 46,
           "valorReal": 0.32483393426609375,
-          "medianaParesReal": 0.6153663555452676
+          "medianaParesReal": 0.6153663555452676,
+          "p25ParesReal": 0.17432874124091322,
+          "p75ParesReal": 1.2324460901632301
         },
         {
           "anio": 2024,
           "valor": 0.31524740928513706,
           "estado": "declarado",
           "medianaPares": 0.6065020741891891,
+          "p25Pares": 0.07769243534419737,
+          "p75Pares": 1.2703370778551453,
+          "nPares": 46,
           "valorReal": 0.31524740928513706,
-          "medianaParesReal": 0.6065020741891891
+          "medianaParesReal": 0.6065020741891891,
+          "p25ParesReal": 0.07769243534419737,
+          "p75ParesReal": 1.2703370778551453
         }
       ],
       "declaracion": {
@@ -2626,6 +2935,10 @@
         "n": 51,
         "modoGestion": "directa",
         "percentil": 63,
+        "percentilBanda": [
+          49,
+          76
+        ],
         "p25": 8.218810016532354,
         "mediana": 13.417194350328613,
         "p75": 24.594432241040863,
@@ -3046,81 +3359,131 @@
           "valor": 13686406,
           "estado": "declarado",
           "medianaPares": 10.371343704306666,
+          "p25Pares": 5.2102141785883385,
+          "p75Pares": 17.96785077333712,
+          "nPares": 59,
           "atipico": true,
           "valorReal": 16813611.026272446,
-          "medianaParesReal": 12.741090602163336
+          "medianaParesReal": 12.741090602163336,
+          "p25ParesReal": 6.400695300311414,
+          "p75ParesReal": 22.07332252755025
         },
         {
           "anio": 2015,
           "valor": 6.054349306652624,
           "estado": "declarado",
           "medianaPares": 7.2472774098601915,
+          "p25Pares": 3.356441667290279,
+          "p75Pares": 14.30536866096866,
+          "nPares": 53,
           "valorReal": 7.4751067565820195,
-          "medianaParesReal": 8.947976006891878
+          "medianaParesReal": 8.947976006891878,
+          "p25ParesReal": 4.144088574087709,
+          "p75ParesReal": 17.662370061057164
         },
         {
           "anio": 2016,
           "valor": 1.4034520513985869,
           "estado": "declarado",
           "medianaPares": 8.546655399395126,
+          "p25Pares": 4.801575585521647,
+          "p75Pares": 14.365871408578249,
+          "nPares": 57,
           "valorReal": 1.7363161658397268,
-          "medianaParesReal": 10.573710672226309
+          "medianaParesReal": 10.573710672226309,
+          "p25ParesReal": 5.940390555084824,
+          "p75ParesReal": 17.77310078975047
         },
         {
           "anio": 2017,
           "valor": 8.796113492658879,
           "estado": "declarado",
           "medianaPares": 9.371231416209906,
+          "p25Pares": 5.475092252177681,
+          "p75Pares": 15.90249611697212,
+          "nPares": 54,
           "valorReal": 10.673584645494495,
-          "medianaParesReal": 11.37145761442402
+          "medianaParesReal": 11.37145761442402,
+          "p25ParesReal": 6.643713799768713,
+          "p75ParesReal": 19.296776754962224
         },
         {
           "anio": 2018,
           "valor": 8.315137177151431,
           "estado": "declarado",
           "medianaPares": 10.263854494355277,
+          "p25Pares": 6.356819482075386,
+          "p75Pares": 16.601803565363802,
+          "nPares": 50,
           "valorReal": 9.923685919749676,
-          "medianaParesReal": 12.249379193391261
+          "medianaParesReal": 12.249379193391261,
+          "p25ParesReal": 7.586535091928898,
+          "p75ParesReal": 19.813393426239365
         },
         {
           "anio": 2019,
           "valor": 12.162851413811854,
           "estado": "declarado",
           "medianaPares": 9.674529629794844,
+          "p25Pares": 5.158760202861533,
+          "p75Pares": 15.562897993246587,
+          "nPares": 54,
           "valorReal": 14.414934843014667,
-          "medianaParesReal": 11.465873379982469
+          "medianaParesReal": 11.465873379982469,
+          "p25ParesReal": 6.113960424653466,
+          "p75ParesReal": 18.444536803794218
         },
         {
           "anio": 2021,
           "valor": 13.73365551930397,
           "estado": "declarado",
           "medianaPares": 13.36802443056576,
+          "p25Pares": 5.625735658571898,
+          "p75Pares": 22.84738217754488,
+          "nPares": 55,
           "valorReal": 15.839343923392313,
-          "medianaParesReal": 15.41765309566851
+          "medianaParesReal": 15.41765309566851,
+          "p25ParesReal": 6.488291612743779,
+          "p75ParesReal": 26.35041657704678
         },
         {
           "anio": 2022,
           "valor": 22.23561106579663,
           "estado": "declarado",
           "medianaPares": 11.150065930389086,
+          "p25Pares": 7.258472304258882,
+          "p75Pares": 18.720001720805406,
+          "nPares": 56,
           "valorReal": 23.659698784721602,
-          "medianaParesReal": 11.86417591862754
+          "medianaParesReal": 11.86417591862754,
+          "p25ParesReal": 7.723343777143758,
+          "p75ParesReal": 19.918930973074115
         },
         {
           "anio": 2023,
           "valor": 22.950117591082112,
           "estado": "declarado",
           "medianaPares": 11.620669291338583,
+          "p25Pares": 8.1387686013482,
+          "p75Pares": 18.124452867501645,
+          "nPares": 53,
           "valorReal": 23.58676988893903,
-          "medianaParesReal": 11.943034777162536
+          "medianaParesReal": 11.943034777162536,
+          "p25ParesReal": 8.36454372913175,
+          "p75ParesReal": 18.62723785410137
         },
         {
           "anio": 2024,
           "valor": 16.607863648722134,
           "estado": "declarado",
           "medianaPares": 13.417194350328613,
+          "p25Pares": 8.218810016532354,
+          "p75Pares": 24.594432241040863,
+          "nPares": 51,
           "valorReal": 16.607863648722134,
-          "medianaParesReal": 13.417194350328613
+          "medianaParesReal": 13.417194350328613,
+          "p25ParesReal": 8.218810016532354,
+          "p75ParesReal": 24.594432241040863
         }
       ],
       "declaracion": {
@@ -3177,6 +3540,10 @@
         "n": 48,
         "modoGestion": "directa",
         "percentil": 56,
+        "percentilBanda": [
+          42,
+          71
+        ],
         "p25": 102.82632594080707,
         "mediana": 140.90679210172277,
         "p75": 188.59546349895157,
@@ -3573,81 +3940,131 @@
           "valor": 9.104068221720592,
           "estado": "declarado",
           "medianaPares": 127.9374419856596,
+          "p25Pares": 97.81924794642745,
+          "p75Pares": 195.853288150832,
+          "nPares": 56,
           "valorReal": 11.184255518699207,
-          "medianaParesReal": 157.16985052490608
+          "medianaParesReal": 157.16985052490608,
+          "p25ParesReal": 120.16995446823155,
+          "p75ParesReal": 240.60377904795047
         },
         {
           "anio": 2015,
           "valor": 16.797851260294486,
           "estado": "declarado",
           "medianaPares": 125.6770309463298,
+          "p25Pares": 97.40226784146716,
+          "p75Pares": 208.74633724685862,
+          "nPares": 51,
           "valorReal": 20.73975667606646,
-          "medianaParesReal": 155.16931309889804
+          "medianaParesReal": 155.16931309889804,
+          "p25ParesReal": 120.25938933654228,
+          "p75ParesReal": 257.7322643493902
         },
         {
           "anio": 2016,
           "valor": 12.827339655602696,
           "estado": "declarado",
           "medianaPares": 113.15681779647718,
+          "p25Pares": 89.69190469077567,
+          "p75Pares": 172.94064811171452,
+          "nPares": 54,
           "valorReal": 15.869667358100939,
-          "medianaParesReal": 139.9948162241873
+          "medianaParesReal": 139.9948162241873,
+          "p25ParesReal": 110.96460609705632,
+          "p75ParesReal": 213.9578924323997
         },
         {
           "anio": 2017,
           "valor": 15.255819815323184,
           "estado": "declarado",
           "medianaPares": 117.60360244648007,
+          "p25Pares": 79.39055648643885,
+          "p75Pares": 163.44324778754967,
+          "nPares": 52,
           "valorReal": 18.512071754322356,
-          "medianaParesReal": 142.70529892266686
+          "medianaParesReal": 142.70529892266686,
+          "p25ParesReal": 96.33593579916071,
+          "p75ParesReal": 198.329107673622
         },
         {
           "anio": 2018,
           "valor": 1.0096730721237834,
           "estado": "declarado",
           "medianaPares": 116.71139844617092,
+          "p25Pares": 76.52016661950074,
+          "p75Pares": 158.13175917835622,
+          "nPares": 51,
           "atipico": true,
           "valorReal": 1.2049925618686776,
-          "medianaParesReal": 139.28901433125063
+          "medianaParesReal": 139.28901433125063,
+          "p25ParesReal": 91.3228590077185,
+          "p75ParesReal": 188.72207139715377
         },
         {
           "anio": 2019,
           "valor": 11.30738369517058,
           "estado": "declarado",
           "medianaPares": 110.22460897435899,
+          "p25Pares": 77.92303962821465,
+          "p75Pares": 173.02736487512487,
+          "nPares": 55,
           "valorReal": 13.401068027991919,
-          "medianaParesReal": 130.63388694018397
+          "medianaParesReal": 130.63388694018397,
+          "p25ParesReal": 92.35133282437546,
+          "p75ParesReal": 205.06525204288187
         },
         {
           "anio": 2021,
           "valor": 21.763794860434206,
           "estado": "declarado",
           "medianaPares": 91.95195192307693,
+          "p25Pares": 60.27555494701878,
+          "p75Pares": 135.09803259812827,
+          "nPares": 55,
           "valorReal": 25.100690154054938,
-          "medianaParesReal": 106.05032206390051
+          "medianaParesReal": 106.05032206390051,
+          "p25ParesReal": 69.51719763446837,
+          "p75ParesReal": 155.8116991275655
         },
         {
           "anio": 2022,
           "valor": 64.0948737261852,
           "estado": "declarado",
           "medianaPares": 112.29325364667747,
+          "p25Pares": 71.47830284005065,
+          "p75Pares": 154.4353691639842,
+          "nPares": 55,
           "valorReal": 68.19985299792248,
-          "medianaParesReal": 119.48511551920079
+          "medianaParesReal": 119.48511551920079,
+          "p25ParesReal": 76.05615648854759,
+          "p75ParesReal": 164.32623800241137
         },
         {
           "anio": 2023,
           "valor": 137.79055161719097,
           "estado": "declarado",
           "medianaPares": 147.39653112126683,
+          "p25Pares": 96.35933071642663,
+          "p75Pares": 217.43795626398557,
+          "nPares": 52,
           "valorReal": 141.6129577971116,
-          "medianaParesReal": 151.48541388459338
+          "medianaParesReal": 151.48541388459338,
+          "p25ParesReal": 99.032405879423,
+          "p75ParesReal": 223.46983710064717
         },
         {
           "anio": 2024,
           "valor": 147.24836508639788,
           "estado": "declarado",
           "medianaPares": 140.90679210172277,
+          "p25Pares": 101.05992441114124,
+          "p75Pares": 190.41698836298625,
+          "nPares": 52,
           "valorReal": 147.24836508639788,
-          "medianaParesReal": 140.90679210172277
+          "medianaParesReal": 140.90679210172277,
+          "p25ParesReal": 101.05992441114124,
+          "p75ParesReal": 190.41698836298625
         }
       ],
       "declaracion": {
@@ -3704,6 +4121,10 @@
         "n": 43,
         "modoGestion": "directa",
         "percentil": 49,
+        "percentilBanda": [
+          35,
+          63
+        ],
         "p25": 2.222063467601893,
         "mediana": 4.5763738181818185,
         "p75": 7.640291714253083,
@@ -4060,80 +4481,130 @@
           "valor": 2.1449505537974685,
           "estado": "declarado",
           "medianaPares": 3.7950342655271894,
+          "p25Pares": 1.545719055216543,
+          "p75Pares": 5.954117508036518,
+          "nPares": 56,
           "valorReal": 2.6350500110940964,
-          "medianaParesReal": 4.662161123376707
+          "medianaParesReal": 4.662161123376707,
+          "p25ParesReal": 1.8989001897436257,
+          "p75ParesReal": 7.3145729992844455
         },
         {
           "anio": 2015,
           "valor": 3.3098833069620253,
           "estado": "declarado",
           "medianaPares": 3.22509416087813,
+          "p25Pares": 1.1040921473768448,
+          "p75Pares": 5.365336450589105,
+          "nPares": 50,
           "valorReal": 4.086604491779691,
-          "medianaParesReal": 3.981918110688315
+          "medianaParesReal": 3.981918110688315,
+          "p25ParesReal": 1.3631864057921197,
+          "p75ParesReal": 6.6244051543350375
         },
         {
           "anio": 2016,
           "valor": 3.595829707278481,
           "estado": "declarado",
           "medianaPares": 3.3412283675920036,
+          "p25Pares": 1.9787673171494269,
+          "p75Pares": 5.828124285714286,
+          "nPares": 53,
           "valorReal": 4.448671576725764,
-          "medianaParesReal": 4.133685096424177
+          "medianaParesReal": 4.133685096424177,
+          "p25ParesReal": 2.448081983120122,
+          "p75ParesReal": 7.210411216916487
         },
         {
           "anio": 2017,
           "valor": 3.2583969541139246,
           "estado": "declarado",
           "medianaPares": 3.214383971533702,
+          "p25Pares": 1.9077850111146395,
+          "p75Pares": 5.497969387755102,
+          "nPares": 49,
           "valorReal": 3.9538798274240463,
-          "medianaParesReal": 3.9004725702913654
+          "medianaParesReal": 3.9004725702913654,
+          "p25ParesReal": 2.314988866222835,
+          "p75ParesReal": 6.671473905778696
         },
         {
           "anio": 2018,
           "valor": 2.316031399317406,
           "estado": "declarado",
           "medianaPares": 3.856452261306533,
+          "p25Pares": 2.2114718958399493,
+          "p75Pares": 5.419258808562421,
+          "nPares": 45,
           "valorReal": 2.7640636224570265,
-          "medianaParesReal": 4.602476205789416
+          "medianaParesReal": 4.602476205789416,
+          "p25ParesReal": 2.639277265920848,
+          "p75ParesReal": 6.467604946047771
         },
         {
           "anio": 2019,
           "valor": 5.601526586620927,
           "estado": "declarado",
           "medianaPares": 3.943296423230522,
+          "p25Pares": 1.869924264738681,
+          "p75Pares": 5.516584579619272,
+          "nPares": 52,
           "valorReal": 6.638709791016778,
-          "medianaParesReal": 4.673440386109781
+          "medianaParesReal": 4.673440386109781,
+          "p25ParesReal": 2.216160957698694,
+          "p75ParesReal": 6.538039853129243
         },
         {
           "anio": 2021,
           "valor": 5.676152759560084,
           "estado": "declarado",
           "medianaPares": 4.356683653846154,
+          "p25Pares": 2.042879063180828,
+          "p75Pares": 5.969968339352954,
+          "nPares": 51,
           "valorReal": 6.54643882642988,
-          "medianaParesReal": 5.024664457448691
+          "medianaParesReal": 5.024664457448691,
+          "p25ParesReal": 2.3560998766960877,
+          "p75ParesReal": 6.885303159516491
         },
         {
           "anio": 2022,
           "valor": 7.505400060538796,
           "estado": "declarado",
           "medianaPares": 4.647157024693367,
+          "p25Pares": 2.054105923780897,
+          "p75Pares": 6.654189194422357,
+          "nPares": 50,
           "valorReal": 7.986086110506324,
-          "medianaParesReal": 4.944785870026143
+          "medianaParesReal": 4.944785870026143,
+          "p25ParesReal": 2.1856618774613006,
+          "p75ParesReal": 7.0803591379035415
         },
         {
           "anio": 2023,
           "valor": 7.831538694379982,
           "estado": "declarado",
           "medianaPares": 4.471789228395664,
+          "p25Pares": 1.3472055663096985,
+          "p75Pares": 7.9574091480127915,
+          "nPares": 46,
           "valorReal": 8.048791049874222,
-          "medianaParesReal": 4.59583978615386
+          "medianaParesReal": 4.59583978615386,
+          "p25ParesReal": 1.3845779900488249,
+          "p75ParesReal": 8.178153237839965
         },
         {
           "anio": 2024,
           "valor": 4.54578448188881,
           "estado": "declarado",
           "medianaPares": 4.5763738181818185,
+          "p25Pares": 1.6457955798903203,
+          "p75Pares": 7.640291714253083,
+          "nPares": 47,
           "valorReal": 4.54578448188881,
-          "medianaParesReal": 4.5763738181818185
+          "medianaParesReal": 4.5763738181818185,
+          "p25ParesReal": 1.6457955798903203,
+          "p75ParesReal": 7.640291714253083
         }
       ],
       "declaracion": {
@@ -4188,6 +4659,10 @@
         "n": 47,
         "modoGestion": "directa",
         "percentil": 23,
+        "percentilBanda": [
+          13,
+          36
+        ],
         "p25": 42083.759059409,
         "mediana": 140694.41502683365,
         "p75": 232258.9092594957,
@@ -4576,79 +5051,126 @@
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2015,
           "valor": 136618.1806167401,
           "estado": "declarado",
           "medianaPares": 114861.35319148935,
+          "p25Pares": 1539.5630498533724,
+          "p75Pares": 214376.08633093527,
+          "nPares": 53,
           "valorReal": 168677.99217960308,
-          "medianaParesReal": 141815.5500820559
+          "medianaParesReal": 141815.5500820559,
+          "p25ParesReal": 1900.8480636387028,
+          "p75ParesReal": 264683.13112049
         },
         {
           "anio": 2016,
           "valor": 220496.07488986786,
           "estado": "declarado",
           "medianaPares": 130642.96463022509,
+          "p25Pares": 31172.707899571345,
+          "p75Pares": 205534.9307875895,
+          "nPares": 53,
           "valorReal": 272792.2902346118,
-          "medianaParesReal": 161628.24459491603
+          "medianaParesReal": 161628.24459491603,
+          "p25ParesReal": 38566.10320608206,
+          "p75ParesReal": 254282.73279133727
         },
         {
           "anio": 2017,
           "valor": 118282.80176211454,
           "estado": "declarado",
           "medianaPares": 109085.57872340425,
+          "p25Pares": 16065.033575621546,
+          "p75Pares": 192524.1344919225,
+          "nPares": 51,
           "valorReal": 143529.46875547274,
-          "medianaParesReal": 132369.16043417886
+          "medianaParesReal": 132369.16043417886,
+          "p25ParesReal": 19494.006738909804,
+          "p75ParesReal": 233617.1136849374
         },
         {
           "anio": 2018,
           "valor": 64611.179042904296,
           "estado": "declarado",
           "medianaPares": 124198.62016574586,
+          "p25Pares": 18556.23397224058,
+          "p75Pares": 207057.2835443038,
+          "nPares": 49,
           "valorReal": 77110.09861489118,
-          "medianaParesReal": 148224.62599629394
+          "medianaParesReal": 148224.62599629394,
+          "p25ParesReal": 22145.90497675813,
+          "p75ParesReal": 247112.15287420427
         },
         {
           "anio": 2019,
           "valor": 14549.812790898122,
           "estado": "declarado",
           "medianaPares": 131035.24969380134,
+          "p25Pares": 24219.291892086334,
+          "p75Pares": 205913.97628380512,
+          "nPares": 54,
           "valorReal": 17243.86792398763,
-          "medianaParesReal": 155297.84276813187
+          "medianaParesReal": 155297.84276813187,
+          "p25ParesReal": 28703.755615391787,
+          "p75ParesReal": 244041.17508386704
         },
         {
           "anio": 2021,
           "valor": 19414.34425099121,
           "estado": "declarado",
           "medianaPares": 133821.32525001912,
+          "p25Pares": 23330.751670275014,
+          "p75Pares": 210717.52933139747,
+          "nPares": 54,
           "valorReal": 22391.01419184052,
-          "medianaParesReal": 154339.24288692378
+          "medianaParesReal": 154339.24288692378,
+          "p25ParesReal": 26907.89784098752,
+          "p75ParesReal": 243025.42124171942
         },
         {
           "anio": 2022,
           "valor": 19656.10739527668,
           "estado": "declarado",
           "medianaPares": 156056.68204987783,
+          "p25Pares": 28657.523827952235,
+          "p75Pares": 233398.50287015803,
+          "nPares": 54,
           "valorReal": 20914.989872607912,
-          "medianaParesReal": 166051.3884560023
+          "medianaParesReal": 166051.3884560023,
+          "p25ParesReal": 30492.905262598877,
+          "p75ParesReal": 248346.59404558528
         },
         {
           "anio": 2023,
           "valor": 25690.42699534563,
           "estado": "declarado",
           "medianaPares": 136948.85637016152,
+          "p25Pares": 34240.61844861325,
+          "p75Pares": 229949.27188250102,
+          "nPares": 50,
           "valorReal": 26403.0973908066,
-          "medianaParesReal": 140747.91333581385
+          "medianaParesReal": 140747.91333581385,
+          "p25ParesReal": 35190.47712924251,
+          "p75ParesReal": 236328.22535642164
         },
         {
           "anio": 2024,
           "valor": 33685.87588346837,
           "estado": "declarado",
           "medianaPares": 140007.9249930916,
+          "p25Pares": 30258.446941556547,
+          "p75Pares": 228254.07081232045,
+          "nPares": 48,
           "valorReal": 33685.87588346837,
-          "medianaParesReal": 140007.9249930916
+          "medianaParesReal": 140007.9249930916,
+          "p25ParesReal": 30258.446941556547,
+          "p75ParesReal": 228254.07081232045
         }
       ],
       "declaracion": {
@@ -4705,6 +5227,10 @@
         "n": 41,
         "modoGestion": "directa",
         "percentil": 85,
+        "percentilBanda": [
+          73,
+          95
+        ],
         "p25": 9.791738119340101,
         "mediana": 32.511283664017384,
         "p75": 65.59588145180297,
@@ -5045,79 +5571,126 @@
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2015,
           "valor": 27.47876453962387,
           "estado": "declarado",
           "medianaPares": 30.89012082816276,
+          "p25Pares": 13.237523369818405,
+          "p75Pares": 77.9881065047974,
+          "nPares": 43,
           "valorReal": 33.927130409698094,
-          "medianaParesReal": 38.13902026771231
+          "medianaParesReal": 38.13902026771231,
+          "p25ParesReal": 16.343936461249744,
+          "p75ParesReal": 96.2893603159752
         },
         {
           "anio": 2016,
           "valor": 37.182088270464185,
           "estado": "declarado",
           "medianaPares": 34.561813826601906,
+          "p25Pares": 14.383595425756113,
+          "p75Pares": 94.591441168921,
+          "nPares": 51,
           "valorReal": 46.00075996850095,
-          "medianaParesReal": 42.75902123486846
+          "medianaParesReal": 42.75902123486846,
+          "p25ParesReal": 17.795028505427595,
+          "p75ParesReal": 117.02619144558854
         },
         {
           "anio": 2017,
           "valor": 69.20816664854875,
           "estado": "declarado",
           "medianaPares": 37.09055252315548,
+          "p25Pares": 13.502514432276229,
+          "p75Pares": 77.5665586565142,
+          "nPares": 44,
           "valorReal": 83.98018346389946,
-          "medianaParesReal": 45.00728102638322
+          "medianaParesReal": 45.00728102638322,
+          "p25ParesReal": 16.384535151824977,
+          "p75ParesReal": 94.12261792335713
         },
         {
           "anio": 2018,
           "valor": 126.13036797477986,
           "estado": "declarado",
           "medianaPares": 38.340242029737475,
+          "p25Pares": 13.324154312430984,
+          "p75Pares": 81.23450650118204,
+          "nPares": 41,
           "valorReal": 150.53006704009223,
-          "medianaParesReal": 45.75709478801921
+          "medianaParesReal": 45.75709478801921,
+          "p25ParesReal": 15.901688658387274,
+          "p75ParesReal": 96.94917969348043
         },
         {
           "anio": 2019,
           "valor": 81.08121342835709,
           "estado": "declarado",
           "medianaPares": 35.337895286785454,
+          "p25Pares": 13.04304704930501,
+          "p75Pares": 91.17252894698228,
+          "nPares": 48,
           "valorReal": 96.09427664594284,
-          "medianaParesReal": 41.88108862941727
+          "medianaParesReal": 41.88108862941727,
+          "p25ParesReal": 15.458108216022543,
+          "p75ParesReal": 108.054108327854
         },
         {
           "anio": 2021,
           "valor": 77.99620811452863,
           "estado": "declarado",
           "medianaPares": 35.98518817362624,
+          "p25Pares": 11.180769199999999,
+          "p75Pares": 65.34176459510358,
+          "nPares": 49,
           "valorReal": 89.95483855773256,
-          "medianaParesReal": 41.502553404582756
+          "medianaParesReal": 41.502553404582756,
+          "p25ParesReal": 12.895040831477566,
+          "p75ParesReal": 75.36017490233641
         },
         {
           "anio": 2022,
           "valor": 99.14305451362841,
           "estado": "declarado",
           "medianaPares": 36.296389726479845,
+          "p25Pares": 9.04816497245444,
+          "p75Pares": 80.61778768580145,
+          "nPares": 50,
           "valorReal": 105.49270714659549,
-          "medianaParesReal": 38.62100507875609
+          "medianaParesReal": 38.62100507875609,
+          "p25ParesReal": 9.627657956836602,
+          "p75ParesReal": 85.78098293285493
         },
         {
           "anio": 2023,
           "valor": 84.64400818954738,
           "estado": "declarado",
           "medianaPares": 34.95423617307482,
+          "p25Pares": 12.446487920987114,
+          "p75Pares": 89.52068737837085,
+          "nPares": 45,
           "valorReal": 86.99209211982908,
-          "medianaParesReal": 35.92389110800504
+          "medianaParesReal": 35.92389110800504,
+          "p25ParesReal": 12.791762192619776,
+          "p75ParesReal": 92.0040537968208
         },
         {
           "anio": 2024,
           "valor": 100.34672136784197,
           "estado": "declarado",
           "medianaPares": 32.511283664017384,
+          "p25Pares": 11.32019068027778,
+          "p75Pares": 67.15310427730336,
+          "nPares": 43,
           "valorReal": 100.34672136784197,
-          "medianaParesReal": 32.511283664017384
+          "medianaParesReal": 32.511283664017384,
+          "p25ParesReal": 11.32019068027778,
+          "p75ParesReal": 67.15310427730336
         }
       ],
       "declaracion": {
@@ -5174,6 +5747,10 @@
         "n": 48,
         "modoGestion": "directa",
         "percentil": 85,
+        "percentilBanda": [
+          75,
+          94
+        ],
         "p25": 55167.56694098241,
         "mediana": 65496.23552744425,
         "p75": 75277.88835016834,
@@ -5570,79 +6147,126 @@
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2015,
           "valor": 46645.33571428571,
           "estado": "declarado",
           "medianaPares": 46318.38231861999,
+          "p25Pares": 37830.96879129129,
+          "p75Pares": 53739.88401785714,
+          "nPares": 52,
           "valorReal": 57591.467967954755,
-          "medianaParesReal": 57187.78932087987
+          "medianaParesReal": 57187.78932087987,
+          "p25ParesReal": 46708.65787494123,
+          "p75ParesReal": 66350.87435051205
         },
         {
           "anio": 2016,
           "valor": 50263.10511111111,
           "estado": "declarado",
           "medianaPares": 45390.44968903941,
+          "p25Pares": 37411.05272727273,
+          "p75Pares": 53822.424338235294,
+          "nPares": 56,
           "valorReal": 62184.27046563758,
-          "medianaParesReal": 56155.94169481954
+          "medianaParesReal": 56155.94169481954,
+          "p25ParesReal": 46284.02913139341,
+          "p75ParesReal": 66587.772179345
         },
         {
           "anio": 2017,
           "valor": 36051.99911111111,
           "estado": "declarado",
           "medianaPares": 47050.82175402299,
+          "p25Pares": 39913.108104010025,
+          "p75Pares": 53630.68200544598,
+          "nPares": 54,
           "valorReal": 43747.05538677839,
-          "medianaParesReal": 57093.50260780155
+          "medianaParesReal": 57093.50260780155,
+          "p25ParesReal": 48432.29207632105,
+          "p75ParesReal": 65077.78969183038
         },
         {
           "anio": 2018,
           "valor": 58628.86266666666,
           "estado": "declarado",
           "medianaPares": 50350.38987373737,
+          "p25Pares": 40765.05390714286,
+          "p75Pares": 56055.04500204082,
+          "nPares": 50,
           "valorReal": 69970.51359956675,
-          "medianaParesReal": 60090.58472503593
+          "medianaParesReal": 60090.58472503593,
+          "p25ParesReal": 48650.98228177827,
+          "p75ParesReal": 66898.7954096811
         },
         {
           "anio": 2019,
           "valor": 50729.35769230769,
           "estado": "declarado",
           "medianaPares": 51711.341875,
+          "p25Pares": 41742.310000000005,
+          "p75Pares": 61693.901600000005,
+          "nPares": 53,
           "valorReal": 60122.446693067206,
-          "medianaParesReal": 61286.25586320195
+          "medianaParesReal": 61286.25586320195,
+          "p25ParesReal": 49471.34996351502,
+          "p75ParesReal": 73117.19444056303
         },
         {
           "anio": 2021,
           "valor": 47521.718653846154,
           "estado": "declarado",
           "medianaPares": 54506.58189215686,
+          "p25Pares": 44736.60281887755,
+          "p75Pares": 64719.908211764705,
+          "nPares": 56,
           "valorReal": 54807.90198435858,
-          "medianaParesReal": 62863.7070053855
+          "medianaParesReal": 62863.7070053855,
+          "p25ParesReal": 51595.76319767163,
+          "p75ParesReal": 74642.9734906062
         },
         {
           "anio": 2022,
           "valor": 72971.60480769232,
           "estado": "declarado",
           "medianaPares": 56965.494999999995,
+          "p25Pares": 47575.44039285714,
+          "p75Pares": 66415.23687908496,
+          "nPares": 55,
           "valorReal": 77645.09751852366,
-          "medianaParesReal": 60613.870643553535
+          "medianaParesReal": 60613.870643553535,
+          "p25ParesReal": 50622.426607242414,
+          "p75ParesReal": 70668.82464463483
         },
         {
           "anio": 2023,
           "valor": 84025.62769230768,
           "estado": "declarado",
           "medianaPares": 61927.37353682171,
+          "p25Pares": 49184.994383574696,
+          "p75Pares": 72389.58093030303,
+          "nPares": 48,
           "valorReal": 86356.55731551643,
-          "medianaParesReal": 63645.28214909747
+          "medianaParesReal": 63645.28214909747,
+          "p25ParesReal": 50549.42049468753,
+          "p75ParesReal": 74397.71848590688
         },
         {
           "anio": 2024,
           "valor": 81964.66115384616,
           "estado": "declarado",
           "medianaPares": 65308.06150943396,
+          "p25Pares": 55693.431136363644,
+          "p75Pares": 74786.06878787879,
+          "nPares": 49,
           "valorReal": 81964.66115384616,
-          "medianaParesReal": 65308.06150943396
+          "medianaParesReal": 65308.06150943396,
+          "p25ParesReal": 55693.431136363644,
+          "p75ParesReal": 74786.06878787879
         }
       ],
       "declaracion": {
@@ -5700,83 +6324,130 @@
           "valor": null,
           "estado": "no-se-presta",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2015,
           "valor": 1.033483698995284,
           "estado": "declarado",
           "medianaPares": 484.58183333333335,
+          "p25Pares": 2.0769585157525388,
+          "p75Pares": 6299.791695795548,
+          "nPares": 15,
           "atipico": true,
           "valorReal": 1.2760084676132282,
-          "medianaParesReal": 598.297315367426
+          "medianaParesReal": 598.297315367426,
+          "p25ParesReal": 2.564352641031579,
+          "p75ParesReal": 7778.146434094166
         },
         {
           "anio": 2016,
           "valor": 1.4958000136696057,
           "estado": "declarado",
           "medianaPares": 1245.4991333333332,
+          "p25Pares": 266.532,
+          "p75Pares": 5687.386086956522,
+          "nPares": 17,
           "atipico": true,
           "valorReal": 1.8505667806817072,
-          "medianaParesReal": 1540.9007223231833
+          "medianaParesReal": 1540.9007223231833,
+          "p25ParesReal": 329.746798155601,
+          "p75ParesReal": 7036.293398348514
         },
         {
           "anio": 2017,
           "valor": 1.3636571578947367,
           "estado": "declarado",
           "medianaPares": 2156.324617108704,
+          "p25Pares": 869.3708737864079,
+          "p75Pares": 5872.315189873418,
+          "nPares": 17,
           "atipico": true,
           "valorReal": 1.6547205893115666,
-          "medianaParesReal": 2616.577576344583
+          "medianaParesReal": 2616.577576344583,
+          "p25ParesReal": 1054.9322285838082,
+          "p75ParesReal": 7125.721296848635
         },
         {
           "anio": 2018,
           "valor": 2.881033789473684,
           "estado": "declarado",
           "medianaPares": 2323.438834951456,
+          "p25Pares": 1461.5480852272726,
+          "p75Pares": 6979.04086527742,
+          "nPares": 15,
           "atipico": true,
           "valorReal": 3.4383647367219345,
-          "medianaParesReal": 2772.9040135578575
+          "medianaParesReal": 2772.9040135578575,
+          "p25ParesReal": 1744.282005865319,
+          "p75ParesReal": 8329.124113360354
         },
         {
           "anio": 2019,
           "valor": 2847.885140341222,
           "estado": "declarado",
           "medianaPares": 2843.6013824884794,
+          "p25Pares": 1504.90200625,
+          "p75Pares": 7085.599370314843,
+          "nPares": 15,
           "valorReal": 3375.2018619409096,
-          "medianaParesReal": 3370.1249200109596
+          "medianaParesReal": 3370.1249200109596,
+          "p25ParesReal": 1783.55088187476,
+          "p75ParesReal": 8397.57469459901
         },
         {
           "anio": 2021,
           "valor": 2674.605228398459,
           "estado": "declarado",
           "medianaPares": 3642.339256521532,
+          "p25Pares": 462.9788125,
+          "p75Pares": 10426.746597633137,
+          "nPares": 20,
           "valorReal": 3084.684337127853,
-          "medianaParesReal": 4200.794470825746
+          "medianaParesReal": 4200.794470825746,
+          "p25ParesReal": 533.9642187852779,
+          "p75ParesReal": 12025.409049312018
         },
         {
           "anio": 2022,
           "valor": 4504.645734727574,
           "estado": "declarado",
           "medianaPares": 3653.73579109063,
+          "p25Pares": 61.9950826446281,
+          "p75Pares": 9335.843037974684,
+          "nPares": 21,
           "valorReal": 4793.1473931686605,
-          "medianaParesReal": 3887.740615733949
+          "medianaParesReal": 3887.740615733949,
+          "p25ParesReal": 65.96558004030156,
+          "p75ParesReal": 9933.760467671129
         },
         {
           "anio": 2023,
           "valor": 4081.215630159604,
           "estado": "declarado",
           "medianaPares": 6616.983544303797,
+          "p25Pares": 975.0865151515152,
+          "p75Pares": 11472.472765485434,
+          "nPares": 19,
           "valorReal": 4194.431403398184,
-          "medianaParesReal": 6800.543291291734
+          "medianaParesReal": 6800.543291291734,
+          "p25ParesReal": 1002.1360964016667,
+          "p75ParesReal": 11790.72717613322
         },
         {
           "anio": 2024,
           "valor": 4055.8746835443044,
           "estado": "declarado",
           "medianaPares": 6427.105715353007,
+          "p25Pares": 34.55965192711284,
+          "p75Pares": 10669.290476190476,
+          "nPares": 19,
           "valorReal": 4055.8746835443044,
-          "medianaParesReal": 6427.105715353007
+          "medianaParesReal": 6427.105715353007,
+          "p25ParesReal": 34.55965192711284,
+          "p75ParesReal": 10669.290476190476
         }
       ],
       "declaracion": {
@@ -5836,70 +6507,90 @@
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2015,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2016,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2017,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2018,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2019,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2021,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2022,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2023,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2024,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         }
       ],
       "declaracion": {
@@ -5955,70 +6646,90 @@
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2015,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2016,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2017,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2018,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2019,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2021,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2022,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2023,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         },
         {
           "anio": 2024,
           "valor": null,
           "estado": "no-declarado",
           "valorReal": null,
-          "medianaParesReal": null
+          "medianaParesReal": null,
+          "p25ParesReal": null,
+          "p75ParesReal": null
         }
       ],
       "declaracion": {

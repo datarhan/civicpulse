@@ -211,6 +211,15 @@ export function leerIndicador(i: Indicador): Lectura {
     donde =
       `Frente a ${i.pares.n} municipios valencianos de tamaño parecido que prestan el servicio ` +
       `de la misma forma, queda ${tramo(i.pares.percentil)} (mediana: ${fmt(i.pares.mediana, i.unidad)}).`
+    // Si la banda plausible cruza la mediana, el puesto no da para afirmar
+    // lado: decirlo es lo que separa un percentil de un ranking.
+    const banda = i.pares.percentilBanda
+    if (Array.isArray(banda) && banda[0] <= 50 && banda[1] >= 50) {
+      avisos.push(
+        `Con ${i.pares.n} comparables, la banda plausible del percentil (${banda[0]}–${banda[1]}) ` +
+          `cruza la mediana: la posición no se distingue con seguridad de la del grupo.`,
+      )
+    }
   } else if (i.modoGestion === 'concesion') {
     donde = null
   } else {
@@ -228,11 +237,19 @@ export function leerIndicador(i: Indicador): Lectura {
   if (limpios.length >= 2) {
     const a = limpios[0]
     const b = limpios[limpios.length - 1]
-    const cambio = a.valor! > 0 ? (b.valor! / a.valor! - 1) * 100 : 0
+    // En euros constantes cuando los hay: el gráfico de la misma tarjeta
+    // dibuja términos reales, y una frase que dijera «sube un 29 %» sobre un
+    // dibujo que sube un 5 % sería la página contradiciéndose a sí misma. La
+    // frase dice en qué unidad habla; sin índice, cae a corrientes y lo dice.
+    const enReales = typeof a.valorReal === 'number' && typeof b.valorReal === 'number'
+    const va = enReales ? a.valorReal! : a.valor!
+    const vb = enReales ? b.valorReal! : b.valor!
+    const cambio = va > 0 ? (vb / va - 1) * 100 : 0
     if (Math.abs(cambio) >= 10) {
       avisos.push(
         `Entre ${a.anio} y ${b.anio} ${cambio > 0 ? 'sube' : 'baja'} un ` +
-          `${Math.abs(Math.round(cambio))} %, de ${fmt(a.valor!, i.unidad)} a ${fmt(b.valor!, i.unidad)}.`,
+          `${Math.abs(Math.round(cambio))} % en euros ${enReales ? 'constantes' : 'corrientes'}, ` +
+          `de ${fmt(va, i.unidad)} a ${fmt(vb, i.unidad)}.`,
       )
     }
 

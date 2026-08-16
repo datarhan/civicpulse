@@ -198,8 +198,40 @@ export function enTerminosReales(puntos) {
       ...p,
       valor: typeof p.valorReal === 'number' ? p.valorReal : p.valor,
       medianaPares: typeof p.medianaParesReal === 'number' ? p.medianaParesReal : undefined,
+      // La banda viaja con la mediana: media comparación deflactada contra
+      // media sin deflactar dibujaría una anchura que no le ha pasado a nadie.
+      p25Pares: typeof p.p25ParesReal === 'number' ? p.p25ParesReal : undefined,
+      p75Pares: typeof p.p75ParesReal === 'number' ? p.p75ParesReal : undefined,
     })),
   }
+}
+
+/**
+ * Tramos contiguos de la banda intercuartílica de los pares.
+ *
+ * Sólo entran años con los DOS cuartiles declarados, y el tramo se corta en el
+ * hueco del calendario igual que la línea: interpolar la banda a través de
+ * 2020 afirmaría una anchura que nadie midió ese año. El `atipico` propio NO
+ * corta la banda — es una propiedad de nuestra entrega, no de la de los pares,
+ * la misma razón por la que `serieMediana` lo ignora.
+ */
+export function bandaSerie(puntos) {
+  const conBanda = puntos.filter(
+    (p) => typeof p.p25Pares === 'number' && typeof p.p75Pares === 'number',
+  )
+  const tramos = []
+  let actual = []
+  let prev = null
+  for (const p of conBanda) {
+    if (prev !== null && p.anio - prev > 1) {
+      if (actual.length >= 2) tramos.push(actual)
+      actual = []
+    }
+    actual.push(p)
+    prev = p.anio
+  }
+  if (actual.length >= 2) tramos.push(actual)
+  return tramos
 }
 
 /**
@@ -233,6 +265,11 @@ export function escalaSerie(puntos) {
   const valores = [
     ...limpios.map((p) => p.valor),
     ...limpios.filter((p) => typeof p.medianaPares === 'number').map((p) => p.medianaPares),
+    // La banda entra en la escala: un p75 recortado por arriba diría que la
+    // mitad central del grupo acaba donde acaba la caja, no donde acaba el
+    // grupo. Comprime la línea propia — ése es el precio de enseñar contexto.
+    ...limpios.filter((p) => typeof p.p75Pares === 'number').map((p) => p.p75Pares),
+    ...limpios.filter((p) => typeof p.p25Pares === 'number').map((p) => p.p25Pares),
   ]
   if (!valores.length) return null
   const min = Math.min(...valores)
@@ -268,6 +305,7 @@ export function SerieServicio({ puntos, formatea, unidad }) {
   const mediana = serieMediana(puntos)
   const tramosMediana = tramosSerie(mediana)
   const puentesMediana = puentesHueco(mediana)
+  const bandas = bandaSerie(puntos)
   const atipicos = puntos.filter((p) => p.atipico)
   const huecos = huecosSerie(puntos)
   const ultimo = limpios[limpios.length - 1]
@@ -346,9 +384,39 @@ export function SerieServicio({ puntos, formatea, unidad }) {
             (huecos.length
               ? ` Sin entrega de ${huecos.map(nombraHueco).join(' ni ')}: ese tramo va punteado porque nadie lo midió.`
               : '') +
-            (conMediana.length >= 2 ? ' Al fondo, la mediana de los municipios comparables.' : '')
+            (bandas.length
+              ? ' Al fondo, la mitad central de los municipios comparables como banda sombreada, y su mediana punteada.'
+              : conMediana.length >= 2
+                ? ' Al fondo, la mediana de los municipios comparables.'
+                : '')
           }
         >
+          {/* La banda intercuartílica de los pares, LO PRIMERO: es contexto,
+              no dato propio, y todo lo demás se dibuja encima. Sin relleno
+              entre p25 y p75, «cerca de la mediana» no decía si el grupo era
+              estrecho o abarcaba media escala. */}
+          {bandas.map((t) => (
+            <path
+              key={`b${t[0].anio}`}
+              d={
+                t
+                  .map(
+                    (p, idx) =>
+                      `${idx === 0 ? 'M' : 'L'}${px(p.anio).toFixed(2)},${py(p.p75Pares).toFixed(2)}`,
+                  )
+                  .join(' ') +
+                ' ' +
+                [...t]
+                  .reverse()
+                  .map((p) => `L${px(p.anio).toFixed(2)},${py(p.p25Pares).toFixed(2)}`)
+                  .join(' ') +
+                ' Z'
+              }
+              fill="var(--civic)"
+              opacity="0.08"
+              stroke="none"
+            />
+          ))}
           {/* El puente de la mediana, con el mismo criterio que el de la
               serie: más fino y punteado corto, para que se distinga del rayado
               largo de los tramos que sí están medidos. */}
@@ -487,7 +555,11 @@ export function SerieServicio({ puntos, formatea, unidad }) {
       >
         <span>{x0}</span>
         <span>
-          {conMediana.length >= 2 ? '- - - mediana de comparables · ' : ''}
+          {bandas.length
+            ? 'banda: mitad central de comparables · - - - su mediana · '
+            : conMediana.length >= 2
+              ? '- - - mediana de comparables · '
+              : ''}
           {unidad}
         </span>
         <span>{x1}</span>

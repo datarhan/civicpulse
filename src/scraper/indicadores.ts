@@ -29,6 +29,7 @@
  * Módulo puro: sin red, sin lectura de ficheros. Los CLIs le pasan los datos.
  */
 import { programaCe4CasaCon, type Ce4Row, type CesteRow, type ModoGestion } from './coste-efectivo'
+import { crearPrng, semillaDesde } from './prng'
 import { SERVICIOS, type ServicioDef } from './indicador-registry'
 import { medirDeclaracionCongelada } from './declaracion-congelada'
 
@@ -87,11 +88,26 @@ export interface ParesResumen {
   /** Siempre el mismo que el del municipio: nunca se compara entre modos. */
   modoGestion: ModoGestion
   percentil: number
+  /**
+   * Banda plausible del percentil [2,5 %, 97,5 %], por bootstrap sembrado
+   * sobre la propia muestra de pares (B = `BOOTSTRAP_B` remuestreos).
+   *
+   * Con treinta o cincuenta comparables, «percentil 85» aparenta una precisión
+   * que la muestra no tiene: quitar tres municipios y volver a mirar puede
+   * moverlo diez puestos. La banda dice cuánto. La semilla se deriva de
+   * conjunto+programa+entrega, así que la misma entrada produce el mismo
+   * intervalo hasta el último dígito — un snapshot que cambia sin que cambie
+   * ningún dato es indistinguible de una revisión del ministerio.
+   */
+  percentilBanda: [number, number]
   p25: number
   mediana: number
   p75: number
   miembros: ParMiembro[]
 }
+
+/** Remuestreos del bootstrap del percentil. */
+export const BOOTSTRAP_B = 2000
 
 export interface PuntoSerie {
   anio: number
@@ -124,6 +140,18 @@ export interface PuntoSerie {
    * ambas deja de significar nada. Van juntas o no va ninguna.
    */
   medianaParesReal?: number | null
+  /**
+   * Los cuartiles de la banda de pares de ESE año, con su tamaño. Sólo cuando
+   * ese año llega al mínimo de comparables — el mismo umbral que la mediana.
+   * Es lo que permite dibujar la banda detrás de la serie: «cerca de la
+   * mediana» no dice nada sin saber cuánta anchura tenía el grupo.
+   */
+  p25Pares?: number
+  p75Pares?: number
+  nPares?: number
+  /** Los mismos cuartiles en euros constantes, con el factor de `valorReal`. */
+  p25ParesReal?: number | null
+  p75ParesReal?: number | null
 }
 
 export interface DeclaracionMagnitud {
@@ -352,12 +380,21 @@ function percentil(ordenados: number[], q: number): number {
 }
 
 /** Mediana de los pares que declaran las dos celdas ese año, o null. */
-function medianaDePares(
+/**
+ * La banda de pares de UN año: cuartiles y tamaño, o nada.
+ *
+ * Devolvía sólo la mediana, y la serie histórica dibujaba una línea de
+ * comparación sin decir cuánta anchura tenía el grupo alrededor: estar «cerca
+ * de la mediana» significa cosas distintas cuando el rango intercuartílico es
+ * estrecho y cuando abarca media escala. Mismo umbral de siempre: por debajo
+ * de quince comparables no hay banda, ni mediana, ni nada que se le parezca.
+ */
+function bandaDePares(
   pares: ConstruirInput['pares'],
   programa: string,
   anio: number,
   atributo: string,
-): number | null {
+): { n: number; p25: number; mediana: number; p75: number } | null {
   const vals: number[] = []
   for (const m of pares.miembros) {
     const suyas = pares.filas.filter((f) => f.ine === m.ine)
@@ -367,7 +404,12 @@ function medianaDePares(
   }
   if (vals.length < MIN_PARES) return null
   vals.sort((a, b) => a - b)
-  return percentil(vals, 0.5)
+  return {
+    n: vals.length,
+    p25: percentil(vals, 0.25),
+    mediana: percentil(vals, 0.5),
+    p75: percentil(vals, 0.75),
+  }
 }
 
 export interface ConstruirInput {
@@ -514,6 +556,37 @@ function deflactor(
   return base / origen
 }
 
+/**
+ * Banda plausible [2,5 %, 97,5 %] del percentil propio, por bootstrap.
+ *
+ * Remuestrea la muestra de pares con reemplazo `BOOTSTRAP_B` veces y calcula en
+ * cada réplica qué percentil ocuparía el valor propio. No modela nada: la
+ * anchura sale de la propia muestra, que es lo único que hay. La semilla es una
+ * función del conjunto, el programa y la entrega — reproducible por cualquiera
+ * con la misma entrada, sin estado que guardar.
+ */
+function bandaBootstrap(
+  muestraOrdenada: number[],
+  valorPropio: number,
+  conjunto: string,
+  programa: string,
+  entrega: number,
+): [number, number] {
+  const prng = crearPrng(semillaDesde(`${conjunto}:${programa}:${entrega}`))
+  const n = muestraOrdenada.length
+  const pcts: number[] = []
+  for (let b = 0; b < BOOTSTRAP_B; b++) {
+    let debajo = 0
+    for (let i = 0; i < n; i++) {
+      if (muestraOrdenada[prng.entero(n)] <= valorPropio) debajo++
+    }
+    pcts.push(Math.round((100 * debajo) / n))
+  }
+  pcts.sort((a, b) => a - b)
+  const en = (p: number) => pcts[Math.min(pcts.length - 1, Math.floor(pcts.length * p))]
+  return [en(0.025), en(0.975)]
+}
+
 export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot {
   const { municipio, pares, citaUrl } = input
   const aniosDisponibles = [...new Set(municipio.filas.map((f) => f.anio))].sort((a, b) => a - b)
@@ -555,10 +628,13 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
         estado: ok ? 'declarado' : n.estado === 'no-se-presta' ? 'no-se-presta' : 'no-declarado',
       }
       if (valor !== null) {
-        const mediana = medianaDePares(pares, programa, anio, def.denominador)
-        if (mediana !== null && mediana > 0) {
-          punto.medianaPares = mediana
-          const razon = valor / mediana
+        const banda = bandaDePares(pares, programa, anio, def.denominador)
+        if (banda !== null && banda.mediana > 0) {
+          punto.medianaPares = banda.mediana
+          punto.p25Pares = banda.p25
+          punto.p75Pares = banda.p75
+          punto.nPares = banda.n
+          const razon = valor / banda.mediana
           if (razon > ATIPICO_FACTOR || razon < 1 / ATIPICO_FACTOR) punto.atipico = true
         }
       }
@@ -568,6 +644,10 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       punto.valorReal = valor !== null && factor !== null ? valor * factor : null
       punto.medianaParesReal =
         punto.medianaPares !== undefined && factor !== null ? punto.medianaPares * factor : null
+      punto.p25ParesReal =
+        punto.p25Pares !== undefined && factor !== null ? punto.p25Pares * factor : null
+      punto.p75ParesReal =
+        punto.p75Pares !== undefined && factor !== null ? punto.p75Pares * factor : null
       return punto
     })
 
@@ -597,6 +677,7 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
           n: miembros.length,
           modoGestion,
           percentil: Math.round((100 * orden.filter((v) => v <= valor!).length) / orden.length),
+          percentilBanda: bandaBootstrap(orden, valor!, pares.conjunto, programa, anioBase),
           p25: percentil(orden, 0.25),
           mediana: percentil(orden, 0.5),
           p75: percentil(orden, 0.75),

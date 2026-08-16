@@ -264,6 +264,41 @@ describe('scraper/indicadores', () => {
   })
 })
 
+describe('scraper/indicadores · banda plausible del percentil', () => {
+  const comparables = snap.indicadores.filter((i) => i.pares)
+
+  it('todo indicador comparable la publica, dentro de rango y conteniendo al puesto', () => {
+    expect(comparables.length).toBeGreaterThan(3)
+    for (const i of comparables) {
+      const banda = i.pares!.percentilBanda
+      expect(Array.isArray(banda), `${i.id} sin percentilBanda`).toBe(true)
+      const [lo, hi] = banda
+      expect(lo).toBeGreaterThanOrEqual(0)
+      expect(hi).toBeLessThanOrEqual(100)
+      expect(lo).toBeLessThanOrEqual(i.pares!.percentil)
+      expect(hi).toBeGreaterThanOrEqual(i.pares!.percentil)
+      // Una banda de anchura cero con n<100 sería el bootstrap sin remuestrear.
+      expect(hi - lo, `${i.id}: banda degenerada`).toBeGreaterThan(0)
+    }
+  })
+
+  it('es determinista: la misma entrada produce el mismo intervalo', () => {
+    // La semilla se deriva de conjunto+programa+entrega. Un snapshot que
+    // cambiara sin que cambie ningún dato sería indistinguible de una revisión
+    // del ministerio, que es justo lo que check:eficiencia-findings vigila.
+    const otra = construirIndicadores({
+      municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: mias },
+      pares: { conjunto: 'cv-15k-40k', anios: [2021], miembros, filas: rows },
+      anioBase: 2021,
+      citaUrl: CITA,
+    })
+    for (const i of snap.indicadores) {
+      const gemela = otra.indicadores.find((x) => x.id === i.id)!
+      expect(gemela.pares?.percentilBanda).toEqual(i.pares?.percentilBanda)
+    }
+  })
+})
+
 describe('scraper/indicadores · CE4 supramunicipal', () => {
   const supra = (anio: number, programa: string) => ({
     anio,

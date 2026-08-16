@@ -50,6 +50,10 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
     (i.serie ?? []).some((p) => typeof p.valorReal === 'number'),
   ).length
 
+  // Con banda plausible en algún percentil, la regla de solapamiento se dice
+  // UNA vez aquí — repetirla en cada tarjeta sería decoración.
+  const conBanda = conRatio.some((i) => Array.isArray(i.pares?.percentilBanda))
+
   // El adaptador ya distingue «no hemos podido bajar la entrega» de «el
   // ayuntamiento no la presentó» —comprueba que el libro esté y que el
   // municipio no figure en él— y lo publica en `entregasNoPresentadas`. Ese
@@ -148,6 +152,20 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
           otros municipios, en cambio, va sin deflactar y a propósito —es de un año contra ese mismo
           año, así que corregirla movería todas las cifras por igual sin cambiar ninguna posición, y
           dejarían de coincidir con la celda del ministerio que citan.
+        </p>
+      )}
+      {conBanda && (
+        <p
+          style={{
+            margin: '10px 0 0',
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70, var(--ink50))',
+          }}
+        >
+          Cada percentil lleva al lado su <strong>banda plausible</strong>, calculada remuestreando
+          la propia muestra de comparables: con treinta o cincuenta municipios, un puesto exacto
+          aparenta una precisión que la muestra no tiene. La regla de lectura es una: cuando las
+          bandas de dos municipios se solapan, la diferencia entre ellos no se distingue del ruido.
         </p>
       )}
       {noPresentadas.length > 0 && (

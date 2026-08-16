@@ -110,6 +110,24 @@ export function BandaPares({ indicador, formatea }) {
         <span>p75 {formatea(p.p75)}</span>
       </div>
 
+      {/* La banda plausible, al lado del puesto y no en una nota: con treinta
+          o cincuenta comparables, «percentil 85» aparenta una precisión que la
+          muestra no tiene, y el intervalo es lo que dice cuánta. Sale del
+          snapshot (bootstrap sembrado); si el campo falta, la línea no sale. */}
+      {Array.isArray(p.percentilBanda) && (
+        <div
+          className="mono"
+          style={{
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--ink50)',
+            marginTop: 3,
+            textAlign: 'right',
+          }}
+        >
+          banda plausible del percentil: {p.percentilBanda[0]}–{p.percentilBanda[1]}
+        </div>
+      )}
+
       <details style={{ marginTop: 8 }}>
         <summary style={{ cursor: 'pointer', fontSize: 'var(--fs-meta)', color: 'var(--civic)' }}>
           {t('eficiencia.pares.ver')}
