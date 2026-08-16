@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-15T08:15:22.009Z",
+  "generatedAt": "2026-08-16T08:16:22.102Z",
   "source": {
     "description": "Press claims extracted by the laboratory pipeline",
     "contract": "src/scraper/press-claim.ts"
@@ -7,8 +7,8 @@
   "stats": {
     "total": 51,
     "byType": {
-      "promesa": 3,
-      "afirmacion_numerica": 26,
+      "promesa": 2,
+      "afirmacion_numerica": 27,
       "cita_obra": 2,
       "cita_convenio": 0,
       "acusacion_publica": 0,
@@ -17,8 +17,8 @@
     "bySource": {
       "Periòdic del Camp de Túria": 18,
       "Ayuntamiento de Riba-roja de Túria": 30,
-      "elperiodicodeaqui.com": 2,
-      "Las Provincias": 1
+      "El Periódico de Aquí": 2,
+      "Valencia Plaza": 1
     },
     "byTopic": {
       "fiscal": 8,
@@ -43,10 +43,10 @@
       "unspecified": 0
     },
     "articlesProcessed": 25,
-    "articlesAvailable": 153,
+    "articlesAvailable": 152,
     "llmUnavailable": 0,
-    "windowFrom": "2026-08-03T17:35:23.000Z",
-    "windowTo": "2026-08-13T12:27:03.000Z"
+    "windowFrom": "2026-08-05T07:00:00.000Z",
+    "windowTo": "2026-08-15T16:40:25.000Z"
   },
   "items": [
     {
@@ -629,7 +629,7 @@
       "id": "1xuqiyg-0-num",
       "articleId": "1xuqiyg",
       "articleFingerprint": "1eha1zw",
-      "articleSource": "elperiodicodeaqui.com",
+      "articleSource": "El Periódico de Aquí",
       "articleSourceHost": "elperiodicodeaqui.com",
       "articleUrl": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOLXhoazFWTng1cVdzSEpxYWN1TzdKUjd1UzJTTEI4eEQzUXprOUV3WDhWdE5MdXhNcGduZkN1V3NFaEZOUlRqTjFUdURRcnN5OEc3aGZUc045YmF5MGVmc1dLUE4yTXkxTWJTZFpRMDg0c090Y21LU25nVVYzcERCbDM2YzU5a21Rc0RYVXRhM2pxbDRyU0hmbHExYWlla3ZQSng1T2dR?oc=5",
       "articleDate": "2026-08-11T09:42:46.000Z",
@@ -653,7 +653,7 @@
       "id": "1xuqiyg-1-num",
       "articleId": "1xuqiyg",
       "articleFingerprint": "1eha1zw",
-      "articleSource": "elperiodicodeaqui.com",
+      "articleSource": "El Periódico de Aquí",
       "articleSourceHost": "elperiodicodeaqui.com",
       "articleUrl": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOLXhoazFWTng1cVdzSEpxYWN1TzdKUjd1UzJTTEI4eEQzUXprOUV3WDhWdE5MdXhNcGduZkN1V3NFaEZOUlRqTjFUdURRcnN5OEc3aGZUc045YmF5MGVmc1dLUE4yTXkxTWJTZFpRMDg0c090Y21LU25nVVYzcERCbDM2YzU5a21Rc0RYVXRhM2pxbDRyU0hmbHExYWlla3ZQSng1T2dR?oc=5",
       "articleDate": "2026-08-11T09:42:46.000Z",
@@ -767,6 +767,31 @@
       "requiresHumanApproval": true
     },
     {
+      "id": "plfgoc-0-num",
+      "articleId": "plfgoc",
+      "articleFingerprint": "18f1xjw",
+      "articleSource": "Valencia Plaza",
+      "articleSourceHost": "valenciaplaza.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTQ1ZHFLLTNRRXdudEs2RHpkMXdKam1SUjdjM21jRkx3TFZEcVd1eFJ5cloycFVpNHFFeG1UeXYyVHpFcXVyaEsxRVgzajlLdnI2ZmVoT3ZpMDJXa1h2WUN3REplYjJIN3QydlB2TWFWYTBpdnZ4QU5oY1VXTWlITUlCSDQwaGhCY0RocnZYTUR0THVERkJqOWpTMmtzMmNmRDhXaWlIcGNCZmNOaXM1d1BTVUZ4TmhUSm5DTGdmODlyeWw2bUY4UUc2OUN6MUZIZnRjNlZqSGRxeTd1QTVVUFd4bHpJNjhG?oc=5",
+      "articleDate": "2026-08-10T13:17:56.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "Riba-roja adjudica el contrato para el suministro de agua potable por 55,6 millones para 17 años",
+      "context": "Riba-roja adjudica el contrato para el suministro de agua potable por 55,6 millones para 17 años",
+      "topic": "urbanismo",
+      "entities": {
+        "amountEuros": 55600000,
+        "count": 17,
+        "countUnit": "años",
+        "referencedEntity": "contrato de suministro de agua potable de Riba-roja de Túria"
+      },
+      "confidence": 0.75,
+      "reasoning": "El titular afirma una cifra económica concreta (55,6 millones de euros) y una duración concreta (17 años) para un contrato municipal, dato verificable en el expediente de contratación.",
+      "requiresHumanApproval": true
+    },
+    {
       "id": "neb0p4-0-num",
       "articleId": "neb0p4",
       "articleFingerprint": "1l02fsd",
@@ -789,28 +814,6 @@
       },
       "confidence": 0.7,
       "reasoning": "El titular aporta cifras concretas y verificables (importe de adjudicación y duración del contrato) sobre un contrato municipal público.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "1nvgd1s-0-pro",
-      "articleId": "1nvgd1s",
-      "articleFingerprint": "ylq0ky",
-      "articleSource": "Las Provincias",
-      "articleSourceHost": "lasprovincias.es",
-      "articleUrl": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOLWVOZXpiUi1EeG9vbHRiX1J5NXEyaFNQWmdtT0x3NEFyUDU2Rm1zdTJzZHNYSDI3X3JndUd4d2RXa1h1X0ZpMDl1ajN3UFhzQV8zY2dvWVZjdjlKcUxlLVBDcnNUMEVkWnVQWGZzS2JaQXREQjVZcl9JLXlqaHcxUWhJM2RuZ0Vma1hUa3hqZmFOTlh2VmZ1cUlvNFhvb3ppSGpPLS1YcmJDcXUzc056UnAzU0FOSThKZGtuV20zaEMxNE1nS1HSAcsBQVVfeXFMTnB5ZlExbmphR0xLVUxzb2FHTk1iVHlnd0RQWEVJVUNqcVlrRjFQTVQyUThHQXExZ0d4Q2VyVjhQTTlsZW9vNHdLOWlSR2tQSWJtYm1MZFdnMndaM2dMNjZLUFJHQmRtdnV0QktWUUtPQVM3LXg1WDEwYVFkdE93VFMxNDJhbXNOajBGWkt0Qm1YMmlPZjRHTzZyWVE3TEhtSWdsWUw1TGhNWFhvQVZuZzlpZE1HVkhQM3RxU3lQMHJyM0JKUzlzSWllMUE?oc=5",
-      "articleDate": "2026-08-10T10:53:44.000Z",
-      "segmentIndex": 0,
-      "segmentKind": "title",
-      "type": "promesa",
-      "attributedSource": "outlet",
-      "verbatim": "Riba-roja garantizará el suministro de agua a los polígonos con el desarrollo de un anillo circular",
-      "context": "Titular: Riba-roja garantizará el suministro de agua a los polígonos con el desarrollo de un anillo circular (Las Provincias, 10/08/2026)",
-      "topic": "urbanismo",
-      "entities": {
-        "referencedEntity": "anillo circular de abastecimiento de agua a los polígonos industriales"
-      },
-      "confidence": 0.4,
-      "reasoning": "El titular anuncia un compromiso de infraestructura futura (anillo circular de agua) cuya ejecución real puede verificarse posteriormente, pero no se dispone del cuerpo del artículo para confirmar detalles, plazos o fuente exacta.",
       "requiresHumanApproval": true
     },
     {

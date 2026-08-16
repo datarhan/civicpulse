@@ -1,10 +1,129 @@
 {
   "version": "1",
-  "generatedAt": "2026-08-15",
+  "generatedAt": "2026-08-16",
   "legalNotice": "Auditoría editorial automatizada. Los lotes con ≥1 veredicto contradicho se mantienen en editorial/press-auto-curation-queue.md hasta revisión humana; los medios afectados pueden ejercer derecho de réplica mediante el formulario .github/ISSUE_TEMPLATE/press-finding-response.yml.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues",
   "methodologyUrl": "/metodologia#laboratorio-prensa",
   "items": [
+    {
+      "id": "pf-2026-08-16-1xuqiyg+",
+      "sourceClaimIds": [
+        "1xuqiyg-0-num",
+        "1xuqiyg-1-num",
+        "fmuqqw-0-num",
+        "fmuqqw-1-num"
+      ],
+      "articleIds": [
+        "1xuqiyg",
+        "fmuqqw"
+      ],
+      "articleFingerprints": [
+        "1xuqiyg+fmuqqw"
+      ],
+      "attributedOutlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "El Periódico de Aquí"
+      ],
+      "earliestArticleDate": "2026-08-11",
+      "latestArticleDate": "2026-08-11",
+      "title": "Auditoría · Ayuntamiento de Riba-roja de Túria: una dotación económica de 6.000 euros para las personas, entidades y empresas ga",
+      "summary": "Los datos municipales contrastan con la cobertura citada. Veredictos del lote: 2 verificado · 2 sin-datos. Cobertura: 2 medio(s) — Ayuntamiento de Riba-roja de Túria, El Periódico de Aquí. Lote auto-curado por el laboratorio: el contraste es determinista y no lo ha revisado una persona.",
+      "severity": "informational",
+      "quotes": [
+        {
+          "text": "una dotación económica de 6.000 euros para las personas, entidades y empresas galardonadas",
+          "outlet": "Ayuntamiento de Riba-roja de Túria",
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-convoca-la-10%C2%AA-edici%C3%B3n-de-los-premios-ecoriba-con-una-dotaci%C3%B3n-econ%C3%B3mica-de-6.000-euros-para-las-personas%2C-entidades-y-empresas-galardonadas",
+          "sourceClaimId": "fmuqqw-1-num"
+        },
+        {
+          "text": "con 6.000 euros en premios",
+          "outlet": "El Periódico de Aquí",
+          "articleUrl": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOLXhoazFWTng1cVdzSEpxYWN1TzdKUjd1UzJTTEI4eEQzUXprOUV3WDhWdE5MdXhNcGduZkN1V3NFaEZOUlRqTjFUdURRcnN5OEc3aGZUc045YmF5MGVmc1dLUE4yTXkxTWJTZFpRMDg0c090Y21LU25nVVYzcERCbDM2YzU5a21Rc0RYVXRhM2pxbDRyU0hmbHExYWlla3ZQSng1T2dR?oc=5",
+          "sourceClaimId": "1xuqiyg-1-num"
+        },
+        {
+          "text": "la décima edición de los Premios EcoRiba",
+          "outlet": "El Periódico de Aquí",
+          "articleUrl": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOLXhoazFWTng1cVdzSEpxYWN1TzdKUjd1UzJTTEI4eEQzUXprOUV3WDhWdE5MdXhNcGduZkN1V3NFaEZOUlRqTjFUdURRcnN5OEc3aGZUc045YmF5MGVmc1dLUE4yTXkxTWJTZFpRMDg0c090Y21LU25nVVYzcERCbDM2YzU5a21Rc0RYVXRhM2pxbDRyU0hmbHExYWlla3ZQSng1T2dR?oc=5",
+          "sourceClaimId": "1xuqiyg-0-num"
+        },
+        {
+          "text": "convoca la 10ª edición de los Premios EcoRiba",
+          "outlet": "Ayuntamiento de Riba-roja de Túria",
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-convoca-la-10%C2%AA-edici%C3%B3n-de-los-premios-ecoriba-con-una-dotaci%C3%B3n-econ%C3%B3mica-de-6.000-euros-para-las-personas%2C-entidades-y-empresas-galardonadas",
+          "sourceClaimId": "fmuqqw-0-num"
+        }
+      ],
+      "crossChecked": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RkaNtWp7zg3nSoTX3z%2F7wA%3D%3D",
+          "snippet": "Lote nº 3: Instalación, riego y drenaje · Ayuntamiento de Riba-roja de Túria · Turia-regs, S.L. · textile · 6000 €"
+        },
+        {
+          "kind": "bdns",
+          "ref": "bdns:",
+          "snippet": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la convocatoria de subvenciones destinadas a la concesión de los premios EcoRiba 2026 · LOCAL · RIBA-ROJA D · importe no publicado"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "relatedPlenoItems": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-08-16",
+      "response": null
+    },
+    {
+      "id": "pf-2026-08-16-plfgoc+r",
+      "sourceClaimIds": [
+        "plfgoc-0-num",
+        "rlu040-0-dat"
+      ],
+      "articleIds": [
+        "plfgoc",
+        "rlu040"
+      ],
+      "articleFingerprints": [
+        "plfgoc+rlu040"
+      ],
+      "attributedOutlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Valencia Plaza"
+      ],
+      "earliestArticleDate": "2026-08-10",
+      "latestArticleDate": "2026-08-10",
+      "title": "Auditoría · Valencia Plaza: Riba-roja adjudica el contrato para el suministro de agua potable por 55,6 millo",
+      "summary": "Los datos municipales contrastan con la cobertura citada. Veredictos del lote: 1 verificado · 1 sin-datos. Cobertura: 2 medio(s) — Ayuntamiento de Riba-roja de Túria, Valencia Plaza. Lote auto-curado por el laboratorio: el contraste es determinista y no lo ha revisado una persona.",
+      "severity": "informational",
+      "quotes": [
+        {
+          "text": "Riba-roja adjudica el contrato para el suministro de agua potable por 55,6 millones para 17 años",
+          "outlet": "Valencia Plaza",
+          "articleUrl": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTQ1ZHFLLTNRRXdudEs2RHpkMXdKam1SUjdjM21jRkx3TFZEcVd1eFJ5cloycFVpNHFFeG1UeXYyVHpFcXVyaEsxRVgzajlLdnI2ZmVoT3ZpMDJXa1h2WUN3REplYjJIN3QydlB2TWFWYTBpdnZ4QU5oY1VXTWlITUlCSDQwaGhCY0RocnZYTUR0THVERkJqOWpTMmtzMmNmRDhXaWlIcGNCZmNOaXM1d1BTVUZ4TmhUSm5DTGdmODlyeWw2bUY4UUc2OUN6MUZIZnRjNlZqSGRxeTd1QTVVUFd4bHpJNjhG?oc=5",
+          "sourceClaimId": "plfgoc-0-num"
+        },
+        {
+          "text": "adjudica el contrato para el servicio de suministro de agua potable por un valor de 55’6 millones de euros",
+          "outlet": "Ayuntamiento de Riba-roja de Túria",
+          "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-adjudica-el-contrato-para-el-servicio-de-suministro-de-agua-potable-por-un-valor-de-55%E2%80%996-millones-de-euros-y-un-periodo-de-17-a%C3%B1os-de-vigencia",
+          "sourceClaimId": "rlu040-0-dat"
+        }
+      ],
+      "crossChecked": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
+          "snippet": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-pr…"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "relatedPlenoItems": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-08-16",
+      "response": null
+    },
     {
       "id": "pf-2026-08-15-1xuqiyg+",
       "sourceClaimIds": [

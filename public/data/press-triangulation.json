@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T05:15:18.546Z",
+  "generatedAt": "2026-08-16T08:16:29.313Z",
   "clusters": [
     {
       "clusterId": "1urv1oi",
@@ -38,9 +38,14 @@
       ],
       "earliestDate": "2026-08-10T09:09:31.000Z",
       "latestDate": "2026-08-10T13:17:56.000Z",
-      "amountDrift": null,
+      "amountDrift": {
+        "min": 55600000,
+        "max": 55600000,
+        "spread": 0,
+        "spreadPct": 0
+      },
       "verdictMix": {
-        "verificado": 0,
+        "verificado": 1,
         "parcial": 0,
         "contradicho": 0,
         "sin-datos": 2,

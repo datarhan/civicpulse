@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T05:15:18.540Z",
+  "generatedAt": "2026-08-16T08:16:29.301Z",
   "windowDays": 30,
   "articles": [
     {
@@ -233,12 +233,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": false,
+        "municipalSourceMatch": true,
         "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 3
+      "score": 6
     },
     {
       "articleId": "neb0p4",
@@ -1036,15 +1036,15 @@
       "outletHost": "valenciaplaza.com",
       "articleCount": 1,
       "verdictCounts": {
-        "verificado": 0,
+        "verificado": 1,
         "parcial": 0,
         "contradicho": 0,
         "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3,
-      "verifiedRatio": null,
-      "contradictedRatio": null
+      "meanTrustScore": 6,
+      "verifiedRatio": 1,
+      "contradictedRatio": 0
     },
     {
       "outlet": "Valenciabonita",
@@ -1061,11 +1061,5 @@
       "verifiedRatio": null,
       "contradictedRatio": null
     }
-  ],
-  "builtFrom": {
-    "plenos-agendas.json": "322e8c1813d4",
-    "press-claims-verified.json": "c8e17ee14c3c",
-    "press.json": "9b5b85071242",
-    "promises.json": "973df30a62ce"
-  }
+  ]
 }
