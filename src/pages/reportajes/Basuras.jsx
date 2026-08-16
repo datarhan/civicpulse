@@ -514,7 +514,7 @@ export default function Basuras() {
         </div>
         <p>
           El estado de la flota devuelta no lo describe este reportaje, sino la primera teniente de
-          alcalde de Parla, en la nota oficial con la que su ayuntamiento despidió el contrato:
+          alcalde de Parla, el día en que su ayuntamiento despedía el contrato:
         </p>
         <Cita fuente={data.parla.quien}>«{data.parla.citaVehiculos}»</Cita>
         <p>Y el criterio, en la misma nota: «{data.parla.citaObligacion}».</p>
@@ -741,11 +741,10 @@ export default function Basuras() {
         </p>
         <p>
           Sobre ese presupuesto, la adjudicación de {eur(d.adjudicadoSinIva)} sin IVA supone una
-          baja de {eur(d.bajaEuros)}. El Ayuntamiento anunció «un ahorro de 731.000 euros». No hemos
-          conseguido reproducir esa cifra con ninguna de las combinaciones publicadas —salen{' '}
-          {eur(d.bajaEuros)}, {eur(722480.64)} o {eur(931081.76)} según qué se compare con qué—, y
-          lo hacemos constar como discrepancia aritmética, no como reproche: puede haber un criterio
-          de cálculo que no conocemos.
+          baja de {eur(d.bajaEuros)}. El Ayuntamiento anunció un ahorro «de hasta 731.000 euros» por
+          los dos lotes; la lectura más cercana que encontramos —sumar las bajas de ambos, con IVA—
+          da {eur(d.ahorroDosLotesConIva)}. Cerca, pero no exacto, y lo hacemos constar como
+          aritmética, no como reproche: puede haber un redondeo o un criterio que no conocemos.
         </p>
         <p>
           Hay además un gasto que no estaba en el contrato. Tras la caída del servicio, el
