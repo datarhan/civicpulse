@@ -42,6 +42,14 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
         ? `${anios[0]}`
         : `${anios[0]}-${anios[anios.length - 1]}`
 
+  // Derivado, no afirmado: si algún día se recompone el panel sin ipc.json, el
+  // párrafo que promete euros constantes desaparece solo en vez de quedarse
+  // mintiendo. Es el mismo motivo por el que la lista de comparados de
+  // PanelMunicipal se calcula en vez de escribirse.
+  const deflactadas = conRatio.filter((i) =>
+    (i.serie ?? []).some((p) => typeof p.valorReal === 'number'),
+  ).length
+
   const filas = [
     { n: universe.conRatio, k: 'conRatio' },
     { n: universe.enConcesion, k: 'concesion' },
@@ -116,6 +124,23 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
             La medición completa
           </a>
           .
+        </p>
+      )}
+      {deflactadas > 0 && (
+        <p
+          style={{
+            margin: '10px 0 0',
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70, var(--ink50))',
+          }}
+        >
+          Las series van en <strong>euros constantes</strong> de la entrega que titula cada tarjeta,
+          deflactadas con el IPC general del INE. En euros corrientes no se pueden leer: entre la
+          primera entrega y la última el nivel de precios subió lo suficiente como para que un
+          servicio que costara lo mismo en términos reales apareciera subiendo. La comparación con
+          otros municipios, en cambio, va sin deflactar y a propósito —es de un año contra ese mismo
+          año, así que corregirla movería todas las cifras por igual sin cambiar ninguna posición, y
+          dejarían de coincidir con la celda del ministerio que citan.
         </p>
       )}
       {cobertura && (

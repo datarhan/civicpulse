@@ -118,13 +118,13 @@ export function ServicioCard({ indicador, formatea }) {
             style={{
               fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
-              marginTop: 2,
+              marginTop: 6,
               textAlign: 'right',
             }}
           >
             {serie.reales
-              ? `euros constantes de ${cita?.entrega} · IPC general (INE)`
-              : 'euros corrientes: falta el índice de precios de algún año'}
+              ? `€ constantes de ${cita?.entrega}`
+              : 'euros corrientes: falta el índice de algún año'}
           </div>
 
           <BandaPares indicador={i} formatea={formatea} />
