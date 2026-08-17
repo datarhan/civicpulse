@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T08:16:29.301Z",
+  "generatedAt": "2026-08-17T05:19:42.403Z",
   "windowDays": 30,
   "articles": [
     {
@@ -226,7 +226,7 @@
     {
       "articleId": "plfgoc",
       "articleFingerprint": "18f1xjw",
-      "outlet": "Valencia Plaza",
+      "outlet": "valenciaplaza.com",
       "outletHost": "valenciaplaza.com",
       "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTQ1ZHFLLTNRRXdudEs2RHpkMXdKam1SUjdjM21jRkx3TFZEcVd1eFJ5cloycFVpNHFFeG1UeXYyVHpFcXVyaEsxRVgzajlLdnI2ZmVoT3ZpMDJXa1h2WUN3REplYjJIN3QydlB2TWFWYTBpdnZ4QU5oY1VXTWlITUlCSDQwaGhCY0RocnZYTUR0THVERkJqOWpTMmtzMmNmRDhXaWlIcGNCZmNOaXM1d1BTVUZ4TmhUSm5DTGdmODlyeWw2bUY4UUc2OUN6MUZIZnRjNlZqSGRxeTd1QTVVUFd4bHpJNjhG?oc=5",
       "date": "2026-08-10T13:17:56.000Z",
@@ -307,6 +307,23 @@
         "opinionFraction": 0
       },
       "score": 4
+    },
+    {
+      "articleId": "1kpsquw",
+      "articleFingerprint": "1ptu6jc",
+      "outlet": "Valenciabonita",
+      "outletHost": "valenciabonita.es",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPOW12QmpLTUJvVGhsZ3FxM3hmS2JtVVlXRXhBeXhjUk5NX19iVDNaemx5VWZhZk1tenZwR1puWjY3akZ0U1BNYzlpOWtmYWFvOExTSGltRUVzWWxBcDg3Qzh2YUFBaHNqdVRfQ1hleEFTV1Z0aDkwV3VqSzAxSkdpaklOZFlsSk4ySmVpeVRaUjN4MWFsbHB3X3FtZw?oc=5",
+      "date": "2026-08-07T00:36:19.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 1
     },
     {
       "articleId": "a5cbp4",
@@ -936,30 +953,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "5mv188",
-      "articleFingerprint": "124wo0",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/ocupaci%C3%B3n-temporal-de-v%C3%ADa-p%C3%BAblica-para-la-instalaci%C3%B3n-de-televisores-para-ver-la-final-del-mundial",
-      "date": "2026-07-17T11:23:48.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 34,
+      "articleCount": 33,
       "verdictCounts": {
         "verificado": 1,
         "parcial": 1,
@@ -967,7 +967,7 @@
         "sin-datos": 28,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.65,
+      "meanTrustScore": 2.67,
       "verifiedRatio": 0.033,
       "contradictedRatio": 0
     },
@@ -1032,7 +1032,22 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "Valencia Plaza",
+      "outlet": "Valenciabonita",
+      "outletHost": "valenciabonita.es",
+      "articleCount": 2,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 1,
+      "verifiedRatio": null,
+      "contradictedRatio": null
+    },
+    {
+      "outlet": "valenciaplaza.com",
       "outletHost": "valenciaplaza.com",
       "articleCount": 1,
       "verdictCounts": {
@@ -1045,21 +1060,12 @@
       "meanTrustScore": 6,
       "verifiedRatio": 1,
       "contradictedRatio": 0
-    },
-    {
-      "outlet": "Valenciabonita",
-      "outletHost": "valenciabonita.es",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
     }
-  ]
+  ],
+  "builtFrom": {
+    "plenos-agendas.json": "bdf9aff0e63c",
+    "press-claims-verified.json": "01ecd9dcc232",
+    "press.json": "a3725b51d613",
+    "promises.json": "973df30a62ce"
+  }
 }

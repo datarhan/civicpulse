@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T05:14:53.832Z",
+  "generatedAt": "2026-08-17T05:19:18.113Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -37,7 +37,7 @@
           "date": "2026-03-27",
           "quote": "Riba-roja aprueba inversiones de 5,9 millones de euros, entre las que destaca un Plan de Refugios Climáticos",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "valenciaplaza.com",
           "matchedKeywords": [
             "millon",
             "euro",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -91,7 +91,7 @@
           "date": "2026-03-27",
           "quote": "Riba-roja aprueba inversiones de 5,9 millones de euros, entre las que destaca un Plan de Refugios Climáticos",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "valenciaplaza.com",
           "matchedKeywords": [
             "plan",
             "refugio",
@@ -152,7 +152,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -188,22 +188,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMimwJBVV95cUxPc25BRk9VWjh2T1dzeEgtRzhaU0hYbUg1ejRWanh5MlRfdWRLa2tZZDQ1VzRZTFRLcElEcEc4VFdCN2EyUGt1a0FaTGJyTUkwUWE3REtjemdPbWtFcWZneGo3WF9rcGpzamx5WFZoakJuM2xNZU9NLW9UZjE2UVlKSGptU0FPY2NBTTEtMkJNWWxjZG9ISkc4VkNhdGRoS3VuUDMtcmZfQ0FlOU5ESmVkdEJ3dzRyRTcyYmJRV1plbkxBZ2dWb2w2M0xmaXRMaTlSWG5mX3RrVmJwVS1yc2tVa0xLY1BERkEwWGNQd0VkRldPYTdaNUJ1YUlveVJFZFVFd193R0xSVHBmWjR3TjlIYlU2SElZU1VWb0pj?oc=5",
-          "date": "2026-07-07",
-          "quote": "Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA",
-          "kind": "press",
-          "publisher": "València Extra",
-          "matchedKeywords": [
-            "dana",
-            "tras"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQSWlLN1hwMGlBNXR3ZmpnNnU5OFhiU3l6dlI3a3loNldUVS1hcktKZk9RVHBWclRLUDFRdWgzRkx5Ny1rQW9icl9nOGJvcGlncF8xT3VsUkMzS0ItQUgwTlZJT1FRRWstOHZiRlBmdUxnRDFyQXh1QzRhYWZxdE1ETzN5ZTZZOFdGc21kNmJ4TElBN21YWXdfeUQ5cElveGNIeXA2X1pqZGsyQ0J6ekc5YXVLOFFUcGFXY1g4enRPMEdNZHpsQld0amVRa0VrUktjbUJGM21wcGVvM2EyWFhGWEwwRQ?oc=5",
           "date": "2026-07-03",
           "quote": "Desmontan el puente militar de Riba-roja que mantuvo la conexión del municipio tras la Dana",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "valenciaplaza.com",
           "matchedKeywords": [
             "dana",
             "tras"
@@ -219,10 +208,21 @@
             "dana",
             "tras"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMFIxMi1hRmdyRlFDNWxETmNkX2tldkVZTEpSSC0tZWptTEdwSE81b1k1cFJKaVpYVVVhQ2puN1c5N1VzMXhwXzRtNzA5QVpFVll2ZjBhcF9fbjNHeVBPSndoTVl6UWdwTWxPUGc4OHZaall3aUR3REJMNlozTkpvUjNMVFhZVXM0LWY3Z2ZGeU03WU5JS0ExSG9COEN3RFdfXzB5ZTFBZkc5dWtVZHFXbXMwelVMUHJuWE1r?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola España invierte más de 10 millones de euros en Riba-roja para la renovación de instalaciones afectadas por la DANA",
+          "kind": "press",
+          "publisher": "iberdrolaespana.com",
+          "matchedKeywords": [
+            "dana",
+            "millon"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -241,22 +241,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMimwJBVV95cUxPc25BRk9VWjh2T1dzeEgtRzhaU0hYbUg1ejRWanh5MlRfdWRLa2tZZDQ1VzRZTFRLcElEcEc4VFdCN2EyUGt1a0FaTGJyTUkwUWE3REtjemdPbWtFcWZneGo3WF9rcGpzamx5WFZoakJuM2xNZU9NLW9UZjE2UVlKSGptU0FPY2NBTTEtMkJNWWxjZG9ISkc4VkNhdGRoS3VuUDMtcmZfQ0FlOU5ESmVkdEJ3dzRyRTcyYmJRV1plbkxBZ2dWb2w2M0xmaXRMaTlSWG5mX3RrVmJwVS1yc2tVa0xLY1BERkEwWGNQd0VkRldPYTdaNUJ1YUlveVJFZFVFd193R0xSVHBmWjR3TjlIYlU2SElZU1VWb0pj?oc=5",
-          "date": "2026-07-07",
-          "quote": "Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA",
-          "kind": "press",
-          "publisher": "València Extra",
-          "matchedKeywords": [
-            "suelo",
-            "vivienda"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
           "date": "2026-05-18",
           "quote": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "valenciaplaza.com",
           "matchedKeywords": [
             "plan",
             "vivienda"
@@ -264,7 +253,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -298,7 +287,7 @@
           "date": "2026-05-18",
           "quote": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "valenciaplaza.com",
           "matchedKeywords": [
             "construccion",
             "vivienda"
@@ -337,7 +326,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -372,7 +361,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -421,7 +410,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -429,7 +418,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -437,7 +426,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -483,7 +472,7 @@
           "date": "2026-07-03",
           "quote": "Desmontan el puente militar de Riba-roja que mantuvo la conexión del municipio tras la Dana",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "valenciaplaza.com",
           "matchedKeywords": [
             "dana",
             "municipio"
@@ -502,7 +491,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -522,7 +511,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -562,7 +551,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -606,7 +595,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -650,7 +639,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -662,7 +651,7 @@
           "date": "2026-06-26",
           "quote": "Riba-roja reduce el número de parados en casi 1.100 personas en los últimos años",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "valenciaplaza.com",
           "matchedKeywords": [
             "reduce",
             "numero"
@@ -680,7 +669,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -711,7 +700,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -723,7 +712,7 @@
           "date": "2026-07-03",
           "quote": "Desmontan el puente militar de Riba-roja que mantuvo la conexión del municipio tras la Dana",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "valenciaplaza.com",
           "matchedKeywords": [
             "tras",
             "puente",
@@ -744,7 +733,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -752,7 +741,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -771,7 +760,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -813,7 +802,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -847,7 +836,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -878,7 +867,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -920,7 +909,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-16T05:14:53.707Z"
+      "generatedAt": "2026-08-17T05:19:17.991Z"
     }
   ],
   "llmEvidence": [],

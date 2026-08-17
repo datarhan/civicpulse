@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T05:02:53.894Z",
+  "generatedAt": "2026-08-17T05:08:28.938Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -247,28 +247,28 @@
       "lng": -0.5626679
     },
     {
-      "id": "way-556778456",
-      "name": "Parc Lineal Arrosals",
+      "id": "way-572095263",
+      "name": "Parc de Rosalía de Castro",
       "category": "verde",
       "kind": "park",
-      "lat": 39.5448982,
-      "lng": -0.5753428
+      "lat": 39.5438783,
+      "lng": -0.5767846
     },
     {
       "id": "way-39589891",
       "name": "Parc Municipal Maldonado",
       "category": "verde",
       "kind": "park",
-      "lat": 39.5477533,
+      "lat": 39.5477716,
       "lng": -0.5797717
     },
     {
-      "id": "way-572095263",
-      "name": "Parc Rosalía de Castro",
+      "id": "way-33654935",
+      "name": "Parc Municipal Montealcedo",
       "category": "verde",
       "kind": "park",
-      "lat": 39.5438783,
-      "lng": -0.5767846
+      "lat": 39.5528084,
+      "lng": -0.5415844
     },
     {
       "id": "way-551533189",
