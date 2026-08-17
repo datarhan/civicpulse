@@ -3,6 +3,11 @@ import AxeBuilder from '@axe-core/playwright'
 import { readFileSync } from 'node:fs'
 import { chipDeclaracion, GLOSA_TIER } from '../../src/scraper/indicador-lectura'
 import { seriesDibujables, aniosSinEntrega } from '../../src/components/eficiencia/multiples'
+import {
+  agruparPorArea,
+  particionPosiciones,
+  fraseParticion,
+} from '../../src/scraper/indicador-areas'
 import type { Indicador } from '../../src/scraper/indicadores'
 import type { IndicadorMunicipal } from '../../src/scraper/indicadores-friccion'
 import { collectErrors, appErrors } from './_console'
@@ -97,6 +102,87 @@ test.describe('Eficiencia (/eficiencia)', () => {
     await expect(page.getByText(/servicios que este panel sigue/i)).toBeVisible()
 
     expect(appErrors(errors)).toEqual([])
+  })
+
+  test('la lectura rápida cuenta lo que las fichas publican, sin inventar nada', async ({
+    page,
+  }) => {
+    // Los recuentos de cabecera se RE-DERIVAN aquí del mismo snapshot con el
+    // mismo módulo que usa el componente: si la página y este test divergen,
+    // uno de los dos está contando mal y el rojo lo dice. Restatar los números
+    // a mano es el fallo nº1 de docs/DATA_INTEGRITY.md.
+    const p = particionPosiciones(SNAP.indicadores)
+    const hero = page.locator('#sec-lectura')
+    await expect(hero).toBeVisible({ timeout: 8000 })
+
+    await expect(hero.getByText(`${p.abajo} ↓ · ${p.arriba} ↑`)).toBeVisible()
+
+    const congelados = CON_RATIO.filter(
+      (i: Indicador) => i.declaracion?.denominador?.congelada,
+    ).length
+    const medibles = CON_RATIO.filter((i: Indicador) => i.declaracion?.denominador).length
+    if (congelados > 0) {
+      await expect(hero.getByText(`${congelados} de ${medibles}`)).toBeVisible()
+    }
+
+    const sinRendir: number[] = SNAP.cobertura?.entregasNoPresentadas ?? []
+    if (sinRendir.length > 0) {
+      await expect(hero.getByText(sinRendir.join(' · '), { exact: true })).toBeVisible()
+    }
+
+    // La lectura editorial termina donde debe: en el límite, con su enlace.
+    await expect(hero.getByText(/Ninguna de estas cifras mide la calidad/i)).toBeVisible()
+    await expect(hero.locator('a[href="/metodologia#eficiencia"]')).toHaveCount(1)
+
+    // Y respeta el contrato del índice: la cabecera dice cuántas cosas hay y
+    // dónde, nunca qué concluye una ficha firmada.
+    const texto = (await hero.textContent()) ?? ''
+    for (const f of FICHAS.items) {
+      expect(texto, 'la lectura rápida adelanta el titular de una ficha').not.toContain(
+        f.titulo.slice(0, 25),
+      )
+    }
+  })
+
+  test('las fichas van agrupadas por área funcional, en el orden del registro', async ({
+    page,
+  }) => {
+    // La agrupación la declara cada servicio en el registro y la ordena el
+    // gasto: aquí se comprueba que el DOM la respeta entera — cabecera de área
+    // visible con su mini-frase derivada, y las fichas dentro en el orden que
+    // exporta el mismo módulo que consume la página.
+    const grupos = agruparPorArea(SNAP.indicadores)
+    expect(grupos.length, 'sin grupos de área en el snapshot').toBeGreaterThan(1)
+
+    for (const g of grupos) {
+      const cabecera = page.locator(`#g-${g.area}`)
+      await expect(cabecera).toBeVisible({ timeout: 8000 })
+      await expect(cabecera).toHaveText(g.etiqueta)
+      const frase = fraseParticion(g.particion)
+      if (frase) {
+        await expect(page.getByText(`${frase}.`, { exact: true })).toBeVisible()
+      }
+    }
+
+    // El orden real de las fichas en el DOM es exactamente el de los grupos.
+    const idsEnDom = await page
+      .locator('#sec-servicios [id^="s-"]')
+      .evaluateAll((els) => els.map((e) => e.id))
+    expect(idsEnDom).toEqual(grupos.flatMap((g) => g.indicadores.map((i) => `s-${i.id}`)))
+  })
+
+  test('cada ficha contesta «¿caro o barato?» sin abrir nada', async ({ page }) => {
+    // La frase existía y estaba suprimida por darla por visible en una banda
+    // plegada. Ahora va junto al número: una por servicio situado, y la de
+    // «no hay comparación» en los que no llegan a quince pares.
+    const situados = CON_RATIO.filter((i: Indicador) => i.pares)
+    await expect(
+      page.getByText(/Frente a \d+ municipios valencianos de tamaño parecido/),
+    ).toHaveCount(situados.length, { timeout: 8000 })
+    const sinSituar = CON_RATIO.length - situados.length
+    if (sinSituar > 0) {
+      await expect(page.getByText(/No hay comparación: no llegan a quince/)).toHaveCount(sinSituar)
+    }
   })
 
   test('avisa de los cocientes cuyo denominador nadie vuelve a medir', async ({ page }) => {

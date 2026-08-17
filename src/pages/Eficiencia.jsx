@@ -1,5 +1,6 @@
 import { Card } from '../components/Primitives'
 import { CoberturaEficiencia } from '../components/eficiencia/CoberturaEficiencia'
+import { LecturaRapida } from '../components/eficiencia/LecturaRapida'
 import { ResumenPosiciones } from '../components/eficiencia/ResumenPosiciones'
 import { MultiplesSeries } from '../components/eficiencia/MultiplesSeries'
 import { ServicioCard } from '../components/eficiencia/ServicioCard'
@@ -7,6 +8,7 @@ import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
 import { HallazgosEficiencia } from '../components/eficiencia/HallazgosEficiencia'
 import { Supramunicipal } from '../components/eficiencia/Supramunicipal'
 import { AusenciasResultados } from '../components/eficiencia/Resultado'
+import { agruparPorArea, fraseParticion } from '../scraper/indicador-areas'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useT } from '../i18n'
@@ -14,11 +16,22 @@ import { useT } from '../i18n'
 /**
  * /eficiencia — cuánto costó cada servicio y qué se obtuvo a cambio.
  *
- * Deliberadamente NO hay nota global, ni por dimensión, ni ranking del
- * municipio. El precedente es `encaje declarado`: publica los componentes,
- * niégate a la suma. Un 0-100 en cabecera convierte la ponderación en la
- * noticia e invita a la tabla comparativa de ayuntamientos vecinos que después
- * habría que sostener.
+ * Sigue sin haber nota global, media de percentiles ni ranking. El precedente
+ * es `encaje declarado`: publica los componentes, niégate a la suma — un 0-100
+ * en cabecera convertiría la ponderación en la noticia. Lo que la cabecera
+ * añade desde agosto de 2026 son RECUENTOS de lo que las fichas ya publican y
+ * una lectura editorial fechada; dónde está el límite de eso, en el docblock
+ * de `LecturaRapida.jsx`.
+ *
+ * Las fichas van agrupadas por área funcional de la propia clasificación por
+ * programas (`AREAS`, declarada servicio a servicio en el registro) — nunca
+ * por concejalías: un coste unitario a un clic de un concejal con nombre es un
+ * salto que la fuente no da. La franja y la rejilla de mini-series quedan
+ * GLOBALES: posición y década se leen mejor con los trece juntos, y el spec de
+ * la franja cuenta sus anclas `#s-*` exactas.
+ *
+ * Espacios de anclas: `#s-<id>` fichas · `#g-<area>` grupos · `#sec-*`
+ * secciones (cabecera y submenú) · `#hallazgos` la sección firmada.
  *
  * Las tarjetas bloqueadas son parte del contenido, no un residuo: que el
  * ayuntamiento declare 485.975,77 € de transporte urbano y cero viajeros dice
@@ -34,15 +47,15 @@ export default function Eficiencia() {
   const idsDeAqui = [...indicadores.map((i) => i.id), ...municipalesDeAqui.map((m) => m.id)]
   const firmados = (hallazgos?.items ?? []).filter((f) => idsDeAqui.includes(f.indicadorId)).length
 
-  const conRatio = indicadores
-    .filter((i) => i.valor !== null)
-    .sort((a, b) => (b.numerador.valor ?? 0) - (a.numerador.valor ?? 0))
+  const grupos = agruparPorArea(indicadores)
   const bloqueados = indicadores.filter((i) => i.valor === null)
 
   const formateaCon = (unidad) => (v) => {
     const dec = v >= 1000 ? 0 : v >= 10 ? 2 : 2
     return `${v.toLocaleString('es-ES', { minimumFractionDigits: dec, maximumFractionDigits: dec })} ${unidad.replace(/^€\//, '€/')}`
   }
+
+  const seccion = { scrollMarginTop: 76 }
 
   return (
     <div className="cp-page" style={{ padding: 24, maxWidth: 900, margin: '0 auto' }}>
@@ -69,23 +82,6 @@ export default function Eficiencia() {
       </h1>
       <p style={{ color: 'var(--ink50)', maxWidth: '64ch' }}>{t('eficiencia.intro')}</p>
 
-      {/* Índice, no conclusión.
-          Las fichas firmadas siguen AL FINAL y por el motivo de siempre: una
-          ficha es una lectura del panel, y el panel se lee primero. Pero
-          «después» y «sólo si llegas» no son lo mismo, y quien entra desde un
-          enlace no llegaba nunca. Esto dice cuántas hay y dónde están, sin
-          decir qué concluyen. */}
-      {firmados > 0 && (
-        <p style={{ margin: '6px 0 0', fontSize: 'var(--fs-meta)' }}>
-          <a href="#hallazgos" style={{ color: 'var(--civic)' }}>
-            {firmados === 1
-              ? '1 hallazgo firmado sobre estas cifras'
-              : `${firmados} hallazgos firmados sobre estas cifras`}{' '}
-            ↓
-          </a>
-        </p>
-      )}
-
       {loading && <p style={{ color: 'var(--ink50)' }}>Cargando…</p>}
       {error && <p style={{ color: 'var(--ink50)' }}>No se pudo cargar el panel.</p>}
       {!loading && !error && indicadores.length === 0 && (
@@ -94,50 +90,86 @@ export default function Eficiencia() {
         </Card>
       )}
 
+      {/* La respuesta corta primero — recuentos y una lectura fechada, nunca
+          una nota. El índice de hallazgos firmados que antes iba aquí como
+          párrafo ahora es una casilla más de la cabecera, con el mismo
+          contrato: dice cuántos hay y dónde, sin adelantar lo que concluyen. */}
+      <LecturaRapida data={data} firmados={firmados} />
+
       {indicadores.length > 0 && (
-        <CoberturaEficiencia
-          universe={data?.universe}
-          cobertura={data?.cobertura}
-          indicadores={indicadores}
-          conResultados={(data?.resultados?.items ?? []).length > 0}
-        />
+        <section id="sec-cobertura" style={seccion}>
+          <CoberturaEficiencia
+            universe={data?.universe}
+            cobertura={data?.cobertura}
+            indicadores={indicadores}
+            conResultados={(data?.resultados?.items ?? []).length > 0}
+          />
+        </section>
       )}
 
-      {/* El resumen va DESPUÉS de la cobertura y antes de las fichas: primero
-          qué cubre esta página, luego dónde queda cada cosa, luego el detalle.
-          Al revés, diez puntos aparecerían antes de decir que hay tres
-          servicios sobre los que esta página no puede dividir nada. */}
-      <ResumenPosiciones indicadores={indicadores} />
+      {/* Posición hoy y década, contiguas y GLOBALES: el punto y la mini-serie
+          contestan preguntas distintas, y trocearlas por áreas rompería la
+          única vista donde los trece servicios se comparan de un vistazo. */}
+      <section id="sec-posiciones" style={seccion}>
+        <ResumenPosiciones indicadores={indicadores} />
+        <MultiplesSeries indicadores={indicadores} formateaCon={formateaCon} />
+      </section>
 
-      {/* Contigua a la franja y en su mismo orden: el punto (posición hoy) y
-          la mini-serie (la década) contestan preguntas distintas, y fundirlas
-          en un solo gráfico no contestaría ninguna. */}
-      <MultiplesSeries indicadores={indicadores} formateaCon={formateaCon} />
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 18 }}>
-        {conRatio.map((i) => (
-          <ServicioCard
-            key={i.id}
-            indicador={i}
-            formatea={formateaCon(i.unidad)}
-            resultado={(data?.resultados?.items ?? []).find((r) => r.servicioRelacionado === i.id)}
-          />
+      {/* Las fichas, por área funcional del propio retorno: bloques que se
+          pueden leer enteros («¿cómo va el medio urbano?») sin recorrer trece
+          tarjetas en orden de gasto. El área la declara cada servicio en el
+          registro; la mini-frase de cada bloque es un recuento derivado. */}
+      <section id="sec-servicios" style={seccion}>
+        {grupos.map((g) => (
+          <div key={g.area} style={{ marginTop: 26 }}>
+            <h2
+              id={`g-${g.area}`}
+              style={{
+                fontSize: 'var(--fs-body)',
+                fontWeight: 650,
+                margin: 0,
+                letterSpacing: '-.01em',
+                scrollMarginTop: 76,
+              }}
+            >
+              {g.etiqueta}
+            </h2>
+            {fraseParticion(g.particion) && (
+              <p style={{ margin: '3px 0 0', fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+                {fraseParticion(g.particion)}.
+              </p>
+            )}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 10 }}>
+              {g.indicadores.map((i) => (
+                <ServicioCard
+                  key={i.id}
+                  indicador={i}
+                  formatea={formateaCon(i.unidad)}
+                  resultado={(data?.resultados?.items ?? []).find(
+                    (r) => r.servicioRelacionado === i.id,
+                  )}
+                />
+              ))}
+            </div>
+          </div>
         ))}
-      </div>
+      </section>
 
       {/* Sólo lo que sale del MISMO cuaderno que las tarjetas de arriba: el
           recuento de denominadores mide las declaraciones del coste efectivo y
-          habla de estos diez cocientes. Los plazos, la concurrencia y la
-          ejecución salen de otras cuatro fuentes y viven en /gestion. El reparto
-          lo declara cada indicador al construirse, no esta página. */}
-      <PanelMunicipal
-        municipales={municipalesDeAqui}
-        titulo="Sobre la declaración de estas cifras"
-        intro="Los cocientes de arriba salen de dos cantidades que el ayuntamiento declara cada entrega; esto mide con qué frecuencia vuelve a medir la de abajo."
-      />
+          habla de estos cocientes. Los plazos, la concurrencia y la ejecución
+          salen de otras cuatro fuentes y viven en /gestion. El reparto lo
+          declara cada indicador al construirse, no esta página. */}
+      <section id="sec-declaracion" style={seccion}>
+        <PanelMunicipal
+          municipales={municipalesDeAqui}
+          titulo="Sobre la declaración de estas cifras"
+          intro="Los cocientes de arriba salen de dos cantidades que el ayuntamiento declara cada entrega; esto mide con qué frecuencia vuelve a medir la de abajo."
+        />
+      </section>
 
       {bloqueados.length > 0 && (
-        <>
+        <section id="sec-bloqueados" style={seccion}>
           <h2
             style={{
               fontSize: 'var(--fs-body)',
@@ -153,13 +185,13 @@ export default function Eficiencia() {
               <ServicioCard key={i.id} indicador={i} formatea={formateaCon(i.unidad)} />
             ))}
           </div>
-        </>
-      )}
 
-      {/* CE4 va pegado a los bloqueados porque es su explicación: los ceros de
-          turismo, ferias, deporte y ocio no son funciones inexistentes, son
-          funciones cuya parte supramunicipal rinde la Mancomunitat. */}
-      <Supramunicipal filas={data?.supramunicipales} entrega={data?.anioBase} />
+          {/* CE4 va pegado a los bloqueados porque es su explicación: los ceros
+              de turismo, ferias, deporte y ocio no son funciones inexistentes,
+              son funciones cuya parte supramunicipal rinde la Mancomunitat. */}
+          <Supramunicipal filas={data?.supramunicipales} entrega={data?.anioBase} />
+        </section>
+      )}
 
       {/* Las ausencias son datos: el resultado que no existe se dice, con su
           porqué medido, en vez de dejar que el hueco parezca un olvido. */}
