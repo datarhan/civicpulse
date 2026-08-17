@@ -128,9 +128,13 @@ function DatasetsCatalog() {
     },
     {
       name: 'Contratos públicos',
-      rows: tenders?.stats?.totalContracts
-        ? `${tenders.stats.totalContracts.toLocaleString('es-ES')} contratos`
-        : '—',
+      // «806 contratos» contaba FILAS (anulados y desistidos incluidos) y se
+      // leía como adjudicados — lo cazó el reader-review. Las dos cifras ya
+      // vienen en el stats del scraper; aquí sólo se dice cuál es cuál.
+      rows:
+        tenders?.stats?.awardedContracts && tenders?.stats?.totalContracts
+          ? `${tenders.stats.awardedContracts.toLocaleString('es-ES')} adjudicados · ${tenders.stats.totalContracts.toLocaleString('es-ES')} expedientes`
+          : '—',
       updated: formatDate(tenders?.generatedAt),
       source: 'Gobierto · PLACSP',
       path: '/data/tenders.json',
