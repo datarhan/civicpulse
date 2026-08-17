@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "actualizadoEl": "2026-08-17",
+  "panels": {
+    "coste-efectivo": {
+      "intro": "Ninguna de estas preguntas es retórica: cada una nace de una cifra publicada en este panel o en su reportaje, con su fuente al lado. Quedan registradas aquí en abierto, la vía de réplica institucional está abierta, y cualquier respuesta se publicará íntegra.",
+      "cierre": "Las preguntas se dirigen a instituciones, nunca a personas: el coste efectivo lo rinde la entidad local en su conjunto, y quién cumplimenta el formulario no consta en la fuente.",
+      "bloques": [
+        {
+          "titulo": "La entrega que falta",
+          "destinatario": "A la Alcaldía",
+          "items": [
+            {
+              "q": "¿Por qué no se rindió la entrega del coste efectivo de 2020, que el artículo 116 ter de la Ley de Bases de Régimen Local obliga a calcular antes del 1 de noviembre y comunicar al ministerio?",
+              "base": "En el libro de la Comunitat Valenciana de 2020 Riba-roja no figura en las tablas de coste, gestión ni unidades físicas, mientras 503 ayuntamientos valencianos sí rindieron ese año — más que en cualquiera de los cuatro siguientes, así que la pandemia no lo explica.",
+              "href": "/reportajes/coste-efectivo"
+            },
+            {
+              "q": "¿Va a comunicarse la entrega de 2020 fuera de plazo, y qué control interno debía haber detectado que faltaba?",
+              "base": "Cinco entregas después, el hueco de 2020 seguía en los libros publicados por el ministerio en la fecha de cierre del reportaje.",
+              "href": "/reportajes/coste-efectivo"
+            }
+          ]
+        },
+        {
+          "titulo": "Las cantidades que nadie vuelve a medir",
+          "destinatario": "Al Ayuntamiento, como entidad que rinde la entrega",
+          "items": [
+            {
+              "q": "¿Cuándo se midieron por última vez las 11.059,41 toneladas de residuos, los 700.000 metros cuadrados con servicio de limpieza y los 4.514 puntos de luz entre los que se divide el gasto de cada entrega?",
+              "base": "Las tres cantidades se repiten sin variar un decimal desde 2018 o 2019, según el servicio, mientras el coste de arriba se actualiza cada año.",
+              "href": "/eficiencia#sec-declaracion"
+            },
+            {
+              "q": "¿Existe un procedimiento para remedir las magnitudes físicas que se declaran al ministerio — y si existe, con qué periodicidad se aplica?",
+              "base": "Entre los 50 municipios comparables de los que se puede medir lo mismo, la mediana repite el 63,1 % de sus denominadores entrega tras entrega; Riba-roja repite el 100 %.",
+              "href": "/reportajes/coste-efectivo"
+            },
+            {
+              "q": "Cuando una cantidad se declara idéntica a la del año anterior, ¿qué respalda esa declaración: una comprobación de ese ejercicio o la copia del formulario previo?",
+              "base": "Una cantidad estable puede ser perfectamente correcta —hay magnitudes que pasan años sin moverse—; lo que la entrega no permite distinguir es si alguien la comprobó.",
+              "href": "/eficiencia#sec-declaracion"
+            }
+          ]
+        },
+        {
+          "titulo": "Las casillas a cero y el resultado que falta",
+          "destinatario": "Al Ayuntamiento y, en lo que le toca, al Consorci València Interior",
+          "items": [
+            {
+              "q": "¿Cuántos viajeros tuvo el transporte colectivo urbano en la última entrega rendida, y por qué esa casilla se declara a cero?",
+              "base": "La fuente tiene una casilla de viajeros al año; el ayuntamiento declara el gasto del servicio con esa casilla a cero, mientras 22 de sus municipios comparables sí la rellenan.",
+              "href": "/eficiencia#s-a4411-440p-coste-unitario"
+            },
+            {
+              "q": "La recogida separada de orgánica (FORS) arrancó en 2022 con 27 toneladas en todo el año: ¿qué tonelaje anual alcanza hoy, y dónde puede consultar un vecino los datos posteriores a 2022?",
+              "base": "El corte de 2022 publicado por la Generalitat da a Riba-roja un 6,7 % de recogida selectiva sobre el total, en el percentil 7 de su banda de 59 comparables; las ediciones posteriores sólo existen en un visor sin datos descargables.",
+              "href": "/eficiencia#r-a1621-coste-unitario"
+            }
+          ]
+        }
+      ]
+    },
+    "gestion": {
+      "intro": "Las mismas reglas que en el panel de coste: cada pregunta nace de un indicador publicado aquí, se dirige a una institución y cualquier respuesta se publicará íntegra.",
+      "bloques": [
+        {
+          "titulo": "El plazo de pago y el presupuesto",
+          "destinatario": "A la Alcaldía y a la Intervención municipal",
+          "items": [
+            {
+              "q": "Cuando el periodo medio de pago supera el plazo legal de 30 días, la normativa de morosidad exige medidas de tesorería: ¿se han adoptado para los periodos en que se superó, y dónde puede consultarlas un vecino?",
+              "base": "El indicador de plazo de pago de este panel lleva una ficha firmada que congela la medición de un periodo concreto en que el plazo legal se superó, con su celda de origen.",
+              "href": "/gestion#hallazgos"
+            },
+            {
+              "q": "¿Qué parte del crédito definitivo que queda sin ejecutar corresponde a crédito incorporado que nunca pudo gastarse, y qué parte a actuaciones previstas y no ejecutadas?",
+              "base": "El indicador de ejecución divide lo ejecutado entre un crédito definitivo hinchado con modificaciones; el propio panel avisa de que buena parte de un porcentaje bajo es crédito que nunca pudo gastarse — la pregunta es qué parte.",
+              "href": "/gestion"
+            },
+            {
+              "q": "¿Qué medidas concretas hay en marcha para ensanchar la concurrencia en la contratación municipal?",
+              "base": "El panel publica qué parte de los contratos se adjudicó con un único licitador y qué parte sin llamada abierta; ninguna de las dos es irregular por sí misma, y las dos miden cuánta concurrencia hubo.",
+              "href": "/gestion"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

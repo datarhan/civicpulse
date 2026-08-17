@@ -9,9 +9,11 @@ import { HallazgosEficiencia } from '../components/eficiencia/HallazgosEficienci
 import { Supramunicipal } from '../components/eficiencia/Supramunicipal'
 import { AusenciasResultados } from '../components/eficiencia/Resultado'
 import { SubnavSecciones, MARGEN_ANCLA } from '../components/SubnavSecciones'
+import { PreguntasRegistradas } from '../components/eficiencia/PreguntasRegistradas'
 import { agruparPorArea, fraseParticion } from '../scraper/indicador-areas'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
+import { useEficienciaPreguntas } from '../hooks/useEficienciaPreguntas'
 import { useT } from '../i18n'
 
 /**
@@ -43,6 +45,7 @@ export default function Eficiencia() {
   const t = useT()
   const { loading, error, data } = useIndicadores()
   const { data: hallazgos } = useEficienciaFindings()
+  const { data: preguntas } = useEficienciaPreguntas()
   const indicadores = data?.indicadores ?? []
   const municipalesDeAqui = (data?.municipales ?? []).filter((m) => m.panel === 'coste-efectivo')
   const idsDeAqui = [...indicadores.map((i) => i.id), ...municipalesDeAqui.map((m) => m.id)]
@@ -70,6 +73,9 @@ export default function Eficiencia() {
       ? [{ id: 'sec-bloqueados', label: t('eficiencia.subnav.bloqueados') }]
       : []),
     ...(firmados > 0 ? [{ id: 'hallazgos', label: t('eficiencia.subnav.hallazgos') }] : []),
+    ...((preguntas?.panels?.['coste-efectivo']?.bloques?.length ?? 0) > 0
+      ? [{ id: 'sec-preguntas', label: t('eficiencia.subnav.preguntas') }]
+      : []),
   ]
 
   return (
@@ -230,6 +236,12 @@ export default function Eficiencia() {
           otroPanel={{ to: '/gestion', nombre: 'cómo funciona la casa por dentro' }}
         />
       )}
+
+      {/* Al cierre, después de los hallazgos: lo que el panel deja preguntado.
+          Cada pregunta nace de una cifra publicada y se dirige a una
+          institución; el fichero es curado a mano y su validador rechaza
+          cualquier campo que pudiera nombrar a una persona. */}
+      {!loading && !error && <PreguntasRegistradas data={preguntas} panel="coste-efectivo" />}
 
       <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 18 }}>
         Las tres cifras que este panel deja más a la vista —la entrega sin rendir, los denominadores

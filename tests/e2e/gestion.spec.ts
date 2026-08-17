@@ -95,6 +95,28 @@ test.describe('Gestión (/gestion)', () => {
     }
   })
 
+  test('las preguntas registradas de este panel, sin las de la hermana', async ({ page }) => {
+    type ItemPregunta = { q: string; base: string; href?: string }
+    const PREGUNTAS = JSON.parse(readFileSync('public/data/eficiencia-preguntas.json', 'utf8'))
+    const panel = PREGUNTAS.panels?.['gestion']
+    test.skip(!panel, 'sin preguntas registradas para este panel')
+    const items: ItemPregunta[] = panel.bloques.flatMap((b: { items: ItemPregunta[] }) => b.items)
+
+    await expect(page.locator('#sec-preguntas')).toBeVisible({ timeout: 8000 })
+    await expect(page.locator('[data-pregunta]')).toHaveCount(items.length)
+    await expect(page.getByText(items[0].q)).toBeVisible()
+
+    const otras: ItemPregunta[] = (PREGUNTAS.panels?.['coste-efectivo']?.bloques ?? []).flatMap(
+      (b: { items: ItemPregunta[] }) => b.items,
+    )
+    if (otras.length > 0) {
+      await expect(
+        page.getByText(otras[0].q),
+        'una pregunta de /eficiencia se está publicando en /gestion',
+      ).toHaveCount(0)
+    }
+  })
+
   test('axe evalúa la página y no encuentra nada bloqueante', async ({ page }) => {
     await page.goto('/gestion', { waitUntil: 'domcontentloaded' })
     await page.waitForTimeout(900)

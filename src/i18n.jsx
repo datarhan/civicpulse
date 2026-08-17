@@ -79,6 +79,12 @@ const CATALOGUE = {
     'eficiencia.subnav.bloqueados': 'Sin cociente',
     'eficiencia.subnav.hallazgos': 'Hallazgos',
     'eficiencia.subnav.preguntas': 'Preguntas',
+    'eficiencia.preguntas.titulo': 'Preguntas registradas',
+    'eficiencia.preguntas.porque': 'Se pregunta porque:',
+    'eficiencia.preguntas.verBase': 'ver la cifra →',
+    'eficiencia.preguntas.replica':
+      'Derecho de réplica abierto para las instituciones destinatarias — la vía:',
+    'eficiencia.preguntas.replicaLink': 'aviso legal',
     'empleoPublico.eyebrow': 'Ayuntamiento · procesos selectivos',
     'empleoPublico.title': 'Empleo público',
     'empleoPublico.intro1':
@@ -632,6 +638,12 @@ const CATALOGUE = {
     'eficiencia.subnav.bloqueados': 'Sense quocient',
     'eficiencia.subnav.hallazgos': 'Troballes',
     'eficiencia.subnav.preguntas': 'Preguntes',
+    'eficiencia.preguntas.titulo': 'Preguntes registrades',
+    'eficiencia.preguntas.porque': 'Es pregunta perquè:',
+    'eficiencia.preguntas.verBase': 'veure la xifra →',
+    'eficiencia.preguntas.replica':
+      'Dret de rèplica obert per a les institucions destinatàries — la via:',
+    'eficiencia.preguntas.replicaLink': 'avís legal',
     'empleoPublico.eyebrow': 'Ajuntament · processos selectius',
     'empleoPublico.title': 'Ocupació pública',
     'empleoPublico.intro1':

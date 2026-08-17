@@ -45,6 +45,7 @@ const IDS_AQUI: string[] = [
     .map((m: MunicipalLike) => m.id),
 ]
 const FICHAS = JSON.parse(readFileSync('public/data/eficiencia-findings.json', 'utf8'))
+const PREGUNTAS = JSON.parse(readFileSync('public/data/eficiencia-preguntas.json', 'utf8'))
 const MIAS = FICHAS.items.filter((f: { indicadorId: string }) => IDS_AQUI.includes(f.indicadorId))
 const AJENAS = FICHAS.items.filter(
   (f: { indicadorId: string }) => !IDS_AQUI.includes(f.indicadorId),
@@ -553,6 +554,42 @@ test.describe('Eficiencia (/eficiencia)', () => {
     for (const campo of ['individualSpeaker', 'speakerGroup']) {
       expect(html, `${campo} no puede aparecer en una ficha de eficiencia`).not.toContain(campo)
     }
+  })
+
+  test('las preguntas registradas del panel, numeradas y con su base', async ({ page }) => {
+    type ItemPregunta = { q: string; base: string; href?: string }
+    const panel = PREGUNTAS.panels?.['coste-efectivo']
+    test.skip(!panel, 'sin preguntas registradas para este panel')
+    const items: ItemPregunta[] = panel.bloques.flatMap((b: { items: ItemPregunta[] }) => b.items)
+    expect(items.length, 'panel de preguntas vacío').toBeGreaterThan(0)
+
+    await expect(page.locator('#sec-preguntas')).toBeVisible({ timeout: 8000 })
+    await expect(page.locator('[data-pregunta]')).toHaveCount(items.length)
+    await expect(page.getByText(items[0].q)).toBeVisible()
+    await expect(page.getByText(items[items.length - 1].q)).toBeVisible()
+
+    // El reparto por panel en las dos direcciones, como fichas e indicadores.
+    const otras: ItemPregunta[] = (PREGUNTAS.panels?.['gestion']?.bloques ?? []).flatMap(
+      (b: { items: ItemPregunta[] }) => b.items,
+    )
+    if (otras.length > 0) {
+      await expect(
+        page.getByText(otras[0].q),
+        'una pregunta de /gestion se está publicando en /eficiencia',
+      ).toHaveCount(0)
+    }
+
+    // Toda base con ancla en esta misma página tiene su destino de verdad: una
+    // pregunta que enlaza a una cifra inexistente pierde su base ante el lector.
+    for (const it of items) {
+      if (it.href?.startsWith('/eficiencia#')) {
+        const id = it.href.split('#')[1]
+        await expect(page.locator(`#${id}`), `${it.href} no resuelve`).toHaveCount(1)
+      }
+    }
+
+    // Y el submenú la indexa.
+    await expect(page.locator('.cp-subnav a[href="#sec-preguntas"]')).toHaveCount(1)
   })
 
   test('axe evaluates the page and finds nothing blocking', async ({ page }) => {
