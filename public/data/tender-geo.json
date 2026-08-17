@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-16T05:15:12.565Z",
+  "generatedAt": "2026-08-17T05:19:36.438Z",
   "source": {
-    "tenders": "2026-08-16T04:59:09.237Z",
-    "geo": "2026-08-16T05:01:08.409Z"
+    "tenders": "2026-08-17T05:06:40.771Z",
+    "geo": "2026-08-17T05:08:08.771Z"
   },
   "universe": {
     "totalContracts": 694,
@@ -698,8 +698,8 @@
       "name": "Carrer del Mas de Montes",
       "kind": "street",
       "point": [
-        39.4805062,
-        -0.5875882
+        39.4832932,
+        -0.5874328
       ],
       "contractCount": 1,
       "amount": 20661.16,
@@ -722,8 +722,8 @@
       "name": "Carretera de Vilamarxant",
       "kind": "street",
       "point": [
-        39.5484923,
-        -0.5816335
+        39.5492186,
+        -0.5827079
       ],
       "contractCount": 2,
       "amount": 19537,
@@ -770,7 +770,7 @@
       "name": "Parc Municipal Maldonado",
       "kind": "poi",
       "point": [
-        39.5477533,
+        39.5477716,
         -0.5797717
       ],
       "contractCount": 1,
@@ -1237,8 +1237,8 @@
       "contractType": "supplies",
       "categoryTitle": "industry",
       "point": [
-        39.5484923,
-        -0.5816335
+        39.5492186,
+        -0.5827079
       ],
       "place": {
         "kind": "street",
@@ -1378,7 +1378,7 @@
       }
     },
     {
-      "id": "4973577#4",
+      "id": "4973577#3",
       "zones": [
         "el-molinet"
       ],
@@ -1403,24 +1403,24 @@
       }
     },
     {
-      "id": "713082",
+      "id": "1647133",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
-      "amount": 7336,
+      "amount": 17770.71,
       "amountKind": "final",
-      "date": "2018-11-26",
+      "date": "2018-08-07",
       "contractType": "construction",
       "categoryTitle": "other",
       "point": [
-        39.5484923,
-        -0.5816335
+        39.5430193,
+        -0.5669714
       ],
       "place": {
         "kind": "street",
-        "name": "Carretera de Vilamarxant",
-        "matchedText": "Carretera de Vilamarxant",
-        "sourceId": "carretera-de-vilamarxant"
+        "name": "Carrer Pobla de Vallbona",
+        "matchedText": "Carrer Pobla de Vallbona",
+        "sourceId": "carrer-pobla-de-vallbona"
       }
     },
     {
@@ -1579,28 +1579,24 @@
       }
     },
     {
-      "id": "554871",
-      "zones": [
-        "l-oliveral"
-      ],
-      "matchedAlias": {
-        "l-oliveral": "oliveral"
-      },
+      "id": "713082",
+      "zones": [],
+      "matchedAlias": {},
       "dana": false,
-      "amount": 7950,
+      "amount": 7336,
       "amountKind": "final",
-      "date": "2018-04-11",
-      "contractType": "services",
+      "date": "2018-11-26",
+      "contractType": "construction",
       "categoryTitle": "other",
       "point": [
-        39.4710524,
-        -0.5366921
+        39.5492186,
+        -0.5827079
       ],
       "place": {
-        "kind": "urbanizacion",
-        "name": "l'Oliveral",
-        "matchedText": "l'Oliveral",
-        "sourceId": "l-oliveral"
+        "kind": "street",
+        "name": "Carretera de Vilamarxant",
+        "matchedText": "Carretera de Vilamarxant",
+        "sourceId": "carretera-de-vilamarxant"
       }
     },
     {
@@ -1629,27 +1625,6 @@
       }
     },
     {
-      "id": "1647133",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 17770.71,
-      "amountKind": "final",
-      "date": "2018-08-07",
-      "contractType": "construction",
-      "categoryTitle": "other",
-      "point": [
-        39.5430193,
-        -0.5669714
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer Pobla de Vallbona",
-        "matchedText": "Carrer Pobla de Vallbona",
-        "sourceId": "carrer-pobla-de-vallbona"
-      }
-    },
-    {
       "id": "9895895",
       "zones": [],
       "matchedAlias": {},
@@ -1671,24 +1646,28 @@
       }
     },
     {
-      "id": "555236",
-      "zones": [],
-      "matchedAlias": {},
+      "id": "554871",
+      "zones": [
+        "l-oliveral"
+      ],
+      "matchedAlias": {
+        "l-oliveral": "oliveral"
+      },
       "dana": false,
-      "amount": 8000,
+      "amount": 7950,
       "amountKind": "final",
       "date": "2018-04-11",
       "contractType": "services",
       "categoryTitle": "other",
       "point": [
-        39.48555,
-        -0.55304
+        39.4710524,
+        -0.5366921
       ],
       "place": {
         "kind": "urbanizacion",
-        "name": "La Sargueta",
-        "matchedText": "La Sargueta",
-        "sourceId": "la-sargueta"
+        "name": "l'Oliveral",
+        "matchedText": "l'Oliveral",
+        "sourceId": "l-oliveral"
       }
     },
     {
@@ -1735,6 +1714,27 @@
         "name": "l'Oliveral",
         "matchedText": "l'Oliveral",
         "sourceId": "l-oliveral"
+      }
+    },
+    {
+      "id": "555236",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 8000,
+      "amountKind": "final",
+      "date": "2018-04-11",
+      "contractType": "services",
+      "categoryTitle": "other",
+      "point": [
+        39.48555,
+        -0.55304
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "La Sargueta",
+        "matchedText": "La Sargueta",
+        "sourceId": "la-sargueta"
       }
     },
     {
@@ -2235,8 +2235,8 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.4805062,
-        -0.5875882
+        39.4832932,
+        -0.5874328
       ],
       "place": {
         "kind": "street",
@@ -2977,6 +2977,31 @@
       }
     },
     {
+      "id": "68394",
+      "zones": [
+        "el-pou-d-escoto"
+      ],
+      "matchedAlias": {
+        "el-pou-d-escoto": "escoto"
+      },
+      "dana": false,
+      "amount": 59570.53,
+      "amountKind": "final",
+      "date": "2018-05-09",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5483742,
+        -0.5912189
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "el Pou d'Escoto",
+        "matchedText": "el Pou d'Escoto",
+        "sourceId": "el-pou-d-escoto"
+      }
+    },
+    {
       "id": "7484026",
       "zones": [
         "urbanitzacio-els-pous"
@@ -3002,52 +3027,6 @@
       }
     },
     {
-      "id": "329628",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": false,
-      "amount": 24916.32,
-      "amountKind": "final",
-      "date": "2018-01-24",
-      "contractType": "construction",
-      "categoryTitle": "other",
-      "point": [
-        39.5483742,
-        -0.5912189
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto",
-        "sourceId": "el-pou-d-escoto"
-      }
-    },
-    {
-      "id": "649191",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 7997,
-      "amountKind": "final",
-      "date": "2019-03-30",
-      "contractType": "construction",
-      "categoryTitle": "other",
-      "point": [
-        39.5465928,
-        -0.572529
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer del Cronista Cerveró",
-        "matchedText": "Carrer del Cronista Cerveró",
-        "sourceId": "carrer-del-cronista-cervero"
-      }
-    },
-    {
       "id": "4579648",
       "zones": [
         "urbanitzacio-la-reva"
@@ -3070,31 +3049,6 @@
         "name": "Urbanització La Reva",
         "matchedText": "Urbanització La Reva",
         "sourceId": "urbanitzacio-la-reva"
-      }
-    },
-    {
-      "id": "68394",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": false,
-      "amount": 59570.53,
-      "amountKind": "final",
-      "date": "2018-05-09",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5483742,
-        -0.5912189
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto",
-        "sourceId": "el-pou-d-escoto"
       }
     },
     {
@@ -3125,7 +3079,7 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.5477533,
+        39.5477716,
         -0.5797717
       ],
       "place": {
@@ -3760,6 +3714,52 @@
       }
     },
     {
+      "id": "329628",
+      "zones": [
+        "el-pou-d-escoto"
+      ],
+      "matchedAlias": {
+        "el-pou-d-escoto": "escoto"
+      },
+      "dana": false,
+      "amount": 24916.32,
+      "amountKind": "final",
+      "date": "2018-01-24",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5483742,
+        -0.5912189
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "el Pou d'Escoto",
+        "matchedText": "el Pou d'Escoto",
+        "sourceId": "el-pou-d-escoto"
+      }
+    },
+    {
+      "id": "649191",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 7997,
+      "amountKind": "final",
+      "date": "2019-03-30",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5465928,
+        -0.572529
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer del Cronista Cerveró",
+        "matchedText": "Carrer del Cronista Cerveró",
+        "sourceId": "carrer-del-cronista-cervero"
+      }
+    },
+    {
       "id": "4811930",
       "zones": [
         "el-molinet"
@@ -3813,11 +3813,11 @@
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "a4de00b43938",
+    "civic-poi.json": "94633b19358d",
     "gazetteer-supplement.json": "813c38c1dc80",
-    "geo.json": "2da06f114100",
+    "geo.json": "74149b10768f",
     "place-overrides.json": "5a4641410141",
-    "streets.json": "b5d5f3dc859d",
-    "tenders.json": "a1f2877c825e"
+    "streets.json": "acb88f7b6298",
+    "tenders.json": "95293b0afd84"
   }
 }
