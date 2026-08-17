@@ -1,0 +1,444 @@
+<title>La mitad de abajo de la división</title>
+
+<style>
+  /* ── Tokens · paleta clara completa ─────────────────────────────────────
+     Los dos tonos de serie están validados con el comprobador de paletas:
+     banda de luminosidad, suelo de croma, separación bajo daltonismo
+     (ΔE 26,0 normal · 16,1 protan) y contraste contra el fondo. */
+  :root {
+    --paper:      #f6f8f8;
+    --card:       #fffefd;
+    --ink:        #101619;
+    --ink-70:     rgba(16, 22, 25, 0.74);
+    --ink-50:     rgba(16, 22, 25, 0.56);
+    --rule:       rgba(16, 22, 25, 0.16);
+    --rule-soft:  rgba(16, 22, 25, 0.07);
+    --teal:       #00909e;
+    --amber:      #d97706;
+    --void:       rgba(16, 22, 25, 0.05);
+    --shadow:     0 1px 2px rgba(16,22,25,.05), 0 8px 24px -16px rgba(16,22,25,.28);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:     #10151a;
+      --card:      #151b21;
+      --ink:       #eef3f4;
+      --ink-70:    rgba(238, 243, 244, 0.74);
+      --ink-50:    rgba(238, 243, 244, 0.55);
+      --rule:      rgba(238, 243, 244, 0.20);
+      --rule-soft: rgba(238, 243, 244, 0.09);
+      --teal:      #2aa7b4;
+      --amber:     #c2841f;
+      --void:      rgba(238, 243, 244, 0.06);
+      --shadow:    0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:     #10151a;
+    --card:      #151b21;
+    --ink:       #eef3f4;
+    --ink-70:    rgba(238, 243, 244, 0.74);
+    --ink-50:    rgba(238, 243, 244, 0.55);
+    --rule:      rgba(238, 243, 244, 0.20);
+    --rule-soft: rgba(238, 243, 244, 0.09);
+    --teal:      #2aa7b4;
+    --amber:     #c2841f;
+    --void:      rgba(238, 243, 244, 0.06);
+    --shadow:    0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background-color: var(--paper);
+    /* Pauta de formulario: la trama del impreso del que sale todo esto. */
+    background-image: repeating-linear-gradient(
+      to bottom, var(--rule-soft) 0 1px, transparent 1px 28px);
+    color: var(--ink);
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 15px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 74ch; margin: 0 auto; padding: 56px 24px 96px; }
+
+  .serif {
+    font-family: ui-serif, Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-feature-settings: "liga" 1;
+  }
+  .mono { font-variant-numeric: tabular-nums; }
+
+  /* ── Cabecera ─────────────────────────────────────────────────────────── */
+  .eyebrow {
+    font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-50); margin: 0 0 18px;
+  }
+  h1 {
+    font-family: ui-serif, Georgia, "Iowan Old Style", serif;
+    font-size: clamp(30px, 5.4vw, 46px); line-height: 1.12; font-weight: 600;
+    letter-spacing: -0.015em; margin: 0 0 18px; text-wrap: balance;
+  }
+  .standfirst {
+    font-family: ui-serif, Georgia, serif; font-size: clamp(16px, 2.3vw, 19px);
+    line-height: 1.55; color: var(--ink-70); margin: 0 0 10px; text-wrap: pretty;
+  }
+  .byline {
+    font-size: 12px; color: var(--ink-50); margin: 22px 0 0;
+    padding-top: 14px; border-top: 1px solid var(--rule);
+  }
+
+  /* ── Bloques de hallazgo ──────────────────────────────────────────────── */
+  section { margin-top: 56px; }
+  .tag {
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--teal); margin: 0 0 10px;
+  }
+  h2 {
+    font-family: ui-serif, Georgia, serif; font-weight: 600;
+    font-size: clamp(21px, 3.2vw, 27px); line-height: 1.22;
+    letter-spacing: -0.01em; margin: 0 0 14px; text-wrap: balance;
+  }
+  p { margin: 0 0 14px; color: var(--ink-70); }
+  p strong { color: var(--ink); font-weight: 600; }
+
+  figure {
+    margin: 26px 0; padding: 20px; background: var(--card);
+    border: 1px solid var(--rule); border-radius: 3px; box-shadow: var(--shadow);
+  }
+  figcaption {
+    font-size: 12px; line-height: 1.5; color: var(--ink-50);
+    margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--rule-soft);
+  }
+  .fig-title {
+    font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-50); margin: 0 0 18px;
+  }
+
+  /* ── Las once casillas de la entrega ──────────────────────────────────── */
+  /* Rejilla, no flex: con once casillas y `flex-wrap` la última caía sola a la
+     segunda línea y se estiraba a todo el ancho, que es justo la casilla que no
+     debe llamar la atención. Con auto-fit reparte por igual a cualquier ancho. */
+  .entregas {
+    display: grid; gap: 6px;
+    grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
+  }
+  .celda {
+    text-align: center; padding: 12px 4px 10px;
+    border: 1px solid var(--rule); border-radius: 2px;
+    font-size: 13px; font-variant-numeric: tabular-nums; color: var(--ink-70);
+  }
+  .celda.presentada { border-color: var(--teal); color: var(--ink); }
+  .celda.presentada::after {
+    content: "✓"; display: block; font-size: 10px; color: var(--teal); margin-top: 3px;
+  }
+  .celda.ausente {
+    border-style: dashed; border-color: var(--amber); color: var(--amber);
+    background: repeating-linear-gradient(45deg,
+      var(--void) 0 5px, transparent 5px 10px);
+  }
+  .celda.ausente::after {
+    content: "sin rendir"; display: block; font-size: 9px; letter-spacing: .04em;
+    color: var(--amber); margin-top: 3px;
+  }
+
+  /* ── Barras: cuántos ayuntamientos rindieron cada año ─────────────────── */
+  .barras { display: flex; flex-direction: column; gap: 9px; margin-top: 4px; }
+  .fila { display: grid; grid-template-columns: 46px 1fr auto; align-items: center; gap: 12px; }
+  .fila .anio { font-size: 12.5px; color: var(--ink-50); font-variant-numeric: tabular-nums; }
+  .pista { height: 13px; background: var(--void); border-radius: 2px; overflow: hidden; }
+  .barra { height: 100%; background: var(--teal); border-radius: 0 3px 3px 0; }
+  .fila .n { font-size: 12.5px; font-variant-numeric: tabular-nums; color: var(--ink-70); }
+  .fila.propia .anio, .fila.propia .n { color: var(--amber); font-weight: 600; }
+  .fila.propia .barra { background: var(--amber); }
+
+  /* ── Franja de comparables ────────────────────────────────────────────── */
+  .strip { position: relative; height: 62px; margin: 8px 0 4px; }
+  .strip-track {
+    position: absolute; left: 0; right: 0; top: 26px; height: 10px;
+    background: var(--void); border-radius: 2px;
+  }
+  .strip-iqr {
+    position: absolute; top: 26px; height: 10px; border-radius: 2px;
+    background: color-mix(in srgb, var(--teal) 26%, transparent);
+  }
+  .tick {
+    position: absolute; top: 20px; width: 2px; height: 22px; background: var(--teal);
+  }
+  .punto {
+    position: absolute; top: 25px; width: 12px; height: 12px; margin-left: -6px;
+    border-radius: 50%; background: var(--amber);
+    box-shadow: 0 0 0 2px var(--card);
+  }
+  .strip-label {
+    position: absolute; font-size: 11px; color: var(--ink-50);
+    transform: translateX(-50%); white-space: nowrap;
+  }
+  .strip-label.arriba { top: 0; }
+  .strip-label.abajo  { top: 42px; }
+  .strip-label.propia {
+    color: var(--amber); font-weight: 600;
+    /* Anclada al borde derecho: centrada sobre el 100 % se salía de la figura. */
+    left: auto; right: 0; transform: none;
+  }
+
+  /* ── Nominal contra real ──────────────────────────────────────────────── */
+  .par { margin-bottom: 20px; }
+  .par:last-child { margin-bottom: 0; }
+  .par-nombre { font-size: 13px; color: var(--ink); margin-bottom: 8px; }
+  .par-fila { display: grid; grid-template-columns: 62px 1fr auto; align-items: center; gap: 10px; margin-bottom: 5px; }
+  .par-fila .que { font-size: 11px; color: var(--ink-50); }
+  .par-barra { height: 12px; border-radius: 0 3px 3px 0; }
+  .par-barra.nom { background: var(--amber); }
+  .par-barra.real { background: var(--teal); }
+  .par-fila .val { font-size: 12.5px; font-variant-numeric: tabular-nums; color: var(--ink-70); }
+
+  .leyenda { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 18px; }
+  .leyenda span { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--ink-70); }
+  .swatch { width: 11px; height: 11px; border-radius: 2px; flex: none; }
+
+  /* ── Cifra destacada ──────────────────────────────────────────────────── */
+  .cifra {
+    font-size: clamp(40px, 8vw, 62px); line-height: 1; font-weight: 600;
+    font-variant-numeric: tabular-nums; letter-spacing: -0.03em; color: var(--ink);
+  }
+  /* La unidad en su propia línea: en línea con la cifra envolvía a media
+     palabra y dejaba «remedir» suelto debajo del número. */
+  .cifra .u {
+    display: block; font-size: .26em; color: var(--ink-50);
+    letter-spacing: .08em; text-transform: uppercase; margin-top: 10px;
+  }
+
+  .salvedad {
+    border-left: 2px solid var(--amber); padding: 2px 0 2px 14px;
+    font-size: 13.5px; color: var(--ink-70); margin: 20px 0;
+  }
+
+  footer {
+    margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--rule);
+    font-size: 12px; color: var(--ink-50); line-height: 1.6;
+  }
+  footer a { color: var(--teal); text-decoration: underline; text-underline-offset: 2px; }
+  a:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+  th, td { text-align: left; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--rule-soft); }
+  th { color: var(--ink-50); font-weight: 500; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .scroll-x { overflow-x: auto; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .barra, .par-barra { transition: width .5s cubic-bezier(.2,.7,.3,1); }
+  }
+</style>
+
+<div class="wrap">
+
+  <p class="eyebrow">Riba-roja de Túria · coste efectivo de los servicios · agosto 2026</p>
+  <h1>La mitad de abajo de la división</h1>
+  <p class="standfirst serif">
+    El Ayuntamiento de Riba-roja de Túria publica cada año lo que le cuesta cada
+    servicio y cuánto servicio presta. Lo primero lo actualiza. Lo segundo, no.
+    Tres cosas que aparecen al mirar diez entregas seguidas en vez de una.
+  </p>
+  <p class="byline">
+    Fuente: Ministerio de Hacienda, coste efectivo de los servicios de las entidades
+    locales (Orden HAP/2075/2014). Entregas de 2014 a 2024. Ninguna de estas cifras
+    describe a una persona: el coste efectivo lo rinde la entidad local en su conjunto.
+  </p>
+
+  <!-- ─────────────────────────────────────────────────────────────────── -->
+  <section>
+    <p class="tag">Lo que falta</p>
+    <h2>De once entregas, el ayuntamiento dejó una sin rendir</h2>
+    <p>
+      Calcular el coste efectivo antes del 1 de noviembre de cada año, y
+      comunicarlo al ministerio para su publicación, es una obligación del
+      artículo 116 ter de la Ley de Bases de Régimen Local. El ministerio ha
+      publicado once ejercicios. En el libro de la Comunitat Valenciana de
+      <strong>2020</strong>, Riba-roja no aparece en ninguna de las tablas de coste,
+      de modo de gestión ni de unidades físicas. En 2019 y en 2021 declara sus
+      cuarenta y tres filas completas.
+    </p>
+
+    <figure>
+      <p class="fig-title">Entregas rendidas por el ayuntamiento · 2014–2024</p>
+      <div class="entregas">
+        <div class="celda presentada">2014</div>
+        <div class="celda presentada">2015</div>
+        <div class="celda presentada">2016</div>
+        <div class="celda presentada">2017</div>
+        <div class="celda presentada">2018</div>
+        <div class="celda presentada">2019</div>
+        <div class="celda ausente" title="Riba-roja no figura en las tablas CE1, CE2 ni CE3 del libro de la Comunitat Valenciana de 2020">2020</div>
+        <div class="celda presentada">2021</div>
+        <div class="celda presentada">2022</div>
+        <div class="celda presentada">2023</div>
+        <div class="celda presentada">2024</div>
+      </div>
+      <figcaption>
+        La casilla rayada no es un dato que no hayamos conseguido: el fichero está
+        descargado y los demás municipios figuran en él.
+      </figcaption>
+    </figure>
+
+    <p>
+      La explicación cómoda sería la pandemia. No se sostiene: en 2020 rindieron
+      <strong>más</strong> ayuntamientos valencianos que en cualquiera de los
+      cuatro años siguientes; sólo 2017 rindió más.
+    </p>
+
+    <figure>
+      <p class="fig-title">Ayuntamientos de la Comunitat Valenciana que rindieron cada entrega</p>
+      <div class="barras">
+        <div class="fila"><span class="anio">2017</span><div class="pista"><div class="barra" style="width:100%"></div></div><span class="n">513</span></div>
+        <div class="fila"><span class="anio">2018</span><div class="pista"><div class="barra" style="width:95.3%"></div></div><span class="n">489</span></div>
+        <div class="fila"><span class="anio">2019</span><div class="pista"><div class="barra" style="width:95.5%"></div></div><span class="n">490</span></div>
+        <div class="fila propia"><span class="anio">2020</span><div class="pista"><div class="barra" style="width:98.1%"></div></div><span class="n">503</span></div>
+        <div class="fila"><span class="anio">2021</span><div class="pista"><div class="barra" style="width:96.9%"></div></div><span class="n">497</span></div>
+        <div class="fila"><span class="anio">2022</span><div class="pista"><div class="barra" style="width:96.5%"></div></div><span class="n">495</span></div>
+        <div class="fila"><span class="anio">2023</span><div class="pista"><div class="barra" style="width:90.6%"></div></div><span class="n">465</span></div>
+        <div class="fila"><span class="anio">2024</span><div class="pista"><div class="barra" style="width:93.2%"></div></div><span class="n">478</span></div>
+      </div>
+      <figcaption>
+        En ámbar, la entrega que Riba-roja no rindió — y que rindieron 503 de sus
+        vecinos. Recuento propio sobre los libros por comunidad autónoma del
+        ministerio, contando entidades de tipo ayuntamiento presentes en las tablas
+        CE1, CE2 o CE3.
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- ─────────────────────────────────────────────────────────────────── -->
+  <section>
+    <p class="tag">Lo que no se vuelve a medir</p>
+    <h2>Los trece costes unitarios dividen entre una cantidad congelada</h2>
+    <p>
+      Un coste unitario es una división: lo que costó un servicio, entre la cantidad
+      de servicio prestado. El ayuntamiento actualiza el numerador cada entrega. El
+      denominador lo copia. Las 11.059,41 toneladas de residuos, los 700.000 metros
+      cuadrados con servicio de limpieza y los 4.514 puntos de luz se repiten sin
+      variar un decimal desde 2018 o 2019, según el servicio.
+    </p>
+
+    <p class="cifra">13 de 13<span class="u">denominadores sin remedir</span></p>
+
+    <p>
+      No es una rareza local, y tampoco es lo normal. Entre los 50 municipios de su
+      banda —Comunitat Valenciana, de 15.000 a 40.000 habitantes— de los que se
+      puede medir lo mismo, la mediana repite el 63,1 % de sus denominadores.
+    </p>
+
+    <figure>
+      <p class="fig-title">Denominadores que se repiten entrega tras entrega · 50 comparables</p>
+      <div class="strip">
+        <div class="strip-track"></div>
+        <div class="strip-iqr" style="left:44.9%; width:33.9%"></div>
+        <div class="tick" style="left:63.1%" title="Mediana de los comparables: 63,1 %"></div>
+        <span class="strip-label arriba" style="left:44.9%">p25 · 44,9 %</span>
+        <span class="strip-label abajo" style="left:63.1%">mediana · 63,1 %</span>
+        <span class="strip-label arriba" style="left:78.8%">p75 · 78,8 %</span>
+        <div class="punto" style="left:100%" title="Riba-roja de Túria: 100 %"></div>
+        <span class="strip-label abajo propia" style="left:96%">Riba-roja · 100 %</span>
+      </div>
+      <figcaption>
+        La franja sombreada es la mitad central de los comparables; la marca vertical,
+        su mediana; el punto ámbar, Riba-roja. Sólo entran municipios de los que se
+        puede medir lo mismo, es decir, con coste unitario en al menos la mitad de
+        servicios que Riba-roja.
+      </figcaption>
+    </figure>
+
+    <p class="salvedad">
+      Esto mide la <strong>declaración</strong>, no el servicio. Una cantidad estable
+      puede ser perfectamente correcta —los puntos de luz de un municipio pueden pasar
+      años sin moverse de verdad— y repetirla no prueba que nadie la haya comprobado.
+      Lo que sí se puede afirmar es aritmético: si el numerador se actualiza y el
+      denominador se copia, el cociente sólo puede moverse por arriba.
+    </p>
+  </section>
+
+  <!-- ─────────────────────────────────────────────────────────────────── -->
+  <section>
+    <p class="tag">Lo que sube solo</p>
+    <h2>Buena parte del encarecimiento era el nivel de precios</h2>
+    <p>
+      Estas series corrían de 2014 a 2024 en euros corrientes, y en ese tramo el
+      nivel de precios subió un <strong>22,8 %</strong>. Un servicio que costara
+      exactamente lo mismo en términos reales aparecía encareciéndose. Puestas en
+      euros constantes, tres de las subidas se encogen así:
+    </p>
+
+    <figure>
+      <p class="fig-title">Variación del coste unitario, 2014/2015 → 2024</p>
+      <div class="leyenda">
+        <span><i class="swatch" style="background:var(--amber)"></i> euros corrientes</span>
+        <span><i class="swatch" style="background:var(--teal)"></i> euros constantes de 2024</span>
+      </div>
+
+      <div class="par">
+        <p class="par-nombre">Pavimentación de vías públicas</p>
+        <div class="par-fila"><span class="que">corrientes</span><div class="par-barra nom" style="width:26%"></div><span class="val">+29 %</span></div>
+        <div class="par-fila"><span class="que">constantes</span><div class="par-barra real" style="width:4.5%"></div><span class="val">+5 %</span></div>
+      </div>
+      <div class="par">
+        <p class="par-nombre">Seguridad y orden público (policía local)</p>
+        <div class="par-fila"><span class="que">corrientes</span><div class="par-barra nom" style="width:68%"></div><span class="val">+76 %</span></div>
+        <div class="par-fila"><span class="que">constantes</span><div class="par-barra real" style="width:37.5%"></div><span class="val">+42 %</span></div>
+      </div>
+      <div class="par">
+        <p class="par-nombre">Cementerio y servicios funerarios</p>
+        <div class="par-fila"><span class="que">corrientes</span><div class="par-barra nom" style="width:100%"></div><span class="val">+112 %</span></div>
+        <div class="par-fila"><span class="que">constantes</span><div class="par-barra real" style="width:65%"></div><span class="val">+73 %</span></div>
+      </div>
+
+      <figcaption>
+        Deflactado con el índice de precios de consumo del INE, media anual, base
+        2025. La comparación entre municipios no se deflacta: enfrenta un año contra
+        ese mismo año, así que corregirla movería todas las cifras por igual sin
+        cambiar ninguna posición.
+      </figcaption>
+    </figure>
+
+    <div class="scroll-x">
+      <table>
+        <caption class="fig-title" style="text-align:left; caption-side:top;">Las mismas cifras, en tabla</caption>
+        <thead>
+          <tr><th>Servicio</th><th class="num">Corrientes</th><th class="num">Constantes</th><th class="num">Diferencia</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Pavimentación de vías públicas</td><td class="num">+29 %</td><td class="num">+5 %</td><td class="num">24 pp</td></tr>
+          <tr><td>Seguridad y orden público</td><td class="num">+76 %</td><td class="num">+42 %</td><td class="num">33 pp</td></tr>
+          <tr><td>Cementerio y servicios funerarios</td><td class="num">+112 %</td><td class="num">+73 %</td><td class="num">39 pp</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:22px">
+      Las dos cosas se suman. Con el denominador congelado y el numerador sin
+      deflactar, había <strong>dos motivos distintos</strong> empujando la misma
+      línea hacia arriba, mezclados y sin separar, y ninguno de los dos era el
+      servicio.
+    </p>
+  </section>
+
+  <footer>
+    <p>
+      Esta pieza, con sus fuentes y su método, vive en el sitio:
+      <a href="https://www.civicpulse.es/reportajes/coste-efectivo">civicpulse.es/reportajes/coste-efectivo</a>.
+      Panel completo, servicio por servicio, con su fuente y sus salvedades:
+      <a href="https://www.civicpulse.es/eficiencia">civicpulse.es/eficiencia</a>.
+      Cómo se calcula y qué se descarta:
+      <a href="https://www.civicpulse.es/metodologia#eficiencia">metodología</a>.
+    </p>
+    <p>
+      El coste efectivo no está pensado para ordenar municipios: las formas de
+      gestión son heterogéneas y el mismo servicio no tiene la misma extensión en
+      todas partes. Por eso aquí no hay nota global ni ranking, y cada cifra va con
+      la entrega de la que sale. Derecho de réplica abierto a ayuntamiento,
+      intervención, concesionario y ministerio.
+    </p>
+  </footer>
+
+</div>

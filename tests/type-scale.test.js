@@ -74,7 +74,17 @@ describe('la escala tipográfica', () => {
     // SectionGlyph queda fuera con nombre y motivo: su tamaño se deriva de la
     // caja que le pasa quien lo usa (`Math.round(size * 0.94)`), y eso es
     // geometría de un glifo, no un paso de la escala de TEXTO.
-    const EXENTOS = new Set(['src/components/SectionGlyph.jsx'])
+    //
+    // El embudo también, por la misma clase de motivo: sus rótulos viven DENTRO
+    // de un viewBox de 720 unidades y escalan con el contenedor (≈12 px en
+    // escritorio, decorativos en móvil, donde la frase de al lado lleva las
+    // cifras). Una unidad de viewBox no es un píxel de CSS: un token rem ahí
+    // dentro mediría distinto en cada ancho, que es exactamente lo que la
+    // escala prohíbe.
+    const EXENTOS = new Set([
+      'src/components/SectionGlyph.jsx',
+      'src/components/coste-esperado/Embudo.jsx',
+    ])
     const culpables = []
     for (const p of FUENTES) {
       const rel = p.replace(ROOT + '/', '')

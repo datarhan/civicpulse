@@ -9,6 +9,9 @@ import {
   puntosSueltos,
   puentesHueco,
   serieMediana,
+  enTerminosReales,
+  bandaSerie,
+  puntosOtroModo,
 } from '../src/components/eficiencia/SerieServicio'
 
 const ROOT = join(__dirname, '..')
@@ -336,13 +339,160 @@ describe('la mediana de pares es su propia serie', () => {
   it('sobre el panel publicado: una sola línea de mediana, con su puente', () => {
     const conSerie = indicadores.filter((i) => i.valor !== null && declarados(i).length >= 2)
     expect(conSerie.length).toBeGreaterThan(0)
+    let conPuente = 0
     for (const i of conSerie) {
       const m = serieMediana(declarados(i))
+      // Un puente existe exactamente cuando SUS DOS ORILLAS tienen mediana. El
+      // transporte tiene medianas a ambos lados de 2020 pero no en 2019 —no
+      // llega a quince pares del mismo modo ese año—, y exigirle puente
+      // convertiría «no hay comparación ese año» en un fallo: el colapso de
+      // estados que la regla 5 existe para impedir. La expectativa se DERIVA
+      // de las orillas en vez de escribirse.
+      const valores = new Map(m.filter((p) => p.valor !== null).map((p) => [p.anio, p.valor]))
+      const esperados = huecosSerie(m).filter(
+        (h) => valores.has(h.desde - 1) && valores.has(h.hasta + 1),
+      ).length
+      expect(puentesHueco(m).length, `${i.servicio}: puentes ≠ huecos con orillas`).toBe(esperados)
+      if (esperados === 0) continue
+      conPuente++
       // Dos tramos y un puente: el único corte es 2020. Antes alumbrado tenía
       // tres, porque su 2018 atípico partía también la línea de los pares.
       const tramos = tramosSerie(m).filter((t) => t.length >= 2)
       expect(tramos.length, `${i.servicio}: la mediana se parte de más`).toBeLessThanOrEqual(2)
-      expect(puentesHueco(m).length, `${i.servicio}: la mediana no cruza su hueco`).toBe(1)
     }
+    // Anti-hueco: si la derivación dejara a todos sin puente, la prueba
+    // pasaría sin medir ninguno.
+    expect(conPuente).toBeGreaterThan(5)
+  })
+})
+
+describe('años bajo otro modo de gestión (regla 4)', () => {
+  // Sin instancia viva en el snapshot —los años de concesión de limpieza
+  // vienen sin coste declarado—, la regla se prueba con puntos construidos.
+  const puntos = [
+    { anio: 2016, valor: 1.0, estado: 'declarado', otroModo: 'concesion' },
+    { anio: 2017, valor: 1.1, estado: 'declarado' },
+    { anio: 2018, valor: 1.2, estado: 'declarado' },
+  ]
+
+  it('la línea no une el año del otro régimen con los del actual', () => {
+    const tramos = tramosSerie(puntos)
+    expect(tramos).toHaveLength(1)
+    expect(tramos[0].map((p) => p.anio)).toEqual([2017, 2018])
+  })
+
+  it('el punto se publica aparte, como aro, no como lunar de la serie', () => {
+    expect(puntosOtroModo(puntos).map((p) => p.anio)).toEqual([2016])
+    expect(puntosSueltos(puntos).map((p) => p.anio)).toEqual([])
+  })
+
+  it('el atípico manda: fuera de escala no necesita segunda marca', () => {
+    const conAtipico = [
+      { anio: 2015, valor: 9e9, estado: 'declarado', otroModo: 'concesion', atipico: true },
+    ]
+    expect(puntosOtroModo(conAtipico)).toEqual([])
+  })
+
+  it('un puente nunca ancla en un año de otro régimen', () => {
+    const conHueco = [
+      { anio: 2019, valor: 1.0, estado: 'declarado', otroModo: 'concesion' },
+      { anio: 2021, valor: 1.2, estado: 'declarado' },
+      { anio: 2022, valor: 1.3, estado: 'declarado' },
+    ]
+    expect(puentesHueco(conHueco)).toEqual([])
+  })
+
+  it('enTerminosReales conserva la marca al cambiar de unidad', () => {
+    const reales = enTerminosReales([
+      { anio: 2016, valor: 1.0, valorReal: 1.2, estado: 'declarado', otroModo: 'concesion' },
+    ])
+    expect(reales.reales).toBe(true)
+    expect(reales.puntos[0].otroModo).toBe('concesion')
+  })
+})
+
+describe('la serie se dibuja en euros constantes', () => {
+  const conSerie = indicadores.filter((i) => i.valor !== null && declarados(i).length >= 2)
+
+  it('el snapshot publicado trae los términos reales, no sólo los corrientes', () => {
+    // Si esto se rompe, compute:indicadores corrió sin ipc.json y la página
+    // está dibujando corrientes mientras el rótulo puede decir otra cosa.
+    expect(conSerie.length).toBeGreaterThan(0)
+    for (const i of conSerie) {
+      for (const p of declarados(i)) {
+        expect(typeof p.valorReal, `${i.servicio} ${p.anio}: sin valorReal`).toBe('number')
+      }
+    }
+  })
+
+  it('sustituye el valor y su mediana a la vez, o ninguno', () => {
+    for (const i of conSerie) {
+      const { puntos, reales } = enTerminosReales(declarados(i))
+      expect(reales).toBe(true)
+      for (const p of puntos) {
+        expect(p.valor).toBe(p.valorReal)
+        // La mediana de pares tiene que venir del campo real, nunca del
+        // nominal: media serie deflactada contra media sin deflactar dibuja
+        // una distancia que no le ha pasado a nadie.
+        if (typeof p.medianaParesReal === 'number') {
+          expect(p.medianaPares).toBe(p.medianaParesReal)
+        }
+        // Y la banda con ella: los cuatro campos de comparación cambian de
+        // unidad juntos o no cambia ninguno.
+        if (typeof p.p25ParesReal === 'number') {
+          expect(p.p25Pares).toBe(p.p25ParesReal)
+          expect(p.p75Pares).toBe(p.p75ParesReal)
+        }
+      }
+    }
+  })
+
+  it('la banda de pares del año se publica, escalada, y se corta en el hueco', () => {
+    const conBanda = conSerie.filter((i) =>
+      declarados(i).some((p) => typeof p.p25Pares === 'number'),
+    )
+    expect(conBanda.length).toBeGreaterThan(3)
+    for (const i of conBanda) {
+      for (const p of declarados(i)) {
+        if (typeof p.p25Pares !== 'number') continue
+        expect(p.p75Pares).toBeGreaterThanOrEqual(p.p25Pares)
+        expect(p.nPares).toBeGreaterThanOrEqual(15)
+        if (typeof p.valorReal === 'number' && p.valor) {
+          const factor = p.valorReal / p.valor
+          expect(p.p25ParesReal / p.p25Pares).toBeCloseTo(factor, 9)
+          expect(p.p75ParesReal / p.p75Pares).toBeCloseTo(factor, 9)
+        }
+      }
+      // El 2020 sin entrega corta la banda igual que corta la línea:
+      // interpolarla afirmaría una anchura que nadie midió ese año.
+      for (const t of bandaSerie(enTerminosReales(declarados(i)).puntos)) {
+        expect(t.length).toBeGreaterThanOrEqual(2)
+        for (let k = 1; k < t.length; k++) expect(t[k].anio - t[k - 1].anio).toBe(1)
+      }
+    }
+  })
+
+  it('el año que titula no se mueve al deflactar', () => {
+    for (const i of conSerie) {
+      const base = i.citas?.[0]?.entrega
+      const p = declarados(i).find((x) => x.anio === base)
+      if (p) expect(p.valorReal).toBeCloseTo(p.valor, 6)
+    }
+  })
+
+  it('sin índice cae a corrientes y lo dice, en vez de fingirlos', () => {
+    const sinIndice = declarados(conSerie[0]).map(({ valorReal, ...resto }) => resto)
+    const salida = enTerminosReales(sinIndice)
+    expect(salida.reales).toBe(false)
+    expect(salida.puntos).toBe(sinIndice)
+  })
+
+  it('un solo año sin deflactar tumba toda la serie a corrientes', () => {
+    // Todo o nada. Mezclar un año corriente con nueve constantes es peor que
+    // no deflactar: la pendiente resultante no es de nadie.
+    const puntos = declarados(conSerie[0]).map((p, idx) =>
+      idx === 1 ? (({ valorReal, ...resto }) => resto)(p) : p,
+    )
+    expect(enTerminosReales(puntos).reales).toBe(false)
   })
 })

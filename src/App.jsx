@@ -35,6 +35,7 @@ const Hallazgos = lazy(() => import('./pages/Hallazgos'))
 const Declaraciones = lazy(() => import('./pages/Declaraciones'))
 const Laboratorio = lazy(() => import('./pages/Laboratorio'))
 const Frontera = lazy(() => import('./pages/Frontera'))
+const CosteEsperado = lazy(() => import('./pages/CosteEsperado'))
 const Metodologia = lazy(() => import('./pages/Metodologia'))
 const LabHealth = lazy(() => import('./pages/LabHealth'))
 const AvisoLegal = lazy(() => import('./pages/AvisoLegal'))
@@ -45,6 +46,7 @@ const Reportajes = lazy(() => import('./pages/Reportajes'))
 const ReconstruccionDana = lazy(() => import('./pages/reportajes/ReconstruccionDana'))
 const InteligenciaTuristica = lazy(() => import('./pages/reportajes/InteligenciaTuristica'))
 const Basuras = lazy(() => import('./pages/reportajes/Basuras'))
+const CosteEfectivoReportaje = lazy(() => import('./pages/reportajes/CosteEfectivo'))
 const BuildingCivicPulse = lazy(() => import('./pages/blog/BuildingCivicPulse'))
 // /curator is dev-only — see vite-curator-plugin.js. The lazy import
 // is gated below by `import.meta.env.MODE !== 'production'`. Production
@@ -145,6 +147,7 @@ function InnerShell({ onOpenCmdK }) {
               <Route path="/quejas/:id" element={<QuejaDetail />} />
               <Route path="/laboratorio" element={<Laboratorio />} />
               <Route path="/laboratorio/frontera" element={<Frontera />} />
+              <Route path="/laboratorio/coste-esperado" element={<CosteEsperado />} />
               {Agentes && <Route path="/laboratorio/agentes" element={<Agentes />} />}
               {AgenteReporte && (
                 <Route path="/laboratorio/agentes/:assignmentId" element={<AgenteReporte />} />
@@ -157,6 +160,7 @@ function InnerShell({ onOpenCmdK }) {
               {/* Long-form data reportajes — indexed at /reportajes (in NAV); each pieza keeps
                   its figures frozen in its own JSON snapshot. */}
               <Route path="/reportajes" element={<Reportajes />} />
+              <Route path="/reportajes/coste-efectivo" element={<CosteEfectivoReportaje />} />
               <Route path="/reportajes/reconstruccion-dana" element={<ReconstruccionDana />} />
               <Route
                 path="/reportajes/inteligencia-turistica"

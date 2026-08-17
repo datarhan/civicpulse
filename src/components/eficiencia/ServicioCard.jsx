@@ -1,10 +1,11 @@
 import { Card, Pill } from '../Primitives'
 import { useT } from '../../i18n'
 import { BandaPares } from './BandaPares'
-import { SerieServicio } from './SerieServicio'
+import { SerieServicio, enTerminosReales } from './SerieServicio'
 import { TIER_TONE } from './Escalones'
 import { leerIndicador, lecturaVisible, chipDeclaracion } from '../../scraper/indicador-lectura'
 import { Lectura } from './Lectura'
+import { Resultado } from './Resultado'
 
 const GESTION = {
   directa: { label: 'gestión directa', tone: 'neutral' },
@@ -29,15 +30,15 @@ const MOTIVO = {
   concesion:
     'El servicio está concedido: lo paga el concesionario y lo recupera vía tarifa, así que el coste que declara el ayuntamiento (0 €) no es lo que cuesta el servicio. Compararlo con un municipio de gestión directa diría que aquí es gratis.',
   'cero-sin-declarar':
-    'Hay gasto declarado, pero la unidad física viene a cero. Un cero junto a un presupuesto real significa «no se declaró», no «no hubo».',
+    'Hay gasto declarado, pero la unidad física viene a cero. Un cero junto a un presupuesto real significa «no se declaró», no «no hubo» (regla 3).',
   'filas-duplicadas':
-    'El ministerio publica más de un coste para este mismo servicio. Elegir uno sería un volado disfrazado de dato.',
+    'El ministerio publica más de un coste para este mismo servicio. Elegir uno sería un volado disfrazado de dato (regla 1 de la metodología).',
   'atributo-ambiguo':
-    'La misma magnitud está declarada dos veces con valores distintos en la misma entrega.',
+    'La misma magnitud está declarada dos veces con valores distintos en la misma entrega (regla 2).',
   ausente: 'La entrega no trae esta magnitud.',
 }
 
-export function ServicioCard({ indicador, formatea }) {
+export function ServicioCard({ indicador, formatea, resultado }) {
   const t = useT()
   const i = indicador
   const g = GESTION[i.modoGestion] ?? GESTION['sin-clasificar']
@@ -50,13 +51,20 @@ export function ServicioCard({ indicador, formatea }) {
     banda: Boolean(i.pares),
   })
   const declarados = i.serie.filter((p) => p.estado === 'declarado')
+  const serie = enTerminosReales(declarados)
   const puntos = declarados.length
   const chip = chipDeclaracion(i)
   // Avisos y salvedades comparten destino: los primeros los cuenta ahora el
   // gráfico (la tendencia es la forma; la entrega imposible, el ⚠ del borde), y
   // las segundas son el texto largo que se leía una vez y se saltaba nueve.
   const salvedades = [...lectura.avisos, ...(i.caveats ?? [])]
-  const plegable = salvedades.length + (declarados.length >= 2 ? 1 : 0)
+  const conRecuentoDeclaracion = Boolean(
+    i.declaracion?.denominador?.congelada &&
+    typeof i.declaracion.paresCongelados === 'number' &&
+    typeof i.declaracion.paresMedibles === 'number',
+  )
+  const plegable =
+    salvedades.length + (declarados.length >= 2 ? 1 : 0) + (conRecuentoDeclaracion ? 1 : 0)
 
   return (
     // El id es el destino de los enlaces del resumen de arriba; el margen de
@@ -106,10 +114,30 @@ export function ServicioCard({ indicador, formatea }) {
 
           {/* La serie va dibujada, con las entregas inverosímiles fuera de la
               escala y marcadas donde estaban. Las cifras exactas, año por año,
-              siguen en el desplegable de abajo. */}
-          <SerieServicio puntos={declarados} formatea={formatea} unidad={i.unidad} />
+              siguen en el desplegable de abajo.
+
+              Va en euros constantes de la entrega que titula. El rótulo no es
+              decorativo: una serie de coste en corrientes y otra deflactada se
+              dibujan igual, y sólo una de las dos se puede leer. Si falta el
+              índice de algún año se dice, y se dibujan los corrientes. */}
+          <SerieServicio puntos={serie.puntos} formatea={formatea} unidad={i.unidad} />
+          <div
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              marginTop: 6,
+              textAlign: 'right',
+            }}
+          >
+            {serie.reales
+              ? `€ constantes de ${cita?.entrega}`
+              : 'euros corrientes: falta el índice de algún año'}
+          </div>
 
           <BandaPares indicador={i} formatea={formatea} />
+
+          {/* El resultado, si esta funcion tiene uno: al lado, nunca dividido. */}
+          <Resultado resultado={resultado} id={`r-${i.id}`} />
           {puntos < 2 && (
             <p style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', margin: '10px 0 0' }}>
               {t('eficiencia.serie.ausente')}
@@ -177,8 +205,18 @@ export function ServicioCard({ indicador, formatea }) {
                     }
                     title={
                       p.atipico
-                        ? `Cifra inverosímil: los municipios comparables declararon una mediana de ${formatea(p.medianaPares)} ese año`
-                        : undefined
+                        ? // La mediana puede faltar: la cordura de la regla 7
+                          // puede apoyarse en pares de cualquier modo cuando el
+                          // del año no llega a quince, y ésos no se publican
+                          // como comparación. formatea(undefined) tumbaba la
+                          // página entera — y el skip-gate del e2e leyó el
+                          // h1 ausente como «bandera apagada» y calló.
+                          typeof p.medianaPares === 'number'
+                          ? `Cifra inverosímil: los municipios comparables declararon una mediana de ${formatea(p.medianaPares)} ese año`
+                          : 'Cifra inverosímil: se aparta más de veinte veces de lo declarado ese año, sin quince pares del mismo modo que citar (regla 7)'
+                        : p.otroModo
+                          ? `Ese año el servicio se prestaba en ${p.otroModo}: la cifra se publica pero no es comparable con la línea (regla 4)`
+                          : undefined
                     }
                   >
                     {p.anio}: {formatea(p.valor)}
@@ -186,6 +224,24 @@ export function ServicioCard({ indicador, formatea }) {
                   </span>
                 </span>
               ))}
+            </p>
+          )}
+
+          {/* Los recuentos de la declaración, como números y no sólo horneados
+              dentro de una frase: `paresCongelados`/`paresMedibles` se
+              calculaban y no los renderizaba nadie, así que la mitad de la
+              salvedad —¿es un defecto local o de la fuente?— quedaba sin su
+              dato. Derivado del snapshot; si el campo falta, la línea no sale. */}
+          {conRecuentoDeclaracion && (
+            <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '10px 0 0' }}>
+              El denominador se declara idéntico desde{' '}
+              <strong className="mono">{i.declaracion.denominador.desde}</strong> (
+              <span className="mono">{i.declaracion.denominador.repeticionesFinales}</span> entregas
+              seguidas) ·{' '}
+              <strong className="mono">
+                {i.declaracion.paresCongelados} de {i.declaracion.paresMedibles}
+              </strong>{' '}
+              comparables medibles hacen lo mismo.
             </p>
           )}
 
@@ -205,6 +261,13 @@ export function ServicioCard({ indicador, formatea }) {
               ))}
             </ul>
           )}
+          <p style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', margin: '8px 0 0' }}>
+            Las reglas numeradas que citan estas salvedades:{' '}
+            <a href="/metodologia#reglas-eficiencia" style={{ color: 'var(--civic)' }}>
+              reglas de filtrado y comparabilidad
+            </a>
+            .
+          </p>
         </details>
       )}
 

@@ -106,12 +106,40 @@ function main(): void {
     if (cotejo.estado === 'coincide') {
       fail('la medición ya coincide con el panel — una corrección que no corrige nada es ruido')
     }
-    original = `${ficha!.medicion.valor} ${ficha!.medicion.unidad} (${ficha!.medicion.periodo})`
-    corregido = `${cotejo.actual} ${ficha!.medicion.unidad} (${cotejo.periodoActual ?? ficha!.medicion.periodo})`
+    // La comparación se refresca CON la cifra, no aparte. Se refrescaba sólo
+    // `valor`, igual que el cotejo sólo lo comprobaba, así que una ficha podía
+    // quedar «corregida» y seguir publicando «mediana de 51 comparables:
+    // 57,14» cuando la banda ya decía otra cosa — y el propio check volvía a
+    // reclamarlo justo después de haberla corregido.
+    const vivo = (panel.municipales ?? []).find(
+      (x: { id: string }) => x.id === ficha!.medicion.indicadorId,
+    )
+    const escala = vivo?.formato === 'porcentaje' ? 100 : 1
+    const paresVivos =
+      ficha!.medicion.pares && vivo?.pares
+        ? {
+            ...ficha!.medicion.pares,
+            n: vivo.pares.n ?? ficha!.medicion.pares.n,
+            percentil: vivo.pares.percentil ?? ficha!.medicion.pares.percentil,
+            mediana:
+              vivo.pares.mediana === undefined
+                ? ficha!.medicion.pares.mediana
+                : vivo.pares.mediana * escala,
+          }
+        : ficha!.medicion.pares
+
+    const antesPares = ficha!.medicion.pares
+    original =
+      `${ficha!.medicion.valor} ${ficha!.medicion.unidad} (${ficha!.medicion.periodo})` +
+      (antesPares ? ` · mediana de ${antesPares.n}: ${antesPares.mediana}` : '')
+    corregido =
+      `${cotejo.actual} ${ficha!.medicion.unidad} (${cotejo.periodoActual ?? ficha!.medicion.periodo})` +
+      (paresVivos ? ` · mediana de ${paresVivos.n}: ${paresVivos.mediana}` : '')
     ficha!.medicion = {
       ...ficha!.medicion,
       valor: cotejo.actual,
       periodo: cotejo.periodoActual ?? ficha!.medicion.periodo,
+      ...(paresVivos ? { pares: paresVivos } : {}),
     }
     process.stdout.write(
       `[correct-indicador] el texto NO se ha tocado. Si el titular deja de ser cierto con ` +

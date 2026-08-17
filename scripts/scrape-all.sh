@@ -388,23 +388,49 @@ if ! npm run check:vocabulary; then
   soft_failures+=("check:vocabulary")
 fi
 
+# ¿Sigue cada snapshot dentro de su propia cadencia? El check existía con sus
+# presupuestos por fichero y NO LO INVOCABA NADIE — el modo de fallo 1 de
+# check:guards, en el propio guardián de la frescura. Soft: un dato viejo
+# avisa, no bloquea el dato bueno de esta noche.
+if ! npm run check:cadence; then
+  echo "[scrape-all] SOFT-FAILED: check:cadence — algún snapshot lleva más de su presupuesto sin refrescarse"
+  soft_failures+=("check:cadence")
+fi
+
 # ¿Sigue cada cifra de /eficiencia resolviendo a su celda, y sigue diciendo el
 # panel lo que afirman las fichas firmadas? Lo segundo es propio de esta
 # familia: una cita de pleno se queda quieta, un número no, y el ministerio
-# revisa entregas. Report-only como los demás: la respuesta a una cifra que se
-# movió es que un curador decida entre refrescar la medición y retirar la
-# ficha, nunca una edición automática de prosa publicada.
+# revisa entregas.
+#
+# Estas tres iban a `soft_failures`, que imprime una línea y deja la pasada
+# saliendo 0 bajo el mensaje «all critical scrapers succeeded», y
+# monitor-health tampoco las miraba. O sea que el desenlace que estas guardas
+# existen para detectar —una ficha FIRMADA, publicada y con nombre de curador,
+# cuya fuente ya no la sostiene— no llegaba a nadie. Es el mismo defecto que
+# `r?.findings ?? []`: la guarda es correcta, corre, y su veredicto muere en un
+# log que nadie lee.
+#
+# Ahora son críticas. No es «all-or-nothing»: en el nocturno el paso de scrape
+# captura su rc sin abortar, el commit va con `!cancelled()` y publica lo que sí
+# se refrescó, y la puerta de salud tiñe la pasada DESPUÉS de comitear. Es
+# decir: el dato bueno de la noche se sigue publicando, y el deploy se bloquea
+# hasta que un humano decida entre refrescar la medición y retirar la ficha.
+# Que la decisión sea humana no la hace opcional.
 if ! npm run check:indicadores; then
-  echo "[scrape-all] SOFT-FAILED: check:indicadores — cifra publicada sin celda que la respalde"
-  soft_failures+=("check:indicadores")
+  echo "[scrape-all] FAILED: check:indicadores — cifra publicada sin celda que la respalde"
+  failures+=("check:indicadores")
 fi
 if ! npm run check:eficiencia-findings; then
-  echo "[scrape-all] SOFT-FAILED: check:eficiencia-findings — ficha firmada que su fuente ya no sostiene"
-  soft_failures+=("check:eficiencia-findings")
+  echo "[scrape-all] FAILED: check:eficiencia-findings — ficha firmada que su fuente ya no sostiene"
+  failures+=("check:eficiencia-findings")
 fi
 if ! npm run check:dea; then
-  echo "[scrape-all] SOFT-FAILED: check:dea — la frontera no se reproduce, o nombra a un tercero"
-  soft_failures+=("check:dea")
+  echo "[scrape-all] FAILED: check:dea — la frontera no se reproduce, o nombra a un tercero"
+  failures+=("check:dea")
+fi
+if ! npm run check:coste-esperado; then
+  echo "[scrape-all] FAILED: check:coste-esperado — la recta no se reproduce, o nombra a un tercero"
+  failures+=("check:coste-esperado")
 fi
 
 # Tres guardas que existían y no invocaba NADIE — ni un workflow, ni un

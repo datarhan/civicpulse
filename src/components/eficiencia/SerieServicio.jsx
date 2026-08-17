@@ -46,7 +46,7 @@ export function tramosSerie(puntos) {
   let actual = []
   let prev = null
   for (const p of puntos) {
-    if (p.atipico || typeof p.valor !== 'number') {
+    if (p.atipico || p.otroModo || typeof p.valor !== 'number') {
       if (actual.length) tramos.push(actual)
       actual = []
       prev = null
@@ -130,7 +130,9 @@ export function anclasHueco(hueco) {
  */
 export function puentesHueco(puntos) {
   const legibles = new Map(
-    puntos.filter((p) => !p.atipico && typeof p.valor === 'number').map((p) => [p.anio, p]),
+    puntos
+      .filter((p) => !p.atipico && !p.otroModo && typeof p.valor === 'number')
+      .map((p) => [p.anio, p]),
   )
   return huecosSerie(puntos)
     .map((h) => {
@@ -169,6 +171,72 @@ export function serieMediana(puntos) {
 }
 
 /**
+ * Pasa la serie a euros constantes, o dice que no puede.
+ *
+ * Una serie de coste en euros corrientes no se puede leer como serie. Entre
+ * 2014 y 2024 el nivel de precios subió un 22,8 %, así que pavimentación de
+ * vías públicas aparentaba subir un 29 % cuando en términos reales sube un 5 %:
+ * la inflación se comía veinticuatro de los veintinueve puntos. Y como el
+ * denominador de estos cocientes lleva años sin remedirse, sin deflactar había
+ * DOS motivos distintos empujando la misma línea, mezclados y sin separar.
+ *
+ * Se convierte fuera del gráfico, a propósito. Las siete funciones puras de
+ * este módulo leen `valor` y `medianaPares` y no tienen por qué enterarse de
+ * qué unidad monetaria es ésa: sustituyendo los campos antes de entrar, el
+ * dibujo, sus huecos, su escala y sus pruebas siguen valiendo exactamente igual.
+ *
+ * Todo o nada: si a UN punto declarado le falta su equivalente real, se
+ * devuelve la serie nominal y `reales: false`, y la tarjeta lo rotula. Mezclar
+ * unos años deflactados con otros sin deflactar dibujaría una pendiente que no
+ * le ha pasado a nadie.
+ */
+export function enTerminosReales(puntos) {
+  const declarados = puntos.filter((p) => typeof p.valor === 'number')
+  const completo = declarados.length > 0 && declarados.every((p) => typeof p.valorReal === 'number')
+  if (!completo) return { puntos, reales: false }
+  return {
+    reales: true,
+    puntos: puntos.map((p) => ({
+      ...p,
+      valor: typeof p.valorReal === 'number' ? p.valorReal : p.valor,
+      medianaPares: typeof p.medianaParesReal === 'number' ? p.medianaParesReal : undefined,
+      // La banda viaja con la mediana: media comparación deflactada contra
+      // media sin deflactar dibujaría una anchura que no le ha pasado a nadie.
+      p25Pares: typeof p.p25ParesReal === 'number' ? p.p25ParesReal : undefined,
+      p75Pares: typeof p.p75ParesReal === 'number' ? p.p75ParesReal : undefined,
+    })),
+  }
+}
+
+/**
+ * Tramos contiguos de la banda intercuartílica de los pares.
+ *
+ * Sólo entran años con los DOS cuartiles declarados, y el tramo se corta en el
+ * hueco del calendario igual que la línea: interpolar la banda a través de
+ * 2020 afirmaría una anchura que nadie midió ese año. El `atipico` propio NO
+ * corta la banda — es una propiedad de nuestra entrega, no de la de los pares,
+ * la misma razón por la que `serieMediana` lo ignora.
+ */
+export function bandaSerie(puntos) {
+  const conBanda = puntos.filter(
+    (p) => typeof p.p25Pares === 'number' && typeof p.p75Pares === 'number',
+  )
+  const tramos = []
+  let actual = []
+  let prev = null
+  for (const p of conBanda) {
+    if (prev !== null && p.anio - prev > 1) {
+      if (actual.length >= 2) tramos.push(actual)
+      actual = []
+    }
+    actual.push(p)
+    prev = p.anio
+  }
+  if (actual.length >= 2) tramos.push(actual)
+  return tramos
+}
+
+/**
  * Entregas limpias que quedan aisladas y a las que una línea no llega.
  *
  * Alumbrado publica 11,31 €/punto de luz en 2019, verificado contra sus pares y
@@ -187,6 +255,30 @@ export function puntosSueltos(puntos) {
 }
 
 /**
+ * Entregas prestadas bajo OTRO modo de gestión que el que titula (regla 4).
+ *
+ * Se publican —son las cifras oficiales— pero fuera de la línea: un coste bajo
+ * concesión y uno de gestión directa no son la misma magnitud, y unirlos con
+ * un trazo diría que la serie sobrevivió al cambio de régimen. Van como aro
+ * hueco, la marca de «esto es de otra familia», con el modo en el tooltip.
+ * El atípico manda: una cifra inverosímil ya está fuera de la escala y no
+ * necesita una segunda marca.
+ */
+export function puntosOtroModo(puntos) {
+  return puntos.filter((p) => p.otroModo && !p.atipico && typeof p.valor === 'number')
+}
+
+/**
+ * Lo que entra en la escala: entregas con cifra legible, incluidas las de otro
+ * modo de gestión (van en escala, como aro, aunque fuera de la línea). El mismo
+ * criterio decide si una serie se dibuja (≥2 de éstos) tanto en la tarjeta como
+ * en la rejilla de mini-series — exportado para que nadie lo restate.
+ */
+export function puntosEnEscala(puntos) {
+  return puntos.filter((p) => !p.atipico && typeof p.valor === 'number')
+}
+
+/**
  * El rango vertical, SÓLO sobre lo que se dibuja.
  *
  * Es la decisión que hace posible el gráfico. Meter aquí los 67,7 millones de
@@ -195,10 +287,15 @@ export function puntosSueltos(puntos) {
  * diría que ese coste nunca se movió.
  */
 export function escalaSerie(puntos) {
-  const limpios = puntos.filter((p) => !p.atipico && typeof p.valor === 'number')
+  const limpios = puntosEnEscala(puntos)
   const valores = [
     ...limpios.map((p) => p.valor),
     ...limpios.filter((p) => typeof p.medianaPares === 'number').map((p) => p.medianaPares),
+    // La banda entra en la escala: un p75 recortado por arriba diría que la
+    // mitad central del grupo acaba donde acaba la caja, no donde acaba el
+    // grupo. Comprime la línea propia — ése es el precio de enseñar contexto.
+    ...limpios.filter((p) => typeof p.p75Pares === 'number').map((p) => p.p75Pares),
+    ...limpios.filter((p) => typeof p.p25Pares === 'number').map((p) => p.p25Pares),
   ]
   if (!valores.length) return null
   const min = Math.min(...valores)
@@ -212,7 +309,7 @@ export function escalaSerie(puntos) {
 }
 
 export function SerieServicio({ puntos, formatea, unidad }) {
-  const limpios = puntos.filter((p) => !p.atipico && typeof p.valor === 'number')
+  const limpios = puntosEnEscala(puntos)
   if (limpios.length < 2) return null
 
   const conMediana = limpios.filter((p) => typeof p.medianaPares === 'number')
@@ -234,6 +331,8 @@ export function SerieServicio({ puntos, formatea, unidad }) {
   const mediana = serieMediana(puntos)
   const tramosMediana = tramosSerie(mediana)
   const puentesMediana = puentesHueco(mediana)
+  const bandas = bandaSerie(puntos)
+  const otrosModos = puntosOtroModo(puntos)
   const atipicos = puntos.filter((p) => p.atipico)
   const huecos = huecosSerie(puntos)
   const ultimo = limpios[limpios.length - 1]
@@ -309,12 +408,47 @@ export function SerieServicio({ puntos, formatea, unidad }) {
                   .map((p) => p.anio)
                   .join(', ')}.`
               : '') +
+            (otrosModos.length
+              ? ` ${otrosModos.length === 1 ? 'Una entrega' : `${otrosModos.length} entregas`} bajo otro modo de gestión, fuera de la línea: ${otrosModos
+                  .map((p) => p.anio)
+                  .join(', ')}.`
+              : '') +
             (huecos.length
               ? ` Sin entrega de ${huecos.map(nombraHueco).join(' ni ')}: ese tramo va punteado porque nadie lo midió.`
               : '') +
-            (conMediana.length >= 2 ? ' Al fondo, la mediana de los municipios comparables.' : '')
+            (bandas.length
+              ? ' Al fondo, la mitad central de los municipios comparables como banda sombreada, y su mediana punteada.'
+              : conMediana.length >= 2
+                ? ' Al fondo, la mediana de los municipios comparables.'
+                : '')
           }
         >
+          {/* La banda intercuartílica de los pares, LO PRIMERO: es contexto,
+              no dato propio, y todo lo demás se dibuja encima. Sin relleno
+              entre p25 y p75, «cerca de la mediana» no decía si el grupo era
+              estrecho o abarcaba media escala. */}
+          {bandas.map((t) => (
+            <path
+              key={`b${t[0].anio}`}
+              d={
+                t
+                  .map(
+                    (p, idx) =>
+                      `${idx === 0 ? 'M' : 'L'}${px(p.anio).toFixed(2)},${py(p.p75Pares).toFixed(2)}`,
+                  )
+                  .join(' ') +
+                ' ' +
+                [...t]
+                  .reverse()
+                  .map((p) => `L${px(p.anio).toFixed(2)},${py(p.p25Pares).toFixed(2)}`)
+                  .join(' ') +
+                ' Z'
+              }
+              fill="var(--civic)"
+              opacity="0.08"
+              stroke="none"
+            />
+          ))}
           {/* El puente de la mediana, con el mismo criterio que el de la
               serie: más fino y punteado corto, para que se distinga del rayado
               largo de los tramos que sí están medidos. */}
@@ -411,6 +545,28 @@ export function SerieServicio({ puntos, formatea, unidad }) {
             }}
           />
         ))}
+        {/* Años de OTRO modo de gestión: aro hueco, no lunar macizo. La cifra
+            es oficial y está en escala, pero es de otra familia (regla 4) y la
+            línea no la toca. */}
+        {otrosModos.map((p) => (
+          <span
+            key={`om-${p.anio}`}
+            title={`${p.anio}: ${formatea(p.valor)} — ese año el servicio se prestaba en ${p.otroModo}, no en el régimen actual: la cifra se publica pero no es comparable con la línea (regla 4).`}
+            style={{
+              position: 'absolute',
+              left: `${px(p.anio)}%`,
+              top: `${py(p.valor)}%`,
+              width: 7,
+              height: 7,
+              marginLeft: -3.5,
+              marginTop: -3.5,
+              borderRadius: 'var(--r-pill)',
+              background: 'var(--paper)',
+              border: '1.5px solid var(--civic)',
+              boxSizing: 'border-box',
+            }}
+          />
+        ))}
         {atipicos.map((p) => (
           // Fuera de la escala, en el borde, y visiblemente no en la línea: la
           // cifra es oficial y por eso no se esconde, pero no se puede leer
@@ -453,7 +609,11 @@ export function SerieServicio({ puntos, formatea, unidad }) {
       >
         <span>{x0}</span>
         <span>
-          {conMediana.length >= 2 ? '- - - mediana de comparables · ' : ''}
+          {bandas.length
+            ? 'banda: mitad central de comparables · - - - su mediana · '
+            : conMediana.length >= 2
+              ? '- - - mediana de comparables · '
+              : ''}
           {unidad}
         </span>
         <span>{x1}</span>

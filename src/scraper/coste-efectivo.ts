@@ -320,3 +320,76 @@ export function parseCeselInforme(
   }
   return out
 }
+
+/**
+ * Una fila de CE4: un ente supramunicipal declarando a qué municipio sirve.
+ *
+ * Es la tabla que explica los ceros. Riba-roja declara 0 € en turismo, ferias,
+ * promoción del deporte y ocio no porque no existan sino porque parte de esa
+ * función la presta la Mancomunitat Camp de Túria, que rinde su propio coste
+ * efectivo — y CE4 es donde lo dice. Los libros por CCAA la traen desde 2014 y
+ * este repositorio la tuvo once entregas cacheada sin que la leyera nadie.
+ */
+export interface Ce4Row {
+  anio: number
+  /** Nombre del ente que presta (p. ej. «Mc. Camp de Turia»). */
+  entePrincipal: string
+  /** Programa SIN prefijo a/b: CE4 publica «341/340P», no «b341/340P». */
+  programa: string
+  descripcion: string
+  /** Nombre del municipio al que declara servir, tal cual viene. */
+  municipioServido: string
+}
+
+/**
+ * ¿El programa de una fila CE4 es el mismo servicio que una clave del registro?
+ *
+ * CE4 publica el programa sin la letra de la variante («341/340P») y el
+ * registro indexa con ella («b341/340P»). Sin esta traducción, la salvedad de
+ * la tarjeta cuyo servicio también presta la Mancomunitat no se dispararía
+ * nunca — en silencio, que es como fallan las uniones por clave.
+ */
+export function programaCe4CasaCon(programaCe4: string, claveRegistro: string): boolean {
+  const limpio = (s: string) => s.trim()
+  return limpio(claveRegistro).replace(/^[ab]/, '') === limpio(programaCe4)
+}
+
+/** Lee las hojas CE4a/CE4b de un libro por CCAA. Sin hojas CE4 devuelve []. */
+export function parseCe4(buffer: Buffer | ArrayBuffer, opts: { anio: number }): Ce4Row[] {
+  const wb = XLSX.read(buffer, { type: 'buffer' })
+  const out: Ce4Row[] = []
+
+  for (const hoja of ['CE4a', 'CE4b']) {
+    const sheet = wb.Sheets[hoja]
+    if (!sheet) continue
+    const rows: unknown[][] = XLSX.utils.sheet_to_json(sheet, {
+      header: 1,
+      raw: true,
+      defval: null,
+    })
+    const hi = rows.findIndex((r) =>
+      (r ?? []).some((c) => /^Grupo de programa/i.test(String(c ?? '').trim())),
+    )
+    if (hi < 0) continue
+    const head = rows[hi].map((h) => String(h ?? '').trim())
+    const iPrincipal = head.findIndex((h) => /^Nombre Ente Principal$/i.test(h))
+    const iProg = head.findIndex((h) => /^Grupo de programa/i.test(h))
+    const iDesc = head.findIndex((h) => /^Descripci/i.test(h))
+    const iServido = head.findIndex((h) => /Entidad local a la que se da servicio/i.test(h))
+    if (iPrincipal < 0 || iProg < 0 || iServido < 0) continue
+
+    for (const r of rows.slice(hi + 1)) {
+      const programa = String(r?.[iProg] ?? '').trim()
+      const municipioServido = String(r?.[iServido] ?? '').trim()
+      if (!programa || !municipioServido) continue
+      out.push({
+        anio: opts.anio,
+        entePrincipal: String(r?.[iPrincipal] ?? '').trim(),
+        programa,
+        descripcion: iDesc >= 0 ? String(r?.[iDesc] ?? '').trim() : '',
+        municipioServido,
+      })
+    }
+  }
+  return out
+}

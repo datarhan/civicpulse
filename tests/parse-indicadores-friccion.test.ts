@@ -114,6 +114,9 @@ describe('scraper/indicadores-friccion', () => {
     expect(g.valor).toBeCloseTo(budget.snapshot.totalExpense / budget.snapshot.population, 6)
     expect(g.dimension).toBe('fiscal')
     expect(g.formato).toBe('euros')
+    // El denominador es gente, no dinero: sin esta unidad propia, la línea
+    // «X de Y» del panel formateaba la población como «24.616 €».
+    expect(g.denominadorUnidad).toBe('habitantes')
     expect(g.periodo).toBe(String(budget.snapshot.year))
     expect(g.pares!.n).toBeGreaterThanOrEqual(15)
     expect(g.pares!.p25).toBeLessThanOrEqual(g.pares!.mediana)

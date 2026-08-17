@@ -17,7 +17,12 @@ import { LeyendaEscalones } from './Escalones'
  * cinco cubos son una PARTICIÓN comprobada por check:indicadores: si no
  * sumaran, la franja mentiría con más aplomo que el silencio.
  */
-export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
+export function CoberturaEficiencia({
+  universe,
+  cobertura,
+  indicadores = [],
+  conResultados = false,
+}) {
   const t = useT()
   // Sin bloque `universe` no se dice nada, antes que insinuar una cobertura que
   // no se puede respaldar.
@@ -41,6 +46,25 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
       : anios[0] === anios[anios.length - 1]
         ? `${anios[0]}`
         : `${anios[0]}-${anios[anios.length - 1]}`
+
+  // Derivado, no afirmado: si algún día se recompone el panel sin ipc.json, el
+  // párrafo que promete euros constantes desaparece solo en vez de quedarse
+  // mintiendo. Es el mismo motivo por el que la lista de comparados de
+  // PanelMunicipal se calcula en vez de escribirse.
+  const deflactadas = conRatio.filter((i) =>
+    (i.serie ?? []).some((p) => typeof p.valorReal === 'number'),
+  ).length
+
+  // Con banda plausible en algún percentil, la regla de solapamiento se dice
+  // UNA vez aquí — repetirla en cada tarjeta sería decoración.
+  const conBanda = conRatio.some((i) => Array.isArray(i.pares?.percentilBanda))
+
+  // El adaptador ya distingue «no hemos podido bajar la entrega» de «el
+  // ayuntamiento no la presentó» —comprueba que el libro esté y que el
+  // municipio no figure en él— y lo publica en `entregasNoPresentadas`. Ese
+  // campo no lo leía nadie, así que el hecho estaba en el dato y no en la
+  // página, mientras la frase de al lado lo atribuía a un problema de descarga.
+  const noPresentadas = cobertura?.entregasNoPresentadas ?? []
 
   const filas = [
     { n: universe.conRatio, k: 'conRatio' },
@@ -81,7 +105,7 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
         <span className="mono">{universe.comparables}</span> tienen suficientes municipios
         comparables para situarlos.
       </p>
-      <LeyendaEscalones indicadores={indicadores} />
+      <LeyendaEscalones indicadores={indicadores} conResultados={conResultados} />
       {congelados.length > 0 && (
         <p
           style={{
@@ -116,6 +140,64 @@ export function CoberturaEficiencia({ universe, cobertura, indicadores = [] }) {
             La medición completa
           </a>
           .
+        </p>
+      )}
+      {deflactadas > 0 && (
+        <p
+          style={{
+            margin: '10px 0 0',
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70, var(--ink50))',
+          }}
+        >
+          Las series van en <strong>euros constantes</strong> de la entrega que titula cada tarjeta,
+          deflactadas con el IPC general del INE. En euros corrientes no se pueden leer: entre la
+          primera entrega y la última el nivel de precios subió lo suficiente como para que un
+          servicio que costara lo mismo en términos reales apareciera subiendo. La comparación con
+          otros municipios, en cambio, va sin deflactar y a propósito —es de un año contra ese mismo
+          año, así que corregirla movería todas las cifras por igual sin cambiar ninguna posición, y
+          dejarían de coincidir con la celda del ministerio que citan.
+        </p>
+      )}
+      {conBanda && (
+        <p
+          style={{
+            margin: '10px 0 0',
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70, var(--ink50))',
+          }}
+        >
+          Cada percentil lleva al lado su <strong>banda plausible</strong>, calculada remuestreando
+          la propia muestra de comparables: con treinta o cincuenta municipios, un puesto exacto
+          aparenta una precisión que la muestra no tiene. La regla de lectura es una: cuando las
+          bandas de dos municipios se solapan, la diferencia entre ellos no se distingue del ruido.
+        </p>
+      )}
+      {noPresentadas.length > 0 && (
+        <p
+          style={{
+            margin: '10px 0 0',
+            paddingLeft: 10,
+            borderLeft: '3px solid var(--warn)',
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70, var(--ink50))',
+          }}
+        >
+          {noPresentadas.length === 1 ? (
+            <>
+              La entrega de <strong className="mono">{noPresentadas[0]}</strong> no falta por un
+              problema de descarga: falta porque el ayuntamiento no la presentó.
+            </>
+          ) : (
+            <>
+              Las entregas de <strong className="mono">{noPresentadas.join(', ')}</strong> no faltan
+              por un problema de descarga: faltan porque el ayuntamiento no las presentó.
+            </>
+          )}{' '}
+          El libro de la Comunitat Valenciana está descargado y los demás municipios sí figuran en
+          él; éste no aparece en ninguna de sus tablas de coste, gestión ni unidades físicas.
+          Calcularlo antes del 1 de noviembre y comunicarlo al ministerio es una obligación del
+          artículo 116 ter de la Ley de Bases de Régimen Local.
         </p>
       )}
       {cobertura && (

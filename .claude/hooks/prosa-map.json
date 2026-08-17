@@ -45,8 +45,18 @@
       "/lab-health",
       "/quejas"
     ],
+    "coste-efectivo.json": [
+      "/datos"
+    ],
+    "coste-esperado.json": [
+      "/datos",
+      "/laboratorio/coste-esperado"
+    ],
     "cpv-labels.json": [
       "/presupuesto"
+    ],
+    "criminalidad.json": [
+      "/datos"
     ],
     "ctbg.json": [
       "/datos",
@@ -54,6 +64,7 @@
       "/quejas"
     ],
     "dea.json": [
+      "/datos",
       "/laboratorio/frontera",
       "/metodologia"
     ],
@@ -62,6 +73,7 @@
       "/cargos/:slug"
     ],
     "eficiencia-findings.json": [
+      "/datos",
       "/eficiencia",
       "/gestion"
     ],
@@ -97,9 +109,13 @@
       "/quejas"
     ],
     "indicadores.json": [
+      "/datos",
       "/eficiencia",
       "/gestion",
       "/metodologia"
+    ],
+    "ipc.json": [
+      "/datos"
     ],
     "ispa.json": [
       "/cargos"
@@ -159,6 +175,7 @@
       "/laboratorio",
       "/laboratorio/agentes",
       "/laboratorio/agentes/:assignmentId",
+      "/laboratorio/coste-esperado",
       "/laboratorio/frontera",
       "/metodologia",
       "/nosotros",
@@ -171,6 +188,7 @@
       "/quejas/dashboard",
       "/reportajes",
       "/reportajes/basuras",
+      "/reportajes/coste-efectivo",
       "/reportajes/inteligencia-turistica",
       "/reportajes/reconstruccion-dana"
     ],
@@ -227,6 +245,9 @@
       "/plenos",
       "/plenos/:id"
     ],
+    "pmp.json": [
+      "/datos"
+    ],
     "press-claims-suggestions.json": [
       "/lab-health"
     ],
@@ -270,6 +291,7 @@
       "/hallazgos",
       "/lab-health",
       "/laboratorio",
+      "/laboratorio/coste-esperado",
       "/laboratorio/frontera",
       "/plenos",
       "/presupuesto",

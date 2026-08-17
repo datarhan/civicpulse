@@ -60,6 +60,25 @@ export const SERVICIOS: Record<string, ServicioDef> = {
       'Un metro cuadrado de césped y uno de zona pavimentada cuestan distinto de mantener; la fuente no los separa.',
     ],
   },
+  'a342/340P': {
+    label: 'Instalaciones deportivas',
+    denominador: 'Superficie: suma de superficies de todas las instalaciones',
+    unidad: '€/m²',
+    tier: 'output',
+    caveats: [
+      'La fuente suma en un solo metro cuadrado el pabellón cubierto, la piscina y el campo al aire libre, que no cuestan lo mismo de mantener.',
+      'El ministerio declara el mismo coste bajo dos programas (a342/340P y b342/340P); aquí se cuenta una sola vez.',
+    ],
+  },
+  'b341/340P': {
+    label: 'Promoción del deporte',
+    denominador: 'Nº efectivos en plantilla asignados al servicio',
+    unidad: '€/efectivo',
+    tier: 'input',
+    caveats: [
+      'Divide el gasto del servicio entre su plantilla propia, así que un programa que se presta con más contratación externa y menos personal propio sale «más caro» por efectivo sin que eso diga nada de cuánto deporte se promueve.',
+    ],
+  },
   'a1532/150P': {
     label: 'Pavimentación de vías públicas',
     denominador: 'Superficie de los tramos pavimentados (metros cuadrados)',
@@ -125,10 +144,19 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   },
   'a4411/440P': {
     label: 'Transporte colectivo urbano',
-    denominador: 'Nº total de viajeros al año',
-    unidad: '€/viajero',
-    tier: 'output',
-    caveats: [],
+    // El divisor natural sería «Nº total de viajeros al año» —un producto de
+    // verdad— pero el ayuntamiento lo declara a CERO con 737.000 € de gasto,
+    // así que la tarjeta llevaba años bloqueada en null. La misma entrega
+    // declara los kilómetros de la red, y 23 de los 60 de la banda también:
+    // un €/km es un cociente honesto SI se rotula como carga de red y no como
+    // coste por viaje. El cero de viajeros no desaparece: baja a salvedad,
+    // porque la anomalía es local — 22 pares sí declaran viajeros.
+    denominador: 'Nº total de kms de calzada de la red en trayecto de ida',
+    unidad: '€/km',
+    tier: 'carga',
+    caveats: [
+      'El divisor es la longitud de la red, no cuánta gente la usa: la fuente tiene una casilla de viajeros y este ayuntamiento la declara a cero, mientras 22 de sus comparables sí la rellenan.',
+    ],
   },
   a161: {
     label: 'Abastecimiento domiciliario de agua potable',

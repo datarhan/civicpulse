@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { readFileSync } from 'node:fs'
 import { chipDeclaracion, GLOSA_TIER } from '../../src/scraper/indicador-lectura'
+import { seriesDibujables, aniosSinEntrega } from '../../src/components/eficiencia/multiples'
 import type { Indicador } from '../../src/scraper/indicadores'
 import type { IndicadorMunicipal } from '../../src/scraper/indicadores-friccion'
 import { collectErrors, appErrors } from './_console'
@@ -53,6 +54,7 @@ const AJENAS = FICHAS.items.filter(
 // coverage. The skip names the missing variable so nobody debugs a phantom.
 test.describe('Eficiencia (/eficiencia)', () => {
   test.beforeEach(async ({ page }) => {
+    const errores = collectErrors(page)
     await page.goto('/eficiencia', { waitUntil: 'domcontentloaded' })
     // `isVisible()` no espera: con la SPA a medio hidratar devuelve false y el
     // test se salta en silencio, que es la misma avería que una guarda hueca
@@ -63,6 +65,18 @@ test.describe('Eficiencia (/eficiencia)', () => {
       .waitFor({ state: 'visible', timeout: 8000 })
       .then(() => true)
       .catch(() => false)
+    // «No montada» tiene DOS causas y sólo una es saltable. Con la bandera
+    // apagada la ruta no existe y saltar es correcto; con la página REVENTADA
+    // el h1 tampoco llega, y el salto convertía un crash en nueve specs verdes:
+    // pasó de verdad — un formatea(undefined) tumbó la página entera y esta
+    // suite imprimió «passed» sin haber medido nada. Un error de consola con la
+    // ruta caída es fallo, nunca salto.
+    if (!montada && appErrors(errores).length > 0) {
+      throw new Error(
+        `/eficiencia no montó Y la consola trae errores — la página está rota, no apagada:\n` +
+          appErrors(errores).join('\n'),
+      )
+    }
     test.skip(!montada, '/eficiencia no está montada — reconstruye con VITE_ENABLE_EFICIENCIA=true')
   })
 
@@ -130,9 +144,11 @@ test.describe('Eficiencia (/eficiencia)', () => {
 
     await expect(page.getByText(/Dónde queda cada servicio/i)).toBeVisible({ timeout: 8000 })
 
-    // Un enlace por servicio situado, ni uno más.
+    // Un enlace por servicio situado en la franja, más uno por mini-serie de
+    // la rejilla contigua — ni uno más. El recuento de la rejilla no se
+    // restata: lo decide el mismo módulo que usa el componente.
     const enlaces = page.locator('a[href^="#s-"]')
-    await expect(enlaces).toHaveCount(situados.length)
+    await expect(enlaces).toHaveCount(situados.length + seriesDibujables(SNAP.indicadores).length)
 
     // Y cada enlace tiene destino: un ancla rota no da error, sencillamente no
     // hace nada, y nadie se entera.
@@ -158,6 +174,41 @@ test.describe('Eficiencia (/eficiencia)', () => {
         { exact: false },
       ),
     ).toBeVisible()
+  })
+
+  test('la rejilla de mini-series va en el orden de la franja y cada una abre su ficha', async ({
+    page,
+  }) => {
+    // El punto (posición hoy) y la mini-serie (la década) responden preguntas
+    // distintas y van contiguos EN EL MISMO ORDEN: quien localiza un servicio
+    // en la franja lo encuentra en el mismo sitio de la rejilla. El orden
+    // esperado no se restata aquí — lo exporta `multiples.js`, el módulo que
+    // consume el propio componente.
+    const dibujables = seriesDibujables(SNAP.indicadores)
+    expect(dibujables.length, 'sin series dibujables en el snapshot').toBeGreaterThanOrEqual(2)
+
+    await expect(page.getByText(/La década, servicio a servicio/i)).toBeVisible({ timeout: 8000 })
+
+    const minis = page.getByRole('link', { name: /abre su ficha/i })
+    await expect(minis).toHaveCount(dibujables.length)
+    const hrefs = await minis.evaluateAll((els) => els.map((e) => e.getAttribute('href')))
+    expect(hrefs).toEqual(dibujables.map((s) => `#s-${s.indicador.id}`))
+
+    // Cada ancla tiene destino: una rota no da error, sencillamente no hace nada.
+    for (const s of dibujables) {
+      await expect(
+        page.locator(`#s-${s.indicador.id}`),
+        `la rejilla enlaza a #s-${s.indicador.id} y esa ficha no existe`,
+      ).toHaveCount(1)
+    }
+
+    // El pie declara la retícula (escala propia) y nombra los años sin entrega
+    // — derivados del dato, no escritos, para que no puedan quedarse rancios.
+    await expect(page.getByText(/escala vertical propia/i)).toBeVisible()
+    const sinEntrega = aniosSinEntrega(dibujables.map((s) => s.declarados))
+    if (sinEntrega.length > 0) {
+      await expect(page.getByText(`sin entrega de ${sinEntrega.join(', ')}`)).toBeVisible()
+    }
   })
 
   test('a concession shows no ratio and no peer position', async ({ page }) => {
@@ -257,6 +308,11 @@ test.describe('Eficiencia (/eficiencia)', () => {
         SNAP.indicadores.filter((i: Indicador) => i.valor !== null).map((i: Indicador) => i.tier),
       ),
     ] as (keyof typeof GLOSA_TIER)[]
+    // `outcome` no sale de las tarjetas de coste sino del bloque de resultados:
+    // presente exactamente cuando el snapshot publica alguno. Pinarlo ausente
+    // era correcto mientras CESEL era la única fuente; ahora la presencia se
+    // DERIVA, igual que el resto.
+    if ((SNAP.resultados?.items?.length ?? 0) > 0) enUso.push('outcome')
     expect(enUso.length).toBeGreaterThan(0)
     for (const tier of enUso) {
       await expect(
@@ -264,13 +320,34 @@ test.describe('Eficiencia (/eficiencia)', () => {
         `el escalón ${tier} se usa como chapa y no se explica en ningún sitio`,
       ).toBeVisible({ timeout: 8000 })
     }
-    // Y no se anuncia un escalón que ninguna ficha usa: la fuente no publica
-    // ningún indicador de resultado, y listarlo sugeriría que sí.
+    // Y no se anuncia un escalón que nada usa: listarlo sugeriría que existe.
     const ausentes = (Object.keys(GLOSA_TIER) as (keyof typeof GLOSA_TIER)[]).filter(
       (t) => !enUso.includes(t),
     )
     for (const tier of ausentes) {
       await expect(page.getByText(GLOSA_TIER[tier], { exact: false })).toHaveCount(0)
+    }
+  })
+
+  test('el resultado se publica AL LADO del coste, con su frase no-causal', async ({ page }) => {
+    // Las tres reglas del escalón, medidas sobre la página: el bloque existe
+    // dentro de la tarjeta a la que acompaña, dice en el cuerpo que no se lee
+    // como causa, declara su N propio, y NINGÚN texto divide un coste por él.
+    for (const r of SNAP.resultados?.items ?? []) {
+      const bloque = page.locator(`#r-${r.servicioRelacionado}`)
+      await expect(bloque).toBeVisible({ timeout: 8000 })
+      await expect(bloque.getByText(/al lado, nunca dividido/i)).toBeVisible()
+      await expect(bloque.getByText(r.comoSeLee.slice(0, 60))).toBeVisible()
+      if (r.pares) {
+        await expect(
+          bloque.getByText(new RegExp(`Mediana de ${r.pares.n} municipios`)),
+        ).toBeVisible()
+      }
+      await expect(bloque.getByText(r.fuente.atribucion)).toBeVisible()
+    }
+    // Las ausencias medidas también se publican.
+    for (const a of SNAP.resultados?.ausencias ?? []) {
+      await expect(page.getByText(a.tema).first()).toBeVisible()
     }
   })
 

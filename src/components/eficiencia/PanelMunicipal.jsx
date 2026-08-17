@@ -168,7 +168,10 @@ export function PanelMunicipal({ municipales, titulo, intro }) {
                     className="mono"
                     style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}
                   >
-                    {crudo(m.numerador.valor, m.formato)} de {crudo(m.denominador.valor, m.formato)}
+                    {crudo(m.numerador.valor, m.formato)} de{' '}
+                    {m.denominadorUnidad
+                      ? `${m.denominador.valor.toLocaleString('es-ES', { maximumFractionDigits: 0 })} ${m.denominadorUnidad}`
+                      : crudo(m.denominador.valor, m.formato)}
                   </span>
                 )}
               </div>

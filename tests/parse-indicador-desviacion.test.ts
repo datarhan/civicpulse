@@ -93,10 +93,43 @@ describe('scraper/indicador-desviacion', () => {
     // como desviación diría «la policía es cara» cuando lo que mide es cuánto
     // cobra un policía. Es exactamente la mentira por vecindad que el escalón
     // existe para impedir, así que se descarta ANTES de comparar.
-    const policia = indicadores.find((i) => i.tier === 'input' && i.valor !== null)!
+    // Se elige por id y no con un `find` sobre el tier: en cuanto el registro
+    // incorporó un segundo servicio de escalón `input` —promoción del deporte,
+    // percentil 26— el `find` devolvía ése, la aserción de «se saldría si se
+    // comparara» dejaba de medir nada y la prueba se caía por el sitio
+    // equivocado. Una prueba que depende del ORDEN de un registro comprueba el
+    // orden, no la regla.
+    const policia = indicadores.find((i) => i.id.startsWith('b132-130p'))!
+    expect(policia.tier).toBe('input')
+    expect(policia.valor).not.toBeNull()
     expect(policia.pares!.percentil).toBeGreaterThan(75) // se saldría si se comparara
     expect(cand(policia.id)).toBeUndefined()
-    expect(det.descartes['tier-input']).toBeGreaterThan(0)
+
+    // Y la regla vale para TODOS los de su escalón, no sólo para el que se mira
+    // aquí: ninguno llega a candidato, sea cual sea su percentil.
+    const entradas = indicadores.filter((i) => i.tier === 'input' && i.valor !== null)
+    expect(entradas.length).toBeGreaterThan(1)
+    for (const i of entradas) expect(cand(i.id)).toBeUndefined()
+    expect(det.descartes['tier-input']).toBeGreaterThanOrEqual(entradas.length)
+  })
+
+  it('un RESULTADO jamás entra en la tubería de fichas firmadas', () => {
+    // Tercera regla del escalón de resultados: colgar un resultado de la
+    // gestión municipal es una afirmación materialmente distinta de las que
+    // este cauce firma. El detector no lee el array `resultados`, y esto lo
+    // fija: si alguien lo enchufa, la prueba lo dice.
+    const conResultados = JSON.parse(
+      readFileSync(join(ROOT, 'public/data/indicadores.json'), 'utf8'),
+    ).resultados
+    expect(conResultados.items.length).toBeGreaterThan(0)
+    for (const r of conResultados.items) {
+      expect(cand(r.id), `${r.id} no debe generar candidato`).toBeUndefined()
+    }
+    // Y la partición evaluados+descartados sigue sumando SOLO los dos arrays
+    // que el detector lee — un resultado colado la rompería.
+    const total = indicadores.length + municipales.length
+    const descartados = Object.values(det.descartes).reduce((a, b) => a + b, 0)
+    expect(det.evaluados + descartados).toBe(total)
   })
 
   it('nunca compara un servicio concedido', () => {
@@ -153,12 +186,27 @@ describe('scraper/indicador-desviacion', () => {
   })
 
   it('no propone nada de un servicio cuya celda actual está bloqueada', () => {
-    // Transporte urbano deja de declarar viajeros: la tarjeta no publica
-    // cociente, así que no hay cifra que un hallazgo pueda afirmar.
-    const transporte = indicadores.find((i) => i.id === 'a4411-440p-coste-unitario')!
-    expect(transporte.valor).toBeNull()
-    expect(cand('a4411-440p-coste-unitario')).toBeUndefined()
-    expect(det.descartes['sin-valor']).toBeGreaterThan(0)
+    // El ejemplo vivo era el transporte (viajeros a cero) hasta que su tarjeta
+    // pasó a dividir entre kilómetros de red; hoy los únicos `valor: null` del
+    // panel son concesiones, que se descartan antes por su propia razón. La
+    // regla `sin-valor` se quedaba sin ejecutar, así que se prueba con un
+    // panel construido: el mismo de siempre con una celda comparable anulada.
+    const capado = indicadores.map((i) =>
+      i.id === 'a1621-coste-unitario' ? { ...i, valor: null, pares: null, comparable: false } : i,
+    )
+    const detCapado = detectarDesviaciones({
+      indicadores: capado,
+      municipales,
+      anioBase: pub.anioBase,
+    })
+    expect(detCapado.descartes['sin-valor']).toBeGreaterThan(0)
+    expect(
+      detCapado.candidatos.find((c) => c.indicadorId === 'a1621-coste-unitario'),
+    ).toBeUndefined()
+    // Y las concesiones siguen cayendo bajo SU clave, no bajo ésta: colapsar
+    // los dos motivos es el modo de fallo 3 de DATA_INTEGRITY.
+    expect(det.descartes['no-comparable']).toBeGreaterThan(0)
+    expect(cand('a161-coste-unitario')).toBeUndefined()
   })
 
   it('no afirma un movimiento cuya última observación comprobable es vieja', () => {

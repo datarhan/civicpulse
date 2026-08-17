@@ -1,9 +1,12 @@
 import { Card } from '../components/Primitives'
 import { CoberturaEficiencia } from '../components/eficiencia/CoberturaEficiencia'
 import { ResumenPosiciones } from '../components/eficiencia/ResumenPosiciones'
+import { MultiplesSeries } from '../components/eficiencia/MultiplesSeries'
 import { ServicioCard } from '../components/eficiencia/ServicioCard'
 import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
 import { HallazgosEficiencia } from '../components/eficiencia/HallazgosEficiencia'
+import { Supramunicipal } from '../components/eficiencia/Supramunicipal'
+import { AusenciasResultados } from '../components/eficiencia/Resultado'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useT } from '../i18n'
@@ -96,6 +99,7 @@ export default function Eficiencia() {
           universe={data?.universe}
           cobertura={data?.cobertura}
           indicadores={indicadores}
+          conResultados={(data?.resultados?.items ?? []).length > 0}
         />
       )}
 
@@ -105,9 +109,19 @@ export default function Eficiencia() {
           servicios sobre los que esta página no puede dividir nada. */}
       <ResumenPosiciones indicadores={indicadores} />
 
+      {/* Contigua a la franja y en su mismo orden: el punto (posición hoy) y
+          la mini-serie (la década) contestan preguntas distintas, y fundirlas
+          en un solo gráfico no contestaría ninguna. */}
+      <MultiplesSeries indicadores={indicadores} formateaCon={formateaCon} />
+
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 18 }}>
         {conRatio.map((i) => (
-          <ServicioCard key={i.id} indicador={i} formatea={formateaCon(i.unidad)} />
+          <ServicioCard
+            key={i.id}
+            indicador={i}
+            formatea={formateaCon(i.unidad)}
+            resultado={(data?.resultados?.items ?? []).find((r) => r.servicioRelacionado === i.id)}
+          />
         ))}
       </div>
 
@@ -142,6 +156,15 @@ export default function Eficiencia() {
         </>
       )}
 
+      {/* CE4 va pegado a los bloqueados porque es su explicación: los ceros de
+          turismo, ferias, deporte y ocio no son funciones inexistentes, son
+          funciones cuya parte supramunicipal rinde la Mancomunitat. */}
+      <Supramunicipal filas={data?.supramunicipales} entrega={data?.anioBase} />
+
+      {/* Las ausencias son datos: el resultado que no existe se dice, con su
+          porqué medido, en vez de dejar que el hueco parezca un olvido. */}
+      <AusenciasResultados ausencias={data?.resultados?.ausencias} />
+
       {/* Al final, y no arriba: una ficha firmada es una lectura del panel, y
           el panel se lee primero. Un hallazgo en cabecera convertiría la página
           en la conclusión de otro en vez de en las cifras con las que el lector
@@ -153,6 +176,15 @@ export default function Eficiencia() {
           otroPanel={{ to: '/gestion', nombre: 'cómo funciona la casa por dentro' }}
         />
       )}
+
+      <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 18 }}>
+        Las tres cifras que este panel deja más a la vista —la entrega sin rendir, los denominadores
+        congelados y la inflación que se leía como gestión— están contadas enteras en el reportaje{' '}
+        <a href="/reportajes/coste-efectivo" style={{ color: 'var(--civic)' }}>
+          «La mitad de abajo de la división»
+        </a>
+        .
+      </p>
 
       <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 28 }}>
         Cómo se calcula, qué se descarta y por qué no hay nota global:{' '}

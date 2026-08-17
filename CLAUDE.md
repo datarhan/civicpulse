@@ -97,7 +97,7 @@ Public: `/` `/cargos` `/cargos/:slug` `/presupuesto` `/eficiencia` `/gestion` `/
 `/declaraciones` `/reportajes` `/datos` `/empleo` `/empleo/:id`
 `/empleo-publico` `/quejas` `/quejas/dashboard` `/quejas/:id` `/cambios`
 `/laboratorio` `/laboratorio/agentes` `/laboratorio/agentes/:assignmentId`
-`/laboratorio/frontera`
+`/laboratorio/frontera` `/laboratorio/coste-esperado`
 `/nosotros` `/about` `/blog/:slug` `/lab-health` `/metodologia` `/aviso-legal`,
 catch-all → `/`.
 
@@ -227,7 +227,7 @@ too late, and the user saw it before the tests ever could. "Green" and "right"
 are different claims; only one of them is about what a reader sees.
 
 The same split governs the reader-review. `review:surfaces` asks whether a page
-*says* something true, which no data check can — the four defects fixed on
+_says_ something true, which no data check can — the four defects fixed on
 2026-08-12 all had their figure right and their sentence wrong. It runs in two
 places, and the division matters: the **pre-push hook** reads the routes that
 push can have broken, derived from the import graph, every time; the **nightly
@@ -250,7 +250,7 @@ validators and CLIs — if you find yourself working around one, stop.
 
 `/eficiencia` and its sibling `/gestion` are the sixth legally material surface
 and the only ones that name **nobody**. They are one feature split by SOURCE —
-`/eficiencia` is everything from the *coste efectivo* return, `/gestion` is the
+`/eficiencia` is everything from the _coste efectivo_ return, `/gestion` is the
 PMP series, CONPREL, the contractor profile and the execution statement — behind
 one flag, sharing `eficiencia-findings.json`; each ficha renders on the page
 where its indicator lives, and every municipal indicator declares its own
@@ -281,6 +281,13 @@ all enforced by `check:dea` and its e2e spec:
    measurement from the published panel; a DEA score is not one, and routing it
    into the signed-findings pipeline would launder a model output into the
    legally material surfaces.
+
+`/laboratorio/coste-esperado` (the OLS expected-cost experiment) inherits the
+same three rules unchanged — its sample is published anonymous and
+population-sorted, failed specifications ship as failed, and its residuals
+never become findings — enforced by `check:coste-esperado`, which is
+`check:dea`'s sibling and reproduces the whole analysis from the published
+sample alone.
 
 The first two families are also **enforced, not just documented**:
 `.claude/hooks/guard-curated-writes.mjs` denies a direct write to a curated file

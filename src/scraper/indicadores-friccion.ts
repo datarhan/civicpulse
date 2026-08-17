@@ -79,6 +79,14 @@ export interface IndicadorMunicipal {
   /** El cociente. `null` salvo que las dos magnitudes estén declaradas. */
   valor: number | null
   formato: FormatoValor
+  /**
+   * Unidad del denominador cuando NO comparte la del numerador. Sin esto, la
+   * línea «X de Y» del panel formatea las dos magnitudes con el `formato` de
+   * la fila y la población salía como «24.616 €» — cazado por el
+   * reader-review, no por ningún test de datos: la cifra era correcta y la
+   * frase falsa.
+   */
+  denominadorUnidad?: string
   /** El periodo que cubre. Nunca implícito: los contratos abarcan años. */
   periodo: string
   /** Umbral legal o de referencia, cuando la norma fija uno (PMP: 30 días). */
@@ -307,6 +315,7 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
       denominador: declarado(poblacion, `budget:${anio}:snapshot.population`),
       valor: propio,
       formato: 'euros',
+      denominadorUnidad: 'habitantes',
       periodo: String(anio ?? 'sin declarar'),
       pares:
         vals.length >= 15

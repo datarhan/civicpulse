@@ -23,6 +23,13 @@ import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { usePlenoVotes } from '../hooks/usePlenoVotes'
 import { useQuejas } from '../hooks/useQuejas'
 import { useTransparencyDocs, groupTransparencyDocs } from '../hooks/useTransparencyDocs'
+import { useIndicadores } from '../hooks/useIndicadores'
+import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
+import { useFrontera } from '../hooks/useFrontera'
+import { useCosteEsperado } from '../hooks/useCosteEsperado'
+import { usePmp } from '../hooks/usePmp'
+import { useIpc } from '../hooks/useIpc'
+import { useCriminalidad } from '../hooks/useCriminalidad'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 import { isIndependentlyVerified } from '../scraper/pleno-votes'
 
@@ -94,6 +101,13 @@ function DatasetsCatalog() {
   const procesos = useProcesosSelectivos().data
   const asociaciones = useAsociaciones().data
   const obras = useObras().data
+  const indicadores = useIndicadores().data
+  const fichasEficiencia = useEficienciaFindings().data
+  const frontera = useFrontera().data
+  const costeEsperado = useCosteEsperado().data
+  const pmp = usePmp().data
+  const ipc = useIpc().data
+  const crimen = useCriminalidad().data
 
   const items = [
     {
@@ -246,6 +260,84 @@ function DatasetsCatalog() {
       updated: formatDate(quejas?.generatedAt),
       source: 'Telegram bot · Open311',
       path: '/data/quejas.json',
+      fmt: ['json'],
+    },
+    // La familia de eficiencia se servía entera por URL y no aparecía aquí:
+    // «no catalogado» no es «no publicado», que es la lección de los borradores
+    // del agente periodista, en pequeño.
+    {
+      name: 'Indicadores de eficiencia y gestión',
+      rows: indicadores?.stats
+        ? `${indicadores.stats.indicadores} servicios · ${indicadores.stats.municipales} municipales`
+        : '—',
+      updated: formatDate(indicadores?.generatedAt),
+      source: 'derivado · compute:indicadores',
+      path: '/data/indicadores.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Coste efectivo de los servicios (fuente)',
+      rows: indicadores?.cobertura?.entregasObtenidas
+        ? `${indicadores.cobertura.entregasObtenidas.length} entregas · ~3,9 MB`
+        : '—',
+      updated: formatDate(indicadores?.cobertura?.fuenteGeneratedAt),
+      source: 'MinHac CESEL · refresco manual',
+      path: '/data/coste-efectivo.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Periodo medio de pago (serie)',
+      rows: pmp?.stats?.puntos ? `${pmp.stats.puntos} trimestres` : '—',
+      updated: formatDate(pmp?.generatedAt),
+      source: 'MinHac · RD 1040/2017 · refresco manual',
+      path: '/data/pmp.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Índice de precios (deflactor)',
+      rows: ipc?.stats?.anios ? `${ipc.stats.anios} años` : '—',
+      updated: formatDate(ipc?.generatedAt),
+      source: 'INE · IPC general · refresco manual',
+      path: '/data/ipc.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Hallazgos de eficiencia (fichas firmadas)',
+      rows: fichasEficiencia?.items ? `${fichasEficiencia.items.length} fichas` : '—',
+      updated: formatDate(fichasEficiencia?.generatedAt),
+      source: 'curación editorial · promote-indicador',
+      path: '/data/eficiencia-findings.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Criminalidad municipal (resultado)',
+      rows: crimen?.stats?.anios ? `${crimen.stats.anios} años` : '—',
+      updated: formatDate(crimen?.generatedAt),
+      source: 'Portal Estadístico de Criminalidad · refresco manual',
+      path: '/data/criminalidad.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Frontera de eficiencia (DEA)',
+      rows: frontera?.stats
+        ? `${frontera.stats.especificaciones} especificaciones · ${frontera.stats.publicadas} publicadas`
+        : '—',
+      updated: formatDate(frontera?.generatedAt),
+      source: 'modelo propio · compute:dea',
+      path: '/data/dea.json',
+      fmt: ['json'],
+    },
+    {
+      // El otro veredicto de modelo. Se catalogó tarde — la revisión pre-merge
+      // lo cazó contra la regla escrita dos filas más arriba: «no catalogado»
+      // no es «no publicado».
+      name: 'Coste esperado (OLS por servicio)',
+      rows: costeEsperado?.stats
+        ? `${costeEsperado.stats.especificaciones} especificaciones · ${costeEsperado.stats.publicadas} publicadas`
+        : '—',
+      updated: formatDate(costeEsperado?.generatedAt),
+      source: 'modelo propio · compute:coste-esperado',
+      path: '/data/coste-esperado.json',
       fmt: ['json'],
     },
     {

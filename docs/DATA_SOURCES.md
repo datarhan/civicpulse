@@ -134,6 +134,19 @@ overwrites it. Change the bot's SQLite instead.
   "I did not declare", a service can have contradictory duplicate rows, not every
   CE3 attribute is a quantity (one is a periodicity CODE), and tonnage is demand
   rather than achievement. See `docs/superpowers/specs/2026-08-12-medicion-eficiencia-design.md`.
+- **CE4 (supramunicipal)** — `parseCe4` reads sheets CE4a/CE4b of the same CCAA
+  books: which entity declares SERVING this municipality (the Mancomunitat Camp
+  de Túria: turismo, ferias, promoción del deporte, ocio). It is the table that
+  explains the €0 rows, it exists even for the entrega the council itself did
+  not file (2020), and it feeds both the card caveat («sólo la parte
+  municipal») and the «Lo que presta…» block on `/eficiencia`.
+- **Deflactor** — `ipc.ts` → `ipc.json` (`npm run scrape:ipc`): INE Tempus3
+  JSON API, table 24077, annual means of full years only. The series on
+  `/eficiencia` render in constant euros of the titling entrega; the peer
+  cross-section stays nominal on purpose (same-year comparison). The GDP
+  deflator would be the textbook index for public spending; the INE API does
+  not serve it as a series, and no reading on the page depends on the choice —
+  the module docstring carries the full reasoning.
 
 ### Periodo medio de pago (PMP)
 
@@ -143,10 +156,13 @@ overwrites it. Change the bot's SQLite instead.
 - **Surfaces** — `/gestion` (municipal panel: plazos, concurrencia, ejecución);
   the first signed
   `eficiencia-finding`
-- **Cadence** — deliberately OUT of `snapshot-cadence.ts`: the ministry sets the
-  rhythm (one entrega a year, one quarter respectively) and no freshness class
-  has that budget. A short deadline would leave them permanently red, which is
-  how a check earns a reputation nobody reads.
+- **Cadence** — class `manual` in `snapshot-cadence.ts` (130 days), with the
+  refresh command in the stale note. They were deliberately OUT of the check on
+  the argument that a short deadline leaves a quarterly source permanently red —
+  true, and the answer was a LONG budget, not absence: outside the check,
+  `scrape:pmp` silently never being run again was invisible, and PMP feeds a
+  signed finding. `coste-efectivo.json` (430d) and `ipc.json` (400d) carry the
+  same class.
 
 ### Frontera del gasto (DEA · laboratory experiment)
 
@@ -166,6 +182,32 @@ overwrites it. Change the bot's SQLite instead.
   series repeat the same value entrega after entrega while essentially no cost
   series does. That asymmetry, not any θ, is the useful result: a unit cost whose
   denominator is a copy can only rise.
+
+### Coste esperado (OLS · laboratory experiment)
+
+- **Pipeline** — `coste-esperado.ts` → `compute:coste-esperado` →
+  `coste-esperado.json`
+- **Source** — no new fetch: the cached CCAA-17 books (`.cache/cesel/ccaa/`,
+  parsed WITHOUT `soloEntes` — the whole Comunitat, ~500 municipios) plus the
+  CONPREL census (`conprel-cv.xls`) for population. Refresh path is manual and
+  yearly, same as `coste-efectivo.json`; `snapshot-cadence` carries it in the
+  `manual` class (430d) and it is deliberately NOT recomposed nightly — the
+  inputs only change with the annual entrega, and a nightly recompute would
+  churn a 300 KB file's `generatedAt` for nothing.
+- **Surfaces** — `/laboratorio/coste-esperado`, `/metodologia#coste-esperado`
+- **Gate** — `check:coste-esperado` (critical in the nightly): reproduces the
+  OLS exactly from the anonymous sample published in the snapshot (analytic
+  prediction intervals — no seed, no resampling), re-runs the whole analysis
+  against the cached book when present (and SAYS so when it cannot), and scans
+  the served JSON for any municipality other than Riba-roja against the
+  542-name CONPREL census.
+- **Cleaning** — the panel's own rules applied unchanged: direct management
+  only (regla 4), duplicated cost rows exclude the municipality (regla 1), and
+  declarations beyond ±`ATIPICO_FACTOR` of the service's median €/inhabitant
+  are excluded as implausible (regla 7 — the real book carries councils
+  declaring 1 € of schools cost). The cost+units row pair some programs
+  publish per municipality is NOT a duplicate; duplication is judged among
+  cost-bearing rows only.
 
 ### Municipal hiring (procesos selectivos)
 

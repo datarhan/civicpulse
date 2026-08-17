@@ -98,9 +98,14 @@ jobs:
           # findings pipeline shipped): ships /eficiencia and the pointer to it
           # from /hallazgos. The page names no person by construction — its
           # schema has no field for one — and every figure carries the ministry
-          # cell it came from, re-checked by check:indicadores before each
-          # deploy. It publishes with zero signed fichas; that is the honest
-          # state, and the section says so rather than leaving a gap.
+          # cell it came from.
+          #
+          # That cell is re-checked by check:indicadores in the NIGHTLY
+          # (scripts/scrape-all.sh), not here: this workflow only runs vercel
+          # pull/build/deploy. The comment used to claim "before each deploy",
+          # which was false — a deploy triggered by a code push runs no check
+          # at all. The guard is commit-then-gate: the nightly verifies and
+          # reds the run, which blocks the next deploy.
           VITE_ENABLE_EFICIENCIA: 'true'
         run: vercel build --prod --token="$VERCEL_TOKEN"
 

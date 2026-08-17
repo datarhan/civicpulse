@@ -68,7 +68,24 @@ describe('scraper/indicadores', () => {
   })
 
   it('refuses a ratio when the denominator is an undeclared zero', () => {
-    const bus = byId('a4411-440p-coste-unitario')
+    // El transporte era el ejemplo natural —declaraba viajeros a cero— hasta
+    // que su tarjeta pasó a dividir entre kilómetros de red, que sí declara.
+    // La REGLA sigue necesitando prueba, así que el cero se construye: la
+    // misma fila del autobús con su denominador puesto a 0. Una guarda probada
+    // sólo contra el dato que hoy la dispara deja de estar probada cuando ese
+    // dato se arregla.
+    const conCero = mias.map((f) =>
+      f.programa === 'a4411/440P'
+        ? { ...f, unidades: f.unidades.map((u) => ({ ...u, valor: 0 })) }
+        : f,
+    )
+    const snapCero = construirIndicadores({
+      municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: conCero },
+      pares: { conjunto: 'cv-15k-40k', anios: [2021], miembros, filas: rows },
+      anioBase: 2021,
+      citaUrl: CITA,
+    })
+    const bus = snapCero.indicadores.find((i) => i.id === 'a4411-440p-coste-unitario')!
     expect(bus.numerador.estado).toBe('declarado') // the money is real
     expect(bus.numerador.valor).toBe(485975.77)
     expect(bus.denominador.estado).toBe('no-declarado')
@@ -76,6 +93,7 @@ describe('scraper/indicadores', () => {
     expect(bus.denominador.valor).toBeNull()
     expect(bus.valor).toBeNull()
     expect(bus.pares).toBeNull()
+    expect(situacion(bus)).toBe('sin-unidad')
   })
 
   it('refuses a cost when a programa has contradictory duplicate rows', () => {
@@ -239,7 +257,182 @@ describe('scraper/indicadores', () => {
     const buckets = snap.indicadores.map((i) => situacion(i))
     expect(buckets).toHaveLength(snap.indicadores.length)
     expect(situacion(byId('a161-coste-unitario'))).toBe('concesion')
-    expect(situacion(byId('a4411-440p-coste-unitario'))).toBe('sin-unidad')
+    // El transporte divide ahora entre kilómetros de red, que la entrega sí
+    // declara; el cero de viajeros vive en su salvedad, no en su situación.
+    expect(situacion(byId('a4411-440p-coste-unitario'))).toBe('con-ratio')
     expect(situacion(byId('a1621-coste-unitario'))).toBe('con-ratio')
+  })
+})
+
+describe('scraper/indicadores · otro modo de gestión en la serie (regla 4)', () => {
+  // Hoy ningún servicio declara cociente bajo un modo distinto del que titula
+  // —los años de concesión de limpieza vienen sin coste—, así que la regla se
+  // prueba construida: el mismo panel con el 2022 de residuos pasado a
+  // otro régimen con coste declarado ('otra'): una concesión no serviría,
+  // porque su coste lo rechaza la trampa 1 antes de llegar aquí. Una guarda sin instancia viva es la primera que se rompe sin
+  // que nadie lo vea.
+  const mias22 = [
+    ...mias,
+    ...mias
+      .filter((f) => f.programa === 'a1621')
+      .map((f) => ({ ...f, anio: 2022, modoGestion: 'otra' as const })),
+  ]
+  const pares22 = [
+    ...rows,
+    ...rows.filter((r) => r.ine !== '46214').map((r) => ({ ...r, anio: 2022 })),
+  ]
+  const snapOM = construirIndicadores({
+    municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: mias22 },
+    pares: { conjunto: 'cv-15k-40k', anios: [2021, 2022], miembros, filas: pares22 },
+    anioBase: 2021,
+    citaUrl: CITA,
+  })
+  const residuos = snapOM.indicadores.find((i) => i.id === 'a1621-coste-unitario')!
+
+  it('marca el año del otro régimen sin borrarlo, y con su modo', () => {
+    const p22 = residuos.serie.find((p) => p.anio === 2022)!
+    expect(p22.estado).toBe('declarado')
+    expect(p22.otroModo).toBe('otra')
+    // Y el año del régimen titular no lleva marca.
+    expect(residuos.serie.find((p) => p.anio === 2021)!.otroModo).toBeUndefined()
+  })
+
+  it('no le calcula mediana contra pares de gestión directa', () => {
+    // Los pares de 2022 siguen en directa; compararle la concesión contra
+    // ellos es exactamente lo que la regla 4 prohíbe en horizontal.
+    const p22 = residuos.serie.find((p) => p.anio === 2022)!
+    expect(p22.medianaPares).toBeUndefined()
+  })
+
+  it('la tarjeta lo cuenta en una salvedad que cita la regla', () => {
+    expect(residuos.caveats.some((c) => /otro modo de gestión/.test(c) && /regla 4/.test(c))).toBe(
+      true,
+    )
+  })
+})
+
+describe('scraper/indicadores · banda plausible del percentil', () => {
+  const comparables = snap.indicadores.filter((i) => i.pares)
+
+  it('todo indicador comparable la publica, dentro de rango y conteniendo al puesto', () => {
+    expect(comparables.length).toBeGreaterThan(3)
+    for (const i of comparables) {
+      const banda = i.pares!.percentilBanda
+      expect(Array.isArray(banda), `${i.id} sin percentilBanda`).toBe(true)
+      const [lo, hi] = banda
+      expect(lo).toBeGreaterThanOrEqual(0)
+      expect(hi).toBeLessThanOrEqual(100)
+      expect(lo).toBeLessThanOrEqual(i.pares!.percentil)
+      expect(hi).toBeGreaterThanOrEqual(i.pares!.percentil)
+      // Una banda de anchura cero con n<100 sería el bootstrap sin remuestrear.
+      expect(hi - lo, `${i.id}: banda degenerada`).toBeGreaterThan(0)
+    }
+  })
+
+  it('es determinista: la misma entrada produce el mismo intervalo', () => {
+    // La semilla se deriva de conjunto+programa+entrega. Un snapshot que
+    // cambiara sin que cambie ningún dato sería indistinguible de una revisión
+    // del ministerio, que es justo lo que check:eficiencia-findings vigila.
+    const otra = construirIndicadores({
+      municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: mias },
+      pares: { conjunto: 'cv-15k-40k', anios: [2021], miembros, filas: rows },
+      anioBase: 2021,
+      citaUrl: CITA,
+    })
+    for (const i of snap.indicadores) {
+      const gemela = otra.indicadores.find((x) => x.id === i.id)!
+      expect(gemela.pares?.percentilBanda).toEqual(i.pares?.percentilBanda)
+    }
+  })
+})
+
+describe('scraper/indicadores · CE4 supramunicipal', () => {
+  const supra = (anio: number, programa: string) => ({
+    anio,
+    entePrincipal: 'Mc. Camp de Turia',
+    programa,
+    descripcion: 'Promoción del deporte',
+    municipioServido: 'Riba-roja de Túria',
+  })
+  const construir = (filasSupra: ReturnType<typeof supra>[]) =>
+    construirIndicadores({
+      municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: mias },
+      pares: { conjunto: 'cv-15k-40k', anios: [2021], miembros, filas: rows },
+      anioBase: 2021,
+      citaUrl: CITA,
+      supramunicipal: filasSupra,
+    })
+
+  it('la tarjeta cuyo programa casa gana la salvedad, con el ente por su nombre', () => {
+    // CE4 publica el programa SIN prefijo: «1621» tiene que casar con a1621.
+    const snap = construir([supra(2021, '1621')])
+    const residuos = snap.indicadores.find((i) => i.id === 'a1621-coste-unitario')!
+    expect(residuos.caveats.some((c) => /Mc\. Camp de Turia/.test(c))).toBe(true)
+    expect(residuos.caveats.some((c) => /sólo la parte municipal/.test(c))).toBe(true)
+    // Y ninguna otra tarjeta la hereda por vecindad.
+    const otros = snap.indicadores.filter((i) => i.id !== 'a1621-coste-unitario')
+    for (const i of otros) {
+      expect(i.caveats.some((c) => /Camp de Turia/.test(c))).toBe(false)
+    }
+  })
+
+  it('una fila de OTRO año no dispara nada: la salvedad habla del año que titula', () => {
+    const snap = construir([supra(2019, '1621')])
+    const residuos = snap.indicadores.find((i) => i.id === 'a1621-coste-unitario')!
+    expect(residuos.caveats.some((c) => /Camp de Turia/.test(c))).toBe(false)
+  })
+})
+
+describe('scraper/indicadores · euros constantes', () => {
+  // Índice inventado y deliberadamente brusco: 2020 vale la mitad que 2021, así
+  // que cualquier confusión de dirección salta a la vista en vez de esconderse
+  // detrás de un 2 % de inflación real.
+  const IPC = { 2020: 50, 2021: 100 }
+  const conIpc = construirIndicadores({
+    municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: mias },
+    pares: { conjunto: 'cv-15k-40k', anios: [2021], miembros, filas: rows },
+    anioBase: 2021,
+    citaUrl: CITA,
+    ipc: IPC,
+  })
+
+  const conSerie = conIpc.indicadores.find((i) =>
+    i.serie.some((p) => p.valor !== null && p.anio === 2021),
+  )!
+
+  it('deja quieto el año base: un euro de 2021 es un euro de 2021', () => {
+    const p = conSerie.serie.find((x) => x.anio === 2021 && x.valor !== null)!
+    expect(p.valorReal).toBeCloseTo(p.valor!, 6)
+  })
+
+  it('NO deflacta la comparación con pares, que es de un año contra sí mismo', () => {
+    // El percentil y los cuartiles salen de las celdas del ministerio del año
+    // base. Deflactarlos multiplicaría a todos por la misma constante sin mover
+    // la posición, y las cifras publicadas dejarían de coincidir con la celda
+    // que dicen citar.
+    const sinIpc = snap.indicadores.find((i) => i.id === conSerie.id)!
+    expect(conSerie.pares?.percentil).toBe(sinIpc.pares?.percentil)
+    expect(conSerie.pares?.mediana).toBe(sinIpc.pares?.mediana)
+    expect(conSerie.valor).toBe(sinIpc.valor)
+  })
+
+  it('deflacta la mediana de pares con el MISMO factor que la línea propia', () => {
+    // Si una se deflacta y la otra no, la distancia entre ambas deja de
+    // significar nada, que es el defecto que esto existe para impedir.
+    const conMediana = conIpc.indicadores
+      .flatMap((i) => i.serie)
+      .find((p) => p.medianaPares !== undefined && p.valor !== null)
+    expect(conMediana).toBeDefined()
+    const factorValor = conMediana!.valorReal! / conMediana!.valor!
+    const factorMediana = conMediana!.medianaParesReal! / conMediana!.medianaPares!
+    expect(factorMediana).toBeCloseTo(factorValor, 9)
+  })
+
+  it('sin índice devuelve null, nunca el valor sin tocar', () => {
+    // Un valorReal que coincide con el nominal es indistinguible de uno bien
+    // deflactado. Sin índice se dice que no hay, y la página lo rotula.
+    for (const p of snap.indicadores.flatMap((i) => i.serie)) {
+      expect(p.valorReal ?? null).toBeNull()
+    }
   })
 })

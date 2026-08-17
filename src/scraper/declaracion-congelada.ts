@@ -14,12 +14,14 @@
  *
  * ## Por qué esto es una medición y no una sospecha
  *
- * Porque la comparación está dentro del mismo fichero: **el 19 % de las series
- * de unidad física no se mueven ni una vez en diez entregas, y el 0 % de las
- * series de coste se queda quieta**. Si el municipio de al lado hubiera
+ * Porque la comparación está dentro del mismo fichero: **la mayoría de las
+ * series de unidad física de la banda no se mueven en años, mientras que casi
+ * ninguna serie de coste se queda quieta**. Si el municipio de al lado hubiera
  * congelado las dos cosas, sería un ayuntamiento que no rellena el modelo. Que
  * congele sólo el denominador dice qué mitad del formulario se rellena de
- * verdad.
+ * verdad. Las proporciones exactas NO van aquí a propósito —este comentario ya
+ * publicó un 19 % que llevaba meses siendo un 62 %—: viven en el bloque
+ * `declaracion` de `dea.json`, que se recalcula cada noche.
  *
  * ## Para qué se usa
  *

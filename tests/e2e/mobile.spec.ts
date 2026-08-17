@@ -70,6 +70,10 @@ const ROUTES: Route[] = [
   { path: '/eficiencia', ready: /Cobertura de este panel|servicios que este panel sigue/ },
   { path: '/gestion', ready: /Plazos, concurrencia y ejecución/ },
   { path: '/laboratorio/frontera', ready: /series de unidad física/ },
+  {
+    path: '/laboratorio/coste-esperado',
+    ready: /veces\s+lo esperado|municipios en gestión directa/,
+  },
   { path: '/nosotros', ready: /es el municipio piloto/ },
   { path: '/about', ready: /All funding is disclosed publicly/ },
   { path: '/metodologia', ready: /Última revisión de este documento/ },

@@ -170,12 +170,34 @@ async function gather(): Promise<Observations> {
   // barrido nocturno (scripts/review-sweep.sh); esto sólo comprueba que esté
   // ocurriendo y que lo encontrado no lleve días sin arreglar. Es barato: mira
   // la caché, no llama a ningún modelo.
+  // Las tres de eficiencia entran por un motivo distinto del de las anteriores:
+  // no es que nadie las ejecutara —el nocturno sí lo hacía— sino que su
+  // veredicto moría en un log. Iban a `soft_failures`, que imprime una línea y
+  // deja la pasada saliendo 0 bajo «all critical scrapers succeeded», y esta
+  // pantalla no las miraba. El desenlace que existen para detectar es una ficha
+  // FIRMADA sobre gasto municipal cuya fuente ya no la sostiene: eso no puede
+  // depender de que alguien lea la salida del nocturno.
+  //   · check:eficiencia-findings — la cifra congelada ya no coincide con el panel
+  //   · check:indicadores          — una cifra publicada sin celda que la respalde
+  //   · check:dea                  — la frontera no se reproduce, o nombra a un tercero
+  //   · check:coste-esperado       — la recta no se reproduce, o nombra a un tercero
+  // `check:cadence` entra por el mismo motivo que `check:runs`: la frescura de
+  // un fichero no dice si su pasada corrió, y la pasada no dice si el fichero
+  // envejece dentro de SU presupuesto. Existía con presupuestos por fichero y
+  // no lo invocaba nadie, así que `pmp.json` —trimestral, y debajo de una ficha
+  // firmada— podía quedarse quieto para siempre sin que ninguna pantalla lo
+  // dijera.
   for (const c of [
     'check:json',
     'check:relations',
     'check:runs',
     'check:queues',
     'check:surfaces',
+    'check:cadence',
+    'check:indicadores',
+    'check:eficiencia-findings',
+    'check:dea',
+    'check:coste-esperado',
   ]) {
     const msg = runCheck(c)
     if (msg) integrity.push({ check: c, message: msg })

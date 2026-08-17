@@ -30,7 +30,13 @@
 import { mkdir, readFile, writeFile, stat, readdir } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { parseCeselWorkbook, parseCeselInforme, type CesteRow } from '../src/scraper/coste-efectivo'
+import {
+  parseCeselWorkbook,
+  parseCeselInforme,
+  parseCe4,
+  type CesteRow,
+  type Ce4Row,
+} from '../src/scraper/coste-efectivo'
 import { parseConprelRoster, type ConprelMunicipio } from '../src/scraper/budget'
 import { SERVICIOS } from '../src/scraper/indicador-registry'
 import { startRun, NO_LLM_STATS } from '../src/scraper/run-manifest'
@@ -169,6 +175,7 @@ async function main() {
   rec.record('filas', todas.length)
   const aniosConDatos = new Set<number>([ANIO_VOLCADO])
   const noPresentadas: number[] = []
+  const filasSupra: Ce4Row[] = []
 
   // Informes de la consulta descargados a mano (ver el encabezado). Dos
   // variantes, misma función de lectura:
@@ -188,8 +195,19 @@ async function main() {
       const m = re.exec(f)
       if (!m) continue
       const anio = Number(m[m.length - 1])
+      const buf = await readFile(join(dir, f))
+      // CE4 se lee ANTES de cualquier salto de año: es la declaración de OTRO
+      // ente (quién sirve a este municipio), así que existe aunque el
+      // ayuntamiento no presentara la suya — en 2020 la Mancomunitat declara
+      // servir a Riba-roja mientras Riba-roja no aparece en CE1/CE2/CE3, y
+      // saltarse el fichero se habría comido justo esa fila.
+      if (sub === 'ccaa') {
+        filasSupra.push(
+          ...parseCe4(buf, { anio }).filter((r) => /riba-?roja/i.test(r.municipioServido)),
+        )
+      }
       if (aniosConDatos.has(anio)) continue
-      const filas = parseCeselInforme(await readFile(join(dir, f)), { anio, soloEntes })
+      const filas = parseCeselInforme(buf, { anio, soloEntes })
       const propias = filas.filter((r) => r.ine === INE)
       if (!propias.length) {
         // Tenemos el fichero y el municipio NO está en él: eso no es un hueco
@@ -261,17 +279,35 @@ async function main() {
       entregasPublicadas: Object.values(ENTREGAS).sort(),
       entregasObtenidas: [...new Set(filasMunicipio.map((f) => f.anio))].sort(),
       entregasNoPresentadas: [...noPresentadas].sort(),
+      // Esta frase habla SÓLO de cómo se obtienen los ficheros. Lo que el
+      // ayuntamiento presentó o dejó de presentar va en `entregasNoPresentadas`,
+      // que se calcula arriba comprobando que el libro esté y el municipio no.
+      //
+      // Iban juntas y era un error de bulto: la frase describía el mecanismo de
+      // descarga y se renderizaba justo detrás de la lista de entregas
+      // obtenidas, así que el lector entendía que 2020 falta porque este sitio
+      // no supo bajarla. Falta porque no está: el libro de la Comunitat
+      // Valenciana de 2020 está descargado, lo presentaron 503 ayuntamientos
+      // valencianos —más que en 2018, 2019, 2021 o 2022— y Riba-roja no figura
+      // en ninguna de sus tablas de coste, gestión ni unidades físicas.
       motivoFaltantes:
-        'El ministerio sólo publica volcado masivo de 2021. El resto de entregas ' +
-        'sólo salen del informe por ente de la aplicación de consulta, cuyo botón ' +
-        'de descarga no se deja reconstruir como POST: hay que pedirlo desde un ' +
-        'navegador y dejar el fichero en .cache/cesel/informes.',
+        'El ministerio sólo publica volcado masivo de 2021; el resto de entregas ' +
+        'se obtienen del informe por comunidad autónoma de la aplicación de ' +
+        'consulta, que se pide con `npm run fetch:cesel-ccaa` y se guarda en ' +
+        '.cache/cesel/ccaa.',
+    },
+    supramunicipal: {
+      // Filas de CE4 en las que un ente supramunicipal declara servir a ESTE
+      // municipio. Explican los ceros de turismo, ferias, deporte y ocio: no
+      // es que no existan, es que parte de la función la rinde otro.
+      filas: filasSupra.sort((a, b) => a.anio - b.anio || a.programa.localeCompare(b.programa)),
     },
     stats: {
       anios: [...new Set(filasMunicipio.map((f) => f.anio))].sort(),
       filasMunicipio: filasMunicipio.length,
       filasPares: filasPares.length,
       miembros: miembros.length,
+      filasSupramunicipales: filasSupra.length,
     },
   }
 

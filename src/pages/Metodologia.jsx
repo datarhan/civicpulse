@@ -1535,12 +1535,114 @@ export default function Metodologia() {
           delante — dos puntos no se dibujan como una línea, porque dos puntos no son una tendencia.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Una entrega que falta puede faltar por dos motivos distintos</strong>, y
+          confundirlos borra un hecho sobre la rendición de cuentas del ayuntamiento. Que no hayamos
+          conseguido el fichero es un hueco nuestro. Que el fichero esté, que los demás municipios
+          figuren en él y que éste no aparezca en ninguna de sus tablas es otra cosa: es una entrega
+          que el ayuntamiento no presentó — calcularla antes del 1 de noviembre y comunicarla al
+          ministerio es una obligación del artículo 116 ter de la Ley de Bases de Régimen Local. El
+          adaptador distingue los dos casos comprobando el universo del fichero, y la página los
+          dice por separado. La entrega de <strong>2020</strong> es del segundo tipo: Riba-roja no
+          aparece en las tablas de coste, gestión ni unidades físicas del libro de la Comunitat
+          Valenciana de ese ejercicio, mientras que en 2019 y 2021 declara sus cuarenta y tres
+          filas. No es un efecto de la pandemia — ese año presentaron más ayuntamientos valencianos
+          que en 2018, 2019, 2021 o 2022.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Las series van en euros constantes; la comparación con pares, no.</strong> Un
+          coste unitario de 2014 y otro de 2024 no son la misma unidad de cuenta, así que la serie
+          se deflacta con el índice de precios de consumo del INE y se rotula con el año base. Sin
+          eso, un servicio que costara exactamente lo mismo en términos reales aparecía subiendo:
+          pavimentación de vías públicas se leía como un 29 % más cara y en euros constantes sube un
+          5 %. La comparación con otros municipios se queda <em>sin deflactar</em> y a propósito,
+          porque enfrenta un año contra ese mismo año: corregirla movería todas las cifras por el
+          mismo factor sin cambiar ninguna posición, y sólo conseguiría que lo publicado dejara de
+          coincidir con la celda del ministerio que cita. El índice de manual para gasto público
+          sería el deflactor implícito del PIB; se usa el IPC porque la API abierta del INE no sirve
+          aquél como serie anual, y la diferencia entre ambos no cambia ninguna de las lecturas de
+          esta página.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           Comparar entregas entre sí sirve además para detectar cuándo una viene mal. El alumbrado
           público pasa de 21,76 a 147,25 € por punto de luz entre 2021 y 2024, y no es que se haya
           encarecido siete veces: la entrega de 2021 declaraba 98 mil euros para 4.514 puntos de luz
           frente a 664 mil en 2024. La salvedad automática que avisa cuando una cifra se aleja más
           del doble de la mediana de sus pares ya señalaba esa tarjeta antes de que hubiera una
           segunda entrega con la que contrastarla.
+        </p>
+        <div id="reglas-eficiencia" style={{ scrollMarginTop: 24, marginTop: 14 }}>
+          <p style={{ margin: 0, color: 'var(--ink70)' }}>
+            <strong>Reglas de filtrado y comparabilidad · v1 (2026-08).</strong> La literatura sobre
+            el coste efectivo es explícita: las categorías se solapan y hay doble contabilización
+            conocida, así que cualquier trabajo sobre esta fuente debe publicar un procedimiento de
+            filtrado reproducible. Éste es el nuestro, numerado para que cada salvedad del panel
+            pueda citar la regla que la dispara. Cambiarlo es cambiar de versión, no editar en
+            silencio.
+          </p>
+          <ol style={{ margin: '8px 0 0', paddingLeft: 22, color: 'var(--ink70)' }}>
+            <li>
+              Un servicio con más de una fila de coste en la misma entrega queda bloqueado: elegir
+              una sería un volado disfrazado de dato.
+            </li>
+            <li>
+              Una magnitud física declarada dos veces con valores distintos en la misma entrega
+              bloquea el cociente de ese año.
+            </li>
+            <li>
+              Unidad a cero junto a un coste real significa «no se declaró», no «no hubo»: el
+              cociente no se calcula y la ausencia se dice.
+            </li>
+            <li>
+              Sólo se compara contra municipios que prestan el servicio con el{' '}
+              <em>mismo modo de gestión</em> y declaran las dos cifras en la misma entrega — también
+              a lo largo de la serie: un año prestado bajo otro régimen se publica, pero fuera de la
+              línea y sin mediana de pares.
+            </li>
+            <li>Sin quince comparables no hay banda ni percentil: la tarjeta no se sitúa.</li>
+            {/* Los puntos 6 y 7 estuvieron CRUZADOS respecto a las seis citas
+                «(regla N)» del código, y el 7 afirmaba un comportamiento que el
+                propio snapshot contradecía (34 puntos entre ×2 y ×20, ninguno
+                atípico). La revisión pre-merge lo cazó; los números importan
+                porque las salvedades de /eficiencia remiten a ellos. */}
+            <li>
+              Una entrega a más del doble o menos de la mitad de la mediana de sus pares ese año se
+              publica, en escala y en la línea, con una salvedad de comparabilidad: una diferencia
+              así suele venir de cómo declara cada ayuntamiento el denominador, no de gestionar
+              mejor o peor.
+            </li>
+            <li>
+              Un cociente a más de veinte veces —o menos de una veinteava parte— de la mediana de
+              sus pares es una cifra inverosímil: se publica porque es la oficial, pero fuera de la
+              escala del gráfico y sin leerse como coste.
+            </li>
+            <li>
+              Un denominador cuenta como congelado cuando sus últimas cuatro entregas o más traen el
+              mismo valor hasta el cuarto decimal; repetir dos años es normal y no cuenta.
+            </li>
+            <li>
+              Las series propias se deflactan con la media anual del IPC general (INE) al año de la
+              entrega que titula; la comparación transversal va en corrientes, porque enfrenta un
+              año contra ese mismo año.
+            </li>
+            <li>
+              Los programas que el ministerio publica duplicados en las variantes a/b de un mismo
+              servicio cuentan una sola vez.
+            </li>
+          </ol>
+        </div>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>El escalón de resultados publica al lado, nunca dentro.</strong> Desde agosto de
+          2026 el panel trae resultados de fuentes oficiales que sí los publican —el primero, las
+          infracciones penales conocidas del Portal Estadístico de Criminalidad— bajo tres reglas
+          que están en el esquema y no sólo aquí escritas: un resultado se publica junto al coste y
+          jamás dividido por él (el tipo no tiene campos de gasto donde meterlo); nunca se lee como
+          causa, porque la fuente agrega a todos los cuerpos policiales y el ayuntamiento no
+          controla la seguridad pública del término; y nunca genera una ficha firmada — la misma
+          disciplina que la frontera del laboratorio. La banda de comparación de un resultado es la
+          SUYA (los municipios de la banda que superan 20.000 habitantes, que son los únicos que el
+          portal publica) y su N se declara aparte. Los resultados que no existen se publican como
+          ausencias con su porqué medido: no hay estación de aire en el término, y la serie de
+          reciclaje posterior a 2022 sólo existe en un panel sin descarga reconstruible.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>El plazo de pago es la única cifra del panel con umbral legal.</strong> El periodo
@@ -1708,6 +1810,41 @@ export default function Metodologia() {
           se actualiza y el denominador es una copia, el cociente sólo puede subir. No es una
           acusación —la cifra puede ser correcta y estable—, es un dato sobre la calidad de la
           declaración, y va antes que ninguna puntuación en la página.
+        </p>
+      </Card>
+
+      <Card style={{ marginTop: 14 }} id="coste-esperado">
+        <SectionHead
+          eyebrow="Laboratorio · coste esperado"
+          title="Qué gasto cabría esperar para un municipio así"
+        />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          <a href="/laboratorio/coste-esperado" style={{ color: 'var(--civic)' }}>
+            /laboratorio/coste-esperado
+          </a>{' '}
+          responde a la objeción más razonable contra el panel de costes —«nosotros no somos
+          comparables»— comparando contra lo esperable para la población del municipio: para cada
+          servicio, una recta de mínimos cuadrados sobre (ln población, ln gasto) de todos los
+          municipios de la Comunitat Valenciana que lo declaran en gestión directa, con banda de
+          predicción analítica al 95 % (t de Student, sin remuestreo: el análisis se reproduce
+          exacto desde la muestra publicada). Es un modelo, no una fuente citable, así que rigen las
+          tres reglas de la frontera: ningún otro municipio con nombre —la muestra se publica
+          anónima y ordenada por población—, las especificaciones que fallan se publican como
+          fallidas (mínimo muestral de 40; sin declaración propia utilizable), y nada de esa página
+          genera una ficha firmada. <code>check:coste-esperado</code> recalcula la recta desde la
+          muestra publicada y, cuando la caché de libros está, desde el libro entero, y falla si
+          deja de reproducirse o si un tercero aparece nombrado.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          La limpieza es la del panel, aplicada igual: gestión directa sólo (regla 4), un municipio
+          con dos costes para el mismo servicio queda fuera (regla 1), y una declaración a más de
+          veinte veces —o menos de una veinteava parte— de la mediana de euros por habitante del
+          servicio se excluye como inverosímil (regla 7): el libro real trae ayuntamientos
+          declarando 1 € de coste de escuelas. La escalera de impulsores está declarada: la v1 usa
+          sólo log(población) y publica el R² de cada recta a la vista; superficie y renta esperan
+          una fuente municipal utilizable, y cada peldaño se añadirá junto al anterior, no en su
+          lugar. «Dentro de la banda» no es un aprobado: con un solo impulsor las bandas son anchas,
+          y el número legible es cuántas veces lo esperado, con su banda al lado.
         </p>
       </Card>
 
