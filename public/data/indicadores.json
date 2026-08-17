@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T06:48:53.016Z",
+  "generatedAt": "2026-08-17T07:03:34.973Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -6955,6 +6955,7 @@
       },
       "valor": 1689.0742712057197,
       "formato": "euros",
+      "denominadorUnidad": "habitantes",
       "periodo": "2025",
       "pares": {
         "conjunto": "cv-15k-40k",
