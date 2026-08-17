@@ -21,6 +21,11 @@ import { Card } from '../Primitives'
  *   es lo que el percentil sostiene, y ahí se acaba.
  * - **No suma ni promedia posiciones.** Una media de percentiles sería la nota
  *   global que esta página se niega a publicar, por la puerta de atrás.
+ *   La cabecera de la página CUENTA lados de la mediana («6 ↓ · 6 ↑»), y contar
+ *   no es promediar: la única definición de «por debajo» vive en
+ *   `particionPosiciones` (indicador-areas.ts) y la comparten la cabecera y
+ *   las mini-frases de área, para que dos recuentos no puedan divergir en el
+ *   50 exacto.
  */
 export function ResumenPosiciones({ indicadores = [] }) {
   const conRatio = indicadores.filter((i) => i.valor !== null)

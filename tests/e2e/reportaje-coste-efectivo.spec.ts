@@ -56,6 +56,25 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     expect(appErrors(errors)).toEqual([])
   })
 
+  test('la infografía se sirve como página estática, no como la SPA reescrita', async ({
+    page,
+  }) => {
+    await page.goto('/reportajes/coste-efectivo', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByRole('link', { name: /infografía en una sola página/ })).toBeVisible({
+      timeout: 8000,
+    })
+
+    // El fichero vivía en docs/, que Vercel no sirve, y «no enlazada» se leyó
+    // como «no publicada» durante un mes. Ahora se pide por URL y se comprueba
+    // que lo servido es la infografía de verdad: la reescritura de la SPA
+    // también devolvería 200, pero con la app dentro.
+    const res = await page.request.get('/infografias/eficiencia-2026-08.html')
+    expect(res.status()).toBe(200)
+    const html = await res.text()
+    expect(html).toContain(snap.meta.titulo)
+    expect(html).not.toContain('id="root"')
+  })
+
   test('ninguna cifra del cuerpo contradice al snapshot congelado', async ({ page }) => {
     // La regla de la casa para reportajes: las cifras están CONGELADAS y la
     // página las lee del fichero, así que basta comprobar que las que más

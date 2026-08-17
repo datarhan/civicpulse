@@ -66,6 +66,13 @@ export interface LecturaVisible {
  * en la página, una por tarjeta, justo debajo del rótulo de la banda que dice lo
  * mismo. Diez pantallas de las trece eran repetición.
  *
+ * Esa medición se hizo con la banda ABIERTA. Desde que la banda va plegada en
+ * <details> (y desde agosto de 2026, con la tarjeta pintando `donde` junto al
+ * número porque era la única frase que contesta «¿caro o barato?» y quedaba
+ * sin leer), el flag `banda` significa «`donde` ya está impreso en la
+ * tarjeta», no «la banda está desplegada». El contrato de esta función no
+ * cambia: descuenta lo que el llamante declara tener en pantalla.
+ *
  * `como` y `avisos` NUNCA se descuentan: son lo que la geometría no puede
  * enseñar, y el motivo entero de que este bloque exista.
  */

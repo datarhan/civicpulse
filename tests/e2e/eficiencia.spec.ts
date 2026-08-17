@@ -3,6 +3,11 @@ import AxeBuilder from '@axe-core/playwright'
 import { readFileSync } from 'node:fs'
 import { chipDeclaracion, GLOSA_TIER } from '../../src/scraper/indicador-lectura'
 import { seriesDibujables, aniosSinEntrega } from '../../src/components/eficiencia/multiples'
+import {
+  agruparPorArea,
+  particionPosiciones,
+  fraseParticion,
+} from '../../src/scraper/indicador-areas'
 import type { Indicador } from '../../src/scraper/indicadores'
 import type { IndicadorMunicipal } from '../../src/scraper/indicadores-friccion'
 import { collectErrors, appErrors } from './_console'
@@ -40,6 +45,7 @@ const IDS_AQUI: string[] = [
     .map((m: MunicipalLike) => m.id),
 ]
 const FICHAS = JSON.parse(readFileSync('public/data/eficiencia-findings.json', 'utf8'))
+const PREGUNTAS = JSON.parse(readFileSync('public/data/eficiencia-preguntas.json', 'utf8'))
 const MIAS = FICHAS.items.filter((f: { indicadorId: string }) => IDS_AQUI.includes(f.indicadorId))
 const AJENAS = FICHAS.items.filter(
   (f: { indicadorId: string }) => !IDS_AQUI.includes(f.indicadorId),
@@ -97,6 +103,90 @@ test.describe('Eficiencia (/eficiencia)', () => {
     await expect(page.getByText(/servicios que este panel sigue/i)).toBeVisible()
 
     expect(appErrors(errors)).toEqual([])
+  })
+
+  test('la lectura rápida cuenta lo que las fichas publican, sin inventar nada', async ({
+    page,
+  }) => {
+    // Los recuentos de cabecera se RE-DERIVAN aquí del mismo snapshot con el
+    // mismo módulo que usa el componente: si la página y este test divergen,
+    // uno de los dos está contando mal y el rojo lo dice. Restatar los números
+    // a mano es el fallo nº1 de docs/DATA_INTEGRITY.md.
+    const p = particionPosiciones(SNAP.indicadores)
+    const hero = page.locator('#sec-lectura')
+    await expect(hero).toBeVisible({ timeout: 8000 })
+
+    // El sufijo «=» se deriva igual que en el componente: aparece sólo si
+    // algún percentil cae en el 50 exacto, que es alcanzable.
+    const tileParticion = `${p.abajo} ↓ · ${p.arriba} ↑${p.enMediana > 0 ? ` · ${p.enMediana} =` : ''}`
+    await expect(hero.getByText(tileParticion)).toBeVisible()
+
+    const congelados = CON_RATIO.filter(
+      (i: Indicador) => i.declaracion?.denominador?.congelada,
+    ).length
+    const medibles = CON_RATIO.filter((i: Indicador) => i.declaracion?.denominador).length
+    if (congelados > 0) {
+      await expect(hero.getByText(`${congelados} de ${medibles}`)).toBeVisible()
+    }
+
+    const sinRendir: number[] = SNAP.cobertura?.entregasNoPresentadas ?? []
+    if (sinRendir.length > 0) {
+      await expect(hero.getByText(sinRendir.join(' · '), { exact: true })).toBeVisible()
+    }
+
+    // La lectura editorial termina donde debe: en el límite, con su enlace.
+    await expect(hero.getByText(/Ninguna de estas cifras mide la calidad/i)).toBeVisible()
+    await expect(hero.locator('a[href="/metodologia#eficiencia"]')).toHaveCount(1)
+
+    // Y respeta el contrato del índice: la cabecera dice cuántas cosas hay y
+    // dónde, nunca qué concluye una ficha firmada.
+    const texto = (await hero.textContent()) ?? ''
+    for (const f of FICHAS.items) {
+      expect(texto, 'la lectura rápida adelanta el titular de una ficha').not.toContain(
+        f.titulo.slice(0, 25),
+      )
+    }
+  })
+
+  test('las fichas van agrupadas por área funcional, en el orden del registro', async ({
+    page,
+  }) => {
+    // La agrupación la declara cada servicio en el registro y la ordena el
+    // gasto: aquí se comprueba que el DOM la respeta entera — cabecera de área
+    // visible con su mini-frase derivada, y las fichas dentro en el orden que
+    // exporta el mismo módulo que consume la página.
+    const grupos = agruparPorArea(SNAP.indicadores)
+    expect(grupos.length, 'sin grupos de área en el snapshot').toBeGreaterThan(1)
+
+    for (const g of grupos) {
+      const cabecera = page.locator(`#g-${g.area}`)
+      await expect(cabecera).toBeVisible({ timeout: 8000 })
+      await expect(cabecera).toHaveText(g.etiqueta)
+      const frase = fraseParticion(g.particion)
+      if (frase) {
+        await expect(page.getByText(`${frase}.`, { exact: true })).toBeVisible()
+      }
+    }
+
+    // El orden real de las fichas en el DOM es exactamente el de los grupos.
+    const idsEnDom = await page
+      .locator('#sec-servicios [id^="s-"]')
+      .evaluateAll((els) => els.map((e) => e.id))
+    expect(idsEnDom).toEqual(grupos.flatMap((g) => g.indicadores.map((i) => `s-${i.id}`)))
+  })
+
+  test('cada ficha contesta «¿caro o barato?» sin abrir nada', async ({ page }) => {
+    // La frase existía y estaba suprimida por darla por visible en una banda
+    // plegada. Ahora va junto al número: una por servicio situado, y la de
+    // «no hay comparación» en los que no llegan a quince pares.
+    const situados = CON_RATIO.filter((i: Indicador) => i.pares)
+    await expect(
+      page.getByText(/Frente a \d+ municipios valencianos de tamaño parecido/),
+    ).toHaveCount(situados.length, { timeout: 8000 })
+    const sinSituar = CON_RATIO.length - situados.length
+    if (sinSituar > 0) {
+      await expect(page.getByText(/No hay comparación: no llegan a quince/)).toHaveCount(sinSituar)
+    }
   })
 
   test('avisa de los cocientes cuyo denominador nadie vuelve a medir', async ({ page }) => {
@@ -282,24 +372,80 @@ test.describe('Eficiencia (/eficiencia)', () => {
   test('la cabecera indexa los hallazgos sin adelantar lo que dicen', async ({ page }) => {
     if (MIAS.length === 0) {
       // Sin fichas propias no hay índice: un enlace a una sección vacía es peor
-      // que ningún enlace.
+      // que ningún enlace. El submenú sigue el mismo contrato: su ítem de
+      // hallazgos es condicional al recuento.
       await expect(page.locator('a[href="#hallazgos"]')).toHaveCount(0)
       return
     }
-    const enlace = page.locator('a[href="#hallazgos"]').first()
-    await expect(enlace).toBeVisible({ timeout: 8000 })
+    // Con fichas hay DOS índices legítimos —la casilla de la lectura rápida y
+    // el ítem del submenú— y el recuento vive en la casilla.
+    const casilla = page.locator('#sec-lectura a[href="#hallazgos"]')
+    await expect(casilla).toBeVisible({ timeout: 8000 })
     // Cuenta las de ESTA página, no las del fichero: /gestion tiene las suyas.
-    await expect(enlace).toContainText(String(MIAS.length))
+    await expect(casilla).toContainText(String(MIAS.length))
 
     // Índice, no conclusión: las fichas siguen al final porque son una lectura
-    // del panel y el panel se lee primero. El índice dice cuántas hay y dónde,
-    // nunca qué concluyen.
-    const texto = (await enlace.textContent()) ?? ''
-    for (const f of FICHAS.items) {
-      expect(texto, 'el índice de cabecera está adelantando el titular de una ficha').not.toContain(
-        f.titulo.slice(0, 25),
-      )
+    // del panel y el panel se lee primero. NINGÚN enlace al ancla —casilla o
+    // submenú— adelanta lo que una ficha concluye.
+    const enlaces = page.locator('a[href="#hallazgos"]')
+    const cuantos = await enlaces.count()
+    expect(cuantos).toBeGreaterThan(0)
+    for (let e = 0; e < cuantos; e++) {
+      const texto = (await enlaces.nth(e).textContent()) ?? ''
+      for (const f of FICHAS.items) {
+        expect(texto, 'un índice está adelantando el titular de una ficha').not.toContain(
+          f.titulo.slice(0, 25),
+        )
+      }
     }
+  })
+
+  test('el submenú acompaña el scroll y sus anclas aterrizan a la vista', async ({ page }) => {
+    const subnav = page.locator('.cp-subnav')
+    await expect(subnav).toBeVisible({ timeout: 8000 })
+
+    // Pegajosa de verdad: tras un scroll largo sigue arriba, bajo la topbar.
+    await page.mouse.wheel(0, 4000)
+    await page.waitForTimeout(300)
+    const caja = await subnav.boundingBox()
+    expect(caja, 'el submenú desapareció al hacer scroll').toBeTruthy()
+    expect(caja!.y).toBeGreaterThanOrEqual(40)
+    expect(caja!.y).toBeLessThanOrEqual(64)
+
+    // El ancla navega Y el destino queda por debajo del borde inferior de la
+    // barra. Se mide con getBoundingClientRect porque la banda de 2020 se
+    // publicó tapando la mitad de su hueco con todas las suites verdes: los
+    // tests de texto no ven geometría.
+    await subnav.getByRole('link', { name: 'Declaración' }).click()
+    await page.waitForTimeout(500)
+    const destino = await page.locator('#sec-declaracion').boundingBox()
+    const barra = await subnav.boundingBox()
+    expect(destino!.y).toBeGreaterThanOrEqual(barra!.y + barra!.height - 1)
+
+    // Y el spy marca la sección a la que se acaba de saltar.
+    await expect(subnav.getByRole('link', { name: 'Declaración' })).toHaveAttribute(
+      'aria-current',
+      'true',
+    )
+
+    // El aterrizaje por hash desde fuera pasa por useHashScroll, que ahora
+    // mide LAS DOS barras pegajosas: el destino no puede quedar debajo.
+    await page.goto('/eficiencia#sec-declaracion', { waitUntil: 'domcontentloaded' })
+    await page.waitForTimeout(1500)
+    const trasHash = await page.locator('#sec-declaracion').boundingBox()
+    expect(
+      trasHash!.y,
+      'el hash aterrizó con el destino tapado por las barras',
+    ).toBeGreaterThanOrEqual(88)
+    expect(trasHash!.y, 'el hash no llegó a desplazarse').toBeLessThanOrEqual(320)
+
+    // A 375 px el desbordamiento es de la barra, nunca de la página.
+    await page.setViewportSize({ width: 375, height: 760 })
+    await page.waitForTimeout(300)
+    const desborde = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    )
+    expect(desborde, 'la página scrollea horizontalmente a 375px').toBe(0)
   })
 
   test('explica qué son los escalones antes de usarlos como chapa', async ({ page }) => {
@@ -411,6 +557,42 @@ test.describe('Eficiencia (/eficiencia)', () => {
     for (const campo of ['individualSpeaker', 'speakerGroup']) {
       expect(html, `${campo} no puede aparecer en una ficha de eficiencia`).not.toContain(campo)
     }
+  })
+
+  test('las preguntas registradas del panel, numeradas y con su base', async ({ page }) => {
+    type ItemPregunta = { q: string; base: string; href?: string }
+    const panel = PREGUNTAS.panels?.['coste-efectivo']
+    test.skip(!panel, 'sin preguntas registradas para este panel')
+    const items: ItemPregunta[] = panel.bloques.flatMap((b: { items: ItemPregunta[] }) => b.items)
+    expect(items.length, 'panel de preguntas vacío').toBeGreaterThan(0)
+
+    await expect(page.locator('#sec-preguntas')).toBeVisible({ timeout: 8000 })
+    await expect(page.locator('[data-pregunta]')).toHaveCount(items.length)
+    await expect(page.getByText(items[0].q)).toBeVisible()
+    await expect(page.getByText(items[items.length - 1].q)).toBeVisible()
+
+    // El reparto por panel en las dos direcciones, como fichas e indicadores.
+    const otras: ItemPregunta[] = (PREGUNTAS.panels?.['gestion']?.bloques ?? []).flatMap(
+      (b: { items: ItemPregunta[] }) => b.items,
+    )
+    if (otras.length > 0) {
+      await expect(
+        page.getByText(otras[0].q),
+        'una pregunta de /gestion se está publicando en /eficiencia',
+      ).toHaveCount(0)
+    }
+
+    // Toda base con ancla en esta misma página tiene su destino de verdad: una
+    // pregunta que enlaza a una cifra inexistente pierde su base ante el lector.
+    for (const it of items) {
+      if (it.href?.startsWith('/eficiencia#')) {
+        const id = it.href.split('#')[1]
+        await expect(page.locator(`#${id}`), `${it.href} no resuelve`).toHaveCount(1)
+      }
+    }
+
+    // Y el submenú la indexa.
+    await expect(page.locator('.cp-subnav a[href="#sec-preguntas"]')).toHaveCount(1)
   })
 
   test('axe evaluates the page and finds nothing blocking', async ({ page }) => {

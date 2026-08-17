@@ -123,9 +123,11 @@ export default function AvisoLegal() {
         <p>
           El derecho de réplica es <strong>institucional</strong>: el ayuntamiento, la intervención,
           la empresa concesionaria del servicio o el ministerio pueden remitir una respuesta
-          literal, que se publica íntegra junto a la ficha. Las vías y los plazos son los mismos
-          descritos más arriba. Todo el proceso se detiene durante el periodo electoral (LOREG art.
-          50).
+          literal, que se publica íntegra junto a la ficha. Lo mismo vale para las{' '}
+          <strong>preguntas registradas</strong> al pie de los dos paneles: cada una se dirige a una
+          institución, y su respuesta se publica íntegra junto a la pregunta que contesta. Las vías
+          y los plazos son los mismos descritos más arriba. Todo el proceso se detiene durante el
+          periodo electoral (LOREG art. 50).
         </p>
       </Card>
 

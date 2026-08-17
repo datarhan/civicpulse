@@ -1,8 +1,10 @@
 import { Card } from '../components/Primitives'
 import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
 import { HallazgosEficiencia } from '../components/eficiencia/HallazgosEficiencia'
+import { PreguntasRegistradas } from '../components/eficiencia/PreguntasRegistradas'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
+import { useEficienciaPreguntas } from '../hooks/useEficienciaPreguntas'
 
 /**
  * /gestion — plazos, concurrencia y ejecución. Cómo funciona la casa por dentro.
@@ -27,6 +29,7 @@ import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 export default function Gestion() {
   const { loading, error, data } = useIndicadores()
   const { data: hallazgos } = useEficienciaFindings()
+  const { data: preguntas } = useEficienciaPreguntas()
 
   const municipales = (data?.municipales ?? []).filter((m) => m.panel === 'gestion')
   const ids = municipales.map((m) => m.id)
@@ -99,6 +102,10 @@ export default function Gestion() {
           otroPanel={{ to: '/eficiencia', nombre: 'el coste de los servicios' }}
         />
       )}
+
+      {/* Las preguntas de ESTE panel — el fichero se reparte por `panel`, igual
+          que los indicadores y las fichas. */}
+      {!loading && !error && <PreguntasRegistradas data={preguntas} panel="gestion" />}
 
       <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 28 }}>
         Cómo se calcula y qué se descarta:{' '}

@@ -1,4 +1,5 @@
 import { Card, Pill } from '../Primitives'
+import { MARGEN_ANCLA } from '../SubnavSecciones'
 import { useT } from '../../i18n'
 import { BandaPares } from './BandaPares'
 import { SerieServicio, enTerminosReales } from './SerieServicio'
@@ -44,11 +45,16 @@ export function ServicioCard({ indicador, formatea, resultado }) {
   const g = GESTION[i.modoGestion] ?? GESTION['sin-clasificar']
   const motivo = i.numerador.motivo ?? i.denominador.motivo
   const cita = i.citas?.[0]
-  // La cifra en cuerpo 30 y la banda ya dicen «cuánto» y «dónde queda»; la
-  // lectura sólo aporta lo que ninguna de las dos puede enseñar.
-  const lectura = lecturaVisible(leerIndicador(i), {
+  const lecturaEntera = leerIndicador(i)
+  // La cifra en cuerpo 30 la pinta la tarjeta, y —desde agosto de 2026— la
+  // frase de posición también, junto al número. `banda: true` no significa que
+  // la banda esté abierta (va plegada en <details>): significa que `donde` ya
+  // está impreso arriba y <Lectura> no debe repetirlo. La supresión anterior
+  // (`banda: Boolean(i.pares)`) daba por visible lo que estaba plegado, y la
+  // única frase que contesta «¿esto es caro o barato?» quedaba sin leer.
+  const lectura = lecturaVisible(lecturaEntera, {
     cifra: i.valor !== null,
-    banda: Boolean(i.pares),
+    banda: true,
   })
   const declarados = i.serie.filter((p) => p.estado === 'declarado')
   const serie = enTerminosReales(declarados)
@@ -68,8 +74,9 @@ export function ServicioCard({ indicador, formatea, resultado }) {
 
   return (
     // El id es el destino de los enlaces del resumen de arriba; el margen de
-    // scroll deja la cabecera de la tarjeta por debajo de la barra fija.
-    <Card id={`s-${i.id}`} style={{ scrollMarginTop: 76 }}>
+    // scroll deja la cabecera de la tarjeta por debajo de las barras fijas
+    // (topbar + submenú), y lo declara quien las monta.
+    <Card id={`s-${i.id}`} style={{ scrollMarginTop: MARGEN_ANCLA }}>
       <div
         style={{
           display: 'flex',
@@ -79,7 +86,9 @@ export function ServicioCard({ indicador, formatea, resultado }) {
           flexWrap: 'wrap',
         }}
       >
-        <h2 style={{ fontSize: 'var(--fs-head)', fontWeight: 650, margin: 0 }}>{i.etiqueta}</h2>
+        {/* h3: la ficha vive dentro de un bloque de área (o de «sin coste
+            unitario»), cuya cabecera es el h2. */}
+        <h3 style={{ fontSize: 'var(--fs-head)', fontWeight: 650, margin: 0 }}>{i.etiqueta}</h3>
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
           {/* La marca del denominador parado va PRIMERA y en tono de aviso:
               es lo que condiciona cómo se lee todo lo demás de la tarjeta. */}
@@ -111,6 +120,24 @@ export function ServicioCard({ indicador, formatea, resultado }) {
             ÷ {i.denominador.valor.toLocaleString('es-ES')}{' '}
             {i.unidad.replace(/^€\//, '').replace(/^\//, '')} · entrega {cita?.entrega}
           </div>
+
+          {/* La frase de posición, visible y pegada al número: es la única del
+              bloque que contesta «¿esto es caro o barato?», y estaba suprimida
+              por darla por visible en una banda que va plegada. Sale entera de
+              leerIndicador: tramo sin ranking, mediana con unidad, o el «no
+              hay comparación» con su porqué. */}
+          {lecturaEntera.donde && (
+            <p
+              style={{
+                margin: '8px 0 0',
+                fontSize: 'var(--fs-aux)',
+                color: 'var(--ink70, var(--ink50))',
+                maxWidth: '58ch',
+              }}
+            >
+              {lecturaEntera.donde}
+            </p>
+          )}
 
           {/* La serie va dibujada, con las entregas inverosímiles fuera de la
               escala y marcadas donde estaban. Las cifras exactas, año por año,

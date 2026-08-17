@@ -27,11 +27,19 @@ const GIVE_UP_MS = 8000
 const BREATHING_ROOM = 12
 
 function headerOffset() {
-  const header = document.querySelector('.cp-shell-topbar')
-  if (!header) return 0
-  const { position } = window.getComputedStyle(header)
-  if (position !== 'sticky' && position !== 'fixed') return 0
-  return header.getBoundingClientRect().height + BREATHING_ROOM
+  // Todo lo que se queda pegado arriba descuenta altura del aterrizaje: la
+  // topbar del shell y —donde exista— el submenú de secciones (.cp-subnav,
+  // SubnavSecciones.jsx). Medir sólo la primera dejaba el destino tapado por
+  // la segunda en cuanto /eficiencia estrenó submenú.
+  let total = 0
+  for (const selector of ['.cp-shell-topbar', '.cp-subnav']) {
+    const barra = document.querySelector(selector)
+    if (!barra) continue
+    const { position } = window.getComputedStyle(barra)
+    if (position !== 'sticky' && position !== 'fixed') continue
+    total += barra.getBoundingClientRect().height
+  }
+  return total === 0 ? 0 : total + BREATHING_ROOM
 }
 
 export function useHashScroll() {
