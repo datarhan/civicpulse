@@ -351,6 +351,30 @@ test.describe('Eficiencia (/eficiencia)', () => {
     }
   })
 
+  test('el historial de correcciones de una ficha va plegado, con el hecho a la vista', async ({
+    page,
+  }) => {
+    // Mismo contrato que CorrectionNote en los reportajes (17-08-2026): el
+    // summary dice CUÁNTAS correcciones y de cuándo; el antes/después se abre.
+    const FICHAS = JSON.parse(readFileSync('public/data/eficiencia-findings.json', 'utf8'))
+    const conHistorial = (FICHAS.items ?? []).find(
+      (i: { corrections?: unknown[] }) => (i.corrections?.length ?? 0) > 0,
+    )
+    test.skip(!conHistorial, 'ninguna ficha publicada lleva correcciones ahora mismo')
+
+    const n = conHistorial.corrections.length
+    const resumen =
+      n === 1
+        ? `Corregido el ${conHistorial.corrections[0].correctedAt}`
+        : `${n} correcciones, la última el ${conHistorial.corrections[n - 1].correctedAt}`
+    await expect(page.getByText(resumen)).toBeVisible({ timeout: 8000 })
+
+    const motivo = `Motivo: ${conHistorial.corrections[0].reason}`
+    await expect(page.getByText(motivo, { exact: false })).toBeHidden()
+    await page.getByText(resumen).click()
+    await expect(page.getByText(motivo, { exact: false }).first()).toBeVisible()
+  })
+
   test('the signed-findings section says what its emptiness means', async ({ page }) => {
     // Cero fichas es el estado normal antes de la primera firma. Un hueco se
     // lee como «no hay nada que contar», que es la mentira por omisión que el

@@ -137,7 +137,18 @@ function FichaEficiencia({ ficha }) {
         </div>
       )}
       {ficha.corrections?.length > 0 && (
-        <div style={{ marginTop: 10, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+        /* Plegado desde el 17-08-2026: el HECHO (cuántas correcciones y de
+           cuándo) queda a la vista en el summary; el antes/después y el motivo
+           se abren. Mismo criterio que CorrectionNote en los reportajes. */
+        <details style={{ marginTop: 10, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+          <summary style={{ cursor: 'pointer' }}>
+            <strong>
+              {ficha.corrections.length === 1
+                ? `Corregido el ${ficha.corrections[0].correctedAt}`
+                : `${ficha.corrections.length} correcciones, la última el ${ficha.corrections[ficha.corrections.length - 1].correctedAt}`}
+            </strong>{' '}
+            · ver qué cambió
+          </summary>
           {ficha.corrections.map((c) => (
             <p key={`${c.field}-${c.correctedAt}`} style={{ margin: '4px 0 0' }}>
               <strong>Corregido el {c.correctedAt}</strong> ({c.field}):{' '}
@@ -145,7 +156,7 @@ function FichaEficiencia({ ficha }) {
               Motivo: {c.reason}
             </p>
           ))}
-        </div>
+        </details>
       )}
       <div style={{ marginTop: 10, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
         {ficha.citas.map((c, i) => (

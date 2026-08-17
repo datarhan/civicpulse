@@ -196,6 +196,7 @@
     "scrape:pmp": "npx tsx scripts/scrape-pmp.ts",
     "scrape:ipc": "npx tsx scripts/scrape-ipc.ts",
     "scrape:criminalidad": "npx tsx scripts/scrape-criminalidad.ts",
+    "scrape:reciclaje": "npx tsx scripts/scrape-reciclaje.ts",
     "fetch:cesel-ccaa": "npx tsx scripts/fetch-cesel-ccaa.ts",
     "build:prose-map": "npx tsx scripts/build-prose-map.ts",
     "draft:indicadores": "npx tsx scripts/draft-indicador-candidates.ts",

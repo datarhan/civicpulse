@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { trozos } from '../src/components/reportajes/CorrectionNote'
+import { trozos, primeraFrase } from '../src/components/reportajes/CorrectionNote'
 import correccionesDana from '../public/data/reportajes/reconstruccion-dana.json'
 
 /**
@@ -45,5 +45,28 @@ describe('CorrectionNote — el texto se lee como se escribió', () => {
     expect(parrafos.flat().some((t) => t.negrita)).toBe(true)
     // y ningún trozo de texto plano conserva el marcador
     expect(parrafos.flat().some((t) => (t.texto ?? '').includes('**'))).toBe(false)
+  })
+})
+
+describe('primeraFrase: el summary del pliegue', () => {
+  it('corta en la primera frase y limpia la negrita', () => {
+    expect(primeraFrase('**Se corrigió el total.** El resto sigue.\n\nMás detalle.')).toBe(
+      'Se corrigió el total.',
+    )
+  })
+
+  it('sin punto, devuelve el primer párrafo entero', () => {
+    expect(primeraFrase('Una corrección sin punto final')).toBe('Una corrección sin punto final')
+  })
+
+  it('las correcciones REALES publicadas dan un summary de una frase', () => {
+    // Contra el fichero de verdad: si una corrección real rompiera el corte,
+    // el summary plegado enseñaría medio cuerpo y el pliegue no plegaría nada.
+    for (const c of correccionesDana.meta.correcciones) {
+      const s = primeraFrase(c.texto)
+      expect(s.length).toBeGreaterThan(10)
+      expect(s.length).toBeLessThan(c.texto.length)
+      expect(s).not.toContain('**')
+    }
   })
 })

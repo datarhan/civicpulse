@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T07:03:34.973Z",
+  "generatedAt": "2026-08-17T11:02:28.155Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -7251,6 +7251,39 @@
           "url": "https://estadisticasdecriminalidad.ses.mir.es/publico/portalestadistico/",
           "atribucion": "Origen de los datos: Portal Estadístico de Criminalidad"
         }
+      },
+      {
+        "id": "reciclaje-selectiva-2022",
+        "servicioRelacionado": "a1621-coste-unitario",
+        "etiqueta": "Recogida selectiva sobre el total",
+        "valor": 6.690748758267151,
+        "unidad": "% del total (2022)",
+        "periodo": "2022",
+        "serie": [
+          {
+            "anio": 2022,
+            "valor": 6.690748758267151
+          }
+        ],
+        "pares": {
+          "conjunto": "cv-15k-40k · con tasa calculable en la capa",
+          "n": 59,
+          "percentil": 7,
+          "p25": 8.305126560565794,
+          "mediana": 11.971178936381541,
+          "p75": 15.477917089621505
+        },
+        "comoSeLee": "Qué parte de la basura se recogió separada (orgánica, vidrio, envases, papel) frente al contenedor de resto. La separación depende de los contenedores desplegados, la campaña y el consorcio (aquí, Valencia Interior), no sólo del servicio municipal: se publica junto al coste, nunca dividido por él.",
+        "caveats": [
+          "La orgánica (FORS) ARRANCABA en 2022: 27 toneladas en todo el año, casi cero. Sin esta salvedad el dato parece un error; con ella, dice cuándo empezó la recogida.",
+          "Un solo año, 2022: las ediciones posteriores sólo existen en un visor sin datos descargables. El año no lo declara la capa — se comprobó contra el padrón (los habitantes del fichero coinciden con el padrón INE 2022 (Riba-roja: 23.050), y el scraper falla si esa igualdad se rompe).",
+          "La banda de comparación es propia, distinta de la de coste: los de la banda con tasa calculable en la capa (n=59). 24 de ellos no declaran orgánica y su tasa se calcula sin esa fracción, lo que tiende a rebajar la mediana del grupo."
+        ],
+        "fuente": {
+          "nombre": "Institut Cartogràfic Valencià / GVA — capa 0503_Residuos (WFS)",
+          "url": "https://terramapas.icv.gva.es/0503_Residuos",
+          "atribucion": "Institut Cartogràfic Valencià · Generalitat Valenciana · CC BY 4.0"
+        }
       }
     ],
     "ausencias": [
@@ -7260,7 +7293,7 @@
       },
       {
         "tema": "Reciclaje (serie)",
-        "motivo": "La Generalitat publica UN corte con todas las fracciones por municipio (2022, CC-BY); los años posteriores sólo existen en un panel interactivo sin descarga reconstruible. Sin serie comparable, la serie no se publica."
+        "motivo": "El corte de 2022 está publicado arriba, en la tarjeta de recogida de residuos. La SERIE no existe: las ediciones posteriores de la Generalitat sólo viven en un panel interactivo sin descarga reconstruible, y sin serie comparable no se dibuja ninguna."
       }
     ]
   },

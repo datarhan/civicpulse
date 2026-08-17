@@ -39,6 +39,11 @@ export const CURATED = {
   'promises.json': 'npm run reply / freeze:set / freeze:clear',
   'pleno-votes.json': 'npm run pleno-vote / promote-vote / retract-vote',
   'pleno-findings.json': 'npm run promote-claim / finding-reply / correct-pleno-finding',
+  // Los veredictos publicados son base⊕overlay y sus CLIs son la única puerta;
+  // faltaban de esta lista (hueco señalado en la revisión del 17-08): una
+  // edición directa saltaría el rango isDowngrade y el registro del overlay.
+  'pleno-claims-verified.json': 'npm run downgrade-verdict / verify:pleno-claims',
+  'pleno-claims-overlay.json': 'npm run downgrade-verdict / apply-gold-downgrades',
   'press-findings.json': 'npm run correct-press-finding',
   'journalist-reports.json':
     'npm run promote-report / correct-journalist-report / journalist-reply',

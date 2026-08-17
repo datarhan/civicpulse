@@ -576,7 +576,14 @@ function cotejarPares(
 export function cotejarMedicion(
   f: EficienciaFinding,
   panel: {
-    indicadores: Array<{ id: string; valor: number | null; citas?: Array<{ entrega: number }> }>
+    indicadores: Array<{
+      id: string
+      valor: number | null
+      citas?: Array<{ entrega: number }>
+      // La banda del indicador, para que cotejarPares también corra en la
+      // familia servicio (misma forma estructural que la rama municipal).
+      pares?: { n?: number; percentil?: number; mediana?: number } | null
+    }>
     municipales: Array<{
       id: string
       valor: number | null

@@ -209,6 +209,40 @@ overwrites it. Change the bot's SQLite instead.
   publish per municipality is NOT a duplicate; duplication is judged among
   cost-bearing rows only.
 
+### Criminalidad municipal (outcome beside the police cost card)
+
+- **Pipeline** — `criminalidad.ts` → `scrape:criminalidad` →
+  `criminalidad.json`; `compute:indicadores` embeds the validated copy as a
+  `resultados` item (never divided by cost — the three rules live in
+  `resultados.ts`).
+- **Source** — Portal Estadístico de Criminalidad (Ministerio del Interior),
+  deterministic Jaxi CSV per T4 balance; rate uses same-year population (INE
+  DPOP). Ley 37/2007; attribution «Origen de los datos: Portal Estadístico de
+  Criminalidad» travels in the snapshot and the card.
+- **Surfaces** — `/eficiencia` (police card result block), `/datos`
+- **Gotchas** — era joins are BY NORMALIZED NAME (INE-keyed joins silently
+  dropped 2020–2022); T4 = full year; each file also carries the prior year.
+  Cadence `manual` 420d.
+
+### Recogida selectiva 2022 (single-edition outcome, waste card)
+
+- **Pipeline** — `reciclaje.ts` → `scrape:reciclaje` → `reciclaje.json`;
+  `compute:indicadores` embeds it as the `resultados` item
+  `reciclaje-selectiva-2022` (FORS-arranque caveat is mandatory).
+- **Source** — ICV/GVA WFS layer `0503_Residuos`
+  (`ms:TasasGeneracion.Municipios_wfs`), CC BY 4.0, all fractions for 542
+  municipios. ONE machine-readable edition: later years live only in a Power
+  BI viewer, and that ABSENCE stays published on `/eficiencia`.
+- **Edition proof** — the layer does not state its year; it was established by
+  MEASUREMENT (file's habitantes for Riba-roja = INE padrón 2022 = 23.050),
+  and the scraper fails if that equality breaks rather than publishing «2022»
+  over some other year.
+- **Gotchas** — decimal POINT (en-US), verified via kg/hab = tn·1000/hab; an
+  empty fraction is null, never zero; the WKT geometry is discarded (and
+  stubbed in the fixture). Peer band = coste-efectivo band ∩ usable rate, own
+  n declared. Cadence `manual` 800d — the long budget is the re-check-upstream
+  reminder, not a refresh promise.
+
 ### Municipal hiring (procesos selectivos)
 
 - **Pipeline** — `procesos-selectivos.ts` → `procesos-selectivos.json`

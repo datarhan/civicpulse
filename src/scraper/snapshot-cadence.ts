@@ -151,6 +151,16 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     hint: 'npm run scrape:criminalidad',
   },
   {
+    file: 'reciclaje.json',
+    cls: 'manual' as const,
+    // Corte único (edición 2022; upstream congelado en un visor sin datos).
+    // Presupuesto larguísimo a propósito: el aviso sólo debe llegar cuando
+    // toque re-mirar si el ICV volvió a publicar descarga; si no lo hizo,
+    // la respuesta de entonces será marcar upstream retired, no correr nada.
+    maxAgeDays: 800,
+    hint: 'npm run scrape:reciclaje -- --refetch',
+  },
+  {
     file: 'ipc.json',
     cls: 'manual' as const,
     // La media anual sólo cambia cuando el INE cierra un año; con 400 días el

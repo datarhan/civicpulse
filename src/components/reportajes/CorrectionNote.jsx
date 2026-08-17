@@ -34,12 +34,33 @@ export function trozos(texto) {
   )
 }
 
+/**
+ * La primera frase del texto de la corrección, para el summary plegado.
+ *
+ * Corta en el primer punto seguido de espacio o fin de párrafo; si la
+ * corrección es una sola frase corta, el summary la lleva entera y el cuerpo
+ * plegado sólo repite — el precio de no tener dos campos en el JSON, y menor
+ * que pedirle a quien corrige que escriba un resumen aparte.
+ */
+export function primeraFrase(texto) {
+  const primerParrafo = texto.split(/\n\n+/)[0].replace(/\*\*/g, '')
+  const m = primerParrafo.match(/^.*?[.!?](?=\s|$)/)
+  return (m ? m[0] : primerParrafo).trim()
+}
+
+/**
+ * Plegada por defecto desde el 17-08-2026, a petición: el HECHO de la
+ * corrección sigue llegando antes que la cifra —summary con fecha y primera
+ * frase, mismo tono crit, misma posición sobre los KPIs— y lo que se pliega
+ * es el detalle. `<details>` nativo (el patrón de ServicioCard): sin estado
+ * JS, accesible de serie, y el lector que quiere el porqué entero lo abre.
+ */
 export function CorrectionNote({ correcciones }) {
   if (!correcciones?.length) return null
   return (
     <>
       {correcciones.map((c) => (
-        <div
+        <details
           key={c.fecha}
           style={{
             border: '1px solid var(--border2)',
@@ -53,17 +74,20 @@ export function CorrectionNote({ correcciones }) {
             color: 'var(--ink70)',
           }}
         >
-          {trozos(c.texto).map((parrafo, i) => (
-            <p key={i} style={{ margin: i === 0 ? '0' : '10px 0 0' }}>
-              {i === 0 && (
-                <strong style={{ color: 'var(--crit-ink)' }}>Corrección · {c.fecha}. </strong>
-              )}
-              {parrafo.map((t, j) =>
-                t.negrita ? <strong key={j}>{t.negrita}</strong> : <span key={j}>{t.texto}</span>,
-              )}
-            </p>
-          ))}
-        </div>
+          <summary style={{ cursor: 'pointer' }}>
+            <strong style={{ color: 'var(--crit-ink)' }}>Corrección · {c.fecha}.</strong>{' '}
+            {primeraFrase(c.texto)}
+          </summary>
+          <div style={{ marginTop: 8 }}>
+            {trozos(c.texto).map((parrafo, i) => (
+              <p key={i} style={{ margin: i === 0 ? '0' : '10px 0 0' }}>
+                {parrafo.map((t, j) =>
+                  t.negrita ? <strong key={j}>{t.negrita}</strong> : <span key={j}>{t.texto}</span>,
+                )}
+              </p>
+            ))}
+          </div>
+        </details>
       ))}
     </>
   )

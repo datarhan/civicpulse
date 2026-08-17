@@ -27,6 +27,7 @@ import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useFrontera } from '../hooks/useFrontera'
 import { useCosteEsperado } from '../hooks/useCosteEsperado'
+import { useReciclaje } from '../hooks/useReciclaje'
 import { usePmp } from '../hooks/usePmp'
 import { useIpc } from '../hooks/useIpc'
 import { useCriminalidad } from '../hooks/useCriminalidad'
@@ -105,6 +106,7 @@ function DatasetsCatalog() {
   const fichasEficiencia = useEficienciaFindings().data
   const frontera = useFrontera().data
   const costeEsperado = useCosteEsperado().data
+  const reciclaje = useReciclaje().data
   const pmp = usePmp().data
   const ipc = useIpc().data
   const crimen = useCriminalidad().data
@@ -128,9 +130,13 @@ function DatasetsCatalog() {
     },
     {
       name: 'Contratos públicos',
-      rows: tenders?.stats?.totalContracts
-        ? `${tenders.stats.totalContracts.toLocaleString('es-ES')} contratos`
-        : '—',
+      // «806 contratos» contaba FILAS (anulados y desistidos incluidos) y se
+      // leía como adjudicados — lo cazó el reader-review. Las dos cifras ya
+      // vienen en el stats del scraper; aquí sólo se dice cuál es cuál.
+      rows:
+        tenders?.stats?.awardedContracts && tenders?.stats?.totalContracts
+          ? `${tenders.stats.awardedContracts.toLocaleString('es-ES')} adjudicados · ${tenders.stats.totalContracts.toLocaleString('es-ES')} expedientes`
+          : '—',
       updated: formatDate(tenders?.generatedAt),
       source: 'Gobierto · PLACSP',
       path: '/data/tenders.json',
@@ -307,6 +313,16 @@ function DatasetsCatalog() {
       updated: formatDate(fichasEficiencia?.generatedAt),
       source: 'curación editorial · promote-indicador',
       path: '/data/eficiencia-findings.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Recogida selectiva 2022 (resultado)',
+      rows: reciclaje?.stats?.municipios
+        ? `${reciclaje.stats.municipios.toLocaleString('es-ES')} municipios · 1 edición`
+        : '—',
+      updated: formatDate(reciclaje?.generatedAt),
+      source: 'ICV/GVA · capa 0503_Residuos · CC BY 4.0',
+      path: '/data/reciclaje.json',
       fmt: ['json'],
     },
     {
