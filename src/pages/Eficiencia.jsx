@@ -183,6 +183,10 @@ export default function Eficiencia() {
         <a href="/reportajes/coste-efectivo" style={{ color: 'var(--civic)' }}>
           «La mitad de abajo de la división»
         </a>
+        , que existe también como{' '}
+        <a href="/infografias/eficiencia-2026-08.html" style={{ color: 'var(--civic)' }}>
+          infografía para compartir
+        </a>
         .
       </p>
 

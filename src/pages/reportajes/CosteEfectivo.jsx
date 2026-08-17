@@ -674,6 +674,14 @@ export default function CosteEfectivo() {
         </div>
       </div>
 
+      <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '18px 0 0' }}>
+        Esta pieza existe también como{' '}
+        <a href="/infografias/eficiencia-2026-08.html" style={{ color: 'var(--civic)' }}>
+          infografía en una sola página
+        </a>
+        , pensada para compartir o imprimir, con estas mismas cifras congeladas.
+      </p>
+
       <p
         style={{
           fontSize: 'var(--fs-aux)',
