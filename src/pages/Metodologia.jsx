@@ -1599,13 +1599,21 @@ export default function Metodologia() {
               línea y sin mediana de pares.
             </li>
             <li>Sin quince comparables no hay banda ni percentil: la tarjeta no se sitúa.</li>
-            <li>
-              Un cociente a más de veinte veces —o menos de una veinteava parte— de la mediana de
-              sus pares se trata como error de declaración, no como coste.
-            </li>
+            {/* Los puntos 6 y 7 estuvieron CRUZADOS respecto a las seis citas
+                «(regla N)» del código, y el 7 afirmaba un comportamiento que el
+                propio snapshot contradecía (34 puntos entre ×2 y ×20, ninguno
+                atípico). La revisión pre-merge lo cazó; los números importan
+                porque las salvedades de /eficiencia remiten a ellos. */}
             <li>
               Una entrega a más del doble o menos de la mitad de la mediana de sus pares ese año se
-              marca atípica: se publica, fuera de la escala del gráfico.
+              publica, en escala y en la línea, con una salvedad de comparabilidad: una diferencia
+              así suele venir de cómo declara cada ayuntamiento el denominador, no de gestionar
+              mejor o peor.
+            </li>
+            <li>
+              Un cociente a más de veinte veces —o menos de una veinteava parte— de la mediana de
+              sus pares es una cifra inverosímil: se publica porque es la oficial, pero fuera de la
+              escala del gráfico y sin leerse como coste.
             </li>
             <li>
               Un denominador cuenta como congelado cuando sus últimas cuatro entregas o más traen el

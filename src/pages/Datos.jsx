@@ -26,6 +26,7 @@ import { useTransparencyDocs, groupTransparencyDocs } from '../hooks/useTranspar
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useFrontera } from '../hooks/useFrontera'
+import { useCosteEsperado } from '../hooks/useCosteEsperado'
 import { usePmp } from '../hooks/usePmp'
 import { useIpc } from '../hooks/useIpc'
 import { useCriminalidad } from '../hooks/useCriminalidad'
@@ -103,6 +104,7 @@ function DatasetsCatalog() {
   const indicadores = useIndicadores().data
   const fichasEficiencia = useEficienciaFindings().data
   const frontera = useFrontera().data
+  const costeEsperado = useCosteEsperado().data
   const pmp = usePmp().data
   const ipc = useIpc().data
   const crimen = useCriminalidad().data
@@ -323,6 +325,19 @@ function DatasetsCatalog() {
       updated: formatDate(frontera?.generatedAt),
       source: 'modelo propio · compute:dea',
       path: '/data/dea.json',
+      fmt: ['json'],
+    },
+    {
+      // El otro veredicto de modelo. Se catalogó tarde — la revisión pre-merge
+      // lo cazó contra la regla escrita dos filas más arriba: «no catalogado»
+      // no es «no publicado».
+      name: 'Coste esperado (OLS por servicio)',
+      rows: costeEsperado?.stats
+        ? `${costeEsperado.stats.especificaciones} especificaciones · ${costeEsperado.stats.publicadas} publicadas`
+        : '—',
+      updated: formatDate(costeEsperado?.generatedAt),
+      source: 'modelo propio · compute:coste-esperado',
+      path: '/data/coste-esperado.json',
       fmt: ['json'],
     },
     {

@@ -658,13 +658,27 @@ export function cotejarMedicion(
     }
   }
   const coincide = Math.abs(i.valor - f.medicion.valor) <= Math.abs(f.medicion.valor) * TOLERANCIA
+  if (!coincide) {
+    return {
+      ...base,
+      estado: 'contradice',
+      actual: i.valor,
+      periodoActual,
+      detalle: `la entrega ${f.medicion.periodo} valía ${f.medicion.valor} y ahora vale ${i.valor} — la fuente se revisó`,
+    }
+  }
+  // La misma media guarda que ya se pagó en municipales: una ficha que fija su
+  // banda de pares y un cotejo que sólo mira el valor comprueba la mitad de lo
+  // que la ficha afirma. Los 12 indicadores de servicio publican pares, así
+  // que la primera ficha `servicio` con banda reactivaría el defecto. Latente
+  // hasta la revisión pre-merge del 17-08: aquí no había instancia viva, y por
+  // eso el test que lo fija es construido.
+  const pares = cotejarPares(f, i)
   return {
     ...base,
-    estado: coincide ? 'coincide' : 'contradice',
+    estado: pares ? 'contradice' : 'coincide',
     actual: i.valor,
     periodoActual,
-    detalle: coincide
-      ? `la entrega ${f.medicion.periodo} sigue valiendo lo publicado`
-      : `la entrega ${f.medicion.periodo} valía ${f.medicion.valor} y ahora vale ${i.valor} — la fuente se revisó`,
+    detalle: pares ?? `la entrega ${f.medicion.periodo} sigue valiendo lo publicado`,
   }
 }

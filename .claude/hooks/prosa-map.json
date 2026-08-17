@@ -49,6 +49,7 @@
       "/datos"
     ],
     "coste-esperado.json": [
+      "/datos",
       "/laboratorio/coste-esperado"
     ],
     "cpv-labels.json": [

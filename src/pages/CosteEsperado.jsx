@@ -312,9 +312,12 @@ export default function CosteEsperado() {
             </li>
             <li>
               La muestra publicada es anónima —dos números por punto, ordenada por población— y
-              ningún municipio ajeno aparece en el fichero servido. El método está entero
-              precisamente para que esa negativa no sea opacidad: cualquiera puede rehacer la tabla
-              desde los libros del ministerio.
+              ningún municipio ajeno aparece en el fichero servido. La población va exacta a
+              propósito, aunque con un censo delante permita deducir qué municipio es cada punto: la
+              negativa de esta casa es a <em>firmar</em> nombres, no a que el análisis sea
+              reproducible, y redondearla rompería la reproducción exacta de la recta que la guarda
+              comprueba. El método está entero precisamente para que esa negativa no sea opacidad:
+              cualquiera puede rehacer la tabla desde los libros del ministerio.
             </li>
           </ul>
           {data?.generatedAt && (

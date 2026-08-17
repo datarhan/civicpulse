@@ -302,4 +302,46 @@ describe('scraper/eficiencia-finding — ¿sigue diciendo el panel lo que la fic
         .estado,
     ).toBe('movido')
   })
+
+  it('una ficha de servicio con banda fijada también coteja la banda (construido)', () => {
+    // Sin instancia viva: las fichas publicadas hoy son municipales. Pero los
+    // 12 indicadores de servicio publican pares, y hasta la revisión del
+    // 17-08 la rama de servicio comparaba SÓLO el valor: la primera ficha con
+    // banda habría quedado cotejada a medias — el defecto exacto que
+    // cotejarPares documenta haber pagado en municipales.
+    const i = panel.indicadores.find(
+      (x: { valor: number | null; pares?: { mediana?: number } }) => x.valor !== null && x.pares,
+    )
+    const base = ficha({
+      id: 'ef-servicio-banda',
+      indicadorId: i.id,
+      familia: 'servicio',
+      medicion: {
+        indicadorId: i.id,
+        periodo: String(i.citas[0].entrega),
+        valor: i.valor,
+        unidad: i.unidad,
+        fuentes: [i.numerador.fuente, i.denominador.fuente],
+        pares: {
+          conjunto: i.pares.conjunto,
+          n: i.pares.n,
+          percentil: i.pares.percentil,
+          mediana: i.pares.mediana,
+        },
+      },
+    })
+    // La banda fijada coincide con la viva → en pie.
+    expect(cotejarMedicion(base, panel).estado).toBe('coincide')
+    // La mediana fijada difiere → la cifra coincide pero su comparación no.
+    const conBandaVieja = {
+      ...base,
+      medicion: {
+        ...base.medicion,
+        pares: { ...base.medicion.pares, mediana: i.pares.mediana * 2 },
+      },
+    }
+    const c = cotejarMedicion(conBandaVieja, panel)
+    expect(c.estado).toBe('contradice')
+    expect(c.detalle).toMatch(/comparación/)
+  })
 })

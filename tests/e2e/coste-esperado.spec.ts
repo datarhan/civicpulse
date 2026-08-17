@@ -29,6 +29,10 @@ test.describe('Coste esperado (/laboratorio/coste-esperado)', () => {
     await page.goto('/laboratorio/coste-esperado', { waitUntil: 'domcontentloaded' })
 
     await expect(page.getByText(/no es una nota/i)).toBeVisible({ timeout: 8000 })
+    // Y el primer veredicto TAMBIÉN, antes de fotografiar el DOM: content()
+    // nada más aparecer el aviso llegaba antes que las tarjetas async y la
+    // búsqueda de posición no encontraba nada — flaky, no orden.
+    await expect(page.getByText(/de lo esperado/i).first()).toBeVisible()
 
     // El aviso por ENCIMA del primer veredicto en el DOM: una advertencia al
     // pie es una advertencia que nadie lee.

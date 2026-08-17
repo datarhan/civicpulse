@@ -178,7 +178,15 @@ async function main() {
   const ajenos: string[] = []
   for (const { ine, nombre } of listaNombres) {
     if (ine === INE_PROPIO) continue
-    if ((nombre && crudo.includes(`"${nombre}"`)) || crudo.includes(`"${ine}"`)) {
+    // Nombres largos, SIN anclar a comillas: un nombre incrustado en una prosa
+    // futura de `motivoEstado` pasaría el ancla de valor-JSON-completo. Los
+    // cortos (≤4: «Ador», «Real»…) mantienen el ancla — sueltos igualarían
+    // palabras corrientes y enseñarían a apagar la guarda.
+    const pillado =
+      nombre && nombre.length >= 5
+        ? crudo.includes(nombre)
+        : Boolean(nombre && crudo.includes(`"${nombre}"`))
+    if (pillado || crudo.includes(`"${ine}"`)) {
       ajenos.push(`${ine} ${nombre}`)
     }
     comprobaciones++
@@ -191,8 +199,12 @@ async function main() {
   }
 
   // ── 3. El análisis entero contra el libro, si la caché está ───────────────
+  // El mensaje distingue QUÉ caché falta: decir «sin libros» cuando lo que
+  // falta es el censo despista justo cuando alguien va a arreglarlo.
   let contraLibro =
-    'sin caché de libros: la comparación contra el libro NO corrió — npm run fetch:cesel-ccaa'
+    listaNombres.length > 60
+      ? 'sin caché de libros: la comparación contra el libro NO corrió — npm run fetch:cesel-ccaa'
+      : 'sin censo CONPREL en caché: la comparación contra el libro NO corrió — npm run scrape:coste-efectivo la rellena'
   try {
     const nombres = await readdir(CCAA_DIR)
     const libros = nombres
