@@ -1,4 +1,5 @@
 import { Card } from '../Primitives'
+import { MARGEN_ANCLA } from '../SubnavSecciones'
 import { useT } from '../../i18n'
 import { particionPosiciones } from '../../scraper/indicador-areas'
 
@@ -83,7 +84,7 @@ export function LecturaRapida({ data, firmados = 0 }) {
       : 'el grueso queda por debajo de la mediana de su banda'
 
   return (
-    <Card id="sec-lectura" style={{ marginTop: 16, scrollMarginTop: 76 }}>
+    <Card id="sec-lectura" style={{ marginTop: 16, scrollMarginTop: MARGEN_ANCLA }}>
       <div
         className="mono"
         style={{

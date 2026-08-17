@@ -1,4 +1,5 @@
 import { Card, Pill, ExtLink } from '../Primitives'
+import { MARGEN_ANCLA } from '../SubnavSecciones'
 
 /**
  * Las fichas firmadas sobre desviaciones del panel.
@@ -190,7 +191,10 @@ export function HallazgosEficiencia({ data, indicadorIds, otroPanel }) {
   const retiradas = data?.retractions ?? []
 
   return (
-    <section id="hallazgos" style={{ marginTop: 32 }}>
+    // El margen de ancla lo declara SubnavSecciones: en /eficiencia hay dos
+    // barras pegajosas encima de este destino; en /gestion sobra aire, que es
+    // el fallo barato de los dos.
+    <section id="hallazgos" style={{ marginTop: 32, scrollMarginTop: MARGEN_ANCLA }}>
       <h2
         style={{
           fontSize: 'var(--fs-body)',

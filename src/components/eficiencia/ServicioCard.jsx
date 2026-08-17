@@ -1,4 +1,5 @@
 import { Card, Pill } from '../Primitives'
+import { MARGEN_ANCLA } from '../SubnavSecciones'
 import { useT } from '../../i18n'
 import { BandaPares } from './BandaPares'
 import { SerieServicio, enTerminosReales } from './SerieServicio'
@@ -73,8 +74,9 @@ export function ServicioCard({ indicador, formatea, resultado }) {
 
   return (
     // El id es el destino de los enlaces del resumen de arriba; el margen de
-    // scroll deja la cabecera de la tarjeta por debajo de la barra fija.
-    <Card id={`s-${i.id}`} style={{ scrollMarginTop: 76 }}>
+    // scroll deja la cabecera de la tarjeta por debajo de las barras fijas
+    // (topbar + submenú), y lo declara quien las monta.
+    <Card id={`s-${i.id}`} style={{ scrollMarginTop: MARGEN_ANCLA }}>
       <div
         style={{
           display: 'flex',

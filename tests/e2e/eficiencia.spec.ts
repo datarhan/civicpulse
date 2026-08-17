@@ -368,24 +368,80 @@ test.describe('Eficiencia (/eficiencia)', () => {
   test('la cabecera indexa los hallazgos sin adelantar lo que dicen', async ({ page }) => {
     if (MIAS.length === 0) {
       // Sin fichas propias no hay índice: un enlace a una sección vacía es peor
-      // que ningún enlace.
+      // que ningún enlace. El submenú sigue el mismo contrato: su ítem de
+      // hallazgos es condicional al recuento.
       await expect(page.locator('a[href="#hallazgos"]')).toHaveCount(0)
       return
     }
-    const enlace = page.locator('a[href="#hallazgos"]').first()
-    await expect(enlace).toBeVisible({ timeout: 8000 })
+    // Con fichas hay DOS índices legítimos —la casilla de la lectura rápida y
+    // el ítem del submenú— y el recuento vive en la casilla.
+    const casilla = page.locator('#sec-lectura a[href="#hallazgos"]')
+    await expect(casilla).toBeVisible({ timeout: 8000 })
     // Cuenta las de ESTA página, no las del fichero: /gestion tiene las suyas.
-    await expect(enlace).toContainText(String(MIAS.length))
+    await expect(casilla).toContainText(String(MIAS.length))
 
     // Índice, no conclusión: las fichas siguen al final porque son una lectura
-    // del panel y el panel se lee primero. El índice dice cuántas hay y dónde,
-    // nunca qué concluyen.
-    const texto = (await enlace.textContent()) ?? ''
-    for (const f of FICHAS.items) {
-      expect(texto, 'el índice de cabecera está adelantando el titular de una ficha').not.toContain(
-        f.titulo.slice(0, 25),
-      )
+    // del panel y el panel se lee primero. NINGÚN enlace al ancla —casilla o
+    // submenú— adelanta lo que una ficha concluye.
+    const enlaces = page.locator('a[href="#hallazgos"]')
+    const cuantos = await enlaces.count()
+    expect(cuantos).toBeGreaterThan(0)
+    for (let e = 0; e < cuantos; e++) {
+      const texto = (await enlaces.nth(e).textContent()) ?? ''
+      for (const f of FICHAS.items) {
+        expect(texto, 'un índice está adelantando el titular de una ficha').not.toContain(
+          f.titulo.slice(0, 25),
+        )
+      }
     }
+  })
+
+  test('el submenú acompaña el scroll y sus anclas aterrizan a la vista', async ({ page }) => {
+    const subnav = page.locator('.cp-subnav')
+    await expect(subnav).toBeVisible({ timeout: 8000 })
+
+    // Pegajosa de verdad: tras un scroll largo sigue arriba, bajo la topbar.
+    await page.mouse.wheel(0, 4000)
+    await page.waitForTimeout(300)
+    const caja = await subnav.boundingBox()
+    expect(caja, 'el submenú desapareció al hacer scroll').toBeTruthy()
+    expect(caja!.y).toBeGreaterThanOrEqual(40)
+    expect(caja!.y).toBeLessThanOrEqual(64)
+
+    // El ancla navega Y el destino queda por debajo del borde inferior de la
+    // barra. Se mide con getBoundingClientRect porque la banda de 2020 se
+    // publicó tapando la mitad de su hueco con todas las suites verdes: los
+    // tests de texto no ven geometría.
+    await subnav.getByRole('link', { name: 'Declaración' }).click()
+    await page.waitForTimeout(500)
+    const destino = await page.locator('#sec-declaracion').boundingBox()
+    const barra = await subnav.boundingBox()
+    expect(destino!.y).toBeGreaterThanOrEqual(barra!.y + barra!.height - 1)
+
+    // Y el spy marca la sección a la que se acaba de saltar.
+    await expect(subnav.getByRole('link', { name: 'Declaración' })).toHaveAttribute(
+      'aria-current',
+      'true',
+    )
+
+    // El aterrizaje por hash desde fuera pasa por useHashScroll, que ahora
+    // mide LAS DOS barras pegajosas: el destino no puede quedar debajo.
+    await page.goto('/eficiencia#sec-declaracion', { waitUntil: 'domcontentloaded' })
+    await page.waitForTimeout(1500)
+    const trasHash = await page.locator('#sec-declaracion').boundingBox()
+    expect(
+      trasHash!.y,
+      'el hash aterrizó con el destino tapado por las barras',
+    ).toBeGreaterThanOrEqual(88)
+    expect(trasHash!.y, 'el hash no llegó a desplazarse').toBeLessThanOrEqual(320)
+
+    // A 375 px el desbordamiento es de la barra, nunca de la página.
+    await page.setViewportSize({ width: 375, height: 760 })
+    await page.waitForTimeout(300)
+    const desborde = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    )
+    expect(desborde, 'la página scrollea horizontalmente a 375px').toBe(0)
   })
 
   test('explica qué son los escalones antes de usarlos como chapa', async ({ page }) => {

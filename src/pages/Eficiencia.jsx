@@ -8,6 +8,7 @@ import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
 import { HallazgosEficiencia } from '../components/eficiencia/HallazgosEficiencia'
 import { Supramunicipal } from '../components/eficiencia/Supramunicipal'
 import { AusenciasResultados } from '../components/eficiencia/Resultado'
+import { SubnavSecciones, MARGEN_ANCLA } from '../components/SubnavSecciones'
 import { agruparPorArea, fraseParticion } from '../scraper/indicador-areas'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
@@ -55,7 +56,21 @@ export default function Eficiencia() {
     return `${v.toLocaleString('es-ES', { minimumFractionDigits: dec, maximumFractionDigits: dec })} ${unidad.replace(/^€\//, '€/')}`
   }
 
-  const seccion = { scrollMarginTop: 76 }
+  const seccion = { scrollMarginTop: MARGEN_ANCLA }
+
+  // Los ítems del submenú son las secciones que de verdad existen en este
+  // render: una entrada a una sección vacía es un enlace que no hace nada.
+  const secciones = [
+    { id: 'sec-lectura', label: t('eficiencia.subnav.lectura') },
+    { id: 'sec-cobertura', label: t('eficiencia.subnav.cobertura') },
+    { id: 'sec-posiciones', label: t('eficiencia.subnav.posiciones') },
+    { id: 'sec-servicios', label: t('eficiencia.subnav.servicios') },
+    { id: 'sec-declaracion', label: t('eficiencia.subnav.declaracion') },
+    ...(bloqueados.length > 0
+      ? [{ id: 'sec-bloqueados', label: t('eficiencia.subnav.bloqueados') }]
+      : []),
+    ...(firmados > 0 ? [{ id: 'hallazgos', label: t('eficiencia.subnav.hallazgos') }] : []),
+  ]
 
   return (
     <div className="cp-page" style={{ padding: 24, maxWidth: 900, margin: '0 auto' }}>
@@ -81,6 +96,13 @@ export default function Eficiencia() {
         {t('eficiencia.title')}
       </h1>
       <p style={{ color: 'var(--ink50)', maxWidth: '64ch' }}>{t('eficiencia.intro')}</p>
+
+      {/* Trece pantallas necesitan navegación propia: barra pegajosa bajo la
+          topbar, con scroll-spy. useHashScroll la mide para los aterrizajes
+          por hash, y MARGEN_ANCLA es su contrapartida en cada ancla. */}
+      {indicadores.length > 0 && (
+        <SubnavSecciones items={secciones} ariaLabel={t('eficiencia.subnav.aria')} />
+      )}
 
       {loading && <p style={{ color: 'var(--ink50)' }}>Cargando…</p>}
       {error && <p style={{ color: 'var(--ink50)' }}>No se pudo cargar el panel.</p>}
@@ -129,7 +151,7 @@ export default function Eficiencia() {
                 fontWeight: 650,
                 margin: 0,
                 letterSpacing: '-.01em',
-                scrollMarginTop: 76,
+                scrollMarginTop: MARGEN_ANCLA,
               }}
             >
               {g.etiqueta}
