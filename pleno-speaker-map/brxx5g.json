@@ -1,6 +1,6 @@
 {
   "plenoId": "brxx5g",
-  "generatedAt": "2026-08-16T08:05:34.172Z",
+  "generatedAt": "2026-08-17T07:39:32.477Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -9364,6 +9364,726 @@
       "end": 11715,
       "speaker": "c19/SPEAKER_00",
       "text": "Sara. Vamos a comprobarlo y si no nos podemos poner en contacto con usted, tomaremos nota. Sí, la alguacil, la que está haciendo con el micro le tomará nota y ya está, ¿vale? En principio, y lo de la lo de la canasta lo vemos con usted, ¿vale? ¿Alguna cosa más? Levantamos el pleno, venga. Hasta luego."
+    },
+    {
+      "start": 7200,
+      "end": 7204.1,
+      "speaker": "c12/SPEAKER_00",
+      "text": "buenas para el municipio y no pensábamos que esto iba a tener tantas problemas"
+    },
+    {
+      "start": 7204.1,
+      "end": 7208.1,
+      "speaker": "c12/SPEAKER_00",
+      "text": "porque nosotros no podemos planificar, los que tenéis que planificar y actuar sois vosotros."
+    },
+    {
+      "start": 7208.1,
+      "end": 7211.1,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Planificar sabéis mucho, planes tenéis de todos los tipos,"
+    },
+    {
+      "start": 7211.1,
+      "end": 7217.8,
+      "speaker": "c12/SPEAKER_00",
+      "text": "de todos los nombres, desde el dos mil quince hasta el dos mil veintitrés y hasta el dos mil veintisiete,"
+    },
+    {
+      "start": 7217.8,
+      "end": 7220.8,
+      "speaker": "c12/SPEAKER_00",
+      "text": "pero actuaciones ninguna."
+    },
+    {
+      "start": 7220.8,
+      "end": 7227.4,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Porque si los siete edificios, varios están cerrados, si las siete zonas están todas concentradas en Aljibe,"
+    },
+    {
+      "start": 7227.4,
+      "end": 7235.4,
+      "speaker": "c12/SPEAKER_00",
+      "text": "si las fuentes, yo, yo lo he visto, que todos podemos beber, claro que podemos beber, y los perros pueden beber del agua que cae, también puede beber,"
+    },
+    {
+      "start": 7235.4,
+      "end": 7239.4,
+      "speaker": "c12/SPEAKER_00",
+      "text": "pues qué quieres, he visto a padres decirles a los niños que no beban de esas fuentes."
+    },
+    {
+      "start": 7239.4,
+      "end": 7244.8,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Se pueden instalar fuentes que solo puedan beber los seres humanos, tampoco es tan complicado,"
+    },
+    {
+      "start": 7244.8,
+      "end": 7247.8,
+      "speaker": "c12/SPEAKER_00",
+      "text": "y no estoy contra los animales, pero los animales también beben"
+    },
+    {
+      "start": 7247.8,
+      "end": 7253.8,
+      "speaker": "c12/SPEAKER_00",
+      "text": "y usan las mismas fuentes que beben los humanos y muchos personas no quieren que los niños beban de esas fuentes."
+    },
+    {
+      "start": 7253.8,
+      "end": 7257.4,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Sí."
+    },
+    {
+      "start": 7257.4,
+      "end": 7261.4,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Nosotros pensamos que esta moción es buena, sencilla y fácil de aplicar."
+    },
+    {
+      "start": 7261.4,
+      "end": 7266.4,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Que vosotros tenéis proyectos más grandes y tal, sí, los tenéis, que actuaciones, cap."
+    },
+    {
+      "start": 7266.4,
+      "end": 7268.4,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Muchas gracias."
+    },
+    {
+      "start": 7268.4,
+      "end": 7273.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Vale, a veure, vàries coses, val? Útil per a contrastar models."
+    },
+    {
+      "start": 7273.4,
+      "end": 7278.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Vostés demanen plantar arbres en general, molt bé, és que en part, si parlem en general,"
+    },
+    {
+      "start": 7278.4,
+      "end": 7283.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "per això la moció no mola tant, perquè no és qüestió d'informe tècnic, vosté no pot enganyar a la ciutadania aixina."
+    },
+    {
+      "start": 7283.4,
+      "end": 7288.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Nosaltres veníem ahí, nosaltres quan estàvem ahí plantejàvem coses concretes."
+    },
+    {
+      "start": 7288.4,
+      "end": 7294.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Miren vostés, pensem que tenen que plantar equis arbres en este lloc, en esta planificació."
+    },
+    {
+      "start": 7294.4,
+      "end": 7297.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "No cal informe tècnic."
+    },
+    {
+      "start": 7297.4,
+      "end": 7302.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Vosté lo que passa és que ve correguent, perquè lo que ha dit la mitat no és veritat,"
+    },
+    {
+      "start": 7302.4,
+      "end": 7308.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "i al dir dades reals perquè la gent veja com manipula i diu coses, o no les sap, i si les sap mentix, val?"
+    },
+    {
+      "start": 7308.4,
+      "end": 7313.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Llavors, nosaltres no d'ara, és que nosaltres estem planificant de l'any dos mil quinze."
+    },
+    {
+      "start": 7313.4,
+      "end": 7318.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Vosté sap quants arbres s'han plantat de Riba-roja de Túria? Quince mil."
+    },
+    {
+      "start": 7318.4,
+      "end": 7320.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Quince mil arbres."
+    },
+    {
+      "start": 7320.4,
+      "end": 7323.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Comptant parcs naturals i el poble."
+    },
+    {
+      "start": 7323.4,
+      "end": 7328.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Eixos pocs arbres que n'hi han, o molts, en el ciclo viari, s'han plantat d'este govern,"
+    },
+    {
+      "start": 7328.4,
+      "end": 7330.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "perquè no estaven."
+    },
+    {
+      "start": 7330.4,
+      "end": 7332.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "No estaven."
+    },
+    {
+      "start": 7332.4,
+      "end": 7338.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Ni en la plaça Adolfo Suárez, ni anant a l'estació que vosté diu que va caminant al metro, val? No estaven."
+    },
+    {
+      "start": 7338.4,
+      "end": 7343.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Els dos únics llocs que n'hi han per a sentar-se i tindre ombra i fonts, s'ha fet este govern."
+    },
+    {
+      "start": 7343.4,
+      "end": 7348.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "La plaça de Sahuquillo que estava, que donava asco vore-la, l'ha fet este govern."
+    },
+    {
+      "start": 7348.4,
+      "end": 7354.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "En eixe recorregut de deu metros que fa, va fer fa set anys o els que n'hi havia? Basur, sí, en part del recorregut sí."
+    },
+    {
+      "start": 7354.4,
+      "end": 7359.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "La plaza de Sahuquillo estava fa molts anys i només que n'hi havia que basura i alguna jeringuilla, por cert."
+    },
+    {
+      "start": 7359.4,
+      "end": 7364.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Això és lo que n'hi havia i vosté ho sap perquè era policia local. I ara passe i vore com està eixa plaça."
+    },
+    {
+      "start": 7364.4,
+      "end": 7370.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "N'hi han dos llocs per a sentar-se, per a tindre ombra. És veritat que depén del sol pues te pega un poquet més o menys,"
+    },
+    {
+      "start": 7370.4,
+      "end": 7375.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "però estan fets amb fons que buscarem no ara, de fa anys."
+    },
+    {
+      "start": 7375.4,
+      "end": 7380.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "N'hi ha planificació perquè sí que és veritat, vosté dirà que no, pero és que a través de la planificació"
+    },
+    {
+      "start": 7380.4,
+      "end": 7385.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "després estan els indicadors de si lo que estàs planificant o aproves ho complixes o no,"
+    },
+    {
+      "start": 7385.4,
+      "end": 7391.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "i per això vosté pot mirar els plans que hem aprovat si s'estan complint i els indicadors són correctes o no."
+    },
+    {
+      "start": 7391.4,
+      "end": 7395.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "No se posen baix del caixó, s'apliquen constantment, encara que vosté no s'asabente, perquè no s'asabenta."
+    },
+    {
+      "start": 7395.4,
+      "end": 7399.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "El model de vostés, sap quin és?"
+    },
+    {
+      "start": 7399.4,
+      "end": 7404.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "La plaza d'este ajuntament, que n'hi ha esta de pedres, tot està ple d'arbres, front a la plaça de la Torre, només que té que mirar eixe model."
+    },
+    {
+      "start": 7404.4,
+      "end": 7410.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Què han fet este govern? En la plaça de la Torre i la plaça de l'ajuntament que està plena d'arbres."
+    },
+    {
+      "start": 7410.4,
+      "end": 7415.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "N'hi ha una ombra, vamos, que tens que amagar-te de la ombra que té perquè te xafes."
+    },
+    {
+      "start": 7415.4,
+      "end": 7417.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Eixa diferència és real."
+    },
+    {
+      "start": 7417.4,
+      "end": 7423.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "I per tant, vosté du una moció en el mes de juliol per a dir corre que fagen no sé quant per a vore si la gent,"
+    },
+    {
+      "start": 7423.4,
+      "end": 7429.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "no perdone, es que això està planificado, és que ya fa temps, l'any passat ja n'hi havien refugis climàtics, i l'anterior,"
+    },
+    {
+      "start": 7429.4,
+      "end": 7435.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "que refugi climàtic la gent té que és un lloc que tinga ombra, que pugues descansar, que la temperatura baixe per si de cas fa un colp de calor."
+    },
+    {
+      "start": 7435.4,
+      "end": 7438.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "El barranc dels Moros, passege's per ell, que no sap passejar,"
+    },
+    {
+      "start": 7438.4,
+      "end": 7444.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "en comptes d'anar al metro passege's també pel barranc dels Moros, perquè era una escombrera i agora està ple d'arbres, ple d'ombra,"
+    },
+    {
+      "start": 7444.4,
+      "end": 7448.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "a part de refugi climàtic que hem posat perquè també n'hi ha una subvención."
+    },
+    {
+      "start": 7448.4,
+      "end": 7452.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Lo que li dic, la meua regidora, per a fer tot lo que estem dient,"
+    },
+    {
+      "start": 7452.4,
+      "end": 7456.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "fa anys que estem treballant subvencions europees,"
+    },
+    {
+      "start": 7456.4,
+      "end": 7460.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "i quan ho duíem al ple se tenia que votar en el ple, o vosté no se llegia"
+    },
+    {
+      "start": 7460.4,
+      "end": 7465.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "lo que nosaltres duíem per als civils, que és una zona de lluita contra el canvi climàtic,"
+    },
+    {
+      "start": 7465.4,
+      "end": 7469.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "i que aprovem ací, per cert, el vot en contra de vostés, i algunes vegades abstenció."
+    },
+    {
+      "start": 7469.4,
+      "end": 7474.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Lo que diu la meua regidora, tota la raó del món, Teresa, vostés de les coses importants d'este poble voten sempre en contra,"
+    },
+    {
+      "start": 7474.4,
+      "end": 7480.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "del parc de Maldonado, de la casa de cultura, de l'auditori, del pavelló, de Pacadar, de la plaça de la Torre,"
+    },
+    {
+      "start": 7480.4,
+      "end": 7484.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "sempre en contra, això són de calar, de calar."
+    },
+    {
+      "start": 7484.4,
+      "end": 7490.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "I ara com van a votar a favor d'una moció que fins i tot és paregut a lo dels residus, que després parlarem perquè crec que hui parlarem."
+    },
+    {
+      "start": 7490.4,
+      "end": 7496.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Venen a un ple extraordinari com hui hi ha un ple extraordinari hui, tenia que haver vingut la moció de residus i l'hauríem tractat com ordre del dia,"
+    },
+    {
+      "start": 7496.4,
+      "end": 7501.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "i no d'un ple extraordinari que la gente no podia parlar, s'han cabrejat de lo lindo,"
+    },
+    {
+      "start": 7501.4,
+      "end": 7507.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "i a més d'ahí res en clar perquè era informar-se, quan ací tota la informació és permanent, això sí que és, vamos, per a mi"
+    },
+    {
+      "start": 7507.4,
+      "end": 7511.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "no té quasi qualificatius políticament, no té qualificatius políticament."
+    },
+    {
+      "start": 7511.4,
+      "end": 7516.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Llavors, la moció que duen és correguent, a corre-cuites,"
+    },
+    {
+      "start": 7516.4,
+      "end": 7521.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "i després si se repassa les informaciones, no fa tres dies que anunciaren que van a fer lo de la piscina,"
+    },
+    {
+      "start": 7521.4,
+      "end": 7526.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "és que per a contractar la piscina socorristes duem ja quince dies, per tant, com anem a anunciar això fa tres dies"
+    },
+    {
+      "start": 7526.4,
+      "end": 7532.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "que ha dit per a excusar-se i justificar una moció de poc trayecte, que és legítima i la respectem, pero de poc trayecte ja?"
+    },
+    {
+      "start": 7532.4,
+      "end": 7538.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Sí, senyor, i això de la piscina per les nits fa més de vint-i-cinc dies que se va anunciar, més de vint-i-cinc dies."
+    },
+    {
+      "start": 7538.4,
+      "end": 7544.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Bueno, tu llig lo que vulgues llegir i com vulgues llegir, deixa-ho estar perquè és igual, no interrompes i no deixa, apunta el teu i voràs."
+    },
+    {
+      "start": 7544.4,
+      "end": 7549.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Igual que refugi climàtic, hui han fet la part que tocaba, pero venim treballant en refugis de fa mesos."
+    },
+    {
+      "start": 7549.4,
+      "end": 7555.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Mira, mira la subvenció d'Europa que està publicada també en les xarxes socials de fa més d'un mes i mig de refugis climàtics."
+    },
+    {
+      "start": 7555.4,
+      "end": 7561.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "O te penses que hem anat ara perquè dius una moció que no té ni cap ni peus i per eso hem anat correguent a fer refugis climàtics? Va, por favor,"
+    },
+    {
+      "start": 7561.4,
+      "end": 7564.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "és que és un insult a la intel·ligència política."
+    },
+    {
+      "start": 7564.4,
+      "end": 7568.4,
+      "speaker": "c12/SPEAKER_02",
+      "text": "No, tu no pararàs, tu, tu, pam a mi, pam, pam, perquè no aguantes el tiró."
+    },
+    {
+      "start": 7568.4,
+      "end": 7571.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Aguantas i quasi no puc parlar, com vaig a aguantar?"
+    },
+    {
+      "start": 7571.4,
+      "end": 7576.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Bueno, pues quan tu parles, parles de tots i dius lo que consideres i de la calle que vulgues i no passa res, i te respectem el torn."
+    },
+    {
+      "start": 7576.4,
+      "end": 7579.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Ara te tens que aguantar lo que te diuen."
+    },
+    {
+      "start": 7579.4,
+      "end": 7584.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Per tant, el vot està súper justificat. Vosté abans ha votat, o tu, podem tutejar-nos, abans has votat"
+    },
+    {
+      "start": 7584.4,
+      "end": 7590.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "a favor d'un pla, has criticat els plans i acabes de votar a favor d'un pla d'igualtat que dius que és una meravella, ho has dit tu abans."
+    },
+    {
+      "start": 7590.4,
+      "end": 7595.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Pues sí que funcionen els plans, sí que els justificas i els has votat."
+    },
+    {
+      "start": 7595.4,
+      "end": 7599.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "No pots destrossar els plans quan te interessa uns i altres no, val?"
+    },
+    {
+      "start": 7599.4,
+      "end": 7605.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "I en eixe sentit, lo que te vull dir és que efectivament nosaltres pues tenim un model que és un model que es creu en la sostenibilitat i en l'agenda vint trenta,"
+    },
+    {
+      "start": 7605.4,
+      "end": 7610.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "això va per a Vox, i l'agenda vint trenta, la creguem i la anem a fer i la estem fent."
+    },
+    {
+      "start": 7610.4,
+      "end": 7615.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "I totes les subvencions que venen, val?, d'Europa és perquè n'hi ha una agenda que són els ODS"
+    },
+    {
+      "start": 7615.4,
+      "end": 7620.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "que vostés qüestionen i condemnen i que nosaltres no, i les subvencions que ens estan duent és per a fer ciclo viaris,"
+    },
+    {
+      "start": 7620.4,
+      "end": 7625.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "per a posar més llocs de refugis climàtics, per a tindre transport públic gratuït, per a tindre un poble millor."
+    },
+    {
+      "start": 7625.4,
+      "end": 7628.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "I eso és lo que estem fent, val?"
+    },
+    {
+      "start": 7628.4,
+      "end": 7632.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "I on tenim errades o no arribem, pues ho rectificarem i millorarem el servei, val?"
+    },
+    {
+      "start": 7632.4,
+      "end": 7638.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Per tant, en eixe sentit, la justificació del vot, val?, és com tu has votat en contra abans d'una proposta nostra"
+    },
+    {
+      "start": 7638.4,
+      "end": 7643.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "perquè deies que no, no anaves en contra dels treballadors, pero com s'havia fet amb no sé què has votat en contra."
+    },
+    {
+      "start": 7643.4,
+      "end": 7648.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Ho has fet, no? Has votat en contra, no per la forma, però has votat en contra. Nosaltres votem en contra perquè esta moció no la creguem,"
+    },
+    {
+      "start": 7643.4,
+      "end": 7648.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Ho has fet, no? Has votat en contra, no per la forma, però has votat en contra. Nosaltres votem en contra perquè esta moció no la creguem,"
+    },
+    {
+      "start": 7648.4,
+      "end": 7654.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "és una moció que es du a mitat de juliol per a fer refugi climàtic, senyor meu, per lo menos ho hauríem discutit en giner o febrer,"
+    },
+    {
+      "start": 7654.4,
+      "end": 7659.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "pero ara en juliol, correguent, per a fer arbres, per a plantar arbres, bueno, pues molt bé, pues plantarem arbres, on plantarem arbres?"
+    },
+    {
+      "start": 7659.4,
+      "end": 7664.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Va, por favor, anem a passar a la votació perquè en fi, ocurrències dueu les que vulgueu, no..."
+    },
+    {
+      "start": 7664.4,
+      "end": 7667.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "No, la he acabat ja, las intervenciones."
+    },
+    {
+      "start": 7667.4,
+      "end": 7672.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Ocurrències, ens semblen legítimes, però són ocurrències, val? Passem a la votació d'este punt, por favor."
+    },
+    {
+      "start": 7672.4,
+      "end": 7676.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Vots en contra, a favor."
+    },
+    {
+      "start": 7676.4,
+      "end": 7682.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Vale, pues queda, falta un vot?"
+    },
+    {
+      "start": 7682.4,
+      "end": 7687.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Vale, correcte. Onze vots en contra, nou a favor i una abstenció. ¿Grupo Popular? El Grupo Socialista, perdón, primer."
+    },
+    {
+      "start": 7687.4,
+      "end": 7689.4,
+      "speaker": "c12/SPEAKER_03",
+      "text": "En contra."
+    },
+    {
+      "start": 7689.4,
+      "end": 7691.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "En contra. ¿Partido Popular?"
+    },
+    {
+      "start": 7691.4,
+      "end": 7693.4,
+      "speaker": "c12/SPEAKER_04",
+      "text": "A favor."
+    },
+    {
+      "start": 7693.4,
+      "end": 7695.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "¿Vox?"
+    },
+    {
+      "start": 7695.4,
+      "end": 7697.4,
+      "speaker": "c12/SPEAKER_02",
+      "text": "A favor."
+    },
+    {
+      "start": 7697.4,
+      "end": 7699.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "¿Esquerra Unida Podem?"
+    },
+    {
+      "start": 7699.4,
+      "end": 7701.4,
+      "speaker": "c12/SPEAKER_05",
+      "text": "A favor."
+    },
+    {
+      "start": 7701.4,
+      "end": 7703.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "¿Compromís?"
+    },
+    {
+      "start": 7703.4,
+      "end": 7705.4,
+      "speaker": "c12/SPEAKER_06",
+      "text": "Abstenció."
+    },
+    {
+      "start": 7705.4,
+      "end": 7713.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Passem a la següent punt de l'ordre del dia, que és... Vale."
+    },
+    {
+      "start": 7713.4,
+      "end": 7723.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Moció del grup socialista de Riba-roja per a la protecció de la salut pública, la qualitat de vida i sostenibilitat territorial en l'activitat aeroportuària de l'aeroport de València-Manises, val? Que és un fet molt concret."
+    },
+    {
+      "start": 7723.4,
+      "end": 7726.4,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Juan."
+    },
+    {
+      "start": 7726.4,
+      "end": 7729.4,
+      "speaker": "c12/SPEAKER_07",
+      "text": "Ah, vale, vale. Gràcies, alcalde."
+    },
+    {
+      "start": 7729.4,
+      "end": 7734.4,
+      "speaker": "c12/SPEAKER_07",
+      "text": "Bueno, bonas tardes a tots. Bueno, portem una moció que que és un problema que ja tenim des de fa molts anys,"
+    },
+    {
+      "start": 7734.4,
+      "end": 7739.4,
+      "speaker": "c12/SPEAKER_07",
+      "text": "que no és altre que el ruido dels avions quan passa pel nostre terme."
+    },
+    {
+      "start": 7739.4,
+      "end": 7746.4,
+      "speaker": "c12/SPEAKER_07",
+      "text": "Eh, sí que és de veres que fa un parell d'anys portàrem una altra moció prou similar a esta, en aquella vegada,"
+    },
+    {
+      "start": 7746.4,
+      "end": 7752.4,
+      "speaker": "c12/SPEAKER_07",
+      "text": "eh, es va motivar perquè ens havia arribat la informació de que n'hi havia una inversió molt forta en l'aeroport..."
     }
   ],
   "rows": [
@@ -9942,6 +10662,22 @@
       ],
       "namesIndividual": false,
       "weak": false
+    },
+    {
+      "label": "c12/SPEAKER_07",
+      "bloc": "PP",
+      "slug": "juan-boix-martinez",
+      "heardAs": "Juan",
+      "evidence": [
+        {
+          "spokenBy": "c12/SPEAKER_01",
+          "at": 7723.4,
+          "quote": "Juan",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
     }
   ],
   "rejected": [
@@ -10189,33 +10925,28 @@
       "label": "c19/SPEAKER_05",
       "reason": "evidence-speaker-mismatch",
       "detail": "258s is SPEAKER_00, cited as SPEAKER_05"
+    },
+    {
+      "label": "c12/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "heard \"alcalde\" matches nobody"
     }
   ],
   "stats": {
     "chunksExpected": 20,
-    "chunksTranscribed": 19,
-    "failedChunks": [
-      {
-        "chunk": 12,
-        "why": "covered 78% (floor 85%)",
-        "attempts": 1,
-        "givenUpUnder": {
-          "prompt": "speaker-map-v2",
-          "floor": 0.85
-        }
-      }
-    ],
-    "labelsSeen": 37,
-    "rowsAccepted": 36,
-    "rowsRejected": 49,
+    "chunksTranscribed": 20,
+    "failedChunks": [],
+    "labelsSeen": 8,
+    "rowsAccepted": 37,
+    "rowsRejected": 50,
     "rejectedBy": {
-      "unresolvable": 25,
+      "unresolvable": 26,
       "relation-contradicted": 12,
       "ambiguous": 10,
       "evidence-outside-transcript": 1,
       "evidence-speaker-mismatch": 1
     },
-    "attemptedThisRun": 8,
+    "attemptedThisRun": 1,
     "coverage": 1
   }
 }

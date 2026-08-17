@@ -1,21 +1,21 @@
 {
-  "generatedAt": "2026-08-16T09:25:32.786Z",
+  "generatedAt": "2026-08-17T08:46:50.140Z",
   "source": {
     "description": "Claims extracted automatically from YouTube-derived pleno transcripts. Each record carries requiresHumanApproval:true and is cross-referenced against tenders / BDNS / budget / promises by the verifier pass before any editorial surface.",
     "contract": "Machine-written; never substitutes for the published human-verified record. Speaker attribution at bloc level only — no individual naming."
   },
   "stats": {
-    "total": 6948,
+    "total": 7033,
     "byType": {
-      "promesa": 498,
-      "afirmacion_numerica": 2000,
-      "cita_obra": 1587,
-      "cita_convenio": 578,
-      "acusacion_publica": 2285
+      "promesa": 517,
+      "afirmacion_numerica": 2018,
+      "cita_obra": 1596,
+      "cita_convenio": 584,
+      "acusacion_publica": 2318
     },
     "byPleno": {
       "15uvjew": 445,
-      "brxx5g": 191,
+      "brxx5g": 276,
       "1237hbp": 111,
       "11025xk": 209,
       "10yl550": 442,
@@ -38,19 +38,19 @@
       "1r6yy0": 28
     },
     "byTopic": {
-      "fiscal": 1027,
+      "fiscal": 1028,
       "vivienda": 188,
       "movilidad": 266,
-      "medio-ambiente": 644,
+      "medio-ambiente": 646,
       "social": 443,
-      "cultura": 265,
+      "cultura": 269,
       "seguridad": 250,
-      "empleo": 265,
-      "urbanismo": 978,
+      "empleo": 267,
+      "urbanismo": 983,
       "salud": 199,
-      "transparencia": 1250,
-      "educacion": 334,
-      "other": 839
+      "transparencia": 1251,
+      "educacion": 403,
+      "other": 840
     }
   },
   "items": [
@@ -7935,20 +7935,20 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-002-cit-b34eb0",
+      "id": "brxx5g-001-cit-b34eb0",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 2,
+      "segmentIndex": 1,
       "type": "cita_convenio",
       "speakerGroup": null,
-      "verbatim": "lo que hacemos es adaptar los estatutos de la mancomunidad Camp de Turia a la ley 21-2018 de mancomunidades de la comunidad valenciana",
-      "context": "El interviniente explica que la adaptación de los estatutos de la mancomunidad Camp de Turia a la ley 21-2018 de mancomunidades de la comunidad valenciana busca mejorar la seguridad jurídica de la entidad, regular con mayor claridad el funcionamiento de sus órganos de gobierno y actualizar el régimen económico y administrativo.",
+      "verbatim": "lo que hacemos es adaptar los estatutos de la mancomunidad Camp de Turia a la ley 21-2018 de mancomunidades de la comunidad valenciana.",
+      "context": "Bueno, lo que hacemos es adaptar los estatutos de la mancomunidad Camp de Turia a la ley 21-2018 de mancomunidades de la comunidad valenciana. Con esta adaptación lo que hacemos es mejorar la seguridad jurídica de la entidad, regula con mayor claridad el funcionamiento de sus órganos de gobierno.",
       "topic": "other",
       "entities": {
-        "referencedEntity": "ley 21/2018 de mancomunidades de la comunitat valenciana / mancomunidad camp de turia"
+        "referencedEntity": "ley 21/2018 de mancomunidades de la comunitat valenciana / estatutos mancomunidad camp de turia"
       },
-      "confidence": 0.65,
-      "reasoning": "Es una afirmación verificable sobre la adaptación formal de los estatutos de una mancomunidad a una ley autonómica concreta; se puede contrastar con el expediente y el texto de la ley citada (posible imprecisión de Whisper en el número/año exacto de la norma).",
+      "confidence": 0.7,
+      "reasoning": "Es una afirmación verificable sobre la modificación de los estatutos de la mancomunidad Camp de Turia para adaptarlos a una ley regional concreta (21/2018); se puede contrastar con el expediente municipal y el texto legal citado.",
       "requiresHumanApproval": true
     },
     {
@@ -8179,63 +8179,6 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-014-afi-fd8dfe",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 14,
-      "type": "afirmacion_numerica",
-      "speakerGroup": "PSOE",
-      "verbatim": "Son cinco o seis unidades las que tenemos ahí,",
-      "context": "Sabéis que siempre lo decimos porque los vecinos están muy preocupados por el tema. Son cinco o seis unidades las que tenemos ahí, son 22 las que tenemos empantanadas, pero cinco de ellas, dentro de la medida que podemos, pues iniciar los trámites.",
-      "topic": "urbanismo",
-      "entities": {
-        "count": 6,
-        "countUnit": "unidades de ejecución",
-        "referencedEntity": "unidades de ejecución urbanística"
-      },
-      "confidence": 0.55,
-      "reasoning": "Cifra concreta (5-6 unidades) sobre el número de unidades de ejecución en un estado determinado, contrastable con el listado municipal de unidades de ejecución activas.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-014-afi-faba74",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 14,
-      "type": "afirmacion_numerica",
-      "speakerGroup": "PSOE",
-      "verbatim": "son 22 las que tenemos empantanadas, pero cinco de ellas, dentro de la medida que podemos,",
-      "context": "Son cinco o seis unidades las que tenemos ahí, son 22 las que tenemos empantanadas, pero cinco de ellas, dentro de la medida que podemos, pues iniciar los trámites, más aparte aquellas que se están moviendo de una manera particular.",
-      "topic": "urbanismo",
-      "entities": {
-        "count": 22,
-        "countUnit": "unidades de ejecución empantanadas",
-        "referencedEntity": "unidades de ejecución urbanística estancadas"
-      },
-      "confidence": 0.7,
-      "reasoning": "Cifra concreta de 22 unidades de ejecución paralizadas/estancadas, verificable contra el inventario municipal de unidades de ejecución y su estado administrativo.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-014-pro-cbc549",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 14,
-      "type": "promesa",
-      "speakerGroup": "PSOE",
-      "verbatim": "pero cinco de ellas, dentro de la medida que podemos, pues iniciar los trámites, más aparte aquellas que se están moviendo de una manera particular.",
-      "context": "son 22 las que tenemos empantanadas, pero cinco de ellas, dentro de la medida que podemos, pues iniciar los trámites, más aparte aquellas que se están moviendo de una manera particular.",
-      "topic": "urbanismo",
-      "entities": {
-        "count": 5,
-        "countUnit": "unidades de ejecución",
-        "referencedEntity": "trámites de unidades de ejecución"
-      },
-      "confidence": 0.5,
-      "reasoning": "Compromiso de iniciar trámites administrativos para 5 unidades de ejecución concretas, verificable en futuras actas de pleno o expedientes urbanísticos que muestren si se iniciaron dichos trámites.",
-      "requiresHumanApproval": true
-    },
-    {
       "id": "brxx5g-013-afi-0f4fa8",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
@@ -8267,6 +8210,62 @@
       },
       "confidence": 0.55,
       "reasoning": "Cifra aproximada (rango 5-6) sobre el número de unidades de ejecución activas; contrastable con el listado municipal de unidades de ejecución urbanística en tramitación.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-013-afi-faba74",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 13,
+      "type": "afirmacion_numerica",
+      "speakerGroup": "PSOE",
+      "verbatim": "son 22 las que tenemos empantanadas",
+      "context": "Son cinco o seis unidades las que tenemos ahí, son 22 las que tenemos empantanadas, pero cinco de ellas, dentro de la medida que podemos,",
+      "topic": "urbanismo",
+      "entities": {
+        "count": 22,
+        "countUnit": "unidades de ejecución empantanadas"
+      },
+      "confidence": 0.75,
+      "reasoning": "Cifra concreta de 22 unidades de ejecución estancadas en el municipio; verificable contra el registro/planeamiento urbanístico municipal.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-014-afi-fd8dfe",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 14,
+      "type": "afirmacion_numerica",
+      "speakerGroup": "PSOE",
+      "verbatim": "Son cinco o seis unidades las que tenemos ahí,",
+      "context": "Sabéis que siempre lo decimos porque los vecinos están muy preocupados por el tema. Son cinco o seis unidades las que tenemos ahí, son 22 las que tenemos empantanadas, pero cinco de ellas, dentro de la medida que podemos, pues iniciar los trámites.",
+      "topic": "urbanismo",
+      "entities": {
+        "count": 6,
+        "countUnit": "unidades de ejecución",
+        "referencedEntity": "unidades de ejecución urbanística"
+      },
+      "confidence": 0.55,
+      "reasoning": "Cifra concreta (5-6 unidades) sobre el número de unidades de ejecución en un estado determinado, contrastable con el listado municipal de unidades de ejecución activas.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-014-pro-cbc549",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 14,
+      "type": "promesa",
+      "speakerGroup": "PSOE",
+      "verbatim": "pero cinco de ellas, dentro de la medida que podemos, pues iniciar los trámites, más aparte aquellas que se están moviendo de una manera particular.",
+      "context": "son 22 las que tenemos empantanadas, pero cinco de ellas, dentro de la medida que podemos, pues iniciar los trámites, más aparte aquellas que se están moviendo de una manera particular.",
+      "topic": "urbanismo",
+      "entities": {
+        "count": 5,
+        "countUnit": "unidades de ejecución",
+        "referencedEntity": "trámites de unidades de ejecución"
+      },
+      "confidence": 0.5,
+      "reasoning": "Compromiso de iniciar trámites administrativos para 5 unidades de ejecución concretas, verificable en futuras actas de pleno o expedientes urbanísticos que muestren si se iniciaron dichos trámites.",
       "requiresHumanApproval": true
     },
     {
@@ -8376,6 +8375,40 @@
       "requiresHumanApproval": true
     },
     {
+      "id": "brxx5g-021-cit-2f8642",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 21,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "expediente 342 sobre el acuerdo relativo a la aprobación del tercer plan de igualdad de la ciudad de Ribaracha",
+      "context": "Se aprobó por unanimidad pasar más y un punto, el quinto, que es un punto de igualdad, expediente 342 sobre el acuerdo relativo a la aprobación del tercer plan de igualdad de la ciudad de Ribaracha, la rechidora, Raquel.",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "tercer plan de igualdad (expediente 342)"
+      },
+      "confidence": 0.5,
+      "reasoning": "Cita un expediente administrativo concreto (342) para la aprobación del tercer plan de igualdad municipal, contrastable contra el registro de expedientes y actas del pleno.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-022-cit-987c63",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 22,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "Este plan tiene como objetivo incorporar de manea transversal el principio de igualdad entre mujeres y hombres en la organización y el funcionamiento interno del Ayuntamiento.",
+      "context": "avui traiem a aprovació el tercer pla d'igualtat de l'Ajuntament de Riba Rocha... Este plan tiene como objetivo incorporar de manea transversal el principio de igualdad entre mujeres y hombres en la organización y el funcionamiento interno del Ayuntamiento.",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "tercer plan de igualdad"
+      },
+      "confidence": 0.55,
+      "reasoning": "El objetivo declarado del tercer plan de igualdad (transversalidad de género en la organización interna) es verificable contrastando el texto oficial del documento aprobado en el expediente 342.",
+      "requiresHumanApproval": true
+    },
+    {
       "id": "brxx5g-023-cit-57d651",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
@@ -8428,40 +8461,6 @@
       },
       "confidence": 0.75,
       "reasoning": "Compromiso explícito de sentido de voto sobre el plan de igualdad, directamente verificable contra el acta de votación del pleno; además afirma que es el tercer plan de igualdad, dato contrastable con el histórico municipal.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-022-cit-2f8642",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 22,
-      "type": "cita_obra",
-      "speakerGroup": null,
-      "verbatim": "expediente 342 sobre el acuerdo relativo a la aprobación del tercer plan de igualdad de la ciudad de Ribaracha",
-      "context": "Se aprobó por unanimidad pasar más y un punto, el quinto, que es un punto de igualdad, expediente 342 sobre el acuerdo relativo a la aprobación del tercer plan de igualdad de la ciudad de Ribaracha, la rechidora, Raquel.",
-      "topic": "social",
-      "entities": {
-        "referencedEntity": "tercer plan de igualdad"
-      },
-      "confidence": 0.7,
-      "reasoning": "Se cita un número de expediente concreto (342) y la aprobación por unanimidad del tercer plan de igualdad, contrastable con el acta y el registro de expedientes municipales; 'Ribaracha' parece ser una degradación de Whisper de 'Riba-roja'.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-022-cit-987c63",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 22,
-      "type": "cita_obra",
-      "speakerGroup": null,
-      "verbatim": "Este plan tiene como objetivo incorporar de manea transversal el principio de igualdad entre mujeres y hombres en la organización y el funcionamiento interno del Ayuntamiento.",
-      "context": "avui traiem a aprovació el tercer pla d'igualtat de l'Ajuntament de Riba Rocha... Este plan tiene como objetivo incorporar de manea transversal el principio de igualdad entre mujeres y hombres en la organización y el funcionamiento interno del Ayuntamiento.",
-      "topic": "social",
-      "entities": {
-        "referencedEntity": "tercer plan de igualdad"
-      },
-      "confidence": 0.55,
-      "reasoning": "El objetivo declarado del tercer plan de igualdad (transversalidad de género en la organización interna) es verificable contrastando el texto oficial del documento aprobado en el expediente 342.",
       "requiresHumanApproval": true
     },
     {
@@ -8539,6 +8538,23 @@
       "requiresHumanApproval": true
     },
     {
+      "id": "brxx5g-028-pro-1e14f0",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 28,
+      "type": "promesa",
+      "speakerGroup": "PSOE",
+      "verbatim": "proceder a su inscripción en el registro de planes de igualdad, dar traslado del acuerdo a la representación legal del personal, publicar el plan para su conocimiento general y encomendar a la Comisión de Igualdad",
+      "context": "se propone al Pleno aprobar el tercer plan de igualdad... proceder a su inscripción en el registro de planes de igualdad, dar traslado del acuerdo a la representación legal del personal, publicar el plan para su conocimiento general y encomendar a la Comisión de Igualdad El seguimiento y la evaluación de las medidas previstas.",
+      "topic": "transparencia",
+      "entities": {
+        "referencedEntity": "registro de planes de igualdad"
+      },
+      "confidence": 0.6,
+      "reasoning": "Compromiso concreto de trámites administrativos futuros (inscripción registral, notificación a representación legal, publicación y encargo de seguimiento a una comisión) que puede verificarse comprobando si efectivamente se inscribió el plan en el registro y si la Comisión de Igualdad emitió informes de seguimiento posteriores.",
+      "requiresHumanApproval": true
+    },
+    {
       "id": "brxx5g-029-afi-62842c",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
@@ -8570,39 +8586,6 @@
       },
       "confidence": 0.5,
       "reasoning": "Afirma que los puestos de mayor responsabilidad de la plantilla municipal están ocupados por mujeres, dato contrastable con el organigrama y el diagnóstico de igualdad del ayuntamiento.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-028-pro-1e14f0",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 28,
-      "type": "promesa",
-      "speakerGroup": "PSOE",
-      "verbatim": "proceder a su inscripción en el registro de planes de igualdad, dar traslado del acuerdo a la representación legal del personal, publicar el plan para su conocimiento general y encomendar a la Comisión de Igualdad",
-      "context": "se propone al Pleno aprobar el tercer plan de igualdad... proceder a su inscripción en el registro de planes de igualdad, dar traslado del acuerdo a la representación legal del personal, publicar el plan para su conocimiento general y encomendar a la Comisión de Igualdad El seguimiento y la evaluación de las medidas previstas.",
-      "topic": "transparencia",
-      "entities": {
-        "referencedEntity": "registro de planes de igualdad"
-      },
-      "confidence": 0.6,
-      "reasoning": "Compromiso concreto de trámites administrativos futuros (inscripción registral, notificación a representación legal, publicación y encargo de seguimiento a una comisión) que puede verificarse comprobando si efectivamente se inscribió el plan en el registro y si la Comisión de Igualdad emitió informes de seguimiento posteriores.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-032-acu-e4a7c6",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 32,
-      "type": "acusacion_publica",
-      "speakerGroup": "VOX",
-      "verbatim": "sí rechazamos planes que politicen la administración,",
-      "context": "Desde Vox, por supuesto, defendemos la igualdad real entre personas y protección efectiva de víctimas. No nos ponemos a medidas útiles contra el acoso o la violencia, pero sí rechazamos planes que politicen la administración,",
-      "topic": "transparencia",
-      "entities": {},
-      "accusationSubtype": "opinativa",
-      "confidence": 0.5,
-      "reasoning": "Es una valoración sobre la intención o carácter del plan ('politizar la administración') sin cifras ni entidades concretas, por lo que solo cabe revisión editorial, no verificación automática.",
       "requiresHumanApproval": true
     },
     {
@@ -8642,6 +8625,22 @@
       "requiresHumanApproval": true
     },
     {
+      "id": "brxx5g-032-acu-e4a7c6",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 32,
+      "type": "acusacion_publica",
+      "speakerGroup": "VOX",
+      "verbatim": "sí rechazamos planes que politicen la administración,",
+      "context": "Desde Vox, por supuesto, defendemos la igualdad real entre personas y protección efectiva de víctimas. No nos ponemos a medidas útiles contra el acoso o la violencia, pero sí rechazamos planes que politicen la administración,",
+      "topic": "transparencia",
+      "entities": {},
+      "accusationSubtype": "opinativa",
+      "confidence": 0.5,
+      "reasoning": "Es una valoración sobre la intención o carácter del plan ('politizar la administración') sin cifras ni entidades concretas, por lo que solo cabe revisión editorial, no verificación automática.",
+      "requiresHumanApproval": true
+    },
+    {
       "id": "brxx5g-033-acu-f97ca0",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
@@ -8675,23 +8674,6 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-041-afi-1145a9",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 41,
-      "type": "afirmacion_numerica",
-      "speakerGroup": null,
-      "verbatim": "l'ajuntament està composat per una majoria de dones i també, sobretot, d'una majoria en quant a major responsabilitat",
-      "context": "Efectivament, l'ajuntament està composat per una majoria de dones i també, sobretot, d'una majoria en quant a major responsabilitat.",
-      "topic": "empleo",
-      "entities": {
-        "referencedEntity": "composició de la plantilla municipal per sexe i nivell de responsabilitat"
-      },
-      "confidence": 0.55,
-      "reasoning": "Afirmació sobre la composició de gènere de la plantilla municipal i dels llocs de major responsabilitat, contrastable amb les dades de personal/RRHH de l'ajuntament encara que no s'aporta cap xifra exacta.",
-      "requiresHumanApproval": true
-    },
-    {
       "id": "brxx5g-039-cit-a30faf",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
@@ -8709,37 +8691,20 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-043-afi-a62d49",
+      "id": "brxx5g-041-afi-1145a9",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 43,
+      "segmentIndex": 41,
       "type": "afirmacion_numerica",
       "speakerGroup": null,
-      "verbatim": "el 75% de la plantilla manifestava haver rebut formació i sensibilització en matèria d'igualtat i violència de gènere",
-      "context": "Sí que volia ressaltar les dades que el 75% de la plantilla manifestava haver rebut formació i sensibilització en matèria d'igualtat i violència de gènere, és a dir que tot l'esforç que es fa els 365 dies de l'any en donar esta formació",
-      "topic": "social",
+      "verbatim": "l'ajuntament està composat per una majoria de dones i també, sobretot, d'una majoria en quant a major responsabilitat",
+      "context": "Efectivament, l'ajuntament està composat per una majoria de dones i també, sobretot, d'una majoria en quant a major responsabilitat.",
+      "topic": "empleo",
       "entities": {
-        "referencedEntity": "diagnòstic d'igualtat i violència de gènere de la plantilla municipal"
+        "referencedEntity": "composició de la plantilla municipal per sexe i nivell de responsabilitat"
       },
-      "confidence": 0.75,
-      "reasoning": "Cifra concreta (75%) atribuida a un diagnóstico interno sobre formación en igualdad; verificable contra el informe/diagnóstico municipal citado.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-043-afi-7e7187",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 43,
-      "type": "afirmacion_numerica",
-      "speakerGroup": null,
-      "verbatim": "el 89,9% de la plantilla. I ja considera que l'Ajuntament, en quant a l'atenció de les víctimes i violència de gènere, disposa de mecanismes i recursos adequats perquè les treballadores puguin informar-se i exercir els seus drets de professionalitat i confidencialitat necessaris",
-      "context": "I també una de les dades molt importants que ha reflexat aquest diagnòstic és el 89,9% de la plantilla. I ja considera que l'Ajuntament... disposa de mecanismes i recursos adequats perquè les treballadores puguin informar-se i exercir els seus drets",
-      "topic": "social",
-      "entities": {
-        "referencedEntity": "diagnòstic d'igualtat i violència de gènere de la plantilla municipal"
-      },
-      "confidence": 0.7,
-      "reasoning": "Cifra concreta (89,9%) sobre percepción de la plantilla respecto a mecanismos de atención a víctimas de violencia de género, contrastable con el diagnóstico municipal referenciado.",
+      "confidence": 0.55,
+      "reasoning": "Afirmació sobre la composició de gènere de la plantilla municipal i dels llocs de major responsabilitat, contrastable amb les dades de personal/RRHH de l'ajuntament encara que no s'aporta cap xifra exacta.",
       "requiresHumanApproval": true
     },
     {
@@ -8779,6 +8744,40 @@
       "requiresHumanApproval": true
     },
     {
+      "id": "brxx5g-043-afi-a62d49",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 43,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "el 75% de la plantilla manifestava haver rebut formació i sensibilització en matèria d'igualtat i violència de gènere",
+      "context": "Sí que volia ressaltar les dades que el 75% de la plantilla manifestava haver rebut formació i sensibilització en matèria d'igualtat i violència de gènere, és a dir que tot l'esforç que es fa els 365 dies de l'any en donar esta formació",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "diagnòstic d'igualtat i violència de gènere de la plantilla municipal"
+      },
+      "confidence": 0.75,
+      "reasoning": "Cifra concreta (75%) atribuida a un diagnóstico interno sobre formación en igualdad; verificable contra el informe/diagnóstico municipal citado.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-043-afi-7e7187",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 43,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "el 89,9% de la plantilla. I ja considera que l'Ajuntament, en quant a l'atenció de les víctimes i violència de gènere, disposa de mecanismes i recursos adequats perquè les treballadores puguin informar-se i exercir els seus drets de professionalitat i confidencialitat necessaris",
+      "context": "I també una de les dades molt importants que ha reflexat aquest diagnòstic és el 89,9% de la plantilla. I ja considera que l'Ajuntament... disposa de mecanismes i recursos adequats perquè les treballadores puguin informar-se i exercir els seus drets",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "diagnòstic d'igualtat i violència de gènere de la plantilla municipal"
+      },
+      "confidence": 0.7,
+      "reasoning": "Cifra concreta (89,9%) sobre percepción de la plantilla respecto a mecanismos de atención a víctimas de violencia de género, contrastable con el diagnóstico municipal referenciado.",
+      "requiresHumanApproval": true
+    },
+    {
       "id": "brxx5g-044-afi-ec5029",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
@@ -8810,6 +8809,40 @@
       },
       "confidence": 0.55,
       "reasoning": "Afirmación sobre ausencia de diferencias significativas de retribución por complementos salariales entre hombres y mujeres, presentada como conclusión del diagnóstico de igualdad; verificable contrastando las tablas retributivas del informe citado.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-046-cit-453187",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 46,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "también de los dos planes que tengamos aprobados, el del 2018, que va a ser como el primero, que va va a ser muy ambicioso",
+      "context": "estos resultados pues son fruto del trabajo... y también de los dos planes que tengamos aprobados, el del 2018, que va a ser como el primero, que va va a ser muy ambicioso y después el del 2022, que ya replegaba e",
+      "topic": "empleo",
+      "entities": {
+        "referencedEntity": "plan de igualdad 2018 (primer plan municipal)"
+      },
+      "confidence": 0.55,
+      "reasoning": "Cita un plan de igualdad aprobado en 2018 descrito como el primero y muy ambicioso; verificable contra actas/acuerdos plenarios de ese año, aunque la transcripción de Whisper presenta repeticiones y cortes.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-046-cit-b85718",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 46,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "después el del 2022, que ya replegaba e eh totes les coses que no sabien fet i enfocaven,",
+      "context": "y también de los dos planes que tengamos aprobados, el del 2018... y después el del 2022, que ya replegaba e eh totes les coses que no sabien fet i enfocaven,",
+      "topic": "empleo",
+      "entities": {
+        "referencedEntity": "plan de igualdad 2022 (segundo plan municipal)"
+      },
+      "confidence": 0.5,
+      "reasoning": "Referencia a un segundo plan de igualdad aprobado en 2022 que actualizaba medidas pendientes; contrastable con el acuerdo plenario o resolución de aprobación de dicho plan, aunque el fragmento está degradado por Whisper (mezcla castellano/valencià con cortes).",
       "requiresHumanApproval": true
     },
     {
@@ -8846,40 +8879,6 @@
       },
       "confidence": 0.5,
       "reasoning": "Referencia a un plan (de igualdad, por el contexto de comisión negociadora y sindicatos) aprobado en 2018, verificable contra el acta de aprobación municipal de esa fecha.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-046-cit-453187",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 46,
-      "type": "cita_obra",
-      "speakerGroup": null,
-      "verbatim": "también de los dos planes que tengamos aprobados, el del 2018, que va a ser como el primero, que va va a ser muy ambicioso",
-      "context": "estos resultados pues son fruto del trabajo... y también de los dos planes que tengamos aprobados, el del 2018, que va a ser como el primero, que va va a ser muy ambicioso y después el del 2022, que ya replegaba e",
-      "topic": "empleo",
-      "entities": {
-        "referencedEntity": "plan de igualdad 2018 (primer plan municipal)"
-      },
-      "confidence": 0.55,
-      "reasoning": "Cita un plan de igualdad aprobado en 2018 descrito como el primero y muy ambicioso; verificable contra actas/acuerdos plenarios de ese año, aunque la transcripción de Whisper presenta repeticiones y cortes.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-046-cit-b85718",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 46,
-      "type": "cita_obra",
-      "speakerGroup": null,
-      "verbatim": "después el del 2022, que ya replegaba e eh totes les coses que no sabien fet i enfocaven,",
-      "context": "y también de los dos planes que tengamos aprobados, el del 2018... y después el del 2022, que ya replegaba e eh totes les coses que no sabien fet i enfocaven,",
-      "topic": "empleo",
-      "entities": {
-        "referencedEntity": "plan de igualdad 2022 (segundo plan municipal)"
-      },
-      "confidence": 0.5,
-      "reasoning": "Referencia a un segundo plan de igualdad aprobado en 2022 que actualizaba medidas pendientes; contrastable con el acuerdo plenario o resolución de aprobación de dicho plan, aunque el fragmento está degradado por Whisper (mezcla castellano/valencià con cortes).",
       "requiresHumanApproval": true
     },
     {
@@ -8921,6 +8920,43 @@
       "requiresHumanApproval": true
     },
     {
+      "id": "brxx5g-051-afi-74017e",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 51,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "Si està igual és chicotet, perquè són 3 metres quadrats si aplega.",
+      "context": "A veure, jo només preguntava, està igual el vestuari de les policies quan jo me n'anir? Si està igual és chicotet, perquè són 3 metres quadrats si aplega. 3 metres quadrats si aplega, no més.",
+      "topic": "seguridad",
+      "entities": {
+        "count": 3,
+        "countUnit": "metres quadrats",
+        "referencedEntity": "vestuari de la policia"
+      },
+      "confidence": 0.6,
+      "reasoning": "Afirma una medida concreta (3 metros cuadrados) del vestuario policial, verificable contra los planos o el expediente de la instalación/reforma.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-051-acu-a3d6a2",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 51,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "no és una forma de parlar i no tenien duches ni aseo.",
+      "context": "3 metres quadrats si aplega, no més. Si no és una forma de parlar o 5, no és una forma de parlar i no tenien duches ni aseo.",
+      "topic": "seguridad",
+      "entities": {
+        "referencedEntity": "vestuari de la policia (dutxes i lavabo)"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.5,
+      "reasoning": "Afirma un hecho verificable sobre la carencia de duchas y aseo en el vestuario policial, contrastable con inspecciones o expedientes de la instalación.",
+      "requiresHumanApproval": true
+    },
+    {
       "id": "brxx5g-052-acu-d13e87",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
@@ -8938,24 +8974,6 @@
       "accusationSubtype": "factual",
       "confidence": 0.55,
       "reasoning": "Alega una superficie concreta (3 m²) para el vestuario policial, dato contrastable con planos o informes de la instalación municipal.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-052-acu-a3d6a2",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 52,
-      "type": "acusacion_publica",
-      "speakerGroup": null,
-      "verbatim": "no és una forma de parlar i no tenien duches ni aseo.",
-      "context": "3 metres quadrats si aplega, no més. Si no és una forma de parlar o 5, no és una forma de parlar i no tenien duches ni aseo.",
-      "topic": "seguridad",
-      "entities": {
-        "referencedEntity": "vestuari de la policia local"
-      },
-      "accusationSubtype": "factual",
-      "confidence": 0.5,
-      "reasoning": "Afirma la ausencia de duchas y aseo en el vestuario policial, condición verificable mediante inspección o registro de instalaciones municipales.",
       "requiresHumanApproval": true
     },
     {
@@ -8995,25 +9013,6 @@
       },
       "confidence": 0.65,
       "reasoning": "Cifra concreta (5 metros cuadrados de vestuario para 7-8 mujeres, medio metro por persona) que podría contrastarse con planos o memorias de las instalaciones policiales; posible degradación menor de Whisper en cifras habladas.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-051-afi-74017e",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 51,
-      "type": "afirmacion_numerica",
-      "speakerGroup": null,
-      "verbatim": "Si està igual és chicotet, perquè són 3 metres quadrats si aplega.",
-      "context": "A veure, jo només preguntava, està igual el vestuari de les policies quan jo me n'anir? Si està igual és chicotet, perquè són 3 metres quadrats si aplega. 3 metres quadrats si aplega, no més.",
-      "topic": "seguridad",
-      "entities": {
-        "count": 3,
-        "countUnit": "metres quadrats",
-        "referencedEntity": "vestuari de la policia"
-      },
-      "confidence": 0.6,
-      "reasoning": "Afirma una medida concreta (3 metros cuadrados) del vestuario policial, verificable contra los planos o el expediente de la instalación/reforma.",
       "requiresHumanApproval": true
     },
     {
@@ -9158,6 +9157,23 @@
       "requiresHumanApproval": true
     },
     {
+      "id": "brxx5g-066-cit-7fbeea",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 66,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "han sigut per subvencions que hem buscat d'Europa, que és el patrimoni nostre, dels ministeris, que és el patrimoni nostre, de les conselleries, que és el patrimoni nostre i de la Diputació Provincial, que és el patrimoni nostre.",
+      "context": "El interviniente atribuye el incremento del patrimonio municipal a subvenciones conseguidas de fondos europeos, ministerios, conselleries autonómicas y la Diputación Provincial.",
+      "topic": "fiscal",
+      "entities": {
+        "referencedEntity": "subvencions d'europa, ministeris, conselleries i diputació provincial"
+      },
+      "confidence": 0.6,
+      "reasoning": "Afirma que el incremento patrimonial procede de subvenciones de varias administraciones (Europa, ministerios, conselleries, Diputación); verificable cruzando con el registro BDNS y convenios de subvención del ayuntamiento.",
+      "requiresHumanApproval": true
+    },
+    {
       "id": "brxx5g-067-afi-87a67a",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
@@ -9175,23 +9191,6 @@
       },
       "confidence": 0.55,
       "reasoning": "Afirma que el valor del inventario/patrimonio municipal ha aumentado más de 88 millones de euros en 11 años; verificable contra el inventario de bienes municipales o los balances patrimoniales publicados por el ayuntamiento.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-066-cit-7fbeea",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 66,
-      "type": "cita_convenio",
-      "speakerGroup": null,
-      "verbatim": "han sigut per subvencions que hem buscat d'Europa, que és el patrimoni nostre, dels ministeris, que és el patrimoni nostre, de les conselleries, que és el patrimoni nostre i de la Diputació Provincial, que és el patrimoni nostre.",
-      "context": "El interviniente atribuye el incremento del patrimonio municipal a subvenciones conseguidas de fondos europeos, ministerios, conselleries autonómicas y la Diputación Provincial.",
-      "topic": "fiscal",
-      "entities": {
-        "referencedEntity": "subvencions d'europa, ministeris, conselleries i diputació provincial"
-      },
-      "confidence": 0.6,
-      "reasoning": "Afirma que el incremento patrimonial procede de subvenciones de varias administraciones (Europa, ministerios, conselleries, Diputación); verificable cruzando con el registro BDNS y convenios de subvención del ayuntamiento.",
       "requiresHumanApproval": true
     },
     {
@@ -9338,39 +9337,39 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-088-acu-846fe9",
+      "id": "brxx5g-087-acu-846fe9",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 88,
+      "segmentIndex": 87,
       "type": "acusacion_publica",
       "speakerGroup": null,
       "verbatim": "no hi ha una justificació perquè s'ha juntat a l'expedient",
-      "context": "de quin serveis són els que falten i per què s'està fent aquesta pujada, no hi ha una justificació perquè s'ha juntat a l'expedient. A més, també...",
+      "context": "també una justificació de què és el que falta, de quin serveis són els que falten i per què s'està fent aquesta pujada, no hi ha una justificació perquè s'ha juntat a l'expedient. A més, també...",
       "topic": "transparencia",
       "entities": {
-        "referencedEntity": "expedient administratiu de l'ampliació de crèdit"
+        "referencedEntity": "expedient de modificació de crèdit"
       },
       "accusationSubtype": "factual",
       "confidence": 0.55,
-      "reasoning": "Se acusa de que el expediente de la ampliación de crédito carece de justificación documental; verificable revisando el propio expediente municipal, aunque el fragmento está cortado ('A més, també...') lo que reduce la certeza sobre el alcance exacto.",
+      "reasoning": "Afirma que el expediente administrativo carece de justificación documental para el incremento de gratificaciones; verificable revisando el contenido real del expediente presupuestario.",
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-088-acu-685b2d",
+      "id": "brxx5g-087-acu-685b2d",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 88,
+      "segmentIndex": 87,
       "type": "acusacion_publica",
       "speakerGroup": null,
       "verbatim": "des de desembre no estan cobrant algunes productivitats",
       "context": "Entenem que aquesta ampliació el que farà és solucionar el problema que la gent cobre les productivitats que no estan cobrant perquè l'últim que jo tinc i que me consta és que des de desembre no estan cobrant algunes productivitats.",
       "topic": "empleo",
       "entities": {
-        "referencedEntity": "productivitats i gratificacions del personal de l'ajuntament"
+        "referencedEntity": "productivitats de personal (policia local)"
       },
       "accusationSubtype": "factual",
-      "confidence": 0.6,
-      "reasoning": "Afirma que desde diciembre parte del personal municipal no cobra determinadas productividades; es un hecho administrativo/laboral verificable contra las nóminas o actas del propio ayuntamiento.",
+      "confidence": 0.55,
+      "reasoning": "Afirma que desde diciembre parte del personal no cobra determinadas productividades; verificable contrastando nóminas municipales o resoluciones de personal correspondientes a ese periodo.",
       "requiresHumanApproval": true
     },
     {
@@ -9425,24 +9424,6 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-092-acu-a0416b",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 92,
-      "type": "acusacion_publica",
-      "speakerGroup": null,
-      "verbatim": "S'han liquidat? Sí, s'han liquidat, però les partides no eren les adequades.",
-      "context": "per a fer part del que són les operatives i gratificacions. S'han liquidat? Sí, s'han liquidat, però les partides no eren les adequades.",
-      "topic": "fiscal",
-      "entities": {
-        "referencedEntity": "liquidación de operativas i gratificacions con partidas presupuestarias no adecuadas"
-      },
-      "accusationSubtype": "factual",
-      "confidence": 0.5,
-      "reasoning": "Se admite que se liquidaron gratificaciones/operativas usando partidas presupuestarias inadecuadas, lo cual es un hecho de gestión presupuestaria verificable contra la liquidación del presupuesto o informes de intervención.",
-      "requiresHumanApproval": true
-    },
-    {
       "id": "brxx5g-090-afi-9c93ed",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
@@ -9474,6 +9455,59 @@
       },
       "confidence": 0.6,
       "reasoning": "Afirma que se realiza una modificación presupuestaria interna sin alterar el importe global del Capítulo I, destinada a gratificaciones, verificable contra el expediente de modificación presupuestaria del ayuntamiento.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-090-acu-a0416b",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 90,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "S'han liquidat? Sí, s'han liquidat, però les partides no eren les adequades.",
+      "context": "per a fer part del que són les operatives i gratificacions. S'han liquidat? Sí, s'han liquidat, però les partides no eren les adequades. A més...",
+      "topic": "fiscal",
+      "entities": {
+        "referencedEntity": "liquidación de gratificaciones con partidas presupuestarias inadecuadas"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.6,
+      "reasoning": "Reconoce que se liquidaron pagos (gratificaciones) usando partidas presupuestarias que no eran las adecuadas, un hecho verificable contra el expediente de intervención y la modificación presupuestaria correspondiente.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-096-pro-ddc81c",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 96,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "a partir de demà començarem a fer aquestes modificacions pressupostàries ja i ficar-les en cada casilla que necessita el crèdit necessari per a complir en el que són les gratificacions sobre els estrés i de més",
+      "context": "És complex i dur el que comentes. Que ho tenim preparat, perquè només aprovarà això a partir de demà començarem a fer aquestes modificacions pressupostàries ja i ficar-les en cada casilla que necessita el crèdit necessari per a complir en el que són les gratificacions sobre els estrés i de més.",
+      "topic": "fiscal",
+      "entities": {
+        "date": "2026-07-07",
+        "referencedEntity": "modificacions pressupostàries per al crèdit de gratificacions (possible 'hores extres')"
+      },
+      "confidence": 0.55,
+      "reasoning": "Compromiso concreto de iniciar al día siguiente de la sesión las modificaciones presupuestarias para dotar de crédito las gratificaciones; verificable contra el expediente de modificación presupuestaria y su fecha de tramitación. El término 'estrés' parece degradación de Whisper (posiblemente 'hores extres').",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-096-pro-b7b1dd",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 96,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "no se establezca una cantidad global máxima fija sino que siga la que legalmente corresponda al Ayuntamiento de Riva Rocha según la masa salarial",
+      "context": "Y la idea es que para el ejercicio y para el próximo ejercicio en el presupuesto, pues no se establezca una cantidad global máxima fija sino que siga la que legalmente corresponda al Ayuntamiento de Riva Rocha según la masa salarial.",
+      "topic": "fiscal",
+      "entities": {
+        "referencedEntity": "cantidad global máxima de gratificaciones/masa salarial en el presupuesto municipal"
+      },
+      "confidence": 0.6,
+      "reasoning": "Compromiso sobre el diseño del próximo presupuesto (no fijar un tope global sino ligarlo a la masa salarial legal), contrastable con el presupuesto del ejercicio siguiente cuando se apruebe. 'Riva Rocha' es probable degradación de Whisper de 'Riba-roja'.",
       "requiresHumanApproval": true
     },
     {
@@ -9510,41 +9544,6 @@
       },
       "confidence": 0.85,
       "reasoning": "Resultado numérico de la votación del punto del orden del día, verificable contra el acta oficial del pleno y el registro de votaciones por grupo.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-096-pro-ddc81c",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 96,
-      "type": "promesa",
-      "speakerGroup": null,
-      "verbatim": "a partir de demà començarem a fer aquestes modificacions pressupostàries ja i ficar-les en cada casilla que necessita el crèdit necessari per a complir en el que són les gratificacions sobre els estrés i de més",
-      "context": "És complex i dur el que comentes. Que ho tenim preparat, perquè només aprovarà això a partir de demà començarem a fer aquestes modificacions pressupostàries ja i ficar-les en cada casilla que necessita el crèdit necessari per a complir en el que són les gratificacions sobre els estrés i de més.",
-      "topic": "fiscal",
-      "entities": {
-        "date": "2026-07-07",
-        "referencedEntity": "modificacions pressupostàries per al crèdit de gratificacions (possible 'hores extres')"
-      },
-      "confidence": 0.55,
-      "reasoning": "Compromiso concreto de iniciar al día siguiente de la sesión las modificaciones presupuestarias para dotar de crédito las gratificaciones; verificable contra el expediente de modificación presupuestaria y su fecha de tramitación. El término 'estrés' parece degradación de Whisper (posiblemente 'hores extres').",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-096-pro-b7b1dd",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 96,
-      "type": "promesa",
-      "speakerGroup": null,
-      "verbatim": "no se establezca una cantidad global máxima fija sino que siga la que legalmente corresponda al Ayuntamiento de Riva Rocha según la masa salarial",
-      "context": "Y la idea es que para el ejercicio y para el próximo ejercicio en el presupuesto, pues no se establezca una cantidad global máxima fija sino que siga la que legalmente corresponda al Ayuntamiento de Riva Rocha según la masa salarial.",
-      "topic": "fiscal",
-      "entities": {
-        "referencedEntity": "cantidad global máxima de gratificaciones/masa salarial en el presupuesto municipal"
-      },
-      "confidence": 0.6,
-      "reasoning": "Compromiso sobre el diseño del próximo presupuesto (no fijar un tope global sino ligarlo a la masa salarial legal), contrastable con el presupuesto del ejercicio siguiente cuando se apruebe. 'Riva Rocha' es probable degradación de Whisper de 'Riba-roja'.",
       "requiresHumanApproval": true
     },
     {
@@ -9598,24 +9597,6 @@
       },
       "confidence": 0.6,
       "reasoning": "Compromiso formal de habilitar el pago de las asignaciones económicas a los grupos municipales para 2026; verificable contra el acta del pleno y los pagos efectivamente realizados en el ejercicio 2026.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-107-acu-daf14c",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 107,
-      "type": "acusacion_publica",
-      "speakerGroup": null,
-      "verbatim": "Mitjançant una moció aprovada així en aquest ple el mes d'abril mostraren ja el nostre suport institucional cap al professorat valencià en defensa d'una educació de qualitat malgrat els vots en contra de PP i Vox.",
-      "context": "Mitjançant una moció aprovada així en aquest ple el mes d'abril mostraren ja el nostre suport institucional cap al professorat valencià en defensa d'una educació de qualitat malgrat els vots en contra de PP i Vox. Ara volem refrendar que són justes i necessàries les reivindicacions de la vaga indefinida.",
-      "topic": "educacion",
-      "entities": {
-        "referencedEntity": "moció de suport institucional al professorat valencià (abril)"
-      },
-      "accusationSubtype": "factual",
-      "confidence": 0.65,
-      "reasoning": "Afirma que en abril este pleno aprobó una moción de apoyo al profesorado valenciano y que PP y Vox votaron en contra; es contrastable directamente con el acta de votaciones del pleno de abril de ese año.",
       "requiresHumanApproval": true
     },
     {
@@ -9692,21 +9673,21 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-110-acu-c04fb4",
+      "id": "brxx5g-107-acu-daf14c",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 110,
+      "segmentIndex": 107,
       "type": "acusacion_publica",
       "speakerGroup": null,
-      "verbatim": "Perquè no sols estava privada l'escola pública de recursos, sinó que en les últimes setmanes de la vaga se va privar també el professorat de respecte.",
-      "context": "El malestar docent no està provocat únicament per una qüestió retributiva. Perquè no sols estava privada l'escola pública de recursos, sinó que en les últimes setmanes de la vaga se va privar també el professorat de respecte.",
+      "verbatim": "Mitjançant una moció aprovada així en aquest ple el mes d'abril mostraren ja el nostre suport institucional cap al professorat valencià en defensa d'una educació de qualitat malgrat els vots en contra de PP i Vox.",
+      "context": "Mitjançant una moció aprovada així en aquest ple el mes d'abril mostraren ja el nostre suport institucional cap al professorat valencià en defensa d'una educació de qualitat malgrat els vots en contra de PP i Vox. Ara volem refrendar que són justes i necessàries les reivindicacions de la vaga indefinida.",
       "topic": "educacion",
       "entities": {
-        "referencedEntity": "vaga docent"
+        "referencedEntity": "moció de suport institucional al professorat valencià (abril)"
       },
-      "accusationSubtype": "opinativa",
-      "confidence": 0.55,
-      "reasoning": "Es una valoración sobre falta de recursos y de respeto hacia el profesorado durante una huelga docente, sin cifras ni entidad concreta señalada como responsable; solo revisable editorialmente, no verificable automáticamente contra datos.",
+      "accusationSubtype": "factual",
+      "confidence": 0.65,
+      "reasoning": "Afirma que en abril este pleno aprobó una moción de apoyo al profesorado valenciano y que PP y Vox votaron en contra; es contrastable directamente con el acta de votaciones del pleno de abril de ese año.",
       "requiresHumanApproval": true
     },
     {
@@ -9797,6 +9778,24 @@
       "accusationSubtype": "opinativa",
       "confidence": 0.5,
       "reasoning": "Sostiene que el malestar docente responde a la degradación de las condiciones laborales y no solo a cuestiones salariales; el fragmento intermedio parece distorsionado por Whisper, lo que reduce la confianza.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-110-acu-c04fb4",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 110,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Perquè no sols estava privada l'escola pública de recursos, sinó que en les últimes setmanes de la vaga se va privar també el professorat de respecte.",
+      "context": "El malestar docent no està provocat únicament per una qüestió retributiva. Perquè no sols estava privada l'escola pública de recursos, sinó que en les últimes setmanes de la vaga se va privar també el professorat de respecte.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "vaga docent"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.55,
+      "reasoning": "Es una valoración sobre falta de recursos y de respeto hacia el profesorado durante una huelga docente, sin cifras ni entidad concreta señalada como responsable; solo revisable editorialmente, no verificable automáticamente contra datos.",
       "requiresHumanApproval": true
     },
     {
@@ -9944,21 +9943,21 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-116-acu-45f55a",
+      "id": "brxx5g-115-acu-45f55a",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 116,
+      "segmentIndex": 115,
       "type": "acusacion_publica",
       "speakerGroup": null,
-      "verbatim": "la consellera Ortí abandonava de manera obscena les vies de diàleg i resolució dia sí dia també, la seua negligència arriba a ser inadmissible",
-      "context": "Davant les mobilitzacions que van produir-se de reclamor popular en defensa de l'escola pública la consellera Ortí abandonava de manera obscena les vies de diàleg i resolució dia sí dia també, la seua negligència arriba a ser inadmissible i finalment sembla que se sentaren a una proposta d'acord.",
+      "verbatim": "la consellera Ortí abandonava de manera obscena les vies de diàleg i resolució dia sí dia també",
+      "context": "Davant les mobilitzacions que van produir-se de reclamor popular en defensa de l'escola pública la consellera Ortí abandonava de manera obscena les vies de diàleg i resolució dia sí dia també, la seua negligència arriba a ser inadmissible.",
       "topic": "educacion",
       "entities": {
-        "referencedEntity": "consellera ortí"
+        "referencedEntity": "consellera ortí (conflicte educatiu)"
       },
       "accusationSubtype": "opinativa",
-      "confidence": 0.55,
-      "reasoning": "Acusación sobre la conducta de la consellera Ortí (abandono de vías de diálogo, negligencia) en la gestión del conflicto educativo; es una valoración de intención/estilo sin cifras, fechas o expedientes concretos, por lo que solo admite revisión editorial y no contraste automático de datos.",
+      "confidence": 0.65,
+      "reasoning": "Acusa a la consellera d'Educació d'abandonar reiteradament el diàleg, però la caracterització ('de manera obscena') és valorativa sense xifres ni dates concretes, per la qual cosa només és revisable editorialment; Whisper podria haver alterat el nom propi 'Ortí'.",
       "requiresHumanApproval": true
     },
     {
@@ -10142,10 +10141,10 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-122-acu-06f9fc",
+      "id": "brxx5g-121-acu-06f9fc",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 122,
+      "segmentIndex": 121,
       "type": "acusacion_publica",
       "speakerGroup": null,
       "verbatim": "no se plantearon climatizar todas las aulas de todos los centros de la comunidad valenciana. Ahora sí se lo han planteado.",
@@ -10155,8 +10154,8 @@
         "referencedEntity": "climatización de aulas en centros educativos de la comunitat valenciana"
       },
       "accusationSubtype": "factual",
-      "confidence": 0.7,
-      "reasoning": "Acusación de que un gobierno anterior no propuso climatizar las aulas pese a temperaturas similares; verificable contra planes/medidas educativas publicadas de esa etapa.",
+      "confidence": 0.5,
+      "reasoning": "Afirma que la gestión anterior no planteó climatizar aulas pese a temperaturas similares y que ahora sí se ha planteado; verificable contrastando planes y presupuestos de climatización de centros educativos de la Generalitat en distintos periodos.",
       "requiresHumanApproval": true
     },
     {
@@ -10198,21 +10197,21 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-124-acu-567834",
+      "id": "brxx5g-123-acu-567834",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 124,
+      "segmentIndex": 123,
       "type": "acusacion_publica",
       "speakerGroup": null,
-      "verbatim": "ha sido especialmente significativa la participación en la huelga de dirigentes políticos como Diana Morán, Miguel Soler, Gerard Fullana o el mismo Joan Baldoví",
-      "context": "Me llama la atención que ha sido especialmente significativa la participación en la huelga de dirigentes políticos como Diana Morán, Miguel Soler, Gerard Fullana o el mismo Joan Baldoví.",
+      "verbatim": "ha sido especialmente significativa la participación en la huelga de dirigentes políticos como Diana Morán, Miguel Soler, Gerard Fullana o el mismo Joan Baldoví.",
+      "context": "Me llama la atención que ha sido especialmente significativa la participación en la huelga de dirigentes políticos como Diana Morán, Miguel Soler, Gerard Fullana o el mismo Joan Baldoví. Que cuando pudieron apostar por la escuela pública con esta magnitud no lo hicieron y ahora están haciendo promesas.",
       "topic": "educacion",
       "entities": {
-        "referencedEntity": "huelga educativa"
+        "referencedEntity": "participación de dirigentes políticos en una huelga"
       },
       "accusationSubtype": "factual",
       "confidence": 0.55,
-      "reasoning": "Se atribuye participación concreta en una huelga a políticos nombrados (Diana Morán, Miguel Soler, Gerard Fullana, Joan Baldoví); es verificable contrastando cobertura mediática o registros de la huelga, aunque los nombres pueden estar degradados por Whisper.",
+      "reasoning": "Se nombra explícitamente a varios dirigentes políticos como participantes en una huelga, hecho verificable mediante registros de asistencia, cobertura mediática o imágenes del evento; posible degradación de nombres propios por Whisper reduce la confianza.",
       "requiresHumanApproval": true
     },
     {
@@ -10288,59 +10287,75 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-128-afi-e0ecd5",
+      "id": "brxx5g-127-acu-c0ace9",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 128,
+      "segmentIndex": 127,
+      "type": "acusacion_publica",
+      "speakerGroup": "VOX",
+      "verbatim": "Esto realmente es una cortina de humo para tapar los enormes casos de corrupción que sacuden a su partido y empezar a calentar motores para tratar de volver a tomar la calle,",
+      "context": "Tras acusar a PSOE, Compromís y la extrema izquierda de incompetencia, el interviniente sostiene que sus reivindicaciones actuales son una cortina de humo para ocultar casos de corrupción que afectan a 'su partido'.",
+      "topic": "other",
+      "entities": {},
+      "accusationSubtype": "opinativa",
+      "confidence": 0.8,
+      "reasoning": "Acusa de 'enormes casos de corrupción' sin nombrar caso, importe, fecha o instancia judicial concreta, por lo que no aporta entidades verificables y queda como valoración política.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-127-afi-e0ecd5",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 127,
       "type": "afirmacion_numerica",
       "speakerGroup": "VOX",
       "verbatim": "Ha puesto sobre la mesa una inversión de 3.386 millones de euros para enseñanza pública,",
-      "context": "El actual Consell sí que ha dado pasos reales, ha abierto una negociación seria con propuestas concretas, con calendario y con presupuesto. Ha puesto sobre la mesa una inversión de 3.386 millones de euros para enseñanza pública, ha previsto 7.742 nuevas plazas docentes...",
+      "context": "El interviniente describe los pasos del 'actual Consell', afirmando que ha puesto sobre la mesa una inversión de 3.386 millones de euros para enseñanza pública, dentro de una negociación con calendario y presupuesto.",
       "topic": "educacion",
       "entities": {
         "amountEuros": 3386000000,
         "referencedEntity": "inversión del consell en enseñanza pública"
       },
-      "confidence": 0.8,
-      "reasoning": "Cifra concreta de inversión atribuida al Consell que puede contrastarse contra los presupuestos de la Generalitat Valenciana en materia de educación.",
+      "confidence": 0.75,
+      "reasoning": "Cifra concreta de inversión atribuida al Consell que puede contrastarse con presupuestos autonómicos publicados de la Generalitat Valenciana.",
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-128-afi-3cb49a",
+      "id": "brxx5g-127-afi-3cb49a",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 128,
+      "segmentIndex": 127,
       "type": "afirmacion_numerica",
       "speakerGroup": null,
-      "verbatim": "ha previsto 7.742 nuevas plazas docentes",
-      "context": "Ha puesto sobre la mesa una inversión de 3.386 millones de euros para enseñanza pública, ha previsto 7.742 nuevas plazas docentes, ha impulsado una reducción progresiva de ratios,",
+      "verbatim": "ha previsto 7.742 nuevas plazas docentes,",
+      "context": "En la misma enumeración de medidas del Consell, se afirma que se han previsto 7.742 nuevas plazas docentes, además de una reducción progresiva de ratios.",
       "topic": "educacion",
       "entities": {
         "count": 7742,
         "countUnit": "plazas docentes",
-        "referencedEntity": "plan de nuevas plazas docentes de la generalitat"
+        "referencedEntity": "plazas docentes previstas por el consell"
       },
       "confidence": 0.8,
-      "reasoning": "Cifra concreta de nuevas plazas docentes que puede verificarse contra anuncios oficiales de la Conselleria de Educación.",
+      "reasoning": "Cifra concreta de plazas docentes atribuida a una decisión del Consell, contrastable con datos oficiales de Conselleria de Educación.",
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-128-pro-43162f",
+      "id": "brxx5g-127-pro-43162f",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 128,
+      "segmentIndex": 127,
       "type": "promesa",
       "speakerGroup": "VOX",
-      "verbatim": "un plan, como también ha comentado, de climatización del 100%. de los centros",
-      "context": "ha impulsado una reducción progresiva de ratios, un plan, como también ha comentado, de climatización del 100%. de los centros y una mejora retributiva que llegará a los 200 euros mensuales...",
+      "verbatim": "un plan, como también ha comentado, de climatización del 100%.",
+      "context": "Como parte de las medidas atribuidas al Consell en materia educativa, se menciona un plan de climatización del 100%, referido previamente por otra interviniente.",
       "topic": "educacion",
       "entities": {
         "count": 100,
         "countUnit": "%",
         "referencedEntity": "plan de climatización de centros educativos"
       },
-      "confidence": 0.6,
-      "reasoning": "Compromiso de climatizar el 100% de los centros educativos, verificable contra el plan de climatización anunciado por la Generalitat y su grado de ejecución.",
+      "confidence": 0.65,
+      "reasoning": "Se cita un plan concreto de climatización al 100% de centros, verificable contrastando con el plan de climatización de la Generalitat Valenciana y su grado de ejecución.",
       "requiresHumanApproval": true
     },
     {
@@ -10379,54 +10394,22 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-127-acu-c0ace9",
+      "id": "brxx5g-164-afi-07ca24",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 127,
-      "type": "acusacion_publica",
-      "speakerGroup": "VOX",
-      "verbatim": "Esto realmente es una cortina de humo para tapar los enormes casos de corrupción que sacuden a su partido y empezar a calentar motores para tratar de volver a tomar la calle,",
-      "context": "Tras acusar a PSOE, Compromís y la extrema izquierda de incompetencia, el interviniente sostiene que sus reivindicaciones actuales son una cortina de humo para ocultar casos de corrupción que afectan a 'su partido'.",
-      "topic": "other",
-      "entities": {},
-      "accusationSubtype": "opinativa",
-      "confidence": 0.8,
-      "reasoning": "Acusa de 'enormes casos de corrupción' sin nombrar caso, importe, fecha o instancia judicial concreta, por lo que no aporta entidades verificables y queda como valoración política.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-131-acu-207a20",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 131,
-      "type": "acusacion_publica",
-      "speakerGroup": "VOX",
-      "verbatim": "no suma la negociación y solo busca rédito político a costa de docentes, del familias valencianas y de los chavales que están estudiando",
-      "context": "no aporta soluciones nuevas, no suma la negociación y solo busca rédito político a costa de docentes, del familias valencianas y de los chavales que están estudiando. Gracias.",
-      "topic": "educacion",
-      "entities": {},
-      "accusationSubtype": "opinativa",
-      "confidence": 0.7,
-      "reasoning": "Es una valoración sobre la intención y el estilo político de un interlocutor no identificado en el fragmento ('busca rédito político'), sin cifras, votos ni convenios citados, por lo que no es verificable automáticamente y requiere solo revisión editorial.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-129-afi-10d8ef",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 129,
+      "segmentIndex": 164,
       "type": "afirmacion_numerica",
-      "speakerGroup": "VOX",
-      "verbatim": "como también ha comentado, de climatización del 100%. de los centros",
-      "context": "El orador enumera medidas: climatización del 100% de los centros y una mejora retributiva que llegará a los 200 euros mensuales.",
+      "speakerGroup": null,
+      "verbatim": "El 99% del alumnado cursó sus estudios en la lengua base elegida.",
+      "context": "el Consejo dio a las familias la oportunidad de elegir. El 99% del alumnado cursó sus estudios en la lengua base elegida.",
       "topic": "educacion",
       "entities": {
-        "count": 100,
-        "countUnit": "%",
-        "referencedEntity": "climatización de centros educativos"
+        "count": 99,
+        "countUnit": "% del alumnado",
+        "referencedEntity": "elección de lengua base en el sistema educativo"
       },
-      "confidence": 0.6,
-      "reasoning": "Cifra concreta (100% de climatización de centros) que puede contrastarse con datos de ejecución de infraestructuras educativas de la Generalitat.",
+      "confidence": 0.8,
+      "reasoning": "Cifra concreta de porcentaje de alumnado por lengua base elegida, contrastable con estadísticas oficiales de escolarización.",
       "requiresHumanApproval": true
     },
     {
@@ -10463,6 +10446,22 @@
       "accusationSubtype": "opinativa",
       "confidence": 0.8,
       "reasoning": "Acusa a los proponentes de la moción de buscar rédito político en vez de aportar soluciones; es un juicio de intención sin datos concretos, no verificable automáticamente pero relevante para revisión editorial.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-131-acu-207a20",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 131,
+      "type": "acusacion_publica",
+      "speakerGroup": "VOX",
+      "verbatim": "no suma la negociación y solo busca rédito político a costa de docentes, del familias valencianas y de los chavales que están estudiando",
+      "context": "no aporta soluciones nuevas, no suma la negociación y solo busca rédito político a costa de docentes, del familias valencianas y de los chavales que están estudiando. Gracias.",
+      "topic": "educacion",
+      "entities": {},
+      "accusationSubtype": "opinativa",
+      "confidence": 0.7,
+      "reasoning": "Es una valoración sobre la intención y el estilo político de un interlocutor no identificado en el fragmento ('busca rédito político'), sin cifras, votos ni convenios citados, por lo que no es verificable automáticamente y requiere solo revisión editorial.",
       "requiresHumanApproval": true
     },
     {
@@ -10566,41 +10565,6 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-137-cit-0d7f08",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 137,
-      "type": "cita_obra",
-      "speakerGroup": null,
-      "verbatim": "en els cervantes puguen tindre per a l'alumnat unes condicions molt més dignes perquè ara mateix no els tenen",
-      "context": "doncs xuns, com a poble, demanar que, per lo menos, en els cervantes puguen tindre per a l'alumnat unes condicions molt més dignes perquè ara mateix no els tenen.",
-      "topic": "educacion",
-      "entities": {
-        "referencedEntity": "col·legi/ceip cervantes"
-      },
-      "confidence": 0.55,
-      "reasoning": "Afirma que el centre educatiu 'Cervantes' no dispone actualmente de condiciones dignas para el alumnado; verificable contrastando el estado de las instalaciones y posibles actuaciones/inversiones registradas para ese centro. Transcripción degradada (Whisper), no está claro si 'cervantes' se refiere efectivamente al nombre del colegio.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-137-acu-aeda1f",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 137,
-      "type": "acusacion_publica",
-      "speakerGroup": null,
-      "verbatim": "respecte a l'estudiantat i respecte al professorat, que de vegades a l'extrema dreta i a la dreta se li oblida",
-      "context": "respecte a la família, respecte a l'estudiantat i respecte al professorat, que de vegades a l'extrema dreta i a la dreta se li oblida.",
-      "topic": "educacion",
-      "entities": {
-        "referencedEntity": "extrema dreta i dreta"
-      },
-      "accusationSubtype": "opinativa",
-      "confidence": 0.65,
-      "reasoning": "Es una valoración sobre la actitud/intención de 'l'extrema dreta i la dreta' respecto al respeto hacia familias, estudiantado y profesorado, sin cifras ni hechos concretos citados; no verificable automáticamente, solo revisión editorial.",
-      "requiresHumanApproval": true
-    },
-    {
       "id": "brxx5g-136-cit-ed9dc9",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
@@ -10650,6 +10614,41 @@
       "accusationSubtype": "factual",
       "confidence": 0.5,
       "reasoning": "Assenyala que el Partit Popular té la competència administrativa sobre les infraestructures del col·legi Cervantes i que les condicions actuals no són dignes; verificable contrastant quina administració té realment la competència i l'estat documentat del centre.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-137-cit-0d7f08",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 137,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "en els cervantes puguen tindre per a l'alumnat unes condicions molt més dignes perquè ara mateix no els tenen",
+      "context": "doncs xuns, com a poble, demanar que, per lo menos, en els cervantes puguen tindre per a l'alumnat unes condicions molt més dignes perquè ara mateix no els tenen.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "col·legi/ceip cervantes"
+      },
+      "confidence": 0.55,
+      "reasoning": "Afirma que el centre educatiu 'Cervantes' no dispone actualmente de condiciones dignas para el alumnado; verificable contrastando el estado de las instalaciones y posibles actuaciones/inversiones registradas para ese centro. Transcripción degradada (Whisper), no está claro si 'cervantes' se refiere efectivamente al nombre del colegio.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-137-acu-aeda1f",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 137,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "respecte a l'estudiantat i respecte al professorat, que de vegades a l'extrema dreta i a la dreta se li oblida",
+      "context": "respecte a la família, respecte a l'estudiantat i respecte al professorat, que de vegades a l'extrema dreta i a la dreta se li oblida.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "extrema dreta i dreta"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.65,
+      "reasoning": "Es una valoración sobre la actitud/intención de 'l'extrema dreta i la dreta' respecto al respeto hacia familias, estudiantado y profesorado, sin cifras ni hechos concretos citados; no verificable automáticamente, solo revisión editorial.",
       "requiresHumanApproval": true
     },
     {
@@ -10778,22 +10777,22 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-141-afi-e31e9f",
+      "id": "brxx5g-157-afi-42e249",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 141,
+      "segmentIndex": 157,
       "type": "afirmacion_numerica",
       "speakerGroup": null,
-      "verbatim": "El Consejo va a decidir cuestionar las últimas 15 delegaciones de competencias del plan edificante, alegando que se habían aprobado pero un Gobierno en funciones.",
-      "context": "El Consejo va a decidir cuestionar las últimas 15 delegaciones de competencias del plan edificante, alegando que se habían aprobado pero un Gobierno en funciones. [...] pero el tribunal le recuerda una cosa elemental.",
+      "verbatim": "Se han creado 19 nuevos ciclos de formación profesional para el curso siguiente.",
+      "context": "Se han creado 19 nuevos ciclos de formación profesional para el curso siguiente. Porque lo que se pretende es blindar la formación profesional pública para una mejor capacitación y conectada con el tejido productivo.",
       "topic": "educacion",
       "entities": {
-        "count": 15,
-        "countUnit": "delegaciones de competencias",
-        "referencedEntity": "plan edificant"
+        "count": 19,
+        "countUnit": "ciclos de formación profesional",
+        "referencedEntity": "formación profesional pública"
       },
-      "confidence": 0.5,
-      "reasoning": "Cifra concreta (15 delegaciones) sobre un cuestionamiento pendiente del Plan Edificant, verificable contra actas o resoluciones del órgano consultivo mencionado; la frase está algo degradada por Whisper (\"pero un Gobierno en funciones\").",
+      "confidence": 0.8,
+      "reasoning": "Cifra concreta de nuevos ciclos formativos creados, verificable contra la oferta educativa publicada por la Conselleria para el curso siguiente.",
       "requiresHumanApproval": true
     },
     {
@@ -10922,21 +10921,39 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-145-acu-1d76c6",
+      "id": "brxx5g-144-acu-1d76c6",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 145,
+      "segmentIndex": 144,
       "type": "acusacion_publica",
       "speakerGroup": null,
       "verbatim": "El que han fet fins ara no és millorar eixos instruments, sinó intentar frenar-lo, retallar-lo o desacreditar-lo.",
-      "context": "venen del Pla Edificant. El que han fet fins ara no és millorar eixos instruments, sinó intentar frenar-lo, retallar-lo o desacreditar-lo.",
+      "context": "...la immensa majoria d'aquestes actuacions venen del Pla Edificant. El que han fet fins ara no és millorar eixos instruments, sinó intentar frenar-lo, retallar-lo o desacreditar-lo.",
       "topic": "educacion",
       "entities": {
         "referencedEntity": "pla edificant"
       },
       "accusationSubtype": "opinativa",
       "confidence": 0.55,
-      "reasoning": "Acusación genérica de que ciertos actores no institucionales intentan frenar, retallar o desacreditar el Pla Edificant, sin cifras ni hechos concretos verificables; queda como valoración de conducta política sujeta solo a revisión editorial.",
+      "reasoning": "Acusa el govern actual d'intentar frenar, retallar o desacreditar el Pla Edificant en lloc de millorar-lo; no s'aporten xifres pressupostàries ni fets concrets en aquest fragment, per la qual cosa és més aviat una valoració política.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-144-acu-1d115b",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 144,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "que es preocupe menys de fabricar excuses contra la gestió anterior i més de resoldre els problemes reals de l'educació pública valenciana",
+      "context": "Hem de reclamar a la Conselleria d'Educació que es preocupe menys de fabricar excuses contra la gestió anterior i més de resoldre els problemes reals de l'educació pública valenciana.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "conselleria d'educació"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.5,
+      "reasoning": "És una demanda retòrica que acusa la Conselleria d'Educació de 'fabricar excuses' contra la gestió anterior, valoració d'intenció sense dades verificables objectivament.",
       "requiresHumanApproval": true
     },
     {
@@ -10995,21 +11012,37 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-144-acu-1d115b",
+      "id": "brxx5g-147-cit-ddba2b",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 144,
-      "type": "acusacion_publica",
+      "segmentIndex": 147,
+      "type": "cita_obra",
       "speakerGroup": null,
-      "verbatim": "que es preocupe menys de fabricar excuses contra la gestió anterior i més de resoldre els problemes reals de l'educació pública valenciana",
-      "context": "Hem de reclamar a la Conselleria d'Educació que es preocupe menys de fabricar excuses contra la gestió anterior i més de resoldre els problemes reals de l'educació pública valenciana.",
+      "verbatim": "el Cervantes del nostre municipi",
+      "context": "Parlaríem de de projectes bloquejats com bé dia el company d'Esquerra Unida Unida i Podemos, com el Cervantes del nostre municipi o el pavelló del Mas de Escoto.",
       "topic": "educacion",
       "entities": {
-        "referencedEntity": "conselleria d'educació"
+        "referencedEntity": "cervantes (proyecto citado como bloqueado)"
       },
-      "accusationSubtype": "opinativa",
-      "confidence": 0.5,
-      "reasoning": "És una demanda retòrica que acusa la Conselleria d'Educació de 'fabricar excuses' contra la gestió anterior, valoració d'intenció sense dades verificables objectivament.",
+      "confidence": 0.55,
+      "reasoning": "Se cita un proyecto concreto (el 'Cervantes' del municipio) como ejemplo de obra bloqueada; se puede contrastar con el estado real de tramitación o ejecución de esa obra.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-147-cit-75870f",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 147,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "el pavelló del Mas de Escoto",
+      "context": "Parlaríem de de projectes bloquejats com bé dia el company d'Esquerra Unida Unida i Podemos, com el Cervantes del nostre municipi o el pavelló del Mas de Escoto.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "pavelló del mas de escoto (proyecto citado como bloqueado)"
+      },
+      "confidence": 0.55,
+      "reasoning": "Se cita el pabellón del Mas de Escoto como proyecto bloqueado, verificable contra el estado administrativo/constructivo real de esa infraestructura.",
       "requiresHumanApproval": true
     },
     {
@@ -11068,22 +11101,22 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-148-afi-84ef16",
+      "id": "brxx5g-159-afi-c722b6",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 148,
+      "segmentIndex": 159,
       "type": "afirmacion_numerica",
       "speakerGroup": null,
-      "verbatim": "més del 80% del professorat no ha signat ni ha ratificat ni està d'acord en eixa proposta",
-      "context": "se és l'únic que la majoria estan d'acord. Però més del 80% del professorat no ha signat ni ha ratificat ni està d'acord en eixa proposta. Per això la vaga no s'ha desconvocat oficialment.",
+      "verbatim": "Se han abierto 82 nuevas aulas hueco en dos cursos.",
+      "context": "No tiene nada que ver con el acuerdo... Se han abierto 82 nuevas aulas hueco en dos cursos.",
       "topic": "educacion",
       "entities": {
-        "count": 80,
-        "countUnit": "% del profesorado",
-        "referencedEntity": "propuesta de acuerdo consellería-profesorado en huelga"
+        "count": 82,
+        "countUnit": "aulas",
+        "referencedEntity": "aulas hueco"
       },
-      "confidence": 0.6,
-      "reasoning": "Porcentaje concreto de rechazo del profesorado a la propuesta de acuerdo, verificable contra resultados de asambleas o votaciones sindicales publicadas.",
+      "confidence": 0.7,
+      "reasoning": "Cifra concreta de aulas nuevas abiertas en dos cursos escolares, contrastable con datos oficiales de infraestructura educativa; 'aulas hueco' podría ser una degradación de Whisper.",
       "requiresHumanApproval": true
     },
     {
@@ -11193,73 +11226,39 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-147-cit-ddba2b",
+      "id": "brxx5g-150-acu-24cb1f",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 147,
-      "type": "cita_obra",
-      "speakerGroup": null,
-      "verbatim": "el Cervantes del nostre municipi",
-      "context": "Parlaríem de de projectes bloquejats com bé dia el company d'Esquerra Unida Unida i Podemos, com el Cervantes del nostre municipi o el pavelló del Mas de Escoto.",
-      "topic": "educacion",
-      "entities": {
-        "referencedEntity": "cervantes (proyecto citado como bloqueado)"
-      },
-      "confidence": 0.55,
-      "reasoning": "Se cita un proyecto concreto (el 'Cervantes' del municipio) como ejemplo de obra bloqueada; se puede contrastar con el estado real de tramitación o ejecución de esa obra.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-147-cit-75870f",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 147,
-      "type": "cita_obra",
-      "speakerGroup": null,
-      "verbatim": "el pavelló del Mas de Escoto",
-      "context": "Parlaríem de de projectes bloquejats com bé dia el company d'Esquerra Unida Unida i Podemos, com el Cervantes del nostre municipi o el pavelló del Mas de Escoto.",
-      "topic": "urbanismo",
-      "entities": {
-        "referencedEntity": "pavelló del mas de escoto (proyecto citado como bloqueado)"
-      },
-      "confidence": 0.55,
-      "reasoning": "Se cita el pabellón del Mas de Escoto como proyecto bloqueado, verificable contra el estado administrativo/constructivo real de esa infraestructura.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "brxx5g-151-acu-24cb1f",
-      "plenoId": "brxx5g",
-      "plenoDate": "2026-07-06",
-      "segmentIndex": 151,
+      "segmentIndex": 150,
       "type": "acusacion_publica",
       "speakerGroup": null,
       "verbatim": "incrementar les plantilles docents, tampoc s'ha arribat a acord,",
-      "context": "I aquests hauran de fer els seus deures i el govern valencià haurà de fer els deures i baixar les ràtios, incrementar les plantilles docents, tampoc s'ha arribat a acord, reforçar el personal especialitzat d'atenció a la diversitat...",
+      "context": "I aquests hauran de fer els seus deures i el govern valencià haurà de fer els deures i baixar les ràtios, incrementar les plantilles docents, tampoc s'ha arribat a acord.",
       "topic": "educacion",
       "entities": {
-        "referencedEntity": "negociacions educatives amb el govern valencià"
+        "referencedEntity": "plantilles docents"
       },
       "accusationSubtype": "factual",
-      "confidence": 0.6,
-      "reasoning": "Afirma que no se alcanzó acuerdo en la negociación sobre incremento de plantillas docentes con el govern valencià; verificable contra actas o acuerdos oficiales de esa mesa negociadora.",
+      "confidence": 0.7,
+      "reasoning": "Afirma que no se ha alcanzado acuerdo para incrementar las plantillas docentes; verificable con las actas de negociación entre sindicatos educativos y la conselleria d'Educació.",
       "requiresHumanApproval": true
     },
     {
-      "id": "brxx5g-151-acu-fb2fe9",
+      "id": "brxx5g-150-acu-fb2fe9",
       "plenoId": "brxx5g",
       "plenoDate": "2026-07-06",
-      "segmentIndex": 151,
+      "segmentIndex": 150,
       "type": "acusacion_publica",
       "speakerGroup": null,
       "verbatim": "Reduir la càrrega burocràtica ahí, en eixe bloc, és l'únic que s'ha arribat.",
-      "context": "estabilitzar plantilles i reduir la temporalitat, millorar les condicions generals del professorat. Reduir la càrrega burocràtica ahí, en eixe bloc, és l'únic que s'ha arribat. Garantir unes infraestructures educatives adequades...",
+      "context": "millorar les condicions generals del professorat. Reduir la càrrega burocràtica ahí, en eixe bloc, és l'únic que s'ha arribat.",
       "topic": "educacion",
       "entities": {
-        "referencedEntity": "negociacions educatives amb el govern valencià"
+        "referencedEntity": "càrrega burocràtica del professorat"
       },
       "accusationSubtype": "factual",
-      "confidence": 0.55,
-      "reasoning": "Afirma que del bloque de puntos negociados en materia educativa, únicamente se alcanzó acuerdo en la reducción de la carga burocrática; contrastable con las actas o resultados oficiales de esa negociación por punto.",
+      "confidence": 0.7,
+      "reasoning": "Afirma que la reducción de la carga burocrática docente es el único punto en que sí se ha alcanzado acuerdo; verificable contrastando con los acuerdos publicados de la mesa sectorial educativa.",
       "requiresHumanApproval": true
     },
     {
@@ -11331,6 +11330,1521 @@
       "accusationSubtype": "factual",
       "confidence": 0.75,
       "reasoning": "Afirmació concreta sobre l'estat d'aprovació definitiva del pressupost municipal, contrastable amb l'acta de plens i el calendari oficial d'aprovació pressupostària.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-154-afi-429816",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 154,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "aquests 3,3 milions que ens han promès",
+      "context": "Una vegada veguem els pressupostos reflectits, aquests 3,3 milions que ens han promès, ja veurem.",
+      "topic": "educacion",
+      "entities": {
+        "amountEuros": 3300000,
+        "referencedEntity": "fons promesos (probablement climatització de col·legis)"
+      },
+      "confidence": 0.55,
+      "reasoning": "Cifra concreta (3,3 millones) presentada como cantidad prometida y pendiente de verse reflejada en presupuestos, verificable contra los presupuestos municipales/autonómicos publicados.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-154-cit-703df3",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 154,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "la climatització que duem anys esperant",
+      "context": "però ho dubtem molt perquè a les proves ens remetem quan estem parlant de la climatització que duem anys esperant i estem parlant de l'edificant.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "climatització de col·legis (pendent des de fa anys)"
+      },
+      "confidence": 0.6,
+      "reasoning": "Referencia a una obra concreta de climatización escolar pendiente desde hace años, contrastable contra el estado real de ejecución de ese proyecto.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-154-cit-b0810f",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 154,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "estem parlant de l'edificant",
+      "context": "quan estem parlant de la climatització que duem anys esperant i estem parlant de l'edificant.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "pla edificant (generalitat valenciana)"
+      },
+      "confidence": 0.5,
+      "reasoning": "Mención explícita del Pla Edificant, programa de infraestructuras educativas de la Generalitat, verificable contra el listado oficial de actuaciones/convenios del plan.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-154-pro-d70a39",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 154,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "eixa climatització que ara se'ns promet",
+      "context": "Més encara, eixa climatització que ara se'ns promet.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "climatització en col·legis antics"
+      },
+      "confidence": 0.6,
+      "reasoning": "Se menciona una promesa concreta y reciente de climatización escolar, verificable comprobando si posteriormente se ejecutó o se incumplió.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-154-acu-3ff376",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 154,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "no és la voluntat de la conselleria, i ho sabem",
+      "context": "I no és la voluntat de la conselleria, i ho sabem.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "conselleria d'educació"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.5,
+      "reasoning": "Afirmación sobre la intención/voluntad política de la Conselleria, sin datos verificables, por lo que solo puede tratarse como valoración editorial.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-155-acu-b63cf1",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 155,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "però ho dubtem molt perquè a les proves ens remetem quan estem parlant de la climatització que duem anys esperant i estem parlant de l'edificant.",
+      "context": "però ho dubtem molt perquè a les proves ens remetem quan estem parlant de la climatització que duem anys esperant i estem parlant de l'edificant. Més encara, eixa climatització que ara se'ns promet.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "pla edificant / climatització escolar"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.5,
+      "reasoning": "El hablante duda de la credibilidad del compromiso de climatización dentro del Pla Edificant tras años de espera; es un juicio de valor sin cifras concretas, pero remite a un programa verificable (Edificant) cuyo estado de ejecución en el municipio podría contrastarse.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-153-pro-820531",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 153,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "aquests 3,3 milions que ens han promès",
+      "context": "Una vegada veguem els pressupostos reflectits, aquests 3,3 milions que ens han promès, ja veurem. Des del principi de l'emoció han dit, ja veurem.",
+      "topic": "educacion",
+      "entities": {
+        "amountEuros": 3300000,
+        "referencedEntity": "climatització escolar / pla edificant"
+      },
+      "confidence": 0.55,
+      "reasoning": "Cita una promesa concreta de 3,3 millones de euros vinculada a la climatización escolar, verificable contrastando con las partidas del presupuesto municipal una vez aprobado definitivamente.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-153-cit-b27b2e",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 153,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "estem parlant de la climatització que duem anys esperant i estem parlant de l'edificant",
+      "context": "però ho dubtem molt perquè a les proves ens remetem quan estem parlant de la climatització que duem anys esperant i estem parlant de l'edificant.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "pla edificant / climatización escolar"
+      },
+      "confidence": 0.6,
+      "reasoning": "Referencia un proyecto de climatización escolar pendiente desde hace años en el marco del Pla Edificant, verificable contra el estado real de ejecución de dicho plan en los centros del municipio.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-156-afi-18fcbe",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 156,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "La diferencia con respecto al inicio de la legislatura es de más de 8.000 docentes.",
+      "context": "Durante la presente legislatura, el PP de la comunidad valenciana ha realizado un gran esfuerzo para aumentar la plantilla docente. La diferencia con respecto al inicio de la legislatura es de más de 8.000 docentes.",
+      "topic": "educacion",
+      "entities": {
+        "count": 8000,
+        "countUnit": "docentes",
+        "referencedEntity": "plantilla docente comunitat valenciana"
+      },
+      "confidence": 0.75,
+      "reasoning": "Cifra concreta de aumento de plantilla docente durante la legislatura, contrastable con datos de la Conselleria d'Educació sobre número de docentes.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-156-afi-8e8db0",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 156,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "Docentes, de ellos 700 son personal de apoyo a la inclusión para alumnado con necesidades educativas especiales.",
+      "context": "La diferencia con respecto al inicio de la legislatura es de más de 8.000 docentes. Docentes, de ellos 700 son personal de apoyo a la inclusión para alumnado con necesidades educativas especiales.",
+      "topic": "educacion",
+      "entities": {
+        "count": 700,
+        "countUnit": "personal de apoyo a la inclusión",
+        "referencedEntity": "alumnado con necesidades educativas especiales"
+      },
+      "confidence": 0.75,
+      "reasoning": "Cifra concreta de personal de apoyo a la inclusión dentro del aumento docente citado, verificable contra datos oficiales de plantilla educativa.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-156-pro-eb76f4",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 156,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "Se ha planteado la bajada de ratios que usted comentaba, todavía más ambiciosa que la del ministerio, sobre todo en bachillerato.",
+      "context": "Se ha planteado la bajada de ratios que usted comentaba, todavía más ambiciosa que la del ministerio, sobre todo en bachillerato.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "bajada de ratios en bachillerato"
+      },
+      "confidence": 0.55,
+      "reasoning": "Compromiso de política educativa (reducción de ratios, especialmente en bachillerato) comparado con la propuesta del ministerio, verificable contra normativa o planes publicados por la Conselleria.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-158-cit-7c97a5",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 158,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "Se ha generado un plan de climatización de las aulas.",
+      "context": "Es tiempo de hacerlo y lo hicieron. Se ha generado un plan de climatización de las aulas. El compromiso del presidente es dotar 1.400 millones de euros para infraestructuras...",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "plan de climatización de las aulas"
+      },
+      "confidence": 0.6,
+      "reasoning": "Referencia a un plan/proyecto concreto de climatización de aulas cuya existencia y alcance puede contrastarse con documentación oficial del plan.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-158-pro-77a065",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 158,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "El compromiso del presidente es dotar 1.400 millones de euros para infraestructuras",
+      "context": "El compromiso del presidente es dotar 1.400 millones de euros para infraestructuras, que para este año ya incluye 32 millones en la climatización de centros y 10 millones para el plan Recole,",
+      "topic": "educacion",
+      "entities": {
+        "amountEuros": 1400000000,
+        "referencedEntity": "infraestructuras educativas"
+      },
+      "confidence": 0.75,
+      "reasoning": "Compromiso presupuestario con cifra concreta (1.400 millones de euros) contrastable con los presupuestos de infraestructuras educativas anunciados.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-158-afi-89e5a9",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 158,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "que para este año ya incluye 32 millones en la climatización de centros",
+      "context": "El compromiso del presidente es dotar 1.400 millones de euros para infraestructuras, que para este año ya incluye 32 millones en la climatización de centros y 10 millones para el plan Recole,",
+      "topic": "educacion",
+      "entities": {
+        "amountEuros": 32000000,
+        "referencedEntity": "climatización de centros educativos"
+      },
+      "confidence": 0.75,
+      "reasoning": "Cifra concreta de inversión anual en climatización de centros escolares, verificable contra el presupuesto ejecutado o anunciado para este año.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-158-cit-b3117a",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 158,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "y 10 millones para el plan Recole,",
+      "context": "que para este año ya incluye 32 millones en la climatización de centros y 10 millones para el plan Recole, que permite dar subvenciones a los ayuntamientos para realizar reparaciones en centros escolares...",
+      "topic": "educacion",
+      "entities": {
+        "amountEuros": 10000000,
+        "referencedEntity": "plan recole"
+      },
+      "confidence": 0.75,
+      "reasoning": "Dotación concreta a un programa nominado (plan Recole) verificable contra las líneas de subvención publicadas en BDNS u otro registro oficial.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-158-cit-2d6a42",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 158,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "que permite dar subvenciones a los ayuntamientos para realizar reparaciones en centros escolares independientemente del acuerdo.",
+      "context": "10 millones para el plan Recole, que permite dar subvenciones a los ayuntamientos para realizar reparaciones en centros escolares independientemente del acuerdo.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "plan recole - subvenciones a ayuntamientos para reparaciones en centros escolares"
+      },
+      "confidence": 0.6,
+      "reasoning": "Describe el alcance de un programa de subvenciones a ayuntamientos, contrastable con las bases y resoluciones de concesión del plan Recole publicadas.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-159-acu-da0194",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 159,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Cuando ustedes con el Botanic en toda la legislatura abrieron 56,",
+      "context": "Se han abierto 82 nuevas aulas hueco en dos cursos. Cuando ustedes con el Botanic en toda la legislatura abrieron 56, se prevé aún así la creación de un mínimo de 36 nuevas aulas para el próximo curso.",
+      "topic": "educacion",
+      "entities": {
+        "count": 56,
+        "countUnit": "aulas",
+        "referencedEntity": "botanic"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.6,
+      "reasoning": "Se acusa a un gobierno anterior (identificado como 'el Botanic') de haber abierto solo 56 aulas en toda una legislatura, cifra concreta contrastable con registros de infraestructura educativa de ese periodo.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-159-pro-bb1242",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 159,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "se prevé aún así la creación de un mínimo de 36 nuevas aulas para el próximo curso,",
+      "context": "Cuando ustedes con el Botanic en toda la legislatura abrieron 56, se prevé aún así la creación de un mínimo de 36 nuevas aulas para el próximo curso,",
+      "topic": "educacion",
+      "entities": {
+        "count": 36,
+        "countUnit": "aulas",
+        "referencedEntity": "nuevas aulas próximo curso"
+      },
+      "confidence": 0.75,
+      "reasoning": "Compromiso concreto de creación de un número mínimo de aulas para el curso siguiente, verificable en el tiempo contra la apertura efectiva de aulas.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-160-pro-86b0bc",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 160,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "con un incremento mínimo de 108 profesionales de atención a la inclusión.",
+      "context": "se prevé aún así la creación de un mínimo de 36 nuevas aulas para el próximo curso, con un incremento mínimo de 108 profesionales de atención a la inclusión. Cuantas más se habiliten más profesionales.",
+      "topic": "educacion",
+      "entities": {
+        "count": 108,
+        "countUnit": "profesionales",
+        "referencedEntity": "profesionales de atención a la inclusión"
+      },
+      "confidence": 0.75,
+      "reasoning": "Cifra de incremento previsto de profesionales de atención a la inclusión, verificable en las plantillas o convocatorias educativas publicadas.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-160-cit-abb574",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 160,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "Con respecto al plan edificant heredado tan necesario en nuestro pueblo, hace cinco meses recibimos la visita del director general de infraestructuras educativas.",
+      "context": "Cuantas más se habiliten más profesionales. Con respecto al plan edificant heredado tan necesario en nuestro pueblo, hace cinco meses recibimos la visita del director general de infraestructuras educativas. José María Lariena Berrocal,",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "plan edificant heredado"
+      },
+      "confidence": 0.55,
+      "reasoning": "Referencia a una visita oficial del director general de infraestructuras educativas relacionada con el Plan Edificant, verificable mediante agenda institucional de la Generalitat; posible distorsión de nombres propios por Whisper.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-161-afi-6ba0b9",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 161,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "se prevé aún así la creación de un mínimo de 36 nuevas aulas para el próximo curso,",
+      "context": "se prevé aún así la creación de un mínimo de 36 nuevas aulas para el próximo curso, con un incremento mínimo de 108 profesionales de atención a la inclusión.",
+      "topic": "educacion",
+      "entities": {
+        "count": 36,
+        "countUnit": "aulas",
+        "referencedEntity": "próximo curso escolar"
+      },
+      "confidence": 0.8,
+      "reasoning": "Cifra concreta de nuevas aulas previstas para el próximo curso, verificable contra la planificación de la Conselleria de Educación o los datos de escolarización municipal.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-161-afi-e7f12c",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 161,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "con un incremento mínimo de 108 profesionales de atención a la inclusión.",
+      "context": "la creación de un mínimo de 36 nuevas aulas para el próximo curso, con un incremento mínimo de 108 profesionales de atención a la inclusión. Cuantas más se habiliten más profesionales.",
+      "topic": "educacion",
+      "entities": {
+        "count": 108,
+        "countUnit": "profesionales",
+        "referencedEntity": "atención a la inclusión"
+      },
+      "confidence": 0.8,
+      "reasoning": "Cifra concreta de profesionales de atención a la inclusión, verificable contra las plantillas de personal educativo publicadas por la Conselleria.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-161-cit-616b80",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 161,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "hace cinco meses recibimos la visita del director general de infraestructuras educativas. José María Lariena Berrocal, quien visitó el Cid Cervantes para conocer de primera mano el estado de las instalaciones educativas y comprometerse en la agilización de los trámites que permitan la ejecución.",
+      "context": "Con respecto al plan edificant heredado tan necesario en nuestro pueblo, hace cinco meses recibimos la visita del director general de infraestructuras educativas, José María Lariena Berrocal, quien visitó el Cid Cervantes para conocer de primera mano el estado de las instalaciones educativas y comprometerse en la agilización de los trámites que permitan la ejecución.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "plan edificant / ceip cid cervantes"
+      },
+      "confidence": 0.5,
+      "reasoning": "Referencia a una visita institucional concreta y a un compromiso de agilizar trámites del Plan Edificant en el centro Cid Cervantes; verificable contra agenda oficial y actas, aunque el nombre propio puede estar distorsionado por Whisper.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-161-acu-7926b2",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 161,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Eso es voluntad de diálogo, no lo que ustedes hacen.",
+      "context": "y comprometerse en la agilización de los trámites que permitan la ejecución. Eso es voluntad de diálogo, no lo que ustedes hacen.",
+      "topic": "educacion",
+      "entities": {},
+      "accusationSubtype": "opinativa",
+      "confidence": 0.5,
+      "reasoning": "Valoración de estilo/actitud sin cifras ni entidades concretas, no verificable automáticamente, solo revisión editorial.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-161-acu-f9a33c",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 161,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Hace ocho años con el Botanic, ¿a qué se comprometieron ustedes a iniciar la ejecución? Porque todavía no está.",
+      "context": "Eso es voluntad de diálogo, no lo que ustedes hacen. Hace ocho años con el Botanic, ¿a qué se comprometieron ustedes a iniciar la ejecución? Porque todavía no está.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "plan edificant (gobierno del botanic)"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.55,
+      "reasoning": "Acusación sobre un compromiso de ejecución de obra no cumplido bajo el gobierno del Botanic hace ocho años, verificable contrastando el estado real de ejecución del Plan Edificant en ese periodo.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-164-afi-3d2645",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 164,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "Más personas que nunca estudian valenciano en nuestra comunidad gracias al desarrollo de un plan de formación del profesorado con especial incidencia en las comarcas de predominio lingüístico castellano.",
+      "context": "Más personas que nunca estudian valenciano en nuestra comunidad gracias al desarrollo de un plan de formación del profesorado con especial incidencia en las comarcas de predominio lingüístico castellano.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "plan de formación del profesorado en comarcas de predominio lingüístico castellano"
+      },
+      "confidence": 0.55,
+      "reasoning": "Afirma un récord histórico de estudiantes de valenciano vinculado a un plan de formación docente, contrastable con datos de matriculación y ejecución del plan aunque no cita cifra exacta.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-164-acu-3a91a0",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 164,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "se empeñan en establecer como línea roja el derogar una ley que formaba parte del programa del Partido Popular y que fue lo que votaron mayoritariamente los ciudadanos",
+      "context": "Ustedes, junto a los sindicatos de izquierda, se empeñan en establecer como línea roja el derogar una ley que formaba parte del programa del Partido Popular y que fue lo que votaron mayoritariamente los ciudadanos, lo que pretenden es ir en contra del poder legislativo.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "ley de plurilingüismo/programa electoral del partido popular"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.5,
+      "reasoning": "Se acusa a un grupo de exigir derogar una ley vinculada a un programa electoral y a un resultado electoral concreto, verificable contrastando el texto legal y los resultados de las elecciones referidas.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-164-acu-faa456",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 164,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "como en el punto nueve de esta moción, donde hacen referencia a País Valenciá.",
+      "context": "Hablan de identidad valenciana, pero lo que hacen es atacar nuestra identidad, como en el punto nueve de esta moción, donde hacen referencia a País Valenciá.",
+      "topic": "cultura",
+      "entities": {
+        "referencedEntity": "moción debatida, punto 9 - término 'país valenciá'"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.65,
+      "reasoning": "Afirmación sobre el contenido literal del punto 9 de una moción concreta, verificable cotejando el texto oficial de la moción presentada en el pleno.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-162-pro-c47053",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 162,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "quien visitó el Cid Cervantes para conocer de primera mano el estado de las instalaciones educativas y comprometerse en la agilización de los trámites que permitan la ejecución.",
+      "context": "quien visitó el Cid Cervantes para conocer de primera mano el estado de las instalaciones educativas y comprometerse en la agilización de los trámites que permitan la ejecución. Eso es voluntad de diálogo, no lo que ustedes hacen.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "cid cervantes (instalaciones educativas)"
+      },
+      "confidence": 0.55,
+      "reasoning": "Se refiere a una visita y compromiso concretos de agilizar trámites para la ejecución de obras en un centro educativo; verificable contra actas de la conselleria o expedientes administrativos. El nombre 'Cid Cervantes' puede estar distorsionado por Whisper.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-162-pro-ce0ea5",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 162,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "en la última mesa de negociación la consellera explicó a los sindicatos que el montante que la consellería se ha ahorrado en sueldos por la huelga se destinará a las mejoras propuestas.",
+      "context": "Mencionan ustedes en la moción lo que la consellería se había ahorrado. Pues bien, en la última mesa de negociación la consellera explicó a los sindicatos que el montante que la consellería se ha ahorrado en sueldos por la huelga se destinará a las mejoras propuestas.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "ahorro en sueldos por huelga - conselleria d'educació"
+      },
+      "confidence": 0.6,
+      "reasoning": "Reporta un compromiso concreto expresado en una mesa de negociación con sindicatos sobre el destino de fondos ahorrados; verificable mediante actas de la negociación o declaraciones oficiales de la consellera, aunque no se cita el importe exacto.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-163-pro-335044",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 163,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "el montante que la consellería se ha ahorrado en sueldos por la huelga se destinará a las mejoras propuestas",
+      "context": "Pues bien, en la última mesa de negociación la consellera explicó a los sindicatos que el montante que la consellería se ha ahorrado en sueldos por la huelga se destinará a las mejoras propuestas.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "ahorro en sueldos por huelga destinado a mejoras"
+      },
+      "confidence": 0.6,
+      "reasoning": "Es un compromiso concreto atribuido a la consellera en una mesa de negociación; verificable contrastando actas sindicales o declaraciones oficiales sobre el destino del ahorro salarial por huelga.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-165-acu-a497c3",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 165,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "se empeñan en establecer como línea roja el derogar una ley que formaba parte del programa del Partido Popular y que fue lo que votaron mayoritariamente los ciudadanos, lo que pretenden es ir en contra del poder legislativo.",
+      "context": "se empeñan en establecer como línea roja el derogar una ley que formaba parte del programa del Partido Popular y que fue lo que votaron mayoritariamente los ciudadanos, lo que pretenden es ir en contra del poder legislativo.",
+      "topic": "other",
+      "entities": {
+        "referencedEntity": "programa electoral del partido popular"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.65,
+      "reasoning": "Acusación sobre intenciones políticas de un grupo no identificado en el fragmento; no cita ley concreta ni cifras de votación, por lo que es de naturaleza valorativa y no automáticamente verificable.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-165-acu-e2e9fb",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 165,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "como en el punto nueve de esta moción, donde hacen referencia a País Valenciá.",
+      "context": "Hablan de identidad valenciana, pero lo que hacen es atacar nuestra identidad, como en el punto nueve de esta moción, donde hacen referencia a País Valenciá.",
+      "topic": "cultura",
+      "entities": {
+        "count": 9,
+        "countUnit": "punto",
+        "referencedEntity": "moción (punto 9)"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.75,
+      "reasoning": "Se atribuye un término textual concreto ('País Valenciá') al punto 9 de una moción específica, algo verificable cotejando el texto original de la moción presentada al pleno.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-165-acu-b0dcd7",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 165,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "en el artículo 1.1 del Estatuto de Autonomía establece que la denominación oficial de nuestro territorio es Comunidad Valenciana, y es precisamente ese el término que debe utilizarse cuando se hace referencia a ella.",
+      "context": "Les recuerdo que en el artículo 1.1 del Estatuto de Autonomía establece que la denominación oficial de nuestro territorio es Comunidad Valenciana, y es precisamente ese el término que debe utilizarse cuando se hace referencia a ella.",
+      "topic": "cultura",
+      "entities": {
+        "referencedEntity": "estatuto de autonomía, artículo 1.1"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.8,
+      "reasoning": "Cita un artículo legal concreto (1.1 del Estatuto de Autonomía) y su contenido sobre la denominación oficial del territorio, contrastable con el texto legal publicado.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-170-afi-514e12",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 170,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "78.500 docentes, la cifra más alta registrada hasta ahora en la Comunidad Valenciana.",
+      "context": "78.500 docentes, la cifra más alta registrada hasta ahora en la Comunidad Valenciana. Y van a la huelga. No me digan que lo que quieren vender es una negociación justa...",
+      "topic": "educacion",
+      "entities": {
+        "count": 78500,
+        "countUnit": "docentes",
+        "referencedEntity": "registro de docentes en la comunidad valenciana"
+      },
+      "confidence": 0.75,
+      "reasoning": "Cifra concreta presentada como récord histórico de docentes en la Comunidad Valenciana, contrastable contra estadísticas oficiales de la Conselleria de Educación.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-170-acu-d38ddf",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 170,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "cuenta con ANPE y CESIF, dos de los sindicatos más importantes.",
+      "context": "...que está abierto en marcha y que además, como he comentado antes, cuenta con ANPE y CESIF, dos de los sindicatos más importantes. Muchas gracias.",
+      "topic": "educacion",
+      "entities": {
+        "count": 2,
+        "countUnit": "sindicatos",
+        "referencedEntity": "anpe y cesif (posible degradación de csif), sindicatos docentes"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.5,
+      "reasoning": "Afirma que el proceso negociador cuenta con el respaldo de sindicatos concretos, dato verificable contrastando comunicados oficiales de esas organizaciones; nombre 'CESIF' probablemente distorsión de Whisper de 'CSIF'.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-170-acu-b649f9",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 170,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "han tenido a todos los sindicatos en contra, a todos, la de la concertada y la de la pública.",
+      "context": "A mí me parece sinceramente muy fuerte que ustedes vengan ser tío cuando han tenido a todos los sindicatos en contra, a todos, la de la concertada y la de la pública. Eso es haicina, a todos los sindicatos en contra, a todos.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "sindicatos de educación concertada y pública"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.6,
+      "reasoning": "Acusación de que la totalidad de los sindicatos de enseñanza concertada y pública se oponen al proceso; es una afirmación fáctica verificable contra comunicados públicos de dichas organizaciones sindicales, y contrasta con la afirmación previa sobre el respaldo de ANPE y CSIF.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-168-acu-107c02",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 168,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "en el pacto del botánico no se hizo absolutamente nada sino se degradó, creo, lo que es el sistema educativo valenciano",
+      "context": "Voy a ser muy breve. Efectivamente en el pacto del botánico no se hizo absolutamente nada sino se degradó, creo, lo que es el sistema educativo valenciano y ahora con este gobierno datos de la agencia EF.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "pacto del botánico"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.55,
+      "reasoning": "Es una valoración política sobre la gestión educativa durante el pacto del botánico ('creo', sin cifras ni datos concretos), por lo que no es verificable automáticamente y requiere revisión editorial.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-168-afi-3392f1",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 168,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "22 millones para empezar su vida salarial",
+      "context": "7.742 nuevas plazas docentes en los presupuestos del 26, 22 millones para empezar su vida salarial. Y un dato.",
+      "topic": "educacion",
+      "entities": {
+        "amountEuros": 22000000,
+        "referencedEntity": "gasto salarial nuevas plazas docentes"
+      },
+      "confidence": 0.6,
+      "reasoning": "Cifra de gasto salarial asociada a las nuevas plazas docentes anunciadas, verificable en las partidas de los presupuestos educativos.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-169-afi-6f757a",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 169,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "22 millones para empezar su vida salarial",
+      "context": "7.742 nuevas plazas docentes en los presupuestos del 26, 22 millones para empezar su vida salarial.",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 22000000,
+        "referencedEntity": "presupuestos 2026 comunidad valenciana"
+      },
+      "confidence": 0.5,
+      "reasoning": "Importe concreto asociado al coste salarial inicial de las nuevas plazas docentes; verificable en la partida presupuestaria correspondiente, aunque la frase es ambigua por posible corte de Whisper.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-169-acu-1cb2b0",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 169,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "No me digan que lo que quieren vender es una negociación justa cuando en realidad buscan deslegitimar un proceso que está abierto en marcha",
+      "context": "Y van a la huelga. No me digan que lo que quieren vender es una negociación justa cuando en realidad buscan deslegitimar un proceso que está abierto en marcha y que además, como he comentado antes,",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "huelga docente comunidad valenciana"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.55,
+      "reasoning": "Juicio de intenciones sobre los convocantes de la huelga sin cifras ni entidades concretas verificables; queda como valoración de carácter/intención sujeta solo a revisión editorial.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-173-acu-827b73",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 173,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "no és una bona gestió que tingueu a tots els sindicats en contra",
+      "context": "Per tant, no és una bona gestió que tingueu a tots els sindicats en contra. Heu de fer una autocrítica perquè, si s'ha fet algun mínim canvi, ha sigut per la pressió social, no per iniciativa pròpia.",
+      "topic": "empleo",
+      "entities": {
+        "referencedEntity": "sindicats"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.55,
+      "reasoning": "Afirma que la totalitat dels sindicats s'oposen a la gestió, una afirmació fàctica contrastable amb declaracions sindicals públiques o actes de negociació, encara que la transcripció catalana pot contindre xicotets errors de Whisper.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-173-acu-9e0122",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 173,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "si s'ha fet algun mínim canvi, ha sigut per la pressió social, no per iniciativa pròpia",
+      "context": "Heu de fer una autocrítica perquè, si s'ha fet algun mínim canvi, ha sigut per la pressió social, no per iniciativa pròpia. Gràcies.",
+      "topic": "empleo",
+      "entities": {
+        "referencedEntity": "pressió social"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.5,
+      "reasoning": "És una valoració sobre la intenció/motivació darrere d'un canvi de gestió (pressió social vs. iniciativa pròpia) sense xifres ni entitats concretes, per la qual cosa no és verificable automàticament, només via revisió editorial.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-171-acu-fcc8c6",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 171,
+      "type": "acusacion_publica",
+      "speakerGroup": "VOX",
+      "verbatim": "A mí me parece sinceramente muy fuerte que ustedes vengan ser tío cuando han tenido a todos los sindicatos en contra, a todos, la de la concertada y la de la pública.",
+      "context": "Josep, yo voy a ser muy breve. A mí me parece sinceramente muy fuerte que ustedes vengan ser tío cuando han tenido a todos los sindicatos en contra, a todos, la de la concertada y la de la pública. Eso es haicina, a todos los sindicatos en contra, a todos.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "sindicatos de la educación concertada y pública"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.55,
+      "reasoning": "Afirma que todos los sindicatos, tanto de la concertada como de la pública, se oponían a la gestión; es contrastable con comunicados o posicionamientos sindicales públicos, aunque Whisper degrada la frase ('vengan ser tío', 'haicina').",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-171-acu-39bfff",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 171,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Però és gràcies no al Partit Popular sinó als sindicats, que tots estaven en contra, tots.",
+      "context": "Hauria tingut, després de la pressió, després de la pressió tant del professorat, dels famílies, dels sindicats i del professorat, ha sigut quan vosaltres heu menejat alguna cosa. Però és gràcies no al Partit Popular sinó als sindicats, que tots estaven en contra, tots. CSIC també, tots.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "partit popular"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.65,
+      "reasoning": "Afirma que el mérito de un cambio de gestión educativa no corresponde al Partit Popular sino a la presión unánime de los sindicatos; verificable cruzando comunicados sindicales y cronología de los hechos.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-171-acu-3bbe30",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 171,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Tots estaven en contra de la gestió del Partit Popular.",
+      "context": "CSIC també, tots. És de la pública i és de la concertada. Tots estaven en contra de la gestió del Partit Popular.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "partit popular"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.7,
+      "reasoning": "Reitera de forma explícita que todos los sindicatos (públicos y concertados) se oponían a la gestión del Partit Popular en materia educativa; contrastable con declaraciones o comunicados sindicales de la época.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-172-acu-141304",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 172,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Per tant, no és una bona gestió que tingueu a tots els sindicats en contra.",
+      "context": "Tots estaven en contra de la gestió del Partit Popular. Per tant, no és una bona gestió que tingueu a tots els sindicats en contra. Heu de fer una autocrítica...",
+      "topic": "educacion",
+      "entities": {},
+      "accusationSubtype": "opinativa",
+      "confidence": 0.55,
+      "reasoning": "És una valoració qualitativa ('no és una bona gestió') sense xifres ni convenis concrets, per la qual cosa no és automàticament verificable, només revisable editorialment.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-172-acu-ef23ef",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 172,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Heu de fer una autocrítica perquè, si s'ha fet algun mínim canvi, ha sigut per la pressió social, no per iniciativa pròpia.",
+      "context": "Per tant, no és una bona gestió que tingueu a tots els sindicats en contra. Heu de fer una autocrítica perquè, si s'ha fet algun mínim canvi, ha sigut per la pressió social, no per iniciativa pròpia. Gràcies.",
+      "topic": "educacion",
+      "entities": {},
+      "accusationSubtype": "opinativa",
+      "confidence": 0.55,
+      "reasoning": "Atribueix una motivació (pressió social vs. iniciativa pròpia) sense dades concretes; és una valoració d'intenció, no verificable automàticament.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-174-acu-8dd4e4",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 174,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "donen 72 milions d'euros a l'educació o als centres concertats",
+      "context": "...es chirríe que ustedes se amplíen la boca para hablar de la educación pública y después donen 72 milions d'euros a l'educació o als centres concertats, cosa que nosaltres, des de compromís, considerem que aquesta renovació...",
+      "topic": "educacion",
+      "entities": {
+        "amountEuros": 72000000,
+        "referencedEntity": "centros concertados / educación concertada"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.75,
+      "reasoning": "Cita una cifra concreta (72 millones de euros) supuestamente destinada a centros educativos concertados, contrastable con los presupuestos educativos o convenios de conciertos publicados.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-174-acu-073826",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 174,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "aquesta renovació d'aquests concerts incompleix la llei educativa estatal i una sentència del Tribunal Institucional de Constitucional",
+      "context": "...donen 72 milions d'euros a l'educació o als centres concertats, cosa que nosaltres, des de compromís, considerem que aquesta renovació d'aquests concerts incompleix la llei educativa estatal i una sentència del Tribunal Institucional de Constitucional.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "sentencia del tribunal constitucional / ley educativa estatal"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.55,
+      "reasoning": "Afirma que la renovación de los conciertos educativos incumple una ley estatal y una sentencia del Tribunal Constitucional, algo verificable contrastando el texto legal y la jurisprudencia citada; la transcripción de Whisper distorsiona el nombre del tribunal.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-176-afi-59a374",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 176,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "Segons la pròpia conselleria reconeix que s'estan segregant a 4.000 alumnes en estes escoles financiades amb diners públics, la qual cosa constituís una ilegalitat que ha de restituir-se.",
+      "context": "El fragmento cita un reconocimiento de la conselleria sobre segregación de alumnado por sexo en escuelas concertadas con financiación pública, calificándolo de ilegalidad pendiente de restitución.",
+      "topic": "educacion",
+      "entities": {
+        "count": 4000,
+        "countUnit": "alumnes",
+        "referencedEntity": "escoles concertades finançades amb diners públics (dades de la conselleria)"
+      },
+      "confidence": 0.75,
+      "reasoning": "Cifra atribuida a la conselleria sobre alumnado segregado por sexo en centros concertados; contrastable con informes o resoluciones oficiales de la conselleria de Educació.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-176-pro-484807",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 176,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "Evidentemente aniremos al tribunal, como no puede ser de una otra manera,",
+      "context": "Tras mencionar que si la conselleria no revoca los conciertos educativos, se anuncia la intención de acudir a los tribunales por la segregación por sexo en escuelas concertadas.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "recurs judicial contra els concerts educatius que segreguen per sexe"
+      },
+      "confidence": 0.65,
+      "reasoning": "Compromiso explícito de emprender acción judicial contra la conselleria por los conciertos educativos; verificable si consta un recurso o demanda presentada ante los tribunales.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-176-afi-024aa9",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 176,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "Considerem que estem pagant amb els impostos de la gent 72 milions d'euros a escoles que creuen que cal educar separadament a homes i dones.",
+      "context": "Se cuestiona el uso de fondos públicos procedentes de impuestos para financiar centros educativos que separan alumnado por sexo, cifrando el importe en 72 millones de euros.",
+      "topic": "educacion",
+      "entities": {
+        "amountEuros": 72000000,
+        "referencedEntity": "escoles concertades que eduquen separadament per sexe"
+      },
+      "confidence": 0.75,
+      "reasoning": "Cifra concreta (72 millones de euros) de fondos públicos destinados a centros que separan por sexo; contrastable con los presupuestos de conciertos educativos de la Generalitat.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-175-acu-02c3d0",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 175,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "s'estan segregant a 4.000 alumnes en estes escoles financiades amb diners públics",
+      "context": "Segons la pròpia conselleria reconeix que s'estan segregant a 4.000 alumnes en estes escoles financiades amb diners públics, la qual cosa constituís una ilegalitat que ha de restituir-se.",
+      "topic": "educacion",
+      "entities": {
+        "count": 4000,
+        "countUnit": "alumnes",
+        "referencedEntity": "conselleria d'educació"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.65,
+      "reasoning": "Cifra atribuida a un reconocimiento oficial de la conselleria sobre alumnado segregado en centros concertados, verificable contra informes o declaraciones oficiales de la conselleria d'educació.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-179-acu-54ad1d",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 179,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "ara sembla que una gestió meravellosa, efectivament, que ha fet el PP en la Generalitat",
+      "context": "a l'avant i van en gloriar-se de la gestió, ara sembla que una gestió meravellosa, efectivament, que ha fet el PP en la Generalitat i que sembla que, gràcies a ells, escolta, tenim tot el que duem en anys de sequia esperant que si no arriba a ser per esta vaga històrica...",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "gestió del pp en la generalitat"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.5,
+      "reasoning": "Valoración sarcástica sobre la gestión educativa atribuida al PP en la Generalitat ('gestió meravellosa'), sin cifras ni datos contrastables; es una crítica de carácter/estilo, no verificable automáticamente.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-182-acu-d4ee58",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 182,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "per atacar la Academia Valenciana de la Lengua",
+      "context": "Y si a banda de per als bous de Lidia o per atacar la Academia Valenciana de la Lengua o per a difondre fakes contra el professorat o difamarlo,",
+      "topic": "cultura",
+      "entities": {
+        "referencedEntity": "acadèmia valenciana de la llengua"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.5,
+      "reasoning": "Acusación de ataques a una institución concreta y verificable (la Acadèmia Valenciana de la Llengua); podría contrastarse con declaraciones públicas o actuaciones documentadas.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-180-acu-d60309",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 180,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "si no arriba a ser per esta vaga indefinida, no s'ha aconseguit res.",
+      "context": "de com s'ha sentit el professorat, d'abandonat, si no arriba a ser per esta vaga indefinida, no s'ha aconseguit res. I el que se pugara prometre, ya vorem on arriba,",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "vaga indefinida del professorat"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.55,
+      "reasoning": "Afirma que solo gracias a una huelga indefinida del profesorado se logró algún avance; verificable contrastando si existió tal huelga y qué compromisos se alcanzaron a raíz de ella.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-180-acu-4582e7",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 180,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "I que es parle de la gestió del botànic quan estàvem ocupats en evitar es barracons,",
+      "context": "I que es parle de la gestió del botànic quan estàvem ocupats en evitar es barracons, és que estàvem ocupats en altres assumptes més urgents.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "gestió del botànic / barracons escolars"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.5,
+      "reasoning": "Acusación sobre la gestión educativa vinculada al 'Botànic' en relación con el uso de barracones escolares; contrastable con registros de infraestructuras educativas y uso de aulas prefabricadas en el municipio.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-188-acu-4c1bf7",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 188,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "que piensen cómo habían votado democráticamente los profesores de no bajar y dejarse las reivindicaciones que habían de primera hora.",
+      "context": "Nosotros lo que digamos respetemos y recordemos pues quienes tienen que indicar que estén en cara en la tabla de negociación y que piensen cómo habían votado democráticamente los profesores de no bajar y dejarse las reivindicaciones que habían de primera hora.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "votación de los profesores sobre las reivindicaciones de la huelga"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.55,
+      "reasoning": "Se afirma que los profesores votaron democráticamente no rebajar sus reivindicaciones iniciales; es un hecho concreto (una votación en asamblea) que podría contrastarse con actas o noticias del sindicato/asamblea docente, aunque el fragmento no da fecha ni cifra exacta de votos.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-188-acu-25a460",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 188,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "no defensaria el Partit Popular, almenys em callaria.",
+      "context": "Yo si fuera Mestre... I que aquí no es tirarà de molt acord de la vaga estaria content, no defensaria el Partit Popular, almenys em callaria. Però bueno, cada u ja sabrà el que fa i no fa.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "partit popular"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.5,
+      "reasoning": "Es una valoración hipotética y de estilo ('yo no lo defendería, me callaría') sin cifras ni hechos contrastables, por lo que es opinativa y no verificable automáticamente; solo revisión editorial.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-190-afi-d831ed",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 190,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "70.000 professors, 70.000, no un ni dos han estat en contra del que ha passat",
+      "context": "i ho veurem en breu perquè 70.000 professors, 70.000, no un ni dos han estat en contra del que ha passat i miren, del 15 ara han passat molt de temps",
+      "topic": "educacion",
+      "entities": {
+        "count": 70000,
+        "countUnit": "professors"
+      },
+      "confidence": 0.5,
+      "reasoning": "Cita una cifra concreta de 70.000 profesores que se habrían mostrado en contra de una medida no especificada en el fragmento; verificable contra datos de participación en huelgas o manifiestos docentes del periodo aludido, aunque el objeto exacto de la oposición no queda claro por el corte del audio.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-192-afi-afb0dd",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 192,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "fer una inversió de 486.000 euros.",
+      "context": "sinó, en definitiva, a part de canviar el finestre, fer una inversió de 486.000 euros.",
+      "topic": "educacion",
+      "entities": {
+        "amountEuros": 486000,
+        "referencedEntity": "inversió al col·legi (antic silvestre)"
+      },
+      "confidence": 0.6,
+      "reasoning": "Cifra concreta de inversión citada como hecho consumado en obras del colegio, contrastable con el presupuesto municipal o los contratos/certificaciones de obra.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-192-cit-b5dd2e",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 192,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "gràcies tenen ascensor que no tenien,",
+      "context": "quan t'ixen al pati no es banyen, gràcies tenen ascensor que no tenien, gràcies tenen la comunicació de tot,",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "instal·lació d'ascensor al col·legi"
+      },
+      "confidence": 0.5,
+      "reasoning": "Se cita como obra concreta la instalación de un ascensor previamente inexistente en el centro escolar, verificable contra el proyecto de obra o el certificado final de obra del ayuntamiento.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-193-cit-29108c",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 193,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "gràcies a això tenim un pavelló que estem esperant d'una part d'inversió de l'edificant,",
+      "context": "Se menciona un pabellón pendiente de una parte de la inversión del plan 'Edificant', programa de infraestructuras educativas de la Generalitat.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "pla edificant"
+      },
+      "confidence": 0.5,
+      "reasoning": "Referencia a un proyecto (pabellón) financiado o pendiente de financiación a través del plan Edificant de la Generalitat Valenciana, verificable contra el listado oficial de actuaciones de ese programa.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-193-afi-73f70c",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 193,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "tenim una inversió en Camp de Turia de 254.000 euros.",
+      "context": "El orador cita una inversión de 254.000 euros relacionada con un centro o instalación en Camp de Túria.",
+      "topic": "educacion",
+      "entities": {
+        "amountEuros": 254000,
+        "referencedEntity": "camp de túria"
+      },
+      "confidence": 0.6,
+      "reasoning": "Cifra concreta (254.000 euros) de inversión vinculada a 'Camp de Turia', contrastable con presupuestos o expedientes de contratación municipal.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-194-afi-ac2a5d",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 194,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "Havien arrebegat més de 800 firmes perquè bullien, i bullien en un col·legi que havia fet CIEC.",
+      "context": "Se menciona una recogida de firmas de más de 800 personas por las altas temperaturas en un colegio construido por una entidad identificada como 'CIEC'.",
+      "topic": "educacion",
+      "entities": {
+        "count": 800,
+        "countUnit": "firmes",
+        "referencedEntity": "recollida de firmes escola camp de túria"
+      },
+      "confidence": 0.55,
+      "reasoning": "Cifra concreta de firmas recogidas (más de 800) que podría contrastarse con registros de peticiones ciudadanas o prensa local de la época.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-195-afi-41e220",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 195,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "teníem temperatures en Camp de Turia de 36 graus.",
+      "context": "teníem temperatures en Camp de Turia de 36 graus. Havien arrebegat més de 800 firmes perquè bullien, i bullien en un col·legi que havia fet CIEC.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "count": 36,
+        "countUnit": "graus",
+        "referencedEntity": "temperatures a camp de turia"
+      },
+      "confidence": 0.6,
+      "reasoning": "Afirma una temperatura concreta (36 graus) a Camp de Turia; verificable contra registres meteorològics de la data referida, encara que Whisper pot haver alterat la xifra.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-197-acu-87c515",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 197,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Coneix a Rafa Blasco 7 anys de càrcel perquè hi ha el Consell de Territori i és el que ha fet l'arreglo.",
+      "context": "Coneix a Rafa Blasco 7 anys de càrcel perquè hi ha el Consell de Territori i és el que ha fet l'arreglo. I l'altre el que ha fet l'escoratge és l'endulla.",
+      "topic": "transparencia",
+      "entities": {
+        "count": 7,
+        "countUnit": "anys de càrcel",
+        "referencedEntity": "rafa blasco / consell de territori"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.5,
+      "reasoning": "Rafa Blasco es una figura pública real condenada en un caso de corrupción valenciano; la duración exacta de la condena y su vínculo con el 'Consell de Territori' son verificables en registros judiciales, aunque la frase está degradada por Whisper ('Coneix a' probablemente sea 'condemnat a').",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-200-afi-145e3a",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 200,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "esos millones que son casi 10 millones lo que tenemos aprobados pendente de las competencias para hacer el colegio de infantil y mejorar el de primaria de Cervantes que os sabes que le falta",
+      "context": "Confíen en que efectivamente los presupuestos del 2027 o estos perdón del 26 apareguen esos millones que son casi 10 millones lo que tenemos aprobados pendente de las competencias para hacer el colegio de infantil y mejorar el de primaria de Cervantes que os sabes que le falta.",
+      "topic": "educacion",
+      "entities": {
+        "amountEuros": 10000000,
+        "referencedEntity": "traspaso de competencias para colegio de infantil y mejora del colegio de primaria cervantes"
+      },
+      "confidence": 0.6,
+      "reasoning": "Se cita una cifra concreta (casi 10 millones de euros) ya aprobada pendiente de traspaso de competencias, verificable contra actas presupuestarias o convenios de traspaso de competencias educativas.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-200-cit-8dddfa",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 200,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "para hacer el colegio de infantil y mejorar el de primaria de Cervantes que os sabes que le falta",
+      "context": "...que son casi 10 millones lo que tenemos aprobados pendente de las competencias para hacer el colegio de infantil y mejorar el de primaria de Cervantes que os sabes que le falta.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "colegio de infantil nuevo y mejora del colegio de primaria cervantes"
+      },
+      "confidence": 0.6,
+      "reasoning": "Menciona dos proyectos concretos (nuevo colegio de infantil y mejora del colegio de primaria Cervantes) cuya existencia y estado se puede contrastar con expedientes municipales de obra.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-200-pro-8f12c3",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 200,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "y lo primero que van a hacer va a ser arreglar los patios",
+      "context": "Estaba en un nid de asfalt desmillorat, sin mantenimiento, y lo primero que van a hacer va a ser arreglar los patios.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "patios del colegio cervantes"
+      },
+      "confidence": 0.7,
+      "reasoning": "Compromiso futuro concreto de arreglar los patios del colegio, verificable comprobando si posteriormente se ejecutó la obra de reforma de los patios.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-199-acu-59243f",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 199,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "El Patio de Cervantes donaba vergüenza.",
+      "context": "Serían unos segundos cuando entraba. El Patio de Cervantes donaba vergüenza.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "patio de cervantes"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.7,
+      "reasoning": "Valoración subjetiva sobre el mal estado del patio ('daba vergüenza'), sin cifras ni entidades verificables; solo apta para revisión editorial, no verificación automática.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-199-acu-308fdb",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 199,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Estaba en un nid de asfalt desmillorat, sin mantenimiento,",
+      "context": "Estaba en un nid de asfalt desmillorat, sin mantenimiento, y lo primero que van a hacer va a ser arreglar los patios.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "patio de cervantes"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.5,
+      "reasoning": "Describe el estado físico del patio (asfalto deteriorado, sin mantenimiento), una afirmación en principio verificable mediante inspección o fotografías previas, aunque el término 'desmillorat' sugiere degradación de Whisper sobre el valenciano 'desmillorat'.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-199-pro-ad622f",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 199,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "lo primero que van a hacer va a ser arreglar los patios.",
+      "context": "Estaba en un nid de asfalt desmillorat, sin mantenimiento, y lo primero que van a hacer va a ser arreglar los patios.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "arreglo de patios escolares (cervantes)"
+      },
+      "confidence": 0.55,
+      "reasoning": "Se anuncia un compromiso futuro de que lo primero que se hará será arreglar los patios del colegio; verificable contra futuras actas de obras o contratos municipales de reparación del patio de Cervantes.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-203-cit-1e877c",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 203,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "el dia que avui que es sentem en dades i li demostrem que edificant ha sigut un instrument correcte per a millorar els col·legis",
+      "context": "En este sentit, tinc que dir-li que no té res a veure amb el que ha dit, per molt que considere que la té, no la té, el dia que avui que es sentem en dades i li demostrem que edificant ha sigut un instrument correcte per a millorar els col·legis, el que passa que no s'ha aplicat del tot.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "pla edificant (generalitat valenciana)"
+      },
+      "confidence": 0.5,
+      "reasoning": "Se cita explícitamente el plan Edificant de la Generalitat Valenciana como instrumento de mejora de colegios; es verificable contrastando las actuaciones/convenios del plan Edificant efectivamente ejecutados en el municipio.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-201-pro-b4b23b",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 201,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "Estaba en un nid de asfalt desmillorat, sin mantenimiento, y lo primero que van a hacer va a ser arreglar los patios.",
+      "context": "El interviniente describe el estado del patio del colegio (asfalto deteriorado, sin mantenimiento) y anuncia que la primera actuación será arreglar los patios.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "patios del colegio"
+      },
+      "confidence": 0.55,
+      "reasoning": "Es un compromiso concreto de actuación (reparación de patios escolares) que se puede contrastar con el plan de obras/presupuesto municipal de mantenimiento escolar.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-201-cit-dad535",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 201,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "comparem el pati de l'escoto per a fer el pavelló, l'únic col·legi que no té un pavelló.",
+      "context": "I aleshores, jo el que vull dir-li a vostè és que... comparem el pati de l'escoto per a fer el pavelló, l'únic col·legi que no té un pavelló.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "pavelló escolar"
+      },
+      "confidence": 0.5,
+      "reasoning": "Se afirma que este centro es el único colegio del municipio sin pabellón deportivo y se referencia un proyecto para construirlo, algo verificable contra el inventario municipal de instalaciones deportivas escolares.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-206-cit-dbec56",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 206,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "que treguem els diners necessaris per a invertir en un colatge, en este cas el Cervantes, per a fer el pavelló de l'escoto i per a climatitzar-ho tot",
+      "context": "Això és el que esperem de vostès, que ens ajudin i que treguem els diners necessaris per a invertir en un colatge, en este cas el Cervantes, per a fer el pavelló de l'escoto i per a climatitzar-ho tot.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "colegio cervantes - pabellón y climatización"
+      },
+      "confidence": 0.5,
+      "reasoning": "Se cita un proyecto concreto (pabellón deportivo y climatización del colegio Cervantes) pendiente de financiación; verificable contra presupuestos municipales o actas de obras, aunque Whisper degrada términos como 'colatge' y 'escoto'.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-204-cit-9133c4",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 204,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "edificant ha sigut un instrument correcte per a millorar els col·legis, el que passa que no s'ha aplicat del tot.",
+      "context": "el dia que avui que es sentem en dades i li demostrem que edificant ha sigut un instrument correcte per a millorar els col·legis, el que passa que no s'ha aplicat del tot.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "pla edificant (generalitat valenciana)"
+      },
+      "confidence": 0.55,
+      "reasoning": "Afirma que el Pla Edificant ha sido un instrumento correcto para mejorar los colegios pero que no se ha aplicado del todo en el municipio; contrastable con el grado de ejecución oficial del Pla Edificant en Riba-roja de Túria.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-210-pro-f91e7f",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 210,
+      "type": "promesa",
+      "speakerGroup": "PP",
+      "verbatim": "A que antes de que finalice el verano se proceda a instalación de algunos elementos de sombra tanto Temporales como no temporales. Pueden ser toldos, velas tensadas, árboles,",
+      "context": "Nosotros desde el Partido Popular de Vox queremos realizar esta moción para instar al equipo de gobierno. A que antes de que finalice el verano se proceda a instalación de algunos elementos de sombra tanto Temporales como no temporales. Pueden ser toldos, velas tensadas, árboles,",
+      "topic": "medio-ambiente",
+      "entities": {
+        "referencedEntity": "instalación de elementos de sombra (toldos, velas tensadas, árboles) en espacios públicos"
+      },
+      "confidence": 0.65,
+      "reasoning": "Es una moción que insta al equipo de gobierno a instalar elementos de sombra antes de que acabe el verano; se podría verificar si dicha instalación se ejecutó efectivamente en los meses posteriores al pleno.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-212-pro-ace554",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 212,
+      "type": "promesa",
+      "speakerGroup": "PP",
+      "verbatim": "Instar al Ayuntamiento también a que las zonas más concurridas por la Sociedad de Riva Roja y por el comercio de Riva Roja tengan esas zonas de sombra.",
+      "context": "Tras hablar de plantación de árboles y fuentes, se insta al Ayuntamiento a que las zonas más concurridas por la sociedad y el comercio de Riba-roja dispongan de zonas de sombra.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "zonas de sombra en áreas de mayor concurrencia social y comercial"
+      },
+      "confidence": 0.7,
+      "reasoning": "Es una propuesta concreta dentro de una moción que insta a crear zonas de sombra en áreas específicas; se podría verificar si el Ayuntamiento ejecutó actuaciones de sombreado en zonas comerciales/sociales tras esta fecha.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-212-pro-c3d089",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 212,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "Instar a que se realice una red municipal de fuentes de agua potable.",
+      "context": "Instar a que se realice una red municipal de fuentes de agua potable en las plazas, parques, zonas deportivas, áreas comerciales y otros espacios de elevada concurrencia.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "red municipal de fuentes de agua potable"
+      },
+      "confidence": 0.85,
+      "reasoning": "Propuesta concreta de crear una infraestructura municipal (red de fuentes de agua potable) verificable comprobando si el Ayuntamiento instaló dicha red tras la moción.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-212-pro-386c78",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 212,
+      "type": "promesa",
+      "speakerGroup": "PP",
+      "verbatim": "consignar que el Ayuntamiento consigne en el próximo presupuesto municipal una partida específica destinada a la zona de sombras permanentes.",
+      "context": "...consignar que el Ayuntamiento consigne en el próximo presupuesto municipal una partida específica destinada a la zona de sombras permanentes, mitjançant arbolats, pèrgoles o altres solucions urbanístiques.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "partida presupuestaria para zonas de sombra permanentes (arbolado, pérgolas u otras soluciones urbanísticas)"
+      },
+      "confidence": 0.75,
+      "reasoning": "Solicita una partida presupuestaria concreta en el próximo presupuesto municipal para zonas de sombra permanentes; verificable revisando si dicha partida aparece en el presupuesto municipal posterior.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-211-pro-5fe3f1",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 211,
+      "type": "promesa",
+      "speakerGroup": "PP",
+      "verbatim": "recorridos peatonales, pues que podrían tener una mejor opción de sombra y hacer puntos de hidratación que hoy en día no se tienen.",
+      "context": "parques, recorridos peatonales, pues que podrían tener una mejor opción de sombra y hacer puntos de hidratación que hoy en día no se tienen. Nosotros desde el Partido Popular de Vox queremos realizar esta moción para instar al equipo de gobierno.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "puntos de hidratación en recorridos peatonales"
+      },
+      "confidence": 0.65,
+      "reasoning": "Es una propuesta concreta de instalar puntos de hidratación en recorridos peatonales; verificable comprobando si el ayuntamiento instaló dichos puntos tras la moción.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "brxx5g-211-pro-a2df5d",
+      "plenoId": "brxx5g",
+      "plenoDate": "2026-07-06",
+      "segmentIndex": 211,
+      "type": "promesa",
+      "speakerGroup": "PP",
+      "verbatim": "A que antes de que finalice el verano se proceda a instalación de algunos elementos de sombra tanto Temporales como no temporales.",
+      "context": "Nosotros desde el Partido Popular de Vox queremos realizar esta moción para instar al equipo de gobierno. A que antes de que finalice el verano se proceda a instalación de algunos elementos de sombra tanto Temporales como no temporales. Pueden ser toldos, velas tensadas, árboles, plantación de árboles que mejoraría el paisaje urbano, fuentes.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "elementos de sombra (toldos, velas tensadas, árboles, fuentes)"
+      },
+      "confidence": 0.75,
+      "reasoning": "Compromiso concreto con plazo (antes de que finalice el verano) para instalar elementos de sombra; verificable contrastando si el ayuntamiento ejecutó la instalación dentro del plazo indicado.",
       "requiresHumanApproval": true
     },
     {

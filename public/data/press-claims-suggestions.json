@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T08:16:22.102Z",
+  "generatedAt": "2026-08-17T08:15:22.807Z",
   "source": {
     "description": "Press claims extracted by the laboratory pipeline",
     "contract": "src/scraper/press-claim.ts"
@@ -18,7 +18,7 @@
       "Periòdic del Camp de Túria": 18,
       "Ayuntamiento de Riba-roja de Túria": 30,
       "El Periódico de Aquí": 2,
-      "Valencia Plaza": 1
+      "valenciaplaza.com": 1
     },
     "byTopic": {
       "fiscal": 8,
@@ -44,8 +44,8 @@
     },
     "articlesProcessed": 25,
     "articlesAvailable": 152,
-    "llmUnavailable": 0,
-    "windowFrom": "2026-08-05T07:00:00.000Z",
+    "llmUnavailable": 1,
+    "windowFrom": "2026-08-05T07:51:19.000Z",
     "windowTo": "2026-08-15T16:40:25.000Z"
   },
   "items": [
@@ -770,7 +770,7 @@
       "id": "plfgoc-0-num",
       "articleId": "plfgoc",
       "articleFingerprint": "18f1xjw",
-      "articleSource": "Valencia Plaza",
+      "articleSource": "valenciaplaza.com",
       "articleSourceHost": "valenciaplaza.com",
       "articleUrl": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTQ1ZHFLLTNRRXdudEs2RHpkMXdKam1SUjdjM21jRkx3TFZEcVd1eFJ5cloycFVpNHFFeG1UeXYyVHpFcXVyaEsxRVgzajlLdnI2ZmVoT3ZpMDJXa1h2WUN3REplYjJIN3QydlB2TWFWYTBpdnZ4QU5oY1VXTWlITUlCSDQwaGhCY0RocnZYTUR0THVERkJqOWpTMmtzMmNmRDhXaWlIcGNCZmNOaXM1d1BTVUZ4TmhUSm5DTGdmODlyeWw2bUY4UUc2OUN6MUZIZnRjNlZqSGRxeTd1QTVVUFd4bHpJNjhG?oc=5",
       "articleDate": "2026-08-10T13:17:56.000Z",

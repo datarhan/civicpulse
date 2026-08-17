@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T10:19:16.204Z",
+  "generatedAt": "2026-08-17T09:38:16.702Z",
   "bundleCount": 2,
   "archivedCount": 0,
   "contract": "Eligible bundles (no contradicho, all gates passed) that have not yet been promoted. The weekly auto-curate cron promotes the top 5 by score; the rest are listed here for the curator dashboard.",
