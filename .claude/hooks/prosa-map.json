@@ -77,6 +77,10 @@
       "/eficiencia",
       "/gestion"
     ],
+    "eficiencia-preguntas.json": [
+      "/eficiencia",
+      "/gestion"
+    ],
     "elections.json": [
       "/cargos/:slug",
       "/datos"

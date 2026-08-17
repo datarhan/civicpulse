@@ -1480,6 +1480,33 @@ export default function Metodologia() {
           .
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          La <strong>lectura rápida</strong> de cabecera no es una excepción a esa negativa: son
+          recuentos de lo que las fichas ya publican —cuántos servicios quedan a cada lado de la
+          mediana de su banda, cuántos denominadores se repiten, qué entrega falta— más una frase
+          editorial fechada cuyos números se interpolan del propio dato. Contar lados no es
+          promediar posiciones, y ninguna casilla colorea la posición como buena o mala: un coste
+          unitario alto no es un suspenso, y el acento de aviso se reserva para los hechos de
+          declaración. Las fichas se agrupan por <strong>áreas funcionales</strong> de la propia
+          clasificación por programas, declaradas servicio a servicio en el registro — nunca por
+          concejalías: vincular un coste unitario a una concejalía lo pondría a un clic de un cargo
+          con nombre, un salto que el retorno ministerial no hace y esta superficie no da.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          Las dos páginas cierran con <strong>preguntas registradas</strong> al gobierno municipal:
+          cada una nace de una cifra publicada y cita su base con enlace, se dirige a una
+          institución —el esquema rechaza cualquier campo que pudiera nombrar a una persona— y
+          termina en interrogación, porque lo que no es una pregunta es una afirmación, y las
+          afirmaciones van por el circuito de hallazgos firmados. El derecho de réplica
+          institucional cubre las preguntas igual que las fichas, y cualquier respuesta se publicará
+          íntegra. El reportaje del coste efectivo existe además como{' '}
+          <a href="/infografias/eficiencia-2026-08.html" style={{ color: 'var(--civic)' }}>
+            infografía
+          </a>{' '}
+          de una sola página con las cifras congeladas a su fecha: un test la recontrasta contra el
+          JSON del reportaje y se pone en rojo si la pieza anota una corrección que la infografía no
+          lleva.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           Cada celda queda en uno de tres estados —<code>declarado</code>,{' '}
           <code>no&nbsp;declarado</code>, <code>no&nbsp;se&nbsp;presta</code>— y el cociente sólo
           existe cuando las dos están declaradas. Cuatro situaciones bloquean un coste unitario, y

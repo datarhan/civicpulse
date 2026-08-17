@@ -262,6 +262,14 @@ in case a row is ever copied across. Right of reply is institutional —
 ayuntamiento / intervención / concesionario / ministerio. Keep it that way: a
 unit cost hung on a named councillor is a materially different claim from one
 hung on a service, and only the second is what the ministry's return supports.
+Three younger pieces follow the same institutional-only rule: service cards
+group under functional `AREAS` declared per-service in the registry (never
+concejalías — that mapping would put a unit cost one click from a named cargo);
+`eficiencia-preguntas.json` is hand-curated (reportaje class, PR-reviewed; its
+validator rejects person-shaped fields and any «pregunta» that is not
+interrogative); and the reportaje's infographic is served frozen from
+`public/infografias/`, figure-synced to the reportaje JSON by
+`tests/infografia-sync.test.js`.
 
 `/laboratorio/frontera` is a different animal and the boundary matters.
 Everything else here transcribes or divides numbers somebody else published; a
