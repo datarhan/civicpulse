@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-15T19:03:54.074Z",
+  "generatedAt": "2026-08-17T07:47:01.719Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -23174,6 +23174,36 @@
       "reason": "La única evidencia es el contrato de apoyo técnico para DIAGNOSTICAR y REDACTAR el Plan de Igualdad, no un acta ni una votación que acredite su APROBACIÓN, que es lo que la cita afirma. Adjudicar la asistencia para elaborar un plan corrobora que el plan estaba en marcha, no que se aprobara.",
       "editor": "sergei",
       "appliedAt": "2026-08-15T19:03:54.074Z"
+    },
+    "15uvjew-011-cit-2bd6bf": {
+      "verification": {
+        "claimId": "15uvjew-011-cit-2bd6bf",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia adjunta es un tender de software de gestión policial (SUITABLE SOFTWARE VINFOVAL) sin relación con la concesión del agua ni con IDRACUA: el emparejador determinista sobre-emparejó por solapamiento de palabras genéricas. La evidencia no sostiene el parcial.",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia adjunta es un tender de software de gestión policial (SUITABLE SOFTWARE VINFOVAL) sin relación con la concesión del agua ni con IDRACUA: el emparejador determinista sobre-emparejó por solapamiento de palabras genéricas. La evidencia no sostiene el parcial.",
+      "editor": "Claude (revisión 17-08, aprobada en plan)",
+      "appliedAt": "2026-08-17T07:46:52.628Z"
+    },
+    "15uvjew-137-afi-3bd4bc": {
+      "verification": {
+        "claimId": "15uvjew-137-afi-3bd4bc",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia adjunta es el renting de siete vehículos (466.200 €), no la compra de contenedores de 505 mil €: el emparejador determinista igualó por similitud de importes (0,85) sin exigir coincidencia de objeto. La evidencia no sostiene el parcial.",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia adjunta es el renting de siete vehículos (466.200 €), no la compra de contenedores de 505 mil €: el emparejador determinista igualó por similitud de importes (0,85) sin exigir coincidencia de objeto. La evidencia no sostiene el parcial.",
+      "editor": "Claude (revisión 17-08, aprobada en plan)",
+      "appliedAt": "2026-08-17T07:47:01.719Z"
     }
   }
 }

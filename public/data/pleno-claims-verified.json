@@ -8,9 +8,9 @@
     "total": 7098,
     "byVerdict": {
       "verificado": 41,
-      "parcial": 210,
+      "parcial": 208,
       "contradicho": 0,
-      "sin-datos": 6847,
+      "sin-datos": 6849,
       "promesa-repetida": 0
     }
   },
@@ -677,18 +677,12 @@
       },
       "verification": {
         "claimId": "15uvjew-011-cit-2bd6bf",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0OKwNsBJ242S81gZFETWmA%3D%3D",
-            "snippet": "Contratación administrativa mixta de suministro y servicio, para la implantación del programa de gestión policial a adjudicar por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social, contribuyendo ODS 11 ciudades seguras, resilientes y sostenibles. · Ayuntamiento de Riba-roja de Túria · SUITABLE SOFTWARE VINFOVAL, S.L. · software · estado: formalized",
-            "similarity": 0.5,
-            "stance": "checked"
-          }
-        ],
-        "checkedAgainst": []
+        "verdict": "sin-datos",
+        "summary": "La única evidencia adjunta es un tender de software de gestión policial (SUITABLE SOFTWARE VINFOVAL) sin relación con la concesión del agua ni con IDRACUA: el emparejador determinista sobre-emparejó por solapamiento de palabras genéricas. La evidencia no sostiene el parcial.",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
       }
     },
     {
@@ -4676,22 +4670,11 @@
       },
       "verification": {
         "claimId": "15uvjew-137-afi-3bd4bc",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=j0PEgp21LM4UqXM96WStVA%3D%3D",
-            "snippet": "Suministro de renting de siete vehículos: dos vehículos pick-up equipados con material de emergencias, uno de ellos con opción a compra al final del contrato, cuatro tipo SUV híbridos y un vehículo tipo SUV con mampara con opción a compra al final del contrato · Ayuntamiento de Riba-roja de Túria · transportation · 466.200 €",
-            "similarity": 0.71,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La única evidencia adjunta es el renting de siete vehículos (466.200 €), no la compra de contenedores de 505 mil €: el emparejador determinista igualó por similitud de importes (0,85) sin exigir coincidencia de objeto. La evidencia no sostiene el parcial.",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
+          "curator-downgrade"
         ]
       }
     },
