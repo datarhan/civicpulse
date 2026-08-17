@@ -116,7 +116,10 @@ test.describe('Eficiencia (/eficiencia)', () => {
     const hero = page.locator('#sec-lectura')
     await expect(hero).toBeVisible({ timeout: 8000 })
 
-    await expect(hero.getByText(`${p.abajo} ↓ · ${p.arriba} ↑`)).toBeVisible()
+    // El sufijo «=» se deriva igual que en el componente: aparece sólo si
+    // algún percentil cae en el 50 exacto, que es alcanzable.
+    const tileParticion = `${p.abajo} ↓ · ${p.arriba} ↑${p.enMediana > 0 ? ` · ${p.enMediana} =` : ''}`
+    await expect(hero.getByText(tileParticion)).toBeVisible()
 
     const congelados = CON_RATIO.filter(
       (i: Indicador) => i.declaracion?.denominador?.congelada,

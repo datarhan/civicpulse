@@ -57,6 +57,7 @@ export const CURATED = {
   'area-fit.json': 'npm run promote-area-fit',
   'requisitos-cargo.json': 'curated + cited — hand-edit via PR, never programmatically',
   'eficiencia-findings.json': 'npm run promote-indicador / correct-indicador / retract-indicador',
+  'eficiencia-preguntas.json': 'curated + cited — hand-edit via PR, never programmatically',
 }
 
 const DRAFTY = /(suggestion|draft|borrador|propuesta)/i

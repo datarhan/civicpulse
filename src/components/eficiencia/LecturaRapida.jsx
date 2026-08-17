@@ -47,8 +47,14 @@ export function LecturaRapida({ data, firmados = 0 }) {
     },
     {
       href: '#sec-servicios',
-      valor: `${p.abajo} ↓ · ${p.arriba} ↑`,
-      etiqueta: t('eficiencia.lectura.particion'),
+      // El percentil exacto 50 es alcanzable (rank/n redondeado): si un
+      // servicio cae ahí, ni «abajo» ni «arriba» lo cuentan y la casilla
+      // quedaría sumando 11 de 12 sin decirlo. El «=» aparece sólo entonces.
+      valor: `${p.abajo} ↓ · ${p.arriba} ↑${p.enMediana > 0 ? ` · ${p.enMediana} =` : ''}`,
+      etiqueta:
+        p.enMediana > 0
+          ? t('eficiencia.lectura.particionConMediana')
+          : t('eficiencia.lectura.particion'),
     },
     congelados > 0 && {
       href: '#sec-declaracion',
@@ -164,8 +170,8 @@ export function LecturaRapida({ data, firmados = 0 }) {
         {p.situados > 0 && (
           <>
             {equilibrado
-              ? `los costes por unidad no tienen un titular único — de los ${p.situados} servicios con comparación, ${p.abajo} quedan por debajo de la mediana de municipios parecidos y ${p.arriba} por encima — y se leen servicio a servicio, no en bloque. `
-              : `de los ${p.situados} servicios con comparación, ${fraseGrueso} (${p.abajo} por debajo, ${p.arriba} por encima). `}
+              ? `los costes por unidad no tienen un titular único — de los ${p.situados} servicios con comparación, ${p.abajo} quedan por debajo de la mediana de municipios parecidos y ${p.arriba} por encima${p.enMediana > 0 ? `, con ${p.enMediana} en la mediana exacta` : ''} — y se leen servicio a servicio, no en bloque. `
+              : `de los ${p.situados} servicios con comparación, ${fraseGrueso} (${p.abajo} por debajo, ${p.arriba} por encima${p.enMediana > 0 ? `, ${p.enMediana} en la mediana` : ''}). `}
           </>
         )}
         {congelados > 0 && (
@@ -173,9 +179,11 @@ export function LecturaRapida({ data, firmados = 0 }) {
             Lo uniforme no está en los costes sino en la declaración que los sostiene:{' '}
             {congelados === medibles ? `las ${congelados}` : `${congelados} de las ${medibles}`}{' '}
             cantidades entre las que se divide llevan años sin remedirse
-            {sinRendir.length > 0
-              ? `, y la entrega de ${sinRendir.join(' y ')} sigue sin rendir. `
-              : '. '}
+            {sinRendir.length === 1
+              ? `, y la entrega de ${sinRendir[0]} sigue sin rendir. `
+              : sinRendir.length > 1
+                ? `, y las entregas de ${sinRendir.join(' y ')} siguen sin rendir. `
+                : '. '}
           </>
         )}
         Ninguna de estas cifras mide la calidad del servicio: dicen lo que costó cada unidad

@@ -1,3 +1,7 @@
+<!-- El charset explícito importa aquí: la página está pensada para guardarse
+     y compartirse como fichero, y abierta desde disco no hay cabecera HTTP que
+     declare UTF-8 — sin esta línea, cada acento se estropea. -->
+<meta charset="utf-8" />
 <title>La mitad de abajo de la división</title>
 
 <style>
@@ -409,7 +413,10 @@
         </thead>
         <tbody>
           <tr><td>Pavimentación de vías públicas</td><td class="num">+29 %</td><td class="num">+5 %</td><td class="num">24 pp</td></tr>
-          <tr><td>Seguridad y orden público</td><td class="num">+76 %</td><td class="num">+42 %</td><td class="num">33 pp</td></tr>
+          <!-- 34 y no 33: la columna resta las cifras IMPRESAS (76−42), como
+               hacen las otras dos filas. Con los decimales sin redondear sale
+               33,4, y un lector que reste lo que ve no puede cuadrarlo. -->
+          <tr><td>Seguridad y orden público</td><td class="num">+76 %</td><td class="num">+42 %</td><td class="num">34 pp</td></tr>
           <tr><td>Cementerio y servicios funerarios</td><td class="num">+112 %</td><td class="num">+73 %</td><td class="num">39 pp</td></tr>
         </tbody>
       </table>

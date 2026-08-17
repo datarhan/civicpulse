@@ -326,7 +326,8 @@ distinguishable from a map with nothing to say.
 **Curated files are never written by automation.** `promises.json`,
 `pleno-votes.json`, `pleno-findings.json`, `journalist-reports.json`,
 `quejas-responses.json`, `sindic.json`, `dedicaciones.json`, `plantilla.json`,
-`place-overrides.json`, `entity-overrides.json`, `eficiencia-findings.json`.
+`place-overrides.json`, `entity-overrides.json`, `eficiencia-findings.json`,
+`eficiencia-preguntas.json`.
 Route algorithmic output through the curator CLI so the validator and git
 history stay authoritative. The full list and its CLIs: `docs/DATA_SOURCES.md`.
 

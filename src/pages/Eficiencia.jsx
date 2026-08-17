@@ -68,7 +68,9 @@ export default function Eficiencia() {
     { id: 'sec-cobertura', label: t('eficiencia.subnav.cobertura') },
     { id: 'sec-posiciones', label: t('eficiencia.subnav.posiciones') },
     { id: 'sec-servicios', label: t('eficiencia.subnav.servicios') },
-    { id: 'sec-declaracion', label: t('eficiencia.subnav.declaracion') },
+    ...(municipalesDeAqui.length > 0
+      ? [{ id: 'sec-declaracion', label: t('eficiencia.subnav.declaracion') }]
+      : []),
     ...(bloqueados.length > 0
       ? [{ id: 'sec-bloqueados', label: t('eficiencia.subnav.bloqueados') }]
       : []),
@@ -188,13 +190,15 @@ export default function Eficiencia() {
           habla de estos cocientes. Los plazos, la concurrencia y la ejecución
           salen de otras cuatro fuentes y viven en /gestion. El reparto lo
           declara cada indicador al construirse, no esta página. */}
-      <section id="sec-declaracion" style={seccion}>
-        <PanelMunicipal
-          municipales={municipalesDeAqui}
-          titulo="Sobre la declaración de estas cifras"
-          intro="Los cocientes de arriba salen de dos cantidades que el ayuntamiento declara cada entrega; esto mide con qué frecuencia vuelve a medir la de abajo."
-        />
-      </section>
+      {municipalesDeAqui.length > 0 && (
+        <section id="sec-declaracion" style={seccion}>
+          <PanelMunicipal
+            municipales={municipalesDeAqui}
+            titulo="Sobre la declaración de estas cifras"
+            intro="Los cocientes de arriba salen de dos cantidades que el ayuntamiento declara cada entrega; esto mide con qué frecuencia vuelve a medir la de abajo."
+          />
+        </section>
+      )}
 
       {bloqueados.length > 0 && (
         <section id="sec-bloqueados" style={seccion}>
