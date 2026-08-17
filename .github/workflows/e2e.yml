@@ -31,6 +31,14 @@ jobs:
       - name: Lint (fails on errors only; warnings allowed)
         run: npm run lint
 
+      # «tsc --noEmit, must stay clean» decía CLAUDE.md — y no lo ejecutaba
+      # NADIE: ni este workflow, ni el build (vite no tipa), ni ningún hook.
+      # Cuatro errores de tipo llegaron a un PR con todas las suites verdes
+      # (vitest despoja los tipos). La lección del barrido de agosto, otra vez:
+      # comprueba siempre quién ejecuta lo que construyes.
+      - name: Typecheck (tsc --noEmit)
+        run: npm run typecheck
+
       - name: Cache Playwright browsers
         id: cache-pw
         uses: actions/cache@v4

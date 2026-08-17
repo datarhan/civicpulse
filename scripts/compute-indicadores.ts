@@ -110,8 +110,11 @@ async function main() {
       ],
       fuente: crimen.fuente,
     })
-  } catch {
-    console.warn('[indicadores] SIN criminalidad.json — el panel sale sin ese resultado')
+  } catch (err) {
+    // Con el motivo: «no está el fichero» y «el fichero está y la lectura
+    // reventó» son desenlaces distintos y plegarlos es la regla de los tres
+    // desenlaces otra vez.
+    console.warn(`[indicadores] sin resultado de criminalidad — ${(err as Error).message ?? err}`)
   }
   try {
     const reciclaje = await leer('public/data/reciclaje.json')
@@ -132,9 +135,13 @@ async function main() {
         'campaña y el consorcio (aquí, Valencia Interior), no sólo del servicio municipal: se ' +
         'publica junto al coste, nunca dividido por él.',
       caveats: [
-        'La orgánica (FORS) ARRANCABA en 2022: 27 toneladas en todo el año, casi cero. Sin esta salvedad el dato parece un error; con ella, dice cuándo empezó la recogida.',
+        `La orgánica (FORS) ARRANCABA en 2022: ${reciclaje.municipio.fracciones.forsTn} toneladas en todo el año, casi cero. Sin esta salvedad el dato parece un error; con ella, dice cuándo empezó la recogida.`,
         `Un solo año, ${reciclaje.fuente.edicion}: las ediciones posteriores sólo existen en un visor sin datos descargables. El año no lo declara la capa — se comprobó contra el padrón (${reciclaje.fuente.comprobacionEdicion.split(';')[1]?.trim() ?? 'habitantes = padrón 2022'}).`,
-        `La banda de comparación es propia y menor que la de coste: los de la banda con tasa calculable en la capa (n=${reciclaje.pares?.n ?? '—'}).`,
+        // Propia y DISTINTA de la de coste — no «menor»: la primera versión
+        // copió el adverbio de criminalidad y aquí era falso (60 ≥ 30). Y el
+        // recuento sin orgánica va medido: para esos comparables la tasa es de
+        // tres fracciones contra las cuatro de quien la declara.
+        `La banda de comparación es propia, distinta de la de coste: los de la banda con tasa calculable en la capa (n=${reciclaje.pares?.n ?? '—'}). ${reciclaje.stats?.bandaSinFors ?? 0} de ellos no declaran orgánica y su tasa se calcula sin esa fracción, lo que tiende a rebajar la mediana del grupo.`,
       ],
       fuente: {
         nombre: reciclaje.fuente.nombre,
@@ -142,8 +149,8 @@ async function main() {
         atribucion: `${reciclaje.fuente.atribucion} · ${reciclaje.fuente.licencia}`,
       },
     })
-  } catch {
-    console.warn('[indicadores] SIN reciclaje.json — el panel sale sin ese resultado')
+  } catch (err) {
+    console.warn(`[indicadores] sin resultado de reciclaje — ${(err as Error).message ?? err}`)
   }
   resultados.ausencias.push(
     {

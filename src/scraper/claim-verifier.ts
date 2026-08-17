@@ -365,7 +365,7 @@ function overlapScore(a: string, b: string): number {
 function solapamientoMutuo(
   a: string,
   b: string,
-): { compartidas: number; jaccard: number; entera: boolean } {
+): { compartidas: number; jaccard: number; entera: boolean; tokensEntidad: number } {
   const filt = (t: string) => t.length >= 4 && !STOPWORDS.has(t)
   const aw = new Set(norm(a).split(' ').filter(filt))
   const bw = new Set(norm(b).split(' ').filter(filt))

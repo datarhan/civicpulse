@@ -1519,10 +1519,11 @@ export default function Metodologia() {
           <strong>Qué mide cada cifra.</strong> Cada indicador va etiquetado como entrada, carga de
           trabajo, producto o resultado. La distinción importa: el coste por efectivo de policía
           divide un gasto entre otro gasto y es un <em>precio</em>, no un rendimiento; las toneladas
-          de basura miden cuánta genera el municipio, no lo bien que se recoge. La fuente no publica
-          ningún indicador de resultado —ni tasa de reciclaje, ni estado del firme—, así que esta
-          página no puede decir si el dinero se convirtió en algo bueno, sólo cuánto costó cada
-          unidad de servicio.
+          de basura miden cuánta genera el municipio, no lo bien que se recoge. La entrega del
+          ministerio no publica ningún indicador de resultado —ni tasa de reciclaje, ni estado del
+          firme—, así que los cocientes de coste solos no dicen si el dinero se convirtió en algo
+          bueno. Los resultados que sí existen vienen de OTRAS fuentes y se publican en su propio
+          escalón, junto al coste y nunca divididos por él: es el bloque siguiente.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>Qué entregas hay, y por qué no están todas.</strong> El ministerio publica once
@@ -1639,10 +1640,12 @@ export default function Metodologia() {
           causa, porque la fuente agrega a todos los cuerpos policiales y el ayuntamiento no
           controla la seguridad pública del término; y nunca genera una ficha firmada — la misma
           disciplina que la frontera del laboratorio. La banda de comparación de un resultado es la
-          SUYA (los municipios de la banda que superan 20.000 habitantes, que son los únicos que el
-          portal publica) y su N se declara aparte. Los resultados que no existen se publican como
-          ausencias con su porqué medido: no hay estación de aire en el término, y la serie de
-          reciclaje posterior a 2022 sólo existe en un panel sin descarga reconstruible.
+          SUYA, definida por lo que su fuente publica —en criminalidad, los de la banda que superan
+          20.000 habitantes; en reciclaje, los de la banda con tasa calculable en la capa del ICV,
+          sin contarse a sí mismo— y su N se declara en cada bloque, nunca heredado del coste. Los
+          resultados que no existen se publican como ausencias con su porqué medido: no hay estación
+          de aire en el término, y la SERIE de reciclaje posterior al corte de 2022 sólo existe en
+          un panel sin descarga reconstruible.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>El plazo de pago es la única cifra del panel con umbral legal.</strong> El periodo

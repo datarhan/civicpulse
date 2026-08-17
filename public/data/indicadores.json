@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T10:33:26.914Z",
+  "generatedAt": "2026-08-17T11:02:28.155Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -7267,17 +7267,17 @@
         ],
         "pares": {
           "conjunto": "cv-15k-40k · con tasa calculable en la capa",
-          "n": 60,
-          "percentil": 8,
-          "p25": 8.260732937360475,
-          "mediana": 11.788449874567965,
-          "p75": 15.417769472808695
+          "n": 59,
+          "percentil": 7,
+          "p25": 8.305126560565794,
+          "mediana": 11.971178936381541,
+          "p75": 15.477917089621505
         },
         "comoSeLee": "Qué parte de la basura se recogió separada (orgánica, vidrio, envases, papel) frente al contenedor de resto. La separación depende de los contenedores desplegados, la campaña y el consorcio (aquí, Valencia Interior), no sólo del servicio municipal: se publica junto al coste, nunca dividido por él.",
         "caveats": [
           "La orgánica (FORS) ARRANCABA en 2022: 27 toneladas en todo el año, casi cero. Sin esta salvedad el dato parece un error; con ella, dice cuándo empezó la recogida.",
           "Un solo año, 2022: las ediciones posteriores sólo existen en un visor sin datos descargables. El año no lo declara la capa — se comprobó contra el padrón (los habitantes del fichero coinciden con el padrón INE 2022 (Riba-roja: 23.050), y el scraper falla si esa igualdad se rompe).",
-          "La banda de comparación es propia y menor que la de coste: los de la banda con tasa calculable en la capa (n=60)."
+          "La banda de comparación es propia, distinta de la de coste: los de la banda con tasa calculable en la capa (n=59). 24 de ellos no declaran orgánica y su tasa se calcula sin esa fracción, lo que tiende a rebajar la mediana del grupo."
         ],
         "fuente": {
           "nombre": "Institut Cartogràfic Valencià / GVA — capa 0503_Residuos (WFS)",

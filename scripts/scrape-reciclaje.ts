@@ -77,13 +77,23 @@ async function main() {
   banda.add(INE_PROPIO)
   const conjunto: string = cesel.pares?.conjunto ?? 'cv-15k-40k'
 
+  // El propio municipio NO entra en su propia banda — el convenio de la casa
+  // (criminalidad lo excluye igual): un percentil entre comparables que te
+  // cuenta a ti mismo se compara contra un espejo. La primera pasada lo
+  // incluía y publicó n=60/p8/mediana 11,79 donde la verdad autoexcluida es
+  // n=59/p7/mediana 11,97 — cazado por la revisión independiente.
   const bandaConTasa = filas
-    .filter((f) => banda.has(f.ine))
+    .filter((f) => banda.has(f.ine) && f.ine !== INE_PROPIO)
     .map((f) => ({ f, t: tasaSelectiva(f) }))
     .filter((x): x is { f: (typeof filas)[0]; t: NonNullable<ReturnType<typeof tasaSelectiva>> } =>
       Boolean(x.t),
     )
   const vals = bandaConTasa.map((x) => x.t.pct).sort((a, b) => a - b)
+  // Cuántos comparables calculan su tasa SIN orgánica: para ellos la fracción
+  // no declarada no suma, así que su tasa es de tres fracciones contra las
+  // cuatro de quien sí la declara. El recuento viaja para que la salvedad del
+  // panel lo diga con el número medido, no con un adverbio.
+  const bandaSinFors = bandaConTasa.filter((x) => x.f.forsTn === null).length
   const q = (p: number) => {
     const i = (vals.length - 1) * p
     const lo = Math.floor(i)
@@ -138,6 +148,7 @@ async function main() {
       municipios: filas.length,
       conTasa: filas.filter((f) => tasaSelectiva(f)).length,
       bandaConTasa: vals.length,
+      bandaSinFors,
       edicion: 2022,
     },
   }
