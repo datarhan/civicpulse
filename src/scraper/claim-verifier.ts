@@ -353,6 +353,48 @@ function overlapScore(a: string, b: string): number {
 }
 
 /**
+ * Solapamiento MUTUO de tokens distintivos — Jaccard más el recuento
+ * compartido. Es la regla que `tenderCouldRefute` escribió para las
+ * acusaciones y que la CORROBORACIÓN no aplicaba: el 17-08-2026 dos
+ * `parcial` publicados tenían por única evidencia otro expediente (un
+ * renting con «opción a compra» corroborando una compra de contenedores;
+ * el software policial anclando una cita sobre la concesión del agua),
+ * ambos producidos por `overlapScore`, que divide por el lado corto y deja
+ * que dos palabras genéricas saturen el umbral.
+ */
+function solapamientoMutuo(
+  a: string,
+  b: string,
+): { compartidas: number; jaccard: number; entera: boolean } {
+  const filt = (t: string) => t.length >= 4 && !STOPWORDS.has(t)
+  const aw = new Set(norm(a).split(' ').filter(filt))
+  const bw = new Set(norm(b).split(' ').filter(filt))
+  let compartidas = 0
+  for (const w of aw) if (bw.has(w)) compartidas += 1
+  const union = new Set([...aw, ...bw]).size
+  return {
+    compartidas,
+    jaccard: union === 0 ? 0 : compartidas / union,
+    // La entidad ENTERA (≥2 tokens distintivos, todos presentes) dentro de un
+    // título largo no es la trampa de las palabras genéricas: es el objeto.
+    // Sin esta salida, «reconstrucción dana» contra «Reconstrucción post-DANA
+    // fase preliminar» puntuaría 0,4 por el mero largo del título.
+    entera: aw.size >= 2 && compartidas === aw.size,
+    // Cuántos tokens distintivos le quedan a la entidad tras el filtro. En este
+    // corpus los nombres del propio municipio son stopwords, así que «Alcaldía
+    // del Ayuntamiento de Riba-roja» queda en UN token: la rama de importes lo
+    // necesita para su excepción de cita exacta.
+    tokensEntidad: aw.size,
+  }
+}
+
+/** Cuánto se parece el OBJETO citado al del expediente, con la regla mutua. */
+function puntuacionObjeto(m: { compartidas: number; jaccard: number; entera: boolean }): number {
+  if (m.compartidas < 2) return 0
+  return m.entera ? 1 : m.jaccard
+}
+
+/**
  * Is this tender plausibly THE thing the claim is talking about?
  *
  * Used only for the `contradicho` path — the verdict that says "a councillor
@@ -614,8 +656,26 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
       for (const t of tenderList) {
         const tAmount = tenderAmount(t)
         if (tAmount == null) continue
-        const textSim = entity ? overlapScore(entity, tenderTitle(t)) : 1
+        // Corroborar exige el mismo objeto: el solapamiento cuenta sólo si es
+        // mutuo y con ≥2 tokens distintivos compartidos. Sin entidad, cero —
+        // el `: 1` de antes convertía cualquier importe parecido en
+        // corroboración, y un 0,85 de similitud de importe NO es el objeto
+        // (505 mil de contenedores contra el renting de 466.200 €). Con
+        // textSim 0, el umbral combinado sólo lo salva un importe EXACTO.
+        const m = entity ? solapamientoMutuo(entity, tenderTitle(t)) : null
         const amountSim = similarAmount(amount, tAmount)
+        // Una entidad de UN solo token distintivo (los nombres del municipio
+        // son stopwords aquí) contenida entera sólo corrobora con el importe
+        // prácticamente EXACTO: así «Alcaldía…» + 940.520 € contra el anuncio
+        // TED sigue verificándose, y «compra» suelto + un 0,85 de importe no.
+        const entidadContenida =
+          m !== null && m.tokensEntidad >= 1 && m.compartidas === m.tokensEntidad
+        const textSim =
+          m === null
+            ? 0
+            : entidadContenida && (m.tokensEntidad >= 2 || amountSim >= 0.98)
+              ? 1
+              : puntuacionObjeto(m)
         // contradicho-candidate: the entity names this contract AND the amount
         // cited is materially different (<0.3 sim ≈ 2× disparity)
         if (
@@ -762,14 +822,16 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     // Did the speaker claim the work is COMPLETED? (negation-aware)
     const claimsCompleted = claimsCompletion(claim.verbatim)
     for (const t of tenderList) {
-      const textSim = overlapScore(claim.entities.referencedEntity, tenderTitle(t))
-      // 0.50 floor — lowered from 0.65 once tenderTitle was extended to
-      // include contractor + assignee + categoryTitle (so a 50%-overlap
-      // hit on 4 concatenated fields is meaningfully stricter than a
-      // 50% hit on just `title`). The LLM second pass (claim-verifier-llm.ts)
-      // catches false positives via cite-grounding; we lose precision
-      // hardly any and gain a lot of recall on real municipal-work claims.
-      if (textSim >= 0.5) {
+      // Mutuo, no contención: el suelo 0,50 de `overlapScore` lo saciaban
+      // «contratación», «servicio» y «procedimiento» sobre cuatro campos
+      // concatenados, y así una cita sobre la concesión del agua quedó
+      // anclada al software de gestión policial. La regla es la misma que
+      // `tenderCouldRefute` ya exige para acusar: ≥2 tokens distintivos
+      // compartidos y Jaccard ≥ 0,34. El segundo paso LLM sigue detrás para
+      // los falsos positivos que sobrevivan.
+      const m = solapamientoMutuo(claim.entities.referencedEntity, tenderTitle(t))
+      const textSim = puntuacionObjeto(m)
+      if (textSim >= 0.34) {
         // Contradicho: speaker says "completed" but tender is open/pending.
         // Decided BEFORE the push so the ref carries its own stance rather
         // than the reader having to infer it from the enclosing verdict.
