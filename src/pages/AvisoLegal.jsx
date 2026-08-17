@@ -56,8 +56,11 @@ export default function AvisoLegal() {
           Todos los datos mostrados proceden de fuentes públicas del sector público español o de
           proyectos de datos abiertos (Transparencia Act 19/2013, CC-BY 4.0 datos.gob.es, ODbL
           OpenStreetMap, CC0 Wikidata, reutilización abierta PLACSP/BDNS/CONPREL, REST pública de
-          prensa, y la API JSON del INE —índice de precios con el que se deflactan las series de
-          coste— bajo sus condiciones de reutilización, con la atribución que exigen). Cada dato
+          prensa, la API JSON del INE —índice de precios con el que se deflactan las series de
+          coste, y padrón municipal—, el Portal Estadístico de Criminalidad del Ministerio del
+          Interior (Ley 37/2007; «Origen de los datos: Portal Estadístico de Criminalidad»), y la
+          capa 0503_Residuos del Institut Cartogràfic Valencià / Generalitat Valenciana (WFS, CC BY
+          4.0) bajo sus condiciones de reutilización, con la atribución que exigen). Cada dato
           individual enlaza a su fuente primaria. El listado completo de feeds está en{' '}
           <a href="/datos" style={{ color: 'var(--civic)' }}>
             /datos

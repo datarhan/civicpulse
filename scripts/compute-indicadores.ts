@@ -113,6 +113,38 @@ async function main() {
   } catch {
     console.warn('[indicadores] SIN criminalidad.json — el panel sale sin ese resultado')
   }
+  try {
+    const reciclaje = await leer('public/data/reciclaje.json')
+    resultados.items.push({
+      id: 'reciclaje-selectiva-2022',
+      servicioRelacionado: 'a1621-coste-unitario',
+      etiqueta: 'Recogida selectiva sobre el total',
+      valor: reciclaje.municipio.tasa.pct,
+      unidad: '% del total (2022)',
+      periodo: String(reciclaje.fuente.edicion),
+      // Un corte de UN año: la serie es ese único punto, y la ausencia de
+      // serie sigue publicada abajo con su porqué.
+      serie: [{ anio: reciclaje.fuente.edicion, valor: reciclaje.municipio.tasa.pct }],
+      pares: reciclaje.pares,
+      comoSeLee:
+        'Qué parte de la basura se recogió separada (orgánica, vidrio, envases, papel) frente ' +
+        'al contenedor de resto. La separación depende de los contenedores desplegados, la ' +
+        'campaña y el consorcio (aquí, Valencia Interior), no sólo del servicio municipal: se ' +
+        'publica junto al coste, nunca dividido por él.',
+      caveats: [
+        'La orgánica (FORS) ARRANCABA en 2022: 27 toneladas en todo el año, casi cero. Sin esta salvedad el dato parece un error; con ella, dice cuándo empezó la recogida.',
+        `Un solo año, ${reciclaje.fuente.edicion}: las ediciones posteriores sólo existen en un visor sin datos descargables. El año no lo declara la capa — se comprobó contra el padrón (${reciclaje.fuente.comprobacionEdicion.split(';')[1]?.trim() ?? 'habitantes = padrón 2022'}).`,
+        `La banda de comparación es propia y menor que la de coste: los de la banda con tasa calculable en la capa (n=${reciclaje.pares?.n ?? '—'}).`,
+      ],
+      fuente: {
+        nombre: reciclaje.fuente.nombre,
+        url: reciclaje.fuente.url,
+        atribucion: `${reciclaje.fuente.atribucion} · ${reciclaje.fuente.licencia}`,
+      },
+    })
+  } catch {
+    console.warn('[indicadores] SIN reciclaje.json — el panel sale sin ese resultado')
+  }
   resultados.ausencias.push(
     {
       tema: 'Calidad del aire',
@@ -124,9 +156,9 @@ async function main() {
     {
       tema: 'Reciclaje (serie)',
       motivo:
-        'La Generalitat publica UN corte con todas las fracciones por municipio (2022, CC-BY); ' +
-        'los años posteriores sólo existen en un panel interactivo sin descarga reconstruible. ' +
-        'Sin serie comparable, la serie no se publica.',
+        'El corte de 2022 está publicado arriba, en la tarjeta de recogida de residuos. La ' +
+        'SERIE no existe: las ediciones posteriores de la Generalitat sólo viven en un panel ' +
+        'interactivo sin descarga reconstruible, y sin serie comparable no se dibuja ninguna.',
     },
   )
   resultados = validarResultados(resultados)

@@ -1,0 +1,47 @@
+{
+  "generatedAt": "2026-08-17T10:32:49.209Z",
+  "fuente": {
+    "nombre": "Institut Cartogràfic Valencià / GVA — capa 0503_Residuos (WFS)",
+    "url": "https://terramapas.icv.gva.es/0503_Residuos",
+    "licencia": "CC BY 4.0",
+    "atribucion": "Institut Cartogràfic Valencià · Generalitat Valenciana",
+    "edicion": 2022,
+    "comprobacionEdicion": "la capa no declara el año; los habitantes del fichero coinciden con el padrón INE 2022 (Riba-roja: 23.050), y el scraper falla si esa igualdad se rompe"
+  },
+  "upstream": {
+    "status": "frozen-2022",
+    "nota": "las ediciones posteriores sólo se publican en un visor Power BI sin datos descargables"
+  },
+  "municipio": {
+    "ine": "46214",
+    "nombre": "Riba-roja de Túria",
+    "habitantes": 23050,
+    "consorcio": "V3",
+    "fracciones": {
+      "rumTn": 10539,
+      "forsTn": 27,
+      "vidrioTn": 293.2,
+      "eellTn": 212,
+      "pycTn": 223.5
+    },
+    "tasa": {
+      "selectivaTn": 755.7,
+      "totalTn": 11294.7,
+      "pct": 6.690748758267151
+    }
+  },
+  "pares": {
+    "conjunto": "cv-15k-40k · con tasa calculable en la capa",
+    "n": 60,
+    "percentil": 8,
+    "p25": 8.260732937360475,
+    "mediana": 11.788449874567965,
+    "p75": 15.417769472808695
+  },
+  "stats": {
+    "municipios": 542,
+    "conTasa": 537,
+    "bandaConTasa": 60,
+    "edicion": 2022
+  }
+}

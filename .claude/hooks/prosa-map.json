@@ -363,6 +363,9 @@
       "/quejas/:id",
       "/quejas/dashboard"
     ],
+    "reciclaje.json": [
+      "/datos"
+    ],
     "requisitos-cargo.json": [
       "/cargos",
       "/cargos/:slug",
