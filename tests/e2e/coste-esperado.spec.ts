@@ -70,6 +70,10 @@ test.describe('Coste esperado (/laboratorio/coste-esperado)', () => {
 
   test('el orden publicado es de más a menos veces lo esperado', async ({ page }) => {
     const encabezados = page.locator('h3')
+    // Espera con reintento a que el snapshot haya pintado TODAS las tarjetas:
+    // leer los h3 nada más aparecer el h1 llegaba a mitad del render y el
+    // spec salía flaky — un orden correcto leído a destiempo no es un orden.
+    await expect(encabezados).toHaveCount(PUBLICADAS.length)
     const textos = await encabezados.allTextContents()
     expect(textos).toEqual(PUBLICADAS.map((e: { label: string }) => e.label))
   })

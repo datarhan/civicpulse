@@ -256,17 +256,23 @@ export default function CosteEsperado() {
 
       {especificaciones.length > 0 && (
         <Card style={{ marginTop: 26 }}>
-          <div
+          {/* Encabezado de verdad, no eyebrow: la sección del método es un
+              destino de navegación (Frontera hace lo mismo), y el spec lo
+              exige por rol — con un div estuvo rojo desde el primer día y un
+              tail truncado lo leyó como verde. */}
+          <h2
             className="mono"
             style={{
               fontSize: 'var(--fs-micro)',
               textTransform: 'uppercase',
               letterSpacing: '.07em',
               color: 'var(--ink50)',
+              fontWeight: 650,
+              margin: 0,
             }}
           >
             El método entero
-          </div>
+          </h2>
           <ul
             style={{
               margin: '8px 0 0',
