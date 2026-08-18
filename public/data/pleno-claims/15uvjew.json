@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T12:59:00.390Z",
+  "generatedAt": "2026-08-18T17:22:52.004Z",
   "version": "1",
   "plenoId": "15uvjew",
   "plenoDate": "2026-07-27",
@@ -4627,17 +4627,9 @@
       },
       "verification": {
         "claimId": "15uvjew-143-afi-b27d21",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BIqG1AMdjwnVGIpKDxgsAQ%3D%3D",
-            "snippet": "Contrato de suministro de adquisición de tractor municipal como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024. · Ayuntamiento de Riba-roja de Túria · CATRON INTERNACIONAL, S.A. · industry · 25.000 €",
-            "similarity": 0.6,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
@@ -4645,7 +4637,7 @@
           "budget"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4847,17 +4839,9 @@
       },
       "verification": {
         "claimId": "15uvjew-144-afi-b0a6a0",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=P4%2FB9YJYD7erz3GQd5r6SQ%3D%3D",
-            "snippet": "Contrato de servicio para la implantación y mantenimiento de una plataforma de licitación electrónica por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condiciones de ejecución de carácter social. · Ayuntamiento de Riba-roja de Túria · it · 36.000 €",
-            "similarity": 0.6,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
@@ -4865,7 +4849,7 @@
           "budget"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5189,17 +5173,9 @@
       },
       "verification": {
         "claimId": "15uvjew-148-afi-5a5df7",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ej1RCt%2B7HEsQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Grabación, imagen, comunicación social y mantenimiento de las redes sociales · Ayuntamiento de Riba-roja de Túria · Irispress Social Media, S.L. · culture · 50.000 €",
-            "similarity": 0.6,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
@@ -5207,7 +5183,7 @@
           "budget"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5973,17 +5949,9 @@
       },
       "verification": {
         "claimId": "15uvjew-183-afi-43b9d7",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8mT2MBthkfMQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Defensa en juicio en los procedimientos judiciales instados contra el Ayuntamiento que traigan causa de la anulación del PAI Porxinos · Ayuntamiento de Riba-roja de Túria · JOSE MARIA BAñO LEON ABOGADOS SLP · legal · 60.000 €",
-            "similarity": 0.6,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
@@ -5991,7 +5959,7 @@
           "budget"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6366,14 +6334,14 @@
       },
       "verification": {
         "claimId": "15uvjew-197-acu-735415",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ej1RCt%2B7HEsQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Grabación, imagen, comunicación social y mantenimiento de las redes sociales · Ayuntamiento de Riba-roja de Túria · Irispress Social Media, S.L. · culture · 50.000 €",
-            "similarity": 0.6,
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
+            "snippet": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E. · Ayuntamiento de Riba-roja de Túria · OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. · construction · estado: formalized",
+            "similarity": 1,
             "stance": "checked"
           }
         ],
@@ -7469,17 +7437,9 @@
       },
       "verification": {
         "claimId": "15uvjew-254-afi-dcb305",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2N0awhGNBRR%2FR5QFTlaM4A%3D%3D",
-            "snippet": "Sistema Dinámico de Adquisición para la contratación de SERVICIOS de ARQUITECTURA E INGENIERIA, CONSULTORIA Y ASISTENCIA TÉCNICA a las diferentes áreas municipales abierto a otras entidades públicas mediante el sistema de compra conjunta esporádica con condición especial de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 9 (ESDA1/2025) · Ayuntamiento de Riba-roja de Túria · architecture · 3.000.000 €",
-            "similarity": 0.6,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
@@ -7487,7 +7447,7 @@
           "budget"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

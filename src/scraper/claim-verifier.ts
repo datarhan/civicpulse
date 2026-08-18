@@ -691,6 +691,23 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
           }
         }
         if (amountSim < 0.5) continue
+        // Un importe que coincide y un objeto que no, NO es corroboración.
+        //
+        // Con `textSim` 0 la suma de abajo da exactamente el umbral (1×0,6 +
+        // 0×0,4 = 0,6) y pasaba: un importe exacto contra un contrato de otra
+        // cosa se publicaba como `parcial` con ese contrato de evidencia. De
+        // ahí salió la cosecha entera del debate de presupuestos —partidas de
+        // cifra redonda contra contratos de cifra redonda: el cementerio contra
+        // las redes sociales, los caminos rurales contra un tractor, el centro
+        // social contra una plataforma de licitación— que la revisión de
+        // superficies fue señalando de una en una.
+        //
+        // Es la regla que este emparejador ya aplica en la corroboración (el
+        // solapamiento tiene que ser MUTUO, no basta con que una palabra salga
+        // en el título) extendida al camino que entra por el importe. No cierra
+        // ese camino: con objeto compartido, el importe exacto sigue
+        // verificando.
+        if (textSim <= 0) continue
         const combined = amountSim * 0.6 + textSim * 0.4
         if (combined >= 0.6 && (best === null || combined > best.sim)) {
           best = { row: t, sim: combined }

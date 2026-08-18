@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T12:59:00.390Z",
+  "generatedAt": "2026-08-18T17:22:52.004Z",
   "version": "1",
   "plenos": [
     {
@@ -7,11 +7,11 @@
       "plenoDate": "2026-07-27",
       "chunkPath": "pleno-claims/15uvjew.json",
       "itemCount": 284,
-      "toggleCount": 270,
+      "toggleCount": 275,
       "byVerdict": {
-        "sin-datos": 270,
-        "parcial": 11,
-        "verificado": 3
+        "sin-datos": 275,
+        "parcial": 5,
+        "verificado": 4
       },
       "byType": {
         "promesa": 41,
@@ -35,7 +35,7 @@
         "movilidad": 4,
         "salud": 1
       },
-      "bytes": 419663
+      "bytes": 417521
     },
     {
       "plenoId": "brxx5g",
@@ -640,9 +640,9 @@
     "items": 4678,
     "plenos": 22,
     "byVerdict": {
-      "sin-datos": 4569,
-      "parcial": 82,
-      "verificado": 27
+      "sin-datos": 4574,
+      "parcial": 76,
+      "verificado": 28
     },
     "byTopicVerdict": {
       "cultura": {
@@ -655,22 +655,22 @@
         "parcial": 4
       },
       "other": {
-        "sin-datos": 393,
-        "parcial": 6,
-        "verificado": 2
+        "sin-datos": 394,
+        "verificado": 2,
+        "parcial": 5
       },
       "fiscal": {
-        "sin-datos": 739,
-        "parcial": 5
+        "sin-datos": 740,
+        "parcial": 4
       },
       "medio-ambiente": {
         "sin-datos": 526,
-        "parcial": 15,
-        "verificado": 9
+        "parcial": 14,
+        "verificado": 10
       },
       "urbanismo": {
-        "sin-datos": 833,
-        "parcial": 22,
+        "sin-datos": 834,
+        "parcial": 21,
         "verificado": 5
       },
       "transparencia": {
@@ -679,15 +679,15 @@
         "verificado": 4
       },
       "educacion": {
-        "sin-datos": 215,
-        "parcial": 6
+        "sin-datos": 216,
+        "parcial": 5
       },
       "vivienda": {
         "sin-datos": 148
       },
       "social": {
-        "sin-datos": 303,
-        "parcial": 2,
+        "sin-datos": 304,
+        "parcial": 1,
         "verificado": 1
       },
       "seguridad": {

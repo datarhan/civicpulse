@@ -118,6 +118,86 @@ describe('verifyClaim — parcial on near-match', () => {
   })
 })
 
+describe('un importe que coincide y un objeto que no, no es corroboración', () => {
+  /**
+   * La aritmética que fabricaba la clase entera: `combined = amountSim*0,6 +
+   * textSim*0,4` con umbral `>= 0,6`. Un importe EXACTO (amountSim 1) y cero
+   * solapamiento de objeto (textSim 0) suman exactamente 0,6 — pasaban. Así se
+   * publicó, con veredicto `parcial` y el contrato ajeno de evidencia debajo:
+   *
+   *   «adecuación del Centro Social Santa Mónica, 36.000 €»
+   *      ⇒ plataforma de licitación electrónica · it · 36.000 €
+   *   «edificios, el cementerio, 50.000 €»
+   *      ⇒ grabación y mantenimiento de redes sociales · culture · 50.000 €
+   *   «caminos rurales, 25.000 €»
+   *      ⇒ tractor municipal tras la DANA · industry · 25.000 €
+   *
+   * El propio comentario del bloque ya avisaba de la mitad del peligro («un
+   * 0,6 puede venir de un solo lado»), pero lo mitigaba sólo por el lado del
+   * TEXTO. El lado del importe seguía abierto, y es el que produjo la cosecha
+   * del debate de presupuestos: partidas de cifra redonda contra contratos de
+   * cifra redonda. Es la misma regla que el repositorio ya aprendió para la
+   * corroboración —el solapamiento tiene que ser MUTUO— aplicada al camino que
+   * entra por el importe.
+   */
+  const contratoAjeno = {
+    permalink: 'https://contrataciones.example/r03',
+    title:
+      'Contrato de servicio para la implantación y mantenimiento de una plataforma de licitación electrónica',
+    finalAmount: 36_000,
+  }
+
+  it('no adjunta un contrato cuyo único parecido es la cifra, ni con el importe exacto', () => {
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'cita_obra',
+        entities: {
+          amountEuros: 36_000,
+          referencedEntity: 'adecuacion centro social santa monica',
+        },
+      }),
+      tenders: { contracts: [contratoAjeno] },
+    })
+    expect(v.evidence.filter((e) => e.kind === 'tender')).toHaveLength(0)
+    expect(v.verdict).toBe('sin-datos')
+    // Y lo dice habiendo mirado: la fuente queda anotada igual.
+    expect(v.checkedAgainst).toContain('tenders')
+  })
+
+  it('tampoco cuando la afirmación no nombra ningún objeto', () => {
+    // Sin entidad, `textSim` es 0 por construcción: cualquier contrato de la
+    // misma cifra corroboraría cualquier cosa.
+    const v = verifyClaim({
+      claim: baseClaim({ type: 'afirmacion_numerica', entities: { amountEuros: 36_000 } }),
+      tenders: { contracts: [contratoAjeno] },
+    })
+    expect(v.evidence.filter((e) => e.kind === 'tender')).toHaveLength(0)
+    expect(v.verdict).toBe('sin-datos')
+  })
+
+  it('control positivo: con el objeto compartido, el importe exacto sigue corroborando', () => {
+    // La regla acota el camino del importe, no lo cierra. Sin este control, un
+    // «no adjuntes nada nunca» pasaría los dos casos de arriba.
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'cita_obra',
+        entities: { amountEuros: 36_000, referencedEntity: 'centro social santa monica' },
+      }),
+      tenders: {
+        contracts: [
+          {
+            permalink: 'https://contrataciones.example/r04',
+            title: 'Obras de adecuación del Centro Social Santa Mónica',
+            finalAmount: 36_000,
+          },
+        ],
+      },
+    })
+    expect(v.evidence.filter((e) => e.kind === 'tender')).toHaveLength(1)
+    expect(v.verdict).toBe('verificado')
+  })
+})
+
 describe('verifyClaim — promesa-repetida on quote overlap', () => {
   it('flags a promise whose quote overlaps ≥0.55 with verbatim', () => {
     const v = verifyClaim({
