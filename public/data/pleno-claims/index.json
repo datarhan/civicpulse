@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T07:47:01.844Z",
+  "generatedAt": "2026-08-18T07:50:34.694Z",
   "version": "1",
   "plenos": [
     {
@@ -122,16 +122,17 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "chunkPath": "pleno-claims/10yl550.json",
-      "itemCount": 262,
-      "toggleCount": 262,
+      "itemCount": 263,
+      "toggleCount": 263,
       "byVerdict": {
-        "sin-datos": 262
+        "sin-datos": 263
       },
       "byType": {
         "afirmacion_numerica": 130,
         "cita_obra": 66,
         "promesa": 51,
-        "cita_convenio": 15
+        "cita_convenio": 15,
+        "valoracion_politica": 1
       },
       "byTopic": {
         "fiscal": 32,
@@ -145,10 +146,10 @@
         "social": 11,
         "seguridad": 16,
         "medio-ambiente": 10,
-        "vivienda": 64,
+        "vivienda": 65,
         "cultura": 41
       },
-      "bytes": 352139
+      "bytes": 353704
     },
     {
       "plenoId": "k4olcs",
@@ -643,10 +644,10 @@
     }
   ],
   "totals": {
-    "items": 4809,
+    "items": 4810,
     "plenos": 22,
     "byVerdict": {
-      "sin-datos": 4607,
+      "sin-datos": 4608,
       "parcial": 165,
       "verificado": 37
     },
@@ -690,7 +691,7 @@
         "parcial": 5
       },
       "vivienda": {
-        "sin-datos": 144,
+        "sin-datos": 145,
         "parcial": 5
       },
       "social": {

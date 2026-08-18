@@ -38946,7 +38946,7 @@
         "plenoId": "10yl550",
         "plenoDate": "2026-05-11",
         "segmentIndex": 220,
-        "type": "acusacion_publica",
+        "type": "valoracion_politica",
         "speakerGroup": "PSOE",
         "verbatim": "La norma, la ley del vivienda estatal no es inconstitucional. Es un satombat, no hay ningún recurso. Es constitucional.",
         "context": "La norma, la ley del vivienda estatal no es inconstitucional. Es un satombat, no hay ningún recurso. Es constitucional. Lo que digo por las soluciones que has hecho, es verdad, es que la constitución no la cumplía.",
@@ -38954,7 +38954,6 @@
         "entities": {
           "referencedEntity": "ley del vivienda estatal"
         },
-        "accusationSubtype": "factual",
         "confidence": 0.85,
         "reasoning": "Se hace una afirmación sobre la constitucionalidad de la ley de vivienda estatal, lo que puede ser verificado a través de documentos legales.",
         "requiresHumanApproval": true
