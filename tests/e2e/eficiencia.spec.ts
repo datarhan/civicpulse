@@ -475,6 +475,53 @@ test.describe('Eficiencia (/eficiencia)', () => {
     }
   })
 
+  test('cada cociente dice qué es, con el divisor glosado y antes de situarlo', async ({
+    page,
+  }) => {
+    // El defecto que esto congela: la página publicaba «81.965 €/efectivo ·
+    // 4.262.162 € ÷ 52 efectivo» y NINGUNA frase que dijera qué era eso. La
+    // única que podía decirlo se suprimía por redundante —cuando lo era, porque
+    // se limitaba a repetir la cifra— y nadie escribió la que sí informa. Un
+    // lector lo preguntó tal cual: «¿qué quieren decir estos números?».
+    //
+    // Se mide sobre la página, no sobre el módulo: la unidad ya cubre la
+    // redacción, y lo que se rompió aquí fue que la tarjeta no la pintaba.
+    const conCociente = SNAP.indicadores.filter((i: Indicador) => i.valor !== null)
+    expect(conCociente.length, 'ningún indicador con cociente que comprobar').toBeGreaterThan(5)
+
+    for (const i of conCociente as Indicador[]) {
+      const card = page.locator(`#s-${i.id}`)
+      await expect(card).toBeVisible({ timeout: 8000 })
+      // La glosa del divisor, que es lo que convierte «52 efectivos» en algo
+      // legible, tiene que estar EN la tarjeta.
+      await expect(
+        card.getByText(i.divisor.glosa, { exact: false }),
+        `${i.id} publica un cociente sin decir qué cuenta su divisor`,
+      ).toBeVisible()
+      // Y la fórmula pluraliza: «÷ 52 efectivo» era la vista por defecto.
+      await expect(
+        card
+          .getByText(`${i.denominador.valor.toLocaleString('es-ES')} ${i.divisor.plural}`, {
+            exact: false,
+          })
+          .first(),
+      ).toBeVisible()
+    }
+
+    // El ORDEN es la otra mitad del arreglo: «esto es un precio, no un
+    // rendimiento» tiene que leerse ANTES que «queda más alto que tres de cada
+    // cuatro», o el lector ya ha sacado su conclusión cuando llega el matiz.
+    const policia = page.locator('#s-b132-130p-coste-unitario')
+    const yComo = await policia.getByText(/No es un sueldo ni una tarifa/).boundingBox()
+    const yDonde = await policia.getByText(/Frente a \d+ municipios valencianos/).boundingBox()
+    expect(yComo, 'la tarjeta no pinta la frase de «cómo se lee»').not.toBeNull()
+    expect(yDonde, 'la tarjeta no pinta la frase de posición').not.toBeNull()
+    expect(
+      yComo!.y,
+      'la advertencia volvió a quedar por debajo de la posición en el grupo',
+    ).toBeLessThan(yDonde!.y)
+  })
+
   test('el resultado se publica AL LADO del coste, con su frase no-causal', async ({ page }) => {
     // Las tres reglas del escalón, medidas sobre la página: el bloque existe
     // dentro de la tarjeta a la que acompaña, dice en el cuerpo que no se lee

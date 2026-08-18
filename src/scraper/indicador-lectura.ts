@@ -55,30 +55,49 @@ export interface LecturaVisible {
 /**
  * La misma lectura, sin lo que el lector ya tiene delante.
  *
- * `que` y `donde` son ciertos y siguen haciendo falta —una tarjeta bloqueada no
- * tiene más contenido que su `que`, y «no hay comparación» sólo se dice ahí—,
- * pero cuando la cifra está en cuerpo 30 dos líneas más arriba y la banda ya
- * imprime mediana, cuartiles y percentil, repetirlos en prosa no informa: empuja
- * hacia abajo la única frase del bloque que no se deduce mirando.
+ * Hoy sólo descuenta `donde`, y sólo cuando el llamante declara imprimirlo por
+ * su cuenta. `que`, `como` y `avisos` NUNCA se descuentan: son lo que la
+ * geometría no puede enseñar, y el motivo entero de que este bloque exista.
  *
- * Se midió sobre la página publicada: «81.965» aparecía cuatro veces dentro de
- * su propia tarjeta, y «…que prestan el servicio de la misma forma» diez veces
- * en la página, una por tarjeta, justo debajo del rótulo de la banda que dice lo
- * mismo. Diez pantallas de las trece eran repetición.
+ * HISTORIA, porque explica el único flag que ya no gobierna nada. Se midió
+ * sobre la página publicada que «81.965» aparecía cuatro veces dentro de su
+ * propia tarjeta, y «…que prestan el servicio de la misma forma» diez veces en
+ * la página, una por tarjeta. Diez pantallas de las trece eran repetición, así
+ * que se descontaron `que` y `donde` cuando la cifra y la banda ya estaban en
+ * pantalla.
  *
- * Esa medición se hizo con la banda ABIERTA. Desde que la banda va plegada en
- * <details> (y desde agosto de 2026, con la tarjeta pintando `donde` junto al
- * número porque era la única frase que contesta «¿caro o barato?» y quedaba
- * sin leer), el flag `banda` significa «`donde` ya está impreso en la
- * tarjeta», no «la banda está desplegada». El contrato de esta función no
- * cambia: descuenta lo que el llamante declara tener en pantalla.
+ * Para `que` ese arreglo fue por el lado equivocado. La frase no sobraba por
+ * estar el número en pantalla: sobraba por no decir nada que el número no
+ * dijera («81.965 €/efectivo en la entrega de 2024.»). Callarla dejó la página
+ * sin NINGUNA frase que explicara qué es el cociente, y así estuvo hasta que un
+ * lector preguntó qué significaba «81.965 €/efectivo» y no halló respuesta.
+ * Ahora `que` glosa el divisor —«52 efectivos» no dice nada; «los agentes y
+ * demás personal en plantilla» sí— y marca el gasto como anual, de modo que ya
+ * no hay nada que descontar. `cifra` se sigue aceptando porque describe la
+ * pantalla con verdad, pero no suprime nada.
  *
- * `como` y `avisos` NUNCA se descuentan: son lo que la geometría no puede
- * enseñar, y el motivo entero de que este bloque exista.
+ * `banda` significa «`donde` ya está impreso en la tarjeta», no «la banda está
+ * desplegada» (va plegada en <details>). El contrato no cambia: descuenta lo
+ * que el llamante declara tener en pantalla.
  */
 export function lecturaVisible(lectura: Lectura, ya: YaEnPantalla): LecturaVisible {
   return {
-    que: ya.cifra ? null : lectura.que,
+    // `que` ya NO se descuenta, y el flag `cifra` deja de gobernarlo.
+    //
+    // Se descontaba porque la frase era la cifra otra vez con otro formato, y
+    // entonces era correcto: tener «81.965 €/efectivo» cuatro veces en la misma
+    // tarjeta empujaba hacia abajo lo que sí informaba. Pero el arreglo se hizo
+    // por el lado equivocado. La frase no sobraba por estar el número en
+    // pantalla: sobraba por no decir nada que el número no dijera. Al callarla
+    // en vez de escribirla, la página se quedó SIN NINGUNA frase que explicara
+    // qué es el cociente, y así estuvo hasta que un lector preguntó qué
+    // significaba «81.965 €/efectivo» y no encontró la respuesta en la página.
+    //
+    // Ahora `que` glosa el divisor y marca el gasto como anual, o sea dice tres
+    // cosas que ninguna cifra en cuerpo 30 puede decir. `donde` sí se sigue
+    // descontando cuando la tarjeta lo imprime por su cuenta: ahí la
+    // redundancia es real.
+    que: lectura.que,
     donde: ya.banda ? null : lectura.donde,
     como: lectura.como,
     avisos: lectura.avisos,
@@ -115,9 +134,15 @@ export function chipDeclaracion(i: Indicador): ChipDeclaracion | null {
   // entero dejó de remedirse.
   const desde = num && den ? Math.min(d.numerador.desde ?? 0, d.denominador.desde ?? 0) : null
 
-  if (num && den) return { texto: `las dos cifras de ${desde}`, mitad: 'ambas' }
-  if (den) return { texto: `denominador de ${d.denominador.desde}`, mitad: 'denominador' }
-  return { texto: `coste de ${d.numerador.desde}`, mitad: 'numerador' }
+  // «denominador de 2019» era la marca más visible de la tarjeta —va primera y
+  // en tono de aviso— y estaba escrita en la única palabra del conjunto que un
+  // vecino no tiene por qué conocer. Dice lo mismo sin pedir aritmética: lo que
+  // se quedó parado es la CANTIDAD entre la que se divide, o el COSTE, o las
+  // dos. El año sigue dentro, que es lo que distingue una tarjeta de otra.
+  if (num && den) return { texto: `ni coste ni cantidad se remiden desde ${desde}`, mitad: 'ambas' }
+  if (den)
+    return { texto: `cantidad sin remedir desde ${d.denominador.desde}`, mitad: 'denominador' }
+  return { texto: `coste sin actualizar desde ${d.numerador.desde}`, mitad: 'numerador' }
 }
 
 /**
@@ -127,12 +152,20 @@ export function chipDeclaracion(i: Indicador): ChipDeclaracion | null {
  * impide que la tarjeta se lea como una calificación.
  */
 const COMO_SE_LEE: Record<Tier, string> = {
+  // Cada una EMPIEZA por lo que la cifra no es.
+  //
+  // Antes empezaban por lo que miden («Divide un gasto entre otro gasto…»), y
+  // la advertencia llegaba en la segunda mitad de la frase. Puesta debajo del
+  // gráfico y de la banda, como estaba, el lector ya había leído «queda más
+  // alto que tres de cada cuatro» media pantalla antes y había sacado su
+  // conclusión. La negación va primero y la frase va arriba, junto al número:
+  // es el orden en el que se lee, no el orden en el que se deduce.
   input:
-    'Divide un gasto entre otro gasto, así que es un precio y no un rendimiento: un cuerpo mejor pagado sale «más caro» sin que eso diga nada de cómo funciona el servicio.',
+    'No es un sueldo ni una tarifa: es TODO el coste del servicio —personal, medios, instalaciones— repartido entre su propia plantilla. Divide un gasto entre otro gasto, así que es un precio y no un rendimiento: un cuerpo mejor pagado o mejor equipado sale «más caro» por cabeza sin que eso diga nada de cómo funciona el servicio.',
   carga:
-    'El divisor mide la demanda que el servicio atiende, no lo que consigue con ella: que haya más no significa que se gestione peor.',
+    'No mide lo que el servicio consigue: el divisor es la demanda que le llega —lo que le toca atender—, no su logro. Que haya más no significa que se gestione peor, y que haya menos no significa que se gestione mejor.',
   output:
-    'Mide lo que el servicio entrega por cada euro. Sigue sin decir si el resultado es bueno: la fuente no publica ningún indicador de resultado con el que contrastarlo.',
+    'No mide la calidad de lo que se entrega: dice lo que costó cada unidad, no si estuvo bien hecha. La fuente no publica ningún indicador de resultado con el que contrastarlo.',
   outcome: 'Mide el efecto sobre el municipio, no sólo lo que se produjo.',
 }
 
@@ -150,7 +183,10 @@ const COMO_SE_LEE: Record<Tier, string> = {
  * tenerla, porque las otras tres siguen aparentando que la lista está completa.
  */
 export const GLOSA_TIER: Record<Tier, string> = {
-  input: 'divide un gasto entre otro gasto',
+  // La chapa ya dice «precio», así que la glosa no lo repite: dice por qué lo
+  // es. Antes la chapa decía «entrada» y era la glosa quien tenía que cargar
+  // con todo el significado.
+  input: 'divide un gasto entre otro gasto, no mide rendimiento',
   carga: 'el divisor es la demanda que atiende',
   output: 'lo que el servicio entrega por euro',
   outcome: 'el efecto sobre el municipio',
@@ -161,6 +197,9 @@ const fmt = (v: number, unidad: string) =>
     minimumFractionDigits: v >= 1000 ? 0 : 2,
     maximumFractionDigits: v >= 1000 ? 0 : 2,
   })} ${unidad}`
+
+/** La misma escala de decimales, en euros a secas: 2,02 € y 81.965 €. */
+const euros = (v: number) => fmt(v, '€')
 
 /**
  * Tramo del percentil, en palabras y sin ranking.
@@ -211,7 +250,22 @@ export function leerIndicador(i: Indicador): Lectura {
   }
 
   const entrega = i.citas?.[0]?.entrega
-  const que = `${fmt(i.valor, i.unidad)} en la entrega de ${entrega}.`
+  // La frase que dice QUÉ ES el número, y la razón entera de que este campo
+  // exista. La redacción anterior era «81.965 €/efectivo en la entrega de
+  // 2024.»: la misma cifra que ya estaba en cuerpo 30, con otro formato. Como
+  // no añadía nada, `lecturaVisible` la suprimía por redundante — y con ella
+  // desapareció de la página la única frase que podía contestar «¿qué
+  // significa esto?». El lector lo dijo tal cual: «81.965 €/efectivo, ¿qué
+  // quieren decir estos números?».
+  //
+  // Ahora nombra las dos cantidades que se dividen, glosa el divisor —«52
+  // efectivos» no dice nada; «los agentes y demás personal en plantilla» sí— y
+  // cierra con el cociente marcado como ANUAL. Lo último no es adorno: sin
+  // «al año», 81.965 € junto a la palabra «efectivo» se lee como un sueldo.
+  const que =
+    `El ayuntamiento declaró ${euros(i.numerador.valor!)} de coste para este servicio en ` +
+    `${entrega} y ${i.denominador.valor!.toLocaleString('es-ES')} ${i.divisor.plural} ` +
+    `—${i.divisor.glosa}—: sale a ${euros(i.valor)} al año por cada ${i.divisor.singular}.`
 
   let donde: string | null = null
   if (i.pares) {

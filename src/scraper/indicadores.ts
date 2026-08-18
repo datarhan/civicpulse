@@ -30,7 +30,7 @@
  */
 import { programaCe4CasaCon, type Ce4Row, type CesteRow, type ModoGestion } from './coste-efectivo'
 import { crearPrng, semillaDesde } from './prng'
-import { SERVICIOS, type ServicioDef } from './indicador-registry'
+import { SERVICIOS, type ServicioDef, type Divisor } from './indicador-registry'
 import { medirDeclaracionCongelada } from './declaracion-congelada'
 
 /**
@@ -204,6 +204,14 @@ export interface Indicador {
   /** El cociente. `null` salvo que AMBAS magnitudes estén declaradas. */
   valor: number | null
   unidad: string
+  /**
+   * El divisor en palabras, copiado del registro.
+   *
+   * Viaja en el snapshot en vez de resolverse contra `SERVICIOS` en la página
+   * porque `unidad` y `caveats` ya viajan así: dos consumidores leyendo el
+   * mismo campo de dos sitios distintos es cómo se separan.
+   */
+  divisor: Divisor
   modoGestion: ModoGestion
   codGestionRaw: string
   comparable: boolean
@@ -798,6 +806,7 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       denominador,
       valor,
       unidad: def.unidad,
+      divisor: def.divisor,
       modoGestion,
       codGestionRaw,
       comparable: resumen !== null,
