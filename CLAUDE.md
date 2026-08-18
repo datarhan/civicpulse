@@ -327,7 +327,7 @@ distinguishable from a map with nothing to say.
 `pleno-votes.json`, `pleno-findings.json`, `journalist-reports.json`,
 `quejas-responses.json`, `sindic.json`, `dedicaciones.json`, `plantilla.json`,
 `place-overrides.json`, `entity-overrides.json`, `eficiencia-findings.json`,
-`eficiencia-preguntas.json`.
+`eficiencia-preguntas.json`, `pleno-claim-reclassifications.json`.
 Route algorithmic output through the curator CLI so the validator and git
 history stay authoritative. The full list and its CLIs: `docs/DATA_SOURCES.md`.
 

@@ -17,7 +17,10 @@ import { resolve } from 'node:path'
 import {
   mergeVerified,
   validateOverlay,
+  validateReclassifications,
+  reclassificationOutcomes,
   type Overlay,
+  type Reclassifications,
   type VerifiedItem,
 } from '../src/scraper/verified-merge'
 import type { ClaimVerdict } from '../src/scraper/claim-verifier'
@@ -25,6 +28,7 @@ import type { ClaimVerdict } from '../src/scraper/claim-verifier'
 const DATA = resolve('public/data')
 export const BASE = resolve(DATA, 'pleno-claims-verified-base.json')
 export const OVERLAY = resolve(DATA, 'pleno-claims-overlay.json')
+export const RECLASSIFICATIONS = resolve(DATA, 'pleno-claim-reclassifications.json')
 export const VERIFIED = resolve(DATA, 'pleno-claims-verified.json')
 
 interface Snapshot {
@@ -77,9 +81,24 @@ export function loadOverlay(): Overlay {
   return o
 }
 
-export async function rebuildVerified(
-  opts: { refreshChunks?: boolean } = {},
-): Promise<{ total: number; byVerdict: Record<ClaimVerdict, number>; overlayApplied: number }> {
+/**
+ * Validado también AL LEER: un sidecar editado a mano con una entrada HACIA
+ * `acusacion_publica` revienta aquí cualquier rebuild antes de publicar nada —
+ * la inyección de fallo que este mecanismo promete.
+ */
+export function loadReclassifications(): Reclassifications {
+  if (!existsSync(RECLASSIFICATIONS)) return { version: 1, generatedAt: '', entries: {} }
+  const r = JSON.parse(readFileSync(RECLASSIFICATIONS, 'utf8')) as Reclassifications
+  validateReclassifications(r)
+  return r
+}
+
+export async function rebuildVerified(opts: { refreshChunks?: boolean } = {}): Promise<{
+  total: number
+  byVerdict: Record<ClaimVerdict, number>
+  overlayApplied: number
+  reclassApplied: number
+}> {
   if (!existsSync(BASE)) {
     throw new Error(
       `[rebuild] ${BASE} missing — run \`npm run migrate:verified-split\` or \`npm run verify:pleno-claims\``,
@@ -87,7 +106,21 @@ export async function rebuildVerified(
   }
   const base = JSON.parse(readFileSync(BASE, 'utf8')) as Snapshot
   const overlay = loadOverlay()
-  const items = mergeVerified(base.items, overlay)
+  const reclas = loadReclassifications()
+  const items = mergeVerified(base.items, overlay, reclas)
+
+  // Los tres desenlaces de cada reclasificación, a la vista en cada rebuild:
+  // «no encontrada» u «obsoleta» plegadas en «aplicada» serían el verde hueco
+  // de siempre (DATA_INTEGRITY regla 2).
+  const reclasOutcomes = reclassificationOutcomes(base.items, reclas)
+  for (const id of reclasOutcomes.sinClaim) {
+    process.stderr.write(`[rebuild] reclasificación de ${id}: el claim ya no está en la base\n`)
+  }
+  for (const id of reclasOutcomes.obsoletas) {
+    process.stderr.write(
+      `[rebuild] reclasificación de ${id}: OBSOLETA — la base ya no dice el tipo registrado en from\n`,
+    )
+  }
 
   const byVerdict: Record<ClaimVerdict, number> = {
     verificado: 0,
@@ -131,5 +164,10 @@ export async function rebuildVerified(
     const { rewriteChunksFromMonolith } = await import('./chunk-pleno-claims')
     rewriteChunksFromMonolith()
   }
-  return { total: items.length, byVerdict, overlayApplied }
+  return {
+    total: items.length,
+    byVerdict,
+    overlayApplied,
+    reclassApplied: reclasOutcomes.aplicadas.length,
+  }
 }

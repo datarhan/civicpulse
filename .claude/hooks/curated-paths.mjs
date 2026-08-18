@@ -44,6 +44,7 @@ export const CURATED = {
   // edición directa saltaría el rango isDowngrade y el registro del overlay.
   'pleno-claims-verified.json': 'npm run downgrade-verdict / verify:pleno-claims',
   'pleno-claims-overlay.json': 'npm run downgrade-verdict / apply-gold-downgrades',
+  'pleno-claim-reclassifications.json': 'npm run reclassify-claim',
   'press-findings.json': 'npm run correct-press-finding',
   'journalist-reports.json':
     'npm run promote-report / correct-journalist-report / journalist-reply',
