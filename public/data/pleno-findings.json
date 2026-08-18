@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-14T08:51:18.981Z",
+  "generatedAt": "2026-08-18T16:28:02.710Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -1089,7 +1089,7 @@
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
       "title": "Pleno ordinario de Riba-roja de Túria 2026-04-20: Debate sobre educación",
-      "summary": "El grupo PSOE afirma que el plan edificante ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que VOX se compromete a garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
+      "summary": "El grupo PSOE afirma que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que VOX se compromete a garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
       "severity": "informational",
       "sourceClaimIds": [
         "k4olcs-063-cit-25e6ea",
@@ -1143,6 +1143,14 @@
           "reason": "Se retira del cotejo una fila que no es un expediente sino un código de clasificación, sin objeto ni adjudicación propios: publicarla bajo el epígrafe de documentos cotejados presenta como registro del caso lo que sólo es una etiqueta. El sumario no la nombraba y no se toca; los otros dos documentos lo siguen sosteniendo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T16:58:25.746Z"
+        },
+        {
+          "field": "summary",
+          "original": "El grupo PSOE afirma que el plan edificante ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que VOX se compromete a garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
+          "corrected": "El grupo PSOE afirma que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que VOX se compromete a garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
+          "reason": "Junto a los datos de contratación y presupuesto municipales, la cifra de 1.700 millones se leía como imputable a Riba-roja, cuyo presupuesto anual es de dos órdenes de magnitud menor; es un programa autonómico. Señalamiento de la revisión de superficies del 18-08-2026.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-18T16:28:02.199Z"
         }
       ]
     },
@@ -2821,7 +2829,7 @@
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "01-12-2025: Pleno debate sobre pagos a proveedores y ley de contratación",
-      "summary": "El debate incluyó reproches sobre plazos de pago a proveedores y sobre la aplicación del artículo 198 de la ley de contratos, que establece intereses por retrasos en los pagos. Las intervenciones concretas no se reproducen: son acusaciones sin grupo atribuido en la transcripción y que ningún registro municipal respalda ni desmiente. Se mencionaron también el bono de comercio y el incremento de cuotas de la Seguridad Social.",
+      "summary": "El debate incluyó reproches sobre plazos de pago a proveedores y sobre la aplicación del artículo 198 de la ley de contratos, que establece intereses por retrasos en los pagos. Esas intervenciones no se reproducen: son acusaciones sin grupo atribuido en la transcripción y que ningún registro municipal respalda ni desmiente. En la misma sesión se habló también del incremento de cuotas de la Seguridad Social y del bono de comercio; esta última intervención sí se reproduce aquí, atribuida a Compromís y marcada como sin contraste en los datos, que es la etiqueta de lo que no es una acusación.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-220-acu-34560f",
@@ -2910,6 +2918,14 @@
           "reason": "El sumario reproducía dos intervenciones que la puerta editorial retiene por ser acusaciones sin grupo atribuido ni anclaje documental.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-11T08:26:35.856Z"
+        },
+        {
+          "field": "summary",
+          "original": "El debate incluyó reproches sobre plazos de pago a proveedores y sobre la aplicación del artículo 198 de la ley de contratos, que establece intereses por retrasos en los pagos. Las intervenciones concretas no se reproducen: son acusaciones sin grupo atribuido en la transcripción y que ningún registro municipal respalda ni desmiente. Se mencionaron también el bono de comercio y el incremento de cuotas de la Seguridad Social.",
+          "corrected": "El debate incluyó reproches sobre plazos de pago a proveedores y sobre la aplicación del artículo 198 de la ley de contratos, que establece intereses por retrasos en los pagos. Esas intervenciones no se reproducen: son acusaciones sin grupo atribuido en la transcripción y que ningún registro municipal respalda ni desmiente. En la misma sesión se habló también del incremento de cuotas de la Seguridad Social y del bono de comercio; esta última intervención sí se reproduce aquí, atribuida a Compromís y marcada como sin contraste en los datos, que es la etiqueta de lo que no es una acusación.",
+          "reason": "La frase sobre acusaciones sin grupo atribuido cubría las cuatro citas de la ficha, incluida la del bono de comercio, que la propia ficha atribuye a un grupo y marca con la etiqueta de lo que no es una acusación. Señalamiento de la revisión de superficies del 18-08-2026.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-18T16:28:02.709Z"
         }
       ]
     },

@@ -369,9 +369,15 @@ const MARK_AXES = [
     marks: CONTRAST_MARK,
     key: (e) => e?.gate,
     lead:
-      'Estas citas se cotejaron automáticamente con la base documental municipal —contratos, ' +
-      'subvenciones, presupuesto y promesas publicadas— y no apareció ningún dato que las ' +
-      'confirme ni que las desmienta. Eso no las convierte en falsas: quiere decir que no lo sabemos.',
+      // La cobertura temporal va DICHA: sin ella, «no apareció ningún dato»
+      // sobre una obra de 2005 o 2012 sonaba a comprobación con peso, cuando la
+      // base documental no llega a esos años y el cotejo no podía, por
+      // construcción, confirmar ni desmentir (señalamiento del lector, 18-08).
+      'Estas citas se cotejaron automáticamente con la base documental municipal —la ' +
+      'contratación desde 2017, las subvenciones, el presupuesto vigente y las promesas ' +
+      'publicadas— y no apareció ningún dato que las confirme ni que las desmienta. Eso no las ' +
+      'convierte en falsas: quiere decir que no lo sabemos — y sobre hechos anteriores a esa ' +
+      'cobertura, que no podíamos saberlo.',
     href: '/metodologia#citas-contraste',
     linkText: 'Qué significa que una cita no esté contrastada →',
   },

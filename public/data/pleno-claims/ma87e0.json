@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T07:50:34.694Z",
+  "generatedAt": "2026-08-18T12:59:00.390Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -89,7 +89,10 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": []
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -145,7 +148,10 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": []
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -201,7 +207,10 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": []
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -317,7 +326,10 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": []
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -1241,7 +1253,10 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": []
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -2577,7 +2592,10 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": []
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -2744,7 +2762,10 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": []
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -2771,7 +2792,10 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": []
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -3201,7 +3225,10 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": []
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -3228,7 +3255,10 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": []
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -3255,7 +3285,10 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": []
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -3282,7 +3315,10 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": []
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -3339,7 +3375,10 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": []
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -4316,18 +4355,13 @@
       },
       "verification": {
         "claimId": "ma87e0-184-cit-3b5ad9",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=05AJhpHeBL57h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato de servicio “Programa del mayor: actividades formativas, culturales, lúdicas y de promoción de la salud física y mental para el colectivo de mayores” por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas sociales como criterio de adjudicación y con condición especial de ejecución de carácter social. · Ayuntamiento de Riba-roja de Túria · SERGEVAMA, S.L. · culture · estado: formalized",
-            "similarity": 0.5,
-            "stance": "checked"
-          }
-        ],
-        "checkedAgainst": []
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -4585,7 +4619,10 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": []
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
