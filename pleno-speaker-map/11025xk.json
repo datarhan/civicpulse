@@ -1,6 +1,6 @@
 {
   "plenoId": "11025xk",
-  "generatedAt": "2026-08-17T08:33:15.513Z",
+  "generatedAt": "2026-08-18T07:45:00.966Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -5622,76 +5622,796 @@
       "text": "eren un problema important per als veïns. De fet, nosaltres anàvem a fer això i no ho pararen els veïns. Els propis veïns afectats."
     },
     {
-      "start": 6607,
-      "end": 6618,
-      "speaker": "c10/SPEAKER_03",
-      "text": "I per tant en eixe sentit, bueno, si tu has aconseguit que canvien d'opinió... Tu escolta'm a mi, tu escolta'm a mi que jo t'he escoltat a tu, val?"
+      "start": 6600,
+      "end": 6602,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Tú has dicho que está lo que está grabado, y entonces..."
     },
     {
-      "start": 6618,
-      "end": 6629,
-      "speaker": "c10/SPEAKER_03",
-      "text": "I lo que t'estic explicant és lo que t'explicà altra vegada, te ho repite, te lo repito lo que te va dir Rafa."
+      "start": 6602,
+      "end": 6606.8,
+      "speaker": "c11/SPEAKER_01",
+      "text": "No, si no me interesa hablar más. Cada uno decimos lo que nos interesa, eso es así, señor alcalde."
     },
     {
-      "start": 6629,
-      "end": 6640,
-      "speaker": "c10/SPEAKER_03",
-      "text": "Nosaltres no teníem cap problema amb eixa moció en la part de la passarel·la, perquè és una reivindicació de tots, val? L'altra cosa és la altra part que afegies"
+      "start": 6606.8,
+      "end": 6610,
+      "speaker": "c11/SPEAKER_00",
+      "text": "¿No dices que no quieres hablar más? Vale, pues ya has terminado."
     },
     {
-      "start": 6640,
-      "end": 6651,
-      "speaker": "c10/SPEAKER_03",
-      "text": "de les solucions que plantejaves, que eren, primer, tècnicament no possible des de l'urbanisme, perquè se demostrà així, i altra de els propis veïns,"
+      "start": 6610,
+      "end": 6612.8,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Hemos hecho de la pasarela y de la no pasarela."
     },
     {
-      "start": 6651,
-      "end": 6662,
-      "speaker": "c10/SPEAKER_03",
-      "text": "que no volien perquè tenien que fer una volta per a donar per a entrar a la seua al seu municipi a la seua vivenda tenien que donar una volta grandíssima i per a eixir, val?"
+      "start": 6612.8,
+      "end": 6619.5,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Por tanto, la primera... cuando veas la grabación, te has equivocado en lo primero, pero en lo segundo también."
     },
     {
-      "start": 6662,
-      "end": 6673,
-      "speaker": "c10/SPEAKER_03",
-      "text": "Per tant, això ho anul·larem perquè els propis veïns d'eixa zona ens ho demanaren, val? Per tant, ni dic ignorància ni..."
+      "start": 6619.5,
+      "end": 6628.2,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Porque en ocho años lo que hemos hecho, nada más ni nada menos, que en el dieciocho, en julio, ahora hará casi ocho años,"
     },
     {
-      "start": 6673,
-      "end": 6684,
-      "speaker": "c10/SPEAKER_03",
-      "text": "Però me vas a permetre que a vegades ho dude. El calificar-te així. Perquè acabes de dir que no hem fet nada en huit anys."
+      "start": 6628.2,
+      "end": 6633.9,
+      "speaker": "c11/SPEAKER_00",
+      "text": "el apeadero del metro, que es lo más importante para Valencia la Vella de toda la vida."
     },
     {
-      "start": 6684,
-      "end": 6695,
-      "speaker": "c10/SPEAKER_03",
-      "text": "Tu imagina't, aquí, sols perquè estan alguns, jo crec que... No hi havia cap passarel·la. No, no, tu escolta'm, que no he acabat."
+      "start": 6633.9,
+      "end": 6639.5,
+      "speaker": "c11/SPEAKER_00",
+      "text": "El apeadero, mal que le pese a alguien, el apeadero de Valencia la Vella se hizo con nosotros"
     },
     {
-      "start": 6695,
-      "end": 6706,
-      "speaker": "c10/SPEAKER_03",
-      "text": "És que no te n'adones que intervens sense acabar? No, no ho saps, no ho saps. Si vols te conteste i si no no, perquè és important lo que te vaig a dir."
+      "start": 6639.5,
+      "end": 6644.4,
+      "speaker": "c11/SPEAKER_00",
+      "text": "y con un gobierno del Botànic, ¿vale? Y esa es la realidad."
     },
     {
-      "start": 6706,
-      "end": 6719,
-      "speaker": "c10/SPEAKER_03",
-      "text": "Mira, dius, acabes de dir que en huit anys que no hem fet res este Govern en huit anys."
+      "start": 6644.4,
+      "end": 6650.9,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Y con mucha reivindicación de muchos que estuvimos aquí encerrados en el pleno"
     },
     {
-      "start": 6719,
-      "end": 6720,
-      "speaker": "c10/SPEAKER_04",
-      "text": "De la passarel·la."
+      "start": 6650.9,
+      "end": 6654.5,
+      "speaker": "c11/SPEAKER_00",
+      "text": "el año dos mil once, doce y trece y catorce,"
     },
     {
-      "start": 6720,
+      "start": 6654.5,
+      "end": 6659.9,
+      "speaker": "c11/SPEAKER_00",
+      "text": "pidiendo para Valencia la Vella y para que llegara el metro al centro de la ciudad, aquí encerrados, aquí una noche."
+    },
+    {
+      "start": 6659.9,
+      "end": 6664.5,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Y estuvimos en conselleria encerrados, en la Conselleria de Transportes encerrados."
+    },
+    {
+      "start": 6664.5,
+      "end": 6670,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Mirar la prensa y documentaros y veréis dónde estuvimos el grupo socialista y parte de la oposición,"
+    },
+    {
+      "start": 6670,
+      "end": 6675,
+      "speaker": "c11/SPEAKER_00",
+      "text": "encerrados en la conselleria y aquí, exigiendo el apeadero para Valencia la Vella"
+    },
+    {
+      "start": 6675,
+      "end": 6678.9,
+      "speaker": "c11/SPEAKER_00",
+      "text": "y la entrada del metro al centro del casco urbano."
+    },
+    {
+      "start": 6678.9,
+      "end": 6684.5,
+      "speaker": "c11/SPEAKER_00",
+      "text": "And eso hace... y el apeadero se consiguió hace menos de ocho años, por tanto,"
+    },
+    {
+      "start": 6684.5,
+      "end": 6689,
+      "speaker": "c11/SPEAKER_00",
+      "text": "con esa cifra ya es suficiente. Pero a partir de ahí, hemos documentado todas las reuniones"
+    },
+    {
+      "start": 6689,
+      "end": 6694,
+      "speaker": "c11/SPEAKER_00",
+      "text": "que hemos pedido, las que nos dijeron que tenían, y nos lo creemos porque están los mails ahí,"
+    },
+    {
+      "start": 6694,
+      "end": 6701,
+      "speaker": "c11/SPEAKER_00",
+      "text": "que había un presupuesto de la de Europa para hacer doce pasarelas de en materia de movilidad urbana sostenible,"
+    },
+    {
+      "start": 6701,
+      "end": 6707,
+      "speaker": "c11/SPEAKER_00",
+      "text": "y que habían doce, contando la de Valencia la Vella, y que tenían un capítulo casi de treinta millones"
+    },
+    {
+      "start": 6707,
+      "end": 6712,
+      "speaker": "c11/SPEAKER_00",
+      "text": "con fondos europeos para hacerlas. Y después no veis ningún papel, como en otras cosas, contrarios, no veis ningún papel."
+    },
+    {
+      "start": 6712,
+      "end": 6717,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Y, sin embargo, hay mails técnicos que cambiamos... Bueno, es que si os documentarais,"
+    },
+    {
+      "start": 6717,
       "end": 6721,
-      "speaker": "c10/SPEAKER_03",
-      "text": "No, no, tu has dit lo que has dit."
+      "speaker": "c11/SPEAKER_00",
+      "text": "sabríais la verdad. Otra cosa que interese decir que no se hizo nada en el anterior gobierno,"
+    },
+    {
+      "start": 6721,
+      "end": 6725,
+      "speaker": "c11/SPEAKER_00",
+      "text": "gobierno, que es lo que os interesa deciros, ni que este hizo nada ni el anterior gobierno tampoco."
+    },
+    {
+      "start": 6725,
+      "end": 6727,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Craso error."
+    },
+    {
+      "start": 6727,
+      "end": 6732.9,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Y con este gobierno actual, el actual, del veintitrés ahora, hemos tenido varias reuniones exigiendo la pasarela de Valencia la Vella"
+    },
+    {
+      "start": 6732.9,
+      "end": 6737.9,
+      "speaker": "c11/SPEAKER_00",
+      "text": "y una para que el metro llegara al centro del casco urbano,"
+    },
+    {
+      "start": 6737.9,
+      "end": 6740,
+      "speaker": "c11/SPEAKER_00",
+      "text": "y varias de la otra."
+    },
+    {
+      "start": 6740,
+      "end": 6745,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Por tanto, niego la mayor. No me voy a hacer el ignorante porque eso no ni es ni lo he dicho jamás."
+    },
+    {
+      "start": 6745,
+      "end": 6751,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Lo que digo es que si dices eso, o no tienes bien la información o quieres manipular como hiciste la moción, y yo creo que eso no es correcto."
+    },
+    {
+      "start": 6751,
+      "end": 6753,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Hemos hecho ahora,"
+    },
+    {
+      "start": 6753,
+      "end": 6759,
+      "speaker": "c11/SPEAKER_00",
+      "text": "seguiremos haciendo porque tengo una reunión en breve que espero que me traslade la directora general lo que le ha dicho a lo que ha dicho Alberto aquí,"
+    },
+    {
+      "start": 6759,
+      "end": 6765,
+      "speaker": "c11/SPEAKER_00",
+      "text": "porque yo no tengo constancia, pero mejor, ojalá sea así, perfecto, todos contentos, ¿vale?"
+    },
+    {
+      "start": 6765,
+      "end": 6768,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Y y además seguiremos trabajando y hemos trabajado."
+    },
+    {
+      "start": 6768,
+      "end": 6773,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Del veintitrés ahora, con una DANA, sin DANA y y con pandemias."
+    },
+    {
+      "start": 6773,
+      "end": 6778,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Y, por tanto, en ese sentido, ahí están todas las reuniones, está documentado, no tenemos más que decir que,"
+    },
+    {
+      "start": 6778,
+      "end": 6782.9,
+      "speaker": "c11/SPEAKER_00",
+      "text": "por supuesto, eh no darte la razón en aquello que has dicho."
+    },
+    {
+      "start": 6782.9,
+      "end": 6787,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Que me parece también, Juan, te lo digo con sinceridad, porque tú quieres que haya una pasarela de verdad, ¿a que sí? Yo también, ¿vale?"
+    },
+    {
+      "start": 6787,
+      "end": 6792,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Entonces, si eso es así, poco tenemos que discutir."
+    },
+    {
+      "start": 6792,
+      "end": 6795,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Punto, porque no es un tema de de medallas. Tú quieres que haya una pasarela,"
+    },
+    {
+      "start": 6795,
+      "end": 6800,
+      "speaker": "c11/SPEAKER_00",
+      "text": "nosotros también, cuanto antes mejor, sea quien sea, así de fácil."
+    },
+    {
+      "start": 6800,
+      "end": 6803,
+      "speaker": "c11/SPEAKER_00",
+      "text": "¿Y tú quieres que venga el metro al centro del casco urbano, verdad que sí?"
+    },
+    {
+      "start": 6803,
+      "end": 6804.9,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Sí."
+    },
+    {
+      "start": 6804.9,
+      "end": 6812.9,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Nosotros también, pues vamos entre todos a ver si es posible. Si es así, ahora vosotros tenéis la responsabilidad de gobierno de la Generalitat y nosotros ayudaremos en lo que podamos."
+    },
+    {
+      "start": 6812.9,
+      "end": 6818,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Y ayudamos en nada menos, que lo ha dicho muy bien la Teresa, por eso se olvida, en comprar todo el barranco"
+    },
+    {
+      "start": 6818,
+      "end": 6824,
+      "speaker": "c11/SPEAKER_00",
+      "text": "a Soriano para poder hacer el parking que nos pedían a costa de los de los eh de los vecinos,"
+    },
+    {
+      "start": 6824,
+      "end": 6832,
+      "speaker": "c11/SPEAKER_00",
+      "text": "y además ayudando en el proyecto con fondos propios, y yendo veinte mil veces a a buscar financiación con la conselleria donde podíamos, ¿vale?"
+    },
+    {
+      "start": 6832,
+      "end": 6837,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Y eso está todo documentado. Evidentemente, veinte mil veces una es maximalista, quiere decir que no hemos parado porque sabemos que era un tema importante."
+    },
+    {
+      "start": 6837,
+      "end": 6843,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Sobre todo porque el tema de de llevar el metro al centro del casco urbano y al barranco tenía sus dificultades"
+    },
+    {
+      "start": 6843,
+      "end": 6848,
+      "speaker": "c11/SPEAKER_00",
+      "text": "que están resueltas técnicamente aquí. Otra cosa que la DANA se revise, como dice Alberto, que por tanto haya otro proyecto, pues perfecto."
+    },
+    {
+      "start": 6848,
+      "end": 6854,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Pero insisto, con DANA y sin DANA, cuando se quiere, el metro va por debajo de del mar,"
+    },
+    {
+      "start": 6854,
+      "end": 6859,
+      "speaker": "c11/SPEAKER_00",
+      "text": "el canal de Suez, va por donde haga falta. Por tanto, encantado cuando vaya que la directora me diga: \"Mira, hay problemas técnicos,"
+    },
+    {
+      "start": 6859,
+      "end": 6864,
+      "speaker": "c11/SPEAKER_00",
+      "text": "pero vamos a resolverlo de esta manera\". Pues a más de dos metros, irá cinco por debajo,"
+    },
+    {
+      "start": 6864,
+      "end": 6869,
+      "speaker": "c11/SPEAKER_00",
+      "text": "y habrá unos ascensores como tiene Mislata, como tiene Quart, como sí que hizo el PP en esos ayuntamientos, en esos pueblos, y en otros nos dejó tirados,"
+    },
+    {
+      "start": 6869,
+      "end": 6871,
+      "speaker": "c11/SPEAKER_00",
+      "text": "así de claro, ¿vale?"
+    },
+    {
+      "start": 6871,
+      "end": 6873,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Para que quede, en fin."
+    },
+    {
+      "start": 6873,
+      "end": 6879,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Y y por último acabar, si si algo podemos decir, que estamos contentos de que en breve"
+    },
+    {
+      "start": 6879,
+      "end": 6884,
+      "speaker": "c11/SPEAKER_00",
+      "text": "podamos inaugurar la la CV-tres-cents setanta y decir que la torre, la torre,"
+    },
+    {
+      "start": 6884,
+      "end": 6889,
+      "speaker": "c11/SPEAKER_00",
+      "text": "no es porque Red Eléctrica no la ha quitado, sino porque no tiene los permisos de conselleria."
+    },
+    {
+      "start": 6889,
+      "end": 6894,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Tomar nota. La torre eléctrica no es el Gobierno de España, no es Red Eléctrica, es que resulta que conselleria todavía no ha dado los permisos que llevan un año y medio pidiendo."
+    },
+    {
+      "start": 6894,
+      "end": 6896,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Conselleria, no Red Eléctrica, ¿vale?"
+    },
+    {
+      "start": 6896,
+      "end": 6902,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Y está terminada y está utilizándose, por cierto, con cierta eh digamos dinamismo en la movilidad de los vehículos, que es importante."
+    },
+    {
+      "start": 6902,
+      "end": 6905,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Vale, con todo eso, pasemos a Vox, José Luis."
+    },
+    {
+      "start": 6905,
+      "end": 6907,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Buenas tardes. Dos preguntas."
+    },
+    {
+      "start": 6907,
+      "end": 6912,
+      "speaker": "c11/SPEAKER_02",
+      "text": "La primera va relacionada con un tema de un programa de recogida de basuras orgánicas"
+    },
+    {
+      "start": 6912,
+      "end": 6917,
+      "speaker": "c11/SPEAKER_02",
+      "text": "que se está planteando por diferentes urbanizaciones, diferentes lugares,"
+    },
+    {
+      "start": 6917,
+      "end": 6922,
+      "speaker": "c11/SPEAKER_02",
+      "text": "y eh indican que hay una bonificación de un veinte por ciento, pero no ha quedado muy claro,"
+    },
+    {
+      "start": 6922,
+      "end": 6927,
+      "speaker": "c11/SPEAKER_02",
+      "text": "por lo menos lo que me han transmitido, si es en el IBI, en el la tasa de recogida de basura o en qué."
+    },
+    {
+      "start": 6927,
+      "end": 6929.9,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Esa es una pregunta muy sencilla."
+    },
+    {
+      "start": 6929.9,
+      "end": 6934,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Pero la otra que hago es eh qué coste va a tener este programa,"
+    },
+    {
+      "start": 6934,
+      "end": 6939,
+      "speaker": "c11/SPEAKER_02",
+      "text": "porque por lo que me parece a mí, es un programa muy ambicioso,"
+    },
+    {
+      "start": 6939,
+      "end": 6944,
+      "speaker": "c11/SPEAKER_02",
+      "text": "pero que tiene que tener un coste enorme de nuevos contenedores, nueva recogida,"
+    },
+    {
+      "start": 6944,
+      "end": 6946,
+      "speaker": "c11/SPEAKER_02",
+      "text": "etcétera, etcétera. Entonces,"
+    },
+    {
+      "start": 6946,
+      "end": 6949,
+      "speaker": "c11/SPEAKER_02",
+      "text": "eh esa era una de las preguntas. Y la segunda es, como todos"
+    },
+    {
+      "start": 6949,
+      "end": 6954,
+      "speaker": "c11/SPEAKER_02",
+      "text": "saben, el viernes hubo un incidente muy desagradable en"
+    },
+    {
+      "start": 6954,
+      "end": 6959,
+      "speaker": "c11/SPEAKER_02",
+      "text": "la carretera al lado de la farmacia, en la carretera de Villamarchante, con una persona herida, que afortunadamente"
+    },
+    {
+      "start": 6959,
+      "end": 6964,
+      "speaker": "c11/SPEAKER_02",
+      "text": "parece que que está bien."
+    },
+    {
+      "start": 6964,
+      "end": 6969,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Si nos podían eh indicar esta persona, si es que se puede decir por por protección de datos,"
+    },
+    {
+      "start": 6969,
+      "end": 6975,
+      "speaker": "c11/SPEAKER_02",
+      "text": "pues cómo está, deseándole de aquí una pronta recuperación. Gracias."
+    },
+    {
+      "start": 6975,
+      "end": 6980,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Eh contestamos... Rafa, el tema de residuos."
+    },
+    {
+      "start": 6980,
+      "end": 6981.9,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Vale, sí."
+    },
+    {
+      "start": 6981.9,
+      "end": 6986.9,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Con respecto al programa de de la recogida de biorresiduos,"
+    },
+    {
+      "start": 6986.9,
+      "end": 6990,
+      "speaker": "c11/SPEAKER_03",
+      "text": "eh es sobre la tasa de basura ese veinte por ciento."
+    },
+    {
+      "start": 6990,
+      "end": 6995,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Que además se puede añadir otro veinte por ciento porque hay dos programas: el que se ha empezado a explicar ahora tanto en el casco urbano como en los distintos centros sociales,"
+    },
+    {
+      "start": 6995,
+      "end": 7001,
+      "speaker": "c11/SPEAKER_03",
+      "text": "de hecho esta semana tenemos dos visitas más en centros sociales, el miércoles y el jueves,"
+    },
+    {
+      "start": 7001,
+      "end": 7006,
+      "speaker": "c11/SPEAKER_03",
+      "text": "eh y es un veinte por ciento una parte y un veinte por ciento la otra. Con lo cual, de la tasa nueva de basuras que se ha puesto en todos los ayuntamientos,"
+    },
+    {
+      "start": 7006,
+      "end": 7011,
+      "speaker": "c11/SPEAKER_03",
+      "text": "una persona podría llegar a descontarse o a bonificar, mejor dicho, por parte del ayuntamiento, un cuarenta por ciento de la tasa."
+    },
+    {
+      "start": 7011,
+      "end": 7016.9,
+      "speaker": "c11/SPEAKER_03",
+      "text": "El coste no es muy elevado de momento, porque es tal y como nos marcó el plan local de residuos, que fue el documento técnico que hemos seguido para poder hacer este tipo de de de actuaciones,"
+    },
+    {
+      "start": 7016.9,
+      "end": 7021,
+      "speaker": "c11/SPEAKER_03",
+      "text": "de momento es voluntario. Por lo tanto,"
+    },
+    {
+      "start": 7021,
+      "end": 7026,
+      "speaker": "c11/SPEAKER_03",
+      "text": "lo que marca es que la voluntariedad va a ir poco a poco cogiéndose y no va a afectar a la inmensa mayoría de la población."
+    },
+    {
+      "start": 7026,
+      "end": 7031,
+      "speaker": "c11/SPEAKER_03",
+      "text": "No obstante, los datos concretos de costes yo lo puedo hablar con el técnico para pasártelos y no habrá ningún problema. Pero en un principio estarían asumidos, según las previsiones que nos indicaron, por la propia tasa tal y como estaba estructurada."
+    },
+    {
+      "start": 7031,
+      "end": 7037,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Porque indico, porque es es así, es un programa que de momento es voluntario, queremos de momento bonificar con una discriminación positiva a aquellos que realizan estas buenas prácticas,"
+    },
+    {
+      "start": 7037,
+      "end": 7042,
+      "speaker": "c11/SPEAKER_03",
+      "text": "y para que no quede ninguna clara ninguna duda, dejarlo totalmente claro, es sobre la tasa de basura."
+    },
+    {
+      "start": 7042,
+      "end": 7047,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Un veinte por ciento por la recogida de biorresiduo, el orgánico que se llama, y un veinte por ciento más si además haces el compostaje."
+    },
+    {
+      "start": 7047,
+      "end": 7052,
+      "speaker": "c11/SPEAKER_03",
+      "text": "No se tiene por qué hacer uno y obligatoriamente el otro, se puede hacer el que uno quiera. Si haces uno, el veinte por ciento, si haces los dos, el cuarenta."
+    },
+    {
+      "start": 7052,
+      "end": 7054,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Si el técnico, si se puede..."
+    },
+    {
+      "start": 7054,
+      "end": 7055,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Sí, sí, sí."
+    },
+    {
+      "start": 7055,
+      "end": 7061,
+      "speaker": "c11/SPEAKER_02",
+      "text": "No, simplemente si tienes el informe de costes y me lo remites, solamente era eso, gracias."
+    },
+    {
+      "start": 7061,
+      "end": 7064,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Ya lo hablo con el técnico y te lo pasamos."
+    },
+    {
+      "start": 7064,
+      "end": 7069,
+      "speaker": "c11/SPEAKER_00",
+      "text": "De todos modos, por ampliar un poquito, porque es un tema importante y a la vez que los vecinos"
+    },
+    {
+      "start": 7069,
+      "end": 7074,
+      "speaker": "c11/SPEAKER_00",
+      "text": "nos escuchan o nos escolten, decir dos cosas a lo que dijo José Luis,"
+    },
+    {
+      "start": 7074,
+      "end": 7079,
+      "speaker": "c11/SPEAKER_00",
+      "text": "que es interesante. Como es voluntario, pues evidentemente, de momento, ahora precisamente tenemos apuntados unos doscientos o por ahí, que hay, sobre doscientos, porque es voluntario."
+    },
+    {
+      "start": 7079,
+      "end": 7085,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Els contenidors com són de targeta magnètica, d'esta magnètica o com els targetes que tenim,"
+    },
+    {
+      "start": 7085,
+      "end": 7090,
+      "speaker": "c11/SPEAKER_00",
+      "text": "són personals, depén la gent el cost pujarà o no. Lo que sí que hi haurà és una estimació imagine inicial del del del tècnic"
+    },
+    {
+      "start": 7090,
+      "end": 7095,
+      "speaker": "c11/SPEAKER_00",
+      "text": "en quant si tot el món n'ofereix quin cost tindria, val?"
+    },
+    {
+      "start": 7095,
+      "end": 7100,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Eh però aprofitar per a dir dos coses: realment la finalitat de la de la nova taxa, de la ordenança, és la separació."
+    },
+    {
+      "start": 7100,
+      "end": 7105,
+      "speaker": "c11/SPEAKER_00",
+      "text": "O sea, lo más importante de esto, diríamos que se plantea en términos de recogida de residuos,"
+    },
+    {
+      "start": 7105,
+      "end": 7110,
+      "speaker": "c11/SPEAKER_00",
+      "text": "en la separación del orgánico para no mezclar para que los costes después no sean más elevados porque van a vertedero y tienen que separarlos, ¿vale?"
+    },
+    {
+      "start": 7110,
+      "end": 7115,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Entonces, es una parte importante, por eso se bonifica esas buenas prácticas como dice Rafa con el veinte por ciento."
+    },
+    {
+      "start": 7115,
+      "end": 7120,
+      "speaker": "c11/SPEAKER_00",
+      "text": "Es voluntario, ahora será un coste mínimo porque serán con doscientos, pues los contenedores serán muy poquitos, de un censo posiblemente de once mil o doce mil de padrón,"
+    },
+    {
+      "start": 7120,
+      "end": 7125,
+      "speaker": "c11/SPEAKER_00",
+      "text": "doscientos es un tema de momento muy pequeño. Pero sí que es verdad que nuestro compromiso, y eso yo sí que siempre aconsejo,"
+    },
+    {
+      "start": 7125,
+      "end": 7130,
+      "speaker": "c11/SPEAKER_00",
+      "text": "como es voluntario que la gente haga lo que quiera, pero..."
+    },
+    {
+      "start": 7200,
+      "end": 7208.9,
+      "speaker": "c12/SPEAKER_00",
+      "text": "es aconsejable separar los biorresiduos y aparte de la bonificación del veinte por cien, por también por interés propio de que mejoremos la selección de los residuos y el reciclaje, ¿vale? Es lo más importante lo que ha dicho José."
+    },
+    {
+      "start": 7208.9,
+      "end": 7215.5,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Y la otra pregunta, ¿ya has hecho dos, no?"
+    },
+    {
+      "start": 7215.5,
+      "end": 7218,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Sí, dos."
+    },
+    {
+      "start": 7218,
+      "end": 7220,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Dos, dos."
+    },
+    {
+      "start": 7220,
+      "end": 7221.5,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Vale, fin."
+    },
+    {
+      "start": 7221.5,
+      "end": 7223,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Sí, José Luis."
+    },
+    {
+      "start": 7223,
+      "end": 7224,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Sí."
+    },
+    {
+      "start": 7224,
+      "end": 7238,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Sí, José Luis, el viernes pasó un incidente con una persona que se hizo una herida muy grave. Fue, bueno, fue la Policía Local, la Guardia Civil, el SAMU, fue escandaloso porque era en carretera Vilamarxant y además había mucha cantidad de sangre."
+    },
+    {
+      "start": 7238,
+      "end": 7246,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Entonces, en un principio la persona se está recuperando y se está investigando las causas. La Guardia Civil en un principio parece autolesión, pero se está investigando."
+    },
+    {
+      "start": 7246,
+      "end": 7257,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Y nada, y solamente todo el operativo que se hizo por en tanto a la limpieza y Rafa Lamiro porque estuvimos hablando el viernes por teléfono a esa hora para poder dejarlo todo limpio y no alertar más a la ciudadanía."
+    },
+    {
+      "start": 7257,
+      "end": 7259,
+      "speaker": "c12/SPEAKER_04",
+      "text": "¿Tenían información que hice?"
+    },
+    {
+      "start": 7259,
+      "end": 7274,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Raquel, en el sentido de que el día siguiente le dieron el alta y vino por el coche, de hecho tenía el coche en la Policía Local porque como consecuencia que se lo llevaron, lo ingresaron, le curaron la herida y el alta se la dieron al día siguiente, por tanto, hubo mucho, pues eso, por la gente de que si habían navajazos, en principio..."
+    },
+    {
+      "start": 7274,
+      "end": 7276,
+      "speaker": "c12/SPEAKER_04",
+      "text": "No, no, no."
+    },
+    {
+      "start": 7276,
+      "end": 7292,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Sí, que si había muerto, también vino mucha, tuvimos que desmentirlo. Está bien, como tú lo has dicho, por tanto, en ese sentido parece ser, por lo que dice, a mí me informó el jefe de la Policía Local que posiblemente era, decía la Guardia Civil, por autolesión, pero que se está investigando y mira. Y lo que sí que fue que quería irse a la farmacia."
+    },
+    {
+      "start": 7292,
+      "end": 7307,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Bajó corriendo de donde estaba, para los chinos, para ir a la farmacia porque claro, se había... y entonces todo el escandalera de de de sangre que iba, pues es lo que alteró mucho a la ciudadanía, ¿vale? Esta la la la la información oficial que tenemos, ¿vale?"
+    },
+    {
+      "start": 7307,
+      "end": 7311,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Pasamos a Esquerra Unida Podem. Compromís."
+    },
+    {
+      "start": 7311,
+      "end": 7313,
+      "speaker": "c12/SPEAKER_05",
+      "text": "Yo diría que queda penal de... [inaudible]"
+    },
+    {
+      "start": 7313,
+      "end": 7315,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Vale."
+    },
+    {
+      "start": 7315,
+      "end": 7323,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Eh, pues per tant, se va acabar. ¿Algú del públic vol dir algo? Alçar la sessió, gràcies."
     }
   ],
   "rows": [
@@ -6142,6 +6862,38 @@
       ],
       "namesIndividual": false,
       "weak": true
+    },
+    {
+      "label": "c11/SPEAKER_02",
+      "bloc": "VOX",
+      "slug": "jose-luis-fernandez-santamaria",
+      "heardAs": "José Luis",
+      "evidence": [
+        {
+          "spokenBy": "c11/SPEAKER_00",
+          "at": 6903,
+          "quote": "pasemos a Vox, José Luis",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c12/SPEAKER_05",
+      "bloc": "Compromís",
+      "slug": "rafael-folgado-navarro",
+      "heardAs": null,
+      "evidence": [
+        {
+          "spokenBy": "c12/SPEAKER_00",
+          "at": 7307,
+          "quote": "Pasamos a Esquerra Unida Podem. Compromís.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
     }
   ],
   "rejected": [
@@ -6249,39 +7001,41 @@
       "label": "c10/SPEAKER_08",
       "reason": "unresolvable",
       "detail": "heard \"Raquel Pam Blanco\" matches nobody"
+    },
+    {
+      "label": "c11/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "heard \"alcalde\" matches nobody"
+    },
+    {
+      "label": "c11/SPEAKER_03",
+      "reason": "ambiguous",
+      "detail": "heard \"Rafa\" fits 2: Rafael Gómez Sánchez, Rafael Folgado Navarro"
+    },
+    {
+      "label": "c12/SPEAKER_00",
+      "reason": "ambiguous",
+      "detail": "heard \"José Luis\" fits 2: José Luis Ramos March, José Luis Fernández Santamaría"
+    },
+    {
+      "label": "c12/SPEAKER_03",
+      "reason": "relation-contradicted",
+      "detail": "turn-grant, but 59s is followed by SPEAKER_04"
     }
   ],
   "stats": {
     "chunksExpected": 13,
-    "chunksTranscribed": 11,
-    "failedChunks": [
-      {
-        "chunk": 11,
-        "why": "covered 71% (floor 85%)",
-        "attempts": 1,
-        "givenUpUnder": {
-          "prompt": "speaker-map-v2",
-          "floor": 0.85
-        }
-      },
-      {
-        "chunk": 12,
-        "why": "empty response (finishReason=MAX_TOKENS)",
-        "attempts": 1,
-        "givenUpUnder": {
-          "prompt": "speaker-map-v2",
-          "floor": 0.85
-        }
-      }
-    ],
-    "labelsSeen": 42,
-    "rowsAccepted": 28,
-    "rowsRejected": 21,
+    "chunksTranscribed": 13,
+    "failedChunks": [],
+    "labelsSeen": 10,
+    "rowsAccepted": 30,
+    "rowsRejected": 25,
     "rejectedBy": {
-      "unresolvable": 18,
-      "ambiguous": 3
+      "unresolvable": 19,
+      "ambiguous": 5,
+      "relation-contradicted": 1
     },
-    "attemptedThisRun": 10,
-    "coverage": 0.9656115132653638
+    "attemptedThisRun": 2,
+    "coverage": 1
   }
 }
