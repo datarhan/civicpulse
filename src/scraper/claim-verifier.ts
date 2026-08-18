@@ -819,6 +819,12 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     claim.entities.referencedEntity &&
     tenderList.length > 0
   ) {
+    // El matcher de este bloque CORRE sobre el corpus de contratos: se anota
+    // igual que en el bloque 2. Faltaba, y nueve filas publicadas decían
+    // «Verificado» con su única evidencia marcada «sin verificador anotado» —
+    // y la puerta retenía como no-fundadas citas genuinamente corroboradas.
+    if (localTenders.length > 0) note('tenders')
+    if (tedTenders.length > 0) note('tenders-ted')
     // Did the speaker claim the work is COMPLETED? (negation-aware)
     const claimsCompleted = claimsCompletion(claim.verbatim)
     for (const t of tenderList) {

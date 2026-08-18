@@ -59,6 +59,34 @@ describe('verifyClaim — verificado on tender exact match', () => {
     expect(v.evidence.some((e) => e.kind === 'tender')).toBe(true)
     expect(v.checkedAgainst).toContain('tenders')
   })
+
+  it('la vía sólo-entidad (sin importe) también anota el verificador', () => {
+    // El camino del bloque 3 —cita_obra sin cifra, casada por título— empujaba
+    // evidencia y veredicto SIN llamar a note(): nueve filas publicadas decían
+    // «Verificado» con la evidencia marcada «sin verificador anotado», y la
+    // puerta retenía como no-fundadas citas genuinamente corroboradas. Una
+    // fila que trae evidencia y no anota fuente afirma las dos cosas a la vez
+    // (el aviso literal del docblock de la puerta).
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'cita_obra',
+        entities: { referencedEntity: 'refugios climaticos carril bici' },
+      }),
+      tenders: {
+        contracts: [
+          {
+            permalink: 'https://contrataciones.example/r02',
+            title: 'Mejora del carril bici y la ejecución o mejora de refugios climáticos',
+            finalAmount: 250_000,
+            status: 'awarded',
+          },
+        ],
+      },
+    })
+    expect(v.evidence.some((e) => e.kind === 'tender')).toBe(true)
+    expect(v.verdict).toBe('verificado')
+    expect(v.checkedAgainst).toContain('tenders')
+  })
 })
 
 describe('verifyClaim — parcial on near-match', () => {
