@@ -1,8 +1,8 @@
 # CivicPulse
 
-**Systematic accountability for the towns no newsroom covers.**
+**A citizen tool that measures what your town hall does and what it costs — with a citation for every figure.**
 
-CivicPulse monitors a single Spanish municipality — [Riba-roja de Túria](https://en.wikipedia.org/wiki/Riba-roja_de_T%C3%BAria) (Comunitat Valenciana, ~24,600 residents) — end to end: council-session transcripts turned into verifiable claims, an electoral-promise tracker, a citizen-complaint pipeline with legal deadlines, and every public euro of municipal spending mapped street by street. All of it from public open data, published with a stated methodology and a built-in right of reply.
+CivicPulse is built for any Spanish municipality and runs live, end to end, in its first one — [Riba-roja de Túria](https://en.wikipedia.org/wiki/Riba-roja_de_T%C3%BAria) (Comunitat Valenciana, ~24,600 residents): the cost of each municipal service priced against similar-sized towns on the ministry's own data, supplier-payment periods, budget execution, council-session transcripts turned into verifiable claims, an electoral-promise tracker, a citizen-complaint pipeline with legal deadlines, and municipal spending mapped where the contract itself names the place. On that base it publishes deep investigative journalism — four investigations so far. All of it from public open data, with a stated methodology and a built-in right of reply.
 
 **Live:** **[civicpulse.es](https://civicpulse.es)** · **Who's behind it:** [civicpulse.es/nosotros](https://civicpulse.es/nosotros) · [English](https://civicpulse.es/about) · **Methodology:** [civicpulse.es/metodologia](https://civicpulse.es/metodologia)
 
@@ -12,30 +12,33 @@ CivicPulse monitors a single Spanish municipality — [Riba-roja de Túria](http
 
 ## Why this exists
 
-Around **6,800 of Spain's ~8,100 municipalities have no dedicated press coverage.** National outlets and fact-checkers (Civio, Maldita, Newtral) cover national discourse; nobody does systematic, per-town accountability. The public data to do it already exists — municipal budgets (CONPREL), public contracts (PLACSP), subsidies (BDNS), census (INE), unemployment (SEPE), the official gazettes (BOE/BOP/TED) — indexed by INE municipality code, for every town.
+Spaniards vote for their ayuntamientos again in **May 2027**. Before that, every voter should be able to decide from facts, not campaign speeches — to see what their town hall actually did and what it cost. The public data to build that view already exists — effective service costs and municipal budgets (MinHac), public contracts (PLACSP), subsidies (BDNS), census (INE), unemployment (SEPE), the official gazettes (BOE/BOP/TED) — indexed by INE municipality code, for every town.
 
-CivicPulse is the proof, built in two halves:
+Nobody turns it into something a neighbour can use: around **6,800 of Spain's ~8,100 municipalities have no dedicated press coverage**, and the national outlets and fact-checkers (Civio, Maldita, Newtral) cover national discourse, not per-town accountability.
 
-- **Riba-roja = depth.** One town covered completely, with real data and libel discipline. This repository.
+CivicPulse is the proof it can be done, built in two halves:
+
+- **Riba-roja = depth.** The first municipality, covered completely, with real data and libel discipline. This repository.
 - **Spain = breadth.** The national data layer already covers every municipality; scaling it is engineering, not research.
-
-The forcing function is the **May 2027 municipal elections**: before Spaniards vote for their ayuntamientos again, they should be able to see what theirs actually did.
 
 ## What it does
 
 The single-page app at [civicpulse.es](https://civicpulse.es) surfaces:
 
-| Surface | Route | What it shows |
-|---|---|---|
-| **Live city** | `/` | Map of municipal spending, transit, civic services, and flood risk + an editorial column + a KPI strip (padrón, budget, contracts, paro) |
-| **Findings** | `/hallazgos` | Editorial findings extracted from pleno transcripts, deterministically verified against the open-data trail, curator-gated, each with a permalink and right-of-reply |
-| **Promise tracker** | `/promesas` | Party electoral promises with verbatim source quotes, evidence, and status — under an electoral-silence freeze during campaigns |
-| **Budget & contracts** | `/presupuesto` | Approved vs. executed budget, awarded contracts, subsidies, works in progress |
-| **Council sessions** | `/plenos` | 50+ sessions, agendas, transcribed votes |
-| **Departments** | `/departamentos` | Per-portfolio accountability: votes + promises + routed complaints |
-| **Citizen complaints** | `/quejas` | A Telegram-captured complaint feed with LPACAP legal clocks, escalation to the Síndic de Greuges, and a resolution dashboard |
-| **Press lab** | `/laboratorio` | A fact-check observatory over local press coverage |
-| **Data catalogue** | `/datos` | Every underlying JSON snapshot, with its source and licence |
+| Surface                | Route            | What it shows                                                                                                                                                        |
+| ---------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Live city**          | `/`              | Map of municipal spending, transit, civic services, and flood risk + an editorial column + a KPI strip (padrón, budget, contracts, paro)                             |
+| **Service costs**      | `/eficiencia`    | What each municipal service costs per unit vs. similar-sized municipalities — the ministry's own effective-cost data — with signed measurement fichas                |
+| **Management**         | `/gestion`       | How the council runs: supplier-payment period (PMP), budget execution, the contractor profile                                                                        |
+| **Findings**           | `/hallazgos`     | Editorial findings extracted from pleno transcripts, deterministically verified against the open-data trail, curator-gated, each with a permalink and right-of-reply |
+| **Promise tracker**    | `/promesas`      | Party electoral promises with verbatim source quotes, evidence, and status — under an electoral-silence freeze during campaigns                                      |
+| **Investigations**     | `/reportajes`    | Deep investigative pieces with frozen, citation-gated figures — the DANA reconstruction money, the waste-collection contract                                         |
+| **Budget & contracts** | `/presupuesto`   | Approved vs. executed budget, awarded contracts, subsidies, works in progress                                                                                        |
+| **Council sessions**   | `/plenos`        | 50+ sessions, agendas, transcribed votes                                                                                                                             |
+| **Departments**        | `/departamentos` | Per-portfolio accountability: votes + promises + routed complaints                                                                                                   |
+| **Citizen complaints** | `/quejas`        | A Telegram-captured complaint feed with LPACAP legal clocks, escalation to the Síndic de Greuges, and a resolution dashboard                                         |
+| **Lab**                | `/laboratorio`   | A fact-check observatory over local press coverage + method-published efficiency experiments (DEA frontier, expected-cost OLS) that never produce findings           |
+| **Data catalogue**     | `/datos`         | Every underlying JSON snapshot, with its source and licence                                                                                                          |
 
 The UI is bilingual (Castilian Spanish + Valencià). Only interface chrome is translated — **data content stays verbatim in its source language** to preserve quote accuracy.
 
