@@ -23,10 +23,17 @@ import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 import type { VerifierCorpus } from '../../src/scraper/quote-contrast'
-import { mergeVerified, type Overlay, type VerifiedItem } from '../../src/scraper/verified-merge'
+import {
+  mergeVerified,
+  validateReclassifications,
+  type Overlay,
+  type Reclassifications,
+  type VerifiedItem,
+} from '../../src/scraper/verified-merge'
 
 export const VERIFIED_BASE = 'public/data/pleno-claims-verified-base.json'
 export const VERIFIED_OVERLAY = 'public/data/pleno-claims-overlay.json'
+export const VERIFIED_RECLASSIFICATIONS = 'public/data/pleno-claim-reclassifications.json'
 
 /**
  * Loads base + overlay and merges them. Throws when the base is missing: a
@@ -40,7 +47,7 @@ export const VERIFIED_OVERLAY = 'public/data/pleno-claims-overlay.json'
  * quote when the overlay has some is not.
  */
 export function loadVerifiedCorpus(
-  opts: { basePath?: string; overlayPath?: string } = {},
+  opts: { basePath?: string; overlayPath?: string; reclassificationsPath?: string } = {},
 ): VerifierCorpus {
   const basePath = resolve(opts.basePath ?? VERIFIED_BASE)
   if (!existsSync(basePath)) {
@@ -56,8 +63,18 @@ export function loadVerifiedCorpus(
     ? (JSON.parse(readFileSync(overlayPath, 'utf8')) as Overlay)
     : { version: 1, generatedAt: '', entries: {} }
 
+  // El sidecar de reclasificaciones curadas es la tercera capa de la MISMA
+  // composición que publica el rebuild; leerlo aquí y no en el rebuild (o al
+  // revés) es como la página y la cola empezarían a discrepar. Validado al
+  // leer: una entrada HACIA acusacion_publica revienta antes de clasificar.
+  const reclasPath = resolve(opts.reclassificationsPath ?? VERIFIED_RECLASSIFICATIONS)
+  const reclas: Reclassifications = existsSync(reclasPath)
+    ? (JSON.parse(readFileSync(reclasPath, 'utf8')) as Reclassifications)
+    : { version: 1, generatedAt: '', entries: {} }
+  validateReclassifications(reclas)
+
   const baseItems = base.items ?? []
-  const merged = mergeVerified(baseItems, overlay)
+  const merged = mergeVerified(baseItems, overlay, reclas)
   return {
     merged: new Map(merged.map((it) => [it.claim.id, it])),
     base: new Map(baseItems.map((it) => [it.claim.id, it])),

@@ -46,3 +46,45 @@ test.describe('Declaraciones (/declaraciones)', () => {
     await expect(page).toHaveURL(/\/declaraciones$/)
   })
 })
+
+/**
+ * Cada claim reclasificado por curador sale en el registro con la etiqueta de
+ * su tipo NUEVO — el enum se importa y la fila se localiza con los filtros
+ * reales de la página, así que una entrada futura del sidecar queda vigilada
+ * sin tocar este spec.
+ */
+test.describe('Reclasificaciones en el registro (/declaraciones)', () => {
+  test('la fila reclasificada lleva la etiqueta del tipo nuevo, no «Acusación pública»', async ({
+    page,
+  }) => {
+    const { readFileSync } = await import('node:fs')
+    const { CLAIM_TYPE_LABEL } = await import('../../src/hooks/usePlenoClaims')
+    const reclas = JSON.parse(
+      readFileSync('public/data/pleno-claim-reclassifications.json', 'utf8'),
+    ) as { entries: Record<string, { type: string }> }
+    const monolito = JSON.parse(readFileSync('public/data/pleno-claims-verified.json', 'utf8')) as {
+      items: Array<{ claim: { id: string; type: string; verbatim: string } }>
+    }
+
+    const entradas = Object.entries(reclas.entries)
+    expect(entradas.length).toBeGreaterThan(0)
+
+    for (const [claimId, e] of entradas) {
+      const item = monolito.items.find((it) => it.claim.id === claimId)
+      expect(item, `${claimId} no está en el corpus publicado`).toBeTruthy()
+      expect(item!.claim.type).toBe(e.type)
+
+      await page.goto('/declaraciones', { waitUntil: 'networkidle' })
+      // El filtro arranca en «Con evidencia»; la fila reclasificada puede ser
+      // sin-datos, así que primero «Todas» y después el buscador de literal.
+      await page.getByRole('button', { name: /Todas/i }).first().click()
+      await page.locator('input').first().fill(item!.claim.verbatim.slice(0, 30))
+      const fila = page.locator('text=/«[^»]+»/').first()
+      await expect(fila).toBeVisible({ timeout: 8000 })
+
+      const label = CLAIM_TYPE_LABEL[e.type as keyof typeof CLAIM_TYPE_LABEL] ?? e.type
+      await expect(page.getByText(label, { exact: true }).first()).toBeVisible()
+      await expect(page.getByText('Acusación pública', { exact: true })).toHaveCount(0)
+    }
+  })
+})

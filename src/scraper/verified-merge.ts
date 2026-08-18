@@ -7,10 +7,16 @@
  * deterministic re-run rebuilds the base and re-applies the overlay — it can no
  * longer clobber second-pass or curator decisions.
  *
+ * A third, optional layer joined later: `pleno-claim-reclassifications.json`,
+ * the curator sidecar for a claim whose TYPE the extractor got wrong (the
+ * overlay owns verdicts and deliberately cannot touch the claim). Same merge
+ * discipline: the base stays machine-reproducible, the sidecar is committed and
+ * precious, and any rebuild re-applies it.
+ *
  * Pure module — no fs, no Date (callers pass timestamps). See
  * docs/superpowers/specs/2026-06-23-factcheck-rebuild-p2-design.md.
  */
-import type { PlenoClaim } from './pleno-claim'
+import { ALLOWED_CLAIM_TYPES, type ClaimType, type PlenoClaim } from './pleno-claim'
 import type { ClaimVerdict, ClaimVerification, ClaimEvidence } from './claim-verifier'
 
 export interface VerifiedItem {
@@ -69,19 +75,85 @@ function withDedupedEvidence(v: ClaimVerification): ClaimVerification {
 }
 
 /**
- * base items in their original order; for each, the overlay entry (matched by
- * claimId) replaces the verification when present. Overlay entries whose claimId
- * is absent from base are dropped (the claim was removed upstream). Evidence is
- * deduped on the way out (base- AND overlay-origin), so the published monolith +
- * chunks never carry a citation twice.
+ * One curator type-correction. `from` records the published type the curator
+ * moved away from — the entry corrects a SPECIFIC observed state, so a base
+ * whose type moved upstream makes the entry stale (skipped, counted) rather
+ * than silently re-applied to something the curator never judged.
  */
-export function mergeVerified(baseItems: VerifiedItem[], overlay: Overlay): VerifiedItem[] {
+export interface ReclassificationEntry {
+  /** The corrected claim type. Never 'acusacion_publica'. */
+  type: ClaimType
+  /** The published type this correction moved away from (audit trail). */
+  from: ClaimType
+  /** Curator's grounds, ≥20 chars. */
+  reason: string
+  /** Curator name. */
+  editor?: string
+  appliedAt: string
+}
+
+export interface Reclassifications {
+  version: number
+  generatedAt: string
+  entries: Record<string, ReclassificationEntry>
+}
+
+/**
+ * Reclassify one claim object: type replaced, `accusationSubtype` dropped (the
+ * schema defines it only for accusations), every other field — id included —
+ * untouched. Key order is preserved so JSON output stays byte-stable.
+ */
+function reclassifiedClaim(claim: PlenoClaim, type: ClaimType): PlenoClaim {
+  const { accusationSubtype: _dropped, ...rest } = claim
+  return { ...rest, type }
+}
+
+/**
+ * base items in their original order; for each, the overlay entry (matched by
+ * claimId) replaces the verification when present, and the reclassification
+ * entry (matched by claimId, and only while `claim.type` still equals the
+ * recorded `from`) replaces the claim's type. Entries whose claimId is absent
+ * from base are dropped (the claim was removed upstream). Evidence is deduped
+ * on the way out (base- AND overlay-origin), so the published monolith + chunks
+ * never carry a citation twice.
+ */
+export function mergeVerified(
+  baseItems: VerifiedItem[],
+  overlay: Overlay,
+  reclassifications?: Reclassifications,
+): VerifiedItem[] {
   const entries = overlay?.entries ?? {}
+  const reclas = reclassifications?.entries ?? {}
   return baseItems.map((it) => {
     const e = entries[it.claim.id]
     const verification = withDedupedEvidence(e ? e.verification : it.verification)
-    return verification === it.verification ? it : { claim: it.claim, verification }
+    const r = reclas[it.claim.id]
+    const claim =
+      r != null && it.claim.type === r.from ? reclassifiedClaim(it.claim, r.type) : it.claim
+    return verification === it.verification && claim === it.claim ? it : { claim, verification }
   })
+}
+
+/**
+ * What a merge run did with each reclassification entry — the three outcomes,
+ * counted apart (DATA_INTEGRITY rule 2: folding «not attempted» into
+ * «unchanged» is how a pass once reported work it never did).
+ */
+export function reclassificationOutcomes(
+  baseItems: VerifiedItem[],
+  reclassifications: Reclassifications,
+): { aplicadas: string[]; obsoletas: string[]; sinClaim: string[] } {
+  const byId = new Map(baseItems.map((it) => [it.claim.id, it]))
+  const aplicadas: string[] = []
+  const obsoletas: string[] = []
+  const sinClaim: string[] = []
+  for (const [id, e] of Object.entries(reclassifications?.entries ?? {})) {
+    const item = byId.get(id)
+    if (item == null) sinClaim.push(id)
+    else if (item.claim.type !== e.from) obsoletas.push(id)
+    else aplicadas.push(id)
+  }
+  return { aplicadas, obsoletas, sinClaim }
 }
 
 // Certainty rank for the three graded verdicts. `contradicho` is handled
@@ -197,5 +269,98 @@ export function applyOverlayEntries(
     }
   }
   validateOverlay(next)
+  return next
+}
+
+/**
+ * Throws on a malformed reclassification sidecar (called on every write AND on
+ * every read by the rebuild loader — defence in depth, like `validateOverlay`).
+ * The one rule with legal weight is wired here where no caller can skip it:
+ * a reclassification may never point TOWARD `acusacion_publica`. Raising a
+ * statement into an accusation is libel-increasing, the exact move the overlay
+ * forbids for verdicts with `isDowngrade`.
+ */
+export function validateReclassifications(r: Reclassifications): void {
+  if (!r || typeof r.version !== 'number' || !r.entries || typeof r.entries !== 'object') {
+    throw new Error('[reclas] malformed: missing version/entries')
+  }
+  for (const [id, e] of Object.entries(r.entries)) {
+    if (!e || typeof e !== 'object') throw new Error(`[reclas] ${id}: entry not an object`)
+    if (!ALLOWED_CLAIM_TYPES.includes(e.type)) {
+      throw new Error(`[reclas] ${id}: type ${String(e.type)} is outside ClaimType`)
+    }
+    if (e.type === 'acusacion_publica') {
+      throw new Error(`[reclas] ${id}: reclassifying TOWARD acusacion_publica is forbidden`)
+    }
+    if (!ALLOWED_CLAIM_TYPES.includes(e.from)) {
+      throw new Error(`[reclas] ${id}: from ${String(e.from)} is outside ClaimType`)
+    }
+    // Política v1, espejada también en la LECTURA para que un sidecar editado a
+    // mano no pueda mover lo que el CLI no movería: sólo se corrige DESDE
+    // acusacion_publica (la clase de fallo observada). Ampliar este validador
+    // ES el acto deliberado de ampliar la política, con su PR y su porqué.
+    if (e.from !== 'acusacion_publica') {
+      throw new Error(
+        `[reclas] ${id}: from ${String(e.from)} — v1 only moves away from acusacion_publica`,
+      )
+    }
+    if (!e.reason || e.reason.trim().length < 20) {
+      throw new Error(`[reclas] ${id}: needs a reason of at least 20 chars`)
+    }
+    if (typeof e.appliedAt !== 'string') throw new Error(`[reclas] ${id}: missing appliedAt`)
+  }
+}
+
+export interface ApplyReclassification {
+  claimId: string
+  type: ClaimType
+  reason: string
+  editor?: string
+}
+
+/**
+ * Add/overwrite reclassification entries (pure — returns a new sidecar, input
+ * untouched). Gated against the PUBLISHED corpus the caller passes in: the
+ * claim must exist, and v1 only moves AWAY from `acusacion_publica` — the one
+ * observed failure class (the extractor shoehorns debate speech into the
+ * accusation bucket). Widen when a real case of another wrong type shows up.
+ */
+export function applyReclassificationEntries(
+  reclassifications: Reclassifications,
+  entries: ApplyReclassification[],
+  stampIso: string,
+  publishedTypes: Map<string, ClaimType>,
+): Reclassifications {
+  const next: Reclassifications = {
+    version: reclassifications?.version ?? 1,
+    generatedAt: stampIso,
+    entries: { ...(reclassifications?.entries ?? {}) },
+  }
+  for (const e of entries) {
+    if (!e.reason || e.reason.trim().length < 20) {
+      throw new Error(`[reclas] ${e.claimId}: needs a reason of at least 20 chars`)
+    }
+    if (e.type === 'acusacion_publica') {
+      throw new Error(`[reclas] ${e.claimId}: reclassifying TOWARD acusacion_publica is forbidden`)
+    }
+    if (!ALLOWED_CLAIM_TYPES.includes(e.type)) {
+      throw new Error(`[reclas] ${e.claimId}: type ${String(e.type)} is outside ClaimType`)
+    }
+    const from = publishedTypes.get(e.claimId)
+    if (!from) throw new Error(`[reclas] ${e.claimId}: not found in the published corpus`)
+    if (from !== 'acusacion_publica') {
+      throw new Error(
+        `[reclas] ${e.claimId}: published type is ${from} — v1 only moves away from acusacion_publica`,
+      )
+    }
+    next.entries[e.claimId] = {
+      type: e.type,
+      from,
+      reason: e.reason,
+      ...(e.editor ? { editor: e.editor } : {}),
+      appliedAt: stampIso,
+    }
+  }
+  validateReclassifications(next)
   return next
 }

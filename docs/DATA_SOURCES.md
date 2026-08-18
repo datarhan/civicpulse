@@ -58,6 +58,7 @@ Everything produced by the convention above. Safe to delete and rebuild.
 | `requisitos-cargo.json`                             | curated · cited al BOE · hand-edit via PR                                                                                     |
 | `eficiencia-findings.json`                          | `src/scraper/eficiencia-finding.ts` · `npm run promote-indicador`, `correct-indicador`, `retract-indicador`                   |
 | `eficiencia-preguntas.json`                         | `src/scraper/eficiencia-preguntas.ts` · curated · hand-edit via PR                                                            |
+| `pleno-claim-reclassifications.json`                | `src/scraper/verified-merge.ts` · `npm run reclassify-claim` (sólo ALEJÁNDOSE de `acusacion_publica`)                         |
 
 Each CLI re-validates the whole snapshot before writing, so an invariant
 (≥20-char verbatim quote, ≥10-char title) cannot silently slip. Route

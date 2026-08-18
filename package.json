@@ -96,6 +96,7 @@
     "reground:verdicts": "npx tsx scripts/reground-verdicts.ts",
     "regrounding:review": "npx tsx scripts/regrounding-review.ts",
     "downgrade-verdict": "npx tsx scripts/downgrade-verdict.ts",
+    "reclassify-claim": "npx tsx scripts/reclassify-claim.ts",
     "eval:gold-prefill": "npx tsx scripts/eval-gold-prefill.ts",
     "eval:verifier": "npx tsx scripts/eval-verifier.ts",
     "extract-and-verify:pleno-claims": "bash scripts/extract-and-verify-pleno-claims.sh",

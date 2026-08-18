@@ -181,6 +181,20 @@ describe('claim-public-gate — un veredicto sin verificador anotado no está fu
     ).toBe('shown')
   })
 
+  it('pliega una valoración política sin fundar — el destino de la reclasificación curada', () => {
+    // `valoracion_politica` sólo nace de `reclassify-claim` (el prompt del
+    // extractor no lo emite). La rama por defecto de la puerta ya hace lo que el
+    // lector pedía para la defensa de constitucionalidad del PSOE: toggle, con
+    // el chip «sin contraste en los datos» y la nota «no es una acusación».
+    expect(classifyClaimVisibility(item('valoracion_politica', 'sin-datos') as never)).toBe(
+      'toggle',
+    )
+    // Control: fundada se muestra, como cualquier no-acusación.
+    expect(classifyClaimVisibility(item('valoracion_politica', 'verificado') as never)).toBe(
+      'shown',
+    )
+  })
+
   it('sigue publicando lo que SÍ anota quién lo comprobó', () => {
     // Control: sin esto, un «oculta todo» pasaría estas pruebas y vaciaría la
     // página entera.

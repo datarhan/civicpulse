@@ -19,6 +19,7 @@ import { join, resolve } from 'node:path'
 import { validateFindingsSnapshot } from '../src/scraper/pleno-finding'
 import { ALLOWED_BLOCS, SPEAKER_GROUPS, validateSnapshot } from '../src/scraper/pleno-votes'
 import { PlenoClaimSuggestionSchema } from '../src/llm/schemas'
+import { ALLOWED_CLAIM_TYPES, EXTRACTOR_CLAIM_TYPES } from '../src/scraper/pleno-claim'
 import { validateSpeakerMap } from '../src/scraper/speaker-map-validate'
 import { seatsFromOfficials } from '../src/scraper/corporation-seats'
 import { REAL_BLOCS } from '../src/lib/party-label.js'
@@ -197,6 +198,37 @@ describe('Otro sentinel — the validator refuses to let it back in', () => {
     expect(parsed.success).toBe(true)
     // …and the sentinel does not survive into the parsed object.
     expect(parsed.data).not.toHaveProperty('speakerGroup')
+  })
+
+  /**
+   * El mismo riesgo, otro campo: `valoracion_politica` sólo puede nacer de
+   * `reclassify-claim`, pero los backends de salida estructurada le ENSEÑAN el
+   * enum del esquema al modelo aunque el prompt no defina el tipo. Con el enum
+   * completo, el extractor podía emitirlo y dejar el invariante documentado
+   * pero roto. La frontera valida contra EXTRACTOR_CLAIM_TYPES (cinco); el
+   * corpus, contra ALLOWED_CLAIM_TYPES (seis).
+   */
+  it('la frontera de extracción rechaza el tipo que sólo nace de reclassify-claim', () => {
+    const suggestions = JSON.parse(
+      readFileSync(join(DATA, 'pleno-claims-suggestions.json'), 'utf8'),
+    )
+    const sample = suggestions.items.find((i: { verbatim?: unknown }) => i.verbatim)
+    expect(sample).toBeTruthy()
+    // Control positivo: la muestra parsea, así que el fallo de abajo habla del
+    // tipo y no de un fixture roto.
+    expect(PlenoClaimSuggestionSchema.safeParse(sample).success).toBe(true)
+
+    const conSexto = PlenoClaimSuggestionSchema.safeParse({
+      ...sample,
+      type: 'valoracion_politica',
+    })
+    expect(conSexto.success).toBe(false)
+
+    // La diferencia es la frontera, no el vocabulario: el corpus sí lo admite,
+    // y la lista del extractor se DERIVA del enum (exactamente uno menos).
+    expect(ALLOWED_CLAIM_TYPES).toContain('valoracion_politica')
+    expect(EXTRACTOR_CLAIM_TYPES).not.toContain('valoracion_politica')
+    expect(EXTRACTOR_CLAIM_TYPES.length).toBe(ALLOWED_CLAIM_TYPES.length - 1)
   })
 
   it('the speaker map refuses to publish a councillor whose roster party is Otro', () => {

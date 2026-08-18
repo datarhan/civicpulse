@@ -32,14 +32,45 @@ export type ClaimType =
   | 'cita_obra'
   | 'cita_convenio'
   | 'acusacion_publica'
+  | 'valoracion_politica'
 
+/**
+ * `valoracion_politica` — posicionamiento político o jurídico (defensa de una
+ * norma, juicio de constitucionalidad, elogio o crítica ideológica) que no
+ * promete, no cifra, no cita obra/convenio y no acusa a nadie. El prompt del
+ * extractor NO lo emite — re-extraer perdería la atribución de bloc — así que
+ * el valor sólo nace de una reclasificación curada (`npm run reclassify-claim`,
+ * sidecar `pleno-claim-reclassifications.json`), y sólo ALEJÁNDOSE de
+ * `acusacion_publica`: el espejo de «downgrade-only» del overlay de veredictos.
+ * Para la puerta editorial es una no-acusación normal: sin fundar se pliega
+ * (`toggle`), fundada se muestra. El caso que lo estrenó: una defensa de la
+ * constitucionalidad de la ley estatal de vivienda publicada como «acusación
+ * no contrastada» (10yl550-220-acu-0101aa; la abreviatura del id es clave
+ * estable y no cambia con el tipo).
+ */
 export const ALLOWED_CLAIM_TYPES: readonly ClaimType[] = [
   'promesa',
   'afirmacion_numerica',
   'cita_obra',
   'cita_convenio',
   'acusacion_publica',
+  'valoracion_politica',
 ]
+
+/**
+ * Los tipos que la FRONTERA DE EXTRACCIÓN acepta: los cinco del prompt.
+ *
+ * Derivado, no restatado. `valoracion_politica` se excluye a propósito: los
+ * backends de salida estructurada le ENSEÑAN el enum al modelo aunque el
+ * prompt no lo defina, así que con el enum completo el extractor podía emitir
+ * el sexto tipo y dejar falso el invariante de arriba — documentado pero no
+ * codificado, el patrón exacto contra el que escribe DATA_INTEGRITY. El
+ * esquema de extracción (src/llm/schemas.ts) valida contra ESTA lista; el
+ * corpus entero, contra ALLOWED_CLAIM_TYPES.
+ */
+export const EXTRACTOR_CLAIM_TYPES: readonly ClaimType[] = ALLOWED_CLAIM_TYPES.filter(
+  (t) => t !== 'valoracion_politica',
+)
 
 /**
  * Narrow subtype for accusations. Split at extraction time so the verifier

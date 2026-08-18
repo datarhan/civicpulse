@@ -187,3 +187,78 @@ test.describe('Cargo detail (/cargos/:slug)', () => {
     })
   })
 })
+
+/**
+ * Las citas reclasificadas por curador (pleno-claim-reclassifications.json) no
+ * pueden cargar la marca «acusación no contrastada»: la reclasificación sólo
+ * se aleja de la acusación, así que su puerta nunca es `hidden`. Derivado del
+ * sidecar — cada entrada futura queda vigilada sin tocar este spec. El caso
+ * que lo estrenó: una defensa de la constitucionalidad de la ley estatal de
+ * vivienda publicada en /hallazgos como acusación sin contrastar.
+ */
+test.describe('Citas reclasificadas (/hallazgos)', () => {
+  test('ninguna cita reclasificada carga la marca de acusación', async ({ page }) => {
+    const { readFileSync } = await import('node:fs')
+    const reclas = JSON.parse(
+      readFileSync('public/data/pleno-claim-reclassifications.json', 'utf8'),
+    ) as { entries: Record<string, { type: string }> }
+    const findings = JSON.parse(readFileSync('public/data/pleno-findings.json', 'utf8')) as {
+      items: Array<{ id: string; quotes?: Array<{ text: string; sourceClaimId?: string }> }>
+    }
+    const prov = JSON.parse(readFileSync('public/data/finding-quote-provenance.json', 'utf8')) as {
+      quotes: Record<string, Array<{ gate?: string } | null>>
+    }
+
+    const ids = new Set(Object.keys(reclas.entries))
+    // Mide algo: el sidecar existe porque hay al menos un caso real.
+    expect(ids.size).toBeGreaterThan(0)
+
+    const citadas: Array<{ findingId: string; index: number; text: string }> = []
+    for (const f of findings.items) {
+      ;(f.quotes ?? []).forEach((q, i) => {
+        if (q.sourceClaimId && ids.has(q.sourceClaimId)) {
+          citadas.push({ findingId: f.id, index: i, text: q.text })
+        }
+      })
+    }
+    // Una entrada del sidecar puede no estar citada por ningún hallazgo; si
+    // NINGUNA lo está, este spec no comprueba nada y tiene que decirlo.
+    expect(citadas.length, 'ninguna cita reclasificada aparece en hallazgos').toBeGreaterThan(0)
+
+    await page.goto('/hallazgos', { waitUntil: 'networkidle' })
+    for (const c of citadas) {
+      const gate = prov.quotes[c.findingId]?.[c.index]?.gate
+      expect(gate, `${c.findingId}[${c.index}] reclasificada con puerta hidden`).not.toBe('hidden')
+
+      // Una reclasificada que algún día quede FUNDADA sale `shown`, y `shown`
+      // no lleva marca por diseño (CONTRAST_MARK.shown = null): el paseo por
+      // ancestros daría [] o las marcas de una vecina — rojo espurio, no verde
+      // hueco. Para ella, la puerta ≠ hidden ya es todo el contrato.
+      if (gate === 'shown') continue
+
+      const el = page.getByText(c.text.slice(0, 48), { exact: false }).first()
+      await expect(el).toBeVisible()
+      // El contenedor inmediato de la cita lleva su propia fila de marcas: el
+      // ancestro MÁS CERCANO que contenga alguna marca de contraste es el de
+      // esta cita, no el de la ficha (que mezcla las de sus vecinas).
+      const marks = await el.evaluate((node) => {
+        let n = node
+        for (let i = 0; i < 8 && n?.parentElement; i++) {
+          n = n.parentElement
+          const txt = n.textContent ?? ''
+          const found = ['acusación no contrastada', 'sin contraste en los datos'].filter((m) =>
+            txt.includes(m),
+          )
+          if (found.length > 0) return found
+        }
+        return []
+      })
+      expect(
+        marks,
+        `${c.findingId}[${c.index}] sin marca de contraste junto a la cita`,
+      ).not.toEqual([])
+      expect(marks).not.toContain('acusación no contrastada')
+      if (gate === 'toggle') expect(marks).toContain('sin contraste en los datos')
+    }
+  })
+})

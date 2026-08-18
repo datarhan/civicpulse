@@ -54,7 +54,10 @@
  * whole finding inverted, and it is the mistake this module is built to make
  * impossible: the corpus carries base AND merged, the stats count how many
  * quotes were decided on an overlay verdict, and `contrastSanityFailure`
- * refuses a run where the overlay had entries and none of them reached a quote.
+ * refuses a run where the overlay had entries and NEITHER merge signal reached
+ * a quote — no overlay-decided verdict and no sidecar-moved gate. (A base
+ * seeded verbatim from the published monolith zeroes the first signal
+ * legitimately; only both at zero means the composition never ran.)
  */
 import {
   classifyClaimVisibility,
@@ -263,7 +266,18 @@ export function contrastSanityFailure(stats: QuoteContrastStats): string | null 
   if (suma !== stats.citasConClaim) {
     return `los contadores de la puerta suman ${suma} y se clasificaron ${stats.citasConClaim} citas: hay un estado sin contar`
   }
-  if (stats.entradasDeOverlay > 0 && stats.citasConVeredictoDeOverlay === 0) {
+  if (
+    stats.entradasDeOverlay > 0 &&
+    stats.citasConVeredictoDeOverlay === 0 &&
+    // Una base sembrada VERBATIM desde el monolito publicado (el estado
+    // transitorio que bendice migrate:verified-split) absorbe los veredictos
+    // del overlay, y ahí la señal de arriba es legítimamente cero. Una puerta
+    // movida por el sidecar de reclasificaciones es una prueba igual de firme
+    // de que la composición corrió — el stat mide base-vs-fusionado, que en una
+    // lectura sin fusionar es idéntico por construcción. Cero en LAS DOS
+    // señales sigue siendo una lectura sin fusionar, y se sigue negando.
+    stats.citasReclasificadasPorElOverlay === 0
+  ) {
     return (
       `el overlay trae ${stats.entradasDeOverlay} entradas y ninguna cita publicada quedó ` +
       'clasificada sobre un veredicto suyo: se está leyendo pleno-claims-verified-base.json sin ' +

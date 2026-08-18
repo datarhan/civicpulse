@@ -744,7 +744,9 @@ export default function Metodologia() {
             de la sesión, el modelo extrae <em>verbatim</em> las afirmaciones y las clasifica en
             cinco tipos: <code>promesa</code> · <code>afirmacion_numerica</code> ·{' '}
             <code>cita_obra</code> · <code>cita_convenio</code> · <code>acusacion_publica</code>.
-            Cada registro se guarda en <code>pleno-claims-suggestions.json</code>.{' '}
+            (Existe un sexto, <code>valoracion_politica</code>, que el extractor no emite: sólo nace
+            de la reclasificación curada que se describe más abajo.) Cada registro se guarda en{' '}
+            <code>pleno-claims-suggestions.json</code>.{' '}
             <strong>El modelo no dice de qué grupo es quien habla.</strong> No se le pregunta.
             <p style={{ margin: '8px 0 0' }}>
               Hasta el 10 de agosto de 2026 sí se le preguntaba, y no podía saberlo. El modelo ve un
@@ -847,7 +849,15 @@ export default function Metodologia() {
             <strong>no cambia ningún veredicto</strong>: sólo una persona puede rebajarlo (nunca
             subirlo) con una herramienta dedicada, dejando el motivo verbatim. Las decisiones de
             segunda pasada y de curación viven en una capa («overlay») separada del veredicto
-            determinista base, de modo que recalcular la base nunca borra esas decisiones.
+            determinista base, de modo que recalcular la base nunca borra esas decisiones. Desde
+            agosto de 2026 el <em>tipo</em> de una declaración se corrige por la misma vía: cuando
+            el extractor archiva como <code>acusacion_publica</code> algo que no acusa a nadie —el
+            caso que estrenó la herramienta fue una defensa de la constitucionalidad de una ley
+            estatal—, un curador lo reclasifica con motivo verbatim en un registro propio (
+            <code>pleno-claim-reclassifications.json</code>), y la herramienta sólo acepta
+            movimientos que <strong>alejan</strong> de la acusación, nunca hacia ella: convertir una
+            declaración en acusación agravaría lo que se afirma de quien habló, que es exactamente
+            lo que «sólo a la baja» prohíbe para los veredictos.
           </li>
           <li>
             <strong>Motor de veredictos (re-derivación, sólo a la baja).</strong> Una segunda pasada

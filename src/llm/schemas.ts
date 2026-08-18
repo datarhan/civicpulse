@@ -12,7 +12,7 @@
 import { z } from 'zod'
 import { ALLOWED_BLOCS, ALLOWED_DIRECTIONS, ALLOWED_OUTCOMES } from '../scraper/pleno-votes'
 import {
-  ALLOWED_CLAIM_TYPES,
+  EXTRACTOR_CLAIM_TYPES,
   ALLOWED_CLAIM_TOPICS,
   ALLOWED_ACCUSATION_SUBTYPES,
 } from '../scraper/pleno-claim'
@@ -90,7 +90,10 @@ export const ClaimEntitiesSchema = z.object({
 })
 
 export const PlenoClaimSuggestionSchema = z.object({
-  type: z.enum([...ALLOWED_CLAIM_TYPES] as [(typeof ALLOWED_CLAIM_TYPES)[number]]),
+  // EXTRACTOR_CLAIM_TYPES, no ALLOWED: los backends estructurados enseñan este
+  // enum al modelo, y el sexto tipo (valoracion_politica) sólo puede nacer de
+  // una reclasificación curada — la frontera lo rechaza en vez de documentarlo.
+  type: z.enum([...EXTRACTOR_CLAIM_TYPES] as [(typeof EXTRACTOR_CLAIM_TYPES)[number]]),
   // `speakerGroup` is DELIBERATELY ABSENT from this schema.
   //
   // The model used to answer it, and could not. Measured on pleno 10yl550, of
