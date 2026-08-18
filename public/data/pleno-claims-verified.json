@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T18:27:16.873Z",
+  "generatedAt": "2026-08-18T18:44:05.129Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -38767,7 +38767,7 @@
       "verification": {
         "claimId": "k4olcs-005-acu-7c0edd",
         "verdict": "sin-datos",
-        "summary": "La afirmación no dice nada comprobable —que hubo cuestiones por el tema de la DANA— y la evidencia es un contrato de emergencia de alumbrado por la DANA, con una similitud de 0,29: coincide el asunto general, no lo que se afirma. Un verificado aquí presenta como comprobado algo que no llega a ser una afirmación.",
+        "summary": "La afirmación no dice nada comprobable —que hubo cuestiones por el tema de la DANA— y la evidencia es un contrato de emergencia de alumbrado por la DANA, con una similitud de 0,29: coincide el asunto general, no lo que se afirma.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -115881,7 +115881,7 @@
       "verification": {
         "claimId": "1du4rf5-115-acu-431140",
         "verdict": "sin-datos",
-        "summary": "Una acusación sobre a quién corresponde la responsabilidad política no la acredita un contrato de seguro de responsabilidad civil del ayuntamiento: lo único que comparten es la palabra responsabilidad, con una similitud de 0,25. Publicada como verificada y atribuida a un grupo con nombre, que es la peor combinación posible de este error.",
+        "summary": "Una acusación sobre a quién corresponde la responsabilidad política no la acredita un contrato de seguro de responsabilidad civil del ayuntamiento: lo único que comparten es la palabra responsabilidad, con una similitud de 0,25.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"

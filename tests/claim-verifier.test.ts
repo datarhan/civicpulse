@@ -338,6 +338,53 @@ describe('un parecido de TÍTULO no verifica, y a una acusación no la funda', (
     expect(v.verdict).not.toBe('verificado')
   })
 
+  it('y una subvención que sólo coincide en la cifra tampoco corrobora', () => {
+    // El mismo 0,6 exacto que el camino de los contratos, en el de las
+    // subvenciones: `similarAmount*0,6 + textSim*0,4` con suelo 0,6, así que un
+    // importe exacto contra una convocatoria de otra cosa pasaba. La revisión
+    // independiente lo encontró al preguntarse, sobre la regla ya escrita, qué
+    // tipos de evidencia se habían quedado fuera del saco.
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'acusacion_publica',
+        accusationSubtype: 'factual',
+        speakerGroup: 'PP',
+        entities: { amountEuros: 50_000, referencedEntity: 'plan de refugios climaticos' },
+      }),
+      bdns: {
+        items: [
+          {
+            titulo: 'Subvenciones para actividades de la banda de música municipal',
+            importe: 50_000,
+            url: 'https://bdns.example/1',
+          },
+        ],
+      },
+    })
+    expect(v.evidence.filter((e) => e.kind === 'bdns')).toHaveLength(0)
+    expect(v.verdict).toBe('sin-datos')
+    expect(v.checkedAgainst).toContain('bdns')
+  })
+
+  it('control positivo: con el objeto compartido, la subvención sigue corroborando', () => {
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'afirmacion_numerica',
+        entities: { amountEuros: 50_000, referencedEntity: 'banda de musica municipal' },
+      }),
+      bdns: {
+        items: [
+          {
+            titulo: 'Subvenciones para actividades de la banda de música municipal',
+            importe: 50_000,
+            url: 'https://bdns.example/1',
+          },
+        ],
+      },
+    })
+    expect(v.evidence.filter((e) => e.kind === 'bdns')).toHaveLength(1)
+  })
+
   it('y un parecido de título tampoco CONTRADICE una acusación', () => {
     // La otra salida del bloque 3: si la afirmación dice «terminada» y el
     // contrato figura pendiente, devolvía `contradicho` — el veredicto más

@@ -778,6 +778,13 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
       for (const b of bdnsList) {
         const bAmount = bdnsAmount(b)
         const textSim = entity ? overlapScore(entity, bdnsText(b)) : 0
+        // La misma regla que el camino de los contratos, en el de las
+        // subvenciones: la mezcla de abajo es el mismo `sim*0,6 + texto*0,4`
+        // con suelo 0,6, así que un importe exacto contra una convocatoria de
+        // otra cosa daba exactamente el suelo y pasaba. Un importe que coincide
+        // y un objeto que no, no es corroboración — lo dijera un contrato o lo
+        // diga una subvención.
+        if (textSim <= 0) continue
         // With no amount on the row, the name has to carry the whole match, so
         // the bar is higher than the blended amount+text score.
         const combined =

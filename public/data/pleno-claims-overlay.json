@@ -1,21 +1,21 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-18T18:27:47.209Z",
+  "generatedAt": "2026-08-18T18:42:10.345Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
         "claimId": "k4olcs-005-acu-7c0edd",
         "verdict": "sin-datos",
-        "summary": "La afirmación no dice nada comprobable —que hubo cuestiones por el tema de la DANA— y la evidencia es un contrato de emergencia de alumbrado por la DANA, con una similitud de 0,29: coincide el asunto general, no lo que se afirma. Un verificado aquí presenta como comprobado algo que no llega a ser una afirmación.",
+        "summary": "La afirmación no dice nada comprobable —que hubo cuestiones por el tema de la DANA— y la evidencia es un contrato de emergencia de alumbrado por la DANA, con una similitud de 0,29: coincide el asunto general, no lo que se afirma.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "La afirmación no dice nada comprobable —que hubo cuestiones por el tema de la DANA— y la evidencia es un contrato de emergencia de alumbrado por la DANA, con una similitud de 0,29: coincide el asunto general, no lo que se afirma. Un verificado aquí presenta como comprobado algo que no llega a ser una afirmación.",
+      "reason": "La afirmación no dice nada comprobable —que hubo cuestiones por el tema de la DANA— y la evidencia es un contrato de emergencia de alumbrado por la DANA, con una similitud de 0,29: coincide el asunto general, no lo que se afirma.",
       "editor": "Sergei Lutchenko",
-      "appliedAt": "2026-08-18T18:27:47.209Z"
+      "appliedAt": "2026-08-18T18:42:10.345Z"
     },
     "k4olcs-006-afi-462d5e": {
       "verification": {
@@ -4724,16 +4724,16 @@
       "verification": {
         "claimId": "1du4rf5-115-acu-431140",
         "verdict": "sin-datos",
-        "summary": "Una acusación sobre a quién corresponde la responsabilidad política no la acredita un contrato de seguro de responsabilidad civil del ayuntamiento: lo único que comparten es la palabra responsabilidad, con una similitud de 0,25. Publicada como verificada y atribuida a un grupo con nombre, que es la peor combinación posible de este error.",
+        "summary": "Una acusación sobre a quién corresponde la responsabilidad política no la acredita un contrato de seguro de responsabilidad civil del ayuntamiento: lo único que comparten es la palabra responsabilidad, con una similitud de 0,25.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Una acusación sobre a quién corresponde la responsabilidad política no la acredita un contrato de seguro de responsabilidad civil del ayuntamiento: lo único que comparten es la palabra responsabilidad, con una similitud de 0,25. Publicada como verificada y atribuida a un grupo con nombre, que es la peor combinación posible de este error.",
+      "reason": "Una acusación sobre a quién corresponde la responsabilidad política no la acredita un contrato de seguro de responsabilidad civil del ayuntamiento: lo único que comparten es la palabra responsabilidad, con una similitud de 0,25.",
       "editor": "Sergei Lutchenko",
-      "appliedAt": "2026-08-18T18:27:46.632Z"
+      "appliedAt": "2026-08-18T18:42:09.808Z"
     },
     "1du4rf5-118-acu-f7652a": {
       "verification": {
