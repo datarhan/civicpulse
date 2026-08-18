@@ -1,7 +1,75 @@
 {
-  "generatedAt": "2026-08-17T05:19:42.403Z",
+  "generatedAt": "2026-08-18T05:17:05.285Z",
   "windowDays": 30,
   "articles": [
+    {
+      "articleId": "1hiwvms",
+      "articleFingerprint": "1od5s84",
+      "outlet": "Periòdic del Camp de Túria",
+      "outletHost": "infoturia.com",
+      "url": "https://www.infoturia.com/riba-roja-de-turia/85552-riba-roja-cedeix-una-parcella-municipal-de-1-945-m%c2%b2-per-a-construir-36-habitatges-de-proteccio-publica.html",
+      "date": "2026-08-17T13:35:30.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
+      "articleId": "17vhhpk",
+      "articleFingerprint": "1yj7qok",
+      "outlet": "Las Provincias",
+      "outletHost": "lasprovincias.es",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPc1RtSHpNa2U3TDc3Yy1RaXR1UkdVUC1fREFOX2FmTk43Rk1UUF9iY1FSYTRINjRHYWRuTFU3VmI0cGdGdEpwVEsxTERYRzRuTlZ4bml2eHJueEdieGtwNGtKMWs1UGFsWkZXaXkwQlFFM3RzS3VQUlZRZ3BzTTh6MjZpeHBheFVZS0NTZ05wSzB0bjVESk9BU1piTmlKWk5ucnVFV3ZLV20xYXhCQjNFYzFzVDZsWnhnNHdrQUZpQWnSAcYBQVVfeXFMTWNSVWdTc0M3YktaYjlyQTZCWmdWWHo3WnJuUDJPY3dhUjRzN2ZPd3B6SG1tTnRDcEdRMlRwODVMdVpESFA3LTNvdGNSV2RLb1M2MEpHRG91Y0lObWcwMDY0NVJ6MUFTcW9ZOGVwb3gwa0daNU8zRUN0R1V3aWsyYjlYcDhrOGdCcmM4WXlTX0RGRUpKN0NMUG5iT0V5ZHF5UEM1aW1YVnZjRXN5U0NOLWd1OEo2NVpVTXZEZXI4NkV1VllxdzNR?oc=5",
+      "date": "2026-08-17T13:30:30.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": true,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "15tpe88",
+      "articleFingerprint": "1v2ow04",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-cede-una-parcela-municipal-de-1.945-metros-cuadrados-para-construir-36-viviendas-de-protecci%C3%B3n-p%C3%BAblica-tras-constatar-una-tensi%C3%B3n-en-el-mercado-inmobiliario",
+      "date": "2026-08-17T11:54:37.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": true,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "1r02fps",
+      "articleFingerprint": "121cyfx",
+      "outlet": "Valencia Plaza",
+      "outletHost": "valenciaplaza.com",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNVXpZcUpiVnRvMmF0b3ZDUVIyTjRvcmFUbW1GSFFyOGJEbEFYNDVkR1RrN01rMEMtbmV5bXhmSC1CQVQtNnFCM2xuYkRaeWJRaTlPb2pGeW4xeHR3STFxRHNCdFhUdXFGODFBQ1ByeGpmMmJrTDlrYzNBS0NoUURKRnNRcWFrMXpoN1FjY1B1anBVZTF2d2VHWTJBZklmUXpkTVNRVnNvZEpIVzh6OGd2bF9xeDVNRVVCaTdPZkFabGRHQmIyeVFfbmN6dDZiZGx0enlwTGJnd2Zmd29IOWdkbUFRTEdmUQ?oc=5",
+      "date": "2026-08-17T10:55:37.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
     {
       "articleId": "4gae7p",
       "articleFingerprint": "m1zo5n",
@@ -103,6 +171,23 @@
         "opinionFraction": 0
       },
       "score": 5
+    },
+    {
+      "articleId": "14e5quo",
+      "articleFingerprint": "9bcvpg",
+      "outlet": "Interdiario",
+      "outletHost": "interdiario.es",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPRGJjbWtiTGJKSTFfYV9FY3Y4UVZRZDlWR2lmWW1tZ3laSVF5NUN0TVdNZmVPMldZTWZBeUIxLWg4em5pU3RKTlJLT1NPcWVvb0tRU2huX1ZxMnI0SUdZQU4xcUhCTHUzYnJIZ2E1bktPVnBpTi1hMzFnSmhDQzVla19BRDhaaGt6cWRWV0lHT3JyMkFTUXdNckh5cUxua0hMdkJ2cFZzMF94VV8yRlQtTmFUX052a2taOE9pVENYd0F2NXM?oc=5",
+      "date": "2026-08-13T08:07:00.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 1
     },
     {
       "articleId": "1micc74",
@@ -224,23 +309,6 @@
       "score": 6
     },
     {
-      "articleId": "plfgoc",
-      "articleFingerprint": "18f1xjw",
-      "outlet": "valenciaplaza.com",
-      "outletHost": "valenciaplaza.com",
-      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTQ1ZHFLLTNRRXdudEs2RHpkMXdKam1SUjdjM21jRkx3TFZEcVd1eFJ5cloycFVpNHFFeG1UeXYyVHpFcXVyaEsxRVgzajlLdnI2ZmVoT3ZpMDJXa1h2WUN3REplYjJIN3QydlB2TWFWYTBpdnZ4QU5oY1VXTWlITUlCSDQwaGhCY0RocnZYTUR0THVERkJqOWpTMmtzMmNmRDhXaWlIcGNCZmNOaXM1d1BTVUZ4TmhUSm5DTGdmODlyeWw2bUY4UUc2OUN6MUZIZnRjNlZqSGRxeTd1QTVVUFd4bHpJNjhG?oc=5",
-      "date": "2026-08-10T13:17:56.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": true,
-        "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 6
-    },
-    {
       "articleId": "neb0p4",
       "articleFingerprint": "1l02fsd",
       "outlet": "Periòdic del Camp de Túria",
@@ -268,11 +336,11 @@
         "localCoverage": true,
         "datedArticle": true,
         "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": true,
+        "corroboratedAcrossOutlets": false,
         "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 5
+      "score": 4
     },
     {
       "articleId": "yv7f14",
@@ -280,7 +348,7 @@
       "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQSHZfSWp6eU4wNFBSSmpZSXBYQWlEQV9QbmoyMnpoYW0yRGs0bHhGa19FZDVDQzZhUUJ1bTRQVmMybFllZGZnb0ZEZy1BRnlFSUNSMFZtbHN1bmFPbWYyMnpUQzQ0RThNMU1PUG1Lc2dzb2RSSEVkb1JKU002MkJuNWsyUGN4OFV20gGOAUFVX3lxTE94dmNqT3FKUFRJclY0TVJYSElueW5IaTdlRlZvN3BFRE5mb3RqSDdGYzFyRDJkRVRNNzI3a1hTc2NybkR6RTBMel81amZSTVgwbDdMQjFUZEM5Z3l6QkxLSEsxNDc0cExDUE80NXkzRnlLOEJKWGhoWklGRHZxN2JYNU1PSVpacnktcnRiY3c?oc=5",
-      "date": "2026-08-09T04:00:33.000Z",
+      "date": "2026-08-09T07:00:00.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -513,23 +581,6 @@
       "score": 2
     },
     {
-      "articleId": "1sauhls",
-      "articleFingerprint": "2dlf6c",
-      "outlet": "Periòdic del Camp de Túria",
-      "outletHost": "infoturia.com",
-      "url": "https://www.infoturia.com/riba-roja-de-turia/85271-el-consell-juridic-consultiu-avala-que-riba-roja-retire-la-condicio-dagent-urbanitzador-del-pai-la-gavina.html",
-      "date": "2026-08-03T17:35:23.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
-    },
-    {
       "articleId": "1ept28o",
       "articleFingerprint": "gbc0gc",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -647,23 +698,6 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "hcda7k",
-      "articleFingerprint": "ijtlbc",
-      "outlet": "Valenciabonita",
-      "outletHost": "valenciabonita.es",
-      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxONi1XQzBZQ1pNZGFKTGZVeUhsRDBpTWhsaG45d3l1T05EdjU5alNxQUJFT1hZZmVRZDYzdElTcmx4dXZXMUpyYVRTRDJnUzFwNDVpTDN4Vjh3aDZVZWxYbXlQWlhueXhhT3lpUkxlZ2c5QWduRDd2T0tUc0gwbVU3RnE5Zw?oc=5",
-      "date": "2026-07-30T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
     },
     {
       "articleId": "1xgs7rs",
@@ -959,7 +993,7 @@
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 33,
+      "articleCount": 34,
       "verdictCounts": {
         "verificado": 1,
         "parcial": 1,
@@ -967,7 +1001,7 @@
         "sin-datos": 28,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.67,
+      "meanTrustScore": 2.65,
       "verifiedRatio": 0.033,
       "contradictedRatio": 0
     },
@@ -982,7 +1016,7 @@
         "sin-datos": 14,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3.4,
+      "meanTrustScore": 3.3,
       "verifiedRatio": 0,
       "contradictedRatio": 0
     },
@@ -1002,6 +1036,21 @@
       "contradictedRatio": null
     },
     {
+      "outlet": "Las Provincias",
+      "outletHost": "lasprovincias.es",
+      "articleCount": 3,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 3,
+      "verifiedRatio": null,
+      "contradictedRatio": null
+    },
+    {
       "outlet": "El Periódico de Aquí",
       "outletHost": "elperiodicodeaqui.com",
       "articleCount": 3,
@@ -1017,9 +1066,9 @@
       "contradictedRatio": 0
     },
     {
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
-      "articleCount": 2,
+      "outlet": "Valencia Plaza",
+      "outletHost": "valenciaplaza.com",
+      "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1027,14 +1076,14 @@
         "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3,
+      "meanTrustScore": 2,
       "verifiedRatio": null,
       "contradictedRatio": null
     },
     {
-      "outlet": "Valenciabonita",
-      "outletHost": "valenciabonita.es",
-      "articleCount": 2,
+      "outlet": "Interdiario",
+      "outletHost": "interdiario.es",
+      "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1047,25 +1096,25 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "valenciaplaza.com",
-      "outletHost": "valenciaplaza.com",
+      "outlet": "Valenciabonita",
+      "outletHost": "valenciabonita.es",
       "articleCount": 1,
       "verdictCounts": {
-        "verificado": 1,
+        "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
         "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 6,
-      "verifiedRatio": 1,
-      "contradictedRatio": 0
+      "meanTrustScore": 1,
+      "verifiedRatio": null,
+      "contradictedRatio": null
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "bdf9aff0e63c",
+    "plenos-agendas.json": "c82c0af31446",
     "press-claims-verified.json": "01ecd9dcc232",
-    "press.json": "a3725b51d613",
+    "press.json": "1832be97f69c",
     "promises.json": "973df30a62ce"
   }
 }

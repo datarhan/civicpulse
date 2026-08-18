@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-08-17T05:17:27.728Z",
+  "generatedAt": "2026-08-18T05:14:59.299Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 57,
-    "openTotal": 57,
-    "inRibaRoja": 40,
+    "total": 56,
+    "openTotal": 56,
+    "inRibaRoja": 39,
     "closingSoon": 6,
-    "withDetail": 57,
+    "withDetail": 56,
     "byMonth": {
-      "2026-08": 13,
+      "2026-08": 16,
       "2026-07": 25,
-      "2026-06": 11,
+      "2026-06": 7,
       "2026-05": 2,
       "2026-04": 3,
       "2026-02": 2,
@@ -22,6 +22,257 @@
     }
   },
   "items": [
+    {
+      "id": "2518",
+      "fo": 2518,
+      "codigo": "2026/00217",
+      "titulo": "Costurero/a",
+      "publishedAt": "2026-08-17",
+      "deadline": "2026-10-17",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2518",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00217"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Costurero/a"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se buscan personas comprometidas y con ganas de trabajar. Requisitos : Carnet de conduciry vehículo propio Experiencia DISPONIBILIDAD INMEDIATA."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "3 meses ETT + posibilidad de contratación directa por la empresa"
+          },
+          {
+            "label": "Horario",
+            "value": "De lunes a jueves de 6:00 a 14:15 horas y viernes de 6:00 a 14:00 horas."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio y valía"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Manejo de máquinas de costura industriales triple arrastre. - Manipulación de piezas grandes de telas muy duras y pesadas para ponerlas en la máquina y coserlas."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Se buscan personas comprometidas y con ganas de trabajar. Requisitos : Carnet de conduciry vehículo propio Experiencia DISPONIBILIDAD INMEDIATA.",
+        "jornada": "Completa",
+        "horario": "De lunes a jueves de 6:00 a 14:15 horas y viernes de 6:00 a 14:00 horas.",
+        "salario": "Según convenio y valía",
+        "funciones": "- Manejo de máquinas de costura industriales triple arrastre. - Manipulación de piezas grandes de telas muy duras y pesadas para ponerlas en la máquina y coserlas.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2517",
+      "fo": 2517,
+      "codigo": "2026/00216",
+      "titulo": "Peón de albañilería menor de 30 años",
+      "publishedAt": "2026-08-17",
+      "deadline": "2026-10-17",
+      "location": "Valencia y pueblos de alrededores Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2517",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00216"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Peón de albañilería menor de 30 años"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se necesita peón con motivación para Septiembre. Sustitución por baja de paternidad, posibilidad de continuar después. Requisitos exigidos por el estado: DEBE SER MENOR A 30 AÑOS ESTAR INSCRITO COMO DEMANDANTE DE EMPLEO EN EL MOMENTO DE LA CONTRATACIÓN CONTRATACIÓN EN LAS MISMAS CONDICIONES QUE LA PERSONA SUSTITUIDA (CATEGORIA, JORNADA, FUNCIONES, ETC)"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "CONSTRUCCIÓN"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "INDIFERENTE"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Valencia y pueblos de alrededores, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "De Lunes a viernes de 8:00 a 17:00 horas y una hora de descanso."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Peón de albañilería"
+          }
+        ],
+        "tipoContrato": "INDIFERENTE",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "1",
+        "categoria": "PEONES",
+        "observaciones": "Se necesita peón con motivación para Septiembre. Sustitución por baja de paternidad, posibilidad de continuar después. Requisitos exigidos por el estado: DEBE SER MENOR A 30 AÑOS ESTAR INSCRITO COMO DEMANDANTE DE EMPLEO EN EL MOMENTO DE LA CONTRATACIÓN CONTRATACIÓN EN LAS MISMAS CONDICIONES QUE LA PERSONA SUSTITUIDA (CATEGORIA, JORNADA, FUNCIONES, ETC)",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "horario": "De Lunes a viernes de 8:00 a 17:00 horas y una hora de descanso.",
+        "salario": "Según convenio",
+        "funciones": "Peón de albañilería",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2516",
+      "fo": 2516,
+      "codigo": "2026/00215",
+      "titulo": "Auxiliar de devoluciones y gestión de cascos",
+      "publishedAt": "2026-08-17",
+      "deadline": "2026-10-17",
+      "location": "Poligono Logistico Valencia (Ribarroja de Turia) Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2516",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00215"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Auxiliar de devoluciones y gestión de cascos"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se trata de un puesto de jornada completa que combina tareas de manipulación y revisión de piezas de recambio de camión con tareas sencillas de gestión informática. Es necesario tener capacidad para manipular piezas que pueden pesar aproximadamente entre 10 y 20 kg, utilizando los medios disponibles para realizar esta tarea de forma segura. No se requiere formación específica ni experiencia previa en el sector, ya que se proporcionará formación sobre los procedimientos de trabajo y la gestión de devoluciones y cascos."
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "COMERCIO AL POR MAYOR Y AL POR MENOR; REPARACIÓN DE VEHÍCULOS DE MOTOR Y MOTOCICLETAS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Poligono Logistico Valencia (Ribarroja de Turia), Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Horario",
+            "value": "De lunes a viernes, de 08:30 a 13:30 y de 14:30 a 17:30"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Recepción y revisión de piezas usadas (cascos) procedentes de devoluciones de clientes y delegaciones. Comprobación del estado de las piezas y de su embalaje, identificación y etiquetado de los cascos, colocación y organización del material en almacén y registro de la información en el sistema informático. Realización de abonos y otras tareas administrativas sencillas relacionadas con la gestión de devoluciones. Manipulación de piezas de recambio de camión, algunas de ellas de entre 10 y 20 kg."
+          },
+          {
+            "label": "Habilidades",
+            "value": "Persona responsable, ordenada y cuidadosa. Capacidad para realizar trabajos manuales y manipular piezas de recambio de camión. Capacidad para seguir instrucciones y procedimientos establecidos. Se valorará buena disposición para aprender y trabajar en equipo."
+          },
+          {
+            "label": "Informática",
+            "value": "Manejo básico de ordenador. Se valorará experiencia con Excel y facilidad para aprender programas informáticos de gestión."
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "categoria": "PEONES",
+        "observaciones": "Se trata de un puesto de jornada completa que combina tareas de manipulación y revisión de piezas de recambio de camión con tareas sencillas de gestión informática. Es necesario tener capacidad para manipular piezas que pueden pesar aproximadamente entre 10 y 20 kg, utilizando los medios disponibles para realizar esta tarea de forma segura. No se requiere formación específica ni experiencia previa en el sector, ya que se proporcionará formación sobre los procedimientos de trabajo y la gestión de devoluciones y cascos.",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa Turnos: Turno partido",
+        "horario": "De lunes a viernes, de 08:30 a 13:30 y de 14:30 a 17:30",
+        "salario": "Según convenio",
+        "funciones": "Recepción y revisión de piezas usadas (cascos) procedentes de devoluciones de clientes y delegaciones. Comprobación del estado de las piezas y de su embalaje, identificación y etiquetado de los cascos, colocación y organización del material en almacén y registro de la información en el sistema informático. Realización de abonos y otras tareas administrativas sencillas relacionadas con la gestión de devoluciones. Manipulación de piezas de recambio de camión, algunas de ellas de entre 10 y 20 kg.",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2281",
       "fo": 2281,
@@ -3445,332 +3696,6 @@
         "salario": "Dependera de las tareas y tiempos que se asignen",
         "funciones": "- Limpieza y mantenimiento de instalaciones. - Orden y cuidado de las áreas asignadas.",
         "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2467",
-      "fo": 2467,
-      "codigo": "2026/00167",
-      "titulo": "Limpiador/a (H/M/D) CON DISCAPACIDAD (Ribarroja)",
-      "publishedAt": "2026-06-17",
-      "deadline": "2026-08-17",
-      "location": "Polígono industrial Rubarroja Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2467",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00167"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Limpiador/a (H/M/D) CON DISCAPACIDAD (Ribarroja)"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Tu talento, tu experiencia y tu punto de vista suman. En nuestro equipo, buscamos personas que quieran desarrollarse profesionalmente en un entorno dinámico con retos reales. Valoramos la diversidad y creemos en el desarrollo profesional como una apuesta a largo plazo. Funciones: Limpieza de oficinas , zonas comunes. Gestión de residuos y reciclaje. Manejo de productos y equipos de limpieza. JORNADA COMPLETA de lunes a viernes. Turnos rotativos de 06:00h a 14:00h y 14:00h a 22:00h. Requisitos: Imprescindible vehículo propio para desplazarse al centro de trabajo. Certificado de discapacidad / incapacidad igual o mayor 33%. Incorporación inmediata. Estamos comprometidos con la Igualdad y la Diversidad, por ello animamos a postularse a todas las personas que crean ajustarse a los requisitos de nuestras ofertas."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATACION DISCAPACIDAD"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Polígono industrial Rubarroja, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana, Turno tarde, Turno rotativo"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Turnos rotativos de mañana y tarde."
-          },
-          {
-            "label": "Horario",
-            "value": "6:00 a 14:00 y de 14:00 a 22:00"
-          },
-          {
-            "label": "Salario",
-            "value": "según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Limpieza de oficinas , zonas comunes. Gestión de residuos y reciclaje. Manejo de productos y equipos de limpieza."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATACION DISCAPACIDAD",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Tu talento, tu experiencia y tu punto de vista suman. En nuestro equipo, buscamos personas que quieran desarrollarse profesionalmente en un entorno dinámico con retos reales. Valoramos la diversidad y creemos en el desarrollo profesional como una apuesta a largo plazo. Funciones: Limpieza de oficinas , zonas comunes. Gestión de residuos y reciclaje. Manejo de productos y equipos de limpieza. JORNADA COMPLETA de lunes a viernes. Turnos rotativos de 06:00h a 14:00h y 14:00h a 22:00h. Requisitos: Imprescindible vehículo propio para desplazarse al centro de trabajo. Certificado de discapacidad / incapacidad igual o mayor 33%. Incorporación inmediata. Estamos comprometidos con la Igualdad y la Diversidad, por ello animamos a postularse a todas las personas que crean ajustarse a los requisitos de nuestras ofertas.",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46394",
-        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno rotativo",
-        "horario": "6:00 a 14:00 y de 14:00 a 22:00",
-        "salario": "según convenio",
-        "funciones": "Limpieza de oficinas , zonas comunes. Gestión de residuos y reciclaje. Manejo de productos y equipos de limpieza.",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "Otro personal de limpieza"
-          },
-          {
-            "nombre": "Personal de limpieza de oficinas, hoteles y otros establecimientos similares"
-          },
-          {
-            "nombre": "PERSONAL DE LIMPIEZA O LIMPIADORES EN GENERAL"
-          }
-        ]
-      }
-    },
-    {
-      "id": "2463",
-      "fo": 2463,
-      "codigo": "2026/00166",
-      "titulo": "Conductor Dúo tráiler Valencia",
-      "publishedAt": "2026-06-17",
-      "deadline": "2026-08-17",
-      "location": "Pol. Industrial El Oliveral Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2463",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00166"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Conductor Dúo tráiler Valencia"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se requiere: Estar en posesión del Carnet C+E, CAP y tarjeta tacógrafo vigente. Disponibilidad de incorporación inmediata Es deseable estar en posesión de certificado de discapacidad igual o superior al 33%. Se valorará experiencia en dúo tráiler."
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "TRANSPORTE Y ALMACENAMIENTO"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 3ª y ESPECIALISTAS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Pol. Industrial El Oliveral, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "Depende de los servicios"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "El Conductor/a de Dúo Tráiler, se responsabiliza, a través de las instrucciones de los Operadores de Tráfico, de la distribución de la mercancía según servicio asignado Local. La prestación de servicios debe ser mediante una conducción eficiente y con la responsabilidad de la carga en todo momento tanto en la duración como en destino. Funciones: Transporte de mercancía por carretera. Garantizar los compromisos de calidad adquiridos con el cliente, a través de las entregas y recogidas. Reportar en tiempo real las incidencias durante el servicio, por emergencias, retrasos, accidentes o cualquier otra circunstancia anómala. Seguir las rutas prestablecidas por el Dpto. de Tráfico. Supervisar o realizar las operaciones de carga y descarga y manipulación de mercancías. Verificar las condiciones mecánicas y del equipo, antes-durante-después del viaje, para asegurar el transporte, la carga y descarga, conforme a la normativa establecida. Conducción experta y eficiente. Respetar la normativa de transporte y de los tiempos de conducción máximas. Mantenimiento y limpieza del vehículo asignado"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "2",
-        "categoria": "OFICIAL DE 3ª y ESPECIALISTAS",
-        "observaciones": "Se requiere: Estar en posesión del Carnet C+E, CAP y tarjeta tacógrafo vigente. Disponibilidad de incorporación inmediata Es deseable estar en posesión de certificado de discapacidad igual o superior al 33%. Se valorará experiencia en dúo tráiler.",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa Turnos: Turno partido",
-        "horario": "Depende de los servicios",
-        "salario": "Según convenio",
-        "funciones": "El Conductor/a de Dúo Tráiler, se responsabiliza, a través de las instrucciones de los Operadores de Tráfico, de la distribución de la mercancía según servicio asignado Local. La prestación de servicios debe ser mediante una conducción eficiente y con la responsabilidad de la carga en todo momento tanto en la duración como en destino. Funciones: Transporte de mercancía por carretera. Garantizar los compromisos de calidad adquiridos con el cliente, a través de las entregas y recogidas. Reportar en tiempo real las incidencias durante el servicio, por emergencias, retrasos, accidentes o cualquier otra circunstancia anómala. Seguir las rutas prestablecidas por el Dpto. de Tráfico. Supervisar o realizar las operaciones de carga y descarga y manipulación de mercancías. Verificar las condiciones mecánicas y del equipo, antes-durante-después del viaje, para asegurar el transporte, la carga y descarga, conforme a la normativa establecida. Conducción experta y eficiente. Respetar la normativa de transporte y de los tiempos de conducción máximas. Mantenimiento y limpieza del vehículo asignado",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "CONDUCTORES DE CAMIÓN, EN GENERAL",
-            "experiencia": "1 Años"
-          }
-        ]
-      }
-    },
-    {
-      "id": "2464",
-      "fo": 2464,
-      "codigo": "2026/00165",
-      "titulo": "Peón de albañilería",
-      "publishedAt": "2026-06-17",
-      "deadline": "2026-08-17",
-      "location": "Valencia y pueblos de alrededores Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2464",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00165"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Peón de albañilería"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se necesita peon con motivación para Septiembre. Sustitución por baja de paternidad, posibilidad de continuar después"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "CONSTRUCCIÓN"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "INDIFERENTE"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Valencia y pueblos de alrededores, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "De Lunes a viernes de 8:00 a 17:00 horas y una hora de descanso."
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Peon de albañilería"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "INDIFERENTE",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "1",
-        "categoria": "PEONES",
-        "observaciones": "Se necesita peon con motivación para Septiembre. Sustitución por baja de paternidad, posibilidad de continuar después",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa",
-        "horario": "De Lunes a viernes de 8:00 a 17:00 horas y una hora de descanso.",
-        "salario": "Según convenio",
-        "funciones": "Peon de albañilería",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2466",
-      "fo": 2466,
-      "codigo": "2026/00164",
-      "titulo": "Personal con experiencia en manicuras varias",
-      "publishedAt": "2026-06-17",
-      "deadline": "2026-08-17",
-      "location": "Municipio Riba-roja Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2466",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00164"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Personal con experiencia en manicuras varias"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se precisa personal con experiencia en manicura semipermanente, uñas de gel, pedicura"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "INDIFERENTE"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio Riba-roja, Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          }
-        ],
-        "tipoContrato": "INDIFERENTE",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Se precisa personal con experiencia en manicura semipermanente, uñas de gel, pedicura",
-        "salario": "Según convenio",
         "ocupaciones": []
       }
     },

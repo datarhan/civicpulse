@@ -1,10 +1,9 @@
 {
-  "generatedAt": "2026-08-17T05:19:42.410Z",
+  "generatedAt": "2026-08-18T05:17:05.289Z",
   "clusters": [
     {
       "clusterId": "1urv1oi",
       "articleIds": [
-        "1sauhls",
         "1xgs7rs",
         "j1s6zk",
         "se650n"
@@ -12,43 +11,16 @@
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
         "El Periódico de Aquí",
-        "Las Provincias",
-        "Periòdic del Camp de Túria"
+        "Las Provincias"
       ],
       "earliestDate": "2026-07-29T07:00:00.000Z",
-      "latestDate": "2026-08-03T17:35:23.000Z",
+      "latestDate": "2026-07-29T13:51:48.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
         "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "10if6vd",
-      "articleIds": [
-        "plfgoc",
-        "rlu040"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "valenciaplaza.com"
-      ],
-      "earliestDate": "2026-08-10T09:09:31.000Z",
-      "latestDate": "2026-08-10T13:17:56.000Z",
-      "amountDrift": {
-        "min": 55600000,
-        "max": 55600000,
-        "spread": 0,
-        "spreadPct": 0
-      },
-      "verdictMix": {
-        "verificado": 1,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 2,
         "promesa-repetida": 0
       }
     },
@@ -96,6 +68,27 @@
         "parcial": 0,
         "contradicho": 0,
         "sin-datos": 2,
+        "promesa-repetida": 0
+      }
+    },
+    {
+      "clusterId": "1v2ow04",
+      "articleIds": [
+        "15tpe88",
+        "17vhhpk"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Las Provincias"
+      ],
+      "earliestDate": "2026-08-17T11:54:37.000Z",
+      "latestDate": "2026-08-17T13:30:30.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
         "promesa-repetida": 0
       }
     },
