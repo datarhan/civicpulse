@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T17:50:43.167Z",
+  "generatedAt": "2026-08-18T18:27:16.873Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -7,10 +7,10 @@
   "stats": {
     "total": 6919,
     "byVerdict": {
-      "verificado": 24,
+      "verificado": 22,
       "parcial": 79,
       "contradicho": 0,
-      "sin-datos": 6816,
+      "sin-datos": 6818,
       "promesa-repetida": 0
     }
   },
@@ -38766,24 +38766,11 @@
       },
       "verification": {
         "claimId": "k4olcs-005-acu-7c0edd",
-        "verdict": "verificado",
-        "summary": "La afirmación es corroborada por la existencia de contratos de emergencia para obras de alumbrado público relacionados con la DANA en Riba-roja de Túria.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i7R1v8v1LLWKeVWTb9Scog%3D%3D",
-            "snippet": "Contrato de emergencia de obras de actuación alumbrado público zona este por DANA · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.29
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i7R1v8v1LLWKeVWTb9Scog%3D%3D",
-            "snippet": "Contrato de emergencia de obras de actuación alumbrado público zona este por DANA · Ayuntamiento de Riba-roja de Túria · revoked",
-            "similarity": 0.29
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación no dice nada comprobable —que hubo cuestiones por el tema de la DANA— y la evidencia es un contrato de emergencia de alumbrado por la DANA, con una similitud de 0,29: coincide el asunto general, no lo que se afirma. Un verificado aquí presenta como comprobado algo que no llega a ser una afirmación.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       }
     },
@@ -115893,24 +115880,11 @@
       },
       "verification": {
         "claimId": "1du4rf5-115-acu-431140",
-        "verdict": "verificado",
-        "summary": "Los contratos de seguro de responsabilidad civil del Ayuntamiento de Riba-roja de Túria demuestran que la responsabilidad no recae única y exclusivamente en la Generalitat Valenciana, sino también en el consistorio local.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=50AMOi%2FtmLPnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Seguro de responsabilidad civil/patrimonial del ayuntamiento",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fyqNrUJGe9wQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Seguro de Responsabilidad Civil/patrimonial del Ayuntamiento de Riba-roja",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Una acusación sobre a quién corresponde la responsabilidad política no la acredita un contrato de seguro de responsabilidad civil del ayuntamiento: lo único que comparten es la palabra responsabilidad, con una similitud de 0,25. Publicada como verificada y atribuida a un grupo con nombre, que es la peor combinación posible de este error.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       }
     },

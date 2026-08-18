@@ -9,14 +9,20 @@ import { summarizeImpact } from '../lib/impact-stats'
 // domain mailbox exists (tracked in docs/superpowers/audits/…-opensource-preflight.md §4).
 const CONTACT_EMAIL = 'slutchenko@gmail.com'
 
-function StatCell({ value, label, loading }) {
+export function StatCell({ value, label, loading }) {
   return (
     <div style={{ flex: '1 1 120px', minWidth: 120 }}>
       <div
         className="mono"
         style={{ fontSize: 'var(--fs-page)', fontWeight: 700, letterSpacing: '-.02em' }}
       >
-        {loading ? '—' : value.toLocaleString('es-ES')}
+        {/* `null` es un valor legítimo aquí: significa «no hay cifra que dar»
+            —el snapshot no trae el desglose, o su fetch falló— y hay que
+            pintarlo como la raya, no reventar la página entera. Sin esto,
+            contractsCount: null (que es lo que devuelve summarizeImpact cuando
+            falta tenders.stats) tiraba /nosotros con un TypeError; el test de
+            impact-stats no lo veía porque prueba la función pura. */}
+        {loading || value == null ? '—' : value.toLocaleString('es-ES')}
       </div>
       <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
         {label}

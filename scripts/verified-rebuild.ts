@@ -16,6 +16,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
   mergeVerified,
+  isDowngrade,
   validateOverlay,
   validateReclassifications,
   reclassificationOutcomes,
@@ -74,13 +75,25 @@ export function rebuildEmpobreceAtribucion(antes: number, despues: number): bool
 /** Escotilla documentada, para cuando la pérdida sea la intención. */
 export const ANULAR_GUARDA_ATRIBUCION = 'CLAIMS_REBUILD_ALLOW_ATTRIBUTION_LOSS'
 
-/** Fuerza de cada veredicto, para poder decir si un rebuild SUBE alguno. */
-const FUERZA: Record<string, number> = {
-  'sin-datos': 0,
-  'promesa-repetida': 1,
-  parcial: 2,
-  contradicho: 3,
-  verificado: 3,
+/**
+ * Subir es «no bajar y no quedarse igual», DERIVADO de `isDowngrade` — la misma
+ * función que ya gobierna el CLI del curador y el motor de veredictos.
+ *
+ * La primera versión escribió su propia escala de fuerza aquí, y la revisión
+ * independiente encontró lo de siempre: las dos escalas ya discrepaban.
+ * `isDowngrade` se niega a tratar `contradicho` como destino (nunca es una
+ * bajada), mientras que la escala local lo empataba con `verificado` — o sea
+ * que el CLI rechazaba `verificado → contradicho` y esta guarda lo dejaba
+ * pasar, justo la transición que el bloque sólo-título hacía alcanzable sin que
+ * interviniera nadie. Reescribir un orden es reescribir un enum: la regla 1 de
+ * DATA_INTEGRITY, aplicada a una relación en vez de a una lista.
+ *
+ * Al derivarla, la guarda se vuelve además más estricta que la escala que
+ * sustituye: cualquier movimiento que el curador no podría firmar como bajada
+ * cuenta como subida y se para.
+ */
+function esSubida(de: ClaimVerdict, a: ClaimVerdict): boolean {
+  return de !== a && !isDowngrade(de, a)
 }
 
 /**
@@ -115,9 +128,35 @@ export function acusacionesQueSuben(
     const de = previo.get(it.claim.id)
     const a = it.verification?.verdict
     if (de == null || a == null) continue // fila nueva: no hay «antes» que subir
-    if ((FUERZA[a] ?? 0) > (FUERZA[de] ?? 0)) out.push({ id: it.claim.id, de, a })
+    if (esSubida(de, a)) out.push({ id: it.claim.id, de, a })
   }
   return out
+}
+
+/**
+ * Acusaciones que ESTRENAN id publicando por encima de `sin-datos`.
+ *
+ * El punto ciego de la guarda de arriba: una fila sin «antes» no puede subir,
+ * y una re-extracción rehace los ids en bloque (este mismo trabajo cambió dos
+ * plenos enteros: 369 ids nuevos, 155 de ellos acusaciones). No se bloquea
+ * —una sesión recién transcrita tiene que poder publicar lo que diga el
+ * cotejo— pero se CUENTA y se dice, que es lo que distingue «no había nada»
+ * de «no lo miré».
+ */
+export function acusacionesNuevasFundadas(
+  antes: VerifiedItem[],
+  despues: VerifiedItem[],
+): string[] {
+  const conocidos = new Set(antes.map((it) => it.claim?.id))
+  return despues
+    .filter(
+      (it) =>
+        it.claim?.type === 'acusacion_publica' &&
+        !conocidos.has(it.claim.id) &&
+        it.verification?.verdict != null &&
+        it.verification.verdict !== 'sin-datos',
+    )
+    .map((it) => it.claim.id)
 }
 
 /** Escotilla documentada, para cuando la subida sea deliberada y revisada. */
@@ -184,6 +223,18 @@ export async function rebuildVerified(opts: { refreshChunks?: boolean } = {}): P
   // Antes de escribir nada: ¿esto SUBE alguna acusación ya publicada?
   if (existsSync(VERIFIED) && !process.env[ANULAR_GUARDA_ACUSACIONES]) {
     const publicado = JSON.parse(readFileSync(VERIFIED, 'utf8')) as Snapshot
+    const nuevas = acusacionesNuevasFundadas(publicado.items ?? [], items)
+    if (nuevas.length > 0) {
+      // No se bloquea: una sesión recién transcrita tiene derecho a publicar lo
+      // que diga el cotejo. Pero se dice, porque la guarda de abajo no puede
+      // verlas y «no había nada que mirar» y «no lo miré» no son lo mismo.
+      process.stderr.write(
+        `[rebuild] AVISO: ${nuevas.length} acusación(es) con id nuevo publican por encima de ` +
+          `sin-datos y ninguna guarda las compara con un estado anterior: ${nuevas
+            .slice(0, 5)
+            .join(', ')}${nuevas.length > 5 ? '…' : ''}\n`,
+      )
+    }
     const suben = acusacionesQueSuben(publicado.items ?? [], items)
     if (suben.length > 0) {
       throw new Error(

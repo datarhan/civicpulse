@@ -1112,3 +1112,71 @@ describe('portrait-officials', () => {
     expect(r.status).toBe('skipped')
   })
 })
+
+describe('report-claim-sources', () => {
+  // `check:citations` no puede ver esta clase: prueba `source.url`, y una
+  // fuente `local-snapshot` cita una fila del corpus por su id, dentro del
+  // título. Cuando dos plenos se re-extrajeron con ids nuevos, dos fuentes de
+  // la biografía de un concejal con nombre y apellidos quedaron apuntando a
+  // filas inexistentes y ninguna comprobación lo dijo.
+  const verified = {
+    items: [{ claim: { id: 'brxx5g-034-afi-199709' }, verification: { verdict: 'sin-datos' } }],
+  }
+  const fuente = (id, claimId) => ({
+    id,
+    kind: 'local-snapshot',
+    title: `Pleno claim ${claimId} · 2026-07-06 · afirmacion_numerica`,
+  })
+
+  it('caza la fuente que cita una fila que ya no está publicada', () => {
+    const r = byName(
+      runRelationsChecks({
+        verified,
+        reports: {
+          items: [{ id: 'r-bio', sources: [fuente('src-032', 'brxx5g-098-cit-1fcecb')] }],
+        },
+      }),
+    )['report-claim-sources']
+    expect(r.status).toBe('broken')
+    expect(r.checked).toBe(1)
+    expect(r.broken[0]).toContain('brxx5g-098-cit-1fcecb')
+  })
+
+  it('control positivo: la que sí resuelve pasa, y se cuenta', () => {
+    // Sin esto, un regex que dejara de reconocer ids daría `checked: 0` y la
+    // comprobación se declararía vacía en vez de rota — verde por no medir.
+    const r = byName(
+      runRelationsChecks({
+        verified,
+        reports: {
+          items: [{ id: 'r-bio', sources: [fuente('src-001', 'brxx5g-034-afi-199709')] }],
+        },
+      }),
+    )['report-claim-sources']
+    expect(r.status).toBe('ok')
+    expect(r.checked).toBe(1)
+  })
+
+  it('ignora las fuentes locales que no citan ninguna fila por id', () => {
+    const r = byName(
+      runRelationsChecks({
+        verified,
+        reports: {
+          items: [
+            {
+              id: 'r-bio',
+              sources: [
+                {
+                  id: 'src-002',
+                  kind: 'local-snapshot',
+                  title: 'Barrido determinista en tenders.json',
+                },
+              ],
+            },
+          ],
+        },
+      }),
+    )['report-claim-sources']
+    expect(r.checked).toBe(0)
+  })
+})

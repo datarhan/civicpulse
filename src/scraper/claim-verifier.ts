@@ -570,13 +570,24 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   const checked: string[] = []
   const evidence: ClaimEvidence[] = []
   /**
-   * Las filas de evidencia que salieron de la vía SÓLO-ENTIDAD (bloque 3), que
-   * compara títulos y no mira ni el importe ni el sentido. Se apunta aparte
-   * porque el veredicto de abajo las trata distinto: sostienen `parcial`, nunca
-   * `verificado`, y a una acusación no la fundan. Marcarlas en el propio objeto
-   * de evidencia habría cambiado el esquema publicado; esto no sale del módulo.
+   * Las filas de evidencia que NO FUNDAN nada por sí solas, aunque se enseñen:
+   *
+   *   · las de la vía sólo-entidad (bloque 3), que compara títulos y no mira ni
+   *     el importe ni el sentido;
+   *   · las de presupuesto, que son —por su propio comentario— «una
+   *     comprobación de plausibilidad: plausible no es corroborado».
+   *
+   * Se apuntan aparte porque el veredicto de abajo las trata distinto:
+   * sostienen `parcial`, nunca `verificado`, y a una acusación no la fundan.
+   * Marcarlas en el propio objeto de evidencia habría cambiado el esquema
+   * publicado; esto no sale del módulo.
+   *
+   * La pregunta que decide es «¿hay ALGUNA fila que funde?», no «¿son TODAS
+   * de este tipo?»: con la segunda, una sola fila de presupuesto —que no prueba
+   * nada— rescataba una acusación que el resto de la evidencia no sostenía.
    */
-  const soloParecidoDeTitulo = new Set<ClaimEvidence>()
+  const noFundante = new Set<ClaimEvidence>()
+  const marcarNoFundante = () => noFundante.add(evidence[evidence.length - 1])
 
   // `checkedAgainst` is a claim about our own work — it appears in the
   // published snapshot and feeds the "artículos auditados" counters. It used to
@@ -819,6 +830,8 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
             // of magnitude for the chapter?"). Plausible is not corroborated.
             stance: 'checked',
           })
+          // …y por eso no funda: se enseña, no verifica.
+          marcarNoFundante()
         }
       }
     }
@@ -851,7 +864,15 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     if (localTenders.length > 0) note('tenders')
     if (tedTenders.length > 0) note('tenders-ted')
     // Did the speaker claim the work is COMPLETED? (negation-aware)
-    const claimsCompleted = claimsCompletion(claim.verbatim)
+    //
+    // Y nunca sobre una ACUSACIÓN: `contradicho` es el veredicto más acusatorio
+    // que esta máquina sabe emitir, y emitirlo desde el camino que sólo compara
+    // títulos es la avería que este fichero ya documenta para el emparejador
+    // determinista, entrando por la puerta de al lado. Una acusación cuya única
+    // relación con el expediente es que comparten palabras cae por la puerta de
+    // abajo —sin-datos, con el documento a la vista— en vez de convertirse en un
+    // desmentido automático contra un grupo con nombre.
+    const claimsCompleted = claim.type !== 'acusacion_publica' && claimsCompletion(claim.verbatim)
     for (const t of tenderList) {
       // Mutuo, no contención: el suelo 0,50 de `overlapScore` lo saciaban
       // «contratación», «servicio» y «procedimiento» sobre cuatro campos
@@ -880,7 +901,7 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
           stance: refutes ? 'contradicts' : 'checked',
         })
         // …y por eso mismo el veredicto de abajo la lee con el freno puesto.
-        soloParecidoDeTitulo.add(evidence[evidence.length - 1])
+        marcarNoFundante()
         if (refutes) {
           return {
             claimId: claim.id,
@@ -934,7 +955,7 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     // los refugios, que no acredita ni el recorte ni la cifra. Un cambio
     // automático no sube una acusación contra un grupo con nombre: ni desde
     // aquí, ni por caerse por otro camino.
-    if (evidence.length > 0 && evidence.every((e) => soloParecidoDeTitulo.has(e))) {
+    if (evidence.length > 0 && !evidence.some((e) => !noFundante.has(e))) {
       return {
         claimId: claim.id,
         verdict: 'sin-datos',
@@ -951,7 +972,7 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   // Un parecido de título sostiene `parcial` —es una pista publicable— pero
   // nunca `verificado`: esa vía no comprueba el importe ni el sentido, así que
   // no puede sostener la palabra más fuerte que este verificador sabe decir.
-  const strong = evidence.some((e) => !soloParecidoDeTitulo.has(e) && (e.similarity ?? 0) >= 0.8)
+  const strong = evidence.some((e) => !noFundante.has(e) && (e.similarity ?? 0) >= 0.8)
   const weak = evidence.some((e) => (e.similarity ?? 0) >= 0.5)
 
   if (strong) {

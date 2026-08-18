@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T17:50:43.349Z",
+  "generatedAt": "2026-08-18T18:27:47.364Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -4860,49 +4860,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-115-acu-431140",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 115,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "la responsabilidad no es única y exclusivamente de la Generalitat Valenciana.",
-        "context": "De todas formas, decirles que la responsabilidad no es única y exclusivamente de la Generalitat Valenciana. En el CECOPI es el centro de coordinación",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "generalitat valenciana"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "This claim asserts that responsibility for a situation is not solely with the Generalitat Valenciana, which can be verified by examining the roles and responsibilities of other entities involved in emergency management.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-115-acu-431140",
-        "verdict": "verificado",
-        "summary": "Los contratos de seguro de responsabilidad civil del Ayuntamiento de Riba-roja de Túria demuestran que la responsabilidad no recae única y exclusivamente en la Generalitat Valenciana, sino también en el consistorio local.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=50AMOi%2FtmLPnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Seguro de responsabilidad civil/patrimonial del ayuntamiento",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fyqNrUJGe9wQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Seguro de Responsabilidad Civil/patrimonial del Ayuntamiento de Riba-roja",
-            "similarity": 0.25
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {

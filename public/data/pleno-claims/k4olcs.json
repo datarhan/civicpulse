@@ -1,52 +1,9 @@
 {
-  "generatedAt": "2026-08-18T17:50:43.349Z",
+  "generatedAt": "2026-08-18T18:27:47.364Z",
   "version": "1",
   "plenoId": "k4olcs",
   "plenoDate": "2026-04-20",
   "items": [
-    {
-      "claim": {
-        "id": "k4olcs-005-acu-7c0edd",
-        "plenoId": "k4olcs",
-        "plenoDate": "2026-04-20",
-        "segmentIndex": 5,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "han habido diferentes cuestiones que han sido por el tema de la DANA",
-        "context": "...en esta memoria también se habla de, bueno, en este informe de auditoría de que han habido diferentes cuestiones que han sido por el tema de la DANA y en estos informes también se dan como unos consejos...",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "dana"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.72,
-        "reasoning": "Atribuye la existencia de incidencias o cuestiones relacionadas con la DANA en un informe de auditoría; es verificable contrastando el informe y sus referencias a daños o incidencias por la DANA.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "k4olcs-005-acu-7c0edd",
-        "verdict": "verificado",
-        "summary": "La afirmación es corroborada por la existencia de contratos de emergencia para obras de alumbrado público relacionados con la DANA en Riba-roja de Túria.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i7R1v8v1LLWKeVWTb9Scog%3D%3D",
-            "snippet": "Contrato de emergencia de obras de actuación alumbrado público zona este por DANA · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.29
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i7R1v8v1LLWKeVWTb9Scog%3D%3D",
-            "snippet": "Contrato de emergencia de obras de actuación alumbrado público zona este por DANA · Ayuntamiento de Riba-roja de Túria · revoked",
-            "similarity": 0.29
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
     {
       "claim": {
         "id": "k4olcs-006-afi-462d5e",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T17:50:43.349Z",
+  "generatedAt": "2026-08-18T18:27:47.364Z",
   "version": "1",
   "plenos": [
     {
@@ -149,22 +149,21 @@
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
       "chunkPath": "pleno-claims/k4olcs.json",
-      "itemCount": 284,
+      "itemCount": 283,
       "toggleCount": 271,
       "byVerdict": {
-        "verificado": 5,
         "sin-datos": 271,
-        "parcial": 8
+        "parcial": 8,
+        "verificado": 4
       },
       "byType": {
-        "acusacion_publica": 1,
         "afirmacion_numerica": 172,
         "cita_convenio": 21,
         "cita_obra": 58,
         "promesa": 32
       },
       "byTopic": {
-        "other": 23,
+        "other": 22,
         "medio-ambiente": 16,
         "transparencia": 56,
         "fiscal": 61,
@@ -177,7 +176,7 @@
         "empleo": 3,
         "movilidad": 1
       },
-      "bytes": 395351
+      "bytes": 393198
     },
     {
       "plenoId": "ma87e0",
@@ -404,17 +403,17 @@
       "plenoId": "1du4rf5",
       "plenoDate": "2025-11-03",
       "chunkPath": "pleno-claims/1du4rf5.json",
-      "itemCount": 244,
+      "itemCount": 243,
       "toggleCount": 238,
       "byVerdict": {
         "sin-datos": 238,
         "parcial": 4,
-        "verificado": 2
+        "verificado": 1
       },
       "byType": {
         "cita_obra": 82,
         "afirmacion_numerica": 112,
-        "acusacion_publica": 4,
+        "acusacion_publica": 3,
         "promesa": 34,
         "cita_convenio": 12
       },
@@ -423,7 +422,7 @@
         "urbanismo": 49,
         "salud": 43,
         "fiscal": 34,
-        "other": 49,
+        "other": 48,
         "medio-ambiente": 8,
         "social": 30,
         "vivienda": 1,
@@ -431,7 +430,7 @@
         "seguridad": 1,
         "cultura": 7
       },
-      "bytes": 340719
+      "bytes": 338631
     },
     {
       "plenoId": "otxq2c",
@@ -636,12 +635,12 @@
     }
   ],
   "totals": {
-    "items": 4677,
+    "items": 4675,
     "plenos": 22,
     "byVerdict": {
       "sin-datos": 4574,
       "parcial": 79,
-      "verificado": 24
+      "verificado": 22
     },
     "byTopicVerdict": {
       "cultura": {
@@ -655,7 +654,6 @@
       },
       "other": {
         "sin-datos": 394,
-        "verificado": 2,
         "parcial": 5
       },
       "fiscal": {

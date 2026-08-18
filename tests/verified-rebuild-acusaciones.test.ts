@@ -1,7 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { acusacionesQueSuben, ANULAR_GUARDA_ACUSACIONES } from '../scripts/verified-rebuild'
+import {
+  acusacionesQueSuben,
+  acusacionesNuevasFundadas,
+  ANULAR_GUARDA_ACUSACIONES,
+} from '../scripts/verified-rebuild'
 import type { VerifiedItem } from '../src/scraper/verified-merge'
 
 /**
@@ -95,5 +99,56 @@ describe('acusacionesQueSuben', () => {
 
   it('la escotilla está declarada y nombrada en el mensaje', () => {
     expect(ANULAR_GUARDA_ACUSACIONES).toBe('CLAIMS_REBUILD_ALLOW_ACCUSATION_RAISE')
+  })
+
+  it('caza verificado → contradicho, que la escala escrita a mano dejaba pasar', () => {
+    // La primera versión traía su propia escala de fuerza y empataba
+    // `contradicho` con `verificado`, así que esta transición no era «subida»
+    // para ella — mientras que `isDowngrade`, la función que gobierna el CLI
+    // del curador, se niega a tratar `contradicho` como destino de una bajada.
+    // Dos órdenes escritos a mano que ya discrepaban: la regla 1 de
+    // DATA_INTEGRITY aplicada a una relación. Ahora se deriva de `isDowngrade`.
+    expect(
+      acusacionesQueSuben(
+        [item('a', 'acusacion_publica', 'verificado')],
+        [item('a', 'acusacion_publica', 'contradicho')],
+      ),
+    ).toHaveLength(1)
+    // Y el sentido contrario sigue siendo una bajada legítima.
+    expect(
+      acusacionesQueSuben(
+        [item('a', 'acusacion_publica', 'contradicho')],
+        [item('a', 'acusacion_publica', 'parcial')],
+      ),
+    ).toEqual([])
+  })
+})
+
+describe('acusacionesNuevasFundadas', () => {
+  const item = (id: string, type: string, verdict: string): VerifiedItem =>
+    ({
+      claim: { id, type },
+      verification: { claimId: id, verdict, summary: '', evidence: [], checkedAgainst: [] },
+    }) as unknown as VerifiedItem
+
+  /**
+   * El punto ciego de la guarda de arriba, dicho en voz alta: una fila sin
+   * «antes» no puede subir, y una re-extracción rehace los ids en bloque —este
+   * mismo trabajo cambió dos plenos enteros, 369 ids nuevos, 155 de ellos
+   * acusaciones—. No se bloquea (una sesión recién transcrita tiene que poder
+   * publicar lo que diga el cotejo), pero se cuenta: «no había nada que mirar»
+   * y «no lo miré» no son lo mismo.
+   */
+  it('cuenta las acusaciones con id nuevo que publican por encima de sin-datos', () => {
+    const nuevas = acusacionesNuevasFundadas(
+      [item('vieja', 'acusacion_publica', 'sin-datos')],
+      [
+        item('vieja', 'acusacion_publica', 'sin-datos'),
+        item('nueva-fundada', 'acusacion_publica', 'parcial'),
+        item('nueva-sin-datos', 'acusacion_publica', 'sin-datos'),
+        item('nueva-cita', 'cita_obra', 'verificado'),
+      ],
+    )
+    expect(nuevas).toEqual(['nueva-fundada'])
   })
 })

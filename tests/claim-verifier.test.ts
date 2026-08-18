@@ -238,6 +238,15 @@ describe('un parecido de TÍTULO no verifica, y a una acusación no la funda', (
     status: 'awarded',
   }
 
+  /** Un presupuesto cuyo capítulo de medio ambiente casa con el importe citado. */
+  const presupuestoDe = (amount: number) => ({
+    snapshot: {
+      year: 2026,
+      totalExpense: 41_000_000,
+      expenseByProgram: [{ code: '1621', name: 'Residuos y medio ambiente', amount }],
+    },
+  })
+
   it('una cita casada sólo por el título se queda en parcial', () => {
     const v = verifyClaim({
       claim: baseClaim({
@@ -280,6 +289,72 @@ describe('un parecido de TÍTULO no verifica, y a una acusación no la funda', (
       tenders: { contracts: [contratoDelObjeto] },
     })
     expect(v.verdict).toBe('verificado')
+  })
+
+  /**
+   * Los tres huecos que la segunda revisión independiente encontró EN ESTAS
+   * MISMAS REGLAS, con cero filas vivas cada uno — o sea, cazados antes de que
+   * publicaran nada. Los tres son la misma forma de error: una regla escrita
+   * sobre «todas las filas de evidencia» o sobre un camino concreto, cuando lo
+   * que hay que decidir es si ALGUNA fila funda.
+   */
+  it('una fila de presupuesto no rescata la acusación: sigue sin fundar', () => {
+    // La puerta preguntaba «¿son TODAS de título?»; bastaba una fila de otro
+    // tipo para que no disparara. Y la de presupuesto es, por su propio
+    // comentario, «una comprobación de plausibilidad: plausible no es
+    // corroborado» — así que rescataba la acusación una fila que no prueba nada.
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'acusacion_publica',
+        accusationSubtype: 'factual',
+        speakerGroup: 'PP',
+        topic: 'medio-ambiente',
+        entities: { amountEuros: 50_000, referencedEntity: 'plan de refugios climaticos' },
+      }),
+      // 83.000 € contra 50.000 citados: ratio² = 0,36 — ni casa por importe
+      // (umbral 0,5) ni es una discrepancia material (umbral 0,3), así que la
+      // afirmación cae a la vía de títulos y la evidencia que queda son la fila
+      // sólo-título y la de presupuesto. Exactamente el caso que la revisión
+      // construyó.
+      tenders: { contracts: [{ ...contratoDelObjeto, finalAmount: 83_000 }] },
+      budget: presupuestoDe(50_000),
+    })
+    expect(v.evidence.map((e) => e.kind).sort()).toEqual(['budget', 'tender'])
+    expect(v.verdict).toBe('sin-datos')
+  })
+
+  it('una fila de presupuesto tampoco basta para VERIFICAR una cita', () => {
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'afirmacion_numerica',
+        topic: 'medio-ambiente',
+        entities: { amountEuros: 50_000, referencedEntity: 'algo que ningun contrato nombra' },
+      }),
+      budget: presupuestoDe(50_000),
+    })
+    // La fila de presupuesto entra como lo que se miró…
+    expect(v.evidence.some((e) => e.kind === 'budget')).toBe(true)
+    // …pero un orden de magnitud plausible no es una comprobación.
+    expect(v.verdict).not.toBe('verificado')
+  })
+
+  it('y un parecido de título tampoco CONTRADICE una acusación', () => {
+    // La otra salida del bloque 3: si la afirmación dice «terminada» y el
+    // contrato figura pendiente, devolvía `contradicho` — el veredicto más
+    // acusatorio que sabe emitir esta máquina— desde el camino que sólo mira
+    // títulos. Es la avería que este repositorio ya documenta para el
+    // emparejador determinista, entrando por la puerta de al lado.
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'acusacion_publica',
+        accusationSubtype: 'factual',
+        speakerGroup: 'PP',
+        verbatim: 'el refugio climático ya está terminado, nos lo vendieron así',
+        entities: { referencedEntity: 'refugios climaticos carril bici' },
+      }),
+      tenders: { contracts: [{ ...contratoDelObjeto, status: 'pending' }] },
+    })
+    expect(v.verdict).toBe('sin-datos')
   })
 })
 
