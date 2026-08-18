@@ -10,6 +10,7 @@ export const CLAIM_TYPE_LABEL = {
   cita_obra: 'Obra citada',
   cita_convenio: 'Convenio citado',
   acusacion_publica: 'Acusación pública',
+  valoracion_politica: 'Valoración política',
 }
 
 export const CLAIM_TYPE_TONE = {
@@ -18,6 +19,7 @@ export const CLAIM_TYPE_TONE = {
   cita_obra: 'neutral',
   cita_convenio: 'ok',
   acusacion_publica: 'warn',
+  valoracion_politica: 'neutral',
 }
 
 export const VERDICT_LABEL = {
