@@ -47,7 +47,7 @@ export const VERIFIED_RECLASSIFICATIONS = 'public/data/pleno-claim-reclassificat
  * quote when the overlay has some is not.
  */
 export function loadVerifiedCorpus(
-  opts: { basePath?: string; overlayPath?: string } = {},
+  opts: { basePath?: string; overlayPath?: string; reclassificationsPath?: string } = {},
 ): VerifierCorpus {
   const basePath = resolve(opts.basePath ?? VERIFIED_BASE)
   if (!existsSync(basePath)) {
@@ -67,7 +67,7 @@ export function loadVerifiedCorpus(
   // composición que publica el rebuild; leerlo aquí y no en el rebuild (o al
   // revés) es como la página y la cola empezarían a discrepar. Validado al
   // leer: una entrada HACIA acusacion_publica revienta antes de clasificar.
-  const reclasPath = resolve(VERIFIED_RECLASSIFICATIONS)
+  const reclasPath = resolve(opts.reclassificationsPath ?? VERIFIED_RECLASSIFICATIONS)
   const reclas: Reclassifications = existsSync(reclasPath)
     ? (JSON.parse(readFileSync(reclasPath, 'utf8')) as Reclassifications)
     : { version: 1, generatedAt: '', entries: {} }

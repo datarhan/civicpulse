@@ -230,6 +230,12 @@ test.describe('Citas reclasificadas (/hallazgos)', () => {
       const gate = prov.quotes[c.findingId]?.[c.index]?.gate
       expect(gate, `${c.findingId}[${c.index}] reclasificada con puerta hidden`).not.toBe('hidden')
 
+      // Una reclasificada que algún día quede FUNDADA sale `shown`, y `shown`
+      // no lleva marca por diseño (CONTRAST_MARK.shown = null): el paseo por
+      // ancestros daría [] o las marcas de una vecina — rojo espurio, no verde
+      // hueco. Para ella, la puerta ≠ hidden ya es todo el contrato.
+      if (gate === 'shown') continue
+
       const el = page.getByText(c.text.slice(0, 48), { exact: false }).first()
       await expect(el).toBeVisible()
       // El contenedor inmediato de la cita lleva su propia fila de marcas: el

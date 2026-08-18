@@ -295,6 +295,15 @@ export function validateReclassifications(r: Reclassifications): void {
     if (!ALLOWED_CLAIM_TYPES.includes(e.from)) {
       throw new Error(`[reclas] ${id}: from ${String(e.from)} is outside ClaimType`)
     }
+    // Política v1, espejada también en la LECTURA para que un sidecar editado a
+    // mano no pueda mover lo que el CLI no movería: sólo se corrige DESDE
+    // acusacion_publica (la clase de fallo observada). Ampliar este validador
+    // ES el acto deliberado de ampliar la política, con su PR y su porqué.
+    if (e.from !== 'acusacion_publica') {
+      throw new Error(
+        `[reclas] ${id}: from ${String(e.from)} — v1 only moves away from acusacion_publica`,
+      )
+    }
     if (!e.reason || e.reason.trim().length < 20) {
       throw new Error(`[reclas] ${id}: needs a reason of at least 20 chars`)
     }

@@ -324,6 +324,14 @@ describe('validateReclassifications', () => {
       validateReclassifications(reclas({ a: { appliedAt: undefined as unknown as string } })),
     ).toThrow(/\[reclas\]/)
   })
+  it('rejects a from other than acusacion_publica — v1 mirrored at READ time', () => {
+    // Un sidecar editado a mano no puede mover lo que el CLI no movería.
+    expect(() =>
+      validateReclassifications(
+        reclas({ a: { from: 'promesa' as ClaimType, type: 'cita_obra' as ClaimType } }),
+      ),
+    ).toThrow(/\[reclas\]/)
+  })
 })
 
 describe('applyReclassificationEntries', () => {

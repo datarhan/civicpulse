@@ -58,6 +58,21 @@ export const ALLOWED_CLAIM_TYPES: readonly ClaimType[] = [
 ]
 
 /**
+ * Los tipos que la FRONTERA DE EXTRACCIÓN acepta: los cinco del prompt.
+ *
+ * Derivado, no restatado. `valoracion_politica` se excluye a propósito: los
+ * backends de salida estructurada le ENSEÑAN el enum al modelo aunque el
+ * prompt no lo defina, así que con el enum completo el extractor podía emitir
+ * el sexto tipo y dejar falso el invariante de arriba — documentado pero no
+ * codificado, el patrón exacto contra el que escribe DATA_INTEGRITY. El
+ * esquema de extracción (src/llm/schemas.ts) valida contra ESTA lista; el
+ * corpus entero, contra ALLOWED_CLAIM_TYPES.
+ */
+export const EXTRACTOR_CLAIM_TYPES: readonly ClaimType[] = ALLOWED_CLAIM_TYPES.filter(
+  (t) => t !== 'valoracion_politica',
+)
+
+/**
  * Narrow subtype for accusations. Split at extraction time so the verifier
  * knows which ones are safely verifiable against the paper trail.
  *
