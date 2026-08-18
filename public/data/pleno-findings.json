@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-18T16:28:02.710Z",
+  "generatedAt": "2026-08-18T17:58:25.775Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -2028,7 +2028,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate de los grupos PP, Compromís y un grupo no identificado en el pleno de Riba-roja de Túria del 2026-01-19",
-      "summary": "En la sesión del 19 de enero de 2026, el grupo PP afirma que votará a favor de la modificación de crédito y el grupo Compromís señala su apoyo al plan de contratación de 2026. Por su parte, un grupo no identificado manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal de contratación del que dispone este medio arranca en 2017, así que no recoge ningún expediente de aquel periodo.",
+      "summary": "En la sesión del 19 de enero de 2026, el grupo Compromís señala su apoyo al plan de contratación de 2026. La intervención del PP anunciando voto a favor de la modificación de crédito procede de la transcripción que se sustituyó y no consta en la vigente, así que aquí se recoge con esa salvedad. Por su parte, un grupo no identificado manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal de contratación del que dispone este medio arranca en 2017, así que no recoge ningún expediente de aquel periodo.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-114-afi-5238db",
@@ -2157,6 +2157,14 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:15.536Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión del 19 de enero de 2026, el grupo PP afirma que votará a favor de la modificación de crédito y el grupo Compromís señala su apoyo al plan de contratación de 2026. Por su parte, un grupo no identificado manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal de contratación del que dispone este medio arranca en 2017, así que no recoge ningún expediente de aquel periodo.",
+          "corrected": "En la sesión del 19 de enero de 2026, el grupo Compromís señala su apoyo al plan de contratación de 2026. La intervención del PP anunciando voto a favor de la modificación de crédito procede de la transcripción que se sustituyó y no consta en la vigente, así que aquí se recoge con esa salvedad. Por su parte, un grupo no identificado manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal de contratación del que dispone este medio arranca en 2017, así que no recoge ningún expediente de aquel periodo.",
+          "reason": "El resumen enunciaba el voto anunciado por el PP al mismo nivel que el resto, cuando su cita lleva la marca de no constar en la transcripción vigente: procede del motor que se sustituyó. La salvedad pasa a la frase en vez de vivir sólo en el chip de debajo, como ya se hizo con otras dos fichas de esta misma sesión. Señalamiento de la revisión de superficies del 18-08-2026.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-18T17:58:25.774Z"
         }
       ]
     },

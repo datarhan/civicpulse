@@ -50,11 +50,12 @@ const SESSIONS = loadSessionTexts(
   },
 )
 
-// base ⊕ overlay, the same composition the published ledger ships. Loading it
-// here rather than stubbing it is the point: the second axis of this snapshot
-// is «what would the editorial gate do», and a stub would answer that question
-// with whatever the test author expected.
+// El ledger publicado, que es de donde salen las marcas (la base y el overlay
+// entran como contraste informativo). Cargarlo en vez de simularlo es el
+// punto: el segundo eje de este snapshot es «qué haría la puerta editorial», y
+// un doble respondería esa pregunta con lo que esperase quien escribe el test.
 const CORPUS = loadVerifiedCorpus({
+  monolithPath: join(ROOT, 'public/data/pleno-claims-verified.json'),
   basePath: join(ROOT, 'public/data/pleno-claims-verified-base.json'),
   overlayPath: join(ROOT, 'public/data/pleno-claims-overlay.json'),
 })

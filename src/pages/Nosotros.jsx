@@ -42,7 +42,7 @@ function ImpactStrip() {
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 18, marginTop: 6 }}>
         <StatCell value={s.plenosCount} label="plenos indexados" loading={loading} />
         <StatCell value={s.findingsCount} label="hallazgos publicados" loading={loading} />
-        <StatCell value={s.contractsCount} label="contratos indexados" loading={loading} />
+        <StatCell value={s.contractsCount} label="contratos adjudicados" loading={loading} />
         <StatCell value={s.quejasCount} label="quejas ciudadanas" loading={loading} />
       </div>
       {s.lastFindingAt && (

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T17:22:51.863Z",
+  "generatedAt": "2026-08-18T17:50:43.167Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -7,10 +7,10 @@
   "stats": {
     "total": 6919,
     "byVerdict": {
-      "verificado": 28,
-      "parcial": 76,
+      "verificado": 24,
+      "parcial": 79,
       "contradicho": 0,
-      "sin-datos": 6815,
+      "sin-datos": 6816,
       "promesa-repetida": 0
     }
   },
@@ -7568,8 +7568,8 @@
       },
       "verification": {
         "claimId": "15uvjew-182-cit-3a11cb",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
         "evidence": [
           {
             "kind": "tender",
@@ -8231,8 +8231,8 @@
       },
       "verification": {
         "claimId": "15uvjew-193-cit-446421",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
         "evidence": [
           {
             "kind": "tender",
@@ -8602,8 +8602,8 @@
       },
       "verification": {
         "claimId": "15uvjew-197-acu-735415",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "verdict": "sin-datos",
+        "summary": "El único parecido con la base municipal es el título de un contrato: no acredita lo que la acusación afirma. Se deja el documento a la vista como lo que se miró.",
         "evidence": [
           {
             "kind": "tender",
@@ -14567,7 +14567,7 @@
       "verification": {
         "claimId": "brxx5g-052-acu-d13e87",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "El único parecido con la base municipal es el título de un contrato: no acredita lo que la acusación afirma. Se deja el documento a la vista como lo que se miró.",
         "evidence": [
           {
             "kind": "tender",
@@ -66985,8 +66985,8 @@
       },
       "verification": {
         "claimId": "19gax3o-046-cit-336cb3",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
         "evidence": [
           {
             "kind": "tender",

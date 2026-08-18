@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T17:22:52.004Z",
+  "generatedAt": "2026-08-18T17:50:43.349Z",
   "version": "1",
   "plenoId": "15uvjew",
   "plenoDate": "2026-07-27",
@@ -5869,8 +5869,8 @@
       },
       "verification": {
         "claimId": "15uvjew-182-cit-3a11cb",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
         "evidence": [
           {
             "kind": "tender",
@@ -6129,8 +6129,8 @@
       },
       "verification": {
         "claimId": "15uvjew-193-cit-446421",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
         "evidence": [
           {
             "kind": "tender",
@@ -6308,48 +6308,6 @@
         ],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "15uvjew-197-acu-735415",
-        "plenoId": "15uvjew",
-        "plenoDate": "2026-07-27",
-        "segmentIndex": 197,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "¿cómo puede ser que ustedes quiten 50.000 euros del plan de refugios climáticos, pero hace dos semanas lo pusieran en marcha?",
-        "context": "En esas reuniones que hacen semanalmente, usted lo pregunta, ¿cómo puede ser que ustedes quiten 50.000 euros del plan de refugios climáticos, pero hace dos semanas lo pusieran en marcha? ¿Me lo dice?",
-        "topic": "medio-ambiente",
-        "entities": {
-          "amountEuros": 50000,
-          "referencedEntity": "plan de refugios climáticos"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.8,
-        "reasoning": "Cifra concreta (50.000 euros) retirada de una partida específica, verificable contra las modificaciones presupuestarias municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "15uvjew-197-acu-735415",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
-            "snippet": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E. · Ayuntamiento de Riba-roja de Túria · OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. · construction · estado: formalized",
-            "similarity": 1,
-            "stance": "checked"
-          }
-        ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
         ]
       },
       "visibility": "shown"

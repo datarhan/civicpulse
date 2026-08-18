@@ -569,6 +569,14 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   const { claim } = inputs
   const checked: string[] = []
   const evidence: ClaimEvidence[] = []
+  /**
+   * Las filas de evidencia que salieron de la vía SÓLO-ENTIDAD (bloque 3), que
+   * compara títulos y no mira ni el importe ni el sentido. Se apunta aparte
+   * porque el veredicto de abajo las trata distinto: sostienen `parcial`, nunca
+   * `verificado`, y a una acusación no la fundan. Marcarlas en el propio objeto
+   * de evidencia habría cambiado el esquema publicado; esto no sale del módulo.
+   */
+  const soloParecidoDeTitulo = new Set<ClaimEvidence>()
 
   // `checkedAgainst` is a claim about our own work — it appears in the
   // published snapshot and feeds the "artículos auditados" counters. It used to
@@ -871,6 +879,8 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
           // waiting times, so it is `checked` at every similarity value.
           stance: refutes ? 'contradicts' : 'checked',
         })
+        // …y por eso mismo el veredicto de abajo la lee con el freno puesto.
+        soloParecidoDeTitulo.add(evidence[evidence.length - 1])
         if (refutes) {
           return {
             claimId: claim.id,
@@ -913,10 +923,35 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         checkedAgainst: checked,
       }
     }
+    // A una acusación, un parecido de TÍTULO no la funda.
+    //
+    // Que el título de un contrato comparta palabras con lo que se denuncia no
+    // dice nada sobre si la denuncia es cierta: es la vía que emparejó un
+    // contrato de gestión de colas con una queja sobre tiempos de espera. Sin
+    // esta puerta, el arreglo del camino del importe SUBIÓ una acusación
+    // pública del PP —«¿cómo puede ser que ustedes quiten 50.000 euros del plan
+    // de refugios climáticos?»— a `verificado` sobre el contrato de obras de
+    // los refugios, que no acredita ni el recorte ni la cifra. Un cambio
+    // automático no sube una acusación contra un grupo con nombre: ni desde
+    // aquí, ni por caerse por otro camino.
+    if (evidence.length > 0 && evidence.every((e) => soloParecidoDeTitulo.has(e))) {
+      return {
+        claimId: claim.id,
+        verdict: 'sin-datos',
+        summary:
+          'El único parecido con la base municipal es el título de un contrato: no acredita lo ' +
+          'que la acusación afirma. Se deja el documento a la vista como lo que se miró.',
+        evidence,
+        checkedAgainst: checked,
+      }
+    }
     // factual / contra-datos fall through to the strong/weak verdict below
   }
 
-  const strong = evidence.some((e) => (e.similarity ?? 0) >= 0.8)
+  // Un parecido de título sostiene `parcial` —es una pista publicable— pero
+  // nunca `verificado`: esa vía no comprueba el importe ni el sentido, así que
+  // no puede sostener la palabra más fuerte que este verificador sabe decir.
+  const strong = evidence.some((e) => !soloParecidoDeTitulo.has(e) && (e.similarity ?? 0) >= 0.8)
   const weak = evidence.some((e) => (e.similarity ?? 0) >= 0.5)
 
   if (strong) {

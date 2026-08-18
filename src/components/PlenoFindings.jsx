@@ -315,6 +315,13 @@ const PROVENANCE_MARK = {
  * Ahora sale del propio pie en lugar de insinuarlo, así que no puede volver a
  * separarse de él: el día que una persona promueva una de éstas, la nota dirá su
  * nombre porque lo lee de la ficha.
+ *
+ * Segunda pasada del lector, 2026-08-18: decir «la editó un proceso automático,
+ * no una persona» seguía leyéndose como la EXCEPCIÓN que explica este caso
+ * concreto, cuando 40 de las 41 fichas del sitio las escribe el mismo proceso.
+ * O sea que la frase, corregida para no atribuir a nadie una decisión que nadie
+ * tomó, había empezado a insinuar por el otro lado: que las demás sí pasan por
+ * una persona. La regla general se dice donde estaba la insinuación.
  */
 export function notaAcusacionSinContrastar(curatorName) {
   const base =
@@ -323,7 +330,12 @@ export function notaAcusacionSinContrastar(curatorName) {
   const quien = (curatorName ?? '').trim()
   if (!quien) return `${base}; el pie de la ficha dice quién la editó.`
   return isMachineAuthored(quien)
-    ? `${base}, y la ficha la editó un proceso automático (${quien}), no una persona.`
+    ? // Sin la palabra «alguien», ni siquiera negada: la guarda que vigila esta
+      // nota la prohíbe en bloque —una expresión regular no lee negaciones— y
+      // tiene razón, porque el defecto original era justo insinuar una persona.
+      `${base}, y la ficha la editó un proceso automático (${quien}): es lo habitual en esta ` +
+        'página —casi todas las fichas las redacta el mismo proceso—, no una excepción decidida ' +
+        'para este caso.'
     : `${base}, y la ficha la editó ${quien}.`
 }
 

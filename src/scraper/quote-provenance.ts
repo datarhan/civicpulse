@@ -274,7 +274,16 @@ export interface QuoteProvenanceSnapshot {
    * identity and silently never differ.
    */
   contraste: {
-    source: { base: string; overlay: string }
+    /**
+     * De dónde salen estas marcas. `ledger` es el fichero que las decide —el
+     * monolito publicado, que sólo escribe `rebuildVerified()`—; `base` y
+     * `overlay` son el contraste informativo, y desde agosto de 2026 pueden no
+     * haberse leído (la base es gitignorada). Este campo es la respuesta a
+     * «¿de dónde vino esta marca?» de quien audita: decía el fichero
+     * equivocado desde que la verdad pasó al monolito, que es exactamente la
+     * clase de prosa rancia contra la que este repositorio ya tiene un hook.
+     */
+    source: { ledger: string; base: string; overlay: string }
     states: typeof QUOTE_CONTRAST_STATES
     stats: QuoteContrastStats
   }
@@ -374,6 +383,7 @@ export function buildQuoteProvenance(
     findingsPath?: string
     transcriptsPath?: string
     supersededPath?: string
+    ledgerPath?: string
     basePath?: string
     overlayPath?: string
   },
@@ -471,6 +481,7 @@ export function buildQuoteProvenance(
     undeterminedReasons: UNDETERMINED_REASONS,
     contraste: {
       source: {
+        ledger: opts.ledgerPath ?? 'public/data/pleno-claims-verified.json',
         base: opts.basePath ?? 'public/data/pleno-claims-verified-base.json',
         overlay: opts.overlayPath ?? 'public/data/pleno-claims-overlay.json',
       },
@@ -549,6 +560,21 @@ export function diffProvenance(
           )
         }
       }
+      continue
+    }
+    // Las tres cifras del CONTRASTE con la base determinista no son
+    // afirmaciones sobre ninguna cita: dicen si en esta máquina había base con
+    // la que comparar. La base es gitignorada, así que en un clon limpio valen
+    // 0/0/false y en el portátil no — y compararlas ponía en rojo un snapshot
+    // perfectamente correcto por el entorno en el que se ejecuta el test. Es la
+    // misma excepción que `bytesLeidos` arriba, por la misma razón: señal de
+    // liveness, no afirmación publicada. Lo que decide las MARCAS es el
+    // monolito, y eso sí se compara entero, cita por cita.
+    if (
+      k === 'baseDisponible' ||
+      k === 'citasConVeredictoDeOverlay' ||
+      k === 'citasReclasificadasPorElOverlay'
+    ) {
       continue
     }
     if (pContrast[k] !== v) {

@@ -84,8 +84,13 @@ describe('verifyClaim — verificado on tender exact match', () => {
       },
     })
     expect(v.evidence.some((e) => e.kind === 'tender')).toBe(true)
-    expect(v.verdict).toBe('verificado')
     expect(v.checkedAgainst).toContain('tenders')
+    // El veredicto de esta vía es `parcial`, no `verificado`: un parecido de
+    // título es una pista y no comprueba ni el importe ni el sentido (ver el
+    // bloque «un parecido de TÍTULO no verifica» más abajo). Lo que este caso
+    // vigila es la ANOTACIÓN — que la fuente conste—, no la fuerza del
+    // veredicto.
+    expect(v.verdict).toBe('parcial')
   })
 })
 
@@ -176,11 +181,17 @@ describe('un importe que coincide y un objeto que no, no es corroboración', () 
   })
 
   it('control positivo: con el objeto compartido, el importe exacto sigue corroborando', () => {
-    // La regla acota el camino del importe, no lo cierra. Sin este control, un
-    // «no adjuntes nada nunca» pasaría los dos casos de arriba.
+    // La regla acota el camino del importe, no lo cierra.
+    //
+    // El control es `afirmacion_numerica` A PROPÓSITO: con `cita_obra` la vía
+    // sólo-entidad (bloque 3) es elegible y adjunta la evidencia ella sola, así
+    // que el control pasaba aunque el camino del importe estuviera muerto del
+    // todo — lo demostró la revisión independiente sustituyendo la guarda por
+    // `if (true) continue` y viéndolo seguir verde. Un control positivo que no
+    // puede distinguir «acotado» de «cerrado» no controla nada.
     const v = verifyClaim({
       claim: baseClaim({
-        type: 'cita_obra',
+        type: 'afirmacion_numerica',
         entities: { amountEuros: 36_000, referencedEntity: 'centro social santa monica' },
       }),
       tenders: {
@@ -194,6 +205,80 @@ describe('un importe que coincide y un objeto que no, no es corroboración', () 
       },
     })
     expect(v.evidence.filter((e) => e.kind === 'tender')).toHaveLength(1)
+    expect(v.verdict).toBe('verificado')
+  })
+})
+
+describe('un parecido de TÍTULO no verifica, y a una acusación no la funda', () => {
+  /**
+   * La avería que la revisión independiente cazó en el arreglo anterior, y que
+   * es peor que la que arreglaba: al dejar de casar por importe, la afirmación
+   * caía a la vía sólo-entidad (bloque 3) — que compara TÍTULOS y no mira el
+   * importe ni el sentido — y esa vía sí devolvía `verificado`. Resultado: una
+   * acusación pública del PP («¿cómo puede ser que ustedes quiten 50.000 euros
+   * del plan de refugios climáticos?») pasó de `parcial` a VERIFICADO sobre el
+   * contrato de obras de los refugios, que no acredita ni el recorte ni la
+   * cifra. Un cambio automático había SUBIDO una acusación contra un grupo con
+   * nombre, que es justo la dirección que este repositorio prohíbe.
+   *
+   * Dos reglas, las dos escritas en el comentario que el propio bloque 3 ya
+   * llevaba («title overlap only — no amount, no semantics»):
+   *
+   *   · un parecido de título es una pista, no una comprobación: sostiene
+   *     `parcial` como mucho, nunca `verificado`;
+   *   · y a una ACUSACIÓN no la funda en absoluto — que el título de un
+   *     contrato comparta palabras con lo que se denuncia no dice nada sobre si
+   *     la denuncia es cierta, y publicar eso como fundado es exactamente lo
+   *     que la puerta editorial existe para impedir.
+   */
+  const contratoDelObjeto = {
+    permalink: 'https://contrataciones.example/r05',
+    title: 'Obras ejecución del proyecto: mejora del carril bici y de refugios climáticos',
+    finalAmount: 250_000,
+    status: 'awarded',
+  }
+
+  it('una cita casada sólo por el título se queda en parcial', () => {
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'cita_obra',
+        entities: { referencedEntity: 'refugios climaticos carril bici' },
+      }),
+      tenders: { contracts: [contratoDelObjeto] },
+    })
+    expect(v.evidence.filter((e) => e.kind === 'tender')).toHaveLength(1)
+    expect(v.verdict).toBe('parcial')
+  })
+
+  it('una acusación casada sólo por el título NO queda fundada', () => {
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'acusacion_publica',
+        accusationSubtype: 'factual',
+        speakerGroup: 'PP',
+        verbatim:
+          '¿cómo puede ser que ustedes quiten 50.000 euros del plan de refugios climáticos, pero hace dos semanas lo pusieran en marcha?',
+        entities: { referencedEntity: 'plan de refugios climaticos' },
+      }),
+      tenders: { contracts: [contratoDelObjeto] },
+    })
+    expect(v.verdict).toBe('sin-datos')
+    // El contrato se sigue ENSEÑANDO como lo que se miró; lo que no hace es
+    // fundar la acusación.
+    expect(v.evidence.filter((e) => e.kind === 'tender')).toHaveLength(1)
+    expect(v.checkedAgainst).toContain('tenders')
+  })
+
+  it('control positivo: con importe y objeto de acuerdo, la acusación sí se funda', () => {
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'acusacion_publica',
+        accusationSubtype: 'factual',
+        speakerGroup: 'PP',
+        entities: { amountEuros: 250_000, referencedEntity: 'refugios climaticos carril bici' },
+      }),
+      tenders: { contracts: [contratoDelObjeto] },
+    })
     expect(v.verdict).toBe('verificado')
   })
 })

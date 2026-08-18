@@ -37,6 +37,7 @@ const PROVENANCE = JSON.parse(
   readFileSync(join(ROOT, 'public/data/finding-quote-provenance.json'), 'utf8'),
 ) as QuoteProvenanceSnapshot
 const CORPUS = loadVerifiedCorpus({
+  monolithPath: join(ROOT, 'public/data/pleno-claims-verified.json'),
   basePath: join(ROOT, 'public/data/pleno-claims-verified-base.json'),
   overlayPath: join(ROOT, 'public/data/pleno-claims-overlay.json'),
 })

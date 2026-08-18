@@ -164,8 +164,17 @@ const expectWithdrawn = (id: string): void => {
  * etiqueta de una marca no es lo que dijo nadie en el pleno. Se reescribió sin
  * comillas antes de publicarse — la regla funcionando sobre prosa nueva, que es
  * para lo que está.
+ *
+ * +1 en la misma tanda, de una segunda pasada del lector: f-2026-01-19-afi-5238db
+ * enunciaba el voto anunciado por el PP al mismo nivel que el resto de
+ * intervenciones, cuando su cita lleva la marca de no constar en la
+ * transcripción vigente —procede del motor que se sustituyó—. La salvedad pasa
+ * a la frase en vez de vivir sólo en el chip de debajo. Es la TERCERA ficha de
+ * esa misma sesión corregida por lo mismo (cc8758 y 3fd230 fueron las otras
+ * dos): cuando un lote de re-transcripción degrada citas, los resúmenes que las
+ * enuncian se quedan afirmando de más una por una.
  */
-const TOTAL_CORRECTIONS = 147
+const TOTAL_CORRECTIONS = 148
 const TOTAL_REMOVALS = 35
 
 /** One row of a review batch's fixture: enough to locate its own entries. */

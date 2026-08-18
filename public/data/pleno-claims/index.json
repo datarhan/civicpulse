@@ -1,31 +1,30 @@
 {
-  "generatedAt": "2026-08-18T17:22:52.004Z",
+  "generatedAt": "2026-08-18T17:50:43.349Z",
   "version": "1",
   "plenos": [
     {
       "plenoId": "15uvjew",
       "plenoDate": "2026-07-27",
       "chunkPath": "pleno-claims/15uvjew.json",
-      "itemCount": 284,
+      "itemCount": 283,
       "toggleCount": 275,
       "byVerdict": {
         "sin-datos": 275,
-        "parcial": 5,
-        "verificado": 4
+        "parcial": 7,
+        "verificado": 1
       },
       "byType": {
         "promesa": 41,
         "cita_convenio": 68,
         "afirmacion_numerica": 83,
-        "cita_obra": 91,
-        "acusacion_publica": 1
+        "cita_obra": 91
       },
       "byTopic": {
         "cultura": 14,
         "empleo": 6,
         "other": 11,
         "fiscal": 36,
-        "medio-ambiente": 103,
+        "medio-ambiente": 102,
         "urbanismo": 37,
         "transparencia": 10,
         "educacion": 4,
@@ -35,7 +34,7 @@
         "movilidad": 4,
         "salud": 1
       },
-      "bytes": 417521
+      "bytes": 415308
     },
     {
       "plenoId": "brxx5g",
@@ -271,8 +270,8 @@
       "toggleCount": 329,
       "byVerdict": {
         "sin-datos": 329,
-        "parcial": 14,
-        "verificado": 4
+        "parcial": 15,
+        "verificado": 3
       },
       "byType": {
         "afirmacion_numerica": 142,
@@ -295,7 +294,7 @@
         "social": 4,
         "educacion": 2
       },
-      "bytes": 482959
+      "bytes": 482964
     },
     {
       "plenoId": "1pe3qs8",
@@ -637,12 +636,12 @@
     }
   ],
   "totals": {
-    "items": 4678,
+    "items": 4677,
     "plenos": 22,
     "byVerdict": {
       "sin-datos": 4574,
-      "parcial": 76,
-      "verificado": 28
+      "parcial": 79,
+      "verificado": 24
     },
     "byTopicVerdict": {
       "cultura": {
@@ -665,8 +664,8 @@
       },
       "medio-ambiente": {
         "sin-datos": 526,
-        "parcial": 14,
-        "verificado": 10
+        "parcial": 17,
+        "verificado": 6
       },
       "urbanismo": {
         "sin-datos": 834,

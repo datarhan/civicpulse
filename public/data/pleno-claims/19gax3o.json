@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T17:22:52.004Z",
+  "generatedAt": "2026-08-18T17:50:43.349Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -2478,8 +2478,8 @@
       },
       "verification": {
         "claimId": "19gax3o-046-cit-336cb3",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
         "evidence": [
           {
             "kind": "tender",
