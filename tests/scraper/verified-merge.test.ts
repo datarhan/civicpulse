@@ -4,9 +4,14 @@ import {
   isDowngrade,
   validateOverlay,
   applyOverlayEntries,
+  validateReclassifications,
+  applyReclassificationEntries,
+  reclassificationOutcomes,
   type VerifiedItem,
   type Overlay,
+  type Reclassifications,
 } from '../../src/scraper/verified-merge'
+import { ALLOWED_CLAIM_TYPES, type ClaimType } from '../../src/scraper/pleno-claim'
 import type { ClaimVerdict, ClaimVerification } from '../../src/scraper/claim-verifier'
 
 function item(id: string, verdict: ClaimVerification['verdict']): VerifiedItem {
@@ -232,5 +237,211 @@ describe('applyOverlayEntries', () => {
         'TS',
       ),
     ).toThrow()
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Reclasificación curada de tipo (el sidecar hermano del overlay de veredictos).
+//
+// El caso que la exige: el claim 10yl550-220-acu-0101aa — «La norma, la ley del
+// vivienda estatal no es inconstitucional …» — salió del extractor como
+// `acusacion_publica`/`factual` sin que nadie resulte acusado, y el chip
+// «acusación no contrastada» de /plenos/10yl550 le atribuye al PSOE una
+// acusación que no hizo. Ningún movimiento de veredicto cambia ese chip (la
+// puerta oculta toda acusación sin fundar), así que el campo corregible es el
+// TIPO — sólo ALEJÁNDOSE de acusación, nunca hacia ella: el espejo exacto de
+// «downgrade-only».
+
+function claimItem(
+  id: string,
+  type: string,
+  accusationSubtype?: string,
+  verdict: ClaimVerdict = 'sin-datos',
+): VerifiedItem {
+  return {
+    claim: { id, type, accusationSubtype } as unknown as VerifiedItem['claim'],
+    verification: {
+      claimId: id,
+      verdict,
+      summary: '',
+      evidence: [],
+      checkedAgainst: ['verdict-engine'],
+    },
+  }
+}
+
+const RAZON = 'defensa de la constitucionalidad de una ley estatal; nadie resulta acusado'
+
+function reclas(entries: Record<string, Partial<Reclassifications['entries'][string]>>) {
+  return {
+    version: 1,
+    generatedAt: 'x',
+    entries: Object.fromEntries(
+      Object.entries(entries).map(([id, e]) => [
+        id,
+        {
+          type: 'valoracion_politica' as ClaimType,
+          from: 'acusacion_publica' as ClaimType,
+          reason: RAZON,
+          editor: 'curator',
+          appliedAt: 'x',
+          ...e,
+        },
+      ]),
+    ),
+  } as Reclassifications
+}
+
+describe('reclasificaciones — el sexto tipo existe', () => {
+  it('valoracion_politica está en el enum (importado, no restatado)', () => {
+    expect(ALLOWED_CLAIM_TYPES).toContain('valoracion_politica')
+  })
+})
+
+describe('validateReclassifications', () => {
+  it('accepts a well-formed sidecar', () => {
+    expect(() => validateReclassifications(reclas({ a: {} }))).not.toThrow()
+  })
+  it('rejects a type outside the enum', () => {
+    expect(() =>
+      validateReclassifications(reclas({ a: { type: 'tipo-inventado' as ClaimType } })),
+    ).toThrow(/\[reclas\]/)
+  })
+  it('rejects a reclassification TOWARD acusacion_publica — never libel-increasing', () => {
+    expect(() =>
+      validateReclassifications(
+        reclas({ a: { type: 'acusacion_publica' as ClaimType, from: 'promesa' as ClaimType } }),
+      ),
+    ).toThrow(/\[reclas\]/)
+  })
+  it('rejects a reason under 20 chars', () => {
+    expect(() => validateReclassifications(reclas({ a: { reason: 'corta' } }))).toThrow(
+      /\[reclas\]/,
+    )
+  })
+  it('rejects a missing appliedAt', () => {
+    expect(() =>
+      validateReclassifications(reclas({ a: { appliedAt: undefined as unknown as string } })),
+    ).toThrow(/\[reclas\]/)
+  })
+})
+
+describe('applyReclassificationEntries', () => {
+  const empty: Reclassifications = { version: 1, generatedAt: 'x', entries: {} }
+  const baseTypes = new Map<string, ClaimType>([['a', 'acusacion_publica']])
+
+  it('adds the entry, stamps appliedAt + generatedAt, records from, does not mutate input', () => {
+    const out = applyReclassificationEntries(
+      empty,
+      [{ claimId: 'a', type: 'valoracion_politica' as ClaimType, reason: RAZON, editor: 'e' }],
+      'TS',
+      baseTypes,
+    )
+    expect(out.entries.a.type).toBe('valoracion_politica')
+    expect(out.entries.a.from).toBe('acusacion_publica')
+    expect(out.entries.a.appliedAt).toBe('TS')
+    expect(out.generatedAt).toBe('TS')
+    expect(empty.entries.a).toBeUndefined()
+  })
+  it('rejects a claim absent from the published corpus', () => {
+    expect(() =>
+      applyReclassificationEntries(
+        empty,
+        [{ claimId: 'ghost', type: 'valoracion_politica' as ClaimType, reason: RAZON }],
+        'TS',
+        baseTypes,
+      ),
+    ).toThrow(/\[reclas\]/)
+  })
+  it('rejects when the published type is not acusacion_publica (v1 only moves AWAY)', () => {
+    const nonAcu = new Map<string, ClaimType>([['a', 'promesa']])
+    expect(() =>
+      applyReclassificationEntries(
+        empty,
+        [{ claimId: 'a', type: 'valoracion_politica' as ClaimType, reason: RAZON }],
+        'TS',
+        nonAcu,
+      ),
+    ).toThrow(/\[reclas\]/)
+  })
+  it('rejects acusacion_publica as target', () => {
+    expect(() =>
+      applyReclassificationEntries(
+        empty,
+        [{ claimId: 'a', type: 'acusacion_publica' as ClaimType, reason: RAZON }],
+        'TS',
+        baseTypes,
+      ),
+    ).toThrow(/\[reclas\]/)
+  })
+  it('rejects a short reason', () => {
+    expect(() =>
+      applyReclassificationEntries(
+        empty,
+        [{ claimId: 'a', type: 'valoracion_politica' as ClaimType, reason: 'corta' }],
+        'TS',
+        baseTypes,
+      ),
+    ).toThrow(/\[reclas\]/)
+  })
+})
+
+describe('mergeVerified con reclasificaciones', () => {
+  it('replaces claim.type, drops accusationSubtype, leaves verification and id intact', () => {
+    const base = [
+      claimItem('a', 'acusacion_publica', 'factual'),
+      claimItem('b', 'promesa', undefined, 'verificado'),
+    ]
+    const merged = mergeVerified(
+      base,
+      { version: 1, generatedAt: 'x', entries: {} },
+      reclas({ a: {} }),
+    )
+    const a = merged.find((m) => m.claim.id === 'a')!
+    expect((a.claim as { type?: string }).type).toBe('valoracion_politica')
+    expect('accusationSubtype' in a.claim).toBe(false)
+    expect(a.claim.id).toBe('a')
+    expect(a.verification.verdict).toBe('sin-datos') // untouched
+    const b = merged.find((m) => m.claim.id === 'b')!
+    expect((b.claim as { type?: string }).type).toBe('promesa') // untouched row
+    expect((base[0].claim as { type?: string }).type).toBe('acusacion_publica') // input not mutated
+  })
+
+  it('composes with the overlay: verdict from overlay, type from reclassification', () => {
+    const base = [claimItem('a', 'acusacion_publica', 'factual', 'verificado')]
+    const merged = mergeVerified(base, overlay({ a: 'parcial' }), reclas({ a: {} }))
+    expect(merged[0].verification.verdict).toBe('parcial')
+    expect((merged[0].claim as { type?: string }).type).toBe('valoracion_politica')
+  })
+
+  it('skips (without throwing) an entry whose claim is gone upstream', () => {
+    const base = [claimItem('a', 'acusacion_publica', 'factual')]
+    const merged = mergeVerified(
+      base,
+      { version: 1, generatedAt: 'x', entries: {} },
+      reclas({ ghost: {} }),
+    )
+    expect(merged).toHaveLength(1)
+    expect((merged[0].claim as { type?: string }).type).toBe('acusacion_publica')
+  })
+
+  it('skips a stale entry (base type moved) and keeps the base type', () => {
+    const base = [claimItem('a', 'cita_obra')]
+    const merged = mergeVerified(
+      base,
+      { version: 1, generatedAt: 'x', entries: {} },
+      reclas({ a: {} }),
+    )
+    expect((merged[0].claim as { type?: string }).type).toBe('cita_obra')
+  })
+})
+
+describe('reclassificationOutcomes', () => {
+  it('counts aplicadas / sinClaim / obsoletas separately — three outcomes, none folded', () => {
+    const base = [claimItem('a', 'acusacion_publica', 'factual'), claimItem('b', 'cita_obra')]
+    const out = reclassificationOutcomes(base, reclas({ a: {}, b: {}, ghost: {} }))
+    expect(out.aplicadas).toEqual(['a'])
+    expect(out.obsoletas).toEqual(['b'])
+    expect(out.sinClaim).toEqual(['ghost'])
   })
 })
