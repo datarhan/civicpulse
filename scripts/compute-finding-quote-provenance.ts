@@ -41,7 +41,9 @@ import { loadSessionTexts, SUPERSEDED_DIR, TRANSCRIPTS_DIR } from './lib/transcr
 // caso para el que existe el marcador. Sin él, el grafo declaraba este nodo
 // como si sólo dependiera de los hallazgos — y la nocturna llevaba tres noches
 // roja porque el base no existe en CI, que es justo lo que una arista declarada
-// habría hecho evidente.
+// habría hecho evidente. (Hoy las marcas salen del MONOLITO y la base ausente
+// ya no pone nada en rojo: sólo apaga el contraste informativo.)
+// data-graph: reads pleno-claims-verified.json
 // data-graph: reads pleno-claims-verified-base.json
 // data-graph: reads pleno-claims-overlay.json
 import { loadVerifiedCorpus, VERIFIED_BASE, VERIFIED_OVERLAY } from './lib/verified-corpus'
@@ -59,7 +61,8 @@ export function computeProvenance(now = new Date()): QuoteProvenanceSnapshot {
   // give this pass a shape nobody guarantees, and the output is published.
   const snapshot = validateFindingsSnapshot(readFileSync(findingsPath, 'utf8'))
   const sessions = loadSessionTexts(snapshot.items.map((f) => f.plenoId))
-  // base ⊕ overlay, never the base alone — see lib/verified-corpus.ts.
+  // El monolito publicado como verdad de las marcas; la base, si existe, como
+  // contraste informativo — see lib/verified-corpus.ts.
   const corpus = loadVerifiedCorpus()
   return buildQuoteProvenance(snapshot.items, sessions, corpus, {
     generatedAt: now.toISOString(),
@@ -102,10 +105,15 @@ function main() {
       `  acusación que retiene       : ${c.porContraste.hidden}\n` +
       `  hallazgos sin ninguna cita mostrable : ${c.hallazgosSinCitaMostrable}/${s.findings} ` +
       `(${c.hallazgosSoloConCitasOcultas} sólo con citas retenidas)\n` +
-      `  corpus: ${c.claimsEnCorpus.toLocaleString('es-ES')} claims, ` +
-      `${c.entradasDeOverlay.toLocaleString('es-ES')} entradas de overlay — ` +
-      `${c.citasConVeredictoDeOverlay} cita(s) con veredicto del overlay, ` +
-      `${c.citasReclasificadasPorElOverlay} que la base sola clasificaría distinto`,
+      `  corpus (monolito publicado): ${c.claimsEnCorpus.toLocaleString('es-ES')} claims, ` +
+      `${c.entradasDeOverlay.toLocaleString('es-ES')} entradas de overlay\n` +
+      // El contraste base-vs-publicado se declara HECHO o NO HECHO, nunca se
+      // pliega un «sin base» en un cero que parezca medido (regla 2).
+      (c.baseDisponible
+        ? `  contraste con la base determinista: ${c.citasConVeredictoDeOverlay} cita(s) con ` +
+          `veredicto del overlay, ${c.citasReclasificadasPorElOverlay} que la base sola ` +
+          `clasificaría distinto`
+        : '  contraste con la base determinista: NO HECHO (base ausente — CI o clon fresco)'),
   )
 
   // A quote in NEITHER transcript is not a provenance state — it is the
