@@ -315,6 +315,13 @@ const PROVENANCE_MARK = {
  * Ahora sale del propio pie en lugar de insinuarlo, así que no puede volver a
  * separarse de él: el día que una persona promueva una de éstas, la nota dirá su
  * nombre porque lo lee de la ficha.
+ *
+ * Segunda pasada del lector, 2026-08-18: decir «la editó un proceso automático,
+ * no una persona» seguía leyéndose como la EXCEPCIÓN que explica este caso
+ * concreto, cuando 40 de las 41 fichas del sitio las escribe el mismo proceso.
+ * O sea que la frase, corregida para no atribuir a nadie una decisión que nadie
+ * tomó, había empezado a insinuar por el otro lado: que las demás sí pasan por
+ * una persona. La regla general se dice donde estaba la insinuación.
  */
 export function notaAcusacionSinContrastar(curatorName) {
   const base =
@@ -323,7 +330,12 @@ export function notaAcusacionSinContrastar(curatorName) {
   const quien = (curatorName ?? '').trim()
   if (!quien) return `${base}; el pie de la ficha dice quién la editó.`
   return isMachineAuthored(quien)
-    ? `${base}, y la ficha la editó un proceso automático (${quien}), no una persona.`
+    ? // Sin la palabra «alguien», ni siquiera negada: la guarda que vigila esta
+      // nota la prohíbe en bloque —una expresión regular no lee negaciones— y
+      // tiene razón, porque el defecto original era justo insinuar una persona.
+      `${base}, y la ficha la editó un proceso automático (${quien}): es lo habitual en esta ` +
+        'página —casi todas las fichas las redacta el mismo proceso—, no una excepción decidida ' +
+        'para este caso.'
     : `${base}, y la ficha la editó ${quien}.`
 }
 
@@ -369,9 +381,15 @@ const MARK_AXES = [
     marks: CONTRAST_MARK,
     key: (e) => e?.gate,
     lead:
-      'Estas citas se cotejaron automáticamente con la base documental municipal —contratos, ' +
-      'subvenciones, presupuesto y promesas publicadas— y no apareció ningún dato que las ' +
-      'confirme ni que las desmienta. Eso no las convierte en falsas: quiere decir que no lo sabemos.',
+      // La cobertura temporal va DICHA: sin ella, «no apareció ningún dato»
+      // sobre una obra de 2005 o 2012 sonaba a comprobación con peso, cuando la
+      // base documental no llega a esos años y el cotejo no podía, por
+      // construcción, confirmar ni desmentir (señalamiento del lector, 18-08).
+      'Estas citas se cotejaron automáticamente con la base documental municipal —la ' +
+      'contratación desde 2017, las subvenciones, el presupuesto vigente y las promesas ' +
+      'publicadas— y no apareció ningún dato que las confirme ni que las desmienta. Eso no las ' +
+      'convierte en falsas: quiere decir que no lo sabemos — y sobre hechos anteriores a esa ' +
+      'cobertura, que no podíamos saberlo.',
     href: '/metodologia#citas-contraste',
     linkText: 'Qué significa que una cita no esté contrastada →',
   },

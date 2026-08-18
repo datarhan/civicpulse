@@ -235,7 +235,7 @@ const CATALOGUE = {
     'declaraciones.eyebrow': 'Verificación de declaraciones',
     'declaraciones.title': 'Declaraciones en pleno',
     'declaraciones.subtitle':
-      'Cada afirmación, promesa o acusación detectada en los plenos municipales, cruzada contra los datos abiertos publicados (PLACSP, BDNS, presupuesto, promesas electorales). Atribución a nivel de grupo. Las declaraciones sin atribuir o sin evidencia se mantienen visibles porque se han hecho — pero no se promueven editorialmente sin verificación humana.',
+      'Cada afirmación, promesa o acusación detectada en los plenos municipales, cruzada contra los datos abiertos publicados (PLACSP, BDNS, presupuesto, promesas electorales). Atribución a nivel de grupo. El veredicto de cada fila lo pone un cotejo automático: las declaraciones sin atribuir o sin evidencia se mantienen visibles porque se han hecho, y ninguna de ellas se convierte en un hallazgo editorial sin que una persona lo firme.',
     'declaraciones.stat.total': 'Total',
     'declaraciones.stat.conEvidencia': 'Con evidencia',
     'declaraciones.filter.verdict': 'Verdicto',
@@ -790,7 +790,7 @@ const CATALOGUE = {
     'declaraciones.eyebrow': 'Verificació de declaracions',
     'declaraciones.title': 'Declaracions en plenari',
     'declaraciones.subtitle':
-      'Cada afirmació, promesa o acusació detectada als plens municipals, creuada contra les dades obertes publicades (PLACSP, BDNS, pressupost, promeses electorals). Atribució a nivell de grup. Les declaracions sense atribuir o sense evidència es mantenen visibles perquè es van fer — però no es promouen editorialment sense verificació humana.',
+      "Cada afirmació, promesa o acusació detectada als plens municipals, creuada contra les dades obertes publicades (PLACSP, BDNS, pressupost, promeses electorals). Atribució a nivell de grup. El veredicte de cada fila el posa un acarament automàtic: les declaracions sense atribuir o sense evidència es mantenen visibles perquè es van fer, i cap d'elles es converteix en una troballa editorial sense que una persona la signe.",
     'declaraciones.stat.total': 'Total',
     'declaraciones.stat.conEvidencia': 'Amb evidència',
     'declaraciones.filter.verdict': 'Veredicte',

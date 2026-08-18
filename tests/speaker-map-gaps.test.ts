@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { readdirSync, readFileSync } from 'node:fs'
+import { join, resolve } from 'node:path'
 import {
   GIVE_UP_AFTER_ATTEMPTS,
   recordFailure,
@@ -124,24 +124,57 @@ describe('a session with written-off gaps leaves the queue', () => {
   })
 })
 
-describe('against the map on disk', () => {
-  // This block pointed at `15uvjew` and its proof-of-work assertion did its
-  // job: on 2026-08-15 the session finished — its "permanently" failing chunk 8
-  // passed on the fourth try — so the file stopped being able to demonstrate
-  // anything about unfinished sessions, and the test said so instead of quietly
-  // measuring a different world. Repointed at a session that is genuinely
-  // unfinished, and one whose gaps are of the kind that must NEVER accumulate.
-  const real = JSON.parse(readFileSync(resolve('pleno-speaker-map/brxx5g.json'), 'utf8'))
+describe('against the maps on disk', () => {
+  /**
+   * El sujeto se DERIVA, no se fija. Este bloque ya ha caducado dos veces por
+   * la misma razón: apuntaba a `15uvjew`, la barrida lo terminó el 2026-08-15 y
+   * su aserción de prueba-de-trabajo lo dijo en rojo; se repuntó a `brxx5g`, la
+   * nocturna lo terminó el 2026-08-18 y volvió a decirlo. Las dos veces el test
+   * hizo su trabajo —avisar de que había dejado de medir el mundo que creía
+   * medir— y las dos veces el arreglo fue escribir a mano el nombre de la
+   * siguiente sesión, o sea volver a poner la fecha de caducidad. Es el chiste
+   * que este repositorio ya se ha contado tres veces (la tabla escrita a mano
+   * dentro del control contra la prosa rancia, el testigo fijo del overlay).
+   *
+   * Ahora el bloque lee TODAS las sesiones del directorio y se queda con los
+   * huecos de presupuesto —los trozos que la nocturna nunca llegó a intentar—
+   * vengan de la sesión que vengan. Una barrida que termine una sesión ya no
+   * rompe nada; lo único que rompe esto es que no quede NINGÚN hueco de
+   * presupuesto en ninguna sesión, y eso se dice en voz alta en vez de pasar en
+   * verde midiendo un conjunto vacío.
+   *
+   * De paso deja de exigir una sesión cuyos huecos sean TODOS de presupuesto:
+   * hoy no existe ninguna (la única sin terminar, `10yl550`, mezcla diez huecos
+   * de presupuesto con un fallo real de cobertura), y aislar el caso es
+   * seleccionar las entradas, no esperar a que aparezca una sesión pura.
+   */
+  const dir = resolve('pleno-speaker-map')
+  const sesiones = readdirSync(dir)
+    .filter((f) => f.endsWith('.json'))
+    .map((f) => ({
+      id: f.replace(/\.json$/, ''),
+      map: JSON.parse(readFileSync(join(dir, f), 'utf8')),
+    }))
 
-  it('brxx5g is unfinished and its gaps are budget gaps, not failures', () => {
-    // Proof of work. If this flips, the sweep finished the session and
-    // everything below is measuring something else.
-    expect(isMapComplete(real)).toBe(false)
-    expect(real.stats.failedChunks.length).toBeGreaterThan(0)
+  /** Trozos que el presupuesto de la nocturna nunca alcanzó, de todas las sesiones. */
+  const huecosDePresupuesto = sesiones.flatMap(({ id, map }) =>
+    ((map.stats?.failedChunks ?? []) as FailedChunk[])
+      .filter((f) => /never attempted/.test(f.why ?? ''))
+      .map((f) => ({ id, f })),
+  )
+
+  it('hay huecos de presupuesto en el disco que medir', () => {
+    // Prueba de trabajo, sin nombre propio: si algún día la barrida cierra
+    // todas las sesiones, las dos aserciones de abajo pasarían sobre un
+    // conjunto vacío y este bloque diría «bien» sin haber mirado nada.
+    expect(sesiones.length, 'no hay ninguna sesión en pleno-speaker-map/').toBeGreaterThan(0)
     expect(
-      real.stats.failedChunks.every((f: FailedChunk) => /never attempted/.test(f.why)),
-      'this session now has real coverage failures, so it no longer isolates the budget case',
-    ).toBe(true)
+      huecosDePresupuesto.length,
+      'ninguna sesión del disco tiene ya huecos de presupuesto: este bloque ha dejado de ' +
+        'aislar el caso que vigila, y hay que darle un fixture propio en vez de repuntarlo',
+    ).toBeGreaterThan(0)
+    // Y son lo que dicen ser: sin cuenta de intentos, que es el caso entero.
+    expect(huecosDePresupuesto.every(({ f }) => f.attempts == null)).toBe(true)
   })
 
   it('does not retire a session on the strength of a count nobody recorded', () => {
@@ -149,7 +182,26 @@ describe('against the map on disk', () => {
     // `attempts`, and they must not: retiring a chunk for being under-budgeted
     // is exactly backwards, and reading an absent count as "given up on" would
     // do it to every session in the backlog at once.
-    expect(writtenOffChunks(real.stats.failedChunks, GATE).size).toBe(0)
+    expect(
+      writtenOffChunks(
+        huecosDePresupuesto.map(({ f }) => f),
+        GATE,
+      ).size,
+    ).toBe(0)
+  })
+
+  it('una sesión con huecos que nadie miró no se declara terminada', () => {
+    // La consecuencia de lo anterior sobre el fichero real, y la razón por la
+    // que importa: si un hueco de presupuesto contara como amortizado, la
+    // sesión saldría de la cola y esos trozos no se transcribirían nunca.
+    const conHuecos = new Set(huecosDePresupuesto.map(({ id }) => id))
+    expect(conHuecos.size).toBeGreaterThan(0)
+    for (const { id, map } of sesiones) {
+      if (!conHuecos.has(id)) continue
+      expect(isMapComplete(map), `${id}: retirada con trozos que nadie llegó a intentar`).toBe(
+        false,
+      )
+    }
   })
 
   // The assertion above passes for the wrong reason on its own: the entries on

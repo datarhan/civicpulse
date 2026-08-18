@@ -569,6 +569,25 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   const { claim } = inputs
   const checked: string[] = []
   const evidence: ClaimEvidence[] = []
+  /**
+   * Las filas de evidencia que NO FUNDAN nada por sí solas, aunque se enseñen:
+   *
+   *   · las de la vía sólo-entidad (bloque 3), que compara títulos y no mira ni
+   *     el importe ni el sentido;
+   *   · las de presupuesto, que son —por su propio comentario— «una
+   *     comprobación de plausibilidad: plausible no es corroborado».
+   *
+   * Se apuntan aparte porque el veredicto de abajo las trata distinto:
+   * sostienen `parcial`, nunca `verificado`, y a una acusación no la fundan.
+   * Marcarlas en el propio objeto de evidencia habría cambiado el esquema
+   * publicado; esto no sale del módulo.
+   *
+   * La pregunta que decide es «¿hay ALGUNA fila que funde?», no «¿son TODAS
+   * de este tipo?»: con la segunda, una sola fila de presupuesto —que no prueba
+   * nada— rescataba una acusación que el resto de la evidencia no sostenía.
+   */
+  const noFundante = new Set<ClaimEvidence>()
+  const marcarNoFundante = () => noFundante.add(evidence[evidence.length - 1])
 
   // `checkedAgainst` is a claim about our own work — it appears in the
   // published snapshot and feeds the "artículos auditados" counters. It used to
@@ -691,6 +710,23 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
           }
         }
         if (amountSim < 0.5) continue
+        // Un importe que coincide y un objeto que no, NO es corroboración.
+        //
+        // Con `textSim` 0 la suma de abajo da exactamente el umbral (1×0,6 +
+        // 0×0,4 = 0,6) y pasaba: un importe exacto contra un contrato de otra
+        // cosa se publicaba como `parcial` con ese contrato de evidencia. De
+        // ahí salió la cosecha entera del debate de presupuestos —partidas de
+        // cifra redonda contra contratos de cifra redonda: el cementerio contra
+        // las redes sociales, los caminos rurales contra un tractor, el centro
+        // social contra una plataforma de licitación— que la revisión de
+        // superficies fue señalando de una en una.
+        //
+        // Es la regla que este emparejador ya aplica en la corroboración (el
+        // solapamiento tiene que ser MUTUO, no basta con que una palabra salga
+        // en el título) extendida al camino que entra por el importe. No cierra
+        // ese camino: con objeto compartido, el importe exacto sigue
+        // verificando.
+        if (textSim <= 0) continue
         const combined = amountSim * 0.6 + textSim * 0.4
         if (combined >= 0.6 && (best === null || combined > best.sim)) {
           best = { row: t, sim: combined }
@@ -742,6 +778,13 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
       for (const b of bdnsList) {
         const bAmount = bdnsAmount(b)
         const textSim = entity ? overlapScore(entity, bdnsText(b)) : 0
+        // La misma regla que el camino de los contratos, en el de las
+        // subvenciones: la mezcla de abajo es el mismo `sim*0,6 + texto*0,4`
+        // con suelo 0,6, así que un importe exacto contra una convocatoria de
+        // otra cosa daba exactamente el suelo y pasaba. Un importe que coincide
+        // y un objeto que no, no es corroboración — lo dijera un contrato o lo
+        // diga una subvención.
+        if (textSim <= 0) continue
         // With no amount on the row, the name has to carry the whole match, so
         // the bar is higher than the blended amount+text score.
         const combined =
@@ -794,6 +837,8 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
             // of magnitude for the chapter?"). Plausible is not corroborated.
             stance: 'checked',
           })
+          // …y por eso no funda: se enseña, no verifica.
+          marcarNoFundante()
         }
       }
     }
@@ -819,8 +864,22 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     claim.entities.referencedEntity &&
     tenderList.length > 0
   ) {
+    // El matcher de este bloque CORRE sobre el corpus de contratos: se anota
+    // igual que en el bloque 2. Faltaba, y nueve filas publicadas decían
+    // «Verificado» con su única evidencia marcada «sin verificador anotado» —
+    // y la puerta retenía como no-fundadas citas genuinamente corroboradas.
+    if (localTenders.length > 0) note('tenders')
+    if (tedTenders.length > 0) note('tenders-ted')
     // Did the speaker claim the work is COMPLETED? (negation-aware)
-    const claimsCompleted = claimsCompletion(claim.verbatim)
+    //
+    // Y nunca sobre una ACUSACIÓN: `contradicho` es el veredicto más acusatorio
+    // que esta máquina sabe emitir, y emitirlo desde el camino que sólo compara
+    // títulos es la avería que este fichero ya documenta para el emparejador
+    // determinista, entrando por la puerta de al lado. Una acusación cuya única
+    // relación con el expediente es que comparten palabras cae por la puerta de
+    // abajo —sin-datos, con el documento a la vista— en vez de convertirse en un
+    // desmentido automático contra un grupo con nombre.
+    const claimsCompleted = claim.type !== 'acusacion_publica' && claimsCompletion(claim.verbatim)
     for (const t of tenderList) {
       // Mutuo, no contención: el suelo 0,50 de `overlapScore` lo saciaban
       // «contratación», «servicio» y «procedimiento» sobre cuatro campos
@@ -848,6 +907,8 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
           // waiting times, so it is `checked` at every similarity value.
           stance: refutes ? 'contradicts' : 'checked',
         })
+        // …y por eso mismo el veredicto de abajo la lee con el freno puesto.
+        marcarNoFundante()
         if (refutes) {
           return {
             claimId: claim.id,
@@ -890,10 +951,35 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         checkedAgainst: checked,
       }
     }
+    // A una acusación, un parecido de TÍTULO no la funda.
+    //
+    // Que el título de un contrato comparta palabras con lo que se denuncia no
+    // dice nada sobre si la denuncia es cierta: es la vía que emparejó un
+    // contrato de gestión de colas con una queja sobre tiempos de espera. Sin
+    // esta puerta, el arreglo del camino del importe SUBIÓ una acusación
+    // pública del PP —«¿cómo puede ser que ustedes quiten 50.000 euros del plan
+    // de refugios climáticos?»— a `verificado` sobre el contrato de obras de
+    // los refugios, que no acredita ni el recorte ni la cifra. Un cambio
+    // automático no sube una acusación contra un grupo con nombre: ni desde
+    // aquí, ni por caerse por otro camino.
+    if (evidence.length > 0 && !evidence.some((e) => !noFundante.has(e))) {
+      return {
+        claimId: claim.id,
+        verdict: 'sin-datos',
+        summary:
+          'El único parecido con la base municipal es el título de un contrato: no acredita lo ' +
+          'que la acusación afirma. Se deja el documento a la vista como lo que se miró.',
+        evidence,
+        checkedAgainst: checked,
+      }
+    }
     // factual / contra-datos fall through to the strong/weak verdict below
   }
 
-  const strong = evidence.some((e) => (e.similarity ?? 0) >= 0.8)
+  // Un parecido de título sostiene `parcial` —es una pista publicable— pero
+  // nunca `verificado`: esa vía no comprueba el importe ni el sentido, así que
+  // no puede sostener la palabra más fuerte que este verificador sabe decir.
+  const strong = evidence.some((e) => !noFundante.has(e) && (e.similarity ?? 0) >= 0.8)
   const weak = evidence.some((e) => (e.similarity ?? 0) >= 0.5)
 
   if (strong) {

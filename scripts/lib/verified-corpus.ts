@@ -1,6 +1,6 @@
 /**
- * Read the verifier corpus off disk the way the published ledger is built:
- * `mergeVerified(base, overlay)`.
+ * Read the verifier corpus off disk: the MERGED truth from the published
+ * monolith, the deterministic base (si existe) as a cross-check.
  *
  * The pure half — what the editorial gate would do with each claim — is
  * `src/scraper/quote-contrast.ts`, tested without a filesystem. This is the
@@ -8,76 +8,76 @@
  * and `triage:finding-exception` cannot end up disagreeing about which verdicts
  * they are looking at.
  *
- * ── Why not just read pleno-claims-verified.json ────────────────────────────
+ * ── Historia: por qué ANTES no se leía pleno-claims-verified.json ───────────
  *
- * Because the point of this loader is that the merge HAPPENED, and reading the
- * already-merged monolith cannot show that. `pleno-claims-verified-base.json`
- * is the deterministic pass alone; the verdict engine, the NLI pass and curator
- * downgrades live in the overlay. On the 177 verbatims `/hallazgos` publishes,
- * the base alone puts 149 in `shown`; base ⊕ overlay puts 16 there. Reading the
- * base by accident is not a small error, it is the opposite answer — so the
- * corpus carries BOTH maps and the caller's stats count how many quotes the
- * overlay actually moved.
+ * La primera versión fusionaba base ⊕ overlay para PROBAR que la fusión había
+ * corrido: leer la base a secas da la respuesta contraria para la mayoría de
+ * las citas (149 shown contra 16), y ese error ya se cometió una vez. Pero esa
+ * lectura tenía un coste que tardó en verse: la base es gitignorada y
+ * «reproducible», y cuando los insumos committed dejan de reproducir el
+ * monolito publicado (dos plenos re-extraídos con ids nuevos, agosto 2026),
+ * cada productor derivaba unas marcas distintas — el runner de Actions
+ * publicaba un snapshot que CONTRADECÍA el ledger que sirve /declaraciones, y
+ * `check:relations` lo declaraba roto. Tres noches en rojo en CI por la base
+ * ausente fueron el primer síntoma del mismo defecto.
+ *
+ * La resolución la arbitró `check:relations`: las marcas describen lo que el
+ * lector ve, y lo que el lector ve es el monolito. Así que `merged` ES el
+ * monolito — el único fichero que sólo escribe `rebuildVerified()`, o sea la
+ * fusión ya ejecutada por la vía sancionada — y la base pasa a ser el
+ * contraste opcional: presente, las stats miden cuánto decide el overlay y
+ * cuánto discrepa la re-derivación; ausente (CI, clon fresco), las marcas
+ * salen igual de correctas y el contraste se declara no hecho en vez de
+ * inventarse. El peligro viejo (clasificar contra la base sola) ya no tiene
+ * camino: este loader no puede producir ese estado.
  */
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 import type { VerifierCorpus } from '../../src/scraper/quote-contrast'
-import {
-  mergeVerified,
-  validateReclassifications,
-  type Overlay,
-  type Reclassifications,
-  type VerifiedItem,
-} from '../../src/scraper/verified-merge'
+import type { VerifiedItem } from '../../src/scraper/verified-merge'
 
+export const VERIFIED_MONOLITH = 'public/data/pleno-claims-verified.json'
 export const VERIFIED_BASE = 'public/data/pleno-claims-verified-base.json'
 export const VERIFIED_OVERLAY = 'public/data/pleno-claims-overlay.json'
 export const VERIFIED_RECLASSIFICATIONS = 'public/data/pleno-claim-reclassifications.json'
 
 /**
- * Loads base + overlay and merges them. Throws when the base is missing: a
- * caller that carried on would classify against an empty corpus, and an empty
- * corpus produces a page where every quote renders unmarked — the fail-OPEN
- * direction on a legally material surface.
- *
- * A missing overlay is tolerated as an empty one (a fresh clone before the
- * first verdict-engine run) and reported through `overlayEntries: 0`, which
- * `contrastSanityFailure` reads: zero entries is fine, zero entries REACHING a
- * quote when the overlay has some is not.
+ * Throws when the MONOLITH is missing: a caller that carried on would classify
+ * against an empty corpus, and an empty corpus produces a page where every
+ * quote renders unmarked — the fail-OPEN direction on a legally material
+ * surface. A missing base or overlay is tolerated: the base enables the
+ * cross-check stats (`baseDisponible: false` says it did not run), and the
+ * overlay count feeds the same report.
  */
 export function loadVerifiedCorpus(
-  opts: { basePath?: string; overlayPath?: string; reclassificationsPath?: string } = {},
+  opts: { monolithPath?: string; basePath?: string; overlayPath?: string } = {},
 ): VerifierCorpus {
-  const basePath = resolve(opts.basePath ?? VERIFIED_BASE)
-  if (!existsSync(basePath)) {
+  const monolithPath = resolve(opts.monolithPath ?? VERIFIED_MONOLITH)
+  if (!existsSync(monolithPath)) {
     throw new Error(
-      `falta ${opts.basePath ?? VERIFIED_BASE} — sin el corpus del verificador no se puede ` +
+      `falta ${opts.monolithPath ?? VERIFIED_MONOLITH} — sin el ledger publicado no se puede ` +
         'preguntar a la puerta editorial qué haría con cada cita, y una cita sin respuesta sale ' +
         'en la página sin marca, que es como sale una contrastada',
     )
   }
-  const base = JSON.parse(readFileSync(basePath, 'utf8')) as { items?: VerifiedItem[] }
+  const monolith = JSON.parse(readFileSync(monolithPath, 'utf8')) as { items?: VerifiedItem[] }
+
+  const basePath = resolve(opts.basePath ?? VERIFIED_BASE)
+  const baseItems: VerifiedItem[] = existsSync(basePath)
+    ? ((JSON.parse(readFileSync(basePath, 'utf8')) as { items?: VerifiedItem[] }).items ?? [])
+    : []
+  const baseDisponible = existsSync(basePath)
+
   const overlayPath = resolve(opts.overlayPath ?? VERIFIED_OVERLAY)
-  const overlay: Overlay = existsSync(overlayPath)
-    ? (JSON.parse(readFileSync(overlayPath, 'utf8')) as Overlay)
-    : { version: 1, generatedAt: '', entries: {} }
+  const overlay = existsSync(overlayPath)
+    ? (JSON.parse(readFileSync(overlayPath, 'utf8')) as { entries?: Record<string, unknown> })
+    : { entries: {} }
 
-  // El sidecar de reclasificaciones curadas es la tercera capa de la MISMA
-  // composición que publica el rebuild; leerlo aquí y no en el rebuild (o al
-  // revés) es como la página y la cola empezarían a discrepar. Validado al
-  // leer: una entrada HACIA acusacion_publica revienta antes de clasificar.
-  const reclasPath = resolve(opts.reclassificationsPath ?? VERIFIED_RECLASSIFICATIONS)
-  const reclas: Reclassifications = existsSync(reclasPath)
-    ? (JSON.parse(readFileSync(reclasPath, 'utf8')) as Reclassifications)
-    : { version: 1, generatedAt: '', entries: {} }
-  validateReclassifications(reclas)
-
-  const baseItems = base.items ?? []
-  const merged = mergeVerified(baseItems, overlay, reclas)
   return {
-    merged: new Map(merged.map((it) => [it.claim.id, it])),
+    merged: new Map((monolith.items ?? []).map((it) => [it.claim.id, it])),
     base: new Map(baseItems.map((it) => [it.claim.id, it])),
+    baseDisponible,
     overlayEntries: Object.keys(overlay?.entries ?? {}).length,
   }
 }

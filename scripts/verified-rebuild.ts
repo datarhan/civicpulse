@@ -16,6 +16,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
   mergeVerified,
+  isDowngrade,
   validateOverlay,
   validateReclassifications,
   reclassificationOutcomes,
@@ -73,6 +74,93 @@ export function rebuildEmpobreceAtribucion(antes: number, despues: number): bool
 
 /** Escotilla documentada, para cuando la pérdida sea la intención. */
 export const ANULAR_GUARDA_ATRIBUCION = 'CLAIMS_REBUILD_ALLOW_ATTRIBUTION_LOSS'
+
+/**
+ * Subir es «no bajar y no quedarse igual», DERIVADO de `isDowngrade` — la misma
+ * función que ya gobierna el CLI del curador y el motor de veredictos.
+ *
+ * La primera versión escribió su propia escala de fuerza aquí, y la revisión
+ * independiente encontró lo de siempre: las dos escalas ya discrepaban.
+ * `isDowngrade` se niega a tratar `contradicho` como destino (nunca es una
+ * bajada), mientras que la escala local lo empataba con `verificado` — o sea
+ * que el CLI rechazaba `verificado → contradicho` y esta guarda lo dejaba
+ * pasar, justo la transición que el bloque sólo-título hacía alcanzable sin que
+ * interviniera nadie. Reescribir un orden es reescribir un enum: la regla 1 de
+ * DATA_INTEGRITY, aplicada a una relación en vez de a una lista.
+ *
+ * Al derivarla, la guarda se vuelve además más estricta que la escala que
+ * sustituye: cualquier movimiento que el curador no podría firmar como bajada
+ * cuenta como subida y se para.
+ */
+function esSubida(de: ClaimVerdict, a: ClaimVerdict): boolean {
+  return de !== a && !isDowngrade(de, a)
+}
+
+/**
+ * ¿Qué ACUSACIONES sube este rebuild respecto a lo ya publicado?
+ *
+ * La regla de la casa es que lo automático sólo puede ir a la baja, y hasta
+ * ahora vivía repartida: `isDowngrade` la aplica al CLI del curador y al motor
+ * de veredictos, pero nadie miraba el resultado agregado de un rebuild. Así se
+ * coló lo que destapó la revisión independiente del 2026-08-18: un arreglo del
+ * emparejador (dejar de casar por importe cuando el objeto no coincide) hizo
+ * caer esas afirmaciones a la vía sólo-entidad, que compara TÍTULOS y sí
+ * devolvía `verificado` — y una acusación pública del PP subió de `parcial` a
+ * `verificado` sobre un contrato que no acredita lo que denuncia. El arreglo
+ * medía la distribución agregada, que bajaba, y no la dirección FILA A FILA.
+ *
+ * Se vigilan las acusaciones y no todo: un veredicto puede subir legítimamente
+ * porque llegue un contrato nuevo, y bloquear eso entrenaría a poner la
+ * escotilla cada noche. Subir una acusación contra un grupo con nombre es otra
+ * cosa — es la dirección que agrava lo que se afirma de alguien— y merece que
+ * una persona la mire antes de publicarse.
+ *
+ * Falla CERRADO, como su hermana de arriba.
+ */
+export function acusacionesQueSuben(
+  antes: VerifiedItem[],
+  despues: VerifiedItem[],
+): Array<{ id: string; de: string; a: string }> {
+  const previo = new Map(antes.map((it) => [it.claim.id, it.verification?.verdict]))
+  const out: Array<{ id: string; de: string; a: string }> = []
+  for (const it of despues) {
+    if (it.claim?.type !== 'acusacion_publica') continue
+    const de = previo.get(it.claim.id)
+    const a = it.verification?.verdict
+    if (de == null || a == null) continue // fila nueva: no hay «antes» que subir
+    if (esSubida(de, a)) out.push({ id: it.claim.id, de, a })
+  }
+  return out
+}
+
+/**
+ * Acusaciones que ESTRENAN id publicando por encima de `sin-datos`.
+ *
+ * El punto ciego de la guarda de arriba: una fila sin «antes» no puede subir,
+ * y una re-extracción rehace los ids en bloque (este mismo trabajo cambió dos
+ * plenos enteros: 369 ids nuevos, 155 de ellos acusaciones). No se bloquea
+ * —una sesión recién transcrita tiene que poder publicar lo que diga el
+ * cotejo— pero se CUENTA y se dice, que es lo que distingue «no había nada»
+ * de «no lo miré».
+ */
+export function acusacionesNuevasFundadas(
+  antes: VerifiedItem[],
+  despues: VerifiedItem[],
+): string[] {
+  const conocidos = new Set(antes.map((it) => it.claim?.id))
+  return despues
+    .filter(
+      (it) =>
+        it.claim?.type === 'acusacion_publica' &&
+        !conocidos.has(it.claim.id) &&
+        it.verification?.verdict != null &&
+        it.verification.verdict !== 'sin-datos',
+    )
+    .map((it) => it.claim.id)
+}
+
+/** Escotilla documentada, para cuando la subida sea deliberada y revisada. */
+export const ANULAR_GUARDA_ACUSACIONES = 'CLAIMS_REBUILD_ALLOW_ACCUSATION_RAISE'
 
 export function loadOverlay(): Overlay {
   if (!existsSync(OVERLAY)) return { version: 1, generatedAt: '', entries: {} }
@@ -132,7 +220,34 @@ export async function rebuildVerified(opts: { refreshChunks?: boolean } = {}): P
   for (const it of items)
     byVerdict[it.verification.verdict] = (byVerdict[it.verification.verdict] ?? 0) + 1
 
-  // Antes de escribir nada: ¿esto empobrece lo que ya está publicado?
+  // Antes de escribir nada: ¿esto SUBE alguna acusación ya publicada?
+  if (existsSync(VERIFIED) && !process.env[ANULAR_GUARDA_ACUSACIONES]) {
+    const publicado = JSON.parse(readFileSync(VERIFIED, 'utf8')) as Snapshot
+    const nuevas = acusacionesNuevasFundadas(publicado.items ?? [], items)
+    if (nuevas.length > 0) {
+      // No se bloquea: una sesión recién transcrita tiene derecho a publicar lo
+      // que diga el cotejo. Pero se dice, porque la guarda de abajo no puede
+      // verlas y «no había nada que mirar» y «no lo miré» no son lo mismo.
+      process.stderr.write(
+        `[rebuild] AVISO: ${nuevas.length} acusación(es) con id nuevo publican por encima de ` +
+          `sin-datos y ninguna guarda las compara con un estado anterior: ${nuevas
+            .slice(0, 5)
+            .join(', ')}${nuevas.length > 5 ? '…' : ''}\n`,
+      )
+    }
+    const suben = acusacionesQueSuben(publicado.items ?? [], items)
+    if (suben.length > 0) {
+      throw new Error(
+        `[rebuild] ABORTADO: este rebuild subiría ${suben.length} acusación(es) pública(s) ya ` +
+          'publicadas, y lo automático aquí sólo puede ir a la baja.\n' +
+          suben.map((s) => `  · ${s.id}: ${s.de} → ${s.a}\n`).join('') +
+          '  Si la subida es correcta, la firma una persona: revísala y publícala por su vía, o\n' +
+          `  pon ${ANULAR_GUARDA_ACUSACIONES}=1 y queda escrito.`,
+      )
+    }
+  }
+
+  // Y antes de escribir nada: ¿esto empobrece lo que ya está publicado?
   if (existsSync(VERIFIED) && !process.env[ANULAR_GUARDA_ATRIBUCION]) {
     const publicado = JSON.parse(readFileSync(VERIFIED, 'utf8')) as Snapshot
     const antes = atribucionesDeBloc(publicado.items ?? [])

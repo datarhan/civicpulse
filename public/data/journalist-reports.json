@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-09T12:33:23.244Z",
+  "generatedAt": "2026-08-18T17:55:06.170Z",
   "legalNotice": "Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público en github.com/datarhan/civicpulse.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -8640,7 +8640,7 @@
           "kind": "narrative",
           "payload": {
             "heading": "Actividad plenaria",
-            "bodyMarkdown": "En su ámbito de responsabilidad sobre Fomento económico, Empleo y Comercio, Hernández Carrizosa ha intervenido en debates plenarios sobre políticas de apoyo al comercio local y a los autónomos. Otros concejales han hecho referencia en sesión plenaria a sus intervenciones explicativas sobre puntos del orden del día. En sesiones recientes se han registrado intervenciones suyas sobre cuestiones presupuestarias de personal, con la presidencia dándole la palabra de forma nominal en la transcripción.",
+            "bodyMarkdown": "En su ámbito de responsabilidad sobre Fomento económico, Empleo y Comercio, Hernández Carrizosa ha intervenido en debates plenarios sobre políticas de apoyo al comercio local y a los autónomos. Otros concejales han hecho referencia en sesión plenaria a sus intervenciones explicativas sobre puntos del orden del día.",
             "sourceIds": [
               "src-022",
               "src-024",
@@ -9335,6 +9335,14 @@
           "reason": "El área es «Comercio». El chip del retrato arrastraba la conjunción de lista del bloque «Áreas» del ayuntamiento («…, Empleo y Emprendimiento, y Comercio.»), que el parser separaba por comas sin quitarla; officials.json y area-fit.json se corrigieron en a720cfc y esta semilla se quedó atrás. Es un error de transcripción del nombre del área, no un cambio de competencias: el extracto fechado de src-001 se deja intacto porque cita lo que officials.json decía el 31-07-2026.",
           "editor": "datarhan",
           "correctedAt": "2026-08-09"
+        },
+        {
+          "field": "narrative.Actividad plenaria.bodyMarkdown",
+          "original": "En su ámbito de responsabilidad sobre Fomento económico, Empleo y Comercio, Hernández Carrizosa ha intervenido en debates plenarios sobre políticas de apoyo al comercio local y a los autónomos. Otros concejales han hecho referencia en sesión plenaria a sus intervenciones explicativas sobre puntos del orden del día. En sesiones recientes se han registrado intervenciones suyas sobre cuestiones presupuestarias de personal, con la presidencia dándole la palabra de forma nominal en la transcripción.",
+          "corrected": "En su ámbito de responsabilidad sobre Fomento económico, Empleo y Comercio, Hernández Carrizosa ha intervenido en debates plenarios sobre políticas de apoyo al comercio local y a los autónomos. Otros concejales han hecho referencia en sesión plenaria a sus intervenciones explicativas sobre puntos del orden del día.",
+          "reason": "Se retira la frase sobre intervenciones en cuestiones presupuestarias de personal: la sostenía un extracto del motor de transcripción que se sustituyó, y que no aparece en la transcripción vigente de la sesión. Lo que se publicaba como literal no es lo que consta hoy, así que la afirmación se retira en vez de reanclarse a un pasaje que no la dice.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-08-18"
         }
       ],
       "response": null

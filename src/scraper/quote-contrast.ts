@@ -109,15 +109,23 @@ export const MARKED_CONTRAST_IDS: readonly ClaimVisibility[] = CLAIM_VISIBILITIE
 /**
  * The verifier corpus, as this axis needs it.
  *
- * `merged` is what the gate must read — `mergeVerified(base, overlay)`, the
- * same composition the published ledger ships. `base` is carried for one
- * purpose only: to count how many quotes the overlay actually moved, so a run
- * that silently read the base alone reports zero and is refused. Deleting
- * `base` would remove the proof, not simplify the module.
+ * `merged` is what the gate must read — desde agosto de 2026, el MONOLITO
+ * publicado (`pleno-claims-verified.json`), que sólo escribe
+ * `rebuildVerified()`: la fusión ya ejecutada por la vía sancionada, y lo que
+ * el lector ve de verdad. `base` es el contraste opcional: presente, las stats
+ * miden cuánto decide el overlay y cuánto discrepa la re-derivación
+ * determinista de lo publicado; ausente (`baseDisponible: false` — CI, clon
+ * fresco), las marcas salen igual de correctas y el contraste se declara no
+ * hecho en vez de inventarse. El peligro que la versión anterior vigilaba —
+ * clasificar contra la base sola — ya no tiene camino: el loader no puede
+ * producir ese estado, y `check:relations` compara además las marcas
+ * publicadas contra el monolito por su cuenta.
  */
 export interface VerifierCorpus {
   merged: ReadonlyMap<string, ClaimVisibilityInput>
   base: ReadonlyMap<string, ClaimVisibilityInput>
+  /** ¿Existía la base determinista? Sin ella, las dos stats de contraste son 0 por construcción. */
+  baseDisponible: boolean
   /** Entries in the overlay that was merged in. */
   overlayEntries: number
 }
@@ -129,7 +137,9 @@ export interface QuoteContrastStats {
   citasSinClaim: number
   /** One counter per gate outcome, keyed by the gate's own enum. */
   porContraste: Record<ClaimVisibility, number>
-  /** Quotes whose claim carries an overlay entry. */
+  /** ¿Hubo base con la que contrastar? false ⇒ las dos stats de abajo son 0 por construcción. */
+  baseDisponible: boolean
+  /** Quotes whose claim carries an overlay entry (0 si no hay base con que comparar). */
   citasConVeredictoDeOverlay: number
   /** Quotes the overlay moved to a DIFFERENT outcome than the base alone. */
   citasReclasificadasPorElOverlay: number
@@ -226,6 +236,7 @@ export function buildQuoteContrast(
       citasConClaim,
       citasSinClaim: unresolved.length,
       porContraste,
+      baseDisponible: corpus.baseDisponible,
       citasConVeredictoDeOverlay: conOverlay,
       citasReclasificadasPorElOverlay: reclasificadas,
       hallazgosSinCitaMostrable: sinCitaMostrable,
@@ -266,23 +277,15 @@ export function contrastSanityFailure(stats: QuoteContrastStats): string | null 
   if (suma !== stats.citasConClaim) {
     return `los contadores de la puerta suman ${suma} y se clasificaron ${stats.citasConClaim} citas: hay un estado sin contar`
   }
-  if (
-    stats.entradasDeOverlay > 0 &&
-    stats.citasConVeredictoDeOverlay === 0 &&
-    // Una base sembrada VERBATIM desde el monolito publicado (el estado
-    // transitorio que bendice migrate:verified-split) absorbe los veredictos
-    // del overlay, y ahí la señal de arriba es legítimamente cero. Una puerta
-    // movida por el sidecar de reclasificaciones es una prueba igual de firme
-    // de que la composición corrió — el stat mide base-vs-fusionado, que en una
-    // lectura sin fusionar es idéntico por construcción. Cero en LAS DOS
-    // señales sigue siendo una lectura sin fusionar, y se sigue negando.
-    stats.citasReclasificadasPorElOverlay === 0
-  ) {
-    return (
-      `el overlay trae ${stats.entradasDeOverlay} entradas y ninguna cita publicada quedó ` +
-      'clasificada sobre un veredicto suyo: se está leyendo pleno-claims-verified-base.json sin ' +
-      'fusionar, y sobre la base sola la puerta da un resultado distinto para 135 de las 177 citas'
-    )
-  }
+  // La cláusula que vivía aquí — «overlay con entradas y ninguna señal de
+  // fusión ⇒ se leyó la base sin fusionar» — se retiró al pasar `merged` al
+  // monolito publicado: el estado que cazaba ya no tiene camino (el loader no
+  // fusiona nada, lee la fusión que rebuildVerified ya ejecutó), y con la base
+  // AUSENTE (CI, clon fresco) las dos señales son 0 por construcción sobre unas
+  // marcas perfectamente correctas — la cláusula convertía ese estado sano en
+  // tres noches de rojo. El contraste base-vs-publicado sigue existiendo como
+  // INFORME (el compute lo imprime con su «no hecho» explícito cuando falta la
+  // base), y `check:relations` compara por su cuenta las marcas publicadas con
+  // el monolito.
   return null
 }

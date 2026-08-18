@@ -170,8 +170,13 @@ export interface RelationsCheckInputs {
   reports?: {
     items?: Array<{
       id?: string
-      /** `selfDeclared` is the only place the respaldo axis can be read from. */
-      sources?: Array<{ id?: string; selfDeclared?: boolean }>
+      /**
+       * `selfDeclared` is the only place the respaldo axis can be read from.
+       * `kind`/`localId` carry the corpus citation of a `local-snapshot`
+       * source — the one class `check:citations` cannot see, because it probes
+       * `url` and these have none.
+       */
+      sources?: Array<{ id?: string; selfDeclared?: boolean; kind?: string; title?: string }>
       warnings?: string[]
       /** Only `portrait` matters here — see the `portrait-officials` check. */
       sections?: Array<{
@@ -604,6 +609,46 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
       return { checked, broken }
     }),
 
+    /**
+     * La decisión del curador tiene que estar EN lo publicado, no sólo escrita
+     * en el overlay.
+     *
+     * `downgrade-verdict` escribe el overlay y DESPUÉS reconstruye; si el
+     * rebuild revienta (guarda de atribución, base ausente) imprime «overlay
+     * written but rebuild FAILED» y el monolito se queda como estaba. Mientras
+     * las marcas se derivaban de `base ⊕ overlay`, la página seguía mostrando
+     * la decisión y la discrepancia con el monolito salía por otro lado; desde
+     * que la verdad es el monolito, marcas y comprobación leen el mismo fichero
+     * y coinciden — en silencio— sobre un ledger que no recogió la corrección.
+     *
+     * Esta es la comprobación que lo rompe: para cada entrada cuyo claim SÍ
+     * está publicado, el veredicto publicado tiene que ser el del overlay. A
+     * nivel de error, porque el hueco que tapa es una corrección de curador que
+     * no llegó a la página.
+     */
+    check('overlay-aplicado', 'error', overlay != null && verified != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      for (const [cid, entry] of Object.entries(overlay?.entries ?? {})) {
+        const publicado = verifiedById.get(cid) as
+          | { verification?: { verdict?: unknown } }
+          | undefined
+        // Una entrada cuyo claim ya no existe la cuenta `overlay-verified`
+        // arriba; aquí sólo se comparan las que tienen fila publicada.
+        if (publicado == null) continue
+        checked += 1
+        const suyo = (entry as { verification?: { verdict?: unknown } })?.verification?.verdict
+        const enLaPagina = publicado.verification?.verdict
+        if (suyo != null && enLaPagina !== suyo) {
+          broken.push(
+            `${cid}: el overlay dice ${String(suyo)} y lo publicado dice ${String(enLaPagina)} — ` +
+              'la decisión no llegó al ledger (¿un rebuild que falló después de escribir?)',
+          )
+        }
+      }
+      return { checked, broken }
+    }),
+
     // A retracted vote must not silently reappear, and a withdrawn breakdown
     // must not silently come back as a tally. The hard stop is in
     // `validateSnapshot` — it runs on every write, so `pleno-vote` and
@@ -844,6 +889,43 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
     // and officials.json says whether the stripped form is an área this person
     // actually holds, which is what makes the message actionable rather than a
     // shrug. Both arms are `error`: neither can fire for an honest reason.
+    /**
+     * Una biografía publicada no puede citar una declaración que ya no existe.
+     *
+     * `check:citations` no puede ver esta clase: prueba `source.url`, y una
+     * fuente `local-snapshot` no tiene URL — cita una fila del corpus por su
+     * id, dentro del título. Así que cuando dos plenos se re-transcribieron y
+     * se re-extrajeron con ids nuevos, dos fuentes de la biografía de un
+     * concejal con NOMBRE Y APELLIDOS se quedaron apuntando a filas que no
+     * existen en ningún sitio, y ninguna comprobación lo dijo. Lo cazó una
+     * revisión humana del diff, que es exactamente lo que una guarda barata
+     * evita tener que repetir.
+     *
+     * A nivel de aviso y no de error a propósito: una fuente huérfana no
+     * publica nada falso por sí sola —el extracto sigue siendo lo que el
+     * modelo leyó el día que lo leyó— pero sí deja sin respaldo comprobable
+     * una frase sobre una persona viva, y eso lo tiene que ver un curador. No
+     * hay CLI para retirar una fuente: hoy la vía es corregir la prosa que se
+     * apoyaba en ella con `correct-journalist-report`.
+     */
+    check('report-claim-sources', 'warn', reports != null && verified != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      const idEnTitulo = /\b([a-z0-9]{5,8}-\d{3}-(?:pro|afi|cit|acu)-[0-9a-f]{6})\b/
+      for (const r of reports?.items ?? []) {
+        for (const s of r?.sources ?? []) {
+          if (s?.kind !== 'local-snapshot') continue
+          const m = idEnTitulo.exec(s?.title ?? '')
+          if (!m) continue // una fuente local que no cita una fila por id
+          checked += 1
+          if (!verifiedIds.has(m[1])) {
+            broken.push(`${r?.id ?? '?'} · ${s?.id ?? '?'} cita ${m[1]}, que no está publicada`)
+          }
+        }
+      }
+      return { checked, broken }
+    }),
+
     check('portrait-officials', 'error', reports != null && officials != null, () => {
       let checked = 0
       const broken: string[] = []

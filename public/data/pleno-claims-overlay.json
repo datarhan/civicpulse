@@ -1,32 +1,21 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-17T07:47:01.719Z",
+  "generatedAt": "2026-08-18T18:42:10.345Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
         "claimId": "k4olcs-005-acu-7c0edd",
-        "verdict": "verificado",
-        "summary": "La afirmación es corroborada por la existencia de contratos de emergencia para obras de alumbrado público relacionados con la DANA en Riba-roja de Túria.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i7R1v8v1LLWKeVWTb9Scog%3D%3D",
-            "snippet": "Contrato de emergencia de obras de actuación alumbrado público zona este por DANA · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.29
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i7R1v8v1LLWKeVWTb9Scog%3D%3D",
-            "snippet": "Contrato de emergencia de obras de actuación alumbrado público zona este por DANA · Ayuntamiento de Riba-roja de Túria · revoked",
-            "similarity": 0.29
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación no dice nada comprobable —que hubo cuestiones por el tema de la DANA— y la evidencia es un contrato de emergencia de alumbrado por la DANA, con una similitud de 0,29: coincide el asunto general, no lo que se afirma.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "La afirmación no dice nada comprobable —que hubo cuestiones por el tema de la DANA— y la evidencia es un contrato de emergencia de alumbrado por la DANA, con una similitud de 0,29: coincide el asunto general, no lo que se afirma.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T18:42:10.345Z"
     },
     "k4olcs-006-afi-462d5e": {
       "verification": {
@@ -4734,28 +4723,17 @@
     "1du4rf5-115-acu-431140": {
       "verification": {
         "claimId": "1du4rf5-115-acu-431140",
-        "verdict": "verificado",
-        "summary": "Los contratos de seguro de responsabilidad civil del Ayuntamiento de Riba-roja de Túria demuestran que la responsabilidad no recae única y exclusivamente en la Generalitat Valenciana, sino también en el consistorio local.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=50AMOi%2FtmLPnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Seguro de responsabilidad civil/patrimonial del ayuntamiento",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fyqNrUJGe9wQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Seguro de Responsabilidad Civil/patrimonial del Ayuntamiento de Riba-roja",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Una acusación sobre a quién corresponde la responsabilidad política no la acredita un contrato de seguro de responsabilidad civil del ayuntamiento: lo único que comparten es la palabra responsabilidad, con una similitud de 0,25.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Una acusación sobre a quién corresponde la responsabilidad política no la acredita un contrato de seguro de responsabilidad civil del ayuntamiento: lo único que comparten es la palabra responsabilidad, con una similitud de 0,25.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T18:42:09.808Z"
     },
     "1du4rf5-118-acu-f7652a": {
       "verification": {
@@ -23204,6 +23182,330 @@
       "reason": "La única evidencia adjunta es el renting de siete vehículos (466.200 €), no la compra de contenedores de 505 mil €: el emparejador determinista igualó por similitud de importes (0,85) sin exigir coincidencia de objeto. La evidencia no sostiene el parcial.",
       "editor": "Claude (revisión 17-08, aprobada en plan)",
       "appliedAt": "2026-08-17T07:47:01.719Z"
+    },
+    "15uvjew-143-cit-300676": {
+      "verification": {
+        "claimId": "15uvjew-143-cit-300676",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es el contrato de la plataforma de licitación electrónica, sin relación con la adecuación del Centro Social Santa Mónica: coincide sólo el importe (36.000 €). Una partida del presupuesto no queda corroborada por un contrato ajeno.",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es el contrato de la plataforma de licitación electrónica, sin relación con la adecuación del Centro Social Santa Mónica: coincide sólo el importe (36.000 €). Una partida del presupuesto no queda corroborada por un contrato ajeno.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:54:26.862Z"
+    },
+    "15uvjew-143-cit-d77403": {
+      "verification": {
+        "claimId": "15uvjew-143-cit-d77403",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es la compra de un vehículo híbrido para el gabinete de alcaldía, sin relación con sistemas de vigilancia en urbanizaciones: coincide sólo el importe (45.000 €).",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es la compra de un vehículo híbrido para el gabinete de alcaldía, sin relación con sistemas de vigilancia en urbanizaciones: coincide sólo el importe (45.000 €).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:54:27.436Z"
+    },
+    "15uvjew-144-afi-25bf0d": {
+      "verification": {
+        "claimId": "15uvjew-144-afi-25bf0d",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es la compra de un vehículo híbrido para el gabinete de alcaldía, sin relación con sistemas de vigilancia en urbanizaciones: coincide sólo el importe (45.000 €).",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es la compra de un vehículo híbrido para el gabinete de alcaldía, sin relación con sistemas de vigilancia en urbanizaciones: coincide sólo el importe (45.000 €).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:54:28.002Z"
+    },
+    "15uvjew-143-cit-ec4198": {
+      "verification": {
+        "claimId": "15uvjew-143-cit-ec4198",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es el contrato de comunicación y redes sociales, sin relación con la adecuación del acceso a la carretera por la zona norte: coincide sólo el importe (50.000 €).",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es el contrato de comunicación y redes sociales, sin relación con la adecuación del acceso a la carretera por la zona norte: coincide sólo el importe (50.000 €).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:54:28.635Z"
+    },
+    "15uvjew-144-afi-3a8ca1": {
+      "verification": {
+        "claimId": "15uvjew-144-afi-3a8ca1",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es el contrato de comunicación y redes sociales, sin relación con la adecuación del acceso a la carretera por la zona norte: coincide sólo el importe (50.000 €).",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es el contrato de comunicación y redes sociales, sin relación con la adecuación del acceso a la carretera por la zona norte: coincide sólo el importe (50.000 €).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:54:29.199Z"
+    },
+    "15uvjew-144-afi-a77d5c": {
+      "verification": {
+        "claimId": "15uvjew-144-afi-a77d5c",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es el contrato del programa de gestión policial, sin relación con la eliminación de contenedores soterrados del contrato de Reseu: coincide sólo un importe próximo (42.000 €).",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es el contrato del programa de gestión policial, sin relación con la eliminación de contenedores soterrados del contrato de Reseu: coincide sólo un importe próximo (42.000 €).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:54:29.772Z"
+    },
+    "15uvjew-143-cit-661981": {
+      "verification": {
+        "claimId": "15uvjew-143-cit-661981",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es el contrato de comunicación y redes sociales, sin relación con la iluminación de zonas de diseminados: coincide sólo el importe (50.000 €).",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es el contrato de comunicación y redes sociales, sin relación con la iluminación de zonas de diseminados: coincide sólo el importe (50.000 €).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:54:30.335Z"
+    },
+    "15uvjew-144-afi-b4648b": {
+      "verification": {
+        "claimId": "15uvjew-144-afi-b4648b",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es el contrato de comunicación y redes sociales, sin relación con la iluminación de zonas de diseminados: coincide sólo el importe (50.000 €).",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es el contrato de comunicación y redes sociales, sin relación con la iluminación de zonas de diseminados: coincide sólo el importe (50.000 €).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:54:31.005Z"
+    },
+    "15uvjew-146-afi-7408e6": {
+      "verification": {
+        "claimId": "15uvjew-146-afi-7408e6",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es el contrato de la plataforma de licitación electrónica, sin relación con la unidad de drones: coincide sólo el importe (36.000 €).",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es el contrato de la plataforma de licitación electrónica, sin relación con la unidad de drones: coincide sólo el importe (36.000 €).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:54:31.599Z"
+    },
+    "15uvjew-147-afi-513a52": {
+      "verification": {
+        "claimId": "15uvjew-147-afi-513a52",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es un contrato menor de trabajos selvícolas en Masía de Traver, sin relación con elementos de transporte: coincide sólo el importe (12.000 €).",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es un contrato menor de trabajos selvícolas en Masía de Traver, sin relación con elementos de transporte: coincide sólo el importe (12.000 €).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:54:32.341Z"
+    },
+    "15uvjew-148-afi-6bf81e": {
+      "verification": {
+        "claimId": "15uvjew-148-afi-6bf81e",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es el contrato de comunicación y redes sociales, sin relación con la reposición de inversiones en servicios sociales: coincide sólo el importe (50.000 €).",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es el contrato de comunicación y redes sociales, sin relación con la reposición de inversiones en servicios sociales: coincide sólo el importe (50.000 €).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:54:32.898Z"
+    },
+    "15uvjew-149-acu-7fd64d": {
+      "verification": {
+        "claimId": "15uvjew-149-acu-7fd64d",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es el contrato de defensa en juicio por la anulación del PAI Porxinos, sin relación con maquinaria e instalaciones de escuelas o servicios sociales: coincide sólo el importe (60.000 €). Una acusación pública no puede publicarse como respaldada por un contrato ajeno a lo que afirma.",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es el contrato de defensa en juicio por la anulación del PAI Porxinos, sin relación con maquinaria e instalaciones de escuelas o servicios sociales: coincide sólo el importe (60.000 €). Una acusación pública no puede publicarse como respaldada por un contrato ajeno a lo que afirma.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:54:33.456Z"
+    },
+    "15uvjew-150-afi-9a25fe": {
+      "verification": {
+        "claimId": "15uvjew-150-afi-9a25fe",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es el contrato de defensa en juicio por la anulación del PAI Porxinos, sin relación con maquinaria e instalaciones: coincide sólo el importe (60.000 €).",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es el contrato de defensa en juicio por la anulación del PAI Porxinos, sin relación con maquinaria e instalaciones: coincide sólo el importe (60.000 €).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:54:34.007Z"
+    },
+    "15uvjew-196-cit-a31e52": {
+      "verification": {
+        "claimId": "15uvjew-196-cit-a31e52",
+        "verdict": "parcial",
+        "summary": "La evidencia acredita el contrato de obras del proyecto de mejora del carril bici y ejecución o mejora de refugios climáticos, no que los refugios estén ya creados como afirma la cita; además el veredicto verificado llegó sin verificador anotado.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
+            "snippet": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E. · Ayuntamiento de Riba-roja de Túria · OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. · construction · estado: formalized",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La evidencia acredita el contrato de obras del proyecto de mejora del carril bici y ejecución o mejora de refugios climáticos, no que los refugios estén ya creados como afirma la cita; además el veredicto verificado llegó sin verificador anotado.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:54:34.545Z"
+    },
+    "15uvjew-197-cit-a735d0": {
+      "verification": {
+        "claimId": "15uvjew-197-cit-a735d0",
+        "verdict": "parcial",
+        "summary": "La evidencia acredita el contrato de obras del proyecto de mejora del carril bici y ejecución o mejora de refugios climáticos, no que los refugios estén ya creados como afirma la cita; además el veredicto verificado llegó sin verificador anotado.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
+            "snippet": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E. · Ayuntamiento de Riba-roja de Túria · OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. · construction · estado: formalized",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La evidencia acredita el contrato de obras del proyecto de mejora del carril bici y ejecución o mejora de refugios climáticos, no que los refugios estén ya creados como afirma la cita; además el veredicto verificado llegó sin verificador anotado.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:54:35.071Z"
+    },
+    "brxx5g-018-acu-27c5e9": {
+      "verification": {
+        "claimId": "brxx5g-018-acu-27c5e9",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es el contrato de obras del área de esparcimiento en Valencia la Vella: coincide el topónimo, no el contenido de la acusación («nos ha pasado en todas las unidades de actuación»), que el contrato ni respalda ni desmiente.",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es el contrato de obras del área de esparcimiento en Valencia la Vella: coincide el topónimo, no el contenido de la acusación («nos ha pasado en todas las unidades de actuación»), que el contrato ni respalda ni desmiente.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:56:23.087Z"
+    },
+    "11025xk-031-acu-dd5f8d": {
+      "verification": {
+        "claimId": "11025xk-031-acu-dd5f8d",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es un contrato menor de suministro de una carpa, sin relación con lo que la acusación afirma sobre el centre de salut; el veredicto llegó además sin verificador anotado.",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es un contrato menor de suministro de una carpa, sin relación con lo que la acusación afirma sobre el centre de salut; el veredicto llegó además sin verificador anotado.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:56:24.047Z"
+    },
+    "19gax3o-124-cit-452536": {
+      "verification": {
+        "claimId": "19gax3o-124-cit-452536",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es un contrato de pavimentación del SDA de obras, sin relación con las duchas del pabellón que la cita describe.",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es un contrato de pavimentación del SDA de obras, sin relación con las duchas del pabellón que la cita describe.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:56:25.016Z"
+    },
+    "15000go-096-cit-e013c8": {
+      "verification": {
+        "claimId": "15000go-096-cit-e013c8",
+        "verdict": "sin-datos",
+        "summary": "La única evidencia es el contrato de videovigilancia del polígono Masía Baló: coincide el topónimo, no la tramitación del PAI ni el informe a la Diputació que la cita afirma.",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La única evidencia es el contrato de videovigilancia del polígono Masía Baló: coincide el topónimo, no la tramitación del PAI ni el informe a la Diputació que la cita afirma.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:56:25.945Z"
+    },
+    "brxx5g-136-cit-d678aa": {
+      "verification": {
+        "claimId": "brxx5g-136-cit-d678aa",
+        "verdict": "parcial",
+        "summary": "La evidencia acredita que l'escola d'estiu existe como servicio municipal contratado (2018), no la afirmación de la cita sobre sus condiciones actuales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yrxcliuypflvYnTkQN0%2FZA%3D%3D",
+            "snippet": "Contrato para la prestación del servicio de la Escola d'Estiu Rialles 2018 destinado a niños y niñas de la escuela ordinaria de segundo ciclo de educación infantil y primaria · Ayuntamiento de Riba-roja de Túria · Ribamon. Actividades lúdicas de ocio y tiempo libre · culture · estado: formalized",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "La evidencia acredita que l'escola d'estiu existe como servicio municipal contratado (2018), no la afirmación de la cita sobre sus condiciones actuales.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-08-18T12:56:26.853Z"
     }
   }
 }

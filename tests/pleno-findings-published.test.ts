@@ -145,8 +145,36 @@ const expectWithdrawn = (id: string): void => {
  *
  * Las dos mueven la afirmación HACIA ABAJO —de hecho a lo dicho—, que es la
  * única dirección en la que algo automático puede tocar prosa publicada.
+ *
+ * +2 el 2026-08-18, la misma vía por tercera vez, y las dos sobre lo que un
+ * resumen deja creer al lector que hay debajo:
+ *
+ *   · f-2026-04-20-cit-25e6ea daba los 1.700 millones del pla Edificant junto a
+ *     los datos de contratación y presupuesto MUNICIPALES, y ahí esa cifra se
+ *     lee como propia: el presupuesto anual del ayuntamiento es de dos órdenes
+ *     de magnitud menor. Ahora la frase dice que el programa es autonómico.
+ *   · f-2025-12-01-acu-34560f resumía sus cuatro citas como «acusaciones sin
+ *     grupo atribuido», y una de ellas —el bono de comercio— la propia ficha la
+ *     atribuye a Compromís y la marca con la etiqueta de lo que NO es una
+ *     acusación. La frase pasa a decir lo que la ficha enseña.
+ *
+ * El segundo resumen se redactó primero citando esa etiqueta entre comillas, y
+ * el guardián de entrecomillados de más abajo lo tumbó: un sumario que
+ * entrecomilla algo necesita una CITA del hallazgo que lo contenga, y la
+ * etiqueta de una marca no es lo que dijo nadie en el pleno. Se reescribió sin
+ * comillas antes de publicarse — la regla funcionando sobre prosa nueva, que es
+ * para lo que está.
+ *
+ * +1 en la misma tanda, de una segunda pasada del lector: f-2026-01-19-afi-5238db
+ * enunciaba el voto anunciado por el PP al mismo nivel que el resto de
+ * intervenciones, cuando su cita lleva la marca de no constar en la
+ * transcripción vigente —procede del motor que se sustituyó—. La salvedad pasa
+ * a la frase en vez de vivir sólo en el chip de debajo. Es la TERCERA ficha de
+ * esa misma sesión corregida por lo mismo (cc8758 y 3fd230 fueron las otras
+ * dos): cuando un lote de re-transcripción degrada citas, los resúmenes que las
+ * enuncian se quedan afirmando de más una por una.
  */
-const TOTAL_CORRECTIONS = 145
+const TOTAL_CORRECTIONS = 148
 const TOTAL_REMOVALS = 35
 
 /** One row of a review batch's fixture: enough to locate its own entries. */

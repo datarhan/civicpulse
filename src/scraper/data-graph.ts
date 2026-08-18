@@ -115,11 +115,19 @@ export const DATA_GRAPH: readonly DataNode[] = [
     // lleva cada cita, y el nodo lo declaraba como si sólo dependiera de los
     // hallazgos. Con la entrada declarada, el grafo sabe que este nodo no puede
     // construirse sin ella — que es lo que la nocturna descubrió a golpes
-    // durante tres noches. El base está gitignorado y `scrape-all.sh` lo
-    // reproduce con `verify:pleno-claims --base-only` cuando falta.
+    // durante tres noches.
+    //
+    // Desde el 2026-08-18 la entrada que MANDA es el monolito publicado: las
+    // marcas describen lo que el lector ve, y lo que el lector ve es
+    // `pleno-claims-verified.json`. La base determinista y el overlay siguen
+    // declarados porque el nodo los lee para el contraste informativo, pero
+    // ya no son imprescindibles: sin base, las marcas salen idénticas y el
+    // contraste se declara no hecho. Aquella nocturna en rojo tampoco puede
+    // repetirse.
     reads: [
       'finding-quote-provenance.json',
       'pleno-findings.json',
+      'pleno-claims-verified.json',
       'pleno-claims-verified-base.json',
       'pleno-claims-overlay.json',
     ],
