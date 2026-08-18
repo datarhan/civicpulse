@@ -41,11 +41,38 @@ export const AREAS = {
 
 export type AreaId = keyof typeof AREAS
 
+/**
+ * El divisor dicho en la lengua de un vecino.
+ *
+ * `denominador` es el texto de FORMULARIO del ministerio —«Nº efectivos
+ * asignados al servicio»— y sirve para encontrar la fila, no para leerla. El
+ * lector recibía sólo su símbolo: «81.965 €/efectivo · 4.262.162 € ÷ 52
+ * efectivo». «Efectivo» es jerga de plantilla policial, no está explicada en
+ * ninguna parte de la página, y colisiona con el «coste EFECTIVO» del título,
+ * que significa otra cosa. Lo mismo con «€/km²» (¿qué kilómetros cuadrados?) y
+ * «€/m de red».
+ *
+ * Se cura y no se deriva, por dos razones que la aritmética no puede resolver:
+ * «punto de luz» pluraliza el núcleo y no la cola, y sobre todo QUÉ cuenta cada
+ * atributo es conocimiento sobre la fuente —los m² de limpieza viaria son los
+ * declarados con servicio, no los del municipio— que no está en su nombre.
+ */
+export interface Divisor {
+  /** Una unidad, tal como se lee tras «por cada»: «efectivo», «tonelada». */
+  singular: string
+  /** Varias, tal como se leen tras la cifra: «52 efectivos», «4.514 puntos de luz». */
+  plural: string
+  /** Qué cuenta exactamente, sin jerga. Va entre rayas dentro de la frase. */
+  glosa: string
+}
+
 export interface ServicioDef {
   /** Nombre del servicio en la clasificación por programas. */
   label: string
   /** Texto literal del atributo CE3 que hace de denominador. */
   denominador: string
+  /** El mismo denominador, en palabras que un vecino entienda. Ver `Divisor`. */
+  divisor: Divisor
   /** Cómo se lee el cociente: «€/t», «€/m²». */
   unidad: string
   /** Escalón de Hatry. Ver el tipo `Tier`. */
@@ -60,6 +87,11 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   a1621: {
     label: 'Recogida de residuos',
     denominador: 'Producción anual residuos urbanos: toneladas',
+    divisor: {
+      singular: 'tonelada',
+      plural: 'toneladas',
+      glosa: 'las toneladas de basura que el municipio generó en todo el año',
+    },
     unidad: '€/t',
     tier: 'carga',
     area: 'agua-residuos',
@@ -71,6 +103,12 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   a163: {
     label: 'Limpieza viaria',
     denominador: 'Superficie en metros cuadrados con servicio de limpieza',
+    divisor: {
+      singular: 'm²',
+      plural: 'm²',
+      glosa:
+        'los metros cuadrados de vía pública que el ayuntamiento declara con servicio de limpieza',
+    },
     unidad: '€/m²',
     tier: 'output',
     area: 'medio-urbano',
@@ -80,6 +118,12 @@ export const SERVICIOS: Record<string, ServicioDef> = {
     label: 'Parques y jardines',
     denominador:
       'Superficie: suma en metros cuadrados de la superficie total (tanto la cubierta como al aire libre)',
+    divisor: {
+      singular: 'm²',
+      plural: 'm²',
+      glosa:
+        'los metros cuadrados de parques y jardines que declara mantener, cubiertos y al aire libre',
+    },
     unidad: '€/m²',
     tier: 'output',
     area: 'medio-urbano',
@@ -90,6 +134,11 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   'a342/340P': {
     label: 'Instalaciones deportivas',
     denominador: 'Superficie: suma de superficies de todas las instalaciones',
+    divisor: {
+      singular: 'm²',
+      plural: 'm²',
+      glosa: 'los metros cuadrados que suman entre todas las instalaciones deportivas municipales',
+    },
     unidad: '€/m²',
     tier: 'output',
     area: 'cultura-educacion',
@@ -101,6 +150,11 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   'b341/340P': {
     label: 'Promoción del deporte',
     denominador: 'Nº efectivos en plantilla asignados al servicio',
+    divisor: {
+      singular: 'efectivo',
+      plural: 'efectivos',
+      glosa: 'las personas en plantilla municipal asignadas a promover el deporte',
+    },
     unidad: '€/efectivo',
     tier: 'input',
     area: 'cultura-educacion',
@@ -111,6 +165,11 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   'a1532/150P': {
     label: 'Pavimentación de vías públicas',
     denominador: 'Superficie de los tramos pavimentados (metros cuadrados)',
+    divisor: {
+      singular: 'm²',
+      plural: 'm²',
+      glosa: 'los metros cuadrados de calzada y acera ya pavimentados que hay que conservar',
+    },
     unidad: '€/m²',
     tier: 'output',
     area: 'medio-urbano',
@@ -123,6 +182,11 @@ export const SERVICIOS: Record<string, ServicioDef> = {
     // La errata «biblitotecario» está en la fuente. Corregirla aquí no
     // encontraría ninguna fila.
     denominador: 'Nº préstamos por fondo biblitotecario',
+    divisor: {
+      singular: 'préstamo',
+      plural: 'préstamos',
+      glosa: 'los libros y documentos que los vecinos se llevaron prestados durante el año',
+    },
     unidad: '€/préstamo',
     tier: 'output',
     area: 'cultura-educacion',
@@ -133,6 +197,12 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   a165: {
     label: 'Alumbrado público',
     denominador: 'Nº puntos de luz',
+    divisor: {
+      singular: 'punto de luz',
+      plural: 'puntos de luz',
+      glosa:
+        'las farolas y demás puntos de luz que el ayuntamiento tiene encendidos en la vía pública',
+    },
     unidad: '€/punto de luz',
     tier: 'output',
     area: 'medio-urbano',
@@ -143,6 +213,11 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   a164: {
     label: 'Cementerio y servicios funerarios',
     denominador: 'Superficie total del cementerio: metros cuadrados',
+    divisor: {
+      singular: 'm²',
+      plural: 'm²',
+      glosa: 'los metros cuadrados que ocupa el recinto del cementerio municipal',
+    },
     unidad: '€/m²',
     tier: 'output',
     area: 'medio-urbano',
@@ -151,6 +226,11 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   'b151/150P': {
     label: 'Urbanismo: planeamiento y gestión',
     denominador: 'Superficie urbanizada (kilómetros cuadrados)',
+    divisor: {
+      singular: 'km²',
+      plural: 'km²',
+      glosa: 'los kilómetros cuadrados de suelo ya urbanizado que hay que planificar y gestionar',
+    },
     unidad: '€/km²',
     tier: 'carga',
     area: 'territorio-movilidad',
@@ -161,6 +241,12 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   'b323/324/320P': {
     label: 'Centros docentes de enseñanza infantil y primaria',
     denominador: 'Superficie en metros cuadrados de los edificios',
+    divisor: {
+      singular: 'm²',
+      plural: 'm²',
+      glosa:
+        'los metros cuadrados construidos de los colegios públicos cuyo edificio mantiene el ayuntamiento',
+    },
     unidad: '€/m²',
     tier: 'carga',
     area: 'cultura-educacion',
@@ -171,6 +257,11 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   'b132/130P': {
     label: 'Seguridad y orden público (policía local)',
     denominador: 'Nº efectivos asignados al servicio',
+    divisor: {
+      singular: 'efectivo',
+      plural: 'efectivos',
+      glosa: 'los agentes y demás personal en plantilla asignados a la policía local',
+    },
     unidad: '€/efectivo',
     tier: 'input',
     area: 'seguridad',
@@ -188,6 +279,12 @@ export const SERVICIOS: Record<string, ServicioDef> = {
     // coste por viaje. El cero de viajeros no desaparece: baja a salvedad,
     // porque la anomalía es local — 22 pares sí declaran viajeros.
     denominador: 'Nº total de kms de calzada de la red en trayecto de ida',
+    divisor: {
+      singular: 'km de red',
+      plural: 'km de red',
+      glosa:
+        'los kilómetros de recorrido que suman las líneas de autobús urbano, contados sólo de ida',
+    },
     unidad: '€/km',
     tier: 'carga',
     area: 'territorio-movilidad',
@@ -198,6 +295,11 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   a161: {
     label: 'Abastecimiento domiciliario de agua potable',
     denominador: 'Longitud de la red: metros lineales',
+    divisor: {
+      singular: 'm de red',
+      plural: 'm de red',
+      glosa: 'los metros de tubería que suma la red de agua potable del municipio',
+    },
     unidad: '€/m de red',
     tier: 'output',
     area: 'agua-residuos',
@@ -206,6 +308,11 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   a160: {
     label: 'Alcantarillado',
     denominador: 'Longitud del tramo: metros lineales.',
+    divisor: {
+      singular: 'm de red',
+      plural: 'm de red',
+      glosa: 'los metros de colector que suma la red de alcantarillado del municipio',
+    },
     unidad: '€/m de red',
     tier: 'output',
     area: 'agua-residuos',

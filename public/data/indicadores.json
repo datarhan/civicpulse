@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T05:17:12.437Z",
+  "generatedAt": "2026-08-18T19:18:50.325Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -58,6 +58,11 @@
       },
       "valor": 66.93595408796672,
       "unidad": "€/t",
+      "divisor": {
+        "singular": "tonelada",
+        "plural": "toneladas",
+        "glosa": "las toneladas de basura que el municipio generó en todo el año"
+      },
       "modoGestion": "directa",
       "codGestionRaw": "Gestión directa por la entidad local",
       "comparable": true,
@@ -490,6 +495,11 @@
       },
       "valor": 1.5866440571428573,
       "unidad": "€/m²",
+      "divisor": {
+        "singular": "m²",
+        "plural": "m²",
+        "glosa": "los metros cuadrados de vía pública que el ayuntamiento declara con servicio de limpieza"
+      },
       "modoGestion": "directa",
       "codGestionRaw": "Gestión directa por la entidad local",
       "comparable": true,
@@ -907,6 +917,11 @@
       },
       "valor": 2.0221881747891346,
       "unidad": "€/m²",
+      "divisor": {
+        "singular": "m²",
+        "plural": "m²",
+        "glosa": "los metros cuadrados de parques y jardines que declara mantener, cubiertos y al aire libre"
+      },
       "modoGestion": "directa",
       "codGestionRaw": "Gestión directa por la entidad local",
       "comparable": true,
@@ -1342,6 +1357,11 @@
       },
       "valor": 9.333397949506182,
       "unidad": "€/m²",
+      "divisor": {
+        "singular": "m²",
+        "plural": "m²",
+        "glosa": "los metros cuadrados que suman entre todas las instalaciones deportivas municipales"
+      },
       "modoGestion": "directa",
       "codGestionRaw": "Gestión directa por la entidad local",
       "comparable": true,
@@ -1850,6 +1870,11 @@
       },
       "valor": 69431.28352941177,
       "unidad": "€/efectivo",
+      "divisor": {
+        "singular": "efectivo",
+        "plural": "efectivos",
+        "glosa": "las personas en plantilla municipal asignadas a promover el deporte"
+      },
       "modoGestion": "directa",
       "codGestionRaw": "Gestión directa por la entidad local",
       "comparable": true,
@@ -2387,6 +2412,11 @@
       },
       "valor": 0.31524740928513706,
       "unidad": "€/m²",
+      "divisor": {
+        "singular": "m²",
+        "plural": "m²",
+        "glosa": "los metros cuadrados de calzada y acera ya pavimentados que hay que conservar"
+      },
       "modoGestion": "directa",
       "codGestionRaw": "Gestión directa por la entidad local",
       "comparable": true,
@@ -2927,6 +2957,11 @@
       },
       "valor": 16.607863648722134,
       "unidad": "€/préstamo",
+      "divisor": {
+        "singular": "préstamo",
+        "plural": "préstamos",
+        "glosa": "los libros y documentos que los vecinos se llevaron prestados durante el año"
+      },
       "modoGestion": "directa",
       "codGestionRaw": "Gestión directa por la entidad local",
       "comparable": true,
@@ -3532,6 +3567,11 @@
       },
       "valor": 147.24836508639788,
       "unidad": "€/punto de luz",
+      "divisor": {
+        "singular": "punto de luz",
+        "plural": "puntos de luz",
+        "glosa": "las farolas y demás puntos de luz que el ayuntamiento tiene encendidos en la vía pública"
+      },
       "modoGestion": "directa",
       "codGestionRaw": "Gestión directa por la entidad local",
       "comparable": true,
@@ -4113,6 +4153,11 @@
       },
       "valor": 4.54578448188881,
       "unidad": "€/m²",
+      "divisor": {
+        "singular": "m²",
+        "plural": "m²",
+        "glosa": "los metros cuadrados que ocupa el recinto del cementerio municipal"
+      },
       "modoGestion": "directa",
       "codGestionRaw": "Gestión directa por la entidad local",
       "comparable": true,
@@ -4651,6 +4696,11 @@
       },
       "valor": 33685.87588346837,
       "unidad": "€/km²",
+      "divisor": {
+        "singular": "km²",
+        "plural": "km²",
+        "glosa": "los kilómetros cuadrados de suelo ya urbanizado que hay que planificar y gestionar"
+      },
       "modoGestion": "directa",
       "codGestionRaw": "Gestión directa por la entidad local",
       "comparable": true,
@@ -5219,6 +5269,11 @@
       },
       "valor": 100.34672136784197,
       "unidad": "€/m²",
+      "divisor": {
+        "singular": "m²",
+        "plural": "m²",
+        "glosa": "los metros cuadrados construidos de los colegios públicos cuyo edificio mantiene el ayuntamiento"
+      },
       "modoGestion": "directa",
       "codGestionRaw": "Gestión directa por la entidad local",
       "comparable": true,
@@ -5739,6 +5794,11 @@
       },
       "valor": 81964.66115384616,
       "unidad": "€/efectivo",
+      "divisor": {
+        "singular": "efectivo",
+        "plural": "efectivos",
+        "glosa": "los agentes y demás personal en plantilla asignados a la policía local"
+      },
       "modoGestion": "directa",
       "codGestionRaw": "Gestión directa por la entidad local",
       "comparable": true,
@@ -6314,6 +6374,11 @@
       },
       "valor": 4055.8746835443044,
       "unidad": "€/km",
+      "divisor": {
+        "singular": "km de red",
+        "plural": "km de red",
+        "glosa": "los kilómetros de recorrido que suman las líneas de autobús urbano, contados sólo de ida"
+      },
       "modoGestion": "directa",
       "codGestionRaw": "Gestión directa por la entidad local",
       "comparable": false,
@@ -6481,6 +6546,11 @@
       },
       "valor": null,
       "unidad": "€/m de red",
+      "divisor": {
+        "singular": "m de red",
+        "plural": "m de red",
+        "glosa": "los metros de tubería que suma la red de agua potable del municipio"
+      },
       "modoGestion": "concesion",
       "codGestionRaw": "Gestión indirecta mediante concesión, gestionando el concesionario el servicio a su riesgo y ventura",
       "comparable": false,
@@ -6620,6 +6690,11 @@
       },
       "valor": null,
       "unidad": "€/m de red",
+      "divisor": {
+        "singular": "m de red",
+        "plural": "m de red",
+        "glosa": "los metros de colector que suma la red de alcantarillado del municipio"
+      },
       "modoGestion": "concesion",
       "codGestionRaw": "Gestión indirecta mediante concesión, gestionando el concesionario el servicio a su riesgo y ventura",
       "comparable": false,

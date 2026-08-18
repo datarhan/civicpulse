@@ -58,7 +58,12 @@ describe('scraper/indicador-lectura', () => {
   it('avisa de que el tonelaje es demanda, no logro', () => {
     const residuos = byId('a1621-coste-unitario')
     expect(residuos.tier).toBe('carga')
-    expect(leerIndicador(residuos).como).toMatch(/demanda que el servicio atiende/i)
+    const como = leerIndicador(residuos).como
+    expect(como).toMatch(/demanda que le llega/i)
+    // Y ABRE por la negación. La frase decía primero qué mide y dejaba la
+    // advertencia para el final; puesta debajo del gráfico, el lector llegaba
+    // antes a «queda más alto que tres de cada cuatro».
+    expect(como.startsWith('No mide')).toBe(true)
   })
 
   it('sitúa entre pares sin publicar un puesto', () => {
@@ -162,11 +167,17 @@ describe('la lectura no repite lo que la tarjeta ya enseña', () => {
   // misma cifra y la misma posición otra vez en prosa. Cuatro apariciones del
   // mismo número en una tarjeta. Lo que no se deduce mirando —«esto es un
   // precio, no un rendimiento»— quedaba sepultado entre las repeticiones.
-  it('calla la cifra y la posición cuando el número y la banda están en pantalla', () => {
+  it('calla la posición que la tarjeta ya imprime, y NO la explicación', () => {
+    // La versión anterior de esta prueba exigía `que === null`, y era la
+    // prueba la que estaba mal. Se descontaba `que` porque entonces era la
+    // cifra repetida con otro formato; el arreglo correcto era escribirlo, no
+    // callarlo. Al callarlo, la página se quedó sin ninguna frase que dijera
+    // qué significa «81.965 €/efectivo» —ni ésta ni ninguna otra— y un lector
+    // preguntó exactamente eso.
     const conBanda = indicadores.find((i) => i.valor !== null && i.pares)!
     const l = leerIndicador(conBanda)
     const v = lecturaVisible(l, { cifra: true, banda: true })
-    expect(v.que).toBeNull()
+    expect(v.que).toBe(l.que)
     expect(v.donde).toBeNull()
 
     // Control, y es la mitad que importa: lo que NO se deduce mirando sigue
@@ -243,7 +254,11 @@ describe('el denominador congelado se marca, no se repite entero', () => {
       // La marca dice el MISMO año que la salvedad larga, o las dos se van
       // separando en cuanto alguien toque una.
       expect(chip.texto).toContain(String(i.declaracion!.denominador.desde))
-      expect(chip.texto).toMatch(/denominador|cifras|coste/)
+      expect(chip.texto).toMatch(/cantidad|coste/)
+      // Y en castellano llano. Ésta es la marca MÁS visible de la tarjeta —va
+      // primera y en tono de aviso— y estaba escrita en la única palabra del
+      // conjunto que un vecino no tiene por qué conocer.
+      expect(chip.texto, 'la marca vuelve a hablar de «denominador»').not.toMatch(/denominador/i)
     }
   })
 
@@ -276,9 +291,9 @@ describe('el denominador congelado se marca, no se repite entero', () => {
           denominador: { ...base.declaracion!.denominador, congelada: den, desde: 2019 },
         },
       })!.texto
-    expect(con(false, true)).toMatch(/^denominador de 2019$/)
-    expect(con(true, false)).toMatch(/^coste de 2019$/)
-    expect(con(true, true)).toMatch(/^las dos cifras de 2019$/)
+    expect(con(false, true)).toMatch(/^cantidad sin remedir desde 2019$/)
+    expect(con(true, false)).toMatch(/^coste sin actualizar desde 2019$/)
+    expect(con(true, true)).toMatch(/^ni coste ni cantidad se remiden desde 2019$/)
   })
 })
 

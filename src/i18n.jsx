@@ -57,7 +57,7 @@ const CATALOGUE = {
     'eficiencia.bloqueados.titulo': 'Servicios sin coste unitario, y por qué',
     'eficiencia.serie.ausente':
       'Sin serie: el ministerio sólo publica una entrega de forma masiva.',
-    'eficiencia.tier.input': 'entrada',
+    'eficiencia.tier.input': 'precio',
     'eficiencia.tier.carga': 'carga de trabajo',
     'eficiencia.tier.output': 'producto',
     'eficiencia.tier.outcome': 'resultado',
@@ -617,7 +617,7 @@ const CATALOGUE = {
     'eficiencia.bloqueados.titulo': 'Serveis sense cost unitari, i per què',
     'eficiencia.serie.ausente':
       'Una sola entrega amb dades per a aquest servei: sense segon punt no hi ha evolució a mostrar.',
-    'eficiencia.tier.input': 'entrada',
+    'eficiencia.tier.input': 'preu',
     'eficiencia.tier.carga': 'càrrega de treball',
     'eficiencia.tier.output': 'producte',
     'eficiencia.tier.outcome': 'resultat',

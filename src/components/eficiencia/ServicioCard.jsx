@@ -46,12 +46,16 @@ export function ServicioCard({ indicador, formatea, resultado }) {
   const motivo = i.numerador.motivo ?? i.denominador.motivo
   const cita = i.citas?.[0]
   const lecturaEntera = leerIndicador(i)
-  // La cifra en cuerpo 30 la pinta la tarjeta, y —desde agosto de 2026— la
-  // frase de posición también, junto al número. `banda: true` no significa que
-  // la banda esté abierta (va plegada en <details>): significa que `donde` ya
-  // está impreso arriba y <Lectura> no debe repetirlo. La supresión anterior
-  // (`banda: Boolean(i.pares)`) daba por visible lo que estaba plegado, y la
-  // única frase que contesta «¿esto es caro o barato?» quedaba sin leer.
+  // `banda: true` no significa que la banda esté abierta (va plegada en
+  // <details>): significa que la tarjeta imprime `donde` por su cuenta, unas
+  // líneas más abajo, y <Lectura> no debe repetirlo.
+  //
+  // `cifra` ya no gobierna nada —`lecturaVisible` conserva siempre `que`— y se
+  // sigue pasando porque describe la pantalla con verdad. Cuando `que` era la
+  // cifra repetida con otro formato, callarla parecía correcto; el efecto fue
+  // que la página se quedó sin ninguna frase que dijera qué significa
+  // «81.965 €/efectivo», y un lector lo preguntó. Ahora glosa el divisor y
+  // marca el gasto como anual, que es lo que ninguna cifra puede decir sola.
   const lectura = lecturaVisible(lecturaEntera, {
     cifra: i.valor !== null,
     banda: true,
@@ -117,15 +121,25 @@ export function ServicioCard({ indicador, formatea, resultado }) {
               currency: 'EUR',
               maximumFractionDigits: 0,
             })}{' '}
-            ÷ {i.denominador.valor.toLocaleString('es-ES')}{' '}
-            {i.unidad.replace(/^€\//, '').replace(/^\//, '')} · entrega {cita?.entrega}
+            ÷ {i.denominador.valor.toLocaleString('es-ES')} {i.divisor.plural} · entrega{' '}
+            {cita?.entrega}
           </div>
 
-          {/* La frase de posición, visible y pegada al número: es la única del
-              bloque que contesta «¿esto es caro o barato?», y estaba suprimida
-              por darla por visible en una banda que va plegada. Sale entera de
-              leerIndicador: tramo sin ranking, mediana con unidad, o el «no
-              hay comparación» con su porqué. */}
+          {/* Qué es el número y cómo NO se lee, antes que dónde queda.
+
+              El orden es el arreglo, no un detalle de maquetación. Estas dos
+              frases vivían debajo del gráfico, de la banda y del panel de
+              resultado —media pantalla más abajo—, así que el lector llegaba
+              antes a «queda más alto que tres de cada cuatro» que a «esto es un
+              precio, no un rendimiento», y para cuando leía la segunda ya había
+              sacado su conclusión de la primera. El módulo que las escribe
+              avisa en su propia cabecera de que «una cifra sola miente por
+              vecindad»; la tarjeta hacía exactamente eso con ellas. */}
+          <Lectura lectura={lectura} conAvisos={false} />
+
+          {/* Y ahora sí la posición. Sale entera de leerIndicador: tramo sin
+              ranking, mediana con unidad, o el «no hay comparación» con su
+              porqué. */}
           {lecturaEntera.donde && (
             <p
               style={{
@@ -190,10 +204,11 @@ export function ServicioCard({ indicador, formatea, resultado }) {
               })}
             </p>
           )}
+          {/* La tarjeta bloqueada no tiene cifra ni banda, así que aquí `que`
+              ES el contenido: por qué no hay cociente. */}
+          <Lectura lectura={lectura} conAvisos={false} />
         </div>
       )}
-
-      <Lectura lectura={lectura} conAvisos={false} />
 
       {/* Lo que la tarjeta guardaba abierto y nadie leía.
 
