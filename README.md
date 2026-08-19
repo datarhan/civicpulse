@@ -2,7 +2,7 @@
 
 **A citizen tool that measures what your town hall does and what it costs — with a citation for every figure.**
 
-CivicPulse is built for any Spanish municipality and runs live, end to end, in its first one — [Riba-roja de Túria](https://en.wikipedia.org/wiki/Riba-roja_de_T%C3%BAria) (Comunitat Valenciana, ~24,600 residents): the cost of each municipal service priced against similar-sized towns on the ministry's own data, supplier-payment periods, budget execution, council-session transcripts turned into verifiable claims, an electoral-promise tracker, a citizen-complaint pipeline with legal deadlines, and municipal spending mapped where the contract itself names the place. On that base it publishes deep investigative journalism — four investigations so far. All of it from public open data, with a stated methodology and a built-in right of reply.
+CivicPulse is built for any Spanish municipality and runs live, end to end, in its first one — [Riba-roja de Túria](https://en.wikipedia.org/wiki/Riba-roja_de_T%C3%BAria) (Comunitat Valenciana, ~24,600 residents): the cost of each municipal service priced against similar-sized towns on the ministry's own data, supplier-payment periods, budget execution, council-session transcripts turned into verifiable claims, an electoral-promise tracker, a citizen-complaint pipeline with legal deadlines, and municipal spending mapped where the contract itself names the place. On that base it publishes deep investigative journalism, each piece's figures frozen at publication and traceable to their source. All of it from public open data, with a stated methodology and a built-in right of reply.
 
 **Live:** **[civicpulse.es](https://civicpulse.es)** · **Who's behind it:** [civicpulse.es/nosotros](https://civicpulse.es/nosotros) · [English](https://civicpulse.es/about) · **Methodology:** [civicpulse.es/metodologia](https://civicpulse.es/metodologia)
 
@@ -25,20 +25,27 @@ CivicPulse is the proof it can be done, built in two halves:
 
 The single-page app at [civicpulse.es](https://civicpulse.es) surfaces:
 
-| Surface                | Route            | What it shows                                                                                                                                                        |
-| ---------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Live city**          | `/`              | Map of municipal spending, transit, civic services, and flood risk + an editorial column + a KPI strip (padrón, budget, contracts, paro)                             |
-| **Service costs**      | `/eficiencia`    | What each municipal service costs per unit vs. similar-sized municipalities — the ministry's own effective-cost data — with signed measurement fichas                |
-| **Management**         | `/gestion`       | How the council runs: supplier-payment period (PMP), budget execution, the contractor profile                                                                        |
-| **Findings**           | `/hallazgos`     | Editorial findings extracted from pleno transcripts, deterministically verified against the open-data trail, curator-gated, each with a permalink and right-of-reply |
-| **Promise tracker**    | `/promesas`      | Party electoral promises with verbatim source quotes, evidence, and status — under an electoral-silence freeze during campaigns                                      |
-| **Investigations**     | `/reportajes`    | Deep investigative pieces with frozen, citation-gated figures — the DANA reconstruction money, the waste-collection contract                                         |
-| **Budget & contracts** | `/presupuesto`   | Approved vs. executed budget, awarded contracts, subsidies, works in progress                                                                                        |
-| **Council sessions**   | `/plenos`        | 50+ sessions, agendas, transcribed votes                                                                                                                             |
-| **Departments**        | `/departamentos` | Per-portfolio accountability: votes + promises + routed complaints                                                                                                   |
-| **Citizen complaints** | `/quejas`        | A Telegram-captured complaint feed with LPACAP legal clocks, escalation to the Síndic de Greuges, and a resolution dashboard                                         |
-| **Lab**                | `/laboratorio`   | A fact-check observatory over local press coverage + method-published efficiency experiments (DEA frontier, expected-cost OLS) that never produce findings           |
-| **Data catalogue**     | `/datos`         | Every underlying JSON snapshot, with its source and licence                                                                                                          |
+| Surface                 | Route                         | What it shows                                                                                                                                                             |
+| ----------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Live city**           | `/`                           | Map of municipal spending, transit, civic services, and flood risk + an editorial column + a KPI strip (padrón, budget, contracts, paro)                                  |
+| **What's new**          | `/cambios`                    | A rolling feed of everything that moved in the last week, merged across every corpus — contracts, subsidies, complaints, sessions, participation, press                   |
+| **Officials**           | `/cargos`                     | Councillors and senior officials: portfolio, declared dedication regime, social accounts, and agent-written biographies where a curator has signed one                    |
+| **Service costs**       | `/eficiencia`                 | What each municipal service costs per unit vs. similar-sized municipalities — the ministry's own effective-cost data — with signed measurement fichas                     |
+| **Management**          | `/gestion`                    | How the council runs: supplier-payment period (PMP), budget execution, the contractor profile                                                                             |
+| **Findings**            | `/hallazgos`                  | Editorial findings extracted from pleno transcripts, deterministically verified against the open-data trail, curator-gated, each with a permalink and right-of-reply      |
+| **Promise tracker**     | `/promesas`                   | Party electoral promises with verbatim source quotes, evidence, and status — under an electoral-silence freeze during campaigns                                           |
+| **Investigations**      | `/reportajes`                 | Deep investigative pieces with frozen, citation-gated figures — the DANA reconstruction money, the waste-collection contract                                              |
+| **Budget & contracts**  | `/presupuesto`                | Approved vs. executed budget, awarded contracts, subsidies, works in progress                                                                                             |
+| **Council sessions**    | `/plenos`                     | Every indexed session: agenda, transcript, and the votes a curator has promoted                                                                                           |
+| **Statements**          | `/declaraciones`              | Claims extracted from session transcripts, each with the verdict the deterministic verifier reached against the open-data record                                          |
+| **Departments**         | `/departamentos`              | Per-portfolio accountability: votes + promises + routed complaints                                                                                                        |
+| **Citizen complaints**  | `/quejas`                     | A Telegram-captured complaint feed with LPACAP legal clocks, escalation to the Síndic de Greuges, and a resolution dashboard                                              |
+| **Jobs**                | `/empleo`                     | Vacancies published through the town's employment portal, with their status and deadline                                                                                  |
+| **Public hiring**       | `/empleo-publico`             | Municipal selection processes and the staffing table (RPT)                                                                                                                |
+| **Lab**                 | `/laboratorio`                | A fact-check observatory over local press coverage                                                                                                                        |
+| **Efficiency frontier** | `/laboratorio/frontera`       | A DEA experiment. Our model's verdict, not a published figure: failed specifications ship as failed, no other municipality is ever named, and it never produces a finding |
+| **Expected cost**       | `/laboratorio/coste-esperado` | The OLS sibling of the frontier, under the same three rules — anonymous published sample, failed specs shipped as failed, residuals never become findings                 |
+| **Data catalogue**      | `/datos`                      | Every underlying JSON snapshot, with its source and licence                                                                                                               |
 
 The UI is bilingual (Castilian Spanish + Valencià). Only interface chrome is translated — **data content stays verbatim in its source language** to preserve quote accuracy.
 
@@ -47,17 +54,17 @@ The UI is bilingual (Castilian Spanish + Valencià). Only interface chrome is tr
 CivicPulse is a **front-end-only SPA with no application backend.** Everything the site shows is static JSON produced by a fleet of nightly scrapers and served next to the app.
 
 ```
-28 scrapers  ─────────►  public/data/*.json  ─────────►  React SPA (Vite)
+scrapers  ────────────►  public/data/*.json  ─────────►  React SPA (Vite)
 (GitHub Actions,          (committed to git,             (one hook per
  04:30 UTC nightly)        served by Vercel)              data domain)
 
-Telegram bot (sibling  ──►  SQLite  ──►  daily export  ──►  public/data/quejas.json
-Node package, /bot)         (local)      (non-PII only)
+Telegram bot  ──►  SQLite  ──►  /export  ──►  daily workflow  ──►  quejas.json
+(Fly.io)           (volume)    (non-PII)     (pull-quejas.yml)
 ```
 
 - **Scraper shape (TDD):** `scripts/scrape-X.ts` fetches the raw payload → a pure, unit-tested parser in `src/scraper/X.ts` → a typed snapshot in `public/data/X.json`. Every parser is pinned against a committed real-payload fixture. Re-running any scraper is idempotent.
 - **Front end:** Vite + React 18 + React Router 6, Leaflet maps, SVG charts. Design tokens are CSS variables (light/dark); components use token-driven inline styles.
-- **Bot:** a Node.js Telegram bot captures citizen complaints into SQLite and exports an aggregated, non-identifying snapshot. It runs as a local long-polling service.
+- **Bot:** a Node.js Telegram bot captures citizen complaints into SQLite and exports an aggregated, non-identifying snapshot. It is the one deployed piece — it runs on Fly.io in webhook mode with SQLite on a persistent volume, and a daily workflow pulls its export into `public/data/`. The site renders fine without it. Photos are never published raw: a vision pass boxes and hard-mosaics faces, plates and ID text, strips EXIF/GPS, and fails closed — if the vision call cannot run, the photo is held.
 
 **Tech stack:** TypeScript · React 18 · Vite 6 · React Router 6 · Leaflet · Vitest (unit/integration) · Playwright + axe-core (e2e + WCAG 2.1 AA a11y) · ESLint + Prettier.
 
@@ -78,7 +85,7 @@ The published editorial contract lives at [`/metodologia`](https://civicpulse.es
 All sources are public-sector or open-data (Ley 19/2013 de Transparencia, datos.gob.es CC-BY 4.0, PLACSP/BDNS open-reuse, OpenStreetMap ODbL, Wikidata CC0). A non-exhaustive list:
 
 - **Municipal:** the town's own transparency portal (corporación, RPT, budget execution, works, hiring, associations register), council-session pages, participation blog.
-- **National:** MinHac CONPREL (budgets) · PLACSP / Gobierto (contracts) · BDNS (subsidies) · INE (census) · SEPE (unemployment) · BOE + BOP València + EU TED (gazettes) · CTBG + Sindicatura de Comptes (audit/transparency oversight).
+- **National:** MinHac — CONPREL (budgets), effective service costs, supplier-payment periods (PMP) · PLACSP / Gobierto (contracts) · BDNS (subsidies) · INE (census) · SEPE (unemployment) · BOE + BOP València + EU TED (gazettes) · CTBG + Sindicatura de Comptes (audit/transparency oversight).
 - **Geospatial:** OpenStreetMap (boundary, neighborhoods, streets, civic POIs, Metrovalencia network) · Wikidata · PATRICOVA flood-risk WMS.
 
 The full catalogue, per snapshot, is at [`/datos`](https://civicpulse.es/datos).
