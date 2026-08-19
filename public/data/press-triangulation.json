@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T05:17:05.289Z",
+  "generatedAt": "2026-08-19T08:20:17.510Z",
   "clusters": [
     {
       "clusterId": "1urv1oi",
@@ -88,7 +88,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 3,
         "promesa-repetida": 0
       }
     },
@@ -109,7 +109,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 3,
+        "sin-datos": 0,
         "promesa-repetida": 0
       }
     }

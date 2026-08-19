@@ -1,20 +1,243 @@
 {
-  "generatedAt": "2026-08-16T08:16:26.130Z",
+  "generatedAt": "2026-08-19T08:20:16.205Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 51,
+    "total": 45,
     "byVerdict": {
-      "verificado": 3,
-      "parcial": 5,
+      "verificado": 2,
+      "parcial": 0,
       "contradicho": 0,
       "sin-datos": 43,
       "promesa-repetida": 0
     }
   },
   "items": [
+    {
+      "claim": {
+        "id": "1hiwvms-0-dat",
+        "articleId": "1hiwvms",
+        "articleFingerprint": "1od5s84",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85552-riba-roja-cedeix-una-parcella-municipal-de-1-945-m%c2%b2-per-a-construir-36-habitatges-de-proteccio-publica.html",
+        "articleDate": "2026-08-17T13:35:30.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "Riba-roja cedeix una parcel·la municipal de 1.945 m²",
+        "context": "Riba-roja cedeix una parcel·la municipal de 1.945 m² per a construir 36 habitatges de protecció pública",
+        "topic": "vivienda",
+        "entities": {
+          "count": 1945,
+          "countUnit": "m²",
+          "referencedEntity": "parcel·la municipal"
+        },
+        "confidence": 0.75,
+        "reasoning": "Cifra verificable de la superficie de la parcela municipal cedida, comprobable en el acuerdo o expediente municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1hiwvms-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85552-riba-roja-cedeix-una-parcella-municipal-de-1-945-m%c2%b2-per-a-construir-36-habitatges-de-proteccio-publica.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1od5s84"
+      }
+    },
+    {
+      "claim": {
+        "id": "1hiwvms-1-num",
+        "articleId": "1hiwvms",
+        "articleFingerprint": "1od5s84",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85552-riba-roja-cedeix-una-parcella-municipal-de-1-945-m%c2%b2-per-a-construir-36-habitatges-de-proteccio-publica.html",
+        "articleDate": "2026-08-17T13:35:30.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "per a construir 36 habitatges de protecció pública",
+        "context": "Riba-roja cedeix una parcel·la municipal de 1.945 m² per a construir 36 habitatges de protecció pública",
+        "topic": "vivienda",
+        "entities": {
+          "count": 36,
+          "countUnit": "habitatges de protecció pública",
+          "referencedEntity": "habitatges de protecció pública"
+        },
+        "confidence": 0.75,
+        "reasoning": "Cifra verificable del número de viviendas de protección pública proyectadas sobre la parcela cedida.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1hiwvms-1-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85552-riba-roja-cedeix-una-parcella-municipal-de-1-945-m%c2%b2-per-a-construir-36-habitatges-de-proteccio-publica.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1od5s84"
+      }
+    },
+    {
+      "claim": {
+        "id": "17vhhpk-0-num",
+        "articleId": "17vhhpk",
+        "articleFingerprint": "1yj7qok",
+        "articleSource": "Las Provincias",
+        "articleSourceHost": "lasprovincias.es",
+        "articleUrl": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPc1RtSHpNa2U3TDc3Yy1RaXR1UkdVUC1fREFOX2FmTk43Rk1UUF9iY1FSYTRINjRHYWRuTFU3VmI0cGdGdEpwVEsxTERYRzRuTlZ4bml2eHJueEdieGtwNGtKMWs1UGFsWkZXaXkwQlFFM3RzS3VQUlZRZ3BzTTh6MjZpeHBheFVZS0NTZ05wSzB0bjVESk9BU1piTmlKWk5ucnVFV3ZLV20xYXhCQjNFYzFzVDZsWnhnNHdrQUZpQWnSAcYBQVVfeXFMTWNSVWdTc0M3YktaYjlyQTZCWmdWWHo3WnJuUDJPY3dhUjRzN2ZPd3B6SG1tTnRDcEdRMlRwODVMdVpESFA3LTNvdGNSV2RLb1M2MEpHRG91Y0lObWcwMDY0NVJ6MUFTcW9ZOGVwb3gwa0daNU8zRUN0R1V3aWsyYjlYcDhrOGdCcmM4WXlTX0RGRUpKN0NMUG5iT0V5ZHF5UEM1aW1YVnZjRXN5U0NOLWd1OEo2NVpVTXZEZXI4NkV1VllxdzNR?oc=5",
+        "articleDate": "2026-08-17T13:30:30.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Riba-roja cede una parcela para construir 36 viviendas de protección pública",
+        "context": "Titular del artículo publicado por Las Provincias el 17/08/2026 sobre la cesión de una parcela municipal en Riba-roja de Túria destinada a vivienda protegida.",
+        "topic": "vivienda",
+        "entities": {
+          "count": 36,
+          "countUnit": "viviendas",
+          "referencedEntity": "Riba-roja de Túria"
+        },
+        "confidence": 0.65,
+        "reasoning": "Cifra concreta (36 viviendas) y acción municipal (cesión de parcela) verificables en fuentes municipales, aunque solo se dispone del titular sin cuerpo del artículo.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "17vhhpk-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPc1RtSHpNa2U3TDc3Yy1RaXR1UkdVUC1fREFOX2FmTk43Rk1UUF9iY1FSYTRINjRHYWRuTFU3VmI0cGdGdEpwVEsxTERYRzRuTlZ4bml2eHJueEdieGtwNGtKMWs1UGFsWkZXaXkwQlFFM3RzS3VQUlZRZ3BzTTh6MjZpeHBheFVZS0NTZ05wSzB0bjVESk9BU1piTmlKWk5ucnVFV3ZLV20xYXhCQjNFYzFzVDZsWnhnNHdrQUZpQWnSAcYBQVVfeXFMTWNSVWdTc0M3YktaYjlyQTZCWmdWWHo3WnJuUDJPY3dhUjRzN2ZPd3B6SG1tTnRDcEdRMlRwODVMdVpESFA3LTNvdGNSV2RLb1M2MEpHRG91Y0lObWcwMDY0NVJ6MUFTcW9ZOGVwb3gwa0daNU8zRUN0R1V3aWsyYjlYcDhrOGdCcmM4WXlTX0RGRUpKN0NMUG5iT0V5ZHF5UEM1aW1YVnZjRXN5U0NOLWd1OEo2NVpVTXZEZXI4NkV1VllxdzNR?oc=5",
+        "articleSource": "Las Provincias",
+        "articleSourceHost": "lasprovincias.es",
+        "articleFingerprint": "1yj7qok"
+      }
+    },
+    {
+      "claim": {
+        "id": "15tpe88-0-dat",
+        "articleId": "15tpe88",
+        "articleFingerprint": "1v2ow04",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-cede-una-parcela-municipal-de-1.945-metros-cuadrados-para-construir-36-viviendas-de-protecci%C3%B3n-p%C3%BAblica-tras-constatar-una-tensi%C3%B3n-en-el-mercado-inmobiliario",
+        "articleDate": "2026-08-17T11:54:37.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "cede una parcela municipal de 1.945 metros cuadrados",
+        "context": "Riba-roja cede una parcela municipal de 1.945 metros cuadrados para construir 36 viviendas de protección pública tras constatar una tensión en el mercado inmobiliario",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 1945,
+          "countUnit": "metros cuadrados",
+          "referencedEntity": "parcela municipal"
+        },
+        "confidence": 0.8,
+        "reasoning": "La superficie exacta de la parcela cedida (1.945 m²) es un dato verificable mediante registros catastrales o municipales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "15tpe88-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-cede-una-parcela-municipal-de-1.945-metros-cuadrados-para-construir-36-viviendas-de-protecci%C3%B3n-p%C3%BAblica-tras-constatar-una-tensi%C3%B3n-en-el-mercado-inmobiliario",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1v2ow04"
+      }
+    },
+    {
+      "claim": {
+        "id": "15tpe88-1-dat",
+        "articleId": "15tpe88",
+        "articleFingerprint": "1v2ow04",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-cede-una-parcela-municipal-de-1.945-metros-cuadrados-para-construir-36-viviendas-de-protecci%C3%B3n-p%C3%BAblica-tras-constatar-una-tensi%C3%B3n-en-el-mercado-inmobiliario",
+        "articleDate": "2026-08-17T11:54:37.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "title",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "para construir 36 viviendas de protección pública",
+        "context": "Riba-roja cede una parcela municipal de 1.945 metros cuadrados para construir 36 viviendas de protección pública tras constatar una tensión en el mercado inmobiliario",
+        "topic": "vivienda",
+        "entities": {
+          "count": 36,
+          "countUnit": "viviendas",
+          "referencedEntity": "viviendas de protección pública"
+        },
+        "confidence": 0.8,
+        "reasoning": "El número concreto de viviendas de protección pública (36) es una cifra contrastable con el proyecto urbanístico que se apruebe.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "15tpe88-1-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-cede-una-parcela-municipal-de-1.945-metros-cuadrados-para-construir-36-viviendas-de-protecci%C3%B3n-p%C3%BAblica-tras-constatar-una-tensi%C3%B3n-en-el-mercado-inmobiliario",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1v2ow04"
+      }
+    },
+    {
+      "claim": {
+        "id": "1r02fps-0-dat",
+        "articleId": "1r02fps",
+        "articleFingerprint": "121cyfx",
+        "articleSource": "Valencia Plaza",
+        "articleSourceHost": "valenciaplaza.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNVXpZcUpiVnRvMmF0b3ZDUVIyTjRvcmFUbW1GSFFyOGJEbEFYNDVkR1RrN01rMEMtbmV5bXhmSC1CQVQtNnFCM2xuYkRaeWJRaTlPb2pGeW4xeHR3STFxRHNCdFhUdXFGODFBQ1ByeGpmMmJrTDlrYzNBS0NoUURKRnNRcWFrMXpoN1FjY1B1anBVZTF2d2VHWTJBZklmUXpkTVNRVnNvZEpIVzh6OGd2bF9xeDVNRVVCaTdPZkFabGRHQmIyeVFfbmN6dDZiZGx0enlwTGJnd2Zmd29IOWdkbUFRTEdmUQ?oc=5",
+        "articleDate": "2026-08-17T10:55:37.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "Riba-roja cede 1.945 metros cuadrados de suelo para la construcción de 36 viviendas protegidas",
+        "context": "Titular de Valencia Plaza (17/08/2026): 'Riba-roja cede 1.945 metros cuadrados de suelo para la construcción de 36 viviendas protegidas'. No se dispone de cuerpo de artículo adicional.",
+        "topic": "vivienda",
+        "entities": {
+          "count": 1945,
+          "countUnit": "metros cuadrados",
+          "date": "2026-08-17",
+          "referencedEntity": "Riba-roja de Túria"
+        },
+        "confidence": 0.55,
+        "reasoning": "La cesión de una superficie de suelo municipal concreta es un dato verificable en actas de pleno, convenios urbanísticos o el registro de bienes municipales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r02fps-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNVXpZcUpiVnRvMmF0b3ZDUVIyTjRvcmFUbW1GSFFyOGJEbEFYNDVkR1RrN01rMEMtbmV5bXhmSC1CQVQtNnFCM2xuYkRaeWJRaTlPb2pGeW4xeHR3STFxRHNCdFhUdXFGODFBQ1ByeGpmMmJrTDlrYzNBS0NoUURKRnNRcWFrMXpoN1FjY1B1anBVZTF2d2VHWTJBZklmUXpkTVNRVnNvZEpIVzh6OGd2bF9xeDVNRVVCaTdPZkFabGRHQmIyeVFfbmN6dDZiZGx0enlwTGJnd2Zmd29IOWdkbUFRTEdmUQ?oc=5",
+        "articleSource": "Valencia Plaza",
+        "articleSourceHost": "valenciaplaza.com",
+        "articleFingerprint": "121cyfx"
+      }
+    },
     {
       "claim": {
         "id": "1k7hpxd-0-pro",
@@ -296,18 +519,13 @@
       },
       "verification": {
         "claimId": "1k7hpxd-7-obr",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=MHF2SJtZAK%2FgL1BHd3qjQA%3D%3D",
-            "snippet": "Contrato de servicio para la redacción del proyecto de ejecución y estudio de seguridad y salud de la obra de inversión denominada “CENTRO DE DIA PARA PERSONAS CON DIVERSIDAD FUNCIONAL” en el término municipal de l´Eliana través de un contrato específico en el marco del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. · Ayuntamiento de Riba-roja de Túria · architecture · estado: unknown",
-            "similarity": 0.5,
-            "stance": "checked"
-          }
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
         ],
-        "checkedAgainst": [],
         "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
         "articleSource": "Periòdic del Camp de Túria",
         "articleSourceHost": "infoturia.com",
@@ -342,7 +560,10 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ],
         "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
         "articleSource": "Periòdic del Camp de Túria",
         "articleSourceHost": "infoturia.com",
@@ -375,17 +596,9 @@
       },
       "verification": {
         "claimId": "1k7hpxd-9-num",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BxX%2F0h%2BKVBsQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de comunicaciones para organismos adheridos a la Central de Servicios Innovadores y Sostenibles de la Diputación de Valencia · Ayuntamiento de Riba-roja de Túria · telecom · 120.000 €",
-            "similarity": 0.6,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
@@ -758,17 +971,9 @@
       },
       "verification": {
         "claimId": "t56pik-6-num",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BxX%2F0h%2BKVBsQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de comunicaciones para organismos adheridos a la Central de Servicios Innovadores y Sostenibles de la Diputación de Valencia · Ayuntamiento de Riba-roja de Túria · telecom · 120.000 €",
-            "similarity": 0.6,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
@@ -966,6 +1171,49 @@
     },
     {
       "claim": {
+        "id": "14e5quo-0-num",
+        "articleId": "14e5quo",
+        "articleFingerprint": "9bcvpg",
+        "articleSource": "Interdiario",
+        "articleSourceHost": "interdiario.es",
+        "articleUrl": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPRGJjbWtiTGJKSTFfYV9FY3Y4UVZRZDlWR2lmWW1tZ3laSVF5NUN0TVdNZmVPMldZTWZBeUIxLWg4em5pU3RKTlJLT1NPcWVvb0tRU2huX1ZxMnI0SUdZQU4xcUhCTHUzYnJIZ2E1bktPVnBpTi1hMzFnSmhDQzVla19BRDhaaGt6cWRWV0lHT3JyMkFTUXdNckh5cUxua0hMdkJ2cFZzMF94VV8yRlQtTmFUX052a2taOE9pVENYd0F2NXM?oc=5",
+        "articleDate": "2026-08-13T08:07:00.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Riba-roja del Túria adjudica a Veolia la gestión del agua por 55,6 millones durante 17 años",
+        "context": "Titular de Interdiario (13/08/2026): 'Riba-roja del Túria adjudica a Veolia la gestión del agua por 55,6 millones durante 17 años'. No se dispone de más texto del cuerpo del artículo.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "amountEuros": 55600000,
+          "count": 17,
+          "countUnit": "años",
+          "referencedEntity": "Veolia"
+        },
+        "confidence": 0.8,
+        "reasoning": "El titular aporta cifras concretas y verificables (importe del contrato y duración) sobre la adjudicación de la gestión del agua, contrastables con el expediente de contratación pública.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "14e5quo-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPRGJjbWtiTGJKSTFfYV9FY3Y4UVZRZDlWR2lmWW1tZ3laSVF5NUN0TVdNZmVPMldZTWZBeUIxLWg4em5pU3RKTlJLT1NPcWVvb0tRU2huX1ZxMnI0SUdZQU4xcUhCTHUzYnJIZ2E1bktPVnBpTi1hMzFnSmhDQzVla19BRDhaaGt6cWRWV0lHT3JyMkFTUXdNckh5cUxua0hMdkJ2cFZzMF94VV8yRlQtTmFUX052a2taOE9pVENYd0F2NXM?oc=5",
+        "articleSource": "Interdiario",
+        "articleSourceHost": "interdiario.es",
+        "articleFingerprint": "9bcvpg"
+      }
+    },
+    {
+      "claim": {
         "id": "1xuqiyg-0-num",
         "articleId": "1xuqiyg",
         "articleFingerprint": "1eha1zw",
@@ -1030,13 +1278,6 @@
         "verdict": "verificado",
         "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RkaNtWp7zg3nSoTX3z%2F7wA%3D%3D",
-            "snippet": "Lote nº 3: Instalación, riego y drenaje · Ayuntamiento de Riba-roja de Túria · Turia-regs, S.L. · textile · 6000 €",
-            "similarity": 0.6,
-            "stance": "checked"
-          },
           {
             "kind": "bdns",
             "ref": "bdns:",
@@ -1120,17 +1361,9 @@
       },
       "verification": {
         "claimId": "1d9sglk-1-num",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RkaNtWp7zg3nSoTX3z%2F7wA%3D%3D",
-            "snippet": "Lote nº 3: Instalación, riego y drenaje · Ayuntamiento de Riba-roja de Túria · Turia-regs, S.L. · textile · 6000 €",
-            "similarity": 0.6,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
@@ -1210,13 +1443,6 @@
         "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RkaNtWp7zg3nSoTX3z%2F7wA%3D%3D",
-            "snippet": "Lote nº 3: Instalación, riego y drenaje · Ayuntamiento de Riba-roja de Túria · Turia-regs, S.L. · textile · 6000 €",
-            "similarity": 0.6,
-            "stance": "checked"
-          },
-          {
             "kind": "bdns",
             "ref": "bdns:",
             "snippet": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la convocatoria de subvenciones destinadas a la concesión de los premios EcoRiba 2026 · LOCAL · RIBA-ROJA D · importe no publicado",
@@ -1234,57 +1460,6 @@
         "articleSource": "Ayuntamiento de Riba-roja de Túria",
         "articleSourceHost": "ribarroja.es",
         "articleFingerprint": "1fv95cm"
-      }
-    },
-    {
-      "claim": {
-        "id": "plfgoc-0-num",
-        "articleId": "plfgoc",
-        "articleFingerprint": "18f1xjw",
-        "articleSource": "Valencia Plaza",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTQ1ZHFLLTNRRXdudEs2RHpkMXdKam1SUjdjM21jRkx3TFZEcVd1eFJ5cloycFVpNHFFeG1UeXYyVHpFcXVyaEsxRVgzajlLdnI2ZmVoT3ZpMDJXa1h2WUN3REplYjJIN3QydlB2TWFWYTBpdnZ4QU5oY1VXTWlITUlCSDQwaGhCY0RocnZYTUR0THVERkJqOWpTMmtzMmNmRDhXaWlIcGNCZmNOaXM1d1BTVUZ4TmhUSm5DTGdmODlyeWw2bUY4UUc2OUN6MUZIZnRjNlZqSGRxeTd1QTVVUFd4bHpJNjhG?oc=5",
-        "articleDate": "2026-08-10T13:17:56.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "Riba-roja adjudica el contrato para el suministro de agua potable por 55,6 millones para 17 años",
-        "context": "Riba-roja adjudica el contrato para el suministro de agua potable por 55,6 millones para 17 años",
-        "topic": "urbanismo",
-        "entities": {
-          "amountEuros": 55600000,
-          "count": 17,
-          "countUnit": "años",
-          "referencedEntity": "contrato de suministro de agua potable de Riba-roja de Túria"
-        },
-        "confidence": 0.75,
-        "reasoning": "El titular afirma una cifra económica concreta (55,6 millones de euros) y una duración concreta (17 años) para un contrato municipal, dato verificable en el expediente de contratación.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "plfgoc-0-num",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
-            "snippet": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. · Ayuntamiento de Riba-roja de Túria · HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE S.A. · public_services · 55.685.179 €",
-            "similarity": 0.86,
-            "stance": "checked"
-          }
-        ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTQ1ZHFLLTNRRXdudEs2RHpkMXdKam1SUjdjM21jRkx3TFZEcVd1eFJ5cloycFVpNHFFeG1UeXYyVHpFcXVyaEsxRVgzajlLdnI2ZmVoT3ZpMDJXa1h2WUN3REplYjJIN3QydlB2TWFWYTBpdnZ4QU5oY1VXTWlITUlCSDQwaGhCY0RocnZYTUR0THVERkJqOWpTMmtzMmNmRDhXaWlIcGNCZmNOaXM1d1BTVUZ4TmhUSm5DTGdmODlyeWw2bUY4UUc2OUN6MUZIZnRjNlZqSGRxeTd1QTVVUFd4bHpJNjhG?oc=5",
-        "articleSource": "Valencia Plaza",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleFingerprint": "18f1xjw"
       }
     },
     {
@@ -1315,17 +1490,9 @@
       },
       "verification": {
         "claimId": "neb0p4-0-num",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
-            "snippet": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. · Ayuntamiento de Riba-roja de Túria · HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE S.A. · public_services · 55.685.179 €",
-            "similarity": 0.73,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
@@ -1560,446 +1727,7 @@
         "articleSourceHost": "ribarroja.es",
         "articleFingerprint": "2boyl9"
       }
-    },
-    {
-      "claim": {
-        "id": "1q1jztw-0-dat",
-        "articleId": "1q1jztw",
-        "articleFingerprint": "1u1sgjv",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-abre-la-convocatoria-para-la-nueva-%27gastrofira%27",
-        "articleDate": "2026-08-06T10:17:08.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "El evento gastronómico se celebrará los días 16, 17 y 18 de octubre de 2026 dentro de la «Feria de 10» y ofertará un máximo de diez plazas exclusivas para la hostelería local.",
-        "context": "Riba-roja abre la convocatoria para la nueva 'Gastrofira'. El evento gastronómico se celebrará los días 16, 17 y 18 de octubre de 2026 dentro de la «Feria de 10» y ofertará un máximo de diez plazas exclusivas para la hostelería local.",
-        "topic": "other",
-        "entities": {
-          "count": 10,
-          "countUnit": "plazas",
-          "date": "2026-10-16 a 2026-10-18",
-          "referencedEntity": "Gastrofira / Feria de 10"
-        },
-        "confidence": 0.9,
-        "reasoning": "Fecha exacta y número máximo de plazas son datos verificables contra las bases de la convocatoria municipal.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1q1jztw-0-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-abre-la-convocatoria-para-la-nueva-%27gastrofira%27",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1u1sgjv"
-      }
-    },
-    {
-      "claim": {
-        "id": "1q1jztw-1-dat",
-        "articleId": "1q1jztw",
-        "articleFingerprint": "1u1sgjv",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-abre-la-convocatoria-para-la-nueva-%27gastrofira%27",
-        "articleDate": "2026-08-06T10:17:08.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "el Consistorio instalará 10 casetas de madera equipadas con extracción de humos, punto de agua y potencia eléctrica en el recinto ferial principal",
-        "context": "Para esta edición renovada, el Consistorio instalará 10 casetas de madera equipadas con extracción de humos, punto de agua y potencia eléctrica en el recinto ferial principal (Plaza presidente Adolfo Suárez González y zonas adyacentes).",
-        "topic": "other",
-        "entities": {
-          "count": 10,
-          "countUnit": "casetas",
-          "referencedEntity": "Plaza presidente Adolfo Suárez González"
-        },
-        "confidence": 0.9,
-        "reasoning": "El número y equipamiento de las casetas es un dato municipal concreto y verificable in situ.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1q1jztw-1-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-abre-la-convocatoria-para-la-nueva-%27gastrofira%27",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1u1sgjv"
-      }
-    },
-    {
-      "claim": {
-        "id": "1q1jztw-2-dat",
-        "articleId": "1q1jztw",
-        "articleFingerprint": "1u1sgjv",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-abre-la-convocatoria-para-la-nueva-%27gastrofira%27",
-        "articleDate": "2026-08-06T10:17:08.000Z",
-        "segmentIndex": 2,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "La convocatoria está dirigida a bares, restaurantes y cafeterías del término municipal que cuenten con ubicación activa, licencia y habilitación sanitaria",
-        "context": "Requisitos y proceso de selección. La convocatoria está dirigida a bares, restaurantes y cafeterías del término municipal que cuenten con ubicación activa, licencia y habilitación sanitaria, así como con el equipamiento técnico necesario.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "bares, restaurantes y cafeterías del término municipal"
-        },
-        "confidence": 0.8,
-        "reasoning": "Los requisitos de participación son verificables comparándolos con las bases reguladoras publicadas.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1q1jztw-2-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-abre-la-convocatoria-para-la-nueva-%27gastrofira%27",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1u1sgjv"
-      }
-    },
-    {
-      "claim": {
-        "id": "1q1jztw-3-dat",
-        "articleId": "1q1jztw",
-        "articleFingerprint": "1u1sgjv",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-abre-la-convocatoria-para-la-nueva-%27gastrofira%27",
-        "articleDate": "2026-08-06T10:17:08.000Z",
-        "segmentIndex": 3,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "la adjudicación se resolverá por concurrencia competitiva (hasta un máximo de 10 puntos)",
-        "context": "En caso de que las solicitudes superen las diez plazas disponibles, la adjudicación se resolverá por concurrencia competitiva (hasta un máximo de 10 puntos), baremando la trayectoria y la participación previa en campañas de dinamización comercial del Ayuntamiento.",
-        "topic": "other",
-        "entities": {
-          "count": 10,
-          "countUnit": "puntos",
-          "referencedEntity": "concurrencia competitiva"
-        },
-        "confidence": 0.85,
-        "reasoning": "El sistema de baremación con puntuación máxima es un dato numérico verificable en las bases del concurso.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1q1jztw-3-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-abre-la-convocatoria-para-la-nueva-%27gastrofira%27",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1u1sgjv"
-      }
-    },
-    {
-      "claim": {
-        "id": "1q1jztw-4-dat",
-        "articleId": "1q1jztw",
-        "articleFingerprint": "1u1sgjv",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-abre-la-convocatoria-para-la-nueva-%27gastrofira%27",
-        "articleDate": "2026-08-06T10:17:08.000Z",
-        "segmentIndex": 4,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "El acto público de adjudicación y el sorteo de los espacios tendrá lugar el jueves 24 de septiembre de 2026 a las 14:00 horas en la Agencia de Desarrollo Local (ADL).",
-        "context": "El acto público de adjudicación y el sorteo de los espacios tendrá lugar el jueves 24 de septiembre de 2026 a las 14:00 horas en la Agencia de Desarrollo Local (ADL).",
-        "topic": "other",
-        "entities": {
-          "date": "2026-09-24",
-          "referencedEntity": "Agencia de Desarrollo Local (ADL)"
-        },
-        "confidence": 0.9,
-        "reasoning": "Fecha, hora y lugar concretos de un acto público son fácilmente verificables.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1q1jztw-4-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-abre-la-convocatoria-para-la-nueva-%27gastrofira%27",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1u1sgjv"
-      }
-    },
-    {
-      "claim": {
-        "id": "1q1jztw-5-dat",
-        "articleId": "1q1jztw",
-        "articleFingerprint": "1u1sgjv",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-abre-la-convocatoria-para-la-nueva-%27gastrofira%27",
-        "articleDate": "2026-08-06T10:17:08.000Z",
-        "segmentIndex": 5,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "Los establecimientos interesados tienen hasta el 9 de septiembre de 2026 para formalizar su solicitud.",
-        "context": "¿Cómo inscribirse? Los establecimientos interesados tienen hasta el 9 de septiembre de 2026 para formalizar su solicitud.",
-        "topic": "other",
-        "entities": {
-          "date": "2026-09-09",
-          "referencedEntity": "solicitud de participación en Gastrofira"
-        },
-        "confidence": 0.9,
-        "reasoning": "El plazo límite de inscripción es un dato objetivo y comprobable frente a la convocatoria oficial.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1q1jztw-5-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-abre-la-convocatoria-para-la-nueva-%27gastrofira%27",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1u1sgjv"
-      }
-    },
-    {
-      "claim": {
-        "id": "1q1jztw-6-dat",
-        "articleId": "1q1jztw",
-        "articleFingerprint": "1u1sgjv",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-abre-la-convocatoria-para-la-nueva-%27gastrofira%27",
-        "articleDate": "2026-08-06T10:17:08.000Z",
-        "segmentIndex": 6,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "La tramitación debe realizarse de forma telemática en el Registro General de Entrada de la Sede Electrónica del Ayuntamiento de Riba-roja de Túria",
-        "context": "La tramitación debe realizarse de forma telemática en el Registro General de Entrada de la Sede Electrónica del Ayuntamiento de Riba-roja de Túria, adjuntando: Instancia normalizada, Modelo 036/037 de alta en el IAE, Anexo I.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "Sede Electrónica del Ayuntamiento de Riba-roja de Túria"
-        },
-        "confidence": 0.8,
-        "reasoning": "El procedimiento y canal de tramitación indicados son verificables consultando la sede electrónica municipal.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1q1jztw-6-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-abre-la-convocatoria-para-la-nueva-%27gastrofira%27",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1u1sgjv"
-      }
-    },
-    {
-      "claim": {
-        "id": "195p4s0-0-dat",
-        "articleId": "195p4s0",
-        "articleFingerprint": "1u3skh4",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85347-riba-roja-de-turia-finalitza-el-seu-pla-daccessibilitat-turistica-per-a-reforcar-un-model-de-desti-inclusiu.html",
-        "articleDate": "2026-08-05T13:39:29.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "dato_municipal",
-        "attributedSource": "outlet",
-        "verbatim": "Riba-roja de Túria finalitza el seu Pla d’Accessibilitat Turística per a reforçar un model de destí inclusiu",
-        "context": "Titular del Periòdic del Camp de Túria (05/08/2026): \"Riba-roja de Túria finalitza el seu Pla d’Accessibilitat Turística per a reforçar un model de destí inclusiu\".",
-        "topic": "movilidad",
-        "entities": {
-          "date": "2026-08-05",
-          "referencedEntity": "Pla d'Accessibilitat Turística de Riba-roja de Túria"
-        },
-        "confidence": 0.5,
-        "reasoning": "Afirma que el Ayuntamiento ha completado un plan municipal concreto, hecho verificable mediante actas o publicación oficial del plan, aunque solo se dispone del titular sin cuerpo de la noticia.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "195p4s0-0-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85347-riba-roja-de-turia-finalitza-el-seu-pla-daccessibilitat-turistica-per-a-reforcar-un-model-de-desti-inclusiu.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "1u3skh4"
-      }
-    },
-    {
-      "claim": {
-        "id": "1cdyfns-0-dat",
-        "articleId": "1cdyfns",
-        "articleFingerprint": "v06nlo",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-finaliza-su-plan-de-accesibilidad-tur%C3%ADstica-para-reforzar-un-modelo-de-destino-inclusivo",
-        "articleDate": "2026-08-05T12:13:09.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "ha concluido la elaboración del Plan de Accesibilidad Turística del municipio",
-        "context": "El Ayuntamiento de Riba-roja de Túria ha concluido la elaboración del Plan de Accesibilidad Turística del municipio, una actuación integrada en el Plan de Sostenibilidad Turística en Destino (PSTD) que permitirá seguir avanzando hacia un modelo turístico más inclusivo, accesible y de mayor calidad para residentes y visitantes.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "Plan de Accesibilidad Turística de Riba-roja de Túria"
-        },
-        "confidence": 0.85,
-        "reasoning": "Es una declaración fáctica sobre la finalización de un plan municipal, verificable consultando la documentación oficial del Ayuntamiento.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1cdyfns-0-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-finaliza-su-plan-de-accesibilidad-tur%C3%ADstica-para-reforzar-un-modelo-de-destino-inclusivo",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "v06nlo"
-      }
-    },
-    {
-      "claim": {
-        "id": "1cdyfns-1-num",
-        "articleId": "1cdyfns",
-        "articleFingerprint": "v06nlo",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-finaliza-su-plan-de-accesibilidad-tur%C3%ADstica-para-reforzar-un-modelo-de-destino-inclusivo",
-        "articleDate": "2026-08-05T12:13:09.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "incluye un total de 18 intervenciones desarrolladas bajo el Plan de Recuperación, Transformación y Resiliencia (PRTR)",
-        "context": "El PSTD, en el que se enmarca esta actuación, incluye un total de 18 intervenciones desarrolladas bajo el Plan de Recuperación, Transformación y Resiliencia (PRTR), financiado por la Unión Europea a través de los fondos NextGenerationEU.",
-        "topic": "other",
-        "entities": {
-          "count": 18,
-          "countUnit": "intervenciones",
-          "referencedEntity": "Plan de Sostenibilidad Turística en Destino (PSTD) / PRTR"
-        },
-        "confidence": 0.9,
-        "reasoning": "Cifra concreta y verificable del número de intervenciones incluidas en el PSTD financiado por fondos europeos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1cdyfns-1-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-finaliza-su-plan-de-accesibilidad-tur%C3%ADstica-para-reforzar-un-modelo-de-destino-inclusivo",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "v06nlo"
-      }
-    },
-    {
-      "claim": {
-        "id": "1cdyfns-2-num",
-        "articleId": "1cdyfns",
-        "articleFingerprint": "v06nlo",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-finaliza-su-plan-de-accesibilidad-tur%C3%ADstica-para-reforzar-un-modelo-de-destino-inclusivo",
-        "articleDate": "2026-08-05T12:13:09.000Z",
-        "segmentIndex": 2,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "con una inversión total de 2.112.907 euros en el municipio",
-        "context": "Este plan cuenta con la colaboración del Ministerio de Industria y Turismo, la Generalitat Valenciana, Turisme Comunitat Valenciana y el Ayuntamiento de Riba-roja de Túria, con una inversión total de 2.112.907 euros en el municipio.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 2112907,
-          "referencedEntity": "Plan de Sostenibilidad Turística en Destino (PSTD) en Riba-roja de Túria"
-        },
-        "confidence": 0.9,
-        "reasoning": "Cifra concreta de inversión total en euros, contrastable con presupuestos o convenios de financiación publicados por las administraciones implicadas.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1cdyfns-2-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-finaliza-su-plan-de-accesibilidad-tur%C3%ADstica-para-reforzar-un-modelo-de-destino-inclusivo",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "v06nlo"
-      }
-    },
-    {
-      "claim": {
-        "id": "9i22fn-0-dat",
-        "articleId": "9i22fn",
-        "articleFingerprint": "1ggx9po",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/aprobaci%C3%B3n-inicial-modificaci%C3%B3n-bases-de-ejecuci%C3%B3n-presupuesto-municipal-para-incluir-a-la-parroquia-de-la-asunci%C3%B3n-de-nuestra-se%C3%B1ora",
-        "articleDate": "2026-08-05T07:51:19.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "la subvención nominativa a conceder a la parroquia de la Asunción de nuestra Señora sita en el propio término municipal",
-        "context": "Aprobación inicial de la modificación de las Bases de ejecución del Presupuesto municipal del Excmo Ayuntamiento de Riba-roja de Túria para incluir en las Bases la subvención nominativa a conceder a la parroquia de la Asunción de nuestra Señora sita en el propio término municipal. Anuncio aprobación inicial.",
-        "topic": "fiscal",
-        "entities": {
-          "date": "2026-08-05",
-          "referencedEntity": "parroquia de la Asunción de nuestra Señora"
-        },
-        "confidence": 0.8,
-        "reasoning": "Es un acto administrativo público (aprobación inicial de modificación de las Bases de ejecución presupuestaria) verificable en el anuncio oficial y actas municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "9i22fn-0-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/aprobaci%C3%B3n-inicial-modificaci%C3%B3n-bases-de-ejecuci%C3%B3n-presupuesto-municipal-para-incluir-a-la-parroquia-de-la-asunci%C3%B3n-de-nuestra-se%C3%B1ora",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1ggx9po"
-      }
     }
   ],
-  "sourceGeneratedAt": "2026-08-16T08:16:22.102Z"
+  "sourceGeneratedAt": "2026-08-19T08:20:14.521Z"
 }
