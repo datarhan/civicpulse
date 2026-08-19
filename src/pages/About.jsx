@@ -9,7 +9,7 @@ const TIER_ROWS = [
   [
     'T1 · Auto',
     'all ~8,100 municipalities',
-    'budget, contracts, subsidies, census, unemployment, official-gazette mentions — national open sources, zero editorial claims',
+    'service costs, budget, contracts, subsidies, census, unemployment, official-gazette mentions — national open sources, zero editorial claims',
   ],
   [
     'T2 · Semi',
@@ -59,7 +59,23 @@ export default function About() {
       </h1>
 
       <Card style={{ marginTop: 22 }}>
-        <SectionHead eyebrow="The problem" title="Spain's municipal news deserts" />
+        <SectionHead
+          eyebrow="What it is"
+          title="Measure your town hall: cost, promises, contracts"
+        />
+        <p style={{ marginBottom: 0 }}>
+          CivicPulse is a citizen tool for holding a town hall to account, built for any Spanish
+          municipality. It measures what the council does and what it costs — each service priced
+          against similar-sized towns on the ministry's own data, supplier-payment periods, budget
+          execution — and follows electoral promises with verbatim quotes, council votes, public
+          contracts, and citizen complaints with statutory clocks. On that base it publishes deep,
+          fully-cited local journalism. The goal: that before Spain's May 2027 municipal elections,
+          voters can decide from facts, not campaign speeches.
+        </p>
+      </Card>
+
+      <Card style={{ marginTop: 14 }}>
+        <SectionHead eyebrow="The gap" title="Spain's municipal news deserts" />
         <p>
           Roughly 6,800 of Spain's 8,100 municipalities have no dedicated press coverage. Local
           government there operates without systematic scrutiny: council sessions go untranscribed,
@@ -69,14 +85,17 @@ export default function About() {
       </Card>
 
       <Card style={{ marginTop: 14 }}>
-        <SectionHead eyebrow="The proof" title="One town, covered completely" />
+        <SectionHead eyebrow="The proof" title="The first municipality, covered completely" />
         <p>
-          CivicPulse runs live for Riba-roja de Túria (pop. ~24,600, València): 28 nightly scrapers
-          over public-sector open data, Whisper-transcribed council sessions, LLM-extracted claims
+          CivicPulse runs live, end to end, in its first municipality — Riba-roja de Túria (pop.
+          ~24,600, València): the effective cost of each municipal service against the ministry's
+          own peer data, supplier-payment periods and budget execution, 28 nightly scrapers over
+          public-sector open data, Whisper-transcribed council sessions, LLM-extracted claims
           verified deterministically against the procurement/budget/subsidy record, human-curated
           findings with a built-in right of reply, geolocated contract spending, and a Telegram
-          complaints channel with statutory response clocks. Every editorial surface is gated by
-          documented libel discipline (
+          complaints channel with statutory response clocks — plus four published investigations,
+          from the DANA reconstruction money to the waste-collection contract. Every editorial
+          surface is gated by documented libel discipline (
           <a href="/metodologia" style={{ color: 'var(--civic)' }}>
             methodology, in Spanish
           </a>

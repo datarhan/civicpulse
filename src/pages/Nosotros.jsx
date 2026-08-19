@@ -197,11 +197,13 @@ export default function Nosotros() {
       <Card style={{ marginTop: 14 }}>
         <SectionHead eyebrow="El proyecto" title="Qué es CivicPulse" />
         <p>
-          Un monitor independiente de lo que hace el Ayuntamiento: plenos transcritos y verificados,
-          presupuesto y contratos geolocalizados, promesas electorales con su fuente verbatim, y un
-          canal de quejas vecinales con reloj legal. Riba-roja de Túria es el municipio piloto; el
-          objetivo es que el mismo estándar de rendición de cuentas llegue a cualquier municipio
-          español.
+          Una herramienta ciudadana para controlar tu ayuntamiento, pensada para cualquier municipio
+          de España. Mide lo que hace y cuánto cuesta — qué paga el pueblo por cada servicio y si es
+          caro o barato frente a municipios de su tamaño, con los datos del propio ministerio —;
+          sigue promesas, plenos, contratos y quejas vecinales, cada uno con su fuente; y sobre esos
+          datos publica periodismo de investigación. Riba-roja de Túria es el primer municipio; el
+          objetivo es que, antes de volver a votar en mayo de 2027, cualquier vecino pueda decidir
+          con hechos, no con discursos electorales.
         </p>
         <p style={{ marginBottom: 0 }}>
           <a href="/metodologia" style={{ color: 'var(--civic)' }}>

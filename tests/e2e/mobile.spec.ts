@@ -74,7 +74,7 @@ const ROUTES: Route[] = [
     path: '/laboratorio/coste-esperado',
     ready: /veces\s+lo esperado|municipios en gestión directa/,
   },
-  { path: '/nosotros', ready: /es el municipio piloto/ },
+  { path: '/nosotros', ready: /es el primer municipio/ },
   { path: '/about', ready: /All funding is disclosed publicly/ },
   { path: '/metodologia', ready: /Última revisión de este documento/ },
   { path: '/aviso-legal', ready: /Versión vigente/ },
