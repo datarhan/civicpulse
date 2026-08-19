@@ -1,65 +1,8 @@
 {
-  "generatedAt": "2026-08-18T09:44:39.986Z",
-  "bundleCount": 1,
+  "generatedAt": "2026-08-19T10:31:38.763Z",
+  "bundleCount": 0,
   "archivedCount": 0,
   "contract": "Eligible bundles (no contradicho, all gates passed) that have not yet been promoted. The weekly auto-curate cron promotes the top 5 by score; the rest are listed here for the curator dashboard.",
-  "bundles": [
-    {
-      "plenoId": "15uvjew",
-      "plenoDate": "2026-07-27",
-      "plenoTitle": "Sesión de fecha 27 de julio de 2026",
-      "topic": "movilidad",
-      "blocs": [
-        "PSOE",
-        "PP"
-      ],
-      "score": 6.5,
-      "quotes": [
-        {
-          "claimId": "15uvjew-148-afi-755647",
-          "speakerGroup": "PP",
-          "verdict": "verificado",
-          "confidence": 0.7,
-          "verbatim": "Caminos rurales, desaparece setenta y cinco mil euros, asfaltado",
-          "evidence": [
-            {
-              "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h4tiCELtfEdxseVhcqrkhw%3D%3D",
-              "snippet": "Contrato administrativo de obras para el proyecto de “Asfaltado y reasfaltado de viales urbanos y caminos rurales de Riba-roja de Túria” Plan RENOVE , dividido en 6 lotes. · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · const"
-            }
-          ]
-        },
-        {
-          "claimId": "15uvjew-143-cit-ec4198",
-          "speakerGroup": "PSOE",
-          "verdict": "parcial",
-          "confidence": 0.85,
-          "verbatim": "adecuación acceso a carretera por zona norte con 50.000 euros",
-          "evidence": [
-            {
-              "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=x10BPwYgF7OiEJrVRqloyA%3D%3D",
-              "snippet": "El objeto del contrato es el cambio de juegos infantiles y suelos de protección de la Plaza Vicente Andrés Estellés, en el casco urbano de Riba-roja de Túria, mediante la sustitución total de las actuales estructuras por otras nue"
-            }
-          ]
-        },
-        {
-          "claimId": "15uvjew-144-afi-3a8ca1",
-          "speakerGroup": "PSOE",
-          "verdict": "parcial",
-          "confidence": 0.85,
-          "verbatim": "adecuación acceso a carretera por zona norte con 50.000 euros",
-          "evidence": [
-            {
-              "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=x10BPwYgF7OiEJrVRqloyA%3D%3D",
-              "snippet": "El objeto del contrato es el cambio de juegos infantiles y suelos de protección de la Plaza Vicente Andrés Estellés, en el casco urbano de Riba-roja de Túria, mediante la sustitución total de las actuales estructuras por otras nue"
-            }
-          ]
-        }
-      ],
-      "itemCount": 3
-    }
-  ],
+  "bundles": [],
   "archived": []
 }
