@@ -33,26 +33,15 @@ import { chromium } from '@playwright/test'
 import { mkdir, stat } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+// id de entrega → ejercicio. Vive en src/scraper/cesel-entregas.ts, junto a la
+// guarda que lo compara con el desplegable del ministerio; esta copia local se
+// desincronizaba en silencio.
+import { ENTREGAS } from '../src/scraper/cesel-entregas'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const MAPA =
   'https://serviciostelematicosext.hacienda.gob.es/SGCIEF/CESEL/Consulta/Mapa/ConsultaMapa.aspx'
-
-/** id de entrega → ejercicio, leídos del propio ddlEntrega de la página. */
-const ENTREGAS: Record<string, number> = {
-  '1': 2014,
-  '3': 2015,
-  '5': 2016,
-  '6': 2017,
-  '7': 2018,
-  '8': 2019,
-  '9': 2020,
-  '10': 2021,
-  '11': 2022,
-  '12': 2023,
-  '13': 2024,
-}
 
 const CCAA_NOMBRE: Record<string, RegExp> = {
   '17': /Comunitat Valenciana/i,

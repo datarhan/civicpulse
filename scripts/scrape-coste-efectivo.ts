@@ -39,6 +39,10 @@ import {
 } from '../src/scraper/coste-efectivo'
 import { parseConprelRoster, type ConprelMunicipio } from '../src/scraper/budget'
 import { SERVICIOS } from '../src/scraper/indicador-registry'
+// La lista de entregas y las URLs de la fuente viven en un solo sitio: estaban
+// copiadas aquí y en fetch-cesel-ccaa.ts, y `check:cesel-entregas` las coteja
+// ahora con el desplegable vivo del ministerio.
+import { ENTREGAS, CONSULTA_URL, ORDEN_URL } from '../src/scraper/cesel-entregas'
 import { startRun, NO_LLM_STATS } from '../src/scraper/run-manifest'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -55,24 +59,6 @@ const POP_MIN = 15_000
 const POP_MAX = 40_000
 
 const VOLCADO_URL = 'https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx'
-const CONSULTA_URL =
-  'https://serviciostelematicosext.hacienda.gob.es/sgcief/Cesel/Consulta/Consulta.aspx'
-const ORDEN_URL = 'https://www.boe.es/buscar/doc.php?id=BOE-A-2014-11492'
-
-/** Entrega id → año, read off the consulta's own ddlEntrega. */
-const ENTREGAS: Record<number, number> = {
-  1: 2014,
-  3: 2015,
-  5: 2016,
-  6: 2017,
-  7: 2018,
-  8: 2019,
-  9: 2020,
-  10: 2021,
-  11: 2022,
-  12: 2023,
-  13: 2024,
-}
 const ANIO_VOLCADO = 2021
 
 const conprelUrl = (year: number) =>

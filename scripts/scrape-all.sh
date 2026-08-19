@@ -424,6 +424,14 @@ if ! npm run check:eficiencia-findings; then
   echo "[scrape-all] FAILED: check:eficiencia-findings — ficha firmada que su fuente ya no sostiene"
   failures+=("check:eficiencia-findings")
 fi
+# Mira el desplegable del ministerio: el coste efectivo llega con año y pico de
+# desfase, así que la entrega nueva aparece sin previo aviso y sin que nada más
+# lo note. Con el ministerio caído dice «NO COMPROBADO» y sale 0 — no tiñe la
+# nocturna por una avería ajena, pero tampoco firma un visto bueno.
+if ! npm run check:cesel-entregas; then
+  echo "[scrape-all] FAILED: check:cesel-entregas — el ministerio publicó una entrega que aquí no consta"
+  failures+=("check:cesel-entregas")
+fi
 if ! npm run check:dea; then
   echo "[scrape-all] FAILED: check:dea — la frontera no se reproduce, o nombra a un tercero"
   failures+=("check:dea")

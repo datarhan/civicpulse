@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE HTML>
+<html lang="es-ES" xmlns="http://www.w3.org/1999/xhtml" xml:lang="es-ES" xmlns:og="http://ogp.me/ns#">
+
+
+
+
+<head>
+
+    
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/SGCIEF/CESEL/Marco/css/macenet.css" rel="stylesheet" type="text/css" media="screen" />
+    
+    <title>Consulta CESEL</title>
+    <link href="/SGCIEF/CESEL/App_Themes/css/app.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <script type="text/javascript" src="/SGCIEF/CESEL/Scripts/jquery-2.1.4.min.js"></script>
+
+
+    <!-- Favicon -->
+    <link id="Favicon1" rel="shortcut icon" href="//serviciostelematicosext.hacienda.gob.es/SGCIEF/CESEL/Marco/img/favicon.ico" type="image/x-icon"></link>
+    <link id="Favicon2" rel="icon" href="//serviciostelematicosext.hacienda.gob.es/SGCIEF/CESEL/Marco/img/favicon.ico" type="image/ico"></link>
+
+    <!-- Metadatos HTML -->
+    <meta name="application-name" lang="es" content="CESEL: COSTE EFECTIVO DE LOS SERVICIOS DE LAS ENTIDADES LOCALES" />
+    <meta name="title" lang="es" content="CESEL: COSTE EFECTIVO DE LOS SERVICIOS DE LAS ENTIDADES LOCALES" />
+    <meta name="description" lang="es" content="Aplicación informática CESEL: COSTE EFECTIVO DE LOS SERVICIOS DE LAS ENTIDADES LOCALES" />
+    
+    <meta name="keywords" lang="es" content="SGFAL, HACIENDA, EELL, Entidades Locales, Secretaría General de Financiación Autonómica y Local, Ministerio de Hacienda, Financiación, CCAA, Comunidades Autónomas, SGCAL, MINHAP, Secretaría General de Coordinación Autonómica y Local, " />
+
+    <meta name="author" lang="es" content="SGFAL" />
+
+    <!-- Metadatos Dublincore (DCMI) -->
+    <meta name="DC.subject" lang="es" content="CESEL: COSTE EFECTIVO DE LOS SERVICIOS DE LAS ENTIDADES LOCALES" />
+    <meta name="DC.title" lang="es" content="CESEL: COSTE EFECTIVO DE LOS SERVICIOS DE LAS ENTIDADES LOCALES" />
+    <meta name="DC.description" lang="es" content="Aplicación informática CESEL: COSTE EFECTIVO DE LOS SERVICIOS DE LAS ENTIDADES LOCALES" />
+    <meta name="DC.language" scheme="RFC1766" content="es" />
+    <meta name="DC.creator" content="SGFAL" />
+</head>
+
+<body id="home">
+
+    <form method="post" action="./Consulta.aspx" id="aspnetForm">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="87776C85" />
+<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="Qn5lZdkZtdybTU7dVqU3cUqkwXGhEkQcILhLlLxT5O2D2gAnmNjDW6iKo6OdSBiC6biU8YLBdRFvcJisX5vtWcKgZl5pj11MBBKVJScfFRycXE349lnSiAL4EXcdoCb1f3YuXBdps0+XjPEGSRQxg38hvx6K789wuA5FgDNKpBahWjV/8badyI4keYpEzI1bF3FnIzzOCRcL02+80sWxcUGMJLHXipsSX/4e/Iy/hsOqegrpeLH16aeT6DAd5K1hCHK8n6Cfz2MWV+RQrZNh8KGY8tBz7Wv8UFSEBZmii66XeKYEiNbYsfoP3vy6RftB3XCOFmvAkjBfrE/z425pv3KhesnhAsVGNvipudINbOcsPdymGBgGh7H/On9kUx5APfbOFn2/zc5qnFVW+IM/HT7o6uSmMbl2wDuCItB6zzzmMfVMP+4o/QOKKoEVW/XwGnaGvcXxa2kZmLZK8Fdp79JZ9qd28YwVmzYm26VPTzpgGI39wrcvKa+HIASabU4CrvjwA+AQfEpm29gEKAsuVs3v/C2kVZ7T+NwAzhrtDbu735KtE0HPmee+Z+qbvxh6cQuIYyEk80Ryw1gT0W7MD9OllDfPrKKJM3pmTWniRldqKh8iruKoMKMrlkiTpE4NRBbh+UdNQiVJBUPvicNTYHcQOLjKjvAQ0vQ5jvJiyZm+Y+kyPRq/lfXj05JFswNfk6zgaXftnmm4b90yT4reAh9yXFOrE8ox+elTKQqabN2aHbVsWu5FUkQl5Cp3DmGdYmc5+9T03mSKnC20Lr2f0OIYj4fywqNRfDTKDNWacFG7F5DcCyX9Gouwe4dPIumbAeRCQtOETwFIrnsyEIxFX56xSu8ODt4pOO64Kt+R9VLXWT52zNxxx4owg5YALRa0AE5U89BFYzQkQOyGWtblciNjf5BH+r7l2ItIJ842oIM1F5n5WwgI9Wqq8DqWR+ZLJHvYFPwYTGluYlNYNEpBYdVHin9tqOpXygQRRS5Ib1foD73/DOgr3+Fy0oYiRXH39K9pGBrEb6Yvt62ISu1CU8HziAcs2KtaPhfskw1B7BB/iAJChMMAtlcHrpTdB/D44rX5Nc8wNkG38D50jWh3f9+c0kZKIQsO8/IMiiH6xpDE8wOOLNqhIjy0prjQaqZhxI75wPnU6APnfH95Pq04T7hEd0/ziBjxYYAPm3pYKJyy6YzW/5YioDdHDAJ1KsC9hJsZ9oqnY+cngCsaFi4+x/UvKtg7YFyyZQYEsTjswtDQsNNVHU3mYHvcjaYMGqkCkc5Oyp/ZjMYjUXWJ9bY8Kw0jpfWw7c3nOufaPpKJN9WwQkk0cSj4NfWHZYXukvGH53KHRhuP3x8zf+4UKahvti4fN59J0S4l3wPT7omFU/FhPsTrNtKPpHDjDHETHjypEHLSXQ2tyfxzyRq6hlMFOPPVTS+ubNSOhjMPyUNe0hoCtimmFHoGodENuatbRrksFH43LUVQwDlN/4QzkNYsC2wVv0iIXb9OABSnXnM4CS4ukT5drkStARIXWWKOqgssQl9ueeifPcY+4ZGDoFCdF3l+MRbwte4Cnx2VIEEVQ037B/oc52kk4LElMCu60Yv1f0xsrw==" />
+        <input type="hidden" name="ctl00$idControlMaster" id="idControlMaster" value="20260819T090306647" />
+
+        
+        <div class="container">
+            
+            <div class="cabecera">
+                <h1 class="oculto">
+                    <span>MINISTERIO DE HACIENDA</span>
+                </h1>
+                
+                
+                
+                <div id="imagenEscudo" class="cab_b">
+                    <div class="titulocab">
+                        <div class="escudo">
+                            <a href="http://www.hacienda.gob.es" id="referencia_escudo" title="Ir a la página del Ministerio" target="_blank">
+                                <img id="Image1" src="../Marco/img/EscudoMinhacyFP.png" alt="Escudo Gobierno de España. Ir a la pagina inicial." />
+                            </a>
+                        </div>
+                        <div class="texto">
+                            <p>
+                                <span>
+                                    CESEL: COSTE EFECTIVO DE LOS SERVICIOS DE LAS ENTIDADES LOCALES
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cab_c">
+                    <div id="menuBarra" class="botonera">
+                        
+                        <div class="textosbotonera">
+                            <ul>
+                                
+
+                                <div class="textosbotonera_derecha">
+                                    
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="clear">
+            </div>
+            
+            <div class="ancho_fijo">
+                
+                
+                
+                
+                
+                <div class="central">
+                    
+                    <div class="contenido_macenet">
+                        
+                           
+    
+    <h2 class="titulo">
+		<span>Consulta de informes CESEL</span>
+	</h2>            
+   
+   <div id="filtros">              
+        <div>
+            <div class="labelCombo">Ejercicio:</div>
+            <select name="ctl00$MainContentPlaceHolder$ddlEntrega" id="MainContentPlaceHolder_ddlEntrega" class="tipos">
+	<option value="1">2014</option>
+	<option value="3">2015</option>
+	<option value="5">2016</option>
+	<option value="6">2017</option>
+	<option value="7">2018</option>
+	<option value="8">2019</option>
+	<option value="9">2020</option>
+	<option value="10">2021</option>
+	<option value="11">2022</option>
+	<option value="12">2023</option>
+	<option selected="selected" value="13">2024</option>
+
+</select>
+        </div>                    
+        <div style="margin-top: 1em;">
+            <div class="labelCombo">Provincia:</div>
+            <select name="ctl00$MainContentPlaceHolder$ddlProvincia" id="MainContentPlaceHolder_ddlProvincia" class="tipos">
+	<option selected="selected" value="SELECCIONE_OPCION">-- Seleccione opci&#243;n --</option>
+	<option value="00">00 - Varias: Consorcios</option>
+	<option value="01">01 - Araba/&#193;lava</option>
+	<option value="02">02 - Albacete</option>
+	<option value="03">03 - Alicante</option>
+	<option value="04">04 - Almer&#237;a</option>
+	<option value="05">05 - &#193;vila</option>
+	<option value="06">06 - Badajoz</option>
+	<option value="07">07 - I. balears</option>
+	<option value="08">08 - Barcelona</option>
+	<option value="09">09 - Burgos</option>
+	<option value="10">10 - C&#225;ceres</option>
+	<option value="11">11 - C&#225;diz</option>
+	<option value="12">12 - Castell&#243;n</option>
+	<option value="13">13 - Ciudad real</option>
+	<option value="14">14 - C&#243;rdoba</option>
+	<option value="15">15 - Coru&#241;a, a</option>
+	<option value="16">16 - Cuenca</option>
+	<option value="17">17 - Girona</option>
+	<option value="18">18 - Granada</option>
+	<option value="19">19 - Guadalajara</option>
+	<option value="20">20 - Gipuzkoa</option>
+	<option value="21">21 - Huelva</option>
+	<option value="22">22 - Huesca</option>
+	<option value="23">23 - Ja&#233;n</option>
+	<option value="24">24 - Le&#243;n</option>
+	<option value="25">25 - Lleida</option>
+	<option value="26">26 - Rioja, la</option>
+	<option value="27">27 - Lugo</option>
+	<option value="28">28 - Madrid</option>
+	<option value="29">29 - M&#225;laga</option>
+	<option value="30">30 - Murcia</option>
+	<option value="31">31 - Navarra</option>
+	<option value="32">32 - Ourense</option>
+	<option value="33">33 - Asturias</option>
+	<option value="34">34 - Palencia</option>
+	<option value="35">35 - Palmas, las</option>
+	<option value="36">36 - Pontevedra</option>
+	<option value="37">37 - Salamanca</option>
+	<option value="38">38 - S.c.tenerife</option>
+	<option value="39">39 - Cantabria</option>
+	<option value="40">40 - Segovia</option>
+	<option value="41">41 - Sevilla</option>
+	<option value="42">42 - Soria</option>
+	<option value="43">43 - Tarragona</option>
+	<option value="44">44 - Teruel</option>
+	<option value="45">45 - Toledo</option>
+	<option value="46">46 - Valencia</option>
+	<option value="47">47 - Valladolid</option>
+	<option value="48">48 - Bizkaia</option>
+	<option value="49">49 - Zamora</option>
+	<option value="50">50 - Zaragoza</option>
+	<option value="51">51 - Ceuta</option>
+	<option value="52">52 - Melilla</option>
+
+</select>    
+        </div>
+       <div style="margin-top: 1em;">
+           <div class="labelCombo">Tipo de Ente:</div>
+            <select name="ctl00$MainContentPlaceHolder$ddlTipoEnte" id="MainContentPlaceHolder_ddlTipoEnte" class="tipos">
+	<option selected="selected" value="SELECCIONE_OPCION">-- Seleccione opci&#243;n --</option>
+
+</select>    
+       </div>
+        <div style="margin-top: 1em;">
+            <div class="labelCombo">Ente:</div>
+            <select name="ctl00$MainContentPlaceHolder$ddlEnte" id="MainContentPlaceHolder_ddlEnte" class="tipos">
+	<option selected="selected" value="SELECCIONE_OPCION">-- Seleccione opci&#243;n --</option>
+
+</select>
+        </div>
+    </div>   
+
+      
+    <div id="divHiddens">
+        <input type="hidden" name="ctl00$MainContentPlaceHolder$hddAccionDescargarExcelConsorcios" id="MainContentPlaceHolder_hddAccionDescargarExcelConsorcios" />
+        <input type="hidden" name="ctl00$MainContentPlaceHolder$hddIdEntrega" id="MainContentPlaceHolder_hddIdEntrega" />
+    </div>
+    <div class="infoTotal">                           
+        <span id="MainContentPlaceHolder_label_info"></span>
+    </div>     
+
+    <div id="informacion">
+        
+        <div>
+
+</div>
+    </div>
+    
+    <div class="bloque">
+        <b><u>Notas:</u></b><br /><br />
+        La información que se publica ha sido facilitada por las propias entidades locales sin que se pueda considerar validada por el Ministerio de Hacienda y Administraciones Públicas. 
+    </div>
+    
+    <div class="bloque">
+        Para acceder a la consulta de informes CESEL por Comunidad Autónoma <a href="/SGCIEF/CESEL/Consulta/Mapa/ConsultaMapa.aspx" title="Enlace a la consulta de informes CESEL por Comunidad Autónoma" >pinche aquí</a>              
+    </div>
+    
+     <div class="bloque">
+        Para descargar la información de los Consorcios <span id="MainContentPlaceHolder_lblAnyosConsorcios">(ejercicio 2024)</span> <a href="#" title="Consorcios" onclick="descargarExcelConsorcios()" >pinche aquí</a>        
+    </div>
+
+    <script type="text/javascript">
+
+        function descargarExcelConsorcios() {
+
+            var idEntrega = $("#MainContentPlaceHolder_ddlEntrega").val();
+
+            $("#MainContentPlaceHolder_hddIdEntrega").val(idEntrega);
+            $("#MainContentPlaceHolder_hddAccionDescargarExcelConsorcios").val("True");
+            document.forms[0].submit();
+        }
+    </script>
+
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+            
+            <div class="pie">
+                <h2 class="oculto">
+                    <span id="labelTituloPiectl00_labelTituloPie">Ministerio de Hacienda</span>
+                </h2>
+                <div class="listados">
+                    <div id="textos" class="textos">
+                        <ul>
+                            <li>
+                                <a id="HyperLink1" href="../Marco/aspx/Accesibilidad.aspx" target="_blank">Accesibilidad</a></li>
+                            <li class="ultimotextos">v
+                            <span id="label_vApp">2.0.24-n1 SE</span>
+                                <span id="label_vMarco">m2.1.17</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="iconosacc" class="iconosacc">
+                        <ul>
+                            <li><a title="Abre nueva ventana: Validador CSS 3.0 del W3C" href="http://jigsaw.w3.org/css-validator/validator?profile=css3&uri=https://serviciostelematicosext.hacienda.gob.es/sgcief/Cesel/Consulta/Consulta.aspx"
+                                target="_blank">
+                                <img id="ImageCSS" src="../Marco/img/ministerio/css.gif" alt="CSS 3.0 (Abre nueva ventana)" height="25" /></a> </li>
+                            <li><a title="Abre nueva ventana: Validador XHTML 1.0 del W3C" href="http://validator.w3.org/check?uri=https://serviciostelematicosext.hacienda.gob.es/sgcief/Cesel/Consulta/Consulta.aspx"
+                                target="_blank">
+                                <img id="ImageXHTML" src="../Marco/img/ministerio/xhtml.gif" alt="XHTML 1.0 (Abre nueva ventana)" height="25" /></a> </li>
+                            
+                            <li><a title="Abre nueva ventana: Las Directrices de Accesibilidad para el Contenido Web 2.1 (WCAG 2.1)."
+                                href="https://www.w3.org/WAI/WCAG2AA-Conformance.html" target="_blank">
+                                <img src="/SGCIEF/CESEL/Marco/img/ministerio/wcag2.1AA-blue-v.gif"
+                                    alt="Nivel Doble-A de Conformidad con las Directrices de Accesibilidad para el Contenido Web 2.1 (WCAG 2.1). (Abre nueva ventana)" height="25" />
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

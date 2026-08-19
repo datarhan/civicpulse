@@ -1,6 +1,7 @@
 import { Card } from '../Primitives'
 import { useT } from '../../i18n'
 import { LeyendaEscalones } from './Escalones'
+import { calendarioEntrega, ORDEN_URL } from '../../scraper/cesel-entregas'
 
 /**
  * Qué parte de su propio dominio enseña esta página.
@@ -20,10 +21,21 @@ import { LeyendaEscalones } from './Escalones'
 export function CoberturaEficiencia({
   universe,
   cobertura,
+  anioBase,
   indicadores = [],
   conResultados = false,
 }) {
   const t = useT()
+  // Por qué lo más reciente es de hace dos años. Un lector que entra en 2026 y
+  // lee «entrega 2024» deduce, razonablemente, que el sitio está sin
+  // actualizar; y esa era la única lectura que la página permitía. El desfase
+  // es del dato: un ejercicio se rinde antes del 1 de noviembre del año
+  // siguiente y el ministerio publica después.
+  //
+  // Se DERIVA de `anioBase` y de la fecha de quien lee, no se escribe. Una
+  // frase con «2025» y «2026» dentro se queda rancia en cuanto avanza la
+  // entrega —o en cuanto pasa el plazo— y ninguna prueba de datos lo vería.
+  const calendario = calendarioEntrega(anioBase, new Date())
   // Sin bloque `universe` no se dice nada, antes que insinuar una cobertura que
   // no se puede respaldar.
   if (!universe) return null
@@ -105,6 +117,37 @@ export function CoberturaEficiencia({
         <span className="mono">{universe.comparables}</span> tienen suficientes municipios
         comparables para situarlos.
       </p>
+      {calendario && (
+        <p
+          style={{
+            margin: '10px 0 0',
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70, var(--ink50))',
+          }}
+        >
+          <strong>Por qué la cifra más reciente es de {calendario.ultima}.</strong> Es la última que
+          existe: el coste efectivo de un ejercicio se calcula sobre la liquidación de ese año, se
+          rinde al ministerio{' '}
+          <a href={ORDEN_URL} style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
+            antes del 1 de noviembre del año siguiente
+          </a>{' '}
+          y se publica después, así que el dato llega siempre con más de un año de retraso.{' '}
+          {calendario.estado === 'en-plazo' ? (
+            <>
+              La entrega de <strong className="mono">{calendario.proxima}</strong> no viene con
+              retraso: no vence hasta el 1 de noviembre de{' '}
+              <strong className="mono">{calendario.venceEn}</strong>.
+            </>
+          ) : (
+            <>
+              El plazo para rendir la entrega de{' '}
+              <strong className="mono">{calendario.proxima}</strong> terminó el 1 de noviembre de{' '}
+              <strong className="mono">{calendario.venceEn}</strong> y el ministerio todavía no la
+              ha publicado.
+            </>
+          )}
+        </p>
+      )}
       <LeyendaEscalones indicadores={indicadores} conResultados={conResultados} />
       {congelados.length > 0 && (
         <p
