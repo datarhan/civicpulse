@@ -1,6 +1,6 @@
 {
   "plenoId": "10yl550",
-  "generatedAt": "2026-08-19T08:38:46.166Z",
+  "generatedAt": "2026-08-20T08:21:48.444Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -8214,48 +8214,6 @@
       "text": "La veritat, ara els comerços volen reinventar-se? Pues pot ser."
     },
     {
-      "start": 12000,
-      "end": 12012,
-      "speaker": "c19/SPEAKER_02",
-      "text": "Però que nosaltres no diguérem res en contra, en l'acta del ple està, és una dació de comptes, no figura res."
-    },
-    {
-      "start": 12012,
-      "end": 12018,
-      "speaker": "c19/SPEAKER_02",
-      "text": "No és que diguérem si sí, ni si no, ni a mitges, no figura res. En l'acta del ple, d'este ple està."
-    },
-    {
-      "start": 12018,
-      "end": 12022,
-      "speaker": "c19/SPEAKER_02",
-      "text": "Punt catorze, expedient, se dona compte a la marxa."
-    },
-    {
-      "start": 12022,
-      "end": 12024,
-      "speaker": "c19/SPEAKER_02",
-      "text": "Això per començar."
-    },
-    {
-      "start": 12024,
-      "end": 12034,
-      "speaker": "c19/SPEAKER_02",
-      "text": "I si tan cares, tampoc és rentable és, què passa en el Mercat Visigot? És és econòmic? És rentable al comerç local?"
-    },
-    {
-      "start": 12034,
-      "end": 12040,
-      "speaker": "c19/SPEAKER_02",
-      "text": "El el Mercat és Visigot és és rentable al comerç local i la fira del comerç no?"
-    },
-    {
-      "start": 12040,
-      "end": 12050,
-      "speaker": "c19/SPEAKER_02",
-      "text": "Les subvencions directes. Directes, si vostès implementaren altres formes d'aplegar la subvenció directa als comerços, a lo millor la fira del comerç seria una"
-    },
-    {
       "start": 13200,
       "end": 13214.4,
       "speaker": "c22/SPEAKER_00",
@@ -10369,7 +10327,7 @@
       {
         "chunk": 15,
         "why": "covered 61% (floor 85%)",
-        "attempts": 1,
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85
@@ -10378,7 +10336,7 @@
       {
         "chunk": 18,
         "why": "covered 0% (floor 85%)",
-        "attempts": 1,
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85
@@ -10387,7 +10345,7 @@
       {
         "chunk": 20,
         "why": "covered 80% (floor 85%)",
-        "attempts": 1,
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85
@@ -10396,14 +10354,14 @@
       {
         "chunk": 21,
         "why": "empty response (finishReason=STOP)",
-        "attempts": 1,
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85
         }
       }
     ],
-    "labelsSeen": 34,
+    "labelsSeen": 0,
     "rowsAccepted": 47,
     "rowsRejected": 36,
     "rejectedBy": {
@@ -10413,7 +10371,7 @@
       "label-collision": 2,
       "relation-contradicted": 5
     },
-    "attemptedThisRun": 11,
-    "coverage": 0.8827171204138897
+    "attemptedThisRun": 4,
+    "coverage": 0.878773778352626
   }
 }
