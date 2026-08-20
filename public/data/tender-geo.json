@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-18T05:17:01.404Z",
+  "generatedAt": "2026-08-20T05:17:44.853Z",
   "source": {
-    "tenders": "2026-08-18T05:00:41.626Z",
-    "geo": "2026-08-18T05:02:23.320Z"
+    "tenders": "2026-08-20T05:02:53.652Z",
+    "geo": "2026-08-20T05:04:12.149Z"
   },
   "universe": {
     "totalContracts": 694,
@@ -614,8 +614,8 @@
       "name": "Carrer de Toledo",
       "kind": "street",
       "point": [
-        39.5409819,
-        -0.5722426
+        39.5408141,
+        -0.5716581
       ],
       "contractCount": 1,
       "amount": 25550.45,
@@ -722,8 +722,8 @@
       "name": "Carretera de Vilamarxant",
       "kind": "street",
       "point": [
-        39.5490165,
-        -0.5824119
+        39.5484923,
+        -0.5816335
       ],
       "contractCount": 2,
       "amount": 19537,
@@ -1237,8 +1237,8 @@
       "contractType": "supplies",
       "categoryTitle": "industry",
       "point": [
-        39.5490165,
-        -0.5824119
+        39.5484923,
+        -0.5816335
       ],
       "place": {
         "kind": "street",
@@ -1589,8 +1589,8 @@
       "contractType": "construction",
       "categoryTitle": "other",
       "point": [
-        39.5490165,
-        -0.5824119
+        39.5484923,
+        -0.5816335
       ],
       "place": {
         "kind": "street",
@@ -3545,8 +3545,8 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.5409819,
-        -0.5722426
+        39.5408141,
+        -0.5716581
       ],
       "place": {
         "kind": "street",
@@ -3813,11 +3813,11 @@
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "1ad6857d1d69",
+    "civic-poi.json": "0f3767e1625b",
     "gazetteer-supplement.json": "813c38c1dc80",
-    "geo.json": "36692c6398d6",
+    "geo.json": "6e3c5a8984f0",
     "place-overrides.json": "5a4641410141",
-    "streets.json": "4e96269f743d",
-    "tenders.json": "b02802096a36"
+    "streets.json": "ffe0833ca112",
+    "tenders.json": "34ec8ed01517"
   }
 }
