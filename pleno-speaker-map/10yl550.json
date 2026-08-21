@@ -1,6 +1,6 @@
 {
   "plenoId": "10yl550",
-  "generatedAt": "2026-08-20T08:21:48.444Z",
+  "generatedAt": "2026-08-21T08:23:39.406Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -10326,8 +10326,8 @@
     "failedChunks": [
       {
         "chunk": 15,
-        "why": "covered 61% (floor 85%)",
-        "attempts": 2,
+        "why": "empty response (finishReason=MAX_TOKENS)",
+        "attempts": 3,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85
@@ -10335,8 +10335,8 @@
       },
       {
         "chunk": 18,
-        "why": "covered 0% (floor 85%)",
-        "attempts": 2,
+        "why": "empty response (finishReason=MAX_TOKENS)",
+        "attempts": 3,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85
@@ -10345,7 +10345,7 @@
       {
         "chunk": 20,
         "why": "covered 80% (floor 85%)",
-        "attempts": 2,
+        "attempts": 3,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85
@@ -10354,7 +10354,7 @@
       {
         "chunk": 21,
         "why": "empty response (finishReason=STOP)",
-        "attempts": 2,
+        "attempts": 3,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85
