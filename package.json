@@ -190,6 +190,8 @@
     "scrape:coste-efectivo": "npx tsx scripts/scrape-coste-efectivo.ts",
     "compute:indicadores": "npx tsx scripts/compute-indicadores.ts",
     "check:indicadores": "npx tsx scripts/check-indicadores.ts",
+    "check:cesel-entregas": "npx tsx scripts/check-cesel-entregas.ts",
+    "sync:cesel-entregas": "npx tsx scripts/sync-cesel-entregas.ts",
     "compute:dea": "npx tsx scripts/compute-dea.ts",
     "compute:coste-esperado": "npx tsx scripts/compute-coste-esperado.ts",
     "check:dea": "npx tsx scripts/check-dea.ts",

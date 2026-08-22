@@ -131,6 +131,7 @@ export default function Eficiencia() {
           <CoberturaEficiencia
             universe={data?.universe}
             cobertura={data?.cobertura}
+            anioBase={data?.anioBase}
             indicadores={indicadores}
             conResultados={(data?.resultados?.items ?? []).length > 0}
           />

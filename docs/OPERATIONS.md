@@ -77,6 +77,7 @@ adapter names to the `case` switch.
 | `ingest-pleno-votes.yml`          | issue from the `pleno-vote.yml` form                                                                                                                                                                                          |
 | `ingest-queja-responses.yml`      | issue from the `queja-response.yml` form                                                                                                                                                                                      |
 | `ingest-eficiencia-responses.yml` | issue labelled `derecho-replica` **and** `eficiencia`                                                                                                                                                                         |
+| `cesel-entrega.yml`               | Mondays 06:00 UTC in **November, December and January only** — the one window in which a new coste-efectivo entrega can appear (see below)                                                                                    |
 
 Each ingest workflow parses the structured form, calls the matching curator CLI,
 commits, and closes the issue with a permalink. Git history is the sole audit
@@ -89,6 +90,44 @@ same issue and the pleno ingester comments «no se pudieron extraer los campos
 obligatorios» on a perfectly valid reply — indistinguishable, to whoever wrote
 it, from a rejection.
 
+### The November window — `cesel-entrega.yml`
+
+The coste efectivo is the slowest datum on the site, and its calendar is fixed
+by Orden HAP/2075/2014: an exercise is filed **before 1 November of the
+following year** and the ministry publishes after that. So the page legitimately
+titles in 2024 throughout 2026 — and the day that stops being true is invisible
+unless something looks.
+
+When it lands was **measured**, not assumed, by parsing the ministry's own
+`ddlEntrega` out of the Internet Archive:
+
+| snapshot     | newest entrega  |
+| ------------ | --------------- |
+| `2024-11-25` | 2022            |
+| `2024-11-30` | 2023 ← appeared |
+| `2025-10-28` | 2023            |
+| `2025-12-10` | 2024 ← appeared |
+
+Late November, three to four weeks _after_ the filing deadline. A single annual
+shot on 10 November would have found nothing both years and then waited twelve
+months; hence Mondays across November–January.
+
+Two properties worth keeping:
+
+- **The expensive step is gated behind a cheap one.** Each run first calls
+  `check:cesel-entregas` — one small HTML GET. The ~45 MB national workbook is
+  only downloaded when a new entrega genuinely exists. That is also why
+  `scrape:coste-efectivo` is deliberately absent from the nightly.
+- **It opens a PR; it never commits to `main`.** A new entrega moves every unit
+  cost, every percentile and both lab experiments at once, and can flip a signed
+  `/eficiencia` ficha to `contradice`. The guards run and their verdict goes in
+  the PR body — including when they are red, because a red guard is precisely
+  what a human needs to see. Deciding between refreshing the measurement and
+  retracting the ficha stays human, as the nightly already declares.
+
+Year-round cover comes from the same check running in `scrape:all`, which
+notices an off-season publication but does not fetch it.
+
 ### Every pusher must appear in `deploy-vercel.yml`
 
 The `workflow_run` list held **one** workflow of six until 2026-08-12. The other
@@ -99,6 +138,16 @@ to reply, the bot commented «✅ Réplica publicada · visible en …», and it
 not visible until the nightly happened to push again. `tests/deploy-triggers.test.js`
 re-derives the list from the workflow directory and reds on a missing pusher.
 
+It distinguishes pushing `main` from pushing a PR branch: `git push` and
+`git push origin HEAD` publish and must trigger a deploy, while
+`git push origin "$RAMA"` (what `cesel-entrega.yml` does) publishes nothing —
+the merge does, and that already arrives through `push: branches: [main]`. The
+distinction is made **in the test**, never dodged in the workflow: a workflow
+worded to avoid the phrase `git push` would sail past the control while still
+pushing to `main`, which is the failure the control exists to catch. The
+classifier is unit-tested on both shapes so that loosening it cannot quietly
+turn it into a function that returns `false` for everything.
+
 ## Local crons (the curator's laptop)
 
 Anything needing an LLM backend or a residential IP runs here, not in CI.
@@ -106,7 +155,7 @@ Anything needing an LLM backend or a residential IP runs here, not in CI.
 | When               | Script                                                                                                                                                              |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 06:45 daily        | `scrape-ci-blocked.sh` — the 7 adapters runners cannot reach (`paro`, `pleno-agendas`, `asociaciones`, `obras`, `procesos-selectivos`, `sindicatura`, `consell-cv`) |
-| 07:30 daily        | `review-sweep.sh` — reads all 27 public routes as a visitor (report-only, commits nothing)                                                                           |
+| 07:30 daily        | `review-sweep.sh` — reads all 27 public routes as a visitor (report-only, commits nothing)                                                                          |
 | 09:00 daily        | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                   |
 | 09:30 daily        | `hallazgos-pipeline.sh` — transcribe → extract → verify → auto-curate → push                                                                                        |
 | 10:15 daily        | `press-lab-pipeline.sh` — `/laboratorio` press fact-check pass                                                                                                      |
@@ -234,25 +283,25 @@ Full setup, secrets and volume creation: the header of `bot/fly.toml` and
 
 All report-only inside `scrape:all`; run any of them directly.
 
-| Command                           | Catches                                                              |
-| --------------------------------- | -------------------------------------------------------------------- |
-| `check:relations`                 | cross-snapshot FK breakage (findings→claims, votes→plenos, …)        |
-| `check:cadence`                   | snapshots past their expected refresh interval                       |
-| `check:runs`                      | a run that reported success without doing work — or without trying   |
-| `check:citations`                 | a published claim whose citation no longer holds                     |
-| `check:guards`                    | a guard in this table that nothing invokes                           |
-| `check:drift`, `check:vocabulary` | upstream shape / vocabulary changes                                  |
-| `check:corpus`, `check:retrieval` | embedding corpus integrity, self-retrieval probe                     |
-| `check:transcripts`               | degenerate transcripts in the published corpus                       |
-| `check:json`                      | unparseable snapshot or merge-conflict marker (also in pre-commit)   |
-| `check:automation`                | which action classes are gated, and on what measurement              |
-| `check:summary-gate`              | a published summary reproducing a quote the editorial gate withholds |
-| `check:data-graph`                | the hand-written dependency graph drifting from what scripts do      |
-| `check:queues`                    | a curator worklist describing findings that no longer exist          |
+| Command                           | Catches                                                                    |
+| --------------------------------- | -------------------------------------------------------------------------- |
+| `check:relations`                 | cross-snapshot FK breakage (findings→claims, votes→plenos, …)              |
+| `check:cadence`                   | snapshots past their expected refresh interval                             |
+| `check:runs`                      | a run that reported success without doing work — or without trying         |
+| `check:citations`                 | a published claim whose citation no longer holds                           |
+| `check:guards`                    | a guard in this table that nothing invokes                                 |
+| `check:drift`, `check:vocabulary` | upstream shape / vocabulary changes                                        |
+| `check:corpus`, `check:retrieval` | embedding corpus integrity, self-retrieval probe                           |
+| `check:transcripts`               | degenerate transcripts in the published corpus                             |
+| `check:json`                      | unparseable snapshot or merge-conflict marker (also in pre-commit)         |
+| `check:automation`                | which action classes are gated, and on what measurement                    |
+| `check:summary-gate`              | a published summary reproducing a quote the editorial gate withholds       |
+| `check:data-graph`                | the hand-written dependency graph drifting from what scripts do            |
+| `check:queues`                    | a curator worklist describing findings that no longer exist                |
 | `check:surfaces`                  | public pages nobody has read lately, or a reader-review flag left standing |
-| `check:indicadores`               | a `/eficiencia` figure that no longer resolves to its source cell    |
-| `check:eficiencia-findings`       | a signed ficha asserting a figure its source has since revised       |
-| `check:dea`                       | a frontier score that no longer reproduces, or names a third party   |
+| `check:indicadores`               | a `/eficiencia` figure that no longer resolves to its source cell          |
+| `check:eficiencia-findings`       | a signed ficha asserting a figure its source has since revised             |
+| `check:dea`                       | a frontier score that no longer reproduces, or names a third party         |
 
 `check:guards` is the one that keeps this table honest, and on 2026-08-12 it
 found three of these — `summary-gate`, `data-graph`, `queues` — defined,

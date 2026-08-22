@@ -27,8 +27,39 @@ const ficheros = readdirSync(WF).filter((f) => /\.ya?ml$/.test(f))
 const leer = (f) => readFileSync(join(WF, f), 'utf8')
 const nombreDe = (texto) => (texto.match(/^name:\s*(.+)$/m) ?? [])[1]?.trim()
 
+/** El texto sin comentarios de línea: dentro de uno hay `git push` de mentira. */
+const sinComentarios = (texto) =>
+  texto
+    .split('\n')
+    .filter((l) => !/^\s*#/.test(l))
+    .join('\n')
+
+/** Los argumentos de cada `git push` del workflow, uno por invocación. */
+const empujones = (texto) =>
+  [...sinComentarios(texto).matchAll(/\bgit push\b([^\n|;&]*)/g)].map((m) => m[1].trim())
+
+/**
+ * ¿Este empujón va a la rama por defecto?
+ *
+ * `git push` a secas y `git push origin HEAD` suben lo que esté puesto, que en
+ * estos workflows es main: ésos SÍ tienen que disparar despliegue. Nombrar otra
+ * rama —`git push origin "$RAMA"`, como hace `cesel-entrega.yml` para abrir su
+ * PR— no publica nada: lo que despliega es la fusión posterior, y ésa ya entra
+ * por el `push: branches: [main]` de deploy-vercel.
+ *
+ * La distinción se afina aquí a propósito y no se esquiva en el workflow. Un
+ * workflow redactado para no decir «git push» pasaría este control sin dejar de
+ * empujar a main, que es el fallo que el control persigue.
+ */
+const empujonAMain = (args) => {
+  const pos = args.split(/\s+/).filter((a) => a && !a.startsWith('-'))
+  const destino = pos[1] // pos[0] es el remoto
+  if (!destino) return true // `git push` a secas
+  return /^(HEAD|main)(:(refs\/heads\/)?main)?$/.test(destino.replace(/["']/g, ''))
+}
+
 /** ¿Este workflow empuja commits a la rama por defecto? */
-const empujaAMain = (texto) => /^\s*(?:-\s*)?(?:run:\s*)?.*\bgit push\b/m.test(texto)
+const empujaAMain = (texto) => empujones(texto).some(empujonAMain)
 
 describe('workflows — todo lo que empuja a main dispara despliegue', () => {
   const deploy = leer(DEPLOY)
@@ -36,6 +67,19 @@ describe('workflows — todo lo que empuja a main dispara despliegue', () => {
 
   it('el disparador declara alguna lista (si no, no está midiendo nada)', () => {
     expect(declarados.length).toBeGreaterThan(1)
+  })
+
+  it('distingue empujar main de empujar la rama de una PR', () => {
+    // Sin esto, afinar el detector para dejar pasar `cesel-entrega.yml` podría
+    // haberlo dejado devolviendo `false` para TODO — y el control seguiría
+    // verde sin mirar nada, que es el defecto que persigue.
+    expect(empujaAMain('        run: git push')).toBe(true)
+    expect(empujaAMain('          if git push origin HEAD; then')).toBe(true)
+    expect(empujaAMain('          git push origin HEAD:refs/heads/main')).toBe(true)
+    expect(empujaAMain('          git push origin "$RAMA"')).toBe(false)
+    expect(empujaAMain('          git push -u origin cesel-entrega-2025')).toBe(false)
+    // Un `git push` citado dentro de un comentario no es un empujón.
+    expect(empujaAMain('          # A bare `git push` loses the night data')).toBe(false)
   })
 
   it('cada workflow que hace git push está en la lista de workflow_run', () => {

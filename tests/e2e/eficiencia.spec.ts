@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { readFileSync } from 'node:fs'
 import { chipDeclaracion, GLOSA_TIER } from '../../src/scraper/indicador-lectura'
+import { calendarioEntrega } from '../../src/scraper/cesel-entregas'
 import { seriesDibujables, aniosSinEntrega } from '../../src/components/eficiencia/multiples'
 import {
   agruparPorArea,
@@ -472,6 +473,36 @@ test.describe('Eficiencia (/eficiencia)', () => {
     )
     for (const tier of ausentes) {
       await expect(page.getByText(GLOSA_TIER[tier], { exact: false })).toHaveCount(0)
+    }
+  })
+
+  test('dice por qué la entrega más reciente es de hace dos años', async ({ page }) => {
+    // La queja que lo motiva: un lector entra en 2026, lee «entrega 2024» y
+    // concluye que el sitio está abandonado. No lo está — 2024 es lo último que
+    // el ministerio ha publicado, porque un ejercicio se rinde antes del 1 de
+    // noviembre del siguiente. La página no lo decía en ninguna parte.
+    await page.goto('/eficiencia', { waitUntil: 'domcontentloaded' })
+    const cal = calendarioEntrega(SNAP.anioBase, new Date())
+    expect(cal, 'el snapshot no trae anioBase: la frase no puede derivarse').not.toBeNull()
+
+    const nota = page.getByText(`Por qué la cifra más reciente es de ${cal!.ultima}`, {
+      exact: false,
+    })
+    await expect(nota).toBeVisible({ timeout: 8000 })
+
+    // El plazo, derivado y en pantalla: sin él la frase explica el desfase pero
+    // no deja comprobar cuándo deja de ser una explicación y pasa a ser un
+    // retraso de verdad.
+    await expect(
+      page.getByText(`1 de noviembre de ${cal!.venceEn}`, { exact: false }).first(),
+    ).toBeVisible()
+
+    // Y no se afirma lo contrario de lo que toca a cada lado del plazo.
+    const cuerpo = (await page.locator('#sec-cobertura').innerText()).replace(/\s+/g, ' ')
+    if (cal!.estado === 'en-plazo') {
+      expect(cuerpo).toContain(`La entrega de ${cal!.proxima} no viene con retraso`)
+    } else {
+      expect(cuerpo).toContain(`El plazo para rendir la entrega de ${cal!.proxima} terminó`)
     }
   })
 
