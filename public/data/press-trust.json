@@ -1,7 +1,58 @@
 {
-  "generatedAt": "2026-08-21T05:15:45.743Z",
+  "generatedAt": "2026-08-22T05:14:41.578Z",
   "windowDays": 30,
   "articles": [
+    {
+      "articleId": "1fqbhjs",
+      "articleFingerprint": "1oq1ic8",
+      "outlet": "Valencia Plaza",
+      "outletHost": "valenciaplaza.com",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPTTRDT1I4MXBzbE9PcC13Zkw2R2pUTjF6elRWOUJ6Y0NuaTk4bVkzN2czWVNQZkJDejd3S1dPQUZnT3RIYTEwZ2FjRnVhUEwtRldWSmxfeWdXQlZfMkJWMmh5YThoLVA3N0czSTBSaVJ3TF9lN2ZGZGxad3NwaWRxNFdUZ0oxWlJwdlZVMXBLR2dZV1BYeWcyZUdScnZuRFZHZmliYlVQYXI4bmtBT3JCMV9FSVBUYTlTSXpsa25EZEtNVzktcXBSbXdydlIyaEZSTUhBdkNVUGJ2UmpLa0JobjVVbXpQZXFFWnE0a1BNenk?oc=5",
+      "date": "2026-08-21T13:56:14.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": true,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "1e9m0nk",
+      "articleFingerprint": "1c1dk3c",
+      "outlet": "Periòdic del Camp de Túria",
+      "outletHost": "infoturia.com",
+      "url": "https://www.infoturia.com/riba-roja-de-turia/85694-un-vehicle-innovador-controlara-30-punts-dimatge-captats-per-onze-cameres-de-vigilancia-durant-les-festes-de-fadrins.html",
+      "date": "2026-08-21T12:40:16.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
+      "articleId": "v4m8ao",
+      "articleFingerprint": "kzwkrw",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/un-novedoso-veh%C3%ADculo-controlar%C3%A1-30-puntos-de-imagen-captados-por-once-c%C3%A1maras-de-vigilancia-para-garantizar-la-seguridad-durante-las-fiestas-de-fadrins",
+      "date": "2026-08-21T12:04:33.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": true,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
     {
       "articleId": "1t8kbao",
       "articleFingerprint": "1czgd5z",
@@ -38,7 +89,7 @@
     },
     {
       "articleId": "nh3z04",
-      "articleFingerprint": "11k7hkj",
+      "articleFingerprint": "lqvrz",
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
       "url": "https://www.infoturia.com/riba-roja-de-turia/85629-lus-de-drons-a-riba-roja-reforca-la-vigilancia-contra-els-robatoris-i-les-infraccions-en-la-campanya-estival-de-la-garrofa.html",
@@ -123,7 +174,7 @@
     },
     {
       "articleId": "1hiwvms",
-      "articleFingerprint": "1od5s84",
+      "articleFingerprint": "1sk278c",
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
       "url": "https://www.infoturia.com/riba-roja-de-turia/85552-riba-roja-cedeix-una-parcella-municipal-de-1-945-m%c2%b2-per-a-construir-36-habitatges-de-proteccio-publica.html",
@@ -360,25 +411,8 @@
       "score": 2
     },
     {
-      "articleId": "1xuqiyg",
-      "articleFingerprint": "1eha1zw",
-      "outlet": "El Periódico de Aquí",
-      "outletHost": "elperiodicodeaqui.com",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOLXhoazFWTng1cVdzSEpxYWN1TzdKUjd1UzJTTEI4eEQzUXprOUV3WDhWdE5MdXhNcGduZkN1V3NFaEZOUlRqTjFUdURRcnN5OEc3aGZUc045YmF5MGVmc1dLUE4yTXkxTWJTZFpRMDg0c090Y21LU25nVVYzcERCbDM2YzU5a21Rc0RYVXRhM2pxbDRyU0hmbHExYWlla3ZQSng1T2dR?oc=5",
-      "date": "2026-08-11T09:42:46.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": true,
-        "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 5
-    },
-    {
       "articleId": "1d9sglk",
-      "articleFingerprint": "39y0x",
+      "articleFingerprint": "6wszi4",
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
       "url": "https://www.infoturia.com/riba-roja-de-turia/85442-riba-roja-convoca-la-10a-edicio-dels-premis-ecoriba-amb-un-premi-de-6-000-euros-per-a-les-persones-entitats-i-empreses-guardonades.html",
@@ -404,15 +438,15 @@
         "localCoverage": true,
         "datedArticle": true,
         "municipalSourceMatch": true,
-        "corroboratedAcrossOutlets": true,
+        "corroboratedAcrossOutlets": false,
         "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 6
+      "score": 5
     },
     {
       "articleId": "neb0p4",
-      "articleFingerprint": "1l02fsd",
+      "articleFingerprint": "zr9sda",
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
       "url": "https://www.infoturia.com/riba-roja-de-turia/85433-riba-roja-adjudica-el-contracte-daigua-potable-per-556-milions-i-17-anys-de-vigencia.html",
@@ -477,23 +511,6 @@
         "opinionFraction": 0
       },
       "score": 1
-    },
-    {
-      "articleId": "a5cbp4",
-      "articleFingerprint": "d83stc",
-      "outlet": "Periòdic del Camp de Túria",
-      "outletHost": "infoturia.com",
-      "url": "https://www.infoturia.com/riba-roja-de-turia/85386-riba-roja-registra-1-894-contractes-al-juny-un-48-mes-que-al-maig.html",
-      "date": "2026-08-06T15:07:31.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 4
     },
     {
       "articleId": "jt16ws",
@@ -887,6 +904,23 @@
       "score": 2
     },
     {
+      "articleId": "10nwkmr",
+      "articleFingerprint": "1jtf72c",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQYUttd0w2b0dsMUEzMHhaeS1UU0hxa0dqaERRaXdMNW1YRmlGZTZuRHpzMktyTFZuNUtVOW5ENzVwcEpHSFQydWthWXBfMi1ndE9Mbjk0dE1qczNpaXR2SnJkcHNvaF95elNIUzlhbDI2SFFTZG9ubWVpc2hFZ2xyVUNzVlAwM3hia2lVU0V4Qmg1WXRnLTVnS01nTkx0WkJjc0ZxY3hVSmVoMkwxbmhuMGQ5V2Zsa05sOHBRaU5NTjZBbHk0dmdldlhaSXE1eVdfTlZPanZLY1dwUjVWX21wbHN5RGZQODZ4QTgtWtIB8gFBVV95cUxNRzYtalBNZnpleXJWcklMMDJmdDZOMGZ3Rkk4R000NEdfdjdkVGFCQ3RtaUtiSmFoaHg0dk9XX0YzeDZvV3RWYXJ6QUc2NHFHeTRwSUNubzdhYkJUcHIzanFkbnJyVF9VTzRQOUhRUXh3QWZwWThSemhKVlkxYmpfbHFHcXl6VXJWQldtNXBJdUxTenl3Z0pCSmZfMS13dDE2VHh1NVdkNm82cmQyNTV1NF9UakR6WDJQSUQzM0k3OTVDY21zYzdWYUhoc1dkdHJoTDRob0oybDBvdXlWT1F1UnlKcEJsRXBDT3VOdmNSeDBtdw?oc=5",
+      "date": "2026-07-27T07:00:00.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
       "articleId": "5gah7m",
       "articleFingerprint": "nbrsa8",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -902,64 +936,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "104o1i5",
-      "articleFingerprint": "83ppmu",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-avanza-en-las-infraestructuras-clave-del-municipio",
-      "date": "2026-07-22T12:40:12.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "1k4xya8",
-      "articleFingerprint": "x3wank",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/programa-fiestas-de-agosto-2026",
-      "date": "2026-07-22T10:59:37.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "1dacfso",
-      "articleFingerprint": "113xl6k",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-avanza-en-la-mejora-de-la-accesibilidad-digital-de-su-web-tur%C3%ADstica",
-      "date": "2026-07-22T08:50:14.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 33,
+      "articleCount": 31,
       "verdictCounts": {
         "verificado": 1,
         "parcial": 0,
@@ -967,7 +950,7 @@
         "sin-datos": 20,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.55,
+      "meanTrustScore": 2.58,
       "verifiedRatio": 0.048,
       "contradictedRatio": 0
     },
@@ -979,27 +962,27 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 19,
+        "sin-datos": 18,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3,
+      "meanTrustScore": 2.8,
       "verifiedRatio": 0,
       "contradictedRatio": 0
     },
     {
-      "outlet": "El Periódico de Aquí",
-      "outletHost": "elperiodicodeaqui.com",
+      "outlet": "Valencia Plaza",
+      "outletHost": "valenciaplaza.com",
       "articleCount": 3,
       "verdictCounts": {
-        "verificado": 1,
+        "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 1,
+        "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.33,
-      "verifiedRatio": 0.5,
-      "contradictedRatio": 0
+      "meanTrustScore": 3,
+      "verifiedRatio": null,
+      "contradictedRatio": null
     },
     {
       "outlet": "Las Provincias",
@@ -1017,9 +1000,9 @@
       "contradictedRatio": 0
     },
     {
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "articleCount": 2,
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "articleCount": 3,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1027,13 +1010,13 @@
         "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3,
+      "meanTrustScore": 2.67,
       "verifiedRatio": null,
       "contradictedRatio": null
     },
     {
-      "outlet": "Levante-EMV",
-      "outletHost": "levante-emv.com",
+      "outlet": "El Periódico de Aquí",
+      "outletHost": "elperiodicodeaqui.com",
       "articleCount": 2,
       "verdictCounts": {
         "verificado": 0,
@@ -1042,7 +1025,7 @@
         "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3,
+      "meanTrustScore": 1,
       "verifiedRatio": null,
       "contradictedRatio": null
     },
@@ -1078,9 +1061,9 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "887db1455733",
+    "plenos-agendas.json": "77435a6f1df5",
     "press-claims-verified.json": "3d14cefce4b5",
-    "press.json": "cf9b0e2b815e",
+    "press.json": "fb2adc951894",
     "promises.json": "973df30a62ce"
   }
 }

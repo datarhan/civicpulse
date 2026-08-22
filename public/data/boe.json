@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21T05:03:02.637Z",
+  "generatedAt": "2026-08-22T04:58:56.589Z",
   "source": {
     "url": "https://www.boe.es/datosabiertos/api/boe/sumario/{YYYYMMDD}",
     "matchPattern": "riba-roja | ribarroja | ribaroja (case-insensitive)",
@@ -7,13 +7,12 @@
   },
   "stats": {
     "daysFetched": 27,
-    "daysWithMatches": 2,
+    "daysWithMatches": 1,
     "daysFailed": 0,
     "daysRequested": 30,
-    "total": 2,
+    "total": 1,
     "byDepartamento": {
-      "MINISTERIO DE TRANSPORTES Y MOVILIDAD SOSTENIBLE": 1,
-      "ADMINISTRACIÓN LOCAL": 1
+      "MINISTERIO DE TRANSPORTES Y MOVILIDAD SOSTENIBLE": 1
     }
   },
   "items": [
@@ -27,17 +26,6 @@
       "titulo": "Anuncio de licitación de: Dirección General de Carreteras. Objeto: 30.599/26; RE-V-26002 Proyecto de trazado y construcción: Mejoras Funcionales y de seguridad vial y medidas de integración ambiental. Conexión entre la A-3 Y LA A-7 (BY-PASS). TT.MM. De Chiva, Cheste, Loriguilla, Riba-Roja De Túria y Manises. Provincia de Valencia. Expediente: B30264626002.",
       "urlHtml": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-25651",
       "urlPdf": "https://www.boe.es/boe/dias/2026/07/30/pdfs/BOE-B-2026-25651.pdf"
-    },
-    {
-      "id": "260535632517",
-      "identificador": "BOE-A-2026-16060",
-      "publicacionDate": "2026-07-23T00:00:00.000Z",
-      "departamento": "ADMINISTRACIÓN LOCAL",
-      "seccion": "II. Autoridades y personal. - B. Oposiciones y concursos",
-      "epigrafe": "Personal funcionario y laboral",
-      "titulo": "Resolución de 17 de julio de 2026, del Ayuntamiento de Riba-roja de Túria (Valencia/València), referente a la convocatoria para proveer una plaza.",
-      "urlHtml": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-16060",
-      "urlPdf": "https://www.boe.es/boe/dias/2026/07/23/pdfs/BOE-A-2026-16060.pdf"
     }
   ]
 }

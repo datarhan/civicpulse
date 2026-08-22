@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-08-21T05:13:44.371Z",
+  "generatedAt": "2026-08-22T05:12:33.109Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 63,
-    "openTotal": 63,
+    "total": 65,
+    "openTotal": 65,
     "inRibaRoja": 41,
-    "closingSoon": 7,
-    "withDetail": 63,
+    "closingSoon": 6,
+    "withDetail": 65,
     "byMonth": {
-      "2026-08": 22,
+      "2026-08": 24,
       "2026-07": 25,
       "2026-06": 7,
       "2026-05": 3,
@@ -22,6 +22,168 @@
     }
   },
   "items": [
+    {
+      "id": "2522",
+      "fo": 2522,
+      "codigo": "2026/00222",
+      "titulo": "Personal de limpieza viaria con discapacidad",
+      "publishedAt": "2026-08-21",
+      "deadline": "2026-10-21",
+      "location": "Loriguilla (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2522",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00222"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Personal de limpieza viaria con discapacidad"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Valorable carnet de conducir y experiencia previa en trabajos iguales o similares."
+          },
+          {
+            "label": "Porcentaje de discapacidad",
+            "value": "Igual o superior a 33%"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "OTROS SERVICIOS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATACION DISCAPACIDAD"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Temporal con posibilidad de indefinido"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "4"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 2ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Loriguilla, Provincia: Valencia, CP: 46393"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno mañana, Turno tarde, Festivos"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio colectivo"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Barrido manual de calles, aceras, plazas y zonas peatonales. - Recogida de papeles, hojas, residuos y pequeños desperdicios de la vía pública. - Vaciado y limpieza de papeleras. - Retirada de residuos y suciedad acumulada. - Apoyo en la limpieza de parques, jardines y espacios públicos. - Uso adecuado de herramientas y equipos de limpieza. - Separación y depósito de los residuos en los lugares correspondientes. - Comunicación al responsable de cualquier incidencia, desperfecto o situación de riesgo detectada en la vía pública. - Cumplimiento de las normas de seguridad y prevención de riesgos laborales."
+          }
+        ],
+        "tipoContrato": "CONTRATACION DISCAPACIDAD",
+        "duracion": "Temporal con posibilidad de indefinido",
+        "numPuestos": "4",
+        "categoria": "OFICIAL DE 2ª",
+        "observaciones": "Valorable carnet de conducir y experiencia previa en trabajos iguales o similares.",
+        "municipio": "Loriguilla",
+        "provincia": "Valencia",
+        "cp": "46393",
+        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Festivos",
+        "salario": "Según convenio colectivo",
+        "funciones": "- Barrido manual de calles, aceras, plazas y zonas peatonales. - Recogida de papeles, hojas, residuos y pequeños desperdicios de la vía pública. - Vaciado y limpieza de papeleras. - Retirada de residuos y suciedad acumulada. - Apoyo en la limpieza de parques, jardines y espacios públicos. - Uso adecuado de herramientas y equipos de limpieza. - Separación y depósito de los residuos en los lugares correspondientes. - Comunicación al responsable de cualquier incidencia, desperfecto o situación de riesgo detectada en la vía pública. - Cumplimiento de las normas de seguridad y prevención de riesgos laborales.",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2523",
+      "fo": 2523,
+      "codigo": "2026/00221",
+      "titulo": "Personal de limpieza con discapacidad para colegio",
+      "publishedAt": "2026-08-21",
+      "deadline": "2026-10-21",
+      "location": "Loriguilla (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2523",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00221"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Personal de limpieza con discapacidad para colegio"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Valorable carnet de conducir y experiencia previa en puestos iguales o similares."
+          },
+          {
+            "label": "Porcentaje de discapacidad",
+            "value": "Igual o superior a 33%"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "OTROS SERVICIOS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATACION DISCAPACIDAD"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Temporal con posibilidad de indefinido"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "4"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 2ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Loriguilla, Provincia: Valencia, CP: 46393"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Parcial Turnos: Turno mañana, Turno tarde"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio colectivo"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Limpieza y desinfección de aulas, pasillos y zonas comunes. - Limpieza de baños y aseos. - Barrido, fregado y aspirado de suelos. - Limpieza de mesas, sillas, puertas y mobiliario. - Vaciado de papeleras y retirada de residuos. - Limpieza de cristales y superficies cuando sea necesario. - Limpieza de escaleras, entradas y zonas de acceso. - Reposición de productos de higiene en los baños. - Mantener las instalaciones limpias, ordenadas y en buenas condiciones. - Utilizar correctamente los productos y herramientas de limpieza. - Cumplir las normas de seguridad y prevención de riesgos laborales. - Comunicar al responsable cualquier desperfecto o incidencia detectada."
+          }
+        ],
+        "tipoContrato": "CONTRATACION DISCAPACIDAD",
+        "duracion": "Temporal con posibilidad de indefinido",
+        "numPuestos": "4",
+        "categoria": "OFICIAL DE 2ª",
+        "observaciones": "Valorable carnet de conducir y experiencia previa en puestos iguales o similares.",
+        "municipio": "Loriguilla",
+        "provincia": "Valencia",
+        "cp": "46393",
+        "jornada": "Parcial Turnos: Turno mañana, Turno tarde",
+        "salario": "Según convenio colectivo",
+        "funciones": "- Limpieza y desinfección de aulas, pasillos y zonas comunes. - Limpieza de baños y aseos. - Barrido, fregado y aspirado de suelos. - Limpieza de mesas, sillas, puertas y mobiliario. - Vaciado de papeleras y retirada de residuos. - Limpieza de cristales y superficies cuando sea necesario. - Limpieza de escaleras, entradas y zonas de acceso. - Reposición de productos de higiene en los baños. - Mantener las instalaciones limpias, ordenadas y en buenas condiciones. - Utilizar correctamente los productos y herramientas de limpieza. - Cumplir las normas de seguridad y prevención de riesgos laborales. - Comunicar al responsable cualquier desperfecto o incidencia detectada.",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2521",
       "fo": 2521,

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21T05:15:45.747Z",
+  "generatedAt": "2026-08-22T05:14:41.582Z",
   "clusters": [
     {
       "clusterId": "1ato0ec",
@@ -44,32 +44,6 @@
       }
     },
     {
-      "clusterId": "1eha1zw",
-      "articleIds": [
-        "1xuqiyg",
-        "fmuqqw"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "El Periódico de Aquí"
-      ],
-      "earliestDate": "2026-08-11T08:56:32.000Z",
-      "latestDate": "2026-08-11T09:42:46.000Z",
-      "amountDrift": {
-        "min": 6000,
-        "max": 6000,
-        "spread": 0,
-        "spreadPct": 0
-      },
-      "verdictMix": {
-        "verificado": 2,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 2,
-        "promesa-repetida": 0
-      }
-    },
-    {
       "clusterId": "1ij1q5o",
       "articleIds": [
         "1yotn1k",
@@ -81,6 +55,27 @@
       ],
       "earliestDate": "2026-08-18T09:26:42.000Z",
       "latestDate": "2026-08-18T12:04:41.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
+    {
+      "clusterId": "1oq1ic8",
+      "articleIds": [
+        "1fqbhjs",
+        "v4m8ao"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Valencia Plaza"
+      ],
+      "earliestDate": "2026-08-21T12:04:33.000Z",
+      "latestDate": "2026-08-21T13:56:14.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
