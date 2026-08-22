@@ -136,6 +136,35 @@ jobs:
             echo "::warning::A critical scraper failed (rc=$rc). The adapters that DID refresh are still committed; the health gate will red this run after the commit."
           fi
 
+      # `npm test` incluye UN test que levanta chromium de verdad:
+      # tests/reader-review-resiliencia.test.ts apunta el lector real a un
+      # puerto muerto para comprobar que reintenta y nombra lo que no leyó.
+      # Sin navegador no falla por lo que vigila, falla con «browserType.launch:
+      # Executable doesn't exist» — y como `npm test` es lo que la puerta de
+      # salud mira, la nocturna llevaba en rojo desde que ese test nació el
+      # 2026-08-14, bloqueando el despliegue cada noche sin que el motivo se
+      # pareciera en nada a su causa.
+      #
+      # e2e.yml es el único sitio que instalaba navegador, y NO corre vitest, así
+      # que este test no se ejecutaba de verdad en ninguna parte de CI: rojo por
+      # no poder ejecutarse, que es el reverso del verde por no ejecutarse que
+      # este repositorio persigue. Mismo par cacheado que e2e.yml, sin inventar
+      # una variante.
+      - name: Cache Playwright browsers
+        id: cache-pw
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Playwright Chromium
+        if: steps.cache-pw.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps chromium
+
+      - name: Install Playwright system deps (cache hit)
+        if: steps.cache-pw.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
+
       # Tests validate the parser CODE against fixtures (independent of today's
       # live data). continue-on-error so a failure here can't skip the commit
       # of fresh data — it is folded into the health gate instead.

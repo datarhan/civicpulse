@@ -44,6 +44,16 @@ interface ExpectedPass {
   everyHours: number
   /** Named in the failure, because the fix is almost always the scheduler. */
   scheduler: string
+  /**
+   * La pasada sólo corre en el portátil del curador, nunca en un runner.
+   *
+   * Los manifiestos viven en `.run-manifests/`, que está en `.gitignore`, así
+   * que en CI el directorio empieza vacío cada noche y una pasada de cron local
+   * NUNCA tendrá historial ahí. Sin esta marca el check las declaraba
+   * inexistentes y salía 2 — rojo permanente por no poder mirar, que es el
+   * reverso del verde por no ejecutarse.
+   */
+  soloCurador?: boolean
 }
 
 export const EXPECTED_PASSES: ExpectedPass[] = [
@@ -51,6 +61,7 @@ export const EXPECTED_PASSES: ExpectedPass[] = [
     script: 'extract-pleno-claims',
     everyHours: 48,
     scheduler: 'hallazgos-pipeline (diario 09:30)',
+    soloCurador: true,
   },
   {
     // Nothing watched this until 2026-08-11, and it is about to run unattended
@@ -62,6 +73,7 @@ export const EXPECTED_PASSES: ExpectedPass[] = [
     script: 'extract-speaker-map',
     everyHours: 48,
     scheduler: 'hallazgos-pipeline (diario 09:30)',
+    soloCurador: true,
   },
 ]
 
@@ -147,11 +159,30 @@ function main() {
     return
   }
 
+  // El guardián de arriba cubre el checkout SIN historial ninguno. Falta el
+  // caso de al lado, que es el que rompía la nocturna: un runner que SÍ tiene
+  // manifiestos —los que acaba de escribir él mismo— pero que nunca va a tener
+  // los de una pasada que sólo corre en el portátil del curador. Ahí
+  // `all.length > 0`, así que el early-return no salta, y las dos pasadas de
+  // `hallazgos-pipeline` caían en el FATAL de abajo todas las noches.
+  const enCI = !!process.env.CI
+  const omitidas = enCI ? EXPECTED_PASSES.filter((e) => e.soloCurador) : []
+  const aplicables = EXPECTED_PASSES.filter((e) => !omitidas.includes(e))
+  if (omitidas.length > 0) {
+    // Se dice en voz alta: «no comprobado aquí» no es «comprobado y bien».
+    process.stdout.write(
+      `[check-runs] ${omitidas.length} pasada(s) NO comprobada(s) en este runner — sólo corren\n` +
+        `             en el portátil del curador: ${omitidas.map((e) => e.script).join(', ')}.\n` +
+        `             Su vigilancia vive en la máquina que las lanza; aquí no hay manifiesto\n` +
+        `             que mirar y fingir lo contrario sería un rojo que nadie puede arreglar.\n`,
+    )
+  }
+
   // The typo guard fires before anything else: an expectation naming a script
   // that has never written a manifest is a bug in this file, not a finding
   // about the pipeline, and reporting it as the latter would be a permanent
   // red nobody can clear.
-  const unreal = unrealExpectations(all, EXPECTED_PASSES)
+  const unreal = unrealExpectations(all, aplicables)
   if (unreal.length > 0) {
     process.stderr.write(
       `[check-runs] FATAL: EXPECTED_PASSES names ${unreal.join(', ')}, which has never\n` +
@@ -163,7 +194,7 @@ function main() {
 
   // Scheduled passes are checked against the WHOLE history, not the window: a
   // pass 9 days overdue has nothing inside a 36h window to notice.
-  const overdue = overduePasses(all, EXPECTED_PASSES, Date.now())
+  const overdue = overduePasses(all, aplicables, Date.now())
   // One line each, deliberately: `monitor-health.ts` keeps only a check's last
   // two lines when it turns it into an alert, so a two-line finding loses its
   // own diagnosis to the summary underneath it.
@@ -184,7 +215,7 @@ function main() {
     process.stdout.write(
       `[check-runs] no instrumented runs in the last ${args.sinceHours}h ` +
         `(${all.length} manifest(s) on disk in total, ` +
-        `${EXPECTED_PASSES.length} pasada(s) programada(s) vigilada(s), ${overdue.length} vencida(s))\n`,
+        `${aplicables.length} pasada(s) programada(s) vigilada(s), ${overdue.length} vencida(s))\n`,
     )
     if (overdue.length > 0 && !args.soft) process.exit(1)
     return
@@ -206,7 +237,7 @@ function main() {
 
   process.stdout.write(
     `\n[check-runs] ${manifests.length} run(s) · ${errors} error(s) · ${warns} warning(s) · ` +
-      `${EXPECTED_PASSES.length} pasada(s) programada(s), ${overdue.length} vencida(s)\n`,
+      `${aplicables.length} pasada(s) programada(s), ${overdue.length} vencida(s)\n`,
   )
   if (errors > 0 && !args.soft) process.exit(1)
 }

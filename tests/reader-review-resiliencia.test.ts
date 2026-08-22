@@ -157,6 +157,21 @@ describe('inyección de fallo: el lector contra un servidor que no existe', () =
     // Prueba de trabajo antes que nada: si chromium no arrancó, lo de abajo
     // pasaría por los motivos equivocados.
     expect(salida, 'el lector no llegó a arrancar').not.toBe('')
+
+    // Y si no arrancó por FALTA DE NAVEGADOR, dilo con ese nombre. Sin esta
+    // aserción el fallo salía como «expected 'browserType.launch: Executable
+    // doesn\'t exist…' to match /no responde — reintento 2\/2/», que no se
+    // parece en nada a su causa: la nocturna llevaba desde el 2026-08-14 en
+    // rojo por esto —bloqueando el despliegue cada noche— y hizo falta bajarse
+    // el log y leerlo entero para verlo. Un test que levanta un navegador de
+    // verdad tiene que distinguir «el lector se portó mal» de «aquí no hay
+    // navegador que levantar».
+    expect(
+      /Executable doesn't exist|playwright install/i.test(salida),
+      'chromium no está instalado aquí, así que este test no ha probado nada: levanta un ' +
+        'navegador de verdad. Instálalo con `npx playwright install chromium` (en CI lo hacen ' +
+        'e2e.yml y nightly-scrape.yml).',
+    ).toBe(false)
     // Insistió antes de rendirse. Sin esto el vigilante que relanza el preview
     // del barrido no sirve de nada: la ruta que pilla el hueco de diez segundos
     // se declara inalcanzable y la pasada para con el servidor ya de vuelta.
