@@ -23,6 +23,7 @@ import {
   ENTREGAS,
   parseEntregasDisponibles,
   calendarioEntrega,
+  reescribirEntregas,
   VENCE_MES,
   VENCE_DIA,
 } from '../src/scraper/cesel-entregas'
@@ -101,5 +102,54 @@ describe('calendarioEntrega', () => {
     // 1 de noviembre. Se exportan para que la prosa y la guarda citen la misma.
     expect(VENCE_DIA).toBe(1)
     expect(VENCE_MES).toBe(11)
+  })
+})
+
+describe('reescribirEntregas', () => {
+  const FUENTE = [
+    '/** cabecera que debe sobrevivir */',
+    'export const ENTREGAS: Record<string, number> = {',
+    "  '1': 2014,",
+    "  '13': 2024,",
+    '}',
+    '',
+    'export const VENCE_DIA = 1',
+  ].join('\n')
+
+  const literal = (texto: string) => {
+    const m = /export const ENTREGAS: Record<string, number> = \{([\s\S]*?)\n\}/.exec(texto)
+    if (!m) throw new Error('sin literal')
+    const out: Record<string, number> = {}
+    for (const [, id, anio] of m[1].matchAll(/'(\d+)':\s*(\d{4}),/g)) out[id] = Number(anio)
+    return out
+  }
+
+  it('añade la entrega nueva sin tocar el resto del fichero', () => {
+    const nuevo = reescribirEntregas(FUENTE, { '1': 2014, '13': 2024, '14': 2025 })
+    expect(literal(nuevo)).toEqual({ '1': 2014, '13': 2024, '14': 2025 })
+    // Lo de alrededor sigue ahí: una reescritura que se coma el módulo
+    // compilaría igual de mal en noviembre, cuando no hay nadie mirando.
+    expect(nuevo).toContain('/** cabecera que debe sobrevivir */')
+    expect(nuevo).toContain('export const VENCE_DIA = 1')
+  })
+
+  it('ordena por ejercicio, no por id de texto', () => {
+    // '9' > '13' como cadenas. Si se ordena mal, 2020 acaba detrás de 2024 y el
+    // fichero deja de leerse como una serie.
+    const nuevo = reescribirEntregas(FUENTE, { '13': 2024, '9': 2020, '1': 2014 })
+    const anios = [...nuevo.matchAll(/'(\d+)':\s*(\d{4}),/g)].map((m) => Number(m[2]))
+    expect(anios).toEqual([2014, 2020, 2024])
+  })
+
+  it('es idempotente: sin cambios, el texto es idéntico', () => {
+    // Sin esto la automatización abriría una PR cada lunes con un diff vacío.
+    expect(reescribirEntregas(FUENTE, { '1': 2014, '13': 2024 })).toBe(FUENTE)
+  })
+
+  it('estalla si no encuentra el literal, en vez de no hacer nada', () => {
+    // Un renombrado deja la reescritura sin ancla. Devolver el texto tal cual
+    // haría que la PR de noviembre trajera datos nuevos y un mapa viejo — la
+    // guarda seguiría en rojo y nadie sabría por qué.
+    expect(() => reescribirEntregas('const OTRA_COSA = {}', { '1': 2014 })).toThrow(/ENTREGAS/)
   })
 })

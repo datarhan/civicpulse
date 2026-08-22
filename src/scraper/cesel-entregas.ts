@@ -83,6 +83,32 @@ export function parseEntregasDisponibles(html: string): Record<string, number> {
   return out
 }
 
+/**
+ * Reescribe el literal {@link ENTREGAS} dentro del texto de este mismo módulo.
+ *
+ * Pura a propósito —texto entra, texto sale— para que la parte delicada se
+ * pruebe sin tocar el disco. La usa `sync:cesel-entregas`, que corre sola en
+ * noviembre: cuando el ministerio publica una entrega, la lista tiene que
+ * aprenderla o el fetcher no la bajará y la guarda seguirá en rojo.
+ *
+ * **Estalla si no encuentra el ancla**, en vez de devolver el texto tal cual.
+ * Un no-op silencioso aquí produce lo peor de los dos mundos: una PR con datos
+ * nuevos y un mapa viejo, en noviembre, sin nadie mirando.
+ */
+export function reescribirEntregas(fuente: string, entregas: Record<string, number>): string {
+  const re = /(export const ENTREGAS: Record<string, number> = \{\n)([\s\S]*?)(\n\})/
+  if (!re.test(fuente)) {
+    throw new Error('[cesel-entregas] no se encontró el literal ENTREGAS que reescribir')
+  }
+  // Por EJERCICIO, no por id: los ids son cadenas y '9' > '13', así que ordenar
+  // por clave dejaría 2020 detrás de 2024 y la tabla dejaría de leerse.
+  const cuerpo = Object.entries(entregas)
+    .sort((a, b) => a[1] - b[1])
+    .map(([id, anio]) => `  '${id}': ${anio},`)
+    .join('\n')
+  return fuente.replace(re, (_m, abre, _viejo, cierra) => `${abre}${cuerpo}${cierra}`)
+}
+
 /** Si el plazo de la próxima entrega sigue corriendo o ya terminó. */
 export type EstadoEntrega = 'en-plazo' | 'plazo-vencido'
 

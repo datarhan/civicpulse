@@ -1,0 +1,196 @@
+name: CESEL entrega nueva
+
+# El coste efectivo es el dato más lento del sitio: un ejercicio se rinde antes
+# del 1 de noviembre del año siguiente (Orden HAP/2075/2014) y el ministerio lo
+# publica DESPUÉS. Medido contra el propio desplegable del ministerio en el
+# Internet Archive:
+#
+#   2024-11-25  el desplegable aún decía 2022
+#   2024-11-30  aparecía 2023          ← la entrega nace a finales de noviembre
+#   2025-10-28  aún 2023
+#   2025-12-10  ya 2024
+#
+# De ahí la ventana: lunes de noviembre, diciembre y enero. Un disparo único el
+# 10 de noviembre habría fallado los dos años y habría esperado doce meses para
+# volver a mirar; una pasada diaria todo el año compraría cobertura que la Orden
+# hace imposible (entre febrero y octubre no puede aparecer nada).
+#
+# POR QUÉ NO ESTÁ EN LA NOCTURNA: `scrape:coste-efectivo` baja un volcado
+# nacional de ~45 MB. Repetirlo cada noche contra una administración pública,
+# para un dato que cambia una vez al año, es justo lo contrario de la regla de
+# «scrapers educados» de CLAUDE.md. Aquí la descarga sólo ocurre cuando el
+# chequeo barato —una petición HTML— dice que hay algo nuevo de verdad.
+#
+# POR QUÉ ABRE UNA PR Y NO COMITEA: una entrega nueva mueve a la vez TODOS los
+# costes unitarios, todos los percentiles y los dos experimentos del
+# laboratorio, y puede volver «contradice» una ficha firmada de /eficiencia. La
+# nocturna ya declara esa decisión humana y no opcional. La PR trae el diff y el
+# veredicto de las guardas para tomarla.
+
+on:
+  schedule:
+    # Lunes de noviembre, diciembre y enero, 06:00 UTC.
+    - cron: '0 6 * 11,12,1 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  entrega:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      # El chequeo barato manda. Sale 1 cuando divergen, así que se captura el
+      # código en vez de dejar que tumbe el job: «no hay entrega nueva» es el
+      # desenlace NORMAL once meses al año.
+      - id: check
+        name: ¿Hay entrega nueva?
+        run: |
+          set +e
+          salida=$(npm run --silent check:cesel-entregas -- --json)
+          rc=$?
+          set -e
+          echo "$salida"
+          estado=$(printf '%s' "$salida" | jq -r '.estado')
+          nuevas=$(printf '%s' "$salida" | jq -r '.nuevas | join(", ")')
+          echo "estado=$estado" >> "$GITHUB_OUTPUT"
+          echo "nuevas=$nuevas" >> "$GITHUB_OUTPUT"
+          # `no-alcanzable` NO es «no hay nada»: es «no lo he podido mirar». Se
+          # dice en voz alta y se sale sin fingir un visto bueno.
+          if [ "$estado" = "no-alcanzable" ]; then
+            echo "::warning::La consulta del ministerio no respondió — no se ha comprobado nada."
+          fi
+          if [ "$estado" = "coincide" ]; then
+            echo "Sin novedad: el desplegable y la lista dicen lo mismo. rc=$rc"
+          fi
+
+      # A partir de aquí sólo se corre si hay algo nuevo de verdad.
+      - name: ¿Ya hay una PR abierta para esto?
+        id: abierta
+        if: steps.check.outputs.estado == 'divergen'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUEVAS: ${{ steps.check.outputs.nuevas }}
+        run: |
+          # Por EJERCICIO, no por año de calendario: una entrega que se publique
+          # tarde y caiga en enero seguiría siendo la de dos años antes, y una
+          # rama con el año del reloj lo contaría mal.
+          rama="cesel-entrega-$(printf '%s' "$NUEVAS" | tr -d ' ' | tr ',' '-')"
+          echo "rama=$rama" >> "$GITHUB_OUTPUT"
+          # Una segunda PR idéntica cada lunes sería ruido, y peor: escondería
+          # la primera, que es la que alguien tiene que revisar.
+          if gh pr list --head "$rama" --state open --json number -q '.[].number' | grep -q .; then
+            echo "ya=si" >> "$GITHUB_OUTPUT"
+            echo "::notice::Ya hay una PR abierta en $rama — no se abre otra."
+          else
+            echo "ya=no" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Instalar Chromium
+        if: steps.check.outputs.estado == 'divergen' && steps.abierta.outputs.ya == 'no'
+        run: npx playwright install --with-deps chromium
+
+      - name: Traer la entrega y recomponer
+        if: steps.check.outputs.estado == 'divergen' && steps.abierta.outputs.ya == 'no'
+        run: |
+          set -euo pipefail
+          # 1. La lista aprende la entrega. Sin esto `fetch:cesel-ccaa` no la
+          #    baja: recorre ENTREGAS, no el desplegable.
+          npm run sync:cesel-entregas
+          # 2. El informe por comunidad, que es la única vía a los pares de un
+          #    año que no sea 2021.
+          npm run fetch:cesel-ccaa
+          # 3. El snapshot y todo lo que se deriva de él.
+          npm run scrape:coste-efectivo
+          npm run compute:indicadores
+          npm run compute:dea
+          npm run compute:coste-esperado
+
+      # Las guardas NO tumban el job: su veredicto es justamente lo que hay que
+      # leer en la PR. Una guarda en rojo que impidiera abrirla dejaría el
+      # hallazgo más importante del año sin sitio donde verse.
+      - name: Guardas
+        id: guardas
+        if: steps.check.outputs.estado == 'divergen' && steps.abierta.outputs.ya == 'no'
+        run: |
+          set +e
+          : > /tmp/guardas.txt
+          for g in check:indicadores check:eficiencia-findings check:dea check:coste-esperado; do
+            echo "### $g" >> /tmp/guardas.txt
+            npm run --silent "$g" >> /tmp/guardas.txt 2>&1
+            rc=$?
+            if [ $rc -eq 0 ]; then
+              echo "-> OK" >> /tmp/guardas.txt
+            else
+              echo "-> FALLA (exit $rc) — REQUIERE DECISIÓN HUMANA" >> /tmp/guardas.txt
+              echo "rojas=si" >> "$GITHUB_OUTPUT"
+            fi
+            echo >> /tmp/guardas.txt
+          done
+          cat /tmp/guardas.txt
+
+      - name: Abrir la PR
+        if: steps.check.outputs.estado == 'divergen' && steps.abierta.outputs.ya == 'no'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RAMA: ${{ steps.abierta.outputs.rama }}
+          NUEVAS: ${{ steps.check.outputs.nuevas }}
+          ROJAS: ${{ steps.guardas.outputs.rojas }}
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$RAMA"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "::warning::El desplegable ofrecía algo nuevo pero no cambió ningún fichero."
+            exit 0
+          fi
+          git commit -m "data(eficiencia): entrega ${NUEVAS} del coste efectivo
+
+          El ministerio ha publicado la entrega de ${NUEVAS}. Trae el informe por
+          comunidad, recompone el snapshot y todo lo que se deriva de él.
+
+          Abierto por .github/workflows/cesel-entrega.yml. Sin revisar."
+          # Empuja SÓLO esta rama; main no se toca nunca desde aquí.
+          git push origin "$RAMA"
+          cuerpo=$(mktemp)
+          {
+            echo "El desplegable del ministerio ofrece la entrega de **${NUEVAS}**, que aquí no constaba."
+            echo
+            echo "Traído y recompuesto automáticamente: \`coste-efectivo\`, \`indicadores\`, \`dea\` y \`coste-esperado\`."
+            echo "**Nada de esto está revisado.**"
+            echo
+            if [ "${ROJAS:-no}" = "si" ]; then
+              echo "> [!WARNING]"
+              echo "> **Alguna guarda está en rojo.** Lo más probable es una ficha firmada de"
+              echo "> \`/eficiencia\` cuya cifra la entrega nueva ya no sostiene. Hay que decidir"
+              echo "> entre refrescar la medición y retirar la ficha — la automatización no lo hace."
+              echo
+            fi
+            echo "<details><summary>Salida de las guardas</summary>"
+            echo
+            echo '```'
+            cat /tmp/guardas.txt
+            echo '```'
+            echo
+            echo "</details>"
+            echo
+            echo "Antes de fusionar, mirar \`/eficiencia\` en un navegador: la serie gana un punto"
+            echo "y las bandas de comparación se mueven enteras."
+          } > "$cuerpo"
+          gh pr create \
+            --base main \
+            --head "$RAMA" \
+            --title "Coste efectivo: entrega ${NUEVAS}" \
+            --body-file "$cuerpo"

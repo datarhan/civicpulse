@@ -23,7 +23,12 @@
  * guarda que falla por causas ajenas es una guarda que se acaba ignorando— pero
  * tampoco firma nada.
  *
- * Usage: npm run check:cesel-entregas
+ * `--json` emite el mismo veredicto en una línea, para que
+ * `.github/workflows/cesel-entrega.yml` decida si vale la pena bajar los 45 MB.
+ * El código de salida es el MISMO en los dos modos: quien lo llame desde bash
+ * no tiene que aprenderse dos contratos.
+ *
+ * Usage: npm run check:cesel-entregas [-- --json]
  */
 import { readFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
@@ -40,6 +45,21 @@ const ROOT = join(__dirname, '..')
 const SNAPSHOT = join(ROOT, 'public/data/coste-efectivo.json')
 
 const UA = 'CivicPulse/1.0 (monitor cívico Riba-roja; +https://github.com/datarhan/civicpulse)'
+const JSON_OUT = process.argv.includes('--json')
+
+type Estado = 'coincide' | 'divergen' | 'no-alcanzable'
+
+interface Veredicto {
+  estado: Estado
+  /** Por qué no se pudo comprobar. Sólo en `no-alcanzable`. */
+  motivo?: string
+  conocidas: number[]
+  vivas: number[]
+  nuevas: number[]
+  desaparecidas: number[]
+  /** id→año del desplegable, tal cual, para quien tenga que reescribir la lista. */
+  desplegable: Record<string, number>
+}
 
 async function paginaViva(): Promise<string | null> {
   try {
@@ -48,21 +68,20 @@ async function paginaViva(): Promise<string | null> {
       signal: AbortSignal.timeout(60_000),
     })
     if (!res.ok) {
-      console.warn(`[cesel-entregas] HTTP ${res.status} en la consulta`)
+      if (!JSON_OUT) console.warn(`[cesel-entregas] HTTP ${res.status} en la consulta`)
       return null
     }
     return await res.text()
   } catch (e) {
-    console.warn(`[cesel-entregas] no se pudo leer la consulta: ${(e as Error).message}`)
+    if (!JSON_OUT)
+      console.warn(`[cesel-entregas] no se pudo leer la consulta: ${(e as Error).message}`)
     return null
   }
 }
 
 async function anioBasePublicado(): Promise<number | null> {
   try {
-    const d = JSON.parse(await readFile(SNAPSHOT, 'utf8')) as {
-      stats?: { anios?: number[] }
-    }
+    const d = JSON.parse(await readFile(SNAPSHOT, 'utf8')) as { stats?: { anios?: number[] } }
     const anios = d.stats?.anios ?? []
     return anios.length ? Math.max(...anios) : null
   } catch {
@@ -70,44 +89,61 @@ async function anioBasePublicado(): Promise<number | null> {
   }
 }
 
-async function main() {
+async function veredicto(): Promise<Veredicto> {
   const conocidas = Object.values(ENTREGAS).sort((a, b) => a - b)
-  const html = await paginaViva()
+  const vacio = { conocidas, vivas: [], nuevas: [], desaparecidas: [], desplegable: {} }
 
+  const html = await paginaViva()
   if (html === null) {
-    console.log('[cesel-entregas] NO COMPROBADO — la consulta del ministerio no respondió.')
-    console.log(
-      `[cesel-entregas] no se ha verificado nada: las ${conocidas.length} entregas conocidas ` +
-        `(${conocidas[0]}–${conocidas[conocidas.length - 1]}) siguen sin cotejar.`,
-    )
-    return
+    return { estado: 'no-alcanzable', motivo: 'la consulta no respondió', ...vacio }
   }
 
-  const vivas = parseEntregasDisponibles(html)
-  const anios = Object.values(vivas).sort((a, b) => a - b)
-
-  if (!anios.length) {
+  const desplegable = parseEntregasDisponibles(html)
+  const vivas = Object.values(desplegable).sort((a, b) => a - b)
+  if (!vivas.length) {
     // La página respondió pero no trae desplegable: un rediseño, un WAF que
     // devuelve una portada, un error 200. Tampoco es un visto bueno.
-    console.log(
-      '[cesel-entregas] NO COMPROBADO — la página respondió sin desplegable `ddlEntrega`.',
-    )
-    console.log('[cesel-entregas] revisar si la consulta cambió de forma o de URL.')
+    return { estado: 'no-alcanzable', motivo: 'respondió sin desplegable ddlEntrega', ...vacio }
+  }
+
+  const nuevas = vivas.filter((a) => !conocidas.includes(a))
+  const desaparecidas = conocidas.filter((a) => !vivas.includes(a))
+  return {
+    estado: nuevas.length || desaparecidas.length ? 'divergen' : 'coincide',
+    conocidas,
+    vivas,
+    nuevas,
+    desaparecidas,
+    desplegable,
+  }
+}
+
+async function main() {
+  const v = await veredicto()
+
+  if (JSON_OUT) {
+    console.log(JSON.stringify(v))
+    if (v.estado === 'divergen') process.exit(1)
     return
   }
 
-  const nuevas = anios.filter((a) => !conocidas.includes(a))
-  const desaparecidas = conocidas.filter((a) => !anios.includes(a))
+  if (v.estado === 'no-alcanzable') {
+    console.log(`[cesel-entregas] NO COMPROBADO — ${v.motivo}.`)
+    console.log(
+      `[cesel-entregas] no se ha verificado nada: las ${v.conocidas.length} entregas conocidas ` +
+        `(${v.conocidas[0]}–${v.conocidas[v.conocidas.length - 1]}) siguen sin cotejar.`,
+    )
+    return
+  }
 
   // Imprescindible: decir cuántas comparó. «0 nuevas» y «no miré ninguna» se
   // ven igual desde fuera si no se cuenta en voz alta.
   console.log(
-    `[cesel-entregas] ${anios.length} entregas en el desplegable ` +
-      `(${anios[0]}–${anios[anios.length - 1]}), ${conocidas.length} en el repositorio.`,
+    `[cesel-entregas] ${v.vivas.length} entregas en el desplegable ` +
+      `(${v.vivas[0]}–${v.vivas[v.vivas.length - 1]}), ${v.conocidas.length} en el repositorio.`,
   )
 
-  const base = await anioBasePublicado()
-  const cal = calendarioEntrega(base, new Date())
+  const cal = calendarioEntrega(await anioBasePublicado(), new Date())
   if (cal) {
     console.log(
       `[cesel-entregas] publicado aquí: ${cal.ultima}. La de ${cal.proxima} ` +
@@ -117,28 +153,28 @@ async function main() {
     )
   }
 
-  if (!nuevas.length && !desaparecidas.length) {
+  if (v.estado === 'coincide') {
     console.log('[cesel-entregas] ✓ coincide')
     return
   }
 
-  if (nuevas.length) {
+  if (v.nuevas.length) {
     console.error(
-      `[cesel-entregas] ENTREGA NUEVA: el ministerio publica ${nuevas.join(', ')} y aquí no consta.`,
+      `[cesel-entregas] ENTREGA NUEVA: el ministerio publica ${v.nuevas.join(', ')} y aquí no consta.`,
     )
-    const ids = Object.entries(vivas)
-      .filter(([, a]) => nuevas.includes(a))
+    const ids = Object.entries(v.desplegable)
+      .filter(([, a]) => v.nuevas.includes(a))
       .map(([id, a]) => `${id}→${a}`)
     console.error(`[cesel-entregas] ids del desplegable: ${ids.join(', ')}`)
     console.error(
-      '[cesel-entregas] añádelas a ENTREGAS en src/scraper/cesel-entregas.ts y luego:\n' +
+      '[cesel-entregas] npm run sync:cesel-entregas la añade a la lista, y luego:\n' +
         '                 npm run fetch:cesel-ccaa && npm run scrape:coste-efectivo && ' +
         'npm run compute:indicadores',
     )
   }
-  if (desaparecidas.length) {
+  if (v.desaparecidas.length) {
     console.error(
-      `[cesel-entregas] entregas que el desplegable ya NO ofrece: ${desaparecidas.join(', ')}. ` +
+      `[cesel-entregas] entregas que el desplegable ya NO ofrece: ${v.desaparecidas.join(', ')}. ` +
         'El snapshot las sigue publicando; comprobar si la fuente las retiró.',
     )
   }
