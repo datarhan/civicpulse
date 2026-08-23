@@ -155,10 +155,88 @@ export function evaluateHealth(o: Observations): Alert[] {
   return alerts
 }
 
-/** Stable key for de-duplication: same problems ⇒ same fingerprint. */
+/**
+ * Cuánto texto de un check cabe en su aviso.
+ *
+ * Eran 200 y la frase de `nothing-attempted` se cortaba a media palabra, justo
+ * antes de «setup, credentials or a dependency» — que es la mitad accionable.
+ */
+export const CHECK_DETAIL_MAX = 320
+
+/**
+ * Un renglón que un check marca como hallazgo: `ERROR`, `FATAL` o `✗`.
+ *
+ * Kebab-case con al menos un guion, para que `[nothing-attempted]` cuente y
+ * `[0.0` o `[12` no.
+ */
+const FINDING_LINE_RE = /(?:^|\s)(?:ERROR|FATAL)\b|✗/
+const FINDING_CODE_RE = /\[([a-z0-9]+(?:-[a-z0-9]+)+)\]/g
+
+/**
+ * El renglón de un check que explica QUÉ falló, no cuántos fallos hubo.
+ *
+ * `monitor-health` se quedaba con las dos últimas líneas de un check caído. Casi
+ * todos imprimen sus hallazgos primero y su resumen al final, así que lo que
+ * llegaba al móvil era la aritmética: «5 run(s) · 4 error(s)», sin decir cuáles.
+ * El 19-ago eso fue la diferencia entre un aviso accionable y cuatro noches de
+ * barrido muerto — el motivo, una descarga rota, estaba tres líneas más arriba.
+ *
+ * Prefiere los renglones marcados; si no hay ninguno cae a la cola de siempre,
+ * así que un check que ya se leía bien no empeora.
+ */
+export function pickCheckDiagnosis(output: string): string {
+  const lines = output
+    .split('\n')
+    .map((l) => l.trim())
+    .filter(Boolean)
+  const flagged = lines.filter((l) => FINDING_LINE_RE.test(l))
+  if (flagged.length === 0) return lines.slice(-2).join(' · ').slice(0, CHECK_DETAIL_MAX) || 'falló'
+
+  // El recuento por TIPO, no dos renglones cualesquiera. Medido contra los
+  // manifiestos reales del 19 al 22-ago-2026: una semana de `check:runs` son
+  // ~14 hallazgos de tres clases repetidas y una decena de cabeceras `✗`, así
+  // que quedarse con los dos primeros renglones marcados devolvía dos cabeceras
+  // y se dejaba fuera el `nothing-attempted` que explicaba la avería.
+  //
+  // Nombrar todas las clases también es lo que hace útil la huella: los códigos
+  // van entre corchetes a propósito, porque `alertFingerprint` los lee de aquí.
+  // Así, una clase de fallo NUEVA vuelve a sonar aunque las otras sigan igual.
+  const tally = new Map<string, number>()
+  for (const l of flagged) {
+    const m = /\[([a-z0-9]+(?:-[a-z0-9]+)+)\]/.exec(l)
+    if (m) tally.set(m[1], (tally.get(m[1]) ?? 0) + 1)
+  }
+  const head = [...tally].map(([code, n]) => `[${code}]×${n}`).join(' · ')
+  // `flagged[0]` y no el primero con código: en `check:runs` el primer renglón
+  // marcado es la pasada MÁS vencida, que no lleva código y es justo el hecho
+  // que nueve días de silencio hicieron caro en agosto de 2026.
+  return (head ? `${head} — ${flagged[0]}` : flagged.slice(0, 2).join(' · ')).slice(
+    0,
+    CHECK_DETAIL_MAX,
+  )
+}
+
+/**
+ * Stable key for de-duplication: same problems ⇒ same fingerprint.
+ *
+ * La huella era sólo `a.code`, y eso silenció el único aviso que sirvió. El
+ * 19-ago `check:runs` avisó sin nombrar el fallo; el 21 avisó nombrándolo
+ * —`nothing-attempted`— y se descartó por repetido, porque para la huella los
+ * dos eran `integrity:check:runs`. Un fallo DISTINTO del mismo check tiene que
+ * volver a sonar.
+ *
+ * Se añaden los códigos de hallazgo, no el texto entero: `check:cadence` y
+ * `check:surfaces` llevan cifras y listas de rutas que cambian en cada pasada, y
+ * meterlas aquí cambiaría un aviso perdido por un aviso cada dos días, que es la
+ * fatiga que `RENOTIFY_DAYS` existe para evitar. Estrictamente más sensible que
+ * antes, e inerte para los checks que no emiten códigos.
+ */
 export function alertFingerprint(alerts: readonly Alert[]): string {
   return alerts
-    .map((a) => a.code)
+    .map((a) => {
+      const codes = [...new Set([...a.detail.matchAll(FINDING_CODE_RE)].map((m) => m[1]))].sort()
+      return codes.length > 0 ? `${a.code}(${codes.join(',')})` : a.code
+    })
     .sort()
     .join('|')
 }

@@ -18,6 +18,7 @@ import {
   evaluateHealth,
   alertFingerprint,
   formatAlerts,
+  pickCheckDiagnosis,
   type Observations,
 } from '../src/scraper/health-monitor'
 
@@ -109,7 +110,10 @@ function runCheck(script: string): string | null {
   } catch (err) {
     const e = err as { stdout?: string; stderr?: string }
     const out = `${e.stdout ?? ''}${e.stderr ?? ''}`.trim()
-    return out.split('\n').filter(Boolean).slice(-2).join(' · ').slice(0, 200) || 'falló'
+    // Prefiere el renglón que dice QUÉ falló sobre el que dice CUÁNTOS fallos
+    // hubo. Ver `pickCheckDiagnosis`: quedarse con la cola mandaba al móvil
+    // «5 run(s) · 4 error(s)» y dejaba el diagnóstico en el log.
+    return pickCheckDiagnosis(out)
   }
 }
 
