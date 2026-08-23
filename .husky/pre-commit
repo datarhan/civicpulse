@@ -9,3 +9,16 @@ npm run format:check --silent
 # Nightly would catch it, but a day later and already on main — which is exactly
 # what happened to pleno-votes-suggestions.json (ffab006). Milliseconds.
 npm run check:json --silent
+
+# Y refúsate a comitear desde un árbol PODADO.
+#
+# Aquí no se usa `sparse-checkout` en ningún sitio, así que si aparece uno viene
+# de fuera — y poda: ficheros rastreados desaparecen del disco marcados
+# `skip-worktree`, sin que `git status` eche nada en falta, porque para git no
+# falta nada. Pasó cuatro veces entre el 18 y el 23 de agosto de 2026 y una de
+# ellas se llevó `docs/` entero; se descubrió de casualidad al fallar un
+# `git add`. Comitear así es comitear a ciegas sobre medio repositorio.
+#
+# Sólo tiñe la poda ACTIVA. Un fichero de patrones apagado se informa y deja
+# pasar. Se devuelve todo con: npm run check:sparse -- --fix
+npm run check:sparse --silent

@@ -212,7 +212,8 @@
     "check:competencias": "npx tsx scripts/check-competencias.ts",
     "indicador-reply": "npx tsx scripts/reply-indicador.ts",
     "render:og": "node scripts/render-og.mjs",
-    "carry:attribution": "npx tsx scripts/carry-attribution.ts"
+    "carry:attribution": "npx tsx scripts/carry-attribution.ts",
+    "check:sparse": "npx tsx scripts/check-sparse.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
