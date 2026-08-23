@@ -454,6 +454,15 @@ if ! npm run check:competencias; then
   failures+=("check:competencias")
 fi
 
+# Un `sparse-checkout` ajeno poda el árbol, y una nocturna que raspa sobre un
+# árbol podado escribe snapshots contra medio repositorio sin que nada chille.
+# Va aquí arriba y en el pre-commit: milisegundos, y el modo de fallo es pérdida
+# de ficheros del disco sin que `git status` lo note.
+if ! npm run check:sparse; then
+  echo "[scrape-all] FAILED: check:sparse — el árbol está podado por un sparse-checkout ajeno"
+  failures+=("check:sparse")
+fi
+
 # Tres guardas que existían y no invocaba NADIE — ni un workflow, ni un
 # pipeline, ni un hook. Es el modo de fallo 1 que el propio `check:guards`
 # documenta («la guarda es correcta y nada la ejecuta»), y lo destapó él

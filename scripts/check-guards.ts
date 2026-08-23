@@ -105,6 +105,8 @@ const NOT_INJECTABLE: Record<string, string> = {
     'su fallo es que aparezca vocabulario NUEVO, y cualquier valor que inventemos aquí es exactamente eso: la inyección se probaría a sí misma',
   'check:contract-drift':
     'necesita un modelo, y su fallo es una FRASE que dejó de ser cierta: corromper un fichero no lo reproduce',
+  'check:sparse':
+    'su fallo vive en .git (core.sparseCheckout + info/sparse-checkout), no en un fichero rastreado — y este arnés restaura con git, así que no podría deshacer la poda. Se probó a mano en un repo de usar y tirar: `sparse-checkout set providers/claude/plugin` oculta docs/ y la guarda sale 1',
 }
 
 const ROOT = resolve('.')
