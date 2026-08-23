@@ -34,7 +34,48 @@ cd "$(git rev-parse --show-toplevel)" || exit 0
 # Un control que sólo se ejerce empujando de verdad es un control que nadie
 # prueba, y este repositorio ya ha pagado dos veces por guardas sin dientes
 # comprobados. No cambia nada en un push real, donde la variable no está.
-RANGE="${PREPUSH_RANGE:-origin/main..HEAD}"
+#
+# TRES PUNTOS, y no es cosmético. En `git diff`, `A..B` compara las dos PUNTAS,
+# no «lo que trae B»: si tu rama está detrás de main, todo lo que cambió MAIN
+# cuenta como cambiado por tu push. Medido sobre la PR #26:
+#
+#   origin/main..HEAD    45 ficheros → 10 rutas
+#   origin/main...HEAD   23 ficheros →  2 rutas   ← las que el push tocaba
+#
+# Y se retroalimentaba: `--rotate` ordena por antigüedad, así que las ocho rutas
+# fantasma —sin leer hace tiempo— se colocaban DELANTE de las dos reales, que
+# acababan de leerse, y con el tope de 180 s sólo daba tiempo a una. O sea que
+# cuanto más al día estaba una página, menos probable era que la leyera. El
+# gancho leía sistemáticamente las rutas que el push NO había tocado.
+#
+# `PREPUSH_RANGE=HEAD~3..HEAD` sigue siendo correcto: en un rango lineal los dos
+# puntos y los tres dan lo mismo.
+#
+# Y los tres puntos NO BASTAN si `origin/main` está rancio: el merge-base se
+# calcula contra un main viejo y vuelven a colarse las rutas que ya están
+# fusionadas. Se descubrió midiendo este mismo arreglo — PR fusionada en
+# GitHub, sin `git fetch` después, y el gancho anunció otra vez 10 rutas donde
+# eran 0. Es el caso NORMAL, no el raro: se fusiona y se sigue trabajando.
+#
+# Así que se refresca esa rama y sólo esa, y con reloj: si no hay red se sigue
+# con lo que haya y se DICE, porque un gancho que exige red es un gancho que se
+# salta en un tren — y porque el rango inflado es justo lo que hay que poder
+# explicar cuando aparezca.
+if [ -z "$PREPUSH_RANGE" ]; then
+  git fetch --quiet --no-tags origin main 2>/dev/null &
+  FETCH=$!
+  ESPERA=0
+  while [ "$ESPERA" -lt 40 ] && kill -0 "$FETCH" 2>/dev/null; do
+    sleep 0.25
+    ESPERA=$((ESPERA + 1))
+  done
+  if kill -0 "$FETCH" 2>/dev/null; then
+    kill "$FETCH" 2>/dev/null
+    echo "[pre-push] origin/main no se pudo refrescar en 10s — el rango puede venir inflado."
+  fi
+  wait "$FETCH" 2>/dev/null
+fi
+RANGE="${PREPUSH_RANGE:-origin/main...HEAD}"
 git rev-parse --verify origin/main >/dev/null 2>&1 || RANGE="HEAD"
 CHANGED=$(git diff --name-only "$RANGE" 2>/dev/null)
 [ -z "$CHANGED" ] && exit 0
