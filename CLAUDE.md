@@ -232,10 +232,23 @@ _says_ something true, which no data check can — the four defects fixed on
 places, and the division matters: the **pre-push hook** reads the routes that
 push can have broken, derived from the import graph, every time; the **nightly
 sweep** (`scripts/review-sweep.sh`, local cron — git hooks do not run in
-Actions, and Actions has no $0 LLM backend) reads all 27 public routes, because
+Actions, and Actions has no $0 LLM backend) reads every public route, because
 the nightly commits data and nobody pushes those pages. `check:surfaces` reports
 into the existing `monitor:health` digest when a page goes unread or a flag is
 left standing.
+
+«The routes that push can have broken» was a promise the hook did not keep until
+2026-08-23. It derived them with a **two-dot** `git diff origin/main..HEAD`,
+which compares the two TIPS: with the branch even slightly behind, everything
+main had moved counted as changed here. Measured on one push — 45 files and 10
+routes where three dots give 23 and 2. And `--rotate` made it worse than noise:
+it orders by staleness, so the phantom routes sorted AHEAD of the two the push
+had actually rewritten, which had just been read. The better a page was kept,
+the less likely the review reached it. Three dots now, plus a refresh of
+`origin/main` first — with a stale ref the merge-base is computed against an old
+main and the phantoms come back. `tests/prepush-range.test.js` pins both, and
+strips comments before matching, because the comment explaining this quotes the
+wrong form.
 
 Never write a row count, euro total or test count into a doc. Every one that was
 here was wrong when audited on 2026-08-03, some by 4×. Snapshots carry a `stats`
@@ -325,6 +338,28 @@ The first two families are also **enforced, not just documented**:
 under `public/`. Both had already been broken in production, which is the bar
 for moving a rule out of this file and into a hook.
 
+**If a `git add` starts refusing files, the working tree is probably podado.**
+This project never uses `sparse-checkout`, so any pattern here comes from
+outside — and `git sparse-checkout set` marks everything beyond the cone
+`skip-worktree` and DELETES it from disk while `git status` reports nothing
+missing, because to git nothing is. It happened four times between the 18th and
+the 23rd of August 2026 and took `docs/` with it once. `check:sparse` runs in the
+pre-commit and in the nightly, refuses to work on a pruned tree, and says how
+many files are hidden; `npm run check:sparse -- --fix-all` repairs every
+worktree, main checkout included. **Disable before deleting the pattern**: with
+the flag still on and no patterns, cone mode means «nothing matches», and a
+reapply left a test tree holding a single file. The trigger was a plugin's
+`git-subdir` source landing its sparse-checkout on whatever repo the session's
+cwd was in — so the suspect, if this returns, is always a plugin with that kind
+of source.
+
+Two more things about worktrees, both measured the hard way. `core.hooksPath` is
+an absolute path into the main checkout, so **a push from any worktree runs the
+main checkout's hooks** — no `.husky/` change can be tested by pushing from a
+worktree, only by invoking it directly. And a config flag on a worktree lives in
+its own `config.worktree`: a leftover pattern file with the flag still `true` is
+not inert, it is primed.
+
 A second hook clears the same bar for a different failure: **prose goes stale
 when the data moves**. Three sentences on `/eficiencia`, `/metodologia` and the
 municipal panel each kept asserting something that had stopped being true one
@@ -350,7 +385,7 @@ distinguishable from a map with nothing to say.
 `quejas-responses.json`, `sindic.json`, `dedicaciones.json`, `plantilla.json`,
 `place-overrides.json`, `entity-overrides.json`, `eficiencia-findings.json`,
 `eficiencia-preguntas.json`, `pleno-claim-reclassifications.json`,
-`competencias.json`.
+`competencias.json`, `sociedades.json`.
 Route algorithmic output through the curator CLI so the validator and git
 history stay authoritative. The full list and its CLIs: `docs/DATA_SOURCES.md`.
 
