@@ -492,6 +492,29 @@ const INJECTIONS: Array<{
       )
     },
   },
+  {
+    guard: 'check:competencias',
+    file: 'public/data/officials.json',
+    describe: 'un concejal que desaparece del raspado con su competencia aún publicada',
+    // La corrupción va en el fichero RASPADO, no en el curado, porque el daño
+    // viaja en esa dirección: `competencias.json` se firma a mano y se queda
+    // quieto; `officials.json` se rehace solo cada noche. Quitar a quien una
+    // ficha publicada nombra es lo que pasaría si se reorganizaran las carteras
+    // sin que aquí se enterara nadie — y el sitio seguiría pintando ese nombre
+    // junto a una cifra. Por eso se prueba el desenlace que sale 1, no el aviso.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const comp = JSON.parse(readFileSync(resolve(ROOT, 'public/data/competencias.json'), 'utf8'))
+      const slug = comp.asignaciones?.[0]?.oficial
+      if (!slug) throw new Error('competencias.json no trae ninguna asignación que romper')
+      const antes = d.officials.length
+      d.officials = d.officials.filter((o: { slug: string }) => o.slug !== slug)
+      if (d.officials.length === antes) {
+        throw new Error(`el slug ${slug} no estaba en officials.json`)
+      }
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
 ]
 
 function gitIsClean(file: string): boolean {
