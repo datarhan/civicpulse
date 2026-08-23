@@ -2,7 +2,10 @@ import { describe, it, expect } from 'vitest'
 import {
   clasificar,
   contarOcultos,
+  esparcidoActivoEnConfig,
+  ORDEN_REPARACION,
   patronesUtiles,
+  raizDesdeGitdir,
   tine,
   type EstadoWorktree,
 } from '../src/scraper/sparse-guard'
@@ -93,5 +96,60 @@ describe('tine', () => {
 
   it('y basta con que UN worktree esté podado', () => {
     expect(tine([worktree({}), worktree({ activo: true, ocultos: 1 })])).toBe(true)
+  })
+})
+
+describe('raizDesdeGitdir', () => {
+  it('saca la raíz del worktree de su fichero `gitdir`', () => {
+    // Contenido literal de .git/worktrees/description-reframe/gitdir.
+    expect(
+      raizDesdeGitdir('/Users/x/dev/CivicPulse/.claude/worktrees/description-reframe/.git\n'),
+    ).toBe('/Users/x/dev/CivicPulse/.claude/worktrees/description-reframe')
+  })
+
+  it('devuelve null si no tiene esa pinta', () => {
+    // Un worktree cuya ruta no se sabe no se toca, y desde luego no se le corre
+    // un `git -C` a ciegas: sería adivinar sobre el árbol de otra sesión.
+    expect(raizDesdeGitdir('')).toBeNull()
+    expect(raizDesdeGitdir('/ruta/sin/sufijo')).toBeNull()
+    expect(raizDesdeGitdir('/.git')).toBeNull()
+  })
+})
+
+describe('ORDEN_REPARACION', () => {
+  it('apaga ANTES de borrar el patrón', () => {
+    // No es estilo, está medido: con `core.sparseCheckout = true` y el fichero
+    // de patrones borrado, un `sparse-checkout reapply` dejó el repo de pruebas
+    // en UN solo fichero — se llevó hasta el directorio que el patrón salvaba,
+    // porque en modo cono «sin patrones» significa «no encaja nada».
+    expect(ORDEN_REPARACION).toEqual(['disable', 'borrar-patron'])
+    expect(ORDEN_REPARACION.indexOf('disable')).toBeLessThan(
+      ORDEN_REPARACION.indexOf('borrar-patron'),
+    )
+  })
+})
+
+describe('esparcidoActivoEnConfig', () => {
+  // Contenido literal de .git/worktrees/description-reframe/config.worktree el
+  // 23-08-2026. Se informó de ese worktree como «patrón apagado, inerte» y era
+  // mentira: la bandera estaba puesta. Esta prueba fija la diferencia.
+  const CEBADO = '[core]\n\tsparseCheckout = true\n\tsparseCheckoutCone = true\n'
+  const APAGADO =
+    '[core]\n\tsparseCheckout = false\n\tsparseCheckoutCone = false\n[index]\n\tsparse = false\n'
+
+  it('reconoce la bandera encendida', () => {
+    expect(esparcidoActivoEnConfig(CEBADO)).toBe(true)
+  })
+
+  it('y no la confunde con la apagada', () => {
+    expect(esparcidoActivoEnConfig(APAGADO)).toBe(false)
+    expect(esparcidoActivoEnConfig('')).toBe(false)
+  })
+
+  it('no se deja engañar por `sparseCheckoutCone = true`', () => {
+    // El control que importa: el nombre de la otra clave CONTIENE el de ésta,
+    // así que un `includes('sparseCheckout = true')` mal escrito daría true con
+    // el esparcido apagado — y la guarda cantaría un cebado que no existe.
+    expect(esparcidoActivoEnConfig('[core]\n\tsparseCheckoutCone = true\n')).toBe(false)
   })
 })
