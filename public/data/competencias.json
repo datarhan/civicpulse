@@ -1,0 +1,225 @@
+{
+  "generatedAt": "2026-08-23T00:00:00.000Z",
+  "mandato": { "id": "2023-2027", "desde": "2023-06-17", "hasta": null },
+  "fuente": {
+    "titulo": "Corporación municipal · Ayuntamiento de Riba-roja de Túria",
+    "url": "https://www.ribarroja.es/es/ayuntamiento/corporacion_municipal",
+    "consultadaEl": "2026-08-23"
+  },
+  "asignaciones": [
+    {
+      "clave": "a164-coste-unitario",
+      "cargo": "Áreas Industriales y Cementerio",
+      "oficial": "teresa-pozuelo-martin",
+      "nombre": "Teresa Pozuelo Martín",
+      "partido": "PSOE",
+      "confianza": "literal",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "b151-150p-coste-unitario",
+      "cargo": "Urbanismo",
+      "oficial": "teresa-pozuelo-martin",
+      "nombre": "Teresa Pozuelo Martín",
+      "partido": "PSOE",
+      "confianza": "literal",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "a1532-150p-coste-unitario",
+      "cargo": "Obra Pública",
+      "oficial": "teresa-pozuelo-martin",
+      "nombre": "Teresa Pozuelo Martín",
+      "partido": "PSOE",
+      "confianza": "editorial",
+      "razon": "El cargo no nombra la pavimentación; se le atribuye por ser el área de obra pública, que es donde el ayuntamiento tramita el firme viario.",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "b132-130p-coste-unitario",
+      "cargo": "Seguridad y emergencias",
+      "oficial": "raquel-pamblanco-paredes",
+      "nombre": "Raquel Pamblanco Paredes",
+      "partido": "PSOE",
+      "confianza": "literal",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "a342-340p-coste-unitario",
+      "cargo": "Movilidad y Deportes",
+      "oficial": "rafael-gomez-sanchez",
+      "nombre": "Rafael Gómez Sánchez",
+      "partido": "PSOE",
+      "confianza": "literal",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "b341-340p-coste-unitario",
+      "cargo": "Movilidad y Deportes",
+      "oficial": "rafael-gomez-sanchez",
+      "nombre": "Rafael Gómez Sánchez",
+      "partido": "PSOE",
+      "confianza": "literal",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "a4411-440p-coste-unitario",
+      "cargo": "Movilidad y Deportes",
+      "oficial": "rafael-gomez-sanchez",
+      "nombre": "Rafael Gómez Sánchez",
+      "partido": "PSOE",
+      "confianza": "literal",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "a1621-coste-unitario",
+      "cargo": "Servicios públicos municipales",
+      "oficial": "rafael-gomez-sanchez",
+      "nombre": "Rafael Gómez Sánchez",
+      "partido": "PSOE",
+      "confianza": "editorial",
+      "razon": "El cargo no nombra la recogida de residuos; se le atribuye por ser el área de servicios públicos municipales, que es la que agrupa los servicios urbanos de prestación continua.",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "a163-coste-unitario",
+      "cargo": "Servicios públicos municipales",
+      "oficial": "rafael-gomez-sanchez",
+      "nombre": "Rafael Gómez Sánchez",
+      "partido": "PSOE",
+      "confianza": "editorial",
+      "razon": "El cargo no nombra la limpieza viaria; se le atribuye por ser el área de servicios públicos municipales, que es la que agrupa los servicios urbanos de prestación continua.",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "a171-170p-coste-unitario",
+      "cargo": "Servicios públicos municipales",
+      "oficial": "rafael-gomez-sanchez",
+      "nombre": "Rafael Gómez Sánchez",
+      "partido": "PSOE",
+      "confianza": "editorial",
+      "razon": "El cargo no nombra los parques y jardines; se le atribuye por ser el área de servicios públicos municipales, que es la que agrupa el mantenimiento urbano.",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "a165-coste-unitario",
+      "cargo": "Servicios públicos municipales",
+      "oficial": "rafael-gomez-sanchez",
+      "nombre": "Rafael Gómez Sánchez",
+      "partido": "PSOE",
+      "confianza": "editorial",
+      "razon": "El cargo no nombra el alumbrado; se le atribuye por ser el área de servicios públicos municipales, que es la que agrupa el mantenimiento urbano.",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "a161-coste-unitario",
+      "cargo": "Servicios públicos municipales",
+      "oficial": "rafael-gomez-sanchez",
+      "nombre": "Rafael Gómez Sánchez",
+      "partido": "PSOE",
+      "confianza": "editorial",
+      "razon": "El cargo no nombra el abastecimiento de agua; se le atribuye por ser el área de servicios públicos municipales. El servicio está en concesión, así que la prestación la ejecuta el concesionario.",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "a160-coste-unitario",
+      "cargo": "Servicios públicos municipales",
+      "oficial": "rafael-gomez-sanchez",
+      "nombre": "Rafael Gómez Sánchez",
+      "partido": "PSOE",
+      "confianza": "editorial",
+      "razon": "El cargo no nombra el alcantarillado; se le atribuye por ser el área de servicios públicos municipales. El servicio está en concesión, así que la prestación la ejecuta el concesionario.",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "b323-324-320p-coste-unitario",
+      "cargo": "Educación",
+      "oficial": "eva-lara-catala",
+      "nombre": "Eva Lara Catalá",
+      "partido": "PSOE",
+      "confianza": "editorial",
+      "razon": "La competencia de educación es suya, pero el coste de esta ficha es el de conservar los edificios escolares, y «Actividades y Edificios públicos» está delegada en otro concejal: el reparto real cruza dos áreas.",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "a3321-330p-coste-unitario",
+      "cargo": "Arte y Cultura",
+      "oficial": "jose-manuel-vila-oltra",
+      "nombre": "José Manuel Vila Oltra",
+      "partido": "PSOE",
+      "confianza": "editorial",
+      "razon": "El cargo no nombra la biblioteca; se le atribuye por ser el área de cultura, que es donde el ayuntamiento sitúa el servicio bibliotecario.",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "licitador-unico",
+      "cargo": "Compra Pública",
+      "oficial": "jose-angel-hernandez-carrizosa",
+      "nombre": "José Ángel Hernández Carrizosa",
+      "partido": "PSOE",
+      "confianza": "literal",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "sin-publicidad-abierta",
+      "cargo": "Compra Pública",
+      "oficial": "jose-angel-hernandez-carrizosa",
+      "nombre": "José Ángel Hernández Carrizosa",
+      "partido": "PSOE",
+      "confianza": "literal",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "concentracion-proveedores",
+      "cargo": "Compra Pública",
+      "oficial": "jose-angel-hernandez-carrizosa",
+      "nombre": "José Ángel Hernández Carrizosa",
+      "partido": "PSOE",
+      "confianza": "literal",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "periodo-medio-pago",
+      "cargo": "Finanzas públicas y recaudación",
+      "oficial": "jose-angel-hernandez-carrizosa",
+      "nombre": "José Ángel Hernández Carrizosa",
+      "partido": "PSOE",
+      "confianza": "literal",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "gasto-por-habitante",
+      "cargo": "Finanzas públicas y recaudación",
+      "oficial": "jose-angel-hernandez-carrizosa",
+      "nombre": "José Ángel Hernández Carrizosa",
+      "partido": "PSOE",
+      "confianza": "literal",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "modificaciones-presupuestarias",
+      "cargo": "Finanzas públicas y recaudación",
+      "oficial": "jose-angel-hernandez-carrizosa",
+      "nombre": "José Ángel Hernández Carrizosa",
+      "partido": "PSOE",
+      "confianza": "literal",
+      "firmadoEl": "2026-08-23"
+    },
+    {
+      "clave": "ejecucion-presupuestaria",
+      "cargo": "Finanzas públicas y recaudación",
+      "oficial": "jose-angel-hernandez-carrizosa",
+      "nombre": "José Ángel Hernández Carrizosa",
+      "partido": "PSOE",
+      "confianza": "literal",
+      "firmadoEl": "2026-08-23"
+    }
+  ],
+  "sinAsignar": [
+    {
+      "clave": "denominadores-sin-remedir",
+      "motivo": "Es un indicador sobre la rendición al ministerio, no sobre un servicio. El coste efectivo lo rinde la entidad local en su conjunto y ninguna área delegada lo nombra; quién cumplimenta el formulario no consta en la fuente."
+    }
+  ],
+  "replicas": []
+}

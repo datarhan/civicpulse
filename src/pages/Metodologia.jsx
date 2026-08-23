@@ -1798,6 +1798,18 @@ export default function Metodologia() {
           el ayuntamiento, la intervención, el concesionario o el ministerio, y su respuesta literal
           se publica junto a la ficha.
         </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>La tarjeta sí dice quién responde del servicio, y no es lo mismo.</strong> El
+          ayuntamiento publica qué áreas tiene delegada cada concejal; esa atribución se republica
+          junto al servicio para que quien quiera preguntar sepa a quién, con el aviso de cómo se
+          lee el número en la misma tarjeta —que un coste por efectivo sea alto no dice nada de cómo
+          funciona el servicio, y menos aún de quien lo lleva—. Es orientación, no imputación: la
+          ficha firmada, que es la afirmación jurídicamente material, sigue sin poder nombrar a
+          nadie. Cuando el salto del área al servicio lo damos nosotros y no el ayuntamiento, se
+          marca y se razona; si ningún área lo nombra, no se atribuye. La lista va firmada y
+          congelada, porque el fichero del que salen los cargos se raspa cada noche y un proceso
+          automático no puede cambiar qué persona aparece junto a una cifra ya publicada.
+        </p>
       </Card>
 
       <Card style={{ marginTop: 14 }} id="frontera">

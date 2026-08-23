@@ -1,0 +1,66 @@
+name: Derecho de réplica — competencia delegada
+description: Respuesta de un cargo municipal nombrado en /eficiencia, /gestion o el reportaje de coste efectivo como titular de una competencia delegada.
+title: '[replica-competencia] <slug-del-cargo>'
+labels: [derecho-replica, competencias]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Estas páginas publican **quién tiene delegada la competencia** sobre cada servicio del panel, republicando lo que el propio Ayuntamiento publica en su portal de transparencia. Es orientación cívica —a quién se pregunta por esto—, **no** una afirmación de que la cifra que aparece al lado sea responsabilidad personal de nadie: un coste por efectivo de policía, por ejemplo, es un precio y no un rendimiento.
+
+        Si el reparto de áreas ha cambiado, si la atribución es incorrecta, o si quieres explicar la cifra, éste es el canal. La respuesta se publica **íntegra y verbatim** junto a la ficha, sin resumir ni parafrasear.
+
+        Plazo de revisión: 24 h hábiles. Resolución: 72 h. Historial público en git.
+
+  - type: input
+    id: oficial
+    attributes:
+      label: Identificador del cargo
+      description: El `slug` que aparece en el enlace de la ficha (`/cargos/<slug>`).
+      placeholder: rafael-gomez-sanchez
+    validations:
+      required: true
+
+  - type: input
+    id: nombre
+    attributes:
+      label: Nombre y apellidos
+      description: Tal como figura en la corporación municipal.
+      placeholder: Rafael Gómez Sánchez
+    validations:
+      required: true
+
+  - type: dropdown
+    id: motivo
+    attributes:
+      label: Qué quieres corregir o añadir
+      options:
+        - La atribución de la competencia es incorrecta
+        - El reparto de áreas ha cambiado desde la última firma
+        - La atribución es correcta y quiero explicar la cifra
+        - Otro
+    validations:
+      required: true
+
+  - type: textarea
+    id: texto
+    attributes:
+      label: Texto literal de la réplica (verbatim, ≥20 caracteres)
+      description: |
+        Se publica exactamente como lo escribas, hasta 2.000 caracteres. Si la atribución es errónea, dilo aquí: además de publicar la réplica, la corregimos o la retiramos.
+      placeholder: |
+        "La competencia sobre servicios públicos municipales incluye la supervisión del contrato, no la ejecución material del servicio, que corresponde al concesionario."
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: URL de la fuente (opcional)
+      description: Decreto de delegación, acuerdo de pleno o nota oficial que respalde la réplica. El enlace se publica junto al texto.
+      placeholder: https://www.ribarroja.es/...
+
+  - type: markdown
+    attributes:
+      value: |
+        **Ingreso**: al etiquetar este issue como `derecho-replica`, la réplica se incorpora a `public/data/competencias.json` mediante `npm run competencia-reply`, que revalida el snapshot entero antes de escribir. El commit queda en el historial público de git.
