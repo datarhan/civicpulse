@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T05:15:54.644Z",
+  "generatedAt": "2026-08-23T08:33:10.369Z",
   "clusters": [
     {
       "clusterId": "1czgd5z",
@@ -18,7 +18,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 5,
         "promesa-repetida": 0
       }
     },
@@ -39,7 +39,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 7,
         "promesa-repetida": 0
       }
     },
@@ -60,7 +60,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 3,
         "promesa-repetida": 0
       }
     },

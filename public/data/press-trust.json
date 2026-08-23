@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T05:15:54.638Z",
+  "generatedAt": "2026-08-23T08:33:10.356Z",
   "windowDays": 30,
   "articles": [
     {
@@ -48,10 +48,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 3
+      "score": 5
     },
     {
       "articleId": "1e9m0nk",
@@ -65,10 +65,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 4
     },
     {
       "articleId": "v4m8ao",
@@ -82,10 +82,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 3
+      "score": 5
     },
     {
       "articleId": "1t8kbao",
@@ -133,10 +133,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 4
     },
     {
       "articleId": "sctwe4",
@@ -150,10 +150,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 3
+      "score": 5
     },
     {
       "articleId": "1yotn1k",
@@ -167,10 +167,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 3
+      "score": 5
     },
     {
       "articleId": "1de2i28",
@@ -184,10 +184,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 4
     },
     {
       "articleId": "33vp63",
@@ -201,10 +201,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 3
+      "score": 5
     },
     {
       "articleId": "1hiwvms",
@@ -456,10 +456,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 4
+      "score": 2
     },
     {
       "articleId": "fmuqqw",
@@ -471,12 +471,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": true,
+        "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 5
+      "score": 2
     },
     {
       "articleId": "neb0p4",
@@ -490,10 +490,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 4
+      "score": 2
     },
     {
       "articleId": "rlu040",
@@ -507,10 +507,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 4
+      "score": 2
     },
     {
       "articleId": "e6l42s",
@@ -524,10 +524,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 4
+      "score": 2
     },
     {
       "articleId": "1kpsquw",
@@ -558,10 +558,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 4
+      "score": 2
     },
     {
       "articleId": "1q1jztw",
@@ -961,14 +961,14 @@
       "outletHost": "ribarroja.es",
       "articleCount": 31,
       "verdictCounts": {
-        "verificado": 1,
+        "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 20,
+        "sin-datos": 27,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.58,
-      "verifiedRatio": 0.048,
+      "meanTrustScore": 2.48,
+      "verifiedRatio": 0,
       "contradictedRatio": 0
     },
     {
@@ -979,10 +979,10 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 18,
+        "sin-datos": 28,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.8,
+      "meanTrustScore": 3,
       "verifiedRatio": 0,
       "contradictedRatio": 0
     },
@@ -1009,12 +1009,12 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 2,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3,
-      "verifiedRatio": null,
-      "contradictedRatio": null
+      "meanTrustScore": 4.33,
+      "verifiedRatio": 0,
+      "contradictedRatio": 0
     },
     {
       "outlet": "Las Provincias",
@@ -1091,11 +1091,5 @@
       "verifiedRatio": 0,
       "contradictedRatio": 0
     }
-  ],
-  "builtFrom": {
-    "plenos-agendas.json": "4bc9c2eff5a5",
-    "press-claims-verified.json": "3d14cefce4b5",
-    "press.json": "cf58e8bd15ec",
-    "promises.json": "973df30a62ce"
-  }
+  ]
 }
