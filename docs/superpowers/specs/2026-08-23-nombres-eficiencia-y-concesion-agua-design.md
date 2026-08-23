@@ -171,7 +171,8 @@ sigue siendo válida aunque se nombre.
    —grupo matriz, administradores, historial— que es trabajo de reportaje y
    vive en la pieza.
 
-4. **La ficha de transporte** —485.975,77 € declarados y cero viajeros— dice
+4. **La ficha de transporte** —un gasto real declarado con la casilla de
+   viajeros a cero desde 2019, después de declararla llena hasta 2018— dice
    cómo se lee, en vez de quedarse como anomalía.
 5. **La competencia delegada en cada ficha**, según §3.
 
@@ -186,14 +187,14 @@ los dientes al esquema que impide colgar un coste unitario de un concejal.
 **Nuevo eje: la concesión.** Título de trabajo: «El panel se queda en blanco
 donde está el dinero».
 
-| §   | Contenido                | Cifras verificadas                                                                                                                                                        |
-| --- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 01  | La concesión             | Contrato `46717`, abierto, **7 ofertas**, adjudicado **6-ago-2026**, hasta **27-jul-2043**, a **Hidraqua Gestión Integral de Aguas de Levante S.A.**, **55.685.178,79 €** |
-| 02  | La tesis                 | `a161` y `a160` en blanco · `motivo: concesión`                                                                                                                           |
-| 03  | El mapa del dinero       | 68,4 % en 5 proveedores · 47,5 % licitador único (332/699) · 40,8 % sin llamada abierta (285/699)                                                                         |
-| 04  | Lo que el panel sí ve    | 13 servicios · colegios y policía en percentil 85 · transporte 485.975,77 € y 0 viajeros · cada uno con su competencia delegada                                           |
-| 05  | Con pinzas               | 2020 sin rendir · 13/13 congelados frente a mediana 63,1 % · IPC 22,8 %                                                                                                   |
-| 06  | Lo que no dice + réplica | Nominal por persona nombrada                                                                                                                                              |
+| §   | Contenido                | Cifras verificadas                                                                                                                                                                            |
+| --- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 01  | La concesión             | Siete años de expediente: anuncio 2019 → suspendido feb-2021 → sentencia abr-2026 → adjudicación **6-ago-2026** a **Hidraqua**, **55.685.178,79 €** hasta **2043**, 7 ofertas, sin formalizar |
+| 02  | La tesis                 | `a161` y `a160` en blanco · `motivo: concesión`                                                                                                                                               |
+| 03  | El mapa del dinero       | 68,4 % en 5 proveedores · 47,5 % licitador único (332/699) · 40,8 % sin llamada abierta (285/699)                                                                                             |
+| 04  | Lo que el panel sí ve    | 13 servicios · colegios y policía en percentil 85 · transporte con 0 viajeros declarados desde 2019 · cada uno con su competencia delegada                                                    |
+| 05  | Con pinzas               | 2020 sin rendir · 13/13 congelados frente a mediana 63,1 % · IPC 22,8 %                                                                                                                       |
+| 06  | Lo que no dice + réplica | Nominal por persona nombrada                                                                                                                                                                  |
 
 **Dos precisiones que una versión descuidada erraría**, y que son el corazón
 de la pieza:
@@ -215,8 +216,28 @@ concesiones se adjudican por todo su plazo de una vez.
 Nada de esto sale de los snapshots. Son tareas de reporterismo previas a la
 publicación, no incógnitas de diseño.
 
-1. **Contrastar `46717` contra su permalink de PLACSP**: pliego, pesos de los
-   criterios, los siete licitadores, decreto de adjudicación **y su firma**.
+1. ~~**Contrastar `46717` contra su permalink de PLACSP**~~ — **HECHO
+   (23-ago-2026).** La ficha oficial confirma: estado **Adjudicada**,
+   adjudicataria **Hidraqua Gestión Integral de Aguas de Levante, S.A.**,
+   **55.685.178,79 €**, adjudicación **06/08/2026**, **7 licitadores**, y
+   **ninguna entrada de formalización**. Y destapó dos cosas que el snapshot no
+   contaba:
+   - **El expediente tardó siete años.** Anuncio 23-abr-2019 · suspensión
+     06-jun-2019 · dos recursos ante el **TACRC** 04-jul-2019 · levantamiento
+     18-sep-2019 · apertura de ofertas 26-may-2020 · **suspensión 11-feb-2021**
+     · **sentencia 28-abr-2026** —y las actas 1 a 11 de la mesa publicadas esa
+     misma tarde, entre las 14:05 y las 14:17— · acta 12 el 30-jun-2026 ·
+     adjudicación 06-ago-2026. **Cinco años y dos meses** entre la suspensión y
+     la sentencia.
+   - **`tenders.json` se contradice consigo mismo** y por poco publica un
+     estado falso: el mismo expediente es `revoked` como licitación y `awarded`
+     como contrato. Son 347 expedientes duplicados, 344 con estado divergente,
+     y el adjudicatario aparece 318 veces en `contracts` y CERO en `tenders`.
+     Fijado en `tests/tenders-colision-id.test.ts`.
+
+   Lo que sigue SIN saberse, y no se afirma: qué alegaban los recursos, quién
+   los interpuso y qué resolvió la sentencia. Eso pide las resoluciones.
+
 2. **Identidad societaria de Hidraqua**: CIF, grupo matriz, administradores,
    vía BORME y registro mercantil. No se afirma el grupo de memoria.
 3. **Decreto de delegación 2023-2027**, para que §3.2 cite el decreto y no una

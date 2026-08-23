@@ -38,10 +38,17 @@ import { useT } from '../i18n'
  * Espacios de anclas: `#s-<id>` fichas · `#g-<area>` grupos · `#sec-*`
  * secciones (cabecera y submenú) · `#hallazgos` la sección firmada.
  *
- * Las tarjetas bloqueadas son parte del contenido, no un residuo: que el
- * ayuntamiento declare 485.975,77 € de transporte urbano y cero viajeros dice
- * algo sobre su rendición de cuentas, y esconderlo dejaría la página más
- * completa y menos cierta.
+ * Las tarjetas bloqueadas —y las casillas a cero— son parte del contenido, no
+ * un residuo: que el ayuntamiento declare un gasto real de transporte urbano
+ * con la casilla de viajeros a cero dice algo sobre su rendición de cuentas, y
+ * esconderlo dejaría la página más completa y menos cierta.
+ *
+ * Sin cifra aquí a propósito. Este docblock decía «485.975,77 €», que es la
+ * entrega de 2021: para cuando alguien lo leyó, la última era la de 2024 con
+ * 736.952,43 €. Un número copiado en un comentario no tiene quien lo recotege
+ * —`check:eficiencia-findings` vigila las fichas firmadas, no la prosa del
+ * código— así que envejece en silencio y engaña al siguiente que lo lea. La
+ * cifra vive en la tarjeta, que la saca del snapshot.
  */
 export default function Eficiencia() {
   const t = useT()
