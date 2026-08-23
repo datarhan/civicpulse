@@ -3,7 +3,14 @@
  * ¿Está este repositorio podado por un `sparse-checkout` que nadie pidió?
  *
  *   npm run check:sparse
- *   npm run check:sparse -- --fix     apaga el esparcido y devuelve los ficheros
+ *   npm run check:sparse -- --fix       apaga el esparcido de ESTE worktree y
+ *                                       devuelve sus ficheros
+ *   npm run check:sparse -- --fix-all   lo mismo en TODOS los worktrees del
+ *                                       repositorio, el principal incluido
+ *
+ * `--fix-all` existe porque cada worktree vive en su rama, y una rama vieja no
+ * trae este script: ir a cada uno a ejecutarlo no sirve cuando el remedio acaba
+ * de nacer en `main`. Desde el checkout principal, uno solo.
  *
  * Sale 1 cuando hay poda ACTIVA, que es cuando faltan ficheros del disco. Los
  * restos de un esparcido ya apagado se informan y no tiñen: no ocultan nada,
@@ -17,11 +24,13 @@
  */
 import { execFileSync } from 'node:child_process'
 import { existsSync, readFileSync, readdirSync, rmSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { dirname, resolve } from 'node:path'
 import {
   clasificar,
   contarOcultos,
+  esparcidoActivoEnConfig,
   patronesUtiles,
+  raizDesdeGitdir,
   tine,
   type EstadoWorktree,
 } from '../src/scraper/sparse-guard'
@@ -34,14 +43,94 @@ const git = (args: string[]): string => {
   }
 }
 
-const arreglar = process.argv.includes('--fix')
+const arreglarTodo = process.argv.includes('--fix-all')
+const arreglar = process.argv.includes('--fix') || arreglarTodo
 const out = (s = '') => process.stdout.write(`${s}\n`)
+
+/**
+ * Repara TODOS los worktrees del repositorio, no sólo aquel desde el que se
+ * lanza esto.
+ *
+ * Hace falta porque los worktrees viven en ramas propias, y una rama vieja no
+ * trae este script: ir a cada uno a ejecutarlo no es una opción cuando el
+ * remedio acaba de nacer en `main`. Desde el checkout principal, uno solo.
+ *
+ * Tocar el árbol de otra sesión es seguro EN ESTA DIRECCIÓN y sólo en ésta:
+ * `sparse-checkout disable` únicamente puede DEVOLVER ficheros. En el peor caso
+ * materializa lo que estaba escondido, que es exactamente lo que se busca.
+ */
+function repararTodos(comun: string, git: (a: string[]) => string): number {
+  const dirW = resolve(comun, 'worktrees')
+  // El worktree principal no está en `worktrees/`: es el repositorio mismo, con
+  // su patrón en `<gitdir común>/info/sparse-checkout`. Dejarlo fuera sería que
+  // `--fix-all` no arreglase justamente donde más se trabaja.
+  const objetivos: Array<{ nombre: string; raiz: string | null; patron: string }> = [
+    {
+      nombre: '(principal)',
+      raiz: raizDesdeGitdir(`${comun}/.git`) ?? dirname(comun),
+      patron: resolve(comun, 'info/sparse-checkout'),
+    },
+  ]
+  if (existsSync(dirW)) {
+    for (const n of readdirSync(dirW)) {
+      const gd = resolve(dirW, n, 'gitdir')
+      objetivos.push({
+        nombre: n,
+        raiz: existsSync(gd) ? raizDesdeGitdir(readFileSync(gd, 'utf8')) : null,
+        patron: resolve(dirW, n, 'info/sparse-checkout'),
+      })
+    }
+  }
+
+  let malos = 0
+  let tocados = 0
+  for (const o of objetivos) {
+    const hayPatron = existsSync(o.patron)
+    // La bandera SIN patrón es el estado más dañado que existe, no el más
+    // benigno: medido, un `reapply` así deja el árbol en un solo fichero,
+    // porque en modo cono «sin patrones» es «no encaja nada». Mirar sólo el
+    // fichero de patrones se saltaría justo al peor herido — lo enseñó el
+    // tercer worktree del repo de pruebas, que quedó en ese estado al comprobar
+    // el orden de la reparación.
+    const bandera =
+      o.raiz && existsSync(o.raiz)
+        ? git(['-C', o.raiz, 'config', '--get', 'core.sparseCheckout']).trim() === 'true'
+        : false
+    if (!hayPatron && !bandera) continue
+    tocados++
+    if (!o.raiz || !existsSync(o.raiz)) {
+      out(`  · ${o.nombre} — SALTADO: no encuentro su árbol en disco (${o.raiz ?? 'sin gitdir'})`)
+      malos++
+      continue
+    }
+    const antes = contarOcultos(git(['-C', o.raiz, 'ls-files', '-v']))
+    // ORDEN, y está medido: apagar y LUEGO borrar. Ver ORDEN_REPARACION.
+    git(['-C', o.raiz, 'sparse-checkout', 'disable'])
+    rmSync(o.patron, { force: true })
+    const despues = contarOcultos(git(['-C', o.raiz, 'ls-files', '-v']))
+    if (despues === 0 && !existsSync(o.patron)) {
+      out(`  · ${o.nombre} — limpio${antes > 0 ? ` · ${antes} fichero(s) devuelto(s)` : ''}`)
+    } else {
+      out(`  · ${o.nombre} — NO limpio: quedan ${despues} oculto(s). Míralo a mano.`)
+      malos++
+    }
+  }
+  if (tocados === 0) out('  no había ningún worktree con patrón ajeno.')
+  return malos
+}
 
 function main() {
   const gitDir = git(['rev-parse', '--git-dir']).trim()
   const comun = git(['rev-parse', '--git-common-dir']).trim()
   if (!gitDir) {
     out('[sparse] no estamos en un repositorio git — nada que mirar')
+    return
+  }
+
+  if (arreglarTodo) {
+    out('[sparse] reparando TODOS los worktrees de este repositorio')
+    const malos = repararTodos(comun, git)
+    if (malos > 0) process.exit(1)
     return
   }
 
@@ -63,11 +152,17 @@ function main() {
   // versión salía antes de llegar aquí y enmudecía con dos worktrees todavía
   // marcados, que es la avería que esta guarda existe para no tener.
   const dirWorktrees = resolve(comun, 'worktrees')
-  const conRestos = existsSync(dirWorktrees)
-    ? readdirSync(dirWorktrees).filter((w) =>
-        existsSync(resolve(dirWorktrees, w, 'info/sparse-checkout')),
-      )
+  const otros = existsSync(dirWorktrees)
+    ? readdirSync(dirWorktrees)
+        .filter((w) => existsSync(resolve(dirWorktrees, w, 'info/sparse-checkout')))
+        .map((w) => {
+          const cfg = resolve(dirWorktrees, w, 'config.worktree')
+          const cebado = existsSync(cfg) && esparcidoActivoEnConfig(readFileSync(cfg, 'utf8'))
+          return { nombre: w, cebado }
+        })
     : []
+  const conRestos = otros.map((o) => o.nombre)
+  const cebados = otros.filter((o) => o.cebado).map((o) => o.nombre)
 
   // Callada cuando no hay NADA que decir, aquí ni en ningún worktree.
   //
@@ -110,11 +205,16 @@ function main() {
 
   if (conRestos.length > 0) {
     out('')
-    out(
-      `  ⓘ ${conRestos.length} worktree(s) con fichero de patrones ajeno: ${conRestos.join(', ')}`,
-    )
+    out(`  ⓘ ${conRestos.length} worktree(s) con patrón ajeno: ${conRestos.join(', ')}`)
+    // «Resto» y «cebado» no son lo mismo, y confundirlos ya costó un informe
+    // equivocado: un cebado tiene la bandera PUESTA y sólo le falta que git
+    // reaplique para podar. Se nombra aparte.
+    if (cebados.length > 0) {
+      out(`      De ésos, CEBADOS (sparseCheckout = true): ${cebados.join(', ')}`)
+      out('      No están podados todavía; lo estarán en cuanto git reaplique ahí.')
+    }
     out('      Apagado no es borrado: el patrón sigue ahí y puede volver a aplicarse.')
-    out('      Se limpia con `--fix` DESDE cada uno: esto no toca el .git de otro worktree.')
+    out('      Se limpian TODOS de una vez con: npm run check:sparse -- --fix-all')
     out('      Origen medido: la fuente `git-subdir` del plugin stripe (providers/claude/plugin).')
   }
 

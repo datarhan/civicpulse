@@ -91,3 +91,52 @@ export function patronesUtiles(fichero: string): string[] {
     .map((l) => l.trim())
     .filter((l) => l.length > 0 && !l.startsWith('#') && !l.startsWith('!') && l !== '/*')
 }
+
+/**
+ * La raíz de un worktree, sacada de su fichero `gitdir`.
+ *
+ * `.git/worktrees/<nombre>/gitdir` guarda la ruta ABSOLUTA del fichero `.git`
+ * del worktree —`/…/worktrees/description-reframe/.git`—, así que su directorio
+ * es la raíz. Es el mapeo fiable y no obliga a parsear la salida de
+ * `git worktree list`, que además cambia de forma entre versiones.
+ *
+ * Devuelve null si el contenido no tiene esa pinta: un worktree que no se sabe
+ * dónde está no se toca, y desde luego no se le corre un `git -C` a ciegas.
+ */
+export function raizDesdeGitdir(contenido: string): string | null {
+  const linea = contenido.trim()
+  if (!linea.endsWith('/.git')) return null
+  const raiz = linea.slice(0, -'/.git'.length)
+  return raiz.length > 0 ? raiz : null
+}
+
+/**
+ * EL ORDEN DE LA REPARACIÓN, y por qué no es un detalle de estilo.
+ *
+ * Apagar primero, borrar el patrón después. Al revés destroza más de lo que
+ * arregla, y está MEDIDO en un repo de usar y tirar: con
+ * `core.sparseCheckout = true` y el fichero de patrones borrado, un
+ * `sparse-checkout reapply` dejó el árbol en UN solo fichero —se llevó por
+ * delante hasta el directorio que el patrón salvaba—, porque en modo cono «sin
+ * patrones» no significa «sin filtro» sino «no encaja nada».
+ *
+ * Se expone como constante para que la prueba pueda afirmar sobre el orden en
+ * vez de sobre un comentario.
+ */
+export const ORDEN_REPARACION = ['disable', 'borrar-patron'] as const
+
+/**
+ * ¿Dice el `config.worktree` de un worktree que el esparcido está ENCENDIDO?
+ *
+ * Se lee el fichero en vez de preguntarle a git con `-C` porque el barrido sólo
+ * necesita mirar, y mirar un fichero no toca el árbol de nadie.
+ *
+ * Existe por un error concreto: informé de que dos worktrees conservaban «un
+ * patrón apagado, inerte», y los dos tenían `sparseCheckout = true`. Estaban
+ * CEBADOS —bandera puesta y patrón cargado—, salvados sólo por que ninguna
+ * operación de git había reaplicado el esparcido todavía. Llamar «resto» a eso
+ * es quitarle importancia a un daño que está a un `git` de distancia.
+ */
+export function esparcidoActivoEnConfig(texto: string): boolean {
+  return /^\s*sparseCheckout\s*=\s*true\s*$/im.test(texto)
+}
