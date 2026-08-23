@@ -207,6 +207,7 @@
     "correct-indicador": "npx tsx scripts/correct-indicador.ts",
     "retract-indicador": "npx tsx scripts/retract-indicador.ts",
     "check:eficiencia-findings": "npx tsx scripts/check-eficiencia-findings.ts",
+    "check:competencias": "npx tsx scripts/check-competencias.ts",
     "indicador-reply": "npx tsx scripts/reply-indicador.ts",
     "render:og": "node scripts/render-og.mjs",
     "carry:attribution": "npx tsx scripts/carry-attribution.ts"
