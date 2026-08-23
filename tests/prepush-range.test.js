@@ -58,6 +58,22 @@ describe('el rango del gancho de pre-push', () => {
     ).toEqual([])
   })
 
+  it('refresca origin/main antes de calcular el rango', () => {
+    // Los tres puntos NO BASTAN solos. El merge-base se calcula contra la
+    // referencia LOCAL de origin/main, así que si está rancia vuelven a colarse
+    // las rutas de trabajo ya fusionado. Medido con este mismo arreglo: PR
+    // fusionada en GitHub, sin `git fetch` después, y el gancho anunció otra vez
+    // 10 rutas donde eran 0. Es el caso normal —se fusiona y se sigue—, no el
+    // raro, así que el rango correcto sin ref fresca es media solución.
+    expect(codigo).toMatch(/git fetch[^\n]*origin main/)
+  })
+
+  it('y si no hay red lo dice, en vez de callarse un rango inflado', () => {
+    // Mismo contrato que el resto del fichero: este gancho nunca bloquea, pero
+    // tampoco puede insinuar que miró lo que tocaba cuando no lo hizo.
+    expect(codigo).toMatch(/el rango puede venir inflado/)
+  })
+
   it('sigue derivando las rutas del grafo de imports, no de una lista a mano', () => {
     // Si alguien sustituye esto por una lista fija, el rango deja de importar y
     // esta prueba se quedaría vigilando algo que ya no decide nada.
