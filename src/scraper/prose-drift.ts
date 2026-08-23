@@ -36,21 +36,26 @@ export interface FrozenFigure {
   /** Where it lives, e.g. `reconstruccion-dana.totals.totalAwarded`. */
   where: string
   value: number
-  /** Which live anchor it is supposed to track. */
-  anchor: string
   /**
-   * Qué mide la cifra congelada que el ancla NO mide.
+   * Which live anchor it is supposed to track — y tiene que medir LO MISMO.
    *
-   * Presente = la comparación no es de iguales, y la diferencia no es deriva.
-   * `reconstruccion-dana.totals.totalAwarded` excluye la concesión del agua
-   * —diecisiete años adjudicados de una vez, 55,69 M€— y el ancla
-   * `tenders.stats.awardedTotalEuros` la incluye: 123,68 − 55,69 = 68,00
-   * exacto, y 699 − 1 = 698 contratos. El check llevaba tiempo diciendo
-   * «divergente ×1.8» y pidiendo una nota de corrección que no habría
-   * arreglado nada, porque no ha derivado nada. Una alarma permanente es una
-   * alarma que se silencia.
+   * Aquí hubo un campo `scope`: una nota en prosa que decía «esta cifra y su
+   * ancla no miden lo mismo», y que el cálculo de abajo traducía a `severity:
+   * 'scoped'` — es decir, a EXENTA. Nació para callar una falsa alarma
+   * permanente y real (la cifra de la DANA excluye la concesión del agua, el
+   * ancla la incluía: ×1,8 para siempre), pero en vez de acotar la comparación
+   * la eliminó: una cifra con nota no podía salir divergente por lejos que se
+   * fuera. Se destapó con la inyección de `check:guards`, que multiplica por
+   * diez justamente esa cifra y no conseguía que la guarda gritara.
+   *
+   * Lo que enseñó el arreglo: la nota no era vaga, era aritmética exacta
+   * («123,68 − 55,69 = 68,00»), así que la diferencia se podía RESTAR EN EL
+   * ANCLA y la exención sobraba. Si alguna vez vuelve a hacer falta, ésa es la
+   * salida — un ancla que mida lo mismo, no una nota que apague el aviso. Y si
+   * no es derivable de nuestros datos, la cifra se declara sin vigilar y se
+   * cuenta aparte, que es visible; una exención silenciosa no lo es.
    */
-  scope?: string
+  anchor: string
 }
 
 export interface DriftRow {
@@ -59,9 +64,7 @@ export interface DriftRow {
   frozen: number
   live: number
   ratio: number
-  /** Copiado de la cifra: por qué esta comparación no es de iguales. */
-  scope?: string
-  severity: 'ok' | 'drifted' | 'scoped'
+  severity: 'ok' | 'drifted'
 }
 
 /**
@@ -130,12 +133,11 @@ export function detectDrift(
       frozen: f.value,
       live: a.value,
       ratio: Math.round(ratio * 1000) / 1000,
-      scope: f.scope,
-      // `scoped` NUNCA es `drifted`: la cifra y el ancla miden cosas
-      // distintas, así que su distancia no dice nada sobre si la pieza
-      // envejeció. Se sigue imprimiendo —con su motivo— en vez de ocultarse:
-      // esconderla dejaría la cifra sin vigilancia de ningún tipo.
-      severity: f.scope ? 'scoped' : rel > DRIFT_THRESHOLD ? 'drifted' : 'ok',
+      // Sin excepciones. Toda cifra comparada se mide contra el MISMO umbral:
+      // no hay ningún campo con el que una cifra pueda quedar exenta de esta
+      // línea, que es exactamente lo que hacía `scope`. Ver el comentario de
+      // `FrozenFigure.anchor`.
+      severity: rel > DRIFT_THRESHOLD ? 'drifted' : 'ok',
     })
   }
   return { rows, skipped }

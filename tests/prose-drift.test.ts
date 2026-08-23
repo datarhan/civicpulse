@@ -97,34 +97,41 @@ describe('prose-drift — a figure it stopped watching must not vanish', () => {
   })
 })
 
-describe('una cifra de alcance distinto no es una cifra que derivó', () => {
-  const anchors = { awardedTotal: { label: 'tenders.stats.awardedTotalEuros', value: 123_681_883 } }
+describe('el alcance se arregla en el ancla, no eximiendo la cifra', () => {
+  // Las cifras reales, al céntimo. `reconstruccion-dana.totals.totalAwarded`
+  // excluye la concesión del agua —17 años adjudicados de una vez— y el total
+  // adjudicado la incluye: 123.681.882,79 − 55.685.178,79 = 67.996.704,00.
+  const TOTAL_CON_CONCESION = 123_681_882.79
+  const CONCESION = 55_685_178.79
+  const anchors = {
+    awardedTotal: { label: 'tenders.stats.awardedTotalEuros', value: TOTAL_CON_CONCESION },
+    awardedTotalSinConcesion: {
+      label: 'tenders.stats.awardedTotalEuros − contrato 46717',
+      value: TOTAL_CON_CONCESION - CONCESION,
+    },
+  }
 
-  it('no la llama divergente por mucho que se separe del ancla', () => {
-    // El caso real: `reconstruccion-dana.totals.totalAwarded` excluye la
-    // concesión del agua —17 años adjudicados de una vez— y el ancla la
-    // incluye. 123,68 − 55,69 = 68,00 exacto, y 699 − 1 = 698 contratos. No ha
-    // derivado nada: miden cosas distintas. El check decía «divergente ×1.8» y
-    // pedía una nota de corrección que no habría arreglado nada — y una alarma
-    // permanente es una alarma que se silencia.
+  it('contra el ancla que mide LO MISMO, la cifra sale ok', () => {
+    // Antes esto se resolvía con un campo `scope`: una nota en prosa que
+    // marcaba la fila como «de alcance distinto» y la dejaba EXENTA de toda
+    // comparación. Sobra: la nota decía una aritmética exacta, así que la
+    // diferencia se resta en el ancla y la cifra vuelve a estar vigilada.
     const [row] = detectDrift(
       [
         {
           where: 'reconstruccion-dana.totals.totalAwarded',
           value: 67_996_704,
-          anchor: 'awardedTotal',
-          scope: 'excluye la concesión del agua; el ancla la incluye',
+          anchor: 'awardedTotalSinConcesion',
         },
       ],
       anchors,
     ).rows
-    expect(row.severity).toBe('scoped')
-    expect(row.scope).toMatch(/concesión del agua/)
+    expect(row.severity).toBe('ok')
   })
 
-  it('sin `scope`, la MISMA cifra sí es divergente', () => {
-    // El control. Sin él, marcar todo como `scoped` silenciaría el check
-    // entero y pasaría la prueba de arriba.
+  it('y contra el ancla equivocada sigue saliendo divergente', () => {
+    // El control de que la prueba de arriba mide algo: la MISMA cifra contra el
+    // total CON concesión es ×1,8, que es la falsa alarma que motivó el `scope`.
     const [row] = detectDrift(
       [{ where: 'x', value: 67_996_704, anchor: 'awardedTotal' }],
       anchors,
@@ -132,13 +139,31 @@ describe('una cifra de alcance distinto no es una cifra que derivó', () => {
     expect(row.severity).toBe('drifted')
   })
 
-  it('`scope` no convierte en válida una cifra que no se pudo comparar', () => {
-    // Un ancla ausente sigue siendo «SIN comparar», no «de alcance distinto»:
-    // son dos cosas diferentes y confundirlas devolvería el silencio.
-    const r = detectDrift(
-      [{ where: 'x', value: 10, anchor: 'no-existe', scope: 'lo que sea' }],
+  it('REGRESIÓN: una cifra multiplicada por diez es SIEMPRE divergente', () => {
+    // Esta es la que estuvo en rojo sin que nadie lo viera. `check:guards`
+    // inyecta exactamente esto —multiplica por diez `totals.totalAwarded`— y la
+    // guarda no gritaba, porque la fila llevaba `scope` y `scope` ganaba a
+    // cualquier distancia. Salía «MUDA ANTE SU PROPIO FALLO» en cada pasada.
+    //
+    // Ya no hay ningún campo capaz de eximir a una fila de esta línea. Si
+    // alguien vuelve a añadir uno, esta prueba se pone roja.
+    const [row] = detectDrift(
+      [
+        {
+          where: 'reconstruccion-dana.totals.totalAwarded',
+          value: 67_996_704 * 10,
+          anchor: 'awardedTotalSinConcesion',
+        },
+      ],
       anchors,
-    )
+    ).rows
+    expect(row.severity).toBe('drifted')
+  })
+
+  it('un ancla ausente sigue siendo «SIN comparar», no una cifra limpia', () => {
+    // Una cifra que se cayó de la comparación no es una cifra que coincidió:
+    // confundirlas es cómo empezó cada incidente de fallo silencioso aquí.
+    const r = detectDrift([{ where: 'x', value: 10, anchor: 'no-existe' }], anchors)
     expect(r.rows).toHaveLength(0)
     expect(r.skipped).toHaveLength(1)
   })
