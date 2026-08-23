@@ -353,5 +353,15 @@
       }
     ],
     "cierre": "Hay agregadores privados que publican un precio del agua para Riba-roja. No se recoge aquí: un agregador no es la fuente, es alguien que la copió, y esta pieza sólo publica lo que puede enlazar. Queda dicho como lo que es — un hueco, y uno que encaja con todo lo demás: el instrumento con el que el Estado mide lo que cuestan los servicios municipales no ve este servicio, y el precio que lo sustituye tampoco está donde un vecino pueda encontrarlo."
+  },
+  "quienRespondia2020": {
+    "titulo": "Quién tenía delegada esa competencia cuando la entrega no se rindió",
+    "salvedad": "Antes del nombre, lo que este dato no es. El coste efectivo lo rinde la entidad local en su conjunto, y la fuente del ministerio no registra quién cumplimenta el formulario: esta pieza no atribuye a ninguna persona el hecho de que la entrega no se presentara, porque ningún documento lo sostiene. Lo que sí consta, y en el Boletín Oficial de la Provincia, es qué concejal tenía delegada el área de Hacienda en aquella corporación. Se publica por lo mismo que el panel dice quién responde de cada servicio: para que quien quiera preguntar sepa a qué área dirigirse.",
+    "cuerpo": "La entrega que falta es la del ejercicio 2020, que debía comunicarse al ministerio antes del 1 de noviembre de 2021. Gobernaba entonces la corporación salida de las elecciones del 26 de mayo de 2019, constituida el 15 de junio. Su decreto de delegación —resolución de Alcaldía 1841/2019, de 21 de junio, publicada en el BOP de València el 19 de julio— situaba la Hacienda municipal en el área de Gestión Municipal y Gobierno Abierto, y delegaba esa área en el segundo teniente de alcalde, José Ángel Hernández Carrizosa. Es el mismo concejal que hoy tiene delegadas las finanzas públicas y la compra pública, según el decreto de la corporación actual.",
+    "cita": "AREA DE GESTIÓN MUNICIPAL Y GOBIERNO ABIERTO. COMPETENCIAS: Hacienda, Servicios Generales, Servicios jurídicos, RRHH, Contratación pública, Patrimonio e Inventario, Áreas Industriales, Actividades, Transparencia, Participación Ciudadana y Administración Electrónica. DELEGACIÓNES ESPECIALES: Se delega en el 2ª Teniente de alcalde José Ángel Hernández Carrizosa la coordinación de ésta área así como las competencias que al Alcalde corresponden en materia de Hacienda, Contratación Pública, Patrimonio e Inventario, Áreas Industriales, Edificios públicos e Infraestructuras, Actividades y Fomento Económico.",
+    "citaNota": "Transcrito del anuncio del BOP; se han unido las palabras que el PDF parte con guion al final de línea.",
+    "fuente": "BOP de València núm. 138, de 19 de julio de 2019 · Resolución de Alcaldía 1841/2019, de 21 de junio",
+    "url": "https://bop.dival.es/bop/downloads?boletinFecha=19%2F07%2F2019",
+    "replica": "Como cualquier persona nombrada en estas páginas, tiene derecho de réplica y su respuesta se publicará íntegra."
   }
 }

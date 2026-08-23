@@ -508,6 +508,75 @@ function LaTarifa({ bloque }) {
   )
 }
 
+/* ---- Quién tenía delegada la Hacienda cuando faltó la entrega de 2020.
+        La SALVEDAD se pinta antes que el nombre, no después: es lo que gobierna
+        cómo se lee todo lo demás, y puesta debajo llegaría cuando el lector ya
+        ha sacado su conclusión — el mismo error que la tarjeta de /eficiencia
+        corrigió moviendo el aviso de escalón por delante de la cifra. ---- */
+function QuienRespondia({ bloque }) {
+  const b = bloque
+  return (
+    <>
+      <h3
+        style={{
+          fontFamily: SERIF,
+          fontSize: 'var(--fs-body)',
+          fontWeight: 600,
+          margin: '26px 0 0',
+        }}
+      >
+        {b.titulo}
+      </h3>
+      <p
+        style={{
+          margin: '10px 0 0',
+          padding: '10px 12px',
+          background: 'var(--soft)',
+          border: '1px solid var(--border)',
+          borderRadius: 'var(--r-card)',
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink70)',
+          lineHeight: 1.55,
+        }}
+      >
+        {b.salvedad}
+      </p>
+      <P>{b.cuerpo}</P>
+      <figure
+        style={{
+          margin: '14px 0',
+          padding: '12px 14px',
+          borderLeft: '3px solid var(--border)',
+          background: 'var(--soft)',
+        }}
+      >
+        <blockquote
+          style={{
+            margin: 0,
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink70)',
+            lineHeight: 1.55,
+          }}
+        >
+          «{b.cita}»
+        </blockquote>
+        <figcaption style={{ marginTop: 8, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+          {b.fuente} ·{' '}
+          <a
+            href={b.url}
+            target="_blank"
+            rel="noreferrer noopener"
+            style={{ color: 'var(--civic)' }}
+          >
+            boletín completo ↗
+          </a>
+          . {b.citaNota} {b.replica}
+        </figcaption>
+      </figure>
+    </>
+  )
+}
+
 export default function CosteEfectivo() {
   const { loading, error, data } = useReportaje('coste-efectivo')
   const { data: sociedades } = useSociedades()
@@ -830,6 +899,8 @@ export default function CosteEfectivo() {
           noPresentadas={data.entregas.noPresentadas}
         />
       </Figura>
+
+      {data.quienRespondia2020 && <QuienRespondia bloque={data.quienRespondia2020} />}
       <P>
         La explicación cómoda sería la pandemia. No se sostiene: en 2020 rindieron{' '}
         <strong>más</strong> ayuntamientos valencianos que en cualquiera de los cuatro años
