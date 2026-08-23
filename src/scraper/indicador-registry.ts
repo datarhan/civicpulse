@@ -81,6 +81,58 @@ export interface ServicioDef {
   area: AreaId
   /** Lo que un lector necesita saber para no malinterpretar el número. */
   caveats: string[]
+  /**
+   * Un hecho sobre lo que el ayuntamiento DECLARÓ, que no puede ir plegado.
+   *
+   * Las `caveats` viven dentro del desplegable «Serie completa y salvedades»,
+   * que es el sitio correcto para una advertencia de lectura: quien quiera
+   * afinar, la abre. Pero algunas de esas frases no son advertencias de
+   * lectura, son hechos sobre la rendición de cuentas — que la fuente traiga
+   * una casilla de viajeros y este ayuntamiento la ponga a cero mientras 22 de
+   * sus comparables la rellenan no es un matiz del cociente, es la noticia—.
+   * Plegado, se leía una vez y se saltaba nueve.
+   *
+   * La regla es la misma que ya gobierna la chapa de «cantidad sin remedir»:
+   * lo que el ayuntamiento hizo o dejó de hacer con su declaración se enseña;
+   * lo interpretativo se pliega.
+   */
+  avisoDeclaracion?: string
+  /**
+   * Quién presta el servicio cuando está concedido, y con qué contrato.
+   *
+   * Sólo para las fichas que el panel no puede calcular por concesión. La
+   * celda vacía no se explica sin decir a quién se le paga: es la diferencia
+   * entre «aquí falta un dato» y «aquí el dinero no cruza los libros del
+   * ayuntamiento porque lo cobra otro directamente del recibo».
+   *
+   * Se cura A MANO y contra el expediente, no contra `tenders.json`. Ese
+   * snapshot trae el mismo expediente DOS VECES con estados que se contradicen
+   * —`revoked` como licitación, `awarded` como contrato— porque son dos tablas
+   * distintas de Gobierto, y quien lea la primera publicará un estado falso.
+   * Cada campo de aquí está contrastado contra la ficha de PLACSP que enlaza
+   * `url`. Ver `tests/tenders-colision-id.test.ts`.
+   *
+   * Nada de estado VIVO: fechas y cifras de la adjudicación, que son
+   * históricas y no se mueven. Si el contrato se formaliza mañana, esto sigue
+   * siendo cierto — que es justo lo que no pasaría con un «pendiente de
+   * formalizar» congelado en un registro.
+   */
+  concesion?: {
+    /** Razón social de la adjudicataria, literal del expediente. */
+    adjudicataria: string
+    /** Valor estimado del contrato por todo su plazo, en euros. */
+    importe: number
+    /** Fecha de adjudicación, ISO. */
+    adjudicadaEl: string
+    /** Último día del plazo, ISO. */
+    hasta: string
+    /** Cuántas ofertas concurrieron. */
+    ofertas: number
+    /** Ficha del expediente en la Plataforma de Contratación del Estado. */
+    url: string
+    /** Lo que el expediente cuenta y una fecha sola no. */
+    nota: string
+  }
 }
 
 export const SERVICIOS: Record<string, ServicioDef> = {
@@ -288,9 +340,11 @@ export const SERVICIOS: Record<string, ServicioDef> = {
     unidad: '€/km',
     tier: 'carga',
     area: 'territorio-movilidad',
-    caveats: [
+    caveats: [],
+    // Sube de `caveats` a la vista: no es un matiz de cómo se lee el cociente,
+    // es lo que el ayuntamiento dejó sin declarar teniendo casilla para ello.
+    avisoDeclaracion:
       'El divisor es la longitud de la red, no cuánta gente la usa: la fuente tiene una casilla de viajeros y este ayuntamiento la declara a cero, mientras 22 de sus comparables sí la rellenan.',
-    ],
   },
   a161: {
     label: 'Abastecimiento domiciliario de agua potable',
@@ -304,6 +358,15 @@ export const SERVICIOS: Record<string, ServicioDef> = {
     tier: 'output',
     area: 'agua-residuos',
     caveats: [],
+    concesion: {
+      adjudicataria: 'HIDRAQUA, Gestión Integral de Aguas de Levante, S.A.',
+      importe: 55685178.79,
+      adjudicadaEl: '2026-08-06',
+      hasta: '2043-07-27',
+      ofertas: 7,
+      url: 'https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D',
+      nota: 'El expediente se anunció en abril de 2019 y estuvo suspendido —con dos recursos ante el TACRC de por medio— hasta que en abril de 2026 recayó sentencia. La adjudicación llegó en agosto de 2026, siete años después del anuncio.',
+    },
   },
   a160: {
     label: 'Alcantarillado',
@@ -317,5 +380,16 @@ export const SERVICIOS: Record<string, ServicioDef> = {
     tier: 'output',
     area: 'agua-residuos',
     caveats: [],
+    // Mismo expediente que a161: la concesión es conjunta —agua potable,
+    // alcantarillado, control de vertidos y depuración en un solo contrato—.
+    concesion: {
+      adjudicataria: 'HIDRAQUA, Gestión Integral de Aguas de Levante, S.A.',
+      importe: 55685178.79,
+      adjudicadaEl: '2026-08-06',
+      hasta: '2043-07-27',
+      ofertas: 7,
+      url: 'https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D',
+      nota: 'El expediente se anunció en abril de 2019 y estuvo suspendido —con dos recursos ante el TACRC de por medio— hasta que en abril de 2026 recayó sentencia. La adjudicación llegó en agosto de 2026, siete años después del anuncio.',
+    },
   },
 }

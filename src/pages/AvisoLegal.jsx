@@ -119,6 +119,15 @@ export default function AvisoLegal() {
           áreas ha cambiado.
         </p>
         <p>
+          <strong>Cuando un servicio está concedido, la ficha nombra a la empresa</strong> que lo
+          presta, con el importe y las fechas de la adjudicación y un enlace al expediente público.
+          Sin eso, una casilla vacía se lee como un dato que falta, cuando lo que dice es otra cosa:
+          que ese gasto no aparece en las cuentas del ayuntamiento porque lo cobra la concesionaria
+          directamente del recibo. Son datos de la adjudicación —hechos fechados— contrastados uno a
+          uno contra la ficha del expediente en la Plataforma de Contratación del Estado, no contra
+          un volcado intermedio. No se publica el estado en curso de ningún contrato.
+        </p>
+        <p>
           Ninguna ficha afirma una causa, y en particular ninguna afirma mala gestión, despilfarro
           ni irregularidad. Que una cifra se salga de su banda es una pregunta con los números
           puestos: puede responder a una diferencia real de coste, a una decisión legítima, o a que

@@ -223,14 +223,23 @@ export function validarCompetencias(raw: unknown): CompetenciasSnapshot {
  *
  * Durante la ventana electoral de la LOREG la capa de nombres desaparece de
  * las dos superficies, con el mismo interruptor que ya pone `/promesas` en
- * sólo lectura (`npm run freeze:set`). La ventana INCLUYE su último día: un
- * `frozenUntil` de hoy sigue congelado hoy.
+ * sólo lectura (`npm run freeze:set`).
+ *
+ * `frozenUntil` es EXCLUSIVO: se congela mientras `hoy < frozenUntil`, y el
+ * propio día del límite ya está descongelado. No es una preferencia, es la
+ * semántica que ya tienen las otras dos lecturas de este mismo campo
+ * —`isPromiseFrozen` en `usePromises.js` y el `now < new Date(...)` de
+ * `set-promises-freeze.ts`—, y su CLI documenta que la fecha se pone «until
+ * polling day + 10», o sea con margen por fuera. Dos definiciones de la misma
+ * ventana que discrepen en su último día son la clase de deriva que este
+ * repositorio ya ha pagado; `tests/competencias-freeze-agreement.test.ts`
+ * obliga a las tres a coincidir día a día.
  *
  * Función pura para que la puerta se pueda probar sin montar una página.
  */
 export function nombresVisibles(frozenUntil: string | null, hoy: string): boolean {
   if (!frozenUntil) return true
-  return hoy > frozenUntil
+  return hoy >= frozenUntil
 }
 
 /**

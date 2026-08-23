@@ -4,6 +4,7 @@ import { LecturaRapida } from '../components/eficiencia/LecturaRapida'
 import { ResumenPosiciones } from '../components/eficiencia/ResumenPosiciones'
 import { MultiplesSeries } from '../components/eficiencia/MultiplesSeries'
 import { ServicioCard } from '../components/eficiencia/ServicioCard'
+import { ComoSeLee } from '../components/eficiencia/ComoSeLee'
 import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
 import { HallazgosEficiencia } from '../components/eficiencia/HallazgosEficiencia'
 import { Supramunicipal } from '../components/eficiencia/Supramunicipal'
@@ -14,6 +15,7 @@ import { agruparPorArea, fraseParticion } from '../scraper/indicador-areas'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useEficienciaPreguntas } from '../hooks/useEficienciaPreguntas'
+import { useCompetencias, indexarCompetencias, useNombresVisibles } from '../hooks/useCompetencias'
 import { useT } from '../i18n'
 
 /**
@@ -46,6 +48,11 @@ export default function Eficiencia() {
   const { loading, error, data } = useIndicadores()
   const { data: hallazgos } = useEficienciaFindings()
   const { data: preguntas } = useEficienciaPreguntas()
+  const { data: competencias } = useCompetencias()
+  // Durante la ventana LOREG la capa de nombres desaparece entera; el Map vacío
+  // hace que cada tarjeta pinte sin ella, sin ninguna rama extra en el render.
+  const nombresOn = useNombresVisibles()
+  const porClave = nombresOn ? indexarCompetencias(competencias) : new Map()
   const indicadores = data?.indicadores ?? []
   const municipalesDeAqui = (data?.municipales ?? []).filter((m) => m.panel === 'coste-efectivo')
   const idsDeAqui = [...indicadores.map((i) => i.id), ...municipalesDeAqui.map((m) => m.id)]
@@ -151,6 +158,12 @@ export default function Eficiencia() {
           tarjetas en orden de gasto. El área la declara cada servicio en el
           registro; la mini-frase de cada bloque es un recuento derivado. */}
       <section id="sec-servicios" style={seccion}>
+        {/* La regla antes que los ejemplos. Es de la CLASE de divisor, no del
+            servicio, así que se dice tres veces aquí en lugar de trece abajo —
+            y quien entra por una sola ficha ya no deduce de ella una regla que
+            sólo valía para su escalón. */}
+        <ComoSeLee indicadores={indicadores} />
+
         {grupos.map((g) => (
           <div key={g.area} style={{ marginTop: 26 }}>
             <h2
@@ -179,6 +192,7 @@ export default function Eficiencia() {
                   resultado={(data?.resultados?.items ?? []).find(
                     (r) => r.servicioRelacionado === i.id,
                   )}
+                  competencia={porClave.get(i.id)}
                 />
               ))}
             </div>
@@ -215,7 +229,12 @@ export default function Eficiencia() {
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 10 }}>
             {bloqueados.map((i) => (
-              <ServicioCard key={i.id} indicador={i} formatea={formateaCon(i.unidad)} />
+              <ServicioCard
+                key={i.id}
+                indicador={i}
+                formatea={formateaCon(i.unidad)}
+                competencia={porClave.get(i.id)}
+              />
             ))}
           </div>
 

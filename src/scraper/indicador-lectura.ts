@@ -150,8 +150,16 @@ export function chipDeclaracion(i: Indicador): ChipDeclaracion | null {
  *
  * Es la distinción de Hatry puesta en la lengua de un vecino, y es la frase que
  * impide que la tarjeta se lea como una calificación.
+ *
+ * EXPORTADA para que la cabecera de la página («Cómo se lee un coste unitario»)
+ * enseñe estas mismas frases en vez de una paráfrasis suya. Eran privadas y
+ * llegaban al lector de una en una, tarjeta a tarjeta, así que quien entraba
+ * por primera vez tenía que deducir de trece ejemplos la regla que aquí está
+ * escrita en tres. Copiarlas arriba habría creado la segunda versión que se
+ * queda vieja: el modo de fallo nº1 de docs/DATA_INTEGRITY.md es exactamente
+ * una copia a mano de una forma que ya existía.
  */
-const COMO_SE_LEE: Record<Tier, string> = {
+export const COMO_SE_LEE: Record<Tier, string> = {
   // Cada una EMPIEZA por lo que la cifra no es.
   //
   // Antes empezaban por lo que miden («Divide un gasto entre otro gasto…»), y

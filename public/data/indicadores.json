@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T05:16:05.975Z",
+  "generatedAt": "2026-08-23T11:51:21.576Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -6516,10 +6516,10 @@
         "paresMedibles": 25
       },
       "caveats": [
-        "El divisor es la longitud de la red, no cuánta gente la usa: la fuente tiene una casilla de viajeros y este ayuntamiento la declara a cero, mientras 22 de sus comparables sí la rellenan.",
         "El ministerio publica cifras inverosímiles para 2015, 2016, 2017, 2018: se apartan más de 20 veces de lo que declararon los municipios comparables ese mismo año. Se muestran porque son las oficiales, pero no se pueden leer como coste (regla 7).",
         "El ayuntamiento declara la misma cifra de nº total de kms de calzada de la red en trayecto de ida desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 18 de 25 municipios comparables hacen lo mismo con esta misma cifra (regla 8)."
       ],
+      "avisoDeclaracion": "El divisor es la longitud de la red, no cuánta gente la usa: la fuente tiene una casilla de viajeros y este ayuntamiento la declara a cero, mientras 22 de sus comparables sí la rellenan.",
       "citas": [
         {
           "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
@@ -6664,6 +6664,15 @@
         "paresMedibles": 55
       },
       "caveats": [],
+      "concesion": {
+        "adjudicataria": "HIDRAQUA, Gestión Integral de Aguas de Levante, S.A.",
+        "importe": 55685178.79,
+        "adjudicadaEl": "2026-08-06",
+        "hasta": "2043-07-27",
+        "ofertas": 7,
+        "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
+        "nota": "El expediente se anunció en abril de 2019 y estuvo suspendido —con dos recursos ante el TACRC de por medio— hasta que en abril de 2026 recayó sentencia. La adjudicación llegó en agosto de 2026, siete años después del anuncio."
+      },
       "citas": [
         {
           "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
@@ -6808,6 +6817,15 @@
         "paresMedibles": 56
       },
       "caveats": [],
+      "concesion": {
+        "adjudicataria": "HIDRAQUA, Gestión Integral de Aguas de Levante, S.A.",
+        "importe": 55685178.79,
+        "adjudicadaEl": "2026-08-06",
+        "hasta": "2043-07-27",
+        "ofertas": 7,
+        "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
+        "nota": "El expediente se anunció en abril de 2019 y estuvo suspendido —con dos recursos ante el TACRC de por medio— hasta que en abril de 2026 recayó sentencia. La adjudicación llegó en agosto de 2026, siete años después del anuncio."
+      },
       "citas": [
         {
           "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
