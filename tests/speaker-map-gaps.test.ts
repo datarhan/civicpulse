@@ -124,6 +124,73 @@ describe('a session with written-off gaps leaves the queue', () => {
   })
 })
 
+/**
+ * Un hueco de presupuesto —un trozo que la nocturna nunca llegó a intentar— y
+ * lo que NO se puede concluir de él. Contra un fixture, y ésa es la novedad.
+ *
+ * Este caso vivía apuntado a la sesión del disco que en ese momento tuviera
+ * huecos, y ha caducado TRES veces: `15uvjew` lo cerró la barrida el 15-08,
+ * `brxx5g` la nocturna el 18-08, y el 22-08 se cerró `10yl550`, el último que
+ * quedaba. Las tres veces el test avisó en rojo de que había dejado de medir lo
+ * que creía medir, y las dos primeras el arreglo fue escribir a mano el nombre
+ * de la siguiente sesión — o sea, volver a poner la fecha de caducidad. La
+ * tercera vez el propio mensaje de fallo pedía lo que se hace aquí: darle un
+ * fixture propio en vez de repuntarlo.
+ *
+ * Es la misma broma que este repositorio ya se ha contado con la tabla escrita a
+ * mano dentro del control contra la prosa rancia, y con la lista de entregas de
+ * CESEL: un control cuyo sujeto hay que renovar a mano envejece igual que lo que
+ * vigila. El sujeto de un caso de comportamiento no es el mundo, es el caso.
+ *
+ * El literal de `why` es el que escribe `extract-speaker-map.ts`, copiado de
+ * ahí y no inventado: si esa frase cambia, el filtro `/never attempted/` del
+ * bloque de disco deja de encontrar nada y conviene que esto cambie con ella.
+ */
+describe('un hueco de presupuesto no amortiza nada', () => {
+  const HUECOS_DE_PRESUPUESTO: FailedChunk[] = [
+    { chunk: 15, why: 'never attempted (chunk budget spent; resumes next run)' },
+    { chunk: 16, why: 'never attempted (quota exhausted earlier in the run)' },
+  ]
+
+  it('son el caso entero: sin cuenta de intentos', () => {
+    expect(HUECOS_DE_PRESUPUESTO.length).toBeGreaterThan(0)
+    expect(HUECOS_DE_PRESUPUESTO.every((f) => f.attempts == null)).toBe(true)
+  })
+
+  it('no se retiran por una cuenta que nadie registró', () => {
+    // Leer un `attempts` ausente como «ya nos rendimos» retiraría de golpe cada
+    // sesión de la cola: retirar un trozo por estar infrapresupuestado es
+    // exactamente al revés.
+    expect(writtenOffChunks(HUECOS_DE_PRESUPUESTO, GATE).size).toBe(0)
+  })
+
+  it('y la sesión que los tiene no se declara terminada', () => {
+    // La consecuencia, y la razón por la que importa: si un hueco de
+    // presupuesto contase como amortizado, la sesión saldría de la cola y esos
+    // trozos no se transcribirían nunca.
+    const conHuecos = {
+      stats: { chunksTranscribed: 15, chunksExpected: 17, failedChunks: HUECOS_DE_PRESUPUESTO },
+    }
+    expect(isMapComplete(conHuecos, GATE)).toBe(false)
+
+    // Control: que dé `false` por el hueco y no por cualquier otra cosa. Con
+    // los MISMOS trozos amortizados bajo la puerta actual, la sesión sí cierra.
+    // Sin esto, `isMapComplete` podría estar devolviendo false por la aritmética
+    // de 15 < 17 y la aserción de arriba no probaría nada del write-off.
+    const amortizados = HUECOS_DE_PRESUPUESTO.map((f) => ({
+      ...f,
+      attempts: GIVE_UP_AFTER_ATTEMPTS,
+      givenUpUnder: { ...GATE },
+    }))
+    expect(
+      isMapComplete(
+        { stats: { chunksTranscribed: 15, chunksExpected: 17, failedChunks: amortizados } },
+        GATE,
+      ),
+    ).toBe(true)
+  })
+})
+
 describe('against the maps on disk', () => {
   /**
    * El sujeto se DERIVA, no se fija. Este bloque ya ha caducado dos veces por
@@ -163,39 +230,29 @@ describe('against the maps on disk', () => {
       .map((f) => ({ id, f })),
   )
 
-  it('hay huecos de presupuesto en el disco que medir', () => {
-    // Prueba de trabajo, sin nombre propio: si algún día la barrida cierra
-    // todas las sesiones, las dos aserciones de abajo pasarían sobre un
-    // conjunto vacío y este bloque diría «bien» sin haber mirado nada.
+  it('el directorio de mapas se lee y trae sesiones', () => {
+    // Lo único que este bloque puede exigir sin ponerse fecha de caducidad.
     expect(sesiones.length, 'no hay ninguna sesión en pleno-speaker-map/').toBeGreaterThan(0)
-    expect(
-      huecosDePresupuesto.length,
-      'ninguna sesión del disco tiene ya huecos de presupuesto: este bloque ha dejado de ' +
-        'aislar el caso que vigila, y hay que darle un fixture propio en vez de repuntarlo',
-    ).toBeGreaterThan(0)
-    // Y son lo que dicen ser: sin cuenta de intentos, que es el caso entero.
-    expect(huecosDePresupuesto.every(({ f }) => f.attempts == null)).toBe(true)
   })
 
-  it('does not retire a session on the strength of a count nobody recorded', () => {
-    // These gaps are chunks the nightly budget never reached. They carry no
-    // `attempts`, and they must not: retiring a chunk for being under-budgeted
-    // is exactly backwards, and reading an absent count as "given up on" would
-    // do it to every session in the backlog at once.
+  it('ningún hueco de presupuesto del disco se da por amortizado', () => {
+    // CONDICIONAL a propósito, y hoy vacío: el 2026-08-22 no queda ni un hueco
+    // de presupuesto en disco. La nocturna llegó por fin a los trozos de
+    // `10yl550` y los que fallaron pasaron a ser fallos de cobertura de verdad,
+    // con su cuenta de intentos y su sello de puerta.
+    //
+    // Que esto mida cero ya NO es una laguna, porque el comportamiento vive
+    // probado contra `HUECOS_DE_PRESUPUESTO` —un fixture que no depende de lo
+    // que la barrida haya cerrado esta noche—. Esto es sólo la comprobación
+    // contra el mundo real, y valer cero cuando el mundo real está bien es la
+    // buena noticia, no el fallo.
     expect(
       writtenOffChunks(
         huecosDePresupuesto.map(({ f }) => f),
         GATE,
       ).size,
     ).toBe(0)
-  })
-
-  it('una sesión con huecos que nadie miró no se declara terminada', () => {
-    // La consecuencia de lo anterior sobre el fichero real, y la razón por la
-    // que importa: si un hueco de presupuesto contara como amortizado, la
-    // sesión saldría de la cola y esos trozos no se transcribirían nunca.
     const conHuecos = new Set(huecosDePresupuesto.map(({ id }) => id))
-    expect(conHuecos.size).toBeGreaterThan(0)
     for (const { id, map } of sesiones) {
       if (!conHuecos.has(id)) continue
       expect(isMapComplete(map), `${id}: retirada con trozos que nadie llegó a intentar`).toBe(

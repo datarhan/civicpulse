@@ -110,10 +110,30 @@ function main() {
 
   // A run that found no queues on disk has not shown the worklists are clean —
   // it has shown it looked nowhere, which is a broken check.
+  //
+  // Con una excepción que NO es la misma cosa: las colas viven bajo
+  // `editorial/`, que está en `.gitignore` porque guarda prosa de máquina sin
+  // revisar sobre personas vivas. En un runner ese directorio no existe
+  // siquiera, así que ahí «cero colas» no es un check roto — es un sitio donde
+  // no hay nada que comprobar, y gritar FATAL cada noche por eso es el rojo
+  // permanente que acaba con todo el mundo ignorando la puerta.
+  //
+  // Se distingue por el DIRECTORIO, no por una variable de entorno: si
+  // `editorial/` está ahí, esto es un checkout de curador y faltar las colas sí
+  // es un fallo suyo.
   if (present.length === 0) {
+    if (!existsSync(resolve('editorial'))) {
+      process.stdout.write(
+        '[check-queues] NO COMPROBADO: no existe editorial/, así que aquí no hay colas que\n' +
+          '               mirar (está en .gitignore; en CI o en un clon nuevo esto es lo normal).\n' +
+          '               La revisión de las colas vive en la máquina del curador.\n',
+      )
+      return
+    }
     process.stderr.write(
-      '[check-queues] FATAL: ninguna cola en disco. Con cero ficheros este check no puede\n' +
-        '               encontrar nada, así que «todo limpio» no significa nada.\n',
+      '[check-queues] FATAL: existe editorial/ pero no hay ninguna cola dentro. Con cero\n' +
+        '               ficheros este check no puede encontrar nada, así que «todo limpio»\n' +
+        '               no significa nada. Regenéralas con los pases triage:*.\n',
     )
     process.exitCode = 1
     return
