@@ -5,12 +5,13 @@
  * or with real cached entries from manual runs.
  */
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest'
-import { mkdtempSync, rmSync, readdirSync } from 'node:fs'
+import { mkdtempSync, rmSync, readdirSync, readFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { resolve } from 'node:path'
 import { z } from 'zod'
 import {
   callLLM,
+  describeClaudeFailure,
   gatherCacheStats,
   loadConfigFromEnv,
   resetBudget,
@@ -652,5 +653,74 @@ describe('claudeEnvelopeToRaw (salvage result when structured_output is absent)'
       for (let i = 0; i < 9; i += 1) __notifyResultForTest(false)
       expect(getCircuitState()?.tripped).toBe(false)
     })
+  })
+})
+
+/**
+ * Por qué cuatro noches de fallos no se pueden diagnosticar.
+ *
+ * Del 18 al 22-ago-2026 el nocturno acumuló 10 hallazgos `backend-refusing`:
+ * `claude -p` salía 1 habiendo gastado 0 tokens y $0. El mensaje que quedó en el
+ * log —y de ahí en el manifiesto y en el parte— era éste:
+ *
+ *     claude exit 1: {"is_error":true,"duration_api_ms":0,"num_turns":1,
+ *     "stop_reason":"stop_sequence","session_id":"…","total_cost_usd":0,
+ *     "usage":{…ceros…},"service_tier":"standard","cach
+ *
+ * Todo cabecera. El motivo vive en `result`, y en el envelope REAL capturado el
+ * 23-ago está en el **índice 1007**, mientras `client.ts` cortaba en **400**:
+ * era inalcanzable por construcción, no por mala suerte.
+ *
+ * El camino de al lado ya lo hacía bien —cuando el CLI sale 0 con
+ * `is_error:true`, el código lee `envelope.result`—; sólo la rama de salida !=0
+ * tiraba el envelope entero y recortaba texto en crudo.
+ *
+ * El fixture es una respuesta REAL del CLI 2.1.241, provocada con un modelo
+ * inexistente, que reproduce la firma exacta del fallo de producción
+ * (`is_error:true`, `duration_api_ms:0`, `num_turns:1`, usage a cero).
+ */
+describe('describeClaudeFailure · un fallo del CLI tiene que decir por qué', () => {
+  const envelope = readFileSync(
+    resolve(__dirname, '../fixtures/claude-code-error-envelope_2026-08-23.json'),
+    'utf8',
+  )
+
+  // Prueba de que el fixture reproduce el caso, no uno parecido: si el motivo
+  // cupiera en los primeros 400 caracteres no habría defecto que arreglar.
+  it('el fixture reproduce el caso: `result` cae más allá del recorte viejo', () => {
+    expect(envelope.indexOf('"result"')).toBeGreaterThan(400)
+    expect(envelope.slice(0, 400)).not.toMatch(/access to it/)
+  })
+
+  it('nombra el motivo cuando stderr viene vacío — el caso de producción', () => {
+    const msg = describeClaudeFailure(1, envelope, '')
+    expect(msg).toMatch(/may not have access to it|no exista|issue with the selected model/i)
+  })
+
+  // El tag de stderr es el código legible por máquina y no siempre está; cuando
+  // está, no debe desplazar a la frase que explica.
+  it('conserva el tag de stderr Y la frase del envelope', () => {
+    const msg = describeClaudeFailure(
+      1,
+      envelope,
+      '[claude-code:unrecognized_model] {"model":"no-such-model-xyz"}',
+    )
+    expect(msg).toMatch(/unrecognized_model/)
+    expect(msg).toMatch(/issue with the selected model/i)
+  })
+
+  it('sigue diciendo el código de salida', () => {
+    expect(describeClaudeFailure(1, envelope, '')).toMatch(/exit 1/)
+  })
+
+  // Falla abierto: si stdout no es JSON no se inventa nada y se enseña lo que hay.
+  it('cae a la salida en crudo cuando no hay envelope que leer', () => {
+    const msg = describeClaudeFailure(127, '', 'claude: command not found')
+    expect(msg).toMatch(/command not found/)
+    expect(msg).toMatch(/exit 127/)
+  })
+
+  it('no se queda mudo cuando no hay ni envelope ni stderr', () => {
+    expect(describeClaudeFailure(1, '', '').trim().length).toBeGreaterThan(0)
   })
 })

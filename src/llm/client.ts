@@ -842,9 +842,7 @@ async function callClaudeCode(req: RawCall): Promise<RawResult> {
     child.on('close', (code) => {
       disarm()
       if (code !== 0) {
-        return rejectPromise(
-          new Error(`claude exit ${code}: ${stderr.slice(0, 400) || stdout.slice(0, 400)}`),
-        )
+        return rejectPromise(new Error(describeClaudeFailure(code, stdout, stderr)))
       }
       try {
         const envelope = JSON.parse(stdout) as {
@@ -942,6 +940,63 @@ export function extractJsonPayload(text: string): string {
  * result against the Zod schema, so this only rescues VALID answers that would
  * otherwise be hard-rejected — it never lets a non-conforming payload through.
  */
+/**
+ * Qué decir cuando `claude -p` sale con código distinto de cero.
+ *
+ * Antes era `stderr.slice(0, 400) || stdout.slice(0, 400)`, y eso convirtió diez
+ * fallos reales en diez líneas idénticas e inútiles. Del 18 al 22-ago-2026 el
+ * nocturno registró 10 `backend-refusing` cuyo mensaje entero era:
+ *
+ *     claude exit 1: {"is_error":true,"duration_api_ms":0,"num_turns":1,
+ *     "stop_reason":"stop_sequence","session_id":"…","total_cost_usd":0,
+ *     "usage":{…todo a cero…},"service_tier":"standard","cach
+ *
+ * El CLI **sí** dice por qué: lo pone en `result`. Lo que pasa es que `result`
+ * va DESPUÉS del bloque `usage`, y en el envelope real capturado el 23-ago cae
+ * en el índice **1007** — así que un recorte por la cabeza jamás lo alcanza. No
+ * era mala suerte, era imposible.
+ *
+ * El camino de al lado ya lo hacía bien: cuando el CLI sale 0 con
+ * `is_error: true`, unas líneas más abajo se lee `envelope.result`. Esta rama
+ * tiraba el envelope sin mirarlo.
+ *
+ * Se conservan las dos fuentes cuando existen. El tag de `stderr`
+ * (`[claude-code:unrecognized_model]`) es el código legible por máquina y a
+ * veces es lo único que hay; en el fallo de producción `stderr` venía VACÍO, que
+ * es justo por lo que la preferencia por stderr no salvaba nada.
+ *
+ * Falla abierta: si stdout no es un envelope, enseña lo que haya en crudo.
+ */
+export function describeClaudeFailure(code: number | null, stdout: string, stderr: string): string {
+  const parts: string[] = []
+  const tag = stderr.trim()
+  if (tag) parts.push(tag.slice(0, 200))
+
+  const body = stdout.trim()
+  if (body) {
+    let envelope: { result?: unknown } | null = null
+    try {
+      envelope = JSON.parse(body) as { result?: unknown }
+    } catch {
+      // El CLI puede anteponer líneas al JSON. `extractJsonPayload` ya sabe
+      // recortarlas; si tampoco así, no se inventa nada.
+      try {
+        envelope = JSON.parse(extractJsonPayload(body)) as { result?: unknown }
+      } catch {
+        envelope = null
+      }
+    }
+    const reason = typeof envelope?.result === 'string' ? envelope.result.trim() : ''
+    if (reason && !parts.some((p) => p.includes(reason))) parts.push(reason.slice(0, 300))
+  }
+
+  if (parts.length === 0) {
+    const raw = (stderr || stdout).trim().slice(0, 400)
+    if (raw) parts.push(raw)
+  }
+  return `claude exit ${code}: ${parts.join(' · ') || '(sin detalle: el CLI no dijo nada)'}`
+}
+
 export function claudeEnvelopeToRaw(envelope: {
   structured_output?: unknown
   result?: unknown
