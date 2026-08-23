@@ -58,12 +58,27 @@ Everything produced by the convention above. Safe to delete and rebuild.
 | `requisitos-cargo.json`                             | curated · cited al BOE · hand-edit via PR                                                                                     |
 | `eficiencia-findings.json`                          | `src/scraper/eficiencia-finding.ts` · `npm run promote-indicador`, `correct-indicador`, `retract-indicador`                   |
 | `eficiencia-preguntas.json`                         | `src/scraper/eficiencia-preguntas.ts` · curated · hand-edit via PR                                                            |
+| `competencias.json`                                 | `src/scraper/competencias.ts` · curated · hand-edit via PR · `npm run competencia-reply` · `check:competencias`               |
 | `pleno-claim-reclassifications.json`                | `src/scraper/verified-merge.ts` · `npm run reclassify-claim` (sólo ALEJÁNDOSE de `acusacion_publica`)                         |
 
 Each CLI re-validates the whole snapshot before writing, so an invariant
 (≥20-char verbatim quote, ≥10-char title) cannot silently slip. Route
 algorithmic output through the CLI, never straight into the file — the schema
 validator and the git history are the audit trail.
+
+`competencias.json` is curated for a reason worth stating, because it is the
+only file here that puts a living person's name beside a cost figure. It maps
+each panel indicator to the delegated portfolio that answers for it, and the
+`cargo` strings come from the council's own
+[corporación municipal](https://www.ribarroja.es/es/ayuntamiento/corporacion_municipal)
+page — the same page `scrape-officials.ts` reads every night. That nightly
+scrape is exactly why the map is frozen: derive the name at render time and a
+cron could change which person appears on a published page. `check:competencias`
+compares the two and goes red instead, with four outcomes — `coincide`,
+`reformulado`, `desaparecido`, `oficial-inexistente` — the last two exiting 1.
+Each row also declares whether the jump from portfolio to service is `literal`
+(the portfolio names the service) or `editorial` (we made the link), and an
+editorial row does not publish without its `razon`.
 
 `repoint-source-url` is the odd one out and worth knowing about: when a
 publisher MOVES a document, the claim, the excerpt and `retrievedAt` are all

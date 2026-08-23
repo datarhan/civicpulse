@@ -59,6 +59,11 @@ export const CURATED = {
   'requisitos-cargo.json': 'curated + cited — hand-edit via PR, never programmatically',
   'eficiencia-findings.json': 'npm run promote-indicador / correct-indicador / retract-indicador',
   'eficiencia-preguntas.json': 'curated + cited — hand-edit via PR, never programmatically',
+  // Nombra a personas vivas junto a una cifra, y officials.json se raspa cada
+  // noche: si esto no estuviera congelado, un cron podría cambiar solo quién
+  // aparece en una página publicada. La deriva la caza check:competencias; la
+  // única escritura programática permitida es la del CLI de réplica.
+  'competencias.json': 'curated + cited — hand-edit via PR · npm run competencia-reply',
 }
 
 const DRAFTY = /(suggestion|draft|borrador|propuesta)/i

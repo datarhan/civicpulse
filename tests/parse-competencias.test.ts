@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { validarCompetencias, nombresVisibles, vigenteEn } from '../src/scraper/competencias'
+
+const RAIZ = join(__dirname, '..')
+const leer = (rel: string) => JSON.parse(readFileSync(join(RAIZ, rel), 'utf8'))
 
 /**
  * El fichero publicado se valida en su propio bloque (se añade cuando existe).
@@ -109,5 +114,55 @@ describe('competencias — vigencia del mandato', () => {
 
   it('con el mandato ya cerrado, lo posterior queda fuera', () => {
     expect(vigenteEn({ desde: '2019-06-15', hasta: '2023-06-16' }, '2024-01-01')).toBe(false)
+  })
+})
+
+describe('competencias — el fichero publicado', () => {
+  const publicado = leer('public/data/competencias.json')
+
+  it('mide algo: valida y trae asignaciones de verdad', () => {
+    const v = validarCompetencias(publicado)
+    expect(v.asignaciones.length).toBeGreaterThan(10)
+  })
+
+  it('cada oficial existe en officials.json y el cargo es literal suyo', () => {
+    const of = leer('public/data/officials.json') as {
+      officials: Array<{ slug: string; name: string; portfolios?: string[] }>
+    }
+    const porSlug = new Map(of.officials.map((o) => [o.slug, o]))
+    for (const a of validarCompetencias(publicado).asignaciones) {
+      const o = porSlug.get(a.oficial)
+      expect(o, `oficial desconocido: ${a.oficial}`).toBeTruthy()
+      expect(o!.name).toBe(a.nombre)
+      expect(o!.portfolios ?? [], `cargo no literal: ${a.cargo}`).toContain(a.cargo)
+    }
+  })
+
+  it('cada clave existe en el panel: una clave con errata no se pintaría nunca', () => {
+    const ind = leer('public/data/indicadores.json') as {
+      indicadores: Array<{ id: string }>
+      municipales: Array<{ id: string }>
+    }
+    const ids = new Set([...ind.indicadores.map((i) => i.id), ...ind.municipales.map((m) => m.id)])
+    const v = validarCompetencias(publicado)
+    for (const a of v.asignaciones)
+      expect(ids.has(a.clave), `clave fuera del panel: ${a.clave}`).toBe(true)
+    for (const s of v.sinAsignar)
+      expect(ids.has(s.clave), `clave fuera del panel: ${s.clave}`).toBe(true)
+  })
+
+  it('todo indicador del panel está o asignado o explicado: no hay silencios', () => {
+    const ind = leer('public/data/indicadores.json') as {
+      indicadores: Array<{ id: string }>
+      municipales: Array<{ id: string }>
+    }
+    const v = validarCompetencias(publicado)
+    const cubiertas = new Set([
+      ...v.asignaciones.map((a) => a.clave),
+      ...v.sinAsignar.map((s) => s.clave),
+    ])
+    const todas = [...ind.indicadores.map((i) => i.id), ...ind.municipales.map((m) => m.id)]
+    const faltan = todas.filter((id) => !cubiertas.has(id))
+    expect(faltan, `sin competencia ni explicación: ${faltan.join(', ')}`).toEqual([])
   })
 })
