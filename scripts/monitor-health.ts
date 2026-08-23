@@ -21,6 +21,7 @@ import {
   pickCheckDiagnosis,
   type Observations,
 } from '../src/scraper/health-monitor'
+import { transcriptionPending, TRANSCRIBE_BLOCKLIST_IDS } from '../src/scraper/transcribe-blocklist'
 
 const STATE = resolve('.health-monitor-state.json')
 const DATA = resolve('public/data')
@@ -213,7 +214,11 @@ async function gather(): Promise<Observations> {
       {
         name: 'Transcripción',
         lastProgressAt: newestMtime(resolve(DATA, 'pleno-transcripts')),
-        pending: transcribable.filter((id: string) => !transcripts.has(id)).length,
+        // Sin la lista negra esto contaba `1l7hhu7` —excluida a propósito
+        // por el nocturno— como pendiente para siempre, y el aviso venía con
+        // «añade fondos a OpenAI» de remedio. Pagar no habría cambiado nada.
+        // Ver `src/scraper/transcribe-blocklist.ts`.
+        pending: transcriptionPending(transcribable, transcripts),
         stallDays: 3,
         cause: openaiCause,
       },
@@ -288,7 +293,8 @@ async function main() {
       process.stdout.write(
         `  pipeline ${p.name.padEnd(22)} pendientes=${String(p.pending).padStart(3)} · ` +
           `último avance ${p.lastProgressAt ? p.lastProgressAt.toISOString().slice(0, 16) : 'nunca'} · ` +
-          `umbral ${p.stallDays}d${p.cause ? ` · causa: ${p.cause.slice(0, 60)}` : ''}\n`,
+          `umbral ${p.stallDays}d${p.cause ? ` · causa: ${p.cause.slice(0, 60)}` : ''}` +
+          `${p.name === 'Transcripción' && TRANSCRIBE_BLOCKLIST_IDS.length > 0 ? ` · ${TRANSCRIBE_BLOCKLIST_IDS.length} en lista negra (no cuentan)` : ''}\n`,
       )
     }
     process.stdout.write(
