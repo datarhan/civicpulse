@@ -34,8 +34,22 @@ describe('infografía — cada cifra coincide con el reportaje congelado', () =>
     expect(pieza.congelados.banda).toBeTruthy()
   })
 
-  it('lleva el título de la pieza', () => {
-    expect(html).toContain(pieza.meta.titulo)
+  // La infografía dejó de ser «la pieza entera en una página» cuando el
+  // reportaje se re-ejeó sobre la concesión el 23-08-2026: ahora resume UN
+  // capítulo, el de la declaración, y conserva el título con el que la pieza se
+  // publicó el 16 de agosto. Así que lo que se comprueba no es que lleve el
+  // título del reportaje —sería falso y además haría pasar por sinónimos dos
+  // cosas distintas— sino que el JSON DECLARA cómo se llama su infografía y la
+  // infografía lo lleva. El contrato se estrecha en vez de aflojarse: todas las
+  // aserciones de cifras de abajo siguen igual, que son la sustancia.
+  it('el reportaje declara su infografía, y la infografía lleva ese título', () => {
+    expect(pieza.infografia, 'el reportaje ya no declara su infografía').toBeTruthy()
+    expect(pieza.infografia.titulo).toBeTruthy()
+    expect(html).toContain(pieza.infografia.titulo)
+  })
+
+  it('y el enlace declarado apunta a este mismo fichero', () => {
+    expect(pieza.infografia.url).toBe('/infografias/eficiencia-2026-08.html')
   })
 
   it('las once casillas de entrega: presentadas y ausentes, año por año', () => {

@@ -275,12 +275,13 @@ export default function Eficiencia() {
       {!loading && !error && <PreguntasRegistradas data={preguntas} panel="coste-efectivo" />}
 
       <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 18 }}>
-        Las tres cifras que este panel deja más a la vista —la entrega sin rendir, los denominadores
-        congelados y la inflación que se leía como gestión— están contadas enteras en el reportaje{' '}
+        Lo que este panel deja a la vista —la entrega sin rendir, los denominadores congelados, la
+        inflación que se leía como gestión y las dos casillas del agua que se quedan en blanco— está
+        contado entero en el reportaje{' '}
         <a href="/reportajes/coste-efectivo" style={{ color: 'var(--civic)' }}>
-          «La mitad de abajo de la división»
+          «El panel se queda en blanco donde está el dinero»
         </a>
-        , que existe también como{' '}
+        . La parte de la declaración existe además como{' '}
         <a href="/infografias/eficiencia-2026-08.html" style={{ color: 'var(--civic)' }}>
           infografía para compartir
         </a>

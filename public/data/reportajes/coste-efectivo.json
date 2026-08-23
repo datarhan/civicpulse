@@ -1,34 +1,159 @@
 {
   "meta": {
     "slug": "coste-efectivo",
-    "titulo": "La mitad de abajo de la división",
-    "subtitulo": "Cada año el ayuntamiento declara lo que le cuesta cada servicio y cuánto servicio presta. Lo primero lo actualiza. Lo segundo, no. Tres cosas que aparecen al mirar diez entregas seguidas en vez de una: una entrega sin rendir, trece denominadores congelados y una subida que en buena parte era el nivel de precios.",
+    "titulo": "El panel se queda en blanco donde está el dinero",
+    "subtitulo": "El coste efectivo del agua en Riba-roja es, oficialmente, nada: el ayuntamiento no declara ni un euro porque el servicio está concedido y lo cobra la empresa del recibo de cada casa. Diez días antes de que se publicara la primera versión de esta pieza, el pleno adjudicó ese servicio por diecisiete años y 55,7 millones. El expediente había tardado siete.",
     "seccion": "Reportaje · datos",
     "municipio": "Riba-roja de Túria",
-    "fechaDatos": "2026-08-16",
+    "fechaDatos": "2026-08-23",
     "publicadoEl": "16 de agosto de 2026",
+    "ampliadoEl": "23 de agosto de 2026",
+    "notaAmpliacion": "La primera versión de esta pieza, del 16 de agosto de 2026, contaba tres defectos en cómo el ayuntamiento rinde el coste efectivo al ministerio. Todo aquello sigue aquí, en la sección 5, con sus cifras intactas. Lo que se ha añadido el 23 de agosto es lo que faltaba: qué hay detrás de las dos casillas que ese panel deja en blanco. Ninguna cifra de la versión anterior se ha retirado ni corregido.",
     "estado": "publicado",
     "derechoReplica": "abierto",
     "correcciones": []
   },
+  "infografia": {
+    "titulo": "La mitad de abajo de la división",
+    "url": "/infografias/eficiencia-2026-08.html",
+    "que": "La sección 5 —los tres defectos de la declaración— en una sola página imprimible. Conserva el título con el que se publicó esta pieza el 16 de agosto y las mismas cifras congeladas."
+  },
   "kpis": [
     {
-      "n": "1 de 11",
-      "l": "entregas del coste efectivo sin rendir por el ayuntamiento: la de 2020"
+      "n": "0 €",
+      "l": "es lo que el ayuntamiento declara que le cuesta el agua: está concedida y la paga el recibo"
     },
     {
-      "n": "13 de 13",
-      "l": "costes unitarios que dividen entre una cantidad que nadie vuelve a medir"
+      "n": "55,7 M€",
+      "l": "valor del contrato de agua adjudicado en agosto de 2026, hasta 2043"
     },
     {
-      "n": "22,8 %",
-      "l": "subió el nivel de precios entre 2014 y 2024: sin deflactar, se leía como gestión"
+      "n": "7 años",
+      "l": "desde que se anunció el concurso hasta que se adjudicó"
     },
     {
-      "n": "50",
-      "l": "municipios comparables de 15.000 a 40.000 habitantes de los que se puede medir la declaración"
+      "n": "5 años",
+      "l": "que el procedimiento estuvo suspendido, de febrero de 2021 a abril de 2026"
     }
   ],
+  "concesion": {
+    "objeto": "Abastecimiento de agua potable, gestión del alcantarillado, control de vertidos y depuración",
+    "adjudicataria": "HIDRAQUA, Gestión Integral de Aguas de Levante, S.A.",
+    "importe": 55685178.79,
+    "importeQue": "Valor estimado del contrato por todo su plazo. No es un gasto anual, y en una concesión no sale del presupuesto municipal: lo paga el vecino en la factura del agua.",
+    "adjudicadaEl": "2026-08-06",
+    "hasta": "2043-07-27",
+    "anios": 17,
+    "ofertas": 7,
+    "procedimiento": "abierto, mejor relación calidad-precio",
+    "formalizacion": "En la ficha del expediente no consta, a 23 de agosto de 2026, ninguna entrada de formalización del contrato.",
+    "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D"
+  },
+  "cronologia": {
+    "nota": "Fechas y rótulos tomados uno a uno del historial de documentos que publica la ficha del expediente en la Plataforma de Contratación del Sector Público. Los rótulos van como los emite la plataforma.",
+    "hitos": [
+      {
+        "f": "23 de abril de 2019",
+        "t": "Anuncio de licitación y pliego. Al día siguiente, dos rectificaciones: una del anuncio y otra del pliego."
+      },
+      {
+        "f": "24 de mayo de 2019",
+        "t": "Se amplía el plazo de presentación de ofertas y se vuelve a rectificar anuncio y pliego."
+      },
+      {
+        "f": "6 de junio de 2019",
+        "t": "Acuerdo de suspensión del procedimiento."
+      },
+      {
+        "f": "4 de julio de 2019",
+        "t": "Dos recursos ante el TACRC, el tribunal administrativo de contratación pública."
+      },
+      {
+        "f": "18 de septiembre de 2019",
+        "t": "Levantamiento de la suspensión."
+      },
+      {
+        "f": "26 de mayo de 2020",
+        "t": "Acto público de apertura de ofertas."
+      },
+      {
+        "f": "11 de febrero de 2021",
+        "t": "Suspensión del procedimiento. Es la última entrada del expediente en cinco años."
+      },
+      {
+        "f": "28 de abril de 2026",
+        "t": "Sentencia del recurso. Esa misma tarde, entre las 14:05 y las 14:17, se publican once actas de la mesa de contratación, de la primera a la undécima."
+      },
+      {
+        "f": "30 de junio de 2026",
+        "t": "Acta número 12 de la mesa de contratación."
+      },
+      {
+        "f": "6 de agosto de 2026",
+        "t": "Adjudicación a Hidraqua por 55.685.178,79 €."
+      }
+    ],
+    "loQueNoConsta": "El expediente publica que hubo dos recursos y que recayó sentencia, pero no qué alegaban ni qué resolvió: esos documentos no están en la ficha pública. Esta pieza no afirma nada sobre su contenido."
+  },
+  "panelCiego": {
+    "nota": "Los dos servicios del contrato son también las dos fichas que el panel de /eficiencia no puede calcular. No es un hueco de esta página: es cómo funciona la fuente.",
+    "servicios": [
+      {
+        "programa": "a161",
+        "label": "Abastecimiento domiciliario de agua potable",
+        "coste": "no declarado",
+        "motivo": "concesión"
+      },
+      {
+        "programa": "a160",
+        "label": "Alcantarillado",
+        "coste": "no declarado",
+        "motivo": "concesión"
+      }
+    ],
+    "porQue": "El coste efectivo mide lo que le cuesta el servicio a la entidad local. En una concesión la entidad local no paga: cobra el concesionario, directamente del recibo, y por eso el formulario del ministerio se rellena con cero. La consecuencia es que el instrumento con el que el Estado mide lo que cuestan los servicios municipales se queda ciego exactamente donde el dinero es mayor y llega a más casas."
+  },
+  "dinero": {
+    "nota": "Recuento propio sobre los contratos adjudicados que publica el portal de contratación del ayuntamiento, 2017-2026.",
+    "importeTotal": 123681882.79,
+    "contratos": 699,
+    "filas": [
+      {
+        "que": "Importe en manos de los cinco mayores proveedores",
+        "pct": 68.4
+      },
+      {
+        "que": "Contratos adjudicados con una sola oferta",
+        "pct": 47.5,
+        "detalle": "332 de 699"
+      },
+      {
+        "que": "Contratos resueltos sin llamada abierta",
+        "pct": 40.8,
+        "detalle": "285 de 699 · menores y negociados sin publicidad"
+      }
+    ],
+    "cautela": "Una sola adjudicación —la concesión del agua— supone el 45 % del importe del periodo. Las concesiones se adjudican por todo su plazo de una vez, así que su importe no es comparable con el de un contrato anual, y sin ella la concentración sería muy inferior. Un licitador único no es irregular por sí mismo, y el contrato menor es un instrumento legal por debajo de los umbrales de la Ley 9/2017: lo que estas cifras miden es cuánta concurrencia hubo, no si hubo irregularidad."
+  },
+  "panel": {
+    "nota": "Lo que el coste efectivo sí deja ver, resumido. El panel completo, servicio por servicio y con la competencia delegada de cada uno, está en /eficiencia.",
+    "conCociente": 13,
+    "bloqueados": 2,
+    "comoSeLee": "Un coste unitario es una división, y lo que se puede concluir de que salga alto o bajo depende de qué hay en el divisor. Si es la plantilla del servicio, es un precio y no un rendimiento: un cuerpo mejor pagado sale «más caro» por cabeza sin que eso diga nada de cómo funciona. Si es la demanda que le llega, más no significa peor gestión ni menos mejor. Y si es lo que el servicio entrega, dice lo que costó cada unidad, no si estuvo bien hecha. La fuente no publica ningún indicador de calidad con el que contrastar ninguna de las tres, y por eso esta pieza no pone nota a nada.",
+    "posiciones": [
+      {
+        "servicio": "Centros docentes de enseñanza infantil y primaria",
+        "percentil": 85,
+        "unidad": "€/m²"
+      },
+      {
+        "servicio": "Seguridad y orden público (policía local)",
+        "percentil": 85,
+        "unidad": "€/efectivo"
+      }
+    ],
+    "transporte": "En transporte colectivo urbano el ayuntamiento declara el gasto del servicio cada entrega con la casilla de viajeros a cero. No siempre fue así: en las entregas de 2015 y 2016 declaró 155.624 viajeros al año y en las de 2017 y 2018, 120.000. Desde la de 2019 la casilla va a cero en todas, mientras 22 de sus municipios comparables la siguen rellenando."
+  },
   "entregas": {
     "publicadas": [
       2014,
@@ -139,11 +264,18 @@
     "nota": "Variación entre la primera y la última entrega con datos comprobables contra sus pares. «Real» es en euros constantes de 2024. La comparación entre municipios no se deflacta: enfrenta un año contra ese mismo año."
   },
   "queNoDice": [
-    "No dice que las cifras sean falsas: una cantidad estable puede ser perfectamente correcta, y hay magnitudes que pasan años sin moverse de verdad.",
-    "No dice que ningún servicio esté mal gestionado: la declaración no es el servicio.",
-    "No señala a nadie: el coste efectivo lo rinde la entidad local en su conjunto, y quién cumplimenta el formulario no consta en la fuente."
+    "No dice que la adjudicación sea irregular. Un procedimiento puede suspenderse, recurrirse y resolverse en derecho, y que tarde siete años no lo convierte en ilegal: lo que esta pieza publica es cuánto tardó y qué pasos consta que se dieron.",
+    "No dice qué alegaban los dos recursos ni qué resolvió la sentencia. Esos documentos no están en la ficha pública del expediente y esta pieza no los ha visto.",
+    "No dice nada sobre cómo presta Hidraqua el servicio, ni sobre el precio del agua. Este reportaje trata de lo que la contabilidad municipal deja ver y lo que no.",
+    "No dice que las cifras del coste efectivo sean falsas: una cantidad estable puede ser perfectamente correcta, y hay magnitudes que pasan años sin moverse de verdad.",
+    "No dice que ningún servicio esté mal gestionado: la declaración no es el servicio, y la fuente no publica ni un indicador de calidad con el que contrastar un coste.",
+    "No cuelga ninguna de estas cifras de una persona. En /eficiencia cada ficha dice qué concejal tiene delegada esa área, que es a quién preguntar; no es lo mismo que decir que la cifra sea responsabilidad suya."
   ],
   "fuentes": [
+    {
+      "label": "Expediente de la concesión del agua · Plataforma de Contratación del Sector Público",
+      "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D"
+    },
     {
       "label": "Coste efectivo de los servicios · Ministerio de Hacienda (CESEL)",
       "url": "https://serviciostelematicosext.hacienda.gob.es/sgcief/Cesel/Consulta/Consulta.aspx"
@@ -157,6 +289,10 @@
       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1985-5392"
     },
     {
+      "label": "Ley 9/2017 de Contratos del Sector Público",
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2017-12902"
+    },
+    {
       "label": "IPC, índice general nacional · INE (API JSON, tabla 24077)",
       "url": "https://servicios.ine.es/wstempus/js/ES/DATOS_TABLA/24077"
     },
@@ -166,11 +302,14 @@
     }
   ],
   "metodo": [
-    "Las cifras salen de los libros por comunidad autónoma de la aplicación de consulta del ministerio (once entregas, 2014–2024), leídos con las reglas de filtrado y comparabilidad publicadas en la metodología.",
+    "Los datos de la concesión —adjudicataria, importe, fechas, número de licitadores y el historial de documentos con sus rótulos— se leyeron uno a uno en la ficha del expediente en la Plataforma de Contratación del Sector Público, que se enlaza arriba. No se tomaron del volcado intermedio del portal municipal: ese volcado publica el mismo expediente dos veces, como licitación y como contrato, con estados que se contradicen entre sí.",
+    "Del importe se dice lo que es: el valor estimado del contrato por sus diecisiete años. No es gasto anual y no sale del presupuesto municipal.",
+    "Las cifras de contratación (concentración, licitador único, adjudicación sin llamada abierta) son un recuento propio sobre los contratos adjudicados del portal municipal, y llevan al lado la cautela de que una sola concesión pesa el 45 % del importe del periodo.",
+    "Las cifras del coste efectivo salen de los libros por comunidad autónoma de la aplicación de consulta del ministerio (once entregas, 2014-2024), leídos con las reglas de filtrado y comparabilidad publicadas en la metodología.",
     "La no-presentación de 2020 se comprueba por presencia: el fichero está, los demás municipios figuran en él y Riba-roja no aparece en CE1, CE2 ni CE3. No es un hueco de descarga.",
-    "La explicación por la pandemia se descartó con un control: en 2020 rindieron 503 ayuntamientos valencianos, más que en cualquiera de los cuatro años siguientes (2021–2024) y que en 2018 y 2019; sólo 2017, con 513, rindió más.",
+    "La explicación por la pandemia se descartó con un control: en 2020 rindieron 503 ayuntamientos valencianos, más que en cualquiera de los cuatro años siguientes (2021-2024) y que en 2018 y 2019; sólo 2017, con 513, rindió más.",
     "Un denominador cuenta como congelado cuando sus últimas cuatro entregas o más traen el mismo valor hasta el cuarto decimal; repetir dos años es normal y no cuenta.",
     "Las variaciones en euros constantes usan la media anual del IPC general del INE con base en la entrega de 2024; las cifras exactas de cada servicio, con su celda de origen, están en /eficiencia.",
-    "Todas las cifras de esta pieza quedaron congeladas el 16 de agosto de 2026; si el ministerio revisa una entrega, la corrección se anota aquí, no se reescribe en silencio."
+    "Las cifras de la primera versión de esta pieza quedaron congeladas el 16 de agosto de 2026 y no se han tocado; las que se añaden el 23 de agosto quedan congeladas a esa fecha. Si el ministerio revisa una entrega o el expediente avanza, la corrección se anota aquí, no se reescribe en silencio."
   ]
 }

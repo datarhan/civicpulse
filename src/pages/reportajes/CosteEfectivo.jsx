@@ -357,6 +357,41 @@ function ParNominalReal({ servicios }) {
   )
 }
 
+/** Euros redondeados al euro: los céntimos de un contrato de ocho cifras son ruido. */
+const eur = (v) =>
+  v.toLocaleString('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 })
+
+/* ---- La cronología del expediente. Siete años en una columna: lo que cuenta
+        no es cada hito por separado sino el hueco entre febrero de 2021 y abril
+        de 2026, que sólo se ve si están todos en fila. ---- */
+function Cronologia({ cronologia }) {
+  if (!cronologia?.hitos?.length) return null
+  return (
+    <Figura titulo="El expediente, hito a hito" pie={cronologia.nota}>
+      <ol style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+        {cronologia.hitos.map((h) => (
+          <li
+            key={h.f}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'minmax(120px, 168px) 1fr',
+              gap: 12,
+              padding: '8px 0',
+              borderTop: '1px solid var(--border)',
+              alignItems: 'baseline',
+            }}
+          >
+            <span className="mono" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+              {h.f}
+            </span>
+            <span style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}>{h.t}</span>
+          </li>
+        ))}
+      </ol>
+    </Figura>
+  )
+}
+
 export default function CosteEfectivo() {
   const { loading, error, data } = useReportaje('coste-efectivo')
 
@@ -374,6 +409,7 @@ export default function CosteEfectivo() {
     )
 
   const m = data.meta
+  const c = data.concesion
   const cong = data.congelados
   const inf = data.inflacion
 
@@ -442,6 +478,27 @@ export default function CosteEfectivo() {
 
       <CorrectionNote correcciones={m.correcciones} />
 
+      {/* Esta pieza se publicó el 16 de agosto y se amplió el 23. Decirlo en la
+          propia pieza, y decir que no se ha retirado ni corregido nada, es la
+          diferencia entre ampliar y reescribir en silencio: quien la leyó la
+          primera vez tiene derecho a saber qué ha cambiado desde entonces. */}
+      {m.notaAmpliacion && (
+        <p
+          style={{
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink70, var(--ink50))',
+            background: 'var(--soft)',
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--r-card)',
+            padding: '12px 14px',
+            margin: '0 0 22px',
+            lineHeight: 1.55,
+          }}
+        >
+          <strong>Ampliada el {m.ampliadoEl}.</strong> {m.notaAmpliacion}
+        </p>
+      )}
+
       {/* KPIs */}
       <div
         style={{
@@ -482,7 +539,143 @@ export default function CosteEfectivo() {
         ))}
       </div>
 
-      <SecHead num="01" kicker="Lo que falta" title="De once entregas, una sin rendir" />
+      {/* 01-04: el eje nuevo. Las tres secciones de la primera versión pasan a
+          ser 05-07 sin tocar una cifra: lo que se añade es lo que faltaba —qué
+          hay detrás de las dos casillas que el panel deja en blanco—. */}
+      <SecHead
+        num="01"
+        kicker="Lo que se adjudicó"
+        title="Diecisiete años de agua, en un expediente de siete"
+      />
+      <P>
+        El 6 de agosto de 2026 el Ayuntamiento adjudicó a <strong>{c.adjudicataria}</strong> la
+        concesión del {c.objeto.toLowerCase()}, por un valor estimado de{' '}
+        <strong className="mono">{eur(c.importe)}</strong> y hasta{' '}
+        <span className="mono">{c.hasta.slice(0, 4)}</span>. Concurrieron{' '}
+        <span className="mono">{c.ofertas}</span> ofertas en un procedimiento {c.procedimiento}.
+        Diez días después se publicó la primera versión de este reportaje, que no lo mencionaba.
+      </P>
+      <P>{c.importeQue}</P>
+      <Cronologia cronologia={data.cronologia} />
+      <P>
+        {data.cronologia.loQueNoConsta} {c.formalizacion}
+      </P>
+
+      <SecHead num="02" kicker="Lo que no se ve" title="El coste oficial del agua es cero" />
+      <P>
+        El panel del coste efectivo publica lo que cuesta cada servicio municipal. Para estos dos no
+        publica nada:
+      </P>
+      <Figura titulo="Las dos fichas que el panel no puede calcular" pie={data.panelCiego.nota}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {data.panelCiego.servicios.map((sv) => (
+            <div
+              key={sv.programa}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr auto',
+                gap: 10,
+                alignItems: 'baseline',
+                padding: '8px 10px',
+                borderRadius: 'var(--r-input)',
+                border: '1px solid var(--warn)',
+                background: 'var(--warn-soft)',
+              }}
+            >
+              <span style={{ fontSize: 'var(--fs-meta)' }}>
+                <span className="mono" style={{ color: 'var(--ink50)' }}>
+                  {sv.programa}
+                </span>{' '}
+                · {sv.label}
+              </span>
+              <span
+                className="mono"
+                style={{ fontSize: 'var(--fs-meta)', color: 'var(--warn-ink)' }}
+              >
+                {sv.coste} · {sv.motivo}
+              </span>
+            </div>
+          ))}
+        </div>
+      </Figura>
+      <P>{data.panelCiego.porQue}</P>
+
+      <SecHead
+        num="03"
+        kicker="Quién tiene los euros"
+        title="Cinco proveedores, dos tercios del importe"
+      />
+      <Figura
+        titulo={`Contratación municipal · ${data.dinero.contratos.toLocaleString('es-ES')} contratos adjudicados`}
+        pie={data.dinero.nota}
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {data.dinero.filas.map((f) => (
+            <div key={f.que}>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  gap: 10,
+                  fontSize: 'var(--fs-meta)',
+                  marginBottom: 4,
+                }}
+              >
+                <span>
+                  {f.que}
+                  {f.detalle && <span style={{ color: 'var(--ink50)' }}> · {f.detalle}</span>}
+                </span>
+                <span className="mono" style={{ fontWeight: 600 }}>
+                  {f.pct.toLocaleString('es-ES', { minimumFractionDigits: 1 })} %
+                </span>
+              </div>
+              <div
+                style={{
+                  height: 10,
+                  background: 'var(--border)',
+                  borderRadius: 'var(--r-input)',
+                  overflow: 'hidden',
+                }}
+              >
+                <div style={{ width: `${f.pct}%`, height: '100%', background: 'var(--civic)' }} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </Figura>
+      <P>{data.dinero.cautela}</P>
+
+      <SecHead num="04" kicker="Lo que el panel sí ve" title="Trece cifras, y cómo se leen" />
+      <P>{data.panel.comoSeLee}</P>
+      <P>
+        De los quince servicios del registro,{' '}
+        <strong className="mono">{data.panel.conCociente}</strong> tienen coste unitario y{' '}
+        <strong className="mono">{data.panel.bloqueados}</strong> no —los dos del agua—. Dos quedan
+        por encima de tres de cada cuatro municipios comparables:{' '}
+        {data.panel.posiciones.map((pos, i) => (
+          <span key={pos.servicio}>
+            {i > 0 && ' y '}
+            {pos.servicio.toLowerCase()} (<span className="mono">percentil {pos.percentil}</span>,{' '}
+            {pos.unidad})
+          </span>
+        ))}
+        . El de policía es un precio por efectivo, no una medida de cómo funciona el servicio.
+      </P>
+      <P>{data.panel.transporte}</P>
+      <P>
+        Cada ficha, con su serie, su banda de comparación y el concejal que tiene delegada esa área,
+        está en{' '}
+        <a href="/eficiencia" style={{ color: 'var(--civic)' }}>
+          /eficiencia
+        </a>
+        .
+      </P>
+
+      <SecHead
+        num="05"
+        kicker="Y por qué hay que leerlo con pinzas"
+        title="De once entregas, una sin rendir"
+      />
       <P>
         Calcular el coste efectivo de los servicios antes del 1 de noviembre de cada año, y
         comunicarlo al ministerio para su publicación, es una obligación del artículo 116 ter de la
@@ -510,7 +703,7 @@ export default function CosteEfectivo() {
       </Figura>
 
       <SecHead
-        num="02"
+        num="06"
         kicker="Lo que no se vuelve a medir"
         title="Trece costes unitarios dividen entre una cantidad congelada"
       />
@@ -542,7 +735,7 @@ export default function CosteEfectivo() {
       </P>
 
       <SecHead
-        num="03"
+        num="07"
         kicker="Lo que sube solo"
         title="Buena parte del encarecimiento era el nivel de precios"
       />
@@ -674,13 +867,15 @@ export default function CosteEfectivo() {
         </div>
       </div>
 
-      <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '18px 0 0' }}>
-        Esta pieza existe también como{' '}
-        <a href="/infografias/eficiencia-2026-08.html" style={{ color: 'var(--civic)' }}>
-          infografía en una sola página
-        </a>
-        , pensada para compartir o imprimir, con estas mismas cifras congeladas.
-      </p>
+      {data.infografia && (
+        <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '18px 0 0' }}>
+          Las secciones 05 a 07 —los tres defectos de la declaración— existen también como{' '}
+          <a href={data.infografia.url} style={{ color: 'var(--civic)' }}>
+            «{data.infografia.titulo}», una infografía en una sola página
+          </a>
+          , pensada para compartir o imprimir. {data.infografia.que}
+        </p>
+      )}
 
       <p
         style={{
