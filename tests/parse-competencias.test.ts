@@ -92,8 +92,15 @@ describe('competencias — congelación LOREG', () => {
     expect(nombresVisibles('2026-09-30', '2026-08-23')).toBe(false)
   })
 
-  it('el mismo día del límite sigue congelado: la ventana incluye su último día', () => {
-    expect(nombresVisibles('2026-08-23', '2026-08-23')).toBe(false)
+  // frozenUntil es EXCLUSIVO, como las otras dos lecturas del mismo campo
+  // (isPromiseFrozen y set-promises-freeze). La agregación de las tres la
+  // vigila competencias-freeze-agreement.test.ts.
+  it('el día del límite ya está descongelado: la ventana no lo incluye', () => {
+    expect(nombresVisibles('2026-08-23', '2026-08-23')).toBe(true)
+  })
+
+  it('la víspera sigue congelada', () => {
+    expect(nombresVisibles('2026-08-23', '2026-08-22')).toBe(false)
   })
 
   it('pasada la fecha, vuelven', () => {

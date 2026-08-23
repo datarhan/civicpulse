@@ -14,6 +14,7 @@ import { agruparPorArea, fraseParticion } from '../scraper/indicador-areas'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useEficienciaPreguntas } from '../hooks/useEficienciaPreguntas'
+import { useCompetencias, indexarCompetencias, useNombresVisibles } from '../hooks/useCompetencias'
 import { useT } from '../i18n'
 
 /**
@@ -46,6 +47,11 @@ export default function Eficiencia() {
   const { loading, error, data } = useIndicadores()
   const { data: hallazgos } = useEficienciaFindings()
   const { data: preguntas } = useEficienciaPreguntas()
+  const { data: competencias } = useCompetencias()
+  // Durante la ventana LOREG la capa de nombres desaparece entera; el Map vacío
+  // hace que cada tarjeta pinte sin ella, sin ninguna rama extra en el render.
+  const nombresOn = useNombresVisibles()
+  const porClave = nombresOn ? indexarCompetencias(competencias) : new Map()
   const indicadores = data?.indicadores ?? []
   const municipalesDeAqui = (data?.municipales ?? []).filter((m) => m.panel === 'coste-efectivo')
   const idsDeAqui = [...indicadores.map((i) => i.id), ...municipalesDeAqui.map((m) => m.id)]
@@ -179,6 +185,7 @@ export default function Eficiencia() {
                   resultado={(data?.resultados?.items ?? []).find(
                     (r) => r.servicioRelacionado === i.id,
                   )}
+                  competencia={porClave.get(i.id)}
                 />
               ))}
             </div>
@@ -215,7 +222,12 @@ export default function Eficiencia() {
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 10 }}>
             {bloqueados.map((i) => (
-              <ServicioCard key={i.id} indicador={i} formatea={formateaCon(i.unidad)} />
+              <ServicioCard
+                key={i.id}
+                indicador={i}
+                formatea={formateaCon(i.unidad)}
+                competencia={porClave.get(i.id)}
+              />
             ))}
           </div>
 

@@ -7,6 +7,7 @@ import { TIER_TONE } from './Escalones'
 import { leerIndicador, lecturaVisible, chipDeclaracion } from '../../scraper/indicador-lectura'
 import { Lectura } from './Lectura'
 import { Resultado } from './Resultado'
+import { CompetenciaDelegada } from './CompetenciaDelegada'
 
 const GESTION = {
   directa: { label: 'gestión directa', tone: 'neutral' },
@@ -39,7 +40,7 @@ const MOTIVO = {
   ausente: 'La entrega no trae esta magnitud.',
 }
 
-export function ServicioCard({ indicador, formatea, resultado }) {
+export function ServicioCard({ indicador, formatea, resultado, competencia }) {
   const t = useT()
   const i = indicador
   const g = GESTION[i.modoGestion] ?? GESTION['sin-clasificar']
@@ -329,6 +330,13 @@ export function ServicioCard({ indicador, formatea, resultado }) {
           </a>
         </p>
       )}
+
+      {/* Al final, y en las dos ramas: también las fichas sin cociente tienen
+          quien responda de ellas —el agua y el alcantarillado sobre todo, que
+          es donde el panel no ve nada—. Va aquí y no arriba a propósito: el
+          docblock de CompetenciaDelegada explica por qué el nombre no puede
+          preceder al aviso de escalón. */}
+      <CompetenciaDelegada asignacion={competencia} />
     </Card>
   )
 }

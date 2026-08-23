@@ -40,6 +40,9 @@
     "civic-poi.json": [
       "/datos"
     ],
+    "competencias.json": [
+      "/eficiencia"
+    ],
     "consell-cv.json": [
       "/datos",
       "/lab-health",
@@ -313,6 +316,7 @@
       "/declaraciones",
       "/departamentos",
       "/departamentos/:slug",
+      "/eficiencia",
       "/hallazgos",
       "/lab-health",
       "/laboratorio/agentes/:assignmentId",
@@ -326,6 +330,7 @@
       "/declaraciones",
       "/departamentos",
       "/departamentos/:slug",
+      "/eficiencia",
       "/hallazgos",
       "/lab-health",
       "/laboratorio/agentes/:assignmentId",
