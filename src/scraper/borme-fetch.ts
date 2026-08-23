@@ -18,25 +18,13 @@
  * ejecutable en el navegador, igual que el par `bop.ts` / `bop-fetch.ts`.
  */
 
+import { seccionesDelSumario, type SeccionProvincial } from './borme'
+
 const UA = 'Mozilla/5.0 (compatible; CivicPulse/0.1; +https://github.com/datarhan/civicpulse)'
 
 /** `2026-05-18` → `20260518`, que es lo que pide la API. */
 export function fechaCompacta(iso: string): string {
   return iso.replace(/-/g, '')
-}
-
-export interface SeccionProvincial {
-  /** `BORME-A-2026-92-03` */
-  id: string
-  /** `ALICANTE`, tal como lo titula el sumario. */
-  provincia: string
-  urlHtml: string
-}
-
-interface ItemSumario {
-  identificador?: string
-  titulo?: string
-  url_html?: string
 }
 
 /**
@@ -59,29 +47,7 @@ export async function fetchSeccionesDelDia(
   if (res.status === 404) return []
   if (!res.ok) throw new Error(`BORME sumario ${fechaIso} -> HTTP ${res.status}`)
 
-  const json = (await res.json()) as {
-    data?: {
-      sumario?: { diario?: Array<{ seccion?: Array<{ codigo?: string; item?: unknown }> }> }
-    }
-  }
-  const out: SeccionProvincial[] = []
-  for (const diario of json.data?.sumario?.diario ?? []) {
-    for (const seccion of diario.seccion ?? []) {
-      // Sólo la sección A: actos inscritos. La B son «otros actos» y la C,
-      // anuncios y avisos legales — otra cosa y otra forma.
-      if (seccion.codigo !== 'A') continue
-      const items = (Array.isArray(seccion.item) ? seccion.item : [seccion.item]) as ItemSumario[]
-      for (const it of items) {
-        if (!it?.url_html || !it?.identificador) continue
-        out.push({
-          id: it.identificador,
-          provincia: (it.titulo ?? '').trim(),
-          urlHtml: it.url_html,
-        })
-      }
-    }
-  }
-  return out
+  return seccionesDelSumario(await res.json())
 }
 
 /** El HTML de una sección provincial, para dárselo a `parseBormeSeccion`. */
@@ -105,3 +71,6 @@ export function diasDelRango(desdeIso: string, hastaIso: string): string[] {
   }
   return out
 }
+
+/** Re-exportado para que quien barre no tenga que importar de dos sitios. */
+export type { SeccionProvincial }

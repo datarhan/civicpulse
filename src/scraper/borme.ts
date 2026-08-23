@@ -37,6 +37,54 @@
  * ser el comienzo de la etiqueta siguiente.
  */
 
+/**
+ * Una colección de la API del BOE, siempre como lista.
+ *
+ * La API **colapsa las colecciones de un solo elemento a objeto**: donde
+ * normalmente hay `seccion: [...]` puede venir `seccion: {...}`. Costó dos días
+ * de barrido tirados con «object is not iterable» —el 9 y el 10 de mayo de
+ * 2024, que sólo traen la sección C—, y sólo se vieron porque el parte cuenta
+ * los fallos por separado en vez de sumarlos a «sin resultados».
+ */
+const comoLista = <T>(v: T | T[] | undefined | null): T[] =>
+  v == null ? [] : Array.isArray(v) ? v : [v]
+
+export interface SeccionProvincial {
+  /** `BORME-A-2026-92-03` */
+  id: string
+  /** `ALICANTE`, tal como lo titula el sumario. */
+  provincia: string
+  urlHtml: string
+}
+
+/**
+ * Las secciones provinciales de «Empresarios. Actos inscritos» de un sumario.
+ *
+ * Puro a propósito: la descarga vive en `borme-fetch.ts`, y así el caso raro
+ * —un día cuya única sección es la C— se prueba con una fixture en vez de con
+ * la red.
+ */
+export function seccionesDelSumario(json: unknown): SeccionProvincial[] {
+  const raiz = json as {
+    data?: { sumario?: { diario?: unknown } }
+  }
+  const out: SeccionProvincial[] = []
+  for (const diario of comoLista(raiz?.data?.sumario?.diario as Record<string, unknown>[])) {
+    for (const seccion of comoLista(diario?.seccion as Record<string, unknown>[])) {
+      // Sólo la sección A: actos inscritos. La B son «otros actos» y la C,
+      // anuncios y avisos legales — otra cosa y otra forma.
+      if (seccion?.codigo !== 'A') continue
+      for (const it of comoLista(seccion?.item as Record<string, unknown>[])) {
+        const url = it?.url_html as string | undefined
+        const id = it?.identificador as string | undefined
+        if (!url || !id) continue
+        out.push({ id, provincia: String(it?.titulo ?? '').trim(), urlHtml: url })
+      }
+    }
+  }
+  return out
+}
+
 /** Un par «etiqueta: valor» del cuerpo del anuncio. */
 export interface CampoBorme {
   /** «Apoderado», «Adm. Unico», «Socio único». Como lo escribe el BORME. */

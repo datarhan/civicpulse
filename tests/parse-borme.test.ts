@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { parseBormeSeccion } from '../src/scraper/borme'
+import { parseBormeSeccion, seccionesDelSumario } from '../src/scraper/borme'
 
 /**
  * BORME, sección de empresarios de una provincia, contra un volcado real.
@@ -76,5 +76,63 @@ describe('borme — la sección provincial se convierte en anuncios', () => {
     expect(h.texto).toContain('Revocaciones')
     expect(h.texto).toContain('Datos registrales')
     expect(h.texto).not.toContain('<')
+  })
+})
+
+/**
+ * El sumario, y el día que tiró dos jornadas de barrido.
+ *
+ * La API del BOE **colapsa las colecciones de un solo elemento a objeto**: el 9
+ * y el 10 de mayo de 2024 sólo traen la sección C, así que `seccion` llegó como
+ * diccionario y no como lista, y el barrido murió con «object is not iterable».
+ * Se vio porque el parte cuenta los fallos aparte; si los hubiera sumado a «sin
+ * resultados», dos días habrían desaparecido en silencio.
+ */
+describe('borme — el sumario y sus colecciones de un solo elemento', () => {
+  const sumario = JSON.parse(
+    readFileSync(join(__dirname, 'fixtures/borme_sumario_2024-05-09.json'), 'utf8'),
+  )
+
+  it('mide algo: la fixture es el día raro, con su única sección C', () => {
+    const s = sumario.data.sumario.diario[0].seccion
+    expect(Array.isArray(s), 'la fixture ya no reproduce el caso: seccion vino como lista').toBe(
+      false,
+    )
+    expect(s.codigo).toBe('C')
+  })
+
+  it('no revienta con seccion como objeto: devuelve lista vacía', () => {
+    expect(() => seccionesDelSumario(sumario)).not.toThrow()
+    expect(seccionesDelSumario(sumario)).toEqual([])
+  })
+
+  it('un sumario normal sí da secciones provinciales, con su url', () => {
+    const normal = {
+      data: {
+        sumario: {
+          diario: {
+            seccion: {
+              codigo: 'A',
+              item: {
+                identificador: 'BORME-A-2026-92-03',
+                titulo: 'ALICANTE',
+                url_html: 'https://www.boe.es/diario_borme/txt.php?id=BORME-A-2026-92-03',
+              },
+            },
+          },
+        },
+      },
+    }
+    // Los TRES niveles colapsados a objeto a la vez: diario, seccion e item.
+    const out = seccionesDelSumario(normal)
+    expect(out).toHaveLength(1)
+    expect(out[0].provincia).toBe('ALICANTE')
+    expect(out[0].id).toBe('BORME-A-2026-92-03')
+  })
+
+  it('ni un sumario vacío ni uno malformado tiran el barrido', () => {
+    expect(seccionesDelSumario({})).toEqual([])
+    expect(seccionesDelSumario(null)).toEqual([])
+    expect(seccionesDelSumario({ data: { sumario: {} } })).toEqual([])
   })
 })

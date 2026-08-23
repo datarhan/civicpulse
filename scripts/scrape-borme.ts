@@ -64,7 +64,10 @@ async function main(): Promise<void> {
   }
 
   const dias = diasDelRango(desde, hasta)
-  let conBoletin = 0
+  // Días con sección A (empresarios). NO es «días con boletín»: el 9 y el 10 de
+  // mayo de 2024 tuvieron boletín con sólo la sección C, y llamar a eso «sin
+  // boletín» sería el recuento mintiendo sobre lo que mide.
+  let conSeccionA = 0
   let seccionesLeidas = 0
   let anunciosVistos = 0
   const hallazgos: Hallazgo[] = []
@@ -81,7 +84,7 @@ async function main(): Promise<void> {
       continue
     }
     if (secciones.length === 0) continue
-    conBoletin++
+    conSeccionA++
 
     for (const s of secciones) {
       if (!s.provincia.toUpperCase().includes(provincia)) continue
@@ -117,7 +120,7 @@ async function main(): Promise<void> {
         consulta: { desde, hasta, provincia, empresa: empresa ?? null },
         recuento: {
           diasPedidos: dias.length,
-          diasConBoletin: conBoletin,
+          diasConSeccionA: conSeccionA,
           seccionesLeidas,
           anunciosVistos,
           hallazgos: hallazgos.length,
@@ -132,7 +135,7 @@ async function main(): Promise<void> {
   )
 
   process.stdout.write(
-    `[borme] ${dias.length} pedidos · ${conBoletin} con boletín · ${seccionesLeidas} secciones · ` +
+    `[borme] ${dias.length} pedidos · ${conSeccionA} con sección de empresarios · ${seccionesLeidas} secciones · ` +
       `${anunciosVistos} anuncios leídos · ${hallazgos.length} coincidencia(s) · ${fallos.length} fallo(s)\n`,
   )
   for (const f of fallos) process.stdout.write(`  [fallo] ${f}\n`)
