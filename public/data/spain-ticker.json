@@ -1,46 +1,46 @@
 {
-  "generatedAt": "2026-08-22T05:14:18.733Z",
+  "generatedAt": "2026-08-23T05:15:32.863Z",
   "sources": {
     "luz": {
       "ok": true,
-      "asOf": "2026-08-22",
+      "asOf": "2026-08-23",
       "unit": "€/kWh",
-      "currentValue": 0.23758,
+      "currentValue": 0.23007,
       "currentHour": 7,
-      "dayMin": 0.02239,
-      "dayMax": 0.23758,
+      "dayMin": 0.026269999999999998,
+      "dayMax": 0.23007,
       "hourlyCurve": [
-        0.20629,
-        0.19881000000000001,
-        0.20093,
-        0.19787000000000002,
-        0.19602,
-        0.20049,
-        0.21453999999999998,
-        0.23758,
-        0.19416999999999998,
-        0.09491,
-        0.026699999999999998,
-        0.023329999999999997,
-        0.023510000000000003,
-        0.02256,
-        0.02239,
-        0.02246,
-        0.02277,
-        0.02278,
-        0.03393,
-        0.13382,
-        0.22838999999999998,
-        0.22671,
-        0.21215,
-        0.20282
+        0.20292,
+        0.20443,
+        0.20886000000000002,
+        0.20446999999999999,
+        0.20448,
+        0.20489,
+        0.20494,
+        0.23007,
+        0.177,
+        0.02646,
+        0.03047,
+        0.02976,
+        0.028059999999999998,
+        0.0269,
+        0.026269999999999998,
+        0.02755,
+        0.03008,
+        0.03252,
+        0.032049999999999995,
+        0.09464,
+        0.20689,
+        0.22027000000000002,
+        0.21087999999999998,
+        0.20536000000000001
       ],
-      "deltaVsYesterdayPct": -25.794051673420963,
+      "deltaVsYesterdayPct": -3.023124326817107,
       "sourceUrl": "https://www.ree.es/es/datos/mercados/precios-mercados-tiempo-real"
     },
     "gasolina": {
       "ok": true,
-      "asOf": "2026-08-22",
+      "asOf": "2026-08-23",
       "unit": "€/L",
       "gasolina95": 1.6735,
       "diesel": 1.837294117647059,
@@ -153,14 +153,10 @@
     },
     "bceMRO": {
       "ok": true,
-      "asOf": "2026-08-22",
+      "asOf": "2026-08-23",
       "value": 2.4,
       "unit": "%",
       "history": [
-        {
-          "period": "2026-08-11",
-          "value": 2.4
-        },
         {
           "period": "2026-08-12",
           "value": 2.4
@@ -203,6 +199,10 @@
         },
         {
           "period": "2026-08-22",
+          "value": 2.4
+        },
+        {
+          "period": "2026-08-23",
           "value": 2.4
         }
       ]
@@ -266,11 +266,11 @@
     },
     "aemet": {
       "ok": true,
-      "asOf": "2026-08-22T05:14:18.131Z",
+      "asOf": "2026-08-23T05:15:32.514Z",
       "active": true,
       "highestLevel": "naranja",
       "counts": {
-        "amarillo": 1,
+        "amarillo": 2,
         "naranja": 1,
         "rojo": 0
       },
@@ -278,7 +278,7 @@
     },
     "dgt": {
       "ok": true,
-      "asOf": "2026-08-22T07:13:36.682+02:00",
+      "asOf": "2026-08-23T07:14:37.106+02:00",
       "incidents": [
         {
           "road": "A-7",
@@ -359,12 +359,6 @@
           "location": null
         },
         {
-          "road": "A-3",
-          "description": "A-3",
-          "severity": null,
-          "location": null
-        },
-        {
           "road": "A-7",
           "description": "A-7",
           "severity": null,
@@ -377,68 +371,14 @@
           "location": null
         },
         {
-          "road": "A-7",
-          "description": "A-7",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "A-7",
-          "description": "A-7",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "CV-35",
-          "description": "CV-35",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "A-7",
-          "description": "A-7",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "A-7",
-          "description": "A-7",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "A-7",
-          "description": "A-7",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "A-7",
-          "description": "A-7",
+          "road": "A-3",
+          "description": "A-3",
           "severity": null,
           "location": null
         },
         {
           "road": "V-31",
           "description": "V-31",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "V-30",
-          "description": "V-30",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "A-3",
-          "description": "A-3",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "A-7",
-          "description": "A-7",
           "severity": null,
           "location": null
         }

@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-08-22T05:12:33.109Z",
+  "generatedAt": "2026-08-23T05:13:49.889Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 65,
-    "openTotal": 65,
-    "inRibaRoja": 41,
+    "total": 64,
+    "openTotal": 64,
+    "inRibaRoja": 40,
     "closingSoon": 6,
-    "withDetail": 65,
+    "withDetail": 64,
     "byMonth": {
       "2026-08": 24,
       "2026-07": 25,
-      "2026-06": 7,
+      "2026-06": 6,
       "2026-05": 3,
       "2026-04": 3,
       "2026-02": 2,
@@ -4268,91 +4268,6 @@
         "horario": "De 08h a 14:30h de lunes a viernes en horarios alternos",
         "salario": "854 brutos",
         "funciones": "Trabajos de limpieza en naves industriales, limpieza de baños, vestuarios, oficinas, comedores, etc..",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2469",
-      "fo": 2469,
-      "codigo": "2026/00170",
-      "titulo": "Personal limpieza comunidades",
-      "publishedAt": "2026-06-22",
-      "deadline": "2026-08-22",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2469",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00170"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Personal limpieza comunidades"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se busca personal de limpieza responsable y con ganas de trabajar. Requisitos: Experiencia previa valorable. Puntualidad y responsabilidad. Disponibilidad horaria. Incorporación inmediata."
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "ACTIVIDADES DE LOS HOGARES COMO EMPLEADORES DE PERSONAL DOMÉSTICO; ACTIVIDADES DE LOS HOGARES COMO PRODUCTORES DE BIENES Y SERVICIOS PARA USO PROPIO"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO A TIEMPO PARCIAL"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Parcial Turnos: Turno mañana"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Contrato según convenio"
-          },
-          {
-            "label": "Salario",
-            "value": "Dependera de las tareas y tiempos que se asignen"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Limpieza y mantenimiento de instalaciones. - Orden y cuidado de las áreas asignadas."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "Persona profesional , sería y responsable"
-          }
-        ],
-        "tipoContrato": "CONTRATO A TIEMPO PARCIAL",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "2",
-        "observaciones": "Se busca personal de limpieza responsable y con ganas de trabajar. Requisitos: Experiencia previa valorable. Puntualidad y responsabilidad. Disponibilidad horaria. Incorporación inmediata.",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Parcial Turnos: Turno mañana",
-        "salario": "Dependera de las tareas y tiempos que se asignen",
-        "funciones": "- Limpieza y mantenimiento de instalaciones. - Orden y cuidado de las áreas asignadas.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }

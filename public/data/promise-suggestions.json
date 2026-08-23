@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T05:14:20.029Z",
+  "generatedAt": "2026-08-23T05:15:34.482Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -151,7 +151,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -221,7 +221,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -234,17 +234,6 @@
           "quote": "La Generalitat y el Ayuntamiento de Riba-roja colaboran para desarrollar suelo para viviendas e industrias en zonas seguras",
           "kind": "press",
           "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "suelo",
-            "vivienda"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1oTHdpZGFGVG1XSVVMWGZjZ2tkSktrOHVHWWdydEl6SFFwRkpidG13MmQ0R3VuY25ZcENGUUtFRHU1N0xXNXdrTkNhQTkzX0l5Z3NUOFhBQVhvYy1XOHhtTFNhYkJJRFJMUG1OaUVuRQ?oc=5",
-          "date": "2026-07-07",
-          "quote": "La Generalitat y el Ayuntamiento de Riba-roja de Túria colaboran en el desarrollo de suelo para viviendas e industrias en zonas seguras",
-          "kind": "press",
-          "publisher": "Comunica GVA",
           "matchedKeywords": [
             "suelo",
             "vivienda"
@@ -274,7 +263,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -347,7 +336,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -371,13 +360,31 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "confidence": 0.4,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNakRrZUdQNWp6SmZtbThMSVJRb3ZVOWduczNjN1MxY0F0OHZheTJHWEN6QlJHd0R4TUI2eTc3VUh1WnBXRG5sRktvRVVIaXFvX2FPeEY4dXNTX3U3THl6SFRSSy1HYmJNWWFxQjJFMDBjMFpBYkNSdm9lTzJpVnBLcFc1NUNpOEIyOHlEREFnT3Jkbjc4MXJ6cHVMU28xaGhvQkZ2NjF0WEtLUkRpYTlWMHVLN0NYR0xkQzEtOXNzN0FHY0ZHNGRBMnR0V3dHUG95OElvYThqZ2NRQdIB3wFBVV95cUxPSFJ1TXlrSDhIUzdUeHhQVFpwVmp6Vlp0NXoxLTctMS0tQ3hGb2VzNXZ2bUw3Nnk1Z2l0V1QtM0FLa3BPeXhVcmMyMG44MmpQQVd5ZU00U0pDdy1KeUlKUEl3UEpXME9KUVcxTXhxeWFpZi1GWWhiNDdrWXFmem5EREdDNzFLVC1yN3c0dXV6ODFrWWxLcXdHeE1jS2pQd09uTWhyRXk4SUZ0ZHk2QTloT0FGb0ttRFFoWGxGRDg5NXRyOWJFR0pBWlFpNTJJckRSanFuNlg2bm5sUDlmV1Nn?oc=5",
+          "date": "2026-03-17",
+          "quote": "El alcalde de Riba-roja de Túria retoma los encuentros 'Espai Obert' con los vecinos para explicar el presupuesto de 2026",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "retoma",
+            "encuentro",
+            "espai",
+            "obert",
+            "vecino",
+            "alcalde",
+            "explicar",
+            "presupuesto",
+            "2026"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
           "date": "2026-07-27",
@@ -402,7 +409,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -410,7 +417,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -418,7 +425,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -483,7 +490,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -514,7 +521,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -554,7 +561,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -598,7 +605,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -642,7 +649,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -672,7 +679,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -703,7 +710,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -724,7 +731,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -732,7 +739,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -751,7 +758,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -793,7 +800,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -827,7 +834,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -858,7 +865,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -900,7 +907,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-22T05:14:19.929Z"
+      "generatedAt": "2026-08-23T05:15:34.358Z"
     }
   ],
   "llmEvidence": [],
