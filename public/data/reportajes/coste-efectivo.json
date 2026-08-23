@@ -336,5 +336,22 @@
     "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RR%2FbMyphbH170UvEyYJSGw%3D%3D",
     "comoSeLee": "Los tres se formalizaron el 12 de diciembre de 2024 por tramitación de emergencia y negociado sin publicidad, con un solo licitador cada uno. Eso es lo que significa la tramitación de emergencia y no un indicio de nada: el artículo 120 de la Ley de Contratos la prevé precisamente para que una administración pueda reparar sin concurso cuando el daño ya está hecho, y quien tiene las cuadrillas y los planos de una red es quien la explota. Lo que estas cifras cuentan no es cómo se adjudicaron, sino qué se estaba haciendo mientras el expediente que debía renovar esa explotación llevaba años sin moverse.",
     "importeNota": "Importes de adjudicación sin IVA, que es como los encabeza la ficha del expediente. Con IVA suman 141.992,10 €."
+  },
+  "laTarifa": {
+    "titulo": "Lo que pagará un vecino no está publicado en ningún sitio que se pueda enlazar",
+    "cuerpo": "En una concesión el dinero sale del recibo, así que la cifra que de verdad afecta a una casa de Riba-roja no es la de 55,7 millones: es lo que costará el metro cúbico durante los próximos diecisiete años. Esa cifra no se ha podido publicar aquí, y merece la pena contar por qué.",
+    "buscadoEn": [
+      {
+        "donde": "Las ordenanzas fiscales del ayuntamiento",
+        "resultado": "No hay ninguna de agua. Es coherente con que el servicio esté concedido: lo que paga el vecino no es una tasa municipal sino una tarifa, y no se aprueba en la ordenanza fiscal.",
+        "url": "https://www.ribarroja.es/es/ordenanzas/ordenanzas_contenido_economico/ordenanzas_fiscales_2025_vigentes/contenidos/7281734/9852782"
+      },
+      {
+        "donde": "Los documentos del expediente en la Plataforma de Contratación",
+        "resultado": "El expediente publica 52 documentos —pliego, estudio de viabilidad, memoria justificativa, actas—, pero se sirven por enlaces que caducan: pedidos de nuevo desde otra sesión devuelven un error del servidor. No se pueden citar, y una fuente que el lector no puede abrir no es una fuente.",
+        "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D"
+      }
+    ],
+    "cierre": "Hay agregadores privados que publican un precio del agua para Riba-roja. No se recoge aquí: un agregador no es la fuente, es alguien que la copió, y esta pieza sólo publica lo que puede enlazar. Queda dicho como lo que es — un hueco, y uno que encaja con todo lo demás: el instrumento con el que el Estado mide lo que cuestan los servicios municipales no ve este servicio, y el precio que lo sustituye tampoco está donde un vecino pueda encontrarlo."
   }
 }

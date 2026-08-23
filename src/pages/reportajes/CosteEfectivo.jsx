@@ -462,6 +462,52 @@ function DuranteLaEspera({ bloque }) {
   )
 }
 
+/* ---- El hueco de la tarifa. Se publica DÓNDE se buscó y qué respondió cada
+        sitio, porque un hueco documentado es información y un hueco callado
+        parece un descuido. ---- */
+function LaTarifa({ bloque }) {
+  const b = bloque
+  return (
+    <>
+      <h3
+        style={{
+          fontFamily: SERIF,
+          fontSize: 'var(--fs-body)',
+          fontWeight: 600,
+          margin: '26px 0 0',
+        }}
+      >
+        {b.titulo}
+      </h3>
+      <P>{b.cuerpo}</P>
+      <div style={{ margin: '12px 0' }}>
+        {b.buscadoEn.map((x) => (
+          <div
+            key={x.donde}
+            style={{
+              padding: '10px 0',
+              borderTop: '1px solid var(--border)',
+              fontSize: 'var(--fs-meta)',
+              color: 'var(--ink70)',
+            }}
+          >
+            <a
+              href={x.url}
+              target="_blank"
+              rel="noreferrer noopener"
+              style={{ color: 'var(--civic)', fontWeight: 550 }}
+            >
+              {x.donde} ↗
+            </a>
+            <div style={{ marginTop: 3 }}>{x.resultado}</div>
+          </div>
+        ))}
+      </div>
+      <P>{b.cierre}</P>
+    </>
+  )
+}
+
 export default function CosteEfectivo() {
   const { loading, error, data } = useReportaje('coste-efectivo')
   const { data: sociedades } = useSociedades()
@@ -648,6 +694,12 @@ export default function CosteEfectivo() {
           basuras, y el motivo es que una respuesta documentada es la que el
           lector puede ir a comprobar sin fiarse de nosotros. */}
       <FichaSociedad sociedad={ficha} />
+
+      {/* El hueco de la tarifa va detrás de la ficha societaria y antes de la
+          sección 02: cierra «quién cobra» con «cuánto cobra», que es la
+          pregunta que un vecino hace a continuación — y cuya respuesta es que
+          no está publicada donde se pueda enlazar. */}
+      {data.laTarifa && <LaTarifa bloque={data.laTarifa} />}
 
       <SecHead num="02" kicker="Lo que no se ve" title="El coste oficial del agua es cero" />
       <P>
