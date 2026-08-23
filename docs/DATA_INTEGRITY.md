@@ -12,27 +12,32 @@ tapa con una luz verde.
 
 ---
 
-## 1. Los catorce modos de fallo observados
+## 1. Los modos de fallo observados
 
 Sirven como lista de repaso al escribir o revisar cualquier adaptador. No son
-categorías teóricas: los catorce ocurrieron aquí.
+categorías teóricas: todos ocurrieron aquí. (El título ya no lleva la cuenta: la
+llevaba, se quedó corta en cuanto aparecieron más, y una lista de modos de fallo
+que envejece mal es ella misma el modo 11.)
 
-| # | Modo | Caso real |
-|---|---|---|
-| 1 | **Vocabulario a la deriva** | El enum decía `finalized`; la fuente emite `formalized`. 298 contratos → `unknown`. **53,5 M€ desaparecidos.** |
-| 2 | **Nombre de campo desalineado** | El verificador leía `award_amount_eur`, presente en 0 de 1.231 filas. El cruce entero no encontraba nada, y se publicaba «0% de verificación» junto a medios con nombre. |
-| 3 | **Fixture con forma inventada** | 6 tests construían formas imposibles (`fingerprint: 'shared'`, `award_amount_eur`). Verdes mientras producción no casaba nada. |
-| 4 | **Centinela publicado como dato** | `Otro` significaba «partido» y «no sé quién habla». Con un solo concejal debajo, nombraba a una persona por eliminación. |
-| 5 | **Comprobación vacua** | El allow-set del enum incluía `unknown`, así que toda fila mal convertida caía en un valor permitido. La deriva era invisible por diseño. |
-| 6 | **Cero contra ausente** | «0 votaciones» en 54 sesiones que nunca se transcribieron: afirmaba que un pleno no votó. |
-| 7 | **No-op silencioso** | El motor de veredictos informó «re-juzgadas 1.017» con **cero llamadas al modelo**, en tres capas distintas. |
-| 8 | **Rancio presentado como fresco** | El verificador re-sellaba `generatedAt` aunque la extracción hubiera fallado. El chip decía «hoy». |
-| 9 | **Ruta de render huérfana** | UI para `contradicho` y `promesa-repetida`, ambos con 0 filas en todo el corpus. |
-| 10 | **Punto ciego de coste** | La transcripción llamaba a la API con curl y no escribía telemetría: el panel decía $0 mientras se gastaba dinero, hasta que se agotó el saldo. |
-| 11 | **Prosa desfasada** | Arreglar el dato no arregla las frases escritas sobre él. Cuatro textos publicados quedaron falsos el mismo día. |
-| 12 | **Dirección asumida** | El motor se escribió para SUBIR veredictos; usarlo para BAJARLOS falló en silencio en tres capas que daban por hecho el otro sentido. |
-| 13 | **Puerta de recuperación** | El LLM «no encontró nada» porque la recuperación no le dio candidatos. Indistinguible de estar de acuerdo. |
-| 14 | **Solapamiento como prueba** | Una palabra compartida bastaba para «desmentir»: el alquiler de vivienda refutado por el alquiler de un camión de basura. |
+| #   | Modo                                     | Caso real                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| --- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **Vocabulario a la deriva**              | El enum decía `finalized`; la fuente emite `formalized`. 298 contratos → `unknown`. **53,5 M€ desaparecidos.**                                                                                                                                                                                                                                                                                                                              |
+| 2   | **Nombre de campo desalineado**          | El verificador leía `award_amount_eur`, presente en 0 de 1.231 filas. El cruce entero no encontraba nada, y se publicaba «0% de verificación» junto a medios con nombre.                                                                                                                                                                                                                                                                    |
+| 3   | **Fixture con forma inventada**          | 6 tests construían formas imposibles (`fingerprint: 'shared'`, `award_amount_eur`). Verdes mientras producción no casaba nada.                                                                                                                                                                                                                                                                                                              |
+| 4   | **Centinela publicado como dato**        | `Otro` significaba «partido» y «no sé quién habla». Con un solo concejal debajo, nombraba a una persona por eliminación.                                                                                                                                                                                                                                                                                                                    |
+| 5   | **Comprobación vacua**                   | El allow-set del enum incluía `unknown`, así que toda fila mal convertida caía en un valor permitido. La deriva era invisible por diseño.                                                                                                                                                                                                                                                                                                   |
+| 6   | **Cero contra ausente**                  | «0 votaciones» en 54 sesiones que nunca se transcribieron: afirmaba que un pleno no votó.                                                                                                                                                                                                                                                                                                                                                   |
+| 7   | **No-op silencioso**                     | El motor de veredictos informó «re-juzgadas 1.017» con **cero llamadas al modelo**, en tres capas distintas.                                                                                                                                                                                                                                                                                                                                |
+| 8   | **Rancio presentado como fresco**        | El verificador re-sellaba `generatedAt` aunque la extracción hubiera fallado. El chip decía «hoy».                                                                                                                                                                                                                                                                                                                                          |
+| 9   | **Ruta de render huérfana**              | UI para `contradicho` y `promesa-repetida`, ambos con 0 filas en todo el corpus.                                                                                                                                                                                                                                                                                                                                                            |
+| 10  | **Punto ciego de coste**                 | La transcripción llamaba a la API con curl y no escribía telemetría: el panel decía $0 mientras se gastaba dinero, hasta que se agotó el saldo.                                                                                                                                                                                                                                                                                             |
+| 11  | **Prosa desfasada**                      | Arreglar el dato no arregla las frases escritas sobre él. Cuatro textos publicados quedaron falsos el mismo día.                                                                                                                                                                                                                                                                                                                            |
+| 12  | **Dirección asumida**                    | El motor se escribió para SUBIR veredictos; usarlo para BAJARLOS falló en silencio en tres capas que daban por hecho el otro sentido.                                                                                                                                                                                                                                                                                                       |
+| 13  | **Puerta de recuperación**               | El LLM «no encontró nada» porque la recuperación no le dio candidatos. Indistinguible de estar de acuerdo.                                                                                                                                                                                                                                                                                                                                  |
+| 14  | **Solapamiento como prueba**             | Una palabra compartida bastaba para «desmentir»: el alquiler de vivienda refutado por el alquiler de un camión de basura.                                                                                                                                                                                                                                                                                                                   |
+| 15  | **Exención que no puede fallar**         | `check:drift` tenía un campo `scope` para explicar por qué una cifra y su ancla no miden lo mismo, y el cálculo lo traducía a EXENTA: la fila no podía salir divergente por lejos que se fuera. La inyección la multiplicaba por diez y la guarda callaba. Primo del modo 5, pero peor: aquél permitía un valor malo, éste desactiva el umbral entero. **Si la nota dice una aritmética exacta, réstala en el ancla; no apagues el aviso.** |
+| 16  | **Control correcto, entrada equivocada** | El gancho de pre-push derivaba «las rutas que este push toca» de `git diff origin/main..HEAD` — dos puntos, que comparan las dos PUNTAS. Con la rama algo atrasada metía lo que había avanzado main: 45 ficheros y 10 rutas donde eran 23 y 2. La guarda funcionaba perfectamente sobre el conjunto que no era.                                                                                                                             |
+| 17  | **Silenciar hasta enmudecer**            | Al hacer que `check:sparse` no hablara en cada commit, la salida temprana quedó ANTES del barrido de los demás worktrees: imprimía nada y salía 0 con dos worktrees dañados. Cada vez que haces una guarda más silenciosa te acercas a que no diga nada.                                                                                                                                                                                    |
 
 ---
 
@@ -88,13 +93,13 @@ por coste**: lo determinista antes que lo probabilístico, siempre.
 
 Comprobaciones que existen y corren en `scrape-all`:
 
-| Comprobación | Qué caza |
-|---|---|
-| `check:relations` | claves foráneas rotas entre snapshots |
-| `check:cadence` | datasets que dejaron de refrescarse en silencio |
-| `check:corpus` | citas publicadas que su transcripción ya no respalda |
-| `check:drift` | cifras publicadas que se separaron del dato vivo |
-| `check:vocabulary` | vocabulario de origen que se movió bajo el parser |
+| Comprobación       | Qué caza                                             |
+| ------------------ | ---------------------------------------------------- |
+| `check:relations`  | claves foráneas rotas entre snapshots                |
+| `check:cadence`    | datasets que dejaron de refrescarse en silencio      |
+| `check:corpus`     | citas publicadas que su transcripción ya no respalda |
+| `check:drift`      | cifras publicadas que se separaron del dato vivo     |
+| `check:vocabulary` | vocabulario de origen que se movió bajo el parser    |
 
 ### Nivel 4 · Evaluación adversarial
 
@@ -137,4 +142,3 @@ Automatizable hasta aquí y **ni un paso más**:
 - Pregunta qué prosa dependía de la cifra que acabas de mover. Cinco veces en un
   día, arreglar el dato dejó falso un texto publicado.
 - Comprueba la dirección: ¿asume este código que los veredictos solo suben?
-

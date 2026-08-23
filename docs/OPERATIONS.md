@@ -155,7 +155,7 @@ Anything needing an LLM backend or a residential IP runs here, not in CI.
 | When               | Script                                                                                                                                                              |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 06:45 daily        | `scrape-ci-blocked.sh` — the 7 adapters runners cannot reach (`paro`, `pleno-agendas`, `asociaciones`, `obras`, `procesos-selectivos`, `sindicatura`, `consell-cv`) |
-| 07:30 daily        | `review-sweep.sh` — reads all 27 public routes as a visitor (report-only, commits nothing)                                                                          |
+| 07:30 daily        | `review-sweep.sh` — reads every public route as a visitor (report-only, commits nothing)                                                                            |
 | 09:00 daily        | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                   |
 | 09:30 daily        | `hallazgos-pipeline.sh` — transcribe → extract → verify → auto-curate → push                                                                                        |
 | 10:15 daily        | `press-lab-pipeline.sh` — `/laboratorio` press fact-check pass                                                                                                      |
@@ -283,31 +283,48 @@ Full setup, secrets and volume creation: the header of `bot/fly.toml` and
 
 All report-only inside `scrape:all`; run any of them directly.
 
-| Command                           | Catches                                                                    |
-| --------------------------------- | -------------------------------------------------------------------------- |
-| `check:relations`                 | cross-snapshot FK breakage (findings→claims, votes→plenos, …)              |
-| `check:cadence`                   | snapshots past their expected refresh interval                             |
-| `check:runs`                      | a run that reported success without doing work — or without trying         |
-| `check:citations`                 | a published claim whose citation no longer holds                           |
-| `check:guards`                    | a guard in this table that nothing invokes                                 |
-| `check:drift`, `check:vocabulary` | upstream shape / vocabulary changes                                        |
-| `check:corpus`, `check:retrieval` | embedding corpus integrity, self-retrieval probe                           |
-| `check:transcripts`               | degenerate transcripts in the published corpus                             |
-| `check:json`                      | unparseable snapshot or merge-conflict marker (also in pre-commit)         |
-| `check:automation`                | which action classes are gated, and on what measurement                    |
-| `check:summary-gate`              | a published summary reproducing a quote the editorial gate withholds       |
-| `check:data-graph`                | the hand-written dependency graph drifting from what scripts do            |
-| `check:queues`                    | a curator worklist describing findings that no longer exist                |
-| `check:surfaces`                  | public pages nobody has read lately, or a reader-review flag left standing |
-| `check:indicadores`               | a `/eficiencia` figure that no longer resolves to its source cell          |
-| `check:eficiencia-findings`       | a signed ficha asserting a figure its source has since revised             |
-| `check:dea`                       | a frontier score that no longer reproduces, or names a third party         |
+| Command                           | Catches                                                                      |
+| --------------------------------- | ---------------------------------------------------------------------------- |
+| `check:relations`                 | cross-snapshot FK breakage (findings→claims, votes→plenos, …)                |
+| `check:cadence`                   | snapshots past their expected refresh interval                               |
+| `check:runs`                      | a run that reported success without doing work — or without trying           |
+| `check:citations`                 | a published claim whose citation no longer holds                             |
+| `check:guards`                    | a guard in this table that nothing invokes                                   |
+| `check:drift`, `check:vocabulary` | upstream shape / vocabulary changes                                          |
+| `check:corpus`, `check:retrieval` | embedding corpus integrity, self-retrieval probe                             |
+| `check:transcripts`               | degenerate transcripts in the published corpus                               |
+| `check:json`                      | unparseable snapshot or merge-conflict marker (also in pre-commit)           |
+| `check:automation`                | which action classes are gated, and on what measurement                      |
+| `check:summary-gate`              | a published summary reproducing a quote the editorial gate withholds         |
+| `check:data-graph`                | the hand-written dependency graph drifting from what scripts do              |
+| `check:queues`                    | a curator worklist describing findings that no longer exist                  |
+| `check:surfaces`                  | public pages nobody has read lately, or a reader-review flag left standing   |
+| `check:indicadores`               | a `/eficiencia` figure that no longer resolves to its source cell            |
+| `check:eficiencia-findings`       | a signed ficha asserting a figure its source has since revised               |
+| `check:dea`                       | a frontier score that no longer reproduces, or names a third party           |
+| `check:competencias`              | a nightly `officials.json` moving the name printed beside a published figure |
+| `check:sparse`                    | a working tree pruned by a foreign `sparse-checkout` (also in pre-commit)    |
 
 `check:guards` is the one that keeps this table honest, and on 2026-08-12 it
 found three of these — `summary-gate`, `data-graph`, `queues` — defined,
 tested, and invoked by **nothing**: not a workflow, not a pipeline, not a hook.
-That is its own documented failure mode 1. All 21 are wired now; three still
+That is its own documented failure mode 1. Every guard is wired now; a few still
 have no fault injection, and it says so rather than counting them as proven.
+
+It happened again on 2026-08-23, with the most delicate one: `check:competencias`
+— the only thing standing between a nightly scrape and a change to which living
+person appears beside a published figure — shipped with the competencias layer
+and was invoked by nothing for eleven days, so `check:guards` had been exiting 1
+on main that whole time. Wiring is not a finishing touch; it is the difference
+between a control and a decoration.
+
+**Two traps in `--inject` itself**, both found by using it. It refuses to inject
+into a file with uncommitted changes and says so in a line that is easy to skim
+past — with nightly churn in the tree it will skip a guard and still finish
+cheerfully, which is «green by not running» one level up. And a guard can be
+wired, tested and still toothless: `check:drift` reported `✗` for a year because
+the one figure its injection targets carried a `scope` note that exempted it from
+the threshold. Read the per-guard line, not the exit code.
 
 Baselines (`.vocabulary-census.json`, `.transcript-check-baseline.json`) are
 **committed on purpose**. Gitignored, CI would write a fresh one each night and

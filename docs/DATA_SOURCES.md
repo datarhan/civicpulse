@@ -488,6 +488,41 @@ overwrites it. Change the bot's SQLite instead.
 - **Source** — Added via `npm run queja-reply` after receiving an official reply via the `.github/ISSUE_TEMPLATE/queja-response.yml` form
 - **Surfaces** — `/quejas/:id` verbatim response card under the timeline
 
+### Sociedades mercantiles (BORME · fichas societarias de adjudicatarias)
+
+- **Pipeline** — `borme.ts` (parser puro) + `borme-fetch.ts` → `.cache/borme/`
+  → **curado a mano** en `sociedades.json`, validado por `sociedades.ts`
+- **Source** — **API de datos abiertos del BOE**, que sí sirve BORME:
+
+  ```
+  GET boe.es/datosabiertos/api/borme/sumario/YYYYMMDD
+    → data.sumario.diario[].seccion[codigo=A].item[]   (una por provincia)
+    → item.url_html  →  boe.es/diario_borme/txt.php?id=BORME-A-…
+  ```
+
+  Esto **deroga una limitación declarada**: la skill `biografia-concejal` decía
+  que no había camino («buscar/borme.php 404, libreborme tras Cloudflare»), y
+  llevaba tiempo sin ser cierto. Una limitación caduca hace que nadie vuelva a
+  intentarlo, que es el peor efecto posible de documentar un muro.
+
+- **NO es un adaptador nocturno.** `npm run scrape:borme --desde --hasta
+--provincia --empresa` es una herramienta de reportaje: escribe a `.cache/`,
+  nunca a `public/data/`, y no entra en `scrape-all.sh`. Un barrido de BORME
+  cada noche contra el BOE sería justo lo contrario de la regla de scrapers
+  educados.
+- **Cada dato lleva su cita literal del anuncio y su URL**; el validador exige
+  `cita` de ≥25 caracteres y un bloque `limites` no vacío. Los agregadores
+  (axesor, einforma, infoempresa) sirven para orientar la búsqueda y **no se
+  citan jamás**: una paráfrasis del resumen de un modelo se coló como cita y la
+  cazó `revisar-borrador`, no una comprobación.
+- **Dos gramáticas que costaron datos**: el sumario **colapsa a objeto** las
+  colecciones de un solo elemento (tiró dos días de barrido con «object is not
+  iterable»), y tres variantes de «Datos registrales» devolvían **null en
+  silencio** — prefijo tomo/folio, punto suelto, inscripción con letra— dejando
+  3 de 20 anuncios sin identificador citable. El test que las caza recorre
+  **todos** los anuncios y exige que ninguno quede sin leer.
+- **Surfaces** — ficha societaria en `/reportajes/coste-efectivo`
+
 ### Pleno votes (curated, one citation per claim)
 
 - **Pipeline** — **human-curated** · `pleno-votes.ts` schema validator
