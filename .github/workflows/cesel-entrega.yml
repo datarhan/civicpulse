@@ -125,7 +125,7 @@ jobs:
         run: |
           set +e
           : > /tmp/guardas.txt
-          for g in check:indicadores check:eficiencia-findings check:dea check:coste-esperado; do
+          for g in check:indicadores check:eficiencia-findings check:dea check:coste-esperado check:competencias; do
             echo "### $g" >> /tmp/guardas.txt
             npm run --silent "$g" >> /tmp/guardas.txt 2>&1
             rc=$?

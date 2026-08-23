@@ -1,0 +1,1168 @@
+{
+    "status": {
+        "code": "200",
+        "text": "ok"
+    },
+    "data": {
+        "sumario": {
+            "metadatos": {
+                "publicacion": "BORME",
+                "fecha_publicacion": "20240509"
+            },
+            "diario": [
+                {
+                    "numero": "89",
+                    "sumario_diario": {
+                        "identificador": "BORME-S-2024-89",
+                        "url_pdf": {
+                            "szBytes": "192749",
+                            "szKBytes": "188",
+                            "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-S-2024-89.pdf"
+                        }
+                    },
+                    "seccion": {
+                        "codigo": "C",
+                        "nombre": "SECCI\u00d3N SEGUNDA. Anuncios y avisos legales",
+                        "texto": {
+                            "apartado": [
+                                {
+                                    "codigo": "002",
+                                    "nombre": "CONVOCATORIAS DE JUNTAS",
+                                    "item": [
+                                        {
+                                            "identificador": "BORME-C-2024-1971",
+                                            "titulo": "AGUAS MINERALES DE FIRGAS SOCIEDAD ANONIMA",
+                                            "url_pdf": {
+                                                "szBytes": "134539",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2536",
+                                                "pagina_final": "2536",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1971.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1971",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1971"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1972",
+                                            "titulo": "ANTARES INMOINVEST, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133481",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2537",
+                                                "pagina_final": "2537",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1972.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1972",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1972"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1973",
+                                            "titulo": "ANTONIO MATACHANA, SOCIEDAD AN\u00d3NIMA",
+                                            "url_pdf": {
+                                                "szBytes": "137778",
+                                                "szKBytes": "135",
+                                                "pagina_inicial": "2538",
+                                                "pagina_final": "2539",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1973.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1973",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1973"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1974",
+                                            "titulo": "APARCAMIENTOS SARRIA TERMINO, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "134432",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2540",
+                                                "pagina_final": "2540",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1974.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1974",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1974"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1975",
+                                            "titulo": "AVINGUDA MADRID DIR, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133227",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2541",
+                                                "pagina_final": "2541",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1975.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1975",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1975"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1976",
+                                            "titulo": "BARAMA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "138332",
+                                                "szKBytes": "135",
+                                                "pagina_inicial": "2542",
+                                                "pagina_final": "2543",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1976.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1976",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1976"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1977",
+                                            "titulo": "BARNA SA",
+                                            "url_pdf": {
+                                                "szBytes": "134765",
+                                                "szKBytes": "132",
+                                                "pagina_inicial": "2544",
+                                                "pagina_final": "2544",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1977.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1977",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1977"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1978",
+                                            "titulo": "BERGIDUM, SOCIEDAD AN\u00d3NIMA",
+                                            "url_pdf": {
+                                                "szBytes": "134874",
+                                                "szKBytes": "132",
+                                                "pagina_inicial": "2545",
+                                                "pagina_final": "2545",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1978.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1978",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1978"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1979",
+                                            "titulo": "BRAU, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133168",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2546",
+                                                "pagina_final": "2546",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1979.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1979",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1979"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1980",
+                                            "titulo": "CALDERYS IBERICA REFRACTARIOS, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133230",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2547",
+                                                "pagina_final": "2547",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1980.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1980",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1980"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1981",
+                                            "titulo": "CAMPING BOHALAR SOCIEDAD ANONIMA",
+                                            "url_pdf": {
+                                                "szBytes": "134009",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2548",
+                                                "pagina_final": "2548",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1981.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1981",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1981"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1982",
+                                            "titulo": "CEFRUSA SERVICIOS FRIGORIFICOS, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "132889",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2549",
+                                                "pagina_final": "2549",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1982.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1982",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1982"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1983",
+                                            "titulo": "CLARIS DIR, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133200",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2550",
+                                                "pagina_final": "2550",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1983.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1983",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1983"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1984",
+                                            "titulo": "CLUB DE GOLF SORIA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "135010",
+                                                "szKBytes": "132",
+                                                "pagina_inicial": "2551",
+                                                "pagina_final": "2551",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1984.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1984",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1984"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1985",
+                                            "titulo": "CLUB DE MAR PUERTO BAN\u00daS, SOCIEDAD AN\u00d3NIMA",
+                                            "url_pdf": {
+                                                "szBytes": "134200",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2552",
+                                                "pagina_final": "2552",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1985.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1985",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1985"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1986",
+                                            "titulo": "COMPA\u00d1\u00cdA DE TRANVIAS DE LA CORU\u00d1A \r\nSOCIEDAD AN\u00d3NIMA",
+                                            "url_pdf": {
+                                                "szBytes": "135133",
+                                                "szKBytes": "132",
+                                                "pagina_inicial": "2553",
+                                                "pagina_final": "2553",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1986.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1986",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1986"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1987",
+                                            "titulo": "COMPLEJOS DE VINILO, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133933",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2554",
+                                                "pagina_final": "2554",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1987.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1987",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1987"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1988",
+                                            "titulo": "CONSTRULAR, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "134409",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2555",
+                                                "pagina_final": "2555",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1988.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1988",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1988"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1989",
+                                            "titulo": "CULTURAL JUVENIL, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "134810",
+                                                "szKBytes": "132",
+                                                "pagina_inicial": "2556",
+                                                "pagina_final": "2556",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1989.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1989",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1989"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1990",
+                                            "titulo": "DAVA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "134004",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2557",
+                                                "pagina_final": "2557",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1990.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1990",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1990"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1991",
+                                            "titulo": "DAVASA AUTOMOCION, S.L.",
+                                            "url_pdf": {
+                                                "szBytes": "135067",
+                                                "szKBytes": "132",
+                                                "pagina_inicial": "2558",
+                                                "pagina_final": "2558",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1991.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1991",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1991"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1992",
+                                            "titulo": "DISTRIBUIDORA ENERGETICA LORQUINA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "138376",
+                                                "szKBytes": "135",
+                                                "pagina_inicial": "2559",
+                                                "pagina_final": "2560",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1992.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1992",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1992"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1993",
+                                            "titulo": "EDITORA DEL PAIS VASCO 93 S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133799",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2561",
+                                                "pagina_final": "2561",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1993.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1993",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1993"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1994",
+                                            "titulo": "ESTACIONES TERMINALES DE AUTOBUSES, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133314",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2562",
+                                                "pagina_final": "2562",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1994.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1994",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1994"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1995",
+                                            "titulo": "EUSKAL KIROL APOSTUAK, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "135388",
+                                                "szKBytes": "132",
+                                                "pagina_inicial": "2563",
+                                                "pagina_final": "2563",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1995.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1995",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1995"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1996",
+                                            "titulo": "FARMAOPTICS, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133471",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2564",
+                                                "pagina_final": "2564",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1996.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1996",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1996"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1997",
+                                            "titulo": "FRESAS NUEVOS MATERIALES SA",
+                                            "url_pdf": {
+                                                "szBytes": "134759",
+                                                "szKBytes": "132",
+                                                "pagina_inicial": "2565",
+                                                "pagina_final": "2565",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1997.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1997",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1997"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1998",
+                                            "titulo": "GALYMER, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133342",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2566",
+                                                "pagina_final": "2566",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1998.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1998",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1998"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-1999",
+                                            "titulo": "GRAN DE GRACIA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133570",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2567",
+                                                "pagina_final": "2567",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-1999.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-1999",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-1999"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2000",
+                                            "titulo": "GRAN VIA MAR SOCIEDAD PATRIMONIAL, S.L.",
+                                            "url_pdf": {
+                                                "szBytes": "132597",
+                                                "szKBytes": "129",
+                                                "pagina_inicial": "2568",
+                                                "pagina_final": "2568",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2000.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2000",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2000"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2001",
+                                            "titulo": "GSA GALLEGA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "132899",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2569",
+                                                "pagina_final": "2569",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2001.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2001",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2001"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2002",
+                                            "titulo": "INVERSIONES BARCELONA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "132997",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2570",
+                                                "pagina_final": "2570",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2002.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2002",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2002"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2003",
+                                            "titulo": "INVERSORA FREDMON, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "132999",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2571",
+                                                "pagina_final": "2571",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2003.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2003",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2003"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2004",
+                                            "titulo": "LA UNI\u00d3N DE BENISA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133245",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2572",
+                                                "pagina_final": "2572",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2004.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2004",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2004"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2005",
+                                            "titulo": "LES CORTS DIR, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133261",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2573",
+                                                "pagina_final": "2573",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2005.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2005",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2005"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2006",
+                                            "titulo": "LOSADA VINOS DE FINCA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "134541",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2574",
+                                                "pagina_final": "2574",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2006.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2006",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2006"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2007",
+                                            "titulo": "MADERAS ORNANDA SOCIEDAD ANONIMA",
+                                            "url_pdf": {
+                                                "szBytes": "133949",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2575",
+                                                "pagina_final": "2575",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2007.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2007",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2007"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2008",
+                                            "titulo": "MALLORCA DEVELOPMENT, SA",
+                                            "url_pdf": {
+                                                "szBytes": "133291",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2576",
+                                                "pagina_final": "2576",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2008.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2008",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2008"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2009",
+                                            "titulo": "MANUFACTURAS AURA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "132872",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2577",
+                                                "pagina_final": "2577",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2009.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2009",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2009"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2010",
+                                            "titulo": "MASTER CUATRO, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133947",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2578",
+                                                "pagina_final": "2578",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2010.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2010",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2010"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2011",
+                                            "titulo": "MONTEBALCONES, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "134670",
+                                                "szKBytes": "132",
+                                                "pagina_inicial": "2579",
+                                                "pagina_final": "2579",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2011.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2011",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2011"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2012",
+                                            "titulo": "NOVOT\u00c9CNICA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "135123",
+                                                "szKBytes": "132",
+                                                "pagina_inicial": "2580",
+                                                "pagina_final": "2580",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2012.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2012",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2012"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2013",
+                                            "titulo": "PARAISO TROPICAL S.L.",
+                                            "url_pdf": {
+                                                "szBytes": "132900",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2581",
+                                                "pagina_final": "2581",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2013.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2013",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2013"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2014",
+                                            "titulo": "PLAZA ALTAVISTA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "137005",
+                                                "szKBytes": "134",
+                                                "pagina_inicial": "2582",
+                                                "pagina_final": "2583",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2014.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2014",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2014"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2015",
+                                            "titulo": "PROMOTORA DE VIVIENDAS DE LEVANTE, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "132967",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2584",
+                                                "pagina_final": "2584",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2015.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2015",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2015"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2016",
+                                            "titulo": "PROPIETARIOS DEL CENTRO CULTURAL, SA",
+                                            "url_pdf": {
+                                                "szBytes": "133283",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2585",
+                                                "pagina_final": "2585",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2016.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2016",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2016"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2017",
+                                            "titulo": "PUBLICACIONES DE ALBACETE S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "134271",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2586",
+                                                "pagina_final": "2586",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2017.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2017",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2017"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2018",
+                                            "titulo": "PUERTAS NOVA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "132772",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2587",
+                                                "pagina_final": "2587",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2018.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2018",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2018"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2019",
+                                            "titulo": "PUIG SEQUER, SOCIEDAD AN\u00d3NIMA",
+                                            "url_pdf": {
+                                                "szBytes": "135254",
+                                                "szKBytes": "132",
+                                                "pagina_inicial": "2588",
+                                                "pagina_final": "2588",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2019.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2019",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2019"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2020",
+                                            "titulo": "PUIGTI\u00d3, SOCIEDAD AN\u00d3NIMA",
+                                            "url_pdf": {
+                                                "szBytes": "135293",
+                                                "szKBytes": "132",
+                                                "pagina_inicial": "2589",
+                                                "pagina_final": "2589",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2020.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2020",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2020"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2021",
+                                            "titulo": "QUIJORNA 2002 S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133439",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2590",
+                                                "pagina_final": "2590",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2021.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2021",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2021"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2022",
+                                            "titulo": "RANDAL EUROPEA S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133017",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2591",
+                                                "pagina_final": "2591",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2022.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2022",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2022"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2023",
+                                            "titulo": "SANT CUGAT DIR, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133310",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2592",
+                                                "pagina_final": "2592",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2023.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2023",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2023"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2024",
+                                            "titulo": "SELVAFIL, SOCIEDAD AN\u00d3NIMA",
+                                            "url_pdf": {
+                                                "szBytes": "134056",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2593",
+                                                "pagina_final": "2593",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2024.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2024",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2024"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2025",
+                                            "titulo": "SERVATRA,S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133412",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2594",
+                                                "pagina_final": "2594",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2025.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2025",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2025"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2026",
+                                            "titulo": "SOCIEDAD AN\u00d3NIMA DAMM",
+                                            "url_pdf": {
+                                                "szBytes": "148520",
+                                                "szKBytes": "145",
+                                                "pagina_inicial": "2595",
+                                                "pagina_final": "2597",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2026.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2026",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2026"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2027",
+                                            "titulo": "SUMINISTROS INDUSTRIALES ROBEGA SA",
+                                            "url_pdf": {
+                                                "szBytes": "133247",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2598",
+                                                "pagina_final": "2598",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2027.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2027",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2027"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2028",
+                                            "titulo": "SUPERMERCADO CALA\u2019N PORTER, SOCIEDAD AN\u00d3NIMA",
+                                            "url_pdf": {
+                                                "szBytes": "134060",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2599",
+                                                "pagina_final": "2599",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2028.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2028",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2028"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2029",
+                                            "titulo": "TORCATS MONTAGUT S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "134102",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2600",
+                                                "pagina_final": "2600",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2029.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2029",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2029"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2030",
+                                            "titulo": "TRAFERTIR, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "132689",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2601",
+                                                "pagina_final": "2601",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2030.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2030",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2030"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2031",
+                                            "titulo": "TRANSPORTES PRIETO, S.A.,",
+                                            "url_pdf": {
+                                                "szBytes": "134564",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2602",
+                                                "pagina_final": "2602",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2031.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2031",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2031"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2032",
+                                            "titulo": "TRANSPORTES TRESSERRAS, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "134611",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2603",
+                                                "pagina_final": "2603",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2032.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2032",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2032"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2033",
+                                            "titulo": "TRANSPORTES URBANOS DE CARTAGENA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133374",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2604",
+                                                "pagina_final": "2604",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2033.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2033",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2033"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2034",
+                                            "titulo": "TRES TORRES DIR, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133152",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2605",
+                                                "pagina_final": "2605",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2034.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2034",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2034"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2035",
+                                            "titulo": "URANIA Y GEA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133533",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2606",
+                                                "pagina_final": "2606",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2035.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2035",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2035"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2036",
+                                            "titulo": "VEGA E HIJOS, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "134219",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2607",
+                                                "pagina_final": "2607",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2036.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2036",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2036"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2037",
+                                            "titulo": "VIGOVINTE, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "134626",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2608",
+                                                "pagina_final": "2608",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2037.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2037",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2037"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2038",
+                                            "titulo": "VILA DE NEFOL, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "132776",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2609",
+                                                "pagina_final": "2609",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2038.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2038",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2038"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2039",
+                                            "titulo": "VINOS DE LOS HEREDEROS DEL MARQU\u00c9S DE RISCAL, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "138762",
+                                                "szKBytes": "136",
+                                                "pagina_inicial": "2610",
+                                                "pagina_final": "2611",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2039.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2039",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2039"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "codigo": "003",
+                                    "nombre": "FUSIONES Y ABSORCIONES DE EMPRESAS",
+                                    "item": [
+                                        {
+                                            "identificador": "BORME-C-2024-2040",
+                                            "titulo": "ALCORD\u00d3N ASOCIADOS, SOCIEDAD LIMITADA \r\n(SOCIEDAD ABSORBENTE) \r\nCARBURANTES DE BANDEIRA, SOCIEDAD LIMITADA UNIPERSONAL \r\n(SOCIEDAD ABSORBIDA)",
+                                            "url_pdf": {
+                                                "szBytes": "133168",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2612",
+                                                "pagina_final": "2612",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2040.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2040",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2040"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2041",
+                                            "titulo": "AUTOCARES CABRANES, S.L.U. \r\n (SOCIEDAD ABSORBENTE) \r\n \r\nAUTOCARES RAFAEL, S.L.U. \r\n (SOCIEDAD ABSORBIDA)",
+                                            "url_pdf": {
+                                                "szBytes": "132838",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2613",
+                                                "pagina_final": "2613",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2041.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2041",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2041"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2042",
+                                            "titulo": "INMOBILIARIA CONSTRUCCIONES PULIDO, S.A. \r\n(SOCIEDAD ABSORBENTE) \r\nALMAFRA, S.L. \r\n(SOCIEDAD ABSORBIDA)",
+                                            "url_pdf": {
+                                                "szBytes": "132608",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2614",
+                                                "pagina_final": "2614",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2042.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2042",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2042"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2043",
+                                            "titulo": "LAMDA MERIDIAN, S.L. \r\n(SOCIEDAD ABSORBENTE) \r\nENZYME ADVISING GROUP, S.L. \r\n(SOCIEDAD ABSORBIDA)",
+                                            "url_pdf": {
+                                                "szBytes": "134426",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2615",
+                                                "pagina_final": "2615",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2043.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2043",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2043"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2044",
+                                            "titulo": "PROMOCIONES MORGOITIO, S.L. \r\n(SOCIEDAD ABSORBENTE) \r\nRESTAURANTE ZALDIARAN, S.L. \r\n(SOCIEDAD ABSORBIDA)",
+                                            "url_pdf": {
+                                                "szBytes": "133014",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2616",
+                                                "pagina_final": "2616",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2044.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2044",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2044"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2045",
+                                            "titulo": "SB GRUPO, S.A. (SOCIEDAD ABSORBENTE) JUAN SANCHEZ, S.A. (SOCIEDAD ABSORBIDA)",
+                                            "url_pdf": {
+                                                "szBytes": "133141",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2617",
+                                                "pagina_final": "2617",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2045.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2045",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2045"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2046",
+                                            "titulo": "STAR SERVICIOS LING\u00dc\u00cdSTICOS, S.L.U. \r\n(SOCIEDAD ABSORBENTE) \r\nSTAR INFORMATION ENGINEERING, S.L. \r\n(SOCIEDAD ABSORBIDA)",
+                                            "url_pdf": {
+                                                "szBytes": "134177",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2618",
+                                                "pagina_final": "2618",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2046.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2046",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2046"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2047",
+                                            "titulo": "VILLAS DE ESTEPONA, S.L.U. (SOCIEDAD ABSORBENTE) \r\nMAGNA VALLE ROMANO, S.L.U. (SOCIEDAD ABSORBIDA)",
+                                            "url_pdf": {
+                                                "szBytes": "133283",
+                                                "szKBytes": "130",
+                                                "pagina_inicial": "2619",
+                                                "pagina_final": "2619",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2047.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2047",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2047"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "codigo": "004",
+                                    "nombre": "ESCISI\u00d3N DE EMPRESAS",
+                                    "item": {
+                                        "identificador": "BORME-C-2024-2048",
+                                        "titulo": "VIAJES SIDETOURS, S.A. \r\n(SOCIEDAD ESCINDIDA) \r\nVIAJES SIDETOURS, S.L. \r\nINVERSIONES QUETGLAS, S.L. \r\nBEST QUALITY HOTELS, S.L. \r\n(SOCIEDADES BENEFICIARIAS DE NUEVA CREACI\u00d3N)",
+                                        "url_pdf": {
+                                            "szBytes": "138110",
+                                            "szKBytes": "135",
+                                            "pagina_inicial": "2620",
+                                            "pagina_final": "2621",
+                                            "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2048.pdf"
+                                        },
+                                        "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2048",
+                                        "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2048"
+                                    }
+                                },
+                                {
+                                    "codigo": "009",
+                                    "nombre": "TRANSFORMACI\u00d3N DE EMPRESAS",
+                                    "item": [
+                                        {
+                                            "identificador": "BORME-C-2024-2049",
+                                            "titulo": "SAT NRO. 6627 HERMANOS ESTRADA FERN\u00c1NDEZ",
+                                            "url_pdf": {
+                                                "szBytes": "134359",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2622",
+                                                "pagina_final": "2622",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2049.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2049",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2049"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2050",
+                                            "titulo": "TECSYSTEM & CONTROL, S.C.P.",
+                                            "url_pdf": {
+                                                "szBytes": "131968",
+                                                "szKBytes": "129",
+                                                "pagina_inicial": "2623",
+                                                "pagina_final": "2623",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2050.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2050",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2050"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "codigo": "011",
+                                    "nombre": "REDUCCI\u00d3N DE CAPITAL",
+                                    "item": [
+                                        {
+                                            "identificador": "BORME-C-2024-2051",
+                                            "titulo": "ACIDEKA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "133887",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2624",
+                                                "pagina_final": "2624",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2051.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2051",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2051"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2052",
+                                            "titulo": "DEKITRA, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "134142",
+                                                "szKBytes": "131",
+                                                "pagina_inicial": "2625",
+                                                "pagina_final": "2625",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2052.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2052",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2052"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2053",
+                                            "titulo": "GECI ESPA\u00d1OLA NAVIGATION SYSTEMS, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "134885",
+                                                "szKBytes": "132",
+                                                "pagina_inicial": "2626",
+                                                "pagina_final": "2626",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2053.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2053",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2053"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2054",
+                                            "titulo": "GOLF DE SON TERMENS, S.A.",
+                                            "url_pdf": {
+                                                "szBytes": "134726",
+                                                "szKBytes": "132",
+                                                "pagina_inicial": "2627",
+                                                "pagina_final": "2627",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2054.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2054",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2054"
+                                        },
+                                        {
+                                            "identificador": "BORME-C-2024-2055",
+                                            "titulo": "PROMOTORA D\u2019EXPORTACIONS CATALANES, S.A. (PRODECA)",
+                                            "url_pdf": {
+                                                "szBytes": "134821",
+                                                "szKBytes": "132",
+                                                "pagina_inicial": "2628",
+                                                "pagina_final": "2628",
+                                                "texto": "https:\/\/www.boe.es\/borme\/dias\/2024\/05\/09\/pdfs\/BORME-C-2024-2055.pdf"
+                                            },
+                                            "url_html": "https:\/\/www.boe.es\/diario_borme\/txt.php?id=BORME-C-2024-2055",
+                                            "url_xml": "https:\/\/www.boe.es\/diario_borme\/xml.php?id=BORME-C-2024-2055"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

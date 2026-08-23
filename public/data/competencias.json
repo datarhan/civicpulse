@@ -1,10 +1,22 @@
 {
   "generatedAt": "2026-08-23T00:00:00.000Z",
-  "mandato": { "id": "2023-2027", "desde": "2023-06-17", "hasta": null },
+  "mandato": {
+    "id": "2023-2027",
+    "desde": "2023-06-17",
+    "hasta": null,
+    "constitucionSegunDecreto": "El día 17 de junio de 2023 se ha constituido la nueva corporación y elegido Alcalde"
+  },
   "fuente": {
     "titulo": "Corporación municipal · Ayuntamiento de Riba-roja de Túria",
     "url": "https://www.ribarroja.es/es/ayuntamiento/corporacion_municipal",
-    "consultadaEl": "2026-08-23"
+    "consultadaEl": "2026-08-23",
+    "decreto": {
+      "titulo": "Resolución de Alcaldía 2513/2023, de 17 de junio, sobre el establecimiento de las áreas de gestión política 2023-2027 y delegación en favor de concejales, en su modificación publicada el 10 de julio de 2023",
+      "url": "https://bop.dival.es/bop/downloads?anuncioNumReg=2023%2F08985",
+      "expediente": "BOP de València núm. 132, anuncio 2023/08985 · el decreto original, núm. 127, anuncio 2023/08603",
+      "fecha": "2023-07-10",
+      "cita": "Se delegan en el Concejal D. Rafael Gómez, las competencias que al Alcalde le corresponden en materia de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, Movilidad y Deportes."
+    }
   },
   "asignaciones": [
     {

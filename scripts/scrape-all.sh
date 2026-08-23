@@ -441,6 +441,19 @@ if ! npm run check:coste-esperado; then
   failures+=("check:coste-esperado")
 fi
 
+# `competencias.json` dice qué concejal responde de cada servicio, y se firma a
+# mano justamente porque `officials.json` se raspa CADA NOCHE. Sin esta guarda un
+# cambio de cartera movería en silencio el nombre que se pinta junto a una cifra
+# publicada — que es el daño concreto que la capa entera existe para evitar. La
+# guarda se escribió con la capa y estuvo un tiempo sin que la invocara nadie:
+# exactamente el modo de fallo que el bloque de abajo documenta.
+# Cuatro desenlaces y sólo dos tiñen: «reformulado» avisa sin tumbar, porque una
+# redacción nueva del cargo no es una competencia distinta.
+if ! npm run check:competencias; then
+  echo "[scrape-all] FAILED: check:competencias — el nombre publicado ya no tiene esa competencia"
+  failures+=("check:competencias")
+fi
+
 # Tres guardas que existían y no invocaba NADIE — ni un workflow, ni un
 # pipeline, ni un hook. Es el modo de fallo 1 que el propio `check:guards`
 # documenta («la guarda es correcta y nada la ejecuta»), y lo destapó él

@@ -45,6 +45,7 @@
     "scrape:tenders-ted": "npx tsx scripts/scrape-tenders-ted.ts",
     "scrape:boe": "npx tsx scripts/scrape-boe.ts",
     "scrape:bop": "npx tsx scripts/scrape-bop.ts",
+    "scrape:borme": "npx tsx scripts/scrape-borme.ts",
     "lookup-catastro": "npx tsx scripts/lookup-catastro.ts",
     "audit-press-links": "npx tsx scripts/audit-press-links.ts",
     "correct-press-finding": "npx tsx scripts/correct-press-finding.ts",

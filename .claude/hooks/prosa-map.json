@@ -389,6 +389,9 @@
       "/lab-health",
       "/quejas"
     ],
+    "sociedades.json": [
+      "/reportajes/coste-efectivo"
+    ],
     "spain-ticker.json": [
       "/lab-health"
     ],

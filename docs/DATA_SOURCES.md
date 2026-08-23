@@ -59,6 +59,7 @@ Everything produced by the convention above. Safe to delete and rebuild.
 | `eficiencia-findings.json`                          | `src/scraper/eficiencia-finding.ts` · `npm run promote-indicador`, `correct-indicador`, `retract-indicador`                   |
 | `eficiencia-preguntas.json`                         | `src/scraper/eficiencia-preguntas.ts` · curated · hand-edit via PR                                                            |
 | `competencias.json`                                 | `src/scraper/competencias.ts` · curated · hand-edit via PR · `npm run competencia-reply` · `check:competencias`               |
+| `sociedades.json`                                   | `src/scraper/sociedades.ts` · curated · hand-edit via PR · material vía `npm run scrape:borme`                                |
 | `pleno-claim-reclassifications.json`                | `src/scraper/verified-merge.ts` · `npm run reclassify-claim` (sólo ALEJÁNDOSE de `acusacion_publica`)                         |
 
 Each CLI re-validates the whole snapshot before writing, so an invariant

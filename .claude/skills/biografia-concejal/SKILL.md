@@ -128,8 +128,17 @@ Members WITHOUT dedicación: the asistencias tariffs are verbatim in `16ujrlm.tx
   issue date not yet located (25-04/02-05/03-05 tried; the 2023 group-roster order in 16ujrlm
   covers it meanwhile). Beware in-town homonyms on OTHER lists (2015 EUPV cabeza was Rafael
   Gómez MUÑOZ).
-- Administratorships: BORME — still no free structured path (buscar/borme.php 404, libreborme
-  Cloudflare-walled, engines don't index it). Declared limit stands.
+- Administratorships: BORME — **the declared limit was retired on 2026-08-23. There IS a free
+  structured path.** `buscar/borme.php` still 404s and libreborme is still Cloudflare-walled, so
+  there is no free-text SEARCH — but the BOE open-data API serves the daily BORME summary, and
+  from it the plain text of each provincial section:
+  `GET boe.es/datosabiertos/api/borme/sumario/YYYYMMDD` → `data.sumario.diario[].seccion[codigo=A]
+  .item[]` (34 provinces) → `item.url_html` → `boe.es/diario_borme/txt.php?id=BORME-A-…`.
+  Wired as `npm run scrape:borme -- --desde … --hasta … --provincia ALICANTE --empresa "…"`
+  (`scripts/scrape-borme.ts`, parser `src/scraper/borme.ts`). It SWEEPS by date and filters
+  locally — measured cost ~2.000 anuncios per province-month — and writes to `.cache/borme/`,
+  never to `public/data/`. Province matters: a company is registered in one Registro Mercantil.
+  Everything it yields is raw material for a curator to sign, never a published claim.
 - Títulos: CAATIE Valencia HAS a public directory (`/pub/directorio_colegiados.aspx`, ASPX
   POST with VIEWSTATE) — a Pozuelo search returned no visible rows (inconclusive: may not be
   a current colegiada; absence ≠ no título). Log as attempted.

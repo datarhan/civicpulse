@@ -1,5 +1,7 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
+import { FichaSociedad } from '../../components/reportajes/FichaSociedad'
+import { useSociedades, indexarSociedades } from '../../hooks/useSociedades'
 
 const SERIF = "'Fraunces', Georgia, serif"
 
@@ -392,8 +394,192 @@ function Cronologia({ cronologia }) {
   )
 }
 
+/* ---- Los contratos de emergencia de la DANA. Se publican por lo que dicen del
+        expediente parado, no por a quién se adjudicaron: por eso la nota de
+        cómo se leen va debajo y no plegada. ---- */
+function DuranteLaEspera({ bloque }) {
+  const b = bloque
+  return (
+    <>
+      <h3
+        style={{
+          fontFamily: SERIF,
+          fontSize: 'var(--fs-body)',
+          fontWeight: 600,
+          margin: '26px 0 0',
+        }}
+      >
+        {b.titulo}
+      </h3>
+      <P>{b.intro}</P>
+      <Figura
+        titulo={`Contratos de emergencia tras la DANA · ${b.fecha.split('-').reverse().join('-')}`}
+        pie={b.importeNota}
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          {b.contratos.map((c) => (
+            <div
+              key={c.objeto}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr auto',
+                gap: 10,
+                alignItems: 'baseline',
+                padding: '6px 0',
+                borderTop: '1px solid var(--border)',
+                fontSize: 'var(--fs-meta)',
+              }}
+            >
+              <span>{c.objeto}</span>
+              <span className="mono">{eur(c.importe)}</span>
+            </div>
+          ))}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr auto',
+              gap: 10,
+              alignItems: 'baseline',
+              paddingTop: 7,
+              borderTop: '2px solid var(--border)',
+              fontSize: 'var(--fs-meta)',
+              fontWeight: 650,
+            }}
+          >
+            <span>Total</span>
+            <span className="mono">{eur(b.total)}</span>
+          </div>
+        </div>
+      </Figura>
+      <P>{b.comoSeLee}</P>
+      <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '8px 0 0' }}>
+        Expediente {b.expediente} ·{' '}
+        <a href={b.url} target="_blank" rel="noreferrer noopener" style={{ color: 'var(--civic)' }}>
+          ficha en la Plataforma de Contratación ↗
+        </a>
+      </p>
+    </>
+  )
+}
+
+/* ---- El hueco de la tarifa. Se publica DÓNDE se buscó y qué respondió cada
+        sitio, porque un hueco documentado es información y un hueco callado
+        parece un descuido. ---- */
+function LaTarifa({ bloque }) {
+  const b = bloque
+  return (
+    <>
+      <h3
+        style={{
+          fontFamily: SERIF,
+          fontSize: 'var(--fs-body)',
+          fontWeight: 600,
+          margin: '26px 0 0',
+        }}
+      >
+        {b.titulo}
+      </h3>
+      <P>{b.cuerpo}</P>
+      <div style={{ margin: '12px 0' }}>
+        {b.buscadoEn.map((x) => (
+          <div
+            key={x.donde}
+            style={{
+              padding: '10px 0',
+              borderTop: '1px solid var(--border)',
+              fontSize: 'var(--fs-meta)',
+              color: 'var(--ink70)',
+            }}
+          >
+            <a
+              href={x.url}
+              target="_blank"
+              rel="noreferrer noopener"
+              style={{ color: 'var(--civic)', fontWeight: 550 }}
+            >
+              {x.donde} ↗
+            </a>
+            <div style={{ marginTop: 3 }}>{x.resultado}</div>
+          </div>
+        ))}
+      </div>
+      <P>{b.cierre}</P>
+    </>
+  )
+}
+
+/* ---- Quién tenía delegada la Hacienda cuando faltó la entrega de 2020.
+        La SALVEDAD se pinta antes que el nombre, no después: es lo que gobierna
+        cómo se lee todo lo demás, y puesta debajo llegaría cuando el lector ya
+        ha sacado su conclusión — el mismo error que la tarjeta de /eficiencia
+        corrigió moviendo el aviso de escalón por delante de la cifra. ---- */
+function QuienRespondia({ bloque }) {
+  const b = bloque
+  return (
+    <>
+      <h3
+        style={{
+          fontFamily: SERIF,
+          fontSize: 'var(--fs-body)',
+          fontWeight: 600,
+          margin: '26px 0 0',
+        }}
+      >
+        {b.titulo}
+      </h3>
+      <p
+        style={{
+          margin: '10px 0 0',
+          padding: '10px 12px',
+          background: 'var(--soft)',
+          border: '1px solid var(--border)',
+          borderRadius: 'var(--r-card)',
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink70)',
+          lineHeight: 1.55,
+        }}
+      >
+        {b.salvedad}
+      </p>
+      <P>{b.cuerpo}</P>
+      <figure
+        style={{
+          margin: '14px 0',
+          padding: '12px 14px',
+          borderLeft: '3px solid var(--border)',
+          background: 'var(--soft)',
+        }}
+      >
+        <blockquote
+          style={{
+            margin: 0,
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink70)',
+            lineHeight: 1.55,
+          }}
+        >
+          «{b.cita}»
+        </blockquote>
+        <figcaption style={{ marginTop: 8, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+          {b.fuente} ·{' '}
+          <a
+            href={b.url}
+            target="_blank"
+            rel="noreferrer noopener"
+            style={{ color: 'var(--civic)' }}
+          >
+            boletín completo ↗
+          </a>
+          . {b.citaNota} {b.replica}
+        </figcaption>
+      </figure>
+    </>
+  )
+}
+
 export default function CosteEfectivo() {
   const { loading, error, data } = useReportaje('coste-efectivo')
+  const { data: sociedades } = useSociedades()
 
   if (loading)
     return (
@@ -410,6 +596,7 @@ export default function CosteEfectivo() {
 
   const m = data.meta
   const c = data.concesion
+  const ficha = indexarSociedades(sociedades).get('hidraqua')
   const cong = data.congelados
   const inf = data.inflacion
 
@@ -561,6 +748,28 @@ export default function CosteEfectivo() {
         {data.cronologia.loQueNoConsta} {c.formalizacion}
       </P>
 
+      {/* Qué pasaba mientras el expediente estaba parado. Va DENTRO de la
+          sección de la cronología porque es lo que la cronología significa en
+          la práctica, no un hecho suelto sobre la empresa — y va con el
+          artículo 120 explicado, para que la vecindad entre «emergencia sin
+          concurso» y «concesión de 55,7 M€» no construya sola una frase que la
+          fuente no sostiene. */}
+      {data.duranteLaEspera && <DuranteLaEspera bloque={data.duranteLaEspera} />}
+
+      {/* Y quién es la empresa. Va aquí, cerrando la sección de la
+          adjudicación, porque la pregunta «¿a quién se le ha dado esto?» nace
+          justo de haber leído por cuánto y hasta cuándo. Cada dato lleva el
+          anuncio del BORME que lo sostiene: el precedente es el bloque de
+          basuras, y el motivo es que una respuesta documentada es la que el
+          lector puede ir a comprobar sin fiarse de nosotros. */}
+      <FichaSociedad sociedad={ficha} />
+
+      {/* El hueco de la tarifa va detrás de la ficha societaria y antes de la
+          sección 02: cierra «quién cobra» con «cuánto cobra», que es la
+          pregunta que un vecino hace a continuación — y cuya respuesta es que
+          no está publicada donde se pueda enlazar. */}
+      {data.laTarifa && <LaTarifa bloque={data.laTarifa} />}
+
       <SecHead num="02" kicker="Lo que no se ve" title="El coste oficial del agua es cero" />
       <P>
         El panel del coste efectivo publica lo que cuesta cada servicio municipal. Para estos dos no
@@ -690,6 +899,8 @@ export default function CosteEfectivo() {
           noPresentadas={data.entregas.noPresentadas}
         />
       </Figura>
+
+      {data.quienRespondia2020 && <QuienRespondia bloque={data.quienRespondia2020} />}
       <P>
         La explicación cómoda sería la pandemia. No se sostiene: en 2020 rindieron{' '}
         <strong>más</strong> ayuntamientos valencianos que en cualquiera de los cuatro años

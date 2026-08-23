@@ -311,5 +311,57 @@
     "Un denominador cuenta como congelado cuando sus últimas cuatro entregas o más traen el mismo valor hasta el cuarto decimal; repetir dos años es normal y no cuenta.",
     "Las variaciones en euros constantes usan la media anual del IPC general del INE con base en la entrega de 2024; las cifras exactas de cada servicio, con su celda de origen, están en /eficiencia.",
     "Las cifras de la primera versión de esta pieza quedaron congeladas el 16 de agosto de 2026 y no se han tocado; las que se añaden el 23 de agosto quedan congeladas a esa fecha. Si el ministerio revisa una entrega o el expediente avanza, la corrección se anota aquí, no se reescribe en silencio."
-  ]
+  ],
+  "duranteLaEspera": {
+    "titulo": "Lo que significan cinco años de suspensión",
+    "intro": "Mientras el concurso estaba parado, el servicio seguía prestándose y la red seguía rompiéndose. La DANA del 29 de octubre de 2024 dejó daños en el abastecimiento, en la depuración y en el saneamiento de pluviales, y el ayuntamiento contrató las reparaciones de urgencia con la empresa que ya operaba esa red: la misma cuyo relevo llevaba entonces tres años y medio congelado.",
+    "contratos": [
+      {
+        "objeto": "Actuaciones de emergencia del Servicio Municipal de Agua Potable",
+        "importe": 20665.6
+      },
+      {
+        "objeto": "Servicio de depuración de aguas",
+        "importe": 18628.03
+      },
+      {
+        "objeto": "Servicio municipal de saneamiento de pluviales",
+        "importe": 82140.36
+      }
+    ],
+    "total": 121433.99,
+    "totalConIva": 141992.1,
+    "fecha": "2024-12-12",
+    "expediente": "55V/2024 (SIGA 6418/2024/GEN), el mayor de los tres",
+    "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RR%2FbMyphbH170UvEyYJSGw%3D%3D",
+    "comoSeLee": "Los tres se formalizaron el 12 de diciembre de 2024 por tramitación de emergencia y negociado sin publicidad, con un solo licitador cada uno. Eso es lo que significa la tramitación de emergencia y no un indicio de nada: el artículo 120 de la Ley de Contratos la prevé precisamente para que una administración pueda reparar sin concurso cuando el daño ya está hecho, y quien tiene las cuadrillas y los planos de una red es quien la explota. Lo que estas cifras cuentan no es cómo se adjudicaron, sino qué se estaba haciendo mientras el expediente que debía renovar esa explotación llevaba años sin moverse.",
+    "importeNota": "Importes de adjudicación sin IVA, que es como los encabeza la ficha del expediente. Con IVA suman 141.992,10 €."
+  },
+  "laTarifa": {
+    "titulo": "Lo que pagará un vecino no está publicado en ningún sitio que se pueda enlazar",
+    "cuerpo": "En una concesión el dinero sale del recibo, así que la cifra que de verdad afecta a una casa de Riba-roja no es la de 55,7 millones: es lo que costará el metro cúbico durante los próximos diecisiete años. Esa cifra no se ha podido publicar aquí, y merece la pena contar por qué.",
+    "buscadoEn": [
+      {
+        "donde": "Las ordenanzas fiscales del ayuntamiento",
+        "resultado": "No hay ninguna de agua. Es coherente con que el servicio esté concedido: lo que paga el vecino no es una tasa municipal sino una tarifa, y no se aprueba en la ordenanza fiscal.",
+        "url": "https://www.ribarroja.es/es/ordenanzas/ordenanzas_contenido_economico/ordenanzas_fiscales_2025_vigentes/contenidos/7281734/9852782"
+      },
+      {
+        "donde": "Los documentos del expediente en la Plataforma de Contratación",
+        "resultado": "El expediente publica 52 documentos —pliego, estudio de viabilidad, memoria justificativa, actas—, pero se sirven por enlaces que caducan: pedidos de nuevo desde otra sesión devuelven un error del servidor. No se pueden citar, y una fuente que el lector no puede abrir no es una fuente.",
+        "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D"
+      }
+    ],
+    "cierre": "Hay agregadores privados que publican un precio del agua para Riba-roja. No se recoge aquí: un agregador no es la fuente, es alguien que la copió, y esta pieza sólo publica lo que puede enlazar. Queda dicho como lo que es — un hueco, y uno que encaja con todo lo demás: el instrumento con el que el Estado mide lo que cuestan los servicios municipales no ve este servicio, y el precio que lo sustituye tampoco está donde un vecino pueda encontrarlo."
+  },
+  "quienRespondia2020": {
+    "titulo": "Quién tenía delegada esa competencia cuando la entrega no se rindió",
+    "salvedad": "Antes del nombre, lo que este dato no es. El coste efectivo lo rinde la entidad local en su conjunto, y la fuente del ministerio no registra quién cumplimenta el formulario: esta pieza no atribuye a ninguna persona el hecho de que la entrega no se presentara, porque ningún documento lo sostiene. Lo que sí consta, y en el Boletín Oficial de la Provincia, es qué concejal tenía delegada el área de Hacienda en aquella corporación. Se publica por lo mismo que el panel dice quién responde de cada servicio: para que quien quiera preguntar sepa a qué área dirigirse.",
+    "cuerpo": "La entrega que falta es la del ejercicio 2020, que debía comunicarse al ministerio antes del 1 de noviembre de 2021. Gobernaba entonces la corporación salida de las elecciones del 26 de mayo de 2019, constituida el 15 de junio. Su decreto de delegación —resolución de Alcaldía 1841/2019, de 21 de junio, publicada en el BOP de València el 19 de julio— situaba la Hacienda municipal en el área de Gestión Municipal y Gobierno Abierto, y delegaba esa área en el segundo teniente de alcalde, José Ángel Hernández Carrizosa. Es el mismo concejal que hoy tiene delegadas las finanzas públicas y la compra pública, según el decreto de la corporación actual.",
+    "cita": "AREA DE GESTIÓN MUNICIPAL Y GOBIERNO ABIERTO. COMPETENCIAS: Hacienda, Servicios Generales, Servicios jurídicos, RRHH, Contratación pública, Patrimonio e Inventario, Áreas Industriales, Actividades, Transparencia, Participación Ciudadana y Administración Electrónica. DELEGACIÓNES ESPECIALES: Se delega en el 2ª Teniente de alcalde José Ángel Hernández Carrizosa la coordinación de ésta área así como las competencias que al Alcalde corresponden en materia de Hacienda, Contratación Pública, Patrimonio e Inventario, Áreas Industriales, Edificios públicos e Infraestructuras, Actividades y Fomento Económico.",
+    "citaNota": "Transcrito del anuncio del BOP; se han unido las palabras que el PDF parte con guion al final de línea.",
+    "fuente": "BOP de València núm. 138, de 19 de julio de 2019 · Resolución de Alcaldía 1841/2019, de 21 de junio",
+    "url": "https://bop.dival.es/bop/downloads?boletinFecha=19%2F07%2F2019",
+    "replica": "Como cualquier persona nombrada en estas páginas, tiene derecho de réplica y su respuesta se publicará íntegra."
+  }
 }
