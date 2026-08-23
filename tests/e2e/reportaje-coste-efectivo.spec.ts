@@ -14,7 +14,7 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     await page.goto('/reportajes/coste-efectivo', { waitUntil: 'domcontentloaded' })
 
     await expect(
-      page.getByRole('heading', { name: 'La mitad de abajo de la división' }),
+      page.getByRole('heading', { name: 'El panel se queda en blanco donde está el dinero' }),
     ).toBeVisible({ timeout: 8000 })
 
     // El aviso de borrador sigue al estado del snapshot, no a una suposición.
@@ -71,7 +71,13 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     const res = await page.request.get('/infografias/eficiencia-2026-08.html')
     expect(res.status()).toBe(200)
     const html = await res.text()
-    expect(html).toContain(snap.meta.titulo)
+    // Su PROPIO título, no el del reportaje. Desde que la pieza se re-ejeó
+    // sobre la concesión (23-08-2026), la infografía resume un capítulo —el de
+    // la declaración— y conserva el título con el que la pieza se publicó el 16
+    // de agosto. El snapshot lo declara, así que el contrato sigue siendo
+    // comprobable en vez de quedarse sin comprobar.
+    expect(snap.infografia?.titulo, 'el reportaje ya no declara su infografía').toBeTruthy()
+    expect(html).toContain(snap.infografia.titulo)
     expect(html).not.toContain('id="root"')
   })
 
@@ -81,7 +87,7 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     // riesgo tienen de reescribirse a mano siguen saliendo de ahí.
     await page.goto('/reportajes/coste-efectivo', { waitUntil: 'domcontentloaded' })
     await expect(
-      page.getByRole('heading', { name: 'La mitad de abajo de la división' }),
+      page.getByRole('heading', { name: 'El panel se queda en blanco donde está el dinero' }),
     ).toBeVisible({ timeout: 8000 })
 
     const cuerpo = await page.locator('.cp-page').innerText()

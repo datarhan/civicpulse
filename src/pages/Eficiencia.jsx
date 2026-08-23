@@ -38,10 +38,17 @@ import { useT } from '../i18n'
  * Espacios de anclas: `#s-<id>` fichas · `#g-<area>` grupos · `#sec-*`
  * secciones (cabecera y submenú) · `#hallazgos` la sección firmada.
  *
- * Las tarjetas bloqueadas son parte del contenido, no un residuo: que el
- * ayuntamiento declare 485.975,77 € de transporte urbano y cero viajeros dice
- * algo sobre su rendición de cuentas, y esconderlo dejaría la página más
- * completa y menos cierta.
+ * Las tarjetas bloqueadas —y las casillas a cero— son parte del contenido, no
+ * un residuo: que el ayuntamiento declare un gasto real de transporte urbano
+ * con la casilla de viajeros a cero dice algo sobre su rendición de cuentas, y
+ * esconderlo dejaría la página más completa y menos cierta.
+ *
+ * Sin cifra aquí a propósito. Este docblock decía «485.975,77 €», que es la
+ * entrega de 2021: para cuando alguien lo leyó, la última era la de 2024 con
+ * 736.952,43 €. Un número copiado en un comentario no tiene quien lo recotege
+ * —`check:eficiencia-findings` vigila las fichas firmadas, no la prosa del
+ * código— así que envejece en silencio y engaña al siguiente que lo lea. La
+ * cifra vive en la tarjeta, que la saca del snapshot.
  */
 export default function Eficiencia() {
   const t = useT()
@@ -268,12 +275,13 @@ export default function Eficiencia() {
       {!loading && !error && <PreguntasRegistradas data={preguntas} panel="coste-efectivo" />}
 
       <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 18 }}>
-        Las tres cifras que este panel deja más a la vista —la entrega sin rendir, los denominadores
-        congelados y la inflación que se leía como gestión— están contadas enteras en el reportaje{' '}
+        Lo que este panel deja a la vista —la entrega sin rendir, los denominadores congelados, la
+        inflación que se leía como gestión y las dos casillas del agua que se quedan en blanco— está
+        contado entero en el reportaje{' '}
         <a href="/reportajes/coste-efectivo" style={{ color: 'var(--civic)' }}>
-          «La mitad de abajo de la división»
+          «El panel se queda en blanco donde está el dinero»
         </a>
-        , que existe también como{' '}
+        . La parte de la declaración existe además como{' '}
         <a href="/infografias/eficiencia-2026-08.html" style={{ color: 'var(--civic)' }}>
           infografía para compartir
         </a>
