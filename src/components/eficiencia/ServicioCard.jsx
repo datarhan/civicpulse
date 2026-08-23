@@ -8,6 +8,7 @@ import { leerIndicador, lecturaVisible, chipDeclaracion } from '../../scraper/in
 import { Lectura } from './Lectura'
 import { Resultado } from './Resultado'
 import { CompetenciaDelegada } from './CompetenciaDelegada'
+import { Concesion } from './Concesion'
 
 const GESTION = {
   directa: { label: 'gestión directa', tone: 'neutral' },
@@ -102,6 +103,26 @@ export function ServicioCard({ indicador, formatea, resultado, competencia }) {
           <Pill tone={TIER_TONE[i.tier] ?? 'neutral'}>{t(`eficiencia.tier.${i.tier}`)}</Pill>
         </div>
       </div>
+
+      {/* Un hecho sobre lo que el ayuntamiento declaró, sin plegar. Vivía en
+          `caveats`, dentro del desplegable, y era la clase de frase que se lee
+          una vez y se salta nueve: que la fuente traiga casilla de viajeros y
+          aquí vaya a cero mientras 22 comparables la rellenan no es un matiz
+          del cociente, es lo que la ficha tiene que contar. */}
+      {i.avisoDeclaracion && (
+        <p
+          style={{
+            margin: '10px 0 0',
+            paddingLeft: 10,
+            borderLeft: '3px solid var(--warn)',
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70, var(--ink50))',
+            maxWidth: '62ch',
+          }}
+        >
+          {i.avisoDeclaracion}
+        </p>
+      )}
 
       {i.valor !== null ? (
         <>
@@ -208,6 +229,14 @@ export function ServicioCard({ indicador, formatea, resultado, competencia }) {
           {/* La tarjeta bloqueada no tiene cifra ni banda, así que aquí `que`
               ES el contenido: por qué no hay cociente. */}
           <Lectura lectura={lectura} conAvisos={false} />
+
+          {/* Y quién cobra. «Está concedido» explica por qué la celda está
+              vacía, pero deja al lector con la mitad: la otra mitad es a quién
+              se le paga y hasta cuándo. Sin esto, la ficha se lee como un dato
+              que falta en vez de como lo que es —el dinero de este servicio no
+              cruza los libros del ayuntamiento porque lo cobra otro del recibo
+              del vecino—. */}
+          <Concesion concesion={i.concesion} />
         </div>
       )}
 

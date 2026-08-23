@@ -220,6 +220,13 @@ export interface Indicador {
   /** `null` cuando no hay entregas suficientes para afirmar nada. */
   declaracion: DeclaracionIndicador | null
   caveats: string[]
+  /**
+   * Un hecho sobre la declaración del ayuntamiento que la ficha enseña SIN
+   * plegar. Copiado del registro; ver `ServicioDef.avisoDeclaracion`.
+   */
+  avisoDeclaracion?: string
+  /** Quién presta el servicio concedido, con su expediente. Ver el registro. */
+  concesion?: ServicioDef['concesion']
   citas: { url: string; entrega: number }[]
 }
 
@@ -814,6 +821,8 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       serie,
       declaracion,
       caveats,
+      ...(def.avisoDeclaracion ? { avisoDeclaracion: def.avisoDeclaracion } : {}),
+      ...(def.concesion ? { concesion: def.concesion } : {}),
       citas: [{ url: citaUrl, entrega: anioBase }],
     })
   }
