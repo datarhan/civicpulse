@@ -1,0 +1,184 @@
+/**
+ * BORME — la sección de empresarios de una provincia, convertida en filas.
+ *
+ * ## Por qué existe, si estaba declarado imposible
+ *
+ * `.claude/skills/biografia-concejal/SKILL.md` llevaba tiempo declarando que
+ * BORME no tenía camino libre estructurado: «buscar/borme.php 404, libreborme
+ * Cloudflare-walled, engines don't index it». Las tres cosas siguen siendo
+ * ciertas — y la conclusión ya no, porque la API de datos abiertos del BOE sirve
+ * el sumario de BORME en JSON y desde ahí se llega al texto de cada sección
+ * provincial. Una limitación declarada que ha dejado de ser cierta es peor que
+ * no tenerla: hace que nadie vuelva a intentarlo.
+ *
+ * ## Qué NO hace este módulo
+ *
+ * No interpreta. Saca los pares «etiqueta: valor» tal como vienen y los deja
+ * ahí, junto al texto verbatim del anuncio. Quién es administrador y quién
+ * apoderado, qué significa un cese o si dos nombres son la misma persona, lo
+ * decide un curador al firmar la ficha — como en `competencias.ts`. Un parser
+ * que dedujera cargos publicaría inferencias sobre personas vivas con la misma
+ * tipografía que los hechos.
+ *
+ * Módulo PURO, sin red: la descarga vive en `borme-fetch.ts`, como en el par
+ * `bop.ts` / `bop-fetch.ts`.
+ *
+ * ## La gramática, que es más regular de lo que parece
+ *
+ *   <h5 class="articulo">232200 - HIDRAQUA, GESTION INTEGRAL … SA.</h5>
+ *   <p class="parrafo">Revocaciones. Apoderado: LOPEZ RODRIGUEZ JOSE IRENEO.
+ *     Apo.Sol.: CAMARERO FERNANDEZ MARIA ESTHER.  Datos registrales.
+ *     S 8 , H A 44577, I/A 238 ( 8.05.26).</p>
+ *
+ * El truco para partir los pares es que **los valores van en mayúsculas y las
+ * etiquetas no**. No se puede cortar por el punto: las etiquetas los llevan
+ * dentro («Apo.Man.Soli:», «Adm. Unico:»). Así que el valor se lee mientras la
+ * letra sea mayúscula y se corta en cuanto aparece una minúscula, que sólo puede
+ * ser el comienzo de la etiqueta siguiente.
+ */
+
+/** Un par «etiqueta: valor» del cuerpo del anuncio. */
+export interface CampoBorme {
+  /** «Apoderado», «Adm. Unico», «Socio único». Como lo escribe el BORME. */
+  etiqueta: string
+  /** El valor entero, verbatim, con sus «;» si trae varios. */
+  valor: string
+  /** El mismo valor partido por «;», que es como el BORME separa titulares. */
+  valores: string[]
+}
+
+/** El identificador que hace citable un anuncio: sección, hoja e inscripción. */
+export interface DatosRegistrales {
+  seccion: string
+  /** «A 44577» — letra de registro y número de hoja. */
+  hoja: string
+  inscripcion: string
+  /** Tal como viene, «8.05.26». No se normaliza: es lo que cita la ficha. */
+  fecha: string
+}
+
+export interface AnuncioBorme {
+  numero: number
+  denominacion: string
+  campos: CampoBorme[]
+  datosRegistrales: DatosRegistrales | null
+  /** El párrafo entero sin etiquetas HTML. Lo que se cita es esto. */
+  texto: string
+}
+
+const desetiquetar = (s: string): string =>
+  s
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&aacute;/g, 'á')
+    .replace(/&eacute;/g, 'é')
+    .replace(/&iacute;/g, 'í')
+    .replace(/&oacute;/g, 'ó')
+    .replace(/&uacute;/g, 'ú')
+    .replace(/&ntilde;/g, 'ñ')
+    .replace(/&Aacute;/g, 'Á')
+    .replace(/&Eacute;/g, 'É')
+    .replace(/&Iacute;/g, 'Í')
+    .replace(/&Oacute;/g, 'Ó')
+    .replace(/&Uacute;/g, 'Ú')
+    .replace(/&Ntilde;/g, 'Ñ')
+    .replace(/&quot;/g, '"')
+    .replace(/\s+/g, ' ')
+    .trim()
+
+/** `S 8 , H A 44577, I/A 238 ( 8.05.26).` */
+function leerDatosRegistrales(texto: string): DatosRegistrales | null {
+  const m = texto.match(
+    /Datos registrales\.\s*S\s*(\d+)\s*,\s*H\s*([A-Z]{1,3}\s*\d+)\s*,\s*I\/A\s*(\d+)\s*\(\s*([\d.]+)\s*\)/i,
+  )
+  if (!m) return null
+  return {
+    seccion: m[1],
+    hoja: m[2].replace(/\s+/g, ' ').trim(),
+    inscripcion: m[3],
+    fecha: m[4],
+  }
+}
+
+/**
+ * Los pares «etiqueta: valor» del cuerpo.
+ *
+ * El valor arranca tras los dos puntos y termina donde aparece la primera
+ * minúscula, porque los valores del BORME son nombres en mayúsculas y las
+ * etiquetas siempre traen alguna minúscula. Luego se recorta la cola hasta el
+ * último punto, que es el separador real entre un par y el siguiente.
+ */
+function leerCampos(cuerpo: string): CampoBorme[] {
+  const out: CampoBorme[] = []
+  const re = /([^.:;]*(?:\.[^\s.:;][^.:;]*)*)\s*:\s*/g
+  let m: RegExpExecArray | null
+  while ((m = re.exec(cuerpo)) !== null) {
+    const etiqueta = m[1].replace(/^[\s.;]+/, '').trim()
+    if (!etiqueta) continue
+    const desde = m.index + m[0].length
+    const resto = cuerpo.slice(desde)
+
+    // Hasta la primera minúscula: ahí empieza la etiqueta siguiente.
+    const min = resto.search(/[a-záéíóúñ]/)
+    let bruto = min === -1 ? resto : resto.slice(0, min)
+    // Y retrocede al último punto, que cierra el valor de verdad.
+    const punto = bruto.lastIndexOf('.')
+    if (punto !== -1) bruto = bruto.slice(0, punto)
+
+    const valor = bruto
+      .replace(/\s+/g, ' ')
+      .replace(/[\s;,]+$/, '')
+      .trim()
+    if (!valor) continue
+    out.push({
+      etiqueta,
+      valor,
+      valores: valor
+        .split(';')
+        .map((v) => v.trim())
+        .filter(Boolean),
+    })
+    re.lastIndex = desde
+  }
+  return out
+}
+
+/**
+ * Todos los anuncios de una sección provincial.
+ *
+ * Ancla en `h5.articulo` + el `p.parrafo` que le sigue, que es la estructura que
+ * el BOE emite de forma estable. Un anuncio sin párrafo se descarta: sin cuerpo
+ * no hay nada que citar.
+ */
+export function parseBormeSeccion(html: string): AnuncioBorme[] {
+  const out: AnuncioBorme[] = []
+  const re =
+    /<h5[^>]*class="articulo"[^>]*>([\s\S]*?)<\/h5>\s*<p[^>]*class="parrafo"[^>]*>([\s\S]*?)<\/p>/g
+  let m: RegExpExecArray | null
+  while ((m = re.exec(html)) !== null) {
+    const cabecera = desetiquetar(m[1])
+    const cuerpo = desetiquetar(m[2])
+    const enc = cabecera.match(/^(\d+)\s*-\s*(.+?)\.?$/)
+    if (!enc) continue
+    out.push({
+      numero: Number(enc[1]),
+      denominacion: enc[2].trim(),
+      campos: leerCampos(cuerpo),
+      datosRegistrales: leerDatosRegistrales(cuerpo),
+      texto: cuerpo,
+    })
+  }
+  return out
+}
+
+/** Los anuncios cuya denominación contiene el texto buscado, sin acentos ni caja. */
+export function filtrarPorEmpresa(anuncios: AnuncioBorme[], busqueda: string): AnuncioBorme[] {
+  const norm = (s: string) =>
+    s
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toUpperCase()
+  const q = norm(busqueda)
+  return anuncios.filter((a) => norm(a.denominacion).includes(q))
+}
