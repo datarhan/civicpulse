@@ -1,5 +1,7 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
+import { FichaSociedad } from '../../components/reportajes/FichaSociedad'
+import { useSociedades, indexarSociedades } from '../../hooks/useSociedades'
 
 const SERIF = "'Fraunces', Georgia, serif"
 
@@ -394,6 +396,7 @@ function Cronologia({ cronologia }) {
 
 export default function CosteEfectivo() {
   const { loading, error, data } = useReportaje('coste-efectivo')
+  const { data: sociedades } = useSociedades()
 
   if (loading)
     return (
@@ -410,6 +413,7 @@ export default function CosteEfectivo() {
 
   const m = data.meta
   const c = data.concesion
+  const ficha = indexarSociedades(sociedades).get('hidraqua')
   const cong = data.congelados
   const inf = data.inflacion
 
@@ -560,6 +564,14 @@ export default function CosteEfectivo() {
       <P>
         {data.cronologia.loQueNoConsta} {c.formalizacion}
       </P>
+
+      {/* Y quién es la empresa. Va aquí, cerrando la sección de la
+          adjudicación, porque la pregunta «¿a quién se le ha dado esto?» nace
+          justo de haber leído por cuánto y hasta cuándo. Cada dato lleva el
+          anuncio del BORME que lo sostiene: el precedente es el bloque de
+          basuras, y el motivo es que una respuesta documentada es la que el
+          lector puede ir a comprobar sin fiarse de nosotros. */}
+      <FichaSociedad sociedad={ficha} />
 
       <SecHead num="02" kicker="Lo que no se ve" title="El coste oficial del agua es cero" />
       <P>

@@ -1,0 +1,98 @@
+{
+  "generatedAt": "2026-08-23T00:00:00.000Z",
+  "metodo": "Barrido de la sección de empresarios del BORME (Registro Mercantil de Alicante) entre el 1 de enero de 2022 y el 23 de agosto de 2026, con `npm run scrape:borme`: 1.696 días pedidos, 1.049 secciones leídas y 101.767 anuncios recorridos, de los que 31 corresponden a esta sociedad. El CIF sale del expediente de contratación, no del BORME, que no lo publica. Cada dato de abajo lleva el anuncio del que sale y su texto literal; lo que no aparece en un anuncio concreto no se publica y consta en «límites». Las ocho citas de esta ficha se comprobaron literales contra su fuente el 23 de agosto de 2026: se descargó cada URL y se buscó el texto citado dentro.",
+  "sociedades": [
+    {
+      "id": "hidraqua",
+      "denominacion": "HIDRAQUA, GESTIÓN INTEGRAL DE AGUAS DE LEVANTE, S.A.",
+      "porQueAparece": "Es la adjudicataria de la concesión del abastecimiento de agua potable, el alcantarillado, el control de vertidos y la depuración de Riba-roja de Túria, adjudicada el 6 de agosto de 2026 por 55.685.178,79 € y vigente hasta 2043.",
+      "cif": {
+        "valor": "A53223764",
+        "fuente": {
+          "referencia": "Expediente 55V/2024 (SIGA 6418/2024/GEN) · Plataforma de Contratación del Sector Público",
+          "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RR%2FbMyphbH170UvEyYJSGw%3D%3D",
+          "fecha": "2024-12-12",
+          "cita": "a favor de HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE SA con CIF A53223764 (55V/2024 – SIGA 6418/2024/GEN)"
+        }
+      },
+      "hojaRegistral": {
+        "registro": "Registro Mercantil de Alicante",
+        "hoja": "A 44577",
+        "seccion": "8",
+        "tomo": "4541",
+        "folio": "19",
+        "fuente": {
+          "referencia": "BORME-A-2023-237-03 · sección de Alicante",
+          "url": "https://www.boe.es/diario_borme/txt.php?id=BORME-A-2023-237-03",
+          "fecha": "2023-12-15",
+          "cita": "Datos registrales. T 4541 , F 19, S 8, H A 44577, I/A 219 ( 7.12.23)."
+        }
+      },
+      "socioUnico": {
+        "valor": "AGBAR SL",
+        "fuente": {
+          "referencia": "BORME-A-2023-237-03 · inscripción 219",
+          "url": "https://www.boe.es/diario_borme/txt.php?id=BORME-A-2023-237-03",
+          "fecha": "2023-12-15",
+          "cita": "Declaración de unipersonalidad. Socio único: AGBAR SL."
+        }
+      },
+      "presidencia": {
+        "valor": "Fernando Domingo Tallarico Merlino",
+        "fuente": {
+          "referencia": "BORME-A-2026-156-03 · inscripción 239",
+          "url": "https://www.boe.es/diario_borme/txt.php?id=BORME-A-2026-156-03",
+          "fecha": "2026-08-14",
+          "cita": "Otros conceptos: FERNANDO DOMINGO TALLARICO, consejero y presidente del consejo de administración, ha cambiado su nombre, siendo el actual FERNANDO DOMINGO TALLARICO MERLINO."
+        }
+      },
+      "auditor": {
+        "valor": "Ernst & Young, S.L.",
+        "fuente": {
+          "referencia": "BORME-A-2026-43-03 · inscripción 237",
+          "url": "https://www.boe.es/diario_borme/txt.php?id=BORME-A-2026-43-03",
+          "fecha": "2026-03-04",
+          "cita": "Reelecciones. Auditor: ERNST & YOUNG SL."
+        }
+      },
+      "hechos": [
+        {
+          "que": "La sociedad pasó a tener un solo dueño el 7 de diciembre de 2023.",
+          "fuente": {
+            "referencia": "BORME-A-2023-237-03 · inscripción 219",
+            "url": "https://www.boe.es/diario_borme/txt.php?id=BORME-A-2023-237-03",
+            "fecha": "2023-12-15",
+            "cita": "Declaración de unipersonalidad. Socio único: AGBAR SL."
+          }
+        },
+        {
+          "que": "Cuatro meses antes había cambiado su presidencia.",
+          "fuente": {
+            "referencia": "BORME-A-2023-142-03 · inscripción 216",
+            "url": "https://www.boe.es/diario_borme/txt.php?id=BORME-A-2023-142-03",
+            "fecha": "2023-07-27",
+            "cita": "Ceses/Dimisiones. Consejero: MARTINEZ GARCIA MARIA ASUNCION. Presidente: MARTINEZ GARCIA MARIA ASUNCION."
+          }
+        },
+        {
+          "que": "En diciembre de 2024 amplió su objeto social para incluir la asesoría y la asistencia técnica a la gestión del ciclo integral del agua.",
+          "fuente": {
+            "referencia": "BORME-A-2024-246-03 · inscripción 227",
+            "url": "https://www.boe.es/diario_borme/txt.php?id=BORME-A-2024-246-03",
+            "fecha": "2024-12-23",
+            "cita": "Ampliación del objeto social. 3. La prestación de servicios de asesoría, asistencia técnica a la gestión del ciclo integral del agua, consultoría y gestión económica-financiera, administrativa, laboral y recursos humanos, jurídica"
+          }
+        }
+      ],
+      "limites": [
+        "Tener un socio único, un consejo de administración numeroso o muchos apoderados no es una irregularidad: es la forma societaria normal de una empresa de este tamaño. Esta ficha dice quién es la sociedad, no la juzga.",
+        "Quién está detrás de AGBAR SL no se establece aquí. Es otra sociedad, inscrita en otro registro, y averiguar su propiedad exige una búsqueda registral que esta pieza no ha hecho. Se publica el socio único que consta inscrito, y nada más.",
+        "El capital social y el domicilio no se publican porque no aparecen en ninguno de los anuncios del periodo barrido. Constan en agregadores mercantiles, pero un agregador no es la fuente: es alguien que la copió, y aquí sólo se cita lo comprobable.",
+        "El barrido cubre de 2022 a 2026. Los hechos inscritos antes de 2022 —la constitución, cambios de denominación, ampliaciones de capital anteriores— no se han revisado, así que la ficha no describe la historia completa de la sociedad.",
+        "Cada dato describe lo que consta en su última inscripción publicada, no necesariamente la situación de hoy: entre una inscripción y su publicación en el BORME pasan días, y después puede haber cambios aún no inscritos.",
+        "Los cambios de cargos de esta sociedad son frecuentes —23 de los 31 anuncios del periodo son nombramientos, ceses o revocaciones, uno cada dos meses de media—, así que ninguno se presenta aquí como llamativo por su fecha."
+      ],
+      "firmadoEl": "2026-08-23"
+    }
+  ]
+}
