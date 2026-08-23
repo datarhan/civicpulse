@@ -105,6 +105,20 @@ export default function AvisoLegal() {
           no quién lo decidió.
         </p>
         <p>
+          <strong>Junto a cada cifra sí decimos quién responde de ese servicio</strong>, y eso es
+          una cosa distinta de lo anterior. El Ayuntamiento publica en su portal de transparencia
+          qué áreas tiene delegada cada concejal; nosotros republicamos esa atribución al lado del
+          servicio que le corresponde, para que quien quiera preguntar sepa a quién dirigirse. No
+          afirma que la cifra sea responsabilidad personal de nadie —un coste por efectivo de
+          policía es un precio, no un rendimiento—, y la advertencia sobre cómo se lee cada número
+          va en la misma tarjeta que el nombre. Cuando el enlace entre el área delegada y el
+          servicio lo hacemos nosotros, y no el Ayuntamiento con sus propias palabras, la tarjeta lo
+          marca y explica por qué. Si ningún área delegada nombra un servicio, no se atribuye a
+          nadie: se dice que no consta. La lista está firmada y congelada —no la reescribe ningún
+          proceso automático— y una comprobación avisa antes de cada despliegue si el reparto de
+          áreas ha cambiado.
+        </p>
+        <p>
           Ninguna ficha afirma una causa, y en particular ninguna afirma mala gestión, despilfarro
           ni irregularidad. Que una cifra se salga de su banda es una pregunta con los números
           puestos: puede responder a una diferencia real de coste, a una decisión legítima, o a que
@@ -125,9 +139,13 @@ export default function AvisoLegal() {
           la empresa concesionaria del servicio o el ministerio pueden remitir una respuesta
           literal, que se publica íntegra junto a la ficha. Lo mismo vale para las{' '}
           <strong>preguntas registradas</strong> al pie de los dos paneles: cada una se dirige a una
-          institución, y su respuesta se publica íntegra junto a la pregunta que contesta. Las vías
-          y los plazos son los mismos descritos más arriba. Todo el proceso se detiene durante el
-          periodo electoral (LOREG art. 50).
+          institución, y su respuesta se publica íntegra junto a la pregunta que contesta. Quien
+          aparezca nombrado como titular de una competencia delegada tiene además{' '}
+          <strong>su propia vía de réplica, a título personal</strong>, por si la atribución es
+          incorrecta, el reparto de áreas ha cambiado o quiere explicar la cifra; su respuesta se
+          publica íntegra igual. Las vías y los plazos son los mismos descritos más arriba. Todo el
+          proceso se detiene durante el periodo electoral (LOREG art. 50), y durante esa ventana los
+          nombres desaparecen de las dos páginas.
         </p>
       </Card>
 

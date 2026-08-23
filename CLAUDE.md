@@ -248,8 +248,11 @@ Five surfaces make claims about named elected officials: `/promesas`,
 any change to them as legally material. The rules below are encoded in schema
 validators and CLIs — if you find yourself working around one, stop.
 
-`/eficiencia` and its sibling `/gestion` are the sixth legally material surface
-and the only ones that name **nobody**. They are one feature split by SOURCE —
+`/eficiencia` and its sibling `/gestion` are the sixth legally material surface.
+They used to be the only ones that named **nobody**; since 2026-08-23 they name
+the holder of the delegated competence beside each ficha, and the line moved
+rather than disappeared — see **competence, not blame** below. They are one
+feature split by SOURCE —
 `/eficiencia` is everything from the _coste efectivo_ return, `/gestion` is the
 PMP series, CONPREL, the contractor profile and the execution statement — behind
 one flag, sharing `eficiencia-findings.json`; each ficha renders on the page
@@ -258,13 +261,32 @@ where its indicator lives, and every municipal indicator declares its own
 a service's unit cost or a municipal process, so
 `eficiencia-finding.ts` has no field for a person and actively rejects
 `pleno-finding.ts`'s (`individualSpeaker`, `speakerGroup`, `quotes`, `severity`)
-in case a row is ever copied across. Right of reply is institutional —
-ayuntamiento / intervención / concesionario / ministerio. Keep it that way: a
-unit cost hung on a named councillor is a materially different claim from one
-hung on a service, and only the second is what the ministry's return supports.
-Three younger pieces follow the same institutional-only rule: service cards
+in case a row is ever copied across. A finding's right of reply is
+institutional — ayuntamiento / intervención / concesionario / ministerio. Keep
+it that way: a unit cost hung on a named councillor is a materially different
+claim from one hung on a service, and only the second is what the ministry's
+return supports.
+
+**Competence, not blame.** What the pages now name, in `competencias.json`, is
+who holds the delegated competence — republishing what the council itself puts
+on its transparency portal, so a reader knows who to ask. That is not the same
+claim as the finding, and the split is load-bearing: the signed ficha still
+cannot name a person, and the tier caveat renders in the same card as the name,
+so «81.964,66 €/efectivo» never appears beside a councillor without its «es un
+precio y no un rendimiento». The schema has **no field where a judgement fits**,
+and its validator rejects `pleno-finding.ts`'s fields and any valoración-shaped
+key. Three more rules, each with a scar behind it: the map is **curated and
+frozen** because `officials.json` is scraped nightly and a cron must never
+change which living person sits beside a published figure (`check:competencias`
+reds instead, four outcomes); each row declares `literal` or `editorial` and an
+editorial one needs its `razon`, because a jump we made is not a jump the
+council made; and a service no portfolio names gets `sinAsignar` with a motive,
+never a guess — naming by elimination is the `Otro` sentinel again. Named people
+get a personal right of reply, and the LOREG freeze hides the whole layer.
+Naming is **not** regrouping: service cards
 group under functional `AREAS` declared per-service in the registry (never
-concejalías — that mapping would put a unit cost one click from a named cargo);
+concejalías — grouping by cargo would make the page a scoreboard of people,
+which is a stronger claim than «this is who answers»);
 `eficiencia-preguntas.json` is hand-curated (reportaje class, PR-reviewed; its
 validator rejects person-shaped fields and any «pregunta» that is not
 interrogative); and the reportaje's infographic is served frozen from
@@ -327,7 +349,8 @@ distinguishable from a map with nothing to say.
 `pleno-votes.json`, `pleno-findings.json`, `journalist-reports.json`,
 `quejas-responses.json`, `sindic.json`, `dedicaciones.json`, `plantilla.json`,
 `place-overrides.json`, `entity-overrides.json`, `eficiencia-findings.json`,
-`eficiencia-preguntas.json`, `pleno-claim-reclassifications.json`.
+`eficiencia-preguntas.json`, `pleno-claim-reclassifications.json`,
+`competencias.json`.
 Route algorithmic output through the curator CLI so the validator and git
 history stay authoritative. The full list and its CLIs: `docs/DATA_SOURCES.md`.
 
