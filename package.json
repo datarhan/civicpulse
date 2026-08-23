@@ -128,6 +128,7 @@
     "refresh:curate-queue": "npx tsx scripts/refresh-curate-queue.ts",
     "refresh:gh-issues": "npx tsx scripts/refresh-finding-issues.ts",
     "finding-reply": "npx tsx scripts/apply-finding-response.ts",
+    "competencia-reply": "npx tsx scripts/apply-competencia-response.ts",
     "llm:cost": "npx tsx scripts/llm-cost-report.ts",
     "ifcn:cadence": "npx tsx scripts/ifcn-cadence.ts",
     "journalist:assign": "npx tsx scripts/journalist-assign.ts",
