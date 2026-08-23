@@ -343,6 +343,19 @@ export const SERVICIOS: Record<string, ServicioDef> = {
     caveats: [],
     // Sube de `caveats` a la vista: no es un matiz de cómo se lee el cociente,
     // es lo que el ayuntamiento dejó sin declarar teniendo casilla para ello.
+    //
+    // DE DÓNDE SALE EL 22, porque no se puede recotejar contra lo que
+    // publicamos: `scrape-coste-efectivo` PODA las unidades de los pares y deja
+    // sólo el denominador del registro (`podar`, para no triplicar el peso de un
+    // fichero que se sirve entero). La evidencia vive en el libro del ministerio,
+    // no en `coste-efectivo.json`. Recontado contra `.cache/cesel/ccaa` el
+    // 23-08-2026: de los 56 comparables con fila de transporte en la entrega de
+    // 2024, 22 declaran viajeros distintos de cero. Tres de esos 22 declaran 1, 1
+    // y 18 viajeros al año, que no pueden ser recuentos reales: por eso la frase
+    // dice «la rellenan» y no «tienen ese número de viajeros».
+    //
+    // Riba-roja sí la rellenó: 155.624 en 2015 y 2016, 120.000 en 2017 y 2018.
+    // Va a cero desde la entrega de 2019.
     avisoDeclaracion:
       'El divisor es la longitud de la red, no cuánta gente la usa: la fuente tiene una casilla de viajeros y este ayuntamiento la declara a cero, mientras 22 de sus comparables sí la rellenan.',
   },

@@ -48,8 +48,8 @@
           "destinatario": "Al Ayuntamiento y, en lo que le toca, al Consorci València Interior",
           "items": [
             {
-              "q": "¿Cuántos viajeros tuvo el transporte colectivo urbano en la última entrega rendida, y por qué esa casilla se declara a cero?",
-              "base": "La fuente tiene una casilla de viajeros al año; el ayuntamiento declara el gasto del servicio con esa casilla a cero, mientras 22 de sus municipios comparables sí la rellenan.",
+              "q": "¿Por qué dejó de declararse el número de viajeros del transporte urbano a partir de la entrega de 2019, si hasta la de 2018 se declaraban 120.000 al año?",
+              "base": "El ayuntamiento declaró 155.624 viajeros al año en las entregas de 2015 y 2016 y 120.000 en las de 2017 y 2018; desde la de 2019 la casilla va a cero en todas, mientras el gasto del servicio sí se actualiza cada entrega. En la de 2024, 22 de los 56 municipios comparables que declaran este servicio ponen una cifra distinta de cero.",
               "href": "/eficiencia#s-a4411-440p-coste-unitario"
             },
             {
