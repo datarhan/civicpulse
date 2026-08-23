@@ -25,6 +25,13 @@
  * Esto no lo puede arreglar este repositorio —el que escribe es ajeno—, pero sí
  * puede negarse a trabajar podado y decir cuánto le falta. Que es la diferencia
  * entre perder `docs/` y enterarse, y perderlo y no.
+ *
+ * El 23-08-2026 se quitó el disparador: `stripe` estaba instalado pero
+ * DESACTIVADO —de 38 plugins sólo tres lo están— y aun así su actualizador
+ * corría y podaba. Desinstalado, ningún plugin instalado usa ya una fuente
+ * `git-subdir`. Esta guarda se queda igualmente: quitar el disparador de hoy no
+ * es lo mismo que arreglar el fallo, y el siguiente plugin con esa clase de
+ * fuente lo devolvería sin avisar.
  */
 
 export interface EstadoWorktree {
