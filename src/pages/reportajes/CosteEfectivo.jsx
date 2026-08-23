@@ -394,6 +394,74 @@ function Cronologia({ cronologia }) {
   )
 }
 
+/* ---- Los contratos de emergencia de la DANA. Se publican por lo que dicen del
+        expediente parado, no por a quién se adjudicaron: por eso la nota de
+        cómo se leen va debajo y no plegada. ---- */
+function DuranteLaEspera({ bloque }) {
+  const b = bloque
+  return (
+    <>
+      <h3
+        style={{
+          fontFamily: SERIF,
+          fontSize: 'var(--fs-body)',
+          fontWeight: 600,
+          margin: '26px 0 0',
+        }}
+      >
+        {b.titulo}
+      </h3>
+      <P>{b.intro}</P>
+      <Figura
+        titulo={`Contratos de emergencia tras la DANA · ${b.fecha.split('-').reverse().join('-')}`}
+        pie={b.importeNota}
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          {b.contratos.map((c) => (
+            <div
+              key={c.objeto}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr auto',
+                gap: 10,
+                alignItems: 'baseline',
+                padding: '6px 0',
+                borderTop: '1px solid var(--border)',
+                fontSize: 'var(--fs-meta)',
+              }}
+            >
+              <span>{c.objeto}</span>
+              <span className="mono">{eur(c.importe)}</span>
+            </div>
+          ))}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr auto',
+              gap: 10,
+              alignItems: 'baseline',
+              paddingTop: 7,
+              borderTop: '2px solid var(--border)',
+              fontSize: 'var(--fs-meta)',
+              fontWeight: 650,
+            }}
+          >
+            <span>Total</span>
+            <span className="mono">{eur(b.total)}</span>
+          </div>
+        </div>
+      </Figura>
+      <P>{b.comoSeLee}</P>
+      <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '8px 0 0' }}>
+        Expediente {b.expediente} ·{' '}
+        <a href={b.url} target="_blank" rel="noreferrer noopener" style={{ color: 'var(--civic)' }}>
+          ficha en la Plataforma de Contratación ↗
+        </a>
+      </p>
+    </>
+  )
+}
+
 export default function CosteEfectivo() {
   const { loading, error, data } = useReportaje('coste-efectivo')
   const { data: sociedades } = useSociedades()
@@ -564,6 +632,14 @@ export default function CosteEfectivo() {
       <P>
         {data.cronologia.loQueNoConsta} {c.formalizacion}
       </P>
+
+      {/* Qué pasaba mientras el expediente estaba parado. Va DENTRO de la
+          sección de la cronología porque es lo que la cronología significa en
+          la práctica, no un hecho suelto sobre la empresa — y va con el
+          artículo 120 explicado, para que la vecindad entre «emergencia sin
+          concurso» y «concesión de 55,7 M€» no construya sola una frase que la
+          fuente no sostiene. */}
+      {data.duranteLaEspera && <DuranteLaEspera bloque={data.duranteLaEspera} />}
 
       {/* Y quién es la empresa. Va aquí, cerrando la sección de la
           adjudicación, porque la pregunta «¿a quién se le ha dado esto?» nace

@@ -311,5 +311,30 @@
     "Un denominador cuenta como congelado cuando sus últimas cuatro entregas o más traen el mismo valor hasta el cuarto decimal; repetir dos años es normal y no cuenta.",
     "Las variaciones en euros constantes usan la media anual del IPC general del INE con base en la entrega de 2024; las cifras exactas de cada servicio, con su celda de origen, están en /eficiencia.",
     "Las cifras de la primera versión de esta pieza quedaron congeladas el 16 de agosto de 2026 y no se han tocado; las que se añaden el 23 de agosto quedan congeladas a esa fecha. Si el ministerio revisa una entrega o el expediente avanza, la corrección se anota aquí, no se reescribe en silencio."
-  ]
+  ],
+  "duranteLaEspera": {
+    "titulo": "Lo que significan cinco años de suspensión",
+    "intro": "Mientras el concurso estaba parado, el servicio seguía prestándose y la red seguía rompiéndose. La DANA del 29 de octubre de 2024 dejó daños en el abastecimiento, en la depuración y en el saneamiento de pluviales, y el ayuntamiento contrató las reparaciones de urgencia con la empresa que ya operaba esa red: la misma cuyo relevo llevaba entonces tres años y medio congelado.",
+    "contratos": [
+      {
+        "objeto": "Actuaciones de emergencia del Servicio Municipal de Agua Potable",
+        "importe": 20665.6
+      },
+      {
+        "objeto": "Servicio de depuración de aguas",
+        "importe": 18628.03
+      },
+      {
+        "objeto": "Servicio municipal de saneamiento de pluviales",
+        "importe": 82140.36
+      }
+    ],
+    "total": 121433.99,
+    "totalConIva": 141992.1,
+    "fecha": "2024-12-12",
+    "expediente": "55V/2024 (SIGA 6418/2024/GEN), el mayor de los tres",
+    "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RR%2FbMyphbH170UvEyYJSGw%3D%3D",
+    "comoSeLee": "Los tres se formalizaron el 12 de diciembre de 2024 por tramitación de emergencia y negociado sin publicidad, con un solo licitador cada uno. Eso es lo que significa la tramitación de emergencia y no un indicio de nada: el artículo 120 de la Ley de Contratos la prevé precisamente para que una administración pueda reparar sin concurso cuando el daño ya está hecho, y quien tiene las cuadrillas y los planos de una red es quien la explota. Lo que estas cifras cuentan no es cómo se adjudicaron, sino qué se estaba haciendo mientras el expediente que debía renovar esa explotación llevaba años sin moverse.",
+    "importeNota": "Importes de adjudicación sin IVA, que es como los encabeza la ficha del expediente. Con IVA suman 141.992,10 €."
+  }
 }
