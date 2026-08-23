@@ -20,8 +20,13 @@
  * App.jsx—, no de una lista escrita a mano que se quedaría vieja.
  *
  *   npx tsx scripts/routes-for-changes.ts src/pages/Eficiencia.jsx
- *   git diff --name-only origin/main..HEAD | npx tsx scripts/routes-for-changes.ts --stdin
+ *   git diff --name-only origin/main...HEAD | npx tsx scripts/routes-for-changes.ts --stdin
  *   … --json   → { rutas, sinRuta, totalRutas }
+ *
+ * TRES puntos en ese rango. Con dos, `git diff` compara las dos PUNTAS y todo
+ * lo que haya avanzado main entra como si lo hubiera cambiado tu rama: medido,
+ * 10 rutas donde eran 2. Este ejemplo tenía dos y el gancho de pre-push lo
+ * copió tal cual.
  */
 import { readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
