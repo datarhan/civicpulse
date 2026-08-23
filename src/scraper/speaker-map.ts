@@ -34,7 +34,12 @@
 // restated: a write-off is stamped with the gate that made it, and a hand-copied
 // version string would keep every stale write-off alive through a prompt change.
 // `speaker-map-prompt` is a leaf — it imports nothing — so there is no cycle.
-import { SPEAKER_MAP_PROMPT_VERSION, SPEAKER_MAP_COVERAGE_FLOOR } from './speaker-map-prompt'
+import {
+  SPEAKER_MAP_PROMPT_VERSION,
+  SPEAKER_MAP_COVERAGE_FLOOR,
+  SPEAKER_MAP_THINKING_LEVEL,
+  type ThinkingLevel,
+} from './speaker-map-prompt'
 
 /**
  * How a piece of audio evidence connects to the speaker it identifies.
@@ -173,6 +178,20 @@ export interface SpeakerMap {
      * know. Absent means "unknown", and a caller must not read it as zero.
      */
     attemptedThisRun?: number
+    /**
+     * Peticiones que esta pasada mandó al modelo, reintentos incluidos.
+     *
+     * Es la unidad que la cuota mide y la única con la que se puede presupuestar
+     * una noche. Existía como contador dentro del proceso y moría con él, así
+     * que el nocturno restaba TROZOS de un techo de PETICIONES: los días 20 y 21
+     * de agosto de 2026 un trozo costó 3,0 llamadas —12 para 4, porque uno que
+     * falla se lleva sus tres intentos— contra un presupuesto dimensionado sobre
+     * 1,33.
+     *
+     * Opcional por el mismo motivo que `attemptedThisRun`: un mapa escrito antes
+     * de que existiera no lo sabe, y ausente significa «no consta», nunca cero.
+     */
+    apiCalls?: number
     /**
      * Share of the session's SPEECH the map recovered — measured against the
      * published transcript, not against the session's duration. Silence is not
@@ -681,15 +700,47 @@ export function usageFromSse(sse: string): ChunkUsage {
  */
 export const GIVE_UP_AFTER_ATTEMPTS = 3
 
+/**
+ * Por qué una pasada no llegó a un trozo. **Tres desenlaces, nunca dos.**
+ *
+ * Los tres son «incompleto» y sólo uno es un problema:
+ *
+ *   · `quota-exhausted`   — la API dijo 429. Hay que esperar al reinicio diario.
+ *   · `call-budget-spent` — la pasada se paró SOLA en su techo de peticiones.
+ *   · `chunk-budget-spent`— la pasada se paró sola en su techo de trozos.
+ *
+ * Doblar el segundo dentro del primero diría que la cuota murió cuando en
+ * realidad la noche terminó como debía; doblarlo dentro del tercero escondería
+ * cuál fue la unidad que mandó. Regla 3 de `DATA_INTEGRITY.md`: un centinela que
+ * vale para dos cosas ha dejado de decir cualquiera de las dos.
+ */
+export type RunEnding = 'quota-exhausted' | 'call-budget-spent' | 'chunk-budget-spent'
+
+export const NEVER_ATTEMPTED: Record<RunEnding, string> = {
+  'quota-exhausted': 'never attempted (quota exhausted earlier in the run)',
+  'call-budget-spent': 'never attempted (call budget spent; resumes next run)',
+  'chunk-budget-spent': 'never attempted (chunk budget spent; resumes next run)',
+}
+
 /** The pair of settings that decide whether a chunk passes. */
 export interface Gate {
   prompt: string
   floor: number
+  /**
+   * Nivel de razonamiento pedido al modelo. Tercer ingrediente desde el
+   * 23-ago-2026: tres de las cuatro retiradas de `10yl550` fueron
+   * `finishReason=MAX_TOKENS`, es decir el techo de salida agotado por el
+   * pensamiento — un ajuste de la PETICIÓN que decide si un chunk se puede leer
+   * tanto como lo deciden el prompt y el suelo. Ausente en los mapas escritos
+   * antes de existir, que por eso reabren una vez.
+   */
+  thinking?: ThinkingLevel
 }
 
-const CURRENT_GATE: Gate = {
+export const CURRENT_GATE: Gate = {
   prompt: SPEAKER_MAP_PROMPT_VERSION,
   floor: SPEAKER_MAP_COVERAGE_FLOOR,
+  thinking: SPEAKER_MAP_THINKING_LEVEL,
 }
 
 export interface FailedChunk {
@@ -708,7 +759,7 @@ export interface FailedChunk {
 }
 
 const sameGate = (a: Gate | undefined, b: Gate): boolean =>
-  a?.prompt === b.prompt && a?.floor === b.floor
+  a?.prompt === b.prompt && a?.floor === b.floor && a?.thinking === b.thinking
 
 /**
  * Fold this run's failure into what earlier runs recorded about the same chunk.

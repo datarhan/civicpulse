@@ -240,10 +240,18 @@ exit 0
   const tsxStub = `#!/bin/bash
 name=$(basename "$1" .ts)
 echo "[stub] ran $name"
+# Sonda de mantenimiento, no paso de la pasada: se responde ANTES de las trampas
+# del arnés. Si cayera dentro de ellas sería la primera llamada a tsx de la
+# noche y se llevaría el cambio de rama que otros reproductores necesitan.
+if [ "$name" = check-ytdlp-age ]; then
+  case " \${STUB_FAIL:-} " in *" $name "*) echo "[stub] $name FAILING" >&2; exit 1 ;; esac
+  exit 0
+fi
 if [ -n "\${STUB_STAGE_STRANGER:-}" ] && [ -e "\${STUB_STAGE_STRANGER}" ]; then
   git add -- "\${STUB_STAGE_STRANGER}" && echo "[stub] staged stranger \${STUB_STAGE_STRANGER}"
 fi
 ${SWITCH_SNIPPET}
+case " \${STUB_FAIL:-} " in *" $name "*) echo "[stub] $name FAILING" >&2; exit 1 ;; esac
 case "$name" in
   scrape-factcheck)        outs="factcheck.json" ;;
   extract-press-claims)    outs="press-claims-suggestions.json" ;;
@@ -780,7 +788,7 @@ describe('hallazgos-pipeline.sh · un backend caído no se lleva por delante los
       PATH: `${bin}:${process.env.PATH}`,
       LLM_BACKEND: 'claude-code',
       GEMINI_API_KEY: 'sandbox-key',
-      SPEAKER_MAP_BUDGET: '4',
+      SPEAKER_MAP_CALL_BUDGET: '4',
     }
   }
 
@@ -848,7 +856,7 @@ describe('hallazgos-pipeline.sh · los mapas de hablantes entran en el commit', 
   const MAPA = 'pleno-speaker-map/sandboxpleno.json'
 
   function conMapa(dir: string): Record<string, string> {
-    return { GEMINI_API_KEY: 'sandbox-key', SPEAKER_MAP_BUDGET: '4' }
+    return { GEMINI_API_KEY: 'sandbox-key', SPEAKER_MAP_CALL_BUDGET: '4' }
   }
 
   it('comitea el mapa cuando es lo ÚNICO que ha cambiado esa noche', () => {
@@ -1004,5 +1012,41 @@ describe('cron pipelines · un .git/index.lock ajeno no puede tragarse el commit
     expect(sucio, 'la pasada perdió su trabajo además de no publicarlo').toContain(
       'press-link-rot.json',
     )
+  }, 120_000)
+})
+
+/**
+ * Un aviso de mantenimiento no puede costar una noche.
+ *
+ * `check-ytdlp-age` existe porque yt-dlp caduca en el calendario de YouTube: del
+ * 19 al 23-ago-2026 el barrido de mapas gastó 0 de sus 20 peticiones diarias con
+ * un binario de 46 días, y la avería se veía sólo en la descarga del medio —los
+ * metadatos resolvían— así que la única pasada que aún tocaba YouTube seguía en
+ * verde.
+ *
+ * Pero el remedio nació con el defecto que más importa aquí: bajo
+ * `set -euo pipefail`, un preflight que sale !=0 aborta la pasada. Al escribirlo
+ * tumbó 9 pruebas de este mismo fichero — el stub del sandbox no conocía el paso
+ * y salía 99. La segunda prueba de abajo es ese fallo, inyectado a propósito.
+ */
+describe('hallazgos-pipeline.sh · el aviso de yt-dlp no puede tumbar la noche', () => {
+  const BASE = { GEMINI_API_KEY: 'sandbox-key', SPEAKER_MAP_CALL_BUDGET: '4' }
+
+  // Sin esto el paso podría no ejecutarse nunca y las dos pruebas seguirían
+  // verdes: comprobar que algo NO rompe es gratis si ese algo no corre.
+  it('ejecuta la comprobación de edad antes de ponerse a trabajar', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', BASE)
+    expect(r.log, 'el preflight de yt-dlp no llegó a ejecutarse').toMatch(/check-ytdlp-age/)
+  }, 120_000)
+
+  it('sigue adelante cuando esa comprobación falla', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...BASE,
+      STUB_FAIL: 'check-ytdlp-age',
+    })
+    expect(r.log, 'el fallo inyectado no se dio').toMatch(/check-ytdlp-age FAILING/)
+    expect(r.log, 'la pasada murió en un aviso de mantenimiento').toMatch(/speaker-map/i)
   }, 120_000)
 })

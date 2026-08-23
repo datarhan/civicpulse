@@ -128,6 +128,19 @@ export WHISPER_ENGINE="${WHISPER_ENGINE:-openai}"
 
 log "starting · MAX_PLENOS=$MAX_PLENOS · llm=$LLM_BACKEND/${CLAUDE_CODE_MODEL:-$AGY_MODEL} · whisper=$WHISPER_ENGINE · blocklist=[${TRANSCRIBE_BLOCKLIST:-none}]"
 
+# yt-dlp caduca en el calendario de YouTube, no en el nuestro, y su versión ES su
+# fecha. Avisa, nunca bloquea: un binario viejo casi siempre funciona, y un aviso
+# que puede tumbar la noche es uno que alguien acaba quitando. Sale 0 pase lo que
+# pase. Del 19 al 23-ago-2026 esta línea habría ahorrado cuatro noches muertas —
+# los metadatos resolvían y sólo el medio devolvía 403, así que la única pasada
+# que aún tocaba YouTube (`scrape-pleno-videos`, sólo metadatos) seguía en verde y
+# tapaba la avería.
+# `|| true` no es decorativo: bajo `set -euo pipefail` un aviso que sale !=0
+# —el binario ausente, el script movido, un stub que no lo conoce— se lleva la
+# noche entera por delante. Una comprobación de mantenimiento que puede tumbar
+# la pasada es peor que no tenerla, y esto ya rompió 9 pruebas al escribirlo.
+npx tsx scripts/check-ytdlp-age.ts 2>&1 | while IFS= read -r l; do log "$l"; done || true
+
 # ---- always start from origin -----------------------------------------
 # cron_git_pull_rebase, not a bare pull: the lock, the .env and the `claude -p`
 # probe above are seconds of window since the branch guard, and on the wrong
@@ -254,39 +267,46 @@ fi
 # No $0 fallback exists for this step. claude-code cannot take audio (`claude -p`
 # has no attachment path), and a text model handed an audio job with no audio
 # invents a plausible map. A 429 therefore stops the run; it never degrades.
-# 14, not 18, and the difference is measured. The 2026-08-15 probe needed 4
-# calls for 3 chunks — one retry, n=3, so weak evidence but the only evidence
-# there is. At ~1.33 calls a chunk, 18 chunks asks for ~24 calls against a
-# 20-request quota, so EVERY night would end on a 429 instead of on its budget.
-# That is not harmful in itself (it is recorded as `quota-exhausted` and
-# resumes) but it makes "the quota ran out" the normal ending, and then a quota
-# that genuinely dies at chunk 3 — because something else drank it — reads
-# exactly the same. Rule 3 of DATA_INTEGRITY: a sentinel that is also the
-# ordinary case has stopped saying anything. Raise it only with a fresh
-# measurement of the retry rate.
-SPEAKER_MAP_BUDGET="${SPEAKER_MAP_BUDGET:-14}"
-if [ "$SPEAKER_MAP_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
+# El techo se cuenta en PETICIONES, no en trozos, porque es lo que la cuota mide.
+#
+# Hasta el 23-ago-2026 eran 14 TROZOS, dimensionados sobre ~1,33 llamadas por
+# trozo (sonda del 15-ago, n=3). La medición que faltaba llegó sola: los días 20 y
+# 21 de agosto la pasada gastó **12 llamadas para 4 trozos — 3,0 por trozo**,
+# porque un trozo que falla se lleva sus tres intentos. A ese ritmo 14 trozos
+# piden ~42 peticiones contra una cuota de 20, así que la noche terminaba en un
+# 429 en vez de en su presupuesto — y entonces una cuota que muere de verdad en el
+# trozo 3, porque otro proceso se la bebió, se lee exactamente igual. Regla 3 de
+# DATA_INTEGRITY: un centinela que además es el caso corriente ha dejado de decir
+# nada.
+#
+# 16 de 20 deja margen para que el 429 siga siendo la excepción. Contando en la
+# unidad correcta ya no hay que reestimar el techo cada vez que cambia la tasa de
+# reintentos: una noche mala hace menos trozos, no más peticiones.
+SPEAKER_MAP_CALL_BUDGET="${SPEAKER_MAP_CALL_BUDGET:-16}"
+if [ "$SPEAKER_MAP_CALL_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
   MAP_TARGETS=$(npm run --silent speaker-map:backlog 2>/dev/null || true)
   if [ -n "$MAP_TARGETS" ]; then
-    REMAINING="$SPEAKER_MAP_BUDGET"
+    REMAINING="$SPEAKER_MAP_CALL_BUDGET"
     MAPPED=0
     PARTIAL=$(npm run --silent speaker-map:backlog -- --why 2>/dev/null | grep -c parcial || true)
-    log "speaker-map backlog: $(echo "$MAP_TARGETS" | wc -l | tr -d ' ') session(s) unfinished ($PARTIAL of them partial, resuming) · budget ${SPEAKER_MAP_BUDGET} chunk(s)"
+    log "speaker-map backlog: $(echo "$MAP_TARGETS" | wc -l | tr -d ' ') session(s) unfinished ($PARTIAL of them partial, resuming) · budget ${SPEAKER_MAP_CALL_BUDGET} call(s)"
     while IFS= read -r mid; do
       [ -z "$mid" ] && continue
       if [ "$REMAINING" -le 0 ]; then
-        log "speaker-map budget spent — remaining backlog deferred to the next run"; break
+        log "speaker-map call budget spent — remaining backlog deferred to the next run"; break
       fi
-      log "speaker map for $mid (up to ${REMAINING} chunk(s))…"
-      if npm run extract:speaker-map -- "$mid" --chunks "$REMAINING"; then
-        # What the run COST, not what the map now holds. chunksTranscribed
-        # counts chunks carried forward for free, so subtracting it charged a
-        # session resuming at 16/17 a full 17 against an 18-chunk budget and
-        # stopped the loop before it reached the next session. Falls back to
-        # chunksTranscribed only for maps written before the field existed —
-        # `?? ` and not `|| `, because 0 attempts is a real, and cheap, answer.
-        SPENT=$(node -e 'try{const m=require("./pleno-speaker-map/"+process.argv[1]+".json");process.stdout.write(String(m.stats.attemptedThisRun ?? m.stats.chunksTranscribed ?? 0))}catch(e){process.stdout.write("0")}' "$mid" 2>/dev/null || echo 0)
+      log "speaker map for $mid (up to ${REMAINING} call(s))…"
+      if npm run extract:speaker-map -- "$mid" --max-calls "$REMAINING"; then
+        # Lo que la pasada COSTÓ, en peticiones, que es lo que se presupuesta.
+        # `?? ` y no `|| `, porque 0 llamadas es una respuesta real —una sesión
+        # que se cerró con trozos arrastrados no gastó nada— y `||` la
+        # convertiría en el respaldo.
+        SPENT=$(node -e 'try{const m=require("./pleno-speaker-map/"+process.argv[1]+".json");process.stdout.write(String(m.stats.apiCalls ?? 0))}catch(e){process.stdout.write("0")}' "$mid" 2>/dev/null || echo 0)
         EXPECTED=$(node -e 'try{const m=require("./pleno-speaker-map/"+process.argv[1]+".json");process.stdout.write(String(m.stats.chunksExpected||0))}catch(e){process.stdout.write("0")}' "$mid" 2>/dev/null || echo 0)
+        # SEPARADO de $SPENT desde que el presupuesto cuenta llamadas: comparar
+        # peticiones contra trozos esperados marcaría PARCIAL una sesión completa
+        # (o al revés) según la tasa de reintentos de esa noche.
+        DONE=$(node -e 'try{const m=require("./pleno-speaker-map/"+process.argv[1]+".json");process.stdout.write(String(m.stats.chunksTranscribed ?? 0))}catch(e){process.stdout.write("0")}' "$mid" 2>/dev/null || echo 0)
         REMAINING=$((REMAINING - SPENT))
         MAPPED=$((MAPPED+1))
         # A ✓ beside a map covering 7 of 17 chunks is how the 2026-08-11 run
@@ -294,11 +314,11 @@ if [ "$SPEAKER_MAP_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
         # at all — partial is a legitimate, resumable outcome, and refusing to
         # write it would throw away the chunks that did succeed — so the exit
         # code cannot carry this. The line has to read the stats itself.
-        if [ "${EXPECTED:-0}" -gt 0 ] && [ "${SPENT:-0}" -lt "${EXPECTED:-0}" ]; then
+        if [ "${EXPECTED:-0}" -gt 0 ] && [ "${DONE:-0}" -lt "${EXPECTED:-0}" ]; then
           PARTIAL_MAPS=$((PARTIAL_MAPS+1))
-          log "⚠ $mid mapeado PARCIAL ($SPENT/$EXPECTED chunk(s) · ver failedChunks) · $REMAINING left"
+          log "⚠ $mid mapeado PARCIAL ($DONE/$EXPECTED chunk(s) · $SPENT call(s) · ver failedChunks) · $REMAINING call(s) left"
         else
-          log "✓ $mid mapped ($SPENT/$EXPECTED chunk(s), $REMAINING left)"
+          log "✓ $mid mapped ($DONE/$EXPECTED chunk(s), $SPENT call(s), $REMAINING left)"
         fi
         # Re-extract so the claims actually carry the attribution the map
         # just established. Same $0 policy as every other model call here.
@@ -328,7 +348,7 @@ if [ "$SPEAKER_MAP_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
     log "speaker-map backlog: none — every transcript has a map"
   fi
 else
-  log "speaker-map step skipped ($([ -z "${GEMINI_API_KEY:-}" ] && echo "no GEMINI_API_KEY" || echo "budget 0")) — claims will carry speakerGroup:null"
+  log "speaker-map step skipped ($([ -z "${GEMINI_API_KEY:-}" ] && echo "no GEMINI_API_KEY" || echo "call budget 0")) — claims will carry speakerGroup:null"
 fi
 
 # ---- re-verify only if new claims landed (overlay-safe) ---------------

@@ -48,6 +48,7 @@ import {
   resumableChunks,
   unattemptedChunks,
   chunksToAttempt,
+  NEVER_ATTEMPTED,
   audioCachePath,
   isReusableAudio,
   AUDIO_CACHE_DIR,
@@ -72,7 +73,9 @@ import {
   SPEAKER_MAP_PROMPT_VERSION,
   SPEAKER_MAP_CHUNK_SECONDS,
   SPEAKER_MAP_COVERAGE_FLOOR,
+  SPEAKER_MAP_THINKING_LEVEL,
 } from '../src/scraper/speaker-map-prompt'
+import { staleYtDlpNote, looksLikeClientRejection } from '../src/scraper/ytdlp-age'
 import { decideSnapshotWrite } from '../src/scraper/snapshot-write'
 import {
   adjudicateWeakRows,
@@ -106,6 +109,18 @@ const BASE = 'https://generativelanguage.googleapis.com'
 interface Args {
   plenoId: string
   maxChunks: number
+  /**
+   * Techo en PETICIONES, que es lo que la cuota mide.
+   *
+   * `--chunks` limita trozos; el nivel gratuito limita llamadas (20/día), y los
+   * días 20 y 21 de agosto de 2026 un trozo costó **3,0 llamadas** —12 para 4—
+   * porque uno que falla se lleva sus tres intentos. El presupuesto de 14 trozos
+   * estaba dimensionado sobre 1,33, así que pedía ~42 peticiones para una cuota
+   * de 20. Contar en la unidad equivocada convierte «se acabó la cuota» en el
+   * final normal de la noche, y un centinela que también es lo corriente ha
+   * dejado de decir nada.
+   */
+  maxCalls: number
   audio: string | null
   keepAudio: boolean
   /** Ignore any existing map and rebuild from chunk 0. */
@@ -116,6 +131,7 @@ function parseArgs(argv: string[]): Args {
   const out: Args = {
     plenoId: '',
     maxChunks: Infinity,
+    maxCalls: Infinity,
     audio: null,
     keepAudio: false,
     restart: false,
@@ -123,6 +139,7 @@ function parseArgs(argv: string[]): Args {
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i]
     if (a === '--chunks') out.maxChunks = Number(argv[++i])
+    else if (a === '--max-calls') out.maxCalls = Number(argv[++i])
     else if (a === '--audio') out.audio = argv[++i]
     else if (a === '--keep-audio') out.keepAudio = true
     else if (a === '--restart') out.restart = true
@@ -170,6 +187,12 @@ const DOWNLOAD_ATTEMPTS = 3
  */
 const DOWNLOAD_RETRY_MS = Number(process.env.SPEAKER_MAP_DOWNLOAD_RETRY_MS ?? 30_000)
 
+/** `yt-dlp --version`, o null si no está o no contesta. Nunca lanza. */
+function ytDlpVersion(): string | null {
+  const r = spawnSync('yt-dlp', ['--version'], { encoding: 'utf8' })
+  return r.status === 0 ? r.stdout.trim() || null : null
+}
+
 function waitSync(ms: number): void {
   if (!(ms > 0)) return
   Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms)
@@ -204,7 +227,15 @@ function downloadAudio(url: string, outputTemplate: string): void {
     )
     if (attempt < DOWNLOAD_ATTEMPTS) waitSync(DOWNLOAD_RETRY_MS)
   }
-  throw new SetupFailure('download-failed', `yt-dlp gave up after ${DOWNLOAD_ATTEMPTS}: ${last}`)
+  // Un 403 que sobrevive a los tres reintentos no es un throttle. Se nombra al
+  // binario aquí porque este mensaje viaja al manifiesto, y de ahí a `check:runs`
+  // y al parte de Telegram: el 23-ago-2026 costó 20 minutos averiguar a mano lo
+  // que la propia versión de yt-dlp dice sin salir a la red.
+  const note = looksLikeClientRejection(last) ? staleYtDlpNote(ytDlpVersion(), new Date()) : null
+  throw new SetupFailure(
+    'download-failed',
+    `yt-dlp gave up after ${DOWNLOAD_ATTEMPTS}: ${last}${note ? ` — ${note}` : ''}`,
+  )
 }
 
 function sizeOrNull(path: string): number | null {
@@ -348,7 +379,16 @@ function transcribeChunk(
         parts: [{ file_data: { mime_type: 'audio/ogg', file_uri: fileUri } }, { text: prompt }],
       },
     ],
-    generationConfig: { temperature: 0, maxOutputTokens: 65536 },
+    // `thinkingLevel`, no `thinkingBudget`: en la serie 3.x el segundo es la
+    // forma obsoleta y mandar los dos devuelve 400. Sin tope, el razonamiento
+    // —el 84% de la salida facturada— agota los 65536 antes de emitir un
+    // segmento y la respuesta vuelve vacía con `finishReason=MAX_TOKENS`, que es
+    // lo que retiró tres chunks de `10yl550`. Forma parte de `Gate`.
+    generationConfig: {
+      temperature: 0,
+      maxOutputTokens: 65536,
+      thinkingConfig: { thinkingLevel: SPEAKER_MAP_THINKING_LEVEL.toUpperCase() },
+    },
   })
   const sse = sh(
     'curl',
@@ -694,6 +734,8 @@ async function main() {
       .sort((a, b) => a - b)
       .map((i) => ({ ...(priorFailures.get(i) as FailedChunk) }))
     let quotaExhausted: string | null = null
+    /** Parado por su propio techo de llamadas — reanudable y sin coste. */
+    let callBudgetSpent = false
     const adjudicated: Record<AdjudicationOutcome, number> = {
       accepted: 0,
       rejected: 0,
@@ -721,6 +763,19 @@ async function main() {
     // back up to it, which is what makes "it did nothing" impossible to hide.
     runLog.attempt(toAttempt.length)
     for (const i of toAttempt) {
+      // Antes de gastar, no después. Se comprueba arriba del bucle para que el
+      // trozo que no cabe en el presupuesto cuente como NUNCA INTENTADO y no
+      // como intentado y fallido — regla 2 de DATA_INTEGRITY: los cuatro cubos
+      // del manifiesto tienen que volver a sumar lo que la pasada se propuso.
+      if (apiCalls >= args.maxCalls) {
+        callBudgetSpent = true
+        runLog.neverAttempt(toAttempt.length - toAttempt.indexOf(i))
+        process.stdout.write(
+          `[speaker-map] call budget spent (${apiCalls}/${args.maxCalls}) — ` +
+            `${toAttempt.length - toAttempt.indexOf(i)} chunk(s) resume next run\n`,
+        )
+        break
+      }
       attempted += 1
       const path = join(chunkDir, chunks[i])
       const offset = i * SPEAKER_MAP_CHUNK_SECONDS
@@ -881,12 +936,22 @@ async function main() {
     const leftover = unattemptedChunks(chunks.length, completed, failedIdx)
     // Stopped by its own budget rather than by the API. Worth saying out loud:
     // it is the one "incomplete" outcome that costs nothing and needs no fix.
-    const budgetSpent = !quotaExhausted && leftover.length > 0
+    const budgetSpent = !quotaExhausted && !callBudgetSpent && leftover.length > 0
     if (leftover.length) {
-      // Two different facts, and a resumable one must not read as a failure.
-      const why = quotaExhausted
-        ? 'never attempted (quota exhausted earlier in the run)'
-        : 'never attempted (chunk budget spent; resumes next run)'
+      // TRES hechos distintos, y ninguno debe leerse como los otros. Doblar el
+      // techo de llamadas dentro de «quota exhausted» diría que la cuota murió
+      // cuando fue esta pasada la que se paró sola; doblarlo dentro del techo de
+      // trozos escondería que la unidad que mandó fue otra. Regla 3 de
+      // DATA_INTEGRITY: un centinela que vale para dos cosas no vale para
+      // ninguna.
+      const why =
+        NEVER_ATTEMPTED[
+          quotaExhausted
+            ? 'quota-exhausted'
+            : callBudgetSpent
+              ? 'call-budget-spent'
+              : 'chunk-budget-spent'
+        ]
       for (const i of leftover) failedChunks.push({ chunk: i, why })
     }
 
@@ -914,6 +979,10 @@ async function main() {
         // nightly budget subtracts this; chunksTranscribed would charge it for
         // chunks carried forward at no cost.
         attemptedThisRun: attempted,
+        // Lo que la pasada gastó en la unidad que la cuota mide. Existía como
+        // contador local y moría con el proceso, así que el presupuesto nocturno
+        // no tenía forma de restar peticiones y restaba trozos.
+        apiCalls,
         // Share of the session's SPEECH the map recovered, on the same basis
         // as the per-chunk gate. The last timestamp over the duration reported
         // 68.5% for a run holding 7 of 17 chunks — it measured how far into
@@ -993,7 +1062,8 @@ async function main() {
       `\n[speaker-map] ${out}\n` +
         `  chunks        ${completed.size}/${chunks.length} transcribed` +
         `${failedChunks.length ? `, ${failedChunks.length} GAP(S): ${failedChunks.map((f) => f.chunk).join(', ')}` : ''}` +
-        `${budgetSpent ? ` · budget spent (${args.maxChunks} attempt(s)), rest resumes next run` : ''}\n` +
+        `${budgetSpent ? ` · chunk budget spent (${args.maxChunks} attempt(s)), rest resumes next run` : ''}` +
+        `${callBudgetSpent ? ` · call budget spent (${apiCalls}/${args.maxCalls} call(s)), rest resumes next run` : ''}\n` +
         `  coverage      ${(map.stats.coverage * 100).toFixed(1)}% of ${Math.round(total)}s\n` +
         `  labels seen   ${labelsSeen}\n` +
         `  rows accepted ${rows.length}  (${rows.filter((r) => r.weak).length} weak)\n` +

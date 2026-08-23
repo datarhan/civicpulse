@@ -70,6 +70,29 @@ export const SPEAKER_MAP_CHUNK_SECONDS = 600
  */
 export const SPEAKER_MAP_COVERAGE_FLOOR = 0.85
 
+/**
+ * Cuánto se le deja razonar al modelo antes de escribir.
+ *
+ * Los chunks 15, 18 y 21 de `10yl550` se retiraron los días 20 y 21 de agosto
+ * de 2026 diciendo «empty response (finishReason=MAX_TOKENS)»: con
+ * `maxOutputTokens: 65536` y sin tope de razonamiento, el pensamiento —medido
+ * en el 84% de la salida facturada— agota el techo ANTES de emitir un solo
+ * segmento. La respuesta vuelve vacía y con el motivo puesto, así que no es un
+ * modelo que no sepa leer el audio: es uno al que no le queda sitio para
+ * contarlo.
+ *
+ * En Gemini 3.5 Flash el parámetro vivo es `thinkingLevel`; `thinkingBudget` es
+ * la forma obsoleta de la serie 2.x y mandar los dos devuelve 400. El
+ * predeterminado del modelo es `medium`, que es el que produjo las retiradas.
+ *
+ * NO es una variable de entorno a propósito. Este valor forma parte de la
+ * puerta (`Gate`), así que moverlo reabre chunks retirados — una decisión que
+ * debe verse en el historial, no aparecer porque alguien exportó algo en una
+ * shell.
+ */
+export type ThinkingLevel = 'minimal' | 'low' | 'medium' | 'high'
+export const SPEAKER_MAP_THINKING_LEVEL: ThinkingLevel = 'low'
+
 export function buildSpeakerMapPrompt(): string {
   return `Eres un transcriptor forense de sesiones plenarias municipales españolas. Este audio es un fragmento de un pleno del Ayuntamiento de Riba-roja de Túria (Comunitat Valenciana). Los intervinientes alternan entre castellano y valencià, a veces dentro de la misma frase.
 

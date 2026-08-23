@@ -3,16 +3,14 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import {
   GIVE_UP_AFTER_ATTEMPTS,
+  CURRENT_GATE,
+  NEVER_ATTEMPTED,
   recordFailure,
   writtenOffChunks,
   isMapComplete,
   classifyBacklogState,
   type FailedChunk,
 } from '../src/scraper/speaker-map'
-import {
-  SPEAKER_MAP_PROMPT_VERSION,
-  SPEAKER_MAP_COVERAGE_FLOOR,
-} from '../src/scraper/speaker-map-prompt'
 
 /**
  * A chunk that keeps failing must stop costing a call every night.
@@ -47,7 +45,10 @@ import {
  * reopens the moment the prompt or the floor moves.
  */
 
-const GATE = { prompt: SPEAKER_MAP_PROMPT_VERSION, floor: SPEAKER_MAP_COVERAGE_FLOOR }
+// Importado, no reconstruido: una copia a mano de esta forma es exactamente la
+// regla 1 de DATA_INTEGRITY, y aquí se rompería en silencio — un campo nuevo en
+// `Gate` que el test no conociera dejaría de comprobarse sin ponerse rojo.
+const GATE = CURRENT_GATE
 const fail = (over: Partial<FailedChunk> = {}): FailedChunk => ({
   chunk: 8,
   why: 'covered 66% (floor 85%)',
@@ -90,6 +91,29 @@ describe('a failing chunk is given up on, but only after several nights', () => 
     const old = fail({ attempts: GIVE_UP_AFTER_ATTEMPTS, givenUpUnder: { ...GATE } })
     const nuevo = { ...GATE, floor: GATE.floor - 0.1 }
     expect(writtenOffChunks([old], nuevo).has(8)).toBe(false)
+  })
+
+  // El tercer ingrediente de la puerta, añadido el 23-ago-2026. Tres de los
+  // cuatro chunks retirados de `10yl550` decían «empty response
+  // (finishReason=MAX_TOKENS)»: el razonamiento se comía el techo de salida
+  // antes de emitir nada. Eso es un ajuste de la PETICIÓN, no del prompt ni del
+  // suelo, y sin estar en la puerta un cambio de nivel dejaría retirados unos
+  // chunks que nunca se juzgaron con él.
+  it('reopens it when the thinking level moves', () => {
+    const old = fail({ attempts: GIVE_UP_AFTER_ATTEMPTS, givenUpUnder: { ...GATE } })
+    const nuevo = { ...GATE, thinking: 'high' as const }
+    expect(writtenOffChunks([old], nuevo).has(8)).toBe(false)
+    expect(recordFailure(old, 8, 'why', nuevo).attempts, 'no arrastra la cuenta vieja').toBe(1)
+  })
+
+  // Y los mapas ya escritos no llevan el campo, así que sus retiradas se
+  // reabren UNA vez y vuelven a contar desde cero bajo la puerta actual.
+  it('reopens a write-off stamped before the thinking level existed', () => {
+    const sinCampo = fail({
+      attempts: GIVE_UP_AFTER_ATTEMPTS,
+      givenUpUnder: { prompt: GATE.prompt, floor: GATE.floor } as typeof GATE,
+    })
+    expect(writtenOffChunks([sinCampo], GATE).has(8)).toBe(false)
   })
 })
 
@@ -269,5 +293,39 @@ describe('against the maps on disk', () => {
   it('an entry stamped with the current gate but no count is still not written off', () => {
     const sinCuenta = fail({ givenUpUnder: { ...GATE } })
     expect(writtenOffChunks([sinCuenta], GATE).has(8)).toBe(false)
+  })
+})
+
+/**
+ * Los tres finales de una noche incompleta.
+ *
+ * Hasta el 23-ago-2026 había dos, y el techo nuevo —peticiones, la unidad que la
+ * cuota mide— habría entrado por fuerza en uno de ellos. Meterlo en
+ * `quota-exhausted` diría que la API se agotó cuando la pasada se paró sola;
+ * meterlo en `chunk-budget-spent` escondería cuál fue el techo que mandó. Este
+ * test existe para que el siguiente que añada un final tenga que añadirlo, no
+ * doblarlo.
+ */
+describe('un final de pasada no vale por otro', () => {
+  it('da un motivo distinto y no vacío a cada desenlace', () => {
+    const motivos = Object.values(NEVER_ATTEMPTED)
+    expect(new Set(motivos).size, 'dos desenlaces comparten motivo').toBe(motivos.length)
+    for (const m of motivos) expect(m.trim().length).toBeGreaterThan(0)
+  })
+
+  // Cada motivo tiene que nombrar SU causa: leídos en un `failedChunks` meses
+  // después son lo único que queda del porqué.
+  it('nombra la causa en el propio motivo', () => {
+    expect(NEVER_ATTEMPTED['quota-exhausted']).toMatch(/quota/i)
+    expect(NEVER_ATTEMPTED['call-budget-spent']).toMatch(/call budget/i)
+    expect(NEVER_ATTEMPTED['chunk-budget-spent']).toMatch(/chunk budget/i)
+  })
+
+  // Los dos reanudables lo dicen; el de cuota no promete nada, porque depende
+  // del reloj del proveedor y no de la siguiente pasada.
+  it('marca como reanudables sólo los que lo son', () => {
+    expect(NEVER_ATTEMPTED['call-budget-spent']).toMatch(/resumes next run/)
+    expect(NEVER_ATTEMPTED['chunk-budget-spent']).toMatch(/resumes next run/)
+    expect(NEVER_ATTEMPTED['quota-exhausted']).not.toMatch(/resumes next run/)
   })
 })
