@@ -97,6 +97,10 @@ export interface CampoBorme {
 
 /** El identificador que hace citable un anuncio: sección, hoja e inscripción. */
 export interface DatosRegistrales {
+  /** Tomo, cuando el anuncio lo trae. No siempre está. */
+  tomo: string | null
+  /** Folio, cuando el anuncio lo trae. */
+  folio: string | null
   seccion: string
   /** «A 44577» — letra de registro y número de hoja. */
   hoja: string
@@ -135,17 +139,31 @@ const desetiquetar = (s: string): string =>
     .replace(/\s+/g, ' ')
     .trim()
 
-/** `S 8 , H A 44577, I/A 238 ( 8.05.26).` */
+/**
+ * `S 8 , H A 44577, I/A 238 ( 8.05.26).` — y a veces con tomo y folio delante:
+ * `T 4541 , F 19, S 8, H A 44577, I/A 220 ( 1.02.24).`
+ *
+ * Tres variantes que el regex no contemplaba y que devolvían `null` en
+ * silencio: el prefijo opcional `T … , F …`; un punto suelto antes del
+ * paréntesis (`I/A 2 . ( 8.05.26)`); y una inscripción que **no es un número**
+ * (`I/A A`). El prefijo `T … , F …` es OPCIONAL y esa opcionalidad costó tres anuncios: el
+ * regex exigía que `S` fuera detrás de «Datos registrales.» y devolvía `null`
+ * sin decir nada, así que tres de los veinte de Hidraqua se quedaron sin
+ * identificador registral —es decir, sin poder citarse— y el barrido no se
+ * quejó. Un dato que no se puede citar aquí es un dato que no se publica.
+ */
 function leerDatosRegistrales(texto: string): DatosRegistrales | null {
   const m = texto.match(
-    /Datos registrales\.\s*S\s*(\d+)\s*,\s*H\s*([A-Z]{1,3}\s*\d+)\s*,\s*I\/A\s*(\d+)\s*\(\s*([\d.]+)\s*\)/i,
+    /Datos registrales\.\s*(?:T\s*(\d+)\s*,\s*F\s*(\d+)\s*,\s*)?S\s*(\d+)\s*,\s*H\s*([A-Z]{1,3}\s*\d+)\s*,\s*I\/A\s*([A-Z0-9]+)\s*\.?\s*\(\s*([\d.]+)\s*\)/i,
   )
   if (!m) return null
   return {
-    seccion: m[1],
-    hoja: m[2].replace(/\s+/g, ' ').trim(),
-    inscripcion: m[3],
-    fecha: m[4],
+    tomo: m[1] ?? null,
+    folio: m[2] ?? null,
+    seccion: m[3],
+    hoja: m[4].replace(/\s+/g, ' ').trim(),
+    inscripcion: m[5],
+    fecha: m[6],
   }
 }
 

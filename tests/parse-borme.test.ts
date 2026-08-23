@@ -47,6 +47,47 @@ describe('borme — la sección provincial se convierte en anuncios', () => {
     expect(h.datosRegistrales!.inscripcion).toBe('238')
   })
 
+  it('TODOS los anuncios de la sección salen con datos registrales', () => {
+    // Tres de los veinte anuncios de Hidraqua se quedaron sin identificador
+    // porque traían «T 4541 , F 19,» delante de la sección y el regex exigía
+    // que «S» fuera pegado a «Datos registrales.». Devolvía null en silencio, y
+    // un anuncio sin identificador es un anuncio que no se puede citar.
+    const conTexto = anuncios.filter((a) => /Datos registrales/.test(a.texto))
+    expect(conTexto.length).toBeGreaterThan(40)
+    const sinLeer = conTexto.filter((a) => !a.datosRegistrales)
+    expect(
+      sinLeer.map((a) => a.texto.slice(a.texto.indexOf('Datos registrales'), 120)),
+      'hay anuncios con datos registrales que el parser no supo leer',
+    ).toEqual([])
+  })
+
+  it('el tomo y el folio se leen cuando están, y son null cuando no', () => {
+    // Esta sección no trae ninguno con tomo, así que la variante se fija con un
+    // anuncio real de otra fecha: Hidraqua, 8 de febrero de 2024.
+    const conTomo = parseBormeSeccion(
+      '<h5 class="articulo">66435 - HIDRAQUA, GESTION INTEGRAL DE AGUAS DE LEVANTE SA.</h5>' +
+        '<p class="parrafo">Nombramientos. Consejero: BAIXAULI FONS CRISTINA. ' +
+        'Datos registrales. T 4541 , F 19, S 8, H A 44577, I/A 220 ( 1.02.24).</p>',
+    )[0]
+    expect(conTomo.datosRegistrales!.tomo).toBe('4541')
+    expect(conTomo.datosRegistrales!.folio).toBe('19')
+    expect(conTomo.datosRegistrales!.hoja).toBe('A 44577')
+    expect(conTomo.datosRegistrales!.inscripcion).toBe('220')
+
+    const h = anuncios.find((a) => /HIDRAQUA/i.test(a.denominacion))!
+    expect(h.datosRegistrales!.tomo).toBeNull()
+  })
+
+  it('la inscripción no siempre es un número, y a veces trae un punto suelto', () => {
+    // Dos variantes reales de esta misma sección: «I/A A (» y «I/A 2 . (».
+    // Las dos devolvían null y dejaban el anuncio sin poder citarse.
+    const letra = anuncios.find((a) => a.datosRegistrales?.inscripcion === 'A')
+    expect(letra, 'ya no hay ninguna inscripción con letra en la fixture').toBeTruthy()
+    const conPunto = anuncios.find((a) => /I\/A\s*\w+\s+\.\s*\(/.test(a.texto))
+    expect(conPunto, 'ya no hay ninguna con punto suelto').toBeTruthy()
+    expect(conPunto!.datosRegistrales).toBeTruthy()
+  })
+
   it('los pares «etiqueta: valor» se separan, que es donde están los nombres', () => {
     const h = anuncios.find((a) => /HIDRAQUA/i.test(a.denominacion))!
     const porEtiqueta = new Map(h.campos.map((c) => [c.etiqueta, c.valor]))
