@@ -113,6 +113,7 @@ const STEP_OUTPUTS: Record<string, string> = {
   'scrape:asociaciones': 'public/data/asociaciones.json',
   'scrape:obras': 'public/data/obras.json',
   'scrape:sindicatura': 'public/data/sindicatura.json',
+  'scrape:sindic-expedientes': 'public/data/sindic-expedientes.json',
   'scrape:pleno-videos': 'public/data/pleno-videos.json',
   'auto-curate': 'public/data/pleno-findings.json',
   // steps that produce nothing this suite needs to see

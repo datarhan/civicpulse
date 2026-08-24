@@ -12,12 +12,8 @@ import { useCtbg } from '../hooks/useCtbg'
 import { useSindicatura } from '../hooks/useSindicatura'
 import { useBop, formatBopDate } from '../hooks/useBop'
 import { useConsellCv } from '../hooks/useConsellCv'
-import {
-  useSindic,
-  SINDIC_MATERIA_LABEL,
-  SINDIC_SENTIDO_LABEL,
-  SINDIC_SENTIDO_TONE,
-} from '../hooks/useSindic'
+import { useSindic } from '../hooks/useSindic'
+import { useSindicExpedientes } from '../hooks/useSindicExpedientes'
 import QuejasHeatmap from '../components/QuejasHeatmap'
 import QuejasSpendOverlap from '../components/Quejas/QuejasSpendOverlap'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
@@ -26,104 +22,200 @@ import { useT } from '../i18n'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
 
+/**
+ * Escalado externo al Síndic de Greuges CV.
+ *
+ * Hasta 2026-08-24 esta tarjeta decía, con 0 filas en el registro curado, que
+ * «aún no hay resoluciones del Síndic registradas contra el Ayuntamiento», y
+ * enlazaba a /resolucions, que da 404. El registro del propio Síndic decía otra
+ * cosa: 38 expedientes desde 2013. La página que existe para publicar el
+ * escalado del vecino llevaba meses publicando un todo-claro.
+ *
+ * Ahora se pintan las dos cosas por separado, y las dos derivadas del snapshot
+ * en vez de escritas a mano: lo que el Síndic REGISTRA (índice transcrito) y lo
+ * que nosotros hemos FIRMADO (ficha leída del PDF, con su resumen verbatim).
+ * Que la segunda cifra sea 0 es una respuesta honesta; que lo fuera la primera
+ * no lo era.
+ */
+const MAX_EXPEDIENTES = 8
+
+function ExpedienteRow({ e }) {
+  return (
+    <div style={{ padding: '9px 0', borderTop: '1px dotted var(--border2)' }}>
+      <div
+        style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3, flexWrap: 'wrap' }}
+      >
+        <span
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--civic)', fontWeight: 700 }}
+        >
+          Expte {e.expediente}
+        </span>
+        <Pill tone="ghost" size="xs">
+          {e.materia}
+        </Pill>
+        {e.resoluciones.length === 0 && (
+          <Pill tone="intel" size="xs">
+            sin resolución publicada
+          </Pill>
+        )}
+      </div>
+      <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 500, lineHeight: 1.4 }}>{e.asunto}</div>
+      {e.resoluciones.length > 0 && (
+        <div style={{ marginTop: 5, display: 'flex', flexDirection: 'column', gap: 2 }}>
+          {e.resoluciones.map((r) => (
+            <div key={r.urlPdf} style={{ fontSize: 'var(--fs-micro)' }}>
+              <ExtLink href={r.urlPdf} style={{ color: 'var(--civic)' }}>
+                {r.tipo}
+              </ExtLink>
+              <span className="mono" style={{ color: 'var(--ink50)', marginLeft: 8 }}>
+                {fmtDateShort(r.fecha)}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 function SindicCard() {
-  const { data } = useSindic()
+  const { data } = useSindicExpedientes()
+  const firmadas = useSindic().data?.items?.length ?? 0
   if (!data) return null
-  const items = data.items || []
+
+  const contra = data.contraAyuntamiento || []
+  const vecinos = data.vecinosOtrasAdministraciones || []
+  const s = data.stats || {}
+  const cob = data.cobertura || {}
+  const consideraciones = s.porTipoResolucion?.['Resolución de consideraciones a la Administración']
+
   return (
     <Card style={{ marginTop: 14 }}>
       <SectionHead
         eyebrow="Escalado externo · Síndic de Greuges CV"
-        title="Resoluciones del Síndic sobre Riba-roja de Túria"
+        title="Expedientes del Síndic sobre Riba-roja de Túria"
       />
-      {items.length === 0 ? (
-        <div
-          style={{
-            fontSize: 'var(--fs-aux)',
-            color: 'var(--ink70)',
-            lineHeight: 1.55,
-            marginTop: 8,
-          }}
-        >
-          Aún no hay resoluciones del Síndic de Greuges CV registradas contra el Ayuntamiento de
-          Riba-roja de Túria en nuestro registro curado. El Síndic publica sus resoluciones en{' '}
-          <a
-            href="https://www.elsindic.com/resolucions"
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: 'var(--civic)' }}
-          >
-            elsindic.com
-          </a>
-          .
-        </div>
-      ) : (
-        <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 10 }}>
-          {items.slice(0, 20).map((r) => (
-            <div key={r.id} style={{ padding: '10px 0', borderTop: '1px dotted var(--border2)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                <span
-                  className="mono"
-                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--civic)', fontWeight: 700 }}
-                >
-                  Expte {r.expediente}
-                </span>
-                <span
-                  className="mono"
-                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
-                >
-                  {fmtDateShort(r.fecha)}
-                </span>
-                <Pill tone={SINDIC_SENTIDO_TONE[r.sentido] || 'ghost'} size="xs">
-                  {SINDIC_SENTIDO_LABEL[r.sentido] || r.sentido}
-                </Pill>
-                <Pill tone="ghost" size="xs">
-                  {SINDIC_MATERIA_LABEL[r.materia] || r.materia}
-                </Pill>
-              </div>
-              <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 500 }}>{r.titulo}</div>
-              <div
-                style={{
-                  fontSize: 'var(--fs-meta)',
-                  color: 'var(--ink70)',
-                  marginTop: 4,
-                  lineHeight: 1.5,
-                }}
-              >
-                {r.resumen}
-              </div>
-              <div style={{ marginTop: 6, fontSize: 'var(--fs-micro)', display: 'flex', gap: 14 }}>
-                <ExtLink href={r.urlPdf} style={{ color: 'var(--civic)' }}>
-                  PDF del Síndic →
-                </ExtLink>
-                {r.quejaIdRelacionada && (
-                  <Link
-                    to={`/quejas/${r.quejaIdRelacionada.toLowerCase()}`}
-                    style={{ color: 'var(--civic)' }}
-                  >
-                    Queja {r.quejaIdRelacionada} →
-                  </Link>
-                )}
-              </div>
-            </div>
-          ))}
+
+      <div
+        style={{
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink70)',
+          lineHeight: 1.55,
+          marginTop: 8,
+        }}
+      >
+        El registro del Síndic recoge{' '}
+        <strong style={{ color: 'var(--ink)' }}>
+          {contra.length} expediente{contra.length === 1 ? '' : 's'}
+        </strong>{' '}
+        contra el Ayuntamiento de Riba-roja de Túria
+        {cob.contraAyuntamientoDesde && cob.contraAyuntamientoHasta
+          ? ` entre ${cob.contraAyuntamientoDesde} y ${cob.contraAyuntamientoHasta}`
+          : ''}
+        , {s.conResolucionPublicada} con resolución publicada
+        {consideraciones
+          ? ` y ${consideraciones} de ellas de «consideraciones a la Administración»`
+          : ''}
+        .
+      </div>
+
+      {/* Lo que el Síndic registra NO es lo que nosotros hemos firmado, y la
+          distancia entre las dos cifras se dice, no se esconde. */}
+      <div
+        style={{
+          fontSize: 'var(--fs-meta)',
+          color: 'var(--ink70)',
+          lineHeight: 1.5,
+          marginTop: 8,
+          paddingLeft: 10,
+          borderLeft: '2px solid var(--border2)',
+        }}
+      >
+        Esto es el índice del Síndic transcrito, no un juicio nuestro: materia, asunto y el título
+        de cada resolución van tal cual los publica el organismo.{' '}
+        {firmadas === 0 ? (
+          <>
+            No hemos firmado todavía ninguna ficha propia sobre estos expedientes — una ficha exige
+            leer el PDF y citarlo verbatim.
+          </>
+        ) : (
+          <>
+            De ellos, {firmadas} tiene{firmadas === 1 ? '' : 'n'} ficha firmada por nosotros, con su
+            resumen leído del PDF.
+          </>
+        )}
+      </div>
+
+      <div style={{ marginTop: 10 }}>
+        {contra.slice(0, MAX_EXPEDIENTES).map((e) => (
+          <ExpedienteRow key={e.expediente} e={e} />
+        ))}
+        {contra.length > MAX_EXPEDIENTES && (
           <div
             className="mono"
-            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 6 }}
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              paddingTop: 8,
+              borderTop: '1px dotted var(--border2)',
+            }}
           >
-            Lista curada manualmente · actualizado {fmtDateShort(data.generatedAt)}. Fuente:{' '}
+            +{contra.length - MAX_EXPEDIENTES} expedientes más en{' '}
+            <ExtLink href={data.source?.buscador} style={{ color: 'var(--civic)' }}>
+              el buscador del Síndic
+            </ExtLink>{' '}
+            · el listado completo está en{' '}
+            {/* Subrayado, no sólo color: axe lo marca `link-in-text-block`
+                (serious) y tiene razón — dentro de un párrafo el color solo no
+                distingue un enlace. Los demás de esta tarjeta pasan por
+                ExtLink, que ya subraya. */}
             <a
-              href="https://www.elsindic.com"
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: 'var(--civic)' }}
+              href="/data/sindic-expedientes.json"
+              style={{ color: 'var(--civic)', textDecoration: 'underline' }}
             >
-              elsindic.com
+              sindic-expedientes.json
             </a>
-            .
+          </div>
+        )}
+      </div>
+
+      {vecinos.length > 0 && (
+        <div style={{ marginTop: 16, paddingTop: 12, borderTop: '1px solid var(--border2)' }}>
+          <div
+            className="mono"
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              textTransform: 'uppercase',
+              letterSpacing: '.06em',
+              marginBottom: 6,
+            }}
+          >
+            Otra pregunta · vecinos de Riba-roja ante otras administraciones
+          </div>
+          <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)', lineHeight: 1.5 }}>
+            {vecinos.length} expedientes que el Síndic registra a nombre de vecinos de aquí pero
+            contra la Generalitat u otros ayuntamientos.{' '}
+            <strong style={{ color: 'var(--ink)' }}>No se suman con los de arriba</strong>: no
+            hablan del Ayuntamiento de Riba-roja. Y no son una serie histórica — el buscador sólo
+            asocia población al expediente
+            {cob.vecinosDesde ? ` desde ${cob.vecinosDesde}` : ' en los últimos años'}, así que su
+            ausencia antes de esa fecha no significa que no hubiera.
           </div>
         </div>
       )}
+
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 12 }}
+      >
+        Transcrito del buscador del Síndic · actualizado {fmtDateShort(data.generatedAt)}. Fuente:{' '}
+        <ExtLink href={data.source?.buscador} style={{ color: 'var(--civic)' }}>
+          elsindic.com/actuaciones
+        </ExtLink>
+        .
+      </div>
     </Card>
   )
 }

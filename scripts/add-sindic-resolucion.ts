@@ -12,13 +12,14 @@
  *   npm run sindic:add -- 202400427 2024-06-12 transparencia recomendacion \
  *     "Falta de respuesta a solicitud de acceso a contratos de limpieza" \
  *     "El Síndic recomienda al Ayuntamiento de Riba-roja que resuelva expresamente …" \
- *     https://www.elsindic.com/resolucions/2024/202400427.pdf \
+ *     https://www.elsindic.com/resoluciones/expedientes/2024/202400427/12337532.pdf \
  *     Q-ABC12301
  */
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
+  idResolucion,
   validateResolucion,
   validateSnapshot,
   ALLOWED_MATERIAS,
@@ -42,7 +43,7 @@ function main() {
   const [expediente, fecha, materia, sentido, titulo, resumen, urlPdf, quejaId] = args
 
   const candidate: SindicResolucion = {
-    id: 'sindic-' + expediente,
+    id: idResolucion(expediente, urlPdf),
     expediente,
     fecha,
     materia: materia as never,

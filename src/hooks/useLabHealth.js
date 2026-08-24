@@ -27,6 +27,11 @@ export const LAB_SOURCES = [
   // health row, so a stale or broken snapshot behind them was invisible here.
   { path: '/data/bop.json', label: 'BOP València', group: 'core' },
   { path: '/data/sindicatura.json', label: 'Sindicatura de Comptes', group: 'core' },
+  {
+    path: '/data/sindic-expedientes.json',
+    label: 'Síndic CV · índice de expedientes',
+    group: 'core',
+  },
   { path: '/data/transparency-docs.json', label: 'Portal de Transparencia', group: 'core' },
   { path: '/data/padron.json', label: 'Padrón · INE', group: 'core' },
   { path: '/data/paro.json', label: 'Paro · SEPE', group: 'core' },
@@ -43,7 +48,7 @@ export const LAB_SOURCES = [
   // — Curated / human-edited
   { path: '/data/promises.json', label: 'Promesas · curado', group: 'curated' },
   { path: '/data/promise-suggestions.json', label: 'Promesas · sugerencias', group: 'curated' },
-  { path: '/data/sindic.json', label: 'Síndic CV · curado', group: 'curated' },
+  { path: '/data/sindic.json', label: 'Síndic CV · fichas firmadas', group: 'curated' },
   { path: '/data/ctbg.json', label: 'CTBG (estatal)', group: 'curated' },
   { path: '/data/consell-cv.json', label: 'Consell CV', group: 'curated' },
   // — Quejas (bot-owned)

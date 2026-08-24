@@ -51,6 +51,7 @@ SCRAPERS=(
   scrape:wikidata
   scrape:ctbg
   scrape:sindicatura
+  scrape:sindic-expedientes
   scrape:consell-cv
   scrape:spain-ticker
   scrape:promise-suggestions
@@ -98,6 +99,13 @@ SCRAPERS=(
 #     nightly deploy path. The adapter's own circuit breaker already refuses
 #     to publish a truncated agenda set, so a soft failure costs nothing but
 #     freshness — the prior agendas snapshot stays valid meanwhile.
+#   - scrape:sindic-expedientes — elsindic.com desde un runner de GitHub está
+#     SIN MEDIR, y el precio de equivocarse es asimétrico: si no llega, la
+#     nocturna se pone roja y con ella se cae el despliegue, que es lo que costó
+#     ocho noches en agosto. Entra en blando y con su refresco garantizado en
+#     scrape-ci-blocked.sh; el día que se vea que CI sí llega, se saca de aquí.
+#     El adaptador ya se niega a publicar un recorte o un cero, así que un
+#     fallo blando sólo cuesta frescura — y esa la vigila check:cadence.
 #   - scrape:consell-cv — two near-static yearly GVA tables. The adapter now
 #     refuses to write a partial snapshot when a year is unreachable (that
 #     would delete the missing year's resoluciones), so an upstream blip
@@ -131,6 +139,7 @@ BEST_EFFORT=(
   scrape:transparency
   scrape:ispa
   scrape:sindicatura
+  scrape:sindic-expedientes
 )
 
 is_best_effort() {

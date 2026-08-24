@@ -2,18 +2,25 @@
  * Síndic de Greuges de la Comunitat Valenciana — curated resoluciones
  * schema + validator.
  *
- * Unlike the CTBG XLSX which is easily machine-readable, the Síndic's
- * search portal (https://www.elsindic.com/actuaciones/) is JS-rendered
- * behind an Oracle APEX-style POST with viewstate, and individual
- * resoluciones live as PDFs. Building a reliable scraper is
- * low-value-high-effort for the ~1–5 resoluciones per year that name a
- * small Valencian muni.
+ * CORRECCIÓN 2026-08-24. Esta cabecera decía que el portal era «JS-rendered
+ * behind an Oracle APEX-style POST with viewstate» y que automatizarlo era
+ * «low-value-high-effort» para «~1–5 resoluciones per year». Las dos mitades
+ * eran falsas, y la frase es la razón por la que nadie volvió a mirar durante
+ * 125 días mientras este fichero publicaba un cero:
  *
- * Instead, this is a CURATED snapshot — same pattern as promises.json.
- * A moderator adds new entries via `npm run sindic:add` after the
- * Síndic publishes them. Every entry carries the resolución number,
- * date, URL to the PDF on elsindic.com, materia, sentido (fallo), and
- * optionally the linked queja ID in our own database.
+ *   · elsindic.com es WordPress con un buscador Elasticsearch. Se consulta por
+ *     POST a `wp-admin/admin-ajax.php?action=buscador_expedientes_elastic_search`,
+ *     que el `robots.txt` del propio organismo permite de forma explícita.
+ *   · Contra este ayuntamiento hay 38 expedientes entre 2013 y 2026, no 1–5 al
+ *     año, y 14 de ellos con «Resolución de consideraciones a la Administración».
+ *
+ * El índice transcrito vive ahora en `sindic-expedientes.ts` y se raspa solo.
+ * Este fichero sigue siendo CURADO, y la división es la que importa: el índice
+ * copia un registro público sin emitir juicio; una ficha de aquí lleva el
+ * `resumen` VERBATIM leído del PDF y un `sentido` que alguien ha decidido. Eso
+ * no lo puede escribir un cron. Un moderador las añade con `npm run sindic:add`
+ * y cada una lleva número de resolución, fecha, URL al PDF en elsindic.com,
+ * materia, sentido (fallo) y, si aplica, la queja enlazada de nuestra base.
  *
  * This file is the single source of truth for the schema. The CLI
  * rejects any input that doesn't validate here.
@@ -70,6 +77,26 @@ export interface SindicSnapshot {
   items: SindicResolucion[]
 }
 
+/**
+ * El id de una ficha, DERIVADO de su PDF.
+ *
+ * Era `sindic-<expediente>`, y colisionaba: un expediente lleva varias
+ * resoluciones —202502231 tiene «consideraciones» el 22/07/2025 y «cierre» el
+ * 10/09/2025— así que la segunda ficha del mismo expediente habría chocado con
+ * la primera y el CLI la habría rechazado como duplicada. Con el registro a 0
+ * filas nunca llegó a pasar; se arregla ahora porque arreglarlo después habría
+ * pedido migrar ids ya publicados.
+ *
+ * Lo único único por resolución es el documento: el buscador del Síndic sirve
+ * cada PDF en `/resoluciones/expedientes/<año>/<expediente>/<docId>.pdf`.
+ */
+export function idResolucion(expediente: string, urlPdf: string): string {
+  const doc = (urlPdf.split('?')[0].split('/').pop() ?? '').replace(/\.pdf$/i, '')
+  if (!/^[0-9A-Za-z._-]+$/.test(doc))
+    throw new Error(`urlPdf must end in a document filename: got ${JSON.stringify(urlPdf)}`)
+  return `sindic-${expediente}-${doc}`
+}
+
 const isoDateRe = /^\d{4}-\d{2}-\d{2}$/
 const quejaIdRe = /^Q-[0-9A-Z]{4,}$/
 
@@ -116,6 +143,13 @@ export function validateResolucion(r: unknown): SindicResolucion {
     throw new Error(
       `quejaIdRelacionada must match ${quejaIdRe}: got ${JSON.stringify(quejaIdRelacionada)}`,
     )
+
+  // El id se comprueba aquí y no arriba porque hasta ahora no había con qué
+  // derivarlo. Comprobar la derivación —y no sólo el prefijo— es lo que impide
+  // que un fichero editado a mano reintroduzca la colisión que el CLI evita.
+  const esperado = idResolucion(expediente, urlPdf)
+  if (id !== esperado)
+    throw new Error(`id must be derived from expediente + urlPdf: expected ${esperado}, got ${id}`)
 
   return {
     id,

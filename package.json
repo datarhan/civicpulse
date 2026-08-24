@@ -53,6 +53,7 @@
     "scrape:pleno-agendas": "npx tsx scripts/scrape-pleno-agendas.ts",
     "scrape:ctbg": "npx tsx scripts/scrape-ctbg.ts",
     "scrape:sindicatura": "npx tsx scripts/scrape-sindicatura.ts",
+    "scrape:sindic-expedientes": "npx tsx scripts/scrape-sindic-expedientes.ts",
     "scrape:consell-cv": "npx tsx scripts/scrape-consell-cv.ts",
     "scrape:pleno-videos": "npx tsx scripts/scrape-pleno-videos.ts",
     "check:transcripts": "npx tsx scripts/check-transcript-sanity.ts",

@@ -470,11 +470,17 @@ overwrites it. Change the bot's SQLite instead.
 - **Source** — **Sindicatura de Comptes CV** `/informes` search (`text=Riba-roja de Túria&type=full`, indexes PDF content). Parser classifies each result row: `dedicated` (TITLE names the town) vs `sectoral` (Riba-roja inside a local-entities sweep, `isLocalEntityReport` filter). The CLI also **pdf-parses** the dedicated "control interno" report into structured findings — the 27 numbered _salvedades_ grouped by area + the 5 recomendaciones (`parseAuditFindings`) — and pulls Riba-roja's **art. 218 rendition row** (En plazo / ACR _acuerdos contrarios a reparos_ / OFP / AI) from the annual control-interno EELL report (`parseControlInternoArt218`, the freshest signal). curl-reachable (unlike PLACSP).
 - **Surfaces** — `/quejas` `SindicaturaCard` — the ex-post audit pillar next to Síndic + CTBG; art. 218 status box (freshest), dedicated audits with a "27 deficiencias" expander, sectoral in a collapsible
 
+### Síndic de Greuges CV — índice de expedientes (scraped)
+
+- **Pipeline** — `scripts/scrape-sindic-expedientes.ts` → `src/scraper/sindic-expedientes.ts` → `sindic-expedientes.json`
+- **Source** — `POST https://www.elsindic.com/wp-admin/admin-ajax.php?action=buscador_expedientes_elastic_search`, el buscador Elasticsearch de `/actuaciones/`. Un solo campo `params` con JSON; devuelve HTML. El `robots.txt` del organismo lo permite explícitamente (`Allow: /wp-admin/admin-ajax.php`). **Dos ejes que NO se suman**: texto `"Riba-roja"` (todo lo que menciona el municipio) y facet `poblacion` (expedientes cuyo QUEJOSO vive aquí — **no** la administración reclamada: de sus 16 filas una va contra el Ayuntamiento de València). La puerta es el campo `Administración`, y reparte en «contra el Ayuntamiento» / «vecinos ante otras administraciones» / menciones descartadas. Materia, asunto y el título de cada resolución se transcriben **verbatim**: el vocabulario del Síndic (20 materias) no se recodifica al nuestro (15), porque «Servicios públicos y medio ambiente» es una suya y dos nuestras y el resto acabaría en `otros`. Se raspa en blando en la nocturna y en firme en `scrape-ci-blocked.sh` — la accesibilidad desde un runner de GitHub está sin medir
+- **Surfaces** — `/quejas` `SindicCard` (las dos listas, separadas y con su nota de cobertura) · `/datos` · `/lab-health`
+
 ### Síndic de Greuges CV resoluciones (curated)
 
 - **Pipeline** — **human-curated** · `sindic.ts` schema validator
-- **Source** — Added via `npm run sindic:add` after the Síndic publishes a resolución naming Riba-roja; JS-POST portal makes automation brittle at this scale
-- **Surfaces** — `/quejas` `SindicCard` with expediente/fecha/materia/sentido/resumen + PDF link
+- **Source** — Added via `npm run sindic:add` after a curator READS the resolución PDF. La división con el índice de arriba es la que importa: aquél transcribe un registro público sin emitir juicio y puede ser automático; una ficha de aquí lleva el `resumen` **verbatim** y un `sentido` que alguien ha decidido, y eso no lo escribe un cron. El `id` se **deriva** del expediente + el documento del PDF (`idResolucion`) y el validador comprueba la derivación: `sindic-<expediente>` colisionaba entre las dos resoluciones de un mismo expediente
+- **Surfaces** — `/quejas` `SindicCard`, contadas aparte de los expedientes del índice para que un 0 firmado nunca se lea como «no hay nada»
 
 ### Quejas ciudadanas (Telegram-captured, SQLite-backed)
 

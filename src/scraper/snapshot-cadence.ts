@@ -85,6 +85,11 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     'asociaciones.json',
     'obras.json',
     'sindicatura.json',
+    // `sindic-expedientes.json` va aquí no porque se sepa que CI no llega
+    // —está sin medir— sino porque entra en blando en la nocturna y su
+    // refresco garantizado es el cron local. Si algún día se comprueba que el
+    // runner alcanza elsindic.com, pasa a `nightly` con su plazo de 3 días.
+    'sindic-expedientes.json',
   ].map((file) => ({ file, cls: 'ci-blocked' as const, maxAgeDays: 8 })),
   ...['participa.json', 'elections.json', 'geo.json', 'civic-poi.json', 'streets.json'].map(
     (file) => ({ file, cls: 'derived' as const, maxAgeDays: 45 }),
