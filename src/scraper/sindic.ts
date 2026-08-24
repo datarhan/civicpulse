@@ -36,6 +36,18 @@ export const ALLOWED_SENTIDOS = [
 ] as const
 export type SindicSentido = (typeof ALLOWED_SENTIDOS)[number]
 
+/**
+ * Materias. Se ampliaron el 24-08-2026 con `procedimiento-administrativo` y
+ * `empleo-publico` al curar las primeras fichas reales: 7 de las 13 hablan de
+ * «Procedimientos administrativos» o «Empleo» en el vocabulario del Síndic, y
+ * ninguna de las 15 anteriores les servía. Meterlas en `otros` habría sido el
+ * centinela de la regla 3 — «otros» pasaría a significar a la vez «una materia
+ * menor» y «no supimos clasificarla».
+ *
+ * Esto NO es traducir el vocabulario del Síndic al nuestro: su materia literal
+ * viaja intacta en `sindic-expedientes.json`. Aquí sólo se elige el cajón con
+ * el que la ficha se etiqueta y se filtra.
+ */
 export const ALLOWED_MATERIAS = [
   'urbanismo',
   'vivienda',
@@ -50,6 +62,8 @@ export const ALLOWED_MATERIAS = [
   'salud',
   'educacion',
   'igualdad',
+  'procedimiento-administrativo',
+  'empleo-publico',
   'cultura',
   'otros',
 ] as const

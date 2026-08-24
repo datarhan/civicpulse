@@ -71,6 +71,13 @@ npm run refresh || echo "[ci-blocked] WARN: refresh falló — puede comitearse 
 # transparency portal and two acta PDFs backing 68 citations across 12 of 21
 # biographies started returning 404, with nothing in this repo changing.
 # Report-only — link rot is upstream's doing and must not fail a data refresh.
+# ¿Sigue el PDF del Síndic diciendo lo que nuestra ficha entrecomilla? Misma
+# familia que check:citations y aquí por el mismo motivo: desde un runner todos
+# los PDFs saldrían «inalcanzables», no informaría de nada y tendría buen
+# aspecto. Sólo una cita ROTA hace fallar; un servidor caído se informa y ya.
+echo "[ci-blocked] $(date '+%F %T') running check:sindic-fichas (network probe)"
+npm run check:sindic-fichas || echo "[ci-blocked] check:sindic-fichas reportó discrepancias — ver arriba"
+
 echo "[ci-blocked] $(date '+%F %T') running check:citations (network probe)"
 npm run check:citations || echo "[ci-blocked] check:citations reported findings — see above"
 
