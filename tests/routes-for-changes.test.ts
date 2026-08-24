@@ -15,11 +15,15 @@ describe('qué rutas toca un cambio', () => {
   })
 
   it('un componente hoja lleva sólo a donde se monta', () => {
-    // SerieServicio la pinta ServicioCard, que sólo vive en /eficiencia. Si
-    // esto empieza a devolver media docena de rutas, el grafo se ha vuelto
-    // borroso y el gancho revisará de más — que acaba siendo revisar de menos,
-    // porque el presupuesto se lo come otra ruta.
-    expect(rutas('src/components/eficiencia/SerieServicio.jsx')).toEqual(['/eficiencia'])
+    // SerieServicio la pintan la ficha de un servicio y el libro que lleva a
+    // ella: dos rutas, las dos de eficiencia. Si esto empieza a devolver media
+    // docena, el grafo se ha vuelto borroso y el gancho revisará de más — que
+    // acaba siendo revisar de menos, porque el presupuesto se lo come otra
+    // ruta.
+    expect(rutas('src/components/eficiencia/SerieServicio.jsx')).toEqual([
+      '/eficiencia',
+      '/eficiencia/:id',
+    ])
   })
 
   it('un snapshot lleva a las páginas que lo cargan Y a las que lo describen', () => {

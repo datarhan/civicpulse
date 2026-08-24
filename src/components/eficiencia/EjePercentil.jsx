@@ -114,7 +114,7 @@ export function EjePercentil({
               width: pct(g.banda.width),
               top: (alto - 4) / 2,
               height: 4,
-              borderRadius: 2,
+              borderRadius: 'var(--r-pill)',
               background: colorBanda,
             }}
           />
@@ -143,7 +143,7 @@ export function EjePercentil({
               width: detallada ? 14 : 10,
               height: detallada ? alto + 4 : 10,
               marginLeft: detallada ? -7 : -5,
-              borderRadius: detallada ? 7 : '50%',
+              borderRadius: detallada ? 'var(--r-pill)' : '50%',
               background: g.marcador.hueco ? 'var(--paper)' : 'var(--civic)',
               border: g.marcador.hueco
                 ? '1.5px dashed var(--ink50)'

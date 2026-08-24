@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Card } from '../components/Primitives'
 import { CoberturaEficiencia } from '../components/eficiencia/CoberturaEficiencia'
 import { LecturaRapida } from '../components/eficiencia/LecturaRapida'
@@ -25,6 +27,15 @@ import { useT } from '../i18n'
  * una lectura editorial fechada; dónde está el límite de eso, en el docblock
  * de `LecturaRapida.jsx`.
  *
+ * Espacios de anclas: `#sec-*` secciones · `#g-<area>` grupos, cuando el libro
+ * se agrupa · `#hallazgos` la sección firmada. Las fichas ya NO son anclas:
+ * cada servicio es su propia ruta, `/eficiencia/:id`. Un `#s-<id>` de antes
+ * sigue funcionando —lo redirige el efecto de abajo— porque uno de ellos vive
+ * dentro de `eficiencia-preguntas.json`, que es curado y no se reescribe desde
+ * código.
+ *
+ * Lo que sigue de aquí describe el reparto por área, que ahora es un modo de
+ * lectura del libro y no la estructura de la página:
  * Las fichas van agrupadas por área funcional de la propia clasificación por
  * programas (`AREAS`, declarada servicio a servicio en el registro) — nunca
  * por concejalías: un coste unitario a un clic de un concejal con nombre es un
@@ -49,6 +60,17 @@ import { useT } from '../i18n'
  */
 export default function Eficiencia() {
   const t = useT()
+  const navigate = useNavigate()
+
+  // `#s-<id>` era el ancla de cada ficha cuando las quince vivían en esta
+  // página. Ahora cada una es una ruta, y este efecto traduce el enlace viejo
+  // en lugar de dejarlo aterrizar en el vacío. No es de adorno: el fichero
+  // curado `eficiencia-preguntas.json` cita uno, y ese fichero se edita por PR,
+  // nunca desde aquí.
+  useEffect(() => {
+    const hash = window.location.hash
+    if (hash.startsWith('#s-')) navigate(`/eficiencia/${hash.slice(3)}`, { replace: true })
+  }, [navigate])
   const { loading, error, data } = useIndicadores()
   const { data: hallazgos } = useEficienciaFindings()
   const { data: preguntas } = useEficienciaPreguntas()

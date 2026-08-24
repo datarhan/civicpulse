@@ -114,6 +114,17 @@ export interface PuntoSerie {
   valor: number | null
   estado: EstadoCelda
   /**
+   * Las DOS mitades de la división de esa entrega, no sólo su cociente.
+   *
+   * El motor las tiene delante en el momento de dividir y no las publicaba, así
+   * que «declara la misma cantidad desde 2019 mientras actualiza el coste» sólo
+   * se podía afirmar en prosa. Con las dos, la ficha lo ENSEÑA: cinco casillas
+   * idénticas debajo de cinco que cambian todos los años. Un lector puede
+   * rehacer el cociente y comprobarlo, que es de lo que va esta página.
+   */
+  numerador?: number
+  denominador?: number
+  /**
    * La entrega declara la cifra, pero está a órdenes de magnitud de lo que
    * declararon sus pares ESE MISMO año. No se borra —es lo que publica el
    * ministerio— pero se marca, porque una serie con un punto de 67 millones de
@@ -655,6 +666,10 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
         anio,
         valor,
         estado: ok ? 'declarado' : n.estado === 'no-se-presta' ? 'no-se-presta' : 'no-declarado',
+      }
+      if (ok) {
+        punto.numerador = n.valor!
+        punto.denominador = d.valor!
       }
       // El modo de gestión de ESE año, que no tiene por qué ser el que titula:
       // limpieza viaria estuvo concedida antes de 2016 y directa después, y un
