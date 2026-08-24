@@ -16,6 +16,12 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
   // as "GASTOS TOTALES 41.578.252 €" — one municipal year — and the two invite a
   // comparison that is false: a reader concludes the town awards more in
   // contracts than it spends in a year, when this is nearly a decade of awards.
+  // «El resto» es el resto de ESE importe, y la frase lo dice ahora. Decía «el
+  // resto son contratos adjudicados», que es cierto de la barra —su universo es
+  // sólo-adjudicado, `tender-geo.ts:146`— pero se leía como una afirmación sobre
+  // toda la página, y el listado de abajo pinta el registro entero: 806 filas de
+  // las que 699 están adjudicadas. El revisor de superficies lo señaló citando
+  // esta frase, y tenía razón sobre la página aunque no sobre la barra.
   const yearMin = (universe?.dateMin || '').slice(0, 4)
   const yearMax = (universe?.dateMax || '').slice(0, 4)
   const span = yearMin && yearMax ? `${yearMin}–${yearMax}` : null
@@ -53,9 +59,9 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
           lineHeight: 1.4,
         }}
       >
-        El resto son contratos adjudicados cuyo título no nombra una zona (servicios, suministros y
-        obras sin lugar citado): no se inventa una ubicación. Un contrato que cita dos zonas suma en
-        ambas, pero cuenta una sola vez aquí.
+        El resto de ese importe adjudicado son contratos cuyo título no nombra una zona (servicios,
+        suministros y obras sin lugar citado): no se inventa una ubicación. Un contrato que cita dos
+        zonas suma en ambas, pero cuenta una sola vez aquí.
       </div>
       <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 5 }}>
         {top.map((z) => (

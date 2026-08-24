@@ -188,7 +188,7 @@ function factsFor(route: string): Record<string, unknown> {
     // cifra. Con las dos delante, el modelo puede distinguir de cuál habla la
     // página en vez de suponer.
     'contratos: nº ADJUDICADOS (awarded + formalized)': tenders?.stats?.awardedContracts,
-    'contratos: nº de FILAS del snapshot (incluye anulados, revocados, desistidos)':
+    'contratos: nº de FILAS del snapshot (incluye anulados, renuncias, desistidos y SIN CLASIFICAR)':
       tenders?.contracts?.length,
     'contratos: rango de fechas de adjudicación': '2017 → 2026 (acumulado, NO anual)',
     // La mayor adjudicación suelta, porque una pieza puede legítimamente

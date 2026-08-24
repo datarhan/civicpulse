@@ -3,6 +3,7 @@ import {
   zoneAmountsAt,
   topContractors,
   filterContracts,
+  contractsListSummary,
   moneyRadiusMeters,
   contractTypeTotals,
   obrasSharePct,
@@ -113,6 +114,66 @@ describe('lib/tender-geo', () => {
         .sort(),
     ).toEqual(['b', 'c'])
     expect(filterContracts(contracts, { dana: true }, byId).map((c) => c.id)).toEqual(['b'])
+  })
+
+  describe('contractsListSummary', () => {
+    // El listado de /presupuesto pinta el registro ENTERO y la página lo
+    // llamaba «adjudicados» de arriba abajo. Esto es lo que le deja decir de
+    // qué está hecho, y hacerlo sobre lo filtrado, no sobre el snapshot.
+    const mezcla = [
+      { id: '1', status: 'awarded', assignee: 'ACME', title: 'Obra en Molinet' },
+      { id: '2', status: 'formalized', assignee: 'ACME', title: 'Servicio limpieza' },
+      { id: '3', status: 'void', assignee: null, title: 'Obra anulada en Molinet' },
+      { id: '4', status: 'abandoned', assignee: null, title: 'Servicio desistido' },
+      { id: '5', status: 'unknown', assignee: null, title: 'Servicio sin clasificar' },
+      { id: '6', status: 'void', assignee: null, title: 'Otra anulada' },
+    ]
+
+    it('separa el dinero comprometido del resto, y nombra el resto', () => {
+      const r = contractsListSummary(mezcla)
+      expect(r.total).toBe(6)
+      // `formalized` cuenta: significa FIRMADO. Contarlo como no-adjudicado es
+      // el defecto de los 53,5 M€ con otro disfraz.
+      expect(r.committed).toBe(2)
+      expect(r.rest).toBe(4)
+      expect(r.restByStatus).toEqual([
+        { status: 'void', count: 2 },
+        { status: 'abandoned', count: 1 },
+        { status: 'unknown', count: 1 },
+      ])
+      // El desglose tiene que sumar el resto, o la frase publicaría un total
+      // que sus propias partes desmienten.
+      expect(r.restByStatus.reduce((a, x) => a + x.count, 0)).toBe(r.rest)
+    })
+
+    it('mide lo FILTRADO, no el snapshot entero', () => {
+      const molinet = filterContracts(mezcla, { text: 'molinet' })
+      expect(molinet).toHaveLength(2)
+      const r = contractsListSummary(molinet)
+      expect(r.total).toBe(2)
+      expect(r.committed).toBe(1)
+      expect(r.restByStatus).toEqual([{ status: 'void', count: 1 }])
+    })
+
+    it('sin nada que decir, no dice nada', () => {
+      // Estado vacío honesto: con 0 filas no hay frase, y con todo adjudicado
+      // tampoco hay «los otros 0».
+      expect(contractsListSummary([])).toEqual({
+        total: 0,
+        committed: 0,
+        rest: 0,
+        restByStatus: [],
+      })
+      const soloAdj = contractsListSummary(mezcla.slice(0, 2))
+      expect(soloAdj.rest).toBe(0)
+      expect(soloAdj.restByStatus).toEqual([])
+    })
+
+    it('un estado que falta se cuenta como sin clasificar, nunca como adjudicado', () => {
+      const r = contractsListSummary([{ id: 'x', title: 'sin estado' }])
+      expect(r.committed).toBe(0)
+      expect(r.restByStatus).toEqual([{ status: 'unknown', count: 1 }])
+    })
   })
 
   describe('contractTypeTotals / obrasSharePct', () => {

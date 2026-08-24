@@ -170,6 +170,53 @@ export function obrasSharePct(totals) {
 }
 
 /**
+ * De qué está hecho el listado que se está pintando: cuántas filas casan, cuántas
+ * son dinero comprometido y qué es el resto — desglosado POR ESTADO, no como un
+ * recuento suelto, para que la frase pueda nombrarlo con las mismas palabras que
+ * llevan las pastillas de las filas.
+ *
+ * Existe porque `/presupuesto` usaba «adjudicados» para dos universos distintos:
+ * la barra de cobertura, que es sólo-adjudicado, y este listado, que pinta el
+ * registro entero. Medido el 24-08-2026: 806 filas, 699 comprometidas, y 7 de
+ * las 107 restantes dentro de las 60 primeras que se ven sin filtrar. El
+ * revisor de superficies lo señaló, con razón.
+ *
+ * Se mide sobre las filas FILTRADAS, nunca sobre el snapshot entero: rotular un
+ * subconjunto con la composición del total sería el mismo defecto un nivel más
+ * abajo.
+ *
+ * No se filtran las no adjudicadas. Un contrato anulado es material
+ * periodístico; esconderlo sería lo contrario de este proyecto. Se nombra.
+ *
+ * @param {any[]} rows
+ * @returns {{total:number, committed:number, rest:number,
+ *   restByStatus:{status:string,count:number}[]}}
+ */
+export function contractsListSummary(rows) {
+  const all = rows || []
+  const byStatus = new Map()
+  let committed = 0
+  for (const c of all) {
+    if (isCommittedContract(c)) {
+      committed += 1
+      continue
+    }
+    // `unknown` es el centinela de Gobierto y aquí es un cubo legítimo: la fila
+    // existe y su estado no consta. Nunca se imprime el token, sólo se cuenta.
+    const status = c?.status || 'unknown'
+    byStatus.set(status, (byStatus.get(status) || 0) + 1)
+  }
+  return {
+    total: all.length,
+    committed,
+    rest: all.length - committed,
+    restByStatus: [...byStatus.entries()]
+      .map(([status, count]) => ({ status, count }))
+      .sort((a, b) => b.count - a.count || a.status.localeCompare(b.status)),
+  }
+}
+
+/**
  * @param {any[]} contracts
  * @param {{text?:string,zoneSlug?:string,category?:string,year?:string,dana?:boolean,type?:string}} [opts]
  * @param {Map<string,any>} [assignmentsById]

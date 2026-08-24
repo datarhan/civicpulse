@@ -11,6 +11,14 @@ const TONES = {
   ghost: { bg: 'transparent', fg: 'var(--ink50)', border: '1px solid var(--border)' },
 }
 
+/**
+ * Los tonos que Pill sabe pintar, exportados para que un mapa de estados pueda
+ * comprobarse contra ellos en vez de repetirlos. Restar un tono a mano es cómo
+ * `STATUS_TONE` acabó mandando 413 filas al `ghost` por defecto sin que nada
+ * enrojeciera.
+ */
+export const TONE_NAMES = Object.keys(TONES)
+
 export function Pill({ tone = 'neutral', children, size = 'sm', style = {} }) {
   const t = TONES[tone] || TONES.neutral
   return (
