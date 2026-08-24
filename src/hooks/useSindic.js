@@ -15,6 +15,8 @@ export const SINDIC_MATERIA_LABEL = {
   salud: 'Salud',
   educacion: 'Educación',
   igualdad: 'Igualdad',
+  'procedimiento-administrativo': 'Procedimiento administrativo',
+  'empleo-publico': 'Empleo público',
   cultura: 'Cultura',
   otros: 'Otros',
 }

@@ -1,11 +1,18 @@
 import { describe, expect, it } from 'vitest'
 import {
+  ALLOWED_MATERIAS,
+  ALLOWED_SENTIDOS,
   idResolucion,
   stats,
   validateResolucion,
   validateSnapshot,
   type SindicResolucion,
 } from '../src/scraper/sindic'
+import {
+  SINDIC_MATERIA_LABEL,
+  SINDIC_SENTIDO_LABEL,
+  SINDIC_SENTIDO_TONE,
+} from '../src/hooks/useSindic'
 
 const OTRO_PDF = 'https://www.elsindic.com/resoluciones/expedientes/2023/202300001/11000001.pdf'
 const URL_PDF = 'https://www.elsindic.com/resoluciones/expedientes/2024/202400427/12337532.pdf'
@@ -161,5 +168,40 @@ describe('sindic — stats', () => {
     expect(s.byMateria.transparencia).toBe(1)
     expect(s.byMateria.urbanismo).toBe(1)
     expect(s.withQuejaRelacionada).toBe(1)
+  })
+})
+
+// ─── El enum y su etiqueta, que se separan solos ────────────────────────────
+//
+// `ALLOWED_MATERIAS` vive en el esquema y `SINDIC_MATERIA_LABEL` en el hook, a
+// dos ficheros de distancia. Al añadir `procedimiento-administrativo` y
+// `empleo-publico` el 24-08-2026 hubo que tocar los dos, y nada obligaba a
+// ello: una materia sin etiqueta se pinta con su slug crudo en la pastilla —
+// «procedimiento-administrativo» en la cara del lector— y ninguna prueba de
+// datos lo vería, porque el dato estaría perfecto.
+
+describe('cada materia permitida tiene su etiqueta legible', () => {
+  it('mide algo: hay materias y hay etiquetas', () => {
+    expect(ALLOWED_MATERIAS.length).toBeGreaterThan(10)
+    expect(Object.keys(SINDIC_MATERIA_LABEL).length).toBeGreaterThan(10)
+  })
+
+  it('ninguna materia se pintaría con su slug', () => {
+    const sinEtiqueta = ALLOWED_MATERIAS.filter((m) => !SINDIC_MATERIA_LABEL[m])
+    expect(sinEtiqueta, `sin etiqueta en useSindic.js: ${sinEtiqueta.join(', ')}`).toEqual([])
+  })
+
+  it('y no hay etiquetas huérfanas de una materia que ya no existe', () => {
+    const huerfanas = Object.keys(SINDIC_MATERIA_LABEL).filter(
+      (k) => !(ALLOWED_MATERIAS as readonly string[]).includes(k),
+    )
+    expect(huerfanas).toEqual([])
+  })
+
+  it('lo mismo para el sentido: etiqueta y tono', () => {
+    for (const s of ALLOWED_SENTIDOS) {
+      expect(SINDIC_SENTIDO_LABEL[s], `sentido sin etiqueta: ${s}`).toBeTruthy()
+      expect(SINDIC_SENTIDO_TONE[s], `sentido sin tono: ${s}`).toBeTruthy()
+    }
   })
 })

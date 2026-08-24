@@ -282,15 +282,55 @@ describe('/quejas — la tarjeta del Síndic', () => {
     })
   })
 
-  it('y cuando SÍ hay ficha firmada, lo dice en vez de repetir el cero', async () => {
+  it('y cuando SÍ hay ficha firmada, lo dice y renderiza su texto literal', async () => {
+    // Firmar 13 fichas que la página no pinta sería firmar en un cajón: la
+    // tarjeta pasó por un momento en el que sólo CONTABA las fichas y no
+    // mostraba ninguna.
+    const VERBATIM =
+      'RECORDAMOS EL DEBER LEGAL de resolver los procedimientos de responsabilidad patrimonial.'
     mountWith({
       '/data/quejas.json': QUEJAS_VACIO,
-      '/data/sindic.json': { ...SINDIC_VACIO, items: [{ id: 'sindic-202502231-12337532' }] },
+      '/data/sindic.json': {
+        ...SINDIC_VACIO,
+        items: [
+          {
+            id: 'sindic-202502231-12337532',
+            expediente: '202502231',
+            fecha: '2025-07-22',
+            materia: 'servicios-publicos',
+            sentido: 'recomendacion',
+            titulo: 'Inactividad del Ayuntamiento en el deber de limpieza',
+            resumen: VERBATIM,
+            urlPdf: 'https://www.elsindic.com/resoluciones/expedientes/2025/202502231/12337532.pdf',
+            quejaIdRelacionada: null,
+          },
+        ],
+      },
       '/data/sindic-expedientes.json': EXPEDIENTES,
     })
-    await waitFor(() => {
-      expect(screen.getByText(/tiene ficha firmada/i)).toBeInTheDocument()
-    })
+    await waitFor(() => expect(screen.getByText(/firmado/i)).toBeInTheDocument())
+    expect(screen.getByText(/1 fichas/)).toBeInTheDocument()
+    expect(screen.getByText(VERBATIM)).toBeInTheDocument()
+    expect(screen.getByText('Recomendación')).toBeInTheDocument()
     expect(screen.queryByText(/No hemos firmado todavía/i)).not.toBeInTheDocument()
+  })
+
+  it('«investigada» no se publica como «contra» — la distinción está en la página', async () => {
+    // El 24-08-2026 esta tarjeta decía «38 expedientes CONTRA el Ayuntamiento».
+    // El campo del buscador marca la administración INVESTIGADA, y de las 14
+    // resoluciones de consideraciones una va dirigida a la Conselleria.
+    mountWith({
+      '/data/quejas.json': QUEJAS_VACIO,
+      '/data/sindic.json': SINDIC_VACIO,
+      '/data/sindic-expedientes.json': EXPEDIENTES,
+    })
+    // Sale dos veces a propósito: en la frase de cabecera y en la nota que
+    // explica por qué «investigada» no es «señalada».
+    await waitFor(() =>
+      expect(screen.getAllByText(/administración investigada/i).length).toBeGreaterThan(0),
+    )
+    expect(screen.getByText(/las consideraciones fueron para la Conselleria/i)).toBeInTheDocument()
+    const cuerpo = document.body.textContent
+    expect(cuerpo).not.toMatch(/expedientes?\s+contra el Ayuntamiento de Riba-roja/i)
   })
 })

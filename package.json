@@ -216,6 +216,7 @@
     "indicador-reply": "npx tsx scripts/reply-indicador.ts",
     "render:og": "node scripts/render-og.mjs",
     "carry:attribution": "npx tsx scripts/carry-attribution.ts",
+    "check:sindic-fichas": "npx tsx scripts/check-sindic-fichas.ts",
     "check:sparse": "npx tsx scripts/check-sparse.ts"
   },
   "dependencies": {

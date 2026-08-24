@@ -12,7 +12,7 @@ import { useCtbg } from '../hooks/useCtbg'
 import { useSindicatura } from '../hooks/useSindicatura'
 import { useBop, formatBopDate } from '../hooks/useBop'
 import { useConsellCv } from '../hooks/useConsellCv'
-import { useSindic } from '../hooks/useSindic'
+import { useSindic, SINDIC_SENTIDO_LABEL, SINDIC_SENTIDO_TONE } from '../hooks/useSindic'
 import { useSindicExpedientes } from '../hooks/useSindicExpedientes'
 import QuejasHeatmap from '../components/QuejasHeatmap'
 import QuejasSpendOverlap from '../components/Quejas/QuejasSpendOverlap'
@@ -39,7 +39,7 @@ const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
  */
 const MAX_EXPEDIENTES = 8
 
-function ExpedienteRow({ e }) {
+function ExpedienteRow({ e, ficha }) {
   return (
     <div style={{ padding: '9px 0', borderTop: '1px dotted var(--border2)' }}>
       <div
@@ -54,6 +54,11 @@ function ExpedienteRow({ e }) {
         <Pill tone="ghost" size="xs">
           {e.materia}
         </Pill>
+        {ficha && (
+          <Pill tone={SINDIC_SENTIDO_TONE[ficha.sentido] || 'warn'} size="xs">
+            {SINDIC_SENTIDO_LABEL[ficha.sentido] || ficha.sentido}
+          </Pill>
+        )}
         {e.resoluciones.length === 0 && (
           <Pill tone="intel" size="xs">
             sin resolución publicada
@@ -75,13 +80,38 @@ function ExpedienteRow({ e }) {
           ))}
         </div>
       )}
+      {/* La ficha firmada: el texto es VERBATIM de la resolución, así que se
+          marca como cita y no se recorta. Va plegada porque son párrafos
+          jurídicos largos y la fila de arriba ya dice de qué van. */}
+      {ficha && (
+        <details style={{ marginTop: 6 }}>
+          <summary
+            className="mono"
+            style={{ fontSize: 'var(--fs-micro)', color: 'var(--civic)', cursor: 'pointer' }}
+          >
+            Lo que el Síndic le dijo, literal
+          </summary>
+          <blockquote
+            style={{
+              margin: '6px 0 0',
+              paddingLeft: 10,
+              borderLeft: '2px solid var(--border2)',
+              fontSize: 'var(--fs-meta)',
+              color: 'var(--ink70)',
+              lineHeight: 1.5,
+            }}
+          >
+            {ficha.resumen}
+          </blockquote>
+        </details>
+      )}
     </div>
   )
 }
 
 function SindicCard() {
   const { data } = useSindicExpedientes()
-  const firmadas = useSindic().data?.items?.length ?? 0
+  const fichas = useSindic().data?.items ?? []
   if (!data) return null
 
   const contra = data.contraAyuntamiento || []
@@ -89,6 +119,7 @@ function SindicCard() {
   const s = data.stats || {}
   const cob = data.cobertura || {}
   const consideraciones = s.porTipoResolucion?.['Resolución de consideraciones a la Administración']
+  const porExpediente = new Map(fichas.map((f) => [f.expediente, f]))
 
   return (
     <Card style={{ marginTop: 14 }}>
@@ -98,30 +129,28 @@ function SindicCard() {
       />
 
       <div
-        style={{
-          fontSize: 'var(--fs-aux)',
-          color: 'var(--ink70)',
-          lineHeight: 1.55,
-          marginTop: 8,
-        }}
+        style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.55, marginTop: 8 }}
       >
-        El registro del Síndic recoge{' '}
+        El Síndic registra{' '}
         <strong style={{ color: 'var(--ink)' }}>
           {contra.length} expediente{contra.length === 1 ? '' : 's'}
         </strong>{' '}
-        contra el Ayuntamiento de Riba-roja de Túria
+        con el Ayuntamiento de Riba-roja de Túria como administración investigada
         {cob.contraAyuntamientoDesde && cob.contraAyuntamientoHasta
           ? ` entre ${cob.contraAyuntamientoDesde} y ${cob.contraAyuntamientoHasta}`
           : ''}
         , {s.conResolucionPublicada} con resolución publicada
         {consideraciones
-          ? ` y ${consideraciones} de ellas de «consideraciones a la Administración»`
+          ? ` y ${consideraciones} que terminaron en «consideraciones a la Administración»`
           : ''}
         .
       </div>
 
-      {/* Lo que el Síndic registra NO es lo que nosotros hemos firmado, y la
-          distancia entre las dos cifras se dice, no se esconde. */}
+      {/* Investigada NO es lo mismo que señalada, y la distinción está medida:
+          de las 14 resoluciones de consideraciones, una va dirigida a la
+          Conselleria —el ayuntamiento sólo informó como parte—. Publicar «38
+          expedientes CONTRA el Ayuntamiento», como decía esta tarjeta el
+          24-08-2026, afirmaba más de lo que el registro sostiene. */}
       <div
         style={{
           fontSize: 'var(--fs-meta)',
@@ -132,24 +161,24 @@ function SindicCard() {
           borderLeft: '2px solid var(--border2)',
         }}
       >
-        Esto es el índice del Síndic transcrito, no un juicio nuestro: materia, asunto y el título
-        de cada resolución van tal cual los publica el organismo.{' '}
-        {firmadas === 0 ? (
+        «Administración investigada» es lo que dice el registro del Síndic, y no equivale a que la
+        resolución se dirija al Ayuntamiento: en un expediente de dependencia las consideraciones
+        fueron para la Conselleria y el Ayuntamiento sólo informó como parte.{' '}
+        {fichas.length > 0 ? (
           <>
-            No hemos firmado todavía ninguna ficha propia sobre estos expedientes — una ficha exige
-            leer el PDF y citarlo verbatim.
+            Hemos leído las resoluciones de consideraciones una a una y firmado{' '}
+            <strong style={{ color: 'var(--ink)' }}>{fichas.length} fichas</strong>, una por cada
+            resolución cuyas consideraciones van dirigidas al Ayuntamiento. El texto que
+            reproducimos es literal.
           </>
         ) : (
-          <>
-            De ellos, {firmadas} tiene{firmadas === 1 ? '' : 'n'} ficha firmada por nosotros, con su
-            resumen leído del PDF.
-          </>
+          <>No hemos firmado todavía ninguna ficha propia sobre estos expedientes.</>
         )}
       </div>
 
       <div style={{ marginTop: 10 }}>
         {contra.slice(0, MAX_EXPEDIENTES).map((e) => (
-          <ExpedienteRow key={e.expediente} e={e} />
+          <ExpedienteRow key={e.expediente} e={e} ficha={porExpediente.get(e.expediente)} />
         ))}
         {contra.length > MAX_EXPEDIENTES && (
           <div
@@ -166,10 +195,6 @@ function SindicCard() {
               el buscador del Síndic
             </ExtLink>{' '}
             · el listado completo está en{' '}
-            {/* Subrayado, no sólo color: axe lo marca `link-in-text-block`
-                (serious) y tiene razón — dentro de un párrafo el color solo no
-                distingue un enlace. Los demás de esta tarjeta pasan por
-                ExtLink, que ya subraya. */}
             <a
               href="/data/sindic-expedientes.json"
               style={{ color: 'var(--civic)', textDecoration: 'underline' }}
@@ -210,7 +235,8 @@ function SindicCard() {
         className="mono"
         style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 12 }}
       >
-        Transcrito del buscador del Síndic · actualizado {fmtDateShort(data.generatedAt)}. Fuente:{' '}
+        Índice transcrito del buscador del Síndic · actualizado {fmtDateShort(data.generatedAt)}.
+        Fuente:{' '}
         <ExtLink href={data.source?.buscador} style={{ color: 'var(--civic)' }}>
           elsindic.com/actuaciones
         </ExtLink>
