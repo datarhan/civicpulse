@@ -1,4 +1,5 @@
 import { Card, Pill } from '../Primitives'
+import { MARGEN_ANCLA } from '../SubnavSecciones'
 import { Sparkline } from '../Charts'
 import { leerIndicadorMunicipal, lecturaVisible } from '../../scraper/indicador-lectura'
 import { Lectura } from './Lectura'
@@ -112,7 +113,7 @@ export function PanelMunicipal({ municipales, titulo, intro, competencias }) {
         {items.map((m) => {
           const d = DIMENSION[m.dimension] ?? DIMENSION.friccion
           return (
-            <Card key={m.id}>
+            <Card key={m.id} id={`m-${m.id}`} style={{ scrollMarginTop: MARGEN_ANCLA }}>
               <div
                 style={{
                   display: 'flex',

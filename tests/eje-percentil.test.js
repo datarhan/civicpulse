@@ -60,13 +60,17 @@ describe('geometriaEje — el percentil ES la posición', () => {
     expect(geometriaEje({ percentil: undefined, banda: [3, 27] }).marcador).toBe(null)
   })
 
-  it('la referencia legal se sitúa donde se le diga, con su tono', () => {
-    const g = geometriaEje({
-      percentil: 94,
-      banda: [90, 98],
-      referencia: { pct: 68, tono: 'crit' },
-    })
-    expect(g.referencia).toEqual({ left: 68, tono: 'crit' })
+  /**
+   * El eje va en percentiles y la ley va en días. La fuente publica el percentil
+   * de Riba-roja y NO el de los 30 días del plazo legal, así que una línea roja
+   * ahí sería la única cifra inventada de la página, en el sitio donde más
+   * pesa. El hecho legal se dice en texto. Esta prueba impide que vuelva por la
+   * puerta de atrás.
+   */
+  it('no hay forma de colar un umbral por el eje: sólo percentil y banda', () => {
+    const g = geometriaEje({ percentil: 94, banda: [90, 98], referencia: { pct: 68 } })
+    expect(g.referencia).toBeUndefined()
+    expect(Object.keys(g).sort()).toEqual(['banda', 'iqr', 'marcador', 'mediana'])
   })
 
   /**

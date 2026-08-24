@@ -30,14 +30,20 @@ export const PCT_IQR = { left: 25, width: 50 }
 const recorta = (n) => Math.min(100, Math.max(0, n))
 
 /**
+ * El eje NO acepta un umbral legal, y la ausencia es deliberada.
+ *
+ * En /gestion la referencia del plazo de pago la fija la ley: 30 días. Pero el
+ * eje va en PERCENTILES, y la fuente publica el percentil de Riba-roja (94) sin
+ * publicar el de los 30 días. Lo único que se sabe de esa línea es que cae
+ * entre el p75 —27,14 días— y el p94. Situarla a ojo sería inventar justo la
+ * cifra que la fuente calla, en el sitio donde una línea roja más pesa. El
+ * hecho legal se dice entero en texto, con su múltiplo y su norma enlazada.
+ *
  * @param {object} arg
  * @param {number|null|undefined} arg.percentil  Puesto de Riba-roja, 0–100.
  * @param {[number, number]|null|undefined} arg.banda  Banda plausible del percentil.
- * @param {{pct: number, tono?: string}|null} [arg.referencia]  Una marca ajena a
- *   la muestra: en /gestion la referencia no siempre es la mediana de otros
- *   municipios, a veces la fija la ley, y entonces se dibuja la ley.
  */
-export function geometriaEje({ percentil, banda, referencia = null }) {
+export function geometriaEje({ percentil, banda }) {
   const hayBanda = Array.isArray(banda) && banda.length === 2
   const cruza = cruzaMediana({ percentilBanda: banda })
 
@@ -52,10 +58,6 @@ export function geometriaEje({ percentil, banda, referencia = null }) {
     marcador:
       typeof percentil === 'number' && Number.isFinite(percentil)
         ? { left: recorta(percentil), hueco: cruza === true }
-        : null,
-    referencia:
-      referencia && typeof referencia.pct === 'number'
-        ? { left: recorta(referencia.pct), tono: referencia.tono ?? 'crit' }
         : null,
   }
 }

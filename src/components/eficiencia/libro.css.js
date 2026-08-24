@@ -163,4 +163,20 @@ export const estiloLibro = `
   .cp-libro tr.cp-grupo { padding: 0; border: 0; }
   .cp-libro tr.cp-grupo th { display: block; padding: 20px 0 4px; }
 }
+
+/* Un hecho de la NORMA, no una opinión nuestra: es el único sitio de estas dos
+   páginas donde entra el color crítico, y entra porque un umbral legal sí es un
+   umbral. La posición sigue sin colorearse nunca. */
+.cp-veredicto-fuera { background: var(--crit-soft); color: var(--crit-ink); }
+
+.cp-libro-gestion { min-width: 900px; }
+.cp-libro-gestion .cp-c-servicio { width: 24%; }
+.cp-libro-gestion .cp-c-unidad { width: 11%; }
+.cp-libro-gestion .cp-c-posicion { width: 25%; }
+.cp-libro-gestion .cp-c-decada { width: 15%; }
+.cp-libro-gestion .cp-c-decir { width: 14%; }
+.cp-libro-gestion .cp-c-responde { width: 11%; }
+@media (max-width: 720px) {
+  .cp-libro-gestion { min-width: 0; }
+}
 `

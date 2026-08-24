@@ -22,13 +22,12 @@ import { geometriaEje, ticksRango } from './eje-percentil'
 export function EjePercentil({
   percentil,
   banda,
-  referencia = null,
   ticks = 0,
   etiqueta = null,
   variante = 'compacta',
   descripcion,
 }) {
-  const g = geometriaEje({ percentil, banda, referencia })
+  const g = geometriaEje({ percentil, banda })
   const detallada = variante === 'detallada'
   const alto = detallada ? 18 : 14
   const pct = (n) => `${n}%`
@@ -116,19 +115,6 @@ export function EjePercentil({
               height: 4,
               borderRadius: 'var(--r-pill)',
               background: colorBanda,
-            }}
-          />
-        )}
-        {/* un límite que fija la ley, no la muestra */}
-        {g.referencia && (
-          <div
-            style={{
-              position: 'absolute',
-              left: pct(g.referencia.left),
-              top: -5,
-              bottom: -5,
-              width: 2,
-              background: `var(--${g.referencia.tono})`,
             }}
           />
         )}

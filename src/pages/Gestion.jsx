@@ -1,4 +1,5 @@
 import { Card } from '../components/Primitives'
+import { LibroGestion } from '../components/eficiencia/LibroGestion'
 import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
 import { HallazgosEficiencia } from '../components/eficiencia/HallazgosEficiencia'
 import { PreguntasRegistradas } from '../components/eficiencia/PreguntasRegistradas'
@@ -42,7 +43,7 @@ export default function Gestion() {
   const firmados = (hallazgos?.items ?? []).filter((f) => ids.includes(f.indicadorId)).length
 
   return (
-    <div className="cp-page" style={{ padding: 24, maxWidth: 900, margin: '0 auto' }}>
+    <div className="cp-page" style={{ padding: 24, maxWidth: 1180, margin: '0 auto' }}>
       <div
         className="mono"
         style={{
@@ -95,12 +96,22 @@ export default function Gestion() {
         </Card>
       )}
 
-      <PanelMunicipal
-        municipales={municipales}
-        titulo="Plazos, concurrencia y ejecución"
-        intro="Cada cifra lleva su periodo, porque los contratos abarcan casi una década y la ejecución es de un ejercicio."
-        competencias={porClave}
-      />
+      {/* El mismo libro que /eficiencia, otra fuente: los siete indicadores en
+          una tabla, cada uno frente a la referencia que su fuente permite. Va
+          ANTES que las fichas y no en su lugar — el libro deja comparar, la
+          ficha lleva la descripción, las salvedades, la fuente y la réplica, y
+          quitar la segunda dejaría una tabla sin nada detrás. Cada fila lleva a
+          su ficha por `#m-<id>`. */}
+      <LibroGestion municipales={municipales} competencias={porClave} conNombres={nombresOn} />
+
+      <div style={{ maxWidth: 900 }}>
+        <PanelMunicipal
+          municipales={municipales}
+          titulo="Cada indicador, con su fuente y sus salvedades"
+          intro="Cada cifra lleva su periodo, porque los contratos abarcan casi una década y la ejecución es de un ejercicio."
+          competencias={porClave}
+        />
+      </div>
 
       {!loading && !error && (
         <HallazgosEficiencia
