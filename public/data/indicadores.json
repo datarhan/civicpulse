@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-24T05:24:01.086Z",
+  "generatedAt": "2026-08-24T07:58:35.078Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -7057,7 +7057,8 @@
         "percentil": 88,
         "p25": 925.4006757404256,
         "mediana": 1055.3535052521008,
-        "p75": 1337.1236546940017
+        "p75": 1337.1236546940017,
+        "maximo": 1988.4092192931635
       },
       "caveats": [
         "Es una medida de ENTRADA: cuánto se presupuesta por vecino. Gastar más no es peor ni mejor —puede ser más servicio o menos eficiencia— y esta cifra sola no distingue las dos cosas.",
@@ -7246,7 +7247,8 @@
         "percentil": 100,
         "p25": 0.4487179487179487,
         "mediana": 0.6306818181818181,
-        "p75": 0.7875000000000001
+        "p75": 0.7875000000000001,
+        "maximo": 1
       },
       "caveats": [
         "Esto mide la DECLARACIÓN, no el servicio: una cantidad estable puede ser perfectamente correcta, y repetirla no prueba que nadie la haya comprobado.",

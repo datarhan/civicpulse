@@ -3,6 +3,13 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../src/scraper/departments'
 import { validarCompetencias } from '../src/scraper/competencias'
+import {
+  cotejarSuperficie,
+  leerFuentes,
+  panelesQuePinta,
+  PAGINAS,
+  PANEL_MUNICIPAL,
+} from '../scripts/lib/competencias-superficies'
 
 /**
  * Dos maneras de decirle a un lector quién lleva un área, y el desacuerdo
@@ -89,74 +96,75 @@ describe('las pastillas de /cargos no reclaman la competencia de otro concejal',
 //
 // `competencias.json` es curado y se firma a mano fila a fila. Una fila que
 // no se pinta en ninguna parte es trabajo de curaduría que el lector nunca ve
-// y que ninguna guarda echa en falta: `check:competencias` la cuenta como
-// «coincide» mientras la persona conserve el cargo.
+// y que ninguna guarda echa en falta: `check:competencias` la contaba como
+// «coincide» mientras la persona conservara el cargo.
+//
+// El recorrido NO vive aquí: lo IMPORTA de `scripts/lib/competencias-superficies`,
+// que es el mismo que usa `check:competencias`. Cuando esto era una copia local
+// había una sola implementación; en cuanto hubo dos, la copia se habría quedado
+// vieja — DATA_INTEGRITY §1, no reformules la forma en un test.
 
-// Nada de tabla a mano: qué página pinta qué panel se lee del propio código.
-// Una tabla escrita a mano dentro de un control contra el desfase se desfasa
-// ella misma, que es el chiste que este repositorio ya ha contado dos veces.
-const PAGINAS = ['src/pages/Eficiencia.jsx', 'src/pages/Gestion.jsx'] as const
-const PANEL_MUNICIPAL = 'src/components/eficiencia/PanelMunicipal.jsx'
-
-const fuente = new Map<string, string>(
-  [...PAGINAS, PANEL_MUNICIPAL].map((p) => [p, readFileSync(resolve(p), 'utf8')]),
-)
-
-/** Los `m.panel === '…'` que cada página declara filtrar. */
-function panelesQuePinta(src: string): string[] {
-  return [...src.matchAll(/\.panel\s*===\s*'([^']+)'/g)].map((m) => m[1])
-}
-
-/** ¿Esta página le pasa la competencia a lo que pinta? */
-const cableada = (src: string) => src.includes('useCompetencias')
-
-/** ¿PanelMunicipal sabe siquiera recibirla? */
-const panelMunicipalRecibeCompetencia =
-  /export function PanelMunicipal\(\{[^}]*\bcompetencias?\b/.test(fuente.get(PANEL_MUNICIPAL)!)
-
-/** clave de indicador → los ficheros fuente que pueden pintarla. */
-function paginasDe(clave: string): string[] {
-  if (panel.indicadores.some((i: { id: string }) => i.id === clave)) {
-    // Los indicadores de coste efectivo los pinta ServicioCard en /eficiencia.
-    return ['src/pages/Eficiencia.jsx']
-  }
-  const m = panel.municipales.find((x: { id: string }) => x.id === clave)
-  if (!m) return []
-  return PAGINAS.filter((p) => panelesQuePinta(fuente.get(p)!).includes(m.panel))
-}
+const fuentes = leerFuentes()
 
 describe('toda atribución firmada llega a una superficie', () => {
   it('mide algo: hay asignaciones, y las páginas declaran paneles de verdad', () => {
     expect(mapa.asignaciones.length).toBeGreaterThan(0)
-    expect(PAGINAS.flatMap((p) => panelesQuePinta(fuente.get(p)!)).length).toBeGreaterThan(0)
+    expect(PAGINAS.flatMap((p) => panelesQuePinta(fuentes.get(p)!)).length).toBeGreaterThan(0)
   })
 
   for (const a of mapa.asignaciones) {
     it(`${a.clave} (${a.nombre}) la ve un lector`, () => {
-      const paginas = paginasDe(a.clave)
+      const c = cotejarSuperficie(a.clave, panel, fuentes)
       expect(
-        paginas.length,
-        `ninguna página pinta ${a.clave}: la clave no existe en indicadores.json ` +
-          `o su panel no lo filtra nadie`,
-      ).toBeGreaterThan(0)
-
-      for (const p of paginas) {
-        expect(
-          cableada(fuente.get(p)!),
-          `${p} pinta ${a.clave} pero no importa useCompetencias: la firma de ` +
-            `«${a.cargo} · ${a.nombre}» no llega a la página`,
-        ).toBe(true)
-      }
-
-      // Los municipales pasan por PanelMunicipal; si no acepta la prop, da
-      // igual que la página la tenga cargada.
-      if (panel.municipales.some((x: { id: string }) => x.id === a.clave)) {
-        expect(
-          panelMunicipalRecibeCompetencia,
-          `${a.clave} lo pinta PanelMunicipal, que no recibe competencias: la ` +
-            `firma de «${a.cargo} · ${a.nombre}» no la ve ningún lector`,
-        ).toBe(true)
-      }
+        c.desenlace,
+        `«${a.cargo} · ${a.nombre}» no llega a ningún lector — ${c.detalle}`,
+      ).toBe('renderizado')
     })
   }
+})
+
+// ── 3. Inyección de fallo: la guarda tiene que saber ponerse roja ────────────
+//
+// Una guarda que nunca se ha visto fallar es una guarda que nadie sabe si
+// funciona. Aquí se le pasa un árbol con el cableado roto A PROPÓSITO y se
+// exige que lo cace — el defecto real de 2026-08-24, reproducido.
+
+describe('inyección de fallo: el cotejo caza un cableado roto', () => {
+  /** Una clave municipal de /gestion, tomada del panel y no escrita a mano. */
+  const claveGestion = panel.municipales.find((m) => m.panel === 'gestion')?.id
+
+  it('hay una clave municipal de /gestion con la que probar', () => {
+    expect(claveGestion).toBeTruthy()
+  })
+
+  it('si Gestion.jsx deja de importar useCompetencias, sale «no-renderizado»', () => {
+    const roto = new Map(fuentes)
+    roto.set(
+      'src/pages/Gestion.jsx',
+      fuentes.get('src/pages/Gestion.jsx')!.replaceAll('useCompetencias', 'noExiste'),
+    )
+    const c = cotejarSuperficie(claveGestion!, panel, roto)
+    expect(c.desenlace).toBe('no-renderizado')
+    expect(c.detalle).toContain('Gestion.jsx')
+  })
+
+  it('si PanelMunicipal deja de recibir la prop, sale «no-renderizado»', () => {
+    const roto = new Map(fuentes)
+    roto.set(
+      PANEL_MUNICIPAL,
+      fuentes
+        .get(PANEL_MUNICIPAL)!
+        .replace(
+          /export function PanelMunicipal\(\{[^}]*\}/,
+          'export function PanelMunicipal({ municipales, titulo, intro }',
+        ),
+    )
+    const c = cotejarSuperficie(claveGestion!, panel, roto)
+    expect(c.desenlace).toBe('no-renderizado')
+    expect(c.detalle).toContain('PanelMunicipal')
+  })
+
+  it('una clave que no existe en el panel sale «sin-pagina», no «renderizado»', () => {
+    expect(cotejarSuperficie('no-existe-esta-clave', panel, fuentes).desenlace).toBe('sin-pagina')
+  })
 })

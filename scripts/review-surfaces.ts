@@ -55,6 +55,12 @@ import {
   type ReaderFinding,
   type ReviewCacheEntry,
 } from '../src/scraper/reader-review'
+import {
+  sinDescartar,
+  descartesHuerfanos,
+  validarDescartes,
+  type RegistroDescartes,
+} from '../src/scraper/surface-dismissals'
 import { authorshipBreakdown } from '../src/scraper/finding-authorship'
 import { callLLM, getRunStats } from '../src/llm/client'
 import {
@@ -116,6 +122,24 @@ const esperaServidorMs = num0(process.env.REVIEW_SERVER_RETRY_MS, ESPERA_SERVIDO
 const CACHE = resolve('.review-cache.json')
 const loadCache = (): Record<string, string | ReviewCacheEntry> =>
   existsSync(CACHE) ? JSON.parse(readFileSync(CACHE, 'utf8')) : {}
+
+/**
+ * El registro de descartes ya existía — y esta herramienta lo ignoraba.
+ *
+ * `surface-dismissals.ts` se escribió el 13-08-2026 para que un falso positivo
+ * revisado por una persona dejara de repetirse, y `check:surfaces` lo honra
+ * desde entonces. Pero el barrido que IMPRIME los señalamientos nunca lo leyó,
+ * así que un descarte silenciaba el parte de salud y no la salida que lee un
+ * humano: el señalamiento seguía saliendo en cada pasada, que es justo lo que
+ * el registro venía a evitar. Se vio con el falso positivo de `/gestion` del
+ * 24-08-2026, que iba a reimprimirse indefinidamente.
+ *
+ * Un registro ilegible NO se trata como «sin descartes»: eso silenciaría el
+ * hecho de que alguien lo rompió — misma disciplina que `check-surfaces.ts`.
+ */
+const DESCARTES = resolve('review-dismissals.json')
+const loadDescartes = (): RegistroDescartes | null =>
+  existsSync(DESCARTES) ? validarDescartes(JSON.parse(readFileSync(DESCARTES, 'utf8'))) : null
 const hashOf = (s: string) => createHash('sha256').update(s).digest('hex').slice(0, 16)
 const DATA = resolve('public/data')
 const read = (f: string) =>
@@ -226,6 +250,8 @@ async function main() {
   // Ahora se carga siempre y lo que `--force` salta es el atajo de «sin
   // cambios», más abajo, sólo para las rutas de esta pasada.
   const cache = loadCache()
+  const descartes = loadDescartes()
+  let silenciados = 0
   const persistirCache = () => writeFileSync(CACHE, JSON.stringify(cache, null, 2) + '\n')
   // Oldest first, but ONLY under a budget. A budget starves whatever sits at the
   // end of the list, and a fixed order starves the same routes every time —
@@ -441,18 +467,29 @@ async function main() {
     const prev = readCacheEntry(cache[route])
     if (!force && prev && prev.hash === h) {
       skipped += 1
-      remembered += prev.findings.length
+      // Se guardan CRUDOS y se filtran al imprimir: quitar un descarte del
+      // registro tiene que devolver el señalamiento sin volver a llamar al
+      // modelo. Un veredicto humano se revoca leyendo un fichero, no gastando
+      // tres minutos de backend.
+      const vivos = sinDescartar(route, prev.findings, descartes)
+      const callados = prev.findings.length - vivos.length
+      silenciados += callados
+      remembered += vivos.length
       if (!asJson) {
-        if (prev.findings.length === 0) {
-          console.log(`\n── ${route} · sin cambios desde la última revisión, se omite`)
+        if (vivos.length === 0) {
+          console.log(
+            `\n── ${route} · sin cambios desde la última revisión, se omite` +
+              (callados > 0 ? ` (${callados} descartado(s) por revisión humana)` : ''),
+          )
         } else {
           // A skip must never look cleaner than the review it is standing in for.
           header(route)
           console.log(
             `   sin cambios desde la última revisión (no se vuelve a llamar al modelo), ` +
-              `pero ${prev.findings.length} señalamiento(s) SIGUEN EN PIE:`,
+              `pero ${vivos.length} señalamiento(s) SIGUEN EN PIE:` +
+              (callados > 0 ? ` (+${callados} descartado(s))` : ''),
           )
-          for (const f of prev.findings) printFinding(f)
+          for (const f of vivos) printFinding(f)
         }
       }
       continue
@@ -541,6 +578,10 @@ async function main() {
       chunksReviewed,
       coverage,
     })
+    // Filtrado al IMPRIMIR, no al buscar: el crudo va a la caché (ver arriba).
+    const vivosDeRuta = sinDescartar(route, findings, descartes)
+    const calladosDeRuta = findings.length - vivosDeRuta.length
+    silenciados += calladosDeRuta
     totalDropped += dropped.length
     // Only a route reviewed END TO END may be remembered as reviewed. Caching a
     // partial pass would retire the unread part of the page permanently.
@@ -605,8 +646,13 @@ async function main() {
           `      Lo de abajo NO cubre la página entera. No se guarda en caché: se reintenta.`,
         )
       }
-      if (findings.length === 0 && dropped.length === 0)
-        console.log(complete ? '   nada que señalar.' : '   nada que señalar en lo revisado.')
+      if (vivosDeRuta.length === 0 && dropped.length === 0)
+        console.log(
+          (complete ? '   nada que señalar.' : '   nada que señalar en lo revisado.') +
+            (calladosDeRuta > 0 ? ` (${calladosDeRuta} descartado(s) por revisión humana)` : ''),
+        )
+      else if (calladosDeRuta > 0)
+        console.log(`   ${calladosDeRuta} descartado(s) por revisión humana, no se repiten.`)
       // "nothing to flag" and "I threw three away" must not print the same line.
       // Not necessarily a defect: the filter exists to discard a model that
       // paraphrases the page and then objects to its own paraphrase. But it
@@ -615,7 +661,7 @@ async function main() {
         console.log(
           `   ✗ descartado (no cita la página literalmente): «${String(f?.quote ?? '—').slice(0, 90)}»`,
         )
-      for (const f of findings) printFinding(f)
+      for (const f of vivosDeRuta) printFinding(f)
     }
   }
 
@@ -624,7 +670,11 @@ async function main() {
   if (asJson) console.log(JSON.stringify(all, null, 2))
   // Findings replayed from an unchanged page COUNT. They are live defects on a
   // live page; the only thing the cache saved was the call, not the problem.
-  const total = all.reduce((n, r) => n + r.findings.length, 0) + remembered
+  // Los descartados NO cuentan ni para el total ni para el código de salida —
+  // ese es el sentido del registro—, pero SÍ se dicen: un silencio sin recuento
+  // es otra vez un control que no cuenta lo que no enseñó.
+  const total =
+    all.reduce((n, r) => n + sinDescartar(r.route, r.findings, descartes).length, 0) + remembered
   if (!asJson) {
     const chars = all.reduce((n, r) => n + r.chars, 0)
     const read = all.reduce((n, r) => n + r.charsReviewed, 0)
@@ -637,6 +687,10 @@ async function main() {
         `${total} señalamiento(s) para revisión humana` +
         (remembered > 0 ? ` (${remembered} heredado(s) de una revisión anterior)` : '') +
         (totalDropped > 0 ? ` · ${totalDropped} descartado(s) por no citar literalmente` : '') +
+        // Se dice, aunque no cuente. Un registro de descartes que silencia sin
+        // decir cuánto es indistinguible de una página limpia, y entonces nadie
+        // revisa nunca si los descartes siguen mereciéndolo.
+        (silenciados > 0 ? ` · ${silenciados} descartado(s) por revisión humana` : '') +
         // Se dice. Una pasada que necesitó dos intentos no es lo mismo que una
         // limpia a la primera, y callarlo escondería que el backend flaquea.
         (reintentos > 0 ? ` · ${reintentos} reintento(s) de backend` : '') +
@@ -695,6 +749,35 @@ async function main() {
       )
     }
   }
+  // Descartes que ya no corresponden a ningún señalamiento vivo: sobran, y
+  // siguen ARMADOS por si esa frase vuelve un día por otro motivo. Se nombran,
+  // no se borran solos — quitar un veredicto humano lo decide un humano.
+  if (!asJson) {
+    // SÓLO sobre las rutas que esta pasada ha examinado, y leyendo los
+    // señalamientos de la CACHÉ, no de `all`. Dos motivos, los dos medidos
+    // aquí mismo: una ruta servida de caché hace `continue` y nunca entra en
+    // `all`, y una ruta que este comando ni siquiera visitó no tiene
+    // señalamientos vivos por definición. Sin ninguna de las dos cosas, el
+    // primer intento llamó «sobrante» al descarte que acababa de silenciar un
+    // aviso, y a los dos de rutas que no se habían mirado.
+    const examinadas = new Set(routes)
+    const vivosPorRuta = new Map(routes.map((r) => [r, readCacheEntry(cache[r])?.findings ?? []]))
+    const huerfanos = descartesHuerfanos(
+      descartes
+        ? { ...descartes, items: descartes.items.filter((d) => examinadas.has(d.route)) }
+        : null,
+      vivosPorRuta,
+    )
+    if (huerfanos.length > 0) {
+      console.log(
+        `           ${huerfanos.length} descarte(s) sin señalamiento vivo (sobran): ` +
+          huerfanos
+            .map((d) => `${d.route} «${d.quote.slice(0, 40).replace(/\n/g, ' ')}»`)
+            .join(', '),
+      )
+    }
+  }
+
   // `ranOut` is in here deliberately: a run that skipped routes did not review
   // the site, and must not exit 0 as though it had. The pre-push hook ignores
   // this code by construction — nothing here may block a push — but a person or
