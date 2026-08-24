@@ -15,7 +15,7 @@ import { particionPosiciones } from '../../scraper/indicador-areas'
  * - **Recuentos, jamás una media.** «6 por debajo de su mediana · 6 por
  *   encima» es una partición de los percentiles que cada ficha ya publica;
  *   promediarlos sería la nota global por la puerta de atrás
- *   (`ResumenPosiciones` lo dice desde antes que esta cabecera existiera).
+ *   (el libro de servicios lo dice en cada fila).
  * - **La posición no se colorea.** Un coste unitario alto no es un suspenso
  *   (policía es un PRECIO por efectivo); el acento de aviso se reserva para lo
  *   que sí es un hecho sobre la rendición: denominadores sin remedir y la

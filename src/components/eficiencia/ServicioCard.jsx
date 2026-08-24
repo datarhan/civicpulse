@@ -9,37 +9,7 @@ import { Lectura } from './Lectura'
 import { Resultado } from './Resultado'
 import { CompetenciaDelegada } from './CompetenciaDelegada'
 import { Concesion } from './Concesion'
-
-const GESTION = {
-  directa: { label: 'gestión directa', tone: 'neutral' },
-  concesion: { label: 'concesión', tone: 'warn' },
-  mancomunada: { label: 'mancomunada', tone: 'neutral' },
-  consorciada: { label: 'consorciada', tone: 'neutral' },
-  convenio: { label: 'por convenio', tone: 'neutral' },
-  mixta: { label: 'empresa mixta', tone: 'neutral' },
-  otra: { label: 'otra forma de gestión', tone: 'ghost' },
-  'sin-clasificar': { label: 'sin clasificar', tone: 'ghost' },
-  'no-se-presta': { label: 'no se presta', tone: 'ghost' },
-}
-
-/**
- * Por qué NO hay cociente, en la lengua de un vecino.
- *
- * Cada uno de estos es un hecho sobre la rendición de cuentas del propio
- * ayuntamiento, no un defecto de esta página: por eso se enseñan en vez de
- * ocultar la tarjeta.
- */
-const MOTIVO = {
-  concesion:
-    'El servicio está concedido: lo paga el concesionario y lo recupera vía tarifa, así que el coste que declara el ayuntamiento (0 €) no es lo que cuesta el servicio. Compararlo con un municipio de gestión directa diría que aquí es gratis.',
-  'cero-sin-declarar':
-    'Hay gasto declarado, pero la unidad física viene a cero. Un cero junto a un presupuesto real significa «no se declaró», no «no hubo» (regla 3).',
-  'filas-duplicadas':
-    'El ministerio publica más de un coste para este mismo servicio. Elegir uno sería un volado disfrazado de dato (regla 1 de la metodología).',
-  'atributo-ambiguo':
-    'La misma magnitud está declarada dos veces con valores distintos en la misma entrega (regla 2).',
-  ausente: 'La entrega no trae esta magnitud.',
-}
+import { GESTION, MOTIVO } from './vocabulario'
 
 export function ServicioCard({ indicador, formatea, resultado, competencia }) {
   const t = useT()
