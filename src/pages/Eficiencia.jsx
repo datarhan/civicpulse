@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card } from '../components/Primitives'
 import { CoberturaEficiencia } from '../components/eficiencia/CoberturaEficiencia'
-import { LecturaRapida } from '../components/eficiencia/LecturaRapida'
+import { EstadoRendicion } from '../components/eficiencia/EstadoRendicion'
 import { LibroServicios } from '../components/eficiencia/LibroServicios'
 import { ComoSeLee } from '../components/eficiencia/ComoSeLee'
 import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
@@ -25,7 +25,7 @@ import { useT } from '../i18n'
  * en cabecera convertiría la ponderación en la noticia. Lo que la cabecera
  * añade desde agosto de 2026 son RECUENTOS de lo que las fichas ya publican y
  * una lectura editorial fechada; dónde está el límite de eso, en el docblock
- * de `LecturaRapida.jsx`.
+ * de `EstadoRendicion.jsx`.
  *
  * Espacios de anclas: `#sec-*` secciones · `#g-<area>` grupos, cuando el libro
  * se agrupa · `#hallazgos` la sección firmada. Las fichas ya NO son anclas:
@@ -151,11 +151,15 @@ export default function Eficiencia() {
         </Card>
       )}
 
-      {/* La respuesta corta primero — recuentos y una lectura fechada, nunca
-          una nota. El índice de hallazgos firmados que antes iba aquí como
-          párrafo ahora es una casilla más de la cabecera, con el mismo
-          contrato: dice cuántos hay y dónde, sin adelantar lo que concluyen. */}
-      <LecturaRapida data={data} firmados={firmados} />
+      {/* La respuesta corta primero, y su segunda mitad antes que la primera:
+          contar posiciones sin decir que la mitad no se distinguen convierte
+          doce percentiles en doce hechos. Recuentos sobre la rendición, jamás
+          una media de percentiles. */}
+      <EstadoRendicion
+        data={data}
+        firmados={firmados}
+        preguntas={preguntas?.panels?.['coste-efectivo']}
+      />
 
       {indicadores.length > 0 && (
         <section id="sec-cobertura" style={seccion}>
