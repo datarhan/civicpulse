@@ -1,0 +1,2257 @@
+{
+  "plenoId": "ma87e0",
+  "generatedAt": "2026-08-24T09:32:10.203Z",
+  "model": "gemini-3.5-flash",
+  "promptVersion": "speaker-map-v2",
+  "chunkSeconds": 600,
+  "segments": [
+    {
+      "start": 1.1,
+      "end": 11,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Pasamos al punto número tres, que es la propuesta de aprobación del Plan de Actuación Municipal ante el riesgo de inundaciones de Riba-roja de Túria."
+    },
+    {
+      "start": 11,
+      "end": 13,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Tiene la palabra el concejal de Seguridad Ciudadana."
+    },
+    {
+      "start": 13,
+      "end": 29,
+      "speaker": "c00/SPEAKER_01",
+      "text": "Hola, buenas tardes. Traemos a aprobación el Plan de Actuación Municipal ante el riesgo de inundaciones de Riba-roja de Túria, redactado por la empresa de consultoría de ingeniería y prevención de riesgos, S.L."
+    },
+    {
+      "start": 29,
+      "end": 44,
+      "speaker": "c00/SPEAKER_01",
+      "text": "El objeto de este plan es conseguir la máxima protección para las personas, los bienes y el medio ambiente que puedan resultar afectados por las consecuencias de las inundaciones en el término municipal de Riba-roja de Túria."
+    },
+    {
+      "start": 44,
+      "end": 59,
+      "speaker": "c00/SPEAKER_01",
+      "text": "Para conseguir este objetivo, el plan establece la estructura organizativa y los procedimientos de actuación para hacer frente a las emergencias por inundaciones en el ámbito municipal, basándose en el análisis de riesgo y la zonificación del territorio."
+    },
+    {
+      "start": 59,
+      "end": 74,
+      "speaker": "c00/SPEAKER_01",
+      "text": "El plan ha sido redactado siguiendo las directrices de la Directriz Básica de Planificación de Protección Civil ante el riesgo de inundaciones y el Plan Especial ante el riesgo de inundaciones de la Comunidad Valenciana."
+    },
+    {
+      "start": 74,
+      "end": 89,
+      "speaker": "c00/SPEAKER_01",
+      "text": "El plan consta de los siguientes apartados: análisis de riesgo, zonificación del territorio, estructura organizativa, procedimientos de actuación, medidas de protección, implantación y mantenimiento del plan."
+    },
+    {
+      "start": 89,
+      "end": 104,
+      "speaker": "c00/SPEAKER_01",
+      "text": "El plan ha sido sometido a información pública por un periodo de treinta días, sin que se hayan presentado alegaciones. Asimismo, ha sido informado favorablemente por la Comisión de Protección Civil de la Comunidad Valenciana."
+    },
+    {
+      "start": 104,
+      "end": 119,
+      "speaker": "c00/SPEAKER_01",
+      "text": "Por todo ello, se propone al Pleno de la corporación la adopción del siguiente acuerdo: primero, aprobar el Plan de Actuación Municipal ante el riesgo de inundaciones de Riba-roja de Túria."
+    },
+    {
+      "start": 119,
+      "end": 134,
+      "speaker": "c00/SPEAKER_01",
+      "text": "Segundo, facultar al alcalde-presidente para la firma de cuantos documentos sean necesarios para la efectividad de este acuerdo. Y tercero, remitir el plan aprobado a la Agencia de Seguridad y Respuesta a las Emergencias para su registro y homologación."
+    },
+    {
+      "start": 134,
+      "end": 136,
+      "speaker": "c00/SPEAKER_01",
+      "text": "Muchas gracias."
+    },
+    {
+      "start": 136,
+      "end": 139,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Muchas gracias. ¿Intervenciones?"
+    },
+    {
+      "start": 139,
+      "end": 141,
+      "speaker": "c00/SPEAKER_00",
+      "text": "¿Esquerra Unida?"
+    },
+    {
+      "start": 141,
+      "end": 143,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Sí, gracias, señor alcalde."
+    },
+    {
+      "start": 143,
+      "end": 158,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Nosotros vamos a votar a favor de este plan, ya que consideramos que es un documento necesario y muy importante para la seguridad de nuestro municipio, especialmente teniendo en cuenta que Riba-roja está atravesada por el río Turia y tiene diversas zonas inundables."
+    },
+    {
+      "start": 158,
+      "end": 173,
+      "speaker": "c00/SPEAKER_02",
+      "text": "No obstante, queremos hacer hincapié en la importancia de la implantación y el mantenimiento del plan, ya que de nada sirve tener un documento aprobado si luego no se realizan los simulacros, la formación del personal y la información a la ciudadanía."
+    },
+    {
+      "start": 173,
+      "end": 188,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Por ello, instamos al equipo de gobierno a que destine los recursos necesarios para que este plan sea realmente efectivo y no se quede en un mero trámite administrativo. Muchas gracias."
+    },
+    {
+      "start": 188,
+      "end": 191,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Muchas gracias. ¿Ciudadanos?"
+    },
+    {
+      "start": 191,
+      "end": 193,
+      "speaker": "c00/SPEAKER_03",
+      "text": "Sí, gracias, presidente. Buenas tardes a todos."
+    },
+    {
+      "start": 193,
+      "end": 208,
+      "speaker": "c00/SPEAKER_03",
+      "text": "Desde el grupo municipal de Ciudadanos también vamos a apoyar la aprobación de este plan. Creemos que la prevención y la planificación son fundamentales para minimizar los daños que puedan causar las inundaciones, que lamentablemente cada vez son más frecuentes y más intensas debido al cambio climático."
+    },
+    {
+      "start": 208,
+      "end": 223,
+      "speaker": "c00/SPEAKER_03",
+      "text": "Queremos agradecer el trabajo realizado por los técnicos municipales y por la empresa redactora del plan, y esperamos que, tal y como ha comentado el portavoz de Esquerra Unida, se lleve a cabo una correcta implantación y difusión del mismo entre la población."
+    },
+    {
+      "start": 223,
+      "end": 225,
+      "speaker": "c00/SPEAKER_03",
+      "text": "Muchas gracias."
+    },
+    {
+      "start": 225,
+      "end": 228,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Muchas gracias. ¿Compromís?"
+    },
+    {
+      "start": 228,
+      "end": 230,
+      "speaker": "c00/SPEAKER_04",
+      "text": "Sí, gràcies, alcalde. Bona vesprada."
+    },
+    {
+      "start": 230,
+      "end": 245,
+      "speaker": "c00/SPEAKER_04",
+      "text": "Des de Compromís també votarem a favor d'aquest pla d'actuació municipal davant del risc d'inundacions. Considerem que és una ferramenta bàsica i imprescindible per a la gestió de les emergències en el nostre municipi."
+    },
+    {
+      "start": 245,
+      "end": 260,
+      "speaker": "c00/SPEAKER_04",
+      "text": "Volem destacar la importància de tindre actualitzats aquests plans, ja que la realitat del nostre territori va canviant i és necessari adaptar les mesures de prevenció i d'actuació a les noves circumstàncies."
+    },
+    {
+      "start": 260,
+      "end": 275,
+      "speaker": "c00/SPEAKER_04",
+      "text": "També volem insistir en la necessitat de coordinació amb altres administracions, especialment amb la Confederació Hidrogràfica del Xúquer, per a dur a terme actuacions de neteja i manteniment del llit del riu Túria i dels barrancs, que són actuacions clau per a previndre les inundacions."
+    },
+    {
+      "start": 275,
+      "end": 277,
+      "speaker": "c00/SPEAKER_04",
+      "text": "Gràcies."
+    },
+    {
+      "start": 277,
+      "end": 280,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Muchas gracias. ¿Partido Popular?"
+    },
+    {
+      "start": 280,
+      "end": 282,
+      "speaker": "c00/SPEAKER_05",
+      "text": "Sí, gracias, señor alcalde. Buenas tardes."
+    },
+    {
+      "start": 282,
+      "end": 297,
+      "speaker": "c00/SPEAKER_05",
+      "text": "El Partido Popular va a votar a favor de la aprobación de este plan. Entendemos que es una obligación legal, pero sobre todo es una responsabilidad moral de este Ayuntamiento velar por la seguridad de los vecinos de Riba-roja."
+    },
+    {
+      "start": 297,
+      "end": 312,
+      "speaker": "c00/SPEAKER_05",
+      "text": "Queremos sumarnos a las peticiones de los otros grupos de la oposición en cuanto a la necesidad de que este plan no sea un documento inerte, sino que se dote presupuestariamente para su implantación, formación y realización de simulacros."
+    },
+    {
+      "start": 312,
+      "end": 327,
+      "speaker": "c00/SPEAKER_05",
+      "text": "Y también queremos pedir al equipo de gobierno que sea exigente con la Confederación Hidrográfica del Júcar en el mantenimiento y limpieza del cauce del río y de los barrancos, ya que es una competencia suya pero que afecta directamente a la seguridad de nuestro municipio."
+    },
+    {
+      "start": 327,
+      "end": 329,
+      "speaker": "c00/SPEAKER_05",
+      "text": "Muchas gracias."
+    },
+    {
+      "start": 329,
+      "end": 332,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Muchas gracias. ¿Portavoz del Partido Socialista?"
+    },
+    {
+      "start": 332,
+      "end": 334,
+      "speaker": "c00/SPEAKER_06",
+      "text": "Sí, gracias, alcalde. Buenas tardes."
+    },
+    {
+      "start": 334,
+      "end": 349,
+      "speaker": "c00/SPEAKER_06",
+      "text": "En primer lugar, queremos agradecer el apoyo unánime de todos los grupos políticos a la aprobación de este plan. Es una muestra de que, en temas de seguridad y protección civil, todos estamos de acuerdo en que la prevención es lo más importante."
+    },
+    {
+      "start": 349,
+      "end": 364,
+      "speaker": "c00/SPEAKER_06",
+      "text": "Queremos asegurarles que este equipo de gobierno tiene el firme compromiso de implantar este plan de manera efectiva. De hecho, ya se están planificando las acciones formativas para el personal municipal y los voluntarios de Protección Civil, así como las campañas informativas para la ciudadanía."
+    },
+    {
+      "start": 364,
+      "end": 379,
+      "speaker": "c00/SPEAKER_06",
+      "text": "Respecto a la Confederación Hidrográfica del Júcar, queremos decirles que mantenemos una comunicación fluida y constante, y que les exigimos continuamente la limpieza y el mantenimiento de los cauces, aunque también realizamos actuaciones de manera subsidiaria cuando es necesario para garantizar la seguridad."
+    },
+    {
+      "start": 379,
+      "end": 381,
+      "speaker": "c00/SPEAKER_06",
+      "text": "Muchas gracias."
+    },
+    {
+      "start": 381,
+      "end": 384,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Muchas gracias. ¿Alguna intervención más?"
+    },
+    {
+      "start": 384,
+      "end": 386,
+      "speaker": "c00/SPEAKER_00",
+      "text": "¿Pasamos a votación?"
+    },
+    {
+      "start": 386,
+      "end": 401,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Votos a favor de la propuesta de aprobación del Plan de Actuación Municipal ante el riesgo de inundaciones de Riba-roja de Túria."
+    },
+    {
+      "start": 401,
+      "end": 405,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Se aprueba por unanimidad. Muchas gracias."
+    },
+    {
+      "start": 1200,
+      "end": 1205.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "ingresos, o sea, hay un incremento de los ingresos derivados del impuesto de actividades económicas."
+    },
+    {
+      "start": 1205.5,
+      "end": 1210.8,
+      "speaker": "c02/SPEAKER_00",
+      "text": "En cuanto a los ingresos provenientes de otras administraciones, estos ingresos,"
+    },
+    {
+      "start": 1210.8,
+      "end": 1217.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "como son los PIES, la participación en los ingresos del Estado, se ha previsto un incremento sobre las entregas a cuenta,"
+    },
+    {
+      "start": 1217.5,
+      "end": 1224.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "si bien estimamos que habrá un incremento mayor con la liquidación de la cuenta con el Estado en el dos mil veinticuatro."
+    },
+    {
+      "start": 1224.5,
+      "end": 1230,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Esta liquidación viene aproximadamente entre el mes de junio y julio, por lo tanto no la conocemos,"
+    },
+    {
+      "start": 1230,
+      "end": 1235.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "no la hemos incluido en el presupuesto de forma prudente para no incrementar"
+    },
+    {
+      "start": 1235.5,
+      "end": 1239,
+      "speaker": "c02/SPEAKER_00",
+      "text": "más en ingresos. Cuando venga, pues los incorporaremos a ingresos."
+    },
+    {
+      "start": 1239,
+      "end": 1243.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "En este caso, el importe presupuestado de los ingresos del Estado al Ayuntamiento"
+    },
+    {
+      "start": 1243.5,
+      "end": 1248.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "ascienden a ocho millones cuatrocientos treinta mil euros."
+    },
+    {
+      "start": 1248.5,
+      "end": 1251.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "En cuanto a la Generalitat y Diputación,"
+    },
+    {
+      "start": 1251.5,
+      "end": 1256,
+      "speaker": "c02/SPEAKER_00",
+      "text": "no hay previstos mayores ingresos y se mantienen en la línea del pasado año."
+    },
+    {
+      "start": 1256,
+      "end": 1260,
+      "speaker": "c02/SPEAKER_00",
+      "text": "El importe presupuestado asciende a cinco millones de euros."
+    },
+    {
+      "start": 1260,
+      "end": 1265,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Además, hay que sumarle el acuerdo, el convenio con la Generalitat Valenciana,"
+    },
+    {
+      "start": 1265,
+      "end": 1271.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "que este año la Generalitat deberá ingresar uno coma ocho millones de euros para la inversión en el edificio polivalente,"
+    },
+    {
+      "start": 1271.5,
+      "end": 1277.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "conservatorio de danza, al que nosotros también, el propio Ayuntamiento, financiará con otro millón ochocientos mil euros."
+    },
+    {
+      "start": 1277.5,
+      "end": 1283.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "También hay que citar la sentencia del agua, que da la razón al Ayuntamiento,"
+    },
+    {
+      "start": 1283.5,
+      "end": 1289,
+      "speaker": "c02/SPEAKER_00",
+      "text": "aunque queda todavía mucho trabajo y mucho recorrido."
+    },
+    {
+      "start": 1289,
+      "end": 1294.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "En este caso, podríamos mejorar los ingresos por el canon y las obras que ya fueron adelantadas por el propio Ayuntamiento."
+    },
+    {
+      "start": 1294.5,
+      "end": 1299.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Podríamos superar en más de dos millones de euros estos posibles ingresos,"
+    },
+    {
+      "start": 1299.5,
+      "end": 1305.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "si bien, por prudencia, igual que en el caso de los PIES, no se han contemplado en el propio presupuesto de ingresos."
+    },
+    {
+      "start": 1305.5,
+      "end": 1311,
+      "speaker": "c02/SPEAKER_00",
+      "text": "El presupuesto de ingresos también incluye una aportación de una de las canteras con novecientos mil euros"
+    },
+    {
+      "start": 1311,
+      "end": 1315.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "para la construcción de la carretera de la Llobatera y que está firmado en convenio Ayuntamiento-empresa."
+    },
+    {
+      "start": 1315.5,
+      "end": 1320.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Y cerramos los ingresos con una operación de tesorería para inversiones. Esta operación asciende a un millón setecientos ochenta mil euros."
+    },
+    {
+      "start": 1320.5,
+      "end": 1325.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Operación para inversiones que detallaré en el apartado de inversiones,"
+    },
+    {
+      "start": 1325.5,
+      "end": 1331,
+      "speaker": "c02/SPEAKER_00",
+      "text": "y esta operación está sujeta a posibles variaciones, siempre si así fuere, estas variaciones"
+    },
+    {
+      "start": 1331,
+      "end": 1335,
+      "speaker": "c02/SPEAKER_00",
+      "text": "sería para reducir el importe de dicha operación."
+    },
+    {
+      "start": 1335,
+      "end": 1340.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Hablado ya de los ingresos, nos vamos a pasar a lo que son los gastos, ¿dónde destinamos los recursos?"
+    },
+    {
+      "start": 1340.5,
+      "end": 1347,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Sabemos de dónde vienen y ahora vamos a conocer a dónde van."
+    },
+    {
+      "start": 1347,
+      "end": 1351.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "En primer lugar, debemos tener en cuenta la planificación y estrategia de este Gobierno con la ciudadanía."
+    },
+    {
+      "start": 1351.5,
+      "end": 1357.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Es normal que un Ayuntamiento, un Gobierno prevea y proyecte una planificación de dónde destina"
+    },
+    {
+      "start": 1357.5,
+      "end": 1361.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "y cuáles son sus objetivos de inversiones y de servicios."
+    },
+    {
+      "start": 1361.5,
+      "end": 1366.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "En este sentido, son varios los ejes fundamentales de la política de gastos de este Gobierno,"
+    },
+    {
+      "start": 1366.5,
+      "end": 1371,
+      "speaker": "c02/SPEAKER_00",
+      "text": "acorde, en relación con el proyecto de municipio que queremos."
+    },
+    {
+      "start": 1371,
+      "end": 1377.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Las líneas presupuestarias van encaminadas, sobre todo, en seguridad ciudadana, en inversiones, en medio ambiente,"
+    },
+    {
+      "start": 1377.5,
+      "end": 1383.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "en políticas sociales y de mayor, en empleo, en empresas, comercio, deportes, educación y cultura,"
+    },
+    {
+      "start": 1383.5,
+      "end": 1387.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "así como diferentes otras áreas en las que también trabajamos profundamente."
+    },
+    {
+      "start": 1387.5,
+      "end": 1393,
+      "speaker": "c02/SPEAKER_00",
+      "text": "En definitiva, en la mejora de los servicios y en la participación del conjunto de la sociedad"
+    },
+    {
+      "start": 1393,
+      "end": 1398.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "en los diferentes ámbitos sociales como son deporte, cultura, fallas, educación, etcétera,"
+    },
+    {
+      "start": 1398.5,
+      "end": 1404.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "y que se ven reflejados en el capítulo cuatro de transferencias a las diferentes asociaciones y clubs deportivos"
+    },
+    {
+      "start": 1404.5,
+      "end": 1408,
+      "speaker": "c02/SPEAKER_00",
+      "text": "y programas como el plan Rehabilita."
+    },
+    {
+      "start": 1408,
+      "end": 1413.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Y centrándonos en la cuestión de los diferentes capítulos de gasto que componen el presupuesto,"
+    },
+    {
+      "start": 1413.5,
+      "end": 1418.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "en primer lugar tenemos el capítulo uno, que es el de recursos humanos."
+    },
+    {
+      "start": 1418.5,
+      "end": 1424.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Este capítulo asciende a veinte millones seiscientos cincuenta y nueve mil euros y equivale al cuarenta y cuatro coma ochenta y siete por cien del presupuesto."
+    },
+    {
+      "start": 1424.5,
+      "end": 1430.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Lo abordaremos en el próximo punto del orden del día con la aprobación de la plantilla"
+    },
+    {
+      "start": 1430.5,
+      "end": 1435.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "y la relación de los puestos de trabajo del Ayuntamiento."
+    },
+    {
+      "start": 1435.5,
+      "end": 1441,
+      "speaker": "c02/SPEAKER_00",
+      "text": "En cuanto a las diferentes áreas que componen el Ayuntamiento y siguiendo los ejes estratégicos"
+    },
+    {
+      "start": 1441,
+      "end": 1446.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "y de proyecto de municipio, nos vamos a centrar en algunas de las áreas"
+    },
+    {
+      "start": 1446.5,
+      "end": 1452.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "por no hacer muy extensa mi exposición, si no nos tiraríamos toda la mañana y estamos en Fallas."
+    },
+    {
+      "start": 1452.5,
+      "end": 1458,
+      "speaker": "c02/SPEAKER_00",
+      "text": "En cuanto al área de seguridad, el presupuesto total es de cinco millones dieciocho mil euros,"
+    },
+    {
+      "start": 1458,
+      "end": 1463.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "entre personal, servicios, inversiones, a los que hay que sumar las inversiones en cámaras de seguridad"
+    },
+    {
+      "start": 1463.5,
+      "end": 1469.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "para las zonas urbanas y áreas industriales, que vienen financiadas por transferencias del Gobierno central y de Diputación."
+    },
+    {
+      "start": 1469.5,
+      "end": 1475,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Además, se amplía la unidad de drones para vigilancia y los sistemas de videovigilancia de la policía."
+    },
+    {
+      "start": 1475,
+      "end": 1481,
+      "speaker": "c02/SPEAKER_00",
+      "text": "En materia de urbanismo, el importe total asciende a tres millones seiscientos setenta y cuatro mil euros,"
+    },
+    {
+      "start": 1481,
+      "end": 1487,
+      "speaker": "c02/SPEAKER_00",
+      "text": "y destacamos en el área de urbanismo las inversiones como la construcción de la carretera de la Llobatera con un presupuesto inicial de un millón trescientos veintiún mil euros,"
+    },
+    {
+      "start": 1487,
+      "end": 1493,
+      "speaker": "c02/SPEAKER_00",
+      "text": "que es una petición de los vecinos que compartimos plenamente y que sin duda, cuando esté finalizada, eliminará el problema del tráfico pesado."
+    },
+    {
+      "start": 1493,
+      "end": 1499,
+      "speaker": "c02/SPEAKER_00",
+      "text": "La glorieta de la CV-trescientos setenta y cuatro junto a la Reva, que con una aportación del Ayuntamiento de cerca de doscientos mil euros en convenio con la Diputación,"
+    },
+    {
+      "start": 1499,
+      "end": 1505,
+      "speaker": "c02/SPEAKER_00",
+      "text": "esta inversión mejorará el acceso a la urbanización la Reva y al área industrial del sector trece."
+    },
+    {
+      "start": 1505,
+      "end": 1511.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "El plan de refugios climáticos con inversiones en zonas de sombra, en arbolado y en pérgolas con una inversión de setenta y cinco mil euros,"
+    },
+    {
+      "start": 1511.5,
+      "end": 1517.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "aunque en el presupuesto queda reflejado cincuenta mil, pero ya hemos hecho, porque los presupuestos están vivos, y ya hemos hecho una modificación de crédito por setenta y cinco mil euros."
+    },
+    {
+      "start": 1517.5,
+      "end": 1523.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "A las que hay que sumar las inversiones de mejora en movilidad sostenible con zonas de descanso, sombras y arbolado,"
+    },
+    {
+      "start": 1523.5,
+      "end": 1529.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "inversión con fondos europeos, unos trescientos mil euros que van desde el Clot de Navarrete, en zona norte,"
+    },
+    {
+      "start": 1529.5,
+      "end": 1534,
+      "speaker": "c02/SPEAKER_00",
+      "text": "hasta el paseo de la vía férrea, que es la zona donde está el polideportivo."
+    },
+    {
+      "start": 1534,
+      "end": 1540,
+      "speaker": "c02/SPEAKER_00",
+      "text": "En los capítulos de transferencias destacamos la creación de una aplicación presupuestaria dotada con diez mil euros destinados a vivienda social joven,"
+    },
+    {
+      "start": 1540,
+      "end": 1545.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "ciento treinta mil euros destinados al plan Rehabilita de fachadas y accesibilidad a las viviendas,"
+    },
+    {
+      "start": 1545.5,
+      "end": 1551,
+      "speaker": "c02/SPEAKER_00",
+      "text": "o por poner otro ejemplo, la ayuda de cuarenta mil euros para la rehabilitación del propio campanario,"
+    },
+    {
+      "start": 1551,
+      "end": 1555.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "que es de nuestra parte histórica de Riba-roja, por citar algunas."
+    },
+    {
+      "start": 1555.5,
+      "end": 1561.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "En las áreas de medio ambiente, parques y jardines, la inversión total asciende a un millón setecientos ochenta y ocho mil euros,"
+    },
+    {
+      "start": 1561.5,
+      "end": 1567.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "en el que se incluye el mantenimiento de parques y jardines, mantenimiento y conservación de espacios degradados, asfalto de caminos,"
+    },
+    {
+      "start": 1567.5,
+      "end": 1573.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "fomento de la movilidad sostenible y ayudas a la minimización del impacto ambiental, que son esas inversiones que se hacen en las viviendas de diseminados."
+    },
+    {
+      "start": 1573.5,
+      "end": 1579.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Inclusión social, mayores e igualdad, el importe total del presupuesto asciende a tres millones quinientos noventa y seis mil euros."
+    },
+    {
+      "start": 1579.5,
+      "end": 1585.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "El presupuesto de prestación de servicios entre los que se encuentran el catering, el servicio de asistencia domiciliaria,"
+    },
+    {
+      "start": 1585.5,
+      "end": 1591.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "actividades del área de igualdad y otros servicios y ayudas. Este conjunto de servicios dentro de la aplicación presupuestaria ascienden, todos esos servicios que se dan a la ciudadanía,"
+    },
+    {
+      "start": 1591.5,
+      "end": 1595.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "más de dos millones trescientos setenta y cuatro mil euros."
+    },
+    {
+      "start": 1595.5,
+      "end": 1601,
+      "speaker": "c02/SPEAKER_00",
+      "text": "El presupuesto incluye una línea de cincuenta mil euros para mejorar las instalaciones del centro social,"
+    },
+    {
+      "start": 1601,
+      "end": 1605.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "entre ellas el propio bar que hay allí, que utilizan pues nuestros mayores."
+    },
+    {
+      "start": 1605.5,
+      "end": 1611.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Además, y dentro del plan de inversiones, se contempla ya una partida presupuestaria inicial de doscientos setenta y siete mil euros"
+    },
+    {
+      "start": 1611.5,
+      "end": 1617.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "para la primera fase del edificio polivalente Chent Major,"
+    },
+    {
+      "start": 1617.5,
+      "end": 1622.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "presupuesto que se va a ir ampliando a medida que se van haciendo las fases de proyecto y construcción."
+    },
+    {
+      "start": 1622.5,
+      "end": 1628.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "En el área de fomento económico, empleo, empresas y comercio, en este caso el presupuesto asciende a un millón doscientos sesenta y cuatro mil euros,"
+    },
+    {
+      "start": 1628.5,
+      "end": 1634.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "en la que se incluye la feria de comercio, el bono Riba-comercio con ciento cincuenta mil euros, fomento del emprendimiento,"
+    },
+    {
+      "start": 1634.5,
+      "end": 1640.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "la Ribactiva lanzadera de empleo, Ribactiva Oportunitats, Ribactiva Formació,"
+    },
+    {
+      "start": 1640.5,
+      "end": 1646.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "y la una iniciativa nueva, que es la creación del laboratorio de innovación y formación para el empleo,"
+    },
+    {
+      "start": 1646.5,
+      "end": 1651,
+      "speaker": "c02/SPEAKER_00",
+      "text": "en este caso en conjunto con el área de innovación y el de fomento económico."
+    },
+    {
+      "start": 1651,
+      "end": 1657,
+      "speaker": "c02/SPEAKER_00",
+      "text": "En la línea de educación, cultura y fiestas culturales, sin duda es una de las áreas que mayor presupuesto tiene,"
+    },
+    {
+      "start": 1657,
+      "end": 1663,
+      "speaker": "c02/SPEAKER_00",
+      "text": "probablemente nunca suficiente, y el presupuesto total es de ocho millones setecientos treinta y un mil euros,"
+    },
+    {
+      "start": 1663,
+      "end": 1669,
+      "speaker": "c02/SPEAKER_00",
+      "text": "al que le sumamos la inversión plurianual del polivalente, como he dicho anteriormente, el uno coma ocho millones de la Generalitat más el uno coma ocho millones de fondos propios del Ayuntamiento."
+    },
+    {
+      "start": 1669,
+      "end": 1675,
+      "speaker": "c02/SPEAKER_00",
+      "text": "También destacamos más de quinientos mil euros destinados a subvenciones para las diferentes asociaciones culturales, educativas y festivas de Riba-roja,"
+    },
+    {
+      "start": 1675,
+      "end": 1679.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "o la Volta al Cole dotada con ciento sesenta mil euros."
+    },
+    {
+      "start": 1679.5,
+      "end": 1685.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "En la parte de deportes, también importante para para este Gobierno, tiene un presupuesto de dos millones seiscientos veintidós mil euros."
+    },
+    {
+      "start": 1685.5,
+      "end": 1691.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Destacamos la mejora de las ayudas y subvenciones a los clubs deportivos, prácticamente duplicando el presupuesto del ejercicio pasado"
+    },
+    {
+      "start": 1691.5,
+      "end": 1697.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "a este, ¿no?, la diferencia. Pasamos de ciento cuarenta y un mil euros en el pasado en el dos mil veinticinco a doscientos cuarenta y ocho mil euros en este ejercicio."
+    },
+    {
+      "start": 1697.5,
+      "end": 1703.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "También se incluye una partida presupuestaria de ciento cuarenta mil euros para mejorar el complejo La Mallá,"
+    },
+    {
+      "start": 1703.5,
+      "end": 1709.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "que se sumarán a las inversiones ya previstas tanto en el complejo La Mallá como en el pabellón y otras instalaciones deportivas que vienen financiadas con fondos del Gobierno central"
+    },
+    {
+      "start": 1709.5,
+      "end": 1713,
+      "speaker": "c02/SPEAKER_00",
+      "text": "y también de Diputación."
+    },
+    {
+      "start": 1713,
+      "end": 1719,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Sobre el resto de áreas, por no extenderlo más, no nos olvidamos de estas, como son los servicios generales, limpieza viaria,"
+    },
+    {
+      "start": 1719,
+      "end": 1725,
+      "speaker": "c02/SPEAKER_00",
+      "text": "RSU, patrimonio, turismo, transparencia, transporte,"
+    },
+    {
+      "start": 1800,
+      "end": 1807,
+      "speaker": "c03/SPEAKER_00",
+      "text": "que también mejoran sus presupuestos. En definitiva, en suma, un presupuesto de gastos e inversiones de cuarenta y seis millones de euros para seguir en la línea de apuesta por Riba-roja. Muchas gracias."
+    },
+    {
+      "start": 1807,
+      "end": 1814,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Molt bé, pues, eh, apaga."
+    },
+    {
+      "start": 1814,
+      "end": 1823,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Com que vosaltres teniu uns deu minuts aproximadament, si no és que quan vulgueu el torn, Alberto... Eh, Salva."
+    },
+    {
+      "start": 1823,
+      "end": 1826,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Gracias. Buenos días."
+    },
+    {
+      "start": 1826,
+      "end": 1839,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Bien, pues en este caso, el pleno extraordinario que celebramos, como bien ha dicho el concejal, en semana fallera, pero entendíamos que cuanto antes se pueda aprobar este presupuesto, antes se pueda poner en marcha"
+    },
+    {
+      "start": 1839,
+      "end": 1852,
+      "speaker": "c03/SPEAKER_02",
+      "text": "y evitar retrasos y modificacio- modificaciones y falta de de de saldos. Y por eso el compromiso yo creo no solo del Partido Popular, sino de todos los grupos en celebrar hoy día dieciséis este este pleno extraordinario."
+    },
+    {
+      "start": 1852,
+      "end": 1901,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Dicho esto, y despré- después de de haber analizado el presupuesto que se nos presenta, eh, evidentemente, pues no sigue quizá las líneas que el un presupuesto que hubiera elaborado en este caso el Partido Popular."
+    },
+    {
+      "start": 1901,
+      "end": 1911,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Fundamentalmente en los puntos que que voy a comentar, pero eh entendíamos que este dos mil dieciséis debería de haber sido un presupuesto para bajar eh la presión fiscal, la presión eh tanto de empresas como de"
+    },
+    {
+      "start": 1911,
+      "end": 1929,
+      "speaker": "c03/SPEAKER_02",
+      "text": "como de los vecinos. Evidentemente, seguir mejorando los servicios básicos. Yo creo que ningún partido quiere reducir o desmejorar el servicio que reciben nuestros vecinos, sino todo lo contrario, mejorar todas aquellas"
+    },
+    {
+      "start": 1929,
+      "end": 1946,
+      "speaker": "c03/SPEAKER_02",
+      "text": "prestaciones que que dependen del Ayuntamiento. Pero sí un presupuesto en el que nosotros hubiéramos reducido o recortado aquellos gastos que consideramos que no son tan necesarios o que nuestros vecinos no los perciben como un servicio"
+    },
+    {
+      "start": 1946,
+      "end": 1948,
+      "speaker": "c03/SPEAKER_02",
+      "text": "que directamente da el Ayuntamiento."
+    },
+    {
+      "start": 1948,
+      "end": 2003,
+      "speaker": "c03/SPEAKER_02",
+      "text": "También vemos que se trata de un presupuesto poco flexible para encajar cambios, como bien usted ha comentado de la guerra, o situaciones de emergencia como la que tuvimos por la DANA."
+    },
+    {
+      "start": 2003,
+      "end": 2018,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Sí que nuestro grupo hubiera aplicado una política de préstamos cero. Volvemos a tener un presupuesto con un endeudamiento financiero, un millón setecientos mil euros,"
+    },
+    {
+      "start": 2018,
+      "end": 2031,
+      "speaker": "c03/SPEAKER_02",
+      "text": "además de eh pues bueno, hubiéramos aplicado una política de reducción de financiación. Actualmente el Ayuntamiento ya tiene préstamos eh concedidos que tiene que ir atendiendo, entonces es una operación que vemos que todos los años se va"
+    },
+    {
+      "start": 2031,
+      "end": 2049,
+      "speaker": "c03/SPEAKER_02",
+      "text": "se va aumentando. Que estamos en un Ayuntamiento que todos los ejercicios necesita financiación externa pese a los elevados ingresos que tenemos."
+    },
+    {
+      "start": 2049,
+      "end": 2059,
+      "speaker": "c03/SPEAKER_02",
+      "text": "También hubiéramos aumentado la bonificación y ayudas, tanto a vecinos como a asociaciones."
+    },
+    {
+      "start": 2059,
+      "end": 2078,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Usted ha dicho números, pero estamos por debajo de los números en ciertas subvenciones del dos mil veinticuatro, e incluso algunas que han desaparecido y no se han vuelto a recuperar."
+    },
+    {
+      "start": 2078,
+      "end": 2090,
+      "speaker": "c03/SPEAKER_02",
+      "text": "No sé, quizá hubiéramos esperado un presupuesto pues bueno, un poco mejor redistribuido bajo nuestro punto de vista, eh y más más igualitario. Vale."
+    },
+    {
+      "start": 2090,
+      "end": 2101,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Si vamos a los números, este año ustedes han previsto unos ingresos de cuarenta y seis millones cuarenta y seis cien mil y unos gastos de cuarenta y seis mil."
+    },
+    {
+      "start": 2101,
+      "end": 2113,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Un único o un mínimo superávit de ciento veintitrés mil euros. El año pasado en el dos mil veinticinco, con unos ingresos de veintitrés y unos gastos de veintiuno, el superávit que tenían era de un millón novecientos."
+    },
+    {
+      "start": 2113,
+      "end": 2121,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Y en el veinticuatro, pues el superávit era un superávit muy escaso de"
+    },
+    {
+      "start": 2121,
+      "end": 2132,
+      "speaker": "c03/SPEAKER_02",
+      "text": "mil trescientos cincuenta euros. Si nos re- remontamos a la foto inicial y la foto final del dos mil veinticuatro, el presupuesto cuadraba, treinta y nueve millones de ingresos, treinta y nueve de gastos, pero terminamos"
+    },
+    {
+      "start": 2132,
+      "end": 2146,
+      "speaker": "c03/SPEAKER_02",
+      "text": "incumpliendo la estabilidad presupuestaria, terminamos con la necesidad de una financiación externa de un millón cien y terminamos con un remanente de tesorería negativo de un millón setecientos mil."
+    },
+    {
+      "start": 2146,
+      "end": 2163,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Evidentemente, como usted bien ha dicho, tuvimos una DANA, tuvimos eh una situación de emergencia y entendemos que fue un año muy complicado y económicamente pues eh que sale de los patrones de de este Ayuntamiento."
+    },
+    {
+      "start": 2163,
+      "end": 2177,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Si bien es cierto el hecho de que en el dos mil veinticuatro hubiéramos tenido esta situación, pues quizá eh lo que tiramos en falta en este presupuesto es haber tenido un mayor margen de seguridad para posibles eh"
+    },
+    {
+      "start": 2177,
+      "end": 2196,
+      "speaker": "c03/SPEAKER_02",
+      "text": "imprevistos, ¿no? Tener un margen mayor de maniobra y no un superávit únicamente de ciento veintitrés mil euros, que entendemos que es que es corto. O sea, haber guardado más por posibles eh"
+    },
+    {
+      "start": 2196,
+      "end": 2197,
+      "speaker": "c03/SPEAKER_02",
+      "text": "imprevistos, imprevistos de este de este de este calado."
+    },
+    {
+      "start": 2197,
+      "end": 2210,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Entendemos que el mas el el margen se estrecha se estrecha mucho, que se deja poco margen a la seguridad con un presupuesto pues quizá poco flexible teniendo en cuenta"
+    },
+    {
+      "start": 2210,
+      "end": 2223,
+      "speaker": "c03/SPEAKER_02",
+      "text": "el histórico de del Ayuntamiento, de lo que se empe- de lo que se empieza o se presupuesta a lo que finalmente es. Entendíamos que este presupuesto tenía que haber ido por otra por otra línea."
+    },
+    {
+      "start": 2223,
+      "end": 2231,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Como bien le he comentado, pues reducir la presión fiscal. Yo creo que somos todos conscientes del problema que tenemos en"
+    },
+    {
+      "start": 2231,
+      "end": 2245,
+      "speaker": "c03/SPEAKER_02",
+      "text": "en la falta de vivienda, el fomento de la construcción eh no solo se basa en ceder terrenos para que eh pues entes superiores puedan construir vivienda social, sino en fomentar las las empresas"
+    },
+    {
+      "start": 2245,
+      "end": 2262,
+      "speaker": "c03/SPEAKER_02",
+      "text": "reduciendo el impuesto de sociedades, reduciendo el impuesto de construcciones, la tasa, eh que no se ha visto reducida. Entonces es complicado querer fomentar una construcción de viviendas y no bajar los impuestos que gravan estas viviendas."
+    },
+    {
+      "start": 2262,
+      "end": 2271,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Todos sabemos que los vecinos de Riba-roja han sufrido un incremento de la carga fiscal a consecuencia del impuesto de la basura."
+    },
+    {
+      "start": 2271,
+      "end": 2284,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Pues quizá se podría haber compensado con la contribución, es decir, reducir en parte o intentar que esa carga no hubiera sido tan tan alta."
+    },
+    {
+      "start": 2284,
+      "end": 2296,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Cuando hablamos de gastos no necesarios, no hablamos de servicios básicos, hablamos de gastos en los que siempre insistimos, como puede ser la publicidad."
+    },
+    {
+      "start": 2296,
+      "end": 2315,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Si cogemos todas las partidas que ustedes eh han valorado para comunicación, prensa, publicidad o conceptos similares, dejando fuera las publicaciones del boletín, que evidentemente son obligatorias y hay que pagarlas, estamos hablando de doscientos setenta y cuatro mil euros."
+    },
+    {
+      "start": 2315,
+      "end": 2320,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Son partidas que van incrementando año tras año."
+    },
+    {
+      "start": 2320,
+      "end": 2336,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Entonces, quizá aquí una buena pues una buena señal hubiera sido el haberlo reducido y haberlo ajustado y no ir aumentando cada vez más estas partidas, que entendemos que eh bajo nuestro punto de vista se pueden se pueden recortar"
+    },
+    {
+      "start": 2336,
+      "end": 2345,
+      "speaker": "c03/SPEAKER_02",
+      "text": "y enfocar ese dinero a pues entidades locales o a nuestro a nuestro municipio."
+    },
+    {
+      "start": 2345,
+      "end": 2358,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Insistir in el endeudamiento. Ustedes hablan de este presupuesto ya de una financiación, una necesidad de financiación aproximada de un millón setecientos mil euros variable, pero volvemos a lo mismo, de nuevo otro préstamo."
+    },
+    {
+      "start": 2358,
+      "end": 2369,
+      "speaker": "c03/SPEAKER_02",
+      "text": "No tenemos un año en que ustedes no tengan que recurrir a financiación externa, un Ayuntamiento que tiene un ingreso de cuarenta y seis millones de euros."
+    },
+    {
+      "start": 2369,
+      "end": 2383,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Sí que es verdad que en este presupuesto ustedes aumentan de manera notable las inversiones, y creo que es algo que se ha venido reclamando años atrás, más inversiones, más infraestructuras, más mantenimiento."
+    },
+    {
+      "start": 2383,
+      "end": 2394,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Pero claro, a costa de pagar intereses. Este año vamos a pagar dos millones de euros en préstamos, en amortización de préstamos e intereses. Volvemos a"
+    },
+    {
+      "start": 2394,
+      "end": 2401,
+      "speaker": "c03/SPEAKER_02",
+      "text": "solicitar un nuevo préstamo. El año que viene esta partida de amortización de préstamos e intereses va en aumento."
+    },
+    {
+      "start": 2401,
+      "end": 2417,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Por tanto, nos preocupa la necesidad recurrente del Gobierno a tener que recurrir a esta financiación externa. Es decir, quizá tengamos que reducir partidas para tener esa capacidad"
+    },
+    {
+      "start": 2417,
+      "end": 2427,
+      "speaker": "c03/SPEAKER_02",
+      "text": "y no tener que ir al al banco, que al final en los continuos informes se ve que la capacidad de endeudamiento del Ayuntamiento se está reduciendo."
+    },
+    {
+      "start": 2427,
+      "end": 2445,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Más allá de esto, también hemos visto que hay subvenciones o asociaciones que bueno, que que sí que aumentan su importe respecto el dos mil veinticinco, pero se quedan lejos del importe del dos mil veinticuatro."
+    },
+    {
+      "start": 2445,
+      "end": 2461,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Vemos una notable mejoría de veinte mil en el dos mil veinticuatro, veinte mil en el dos mil veinticinco, y ahora en el dos mil veintiséis de sesenta y dos mil a la Cruz Roja, un más cuarenta y dos mil euros."
+    },
+    {
+      "start": 2461,
+      "end": 2473,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Hemos visto que las AMPAS van mejorando año tras año, seis mil seiscientos, siete mil y ocho mil,"
+    },
+    {
+      "start": 2473,
+      "end": 2479,
+      "speaker": "c03/SPEAKER_02",
+      "text": "respecto a los ejercicios veinticuatro, veinticinco, veintiséis, pero el AMPA de la Asunción se queda muy lejos."
+    },
+    {
+      "start": 2479,
+      "end": 2481,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Se queda en mil euros solamente cuando..."
+    },
+    {
+      "start": 2400,
+      "end": 2402.2,
+      "speaker": "c04/SPEAKER_00",
+      "text": "el resto de ampas están en ocho mil."
+    },
+    {
+      "start": 2402.2,
+      "end": 2410,
+      "speaker": "c04/SPEAKER_00",
+      "text": "Bueno, evidentemente no vamos a discutir que sea colegios distintos que el resto, no es un colegio, no es un colegio público,"
+    },
+    {
+      "start": 2410,
+      "end": 2422,
+      "speaker": "c04/SPEAKER_00",
+      "text": "pero creo que el trato es bastante desfavorable respecto estos estos ingresos."
+    },
+    {
+      "start": 2422,
+      "end": 2431,
+      "speaker": "c04/SPEAKER_00",
+      "text": "Después también hemos visto que hay partidas que desaparecen, quizás estén en otros conceptos, pero partidas destinadas a Cáritas"
+    },
+    {
+      "start": 2431,
+      "end": 2444,
+      "speaker": "c04/SPEAKER_00",
+      "text": "o a la Iglesia, que eran la cuenta cuatro ocho nueve y cuatro y siete seis cero, que en este en este presupuesto pues no hay cabida, quizás estén en otra partida."
+    },
+    {
+      "start": 2444,
+      "end": 2456,
+      "speaker": "c04/SPEAKER_00",
+      "text": "También nos nos llama la atención que el centro ferroviario, el trenet del Maldonado, pues viene de dos años sin tener subvención y este año tienen seis mil seis mil euros en subvención."
+    },
+    {
+      "start": 2401,
+      "end": 2472,
+      "speaker": "c04/SPEAKER_00",
+      "text": "pero hay que tener en cuenta que el Ayuntamiento está asumiendo todo el mantenimiento del parque, incluido árboles, incluido instalaciones eléctricas,"
+    },
+    {
+      "start": 2472,
+      "end": 2488,
+      "speaker": "c04/SPEAKER_00",
+      "text": "y la asociación todo el rendimiento que tienen pues lo utilizan para para ellos, para comprar más trenes, para sus mantenimientos o sus pues los eventos que ellos consideran necesarios tener. Entonces, bueno, quizá"
+    },
+    {
+      "start": 2488,
+      "end": 2496,
+      "speaker": "c04/SPEAKER_00",
+      "text": "no sé, estos seis mil euros pues tendrían que tener una mayor explicación de por qué años anteriores sí y otros no."
+    },
+    {
+      "start": 2496,
+      "end": 2509,
+      "speaker": "c04/SPEAKER_00",
+      "text": "En definitiva, por tampoco alargarme mucho más, entendíamos que estos presupuestos tendrían que haber bajado la presión fiscal, tendrían que haberse reducido"
+    },
+    {
+      "start": 2402,
+      "end": 2402.7,
+      "speaker": "c04/SPEAKER_00",
+      "text": "a su forma de entender y lo que sí que el reducir la carga económica, la carga de endeudamiento y una política de de préstamo cero. Gracias."
+    },
+    {
+      "start": 2402.7,
+      "end": 2530,
+      "speaker": "c04/SPEAKER_01",
+      "text": "Eh, Vox, José Luis."
+    },
+    {
+      "start": 2530,
+      "end": 2534,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Muchas gracias. Buenos días a todos."
+    },
+    {
+      "start": 2534,
+      "end": 2549,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Primero felicitar al Partido Popular por la victoria de ayer en las elecciones de Castilla y León, donde además se ha demostrado que hay algo que queda claro, que la izquierda más radical ha desaparecido del mapa. Esto es una cuestión real"
+    },
+    {
+      "start": 2549,
+      "end": 2557,
+      "speaker": "c04/SPEAKER_02",
+      "text": "que los ciudadanos de Castilla y León pues han querido expresar en las urnas."
+    },
+    {
+      "start": 2557,
+      "end": 2562,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Pero vayamos a lo que hoy es importante, que es el el presupuesto de nuestro municipio."
+    },
+    {
+      "start": 2562,
+      "end": 2575,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Y tras analizar no solamente lo que es el propio presupuesto, sino todos los informes que sustentan este presupuesto del dos mil veintiséis,"
+    },
+    {
+      "start": 2403,
+      "end": 2594,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Cuarenta y seis millones de euros no es poca broma para un presupuesto en un municipio con en torno a veinticinco mil habitantes, pero esto es una ayuda adelante para tapar los agujeros de una gestión nefasta"
+    },
+    {
+      "start": 2594,
+      "end": 2611,
+      "speaker": "c04/SPEAKER_02",
+      "text": "que se ha comprobado, por ejemplo, con el contrato de basuras, porque al final hay un equipo que está gobernando y los resultados todos los ciudadanos de este municipio lo saben."
+    },
+    {
+      "start": 2611,
+      "end": 2615,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Pero afrontamos con una idea muy muy clara este presupuesto,"
+    },
+    {
+      "start": 2615,
+      "end": 2624,
+      "speaker": "c04/SPEAKER_02",
+      "text": "y es que cada euro que figura aquí sale de un esfuerzo de familias, de autónomos y de empresas de nuestro pueblo."
+    },
+    {
+      "start": 2624,
+      "end": 2635,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Por lo tanto, se debe gestionar con una máxima prudencia y priorizando servicios esenciales, reduciendo gasto superfluo y evitando más carga de deuda."
+    },
+    {
+      "start": 2404,
+      "end": 2655,
+      "speaker": "c04/SPEAKER_02",
+      "text": "como es el capítulo uno de gastos de personal, que ya se comentó en las comisiones informativas, que asciende a veinte millones y medio de euros, un cuarenta y cuatro coma ochenta y siete del total del presupuesto,"
+    },
+    {
+      "start": 2655,
+      "end": 2670,
+      "speaker": "c04/SPEAKER_02",
+      "text": "y que además la propia intervención municipal en sus informes califica como la situación de muy muy preocupante, señalando que ese nivel de gasto de personal supera un cincuenta por ciento de gasto corriente, que esto crea una rigidez absoluta."
+    },
+    {
+      "start": 2670,
+      "end": 2680,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Estamos ante un ayuntamiento sobredimensionado y que prácticamente una parte trabaja a sí mismo para poderse mantener. Es cierto, y"
+    },
+    {
+      "start": 2680,
+      "end": 2692,
+      "speaker": "c04/SPEAKER_02",
+      "text": "el señor alcalde nos lo comentó, que hay un capítulo de gastos muy importante que se refiere a dos centros, pero también es cierto que ustedes llevan gobernando dos legislaturas más lo que queda de esta y no han logrado solucionarlo."
+    },
+    {
+      "start": 2405,
+      "end": 2714,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Han tenido, cuando también gobernaban el PSOE con el segundo partido, la marca blanca de Compromís, lo han podido solucionar y no se ha hecho."
+    },
+    {
+      "start": 2714,
+      "end": 2722,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Pero al final el equipo de gobierno en la parte económica ha acostumbrado a vivir de prestado. Se ha tenido que recurrir a un préstamo de legislatura de uno coma setenta y ocho millones de euros para sanear"
+    },
+    {
+      "start": 2722,
+      "end": 2734,
+      "speaker": "c04/SPEAKER_02",
+      "text": "ese saldo negativo del remanente de tesorería del veinticuatro, y a pesar de esto la tesorería admite una clara insuficiencia de fondos líquidos, es que es así."
+    },
+    {
+      "start": 2734,
+      "end": 2742,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Y para atender estos pagos ordinarios y resto de pagos,"
+    },
+    {
+      "start": 2742,
+      "end": 2753,
+      "speaker": "c04/SPEAKER_02",
+      "text": "yo creo que podríamos valorar la gestión como una quiebra técnica camuflada."
+    },
+    {
+      "start": 2406,
+      "end": 2774,
+      "speaker": "c04/SPEAKER_02",
+      "text": "En todas las comisiones de contratación y en los propios plenos se dan cuentas del periodo medio de pago, cuestión que se agradece por esas aclaraciones, pero lo cierto es que siguen aumentando."
+    },
+    {
+      "start": 2774,
+      "end": 2782,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Y además de estas cuestiones económicas,"
+    },
+    {
+      "start": 2782,
+      "end": 2793,
+      "speaker": "c04/SPEAKER_02",
+      "text": "lo que más nos preocupa de este presupuesto es el componente ideológico y de la Agenda veinte treinta."
+    },
+    {
+      "start": 2793,
+      "end": 2802,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Efectivamente, como muy bien comenta el alcalde, estamos en las antípodas de las ideologías que tenemos,"
+    },
+    {
+      "start": 2802,
+      "end": 2815,
+      "speaker": "c04/SPEAKER_02",
+      "text": "pero bueno, nosotros lo que hacemos es denunciar ese gasto ideológico que mientras falta dinero para lo esencial, el presupuesto sigue regando de fondos públicos gastos ideológicos,"
+    },
+    {
+      "start": 2407,
+      "end": 2833,
+      "speaker": "c04/SPEAKER_02",
+      "text": "contratos y programas de servicios sociales que, bajo la apariencia de ayuda, lo que hacen es imponer perspectivas de género en cada rincón de la administración. Y también denunciamos"
+    },
+    {
+      "start": 2833,
+      "end": 2849,
+      "speaker": "c04/SPEAKER_02",
+      "text": "la denominación de de una manera muy poco clara de de capítulos como el de refugios climáticos que al final, como en una consulta y se lo agradecemos,"
+    },
+    {
+      "start": 2849,
+      "end": 2859,
+      "speaker": "c04/SPEAKER_02",
+      "text": "nos explicaron que era plantar árboles. Bueno, pero es que aquí lo llaman refugios climáticos, es no querer llamar a las cosas por su nombre. Si hay que plantar árboles, pues se dice plantación de árboles, no, pues aquí lo llaman refugios climáticos."
+    },
+    {
+      "start": 2859,
+      "end": 2872,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Y otras ocurrencias de la Agenda veinte treinta. La solución que proponemos, una eliminación inmediata de todas las subvenciones ideológicas y de chiringuitos."
+    },
+    {
+      "start": 2872,
+      "end": 2892,
+      "speaker": "c04/SPEAKER_02",
+      "text": "El dinero debe reubicarse en ayudas directas a la familia y algo que consideramos importantísimo que es la natalidad, eliminando las variables de género y centrándose en una necesidad económica real. Riba-roja necesita realidades, no propagandas climáticas ni de género."
+    },
+    {
+      "start": 2892,
+      "end": 2905,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Y luego también lo consultamos en las comisiones informativas previas, pero consideramos que hay"
+    },
+    {
+      "start": 2905,
+      "end": 2915,
+      "speaker": "c04/SPEAKER_02",
+      "text": "algunas entidades opacas o con cierta falta de transparencia."
+    },
+    {
+      "start": 2915,
+      "end": 2929,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Es cierto que los no se incluyen datos de la Comunidad de Usuarios del Vertido Camp de Túria dos ni de la Fundación ECA, que creemos que en este caso también tiene la segunda un componente ideológico,"
+    },
+    {
+      "start": 2929,
+      "end": 2939,
+      "speaker": "c04/SPEAKER_02",
+      "text": "y admitiendo la explicación que nos dio el alcalde sobre el resto de municipios, bueno, aquí sí que nos brindamos"
+    },
+    {
+      "start": 2939,
+      "end": 2954,
+      "speaker": "c04/SPEAKER_02",
+      "text": "a con el resto de municipios que no aportan esa información o a través de los concejales que tenemos en esos municipios, pues contar con la colaboración por lo menos para que no tengan esas opacidades."
+    },
+    {
+      "start": 2954,
+      "end": 2966,
+      "speaker": "c04/SPEAKER_02",
+      "text": "Y luego, en cuanto a inseguridad y mantenimiento urbano, aunque se destinen fondos a seguridad, estos lamentablemente se van ensombreciendo por las faltas de recursos humanos operativos reales. Y mientras se gastan en estudios o trabajos técnicos,"
+    },
+    {
+      "start": 2966,
+      "end": 2979,
+      "speaker": "c04/SPEAKER_02",
+      "text": "al final lo que entendemos es que en el mantenimiento de los polígonos y vías públicas siguen siendo deficientes a pesar de las cifras infladas que presentan estos presupuestos."
+    },
+    {
+      "start": 2979,
+      "end": 2991,
+      "speaker": "c04/SPEAKER_02",
+      "text": "La solución, y ahí creo que estaremos todos de acuerdo, es el refuerzo real de la policía local y un plan de choque de limpieza y asfalto necesario."
+    },
+    {
+      "start": 2991,
+      "end": 2999,
+      "speaker": "c04/SPEAKER_02",
+      "text": "En conclusión, estos presupuestos son el reflejo de un gobierno que ha agotado su credibilidad, que"
+    },
+    {
+      "start": 3000,
+      "end": 3002.4,
+      "speaker": "c05/SPEAKER_00",
+      "text": "prefiere subir la presión fiscal, fue de las primeras cuestiones que hicieron nada más iniciar la legislatura,"
+    },
+    {
+      "start": 3002.4,
+      "end": 3007.8,
+      "speaker": "c05/SPEAKER_00",
+      "text": "y endeudarse antes que recortar su propio bienestar político. Y desde Vox seguiremos defendiendo que el dinero de Riba-roja"
+    },
+    {
+      "start": 3007.8,
+      "end": 3012.4,
+      "speaker": "c05/SPEAKER_00",
+      "text": "debe quedar en el bolsillo de las familias y destinarse únicamente a lo que de verdad importa:"
+    },
+    {
+      "start": 3012.4,
+      "end": 3015.6,
+      "speaker": "c05/SPEAKER_00",
+      "text": "seguridad, libertad y prosperidad. Muchas gracias."
+    },
+    {
+      "start": 3015.6,
+      "end": 3024,
+      "speaker": "c05/SPEAKER_01",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 3024,
+      "end": 3027.4,
+      "speaker": "c05/SPEAKER_01",
+      "text": "José Manuel, Esquerra Unida Podem."
+    },
+    {
+      "start": 3027.4,
+      "end": 3032.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 3032.8,
+      "end": 3034.4,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Bon dia a totes i a tots."
+    },
+    {
+      "start": 3034.4,
+      "end": 3039.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Bueno, en primer lloc, volem des d'Esquerra Unida Podem agrair al regidor responsable, a José Ángel,"
+    },
+    {
+      "start": 3039.5,
+      "end": 3044.3,
+      "speaker": "c05/SPEAKER_02",
+      "text": "les diferents converses que hem tingut i les diferents reunions que hem tingut sobre el pressupost"
+    },
+    {
+      "start": 3044.3,
+      "end": 3048.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "de l'any dos mil vint-i-sis. També agrair a tot l'equip tècnic que fa possible la elaboració del pressupost"
+    },
+    {
+      "start": 3048.8,
+      "end": 3053.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "i que hui pugam estar ací per a donar suport o no a este pressupost, però que hui"
+    },
+    {
+      "start": 3053.8,
+      "end": 3059.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "se siga una realitat el pressupost de l'any dos mil vint-i-sis."
+    },
+    {
+      "start": 3059.5,
+      "end": 3064.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Per part d'Esquerra Unida Podem hem de dir que aquest pressupost ha sigut analitzat de manera detinguda"
+    },
+    {
+      "start": 3064.1,
+      "end": 3069.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "i amb un treball profund i d'anàlisi. En este sentit, valorem positivament una liquidació positiva, el complir"
+    },
+    {
+      "start": 3069.1,
+      "end": 3073.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "amb la estabilitat pressupostària i hem de dir que tenim"
+    },
+    {
+      "start": 3073.8,
+      "end": 3079,
+      "speaker": "c05/SPEAKER_02",
+      "text": "molts punts d'acord a nivell estructural, encara que també tenim diferències que també després plantejaré."
+    },
+    {
+      "start": 3079,
+      "end": 3084.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Per part d'Esquerra Unida Podem s'han fet diferents propostes. Vàrem elaborar un document de treball"
+    },
+    {
+      "start": 3084.1,
+      "end": 3088.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "amb un anàlisi detallat del pressupost, amb més de quaranta preguntes tècniques i polítiques"
+    },
+    {
+      "start": 3088.8,
+      "end": 3093.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "i amb deu propostes sobre diferents capítols, programes municipals, que vàrem enviar al regidor responsable"
+    },
+    {
+      "start": 3093.8,
+      "end": 3098.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "i a tot l'equip de govern. Aquest document que se va elaborar ha sigut amb un objectiu clar"
+    },
+    {
+      "start": 3098.5,
+      "end": 3103.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "de poder sumar en este pressupost, de poder evitar errades i, sobretot, també de millorar-lo"
+    },
+    {
+      "start": 3103.8,
+      "end": 3108.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "amb propostes concretes que partien de l'espai polític d'Esquerra Unida Podem."
+    },
+    {
+      "start": 3108.1,
+      "end": 3112.4,
+      "speaker": "c05/SPEAKER_02",
+      "text": "En referència a este anàlisi, parlem primer dels ingressos."
+    },
+    {
+      "start": 3112.4,
+      "end": 3117.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Una de les qüestions que vàrem abordar va ser l'increment previst en la taxa de llicències urbanístiques,"
+    },
+    {
+      "start": 3117.1,
+      "end": 3121.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "que passava d'una previsió de nou-cents cinquanta mil euros, sobretot per saber en què es basava aquest increment"
+    },
+    {
+      "start": 3121.8,
+      "end": 3126.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "i si ja hi havia llicències concedides o se tractava d'una estimació vinculada a l'activitat urbanística prevista."
+    },
+    {
+      "start": 3126.5,
+      "end": 3131.2,
+      "speaker": "c05/SPEAKER_02",
+      "text": "També s'ha analitzat la dependència d'algunes transferències de la Generalitat Valenciana, com ha comentat"
+    },
+    {
+      "start": 3131.2,
+      "end": 3135.9,
+      "speaker": "c05/SPEAKER_02",
+      "text": "el regidor José Ángel, en matèria de serveis socials, educació o l'un coma huit milions"
+    },
+    {
+      "start": 3135.9,
+      "end": 3140.6,
+      "speaker": "c05/SPEAKER_02",
+      "text": "per a conservatori, sobretot si feien referència a convenis ja formalitzats o, per altra banda,"
+    },
+    {
+      "start": 3140.6,
+      "end": 3145.3,
+      "speaker": "c05/SPEAKER_02",
+      "text": "qüestions que encara no s'han cobrat, però sobretot per el tema de la afectació a tresoreria municipal,"
+    },
+    {
+      "start": 3145.3,
+      "end": 3150,
+      "speaker": "c05/SPEAKER_02",
+      "text": "perquè, com ja hem vist, eixe deute de la Generalitat Valenciana fa que la tresoreria"
+    },
+    {
+      "start": 3150,
+      "end": 3154.7,
+      "speaker": "c05/SPEAKER_02",
+      "text": "li afecte negativament, com ha passat en l'any dos mil vint-i-cinc."
+    },
+    {
+      "start": 3154.7,
+      "end": 3159.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "També hem fet referència a algunes partides de transferències de capital, especialment en aquelles"
+    },
+    {
+      "start": 3159.5,
+      "end": 3164.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "que apareixen amb imports importants, però amb descripcions molt genèriques per saber exactament"
+    },
+    {
+      "start": 3164.1,
+      "end": 3168.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "a quins projectes corresponen i quin serà el seu calendari previst de finançament."
+    },
+    {
+      "start": 3168.8,
+      "end": 3173.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "En lo que fa referència al gasto, també s'ha fet un anàlisi i una valoració molt exhaustiva."
+    },
+    {
+      "start": 3173.5,
+      "end": 3178.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "I, en primer lloc, hem valorat amb el regidor i amb l'equip de govern importants despeses,"
+    },
+    {
+      "start": 3178.1,
+      "end": 3182.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "com és el manteniment de parcs i jardins, que superen els nou-cents mil euros, valorant les actuacions"
+    },
+    {
+      "start": 3182.8,
+      "end": 3187.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "que hi ha dins i els contractes que inclou aquesta partida. També s'han analitzat programes socials,"
+    },
+    {
+      "start": 3187.5,
+      "end": 3192.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "preguntant, per exemple, quins recursos reals permet la partida destinada al programa de contraprestació i intervenció"
+    },
+    {
+      "start": 3192.1,
+      "end": 3196.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "sociocomunitària, que inicialment era una partida molt reduïda i que, plantejant la proposta"
+    },
+    {
+      "start": 3196.8,
+      "end": 3201.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "d'Esquerra Unida Podem, s'ha aconseguit augmentar eixa partida pressupostària."
+    },
+    {
+      "start": 3201.5,
+      "end": 3206.2,
+      "speaker": "c05/SPEAKER_02",
+      "text": "En el mateix àmbit social, es varen plantejar qüestions sobre el funcionament de programes com el servei d'ajuda"
+    },
+    {
+      "start": 3206.2,
+      "end": 3210.9,
+      "speaker": "c05/SPEAKER_02",
+      "text": "a domicili o el càtering social, sobretot per el tema de les dades de la demanda i les possibles llistes d'espera."
+    },
+    {
+      "start": 3210.9,
+      "end": 3215.6,
+      "speaker": "c05/SPEAKER_02",
+      "text": "També s'han analitzat altres àrees municipals, per exemple, en matèria cultural, es va analitzar la promoció"
+    },
+    {
+      "start": 3215.6,
+      "end": 3220.3,
+      "speaker": "c05/SPEAKER_02",
+      "text": "cultural i activitats, així com el detall dels actes i el cost previst en festes populars, perquè entenem"
+    },
+    {
+      "start": 3220.3,
+      "end": 3225,
+      "speaker": "c05/SPEAKER_02",
+      "text": "que la transparència també és molt important en estes àrees. En l'àmbit esportiu, es va analitzar"
+    },
+    {
+      "start": 3225,
+      "end": 3229.7,
+      "speaker": "c05/SPEAKER_02",
+      "text": "el desglossament de les partides importants, com el control d'accessos o el manteniment de les instal·lacions esportives,"
+    },
+    {
+      "start": 3229.7,
+      "end": 3234.4,
+      "speaker": "c05/SPEAKER_02",
+      "text": "així com la possible existència d'un pla d'eficiència energètica per a reduir el cost i el consum energètic"
+    },
+    {
+      "start": 3234.4,
+      "end": 3239,
+      "speaker": "c05/SPEAKER_02",
+      "text": "en equipaments municipals. També s'han revisat partides vinculades a comunicació institucional,"
+    },
+    {
+      "start": 3239,
+      "end": 3243.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "tecnologia o gestió informàtica, demanant eixes explicacions sobre el model de contractació"
+    },
+    {
+      "start": 3243.8,
+      "end": 3248.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "i sobre la distribució de les partides entre diferents programes municipals."
+    },
+    {
+      "start": 3248.5,
+      "end": 3253.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "En definitiva, s'ha fet i s'han fet reunions llargues, amb molt de deteniment"
+    },
+    {
+      "start": 3253.1,
+      "end": 3257.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "i amb un treball d'anàlisi pressupostari real, detallat i rigorós."
+    },
+    {
+      "start": 3257.8,
+      "end": 3262.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "I en este sentit, vull reconèixer que gran part d'estes qüestions han sigut abordades amb el regidor d'Hisenda,"
+    },
+    {
+      "start": 3262.5,
+      "end": 3267.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "amb José Ángel, i moltes d'elles han sigut aclarides i, en este sentit,"
+    },
+    {
+      "start": 3267.1,
+      "end": 3271.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "també s'han tingut molt en compte les propostes d'Esquerra Unida Podem."
+    },
+    {
+      "start": 3271.8,
+      "end": 3276.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Gràcies a aquest treball, a aquest diàleg polític, s'han aconseguit diversos compromisos."
+    },
+    {
+      "start": 3276.5,
+      "end": 3281.2,
+      "speaker": "c05/SPEAKER_02",
+      "text": "I pel que fa al vot d'Esquerra Unida hui, serà un vot a favor del pressupost de l'any dos mil vint-i-six,"
+    },
+    {
+      "start": 3281.2,
+      "end": 3285.9,
+      "speaker": "c05/SPEAKER_02",
+      "text": "sobretot perquè hi ha molta coincidència en la part estructural i també per els acords"
+    },
+    {
+      "start": 3285.9,
+      "end": 3290.6,
+      "speaker": "c05/SPEAKER_02",
+      "text": "que hem arribat des de l'espai polític del Partit Socialista i d'Esquerra Unida Podem."
+    },
+    {
+      "start": 3290.6,
+      "end": 3295.3,
+      "speaker": "c05/SPEAKER_02",
+      "text": "En primer lloc, hem acordat avançar en el pla de biblioteques municipals, amb el compromís de que durant"
+    },
+    {
+      "start": 3295.3,
+      "end": 3300,
+      "speaker": "c05/SPEAKER_02",
+      "text": "l'any dos mil vint-i-six es redactarà l'avantprojecte i projecte tècnic per a determinar el cost real de la intervenció"
+    },
+    {
+      "start": 3300,
+      "end": 3304.7,
+      "speaker": "c05/SPEAKER_02",
+      "text": "i poder executar-la a partir de l'any dos mil vint-i-set. En segon lloc, també s'ha acordat"
+    },
+    {
+      "start": 3304.7,
+      "end": 3309.4,
+      "speaker": "c05/SPEAKER_02",
+      "text": "seguir avançant en la renaturalització i en la promoció del parc Maldonado amb la mateixa fórmula:"
+    },
+    {
+      "start": 3309.4,
+      "end": 3314.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "treball tècnic durant l'any dos mil vint-i-six per a definir el projecte i executar-lo posteriorment."
+    },
+    {
+      "start": 3314.1,
+      "end": 3318.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "En l'àmbit social, s'ha aconseguit incrementar la partida destinada al programa de contraprestació i intervenció"
+    },
+    {
+      "start": 3318.8,
+      "end": 3323.4,
+      "speaker": "c05/SPEAKER_02",
+      "text": "sociocomunitària, reforçant així el model d'intervenció comunitària."
+    },
+    {
+      "start": 3323.4,
+      "end": 3328.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "També s'han s'han impulsat polítiques actives contra l'exclusió social que es desenvoluparan"
+    },
+    {
+      "start": 3328.1,
+      "end": 3332.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "dins de la intervenció que ja realitza Creu Roja. En l'àmbit cultural, s'ha acordat"
+    },
+    {
+      "start": 3332.8,
+      "end": 3337.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "augmentar la partida del Centre d'Estudis Locals, reforçant així el suport a la investigació i a la memòria local."
+    },
+    {
+      "start": 3337.5,
+      "end": 3342.2,
+      "speaker": "c05/SPEAKER_02",
+      "text": "A més, s'ha assumit el compromís d'incorporar una partida pressupostària específica"
+    },
+    {
+      "start": 3342.2,
+      "end": 3346.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "per a memòria històrica, una qüestió que considerem fonamental per a treballar la memòria democràtica"
+    },
+    {
+      "start": 3346.8,
+      "end": 3351.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "i que tinga el seu propi espai al pressupost municipal. També s'ha acordat avançar"
+    },
+    {
+      "start": 3351.5,
+      "end": 3356.2,
+      "speaker": "c05/SPEAKER_02",
+      "text": "en la promoció del valencià, amb l'objectiu de consolidar una oficina de promoció lingüística"
+    },
+    {
+      "start": 3356.2,
+      "end": 3360.9,
+      "speaker": "c05/SPEAKER_02",
+      "text": "i amb el compromís d'incorporar una plaça a la RPT en l'exercici de l'any dos mil vint-i-set."
+    },
+    {
+      "start": 3360.9,
+      "end": 3365.6,
+      "speaker": "c05/SPEAKER_02",
+      "text": "I, finalment, també se va parlar de la proposta simbòlica, però també important, del canvi,"
+    },
+    {
+      "start": 3365.6,
+      "end": 3370.3,
+      "speaker": "c05/SPEAKER_02",
+      "text": "a nivell conceptual, de la denominació en el pressupost d'assistència social per inclusió social, perquè entenem"
+    },
+    {
+      "start": 3370.3,
+      "end": 3375,
+      "speaker": "c05/SPEAKER_02",
+      "text": "que les polítiques públiques han d'avançar cap a models d'inclusió i, en este sentit, la conceptualització també és"
+    },
+    {
+      "start": 3375,
+      "end": 3379.7,
+      "speaker": "c05/SPEAKER_02",
+      "text": "important. Volem dir que gràcies a estes a estos acords, a este diàleg i a esta construcció"
+    },
+    {
+      "start": 3379.7,
+      "end": 3384.4,
+      "speaker": "c05/SPEAKER_02",
+      "text": "del pressupost, el nostre vot serà a favor. El vot favorable del nostre grup municipal en aquest pressupost també"
+    },
+    {
+      "start": 3384.4,
+      "end": 3389.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "és un exercici que es fa de confiança amb el Partit Socialista, de confiança política,"
+    },
+    {
+      "start": 3389.1,
+      "end": 3393.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "confiança en el diàleg que s'ha produït i que hem tingut i en els compromisos"
+    },
+    {
+      "start": 3393.8,
+      "end": 3398.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "que s'assumeixen des de des de l'equip de govern i, sobretot, també a la voluntat de poder,"
+    },
+    {
+      "start": 3398.5,
+      "end": 3403.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "des de l'oposició, millorar el pressupost i millorar les polítiques municipals."
+    },
+    {
+      "start": 3403.1,
+      "end": 3407.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Però també aquesta confiança ha d'anar vinculada i és important senyalar"
+    },
+    {
+      "start": 3407.8,
+      "end": 3412.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "que ha d'anar acompanyada d'una millora en la gestió administrativa del gasto municipal."
+    },
+    {
+      "start": 3412.5,
+      "end": 3417.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "És també important senyalar que en els últims anys i mesos hem vist com als plens municipals arriben"
+    },
+    {
+      "start": 3417.1,
+      "end": 3421.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "amb certa freqüència, com ja hem comentat moltes voltes, els expedients de reconeixement extrajudicial o l'incompliment"
+    },
+    {
+      "start": 3421.8,
+      "end": 3426.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "del període mitjà de pagament, qüestions que també venen acompanyades d'informes tècnics"
+    },
+    {
+      "start": 3426.5,
+      "end": 3431.2,
+      "speaker": "c05/SPEAKER_02",
+      "text": "i jurídics que assenyalen problemes de planificació administrativa. En aquestos informes es parla, com vàrem comentar"
+    },
+    {
+      "start": 3431.2,
+      "end": 3435.9,
+      "speaker": "c05/SPEAKER_02",
+      "text": "en l'últim ple, de la falta de planificació en la tramitació de determinades despeses o de despeses"
+    },
+    {
+      "start": 3435.9,
+      "end": 3440.6,
+      "speaker": "c05/SPEAKER_02",
+      "text": "que no tenen un expedient previ. Entenem que l'administració municipal és complexa, però també volem"
+    },
+    {
+      "start": 3440.6,
+      "end": 3445.3,
+      "speaker": "c05/SPEAKER_02",
+      "text": "donar suport a este pressupost també amb la voluntat de que aquesta pràctica puga reduir-se al màxim."
+    },
+    {
+      "start": 3445.3,
+      "end": 3450,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Per això, en el marc d'aquest pressupost i en els acords que hem aconseguit, també volem donar importància"
+    },
+    {
+      "start": 3450,
+      "end": 3454.7,
+      "speaker": "c05/SPEAKER_02",
+      "text": "a la necessitat de millorar eixa planificació administrativa, que moltes voltes tampoc depèn de la part política,"
+    },
+    {
+      "start": 3454.7,
+      "end": 3459.4,
+      "speaker": "c05/SPEAKER_02",
+      "text": "però sí que hi ha una gran responsabilitat per part de l'equip de govern, i també millorar la gestió de la contractació"
+    },
+    {
+      "start": 3459.4,
+      "end": 3464.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "pública, així com l'objectiu clar de poder reduir el període mitjà de pagament i entrar"
+    },
+    {
+      "start": 3464.1,
+      "end": 3468.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "en la norma vigent de la legalitat per primera vegada en la legislatura en esta legislatura, en lo que respecta al PMP."
+    },
+    {
+      "start": 3468.8,
+      "end": 3473.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Dit això, també volem assenyalar una qüestió que considerem que és important i és la part de les associacions,"
+    },
+    {
+      "start": 3473.5,
+      "end": 3478.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "el teixit associatiu del municipi, que crec que tots i totes coincidim en què fa una tasca absolutament fonamental"
+    },
+    {
+      "start": 3478.1,
+      "end": 3482.8,
+      "speaker": "c05/SPEAKER_02",
+      "text": "a l'àmbit social, cultural i comunitari, i per això és important que les subvencions municipals es paguen"
+    },
+    {
+      "start": 3482.8,
+      "end": 3485,
+      "speaker": "c05/SPEAKER_02",
+      "text": "lo més prompte possible en temps i forma, perquè hi han entitats"
+    }
+  ],
+  "rows": [
+    {
+      "label": "c00/SPEAKER_02",
+      "bloc": "EU-Podem",
+      "slug": "jose-manuel-gallardo-martinez",
+      "heardAs": "portavoz de Esquerra Unida",
+      "evidence": [
+        {
+          "spokenBy": "c00/SPEAKER_00",
+          "at": 139,
+          "quote": "¿Esquerra Unida?",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c00/SPEAKER_04",
+      "bloc": "Compromís",
+      "slug": "rafael-folgado-navarro",
+      "heardAs": "portavoz de Compromís",
+      "evidence": [
+        {
+          "spokenBy": "c00/SPEAKER_00",
+          "at": 225,
+          "quote": "Muchas gracias. ¿Compromís?",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c05/SPEAKER_00",
+      "bloc": "VOX",
+      "slug": "jose-luis-fernandez-santamaria",
+      "heardAs": null,
+      "evidence": [
+        {
+          "spokenBy": "c05/SPEAKER_00",
+          "at": 3004,
+          "quote": "Y desde Vox seguiremos defendiendo",
+          "relation": "back-reference"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": true
+    }
+  ],
+  "rejected": [
+    {
+      "label": "c00/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "heard \"alcalde-presidente\" matches nobody"
+    },
+    {
+      "label": "c00/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "heard \"concejal de Seguridad Ciudadana\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c00/SPEAKER_03",
+      "reason": "unresolvable",
+      "detail": "heard \"portavoz de Ciudadanos\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c00/SPEAKER_05",
+      "reason": "unresolvable",
+      "detail": "heard \"portavoz del Partido Popular\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c00/SPEAKER_06",
+      "reason": "unresolvable",
+      "detail": "heard \"portavoz del Partido Socialista\" (PSOE) matches nobody"
+    },
+    {
+      "label": "c02/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c04/SPEAKER_01",
+      "reason": "relation-contradicted",
+      "detail": "turn-grant, but 127s is followed by SPEAKER_02"
+    },
+    {
+      "label": "c04/SPEAKER_02",
+      "reason": "relation-contradicted",
+      "detail": "reply, but 127s follows SPEAKER_00"
+    },
+    {
+      "label": "c05/SPEAKER_01",
+      "reason": "relation-contradicted",
+      "detail": "turn-grant, but 24s is followed by SPEAKER_02"
+    },
+    {
+      "label": "c05/SPEAKER_02",
+      "reason": "relation-contradicted",
+      "detail": "reply, but 24s follows SPEAKER_01"
+    }
+  ],
+  "stats": {
+    "chunksExpected": 17,
+    "chunksTranscribed": 5,
+    "failedChunks": [
+      {
+        "chunk": 1,
+        "why": "covered 33% (floor 85%)",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
+      },
+      {
+        "chunk": 6,
+        "why": "covered 22% (floor 85%)",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
+      },
+      {
+        "chunk": 7,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 8,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 9,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 10,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 11,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 12,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 13,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 14,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 15,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 16,
+        "why": "never attempted (call budget spent; resumes next run)"
+      }
+    ],
+    "labelsSeen": 17,
+    "rowsAccepted": 3,
+    "rowsRejected": 10,
+    "rejectedBy": {
+      "unresolvable": 6,
+      "relation-contradicted": 4
+    },
+    "attemptedThisRun": 7,
+    "apiCalls": 11,
+    "coverage": 0.32857574004678003
+  }
+}
