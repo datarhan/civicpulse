@@ -75,17 +75,51 @@ export function claimsCompletion(verbatim: string): boolean {
   return false
 }
 
-const TENDER_NOT_DONE_STATUSES = new Set([
-  'open',
-  'pending',
-  'planning',
-  'in_planning',
-  'published',
-  'abierta',
-  'licitación',
-  'pendiente',
-  'en tramitación',
-  'en curso',
+/**
+ * Estados de contratación que DESMIENTEN un «esto ya está terminado».
+ *
+ * Reescrito el 2026-08-24 sobre el vocabulario real de la fuente. El conjunto
+ * anterior —open · pending · planning · in_planning · published · abierta ·
+ * licitación · pendiente · en tramitación · en curso— no compartía NI UN valor
+ * con lo que Gobierto emite, así que la rama `contradicho` de «obra terminada»
+ * no había disparado nunca y no podía disparar. Es la regla 1 de
+ * DATA_INTEGRITY con el mismo mecanismo de siempre: la prueba que cubría la
+ * rama se fabricaba un contrato con `status: 'open'` y seguía verde mientras
+ * producción no casaba con nada.
+ *
+ * El criterio ahora es semántico, no léxico: aquí sólo entran los estados en
+ * los que la CONTRATACIÓN no llegó a término, de modo que no hubo contrato bajo
+ * el cual la obra pudiera ejecutarse.
+ *
+ * Y lo que deliberadamente NO entra, porque el `status` de Gobierto es la fase
+ * de contratación y no la de ejecución: `awarded` y `formalized` dicen que el
+ * expediente salió adelante y no dicen nada sobre si la obra acabó. Tomarlos
+ * por desmentido sería inventarse la contradicción. `unknown` tampoco, que es
+ * un centinela y no un valor (regla 3): 42 contratos lo llevan.
+ *
+ * Aun así el veredicto se queda en «revisión editorial»: que ESTA licitación
+ * se anulara no prueba que la obra no se hiciera por otra vía.
+ *
+ * `tests/claim-verifier-estados-vivos.test.ts` comprueba contra el snapshot
+ * publicado que la intersección no vuelva a quedarse vacía, y que la fuente no
+ * emita ningún estado que estos dos conjuntos no clasifiquen.
+ */
+export const TENDER_NOT_DONE_STATUSES = new Set([
+  'void', // anulada / desierta — no hubo adjudicación
+  'revoked', // revocada
+  'abandoned', // desistida por la administración
+  'provisionally_awarded', // adjudicación aún provisional
+])
+
+/**
+ * El otro lado, explícito. Existe para que ningún estado quede sin decidir por
+ * omisión: si la fuente añade uno nuevo, la prueba lo nombra en vez de dejar
+ * que el silencio lo trate como «no contradice».
+ */
+export const ESTADOS_QUE_NO_CONTRADICEN = new Set([
+  'awarded', // adjudicado: el expediente siguió adelante
+  'formalized', // contrato firmado
+  'unknown', // centinela: «no lo sé» no desmiente nada
 ])
 
 export type ClaimVerdict =

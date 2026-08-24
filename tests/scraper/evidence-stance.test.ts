@@ -55,7 +55,7 @@ const TENDERS = {
       id: 't1',
       title: 'Contrato de obras de pasarela en barranco Mandor de Riba-roja de Túria',
       permalink: 'https://example.com/tender/pasarela',
-      status: 'open',
+      status: 'void',
       amount: 480000,
       awardAmount: 480000,
     },
