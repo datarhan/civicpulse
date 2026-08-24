@@ -100,7 +100,7 @@ export function ResumenPosiciones({ indicadores = [] }) {
               style={{
                 position: 'relative',
                 height: 12,
-                background: 'var(--bg2, rgba(127,127,127,.12))',
+                background: 'var(--soft)',
                 borderRadius: 'var(--r-pill)',
               }}
             >

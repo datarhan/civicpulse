@@ -123,7 +123,7 @@ export function LecturaRapida({ data, firmados = 0 }) {
               borderRadius: 'var(--r-input)',
               color: 'inherit',
               textDecoration: 'none',
-              background: 'var(--bg2, transparent)',
+              background: 'transparent',
             }}
           >
             <span

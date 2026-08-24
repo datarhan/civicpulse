@@ -49,7 +49,7 @@ export function BandaPares({ indicador, formatea }) {
           height: 26,
           marginTop: 8,
           borderRadius: 'var(--r-input)',
-          background: 'var(--bg2, rgba(127,127,127,.12))',
+          background: 'var(--soft)',
         }}
         role="img"
         aria-label={`${formatea(indicador.valor)}; mediana de ${p.n} municipios comparables ${formatea(p.mediana)}; percentil ${p.percentil}`}
