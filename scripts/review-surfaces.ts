@@ -48,6 +48,7 @@ import {
   parseReviewArgs,
   readCacheEntry,
   sirveElVeredictoCacheado,
+  huellaDeHechos,
   clasificarFalloDeNavegacion,
   pasadaHabla,
   REINTENTOS_SERVIDOR,
@@ -465,8 +466,14 @@ async function main() {
     const renderedText = await page.locator('body').innerText()
 
     const h = hashOf(renderedText)
+    // Los hechos se calculan ANTES del acierto de caché, no después: son parte
+    // de lo que se le pone delante al modelo, así que son parte de la pregunta.
+    // Con el texto igual y estas cifras movidas, reutilizar el veredicto sería
+    // servir el juicio de ayer sobre los números de hoy.
+    const facts = factsFor(route)
+    const fh = huellaDeHechos(facts)
     const prev = readCacheEntry(cache[route])
-    if (!force && sirveElVeredictoCacheado(prev, h, READER_REVIEW_PROMPT_VERSION)) {
+    if (!force && sirveElVeredictoCacheado(prev, h, READER_REVIEW_PROMPT_VERSION, fh)) {
       skipped += 1
       // Se REESCRIBE la entrada: mismo hash, mismos señalamientos, `at` a ahora.
       // Saltarse la llamada no es lo mismo que no haber comprobado nada — se ha
@@ -482,6 +489,7 @@ async function main() {
         findings: prev!.findings,
         at: new Date().toISOString(),
         promptVersion: READER_REVIEW_PROMPT_VERSION,
+        factsHash: fh,
       }
       persistirCache()
       // Se guardan CRUDOS y se filtran al imprimir: quitar un descarte del
@@ -512,7 +520,6 @@ async function main() {
       continue
     }
 
-    const facts = factsFor(route)
     const chunks = chunkRenderedText(renderedText)
     const findings: ReaderFinding[] = []
     const dropped: ReaderFinding[] = []
@@ -550,7 +557,13 @@ async function main() {
             // hashes this `input` and NOT the prompt text, so keying on the route
             // alone would serve fragment 1's answer for every other fragment of
             // the same page — an entire page "reviewed" by one cached call.
-            input: { route: i.route, fragment: hashOf(chunk) },
+            // …y las CIFRAS, que es la mitad que faltaba. `cacheKey` hashea
+            // este `input`, así que sin la huella de hechos un cambio de dato
+            // seguía sirviendo la respuesta calculada contra el dato viejo:
+            // arreglar sólo la caché de RUTA hacía que el bucle se reejecutara
+            // y los 7 fragmentos salieran igualmente de caché — medido, «0
+            // leído(s) ahora, 7 de caché» con un total adjudicado movido.
+            input: { route: i.route, fragment: hashOf(chunk), facts: fh },
           })
           // `callLLM` returns null once every backend is exhausted. Coercing that
           // to `[]` here — which this line did — made an unreviewable run print
@@ -608,6 +621,7 @@ async function main() {
         findings,
         at: new Date().toISOString(),
         promptVersion: READER_REVIEW_PROMPT_VERSION,
+        factsHash: fh,
       }
     } else delete cache[route]
     // Y se baja al disco AHORA, ruta a ruta, en vez de sólo al terminar el
