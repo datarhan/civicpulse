@@ -95,8 +95,9 @@ export default function AvisoLegal() {
           title="Qué afirmamos, y qué no, cuando una cifra se sale de su banda"
         />
         <p>
-          En <code>/eficiencia</code> publicamos fichas sobre cifras que se separan de lo que
-          declaran municipios comparables, o que superan un umbral que fija una norma.{' '}
+          En <code>/eficiencia</code> y <code>/gestion</code> publicamos fichas sobre cifras que se
+          separan de lo que declaran municipios comparables, o que superan un umbral que fija una
+          norma.{' '}
           <strong>
             Una ficha describe un servicio municipal y nunca a una persona ni a un grupo político
           </strong>

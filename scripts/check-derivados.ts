@@ -32,6 +32,8 @@
  */
 import { DATA_GRAPH, stalenessInputs } from '../src/scraper/data-graph'
 import { stalenessOf, describeStaleness } from '../src/scraper/built-from'
+import { readFileSync, existsSync } from 'node:fs'
+import { resolve } from 'node:path'
 
 function main(): void {
   const asJson = process.argv.includes('--json')
@@ -50,13 +52,41 @@ function main(): void {
 
   const rancios = filas.filter((f) => f.rancio)
 
+  // Y las salidas HERMANAS. `stalenessOf` juzga por `node.id`, que es lo
+  // correcto —es quien decide si hay que reconstruir—, pero un nodo con varias
+  // salidas publicaba las demás sin `builtFrom` y esta guarda no las miraba:
+  // medía lo que `refresh` prometía en vez de lo que debe prometer. Eran
+  // press-coverage-gaps.json y press-triangulation.json, publicados sin decir
+  // de qué salieron.
+  const sinSello: Array<{ fichero: string; nodo: string }> = []
+  for (const n of derivados) {
+    for (const salida of n.writes) {
+      if (salida === n.id) continue
+      const path = resolve('public/data', salida)
+      if (!existsSync(path)) continue
+      let doc: { builtFrom?: unknown } | null = null
+      try {
+        doc = JSON.parse(readFileSync(path, 'utf8'))
+      } catch {
+        sinSello.push({ fichero: salida, nodo: n.id })
+        continue
+      }
+      if (!doc?.builtFrom) sinSello.push({ fichero: salida, nodo: n.id })
+    }
+  }
+
   if (asJson) {
     process.stdout.write(
-      JSON.stringify({ recorridos: filas.length, rancios: rancios.length, filas }, null, 2) + '\n',
+      JSON.stringify(
+        { recorridos: filas.length, rancios: rancios.length, sinSello, filas },
+        null,
+        2,
+      ) + '\n',
     )
   } else {
     process.stdout.write(
-      `[check-derivados] ${filas.length} nodo(s) derivado(s) · ${rancios.length} rancio(s)\n`,
+      `[check-derivados] ${filas.length} nodo(s) derivado(s) · ${rancios.length} rancio(s) · ` +
+        `${sinSello.length} salida(s) hermana(s) sin sellar\n`,
     )
     // `✗` y un código CON GUION, los dos a propósito: `pickCheckDiagnosis` sólo
     // considera «renglón que explica qué falló» los que llevan ✗/ERROR/FATAL, y
@@ -67,7 +97,12 @@ function main(): void {
     for (const f of rancios) {
       process.stdout.write(`  ✗ [derivado-rancio] ${f.motivo}\n`)
     }
-    if (rancios.length > 0) {
+    for (const x of sinSello) {
+      process.stdout.write(
+        `  ✗ [salida-sin-sellar] ${x.fichero} — la escribe ${x.nodo} y no lleva builtFrom\n`,
+      )
+    }
+    if (rancios.length > 0 || sinSello.length > 0) {
       process.stdout.write(
         `  Lo publicado ya no es lo que sus entradas producen. Arréglalo con: npm run refresh\n` +
           `  Si esto sale tras un raspado, el raspador reescribió el fichero y se llevó por\n` +
@@ -83,7 +118,7 @@ function main(): void {
     process.stderr.write('[check-derivados] cero nodos recorridos: no ha comprobado nada\n')
     process.exit(1)
   }
-  process.exit(rancios.length > 0 ? 1 : 0)
+  process.exit(rancios.length + sinSello.length > 0 ? 1 : 0)
 }
 
 main()

@@ -162,8 +162,33 @@ export const ESPERA_SERVIDOR_MS = 10_000
 export interface ReviewCacheEntry {
   hash: string
   findings: ReaderFinding[]
-  /** ISO timestamp of the last real review. Drives oldest-first ordering. */
+  /**
+   * Cuándo se COMPROBÓ por última vez que esta página está como se revisó — no
+   * cuándo se llamó al modelo por última vez.
+   *
+   * La diferencia costó nueve avisos falsos. Un acierto de caché hacía
+   * `continue` sin tocar la entrada, así que una página verificada hoy y sin
+   * cambios seguía llevando la fecha de la última llamada; `check:surfaces`
+   * leía eso y publicaba en el digest «9 rutas sin leer desde hace más de 3
+   * días» el mismo día en que el barrido las había leído las 30 al 100 %. Es la
+   * simétrica de la regla que ya rige aquí: si un señalamiento no caduca porque
+   * pase el reloj, un visto bueno sobre texto idéntico tampoco.
+   */
   at?: string
+  /**
+   * La versión de prompt con la que se emitió ese veredicto.
+   *
+   * La caché de LLM (`cacheKey` en src/llm/client.ts) sí la lleva; ÉSTA no la
+   * llevaba, y por eso un cambio de prompt no re-revisaba nada: el texto de la
+   * página seguía siendo idéntico, la entrada seguía valiendo y la pregunta
+   * nueva no se hacía nunca. Sin esto, actualizar `at` en cada acierto
+   * empeoraría el agujero — la entrada parecería recién comprobada con un
+   * prompt que ya no existe.
+   *
+   * Opcional porque las entradas viejas no la tienen, y una entrada sin versión
+   * cuenta como versión distinta: se vuelve a revisar. Falla hacia MÁS revisión.
+   */
+  promptVersion?: string
 }
 
 /**
@@ -176,7 +201,14 @@ export interface ReviewCacheEntry {
  */
 export function readCacheEntry(v: string | ReviewCacheEntry | undefined): ReviewCacheEntry | null {
   if (typeof v === 'string') return { hash: v, findings: [] }
-  if (v && typeof v.hash === 'string') return { hash: v.hash, findings: v.findings ?? [], at: v.at }
+  if (v && typeof v.hash === 'string') {
+    return {
+      hash: v.hash,
+      findings: v.findings ?? [],
+      at: v.at,
+      promptVersion: v.promptVersion,
+    }
+  }
   return null
 }
 
@@ -189,6 +221,22 @@ export function readCacheEntry(v: string | ReviewCacheEntry | undefined): Review
  * whole subject is checks that quietly do less than they claim, and a typo that
  * silently shrinks coverage to nothing would be one more.
  */
+/**
+ * ¿Se puede reutilizar este veredicto sin volver a llamar al modelo?
+ *
+ * Dos condiciones, y las dos hacen falta: el texto renderizado tiene que ser el
+ * mismo Y la pregunta tiene que ser la misma. Antes sólo se miraba la primera.
+ */
+export function sirveElVeredictoCacheado(
+  prev: ReviewCacheEntry | null,
+  hashAhora: string,
+  promptVersionAhora: string,
+): boolean {
+  if (!prev) return false
+  if (prev.hash !== hashAhora) return false
+  return prev.promptVersion === promptVersionAhora
+}
+
 export function parseReviewArgs(argv: string[], budgetEnv?: string) {
   const routes: string[] = []
   let budgetSeconds = Number(budgetEnv ?? 0)
