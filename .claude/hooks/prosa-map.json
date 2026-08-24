@@ -41,7 +41,8 @@
       "/datos"
     ],
     "competencias.json": [
-      "/eficiencia"
+      "/eficiencia",
+      "/gestion"
     ],
     "consell-cv.json": [
       "/datos",
@@ -317,6 +318,7 @@
       "/departamentos",
       "/departamentos/:slug",
       "/eficiencia",
+      "/gestion",
       "/hallazgos",
       "/lab-health",
       "/laboratorio/agentes/:assignmentId",
@@ -331,6 +333,7 @@
       "/departamentos",
       "/departamentos/:slug",
       "/eficiencia",
+      "/gestion",
       "/hallazgos",
       "/lab-health",
       "/laboratorio/agentes/:assignmentId",

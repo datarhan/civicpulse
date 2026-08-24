@@ -218,6 +218,7 @@ export default function Eficiencia() {
             municipales={municipalesDeAqui}
             titulo="Sobre la declaración de estas cifras"
             intro="Los cocientes de arriba salen de dos cantidades que el ayuntamiento declara cada entrega; esto mide con qué frecuencia vuelve a medir la de abajo."
+            competencias={porClave}
           />
         </section>
       )}
