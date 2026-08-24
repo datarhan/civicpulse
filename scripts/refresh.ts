@@ -53,20 +53,42 @@ interface Row {
  * loop and is very hard to read backwards.
  */
 function stamp(node: DataNode): string | null {
-  const path = resolve(DATA_DIR, node.id)
-  if (!existsSync(path)) return `${node.id} was not produced by its own command`
-  let doc: unknown
-  try {
-    doc = JSON.parse(readFileSync(path, 'utf8'))
-  } catch {
-    return `${node.id} is not JSON — cannot record provenance`
+  // TODAS las salidas, no sólo `node.id`.
+  //
+  // Sellaba únicamente el fichero homónimo del nodo, así que un nodo con varias
+  // salidas dejaba las demás sin procedencia para siempre. `compute:press-analytics`
+  // escribe tres —press-trust.json, press-coverage-gaps.json y
+  // press-triangulation.json— y sólo la primera llevaba `builtFrom`: las otras
+  // dos se publicaban sin decir de qué salieron, que es justo el contrato que
+  // este mecanismo existe para cumplir.
+  //
+  // `node.id` es el que decide la frescura (`stalenessOf` lo lee), y eso no
+  // cambia: sellar las hermanas no reintroduce el bucle que `stalenessInputs`
+  // evita, porque el sello no entra en el cálculo de staleness.
+  const problemas: string[] = []
+  for (const salida of node.writes) {
+    const path = resolve(DATA_DIR, salida)
+    if (!existsSync(path)) {
+      // Sólo es fallo si falta el fichero del propio nodo. Una salida
+      // secundaria que un comando no produce en esta pasada no es una avería.
+      if (salida === node.id) problemas.push(`${salida} was not produced by its own command`)
+      continue
+    }
+    let doc: unknown
+    try {
+      doc = JSON.parse(readFileSync(path, 'utf8'))
+    } catch {
+      problemas.push(`${salida} is not JSON — cannot record provenance`)
+      continue
+    }
+    if (!doc || typeof doc !== 'object' || Array.isArray(doc)) {
+      problemas.push(`${salida} is not a JSON object — cannot record provenance`)
+      continue
+    }
+    const next = { ...(doc as Record<string, unknown>), builtFrom: builtFromFor(node) }
+    writeFileSync(path, JSON.stringify(next, null, 2) + '\n')
   }
-  if (!doc || typeof doc !== 'object' || Array.isArray(doc)) {
-    return `${node.id} is not a JSON object — cannot record provenance`
-  }
-  const next = { ...(doc as Record<string, unknown>), builtFrom: builtFromFor(node) }
-  writeFileSync(path, JSON.stringify(next, null, 2) + '\n')
-  return null
+  return problemas.length > 0 ? problemas.join(' · ') : null
 }
 
 function run(command: string): { ok: boolean; detail: string } {
@@ -77,6 +99,18 @@ function run(command: string): { ok: boolean; detail: string } {
     const e = err as { stderr?: string; stdout?: string; message?: string }
     const why = (e.stderr || e.stdout || e.message || '').trim().split('\n').slice(-2).join(' ')
     return { ok: false, detail: why.slice(0, 200) || 'command failed' }
+  }
+}
+
+/** ¿Este fichero de salida ya lleva `builtFrom`? Ausente o ilegible cuenta que no. */
+function llevaSello(salida: string): boolean {
+  const path = resolve(DATA_DIR, salida)
+  if (!existsSync(path)) return true // no producida en esta pasada: no es su fallo
+  try {
+    const doc = JSON.parse(readFileSync(path, 'utf8'))
+    return Boolean(doc && typeof doc === 'object' && !Array.isArray(doc) && doc.builtFrom)
+  } catch {
+    return false
   }
 }
 
@@ -134,7 +168,34 @@ function main() {
   for (const node of order) {
     const s = stalenessOf(node)
     if (!s.stale) {
-      rows.push({ node, outcome: 'fresh', detail: 'inputs unchanged' })
+      // Fresco, pero puede tener una salida HERMANA sin sellar: `stalenessOf`
+      // juzga por `node.id` y no mira las demás. Sin esto, `check:derivados`
+      // reportaba «salida sin sellar» y mandaba a ejecutar `npm run refresh`,
+      // que no la arreglaba — un consejo que no funciona es peor que ninguno,
+      // porque enseña que el control miente. Sellar es idempotente y no toca
+      // la frescura, así que se hace y ya.
+      const faltan = node.writes.filter((w) => w !== node.id && !llevaSello(w))
+      if (faltan.length > 0 && !dryRun) {
+        const err = stamp(node)
+        rows.push(
+          err
+            ? { node, outcome: 'failed', detail: err }
+            : {
+                node,
+                outcome: 'fresh',
+                detail: `inputs unchanged · sellada(s) ${faltan.join(', ')}`,
+              },
+        )
+        continue
+      }
+      rows.push({
+        node,
+        outcome: 'fresh',
+        detail:
+          faltan.length > 0
+            ? `inputs unchanged · would stamp ${faltan.join(', ')}`
+            : 'inputs unchanged',
+      })
       continue
     }
     const why = describeStaleness(node, s)

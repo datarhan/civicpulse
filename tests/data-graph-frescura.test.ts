@@ -32,6 +32,9 @@ import { stalenessOf, describeStaleness } from '../src/scraper/built-from'
  * se arreglan igual — `npm run refresh` —, que es lo que dice el mensaje.
  */
 
+import { readFileSync, existsSync } from 'node:fs'
+import { resolve } from 'node:path'
+
 const derivados: DataNode[] = DATA_GRAPH.filter((n) => n.tier === 'derived')
 
 describe('los nodos derivados que se publican están al día', () => {
@@ -54,6 +57,34 @@ describe('los nodos derivados que se publican están al día', () => {
           `  se llevó por delante lo que derivó otro paso: la tubería que lo\n` +
           `  llamó tiene que ejecutar «npm run refresh» antes de comitear.`,
       ).toBe(false)
+    })
+  }
+})
+
+// ─── Y las salidas hermanas ─────────────────────────────────────────────────
+//
+// `stalenessOf` juzga por `node.id`, que es lo correcto: es quien decide si hay
+// que reconstruir. Pero `refresh` sellaba SÓLO ese fichero, así que un nodo con
+// varias salidas publicaba las demás sin `builtFrom` — press-coverage-gaps.json
+// y press-triangulation.json llevaban así desde que existen. La guarda medía lo
+// que refresh prometía en vez de lo que debe prometer.
+
+describe('cada salida de un nodo derivado lleva su procedencia', () => {
+  const salidas = derivados.flatMap((n) => n.writes.map((w) => ({ nodo: n.id, fichero: w })))
+
+  it('mide algo: hay nodos con más de una salida', () => {
+    expect(salidas.length).toBeGreaterThan(derivados.length)
+  })
+
+  for (const { nodo, fichero } of salidas) {
+    it(`${fichero} lleva builtFrom`, () => {
+      const path = resolve('public/data', fichero)
+      if (!existsSync(path)) return // una salida secundaria puede no producirse
+      const doc = JSON.parse(readFileSync(path, 'utf8'))
+      expect(
+        doc?.builtFrom,
+        `${fichero} lo escribe ${nodo} y se publica sin decir de qué salió — npm run refresh`,
+      ).toBeTruthy()
     })
   }
 })
