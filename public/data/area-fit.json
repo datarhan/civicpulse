@@ -662,7 +662,7 @@
     {
       "officialSlug": "rafael-gomez-sanchez",
       "portfolio": "barrios y diseminados",
-      "departmentSlug": "urbanismo",
+      "departmentSlug": null,
       "reportId": "r-rafael-gomez-bio-2026-07-30",
       "formacion": {
         "value": "sin-relacion-declarada",
@@ -734,7 +734,7 @@
     {
       "officialSlug": "rafael-gomez-sanchez",
       "portfolio": "Urbanizaciones",
-      "departmentSlug": "urbanismo",
+      "departmentSlug": null,
       "reportId": "r-rafael-gomez-bio-2026-07-30",
       "formacion": {
         "value": "sin-relacion-declarada",
