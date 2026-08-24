@@ -168,3 +168,42 @@ describe('el input que hashea la caché de LLM lleva las cifras', () => {
     expect(iFacts, 'los hechos se calculan después del acierto de caché').toBeLessThan(iHit)
   })
 })
+
+// ─── Una pasada PARCIAL no puede borrar una completa ────────────────────────
+//
+// `check:surfaces` llevaba días diciendo que /plenos y /laboratorio no se
+// habían revisado NUNCA. El log nocturno tiene las dos leídas al 100 %, dos
+// veces, y /plenos con un señalamiento abierto sobre el contador «✓».
+//
+// La causa: `if (complete) { cache[route] = … } else delete cache[route]`.
+// No escribir con una revisión a medias es correcto —cachear lo parcial
+// retiraría para siempre el trozo no leído—, pero el `else` además TIRA la
+// entrada buena que ya había. Y basta un `git push`: el gancho tiene 180 s,
+// empieza una ruta larga, se queda a medias y borra la lectura completa de esa
+// madrugada. El parte pasa a decir «sin revisar» en vez de «tiene un aviso».
+//
+// Es el defecto de siempre con el signo cambiado: no un control que dice «bien»
+// sin mirar, sino uno que OLVIDA lo que ya miró y lo reporta como no mirado.
+
+describe('la rama de revisión incompleta conserva lo que ya había', () => {
+  const src = readFileSync(resolve('scripts/review-surfaces.ts'), 'utf8')
+
+  it('mide algo: el fichero se lee y tiene la rama de escritura', () => {
+    expect(src.length).toBeGreaterThan(1000)
+    expect(src).toContain('if (complete)')
+  })
+
+  it('NO borra la entrada cuando la pasada quedó incompleta', () => {
+    // La línea exacta del defecto.
+    expect(src, 'una pasada parcial sigue borrando la entrada de una completa').not.toMatch(
+      /else\s+delete\s+cache\[route\]/,
+    )
+  })
+
+  it('y sigue sin ESCRIBIR una parcial, que era lo correcto del original', () => {
+    const i = src.indexOf('if (complete) {')
+    expect(i).toBeGreaterThan(-1)
+    const rama = src.slice(i, src.indexOf('persistirCache()', i))
+    expect(rama, 'la escritura ya no está dentro de `if (complete)`').toContain('cache[route] = {')
+  })
+})

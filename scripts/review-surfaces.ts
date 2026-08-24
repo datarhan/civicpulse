@@ -206,7 +206,22 @@ function factsFor(route: string): Record<string, unknown> {
     'presupuesto: gasto total (UN año)': budget?.snapshot?.totalExpense,
     'presupuesto: ejercicio': budget?.snapshot?.year,
   }
-  if (route.startsWith('/plenos'))
+  if (route.startsWith('/plenos')) {
+    const claims = read('pleno-claims-verified.json')
+    // La cifra que faltaba, y por la que el revisor señaló la página dos
+    // barridos seguidos. Con «votaciones transcritas: 7» como único hecho, ve
+    // nueve marcas «N ✓» en el listado y concluye que hay votaciones en nueve
+    // sesiones. El ✓ cuenta DECLARACIONES VERIFICADAS, que es otra cosa.
+    //
+    // Mismo remedio que con los contratos más arriba: dos cifras etiquetadas
+    // delante, para que pueda distinguir de cuál habla la página en vez de
+    // suponer. Sin esto, la leyenda nueva del listado tampoco le serviría —
+    // seguiría sin tener contra qué comprobarla.
+    const conVerificada = new Set(
+      ((claims?.items ?? []) as { claim: { plenoId: string }; verification: { verdict: string } }[])
+        .filter((i) => i.verification?.verdict === 'verificado')
+        .map((i) => i.claim.plenoId),
+    ).size
     return {
       ...common,
       'plenos: sesiones registradas': plenos?.stats?.total,
@@ -214,7 +229,10 @@ function factsFor(route: string): Record<string, unknown> {
         (votes?.items ?? []).map((v: { plenoId: string }) => v.plenoId),
       ).size,
       'plenos: el resto NO tiene votaciones transcritas (no significa que no votaran)': true,
+      'plenos: sesiones con al menos una declaración VERIFICADA — es lo que cuenta la marca «N ✓» del listado, y NO son votaciones':
+        conVerificada,
     }
+  }
   if (route.startsWith('/hallazgos'))
     return {
       ...common,
@@ -623,7 +641,17 @@ async function main() {
         promptVersion: READER_REVIEW_PROMPT_VERSION,
         factsHash: fh,
       }
-    } else delete cache[route]
+    }
+    // Y si NO fue completa, no se toca nada. Antes había un `delete cache[route]`
+    // aquí, y bastaba un push para perder la lectura completa de esa madrugada:
+    // el gancho tiene 180 s, empieza una ruta larga, se queda a medias y borra
+    // la entrada buena. `check:surfaces` pasaba entonces a decir «sin revisar
+    // nunca» —lo dijo de /plenos y /laboratorio durante días— en vez de «tiene
+    // un señalamiento abierto», que era la verdad.
+    //
+    // No borrar es seguro: si la página cambió, el `hash` de la entrada vieja ya
+    // no casa y `sirveElVeredictoCacheado` la manda a re-revisar igual. Lo único
+    // que conseguía el borrado era tirar la fecha y los señalamientos.
     // Y se baja al disco AHORA, ruta a ruta, en vez de sólo al terminar el
     // bucle. El 2026-08-14 el barrido leyó cinco páginas en diecinueve minutos
     // y murió en la sexta: como la única escritura estaba después del bucle, se

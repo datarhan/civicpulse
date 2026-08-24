@@ -233,6 +233,7 @@
       "/departamentos",
       "/departamentos/:slug",
       "/lab-health",
+      "/plenos",
       "/plenos/:id"
     ],
     "plenos-agendas.json": [
