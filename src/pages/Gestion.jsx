@@ -5,6 +5,7 @@ import { PreguntasRegistradas } from '../components/eficiencia/PreguntasRegistra
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useEficienciaPreguntas } from '../hooks/useEficienciaPreguntas'
+import { useCompetencias, indexarCompetencias, useNombresVisibles } from '../hooks/useCompetencias'
 
 /**
  * /gestion — plazos, concurrencia y ejecución. Cómo funciona la casa por dentro.
@@ -30,6 +31,11 @@ export default function Gestion() {
   const { loading, error, data } = useIndicadores()
   const { data: hallazgos } = useEficienciaFindings()
   const { data: preguntas } = useEficienciaPreguntas()
+  const { data: competencias } = useCompetencias()
+  // Durante la ventana LOREG la capa de nombres desaparece entera; el Map vacío
+  // hace que cada tarjeta pinte sin ella, sin ninguna rama extra en el render.
+  const nombresOn = useNombresVisibles()
+  const porClave = nombresOn ? indexarCompetencias(competencias) : new Map()
 
   const municipales = (data?.municipales ?? []).filter((m) => m.panel === 'gestion')
   const ids = municipales.map((m) => m.id)
@@ -93,6 +99,7 @@ export default function Gestion() {
         municipales={municipales}
         titulo="Plazos, concurrencia y ejecución"
         intro="Cada cifra lleva su periodo, porque los contratos abarcan casi una década y la ejecución es de un ejercicio."
+        competencias={porClave}
       />
 
       {!loading && !error && (

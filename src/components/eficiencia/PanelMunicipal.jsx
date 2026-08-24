@@ -2,6 +2,7 @@ import { Card, Pill } from '../Primitives'
 import { Sparkline } from '../Charts'
 import { leerIndicadorMunicipal, lecturaVisible } from '../../scraper/indicador-lectura'
 import { Lectura } from './Lectura'
+import { CompetenciaDelegada } from './CompetenciaDelegada'
 
 const DIMENSION = {
   friccion: { label: 'fricción institucional', tone: 'warn' },
@@ -43,8 +44,17 @@ const crudo = (v, formato) =>
  * 2026 y la ejecución es de un ejercicio: un porcentaje sin periodo se lee como
  * «este año», y eso bastaría para convertir una cifra correcta en una
  * afirmación falsa.
+ *
+ * `competencias` es el índice de `indexarCompetencias`, clave de indicador →
+ * asignación firmada. Sin él la tarjeta no pinta ningún nombre, que es lo que
+ * hacía hasta el 24-08-2026: las siete asignaciones firmadas de /gestion
+ * —Compra Pública y Finanzas públicas y recaudación— estaban curadas, validadas
+ * y vigiladas por `check:competencias`, y no llegaban a ningún lector, porque
+ * este componente no tenía dónde recibirlas. La guarda las contaba como
+ * «coincide»: sólo pregunta si la persona conserva el cargo, nunca si la fila
+ * se pinta en alguna parte.
  */
-export function PanelMunicipal({ municipales, titulo, intro }) {
+export function PanelMunicipal({ municipales, titulo, intro, competencias }) {
   const items = (municipales ?? []).filter((m) => m.valor !== null)
   if (!items.length) return null
   // La frase de arriba SALE de los datos en vez de repetirlos. Escrita a mano
@@ -255,6 +265,12 @@ export function PanelMunicipal({ municipales, titulo, intro }) {
                   </a>
                 </p>
               )}
+
+              {/* Al final, igual que en ServicioCard y por el mismo motivo: un
+                  nombre propio arriba, pegado a la cifra, construiría «mira lo
+                  que cuesta lo suyo» antes de que el lector llegue a la
+                  advertencia que lo desarma. */}
+              <CompetenciaDelegada asignacion={competencias?.get(m.id)} />
             </Card>
           )
         })}

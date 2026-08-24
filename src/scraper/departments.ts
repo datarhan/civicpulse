@@ -179,8 +179,14 @@ const RULES: Array<{ match: string; slug: DepartmentSlug; whole?: boolean }> = [
   { match: 'obras publicas', slug: 'obras-publicas' },
   { match: 'edificios publicos', slug: 'obras-publicas' },
   { match: 'actividades y edificios', slug: 'obras-publicas' },
-  { match: 'urbanizaciones', slug: 'urbanismo' },
-  { match: 'barrios y diseminados', slug: 'urbanismo' },
+  // «Urbanizaciones, barrios y diseminados» NO se resuelve, a propósito. Es el
+  // área de las urbanizaciones periféricas —servicios a los núcleos alejados—,
+  // no el planeamiento, y la taxonomía no tiene departamento para ella.
+  // Mientras lo tuvo, caía en `urbanismo` por parecido de prefijo y la pastilla
+  // de /cargos pintaba «Urbanismo →» en la ficha de quien NO lleva Urbanismo,
+  // contradiciendo la atribución firmada que /eficiencia pone sobre la misma
+  // cifra. Es la misma disciplina de no-emparejar del resolutor de lugares: un
+  // hueco honesto es mejor que un titular equivocado.
   { match: 'urbanismo', slug: 'urbanismo' },
   { match: 'vivienda', slug: 'vivienda' },
   { match: 'via publica', slug: 'movilidad' },

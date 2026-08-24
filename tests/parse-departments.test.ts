@@ -72,7 +72,12 @@ describe('canonicalizeDepartment — agenda strings (UPPERCASE, accented)', () =
 const PORTFOLIO_FIXTURE: Array<[string, DepartmentSlug | null]> = [
   ['Alcaldía', 'alcaldia'],
   ['Urbanismo', 'urbanismo'],
-  ['Urbanizaciones', 'urbanismo'],
+  // «Urbanizaciones, barrios y diseminados» es el área de las urbanizaciones
+  // periféricas, no el planeamiento. Compartía slug con «Urbanismo» —la cartera
+  // de otra concejala— y la pastilla de /cargos lo pintaba como una atribución.
+  // Sin departamento propio en la taxonomía se queda sin resolver: un hueco
+  // honesto es mejor que un titular equivocado.
+  ['Urbanizaciones', null],
   ['Obra Pública', 'obras-publicas'],
   ['Actividades y Edificios públicos', 'obras-publicas'],
   ['Emergencia climática', 'medio-ambiente'],
@@ -111,7 +116,7 @@ const PORTFOLIO_FIXTURE: Array<[string, DepartmentSlug | null]> = [
   ['Infancia y Adolescencia y Memoria Histórica', 'servicios-sociales'],
   ['Promoción de la Salud e Infraestructuras sanitarias', 'salud'],
   ['Áreas Industriales y Cementerio', null],
-  ['barrios y diseminados', 'urbanismo'],
+  ['barrios y diseminados', null],
   ['Comercio', 'comercio'],
 ]
 
