@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "_comentario": "Señalamientos de `review:surfaces` que una persona miró y descartó. Se ancla en la CITA exacta, no en la ruta: si la página cambia o el modelo señala otra frase, el aviso vuelve. Comprobado por tests/surface-dismissals.test.ts; lo aplica check:surfaces. NO va bajo public/ — no se publica.",
+  "_comentario": "Señalamientos de `review:surfaces` que una persona miró y descartó. Se ancla en la CITA exacta, no en la ruta: si la página cambia o el modelo señala otra frase, el aviso vuelve. Comprobado por tests/surface-dismissals.test.ts, que además vigila que sus DOS consumidores sigan enchufados — `check:surfaces` lo honró desde el principio y `review:surfaces` no lo leyó hasta el 24-08-2026, así que un descarte callaba el parte de salud y no la salida que lee una persona. NO va bajo public/ — no se publica.",
   "items": [
     {
       "route": "/datos",
@@ -15,6 +15,13 @@
       "reason": "Mismo caso que /datos: el rótulo dice «indexados» y va junto a «plenos indexados», «hallazgos publicados» y «quejas ciudadanas», o sea un panel de lo que este proyecto contiene. 805 filas están indexadas de verdad. No afirma adjudicación en ningún punto.",
       "editor": "Sergei Lutchenko",
       "at": "2026-08-13"
+    },
+    {
+      "route": "/gestion",
+      "quote": "Las dos dicen ser el mismo ejercicio y difieren en casi cuatro millones; no sabemos cuál de las dos lo explica, y decir que una es «lo aprobado» y la otra «lo definitivo» sería inventarse la reconciliación.",
+      "reason": "El revisor compara el gasto PRESUPUESTADO del ministerio (41.578.252,26 €) con las obligaciones RECONOCIDAS (18.909.465,12 €) y llama «discrepancia» a la diferencia de 22,7 M€. Eso es infraejecución — exactamente lo que mide el indicador del 30,4 % que hay en esa misma página—, no un desacuerdo entre fuentes. Las dos cifras que sí dicen ser lo mismo son la del ministerio y el crédito inicial del listado municipal (37.599.838,15 €), y difieren en 3.978.414,11 €: «casi cuatro millones» es exacto. El listado municipal cuadra al céntimo, 37.599.838,15 + 24.523.314,93 = 62.123.153,08, que es el crédito definitivo del denominador. Comprobado contra indicadores.json el 24-08-2026.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-08-24"
     }
   ]
 }

@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest'
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import {
   estaDescartado,
   sinDescartar,
@@ -109,4 +111,39 @@ describe('el descarte sobrevive a que el modelo recorte distinto', () => {
     expect(estaDescartado('/datos', f('805'), registro)).toBe(false)
     expect(estaDescartado('/datos', f('contratos'), registro)).toBe(false)
   })
+})
+
+// ─── Y quién lo aplica ───────────────────────────────────────────────────────
+//
+// El módulo estaba escrito y probado desde el 13-08-2026, y `check:surfaces` lo
+// honraba. `review:surfaces` —el comando que IMPRIME los señalamientos y el que
+// lee una persona— no lo leyó nunca, así que un descarte silenciaba el parte de
+// salud y no la salida. El falso positivo de `/gestion` iba a reimprimirse
+// indefinidamente con el registro delante, sin usar.
+//
+// Es la lección de `project_wiring_gaps` en su forma pura: comprueba SIEMPRE
+// quién ejecuta lo que construyes. Un módulo con tests y sin consumidor está
+// tan roto como uno sin tests.
+
+describe('los dos consumidores del registro siguen enchufados', () => {
+  const CONSUMIDORES = ['scripts/check-surfaces.ts', 'scripts/review-surfaces.ts'] as const
+
+  it('mide algo: los ficheros existen y se leen', () => {
+    for (const c of CONSUMIDORES) {
+      expect(readFileSync(resolve(c), 'utf8').length, `${c} está vacío`).toBeGreaterThan(100)
+    }
+  })
+
+  for (const c of CONSUMIDORES) {
+    it(`${c} importa el registro y lo aplica`, () => {
+      const src = readFileSync(resolve(c), 'utf8')
+      expect(src, `${c} no importa surface-dismissals`).toContain('surface-dismissals')
+      expect(src, `${c} no lee review-dismissals.json`).toContain('review-dismissals.json')
+      // Importarlo y no llamarlo es el mismo hueco con un import de adorno.
+      expect(
+        /\bsinDescartar\s*\(|\bestaDescartado\s*\(|\bmedirFrescura\s*\(/.test(src),
+        `${c} importa el módulo pero no lo llama`,
+      ).toBe(true)
+    })
+  }
 })
