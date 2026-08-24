@@ -92,6 +92,10 @@ describe('la caja discontinua significa una sola cosa en todo el sitio', () => {
     'src/components/Primitives.jsx': 'la propuesta de máquina',
     'src/components/PlenoFindings.jsx': 'fecha y estado que no constan',
     'src/components/plenos/VoteBreakdownRetracted.jsx': 'votación retirada',
+    'src/components/eficiencia/DeclaracionEntregas.jsx':
+      'la entrega que el ayuntamiento no presentó',
+    'src/components/eficiencia/libro.css.js':
+      'una posición que la muestra no sostiene: la banda plausible cruza la mediana',
   }
 
   it('ninguna caja discontinua nueva aparece sin declarar qué provisionalidad marca', () => {

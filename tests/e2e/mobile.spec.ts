@@ -68,7 +68,10 @@ const ROUTES: Route[] = [
   // estricta las hubiera mirado nunca. Es «verde por no ejecutarse», el defecto
   // que este repo ya ha pagado varias veces.
   { path: '/eficiencia', ready: /Cobertura de este panel|servicios que este panel sigue/ },
-  { path: '/gestion', ready: /Plazos, concurrencia y ejecución/ },
+  // El h1, no un titular de sección: «Plazos, concurrencia y ejecución» era el
+  // título de una tarjeta y se movió con el libro de gestión. Un centinela que
+  // vive dentro de un componente caduca en cuanto ese componente cambia.
+  { path: '/gestion', ready: /Cómo funciona la casa por dentro/ },
   { path: '/laboratorio/frontera', ready: /series de unidad física/ },
   {
     path: '/laboratorio/coste-esperado',

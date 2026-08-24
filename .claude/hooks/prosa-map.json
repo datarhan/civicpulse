@@ -42,6 +42,7 @@
     ],
     "competencias.json": [
       "/eficiencia",
+      "/eficiencia/:id",
       "/gestion"
     ],
     "consell-cv.json": [
@@ -119,6 +120,7 @@
     "indicadores.json": [
       "/datos",
       "/eficiencia",
+      "/eficiencia/:id",
       "/gestion",
       "/metodologia"
     ],
@@ -174,6 +176,7 @@
       "/departamentos",
       "/departamentos/:slug",
       "/eficiencia",
+      "/eficiencia/:id",
       "/empleo",
       "/empleo-publico",
       "/empleo/:id",
@@ -319,6 +322,7 @@
       "/departamentos",
       "/departamentos/:slug",
       "/eficiencia",
+      "/eficiencia/:id",
       "/gestion",
       "/hallazgos",
       "/lab-health",
@@ -334,6 +338,7 @@
       "/departamentos",
       "/departamentos/:slug",
       "/eficiencia",
+      "/eficiencia/:id",
       "/gestion",
       "/hallazgos",
       "/lab-health",

@@ -1,9 +1,9 @@
+import { useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Card } from '../components/Primitives'
 import { CoberturaEficiencia } from '../components/eficiencia/CoberturaEficiencia'
-import { LecturaRapida } from '../components/eficiencia/LecturaRapida'
-import { ResumenPosiciones } from '../components/eficiencia/ResumenPosiciones'
-import { MultiplesSeries } from '../components/eficiencia/MultiplesSeries'
-import { ServicioCard } from '../components/eficiencia/ServicioCard'
+import { EstadoRendicion } from '../components/eficiencia/EstadoRendicion'
+import { LibroServicios } from '../components/eficiencia/LibroServicios'
 import { ComoSeLee } from '../components/eficiencia/ComoSeLee'
 import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
 import { HallazgosEficiencia } from '../components/eficiencia/HallazgosEficiencia'
@@ -11,7 +11,6 @@ import { Supramunicipal } from '../components/eficiencia/Supramunicipal'
 import { AusenciasResultados } from '../components/eficiencia/Resultado'
 import { SubnavSecciones, MARGEN_ANCLA } from '../components/SubnavSecciones'
 import { PreguntasRegistradas } from '../components/eficiencia/PreguntasRegistradas'
-import { agruparPorArea, fraseParticion } from '../scraper/indicador-areas'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useEficienciaPreguntas } from '../hooks/useEficienciaPreguntas'
@@ -26,8 +25,17 @@ import { useT } from '../i18n'
  * en cabecera convertiría la ponderación en la noticia. Lo que la cabecera
  * añade desde agosto de 2026 son RECUENTOS de lo que las fichas ya publican y
  * una lectura editorial fechada; dónde está el límite de eso, en el docblock
- * de `LecturaRapida.jsx`.
+ * de `EstadoRendicion.jsx`.
  *
+ * Espacios de anclas: `#sec-*` secciones · `#g-<area>` grupos, cuando el libro
+ * se agrupa · `#hallazgos` la sección firmada. Las fichas ya NO son anclas:
+ * cada servicio es su propia ruta, `/eficiencia/:id`. Un `#s-<id>` o un
+ * `#r-<id>` de antes siguen funcionando —los redirige el efecto de abajo—
+ * porque `eficiencia-preguntas.json` cita uno de cada, y ese fichero es curado:
+ * se edita por PR, nunca desde código.
+ *
+ * Lo que sigue de aquí describe el reparto por área, que ahora es un modo de
+ * lectura del libro y no la estructura de la página:
  * Las fichas van agrupadas por área funcional de la propia clasificación por
  * programas (`AREAS`, declarada servicio a servicio en el registro) — nunca
  * por concejalías: un coste unitario a un clic de un concejal con nombre es un
@@ -52,6 +60,25 @@ import { useT } from '../i18n'
  */
 export default function Eficiencia() {
   const t = useT()
+  const navigate = useNavigate()
+  const { hash } = useLocation()
+
+  // `#s-<id>` era el ancla de cada ficha cuando las quince vivían en esta
+  // página. Ahora cada una es una ruta, y este efecto traduce el enlace viejo
+  // en lugar de dejarlo aterrizar en el vacío. No es de adorno: el fichero
+  // curado `eficiencia-preguntas.json` cita uno, y ese fichero se edita por PR,
+  // nunca desde aquí.
+  // Depende del HASH, no sólo del montaje: quien ya está en /eficiencia y pulsa
+  // un `#s-` sólo cambia el fragmento, la página no se vuelve a montar y un
+  // efecto de montaje se quedaría mirando. Lo cazó el spec de las preguntas
+  // registradas, que es exactamente ese recorrido.
+  useEffect(() => {
+    // `#s-<id>` era la ficha y `#r-<id>` su bloque de resultado. Los dos viven
+    // ahora dentro de /eficiencia/<id>, y `eficiencia-preguntas.json` —curado,
+    // se edita por PR y nunca desde aquí— cita uno de cada.
+    const m = /^#([sr])-(.+)$/.exec(hash)
+    if (m) navigate(`/eficiencia/${m[2]}`, { replace: true })
+  }, [hash, navigate])
   const { loading, error, data } = useIndicadores()
   const { data: hallazgos } = useEficienciaFindings()
   const { data: preguntas } = useEficienciaPreguntas()
@@ -65,7 +92,6 @@ export default function Eficiencia() {
   const idsDeAqui = [...indicadores.map((i) => i.id), ...municipalesDeAqui.map((m) => m.id)]
   const firmados = (hallazgos?.items ?? []).filter((f) => idsDeAqui.includes(f.indicadorId)).length
 
-  const grupos = agruparPorArea(indicadores)
   const bloqueados = indicadores.filter((i) => i.valor === null)
 
   const formateaCon = (unidad) => (v) => {
@@ -73,20 +99,19 @@ export default function Eficiencia() {
     return `${v.toLocaleString('es-ES', { minimumFractionDigits: dec, maximumFractionDigits: dec })} ${unidad.replace(/^€\//, '€/')}`
   }
 
-  const seccion = { scrollMarginTop: MARGEN_ANCLA }
+  // El libro ocupa el ancho entero; todo lo demás conserva la medida de
+  // lectura que tenía. Una columna de texto de 1240px no se lee.
+  const seccion = { scrollMarginTop: MARGEN_ANCLA, maxWidth: 900 }
+  const seccionAncha = { scrollMarginTop: MARGEN_ANCLA }
 
   // Los ítems del submenú son las secciones que de verdad existen en este
   // render: una entrada a una sección vacía es un enlace que no hace nada.
   const secciones = [
     { id: 'sec-lectura', label: t('eficiencia.subnav.lectura') },
     { id: 'sec-cobertura', label: t('eficiencia.subnav.cobertura') },
-    { id: 'sec-posiciones', label: t('eficiencia.subnav.posiciones') },
     { id: 'sec-servicios', label: t('eficiencia.subnav.servicios') },
     ...(municipalesDeAqui.length > 0
       ? [{ id: 'sec-declaracion', label: t('eficiencia.subnav.declaracion') }]
-      : []),
-    ...(bloqueados.length > 0
-      ? [{ id: 'sec-bloqueados', label: t('eficiencia.subnav.bloqueados') }]
       : []),
     ...(firmados > 0 ? [{ id: 'hallazgos', label: t('eficiencia.subnav.hallazgos') }] : []),
     ...((preguntas?.panels?.['coste-efectivo']?.bloques?.length ?? 0) > 0
@@ -95,7 +120,7 @@ export default function Eficiencia() {
   ]
 
   return (
-    <div className="cp-page" style={{ padding: 24, maxWidth: 900, margin: '0 auto' }}>
+    <div className="cp-page" style={{ padding: 24, maxWidth: 1240, margin: '0 auto' }}>
       <div
         className="mono"
         style={{
@@ -134,11 +159,15 @@ export default function Eficiencia() {
         </Card>
       )}
 
-      {/* La respuesta corta primero — recuentos y una lectura fechada, nunca
-          una nota. El índice de hallazgos firmados que antes iba aquí como
-          párrafo ahora es una casilla más de la cabecera, con el mismo
-          contrato: dice cuántos hay y dónde, sin adelantar lo que concluyen. */}
-      <LecturaRapida data={data} firmados={firmados} />
+      {/* La respuesta corta primero, y su segunda mitad antes que la primera:
+          contar posiciones sin decir que la mitad no se distinguen convierte
+          doce percentiles en doce hechos. Recuentos sobre la rendición, jamás
+          una media de percentiles. */}
+      <EstadoRendicion
+        data={data}
+        firmados={firmados}
+        preguntas={preguntas?.panels?.['coste-efectivo']}
+      />
 
       {indicadores.length > 0 && (
         <section id="sec-cobertura" style={seccion}>
@@ -152,59 +181,37 @@ export default function Eficiencia() {
         </section>
       )}
 
-      {/* Posición hoy y década, contiguas y GLOBALES: el punto y la mini-serie
-          contestan preguntas distintas, y trocearlas por áreas rompería la
-          única vista donde los trece servicios se comparan de un vistazo. */}
-      <section id="sec-posiciones" style={seccion}>
-        <ResumenPosiciones indicadores={indicadores} />
-        <MultiplesSeries indicadores={indicadores} formateaCon={formateaCon} />
-      </section>
-
-      {/* Las fichas, por área funcional del propio retorno: bloques que se
-          pueden leer enteros («¿cómo va el medio urbano?») sin recorrer trece
-          tarjetas en orden de gasto. El área la declara cada servicio en el
-          registro; la mini-frase de cada bloque es un recuento derivado. */}
-      <section id="sec-servicios" style={seccion}>
+      {/* El libro: los quince servicios en una pantalla y con una sola
+          geometría. Sustituye a la franja de posiciones, a la rejilla de
+          mini-series y a trece tarjetas de nueve partes — que decían cosas
+          ciertas y no dejaban comparar ninguna con ninguna. Las dos filas sin
+          cociente van dentro, al pie: sacarlas dejaría la tabla pareciendo
+          completa. */}
+      <section id="sec-servicios" style={seccionAncha}>
         {/* La regla antes que los ejemplos. Es de la CLASE de divisor, no del
-            servicio, así que se dice tres veces aquí en lugar de trece abajo —
-            y quien entra por una sola ficha ya no deduce de ella una regla que
-            sólo valía para su escalón. */}
-        <ComoSeLee indicadores={indicadores} />
+            servicio, así que se dice tres veces aquí en lugar de quince en la
+            tabla — y quien entra por una sola ficha ya no deduce de ella una
+            regla que sólo valía para su escalón. */}
+        <div style={{ maxWidth: 900 }}>
+          <ComoSeLee indicadores={indicadores} />
+        </div>
 
-        {grupos.map((g) => (
-          <div key={g.area} style={{ marginTop: 26 }}>
-            <h2
-              id={`g-${g.area}`}
-              style={{
-                fontSize: 'var(--fs-body)',
-                fontWeight: 650,
-                margin: 0,
-                letterSpacing: '-.01em',
-                scrollMarginTop: MARGEN_ANCLA,
-              }}
-            >
-              {g.etiqueta}
-            </h2>
-            {fraseParticion(g.particion) && (
-              <p style={{ margin: '3px 0 0', fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-                {fraseParticion(g.particion)}.
-              </p>
-            )}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 10 }}>
-              {g.indicadores.map((i) => (
-                <ServicioCard
-                  key={i.id}
-                  indicador={i}
-                  formatea={formateaCon(i.unidad)}
-                  resultado={(data?.resultados?.items ?? []).find(
-                    (r) => r.servicioRelacionado === i.id,
-                  )}
-                  competencia={porClave.get(i.id)}
-                />
-              ))}
-            </div>
+        <LibroServicios
+          indicadores={indicadores}
+          formateaCon={formateaCon}
+          competencias={porClave}
+          conNombres={nombresOn}
+          entrega={data?.anioBase}
+        />
+
+        {/* CE4 va pegado al libro porque es la explicación de sus ceros:
+            turismo, ferias, deporte y ocio no son funciones inexistentes, son
+            funciones cuya parte supramunicipal rinde la Mancomunitat. */}
+        {bloqueados.length > 0 && (
+          <div style={{ maxWidth: 900 }}>
+            <Supramunicipal filas={data?.supramunicipales} entrega={data?.anioBase} />
           </div>
-        ))}
+        )}
       </section>
 
       {/* Sólo lo que sale del MISMO cuaderno que las tarjetas de arriba: el
@@ -220,36 +227,6 @@ export default function Eficiencia() {
             intro="Los cocientes de arriba salen de dos cantidades que el ayuntamiento declara cada entrega; esto mide con qué frecuencia vuelve a medir la de abajo."
             competencias={porClave}
           />
-        </section>
-      )}
-
-      {bloqueados.length > 0 && (
-        <section id="sec-bloqueados" style={seccion}>
-          <h2
-            style={{
-              fontSize: 'var(--fs-body)',
-              fontWeight: 650,
-              margin: '28px 0 4px',
-              letterSpacing: '-.01em',
-            }}
-          >
-            {t('eficiencia.bloqueados.titulo')}
-          </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 10 }}>
-            {bloqueados.map((i) => (
-              <ServicioCard
-                key={i.id}
-                indicador={i}
-                formatea={formateaCon(i.unidad)}
-                competencia={porClave.get(i.id)}
-              />
-            ))}
-          </div>
-
-          {/* CE4 va pegado a los bloqueados porque es su explicación: los ceros
-              de turismo, ferias, deporte y ocio no son funciones inexistentes,
-              son funciones cuya parte supramunicipal rinde la Mancomunitat. */}
-          <Supramunicipal filas={data?.supramunicipales} entrega={data?.anioBase} />
         </section>
       )}
 

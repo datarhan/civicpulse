@@ -212,8 +212,11 @@ export function CoberturaEficiencia({
         >
           Cada percentil lleva al lado su <strong>banda plausible</strong>, calculada remuestreando
           la propia muestra de comparables: con treinta o cincuenta municipios, un puesto exacto
-          aparenta una precisión que la muestra no tiene. La regla de lectura es una: cuando las
-          bandas de dos municipios se solapan, la diferencia entre ellos no se distingue del ruido.
+          aparenta una precisión que la muestra no tiene. Y la regla no se queda en enunciado: si la
+          banda de un servicio cruza la mediana del grupo, el libro <strong>no le da lado</strong> —
+          su punto va hueco, no entra en el recuento de «por encima» ni en el de «por debajo», y la
+          fila lo dice. Antes esa advertencia iba en una salvedad plegada mientras la cabecera ya
+          había contado ese servicio de un lado.
         </p>
       )}
       {noPresentadas.length > 0 && (

@@ -98,7 +98,13 @@ test.describe('Eficiencia (/eficiencia)', () => {
     // The snapshot has something to show, and the page shows it. Guards against
     // a green run against an empty page.
     expect(CON_RATIO.length).toBeGreaterThan(0)
-    await expect(page.getByRole('heading', { name: CON_RATIO[0].etiqueta })).toBeVisible()
+    // Una fila por servicio del panel —incluidos los que no tienen cociente,
+    // que van dentro de la tabla y no en una sección aparte— y cada una lleva
+    // a su ficha.
+    await expect(page.locator('.cp-libro tbody tr')).toHaveCount(SNAP.indicadores.length)
+    await expect(
+      page.locator(`.cp-libro .cp-c-servicio a[href="/eficiencia/${CON_RATIO[0].id}"]`),
+    ).toBeVisible()
 
     // Coverage strip states the page's own share of its domain.
     await expect(page.getByText(/servicios que este panel sigue/i)).toBeVisible()
@@ -106,88 +112,168 @@ test.describe('Eficiencia (/eficiencia)', () => {
     expect(appErrors(errors)).toEqual([])
   })
 
-  test('la lectura rápida cuenta lo que las fichas publican, sin inventar nada', async ({
+  test('el estado de la rendición cuenta lo que la fuente declara de sí misma', async ({
     page,
   }) => {
-    // Los recuentos de cabecera se RE-DERIVAN aquí del mismo snapshot con el
-    // mismo módulo que usa el componente: si la página y este test divergen,
-    // uno de los dos está contando mal y el rojo lo dice. Restatar los números
-    // a mano es el fallo nº1 de docs/DATA_INTEGRITY.md.
+    // Las cuatro cifras se RE-DERIVAN aquí del mismo snapshot: si la página y
+    // este test divergen, uno de los dos cuenta mal. Restatarlas a mano es el
+    // fallo nº1 de docs/DATA_INTEGRITY.md.
     const p = particionPosiciones(SNAP.indicadores)
     const hero = page.locator('#sec-lectura')
     await expect(hero).toBeVisible({ timeout: 8000 })
 
-    // El sufijo «=» se deriva igual que en el componente: aparece sólo si
-    // algún percentil cae en el 50 exacto, que es alcanzable.
-    const tileParticion = `${p.abajo} ↓ · ${p.arriba} ↑${p.enMediana > 0 ? ` · ${p.enMediana} =` : ''}`
-    await expect(hero.getByText(tileParticion)).toBeVisible()
-
-    const congelados = CON_RATIO.filter(
-      (i: Indicador) => i.declaracion?.denominador?.congelada,
-    ).length
+    const congelados = CON_RATIO.filter((i: Indicador) => i.declaracion?.denominador?.congelada)
     const medibles = CON_RATIO.filter((i: Indicador) => i.declaracion?.denominador).length
-    if (congelados > 0) {
-      await expect(hero.getByText(`${congelados} de ${medibles}`)).toBeVisible()
-    }
+    expect(congelados.length, 'el snapshot no trae denominadores congelados').toBeGreaterThan(0)
+    await expect(hero.getByText(`${congelados.length} de ${medibles}`)).toBeVisible()
 
     const sinRendir: number[] = SNAP.cobertura?.entregasNoPresentadas ?? []
     if (sinRendir.length > 0) {
       await expect(hero.getByText(sinRendir.join(' · '), { exact: true })).toBeVisible()
     }
 
-    // La lectura editorial termina donde debe: en el límite, con su enlace.
-    await expect(hero.getByText(/Ninguna de estas cifras mide la calidad/i)).toBeVisible()
-    await expect(hero.locator('a[href="/metodologia#eficiencia"]')).toHaveCount(1)
+    // Las entregas inverosímiles y los servicios sin cociente, contados igual
+    // que los cuenta el componente.
+    const inverosimiles = SNAP.indicadores.reduce(
+      (n: number, i: Indicador) => n + (i.serie ?? []).filter((s) => s.atipico).length,
+      0,
+    )
+    const sinCociente = SNAP.indicadores.length - CON_RATIO.length
+    if (inverosimiles > 0) {
+      await expect(hero.getByText(String(inverosimiles), { exact: true })).toBeVisible()
+    }
+    if (sinCociente > 0) {
+      await expect(hero.getByText(String(sinCociente), { exact: true })).toBeVisible()
+    }
 
-    // Y respeta el contrato del índice: la cabecera dice cuántas cosas hay y
-    // dónde, nunca qué concluye una ficha firmada.
+    // La parte que MANDA va delante y con su recuento derivado: sin ella, doce
+    // percentiles se leen como doce hechos.
+    await expect(
+      hero.getByText(
+        new RegExp(`de los ${p.situados} servicios comparables, ${p.indistinguibles} no se`),
+      ),
+    ).toBeVisible()
+
+    // Y la separación explícita entre lo que estas cifras permiten y lo que no.
+    await expect(hero.getByText(/Lo que estas cifras permiten concluir/i)).toBeVisible()
+    await expect(hero.getByText(/^Lo que no$/)).toBeVisible()
+    await expect(hero.getByText(/miden la/i)).toContainText('rendición de cuentas')
+    await expect(hero.getByText(/No hay nota global del ayuntamiento/i)).toBeVisible()
+
+    // Contrato del índice: la cabecera dice cuántas cosas hay y dónde, nunca
+    // qué concluye una ficha firmada.
     const texto = (await hero.textContent()) ?? ''
     for (const f of FICHAS.items) {
-      expect(texto, 'la lectura rápida adelanta el titular de una ficha').not.toContain(
+      expect(texto, 'la cabecera adelanta el titular de una ficha').not.toContain(
         f.titulo.slice(0, 25),
       )
     }
   })
 
-  test('las fichas van agrupadas por área funcional, en el orden del registro', async ({
-    page,
-  }) => {
+  test('el libro se agrupa por área funcional cuando se le pide', async ({ page }) => {
     // La agrupación la declara cada servicio en el registro y la ordena el
-    // gasto: aquí se comprueba que el DOM la respeta entera — cabecera de área
-    // visible con su mini-frase derivada, y las fichas dentro en el orden que
-    // exporta el mismo módulo que consume la página.
+    // gasto. Ya no es la estructura de la página —el libro llega ordenado por
+    // coste— pero sigue estando, y aquí se comprueba que el DOM la respeta
+    // entera cuando se activa: cabecera de área con su mini-frase derivada, y
+    // las filas dentro en el orden que exporta el mismo módulo que consume la
+    // página.
     const grupos = agruparPorArea(SNAP.indicadores)
     expect(grupos.length, 'sin grupos de área en el snapshot').toBeGreaterThan(1)
+
+    await page.getByRole('button', { name: /Agrupar por área/i }).click()
 
     for (const g of grupos) {
       const cabecera = page.locator(`#g-${g.area}`)
       await expect(cabecera).toBeVisible({ timeout: 8000 })
-      await expect(cabecera).toHaveText(g.etiqueta)
+      await expect(cabecera).toContainText(g.etiqueta)
       const frase = fraseParticion(g.particion)
-      if (frase) {
-        await expect(page.getByText(`${frase}.`, { exact: true })).toBeVisible()
+      if (frase) await expect(cabecera).toContainText(`${frase}.`)
+    }
+
+    // El orden real de las filas en el DOM es exactamente el de los grupos,
+    // con las que no tienen cociente al pie: `agruparPorArea` sólo reparte las
+    // que sí lo tienen, a propósito.
+    const enDom = await page
+      .locator('.cp-libro tbody .cp-c-servicio a')
+      .evaluateAll((els) => els.map((e) => (e as HTMLAnchorElement).getAttribute('href')))
+    const esperado = [
+      ...grupos.flatMap((g) => g.indicadores.map((i) => `/eficiencia/${i.id}`)),
+      ...SNAP.indicadores
+        .filter((i: Indicador) => i.valor === null)
+        .map((i: Indicador) => `/eficiencia/${i.id}`),
+    ]
+    expect(enDom).toEqual(esperado)
+  })
+
+  test('cada fila contesta «¿caro o barato?» sin abrir nada, y cuándo no puede', async ({
+    page,
+  }) => {
+    // La posición va en la fila: percentil, banda y —cuando la banda cruza la
+    // mediana— la advertencia de que no se distingue. Los que no llegan a
+    // quince comparables lo dicen en vez de situarse.
+    const situados = CON_RATIO.filter((i: Indicador) => i.pares)
+    expect(situados.length).toBeGreaterThan(5)
+
+    for (const i of situados) {
+      const celda = page.locator(
+        `.cp-libro tbody tr:has(a[href="/eficiencia/${i.id}"]) .cp-c-posicion`,
+      )
+      await expect(celda, i.id).toContainText(`p${i.pares.percentil}`, { timeout: 8000 })
+      const b = i.pares.percentilBanda
+      if (Array.isArray(b)) {
+        await expect(celda, i.id).toContainText(`banda ${b[0]}–${b[1]}`)
+        if (b[0] <= 50 && b[1] >= 50) await expect(celda, i.id).toContainText('cruza la mediana')
       }
     }
 
-    // El orden real de las fichas en el DOM es exactamente el de los grupos.
-    const idsEnDom = await page
-      .locator('#sec-servicios [id^="s-"]')
-      .evaluateAll((els) => els.map((e) => e.id))
-    expect(idsEnDom).toEqual(grupos.flatMap((g) => g.indicadores.map((i) => `s-${i.id}`)))
-  })
-
-  test('cada ficha contesta «¿caro o barato?» sin abrir nada', async ({ page }) => {
-    // La frase existía y estaba suprimida por darla por visible en una banda
-    // plegada. Ahora va junto al número: una por servicio situado, y la de
-    // «no hay comparación» en los que no llegan a quince pares.
-    const situados = CON_RATIO.filter((i: Indicador) => i.pares)
-    await expect(
-      page.getByText(/Frente a \d+ municipios valencianos de tamaño parecido/),
-    ).toHaveCount(situados.length, { timeout: 8000 })
     const sinSituar = CON_RATIO.length - situados.length
     if (sinSituar > 0) {
-      await expect(page.getByText(/No hay comparación: no llegan a quince/)).toHaveCount(sinSituar)
+      // `getByText` casa también con los ancestros, así que se cuentan FILAS
+      // y no nodos: tres coincidencias en una sola celda son una.
+      await expect(
+        page.locator('.cp-libro tbody tr', {
+          has: page.locator('.cp-c-posicion', { hasText: /no llegan a quince comparables/ }),
+        }),
+      ).toHaveCount(sinSituar)
     }
+  })
+
+  test('el punto hueco marca exactamente las posiciones que la muestra no sostiene', async ({
+    page,
+  }) => {
+    // La geometría y el veredicto salen de la MISMA función, así que aquí se
+    // cuenta lo pintado contra lo derivado. Es la comprobación que ninguna
+    // suite de esta casa podía hacer antes: todas leían texto, y el defecto que
+    // abrió este rediseño —el punto al 11 % bajo un rótulo que decía 85— vivía
+    // sólo en el atributo `left`.
+    const p = particionPosiciones(SNAP.indicadores)
+    expect(p.indistinguibles, 'ninguna banda cruza la mediana en este snapshot').toBeGreaterThan(0)
+
+    const tbody = page.locator('.cp-libro tbody')
+    await expect(tbody.locator('[data-eje-marcador="hueco"]')).toHaveCount(p.indistinguibles, {
+      timeout: 8000,
+    })
+    await expect(tbody.locator('[data-eje-marcador="solido"]')).toHaveCount(p.abajo + p.arriba)
+    await expect(tbody.getByText('≈ indistinguible')).toHaveCount(p.indistinguibles)
+
+    // Y el marcador cae donde dice el rótulo, medido en píxeles.
+    const desviacion = await tbody.evaluate((tb) => {
+      const filas = [...tb.querySelectorAll('tr')]
+      let peor = 0
+      for (const tr of filas) {
+        const eje = tr.querySelector('[role="img"]')
+        const m = tr.querySelector('[data-eje-marcador]')
+        const rot = tr.querySelector('.cp-c-posicion .cp-fila-meta')?.textContent ?? ''
+        const dicho = /p(\d+)/.exec(rot)
+        if (!eje || !m || !dicho) continue
+        const re = eje.getBoundingClientRect()
+        const rm = m.getBoundingClientRect()
+        const pintado = ((rm.left + rm.width / 2 - re.left) / re.width) * 100
+        peor = Math.max(peor, Math.abs(pintado - Number(dicho[1])))
+      }
+      return peor
+    })
+    expect(desviacion, 'el punto no cae en el percentil que rotula').toBeLessThan(1)
   })
 
   test('avisa de los cocientes cuyo denominador nadie vuelve a medir', async ({ page }) => {
@@ -224,37 +310,30 @@ test.describe('Eficiencia (/eficiencia)', () => {
     }
   })
 
-  test('sitúa los servicios juntos antes de pedir que se lean uno a uno', async ({ page }) => {
+  test('los quince caben juntos, y el total es el de los que tienen cociente', async ({ page }) => {
     // La página tenía todos los percentiles calculados y no los enseñaba
     // juntos en ningún sitio: había que recorrer trece pantallas para saber
-    // cuáles son los dos caros. El resumen no añade ninguna afirmación —cada
-    // punto es el percentil que su propia ficha ya publica— así que lo que hay
-    // que vigilar es que no se desincronice de las fichas.
+    // cuáles son los dos caros. El libro no añade ninguna afirmación —cada fila
+    // es lo que su propia ficha publica— así que lo que hay que vigilar es que
+    // no se desincronice de las fichas.
     const situados = SNAP.indicadores.filter((i: Indicador) => i.valor !== null && i.pares)
     expect(situados.length, 'ningún servicio situado en el snapshot').toBeGreaterThan(0)
 
-    await expect(page.getByText(/Dónde queda cada servicio/i)).toBeVisible({ timeout: 8000 })
-
-    // Un enlace por servicio situado en la franja, más uno por mini-serie de
-    // la rejilla contigua — ni uno más. El recuento de la rejilla no se
-    // restata: lo decide el mismo módulo que usa el componente.
-    const enlaces = page.locator('a[href^="#s-"]')
-    await expect(enlaces).toHaveCount(situados.length + seriesDibujables(SNAP.indicadores).length)
-
-    // Y cada enlace tiene destino: un ancla rota no da error, sencillamente no
-    // hace nada, y nadie se entera.
-    for (const i of situados) {
-      await expect(
-        page.locator(`#s-${i.id}`),
-        `el resumen enlaza a #s-${i.id} y esa ficha no existe`,
-      ).toHaveCount(1)
+    // Un enlace por servicio del panel, ni uno más, y cada uno con destino: un
+    // enlace roto no da error, sencillamente no hace nada y nadie se entera.
+    const enlaces = page.locator('.cp-libro tbody .cp-c-servicio a')
+    await expect(enlaces).toHaveCount(SNAP.indicadores.length, { timeout: 8000 })
+    const hrefs = await enlaces.evaluateAll((els) =>
+      els.map((e) => (e as HTMLAnchorElement).getAttribute('href')),
+    )
+    for (const i of SNAP.indicadores) {
+      expect(hrefs, `el libro no enlaza la ficha de ${i.id}`).toContain(`/eficiencia/${i.id}`)
     }
 
     // El total es el de los servicios CON cociente, no el del panel entero: es
-    // la diferencia entre una suma correcta y una que se cuela tres servicios
+    // la diferencia entre una suma correcta y una que se cuela dos servicios
     // sin coste utilizable.
-    const conRatio = SNAP.indicadores.filter((i: Indicador) => i.valor !== null)
-    const total = conRatio.reduce((s: number, i: Indicador) => s + (i.numerador.valor ?? 0), 0)
+    const total = CON_RATIO.reduce((s: number, i: Indicador) => s + (i.numerador.valor ?? 0), 0)
     await expect(
       page.getByText(
         total.toLocaleString('es-ES', {
@@ -267,39 +346,20 @@ test.describe('Eficiencia (/eficiencia)', () => {
     ).toBeVisible()
   })
 
-  test('la rejilla de mini-series va en el orden de la franja y cada una abre su ficha', async ({
-    page,
-  }) => {
-    // El punto (posición hoy) y la mini-serie (la década) responden preguntas
-    // distintas y van contiguos EN EL MISMO ORDEN: quien localiza un servicio
-    // en la franja lo encuentra en el mismo sitio de la rejilla. El orden
-    // esperado no se restata aquí — lo exporta `multiples.js`, el módulo que
-    // consume el propio componente.
+  test('la década va en la fila, con la mediana de sus pares detrás', async ({ page }) => {
+    // El punto (posición hoy) y la serie (la década) responden preguntas
+    // distintas y ahora van en la misma fila. El recuento no se restata aquí:
+    // lo decide `multiples.js`, el módulo que consume el propio componente.
     const dibujables = seriesDibujables(SNAP.indicadores)
     expect(dibujables.length, 'sin series dibujables en el snapshot').toBeGreaterThanOrEqual(2)
 
-    await expect(page.getByText(/La década, servicio a servicio/i)).toBeVisible({ timeout: 8000 })
+    const celdas = page.locator('.cp-libro tbody .cp-c-decada svg')
+    await expect(celdas).toHaveCount(dibujables.length, { timeout: 8000 })
 
-    const minis = page.getByRole('link', { name: /abre su ficha/i })
-    await expect(minis).toHaveCount(dibujables.length)
-    const hrefs = await minis.evaluateAll((els) => els.map((e) => e.getAttribute('href')))
-    expect(hrefs).toEqual(dibujables.map((s) => `#s-${s.indicador.id}`))
-
-    // Cada ancla tiene destino: una rota no da error, sencillamente no hace nada.
-    for (const s of dibujables) {
-      await expect(
-        page.locator(`#s-${s.indicador.id}`),
-        `la rejilla enlaza a #s-${s.indicador.id} y esa ficha no existe`,
-      ).toHaveCount(1)
-    }
-
-    // El pie declara la retícula (escala propia) y nombra los años sin entrega
-    // — derivados del dato, no escritos, para que no puedan quedarse rancios.
-    await expect(page.getByText(/escala vertical propia/i)).toBeVisible()
+    // El pie declara en qué euros va la serie, UNA vez y no quince.
+    await expect(page.locator('.cp-libro caption')).toContainText(/euros constantes de/i)
     const sinEntrega = aniosSinEntrega(dibujables.map((s) => s.declarados))
-    if (sinEntrega.length > 0) {
-      await expect(page.getByText(`sin entrega de ${sinEntrega.join(', ')}`)).toBeVisible()
-    }
+    expect(sinEntrega.length, 'el snapshot no tiene años sin entrega').toBeGreaterThan(0)
   })
 
   test('a concession shows no ratio and no peer position', async ({ page }) => {
@@ -307,32 +367,21 @@ test.describe('Eficiencia (/eficiencia)', () => {
     // because the concessionaire bears it, so a naive divide would publish
     // "cheapest in the comarca".
     expect(CONCESION.length).toBeGreaterThan(0)
-    await expect(page.getByText(/Servicios sin coste unitario/i)).toBeVisible({ timeout: 8000 })
 
-    // The service is on the page, under the blocked heading, with the reason
-    // spelled out rather than a number.
-    await expect(page.getByRole('heading', { name: CONCESION[0].etiqueta })).toBeVisible()
-    await expect(page.getByText(/lo paga el concesionario/i).first()).toBeVisible()
+    // Va DENTRO de la tabla, no en una sección aparte: sacarla la dejaría
+    // pareciendo completa. Sin cociente, sin posición y sin múltiplo.
+    const fila = page.locator(`.cp-libro tbody tr:has(a[href="/eficiencia/${CONCESION[0].id}"])`)
+    await expect(fila).toBeVisible({ timeout: 8000 })
+    await expect(fila.locator('.cp-c-unidad')).toHaveText('—')
+    await expect(fila.locator('.cp-c-razon')).toHaveText('—')
+    await expect(fila.locator('[data-eje-marcador]')).toHaveCount(0)
+    await expect(fila.getByText(/sin comparación/i)).toBeVisible()
 
-    // And no peer panel leaked onto it: exactly one disclosure per comparable
-    // indicator, so a concession cannot have grown one. Counting is sturdier
-    // than walking the DOM up from a heading to find "the card".
-    const comparables = SNAP.indicadores.filter((i: { pares: unknown }) => i.pares).length
-    await expect(page.getByText(/Ver los municipios comparados/i)).toHaveCount(comparables)
-  })
-
-  test('names the municipalities it compares against', async ({ page }) => {
-    expect(COMPARABLE).toBeTruthy()
-    await page.goto('/eficiencia', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByRole('heading', { name: /Cuánto cuesta/i })).toBeVisible({
+    // Y el motivo se explica entero en su ficha, no en un hueco.
+    await page.goto(`/eficiencia/${CONCESION[0].id}`, { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText(/lo paga el concesionario/i).first()).toBeVisible({
       timeout: 8000,
     })
-    const disclosure = page.getByText(/Ver los municipios comparados/i).first()
-    await expect(disclosure).toBeVisible()
-    await disclosure.click()
-    // Hiding WHICH towns we compared against would break the show-your-work
-    // contract, so the roster is published in full.
-    await expect(page.getByText(COMPARABLE.pares.miembros[0].nombre).first()).toBeVisible()
   })
 
   test('sólo trae los indicadores que salen del mismo cuaderno', async ({ page }) => {
@@ -365,9 +414,10 @@ test.describe('Eficiencia (/eficiencia)', () => {
     }
 
     // No peer band may appear here: there is no national dataset of municipal
-    // single-bidder rates, so a percentile would be unsupported.
-    const comparables = SNAP.indicadores.filter((i: { pares: unknown }) => i.pares).length
-    await expect(page.getByText(/Ver los municipios comparados/i)).toHaveCount(comparables)
+    // single-bidder rates, so a percentile would be unsupported. El desglose de
+    // comparables vive en la ficha de cada servicio, así que en el libro no
+    // debe aparecer ninguno.
+    await expect(page.getByText(/Ver los municipios comparados/i)).toHaveCount(0)
   })
 
   test('la cabecera indexa los hallazgos sin adelantar lo que dicen', async ({ page }) => {
@@ -506,72 +556,13 @@ test.describe('Eficiencia (/eficiencia)', () => {
     }
   })
 
-  test('cada cociente dice qué es, con el divisor glosado y antes de situarlo', async ({
-    page,
-  }) => {
-    // El defecto que esto congela: la página publicaba «81.965 €/efectivo ·
-    // 4.262.162 € ÷ 52 efectivo» y NINGUNA frase que dijera qué era eso. La
-    // única que podía decirlo se suprimía por redundante —cuando lo era, porque
-    // se limitaba a repetir la cifra— y nadie escribió la que sí informa. Un
-    // lector lo preguntó tal cual: «¿qué quieren decir estos números?».
-    //
-    // Se mide sobre la página, no sobre el módulo: la unidad ya cubre la
-    // redacción, y lo que se rompió aquí fue que la tarjeta no la pintaba.
-    const conCociente = SNAP.indicadores.filter((i: Indicador) => i.valor !== null)
-    expect(conCociente.length, 'ningún indicador con cociente que comprobar').toBeGreaterThan(5)
-
-    for (const i of conCociente as Indicador[]) {
-      const card = page.locator(`#s-${i.id}`)
-      await expect(card).toBeVisible({ timeout: 8000 })
-      // La glosa del divisor, que es lo que convierte «52 efectivos» en algo
-      // legible, tiene que estar EN la tarjeta.
-      await expect(
-        card.getByText(i.divisor.glosa, { exact: false }),
-        `${i.id} publica un cociente sin decir qué cuenta su divisor`,
-      ).toBeVisible()
-      // Y la fórmula pluraliza: «÷ 52 efectivo» era la vista por defecto.
-      await expect(
-        card
-          .getByText(`${i.denominador.valor.toLocaleString('es-ES')} ${i.divisor.plural}`, {
-            exact: false,
-          })
-          .first(),
-      ).toBeVisible()
-    }
-
-    // El ORDEN es la otra mitad del arreglo: «esto es un precio, no un
-    // rendimiento» tiene que leerse ANTES que «queda más alto que tres de cada
-    // cuatro», o el lector ya ha sacado su conclusión cuando llega el matiz.
-    const policia = page.locator('#s-b132-130p-coste-unitario')
-    const yComo = await policia.getByText(/No es un sueldo ni una tarifa/).boundingBox()
-    const yDonde = await policia.getByText(/Frente a \d+ municipios valencianos/).boundingBox()
-    expect(yComo, 'la tarjeta no pinta la frase de «cómo se lee»').not.toBeNull()
-    expect(yDonde, 'la tarjeta no pinta la frase de posición').not.toBeNull()
-    expect(
-      yComo!.y,
-      'la advertencia volvió a quedar por debajo de la posición en el grupo',
-    ).toBeLessThan(yDonde!.y)
-  })
-
-  test('el resultado se publica AL LADO del coste, con su frase no-causal', async ({ page }) => {
-    // Las tres reglas del escalón, medidas sobre la página: el bloque existe
-    // dentro de la tarjeta a la que acompaña, dice en el cuerpo que no se lee
-    // como causa, declara su N propio, y NINGÚN texto divide un coste por él.
-    for (const r of SNAP.resultados?.items ?? []) {
-      const bloque = page.locator(`#r-${r.servicioRelacionado}`)
-      await expect(bloque).toBeVisible({ timeout: 8000 })
-      await expect(bloque.getByText(/al lado, nunca dividido/i)).toBeVisible()
-      await expect(bloque.getByText(r.comoSeLee.slice(0, 60))).toBeVisible()
-      if (r.pares) {
-        await expect(
-          bloque.getByText(new RegExp(`Mediana de ${r.pares.n} municipios`)),
-        ).toBeVisible()
-      }
-      await expect(bloque.getByText(r.fuente.atribucion)).toBeVisible()
-    }
-    // Las ausencias medidas también se publican.
-    for (const a of SNAP.resultados?.ausencias ?? []) {
-      await expect(page.getByText(a.tema).first()).toBeVisible()
+  test('las ausencias de resultado se publican, con su porqué medido', async ({ page }) => {
+    // Un resultado que no existe se dice, con su motivo, en vez de dejar que el
+    // hueco parezca un olvido.
+    const ausencias = SNAP.resultados?.ausencias ?? []
+    expect(ausencias.length, 'el snapshot no declara ausencias de resultado').toBeGreaterThan(0)
+    for (const a of ausencias) {
+      await expect(page.getByText(a.tema).first()).toBeVisible({ timeout: 8000 })
     }
   })
 
@@ -646,8 +637,12 @@ test.describe('Eficiencia (/eficiencia)', () => {
 
     await expect(page.locator('#sec-preguntas')).toBeVisible({ timeout: 8000 })
     await expect(page.locator('[data-pregunta]')).toHaveCount(items.length)
-    await expect(page.getByText(items[0].q)).toBeVisible()
-    await expect(page.getByText(items[items.length - 1].q)).toBeVisible()
+    // La cabecera muestra la primera pregunta como anticipo, así que el texto
+    // aparece dos veces en la página a propósito: se busca DENTRO de la
+    // sección, no en el documento.
+    const seccion = page.locator('#sec-preguntas')
+    await expect(seccion.getByText(items[0].q)).toBeVisible()
+    await expect(seccion.getByText(items[items.length - 1].q)).toBeVisible()
 
     // El reparto por panel en las dos direcciones, como fichas e indicadores.
     const otras: ItemPregunta[] = (PREGUNTAS.panels?.['gestion']?.bloques ?? []).flatMap(
@@ -660,10 +655,27 @@ test.describe('Eficiencia (/eficiencia)', () => {
       ).toHaveCount(0)
     }
 
-    // Toda base con ancla en esta misma página tiene su destino de verdad: una
-    // pregunta que enlaza a una cifra inexistente pierde su base ante el lector.
+    // Toda base enlazada tiene destino de verdad: una pregunta que enlaza a una
+    // cifra inexistente pierde su base ante el lector.
+    //
+    // `eficiencia-preguntas.json` es CURADO y cita un `#s-<id>` y un `#r-<id>`,
+    // que eran las anclas de una ficha y de su bloque de resultado cuando las
+    // quince vivían en esta página. Ahora cada servicio es su propia ruta y la
+    // página traduce los dos enlaces viejos, así que lo que se comprueba es que
+    // la traducción llega — no que el ancla siga existiendo.
     for (const it of items) {
-      if (it.href?.startsWith('/eficiencia#')) {
+      if (!it.href) continue
+      const aFicha = /^\/eficiencia#[sr]-(.+)$/.exec(it.href)
+      if (aFicha) {
+        const id = aFicha[1]
+        await page.goto(it.href, { waitUntil: 'domcontentloaded' })
+        await expect(page, `${it.href} no aterriza en su ficha`).toHaveURL(
+          new RegExp(`/eficiencia/${id}$`),
+          { timeout: 8000 },
+        )
+        await page.goto('/eficiencia', { waitUntil: 'domcontentloaded' })
+        await expect(page.locator('#sec-preguntas')).toBeVisible({ timeout: 8000 })
+      } else if (it.href.startsWith('/eficiencia#')) {
         const id = it.href.split('#')[1]
         await expect(page.locator(`#${id}`), `${it.href} no resuelve`).toHaveCount(1)
       }
