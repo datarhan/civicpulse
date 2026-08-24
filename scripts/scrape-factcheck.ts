@@ -23,6 +23,9 @@ import {
   fetchFactChecks,
   mergeFactCheckRows,
   parseFactCheckResponse,
+  describirConsulta,
+  seConsultoAlgo,
+  type IntentoFuente,
   parseFactcheckRss,
   type FactCheckRow,
   type FactCheckSnapshot,
@@ -62,27 +65,66 @@ async function write(payload: FactCheckSnapshot): Promise<void> {
   await writeFile(OUT, JSON.stringify(payload, null, 2) + '\n')
 }
 
-async function fetchApiRows(maxPages: number): Promise<FactCheckRow[]> {
+/** Filas + el parte de lo que le pasó a la fuente. Devolver sólo `[]` era el defecto. */
+interface Cosecha {
+  rows: FactCheckRow[]
+  intento: IntentoFuente
+}
+
+const API_NOMBRE = 'Google Fact Check Tools API'
+
+async function fetchApiRows(maxPages: number): Promise<Cosecha> {
   const apiKey = process.env.GOOGLE_FACT_CHECK_API_KEY
   if (!apiKey) {
     console.warn(
       '[scrape:factcheck] GOOGLE_FACT_CHECK_API_KEY not set — skipping API call ' +
         '(RSS feeds still run). Set the key in .env to enable ClaimReview indexing.',
     )
-    return []
+    return {
+      rows: [],
+      intento: {
+        fuente: API_NOMBRE,
+        estado: 'sin-credencial',
+        examinadas: 0,
+        aceptadas: 0,
+        motivo: 'GOOGLE_FACT_CHECK_API_KEY no está en el entorno (¿falta `set -a; . .env`?)',
+      },
+    }
   }
   try {
     const pages = await fetchFactChecks({ apiKey, query: QUERY, languageCode: 'es', maxPages })
-    return parseFactCheckResponse(pages)
+    // Lo que devolvió la fuente ANTES del filtro de municipio, que vive dentro
+    // del parser. Sin este recuento no hay forma de distinguir «la API no
+    // encontró nada» de «encontró cosas y ninguna era de este pueblo» — y la
+    // segunda es la que ocurre: la consulta arrastra el embalse del Ebro.
+    const examinadas = pages.reduce(
+      (n, pg) => n + (pg.claims ?? []).reduce((m, c) => m + (c.claimReview ?? []).length, 0),
+      0,
+    )
+    const rows = parseFactCheckResponse(pages)
+    return {
+      rows,
+      intento: {
+        fuente: API_NOMBRE,
+        estado: 'consultada',
+        examinadas,
+        aceptadas: rows.length,
+      },
+    }
   } catch (err) {
-    console.warn(`[scrape:factcheck] API error: ${(err as Error).message.slice(0, 200)}`)
-    return []
+    const motivo = (err as Error).message.slice(0, 200)
+    console.warn(`[scrape:factcheck] API error: ${motivo}`)
+    return {
+      rows: [],
+      intento: { fuente: API_NOMBRE, estado: 'error', examinadas: 0, aceptadas: 0, motivo },
+    }
   }
 }
 
-async function fetchRssRows(): Promise<FactCheckRow[]> {
-  const results = await Promise.all(
-    RSS_FEEDS.map(async (feed) => {
+async function fetchRssRows(): Promise<Cosecha[]> {
+  return Promise.all(
+    RSS_FEEDS.map(async (feed): Promise<Cosecha> => {
+      const fuente = `${feed.reviewerName} RSS`
       try {
         const res = await fetch(feed.url, {
           headers: { 'User-Agent': UA, Accept: 'application/rss+xml,application/xml;q=0.9' },
@@ -90,9 +132,24 @@ async function fetchRssRows(): Promise<FactCheckRow[]> {
         })
         if (!res.ok) {
           console.warn(`[scrape:factcheck] ${feed.reviewerName} RSS ${res.status} — skipping`)
-          return []
+          return {
+            rows: [],
+            intento: {
+              fuente,
+              estado: 'error',
+              examinadas: 0,
+              aceptadas: 0,
+              motivo: `HTTP ${res.status}`,
+            },
+          }
         }
         const xml = await res.text()
+        // Sin filtrar y filtrado, para poder decir cuántas se miraron.
+        const todas = parseFactcheckRss(xml, {
+          reviewerName: feed.reviewerName,
+          reviewerSite: feed.reviewerSite,
+          filterByMunicipio: false,
+        })
         const rows = parseFactcheckRss(xml, {
           reviewerName: feed.reviewerName,
           reviewerSite: feed.reviewerSite,
@@ -100,14 +157,25 @@ async function fetchRssRows(): Promise<FactCheckRow[]> {
         if (rows.length > 0) {
           console.log(`[scrape:factcheck] ${feed.reviewerName} RSS · ${rows.length} matching rows`)
         }
-        return rows
+        return {
+          rows,
+          intento: {
+            fuente,
+            estado: 'consultada',
+            examinadas: todas.length,
+            aceptadas: rows.length,
+          },
+        }
       } catch (err) {
-        console.warn(`[scrape:factcheck] ${feed.reviewerName} RSS error: ${(err as Error).message}`)
-        return []
+        const motivo = (err as Error).message.slice(0, 200)
+        console.warn(`[scrape:factcheck] ${feed.reviewerName} RSS error: ${motivo}`)
+        return {
+          rows: [],
+          intento: { fuente, estado: 'error', examinadas: 0, aceptadas: 0, motivo },
+        }
       }
     }),
   )
-  return results.flat()
 }
 
 async function main() {
@@ -118,13 +186,17 @@ async function main() {
       (skipRss ? ' · RSS skipped via --no-rss' : ' · plus Maldita + Newtral RSS feeds'),
   )
 
-  const [apiRows, rssRows] = await Promise.all([
+  const [api, rss] = await Promise.all([
     fetchApiRows(maxPages),
-    skipRss ? Promise.resolve([] as FactCheckRow[]) : fetchRssRows(),
+    skipRss ? Promise.resolve([] as Cosecha[]) : fetchRssRows(),
   ])
+  const intentos: IntentoFuente[] = [api.intento, ...rss.map((c) => c.intento)]
   // API rows win on dedup — they carry the ClaimReview structured rating
   // which is more authoritative than our RSS category heuristic.
-  const rows = mergeFactCheckRows(apiRows, rssRows)
+  const rows = mergeFactCheckRows(
+    api.rows,
+    rss.flatMap((c) => c.rows),
+  )
 
   const byVerdict: Record<string, number> = {}
   const reviewers = new Set<string>()
@@ -133,34 +205,42 @@ async function main() {
     reviewers.add(row.reviewerName)
   }
 
-  const sourceLabels = [
-    apiRows.length > 0 ? 'Google Fact Check Tools API' : null,
-    rssRows.length > 0 ? 'Maldita + Newtral RSS' : null,
-  ].filter(Boolean)
-
   const snap: FactCheckSnapshot = {
     generatedAt: new Date().toISOString(),
     source: {
       url: API_BASE,
       query: QUERY,
-      description:
-        sourceLabels.length > 0
-          ? `Indexed third-party reviews · ${sourceLabels.join(' + ')}`
-          : 'No sources active (API key missing AND RSS feeds returned nothing)',
+      // Derivada de lo que PASÓ, no de si hubo filas. Ver describirConsulta.
+      description: describirConsulta(intentos),
     },
+    consulta: { intentos },
     stats: {
       total: rows.length,
       reviewers: reviewers.size,
       byVerdict,
+      fuentesConsultadas: intentos.filter((i) => i.estado === 'consultada').length,
+      fuentesCaidas: intentos.filter((i) => i.estado !== 'consultada').length,
+      revisionesExaminadas: intentos.reduce((n, i) => n + i.examinadas, 0),
     },
     items: rows,
+  }
+
+  // Una pasada en la que NINGUNA fuente respondió no es «no hay fact-checks»:
+  // es «no se pudo mirar». Se escribe igual —el fichero lo dice— pero se sale
+  // distinto, para que el parte de la tubería no lo cuente como éxito.
+  if (!seConsultoAlgo(intentos)) {
+    await write(snap)
+    console.error(
+      `[scrape:factcheck] ✗ [sin-fuentes] ninguna fuente respondió · ${describirConsulta(intentos)}`,
+    )
+    process.exit(1)
   }
 
   await write(snap)
   console.log(
     `[scrape:factcheck] wrote ${OUT} · ${rows.length} reviews · ${reviewers.size} fact-checkers ` +
       `(${Array.from(reviewers).slice(0, 4).join(', ')}${reviewers.size > 4 ? '…' : ''}) · ` +
-      `api=${apiRows.length} rss=${rssRows.length}`,
+      `· ${describirConsulta(intentos)}`,
   )
 }
 

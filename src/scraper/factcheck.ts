@@ -57,10 +57,16 @@ export interface FactCheckSnapshot {
     query: string
     description: string
   }
+  /** Qué se consultó y qué le pasó a cada fuente. Sin esto, un cero es mudo. */
+  consulta?: { intentos: IntentoFuente[] }
   stats: {
     total: number
     reviewers: number
     byVerdict: Record<string, number>
+    fuentesConsultadas?: number
+    fuentesCaidas?: number
+    /** Revisiones que devolvieron las fuentes ANTES del filtro de municipio. */
+    revisionesExaminadas?: number
   }
   items: FactCheckRow[]
 }
@@ -433,4 +439,79 @@ export async function fetchFactChecks(opts: FetchOptions): Promise<ApiResponse[]
     if (!pageToken) break
   }
   return pages
+}
+
+// ─── Procedencia de la consulta ─────────────────────────────────────────────
+
+/**
+ * Qué le pasó a cada fuente en una pasada.
+ *
+ * Existe porque el snapshot mentía sobre sí mismo. La `description` se derivaba
+ * del RECUENTO DE FILAS:
+ *
+ *   apiRows.length > 0 ? 'Google Fact Check Tools API' : null
+ *
+ * así que una llamada que funcionaba con su clave y devolvía legítimamente cero
+ * resultados se describía a sí misma como «No sources active (API key missing
+ * AND RSS feeds returned nothing)». El inverso exacto del defecto de
+ * `r?.findings ?? []`: en vez de un fallo imprimiendo un todo-claro, una
+ * comprobación limpia imprimiendo un fallo.
+ *
+ * Costó dos informes equivocados: se dio por hecho que la clave no estaba
+ * puesta —estaba, y funciona— porque el fichero lo decía.
+ *
+ * Lo que hay que separar, que es la regla 2 de DATA_INTEGRITY: consultada ·
+ * examinadas · aceptadas · no consultada CON SU MOTIVO. Un cero de «miré y no
+ * hay» y un cero de «no pude mirar» no son el mismo cero.
+ */
+export type EstadoFuente = 'consultada' | 'sin-credencial' | 'error'
+
+export interface IntentoFuente {
+  fuente: string
+  estado: EstadoFuente
+  /** Revisiones que devolvió la fuente, ANTES del filtro de municipio. */
+  examinadas: number
+  /** Las que nombran Riba-roja de Túria con su desambiguador. */
+  aceptadas: number
+  /** Por qué no se consultó, o qué falló. Obligatorio si el estado no es `consultada`. */
+  motivo?: string
+}
+
+/**
+ * La frase que va en el snapshot, derivada de lo que PASÓ y no de lo que salió.
+ *
+ * Distingue los tres ceros que antes se confundían en uno.
+ */
+export function describirConsulta(intentos: readonly IntentoFuente[]): string {
+  if (intentos.length === 0) return 'Ninguna fuente declarada — la pasada no registró qué consultó'
+
+  const consultadas = intentos.filter((i) => i.estado === 'consultada')
+  const caidas = intentos.filter((i) => i.estado !== 'consultada')
+  const aceptadas = intentos.reduce((n, i) => n + i.aceptadas, 0)
+  const examinadas = intentos.reduce((n, i) => n + i.examinadas, 0)
+
+  const partes: string[] = []
+  if (consultadas.length > 0) {
+    partes.push(
+      `Consultadas ${consultadas.length} de ${intentos.length} fuentes ` +
+        `(${consultadas.map((i) => i.fuente).join(', ')})`,
+    )
+    partes.push(
+      aceptadas > 0
+        ? `${examinadas} revisión(es) examinada(s), ${aceptadas} sobre Riba-roja de Túria`
+        : examinadas > 0
+          ? `${examinadas} revisión(es) examinada(s), ninguna nombra Riba-roja de Túria ` +
+            `(la consulta arrastra el embalse de Riba-roja del Ebro, que es otro sitio)`
+          : 'ninguna revisión devuelta',
+    )
+  }
+  for (const i of caidas) {
+    partes.push(`${i.fuente}: NO consultada — ${i.motivo ?? 'sin motivo registrado'}`)
+  }
+  return partes.join(' · ')
+}
+
+/** ¿Se consultó de verdad alguna fuente? Un cero sin esto no es un cero honesto. */
+export function seConsultoAlgo(intentos: readonly IntentoFuente[]): boolean {
+  return intentos.some((i) => i.estado === 'consultada')
 }
