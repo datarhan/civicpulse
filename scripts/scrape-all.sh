@@ -558,6 +558,26 @@ if ! npm run check:automation; then
   soft_failures+=("check:automation")
 fi
 
+# ---- último sello: rederivar lo que los computes de arriba hayan despintado
+#
+# El `refresh` de la línea 245 SELLA los nodos derivados con su `builtFrom`, y
+# luego `compute:finding-quote-provenance` (línea 313) reescribe uno de ellos a
+# mano y se lleva el sello por delante — sólo `refresh` escribe `builtFrom`. Ese
+# compute no puede moverse: tiene que correr antes de `check:corpus`. Así que se
+# vuelve a sellar aquí, al final, que además deja la regla uniforme en las tres
+# tuberías: lo último antes de que el árbol se comitee es `npm run refresh`.
+#
+# Barato e idempotente: sólo reconstruye lo que sus entradas hayan movido. Lo
+# encontró `check:derivados`, que vio `finding-quote-provenance.json` publicado
+# «built before provenance was recorded» — y al rederivarlo cambiaban cifras
+# reales (citasConVeredictoDeOverlay 30 → 104), o sea que llevaba rancio de
+# contenido, no sólo sin sellar.
+echo "[scrape-all] running: refresh (segundo paso — resellar tras los computes)"
+if ! npm run refresh; then
+  echo "[scrape-all] SOFT-FAILED: refresh (resellado final)"
+  soft_failures+=("refresh (resellado final)")
+fi
+
 echo ""
 echo "================================================================"
 echo "[scrape-all] summary"

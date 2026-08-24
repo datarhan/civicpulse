@@ -44,6 +44,22 @@ if [ ${#failed[@]} -gt 0 ]; then
   echo "[ci-blocked] FAILED: ${failed[*]}"
 fi
 
+# Rederivar antes de comitear, y no es opcional.
+#
+# `scrape:pleno-agendas` REESCRIBE plenos-agendas.json entero, y ese fichero lo
+# escriben tres pasos: el raspado, `compute:dept-stats` —que le mete
+# `plazosVencidosCount` y `deptCoverage`— y `refresh`, que le pone el
+# `builtFrom`. Al raspar sin rederivar, los dos últimos se perdían y este cron
+# comiteaba el fichero pelado. Medido sobre cinco días seguidos: la nocturna de
+# CI publicaba el fichero completo hacia las 05:20 y este cron lo dejaba sin
+# esas claves a las 06:5x. Como los consumidores hacen `?? 0` y luego `> 0`, el
+# aviso de compromisos vencidos desaparecía de la portada sin ponerse nada rojo.
+#
+# `refresh` es dependency-driven: reconstruye lo que sus entradas hayan movido y
+# nada más, así que no hay lista que mantener aquí.
+echo "[ci-blocked] $(date '+%F %T') running refresh (derivaciones dependientes)"
+npm run refresh || echo "[ci-blocked] WARN: refresh falló — puede comitearse un derivado sin rederivar (lo caza tests/data-graph-frescura.test.ts)"
+
 # Can a reader still FOLLOW the citations under published claims about named
 # councillors? This is the half of check:citations that needs the network, and
 # it belongs here for the same reason the adapters above do: the WAF and the
@@ -62,10 +78,20 @@ npm run check:citations || echo "[ci-blocked] check:citations reported findings 
 # achieved that: `git commit` with no pathspec takes the WHOLE index, so
 # anything anyone else had staged went in too. Now the same pathspec stages,
 # gates and commits.
+# Las tres de `press-*` NO las raspa este cron: las DERIVA el refresh de arriba,
+# porque `compute:press-analytics` lee plenos-agendas.json. Sin ellas aquí, el
+# commit publicaría una agenda nueva junto a unos análisis que ya no salen de
+# ella, y las derivaciones se quedarían sueltas en el árbol para que el
+# `pull --rebase --autostash` de la siguiente pasada las zarandeara. El conjunto
+# sale del cierre transitivo de DATA_GRAPH sobre los siete adaptadores de
+# arriba; si el grafo crece y esta lista no, lo caza
+# `tests/data-graph-frescura.test.ts` — lo comiteado quedaría rancio.
 if ! cron_git_stage_and_check \
        public/data/paro.json public/data/plenos-agendas.json public/data/consell-cv.json \
        public/data/procesos-selectivos.json public/data/asociaciones.json \
-       public/data/obras.json public/data/sindicatura.json; then
+       public/data/obras.json public/data/sindicatura.json \
+       public/data/press-coverage-gaps.json public/data/press-triangulation.json \
+       public/data/press-trust.json; then
   echo "[ci-blocked] no changes"
   exit ${#failed[@]}
 fi

@@ -195,6 +195,10 @@ async function gather(): Promise<Observations> {
   for (const c of [
     'check:json',
     'check:relations',
+    // Aquí y no en `npm test`: en la nocturna los tests corren DESPUÉS de
+    // scrape-all, que ya ha pasado `refresh` y ha curado el destrozo antes de
+    // que nadie mire. El digest lee el árbol tal y como lo dejaron los cron.
+    'check:derivados',
     'check:runs',
     'check:queues',
     'check:surfaces',
