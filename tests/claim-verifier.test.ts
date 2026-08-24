@@ -399,7 +399,7 @@ describe('un parecido de TÍTULO no verifica, y a una acusación no la funda', (
         verbatim: 'el refugio climático ya está terminado, nos lo vendieron así',
         entities: { referencedEntity: 'refugios climaticos carril bici' },
       }),
-      tenders: { contracts: [{ ...contratoDelObjeto, status: 'pending' }] },
+      tenders: { contracts: [{ ...contratoDelObjeto, status: 'void' }] },
     })
     expect(v.verdict).toBe('sin-datos')
   })
@@ -514,7 +514,11 @@ describe('verifyClaim — contradicho on amount mismatch with same entity', () =
 })
 
 describe('verifyClaim — contradicho on completion vs tender status', () => {
-  it('emits contradicho when the speaker says "terminada" but tender is open', () => {
+  // Los estados de estos fixtures pasaron de 'open'/'pending' a 'void' el
+  // 2026-08-24: los dos primeros no los emite la fuente, así que estas
+  // pruebas estaban verdes sobre un vocabulario inventado mientras la rama
+  // no disparaba nunca con datos reales.
+  it('emits contradicho when the speaker says "terminada" but the tender was voided', () => {
     const v = verifyClaim({
       claim: baseClaim({
         type: 'cita_obra',
@@ -529,7 +533,7 @@ describe('verifyClaim — contradicho on completion vs tender status', () => {
           {
             permalink: 'https://contrataciones.example/r03',
             title: 'Reconstrucción post-DANA fase 1',
-            status: 'open',
+            status: 'void',
           },
         ],
       },
@@ -540,12 +544,12 @@ describe('verifyClaim — contradicho on completion vs tender status', () => {
 })
 
 describe('verifyClaim — completion detection is negation-aware (libel-safe)', () => {
-  const openTender = {
+  const anuladaTender = {
     contracts: [
       {
         permalink: 'https://contrataciones.example/r04',
         title: 'Reconstrucción post-DANA fase 1',
-        status: 'open',
+        status: 'void',
       },
     ],
   }
@@ -558,7 +562,7 @@ describe('verifyClaim — completion detection is negation-aware (libel-safe)', 
         verbatim: 'la reconstrucción post-DANA no está terminada todavía',
         entities: { referencedEntity: 'reconstruccion dana' },
       }),
-      tenders: openTender,
+      tenders: anuladaTender,
     })
     // Speaker AGREES it is not done — flagging this as "contradicho" would
     // falsely claim their statement is contradicted by the data.
@@ -573,7 +577,7 @@ describe('verifyClaim — completion detection is negation-aware (libel-safe)', 
         verbatim: 'aún no se ha finalizado la reconstrucción post-DANA',
         entities: { referencedEntity: 'reconstruccion dana' },
       }),
-      tenders: openTender,
+      tenders: anuladaTender,
     })
     expect(v.verdict).not.toBe('contradicho')
   })
@@ -586,19 +590,23 @@ describe('verifyClaim — completion detection is negation-aware (libel-safe)', 
         verbatim: 'la reconstrucción post-DANA está terminada, no como dicen otros',
         entities: { referencedEntity: 'reconstruccion dana' },
       }),
-      tenders: openTender,
+      tenders: anuladaTender,
     })
     expect(v.verdict).toBe('contradicho')
   })
 })
 
 describe('verifyClaim — completion synonyms (recall)', () => {
-  const openTender = {
+  // `void`, no `pendiente`: la fuente emite awarded / formalized / void /
+  // unknown / abandoned / revoked / provisionally_awarded, y ninguno de los
+  // castellanos que había aquí. Lo que estas cinco pruebas comprueban son los
+  // VERBOS de terminación, no el vocabulario de estados.
+  const anuladaTender = {
     contracts: [
       {
         permalink: 'https://contrataciones.example/r05',
         title: 'Urbanización del polígono norte',
-        status: 'pendiente',
+        status: 'void',
       },
     ],
   }
@@ -609,7 +617,7 @@ describe('verifyClaim — completion synonyms (recall)', () => {
     'la urbanización del polígono norte se ha puesto en marcha',
     'la urbanización del polígono norte está concluida',
   ]) {
-    it(`flags contradicho for "${phrase}" vs a still-pending tender`, () => {
+    it(`flags contradicho for "${phrase}" vs a voided tender`, () => {
       const v = verifyClaim({
         claim: baseClaim({
           type: 'cita_obra',
@@ -617,7 +625,7 @@ describe('verifyClaim — completion synonyms (recall)', () => {
           verbatim: phrase,
           entities: { referencedEntity: 'urbanización del polígono norte' },
         }),
-        tenders: openTender,
+        tenders: anuladaTender,
       })
       expect(v.verdict).toBe('contradicho')
     })
