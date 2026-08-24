@@ -1,6 +1,27 @@
 {
-  "generatedAt": "2026-08-23T08:33:10.369Z",
+  "generatedAt": "2026-08-24T05:23:50.812Z",
   "clusters": [
+    {
+      "clusterId": "1ato0ec",
+      "articleIds": [
+        "17gleav",
+        "bp13b8"
+      ],
+      "outlets": [
+        "Las Provincias",
+        "Levante-EMV"
+      ],
+      "earliestDate": "2026-08-15T07:00:00.000Z",
+      "latestDate": "2026-08-15T11:49:42.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
     {
       "clusterId": "1czgd5z",
       "articleIds": [
@@ -108,7 +129,7 @@
     }
   ],
   "stats": {
-    "totalClusters": 5,
+    "totalClusters": 6,
     "triangulated3Plus": 0
   }
 }
