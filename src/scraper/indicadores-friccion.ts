@@ -107,6 +107,16 @@ export interface IndicadorMunicipal {
     p25: number
     mediana: number
     p75: number
+    /**
+     * El valor más alto del grupo comparado.
+     *
+     * Existe para poder decir «por encima de TODOS» sin adivinar. El percentil
+     * no lo sostiene: se calcula con `Math.round`, que sube un 99,5 a 100, y
+     * con `<=`, que cuenta a quien empate. Con el máximo delante la afirmación
+     * es aritmética y comprobable por el lector; sin él era una lectura del
+     * percentil que la fuente no respalda.
+     */
+    maximo?: number
   }
   caveats: string[]
   citas: { url: string; etiqueta: string }[]
@@ -327,6 +337,7 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
               p25: q(0.25),
               mediana: q(0.5),
               p75: q(0.75),
+              maximo: Math.max(...vals),
             }
           : undefined,
       caveats: [
@@ -645,6 +656,14 @@ function medirDenominadores(
             p25: q(0.25),
             mediana: q(0.5),
             p75: q(0.75),
+            // El MÁXIMO, y no por completismo. El percentil no sostiene un
+            // «por encima de todos»: `Math.round` convierte un 99,5 en 100 y
+            // el `<=` admite empates, así que percentil 100 puede convivir con
+            // otro municipio igualado arriba. Sin esta celda, la afirmación
+            // fuerte de la ficha firmada no tenía prueba publicada que el
+            // lector pudiera comprobar — que es justo lo que este panel
+            // promete. Ver `MOTIVO_ETIQUETA` en HallazgosEficiencia.jsx.
+            maximo: Math.max(...vals),
           }
         : undefined,
     caveats: [
