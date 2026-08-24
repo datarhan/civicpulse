@@ -7,6 +7,7 @@ import {
   atribucionesDeBloc,
   rebuildEmpobreceAtribucion,
   ANULAR_GUARDA_ATRIBUCION,
+  ANULAR_GUARDA_ACUSACIONES,
 } from '../scripts/verified-rebuild'
 
 /**
@@ -94,7 +95,23 @@ describe('inyección de fallo: el rebuild contra el estado real del repositorio'
       execFileSync(
         'npx',
         ['tsx', '-e', "import('./scripts/verified-rebuild').then(m => m.rebuildVerified())"],
-        { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 180_000 },
+        {
+          encoding: 'utf8',
+          stdio: ['ignore', 'pipe', 'pipe'],
+          timeout: 180_000,
+          // La guarda de acusaciones se APAGA aquí, y no por comodidad: es la
+          // vecina, no la que se prueba, y aborta ANTES (verified-rebuild.ts:224
+          // frente a :251). El 24-08-2026 el repositorio entró también en SU
+          // caso —35 acusaciones subiendo de `sin-datos`— y desde entonces este
+          // test fallaba con el mensaje de la otra: pedía «1476» y recibía una
+          // lista de acusaciones. La guarda de atribución llevaba días sin
+          // ejercitarse y nadie lo sabía, porque el rojo parecía suyo.
+          //
+          // Apagarla por su propia válvula documentada es lo que aísla al
+          // sujeto. Ensanchar la aserción para aceptar cualquier «ABORTADO»
+          // habría dejado el test en verde sin volver a probar nada.
+          env: { ...process.env, [ANULAR_GUARDA_ACUSACIONES]: '1' },
+        },
       )
     } catch (err) {
       fallo = true
@@ -103,7 +120,12 @@ describe('inyección de fallo: el rebuild contra el estado real del repositorio'
     }
 
     expect(fallo, 'el rebuild publicó un corpus más pobre sin rechistar').toBe(true)
-    expect(salida, 'se negó, pero sin decir por qué').toMatch(/ABORTADO/)
+    // Que aborte NO basta: tiene que abortar por ESTO. Un `/ABORTADO/` a secas
+    // se lo tragaba cualquier otra guarda, y entonces el test diría que vigila
+    // la atribución mientras mide la de al lado.
+    expect(salida, 'abortó, pero no por la guarda de atribución').toMatch(
+      /ABORTADO: publicar esto dejaría el corpus con/,
+    )
     // Las dos cifras, en el mensaje: quien lo lea a las siete y media de la
     // mañana tiene que poder decidir sin abrir un nodo.
     expect(salida).toContain(String(antes))
