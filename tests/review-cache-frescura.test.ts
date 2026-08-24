@@ -35,27 +35,60 @@ describe('reutilizar un veredicto exige texto igual Y pregunta igual', () => {
     findings: [],
     at: '2026-08-18T05:34:00.000Z',
     promptVersion: 'reader-review-v2',
+    factsHash: 'f111',
   }
 
   it('sirve cuando coinciden las dos cosas', () => {
-    expect(sirveElVeredictoCacheado(base, 'aaaa', 'reader-review-v2')).toBe(true)
+    expect(sirveElVeredictoCacheado(base, 'aaaa', 'reader-review-v2', 'f111')).toBe(true)
   })
 
   it('NO sirve si la página cambió', () => {
-    expect(sirveElVeredictoCacheado(base, 'bbbb', 'reader-review-v2')).toBe(false)
+    expect(sirveElVeredictoCacheado(base, 'bbbb', 'reader-review-v2', 'f111')).toBe(false)
   })
 
   it('NO sirve si cambió la versión del prompt, aunque el texto sea idéntico', () => {
-    expect(sirveElVeredictoCacheado(base, 'aaaa', 'reader-review-v3')).toBe(false)
+    expect(sirveElVeredictoCacheado(base, 'aaaa', 'reader-review-v3', 'f111')).toBe(false)
   })
 
   it('una entrada SIN versión se vuelve a revisar — falla hacia MÁS revisión', () => {
     const vieja: ReviewCacheEntry = { hash: 'aaaa', findings: [] }
-    expect(sirveElVeredictoCacheado(vieja, 'aaaa', 'reader-review-v2')).toBe(false)
+    expect(sirveElVeredictoCacheado(vieja, 'aaaa', 'reader-review-v2', 'f111')).toBe(false)
   })
 
   it('sin entrada previa, no sirve', () => {
-    expect(sirveElVeredictoCacheado(null, 'aaaa', 'reader-review-v2')).toBe(false)
+    expect(sirveElVeredictoCacheado(null, 'aaaa', 'reader-review-v2', 'f111')).toBe(false)
+  })
+
+  it('NO sirve si se movieron las CIFRAS, aunque el texto y la pregunta sean los mismos', () => {
+    // El tercer eje, y el que faltaba. El modelo no juzga sólo el texto: se le
+    // inyecta al lado un bloque de hechos que `factsFor(route)` saca de los
+    // snapshots VIVOS. Con el texto igual y las cifras movidas, la caché servía
+    // el veredicto de ayer sobre los números de hoy — la misma frase juzgada
+    // contra otro dato, y ganaba el dato viejo.
+    expect(sirveElVeredictoCacheado(base, 'aaaa', 'reader-review-v2', 'f222')).toBe(false)
+  })
+
+  it('una entrada SIN huella de hechos se vuelve a revisar', () => {
+    // Igual que con `promptVersion`: se falla hacia MÁS revisión. Todas las
+    // entradas existentes están en este caso el día del despliegue.
+    const sinHuella: ReviewCacheEntry = {
+      hash: 'aaaa',
+      findings: [],
+      promptVersion: 'reader-review-v2',
+    }
+    expect(sirveElVeredictoCacheado(sinHuella, 'aaaa', 'reader-review-v2', 'f111')).toBe(false)
+  })
+
+  it('los tres ejes tienen que coincidir a la vez', () => {
+    // Cada uno por su cuenta ya se comprueba arriba; esto fija que ninguno
+    // pueda «rescatar» a otro.
+    expect(sirveElVeredictoCacheado(base, 'bbbb', 'reader-review-v3', 'f222')).toBe(false)
+    expect(sirveElVeredictoCacheado(base, 'aaaa', 'reader-review-v2', 'f111')).toBe(true)
+  })
+
+  it('readCacheEntry conserva la huella de hechos', () => {
+    expect(readCacheEntry(base)?.factsHash).toBe('f111')
+    expect(readCacheEntry('aaaa')?.factsHash).toBeUndefined()
   })
 
   it('readCacheEntry conserva la versión, y el formato viejo no la inventa', () => {
@@ -78,15 +111,60 @@ describe('la rama de acierto de caché refresca la entrada', () => {
     expect(src).toContain('sirveElVeredictoCacheado')
   })
 
-  it('escribe cache[route] dentro del acierto, con at y promptVersion', () => {
-    const i = src.indexOf('sirveElVeredictoCacheado(prev, h, READER_REVIEW_PROMPT_VERSION)')
+  it('escribe cache[route] dentro del acierto, con at, promptVersion y factsHash', () => {
+    const i = src.indexOf('sirveElVeredictoCacheado(prev, h, READER_REVIEW_PROMPT_VERSION, fh)')
     expect(i, 'no se encuentra la rama del acierto').toBeGreaterThan(-1)
     // La ventana hasta el `continue` de esa rama.
     const rama = src.slice(i, src.indexOf('continue', i))
     expect(rama, 'el acierto no reescribe la entrada').toContain('cache[route] = {')
     expect(rama, 'el acierto no actualiza `at`').toContain('at: new Date().toISOString()')
     expect(rama, 'el acierto no registra la versión de prompt').toContain('promptVersion')
+    expect(rama, 'el acierto no registra la huella de hechos').toContain('factsHash')
     // Lo que NO puede pasar: perder los hallazgos al refrescar la fecha.
     expect(rama, 'el acierto pierde los señalamientos vivos').toContain('findings: prev!.findings')
+  })
+})
+
+// ─── Y la caché de LLM, que es la capa de abajo ─────────────────────────────
+//
+// Arreglar sólo la entrada de ruta no bastaba, y se midió: con la huella de
+// hechos en `cache[route]` pero NO en el `input` que hashea `cacheKey`
+// (src/llm/client.ts), mover el total adjudicado hacía que el bucle se
+// reejecutara y los siete fragmentos salieran igualmente de caché —
+// «cobertura: 100% · 7/7 fragmento(s) (0 leído(s) ahora, 7 de caché)», dos
+// segundos, cero llamadas—. El veredicto seguía siendo el calculado contra la
+// cifra vieja. El defecto sobrevivía una capa más abajo.
+
+describe('el input que hashea la caché de LLM lleva las cifras', () => {
+  const src = readFileSync(resolve('scripts/review-surfaces.ts'), 'utf8')
+
+  it('mide algo: el fichero se lee y construye un input por fragmento', () => {
+    expect(src.length).toBeGreaterThan(1000)
+    expect(src).toContain('fragment: hashOf(chunk)')
+  })
+
+  it('el input incluye ruta, fragmento Y huella de hechos', () => {
+    const m = src.match(/input: \{ route: i\.route,[^}]*\}/)
+    expect(m, 'no se encuentra el input de la llamada por fragmento').not.toBeNull()
+    const input = m![0]
+    // Los tres, y por motivos distintos: sin `fragment` un fragmento contesta
+    // por toda la página; sin `facts` una cifra movida sirve el juicio viejo.
+    expect(input, 'sin ruta').toContain('route: i.route')
+    expect(input, 'sin fragmento: un fragmento contestaría por toda la página').toContain(
+      'fragment: hashOf(chunk)',
+    )
+    expect(input, 'SIN HUELLA DE HECHOS: una cifra movida serviría el veredicto viejo').toContain(
+      'facts: fh',
+    )
+  })
+
+  it('la huella se calcula ANTES del acierto de caché, no después', () => {
+    // Si `factsFor` se llamara después del `continue`, la rama del acierto no
+    // tendría con qué comparar y volveríamos al punto de partida.
+    const iFacts = src.indexOf('const fh = huellaDeHechos(')
+    const iHit = src.indexOf('sirveElVeredictoCacheado(prev, h,')
+    expect(iFacts).toBeGreaterThan(-1)
+    expect(iHit).toBeGreaterThan(-1)
+    expect(iFacts, 'los hechos se calculan después del acierto de caché').toBeLessThan(iHit)
   })
 })

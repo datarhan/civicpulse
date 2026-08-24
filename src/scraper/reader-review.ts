@@ -34,6 +34,8 @@ export interface SurfaceInput {
   facts: Record<string, unknown>
 }
 
+import { sha256Short } from './hash'
+
 export interface ReaderFinding {
   /** Verbatim span from `renderedText`. Dropped if it is not literally present. */
   quote: string
@@ -163,6 +165,20 @@ export interface ReviewCacheEntry {
   hash: string
   findings: ReaderFinding[]
   /**
+   * Huella de las CIFRAS contra las que se juzgó la página.
+   *
+   * El modelo no lee sólo el texto: `factsFor(route)` le pone al lado un bloque
+   * de hechos sacado de los snapshots vivos —total adjudicado, nº de contratos,
+   * gasto del presupuesto…—. Con el texto igual y esas cifras movidas, la misma
+   * frase pasa a juzgarse contra otro dato, y sin esta huella la caché servía
+   * el veredicto de ayer sobre los números de hoy.
+   *
+   * Es el tercer eje de la misma familia: `hash` es «¿dice lo mismo?»,
+   * `promptVersion` es «¿se le pregunta lo mismo?» y esto es «¿con qué datos
+   * delante?». Los tres tienen que coincidir para reutilizar un veredicto.
+   */
+  factsHash?: string
+  /**
    * Cuándo se COMPROBÓ por última vez que esta página está como se revisó — no
    * cuándo se llamó al modelo por última vez.
    *
@@ -207,6 +223,7 @@ export function readCacheEntry(v: string | ReviewCacheEntry | undefined): Review
       findings: v.findings ?? [],
       at: v.at,
       promptVersion: v.promptVersion,
+      factsHash: v.factsHash,
     }
   }
   return null
@@ -231,10 +248,28 @@ export function sirveElVeredictoCacheado(
   prev: ReviewCacheEntry | null,
   hashAhora: string,
   promptVersionAhora: string,
+  factsHashAhora: string,
 ): boolean {
   if (!prev) return false
   if (prev.hash !== hashAhora) return false
-  return prev.promptVersion === promptVersionAhora
+  if (prev.promptVersion !== promptVersionAhora) return false
+  // Una entrada sin huella se vuelve a revisar. Falla hacia MÁS revisión, igual
+  // que con `promptVersion`: el día del despliegue TODAS están así.
+  return prev.factsHash === factsHashAhora
+}
+
+/**
+ * Huella estable de un bloque de hechos.
+ *
+ * Se ordenan las claves antes de serializar para que reordenar `factsFor` no
+ * invalide media caché por sí solo: lo que debe invalidar es que cambie un
+ * VALOR, no el orden en que se escriben.
+ */
+export function huellaDeHechos(facts: Record<string, unknown>): string {
+  const ordenado = Object.keys(facts)
+    .sort()
+    .map((k) => [k, facts[k]] as const)
+  return sha256Short(JSON.stringify(ordenado))
 }
 
 export function parseReviewArgs(argv: string[], budgetEnv?: string) {
