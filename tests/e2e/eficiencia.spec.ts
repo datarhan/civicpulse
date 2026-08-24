@@ -119,7 +119,7 @@ test.describe('Eficiencia (/eficiencia)', () => {
 
     // El sufijo «=» se deriva igual que en el componente: aparece sólo si
     // algún percentil cae en el 50 exacto, que es alcanzable.
-    const tileParticion = `${p.abajo} ↓ · ${p.arriba} ↑${p.enMediana > 0 ? ` · ${p.enMediana} =` : ''}`
+    const tileParticion = `${p.abajo} ↓ · ${p.arriba} ↑${p.indistinguibles > 0 ? ` · ${p.indistinguibles} ≈` : ''}`
     await expect(hero.getByText(tileParticion)).toBeVisible()
 
     const congelados = CON_RATIO.filter(

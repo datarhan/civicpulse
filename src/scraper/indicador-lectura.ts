@@ -23,6 +23,7 @@
  * alguien tenga que rellenar bien.
  */
 import type { Indicador, Tier } from './indicadores'
+import { cruzaMediana } from './indicador-areas'
 import type { IndicadorMunicipal } from './indicadores-friccion'
 
 export interface Lectura {
@@ -281,9 +282,12 @@ export function leerIndicador(i: Indicador): Lectura {
       `Frente a ${i.pares.n} municipios valencianos de tamaño parecido que prestan el servicio ` +
       `de la misma forma, queda ${tramo(i.pares.percentil)} (mediana: ${fmt(i.pares.mediana, i.unidad)}).`
     // Si la banda plausible cruza la mediana, el puesto no da para afirmar
-    // lado: decirlo es lo que separa un percentil de un ranking.
+    // lado: decirlo es lo que separa un percentil de un ranking. La regla la
+    // decide `cruzaMediana` y NO se repite aquí — el punto hueco de la fila, la
+    // pastilla y el recuento de cabecera leen esa misma función, y dos copias
+    // que diverjan serían la página desmintiéndose sola.
     const banda = i.pares.percentilBanda
-    if (Array.isArray(banda) && banda[0] <= 50 && banda[1] >= 50) {
+    if (cruzaMediana(i.pares)) {
       avisos.push(
         `Con ${i.pares.n} comparables, la banda plausible del percentil (${banda[0]}–${banda[1]}) ` +
           `cruza la mediana: la posición no se distingue con seguridad de la del grupo.`,

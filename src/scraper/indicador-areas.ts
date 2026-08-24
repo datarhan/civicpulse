@@ -9,20 +9,67 @@
  * una sola definición de «por debajo»/«por encima» que el resumen de cabecera
  * y las cabeceras de área comparten. Dos definiciones de «por debajo» que
  * divergen en el 50 exacto serían la página contradiciéndose a sí misma.
+ *
+ * Desde el libro de servicios esa definición vive aquí ENTERA, y es más
+ * estrecha que antes: un percentil sólo da lado cuando su banda plausible no
+ * toca la mediana. La expresión estaba suelta dentro de `indicador-lectura`,
+ * convertida en una frase de salvedad y en nada más, mientras la partición de
+ * cabecera repartía los doce comparables por percentil pelado. Las dos cosas
+ * eran ciertas y se contradecían: la tarjeta avisaba de que no se distinguía y
+ * la cabecera ya lo había contado como «por debajo».
  */
 import { AREAS, SERVICIOS, type AreaId } from './indicador-registry'
-import type { Indicador } from './indicadores'
+import type { Indicador, ParesResumen } from './indicadores'
+
+/**
+ * De qué lado cae un servicio, con el enum exportado para que nadie lo
+ * restate. `indistinguible` no es un empate: es que la muestra no da para
+ * afirmar lado, que es una cosa distinta y más frecuente.
+ */
+export const POSICIONES = ['arriba', 'abajo', 'indistinguible', 'sin-comparacion'] as const
+export type Posicion = (typeof POSICIONES)[number]
+
+/**
+ * ¿La banda plausible del percentil cruza la mediana?
+ *
+ * `null`, no `false`, cuando no hay banda: «no lo sé» y «no cruza» llevan a
+ * pintar cosas distintas, y devolver `false` haría que un servicio sin
+ * comparar heredara la marca de uno comparado. Es el mismo error que
+ * `r?.findings ?? []`.
+ */
+export function cruzaMediana(pares?: Partial<ParesResumen> | null): boolean | null {
+  const banda = pares?.percentilBanda
+  if (!Array.isArray(banda) || banda.length !== 2) return null
+  return banda[0] <= 50 && banda[1] >= 50
+}
+
+/** Cuántas veces la mediana de sus comparables es este coste unitario. */
+export function razonMediana(i: Indicador): number | null {
+  if (i.valor === null || !i.pares?.mediana) return null
+  return i.valor / i.pares.mediana
+}
+
+/**
+ * El veredicto de una ficha, en una función y no en seis sitios.
+ * La banda manda sobre el percentil: un puesto 64 con banda 49–77 no está «por
+ * encima», está sin distinguir.
+ */
+export function posicionServicio(i: Indicador): Posicion {
+  if (i.valor === null || !i.pares) return 'sin-comparacion'
+  if (cruzaMediana(i.pares) !== false) return 'indistinguible'
+  return i.pares.percentil > 50 ? 'arriba' : 'abajo'
+}
 
 /** Recuento de posiciones frente a la banda, con una sola regla para toda la página. */
 export interface Particion {
   /** Con cociente y banda de comparación. */
   situados: number
-  /** percentil < 50: el coste unitario queda por debajo de la mediana de su banda. */
+  /** Distinguibles por debajo de la mediana de su banda. */
   abajo: number
-  /** percentil > 50. */
+  /** Distinguibles por encima. */
   arriba: number
-  /** percentil === 50 exacto: ni un lado ni el otro, y se dice. */
-  enMediana: number
+  /** Situados cuya banda plausible cruza la mediana: no sostienen un lado. */
+  indistinguibles: number
   /** Con cociente pero sin banda (no llegan quince comparables). */
   sinSituar: number
 }
@@ -30,11 +77,12 @@ export interface Particion {
 export function particionPosiciones(indicadores: Indicador[]): Particion {
   const conRatio = indicadores.filter((i) => i.valor !== null)
   const situados = conRatio.filter((i) => i.pares)
+  const de = (p: Posicion) => situados.filter((i) => posicionServicio(i) === p).length
   return {
     situados: situados.length,
-    abajo: situados.filter((i) => i.pares!.percentil < 50).length,
-    arriba: situados.filter((i) => i.pares!.percentil > 50).length,
-    enMediana: situados.filter((i) => i.pares!.percentil === 50).length,
+    abajo: de('abajo'),
+    arriba: de('arriba'),
+    indistinguibles: de('indistinguible'),
     sinSituar: conRatio.length - situados.length,
   }
 }
@@ -77,18 +125,27 @@ export function agruparPorArea(indicadores: Indicador[]): GrupoArea[] {
  * La mini-frase de la cabecera de cada área, derivada del recuento.
  * `null` cuando el área entera va sin banda: una frase de posiciones sobre
  * cero situados afirmaría algo que no se midió.
+ *
+ * Los indistinguibles van PRIMERO y con nombre. Antes no aparecían: se
+ * repartían entre «por debajo» y «por encima» según el percentil pelado, así
+ * que la frase afirmaba doce lados donde la muestra sostiene seis.
  */
 export function fraseParticion(p: Particion): string | null {
   if (p.situados === 0) return null
   let frase: string
   if (p.situados === 1) {
-    const lado = p.abajo === 1 ? 'por debajo de' : p.arriba === 1 ? 'por encima de' : 'en'
-    frase = `El servicio con comparación queda ${lado} la mediana de su banda`
+    const lado =
+      p.abajo === 1
+        ? 'queda por debajo de la mediana de su banda'
+        : p.arriba === 1
+          ? 'queda por encima de la mediana de su banda'
+          : 'no se distingue de la mediana de su banda'
+    frase = `El servicio con comparación ${lado}`
   } else {
     const partes: string[] = []
-    if (p.abajo > 0) partes.push(`${p.abajo} por debajo de la mediana de su banda`)
+    if (p.indistinguibles > 0) partes.push(`${p.indistinguibles} no se distinguen de la mediana`)
+    if (p.abajo > 0) partes.push(`${p.abajo} por debajo`)
     if (p.arriba > 0) partes.push(`${p.arriba} por encima`)
-    if (p.enMediana > 0) partes.push(`${p.enMediana} en la mediana`)
     frase = `De ${p.situados} con comparación: ${partes.join(' · ')}`
   }
   return p.sinSituar > 0 ? `${frase} · ${p.sinSituar} sin banda comparable` : frase

@@ -69,20 +69,21 @@ describe('agruparPorArea — partición completa y orden por gasto', () => {
 })
 
 describe('particionPosiciones — una sola regla de «por debajo» para toda la página', () => {
-  it('abajo + arriba + enMediana suman los situados; situados + sinSituar, los con cociente', () => {
+  it('abajo + arriba + indistinguibles suman los situados; situados + sinSituar, los con cociente', () => {
     const p = particionPosiciones(indicadores)
-    expect(p.abajo + p.arriba + p.enMediana).toBe(p.situados)
+    expect(p.abajo + p.arriba + p.indistinguibles).toBe(p.situados)
     expect(p.situados + p.sinSituar).toBe(indicadores.filter((i) => i.valor !== null).length)
   })
 
   it('la del total coincide con la suma de las de área', () => {
     const total = particionPosiciones(indicadores)
     const grupos = agruparPorArea(indicadores)
-    const suma = (k: 'situados' | 'abajo' | 'arriba' | 'enMediana' | 'sinSituar') =>
+    const suma = (k: 'situados' | 'abajo' | 'arriba' | 'indistinguibles' | 'sinSituar') =>
       grupos.reduce((s, g) => s + g.particion[k], 0)
     expect(suma('situados')).toBe(total.situados)
     expect(suma('abajo')).toBe(total.abajo)
     expect(suma('arriba')).toBe(total.arriba)
+    expect(suma('indistinguibles')).toBe(total.indistinguibles)
     expect(suma('sinSituar')).toBe(total.sinSituar)
   })
 })
@@ -90,19 +91,20 @@ describe('particionPosiciones — una sola regla de «por debajo» para toda la 
 describe('fraseParticion — la mini-frase no afirma lo que no se midió', () => {
   it('con cero situados no hay frase: nada que decir de posiciones sin banda', () => {
     expect(
-      fraseParticion({ situados: 0, abajo: 0, arriba: 0, enMediana: 0, sinSituar: 2 }),
+      fraseParticion({ situados: 0, abajo: 0, arriba: 0, indistinguibles: 0, sinSituar: 2 }),
     ).toBeNull()
   })
 
   it('en singular no imprime recuentos con gramática rota', () => {
-    const f = fraseParticion({ situados: 1, abajo: 0, arriba: 1, enMediana: 0, sinSituar: 0 })
+    const f = fraseParticion({ situados: 1, abajo: 0, arriba: 1, indistinguibles: 0, sinSituar: 0 })
     expect(f).toBe('El servicio con comparación queda por encima de la mediana de su banda')
   })
 
   it('en plural cuenta cada lado y añade los sin banda', () => {
-    const f = fraseParticion({ situados: 4, abajo: 2, arriba: 2, enMediana: 0, sinSituar: 1 })
-    expect(f).toContain('De 4 con comparación')
-    expect(f).toContain('2 por debajo de la mediana de su banda')
+    const f = fraseParticion({ situados: 5, abajo: 2, arriba: 2, indistinguibles: 1, sinSituar: 1 })
+    expect(f).toContain('De 5 con comparación')
+    expect(f).toContain('1 no se distinguen de la mediana')
+    expect(f).toContain('2 por debajo')
     expect(f).toContain('2 por encima')
     expect(f).toContain('1 sin banda comparable')
   })

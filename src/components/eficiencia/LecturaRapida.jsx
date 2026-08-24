@@ -47,12 +47,12 @@ export function LecturaRapida({ data, firmados = 0 }) {
     },
     {
       href: '#sec-servicios',
-      // El percentil exacto 50 es alcanzable (rank/n redondeado): si un
-      // servicio cae ahí, ni «abajo» ni «arriba» lo cuentan y la casilla
-      // quedaría sumando 11 de 12 sin decirlo. El «=» aparece sólo entonces.
-      valor: `${p.abajo} ↓ · ${p.arriba} ↑${p.enMediana > 0 ? ` · ${p.enMediana} =` : ''}`,
+      // Los que no se distinguen se cuentan aparte y se dicen: repartirlos
+      // entre ↓ y ↑ por el percentil pelado afirmaba doce lados donde la
+      // muestra sostiene seis.
+      valor: `${p.abajo} ↓ · ${p.arriba} ↑${p.indistinguibles > 0 ? ` · ${p.indistinguibles} ≈` : ''}`,
       etiqueta:
-        p.enMediana > 0
+        p.indistinguibles > 0
           ? t('eficiencia.lectura.particionConMediana')
           : t('eficiencia.lectura.particion'),
     },
@@ -170,8 +170,8 @@ export function LecturaRapida({ data, firmados = 0 }) {
         {p.situados > 0 && (
           <>
             {equilibrado
-              ? `los costes por unidad no tienen un titular único — de los ${p.situados} servicios con comparación, ${p.abajo} quedan por debajo de la mediana de municipios parecidos y ${p.arriba} por encima${p.enMediana > 0 ? `, con ${p.enMediana} en la mediana exacta` : ''} — y se leen servicio a servicio, no en bloque. `
-              : `de los ${p.situados} servicios con comparación, ${fraseGrueso} (${p.abajo} por debajo, ${p.arriba} por encima${p.enMediana > 0 ? `, ${p.enMediana} en la mediana` : ''}). `}
+              ? `los costes por unidad no tienen un titular único — de los ${p.situados} servicios con comparación, ${p.abajo} quedan por debajo de la mediana de municipios parecidos y ${p.arriba} por encima${p.indistinguibles > 0 ? `, y ${p.indistinguibles} no se distinguen de ella` : ''} — y se leen servicio a servicio, no en bloque. `
+              : `de los ${p.situados} servicios con comparación, ${fraseGrueso} (${p.abajo} por debajo, ${p.arriba} por encima${p.indistinguibles > 0 ? `, ${p.indistinguibles} sin distinguir` : ''}). `}
           </>
         )}
         {congelados > 0 && (
