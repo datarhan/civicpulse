@@ -1490,16 +1490,19 @@ export default function Metodologia() {
           .
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          La <strong>lectura rápida</strong> de cabecera no es una excepción a esa negativa: son
-          recuentos de lo que las fichas ya publican —cuántos servicios quedan a cada lado de la
-          mediana de su banda, cuántos denominadores se repiten, qué entrega falta— más una frase
-          editorial fechada cuyos números se interpolan del propio dato. Contar lados no es
-          promediar posiciones, y ninguna casilla colorea la posición como buena o mala: un coste
+          El <strong>estado de la rendición</strong> de cabecera no es una excepción a esa negativa:
+          son recuentos de lo que el ayuntamiento declara sobre su propia contabilidad —cuántas
+          cantidades lleva sin remedir, qué entrega no presentó, cuántas entregas publicadas no
+          pueden ser un coste, cuántos servicios no cruzan sus libros— y el propio bloque dice que
+          miden la rendición de cuentas y no el servicio. Un recuento de con qué fidelidad se rinden
+          cuentas no es una nota de cómo se gobierna, y para que esa distinción no dependa de la
+          buena fe del lector va acompañado de dos columnas explícitas: lo que estas cifras permiten
+          concluir y lo que no. Ninguna casilla colorea la posición como buena o mala: un coste
           unitario alto no es un suspenso, y el acento de aviso se reserva para los hechos de
-          declaración. Las fichas se agrupan por <strong>áreas funcionales</strong> de la propia
+          declaración. El libro puede agruparse por <strong>áreas funcionales</strong> de la propia
           clasificación por programas, declaradas servicio a servicio en el registro — nunca por
-          concejalías: vincular un coste unitario a una concejalía lo pondría a un clic de un cargo
-          con nombre, un salto que el retorno ministerial no hace y esta superficie no da.
+          concejalías: agrupar por cargo convertiría la página en un marcador de personas, que es
+          una afirmación más fuerte que «esto es quien contesta».
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           Las dos páginas cierran con <strong>preguntas registradas</strong> al gobierno municipal:
@@ -1636,7 +1639,25 @@ export default function Metodologia() {
               a lo largo de la serie: un año prestado bajo otro régimen se publica, pero fuera de la
               línea y sin mediana de pares.
             </li>
-            <li>Sin quince comparables no hay banda ni percentil: la tarjeta no se sitúa.</li>
+            <li>Sin quince comparables no hay banda ni percentil: la fila no se sitúa.</li>
+            <li>
+              La posición se dibuja siempre sobre la <em>misma escala fija de percentil 0 a 100</em>
+              : la mediana del grupo en el centro, la mitad central del 25 al 75, la banda plausible
+              donde caiga y el punto de Riba-roja en su propio percentil. Hasta agosto de 2026 la
+              tira se escalaba al mínimo y al máximo de los <em>valores</em> de los comparables, y
+              eso podía dejar el punto de los colegios en el 11 % de la tira bajo un rótulo que
+              decía «percentil 85» — con la muestra yendo de 0 a 924 €/m², el extremo se quedaba el
+              carril. Las rayas de cada comparable, en la ficha, van por puesto y no por valor, por
+              la misma razón.
+            </li>
+            <li>
+              <strong>Una banda que cruza la mediana no da lado.</strong> Si el intervalo plausible
+              del percentil contiene el 50, el servicio no se cuenta como «por encima» ni como «por
+              debajo»: se marca aparte, con el punto hueco y trazo discontinuo. En la entrega de
+              2024 eso son seis de los doce servicios comparables. Antes el aviso existía y llegaba
+              plegado dentro de la ficha, mientras el recuento de cabecera ya había repartido esos
+              seis a un lado o al otro.
+            </li>
             {/* Los puntos 6 y 7 estuvieron CRUZADOS respecto a las seis citas
                 «(regla N)» del código, y el 7 afirmaba un comportamiento que el
                 propio snapshot contradecía (34 puntos entre ×2 y ×20, ninguno

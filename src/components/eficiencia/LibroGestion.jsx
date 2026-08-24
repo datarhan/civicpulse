@@ -196,7 +196,12 @@ export function LibroGestion({ municipales = [], competencias, conNombres }) {
                           <a href={`/cargos/${competencia.oficial}`}>{competencia.nombre}</a>
                           <span className="cp-fila-meta mono">
                             {competencia.cargo}
-                            {competencia.confianza === 'editorial' ? ' · atribución nuestra' : ''}
+                            {competencia.confianza === 'editorial' && (
+                              <>
+                                {' · '}
+                                <a href={`#m-${m.id}`}>atribución nuestra</a>
+                              </>
+                            )}
                           </span>
                         </>
                       ) : (

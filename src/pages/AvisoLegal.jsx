@@ -112,12 +112,13 @@ export default function AvisoLegal() {
           servicio que le corresponde, para que quien quiera preguntar sepa a quién dirigirse. No
           afirma que la cifra sea responsabilidad personal de nadie —un coste por efectivo de
           policía es un precio, no un rendimiento—, y la advertencia sobre cómo se lee cada número
-          va en la misma tarjeta que el nombre. Cuando el enlace entre el área delegada y el
-          servicio lo hacemos nosotros, y no el Ayuntamiento con sus propias palabras, la tarjeta lo
-          marca y explica por qué. Si ningún área delegada nombra un servicio, no se atribuye a
-          nadie: se dice que no consta. La lista está firmada y congelada —no la reescribe ningún
-          proceso automático— y una comprobación avisa antes de cada despliegue si el reparto de
-          áreas ha cambiado.
+          va siempre con el nombre: en la misma fila del libro de servicios, y en la misma ficha
+          cuando se abre el servicio. Cuando el enlace entre el área delegada y el servicio lo
+          hacemos nosotros, y no el Ayuntamiento con sus propias palabras, se marca donde aparece el
+          nombre y la marca lleva a la explicación. Si ningún área delegada nombra un servicio, no
+          se atribuye a nadie: se dice que no consta. La lista está firmada y congelada —no la
+          reescribe ningún proceso automático— y una comprobación avisa antes de cada despliegue si
+          el reparto de áreas ha cambiado.
         </p>
         <p>
           <strong>Cuando un servicio está concedido, la ficha nombra a la empresa</strong> que lo

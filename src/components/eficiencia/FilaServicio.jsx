@@ -141,7 +141,15 @@ export function FilaServicio({ indicador, formatea, competencia, x0, x1, conNomb
               <a href={`/cargos/${competencia.oficial}`}>{competencia.nombre}</a>
               <span className="cp-fila-meta mono">
                 {competencia.cargo}
-                {competencia.confianza === 'editorial' ? ' · atribución nuestra' : ''}
+                {/* «Atribución nuestra» no puede quedarse en una marca: el aviso
+                    legal promete que además se explica POR QUÉ, y el motivo vive
+                    en la ficha. La marca lleva hasta él. */}
+                {competencia.confianza === 'editorial' && (
+                  <>
+                    {' · '}
+                    <a href={`/eficiencia/${i.id}`}>atribución nuestra</a>
+                  </>
+                )}
               </span>
             </>
           ) : (
