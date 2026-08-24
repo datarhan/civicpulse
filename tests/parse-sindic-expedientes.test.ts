@@ -155,13 +155,26 @@ describe('repartirPorAdministracion — y que la puerta DESCARTE de verdad', () 
     )
   })
 
-  it('DESCARTA filas — una puerta que nunca descarta no está probada', () => {
-    // El eje de texto trae expedientes que sólo MENCIONAN Riba-roja: contra el
-    // Ayuntamiento de València, contra Conselleria… Si esto llega a 0, o el
-    // buscador cambió o la puerta se abrió.
+  it('RECHAZA filas — una puerta que nunca rechaza no está probada', () => {
+    // Los dos ejes traen expedientes que sólo MENCIONAN Riba-roja o que vienen
+    // de un vecino de aquí: contra el Ayuntamiento de València, contra
+    // Conselleria de Sanidad… Si esto llega a 0, o el buscador cambió o la
+    // puerta se abrió.
     const p = repartirPorAdministracion(texto, poblacion)
-    expect(p.descartadas.length).toBeGreaterThan(0)
     expect(p.contraAyuntamiento.length).toBeGreaterThan(0)
+    expect(p.vecinos.length + p.descartadas.length).toBeGreaterThan(0)
+    const rechazados = [...p.vecinos, ...p.descartadas].map((f) => f.expediente)
+    expect(rechazados).toContain('202402468') // Conselleria de Sanidad
+  })
+
+  it('la rama `descartadas` también se ejerce: mención sin quejoso de aquí', () => {
+    // En la primera página el único rechazo del eje de texto sale TAMBIÉN por
+    // población, así que cae en `vecinos` y `descartadas` queda vacío con toda
+    // razón. La rama existe igualmente y se prueba sin fingir que el fixture la
+    // contiene: sin eje de población, esa misma fila es una mención.
+    const p = repartirPorAdministracion(texto, [])
+    expect(p.vecinos).toEqual([])
+    expect(p.descartadas.map((f) => f.expediente)).toEqual(['202402468'])
   })
 
   it('todo lo que pasa la puerta la pasa de verdad', () => {
