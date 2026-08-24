@@ -1,0 +1,857 @@
+{
+  "generatedAt": "2026-08-24T12:18:24.241Z",
+  "note": "Índice de expedientes del Síndic de Greuges CV, transcrito del buscador del propio organismo. Materia, asunto, administración y el título de cada resolución van verbatim: este fichero NO emite ningún juicio. Las fichas firmadas —con resumen verbatim leído del PDF— viven en sindic.json y las escribe una persona con `npm run sindic:add`. «contraAyuntamiento» y «vecinosOtrasAdministraciones» responden a preguntas distintas y NO se suman.",
+  "source": {
+    "platform": "Síndic de Greuges de la Comunitat Valenciana",
+    "portal": "https://www.elsindic.com",
+    "buscador": "https://www.elsindic.com/actuaciones/",
+    "endpoint": "https://www.elsindic.com/wp-admin/admin-ajax.php?action=buscador_expedientes_elastic_search",
+    "robots": "https://www.elsindic.com/robots.txt — Allow: /wp-admin/admin-ajax.php"
+  },
+  "consulta": {
+    "municipio": "Riba-roja de Túria",
+    "ejes": [
+      {
+        "eje": "texto",
+        "consulta": {
+          "idioma": "c",
+          "qs": "\"Riba-roja\"",
+          "frase": true,
+          "anyoActual": 2026
+        },
+        "declarado": 49,
+        "recogidas": 49,
+        "paginas": 5,
+        "irreconocibles": 0
+      },
+      {
+        "eje": "poblacion",
+        "consulta": {
+          "idioma": "c",
+          "poblacion": "Riba-roja de Túria"
+        },
+        "declarado": 16,
+        "recogidas": 16,
+        "paginas": 2,
+        "irreconocibles": 0
+      }
+    ],
+    "puerta": "Campo «Administración» del propio buscador: cuerpo municipal + alias del municipio con su desambiguador. El facet «poblacion» es la población del QUEJOSO, no la administración reclamada, y por sí solo no sirve de filtro."
+  },
+  "cobertura": {
+    "contraAyuntamientoDesde": 2013,
+    "contraAyuntamientoHasta": 2026,
+    "vecinosDesde": 2023,
+    "vecinosHasta": 2025,
+    "limite": "El eje de texto llega al inicio del registro publicado; el facet de población no devuelve expedientes anteriores a 2023, así que la segunda lista no es una serie histórica y su ausencia de filas antiguas no significa que no las hubiera."
+  },
+  "contraAyuntamiento": [
+    {
+      "expediente": "202602608",
+      "anio": 2026,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Molestias por ubicación de contenedores",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": []
+    },
+    {
+      "expediente": "202601067",
+      "anio": 2026,
+      "materia": "Procedimientos administrativos",
+      "asunto": "Falta de respuesta a una reclamación por molestias vecinales",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2026-04-22",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202601067/12496682.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202600533",
+      "anio": 2026,
+      "materia": "Procedimientos administrativos",
+      "asunto": "Responsabilidad patrimonial: falta de resolución del procedimiento",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2026-03-23",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202600533/12475700.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2026-04-24",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202600533/12499022.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202600493",
+      "anio": 2026,
+      "materia": "Procedimientos administrativos",
+      "asunto": "Falta de respuesta responsabilidad patrimonial.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2026-05-22",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202600493/12518774.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202504669",
+      "anio": 2025,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Inactividad Ayuntamiento cementerio privado.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2026-01-21",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2025/202504669/12435003.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2026-03-10",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2025/202504669/12469480.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202504502",
+      "anio": 2025,
+      "materia": "Hacienda pública",
+      "asunto": "Falta de respuesta recurso de reposición.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2025-12-18",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2025/202504502/12419357.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202502231",
+      "anio": 2025,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Inactividad del Ayuntamiento y de la Diputación en el cumplimiento del deber de limpieza de un terreno.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2025-07-22",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2025/202502231/12337532.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2025-09-10",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2025/202502231/12361228.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202501757",
+      "anio": 2025,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Falta de respuesta a la solicitud de supervisión cementerio privado afectado por la Dana.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2025-06-30",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2025/202501757/12321978.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202403712",
+      "anio": 2024,
+      "materia": "Hacienda pública",
+      "asunto": "Reclamación deuda por jubilación.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2025-02-14",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2024/202403712/12248347.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202400016",
+      "anio": 2024,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Molestias causadas por casal fallero",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2024-02-27",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2024/202400016/12072805.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2024-06-26",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2024/202400016/12132205.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202301888",
+      "anio": 2023,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Daños en vivienda por árbol en vía pública. Falta de respuesta.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2023-09-25",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2023/202301888/12006184.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2023-11-02",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2023/202301888/12022064.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202301600",
+      "anio": 2023,
+      "materia": "Urbanismo",
+      "asunto": "Falta de respuesta solicitud de información y recurso de reposición.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2023-08-10",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2023/202301600/11994633.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202301429",
+      "anio": 2023,
+      "materia": "Empleo",
+      "asunto": "Bolsa de Trabajo Ayto. Riba-Roja de Túria. Falta de respuesta expresa.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2023-07-07",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2023/202301429/11984930.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202203596",
+      "anio": 2022,
+      "materia": "Servicios sociales",
+      "asunto": "Dependencia. Demora revisión grado.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2023-03-16",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2022/202203596/11947833.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2023-04-18",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2022/202203596/11958782.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202203203",
+      "anio": 2022,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Falta de respuesta. Reclamación servicios municipales",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2022-12-12",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2022/202203203/11915849.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2023-01-24",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2022/202203203/11930172.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202202465",
+      "anio": 2022,
+      "materia": "Procedimientos administrativos",
+      "asunto": "Inactividad municipal ante denuncia por ejercicio de actividades sin licencia",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2022-09-25",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2022/202202465/11888749.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2023-01-13",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2022/202202465/11926206.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202202009",
+      "anio": 2022,
+      "materia": "Empleo",
+      "asunto": "Empleo Público. Retribuciones. Solicitud de información. Falta de respuesta.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2022-08-02",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2022/202202009/11875298.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2022-09-13",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2022/202202009/11886341.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202200333",
+      "anio": 2022,
+      "materia": "Empleo",
+      "asunto": "Empleo Público. Segunda actividad. Falta de respuesta.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2022-04-06",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2022/202200333/11837783.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2022-06-21",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2022/202200333/11861788.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202103726",
+      "anio": 2021,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Molestias derivadas de ejercicio de actividad Crossfit",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2022-04-01",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2021/202103726/11836133.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202102821",
+      "anio": 2021,
+      "materia": "Empleo",
+      "asunto": "Solicitud de reconocimiento de mérito policial. Falta de respuesta.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2021-10-20",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2021/202102821/11754743.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2021-12-14",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2021/202102821/11801084.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202101846",
+      "anio": 2021,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Sanción tráfico. Tasa servicio de grúa.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2021-10-29",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2021/202101846/11787762.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202100969",
+      "anio": 2021,
+      "materia": "Servicios sociales",
+      "asunto": "Dependencia. Demora",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2021-06-10",
+          "urlPdf": "https://www.elsindic.com/resoluciones/11686012.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202100222",
+      "anio": 2021,
+      "materia": "Empleo",
+      "asunto": "Empleo público. Actividad sindical. Falta de respuesta.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2021-07-08",
+          "urlPdf": "https://www.elsindic.com/resoluciones/11702111.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202003312",
+      "anio": 2020,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Molestias acústicas producidas por los gallos y aves de corral existentes en una vivienda.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2021-01-05",
+          "urlPdf": "https://www.elsindic.com/resoluciones/11398210.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202000620",
+      "anio": 2020,
+      "materia": "Servicios sociales",
+      "asunto": "Discapacidad. Demora en asignar plaza de aparcamiento personalizada",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2021-10-05",
+          "urlPdf": "https://www.elsindic.com/resoluciones/11746278.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "201904387",
+      "anio": 2019,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Falta de respuesta en relación con duplicidad número",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2020-06-17",
+          "urlPdf": "https://www.elsindic.com/resoluciones/11226990.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "201902819",
+      "anio": 2019,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Molestias por ladridos de perros",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2020-08-04",
+          "urlPdf": "https://www.elsindic.com/resoluciones/11242342.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "201809831",
+      "anio": 2018,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Molestias ocasionadas por inadecuadas condiciones de tenencia de perros",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2019-02-04",
+          "urlPdf": "https://www.elsindic.com/resoluciones/11003437.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "201804407",
+      "anio": 2018,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Molestias acústicas producidas por los gallos y aves de corral existentes en una vivienda",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2018-12-18",
+          "urlPdf": "https://www.elsindic.com/resoluciones/10995379.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "201800300",
+      "anio": 2018,
+      "materia": "Educación",
+      "asunto": "Ayudas de comedor escolar",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2018-06-06",
+          "urlPdf": "https://www.elsindic.com/resoluciones/10933571.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "201800284",
+      "anio": 2018,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Molestias por tenencia de animales",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2018-05-14",
+          "urlPdf": "https://www.elsindic.com/resoluciones/10928157.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "201716637",
+      "anio": 2017,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Reubicación de la plaza de toros móvil",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2018-02-13",
+          "urlPdf": "https://www.elsindic.com/resoluciones/10911011.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "201601870",
+      "anio": 2016,
+      "materia": "Transparencia",
+      "asunto": "Derecho información concejales",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2016-05-31",
+          "urlPdf": "https://www.elsindic.com/resoluciones/10787304.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "201600366",
+      "anio": 2016,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Contaminación acústica generada en un local ubicado en la calle Furs del Regne 13 bajo",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2016-06-18",
+          "urlPdf": "https://www.elsindic.com/resoluciones/10791295.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "201512884",
+      "anio": 2015,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Construcción de vallado en finca de titularidad pública",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2016-03-02",
+          "urlPdf": "https://www.elsindic.com/resoluciones/10767618.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "201510652",
+      "anio": 2015,
+      "materia": "Servicios públicos y medio ambiente",
+      "asunto": "Molestias generadas por los caballos y perros existentes en la calle San Agustín nº 52",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2016-01-21",
+          "urlPdf": "https://www.elsindic.com/resoluciones/10760133.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "201412237",
+      "anio": 2014,
+      "materia": "Otros",
+      "asunto": "Contaminación lumínica en el entorno del Parc Natural del Túria",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2015-07-24",
+          "urlPdf": "https://www.elsindic.com/resoluciones/10737473.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "201318286",
+      "anio": 2013,
+      "materia": "Otros",
+      "asunto": "Solicitud de plaza de aparcamiento para discapacitados",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Petición de informe. Resolución.",
+          "fecha": "2015-02-05",
+          "urlPdf": "https://www.elsindic.com/resoluciones/10617605.pdf"
+        }
+      ]
+    }
+  ],
+  "vecinosOtrasAdministraciones": [
+    {
+      "expediente": "202501867",
+      "anio": 2025,
+      "materia": "Empleo",
+      "asunto": "Empleo público: falta de respuesta reclamación retributiva",
+      "administracion": "Ayuntamiento de València",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2025-06-13",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2025/202501867/12315347.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202500709",
+      "anio": 2025,
+      "materia": "Servicios sociales",
+      "asunto": "Dependencia. Demora revisión PIA.",
+      "administracion": "Vicepresidencia Primera y Conselleria de Servicios Sociales, Igualdad y Vivienda",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2025-05-16",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2025/202500709/12300731.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202500580",
+      "anio": 2025,
+      "materia": "Hacienda pública",
+      "asunto": "Solicitud ayudas instalación placas fotovoltaicas.",
+      "administracion": "Conselleria de Medio Ambiente, Infraestructuras y Territorio",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2025-04-27",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2025/202500580/12289593.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2025-05-26",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2025/202500580/12305441.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202404710",
+      "anio": 2024,
+      "materia": "Servicios sociales",
+      "asunto": "Dependencia. Demora revisión PIA.",
+      "administracion": "Vicepresidencia Primera y Conselleria de Servicios Sociales, Igualdad y Vivienda",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2025-02-28",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2024/202404710/12258707.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2025-03-06",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2024/202404710/12262596.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202404460",
+      "anio": 2024,
+      "materia": "Empleo",
+      "asunto": "Empleo público: adaptación/cambio de puesto de trabajo por motivos de salud",
+      "administracion": "Conselleria de Justicia y Administración Pública",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2025-05-15",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2024/202404460/12297389.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2025-05-22",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2024/202404460/12303550.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202402468",
+      "anio": 2024,
+      "materia": "Sanidad",
+      "asunto": "Falta de respuesta expresa a solicitud de libre elección de profesional sanitario o de centro de Atención Primaria.",
+      "administracion": "Conselleria de Sanidad",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2024-08-07",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2024/202402468/12154194.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202401802",
+      "anio": 2024,
+      "materia": "Industria, agricultura, comercio y turismo",
+      "asunto": "Falta de resposta davant de sol·licitud certificat IVACE",
+      "administracion": "Conselleria de Innovación, Industria, Comercio y Turismo",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2024-06-17",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2024/202401802/12128933.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202401147",
+      "anio": 2024,
+      "materia": "Servicios sociales",
+      "asunto": "Atención Dependencia. Retroactividad. Herederos. Demora.",
+      "administracion": "Vicepresidencia Primera y Conselleria de Servicios Sociales, Igualdad y Vivienda",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2024-06-17",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2024/202401147/12127008.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2024-07-09",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2024/202401147/12140418.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202400469",
+      "anio": 2024,
+      "materia": "Servicios sociales",
+      "asunto": "Dependencia. Revisión PIA. Demora",
+      "administracion": "Vicepresidencia Primera y Conselleria de Servicios Sociales, Igualdad y Vivienda",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2024-03-18",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2024/202400469/12083428.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2024-04-23",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2024/202400469/12099839.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202303553",
+      "anio": 2023,
+      "materia": "Empleo",
+      "asunto": "Empleo Público. Acceso",
+      "administracion": "Ayuntamiento de Guadassuar",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2024-01-23",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2023/202303553/12057172.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202303536",
+      "anio": 2023,
+      "materia": "Industria, agricultura, comercio y turismo",
+      "asunto": "Falta de respuesta Conselleria de Industria.",
+      "administracion": "Conselleria de Innovación, Industria, Comercio y Turismo",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2023-11-27",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2023/202303536/12034131.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202302079",
+      "anio": 2023,
+      "materia": "Servicios sociales",
+      "asunto": "Atención Dependencia. Revisión PIA. Demora",
+      "administracion": "Conselleria de Igualdad y Políticas Inclusivas",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2023-10-06",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2023/202302079/12010606.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2023-11-10",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2023/202302079/12026187.pdf"
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "contraAyuntamiento": 38,
+    "conResolucionPublicada": 37,
+    "vecinosOtrasAdministraciones": 12,
+    "porTipoResolucion": {
+      "Resolución de consideraciones a la Administración": 14,
+      "Resolución de cierre": 17,
+      "Petición de informe. Resolución.": 17
+    },
+    "porMateria": {
+      "Servicios públicos y medio ambiente": 19,
+      "Procedimientos administrativos": 4,
+      "Hacienda pública": 2,
+      "Urbanismo": 1,
+      "Empleo": 5,
+      "Servicios sociales": 3,
+      "Educación": 1,
+      "Transparencia": 1,
+      "Otros": 2
+    },
+    "tiposDesconocidos": 0,
+    "anioMasAntiguo": 2013,
+    "anioMasReciente": 2026,
+    "mencionesDescartadas": 7,
+    "repetidasEntreEjes": 8
+  }
+}

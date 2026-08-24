@@ -32,6 +32,7 @@ ADAPTERS=(
   scrape:asociaciones
   scrape:obras
   scrape:sindicatura
+  scrape:sindic-expedientes
 )
 
 failed=()
@@ -90,6 +91,7 @@ if ! cron_git_stage_and_check \
        public/data/paro.json public/data/plenos-agendas.json public/data/consell-cv.json \
        public/data/procesos-selectivos.json public/data/asociaciones.json \
        public/data/obras.json public/data/sindicatura.json \
+       public/data/sindic-expedientes.json \
        public/data/press-coverage-gaps.json public/data/press-triangulation.json \
        public/data/press-trust.json; then
   echo "[ci-blocked] no changes"

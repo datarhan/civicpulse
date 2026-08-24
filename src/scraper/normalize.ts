@@ -61,3 +61,77 @@ export const RIBA_ROJA_ALIASES = [
   'Ribarroja de Túria',
   'Ribarroja del Turia',
 ]
+
+/**
+ * Decode the HTML entities that server-rendered Spanish/Valencian pages
+ * actually emit — named Latin-1 letters plus numeric refs in both decimal
+ * and hex form.
+ *
+ * It lives here rather than beside its first caller because five scrapers
+ * already grew their own copy, and they have drifted: `sindicatura.ts`'s
+ * private version DELETES numeric refs (`.replace(/&#\d+;/g, '')`) instead of
+ * decoding them, so a `&#241;` silently eats the ñ. New call sites import this
+ * one; the existing copies are left alone here on purpose, because changing
+ * what they produce is a data change and belongs in its own commit with its
+ * own fixtures.
+ */
+const NAMED_ENTITIES: Record<string, string> = {
+  amp: '&',
+  lt: '<',
+  gt: '>',
+  quot: '"',
+  apos: "'",
+  nbsp: ' ',
+  aacute: 'á',
+  eacute: 'é',
+  iacute: 'í',
+  oacute: 'ó',
+  uacute: 'ú',
+  Aacute: 'Á',
+  Eacute: 'É',
+  Iacute: 'Í',
+  Oacute: 'Ó',
+  Uacute: 'Ú',
+  agrave: 'à',
+  egrave: 'è',
+  ograve: 'ò',
+  Agrave: 'À',
+  Egrave: 'È',
+  Ograve: 'Ò',
+  ntilde: 'ñ',
+  Ntilde: 'Ñ',
+  ccedil: 'ç',
+  Ccedil: 'Ç',
+  uuml: 'ü',
+  Uuml: 'Ü',
+  iuml: 'ï',
+  Iuml: 'Ï',
+  ordm: 'º',
+  ordf: 'ª',
+  deg: '°',
+  euro: '€',
+  laquo: '«',
+  raquo: '»',
+  hellip: '…',
+  ndash: '–',
+  mdash: '—',
+  rsquo: '’',
+  lsquo: '‘',
+  middot: '·',
+}
+
+export function decodeHtmlEntities(s: string): string {
+  return s.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+);/g, (whole, body: string) => {
+    if (body[0] === '#') {
+      const cp =
+        body[1] === 'x' || body[1] === 'X'
+          ? parseInt(body.slice(2), 16)
+          : parseInt(body.slice(1), 10)
+      // An unparseable or out-of-range ref stays verbatim rather than turning
+      // into a replacement char: a visible `&#99999999;` is debuggable, a `�`
+      // is a silent corruption of a quote we may later have to prove verbatim.
+      return Number.isFinite(cp) && cp > 0 && cp <= 0x10ffff ? String.fromCodePoint(cp) : whole
+    }
+    return NAMED_ENTITIES[body] ?? whole
+  })
+}

@@ -383,6 +383,11 @@
       "/cargos/:slug",
       "/departamentos"
     ],
+    "sindic-expedientes.json": [
+      "/datos",
+      "/lab-health",
+      "/quejas"
+    ],
     "sindic.json": [
       "/lab-health",
       "/quejas"

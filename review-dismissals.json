@@ -22,6 +22,20 @@
       "reason": "El revisor compara el gasto PRESUPUESTADO del ministerio (41.578.252,26 €) con las obligaciones RECONOCIDAS (18.909.465,12 €) y llama «discrepancia» a la diferencia de 22,7 M€. Eso es infraejecución — exactamente lo que mide el indicador del 30,4 % que hay en esa misma página—, no un desacuerdo entre fuentes. Las dos cifras que sí dicen ser lo mismo son la del ministerio y el crédito inicial del listado municipal (37.599.838,15 €), y difieren en 3.978.414,11 €: «casi cuatro millones» es exacto. El listado municipal cuadra al céntimo, 37.599.838,15 + 24.523.314,93 = 62.123.153,08, que es el crédito definitivo del denominador. Comprobado contra indicadores.json el 24-08-2026.",
       "editor": "Sergei Lutchenko",
       "at": "2026-08-24"
+    },
+    {
+      "route": "/quejas",
+      "quote": "el gasto situado acumula adjudicaciones de 2018–2026",
+      "reason": "El revisor mide el rango sobre las 130 asignaciones de tender-geo.json y la etiqueta habla de las 47 que SÍ tienen barrio, que es lo único que la columna suma. Medido: todas 2017–2026, situadas 2018–2026, y CERO situadas anteriores a 2018. La página acierta. Y el estrechamiento es deliberado: el filtro `zones.length > 0` de QuejasSpendOverlap.jsx lleva un comentario explicando que etiquetar con un periodo más ancho que el dinero que rotula es el mismo defecto un nivel más abajo. Mismo patrón que el descarte de /gestion: el revisor compara un universo más ancho que la frase que juzga.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-08-24"
+    },
+    {
+      "route": "/quejas",
+      "quote": "GASTO SITUADO 2018–2026",
+      "reason": "El revisor mide el rango sobre las 130 asignaciones de tender-geo.json y la etiqueta habla de las 47 que SÍ tienen barrio, que es lo único que la columna suma. Medido: todas 2017–2026, situadas 2018–2026, y CERO situadas anteriores a 2018. La página acierta. Y el estrechamiento es deliberado: el filtro `zones.length > 0` de QuejasSpendOverlap.jsx lleva un comentario explicando que etiquetar con un periodo más ancho que el dinero que rotula es el mismo defecto un nivel más abajo. Mismo patrón que el descarte de /gestion: el revisor compara un universo más ancho que la frase que juzga. Es el encabezado de la misma columna que la frase de arriba, señalado por lo mismo.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-08-24"
     }
   ]
 }

@@ -1,14 +1,28 @@
 import { describe, expect, it } from 'vitest'
 import {
+  idResolucion,
   stats,
   validateResolucion,
   validateSnapshot,
   type SindicResolucion,
 } from '../src/scraper/sindic'
 
+const OTRO_PDF = 'https://www.elsindic.com/resoluciones/expedientes/2023/202300001/11000001.pdf'
+const URL_PDF = 'https://www.elsindic.com/resoluciones/expedientes/2024/202400427/12337532.pdf'
+
+/**
+ * El id ya no se escribe: se DERIVA con la misma función que usa el CLI.
+ *
+ * Escribirlo a mano aquí es justo lo que la regla 1 de DATA_INTEGRITY prohíbe —
+ * seis pruebas de este repo copiaron una forma y siguieron verdes mientras
+ * producción no casaba con nada. Y hay un motivo concreto: `sindic-<expediente>`
+ * colisionaba entre las dos resoluciones de un mismo expediente.
+ */
 function mkRes(overrides: Partial<SindicResolucion> = {}): SindicResolucion {
+  const expediente = overrides.expediente ?? '202400427'
+  const urlPdf = overrides.urlPdf ?? URL_PDF
   return {
-    id: 'sindic-202400427',
+    id: idResolucion(expediente, urlPdf),
     expediente: '202400427',
     fecha: '2024-06-12',
     materia: 'transparencia',
@@ -16,7 +30,7 @@ function mkRes(overrides: Partial<SindicResolucion> = {}): SindicResolucion {
     titulo: 'Falta de respuesta a solicitud de acceso a contratos de limpieza',
     resumen:
       'El Síndic recomienda al Ayuntamiento de Riba-roja de Túria que resuelva expresamente la solicitud de acceso a la información pública relativa a los contratos de limpieza viaria 2024, en cumplimiento del artículo 20 de la Ley 19/2013.',
-    urlPdf: 'https://www.elsindic.com/resolucions/2024/202400427.pdf',
+    urlPdf: URL_PDF,
     quejaIdRelacionada: null,
     ...overrides,
   }
@@ -84,10 +98,34 @@ describe('sindic — validateSnapshot', () => {
   })
 
   it('rejects out-of-order items (must be newest first)', () => {
-    const older = mkRes({ id: 'sindic-202300001', expediente: '202300001', fecha: '2023-01-01' })
-    const newer = mkRes({ id: 'sindic-202400427', expediente: '202400427', fecha: '2024-06-12' })
+    const older = mkRes({ expediente: '202300001', fecha: '2023-01-01', urlPdf: OTRO_PDF })
+    const newer = mkRes({ expediente: '202400427', fecha: '2024-06-12' })
     expect(() => validateSnapshot({ items: [older, newer] })).toThrow(/newest first/)
     expect(() => validateSnapshot({ items: [newer, older] })).not.toThrow()
+  })
+
+  it('DOS resoluciones del mismo expediente conviven — la colisión que había', () => {
+    // 202502231 lleva «consideraciones» el 22/07/2025 y «cierre» el 10/09/2025.
+    // Con el id viejo (`sindic-<expediente>`) la segunda ficha habría chocado
+    // con la primera y el CLI la habría rechazado como duplicada.
+    const base = { expediente: '202502231', fecha: '2025-09-10' } as const
+    const consideraciones = mkRes({
+      ...base,
+      fecha: '2025-07-22',
+      urlPdf: 'https://www.elsindic.com/resoluciones/expedientes/2025/202502231/12337532.pdf',
+    })
+    const cierre = mkRes({
+      ...base,
+      urlPdf: 'https://www.elsindic.com/resoluciones/expedientes/2025/202502231/12361228.pdf',
+    })
+    expect(consideraciones.id).not.toBe(cierre.id)
+    expect(() => validateSnapshot({ items: [cierre, consideraciones] })).not.toThrow()
+  })
+
+  it('rechaza un id que no salga de su propio expediente + PDF', () => {
+    // La derivación se COMPRUEBA, no sólo se aplica en el CLI: un fichero
+    // editado a mano no puede reintroducir la colisión por la puerta de atrás.
+    expect(() => validateResolucion(mkRes({ id: 'sindic-202400427' }))).toThrow(/derived/)
   })
 
   it('normalises source metadata', () => {
@@ -102,7 +140,6 @@ describe('sindic — stats', () => {
     const snap = validateSnapshot({
       items: [
         mkRes({
-          id: 'sindic-a',
           expediente: '202400427',
           fecha: '2024-06-12',
           sentido: 'recomendacion',
@@ -110,8 +147,8 @@ describe('sindic — stats', () => {
           quejaIdRelacionada: 'Q-ABC12301',
         }),
         mkRes({
-          id: 'sindic-b',
           expediente: '202300001',
+          urlPdf: OTRO_PDF,
           fecha: '2023-12-01',
           sentido: 'archivada',
           materia: 'urbanismo',
