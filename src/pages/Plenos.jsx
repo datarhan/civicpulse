@@ -7,6 +7,7 @@ import { usePlenos, PLENO_TONE, PLENO_LABEL } from '../hooks/usePlenos'
 import { usePlenoClaimsManifest } from '../hooks/usePlenoClaims'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
+import { usePlenoVotes } from '../hooks/usePlenoVotes'
 import { summarizeSessions } from '../lib/pleno-summary'
 import { fmtDateLong } from '../lib/formatters'
 import { useT } from '../i18n'
@@ -90,6 +91,56 @@ function Count({ n, label, tone, titulo }) {
   )
 }
 
+/**
+ * Qué significan las marcas de cada fila, dicho UNA vez y para quien mira.
+ *
+ * `Count` ya lleva `title` y `aria-label`, pero los dos sólo alcanzan a quien
+ * pasa el ratón o usa lector de pantalla. Un lector que simplemente mira ve
+ * «18 puntos · 9 ✓ · 5 hallazgos», dos de los tres rotulados y uno no, y
+ * supone. La revisión de superficies lo leyó como «votaciones registradas» en
+ * dos barridos seguidos, que es exactamente la suposición que invita.
+ *
+ * Y de paso dice lo que el revisor echaba en falta y la página no contaba en
+ * ningún sitio: cuántas sesiones tienen votaciones transcritas. Son muchas
+ * menos que las que llevan ✓, y que no las haya NO significa que no se votara.
+ *
+ * Las cifras salen del snapshot, no de una frase escrita a mano: es lo único
+ * que impide que este párrafo se quede rancio cuando los datos se muevan.
+ */
+function Leyenda({ total, conVerificada, conVotos }) {
+  if (!total) return null
+  return (
+    <div
+      style={{
+        fontSize: 'var(--fs-meta)',
+        color: 'var(--ink70)',
+        lineHeight: 1.5,
+        margin: '0 0 8px',
+        paddingLeft: 10,
+        borderLeft: '2px solid var(--border2)',
+      }}
+    >
+      <span className="mono" style={{ color: 'var(--ok-ink)' }}>
+        ✓
+      </span>{' '}
+      son <strong style={{ color: 'var(--ink)' }}>declaraciones verificadas</strong> contra los
+      datos abiertos, y{' '}
+      <span className="mono" style={{ color: 'var(--crit-ink)' }}>
+        ✗
+      </span>{' '}
+      las contradichas — no votos. Llevan ✓ {conVerificada} de las {total} sesiones.
+      {typeof conVotos === 'number' && (
+        <>
+          {' '}
+          Con <strong style={{ color: 'var(--ink)' }}>votaciones transcritas</strong> hay {conVotos}
+          : que una sesión no las tenga no significa que no se votara, sino que aún no hemos
+          transcrito el acta.
+        </>
+      )}
+    </div>
+  )
+}
+
 function SessionRow({ row, t }) {
   return (
     <Link
@@ -140,6 +191,7 @@ export default function Plenos() {
   const { data: manifest } = usePlenoClaimsManifest()
   const { data: agendasData } = usePlenoAgendas()
   const { data: findingsData } = usePlenoFindings()
+  const { data: votesData } = usePlenoVotes()
 
   const rows = useMemo(
     () =>
@@ -150,6 +202,12 @@ export default function Plenos() {
         agendas: agendasData?.plenos ?? [],
       }),
     [plenosData, manifest, findingsData, agendasData],
+  )
+
+  const conVerificada = useMemo(() => rows.filter((r) => r.verificado > 0).length, [rows])
+  const conVotos = useMemo(
+    () => (votesData ? new Set((votesData.items ?? []).map((v) => v.plenoId)).size : null),
+    [votesData],
   )
 
   return (
@@ -197,6 +255,11 @@ export default function Plenos() {
         </div>
         {plenosData?.generatedAt && <DataAsOf iso={plenosData.generatedAt} label="Plenos" />}
       </div>
+      <Leyenda
+        total={plenosData?.stats?.total ?? rows.length}
+        conVerificada={conVerificada}
+        conVotos={conVotos}
+      />
       <Card>
         {loading && (
           <div style={{ padding: 12, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>…</div>
