@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { Card, Pill } from '../components/Primitives'
 import { EcuacionCoste } from '../components/eficiencia/EcuacionCoste'
+import { estiloFicha } from '../components/eficiencia/ficha.css.js'
 import { TicksPares } from '../components/eficiencia/TicksPares'
 import { TablaPares } from '../components/eficiencia/TablaPares'
 import { DeclaracionEntregas } from '../components/eficiencia/DeclaracionEntregas'
@@ -94,6 +95,7 @@ export default function ServicioDetalle() {
 
   return (
     <div className="cp-page" style={{ padding: 24, maxWidth: 820, margin: '0 auto' }}>
+      <style>{estiloFicha}</style>
       <Link
         to="/eficiencia"
         className="mono"

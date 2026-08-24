@@ -120,6 +120,15 @@ export const estiloLibro = `
 
 @media (max-width: 720px) {
   .cp-libro { min-width: 0; table-layout: auto; }
+  /* Con la tabla en display:block, un table-caption se queda encajonado en la
+     anchura de la primera celda: el pie salía en una columna de 120px y doce
+     líneas. Vuelve a bloque. (Aquí dentro no entra un acento invertido: cerraría
+     el literal. Van dos veces ya.) */
+  .cp-libro caption { display: block; width: auto; }
+  /* El espaciador que separa los filtros del botón de agrupar empuja el botón
+     a una fila propia. En una pantalla estrecha eso es una fila entera para un
+     control secundario. */
+  .cp-libro-filtros > span[style] { display: none; }
   .cp-libro thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .cp-libro, .cp-libro tbody, .cp-libro tr, .cp-libro td { display: block; width: auto; }
   .cp-libro tr { border-bottom: 1px solid var(--border2); padding: 14px 0; }
@@ -178,5 +187,20 @@ export const estiloLibro = `
 .cp-libro-gestion .cp-c-responde { width: 11%; }
 @media (max-width: 720px) {
   .cp-libro-gestion { min-width: 0; }
+  /* Los anchos por columna son más específicos que el width:auto con el que la
+     tabla se desapila, así que en bloque sobrevivían: cada celda se quedaba en
+     el 24 % del ancho del móvil y la página entera salía en una columna de
+     180px. El libro de servicios no lo notaba porque sus anchos van sin
+     prefijo de tabla. */
+  .cp-libro-gestion td,
+  .cp-libro-gestion th,
+  .cp-libro-gestion .cp-c-servicio,
+  .cp-libro-gestion .cp-c-unidad,
+  .cp-libro-gestion .cp-c-posicion,
+  .cp-libro-gestion .cp-c-decada,
+  .cp-libro-gestion .cp-c-decir,
+  .cp-libro-gestion .cp-c-responde {
+    width: auto;
+  }
 }
 `

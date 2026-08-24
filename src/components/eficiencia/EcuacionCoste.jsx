@@ -16,8 +16,8 @@ export function EcuacionCoste({ indicador, formatea, entrega }) {
   const congelada = i.declaracion?.denominador?.congelada
   const desde = i.declaracion?.denominador?.desde
 
-  const celda = (rotulo, valor, nota, tono) => (
-    <span>
+  const celda = (area, rotulo, valor, nota, tono) => (
+    <span className={`cp-eq-${area}`}>
       <span
         className="mono"
         style={{
@@ -55,10 +55,10 @@ export function EcuacionCoste({ indicador, formatea, entrega }) {
     </span>
   )
 
-  const signo = (s) => (
+  const signo = (s, area) => (
     <span
       aria-hidden="true"
-      className="mono"
+      className={`mono cp-eq-${area}`}
       style={{ fontSize: 'var(--fs-card)', color: 'var(--ink50)' }}
     >
       {s}
@@ -66,33 +66,23 @@ export function EcuacionCoste({ indicador, formatea, entrega }) {
   )
 
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr auto 1fr auto auto',
-        gap: 12,
-        alignItems: 'center',
-        marginTop: 18,
-        padding: 16,
-        background: 'var(--surf)',
-        border: '1px solid var(--border2)',
-        borderRadius: 'var(--r-card)',
-      }}
-    >
+    <div className="cp-ecuacion">
       {celda(
+        'num',
         `Coste declarado ${entrega ?? ''}`.trim(),
         `${i.numerador.valor.toLocaleString('es-ES', { maximumFractionDigits: 0 })} €`,
         'actualizado cada entrega',
       )}
-      {signo('÷')}
+      {signo('÷', 'div')}
       {celda(
+        'den',
         `${i.divisor.plural.charAt(0).toUpperCase()}${i.divisor.plural.slice(1)} declaradas`,
         `${i.denominador.valor.toLocaleString('es-ES')}`,
         congelada ? `la misma cifra desde ${desde}` : 'declarada en esta entrega',
         congelada ? 'var(--warn-ink)' : undefined,
       )}
-      {signo('=')}
-      <span style={{ textAlign: 'right' }}>
+      {signo('=', 'eq')}
+      <span className="cp-eq-res">
         <span
           className="mono"
           style={{

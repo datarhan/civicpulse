@@ -124,9 +124,11 @@ export function FilaServicio({ indicador, formatea, competencia, x0, x1, conNomb
         {dibujable ? (
           <>
             <MiniSerieSvg puntos={serie.puntos} x0={x0} x1={x1} alto={24} conMediana />
-            <span className="cp-fila-meta mono">
-              {serie.reales ? '€ constantes' : 'corrientes'}
-            </span>
+            {/* Sólo la EXCEPCIÓN. «€ constantes» lo dice el pie de la tabla una
+                vez; repetirlo quince veces gastaba dos líneas por fila para no
+                distinguir ninguna de ninguna. Lo que sí distingue es la fila
+                que no puede ir deflactada, y ésa se marca. */}
+            {!serie.reales && <span className="cp-fila-meta mono">euros corrientes</span>}
           </>
         ) : (
           <span className="cp-fila-meta mono">sin serie dibujable</span>

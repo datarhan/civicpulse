@@ -59,12 +59,11 @@ export function TicksPares({ indicador, formatea }) {
       </div>
 
       <div
-        className="mono"
+        className="mono cp-cuantiles"
         style={{
           display: 'flex',
           justifyContent: 'space-between',
           gap: 8,
-          flexWrap: 'wrap',
           fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           marginTop: 2,
@@ -76,9 +75,9 @@ export function TicksPares({ indicador, formatea }) {
             vino a arreglar una altura más arriba. Con los cinco cuantiles cada
             uno cae donde de verdad está. */}
         <span>p0 · {formatea(extremos.min)}</span>
-        <span>p25 · {formatea(p.p25)}</span>
+        <span className="cp-cuantil-medio">p25 · {formatea(p.p25)}</span>
         <span>mediana · {formatea(p.mediana)}</span>
-        <span>p75 · {formatea(p.p75)}</span>
+        <span className="cp-cuantil-medio">p75 · {formatea(p.p75)}</span>
         <span>p100 · {formatea(extremos.max)}</span>
       </div>
 
