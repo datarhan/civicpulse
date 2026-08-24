@@ -167,8 +167,9 @@ export default function ServicioDetalle() {
             className="mono"
             style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 8 }}
           >
-            Coste declarado:{' '}
-            {i.numerador.valor === null ? '0 €' : `${i.numerador.valor.toLocaleString('es-ES')} €`}
+            {i.numerador.valor === null
+              ? 'El ayuntamiento no declara coste para este servicio: la casilla viene vacía, no a cero.'
+              : `Coste declarado: ${i.numerador.valor.toLocaleString('es-ES')} €`}
           </p>
           {/* Sin el `que`: para una ficha bloqueada, `MOTIVO` dice lo mismo y
               más —incluye por qué compararla diría que aquí es gratis—, así que

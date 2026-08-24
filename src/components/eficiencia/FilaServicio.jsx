@@ -63,7 +63,11 @@ export function FilaServicio({ indicador, formatea, competencia, x0, x1, conNomb
       }`
     : i.valor === null
       ? (i.numerador.motivo ?? i.denominador.motivo) === 'concesion'
-        ? 'fuera de los libros del ayuntamiento'
+        ? // NO «fuera de los libros del ayuntamiento» a secas: la revisión de
+          // superficies leyó eso como que la casa no tiene ninguna relación
+          // económica con el agua, y en la misma página hay una concesión de
+          // 55,69 M€ hasta 2043. Lo que está fuera es el COSTE declarado.
+          'sin coste declarado: lo paga el concesionario'
         : 'sin cociente en esta entrega'
       : 'no llegan a quince comparables (reglas 4 y 5)'
 
@@ -80,7 +84,18 @@ export function FilaServicio({ indicador, formatea, competencia, x0, x1, conNomb
       </td>
 
       <td className="cp-c-coste mono">
-        {i.numerador.valor === null ? '0 €' : `${num(i.numerador.valor, 0)} €`}
+        {/* «—», nunca «0 €». El motor DESCARTA a propósito el coste de un
+            servicio concedido —lo paga el concesionario y lo recupera del
+            recibo— y `numerador.valor` viene a null, no a cero. Escribir un
+            cero ahí publica una cifra que el snapshot se niega a publicar, y
+            un cero junto a un servicio real se lee como «aquí es gratis»: la
+            trampa exacta que esta página se construyó para no pisar. Lo cazó
+            review:surfaces. */}
+        {i.numerador.valor === null ? (
+          <span style={{ color: 'var(--ink50)' }}>—</span>
+        ) : (
+          `${num(i.numerador.valor, 0)} €`
+        )}
       </td>
 
       <td className="cp-c-unidad mono">
