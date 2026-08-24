@@ -444,6 +444,22 @@ npm run reconcile:attribution --silent \
 npm run ifcn:cadence --silent -- --strict \
   || log "warn: IFCN cadence gap — no finding published this ISO week yet; promote one manually"
 
+# ---- rederivar lo que dependa de lo raspado ---------------------------
+# `scrape:pleno-agendas`, arriba, REESCRIBE plenos-agendas.json entero — y ese
+# fichero lo escriben tres pasos: el raspado, `compute:dept-stats`
+# (`plazosVencidosCount`, `deptCoverage`) y `refresh` (`builtFrom`). Raspar sin
+# rederivar dejaba el fichero pelado y este cron lo comiteaba: cinco días
+# seguidos medidos, con la nocturna de CI publicándolo completo hacia las 05:20
+# y esta tubería dejándolo sin esas claves a las 11:1x. Los dos consumidores
+# hacen `?? 0` y luego `> 0`, así que el aviso de compromisos vencidos
+# desaparecía de la portada y del tícker sin que nada se pusiera rojo.
+#
+# Va aquí, después de TODO el trabajo de datos y antes del commit, para que las
+# derivaciones describan el estado final y no uno intermedio. Es
+# dependency-driven: no hay lista que mantener.
+npm run refresh \
+  || log "warn: refresh falló — puede comitearse un derivado sin rederivar (lo caza tests/data-graph-frescura.test.ts)"
+
 # ---- commit + push the regenerated data -------------------------------
 # ONE pathspec stages, gates and commits. Everything the pipeline touches under
 # public/data, minus the two files owned by the OTHER crons (quejas per-minute ·
