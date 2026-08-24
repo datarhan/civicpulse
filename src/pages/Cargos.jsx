@@ -98,8 +98,24 @@ function QuejaBadge({ slug }) {
   )
 }
 
+/**
+ * Where this councillor's areas lead in the site, NOT what they hold.
+ *
+ * These are department pages, and a department is reachable from more than one
+ * portfolio: several councillors legitimately show the same chip. Rendered bare
+ * — a lone word under a person's name — the row reads as a list of their
+ * competences instead, and on 2026-08-24 a reader took «Urbanismo →» on Rafael
+ * Gómez Sánchez's card (from his área «Urbanizaciones») as a contradiction of
+ * /eficiencia, which names Teresa Pozuelo Martín over the urbanismo figure.
+ * Both pages were right; the unlabelled chip was not. The delegated areas
+ * verbatim are printed above by the caller — this row is navigation, and now
+ * says so.
+ */
+const MAX_CHIPS = 4
+
 function DepartmentLinks({ portfolios }) {
   const { locale } = useLocale()
+  const t = useT()
   // Collect unique slugs from all portfolios — some officials own 3-4
   // concejalías and the user should be able to jump to any of them.
   const slugs = []
@@ -112,17 +128,31 @@ function DepartmentLinks({ portfolios }) {
     }
   }
   if (slugs.length === 0) return null
+  const shown = slugs.slice(0, MAX_CHIPS)
+  const hidden = slugs.length - shown.length
   return (
     <div
       style={{
         marginTop: 8,
         display: 'flex',
         flexWrap: 'wrap',
+        alignItems: 'baseline',
         gap: 6,
         fontSize: 'var(--fs-micro)',
       }}
     >
-      {slugs.slice(0, 4).map((slug) => (
+      <span
+        className="mono"
+        style={{
+          color: 'var(--ink50)',
+          letterSpacing: '.06em',
+          textTransform: 'uppercase',
+          fontSize: 'var(--fs-micro)',
+        }}
+      >
+        {t('cargos.card.departamentos')}
+      </span>
+      {shown.map((slug) => (
         <Link
           key={slug}
           to={`/departamentos/${slug}`}
@@ -140,6 +170,13 @@ function DepartmentLinks({ portfolios }) {
           {locale === 'ca' ? DEPARTMENT_LABEL[slug].ca : DEPARTMENT_LABEL[slug].es} →
         </Link>
       ))}
+      {/* Never a silent cap: a row that stops at four without saying so reads
+          as "these are all of them". */}
+      {hidden > 0 && (
+        <span className="mono" style={{ color: 'var(--ink50)' }}>
+          {t('cargos.card.departamentos.mas').replace('{n}', hidden)}
+        </span>
+      )}
     </div>
   )
 }
