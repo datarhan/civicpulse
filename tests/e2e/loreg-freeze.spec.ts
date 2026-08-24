@@ -101,11 +101,24 @@ async function montar(page: Page, ruta: string, h1: RegExp, ancla: string): Prom
   await expect(page.getByText(ancla, { exact: false }).first()).toBeVisible({ timeout: 15000 })
 }
 
-/** Cuántas veces aparece cada cosa en el texto que un navegador pintó. */
+/**
+ * Cuántas veces aparece cada cosa en lo que un navegador pintó.
+ *
+ * `etiquetas` cuenta ENLACES de atribución —uno por cargo nombrado, apuntando a
+ * su ficha en /cargos— y no el rótulo «Competencia delegada». El rótulo era el
+ * proxy mientras la capa vivía sólo en tarjetas; el libro de servicios la pinta
+ * como una columna con otra cabecera, y contar el rótulo daba cero con
+ * veintidós nombres a la vista. El enlace es la afirmación de verdad: es lo que
+ * lleva de una cifra a una persona, y es lo que la ventana LOREG apaga.
+ */
 async function cuenta(page: Page): Promise<{ etiquetas: number; nombres: number }> {
   const texto = await page.locator('body').innerText()
+  const slugs = new Set((COMPETENCIAS.asignaciones as { oficial: string }[]).map((a) => a.oficial))
+  const enlaces = await page
+    .locator('a[href^="/cargos/"]')
+    .evaluateAll((els) => els.map((e) => (e as HTMLAnchorElement).getAttribute('href') ?? ''))
   return {
-    etiquetas: (texto.match(/Competencia delegada/gi) ?? []).length,
+    etiquetas: enlaces.filter((h) => slugs.has(h.replace('/cargos/', ''))).length,
     nombres: NOMBRES.filter((n) => texto.includes(n)).length,
   }
 }

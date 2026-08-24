@@ -61,7 +61,13 @@
      estos valores en vez de repetirlos. */
   --ink70: rgba(11, 15, 25, 0.78); /* secundario, cuerpo largo — 9,74:1 */
   --ink50: rgba(11, 15, 25, 0.62); /* meta, eyebrow, etiqueta — 5,41:1 */
-  --ink30: rgba(11, 15, 25, 0.3); /* rayas y marcas finas — no es texto */
+  /* Rayas y marcas finas. NO es texto y no puede serlo: 2,01:1 sobre papel.
+     Estuvo referenciada desde /empleo antes de existir —tres `var(--ink30)`
+     sin declaración, que el navegador resolvía heredando— y declararla las
+     encendió de golpe. Lo cazó contraste.spec.ts, que es la única suite de
+     esta casa que compone alfa. Si hace falta tinta clara para texto, el
+     suelo es --ink50. */
+  --ink30: rgba(11, 15, 25, 0.3);
   --ink20: rgba(11, 15, 25, 0.12); /* bordes — no es texto */
   --ink10: rgba(11, 15, 25, 0.06); /* wash — no es texto */
 

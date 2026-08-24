@@ -93,11 +93,15 @@ function OfferRow({ o, t }) {
           </span>
           {o.location && (
             <>
-              <span style={{ color: 'var(--ink30)' }}>·</span>
+              <span aria-hidden="true" style={{ color: 'var(--ink20)' }}>
+                ·
+              </span>
               <span>{o.location}</span>
             </>
           )}
-          <span style={{ color: 'var(--ink30)' }}>·</span>
+          <span aria-hidden="true" style={{ color: 'var(--ink20)' }}>
+            ·
+          </span>
           <span className="mono" style={{ color: 'var(--ink50)' }}>
             {fmtDateShort(o.publishedAt)}
           </span>
@@ -202,7 +206,7 @@ function Pager({ page, totalPages, onPage, t }) {
     borderRadius: 'var(--r-input)',
     border: '1px solid var(--border)',
     background: 'var(--paper)',
-    color: enabled ? 'var(--ink)' : 'var(--ink30)',
+    color: enabled ? 'var(--ink)' : 'var(--ink50)',
     cursor: enabled ? 'pointer' : 'default',
   })
   return (

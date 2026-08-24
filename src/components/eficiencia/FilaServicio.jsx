@@ -48,6 +48,11 @@ export function FilaServicio({ indicador, formatea, competencia, x0, x1, conNomb
   // El texto que sostiene la geometría. La posición no puede quedar codificada
   // sólo por un punto lleno o hueco: va también aquí, en el DOM, que es lo que
   // encuentran un lector de pantalla y la pasada axe.
+  //
+  // Tres motivos distintos para no situarse, y decirlos como uno solo era
+  // falso: el agua y el alcantarillado NO se quedan sin posición por falta de
+  // comparables, se quedan sin cociente porque su coste no cruza los libros del
+  // ayuntamiento. Culpar a la muestra de eso inventaba una carencia que no hay.
   const posTexto = i.pares
     ? `p${i.pares.percentil}${
         Array.isArray(i.pares.percentilBanda)
@@ -56,7 +61,11 @@ export function FilaServicio({ indicador, formatea, competencia, x0, x1, conNomb
             }`
           : ''
       }`
-    : 'no llegan a quince comparables (reglas 4 y 5)'
+    : i.valor === null
+      ? (i.numerador.motivo ?? i.denominador.motivo) === 'concesion'
+        ? 'fuera de los libros del ayuntamiento'
+        : 'sin cociente en esta entrega'
+      : 'no llegan a quince comparables (reglas 4 y 5)'
 
   return (
     <tr className="cp-fila">

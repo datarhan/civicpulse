@@ -17,7 +17,9 @@ import { geometriaEje, ticksRango } from './eje-percentil'
  *
  * Accesibilidad: la posición no puede quedar codificada sólo por geometría ni
  * sólo por color. El `aria-label` la lleva como texto, y quien la use en una
- * fila debe además imprimir el percentil legible al lado.
+ * fila debe además imprimir el percentil legible al lado. Sin `descripcion` el
+ * eje se marca `aria-hidden`: es la forma de decir «esto es decoración», y es
+ * distinto de anunciar una imagen sin nombre.
  */
 export function EjePercentil({
   percentil,
@@ -55,9 +57,12 @@ export function EjePercentil({
         </div>
       )}
 
+      {/* Sin descripción, el eje es DECORATIVO y se marca como tal: un
+          `role="img"` con `aria-label=""` es una imagen que se anuncia y no
+          dice nada, y axe lo suspende con razón. Pasa en la leyenda, donde los
+          dos ejemplos los explica el texto de al lado. */}
       <div
-        role="img"
-        aria-label={descripcion}
+        {...(descripcion ? { role: 'img', 'aria-label': descripcion } : { 'aria-hidden': 'true' })}
         style={{
           position: 'absolute',
           left: 0,
@@ -94,6 +99,7 @@ export function EjePercentil({
         {ticksRango(ticks).map((left, k) => (
           <div
             key={k}
+            data-eje-tick=""
             style={{
               position: 'absolute',
               left: pct(left),

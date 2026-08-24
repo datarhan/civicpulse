@@ -101,6 +101,10 @@ export function LibroServicios({
     sinCociente: indicadores.filter((i) => i.valor === null).length,
   }
 
+  const totalCoste = indicadores
+    .filter((i) => i.valor !== null)
+    .reduce((s, i) => s + (i.numerador.valor ?? 0), 0)
+
   const x = useMemo(() => {
     const listas = indicadores.map(
       (i) => enTerminosReales((i.serie ?? []).filter((q) => q.estado === 'declarado')).puntos,
@@ -236,6 +240,35 @@ export function LibroServicios({
           </tbody>
         </table>
       </div>
+
+      {/* El total, y sobre todo lo que NO es. Sin esta frase, 17 millones
+          debajo de una tabla municipal se leen como el presupuesto del
+          ayuntamiento; son sólo los servicios que tienen cociente. */}
+      <p
+        style={{
+          marginTop: 12,
+          fontSize: 'var(--fs-meta)',
+          color: 'var(--ink50)',
+          maxWidth: '86ch',
+        }}
+      >
+        Los {cuentas.total - cuentas.sinCociente} servicios con cociente declaran{' '}
+        <strong className="mono">
+          {totalCoste.toLocaleString('es-ES', {
+            style: 'currency',
+            currency: 'EUR',
+            maximumFractionDigits: 0,
+          })}
+        </strong>{' '}
+        de coste efectivo en la entrega de {entrega}. No es el gasto del ayuntamiento: son estos{' '}
+        {cuentas.total - cuentas.sinCociente}. La posición no se colorea —un coste unitario alto es
+        un precio, no un suspenso— y el ámbar marca sólo hechos sobre la declaración. Por qué no hay
+        nota global, en la{' '}
+        <a href="/metodologia#eficiencia" style={{ color: 'var(--civic)' }}>
+          metodología
+        </a>
+        .
+      </p>
 
       {filas.length === 0 && (
         <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>

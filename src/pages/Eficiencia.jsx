@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Card } from '../components/Primitives'
 import { CoberturaEficiencia } from '../components/eficiencia/CoberturaEficiencia'
 import { EstadoRendicion } from '../components/eficiencia/EstadoRendicion'
@@ -29,10 +29,10 @@ import { useT } from '../i18n'
  *
  * Espacios de anclas: `#sec-*` secciones · `#g-<area>` grupos, cuando el libro
  * se agrupa · `#hallazgos` la sección firmada. Las fichas ya NO son anclas:
- * cada servicio es su propia ruta, `/eficiencia/:id`. Un `#s-<id>` de antes
- * sigue funcionando —lo redirige el efecto de abajo— porque uno de ellos vive
- * dentro de `eficiencia-preguntas.json`, que es curado y no se reescribe desde
- * código.
+ * cada servicio es su propia ruta, `/eficiencia/:id`. Un `#s-<id>` o un
+ * `#r-<id>` de antes siguen funcionando —los redirige el efecto de abajo—
+ * porque `eficiencia-preguntas.json` cita uno de cada, y ese fichero es curado:
+ * se edita por PR, nunca desde código.
  *
  * Lo que sigue de aquí describe el reparto por área, que ahora es un modo de
  * lectura del libro y no la estructura de la página:
@@ -61,16 +61,24 @@ import { useT } from '../i18n'
 export default function Eficiencia() {
   const t = useT()
   const navigate = useNavigate()
+  const { hash } = useLocation()
 
   // `#s-<id>` era el ancla de cada ficha cuando las quince vivían en esta
   // página. Ahora cada una es una ruta, y este efecto traduce el enlace viejo
   // en lugar de dejarlo aterrizar en el vacío. No es de adorno: el fichero
   // curado `eficiencia-preguntas.json` cita uno, y ese fichero se edita por PR,
   // nunca desde aquí.
+  // Depende del HASH, no sólo del montaje: quien ya está en /eficiencia y pulsa
+  // un `#s-` sólo cambia el fragmento, la página no se vuelve a montar y un
+  // efecto de montaje se quedaría mirando. Lo cazó el spec de las preguntas
+  // registradas, que es exactamente ese recorrido.
   useEffect(() => {
-    const hash = window.location.hash
-    if (hash.startsWith('#s-')) navigate(`/eficiencia/${hash.slice(3)}`, { replace: true })
-  }, [navigate])
+    // `#s-<id>` era la ficha y `#r-<id>` su bloque de resultado. Los dos viven
+    // ahora dentro de /eficiencia/<id>, y `eficiencia-preguntas.json` —curado,
+    // se edita por PR y nunca desde aquí— cita uno de cada.
+    const m = /^#([sr])-(.+)$/.exec(hash)
+    if (m) navigate(`/eficiencia/${m[2]}`, { replace: true })
+  }, [hash, navigate])
   const { loading, error, data } = useIndicadores()
   const { data: hallazgos } = useEficienciaFindings()
   const { data: preguntas } = useEficienciaPreguntas()

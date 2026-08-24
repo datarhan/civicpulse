@@ -21,7 +21,7 @@ function Ejemplo({ percentil, banda, children }) {
       }}
     >
       <span style={{ width: 120, flexShrink: 0 }}>
-        <EjePercentil percentil={percentil} banda={banda} descripcion="" />
+        <EjePercentil percentil={percentil} banda={banda} />
       </span>
       <span>{children}</span>
     </span>
