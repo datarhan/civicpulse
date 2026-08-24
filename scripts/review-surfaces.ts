@@ -47,6 +47,7 @@ import {
   chunkRenderedText,
   parseReviewArgs,
   readCacheEntry,
+  sirveElVeredictoCacheado,
   clasificarFalloDeNavegacion,
   pasadaHabla,
   REINTENTOS_SERVIDOR,
@@ -465,8 +466,24 @@ async function main() {
 
     const h = hashOf(renderedText)
     const prev = readCacheEntry(cache[route])
-    if (!force && prev && prev.hash === h) {
+    if (!force && sirveElVeredictoCacheado(prev, h, READER_REVIEW_PROMPT_VERSION)) {
       skipped += 1
+      // Se REESCRIBE la entrada: mismo hash, mismos señalamientos, `at` a ahora.
+      // Saltarse la llamada no es lo mismo que no haber comprobado nada — se ha
+      // renderizado la página y se ha visto que es idéntica, y eso es
+      // exactamente lo que `check:surfaces` quiere saber. Sin esta línea, el
+      // barrido leía 30 de 30 rutas al 100 % y el digest seguía diciendo «9
+      // rutas sin leer desde hace más de 3 días» el mismo día.
+      //
+      // Los `findings` se copian tal cual: actualizar la fecha NO puede perder
+      // un hallazgo vivo, que sería cambiar un aviso falso por uno silenciado.
+      cache[route] = {
+        hash: prev!.hash,
+        findings: prev!.findings,
+        at: new Date().toISOString(),
+        promptVersion: READER_REVIEW_PROMPT_VERSION,
+      }
+      persistirCache()
       // Se guardan CRUDOS y se filtran al imprimir: quitar un descarte del
       // registro tiene que devolver el señalamiento sin volver a llamar al
       // modelo. Un veredicto humano se revoca leyendo un fichero, no gastando
@@ -585,8 +602,14 @@ async function main() {
     totalDropped += dropped.length
     // Only a route reviewed END TO END may be remembered as reviewed. Caching a
     // partial pass would retire the unread part of the page permanently.
-    if (complete) cache[route] = { hash: h, findings, at: new Date().toISOString() }
-    else delete cache[route]
+    if (complete) {
+      cache[route] = {
+        hash: h,
+        findings,
+        at: new Date().toISOString(),
+        promptVersion: READER_REVIEW_PROMPT_VERSION,
+      }
+    } else delete cache[route]
     // Y se baja al disco AHORA, ruta a ruta, en vez de sólo al terminar el
     // bucle. El 2026-08-14 el barrido leyó cinco páginas en diecinueve minutos
     // y murió en la sexta: como la única escritura estaba después del bucle, se
