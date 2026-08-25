@@ -137,7 +137,7 @@ function ClaimCard({ item }) {
         </Pill>
       </div>
       <div
-        style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 8, lineHeight: 1.5 }}
+        style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 8, lineHeight: 1.5 }}
       >
         {verification.summary}
       </div>
@@ -214,7 +214,7 @@ export function ClaimLedger({ filter, limit = 20, emptyHint, items, showSummary 
           padding: 14,
           background: 'var(--soft)',
           borderRadius: 'var(--r-input)',
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           lineHeight: 1.5,
         }}
@@ -278,7 +278,7 @@ export function ClaimLedgerSection({ filter, limit, title, eyebrow, hint }) {
       {hint && (
         <p
           style={{
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             marginTop: 4,
             marginBottom: 10,

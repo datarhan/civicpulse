@@ -103,7 +103,7 @@ export function FichaSociedad({ sociedad }) {
       >
         {s.denominacion}
       </h3>
-      <p style={{ margin: '0 0 10px', fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}>
+      <p style={{ margin: '0 0 10px', fontSize: 'var(--fs-aux)', color: 'var(--ink70)' }}>
         {s.porQueAparece}
       </p>
 
@@ -128,7 +128,7 @@ export function FichaSociedad({ sociedad }) {
           style={{
             margin: '12px 0 0',
             paddingLeft: 18,
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink70)',
             lineHeight: 1.55,
           }}

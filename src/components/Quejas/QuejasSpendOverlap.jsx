@@ -66,7 +66,7 @@ export default function QuejasSpendOverlap() {
       />
       <div
         style={{
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           marginTop: 6,
           marginBottom: 10,

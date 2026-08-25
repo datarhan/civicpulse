@@ -1171,7 +1171,7 @@ export default function Metodologia() {
           presupuesto CONPREL, plenos, padrón INE, paro SEPE). La fuente primaria siempre gana.
         </p>
 
-        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-body)' }}>Escala de veredictos</h3>
+        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Escala de veredictos</h3>
         <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
           <li>
             <strong>Verificado.</strong> El número, fecha o hecho citado coincide con el documento
@@ -1201,7 +1201,7 @@ export default function Metodologia() {
           </li>
         </ul>
 
-        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-body)' }}>Disciplina antilibellos</h3>
+        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Disciplina antilibellos</h3>
         <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
           <li>
             <strong>Acusaciones opinativas.</strong> Cuando el LLM extrae una "acusación pública"
@@ -1254,7 +1254,7 @@ export default function Metodologia() {
           </li>
         </ul>
 
-        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-body)' }}>
+        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>
           Preservación de fuentes (Wayback)
         </h3>
         <p style={{ marginTop: 6 }}>
@@ -1265,7 +1265,7 @@ export default function Metodologia() {
           puede acceder a la copia congelada.
         </p>
 
-        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-body)' }}>ClaimReview (schema.org)</h3>
+        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>ClaimReview (schema.org)</h3>
         <p style={{ marginTop: 6 }}>
           Un hallazgo que lleva una <strong>referencia de contradicción</strong> se publica además
           como datos estructurados{' '}
@@ -1312,7 +1312,7 @@ export default function Metodologia() {
           contradicción el mismo día.
         </p>
 
-        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-body)' }}>Política de correcciones</h3>
+        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Política de correcciones</h3>
         <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
           <li>
             Cada modificación posterior al primer publicado a <code>title</code>,{' '}
@@ -1378,7 +1378,7 @@ export default function Metodologia() {
           </li>
         </ul>
 
-        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-body)' }}>Fuentes auditadas</h3>
+        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Fuentes auditadas</h3>
         <ul style={{ margin: '6px 0 0', paddingLeft: 20, fontSize: 'var(--fs-aux)' }}>
           <li>
             <strong>PLACSP / Gobierto</strong> — contratos municipales adjudicados y en licitación.
@@ -1422,7 +1422,7 @@ export default function Metodologia() {
           ningún script.
         </p>
 
-        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-body)' }}>Alineación con IFCN</h3>
+        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Alineación con IFCN</h3>
         <p style={{ marginTop: 6, fontSize: 'var(--fs-aux)' }}>
           Este apartado cubre los cinco pilares del Código de Principios de IFCN: (1) compromiso con
           la <em>no partisanía</em> y la equidad — el mismo criterio se aplica a cada bloc; (2)
@@ -1464,11 +1464,14 @@ export default function Metodologia() {
           metros cuadrados de limpieza y los mismos puntos de luz desde 2018-2019, con el coste
           actualizado cada año. Un cociente así{' '}
           <em>puede subir sin que el servicio haya cambiado</em>, y su serie no se puede leer como
-          gestión: mide el precio, no el rendimiento. Cada tarjeta afectada lo dice, con el año
-          desde el que la cifra no se mueve y cuántos municipios comparables hacen lo mismo —porque
-          no es una rareza local—, y esa salvedad se deriva del dato: si el ayuntamiento vuelve a
-          medir, desaparece sola. <code>check:indicadores</code> falla si el aviso y el dato dejan
-          de ir juntos, en cualquiera de las dos direcciones. La medición completa está en{' '}
+          gestión: mide el precio, no el rendimiento. El libro de servicios lo dice una vez sobre la
+          tabla —cuántas filas dividen entre una cantidad que nadie vuelve a medir— y cada fila
+          lleva el año desde el que su cifra no se mueve; cuántos municipios comparables hacen lo
+          mismo va en la ficha del servicio, porque no es una rareza local. Toda esa salvedad se
+          deriva del dato: si el ayuntamiento vuelve a medir, desaparece sola, y si dos filas se
+          quedaron paradas por motivos distintos la frase baja otra vez a cada una.{' '}
+          <code>check:indicadores</code> falla si el aviso y el dato dejan de ir juntos, en
+          cualquiera de las dos direcciones. La medición completa está en{' '}
           <a href="/laboratorio/frontera" style={{ color: 'var(--civic)' }}>
             /laboratorio/frontera
           </a>
@@ -2056,7 +2059,7 @@ export default function Metodologia() {
           fecha a mano que certifica actualidad se queda vieja justo cuando más
           importa que no lo esté. Sin git no se escribe ninguna, que es mejor
           que escribir una inventada. */}
-      <p style={{ marginTop: 22, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+      <p style={{ marginTop: 22, fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
         {__REVISION_METODOLOGIA__ ? (
           <>Última revisión de este documento: {fmtDateLong(__REVISION_METODOLOGIA__)}. </>
         ) : null}

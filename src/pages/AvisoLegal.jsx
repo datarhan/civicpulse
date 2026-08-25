@@ -421,7 +421,7 @@ export default function AvisoLegal() {
           decía «2 de julio» mientras el fichero incorporaba compromisos
           nuevos. Una fecha de vigencia que va por detrás de lo vigente es
           justo lo contrario de lo que una fecha de vigencia sirve. */}
-      <p style={{ marginTop: 22, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+      <p style={{ marginTop: 22, fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
         {__REVISION_AVISO_LEGAL__ ? (
           <>Versión vigente: {fmtDateLong(__REVISION_AVISO_LEGAL__)}. </>
         ) : null}

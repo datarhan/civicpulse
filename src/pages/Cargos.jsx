@@ -364,7 +364,7 @@ function RetribucionesPanel() {
           </div>
         </div>
       )}
-      <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', lineHeight: 1.5 }}>
+      <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.5 }}>
         {data.source?.note}{' '}
         {data.source?.home && (
           <ExtLink href={data.source.home} style={{ color: 'var(--civic)' }}>
@@ -419,7 +419,7 @@ function PlantillaCard() {
       </div>
       <div
         style={{
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           lineHeight: 1.5,
           marginTop: 8,
@@ -438,7 +438,7 @@ function PlantillaCard() {
             marginTop: 12,
             paddingTop: 10,
             borderTop: '1px solid var(--border)',
-            fontSize: 'var(--fs-micro)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             lineHeight: 1.5,
           }}
@@ -539,7 +539,7 @@ function OfficialCard({ o, big = false, bioRoute }) {
                   fontWeight: 700,
                   letterSpacing: '.1em',
                   textTransform: 'uppercase',
-                  color: 'var(--accent)',
+                  color: 'var(--civic)',
                 }}
               >
                 Alcalde
@@ -560,7 +560,7 @@ function OfficialCard({ o, big = false, bioRoute }) {
           {o.portfolios.length > 0 && (
             <div
               style={{
-                fontSize: 'var(--fs-micro)',
+                fontSize: 'var(--fs-aux)',
                 color: 'var(--ink50)',
                 marginTop: 4,
                 lineHeight: 1.35,

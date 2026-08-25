@@ -155,7 +155,7 @@ function SourceRow({ src, num }) {
           {src.previousUrl && (
             <div
               style={{
-                fontSize: 'var(--fs-micro)',
+                fontSize: 'var(--fs-aux)',
                 color: 'var(--ink50)',
                 marginTop: 2,
                 lineHeight: 1.3,

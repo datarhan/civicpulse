@@ -169,7 +169,7 @@ function ClaimLedger({ claims }) {
       // 55,6 millones para 17 años»: cifra, plazo y objeto, justo lo que esta
       // página contrasta contra los contratos de PLACSP. Lo que pasó es que el
       // extractor no sacó nada, que es un hecho sobre el extractor.
-      <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', fontStyle: 'italic' }}>
+      <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
         El extractor no sacó ninguna afirmación de este titular. No es lo mismo que no las tenga.
       </div>
     )
@@ -473,7 +473,7 @@ function FactCheckRail({ factcheck }) {
     return (
       <div
         style={{
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           marginTop: 8,
           lineHeight: 1.55,
@@ -490,7 +490,7 @@ function FactCheckRail({ factcheck }) {
       {items.slice(0, 6).map((row) => {
         const tone = VERDICT_TONE[row.normalizedVerdict] || 'neutral'
         return (
-          <li key={row.id} style={{ fontSize: 'var(--fs-meta)', lineHeight: 1.45 }}>
+          <li key={row.id} style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.45 }}>
             <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', flexWrap: 'wrap' }}>
               <Pill tone={tone} size="xs">
                 {row.verdict || VERDICT_LABEL[row.normalizedVerdict] || row.normalizedVerdict}
@@ -995,7 +995,7 @@ export default function Laboratorio() {
                             paddingLeft: 18,
                             display: 'grid',
                             gap: 8,
-                            fontSize: 'var(--fs-micro)',
+                            fontSize: 'var(--fs-aux)',
                           }}
                         >
                           {f.corrections.map((c, idx) => (
@@ -1018,13 +1018,10 @@ export default function Laboratorio() {
                               >
                                 {c.original}
                               </div>
-                              <div style={{ color: 'var(--ink90)', marginTop: 1 }}>
-                                {c.corrected}
-                              </div>
+                              <div style={{ color: 'var(--ink)', marginTop: 1 }}>{c.corrected}</div>
                               <div
                                 style={{
                                   marginTop: 2,
-                                  fontStyle: 'italic',
                                   color: 'var(--ink70)',
                                   fontSize: 'var(--fs-micro)',
                                 }}
@@ -1047,7 +1044,7 @@ export default function Laboratorio() {
               padding: 12,
               background: 'var(--soft)',
               borderRadius: 'var(--r-input)',
-              fontSize: 'var(--fs-micro)',
+              fontSize: 'var(--fs-aux)',
               color: 'var(--ink70)',
               lineHeight: 1.55,
             }}

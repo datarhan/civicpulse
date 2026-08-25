@@ -30,7 +30,13 @@ describe('Card prop passthrough', () => {
     )
     expect(html).toContain('role="group"')
     expect(html).toContain('aria-label="Hallazgo"')
-    expect(html).toContain('class="mono"')
+    // La clase del llamante SOBREVIVE junto a la de Card. Antes se comprobaba
+    // `class="mono"` literal, que fijaba que Card no tuviera clase propia:
+    // una prueba que describe el mecanismo en vez del contrato convierte en
+    // regresión justo el cambio que se quería. Es la lección que ya está
+    // escrita tres líneas más abajo sobre el radio, un piso más arriba.
+    expect(html).toMatch(/class="[^"]*\bcp-card\b[^"]*"/)
+    expect(html).toMatch(/class="[^"]*\bmono\b[^"]*"/)
   })
 
   it('keeps its own styling and does not let a passthrough clobber it', () => {
@@ -39,21 +45,51 @@ describe('Card prop passthrough', () => {
         y
       </Card>,
     )
-    // El token, no el número. Esta línea decía `border-radius:12px` y se cayó
-    // en cuanto Card pasó a usar `var(--r-card)` — que es exactamente el
-    // cambio que se quería. Un test que fija el VALOR de un token convierte
-    // adoptar la escala en una regresión, así que aquí se comprueba que Card
-    // usa el token y, aparte, que ese token vale lo que el brandbook dice,
-    // leyéndolo de index.css en vez de repetirlo.
-    expect(html).toContain('border-radius:var(--r-card)')
+    // El estilo del llamante llega y NO se lleva por delante lo de Card: lo de
+    // Card ya no vive en el atributo `style` sino en `.cp-card`, que es lo que
+    // le permite tener `:hover` y `:focus-within` —§16 pide paridad y un
+    // estilo inline no puede darla—. Así que se comprueba lo mismo de siempre
+    // en los dos sitios donde ahora vive: la clase en el marcado y el token en
+    // la hoja, leído de index.css en vez de repetido.
     expect(html).toContain('margin-top:14px')
+    expect(html).toMatch(/class="[^"]*\bcp-card\b[^"]*"/)
     const css = readFileSync(join(__dirname, '..', 'src/index.css'), 'utf8')
+    const regla = css.slice(css.indexOf('.cp-card {'), css.indexOf('.cp-card-flush'))
+    expect(regla).toContain('border-radius: var(--r-card)')
+    expect(regla).toContain('border: 1px solid var(--ink10)')
     expect(css).toMatch(/--r-card:\s*12px/)
+    // §06 · «Card · borde ink10, radio 12, padding 20, sin sombra».
+    expect(regla).toMatch(/padding:\s*20px/)
+    expect(regla).not.toContain('box-shadow')
   })
 
   it('still honours pad=false', () => {
-    expect(renderToStaticMarkup(<Card pad={false}>y</Card>)).toContain('padding:0')
-    expect(renderToStaticMarkup(<Card>y</Card>)).toContain('padding:18px')
+    expect(renderToStaticMarkup(<Card pad={false}>y</Card>)).toMatch(
+      /class="[^"]*\bcp-card-flush\b[^"]*"/,
+    )
+    expect(renderToStaticMarkup(<Card>y</Card>)).not.toMatch(/\bcp-card-flush\b/)
+    const css = readFileSync(join(__dirname, '..', 'src/index.css'), 'utf8')
+    expect(css.slice(css.indexOf('.cp-card-flush'))).toMatch(/padding:\s*0/)
+  })
+
+  /**
+   * §16 · «Todo lo que aparece con onMouseEnter aparece también con onFocus.»
+   * El brandbook cita este componente por su nombre: reaccionaba al puntero
+   * mutando `style.borderColor` dentro de un `onMouseEnter`, de modo que un
+   * lector con teclado no recibía nada — y la tarjeta está en casi doscientos
+   * sitios. La paridad no se puede comprobar en el marcado servido, así que se
+   * comprueba donde vive: la regla lleva los dos selectores o no los lleva.
+   */
+  it('hover y foco van a la par, y ninguno se pinta mutando estilo', () => {
+    const css = readFileSync(join(__dirname, '..', 'src/index.css'), 'utf8')
+    const bloque = css.slice(css.indexOf('.cp-card-hover'))
+    expect(bloque).toContain('.cp-card-hover:hover')
+    expect(bloque).toContain('.cp-card-hover:focus-within')
+    const fuente = readFileSync(join(__dirname, '..', 'src/components/Primitives.jsx'), 'utf8')
+    const card = fuente.slice(fuente.indexOf('export function Card('), fuente.indexOf('PartyTag'))
+    expect(card, 'Card no puede volver a pintar estados mutando style').not.toContain(
+      'onMouseEnter',
+    )
   })
 
   it('does not leak its own props onto the DOM as attributes', () => {

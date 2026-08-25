@@ -237,7 +237,7 @@ function EncajeAggregate() {
   return (
     <p
       style={{
-        fontSize: 'var(--fs-meta)',
+        fontSize: 'var(--fs-aux)',
         color: 'var(--ink50)',
         lineHeight: 1.55,
         maxWidth: 780,

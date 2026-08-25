@@ -32,7 +32,7 @@ export function Pill({ tone = 'neutral', children, size = 'sm', style = {} }) {
         borderRadius: 'var(--r-pill)',
         background: t.bg,
         color: t.fg,
-        fontSize: 'var(--fs-micro)',
+        fontSize: 'var(--fs-aux)',
         fontWeight: 600,
         letterSpacing: '.02em',
         lineHeight: 1,
@@ -87,32 +87,26 @@ export function Delta({ v, size = 11 }) {
  *
  * `{...rest}` goes FIRST so a caller cannot accidentally clobber the hover
  * handlers or the token-driven style below; those stay the component's own.
+ *
+ * La apariencia vive en `.cp-card` (index.css) y no aquí. Dos razones, las dos
+ * del brandbook y las dos medidas:
+ *
+ *   §06 pide «borde ink10, radio 12, padding 20». Estaba a 18 y con
+ *   `--border2`, que en claro es el mismo gris pero en oscuro no sigue la
+ *   escala de tinta.
+ *
+ *   §16 pide paridad puntero/foco, y cita ESTE componente: la tarjeta
+ *   reaccionaba mutando `style.borderColor` dentro de `onMouseEnter`, de modo
+ *   que quien navega con teclado no recibía el paso. Un estilo inline no puede
+ *   llevar `:hover` ni `:focus-within`; una clase sí.
+ *
+ * `style` sigue ganando a la clase —es un atributo inline— así que las llamadas
+ * que ya pasan su propio `padding` o `background` no cambian de aspecto.
  */
-export function Card({ children, style = {}, pad = true, hover = false, ...rest }) {
-  const onEnter = hover
-    ? (e) => {
-        e.currentTarget.style.borderColor = 'var(--border)'
-      }
-    : undefined
-  const onLeave = hover
-    ? (e) => {
-        e.currentTarget.style.borderColor = 'var(--border2)'
-      }
-    : undefined
+export function Card({ children, style = {}, pad = true, hover = false, className = '', ...rest }) {
+  const clases = ['cp-card', pad ? '' : 'cp-card-flush', hover ? 'cp-card-hover' : '', className]
   return (
-    <div
-      {...rest}
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
-      style={{
-        background: 'var(--paper)',
-        border: '1px solid var(--border2)',
-        borderRadius: 'var(--r-card)',
-        padding: pad ? 18 : 0,
-        transition: 'border-color .15s',
-        ...style,
-      }}
-    >
+    <div {...rest} className={clases.filter(Boolean).join(' ')} style={style}>
       {children}
     </div>
   )
@@ -387,7 +381,40 @@ export function EvidenceBand({ n, title, children }) {
   )
 }
 
-export function SectionHead({ eyebrow, title, right }) {
+/**
+ * El encabezado de un bloque. Es el esqueleto de casi todas las páginas: 187
+ * llamadas repartidas por 36 ficheros.
+ *
+ * Hacía dos cosas mal y las dos se midieron sobre el sitio compuesto, no sobre
+ * el código —ninguna de las dos puertas de tipografía de esta casa podía
+ * verlas, porque las dos leen ficheros—:
+ *
+ *   1. Pintaba el título a `--fs-body`. El mismo cuerpo que el párrafo de
+ *      debajo. §03 tiene un escalón llamado «head · encabezado de bloque» y en
+ *      /eficiencia y /gestion aparecía UNA vez por página, las dos en un <h3>
+ *      metido dentro de un <h2> a 14 px. Jerarquía invertida.
+ *   2. Pintaba un `<div>`. Veinticinco de las treinta y siete rutas públicas
+ *      no tenían ni un solo <h2>: para un lector de pantalla esas páginas no
+ *      tienen secciones, sólo un título y un muro.
+ *
+ * `as` existe porque un nivel semántico no se puede repartir a ciegas: una
+ * sección dentro de otra pide `h3`, y saltar de h1 a h3 es un defecto distinto
+ * del que se está arreglando. `npm run censo` mide los saltos por ruta.
+ *
+ * El escalón por defecto es «card · 20 px · titular de ficha» porque ése es el
+ * uso dominante y medido: la inmensa mayoría de las 187 llamadas van pegadas
+ * dentro de un `<Card>`, y §06 describe esa tarjeta pieza a pieza — «eyebrow
+ * mono · título 20 · cuerpo 14». `size="head"` baja a los 16 px del bloque que
+ * ya vive dentro de una sección con título propio.
+ *
+ * @param {object} p
+ * @param {import('react').ReactNode} [p.eyebrow]  antetítulo en mono
+ * @param {import('react').ReactNode} p.title
+ * @param {import('react').ReactNode} [p.right]    lo que va al otro extremo
+ * @param {'h2'|'h3'|'h4'} [p.as]                  nivel semántico
+ * @param {'head'|'card'} [p.size]
+ */
+export function SectionHead({ eyebrow, title, right, as: Nivel = 'h2', size = 'card', id }) {
   return (
     <div
       style={{
@@ -406,22 +433,21 @@ export function SectionHead({ eyebrow, title, right }) {
               fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
               textTransform: 'uppercase',
-              letterSpacing: '.08em',
+              fontWeight: 700,
+              letterSpacing: '.1em',
             }}
           >
             {eyebrow}
           </div>
         )}
-        <div
-          style={{
-            fontSize: 'var(--fs-body)',
-            fontWeight: 600,
-            letterSpacing: '-.01em',
-            marginTop: eyebrow ? 3 : 0,
-          }}
+        <Nivel
+          id={id}
+          data-section-head=""
+          className={`cp-sec-head${size === 'card' ? ' cp-sec-head-xl' : ''}`}
+          style={{ marginTop: eyebrow ? 3 : 0 }}
         >
           {title}
-        </div>
+        </Nivel>
       </div>
       {right}
     </div>

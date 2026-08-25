@@ -67,7 +67,17 @@ const ROUTES: Route[] = [
   // ni en la de axe: dos rutas que iban al público sin que ninguna pasada
   // estricta las hubiera mirado nunca. Es «verde por no ejecutarse», el defecto
   // que este repo ya ha pagado varias veces.
-  { path: '/eficiencia', ready: /Cobertura de este panel|servicios que este panel sigue/ },
+  // Dos entradas, y las dos hacen falta. El sentinela viejo —«Cobertura de
+  // este panel»— vive en la pestaña de cobertura, que desde agosto de 2026 no
+  // es la que abre: la guarda se negaba a medir, que es lo que tiene que hacer
+  // cuando el sentinela no aparece, pero medía la página equivocada.
+  //
+  // La segunda entrada es la que importa de verdad: el libro de servicios es
+  // ocho columnas y 1.080 px de ancho mínimo, o sea LO ÚNICO de esta ruta que
+  // puede desbordar 375. Medir sólo la portada de la ruta habría dado verde
+  // sobre la parte que no corre riesgo.
+  { path: '/eficiencia', ready: /rendición de cuentas/i },
+  { path: '/eficiencia#sec-servicios', ready: /servicios del panel/i },
   // El h1, no un titular de sección: «Plazos, concurrencia y ejecución» era el
   // título de una tarjeta y se movió con el libro de gestión. Un centinela que
   // vive dentro de un componente caduca en cuanto ese componente cambia.

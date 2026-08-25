@@ -65,7 +65,7 @@ export function Concesion({ concesion }) {
       {/* Que en una concesión paga el vecino por la tarifa ya lo dicen las dos
           frases de encima, así que aquí NO se repite: lo único que falta y
           ninguna cifra dice sola es qué clase de importe es ése. */}
-      <p style={{ margin: '6px 0 0', fontSize: 'var(--fs-micro)' }}>
+      <p style={{ margin: '6px 0 0', fontSize: 'var(--fs-aux)' }}>
         El importe es el valor estimado del contrato por todo su plazo —
         <span className="mono">{aniosDePlazo(c.adjudicadaEl, c.hasta)}</span> años—, no un gasto
         anual.{' '}

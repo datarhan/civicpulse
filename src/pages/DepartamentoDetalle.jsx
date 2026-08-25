@@ -41,7 +41,7 @@ function VotesSection({ slug, frozen }) {
   if (votes.length === 0) {
     return (
       <p
-        style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}
+        style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}
       >
         {t('departamentos.detalle.empty.votes')}
       </p>
@@ -130,7 +130,7 @@ function PromisesSection({ slug, frozen }) {
   if (items.length === 0) {
     return (
       <p
-        style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}
+        style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}
       >
         {t('departamentos.detalle.empty.promesas')}
       </p>
@@ -221,7 +221,7 @@ function UnvotedAgendasSection({ slug, votesSnap }) {
             padding: '8px 12px',
             border: '1px solid var(--border2)',
             borderRadius: 'var(--r-input)',
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             lineHeight: 1.45,
           }}
         >
@@ -249,7 +249,7 @@ function QuejasSection({ slug }) {
   if (items.length === 0) {
     return (
       <p
-        style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}
+        style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}
       >
         {t('departamentos.detalle.empty.quejas')}
       </p>
@@ -559,7 +559,7 @@ export default function DepartamentoDetalle() {
           padding: '10px 14px',
           background: 'var(--soft)',
           borderRadius: 'var(--r-input)',
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           lineHeight: 1.55,
         }}

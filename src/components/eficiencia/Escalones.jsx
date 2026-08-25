@@ -37,7 +37,7 @@ export function LeyendaEscalones({ indicadores = [], conResultados = false }) {
     <p
       style={{
         margin: '10px 0 0',
-        fontSize: 'var(--fs-meta)',
+        fontSize: 'var(--fs-aux)',
         color: 'var(--ink50)',
         display: 'flex',
         flexWrap: 'wrap',

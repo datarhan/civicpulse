@@ -30,7 +30,7 @@ export function BoeCard() {
       </div>
       <div
         style={{
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           margin: '6px 0 12px',
           lineHeight: 1.5,

@@ -27,7 +27,7 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
   const span = yearMin && yearMax ? `${yearMin}–${yearMax}` : null
   return (
     <div>
-      <div style={{ fontSize: 'var(--fs-meta)', lineHeight: 1.4 }}>
+      <div style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.4 }}>
         De <strong>{fmtEur(total)}</strong> adjudicados en contratos (sin IVA)
         {span ? (
           <>
@@ -53,9 +53,8 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
       </div>
       <div
         style={{
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
-          fontStyle: 'italic',
           lineHeight: 1.4,
         }}
       >

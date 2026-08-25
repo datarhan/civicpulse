@@ -93,7 +93,7 @@ export default function Agentes() {
                     )}
                   </div>
                   <div
-                    style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.5 }}
+                    style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.5 }}
                   >
                     {a.brief}
                   </div>

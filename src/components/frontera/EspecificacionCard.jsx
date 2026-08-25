@@ -95,7 +95,7 @@ export function EspecificacionCard({ e, principal }) {
         ))}
         .
       </p>
-      <p style={{ margin: '6px 0 0', fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+      <p style={{ margin: '6px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
         Regla de grados de libertad: {e.gradosLibertad.n} unidades para {e.gradosLibertad.salidas}{' '}
         salidas, hacen falta {e.gradosLibertad.minimo}.{' '}
         {e.gradosLibertad.cumple ? 'Se cumple.' : 'No se cumple.'}
@@ -265,7 +265,7 @@ function Histograma({ d, propia }) {
           </div>
         ))}
       </div>
-      <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '8px 0 0' }}>
+      <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '8px 0 0' }}>
         Riba-roja cae en el tramo marcado. No se publica qué municipio es cada barra: la puntuación
         sale de un modelo de este sitio, no de una cifra del ministerio, y nombrarlos sería firmar
         una afirmación sobre ellos sin darles derecho de réplica. Mediana{' '}

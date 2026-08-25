@@ -112,7 +112,7 @@ export function AlcaldeBox() {
           </div>
           <h2
             style={{
-              fontSize: 'var(--fs-body)',
+              fontSize: 'var(--fs-card)',
               fontWeight: 700,
               margin: '2px 0 0',
               letterSpacing: '-.01em',

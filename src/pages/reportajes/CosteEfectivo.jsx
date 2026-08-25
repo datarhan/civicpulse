@@ -68,7 +68,7 @@ function Figura({ titulo, pie, children }) {
       {pie && (
         <figcaption
           style={{
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             marginTop: 12,
             lineHeight: 1.5,
@@ -404,7 +404,7 @@ function DuranteLaEspera({ bloque }) {
       <h3
         style={{
           fontFamily: SERIF,
-          fontSize: 'var(--fs-body)',
+          fontSize: 'var(--fs-head)',
           fontWeight: 600,
           margin: '26px 0 0',
         }}
@@ -452,7 +452,7 @@ function DuranteLaEspera({ bloque }) {
         </div>
       </Figura>
       <P>{b.comoSeLee}</P>
-      <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '8px 0 0' }}>
+      <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '8px 0 0' }}>
         Expediente {b.expediente} ·{' '}
         <a href={b.url} target="_blank" rel="noreferrer noopener" style={{ color: 'var(--civic)' }}>
           ficha en la Plataforma de Contratación ↗
@@ -472,7 +472,7 @@ function LaTarifa({ bloque }) {
       <h3
         style={{
           fontFamily: SERIF,
-          fontSize: 'var(--fs-body)',
+          fontSize: 'var(--fs-head)',
           fontWeight: 600,
           margin: '26px 0 0',
         }}
@@ -520,7 +520,7 @@ function QuienRespondia({ bloque }) {
       <h3
         style={{
           fontFamily: SERIF,
-          fontSize: 'var(--fs-body)',
+          fontSize: 'var(--fs-head)',
           fontWeight: 600,
           margin: '26px 0 0',
         }}
@@ -553,7 +553,7 @@ function QuienRespondia({ bloque }) {
         <blockquote
           style={{
             margin: 0,
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink70)',
             lineHeight: 1.55,
           }}
@@ -584,13 +584,13 @@ export default function CosteEfectivo() {
   if (loading)
     return (
       <div className="cp-page" style={{ padding: 24, maxWidth: 760, margin: '0 auto' }}>
-        <p style={{ color: 'var(--ink50)' }}>Cargando reportaje…</p>
+        <p style={{ color: 'var(--ink70)' }}>Cargando reportaje…</p>
       </div>
     )
   if (error || !data)
     return (
       <div className="cp-page" style={{ padding: 24, maxWidth: 760, margin: '0 auto' }}>
-        <p style={{ color: 'var(--ink50)' }}>No se pudo cargar el reportaje.</p>
+        <p style={{ color: 'var(--ink70)' }}>No se pudo cargar el reportaje.</p>
       </div>
     )
 
@@ -672,7 +672,7 @@ export default function CosteEfectivo() {
       {m.notaAmpliacion && (
         <p
           style={{
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink70, var(--ink50))',
             background: 'var(--soft)',
             border: '1px solid var(--border)',
@@ -714,7 +714,7 @@ export default function CosteEfectivo() {
             </div>
             <div
               style={{
-                fontSize: 'var(--fs-micro)',
+                fontSize: 'var(--fs-aux)',
                 color: 'var(--ink50)',
                 marginTop: 6,
                 lineHeight: 1.35,
@@ -1026,7 +1026,7 @@ export default function CosteEfectivo() {
           >
             Fuentes primarias
           </h3>
-          <ul style={{ margin: 0, paddingLeft: 18, fontSize: 'var(--fs-meta)', lineHeight: 1.6 }}>
+          <ul style={{ margin: 0, paddingLeft: 18, fontSize: 'var(--fs-aux)', lineHeight: 1.6 }}>
             {data.fuentes.map((f) => (
               <li key={f.url} style={{ marginBottom: 5 }}>
                 <a
@@ -1064,7 +1064,7 @@ export default function CosteEfectivo() {
             style={{
               margin: 0,
               paddingLeft: 18,
-              fontSize: 'var(--fs-meta)',
+              fontSize: 'var(--fs-aux)',
               color: 'var(--ink70)',
               lineHeight: 1.6,
             }}
@@ -1079,7 +1079,7 @@ export default function CosteEfectivo() {
       </div>
 
       {data.infografia && (
-        <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '18px 0 0' }}>
+        <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '18px 0 0' }}>
           Las secciones 05 a 07 —los tres defectos de la declaración— existen también como{' '}
           <a href={data.infografia.url} style={{ color: 'var(--civic)' }}>
             «{data.infografia.titulo}», una infografía en una sola página

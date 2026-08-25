@@ -58,7 +58,7 @@ export function TedNotices() {
       </div>
       <div
         style={{
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           margin: '8px 0 12px',
           lineHeight: 1.5,
@@ -104,7 +104,7 @@ export function TedNotices() {
       <div
         className="mono"
         style={{
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           marginTop: 10,
           lineHeight: 1.5,

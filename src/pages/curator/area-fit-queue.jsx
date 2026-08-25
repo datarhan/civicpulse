@@ -49,7 +49,7 @@ function Assessment({ title, a }) {
             margin: '4px 0 0 104px',
             padding: 0,
             listStyle: 'none',
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             lineHeight: 1.5,
             color: 'var(--ink70)',
           }}
@@ -68,9 +68,8 @@ function Assessment({ title, a }) {
         <div
           style={{
             margin: '4px 0 0 104px',
-            fontSize: 'var(--fs-micro)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
-            fontStyle: 'italic',
             lineHeight: 1.45,
           }}
         >
@@ -113,7 +112,7 @@ export function AreaFitRow({ row, official, published, onDone }) {
     <div
       style={{
         padding: '12px 14px',
-        border: `1px solid ${published ? 'var(--ok-bg)' : 'var(--border2)'}`,
+        border: `1px solid ${published ? 'var(--ok-soft)' : 'var(--border2)'}`,
         borderRadius: 'var(--r-input)',
         marginBottom: 10,
         background: 'var(--paper)',
@@ -155,7 +154,7 @@ export function AreaFitRow({ row, official, published, onDone }) {
             fontSize: 'var(--fs-meta)',
             borderRadius: 'var(--r-input)',
             border: '1px solid var(--border2)',
-            background: 'var(--card)',
+            background: 'var(--paper)',
             color: 'var(--ink)',
             width: 130,
           }}
@@ -170,7 +169,7 @@ export function AreaFitRow({ row, official, published, onDone }) {
             fontSize: 'var(--fs-meta)',
             borderRadius: 'var(--r-input)',
             border: '1px solid var(--border2)',
-            background: 'var(--card)',
+            background: 'var(--paper)',
             color: 'var(--ink)',
             flex: 1,
             minWidth: 200,
@@ -222,7 +221,7 @@ function btn(color) {
     fontWeight: 600,
     borderRadius: 'var(--r-input)',
     border: '1px solid var(--border2)',
-    background: 'var(--card)',
+    background: 'var(--paper)',
     color,
     cursor: 'pointer',
   }

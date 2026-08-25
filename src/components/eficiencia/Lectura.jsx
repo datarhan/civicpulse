@@ -34,7 +34,7 @@ export function Lectura({ lectura, conAvisos = true }) {
           {lectura.donde ?? ''}
         </p>
       )}
-      <p style={{ margin: 0, fontSize: 'var(--fs-meta)', color: 'var(--ink70, var(--ink50))' }}>
+      <p style={{ margin: 0, fontSize: 'var(--fs-aux)', color: 'var(--ink70, var(--ink50))' }}>
         {lectura.como}
       </p>
       {conAvisos && lectura.avisos?.length > 0 && (

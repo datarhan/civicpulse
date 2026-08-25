@@ -215,9 +215,8 @@ export function LegalRecord({ payload, sourceMap }) {
       <p
         style={{
           margin: 0,
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
-          fontStyle: 'italic',
         }}
       >
         ⚠ Esta sección activa la sensibilidad legal alta. Las afirmaciones se citan verbatim del
@@ -452,9 +451,8 @@ export function GapsDetected({ payload }) {
       <p
         style={{
           margin: 0,
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
-          fontStyle: 'italic',
         }}
       >
         Lo que el agente buscó y no pudo verificar en fuentes accesibles. Honestidad por defecto.
@@ -482,9 +480,8 @@ export function CareerTimeline({ payload, sourceMap }) {
       <p
         style={{
           margin: '0 0 6px 0',
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
-          fontStyle: 'italic',
         }}
       >
         Hitos documentados de la biografía y del cargo, cada uno con su fuente.
@@ -835,9 +832,8 @@ export function QuoteCard({ payload, sourceMap, withHead = false }) {
           <p
             style={{
               margin: '0 0 10px 0',
-              fontSize: 'var(--fs-meta)',
+              fontSize: 'var(--fs-aux)',
               color: 'var(--ink50)',
-              fontStyle: 'italic',
             }}
           >
             Fragmentos textuales de los documentos y entrevistas citados, reproducidos sin editar.

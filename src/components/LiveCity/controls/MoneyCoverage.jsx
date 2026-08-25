@@ -60,7 +60,7 @@ export function MoneyCoverage({ snapshot }) {
         paddingTop: 6,
         borderTop: '1px solid #E6E1D4',
         fontFamily: "'Outfit', system-ui, sans-serif",
-        fontSize: 'var(--fs-micro)',
+        fontSize: 'var(--fs-aux)',
         lineHeight: 1.4,
         color: 'rgba(11,15,25,.72)',
       }}

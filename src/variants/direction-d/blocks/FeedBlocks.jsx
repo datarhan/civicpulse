@@ -123,7 +123,7 @@ export function LiveContracts() {
         <div
           className="mono"
           style={{
-            fontSize: 'var(--fs-micro)',
+            fontSize: 'var(--fs-aux)',
             color: PALETTE.ink60,
             marginTop: -6,
             marginBottom: 8,

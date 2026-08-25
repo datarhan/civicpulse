@@ -171,13 +171,13 @@ export default function InteligenciaTuristica() {
   if (loading)
     return (
       <div className="cp-page" style={{ padding: 24, maxWidth: 760, margin: '0 auto' }}>
-        <p style={{ color: 'var(--ink50)' }}>Cargando reportaje…</p>
+        <p style={{ color: 'var(--ink70)' }}>Cargando reportaje…</p>
       </div>
     )
   if (error || !data)
     return (
       <div className="cp-page" style={{ padding: 24, maxWidth: 760, margin: '0 auto' }}>
-        <p style={{ color: 'var(--ink50)' }}>No se pudo cargar el reportaje.</p>
+        <p style={{ color: 'var(--ink70)' }}>No se pudo cargar el reportaje.</p>
       </div>
     )
 
@@ -276,7 +276,7 @@ export default function InteligenciaTuristica() {
             </div>
             <div
               style={{
-                fontSize: 'var(--fs-micro)',
+                fontSize: 'var(--fs-aux)',
                 color: 'var(--ink50)',
                 marginTop: 7,
                 lineHeight: 1.3,
@@ -306,7 +306,6 @@ export default function InteligenciaTuristica() {
                 padding: '6px 14px',
                 fontSize: 'var(--fs-body)',
                 color: 'var(--ink70)',
-                fontStyle: 'italic',
                 background: 'var(--soft)',
                 borderRadius: '0 var(--r-input) var(--r-input) 0',
               }}
@@ -475,7 +474,7 @@ export default function InteligenciaTuristica() {
                 padding: '16px 18px',
               }}
             >
-              <h3 style={{ fontSize: 'var(--fs-body)', margin: '0 0 10px', color: 'var(--ink)' }}>
+              <h3 style={{ fontSize: 'var(--fs-head)', margin: '0 0 10px', color: 'var(--ink)' }}>
                 {e.titulo}
               </h3>
               <ul style={boxUl()}>

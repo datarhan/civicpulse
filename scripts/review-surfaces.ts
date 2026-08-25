@@ -480,6 +480,28 @@ async function main() {
       continue
     }
 
+    // Los apartados en pestaña se abren ANTES de leer, y no es un atajo.
+    //
+    // `innerText` no ve lo que está oculto. Desde que /eficiencia reparte sus
+    // seis apartados en pestañas, un `innerText` a secas leía 3.160 caracteres
+    // de los 16.000 que la página publica: cinco sextos de la prosa —la
+    // cobertura, la declaración, los hallazgos firmados, las preguntas— se
+    // quedaban sin revisar Y el parte decía «cobertura 100 %», porque el 100 %
+    // era sobre lo que había leído. Verde por no mirar, que es exactamente el
+    // defecto que esta puerta existe para no cometer.
+    //
+    // Publicado no es «visible ahora mismo»: los seis paneles están en el DOM,
+    // cualquiera los abre con un clic y los seis se imprimen en papel. Se
+    // revisan los seis.
+    const abiertos = await page.evaluate(() => {
+      const ocultos = Array.from(
+        document.querySelectorAll<HTMLElement>('[role="tabpanel"][hidden]'),
+      )
+      for (const p of ocultos) p.hidden = false
+      return ocultos.length
+    })
+    if (abiertos > 0) console.log(`   (${abiertos} apartado(s) en pestaña abiertos para leerlos)`)
+
     // The WHOLE page. No `.slice()` here, ever — see `chunkRenderedText`.
     const renderedText = await page.locator('body').innerText()
 

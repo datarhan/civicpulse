@@ -247,7 +247,7 @@ export function CoberturaEficiencia({
         </p>
       )}
       {cobertura && (
-        <p style={{ margin: '8px 0 0', fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+        <p style={{ margin: '8px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
           Entregas publicadas por el ministerio:{' '}
           <span className="mono">{cobertura.entregasPublicadas?.join(', ')}</span>. Obtenidas aquí:{' '}
           <span className="mono">{cobertura.entregasObtenidas?.join(', ')}</span>.{' '}

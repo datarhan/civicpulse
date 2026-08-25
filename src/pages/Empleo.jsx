@@ -386,7 +386,7 @@ export default function Empleo() {
       <div
         style={{
           marginTop: 12,
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           lineHeight: 1.5,
         }}

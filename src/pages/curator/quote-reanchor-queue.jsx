@@ -81,7 +81,7 @@ function CandidateCard({ c }) {
         border: '1px solid var(--border2)',
         borderRadius: 'var(--r-input)',
         marginBottom: 6,
-        background: 'var(--card)',
+        background: 'var(--paper)',
       }}
     >
       <div
@@ -107,13 +107,13 @@ function CandidateCard({ c }) {
       </div>
       {/* Verbatim de la transcripción vigente: ni recortado ni re-envuelto. Es
           el texto que el curador copiaría al comando de corrección. */}
-      <div style={{ fontSize: 'var(--fs-meta)', lineHeight: 1.5, color: 'var(--ink70)' }}>
+      <div style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.5, color: 'var(--ink70)' }}>
         {c.text}
       </div>
       {c.missingWords?.length > 0 && (
         <div
           style={{
-            fontSize: 'var(--fs-micro)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             marginTop: 4,
             lineHeight: 1.45,
@@ -193,8 +193,7 @@ export function QuoteReanchorRow({ row }) {
               padding: '8px 10px',
               border: '1px solid var(--border2)',
               borderRadius: 'var(--r-input)',
-              background: 'var(--card)',
-              fontStyle: 'italic',
+              background: 'var(--paper)',
             }}
           >
             «{row.publishedQuote}»
@@ -216,7 +215,7 @@ export function QuoteReanchorRow({ row }) {
                   fontSize: 'var(--fs-micro)',
                   borderRadius: 'var(--r-input)',
                   border: '1px solid var(--border2)',
-                  background: 'var(--card)',
+                  background: 'var(--paper)',
                   color: 'var(--ink70)',
                   cursor: 'pointer',
                 }}
@@ -226,7 +225,7 @@ export function QuoteReanchorRow({ row }) {
               {open && (
                 <div
                   style={{
-                    fontSize: 'var(--fs-micro)',
+                    fontSize: 'var(--fs-aux)',
                     lineHeight: 1.5,
                     color: 'var(--ink50)',
                     marginTop: 6,
@@ -265,7 +264,7 @@ export function QuoteReanchorRow({ row }) {
           <code
             style={{
               flex: 1,
-              fontSize: 'var(--fs-micro)',
+              fontSize: 'var(--fs-aux)',
               lineHeight: 1.5,
               padding: '8px 10px',
               background: 'var(--soft)',
@@ -284,7 +283,7 @@ export function QuoteReanchorRow({ row }) {
               fontWeight: 600,
               borderRadius: 'var(--r-input)',
               border: '1px solid var(--border2)',
-              background: 'var(--card)',
+              background: 'var(--paper)',
               color: 'var(--ink70)',
               cursor: 'pointer',
             }}
@@ -294,7 +293,7 @@ export function QuoteReanchorRow({ row }) {
         </div>
         <div
           style={{
-            fontSize: 'var(--fs-micro)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             marginTop: 4,
             lineHeight: 1.45,

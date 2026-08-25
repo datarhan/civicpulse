@@ -34,7 +34,15 @@ const num = (v, dec) =>
  * significando «fila». Va donde dice algo: el punto y la línea de la última
  * columna, que hablan de la DECLARACIÓN y nunca del coste.
  */
-export function FilaServicio({ indicador, formatea, competencia, x0, x1, conNombres }) {
+export function FilaServicio({
+  indicador,
+  formatea,
+  competencia,
+  x0,
+  x1,
+  conNombres,
+  chipHoisted = false,
+}) {
   const t = useT()
   const i = indicador
   const pos = posicionServicio(i)
@@ -104,7 +112,15 @@ export function FilaServicio({ indicador, formatea, competencia, x0, x1, conNomb
         ) : (
           <>
             {formatea(i.valor).replace(/\s*€\/.*$/, ' €')}
-            <span style={{ color: 'var(--ink50)' }}>{unidadCorta(i.unidad)}</span>
+            <span
+              style={{
+                color: 'var(--ink50)',
+                fontSize: 'var(--fs-meta)',
+                fontWeight: 400,
+              }}
+            >
+              {unidadCorta(i.unidad)}
+            </span>
           </>
         )}
       </td>
@@ -152,10 +168,19 @@ export function FilaServicio({ indicador, formatea, competencia, x0, x1, conNomb
 
       <td className="cp-c-decir">
         <span className={`cp-veredicto cp-veredicto-${v.estilo}`}>{v.texto}</span>
+        {/* El chip sólo baja a la fila cuando DISTINGUE esta fila de las
+            demás. Si las trece dicen lo mismo, el hecho vive en la banda de
+            encima de la tabla —una vez, visible— y aquí sería wallpaper: el
+            ámbar acabaría significando «fila». Quien decide es LibroServicios,
+            que es el único que ve las quince a la vez. */}
         {chip && (
           <span className="cp-fila-declara mono">
             <span className="cp-punto-warn" />
-            {chip.texto}
+            {/* Con la frase dicha arriba, en la fila queda lo único que
+                distingue esta de las demás: desde qué entrega. Doce dicen 2019
+                y una dice 2018 — la frase entera repetida trece veces borraba
+                justamente esa. Sin banda, el chip vuelve completo. */}
+            {chipHoisted && chip.desde ? `desde ${chip.desde}` : chip.texto}
           </span>
         )}
       </td>
@@ -165,18 +190,24 @@ export function FilaServicio({ indicador, formatea, competencia, x0, x1, conNomb
           {competencia ? (
             <>
               <a href={`/cargos/${competencia.oficial}`}>{competencia.nombre}</a>
-              <span className="cp-fila-meta mono">
-                {competencia.cargo}
-                {/* «Atribución nuestra» no puede quedarse en una marca: el aviso
-                    legal promete que además se explica POR QUÉ, y el motivo vive
-                    en la ficha. La marca lleva hasta él. */}
-                {competencia.confianza === 'editorial' && (
-                  <>
-                    {' · '}
-                    <a href={`/eficiencia/${i.id}`}>atribución nuestra</a>
-                  </>
-                )}
-              </span>
+              {/* «Atribución nuestra» sigue sin poder quedarse en un hover: el
+                  aviso legal promete que además se explica POR QUÉ, y el motivo
+                  vive en la ficha. Lo que cambia es el tamaño de la marca. La
+                  frase entera se imprimía en nueve de las quince filas y
+                  costaba dos líneas en cada una — el nombre de quien responde
+                  acababa siendo lo más ruidoso de la tabla siendo la columna
+                  menos importante. Ahora va un asterisco, con su leyenda debajo
+                  de la tabla (visible, no en un hover) y su enlace al motivo. */}
+              {competencia.confianza === 'editorial' && (
+                <a
+                  href={`/eficiencia/${i.id}`}
+                  className="cp-marca-editorial"
+                  aria-label={`Atribución nuestra: por qué se asigna ${competencia.nombre} a este servicio`}
+                >
+                  *
+                </a>
+              )}
+              <span className="cp-fila-meta mono">{competencia.cargo}</span>
             </>
           ) : (
             <span className="cp-fila-meta mono">sin asignar</span>

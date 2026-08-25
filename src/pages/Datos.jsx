@@ -719,7 +719,7 @@ function PopulationChart() {
               x={PAD_L - 6}
               y={t.y + 3}
               textAnchor="end"
-              fontSize="10"
+              fontSize="11"
               fontFamily="DM Mono, monospace"
               fill="var(--ink50)"
             >
@@ -733,7 +733,7 @@ function PopulationChart() {
             x={t.x}
             y={H - 10}
             textAnchor="middle"
-            fontSize="10"
+            fontSize="11"
             fontFamily="DM Mono, monospace"
             fill="var(--ink50)"
           >
@@ -876,7 +876,7 @@ function AsociacionesCard() {
       </div>
       <p
         style={{
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           marginTop: 10,
           marginBottom: 0,

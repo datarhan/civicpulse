@@ -63,7 +63,7 @@ export function CitationPopover({ num, src }) {
             border: '1px solid var(--border)',
             background: 'var(--paper)',
             color: 'var(--ink70)',
-            fontSize: 'var(--fs-micro)',
+            fontSize: 'var(--fs-aux)',
             lineHeight: 1.5,
             boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
             pointerEvents: 'none',

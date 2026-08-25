@@ -21,7 +21,7 @@ export function TablaPares({ pares, formatea }) {
       <summary style={{ cursor: 'pointer', fontSize: 'var(--fs-meta)', color: 'var(--civic)' }}>
         {t('eficiencia.pares.ver')}
       </summary>
-      <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '8px 0' }}>
+      <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '8px 0' }}>
         {t('eficiencia.pares.nota')}
       </p>
       <div style={{ overflowX: 'auto' }}>

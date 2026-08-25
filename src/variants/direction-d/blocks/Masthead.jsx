@@ -98,7 +98,7 @@ export function QuejaCTA() {
       </h2>
       <div
         style={{
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: PALETTE.ink60,
           marginBottom: 12,
           lineHeight: 1.45,

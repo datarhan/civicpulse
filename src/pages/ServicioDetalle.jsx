@@ -54,7 +54,7 @@ export default function ServicioDetalle() {
   if (loading) {
     return (
       <div className="cp-page" style={{ padding: 24, maxWidth: 820, margin: '0 auto' }}>
-        <p style={{ color: 'var(--ink50)' }}>Cargando…</p>
+        <p style={{ color: 'var(--ink70)' }}>Cargando…</p>
       </div>
     )
   }
@@ -70,7 +70,7 @@ export default function ServicioDetalle() {
           ← El libro de servicios
         </Link>
         <Card style={{ marginTop: 16 }}>
-          <p style={{ margin: 0, color: 'var(--ink50)' }}>
+          <p style={{ margin: 0, color: 'var(--ink70)' }}>
             No hay ninguna ficha con ese identificador en la entrega publicada.
           </p>
         </Card>
@@ -165,7 +165,7 @@ export default function ServicioDetalle() {
           </p>
           <p
             className="mono"
-            style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 8 }}
+            style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 8 }}
           >
             {i.numerador.valor === null
               ? 'El ayuntamiento no declara coste para este servicio: la casilla viene vacía, no a cero.'
@@ -210,7 +210,7 @@ export default function ServicioDetalle() {
           />
 
           {i.declaracion?.paresMedibles > 0 && (
-            <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '10px 0 0' }}>
+            <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '10px 0 0' }}>
               <strong className="mono">
                 {i.declaracion.paresCongelados} de {i.declaracion.paresMedibles}
               </strong>{' '}
@@ -250,7 +250,7 @@ export default function ServicioDetalle() {
               style={{
                 margin: '8px 0 0',
                 paddingLeft: 18,
-                fontSize: 'var(--fs-meta)',
+                fontSize: 'var(--fs-aux)',
                 color: 'var(--ink50)',
                 lineHeight: 1.55,
               }}
@@ -262,11 +262,11 @@ export default function ServicioDetalle() {
               ))}
             </ul>
           ) : (
-            <p style={{ margin: '8px 0 0', fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+            <p style={{ margin: '8px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
               Esta ficha no arrastra ninguna.
             </p>
           )}
-          <p style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', margin: '8px 0 0' }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '8px 0 0' }}>
             Las reglas numeradas que citan estas salvedades:{' '}
             <a href="/metodologia#reglas-eficiencia" style={{ color: 'var(--civic)' }}>
               reglas de filtrado y comparabilidad
@@ -292,7 +292,7 @@ export default function ServicioDetalle() {
               className="mono"
               style={{
                 margin: '8px 0 0',
-                fontSize: 'var(--fs-micro)',
+                fontSize: 'var(--fs-aux)',
                 color: 'var(--ink50)',
                 lineHeight: 1.6,
               }}
@@ -318,7 +318,7 @@ export default function ServicioDetalle() {
           <p
             style={{
               margin: '8px 0 0',
-              fontSize: 'var(--fs-micro)',
+              fontSize: 'var(--fs-aux)',
               color: 'var(--ink50)',
               lineHeight: 1.6,
             }}

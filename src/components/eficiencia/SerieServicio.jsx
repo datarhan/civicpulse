@@ -377,7 +377,7 @@ export function SerieServicio({ puntos, formatea, unidad }) {
             <span
               className="mono"
               style={{
-                fontSize: 'var(--fs-micro)',
+                fontSize: 'var(--fs-aux)',
                 color: 'var(--ink50)',
                 lineHeight: 1.2,
                 whiteSpace: 'nowrap',

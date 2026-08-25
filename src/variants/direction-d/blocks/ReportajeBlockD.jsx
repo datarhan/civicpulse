@@ -122,7 +122,7 @@ export function ReportajeBlockD() {
               <p
                 style={{
                   margin: 0,
-                  fontSize: 'var(--fs-meta)',
+                  fontSize: 'var(--fs-aux)',
                   color: PALETTE.ink60,
                   lineHeight: 1.45,
                 }}

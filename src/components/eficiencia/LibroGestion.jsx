@@ -83,14 +83,21 @@ function Referencia({ m }) {
             }}
           />
         </span>
-        <span className="cp-fila-meta mono">
-          escala 0–100 % · sin banda comparable en esta fuente
+        {/* La barra se rotula a sí misma. La frase «sin banda comparable en
+            esta fuente» se imprimía IGUAL en cinco de las siete filas: medido,
+            el 64 % de los caracteres de esta tabla eran cadenas repetidas tres
+            veces o más, y ésta era la más larga. Sube a una nota bajo la tabla,
+            visible y contada. Lo que queda aquí son los extremos del eje, que
+            no se repiten: dicen qué escala es. */}
+        <span className="cp-fila-meta mono cp-eje-extremos" aria-hidden="true">
+          <span>0</span>
+          <span>100 %</span>
         </span>
       </>
     )
   }
 
-  return <span className="cp-fila-meta mono">sin banda comparable en esta fuente</span>
+  return <span className="cp-fila-meta mono">sin escala publicada</span>
 }
 
 /**
@@ -106,6 +113,15 @@ function Referencia({ m }) {
  */
 export function LibroGestion({ municipales = [], competencias, conNombres }) {
   if (municipales.length === 0) return null
+
+  // Los tres hechos que se repetían fila a fila, contados una vez. Salen de
+  // las propias filas: si una entrega trae serie para todas, la nota
+  // desaparece sola en vez de mentir con un número escrito a mano.
+  const sinBanda = municipales.filter((m) => m.pares?.percentil === undefined).length
+  const sinSerie = municipales.filter((m) => !(m.serie?.length >= 2)).length
+  const editoriales = conNombres
+    ? municipales.filter((m) => competencias?.get(m.id)?.confianza === 'editorial').length
+    : 0
 
   return (
     <div className="cp-libro-wrap">
@@ -168,7 +184,9 @@ export function LibroGestion({ municipales = [], competencias, conNombres }) {
                         </span>
                       </>
                     ) : (
-                      <span className="cp-fila-meta mono">sin serie en el volcado</span>
+                      <span className="cp-fila-meta mono" title="sin serie en el volcado">
+                        —
+                      </span>
                     )}
                   </td>
                   <td className="cp-c-decir">
@@ -194,15 +212,16 @@ export function LibroGestion({ municipales = [], competencias, conNombres }) {
                       {competencia ? (
                         <>
                           <a href={`/cargos/${competencia.oficial}`}>{competencia.nombre}</a>
-                          <span className="cp-fila-meta mono">
-                            {competencia.cargo}
-                            {competencia.confianza === 'editorial' && (
-                              <>
-                                {' · '}
-                                <a href={`#m-${m.id}`}>atribución nuestra</a>
-                              </>
-                            )}
-                          </span>
+                          {competencia.confianza === 'editorial' && (
+                            <a
+                              href={`#m-${m.id}`}
+                              className="cp-marca-editorial"
+                              aria-label={`Atribución nuestra: por qué se asigna ${competencia.nombre} a este indicador`}
+                            >
+                              *
+                            </a>
+                          )}
+                          <span className="cp-fila-meta mono">{competencia.cargo}</span>
                         </>
                       ) : (
                         <span className="cp-fila-meta mono">sin asignar</span>
@@ -215,6 +234,26 @@ export function LibroGestion({ municipales = [], competencias, conNombres }) {
           </tbody>
         </table>
       </div>
+
+      <p className="cp-libro-leyenda mono">
+        {sinBanda > 0 && (
+          <>
+            {sinBanda} de {municipales.length} indicadores no llevan banda de municipios
+            comparables: la fuente no los publica del mismo modo en todas partes, así que su barra
+            es la escala del propio indicador y no una posición frente a nadie.{' '}
+          </>
+        )}
+        {sinSerie > 0 && (
+          <>En {sinSerie} el volcado no trae serie —la casilla lleva una raya, no un cero—. </>
+        )}
+        {editoriales > 0 && (
+          <>
+            <span aria-hidden="true">*</span> atribución nuestra en {editoriales}: el reparto de esa
+            competencia lo hicimos nosotros, no el portal de transparencia. El motivo, en la ficha
+            del indicador.
+          </>
+        )}
+      </p>
     </div>
   )
 }

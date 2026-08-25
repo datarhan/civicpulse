@@ -48,7 +48,7 @@ export function ComoSeLee({ indicadores = [] }) {
     <Card style={{ marginTop: 18 }}>
       <h2
         style={{
-          fontSize: 'var(--fs-body)',
+          fontSize: 'var(--fs-card)',
           fontWeight: 650,
           margin: 0,
           letterSpacing: '-.01em',

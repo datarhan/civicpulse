@@ -114,7 +114,7 @@ export function SerieFrontera({ especificacion }) {
 
       <p
         style={{
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           margin: '10px 0 0',
           maxWidth: '66ch',

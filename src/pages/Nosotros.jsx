@@ -54,7 +54,7 @@ function ImpactStrip() {
       {s.lastFindingAt && (
         <p
           style={{
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             marginTop: 10,
             marginBottom: 0,

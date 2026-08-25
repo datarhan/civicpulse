@@ -15,7 +15,7 @@ import { MARGEN_ANCLA } from '../SubnavSecciones'
  * podrían nombrar a una persona — y la sección cierra con la vía de réplica,
  * que aquí es parte del contenido y no letra pequeña.
  */
-export function PreguntasRegistradas({ data, panel }) {
+export function PreguntasRegistradas({ data, panel, sinAncla = false }) {
   const t = useT()
   const bloque = data?.panels?.[panel]
   if (!bloque || (bloque.bloques ?? []).length === 0) return null
@@ -23,10 +23,13 @@ export function PreguntasRegistradas({ data, panel }) {
   let numero = 0
 
   return (
-    <section id="sec-preguntas" style={{ marginTop: 32, scrollMarginTop: MARGEN_ANCLA }}>
+    <section
+      id={sinAncla ? undefined : 'sec-preguntas'}
+      style={{ marginTop: sinAncla ? 0 : 32, scrollMarginTop: MARGEN_ANCLA }}
+    >
       <h2
         style={{
-          fontSize: 'var(--fs-body)',
+          fontSize: 'var(--fs-card)',
           fontWeight: 650,
           margin: '0 0 4px',
           letterSpacing: '-.01em',
@@ -36,7 +39,7 @@ export function PreguntasRegistradas({ data, panel }) {
       </h2>
       <p
         style={{
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           margin: '0 0 14px',
           maxWidth: '68ch',
@@ -80,7 +83,7 @@ export function PreguntasRegistradas({ data, panel }) {
                     <p
                       style={{
                         margin: '4px 0 0',
-                        fontSize: 'var(--fs-meta)',
+                        fontSize: 'var(--fs-aux)',
                         color: 'var(--ink50)',
                         lineHeight: 1.5,
                       }}
@@ -106,7 +109,7 @@ export function PreguntasRegistradas({ data, panel }) {
       {bloque.cierre && (
         <p
           style={{
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             margin: '16px 0 0',
             maxWidth: '68ch',
@@ -117,7 +120,7 @@ export function PreguntasRegistradas({ data, panel }) {
         </p>
       )}
 
-      <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '10px 0 0' }}>
+      <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '10px 0 0' }}>
         {t('eficiencia.preguntas.replica')}{' '}
         <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
           {t('eficiencia.preguntas.replicaLink')}

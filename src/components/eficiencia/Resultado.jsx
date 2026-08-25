@@ -77,7 +77,7 @@ export function Resultado({ resultado, id }) {
       {p && (
         <p
           className="mono"
-          style={{ margin: '8px 0 0', fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}
+          style={{ margin: '8px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}
         >
           Mediana de {p.n} municipios comparables ({p.conjunto}):{' '}
           {p.mediana.toLocaleString('es-ES', { maximumFractionDigits: 1 })} {r.unidad} · aquí,
@@ -116,7 +116,7 @@ export function Resultado({ resultado, id }) {
 
       <p
         className="mono"
-        style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', margin: '8px 0 0' }}
+        style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '8px 0 0' }}
       >
         {r.fuente.atribucion} ·{' '}
         <a

@@ -36,7 +36,7 @@ export default function EmpleoPublico() {
       >
         {t('empleoPublico.title')}
       </h1>
-      <p style={{ color: 'var(--ink50)', maxWidth: '64ch' }}>
+      <p style={{ color: 'var(--ink70)', maxWidth: '64ch' }}>
         {t('empleoPublico.intro1')}
         <a href="/empleo" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
           /empleo
@@ -44,11 +44,11 @@ export default function EmpleoPublico() {
         {t('empleoPublico.intro2')}
       </p>
 
-      {loading && <p style={{ color: 'var(--ink50)' }}>Cargando…</p>}
-      {error && <p style={{ color: 'var(--ink50)' }}>No se pudo cargar el listado.</p>}
+      {loading && <p style={{ color: 'var(--ink70)' }}>Cargando…</p>}
+      {error && <p style={{ color: 'var(--ink70)' }}>No se pudo cargar el listado.</p>}
       {!loading && !error && procesos.length === 0 && (
         <Card style={{ marginTop: 16 }}>
-          <p style={{ margin: 0, color: 'var(--ink50)' }}>{t('empleoPublico.empty')}</p>
+          <p style={{ margin: 0, color: 'var(--ink70)' }}>{t('empleoPublico.empty')}</p>
         </Card>
       )}
 
