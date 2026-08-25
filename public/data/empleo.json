@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-08-24T05:21:45.143Z",
+  "generatedAt": "2026-08-25T05:14:49.634Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 64,
-    "openTotal": 64,
-    "inRibaRoja": 40,
+    "total": 67,
+    "openTotal": 67,
+    "inRibaRoja": 43,
     "closingSoon": 6,
-    "withDetail": 64,
+    "withDetail": 67,
     "byMonth": {
-      "2026-08": 24,
+      "2026-08": 27,
       "2026-07": 25,
       "2026-06": 6,
       "2026-05": 3,
@@ -22,6 +22,228 @@
     }
   },
   "items": [
+    {
+      "id": "2525",
+      "fo": 2525,
+      "codigo": "2026/00224",
+      "titulo": "Técnico/a de instalaciones y mantenimiento electricidad, PCI y sistemas de seguridad",
+      "publishedAt": "2026-08-24",
+      "deadline": "2026-10-24",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2525",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00224"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Técnico/a de instalaciones y mantenimiento electricidad, PCI y sistemas de seguridad"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Requisitos : Valorable experiencia mínima de 1 año en electricidad, electrónica, PCI, CCTV, seguridad o mantenimiento de instalaciones. FP Grado Medio o Superior en Electricidad, Electrónica, Sistemas Electrotécnicos, Telecomunicaciones, Mantenimiento o formación técnica similar. Valorable. Carnet de conducir B obligatorio. Valorable formación PRL, cursos de electricidad, PCI, sistemas de seguridad, CCTV o similares. Disponibilidad para desplazamientos por la Comunidad Valenciana."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "De lunes a viernes, jornada diurna. Horario a concretar."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Instalación, mantenimiento preventivo y correctivo y reparación de instalaciones eléctricas y electrónicas, sistemas de protección contra incendios, CCTV, videovigilancia y sistemas de seguridad. - Diagnóstico y resolución de averías, realización de revisiones y puesta en marcha de instalaciones."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "2",
+        "observaciones": "Requisitos : Valorable experiencia mínima de 1 año en electricidad, electrónica, PCI, CCTV, seguridad o mantenimiento de instalaciones. FP Grado Medio o Superior en Electricidad, Electrónica, Sistemas Electrotécnicos, Telecomunicaciones, Mantenimiento o formación técnica similar. Valorable. Carnet de conducir B obligatorio. Valorable formación PRL, cursos de electricidad, PCI, sistemas de seguridad, CCTV o similares. Disponibilidad para desplazamientos por la Comunidad Valenciana.",
+        "jornada": "Completa",
+        "horario": "De lunes a viernes, jornada diurna. Horario a concretar.",
+        "salario": "Según convenio",
+        "funciones": "- Instalación, mantenimiento preventivo y correctivo y reparación de instalaciones eléctricas y electrónicas, sistemas de protección contra incendios, CCTV, videovigilancia y sistemas de seguridad. - Diagnóstico y resolución de averías, realización de revisiones y puesta en marcha de instalaciones.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2524",
+      "fo": 2524,
+      "codigo": "2026/00223",
+      "titulo": "Técnico/a en seguridad",
+      "publishedAt": "2026-08-24",
+      "deadline": "2026-10-24",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2524",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00223"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Técnico/a en seguridad"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se requiere Técnico en seguridad junior, con conocimientos de electricidad y electrónica. Se valorará la experiencia, aunque no es un requisito indispensable. Salario según convenio."
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "OTROS SERVICIOS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "INDIFERENTE"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          },
+          {
+            "label": "Habilidades",
+            "value": "Conocimientos de electricidad y electrónica."
+          }
+        ],
+        "tipoContrato": "INDIFERENTE",
+        "numPuestos": "2",
+        "observaciones": "Se requiere Técnico en seguridad junior, con conocimientos de electricidad y electrónica. Se valorará la experiencia, aunque no es un requisito indispensable. Salario según convenio.",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "salario": "Según convenio",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2269",
+      "fo": 2269,
+      "codigo": "2025/00300",
+      "titulo": "Ayudante de sondista",
+      "publishedAt": "2026-08-24",
+      "deadline": "2026-10-24",
+      "location": "C/ Sequia de LLorca, nº 53 - Pol. Ind. Entrevies Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2269",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2025/00300"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Ayudante de sondista"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "ACTIVIDADES PROFESIONALES, CIENTÍFICAS Y TÉCNICAS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 2ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "C/ Sequia de LLorca, nº 53 - Pol. Ind. Entrevies, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Horario",
+            "value": "7:30 a 13:30 y 15:00 a 17:00"
+          },
+          {
+            "label": "Salario",
+            "value": "18000-25000 a convenir"
+          },
+          {
+            "label": "Funciones",
+            "value": "El puesto que se oferta es para ayudante de sondista para perforación de sondeos para estudios geotécnicos en el centro de Riba-roja, a continuación les indicamos las principales funciones del puesto: Ayuda al sondista a la realización de perforaciones. Carga y descarga de material de perforación, cajas de sondeos, etc. Ayuda con el suministro de agua. Traslado con camión del equipo de sondeo. Imprescindible Permiso tipo C y CAP Se valorará experiencia en el sector y formación PRL"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "categoria": "OFICIAL DE 2ª",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa Turnos: Turno partido",
+        "horario": "7:30 a 13:30 y 15:00 a 17:00",
+        "salario": "18000-25000 a convenir",
+        "funciones": "El puesto que se oferta es para ayudante de sondista para perforación de sondeos para estudios geotécnicos en el centro de Riba-roja, a continuación les indicamos las principales funciones del puesto: Ayuda al sondista a la realización de perforaciones. Carga y descarga de material de perforación, cajas de sondeos, etc. Ayuda con el suministro de agua. Traslado con camión del equipo de sondeo. Imprescindible Permiso tipo C y CAP Se valorará experiencia en el sector y formación PRL",
+        "ocupaciones": [
+          {
+            "nombre": "OPERADORES DE PLANTA DE PROSPECCIONES Y SONDEOS"
+          }
+        ]
+      }
+    },
     {
       "id": "2522",
       "fo": 2522,
