@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-24T10:26:27.371Z",
+  "generatedAt": "2026-08-25T04:53:22.482Z",
   "windowDays": 30,
   "articles": [
     {
@@ -953,30 +953,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "5gah7m",
-      "articleFingerprint": "nbrsa8",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/va/noticia/excavacions-arqueol%C3%B2giques-a-val%C3%A8ncia-la-vella%2C-2026",
-      "date": "2026-07-25T14:43:07.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 31,
+      "articleCount": 30,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -984,7 +967,7 @@
         "sin-datos": 27,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.48,
+      "meanTrustScore": 2.5,
       "verifiedRatio": 0,
       "contradictedRatio": 0
     },
@@ -1095,7 +1078,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "8f18b53596b2",
+    "plenos-agendas.json": "1c23dc16f466",
     "press-claims-verified.json": "83f716492790",
     "press.json": "3d130e046ce8",
     "promises.json": "973df30a62ce"
