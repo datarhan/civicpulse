@@ -214,7 +214,7 @@ export default function Curator() {
     <div style={{ padding: '24px 28px', maxWidth: 1100, margin: '0 auto' }}>
       <div style={{ marginBottom: 20 }}>
         <h1 style={{ margin: 0, fontSize: 'var(--fs-card)' }}>Curator</h1>
-        <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 4 }}>
+        <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4 }}>
           Dev-only dashboard. Surfaces queues that need human review and runs the existing CLIs
           locally via the Vite middleware. Mutations land in the same JSON files the production
           scrapers write — git history is the audit trail. Production builds tree-shake this route
@@ -263,15 +263,15 @@ export default function Curator() {
             {refreshing ? 'Refreshing…' : 'Refresh'}
           </button>
         </div>
-        {queue.loading && <p style={{ fontSize: 'var(--fs-meta)' }}>Loading…</p>}
+        {queue.loading && <p style={{ fontSize: 'var(--fs-aux)' }}>Loading…</p>}
         {queue.error && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--crit-ink)' }}>
             Cannot load {QUEUE_URL}: {queue.error}. Run <code>npm run refresh:curate-queue</code> to
             generate it.
           </p>
         )}
         {!queue.loading && !queue.error && queueBundles.length === 0 && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
             No quarantined bundles. The verifier didn't surface any contradicho claims that passed
             the auto-curate gates this run.
           </p>
@@ -403,15 +403,15 @@ export default function Curator() {
             {refreshing ? 'Refreshing…' : 'Refresh'}
           </button>
         </div>
-        {issues.loading && <p style={{ fontSize: 'var(--fs-meta)' }}>Loading…</p>}
+        {issues.loading && <p style={{ fontSize: 'var(--fs-aux)' }}>Loading…</p>}
         {issues.error && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--crit-ink)' }}>
             Cannot load {ISSUES_URL}: {issues.error}. Run <code>npm run refresh:gh-issues</code> to
             generate it.
           </p>
         )}
         {issues.data?.error && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.5 }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.5 }}>
             <span style={{ color: 'var(--warn-ink, var(--ink))' }}>Refresh skipped.</span>{' '}
             {issues.data.error.includes('GITHUB_TOKEN')
               ? 'The repository is private — set GITHUB_TOKEN in .env (a fine-grained PAT with read access is enough) and re-run npm run refresh:gh-issues. Right-of-reply still works as a curator workflow; replies arrive through editorial contact and are applied with `npm run finding-reply`.'
@@ -419,7 +419,7 @@ export default function Curator() {
           </p>
         )}
         {!issues.loading && !issues.error && ghIssues.length === 0 && !issues.data?.error && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
             No open <code>derecho-replica</code> issues.
           </p>
         )}
@@ -456,7 +456,7 @@ export default function Curator() {
         </div>
         <p
           style={{
-            fontSize: 'var(--fs-micro)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             lineHeight: 1.5,
             margin: '4px 0 10px',
@@ -466,14 +466,14 @@ export default function Curator() {
           evidencia citada y el criterio: la nota del curador se publica, así que describe el
           criterio, nunca el material descartado.
         </p>
-        {areaFitQueue.loading && <p style={{ fontSize: 'var(--fs-meta)' }}>Loading…</p>}
+        {areaFitQueue.loading && <p style={{ fontSize: 'var(--fs-aux)' }}>Loading…</p>}
         {areaFitQueue.error && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--crit-ink)' }}>
             {String(areaFitQueue.error)}
           </p>
         )}
         {!areaFitQueue.loading && areaFitRows.length === 0 && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
             Cola vacía. Genera propuestas con{' '}
             <code>LLM_BACKEND=claude-code npm run suggest:area-fit</code>.
           </p>
@@ -520,7 +520,7 @@ export default function Curator() {
         </div>
         <p
           style={{
-            fontSize: 'var(--fs-micro)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             lineHeight: 1.5,
             margin: '4px 0 10px',
@@ -532,14 +532,14 @@ export default function Curator() {
           intentó quedó medido sin poder discriminante. Y no escribe: el único escritor del snapshot
           publicado es <code>npm run correct-pleno-finding</code>.
         </p>
-        {findingSupportQueue.loading && <p style={{ fontSize: 'var(--fs-meta)' }}>Loading…</p>}
+        {findingSupportQueue.loading && <p style={{ fontSize: 'var(--fs-aux)' }}>Loading…</p>}
         {findingSupportQueue.error && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--crit-ink)' }}>
             {String(findingSupportQueue.error)}
           </p>
         )}
         {!findingSupportQueue.loading && findingSupportRows.length === 0 && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
             Cola vacía. Constrúyela con <code>npm run triage:finding-support</code>.
           </p>
         )}
@@ -579,7 +579,7 @@ export default function Curator() {
         </div>
         <p
           style={{
-            fontSize: 'var(--fs-micro)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             lineHeight: 1.5,
             margin: '4px 0 10px',
@@ -595,14 +595,14 @@ export default function Curator() {
           <code>npm run correct-pleno-finding</code> tú mismo: queda en la bitácora pública de la
           ficha.
         </p>
-        {quoteReanchorQueue.loading && <p style={{ fontSize: 'var(--fs-meta)' }}>Loading…</p>}
+        {quoteReanchorQueue.loading && <p style={{ fontSize: 'var(--fs-aux)' }}>Loading…</p>}
         {quoteReanchorQueue.error && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--crit-ink)' }}>
             {String(quoteReanchorQueue.error)}
           </p>
         )}
         {!quoteReanchorQueue.loading && quoteReanchorRows.length === 0 && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
             Cola vacía. Constrúyela con <code>npm run triage:quote-reanchor</code>.
           </p>
         )}
@@ -642,7 +642,7 @@ export default function Curator() {
         </div>
         <p
           style={{
-            fontSize: 'var(--fs-micro)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             lineHeight: 1.5,
             margin: '4px 0 10px',
@@ -659,14 +659,14 @@ export default function Curator() {
           <code>npm run correct-pleno-finding</code> tú mismo: queda en la bitácora pública de la
           ficha.
         </p>
-        {findingExceptionQueue.loading && <p style={{ fontSize: 'var(--fs-meta)' }}>Loading…</p>}
+        {findingExceptionQueue.loading && <p style={{ fontSize: 'var(--fs-aux)' }}>Loading…</p>}
         {findingExceptionQueue.error && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--crit-ink)' }}>
             {String(findingExceptionQueue.error)}
           </p>
         )}
         {!findingExceptionQueue.loading && findingExceptionRows.length === 0 && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
             Cola vacía. Constrúyela con <code>npm run triage:finding-exception</code>.
           </p>
         )}
@@ -701,9 +701,9 @@ export default function Curator() {
             {promiseQueue.loading ? 'Refreshing…' : 'Refresh'}
           </button>
         </div>
-        {promiseQueue.loading && <p style={{ fontSize: 'var(--fs-meta)' }}>Loading…</p>}
+        {promiseQueue.loading && <p style={{ fontSize: 'var(--fs-aux)' }}>Loading…</p>}
         {promiseQueue.error && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--crit-ink)' }}>
             Cannot load the promise queue: {promiseQueue.error}. The endpoint is dev-only — run{' '}
             <code>npm run auto-curate-promises</code> to populate it.
           </p>
@@ -724,7 +724,7 @@ export default function Curator() {
           </div>
         )}
         {!promiseQueue.loading && !promiseQueue.error && promiseDrafts.length === 0 && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>La cola está vacía.</p>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>La cola está vacía.</p>
         )}
         {promiseDrafts.map((d) => (
           <PromiseDraftRow
@@ -765,14 +765,14 @@ export default function Curator() {
             {pendingPromises.loading ? 'Refreshing…' : 'Refresh'}
           </button>
         </div>
-        {pendingPromises.loading && <p style={{ fontSize: 'var(--fs-meta)' }}>Loading…</p>}
+        {pendingPromises.loading && <p style={{ fontSize: 'var(--fs-aux)' }}>Loading…</p>}
         {pendingPromises.error && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--crit-ink)' }}>
             Cannot load promises.json: {pendingPromises.error}.
           </p>
         )}
         {!pendingPromises.loading && !pendingPromises.error && pending.length === 0 && (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
             No hay promesas auto-publicadas pendientes de revisión.
           </p>
         )}

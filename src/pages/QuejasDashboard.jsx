@@ -210,7 +210,7 @@ function SlaPanel({ byConcejal, officials }) {
       </div>
       <div
         style={{
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           marginTop: 10,
           lineHeight: 1.5,
@@ -333,7 +333,7 @@ function ReadyToEscalate({ items }) {
         title="Quejas cerca de o en silencio administrativo"
       />
       <div
-        style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 4, lineHeight: 1.5 }}
+        style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4, lineHeight: 1.5 }}
       >
         Quejas registradas en sede cuyo plazo LPACAP lleva ≥80% consumido. Candidatas para{' '}
         <code>/escalar Q-XXXX</code> si no llega respuesta antes del vencimiento — se generará el

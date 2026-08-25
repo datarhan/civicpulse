@@ -54,7 +54,7 @@ function LegalFooter({ snap }) {
         padding: 14,
         background: 'var(--soft)',
         borderRadius: 'var(--r-input)',
-        fontSize: 'var(--fs-meta)',
+        fontSize: 'var(--fs-aux)',
         color: 'var(--ink50)',
         lineHeight: 1.5,
       }}
@@ -342,7 +342,7 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
           </div>
           <div
             style={{
-              fontSize: 'var(--fs-micro)',
+              fontSize: 'var(--fs-aux)',
               color: 'var(--ink50)',
               marginBottom: 5,
               lineHeight: 1.45,

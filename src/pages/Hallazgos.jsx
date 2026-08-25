@@ -175,7 +175,7 @@ export function FindingDetailCard({ f, permalink }) {
               padding: '8px 10px',
               background: 'var(--soft)',
               borderRadius: 'var(--r-card)',
-              fontSize: 'var(--fs-meta)',
+              fontSize: 'var(--fs-aux)',
               lineHeight: 1.5,
               color: 'var(--ink)',
             }}
@@ -244,7 +244,7 @@ export function FindingDetailCard({ f, permalink }) {
               paddingLeft: 18,
               display: 'grid',
               gap: 8,
-              fontSize: 'var(--fs-micro)',
+              fontSize: 'var(--fs-aux)',
             }}
           >
             {f.corrections.map((c, idx) => (
@@ -267,13 +267,11 @@ export function FindingDetailCard({ f, permalink }) {
                 >
                   {c.original}
                 </div>
-                <div style={{ color: 'var(--ink90)', marginTop: 1 }}>{c.corrected}</div>
+                <div style={{ color: 'var(--ink)', marginTop: 1 }}>{c.corrected}</div>
                 <div
                   style={{
                     marginTop: 2,
-                    fontStyle: 'italic',
                     color: 'var(--ink70)',
-                    fontSize: 'var(--fs-micro)',
                   }}
                 >
                   Motivo: {c.reason}
@@ -312,7 +310,7 @@ function RetractionLedger({ retractions }) {
         padding: 14,
         border: '1px solid var(--border)',
         borderRadius: 'var(--r-input)',
-        fontSize: 'var(--fs-micro)',
+        fontSize: 'var(--fs-aux)',
         color: 'var(--ink70)',
         lineHeight: 1.55,
       }}
@@ -353,9 +351,7 @@ function RetractionLedger({ retractions }) {
                 {r.digest}
               </span>
             </div>
-            <div style={{ marginTop: 2, fontStyle: 'italic', fontSize: 'var(--fs-micro)' }}>
-              Motivo: {r.reason}
-            </div>
+            <div style={{ marginTop: 2, fontSize: 'var(--fs-micro)' }}>Motivo: {r.reason}</div>
           </li>
         ))}
       </ol>
@@ -507,7 +503,7 @@ export default function Hallazgos() {
           </div>
           <div
             style={{
-              fontSize: 'var(--fs-micro)',
+              fontSize: 'var(--fs-aux)',
               color: 'var(--ink50)',
               marginTop: 6,
               lineHeight: 1.5,
@@ -593,7 +589,7 @@ export default function Hallazgos() {
           evidencia, y desde aquí se llega en un clic. */}
       {EFICIENCIA_ENABLED && (
         <Card style={{ marginBottom: 18, background: 'var(--soft)' }}>
-          <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.55 }}>
+          <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.55 }}>
             Esta página verifica <strong>declaraciones en pleno</strong>. Los hallazgos sobre{' '}
             <strong>cuánto cuesta cada servicio</strong> —que no citan a nadie porque no los dijo
             nadie: salen de las cifras que el ayuntamiento remite al ministerio— se publican junto a
@@ -795,7 +791,7 @@ export default function Hallazgos() {
           padding: 14,
           background: 'var(--soft)',
           borderRadius: 'var(--r-input)',
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           lineHeight: 1.55,
         }}

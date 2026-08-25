@@ -24,7 +24,7 @@ import { particionPosiciones } from '../../scraper/indicador-areas'
  * Todas las cifras salen del snapshot. Ninguna está escrita: si la entrega
  * siguiente remide un denominador, el 13 baja solo.
  */
-export function EstadoRendicion({ data, firmados = 0, preguntas }) {
+export function EstadoRendicion({ data, firmados = 0, preguntas, sinAncla = false }) {
   const indicadores = data?.indicadores ?? []
   if (indicadores.length === 0) return null
 
@@ -79,7 +79,10 @@ export function EstadoRendicion({ data, firmados = 0, preguntas }) {
   const primera = bloque?.items?.[0]
 
   return (
-    <Card id="sec-lectura" style={{ marginTop: 16, scrollMarginTop: MARGEN_ANCLA }}>
+    <Card
+      id={sinAncla ? undefined : 'sec-lectura'}
+      style={{ marginTop: sinAncla ? 0 : 16, scrollMarginTop: MARGEN_ANCLA }}
+    >
       <p
         style={{
           margin: 0,
@@ -149,7 +152,7 @@ export function EstadoRendicion({ data, firmados = 0, preguntas }) {
         ))}
       </div>
 
-      <p style={{ margin: '8px 0 0', fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+      <p style={{ margin: '8px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
         Estas {cifras.length === 4 ? 'cuatro' : cifras.length} cifras miden la{' '}
         <strong>rendición de cuentas</strong>, no el servicio. No hay nota global del ayuntamiento
         en esta página y no la va a haber: lo que se cuenta aquí es qué parte de sus propias cifras
@@ -287,7 +290,7 @@ export function EstadoRendicion({ data, firmados = 0, preguntas }) {
           >
             {primera.q}
           </p>
-          <p style={{ margin: '6px 0 0', fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+          <p style={{ margin: '6px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
             A {bloque.destinatario} · réplica abierta y se publicará íntegra ·{' '}
             <a href="#sec-preguntas" style={{ color: 'var(--civic)' }}>
               todas las preguntas del panel

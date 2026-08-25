@@ -30,7 +30,7 @@ export function FloodLegend() {
   return (
     <div style={cardStyle}>
       <div style={titleStyle}>{t('map.flood.title')}</div>
-      <div style={{ fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.7)', lineHeight: 1.35 }}>
+      <div style={{ fontSize: 'var(--fs-aux)', color: 'rgba(11,15,25,.7)', lineHeight: 1.35 }}>
         Zonas oficiales de peligrosidad · <strong>PATRICOVA</strong> (Generalitat Valenciana / ICV).
         Tonos más intensos = mayor riesgo.
       </div>

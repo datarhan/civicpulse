@@ -74,7 +74,7 @@ function VoiceEnrollmentSection() {
       </div>
       <p
         style={{
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           marginTop: 4,
           marginBottom: 10,
@@ -86,7 +86,7 @@ function VoiceEnrollmentSection() {
         time once integration ships; today this is the enrollment tool only.
       </p>
       {voices.error && (
-        <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--crit-ink)' }}>
+        <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--crit-ink)' }}>
           Cannot load /api/curator/voiceprints: {voices.error}
         </p>
       )}
@@ -192,7 +192,7 @@ function VoiceEnrollmentSection() {
             <h3 style={{ margin: '4px 0 12px', fontSize: 'var(--fs-head)' }}>
               Enroll voice: {enrollFor.name}
             </h3>
-            <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 0 }}>
+            <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 0 }}>
               Paste any public audio URL with this person speaking — yt-dlp will extract the audio.
               Recommended: <b>≥30 s</b> of clear, uninterrupted speech (interview, statement, press
               conference). The downloaded clip is cached in <code>.voiceprints/audio/</code> for
@@ -373,7 +373,6 @@ function PlenoAssignmentRow({ plenoId, assignment, voiceprintRows, onOverride, b
           <div
             style={{
               fontSize: 'var(--fs-micro)',
-              fontStyle: 'italic',
               color: 'var(--ink50)',
               marginTop: 3,
             }}
@@ -385,7 +384,7 @@ function PlenoAssignmentRow({ plenoId, assignment, voiceprintRows, onOverride, b
       <td style={{ padding: '8px 6px', verticalAlign: 'top' }}>
         <div
           className="mono"
-          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', lineHeight: 1.6 }}
+          style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.6 }}
         >
           {(assignment.topCandidates ?? []).slice(0, 3).map((c) => (
             <div key={c.slug}>
@@ -591,7 +590,7 @@ function VoiceIDAssignmentsSection() {
         </button>
       </div>
       <div
-        style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.5, marginTop: 4 }}
+        style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.5, marginTop: 4 }}
       >
         Per-pleno cluster→councillor map produced by <code>npm run identify-pleno-speakers</code>.
         High-tier matches feed the LLM extractor as <code>speakerSlug</code>; medium and low stay

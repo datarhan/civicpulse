@@ -230,7 +230,7 @@ export default function LabHealth() {
 
           <p
             style={{
-              fontSize: 'var(--fs-micro)',
+              fontSize: 'var(--fs-aux)',
               color: 'var(--ink50)',
               marginTop: 16,
               lineHeight: 1.55,

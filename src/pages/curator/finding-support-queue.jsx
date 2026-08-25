@@ -80,7 +80,7 @@ function ExcerptCard({ ref_, kind, excerpt }) {
         border: '1px solid var(--border2)',
         borderRadius: 'var(--r-input)',
         marginBottom: 6,
-        background: 'var(--card)',
+        background: 'var(--paper)',
       }}
     >
       <div style={{ display: 'flex', gap: 6, alignItems: 'center', marginBottom: 4 }}>
@@ -105,7 +105,7 @@ function ExcerptCard({ ref_, kind, excerpt }) {
       </div>
       {/* Verbatim del snapshot: ni recortado ni re-envuelto. Lo que el curador
           juzga tiene que ser byte a byte lo que el lector tiene delante. */}
-      <div style={{ fontSize: 'var(--fs-meta)', lineHeight: 1.5, color: 'var(--ink70)' }}>
+      <div style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.5, color: 'var(--ink70)' }}>
         {excerpt}
       </div>
     </div>
@@ -177,9 +177,8 @@ export function FindingSupportRow({ row, verdictOptions }) {
       {row.priorReview && (
         <div
           style={{
-            fontSize: 'var(--fs-micro)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
-            fontStyle: 'italic',
             lineHeight: 1.45,
             marginBottom: 6,
           }}
@@ -204,7 +203,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
               padding: '8px 10px',
               border: '1px solid var(--border2)',
               borderRadius: 'var(--r-input)',
-              background: 'var(--card)',
+              background: 'var(--paper)',
             }}
           >
             {row.summary}
@@ -215,7 +214,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
               {row.documentaryConnectors.map((c, i) => (
                 <div
                   key={`${c.name}-${i}`}
-                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', lineHeight: 1.45 }}
+                  style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.45 }}
                 >
                   <span
                     className="mono"
@@ -241,7 +240,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
                 <div
                   key={i}
                   style={{
-                    fontSize: 'var(--fs-meta)',
+                    fontSize: 'var(--fs-aux)',
                     color: 'var(--ink70)',
                     lineHeight: 1.5,
                     marginBottom: 6,
@@ -305,7 +304,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
             fontSize: 'var(--fs-meta)',
             borderRadius: 'var(--r-input)',
             border: '1px solid var(--border2)',
-            background: 'var(--card)',
+            background: 'var(--paper)',
             color: 'var(--ink)',
           }}
         >
@@ -331,7 +330,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
             <code
               style={{
                 flex: 1,
-                fontSize: 'var(--fs-micro)',
+                fontSize: 'var(--fs-aux)',
                 lineHeight: 1.5,
                 padding: '8px 10px',
                 background: 'var(--soft)',
@@ -350,7 +349,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
                 fontWeight: 600,
                 borderRadius: 'var(--r-input)',
                 border: '1px solid var(--border2)',
-                background: 'var(--card)',
+                background: 'var(--paper)',
                 color: 'var(--ink70)',
                 cursor: 'pointer',
               }}
@@ -360,7 +359,7 @@ export function FindingSupportRow({ row, verdictOptions }) {
           </div>
           <div
             style={{
-              fontSize: 'var(--fs-micro)',
+              fontSize: 'var(--fs-aux)',
               color: 'var(--ink50)',
               marginTop: 4,
               lineHeight: 1.45,

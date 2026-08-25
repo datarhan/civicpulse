@@ -96,7 +96,7 @@ function ExpedienteRow({ e, ficha }) {
               margin: '6px 0 0',
               paddingLeft: 10,
               borderLeft: '2px solid var(--border2)',
-              fontSize: 'var(--fs-meta)',
+              fontSize: 'var(--fs-aux)',
               color: 'var(--ink70)',
               lineHeight: 1.5,
             }}
@@ -153,7 +153,7 @@ function SindicCard() {
           24-08-2026, afirmaba más de lo que el registro sostiene. */}
       <div
         style={{
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink70)',
           lineHeight: 1.5,
           marginTop: 8,
@@ -219,7 +219,7 @@ function SindicCard() {
           >
             Otra pregunta · vecinos de Riba-roja ante otras administraciones
           </div>
-          <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)', lineHeight: 1.5 }}>
+          <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
             {vecinos.length} expedientes que el Síndic registra a nombre de vecinos de aquí pero
             contra la Generalitat u otros ayuntamientos.{' '}
             <strong style={{ color: 'var(--ink)' }}>No se suman con los de arriba</strong>: no
@@ -456,7 +456,7 @@ function SindicaturaCard() {
         <div style={{ marginTop: 8 }}>
           <div
             style={{
-              fontSize: 'var(--fs-meta)',
+              fontSize: 'var(--fs-aux)',
               color: 'var(--ink50)',
               lineHeight: 1.5,
               marginBottom: 4,
@@ -637,7 +637,7 @@ function ConsellCvCard() {
         <div
           style={{
             marginTop: 12,
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             lineHeight: 1.55,
           }}
@@ -753,7 +753,7 @@ function CtbgCard() {
         <div
           style={{
             marginTop: 12,
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             lineHeight: 1.55,
           }}

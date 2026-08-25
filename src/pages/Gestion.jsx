@@ -65,7 +65,7 @@ export default function Gestion() {
       >
         Cómo funciona la casa por dentro
       </h1>
-      <p style={{ color: 'var(--ink50)', maxWidth: '64ch' }}>
+      <p style={{ color: 'var(--ink70)', maxWidth: '64ch' }}>
         Cuánto tarda en pagar, cuánto dedica por vecino, cuánta competencia hubo en sus contratos y
         qué distancia hay entre el presupuesto que se aprobó y el que se ejecutó. Son medidas de
         plazo y de fricción, no de coste: lo que cuesta cada servicio está en{' '}
@@ -76,7 +76,7 @@ export default function Gestion() {
       </p>
 
       {firmados > 0 && (
-        <p style={{ margin: '6px 0 0', fontSize: 'var(--fs-meta)' }}>
+        <p style={{ margin: '6px 0 0', fontSize: 'var(--fs-aux)' }}>
           <a href="#hallazgos" style={{ color: 'var(--civic)' }}>
             {firmados === 1
               ? '1 hallazgo firmado sobre estas cifras'
@@ -86,11 +86,11 @@ export default function Gestion() {
         </p>
       )}
 
-      {loading && <p style={{ color: 'var(--ink50)' }}>Cargando…</p>}
-      {error && <p style={{ color: 'var(--ink50)' }}>No se pudo cargar el panel.</p>}
+      {loading && <p style={{ color: 'var(--ink70)' }}>Cargando…</p>}
+      {error && <p style={{ color: 'var(--ink70)' }}>No se pudo cargar el panel.</p>}
       {!loading && !error && municipales.length === 0 && (
         <Card style={{ marginTop: 16 }}>
-          <p style={{ margin: 0, color: 'var(--ink50)' }}>
+          <p style={{ margin: 0, color: 'var(--ink70)' }}>
             Todavía no hay indicadores de gestión calculados.
           </p>
         </Card>
@@ -125,7 +125,7 @@ export default function Gestion() {
           que los indicadores y las fichas. */}
       {!loading && !error && <PreguntasRegistradas data={preguntas} panel="gestion" />}
 
-      <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 28 }}>
+      <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 28 }}>
         Cómo se calcula y qué se descarta:{' '}
         <a href="/metodologia#eficiencia" style={{ color: 'var(--civic)' }}>
           metodología

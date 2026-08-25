@@ -112,7 +112,7 @@ function Leyenda({ total, conVerificada, conVotos }) {
   return (
     <div
       style={{
-        fontSize: 'var(--fs-meta)',
+        fontSize: 'var(--fs-aux)',
         color: 'var(--ink70)',
         lineHeight: 1.5,
         margin: '0 0 8px',

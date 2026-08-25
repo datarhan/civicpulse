@@ -69,7 +69,7 @@ export function PanelMunicipal({ municipales, titulo, intro, competencias }) {
     <>
       <h2
         style={{
-          fontSize: 'var(--fs-body)',
+          fontSize: 'var(--fs-card)',
           fontWeight: 650,
           margin: '28px 0 4px',
           letterSpacing: '-.01em',
@@ -123,7 +123,7 @@ export function PanelMunicipal({ municipales, titulo, intro, competencias }) {
                   flexWrap: 'wrap',
                 }}
               >
-                <h3 style={{ fontSize: 'var(--fs-body)', fontWeight: 650, margin: 0 }}>
+                <h3 style={{ fontSize: 'var(--fs-head)', fontWeight: 650, margin: 0 }}>
                   {m.etiqueta}
                 </h3>
                 <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
@@ -209,7 +209,7 @@ export function PanelMunicipal({ municipales, titulo, intro, competencias }) {
               {m.pares && (
                 <p
                   className="mono"
-                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', margin: '8px 0 0' }}
+                  style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '8px 0 0' }}
                 >
                   Mediana de {m.pares.n.toLocaleString('es-ES')} municipios:{' '}
                   {fmt(m.pares.mediana, m.formato)} · aquí, percentil {m.pares.percentil}
@@ -253,7 +253,7 @@ export function PanelMunicipal({ municipales, titulo, intro, competencias }) {
               {m.citas?.length > 0 && (
                 <p
                   className="mono"
-                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', margin: '10px 0 0' }}
+                  style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '10px 0 0' }}
                 >
                   Fuente:{' '}
                   <a

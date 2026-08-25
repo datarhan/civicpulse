@@ -57,7 +57,7 @@ export function ContractCard(props) {
     >
       {/* Title + located amount */}
       <div style={{ display: 'flex', gap: 8, alignItems: 'baseline' }}>
-        <div style={{ flex: 1, fontSize: 'var(--fs-meta)', fontWeight: 600, lineHeight: 1.3 }}>
+        <div style={{ flex: 1, fontSize: 'var(--fs-aux)', fontWeight: 600, lineHeight: 1.3 }}>
           <ExtLink href={c.permalink} style={{ color: 'inherit', textDecoration: 'none' }}>
             {c.title}
           </ExtLink>
@@ -123,7 +123,7 @@ export function ContractCard(props) {
 
       {/* CPV target labels */}
       {cpvLabels.length > 0 && (
-        <div style={{ marginTop: 3, fontSize: 'var(--fs-micro)', color: INK55, lineHeight: 1.3 }}>
+        <div style={{ marginTop: 3, fontSize: 'var(--fs-aux)', color: INK55, lineHeight: 1.3 }}>
           {cpvLabels.join(' · ')}
         </div>
       )}
@@ -179,7 +179,7 @@ export function ContractCard(props) {
               href={`/quejas/${r.quejaId}`}
               style={{
                 display: 'block',
-                fontSize: 'var(--fs-micro)',
+                fontSize: 'var(--fs-aux)',
                 color: INK70,
                 textDecoration: 'none',
                 marginBottom: 2,

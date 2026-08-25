@@ -25,10 +25,23 @@ import { useEffect, useState } from 'react'
  */
 export const MARGEN_ANCLA = 112
 
-export function SubnavSecciones({ items, ariaLabel = 'Secciones de la página' }) {
-  const [activa, setActiva] = useState(items[0]?.id ?? '')
+export function SubnavSecciones({
+  items,
+  ariaLabel = 'Secciones de la página',
+  activa: activaFuera,
+  onActivar,
+}) {
+  const [activaSpy, setActivaSpy] = useState(items[0]?.id ?? '')
+  // Dos modos en un componente porque son la MISMA barra: la de scroll-spy,
+  // que marca por dónde va el lector, y la de pestañas, que decide qué se ve.
+  // Partirlas en dos daría dos barras que se parecen y no se comportan igual,
+  // que es peor que una sola — la misma razón por la que los dos libros
+  // comparten hoja.
+  const pestanas = typeof onActivar === 'function'
+  const activa = pestanas ? activaFuera : activaSpy
 
   useEffect(() => {
+    if (pestanas) return undefined
     if (typeof window === 'undefined' || items.length === 0) return undefined
     const observer = new IntersectionObserver(
       (entries) => {
@@ -37,7 +50,7 @@ export function SubnavSecciones({ items, ariaLabel = 'Secciones de la página' }
           .sort(
             (a, b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top,
           )
-        if (visibles[0]) setActiva(visibles[0].target.id)
+        if (visibles[0]) setActivaSpy(visibles[0].target.id)
       },
       // El margen superior descuenta topbar + barra: la sección «activa» es la
       // que pasa por debajo de las dos, no la que asoma por el borde de la
@@ -54,9 +67,25 @@ export function SubnavSecciones({ items, ariaLabel = 'Secciones de la página' }
       if (el) observer.observe(el)
     }
     return () => observer.disconnect()
-  }, [items])
+  }, [items, pestanas])
 
   if (items.length === 0) return null
+
+  // Siguen siendo enlaces con href, no botones, y a propósito: cada apartado
+  // es un destino citable —/eficiencia#hallazgos vive en enlaces publicados— y
+  // un <button> no se copia, no se abre en otra pestaña y no sobrevive a que
+  // alguien lo pegue en un correo. `role="tab"` encima de un enlace es ARIA
+  // válido: el rol manda sobre el elemento y el href sigue haciendo su
+  // trabajo.
+  const teclas = (e, i) => {
+    if (!pestanas) return
+    const salto = { ArrowRight: 1, ArrowLeft: -1, Home: -i, End: items.length - 1 - i }[e.key]
+    if (salto === undefined) return
+    e.preventDefault()
+    const destino = items[(i + salto + items.length) % items.length]
+    onActivar(destino.id)
+    e.currentTarget.parentElement?.parentElement?.querySelector(`a[href="#${destino.id}"]`)?.focus()
+  }
 
   return (
     <nav aria-label={ariaLabel} className="cp-subnav">
@@ -94,16 +123,50 @@ export function SubnavSecciones({ items, ariaLabel = 'Secciones de la página' }
           text-decoration: none;
           color: var(--ink50);
         }
-        .cp-subnav li a[aria-current='true'] {
+        .cp-subnav li a[aria-current='true'],
+        .cp-subnav li a[aria-selected='true'] {
           color: var(--ink);
           background: var(--soft);
           font-weight: 600;
         }
+        /* Objetivo real, no un texto de 12 px: §15 pide 44 px en escritorio y
+           48 en movil para todo lo que sea la puerta a unos datos, y una
+           pestaña que oculta cinco sextos de la pagina lo es. */
+        .cp-subnav li a[role='tab'] {
+          display: flex;
+          align-items: center;
+          min-height: 40px;
+          font-size: var(--fs-aux);
+          padding: 0 14px;
+        }
+        @media (max-width: 720px) {
+          .cp-subnav li a[role='tab'] { min-height: 48px; }
+        }
+        .cp-subnav li a:focus-visible {
+          outline: 2px solid var(--civic);
+          outline-offset: -2px;
+        }
+        /* §17 · «en papel no hay acordeon que abrir». Una hoja impresa con un
+           sexto de la pagina no es la pagina: al imprimir salen los seis
+           apartados y la barra se cae. */
+        @media print {
+          .cp-subnav { display: none; }
+        }
       `}</style>
-      <ol>
-        {items.map((it) => (
-          <li key={it.id}>
-            <a href={`#${it.id}`} aria-current={activa === it.id ? 'true' : undefined}>
+      <ol role={pestanas ? 'tablist' : undefined}>
+        {items.map((it, i) => (
+          <li key={it.id} role={pestanas ? 'presentation' : undefined}>
+            <a
+              href={`#${it.id}`}
+              id={pestanas ? `tab-${it.id}` : undefined}
+              role={pestanas ? 'tab' : undefined}
+              aria-selected={pestanas ? activa === it.id : undefined}
+              aria-controls={pestanas ? it.id : undefined}
+              tabIndex={pestanas && activa !== it.id ? -1 : undefined}
+              aria-current={!pestanas && activa === it.id ? 'true' : undefined}
+              onKeyDown={(e) => teclas(e, i)}
+              onClick={pestanas ? () => onActivar(it.id) : undefined}
+            >
               {it.label}
             </a>
           </li>

@@ -276,10 +276,80 @@ option {
   background: transparent;
 }
 
+/* §03b · «La cursiva que no existe». Outfit se carga con
+   `wght@400;500;600;700` y sin eje `ital`, así que un `font-style: italic`
+   hace que el navegador incline la romana por transformación geométrica:
+   contraformas deformadas, terminales rotas, peso aparente menor.
+
+   Los veintidós `fontStyle: 'italic'` del código se retiraron uno a uno, pero
+   quedaba la puerta grande: <em> y <i> traen la cursiva de la hoja del propio
+   navegador. Medido, sólo en /metodologia: OCHENTA Y DOS elementos, todos
+   inclinados sintéticamente.
+
+   El énfasis pasa al PESO, que es lo que esta familia sí tiene. Es la
+   respuesta tipográfica de siempre cuando no hay itálica, y deja la regla del
+   brandbook cumplida en los dos sitios donde puede incumplirse. */
+em,
+i {
+  font-style: normal;
+  font-weight: 600;
+}
+
 .mono {
   font-family: var(--font-mono);
   font-feature-settings: 'tnum';
   font-variant-numeric: tabular-nums;
+}
+
+/* ── Las dos primitivas que el brandbook nombra por su nombre ──────────────
+   Viven aquí y no en el prop `style` de Primitives.jsx porque las dos
+   necesitan pseudo-clases, y un estilo inline no puede llevarlas. Es la misma
+   razón por la que `SubnavSecciones` y el libro de servicios tienen hoja
+   propia. */
+
+/* §06 · «Card · Borde ink10, radio 12, padding 20, sin sombra. Es el
+   contenedor de todo lo demás.» Estaba a padding 18 y con --border2, que en
+   claro es el mismo gris pero en oscuro no sigue la tinta.
+
+   §16 · «Todo lo que aparece con onMouseEnter aparece también con onFocus.»
+   La tarjeta reaccionaba al puntero MUTANDO `style.borderColor` dentro de un
+   onMouseEnter, así que un lector con teclado o con lector de pantalla no
+   recibía nada de eso — y la tarjeta está en 196 sitios. El brandbook cita
+   este componente por su nombre al escribir la regla. Ahora el paso lo da el
+   CSS, que sí sabe de :focus-within. */
+.cp-card {
+  background: var(--paper);
+  border: 1px solid var(--ink10);
+  border-radius: var(--r-card);
+  padding: 20px;
+  transition: border-color var(--motion-fast) var(--ease-fast);
+}
+.cp-card-flush {
+  padding: 0;
+}
+.cp-card-hover:hover,
+.cp-card-hover:focus-within {
+  border-color: var(--ink20);
+}
+
+/* §03 · El encabezado de bloque, en el escalón que se llama como su trabajo.
+   `SectionHead` pintaba su título a --fs-body: el mismo cuerpo que el párrafo
+   de debajo, en 187 llamadas de 36 ficheros. Medido sobre el sitio entero:
+   veinticinco de treinta y siete rutas no tenían NI UN <h2>, porque además
+   pintaba un <div>. Una página de 6.140 px sin un solo hito. */
+.cp-sec-head {
+  margin: 0;
+  font-size: var(--fs-head);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+  color: var(--ink);
+}
+/* «card 20» — el escalón de titular de ficha, para la sección que ABRE una
+   región de página, no para la que ya está dentro de una. */
+.cp-sec-head-xl {
+  font-size: var(--fs-card);
+  letter-spacing: -0.01em;
 }
 
 /* La paleta de la «Direction C (Civic Briefing)» vivía aquí: doce tokens, un

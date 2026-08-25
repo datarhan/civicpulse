@@ -36,7 +36,7 @@ export function DeclaracionCongelada({ declaracion }) {
       </div>
       <h2
         style={{
-          fontSize: 'var(--fs-head)',
+          fontSize: 'var(--fs-card)',
           fontWeight: 650,
           margin: '4px 0 8px',
           letterSpacing: '-.01em',
@@ -110,7 +110,7 @@ export function DeclaracionCongelada({ declaracion }) {
           </table>
           <p
             style={{
-              fontSize: 'var(--fs-meta)',
+              fontSize: 'var(--fs-aux)',
               color: 'var(--ink50)',
               marginTop: 8,
               marginBottom: 0,

@@ -75,7 +75,7 @@ function AreaSpend({ slugs }) {
       <Card>
         <div
           style={{
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink70)',
             marginBottom: 12,
             lineHeight: 1.5,
@@ -113,7 +113,7 @@ function AreaSpend({ slugs }) {
         ))}
         <div
           style={{
-            fontSize: 'var(--fs-micro)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             marginTop: 10,
             lineHeight: 1.5,
@@ -203,7 +203,7 @@ function AreaActivity({ slugs }) {
       <Card>
         <div
           style={{
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink70)',
             marginBottom: 12,
             lineHeight: 1.5,
@@ -497,7 +497,7 @@ export default function CargoDetalle() {
                   fontWeight: 700,
                   letterSpacing: '.1em',
                   textTransform: 'uppercase',
-                  color: 'var(--accent)',
+                  color: 'var(--civic)',
                 }}
               >
                 Alcalde
@@ -629,7 +629,7 @@ export default function CargoDetalle() {
           }
         />
         {partyPromises.length === 0 ? (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 8 }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 8 }}>
             {t('cargos.detalle.promesas.empty')}
           </p>
         ) : (
@@ -696,7 +696,7 @@ export default function CargoDetalle() {
           title={t('cargos.detalle.agenda.title')}
         />
         {agendaItems.length === 0 ? (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 8 }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 8 }}>
             {t('cargos.detalle.agenda.empty')}
           </p>
         ) : (
@@ -708,7 +708,7 @@ export default function CargoDetalle() {
                   padding: '8px 12px',
                   border: '1px solid var(--border2)',
                   borderRadius: 'var(--r-input)',
-                  fontSize: 'var(--fs-meta)',
+                  fontSize: 'var(--fs-aux)',
                   lineHeight: 1.45,
                 }}
               >
@@ -756,7 +756,7 @@ export default function CargoDetalle() {
           }
         />
         {quejaStats.total === 0 ? (
-          <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 8 }}>
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 8 }}>
             {t('cargos.detalle.quejas.empty')}
           </p>
         ) : (
@@ -786,7 +786,7 @@ export default function CargoDetalle() {
           padding: 14,
           background: 'var(--soft)',
           borderRadius: 'var(--r-input)',
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           lineHeight: 1.55,
         }}

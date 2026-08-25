@@ -17,7 +17,7 @@ export function RetiredSourceNote({ upstream }) {
   return (
     <div
       style={{
-        fontSize: 'var(--fs-micro)',
+        fontSize: 'var(--fs-aux)',
         lineHeight: 1.5,
         color: 'var(--warn-ink)',
         background: 'var(--warn-soft)',

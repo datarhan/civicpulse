@@ -59,7 +59,7 @@ export function VoteProvenance({ provenance }) {
               gap: 6,
               alignItems: 'baseline',
               flexWrap: 'wrap',
-              fontSize: 'var(--fs-micro)',
+              fontSize: 'var(--fs-aux)',
               lineHeight: 1.45,
             }}
           >
@@ -84,11 +84,7 @@ export function VoteProvenance({ provenance }) {
               </span>
             )}
             {note && (
-              <span
-                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', fontStyle: 'italic' }}
-              >
-                {note}
-              </span>
+              <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>{note}</span>
             )}
           </div>
         )

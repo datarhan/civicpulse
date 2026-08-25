@@ -159,7 +159,7 @@ function ClaimRow({ item, plenoTitle }) {
             marginTop: 6,
             paddingTop: 6,
             borderTop: '1px dashed var(--border2)',
-            fontSize: 'var(--fs-micro)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             lineHeight: 1.5,
           }}

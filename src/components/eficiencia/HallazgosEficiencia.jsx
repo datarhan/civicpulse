@@ -184,7 +184,7 @@ function FichaEficiencia({ ficha }) {
  *   dos es exactamente la mentira por omisión que esta sección existe para
  *   evitar.
  */
-export function HallazgosEficiencia({ data, indicadorIds, otroPanel }) {
+export function HallazgosEficiencia({ data, indicadorIds, otroPanel, sinAncla = false }) {
   const todas = data?.items ?? []
   const items = indicadorIds ? todas.filter((f) => indicadorIds.includes(f.indicadorId)) : todas
   const enOtroSitio = todas.length - items.length
@@ -194,10 +194,13 @@ export function HallazgosEficiencia({ data, indicadorIds, otroPanel }) {
     // El margen de ancla lo declara SubnavSecciones: en /eficiencia hay dos
     // barras pegajosas encima de este destino; en /gestion sobra aire, que es
     // el fallo barato de los dos.
-    <section id="hallazgos" style={{ marginTop: 32, scrollMarginTop: MARGEN_ANCLA }}>
+    <section
+      id={sinAncla ? undefined : 'hallazgos'}
+      style={{ marginTop: sinAncla ? 0 : 32, scrollMarginTop: MARGEN_ANCLA }}
+    >
       <h2
         style={{
-          fontSize: 'var(--fs-body)',
+          fontSize: 'var(--fs-card)',
           fontWeight: 650,
           margin: '0 0 4px',
           letterSpacing: '-.01em',
@@ -207,7 +210,7 @@ export function HallazgosEficiencia({ data, indicadorIds, otroPanel }) {
       </h2>
       <p
         style={{
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           maxWidth: '64ch',
           margin: '0 0 10px',
@@ -248,7 +251,7 @@ export function HallazgosEficiencia({ data, indicadorIds, otroPanel }) {
       )}
 
       {items.length > 0 && enOtroSitio > 0 && otroPanel && (
-        <p style={{ margin: '10px 0 0', fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+        <p style={{ margin: '10px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
           Hay{' '}
           <a href={otroPanel.to} style={{ color: 'var(--civic)' }}>
             {enOtroSitio === 1 ? 'otra ficha firmada' : `otras ${enOtroSitio} fichas firmadas`} en{' '}

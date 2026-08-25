@@ -61,7 +61,7 @@ function StatusChangeDraftRow({ draft, onApprove, onReject, busy }) {
       {ev.quote && (
         <div
           style={{
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             lineHeight: 1.4,
             marginBottom: 6,
@@ -169,7 +169,7 @@ function PromiseDraftRow({ draft, onApprove, onReject, busy }) {
       {p.quote && (
         <div
           style={{
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             lineHeight: 1.4,
             marginBottom: 6,
@@ -269,7 +269,7 @@ function PromisePendingRow({ promise, onRetract, onMarkReviewed, busy }) {
       {promise.quote && (
         <div
           style={{
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             lineHeight: 1.4,
             marginBottom: 6,

@@ -26,7 +26,7 @@ function EmptyNote({ children }) {
         padding: 14,
         background: 'var(--soft)',
         borderRadius: 'var(--r-input)',
-        fontSize: 'var(--fs-meta)',
+        fontSize: 'var(--fs-aux)',
         color: 'var(--ink50)',
         lineHeight: 1.5,
       }}
@@ -107,7 +107,7 @@ function TranscriptPanel({ plenoId }) {
           councillor said. Say which one the reader is looking at. */}
       <div
         style={{
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           marginBottom: 8,
           lineHeight: 1.5,
@@ -122,7 +122,7 @@ function TranscriptPanel({ plenoId }) {
       <pre
         style={{
           whiteSpace: 'pre-wrap',
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           lineHeight: 1.6,
           color: 'var(--ink70)',
           background: 'var(--soft)',

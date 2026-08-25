@@ -146,7 +146,6 @@ function Cita({ children, fuente }) {
           margin: 0,
           fontSize: 'var(--fs-body)',
           color: 'var(--ink70)',
-          fontStyle: 'italic',
           background: 'var(--soft)',
           borderRadius: '0 var(--r-input) var(--r-input) 0',
         }}
@@ -207,13 +206,13 @@ export default function Basuras() {
   if (loading)
     return (
       <div className="cp-page" style={{ padding: 24, maxWidth: 760, margin: '0 auto' }}>
-        <p style={{ color: 'var(--ink50)' }}>Cargando reportaje…</p>
+        <p style={{ color: 'var(--ink70)' }}>Cargando reportaje…</p>
       </div>
     )
   if (error || !data)
     return (
       <div className="cp-page" style={{ padding: 24, maxWidth: 760, margin: '0 auto' }}>
-        <p style={{ color: 'var(--ink50)' }}>No se pudo cargar el reportaje.</p>
+        <p style={{ color: 'var(--ink70)' }}>No se pudo cargar el reportaje.</p>
       </div>
     )
 
@@ -316,7 +315,7 @@ export default function Basuras() {
             </div>
             <div
               style={{
-                fontSize: 'var(--fs-micro)',
+                fontSize: 'var(--fs-aux)',
                 color: 'var(--ink50)',
                 marginTop: 7,
                 lineHeight: 1.3,
@@ -830,9 +829,7 @@ export default function Basuras() {
             </div>
           )
         })}
-        <p style={{ fontStyle: 'italic', color: 'var(--ink50)', fontSize: 'var(--fs-body)' }}>
-          {data.preguntas.cierre}
-        </p>
+        <p style={{ color: 'var(--ink50)', fontSize: 'var(--fs-body)' }}>{data.preguntas.cierre}</p>
       </article>
 
       {/* Fuentes + método */}

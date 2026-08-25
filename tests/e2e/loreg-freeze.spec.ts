@@ -52,7 +52,13 @@ type Etiquetado = { id: string; etiqueta: string; panel?: string; valor: number 
  */
 const PAGINAS = [
   {
-    ruta: '/eficiencia',
+    // Con el fragmento, no a secas: desde que los seis apartados de
+    // /eficiencia son pestañas, la capa de competencias vive en el libro de
+    // servicios y el libro no es la pestaña por defecto. Entrar por
+    // «/eficiencia» y contar nombres daría CERO en las dos direcciones —y la
+    // prueba de la ventana congelada pasaría en verde sin haber congelado
+    // nada, que es exactamente la puerta hueca que este fichero vigila.
+    ruta: '/eficiencia#sec-servicios',
     h1: /¿Cuánto cuesta y qué se obtiene\?/i,
     ancla: (PANEL.indicadores as Etiquetado[]).find((i) => i.valor !== null)!.etiqueta,
   },

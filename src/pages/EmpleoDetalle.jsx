@@ -247,7 +247,7 @@ export default function EmpleoDetalle() {
       )}
 
       {!d && (
-        <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', lineHeight: 1.5 }}>
+        <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.5 }}>
           {t('empleoDetail.noDetail')}
         </div>
       )}
@@ -255,7 +255,7 @@ export default function EmpleoDetalle() {
       <div
         style={{
           marginTop: 16,
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           lineHeight: 1.5,
         }}

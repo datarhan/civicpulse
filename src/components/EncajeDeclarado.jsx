@@ -113,7 +113,7 @@ function Aviso({ aviso, quote = false }) {
         marginTop: 6,
         paddingLeft: 8,
         borderLeft: '2px solid var(--warn)',
-        fontSize: 'var(--fs-micro)',
+        fontSize: 'var(--fs-aux)',
         color: 'var(--ink70)',
         lineHeight: 1.45,
       }}
@@ -155,7 +155,7 @@ function RespaldoLine({ value, style = {} }) {
   const t = useT()
   if (!RESPALDO_CON_COPIA.includes(value)) return null
   return (
-    <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', lineHeight: 1.45, ...style }}>
+    <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.45, ...style }}>
       {t(`encaje.respaldo.${value}`)}
     </div>
   )
@@ -174,7 +174,7 @@ function RespaldoLine({ value, style = {} }) {
 function ComparadoLine({ style = {} }) {
   const t = useT()
   return (
-    <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', lineHeight: 1.45, ...style }}>
+    <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.45, ...style }}>
       {t('encaje.card.sinCita')}
     </div>
   )
@@ -289,7 +289,7 @@ export function EncajeCard({ official, bioRoute }) {
                 display: 'flex',
                 alignItems: 'baseline',
                 gap: 8,
-                fontSize: 'var(--fs-micro)',
+                fontSize: 'var(--fs-aux)',
                 lineHeight: 1.5,
               }}
             >
@@ -348,7 +348,7 @@ export function EncajeCard({ official, bioRoute }) {
       <div
         style={{
           marginTop: 4,
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           lineHeight: 1.45,
         }}
@@ -386,7 +386,7 @@ export function SinDelegacion() {
         marginTop: 10,
         paddingTop: 10,
         borderTop: '1px dashed var(--border2)',
-        fontSize: 'var(--fs-micro)',
+        fontSize: 'var(--fs-aux)',
         color: 'var(--ink50)',
         lineHeight: 1.45,
       }}
@@ -460,7 +460,7 @@ export function EncajeMatrix({ official, bioRoute }) {
                 border: '1px solid var(--border2)',
                 borderRadius: 'var(--r-card)',
                 padding: '12px 14px',
-                background: 'var(--card)',
+                background: 'var(--paper)',
               }}
             >
               <div
@@ -518,7 +518,7 @@ export function EncajeMatrix({ official, bioRoute }) {
                           margin: '5px 0 0 120px',
                           padding: 0,
                           listStyle: 'none',
-                          fontSize: 'var(--fs-meta)',
+                          fontSize: 'var(--fs-aux)',
                           color: 'var(--ink70)',
                           lineHeight: 1.5,
                         }}
@@ -556,7 +556,7 @@ export function EncajeMatrix({ official, bioRoute }) {
                     marginTop: 10,
                     paddingTop: 8,
                     borderTop: '1px dashed var(--border2)',
-                    fontSize: 'var(--fs-micro)',
+                    fontSize: 'var(--fs-aux)',
                     color: 'var(--ink50)',
                     lineHeight: 1.5,
                   }}
@@ -624,7 +624,7 @@ export function QueExigeLaLey() {
               border: '1px solid var(--border2)',
               borderRadius: 'var(--r-card)',
               padding: '12px 14px',
-              background: 'var(--card)',
+              background: 'var(--paper)',
             }}
           >
             <div
@@ -646,7 +646,7 @@ export function QueExigeLaLey() {
               style={{
                 margin: '8px 0 0',
                 paddingLeft: 18,
-                fontSize: 'var(--fs-meta)',
+                fontSize: 'var(--fs-aux)',
                 color: 'var(--ink70)',
                 lineHeight: 1.6,
               }}
@@ -702,7 +702,7 @@ export function QueExigeLaLey() {
               <p
                 style={{
                   margin: '7px 0 0',
-                  fontSize: 'var(--fs-meta)',
+                  fontSize: 'var(--fs-aux)',
                   color: 'var(--ink50)',
                   lineHeight: 1.55,
                 }}

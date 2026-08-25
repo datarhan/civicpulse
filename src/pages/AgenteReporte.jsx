@@ -100,9 +100,7 @@ function CorrectionLog({ corrections }) {
               <s>{c.original.slice(0, 200)}</s> →{' '}
               <span style={{ color: 'var(--ink70)' }}>{c.corrected.slice(0, 200)}</span>
             </div>
-            <div style={{ marginTop: 4, fontStyle: 'italic', color: 'var(--ink50)' }}>
-              {c.reason}
-            </div>
+            <div style={{ marginTop: 4, color: 'var(--ink50)' }}>{c.reason}</div>
           </li>
         ))}
       </ol>
@@ -191,9 +189,8 @@ function CuratorNotesBlock({ notes }) {
           style={{
             margin: 0,
             flex: 1,
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
-            fontStyle: 'italic',
           }}
         >
           Registro público del trabajo editorial sobre este informe: verificaciones, correcciones y
@@ -223,7 +220,7 @@ function CuratorNotesBlock({ notes }) {
             <li
               key={i}
               style={{
-                fontSize: 'var(--fs-meta)',
+                fontSize: 'var(--fs-aux)',
                 lineHeight: 1.55,
                 color: 'var(--ink50)',
                 paddingLeft: 10,
@@ -273,7 +270,7 @@ export default function AgenteReporte() {
   if (!report) {
     return (
       <div style={{ padding: '40px 24px' }}>
-        <p style={{ color: 'var(--ink50)' }}>
+        <p style={{ color: 'var(--ink70)' }}>
           No hay informe publicado para esta asignación todavía.
         </p>
         <p>

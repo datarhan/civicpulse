@@ -124,7 +124,7 @@ function CorrelationsCard({ quejaId }) {
       />
       <div
         style={{
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           marginTop: 6,
           marginBottom: 10,
@@ -174,7 +174,7 @@ function CorrelationsCard({ quejaId }) {
             </div>
             <div
               style={{
-                fontSize: 'var(--fs-meta)',
+                fontSize: 'var(--fs-aux)',
                 color: 'var(--ink70)',
                 marginBottom: 4,
                 lineHeight: 1.4,
@@ -467,7 +467,7 @@ export default function QuejaDetail() {
             />
             <figcaption
               style={{
-                fontSize: 'var(--fs-meta)',
+                fontSize: 'var(--fs-aux)',
                 color: 'var(--ink50)',
                 marginTop: 6,
                 lineHeight: 1.5,

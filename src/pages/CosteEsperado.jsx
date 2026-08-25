@@ -142,7 +142,7 @@ export default function CosteEsperado() {
       >
         El coste esperado
       </h1>
-      <p style={{ color: 'var(--ink50)', maxWidth: '66ch' }}>
+      <p style={{ color: 'var(--ink70)', maxWidth: '66ch' }}>
         «Nosotros no somos comparables» es la objeción más razonable contra un panel de costes — y
         se puede comprobar. Para cada servicio, una recta sobre todos los municipios de la comunidad
         que lo declaran en gestión directa dice qué gasto cabría esperar con la población de
@@ -179,11 +179,11 @@ export default function CosteEsperado() {
         </p>
       </Card>
 
-      {loading && <p style={{ color: 'var(--ink50)' }}>Cargando…</p>}
-      {error && <p style={{ color: 'var(--ink50)' }}>No se pudo cargar el experimento.</p>}
+      {loading && <p style={{ color: 'var(--ink70)' }}>Cargando…</p>}
+      {error && <p style={{ color: 'var(--ink70)' }}>No se pudo cargar el experimento.</p>}
       {!loading && !error && especificaciones.length === 0 && (
         <Card style={{ marginTop: 16 }}>
-          <p style={{ margin: 0, color: 'var(--ink50)' }}>
+          <p style={{ margin: 0, color: 'var(--ink70)' }}>
             El experimento todavía no se ha ejecutado sobre esta instalación. Se genera con{' '}
             <code className="mono">npm run compute:coste-esperado</code>.
           </p>
@@ -194,7 +194,7 @@ export default function CosteEsperado() {
         <>
           <h2
             style={{
-              fontSize: 'var(--fs-body)',
+              fontSize: 'var(--fs-card)',
               fontWeight: 650,
               margin: '26px 0 2px',
               letterSpacing: '-.01em',
@@ -202,7 +202,7 @@ export default function CosteEsperado() {
           >
             Servicio a servicio, de más a menos veces lo esperado
           </h2>
-          <p style={{ margin: '2px 0 0', fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+          <p style={{ margin: '2px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
             Entrega del coste efectivo de {data?.stats?.entrega} —la última publicada por el
             ministerio— · cada punto gris es un municipio de la muestra, sin nombre; el único con
             nombre es Riba-roja.
@@ -217,7 +217,7 @@ export default function CosteEsperado() {
         <>
           <h2
             style={{
-              fontSize: 'var(--fs-body)',
+              fontSize: 'var(--fs-card)',
               fontWeight: 650,
               margin: '26px 0 2px',
               letterSpacing: '-.01em',
@@ -225,7 +225,7 @@ export default function CosteEsperado() {
           >
             Las que no salen, publicadas como fallidas
           </h2>
-          <p style={{ margin: '2px 0 0', fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+          <p style={{ margin: '2px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
             Enseñar sólo la especificación que funciona sería enseñar el resultado en vez del
             método.
           </p>
@@ -241,7 +241,7 @@ export default function CosteEsperado() {
                   <p
                     style={{
                       margin: '2px 0 0',
-                      fontSize: 'var(--fs-meta)',
+                      fontSize: 'var(--fs-aux)',
                       color: 'var(--ink50)',
                     }}
                   >

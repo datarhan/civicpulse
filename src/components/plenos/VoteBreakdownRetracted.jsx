@@ -37,7 +37,7 @@ export function VoteBreakdownRetracted({ retraction }) {
       >
         DESGLOSE POR GRUPOS RETIRADO{day ? ` · ${day}` : ''}
       </div>
-      <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink70)', lineHeight: 1.45 }}>
+      <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.45 }}>
         {reason}
       </div>
     </div>

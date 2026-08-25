@@ -94,7 +94,7 @@ function RealSubsidies() {
               {fmt(s.date)}
             </span>
           </div>
-          <div style={{ fontSize: 'var(--fs-meta)', lineHeight: 1.4 }}>
+          <div style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.4 }}>
             <ExtLink href={s.sourceUrl} style={{ color: 'inherit', textDecoration: 'none' }}>
               {s.description.length > 180 ? s.description.slice(0, 180) + '…' : s.description}
             </ExtLink>
@@ -375,7 +375,7 @@ function RealBudgetHeader() {
       </div>
       <p
         style={{
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           lineHeight: 1.55,
           margin: '0 0 16px',
@@ -400,7 +400,7 @@ function RealBudgetHeader() {
         <p
           id="descuadre"
           style={{
-            fontSize: 'var(--fs-micro)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink50)',
             lineHeight: 1.55,
             margin: '0 0 16px',
@@ -604,7 +604,7 @@ function EjecucionSection() {
       </div>
       <p
         style={{
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           marginTop: 12,
           marginBottom: 0,
@@ -639,7 +639,7 @@ function ObrasEnCursoSection() {
       />
       <p
         style={{
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           margin: '2px 0 8px',
           maxWidth: '68ch',
@@ -718,7 +718,7 @@ function ObrasEnCursoSection() {
       </div>
       <p
         style={{
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           marginTop: 10,
           marginBottom: 0,

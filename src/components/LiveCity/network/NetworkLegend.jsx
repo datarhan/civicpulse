@@ -47,7 +47,7 @@ export function NetworkLegend() {
               // colour. White measured 1.54:1 on L10, 1.79 on L1, 1.87 on L8.
               color: readableInk(l.color),
               fontFamily: "'DM Mono', monospace",
-              fontSize: 'var(--fs-micro)',
+              fontSize: 'var(--fs-aux)',
               fontWeight: 800,
               padding: '1px 4px',
               borderRadius: 'var(--r-input)',

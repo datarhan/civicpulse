@@ -98,7 +98,7 @@ export function Embudo({ modelo, muestra, propia, formateaEuros }) {
             y={ALTO - 8}
             textAnchor="middle"
             className="mono"
-            style={{ fontSize: 10, fill: 'var(--ink50)' }}
+            style={{ fontSize: 11, fill: 'var(--ink50)' }}
           >
             {etiquetaHabitantes(t)}
           </text>
@@ -120,7 +120,7 @@ export function Embudo({ modelo, muestra, propia, formateaEuros }) {
             y={py(t) + 3}
             textAnchor="end"
             className="mono"
-            style={{ fontSize: 10, fill: 'var(--ink50)' }}
+            style={{ fontSize: 11, fill: 'var(--ink50)' }}
           >
             {etiquetaEuros(t)}
           </text>

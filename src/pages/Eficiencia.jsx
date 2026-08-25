@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Card } from '../components/Primitives'
 import { CoberturaEficiencia } from '../components/eficiencia/CoberturaEficiencia'
@@ -61,7 +61,27 @@ import { useT } from '../i18n'
 export default function Eficiencia() {
   const t = useT()
   const navigate = useNavigate()
-  const { hash } = useLocation()
+  const { hash: hashRouter } = useLocation()
+
+  // El fragmento, leído de las DOS fuentes que pueden moverlo.
+  //
+  // `useLocation()` se queda corto y la diferencia se ve: React Router escucha
+  // `popstate`, y cambiar sólo el fragmento —una marca del navegador, el botón
+  // de atrás sobre un ancla, un enlace pegado en la barra— dispara
+  // `hashchange`, no `popstate`. Con sólo el router, alguien que ya estuviera
+  // en /eficiencia#sec-servicios y abriera #hallazgos no cambiaba de pestaña:
+  // la URL decía una cosa y la página enseñaba otra. Lo cazó el spec al pedir
+  // dos apartados dentro de la misma prueba.
+  const [hash, setHash] = useState(
+    () => (typeof window === 'undefined' ? '' : window.location.hash) || '',
+  )
+  useEffect(() => setHash(hashRouter), [hashRouter])
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined
+    const alCambiar = () => setHash(window.location.hash)
+    window.addEventListener('hashchange', alCambiar)
+    return () => window.removeEventListener('hashchange', alCambiar)
+  }, [])
 
   // `#s-<id>` era el ancla de cada ficha cuando las quince vivían en esta
   // página. Ahora cada una es una ruta, y este efecto traduce el enlace viejo
@@ -79,6 +99,7 @@ export default function Eficiencia() {
     const m = /^#([sr])-(.+)$/.exec(hash)
     if (m) navigate(`/eficiencia/${m[2]}`, { replace: true })
   }, [hash, navigate])
+
   const { loading, error, data } = useIndicadores()
   const { data: hallazgos } = useEficienciaFindings()
   const { data: preguntas } = useEficienciaPreguntas()
@@ -92,20 +113,6 @@ export default function Eficiencia() {
   const idsDeAqui = [...indicadores.map((i) => i.id), ...municipalesDeAqui.map((m) => m.id)]
   const firmados = (hallazgos?.items ?? []).filter((f) => idsDeAqui.includes(f.indicadorId)).length
 
-  const bloqueados = indicadores.filter((i) => i.valor === null)
-
-  const formateaCon = (unidad) => (v) => {
-    const dec = v >= 1000 ? 0 : v >= 10 ? 2 : 2
-    return `${v.toLocaleString('es-ES', { minimumFractionDigits: dec, maximumFractionDigits: dec })} ${unidad.replace(/^€\//, '€/')}`
-  }
-
-  // El libro ocupa el ancho entero; todo lo demás conserva la medida de
-  // lectura que tenía. Una columna de texto de 1240px no se lee.
-  const seccion = { scrollMarginTop: MARGEN_ANCLA, maxWidth: 900 }
-  const seccionAncha = { scrollMarginTop: MARGEN_ANCLA }
-
-  // Los ítems del submenú son las secciones que de verdad existen en este
-  // render: una entrada a una sección vacía es un enlace que no hace nada.
   const secciones = [
     { id: 'sec-lectura', label: t('eficiencia.subnav.lectura') },
     { id: 'sec-cobertura', label: t('eficiencia.subnav.cobertura') },
@@ -119,8 +126,75 @@ export default function Eficiencia() {
       : []),
   ]
 
+  // Los seis apartados eran seis anclas de una página de 6.140 px. Ahora son
+  // pestañas: se ve uno cada vez.
+  //
+  // Los paneles se MONTAN todos y se ocultan con `hidden`, no se desmontan, y
+  // eso es lo que hace que el cambio no rompa nada de lo publicado:
+  //
+  //   · un enlace a un ancla de dentro —#g-<area> del libro, #f-<id> de un
+  //     hallazgo, #m-<id> de un indicador— sigue encontrando su elemento con
+  //     getElementById, y de ahí se sube al panel que lo contiene para abrir
+  //     la pestaña correcta. Nada de un mapa ancla→pestaña escrito a mano, que
+  //     es la clase de tabla que en esta casa ya se ha quedado obsoleta dos
+  //     veces.
+  //   · al imprimir salen los seis (§17: en papel no hay acordeón que abrir).
+  const [pestana, setPestana] = useState(null)
+  const activa = pestana ?? secciones[0]?.id
+  const irA = useCallback((id) => {
+    setPestana(id)
+    window.history.replaceState(null, '', `#${id}`)
+  }, [])
+
+  useEffect(() => {
+    const id = hash.slice(1)
+    if (!id || /^[sr]-/.test(id)) return
+    const el = document.getElementById(id)
+    const panel = el?.closest('[role="tabpanel"]')
+    if (!panel) return
+    setPestana(panel.id)
+    // Tras el re-render que descubre el panel: sin esto el destino sigue
+    // oculto en el momento del scroll y el navegador no va a ninguna parte.
+    requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ block: 'start' })
+    })
+    // `secciones.length` es la dependencia que importa y no es de adorno.
+    // Quien entra en frío por un enlace profundo —/eficiencia#sec-cobertura
+    // desde fuera— ejecuta este efecto ANTES de que resuelva el fetch del
+    // snapshot: en ese momento no hay ningún panel en el DOM, el efecto se
+    // rendía y no volvía a intentarlo, porque el fragmento ya no cambiaba. El
+    // lector se quedaba en la pestaña por defecto con una URL que decía otra
+    // cosa. Con los paneles en la lista de dependencias, el efecto se repite
+    // en cuanto existen.
+  }, [hash, secciones.length])
+
+  const bloqueados = indicadores.filter((i) => i.valor === null)
+
+  const formateaCon = (unidad) => (v) => {
+    const dec = v >= 1000 ? 0 : v >= 10 ? 2 : 2
+    return `${v.toLocaleString('es-ES', { minimumFractionDigits: dec, maximumFractionDigits: dec })} ${unidad.replace(/^€\//, '€/')}`
+  }
+
+  // Los ítems del submenú son las secciones que de verdad existen en este
+  // render: una entrada a una sección vacía es un enlace que no hace nada.
+  // Un panel por apartado. `hidden` en vez de desmontar: ver arriba.
+  const Panel = ({ id, ancho = 900, children }) => (
+    <div
+      id={id}
+      role="tabpanel"
+      aria-labelledby={`tab-${id}`}
+      hidden={activa !== id}
+      className="cp-panel"
+      style={{ scrollMarginTop: MARGEN_ANCLA, maxWidth: ancho ?? undefined }}
+    >
+      {children}
+    </div>
+  )
+
   return (
     <div className="cp-page" style={{ padding: 24, maxWidth: 1240, margin: '0 auto' }}>
+      {/* §17 · en papel no hay pestaña que abrir: se imprimen los seis. */}
+      <style>{'@media print { .cp-panel[hidden] { display: block !important } }'}</style>
       <div
         className="mono"
         style={{
@@ -142,20 +216,25 @@ export default function Eficiencia() {
       >
         {t('eficiencia.title')}
       </h1>
-      <p style={{ color: 'var(--ink50)', maxWidth: '64ch' }}>{t('eficiencia.intro')}</p>
+      <p style={{ color: 'var(--ink70)', maxWidth: '64ch' }}>{t('eficiencia.intro')}</p>
 
       {/* Trece pantallas necesitan navegación propia: barra pegajosa bajo la
           topbar, con scroll-spy. useHashScroll la mide para los aterrizajes
           por hash, y MARGEN_ANCLA es su contrapartida en cada ancla. */}
       {indicadores.length > 0 && (
-        <SubnavSecciones items={secciones} ariaLabel={t('eficiencia.subnav.aria')} />
+        <SubnavSecciones
+          items={secciones}
+          ariaLabel={t('eficiencia.subnav.aria')}
+          activa={activa}
+          onActivar={irA}
+        />
       )}
 
-      {loading && <p style={{ color: 'var(--ink50)' }}>Cargando…</p>}
-      {error && <p style={{ color: 'var(--ink50)' }}>No se pudo cargar el panel.</p>}
+      {loading && <p style={{ color: 'var(--ink70)' }}>Cargando…</p>}
+      {error && <p style={{ color: 'var(--ink70)' }}>No se pudo cargar el panel.</p>}
       {!loading && !error && indicadores.length === 0 && (
         <Card style={{ marginTop: 16 }}>
-          <p style={{ margin: 0, color: 'var(--ink50)' }}>{t('eficiencia.empty')}</p>
+          <p style={{ margin: 0, color: 'var(--ink70)' }}>{t('eficiencia.empty')}</p>
         </Card>
       )}
 
@@ -163,14 +242,17 @@ export default function Eficiencia() {
           contar posiciones sin decir que la mitad no se distinguen convierte
           doce percentiles en doce hechos. Recuentos sobre la rendición, jamás
           una media de percentiles. */}
-      <EstadoRendicion
-        data={data}
-        firmados={firmados}
-        preguntas={preguntas?.panels?.['coste-efectivo']}
-      />
+      <Panel id="sec-lectura" ancho={null}>
+        <EstadoRendicion
+          data={data}
+          firmados={firmados}
+          preguntas={preguntas?.panels?.['coste-efectivo']}
+          sinAncla
+        />
+      </Panel>
 
       {indicadores.length > 0 && (
-        <section id="sec-cobertura" style={seccion}>
+        <Panel id="sec-cobertura">
           <CoberturaEficiencia
             universe={data?.universe}
             cobertura={data?.cobertura}
@@ -178,7 +260,7 @@ export default function Eficiencia() {
             indicadores={indicadores}
             conResultados={(data?.resultados?.items ?? []).length > 0}
           />
-        </section>
+        </Panel>
       )}
 
       {/* El libro: los quince servicios en una pantalla y con una sola
@@ -187,7 +269,7 @@ export default function Eficiencia() {
           ciertas y no dejaban comparar ninguna con ninguna. Las dos filas sin
           cociente van dentro, al pie: sacarlas dejaría la tabla pareciendo
           completa. */}
-      <section id="sec-servicios" style={seccionAncha}>
+      <Panel id="sec-servicios" ancho={null}>
         {/* La regla antes que los ejemplos. Es de la CLASE de divisor, no del
             servicio, así que se dice tres veces aquí en lugar de quince en la
             tabla — y quien entra por una sola ficha ya no deduce de ella una
@@ -212,7 +294,7 @@ export default function Eficiencia() {
             <Supramunicipal filas={data?.supramunicipales} entrega={data?.anioBase} />
           </div>
         )}
-      </section>
+      </Panel>
 
       {/* Sólo lo que sale del MISMO cuaderno que las tarjetas de arriba: el
           recuento de denominadores mide las declaraciones del coste efectivo y
@@ -220,39 +302,46 @@ export default function Eficiencia() {
           salen de otras cuatro fuentes y viven en /gestion. El reparto lo
           declara cada indicador al construirse, no esta página. */}
       {municipalesDeAqui.length > 0 && (
-        <section id="sec-declaracion" style={seccion}>
+        <Panel id="sec-declaracion">
           <PanelMunicipal
             municipales={municipalesDeAqui}
             titulo="Sobre la declaración de estas cifras"
             intro="Los cocientes de arriba salen de dos cantidades que el ayuntamiento declara cada entrega; esto mide con qué frecuencia vuelve a medir la de abajo."
             competencias={porClave}
           />
-        </section>
+          {/* Las ausencias son datos: el resultado que no existe se dice, con
+              su porqué medido, en vez de dejar que el hueco parezca un olvido.
+              Va con la declaración, que es de donde salen. */}
+          <AusenciasResultados ausencias={data?.resultados?.ausencias} />
+        </Panel>
       )}
-
-      {/* Las ausencias son datos: el resultado que no existe se dice, con su
-          porqué medido, en vez de dejar que el hueco parezca un olvido. */}
-      <AusenciasResultados ausencias={data?.resultados?.ausencias} />
 
       {/* Al final, y no arriba: una ficha firmada es una lectura del panel, y
           el panel se lee primero. Un hallazgo en cabecera convertiría la página
           en la conclusión de otro en vez de en las cifras con las que el lector
           puede sacar la suya. */}
-      {!loading && !error && (
-        <HallazgosEficiencia
-          data={hallazgos}
-          indicadorIds={idsDeAqui}
-          otroPanel={{ to: '/gestion', nombre: 'cómo funciona la casa por dentro' }}
-        />
+      {!loading && !error && firmados > 0 && (
+        <Panel id="hallazgos" ancho={null}>
+          <HallazgosEficiencia
+            data={hallazgos}
+            indicadorIds={idsDeAqui}
+            otroPanel={{ to: '/gestion', nombre: 'cómo funciona la casa por dentro' }}
+            sinAncla
+          />
+        </Panel>
       )}
 
       {/* Al cierre, después de los hallazgos: lo que el panel deja preguntado.
           Cada pregunta nace de una cifra publicada y se dirige a una
           institución; el fichero es curado a mano y su validador rechaza
           cualquier campo que pudiera nombrar a una persona. */}
-      {!loading && !error && <PreguntasRegistradas data={preguntas} panel="coste-efectivo" />}
+      {!loading && !error && (preguntas?.panels?.['coste-efectivo']?.bloques?.length ?? 0) > 0 && (
+        <Panel id="sec-preguntas" ancho={null}>
+          <PreguntasRegistradas data={preguntas} panel="coste-efectivo" sinAncla />
+        </Panel>
+      )}
 
-      <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 18 }}>
+      <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 18 }}>
         Lo que este panel deja a la vista —la entrega sin rendir, los denominadores congelados, la
         inflación que se leía como gestión y las dos casillas del agua que se quedan en blanco— está
         contado entero en el reportaje{' '}
@@ -266,7 +355,7 @@ export default function Eficiencia() {
         .
       </p>
 
-      <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 28 }}>
+      <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 28 }}>
         Cómo se calcula, qué se descarta y por qué no hay nota global:{' '}
         <a href="/metodologia#eficiencia" style={{ color: 'var(--civic)' }}>
           metodología

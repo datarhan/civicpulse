@@ -58,7 +58,7 @@ export default function Frontera() {
       >
         La frontera del gasto
       </h1>
-      <p style={{ color: 'var(--ink50)', maxWidth: '66ch' }}>
+      <p style={{ color: 'var(--ink70)', maxWidth: '66ch' }}>
         Dado lo que gastó cada ayuntamiento de la comarca comparable y lo que declaró producir a
         cambio, ¿existe alguna combinación de los demás que produjera al menos lo mismo con menos
         dinero? Es lo único que mide el análisis envolvente de datos, y es menos de lo que suena.
@@ -81,11 +81,11 @@ export default function Frontera() {
         </p>
       </Card>
 
-      {loading && <p style={{ color: 'var(--ink50)' }}>Cargando…</p>}
-      {error && <p style={{ color: 'var(--ink50)' }}>No se pudo cargar el experimento.</p>}
+      {loading && <p style={{ color: 'var(--ink70)' }}>Cargando…</p>}
+      {error && <p style={{ color: 'var(--ink70)' }}>No se pudo cargar el experimento.</p>}
       {!loading && !error && especificaciones.length === 0 && (
         <Card style={{ marginTop: 16 }}>
-          <p style={{ margin: 0, color: 'var(--ink50)' }}>
+          <p style={{ margin: 0, color: 'var(--ink70)' }}>
             El experimento todavía no se ha ejecutado sobre esta instalación. Se genera con{' '}
             <code className="mono">npm run compute:dea</code>.
           </p>
@@ -99,7 +99,7 @@ export default function Frontera() {
         <>
           <h2
             style={{
-              fontSize: 'var(--fs-body)',
+              fontSize: 'var(--fs-card)',
               fontWeight: 650,
               margin: '28px 0 0',
               letterSpacing: '-.01em',
@@ -130,7 +130,7 @@ export default function Frontera() {
         <>
           <h2
             style={{
-              fontSize: 'var(--fs-body)',
+              fontSize: 'var(--fs-card)',
               fontWeight: 650,
               margin: '28px 0 0',
               letterSpacing: '-.01em',
@@ -146,7 +146,7 @@ export default function Frontera() {
         <>
           <h2
             style={{
-              fontSize: 'var(--fs-body)',
+              fontSize: 'var(--fs-card)',
               fontWeight: 650,
               margin: '28px 0 0',
               letterSpacing: '-.01em',

@@ -110,6 +110,15 @@ export interface ChipDeclaracion {
   texto: string
   /** Qué mitad del cociente se quedó parada. */
   mitad: 'denominador' | 'numerador' | 'ambas'
+  /**
+   * Desde qué entrega. Sale del mismo cálculo que `texto` y se publica aparte
+   * para que quien pinte una tabla pueda separar lo que TODAS las filas
+   * comparten —la frase— de lo único que las distingue —el año— sin sacarlo
+   * del texto con una expresión regular. En el libro de servicios doce filas
+   * dicen 2019 y una dice 2018: repetir la frase entera trece veces la
+   * convierte en el fondo de la tabla, y borrarla entera perdería esa una.
+   */
+  desde: number | null
 }
 
 /**
@@ -140,10 +149,19 @@ export function chipDeclaracion(i: Indicador): ChipDeclaracion | null {
   // vecino no tiene por qué conocer. Dice lo mismo sin pedir aritmética: lo que
   // se quedó parado es la CANTIDAD entre la que se divide, o el COSTE, o las
   // dos. El año sigue dentro, que es lo que distingue una tarjeta de otra.
-  if (num && den) return { texto: `ni coste ni cantidad se remiden desde ${desde}`, mitad: 'ambas' }
+  if (num && den)
+    return { texto: `ni coste ni cantidad se remiden desde ${desde}`, mitad: 'ambas', desde }
   if (den)
-    return { texto: `cantidad sin remedir desde ${d.denominador.desde}`, mitad: 'denominador' }
-  return { texto: `coste sin actualizar desde ${d.numerador.desde}`, mitad: 'numerador' }
+    return {
+      texto: `cantidad sin remedir desde ${d.denominador.desde}`,
+      mitad: 'denominador',
+      desde: d.denominador.desde ?? null,
+    }
+  return {
+    texto: `coste sin actualizar desde ${d.numerador.desde}`,
+    mitad: 'numerador',
+    desde: d.numerador.desde ?? null,
+  }
 }
 
 /**

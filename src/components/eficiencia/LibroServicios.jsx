@@ -41,6 +41,17 @@ const COLUMNAS = [
   { id: 'responde', rotulo: 'Quién responde' },
 ]
 
+/**
+ * La frase que comparten todas las filas cuando comparten mitad congelada.
+ * Se escribe aquí y no en el chip porque es la versión de TABLA —una vez, en
+ * plural— y el chip es la de FILA. Las dos salen del mismo campo `mitad`.
+ */
+const FRASE_MITAD = {
+  denominador: 'dividen entre una cantidad que el ayuntamiento no vuelve a medir',
+  numerador: 'llevan un coste que el ayuntamiento no vuelve a actualizar',
+  ambas: 'arrastran un coste y una cantidad que el ayuntamiento no vuelve a medir',
+}
+
 const FILTROS = [
   { id: 'todos', rotulo: (n) => `Los ${n.total}`, pasa: () => true },
   {
@@ -105,6 +116,31 @@ export function LibroServicios({
     .filter((i) => i.valor !== null)
     .reduce((s, i) => s + (i.numerador.valor ?? 0), 0)
 
+  // El ámbar de la declaración se imprimía fila a fila, y en esta entrega
+  // trece de las trece con cociente dicen EXACTAMENTE lo mismo: «cantidad sin
+  // remedir desde 2019». Repetida quince veces una advertencia deja de ser una
+  // advertencia y pasa a ser el fondo de la tabla — costaba dos líneas por
+  // fila y no distinguía ninguna de ninguna.
+  //
+  // Cuando el hecho es de TODAS, sube a una banda sobre la tabla, visible y no
+  // en un hover (§16: ninguna información existe sólo al pasar el ratón). En
+  // cuanto una entrega traiga dos motivos distintos —o alguna fila se
+  // remida—, `comun` se cae solo y los chips vuelven a la fila. Derivado, no
+  // escrito a mano: es la misma disciplina que PanelMunicipal usa para su
+  // lista de indicadores comparados.
+  const conChip = indicadores.filter((i) => chipDeclaracion(i))
+  const conCociente = indicadores.filter((i) => i.valor !== null)
+  // Se agrupa por `mitad` —el campo estructurado del chip—, NO por su texto.
+  // El texto lleva el año dentro y en esta entrega doce filas dicen 2019 y una
+  // dice 2018: comparando cadenas la banda no se levantaba nunca y las trece
+  // repeticiones seguían ahí. Lo que comparten es la frase; lo que las
+  // distingue es el año, y el año se queda en la fila.
+  const mitades = new Set(conChip.map((i) => chipDeclaracion(i).mitad))
+  const mitadComun =
+    conChip.length === conCociente.length && conCociente.length > 1 && mitades.size === 1
+      ? [...mitades][0]
+      : null
+
   const x = useMemo(() => {
     const listas = indicadores.map(
       (i) => enTerminosReales((i.serie ?? []).filter((q) => q.estado === 'declarado')).puntos,
@@ -138,6 +174,10 @@ export function LibroServicios({
 
   const anchoTabla = conNombres ? COLUMNAS.length : COLUMNAS.length - 1
 
+  // Derivado de las filas que se están viendo, no de la longitud del fichero:
+  // con un filtro puesto, «9 de 15» sería falso.
+  const editoriales = filas.filter((i) => competencias?.get(i.id)?.confianza === 'editorial').length
+
   const pinta = (i) => (
     <FilaServicio
       key={i.id}
@@ -147,6 +187,7 @@ export function LibroServicios({
       x0={x.x0}
       x1={x.x1}
       conNombres={conNombres}
+      chipHoisted={Boolean(mitadComun)}
     />
   )
 
@@ -180,6 +221,17 @@ export function LibroServicios({
 
       <LeyendaPosicion />
 
+      {mitadComun && (
+        <p className="cp-libro-comun">
+          <span className="cp-punto-warn" aria-hidden="true" />
+          <span>
+            Las {conCociente.length} filas con cociente {FRASE_MITAD[mitadComun]}. Por eso ninguna
+            serie de esta tabla se puede leer como gestión: la última columna dice desde qué entrega
+            en cada caso.
+          </span>
+        </p>
+      )}
+
       <div className="cp-libro-scroll">
         <table className="cp-libro">
           <caption className="cp-libro-caption">
@@ -201,7 +253,10 @@ export function LibroServicios({
                   {c.clave ? (
                     <button type="button" className="cp-orden" onClick={() => ordenar(c.id)}>
                       {c.conEntrega && entrega ? `${c.rotulo} ${entrega}` : c.rotulo}
-                      <span aria-hidden="true">
+                      <span
+                        aria-hidden="true"
+                        className={orden.col === c.id ? 'cp-orden-activa' : 'cp-orden-inerte'}
+                      >
                         {orden.col === c.id ? (orden.dir === 'desc' ? ' ↓' : ' ↑') : ' ↕'}
                       </span>
                     </button>
@@ -247,7 +302,7 @@ export function LibroServicios({
       <p
         style={{
           marginTop: 12,
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           maxWidth: '86ch',
         }}
@@ -262,16 +317,27 @@ export function LibroServicios({
         </strong>{' '}
         de coste efectivo en la entrega de {entrega}. No es el gasto del ayuntamiento: son estos{' '}
         {cuentas.total - cuentas.sinCociente}. La posición no se colorea —un coste unitario alto es
-        un precio, no un suspenso— y el ámbar marca sólo hechos sobre la declaración. Por qué no hay
-        nota global, en la{' '}
+        un precio, no un suspenso—. Por qué no hay nota global, en la{' '}
         <a href="/metodologia#eficiencia" style={{ color: 'var(--civic)' }}>
           metodología
         </a>
         .
       </p>
 
+      {/* La leyenda del asterisco. Va aquí, visible y debajo de su tabla: §16
+          es explícito —«ninguna información existe sólo al pasar el ratón»— y
+          una marca sin leyenda sería exactamente eso. Se pinta sólo si hay
+          alguna fila marcada, y el recuento sale de las filas. */}
+      {conNombres && editoriales > 0 && (
+        <p className="cp-libro-leyenda mono">
+          <span aria-hidden="true">*</span> atribución nuestra en {editoriales} de{' '}
+          {filas.filter((i) => competencias?.get(i.id)).length}: el reparto de esa competencia lo
+          hicimos nosotros, no el portal de transparencia. El motivo, en la ficha del servicio.
+        </p>
+      )}
+
       {filas.length === 0 && (
-        <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+        <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
           Ningún servicio cumple ese filtro en esta entrega.
         </p>
       )}

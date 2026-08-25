@@ -40,7 +40,7 @@ export function FindingExceptionStyles() {
         border: 1px solid var(--border2);
         border-radius: var(--r-input);
         margin-bottom: 6px;
-        background: var(--card);
+        background: var(--paper);
       }
       @media (max-width: 900px) {
         .feq-quote { grid-template-columns: minmax(0, 1fr); }
@@ -79,7 +79,7 @@ function Command({ cmd }) {
     <code
       style={{
         display: 'block',
-        fontSize: 'var(--fs-micro)',
+        fontSize: 'var(--fs-aux)',
         lineHeight: 1.5,
         padding: '6px 8px',
         background: 'var(--soft)',
@@ -99,10 +99,9 @@ function QuoteRow({ q }) {
       <div>
         <div
           style={{
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             lineHeight: 1.5,
             color: 'var(--ink70)',
-            fontStyle: 'italic',
           }}
         >
           «{q.text}»
@@ -183,7 +182,7 @@ export function FindingExceptionRow({ row }) {
       </div>
       <div style={{ marginTop: 8 }}>
         <Label>Sumario publicado — es lo que se está juzgando</Label>
-        <div style={{ fontSize: 'var(--fs-meta)', lineHeight: 1.55, color: 'var(--ink70)' }}>
+        <div style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.55, color: 'var(--ink70)' }}>
           {row.summary}
         </div>
       </div>

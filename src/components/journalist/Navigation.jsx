@@ -247,8 +247,7 @@ export function LegalSensitivityBadge({ level, warnings }) {
           <p
             style={{
               margin: 0,
-              fontSize: 'var(--fs-micro)',
-              fontStyle: 'italic',
+              fontSize: 'var(--fs-aux)',
               color: 'var(--ink50)',
             }}
           >

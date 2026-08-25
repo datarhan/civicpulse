@@ -43,7 +43,7 @@ export function ParticipaBlock() {
             borderRadius: 'var(--r-input)',
             background: 'var(--warn-soft)',
             border: '1px solid var(--border2)',
-            fontSize: 'var(--fs-micro)',
+            fontSize: 'var(--fs-aux)',
             color: 'var(--ink70)',
             lineHeight: 1.5,
           }}
@@ -110,7 +110,7 @@ export function ParticipaBlock() {
             </div>
             <div
               style={{
-                fontSize: 'var(--fs-meta)',
+                fontSize: 'var(--fs-aux)',
                 color: 'var(--ink50)',
                 lineHeight: 1.45,
                 display: '-webkit-box',

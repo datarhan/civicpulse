@@ -127,7 +127,7 @@ export default function BuildingCivicPulse() {
         <pre
           style={{
             fontFamily: "'DM Mono', monospace",
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             lineHeight: 1.7,
             background: 'var(--soft)',
             border: '1px solid var(--border)',

@@ -115,7 +115,6 @@ export function StationSchedulePopup({ name, match, rawStation }) {
                   style={{
                     fontSize: 'var(--fs-micro)',
                     color: 'rgba(11,15,25,.55)',
-                    fontStyle: 'italic',
                   }}
                 >
                   ver horario en metrovalencia.es

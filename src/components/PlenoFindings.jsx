@@ -472,7 +472,7 @@ export function QuoteProvenanceNote({ entries, curatorName }) {
         borderLeft: '3px solid var(--warn)',
         background: 'var(--soft)',
         borderRadius: 'var(--r-input)',
-        fontSize: 'var(--fs-micro)',
+        fontSize: 'var(--fs-aux)',
         lineHeight: 1.5,
         color: 'var(--ink70)',
       }}
@@ -539,7 +539,7 @@ export function FindingCard({ f }) {
       </div>
       <p
         style={{
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink70)',
           marginTop: 8,
           lineHeight: 1.55,
@@ -571,7 +571,7 @@ export function FindingCard({ f }) {
             padding: '8px 10px',
             background: 'var(--soft)',
             borderRadius: 'var(--r-input)',
-            fontSize: 'var(--fs-meta)',
+            fontSize: 'var(--fs-aux)',
             lineHeight: 1.5,
             color: 'var(--ink)',
           }}
@@ -608,7 +608,7 @@ export function PlenoFindingsSection() {
       />
       <p
         style={{
-          fontSize: 'var(--fs-meta)',
+          fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
           marginTop: 4,
           marginBottom: 10,

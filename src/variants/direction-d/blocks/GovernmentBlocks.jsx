@@ -144,7 +144,7 @@ export function PromesasBlockD() {
       </div>
       <div
         style={{
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: PALETTE.ink80,
           lineHeight: 1.45,
           marginBottom: 6,
@@ -276,7 +276,7 @@ export function DepartamentosBlockD() {
       </div>
       <div
         style={{
-          fontSize: 'var(--fs-micro)',
+          fontSize: 'var(--fs-aux)',
           color: PALETTE.ink80,
           lineHeight: 1.45,
           marginBottom: 6,
