@@ -78,6 +78,11 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     'ctbg.json',
     'transparency-docs.json',
   ].map((file) => ({ file, cls: 'nightly' as const, maxAgeDays: 3 })),
+  // `quejas.json` NO sale de la nocturna: lo trae `pull-quejas.yml` cada día
+  // desde el bot en Fly.io. Estaba fuera del registro, así que si ese workflow
+  // se rompiera nadie lo diría — la misma forma exacta que los seis
+  // adaptadores CI-blocked de arriba, que es de donde nace este fichero.
+  { file: 'quejas.json', cls: 'nightly' as const, maxAgeDays: 3 },
   ...[
     'plenos-agendas.json',
     'consell-cv.json',
@@ -174,6 +179,27 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     hint: 'npm run scrape:ipc',
   },
 ]
+
+/**
+ * La expectativa registrada para un fichero, o `null` si no hay ninguna.
+ *
+ * Existe para que el lado UI (`src/lib/data-freshness.js`) pueda juzgar un
+ * `generatedAt` contra el MISMO plazo que esta puerta, en vez de contra un
+ * umbral plano. Sin esto, `promises.json` a 51 días salía verde aquí y rojo
+ * «likely broken» en /departamentos: un fichero, dos veredictos, y al lector
+ * se le enseñaba el que asusta.
+ *
+ * Acepta el nombre suelto y también la ruta con la que lo piden los hooks del
+ * SPA: se queda con el último segmento antes de buscar.
+ */
+export function expectationFor(
+  file: string | null | undefined,
+  expectations: DatasetExpectation[] = DEFAULT_EXPECTATIONS,
+): DatasetExpectation | null {
+  if (!file) return null
+  const base = file.split('/').pop()
+  return expectations.find((e) => e.file === base) ?? null
+}
 
 export function classifyFreshness(
   facts: SnapshotFacts[],

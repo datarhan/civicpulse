@@ -258,6 +258,24 @@ function EncajeAggregate() {
   )
 }
 
+/**
+ * Desglose de las cinco fuentes para el tooltip de la píldora.
+ *
+ * El tono agregado dice que algo va mal; esto dice QUÉ, que es lo único
+ * accionable. Nombra siempre la fuente que fija el tono, porque con `min()` el
+ * lector veía una fecha y no tenía forma de saber de cuál de las cinco venía.
+ */
+function freshnessTitle(freshness) {
+  if (!freshness?.inputs?.length) return 'sin fecha de generación'
+  const filas = freshness.inputs.map((i) => {
+    const cuando = i.iso ? new Date(i.iso).toISOString().slice(0, 10) : 'sin fecha'
+    const plazo = i.budgetDays ? `plazo ${i.budgetDays} d` : 'sin plazo registrado'
+    const marca = i.file === freshness.pinnedBy?.file ? ' ←' : ''
+    return `${i.label}: ${cuando} (${plazo})${marca}`
+  })
+  return `Cada fuente contra su propio plazo:\n${filas.join('\n')}`
+}
+
 export default function Departamentos() {
   const t = useT()
   const stats = useDepartmentStats()
@@ -319,7 +337,19 @@ export default function Departamentos() {
                 )}
               </Pill>
             )}
-            <DataAsOf iso={stats.generatedAt} label="Departamentos" />
+            {/* El tono NO sale de la fecha que se enseña. Esta página agrega
+              cinco fuentes con plazos de cadencia distintos, así que la fecha
+              es la más vieja de las cinco y el tono es el PEOR de las cinco
+              medido cada una contra su propio plazo — ver `worstFreshness`.
+              Antes se pintaba la fecha más vieja con un umbral plano de 30
+              días, y salía roja «likely broken» por culpa de `promises.json`,
+              que es curado y tiene 120 días de plazo. */}
+            <DataAsOf
+              iso={stats.generatedAt}
+              label="Departamentos"
+              tone={stats.freshness?.tone}
+              title={freshnessTitle(stats.freshness)}
+            />
           </div>
         }
       />
