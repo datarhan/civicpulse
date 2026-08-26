@@ -14,6 +14,7 @@ import { collectErrors, appErrors } from './_console'
  * docs/DATA_INTEGRITY.md.
  */
 const SNAP = JSON.parse(readFileSync('public/data/indicadores.json', 'utf8'))
+const MAPA = JSON.parse(readFileSync('public/data/competencias.json', 'utf8'))
 const CON_RATIO: Indicador[] = SNAP.indicadores.filter((i: Indicador) => i.valor !== null)
 const COMPARABLE: Indicador = [...CON_RATIO]
   .sort((a, b) => (b.numerador.valor ?? 0) - (a.numerador.valor ?? 0))
@@ -85,10 +86,32 @@ test.describe('Ficha de servicio (/eficiencia/:id)', () => {
     })
     expect(Math.abs(pintado - p.percentil)).toBeLessThan(1)
 
-    // Los cinco cuantiles, cada uno donde de verdad está. Con tres y
+    // Los cinco rótulos, cada uno donde de verdad está. Con tres y
     // `space-between`, «p25» aterrizaba en el 0 % del eje.
-    for (const t of ['p0 ·', 'p25 ·', 'mediana ·', 'p75 ·', 'p100 ·']) {
+    //
+    // Los de los bordes decían «p0» y «p100» y ahora dicen «mín./máx.
+    // declarado». No es cosmética: en policía local el borde de abajo es
+    // 831,03 EUR/efectivo, que no puede ser el coste anual de un agente, y
+    // rotularlo como cuantil le prestaba a un dato suelto la autoridad de un
+    // estadístico. El cuantil de un extremo ES el extremo; lo que consta de él
+    // es que es el mínimo y el máximo DECLARADOS.
+    for (const t of ['mín. declarado ·', 'p25 ·', 'mediana ·', 'p75 ·', 'máx. declarado ·']) {
       await expect(page.getByText(t, { exact: false }).first()).toBeVisible()
+    }
+
+    // Y los bordes van marcados, con el recuento MEDIDO y no con un adjetivo.
+    // La revisión los encontró presentados como suelo y techo del reparto sin
+    // nada que dijera que un reparto que empieza en 831 EUR no es una
+    // referencia; ahora la ficha dice cuántos comparables quedan fuera de un
+    // orden de magnitud, marcados con la misma regla que juzga la serie propia.
+    // El número sale del snapshot, así que la aserción también.
+    const atipicos: number = COMPARABLE.pares!.atipicos ?? 0
+    if (atipicos > 0) {
+      await expect(page.getByText(/fuera de un orden de magnitud/i).first()).toBeVisible()
+      await expect(page.getByText(/siguen contando en el percentil/i)).toBeVisible()
+    } else {
+      // Sin atípicos no se inventa una advertencia: la nota no se pinta.
+      await expect(page.getByText(/fuera de un orden de magnitud/i)).toHaveCount(0)
     }
 
     // Y la banda dice si la posición se sostiene o no, sin ambigüedad.
@@ -175,6 +198,65 @@ test.describe('Ficha de servicio (/eficiencia/:id)', () => {
       timeout: 8000,
     })
     await expect(page.locator('a[href="/eficiencia"]').first()).toBeVisible()
+  })
+
+  /**
+   * El retrato de quien responde, y su ausencia.
+   *
+   * `/aviso-legal` promete que un cargo puede pedir «la eliminación de su
+   * fotografía concreta manteniendo el resto del registro (nombre, concejalía)».
+   * Esa rama NO la ejercita ningún dato: las veintiuna fichas del padrón traen
+   * foto y `fotoRetirada` no está puesta en ninguna fila. Una rama que nunca se
+   * pinta es una rama que nadie sabe si funciona, así que se pinta aquí
+   * interceptando el fichero curado — el mismo recurso que usa la spec de la
+   * ventana LOREG con `promises.json`, y por el mismo motivo: no se toca un
+   * fichero bajo guarda de escrituras para montar una prueba.
+   */
+  test('el retrato se publica, y se retira dejando el registro entero', async ({ page }) => {
+    const conCargo = new Set((MAPA.asignaciones as { clave: string }[]).map((a) => a.clave))
+    const servicio = SNAP.indicadores.find((i: Indicador) => i.valor !== null && conCargo.has(i.id))
+    expect(servicio, 'ningún servicio del panel tiene competencia firmada').toBeTruthy()
+
+    const tarjeta = () =>
+      page
+        .locator('.cp-card')
+        .filter({ hasText: /Quién responde de esta área/i })
+        .first()
+
+    // 1 · Publicado: hay retrato, y UN solo enlace a /cargos.
+    await page.goto(`/eficiencia/${servicio.id}`, { waitUntil: 'domcontentloaded' })
+    await expect(tarjeta()).toBeVisible({ timeout: 8000 })
+    await expect(tarjeta().locator('img')).toHaveCount(1)
+    // El retrato NO lleva ancla propia: el nombre de al lado ya es ese enlace, y
+    // un segundo ancla al mismo destino rompería el recuento de loreg-freeze,
+    // que cuenta enlaces a /cargos/ para saber a cuántos cargos nombra la página.
+    await expect(tarjeta().locator('a[href^="/cargos/"]')).toHaveCount(1)
+    // Y es del sitio, no del ayuntamiento: una foto enlazada en caliente haría
+    // que el navegador de quien lee pidiera un recurso a ribarroja.es.
+    const src = await tarjeta().locator('img').getAttribute('src')
+    expect(src, 'el retrato se sirve desde fuera del sitio').toMatch(/^\//)
+
+    // 2 · Retirado: se va la FOTO y se queda todo lo demás.
+    await page.route('**/data/competencias.json', (r) =>
+      r.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          ...MAPA,
+          asignaciones: MAPA.asignaciones.map((a: object) => ({ ...a, fotoRetirada: true })),
+        }),
+      }),
+    )
+    await page.goto(`/eficiencia/${servicio.id}`, { waitUntil: 'domcontentloaded' })
+    await expect(tarjeta()).toBeVisible({ timeout: 8000 })
+    await expect(tarjeta().locator('img'), 'la foto retirada sigue publicándose').toHaveCount(0)
+    // La otra mitad, que es la que la promesa protege: el registro se queda.
+    const fila = (MAPA.asignaciones as { clave: string; nombre: string; cargo: string }[]).find(
+      (a) => a.clave === servicio.id,
+    )!
+    await expect(tarjeta()).toContainText(fila.nombre)
+    await expect(tarjeta()).toContainText(fila.cargo)
+    await expect(tarjeta().locator('a[href^="/cargos/"]')).toHaveCount(1)
   })
 
   test('axe evaluates the ficha and finds nothing blocking', async ({ page }) => {

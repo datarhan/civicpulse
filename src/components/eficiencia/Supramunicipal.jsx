@@ -1,4 +1,4 @@
-import { Card } from '../Primitives'
+import { Card, SectionHead } from '../Primitives'
 
 /**
  * Lo que otros entes declaran prestar a este municipio (CE4).
@@ -20,17 +20,7 @@ export function Supramunicipal({ filas = [], entrega }) {
 
   return (
     <Card style={{ marginTop: 18 }}>
-      <div
-        className="mono"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          textTransform: 'uppercase',
-          letterSpacing: '.07em',
-          color: 'var(--ink50)',
-        }}
-      >
-        {titulo}
-      </div>
+      <SectionHead as="h3" size="head" eyebrow="Fuera del ayuntamiento" title={titulo} />
       <p
         style={{
           margin: '8px 0 0',

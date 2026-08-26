@@ -150,7 +150,10 @@ test.describe('Eficiencia (/eficiencia)', () => {
 
     const sinRendir: number[] = SNAP.cobertura?.entregasNoPresentadas ?? []
     if (sinRendir.length > 0) {
-      await expect(hero.getByText(sinRendir.join(' · '), { exact: true })).toBeVisible()
+      // «año 2020», no «2020» a secas. La rejilla anterior ponía un AÑO en el
+      // mismo mono grande que un 13 y un 7, y un año en cifra grande se lee
+      // como cantidad: cuatro unidades distintas bajo un mismo filete.
+      await expect(hero.getByText(`año ${sinRendir.join(' · ')}`, { exact: true })).toBeVisible()
     }
 
     // Las entregas inverosímiles y los servicios sin cociente, contados igual
@@ -167,23 +170,39 @@ test.describe('Eficiencia (/eficiencia)', () => {
       await expect(hero.getByText(String(sinCociente), { exact: true })).toBeVisible()
     }
 
+    // Los cuatro recuentos son sobre la RENDICIÓN, no sobre el servicio, y la
+    // tarjeta lo dice en su propio pie: es donde este bloque roza la regla de
+    // no poner nota, y la roza con la distinción escrita al lado.
+    await expect(hero).toContainText('rendición de cuentas')
+
     // La parte que MANDA va delante y con su recuento derivado: sin ella, doce
     // percentiles se leen como doce hechos.
+    //
+    // Ya no se busca dentro de la tarjeta de recuentos: la respuesta subió a
+    // ser el LEDE del H1. Ése era el hallazgo crítico del panel — el titular
+    // preguntaba «¿Cuánto cuesta y qué se obtiene?» y la respuesta vivía dentro
+    // de la primera de seis pestañas, así que quien hacía scroll leía un
+    // submenú. Se comprueba en la cabecera, que es donde tiene que estar, y NO
+    // dentro de `#sec-lectura`, que si volviera a tragársela sería el defecto
+    // otra vez.
+    const cabecera = page.locator('.cp-efi-hero')
     await expect(
-      hero.getByText(
+      cabecera.getByText(
         new RegExp(`de los ${p.situados} servicios comparables, ${p.indistinguibles} no se`),
       ),
     ).toBeVisible()
+    await expect(cabecera.getByText(/No hay nota global del ayuntamiento/i)).toBeVisible()
 
-    // Y la separación explícita entre lo que estas cifras permiten y lo que no.
-    await expect(hero.getByText(/Lo que estas cifras permiten concluir/i)).toBeVisible()
-    await expect(hero.getByText(/^Lo que no$/)).toBeVisible()
-    await expect(hero.getByText(/miden la/i)).toContainText('rendición de cuentas')
-    await expect(hero.getByText(/No hay nota global del ayuntamiento/i)).toBeVisible()
+    // Y la separación explícita entre lo que estas cifras permiten y lo que no,
+    // que bajó DETRÁS del libro: eran unas 480 palabras de método delante de las
+    // cifras que califican, correctas y sin leer. Se comprueba en la página, no
+    // en la cabecera, justamente porque ya no va delante.
+    await expect(page.getByText(/Lo que estas cifras permiten concluir/i)).toBeVisible()
+    await expect(page.getByText(/^Lo que no$/)).toBeVisible()
 
     // Contrato del índice: la cabecera dice cuántas cosas hay y dónde, nunca
     // qué concluye una ficha firmada.
-    const texto = (await hero.textContent()) ?? ''
+    const texto = (await cabecera.textContent()) ?? ''
     for (const f of FICHAS.items) {
       expect(texto, 'la cabecera adelanta el titular de una ficha').not.toContain(
         f.titulo.slice(0, 25),
@@ -278,7 +297,11 @@ test.describe('Eficiencia (/eficiencia)', () => {
       timeout: 8000,
     })
     await expect(tbody.locator('[data-eje-marcador="solido"]')).toHaveCount(p.abajo + p.arriba)
-    await expect(tbody.getByText('≈ indistinguible')).toHaveCount(p.indistinguibles)
+    // La pastilla del veredicto se plegó en el texto del eje al pasar el libro
+    // de ocho columnas a cinco. La afirmación es la misma y el recuento también:
+    // lo que antes decía «≈ indistinguible» ahora lo dice «cruza la mediana»,
+    // en la misma celda que la geometría que lo sostiene.
+    await expect(tbody.getByText('cruza la mediana')).toHaveCount(p.indistinguibles)
 
     // Y el marcador cae donde dice el rótulo, medido en píxeles.
     const desviacion = await tbody.evaluate((tb) => {
@@ -346,9 +369,9 @@ test.describe('Eficiencia (/eficiencia)', () => {
     for (const i of congelados) {
       const fila = page.locator(`.cp-libro tbody tr:has(a[href="/eficiencia/${i.id}"])`)
       await expect(
-        fila.locator('.cp-fila-declara'),
+        fila.locator('.cp-divisor-desde'),
         `${i.servicio} publica su cociente sin marcar el denominador parado`,
-      ).toHaveText(`desde ${chipDeclaracion(i)!.desde}`)
+      ).toHaveText(` · sin remedir desde ${chipDeclaracion(i)!.desde}`)
     }
   })
 
@@ -417,10 +440,21 @@ test.describe('Eficiencia (/eficiencia)', () => {
     // pareciendo completa. Sin cociente, sin posición y sin múltiplo.
     const fila = page.locator(`.cp-libro tbody tr:has(a[href="/eficiencia/${CONCESION[0].id}"])`)
     await expect(fila).toBeVisible({ timeout: 8000 })
-    await expect(fila.locator('.cp-c-unidad')).toHaveText('—')
+    // La celda ya no es sólo el cociente: desde que el divisor se plegó aquí
+    // lleva debajo entre qué divide, y una concesión SÍ declara su magnitud
+    // física —270.630 m de red— aunque no declare coste. Lo que tiene que
+    // seguir siendo una raya es el cociente.
+    await expect(fila.locator('.cp-c-unidad')).toContainText('—')
+    await expect(fila.locator('.cp-c-unidad')).not.toContainText('€')
     await expect(fila.locator('.cp-c-razon')).toHaveText('—')
     await expect(fila.locator('[data-eje-marcador]')).toHaveCount(0)
-    await expect(fila.getByText(/sin comparación/i)).toBeVisible()
+    // El chip «sin comparación» se plegó con la columna del veredicto. La fila
+    // no perdió la información: ganó el motivo, que es lo que el propio código
+    // defiende — el agua y el alcantarillado NO se quedan sin posición por
+    // falta de comparables, se quedan sin cociente porque su coste no cruza los
+    // libros del ayuntamiento, y decir «sin comparación» culpaba a la muestra
+    // de una carencia que no hay.
+    await expect(fila.getByText(/lo paga el concesionario/i)).toBeVisible()
 
     // Y el motivo se explica entero en su ficha, no en un hueco.
     await page.goto(`/eficiencia/${CONCESION[0].id}`, { waitUntil: 'domcontentloaded' })
@@ -500,59 +534,47 @@ test.describe('Eficiencia (/eficiencia)', () => {
     }
   })
 
-  test('el submenú es una pestaña de verdad: enseña uno y esconde los otros', async ({ page }) => {
-    const subnav = page.locator('.cp-subnav')
-    await expect(subnav).toBeVisible({ timeout: 8000 })
+  test('una sola página: ningún apartado esconde a otro, y las anclas siguen resolviendo', async ({
+    page,
+  }) => {
+    // El defecto crítico que este rediseño vino a arreglar: el H1 preguntaba
+    // «¿Cuánto cuesta y qué se obtiene?» y la respuesta vivía dentro de
+    // `sec-lectura`, la primera de seis pestañas. Quien llegaba y hacía scroll
+    // no leía la respuesta — leía un submenú. Y las seis se presentaban como
+    // iguales cuando «Servicios» es la página y las otras cinco son aparato.
+    //
+    // Con las pestañas se va su aparato: no queda tablist, ni paneles ocultos,
+    // ni barra pegajosa.
+    await expect(page.locator('.cp-subnav')).toHaveCount(0)
+    await expect(page.getByRole('tablist')).toHaveCount(0)
+    await expect(page.locator('[role="tabpanel"]')).toHaveCount(0)
 
-    // Es un tablist, no una lista de anclas: el rol es lo que hace que un
-    // lector de pantalla anuncie «pestaña 3 de 6» en vez de un enlace suelto.
-    await expect(subnav.getByRole('tablist')).toBeVisible()
-    const pestanas = subnav.getByRole('tab')
-    const cuantas = await pestanas.count()
-    expect(cuantas, 'ninguna pestaña — ¿se cayó el modo tablist?').toBeGreaterThan(3)
+    // Lo que NO puede irse con ellas son los fragmentos. `eficiencia-preguntas.json`
+    // es curado —se edita por PR, nunca desde código— y sus `href` los citan;
+    // los permalinks publicados también. Así que cada ancla que la página
+    // declara tiene que existir y verse, y todas A LA VEZ: es la diferencia
+    // entre una página larga y seis pestañas.
+    const anclas = ['sec-lectura', 'sec-servicios', 'sec-declaracion', 'sec-preguntas']
+    if ((SNAP.resultados?.items?.length ?? 0) >= 0) anclas.push('sec-cobertura', 'sec-entregas')
+    for (const id of anclas) {
+      await expect(page.locator(`#${id}`), `falta el ancla #${id}`).toHaveCount(1)
+      await expect(page.locator(`#${id}`)).toBeVisible()
+    }
 
-    // Uno visible y SÓLO uno. Es la afirmación entera del cambio: la página
-    // medía 6.140 px y ahora se lee de una en una.
-    const paneles = page.locator('[role="tabpanel"]')
-    await expect(paneles).toHaveCount(cuantas)
-    const visibles = async () =>
-      (await paneles.evaluateAll((ns) => ns.filter((n) => !(n as HTMLElement).hidden).length)) as
-        | number
-        | never
-    expect(await visibles()).toBe(1)
-
-    await subnav.getByRole('tab', { name: 'Declaración' }).click()
-    await page.waitForTimeout(300)
-    expect(await visibles()).toBe(1)
-    await expect(page.locator('#sec-declaracion')).toBeVisible()
-    await expect(page.locator('#sec-servicios')).toBeHidden()
-    // La URL sigue siendo citable: el fragmento es el contrato con todos los
-    // permalinks ya publicados.
-    expect(page.url()).toContain('#sec-declaracion')
-
-    // Y el destino queda POR DEBAJO del borde inferior de la barra. Se mide
-    // con getBoundingClientRect porque la banda de 2020 se publicó tapando la
-    // mitad de su hueco con todas las suites verdes: los tests de texto no ven
-    // geometría.
+    // Y aterrizan donde dicen. Se mide con getBoundingClientRect porque la
+    // banda de 2020 se publicó tapando la mitad de su hueco con todas las
+    // suites verdes: los tests de texto no ven geometría. El destino tiene que
+    // quedar por debajo de la topbar, que es lo único pegajoso que queda.
+    await page.goto('/eficiencia#sec-declaracion', { waitUntil: 'domcontentloaded' })
+    await expect(page.locator('#sec-declaracion')).toBeVisible({ timeout: 8000 })
+    await page.waitForTimeout(600)
     const destino = await page.locator('#sec-declaracion').boundingBox()
-    const barra = await subnav.boundingBox()
-    expect(destino, 'el panel de declaración no se pintó').toBeTruthy()
-    expect(destino!.y).toBeGreaterThanOrEqual(barra!.y + barra!.height - 1)
-  })
+    const topbar = await page.locator('.cp-shell-topbar').boundingBox()
+    expect(destino, 'el bloque de declaración no se pintó').toBeTruthy()
+    if (topbar) expect(destino!.y).toBeGreaterThanOrEqual(topbar.y + topbar.height - 1)
 
-  test('con un apartado largo la barra sigue pegajosa bajo la topbar', async ({ page }) => {
-    await abrir(page, 'sec-servicios')
-    const subnav = page.locator('.cp-subnav')
-    const antes = await subnav.boundingBox()
-    await page.mouse.wheel(0, 4000)
-    await page.waitForTimeout(300)
-    const caja = await subnav.boundingBox()
-    expect(caja, 'el submenú desapareció al hacer scroll').toBeTruthy()
-    // Se ha desplazado hacia arriba (estaba en flujo) y se ha quedado clavada
-    // justo bajo la topbar, que mide 52.
-    expect(caja!.y).toBeLessThan(antes!.y)
-    expect(caja!.y).toBeGreaterThanOrEqual(40)
-    expect(caja!.y).toBeLessThanOrEqual(56)
+    // El otro apartado sigue en pantalla: nada se escondió para enseñar éste.
+    await expect(page.locator('#sec-servicios')).toHaveCount(1)
   })
 
   test('explica qué son los escalones antes de usarlos como chapa', async ({ page }) => {
@@ -568,33 +590,22 @@ test.describe('Eficiencia (/eficiencia)', () => {
     // DERIVA, igual que el resto.
     if ((SNAP.resultados?.items?.length ?? 0) > 0) enUso.push('outcome')
     expect(enUso.length).toBeGreaterThan(0)
-    // Se busca DENTRO del panel abierto, y se recorren los apartados hasta dar
-    // con la glosa. Con los seis montados a la vez y ocultos con `hidden`, un
-    // `.first()` sobre el documento entero se queda con la copia de otro
-    // apartado y devuelve «hidden» sobre algo que sí está en pantalla: verde o
-    // rojo por el sitio equivocado.
+    // Se busca en la página, a secas. Mientras hubo pestañas había que recorrer
+    // los seis paneles: con los seis montados y ocultos con `hidden`, un
+    // `.first()` sobre el documento se quedaba con la copia de otro apartado y
+    // devolvía «hidden» sobre algo que sí estaba en pantalla. Sin pestañas la
+    // pregunta vuelve a ser la simple, y la afirmación es más fuerte: un escalón
+    // usado como chapa se explica en algún sitio VISIBLE, sin abrir nada.
     //
-    // Recorrer en vez de fijar el apartado no es pereza: la glosa la pinta
-    // `LeyendaEscalones`, que hoy vive con la cobertura y ayer vivía con las
-    // tarjetas. Lo que esta prueba defiende es que un escalón usado como chapa
-    // se explique EN ALGÚN SITIO que el lector pueda abrir, no en cuál.
-    const apartados = await page
-      .locator('[role="tabpanel"]')
-      .evaluateAll((ns) => ns.map((n) => n.id))
+    // Dónde, sigue sin fijarse: la glosa la pinta `LeyendaEscalones`, que hoy
+    // vive en la cola de método y ayer vivía con las tarjetas.
     for (const tier of enUso) {
-      let visto: string | null = null
-      for (const ap of apartados) {
-        await abrir(page, ap)
-        const glosa = page.locator(`#${ap}`).getByText(GLOSA_TIER[tier], { exact: false }).first()
-        if ((await glosa.count()) > 0 && (await glosa.isVisible())) {
-          visto = ap
-          break
-        }
-      }
+      const glosa = page.getByText(GLOSA_TIER[tier], { exact: false }).first()
       expect(
-        visto,
+        await glosa.count(),
         `el escalón ${tier} se usa como chapa y no se explica en ningún sitio`,
-      ).not.toBe(null)
+      ).toBeGreaterThan(0)
+      await expect(glosa).toBeVisible()
     }
     // Y no se anuncia un escalón que nada usa: listarlo sugeriría que existe.
     const ausentes = (Object.keys(GLOSA_TIER) as (keyof typeof GLOSA_TIER)[]).filter(
@@ -766,7 +777,11 @@ test.describe('Eficiencia (/eficiencia)', () => {
     }
 
     // Y el submenú la indexa.
-    await expect(page.locator('.cp-subnav a[href="#sec-preguntas"]')).toHaveCount(1)
+    // El submenú contaba aquí su enlace a las preguntas. Sin submenú, lo que
+    // hay que comprobar es que el apartado existe una sola vez y se ve: era eso
+    // lo que el enlace probaba de rebote.
+    await expect(page.locator('#sec-preguntas')).toHaveCount(1)
+    await expect(page.locator('#sec-preguntas')).toBeVisible()
   })
 
   test('axe evaluates the page and finds nothing blocking', async ({ page }) => {

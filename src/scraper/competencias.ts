@@ -97,6 +97,26 @@ export interface Asignacion {
   /** Obligatoria y explicativa cuando `confianza === 'editorial'`. */
   razon?: string
   firmadoEl: string
+  /**
+   * El cargo ha pedido que no se publique su retrato.
+   *
+   * `/aviso-legal` promete que «los titulares de cargo pueden solicitar la
+   * eliminación de su fotografía concreta manteniendo el resto del registro
+   * (nombre, concejalía)», y esa promesa necesitaba un sitio donde vivir. No
+   * vale borrar el fichero de `public/data/photos/`: `scrape:officials` corre
+   * cada noche y lo vuelve a descargar, así que la retirada duraría hasta la
+   * madrugada siguiente.
+   *
+   * Vive aquí por la misma razón por la que vive aquí el NOMBRE: este fichero
+   * se cura a mano y se edita por PR, y ninguna tubería automática lo escribe.
+   * Es un interruptor de curaduría, no un artefacto raspado: el esquema sigue
+   * sin guardar la ruta de ninguna imagen.
+   *
+   * Ausente y `false` significan lo mismo —se publica—, que es lo correcto:
+   * el silencio por defecto tiene que ser el estado normal, y la excepción la
+   * que se escribe.
+   */
+  fotoRetirada?: boolean
 }
 
 /** Un servicio sin cargo identificable. Es contenido, no una lista de pendientes. */
@@ -181,6 +201,12 @@ export function validarCompetencias(raw: unknown): CompetenciasSnapshot {
       if (x.confianza === 'editorial' && !esTexto(x.razon, 20))
         errores.push(`${donde}.razon: una asignación editorial explica el salto (≥20 caracteres)`)
       if (!esFecha(x.firmadoEl)) errores.push(`${donde}.firmadoEl debe ser YYYY-MM-DD`)
+      // Un interruptor con tres estados no es un interruptor. Sólo booleano o
+      // ausente: una cadena «sí» o un 1 se leerían como verdadero en el render
+      // y como sospechosos aquí, y la promesa de retirada no puede depender de
+      // cómo casteé yo un valor raro.
+      if (x.fotoRetirada !== undefined && typeof x.fotoRetirada !== 'boolean')
+        errores.push(`${donde}.fotoRetirada, si está, es booleana`)
       if (esTexto(x.clave)) {
         if (claves.has(x.clave as string)) errores.push(`clave duplicada: ${x.clave}`)
         claves.add(x.clave as string)

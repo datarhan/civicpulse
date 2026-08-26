@@ -6,56 +6,73 @@ import { GESTION, unidadCorta } from './vocabulario'
 import { posicionServicio, razonMediana } from '../../scraper/indicador-areas'
 import { chipDeclaracion } from '../../scraper/indicador-lectura'
 
-const VEREDICTO = {
-  arriba: { texto: '↑ por encima', estilo: 'solido' },
-  abajo: { texto: '↓ por debajo', estilo: 'solido' },
-  indistinguible: { texto: '≈ indistinguible', estilo: 'discontinuo' },
-  'sin-comparacion': { texto: 'sin comparación', estilo: 'discontinuo' },
+const DIRECCION = {
+  arriba: 'por encima',
+  abajo: 'por debajo',
 }
 
 const num = (v, dec) =>
   v.toLocaleString('es-ES', { minimumFractionDigits: dec, maximumFractionDigits: dec })
 
 /**
- * Una fila del libro de servicios.
+ * Una fila del libro de servicios — cinco columnas, no ocho.
  *
- * Las siete columnas de datos van en el orden en que se contesta la pregunta:
- * qué servicio, cuánto costó, cuánto por unidad, dónde queda, cuántas veces la
- * mediana, por dónde vino y qué se puede decir. «Quién responde» va la ÚLTIMA,
- * después de la salvedad, y no es casualidad: el docblock de
- * `CompetenciaDelegada` lleva desde agosto explicando que un nombre propio
- * pegado a «81.964,66 €/efectivo» construye «mira lo que cuesta lo suyo» antes
- * de que el lector llegue a la frase que lo desarma. En una tabla la frase que
- * desarma es la columna anterior.
+ * Las ocho anteriores decían cosas ciertas y ninguna cabía: «Década» y «Quién
+ * responde» caían fuera de pantalla a anchos normales y «Qué se puede decir»
+ * era prosa dentro de una celda. Eso no era una tabla, eran quince fichas
+ * forzadas a rejilla — el libro había resuelto la comparación y heredado el
+ * problema de la ficha.
+ *
+ * Lo que se pliega, no lo que se pierde:
+ *
+ *   · el COSTE baja a la línea de su servicio, que es de lo que habla;
+ *   · el DIVISOR sube a la celda del cociente, debajo de la cifra que divide.
+ *     Un cociente sin su denominador no se puede juzgar, y era la mitad de la
+ *     ecuación que esta tabla escondía;
+ *   · el VEREDICTO deja de ser una pastilla y pasa al texto que ya acompañaba
+ *     al eje: «p85 · banda 75-94 · por encima». Misma información, una línea
+ *     menos, y sin una pastilla que compite con la geometría de al lado;
+ *   · QUIÉN RESPONDE se va entera a la ficha. No es una supresión: en
+ *     `/eficiencia/:id` el nombre va en la misma tarjeta que la salvedad que lo
+ *     desarma, y una columna de tabla no tiene sitio para eso. El docblock de
+ *     `CompetenciaDelegada` lleva desde agosto explicando que un nombre propio
+ *     pegado a «81.964,66 EUR/efectivo» construye «mira lo que cuesta lo suyo»
+ *     antes de que el lector llegue a la frase que lo corrige; en una tabla esa
+ *     frase no cabe en ningún sitio. `competencias-superficies.ts` sigue a los
+ *     nombres hasta su nueva página en vez de dar por buena la vieja.
  *
  * La posición no se colorea nunca, y el ámbar tampoco pinta la fila entera: en
  * esta entrega trece de quince declaraciones están congeladas, así que un fondo
  * ámbar por cada una habría dejado la tabla ámbar de arriba abajo y el ámbar
- * significando «fila». Va donde dice algo: el punto y la línea de la última
- * columna, que hablan de la DECLARACIÓN y nunca del coste.
+ * significando «fila». Va donde dice algo: el «sin remedir desde» que cuelga
+ * del divisor, que habla de la DECLARACIÓN y nunca del coste.
  */
-export function FilaServicio({
-  indicador,
-  formatea,
-  competencia,
-  x0,
-  x1,
-  conNombres,
-  chipHoisted = false,
-}) {
+export function FilaServicio({ indicador, formatea, x0, x1, chipHoisted = false }) {
   const t = useT()
   const i = indicador
   const pos = posicionServicio(i)
-  const v = VEREDICTO[pos]
   const razon = razonMediana(i)
   const chip = chipDeclaracion(i)
   const gestion = GESTION[i.modoGestion] ?? GESTION['sin-clasificar']
   const serie = enTerminosReales((i.serie ?? []).filter((p) => p.estado === 'declarado'))
   const dibujable = puntosEnEscala(serie.puntos).length >= 2
 
+  // Entre qué divide, en palabras de la propia fuente: la cantidad declarada y
+  // el nombre que el ministerio le da. Una fila sin cociente TAMBIÉN lo lleva
+  // —el agua declara 270.630 m de red y ningún coste— porque el hueco está en
+  // el numerador, y decir sólo «—» dejaría al lector creyendo que falta todo.
+  const divisorTxt = [
+    i.denominador.valor === null ? null : i.denominador.valor.toLocaleString('es-ES'),
+    i.divisor.plural ?? null,
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   // El texto que sostiene la geometría. La posición no puede quedar codificada
   // sólo por un punto lleno o hueco: va también aquí, en el DOM, que es lo que
-  // encuentran un lector de pantalla y la pasada axe.
+  // encuentran un lector de pantalla y la pasada axe. Desde que la columna del
+  // veredicto se plegó aquí, lleva además la dirección en palabras — la flecha
+  // de la pastilla era lo único que la decía sin leer el percentil.
   //
   // Tres motivos distintos para no situarse, y decirlos como uno solo era
   // falso: el agua y el alcantarillado NO se quedan sin posición por falta de
@@ -68,7 +85,7 @@ export function FilaServicio({
               pos === 'indistinguible' ? ' cruza la mediana' : ''
             }`
           : ''
-      }`
+      }${DIRECCION[pos] ? ` · ${DIRECCION[pos]}` : ''}`
     : i.valor === null
       ? (i.numerador.motivo ?? i.denominador.motivo) === 'concesion'
         ? // NO «fuera de los libros del ayuntamiento» a secas: la revisión de
@@ -89,9 +106,6 @@ export function FilaServicio({
           {i.modoGestion !== 'directa' ? ` · ${gestion.label}` : ''}
           {i.pares ? ` · n=${i.pares.n}` : ''}
         </span>
-      </td>
-
-      <td className="cp-c-coste mono">
         {/* «—», nunca «0 €». El motor DESCARTA a propósito el coste de un
             servicio concedido —lo paga el concesionario y lo recupera del
             recibo— y `numerador.valor` viene a null, no a cero. Escribir un
@@ -99,11 +113,11 @@ export function FilaServicio({
             un cero junto a un servicio real se lee como «aquí es gratis»: la
             trampa exacta que esta página se construyó para no pisar. Lo cazó
             review:surfaces. */}
-        {i.numerador.valor === null ? (
-          <span style={{ color: 'var(--ink50)' }}>—</span>
-        ) : (
-          `${num(i.numerador.valor, 0)} €`
-        )}
+        <span className="cp-fila-coste mono">
+          {i.numerador.valor === null
+            ? 'coste no declarado'
+            : `${num(i.numerador.valor, 0)} € de coste declarado`}
+        </span>
       </td>
 
       <td className="cp-c-unidad mono">
@@ -123,6 +137,27 @@ export function FilaServicio({
             </span>
           </>
         )}
+        {/* Entre qué divide. Con la banda levantada, la fila conserva sólo lo
+            que la DISTINGUE de las demás —desde qué entrega no se remide— y la
+            frase entera vive una vez encima de la tabla. Sin banda, el chip
+            vuelve completo. */}
+        <span className="cp-fila-divisor">
+          {`÷ ${divisorTxt}`}
+          {chip && (
+            <span className="cp-divisor-desde">
+              {chipHoisted && chip.desde
+                ? ` · sin remedir desde ${chip.desde}`
+                : ` · ${chip.texto}`}
+            </span>
+          )}
+        </span>
+      </td>
+
+      <td
+        className="cp-c-razon mono"
+        style={pos === 'indistinguible' ? { color: 'var(--ink50)' } : undefined}
+      >
+        {razon === null ? '—' : `×${num(razon, 2)}`}
       </td>
 
       <td className="cp-c-posicion">
@@ -134,7 +169,7 @@ export function FilaServicio({
               descripcion={`${i.etiqueta}: percentil ${i.pares.percentil} entre ${i.pares.n} comparables; ${
                 pos === 'indistinguible'
                   ? 'la banda plausible cruza la mediana, así que la posición no se distingue'
-                  : `queda ${v.texto.slice(2)} de la mediana`
+                  : `queda ${DIRECCION[pos] ?? 'sin situar'} de la mediana`
               }`}
             />
             <span className="cp-fila-meta mono">{posTexto}</span>
@@ -142,13 +177,6 @@ export function FilaServicio({
         ) : (
           <span className="cp-fila-meta mono">{posTexto}</span>
         )}
-      </td>
-
-      <td
-        className="cp-c-razon mono"
-        style={pos === 'indistinguible' ? { color: 'var(--ink50)' } : undefined}
-      >
-        {razon === null ? '—' : `×${num(razon, 2)}`}
       </td>
 
       <td className="cp-c-decada">
@@ -165,55 +193,6 @@ export function FilaServicio({
           <span className="cp-fila-meta mono">sin serie dibujable</span>
         )}
       </td>
-
-      <td className="cp-c-decir">
-        <span className={`cp-veredicto cp-veredicto-${v.estilo}`}>{v.texto}</span>
-        {/* El chip sólo baja a la fila cuando DISTINGUE esta fila de las
-            demás. Si las trece dicen lo mismo, el hecho vive en la banda de
-            encima de la tabla —una vez, visible— y aquí sería wallpaper: el
-            ámbar acabaría significando «fila». Quien decide es LibroServicios,
-            que es el único que ve las quince a la vez. */}
-        {chip && (
-          <span className="cp-fila-declara mono">
-            <span className="cp-punto-warn" />
-            {/* Con la frase dicha arriba, en la fila queda lo único que
-                distingue esta de las demás: desde qué entrega. Doce dicen 2019
-                y una dice 2018 — la frase entera repetida trece veces borraba
-                justamente esa. Sin banda, el chip vuelve completo. */}
-            {chipHoisted && chip.desde ? `desde ${chip.desde}` : chip.texto}
-          </span>
-        )}
-      </td>
-
-      {conNombres && (
-        <td className="cp-c-responde">
-          {competencia ? (
-            <>
-              <a href={`/cargos/${competencia.oficial}`}>{competencia.nombre}</a>
-              {/* «Atribución nuestra» sigue sin poder quedarse en un hover: el
-                  aviso legal promete que además se explica POR QUÉ, y el motivo
-                  vive en la ficha. Lo que cambia es el tamaño de la marca. La
-                  frase entera se imprimía en nueve de las quince filas y
-                  costaba dos líneas en cada una — el nombre de quien responde
-                  acababa siendo lo más ruidoso de la tabla siendo la columna
-                  menos importante. Ahora va un asterisco, con su leyenda debajo
-                  de la tabla (visible, no en un hover) y su enlace al motivo. */}
-              {competencia.confianza === 'editorial' && (
-                <a
-                  href={`/eficiencia/${i.id}`}
-                  className="cp-marca-editorial"
-                  aria-label={`Atribución nuestra: por qué se asigna ${competencia.nombre} a este servicio`}
-                >
-                  *
-                </a>
-              )}
-              <span className="cp-fila-meta mono">{competencia.cargo}</span>
-            </>
-          ) : (
-            <span className="cp-fila-meta mono">sin asignar</span>
-          )}
-        </td>
-      )}
     </tr>
   )
 }

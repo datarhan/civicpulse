@@ -33,19 +33,26 @@ export function LeyendaPosicion() {
     <div
       style={{
         display: 'flex',
-        gap: 26,
+        gap: '6px 26px',
         flexWrap: 'wrap',
         alignItems: 'center',
         padding: '12px 0',
         borderBottom: '1px solid var(--border2)',
       }}
     >
+      {/* El rótulo, en su propia línea. Era un hermano flex más, así que a
+          anchos grandes se colocaba a la izquierda del PRIMER ejemplo y el
+          segundo caía debajo: parecía el encabezado de esa fila y no el de la
+          leyenda entera. `flexBasis: 100%` lo saca de la fila sin necesitar otro
+          contenedor. */}
       <span
         className="mono"
         style={{
+          flexBasis: '100%',
           fontSize: 'var(--fs-micro)',
+          fontWeight: 700,
           textTransform: 'uppercase',
-          letterSpacing: '.07em',
+          letterSpacing: '.1em',
           color: 'var(--ink50)',
         }}
       >

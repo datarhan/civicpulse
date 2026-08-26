@@ -31,12 +31,133 @@
  * en el fichero, no aquí.
  */
 import { useT } from '../../i18n'
+import { RetratoCargo } from './RetratoCargo'
 
-export function CompetenciaDelegada({ asignacion }) {
+export function CompetenciaDelegada({ asignacion, conFoto = false, foto = null, fuente = null }) {
   const t = useT()
   if (!asignacion) return null
   const a = asignacion
   const esEditorial = a.confianza === 'editorial'
+
+  // Con retrato, la línea suelta se convierte en la tarjeta de la maqueta: cara,
+  // nombre enlazado, cargo y partido. Es la forma que la ficha necesita y que
+  // /gestion no —allí la competencia es una línea al pie de una tarjeta de
+  // indicador, sin sitio ni motivo para un retrato—, así que va tras una prop.
+  //
+  // El retrato NO se publica cuando el cargo ha pedido retirarlo: `fotoRetirada`
+  // llega ya resuelta en `foto === null`. La rama sin foto no se salta, pinta
+  // iniciales — la promesa de /aviso-legal es que se va la FOTO y se queda el
+  // registro.
+  if (conFoto) {
+    return (
+      <div style={{ marginTop: 12 }}>
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+          <RetratoCargo foto={foto} nombre={a.nombre} />
+          <div style={{ minWidth: 0 }}>
+            <a
+              href={`/cargos/${a.oficial}`}
+              style={{
+                fontSize: 'var(--fs-body)',
+                fontWeight: 600,
+                lineHeight: 1.3,
+                display: 'block',
+                color: 'var(--civic)',
+              }}
+            >
+              {a.nombre}
+            </a>
+            <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)', marginTop: 2 }}>
+              {a.cargo}
+            </div>
+            <div
+              className="mono"
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+            >
+              {a.partido ? `${a.partido} · ` : ''}
+              {t('eficiencia.competencia.eyebrow')}
+            </div>
+          </div>
+        </div>
+
+        <p
+          style={{
+            margin: '12px 0 0',
+            paddingTop: 10,
+            borderTop: '1px solid var(--border2)',
+            fontSize: 'var(--fs-micro)',
+            lineHeight: 1.55,
+            color: 'var(--ink50)',
+          }}
+        >
+          {esEditorial ? (
+            <>
+              El salto del área al servicio lo damos nosotros, no el ayuntamiento con sus palabras.
+              Sirve para saber <strong>a quién preguntar</strong>: no dice que la cifra sea de
+              nadie.
+            </>
+          ) : (
+            <>
+              El cargo nombra este servicio con las palabras del propio ayuntamiento, así que la
+              línea va tal cual. Sirve para saber <strong>a quién preguntar</strong>: no dice que la
+              cifra sea de nadie.
+            </>
+          )}
+        </p>
+
+        {esEditorial && a.razon && (
+          <details style={{ marginTop: 6 }}>
+            <summary
+              style={{
+                cursor: 'pointer',
+                fontSize: 'var(--fs-micro)',
+                color: 'var(--warn-ink)',
+              }}
+            >
+              {t('eficiencia.competencia.editorial')}
+            </summary>
+            <p
+              style={{
+                margin: '4px 0 0',
+                fontSize: 'var(--fs-micro)',
+                color: 'var(--ink50)',
+                lineHeight: 1.55,
+              }}
+            >
+              {a.razon}
+            </p>
+          </details>
+        )}
+
+        {/* La procedencia, entera del fichero curado: qué decreto lo delega,
+            dónde se publicó y cuándo lo firmamos nosotros. Sin esto la tarjeta
+            sería una atribución sin papeles. */}
+        {fuente?.decreto && (
+          <p
+            style={{
+              margin: '8px 0 0',
+              fontSize: 'var(--fs-micro)',
+              lineHeight: 1.5,
+              color: 'var(--ink50)',
+            }}
+          >
+            Republicado del{' '}
+            <a
+              href={fuente.decreto.url}
+              target="_blank"
+              rel="noreferrer noopener"
+              style={{ color: 'var(--civic)' }}
+            >
+              decreto de delegación de áreas ↗
+            </a>
+            {fuente.decreto.expediente
+              ? ` · ${fuente.decreto.expediente.split('·')[0].trim()}`
+              : ''}
+            {a.firmadoEl ? ` · firmado el ${a.firmadoEl}` : ''}
+          </p>
+        )}
+      </div>
+    )
+  }
 
   return (
     <div

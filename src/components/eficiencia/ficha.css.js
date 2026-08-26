@@ -48,6 +48,24 @@ export const estiloFicha = `
   .cp-ecuacion > * { min-width: 0; }
 }
 
+/* Las dos columnas de la ficha: la cifra y lo que la sitúa a la izquierda, lo
+   que la califica a la derecha. Apilan a 1000px y no a 720 porque la columna
+   estrecha tiene un suelo real de 300px: entre 720 y 1000 la ecuación de cinco
+   celdas quedaba en unos 380px y el coste declarado partía en dos líneas.
+   Medido en el navegador. */
+.cp-ficha-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 26px;
+  align-items: start;
+  margin-top: 4px;
+}
+.cp-ficha-rail { display: flex; flex-direction: column; gap: 14px; margin-top: 18px; }
+.cp-ficha-cols > * { min-width: 0; }
+@media (max-width: 1000px) {
+  .cp-ficha-cols { grid-template-columns: minmax(0, 1fr); gap: 0; }
+}
+
 /* Los cinco cuantiles caen cada uno en su sitio porque space-between los
    reparte en 0/25/50/75/100. A 375px no caben en una línea, y envueltos dejan
    de aterrizar donde dicen: «p25» acabaría en cualquier parte. Se quedan tres

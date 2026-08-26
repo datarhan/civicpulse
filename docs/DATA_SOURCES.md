@@ -120,7 +120,7 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — `corporacion.ts` → `officials.json`
 - **Source** — Scraped HTML from `ribarroja.es/ayuntamiento/corporacion_municipal`; photos mirrored into `public/data/photos/<slug>.jpg`
-- **Surfaces** — `/cargos` "Corporación Municipal" section; Direction D editorial column (`AlcaldeBox` + `CoalitionRing`)
+- **Surfaces** — `/cargos` "Corporación Municipal" section; Direction D editorial column (`AlcaldeBox` + `CoalitionRing`); `/eficiencia/:id` "Quién responde de esta área" (the portrait only — the NAME on that card comes from the curated `competencias.json`, never from here, and the join key is the signed `oficial` slug). A councillor may ask for their portrait to be withdrawn while keeping the rest of the record: the switch is `fotoRetirada` in `competencias.json`, **not** deleting the mirrored file, because `scrape:officials` re-downloads it nightly. `check:competencias` reports a photo axis with four outcomes — `presente` / `retirada` / `falta` / `enlazada`, the last one catching a failed mirror that left `photoUrl` pointing back at ribarroja.es.
 
 ### Municipal budget (9 income + 9 expense chapters + 6 program groups)
 

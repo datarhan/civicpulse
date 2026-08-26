@@ -5,6 +5,29 @@ import { readFileSync } from 'node:fs'
 const FIRST_PLENO_ID = JSON.parse(readFileSync('public/data/pleno-claims/index.json', 'utf8'))
   .plenos?.[0]?.plenoId
 
+// A real service ficha, and specifically the one with the HIGHEST percentile.
+//
+// /eficiencia/:id was never in this list, so nothing measured it at 375 — and
+// it was the one route of the three with a detached, absolutely-positioned
+// label: the detailed axis prints «Riba-roja <cifra>» over the marker, and a
+// marker high on the axis pushed that label 16px past the document edge. The
+// worst case is the highest percentile, so the route is derived rather than
+// written down: whichever service tops the axis in the published entrega is
+// the one this spec measures.
+const FICHA = (() => {
+  const panel = JSON.parse(readFileSync('public/data/indicadores.json', 'utf8'))
+  const conEje = (panel.indicadores ?? []).filter(
+    (i: { valor: number | null; pares?: { percentil?: number } }) => i.valor !== null && i.pares,
+  )
+  return [...conEje].sort(
+    (a: { pares: { percentil: number } }, b: { pares: { percentil: number } }) =>
+      b.pares.percentil - a.pares.percentil,
+  )[0] as { id: string; etiqueta: string }
+})()
+
+/** La etiqueta sale del snapshot, así que hay que escaparla antes de usarla. */
+const literal = (s: string) => new RegExp(s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+
 // ---------------------------------------------------------------------------
 // Why this spec measures the way it does.
 //
@@ -78,6 +101,7 @@ const ROUTES: Route[] = [
   // sobre la parte que no corre riesgo.
   { path: '/eficiencia', ready: /rendición de cuentas/i },
   { path: '/eficiencia#sec-servicios', ready: /servicios del panel/i },
+  { path: `/eficiencia/${FICHA.id}`, ready: literal(FICHA.etiqueta) },
   // El h1, no un titular de sección: «Plazos, concurrencia y ejecución» era el
   // título de una tarjeta y se movió con el libro de gestión. Un centinela que
   // vive dentro de un componente caduca en cuanto ese componente cambia.

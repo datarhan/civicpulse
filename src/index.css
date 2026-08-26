@@ -822,6 +822,144 @@ body.cp-kiosk .cp-live-container {
   }
 }
 
+/* /eficiencia — las dos rejillas de la página, en una hoja porque el prop
+   `style` no admite media queries y la regla de la casa es que lo responsivo
+   vive donde puede llevar un breakpoint.
+
+   `.cp-efi-hero` pone el titular y los cuatro recuentos de la rendición uno al
+   lado del otro; `.cp-efi-par`, las dos figuras del hallazgo —los divisores
+   congelados y la entrega que falta—. Las dos apilan a una columna por debajo
+   de 900px y no de 720: la tarjeta de recuentos tiene un suelo real de 300px y
+   entre 720 y 900 la columna del titular quedaba en unos 40 caracteres, que es
+   una medida de columna de periódico para un lede de dos líneas largas. Medido
+   en el navegador, que es lo único que ve una medida de línea. */
+.cp-efi-hero,
+.cp-efi-par {
+  display: grid;
+  align-items: start;
+  gap: 26px;
+}
+.cp-efi-hero {
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 40px;
+}
+.cp-efi-par {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+}
+.cp-efi-hero > *,
+.cp-efi-par > * {
+  min-width: 0;
+}
+/* Dos bloques del MISMO peso, uno al lado del otro. `.cp-efi-par` reparte
+   1,1/1 porque su izquierda pesa más; aquí las dos mitades son equivalentes.
+   La cola de método lo usa para los bloques cortos —lo supramunicipal y los
+   resultados que faltan—, que en una sola columna a 1160 px dejaban dos tercios
+   de fila en blanco. */
+/* La prosa ocupa el ancho de su bloque, y el tope lo pone el CONTENEDOR.
+   
+   Aquí hubo tres rondas de tope de línea —64ch, luego 88ch, luego uno por
+   familia— y la conclusión fue que el número global sobraba. Lo que hace
+   falta no es apretar el texto, es que ningún bloque ancho tenga una sola
+   columna de prosa: por eso la cobertura reparte sus notas en rejilla, la ficha
+   firmada manda su aparato a un carril y los dos bloques cortos de la cola van
+   en pareja. Resuelta la caja, la línea se resuelve sola.
+   
+   Lo que sí conserva tope es un LEDE —el que acompaña al titular— y lo lleva en
+   su propio `style`, que es donde se decide, no aquí. */
+
+/* La ficha firmada: la afirmación a un lado, su aparato al otro. Colapsa a
+   900 igual que las otras dos rejillas de estas páginas — el carril tiene un
+   suelo real de 280 px y por debajo de eso las dos columnas dejan de caber. */
+.cp-firmada-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 8px 24px;
+  align-items: start;
+}
+.cp-firmada-cols > * {
+  min-width: 0;
+}
+@media (max-width: 900px) {
+  .cp-firmada-cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.cp-efi-duo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.cp-efi-duo > * {
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .cp-efi-hero,
+  .cp-efi-par,
+  .cp-efi-duo {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+}
+
+/* La ficha firmada: la afirmación a un lado, su aparato al otro. Colapsa a 900
+   igual que las otras tres rejillas de estas páginas — el carril tiene un suelo
+   real de 280 px y por debajo de eso las dos columnas dejan de caber.
+
+   Esta regla y la de arriba estuvieron ROTAS varias rondas, y las dos por la
+   misma causa: una inserción de texto que enganchó su ancla DENTRO de la media
+   query en vez de al nivel de la hoja. El resultado no fue un error de sintaxis
+   —el CSS seguía siendo válido— sino tres desastres silenciosos: `.cp-efi-hero`
+   y `.cp-efi-par` acabaron dentro de la lista de selectores de `.cp-medida`, o
+   sea recibiendo un `max-width` en vez de su colapso a una columna; la ficha
+   firmada se partía en dos columnas SÓLO por debajo de 900 px, que es justo al
+   revés; y quedó un duplicado de `.cp-medida` que, por ir después en el
+   fichero, ganaba a todos los valores que creí estar cambiando. Una hoja de
+   estilos no compila, así que nada avisa: hay que mirarla. */
+.cp-firmada-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 8px 24px;
+  align-items: start;
+}
+.cp-firmada-cols > * {
+  min-width: 0;
+}
+@media (max-width: 900px) {
+  .cp-firmada-cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Los rótulos de la figura de entregas. Once años de cuatro cifras a 11px
+   necesitan unos 480px de fila; a 375 la fila mide 295 y salían pegados en una
+   sola cadena. Por debajo de 720 se rotulan sólo los que sostienen la lectura
+   —primero, último y cada ausencia—, y la ausencia nunca se queda sin nombre.
+   La barra no desaparece: lo que se oculta es su etiqueta, así que el hueco se
+   sigue viendo aunque no se lea el año de sus vecinos. */
+/* La marca ámbar de «esto es un hecho sobre la DECLARACIÓN». Vivía dentro de
+   `libro.css.js`, que sólo inyectan las dos tablas: en la ficha de un servicio
+   la clase existía en el JSX y no la declaraba nadie — el defecto `.cp-scroll-x`
+   al revés. Vive aquí porque la usan las dos páginas. */
+.cp-punto-warn {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--warn);
+  flex-shrink: 0;
+}
+
+.cp-entrega-anio {
+  font-size: var(--fs-micro);
+}
+@media (max-width: 720px) {
+  .cp-entrega-anio:not(.cp-entrega-anio-clave) {
+    visibility: hidden;
+  }
+}
+
 /* /declaraciones — la cabecera de cada declaración es un flex de una sola
    línea: dos píldoras, el grupo, el tema, un separador elástico y el enlace de
    fecha. `flex-wrap` por defecto es `nowrap`, así que en cuanto el tema crece

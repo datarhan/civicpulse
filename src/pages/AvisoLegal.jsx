@@ -112,13 +112,15 @@ export default function AvisoLegal() {
           servicio que le corresponde, para que quien quiera preguntar sepa a quién dirigirse. No
           afirma que la cifra sea responsabilidad personal de nadie —un coste por efectivo de
           policía es un precio, no un rendimiento—, y la advertencia sobre cómo se lee cada número
-          va siempre con el nombre: en la misma fila del libro de servicios, y en la misma ficha
-          cuando se abre el servicio. Cuando el enlace entre el área delegada y el servicio lo
-          hacemos nosotros, y no el Ayuntamiento con sus propias palabras, se marca donde aparece el
-          nombre y la marca lleva a la explicación. Si ningún área delegada nombra un servicio, no
-          se atribuye a nadie: se dice que no consta. La lista está firmada y congelada —no la
-          reescribe ningún proceso automático— y una comprobación avisa antes de cada despliegue si
-          el reparto de áreas ha cambiado.
+          va siempre con el nombre, en la misma tarjeta. Por eso el nombre vive en la ficha de cada
+          servicio y no en la tabla que los compara: en una fila de tabla esa advertencia no cabe, y
+          un nombre pegado a una cifra sin la frase que la matiza afirma más de lo que la fuente
+          sostiene. Cuando el enlace entre el área delegada y el servicio lo hacemos nosotros, y no
+          el Ayuntamiento con sus propias palabras, se marca donde aparece el nombre y la marca
+          lleva a la explicación. Si ningún área delegada nombra un servicio, no se atribuye a
+          nadie: se dice que no consta. La lista está firmada y congelada —no la reescribe ningún
+          proceso automático— y una comprobación avisa antes de cada despliegue si el reparto de
+          áreas ha cambiado.
         </p>
         <p>
           <strong>Cuando un servicio está concedido, la ficha nombra a la empresa</strong> que lo
@@ -156,7 +158,8 @@ export default function AvisoLegal() {
           incorrecta, el reparto de áreas ha cambiado o quiere explicar la cifra; su respuesta se
           publica íntegra igual. Las vías y los plazos son los mismos descritos más arriba. Todo el
           proceso se detiene durante el periodo electoral (LOREG art. 50), y durante esa ventana los
-          nombres desaparecen de las dos páginas.
+          nombres desaparecen de todas las superficies que los publican: las fichas de servicio y el
+          panel de gestión.
         </p>
       </Card>
 
@@ -244,6 +247,10 @@ export default function AvisoLegal() {
         <p>
           Los titulares de cargo pueden solicitar la eliminación de su fotografía concreta
           manteniendo el resto del registro (nombre, concejalía). Canal: el mismo de rectificación.
+          La retirada se anota en la lista firmada de competencias, que se edita a mano y no la toca
+          ningún proceso automático: borrar el fichero de imagen no bastaría, porque el raspado
+          nocturno del padrón municipal lo volvería a descargar. Retirada la fotografía, la ficha
+          sigue diciendo el nombre y el área — es lo que esta promesa protege.
         </p>
         <p>
           <strong>Huellas de voz.</strong> Para saber qué concejal interviene en cada punto de un

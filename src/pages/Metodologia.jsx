@@ -2,6 +2,11 @@ import { Card, SectionHead } from '../components/Primitives'
 import { fmtDateLong } from '../lib/formatters'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { useFindingQuoteProvenance } from '../hooks/useFindingQuoteProvenance'
+import { useIndicadores } from '../hooks/useIndicadores'
+// El umbral se IMPORTA del motor: escrito a mano aquí, cambiar la constante
+// dejaría esta página afirmando una regla que el código ya no aplica — y esta
+// página es el contrato editorial publicado, no una nota interna.
+import { ATIPICO_FACTOR } from '../scraper/indicadores'
 import { authorshipBreakdown } from '../scraper/finding-authorship'
 import { STATUS_TIER } from '../scraper/promise-auto-curate'
 
@@ -88,6 +93,42 @@ function useAdjudicationDisclosure() {
 }
 
 /**
+ * Cuántos comparables quedan fuera de un orden de magnitud, y el más extremo.
+ *
+ * Se lee VIVO por el mismo motivo que los tres de arriba, y aquí el motivo es
+ * el más literal de todos: el recuento cambia con cada entrega del ministerio,
+ * que es un fichero que se refresca solo. «46 en doce servicios» escrito a mano
+ * en este párrafo sería una afirmación falsa sobre el filtrado del sitio en la
+ * página que ES el contrato editorial — y CLAUDE.md lo dice sin rodeos: nunca
+ * un recuento escrito a mano, porque todos los que había estaban mal cuando se
+ * auditaron, algunos por cuatro veces.
+ *
+ * El ejemplo también se deriva: el atípico más alto de la entrega ilustra por
+ * qué la regla existe mejor que cualquier adjetivo, y si la fuente lo corrige
+ * el párrafo se corrige solo.
+ */
+function useAtipicosDisclosure() {
+  const { data } = useIndicadores()
+  const conPares = (data?.indicadores ?? []).filter((i) => i.pares?.miembros?.length)
+  if (conPares.length === 0) return null
+  const total = conPares.reduce((n, i) => n + (i.pares.atipicos ?? 0), 0)
+  if (total === 0) return null
+  let peor = null
+  for (const i of conPares) {
+    for (const m of i.pares.miembros) {
+      if (m.atipico && (peor === null || m.valor > peor.valor)) {
+        peor = { nombre: m.nombre, valor: m.valor, unidad: i.unidad }
+      }
+    }
+  }
+  return {
+    total,
+    servicios: conPares.filter((i) => (i.pares.atipicos ?? 0) > 0).length,
+    peor,
+  }
+}
+
+/**
  * How many published verbatims are still traceable to the transcript vigente,
  * read live from the derived snapshot for the same reason as the two above.
  *
@@ -122,6 +163,7 @@ export default function Metodologia() {
   const adjudication = useAdjudicationDisclosure()
   const quoteProvenance = useQuoteProvenanceDisclosure()
   const quoteContrast = useQuoteContrastDisclosure()
+  const atipicos = useAtipicosDisclosure()
   return (
     <div
       className="cp-page"
@@ -1689,6 +1731,26 @@ export default function Metodologia() {
             <li>
               Los programas que el ministerio publica duplicados en las variantes a/b de un mismo
               servicio cuentan una sola vez.
+            </li>
+            <li>
+              Un comparable cuyo coste unitario queda a más de un{' '}
+              <strong>factor {ATIPICO_FACTOR}</strong> de la mediana de su propio grupo —por arriba
+              o por abajo— se marca como <strong>atípico</strong>, y se marca <em>sin excluirlo</em>
+              : sigue dentro del grupo, cuenta en el percentil y aparece en la tabla de comparados.
+              Es la misma regla que ya juzgaba nuestra propia serie, aplicada al otro conjunto, y
+              está calibrada para errores de orden de magnitud y no para diferencias de gestión: un
+              servicio puede duplicarse de precio
+              {atipicos?.peor
+                ? `, pero ${atipicos.peor.nombre.replace(/\s*\(.*\)$/, '')} declarando ${atipicos.peor.valor.toLocaleString('es-ES', { maximumFractionDigits: 0 })} ${atipicos.peor.unidad} es una casilla mal rellenada`
+                : ', pero un salto de varios órdenes de magnitud es una casilla mal rellenada'}
+              . La marca no dice que ese ayuntamiento gestione mal —no lo sabemos y no es nuestro
+              sujeto—: dice que su cifra no sirve como extremo de referencia.
+              {atipicos
+                ? ` En la entrega publicada marca ${atipicos.total} comparables repartidos por ${atipicos.servicios} servicios.`
+                : ''}{' '}
+              Excluirlos movería posiciones ya publicadas de municipios que no tienen derecho de
+              réplica en este sitio, así que no se excluyen, y una prueba fija que el percentil siga
+              saliendo de todos.
             </li>
           </ol>
         </div>

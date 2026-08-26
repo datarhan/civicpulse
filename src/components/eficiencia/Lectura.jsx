@@ -13,8 +13,21 @@
  * `que` y `donde` llegan a `null` cuando la tarjeta ya los enseña por su cuenta
  * —la cifra en grande, la banda con su percentil—, que es lo normal en un
  * servicio con pares. Ver `lecturaVisible`.
+ *
+ * `comoPrimero` invierte el orden, y es el hallazgo crítico de la revisión de
+ * la ficha. Por defecto encabeza `que`, que glosa el divisor; pero en la ficha
+ * de un servicio `que` reformula la aritmética que la ecuación acaba de enseñar
+ * tres centímetros más arriba, mientras `como` —«es un precio y no un
+ * rendimiento»— es lo ÚNICO que impide leer 81.965 €/efectivo como mala
+ * gestión, y salía de segundo y en tinta más floja. El propio docblock de
+ * `COMO_SE_LEE` ya lo dice: «la negación va primero y la frase va arriba, junto
+ * al número: es el orden en el que se lee, no el orden en el que se deduce».
+ *
+ * Va tras una prop y no por defecto porque `PanelMunicipal` comparte este
+ * componente, y sus tarjetas no llevan una ecuación encima que haga redundante
+ * el `que`.
  */
-export function Lectura({ lectura, conAvisos = true }) {
+export function Lectura({ lectura, conAvisos = true, comoPrimero = false }) {
   if (!lectura) return null
   const cabecera = [lectura.que, lectura.donde].filter(Boolean).join(' ')
   return (
@@ -27,16 +40,33 @@ export function Lectura({ lectura, conAvisos = true }) {
         borderRadius: '0 var(--r-input) var(--r-input) 0',
       }}
     >
-      {cabecera && (
-        <p style={{ margin: '0 0 6px', fontSize: 'var(--fs-aux)', color: 'var(--ink)' }}>
-          {lectura.que ? <strong>{lectura.que}</strong> : null}
-          {lectura.que && lectura.donde ? ' ' : ''}
-          {lectura.donde ?? ''}
-        </p>
+      {comoPrimero ? (
+        <>
+          <p style={{ margin: '0 0 6px', fontSize: 'var(--fs-aux)', color: 'var(--ink)' }}>
+            <strong>{lectura.como}</strong>
+          </p>
+          {cabecera && (
+            <p style={{ margin: 0, fontSize: 'var(--fs-aux)', color: 'var(--ink70)' }}>
+              {lectura.que ?? ''}
+              {lectura.que && lectura.donde ? ' ' : ''}
+              {lectura.donde ?? ''}
+            </p>
+          )}
+        </>
+      ) : (
+        <>
+          {cabecera && (
+            <p style={{ margin: '0 0 6px', fontSize: 'var(--fs-aux)', color: 'var(--ink)' }}>
+              {lectura.que ? <strong>{lectura.que}</strong> : null}
+              {lectura.que && lectura.donde ? ' ' : ''}
+              {lectura.donde ?? ''}
+            </p>
+          )}
+          <p style={{ margin: 0, fontSize: 'var(--fs-aux)', color: 'var(--ink70, var(--ink50))' }}>
+            {lectura.como}
+          </p>
+        </>
       )}
-      <p style={{ margin: 0, fontSize: 'var(--fs-aux)', color: 'var(--ink70, var(--ink50))' }}>
-        {lectura.como}
-      </p>
       {conAvisos && lectura.avisos?.length > 0 && (
         <ul
           style={{

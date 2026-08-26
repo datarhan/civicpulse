@@ -6,6 +6,20 @@
  * en fila debajo de cinco casillas que cambian todos los años son la
  * demostración, no la afirmación.
  *
+ * TRES AUSENCIAS, TRES TRATAMIENTOS. Hasta agosto de 2026 había dos casillas y
+ * una de ellas mentía por agregación: `falta` juntaba «el ayuntamiento rindió la
+ * entrega pero no declaró este servicio» con «el ayuntamiento no rindió», y las
+ * dos salían como el mismo «—» rayado. Son hechos de tamaño muy distinto —2014
+ * es un hueco de rutina; 2020 es un incumplimiento del artículo 116 ter— y
+ * escribirlos igual convertía el más fuerte en el más débil. Es el defecto del
+ * centinela que DATA_INTEGRITY §3 describe: una casilla que significa dos cosas
+ * no significa ninguna.
+ *
+ * El dato para distinguirlas ya estaba en el snapshot y nadie lo leía:
+ * `cobertura.entregasNoPresentadas` dice qué entregas no rindió el ayuntamiento
+ * —es un hecho de TODA la rendición, no de este servicio— y `serie[].estado`
+ * dice si este servicio venía declarado en las que sí rindió.
+ *
  * Dos detalles que no son estéticos:
  *
  * - La tinta sobre una casilla --warn SÓLIDA es `--warn-on`, nunca #fff.
@@ -30,7 +44,10 @@ function Casilla({ children, tono, primera, ultima }) {
     borderRadius: radio,
     fontSize: 'var(--fs-micro)',
   }
-  if (tono === 'ausente') {
+  // No rindió la entrega: el hecho fuerte, y el único que lleva ámbar. La
+  // pastilla sólida sobre el rayado existe para que la pasada de contraste
+  // pueda componer este texto en vez de saltárselo.
+  if (tono === 'no-rindio') {
     return (
       <span style={{ ...base, background: HATCH, border: '1px dashed var(--warn)' }}>
         <span
@@ -44,6 +61,23 @@ function Casilla({ children, tono, primera, ultima }) {
         >
           {children}
         </span>
+      </span>
+    )
+  }
+  // Rindió, pero sin este servicio: un hueco de rutina. Discontinuo porque
+  // tampoco es una cifra, gris porque no es un incumplimiento.
+  if (tono === 'no-declarado') {
+    return (
+      <span
+        className="mono"
+        style={{
+          ...base,
+          background: 'var(--paper)',
+          border: '1px dashed var(--border)',
+          color: 'var(--ink50)',
+        }}
+      >
+        {children}
       </span>
     )
   }
@@ -78,6 +112,26 @@ const compacto = (v) =>
       ? `${(v / 1000).toLocaleString('es-ES', { maximumFractionDigits: 0 })} k`
       : v.toLocaleString('es-ES', { maximumFractionDigits: 0 })
 
+function Muestra({ estilo, children }) {
+  return (
+    <span
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 7,
+        fontSize: 'var(--fs-micro)',
+        color: 'var(--ink50)',
+      }}
+    >
+      <span
+        aria-hidden="true"
+        style={{ width: 22, height: 14, borderRadius: 'var(--r-input)', flex: 'none', ...estilo }}
+      />
+      {children}
+    </span>
+  )
+}
+
 export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPresentadas = [] }) {
   const i = indicador
   const anios = entregasPublicadas.length
@@ -90,21 +144,36 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
     ? i.declaracion.denominador.desde
     : null
 
+  /** Qué clase de casilla es este año. Tres desenlaces, nunca dos. */
+  const desenlace = (a) => {
+    if (noPresentadas.includes(a)) return 'no-rindio'
+    const p = porAnio.get(a)
+    if (!p || p.estado !== 'declarado') return 'no-declarado'
+    return 'declarado'
+  }
+
+  const declaradas = anios.filter((a) => desenlace(a) === 'declarado').length
+  const sinDeclarar = anios.filter((a) => desenlace(a) === 'no-declarado').length
+  const sinRendir = anios.filter((a) => desenlace(a) === 'no-rindio')
+
   const fila = (clave, rotulo, formato, tonoDe) => (
     <>
       <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink70)' }}>{rotulo}</span>
       {anios.map((a, k) => {
-        const p = porAnio.get(a)
-        const falta = noPresentadas.includes(a) || !p || p.estado !== 'declarado'
-        const v = p?.[clave]
+        const d = desenlace(a)
+        const v = porAnio.get(a)?.[clave]
         return (
           <Casilla
             key={a}
-            tono={falta ? 'ausente' : tonoDe(a)}
+            tono={d === 'declarado' ? tonoDe(a) : d}
             primera={k === 0}
             ultima={k === anios.length - 1}
           >
-            {falta || typeof v !== 'number' ? '—' : formato(v)}
+            {d === 'no-rindio'
+              ? 'no rindió'
+              : d === 'no-declarado' || typeof v !== 'number'
+                ? '—'
+                : formato(v)}
           </Casilla>
         )
       })}
@@ -113,17 +182,30 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
 
   return (
     <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid var(--border2)' }}>
-      <span
-        className="mono"
+      <div
         style={{
-          fontSize: 'var(--fs-micro)',
-          textTransform: 'uppercase',
-          letterSpacing: '.07em',
-          color: 'var(--ink50)',
+          display: 'flex',
+          alignItems: 'baseline',
+          justifyContent: 'space-between',
+          gap: 14,
+          flexWrap: 'wrap',
         }}
       >
-        Qué declaró el ayuntamiento, entrega a entrega
-      </span>
+        <span
+          className="mono"
+          style={{
+            fontSize: 'var(--fs-micro)',
+            textTransform: 'uppercase',
+            letterSpacing: '.07em',
+            color: 'var(--ink50)',
+          }}
+        >
+          Qué declaró el ayuntamiento, entrega a entrega
+        </span>
+        <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+          {anios.length} entregas obligatorias · {declaradas} con este servicio declarado
+        </span>
+      </div>
 
       {/* overflowX explícito: `.cp-scroll-x` de index.css sólo enciende por
           debajo de 720px, así que en escritorio esta rejilla empujaría la
@@ -167,28 +249,80 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
         </div>
       </div>
 
-      {congeladaDesde && (
-        <p
+      {/* La leyenda existe porque ahora hay tres tratamientos y dos de ellos son
+          huecos: sin decir cuál es cuál, la distinción que este bloque acaba de
+          ganar sería invisible. Se pinta sólo lo que esta ficha usa. */}
+      {(sinRendir.length > 0 || sinDeclarar > 0 || congeladaDesde) && (
+        <div
           style={{
-            margin: '10px 0 0',
-            fontSize: 'var(--fs-aux)',
-            color: 'var(--ink50)',
-            maxWidth: '72ch',
-            lineHeight: 1.6,
+            display: 'flex',
+            gap: 20,
+            flexWrap: 'wrap',
+            marginTop: 14,
+            paddingTop: 12,
+            borderTop: '1px solid var(--border2)',
           }}
         >
-          {i.declaracion.denominador.repeticionesFinales} entregas seguidas con la misma cantidad,
-          mientras el coste se actualiza en todas.
-          {noPresentadas.length > 0 && (
-            <>
-              {' '}
-              La entrega de {noPresentadas.join(', ')} no falta por un problema de descarga: falta
-              porque el ayuntamiento no la presentó, y calcularla antes del 1 de noviembre es una
-              obligación del artículo 116 ter de la Ley de Bases de Régimen Local.
-            </>
+          {congeladaDesde && (
+            <Muestra estilo={{ background: 'var(--warn)' }}>cantidad repetida sin remedir</Muestra>
           )}
-        </p>
+          {sinDeclarar > 0 && (
+            <Muestra estilo={{ background: 'var(--paper)', border: '1px dashed var(--border)' }}>
+              rindió la entrega, no declaró este servicio
+            </Muestra>
+          )}
+          {sinRendir.length > 0 && (
+            <Muestra estilo={{ background: HATCH, border: '1px dashed var(--warn)' }}>
+              no rindió la entrega
+            </Muestra>
+          )}
+        </div>
       )}
+
+      {/* El 116 ter colgaba de `congeladaDesde &&`, o sea del denominador de
+          ESTE servicio. Es un hecho de toda la rendición del ayuntamiento: en
+          una ficha sin congelación desaparecía, y aparecía como nota al pie de
+          un divisor en las que sí la tienen. Ahora cada frase cuelga de lo suyo:
+          la repetición del denominador, del denominador; la entrega que no se
+          rindió, de la rejilla de entregas. */}
+      <p
+        style={{
+          margin: '12px 0 0',
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink70)',
+          lineHeight: 1.6,
+          textWrap: 'pretty',
+        }}
+      >
+        {congeladaDesde && (
+          <>
+            {i.declaracion.denominador.repeticionesFinales} casillas idénticas debajo de otras que
+            cambian todos los años: eso es el hallazgo, y no hace falta afirmarlo.{' '}
+          </>
+        )}
+        {sinRendir.length > 0 && sinDeclarar > 0 && (
+          <>
+            <strong>
+              {sinDeclarar === 1
+                ? `${anios.find((a) => desenlace(a) === 'no-declarado')} y ${sinRendir.join(', ')} son ausencias distintas`
+                : 'las ausencias de esta rejilla no son todas iguales'}
+            </strong>
+            {' — '}
+            en{' '}
+            {sinDeclarar === 1
+              ? anios.find((a) => desenlace(a) === 'no-declarado')
+              : 'unas entregas'}{' '}
+            el ayuntamiento rindió la entrega pero no declaró este servicio; en{' '}
+            {sinRendir.join(', ')} no rindió nada.{' '}
+          </>
+        )}
+        {sinRendir.length > 0 && (
+          <>
+            Calcular el coste efectivo antes del 1 de noviembre y comunicarlo al ministerio es una
+            obligación del artículo 116 <em>ter</em> de la Ley de Bases de Régimen Local.
+          </>
+        )}
+      </p>
     </div>
   )
 }

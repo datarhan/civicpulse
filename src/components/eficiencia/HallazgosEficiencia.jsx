@@ -1,5 +1,5 @@
-import { Card, Pill, ExtLink } from '../Primitives'
-import { MARGEN_ANCLA } from '../SubnavSecciones'
+import { Card, ExtLink, Pill, SectionHead } from '../Primitives'
+import { MARGEN_ANCLA } from './anclas'
 
 /**
  * Las fichas firmadas sobre desviaciones del panel.
@@ -90,83 +90,101 @@ function FichaEficiencia({ ficha }) {
         {ficha.titulo}
       </h3>
       <Medicion medicion={ficha.medicion} />
-      <p
-        style={{
-          fontSize: 'var(--fs-aux)',
-          color: 'var(--ink)',
-          margin: '10px 0 0',
-          lineHeight: 1.55,
-        }}
-      >
-        {ficha.cuerpo}
-      </p>
-      {ficha.caveats?.length > 0 && (
-        <ul
+      {/* El cuerpo a un lado y el aparato al otro.
+      
+          La ficha era una columna sola dentro de una tarjeta de 1.160 px: con la
+          medida de línea limitada —que hace falta, un párrafo de argumentación a
+          1.120 px no se lee— quedaban seiscientos píxeles muertos a la derecha
+          de un bloque muy alto. Lo que va al carril es APARATO: las salvedades,
+          la réplica, el historial de correcciones y la procedencia. Lo que se
+          queda es la afirmación.
+      
+          Es la misma anatomía que la ficha de un servicio, y por el mismo
+          motivo: lo que califica una cifra se lee al lado de ella, no debajo de
+          dos pantallas de argumento. */}
+      <div className="cp-firmada-cols">
+        <p
           style={{
-            margin: '8px 0 0',
-            paddingLeft: 18,
-            fontSize: 'var(--fs-meta)',
-            color: 'var(--ink50)',
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink)',
+            margin: '10px 0 0',
+            lineHeight: 1.55,
           }}
         >
-          {ficha.caveats.map((c) => (
-            <li key={c}>{c}</li>
-          ))}
-        </ul>
-      )}
-      {ficha.response && (
-        <div
-          style={{
-            marginTop: 10,
-            padding: '8px 10px',
-            borderLeft: '2px solid var(--ok)',
-            background: 'var(--soft)',
-            borderRadius: '0 var(--r-input) var(--r-input) 0',
-          }}
-        >
-          <div
-            className="mono"
-            style={{
-              fontSize: 'var(--fs-micro)',
-              textTransform: 'uppercase',
-              color: 'var(--ink50)',
-            }}
-          >
-            Réplica · {ficha.response.from}
-          </div>
-          <p style={{ margin: '4px 0 0', fontSize: 'var(--fs-aux)' }}>«{ficha.response.quote}»</p>
-        </div>
-      )}
-      {ficha.corrections?.length > 0 && (
-        /* Plegado desde el 17-08-2026: el HECHO (cuántas correcciones y de
+          {ficha.cuerpo}
+        </p>
+        <aside style={{ marginTop: 10 }}>
+          {ficha.caveats?.length > 0 && (
+            <ul
+              style={{
+                margin: '8px 0 0',
+                paddingLeft: 18,
+                fontSize: 'var(--fs-meta)',
+                color: 'var(--ink50)',
+              }}
+            >
+              {ficha.caveats.map((c) => (
+                <li key={c}>{c}</li>
+              ))}
+            </ul>
+          )}
+          {ficha.response && (
+            <div
+              style={{
+                marginTop: 10,
+                padding: '8px 10px',
+                borderLeft: '2px solid var(--ok)',
+                background: 'var(--soft)',
+                borderRadius: '0 var(--r-input) var(--r-input) 0',
+              }}
+            >
+              <div
+                className="mono"
+                style={{
+                  fontSize: 'var(--fs-micro)',
+                  textTransform: 'uppercase',
+                  color: 'var(--ink50)',
+                }}
+              >
+                Réplica · {ficha.response.from}
+              </div>
+              <p style={{ margin: '4px 0 0', fontSize: 'var(--fs-aux)' }}>
+                «{ficha.response.quote}»
+              </p>
+            </div>
+          )}
+          {ficha.corrections?.length > 0 && (
+            /* Plegado desde el 17-08-2026: el HECHO (cuántas correcciones y de
            cuándo) queda a la vista en el summary; el antes/después y el motivo
            se abren. Mismo criterio que CorrectionNote en los reportajes. */
-        <details style={{ marginTop: 10, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-          <summary style={{ cursor: 'pointer' }}>
-            <strong>
-              {ficha.corrections.length === 1
-                ? `Corregido el ${ficha.corrections[0].correctedAt}`
-                : `${ficha.corrections.length} correcciones, la última el ${ficha.corrections[ficha.corrections.length - 1].correctedAt}`}
-            </strong>{' '}
-            · ver qué cambió
-          </summary>
-          {ficha.corrections.map((c) => (
-            <p key={`${c.field}-${c.correctedAt}`} style={{ margin: '4px 0 0' }}>
-              <strong>Corregido el {c.correctedAt}</strong> ({c.field}):{' '}
-              <span style={{ textDecoration: 'line-through' }}>{c.original}</span> → {c.corrected}.
-              Motivo: {c.reason}
-            </p>
-          ))}
-        </details>
-      )}
-      <div style={{ marginTop: 10, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-        {ficha.citas.map((c, i) => (
-          <span key={c.url}>
-            {i > 0 && ' · '}
-            <ExtLink href={c.url}>{c.etiqueta}</ExtLink>
-          </span>
-        ))}
-        {' · '}Publicado el {ficha.publishedAt} por {ficha.curatorName}
+            <details style={{ marginTop: 10, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+              <summary style={{ cursor: 'pointer' }}>
+                <strong>
+                  {ficha.corrections.length === 1
+                    ? `Corregido el ${ficha.corrections[0].correctedAt}`
+                    : `${ficha.corrections.length} correcciones, la última el ${ficha.corrections[ficha.corrections.length - 1].correctedAt}`}
+                </strong>{' '}
+                · ver qué cambió
+              </summary>
+              {ficha.corrections.map((c) => (
+                <p key={`${c.field}-${c.correctedAt}`} style={{ margin: '4px 0 0' }}>
+                  <strong>Corregido el {c.correctedAt}</strong> ({c.field}):{' '}
+                  <span style={{ textDecoration: 'line-through' }}>{c.original}</span> →{' '}
+                  {c.corrected}. Motivo: {c.reason}
+                </p>
+              ))}
+            </details>
+          )}
+          <div style={{ marginTop: 10, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+            {ficha.citas.map((c, i) => (
+              <span key={c.url}>
+                {i > 0 && ' · '}
+                <ExtLink href={c.url}>{c.etiqueta}</ExtLink>
+              </span>
+            ))}
+            {' · '}Publicado el {ficha.publishedAt} por {ficha.curatorName}
+          </div>
+        </aside>
       </div>
     </Card>
   )
@@ -184,35 +202,37 @@ function FichaEficiencia({ ficha }) {
  *   dos es exactamente la mentira por omisión que esta sección existe para
  *   evitar.
  */
-export function HallazgosEficiencia({ data, indicadorIds, otroPanel, sinAncla = false }) {
+export function HallazgosEficiencia({
+  data,
+  indicadorIds,
+  otroPanel,
+  sinAncla = false,
+  nivel = 'h2',
+}) {
   const todas = data?.items ?? []
   const items = indicadorIds ? todas.filter((f) => indicadorIds.includes(f.indicadorId)) : todas
   const enOtroSitio = todas.length - items.length
   const retiradas = data?.retractions ?? []
 
   return (
-    // El margen de ancla lo declara SubnavSecciones: en /eficiencia hay dos
-    // barras pegajosas encima de este destino; en /gestion sobra aire, que es
-    // el fallo barato de los dos.
+    // El margen de ancla lo declara `eficiencia/anclas.js`. Descontaba DOS
+    // barras pegajosas mientras /eficiencia tuvo submenú; hoy sólo queda la
+    // topbar y el número bajó con ella. Donde sobra aire —/gestion, que nunca
+    // tuvo submenú— el fallo es el barato de los dos.
     <section
       id={sinAncla ? undefined : 'hallazgos'}
       style={{ marginTop: sinAncla ? 0 : 32, scrollMarginTop: MARGEN_ANCLA }}
     >
-      <h2
-        style={{
-          fontSize: 'var(--fs-card)',
-          fontWeight: 650,
-          margin: '0 0 4px',
-          letterSpacing: '-.01em',
-        }}
-      >
-        Hallazgos firmados
-      </h2>
+      <SectionHead
+        as={nivel}
+        size={nivel === 'h2' ? 'card' : 'head'}
+        eyebrow="Lo firmado"
+        title="Hallazgos firmados"
+      />
       <p
         style={{
           fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
-          maxWidth: '64ch',
           margin: '0 0 10px',
         }}
       >

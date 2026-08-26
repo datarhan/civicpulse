@@ -80,6 +80,20 @@ export interface ParMiembro {
   nombre: string
   poblacion: number
   valor: number
+  /**
+   * Fuera de un orden de magnitud respecto a la mediana de su propio grupo.
+   *
+   * MISMA regla que la de la serie propia (`ATIPICO_FACTOR`), aplicada al otro
+   * conjunto: los miembros de un grupo contra la mediana de ese grupo. No es un
+   * juicio nuevo, es el mismo juicio con otro sujeto — y por eso reutiliza la
+   * constante en vez de estrenar un umbral.
+   *
+   * Marca, NO descarta: son cifras oficiales, entran en el percentil como
+   * cualquier otra y la posición publicada no se mueve ni un puesto. Lo único
+   * que cambia es que un reparto que empieza en 831,03 EUR/efectivo deja de
+   * presentarse como si su borde fuera una referencia.
+   */
+  atipico?: boolean
 }
 
 export interface ParesResumen {
@@ -103,6 +117,8 @@ export interface ParesResumen {
   p25: number
   mediana: number
   p75: number
+  /** Cuántos de `miembros` van marcados `atipico`. Derivado, para que la UI no lo recuente. */
+  atipicos: number
   miembros: ParMiembro[]
 }
 
@@ -743,6 +759,29 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       }
       if (miembros.length >= MIN_PARES) {
         const orden = miembros.map((m) => m.valor).sort((a, b) => a - b)
+        const mediana = percentil(orden, 0.5)
+        // Los bordes del grupo, marcados por la MISMA regla que ya juzga la
+        // serie propia. La ficha los enseñaba como suelo y techo del reparto sin
+        // marca ninguna: en policía local eso ponía 831,03 EUR/efectivo —que no
+        // puede ser el coste anual de un agente— con el rótulo «p0», o sea
+        // prestándole a un dato suelto la autoridad de un cuantil.
+        //
+        // Se marca DESPUÉS de calcular `orden`, y `orden` no se filtra: el
+        // percentil, la banda y los cuartiles salen de los mismos miembros que
+        // antes y ninguna cifra publicada se mueve. Excluirlos sería otra
+        // decisión, más fuerte y no tomada — son cifras oficiales, y este panel
+        // no descarta lo que el ministerio publica.
+        let atipicos = 0
+        if (mediana > 0) {
+          for (const m of miembros) {
+            if (m.valor <= 0) continue
+            const razon = m.valor / mediana
+            if (razon > ATIPICO_FACTOR || razon < 1 / ATIPICO_FACTOR) {
+              m.atipico = true
+              atipicos += 1
+            }
+          }
+        }
         resumen = {
           conjunto: pares.conjunto,
           n: miembros.length,
@@ -750,8 +789,9 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
           percentil: Math.round((100 * orden.filter((v) => v <= valor!).length) / orden.length),
           percentilBanda: bandaBootstrap(orden, valor!, pares.conjunto, programa, anioBase),
           p25: percentil(orden, 0.25),
-          mediana: percentil(orden, 0.5),
+          mediana,
           p75: percentil(orden, 0.75),
+          atipicos,
           miembros,
         }
       }

@@ -11,6 +11,12 @@ import { useT } from '../../i18n'
  *
  * Va sin ordenar por valor, a propósito, para que se lea como tabla de
  * referencia y no como una clasificación con otro nombre.
+ *
+ * Los pares ATÍPICOS van marcados: quedan fuera de un orden de magnitud
+ * respecto a la mediana de su propio grupo, medido con la misma regla que juzga
+ * la serie de Riba-roja (`ATIPICO_FACTOR`). La marca la trae el snapshot; aquí
+ * no se decide nada. Siguen en la tabla y siguen contando en el percentil —son
+ * cifras oficiales— y lo que la marca dice es que no sirven de referencia.
  */
 export function TablaPares({ pares, formatea }) {
   const t = useT()
@@ -40,8 +46,20 @@ export function TablaPares({ pares, formatea }) {
                 <td className="mono" style={{ padding: '3px 10px 3px 0', color: 'var(--ink50)' }}>
                   {m.poblacion ? m.poblacion.toLocaleString('es-ES') : '—'}
                 </td>
-                <td className="mono" style={{ padding: '3px 0' }}>
+                <td
+                  className="mono"
+                  style={{
+                    padding: '3px 0',
+                    color: m.atipico ? 'var(--warn-ink)' : undefined,
+                  }}
+                >
                   {formatea(m.valor)}
+                  {m.atipico && (
+                    <span style={{ color: 'var(--ink50)' }}>
+                      {' · '}
+                      {t('eficiencia.pares.atipico')}
+                    </span>
+                  )}
                 </td>
               </tr>
             ))}
