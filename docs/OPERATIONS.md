@@ -183,6 +183,22 @@ So the rule has a second clause: **pushing drags in the hook, and the hook needs
 the credential.** `monitor-health-cron.sh` is the one that genuinely stays in
 cron — it neither calls the model nor pushes.
 
+And a consequence, once the hook could finally run: **the review does not fit
+inside a push.** Git opens the SSH connection and _then_ runs the hook, so a
+multi-minute read leaves it idle until GitHub drops it. Measured twice on the
+same commit — 474 s then 367 s, «Connection to github.com closed by remote
+host», push failed both times. Caching does not save it: the cost is one route
+whose model call hangs and is killed at the 180 s timeout, doubled by the
+retry, on every push whether warm or cold.
+
+So `scrape-ci-blocked.sh` runs the hook itself — `PREPUSH_RANGE=… sh
+.husky/pre-push`, the escape hatch the hook documents for exactly this — and
+then pushes with `--no-verify`. Same routes, same range, same report in the
+same log; the connection is only open for the transfer, which takes about two
+seconds. This is safe **because the hook is advisory**: every path in it exits
+0 and its whole job is to print. Give it something that must genuinely block a
+push and this `--no-verify` has to be revisited.
+
 Install the agents with `scripts/launchd-install-llm-pipelines.sh` (its `probe`
 subcommand checks keychain, PATH and TCC) and
 `scripts/launchd-install-auto-curate-promises.sh`. A job must live in exactly
@@ -394,7 +410,9 @@ a partial pass read as full coverage — as of 2026-08-03 that is 11 of 15.
 - **pre-push** — when the push touches `public/data/`, a page component or
   `i18n.jsx`, builds and reads the affected pages as a visitor would. **Never
   blocks**: a probabilistic check that can block a push teaches everyone to type
-  `--no-verify`, and then it protects nothing.
+  `--no-verify`, and then it protects nothing. It is also too slow to hold a
+  push open — see the note under the local jobs above for why the CI-blocked
+  cron invokes it directly instead.
 
   "Never blocks" is structural, not a promise — the promise was false for eight
   commits. Husky runs the hook as `sh -e`, and under `-e` a command that fails
