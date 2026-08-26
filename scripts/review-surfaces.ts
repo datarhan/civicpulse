@@ -325,13 +325,36 @@ async function main() {
    */
   let slowestCallMs = 0
   /**
+   * Suelo del techo por llamada. Con menos que esto no merece la pena arrancar
+   * —ninguna lectura medida bajó de ~40 s—, pero dejar el mínimo en cero haría
+   * que una llamada arrancase con un plazo de milisegundos y muriese siempre.
+   */
+  const TECHO_MINIMO_MS = 20_000
+  /**
    * "Is there time to START another fragment?" — not "has the clock run out?".
    *
-   * A call cannot be interrupted once it is in flight, so a plain deadline check
-   * makes the budget a floor rather than a ceiling: measured, `--budget-seconds
-   * 15` returned in 65s, because at t=1s the clock had not run out and the call
-   * that started then took the other 64. Refusing to start a fragment that
-   * probably cannot finish is what turns the number into a promise.
+   * Ésta es la PRIMERA de las dos mitades: no arrancar un fragmento que
+   * previsiblemente no cabe. Sola no bastaba, porque una llamada ya en vuelo
+   * seguía corriendo hasta su propio plazo de 180 s: medido,
+   * `--budget-seconds 15` volvía a los 65 s, y en el gancho de pre-push tres
+   * pasadas contra un presupuesto de 180 s costaron 474 s, 367 s y 380 s —una
+   * llamada colgada, matada a los 180 s, por dos con el reintento— y tiraron el
+   * push dos veces con «Connection to github.com closed by remote host».
+   *
+   * La segunda mitad está en el callback de abajo: cada llamada arranca con
+   * `LLM_CLI_TIMEOUT_MS` puesto a lo que QUEDA, y bajo presupuesto sin
+   * reintentos de cliente. Lo que esta guarda evita es gastar el hueco en algo
+   * que se va a matar; lo que el techo evita es que un cuelgue se lleve el
+   * presupuesto entero.
+   *
+   * NO es un techo perfecto, y conviene decir cuál es: el reintento de ESTA capa
+   * se decide antes de la primera llamada, cuando `slowestCallMs` todavía vale
+   * 0, así que el primer fragmento siempre tiene derecho a un segundo intento.
+   * La cota real queda en `presupuesto + TECHO_MINIMO_MS`. Medido con un backend
+   * que se cuelga (`sleep 600`) y `--budget-seconds 40`: **60 s**, con las dos
+   * llamadas acotadas a 38 s y 20 s. Antes de esto, la misma inyección pasaba de
+   * diez minutos, y en el gancho de pre-push tres pasadas reales contra 180 s
+   * costaron 474 s, 367 s y 380 s.
    *
    * THE FIRST CALL ALWAYS RUNS: `slowestCallMs` is 0 until something has been
    * measured, and a budget too small for even one fragment must still review one
@@ -609,6 +632,21 @@ async function main() {
       const r = await reviewSurfaceDetailed(
         input,
         async (i) => {
+          // El techo de ESTA llamada es lo que queda de presupuesto.
+          //
+          // Va DENTRO del callback y no fuera porque el reintento pasa por aquí
+          // otra vez: puesto fuera, los dos intentos heredarían el mismo plazo y
+          // entre los dos se saldrían del presupuesto.
+          //
+          // `cliTimeoutMs()` lee esta variable en cada spawn (src/llm/client.ts),
+          // así que basta con dejarla puesta. El suelo evita pedirle al modelo
+          // que conteste en un parpadeo cuando ya no queda casi nada: por debajo
+          // de eso la llamada no iba a servir de todos modos y el fragmento se
+          // reporta sin revisar, que es el desenlace honesto.
+          if (budgetSeconds) {
+            const queda = deadline - Date.now()
+            process.env.LLM_CLI_TIMEOUT_MS = String(Math.max(TECHO_MINIMO_MS, queda))
+          }
           const res = await callLLM({
             systemPrompt: buildReaderReviewSystemPrompt(),
             userPrompt: buildReaderReviewUserPrompt({
@@ -628,6 +666,19 @@ async function main() {
             // y los 7 fragmentos salieran igualmente de caché — medido, «0
             // leído(s) ahora, 7 de caché» con un total adjudicado movido.
             input: { route: i.route, fragment: hashOf(chunk), facts: fh },
+            // Bajo presupuesto, UN intento por llamada.
+            //
+            // El techo de arriba acota una llamada; sin esto no acota la
+            // pasada, porque `callLLM` reintenta 2 veces por su cuenta y mete
+            // espera entre intentos. Medido con un backend que se cuelga
+            // (`sleep 600`) y un techo de 5 s: con los reintentos por defecto la
+            // llamada se comía DIEZ MINUTOS; con `maxRetries: 0`, cinco
+            // segundos y «timed out after 5s (no output; killed)».
+            //
+            // Reintentar una llamada colgada es justo el cambio malo cuando hay
+            // reloj: cuesta otro hueco entero para volver a colgarse. La capa de
+            // arriba ya guarda su propio reintento, y sólo lo pide cuando cabe.
+            ...(budgetSeconds ? { maxRetries: 0 } : {}),
           })
           // `callLLM` returns null once every backend is exhausted. Coercing that
           // to `[]` here — which this line did — made an unreviewable run print

@@ -156,15 +156,43 @@ export function assessManifest(m: RunManifest): ManifestFinding[] {
 
   // No tokens read, no money spent, still "failed" — the backend refused before
   // it looked at the prompt.
+  //
+  // Pero eso sólo describe una avería si el backend NO estaba contestando. El
+  // parte real de `extract-pleno-claims` traía 165 llamadas, 153 OK y 12 de
+  // cero tokens, y el motivo estaba en su log: «You've hit your session limit».
+  // Es la cuota Max, esperada, que se cura sola. Publicarlo como ERROR diciendo
+  // que «the work was never attempted» era falso de un backend que había
+  // respondido 153 veces, y dejaba monitor:health en rojo a diario por algo
+  // sobre lo que no hay nada que hacer — que es como se entrena a la gente a
+  // ignorar una puerta.
+  //
+  // El discriminante NO puede ser `ok === 0`: la avería real de las 190
+  // llamadas muertas traía `ok: 1`. Lo que separa las dos formas es si los
+  // fallos MANDAN sobre los aciertos. Si mandan, el backend se niega; si no,
+  // la pasada iba bien y se cortó, que es otra cosa y baja a aviso —pero se
+  // sigue nombrando, porque bajar de nivel no es callar.
   if (m.llm.zeroTokenFailures >= ZERO_TOKEN_ALARM) {
-    out.push({
-      level: 'error',
-      code: 'backend-refusing',
-      message:
-        `${m.llm.zeroTokenFailures} call(s) failed having consumed 0 tokens and $0. ` +
-        `The backend refused instantly (rate limit, session lock, dead binary) — ` +
-        `the work was never attempted, not merely unsuccessful.`,
-    })
+    const seNiega = m.llm.zeroTokenFailures > m.llm.ok
+    out.push(
+      seNiega
+        ? {
+            level: 'error',
+            code: 'backend-refusing',
+            message:
+              `${m.llm.zeroTokenFailures} call(s) failed having consumed 0 tokens and $0, ` +
+              `against ${m.llm.ok} that succeeded. The backend refused instantly ` +
+              `(rate limit, session lock, dead binary) — the work was never attempted, ` +
+              `not merely unsuccessful.`,
+          }
+        : {
+            level: 'warn',
+            code: 'backend-cut-short',
+            message:
+              `${m.llm.ok} call(s) succeeded and then ${m.llm.zeroTokenFailures} failed having ` +
+              `consumed 0 tokens — the backend was answering and stopped (quota or session ` +
+              `limit). The run is partial, not broken: re-run once it resets.`,
+          },
+    )
   }
 
   // Claimed judgements with no traffic to back them.

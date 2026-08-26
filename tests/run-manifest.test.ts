@@ -189,6 +189,83 @@ describe('assessManifest — the incidents this exists to catch', () => {
     expect(codes(m)).not.toContain('backend-refusing')
   })
 
+  // ── cuota agotada ≠ backend averiado ───────────────────────────────────────
+  //
+  // `extract-pleno-claims` dejó `check:runs` en rojo con este parte real:
+  // 165 llamadas, 153 OK, 12 de cero tokens, circuito abierto, 174 ventanas sin
+  // responder. El motivo, en su log: «You've hit your session limit · resets
+  // 12:30pm». No es una avería: es la cuota Max, es esperada, se cura sola y no
+  // hay nada que hacer salvo reintentar más tarde.
+  //
+  // Pero salía como ERROR `backend-refusing`, cuyo texto afirma que el backend
+  // «refused instantly … the work was never attempted» — falso de uno que
+  // contestó 153 veces. Y dejaba monitor:health en rojo A DIARIO por eso, que
+  // es como se entrena a la gente a ignorar una puerta.
+  //
+  // El discriminante NO es `ok === 0`: la forma de las 190 llamadas muertas
+  // traía `ok: 1` y sí era una avería. Lo que separa las dos es si los fallos
+  // MANDAN sobre los aciertos.
+  it('una cuota agotada a mitad de pasada NO es un backend que se niega', () => {
+    const m = manifest({
+      attempted: 165,
+      judged: 153,
+      llm: {
+        ...NO_TRAFFIC,
+        calls: 165,
+        ok: 153,
+        failed: 12,
+        zeroTokenFailures: 12,
+        shortCircuited: 162,
+        tokens: 663_937,
+        costUSD: 10.43,
+      },
+    })
+    expect(codes(m)).not.toContain('backend-refusing')
+    // Pero se sigue NOMBRANDO: bajar de nivel no es callar.
+    expect(codes(m)).toContain('backend-cut-short')
+    expect(assessManifest(m).find((f) => f.code === 'backend-cut-short')?.level).toBe('warn')
+  })
+
+  it('sigue siendo ERROR cuando los fallos mandan sobre los aciertos', () => {
+    // La forma real de las 190 llamadas muertas: 1 acierto entre 189 fallos.
+    const m = manifest({
+      attempted: 190,
+      judged: 1,
+      skipped: { 'engine error': 189 },
+      llm: { ...NO_TRAFFIC, calls: 190, ok: 1, failed: 189, zeroTokenFailures: 189 },
+    })
+    expect(codes(m)).toContain('backend-refusing')
+    expect(codes(m)).not.toContain('backend-cut-short')
+  })
+
+  it('un backend que no contestó NUNCA es el caso más claro de todos', () => {
+    const m = manifest({
+      attempted: 20,
+      judged: 0,
+      llm: { ...NO_TRAFFIC, calls: 20, ok: 0, failed: 20, zeroTokenFailures: 20 },
+    })
+    expect(codes(m)).toContain('backend-refusing')
+  })
+
+  it('por debajo del umbral no salta ninguno de los dos', () => {
+    // Sin esto, un arreglo que apagara las dos reglas pasaría por bueno.
+    const m = manifest({
+      attempted: 100,
+      judged: 98,
+      skipped: { 'engine error': 2 },
+      llm: {
+        ...NO_TRAFFIC,
+        calls: 100,
+        ok: 98,
+        failed: 2,
+        zeroTokenFailures: ZERO_TOKEN_ALARM - 1,
+        tokens: 40_000,
+      },
+    })
+    expect(codes(m)).not.toContain('backend-refusing')
+    expect(codes(m)).not.toContain('backend-cut-short')
+  })
+
   it('flags judgements claimed with no traffic to back them', () => {
     const m = manifest({ attempted: 10, judged: 10, llm: { ...NO_TRAFFIC } })
     expect(codes(m)).toContain('judged-without-calls')
