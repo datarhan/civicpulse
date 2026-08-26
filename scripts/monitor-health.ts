@@ -207,6 +207,13 @@ async function gather(): Promise<Observations> {
     'check:eficiencia-findings',
     'check:dea',
     'check:coste-esperado',
+    // `check:stamps` mira lo único que a `check:cadence` se le escapa por
+    // construcción: aquél mide la EDAD del sello, y un sello que NO SE MUEVE
+    // simplemente envejece dentro de su plazo sin decir nada. `promises.json`
+    // perdió una acusación el 2 de agosto y siguió firmando el 6 de julio; el
+    // sello sostenía la fecha que /departamentos publicaba, y ninguna puerta
+    // podía verlo porque las dos miraban el mismo número.
+    'check:stamps',
   ]) {
     const msg = runCheck(c)
     if (msg) integrity.push({ check: c, message: msg })
