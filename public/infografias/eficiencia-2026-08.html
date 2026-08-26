@@ -93,6 +93,18 @@
     padding-top: 14px; border-top: 1px solid var(--rule);
   }
 
+  /* ── Corrección: llega antes que la cifra que corrige ─────────────────── */
+  .correccion {
+    margin: 20px 0 0; padding: 13px 15px; font-size: 12.5px; line-height: 1.55;
+    color: var(--ink-70); background: var(--void);
+    border: 1px solid var(--amber); border-left-width: 3px; border-radius: 4px;
+  }
+  .correccion b { color: var(--amber); }
+  .correccion .fecha {
+    display: block; font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 6px;
+  }
+
   /* ── Bloques de hallazgo ──────────────────────────────────────────────── */
   section { margin-top: 56px; }
   .tag {
@@ -252,6 +264,17 @@
     describe a una persona: el coste efectivo lo rinde la entidad local en su conjunto.
   </p>
 
+  <p class="correccion">
+    <span class="fecha">Corrección · 26 de agosto de 2026</span>
+    <b>Se ha corregido la comparación que descarta la pandemia, y el gráfico que la
+    sostiene.</b> Decíamos «sólo 2017 rindió más». Era falso: el gráfico se publicó
+    recortado en 2017 y la frase generalizaba sobre once entregas que ese gráfico no
+    medía. Contadas las once, tres superan a 2020 —2014 con 517, 2016 con 515 y 2017
+    con 513—, y el gráfico pasa a traerlas todas. Ninguna cifra publicada el 16 de
+    agosto se retira: se añaden las tres que faltaban. La conclusión no cambia — la
+    pandemia sigue sin explicar la entrega que falta.
+  </p>
+
   <!-- ─────────────────────────────────────────────────────────────────── -->
   <section>
     <p class="tag">Lo que falta</p>
@@ -289,21 +312,24 @@
 
     <p>
       La explicación cómoda sería la pandemia. No se sostiene: en 2020 rindieron
-      <strong>más</strong> ayuntamientos valencianos que en cualquiera de los
-      cuatro años siguientes; sólo 2017 rindió más.
+      <strong>503</strong> ayuntamientos valencianos, y sólo 3 de las
+      11 entregas publicadas superan esa cifra: 2014 con 517, 2016 con 515 y 2017 con 513.
     </p>
 
     <figure>
       <p class="fig-title">Ayuntamientos de la Comunitat Valenciana que rindieron cada entrega</p>
       <div class="barras">
-        <div class="fila"><span class="anio">2017</span><div class="pista"><div class="barra" style="width:100%"></div></div><span class="n">513</span></div>
-        <div class="fila"><span class="anio">2018</span><div class="pista"><div class="barra" style="width:95.3%"></div></div><span class="n">489</span></div>
-        <div class="fila"><span class="anio">2019</span><div class="pista"><div class="barra" style="width:95.5%"></div></div><span class="n">490</span></div>
-        <div class="fila propia"><span class="anio">2020</span><div class="pista"><div class="barra" style="width:98.1%"></div></div><span class="n">503</span></div>
-        <div class="fila"><span class="anio">2021</span><div class="pista"><div class="barra" style="width:96.9%"></div></div><span class="n">497</span></div>
-        <div class="fila"><span class="anio">2022</span><div class="pista"><div class="barra" style="width:96.5%"></div></div><span class="n">495</span></div>
-        <div class="fila"><span class="anio">2023</span><div class="pista"><div class="barra" style="width:90.6%"></div></div><span class="n">465</span></div>
-        <div class="fila"><span class="anio">2024</span><div class="pista"><div class="barra" style="width:93.2%"></div></div><span class="n">478</span></div>
+        <div class="fila"><span class="anio">2014</span><div class="pista"><div class="barra" style="width:100%"></div></div><span class="n">517</span></div>
+        <div class="fila"><span class="anio">2015</span><div class="pista"><div class="barra" style="width:95.6%"></div></div><span class="n">494</span></div>
+        <div class="fila"><span class="anio">2016</span><div class="pista"><div class="barra" style="width:99.6%"></div></div><span class="n">515</span></div>
+        <div class="fila"><span class="anio">2017</span><div class="pista"><div class="barra" style="width:99.2%"></div></div><span class="n">513</span></div>
+        <div class="fila"><span class="anio">2018</span><div class="pista"><div class="barra" style="width:94.6%"></div></div><span class="n">489</span></div>
+        <div class="fila"><span class="anio">2019</span><div class="pista"><div class="barra" style="width:94.8%"></div></div><span class="n">490</span></div>
+        <div class="fila propia"><span class="anio">2020</span><div class="pista"><div class="barra" style="width:97.3%"></div></div><span class="n">503</span></div>
+        <div class="fila"><span class="anio">2021</span><div class="pista"><div class="barra" style="width:96.1%"></div></div><span class="n">497</span></div>
+        <div class="fila"><span class="anio">2022</span><div class="pista"><div class="barra" style="width:95.7%"></div></div><span class="n">495</span></div>
+        <div class="fila"><span class="anio">2023</span><div class="pista"><div class="barra" style="width:89.9%"></div></div><span class="n">465</span></div>
+        <div class="fila"><span class="anio">2024</span><div class="pista"><div class="barra" style="width:92.5%"></div></div><span class="n">478</span></div>
       </div>
       <figcaption>
         En ámbar, la entrega que Riba-roja no rindió — y que rindieron 503 de sus

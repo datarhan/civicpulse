@@ -2,21 +2,26 @@
   "meta": {
     "slug": "coste-efectivo",
     "titulo": "El panel se queda en blanco donde está el dinero",
-    "subtitulo": "El coste efectivo del agua en Riba-roja es, oficialmente, nada: el ayuntamiento no declara ni un euro porque el servicio está concedido y lo cobra la empresa del recibo de cada casa. Diez días antes de que se publicara la primera versión de esta pieza, el pleno adjudicó ese servicio por diecisiete años y 55,7 millones. El expediente había tardado siete.",
+    "subtitulo": "El coste efectivo del agua en Riba-roja es, oficialmente, nada: el ayuntamiento no declara ni un euro porque el servicio está concedido y lo cobra la empresa del recibo de cada casa. Diez días antes de que se publicara la primera versión de esta pieza, el Ayuntamiento adjudicó ese servicio por diecisiete años y 55,7 millones. El expediente había tardado siete.",
     "seccion": "Reportaje · datos",
     "municipio": "Riba-roja de Túria",
     "fechaDatos": "2026-08-23",
     "publicadoEl": "16 de agosto de 2026",
     "ampliadoEl": "23 de agosto de 2026",
-    "notaAmpliacion": "La primera versión de esta pieza, del 16 de agosto de 2026, contaba tres defectos en cómo el ayuntamiento rinde el coste efectivo al ministerio. Todo aquello sigue aquí, en la sección 5, con sus cifras intactas. Lo que se ha añadido el 23 de agosto es lo que faltaba: qué hay detrás de las dos casillas que ese panel deja en blanco. Ninguna cifra de la versión anterior se ha retirado ni corregido.",
+    "notaAmpliacion": "La primera versión de esta pieza, del 16 de agosto de 2026, contaba tres defectos en cómo el ayuntamiento rinde el coste efectivo al ministerio. Todo aquello sigue aquí, en las secciones 5 a 7, con sus cifras intactas. Lo que se ha añadido el 23 de agosto es lo que faltaba: qué hay detrás de las dos casillas que ese panel deja en blanco. Al ampliarla no se retiró ni se corrigió ninguna cifra de la versión anterior.",
     "estado": "publicado",
     "derechoReplica": "abierto",
-    "correcciones": []
+    "correcciones": [
+      {
+        "fecha": "2026-08-26",
+        "texto": "**Se ha corregido la comparación que descarta la pandemia, y el gráfico que la sostiene.** Decíamos «en 2020 rindieron más ayuntamientos valencianos que en cualquiera de los cuatro años siguientes — 503; sólo 2017, con 513, rindió más». La segunda mitad era falsa: el gráfico se publicó recortado en 2017 y la frase generalizaba sobre once entregas que ese gráfico no medía. Contadas las once, tres superan a 2020: 2014 con 517, 2016 con 515 y 2017 con 513. La entrega de 2020 es la cuarta más alta de once, no la segunda.\n\nEl gráfico pasa a traer las once entregas, de 2014 a 2024. No se ha retirado ni alterado ninguna de las ocho cifras publicadas el 16 de agosto: se añaden las tres que faltaban.\n\n**La conclusión no cambia.** 503 sigue por encima de 2015, 2018, 2019 y de las cuatro entregas siguientes, así que la pandemia sigue sin explicar por qué Riba-roja no rindió la suya."
+      }
+    ]
   },
   "infografia": {
     "titulo": "La mitad de abajo de la división",
     "url": "/infografias/eficiencia-2026-08.html",
-    "que": "La sección 5 —los tres defectos de la declaración— en una sola página imprimible. Conserva el título con el que se publicó esta pieza el 16 de agosto y las mismas cifras congeladas."
+    "que": "Conserva el título con el que se publicó esta pieza el 16 de agosto."
   },
   "kpis": [
     {
@@ -177,6 +182,18 @@
     "nota": "Ayuntamientos de la Comunitat Valenciana presentes en las tablas de coste, gestión o unidades (CE1, CE2 o CE3) del libro por comunidad de cada entrega. Recuento propio sobre los ficheros del ministerio.",
     "porAnio": [
       {
+        "anio": 2014,
+        "n": 517
+      },
+      {
+        "anio": 2015,
+        "n": 494
+      },
+      {
+        "anio": 2016,
+        "n": 515
+      },
+      {
         "anio": 2017,
         "n": 513
       },
@@ -218,11 +235,11 @@
     "ejemplos": [
       {
         "valor": "11.059,41 t",
-        "que": "residuos declarados, sin variar un decimal"
+        "que": "de residuos declarados, sin variar un decimal"
       },
       {
         "valor": "700.000 m²",
-        "que": "superficie con servicio de limpieza"
+        "que": "de superficie con servicio de limpieza"
       },
       {
         "valor": "4.514",
@@ -261,7 +278,7 @@
         "real": 72.5
       }
     ],
-    "nota": "Variación entre la primera y la última entrega con datos comprobables contra sus pares. «Real» es en euros constantes de 2024. La comparación entre municipios no se deflacta: enfrenta un año contra ese mismo año."
+    "nota": "Variación entre la primera y la última entrega con datos comprobables contra sus pares. «Constantes» es en euros de 2024. La comparación entre municipios no se deflacta: enfrenta un año contra ese mismo año."
   },
   "queNoDice": [
     "No dice que la adjudicación sea irregular. Un procedimiento puede suspenderse, recurrirse y resolverse en derecho, y que tarde siete años no lo convierte en ilegal: lo que esta pieza publica es cuánto tardó y qué pasos consta que se dieron.",
@@ -307,7 +324,7 @@
     "Las cifras de contratación (concentración, licitador único, adjudicación sin llamada abierta) son un recuento propio sobre los contratos adjudicados del portal municipal, y llevan al lado la cautela de que una sola concesión pesa el 45 % del importe del periodo.",
     "Las cifras del coste efectivo salen de los libros por comunidad autónoma de la aplicación de consulta del ministerio (once entregas, 2014-2024), leídos con las reglas de filtrado y comparabilidad publicadas en la metodología.",
     "La no-presentación de 2020 se comprueba por presencia: el fichero está, los demás municipios figuran en él y Riba-roja no aparece en CE1, CE2 ni CE3. No es un hueco de descarga.",
-    "La explicación por la pandemia se descartó con un control: en 2020 rindieron 503 ayuntamientos valencianos, más que en cualquiera de los cuatro años siguientes (2021-2024) y que en 2018 y 2019; sólo 2017, con 513, rindió más.",
+    "La explicación por la pandemia se descartó con un control: en 2020 rindieron 503 ayuntamientos valencianos, más que en cualquiera de las cuatro entregas siguientes (2021-2024) y más que en 2015, 2018 y 2019; de las once entregas publicadas sólo 2014, 2016 y 2017 —517, 515 y 513— rindieron más.",
     "Un denominador cuenta como congelado cuando sus últimas cuatro entregas o más traen el mismo valor hasta el cuarto decimal; repetir dos años es normal y no cuenta.",
     "Las variaciones en euros constantes usan la media anual del IPC general del INE con base en la entrega de 2024; las cifras exactas de cada servicio, con su celda de origen, están en /eficiencia.",
     "Las cifras de la primera versión de esta pieza quedaron congeladas el 16 de agosto de 2026 y no se han tocado; las que se añaden el 23 de agosto quedan congeladas a esa fecha. Si el ministerio revisa una entrega o el expediente avanza, la corrección se anota aquí, no se reescribe en silencio."

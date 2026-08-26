@@ -77,6 +77,27 @@ describe('infografía — cada cifra coincide con el reportaje congelado', () =>
     expect(Number(propia[2])).toBe(enJson.n)
   })
 
+  /**
+   * El recorte que publicó una frase falsa.
+   *
+   * El 16-08 este gráfico se publicó con 2017-2024, mientras la tira de entregas
+   * justo encima cubría 2014-2024. La frase que descarta la pandemia generalizó
+   * sobre las once —«sólo 2017, con 513, rindió más»— y era falsa: 2014 (517) y
+   * 2016 (515) también superan a 2020. No lo vio ninguna prueba porque todas
+   * comprobaban las cifras que SÍ estaban; ninguna preguntaba si faltaba alguna.
+   *
+   * El invariante no es «las cifras cuadran» sino «el gráfico mide el mismo
+   * periodo del que habla la frase»: `porAnio` cubre TODAS las entregas
+   * publicadas. Un recuento de menos vuelve a hacer publicable el superlativo.
+   */
+  it('el gráfico de rendición cubre todas las entregas, no un recorte de ellas', () => {
+    const numerico = (a, b) => a - b
+    const conRecuento = pieza.rendicionCV.porAnio.map((f) => f.anio).sort(numerico)
+    const publicadas = [...pieza.entregas.publicadas].sort(numerico)
+    expect(publicadas.length, 'no hay entregas publicadas que comparar').toBeGreaterThan(5)
+    expect(conRecuento, 'el gráfico de rendición no cubre todas las entregas').toEqual(publicadas)
+  })
+
   it('los denominadores congelados y su banda de comparación', () => {
     const c = pieza.congelados
     expect(html).toContain(`${c.propios} de ${c.medibles}`)

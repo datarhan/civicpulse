@@ -26,11 +26,32 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     await expect(page.getByText(/derecho de réplica/i).first()).toBeVisible()
 
     // Hallazgo 1 · la entrega sin rendir, con su control anti-pandemia.
+    //
+    // Se afirma sobre el PÁRRAFO del cuerpo, no con un getByText suelto. Desde
+    // la corrección del 26-08 la pieza CITA su propia frase vieja —«503; sólo
+    // 2017, con 513, rindió más»— dentro de un <details> plegado, así que
+    // `getByText(/503/).first()` resolvía a texto OCULTO: la spec habría pasado
+    // midiendo la cita de lo que se retiró en vez de lo que la página afirma.
+    //
+    // Y el esperado se deriva del snapshot en vez de recitarse, que es el
+    // defecto que obligó a esta corrección: la frase publicada llevaba dos
+    // cifras a mano sobre un gráfico recortado, y era falsa.
     await expect(page.getByText('sin rendir').first()).toBeVisible()
-    await expect(page.getByText(/503/).first()).toBeVisible()
-    await expect(
-      page.getByText(/rindieron.*más.*ayuntamientos valencianos que en cualquiera/s).first(),
-    ).toBeVisible()
+
+    const porAnio = snap.rendicionCV.porAnio
+    const ausente = snap.entregas.noPresentadas[0]
+    const nAusente = porAnio.find((f) => f.anio === ausente).n
+    const superaron = porAnio.filter((f) => f.n > nAusente).sort((a, b) => a.anio - b.anio)
+
+    const control = page.getByText(/La explicación cómoda sería la pandemia/).first()
+    await expect(control).toBeVisible()
+    await expect(control).toContainText(`en ${ausente} rindieron ${nAusente}`)
+    await expect(control).toContainText(
+      `sólo ${superaron.length} de las ${porAnio.length} entregas publicadas`,
+    )
+    for (const f of superaron) {
+      await expect(control).toContainText(`${f.anio} con ${f.n}`)
+    }
 
     // Hallazgo 2 · los denominadores congelados y la franja de comparables.
     await expect(page.getByText(/11\.059,41/).first()).toBeVisible()

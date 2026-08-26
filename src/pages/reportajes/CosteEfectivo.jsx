@@ -600,6 +600,21 @@ export default function CosteEfectivo() {
   const cong = data.congelados
   const inf = data.inflacion
 
+  /**
+   * Las entregas que superaron a la que el ayuntamiento no rindió.
+   *
+   * Se DERIVA de `rendicionCV.porAnio` en vez de recitarse. La frase que
+   * descarta la pandemia se publicó el 16-08 con dos cifras a mano —«503; sólo
+   * 2017, con 513, rindió más»— calculadas sobre un gráfico recortado en 2017,
+   * y con las once entregas delante era falsa: 2014 (517) y 2016 (515) también
+   * superan a 2020. Derivarla es lo que impide que vuelva a quedarse vieja si
+   * el ministerio revisa una entrega o se añade otra.
+   */
+  const rc = data.rendicionCV.porAnio
+  const entregaAusente = data.entregas.noPresentadas[0]
+  const nAusente = rc.find((r) => r.anio === entregaAusente)?.n
+  const superaron = rc.filter((r) => r.n > nAusente).sort((a, b) => a.anio - b.anio)
+
   return (
     <div
       className="cp-page"
@@ -902,9 +917,17 @@ export default function CosteEfectivo() {
 
       {data.quienRespondia2020 && <QuienRespondia bloque={data.quienRespondia2020} />}
       <P>
-        La explicación cómoda sería la pandemia. No se sostiene: en 2020 rindieron{' '}
-        <strong>más</strong> ayuntamientos valencianos que en cualquiera de los cuatro años
-        siguientes — 503; sólo 2017, con 513, rindió más.
+        La explicación cómoda sería la pandemia. No se sostiene: en {entregaAusente} rindieron{' '}
+        <strong className="mono">{nAusente.toLocaleString('es-ES')}</strong> ayuntamientos
+        valencianos, y sólo {superaron.length} de las {rc.length} entregas publicadas superan esa
+        cifra:{' '}
+        {superaron.map((r, i) => (
+          <span key={r.anio}>
+            {i > 0 && (i === superaron.length - 1 ? ' y ' : ', ')}
+            {r.anio} con <span className="mono">{r.n.toLocaleString('es-ES')}</span>
+          </span>
+        ))}
+        .
       </P>
       <Figura
         titulo="Ayuntamientos de la Comunitat que rindieron cada entrega"
@@ -924,7 +947,7 @@ export default function CosteEfectivo() {
         {cong.ejemplos.map((e, i) => (
           <span key={e.que}>
             {i > 0 && (i === cong.ejemplos.length - 1 ? ' y ' : ', ')}
-            <strong className="mono">{e.valor}</strong> de {e.que}
+            <strong className="mono">{e.valor}</strong> {e.que}
           </span>
         ))}
         , repetidos sin variar desde {cong.desdeMin} o {cong.desdeMax}, según el servicio. La
