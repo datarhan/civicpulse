@@ -65,6 +65,37 @@ export function selloEnDiff(diff: string): boolean {
   return diff.split('\n').some((l) => /^[+-]\s*"generatedAt"\s*:/.test(l))
 }
 
+const DIA_MS = 86_400_000
+
+/**
+ * ¿Este sello guarda una FECHA y no un instante?
+ *
+ * `competencias.json` sella `2026-08-23T00:00:00.000Z` — medianoche exacta, y
+ * así en revisión tras revisión: su convención es el día. Un fichero curado a
+ * mano no puede prometer una precisión que su propio formato no guarda, y
+ * juzgarlo por horas lo dejaba «caduco por 18,6 h» por un commit de esa misma
+ * tarde. El arreglo habría sido inventarle una hora que no tiene.
+ */
+export function selloEsDeDia(iso: string | null | undefined): boolean {
+  if (!iso) return false
+  const t = Date.parse(iso)
+  return Number.isFinite(t) && t % DIA_MS === 0
+}
+
+/**
+ * ¿El contenido cambió DESPUÉS de lo que el sello dice?
+ *
+ * Se compara con la granularidad que el sello guarda: por día si es de día, por
+ * instante si trae hora. Una fecha ilegible se juzga —no se descarta—, porque
+ * «no lo pude comparar» no puede colarse como «coincide».
+ */
+export function contenidoCambioTrasElSello(sello: string, fechaCommit: string): boolean {
+  const s = Date.parse(sello)
+  const c = Date.parse(fechaCommit)
+  if (!Number.isFinite(s) || !Number.isFinite(c)) return true
+  return selloEsDeDia(sello) ? Math.floor(c / DIA_MS) > Math.floor(s / DIA_MS) : c > s
+}
+
 function mirar(nombre: string): FilaSello {
   const rel = `${DATA}/${nombre}`
   const base: FilaSello = {
@@ -101,6 +132,9 @@ function mirar(nombre: string): FilaSello {
   const fecha = git(['log', '-1', '--format=%aI', '--', rel])
   const diff = git(['show', '--format=', '--unified=0', sha, '--', rel])
 
+  // Dos condiciones, y hacen falta las dos. El diff dice si el sello SE MOVIÓ;
+  // las fechas dicen si TENÍA QUE MOVERSE. Un cambio hecho dentro del día que
+  // el sello ya declara —cuando el sello es de día— está cubierto por él.
   if (selloEnDiff(diff)) {
     return {
       ...base,
@@ -109,6 +143,18 @@ function mirar(nombre: string): FilaSello {
       commit: sha.slice(0, 8),
       fechaCommit: fecha,
       nota: 'el último cambio movió el sello',
+    }
+  }
+  if (!contenidoCambioTrasElSello(sello, fecha)) {
+    return {
+      ...base,
+      desenlace: 'ok',
+      generatedAt: sello,
+      commit: sha.slice(0, 8),
+      fechaCommit: fecha,
+      nota: selloEsDeDia(sello)
+        ? `el sello es del día ${sello.slice(0, 10)} y el cambio también — cubierto`
+        : 'el sello ya es posterior al cambio',
     }
   }
   return {
