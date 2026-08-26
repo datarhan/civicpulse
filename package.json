@@ -218,7 +218,8 @@
     "render:og": "node scripts/render-og.mjs",
     "carry:attribution": "npx tsx scripts/carry-attribution.ts",
     "check:sindic-fichas": "npx tsx scripts/check-sindic-fichas.ts",
-    "check:sparse": "npx tsx scripts/check-sparse.ts"
+    "check:sparse": "npx tsx scripts/check-sparse.ts",
+    "check:stamps": "npx tsx scripts/check-curated-stamps.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

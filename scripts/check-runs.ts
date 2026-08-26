@@ -64,6 +64,24 @@ export const EXPECTED_PASSES: ExpectedPass[] = [
     soloCurador: true,
   },
   {
+    // Nadie la vigilaba, y falló 49 mañanas seguidas sin que nadie se enterase:
+    // desde el 2026-07-08, `claude exit 1: Not logged in` todos los días a las
+    // 09:00 desde cron, que no abre el llavero. La pasada DETECTABA su propia
+    // muerte y escribía «This is a broken run, not an empty one» — a un log de
+    // 343 KB que no lee nadie. El resultado visible fue `/departamentos`
+    // anclada en el 6 de julio durante siete semanas.
+    //
+    // Con manifiesto, dos cosas saltan solas: una pasada que corre y no
+    // consigue veredictos (`nothing-attempted` + `backend-refusing`), y una
+    // pasada que directamente deja de correr. La segunda era la que no tenía
+    // forma de verse. Mismo margen de 48 h que sus vecinas: una mañana perdida
+    // es silencio, dos son ruido.
+    script: 'auto-curate-promises',
+    everyHours: 48,
+    scheduler: 'launchd com.civicpulse.auto-curate-promises (diario 08:30)',
+    soloCurador: true,
+  },
+  {
     // Nothing watched this until 2026-08-11, and it is about to run unattended
     // for weeks against a 21-session backlog. Its failure modes are all quiet
     // ones: no GEMINI_API_KEY skips the step with a log line, an exhausted

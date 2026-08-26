@@ -8,6 +8,7 @@ import { useQuejas } from './useQuejas'
 import { useTenders } from './useTenders'
 import { usePlenoClaimsManifest } from './usePlenoClaims'
 import { computeDepartmentStats } from '../lib/department-stats'
+import { worstFreshness } from '../lib/data-freshness'
 
 /**
  * Aggregates six upstream snapshots into per-department stats keyed by
@@ -26,7 +27,9 @@ import { computeDepartmentStats } from '../lib/department-stats'
  * verify run is in progress (it rewrites the files mid-run).
  *
  * Returns:
- *   { loading: boolean, error: Error|null, data: AggregateResult|null }
+ *   { loading, error, data, generatedAt, freshness }
+ * donde `freshness` es el agregado de `worstFreshness` (tono, entrada que lo
+ * fija y desglose por fuente).
  */
 export function useDepartmentStats() {
   const officials = useOfficials()
@@ -70,18 +73,29 @@ export function useDepartmentStats() {
     manifest.error,
   ])
 
-  // Worst-case freshness across the 5 required inputs. A page that
-  // aggregates 5 sources is only as fresh as its oldest one.
-  const generatedAt = useMemo(() => {
-    const stamps = [
-      officials.data?.generatedAt,
-      promises.data?.generatedAt,
-      agendas.data?.generatedAt,
-      votes.data?.generatedAt,
-      quejas.data?.generatedAt,
-    ].filter(Boolean)
-    return stamps.length > 0 ? stamps.sort()[0] : null
-  }, [officials.data, promises.data, agendas.data, votes.data, quejas.data])
+  // Frescura de las 5 entradas obligatorias.
+  //
+  // Esto era `stamps.sort()[0]` —la más vieja— pintada con el umbral plano de
+  // 30 días, y decía dos cosas falsas. Fijaba la píldora en `promises.json`,
+  // que es curado y tiene 120 días de plazo, y gritaba «likely broken» sobre
+  // una página cuyas fuentes automáticas se habían refrescado esa madrugada. Y
+  // al revés: un raspador nocturno parado cuarenta días habría quedado tapado
+  // debajo del curado, que es más viejo todavía y está en su derecho.
+  //
+  // `worstFreshness` mide cada fuente contra SU plazo registrado. La fecha que
+  // se publica sigue siendo la más vieja —no se esconde nada—, pero el tono es
+  // el peor de las cinco, y `pinnedBy` dice cuál lo provoca.
+  const freshness = useMemo(
+    () =>
+      worstFreshness([
+        { file: 'officials.json', label: 'cargos', iso: officials.data?.generatedAt },
+        { file: 'promises.json', label: 'promesas', iso: promises.data?.generatedAt },
+        { file: 'plenos-agendas.json', label: 'órdenes del día', iso: agendas.data?.generatedAt },
+        { file: 'pleno-votes.json', label: 'votos de pleno', iso: votes.data?.generatedAt },
+        { file: 'quejas.json', label: 'quejas', iso: quejas.data?.generatedAt },
+      ]),
+    [officials.data, promises.data, agendas.data, votes.data, quejas.data],
+  )
 
-  return { loading, error, data, generatedAt }
+  return { loading, error, data, generatedAt: freshness.oldestIso, freshness }
 }

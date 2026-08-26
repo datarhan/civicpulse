@@ -26,6 +26,19 @@ describe('qué rutas toca un cambio', () => {
     ])
   })
 
+  it('un comentario que MENCIONA un snapshot no lo DECLARA', () => {
+    // `useJsonFetch.js` documenta su parámetro con el ejemplo
+    // «e.g. '/data/padron.json'», y lo importa prácticamente cada hook. Leído
+    // como declaración, eso le colgaba a padron.json TREINTA Y CUATRO rutas:
+    // cada vez que el padrón se refrescaba, el recordatorio de prosa rancia
+    // nombraba media web. Un recordatorio así es el que la gente apaga.
+    //
+    // Padrón lo cargan dos sitios y sólo dos: /datos (usePadron) y /lab-health
+    // (que lo lista en su tabla de bytes). Si esto vuelve a crecer, alguien ha
+    // dejado de quitar comentarios antes de casar literales.
+    expect(rutas('public/data/padron.json')).toEqual(['/datos', '/lab-health'])
+  })
+
   it('un snapshot lleva a las páginas que lo cargan Y a las que lo describen', () => {
     const r = rutas('public/data/indicadores.json')
     expect(r).toContain('/eficiencia')

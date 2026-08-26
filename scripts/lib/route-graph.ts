@@ -104,13 +104,41 @@ export function rutasPublicas(grafo: GrafoRutas): string[] {
   return grafo.rutas.filter((r) => !r.includes(':') && r !== '/curator')
 }
 
+/**
+ * Quita comentarios de bloque y líneas que son ÍNTEGRAMENTE comentario.
+ *
+ * Deliberadamente NO toca un `//` a media línea: `'https://x/data/y.json'` es
+ * código, y recortar desde las barras se llevaría por delante una arista de
+ * verdad. Con quitar los bloques `/* … *\/` y las líneas que empiezan por `//`
+ * o `*` basta para lo único que hace falta: que la prosa no declare nada.
+ */
+function sinComentarios(t: string): string {
+  return t
+    .replace(/\/\*[\s\S]*?\*\//g, ' ')
+    .split('\n')
+    .filter((l) => !/^\s*(\/\/|\*)/.test(l))
+    .join('\n')
+}
+
 export function construirGrafoRutas(src: string): GrafoRutas {
   const todos = ficheros(src)
   const texto = new Map(todos.map((f) => [f, readFileSync(f, 'utf8')]))
 
   const snapshotsDe = new Map<string, Set<string>>()
   for (const [f, t] of texto) {
-    const encontrados = [...t.matchAll(/['"`]\/data\/([\w-]+\.json)['"`]/g)].map((m) => m[1])
+    // Sobre el texto SIN comentarios: un comentario que MENCIONA una ruta no la
+    // DECLARA. Una línea de JSDoc que decía «acepta `promises.json` como
+    // `/data/promises.json`» le colgó a promises.json ocho rutas que no hablan
+    // de promesas, sólo porque el módulo lo importan catorce páginas. Es la
+    // misma broma que ya se contó en `prepush-range.test.js`, que tuvo que
+    // quitar comentarios antes de casar porque el comentario que explicaba la
+    // regla citaba la forma equivocada.
+    //
+    // `prosa-describe:` sigue leyéndose del texto ÍNTEGRO, abajo: ésa es una
+    // declaración deliberada y vive precisamente dentro de un comentario.
+    const encontrados = [...sinComentarios(t).matchAll(/['"`]\/data\/([\w-]+\.json)['"`]/g)].map(
+      (m) => m[1],
+    )
     const declarados = [...t.matchAll(/prosa-describe:\s*([^*\n]+)/g)].flatMap((m) =>
       m[1]
         .split(',')

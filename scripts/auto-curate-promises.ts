@@ -42,7 +42,8 @@ import { discoverPromises } from '../src/llm/promise-discovery'
 import type { PromiseDiscoveryInput } from '../src/llm/prompts'
 import { mineStatusChanges } from '../src/scraper/promise-status-miner'
 import type { RetrievalInput } from '../src/llm/retriever'
-import { resetBudget, loadConfigFromEnv } from '../src/llm/client'
+import { resetBudget, loadConfigFromEnv, getRunStats } from '../src/llm/client'
+import { startRun, formatManifest } from '../src/scraper/run-manifest'
 
 const PROMISES = resolve('public/data/promises.json')
 const PRESS = resolve('public/data/press.json')
@@ -219,12 +220,44 @@ async function main() {
     `[auto-curate-promises] backend=${config.backend} · phase=${opts.phase} · max=${opts.max} · min-conf=${opts.minConfidence} · dry-run=${opts.dryRun} · no-auto-publish=${opts.noAutoPublish}\n`,
   )
 
+  // Manifiesto de pasada.
+  //
+  // Esta pasada YA detectaba su propia muerte —«This is a broken run, not an
+  // empty one»— y la escribía a un log que no lee nadie. Falló todas las
+  // mañanas desde el 2026-07-08 con `Not logged in`, 49 días seguidos, y
+  // `check:runs` no la vigilaba porque no dejaba manifiesto. Gritar en un sitio
+  // donde nadie escucha es la mitad del trabajo.
+  //
+  // Se escribe en `exit` y no en un `finally` a propósito: este script sale por
+  // `process.exit()` en varios sitios —congelación LOREG, fichero ausente— y un
+  // `finally` no cubre ninguno. La pasada que no deja manifiesto es justo la
+  // que `check:runs` existe para notar.
+  const runLog = startRun('auto-curate-promises', {
+    mode: opts.phase,
+    backend: config.backend,
+    // Mismo giro que `extract-pleno-claims`: el modelo vive por backend en
+    // ClientConfig, y el envoltorio fija estas dos variables.
+    model: process.env.CLAUDE_CODE_MODEL ?? process.env.AGY_MODEL ?? null,
+    getStats: getRunStats,
+  })
+  let manifiestoEscrito = false
+  process.on('exit', (code) => {
+    if (manifiestoEscrito) return
+    manifiestoEscrito = true
+    const { manifest, findings } = runLog.finish({ exitCode: code })
+    process.stdout.write(`\n${formatManifest(manifest)}\n`)
+    for (const f of findings) {
+      process.stdout.write(`  ${f.level.toUpperCase()} [${f.code}] ${f.message}\n`)
+    }
+  })
+
   // Fail CLOSED: unknowable freeze state must not publish.
   const rawPromises = existsSync(PROMISES) ? readFileSync(PROMISES, 'utf8') : null
   if (!rawPromises) {
     process.stderr.write(
       `[auto-curate-promises] ${PROMISES} missing — cannot determine LOREG freeze, refusing\n`,
     )
+    runLog.skip('promises-snapshot-missing')
     process.exit(1)
   }
   const snap = validatePromisesSnapshot(rawPromises)
@@ -232,6 +265,9 @@ async function main() {
     process.stderr.write(
       `[auto-curate-promises] LOREG freeze active until ${snap.frozenUntil} — exiting\n`,
     )
+    // Un día de congelación es una pasada que NO hizo nada a propósito. Con el
+    // motivo escrito, `check:runs` la distingue de una que no llegó a correr.
+    runLog.skip('loreg-freeze')
     process.exit(0)
   }
 
@@ -386,6 +422,20 @@ async function main() {
       `[auto-curate-promises] status: ${statusCandidates.length} candidate(s) · retrieved=${minerStats.retrieved} emitted=${minerStats.emitted} rejected(cite=${minerStats.hallucinatedCite}, conf=${minerStats.belowConfidence}, id=${minerStats.idMismatch})\n`,
     )
 
+    // `owed` es el nivel de la cola; `attempted`/`judged`, los veredictos que
+    // volvieron de verdad. Cuando el backend no contesta, `attempted` es 0 con
+    // `owed` en cientos, y eso dispara `nothing-attempted`, cuyo texto describe
+    // exactamente lo que pasó aquí: «setup, credentials or a dependency, not
+    // the model».
+    const veredictos =
+      minerStats.emitted +
+      minerStats.hallucinatedCite +
+      minerStats.belowConfidence +
+      minerStats.idMismatch
+    runLog.owe(minerStats.retrieved)
+    runLog.attempt(veredictos)
+    runLog.judge(veredictos)
+
     // Retrieval found work and the model emitted NOTHING and rejected NOTHING:
     // that is not a quiet day, it is the model never having answered. A day
     // where it ran and was merely conservative still shows rejections.
@@ -436,6 +486,15 @@ async function main() {
   process.stdout.write(
     `[auto-curate-promises] auto-publish=${autoCount} · queue=${toQueue.length} · skipped=${skipped.length}\n`,
   )
+  runLog.record('autoPublished', autoCount)
+  runLog.record('queued', toQueue.length)
+  // Desenlace, NO `skip`. Estos descartes ocurren DESPUÉS del veredicto —el
+  // modelo ya los juzgó y la selección los deja fuera—, así que meterlos en el
+  // cubo de saltados los cuenta dos veces y rompe la invariante
+  // `judged + never-attempted + skipped === attempted`: la primera versión de
+  // esto imprimió «judged 9 + skipped 5 = 14, but 9 were attempted».
+  // `skip` es para lo que nunca llegó a juzgarse.
+  for (const sk of skipped) runLog.record(`descartado:${sk.reason}`, 1)
 
   if (opts.dryRun) {
     const preview = `/tmp/auto-curate-promises-preview-${now.getTime()}.json`
