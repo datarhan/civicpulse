@@ -22,7 +22,7 @@
  * because there was nothing to do or because nothing of that kind exists yet.
  */
 import { execFileSync } from 'node:child_process'
-import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
   DATA_GRAPH,
@@ -31,7 +31,7 @@ import {
   type DataNode,
   type NodeTier,
 } from '../src/scraper/data-graph'
-import { builtFromFor, stalenessOf, describeStaleness } from '../src/scraper/built-from'
+import { sellar as stamp, stalenessOf, describeStaleness } from '../src/scraper/built-from'
 
 const DATA_DIR = 'public/data'
 
@@ -41,54 +41,6 @@ interface Row {
   node: DataNode
   outcome: Outcome
   detail: string
-}
-
-/**
- * Record what the node was built from, in the artifact itself.
- *
- * Runs AFTER the command, because the command rewrites the file and would
- * discard a stamp written before it. A node whose output is not JSON, or which
- * did not produce its output at all, is reported rather than silently left
- * unstamped — an unstamped node is stale forever, which looks like a rebuild
- * loop and is very hard to read backwards.
- */
-function stamp(node: DataNode): string | null {
-  // TODAS las salidas, no sólo `node.id`.
-  //
-  // Sellaba únicamente el fichero homónimo del nodo, así que un nodo con varias
-  // salidas dejaba las demás sin procedencia para siempre. `compute:press-analytics`
-  // escribe tres —press-trust.json, press-coverage-gaps.json y
-  // press-triangulation.json— y sólo la primera llevaba `builtFrom`: las otras
-  // dos se publicaban sin decir de qué salieron, que es justo el contrato que
-  // este mecanismo existe para cumplir.
-  //
-  // `node.id` es el que decide la frescura (`stalenessOf` lo lee), y eso no
-  // cambia: sellar las hermanas no reintroduce el bucle que `stalenessInputs`
-  // evita, porque el sello no entra en el cálculo de staleness.
-  const problemas: string[] = []
-  for (const salida of node.writes) {
-    const path = resolve(DATA_DIR, salida)
-    if (!existsSync(path)) {
-      // Sólo es fallo si falta el fichero del propio nodo. Una salida
-      // secundaria que un comando no produce en esta pasada no es una avería.
-      if (salida === node.id) problemas.push(`${salida} was not produced by its own command`)
-      continue
-    }
-    let doc: unknown
-    try {
-      doc = JSON.parse(readFileSync(path, 'utf8'))
-    } catch {
-      problemas.push(`${salida} is not JSON — cannot record provenance`)
-      continue
-    }
-    if (!doc || typeof doc !== 'object' || Array.isArray(doc)) {
-      problemas.push(`${salida} is not a JSON object — cannot record provenance`)
-      continue
-    }
-    const next = { ...(doc as Record<string, unknown>), builtFrom: builtFromFor(node) }
-    writeFileSync(path, JSON.stringify(next, null, 2) + '\n')
-  }
-  return problemas.length > 0 ? problemas.join(' · ') : null
 }
 
 function run(command: string): { ok: boolean; detail: string } {

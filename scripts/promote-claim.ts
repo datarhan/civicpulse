@@ -23,6 +23,8 @@
  * this CLI or by PR-editing pleno-findings.json directly.
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { sellar } from '../src/scraper/built-from'
+import { DATA_GRAPH } from '../src/scraper/data-graph'
 import { resolve } from 'node:path'
 import {
   validateFindingsSnapshot,
@@ -423,6 +425,28 @@ function main() {
   }
 
   writeFileSync(FINDINGS, serialized, 'utf8')
+
+  // EL SELLO, y lo pone quien hizo el trabajo.
+  //
+  // `pleno-findings.json` es un nodo `curated`: `refresh` no lo reconstruye
+  // nunca —ése es el contrato— así que sin esto reportaba `no-builtFrom` para
+  // siempre. Un nodo permanentemente viejo que nadie puede limpiar es ruido, y
+  // el ruido entrena a la gente a dejar de leer el parte: llevaba meses ahí.
+  //
+  // Va DESPUÉS del write, porque el sello se escribe en el propio artefacto y
+  // el write lo borraría. Y es no fatal: la promoción ya está en disco y
+  // validada; perder el sello degrada el parte, no el dato. Decirlo en voz alta
+  // es la diferencia entre un sello que falló y uno que nadie echó de menos.
+  const nodo = DATA_GRAPH.find((n) => n.id === 'pleno-findings.json')
+  if (!nodo) {
+    process.stderr.write(
+      '[promote-claim] aviso: pleno-findings.json ya no es un nodo del grafo — sin sellar\n',
+    )
+  } else {
+    const err = sellar(nodo)
+    if (err) process.stderr.write(`[promote-claim] aviso: no se pudo sellar (${err})\n`)
+  }
+
   process.stdout.write(
     `[promote-claim] ${existingIdx >= 0 ? 'updated' : 'promoted'} finding ${id} ` +
       `(${rows.length} claim(s), ${crossChecked.length} cross-checked${opts.extraCorroboration.length > 0 ? ` [+${opts.extraCorroboration.length} curator]` : ''}, ${contradiction.length} contradiction) → ${FINDINGS}\n`,

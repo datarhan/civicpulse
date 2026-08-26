@@ -329,10 +329,7 @@ if [ "$SPEAKER_MAP_CALL_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
           log "· $mid mapeado, re-extracción EN ESPERA (sin backend de texto) — el mapa queda guardado"
         elif env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$mid"; then
           NEW=$((NEW+1)); log "✓ $mid claims re-extracted with map attribution"
-          # Tell the graph the work landed. Without this the llm node reports
-          # stale forever, and a permanently-stale node trains people to stop
-          # reading the report.
-          npm run --silent refresh -- --stamp pleno-claims-suggestions.json || true
+          # El sello NO va aquí. Ver el bloque `NEW -gt 0` más abajo.
         else
           log "warn: re-extract failed for $mid — map kept, claims still unattributed"
         fi
@@ -355,6 +352,21 @@ fi
 if [ "$NEW" -gt 0 ]; then
   log "re-verifying claims ($NEW new pleno(s)) — overlay-safe…"
   npm run verify:pleno-claims
+  # EL SELLO, y aquí porque `NEW` cuenta las extracciones que terminaron bien
+  # vengan de donde vengan.
+  #
+  # Vivía dentro de la rama del mapa de voces: sólo se sellaba si aparecía un
+  # mapa NUEVO **y** la re-extracción posterior iba bien. Una extracción normal
+  # —la de la línea 216, el caso corriente— hacía el trabajo y no sellaba nada,
+  # así que un nodo que sólo necesita su PRIMER sello no lo recibía nunca.
+  # `pleno-claims-suggestions.json` llevaba meses en el parte de `refresh` por
+  # eso, y su motivo no era «una entrada se movió» sino `no-builtFrom`.
+  #
+  # Sigue sin sellar cuando no hubo trabajo, que es el contrato entero: el sello
+  # lo pone quien lo hizo, y una pasada sin extracciones no ha hecho nada que
+  # sellar.
+  npm run --silent refresh -- --stamp pleno-claims-suggestions.json \
+    || log "warn: no se pudo sellar pleno-claims-suggestions.json (el nodo seguirá viejo en el parte)"
 else
   log "no new extractions — skipping verify"
 fi

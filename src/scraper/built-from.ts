@@ -20,7 +20,7 @@
  * hash lives in the published JSON, which is fine — it is provenance, and this
  * project publishes provenance on purpose.
  */
-import { existsSync, readFileSync, readdirSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { sha256Short } from './hash'
 import { stalenessInputs, type DataNode } from './data-graph'
@@ -163,4 +163,59 @@ export function describeStaleness(node: DataNode, s: Staleness): string {
     default:
       return `${node.id}: ${s.changed.join(', ')} changed`
   }
+}
+
+/**
+ * Record what the node was built from, in the artifact itself.
+ *
+ * Runs AFTER the command, because the command rewrites the file and would
+ * discard a stamp written before it.
+ *
+ * Vive aquí y no en `refresh.ts` desde que hay un segundo sellador. Los nodos
+ * `llm` y `curated` no los reconstruye `refresh` —ése es justo el contrato— así
+ * que los sella quien hizo el trabajo: la tubería tras una extracción, y
+ * `promote-claim` tras una promoción. Dos copias de esto habrían sido el
+ * duplicado que este repositorio ya ha pagado varias veces: una se arregla y la
+ * otra se queda mal. A node whose output is not JSON, or which
+ * did not produce its output at all, is reported rather than silently left
+ * unstamped — an unstamped node is stale forever, which looks like a rebuild
+ * loop and is very hard to read backwards.
+ */
+export function sellar(node: DataNode, dir = DATA_DIR): string | null {
+  // TODAS las salidas, no sólo `node.id`.
+  //
+  // Sellaba únicamente el fichero homónimo del nodo, así que un nodo con varias
+  // salidas dejaba las demás sin procedencia para siempre. `compute:press-analytics`
+  // escribe tres —press-trust.json, press-coverage-gaps.json y
+  // press-triangulation.json— y sólo la primera llevaba `builtFrom`: las otras
+  // dos se publicaban sin decir de qué salieron, que es justo el contrato que
+  // este mecanismo existe para cumplir.
+  //
+  // `node.id` es el que decide la frescura (`stalenessOf` lo lee), y eso no
+  // cambia: sellar las hermanas no reintroduce el bucle que `stalenessInputs`
+  // evita, porque el sello no entra en el cálculo de staleness.
+  const problemas: string[] = []
+  for (const salida of node.writes) {
+    const path = resolve(dir, salida)
+    if (!existsSync(path)) {
+      // Sólo es fallo si falta el fichero del propio nodo. Una salida
+      // secundaria que un comando no produce en esta pasada no es una avería.
+      if (salida === node.id) problemas.push(`${salida} was not produced by its own command`)
+      continue
+    }
+    let doc: unknown
+    try {
+      doc = JSON.parse(readFileSync(path, 'utf8'))
+    } catch {
+      problemas.push(`${salida} is not JSON — cannot record provenance`)
+      continue
+    }
+    if (!doc || typeof doc !== 'object' || Array.isArray(doc)) {
+      problemas.push(`${salida} is not a JSON object — cannot record provenance`)
+      continue
+    }
+    const next = { ...(doc as Record<string, unknown>), builtFrom: builtFromFor(node, dir) }
+    writeFileSync(path, JSON.stringify(next, null, 2) + '\n')
+  }
+  return problemas.length > 0 ? problemas.join(' · ') : null
 }
