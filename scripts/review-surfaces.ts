@@ -38,6 +38,7 @@
  * LLM-touching path in this repo.
  */
 import { readFileSync, existsSync, writeFileSync } from 'node:fs'
+import { committedAwardYearSpan } from '../src/lib/contract-status'
 import { createHash } from 'node:crypto'
 import { resolve } from 'node:path'
 import { chromium } from '@playwright/test'
@@ -190,7 +191,16 @@ function factsFor(route: string): Record<string, unknown> {
     'contratos: nº ADJUDICADOS (awarded + formalized)': tenders?.stats?.awardedContracts,
     'contratos: nº de FILAS del snapshot (incluye anulados, renuncias, desistidos y SIN CLASIFICAR)':
       tenders?.contracts?.length,
-    'contratos: rango de fechas de adjudicación': '2017 → 2026 (acumulado, NO anual)',
+    // CALCULADO, no escrito. Esto decía literalmente «2017 → 2026» a mano, en
+    // la herramienta cuyo trabajo entero es cazar rótulos que no cuadran con
+    // sus datos: en cuanto el raspador traiga una adjudicación de 2027, el
+    // reviewer estaría contrastando la página contra una premisa falsa suya.
+    // Es la regla de CLAUDE.md —«computed, never typed»— aplicada al que
+    // vigila. Mismo tramo y mismas filas que publica la ficha de /datos.
+    'contratos: rango de fechas de adjudicación': (() => {
+      const span = committedAwardYearSpan(tenders?.contracts)
+      return span ? `${span.from} → ${span.to} (acumulado, NO anual)` : null
+    })(),
     // La mayor adjudicación suelta, porque una pieza puede legítimamente
     // excluirla y el modelo no tenía cómo saberlo.
     //

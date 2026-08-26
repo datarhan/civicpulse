@@ -1,5 +1,9 @@
 import { describe, it, expect } from 'vitest'
-import { isCommittedContract, contractAmountEur } from '../src/lib/contract-status'
+import {
+  isCommittedContract,
+  contractAmountEur,
+  committedAwardYearSpan,
+} from '../src/lib/contract-status'
 
 /**
  * One predicate for "did the town commit this money", because the definition
@@ -64,5 +68,60 @@ describe('isCommittedContract — unrecognised vocabulary', () => {
     // If Gobierto introduces a new status, the honest answer is "not counted
     // as spend until someone looks", not "assume it is money out the door".
     expect(isCommittedContract({ status: 'en_tramite', assignee: 'ACME' })).toBe(false)
+  })
+})
+
+/**
+ * El periodo que cubre una cifra de contratación.
+ *
+ * `/datos` publicaba «699 adjudicados · 806 expedientes» SIN periodo, justo
+ * debajo de «Presupuesto municipal · Ejercicio 2025», que sí lo dice, y entre
+ * fichas que lo llevan («1148 personas (2026-07)»). Un lector razonable lo lee
+ * como una magnitud anual cuando son adjudicaciones de nueve años. Lo cazó el
+ * reader-review la primera vez que pudo leer esa página de verdad.
+ *
+ * El tramo se mide sobre EXACTAMENTE las filas que `isCommittedContract`
+ * acepta, que son las que la cifra cuenta. Medirlo sobre todas las filas daría
+ * un periodo que no es el de su propio número — la misma clase de desajuste
+ * que ya costó «806 contratos» leídos como adjudicados.
+ */
+describe('committedAwardYearSpan', () => {
+  const c = (status: string, awardDate: string | null) => ({
+    status,
+    assignee: 'ACME SL',
+    awardDate,
+  })
+
+  it('devuelve el primer y el último año adjudicado', () => {
+    expect(
+      committedAwardYearSpan([c('awarded', '2017-03-01'), c('formalized', '2026-08-01')]),
+    ).toEqual({ from: 2017, to: 2026 })
+  })
+
+  it('IGNORA las filas que la cifra no cuenta', () => {
+    // Una anulada de 1999 no puede ensanchar el periodo de un número que no la
+    // incluye. Si esto pasa a verde con `from: 1999`, la ficha estaría
+    // anunciando un tramo que su propia cifra no cubre.
+    const span = committedAwardYearSpan([
+      { status: 'revoked', assignee: 'ACME SL', awardDate: '1999-01-01' },
+      c('awarded', '2020-05-05'),
+    ])
+    expect(span).toEqual({ from: 2020, to: 2020 })
+  })
+
+  it('ignora fechas ausentes o absurdas sin descartar la fila entera', () => {
+    expect(
+      committedAwardYearSpan([
+        c('awarded', null),
+        c('awarded', 'no es fecha'),
+        c('awarded', '2021-01-01'),
+      ]),
+    ).toEqual({ from: 2021, to: 2021 })
+  })
+
+  it('sin filas fechadas devuelve null, no un tramo inventado', () => {
+    expect(committedAwardYearSpan([])).toBe(null)
+    expect(committedAwardYearSpan([c('awarded', null)])).toBe(null)
+    expect(committedAwardYearSpan(null)).toBe(null)
   })
 })
