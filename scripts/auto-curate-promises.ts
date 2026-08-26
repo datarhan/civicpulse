@@ -292,7 +292,21 @@ async function main() {
   let newQueue: DraftNewPromise[] = []
   const newSkipped: Array<{ draftId: string; reason: string }> = []
   if (doDiscovery) {
-    const batch = await discoverPromises(buildDiscoveryInput(snap, press, agendas))
+    // Discovery se cuelga: `claude-code timed out after 180s (no output;
+    // killed)`, y no es tamaño —manda 60 titulares—. No sé por qué se cuelga;
+    // lo que sí puedo hacer es dejar de pagar tres minutos por averiguarlo.
+    // Falla blando (abajo), y la fase `status` —la que de verdad mueve
+    // promesas— corre después: cuanto antes llegue, mejor.
+    const relojPrevio = process.env.LLM_CLI_TIMEOUT_MS
+    process.env.LLM_CLI_TIMEOUT_MS = process.env.LLM_CLI_TIMEOUT_MS ?? '45000'
+    let batch: Awaited<ReturnType<typeof discoverPromises>>
+    try {
+      batch = await discoverPromises(buildDiscoveryInput(snap, press, agendas))
+    } finally {
+      // Restaurado para no imponerle a `status` el reloj corto de discovery.
+      if (relojPrevio === undefined) delete process.env.LLM_CLI_TIMEOUT_MS
+      else process.env.LLM_CLI_TIMEOUT_MS = relojPrevio
+    }
     if (!batch) {
       process.stderr.write('[auto-curate-promises] discovery: LLM returned null (backend/budget)\n')
     } else {
