@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.civicpulse.scrape-ci-blocked</string>
+
+  <!-- Agente y no línea de cron, y el motivo NO se ve mirando el script.
+       Los ocho adaptadores son deterministas y no tocan credencial ninguna:
+       por eso este trabajo se quedó en cron cuando los otros se mudaron, y por
+       eso la cabecera de launchd-install-llm-pipelines.sh llegó a decir por
+       escrito que aquí no hacía falta.
+
+       Lo que necesita el llavero no es el raspado: es el `git push origin main`
+       del final. El gancho de pre-push lee con el modelo las rutas que el push
+       toca, y desde cron eso sale «Not logged in» SIEMPRE. La puerta se porta
+       bien —dice «SIN REVISAR: ningún backend respondió» y no finge un visto
+       bueno— pero empuja igual, así que los datos que este trabajo publica
+       llevaban desde su instalación sin que nadie los leyera. Diez fallos de
+       login en su log, y una de las rutas que se quedaba sin leer era
+       /departamentos.
+
+       La regla buena, entonces: agente para lo que necesita credencial, cron
+       para lo determinista — contando que EMPUJAR arrastra el gancho, y el
+       gancho necesita credencial. -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/scrape-ci-blocked.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/sergeilutchenko/dev/CivicPulse</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <!-- Mismo PATH que los otros agentes: node/npm en /usr/local/bin, git en
+         /opt/homebrew/bin y `claude` —el del gancho— en ~/.local/bin. -->
+    <key>PATH</key>
+    <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin:/Users/sergeilutchenko/.local/bin</string>
+  </dict>
+
+  <!-- 06:45, la misma hora que tenía en cron, y el orden importa: la nocturna
+       de GitHub (04:30 UTC ≈ 06:30 local) ya ha comiteado lo suyo, y esto
+       refresca lo que los runners no alcanzan antes de que el barrido lector
+       de las 07:30 lea el sitio del día.
+
+       macOS agrupa en el siguiente despertar si el Mac está dormido, así que
+       una tapa cerrada retrasa la pasada en vez de saltársela. -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key><integer>6</integer>
+    <key>Minute</key><integer>45</integer>
+  </dict>
+
+  <!-- Mismo fichero que escribía la redirección del cron, para no partir en dos
+       el histórico. -->
+  <key>StandardOutPath</key>
+  <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/logs/scrape-ci-blocked.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/logs/scrape-ci-blocked.log</string>
+
+  <key>ProcessType</key>
+  <string>Background</string>
+</dict>
+</plist>

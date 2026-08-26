@@ -46,8 +46,8 @@ Two classes dominate:
 
 - **Blocked from GitHub runners.** SEPE, `ribarroja.es` and `regmeet.com`
   blackhole runner IPs. These work first time from a residential IP, so they
-  belong in `scripts/scrape-ci-blocked.sh` (local cron, below) rather than in
-  the gate.
+  belong in `scripts/scrape-ci-blocked.sh` (local launchd agent, below) rather
+  than in the gate.
 - **Needs an LLM backend.** CI has no keys by design and ollama is out of every
   fallback chain, so `extract:all-pleno-votes` can only ever be red on a runner.
   The real extraction runs curator-side in `hallazgos-pipeline.sh`.
@@ -148,18 +148,45 @@ pushing to `main`, which is the failure the control exists to catch. The
 classifier is unit-tested on both shapes so that loosening it cannot quietly
 turn it into a function that returns `false` for everything.
 
-## Local crons (the curator's laptop)
+## Local scheduled jobs (the curator's laptop)
 
 Anything needing an LLM backend or a residential IP runs here, not in CI.
 
-| When               | Script                                                                                                                                                              |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 06:45 daily        | `scrape-ci-blocked.sh` — the 7 adapters runners cannot reach (`paro`, `pleno-agendas`, `asociaciones`, `obras`, `procesos-selectivos`, `sindicatura`, `consell-cv`) |
-| 07:30 daily        | `review-sweep.sh` — reads every public route as a visitor (report-only, commits nothing)                                                                            |
-| 09:00 daily        | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                   |
-| 09:30 daily        | `hallazgos-pipeline.sh` — transcribe → extract → verify → auto-curate → push                                                                                        |
-| 10:15 daily        | `press-lab-pipeline.sh` — `/laboratorio` press fact-check pass                                                                                                      |
-| 11:00 every 2 days | `monitor-health-cron.sh`                                                                                                                                            |
+| When               | How     | Script                                                                                                                                                                                  |
+| ------------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 06:45 daily        | launchd | `scrape-ci-blocked.sh` — the adapters runners cannot reach (`paro`, `pleno-agendas`, `asociaciones`, `obras`, `procesos-selectivos`, `sindicatura`, `consell-cv`, `sindic-expedientes`) |
+| 07:30 daily        | launchd | `review-sweep.sh` — reads every public route as a visitor (report-only, commits nothing)                                                                                                |
+| 08:30 daily        | launchd | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                                       |
+| 09:30 daily        | launchd | `hallazgos-pipeline.sh` — transcribe → extract → verify → auto-curate → push                                                                                                            |
+| 10:15 daily        | launchd | `press-lab-pipeline.sh` — `/laboratorio` press fact-check pass                                                                                                                          |
+| 11:00 every 2 days | cron    | `monitor-health-cron.sh`                                                                                                                                                                |
+
+### launchd or cron: the rule, and the two times it was applied wrong
+
+**A launchd user agent runs inside the Aqua session and can open the login
+keychain. A cron job cannot** — `env -i … claude -p ok` exits 1 with
+«Not logged in». So: **agent for anything that needs the credential, cron for
+the purely deterministic.**
+
+The trap is deciding which is which by reading what the script _calls_. Twice
+that was wrong, and both were silent:
+
+- `auto-curate-promises-daily.sh` calls the model outright and was in cron
+  anyway. It failed every morning from 2026-07-08 for 49 days, and pinned
+  `/departamentos` to a 6 July stamp.
+- `scrape-ci-blocked.sh` really is deterministic — until its `git push`. The
+  pre-push hook reads the touched routes **with the model**, so from cron it
+  published every morning with «SIN REVISAR: ningún backend respondió» against
+  all of them. The scraping never needed the credential; publishing it did.
+
+So the rule has a second clause: **pushing drags in the hook, and the hook needs
+the credential.** `monitor-health-cron.sh` is the one that genuinely stays in
+cron — it neither calls the model nor pushes.
+
+Install the agents with `scripts/launchd-install-llm-pipelines.sh` (its `probe`
+subcommand checks keychain, PATH and TCC) and
+`scripts/launchd-install-auto-curate-promises.sh`. A job must live in exactly
+one scheduler: leaving the old `crontab` line behind runs it twice.
 
 `scrape-ci-blocked.sh`, `auto-curate-promises-daily.sh`, `hallazgos-pipeline.sh`,
 `press-lab-pipeline.sh` and the currently disabled `auto-curate-weekly.sh` all
@@ -334,7 +361,7 @@ report "no change" forever.
 free structural half (does every claim cite a source that exists, is every quote
 verbatim in its excerpt) runs in `scrape:all` with `--offline`. The URL probe
 runs in `scrape-ci-blocked.sh`, because it needs a residential IP for the same
-reason the seven adapters there do — a runner would mark most of the corpus
+reason the adapters there do — a runner would mark most of the corpus
 `unverifiable`, find nothing, and report a clean bill of health. The blocking
 copy runs at promote time, against the draft.
 
