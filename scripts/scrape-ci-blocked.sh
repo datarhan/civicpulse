@@ -1,14 +1,22 @@
 #!/usr/bin/env bash
 # Refresh the adapters GitHub runners CANNOT reach.
 #
-# ribarroja.es (WAF), regmeet.com and SEPE blackhole GitHub's IP ranges, so these
-# seven fail every night on CI. They are marked best-effort there, which keeps the
-# nightly green — and that is the trap: the run goes green, nobody looks, and
-# the data quietly ages with NO working refresh path anywhere. All six pass
-# from a residential IP.
+# ribarroja.es (WAF), regmeet.com and SEPE blackhole GitHub's IP ranges, so the
+# adapters below fail every night on CI. They are marked best-effort there, which
+# keeps the nightly green — and that is the trap: the run goes green, nobody
+# looks, and the data quietly ages with NO working refresh path anywhere. They
+# all pass from a residential IP. (Sin cifra a propósito: este párrafo decía
+# «seven» y «six» de la MISMA lista, que ya tenía ocho entradas.)
 #
-# Install (from Terminal.app — cron edits are TCC-blocked from other shells):
-#   ( crontab -l 2>/dev/null; echo '45 6 * * * /bin/bash '"$PWD"'/scripts/scrape-ci-blocked.sh >> '"$PWD"'/scripts/logs/scrape-ci-blocked.log 2>&1' ) | crontab -
+# Instalar:  bash scripts/launchd-install-llm-pipelines.sh   (agente, 06:45)
+#
+# Agente launchd y NO cron desde el 2026-08-26, aunque los adaptadores de
+# abajo sean deterministas y no toquen credencial ninguna. Lo que la necesita es
+# el `git push origin main` del final: el gancho de pre-push lee con el modelo
+# las rutas que el push toca, y desde cron eso salía «Not logged in» siempre. La
+# puerta avisaba —«SIN REVISAR: ningún backend respondió»— y empujaba igual, así
+# que los datos que este script publica llevaban desde su instalación sin que
+# nadie los leyera; una de las rutas que se quedaba fuera era /departamentos.
 set -uo pipefail
 # `|| exit`: this is the one of the four cron scripts without `set -e`, so a
 # failed cd used to leave it committing from whatever directory cron started in.

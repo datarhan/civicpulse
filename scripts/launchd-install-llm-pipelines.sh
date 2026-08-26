@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Install (or remove) the three LLM pipelines as launchd USER agents.
+# Install (or remove) as launchd USER agents the jobs that need the model.
 #
 #   bash scripts/launchd-install-llm-pipelines.sh            # install + load
 #   bash scripts/launchd-install-llm-pipelines.sh uninstall  # unload + remove
@@ -22,13 +22,33 @@
 # `probe` below is how you re-establish that after any OS or login change,
 # rather than inferring it from a pipeline log the next morning.
 #
-# `auto-curate-promises`, `scrape-ci-blocked` and `monitor-health` stay in cron:
-# they are deterministic, touch no credential, and moving them would be churn.
+# ## Cuáles necesitan credencial, corregido dos veces
+#
+# Esta cabecera decía: «`auto-curate-promises`, `scrape-ci-blocked` and
+# `monitor-health` stay in cron: they are deterministic, touch no credential».
+# De los tres, DOS eran falsos, y los dos costaron caro:
+#
+#   · `auto-curate-promises` llama al modelo de frente. Falló 49 mañanas
+#     seguidas con «Not logged in» —desde el 2026-07-08— y dejó /departamentos
+#     anclada en el 6 de julio. Movido a su propio agente (08:30) el 2026-08-26.
+#   · `scrape-ci-blocked` sí es determinista… hasta el `git push` del final. El
+#     gancho de pre-push lee las rutas tocadas CON EL MODELO, así que desde cron
+#     empujaba diciendo «SIN REVISAR: ningún backend respondió» de todas ellas.
+#     El raspado no necesitaba credencial; publicarlo, sí. Agente desde el
+#     2026-08-26.
+#   · `monitor-health` sigue en cron, y esta vez de verdad: ni llama al modelo
+#     ni empuja, sólo manda el parte. Cero fallos de login en su log.
+#
+# La regla, escrita para que no vuelva a aplicarse mal: agente para lo que
+# necesita credencial, cron para lo determinista — contando que **empujar
+# arrastra el gancho, y el gancho necesita credencial**. Mirar sólo lo que el
+# script llama es lo que falló las dos veces.
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd -P)"
 AGENTS="$HOME/Library/LaunchAgents"
-LABELS=(com.civicpulse.hallazgos com.civicpulse.press-lab com.civicpulse.review-sweep)
+LABELS=(com.civicpulse.hallazgos com.civicpulse.press-lab com.civicpulse.review-sweep
+        com.civicpulse.scrape-ci-blocked)
 
 mkdir -p "$AGENTS" "$REPO_DIR/scripts/logs"
 
@@ -106,9 +126,12 @@ for label in "${LABELS[@]}"; do
 done
 
 echo
-echo "Horario: review-sweep 07:30 · hallazgos 09:30 · press-lab 10:15, a diario."
+echo "Horario: scrape-ci-blocked 06:45 · review-sweep 07:30 · hallazgos 09:30 ·"
+echo "         press-lab 10:15, a diario. (auto-curate-promises 08:30 se instala"
+echo "         aparte, con launchd-install-auto-curate-promises.sh.)"
 echo
 echo "QUITA las líneas equivalentes del crontab o correrán las dos cosas:"
-echo "  crontab -e   # borrar hallazgos-pipeline.sh, press-lab-pipeline.sh y review-sweep.sh"
+echo "  crontab -e   # borrar hallazgos-pipeline.sh, press-lab-pipeline.sh,"
+echo "               # review-sweep.sh y scrape-ci-blocked.sh"
 echo
 echo "Comprobar mañana:  npm run check:runs   (sale 1 si la nocturna no corrió)"
