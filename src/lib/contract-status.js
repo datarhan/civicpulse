@@ -101,3 +101,39 @@ export function contractAmountEur(c) {
   const n = Number(v)
   return Number.isFinite(n) && n > 0 ? n : 0
 }
+
+/**
+ * Primer y último año de adjudicación de las filas que cuentan como gasto
+ * comprometido, o `null` si ninguna trae fecha utilizable.
+ *
+ * Existe porque una cifra de contratación SIN periodo se lee como anual.
+ * `/datos` publicaba «699 adjudicados · 806 expedientes» pegada debajo de
+ * «Presupuesto municipal · Ejercicio 2025» —que sí dice el suyo— y entre fichas
+ * que lo llevan («1148 personas (2026-07)»); son adjudicaciones de nueve años.
+ *
+ * Se mide sobre EXACTAMENTE las filas que `isCommittedContract` acepta, que son
+ * las que la cifra cuenta. Sobre todas las filas daría el periodo de otro
+ * número, que es la misma clase de desajuste que ya costó «806 contratos»
+ * leídos como adjudicados.
+ *
+ * Y se calcula, nunca se escribe: un «2017–2026» a mano se vuelve falso solo en
+ * cuanto el raspador traiga una adjudicación de 2027.
+ *
+ * @param {Array<{status?: string, assignee?: string, awardDate?: string|null}>|null|undefined} contracts
+ * @returns {{from: number, to: number}|null}
+ */
+export function committedAwardYearSpan(contracts) {
+  let from = null
+  let to = null
+  for (const c of contracts ?? []) {
+    if (!isCommittedContract(c)) continue
+    const year = Number(String(c?.awardDate ?? '').slice(0, 4))
+    // `> 1990` descarta el ruido de una fecha mal parseada sin tirar la fila:
+    // la contratación pública electrónica no es anterior, así que un año menor
+    // es un error de dato, no un contrato viejo.
+    if (!Number.isFinite(year) || year <= 1990) continue
+    if (from === null || year < from) from = year
+    if (to === null || year > to) to = year
+  }
+  return from !== null && to !== null ? { from, to } : null
+}

@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import { BoeCard } from '../components/BoeCard'
 import { Ic } from '../components/Icons'
@@ -11,6 +12,7 @@ import { useBudget } from '../hooks/useBudget'
 import { useTenders } from '../hooks/useTenders'
 import { useBdns } from '../hooks/useBdns'
 import { useT } from '../i18n'
+import { committedAwardYearSpan } from '../lib/contract-status'
 import { usePlenos } from '../hooks/usePlenos'
 import { useEmpleo } from '../hooks/useEmpleo'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
@@ -85,6 +87,12 @@ function DatasetsCatalog() {
   const officials = useOfficials().data
   const budget = useBudget().data
   const tenders = useTenders().data
+  // Memoizado porque recorre las ~800 filas del snapshot y este catálogo se
+  // repinta con cada hook que resuelve.
+  const contratacionSpan = useMemo(
+    () => committedAwardYearSpan(tenders?.contracts),
+    [tenders?.contracts],
+  )
   const bdns = useBdns().data
   const plenos = usePlenos().data
   const agendas = usePlenoAgendas().data
@@ -133,9 +141,25 @@ function DatasetsCatalog() {
       // «806 contratos» contaba FILAS (anulados y desistidos incluidos) y se
       // leía como adjudicados — lo cazó el reader-review. Las dos cifras ya
       // vienen en el stats del scraper; aquí sólo se dice cuál es cuál.
+      //
+      // Y el PERIODO, que faltaba: sin él la ficha caía justo debajo de
+      // «Presupuesto municipal · Ejercicio 2025» —que sí dice el suyo— y entre
+      // fichas que lo llevan («1148 personas (2026-07)»), así que un lector
+      // razonable la leía como una magnitud anual cuando son adjudicaciones de
+      // nueve años. Lo cazó el reader-review la primera vez que pudo leer esta
+      // página de verdad, el 2026-08-26.
+      //
+      // El tramo sale de las MISMAS filas que la cifra cuenta
+      // (`isCommittedContract`), no de todas: un periodo medido sobre otra
+      // población es el desajuste que ya costó «806 contratos» leídos como
+      // adjudicados. Calculado, nunca escrito.
       rows:
         tenders?.stats?.awardedContracts && tenders?.stats?.totalContracts
-          ? `${tenders.stats.awardedContracts.toLocaleString('es-ES')} adjudicados · ${tenders.stats.totalContracts.toLocaleString('es-ES')} expedientes`
+          ? `${tenders.stats.awardedContracts.toLocaleString('es-ES')} adjudicados · ${tenders.stats.totalContracts.toLocaleString('es-ES')} expedientes${
+              contratacionSpan
+                ? ` (${contratacionSpan.from}–${contratacionSpan.to}, acumulado)`
+                : ''
+            }`
           : '—',
       updated: formatDate(tenders?.generatedAt),
       source: 'Gobierto · PLACSP',
