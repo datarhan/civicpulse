@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-08-25T05:14:49.634Z",
+  "generatedAt": "2026-08-26T17:16:15.127Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 67,
+    "total": 69,
     "openTotal": 67,
-    "inRibaRoja": 43,
+    "inRibaRoja": 45,
     "closingSoon": 6,
-    "withDetail": 67,
+    "withDetail": 69,
     "byMonth": {
-      "2026-08": 27,
+      "2026-08": 29,
       "2026-07": 25,
       "2026-06": 6,
       "2026-05": 3,
@@ -22,6 +22,171 @@
     }
   },
   "items": [
+    {
+      "id": "2342",
+      "fo": 2342,
+      "codigo": "2026/00046",
+      "titulo": "Personal limpieza comunidades",
+      "publishedAt": "2026-08-26",
+      "deadline": "2026-10-26",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2342",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00046"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Personal limpieza comunidades"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se necesita cubrir puestos para limpieza de comunidades de vecinos con vehículo propio"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Turnos: Turno mañana, Turno tarde"
+          },
+          {
+            "label": "Horario",
+            "value": "Por determinar."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Limpieza de comunidades"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          },
+          {
+            "label": "Habilidades",
+            "value": "Persona seria , responsable y profesional"
+          }
+        ],
+        "tipoContrato": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "2",
+        "observaciones": "Se necesita cubrir puestos para limpieza de comunidades de vecinos con vehículo propio",
+        "jornada": "Turnos: Turno mañana, Turno tarde",
+        "horario": "Por determinar.",
+        "salario": "Según convenio",
+        "funciones": "Limpieza de comunidades",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2399",
+      "fo": 2399,
+      "codigo": "2026/00100",
+      "titulo": "Mozo almacén y chofer repartidor camión 3.500 kgs",
+      "publishedAt": "2026-08-25",
+      "deadline": "2026-10-25",
+      "location": "Nave en Poligono industrial Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2399",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00100"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Mozo almacén y chofer repartidor camión 3.500 kgs"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "OTROS SERVICIOS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "SUBALTERNOS"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Nave en Poligono industrial, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "En el horario está incluida media hora para el almuerzo"
+          },
+          {
+            "label": "Horario",
+            "value": "8.30 a 14:00 y de 16:00 a 19:00"
+          },
+          {
+            "label": "Salario",
+            "value": "1.300 euros netos"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Preparación pedidos. - Logística y ordenación de almacén. - Reparto por provincia de Valencia con camión de hasta 3.500 kgs."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "categoria": "SUBALTERNOS",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "horario": "8.30 a 14:00 y de 16:00 a 19:00",
+        "salario": "1.300 euros netos",
+        "funciones": "- Preparación pedidos. - Logística y ordenación de almacén. - Reparto por provincia de Valencia con camión de hasta 3.500 kgs.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2525",
       "fo": 2525,

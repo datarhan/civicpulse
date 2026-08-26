@@ -1,3 +1,4 @@
+import { isOfferClosed } from '../scraper/empleo'
 // @ts-check
 /**
  * Pure client helpers for /empleo — stats aggregation, the filter predicate,
@@ -68,6 +69,14 @@ export function computeEmpleoStats(offers, now = Date.now()) {
   const total = list.length
   let positions = 0
   let inRibaRoja = 0
+  // Abiertas DE VERDAD, con el mismo predicado que decide la píldora de la
+  // tarjeta. Contar `status === 'Abierta'` daba 67 en una página que pintaba
+  // dos de ellas «Cerrada».
+  let open = 0
+  // Sobre cuántas filas se puede calcular el reparto por municipio. No es el
+  // total: 23 de 67 no traen ficha, y el gráfico salía al lado de un KPI
+  // calculado sobre las 67 sin que nada dijera que son poblaciones distintas.
+  let byMunicipioCoverage = 0
   let closingSoon = 0
   let vehicleRequired = 0
   const monthMap = new Map()
@@ -76,6 +85,7 @@ export function computeEmpleoStats(offers, now = Date.now()) {
 
   for (const o of list) {
     if (o.inRibaRoja) inRibaRoja++
+    if (!isOfferClosed(o, now)) open++
     const d = o.detail
     if (d) {
       const n = parseInt(d.numPuestos, 10)
@@ -83,7 +93,10 @@ export function computeEmpleoStats(offers, now = Date.now()) {
       if (d.vehiculo === 'Sí') vehicleRequired++
       if (d.tipoContrato)
         contractMap.set(d.tipoContrato, (contractMap.get(d.tipoContrato) || 0) + 1)
-      if (d.municipio) muniMap.set(d.municipio, (muniMap.get(d.municipio) || 0) + 1)
+      if (d.municipio) {
+        muniMap.set(d.municipio, (muniMap.get(d.municipio) || 0) + 1)
+        byMunicipioCoverage++
+      }
     }
     const du = daysUntil(o.deadline, now)
     if (du !== null && du >= 0 && du <= 14) closingSoon++
@@ -103,6 +116,8 @@ export function computeEmpleoStats(offers, now = Date.now()) {
 
   return {
     total,
+    open,
+    byMunicipioCoverage,
     positions,
     inRibaRoja,
     inRibaRojaPct: total ? Math.round((inRibaRoja / total) * 100) : 0,

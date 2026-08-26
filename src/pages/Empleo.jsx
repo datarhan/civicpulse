@@ -67,14 +67,22 @@ function OfferRow({ o, t }) {
           {(() => {
             // Never show the portal's "Abierta" on an offer whose closing date
             // has passed — it rendered right beside a "cerrada" chip.
+            //
+            // Y ese arreglo creó el defecto contrario: con la etiqueta ya
+            // sustituida, la píldora de plazo decía OTRA VEZ «Cerrada», y la
+            // oferta salía «Cerrada Cerrada». Cuando el plazo es lo que la
+            // cierra —`overridden`, que existe justo para esto— la píldora de
+            // plazo no añade nada y sobra.
             const st = effectiveStatus(o)
             return (
-              <Pill tone={st.tone} size="xs">
-                {st.label}
-              </Pill>
+              <>
+                <Pill tone={st.tone} size="xs">
+                  {st.label}
+                </Pill>
+                {!st.overridden && <DeadlinePill deadline={o.deadline} t={t} />}
+              </>
             )
           })()}
-          <DeadlinePill deadline={o.deadline} t={t} />
         </div>
 
         <div
