@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest'
+import { effectiveStatus } from '../src/hooks/useEmpleo'
 import {
   normalizeJornada,
   computeEmpleoStats,
@@ -222,5 +223,78 @@ describe('empleo/distinct extractors (for filter dropdowns)', () => {
     expect(cs).toContain('CONTRATO INDEFINIDO')
     expect(cs).toContain('INDIFERENTE')
     expect(new Set(cs).size).toBe(cs.length)
+  })
+})
+
+// ---------------------------------------------------------------------------
+// «Abierta» significaba tres cosas a la vez.
+//
+// El portal no mantiene su propio campo `status`: dos ofertas reales lo traen
+// en «Abierta» con plazos de 2026-06-30 y 2026-01-15. `effectiveStatus` ya lo
+// arreglaba EN LA TARJETA —el comentario que lo explica nombra esas dos— pero
+// el CONTADOR seguía sumando la etiqueta cruda, así que /empleo publicaba «67
+// ofertas abiertas» y a renglón seguido pintaba dos de ellas «Cerrada».
+//
+// La misma cifra la leen la portada (FeedBlocks) y /datos, así que el desajuste
+// salía en tres sitios.
+// ---------------------------------------------------------------------------
+describe('empleo/computeEmpleoStats — abiertas de verdad', () => {
+  const OFERTAS = [
+    mk({ fo: 1, deadline: '2026-09-30' }), // abierta
+    mk({ fo: 2, deadline: '2026-01-15' }), // «Abierta» en el portal, vencida
+    mk({ fo: 3, deadline: null }), // sin plazo: no se puede decir que cerró
+  ]
+
+  it('no cuenta como abierta una que la propia página pinta «Cerrada»', () => {
+    const s = computeEmpleoStats(OFERTAS, NOW)
+    expect(s.total).toBe(3)
+    expect(s.open).toBe(2)
+  })
+
+  it('el contador y la etiqueta de la tarjeta dicen lo mismo', () => {
+    // El defecto no era una cifra mal: eran DOS nociones. Si esto se separa
+    // otra vez, que falle aquí y no en la página.
+    const s = computeEmpleoStats(OFERTAS, NOW)
+    const pintadasAbiertas = OFERTAS.filter((o) => effectiveStatus(o, NOW).label === 'Abierta')
+    expect(s.open).toBe(pintadasAbiertas.length)
+  })
+
+  it('sin plazo no se presume cerrada', () => {
+    expect(computeEmpleoStats([mk({ fo: 9, deadline: null })], NOW).open).toBe(1)
+  })
+})
+
+// ---------------------------------------------------------------------------
+// El gráfico de municipios va sobre MENOS filas que el KPI de al lado.
+//
+// «En Riba-roja 43 · 64%» sale de la marca de alias, sobre las 67 ofertas. El
+// panel de municipios agrupa `detail.municipio`, y 23 filas no traen ficha: ve
+// 44. El lector veía 43 arriba y 24 abajo sin nada que dijera que son
+// poblaciones distintas.
+// ---------------------------------------------------------------------------
+describe('empleo/computeEmpleoStats — cobertura del gráfico de municipios', () => {
+  it('dice sobre cuántas filas se calculó, no sobre cuántas hay', () => {
+    const s = computeEmpleoStats(
+      [
+        mk({ fo: 1, detail: { municipio: 'Riba-roja de Túria' } }),
+        mk({ fo: 2, detail: { municipio: 'Cheste' } }),
+        mk({ fo: 3, detail: null }), // sin ficha: fuera del gráfico
+        mk({ fo: 4, detail: {} }), // ficha sin municipio: también fuera
+      ],
+      NOW,
+    )
+    expect(s.total).toBe(4)
+    expect(s.byMunicipioCoverage).toBe(2)
+  })
+
+  it('con todas las fichas completas la cobertura es el total', () => {
+    const s = computeEmpleoStats(
+      [
+        mk({ fo: 1, detail: { municipio: 'Riba-roja de Túria' } }),
+        mk({ fo: 2, detail: { municipio: 'Llíria' } }),
+      ],
+      NOW,
+    )
+    expect(s.byMunicipioCoverage).toBe(s.total)
   })
 })

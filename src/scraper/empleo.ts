@@ -89,6 +89,39 @@ export const OFERTA_STATUS_LABEL: Record<string, string> = {
   Anulada: 'Anulada',
 }
 
+/**
+ * ¿Se le pasó el plazo a esta oferta?
+ *
+ * EL predicado de «abierta», y hace falta que sea uno solo porque llegó a haber
+ * tres. El portal NO mantiene su campo `status`: dos ofertas reales lo traen en
+ * «Abierta» con plazos de 2026-06-30 y 2026-01-15. `effectiveStatus` ya
+ * anteponía la fecha a la etiqueta EN LA TARJETA, pero el contador seguía
+ * sumando la etiqueta cruda, así que /empleo publicaba «67 ofertas abiertas» y
+ * dos renglones más abajo pintaba dos de ellas «Cerrada». La misma cifra la
+ * leen la portada y /datos.
+ *
+ * Una fecha pasada es un hecho; la etiqueta de arriba es una afirmación. Gana
+ * el hecho.
+ *
+ * Vive en este módulo porque es el único que importan LOS DOS lados: el
+ * scraper (que sella `stats.openTotal`) y el SPA (que pinta la píldora).
+ *
+ * El corte se mide en días REDONDEADOS HACIA ARRIBA, que es como lo venía
+ * haciendo `deadlineInfo`: una oferta cuyo plazo vence hoy sigue abierta. Se
+ * conserva a propósito — el objetivo es que el contador coincida con la
+ * tarjeta, no estrenar una tercera definición.
+ */
+export function isOfferClosed(
+  offer: { deadline?: string | null } | null | undefined,
+  now: number = Date.now(),
+): boolean {
+  const iso = offer?.deadline
+  if (!iso) return false // sin plazo no se puede afirmar que cerró
+  const t = Date.parse(iso)
+  if (Number.isNaN(t)) return false
+  return Math.ceil((t - now) / 86_400_000) < 0
+}
+
 // Every RIBA_ROJA_ALIASES variant, folded to a bare token — the shared
 // municipality-filter POLICY, reused (not re-derived) so it can't drift.
 const RIBA_NEEDLES = RIBA_ROJA_ALIASES.map(normalizeAlphanumeric)

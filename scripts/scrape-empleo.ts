@@ -25,6 +25,7 @@ import { fileURLToPath } from 'node:url'
 import {
   parseOfertasList,
   parseOfertaDetail,
+  isOfferClosed,
   type OfertaItem,
   type OfertaDetail,
 } from '../src/scraper/empleo'
@@ -175,7 +176,11 @@ async function main() {
     },
     stats: {
       total: items.length,
-      openTotal: items.filter((it) => it.status === 'Abierta').length,
+      // El campo `status` del portal NO se mantiene: hay ofertas en «Abierta»
+      // con el plazo vencido hace meses. Contarlas publicaba «67 ofertas
+      // abiertas» en tres sitios —/empleo, la portada y /datos— mientras la
+      // propia tarjeta las pintaba «Cerrada». Mismo predicado que el SPA.
+      openTotal: items.filter((it) => !isOfferClosed(it, now)).length,
       inRibaRoja: items.filter((it) => it.inRibaRoja).length,
       closingSoon,
       withDetail: items.filter((it) => it.detail).length,

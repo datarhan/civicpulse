@@ -136,10 +136,22 @@ export default function EmpleoStats({ stats, t, totalAll, offers }) {
           gap: 10,
         }}
       >
+        {/* ABIERTAS, no «filas que pasan el filtro». Contaba stats.total bajo el
+          rótulo «Ofertas abiertas», así que decía 67 en una página que pintaba
+          dos de ellas «Cerrada» — el portal no mantiene su campo `status` y la
+          tarjeta ya anteponía la fecha. Ahora las dos cifras salen del mismo
+          predicado. Cuando hay cerradas entre las mostradas, el sub lo dice en
+          vez de dejar al lector restando. */}
         <Kpi
           label={t('empleo.kpi.offers')}
-          value={stats.total}
-          sub={totalAll && totalAll !== stats.total ? `${t('empleo.kpi.of')} ${totalAll}` : null}
+          value={stats.open}
+          sub={
+            stats.open !== stats.total
+              ? t('empleo.kpi.ofShown').replace('{n}', stats.total)
+              : totalAll && totalAll !== stats.total
+                ? `${t('empleo.kpi.of')} ${totalAll}`
+                : null
+          }
         />
         <Kpi label={t('empleo.kpi.positions')} value={stats.positions} tone="civic" />
         <Kpi
@@ -215,6 +227,27 @@ export default function EmpleoStats({ stats, t, totalAll, offers }) {
         </Panel>
         <Panel title={t('empleo.chart.byMunicipio')}>
           <BarList rows={byMunicipio} empty={t('empleo.stats.thin')} />
+          {/* Este gráfico agrupa `detail.municipio`, y no todas las ofertas
+            traen ficha: iba sobre 44 de 67 mientras el KPI «En Riba-roja» iba
+            sobre las 67, así que arriba ponía 43 y aquí abajo 24 sin que nada
+            dijera que son poblaciones distintas. Misma regla que la capa de
+            gasto del mapa: una vista que enseña una fracción de su dominio
+            tiene que decirlo. Derivado del dato, nunca escrito. */}
+          {stats.byMunicipioCoverage < stats.total && (
+            <div
+              style={{
+                marginTop: 8,
+                fontSize: 'var(--fs-micro)',
+                color: 'var(--ink50)',
+                lineHeight: 1.45,
+              }}
+            >
+              {/* Se cuenta lo EXCLUIDO, no lo incluido: «sobre 45 de 69» caía
+                justo debajo de un KPI que decía 45 por casualidad —son
+                conjuntos distintos— e invitaba a leerlos como el mismo. */}
+              {t('empleo.chart.coverage').replace('{n}', stats.total - stats.byMunicipioCoverage)}
+            </div>
+          )}
         </Panel>
       </div>
 

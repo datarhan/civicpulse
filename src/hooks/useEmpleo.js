@@ -1,5 +1,6 @@
 // @ts-check
 import { useJsonFetch } from './useJsonFetch'
+import { isOfferClosed, OFERTA_STATUS_TONE } from '../scraper/empleo'
 
 /**
  * Open job vacancies from the Riba-roja municipal employment agency (ADL),
@@ -11,19 +12,12 @@ export function useEmpleo() {
   return useJsonFetch('/data/empleo.json')
 }
 
-export const OFERTA_STATUS_TONE = {
-  Abierta: 'ok',
-  Cerrada: 'ghost',
-  Adjudicada: 'neutral',
-  Anulada: 'crit',
-}
-
-export const OFERTA_STATUS_LABEL = {
-  Abierta: 'Abierta',
-  Cerrada: 'Cerrada',
-  Adjudicada: 'Adjudicada',
-  Anulada: 'Anulada',
-}
+// Re-exportados, NO redeclarados. Eran dos copias idénticas byte a byte de las
+// del scraper, que es justo la forma que abre docs/DATA_INTEGRITY.md: seis
+// pruebas recitaron una forma y se quedaron verdes mientras producción no
+// casaba nada. Coincidían hoy; el problema es que nada obligaba a que siguieran
+// coincidiendo mañana.
+export { OFERTA_STATUS_TONE, OFERTA_STATUS_LABEL } from '../scraper/empleo'
 
 /**
  * Days-until-deadline + an urgency tone for the Pill. Returns null when the
@@ -64,5 +58,12 @@ export function deadlineInfo(iso, now = Date.now()) {
   else if (days <= 7)
     tone = 'crit' // closes within a week
   else if (days <= 14) tone = 'warn' // closing soon
-  return { days, tone, closed: days < 0, closingSoon: days >= 0 && days <= 14 }
+  // `closed` sale del predicado compartido, no de un `days < 0` local: es el
+  // mismo que cuenta el scraper y el mismo que suma el KPI.
+  return {
+    days,
+    tone,
+    closed: isOfferClosed({ deadline: iso }, now),
+    closingSoon: days >= 0 && days <= 14,
+  }
 }

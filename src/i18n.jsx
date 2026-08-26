@@ -18,7 +18,9 @@ const STORAGE_KEY = 'cp:lang'
  *     so nothing renders as "[missing:foo.bar]" in front of citizens
  *   - Valencian (ca) uses standard Acadèmia Valenciana de la Llengua spelling
  */
-const CATALOGUE = {
+// Exportado para que `tests/i18n-catalogue.test.ts` lo LEA en vez de recitarlo:
+// una copia en la prueba se queda verde mientras la de producción se mueve.
+export const CATALOGUE = {
   es: {
     // Navigation
     'nav.inicio': 'Panel',
@@ -120,11 +122,14 @@ const CATALOGUE = {
     'empleo.kpi.inRiba': 'En Riba-roja',
     'empleo.kpi.closing': 'Cierran ≤14 días',
     'empleo.kpi.of': 'de',
+    'empleo.kpi.ofShown': 'de {n} mostradas',
     'empleo.kpi.vehicle': 'requieren vehículo propio',
     'empleo.chart.byMonth': 'Ofertas por mes',
     'empleo.chart.byContract': 'Tipo de contrato',
     'empleo.chart.byMunicipio': 'Dónde',
     'empleo.stats.thin': 'Pocos datos',
+    'empleo.chart.coverage':
+      '{n} ofertas no traen municipio en su ficha y quedan fuera de este gráfico',
     'empleo.filterMunicipio': 'Municipio',
     'empleo.allMunicipios': 'Todos los municipios',
     'empleo.filterContract': 'Tipo de contrato',
@@ -670,11 +675,14 @@ const CATALOGUE = {
     'empleo.kpi.inRiba': 'A Riba-roja',
     'empleo.kpi.closing': 'Tanquen ≤14 dies',
     'empleo.kpi.of': 'de',
+    'empleo.kpi.ofShown': 'de {n} mostrades',
     'empleo.kpi.vehicle': 'requereixen vehicle propi',
     'empleo.chart.byMonth': 'Ofertes per mes',
     'empleo.chart.byContract': 'Tipus de contracte',
     'empleo.chart.byMunicipio': 'On',
     'empleo.stats.thin': 'Poques dades',
+    'empleo.chart.coverage':
+      '{n} ofertes no porten municipi en la seua fitxa i queden fora d’aquest gràfic',
     'empleo.filterMunicipio': 'Municipi',
     'empleo.allMunicipios': 'Tots els municipis',
     'empleo.filterContract': 'Tipus de contracte',
