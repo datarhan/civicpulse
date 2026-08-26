@@ -1,15 +1,20 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Card } from '../components/Primitives'
+import { Card, SectionHead } from '../components/Primitives'
 import { CoberturaEficiencia } from '../components/eficiencia/CoberturaEficiencia'
-import { EstadoRendicion } from '../components/eficiencia/EstadoRendicion'
+import {
+  EstadoRendicion,
+  RespuestaCorta,
+  LoQuePermite,
+} from '../components/eficiencia/EstadoRendicion'
 import { LibroServicios } from '../components/eficiencia/LibroServicios'
 import { ComoSeLee } from '../components/eficiencia/ComoSeLee'
 import { PanelMunicipal } from '../components/eficiencia/PanelMunicipal'
+import { EntregasBarras } from '../components/eficiencia/EntregasBarras'
 import { HallazgosEficiencia } from '../components/eficiencia/HallazgosEficiencia'
 import { Supramunicipal } from '../components/eficiencia/Supramunicipal'
 import { AusenciasResultados } from '../components/eficiencia/Resultado'
-import { SubnavSecciones, MARGEN_ANCLA } from '../components/SubnavSecciones'
+import { MARGEN_ANCLA } from '../components/eficiencia/anclas'
 import { PreguntasRegistradas } from '../components/eficiencia/PreguntasRegistradas'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
@@ -20,31 +25,39 @@ import { useT } from '../i18n'
 /**
  * /eficiencia — cuánto costó cada servicio y qué se obtuvo a cambio.
  *
- * Sigue sin haber nota global, media de percentiles ni ranking. El precedente
- * es `encaje declarado`: publica los componentes, niégate a la suma — un 0-100
- * en cabecera convertiría la ponderación en la noticia. Lo que la cabecera
- * añade desde agosto de 2026 son RECUENTOS de lo que las fichas ya publican y
- * una lectura editorial fechada; dónde está el límite de eso, en el docblock
- * de `EstadoRendicion.jsx`.
+ * UNA PÁGINA, SIN PESTAÑAS. Los seis apartados fueron primero seis anclas de
+ * 6.140 px, luego seis pestañas, y la segunda forma tenía un defecto peor que
+ * la primera: el H1 preguntaba «¿Cuánto cuesta y qué se obtiene?» y la
+ * respuesta vivía dentro de `sec-lectura`, la primera de seis. Quien llegaba y
+ * hacía scroll no leía la respuesta — leía un submenú. Y las seis se
+ * presentaban como iguales cuando «Servicios» es la página y las otras cinco
+ * son aparato, así que el hallazgo más fuerte del panel, las cantidades
+ * congeladas, estaba en la cuarta, donde casi nadie entra.
+ *
+ * Ahora el orden es el del argumento: la respuesta corta y los cuatro
+ * recuentos arriba, el libro, lo que el libro permite y lo que no, las dos
+ * figuras que sostienen el hallazgo, las preguntas, y al final la COLA DE
+ * MÉTODO — cómo se lee un coste unitario, qué cubre la página, la parte
+ * supramunicipal, los resultados que faltan y las fichas firmadas.
+ *
+ * Los `#sec-*` siguen existiendo, ahora como anclas de scroll a secas: los cita
+ * `eficiencia-preguntas.json`, que es curado y se edita por PR, nunca desde
+ * aquí. Con ellos se va también el aparato que sostenía las pestañas —tres
+ * efectos, un mapa ancla→pestaña y un replaceState por clic—, y queda el único
+ * efecto que traducía enlaces viejos.
  *
  * Espacios de anclas: `#sec-*` secciones · `#g-<area>` grupos, cuando el libro
  * se agrupa · `#hallazgos` la sección firmada. Las fichas ya NO son anclas:
- * cada servicio es su propia ruta, `/eficiencia/:id`. Un `#s-<id>` o un
- * `#r-<id>` de antes siguen funcionando —los redirige el efecto de abajo—
- * porque `eficiencia-preguntas.json` cita uno de cada, y ese fichero es curado:
- * se edita por PR, nunca desde código.
+ * cada servicio es su propia ruta, `/eficiencia/:id`, y ahí es donde viven
+ * ahora los NOMBRES de quien tiene la competencia delegada — el libro dejó de
+ * tener columna para ellos. No es una supresión: en la ficha el nombre va en la
+ * misma tarjeta que la salvedad que lo desarma, y una celda de tabla no tiene
+ * sitio para eso.
  *
- * Lo que sigue de aquí describe el reparto por área, que ahora es un modo de
- * lectura del libro y no la estructura de la página:
  * Las fichas van agrupadas por área funcional de la propia clasificación por
  * programas (`AREAS`, declarada servicio a servicio en el registro) — nunca
  * por concejalías: un coste unitario a un clic de un concejal con nombre es un
- * salto que la fuente no da. La franja y la rejilla de mini-series quedan
- * GLOBALES: posición y década se leen mejor con los trece juntos, y el spec de
- * la franja cuenta sus anclas `#s-*` exactas.
- *
- * Espacios de anclas: `#s-<id>` fichas · `#g-<area>` grupos · `#sec-*`
- * secciones (cabecera y submenú) · `#hallazgos` la sección firmada.
+ * salto que la fuente no da.
  *
  * Las tarjetas bloqueadas —y las casillas a cero— son parte del contenido, no
  * un residuo: que el ayuntamiento declare un gasto real de transporte urbano
@@ -68,10 +81,7 @@ export default function Eficiencia() {
   // `useLocation()` se queda corto y la diferencia se ve: React Router escucha
   // `popstate`, y cambiar sólo el fragmento —una marca del navegador, el botón
   // de atrás sobre un ancla, un enlace pegado en la barra— dispara
-  // `hashchange`, no `popstate`. Con sólo el router, alguien que ya estuviera
-  // en /eficiencia#sec-servicios y abriera #hallazgos no cambiaba de pestaña:
-  // la URL decía una cosa y la página enseñaba otra. Lo cazó el spec al pedir
-  // dos apartados dentro de la misma prueba.
+  // `hashchange`, no `popstate`.
   const [hash, setHash] = useState(
     () => (typeof window === 'undefined' ? '' : window.location.hash) || '',
   )
@@ -113,61 +123,6 @@ export default function Eficiencia() {
   const idsDeAqui = [...indicadores.map((i) => i.id), ...municipalesDeAqui.map((m) => m.id)]
   const firmados = (hallazgos?.items ?? []).filter((f) => idsDeAqui.includes(f.indicadorId)).length
 
-  const secciones = [
-    { id: 'sec-lectura', label: t('eficiencia.subnav.lectura') },
-    { id: 'sec-cobertura', label: t('eficiencia.subnav.cobertura') },
-    { id: 'sec-servicios', label: t('eficiencia.subnav.servicios') },
-    ...(municipalesDeAqui.length > 0
-      ? [{ id: 'sec-declaracion', label: t('eficiencia.subnav.declaracion') }]
-      : []),
-    ...(firmados > 0 ? [{ id: 'hallazgos', label: t('eficiencia.subnav.hallazgos') }] : []),
-    ...((preguntas?.panels?.['coste-efectivo']?.bloques?.length ?? 0) > 0
-      ? [{ id: 'sec-preguntas', label: t('eficiencia.subnav.preguntas') }]
-      : []),
-  ]
-
-  // Los seis apartados eran seis anclas de una página de 6.140 px. Ahora son
-  // pestañas: se ve uno cada vez.
-  //
-  // Los paneles se MONTAN todos y se ocultan con `hidden`, no se desmontan, y
-  // eso es lo que hace que el cambio no rompa nada de lo publicado:
-  //
-  //   · un enlace a un ancla de dentro —#g-<area> del libro, #f-<id> de un
-  //     hallazgo, #m-<id> de un indicador— sigue encontrando su elemento con
-  //     getElementById, y de ahí se sube al panel que lo contiene para abrir
-  //     la pestaña correcta. Nada de un mapa ancla→pestaña escrito a mano, que
-  //     es la clase de tabla que en esta casa ya se ha quedado obsoleta dos
-  //     veces.
-  //   · al imprimir salen los seis (§17: en papel no hay acordeón que abrir).
-  const [pestana, setPestana] = useState(null)
-  const activa = pestana ?? secciones[0]?.id
-  const irA = useCallback((id) => {
-    setPestana(id)
-    window.history.replaceState(null, '', `#${id}`)
-  }, [])
-
-  useEffect(() => {
-    const id = hash.slice(1)
-    if (!id || /^[sr]-/.test(id)) return
-    const el = document.getElementById(id)
-    const panel = el?.closest('[role="tabpanel"]')
-    if (!panel) return
-    setPestana(panel.id)
-    // Tras el re-render que descubre el panel: sin esto el destino sigue
-    // oculto en el momento del scroll y el navegador no va a ninguna parte.
-    requestAnimationFrame(() => {
-      document.getElementById(id)?.scrollIntoView({ block: 'start' })
-    })
-    // `secciones.length` es la dependencia que importa y no es de adorno.
-    // Quien entra en frío por un enlace profundo —/eficiencia#sec-cobertura
-    // desde fuera— ejecuta este efecto ANTES de que resuelva el fetch del
-    // snapshot: en ese momento no hay ningún panel en el DOM, el efecto se
-    // rendía y no volvía a intentarlo, porque el fragmento ya no cambiaba. El
-    // lector se quedaba en la pestaña por defecto con una URL que decía otra
-    // cosa. Con los paneles en la lista de dependencias, el efecto se repite
-    // en cuanto existen.
-  }, [hash, secciones.length])
-
   const bloqueados = indicadores.filter((i) => i.valor === null)
 
   const formateaCon = (unidad) => (v) => {
@@ -175,60 +130,60 @@ export default function Eficiencia() {
     return `${v.toLocaleString('es-ES', { minimumFractionDigits: dec, maximumFractionDigits: dec })} ${unidad.replace(/^€\//, '€/')}`
   }
 
-  // Los ítems del submenú son las secciones que de verdad existen en este
-  // render: una entrada a una sección vacía es un enlace que no hace nada.
-  // Un panel por apartado. `hidden` en vez de desmontar: ver arriba.
-  const Panel = ({ id, ancho = 900, children }) => (
-    <div
-      id={id}
-      role="tabpanel"
-      aria-labelledby={`tab-${id}`}
-      hidden={activa !== id}
-      className="cp-panel"
-      style={{ scrollMarginTop: MARGEN_ANCLA, maxWidth: ancho ?? undefined }}
-    >
-      {children}
-    </div>
-  )
+  const seccion = { marginTop: 34, scrollMarginTop: MARGEN_ANCLA }
 
   return (
     <div className="cp-page" style={{ padding: 24, maxWidth: 1240, margin: '0 auto' }}>
-      {/* §17 · en papel no hay pestaña que abrir: se imprimen los seis. */}
-      <style>{'@media print { .cp-panel[hidden] { display: block !important } }'}</style>
-      <div
-        className="mono"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          textTransform: 'uppercase',
-          letterSpacing: '.08em',
-        }}
-      >
-        {t('eficiencia.eyebrow')}
+      {/* La cabecera y la respuesta, uno al lado del otro. Los cuatro
+          recuentos son sobre la RENDICIÓN y por eso van en su propia tarjeta
+          ámbar: mezclarlos con el titular los habría convertido en la nota que
+          esta página lleva dos años negándose a poner. */}
+      <div className="cp-efi-hero">
+        <div>
+          <div
+            className="mono"
+            style={{
+              fontSize: 'var(--fs-micro)',
+              fontWeight: 700,
+              color: 'var(--ink50)',
+              textTransform: 'uppercase',
+              letterSpacing: '.1em',
+            }}
+          >
+            {t('eficiencia.eyebrow')}
+          </div>
+          <h1
+            style={{
+              fontSize: 'var(--fs-page)',
+              fontWeight: 700,
+              letterSpacing: '-.022em',
+              margin: '8px 0 0',
+              lineHeight: 1.12,
+            }}
+          >
+            {t('eficiencia.title')}
+          </h1>
+          <RespuestaCorta data={data} />
+          <p
+            style={{
+              margin: '12px 0 0',
+              fontSize: 'var(--fs-aux)',
+              color: 'var(--ink50)',
+              // Lede, no prosa de sección: acompaña al titular y va estrecho a
+              // propósito, como en la maqueta: el resto de la prosa ocupa su bloque.
+              maxWidth: '66ch',
+              lineHeight: 1.55,
+            }}
+          >
+            No hay nota global del ayuntamiento en esta página y no la va a haber. Lo que se cuenta
+            aquí es qué parte de sus propias cifras se puede usar.{' '}
+            <a href="/metodologia#eficiencia" style={{ color: 'var(--civic)' }}>
+              Cómo se calcula →
+            </a>
+          </p>
+        </div>
+        <EstadoRendicion data={data} firmados={firmados} sinAncla={false} />
       </div>
-      <h1
-        style={{
-          fontSize: 'var(--fs-page)',
-          fontWeight: 700,
-          letterSpacing: '-.015em',
-          marginTop: 2,
-        }}
-      >
-        {t('eficiencia.title')}
-      </h1>
-      <p style={{ color: 'var(--ink70)', maxWidth: '64ch' }}>{t('eficiencia.intro')}</p>
-
-      {/* Trece pantallas necesitan navegación propia: barra pegajosa bajo la
-          topbar, con scroll-spy. useHashScroll la mide para los aterrizajes
-          por hash, y MARGEN_ANCLA es su contrapartida en cada ancla. */}
-      {indicadores.length > 0 && (
-        <SubnavSecciones
-          items={secciones}
-          ariaLabel={t('eficiencia.subnav.aria')}
-          activa={activa}
-          onActivar={irA}
-        />
-      )}
 
       {loading && <p style={{ color: 'var(--ink70)' }}>Cargando…</p>}
       {error && <p style={{ color: 'var(--ink70)' }}>No se pudo cargar el panel.</p>}
@@ -238,113 +193,151 @@ export default function Eficiencia() {
         </Card>
       )}
 
-      {/* La respuesta corta primero, y su segunda mitad antes que la primera:
-          contar posiciones sin decir que la mitad no se distinguen convierte
-          doce percentiles en doce hechos. Recuentos sobre la rendición, jamás
-          una media de percentiles. */}
-      <Panel id="sec-lectura" ancho={null}>
-        <EstadoRendicion
-          data={data}
-          firmados={firmados}
-          preguntas={preguntas?.panels?.['coste-efectivo']}
-          sinAncla
-        />
-      </Panel>
-
-      {indicadores.length > 0 && (
-        <Panel id="sec-cobertura">
-          <CoberturaEficiencia
-            universe={data?.universe}
-            cobertura={data?.cobertura}
-            anioBase={data?.anioBase}
-            indicadores={indicadores}
-            conResultados={(data?.resultados?.items ?? []).length > 0}
-          />
-        </Panel>
-      )}
-
       {/* El libro: los quince servicios en una pantalla y con una sola
-          geometría. Sustituye a la franja de posiciones, a la rejilla de
-          mini-series y a trece tarjetas de nueve partes — que decían cosas
-          ciertas y no dejaban comparar ninguna con ninguna. Las dos filas sin
-          cociente van dentro, al pie: sacarlas dejaría la tabla pareciendo
-          completa. */}
-      <Panel id="sec-servicios" ancho={null}>
-        {/* La regla antes que los ejemplos. Es de la CLASE de divisor, no del
-            servicio, así que se dice tres veces aquí en lugar de quince en la
-            tabla — y quien entra por una sola ficha ya no deduce de ella una
-            regla que sólo valía para su escalón. */}
-        <div style={{ maxWidth: 900 }}>
-          <ComoSeLee indicadores={indicadores} />
+          geometría, ahora en cinco columnas. Las dos filas sin cociente van
+          dentro, al pie: sacarlas dejaría la tabla pareciendo completa. */}
+      {indicadores.length > 0 && (
+        <div id="sec-servicios" style={seccion}>
+          <LibroServicios
+            indicadores={indicadores}
+            formateaCon={formateaCon}
+            entrega={data?.anioBase}
+          />
         </div>
-
-        <LibroServicios
-          indicadores={indicadores}
-          formateaCon={formateaCon}
-          competencias={porClave}
-          conNombres={nombresOn}
-          entrega={data?.anioBase}
-        />
-
-        {/* CE4 va pegado al libro porque es la explicación de sus ceros:
-            turismo, ferias, deporte y ocio no son funciones inexistentes, son
-            funciones cuya parte supramunicipal rinde la Mancomunitat. */}
-        {bloqueados.length > 0 && (
-          <div style={{ maxWidth: 900 }}>
-            <Supramunicipal filas={data?.supramunicipales} entrega={data?.anioBase} />
-          </div>
-        )}
-      </Panel>
-
-      {/* Sólo lo que sale del MISMO cuaderno que las tarjetas de arriba: el
-          recuento de denominadores mide las declaraciones del coste efectivo y
-          habla de estos cocientes. Los plazos, la concurrencia y la ejecución
-          salen de otras cuatro fuentes y viven en /gestion. El reparto lo
-          declara cada indicador al construirse, no esta página. */}
-      {municipalesDeAqui.length > 0 && (
-        <Panel id="sec-declaracion">
-          <PanelMunicipal
-            municipales={municipalesDeAqui}
-            titulo="Sobre la declaración de estas cifras"
-            intro="Los cocientes de arriba salen de dos cantidades que el ayuntamiento declara cada entrega; esto mide con qué frecuencia vuelve a medir la de abajo."
-            competencias={porClave}
-          />
-          {/* Las ausencias son datos: el resultado que no existe se dice, con
-              su porqué medido, en vez de dejar que el hueco parezca un olvido.
-              Va con la declaración, que es de donde salen. */}
-          <AusenciasResultados ausencias={data?.resultados?.ausencias} />
-        </Panel>
       )}
 
-      {/* Al final, y no arriba: una ficha firmada es una lectura del panel, y
-          el panel se lee primero. Un hallazgo en cabecera convertiría la página
-          en la conclusión de otro en vez de en las cifras con las que el lector
-          puede sacar la suya. */}
-      {!loading && !error && firmados > 0 && (
-        <Panel id="hallazgos" ancho={null}>
-          <HallazgosEficiencia
-            data={hallazgos}
-            indicadorIds={idsDeAqui}
-            otroPanel={{ to: '/gestion', nombre: 'cómo funciona la casa por dentro' }}
-            sinAncla
-          />
-        </Panel>
+      {/* Detrás del libro, no delante: son unas 480 palabras de método que
+          califican unas cifras, y delante de ellas nadie las leía. */}
+      {indicadores.length > 0 && (
+        <div style={seccion}>
+          <LoQuePermite data={data} />
+        </div>
       )}
 
-      {/* Al cierre, después de los hallazgos: lo que el panel deja preguntado.
-          Cada pregunta nace de una cifra publicada y se dirige a una
-          institución; el fichero es curado a mano y su validador rechaza
-          cualquier campo que pudiera nombrar a una persona. */}
+      {/* Las dos figuras del hallazgo, en paralelo. La izquierda sale del
+          MISMO cuaderno que la tabla de arriba —el recuento de denominadores
+          mide las declaraciones del coste efectivo—; los plazos, la
+          concurrencia y la ejecución salen de otras cuatro fuentes y viven en
+          /gestion. El reparto lo declara cada indicador al construirse, no
+          esta página. */}
+      {(municipalesDeAqui.length > 0 || data?.cobertura) && (
+        <div className="cp-efi-par" style={seccion}>
+          {municipalesDeAqui.length > 0 && (
+            <div id="sec-declaracion" style={{ scrollMarginTop: MARGEN_ANCLA }}>
+              <PanelMunicipal
+                municipales={municipalesDeAqui}
+                eyebrow="Sobre la declaración"
+                titulo="Los divisores que no se mueven"
+                intro="Los cocientes de arriba salen de dos cantidades que el ayuntamiento declara cada entrega; esto mide con qué frecuencia vuelve a medir la de abajo."
+                competencias={porClave}
+                nivel="h2"
+                enTarjeta
+              />
+            </div>
+          )}
+          <EntregasBarras cobertura={data?.cobertura} />
+        </div>
+      )}
+
+      {/* Lo que el panel deja preguntado. Cada pregunta nace de una cifra
+          publicada y se dirige a una institución; el fichero es curado a mano y
+          su validador rechaza cualquier campo que pudiera nombrar a una
+          persona. */}
       {!loading && !error && (preguntas?.panels?.['coste-efectivo']?.bloques?.length ?? 0) > 0 && (
-        <Panel id="sec-preguntas" ancho={null}>
-          <PreguntasRegistradas data={preguntas} panel="coste-efectivo" sinAncla />
-        </Panel>
+        <div style={seccion}>
+          <PreguntasRegistradas data={preguntas} panel="coste-efectivo" sinAncla={false} />
+        </div>
       )}
 
-      <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 18 }}>
-        Lo que este panel deja a la vista —la entrega sin rendir, los denominadores congelados, la
-        inflación que se leía como gestión y las dos casillas del agua que se quedan en blanco— está
-        contado entero en el reportaje{' '}
+      {/* ── La cola de método ────────────────────────────────────────────────
+          Lo que califica a todo lo de arriba y no compite con ello. Va después
+          porque es método, y va ENTERO porque cada pieza dice algo que ninguna
+          otra dice: la regla de lectura por escalón, qué entregas cubre esta
+          página y por qué la última es de hace dos años, qué parte de estos
+          servicios la presta la Mancomunitat, qué resultados no existen y por
+          qué, y las fichas firmadas. */}
+      {indicadores.length > 0 && (
+        <div
+          style={{ marginTop: 44, paddingTop: 28, borderTop: '1px solid var(--border)' }}
+          aria-label="Método y cobertura"
+        >
+          {/* Un encabezado de verdad, no un rótulo mono. Era lo mismo que les
+              pasaba a tres de los cinco bloques que cuelgan de él: se titulaban
+              con una etiqueta de 11 px y para un lector de pantalla esta cola no
+              tenía secciones. Con este h2 arriba, sus hijos pueden ir a h3 sin
+              saltarse un nivel — que es un defecto distinto y lo mide `censo`. */}
+          <SectionHead title="Método, cobertura y lo firmado" />
+
+          {/* La regla antes que los ejemplos. Es de la CLASE de divisor, no del
+              servicio, así que se dice tres veces aquí en lugar de quince en la
+              tabla. */}
+          {/* A todo el ancho, como el resto de la página. Estaban en una
+              columna de 900 dentro de una página de 1160: la cola parecía otro
+              documento pegado debajo. Los que son prosa fijan su medida por
+              dentro —una línea de 140 caracteres no se lee— y los que tienen
+              piezas repetidas las reparten en rejilla. */}
+          <div style={{ marginTop: 18 }}>
+            <ComoSeLee indicadores={indicadores} />
+          </div>
+
+          <div id="sec-cobertura" style={seccion}>
+            <CoberturaEficiencia
+              universe={data?.universe}
+              cobertura={data?.cobertura}
+              anioBase={data?.anioBase}
+              indicadores={indicadores}
+              conResultados={(data?.resultados?.items ?? []).length > 0}
+            />
+          </div>
+
+          {/* CE4: turismo, ferias, deporte y ocio no son funciones
+              inexistentes, son funciones cuya parte supramunicipal rinde la
+              Mancomunitat. Es la explicación de los ceros del libro. */}
+          {/* Los dos cortos, en pareja. Miden 260 y 166 px de alto: uno debajo
+              del otro a todo el ancho dejaban dos tercios de fila en blanco
+              cada uno. Las ausencias son datos —el resultado que no existe se
+              dice, con su porqué medido, en vez de dejar que el hueco parezca
+              un olvido— y lo supramunicipal explica los ceros del libro: son
+              del mismo peso y del mismo rango. */}
+          <div className="cp-efi-duo" style={seccion}>
+            {bloqueados.length > 0 && (
+              <Supramunicipal filas={data?.supramunicipales} entrega={data?.anioBase} />
+            )}
+            <AusenciasResultados ausencias={data?.resultados?.ausencias} />
+          </div>
+
+          {/* Al final, y no arriba: una ficha firmada es una lectura del panel,
+              y el panel se lee primero. Un hallazgo en cabecera convertiría la
+              página en la conclusión de otro en vez de en las cifras con las
+              que el lector puede sacar la suya. */}
+          {!loading && !error && firmados > 0 && (
+            <div style={seccion}>
+              <HallazgosEficiencia
+                data={hallazgos}
+                indicadorIds={idsDeAqui}
+                otroPanel={{ to: '/gestion', nombre: 'cómo funciona la casa por dentro' }}
+                sinAncla={false}
+                nivel="h3"
+              />
+            </div>
+          )}
+        </div>
+      )}
+
+      <p
+        style={{
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink50)',
+          marginTop: 28,
+          paddingTop: 18,
+          borderTop: '1px solid var(--border)',
+          lineHeight: 1.55,
+        }}
+      >
+        Fuente: Ministerio de Hacienda, coste efectivo de los servicios (art. 116 <em>ter</em>{' '}
+        LRSAL). Lo que este panel deja a la vista —la entrega sin rendir, los denominadores
+        congelados, la inflación que se leía como gestión y las dos casillas del agua que se quedan
+        en blanco— está contado entero en el reportaje{' '}
         <a href="/reportajes/coste-efectivo" style={{ color: 'var(--civic)' }}>
           «El panel se queda en blanco donde está el dinero»
         </a>
@@ -352,11 +345,7 @@ export default function Eficiencia() {
         <a href="/infografias/eficiencia-2026-08.html" style={{ color: 'var(--civic)' }}>
           infografía para compartir
         </a>
-        .
-      </p>
-
-      <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 28 }}>
-        Cómo se calcula, qué se descarta y por qué no hay nota global:{' '}
+        . Cómo se calcula, qué se descarta y por qué no hay nota global, en la{' '}
         <a href="/metodologia#eficiencia" style={{ color: 'var(--civic)' }}>
           metodología
         </a>

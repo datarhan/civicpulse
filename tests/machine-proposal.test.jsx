@@ -94,6 +94,11 @@ describe('la caja discontinua significa una sola cosa en todo el sitio', () => {
     'src/components/plenos/VoteBreakdownRetracted.jsx': 'votación retirada',
     'src/components/eficiencia/DeclaracionEntregas.jsx':
       'la entrega que el ayuntamiento no presentó',
+    // La misma provisionalidad que la de arriba, a escala de panel: la rejilla
+    // de la ficha dice qué falta en ESTE servicio y la figura del panel dice
+    // qué entrega falta entera. Un hueco no se pinta como una barra vacía —eso
+    // se lee como «cero»— sino como una caja sin cerrar.
+    'src/components/eficiencia/EntregasBarras.jsx': 'la entrega que el ayuntamiento no presentó',
     'src/components/eficiencia/libro.css.js':
       'una posición que la muestra no sostiene: la banda plausible cruza la mediana',
   }

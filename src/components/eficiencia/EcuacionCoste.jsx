@@ -74,11 +74,17 @@ export function EcuacionCoste({ indicador, formatea, entrega }) {
         'actualizado cada entrega',
       )}
       {signo('÷', 'div')}
+      {/* El rótulo NO lleva participio, y no es por brevedad: decía «declaradas»
+          en duro y de los ocho divisores del panel siete son masculinos —«52
+          efectivos declaradas», «4.514 puntos de luz declaradas»—. El snapshot
+          da singular y plural, no género, así que la concordancia no se puede
+          derivar; se quita la palabra que la exige y el estado baja a la nota,
+          que ya estaba escrita sin género. Mismo motivo en la nota de abajo. */}
       {celda(
         'den',
-        `${i.divisor.plural.charAt(0).toUpperCase()}${i.divisor.plural.slice(1)} declaradas`,
+        `${i.divisor.plural.charAt(0).toUpperCase()}${i.divisor.plural.slice(1)}`,
         `${i.denominador.valor.toLocaleString('es-ES')}`,
-        congelada ? `la misma cifra desde ${desde}` : 'declarada en esta entrega',
+        congelada ? `la misma cifra desde ${desde}` : 'según la declaración de esta entrega',
         congelada ? 'var(--warn-ink)' : undefined,
       )}
       {signo('=', 'eq')}

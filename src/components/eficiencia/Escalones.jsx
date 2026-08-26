@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { Pill } from '../Primitives'
 import { useT } from '../../i18n'
 import { GLOSA_TIER } from '../../scraper/indicador-lectura'
@@ -33,26 +34,37 @@ export function LeyendaEscalones({ indicadores = [], conResultados = false }) {
   )
   if (presentes.length === 0) return null
 
+  // Uno por línea, y las glosas alineadas.
+  //
+  // Iban en una fila que envolvía, así que las cuatro parejas se encadenaban
+  // —«precio divide un gasto entre otro gasto, no mide rendimiento carga de
+  // trabajo el divisor es…»— y el corte de línea caía donde tocara: la chapa de
+  // un escalón acababa pegada a la glosa del anterior. Son pares término /
+  // definición, así que van en <dl> y en dos columnas: las chapas en la
+  // primera, las glosas empezando todas en la misma x. Es la misma forma que
+  // `ComoSeLee` usa para estos mismos escalones con el texto largo.
   return (
-    <p
+    <dl
       style={{
         margin: '10px 0 0',
         fontSize: 'var(--fs-aux)',
         color: 'var(--ink50)',
-        display: 'flex',
-        flexWrap: 'wrap',
-        alignItems: 'center',
-        gap: '4px 8px',
+        display: 'grid',
+        gridTemplateColumns: 'auto minmax(0, 1fr)',
+        alignItems: 'baseline',
+        gap: '6px 10px',
       }}
     >
       {presentes.map((tier) => (
-        <span key={tier} style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-          <Pill tone={TIER_TONE[tier] ?? 'neutral'} size="xs">
-            {t(`eficiencia.tier.${tier}`)}
-          </Pill>
-          {GLOSA_TIER[tier]}
-        </span>
+        <Fragment key={tier}>
+          <dt style={{ margin: 0 }}>
+            <Pill tone={TIER_TONE[tier] ?? 'neutral'} size="xs">
+              {t(`eficiencia.tier.${tier}`)}
+            </Pill>
+          </dt>
+          <dd style={{ margin: 0 }}>{GLOSA_TIER[tier]}</dd>
+        </Fragment>
       ))}
-    </p>
+    </dl>
   )
 }

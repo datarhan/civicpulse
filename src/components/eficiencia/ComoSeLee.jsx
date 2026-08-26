@@ -1,4 +1,4 @@
-import { Card, Pill } from '../Primitives'
+import { Card, Pill, SectionHead } from '../Primitives'
 import { useT } from '../../i18n'
 import { COMO_SE_LEE } from '../../scraper/indicador-lectura'
 import { TIER_TONE, ORDEN_TIER } from './Escalones'
@@ -46,22 +46,17 @@ export function ComoSeLee({ indicadores = [] }) {
 
   return (
     <Card style={{ marginTop: 18 }}>
-      <h2
-        style={{
-          fontSize: 'var(--fs-card)',
-          fontWeight: 650,
-          margin: 0,
-          letterSpacing: '-.01em',
-        }}
-      >
-        Cómo se lee un coste unitario
-      </h2>
+      <SectionHead
+        as="h3"
+        size="head"
+        eyebrow="Regla de lectura"
+        title="Cómo se lee un coste unitario"
+      />
       <p
         style={{
           margin: '6px 0 0',
           fontSize: 'var(--fs-aux)',
           color: 'var(--ink70, var(--ink50))',
-          maxWidth: '68ch',
         }}
       >
         Todas las cifras de abajo son una división: lo que costó un servicio en un año, entre la
@@ -70,9 +65,22 @@ export function ComoSeLee({ indicadores = [] }) {
         tres casos.
       </p>
 
-      <dl style={{ margin: '12px 0 0' }}>
+      {/* Los tres escalones, en rejilla y no apilados. Son tres piezas del mismo
+          rango y la misma longitud: en columna dejaban el bloque el doble de
+          alto y dos tercios del ancho en blanco. `auto-fit` los apila solo
+          cuando no caben, sin necesitar una media query que un estilo inline no
+          puede llevar. */}
+      <dl
+        style={{
+          margin: '12px 0 0',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+          gap: 16,
+          alignItems: 'start',
+        }}
+      >
         {presentes.map((tier) => (
-          <div key={tier} style={{ marginTop: 10 }}>
+          <div key={tier} style={{ minWidth: 0 }}>
             <dt style={{ marginBottom: 2 }}>
               <Pill tone={TIER_TONE[tier] ?? 'neutral'} size="xs">
                 {t(`eficiencia.tier.${tier}`)}
@@ -83,7 +91,6 @@ export function ComoSeLee({ indicadores = [] }) {
                 margin: 0,
                 fontSize: 'var(--fs-aux)',
                 color: 'var(--ink70, var(--ink50))',
-                maxWidth: '68ch',
                 lineHeight: 1.55,
               }}
             >
@@ -100,7 +107,6 @@ export function ComoSeLee({ indicadores = [] }) {
           borderLeft: '3px solid var(--border)',
           fontSize: 'var(--fs-aux)',
           color: 'var(--ink70, var(--ink50))',
-          maxWidth: '68ch',
         }}
       >
         <strong>Por eso esta página no pone nota.</strong> Ninguna de estas cifras mide si el

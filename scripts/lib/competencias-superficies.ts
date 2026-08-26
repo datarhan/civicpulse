@@ -26,18 +26,33 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-/** Las páginas que pintan indicadores del panel de eficiencia y de gestión. */
+/** Las páginas que pintan indicadores MUNICIPALES (los de `m.panel`). */
 export const PAGINAS = ['src/pages/Eficiencia.jsx', 'src/pages/Gestion.jsx'] as const
 
 /** El componente por el que pasan TODOS los indicadores municipales. */
 export const PANEL_MUNICIPAL = 'src/components/eficiencia/PanelMunicipal.jsx'
 
 /**
- * Los indicadores de coste efectivo los pinta `ServicioCard`, y sólo
- * `/eficiencia` lo monta. No hay `m.panel === …` que lo declare porque no es un
- * municipal: se recorre `data.indicadores` entero.
+ * Dónde se pinta el nombre de quien responde de un SERVICIO del coste efectivo.
+ *
+ * Era `/eficiencia`: el libro tenía una columna «Quién responde» y los quince
+ * servicios enseñaban ahí su competencia. Desde el rediseño de agosto de 2026
+ * el libro pasó de ocho columnas a cinco y esa columna se fue entera a la
+ * ficha, `/eficiencia/:id`, que es el único sitio donde el nombre cabe en la
+ * misma tarjeta que la salvedad que lo desarma — una celda de tabla no tiene
+ * sitio para eso.
+ *
+ * Mover esta constante NO es cosmética, y es justo la avería que esta guarda
+ * nació para cazar: si se quedaba apuntando a `Eficiencia.jsx`, la página
+ * seguiría importando `useCompetencias` (le hace falta para `PanelMunicipal`) y
+ * el cotejo habría dicho «renderizado» de los quince servicios mientras ninguna
+ * de las quince filas pintaba un nombre. Es el 24-08-2026 otra vez —«22 de 22
+ * coincide» con siete sin pintar— colándose por el proxy en vez de por el dato.
+ *
+ * No hay `m.panel === …` que declare esta página porque un servicio no es un
+ * municipal: `ServicioDetalle` recorre `data.indicadores` entero y no filtra.
  */
-const PAGINA_DE_SERVICIOS = 'src/pages/Eficiencia.jsx'
+const PAGINA_DE_SERVICIOS = 'src/pages/ServicioDetalle.jsx'
 
 export interface FuentesFront {
   /** ruta relativa del fichero → su texto */
@@ -47,7 +62,7 @@ export interface FuentesFront {
 /** Lee del disco los ficheros que este módulo necesita inspeccionar. */
 export function leerFuentes(raiz = '.'): Map<string, string> {
   const m = new Map<string, string>()
-  for (const f of [...PAGINAS, PANEL_MUNICIPAL]) {
+  for (const f of [...PAGINAS, PAGINA_DE_SERVICIOS, PANEL_MUNICIPAL]) {
     m.set(f, readFileSync(resolve(raiz, f), 'utf8'))
   }
   return m

@@ -164,6 +164,50 @@ describe('inyección de fallo: el cotejo caza un cableado roto', () => {
     expect(c.detalle).toContain('PanelMunicipal')
   })
 
+  // ── El camino de los SERVICIOS, que cambió de página en agosto de 2026 ─────
+  //
+  // Los quince servicios del coste efectivo enseñaban su competencia en la
+  // columna «Quién responde» del libro, en /eficiencia. El rediseño llevó el
+  // libro de ocho columnas a cinco y esa columna se fue entera a la ficha.
+  //
+  // El peligro no era perder los nombres —están en /eficiencia/:id, y allí van
+  // en la misma tarjeta que la salvedad que los desarma— sino que esta guarda
+  // se quedara mirando la página vieja: /eficiencia sigue importando
+  // `useCompetencias` porque lo necesita para PanelMunicipal, así que el cotejo
+  // habría dicho «renderizado» de los quince mientras ninguna fila pintaba un
+  // nombre. Exactamente el 24-08-2026 —«22 de 22 coincide» con siete sin
+  // pintar— entrando por el proxy en vez de por el dato. Así que se prueba
+  // rota la página que de verdad los pinta.
+  /** Una clave de SERVICIO, tomada del panel y no escrita a mano. */
+  const claveServicio = panel.indicadores[0]?.id
+
+  it('hay una clave de servicio con la que probar', () => {
+    expect(claveServicio).toBeTruthy()
+  })
+
+  it('si ServicioDetalle.jsx deja de importar useCompetencias, sale «no-renderizado»', () => {
+    const roto = new Map(fuentes)
+    roto.set(
+      'src/pages/ServicioDetalle.jsx',
+      fuentes.get('src/pages/ServicioDetalle.jsx')!.replaceAll('useCompetencias', 'noExiste'),
+    )
+    const c = cotejarSuperficie(claveServicio!, panel, roto)
+    expect(c.desenlace).toBe('no-renderizado')
+    expect(c.detalle).toContain('ServicioDetalle.jsx')
+  })
+
+  it('romper /eficiencia NO deja pasar un servicio: ya no es quien lo pinta', () => {
+    // La cara complementaria, y la que habría fallado en silencio: con la
+    // página vieja rota, el cotejo tiene que seguir dando «renderizado»
+    // —porque la ficha sí lo pinta— en vez de señalar a quien ya no le toca.
+    const roto = new Map(fuentes)
+    roto.set(
+      'src/pages/Eficiencia.jsx',
+      fuentes.get('src/pages/Eficiencia.jsx')!.replaceAll('useCompetencias', 'noExiste'),
+    )
+    expect(cotejarSuperficie(claveServicio!, panel, roto).desenlace).toBe('renderizado')
+  })
+
   it('una clave que no existe en el panel sale «sin-pagina», no «renderizado»', () => {
     expect(cotejarSuperficie('no-existe-esta-clave', panel, fuentes).desenlace).toBe('sin-pagina')
   })

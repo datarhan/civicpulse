@@ -6,39 +6,42 @@ import { enTerminosReales } from './SerieServicio'
 import { dominioComun } from './multiples'
 import {
   posicionServicio,
-  razonMediana,
   particionPosiciones,
   agruparPorArea,
   fraseParticion,
 } from '../../scraper/indicador-areas'
-import { MARGEN_ANCLA } from '../SubnavSecciones'
+import { SectionHead } from '../Primitives'
+import { MARGEN_ANCLA } from './anclas'
 import { chipDeclaracion } from '../../scraper/indicador-lectura'
 
 /**
- * Las columnas, y cuál se puede ordenar.
+ * Las columnas, y aparte los órdenes.
  *
- * `responde` NO lleva `clave`, así que no ordena. Ordenar por titular
- * reagruparía la página por persona, y la línea que CLAUDE.md traza no está en
- * nombrar sino en agrupar: «grouping by cargo would make the page a scoreboard
- * of people, which is a stronger claim than “this is who answers”». Una columna
- * que dice quién contesta, en orden funcional, es la afirmación débil que sí
- * se sostiene; ordenar por ella la convierte en la fuerte.
+ * Cinco columnas, y ninguna ordena por su cabecera. Hasta agosto de 2026 el
+ * orden se pedía pulsando el `th`, que es buena semántica pero un control
+ * invisible: nada en la fila de títulos decía que fueran botones, y el orden
+ * activo se leía en una flecha de ocho píxeles. La maqueta lo saca a un grupo
+ * rotulado —ORDENAR— junto a los filtros, que es donde un lector busca un
+ * control. Los `th` vuelven a ser lo que son: rótulos.
+ *
+ * Son TRES órdenes y no cinco: coste, posición y alfabético. Se caen «por
+ * unidad» y «× mediana», que ordenaban por una magnitud cuyo sentido cambia de
+ * fila a fila —euros por efectivo contra euros por metro cuadrado— y que por
+ * tanto ordenaban una columna que no es comparable consigo misma.
  */
 const COLUMNAS = [
-  { id: 'servicio', rotulo: 'Servicio', clave: (i) => i.etiqueta, tipo: 'texto' },
-  {
-    id: 'coste',
-    rotulo: 'Coste',
-    clave: (i) => i.numerador.valor ?? -1,
-    num: true,
-    conEntrega: true,
-  },
-  { id: 'unidad', rotulo: 'Por unidad', clave: (i) => i.valor ?? -1, num: true },
-  { id: 'posicion', rotulo: 'Posición entre comparables', clave: (i) => i.pares?.percentil ?? -1 },
-  { id: 'razon', rotulo: '× mediana', clave: (i) => razonMediana(i) ?? -1, num: true },
+  { id: 'servicio', rotulo: 'Servicio · coste', conEntrega: true },
+  { id: 'unidad', rotulo: 'Por unidad · entre qué divide' },
+  { id: 'razon', rotulo: '× mediana' },
+  { id: 'posicion', rotulo: 'Posición entre comparables' },
   { id: 'decada', rotulo: 'Década' },
-  { id: 'decir', rotulo: 'Qué se puede decir' },
-  { id: 'responde', rotulo: 'Quién responde' },
+]
+
+/** Los tres órdenes que la maqueta nombra, con su clave. */
+const ORDENES = [
+  { id: 'coste', rotulo: 'Coste', clave: (i) => i.numerador.valor ?? -1 },
+  { id: 'posicion', rotulo: 'Posición', clave: (i) => i.pares?.percentil ?? -1 },
+  { id: 'servicio', rotulo: 'A-Z', clave: (i) => i.etiqueta, tipo: 'texto' },
 ]
 
 /**
@@ -56,13 +59,17 @@ const FILTROS = [
   { id: 'todos', rotulo: (n) => `Los ${n.total}`, pasa: () => true },
   {
     id: 'distinguen',
-    rotulo: (n) => `Con posición que se distingue · ${n.distinguen}`,
+    rotulo: (n) => `Posición que se distingue · ${n.distinguen}`,
     pasa: (i) => ['arriba', 'abajo'].includes(posicionServicio(i)),
   },
+  // El complemento del anterior, y no «sin remedir»: con las trece
+  // declaraciones congeladas, un filtro de «sin remedir» seleccionaba trece de
+  // quince, o sea casi la tabla entera. Éste parte las doce comparables por la
+  // única línea que la muestra sostiene.
   {
-    id: 'congelados',
-    rotulo: (n) => `Sin remedir · ${n.congelados}`,
-    pasa: (i) => Boolean(chipDeclaracion(i)),
+    id: 'indistintos',
+    rotulo: (n) => `No se distinguen · ${n.indistintos}`,
+    pasa: (i) => posicionServicio(i) === 'indistinguible',
   },
   {
     id: 'sin-cociente',
@@ -90,13 +97,7 @@ const FILTROS = [
  * no cruce los libros del ayuntamiento es información sobre ese servicio, y
  * sacarla de la tabla la dejaría pareciendo completa.
  */
-export function LibroServicios({
-  indicadores = [],
-  formateaCon,
-  competencias,
-  conNombres,
-  entrega,
-}) {
+export function LibroServicios({ indicadores = [], formateaCon, entrega }) {
   const [orden, setOrden] = useState({ col: 'coste', dir: 'desc' })
   const [filtro, setFiltro] = useState('todos')
   // Por área funcional del propio retorno del ministerio, nunca por concejalía:
@@ -108,7 +109,7 @@ export function LibroServicios({
   const cuentas = {
     total: indicadores.length,
     distinguen: p.abajo + p.arriba,
-    congelados: indicadores.filter((i) => chipDeclaracion(i)).length,
+    indistintos: p.indistinguibles,
     sinCociente: indicadores.filter((i) => i.valor === null).length,
   }
 
@@ -150,7 +151,7 @@ export function LibroServicios({
 
   const filas = useMemo(() => {
     const activo = FILTROS.find((f) => f.id === filtro) ?? FILTROS[0]
-    const col = COLUMNAS.find((c) => c.id === orden.col)
+    const col = ORDENES.find((c) => c.id === orden.col)
     const vistos = indicadores.filter(activo.pasa)
     if (!col?.clave) return vistos
     const signo = orden.dir === 'asc' ? 1 : -1
@@ -169,31 +170,50 @@ export function LibroServicios({
       o.col === id ? { col: id, dir: o.dir === 'desc' ? 'asc' : 'desc' } : { col: id, dir: 'desc' },
     )
 
-  const ariaSort = (id) =>
-    orden.col !== id ? 'none' : orden.dir === 'asc' ? 'ascending' : 'descending'
-
-  const anchoTabla = conNombres ? COLUMNAS.length : COLUMNAS.length - 1
-
-  // Derivado de las filas que se están viendo, no de la longitud del fichero:
-  // con un filtro puesto, «9 de 15» sería falso.
-  const editoriales = filas.filter((i) => competencias?.get(i.id)?.confianza === 'editorial').length
+  const anchoTabla = COLUMNAS.length
 
   const pinta = (i) => (
     <FilaServicio
       key={i.id}
       indicador={i}
       formatea={formateaCon(i.unidad)}
-      competencia={competencias?.get(i.id)}
       x0={x.x0}
       x1={x.x1}
-      conNombres={conNombres}
       chipHoisted={Boolean(mitadComun)}
     />
   )
 
+  const conCoc = cuentas.total - cuentas.sinCociente
+
   return (
     <div className="cp-libro-wrap">
       <style>{estiloLibro}</style>
+
+      {/* El encabezado lo pinta el LIBRO y no la página, porque el total va al
+          otro extremo de esa misma línea y el total sale de aquí. Tenerlo abajo,
+          dentro del párrafo de cierre, dejaba la cifra que resume la tabla
+          quinientos píxeles por debajo de la tabla. */}
+      <SectionHead
+        eyebrow={`El libro · ${cuentas.total} servicios`}
+        title="Lo que costó cada servicio, entre lo que produjo"
+        right={
+          <div style={{ textAlign: 'right' }}>
+            <div
+              className="mono"
+              style={{ fontSize: 'var(--fs-card)', fontWeight: 500, letterSpacing: '-.02em' }}
+            >
+              {totalCoste.toLocaleString('es-ES', {
+                style: 'currency',
+                currency: 'EUR',
+                maximumFractionDigits: 0,
+              })}
+            </div>
+            <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
+              coste efectivo de los {conCoc} con cociente · no es el gasto municipal
+            </div>
+          </div>
+        }
+      />
 
       <div className="cp-libro-filtros">
         <span className="mono cp-libro-filtros-rotulo">Ver</span>
@@ -208,7 +228,6 @@ export function LibroServicios({
             {f.rotulo(cuentas)}
           </button>
         ))}
-        <span style={{ flex: 1 }} />
         <button
           type="button"
           className={`cp-chip${porArea ? ' cp-chip-on' : ''}`}
@@ -217,6 +236,34 @@ export function LibroServicios({
         >
           Agrupar por área
         </button>
+
+        {/* ORDENAR, a la derecha y rotulado. Pulsar el que ya está activo
+            invierte el sentido, que es lo único que la cabecera ordenable hacía
+            y esto no haría solo.
+
+            El grupo se empuja con `margin-left: auto` y NO con un espaciador
+            `flex: 1`. En un flex que envuelve, un espaciador elástico se queda
+            con todo el hueco de su línea y manda a la siguiente todo lo que
+            venga detrás: medido, la fila salía en TRES líneas a 1440 px con el
+            contenido sumando 1.076 de 1.160 disponibles. El margen automático
+            alinea a la derecha sin reservar línea. */}
+        <span className="mono cp-libro-filtros-rotulo cp-libro-ordenar">Ordenar</span>
+        {ORDENES.map((o) => (
+          <button
+            key={o.id}
+            type="button"
+            className={`cp-chip${orden.col === o.id ? ' cp-chip-on' : ''}`}
+            aria-pressed={orden.col === o.id}
+            onClick={() => ordenar(o.id)}
+          >
+            {o.rotulo}
+            {orden.col === o.id && (
+              <span aria-hidden="true" style={{ marginLeft: 4 }}>
+                {orden.dir === 'desc' ? '↓' : '↑'}
+              </span>
+            )}
+          </button>
+        ))}
       </div>
 
       <LeyendaPosicion />
@@ -226,8 +273,9 @@ export function LibroServicios({
           <span className="cp-punto-warn" aria-hidden="true" />
           <span>
             Las {conCociente.length} filas con cociente {FRASE_MITAD[mitadComun]}. Por eso ninguna
-            serie de esta tabla se puede leer como gestión: la última columna dice desde qué entrega
-            en cada caso.
+            serie de esta tabla se puede leer como gestión: cada fila dice, bajo su coste unitario,
+            entre qué cantidad divide y desde qué entrega no se remide.{' '}
+            <strong>Se dice aquí una vez</strong> — no hay chip por fila.
           </span>
         </p>
       )}
@@ -236,33 +284,16 @@ export function LibroServicios({
         <table className="cp-libro">
           <caption className="cp-libro-caption">
             Los {cuentas.total} servicios del panel, ordenados por{' '}
-            {COLUMNAS.find((c) => c.id === orden.col)?.rotulo.toLowerCase()}{' '}
+            {ORDENES.find((c) => c.id === orden.col)?.rotulo.toLowerCase()}{' '}
             {orden.dir === 'desc' ? 'de mayor a menor' : 'de menor a mayor'}. Cada fila abre su
             ficha. Las series van en euros constantes de {entrega}, deflactadas con el IPC general
             del INE; la fila que no puede ir así lo dice.
           </caption>
           <thead>
             <tr>
-              {COLUMNAS.filter((c) => c.id !== 'responde' || conNombres).map((c) => (
-                <th
-                  key={c.id}
-                  className={`cp-c-${c.id}`}
-                  scope="col"
-                  aria-sort={c.clave ? ariaSort(c.id) : undefined}
-                >
-                  {c.clave ? (
-                    <button type="button" className="cp-orden" onClick={() => ordenar(c.id)}>
-                      {c.conEntrega && entrega ? `${c.rotulo} ${entrega}` : c.rotulo}
-                      <span
-                        aria-hidden="true"
-                        className={orden.col === c.id ? 'cp-orden-activa' : 'cp-orden-inerte'}
-                      >
-                        {orden.col === c.id ? (orden.dir === 'desc' ? ' ↓' : ' ↑') : ' ↕'}
-                      </span>
-                    </button>
-                  ) : (
-                    c.rotulo
-                  )}
+              {COLUMNAS.map((c) => (
+                <th key={c.id} className={`cp-c-${c.id}`} scope="col">
+                  {c.conEntrega && entrega ? `${c.rotulo} ${entrega}` : c.rotulo}
                 </th>
               ))}
             </tr>
@@ -304,37 +335,15 @@ export function LibroServicios({
           marginTop: 12,
           fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
-          maxWidth: '86ch',
         }}
       >
-        Los {cuentas.total - cuentas.sinCociente} servicios con cociente declaran{' '}
-        <strong className="mono">
-          {totalCoste.toLocaleString('es-ES', {
-            style: 'currency',
-            currency: 'EUR',
-            maximumFractionDigits: 0,
-          })}
-        </strong>{' '}
-        de coste efectivo en la entrega de {entrega}. No es el gasto del ayuntamiento: son estos{' '}
-        {cuentas.total - cuentas.sinCociente}. La posición no se colorea —un coste unitario alto es
-        un precio, no un suspenso—. Por qué no hay nota global, en la{' '}
+        La posición no se colorea —un coste unitario alto es un precio, no un suspenso—. Por qué no
+        hay nota global, en la{' '}
         <a href="/metodologia#eficiencia" style={{ color: 'var(--civic)' }}>
           metodología
         </a>
         .
       </p>
-
-      {/* La leyenda del asterisco. Va aquí, visible y debajo de su tabla: §16
-          es explícito —«ninguna información existe sólo al pasar el ratón»— y
-          una marca sin leyenda sería exactamente eso. Se pinta sólo si hay
-          alguna fila marcada, y el recuento sale de las filas. */}
-      {conNombres && editoriales > 0 && (
-        <p className="cp-libro-leyenda mono">
-          <span aria-hidden="true">*</span> atribución nuestra en {editoriales} de{' '}
-          {filas.filter((i) => competencias?.get(i.id)).length}: el reparto de esa competencia lo
-          hicimos nosotros, no el portal de transparencia. El motivo, en la ficha del servicio.
-        </p>
-      )}
 
       {filas.length === 0 && (
         <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>

@@ -3,15 +3,22 @@
  *
  * Regla de la casa, y la dice el docblock de `SubnavSecciones`: los estilos
  * inline no pueden llevar media queries ni pseudo-clases. Aquí hacen falta las
- * dos cosas — la tabla de ocho columnas se convierte en fichas apiladas por
- * debajo de 720px, y las cabeceras ordenables necesitan `:hover` y
- * `:focus-visible`.
+ * dos cosas — la tabla se convierte en fichas apiladas por debajo de 720px, y
+ * las cabeceras ordenables necesitan `:hover` y `:focus-visible`.
  *
  * A 375px la tabla NO scrollea la página: `td` y `tr` pasan a bloque y cada
  * fila se lee como en la propuesta móvil. `mobile.spec.ts` mide
  * `scrollWidth - clientWidth === 0` sobre el documento, así que un
  * `overflow-x` en el contenedor no bastaría si la tabla siguiera midiendo
  * 1240px por dentro.
+ *
+ * OCHO COLUMNAS A CINCO. La revisión midió lo que ya se veía: «Década» y
+ * «Quién responde» caían fuera de pantalla a anchos normales y «Qué se puede
+ * decir» era prosa dentro de una celda — quince fichas forzadas a rejilla. El
+ * coste baja a la línea de meta de su servicio, el divisor baja bajo su
+ * cociente, el veredicto se dice con el texto que ya acompaña al eje, y los
+ * nombres se van enteros a la ficha, que es el único sitio donde la salvedad
+ * que los desarma cabe en la misma tarjeta. `min-width` baja de 1080 a 880.
  */
 export const estiloLibro = `
 .cp-libro-wrap { margin-top: 14px; }
@@ -44,12 +51,24 @@ export const estiloLibro = `
   cursor: pointer; white-space: nowrap;
 }
 .cp-chip:hover { border-color: var(--civic); color: var(--civic-ink); }
+/* El chip activo va TEÑIDO, no relleno. Iba en petróleo sólido con la tinta
+   blanca encima, o sea con el mismo peso visual que un botón primario: en una
+   fila de siete controles, el que estaba puesto gritaba más que el titular de
+   la sección. La maqueta lo resuelve con el fondo al 8 %, el borde a plena
+   carga y la tinta oscura — se distingue por el borde y el tono, no por
+   invertirse. El par --civic-ink sobre --civic-soft es uno de los que
+   brand-tokens.test.js ya mide en los dos temas.
+
+   (Sin acentos invertidos aquí dentro. Van cinco veces que esta hoja se rompe
+   por citar un nombre entre acentos dentro del literal: el build muere con
+   «The left-hand side of an assignment expression must be a variable», que no
+   se parece en nada a la causa. Los nombres van a pelo.) */
 .cp-chip-on {
-  background: var(--civic); border-color: var(--civic);
-  color: var(--civic-on); font-weight: 600;
+  background: var(--civic-soft); border-color: var(--civic);
+  color: var(--civic-ink); font-weight: 600;
 }
 
-.cp-libro { width: 100%; border-collapse: collapse; table-layout: fixed; min-width: 1080px; }
+.cp-libro { width: 100%; border-collapse: collapse; table-layout: fixed; min-width: 880px; }
 .cp-libro-caption {
   caption-side: top; text-align: left; padding-bottom: 8px;
   font-size: var(--fs-meta); color: var(--ink50);
@@ -95,15 +114,11 @@ export const estiloLibro = `
 }
 /* §16 · el objetivo de una fila de lista no baja de 48 px. */
 .cp-libro tbody tr.cp-fila td { height: 48px; }
-.cp-libro .cp-c-coste, .cp-libro .cp-c-unidad, .cp-libro .cp-c-razon { text-align: right; }
-.cp-libro th.cp-c-coste, .cp-libro th.cp-c-unidad, .cp-libro th.cp-c-razon { text-align: right; }
-/* nowrap, y no por gusto: la columna mide el 8 % de 1.150 px = 92 px, y
-   4.262.162 EUR en DM Mono a 12 px mide 95. El signo caía solo a la línea de
-   abajo en las quince filas. La columna de al lado ya lo llevaba; ésta no. */
-.cp-libro td.cp-c-coste {
-  color: var(--ink50); font-size: var(--fs-meta);
-}
-.cp-libro .cp-c-coste { white-space: nowrap; }
+/* La razón sigue alineada a la derecha porque es una magnitud desnuda. El
+   cociente ya NO: desde que lleva debajo entre qué divide, una cifra a la
+   derecha y su glosa a la izquierda dejaban la celda partida en dos ejes. */
+.cp-libro .cp-c-razon { text-align: right; }
+.cp-libro th.cp-c-razon { text-align: right; }
 /* El ancla de la fila. Es la cifra que contesta la pregunta de la página
    —cuánto cuesta una unidad de este servicio— y salía a 13 px peso 500, por
    debajo del nombre del servicio y al mismo peso que el resto de la fila. */
@@ -112,16 +127,29 @@ export const estiloLibro = `
   letter-spacing: -.01em;
 }
 
-.cp-c-servicio { width: 18%; }
-.cp-c-coste { width: 8%; }
-.cp-c-unidad { width: 12%; }
-.cp-c-posicion { width: 19%; }
+.cp-c-servicio { width: 27%; }
+.cp-c-unidad { width: 22%; }
 .cp-c-razon { width: 8%; }
-.cp-c-decada { width: 8%; }
-.cp-c-decir { width: 14%; }
-.cp-c-responde { width: 14%; }
+.cp-c-posicion { width: 25%; }
+.cp-c-decada { width: 18%; }
 .cp-libro th.cp-c-razon, .cp-libro th.cp-c-decada { white-space: nowrap; }
-.cp-libro .cp-c-unidad { white-space: nowrap; }
+
+/* El coste, ahora bajo el nombre de su servicio y no en columna propia. Sigue
+   siendo la cifra grande de la fuente, así que se queda en mono y sin partir:
+   4.262.162 EUR en DM Mono no cabe en dos líneas sin leerse como dos cifras. */
+.cp-fila-coste {
+  display: block; margin-top: 3px; white-space: nowrap;
+  font-size: var(--fs-meta); color: var(--ink50);
+}
+/* Entre qué divide, debajo del cociente que divide. Es la mitad de la
+   ecuación que el libro escondía: la revisión la pedía en la misma celda
+   porque un cociente sin su denominador no se puede juzgar. */
+.cp-fila-divisor {
+  display: block; margin-top: 4px;
+  font-family: var(--font-body); font-size: var(--fs-micro);
+  font-weight: 400; letter-spacing: 0; color: var(--ink50); line-height: 1.35;
+}
+.cp-fila-divisor .cp-divisor-desde { color: var(--warn-ink); }
 
 /* §16 · «Toda la fila es el objetivo táctil. Altura mínima 48 px.» Y: «Un
    enlace de 20 px al final de una fila de 1.100 es un objetivo hostil.» El
@@ -146,8 +174,10 @@ export const estiloLibro = `
   outline: 2px solid var(--civic); outline-offset: -2px; border-radius: var(--r-input);
 }
 /* Lo que va ENCIMA del ::after: la otra columna con enlaces propios. Sin esto
-   el nombre de quien responde deja de ser pulsable. Basta con posicionarla:
-   viene después en el DOM, así que pinta encima sin necesitar z-index. */
+   el nombre de quien responde deja de ser pulsable. Sólo queda en /gestion —
+   el libro de servicios manda esa columna entera a la ficha— pero la regla
+   vale igual para las dos hojas. Basta con posicionarla: viene después en el
+   DOM, así que pinta encima sin necesitar z-index. */
 .cp-libro .cp-c-responde { position: relative; }
 .cp-libro .cp-c-responde a { color: var(--civic-ink); text-decoration: underline;
   text-underline-offset: 2px; }
@@ -169,49 +199,56 @@ export const estiloLibro = `
   display: block; margin-top: 3px;
   font-size: var(--fs-micro); color: var(--ink50); line-height: 1.35;
 }
-.cp-c-posicion /* La marca de atribución editorial. Objetivo generoso pese al asterisco: es
-   un enlace de un carácter, que es justo lo que §16 llama objetivo hostil. */
-.cp-marca-editorial {
-  display: inline-block; min-width: 18px; min-height: 18px;
-  margin-left: 2px; text-align: center; line-height: 1.1;
-  color: var(--warn-ink); font-weight: 700; text-decoration: none;
-}
-.cp-marca-editorial:hover { text-decoration: underline; }
-.cp-libro-leyenda {
-  margin: 10px 0 0; font-size: var(--fs-micro); color: var(--ink50);
-  max-width: 96ch; line-height: 1.5;
-}
-.cp-libro-leyenda span { color: var(--warn-ink); font-weight: 700; }
-
-.cp-fila-meta { margin-top: 5px; }
+.cp-c-posicion .cp-fila-meta { margin-top: 5px; }
 
 /* La banda que sustituye a trece repeticiones idénticas. Va sobre la tabla,
    visible, con la misma marca ámbar que llevaba cada fila. */
+/* La banda: caja teñida y tinta NORMAL, no un párrafo entero en ámbar.
+   Todo el texto iba en --warn-ink y eso convertía una advertencia de dos
+   líneas en un bloque que grita: el ámbar deja de señalar cuando lo ocupa
+   todo. Se queda de ámbar lo que marca —el punto y el borde— y el texto vuelve
+   a la tinta de lectura. Es lo que hace la maqueta y lo que ya hacía la nota de
+   los extremos en la ficha de un servicio. */
 .cp-libro-comun {
-  display: flex; align-items: baseline; gap: 8px;
-  margin: 0 0 10px; padding: 10px 12px;
-  background: var(--warn-soft); border-radius: var(--r-input);
-  font-size: var(--fs-aux); color: var(--warn-ink); line-height: 1.5;
-  max-width: 96ch;
+  display: flex; align-items: flex-start; gap: 10px;
+  margin: 0 0 10px; padding: 11px 14px;
+  background: var(--warn-soft); border: 1px solid var(--warn);
+  border-radius: var(--r-input);
+  font-size: var(--fs-aux); color: var(--ink70); line-height: 1.5;
 }
-.cp-libro-comun .cp-punto-warn { align-self: center; }
+.cp-libro-comun .cp-punto-warn { margin-top: 6px; }
 
 /* Filtros · §15 pide 44 px en escritorio y 48 en móvil, y lo argumenta: «el
    filtro es la puerta a los datos; si no se puede tocar, los datos no
-   existen». Estos medían 26. */
-.cp-libro-filtros .cp-chip { min-height: 44px; }
-@media (max-width: 720px) {
-  .cp-libro-filtros .cp-chip { min-height: 48px; }
+   existen». Estos medían 26.
+
+   Se cumple sin engordar la pastilla. Con min-height la caja VISIBLE medía 44 y
+   una fila de siete controles pesaba más que el titular de la sección; la
+   maqueta los dibuja a la altura de su texto. Así que el objetivo táctil se
+   estira con un ::after invisible en vez de con la caja: la pastilla mide lo
+   que mide su letra y la zona pulsable sigue siendo de 44.
+
+   El estirón es SÓLO vertical. Los chips van separados 8 px en horizontal, y un
+   ::after que se saliera por los lados solaparía el objetivo del vecino — dos
+   filtros que se pisan son peores que un filtro pequeño. */
+.cp-libro-filtros .cp-chip { position: relative; }
+.cp-libro-filtros .cp-chip::after {
+  content: ''; position: absolute; left: 0; right: 0;
+  top: 50%; height: 44px; transform: translateY(-50%);
 }
+@media (max-width: 720px) {
+  .cp-libro-filtros .cp-chip::after { height: 48px; }
+}
+
+/* El grupo de orden, a la derecha de la misma fila. Con margen automático y no
+   con un espaciador elástico: en un flex que envuelve, un espaciador se queda
+   con todo el hueco de su línea y manda a la siguiente lo que venga detrás. */
+.cp-libro-ordenar { margin-left: auto; }
 
 /* El ámbar es SIEMPRE un hecho sobre la declaración, nunca sobre el coste. */
 .cp-fila-declara {
   display: flex; align-items: center; gap: 5px; margin-top: 5px;
   font-size: var(--fs-micro); color: var(--warn-ink); line-height: 1.35;
-}
-.cp-punto-warn {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--warn); flex-shrink: 0;
 }
 
 .cp-veredicto {
@@ -233,45 +270,35 @@ export const estiloLibro = `
      líneas. Vuelve a bloque. (Aquí dentro no entra un acento invertido: cerraría
      el literal. Van dos veces ya.) */
   .cp-libro caption { display: block; width: auto; }
-  /* El espaciador que separa los filtros del botón de agrupar empuja el botón
-     a una fila propia. En una pantalla estrecha eso es una fila entera para un
-     control secundario. */
-  .cp-libro-filtros > span[style] { display: none; }
+  /* Sin margen automático: a lo ancho empuja el grupo de orden a la derecha,
+     pero en una pantalla estrecha reservaría una fila entera para el rótulo. */
+  .cp-libro-ordenar { margin-left: 0; }
   .cp-libro thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .cp-libro, .cp-libro tbody, .cp-libro tr, .cp-libro td { display: block; width: auto; }
   .cp-libro tr { border-bottom: 1px solid var(--border2); padding: 14px 0; }
   .cp-libro td { border: 0; padding: 0; }
   .cp-libro td + td { margin-top: 6px; }
+  /* En tabla, 48px es un MÍNIMO: la celda crece con su contenido y la regla
+     sólo garantiza el objetivo táctil de §16. En bloque es una altura DURA, y
+     desde que el coste se plegó bajo el nombre la celda del servicio tiene tres
+     líneas: la tercera se salía por debajo y el cociente de la celda siguiente
+     le pasaba por encima. A 375px la fila entera mide 200px, así que el mínimo
+     táctil lo cumple de sobra sin necesitar la altura. Medido en el navegador
+     con una captura a 375; ninguna suite de esta casa compone una superposición. */
+  .cp-libro tbody tr.cp-fila td { height: auto; }
 
-  /* La serie y el coste total se leen en la ficha: a 375px una raya de 88px y
-     un total de siete cifras compiten con lo único que hace falta aquí, que es
-     poder recorrer quince servicios. El coste total no se pierde — baja a la
-     línea de meta de la posición. */
+  /* La serie se lee en la ficha: a 375px una raya de 88px compite con lo único
+     que hace falta aquí, que es poder recorrer quince servicios. El coste ya no
+     desaparece — vive en la línea de meta del servicio desde que dejó de tener
+     columna propia. */
   .cp-libro .cp-c-decada { display: none; }
-  .cp-libro .cp-c-coste {
-    display: inline; font-size: var(--fs-micro); color: var(--ink50);
-  }
-  .cp-libro .cp-c-coste::after { content: ' de coste declarado'; }
 
   .cp-libro .cp-c-servicio {
     display: flex; flex-wrap: wrap; align-items: baseline;
     justify-content: space-between; gap: 6px;
   }
-  .cp-libro .cp-c-servicio /* La marca de atribución editorial. Objetivo generoso pese al asterisco: es
-   un enlace de un carácter, que es justo lo que §16 llama objetivo hostil. */
-.cp-marca-editorial {
-  display: inline-block; min-width: 18px; min-height: 18px;
-  margin-left: 2px; text-align: center; line-height: 1.1;
-  color: var(--warn-ink); font-weight: 700; text-decoration: none;
-}
-.cp-marca-editorial:hover { text-decoration: underline; }
-.cp-libro-leyenda {
-  margin: 10px 0 0; font-size: var(--fs-micro); color: var(--ink50);
-  max-width: 96ch; line-height: 1.5;
-}
-.cp-libro-leyenda span { color: var(--warn-ink); font-weight: 700; }
-
-.cp-fila-meta { flex-basis: 100%; margin-top: 2px; }
+  .cp-libro .cp-c-servicio .cp-fila-meta { flex-basis: 100%; margin-top: 2px; }
+  .cp-libro .cp-c-servicio .cp-fila-coste { flex-basis: 100%; margin-top: 2px; }
   .cp-libro .cp-c-unidad {
     display: block; text-align: left; margin-top: 2px;
     font-size: var(--fs-aux);
@@ -300,6 +327,10 @@ export const estiloLibro = `
    umbral. La posición sigue sin colorearse nunca. */
 .cp-veredicto-fuera { background: var(--crit-soft); color: var(--crit-ink); }
 
+/* /gestion mantiene sus seis columnas: es otra fuente y otra pregunta, y su
+   columna de quién responde es la ÚNICA superficie de esos siete indicadores
+   —no tienen ficha propia adonde mandarla, como sí la tienen los quince
+   servicios del coste efectivo. */
 .cp-libro-gestion { min-width: 900px; }
 .cp-libro-gestion .cp-c-servicio { width: 23%; }
 .cp-libro-gestion .cp-c-unidad { width: 11%; }
@@ -310,6 +341,9 @@ export const estiloLibro = `
    lo más ruidoso de la tabla siendo la columna menos importante— porque la
    columna medía el 11 %. */
 .cp-libro-gestion .cp-c-responde { width: 16%; }
+/* El cociente de /gestion NO lleva divisor debajo, así que conserva su
+   alineación a la derecha: la regla base dejó de darla al perderla el libro. */
+.cp-libro-gestion .cp-c-unidad, .cp-libro-gestion th.cp-c-unidad { text-align: right; }
 
 /* Los extremos del eje 0-100. No es la frase que se repetía: dice qué escala
    es, y eso no lo dice nada más en la fila. */

@@ -40,6 +40,18 @@ const NOMBRES: string[] = [
 type Etiquetado = { id: string; etiqueta: string; panel?: string; valor: number | null }
 
 /**
+ * Un SERVICIO del coste efectivo que tenga competencia firmada, del cruce de
+ * los dos ficheros y nunca escrito a mano: si el mapa curado cambia de
+ * servicios, la prueba le sigue.
+ */
+const SERVICIO_CON_CARGO = (() => {
+  const conCargo = new Set((COMPETENCIAS.asignaciones ?? []).map((a: { clave: string }) => a.clave))
+  const s = (PANEL.indicadores as Etiquetado[]).find((i) => i.valor !== null && conCargo.has(i.id))
+  if (!s) throw new Error('ningún servicio del panel tiene competencia firmada')
+  return s
+})()
+
+/**
  * Un ANCLA por página: una tarjeta que sólo existe DESPUÉS de que el snapshot
  * cargue. Sin esto la mitad congelada era vacua — «cero nombres» también es
  * verdad en una página en blanco que aún no ha pedido su JSON, y la primera
@@ -52,15 +64,21 @@ type Etiquetado = { id: string; etiqueta: string; panel?: string; valor: number 
  */
 const PAGINAS = [
   {
-    // Con el fragmento, no a secas: desde que los seis apartados de
-    // /eficiencia son pestañas, la capa de competencias vive en el libro de
-    // servicios y el libro no es la pestaña por defecto. Entrar por
-    // «/eficiencia» y contar nombres daría CERO en las dos direcciones —y la
-    // prueba de la ventana congelada pasaría en verde sin haber congelado
-    // nada, que es exactamente la puerta hueca que este fichero vigila.
-    ruta: '/eficiencia#sec-servicios',
-    h1: /¿Cuánto cuesta y qué se obtiene\?/i,
-    ancla: (PANEL.indicadores as Etiquetado[]).find((i) => i.valor !== null)!.etiqueta,
+    // La ficha de un servicio, no el libro.
+    //
+    // La capa de nombres del coste efectivo vivió primero en tarjetas, luego en
+    // la columna «Quién responde» del libro, y desde el rediseño de agosto de
+    // 2026 vive en `/eficiencia/:id`: el libro pasó de ocho columnas a cinco y
+    // esa columna se fue a la ficha, que es el único sitio donde el nombre cabe
+    // en la misma tarjeta que la salvedad que lo desarma.
+    //
+    // Seguir apuntando a `/eficiencia#sec-servicios` habría dado CERO nombres
+    // en las dos direcciones, y la mitad congelada habría pasado en verde sin
+    // haber congelado nada — la puerta hueca que este fichero vigila. La ruta
+    // se DERIVA del servicio que de verdad tiene competencia firmada.
+    ruta: `/eficiencia/${SERVICIO_CON_CARGO.id}`,
+    h1: new RegExp(SERVICIO_CON_CARGO.etiqueta.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'),
+    ancla: SERVICIO_CON_CARGO.etiqueta,
   },
   {
     ruta: '/gestion',
@@ -151,4 +169,26 @@ test.describe('Ventana LOREG · la capa de nombres', () => {
       expect(nombres, `${ruta} sigue nombrando a alguien dentro de la ventana`).toBe(0)
     })
   }
+
+  /**
+   * El libro de servicios no nombra a nadie NUNCA, y eso es una decisión.
+   *
+   * Es la afirmación más fuerte que se puede hacer aquí y por eso se comprueba
+   * fuera de la ventana: /eficiencia es una tabla de comparación, y un nombre
+   * propio en una fila construye «mira lo que cuesta lo suyo» sin sitio donde
+   * quepa la frase que lo corrige. El nombre vive en la ficha, donde la
+   * salvedad del escalón entra en la misma tarjeta. Si alguien devuelve una
+   * columna de titulares al libro, esto se pone rojo antes de que se publique.
+   */
+  test('/eficiencia no nombra a nadie, tampoco fuera de la ventana', async ({ page }) => {
+    await montar(
+      page,
+      '/eficiencia',
+      /¿Cuánto cuesta y qué se obtiene\?/i,
+      (PANEL.indicadores as Etiquetado[]).find((i) => i.valor !== null)!.etiqueta,
+    )
+    const { etiquetas, nombres } = await cuenta(page)
+    expect(etiquetas, 'el libro volvió a enlazar a fichas de cargo').toBe(0)
+    expect(nombres, 'el libro volvió a nombrar a alguien de competencias.json').toBe(0)
+  })
 })

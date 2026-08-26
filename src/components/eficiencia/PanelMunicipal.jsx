@@ -1,5 +1,5 @@
-import { Card, Pill } from '../Primitives'
-import { MARGEN_ANCLA } from '../SubnavSecciones'
+import { Card, Pill, SectionHead } from '../Primitives'
+import { MARGEN_ANCLA } from './anclas'
 import { Sparkline } from '../Charts'
 import { leerIndicadorMunicipal, lecturaVisible } from '../../scraper/indicador-lectura'
 import { Lectura } from './Lectura'
@@ -55,7 +55,15 @@ const crudo = (v, formato) =>
  * «coincide»: sólo pregunta si la persona conserva el cargo, nunca si la fila
  * se pinta en alguna parte.
  */
-export function PanelMunicipal({ municipales, titulo, intro, competencias }) {
+export function PanelMunicipal({
+  municipales,
+  titulo,
+  intro,
+  competencias,
+  nivel = 'h2',
+  eyebrow,
+  enTarjeta = false,
+}) {
   const items = (municipales ?? []).filter((m) => m.valor !== null)
   if (!items.length) return null
   // La frase de arriba SALE de los datos en vez de repetirlos. Escrita a mano
@@ -65,24 +73,24 @@ export function PanelMunicipal({ municipales, titulo, intro, competencias }) {
   const conPares = items.filter((m) => m.pares)
   const sinPares = items.filter((m) => !m.pares)
 
-  return (
+  // El encabezado se arma una vez y se COLOCA en dos sitios distintos según
+  // el modo. En /gestion titula una sección con siete tarjetas debajo, así
+  // que va fuera. En la pareja de /eficiencia el bloque es UNA tarjeta y la
+  // maqueta pone el título dentro, arriba: sacarlo dejaba el rótulo y su
+  // entradilla flotando sobre la caja, que es justo lo que se veía mal.
+  const encabezado = (
     <>
-      <h2
-        style={{
-          fontSize: 'var(--fs-card)',
-          fontWeight: 650,
-          margin: '28px 0 4px',
-          letterSpacing: '-.01em',
-        }}
-      >
-        {titulo}
-      </h2>
+      <SectionHead
+        as={nivel}
+        size={nivel === 'h2' ? 'card' : 'head'}
+        eyebrow={eyebrow}
+        title={titulo}
+      />
       <p
         style={{
           margin: '0 0 12px',
           fontSize: 'var(--fs-aux)',
           color: 'var(--ink50)',
-          maxWidth: '64ch',
         }}
       >
         {intro}{' '}
@@ -109,33 +117,53 @@ export function PanelMunicipal({ municipales, titulo, intro, competencias }) {
           sinPares.length > 0 &&
           'El resto no la lleva: no existe una fuente que las mida del mismo modo en todas partes.'}
       </p>
+    </>
+  )
+
+  return (
+    <>
+      {!enTarjeta && encabezado}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         {items.map((m) => {
           const d = DIMENSION[m.dimension] ?? DIMENSION.friccion
           return (
             <Card key={m.id} id={`m-${m.id}`} style={{ scrollMarginTop: MARGEN_ANCLA }}>
-              <div
-                style={{
-                  display: 'flex',
-                  gap: 10,
-                  alignItems: 'baseline',
-                  justifyContent: 'space-between',
-                  flexWrap: 'wrap',
-                }}
-              >
-                <h3 style={{ fontSize: 'var(--fs-head)', fontWeight: 650, margin: 0 }}>
-                  {m.etiqueta}
-                </h3>
-                <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-                  <Pill tone={d.tone}>{d.label}</Pill>
-                  <span
-                    className="mono"
-                    style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
-                  >
-                    {m.periodo}
-                  </span>
-                </div>
-              </div>
+              {/* En modo tarjeta, el título de la SECCIÓN baja a antetítulo de este
+                  encabezado en vez de ir encima como un segundo titular. Puestos
+                  uno detrás de otro eran dos h3 seguidos —«Los divisores que no
+                  se mueven» y «Denominadores que el ayuntamiento no vuelve a
+                  medir»— separados por una línea de entradilla: el mismo rango
+                  dicho dos veces. La maqueta pone el marco arriba en pequeño y
+                  la afirmación concreta como título, que es lo que son. */}
+              <SectionHead
+                as={enTarjeta ? nivel : 'h3'}
+                size="head"
+                eyebrow={enTarjeta ? titulo : undefined}
+                title={m.etiqueta}
+                right={
+                  <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                    <Pill tone={d.tone}>{d.label}</Pill>
+                    <span
+                      className="mono"
+                      style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                    >
+                      {m.periodo}
+                    </span>
+                  </div>
+                }
+              />
+              {enTarjeta && intro && (
+                <p
+                  style={{
+                    margin: '0 0 12px',
+                    fontSize: 'var(--fs-aux)',
+                    color: 'var(--ink50)',
+                    lineHeight: 1.55,
+                  }}
+                >
+                  {intro}
+                </p>
+              )}
 
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 10 }}>
                 <span

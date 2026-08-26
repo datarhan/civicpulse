@@ -40,6 +40,14 @@ export function EjePercentil({
 
   return (
     <div style={{ position: 'relative', height: detallada ? 46 : alto }}>
+      {/* El rótulo se ANCLA según dónde caiga el punto, no siempre por el
+          centro. Centrado siempre, un percentil alto lo saca de la caja: en la
+          ficha de policía local, con el punto en el 85 %, «Riba-roja 81.965
+          €/efectivo» sobresalía 16 px del documento a 375 px de ancho y la
+          página se desplazaba en horizontal. Ninguna suite lo veía porque
+          `mobile.spec.ts` medía /eficiencia y /gestion y nunca una ficha; ahora
+          la mide. En los extremos el rótulo se pega por su borde y sigue
+          apuntando a su punto. */}
       {detallada && etiqueta && g.marcador && (
         <div
           className="mono"
@@ -47,7 +55,12 @@ export function EjePercentil({
             position: 'absolute',
             left: pct(g.marcador.left),
             top: 0,
-            transform: 'translateX(-50%)',
+            transform:
+              g.marcador.left > 80
+                ? 'translateX(-100%)'
+                : g.marcador.left < 20
+                  ? 'translateX(0)'
+                  : 'translateX(-50%)',
             fontSize: 'var(--fs-micro)',
             fontWeight: 500,
             whiteSpace: 'nowrap',

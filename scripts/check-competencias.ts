@@ -56,6 +56,29 @@ const PANEL = resolve('public/data/indicadores.json')
 
 type Desenlace = 'coincide' | 'reformulado' | 'desaparecido' | 'oficial-inexistente'
 
+/**
+ * El tercer eje: ¿qué pasa con el retrato?
+ *
+ * CUATRO desenlaces y no dos, por la misma razón que `check:eficiencia-findings`
+ * tiene cuatro: plegar «la retiró el cargo» con «falta el fichero» haría que la
+ * guarda imprimiera su propio parte de todo bien mientras una foto desaparece
+ * por un fallo de raspado. Y son casos con respuestas opuestas — uno se respeta,
+ * el otro se arregla.
+ *
+ *   presente   la publica la ficha y el fichero está donde dice
+ *   retirada   el cargo pidió que no se publique; `fotoRetirada` en el mapa
+ *              curado. No es un defecto: es la promesa de /aviso-legal cumplida
+ *   falta      el padrón no trae `photoUrl` para ese slug → la ficha pinta
+ *              iniciales sin que nadie lo haya decidido. AVISA
+ *   enlazada   `photoUrl` apunta fuera de este dominio. AVISA, y es el caso más
+ *              serio de los cuatro: `scrape-officials.ts` hace
+ *              `localPhoto || o.photoUrl`, así que una descarga fallida deja la
+ *              URL remota del ayuntamiento — y entonces el navegador de quien
+ *              lee una página que nombra a un concejal pide un recurso a
+ *              ribarroja.es, que es un dato de tráfico que no le hemos pedido
+ */
+type DesenlaceFoto = 'presente' | 'retirada' | 'falta' | 'enlazada'
+
 interface Cotejo {
   clave: string
   oficial: string
@@ -71,6 +94,8 @@ interface Cotejo {
    */
   superficie: DesenlaceSuperficie
   detalleSuperficie?: string
+  /** Tercer eje, independiente de los otros dos. Ver `DesenlaceFoto`. */
+  foto: DesenlaceFoto
 }
 
 /** Minúsculas, sin acentos y con espacios colapsados: para detectar reformulación. */
@@ -94,7 +119,7 @@ function main(): void {
 
   const mapa = validarCompetencias(JSON.parse(readFileSync(MAPA, 'utf8')))
   const oficiales = JSON.parse(readFileSync(OFICIALES, 'utf8')) as {
-    officials: Array<{ slug: string; name: string; portfolios?: string[] }>
+    officials: Array<{ slug: string; name: string; portfolios?: string[]; photoUrl?: string }>
   }
   const panel = JSON.parse(readFileSync(PANEL, 'utf8')) as {
     indicadores: Array<{ id: string }>
@@ -110,12 +135,23 @@ function main(): void {
     // cargo: son dos preguntas independientes y saltarse la segunda porque la
     // primera ya falló es cómo se pierde la mitad del parte.
     const s = cotejarSuperficie(a.clave, panel, fuentes)
+    // También SIEMPRE, y antes de saber si el cargo sigue: una foto enlazada en
+    // caliente lo está igual aunque la persona haya cambiado de concejalía.
+    const url = porSlug.get(a.oficial)?.photoUrl
+    const foto: DesenlaceFoto = a.fotoRetirada
+      ? 'retirada'
+      : !url
+        ? 'falta'
+        : url.startsWith('/')
+          ? 'presente'
+          : 'enlazada'
     const base = {
       clave: a.clave,
       oficial: a.oficial,
       cargo: a.cargo,
       superficie: s.desenlace,
       detalleSuperficie: s.detalle,
+      foto,
     }
 
     const o = porSlug.get(a.oficial)
@@ -153,6 +189,7 @@ function main(): void {
 
   const cuenta = (d: Desenlace) => cotejos.filter((c) => c.desenlace === d).length
   const cuentaSup = (d: DesenlaceSuperficie) => cotejos.filter((c) => c.superficie === d).length
+  const cuentaFoto = (d: DesenlaceFoto) => cotejos.filter((c) => c.foto === d).length
   const resumen = {
     recorridas: cotejos.length,
     coincide: cuenta('coincide'),
@@ -163,6 +200,12 @@ function main(): void {
       renderizado: cuentaSup('renderizado'),
       'no-renderizado': cuentaSup('no-renderizado'),
       'sin-pagina': cuentaSup('sin-pagina'),
+    },
+    foto: {
+      presente: cuentaFoto('presente'),
+      retirada: cuentaFoto('retirada'),
+      falta: cuentaFoto('falta'),
+      enlazada: cuentaFoto('enlazada'),
     },
     clavesHuerfanas,
   }
@@ -195,6 +238,24 @@ function main(): void {
       process.stdout.write(
         `  [${c.superficie}] ${c.clave} · «${c.cargo} · ${c.oficial}» firmado pero ` +
           `sin llegar a ningún lector — ${c.detalleSuperficie}\n`,
+      )
+    }
+    process.stdout.write(
+      `  foto       · presente ${resumen.foto.presente} · retirada ${resumen.foto.retirada} · ` +
+        `falta ${resumen.foto.falta} · enlazada ${resumen.foto.enlazada}\n`,
+    )
+    // `retirada` NO se lista: es la promesa de /aviso-legal funcionando, no una
+    // incidencia. Las otras dos sí, y con motivos distintos — una deja la ficha
+    // con iniciales sin que nadie lo haya decidido, la otra manda al lector a
+    // pedirle un recurso al ayuntamiento.
+    for (const c of cotejos) {
+      if (c.foto === 'presente' || c.foto === 'retirada') continue
+      process.stdout.write(
+        c.foto === 'enlazada'
+          ? `  [foto-enlazada] ${c.oficial} · el retrato apunta fuera del sitio: el navegador de ` +
+              `quien lea la ficha pedirá un recurso al ayuntamiento. Reintenta scrape:officials\n`
+          : `  [foto-falta] ${c.oficial} · sin retrato en el padrón y sin retirada firmada: la ` +
+              `ficha pinta iniciales sin que nadie lo haya decidido\n`,
       )
     }
     for (const c of clavesHuerfanas) process.stdout.write(`  [clave-huerfana] ${c}\n`)

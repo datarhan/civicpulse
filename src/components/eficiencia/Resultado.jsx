@@ -1,4 +1,4 @@
-import { Pill } from '../Primitives'
+import { Card, Pill, SectionHead } from '../Primitives'
 import { Sparkline } from '../Charts'
 import { TIER_TONE } from './Escalones'
 
@@ -136,18 +136,16 @@ export function Resultado({ resultado, id }) {
 export function AusenciasResultados({ ausencias = [] }) {
   if (!ausencias.length) return null
   return (
-    <div style={{ marginTop: 18 }}>
-      <div
-        className="mono"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          textTransform: 'uppercase',
-          letterSpacing: '.07em',
-          color: 'var(--ink50)',
-        }}
-      >
-        Resultados que faltan, y por qué
-      </div>
+    // En tarjeta, como sus tres hermanas de la cola de método. Iba suelta y era
+    // el único bloque de los cuatro sin caja: leído de arriba abajo parecía el
+    // pie del bloque anterior y no un apartado propio.
+    <Card style={{ marginTop: 18 }}>
+      <SectionHead
+        as="h3"
+        size="head"
+        eyebrow="Ausencias"
+        title="Resultados que faltan, y por qué"
+      />
       <ul
         style={{
           margin: '8px 0 0',
@@ -162,6 +160,6 @@ export function AusenciasResultados({ ausencias = [] }) {
           </li>
         ))}
       </ul>
-    </div>
+    </Card>
   )
 }

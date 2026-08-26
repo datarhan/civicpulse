@@ -161,6 +161,7 @@
       "/datos",
       "/departamentos",
       "/departamentos/:slug",
+      "/eficiencia/:id",
       "/lab-health",
       "/laboratorio/agentes/:assignmentId",
       "/quejas/:id",
