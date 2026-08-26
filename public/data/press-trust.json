@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T09:31:01.647Z",
+  "generatedAt": "2026-08-26T14:16:01.871Z",
   "windowDays": 30,
   "articles": [
     {
@@ -987,30 +987,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "1e5ntzg",
-      "articleFingerprint": "eravvk",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
-      "date": "2026-07-27T09:53:53.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 31,
+      "articleCount": 30,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1018,7 +1001,7 @@
         "sin-datos": 27,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.48,
+      "meanTrustScore": 2.5,
       "verifiedRatio": 0,
       "contradictedRatio": 0
     },
@@ -1144,7 +1127,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "e57ca5b17393",
+    "plenos-agendas.json": "a441d9a975fc",
     "press-claims-verified.json": "83f716492790",
     "press.json": "b6ec6988ae6e",
     "promises.json": "973df30a62ce"
