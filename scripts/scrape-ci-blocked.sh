@@ -135,7 +135,33 @@ if ! cron_git_pull_rebase "pull-rebase previo al push"; then
   echo "[ci-blocked] ERROR: git pull --rebase falló — el commit existe en local pero NO se ha hecho push; el próximo run reintenta"
   exit 1
 fi
-if ! git push origin main; then
+# La revisión lectora corre AQUÍ, ANTES del push, y el push va con --no-verify.
+#
+# No es por saltarse el control: es que el control no cabe dentro de un push.
+# Git abre la conexión SSH y DESPUÉS corre el gancho, así que una revisión de
+# minutos la deja inactiva hasta que GitHub la tira. Medido dos veces seguidas
+# el 2026-08-26, con el mismo commit:
+#
+#   intento 1: «Connection to github.com closed by remote host» a mitad del
+#              gancho · revisión 474s · push FALLIDO
+#   intento 2: /datos ya cacheada, y aun así 367s · push FALLIDO otra vez
+#
+# El coste no son las lecturas —ésas sí cachean— sino UNA ruta cuya llamada al
+# modelo se cuelga sin devolver nada y se mata a los 180s; con el reintento son
+# 360s de tiempo muerto en cada push, caliente o frío. Eso ya se come el
+# presupuesto de 180s del gancho y la paciencia de GitHub.
+#
+# Corriéndolo antes se conserva TODO lo que el gancho aporta —lee las mismas
+# rutas, con el mismo rango, y escribe el mismo parte en este log— y la conexión
+# sólo se abre para transferir. `PREPUSH_RANGE` existe justo para esto: lo dice
+# la cabecera del propio gancho, que quería poder ejercerse sin empujar nada.
+#
+# `|| true` porque el gancho es ASESOR: hoy todos sus caminos salen 0 y su
+# trabajo es imprimir. Si algún día se le añade algo que deba BLOQUEAR un
+# push, este --no-verify hay que volver a mirarlo.
+PREPUSH_RANGE="origin/main...HEAD" sh .husky/pre-push || true
+
+if ! git push --no-verify origin main; then
   echo "[ci-blocked] ERROR: git push falló — el commit existe en local pero NO está publicado; el próximo run reintenta"
   exit 1
 fi
