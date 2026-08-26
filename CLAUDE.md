@@ -250,6 +250,30 @@ main and the phantoms come back. `tests/prepush-range.test.js` pins both, and
 strips comments before matching, because the comment explaining this quotes the
 wrong form.
 
+Removing the phantoms was only half of it, and the other half took until
+2026-08-26. The inversion was never caused by the phantoms — it is caused by
+the ORDER, and it happens just as well with routes that are all legitimate: on
+the Revisión Eficiencia push, nineteen real routes, and the two the change was
+entirely about came last because they had been read that morning and the other
+seventeen had not. Two things were wrong underneath. **Centrality was computed
+and thrown away** — `routes-for-changes` collected into a `Set`, so a
+translations file touched in passing and the twenty-four files of the actual
+redesign produced flat, indistinguishable lists. And **two whole classes of
+change reached no route at all**: `src/index.css` and everything `App.jsx`
+imports statically — the shell — because the graph only seeded from the page
+modules behind `import()`, and the effect-import `import './index.css'` has no
+`from` for the edge regex to catch. So the hook now asks for the routes ordered
+(direct first — the page's own module changed — then by inverse fan-out) and
+passes `--rotate-desde <n directas>`, which keeps that head in the caller's
+order and rotates only the tail. Rotation was always right for what does not
+fit; it was never right for the head. The budget is unchanged and stays low on
+purpose: the fast gate reads ONE route, and the defect was always **which**.
+
+Do not "fix" the CSS blind spot by adding `.css` to the graph's file filter. It
+is inert — `alcanzaEstatico` adds whatever it resolves, listed or not, and
+`index.css` reaches its thirty routes with the filter in or out, measured both
+ways. The load-bearing change is the effect-import edge.
+
 Never write a row count, euro total or test count into a doc. Every one that was
 here was wrong when audited on 2026-08-03, some by 4×. Snapshots carry a `stats`
 block; the suites report their own totals.

@@ -93,9 +93,18 @@ CHANGED=$(git diff --name-only "$RANGE" 2>/dev/null)
 # se revisan ésas, todas. Casi siempre son una o dos. El grep de antes además
 # ignoraba src/hooks, src/lib y src/scraper —de donde sale la mitad de la prosa
 # derivada—, así que un cambio ahí no disparaba nada.
-RUTAS=$(printf '%s\n' "$CHANGED" | npx tsx scripts/routes-for-changes.ts --stdin 2>/dev/null)
+#
+# Y se piden ORDENADAS por centralidad, no alfabéticas: primero las rutas cuyo
+# propio módulo de página cambió, luego el resto por fan-out inverso. Sin eso,
+# `src/i18n.jsx` tocado de refilón mete dieciséis rutas y el rediseño de verdad
+# mete dos, planas e indistinguibles — medido en el push del 26-08-2026, donde
+# el lector gastó el presupuesto sin llegar a /eficiencia ni a /gestion.
+DETALLE=$(printf '%s\n' "$CHANGED" | npx tsx scripts/routes-for-changes.ts --stdin --json 2>/dev/null)
+[ -z "$DETALLE" ] && exit 0
+RUTAS=$(printf '%s' "$DETALLE" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{console.log(JSON.parse(s).rutas.join("\n"))}catch{}})')
 [ -z "$RUTAS" ] && exit 0
 N_RUTAS=$(printf '%s\n' "$RUTAS" | wc -l | tr -d ' ')
+N_DIRECTAS=$(printf '%s' "$DETALLE" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{console.log(JSON.parse(s).directas||0)}catch{console.log(0)}})')
 
 # Needs a $0 backend. If claude-code is not usable, say so and move on rather
 # than silently skipping — a check nobody knows was skipped is worse than none.
@@ -105,9 +114,15 @@ if ! command -v claude >/dev/null 2>&1; then
 fi
 
 STARTED=$(date +%s)
-echo "[pre-push] este push toca $N_RUTAS ruta(s): $(printf '%s ' $RUTAS)"
+echo "[pre-push] este push toca $N_RUTAS ruta(s), $N_DIRECTAS directa(s): $(printf '%s ' $RUTAS)"
 
-# El presupuesto se ESCALA con lo que hay que leer, pero con un techo BAJO.
+# El presupuesto tiene un techo BAJO, y con eso entra UNA ruta.
+#
+# La fórmula parece escalar y no escala: 150 por ruta se recorta a 180 desde
+# N=2, así que dos rutas y diecinueve reciben lo mismo. Se deja como está a
+# propósito —el techo bajo es la decisión, no un descuido— pero el comentario
+# ya no dice lo contrario. Que sólo quepa una es aceptable desde que existe el
+# barrido; lo que no era aceptable es que la que cupiera fuese la equivocada.
 #
 # 150s por ruta sale del peor caso medido (/quejas 60s, /eficiencia 128s,
 # /plenos 141s) y es un TECHO, no una duración: una ruta rápida sigue tardando
@@ -178,7 +193,8 @@ fi
 # que es como esto llegó a bloquear una vez. El presupuesto ya va escalado a las
 # rutas que este push toca, así que lo normal es que sobre; cuando no sobra, el
 # script nombra las que no alcanzó y se niega a cachear un fragmento que no
-# leyó. `--rotate` es lo que impide que, cuando no quepan, sean siempre las
+# leyó. `--rotate-desde` deja intactas las DIRECTAS —las que el push reescribió—
+# y rota sólo la cola, que es lo que impide que, cuando no quepan, sean siempre las
 # mismas: empieza por las que lleven más tiempo sin leerse.
 #
 # `npm run review:surfaces` sin presupuesto sigue siendo la pasada completa
@@ -188,7 +204,8 @@ env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY \
     GEMINI_BIN=/nonexistent-disabled AGY_BIN=/nonexistent-disabled \
     LLM_BACKEND=claude-code LLM_CONCURRENCY=1 \
     REVIEW_BASE_URL="http://127.0.0.1:$PORT" \
-    npm run --silent review:surfaces -- --budget-seconds "$PRESUPUESTO" --rotate $RUTAS 2>&1 | tee "$LOG"
+    npm run --silent review:surfaces -- --budget-seconds "$PRESUPUESTO" \
+      --rotate-desde "$N_DIRECTAS" $RUTAS 2>&1 | tee "$LOG"
 
 # No `|| true` on that: it was there before and it never protected anything —
 # the status leaked around it through the trap. `set +e` is what protects it.

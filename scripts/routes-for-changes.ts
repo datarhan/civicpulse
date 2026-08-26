@@ -58,6 +58,86 @@ export function rutasDeFichero(
   return []
 }
 
+/** Lo que el gancho necesita saber de un diff: qué rutas, y en qué orden. */
+export interface Centralidad {
+  /** Rutas públicas alcanzadas, YA ORDENADAS. Directas primero. */
+  rutas: string[]
+  detalle: { ruta: string; ficheros: number; peso: number; directa: boolean }[]
+  /** Cuántas de las primeras son directas. Es el N de `--rotate-desde`. */
+  directas: number
+  /** Entradas que no alcanzan ninguna ruta. */
+  sinRuta: string[]
+}
+
+/**
+ * Ordena las rutas que tocan unos ficheros cambiados, por centralidad.
+ *
+ * Vive fuera de `main()` a propósito: una guarda de orden que no se puede
+ * ejercitar —ni ver fallar— no es una guarda. `tests/routes-for-changes.test.ts`
+ * le rompe la centralidad y comprueba que el orden deja de acertar.
+ */
+export function ordenarPorCentralidad(
+  entradas: string[],
+  grafo: ReturnType<typeof construirGrafoRutas>,
+): Centralidad {
+  // Sólo lo que existe en producción: pedir /curator daba un NO MONTADA en
+  // cada push que tocara algo que la página del curador importa.
+  const publicas = new Set(rutasPublicas(grafo))
+  // LA CENTRALIDAD NO SE TIRA.
+  //
+  // Antes esto era un `Set` y la multiplicidad se perdía en el `add`. Medido
+  // sobre el push del 26-08-2026: `src/i18n.jsx`, tocado de refilón, generó
+  // DIECISÉIS de las diecinueve rutas, y los veinticuatro ficheros del rediseño
+  // real generaron dos. Planas, indistinguibles, y el lector de la puerta rápida
+  // —que sólo da para una ruta— leyó una de las dieciséis.
+  //
+  // Se conservan dos señales, y ninguna es una heurística:
+  //
+  //   `directa`  cambió el propio módulo de página de esa ruta. Exacto: sale de
+  //              `paginaPorRuta`, que el grafo ya calculaba.
+  //   `peso`     suma de 1/(rutas que alcanza cada fichero cambiado). Un fichero
+  //              que llega a dos rutas aporta 0,5 a cada una; la hoja global,
+  //              que llega a treinta, aporta 0,03 a todas. Es fan-out inverso:
+  //              cuanto más específico es un cambio, más señala.
+  const cuenta = new Map<string, number>()
+  const peso = new Map<string, number>()
+  const directa = new Set<string>()
+  const paginas = new Map([...grafo.paginaPorRuta].map(([r, f]) => [f, r]))
+  const sinRuta: string[] = []
+  for (const e of entradas) {
+    const r = rutasDeFichero(e, grafo).filter((x) => publicas.has(x))
+    if (rutasDeFichero(e, grafo).length === 0) sinRuta.push(e)
+    const propia = paginas.get(resolve(ROOT, e.trim().replace(/^\.\//, '')))
+    if (propia && publicas.has(propia)) directa.add(propia)
+    for (const x of r) {
+      cuenta.set(x, (cuenta.get(x) ?? 0) + 1)
+      peso.set(x, (peso.get(x) ?? 0) + 1 / r.length)
+    }
+  }
+
+  // Directas primero; dentro de cada grupo, por peso. El desempate alfabético
+  // existe para que dos ejecuciones sobre el mismo diff den el mismo orden.
+  const ordenadas = [...cuenta.keys()].sort((a, b) => {
+    const d = Number(directa.has(b)) - Number(directa.has(a))
+    if (d !== 0) return d
+    const w = (peso.get(b) ?? 0) - (peso.get(a) ?? 0)
+    if (Math.abs(w) > 1e-9) return w
+    return a.localeCompare(b)
+  })
+
+  return {
+    rutas: ordenadas,
+    detalle: ordenadas.map((r) => ({
+      ruta: r,
+      ficheros: cuenta.get(r) ?? 0,
+      peso: Number((peso.get(r) ?? 0).toFixed(4)),
+      directa: directa.has(r),
+    })),
+    directas: ordenadas.filter((r) => directa.has(r)).length,
+    sinRuta,
+  }
+}
+
 function main() {
   const argv = process.argv.slice(2)
   const json = argv.includes('--json')
@@ -71,22 +151,19 @@ function main() {
     : rutasArg
 
   const grafo = construirGrafoRutas(SRC)
-  // Sólo lo que existe en producción: pedir /curator daba un NO MONTADA en
-  // cada push que tocara algo que la página del curador importa.
-  const publicas = new Set(rutasPublicas(grafo))
-  const rutas = new Set<string>()
-  const sinRuta: string[] = []
-  for (const e of entradas) {
-    const r = rutasDeFichero(e, grafo)
-    if (r.length === 0) sinRuta.push(e)
-    for (const x of r) if (publicas.has(x)) rutas.add(x)
-  }
+  const { rutas: ordenadas, detalle, directas, sinRuta } = ordenarPorCentralidad(entradas, grafo)
 
-  const ordenadas = [...rutas].sort()
   if (json) {
     console.log(
       JSON.stringify(
-        { rutas: ordenadas, sinRuta, totalRutas: grafo.rutas.length, entradas: entradas.length },
+        {
+          rutas: ordenadas,
+          detalle,
+          directas,
+          sinRuta,
+          totalRutas: grafo.rutas.length,
+          entradas: entradas.length,
+        },
         null,
         2,
       ),

@@ -17,10 +17,30 @@
  *
  * Módulo puro salvo por la lectura de src/: no toca red y no escribe nada.
  */
-import { readFileSync, readdirSync, statSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 
-/** Todos los ficheros de código bajo un directorio. */
+/**
+ * Todos los ficheros de código bajo un directorio, HOJAS DE ESTILO INCLUIDAS.
+ *
+ * El filtro era sólo `.jsx?/.tsx?`, así que `src/index.css` —donde viven los
+ * tokens, el bloque `html.dark`, las media queries del armazón y las rejillas de
+ * media docena de páginas— no aparecía en el grafo y no mapeaba a NINGUNA ruta.
+ * Un push que reescribiera la hoja global no disparaba ninguna revisión de
+ * superficies. Medido el 26-08-2026: se reescribió a fondo y el gancho no leyó
+ * una sola página por ese motivo.
+ */
+/**
+ * Los ficheros cuyo TEXTO se escanea: imports y referencias a `/data/*.json`.
+ *
+ * Sin `.css` a propósito, y medido. Al arreglar el punto ciego de la hoja
+ * global la tentación es meterla aquí; no sirve de nada. `alcanzaEstatico`
+ * añade el nodo que RESUELVE, esté o no en este listado, así que `index.css`
+ * llega a sus treinta rutas igual —comprobado con el filtro puesto y quitado, y
+ * da 30 las dos veces—. Lo que faltaba era la arista de EFECTO (`import
+ * './index.css'`, sin `from`), y ésa vive en el regex de abajo. Un `.css` aquí
+ * sería código inerte con un comentario atribuyéndose el arreglo.
+ */
 export function ficheros(dir: string, acc: string[] = []): string[] {
   for (const e of readdirSync(dir)) {
     const p = join(dir, e)
@@ -59,6 +79,8 @@ export interface GrafoRutas {
   rutasPorFichero: Map<string, Set<string>>
   /** Todas las rutas montadas en App.jsx, salvo el comodín. */
   rutas: string[]
+  /** Ruta → el módulo de página que la sirve. */
+  paginaPorRuta: Map<string, string>
 }
 
 /**
@@ -100,15 +122,31 @@ export function construirGrafoRutas(src: string): GrafoRutas {
     }
   }
 
+  // Dos grafos de aristas, no uno.
+  //
+  // ESTÁTICAS: `from '…'` y el import de EFECTO `import './index.css'`, que no
+  // lleva `from` y por eso la hoja global no entraba por ningún lado.
+  // DINÁMICAS: `import('…')`, que en App.jsx es exactamente el mecanismo con el
+  // que se cargan las páginas.
+  //
+  // La distinción es la que permite hablar del ARMAZÓN: lo que se alcanza desde
+  // la entrada por aristas estáticas envuelve a todas las páginas; lo que se
+  // alcanza por una dinámica ES una página.
   const importa = new Map<string, string[]>()
+  const importaEstatico = new Map<string, string[]>()
   for (const [f, t] of texto) {
-    const specs = [...t.matchAll(/from\s+['"]([^'"]+)['"]|import\(\s*['"]([^'"]+)['"]\s*\)/g)]
+    const estaticos = [
+      ...t.matchAll(/from\s+['"]([^'"]+)['"]|(?:^|\n)\s*import\s+['"]([^'"]+)['"]/g),
+    ]
       .map((m) => m[1] ?? m[2])
       .filter(Boolean)
-    importa.set(
-      f,
-      specs.map((s) => resolverImport(f, s)).filter((x): x is string => Boolean(x)),
-    )
+    const dinamicos = [...t.matchAll(/import\(\s*['"]([^'"]+)['"]\s*\)/g)]
+      .map((m) => m[1])
+      .filter(Boolean)
+    const resolver = (specs: string[]) =>
+      specs.map((s) => resolverImport(f, s)).filter((x): x is string => Boolean(x))
+    importaEstatico.set(f, resolver(estaticos))
+    importa.set(f, resolver([...estaticos, ...dinamicos]))
   }
 
   /** Snapshots que un módulo alcanza, directa o transitivamente. */
@@ -141,6 +179,21 @@ export function construirGrafoRutas(src: string): GrafoRutas {
     return out
   }
 
+  /** Ficheros que un módulo alcanza SÓLO por imports estáticos, él incluido. */
+  const cacheArmazon = new Map<string, Set<string>>()
+  function alcanzaEstatico(f: string, viendo = new Set<string>()): Set<string> {
+    if (cacheArmazon.has(f)) return cacheArmazon.get(f)!
+    if (viendo.has(f)) return new Set()
+    viendo.add(f)
+    const out = new Set<string>([f])
+    for (const dep of importaEstatico.get(f) ?? []) {
+      for (const s of alcanzaEstatico(dep, viendo)) out.add(s)
+    }
+    viendo.delete(f)
+    cacheArmazon.set(f, out)
+    return out
+  }
+
   const app = join(src, 'App.jsx')
   const textoApp = readFileSync(app, 'utf8')
   const componenteDe = new Map<string, string>()
@@ -151,12 +204,15 @@ export function construirGrafoRutas(src: string): GrafoRutas {
 
   const rutasPorSnapshot = new Map<string, Set<string>>()
   const rutasPorFichero = new Map<string, Set<string>>()
+  /** El módulo de página de cada ruta. El bucle ya lo sabía y lo tiraba. */
+  const paginaPorRuta = new Map<string, string>()
   const rutas: string[] = []
   for (const m of textoApp.matchAll(/<Route\s+path="([^"]+)"\s+element=\{<(\w+)/g)) {
     const [, ruta, comp] = m
     const fichero = componenteDe.get(comp)
     if (!fichero || ruta === '*') continue
     rutas.push(ruta)
+    paginaPorRuta.set(ruta, fichero)
     for (const snap of alcanzaSnapshots(fichero)) {
       const set = rutasPorSnapshot.get(snap) ?? new Set()
       set.add(ruta)
@@ -172,5 +228,37 @@ export function construirGrafoRutas(src: string): GrafoRutas {
     }
   }
 
-  return { rutasPorSnapshot, rutasPorFichero, rutas: [...new Set(rutas)].sort() }
+  // EL ARMAZÓN ALCANZA TODAS LAS RUTAS, y hasta ahora no alcanzaba ninguna.
+  //
+  // El bucle de arriba siembra desde los módulos de página, que App.jsx carga
+  // con `import()`. Todo lo que App.jsx —y antes main.jsx— importan de forma
+  // ESTÁTICA envuelve a las páginas en vez de colgar de una: la barra lateral,
+  // la topbar, Cmd+K, el panel de ajustes, `useHashScroll`, `i18n`, y la hoja de
+  // estilos global. Nada de eso aparecía en `rutasPorFichero`, así que un cambio
+  // ahí devolvía CERO rutas y no disparaba revisión alguna.
+  //
+  // Medido el 26-08-2026, y las dos veces con un defecto real dentro:
+  // `SubnavSecciones.jsx` y `useHashScroll.js` cayeron en `sinRuta` en el mismo
+  // push en que el segundo estaba colocando los anclas 80 px por encima de donde
+  // debía. El comentario de aquí al lado ya afirmaba que «tocar InnerShell puede
+  // romper las veintitantas»; ahora es verdad y no una intención.
+  //
+  // Las semillas se RESUELVEN: todo lo demás en `rutasPorFichero` sale de
+  // `resolverImport`, o sea absoluto, y quien consulta el mapa lo hace con un
+  // `resolve(ROOT, …)`. Una semilla en la forma que trajo el llamante —`src`
+  // relativo— sería una clave muerta: presente en el mapa y jamás encontrada.
+  const entrada = resolve(src, 'main.jsx')
+  const raiz = resolve(app)
+  const armazon = new Set<string>([
+    ...alcanzaEstatico(existsSync(entrada) ? entrada : raiz),
+    ...alcanzaEstatico(raiz),
+  ])
+  const todasLasRutas = [...new Set(rutas)]
+  for (const fich of armazon) {
+    const set = rutasPorFichero.get(fich) ?? new Set()
+    for (const r of todasLasRutas) set.add(r)
+    rutasPorFichero.set(fich, set)
+  }
+
+  return { rutasPorSnapshot, rutasPorFichero, paginaPorRuta, rutas: todasLasRutas.sort() }
 }

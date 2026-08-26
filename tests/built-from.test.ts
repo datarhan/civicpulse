@@ -1,11 +1,12 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
-import { mkdtempSync, writeFileSync, rmSync, mkdirSync } from 'node:fs'
+import { mkdtempSync, writeFileSync, readFileSync, rmSync, mkdirSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import {
   builtFromFor,
   stalenessOf,
   hashOf,
+  sellar,
   ABSENT,
   describeStaleness,
   type Staleness,
@@ -216,5 +217,67 @@ describe('describeStaleness', () => {
     ]
     const said = new Set(cases.map((s) => describeStaleness(NODE, s)))
     expect(said.size).toBe(cases.length)
+  })
+})
+
+describe('sellar — el sello que pone quien hizo el trabajo', () => {
+  // Vive en este módulo desde que hay dos selladores: `refresh --stamp` y
+  // `promote-claim`. Antes era una función privada de `refresh.ts`, y los nodos
+  // `llm` y `curated` —que `refresh` no reconstruye nunca— sólo podían salir de
+  // «viejos para siempre» si alguien invocaba el CLI a mano. Nadie lo hacía.
+  const leer = (n: string) => JSON.parse(readFileSync(join(dir, n), 'utf8'))
+
+  it('escribe builtFrom en el artefacto, con el hash de cada entrada', () => {
+    put('a.json', { x: 1 })
+    put('b.json', { y: 2 })
+    put('out.json', { items: [] })
+    expect(sellar(NODE, dir)).toBeNull()
+    const doc = leer('out.json')
+    expect(doc.builtFrom).toEqual({
+      'a.json': hashOf('a.json', dir),
+      'b.json': hashOf('b.json', dir),
+    })
+    // Y no se lleva por delante lo que el fichero ya decía.
+    expect(doc.items).toEqual([])
+  })
+
+  it('sellar deja el nodo FRESCO; mover una entrada lo vuelve a poner viejo', () => {
+    // El circuito entero, que es lo que importa: sin esto el sello podría
+    // escribirse y no significar nada aguas abajo.
+    put('a.json', { x: 1 })
+    put('b.json', { y: 2 })
+    put('out.json', {})
+    expect(stalenessOf(NODE, dir).stale).toBe(true) // no-builtFrom
+    sellar(NODE, dir)
+    expect(stalenessOf(NODE, dir).stale).toBe(false)
+    put('a.json', { x: 99 })
+    expect(stalenessOf(NODE, dir).stale).toBe(true)
+  })
+
+  it('un artefacto que no es JSON se REPORTA, no se sella en silencio', () => {
+    // Un nodo sin sellar es viejo para siempre, y eso «parece» un bucle de
+    // reconstrucción. Tiene que salir por el parte, no por un catch mudo.
+    put('a.json', {})
+    put('b.json', {})
+    put('out.json', 'esto no es json')
+    expect(sellar(NODE, dir)).toMatch(/not JSON/)
+  })
+
+  it('si el nodo no produjo su propio fichero, lo dice', () => {
+    put('a.json', {})
+    put('b.json', {})
+    expect(sellar(NODE, dir)).toMatch(/was not produced/)
+  })
+
+  it('sella TODAS las salidas, no sólo la homónima', () => {
+    // El defecto que este comportamiento arregló: un nodo con tres salidas
+    // publicaba dos sin decir de qué salían.
+    const multi: DataNode = { ...NODE, writes: ['out.json', 'hermana.json'] }
+    put('a.json', {})
+    put('b.json', {})
+    put('out.json', {})
+    put('hermana.json', {})
+    expect(sellar(multi, dir)).toBeNull()
+    expect(leer('hermana.json').builtFrom).toBeDefined()
   })
 })
