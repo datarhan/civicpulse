@@ -255,6 +255,7 @@ async function main() {
     json: asJson,
     force,
     rotate: rotar,
+    rotateDesde,
     all: todas,
   } = parseReviewArgs(process.argv.slice(2), process.env.REVIEW_BUDGET_SECONDS)
   // `--force` significa «vuelve a leer ESTAS rutas», no «olvida el fichero».
@@ -289,7 +290,20 @@ async function main() {
     )
   const publicas = rutasPublicas(construirGrafoRutas(resolve('src')))
   const base = named.length ? named : todas ? publicas : DEFAULT_ROUTES
-  const routes = !budgetSeconds ? base : rotar || !named.length ? porAntiguedad(base) : base
+  // Con `--rotate-desde N`: la cabeza en el orden de quien llama, la cola
+  // rotada. Es lo que permite leer primero lo que el push reescribió sin perder
+  // la equidad en lo que no cabe.
+  const rotarCola = (lista: string[], desde: number) => [
+    ...lista.slice(0, desde),
+    ...porAntiguedad(lista.slice(desde)),
+  ]
+  const routes = !budgetSeconds
+    ? base
+    : rotateDesde > 0
+      ? rotarCola(base, rotateDesde)
+      : rotar || !named.length
+        ? porAntiguedad(base)
+        : base
   /** Wall clock, not a per-call timeout: the caller's patience is the budget. */
   const startedAt = Date.now()
   const deadline = budgetSeconds ? startedAt + budgetSeconds * 1000 : Infinity

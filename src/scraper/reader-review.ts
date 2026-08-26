@@ -275,6 +275,7 @@ export function huellaDeHechos(facts: Record<string, unknown>): string {
 export function parseReviewArgs(argv: string[], budgetEnv?: string) {
   const routes: string[] = []
   let budgetSeconds = Number(budgetEnv ?? 0)
+  let rotateDesde = 0
   for (let i = 0; i < argv.length; i += 1) {
     const a = argv[i]
     if (a === '--budget-seconds') {
@@ -282,6 +283,11 @@ export function parseReviewArgs(argv: string[], budgetEnv?: string) {
       i += 1
     } else if (a.startsWith('--budget-seconds=')) {
       budgetSeconds = Number(a.slice('--budget-seconds='.length))
+    } else if (a === '--rotate-desde') {
+      rotateDesde = Number(argv[i + 1])
+      i += 1
+    } else if (a.startsWith('--rotate-desde=')) {
+      rotateDesde = Number(a.slice('--rotate-desde='.length))
     } else if (!a.startsWith('--')) {
       routes.push(a)
     }
@@ -295,6 +301,21 @@ export function parseReviewArgs(argv: string[], budgetEnv?: string) {
     // Ordena por «hace más que no se lee» antes de gastar el presupuesto. Sólo
     // significa algo junto a `--budget-seconds`: sin techo se leen todas.
     rotate: argv.includes('--rotate'),
+    /**
+     * Conserva las primeras N en el orden de quien llama y rota SÓLO la cola.
+     *
+     * `--rotate` a secas ordena por «hace más que no se lee», y eso está
+     * anti-correlacionado con lo que un push acaba de romper: la página en la
+     * que estás iterando se leyó hace un rato —el barrido pasa a las 07:30— así
+     * que cae al final y no se lee nunca. Medido el 26-08-2026: /eficiencia y
+     * /gestion, leídas a las 08:35, quedaron las últimas de diecinueve en el
+     * push que las reescribía enteras.
+     *
+     * La rotación sigue haciendo falta para la COLA: sin ella, con un techo
+     * bajo, las últimas alfabéticamente no se leerían jamás. Lo que no puede es
+     * gobernar la cabeza, que es donde va lo que el push tocó de verdad.
+     */
+    rotateDesde: Number.isFinite(rotateDesde) && rotateDesde > 0 ? Math.floor(rotateDesde) : 0,
     // Todas las rutas públicas montadas, sacadas del grafo de rutas en vez de
     // la lista escrita a mano. `DEFAULT_ROUTES` son 6 de las 28 que existen:
     // quien creía estar haciendo «la pasada completa» leía menos de un cuarto

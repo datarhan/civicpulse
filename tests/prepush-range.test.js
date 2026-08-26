@@ -26,6 +26,18 @@ import { join } from 'node:path'
  *
  * Un carácter. Por eso hay una prueba: a simple vista los dos rangos son el
  * mismo, y quien lo lea sin haberlo medido lo «simplificará» otra vez.
+ *
+ * SEGUNDA MITAD, 26-08-2026. El párrafo de arriba diagnostica `--rotate` y
+ * arregla el rango, que era el otro defecto. Quitar las rutas fantasma redujo
+ * el daño pero no lo curó: la inversión no la causaban los fantasmas sino el
+ * ORDEN, y sigue ocurriendo con rutas todas legítimas. Medido en el push de la
+ * Revisión Eficiencia —rango ya de tres puntos, cero fantasmas—: diecinueve
+ * rutas reales, y /eficiencia y /gestion, que eran el cambio ENTERO, las
+ * últimas, porque se habían leído a las 08:35 y las otras diecisiete no.
+ *
+ * Así que el gancho pide `--rotate-desde N`: las N primeras —las que el push
+ * reescribió— en el orden en que se las dan, y rotación sólo en la cola. La
+ * equidad hacía falta para lo que no cabe, no para la cabeza.
  */
 const HOOK = join(__dirname, '..', '.husky', 'pre-push')
 const texto = readFileSync(HOOK, 'utf8')
@@ -78,5 +90,38 @@ describe('el rango del gancho de pre-push', () => {
     // Si alguien sustituye esto por una lista fija, el rango deja de importar y
     // esta prueba se quedaría vigilando algo que ya no decide nada.
     expect(codigo).toMatch(/routes-for-changes\.ts\s+--stdin/)
+  })
+  it('pide las rutas ORDENADAS por centralidad, no un montón plano', () => {
+    // `--json` + `.rutas` en vez de la salida por líneas: el orden viene ya
+    // hecho desde `routes-for-changes`, que es el único que sabe qué fichero
+    // cambió. Un `sort` aquí sería adivinar.
+    expect(codigo).toMatch(/routes-for-changes\.ts\s+--stdin\s+--json/)
+    expect(codigo).toMatch(/\.rutas\.join/)
+  })
+
+  it('rota SÓLO la cola: `--rotate-desde`, nunca `--rotate` a secas', () => {
+    // El defecto medido: `--rotate` ordena por antigüedad, y la página en la
+    // que estás iterando es la que MENOS antigüedad tiene. Con el techo de
+    // 180 s entra una ruta, y era siempre la equivocada.
+    expect(codigo).toMatch(/--rotate-desde/)
+    const rotateSolo = codigo.match(/--rotate(?!-desde)/g) ?? []
+    expect(
+      rotateSolo,
+      'un `--rotate` pelado manda al fondo justo la página que este push ' +
+        'reescribió: se leyó hace un rato, luego es la menos antigua',
+    ).toEqual([])
+  })
+
+  it('el número que pasa a --rotate-desde son las DIRECTAS, no una constante', () => {
+    // Si alguien lo fija en 1 o en 3, la cabeza deja de significar «lo que el
+    // push reescribió» y vuelve a ser una lotería con otra semilla.
+    expect(codigo).toMatch(/--rotate-desde"?\s+"?\$N_DIRECTAS/)
+    expect(codigo).toMatch(/N_DIRECTAS=.*\bdirectas\b/)
+  })
+
+  it('anuncia cuántas son directas, para que el parte se pueda contrastar', () => {
+    // Lo único que distingue este arreglo de no haberlo hecho es LEER el parte
+    // y ver que la primera ruta es la que tocaste. Sin el recuento no se puede.
+    expect(codigo).toMatch(/directa\(s\)/)
   })
 })

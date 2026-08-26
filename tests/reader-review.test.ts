@@ -327,6 +327,43 @@ describe('reader-review — un presupuesto de tiempo compra prisa, no silencio',
     expect(parseReviewArgs(['/eficiencia']).rotate).toBe(false)
   })
 
+  it('--rotate-desde N: la cabeza intacta, la cola rotada', () => {
+    // La otra mitad del arreglo del 26-08-2026. `--rotate` a secas manda al
+    // fondo justo lo que el push acaba de reescribir, porque «lo que menos
+    // tiempo lleva sin leerse» es exactamente la página en la que estás
+    // iterando. `--rotate-desde` conserva las N primeras en el orden de quien
+    // llama —el gancho las manda ya ordenadas por centralidad— y deja la
+    // rotación para el resto, que es donde hacía falta.
+    const r = parseReviewArgs([
+      '--budget-seconds',
+      '180',
+      '--rotate-desde',
+      '2',
+      '/eficiencia',
+      '/gestion',
+      '/datos',
+    ])
+    expect(r.rotateDesde).toBe(2)
+    expect(r.routes).toEqual(['/eficiencia', '/gestion', '/datos'])
+    // No se traga el número como si fuera una ruta.
+    expect(r.routes).not.toContain('2')
+    // Y no enciende `--rotate`: son banderas distintas y la vieja no cambia.
+    expect(r.rotate).toBe(false)
+    expect(parseReviewArgs(['--rotate-desde=3', '/x']).rotateDesde).toBe(3)
+  })
+
+  it('un --rotate-desde ausente, cero o absurdo no rota nada por su cuenta', () => {
+    // EL CONTROL. Un `rotateDesde` que cayera en NaN y luego se comparara con
+    // `> 0` daría `false` y el orden quedaría fijo; pero uno que cayera en
+    // `Infinity` congelaría la lista ENTERA y la cola volvería a no leerse
+    // nunca. Los dos fallos son silenciosos, así que se fijan aquí.
+    expect(parseReviewArgs(['/x']).rotateDesde).toBe(0)
+    expect(parseReviewArgs(['--rotate-desde', '0', '/x']).rotateDesde).toBe(0)
+    expect(parseReviewArgs(['--rotate-desde', 'dos', '/x']).rotateDesde).toBe(0)
+    expect(parseReviewArgs(['--rotate-desde', '-4', '/x']).rotateDesde).toBe(0)
+    expect(parseReviewArgs(['--rotate-desde', '2.7', '/x']).rotateDesde).toBe(2)
+  })
+
   it('sin bandera y sin entorno NO hay límite — el pase completo sigue siendo el pase completo', () => {
     expect(parseReviewArgs(['/'], undefined).budgetSeconds).toBe(0)
     expect(parseReviewArgs([], '45').budgetSeconds).toBe(45)
