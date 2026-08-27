@@ -312,6 +312,23 @@ if ! npm run check:json; then
   soft_failures+=("check:json")
 fi
 
+# Las cuatro guardas de procedencia de veredictos (2026-08-27). Van AQUÍ y no
+# sólo en `monitor:health` porque comprueban los artefactos publicados justo
+# después de regenerarlos, y porque `check:guards` sólo ve las llamadas desde
+# .sh, workflows y husky: una guarda cableada únicamente desde un .ts sale como
+# SIN INVOCAR, y tiene razón — el digest corre una vez al día y esto tiene que
+# mirar cada noche, pegado a lo que acaba de cambiar.
+#
+# Soft-failed a propósito, como sus vecinas: una noche parcial no debe tumbar el
+# despliegue, pero tiene que salir nombrada en el parte.
+for guarda in check:verified-compose check:cobertura check:veredictos check:solicitudes; do
+  echo "[scrape-all] running: $guarda"
+  if ! npm run "$guarda"; then
+    echo "[scrape-all] SOFT-FAILED: $guarda"
+    soft_failures+=("$guarda")
+  fi
+done
+
 # Which transcript each published verbatim comes from, and what the editorial
 # gate would do with the claim behind it. Derived from the findings snapshot,
 # the transcript corpus and the verifier corpus (base ⊕ overlay), and it must

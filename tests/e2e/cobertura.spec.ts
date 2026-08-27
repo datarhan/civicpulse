@@ -134,3 +134,62 @@ test.describe('Cobertura de comprobación (/laboratorio/cobertura)', () => {
     for (const v of verbatims) expect(texto).not.toContain(v.slice(0, 40))
   })
 })
+
+/**
+ * El bucle cerrado: el hueco, y qué se ha hecho con él.
+ *
+ * La página mide que una parte del corpus no se puede comprobar porque el
+ * documento municipal no se publica. Esta tarjeta dice qué documento hace
+ * falta, cuántas declaraciones dependen de él, y si lo hemos pedido — con el
+ * plazo del art. 20 y la reclamación del art. 24 ante el Consell de la CV, que
+ * es el competente para un ayuntamiento valenciano (el CTBG estatal no lo es).
+ */
+test.describe('Solicitudes de acceso (/laboratorio/cobertura)', () => {
+  const CLASES = JSON.parse(readFileSync('public/data/pleno-claims/index.json', 'utf8')).totals
+    .cobertura.porClaseDocumental as { porClase: Record<string, number>; sinDocumento: number }
+
+  test('una fila por clase pedible, con su recuento real', async ({ page }) => {
+    await page.goto('/laboratorio/cobertura', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByRole('heading', { name: /Lo que hemos pedido/i })).toBeVisible({
+      timeout: 8000,
+    })
+    const texto = await page.locator('body').innerText()
+    for (const clase of ['informe-tecnico', 'expediente', 'plan-interno', 'acta']) {
+      const n = CLASES.porClase[clase] ?? 0
+      expect(n, `la clase ${clase} no tiene material detrás`).toBeGreaterThan(0)
+      expect(texto).toContain(String(n))
+    }
+  })
+
+  test('una clase sin pedir se dice sin pedir, no «esperando»', async ({ page }) => {
+    // Doblar «no lo hemos pedido» dentro de «pendiente de respuesta» le
+    // atribuiría al Ayuntamiento una tardanza que no ha tenido.
+    await page.goto('/laboratorio/cobertura', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByRole('heading', { name: /Lo que hemos pedido/i })).toBeVisible({
+      timeout: 8000,
+    })
+    const texto = await page.locator('body').innerText()
+    expect(texto).toMatch(/Todav[íi]a no lo hemos pedido/i)
+    expect(texto).not.toMatch(/esperando respuesta/i)
+  })
+
+  test('nombra el órgano competente, que es el Consell y no el CTBG', async ({ page }) => {
+    await page.goto('/laboratorio/cobertura', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByRole('heading', { name: /Lo que hemos pedido/i })).toBeVisible({
+      timeout: 8000,
+    })
+    const texto = await page.locator('body').innerText()
+    expect(texto).toMatch(/Consell de Transpar[èe]ncia/i)
+    expect(texto).toMatch(/art\. 20|art\. 24/)
+  })
+
+  test('no promete desbloquear nada por pedirlo', async ({ page }) => {
+    await page.goto('/laboratorio/cobertura', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByRole('heading', { name: /Lo que hemos pedido/i })).toBeVisible({
+      timeout: 8000,
+    })
+    const texto = await page.locator('body').innerText()
+    expect(texto).toMatch(/no lo hace comprobable por s[íi] solo/i)
+    expect(texto).not.toMatch(/quedar[íi]an desbloqueadas\s*\d/i)
+  })
+})

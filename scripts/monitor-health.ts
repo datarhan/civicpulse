@@ -233,6 +233,7 @@ async function gather(): Promise<Observations> {
     'check:verified-compose',
     'check:cobertura',
     'check:veredictos',
+    'check:solicitudes',
   ]) {
     const msg = runCheck(c)
     if (msg) integrity.push({ check: c, message: msg })

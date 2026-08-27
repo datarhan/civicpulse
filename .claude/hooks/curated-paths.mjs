@@ -64,6 +64,10 @@ export const CURATED = {
   // aparece en una página publicada. La deriva la caza check:competencias; la
   // única escritura programática permitida es la del CLI de réplica.
   'competencias.json': 'curated + cited — hand-edit via PR · npm run competencia-reply',
+  // El registro de solicitudes de acceso. Lo escribe una persona porque una
+  // persona presentó el escrito y una persona leyó la respuesta: que lo
+  // rellenara una máquina sería inventar un hecho sobre una administración.
+  'solicitudes-acceso.json': 'curated — npm run solicitud -- add|responder|reclamar',
   // Datos societarios sobre empresas que cobran servicios municipales, cada uno
   // con el anuncio del BORME que lo sostiene. `scrape:borme` trae el material a
   // .cache/; publicar lo que se afirma de una empresa lo firma una persona.

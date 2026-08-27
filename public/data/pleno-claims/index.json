@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T13:21:51.525Z",
+  "generatedAt": "2026-08-27T14:38:44.744Z",
   "version": "1",
   "plenos": [
     {
@@ -774,6 +774,20 @@
         "budget": 411,
         "curator-downgrade": 41,
         "verdict-engine": 886
+      },
+      "porClaseDocumental": {
+        "porClase": {
+          "contrato": 122,
+          "acta": 21,
+          "informe-tecnico": 68,
+          "presupuesto": 109,
+          "convenio": 34,
+          "plan-interno": 49,
+          "expediente": 34,
+          "ordenanza": 19
+        },
+        "sinDocumento": 2375,
+        "total": 2809
       }
     },
     "retenidas": {
