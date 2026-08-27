@@ -203,10 +203,93 @@ describe('claim-public-gate — un veredicto sin verificador anotado no está fu
         item('acusacion_publica', 'verificado', 'factual', ['tenders', 'bdns']) as never,
       ),
     ).toBe('shown')
+    // OJO: aquí había una aserción que fijaba el defecto —una `cita_obra` con
+    // sólo `llm-second-pass` daba 'shown'—. Una marca de pasada dice CÓMO se
+    // llegó al veredicto, no contra qué se comprobó, así que no funda: ahora
+    // pliega. El control de que la puerta no lo oculta todo lo hace la línea de
+    // arriba, que sí anota corpus de verdad.
+    expect(
+      classifyClaimVisibility(item('cita_obra', 'parcial', undefined, ['tenders']) as never),
+    ).toBe('shown')
+  })
+})
+
+/**
+ * El defecto vivo, medido el 2026-08-27: las ONCE acusaciones publicadas pasaban
+ * esta puerta con `checkedAgainst: ['llm-second-pass']` y nada más — una pasada
+ * que su propia cabecera marca LEGACY / SUPERSEDED / «do not use in the
+ * pipeline», sin un solo corpus de datos detrás.
+ *
+ * `checkedAgainst` mezcla dos significados: lo que el emparejador CONSULTÓ
+ * (tenders, bdns, budget, promises) y el NOMBRE de la pasada que produjo el
+ * veredicto (nli-grounding, llm-second-pass, verdict-engine). Contar la longitud
+ * del array trata las dos cosas como si fundaran igual.
+ *
+ * Es la avería que este fichero ya documenta para `contradicho` entrando por la
+ * puerta de al lado, tal y como su propio comentario predijo. Y no amplía la
+ * política: la aplica. «Lo que no esté EXPLÍCITAMENTE fundado se oculta.» Una
+ * fila que sólo dice qué pasada la miró no dice contra qué se comprobó.
+ */
+describe('claim-public-gate — una marca de pasada no funda', () => {
+  const MARCAS = ['llm-second-pass', 'verdict-engine', 'nli-grounding', 'curator-downgrade']
+
+  it('oculta una acusación que sólo anota una marca de pasada', () => {
+    for (const marca of MARCAS) {
+      expect(
+        classifyClaimVisibility(
+          item('acusacion_publica', 'verificado', 'factual', [marca]) as never,
+        ),
+        `marca ${marca}`,
+      ).toBe('hidden')
+      expect(
+        classifyClaimVisibility(
+          item('acusacion_publica', 'parcial', 'contra-datos', [marca]) as never,
+        ),
+        `marca ${marca}`,
+      ).toBe('hidden')
+    }
+  })
+
+  it('pliega una cita que sólo anota una marca de pasada', () => {
     expect(
       classifyClaimVisibility(
-        item('cita_obra', 'parcial', undefined, ['llm-second-pass']) as never,
+        item('cita_obra', 'verificado', undefined, ['nli-grounding']) as never,
+      ),
+    ).toBe('toggle')
+  })
+
+  it('un corpus real junto a una marca SÍ funda', () => {
+    // La mezcla es lo normal: el segundo paso anota su nombre encima de lo que
+    // ya había. Basta con que quede UN corpus.
+    expect(
+      classifyClaimVisibility(
+        item('acusacion_publica', 'verificado', 'factual', ['llm-second-pass', 'tenders']) as never,
       ),
     ).toBe('shown')
+  })
+
+  it('el curador sigue pasando, aunque sólo haya una marca', () => {
+    // La vía sancionada no puede depender de que una máquina anotara nada.
+    const c = item('acusacion_publica', 'verificado', 'factual', ['llm-second-pass'])
+    expect(
+      classifyClaimVisibility({
+        ...c,
+        verification: { ...c.verification, source: 'curator' },
+      } as never),
+    ).toBe('shown')
+  })
+
+  it('la prueba ha evaluado las dos ramas, no sólo la que oculta', () => {
+    // Un «oculta todo» pasaría los casos de arriba. Este control lo impide.
+    expect(
+      classifyClaimVisibility(
+        item('acusacion_publica', 'verificado', 'factual', ['bdns']) as never,
+      ),
+    ).toBe('shown')
+    expect(
+      classifyClaimVisibility(
+        item('acusacion_publica', 'verificado', 'factual', ['verdict-engine']) as never,
+      ),
+    ).toBe('hidden')
   })
 })
