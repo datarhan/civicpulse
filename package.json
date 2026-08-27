@@ -222,6 +222,7 @@
     "check:stamps": "npx tsx scripts/check-curated-stamps.ts",
     "check:verified-compose": "npx tsx scripts/check-verified-compose.ts",
     "check:cobertura": "npx tsx scripts/check-cobertura.ts",
+    "report:claim-coverage": "npx tsx scripts/report-claim-coverage.ts",
     "restamp": "npx tsx scripts/restamp-curated.ts"
   },
   "dependencies": {
