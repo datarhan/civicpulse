@@ -197,10 +197,19 @@ adivinándola convertiría este informe en una ficción. Abajo hay una muestra
 aleatoria estratificada por tipo, con semilla fija (${SEMILLA}), para
 etiquetar una a una:
 
-- \`comprobable\` — existe un dato público que la confirmaría o la desmentiría
-- \`no-municipal\` — habla de otra administración, de otro país o de historia
-- \`no-numerica\` — el tipo está mal asignado; no hay cifra que comprobar
-- \`infalsable\` — juicio, intención o retórica
+- \`comprobable\` — un corpus construido con datos YA publicados la zanjaría
+- \`sin-fuente-publica\` — es municipal y es un hecho, pero el documento que lo
+  probaría (acta, informe técnico, expediente, plan interno) no se publica en
+  ninguna parte, así que ningún corpus puede zanjarla
+- \`no-municipal\` — habla de otra administración, de otro país o de política general
+- \`no-factual\` — juicio, intención, retórica o un fragmento sin proposición
+
+La segunda etiqueta se añadió al etiquetar la primera muestra: la taxonomía
+original («no-numerica» / «infalsable») no tenía dónde poner «visto el informe
+conjunto con la Secretaría municipal de fecha 24 de febrero», que es municipal,
+es un hecho, y no hay corpus que pueda alcanzarla porque ese informe no está
+publicado. Sin esa casilla, esas filas caían en «comprobable» e inflaban la
+única cifra que este informe existe para estimar.
 
 Con la muestra etiquetada, la proporción por tipo multiplica el «sin corpus»
 de la tabla 1 y da la estimación real, con su intervalo. Antes de eso, no hay
