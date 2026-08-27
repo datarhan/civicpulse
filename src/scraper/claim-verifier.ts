@@ -122,12 +122,24 @@ export const ESTADOS_QUE_NO_CONTRADICEN = new Set([
   'unknown', // centinela: «no lo sé» no desmiente nada
 ])
 
-export type ClaimVerdict =
-  | 'verificado'
-  | 'parcial'
-  | 'contradicho'
-  | 'sin-datos'
-  | 'promesa-repetida'
+/**
+ * Los veredictos, como VALOR y no sólo como tipo.
+ *
+ * Existía únicamente como `type`, así que quien necesitaba recorrerlos en
+ * tiempo de ejecución los copiaba a mano —`ALL_VERDICTS` en Declaraciones.jsx—
+ * y esa copia es justo la regla 1 de docs/DATA_INTEGRITY.md: seis pruebas de
+ * este repositorio recitaron una forma y siguieron verdes mientras producción
+ * no casaba con nada. El tipo se deriva de aquí, así que no pueden separarse.
+ */
+export const CLAIM_VERDICTS = [
+  'verificado',
+  'parcial',
+  'contradicho',
+  'sin-datos',
+  'promesa-repetida',
+] as const
+
+export type ClaimVerdict = (typeof CLAIM_VERDICTS)[number]
 
 /**
  * What this verifier established about a document RELATIVE to the claim.
@@ -1277,4 +1289,47 @@ export async function getShortlist(
   // Hybrid: union with lexical, dedup by ref, take top K by similarity.
   const lexical = shortlistCandidates(inputs, topK * 2)
   return semanticModule.mergeShortlists([semantic, lexical], topK)
+}
+
+// ─── El desglose de `sin-datos` ─────────────────────────────────────────────
+//
+// `sin-datos` contesta dos preguntas distintas con el mismo número:
+//
+//   · se consultaron corpus y la afirmación no aparece en ninguno
+//   · no se consultó NADA, porque para ese tipo de afirmación no hay corpus
+//
+// El primero dice algo sobre la afirmación. El segundo dice algo sobre
+// NOSOTROS, y publicarlo como si fuera lo mismo hace que un hueco se lea como
+// un cero. Es la agregación de `falta` de DeclaracionEntregas otra vez, y el
+// centinela `Otro`.
+//
+// El discriminante ya está en el fichero: `checkedAgainst` —que es, dicho en su
+// propia definición, una afirmación sobre nuestro trabajo—. Así que esto se
+// DERIVA y no se guarda: ni campo nuevo en la verificación, ni miembro nuevo en
+// el enum de veredictos, que alimenta `isDowngrade`, el validador del overlay y
+// las CLI de curación.
+
+export interface ResumenSinDatos {
+  /** `checkedAgainst` vacío: no se consultó ningún corpus. */
+  sinCorpus: number
+  /** Se consultaron corpus y no hubo coincidencia. */
+  comprobadoSinHallar: number
+}
+
+/**
+ * Reparte las filas `sin-datos` en sus dos motivos. Las dos partes suman
+ * exactamente el `sin-datos` del recuento por veredicto; las demás filas no se
+ * miran.
+ */
+export function resumirSinDatos(
+  verifications: ReadonlyArray<Pick<ClaimVerification, 'verdict' | 'checkedAgainst'>>,
+): ResumenSinDatos {
+  let sinCorpus = 0
+  let comprobadoSinHallar = 0
+  for (const v of verifications) {
+    if (v?.verdict !== 'sin-datos') continue
+    if ((v.checkedAgainst?.length ?? 0) === 0) sinCorpus++
+    else comprobadoSinHallar++
+  }
+  return { sinCorpus, comprobadoSinHallar }
 }

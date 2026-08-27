@@ -24,7 +24,7 @@ import {
   type Reclassifications,
   type VerifiedItem,
 } from '../src/scraper/verified-merge'
-import type { ClaimVerdict } from '../src/scraper/claim-verifier'
+import { resumirSinDatos, type ClaimVerdict } from '../src/scraper/claim-verifier'
 
 const DATA = resolve('public/data')
 export const BASE = resolve(DATA, 'pleno-claims-verified-base.json')
@@ -267,7 +267,13 @@ export async function rebuildVerified(opts: { refreshChunks?: boolean } = {}): P
   const out = {
     generatedAt: base.generatedAt,
     source: base.source,
-    stats: { total: items.length, byVerdict },
+    stats: {
+      total: items.length,
+      byVerdict,
+      // Desde los items YA fusionados, para que el desglose describa lo que
+      // se publica y no lo que dijo la pasada determinista.
+      sinDatosPorque: resumirSinDatos(items.map((it) => it.verification)),
+    },
     items,
   }
   writeFileSync(VERIFIED, JSON.stringify(out, null, 2) + '\n')

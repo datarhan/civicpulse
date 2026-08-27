@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { readFileSync } from 'node:fs'
+import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import {
   CLAIM_VERDICTS,
@@ -84,17 +84,33 @@ describe('resumirSinDatos · dos desenlaces donde había uno', () => {
   })
 })
 
-describe('resumirSinDatos · contra el volcado publicado', () => {
-  const pub = JSON.parse(
-    readFileSync(join(ROOT, 'public/data/pleno-claims-verified.json'), 'utf8'),
+describe('resumirSinDatos · contra lo PUBLICADO', () => {
+  /**
+   * Contra el manifiesto de trozos, NO contra el monolito.
+   *
+   * `pleno-claims-verified.json` lleva 6.919 afirmaciones, pero está en
+   * `.vercelignore`: nunca se sirve, porque incluye el verbatim de acusaciones
+   * `sin-datos` que la puerta editorial retiene a propósito. Lo que el lector
+   * recibe son los trozos ya pasados por `gateItemsForPublic`, y el desglose
+   * tiene que describir ESE universo o no cuadrará con las cifras que tiene al
+   * lado en la página.
+   */
+  const manifest = JSON.parse(
+    readFileSync(join(ROOT, 'public/data/pleno-claims/index.json'), 'utf8'),
   ) as {
-    stats: { total: number; byVerdict: Record<string, number> }
-    items: Array<{ verification: ClaimVerification }>
+    totals: {
+      byVerdict: Record<string, number>
+      sinDatosPorque?: { sinCorpus: number; comprobadoSinHallar: number }
+    }
   }
 
+  it('el manifiesto publica el desglose, no sólo el total', () => {
+    expect(manifest.totals.sinDatosPorque).toBeDefined()
+  })
+
   it('las dos partes suman exactamente el sin-datos publicado', () => {
-    const r = resumirSinDatos(pub.items.map((i) => i.verification))
-    expect(r.sinCorpus + r.comprobadoSinHallar).toBe(pub.stats.byVerdict['sin-datos'])
+    const d = manifest.totals.sinDatosPorque!
+    expect(d.sinCorpus + d.comprobadoSinHallar).toBe(manifest.totals.byVerdict['sin-datos'])
   })
 
   /**
@@ -104,18 +120,27 @@ describe('resumirSinDatos · contra el volcado publicado', () => {
    * cuadrando y el desglose sería una sola casilla con otro nombre.
    */
   it('el desglose no es degenerado: las dos casillas tienen filas de verdad', () => {
-    const r = resumirSinDatos(pub.items.map((i) => i.verification))
-    expect(r.sinCorpus).toBeGreaterThan(0)
-    expect(r.comprobadoSinHallar).toBeGreaterThan(0)
+    const d = manifest.totals.sinDatosPorque!
+    expect(d.sinCorpus).toBeGreaterThan(0)
+    expect(d.comprobadoSinHallar).toBeGreaterThan(0)
   })
 
-  it('el volcado publica el desglose, no sólo el total', () => {
-    const stats = pub.stats as unknown as {
-      sinDatosPorque?: { sinCorpus: number; comprobadoSinHallar: number }
-    }
-    expect(stats.sinDatosPorque).toBeDefined()
-    expect(stats.sinDatosPorque!.sinCorpus + stats.sinDatosPorque!.comprobadoSinHallar).toBe(
-      pub.stats.byVerdict['sin-datos'],
-    )
+  it('el desglose del manifiesto coincide con recontar los trozos servidos', () => {
+    // Que el manifiesto lo diga no prueba que sea verdad: se recuenta desde los
+    // ficheros que el lector se descarga.
+    const dir = join(ROOT, 'public/data/pleno-claims')
+    const servidos = readdirSync(dir)
+      .filter((f) => f.endsWith('.json') && f !== 'index.json')
+      .flatMap(
+        (f) =>
+          (
+            JSON.parse(readFileSync(join(dir, f), 'utf8')) as {
+              items: Array<{ verification: ClaimVerification }>
+            }
+          ).items,
+      )
+      .map((i) => i.verification)
+    expect(servidos.length).toBeGreaterThan(0) // que el recuento haya evaluado algo
+    expect(resumirSinDatos(servidos)).toEqual(manifest.totals.sinDatosPorque)
   })
 })

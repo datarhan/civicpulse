@@ -16,6 +16,7 @@ import {
   verifyClaim,
   type ClaimVerification,
   type ClaimVerdict,
+  resumirSinDatos,
 } from '../src/scraper/claim-verifier'
 import { BASE, rebuildVerified } from './verified-rebuild'
 
@@ -87,6 +88,9 @@ async function main() {
     stats: {
       total: verifications.length,
       byVerdict,
+      // `sin-datos` contesta dos preguntas con un número. Se desglosa —no se
+      // guarda— desde `checkedAgainst`: ver `resumirSinDatos`.
+      sinDatosPorque: resumirSinDatos(verifications),
     },
     items,
   }

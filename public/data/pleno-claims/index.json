@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T18:44:05.314Z",
+  "generatedAt": "2026-08-27T09:21:46.670Z",
   "version": "1",
   "plenos": [
     {
@@ -701,6 +701,10 @@
         "verificado": 1,
         "parcial": 1
       }
+    },
+    "sinDatosPorque": {
+      "sinCorpus": 1878,
+      "comprobadoSinHallar": 2696
     }
   }
 }
