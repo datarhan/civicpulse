@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-18T18:44:05.129Z",
+  "generatedAt": "2026-08-27T09:57:34.316Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -12,6 +12,10 @@
       "contradicho": 0,
       "sin-datos": 6818,
       "promesa-repetida": 0
+    },
+    "sinDatosPorque": {
+      "sinCorpus": 3045,
+      "comprobadoSinHallar": 3773
     }
   },
   "items": [
