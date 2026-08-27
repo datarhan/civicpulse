@@ -15,15 +15,20 @@
  *
  * La comparación NO es «commit más nuevo que el sello»: eso es lo NORMAL —el
  * CLI escribe, y se comitea un minuto después. Lo que se mira es si el último
- * commit que tocó el fichero movió también la línea `generatedAt`. Un cambio de
+ * commit que tocó el fichero movió también la línea del sello. Un cambio de
  * contenido sin sello nuevo es un sello que miente, y da igual de cuándo sea el
  * commit.
+ *
+ * CUÁL es la línea del sello lo dice el fichero, no una lista: casi siempre
+ * `generatedAt`, y `composedAt` en uno compuesto, cuyo `generatedAt` es un
+ * puntero al base del que desciende y no la fecha en que se escribió. Ver
+ * `claveDelSello`.
  *
  * Cuatro desenlaces, no dos — plegar «no lo pude mirar» dentro de «coincide»
  * es cómo una puerta imprime su propio visto bueno:
  *   ok            el último cambio movió el sello
  *   sello-quieto  el contenido cambió y el sello no  → sale 1
- *   sin-sello     el fichero no lleva `generatedAt` (no puede mentir)
+ *   sin-sello     el fichero no lleva sello (no puede mentir)
  *   sin-mirar     sin historial, o con cambios sin comitear → no se juzga
  */
 import { execFileSync } from 'node:child_process'
@@ -42,8 +47,10 @@ export type Desenlace = 'ok' | 'sello-quieto' | 'sin-sello' | 'sin-mirar'
 export interface FilaSello {
   file: string
   desenlace: Desenlace
-  /** El sello publicado, si lo hay. */
-  generatedAt: string | null
+  /** El sello juzgado, si lo hay. */
+  sello: string | null
+  /** De qué campo salió. Un fichero compuesto se sella por `composedAt`. */
+  clave: 'composedAt' | 'generatedAt'
   /** El commit que tocó el fichero por última vez. */
   commit: string | null
   fechaCommit: string | null
@@ -55,14 +62,41 @@ function git(args: string[]): string {
 }
 
 /**
+ * Qué campo SELLA el contenido de este fichero.
+ *
+ * Casi siempre `generatedAt`. La excepción es un fichero COMPUESTO, cuyo
+ * `generatedAt` no dice cuándo se escribió sino DE QUÉ DESCIENDE:
+ * `verified-rebuild` copia al publicado el sello de su base porque
+ * `cotejarCompose` exige igualdad exacta entre los dos, y llama `contradice` a
+ * que lo publicado sea más nuevo. Ese campo es un puntero de linaje; el que
+ * fecha el contenido es `composedAt`.
+ *
+ * Se decide LEYENDO EL FICHERO, no consultando una lista. Una tabla de
+ * excepciones a mano dentro de un control contra el rancio se queda rancia
+ * ella, que es el chiste que este repositorio ya ha contado dos veces.
+ */
+export function claveDelSello(obj: unknown): 'composedAt' | 'generatedAt' {
+  const o = obj as { composedAt?: unknown } | null
+  return typeof o?.composedAt === 'string' && o.composedAt ? 'composedAt' : 'generatedAt'
+}
+
+/**
  * ¿El diff de este commit sobre este fichero toca la línea del sello?
  *
  * `--unified=0` para no confundir una línea de CONTEXTO con una cambiada: con
- * el contexto por defecto, `generatedAt` aparece en casi cualquier diff del
+ * el contexto por defecto, el sello aparece en casi cualquier diff del
  * principio del fichero y la puerta habría dado verde siempre.
+ *
+ * `clave` porque un fichero compuesto se sella por `composedAt`: mirar ahí el
+ * campo heredado es preguntar por un campo que NO tenía que moverse, y la
+ * puerta cantaría un rojo eterno que alguien acabaría apagando.
  */
-export function selloEnDiff(diff: string): boolean {
-  return diff.split('\n').some((l) => /^[+-]\s*"generatedAt"\s*:/.test(l))
+export function selloEnDiff(
+  diff: string,
+  clave: 'composedAt' | 'generatedAt' = 'generatedAt',
+): boolean {
+  const re = new RegExp(`^[+-]\\s*"${clave}"\\s*:`)
+  return diff.split('\n').some((l) => re.test(l))
 }
 
 const DIA_MS = 86_400_000
@@ -101,7 +135,8 @@ function mirar(nombre: string): FilaSello {
   const base: FilaSello = {
     file: nombre,
     desenlace: 'sin-mirar',
-    generatedAt: null,
+    sello: null,
+    clave: 'generatedAt',
     commit: null,
     fechaCommit: null,
     nota: '',
@@ -109,10 +144,11 @@ function mirar(nombre: string): FilaSello {
   if (!existsSync(resolve(rel))) return { ...base, nota: 'no está en public/data' }
 
   let sello: string | null = null
+  let clave: 'composedAt' | 'generatedAt' = 'generatedAt'
   try {
-    sello =
-      (JSON.parse(readFileSync(resolve(rel), 'utf8')) as { generatedAt?: string }).generatedAt ??
-      null
+    const obj = JSON.parse(readFileSync(resolve(rel), 'utf8')) as Record<string, unknown>
+    clave = claveDelSello(obj)
+    sello = typeof obj[clave] === 'string' ? (obj[clave] as string) : null
   } catch {
     return { ...base, nota: 'JSON ilegible' }
   }
@@ -124,22 +160,23 @@ function mirar(nombre: string): FilaSello {
   // disco. Decirlo, no juzgarlo.
   const sucio = git(['status', '--porcelain', '--', rel])
   if (sucio) {
-    return { ...base, generatedAt: sello, nota: 'con cambios sin comitear' }
+    return { ...base, sello, clave, nota: 'con cambios sin comitear' }
   }
 
   const sha = git(['log', '-1', '--format=%H', '--', rel])
-  if (!sha) return { ...base, generatedAt: sello, nota: 'sin historial' }
+  if (!sha) return { ...base, sello, clave, nota: 'sin historial' }
   const fecha = git(['log', '-1', '--format=%aI', '--', rel])
   const diff = git(['show', '--format=', '--unified=0', sha, '--', rel])
 
   // Dos condiciones, y hacen falta las dos. El diff dice si el sello SE MOVIÓ;
   // las fechas dicen si TENÍA QUE MOVERSE. Un cambio hecho dentro del día que
   // el sello ya declara —cuando el sello es de día— está cubierto por él.
-  if (selloEnDiff(diff)) {
+  if (selloEnDiff(diff, clave)) {
     return {
       ...base,
       desenlace: 'ok',
-      generatedAt: sello,
+      sello,
+      clave,
       commit: sha.slice(0, 8),
       fechaCommit: fecha,
       nota: 'el último cambio movió el sello',
@@ -149,7 +186,8 @@ function mirar(nombre: string): FilaSello {
     return {
       ...base,
       desenlace: 'ok',
-      generatedAt: sello,
+      sello,
+      clave,
       commit: sha.slice(0, 8),
       fechaCommit: fecha,
       nota: selloEsDeDia(sello)
@@ -160,10 +198,11 @@ function mirar(nombre: string): FilaSello {
   return {
     ...base,
     desenlace: 'sello-quieto',
-    generatedAt: sello,
+    sello,
+    clave,
     commit: sha.slice(0, 8),
     fechaCommit: fecha,
-    nota: `el contenido cambió en ${sha.slice(0, 8)} (${fecha.slice(0, 10)}) y el sello sigue en ${sello.slice(0, 10)}`,
+    nota: `el contenido cambió en ${sha.slice(0, 8)} (${fecha.slice(0, 10)}) y ${clave} sigue en ${sello.slice(0, 10)}`,
   }
 }
 
