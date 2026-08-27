@@ -36,7 +36,12 @@ describe('buildSupportQueue · nada se cae por el camino', () => {
     const queue = build()
     // Que la comprobación mide algo: si el snapshot se quedara vacío, esta
     // prueba pasaría comparando 0 con 0 sin haber examinado nada.
-    expect(SNAPSHOT.items.length).toBeGreaterThan(40)
+    //
+    // El umbral era 40, o sea el tamaño del corpus del día que se escribió, y
+    // por tanto se rompía con cada retirada legítima — que es lo contrario de
+    // lo que una guarda anti-vacío debe hacer. Lo que hay que exigir es que
+    // haya corpus, no que no encoja nunca.
+    expect(SNAPSHOT.items.length).toBeGreaterThan(10)
     expect(queue.rows).toHaveLength(SNAPSHOT.items.length)
     expect(queue.stats.queued).toBe(SNAPSHOT.items.length)
     expect(queue.sourceSnapshot.itemCount).toBe(SNAPSHOT.items.length)
@@ -548,9 +553,11 @@ describe('classifyClaimShape · propiedad léxica, nunca un pronóstico', () => 
       for (const c of connectors) expect(f.summary).toContain(c.sentence)
     }
     // Que el recorrido evaluó algo. NO se afirma cuántas filas caen en cada
-    // forma: ese número debe poder bajar sin que nada se ponga rojo.
+    // forma: ese número debe poder bajar sin que nada se ponga rojo. El umbral
+    // de abajo decía justo lo contrario —era el tamaño del corpus del día que
+    // se escribió— y se rompió con la primera retirada legítima.
     expect(checked).toBe(SNAPSHOT.items.length)
-    expect(checked).toBeGreaterThan(40)
+    expect(checked).toBeGreaterThan(10)
   })
 })
 

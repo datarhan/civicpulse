@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T12:48:11.056Z",
+  "generatedAt": "2026-08-27T13:21:51.525Z",
   "version": "1",
   "plenoId": "k4olcs",
   "plenoDate": "2026-04-20",
@@ -364,18 +364,12 @@
       },
       "verification": {
         "claimId": "k4olcs-012-cit-ee47ed",
-        "verdict": "parcial",
-        "summary": "Candidato [0] confirma la 'Carta de servicios municipal' adjudicada en Riba-roja de Túria —el instrumento citado en el pleno como acto de transparencia— pero ningún candidato acredita la incorporación específica del Departamento de Innovación a dicha carta.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9LNl%2FM0VyDuiEJrVRqloyA%3D%3D",
-            "snippet": "tender[0].title=Carta de servicios municipal · coincide con la 'carta' del pleno como rendición de cuentas, pero el registro no menciona la incorporación del Departamento de Innovación",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -905,18 +899,14 @@
       },
       "verification": {
         "claimId": "k4olcs-018-afi-7abae5",
-        "verdict": "parcial",
-        "summary": "La licitación describe un sistema de debate y grabación para el salón de plenos que coincide con el contexto de la afirmación, pero el importe de 80.666 euros no se menciona explícitamente en el registro de la licitación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
-            "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia",
-            "similarity": 0.62
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -1380,18 +1370,12 @@
       },
       "verification": {
         "claimId": "k4olcs-023-cit-32bd92",
-        "verdict": "parcial",
-        "summary": "Existe un contrato para el asfaltado de un camino rural, lo que sugiere una relación con la afirmación de que el camino se encuentra en buen estado.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ig2hivipy%2FJ6nTs9LZ9RhQ%3D%3D",
-            "snippet": "Asfaltado camino rural.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -1622,18 +1606,12 @@
       },
       "verification": {
         "claimId": "k4olcs-026-cit-482421",
-        "verdict": "parcial",
-        "summary": "La alegación sobre la declaración de una situación individualizada de minimización y la solicitud de licencias de minimización se relaciona parcialmente con un contrato para la elaboración de un plan local de residuos.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor de servicio para la elaboración del plan local de residuos para el municipio de Riba-roja de Túria.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -4084,24 +4062,12 @@
       },
       "verification": {
         "claimId": "k4olcs-092-cit-706832",
-        "verdict": "parcial",
-        "summary": "Existen licitaciones para el mantenimiento de pistas de pádel en el CEIP Cervantes, lo cual está relacionado temáticamente con la afirmación sobre las pistas del colegio, pero no confirma directamente la imposibilidad de utilizarlas.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=R44fZo7q7XZt5r0ngvMetA%3D%3D",
-            "snippet": "Servicio de mantenimiento césped artificial en pistas de pádel.",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=hFrradR5sN8BPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Mantenimiento césped artificial pistas de pádel",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -5101,19 +5067,10 @@
       },
       "verification": {
         "claimId": "k4olcs-108-afi-1848f7",
-        "verdict": "verificado",
-        "summary": "La existencia de un visor de transparencia para la contratación pública corrobora la afirmación de que las licitaciones y adjudicaciones están disponibles para su comprobación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Visor de transparencia de contratación y herramienta para el control y santificación de licitaciones.",
-            "similarity": 0.25
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -6828,18 +6785,12 @@
       },
       "verification": {
         "claimId": "k4olcs-152-cit-0a683a",
-        "verdict": "verificado",
-        "summary": "La afirmación sobre la feria de comercio se corrobora con la existencia de un contrato público para una actuación musical en la feria del comercio de 2019.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=82sUgR%2BfOSyXQV0WE7lYPw%3D%3D",
-            "snippet": "Actuación musical feria del comercio 2019",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -6864,18 +6815,12 @@
       },
       "verification": {
         "claimId": "k4olcs-153-cit-8dabb3",
-        "verdict": "parcial",
-        "summary": "El candidato 0 confirma la existencia de una 'feria del comercio' en 2019, que es el contexto de la afirmación, pero no aporta información específica sobre las fechas de celebración en mayo.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=82sUgR%2BfOSyXQV0WE7lYPw%3D%3D",
-            "snippet": "Actuación musical feria del comercio 2019",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -6927,18 +6872,12 @@
       },
       "verification": {
         "claimId": "k4olcs-154-cit-18d379",
-        "verdict": "parcial",
-        "summary": "The claim mentions that businesses can register for the trade fair. Candidate 2, a tender for a 'musical performance for the 2019 trade fair', indicates the existence of such an event, offering topical correlation without directly verifying or contradicting the registration aspect.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=82sUgR%2BfOSyXQV0WE7lYPw%3D%3D",
-            "snippet": "Actuación musical feria del comercio 2019",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -7682,18 +7621,12 @@
       },
       "verification": {
         "claimId": "k4olcs-170-cit-4f09f8",
-        "verdict": "verificado",
-        "summary": "El contrato para la 'Actuación musical feria del comercio 2019' corrobora la existencia y consideración de la Fira de Comercio en las campañas comerciales del año.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=82sUgR%2BfOSyXQV0WE7lYPw%3D%3D",
-            "snippet": "Actuación musical feria del comercio 2019 · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -8257,18 +8190,12 @@
       },
       "verification": {
         "claimId": "k4olcs-178-cit-5372ee",
-        "verdict": "parcial",
-        "summary": "Se encontró una licitación relacionada con una 'feria del comercio', pero la fecha de 2019 no coincide con la fecha de 2026 mencionada en la reclamación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=82sUgR%2BfOSyXQV0WE7lYPw%3D%3D",
-            "snippet": "Actuación musical feria del comercio 2019",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"

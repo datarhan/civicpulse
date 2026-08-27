@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T12:48:11.056Z",
+  "generatedAt": "2026-08-27T13:21:51.525Z",
   "version": "1",
   "plenoId": "1qi8axv",
   "plenoDate": "2025-12-23",
@@ -644,18 +644,12 @@
       },
       "verification": {
         "claimId": "1qi8axv-010-cit-10bab3",
-        "verdict": "verificado",
-        "summary": "El contrato de servicio que incluye la asistencia técnica de apoyo, control y supervisión, dividido en dos lotes y fechado en 2025, corrobora la existencia de la figura del Lote 2 como auditora para dicho servicio.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato servicio... dividido en dos lotes (Ctto 136/2025) y servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del mismo.",
-            "similarity": 0.4
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -2121,18 +2115,12 @@
       },
       "verification": {
         "claimId": "1qi8axv-058-cit-0e3a9a",
-        "verdict": "parcial",
-        "summary": "El contrato de servicio de recogida de residuos sólidos urbanos está relacionado temáticamente con la gestión de contenedores, aunque no menciona explícitamente sistemas subterráneos. ",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -2310,30 +2298,12 @@
       },
       "verification": {
         "claimId": "1qi8axv-064-cit-d78c9c",
-        "verdict": "verificado",
-        "summary": "La reclamación está verificada por licitaciones relacionadas con la promoción de la salud, la vigilancia de la salud y la provisión de equipamiento para un Centro de Salud.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=05AJhpHeBL57h85%2Fpmmsfw%3D%3D",
-            "snippet": "Programa del mayor: actividades formativas, culturales, lúdicas y de promoción de la salud física y mental para el colectivo de mayores",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DDuU2CuSCh0BPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "adquisición de una carpa de 10x15 (150m2) zona exterior Centro de Salud para habilitar zona de triaje para usuarios que accedan al Centro de Salud",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0rlFYENVpkYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Prevención ajeno: vigilancia de la salud",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"

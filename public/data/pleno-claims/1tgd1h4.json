@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T12:48:11.056Z",
+  "generatedAt": "2026-08-27T13:21:51.525Z",
   "version": "1",
   "plenoId": "1tgd1h4",
   "plenoDate": "2024-07-29",
@@ -2570,18 +2570,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-032-cit-252d71",
-        "verdict": "parcial",
-        "summary": "The claim refers to the legal framework governing the private use of public spaces. The legal advisory service provided to the City Council is topically related, as it could include guidance on establishing or implementing such a legal regime.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=MT4UDr1mVSrnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Servicio de asesoramiento jurídico y defensa procesal del Ayuntamiento",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -3979,36 +3973,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-054-cit-500d9b",
-        "verdict": "verificado",
-        "summary": "La mención a obras municipales se verifica con varias licitaciones de obras y mejoras en edificios y propiedades del ayuntamiento, corroborando la existencia de tales proyectos.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Sigih%2BOEc2d7h85%2Fpmmsfw%3D%3D",
-            "snippet": "obras de reparación goteras en edificios municipales.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=L6ABbu5%2BhfgQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Habilitación de locales de ctra. villamarchante, 119, para asociaciones municipales",
-            "similarity": 0.29
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TPdXI45n6OQuf4aBO%2BvQlQ%3D%3D",
-            "snippet": "Obras de instalación de un ascensor en el CEIP Cervantes.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2ispnjmQgmCXQV0WE7lYPw%3D%3D",
-            "snippet": "instalación del césped para 4 pistas de padel de titularidad municipal",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -5789,18 +5759,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-077-cit-052d20",
-        "verdict": "parcial",
-        "summary": "La afirmación define los toldos regulados para el sombreado de terrazas. El candidato [4] es una licitación para el acondicionamiento de áreas de sombraje públicas, mostrando una conexión temática clara aunque no verifica directamente la redacción específica de la ordenanza.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HmEg%2BJs8Z%2BKrz3GQd5r6SQ%3D%3D",
-            "snippet": "Contrato Menor de las obras de acondicionamiento de áreas de sombraje en explanada CIJ del Ayuntamiento de Riba-Roja de Túria.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -6055,18 +6019,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-082-cit-ce8c9d",
-        "verdict": "parcial",
-        "summary": "Los trabajos de urbanización de la acera en la zona de entrada desde Villamarchante (candidatos 0 y 1) podrían estar relacionados con la mejora o facilitación del acceso a edificios y locales comerciales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=WRil3xaM4Rt7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Urbanización acera zona entrada desde Villamarchante.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -6391,18 +6349,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-084-cit-ee60b6",
-        "verdict": "parcial",
-        "summary": "El candidato 0, un contrato de mantenimiento de control de acceso corporativo, está tangencialmente relacionado con la idea de permitir el acceso, pero no aborda directamente la transparencia o el libre acceso a funcionarios.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Mantenimiento control de acceso corporativo.",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -8541,18 +8493,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-118-cit-368867",
-        "verdict": "parcial",
-        "summary": "Candidate [5] details an employment and training project, which aligns with the subject matter of the regulation mentioned in the claim, but does not directly corroborate the approval of the regulation itself.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=031ONMu5JSn%2B3JAijKO%2Bkg%3D%3D",
-            "snippet": "El objeto contratación es la adquisición de vestuario laboral y EPIs para el personal del Taller de Empleo Riba-roja Bonica VI FOTAE/2024/25/46, proyecto de formación y empleo que se desarrollará en el Ayuntamiento de Riba-roja de",
-            "similarity": 0.21
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -8605,30 +8551,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-119-cit-d1901e",
-        "verdict": "parcial",
-        "summary": "Varios contratos de licitación del Ayuntamiento de Riba-roja de Túria confirman la existencia de servicios de formación y talleres que se alinean con programas de empleo y formación, corroborando parcialmente la afirmación sobre el desarrollo de este tipo de iniciativas.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-            "snippet": "El Ayuntamiento de Riba-roja de Túria licitó 'Servicios de formación', lo que respalda la existencia de programas de formación para el empleo.",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Km8GNhaVu5IQK2TEfXGy%2BA%3D%3D",
-            "snippet": "La licitación para 'Talleres de fotografía' por el Ayuntamiento de Riba-roja de Túria se alinea con la mención de Talleres de Empleo y Escuelas Taller.",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Km8GNhaVu5IQK2TEfXGy%2BA%3D%3D",
-            "snippet": "La licitación para 'Talleres de Inglés' por el Ayuntamiento de Riba-roja de Túria se alinea con la mención de Talleres de Empleo y Escuelas Taller.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -8683,36 +8611,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-120-cit-70adfe",
-        "verdict": "parcial",
-        "summary": "The municipality's tenders include general training services and maintenance for an employment portal, showing related activity but not directly confirming specific 'Escuelas Taller' or 'Talleres de Empleo' programs as described in the claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-            "snippet": "80500000-Servicios de formación.",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-            "snippet": "80510000-Servicios de formación especializada.",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-            "snippet": "80000000-Servicios de enseñanza y formación.",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BJRR%2BfdEgQIQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Mantenimiento portal de empleo",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -13390,18 +13294,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-194-cit-666261",
-        "verdict": "parcial",
-        "summary": "El candidato [0] se refiere al mantenimiento de aplicaciones de gestión que incluyen un registro, lo que es topícamente relevante para la creación de un registro de información, aunque no sea una corroboración directa de la acción de 'crear'.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Mantenimiento aplicaciones de gestión corporativas área económica, población y registro.",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -15058,18 +14956,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-213-cit-2a5419",
-        "verdict": "parcial",
-        "summary": "La obra de Reurbanización en la zona de la Plaza de la Estación corrobora parcialmente la afirmación sobre los viales en dicha plaza, pero no hay evidencia para la Calle Dos de Mayo.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Afa7sVu4kmyXQV0WE7lYPw%3D%3D",
-            "snippet": "Obra de Reurbanización zona plaza de la Estación y C/ Muelle y mejora exterior del edificio de la Estación",
-            "similarity": 0.24
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -15305,18 +15197,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-217-cit-584834",
-        "verdict": "parcial",
-        "summary": "El contrato de servicios para un plan de integridad y medidas antifraude está temáticamente relacionado con la necesidad de aprobar un plan de gestión ética, aunque no es el mismo tipo de documento ni coincide en la fecha exacta.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=F6rHfi0CpxbVGIpKDxgsAQ%3D%3D",
-            "snippet": "Contrato servicios, referido a la formación, asistencia y apoyo en la gestión y seguimiento del plan de integridad y medidas antifraude (74/2024)",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -16545,24 +16431,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-229-cit-440be1",
-        "verdict": "parcial",
-        "summary": "Las licitaciones 3 y 6 mencionan obras de adecuación y reurbanización en parques y jardines, lo cual podría incluir la habilitación de espacios para perros, aunque no se especifica explícitamente la creación de áreas caninas.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=owgkhfJ99nyXQV0WE7lYPw%3D%3D",
-            "snippet": "Sistema dinámico de adquisición para la ejecución de obras de adecuación y reurbanización de viales y parques y jardines del término municipal de Riba-roja de Túria",
-            "similarity": 0.21
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r30kXD%2FMos%2BiEJrVRqloyA%3D%3D",
-            "snippet": "Contrato de obras de MEJORA DE ACCESIBILIDAD... ejecución de obras de adecuación y reurbanización de viales y parques y jardines del término municipal",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -16587,18 +16461,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-230-cit-b7b67f",
-        "verdict": "parcial",
-        "summary": "El candidato [2] se relaciona con la gestión de residuos del municipio, lo cual es temáticamente similar a la creación de espacios para la gestión de excrementos de mascotas, aunque no aborda directamente la habilitación de pipicanes o contenedores específicos para este fin.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor de servicio para la elaboración del plan local de residuos para el municipio de Riba-roja de Túria.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -17295,18 +17163,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-239-cit-cd0707",
-        "verdict": "parcial",
-        "summary": "Aunque se menciona la creación y mantenimiento de un Portal de Transparencia en los candidatos, no hay evidencia directa sobre la publicación específica del 'Plan de Gestión ética' en dicho portal o en el tablón de anuncios electrónico.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mV0QInbOtkfnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Servicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado...",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -18916,24 +18778,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-259-cit-d44f45",
-        "verdict": "parcial",
-        "summary": "Existen licitaciones para servicios de limpieza y formación/educación, que son componentes de la gestión integral de colonias felinas mencionada, pero ninguna se refiere específicamente a colonias felinas o su gestión integral.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
-            "snippet": "Servicio limpieza",
-            "similarity": 1
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-            "snippet": "Servicios de enseñanza y formación",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -19309,24 +19159,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-264-cit-ab9c0f",
-        "verdict": "verificado",
-        "summary": "Tenders for comprehensive maintenance services of municipal garden areas, parks, green spaces, and public plots directly corroborate the claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HJBVBRq8QhiXQV0WE7lYPw%3D%3D",
-            "snippet": "Servicio de mantenimiento de zonas ajardinadas, viales públicos y espacios públicos de titularidad municipal.",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=PWq6zyuzw1qmq21uxhbaVQ%3D%3D",
-            "snippet": "Servicio de conservación, mantenimiento, limpieza y mejora de Parques, jardines, zonas verdes, y solares de propiedad municipal.",
-            "similarity": 0.3
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -19645,18 +19483,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-266-cit-471a24",
-        "verdict": "parcial",
-        "summary": "Un contrato de servicio para el mantenimiento de la calidad del agua puede estar relacionado con la prevención de mosquitos, pero no aborda directamente las recomendaciones específicas para el control de mosquitos.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
-            "snippet": "Servicio para el mantenimiento para la calidad del agua.",
-            "similarity": 0.5
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -27288,18 +27120,12 @@
       },
       "verification": {
         "claimId": "1tgd1h4-362-cit-0e9bb1",
-        "verdict": "parcial",
-        "summary": "Se encontraron contratos para la defensa legal del Ayuntamiento en procedimientos judiciales derivados de la anulación del PAI Mas de Porxinos, un evento central en la reclamación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8mT2MBthkfMQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Defensa en juicio en los procedimientos judiciales instados contra el Ayuntamiento que traigan causa de la anulación del PAI Porxinos",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"

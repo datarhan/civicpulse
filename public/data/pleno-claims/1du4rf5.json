@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T12:48:11.056Z",
+  "generatedAt": "2026-08-27T13:21:51.525Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -1448,18 +1448,12 @@
       },
       "verification": {
         "claimId": "1du4rf5-038-cit-8c0520",
-        "verdict": "parcial",
-        "summary": "The claim refers to the definitive approval of a 'estudio de detalle' related to urbanism. Candidate 1 is topically related as it involves the drafting of a 'estudio de inundabilidad' for urban land expansion, but it's a different type of study and refers to drafting rather than approval.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ek5miXvwRWCmq21uxhbaVQ%3D%3D",
-            "snippet": "Redacción estudio de inundabilidad para la modificación puntual nº 23 ampliación de suelo industrial",
-            "similarity": 0.22
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -3651,18 +3645,12 @@
       },
       "verification": {
         "claimId": "1du4rf5-084-cit-0135bd",
-        "verdict": "verificado",
-        "summary": "El mantenimiento de una aplicación de interoperabilidad apoya la afirmación de ampliación de la interoperabilidad de los sistemas de información.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Mantenimiento aplicación de interoperabilidad Agente SC",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"

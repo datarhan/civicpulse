@@ -174,7 +174,14 @@ const expectWithdrawn = (id: string): void => {
  * dos): cuando un lote de re-transcripción degrada citas, los resúmenes que las
  * enuncian se quedan afirmando de más una por una.
  */
-const TOTAL_CORRECTIONS = 148
+/*
+ * 148 → 146 el 2026-08-27: al retirar `f-2026-01-19-acu-b1a13f` —hecha por
+ * entero de citas que la puerta retiene, tras comprobar que el anclaje NLI no
+ * podía fundamentar ninguna— sus dos correcciones dejaron de existir con ella.
+ * El total es un registro histórico de correcciones VIVAS, no un contador que
+ * sólo suba: una retirada legítima lo baja.
+ */
+const TOTAL_CORRECTIONS = 146
 const TOTAL_REMOVALS = 35
 
 /** One row of a review batch's fixture: enough to locate its own entries. */

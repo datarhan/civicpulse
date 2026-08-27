@@ -1,10 +1,10 @@
 {
   "_comment": "DERIVADO, no curado. Dos cosas por cada literal publicado en /hallazgos. (1) `quotes[id][i].status`: de qué transcripción procede — de la vigente, sólo de la que se sustituyó al re-transcribir la sesión, o de ninguna de las dos de forma concluyente. (2) `quotes[id][i].gate`: qué haría con la afirmación que sostiene esa cita la puerta editorial de src/scraper/claim-public-gate.ts, que gobierna /plenos y que /hallazgos no consultaba — `shown`, `toggle` o `hidden`, su propio vocabulario. Ninguna de las dos modifica una cita y ninguna es una corrección: el único escritor de public/data/pleno-findings.json sigue siendo `npm run correct-pleno-finding`. Se regenera con `npm run compute:finding-quote-provenance`.",
   "version": "finding-quote-provenance-v2",
-  "generatedAt": "2026-08-27T11:44:17.548Z",
+  "generatedAt": "2026-08-27T13:26:36.639Z",
   "source": {
     "findings": "public/data/pleno-findings.json",
-    "findingsGeneratedAt": "2026-08-26T10:55:47.000Z",
+    "findingsGeneratedAt": "2026-08-27T13:26:24.995Z",
     "transcripts": "public/data/pleno-transcripts",
     "superseded": "public/data/pleno-transcripts/superseded"
   },
@@ -59,31 +59,31 @@
       }
     ],
     "stats": {
-      "citasConClaim": 134,
+      "citasConClaim": 131,
       "citasSinClaim": 0,
       "porContraste": {
         "shown": 2,
         "toggle": 92,
-        "hidden": 40
+        "hidden": 37
       },
       "baseDisponible": true,
-      "citasConVeredictoDeOverlay": 30,
+      "citasConVeredictoDeOverlay": 20,
       "citasReclasificadasPorElOverlay": 22,
-      "hallazgosSinCitaMostrable": 39,
-      "hallazgosSoloConCitasOcultas": 1,
+      "hallazgosSinCitaMostrable": 38,
+      "hallazgosSoloConCitasOcultas": 0,
       "claimsEnCorpus": 6919,
-      "entradasDeOverlay": 1451
+      "entradasDeOverlay": 1364
     }
   },
   "stats": {
-    "findings": 41,
-    "quotes": 134,
-    "enVigente": 102,
-    "soloEnSustituida": 32,
+    "findings": 40,
+    "quotes": 131,
+    "enVigente": 101,
+    "soloEnSustituida": 30,
     "sinDeterminar": 0,
     "sinDeterminarPorTranscripcionMasCorta": 0,
     "sinDeterminarPorFaltaDeTranscripcion": 0,
-    "findingsConCitaMarcada": 21,
+    "findingsConCitaMarcada": 20,
     "sesionesConCitas": 11,
     "sesionesRetranscritas": 10,
     "sesionesNoComparables": 1,
@@ -549,20 +549,6 @@
         "gate": "hidden"
       }
     ],
-    "f-2026-01-19-acu-b1a13f": [
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "solo-en-sustituida",
-        "gate": "hidden"
-      },
-      {
-        "status": "solo-en-sustituida",
-        "gate": "hidden"
-      }
-    ],
     "f-2025-12-23-cit-c905c3": [
       {
         "status": "en-vigente",
@@ -780,9 +766,9 @@
   },
   "unresolved": [],
   "builtFrom": {
-    "pleno-findings.json": "a1b22c24f05f",
-    "pleno-claims-verified.json": "a4b10fcec16c",
+    "pleno-findings.json": "1629aa020c8b",
+    "pleno-claims-verified.json": "e8d6d978c537",
     "pleno-claims-verified-base.json": "f72cf42a5b97",
-    "pleno-claims-overlay.json": "0a9926557617"
+    "pleno-claims-overlay.json": "c90b760ea893"
   }
 }

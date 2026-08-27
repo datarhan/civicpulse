@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-26T10:55:47.000Z",
+  "generatedAt": "2026-08-27T13:26:24.995Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -2269,76 +2269,6 @@
       ]
     },
     {
-      "id": "f-2026-01-19-acu-b1a13f",
-      "plenoId": "19gax3o",
-      "plenoDate": "2026-01-19",
-      "title": "Debate sobre la recogida de residuos y el contrato de emergencia (pleno 2026-01-19)",
-      "summary": "El grupo PP señala que, según la técnica municipal, actualmente solo Garbialdi —empresa contratada— trabajaba en la recogida de residuos, mientras un grupo no identificado pregunta si FCC también intervenía bajo un contrato de emergencia. El registro municipal incluye el «Contrato de servicio público de recogida de residuos sólidos urbanos del municipio», adjudicado a GARBIALDI, S.A. La sesión documenta el debate sin adjudicar su veracidad.",
-      "severity": "informational",
-      "sourceClaimIds": [
-        "19gax3o-161-acu-b1a13f",
-        "19gax3o-160-acu-95ec4f",
-        "19gax3o-161-acu-74a547"
-      ],
-      "quotes": [
-        {
-          "text": "Vostè posteriorment ha fet un vídeo dient que està treballant FCC. Contracte d'urgència, d'emergència només tenim dels dies...",
-          "speakerGroup": null,
-          "sourceClaimId": "19gax3o-161-acu-b1a13f"
-        },
-        {
-          "text": "actualmente FCC estaba trabajando o solo era Garbialdi la que estaba trabajando en el tema de la recogida de FEMA la técnica nos dice que actualmente solo estaba trabajando Garbialdi la empresa contratada",
-          "speakerGroup": "PP",
-          "sourceClaimId": "19gax3o-160-acu-95ec4f"
-        },
-        {
-          "text": "si actualmente FCC estaba trabajando o solo era Garbialdi la que estaba trabajando en el tema de la recogida de FEMA",
-          "speakerGroup": null,
-          "sourceClaimId": "19gax3o-161-acu-74a547"
-        }
-      ],
-      "crossChecked": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mK90j1JRu%2BCXQV0WE7lYPw%3D%3D",
-          "snippet": "contrato emergencia acondicionamiento de caminos con realización de muro de contención y \nmallazo de hormigón por derrumbes con motivo del episodio de lluvias torrenciales \nacontecido en noviembre de 2022. · Ayuntamiento de Riba-roja de…"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-          "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio."
-        },
-        {
-          "kind": "pleno-video",
-          "ref": "https://www.youtube.com/watch?v=2RV4hvVGmlA",
-          "snippet": "Vídeo del pleno 2026-01-19 · YouTube"
-        }
-      ],
-      "contradiction": [],
-      "relatedPromiseIds": [],
-      "curatorName": "auto-curation-v1",
-      "publishedAt": "2026-07-07",
-      "response": null,
-      "corrections": [
-        {
-          "field": "summary",
-          "original": "El grupo PP señala que, según la técnica municipal, actualmente solo Garbialdi —empresa contratada— trabajaba en la recogida de residuos, mientras el grupo Otro pregunta si FCC también intervenía bajo un contrato de emergencia. El registro municipal incluye el «Contrato de servicio público de recogida de residuos sólidos urbanos del municipio», adjudicado a GARBIALDI, S.A. La sesión documenta el debate sin adjudicar su veracidad.",
-          "corrected": "El grupo PP señala que, según la técnica municipal, actualmente solo Garbialdi —empresa contratada— trabajaba en la recogida de residuos, mientras un grupo no identificado pregunta si FCC también intervenía bajo un contrato de emergencia. El registro municipal incluye el «Contrato de servicio público de recogida de residuos sólidos urbanos del municipio», adjudicado a GARBIALDI, S.A. La sesión documenta el debate sin adjudicar su veracidad.",
-          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-01T18:55:17.086Z"
-        },
-        {
-          "field": "quote.0.text",
-          "original": "ustedes posteriormente y si en un vídeo diciendo que está trabajando FCC contrato de emergencia",
-          "corrected": "Vostè posteriorment ha fet un vídeo dient que està treballant FCC. Contracte d'urgència, d'emergència només tenim dels dies...",
-          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T12:54:14.085Z"
-        }
-      ]
-    },
-    {
       "id": "f-2025-12-23-cit-c905c3",
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
@@ -3668,9 +3598,18 @@
       "severity": "informational",
       "plenoId": "rmtyr",
       "plenoDate": "2025-07-31"
+    },
+    {
+      "findingId": "f-2026-01-19-acu-b1a13f",
+      "reason": "Se retira la pasada LLM de la que dependian sus tres citas: el anclaje NLI con el corpus semantico cargado no pudo fundamentar ninguna, asi que la puerta editorial las retiene todas y el resumen queda sin fuente por construccion.",
+      "editor": "retirada-pasada-llm",
+      "retractedAt": "2026-08-27T13:26:24.993Z",
+      "digest": "hallazgo · sha256:d1903406ef93",
+      "quoteCount": 3,
+      "crossCheckedCount": 3,
+      "severity": "informational",
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19"
     }
-  ],
-  "builtFrom": {
-    "pleno-claims-verified.json": "d16875ebde11"
-  }
+  ]
 }

@@ -124,27 +124,20 @@ describe('las que no tienen NADA contrastado van marcadas aparte', () => {
    * que marcar.
    */
   /**
-   * EXCEPCIÓN FECHADA — 2026-08-27, se levanta en la fase 6.
+   * Cerrada la fase 6 el 2026-08-27, vuelve a cero.
    *
-   * Al cerrar la puerta de publicación (`tieneVerificadorAnotado` ahora exige un
-   * corpus de verdad, no una marca de pasada) las once acusaciones que se
-   * publicaban sobre `llm-second-pass` pasaron a `hidden`, y con ellas las tres
-   * citas de `f-2026-01-19-acu-b1a13f`. Esa ficha queda, hoy, hecha por entero
-   * de citas retenidas.
+   * La excepción duró unas horas: se retiró la pasada `llm` —87 entradas de
+   * overlay— tras comprobar que el anclaje NLI, con el corpus semántico
+   * cargado, no podía fundamentar ninguna. Sin ellas aflora el `sin-datos` de
+   * la pasada determinista, y `f-2026-01-19-acu-b1a13f` se retiró porque la
+   * puerta retenía sus tres citas: un resumen sin fuente por construcción.
    *
-   * No se retracta todavía a propósito: la retractación es de ida y sin vuelta
-   * («no unretract»), y la fase 6 va a re-fundamentar esas afirmaciones con NLI.
-   * Si vuelven fundadas, la ficha vuelve a estar entera y no se habrá destruido
-   * nada. Si no vuelven, se retracta entonces con `npm run retract-finding`.
-   *
-   * Se FIJA el número conocido en vez de saltar la prueba: un `skip` no mide
-   * nada, y lo que hay que impedir mientras dure la excepción es que crezca.
-   * En cuanto la fase 6 cierre, esto vuelve a ser `toBe(0)`.
+   * Exigir `> 0` sería exigir que el defecto vuelva.
    */
-  it('el corpus publicado sólo tiene la excepción conocida', () => {
+  it('el corpus publicado ya no tiene ninguna, que es el estado correcto', () => {
     const marcadas = QUEUE.rows.filter((r) => r.ningunaCitaContrastada)
-    expect(marcadas.map((r) => r.findingId)).toEqual(['f-2026-01-19-acu-b1a13f'])
-    expect(QUEUE.stats.sinNingunaCitaContrastada).toBe(1)
+    expect(marcadas).toEqual([])
+    expect(QUEUE.stats.sinNingunaCitaContrastada).toBe(0)
   })
 
   it('y la marca no está muerta: sigue disparando sobre una ficha así', () => {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T12:48:11.056Z",
+  "generatedAt": "2026-08-27T13:21:51.525Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -768,18 +768,12 @@
       },
       "verification": {
         "claimId": "1sqj7is-032-cit-a5a4df",
-        "verdict": "parcial",
-        "summary": "Un contrato de consultoría jurídica para el servicio de agua es una coincidencia parcial con la adecuación de la normativa de tarifas, ya que implica asesoramiento legal en torno a la gestión integral del agua.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Sn3tl1a79p4uf4aBO%2BvQlQ%3D%3D",
-            "snippet": "Contrato Menor de consultoría y asistencia jurídica especializada en relación al contrato de servicio de gestión integral del agua y los procedimientos judiciales que le afectan.",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -1283,18 +1277,12 @@
       },
       "verification": {
         "claimId": "1sqj7is-054-cit-3dc74c",
-        "verdict": "parcial",
-        "summary": "Los candidatos muestran la existencia de contratos derivados de un Sistema Dinámico de Adquisición (SDA), como menciona la afirmación, sin embargo, no proporcionan evidencia directa de que estos sirvan para reducir los reconocimientos extrajudiciales ni su vinculación con el expediente nº 5/2026.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4roXkK9o42irz3GQd5r6SQ%3D%3D",
-            "snippet": "Contrato derivado del sistema dinámico de adquisición de servicios para TALLERES de INFORMÁTICA en la EPA.",
-            "similarity": 0.57
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"

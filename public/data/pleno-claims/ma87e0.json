@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T12:48:11.056Z",
+  "generatedAt": "2026-08-27T13:21:51.525Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -679,18 +679,12 @@
       },
       "verification": {
         "claimId": "ma87e0-102-cit-a8afef",
-        "verdict": "parcial",
-        "summary": "La reclamación hace referencia a la financiación de una obra viaria en la Llobatera. El candidato [2] es un contrato para obras de mejora viaria, pero en PLV, lo que lo convierte en una coincidencia parcial por la diferencia de ubicación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8c5VLmSbG%2BQ7%2B9FIQYNjeQ%3D%3D",
-            "snippet": "Obras de mejora viaria, señalización y áreas de descanso en PLV.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -829,18 +823,12 @@
       },
       "verification": {
         "claimId": "ma87e0-104-cit-377216",
-        "verdict": "parcial",
-        "summary": "The claim mentions a multi-purpose building (Edificio Polivalente) in Chemmachor, and candidates 3 and 4 refer to works on an 'Edificio Polivalente'. The specific location 'Chemmachor' is not explicitly mentioned in the tender titles, but the building type is a direct match.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JZ%2F2pX4u%2B497h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato de obras de impermeabilización cubierta Edificio Polivalente por procedimiento abierto súper simplificado",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -1826,24 +1814,12 @@
       },
       "verification": {
         "claimId": "ma87e0-123-cit-170e96",
-        "verdict": "parcial",
-        "summary": "Existen licitaciones para servicios de formación por parte del Ayuntamiento de Riba-roja de Túria, lo que indica una dotación presupuestaria para formación, aunque el plan específico 'Riva Dona' no se menciona explícitamente.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-            "snippet": "tender · 80500000-Servicios de formación. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-            "snippet": "tender · 80000000-Servicios de enseñanza y formación. · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -3012,18 +2988,11 @@
       },
       "verification": {
         "claimId": "ma87e0-158-pro-6aea08",
-        "verdict": "parcial",
-        "summary": "Existen licitaciones para el servicio de limpieza viaria, lo que relaciona los candidatos con el tema del anuncio. Sin embargo, ninguna de las licitaciones o contratos existentes confirma directamente la futura modificación e incremento del contrato de limpieza viaria.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bWCiPeMjwnKmq21uxhbaVQ%3D%3D",
-            "snippet": "Servicio de limpieza viaria del municipio de Riba-roja",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "promises"
         ]
       },
       "visibility": "toggle"
