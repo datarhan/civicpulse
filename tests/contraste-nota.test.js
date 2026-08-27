@@ -17,6 +17,24 @@ describe('la nota de «acusación no contrastada» no inventa un editor humano',
   // 19 fichas que llevan la marca las firma `auto-curation-v1`. Ninguna
   // persona decidió nada. Lo cazó la revisión de superficies; ninguna
   // comprobación de datos podía, porque el dato estaba bien.
+  /**
+   * La frase decía «Aquí aparece igualmente», que describía la política vieja:
+   * marcar el literal y publicarlo de todos modos. Desde que las dos
+   * superficies obedecen la misma puerta, el literal NO aparece — y la nota
+   * que lo negaba se quedó rancia el mismo día que se escribió.
+   *
+   * Se fija por texto porque es prosa sobre grupos políticos con nombre: si
+   * alguien vuelve a la política anterior, esto tiene que ponerse rojo antes de
+   * que la página vuelva a afirmar lo contrario de lo que hace.
+   */
+  it('no dice que el literal aparezca aquí, porque ya no aparece', () => {
+    for (const quien of ['auto-curation-v1', 'civicpulse-curator', '']) {
+      const nota = notaAcusacionSinContrastar(quien)
+      expect(nota, `curador «${quien}»`).not.toMatch(/aparece igualmente|aquí aparece/i)
+      expect(nota, `curador «${quien}»`).toMatch(/no se publica/i)
+    }
+  })
+
   it('nombra al proceso automático cuando lo editó una máquina', () => {
     const nota = notaAcusacionSinContrastar('auto-curation-v1')
     expect(nota).toContain('auto-curation-v1')

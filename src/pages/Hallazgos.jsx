@@ -5,7 +5,13 @@ import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import DataAsOf from '../components/DataAsOf'
 // One RefList, not two. It was duplicated verbatim here and in PlenoFindings,
 // so a heading fixed on one surface silently left the other one lying.
-import { RefList, QuoteProvenanceMark, QuoteProvenanceNote } from '../components/PlenoFindings'
+import {
+  RefList,
+  QuoteProvenanceMark,
+  QuoteProvenanceNote,
+  citaRetenida,
+  CitaRetenida,
+} from '../components/PlenoFindings'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
 import { useFindingQuoteProvenance, provenanceFor } from '../hooks/useFindingQuoteProvenance'
 import { authorshipBreakdown } from '../scraper/finding-authorship'
@@ -130,18 +136,29 @@ export function FindingDetailCard({ f, permalink }) {
       <EvidenceBand n={1} title="Lo que se dijo">
         {f.quotes?.length > 0 ? (
           <>
-            {f.quotes.map((q, i) => (
-              // Sin speakerGroup la cita no se queda muda, dice «sin atribuir».
-              // Antes se omitía la línea y una cita sin dueño se leía igual que
-              // una atribuida.
-              <Quote
-                key={i}
-                text={q.text}
-                attribution={q.speakerGroup ? blocLabel(q.speakerGroup) : null}
-                tone={PARTY_TONE[q.speakerGroup]}
-                marks={<QuoteProvenanceMark entry={prov[i]} />}
-              />
-            ))}
+            {f.quotes.map((q, i) =>
+              // La puerta editorial manda en las dos superficies: si retiene el
+              // literal en /declaraciones, aquí tampoco se publica. Lo que se
+              // retiene es la CITA, no la ficha.
+              citaRetenida(prov[i]) ? (
+                <CitaRetenida
+                  key={i}
+                  attribution={q.speakerGroup ? blocLabel(q.speakerGroup) : null}
+                  tone={PARTY_TONE[q.speakerGroup]}
+                />
+              ) : (
+                // Sin speakerGroup la cita no se queda muda, dice «sin atribuir».
+                // Antes se omitía la línea y una cita sin dueño se leía igual que
+                // una atribuida.
+                <Quote
+                  key={i}
+                  text={q.text}
+                  attribution={q.speakerGroup ? blocLabel(q.speakerGroup) : null}
+                  tone={PARTY_TONE[q.speakerGroup]}
+                  marks={<QuoteProvenanceMark entry={prov[i]} />}
+                />
+              ),
+            )}
             <QuoteProvenanceNote entries={prov} curatorName={f.curatorName} />
           </>
         ) : (
