@@ -33,7 +33,7 @@
  */
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
 import { resolve, join } from 'node:path'
-import { esMarcaDePasada } from '../src/scraper/claim-verdicts'
+import { esMarcaDePasada, corpusReales } from '../src/scraper/claim-verdicts'
 
 const MONOLITO = resolve('public/data/pleno-claims-verified.json')
 const SALIDA_DIR = resolve('editorial')
@@ -107,9 +107,9 @@ function main(): void {
     const consultados = (it.verification?.checkedAgainst ?? []).filter(
       (c): c is string => typeof c === 'string',
     )
-    const reales = consultados.filter((c) => !esMarcaDePasada(c))
     for (const c of consultados) corpus[c] = (corpus[c] ?? 0) + 1
-    const vacio = consultados.length === 0
+    // Sin corpus REAL: una marca de pasada no es una fuente.
+    const vacio = corpusReales(consultados).length === 0
     if (vacio) huerfanas.push(it)
     for (const [t, k] of [
       [porTipo, it.claim?.type],
@@ -121,7 +121,6 @@ function main(): void {
       if (vacio) cel.sinCorpus += 1
       else cel.conCorpus += 1
     }
-    void reales
   }
 
   // Corpus candidatos: instantáneas que el sitio ya publica y que el

@@ -21,6 +21,7 @@
  */
 
 import type { PlenoClaim, ClaimType, ClaimTopic } from './pleno-claim'
+import { corpusReales } from './claim-verdicts'
 
 // The verifier emits items as { claim, verification } pairs. We keep
 // that shape verbatim in the chunks so the SPA hook can stitch the
@@ -236,10 +237,13 @@ export function buildManifest(
     for (const it of items) {
       const t = it.claim?.topic
       const v = it.verification?.verdict
-      const consultados = it.verification?.checkedAgainst ?? []
-      for (const c of consultados) {
+      const listados = it.verification?.checkedAgainst ?? []
+      for (const c of listados) {
         if (typeof c === 'string') corpus[c] = (corpus[c] ?? 0) + 1
       }
+      // Los CORPUS, sin las marcas de pasada: una fila revisada por el segundo
+      // paso y por nada más no está cotejada contra ningún dato.
+      const consultados = corpusReales(listados)
       // La cobertura mira TODAS las filas, no sólo las `sin-datos`: la pregunta
       // es «¿contra qué se pudo cotejar?», y una fila verificada también
       // contesta a eso.

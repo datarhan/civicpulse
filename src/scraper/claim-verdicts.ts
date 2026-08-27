@@ -68,7 +68,7 @@ export function resumirSinDatos(
   let comprobadoSinHallar = 0
   for (const v of verifications) {
     if (v?.verdict !== 'sin-datos') continue
-    if ((v.checkedAgainst?.length ?? 0) === 0) sinCorpus++
+    if (corpusReales(v.checkedAgainst).length === 0) sinCorpus++
     else comprobadoSinHallar++
   }
   return { sinCorpus, comprobadoSinHallar }
@@ -100,4 +100,21 @@ export const MARCAS_DE_PASADA = [
 
 export function esMarcaDePasada(nombre: string): boolean {
   return (MARCAS_DE_PASADA as readonly string[]).includes(nombre)
+}
+
+/**
+ * Los corpus DE VERDAD de un `checkedAgainst`, sin las marcas de pasada.
+ *
+ * Contar la longitud cruda de `checkedAgainst` daba por «comprobada» una fila
+ * cotejada contra nada: 1.014 de las 4.675 publicadas llevan sólo marcas, y
+ * con ellas dentro la cobertura salía al 59,8 % cuando era del 38,1 %. La
+ * sobreafirmación exacta que /laboratorio/cobertura existe para no cometer.
+ *
+ * Cualquier cosa que no esté declarada como marca cuenta como corpus: un
+ * nombre nuevo se ve —y se corrige— en vez de desaparecer callando.
+ */
+export function corpusReales(checkedAgainst?: readonly unknown[] | null): string[] {
+  return (checkedAgainst ?? []).filter(
+    (c): c is string => typeof c === 'string' && !esMarcaDePasada(c),
+  )
 }
