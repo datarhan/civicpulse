@@ -88,7 +88,7 @@ export interface PlenoClaimsChunkManifest {
      * Por qué `sin-datos`, sobre lo PUBLICADO (post-puerta editorial).
      * `sinCorpus` = no se consultó ningún corpus; `comprobadoSinHallar` = se
      * consultaron y no hubo coincidencia. Las dos suman el `sin-datos` de
-     * `byVerdict`. Ver `resumirSinDatos` en claim-verifier.
+     * `byVerdict`. Ver `resumirSinDatos` en claim-verdicts.
      */
     sinDatosPorque: { sinCorpus: number; comprobadoSinHallar: number }
   }

@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { collectErrors, appErrors } from './_console'
+import { readFileSync } from 'node:fs'
 
 test.describe('Declaraciones (/declaraciones)', () => {
   test('renders the global verified-claims browse page', async ({ page }) => {
@@ -86,5 +87,50 @@ test.describe('Reclasificaciones en el registro (/declaraciones)', () => {
       await expect(page.getByText(label, { exact: true }).first()).toBeVisible()
       await expect(page.getByText('Acusación pública', { exact: true })).toHaveCount(0)
     }
+  })
+})
+
+/**
+ * `sin-datos` contestaba dos preguntas distintas con el mismo número: «se
+ * consultaron corpus y no aparece» y «no había corpus que consultar». El
+ * segundo no dice nada sobre la declaración —dice algo sobre nosotros— y
+ * publicarlos juntos hace que un hueco se lea como un cero.
+ *
+ * Las cifras esperadas salen del manifiesto PUBLICADO, no escritas a mano: una
+ * prueba que recita el número que debería salir puede seguir verde mientras la
+ * página pinta otro.
+ */
+test.describe('Por qué «sin datos» (/declaraciones)', () => {
+  const totals = JSON.parse(readFileSync('public/data/pleno-claims/index.json', 'utf8')).totals as {
+    byVerdict: Record<string, number>
+    sinDatosPorque: { sinCorpus: number; comprobadoSinHallar: number }
+  }
+
+  test('el desglose se publica y suma el sin-datos que tiene al lado', async ({ page }) => {
+    await page.goto('/declaraciones', { waitUntil: 'domcontentloaded' })
+
+    const { sinCorpus, comprobadoSinHallar } = totals.sinDatosPorque
+    // Que la prueba haya evaluado algo: un desglose degenerado (todo en una
+    // casilla) cuadraría la suma y no probaría nada.
+    expect(sinCorpus).toBeGreaterThan(0)
+    expect(comprobadoSinHallar).toBeGreaterThan(0)
+    expect(sinCorpus + comprobadoSinHallar).toBe(totals.byVerdict['sin-datos'])
+
+    const parrafo = page.getByText(/Por qué «sin datos»/i).first()
+    await expect(parrafo).toBeVisible()
+    for (const n of [sinCorpus, comprobadoSinHallar]) {
+      await expect(page.getByText(String(n), { exact: true }).first()).toBeVisible()
+    }
+  })
+
+  test('el filtro «sin corpus» deja exactamente esas declaraciones', async ({ page }) => {
+    await page.goto('/declaraciones', { waitUntil: 'domcontentloaded' })
+    await page
+      .getByRole('button', { name: /Sin corpus que consultar/i })
+      .first()
+      .click()
+    await expect(
+      page.getByText(new RegExp(`${totals.sinDatosPorque.sinCorpus}\\s+declaraciones coinciden`)),
+    ).toBeVisible({ timeout: 5000 })
   })
 })

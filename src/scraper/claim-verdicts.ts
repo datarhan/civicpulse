@@ -1,0 +1,75 @@
+/**
+ * Los veredictos y el desglose de `sin-datos`, en un módulo que el navegador
+ * puede cargar.
+ *
+ * Vive aparte de `claim-verifier.ts` por una razón mecánica, no estética:
+ * aquél alcanza —por importación dinámica— `semantic-shortlist.ts`, que usa
+ * `node:fs`. Importarlo desde una página rompe el empaquetado con
+ * «"existsSync" is not exported by "__vite-browser-external"». Ésa es la razón
+ * de que `Declaraciones.jsx` tuviera la lista de veredictos copiada a mano: no
+ * era descuido, era la única salida que había. Con esto la copia sobra y
+ * `claim-verifier` reexporta desde aquí, así que la fuente sigue siendo una.
+ *
+ * Puro: sin fs, sin red, sin Date. No añadir aquí nada que no lo sea.
+ */
+
+/** Los veredictos, como VALOR y no sólo como tipo. */
+export const CLAIM_VERDICTS = [
+  'verificado',
+  'parcial',
+  'contradicho',
+  'sin-datos',
+  'promesa-repetida',
+] as const
+
+export type ClaimVerdict = (typeof CLAIM_VERDICTS)[number]
+
+// ─── El desglose de `sin-datos` ─────────────────────────────────────────────
+//
+// `sin-datos` contesta dos preguntas distintas con el mismo número:
+//
+//   · se consultaron corpus y la afirmación no aparece en ninguno
+//   · no se consultó NADA, porque para ese tipo de afirmación no hay corpus
+//
+// El primero dice algo sobre la afirmación. El segundo dice algo sobre
+// NOSOTROS, y publicarlo como si fuera lo mismo hace que un hueco se lea como
+// un cero. Es la agregación de `falta` de DeclaracionEntregas otra vez, y el
+// centinela `Otro`.
+//
+// El discriminante ya viaja en el fichero: `checkedAgainst` —que es, en su
+// propia definición, una afirmación sobre nuestro trabajo—. Así que esto se
+// DERIVA y no se guarda: ni campo nuevo en la verificación, ni miembro nuevo en
+// el enum de veredictos, que alimenta `isDowngrade`, el validador del overlay y
+// las CLI de curación.
+
+export interface ResumenSinDatos {
+  /** `checkedAgainst` vacío: no se consultó ningún corpus. */
+  sinCorpus: number
+  /** Se consultaron corpus y no hubo coincidencia. */
+  comprobadoSinHallar: number
+}
+
+/** Lo mínimo que hace falta mirar. Estructural a propósito, para que valga
+ *  igual con el item servido en un trozo que con la verificación completa. */
+export interface VerificacionCotejable {
+  verdict?: string
+  checkedAgainst?: readonly unknown[]
+}
+
+/**
+ * Reparte las filas `sin-datos` en sus dos motivos. Las dos partes suman
+ * exactamente el `sin-datos` del recuento por veredicto; las demás filas no se
+ * miran.
+ */
+export function resumirSinDatos(
+  verifications: ReadonlyArray<VerificacionCotejable | null | undefined>,
+): ResumenSinDatos {
+  let sinCorpus = 0
+  let comprobadoSinHallar = 0
+  for (const v of verifications) {
+    if (v?.verdict !== 'sin-datos') continue
+    if ((v.checkedAgainst?.length ?? 0) === 0) sinCorpus++
+    else comprobadoSinHallar++
+  }
+  return { sinCorpus, comprobadoSinHallar }
+}

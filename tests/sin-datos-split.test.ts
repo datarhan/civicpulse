@@ -1,11 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import {
-  CLAIM_VERDICTS,
-  resumirSinDatos,
-  type ClaimVerification,
-} from '../src/scraper/claim-verifier'
+import { CLAIM_VERDICTS, resumirSinDatos } from '../src/scraper/claim-verdicts'
+import type { ClaimVerification } from '../src/scraper/claim-verifier'
 
 const ROOT = join(__dirname, '..')
 

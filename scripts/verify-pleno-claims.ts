@@ -16,8 +16,8 @@ import {
   verifyClaim,
   type ClaimVerification,
   type ClaimVerdict,
-  resumirSinDatos,
 } from '../src/scraper/claim-verifier'
+import { resumirSinDatos } from '../src/scraper/claim-verdicts'
 import { BASE, rebuildVerified } from './verified-rebuild'
 
 const CLAIMS = resolve('public/data/pleno-claims-suggestions.json')

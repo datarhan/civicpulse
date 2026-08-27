@@ -24,7 +24,8 @@ import {
   type Reclassifications,
   type VerifiedItem,
 } from '../src/scraper/verified-merge'
-import { resumirSinDatos, type ClaimVerdict } from '../src/scraper/claim-verifier'
+import type { ClaimVerdict } from '../src/scraper/claim-verifier'
+import { resumirSinDatos } from '../src/scraper/claim-verdicts'
 
 const DATA = resolve('public/data')
 export const BASE = resolve(DATA, 'pleno-claims-verified-base.json')
