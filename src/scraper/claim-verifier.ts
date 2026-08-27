@@ -158,12 +158,33 @@ import type { ClaimVerdict } from './claim-verdicts'
  * Absent ⇒ `'checked'`. Every consumer must treat an unset stance as the
  * weakest reading; a missing field may never be upgraded into a verdict.
  */
+/**
+ * Las fuentes que una fila de evidencia puede citar, como VALOR.
+ *
+ * Es el registro real de corpus de este sitio, y estaba sólo como unión de
+ * literales dentro de una interfaz: nadie podía recorrerlo, así que la
+ * traducción kind→corpus no podía comprobarse exhaustiva. Un kind sin corpus
+ * produce un veredicto que el suelo de evidencia rechaza, o sea una pasada que
+ * nace muerta — que es exactamente lo que le pasó a NLI.
+ */
+export const EVIDENCE_KINDS = [
+  'tender',
+  'bdns',
+  'budget',
+  'promise',
+  'prior-claim',
+  'factcheck',
+  'boe',
+] as const
+
+export type EvidenceKind = (typeof EVIDENCE_KINDS)[number]
+
 export type EvidenceStance = 'contradicts' | 'checked'
 
 export const EVIDENCE_STANCES: readonly EvidenceStance[] = ['contradicts', 'checked']
 
 export interface ClaimEvidence {
-  kind: 'tender' | 'bdns' | 'budget' | 'promise' | 'prior-claim' | 'factcheck' | 'boe'
+  kind: EvidenceKind
   /** URL or synthetic ref for the curator to click through. */
   ref: string
   /** One-line citation showing what matched. */
@@ -229,6 +250,15 @@ export interface ClaimVerification {
   /** One-sentence explanation of why this verdict. */
   summary: string
   evidence: ClaimEvidence[]
+  /**
+   * QUÉ PASADA produjo este veredicto — no contra qué se comprobó.
+   *
+   * `checkedAgainst` llevaba las dos cosas y de ahí salieron dos defectos en un
+   * día: una cobertura del 59,8 % que era del 38,1 %, y once acusaciones
+   * publicadas por una puerta que sólo miraba si el array estaba vacío.
+   * Separarlas deja a cada campo con un significado.
+   */
+  derivedBy?: string[]
   /** Datasets that were queried for audit. */
   checkedAgainst: string[]
   /**

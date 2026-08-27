@@ -23,6 +23,7 @@ import type {
 } from './claim-verifier'
 import { shouldSkipLlmVerification } from './claim-verifier-llm'
 import { scoreNliPairs, type NliPair, type NliScore } from './nli-client'
+import { corpusDeEvidencia } from './claim-verdicts'
 
 /** Tunable on the P0 gold set (Task 10). */
 export const NLI_THRESHOLDS = {
@@ -80,7 +81,10 @@ export async function verifyClaimWithNli(
         summary:
           'Sin evidencia que respalde la afirmación en el corpus (NLI por debajo del umbral).',
         evidence: [],
-        checkedAgainst: ['nli-grounding'],
+        // Sin evidencia no hay corpus que nombrar, y `sin-datos` no necesita
+        // atravesar el suelo. La pasada se declara aparte.
+        checkedAgainst: [],
+        derivedBy: ['nli-grounding'],
         confidence: bestEntail,
       },
       upgraded: false,
@@ -113,7 +117,11 @@ export async function verifyClaimWithNli(
           ? 'La evidencia citada respalda la afirmación (entailment NLI alto).'
           : 'La evidencia citada respalda parcialmente la afirmación (entailment NLI moderado).',
       evidence,
-      checkedAgainst: ['nli-grounding'],
+      // Contra qué se cotejó, derivado del `kind` de la propia evidencia. Antes
+      // escribía aquí su propio nombre, y con el suelo de evidencia puesto eso
+      // dejaba a esta pasada sin poder subir NADA: nacía muerta.
+      checkedAgainst: corpusDeEvidencia(evidence),
+      derivedBy: ['nli-grounding'],
       confidence: bestEntail,
     },
     upgraded: true,

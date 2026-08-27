@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T12:48:11.056Z",
+  "generatedAt": "2026-08-27T13:21:51.525Z",
   "version": "1",
   "plenoId": "otxq2c",
   "plenoDate": "2025-10-06",
@@ -3909,24 +3909,12 @@
       },
       "verification": {
         "claimId": "otxq2c-075-cit-c869c8",
-        "verdict": "parcial",
-        "summary": "La afirmación menciona la presencia de la policía local y otros profesionales. Los candidatos incluyen licitaciones para un aplicativo y la unidad canina de la policía local, lo que apoya parcialmente la parte de la policía, pero no el resto de los profesionales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Aplicativo área de policía local · Ayuntamiento de Riba-roja de Túria · unknown · sim=0.50",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dUGFcdEbjniiEJrVRqloyA%3D%3D",
-            "snippet": "Contrato Menor de Suministro de dos perros para la Unidad Canina del Cuerpo de Policía Local del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · awarded · sim=0.22",
-            "similarity": 0.22
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -5925,18 +5913,12 @@
       },
       "verification": {
         "claimId": "otxq2c-185-cit-fc0cdd",
-        "verdict": "parcial",
-        "summary": "El servicio de publicidad institucional en medios digitales y/o impresos está relacionado con la naturaleza de una declaración institucional, pero no corrobora específicamente una 'declaración institucional de felicitación'.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sCcudNlMjpSiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio de publicidad institucional en medios digitales y/o impresos",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -6269,18 +6251,12 @@
       },
       "verification": {
         "claimId": "otxq2c-190-cit-37cd5b",
-        "verdict": "verificado",
-        "summary": "La afirmación sobre la aprobación reciente de un contrato de residuos es corroborada por la existencia de un contrato de servicio público para la recogida de residuos sólidos urbanos del municipio.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -8113,18 +8089,12 @@
       },
       "verification": {
         "claimId": "otxq2c-217-cit-fd6346",
-        "verdict": "parcial",
-        "summary": "El programa 'Obrim Portes' podría estar relacionado con la incentivación del comercio local, aunque su descripción no lo especifica directamente.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xyj5yGj1qc4QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Ejecución programa Obrim Portes",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"

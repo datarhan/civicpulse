@@ -44,15 +44,34 @@ interface Args {
   plenoId: string | null
   max: number
   model: string | undefined
+  /**
+   * Re-fundamentar un conjunto CONCRETO, cueste lo que cueste su veredicto
+   * actual.
+   *
+   * El modo normal corre sólo sobre `sin-datos`, que es lo correcto para una
+   * pasada de barrido. Pero las filas que se apoyan en una pasada retirada
+   * están en `parcial`/`verificado`, así que el barrido no las tocaría nunca y
+   * la única forma de re-fundamentarlas sería retractarlas primero — destruir
+   * para poder reconstruir. Con una lista explícita no hace falta.
+   */
+  claimIds: Set<string> | null
 }
 
 function parseArgs(argv: string[]): Args {
-  const out: Args = { plenoId: null, max: Infinity, model: undefined }
+  const out: Args = { plenoId: null, max: Infinity, model: undefined, claimIds: null }
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--plenoId') out.plenoId = argv[++i]
     else if (argv[i] === '--max') out.max = Number(argv[++i])
     else if (argv[i] === '--model') out.model = argv[++i]
-    else {
+    else if (argv[i] === '--claimIds') {
+      const ruta = argv[++i]
+      out.claimIds = new Set(
+        readFileSync(ruta, 'utf8')
+          .split(/\s+/)
+          .map((x) => x.trim())
+          .filter(Boolean),
+      )
+    } else {
       process.stderr.write(`[verify-nli] unknown flag ${argv[i]}\n`)
       process.exit(2)
     }
@@ -84,11 +103,39 @@ async function main() {
   const corpusOpt = ctx.corpus ? { corpus: ctx.corpus } : {}
 
   const candidates = snap.items.filter((it) => {
+    // Con lista explícita manda la lista: son filas que YA tienen veredicto y
+    // que se quieren volver a fundamentar. La puerta de `opinativa` sigue,
+    // porque ésa es política y no un filtro de barrido.
+    if (opts.claimIds) {
+      if (!opts.claimIds.has(it.claim.id)) return false
+      return !shouldSkipLlmVerification(it.claim)
+    }
     if (it.verification.verdict !== 'sin-datos') return false
     if (shouldSkipLlmVerification(it.claim)) return false
     if (opts.plenoId && it.claim.plenoId !== opts.plenoId) return false
     return true
   })
+
+  // Una pasada tiene que demostrar que hizo lo que le pidieron: si se piden 76
+  // ids y aparecen 3, eso no es «ya está» — es una lista mal escrita o un
+  // corpus que se movió. Regla 2 de docs/DATA_INTEGRITY.md.
+  if (opts.claimIds) {
+    const encontrados = new Set(candidates.map((c) => c.claim.id))
+    const ausentes = [...opts.claimIds].filter((id) => !encontrados.has(id))
+    process.stdout.write(
+      `[verify-nli] lista explícita: ${opts.claimIds.size} pedida(s) · ${encontrados.size} ` +
+        `encontrada(s) · ${ausentes.length} sin localizar\n`,
+    )
+    if (ausentes.length) {
+      process.stdout.write(`[verify-nli]   sin localizar: ${ausentes.slice(0, 8).join(', ')}\n`)
+    }
+    if (encontrados.size === 0) {
+      process.stderr.write(
+        '[verify-nli] ninguna de las filas pedidas existe: no hay nada que hacer\n',
+      )
+      process.exit(1)
+    }
+  }
   const queue = candidates.slice(0, Math.min(candidates.length, opts.max))
   process.stdout.write(
     `[verify-nli] ${queue.length} sin-datos claims eligible (corpus=${ctx.corpus ? 'preloaded' : 'lexical-only'}, model=${opts.model ?? 'mDeBERTa-xnli'})\n`,

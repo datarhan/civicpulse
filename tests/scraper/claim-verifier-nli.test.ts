@@ -53,7 +53,12 @@ describe('verifyClaimWithNli', () => {
     expect(r!.upgraded).toBe(true)
     expect(r!.verification.confidence).toBeCloseTo(0.95)
     expect(r!.verification.evidence.map((e) => e.ref)).toContain('t0')
-    expect(r!.verification.checkedAgainst).toContain('nli-grounding')
+    // El campo se partió en dos: `checkedAgainst` dice CONTRA QUÉ se cotejó
+    // —derivado del `kind` de la evidencia— y `derivedBy` dice QUÉ PASADA lo
+    // produjo. Antes esta pasada escribía su nombre en el primero, y con el
+    // suelo de evidencia puesto eso la dejaba sin poder subir nada.
+    expect(r!.verification.derivedBy).toContain('nli-grounding')
+    expect(r!.verification.checkedAgainst).toContain('tenders')
   })
 
   it('parcial when best entailment in [entail, high)', async () => {

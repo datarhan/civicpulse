@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T12:48:11.056Z",
+  "generatedAt": "2026-08-27T13:21:51.525Z",
   "version": "1",
   "plenoId": "qz6weg",
   "plenoDate": "2025-12-01",
@@ -232,18 +232,12 @@
       },
       "verification": {
         "claimId": "qz6weg-011-cit-8d7b16",
-        "verdict": "parcial",
-        "summary": "La licitación se refiere a trabajos preparatorios para el inicio de la gestión directa de una unidad de ejecución, lo que coincide con la propuesta de asunción de gestión directa por parte del Ayuntamiento mencionada en la reclamación, aunque para un sector diferente (Santa Rosa II vs Gabina).",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ppCWsw4C8jUQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de redacción trabajos técnicos preparatorios para el inicio de la gestión directa de la unidad de ejecución Santa Rosa II",
-            "similarity": 0.27
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -1005,18 +999,12 @@
       },
       "verification": {
         "claimId": "qz6weg-023-cit-7e169e",
-        "verdict": "parcial",
-        "summary": "The tender for the 'redistribution work of the main building of the Town Hall' is topically related to the claim about a 'large building' project, with 'redistribution' potentially aligning with the 'readjustment' mentioned in the claim's context.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VMA7sp5IUu4QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obra de redistribución del edificio principal del Ayuntamiento de Riba-roja",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -1510,18 +1498,12 @@
       },
       "verification": {
         "claimId": "qz6weg-037-cit-f24bb1",
-        "verdict": "parcial",
-        "summary": "Existen licitaciones para la restauración y conservación del edificio de la Escuela Municipal de Música y Conservatorio Profesional Municipal de Música, lo que corrobora la obra en un conservatorio. Sin embargo, no se puede verificar el monto de \"dos millones y medio\" mencionado en la afirmación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CxPUq8yjFygQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música",
-            "similarity": 0.29
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -1546,18 +1528,12 @@
       },
       "verification": {
         "claimId": "qz6weg-038-cit-d93811",
-        "verdict": "verificado",
-        "summary": "La afirmación sobre un esqueleto estructural destinado a ser un conservatorio se corrobora con la licitación de obras de restauración y conservación para el edificio del Conservatorio Profesional Municipal de Música.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CxPUq8yjFygQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música",
-            "similarity": 0.29
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -1728,18 +1704,12 @@
       },
       "verification": {
         "claimId": "qz6weg-039-cit-bef239",
-        "verdict": "verificado",
-        "summary": "La afirmación de haber trabajado para 'dos conservatorios' se corrobora con los registros de licitaciones que mencionan explícitamente obras de restauración y conservación tanto para la 'Escuela Municipal de Música' como para el 'Conservatorio Profesional Municipal de Música'.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CxPUq8yjFygQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.29
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -2020,18 +1990,12 @@
       },
       "verification": {
         "claimId": "qz6weg-043-cit-b9618a",
-        "verdict": "parcial",
-        "summary": "The claim mentions a principal investment in urban planning. One candidate describes the enlargement of a park, which aligns with urban planning investments, though the claim is very general and doesn't specify this particular investment.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Amplicación parque Generalitat · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -2231,18 +2195,12 @@
       },
       "verification": {
         "claimId": "qz6weg-045-cit-cf3669",
-        "verdict": "verificado",
-        "summary": "La afirmación sobre la recuperación y habilitación del edificio La Botaya está corroborada por la licitación de las obras de habilitación Fases II y III de dicho edificio.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de habilitación edificio la Botaya Fases II y III",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -2294,36 +2252,12 @@
       },
       "verification": {
         "claimId": "qz6weg-046-cit-450d31",
-        "verdict": "parcial",
-        "summary": "La afirmación se refiere a la construcción de \"este edificio\", y las licitaciones mencionan obras de redistribución, habilitación o reforma en varios edificios municipales. Son temáticamente relacionadas pero no corroboran directamente una nueva construcción.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VMA7sp5IUu4QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obra de redistribución del edificio principal del Ayuntamiento de Riba-roja",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de habilitación edificio la Botaya Fases II y III",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F4Ce7P89aVwSugstABGr5A%3D%3D",
-            "snippet": "Reforma en edificio sito en C/ Mayor, 37",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=nUEzRJQVegp%2FR5QFTlaM4A%3D%3D",
-            "snippet": "Contrato administrativo de obras para la ejecución del proyecto para la Reforma de edificio para la vivienda tutelada municipal con demolición parcial en Av de la Paz 44",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -2581,31 +2515,10 @@
       },
       "verification": {
         "claimId": "qz6weg-051-cit-b30734",
-        "verdict": "verificado",
-        "summary": "La afirmación de que los proyectos son financiados por la Unión Europea en el marco del Plan de Recuperación, Transformación y Resiliencia está directamente corroborada por varias licitaciones que mencionan explícitamente estos términos.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=POJYBO8NDn2cCF8sV%2BqtYA%3D%3D",
-            "snippet": "Obras Adecuación del Barranc dels Moros ... en el marco del Plan de Recuperación, Transformación y Resiliencia- Financiado por la Unión Europ",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ujgt5qEIoTA2wEhQbcAqug%3D%3D",
-            "snippet": "Contrato administrativo de obras para la ejecución del proyecto de “Obras de Instalación de pérgolas con vegetación autóctona para fomento de la resiliencia frente al cambio climático, en el marco del Plan de Recuperación, Transfo",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fGWK7%2B%2Fp3sZJ8Trn0ZPzLw%3D%3D",
-            "snippet": "Contrato administrativo de servicio de desarrollo e implantación de un Panel de Inteligencia de datos turísticos en Riba-roja de Túria para el Plan de Sostenibilidad turística en Destino (PSTD/22) en el Marco del Plan de Recuperac",
-            "similarity": 0.33
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -9256,18 +9169,12 @@
       },
       "verification": {
         "claimId": "qz6weg-231-cit-1fad9b",
-        "verdict": "parcial",
-        "summary": "La afirmación sobre obras generales en todos los colegios se relaciona parcialmente con un servicio específico de mantenimiento de instalaciones térmicas escolares, pero no cubre la amplitud de la afirmación ni el período de tiempo de 10 años.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
-            "snippet": "Servicio mantenimiento instalaciones térmicas colegios.",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -10234,24 +10141,12 @@
       },
       "verification": {
         "claimId": "qz6weg-248-cit-cd384e",
-        "verdict": "parcial",
-        "summary": "The tenders for 'Bar Parque Maldonado' and 'Amplicación parque Generalitat' relate to park development, aligning topically with the claim's mention of transforming an area into a connection with a natural park, though not directly confirming 'natural park' or 'direct connection'.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=U84335CaunpvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Bar Parque Maldonado",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Amplicación parque Generalitat",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -12011,18 +11906,12 @@
       },
       "verification": {
         "claimId": "qz6weg-277-cit-6d5c3a",
-        "verdict": "parcial",
-        "summary": "The claim differentiates a 'bono de comer' for local commerce from a 'bono social'. Candidate [4] describes a 'social catering service', which is related to the concepts of eating services and social programs discussed in the claim, but not a direct match to the specific initiative described.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ivAidx1aujcQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de catering social y reparto y entrega del catering social",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -12047,18 +11936,12 @@
       },
       "verification": {
         "claimId": "qz6weg-277-cit-4dee9d",
-        "verdict": "parcial",
-        "summary": "La afirmación sobre una iniciativa para el comercio local se relaciona parcialmente con un contrato para una 'feria del comercio', aunque no se menciona específicamente el tipo de iniciativa o la participación con bonos.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=82sUgR%2BfOSyXQV0WE7lYPw%3D%3D",
-            "snippet": "Actuación musical feria del comercio 2019",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -12340,18 +12223,12 @@
       },
       "verification": {
         "claimId": "qz6weg-283-cit-775fd3",
-        "verdict": "parcial",
-        "summary": "El candidato 0 es un contrato para la elaboración de un plan local de residuos, lo cual está temáticamente relacionado con la mención de un 'nuevo contrato de residuos', aunque no es el contrato principal en sí.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor de servicio para la elaboración del plan local de residuos para el municipio de Riba-roja de Túria.",
-            "similarity": 0.4
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -12404,18 +12281,12 @@
       },
       "verification": {
         "claimId": "qz6weg-284-cit-4d80ff",
-        "verdict": "parcial",
-        "summary": "El contrato de servicio para el mantenimiento de la calidad del agua (candidato 5) se relaciona temáticamente con el medio ambiente y la gestión de servicios, pero no se puede confirmar que sea la 'nueva gestión' específica o la mejora sustancial a la que se refiere la alegación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
-            "snippet": "Servicio para el mantenimiento para la calidad del agua. Este servicio podría ser parte de una 'nueva gestión' relacionada con el medio ambiente.",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -12587,18 +12458,12 @@
       },
       "verification": {
         "claimId": "qz6weg-287-cit-2a835f",
-        "verdict": "verificado",
-        "summary": "El ayuntamiento ha contratado un nuevo servicio de recogida de residuos sólidos urbanos que mejora la prestación actual, lo que corrobora la afirmación sobre un nuevo servicio de recogida que mejora la existente en el casco urbano.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
@@ -12623,18 +12488,12 @@
       },
       "verification": {
         "claimId": "qz6weg-288-cit-8e9092",
-        "verdict": "verificado",
-        "summary": "El contrato de servicio público de recogida de residuos sólidos urbanos del municipio corrobora la afirmación de un nuevo servicio que mejora la recogida en el caso urbano.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "tenders",
+          "tenders-ted"
         ]
       },
       "visibility": "toggle"
