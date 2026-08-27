@@ -125,6 +125,12 @@ export default function Cobertura() {
   const totals = manifest.data?.totals
   const cob = totals?.cobertura
 
+  // Lo que la puerta editorial retiene, por tipo. Ordenado de más a menos.
+  const retenidas = useMemo(
+    () => Object.entries(totals?.retenidas ?? {}).sort((a, b) => b[1] - a[1]),
+    [totals],
+  )
+
   const resumen = useMemo(() => {
     if (!cob) return null
     const filas = Object.values(cob.porTipo)
@@ -292,9 +298,23 @@ export default function Cobertura() {
         >
           <li>
             Son las declaraciones <strong style={{ color: 'var(--ink)' }}>publicadas</strong>. El
-            corpus interno lleva más, pero las acusaciones que no se han podido comprobar no se
-            sirven: su literal queda retenido por la puerta editorial. Contar aquí lo que no se
-            enseña daría un denominador que nadie puede revisar.
+            corpus interno lleva más: una acusación cuyo veredicto no nombra ningún corpus no se
+            sirve, y su literal queda retenido por la puerta editorial.{' '}
+            {retenidas.length > 0 && (
+              <>
+                Ahora mismo hay retenidas{' '}
+                {retenidas.map(([tipo, n], i) => (
+                  <span key={tipo}>
+                    {i > 0 ? ' · ' : ''}
+                    <span className="mono">{n.toLocaleString('es-ES')}</span> de tipo «
+                    {(CLAIM_TYPE_LABEL[tipo] ?? tipo).toLowerCase()}»
+                  </span>
+                ))}
+                .{' '}
+              </>
+            )}
+            Se dice el número porque un tipo retenido entero desaparecería de las tablas de arriba,
+            y de una fila que no está nadie deduce que existió: la ausencia se publica, no se omite.
           </li>
           <li>
             Esto <strong style={{ color: 'var(--ink)' }}>no es una verificación</strong> y no entra

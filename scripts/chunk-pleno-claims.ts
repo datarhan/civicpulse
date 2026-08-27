@@ -67,10 +67,21 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
   // Editorial gate: drop `hidden` items (opinativa / sin-datos accusations)
   // and stamp each survivor with its visibility BEFORE chunking, so the
   // deployed chunks never contain ungated accusation verbatim.
-  const items = gateItemsForPublic(monolith.items ?? [])
+  const crudos = monolith.items ?? []
+  const items = gateItemsForPublic(crudos)
+  // Lo que la puerta se lleva, contado por tipo antes de perderlo de vista. Un
+  // tipo retenido entero desaparecería de la tabla de cobertura y el lector
+  // concluiría que no lo extraemos: la ausencia hay que publicarla, no omitirla.
+  const servidos = new Set(items.map((it) => it.claim?.id))
+  const retenidas: Record<string, number> = {}
+  for (const it of crudos) {
+    if (servidos.has(it.claim?.id)) continue
+    const t = it.claim?.type
+    if (typeof t === 'string') retenidas[t] = (retenidas[t] ?? 0) + 1
+  }
   const grouped = groupItemsByPleno(items)
   const generatedAt = new Date().toISOString()
-  const { manifest, chunks } = buildManifest(grouped, generatedAt)
+  const { manifest, chunks } = buildManifest(grouped, generatedAt, retenidas)
 
   // Track the chunks we're about to write so we can prune stale ones.
   const expected = new Set<string>()

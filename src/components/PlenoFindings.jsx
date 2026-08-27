@@ -1,6 +1,7 @@
 import { Card, Pill, SectionHead, ExtLink, Quote } from './Primitives'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
 import { useTenders } from '../hooks/useTenders'
+import { PARTY_TONE } from '../hooks/usePromises'
 import { useFindingQuoteProvenance, provenanceFor } from '../hooks/useFindingQuoteProvenance'
 import { QUOTE_PROVENANCE_STATUS_IDS } from '../scraper/quote-provenance'
 import { CLAIM_VISIBILITIES } from '../scraper/claim-public-gate'
@@ -324,9 +325,15 @@ const PROVENANCE_MARK = {
  * una persona. La regla general se dice donde estaba la insinuación.
  */
 export function notaAcusacionSinContrastar(curatorName) {
+  // Tercera pasada, 2026-08-27: la frase decía «Aquí aparece igualmente», que
+  // describía la política vieja —marcar el literal y publicarlo— y dejó de ser
+  // cierta el día que las dos superficies pasaron a obedecer la misma puerta.
+  // Es la prosa que se queda rancia cuando se mueve el dato, y la escribí yo
+  // media hora antes de invalidarla.
   const base =
-    'es una acusación pública sobre la gestión municipal, y en el registro de declaraciones del ' +
-    'pleno una acusación sin contrastar no se publica. Aquí aparece igualmente'
+    'es una acusación pública sobre la gestión municipal que el verificador no ha podido ' +
+    'contrastar, así que su literal no se publica: ni en el registro de declaraciones del pleno ' +
+    'ni aquí. El hueco queda a la vista, con su motivo'
   const quien = (curatorName ?? '').trim()
   if (!quien) return `${base}; el pie de la ficha dice quién la editó.`
   return isMachineAuthored(quien)
@@ -431,6 +438,68 @@ export function quoteMarks(entry) {
 }
 
 /** The chips beside one quote. Renders nothing for a quote with no marks. */
+/**
+ * ¿La puerta editorial retiene el literal de esta cita?
+ *
+ * `claim-public-gate.ts` se llama a sí mismo «la única fuente de verdad sobre
+ * lo que la salida del verificador puede enseñar al público», y falla del lado
+ * seguro. `/plenos` y `/declaraciones` la obedecen; aquí se CONSULTABA para
+ * marcar, pero el literal se publicaba igual.
+ *
+ * Decisión del operador, 2026-08-27: una sola política en las dos superficies.
+ * El argumento que la había frenado —«borrar citas es un acto editorial mayor
+ * hecho por el mismo tipo de proceso»— vale también al revés: publicarlas lo
+ * es, y la puerta ya toma exactamente esta decisión una pantalla más allá. Dos
+ * políticas para el mismo literal es lo que no se sostiene.
+ *
+ * Lo que se retiene es EL LITERAL, no la ficha: el hallazgo, su resumen, su
+ * atribución y su derecho de réplica siguen enteros. Y se dice que falta, con
+ * su motivo, en vez de dejar un hueco mudo.
+ */
+export function citaRetenida(entry) {
+  return entry?.gate === 'hidden'
+}
+
+/**
+ * El hueco que deja una cita retenida — autoexplicativo a propósito.
+ *
+ * `QuoteProvenanceNote` agrega los motivos bajo el grupo de citas, pero una
+ * ficha puede tener TODAS sus citas retenidas (hoy hay una). En ese caso no
+ * queda nota que lo explique, así que el hueco tiene que hablar por sí mismo.
+ */
+export function CitaRetenida({ attribution, tone }) {
+  return (
+    <figure
+      style={{
+        margin: '8px 0 0',
+        padding: '2px 0 2px 12px',
+        borderLeft: '3px dashed var(--border2)',
+        maxWidth: '68ch',
+      }}
+    >
+      <div style={{ fontSize: 'var(--fs-body)', color: 'var(--ink50)', lineHeight: 1.5 }}>
+        Literal retenido.
+      </div>
+      <figcaption
+        style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)', marginTop: 4, lineHeight: 1.5 }}
+      >
+        Es una acusación que el verificador no ha podido contrastar con ningún registro municipal,
+        así que no se publica su literal aquí — tampoco se publica en el registro de declaraciones.
+        No decimos que sea falsa: decimos que no consta.{' '}
+        {attribution && (
+          <>
+            La ficha la atribuye a{' '}
+            <Pill tone={tone} size="xs">
+              {attribution}
+            </Pill>
+            .
+          </>
+        )}
+      </figcaption>
+    </figure>
+  )
+}
+
 export function QuoteProvenanceMark({ entry }) {
   const marks = quoteMarks(entry)
   if (marks.length === 0) return null
@@ -549,14 +618,24 @@ export function FindingCard({ f }) {
       </p>
       {f.quotes?.length > 0 && (
         <div style={{ marginTop: 8 }}>
-          {f.quotes.slice(0, 3).map((q, i) => (
-            <Quote
-              key={i}
-              text={q.text}
-              attribution={q.speakerGroup ? blocLabel(q.speakerGroup) : null}
-              marks={<QuoteProvenanceMark entry={prov[i]} />}
-            />
-          ))}
+          {f.quotes
+            .slice(0, 3)
+            .map((q, i) =>
+              citaRetenida(prov[i]) ? (
+                <CitaRetenida
+                  key={i}
+                  attribution={q.speakerGroup ? blocLabel(q.speakerGroup) : null}
+                  tone={PARTY_TONE[q.speakerGroup]}
+                />
+              ) : (
+                <Quote
+                  key={i}
+                  text={q.text}
+                  attribution={q.speakerGroup ? blocLabel(q.speakerGroup) : null}
+                  marks={<QuoteProvenanceMark entry={prov[i]} />}
+                />
+              ),
+            )}
           {/* Only the three quotes this card shows are marked, so the note must
               describe those and not the finding's full list. */}
           <QuoteProvenanceNote entries={prov.slice(0, 3)} curatorName={f.curatorName} />

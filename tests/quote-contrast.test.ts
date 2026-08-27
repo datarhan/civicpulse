@@ -330,8 +330,27 @@ describe('los hallazgos sin ninguna cita mostrable, contados', () => {
    * Lo que queda por probar es que el contador no está muerto — sigue siendo
    * un subconjunto de las que no tienen cita mostrable, y esa cifra sí es > 0.
    */
-  it('las hechas por entero de citas retenidas ya no existen, y el contador vive', () => {
-    expect(DERIVED.stats.hallazgosSoloConCitasOcultas).toBe(0)
+  /**
+   * EXCEPCIÓN FECHADA — 2026-08-27, se levanta en la fase 6.
+   *
+   * Al cerrar la puerta de publicación (`tieneVerificadorAnotado` ahora exige un
+   * corpus de verdad, no una marca de pasada) las once acusaciones que se
+   * publicaban sobre `llm-second-pass` pasaron a `hidden`, y con ellas las tres
+   * citas de `f-2026-01-19-acu-b1a13f`. Esa ficha queda, hoy, hecha por entero
+   * de citas retenidas.
+   *
+   * No se retracta todavía a propósito: la retractación es de ida y sin vuelta
+   * («no unretract»), y la fase 6 va a re-fundamentar esas afirmaciones con NLI.
+   * Si vuelven fundadas, la ficha vuelve a estar entera y no se habrá destruido
+   * nada. Si no vuelven, se retracta entonces con `npm run retract-finding`.
+   *
+   * Se FIJA el número conocido en vez de saltar la prueba: un `skip` no mide
+   * nada, y lo que hay que impedir mientras dure la excepción es que crezca.
+   * En cuanto la fase 6 cierre, esto vuelve a ser `toBe(0)`.
+   */
+  it('las hechas por entero de citas retenidas: sólo la excepción conocida', () => {
+    // Vuelve a 0 cuando cierre la fase 6. Que no crezca es lo que se vigila.
+    expect(DERIVED.stats.hallazgosSoloConCitasOcultas).toBe(1)
     expect(DERIVED.stats.hallazgosSinCitaMostrable).toBeGreaterThan(0)
     expect(DERIVED.stats.hallazgosSoloConCitasOcultas).toBeLessThanOrEqual(
       DERIVED.stats.hallazgosSinCitaMostrable,

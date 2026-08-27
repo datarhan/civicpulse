@@ -286,6 +286,7 @@
     "promise-suggestions.json": [
       "/cargos",
       "/cargos/:slug",
+      "/curator",
       "/datos",
       "/declaraciones",
       "/departamentos",
@@ -296,6 +297,7 @@
       "/hallazgos",
       "/lab-health",
       "/laboratorio/agentes/:assignmentId",
+      "/plenos/:id",
       "/promesas"
     ],
     "promises.json": [
@@ -312,6 +314,7 @@
       "/hallazgos",
       "/lab-health",
       "/laboratorio/agentes/:assignmentId",
+      "/plenos/:id",
       "/promesas"
     ],
     "queja-contract-relations-approved.json": [

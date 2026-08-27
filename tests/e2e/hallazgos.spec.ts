@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { appErrors, collectErrors, collectPageErrors } from './_console'
+import { readFileSync } from 'node:fs'
 
 test.describe('Hallazgos (/hallazgos)', () => {
   test('renders dashboard with at least one promoted finding', async ({ page }) => {
@@ -260,5 +261,68 @@ test.describe('Citas reclasificadas (/hallazgos)', () => {
       expect(marks).not.toContain('acusación no contrastada')
       if (gate === 'toggle') expect(marks).toContain('sin contraste en los datos')
     }
+  })
+})
+
+/**
+ * Una sola política en las dos superficies.
+ *
+ * `claim-public-gate.ts` se llama «la única fuente de verdad sobre lo que la
+ * salida del verificador puede enseñar al público». `/declaraciones` y
+ * `/plenos` la obedecen; `/hallazgos` la consultaba para MARCAR y publicaba el
+ * literal igual. Cuarenta literales de acusación vivían así: retenidos en un
+ * sitio y publicados en otro, en fichas firmadas por `auto-curation-v1`.
+ *
+ * Esto comprueba lo único que importa: que el texto retenido NO ESTÉ en la
+ * página servida. Una marca de estilo o una clase CSS no bastarían — lo que se
+ * publica es el texto.
+ */
+test.describe('Citas retenidas (/hallazgos)', () => {
+  const PROV = JSON.parse(readFileSync('public/data/finding-quote-provenance.json', 'utf8')) as {
+    quotes: Record<string, Array<{ gate?: string }>>
+  }
+  const FINDINGS = JSON.parse(readFileSync('public/data/pleno-findings.json', 'utf8')) as {
+    items: Array<{ id: string; quotes?: Array<{ text?: string }> }>
+  }
+
+  /** Literales que la puerta retiene, según la procedencia derivada. */
+  const RETENIDOS = FINDINGS.items.flatMap((f) =>
+    (f.quotes ?? [])
+      .map((q, i) => ({ id: f.id, i, text: q.text ?? '', gate: PROV.quotes[f.id]?.[i]?.gate }))
+      .filter((r) => r.gate === 'hidden' && r.text.length > 40),
+  )
+
+  test('el literal retenido no aparece en la página', async ({ page }) => {
+    // Que la comprobación evalúe algo: sin filas retenidas esto pasaría vacío.
+    expect(RETENIDOS.length).toBeGreaterThan(0)
+
+    await page.goto('/hallazgos', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText(/Literal retenido/i).first()).toBeVisible({ timeout: 8000 })
+
+    const texto = await page.locator('body').innerText()
+    for (const r of RETENIDOS.slice(0, 25)) {
+      expect(texto, `${r.id}#${r.i} sigue publicando su literal`).not.toContain(r.text.slice(0, 60))
+    }
+  })
+
+  test('el hueco dice qué falta y por qué, sin llamar falsa a la acusación', async ({ page }) => {
+    await page.goto('/hallazgos', { waitUntil: 'domcontentloaded' })
+    const hueco = page.getByText(/Literal retenido/i).first()
+    await expect(hueco).toBeVisible({ timeout: 8000 })
+    const texto = await page.locator('body').innerText()
+    expect(texto).toMatch(/no ha podido contrastar|ningún registro municipal/i)
+    expect(texto).toMatch(/no decimos que sea falsa|no consta/i)
+  })
+
+  test('la ficha sobrevive a la retención: sigue habiendo resumen y atribución', async ({
+    page,
+  }) => {
+    // Lo que se retiene es la CITA, no el hallazgo. Si esto se rompe, el
+    // arreglo se habría llevado por delante la ficha entera.
+    await page.goto('/hallazgos', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText(/Literal retenido/i).first()).toBeVisible({ timeout: 8000 })
+    const conRetencion = FINDINGS.items.find((f) => RETENIDOS.some((r) => r.id === f.id))
+    expect(conRetencion).toBeDefined()
+    await expect(page.getByText(/Lo que se dijo/i).first()).toBeVisible()
   })
 })

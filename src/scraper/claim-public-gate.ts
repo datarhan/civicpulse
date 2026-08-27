@@ -15,6 +15,7 @@
  * or toggled (everything else) — a new type/verdict can never default to shown.
  */
 import type { VerifiedClaimItem } from './pleno-claims-chunks'
+import { corpusReales } from './claim-verdicts'
 
 /**
  * The three outcomes, as a value rather than only a type.
@@ -124,7 +125,17 @@ export interface ClaimVisibilityInput {
  */
 function tieneVerificadorAnotado(item: ClaimVisibilityInput): boolean {
   const ca = item?.verification?.checkedAgainst
-  return Array.isArray(ca) && ca.length > 0
+  if (!Array.isArray(ca)) return false
+  // Y no basta con que el array traiga algo. `checkedAgainst` mezcla dos
+  // significados —los corpus que el emparejador consultó, y el NOMBRE de la
+  // pasada que produjo el veredicto— y sólo el primero funda. Medido el
+  // 2026-08-27: las once acusaciones publicadas pasaban por aquí con
+  // `['llm-second-pass']` y nada más, una pasada retirada, sin un dato detrás.
+  //
+  // La avería que este fichero ya documenta arriba, entrando por la puerta de
+  // al lado. Contar la longitud daba por fundada una fila que sólo dice qué
+  // pasada la miró.
+  return corpusReales(ca).length > 0
 }
 
 export function classifyClaimVisibility(item: ClaimVisibilityInput): ClaimVisibility {

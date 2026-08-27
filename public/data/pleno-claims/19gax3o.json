@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T10:50:58.219Z",
+  "generatedAt": "2026-08-27T11:47:35.392Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -1001,7 +1001,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1371,7 +1371,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3116,7 +3116,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3598,7 +3598,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4005,7 +4005,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6190,7 +6190,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6226,7 +6226,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6499,56 +6499,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "19gax3o-120-acu-c9acb2",
-        "plenoId": "19gax3o",
-        "plenoDate": "2026-01-19",
-        "segmentIndex": 120,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "No hay un contrato de mantenimiento que tenga una empresa grande como es el Ecnor,",
-        "context": "El tema es que afloran de poco a poco cambiando una bomba, cambiando otra. No hay un contrato de mantenimiento que tenga una empresa grande como es el Ecnor,",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "contrato de mantenimiento con ecnor"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.84,
-        "reasoning": "Afirma la existencia o ausencia de un contrato de mantenimiento con una empresa concreta, algo verificable en expedientes de contratación o pliegos municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "19gax3o-120-acu-c9acb2",
-        "verdict": "parcial",
-        "summary": "Se encontraron múltiples licitaciones de mantenimiento para diversos servicios, lo que contradice parcialmente la afirmación sobre la ausencia de contratos de mantenimiento, aunque no se especifica una empresa grande como Ecnor.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Mantenimiento SW Deepfreeze. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
-            "snippet": "Servicio mantenimiento instalaciones térmicas deportes. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=AB1HaKg7oyUBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Mantenimiento de ascensores y elevadores de titularidad municipal · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.25
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6789,43 +6740,6 @@
     },
     {
       "claim": {
-        "id": "19gax3o-126-acu-d49e67",
-        "plenoId": "19gax3o",
-        "plenoDate": "2026-01-19",
-        "segmentIndex": 126,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "hay que ver toda la parte externa de la malla, está cayendo.",
-        "context": "...pero desde el 2015 ves que poco mantenimiento se ha dado a cabo en la malla. De hecho, hay que ver toda la parte externa de la malla, está cayendo. Hay una valla, no sé, tres, cuatro, cinco años en",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "parte externa de la malla"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.68,
-        "reasoning": "Afirma un estado físico concreto de la malla ('está cayendo'); es verificable mediante inspección técnica, fotos o informes de conservación.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "19gax3o-126-acu-d49e67",
-        "verdict": "parcial",
-        "summary": "Existe un servicio de mantenimiento para las instalaciones del complejo deportivo La Malla, lo que está relacionado con la queja de poco mantenimiento de la malla, pero no confirma ni contradice su estado actual o si se refiere a la misma malla específica.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
-            "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla.",
-            "similarity": 0.4
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "19gax3o-129-cit-d20239",
         "plenoId": "19gax3o",
         "plenoDate": "2026-01-19",
@@ -6951,7 +6865,7 @@
           "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7402,7 +7316,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8635,43 +8549,6 @@
     },
     {
       "claim": {
-        "id": "19gax3o-160-acu-95ec4f",
-        "plenoId": "19gax3o",
-        "plenoDate": "2026-01-19",
-        "segmentIndex": 160,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "actualmente FCC estaba trabajando o solo era Garbialdi la que estaba trabajando en el tema de la recogida de FEMA la técnica nos dice que actualmente solo estaba trabajando Garbialdi la empresa contratada",
-        "context": "...referente a la basura porque el día que tenemos técnicos preguntaremos a la comisión de contratación son testigos todos los portavoz a la técnica si actualmente FCC estaba trabajando o solo era Garbialdi la que estaba trabajando en el tema de la recogida de FEMA la técnica nos dice que actualmente solo estaba trabajando Garbialdi la empresa contratada vamos, serem",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "contrato de recogida de basura / fcc / garbialdi"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.84,
-        "reasoning": "Afirma qué empresa estaba trabajando en la recogida de basura y que una técnica lo indicó; es verificable con contratos, partes de servicio o actas de comisión.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "19gax3o-160-acu-95ec4f",
-        "verdict": "parcial",
-        "summary": "The candidate describes a public service contract for urban solid waste collection, which is related to the claim's subject. However, it does not specify which company, FCC or Garbialdi, is currently performing the service or their operational status.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio.",
-            "similarity": 0.2
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "19gax3o-162-cit-639084",
         "plenoId": "19gax3o",
         "plenoDate": "2026-01-19",
@@ -8912,7 +8789,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -9059,7 +8936,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -9412,61 +9289,6 @@
     },
     {
       "claim": {
-        "id": "19gax3o-174-acu-e554ea",
-        "plenoId": "19gax3o",
-        "plenoDate": "2026-01-19",
-        "segmentIndex": 174,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "la mayoría del pleno decidió adjudicar el contrato",
-        "context": "que quede claro y que es el pleno, la mayoría del pleno aunque va a ser en su voto en contra por los 14 años equivocadamente por eso lo demandaba la Junta Jurídica Consultiva la mayoría del pleno decidió adjudicar el contrato en base a lo que nos dice",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "adjudicación del contrato"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.79,
-        "reasoning": "Es una afirmación verificable sobre el sentido de la decisión del pleno y la adjudicación del contrato; debería contrastarse con el acta y la votación.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "19gax3o-174-acu-e554ea",
-        "verdict": "parcial",
-        "summary": "Se han identificado contratos menores adjudicados por el Ayuntamiento de Riba-roja de Túria para servicios de base de datos jurídica, corroborando la acción de adjudicación de contratos, pero las evidencias no confirman explícitamente que la decisión fue tomada por la mayoría del pleno.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9ZDftrijnUGiEJrVRqloyA%3D%3D",
-            "snippet": "Contrato Menor de Base de Datos Jurídica El Consultor · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.4
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oN77rPhTzVrCfVQHDepjGQ%3D%3D",
-            "snippet": "Contrato Menor de suministro Base de Datos Jurídica El Consultor. · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8tuOVwlaYrIZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato Menor de suministro Base de Datos Jurídica El Consultor · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RFCNb0rioz17h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato Menor de Base de Datos Jurídica Corporativa, de Recursos Humanos y Hacienda Local · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.22
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "19gax3o-175-cit-19bf49",
         "plenoId": "19gax3o",
         "plenoDate": "2026-01-19",
@@ -9693,7 +9515,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

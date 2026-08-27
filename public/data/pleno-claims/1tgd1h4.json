@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T10:50:58.219Z",
+  "generatedAt": "2026-08-27T11:47:35.392Z",
   "version": "1",
   "plenoId": "1tgd1h4",
   "plenoDate": "2024-07-29",
@@ -2584,7 +2584,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4011,7 +4011,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5803,7 +5803,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6069,7 +6069,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6405,7 +6405,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8555,7 +8555,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8631,7 +8631,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8715,7 +8715,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -13404,7 +13404,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -15072,7 +15072,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -15319,7 +15319,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -16565,7 +16565,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -16601,7 +16601,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -17309,7 +17309,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -18936,7 +18936,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -19329,7 +19329,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -19659,7 +19659,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -26888,94 +26888,6 @@
     },
     {
       "claim": {
-        "id": "1tgd1h4-356-acu-e2dc0e",
-        "plenoId": "1tgd1h4",
-        "plenoDate": "2024-07-29",
-        "segmentIndex": 356,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "el instructor del expediente formuló la correspondiente propuesta de resolución, en el sentido de desestimar la reclamación de responsabilidad patrimonial",
-        "context": "con fecha 25 de octubre de 2017, el instructor del expediente formuló la correspondiente propuesta de resolución, en el sentido de desestimar la reclamación de responsabilidad patrimonial, al no concurrir los requisitos exigidos legal y jurisprudencialmente.",
-        "topic": "other",
-        "entities": {
-          "date": "2017-10-25",
-          "referencedEntity": "expediente de responsabilidad patrimonial"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.86,
-        "reasoning": "Es verificable porque cita una fecha y una actuación administrativa concreta del expediente; debería contrastarse con el expediente y la resolución propuesta.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1tgd1h4-356-acu-e2dc0e",
-        "verdict": "parcial",
-        "summary": "Los candidatos listados corresponden a contratos de seguro de responsabilidad civil/patrimonial, lo cual se relaciona tangencialmente con la mención de una reclamación de responsabilidad patrimonial, pero no son la resolución de dicha reclamación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=50AMOi%2FtmLPnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Seguro de responsabilidad civil/patrimonial del ayuntamiento",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fyqNrUJGe9wQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Seguro de Responsabilidad Civil/patrimonial del Ayuntamiento de Riba-roja",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "1tgd1h4-356-acu-595087",
-        "plenoId": "1tgd1h4",
-        "plenoDate": "2024-07-29",
-        "segmentIndex": 356,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "el Pleno del Consell Consultiu de la Comunitat Valenciana, en sesión celebrada el 21 de febrero de 2018 emitió el correspondiente dictamen",
-        "context": "Una vez interpuesto el recurso contencioso, el Pleno del Consell Consultiu de la Comunitat Valenciana, en sesión celebrada el 21 de febrero de 2018 emitió el correspondiente dictamen en el que concluyó que procedía desestimar la reclamación de responsabilidad patrimonial.",
-        "topic": "other",
-        "entities": {
-          "date": "2018-02-21",
-          "referencedEntity": "consell consultiu de la comunitat valenciana"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.88,
-        "reasoning": "Es verificable porque menciona un órgano concreto, una sesión fechada y el contenido del dictamen; debería existir el dictamen correspondiente.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1tgd1h4-356-acu-595087",
-        "verdict": "parcial",
-        "summary": "Los candidatos son licitaciones de seguros de responsabilidad civil/patrimonial. Aunque existe una conexión temática con la 'reclamación de responsabilidad patrimonial' del claim, no hay correspondencia directa con el 'dictamen' ni la fecha indicada.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=50AMOi%2FtmLPnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Seguro de responsabilidad civil/patrimonial del ayuntamiento",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fyqNrUJGe9wQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Seguro de Responsabilidad Civil/patrimonial del Ayuntamiento de Riba-roja",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "1tgd1h4-357-afi-0af125",
         "plenoId": "1tgd1h4",
         "plenoDate": "2024-07-29",
@@ -27390,7 +27302,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

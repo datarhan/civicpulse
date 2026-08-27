@@ -145,24 +145,43 @@ describe('«retenida» y «sin contraste» se distinguen en pantalla', () => {
     expect(CONTRAST_CHIP.toggle).not.toMatch(/acusaci/i)
   })
 
-  it('la ficha pone el chip DENTRO del literal retenido', async () => {
+  /**
+   * Cambió la política, no la prueba: desde el 2026-08-27 las dos superficies
+   * obedecen la misma puerta, así que una cita `hidden` ya no se pinta como
+   * cita-con-chip — no se pinta su literal en absoluto. Lo que hay que
+   * comprobar es que el TEXTO no está y que el hueco lo explica.
+   */
+  it('el literal retenido no se pinta, y el hueco dice por qué', async () => {
     const { container } = await renderCard(withHidden)
     const rows = rowsOf(withHidden, 3)
     const i = rows.findIndex((r) => r.gate === 'hidden')
-    expect(blockquotes(container)[i].textContent).toContain(CONTRAST_CHIP.hidden)
+    const texto = container.textContent
+    expect(texto).toContain('Literal retenido')
+    expect(texto).toMatch(/ningún registro municipal/i)
+    // Y el literal concreto de esa cita, fuera.
+    const literal = (withHidden.quotes?.[i]?.text ?? '').slice(0, 40)
+    expect(literal.length, 'la prueba no tiene literal que buscar').toBeGreaterThan(10)
+    expect(texto).not.toContain(literal)
   })
 
   it('una ficha con los dos veredictos enseña los dos, cada uno en su cita', async () => {
     const { container } = await renderCard(bothGates)
     const rows = rowsOf(bothGates, 3)
     const quotes = blockquotes(container)
-    rows.forEach((r, i) => {
+    // Sólo las `toggle` siguen siendo citas con chip; las `hidden` ya no pintan
+    // literal, así que no hay blockquote suyo que mirar.
+    const visibles = rows.filter((r) => r.gate !== 'hidden')
+    expect(visibles.length, 'la prueba no evalúa nada').toBeGreaterThan(0)
+    visibles.forEach((r, i) => {
       if (r.gate === 'shown') return
       expect(quotes[i].textContent).toContain(CONTRAST_CHIP[r.gate])
       // Y no el del otro: un chip que saliera en todas no distinguiría nada.
-      const otro = r.gate === 'hidden' ? 'toggle' : 'hidden'
-      expect(quotes[i].textContent).not.toContain(CONTRAST_CHIP[otro])
+      expect(quotes[i].textContent).not.toContain(CONTRAST_CHIP.hidden)
     })
+    // La retenida, en cambio, sale como hueco.
+    if (rows.some((r) => r.gate === 'hidden')) {
+      expect(container.textContent).toContain('Literal retenido')
+    }
   })
 })
 
@@ -313,10 +332,16 @@ describe('/hallazgos renderiza la misma marca que /plenos/:id', () => {
     return utils
   }
 
-  it('la ficha larga marca la acusación retenida dentro de su literal', async () => {
+  // Misma corrección que en la tarjeta: la ficha larga tampoco pinta el literal
+  // de una acusación retenida. La política es una sola en las dos superficies.
+  it('la ficha larga tampoco pinta el literal retenido', async () => {
     const { container } = await renderDetail(withHidden)
     const i = rowsOf(withHidden, 3).findIndex((r) => r.gate === 'hidden')
-    expect(blockquotes(container)[i].textContent).toContain(CONTRAST_CHIP.hidden)
+    const texto = container.textContent
+    expect(texto).toContain('Literal retenido')
+    const literal = (withHidden.quotes?.[i]?.text ?? '').slice(0, 40)
+    expect(literal.length, 'la prueba no tiene literal que buscar').toBeGreaterThan(10)
+    expect(texto).not.toContain(literal)
   })
 
   it('y deja limpia la contrastada, en la misma ficha', async () => {
