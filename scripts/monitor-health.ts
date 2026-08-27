@@ -22,6 +22,7 @@ import {
   type Observations,
 } from '../src/scraper/health-monitor'
 import { transcriptionPending, TRANSCRIBE_BLOCKLIST_IDS } from '../src/scraper/transcribe-blocklist'
+import { cotejarCompose } from '../src/scraper/verified-merge'
 
 const STATE = resolve('.health-monitor-state.json')
 const DATA = resolve('public/data')
@@ -98,6 +99,17 @@ function nightlyFailStreak(): number {
     return n
   } catch {
     return 0 // gh unavailable — do not invent a streak
+  }
+}
+
+/** El `generatedAt` de un volcado, o `null` si no está o no se deja leer. */
+function selloGenerado(path: string): string | null {
+  if (!existsSync(path)) return null
+  try {
+    const doc = JSON.parse(readFileSync(path, 'utf8')) as { generatedAt?: unknown }
+    return typeof doc.generatedAt === 'string' ? doc.generatedAt : null
+  } catch {
+    return null
   }
 }
 
@@ -214,10 +226,23 @@ async function gather(): Promise<Observations> {
     // sello sostenía la fecha que /departamentos publicaba, y ninguna puerta
     // podía verlo porque las dos miraban el mismo número.
     'check:stamps',
+    // Sólo caza el `contradice`, que es el único desenlace que sale 1. El
+    // caso normal —el base avanzó y falta republicar— sale 0 a propósito y
+    // entra abajo como cola de trabajo, no como fallo: un aviso que se pinta
+    // rojo cada noche es un aviso que alguien apaga.
+    'check:verified-compose',
   ]) {
     const msg = runCheck(c)
     if (msg) integrity.push({ check: c, message: msg })
   }
+
+  // El mismo cotejo que hace `check:verified-compose`, en puro, para poder
+  // pintar la cola SIN levantar un subproceso y sin depender de un código de
+  // salida que a propósito es 0.
+  const composeCotejo = cotejarCompose({
+    baseGeneratedAt: selloGenerado(resolve(DATA, 'pleno-claims-verified-base.json')),
+    publicadoGeneratedAt: selloGenerado(resolve(DATA, 'pleno-claims-verified.json')),
+  })
 
   return {
     now: new Date(),
@@ -232,6 +257,23 @@ async function gather(): Promise<Observations> {
         pending: transcriptionPending(transcribable, transcripts),
         stallDays: 3,
         cause: openaiCause,
+      },
+      {
+        // Republicar un veredicto es un acto HUMANO —la nocturna corre
+        // `--base-only` a propósito— así que esto no es una avería: es una cola
+        // que hasta ahora no salía en ninguna pantalla. El base avanzó el 24 de
+        // agosto de 2026 y lo publicado se quedó nueve días en el 18 sin que
+        // nada lo dijera. `check:verified-compose` cuenta la misma historia.
+        name: 'Veredictos · composición',
+        lastProgressAt: composeCotejo.publicadoGeneratedAt
+          ? new Date(composeCotejo.publicadoGeneratedAt)
+          : null,
+        pending: composeCotejo.estado === 'pendiente-de-republicar' ? 1 : 0,
+        stallDays: 7,
+        cause:
+          composeCotejo.estado === 'pendiente-de-republicar'
+            ? 'el base avanzó; corre `npm run verify:pleno-claims`, REVISA la dirección y comitea'
+            : null,
       },
       {
         name: 'Extracción de claims',

@@ -364,3 +364,113 @@ export function applyReclassificationEntries(
   validateReclassifications(next)
   return next
 }
+
+// ─── El sello de la composición ─────────────────────────────────────────────
+//
+// `verified-rebuild.ts` conserva a propósito el `generatedAt` del base al
+// componer, para que una migración que siembre el base desde el publicado dé
+// la vuelta byte a byte. Ese detalle convierte los dos sellos en un invariante
+// comprobable: si no coinciden, lo publicado NO es la composición del base que
+// hay en disco.
+//
+// El desajuste no es una avería. La nocturna y `scrape-all.sh` corren
+// `verify:pleno-claims -- --base-only` a propósito —CI necesita que el fichero
+// exista, no republicar—, porque republicar un veredicto es un acto humano y
+// nada automático debe subir una afirmación publicada. Lo que faltaba era el
+// aviso de que esa cola existe: el base avanzó el 24 de agosto y lo publicado
+// se quedó en el 18 sin que nada lo dijera en ningún sitio.
+//
+// Cuatro desenlaces y no dos, por lo mismo que en `check:eficiencia-findings`:
+// con dos, el caso normal —el base avanzó, falta republicar— saldría rojo cada
+// noche, y una guarda que grita cuando no pasa nada acaba apagada.
+
+/** Los cuatro desenlaces del cotejo. Se exporta; nadie lo recita. */
+export const ESTADOS_COMPOSE = [
+  'coincide',
+  'pendiente-de-republicar',
+  'contradice',
+  'sin-base',
+] as const
+
+export type EstadoCompose = (typeof ESTADOS_COMPOSE)[number]
+
+export interface CotejoCompose {
+  estado: EstadoCompose
+  baseGeneratedAt: string | null
+  publicadoGeneratedAt: string | null
+  /** Qué mirar. `null` sólo cuando coincide. */
+  motivo: string | null
+}
+
+/** Milisegundos de un sello ISO, o `null` si no se deja leer. */
+function selloMs(iso: string | null): number | null {
+  if (typeof iso !== 'string' || !iso) return null
+  const ms = Date.parse(iso)
+  return Number.isNaN(ms) ? null : ms
+}
+
+/**
+ * Coteja el sello de lo publicado contra el del base del que debería salir.
+ *
+ * Puro: el llamante lee los ficheros y pasa los dos sellos, y pasa `null` por
+ * el base cuando no está —está gitignorado, así que un clon recién hecho no lo
+ * tiene—. Ese caso sale como `sin-base`, que es SALTADO y jamás un visto
+ * bueno: una guarda que no pudo comprobar nada tiene que decirlo en vez de
+ * imprimir su propio todo-en-orden.
+ */
+export function cotejarCompose(input: {
+  baseGeneratedAt: string | null
+  publicadoGeneratedAt: string | null
+}): CotejoCompose {
+  const { baseGeneratedAt, publicadoGeneratedAt } = input
+  const con = (estado: EstadoCompose, motivo: string | null): CotejoCompose => ({
+    estado,
+    baseGeneratedAt,
+    publicadoGeneratedAt,
+    motivo,
+  })
+
+  // Sin base no hay nada contra lo que cotejar. Se dice, no se aprueba.
+  if (baseGeneratedAt == null) {
+    return con(
+      'sin-base',
+      'no hay base en disco (está gitignorado): no se ha podido cotejar. ' +
+        'Reconstrúyelo con `npm run verify:pleno-claims -- --base-only`.',
+    )
+  }
+
+  // El publicado SÍ está comiteado. Que falte es otra cosa, y es grave.
+  if (publicadoGeneratedAt == null) {
+    return con('contradice', 'falta pleno-claims-verified.json, que va comiteado')
+  }
+
+  const base = selloMs(baseGeneratedAt)
+  const publicado = selloMs(publicadoGeneratedAt)
+  if (base == null || publicado == null) {
+    return con(
+      'contradice',
+      `sello ilegible (base ${String(baseGeneratedAt)}, publicado ${String(publicadoGeneratedAt)})`,
+    )
+  }
+
+  if (base === publicado) return con('coincide', null)
+
+  if (base > publicado) {
+    return con(
+      'pendiente-de-republicar',
+      'el base avanzó y nadie ha republicado. Es lo normal —la nocturna corre ' +
+        '`--base-only` a propósito— y republicar es un acto humano: corre ' +
+        '`npm run verify:pleno-claims` (sin --base-only), REVISA la dirección de ' +
+        'los cambios y comitea.',
+    )
+  }
+
+  // Publicado más nuevo que su base es imposible por construcción: el rebuild
+  // copia el sello del base. Si pasa, alguien escribió el publicado a mano o el
+  // base se regeneró hacia atrás.
+  return con(
+    'contradice',
+    'lo publicado es MÁS NUEVO que su base, y el rebuild copia el sello del base: ' +
+      'o se editó a mano o el base retrocedió',
+  )
+}
