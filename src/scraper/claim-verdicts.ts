@@ -74,40 +74,48 @@ export function resumirSinDatos(
   return { sinCorpus, comprobadoSinHallar }
 }
 
-// ─── Corpus de datos frente a marcas de pasada ──────────────────────────────
+// ─── Procedencia: corpus, pasadas y lo que no sabemos ──────────────────────
 //
 // `checkedAgainst` mezcla dos cosas que NO son lo mismo:
 //
-//   · corpus de datos —tenders, bdns, budget, promises…—: contra qué se cotejó
-//   · marcas de pasada —verdict-engine, llm-second-pass, curator-downgrade—:
-//     CÓMO se llegó al veredicto
+//   · corpus de datos —tenders, bdns, budget, promises, padron, paro—: contra
+//     qué se cotejó la afirmación;
+//   · marcas de pasada —verdict-engine, llm-second-pass, nli-grounding…—: CÓMO
+//     se llegó al veredicto.
 //
-// Enseñarlas juntas bajo «contra qué se coteja» infla la base de evidencia
-// aparente: un veredicto revisado por el motor no está respaldado por una
-// fuente más. En una página cuyo argumento entero es no afirmar de más, eso
-// sería justo el error que denuncia.
+// Enseñarlas juntas infla la base de evidencia aparente, y CONTARLAS juntas
+// hizo dos daños en un día: una cobertura del 59,8 % que era del 38,1 %, y
+// once acusaciones publicadas por una puerta que sólo miraba si el array
+// estaba vacío.
 //
-// Lo desconocido se trata como CORPUS, no como marca: una marca nueva sin
-// declarar aparece a la vista —y se corrige— en vez de desaparecer callando.
+// La clasificación es por LISTA BLANCA, y la dirección importa. Con lista
+// negra, un nombre no declarado contaba como corpus: el día que corriera NLI
+// —cuya marca no estaba en la lista— la cobertura se habría inflado sola y en
+// silencio. Con lista blanca se queda corta, que en una página cuyo argumento
+// es no afirmar de más es el lado seguro. Y lo desconocido no desaparece: sale
+// por `desconocidos` para que alguien lo declare de un lado o del otro.
+
+/** Los corpus de datos que un verificador puede consultar. */
+export const CORPUS_IDS = [
+  'tenders',
+  'tenders-ted',
+  'bdns',
+  'budget',
+  'promises',
+  'padron',
+  'paro',
+] as const
+
+export type CorpusId = (typeof CORPUS_IDS)[number]
 
 /**
  * Los nombres de pasada que aparecen en `checkedAgainst`.
  *
- * Hay DOS esquemas de nombres conviviendo y esta lista tiene que cubrir los
- * dos: el que escribe cada verificador en `checkedAgainst`
- * (`nli-grounding`, `llm-second-pass`, `verdict-engine`) y el de
- * `OverlaySource` (`nli`, `llm`, `verdict-engine`, `curator-downgrade`).
- *
- * `nli-grounding` faltaba y lo cazó la prueba de la puerta el mismo día: es una
- * lista negra escrita a mano, y una lista negra a mano dentro de un control
- * contra el estancamiento se estanca ella sola. Vive con fecha de caducidad —
- * la fase 1 separa `checkedAgainst` (corpus) de `derivedBy` (pasadas) y
- * entonces esto se borra, porque ya no hará falta clasificar nada.
- *
- * Mientras exista: lo desconocido cuenta como corpus, que es la dirección
- * INSEGURA. La fase 1 lo invierte.
+ * Conviven dos esquemas y hay que cubrir los dos: el que escribe cada
+ * verificador (`nli-grounding`, `llm-second-pass`, `verdict-engine`) y el de
+ * `OverlaySource` (`nli`, `llm`, `curator-downgrade`).
  */
-export const MARCAS_DE_PASADA = [
+export const PASADAS = [
   'verdict-engine',
   'llm-second-pass',
   'nli-grounding',
@@ -116,23 +124,48 @@ export const MARCAS_DE_PASADA = [
   'curator-downgrade',
 ] as const
 
+export type Pasada = (typeof PASADAS)[number]
+
+/** Alias histórico. La lista es la de pasadas. */
+export const MARCAS_DE_PASADA = PASADAS
+
+export interface ClasificacionProcedencia {
+  corpus: CorpusId[]
+  pasadas: Pasada[]
+  /** Ni corpus declarado ni pasada declarada. Se reporta; no se adivina. */
+  desconocidos: string[]
+}
+
 export function esMarcaDePasada(nombre: string): boolean {
-  return (MARCAS_DE_PASADA as readonly string[]).includes(nombre)
+  return (PASADAS as readonly string[]).includes(nombre)
+}
+
+export function esCorpus(nombre: string): boolean {
+  return (CORPUS_IDS as readonly string[]).includes(nombre)
+}
+
+/** Reparte un `checkedAgainst` en corpus, pasadas y desconocidos. */
+export function clasificarProcedencia(
+  checkedAgainst?: readonly unknown[] | null,
+): ClasificacionProcedencia {
+  const corpus: CorpusId[] = []
+  const pasadas: Pasada[] = []
+  const desconocidos: string[] = []
+  for (const x of checkedAgainst ?? []) {
+    if (typeof x !== 'string') continue
+    if (esCorpus(x)) corpus.push(x as CorpusId)
+    else if (esMarcaDePasada(x)) pasadas.push(x as Pasada)
+    else desconocidos.push(x)
+  }
+  return { corpus, pasadas, desconocidos }
 }
 
 /**
- * Los corpus DE VERDAD de un `checkedAgainst`, sin las marcas de pasada.
+ * Los corpus DE VERDAD de un `checkedAgainst`.
  *
- * Contar la longitud cruda de `checkedAgainst` daba por «comprobada» una fila
- * cotejada contra nada: 1.014 de las 4.675 publicadas llevan sólo marcas, y
- * con ellas dentro la cobertura salía al 59,8 % cuando era del 38,1 %. La
- * sobreafirmación exacta que /laboratorio/cobertura existe para no cometer.
- *
- * Cualquier cosa que no esté declarada como marca cuenta como corpus: un
- * nombre nuevo se ve —y se corrige— en vez de desaparecer callando.
+ * Desaparece en cuanto `derivedBy` lleve las pasadas y este campo signifique
+ * una sola cosa: entonces esto será `checkedAgainst.length` y ya está.
  */
-export function corpusReales(checkedAgainst?: readonly unknown[] | null): string[] {
-  return (checkedAgainst ?? []).filter(
-    (c): c is string => typeof c === 'string' && !esMarcaDePasada(c),
-  )
+export function corpusReales(checkedAgainst?: readonly unknown[] | null): CorpusId[] {
+  return clasificarProcedencia(checkedAgainst).corpus
 }

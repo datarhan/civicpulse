@@ -1,7 +1,14 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { CLAIM_VERDICTS, resumirSinDatos, corpusReales } from '../src/scraper/claim-verdicts'
+import {
+  CLAIM_VERDICTS,
+  resumirSinDatos,
+  corpusReales,
+  clasificarProcedencia,
+  CORPUS_IDS,
+  PASADAS,
+} from '../src/scraper/claim-verdicts'
 import type { ClaimVerification } from '../src/scraper/claim-verifier'
 
 const ROOT = join(__dirname, '..')
@@ -110,6 +117,59 @@ describe('resumirSinDatos · dos desenlaces donde había uno', () => {
     expect([...CLAIM_VERDICTS].sort()).toEqual(
       ['contradicho', 'parcial', 'promesa-repetida', 'sin-datos', 'verificado'].sort(),
     )
+  })
+})
+
+/**
+ * De lista NEGRA a lista BLANCA, que es una inversión de la dirección del
+ * fallo, no un detalle.
+ *
+ * Con lista negra, un nombre no declarado contaba como corpus: el día que
+ * corrió NLI —cuya marca `nli-grounding` no estaba en la lista— la cobertura
+ * se habría inflado sola y en silencio. Ya pasó en pequeño: la marca faltaba y
+ * la cazó la prueba de la puerta el mismo día.
+ *
+ * Con lista blanca, lo no declarado NO cuenta como corpus: la cifra se queda
+ * corta, que en una página cuyo argumento entero es no afirmar de más es la
+ * dirección segura. Y no desaparece: sale por `desconocidos` para que alguien
+ * lo declare de un lado o del otro.
+ */
+describe('clasificarProcedencia · corpus, pasadas y lo que no sabemos', () => {
+  it('separa las tres cosas', () => {
+    const c = clasificarProcedencia(['tenders', 'llm-second-pass', 'bdns', 'una-cosa-nueva'])
+    expect(c.corpus).toEqual(['tenders', 'bdns'])
+    expect(c.pasadas).toEqual(['llm-second-pass'])
+    expect(c.desconocidos).toEqual(['una-cosa-nueva'])
+  })
+
+  it('un nombre sin declarar NO cuenta como corpus', () => {
+    // La inversión. Con lista negra esto daba `['corpus-del-futuro']`.
+    expect(corpusReales(['corpus-del-futuro'])).toEqual([])
+    expect(clasificarProcedencia(['corpus-del-futuro']).desconocidos).toEqual(['corpus-del-futuro'])
+  })
+
+  it('las marcas de pasada conocidas nunca cuentan como corpus', () => {
+    for (const marca of PASADAS) {
+      expect(corpusReales([marca]), `marca ${marca}`).toEqual([])
+    }
+  })
+
+  it('todos los corpus declarados sí cuentan', () => {
+    for (const id of CORPUS_IDS) {
+      expect(corpusReales([id]), `corpus ${id}`).toEqual([id])
+    }
+  })
+
+  it('los dos enum son disjuntos', () => {
+    // Si un nombre estuviera en los dos, la clasificación dependería del orden
+    // en que se pregunte, que es como se cuelan estas cosas.
+    const cruce = CORPUS_IDS.filter((c) => (PASADAS as readonly string[]).includes(c))
+    expect(cruce).toEqual([])
+  })
+
+  it('aguanta basura sin reventar', () => {
+    expect(clasificarProcedencia(undefined).corpus).toEqual([])
+    expect(clasificarProcedencia([null, 3, {}, 'tenders'] as never).corpus).toEqual(['tenders'])
   })
 })
 
