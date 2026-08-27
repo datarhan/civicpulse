@@ -20,6 +20,7 @@ import type {
 } from './claim-verifier'
 import { shouldSkipLlmVerification, parseCite, looselyContains } from './claim-verifier-llm'
 import { stripSimilarityAnnotation } from '../llm/candidate-annotation'
+import { corpusDeEvidencia } from './claim-verdicts'
 
 export interface EngineCite {
   candidateIndex: number
@@ -111,7 +112,8 @@ export async function verifyClaimWithEngine(
       verdict,
       summary: reasoning.slice(0, 300),
       evidence,
-      checkedAgainst: ['verdict-engine'],
+      checkedAgainst: corpusDeEvidencia(evidence),
+      derivedBy: ['verdict-engine'],
       confidence: CONF[verdict],
     },
     upgraded: verdict !== 'sin-datos' && evidence.length > 0,

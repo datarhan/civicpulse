@@ -104,6 +104,9 @@ export const CORPUS_IDS = [
   'promises',
   'padron',
   'paro',
+  'prior-claims',
+  'factcheck',
+  'boe',
 ] as const
 
 export type CorpusId = (typeof CORPUS_IDS)[number]
@@ -188,4 +191,42 @@ export function clasificarProcedencia(
  */
 export function corpusReales(checkedAgainst?: readonly unknown[] | null): CorpusId[] {
   return clasificarProcedencia(checkedAgainst).corpus
+}
+
+// ─── De la evidencia al corpus ──────────────────────────────────────────────
+//
+// Cada pasada escribía SU PROPIO NOMBRE en `checkedAgainst` en vez de decir
+// contra qué había cotejado, y con el suelo de evidencia puesto eso dejó a NLI
+// sin poder subir nada: la pasada que hace falta para re-fundamentar las filas
+// de procedencia retirada era, de hecho, imposible de aplicar.
+//
+// La traducción va por el `kind` de la evidencia, que es el registro real de
+// fuentes. Un kind sin corpus produce un veredicto que el suelo rechaza —una
+// pasada que nace muerta— y por eso hay una prueba que exige la tabla
+// EXHAUSTIVA sobre `EVIDENCE_KINDS`.
+
+const CORPUS_DE_KIND: Record<string, CorpusId> = {
+  tender: 'tenders',
+  bdns: 'bdns',
+  budget: 'budget',
+  promise: 'promises',
+  'prior-claim': 'prior-claims',
+  factcheck: 'factcheck',
+  boe: 'boe',
+}
+
+/**
+ * Los corpus que una lista de evidencia cita, sin repetir y en orden estable.
+ *
+ * Un `kind` que no esté en la tabla NO inventa corpus: se cae fuera y el suelo
+ * hará su trabajo. Callar es la dirección segura; adivinar, no.
+ */
+export function corpusDeEvidencia(evidence?: readonly unknown[] | null): CorpusId[] {
+  const out: CorpusId[] = []
+  for (const e of evidence ?? []) {
+    const kind = (e as { kind?: unknown } | null)?.kind
+    const k = typeof kind === 'string' ? CORPUS_DE_KIND[kind] : undefined
+    if (k && !out.includes(k)) out.push(k)
+  }
+  return out
 }
