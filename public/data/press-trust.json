@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T09:58:26.729Z",
+  "generatedAt": "2026-08-27T15:21:29.188Z",
   "windowDays": 30,
   "articles": [
     {
@@ -919,64 +919,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "esjoak",
-      "articleFingerprint": "xdvlqw",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/bases-ayudas-econ%C3%B3micas-para-la-redacci%C3%B3n-del-informe-de-evaluaci%C3%B3n-de-los-edificios-en-riba-roja-de-t%C3%BAria%2C-ejercicios-2026-27",
-      "date": "2026-07-28T12:34:52.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "dz183c",
-      "articleFingerprint": "yumzfw",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/bases-ayudas-econ%C3%B3micas-para-la-mejora-de-la-accesibilidad-en-viviendas-y-edificios-residenciales-en-riba-roja-de-t%C3%BAria%2C-ejercicios-2026-27",
-      "date": "2026-07-28T12:31:27.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "hhgyls",
-      "articleFingerprint": "1leggog",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/bases-ayudas-econ%C3%B3micas-para-la-rehabilitaci%C3%B3n-de-fachadas-de-viviendas-en-riba-roja-de-t%C3%BAria%2C-ejercicios-2026-27",
-      "date": "2026-07-28T12:24:32.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 30,
+      "articleCount": 27,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -984,7 +933,7 @@
         "sin-datos": 27,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.5,
+      "meanTrustScore": 2.56,
       "verifiedRatio": 0,
       "contradictedRatio": 0
     },
@@ -1110,7 +1059,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "8e0a410f5227",
+    "plenos-agendas.json": "9c5b91792b06",
     "press-claims-verified.json": "83f716492790",
     "press.json": "b6ec6988ae6e",
     "promises.json": "d18811c11210"
