@@ -87,6 +87,7 @@ export const CATALOGUE = {
     'nav.agentes': 'Periodistas',
     'nav.frontera': 'Frontera',
     'nav.costeEsperado': 'Coste esperado',
+    'nav.cobertura': 'Cobertura',
     'nav.section': 'Navegación',
 
     // Reportajes (índice de piezas long-form)
@@ -238,6 +239,13 @@ export const CATALOGUE = {
     'declaraciones.filter.todos': 'Todos',
     'declaraciones.filter.conEvidencia': 'Con evidencia',
     'declaraciones.filter.atribuidas': 'Atribuidas',
+    'declaraciones.filter.sinCorpus': 'Sin corpus que consultar',
+    'declaraciones.filter.comprobadoSinHallar': 'Comprobada, no aparece',
+    'declaraciones.split.titulo': 'Por qué «sin datos»',
+    'declaraciones.split.cuerpo':
+      'No es lo mismo haber comprobado y no encontrar nada que no haber tenido con qué comprobar. Lo segundo no dice nada sobre la declaración: dice que aún no tenemos ese corpus.',
+    'declaraciones.split.sinCorpus': 'sin corpus que consultar',
+    'declaraciones.split.comprobadoSinHallar': 'comprobadas, no aparecen',
     'declaraciones.search.placeholder': 'Buscar en el texto literal…',
     'declaraciones.matchCount': 'declaraciones coinciden con los filtros',
     'declaraciones.loadMore': 'Mostrar más',
@@ -640,6 +648,7 @@ export const CATALOGUE = {
     'nav.agentes': 'Periodistes',
     'nav.frontera': 'Frontera',
     'nav.costeEsperado': 'Cost esperat',
+    'nav.cobertura': 'Cobertura',
     'nav.section': 'Navegació',
 
     // Reportatges (índex de peces long-form)
@@ -786,6 +795,13 @@ export const CATALOGUE = {
     'declaraciones.filter.todos': 'Tots',
     'declaraciones.filter.conEvidencia': 'Amb evidència',
     'declaraciones.filter.atribuidas': 'Atribuïdes',
+    'declaraciones.filter.sinCorpus': 'Sense corpus a consultar',
+    'declaraciones.filter.comprobadoSinHallar': 'Comprovada, no apareix',
+    'declaraciones.split.titulo': 'Per què «sense dades»',
+    'declaraciones.split.cuerpo':
+      'No és el mateix haver comprovat i no trobar res que no haver tingut amb què comprovar. El segon no diu res sobre la declaració: diu que encara no tenim eixe corpus.',
+    'declaraciones.split.sinCorpus': 'sense corpus a consultar',
+    'declaraciones.split.comprobadoSinHallar': 'comprovades, no apareixen',
     'declaraciones.search.placeholder': 'Cerca en el text literal…',
     'declaraciones.matchCount': 'declaracions coincideixen amb els filtres',
     'declaraciones.loadMore': 'Mostrar-ne més',

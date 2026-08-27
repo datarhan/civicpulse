@@ -12,6 +12,7 @@ import {
 import { usePlenos } from '../hooks/usePlenos'
 import { PARTY_TONE } from '../hooks/usePromises'
 import { useT } from '../i18n'
+import { CLAIM_VERDICTS, resumirSinDatos } from '../scraper/claim-verdicts'
 import { blocLabel } from '../lib/party-label.js'
 import { etiquetaVerificador } from '../lib/claim-provenance.js'
 
@@ -194,7 +195,15 @@ function ClaimRow({ item, plenoTitle }) {
   )
 }
 
-const ALL_VERDICTS = ['verificado', 'parcial', 'contradicho', 'promesa-repetida', 'sin-datos']
+// El ORDEN de pintado es una decisión de presentación y vive aquí; el CONJUNTO
+// viene del enum, para que no puedan separarse. Un veredicto nuevo que nadie
+// haya ordenado aparece al final en vez de desaparecer en silencio, que es lo
+// que hacía la lista copiada a mano (regla 1 de docs/DATA_INTEGRITY.md).
+const ORDEN_VERDICTS = ['verificado', 'parcial', 'contradicho', 'promesa-repetida', 'sin-datos']
+const ALL_VERDICTS = [
+  ...ORDEN_VERDICTS.filter((v) => CLAIM_VERDICTS.includes(v)),
+  ...CLAIM_VERDICTS.filter((v) => !ORDEN_VERDICTS.includes(v)),
+]
 // The five groups holding seats in this corporación, plus `null` for claims
 // whose group could not be determined. `Otro` used to sit in this list and was
 // rendered as a chip labelled with the raw code — the one surface where a
@@ -216,13 +225,7 @@ export default function Declaraciones() {
 
   // Aggregate counts for the chip badges, computed once per snapshot.
   const stats = useMemo(() => {
-    const byVerdict = {
-      verificado: 0,
-      parcial: 0,
-      contradicho: 0,
-      'sin-datos': 0,
-      'promesa-repetida': 0,
-    }
+    const byVerdict = Object.fromEntries(CLAIM_VERDICTS.map((v) => [v, 0]))
     const byBloc = { PSOE: 0, PP: 0, VOX: 0, Compromís: 0, 'EU-Podem': 0, null: 0 }
     const topics = new Set()
     for (const it of items) {
@@ -235,6 +238,9 @@ export default function Declaraciones() {
       total: items.length,
       byVerdict,
       withEvidence: byVerdict.verificado + byVerdict.parcial + byVerdict.contradicho,
+      // El mismo reparto que publica el manifiesto, recontado aquí sobre los
+      // items cargados para que las dos cifras no puedan separarse.
+      sinDatosPorque: resumirSinDatos(items.map((it) => it.verification)),
       byBloc,
       topics: [...topics].sort(),
     }
@@ -246,6 +252,10 @@ export default function Declaraciones() {
       if (verdictFilter === 'with-evidence') {
         if (!['verificado', 'parcial', 'contradicho'].includes(it.verification.verdict))
           return false
+      } else if (verdictFilter === 'sin-corpus' || verdictFilter === 'comprobado-sin-hallar') {
+        if (it.verification.verdict !== 'sin-datos') return false
+        const consultado = (it.verification.checkedAgainst?.length ?? 0) > 0
+        if (consultado !== (verdictFilter === 'comprobado-sin-hallar')) return false
       } else if (verdictFilter !== 'all' && it.verification.verdict !== verdictFilter) {
         return false
       }
@@ -331,6 +341,31 @@ export default function Declaraciones() {
         <MiniStat label="sin-datos" value={stats.byVerdict['sin-datos']} />
       </div>
 
+      {/*
+        «sin-datos» contestaba dos preguntas distintas con el mismo número, y un
+        hueco leído como un cero es el defecto que este repositorio ya pagó dos
+        veces. El reparto va en prosa y no en dos tarjetas más porque lo que hay
+        que entender no es la cifra: es que la segunda mitad no habla de la
+        declaración, habla de nosotros.
+      */}
+      {stats.byVerdict['sin-datos'] > 0 && (
+        <p
+          style={{
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink70)',
+            margin: '0 0 16px',
+            maxWidth: '68ch',
+            lineHeight: 1.5,
+          }}
+        >
+          <strong style={{ color: 'var(--ink)' }}>{t('declaraciones.split.titulo')}.</strong>{' '}
+          <span className="mono">{stats.sinDatosPorque.comprobadoSinHallar}</span>{' '}
+          {t('declaraciones.split.comprobadoSinHallar')} ·{' '}
+          <span className="mono">{stats.sinDatosPorque.sinCorpus}</span>{' '}
+          {t('declaraciones.split.sinCorpus')}. {t('declaraciones.split.cuerpo')}
+        </p>
+      )}
+
       {/* Filter strips */}
       <div
         style={{
@@ -380,6 +415,19 @@ export default function Declaraciones() {
               tone={VERDICT_TONE[v]}
             />
           ))}
+          {/* Afinan «sin-datos», así que van detrás de él y no en su propia fila. */}
+          <FilterChip
+            active={verdictFilter === 'comprobado-sin-hallar'}
+            label={t('declaraciones.filter.comprobadoSinHallar')}
+            count={stats.sinDatosPorque.comprobadoSinHallar}
+            onClick={() => setVerdictFilter('comprobado-sin-hallar')}
+          />
+          <FilterChip
+            active={verdictFilter === 'sin-corpus'}
+            label={t('declaraciones.filter.sinCorpus')}
+            count={stats.sinDatosPorque.sinCorpus}
+            onClick={() => setVerdictFilter('sin-corpus')}
+          />
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center' }}>
           <span

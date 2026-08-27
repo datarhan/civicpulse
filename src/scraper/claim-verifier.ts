@@ -122,12 +122,16 @@ export const ESTADOS_QUE_NO_CONTRADICEN = new Set([
   'unknown', // centinela: «no lo sé» no desmiente nada
 ])
 
-export type ClaimVerdict =
-  | 'verificado'
-  | 'parcial'
-  | 'contradicho'
-  | 'sin-datos'
-  | 'promesa-repetida'
+// Los veredictos viven en `claim-verdicts.ts`, que el navegador sí puede
+// cargar: este módulo alcanza `semantic-shortlist` y con él `node:fs`. Se
+// reexportan para que nada de lo que ya importaba de aquí tenga que moverse.
+export {
+  CLAIM_VERDICTS,
+  resumirSinDatos,
+  type ClaimVerdict,
+  type ResumenSinDatos,
+} from './claim-verdicts'
+import type { ClaimVerdict } from './claim-verdicts'
 
 /**
  * What this verifier established about a document RELATIVE to the claim.

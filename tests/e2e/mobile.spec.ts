@@ -77,6 +77,10 @@ const ROUTES: Route[] = [
   { path: '/hallazgos', ready: /TOTAL HALLAZGOS \d+/ },
   { path: '/reportajes', ready: /REPORTAJE · /i },
   { path: '/declaraciones', ready: /TOTAL \d+ CON EVIDENCIA \d+/ },
+  // Tablas de cinco columnas en un móvil: el sitio exacto donde una fila se
+  // sale sin que ninguna prueba de datos lo note. /eficiencia/:id no estaba en
+  // esta lista y por eso nadie lo midió a 375.
+  { path: '/laboratorio/cobertura', ready: /DECLARACIONES PUBLICADAS/i },
   { path: '/datos', ready: /Q23701/ }, // Wikidata identity block
   { path: '/empleo', ready: /OFERTAS ABIERTAS \d+/ },
   { path: '/quejas', ready: /TOTAL QUEJAS \d+/ },

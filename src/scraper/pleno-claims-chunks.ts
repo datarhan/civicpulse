@@ -32,6 +32,10 @@ export interface VerifiedClaimItem {
     confidence: number
     summary?: string
     evidence?: unknown[]
+    /** Corpus consultados. Vacío = no se consultó nada, que NO es lo mismo
+     *  que haber consultado y no encontrar. Estaba cayendo bajo el índice
+     *  genérico de abajo, así que no se podía leer sin castear. */
+    checkedAgainst?: unknown[]
     [k: string]: unknown
   }
   /** Public-ledger visibility, stamped by the build-time gate (claim-public-gate.ts). */
@@ -80,6 +84,29 @@ export interface PlenoClaimsChunkManifest {
      * client-side in src/lib/department-claim-topics.js.
      */
     byTopicVerdict: Record<string, Record<string, number>>
+    /**
+     * Cobertura de comprobación: de lo publicado, ¿contra qué se pudo cotejar?
+     *
+     * Va aquí y no en la página porque la regla de la casa es preferir un
+     * escalar precomputado a enviar el corpus: `/departamentos` ya lee una
+     * tabla cruzada de ~12 KB en vez de los trozos enteros. Esto son ~1 KB.
+     *
+     * `corpus` cuenta CONSULTAS, no filas: una declaración cotejada contra dos
+     * corpus suma en los dos. Es lo que se quiere saber —con qué se cuenta—,
+     * no cuántas filas hay.
+     */
+    cobertura: {
+      porTipo: Record<string, { total: number; sinCorpus: number; comprobadoSinHallar: number }>
+      porTema: Record<string, { total: number; sinCorpus: number; comprobadoSinHallar: number }>
+      corpus: Record<string, number>
+    }
+    /**
+     * Por qué `sin-datos`, sobre lo PUBLICADO (post-puerta editorial).
+     * `sinCorpus` = no se consultó ningún corpus; `comprobadoSinHallar` = se
+     * consultaron y no hubo coincidencia. Las dos suman el `sin-datos` de
+     * `byVerdict`. Ver `resumirSinDatos` en claim-verdicts.
+     */
+    sinDatosPorque: { sinCorpus: number; comprobadoSinHallar: number }
   }
 }
 
@@ -183,6 +210,20 @@ export function buildManifest(
   const chunks = new Map<string, PlenoClaimsChunk>()
   const totalsByVerdict: Record<string, number> = {}
   const byTopicVerdict: Record<string, Record<string, number>> = {}
+  // El desglose de `sin-datos` se acumula sobre los items YA pasados por la
+  // puerta editorial: describe lo que se publica, no el corpus interno. Es la
+  // diferencia entre «de lo que enseñamos, esto no pudimos comprobarlo» y una
+  // cifra sobre acusaciones que a propósito no se enseñan.
+  const sinDatosPorque = { sinCorpus: 0, comprobadoSinHallar: 0 }
+  const porTipo: Record<string, { total: number; sinCorpus: number; comprobadoSinHallar: number }> =
+    {}
+  const porTema: Record<string, { total: number; sinCorpus: number; comprobadoSinHallar: number }> =
+    {}
+  const corpus: Record<string, number> = {}
+  const casilla = (
+    tabla: Record<string, { total: number; sinCorpus: number; comprobadoSinHallar: number }>,
+    k: string,
+  ) => (tabla[k] ??= { total: 0, sinCorpus: 0, comprobadoSinHallar: 0 })
   let totalItems = 0
   for (const [plenoId, items] of itemsByPleno) {
     const { chunk, descriptor } = buildChunkAndDescriptor(plenoId, items, generatedAt)
@@ -195,6 +236,27 @@ export function buildManifest(
     for (const it of items) {
       const t = it.claim?.topic
       const v = it.verification?.verdict
+      const consultados = it.verification?.checkedAgainst ?? []
+      for (const c of consultados) {
+        if (typeof c === 'string') corpus[c] = (corpus[c] ?? 0) + 1
+      }
+      // La cobertura mira TODAS las filas, no sólo las `sin-datos`: la pregunta
+      // es «¿contra qué se pudo cotejar?», y una fila verificada también
+      // contesta a eso.
+      for (const [tabla, clave] of [
+        [porTipo, it.claim?.type],
+        [porTema, it.claim?.topic],
+      ] as const) {
+        if (typeof clave !== 'string') continue
+        const cel = casilla(tabla, clave)
+        cel.total += 1
+        if (consultados.length === 0) cel.sinCorpus += 1
+        else cel.comprobadoSinHallar += 1
+      }
+      if (v === 'sin-datos') {
+        if (consultados.length === 0) sinDatosPorque.sinCorpus += 1
+        else sinDatosPorque.comprobadoSinHallar += 1
+      }
       if (typeof t !== 'string' || typeof v !== 'string') continue
       const row = (byTopicVerdict[t] ??= {})
       row[v] = (row[v] ?? 0) + 1
@@ -212,6 +274,8 @@ export function buildManifest(
         plenos: plenosOut.length,
         byVerdict: totalsByVerdict,
         byTopicVerdict,
+        cobertura: { porTipo, porTema, corpus },
+        sinDatosPorque,
       },
     },
     chunks,
