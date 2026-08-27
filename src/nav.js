@@ -169,6 +169,16 @@ export const NAV = [
     label: 'Coste esperado',
     icon: Ic.lab,
   },
+  // Sin bandera, por el mismo criterio: mide una limitación NUESTRA y la página
+  // entera está construida para decir lo que no es. No nombra a nadie —son
+  // recuentos, sin una sola cita— y no hay cifra que proteger.
+  {
+    to: '/laboratorio/cobertura',
+    id: 'cobertura',
+    labelKey: 'nav.cobertura',
+    label: 'Cobertura',
+    icon: Ic.lab,
+  },
   // "Periodistas" (the AI journalist agent) is the highest legal-sensitivity
   // surface — it drafts biographies of named living officials. Hidden from
   // production builds unless VITE_ENABLE_PERIODISTAS=true — same flag that

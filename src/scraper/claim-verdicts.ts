@@ -73,3 +73,31 @@ export function resumirSinDatos(
   }
   return { sinCorpus, comprobadoSinHallar }
 }
+
+// ─── Corpus de datos frente a marcas de pasada ──────────────────────────────
+//
+// `checkedAgainst` mezcla dos cosas que NO son lo mismo:
+//
+//   · corpus de datos —tenders, bdns, budget, promises…—: contra qué se cotejó
+//   · marcas de pasada —verdict-engine, llm-second-pass, curator-downgrade—:
+//     CÓMO se llegó al veredicto
+//
+// Enseñarlas juntas bajo «contra qué se coteja» infla la base de evidencia
+// aparente: un veredicto revisado por el motor no está respaldado por una
+// fuente más. En una página cuyo argumento entero es no afirmar de más, eso
+// sería justo el error que denuncia.
+//
+// Lo desconocido se trata como CORPUS, no como marca: una marca nueva sin
+// declarar aparece a la vista —y se corrige— en vez de desaparecer callando.
+
+export const MARCAS_DE_PASADA = [
+  'verdict-engine',
+  'llm-second-pass',
+  'nli',
+  'llm',
+  'curator-downgrade',
+] as const
+
+export function esMarcaDePasada(nombre: string): boolean {
+  return (MARCAS_DE_PASADA as readonly string[]).includes(nombre)
+}

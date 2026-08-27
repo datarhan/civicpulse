@@ -39,6 +39,7 @@ export const SECTION_GLYPHS = {
   '/laboratorio/agentes': { glyph: '✎', tone: 'intel' }, // el periodista (familia IA)
   '/laboratorio/frontera': { glyph: '◺', tone: 'intel' }, // la envolvente: el borde de la nube
   '/laboratorio/coste-esperado': { glyph: '⟋', tone: 'intel' }, // la recta a través de la nube
+  '/laboratorio/cobertura': { glyph: '◫', tone: 'intel' }, // lo cubierto y lo que no
   '/curator': { glyph: '⧉', tone: 'civic' }, // la mesa de curación (dev)
 }
 

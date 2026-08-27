@@ -87,6 +87,7 @@ export const CATALOGUE = {
     'nav.agentes': 'Periodistas',
     'nav.frontera': 'Frontera',
     'nav.costeEsperado': 'Coste esperado',
+    'nav.cobertura': 'Cobertura',
     'nav.section': 'Navegación',
 
     // Reportajes (índice de piezas long-form)
@@ -647,6 +648,7 @@ export const CATALOGUE = {
     'nav.agentes': 'Periodistes',
     'nav.frontera': 'Frontera',
     'nav.costeEsperado': 'Cost esperat',
+    'nav.cobertura': 'Cobertura',
     'nav.section': 'Navegació',
 
     // Reportatges (índex de peces long-form)

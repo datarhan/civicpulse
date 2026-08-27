@@ -352,13 +352,13 @@ export default function Declaraciones() {
         <p
           style={{
             fontSize: 'var(--fs-meta)',
-            color: 'var(--ink-2)',
+            color: 'var(--ink70)',
             margin: '0 0 16px',
             maxWidth: '68ch',
             lineHeight: 1.5,
           }}
         >
-          <strong style={{ color: 'var(--ink-1)' }}>{t('declaraciones.split.titulo')}.</strong>{' '}
+          <strong style={{ color: 'var(--ink)' }}>{t('declaraciones.split.titulo')}.</strong>{' '}
           <span className="mono">{stats.sinDatosPorque.comprobadoSinHallar}</span>{' '}
           {t('declaraciones.split.comprobadoSinHallar')} ·{' '}
           <span className="mono">{stats.sinDatosPorque.sinCorpus}</span>{' '}
