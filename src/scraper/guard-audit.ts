@@ -18,6 +18,24 @@ export function invokesGuard(body: string, guard: string): boolean {
   return new RegExp(`\\b${guard.replace(':', '\\:')}\\b(?![:\\w-])`).test(body)
 }
 
+/**
+ * El cuerpo sin comentarios.
+ *
+ * `invokesGuard` casa TEXTO, así que un comentario que nombre una guarda la
+ * declararía enchufada. En un `.sh` da igual —ahí un nombre suelto no compila
+ * nada— pero un orquestador `.ts` documenta sus decisiones al lado de la lista
+ * que ejecuta: `monitor-health.ts` dedica seis líneas de comentario a por qué
+ * corre `check:stamps`. Un falso «enchufado» es peor que un falso huérfano:
+ * dice que alguien lo corre cuando no lo corre nadie.
+ *
+ * Copia local a propósito: `scripts/lib/route-graph.ts` tiene la suya para el
+ * grafo de importaciones, y `src/` no puede importar de `scripts/` sin invertir
+ * la dirección de la dependencia.
+ */
+export function sinComentarios(cuerpo: string): string {
+  return cuerpo.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/(^|[^:])\/\/[^\n]*/gm, '$1')
+}
+
 export function wiringFor(guard: string, sites: Map<string, string>): string[] {
   const hits: string[] = []
   for (const [path, body] of sites) if (invokesGuard(body, guard)) hits.push(path)
