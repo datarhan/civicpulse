@@ -8,6 +8,7 @@
  *   npm run solicitud -- responder <id> --fecha 2026-10-05 --sentido parcial [--url …]
  *   npm run solicitud -- reclamar  <id> --fecha 2026-11-02 [--organo consell-cv] [--expediente …]
  *   npm run solicitud -- list
+ *   npm run solicitud -- borrador [--clase informe-tecnico]   # redacta el escrito
  *
  * El registro es CURADO: lo escribe una persona porque una persona presentó el
  * escrito y una persona leyó la respuesta. No hay `--auto` ni lo habrá; que una
@@ -29,7 +30,8 @@ import {
   type RegistroSolicitudes,
   type SolicitudAcceso,
 } from '../src/scraper/solicitud-acceso'
-import { CLASES_PEDIBLES } from '../src/scraper/clase-documental'
+import { CLASES_PEDIBLES, type ClasePedible } from '../src/scraper/clase-documental'
+import { generarBorradores } from './lib/solicitud-borrador'
 
 const RUTA = resolve('public/data/solicitudes-acceso.json')
 
@@ -58,6 +60,18 @@ function main(): void {
   const cmd = process.argv[2]
   const reg = cargar()
   const hoy = new Date().toISOString().slice(0, 10)
+
+  if (cmd === 'borrador') {
+    // Redactar NO es registrar. La carta sale a `editorial/` y el registro
+    // sigue vacío: presentarla exige identificarse en la sede con certificado o
+    // Cl@ve, que es un acto de una persona con su identidad civil.
+    const pedida = flag('clase')
+    if (pedida && !CLASES_PEDIBLES.includes(pedida as ClasePedible)) {
+      bail(`«${pedida}» no es una clase pedible. Son: ${CLASES_PEDIBLES.join(', ')}`)
+    }
+    generarBorradores(pedida ? [pedida as ClasePedible] : CLASES_PEDIBLES)
+    return
+  }
 
   if (cmd === 'list' || !cmd) {
     process.stdout.write(`[solicitud] ${reg.items.length} solicitud(es)\n`)
