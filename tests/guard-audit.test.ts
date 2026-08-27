@@ -1,3 +1,7 @@
+import { execFileSync } from 'node:child_process'
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+
 import { describe, it, expect } from 'vitest'
 import {
   auditFails,
@@ -6,6 +10,7 @@ import {
   importedModules,
   invokesGuard,
   scriptTargets,
+  sinComentarios,
   summarise,
   testsForScript,
   wiringFor,
@@ -13,6 +18,52 @@ import {
 } from '../src/scraper/guard-audit'
 
 const OK: InjectionVerdict = { state: 'proven', detail: '' }
+
+describe('guard-audit — un orquestador .ts también es un sitio de llamada', () => {
+  // EL DEFECTO: `callSites()` miraba `.sh`, workflows y ganchos. `monitor:health`
+  // corre dieciséis guardas desde TypeScript con `runCheck()`, así que
+  // `check:stamps` —cuyo único sitio de llamada es ése— salía SIN INVOCAR
+  // mientras la nocturna lo corría cada noche. Y eso enseña a no creerse el rojo
+  // de la auditoría, que es el paso previo a apagarla.
+
+  it('ve la guarda que sólo corre desde monitor-health', () => {
+    const cuerpo = readFileSync(resolve('scripts/monitor-health.ts'), 'utf8')
+    expect(invokesGuard(sinComentarios(cuerpo), 'check:stamps')).toBe(true)
+  })
+
+  it('LA TRAMPA: un comentario que la nombra NO la enchufa', () => {
+    const cuerpo = [
+      '// Aquí explicamos por qué NO corremos check:contract-drift, que pide modelo.',
+      '/* necesita un modelo y CI no tiene. */',
+      "for (const c of ['check:json']) runCheck(c)",
+    ].join('\n')
+    expect(invokesGuard(cuerpo, 'check:contract-drift')).toBe(true) // en crudo, sí
+    expect(invokesGuard(sinComentarios(cuerpo), 'check:contract-drift')).toBe(false)
+    expect(invokesGuard(sinComentarios(cuerpo), 'check:json')).toBe(true)
+  })
+
+  it('sinComentarios no se come una URL, que lleva // dentro', () => {
+    const cuerpo = "const u = 'https://example.org/check:json'"
+    expect(sinComentarios(cuerpo)).toContain('https://example.org/check:json')
+  })
+
+  it('EL AUDITOR NO SE CUENTA A SÍ MISMO', () => {
+    // `check-guards.ts` nombra a las 34 guardas en sus tablas de inyección. Si
+    // entrara en su propio barrido, las declararía todas enchufadas en sí mismo
+    // —incluida la que es manual a propósito— y no podría volver a encontrar un
+    // huérfano jamás. Se comprueba sobre la salida REAL, no sobre una copia de
+    // la regla.
+    const salida = execFileSync('npx', ['tsx', 'scripts/check-guards.ts', '--json'], {
+      encoding: 'utf8',
+      maxBuffer: 32 * 1024 * 1024,
+    })
+    const j = JSON.parse(salida) as { guards: Array<{ name: string; wiredIn: string[] }> }
+    const seCuenta = j.guards.filter((g) => g.wiredIn.some((p) => p.includes('check-guards.ts')))
+    expect(seCuenta.map((g) => g.name)).toEqual([])
+    // Y la auditoría sigue distinguiendo lo manual de lo huérfano.
+    expect(j.guards.some((g) => g.wiredIn.length === 0)).toBe(true)
+  }, 120_000)
+})
 
 describe('guard-audit — is this guard invoked?', () => {
   it('finds a guard in an npm-run line', () => {

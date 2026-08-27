@@ -7,10 +7,22 @@
  *   ⊕ overlay (pleno-claims-overlay.json, committed — precious)
  *   → pleno-claims-verified.json (published monolith) → chunks
  *
- * generatedAt is preserved from the base (when the deterministic verdicts were
- * computed); the overlay tracks its own timestamp. So a migration that seeds the
- * base verbatim from the current verified.json round-trips to a byte-identical
- * verified.json.
+ * Two stamps, because one field cannot answer two questions — the lesson this
+ * repo just paid for in `checkedAgainst`:
+ *
+ *   generatedAt  copied from the base. LINEAGE, not freshness. `cotejarCompose`
+ *                requires exact equality with the base and reads "published
+ *                newer than base" as `contradice`, so this must never be
+ *                touched here. The overlay tracks its own timestamp separately.
+ *   composedAt   when THIS file was written. An overlay change rewrites the
+ *                published file with the base standing still, so without it the
+ *                monolith dates its own content with somebody else's stamp —
+ *                which is what `check:stamps` caught on 2026-08-27 after
+ *                `retirar-pasada` dropped the 87 retired-pass entries.
+ *
+ * Consequence, stated rather than discovered: a rebuild is no longer a byte-for-
+ * byte no-op — `composedAt` moves every time. That is the honest reading, since
+ * the file really was rewritten.
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
@@ -266,7 +278,16 @@ export async function rebuildVerified(opts: { refreshChunks?: boolean } = {}): P
   }
 
   const out = {
+    // Puntero de LINAJE, no fecha de escritura: `cotejarCompose` exige que sea
+    // exactamente el del base y llama `contradice` a que lo publicado sea más
+    // nuevo. Moverlo aquí rompería la única señal que detecta un republicado
+    // que se quedó atrás.
     generatedAt: base.generatedAt,
+    // Cuándo se escribió ESTO. Un cambio en el overlay reescribe el publicado
+    // sin que el base se mueva —una retirada de pasada lo hizo el 27 de agosto—
+    // y sin este campo el fichero fecha su contenido con el sello de otro.
+    // `check:stamps` juzga por aquí en cuanto lo encuentra.
+    composedAt: new Date().toISOString(),
     source: base.source,
     stats: {
       total: items.length,

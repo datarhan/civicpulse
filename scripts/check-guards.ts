@@ -43,6 +43,7 @@ import {
   classifyWiring,
   summarise,
   scriptTargets,
+  sinComentarios,
   testsForScript,
   wiringFor,
   type InjectionVerdict,
@@ -128,6 +129,29 @@ function callSites(): Map<string, string> {
     for (const f of readdirSync(husky)) {
       if (!f.startsWith('_')) add(resolve(husky, f))
     }
+  }
+  // Un orquestador en TypeScript también es un sitio de llamada. `monitor:health`
+  // corre dieciséis guardas con `runCheck()` y esta función sólo miraba `.sh`,
+  // workflows y ganchos: `check:stamps` salía SIN INVOCAR mientras la nocturna
+  // lo corría cada noche. Una auditoría que llama huérfana a una guarda viva
+  // enseña a no creerse su rojo, que es cómo se apaga una puerta.
+  //
+  // Se reconocen POR EL MECANISMO, no por el nombre del fichero: quien ejecuta
+  // guardas usa `runCheck(`. Y se leen sin comentarios, porque casi todo
+  // `scripts/*.ts` menciona un `npm run` en su texto de ayuda y eso no ejecuta
+  // nada.
+  //
+  // Y ESTE fichero queda fuera de su propio barrido. Nombra a las 34 guardas en
+  // sus tablas de inyección, así que incluirse las declararía a todas
+  // enchufadas aquí —incluida `check:contract-drift`, que es manual A PROPÓSITO
+  // porque necesita un modelo—. Una auditoría que se cuenta a sí misma como el
+  // sitio donde corre lo que audita da verde en todo por construcción.
+  const AUDITOR = 'check-guards.ts'
+  for (const f of readdirSync(resolve(ROOT, 'scripts'))) {
+    if (!f.endsWith('.ts') || f === AUDITOR) continue
+    const p = resolve(ROOT, 'scripts', f)
+    const cuerpo = existsSync(p) ? readFileSync(p, 'utf8') : ''
+    if (cuerpo.includes('runCheck(')) files.set(p, sinComentarios(cuerpo))
   }
   return files
 }

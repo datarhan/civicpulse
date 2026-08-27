@@ -130,6 +130,23 @@ function main() {
 
   const crudo = readFileSync(resolve(rel), 'utf8')
   const antes = JSON.parse(crudo) as Record<string, unknown>
+
+  // Un fichero COMPUESTO no se re-sella a mano, y por dos motivos independientes.
+  // Su `generatedAt` no es su fecha: es el sello del base del que desciende, y
+  // `cotejarCompose` exige igualdad EXACTA con él —moverlo aquí volvería
+  // `check:verified-compose` a `contradice` sin que nada del contenido hubiera
+  // cambiado—. Y no arreglaría nada: `check:stamps` juzga estos ficheros por
+  // `composedAt`, que sólo escribe quien los compone.
+  if (typeof antes.composedAt === 'string') {
+    process.stderr.write(
+      `[restamp] ${nombre} es un fichero COMPUESTO: su generatedAt es el sello del base\n` +
+        `  del que desciende, no su fecha. Moverlo rompería check:verified-compose.\n` +
+        `  Lo que fecha su contenido es composedAt, y lo escribe su CLI al componer:\n` +
+        `  vuelve a componerlo (npm run verify:pleno-claims, sin --base-only) en vez de sellarlo.\n`,
+    )
+    process.exit(2)
+  }
+
   const selloActual = typeof antes.generatedAt === 'string' ? antes.generatedAt : null
   if (!selloActual) {
     process.stderr.write(`[restamp] ${nombre} no lleva generatedAt — no hay nada que sellar\n`)

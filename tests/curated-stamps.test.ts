@@ -7,9 +7,14 @@
  * julio— y era invisible porque `check:cadence` mide la EDAD del sello, y un
  * sello que no se mueve simplemente envejece dentro de su plazo.
  */
+import { execFileSync } from 'node:child_process'
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+
 import { describe, expect, it } from 'vitest'
 
 import {
+  claveDelSello,
   selloEnDiff,
   selloEsDeDia,
   contenidoCambioTrasElSello,
@@ -150,4 +155,118 @@ describe('restamp — conserva la granularidad del fichero', () => {
   it('una fecha ilegible no se convierte en un sello inventado', () => {
     expect(() => selloParaFecha('2026-08-04T16:23:46.032Z', 'no es fecha')).toThrow()
   })
+})
+
+describe('un sello HEREDADO no puede juzgarse como si fuera propio', () => {
+  // El caso: `pleno-claims-verified.json` se compone de base ⊕ overlay, y
+  // `verified-rebuild` copia el `generatedAt` DEL BASE a propósito —
+  // `cotejarCompose` exige igualdad EXACTA entre los dos y llama `contradice`
+  // a que lo publicado sea más nuevo que su base. Ese campo no dice cuándo se
+  // escribió el fichero: dice de qué base desciende.
+  //
+  // Así que el 27 de agosto una retirada de pasada reescribió el publicado a
+  // las 15:34 desde un overlay distinto, el base no se movió, y el sello siguió
+  // en las 09:57 de esa mañana. Las dos puertas tenían razón y el campo no
+  // podía darles la razón a las dos.
+  //
+  // El arreglo es el mismo que este repositorio acaba de aplicar a
+  // `checkedAgainst`: un campo, un significado. `generatedAt` sigue siendo el
+  // puntero de linaje; `composedAt` dice cuándo se escribió esto. Y la puerta
+  // elige el campo LEYÉNDOLO DEL FICHERO — sin lista de excepciones, que es la
+  // tabla a mano dentro de un control contra el rancio, o sea el chiste que
+  // este repositorio ya ha contado dos veces.
+
+  it('juzga por composedAt cuando el fichero lo trae', () => {
+    expect(
+      claveDelSello({
+        generatedAt: '2026-08-27T09:57:34.316Z',
+        composedAt: '2026-08-27T15:34:00.000Z',
+      }),
+    ).toBe('composedAt')
+  })
+
+  it('juzga por generatedAt cuando no lo trae', () => {
+    expect(claveDelSello({ generatedAt: '2026-08-27T09:57:34.316Z' })).toBe('generatedAt')
+  })
+
+  it('un composedAt que no es una cadena no cuenta como sello', () => {
+    expect(claveDelSello({ generatedAt: '2026-08-27T09:57:34.316Z', composedAt: null })).toBe(
+      'generatedAt',
+    )
+    expect(claveDelSello({ generatedAt: '2026-08-27T09:57:34.316Z', composedAt: 17 })).toBe(
+      'generatedAt',
+    )
+  })
+
+  it('EL DEFECTO: el diff movió composedAt y la puerta miraba generatedAt', () => {
+    const diff = [
+      '@@ -1,3 +1,3 @@',
+      '   "generatedAt": "2026-08-27T09:57:34.316Z",',
+      '-  "composedAt": "2026-08-27T09:57:40.001Z",',
+      '+  "composedAt": "2026-08-27T15:34:46.912Z",',
+    ].join('\n')
+    // Mirando el campo heredado: no se movió, y no TENÍA que moverse.
+    expect(selloEnDiff(diff, 'generatedAt')).toBe(false)
+    // Mirando el campo que sella el contenido: sí se movió.
+    expect(selloEnDiff(diff, 'composedAt')).toBe(true)
+  })
+
+  it('y sigue cazando el caso de verdad: contenido movido, composedAt quieto', () => {
+    const diff = [
+      '@@ -12,2 +12,0 @@',
+      '-      "verdict": "verificado",',
+      '+      "verdict": "sin-datos",',
+    ].join('\n')
+    expect(selloEnDiff(diff, 'composedAt')).toBe(false)
+  })
+
+  it('sin clave explícita se sigue mirando generatedAt', () => {
+    const diff = ['+  "generatedAt": "2026-08-02T11:20:00.000Z",'].join('\n')
+    expect(selloEnDiff(diff)).toBe(true)
+  })
+})
+
+describe('el fichero compuesto sella lo que publica', () => {
+  it('pleno-claims-verified.json trae composedAt y NO es el del base', () => {
+    // Si esto falla porque `composedAt` no está, el sello del publicado ha
+    // vuelto a ser el del base y `check:stamps` volverá a rojo en cuanto una
+    // retirada o una promoción reescriban el overlay.
+    const pub = JSON.parse(readFileSync(resolve('public/data/pleno-claims-verified.json'), 'utf8'))
+    expect(typeof pub.composedAt).toBe('string')
+    expect(Number.isFinite(Date.parse(pub.composedAt))).toBe(true)
+    // Y el linaje se conserva: `cotejarCompose` compara ESTE campo con el base.
+    expect(typeof pub.generatedAt).toBe('string')
+  })
+})
+
+describe('restamp — un fichero compuesto no se sella a mano', () => {
+  it('lo RECHAZA, y dice por dónde se arregla', () => {
+    // Inyección real contra el CLI: si esto deja de salir 2, se puede mover el
+    // `generatedAt` del monolito a mano y `check:verified-compose` pasa a
+    // `contradice` sin que el contenido haya cambiado.
+    let code: number | null = null
+    let err = ''
+    try {
+      execFileSync(
+        'npx',
+        [
+          'tsx',
+          'scripts/restamp-curated.ts',
+          'pleno-claims-verified.json',
+          '--motivo',
+          'prueba',
+          '--dry-run',
+        ],
+        { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] },
+      )
+      code = 0
+    } catch (e) {
+      const x = e as { status?: number; stderr?: string }
+      code = x.status ?? null
+      err = x.stderr ?? ''
+    }
+    expect(code).toBe(2)
+    expect(err).toContain('COMPUESTO')
+    expect(err).toContain('composedAt')
+  }, 60_000)
 })
