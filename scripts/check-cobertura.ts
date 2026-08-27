@@ -27,7 +27,12 @@
  */
 import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { resolve, join } from 'node:path'
-import { resumirSinDatos, esMarcaDePasada, corpusReales } from '../src/scraper/claim-verdicts'
+import {
+  resumirSinDatos,
+  esMarcaDePasada,
+  corpusReales,
+  clasificarProcedencia,
+} from '../src/scraper/claim-verdicts'
 
 const DIR = resolve('public/data/pleno-claims')
 const INDEX = join(DIR, 'index.json')
@@ -171,6 +176,26 @@ function main(): void {
     fail(
       `sinDatosPorque no se reproduce: manifiesto ${JSON.stringify(desglose)} · ` +
         `trozos ${JSON.stringify(rehechoDesglose)}`,
+    )
+  }
+
+  // 2.bis · nada sin clasificar
+  //
+  // La lista es blanca: un nombre no declarado NO cuenta como corpus, así que
+  // la cifra se queda corta —el lado seguro— pero se queda corta EN SILENCIO si
+  // nadie lo dice. Aquí se dice, y sale 1: o es un corpus y se declara en
+  // CORPUS_IDS, o es una pasada y se declara en PASADAS.
+  comprobaciones += 1
+  const desconocidos = new Set<string>()
+  for (const it of items) {
+    for (const d of clasificarProcedencia(it.verification?.checkedAgainst).desconocidos) {
+      desconocidos.add(d)
+    }
+  }
+  if (desconocidos.size > 0) {
+    fail(
+      `procedencia sin clasificar: ${[...desconocidos].join(', ')} — decláralo en CORPUS_IDS ` +
+        'o en PASADAS (claim-verdicts.ts). Mientras tanto no cuenta como corpus.',
     )
   }
 

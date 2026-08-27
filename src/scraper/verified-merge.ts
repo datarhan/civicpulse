@@ -18,6 +18,7 @@
  */
 import { ALLOWED_CLAIM_TYPES, type ClaimType, type PlenoClaim } from './pleno-claim'
 import type { ClaimVerdict, ClaimVerification, ClaimEvidence } from './claim-verifier'
+import { corpusReales } from './claim-verdicts'
 
 export interface VerifiedItem {
   claim: PlenoClaim
@@ -179,6 +180,32 @@ export function isDowngrade(from: ClaimVerdict, to: ClaimVerdict): boolean {
   return b < a
 }
 
+/**
+ * El suelo de evidencia: ¿se sostiene este veredicto sobre algo?
+ *
+ * Un veredicto por encima de `sin-datos` AFIRMA que algo respalda la
+ * afirmación. Hasta el 2026-08-27 nada obligaba a que ese algo existiera, y en
+ * lo publicado había 92 filas con `parcial` o `verificado` sin nombrar un solo
+ * corpus — 87 de ellas escritas por una pasada retirada.
+ *
+ * Se exige lo que el objeto publicado permite comprobar, y ni una coma más:
+ * que nombre un corpus DE VERDAD (no una marca de pasada) y que traiga alguna
+ * fila de evidencia. Si esa evidencia FUNDA o sólo se le parece es un juicio
+ * que este esquema no guarda —las filas no fundantes se anotan dentro del
+ * verificador y no salen del módulo— y fingir aquí que se comprueba sería
+ * afirmar de más, que es justo lo que este suelo existe para impedir.
+ */
+export function evidenciaSuficiente(v: {
+  verdict?: string
+  checkedAgainst?: readonly unknown[]
+  evidence?: readonly unknown[]
+}): boolean {
+  const fuerte = v?.verdict === 'verificado' || v?.verdict === 'parcial'
+  if (!fuerte) return true
+  if (corpusReales(v?.checkedAgainst).length === 0) return false
+  return (v?.evidence?.length ?? 0) > 0
+}
+
 export interface ApplyEntry {
   claimId: string
   verification: ClaimVerification
@@ -233,6 +260,24 @@ export function applyOverlayEntries(
     entries: { ...(overlay?.entries ?? {}) },
   }
   for (const e of entries) {
+    // El suelo, antes que nada y para toda fuente automática.
+    //
+    // Va en la ESCRITURA y no en `validateOverlay`, que corre en cada lectura:
+    // hacerlo estallar allí rompería la tubería entera por las 87 filas que ya
+    // están. Lo que ya está lo saca `check:veredictos`; lo nuevo no llega a
+    // escribirse.
+    //
+    // `curator-downgrade` queda exento a propósito: ya está limitado a bajar
+    // por `isDowngrade`, y bajar nunca refuerza una afirmación. Obligar a un
+    // curador a irse hasta `sin-datos` cuando lo que quiere decir es «esto sólo
+    // es parcial» le haría retractar de más.
+    if (e.source !== 'curator-downgrade' && !evidenciaSuficiente(e.verification)) {
+      throw new Error(
+        `[overlay] ${e.claimId}: ${e.verification.verdict} no llega al suelo de evidencia — ` +
+          'no nombra ningún corpus real o no trae evidencia. Un veredicto fuerte afirma que ' +
+          'algo lo respalda; si no lo hay, el veredicto es sin-datos.',
+      )
+    }
     if (e.source === 'curator-downgrade') {
       if (!e.reason || e.reason.trim().length < 20) {
         throw new Error(

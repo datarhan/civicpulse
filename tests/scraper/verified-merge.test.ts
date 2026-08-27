@@ -76,8 +76,24 @@ describe('isDowngrade', () => {
   })
 })
 
+/**
+ * Una verificación REALISTA para el veredicto que se le pida.
+ *
+ * Antes devolvía siempre `evidence: []` y `checkedAgainst: []`, o sea un
+ * `verificado` sin nada detrás — un objeto que no puede existir y que desde el
+ * suelo de evidencia (2026-08-27) el overlay rechaza al escribirlo. El fixture
+ * estaba modelando justo la forma que el sistema no debe producir, que es cómo
+ * una suite se queda verde midiendo lo imposible.
+ */
 function vrf(id: string, verdict: ClaimVerdict): ClaimVerification {
-  return { claimId: id, verdict, summary: 's', evidence: [], checkedAgainst: [] }
+  const fuerte = verdict === 'verificado' || verdict === 'parcial'
+  return {
+    claimId: id,
+    verdict,
+    summary: 's',
+    evidence: fuerte ? [{ kind: 'tender', ref: 'r', snippet: 'sn' }] : [],
+    checkedAgainst: fuerte ? ['tenders'] : [],
+  }
 }
 
 describe('validateOverlay', () => {
