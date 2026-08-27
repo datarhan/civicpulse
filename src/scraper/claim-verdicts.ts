@@ -129,6 +129,26 @@ export type Pasada = (typeof PASADAS)[number]
 /** Alias histórico. La lista es la de pasadas. */
 export const MARCAS_DE_PASADA = PASADAS
 
+/**
+ * Pasadas RETIRADAS: siguen apareciendo en veredictos publicados, pero ya no
+ * forman parte de la tubería.
+ *
+ * `verify-pleno-claims-llm` se declara a sí misma «LEGACY / SUPERSEDED … do
+ * not use in the pipeline» desde el corte base/overlay; sus veredictos
+ * sobrevivieron a la migración y hoy sostienen 87 filas fuertes sin un solo
+ * corpus detrás.
+ *
+ * Se declara aquí, como dato, para que una guarda pueda distinguir «esto es
+ * cola vieja que hay que re-fundamentar» de «esto lo acaba de romper alguien».
+ * Con las dos cosas en el mismo saco, la guarda saldría roja todas las noches
+ * hasta la fase 6 — y una guarda siempre roja es una guarda que alguien apaga.
+ */
+export const PASADAS_RETIRADAS = ['llm', 'llm-second-pass'] as const
+
+export function esPasadaRetirada(nombre: string): boolean {
+  return (PASADAS_RETIRADAS as readonly string[]).includes(nombre)
+}
+
 export interface ClasificacionProcedencia {
   corpus: CorpusId[]
   pasadas: Pasada[]

@@ -232,6 +232,7 @@ async function gather(): Promise<Observations> {
     // rojo cada noche es un aviso que alguien apaga.
     'check:verified-compose',
     'check:cobertura',
+    'check:veredictos',
   ]) {
     const msg = runCheck(c)
     if (msg) integrity.push({ check: c, message: msg })
