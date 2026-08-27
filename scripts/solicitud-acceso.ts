@@ -128,4 +128,15 @@ function main(): void {
   bail(`comando «${cmd}» desconocido. Usa: add | responder | reclamar | list`)
 }
 
-main()
+/**
+ * El validador escribe mensajes pensados para quien está delante —«de contrato
+ * y presupuesto ya tenemos corpus»— y sin esto salían enterrados en un volcado
+ * de pila de Node. Un CLI de curador que contesta con un stack trace es un CLI
+ * que se deja de usar.
+ */
+try {
+  main()
+} catch (e) {
+  process.stderr.write(`${(e as Error).message}\n`)
+  process.exit(1)
+}
