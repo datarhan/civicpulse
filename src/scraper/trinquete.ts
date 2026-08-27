@@ -64,7 +64,9 @@ export const TRINQUETE: Record<OverlaySource, Etapa> = {
     medicion: 'docs/superpowers/specs/2026-06-23-factcheck-rebuild-p2-design.md',
   },
   llm: {
-    nombre: 'Segunda pasada LLM (retirada)',
+    // Sin «(retirada)» en el nombre: el estado lo dice la columna de al lado, y
+    // decirlo dos veces en la misma fila es ruido.
+    nombre: 'Segunda pasada LLM',
     direccion: 'sube',
     puedeEmitir: ['verificado', 'parcial', 'sin-datos'],
     exigeCorpus: true,

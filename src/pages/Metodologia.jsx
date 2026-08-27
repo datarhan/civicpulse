@@ -1,4 +1,4 @@
-import { Card, SectionHead } from '../components/Primitives'
+import { Card, Pill, SectionHead } from '../components/Primitives'
 import { fmtDateLong } from '../lib/formatters'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { useFindingQuoteProvenance } from '../hooks/useFindingQuoteProvenance'
@@ -9,6 +9,7 @@ import { useIndicadores } from '../hooks/useIndicadores'
 import { ATIPICO_FACTOR } from '../scraper/indicadores'
 import { authorshipBreakdown } from '../scraper/finding-authorship'
 import { STATUS_TIER } from '../scraper/promise-auto-curate'
+import { TRINQUETE } from '../scraper/trinquete'
 
 /*
  * prosa-describe: indicadores.json, dea.json
@@ -1005,6 +1006,114 @@ export default function Metodologia() {
             Sólo revisión editorial.
           </li>
         </ul>
+      </Card>
+
+      {/*
+        El trinquete, PINTADO DESDE `trinquete.ts`.
+
+        Esta política vivía sólo en el orden de ejecución y en una cadena de
+        `if (source === …)`: un lector no podía verla por ningún lado, y el
+        contrato de esta casa es enseñar el método. Se pinta derivada de la
+        declaración —no re-escrita a mano— porque una tabla copiada aquí se
+        separaría de la que el código aplica al primer cambio, que es la avería
+        que este sitio ya ha pagado tres veces.
+      */}
+      <Card id="trinquete-veredictos" style={{ marginTop: 14, scrollMarginTop: 24 }}>
+        <SectionHead
+          eyebrow="Cómo se mueve un veredicto"
+          title="El trinquete: cada etapa empuja en un solo sentido"
+        />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Un veredicto no lo fija una sola pasada. Lo establece el contraste determinista, y a
+          partir de ahí sólo puede moverse en el sentido que cada etapa tiene permitido:{' '}
+          <strong style={{ color: 'var(--ink)' }}>
+            una etapa que sólo puede retractar nunca reforzará una acusación
+          </strong>
+          , por bien que le parezca el caso. Es la garantía de que ninguna capa automática endurece
+          lo que se publica sobre nadie.
+        </p>
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          La tabla se dibuja desde la misma declaración que el código aplica, y una prueba comprueba
+          que describan lo mismo: si alguien cambiara la política sin cambiar esta página, o al
+          revés, la suite se pone roja.
+        </p>
+        <div style={{ overflowX: 'auto' }} className="cp-scroll-x">
+          <table
+            style={{
+              width: '100%',
+              borderCollapse: 'collapse',
+              fontSize: 'var(--fs-meta)',
+              marginTop: 12,
+            }}
+          >
+            <thead>
+              <tr style={{ textAlign: 'left', color: 'var(--ink70)' }}>
+                <th style={{ padding: '6px 8px 6px 0', fontWeight: 500 }}>Etapa</th>
+                <th style={{ padding: '6px 8px', fontWeight: 500 }}>Sentido</th>
+                <th style={{ padding: '6px 8px', fontWeight: 500 }}>Puede emitir</th>
+                <th style={{ padding: '6px 8px', fontWeight: 500 }}>Exige</th>
+                <th style={{ padding: '6px 0 6px 8px', fontWeight: 500 }}>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(TRINQUETE).map(([id, e]) => (
+                <tr key={id} style={{ borderTop: '1px solid var(--border)' }}>
+                  <td style={{ padding: '8px 8px 8px 0' }}>
+                    {e.nombre}
+                    <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)' }}>
+                      <code>{id}</code>
+                    </div>
+                  </td>
+                  <td style={{ padding: '8px' }}>
+                    {e.direccion === 'sube' ? 'sólo puede reforzar' : 'sólo puede retractar'}
+                  </td>
+                  <td style={{ padding: '8px' }}>
+                    {e.puedeEmitir.map((v) => (
+                      <code key={v} style={{ marginRight: 6 }}>
+                        {v}
+                      </code>
+                    ))}
+                  </td>
+                  <td style={{ padding: '8px', color: 'var(--ink70)' }}>
+                    {[
+                      e.exigeCorpus ? 'nombrar un corpus' : null,
+                      e.exigeRazon ? 'un motivo escrito' : null,
+                    ]
+                      .filter(Boolean)
+                      .join(' · ') || '—'}
+                  </td>
+                  <td style={{ padding: '8px 0 8px 8px' }}>
+                    {e.retirada ? (
+                      <Pill tone="warn" size="xs">
+                        retirada
+                      </Pill>
+                    ) : (
+                      <Pill tone="ok" size="xs">
+                        en uso
+                      </Pill>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p style={{ margin: '12px 0 0', color: 'var(--ink70)' }}>
+          <strong style={{ color: 'var(--ink)' }}>
+            Una etapa retirada no se borra: se declara.
+          </strong>{' '}
+          Sus veredictos dejan de aplicarse y aflora el del contraste determinista — no se inventa
+          ninguno nuevo. La diferencia importa: retractar es afirmar algo distinto, y dejar de
+          aplicar es retirar una afirmación que no se sostenía.
+        </p>
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Y por debajo de todo esto hay un suelo:{' '}
+          <strong style={{ color: 'var(--ink)' }}>
+            un veredicto que afirme algo tiene que nombrar contra qué se comprobó
+          </strong>
+          . Si no lo nombra, no se escribe. La única excepción es la retractación de un curador,
+          porque bajar un veredicto nunca refuerza lo que se dice de nadie.
+        </p>
       </Card>
 
       <Card id="citas-transcripcion" style={{ marginTop: 14, scrollMarginTop: 24 }}>
