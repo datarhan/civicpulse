@@ -27,7 +27,7 @@
  */
 import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { resolve, join } from 'node:path'
-import { resumirSinDatos, esMarcaDePasada } from '../src/scraper/claim-verdicts'
+import { resumirSinDatos, esMarcaDePasada, corpusReales } from '../src/scraper/claim-verdicts'
 
 const DIR = resolve('public/data/pleno-claims')
 const INDEX = join(DIR, 'index.json')
@@ -99,10 +99,11 @@ function main(): void {
     (t[k] ??= { total: 0, sinCorpus: 0, comprobadoSinHallar: 0 })
 
   for (const it of items) {
-    const consultados = it.verification?.checkedAgainst ?? []
-    for (const c of consultados) {
+    const listados = it.verification?.checkedAgainst ?? []
+    for (const c of listados) {
       if (typeof c === 'string') rehecho.corpus[c] = (rehecho.corpus[c] ?? 0) + 1
     }
+    const consultados = corpusReales(listados)
     for (const [tabla, clave] of [
       [rehecho.porTipo, it.claim?.type],
       [rehecho.porTema, it.claim?.topic],
@@ -179,8 +180,8 @@ function main(): void {
   // marcas de pasada —verdict-engine y compañía—, la página diría «cotejadas
   // contra algún corpus» sin que hubiera un solo corpus detrás.
   comprobaciones += 1
-  const corpusReales = Object.keys(cob.corpus).filter((k) => !esMarcaDePasada(k))
-  if (corpusReales.length === 0) {
+  const nombresDeCorpus = Object.keys(cob.corpus).filter((k) => !esMarcaDePasada(k))
+  if (nombresDeCorpus.length === 0) {
     fail(
       'no queda ni un corpus de datos: todo lo consultado son marcas de pasada, que dicen cómo ' +
         'se llegó al veredicto y no contra qué se comprobó',

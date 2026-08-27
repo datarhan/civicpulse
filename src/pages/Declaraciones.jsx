@@ -12,7 +12,7 @@ import {
 import { usePlenos } from '../hooks/usePlenos'
 import { PARTY_TONE } from '../hooks/usePromises'
 import { useT } from '../i18n'
-import { CLAIM_VERDICTS, resumirSinDatos } from '../scraper/claim-verdicts'
+import { CLAIM_VERDICTS, resumirSinDatos, corpusReales } from '../scraper/claim-verdicts'
 import { blocLabel } from '../lib/party-label.js'
 import { etiquetaVerificador } from '../lib/claim-provenance.js'
 
@@ -254,7 +254,7 @@ export default function Declaraciones() {
           return false
       } else if (verdictFilter === 'sin-corpus' || verdictFilter === 'comprobado-sin-hallar') {
         if (it.verification.verdict !== 'sin-datos') return false
-        const consultado = (it.verification.checkedAgainst?.length ?? 0) > 0
+        const consultado = corpusReales(it.verification.checkedAgainst).length > 0
         if (consultado !== (verdictFilter === 'comprobado-sin-hallar')) return false
       } else if (verdictFilter !== 'all' && it.verification.verdict !== verdictFilter) {
         return false

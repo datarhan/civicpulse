@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { CLAIM_VERDICTS, resumirSinDatos } from '../src/scraper/claim-verdicts'
+import { CLAIM_VERDICTS, resumirSinDatos, corpusReales } from '../src/scraper/claim-verdicts'
 import type { ClaimVerification } from '../src/scraper/claim-verifier'
 
 const ROOT = join(__dirname, '..')
@@ -65,6 +65,38 @@ describe('resumirSinDatos · dos desenlaces donde había uno', () => {
   it('un checkedAgainst ausente cuenta como «no se consultó nada»', () => {
     const r = resumirSinDatos([v('sin-datos', undefined)])
     expect(r.sinCorpus).toBe(1)
+  })
+
+  /**
+   * El defecto que se coló el 27-ago y que cazó `review:surfaces` de rebote:
+   * `checkedAgainst` mezcla corpus con marcas de pasada, y contar la longitud
+   * cruda hacía que una fila cotejada contra NADA —sólo revisada por el
+   * segundo paso— saliera como «comprobada». Eran 1.014 de 4.675 publicadas,
+   * y la portada del laboratorio decía 59,8 % de cobertura donde la verdad era
+   * 38,1 %.
+   *
+   * Es exactamente la sobreafirmación que esa página existe para no cometer, y
+   * yo mismo había escrito `esMarcaDePasada` para el pintado y me lo dejé en
+   * la cuenta.
+   */
+  it('una marca de pasada NO es un corpus: cuenta como sin corpus', () => {
+    const r = resumirSinDatos([
+      v('sin-datos', ['llm-second-pass']),
+      v('sin-datos', ['verdict-engine']),
+      v('sin-datos', ['verdict-engine', 'tenders']),
+      v('sin-datos', ['bdns']),
+    ])
+    expect(r.sinCorpus).toBe(2)
+    expect(r.comprobadoSinHallar).toBe(2)
+  })
+
+  it('corpusReales filtra las marcas y deja los corpus', () => {
+    expect(corpusReales(['tenders', 'llm-second-pass', 'bdns', 'verdict-engine'])).toEqual([
+      'tenders',
+      'bdns',
+    ])
+    expect(corpusReales(['curator-downgrade'])).toEqual([])
+    expect(corpusReales(undefined)).toEqual([])
   })
 
   it('sin filas, dos ceros — y no revienta', () => {
