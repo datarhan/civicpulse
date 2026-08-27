@@ -2,7 +2,13 @@
 
 **A citizen tool that measures what your town hall does and what it costs — with a citation for every figure.**
 
+Every Spanish municipality is legally obliged to run a _portal de transparencia_. Riba-roja de Túria has one, as the law requires: a document directory — staffing tables, budget PDFs, works fichas, councillor CVs — published because articles 5–8 of Ley 19/2013 say it must be. Every file in it is real. None of it is a series, a comparison, or a question you can ask.
+
+**CivicPulse is that obligation rebuilt from the reader's side** — a live dashboard over one town hall, where the same public data becomes a figure you can follow across years, a price you can compare against towns your size, and a claim you can trace to its source. And it does the one thing a compliance portal has no reason to do: it publishes, deliberately and by name, **the places where the official data runs out**.
+
 CivicPulse is built for any Spanish municipality and runs live, end to end, in its first one — [Riba-roja de Túria](https://en.wikipedia.org/wiki/Riba-roja_de_T%C3%BAria) (Comunitat Valenciana, ~24,600 residents): the cost of each municipal service priced against similar-sized towns on the ministry's own data, supplier-payment periods, budget execution, council-session transcripts turned into verifiable claims, an electoral-promise tracker, a citizen-complaint pipeline with legal deadlines, and municipal spending mapped where the contract itself names the place. On that base it publishes deep investigative journalism, each piece's figures frozen at publication and traceable to their source. All of it from public open data, with a stated methodology and a built-in right of reply.
+
+> It is not the council's portal and does not speak for the council. It reads the same public sources, independently, and says where they stop.
 
 **Live:** **[civicpulse.es](https://civicpulse.es)** · **Who's behind it:** [civicpulse.es/nosotros](https://civicpulse.es/nosotros) · [English](https://civicpulse.es/about) · **Methodology:** [civicpulse.es/metodologia](https://civicpulse.es/metodologia)
 
@@ -14,7 +20,11 @@ CivicPulse is built for any Spanish municipality and runs live, end to end, in i
 
 Spaniards vote for their ayuntamientos again in **May 2027**. Before that, every voter should be able to decide from facts, not campaign speeches — to see what their town hall actually did and what it cost. The public data to build that view already exists — effective service costs and municipal budgets (MinHac), public contracts (PLACSP), subsidies (BDNS), census (INE), unemployment (SEPE), the official gazettes (BOE/BOP/TED) — indexed by INE municipality code, for every town.
 
-Nobody turns it into something a neighbour can use: around **6,800 of Spain's ~8,100 municipalities have no dedicated press coverage**, and the national outlets and fact-checkers (Civio, Maldita, Newtral) cover national discourse, not per-town accountability.
+Two things stop a resident from using it.
+
+**Nobody assembles it.** Around **6,800 of Spain's ~8,100 municipalities have no dedicated press coverage**, and the national outlets and fact-checkers (Civio, Maldita, Newtral) cover national discourse, not per-town accountability.
+
+**And publication is not legibility.** A town hall that publishes everything the law demands still leaves a resident unable to answer _is this expensive?_, _did that get done?_, _who do I ask?_ The transparency obligation was written to be checked for compliance, so it produces documents; the questions people actually have need series, denominators and comparisons. Closing that distance is engineering, and it has to be done once per country, not once per town.
 
 CivicPulse is the proof it can be done, built in two halves:
 
@@ -23,7 +33,7 @@ CivicPulse is the proof it can be done, built in two halves:
 
 ## What it does
 
-The single-page app at [civicpulse.es](https://civicpulse.es) surfaces:
+The single-page app at [civicpulse.es](https://civicpulse.es) is a dashboard over one municipality — the money, the decisions, the promises and the people, each on its own surface and all reading from the same cited data layer:
 
 | Surface                 | Route                         | What it shows                                                                                                                                                             |
 | ----------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -46,8 +56,36 @@ The single-page app at [civicpulse.es](https://civicpulse.es) surfaces:
 | **Efficiency frontier** | `/laboratorio/frontera`       | A DEA experiment. Our model's verdict, not a published figure: failed specifications ship as failed, no other municipality is ever named, and it never produces a finding |
 | **Expected cost**       | `/laboratorio/coste-esperado` | The OLS sibling of the frontier, under the same three rules — anonymous published sample, failed specs shipped as failed, residuals never become findings                 |
 | **Data catalogue**      | `/datos`                      | Every underlying JSON snapshot, with its source and licence                                                                                                               |
+| **Data health**         | `/lab-health`                 | The freshness of every snapshot the site serves, including the ones that have gone stale — the site's own vital signs, in public                                          |
 
 The UI is bilingual (Castilian Spanish + Valencià). Only interface chrome is translated — **data content stays verbatim in its source language** to preserve quote accuracy.
+
+## The blind spots
+
+A transparency portal that shows only what exists is a brochure. The gaps are where the accountability actually lives, so this site is built to render absence as carefully as it renders figures — and the machinery below is not error handling, it is editorial policy with tests attached.
+
+**What the source does not contain.** Not every question the data seems to answer is one it can.
+
+- **Most municipal money has no address.** The spending map paints only contracts whose own title names a place, so it shows a few percent of municipal contracting — and says so, computing the share from the snapshot's own universe block rather than a hard-coded line. Most of what a town spends is town-wide service contracts with nowhere to put a pin. The limit is the finding, not the embarrassment.
+- **Concessioned services never enter the council's books.** When a concessionaire bills the resident directly, the municipal accounts show nothing. An empty cell there is not a missing figure, it is a different fact — so the ficha names the company, the award and the amount instead of leaving a blank that reads as ignorance.
+- **Debate is not a decision.** An agenda item discussed with no transcribed vote renders as exactly that, is never counted as a commitment, and can never go overdue.
+- **Nobody is named by elimination.** Where no delegated portfolio names a service, it is marked unassigned with a motive. Inferring the holder from who is left is a claim, and this site does not make claims it cannot cite.
+
+**What the source does not publish — yet, or any more.** Official data has its own clock, and a site that hides it is quietly lying about how current it is.
+
+- **Some figures are late by law.** The effective-cost return is filed more than a year after the year it describes (Orden HAP/2075/2014), so the most recent municipal cost data is always well behind the present. The page derives that lag from the rule and explains it, rather than looking abandoned.
+- **A year the council did not file is not a year with no data.** "The return was filed but this service was not declared" and "no return was filed" are facts of very different sizes; they used to render as the same dash, and now they do not.
+- **Public does not mean reachable.** Some legally-open sources refuse automated readers, restructure their URLs, or blackhole the IP ranges CI runs on. Those are recorded with a reason and a last-good date instead of being served as current.
+- **Sources die.** A retired upstream keeps its last good value, labelled retired, with the reason and the successor — never silently frozen and presented as live.
+- **An empty search result is not a fact about the world.** The regional ombudsman's case index is transcribed from the ombudsman's own search tool, and the snapshot carries that tool's limits with it: one of its two axes returns no case before 2023, so the absence of older rows there means the search stops, not that nothing happened. The limit ships beside the figures, in the same file.
+
+**What we ourselves cannot stand behind.** The last blind spot is our own.
+
+- **The site publishes its own staleness.** [`/lab-health`](https://civicpulse.es/lab-health) lists every snapshot with its age, and freshness is judged per class, because a nightly scraper and a hand-curated file go stale at completely different speeds. Curated files carry a stamp, so "nobody has reviewed this since" is visible rather than implied.
+- **Failed models ship as failed.** The efficiency-frontier and expected-cost experiments publish the specifications that did not work alongside the ones that did. A page showing only the basket that worked is showing a result instead of a method — and neither experiment is ever allowed to generate a finding, because a model's verdict is ours, not the ministry's.
+- **Some claims are not checkable, and are labelled so.** Opinion short-circuits to "no data" and is never marked verified; cited URLs are classified alive, dead or unverifiable, and only dead blocks publication. A verdict engine that resolves uncertainty in its own favour is worse than no verdict engine.
+- **Nothing automatic upgrades a published claim.** Machine verdicts may only retract, never promote. Corrections go through curator CLIs so they leave a record in public git history.
+- **And this site has had blind spots of its own.** The ombudsman index sat at zero rows for months behind a code comment asserting the source could not be automated. It could. A zero here has to mean zero, so "nobody looked" is now built to look different from "nothing found" — which is the same discipline this section demands of everyone else, pointed inward.
 
 ## How it's built
 
@@ -66,6 +104,8 @@ Telegram bot  ──►  SQLite  ──►  /export  ──►  daily workflow  
 - **Front end:** Vite + React 18 + React Router 6, Leaflet maps, SVG charts. Design tokens are CSS variables (light/dark); components use token-driven inline styles.
 - **Bot:** a Node.js Telegram bot captures citizen complaints into SQLite and exports an aggregated, non-identifying snapshot. It is the one deployed piece — it runs on Fly.io in webhook mode with SQLite on a persistent volume, and a daily workflow pulls its export into `public/data/`. The site renders fine without it. Photos are never published raw: a vision pass boxes and hard-mosaics faces, plates and ID text, strips EXIF/GPS, and fails closed — if the vision call cannot run, the photo is held.
 
+Because the whole data layer is committed JSON, the git history _is_ the change log: every figure the site has ever shown is recoverable, and every correction is a diff with an author and a date.
+
 **Tech stack:** TypeScript · React 18 · Vite 6 · React Router 6 · Leaflet · Vitest (unit/integration) · Playwright + axe-core (e2e + WCAG 2.1 AA a11y) · ESLint + Prettier.
 
 ## Editorial & libel discipline
@@ -75,6 +115,7 @@ CivicPulse makes claims about named elected officials, so the parts that do are 
 - **Two-file separation.** Machine inference never writes to a published surface. The promise tracker (`public/data/promises.json`), the findings (`pleno-findings.json`), and the journalist reports each have a **human-curated published file** and a separate **machine-written suggestions file**. Suggestions render as "propuesta automática · pendiente de revisión" and never substitute for a curated status. Schema validators enforce this at write time.
 - **Bloc-level attribution by default.** Extracted claims are attributed to a party group, not an individual, unless a curator explicitly promotes individual attribution after verification.
 - **Deterministic verification.** The claim verifier is a pure function — no LLM, no network — that cross-references declarations against contracts, subsidies, budget, and prior claims. Opinion claims are hard-skipped, never marked "verified".
+- **Competence, not blame.** Where a service page names the councillor who holds the delegated portfolio, it is republishing the council's own transparency portal so a reader knows who to ask — never asserting that a unit cost is that person's personal responsibility. The signed measurement fichas have no field a person's name could go in, and the schema rejects one.
 - **Right of reply everywhere.** Every finding, promise, and report carries a structured right-of-reply path (GitHub issue templates → validated CLI → committed reply). The public git history is the audit trail.
 - **Electoral-silence (LOREG) freeze.** During campaign windows the promise tracker and complaint auto-transitions go read-only.
 
@@ -87,6 +128,8 @@ All sources are public-sector or open-data (Ley 19/2013 de Transparencia, datos.
 - **Municipal:** the town's own transparency portal (corporación, RPT, budget execution, works, hiring, associations register), council-session pages, participation blog.
 - **National:** MinHac — CONPREL (budgets), effective service costs, supplier-payment periods (PMP) · PLACSP / Gobierto (contracts) · BDNS (subsidies) · INE (census) · SEPE (unemployment) · BOE + BOP València + EU TED (gazettes) · CTBG + Sindicatura de Comptes (audit/transparency oversight).
 - **Geospatial:** OpenStreetMap (boundary, neighborhoods, streets, civic POIs, Metrovalencia network) · Wikidata · PATRICOVA flood-risk WMS.
+
+Scrapers identify the project in their User-Agent, never loop tightly, and cache raw payloads locally while iterating. Anything personal — citizen complaints above all — is aggregated to neighbourhood level before it reaches `public/data/`.
 
 The full catalogue, per snapshot, is at [`/datos`](https://civicpulse.es/datos).
 
@@ -138,6 +181,7 @@ docs/           methodology, roadmap, funding, design specs
 
 - **Affected by a finding or promise?** Use the right-of-reply issue templates (linked from every finding, promise, and report card) to submit a verbatim response. It's applied through a validated CLI and committed to the public record.
 - **Spotted a data error?** Open an issue — corrections are logged openly (an IFCN-style open-corrections policy).
+- **Found a blind spot we don't declare?** That's the most useful issue you can file. A gap this site fails to mark is a worse defect than a figure it gets wrong, because the reader can't see it.
 - **Code contributions** follow the project's TDD cadence (see [`CLAUDE.md`](CLAUDE.md)): a failing test against a real fixture, a minimal parser, then wire-up.
 
 ## Funding & independence
