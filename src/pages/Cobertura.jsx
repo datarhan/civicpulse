@@ -4,6 +4,9 @@ import DataAsOf from '../components/DataAsOf'
 import { usePlenoClaimsManifest, CLAIM_TYPE_LABEL } from '../hooks/usePlenoClaims'
 import { esMarcaDePasada } from '../scraper/claim-verdicts'
 import { useT } from '../i18n'
+import { useSolicitudesAcceso } from '../hooks/useSolicitudesAcceso'
+import { CLASES_PEDIBLES, CLASE_ETIQUETA } from '../scraper/clase-documental'
+import { estadoDeSolicitud, frasePublica } from '../scraper/solicitud-acceso'
 
 /**
  * /laboratorio/cobertura — de lo que se dice en un pleno, ¿contra qué podemos
@@ -119,11 +122,34 @@ function TablaCobertura({ titulo, filas, etiqueta, columna }) {
   )
 }
 
+/** Un estado del reloj, dicho en la lengua de la página. */
+const ESTADO_ETIQUETA = {
+  'sin-solicitar': 'sin pedir',
+  'en-plazo': 'en plazo',
+  'vencida-sin-respuesta': 'sin respuesta',
+  respondida: 'respondida',
+  reclamada: 'reclamada',
+}
+
+// `sin-solicitar` va en NEUTRO a propósito: que no lo hayamos pedido todavía no
+// es un fallo del Ayuntamiento, y pintarlo en ámbar le atribuiría una tardanza
+// que no ha tenido.
+const ESTADO_TONO = {
+  'sin-solicitar': 'neutral',
+  'en-plazo': 'civic',
+  'vencida-sin-respuesta': 'warn',
+  respondida: 'ok',
+  reclamada: 'intel',
+}
+
 export default function Cobertura() {
   const t = useT()
   const manifest = usePlenoClaimsManifest()
+  const { data: solicitudes } = useSolicitudesAcceso()
+  const hoy = new Date().toISOString().slice(0, 10)
   const totals = manifest.data?.totals
   const cob = totals?.cobertura
+  const porClaseDoc = cob?.porClaseDocumental?.porClase ?? {}
 
   // Lo que la puerta editorial retiene, por tipo. Ordenado de más a menos.
   const retenidas = useMemo(
@@ -281,6 +307,74 @@ export default function Cobertura() {
               </Pill>
             ))}
         </div>
+      </Card>
+
+      {/*
+        Lo que se ha hecho con el hueco. La tarjeta del universo dice que el
+        límite no es lo que sabemos leer sino lo que no se publica; aquí se
+        cierra el bucle: qué documento hace falta, cuántas declaraciones
+        dependen de él, y si lo hemos pedido.
+      */}
+      <Card style={{ marginTop: 12 }}>
+        <h3 style={{ fontSize: 'var(--fs-card)', margin: '0 0 8px' }}>
+          Lo que hemos pedido, y lo que han contestado
+        </h3>
+        <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', marginTop: 0 }}>
+          Cuando una declaración depende de un documento municipal que no se publica, ningún corpus
+          podrá comprobarla nunca. Eso no es un límite técnico: es un documento que se puede pedir.
+          La Ley 19/2013 da un mes para contestar (art. 20) y, si no contestan, reclamación ante el
+          Consell de Transparència de la Comunitat Valenciana (art. 24).
+        </p>
+        <div style={{ overflowX: 'auto' }} className="cp-scroll-x">
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-meta)' }}>
+            <thead>
+              <tr style={{ textAlign: 'left', color: 'var(--ink70)' }}>
+                <th style={{ padding: '6px 8px 6px 0', fontWeight: 500 }}>Documento</th>
+                <th style={{ padding: '6px 8px', fontWeight: 500, textAlign: 'right' }}>
+                  Declaraciones que dependen
+                </th>
+                <th style={{ padding: '6px 0 6px 8px', fontWeight: 500 }}>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              {CLASES_PEDIBLES.map((clase) => {
+                const sol = (solicitudes?.items ?? []).find((x) => x.clase === clase) ?? null
+                const estado = estadoDeSolicitud(sol, hoy)
+                return (
+                  <tr key={clase} style={{ borderTop: '1px solid var(--border)' }}>
+                    <td style={{ padding: '8px 8px 8px 0' }}>{CLASE_ETIQUETA[clase]}</td>
+                    <td className="mono" style={{ padding: '8px', textAlign: 'right' }}>
+                      {porClaseDoc[clase] ?? 0}
+                    </td>
+                    <td style={{ padding: '8px 0 8px 8px' }}>
+                      <Pill tone={ESTADO_TONO[estado]} size="xs">
+                        {ESTADO_ETIQUETA[estado]}
+                      </Pill>
+                      <div
+                        style={{
+                          color: 'var(--ink70)',
+                          fontSize: 'var(--fs-micro)',
+                          marginTop: 4,
+                          maxWidth: '54ch',
+                        }}
+                      >
+                        {frasePublica(sol, hoy)}
+                      </div>
+                    </td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+        <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', margin: '12px 0 0' }}>
+          <strong style={{ color: 'var(--ink)' }}>
+            Pedirlo no lo hace comprobable por sí solo.
+          </strong>{' '}
+          Que publiquen el documento es condición necesaria y no suficiente: después hay que
+          construir con qué leerlo. Por eso la columna dice cuántas declaraciones <em>dependían</em>{' '}
+          de él, y no cuántas quedarían desbloqueadas.
+        </p>
       </Card>
 
       <Card style={{ marginTop: 12 }}>

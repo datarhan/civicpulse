@@ -22,6 +22,7 @@
 
 import type { PlenoClaim, ClaimType, ClaimTopic } from './pleno-claim'
 import { corpusReales } from './claim-verdicts'
+import { agruparPorClaseDocumental } from './clase-documental'
 
 // The verifier emits items as { claim, verification } pairs. We keep
 // that shape verbatim in the chunks so the SPA hook can stitch the
@@ -100,6 +101,19 @@ export interface PlenoClaimsChunkManifest {
       porTipo: Record<string, { total: number; sinCorpus: number; comprobadoSinHallar: number }>
       porTema: Record<string, { total: number; sinCorpus: number; comprobadoSinHallar: number }>
       corpus: Record<string, number>
+      /**
+       * De las declaraciones SIN corpus, qué documento nombran.
+       *
+       * Es el material de una solicitud de acceso: «estas N dependen de un
+       * informe técnico que no se publica». Léxico, nunca pronóstico — y lo que
+       * no nombra ningún documento se cuenta aparte, sin repartirse, porque
+       * repartirlo haría que cualquier clase pareciera mayor de lo que es.
+       */
+      porClaseDocumental: {
+        porClase: Record<string, number>
+        sinDocumento: number
+        total: number
+      }
     }
     /**
      * Por qué `sin-datos`, sobre lo PUBLICADO (post-puerta editorial).
@@ -231,6 +245,9 @@ export function buildManifest(
   const porTema: Record<string, { total: number; sinCorpus: number; comprobadoSinHallar: number }> =
     {}
   const corpus: Record<string, number> = {}
+  // Los literales de las filas SIN corpus real, para agruparlos por el
+  // documento que nombran.
+  const sinCorpusVerbatims: string[] = []
   const casilla = (
     tabla: Record<string, { total: number; sinCorpus: number; comprobadoSinHallar: number }>,
     k: string,
@@ -267,6 +284,10 @@ export function buildManifest(
         if (consultados.length === 0) cel.sinCorpus += 1
         else cel.comprobadoSinHallar += 1
       }
+      if (consultados.length === 0) {
+        const lit = it.claim?.verbatim
+        if (typeof lit === 'string') sinCorpusVerbatims.push(lit)
+      }
       if (v === 'sin-datos') {
         if (consultados.length === 0) sinDatosPorque.sinCorpus += 1
         else sinDatosPorque.comprobadoSinHallar += 1
@@ -288,7 +309,12 @@ export function buildManifest(
         plenos: plenosOut.length,
         byVerdict: totalsByVerdict,
         byTopicVerdict,
-        cobertura: { porTipo, porTema, corpus },
+        cobertura: {
+          porTipo,
+          porTema,
+          corpus,
+          porClaseDocumental: agruparPorClaseDocumental(sinCorpusVerbatims),
+        },
         retenidas,
         sinDatosPorque,
       },

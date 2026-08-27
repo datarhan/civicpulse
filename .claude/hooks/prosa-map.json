@@ -378,6 +378,9 @@
     "sociedades.json": [
       "/reportajes/coste-efectivo"
     ],
+    "solicitudes-acceso.json": [
+      "/laboratorio/cobertura"
+    ],
     "spain-ticker.json": [
       "/lab-health"
     ],

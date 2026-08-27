@@ -174,6 +174,34 @@ const INJECTIONS: Array<{
   describe: string
   corrupt: (s: string) => string
 }> = [
+  // Las cuatro de la tanda de procedencia de veredictos (2026-08-27). Las
+  // cuatro se inyectaron a mano al construirlas; escribirlas aquí es lo que
+  // hace que se sigan probando cuando nadie se acuerde.
+  {
+    guard: 'check:verified-compose',
+    file: 'public/data/pleno-claims-verified.json',
+    describe: 'un publicado MÁS NUEVO que su base, que es imposible por construcción',
+    corrupt: (s) =>
+      s.replace(/"generatedAt": "[^"]+"/, '"generatedAt": "2099-01-01T00:00:00.000Z"'),
+  },
+  {
+    guard: 'check:cobertura',
+    file: 'public/data/pleno-claims/index.json',
+    describe: 'una casilla del cruce que ya no sale de los trozos',
+    corrupt: (s) => s.replace(/"sinCorpus": (\d+)/, (_m, n) => `"sinCorpus": ${Number(n) + 7}`),
+  },
+  {
+    guard: 'check:veredictos',
+    file: 'public/data/pleno-claims/index.json',
+    describe: 'un manifiesto sin el bloque de cobertura del que vive la guarda',
+    corrupt: (s) => s.replace(/"cobertura"/, '"coberturaRota"'),
+  },
+  {
+    guard: 'check:solicitudes',
+    file: 'public/data/pleno-claims/index.json',
+    describe: 'el cruce por clase documental vaciado — la guarda no puede medir nada',
+    corrupt: (s) => s.replace(/"porClaseDocumental"/, '"porClaseDocumentalRota"'),
+  },
   {
     guard: 'check:json',
     file: 'public/data/promise-suggestions.json',
