@@ -108,6 +108,15 @@ export interface PlenoClaimsChunkManifest {
      * `byVerdict`. Ver `resumirSinDatos` en claim-verdicts.
      */
     sinDatosPorque: { sinCorpus: number; comprobadoSinHallar: number }
+    /**
+     * Lo que la puerta editorial RETIENE, por tipo.
+     *
+     * Sin esto, un tipo que se retiene entero desaparece de la tabla y el
+     * lector concluye que no lo extraemos — que es peor que la verdad. La regla
+     * 2 del laboratorio dice que la ausencia se publica como ausencia, y una
+     * fila que no está no la publica.
+     */
+    retenidas: Record<string, number>
   }
 }
 
@@ -203,6 +212,7 @@ export function buildChunkAndDescriptor(
 export function buildManifest(
   itemsByPleno: Map<string, VerifiedClaimItem[]>,
   generatedAt: string,
+  retenidas: Record<string, number> = {},
 ): {
   manifest: PlenoClaimsChunkManifest
   chunks: Map<string, PlenoClaimsChunk>
@@ -279,6 +289,7 @@ export function buildManifest(
         byVerdict: totalsByVerdict,
         byTopicVerdict,
         cobertura: { porTipo, porTema, corpus },
+        retenidas,
         sinDatosPorque,
       },
     },

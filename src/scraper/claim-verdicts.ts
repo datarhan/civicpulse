@@ -90,9 +90,27 @@ export function resumirSinDatos(
 // Lo desconocido se trata como CORPUS, no como marca: una marca nueva sin
 // declarar aparece a la vista —y se corrige— en vez de desaparecer callando.
 
+/**
+ * Los nombres de pasada que aparecen en `checkedAgainst`.
+ *
+ * Hay DOS esquemas de nombres conviviendo y esta lista tiene que cubrir los
+ * dos: el que escribe cada verificador en `checkedAgainst`
+ * (`nli-grounding`, `llm-second-pass`, `verdict-engine`) y el de
+ * `OverlaySource` (`nli`, `llm`, `verdict-engine`, `curator-downgrade`).
+ *
+ * `nli-grounding` faltaba y lo cazó la prueba de la puerta el mismo día: es una
+ * lista negra escrita a mano, y una lista negra a mano dentro de un control
+ * contra el estancamiento se estanca ella sola. Vive con fecha de caducidad —
+ * la fase 1 separa `checkedAgainst` (corpus) de `derivedBy` (pasadas) y
+ * entonces esto se borra, porque ya no hará falta clasificar nada.
+ *
+ * Mientras exista: lo desconocido cuenta como corpus, que es la dirección
+ * INSEGURA. La fase 1 lo invierte.
+ */
 export const MARCAS_DE_PASADA = [
   'verdict-engine',
   'llm-second-pass',
+  'nli-grounding',
   'nli',
   'llm',
   'curator-downgrade',

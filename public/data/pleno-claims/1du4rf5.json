@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T10:50:58.219Z",
+  "generatedAt": "2026-08-27T11:47:35.392Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -235,55 +235,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-012-acu-fec112",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 12,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "no existe ningún expediente de infracción ni de restauración ni sancionador ni resolución judicial de ningún tipo en dicha parcela",
-        "context": "En el informe también se declara por parte del promotor, a sabiendas que es así, que en el que él mismo, el promotor, incide en que no existe ningún expediente de infracción ni de restauración ni sancionador ni resolución judicial de ningún tipo en dicha parcela",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "parcela"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "Se puede verificar si existe o no algún expediente de infracción, restauración, sancionador o resolución judicial en la parcela mencionada, contrastando con registros municipales o judiciales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-012-acu-fec112",
-        "verdict": "parcial",
-        "summary": "Existen licitaciones para obras de restauración, lo que se relaciona parcialmente con la afirmación de que no hay expedientes de restauración, aunque no se especifica si corresponden a la parcela mencionada.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=D4mlhF3eeDx7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Obras de acondicionamiento parcela 481 en P.I. El Oliveral",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=esOvrnKGBKDnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Restauración de restos cerámicos",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=b%2BoVnoaH6w9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Cambio de cubierta y restauración estructural en la \"Sebera\"",
-            "similarity": 0.2
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -1511,7 +1462,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3714,7 +3665,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4723,56 +4674,6 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-111-acu-4f6c40",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 111,
-        "type": "acusacion_publica",
-        "speakerGroup": "Compromís",
-        "verbatim": "Es reclamar formalmente al presidente del Partido Popular, Bertón Núñez Fejó, y a sus órganos correspondientes, la dimisión inmediata del presidente de la Generalitat Valenciana, Carlos Mazón, y la vicepresidenta y consejera de Servicios Sociales, Susana Camarero, por su responsabilidad política en la gestión de las ganas del 29 de octubre de 2024.",
-        "context": "Es que no sabemos nada. Por eso, este punto, hemos decidido, antes de reunirnos, como compromiso, mantenerlo. Es reclamar formalmente al presidente del Partido Popular, Bertón Núñez Fejó, y a sus órganos correspondientes, la dimisión inmediata del presidente de la Generalitat Valenciana, Carlos Mazón, y la vicepresidenta y consejera de Servicios Sociales, Susana Camarero, por su responsabilidad política en la gestión de las ganas del 29 de octubre de 2024.",
-        "topic": "other",
-        "entities": {
-          "date": "2024-10-29",
-          "referencedEntity": "gestión de la dana del 29 de octubre de 2024"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "Esta es una acusación pública de responsabilidad política contra funcionarios específicos por la gestión de un evento datado. Se puede verificar a través de informes oficiales y actas del pleno.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-111-acu-4f6c40",
-        "verdict": "parcial",
-        "summary": "Los candidatos confirman la ocurrencia del temporal DANA del 29 de octubre de 2024 y las acciones tomadas por el ayuntamiento local en respuesta, lo cual está relacionado con la base de la acusación pública, aunque no corrobora directamente la responsabilidad política de la Generalitat.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=friEJqC%2FU%2Frs%2BnLj3vAg5A%3D%3D",
-            "snippet": "Contrato de obra en la Pedanía El Oliveral como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024",
-            "similarity": 0.27
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=97rs8e9e65YQyBAnWzHfCg%3D%3D",
-            "snippet": "Contrato de servicio reposición alumbrado Els Pous como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BIqG1AMdjwnVGIpKDxgsAQ%3D%3D",
-            "snippet": "Contrato de suministro de adquisición de tractor municipal como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024.",
-            "similarity": 0.25
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -5856,43 +5757,6 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-188-acu-2d45cc",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 188,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "No se publica nada en redes sociales cuando hay toros. Nada. No existe. En Riva Roja hay redes sociales y no hay toros.",
-        "context": "Sí, sí, se esconde. No se publica nada. No se publica nada en redes sociales cuando hay toros. Nada. No existe. En Riva Roja hay redes sociales y no hay toros. Pero sí que hay.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "redes sociales"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "This claims that there are no social media publications regarding bullfighting events by the Riba-roja town council. This can be verified by a direct review of the official social media accounts for any posts or announcements related to bullfighting events.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-188-acu-2d45cc",
-        "verdict": "parcial",
-        "summary": "Los contratos para la gestión de redes sociales del Ayuntamiento son tangencialmente relevantes a la afirmación sobre la falta de publicaciones específicas, confirmando la existencia de la plataforma de comunicación social.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ej1RCt%2B7HEsQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Grabación, imagen, comunicación social y mantenimiento de las redes sociales · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.29
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {

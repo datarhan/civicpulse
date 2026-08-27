@@ -61,6 +61,24 @@ test.describe('Cobertura de comprobación (/laboratorio/cobertura)', () => {
     expect(posAviso).toBeLessThan(posCifra)
   })
 
+  test('publica lo que la puerta retiene, en vez de omitirlo', async ({ page }) => {
+    // Regla 2 del laboratorio: la ausencia se publica como ausencia. Al cerrar
+    // la puerta, `acusacion_publica` se retiene ENTERA y desaparecería de las
+    // tablas; de una fila que no está, el lector deduce que no la extraemos.
+    const retenidas = JSON.parse(readFileSync('public/data/pleno-claims/index.json', 'utf8')).totals
+      .retenidas as Record<string, number>
+    const total = Object.values(retenidas).reduce((a, n) => a + n, 0)
+    expect(total).toBeGreaterThan(0) // que la comprobación evalúe algo
+
+    await page.goto('/laboratorio/cobertura', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText(/hay retenidas/i)).toBeVisible({ timeout: 8000 })
+    for (const n of Object.values(retenidas)) {
+      await expect(
+        page.getByText(n.toLocaleString('es-ES'), { exact: false }).first(),
+      ).toBeVisible()
+    }
+  })
+
   test('declara su universo: lo publicado, no el corpus interno', async ({ page }) => {
     await page.goto('/laboratorio/cobertura', { waitUntil: 'domcontentloaded' })
     await expect(page.getByText(/no se sirven|puerta editorial/i).first()).toBeVisible({

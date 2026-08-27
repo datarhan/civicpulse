@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T10:50:58.219Z",
+  "generatedAt": "2026-08-27T11:47:35.392Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -693,7 +693,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -843,7 +843,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1846,7 +1846,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3026,7 +3026,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T10:50:58.219Z",
+  "generatedAt": "2026-08-27T11:47:35.392Z",
   "version": "1",
   "plenoId": "rx4hb4",
   "plenoDate": "2026-02-09",
@@ -524,7 +524,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1086,7 +1086,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1334,7 +1334,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     }
   ]
 }

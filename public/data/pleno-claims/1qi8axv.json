@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T10:50:58.219Z",
+  "generatedAt": "2026-08-27T11:47:35.392Z",
   "version": "1",
   "plenoId": "1qi8axv",
   "plenoDate": "2025-12-23",
@@ -658,7 +658,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1607,43 +1607,6 @@
     },
     {
       "claim": {
-        "id": "1qi8axv-046-acu-fd69e0",
-        "plenoId": "1qi8axv",
-        "plenoDate": "2025-12-23",
-        "segmentIndex": 46,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "ya se impusieron penalidades por parte de este ayuntamiento en otros contratos, como por ejemplo en las obras del cementerio.",
-        "context": "No obstante, no es la primera vez. Sí que es la primera vez en un contrato de este calibre que se adoptan porque no tenemos en este ayuntamiento tantos contratos de esta magnitud. Pero ya se han adoptado, ya se impusieron penalidades por parte de este ayuntamiento en otros contratos, como por ejemplo en las obras del cementerio.",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "penalidades en obras del cementerio"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Es verificable en expedientes municipales y resoluciones de penalidades; menciona un contrato/obra concreta y una actuación administrativa comprobable.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1qi8axv-046-acu-fd69e0",
-        "verdict": "parcial",
-        "summary": "The claim refers to penalties imposed on contracts for 'cemetery works.' Candidates 0 and 1 are tenders for maintenance services at the municipal cemetery, establishing topical relevance, but they do not provide information about penalties being imposed.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xRa1RjN5uaQSugstABGr5A%3D%3D",
-            "snippet": "Servicio de mantenimiento del elevador portaféretros del cementerio municipal.",
-            "similarity": 0.25
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "1qi8axv-046-afi-65d3e0",
         "plenoId": "1qi8axv",
         "plenoDate": "2025-12-23",
@@ -2172,7 +2135,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2329,43 +2292,6 @@
     },
     {
       "claim": {
-        "id": "1qi8axv-062-acu-ae985f",
-        "plenoId": "1qi8axv",
-        "plenoDate": "2025-12-23",
-        "segmentIndex": 62,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "nos va a llamar a la guardia porque se desborden los contenedores",
-        "context": "...estoy convencido, pero espero que nadie se alegre de que nos va a llamar a la guardia porque se desborden los contenedores, que nos va a llamar para otras cosas...",
-        "topic": "seguridad",
-        "entities": {
-          "referencedEntity": "desbordes de contenedores"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.72,
-        "reasoning": "Atribuye a alguien una conducta concreta y verificable relacionada con incidencias por contenedores desbordados; podría contrastarse con registros de llamadas/incidencias o actas.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1qi8axv-062-acu-ae985f",
-        "verdict": "parcial",
-        "summary": "Se ha encontrado un contrato para la elaboración de un plan local de residuos, lo cual está relacionado con la gestión de contenedores, el tema subyacente de la queja, pero no aborda directamente la situación de los contenedores desbordados o la intervención de la guardia.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor de servicio para la elaboración del plan local de residuos para el municipio de Riba-roja de Túria.",
-            "similarity": 0.2
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "1qi8axv-064-cit-d78c9c",
         "plenoId": "1qi8axv",
         "plenoDate": "2025-12-23",
@@ -2410,7 +2336,7 @@
           "llm-second-pass"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
