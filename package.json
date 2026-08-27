@@ -220,6 +220,7 @@
     "check:sindic-fichas": "npx tsx scripts/check-sindic-fichas.ts",
     "check:sparse": "npx tsx scripts/check-sparse.ts",
     "check:stamps": "npx tsx scripts/check-curated-stamps.ts",
+    "cotejar:etiquetado": "npx tsx scripts/cotejar-etiquetado.ts",
     "check:verified-compose": "npx tsx scripts/check-verified-compose.ts",
     "check:cobertura": "npx tsx scripts/check-cobertura.ts",
     "check:veredictos": "npx tsx scripts/check-veredictos.ts",
