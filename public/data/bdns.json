@@ -1,17 +1,28 @@
 {
-  "generatedAt": "2026-08-25T05:05:18.960Z",
+  "generatedAt": "2026-08-28T16:49:52.823Z",
   "source": {
     "url": "https://www.pap.hacienda.gob.es/bdnstrans/api/convocatorias/busqueda",
     "query": "riba-roja",
     "platform": "MinHac BDNS (Base de Datos Nacional de Subvenciones)"
   },
   "stats": {
-    "total": 173,
-    "granted": 155,
+    "total": 174,
+    "granted": 156,
     "received": 18,
-    "latestDate": "2026-08-03T00:00:00.000Z"
+    "latestDate": "2026-08-27T00:00:00.000Z"
   },
   "items": [
+    {
+      "id": 1128249,
+      "bdnsCode": "926688",
+      "description": "Resolución de alcaldía Nº 2689/2026 de 11 de agosto, del Ayuntamiento de Riba-roja de Turia por la que se convocan subvenciones destinadas a Deportistas Locales de Riba-roja de Túria año 2026 (resultados deportivos 2025).",
+      "date": "2026-08-27T00:00:00.000Z",
+      "organ": "LOCAL · RIBA-ROJA DE TÚRIA · AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA",
+      "level1": "LOCAL",
+      "level2": "RIBA-ROJA DE TÚRIA",
+      "direction": "granted",
+      "sourceUrl": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/926688"
+    },
     {
       "id": 1124848,
       "bdnsCode": "923287",

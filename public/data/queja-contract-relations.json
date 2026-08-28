@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-08-27T15:21:29.540Z",
+  "generatedAt": "2026-08-28T17:02:49.854Z",
   "source": "queja-contract-relations engine v1 (deterministic)",
   "stats": {
     "frozen": false,
     "quejasScanned": 1,
-    "contractsScanned": 699,
+    "contractsScanned": 700,
     "tierA": 4,
-    "tierB": 24,
+    "tierB": 25,
     "reason": null
   },
   "links": [
@@ -20,7 +20,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.8455617283950618
+          "monthsAfter": -1.8483395061728396
         }
       },
       "tier": "B",
@@ -38,7 +38,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.0122283950617283
+          "monthsAfter": -1.0150061728395061
         }
       },
       "tier": "B",
@@ -56,7 +56,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.0122283950617283
+          "monthsAfter": -1.0150061728395061
         }
       },
       "tier": "B",
@@ -74,7 +74,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -2.4455617283950617
+          "monthsAfter": -2.4483395061728395
         }
       },
       "tier": "B",
@@ -92,7 +92,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -2.3788950617283953
+          "monthsAfter": -2.381672839506173
         }
       },
       "tier": "B",
@@ -114,7 +114,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.2122283950617283
+          "monthsAfter": -1.215006172839506
         }
       },
       "tier": "A",
@@ -132,7 +132,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -2.4455617283950617
+          "monthsAfter": -2.4483395061728395
         }
       },
       "tier": "B",
@@ -169,7 +169,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.1455617283950617
+          "monthsAfter": -1.1483395061728394
         }
       },
       "tier": "B",
@@ -187,7 +187,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -2.8455617283950616
+          "monthsAfter": -2.8483395061728394
         }
       },
       "tier": "B",
@@ -205,7 +205,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -0.4788950617283951
+          "monthsAfter": -0.48167283950617285
         }
       },
       "tier": "B",
@@ -223,7 +223,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -0.7122283950617284
+          "monthsAfter": -0.7150061728395062
         }
       },
       "tier": "B",
@@ -241,7 +241,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.1455617283950617
+          "monthsAfter": -1.1483395061728394
         }
       },
       "tier": "B",
@@ -259,7 +259,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.1455617283950617
+          "monthsAfter": -1.1483395061728394
         }
       },
       "tier": "B",
@@ -277,7 +277,25 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.178895061728395
+          "monthsAfter": -1.1816728395061729
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pLeJ%2BaXp8DzN3k3tjedSGw%3D%3D",
+      "tenderId": "10677005",
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": 1.5849938271604938
         }
       },
       "tier": "B",
@@ -314,7 +332,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -2.3455617283950616
+          "monthsAfter": -2.3483395061728394
         }
       },
       "tier": "B",
@@ -367,7 +385,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -0.4788950617283951
+          "monthsAfter": -0.48167283950617285
         }
       },
       "tier": "B",
@@ -385,7 +403,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -0.4788950617283951
+          "monthsAfter": -0.48167283950617285
         }
       },
       "tier": "B",
@@ -419,7 +437,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -0.012228395061728395
+          "monthsAfter": -0.015006172839506173
         }
       },
       "tier": "B",
@@ -437,7 +455,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.178895061728395
+          "monthsAfter": -1.1816728395061729
         }
       },
       "tier": "B",
@@ -455,7 +473,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -0.012228395061728395
+          "monthsAfter": -0.015006172839506173
         }
       },
       "tier": "B",
@@ -473,7 +491,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.1455617283950617
+          "monthsAfter": -1.1483395061728394
         }
       },
       "tier": "B",
@@ -491,7 +509,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -0.7122283950617284
+          "monthsAfter": -0.7150061728395062
         }
       },
       "tier": "B",
@@ -509,7 +527,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.1455617283950617
+          "monthsAfter": -1.1483395061728394
         }
       },
       "tier": "B",
@@ -520,8 +538,8 @@
   ],
   "builtFrom": {
     "promises.json": "d18811c11210",
-    "quejas.json": "924177a472df",
-    "tender-geo.json": "0376550dfdac",
-    "tenders.json": "dc8a8b44016f"
+    "quejas.json": "3e3984f6fa21",
+    "tender-geo.json": "ffdae519f505",
+    "tenders.json": "b44bc3e9506a"
   }
 }

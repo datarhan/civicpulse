@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T05:16:41.946Z",
+  "generatedAt": "2026-08-28T17:02:27.563Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -45,6 +45,17 @@
           ]
         },
         {
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-destina-una-partida-de-140.000-euros-para-la-rehabilitaci%C3%B3n-de-las-fachadas%2C-la-evaluaci%C3%B3n-de-los-edificios-y-la-accesibilidad-en-el-interior-de-las-viviendas-del-periodo-2026-2027",
+          "date": "2026-08-25",
+          "quote": "El Ayuntamiento de Riba-roja de Túria destina una partida de 140.000 euros para la rehabilitación de las fachadas, la evaluación de los edificios y la accesibilidad en el interior de las viviendas del periodo 2026-2027",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "2026",
+            "euro"
+          ]
+        },
+        {
           "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-adjudica-el-contrato-para-el-servicio-de-suministro-de-agua-potable-por-un-valor-de-55%E2%80%996-millones-de-euros-y-un-periodo-de-17-a%C3%B1os-de-vigencia",
           "date": "2026-08-10",
           "quote": "El Ayuntamiento de Riba-roja adjudica el contrato para el servicio de suministro de agua potable por un valor de 55’6 millones de euros y un periodo de 17 años de vigencia",
@@ -65,21 +76,10 @@
             "2026",
             "euro"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQLXpNVFF4dXhIbXpqaTJQXzN6dVN4Rl9vSFZndThNUFMtdWluaTNMUUp3dnh2QThhamFZWERDM2s2aWV1R1dqLW1mODV3UnIyeHcyRHkwdmQ2YVlhb3pxRnFJQjJMcEhYYmFBVmlwYjdGWEVFUE1teFBtODZmcVVncDRJaFlYVV9fd3JyRzRqdXBqcmFCLXhFZHZVSWJMcGtJSzN0NVpLSGpaZ1A3b0tZV3hxMWJJRk5aRGh3eTlGeng0MGduVktLcnVzQnU0MHhBSDF1eUZCaWRWSUZMM2prMno2Mi1zdnhxMVFURlp2UTd5bFIwYlpmOWF3a2U0OVhMTklIZXJ4NA?oc=5",
-          "date": "2026-07-10",
-          "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
-          "kind": "press",
-          "publisher": "València Extra",
-          "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -129,6 +129,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPZTFYQjRPUnBtUUJfV0gzclA1eHFieGl4a1Q0UU9lU3Z6YkZLVDFtVFQ3TmVyZE8wRVNDajNyRURPSFUzTm9MUE0yQzRNUVMyM0JfV2p1cDZXaHRUQ2RmMFF5MFV5bEw0SmhqZXNSTFE4QjlvZ0hKTExkazRRNzZlSXdLOGRfcVY4bEhRaW9PWG9QLVVxWjlXTzhiZklyQm9EMHNhUG0yVFRybHNxMmY0TFF1V0fSAboBQVVfeXFMTTlSQ21TbVcxcDFSR2FRaXNfVXJqbGFTeEhjMjd2cUh0ZVE5NFlFM2Mzd0hlRGdUM1JQYVR1ZEs1NVN0b3lrQmpJaS1ESFJabF9mVFdoRGhyT0FvM0sxZ3Y2eTNBSG0yQkh3WVRyT3dtckxtZlB2VkJYd1BFRFVqS1RaaGpIT0JwZWROYTFaVTRETXlPUWhpYm1WZThTWmRnOV9jOTA1NHVKUTRQQkRRbWlERUJZR1h1dzVn?oc=5",
+          "date": "2026-08-19",
+          "quote": "Medio Ambiente arranca la limpieza del polvorín de cañas del Turia en Riba-roja",
+          "kind": "press",
+          "publisher": "Las Provincias",
+          "matchedKeywords": [
+            "medio",
+            "ambiente"
+          ]
+        },
+        {
           "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-adjudica-el-contrato-para-el-servicio-de-suministro-de-agua-potable-por-un-valor-de-55%E2%80%996-millones-de-euros-y-un-periodo-de-17-a%C3%B1os-de-vigencia",
           "date": "2026-08-10",
           "quote": "El Ayuntamiento de Riba-roja adjudica el contrato para el servicio de suministro de agua potable por un valor de 55’6 millones de euros y un periodo de 17 años de vigencia",
@@ -138,43 +149,16 @@
             "millon",
             "euro"
           ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
-          "date": "2026-07-27",
-          "quote": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027 con una inversión de 61.000 euros en artes escénicas",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "inversion",
-            "euro"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
       "proposedStatus": "documentada",
-      "confidence": 0.4,
+      "confidence": 0.287,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxObV9RSjA1QVNRSHZneEtGcXhKaE5EeXdNb1ZxdzNLZlNEZEJJVW5MdV9tNGVBLTJMY2RaX2R5SXEyVHRmajM5N3M4VTlLMWFtamFuNjRiVUloM2tsb09ZQ1JsRUdRUU9rZmRKQks1Zk5KNzRYUGVEcGg4SUVKYWFnOUNJanBSMmxoaHVwNm5IaXBHV3dsN1ZvNVN0VldiQUxFQUZnWkRGX2JGWWx6MGluRDNoSEJuWVN3YWpMdFI5dnpMQ0tKeV8wcThmU1VfS1BqLVpLdVhEaGhpRktW0gHiAUFVX3lxTFA5TU8zTGhDSW5NSzJOUVlZVEdRbEgzSFpPaU43NWtZOW9kdTZuNmZPbHNaVlFpVW9MX3VPV0VUUnNRZ0s4NUtHM0RhSnM0SkJjVXlVb245UXFaSWllWlpGTW9kaWxYV0RQWnlPdmFEYlVMVHNudU5KMkJ5a2RvRF9adHhZRHFqdmpyR1BwR2hyY1ZxMTF1WS11dmV4NFZVcWM2Q2RMa0VpblR4NmN2SWZRcHdVSVVRbmlVNWZiQVZDc25COFlXVWJsLWhXUHlrOThwQ29IV25UbU03Y3l6ZW02V0E?oc=5",
-          "date": "2026-02-10",
-          "quote": "Riba-roja de Túria recibirá 9,5 millones de fondos europeos tras la dana para su reconstrucción",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "reconstruccion",
-            "dana",
-            "millon",
-            "fondo",
-            "europeo",
-            "recibira",
-            "tras"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQd1UxVjZrYVA3VS1Ua1NyaktPSF8wYlRqM1lhcnl0SFgyRlE5MS1ERUEzTC1VQzB5QUtmVnpWY1VTXzViYTM3Q0w2SjM1Q1RZN1Q3U0N6cnRMbnVGX3oyYjdoYmdSVm9jSXU1cTJyQklhRmktTjlYY2x1YzhfR1VaOWNaRjAzSldYS0c1OWFMX0tXUTlQRU16TjhOQjQ3a3ZQSTdDaDV2TUtJaGt4MExROWtBRzFsazRhdHhiYlY3LW5GQzlmV2NDT21kWDFoeW_SAdQBQVVfeXFMUGwxa280Ti1MMHFTaW1IWW9GN3REUlFoZnJkVzV4YzFlQm52T2ItdmZ6b21wb2FaYWFSMloxQWJuZmpCbl95TkpIcXpfMko2cXNRTmRHQ0U4Y1R1aHJnR3k2akRVNDVfUi1yS3JtbW9ibEh5MGIyUWd0Y0Jnamdmc3JfbzcySXVqM1JUWTQtVXdWSVptaERlMnd3UF9zcVZJb0lycTBWVjFZbEhhb0ZPNTlleU51c3Rfb2FZSTJtVlVFWk90VFpSLXNndkE1WlRsVEluVFQ?oc=5",
           "date": "2026-05-11",
@@ -184,17 +168,6 @@
           "matchedKeywords": [
             "dana",
             "millon",
-            "tras"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNTTNEZzBxcE9NTUNYNzV4bDh0dW1veWxGRHNOT0l0bkM0LTFyaEQzZmhiWVFOY1hQTFZrYkg0SGpiV1cxSEEwQTVqdFdVZkpYLVNhYU5jdVFOUlhwaFh5akZqNDZsamdyYWRMSFRrN0VKbW9DVnNfbkM2Zl9tZ3MtMEV3MUlPWTdUVHpmeU1hRXRtUWZjdVphZEN2MUlvaV9hWUUtcHF4ajRnd0FoVDFQQVN6NzVqWGNoYy16TFRadjBDenRWc25NSzRWRkhza25XTGRlNi1KbnBKdDlWTFBWV29jV0MwRXJqMExjMNIB8gFBVV95cUxPTi1qYUtLWnhKTDNnTnNTSlUyMnZKejkweHdteTlOTjJYeGNaMFpZRW1rZE9DUFJ6Z012VG9VYm5mYkc2X2ZEOEFkeFM4ZnFNQ3F2XzNBV2JiQ1B0ZFM3cjNsaHpfbEVWeGdRWmNuTHBSdmNNRjdyZ1RzbVA2c1laWjNpeUpjSXlXYzlnZmdiSnhseXZrRFN6YjRaYzc1Q1FmVmRBWUY5ZXlBZlFOcDR2MnlmanVrV1hNSzBnNERJRmczOFZqYXJTd0s0N0FwYlhQazEyd0pDeUZXSmxUdk9fTWlrU1RxZm83ZXRrelE3TFlJUQ?oc=5",
-          "date": "2026-07-28",
-          "quote": "Las exhumaciones del cementerio musulmán de Riba-roja se realizaron por las obras de la mota tras la dana",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "dana",
             "tras"
           ]
         },
@@ -219,27 +192,38 @@
             "dana",
             "tras"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMFIxMi1hRmdyRlFDNWxETmNkX2tldkVZTEpSSC0tZWptTEdwSE81b1k1cFJKaVpYVVVhQ2puN1c5N1VzMXhwXzRtNzA5QVpFVll2ZjBhcF9fbjNHeVBPSndoTVl6UWdwTWxPUGc4OHZaall3aUR3REJMNlozTkpvUjNMVFhZVXM0LWY3Z2ZGeU03WU5JS0ExSG9COEN3RFdfXzB5ZTFBZkc5dWtVZHFXbXMwelVMUHJuWE1r?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola España invierte más de 10 millones de euros en Riba-roja para la renovación de instalaciones afectadas por la DANA",
+          "kind": "press",
+          "publisher": "iberdrolaespana.com",
+          "matchedKeywords": [
+            "dana",
+            "millon"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPM0dvdXpaelp5NVNtaEE3WXBQZjN3bUtHQjhWR29Uc0I5Mzl1QlowUWMxLU1VMFVBSTNyWUthTWh1OF9PRDJpa1JOY2ZBQ1VnX1FKb0U2WmJmX2FpSEV5ajRvOEFvd2dVT25xVUROal8yMFdyN1YwWUFmY3NuYTViN0dxcUpfckR3NEVSODg1cDdhWk9KZjA1WHNsdVlqWE84V2lPY2t5SWZfZlphQ29MYllNS1dLZXV5RGphZXVqRWpxelJUVWVucEg5eGw0clFXeHZLTmR3UmRoZzBPR1RmRFB4d1E4SWNSdnN5Yg?oc=5",
+          "date": "2026-05-08",
+          "quote": "Riba-roja de Túria repone señalética en el Parque Natural del Túria y casco histórico tras la Dana",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "dana",
+            "tras"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
       "proposedStatus": "documentada",
       "confidence": 0.175,
       "reasoning": [
-        {
-          "url": "https://www.ribarroja.es/es/noticia/la-generalitat-y-el-ayuntamiento-de-riba-roja-colaboran-para-desarrollar-suelo-para-viviendas-e-industrias-en-zonas-seguras",
-          "date": "2026-07-07",
-          "quote": "La Generalitat y el Ayuntamiento de Riba-roja colaboran para desarrollar suelo para viviendas e industrias en zonas seguras",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "suelo",
-            "vivienda"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQYjhkbEJKbGZKZFlKWW0tWGdFd19DUEY1S0FSbHZJUG9veUZ5QjY5YlpNS21MOHd4NW0zM1pWNU5rV3ZIOGNISmtWckgzRHg1RUJkdFN2TjdRMjZpME9zcEx6YUM4ZHRCYW9PUkZkUkZLOWdnSThlWG9uNDdrenZyeG1CMEpvR2VQdERQbzZqcXN4V2hYMm9yUHVrX0VTWF9MV1hla1hfVXFOOTZKS2xZdEZCazNyNWNrRXhjUVRJcWZFX3ZWWUVtTXhWUTNkMzZadXhrVUItMkVxTTZSYWVtR3BEV19hZlh00gHuAUFVX3lxTE1rbVplVFBQU1lwZ216Ny1zRlRBd1VxRDFQeHR0SkRuWjFNWk1tRk51aVZWT1QwWmVMVXNqZzdoazV4OEFpMm9DMTRfVnVMbmlsNEFHeTBHYVBQWUJNaVBwVUM5dzdXc0x6TXQ5VkduNFpvakt0RjgxY1pLLXNOVUViRXVPeTFCSVNXbGVEMk9jYl9CcUV2bkhWWWRWekEwZng4QzZiZGoyRmZ3WkdtSUZpRnNIWlNiTlMtb2Z1NXBmSUhsdUxSWTdzZlpyMlk1ZWExd1ByZUE1aWVqbk5oN01vWmFjb21lYnZpeVAwb1E?oc=5",
           "date": "2026-07-07",
@@ -264,13 +248,25 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "confidence": 0.287,
       "reasoning": [
+        {
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-destina-una-partida-de-140.000-euros-para-la-rehabilitaci%C3%B3n-de-las-fachadas%2C-la-evaluaci%C3%B3n-de-los-edificios-y-la-accesibilidad-en-el-interior-de-las-viviendas-del-periodo-2026-2027",
+          "date": "2026-08-25",
+          "quote": "El Ayuntamiento de Riba-roja de Túria destina una partida de 140.000 euros para la rehabilitación de las fachadas, la evaluación de los edificios y la accesibilidad en el interior de las viviendas del periodo 2026-2027",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "vivienda",
+            "2026",
+            "periodo"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/bases-ayudas-econ%C3%B3micas-para-la-mejora-de-la-accesibilidad-en-viviendas-y-edificios-residenciales-en-riba-roja-de-t%C3%BAria%2C-ejercicios-2026-27",
           "date": "2026-07-28",
@@ -337,7 +333,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -358,10 +354,21 @@
             "finalizara",
             "julio"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPZTFYQjRPUnBtUUJfV0gzclA1eHFieGl4a1Q0UU9lU3Z6YkZLVDFtVFQ3TmVyZE8wRVNDajNyRURPSFUzTm9MUE0yQzRNUVMyM0JfV2p1cDZXaHRUQ2RmMFF5MFV5bEw0SmhqZXNSTFE4QjlvZ0hKTExkazRRNzZlSXdLOGRfcVY4bEhRaW9PWG9QLVVxWjlXTzhiZklyQm9EMHNhUG0yVFRybHNxMmY0TFF1V0fSAboBQVVfeXFMTTlSQ21TbVcxcDFSR2FRaXNfVXJqbGFTeEhjMjd2cUh0ZVE5NFlFM2Mzd0hlRGdUM1JQYVR1ZEs1NVN0b3lrQmpJaS1ESFJabF9mVFdoRGhyT0FvM0sxZ3Y2eTNBSG0yQkh3WVRyT3dtckxtZlB2VkJYd1BFRFVqS1RaaGpIT0JwZWROYTFaVTRETXlPUWhpYm1WZThTWmRnOV9jOTA1NHVKUTRQQkRRbWlERUJZR1h1dzVn?oc=5",
+          "date": "2026-08-19",
+          "quote": "Medio Ambiente arranca la limpieza del polvorín de cañas del Turia en Riba-roja",
+          "kind": "press",
+          "publisher": "Las Provincias",
+          "matchedKeywords": [
+            "medio",
+            "ambiente"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -410,7 +417,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -418,7 +425,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -426,7 +433,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -491,7 +498,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -522,13 +529,24 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
       "proposedStatus": "documentada",
-      "confidence": 0,
+      "confidence": 0.175,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxQaGRtV2FkRDFueG5qdm1JUDJkdWNOQVI5LURwSmtzVnFNUGdxblAxRjVPODM5RXJfdk0tQU1yVjJWRVNQXzJkcnRNRHdYNFpLMlpteFJSQk9obmw5cW1iM2g4V093c2JVX0IzcGxBbmw2THFrMnk4UWlfQ1hHWWpFVmFseTlGOTlqdlcxMEJTa3JRR3BaMVJwc1RERlY5MXZQMUZMbmlrWE5qME0tN0NSSVA4ZFlKV3JJTURjLUJYTTl1T2F2ZFpUTElrQzB2U2ZzQnVrODg0TzB5cGdxNnMwSVB4NG5aRnBISFE4ZTNfY2lkeHJtUlVGcTdPeFg2RjhKc1MxaA?oc=5",
+          "date": "2026-03-17",
+          "quote": "El alcalde de Riba-roja acerca la atención ciudadana y la gestión municipal a urbanizaciones y barrios del municipio",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "gestion",
+            "municipio"
+          ]
+        },
         {
           "url": "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano",
           "date": "2026-03-09",
@@ -562,7 +580,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -606,13 +624,24 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
       "proposedStatus": "documentada",
-      "confidence": 0,
+      "confidence": 0.175,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPZTFYQjRPUnBtUUJfV0gzclA1eHFieGl4a1Q0UU9lU3Z6YkZLVDFtVFQ3TmVyZE8wRVNDajNyRURPSFUzTm9MUE0yQzRNUVMyM0JfV2p1cDZXaHRUQ2RmMFF5MFV5bEw0SmhqZXNSTFE4QjlvZ0hKTExkazRRNzZlSXdLOGRfcVY4bEhRaW9PWG9QLVVxWjlXTzhiZklyQm9EMHNhUG0yVFRybHNxMmY0TFF1V0fSAboBQVVfeXFMTTlSQ21TbVcxcDFSR2FRaXNfVXJqbGFTeEhjMjd2cUh0ZVE5NFlFM2Mzd0hlRGdUM1JQYVR1ZEs1NVN0b3lrQmpJaS1ESFJabF9mVFdoRGhyT0FvM0sxZ3Y2eTNBSG0yQkh3WVRyT3dtckxtZlB2VkJYd1BFRFVqS1RaaGpIT0JwZWROYTFaVTRETXlPUWhpYm1WZThTWmRnOV9jOTA1NHVKUTRQQkRRbWlERUJZR1h1dzVn?oc=5",
+          "date": "2026-08-19",
+          "quote": "Medio Ambiente arranca la limpieza del polvorín de cañas del Turia en Riba-roja",
+          "kind": "press",
+          "publisher": "Las Provincias",
+          "matchedKeywords": [
+            "medio",
+            "ambiente"
+          ]
+        },
         {
           "url": "https://regmeet.com/aytoribarroja/participaciones/39ea40e164f970c54b0530436d5a9f7a?idioma=castellano",
           "date": "2026-06-01",
@@ -650,7 +679,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -680,7 +709,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -711,13 +740,25 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
       "proposedStatus": "documentada",
       "confidence": 0.287,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPZTFYQjRPUnBtUUJfV0gzclA1eHFieGl4a1Q0UU9lU3Z6YkZLVDFtVFQ3TmVyZE8wRVNDajNyRURPSFUzTm9MUE0yQzRNUVMyM0JfV2p1cDZXaHRUQ2RmMFF5MFV5bEw0SmhqZXNSTFE4QjlvZ0hKTExkazRRNzZlSXdLOGRfcVY4bEhRaW9PWG9QLVVxWjlXTzhiZklyQm9EMHNhUG0yVFRybHNxMmY0TFF1V0fSAboBQVVfeXFMTTlSQ21TbVcxcDFSR2FRaXNfVXJqbGFTeEhjMjd2cUh0ZVE5NFlFM2Mzd0hlRGdUM1JQYVR1ZEs1NVN0b3lrQmpJaS1ESFJabF9mVFdoRGhyT0FvM0sxZ3Y2eTNBSG0yQkh3WVRyT3dtckxtZlB2VkJYd1BFRFVqS1RaaGpIT0JwZWROYTFaVTRETXlPUWhpYm1WZThTWmRnOV9jOTA1NHVKUTRQQkRRbWlERUJZR1h1dzVn?oc=5",
+          "date": "2026-08-19",
+          "quote": "Medio Ambiente arranca la limpieza del polvorín de cañas del Turia en Riba-roja",
+          "kind": "press",
+          "publisher": "Las Provincias",
+          "matchedKeywords": [
+            "limpieza",
+            "medio",
+            "ambiente"
+          ]
+        },
         {
           "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNdkwxcWJZOXRjajlDelVISGFiVVZxS0VDckdqNk4zLVhKcTh6X1BSZzc4UGpUTy10UmtpdDRyUVdyMjJNS01WSmF6NS1BbFJSVU42WVhGVTdMS3E3NVFQbVg4ODRTMnFqOERPVk13eGlycng0UGwzSzc5cDdzZl82SVE2U1EwVXR6RUNVVFdyLURCZXNmdFp0OTBLUWd0ckk4dDFibGhnaTJVWDJZeGdtcGtSeDMxOTNrN1Y0WHBXcU85VkYyZkHSAcsBQVVfeXFMUEJDNE1fTnAxTURibnlfS2llY1lZU011TGg4eDNzTDByeWM0RlBYVjN5RXRnYzl1aW5TN2RYM0ViU0V3NzhOMnFIZUJmZlE5ZjRQby12THl4UTR3Q0U1cncydVpETjlhYVEzMmdLS3hQWmZwM0tUbVVwV1RKYi1KV0tiVnpxM0YwVGFTeEFPcklmWHhtQVZGR0ZWdi1IWmtSVHRBSUt1UlliaWNxYjV1N29KcHVGYUNxd2JIeEdvaUpTdWp5TC1jN3d5dE0?oc=5",
           "date": "2026-06-30",
@@ -732,15 +773,27 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
       "proposedStatus": "documentada",
-      "confidence": 0,
-      "reasoning": [],
+      "confidence": 0.175,
+      "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNN3VfOHBuMm1SZlk0OXpSbk45bU5Rd1dVVkdxX0h0QUlHSXJQeGdQdk81ZFdvbDRubGViUHF0TGRxRlJWLW5VTmF3Zy1JMG9YdnpxX2R4TnZlQTIxRXdaZFlMVzlkS0hWS0JrMXJjckhHR1pPNllZTk5NcmdIN0FnSGVINVBJdWFiLTB4WXJqclBKN2pBWURhdnlTb3FwdHdCNG9KRlpYZ2RzMGdvSTRpczduSmplUFgtVzc0RGVZSlBWX1dSNWtyeEZHLTdzZHlMa0w2WA?oc=5",
+          "date": "2026-06-08",
+          "quote": "Riba-roja pide reactivar el proyecto para llevar el metro hasta el casco urbano",
+          "kind": "press",
+          "publisher": "El Periódico de Aquí",
+          "matchedKeywords": [
+            "metro",
+            "proyecto"
+          ]
+        }
+      ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -759,13 +812,24 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
       "proposedStatus": "en-progreso",
       "confidence": 0.35,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPZTFYQjRPUnBtUUJfV0gzclA1eHFieGl4a1Q0UU9lU3Z6YkZLVDFtVFQ3TmVyZE8wRVNDajNyRURPSFUzTm9MUE0yQzRNUVMyM0JfV2p1cDZXaHRUQ2RmMFF5MFV5bEw0SmhqZXNSTFE4QjlvZ0hKTExkazRRNzZlSXdLOGRfcVY4bEhRaW9PWG9QLVVxWjlXTzhiZklyQm9EMHNhUG0yVFRybHNxMmY0TFF1V0fSAboBQVVfeXFMTTlSQ21TbVcxcDFSR2FRaXNfVXJqbGFTeEhjMjd2cUh0ZVE5NFlFM2Mzd0hlRGdUM1JQYVR1ZEs1NVN0b3lrQmpJaS1ESFJabF9mVFdoRGhyT0FvM0sxZ3Y2eTNBSG0yQkh3WVRyT3dtckxtZlB2VkJYd1BFRFVqS1RaaGpIT0JwZWROYTFaVTRETXlPUWhpYm1WZThTWmRnOV9jOTA1NHVKUTRQQkRRbWlERUJZR1h1dzVn?oc=5",
+          "date": "2026-08-19",
+          "quote": "Medio Ambiente arranca la limpieza del polvorín de cañas del Turia en Riba-roja",
+          "kind": "press",
+          "publisher": "Las Provincias",
+          "matchedKeywords": [
+            "medio",
+            "ambiente"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-adjudica-el-contrato-para-el-servicio-de-suministro-de-agua-potable-por-un-valor-de-55%E2%80%996-millones-de-euros-y-un-periodo-de-17-a%C3%B1os-de-vigencia",
           "date": "2026-08-10",
@@ -812,7 +876,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -846,7 +910,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -877,13 +941,24 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
       "proposedStatus": "documentada",
       "confidence": 0.175,
       "reasoning": [
+        {
+          "url": "https://www.ribarroja.es/es/noticia/programaci%C3%B3n-artes-esc%C3%A9nicas-de-septiembre-a-diciembre-de-2026",
+          "date": "2026-08-25",
+          "quote": "Programación artes escénicas de septiembre a diciembre de 2026",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "programacion",
+            "2026"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/referentes-del-deporte-de-riba-roja-ser%C3%A1n-los-encargados-de-dar-el-preg%C3%B3n-de-las-fiestas-de-agosto-2026%3A-rub%C3%A9n-burgos%2C-mario-casades%2C-martina-gil%2C-sara-prieto-y-anelis-rodr%C3%ADguez",
           "date": "2026-08-03",
@@ -919,7 +994,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-25T05:16:41.822Z"
+      "generatedAt": "2026-08-28T17:02:27.460Z"
     }
   ],
   "llmEvidence": [],

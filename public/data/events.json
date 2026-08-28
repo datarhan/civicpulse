@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-08-25T05:04:37.020Z",
+  "generatedAt": "2026-08-28T16:48:59.378Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 16,
-    "nextDate": "2026-08-26T20:00:00.000Z"
+    "upcoming": 31,
+    "nextDate": "2026-08-28T20:00:00.000Z"
   },
   "events": [
     {
@@ -151,16 +151,6 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas_2.jpg?itok=gSz0fTro"
     },
     {
-      "id": "1m8j5h0",
-      "title": "Cine 'Aida y vuelta'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27aida-y-vuelta%27",
-      "eventDate": "2026-07-05T20:00:00.000Z",
-      "eventDateText": "05 de julio de 2026 22:00",
-      "publishedDate": "2026-05-21T16:03:05.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Aida%20y%20vuelta.jpg?itok=9cAvxjOP"
-    },
-    {
       "id": "1rqi4as",
       "title": "RibaJazz 2026: Vira León Swingtet (Jazz Swing)",
       "link": "https://www.ribarroja.es/es/evento/ribajazz-2026%3A-vira-le%C3%B3n-swingtet-%28jazz-swing%29",
@@ -191,86 +181,6 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Cartel%20A3%201%20of%201_1.jpg?itok=NH3XCHm3"
     },
     {
-      "id": "1syvl58",
-      "title": "Cine 'Drems'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27drems%27",
-      "eventDate": "2026-07-16T20:00:00.000Z",
-      "eventDateText": "16 de julio de 2026 22:00",
-      "publishedDate": "2026-05-21T16:23:52.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/dreams.jpg?itok=mnXehIdT"
-    },
-    {
-      "id": "olcen0",
-      "title": "Cine 'Supergirl'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27supergirl%27",
-      "eventDate": "2026-07-23T20:00:00.000Z",
-      "eventDateText": "23 de julio de 2026 22:00",
-      "publishedDate": "2026-05-21T16:32:06.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Supergirl.jpg?itok=1odK4JCD"
-    },
-    {
-      "id": "1krqmpo",
-      "title": "Cine 'Supergirl'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27supergirl%27-0",
-      "eventDate": "2026-07-25T20:00:00.000Z",
-      "eventDateText": "25 de julio de 2026 22:00",
-      "publishedDate": "2026-05-21T16:33:41.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Supergirl_0.jpg?itok=0emNQUN_"
-    },
-    {
-      "id": "epr2hz",
-      "title": "Cine 'Patrick'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27patrick%27",
-      "eventDate": "2026-07-29T20:00:00.000Z",
-      "eventDateText": "29 de julio de 2026 22:00",
-      "publishedDate": "2026-05-21T16:38:43.000Z",
-      "excerpt": "Película gratuita",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/patrik.jpg?itok=ft3zN-Zv"
-    },
-    {
-      "id": "11odcp7",
-      "title": "Cine 'Buffalo Kids'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27buffalo-kids%27",
-      "eventDate": "2026-07-30T20:00:00.000Z",
-      "eventDateText": "30 de julio de 2026 22:00",
-      "publishedDate": "2026-05-21T16:41:08.000Z",
-      "excerpt": "Película gratuita",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/bufalo%20kids.jpg?itok=jDFKoTD_"
-    },
-    {
-      "id": "w1r1u4",
-      "title": "Cine 'Lilo & Stitch'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27lilo-%26-stitch%27",
-      "eventDate": "2026-07-31T20:00:00.000Z",
-      "eventDateText": "31 de julio de 2026 22:00",
-      "publishedDate": "2026-05-21T15:54:35.000Z",
-      "excerpt": "Película gratuita",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260717%20lilo%26stich.jpg?itok=whnsodhR"
-    },
-    {
-      "id": "1k00uk8",
-      "title": "Cine 'La sirenita'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27la-sirenita%27",
-      "eventDate": "2026-08-01T20:00:00.000Z",
-      "eventDateText": "01 de agosto de 2026 22:00",
-      "publishedDate": "2026-05-21T15:56:11.000Z",
-      "excerpt": "Película gratuita",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/la%20sirenita%202023.jpg?itok=DL4vZmB3"
-    },
-    {
-      "id": "1o6shi8",
-      "title": "Cine 'Aquaman y el reino perdido'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27aquaman-y-el-reino-perdido%27",
-      "eventDate": "2026-08-02T20:00:00.000Z",
-      "eventDateText": "02 de agosto de 2026 22:00",
-      "publishedDate": "2026-05-21T15:57:41.000Z",
-      "excerpt": "Película gratuita",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/aquaman_.jpg?itok=l6myF9f_"
-    },
-    {
       "id": "scb32k",
       "title": "Donación sangre 3 de agosto de 2026",
       "link": "https://www.ribarroja.es/es/evento/donaci%C3%B3n-sangre-3-de-agosto-de-2026",
@@ -279,16 +189,6 @@
       "publishedDate": "2026-07-29T06:17:52.000Z",
       "excerpt": null,
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260729%20Cartel%20donacion%20agosto%202026.jpg?itok=nDmzIyLo"
-    },
-    {
-      "id": "1axqhko",
-      "title": "Cine 'Coco'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27coco%27",
-      "eventDate": "2026-08-05T20:00:00.000Z",
-      "eventDateText": "05 de agosto de 2026 22:00",
-      "publishedDate": "2026-05-21T15:59:32.000Z",
-      "excerpt": "Película gratuita",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/coco.jpg?itok=TnN1fQ52"
     },
     {
       "id": "1uk7sw6",
@@ -301,104 +201,194 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Estadio%20de%20F%C3%BAtbol.jpg?itok=Er1HTUwW"
     },
     {
-      "id": "bcssg",
-      "title": "Cine 'La Odisea'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27la-odisea%27",
-      "eventDate": "2026-08-19T20:00:00.000Z",
-      "eventDateText": "19 de agosto de 2026 22:00",
-      "publishedDate": "2026-05-21T16:49:45.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/la%20odisea.jpg?itok=PQ36rUoo"
-    },
-    {
-      "id": "1s5aqw4",
-      "title": "Cine 'Minions & monsters'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27minions-%26-monsters%27",
-      "eventDate": "2026-08-20T20:00:00.000Z",
-      "eventDateText": "20 de agosto de 2026 22:00",
-      "publishedDate": "2026-05-21T16:53:22.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/minioms.jpg?itok=07ULjsBg"
-    },
-    {
-      "id": "x0mov8",
-      "title": "Cine 'La Odisea'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27la-odisea%27-0",
-      "eventDate": "2026-08-21T20:00:00.000Z",
-      "eventDateText": "21 de agosto de 2026 22:00",
-      "publishedDate": "2026-05-21T16:03:21.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/la%20odisea_0.jpg?itok=Hqoyw5zI"
-    },
-    {
-      "id": "1uw36kg",
-      "title": "Cine 'Minions & monsters'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27minions-%26-monsters%27-0",
-      "eventDate": "2026-08-22T20:00:00.000Z",
-      "eventDateText": "22 de agosto de 2026 22:00",
-      "publishedDate": "2026-05-21T16:55:22.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/minioms_0.jpg?itok=CEuQd6eX"
-    },
-    {
-      "id": "1q2k9ro",
-      "title": "Cine 'Spider-man Brand New Day'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27spider-man-brand-new-day%27",
-      "eventDate": "2026-08-23T20:00:00.000Z",
-      "eventDateText": "23 de agosto de 2026 22:00",
-      "publishedDate": "2026-05-21T16:08:45.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/spider-man.jpg?itok=BIV7J2BK"
-    },
-    {
-      "id": "1f0uqd8",
-      "title": "Cine 'Días de agosto'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27d%C3%ADas-de-agosto%27",
-      "eventDate": "2026-08-26T20:00:00.000Z",
-      "eventDateText": "26 de agosto de 2026 22:00",
-      "publishedDate": "2026-05-21T16:58:53.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/dias%20de%20agosto.jpg?itok=_H5rZ_5c"
-    },
-    {
-      "id": "ormhys",
-      "title": "Cine 'Star Wars: the Mandalorian & Grogu'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27star-wars%3A-the-mandalorian-%26-grogu%27",
-      "eventDate": "2026-08-27T20:00:00.000Z",
-      "eventDateText": "27 de agosto de 2026 22:00",
-      "publishedDate": "2026-05-21T16:12:06.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/star%20wards.jpg?itok=QehXEgIP"
-    },
-    {
-      "id": "1axe945",
-      "title": "Cine 'Vaiana'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27vaiana%27",
+      "id": "1k43dek",
+      "title": "Actes festes Crist 2026 - divendres 28 d'agost",
+      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-divendres-28-d%27agost",
       "eventDate": "2026-08-28T20:00:00.000Z",
       "eventDateText": "28 de agosto de 2026 22:00",
-      "publishedDate": "2026-05-21T17:04:18.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/vaiana.jpg?itok=Qh2ByK0i"
+      "publishedDate": "2026-08-28T09:44:05.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_0.png?itok=ohOY-YNp"
     },
     {
-      "id": "1gnjgas",
-      "title": "Cine 'Star Wars: the Mandalorian & Grogu'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27star-wars%3A-the-mandalorian-%26-grogu%27-0",
-      "eventDate": "2026-08-29T20:00:00.000Z",
-      "eventDateText": "29 de agosto de 2026 22:00",
-      "publishedDate": "2026-05-21T17:02:28.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/star%20wards_0.jpg?itok=TJEvJzh8"
+      "id": "1564z1k",
+      "title": "Actes festes Crist 2026 - dissabte 29 d'agost",
+      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dissabte-29-d%27agost",
+      "eventDate": "2026-08-29T21:00:00.000Z",
+      "eventDateText": "29 de agosto de 2026 23:00",
+      "publishedDate": "2026-08-28T09:47:30.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_1.png?itok=YIGk1UFD"
     },
     {
-      "id": "ij8po8",
-      "title": "Cine 'Vaiana'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27vaiana%27-0",
-      "eventDate": "2026-08-30T20:00:00.000Z",
-      "eventDateText": "30 de agosto de 2026 22:00",
-      "publishedDate": "2026-05-21T17:05:49.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/vaiana_0.jpg?itok=ZsLnVUEc"
+      "id": "1e2iv20",
+      "title": "Actes festes Crist 2026 - dilluns 31 d'agost",
+      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dilluns-31-d%27agost",
+      "eventDate": "2026-08-31T18:00:00.000Z",
+      "eventDateText": "31 de agosto de 2026 20:00",
+      "publishedDate": "2026-08-28T09:49:01.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_2.png?itok=4Ta_5-j_"
+    },
+    {
+      "id": "1gmgdk",
+      "title": "Actes festes Crist 2026 - dimarts 1 de setembre",
+      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dimarts-1-de-setembre",
+      "eventDate": "2026-09-01T16:00:00.000Z",
+      "eventDateText": "01 de septiembre de 2026 18:00",
+      "publishedDate": "2026-08-28T09:50:23.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_3.png?itok=zUFoyc-6"
+    },
+    {
+      "id": "1a6f640",
+      "title": "Actes festes Crist 2026 - dimecres 2 de setembre",
+      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dimecres-2-de-setembre",
+      "eventDate": "2026-09-02T17:00:00.000Z",
+      "eventDateText": "02 de septiembre de 2026 19:00",
+      "publishedDate": "2026-08-28T09:52:21.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_4.png?itok=ZcQjPt5M"
+    },
+    {
+      "id": "1o6a9qw",
+      "title": "Actes festes Crist 2026 - dijous 3 de setembre",
+      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dijous-3-de-setembre",
+      "eventDate": "2026-09-03T20:00:00.000Z",
+      "eventDateText": "03 de septiembre de 2026 22:00",
+      "publishedDate": "2026-08-28T09:53:56.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_5.png?itok=k3x185f2"
+    },
+    {
+      "id": "x0y5jl",
+      "title": "Actes festes Crist 2026 - divendres 4 de setembre",
+      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-divendres-4-de-setembre",
+      "eventDate": "2026-09-04T20:00:00.000Z",
+      "eventDateText": "04 de septiembre de 2026 22:00",
+      "publishedDate": "2026-08-28T10:03:00.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_6.png?itok=0GUkvgSL"
+    },
+    {
+      "id": "18cjnx4",
+      "title": "Actes festes Crist 2026 - dissabte 5 de setembre",
+      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dissabte-5-de-setembre",
+      "eventDate": "2026-09-05T05:00:00.000Z",
+      "eventDateText": "05 de septiembre de 2026 07:00",
+      "publishedDate": "2026-08-28T10:04:56.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_7.png?itok=6fHqqoOm"
+    },
+    {
+      "id": "r3a7a0",
+      "title": "Actes festes Crist 2026 - diumenge 6 de setembre",
+      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-diumenge-6-de-setembre",
+      "eventDate": "2026-09-06T08:00:00.000Z",
+      "eventDateText": "06 de septiembre de 2026 10:00",
+      "publishedDate": "2026-08-28T10:06:46.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_8.png?itok=P3F7Xu_t"
+    },
+    {
+      "id": "p2hxww",
+      "title": "Actes festes Crist 2026 - dilluns 7 de setembre",
+      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-dilluns-7-de-setembre",
+      "eventDate": "2026-09-07T19:00:00.000Z",
+      "eventDateText": "07 de septiembre de 2026 21:00",
+      "publishedDate": "2026-08-28T10:09:25.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_9.png?itok=8O7t68Vn"
+    },
+    {
+      "id": "9gwbqs",
+      "title": "Actes festes Crist 2026 - dimarts 8 de setembre",
+      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-dimarts-8-de-setembre",
+      "eventDate": "2026-09-08T16:00:00.000Z",
+      "eventDateText": "08 de septiembre de 2026 18:00",
+      "publishedDate": "2026-08-28T10:11:02.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_10.png?itok=MBEDpSkQ"
+    },
+    {
+      "id": "1cpd5o0",
+      "title": "Actes festes Crist 2026 - dimecres 9 de setembre",
+      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-dimecres-9-de-setembre",
+      "eventDate": "2026-09-09T16:30:00.000Z",
+      "eventDateText": "09 de septiembre de 2026 18:30",
+      "publishedDate": "2026-08-28T10:12:34.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_11.png?itok=goWFDA70"
+    },
+    {
+      "id": "v923a3",
+      "title": "Actes festes Crist 2026 - dijous 10 de setembre",
+      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-dijous-10-de-setembre",
+      "eventDate": "2026-09-10T18:00:00.000Z",
+      "eventDateText": "10 de septiembre de 2026 20:00",
+      "publishedDate": "2026-08-28T10:13:49.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_12.png?itok=9TRMkYZ8"
+    },
+    {
+      "id": "316nrd",
+      "title": "Actes festes Crist 2026 - divendres 11 de setembre",
+      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-divendres-11-de-setembre",
+      "eventDate": "2026-09-11T18:30:00.000Z",
+      "eventDateText": "11 de septiembre de 2026 20:30",
+      "publishedDate": "2026-08-28T10:15:11.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_13.png?itok=BDm_UH0r"
+    },
+    {
+      "id": "erbkv8",
+      "title": "Actes festes Crist 2026 - dissabte 12 de setembre",
+      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-dissabte-12-de-setembre",
+      "eventDate": "2026-09-12T20:00:00.000Z",
+      "eventDateText": "12 de septiembre de 2026 22:00",
+      "publishedDate": "2026-08-28T10:16:44.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_14.png?itok=9yUtmqmL"
+    },
+    {
+      "id": "1yr9oon",
+      "title": "Actes festes Crist 2026 - diumenge 13 de setembre",
+      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-diumenge-13-de-setembre",
+      "eventDate": "2026-09-13T17:30:00.000Z",
+      "eventDateText": "13 de septiembre de 2026 19:30",
+      "publishedDate": "2026-08-28T10:18:17.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_15.png?itok=_yZg5me5"
+    },
+    {
+      "id": "kqh9p5",
+      "title": "Actes festes Crist 2026 - dilluns 14 de setembre",
+      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dilluns-14-de-setembre",
+      "eventDate": "2026-09-14T06:00:00.000Z",
+      "eventDateText": "14 de septiembre de 2026 08:00",
+      "publishedDate": "2026-08-28T10:20:00.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_16.png?itok=uNz7fHNM"
+    },
+    {
+      "id": "vpt9ag",
+      "title": "Actes festes Crist 2026 - dimarts 15 de setembre",
+      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dimarts-15-de-setembre",
+      "eventDate": "2026-09-15T18:00:00.000Z",
+      "eventDateText": "15 de septiembre de 2026 20:00",
+      "publishedDate": "2026-08-28T10:21:30.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_17.png?itok=PkIlsi31"
+    },
+    {
+      "id": "3zyqj6",
+      "title": "Marxa solidària 'RunCàncer'",
+      "link": "https://www.ribarroja.es/es/evento/marxa-solid%C3%A0ria-%27runc%C3%A0ncer%27",
+      "eventDate": "2026-09-19T16:00:00.000Z",
+      "eventDateText": "19 de septiembre de 2026 18:00",
+      "publishedDate": "2026-08-28T10:23:32.000Z",
+      "excerpt": "&nbsp;",
+      "image": null
     },
     {
       "id": "1p72p3g",
@@ -454,21 +444,21 @@
       "id": "d04qgp",
       "title": "Teatro 'Asesinato en el Orient Express'",
       "link": "https://www.ribarroja.es/es/evento/teatro-%27asesinato-en-el-orient-express%27",
-      "eventDate": "2026-10-30T19:00:00.000Z",
-      "eventDateText": "30 de octubre de 2026 20:00",
-      "publishedDate": "2026-05-31T11:17:59.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/24%20asesinato%20en%20el%20orient%20expres.jpg?itok=zr4P61cJ"
-    },
-    {
-      "id": "1pr460",
-      "title": "Teatro 'Piter Pan, la batalla final'",
-      "link": "https://www.ribarroja.es/es/evento/teatro-%27piter-pan%2C-la-batalla-final%27",
       "eventDate": "2026-10-31T18:00:00.000Z",
       "eventDateText": "31 de octubre de 2026 19:00",
-      "publishedDate": "2026-05-31T11:20:23.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/25%20peter%20pan.jpg?itok=x4Gcr-Q-"
+      "publishedDate": "2026-05-31T11:17:59.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260823%2024%20asesinato%20en%20el%20orient%20expres.jpg?itok=-Huo9u0Z"
+    },
+    {
+      "id": "1raez6o",
+      "title": "Concierto 'Messiah'",
+      "link": "https://www.ribarroja.es/es/evento/concierto-%27messiah%27",
+      "eventDate": "2026-11-15T17:30:00.000Z",
+      "eventDateText": "15 de noviembre de 2026 18:30",
+      "publishedDate": "2026-08-25T07:19:54.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260823%20el%20mesias%20final%20.jpg?itok=w2rXSRVU"
     },
     {
       "id": "19jtvs8",
@@ -509,6 +499,16 @@
       "publishedDate": "2026-06-26T09:54:16.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/28%20mikey%20y%20la%20biblioteca.jpg?itok=gvSaVHK8"
+    },
+    {
+      "id": "1pr460",
+      "title": "Teatro 'Piter Pan, la batalla final'",
+      "link": "https://www.ribarroja.es/es/evento/teatro-%27piter-pan%2C-la-batalla-final%27",
+      "eventDate": "2027-02-06T18:00:00.000Z",
+      "eventDateText": "06 de febrero de 2027 19:00",
+      "publishedDate": "2026-05-31T11:20:23.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260823%20peter%20pan%2027.jpg?itok=B2-ZL46q"
     }
   ]
 }
