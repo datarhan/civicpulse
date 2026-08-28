@@ -1,35 +1,35 @@
 {
-  "generatedAt": "2026-08-23T08:33:04.345Z",
+  "generatedAt": "2026-08-28T08:16:18.790Z",
   "source": {
     "description": "Press claims extracted by the laboratory pipeline",
     "contract": "src/scraper/press-claim.ts"
   },
   "stats": {
-    "total": 59,
+    "total": 63,
     "byType": {
       "promesa": 4,
-      "afirmacion_numerica": 24,
+      "afirmacion_numerica": 26,
       "cita_obra": 2,
       "cita_convenio": 0,
       "acusacion_publica": 0,
-      "dato_municipal": 29
+      "dato_municipal": 31
     },
     "bySource": {
+      "Levante-EMV": 2,
+      "Periòdic del Camp de Túria": 29,
+      "Ayuntamiento de Riba-roja de Túria": 29,
       "Valencia Plaza": 2,
-      "Periòdic del Camp de Túria": 28,
-      "Ayuntamiento de Riba-roja de Túria": 27,
-      "Las Provincias": 1,
-      "Interdiario": 1
+      "Las Provincias": 1
     },
     "byTopic": {
       "fiscal": 6,
       "vivienda": 5,
       "movilidad": 0,
-      "medio-ambiente": 13,
+      "medio-ambiente": 12,
       "social": 9,
       "cultura": 0,
       "seguridad": 13,
-      "empleo": 0,
+      "empleo": 5,
       "urbanismo": 11,
       "salud": 2,
       "transparencia": 0,
@@ -38,18 +38,140 @@
       "other": 0
     },
     "byAttributedSource": {
-      "outlet": 33,
-      "municipal": 26,
+      "outlet": 35,
+      "municipal": 28,
       "opposition": 0,
       "unspecified": 0
     },
     "articlesProcessed": 25,
     "articlesAvailable": 154,
     "llmUnavailable": 0,
-    "windowFrom": "2026-08-12T12:24:27.000Z",
-    "windowTo": "2026-08-23T04:00:33.000Z"
+    "windowFrom": "2026-08-13T09:51:38.000Z",
+    "windowTo": "2026-08-24T17:05:02.000Z"
   },
   "items": [
+    {
+      "id": "17iw9j4-0-num",
+      "articleId": "17iw9j4",
+      "articleFingerprint": "re5p73",
+      "articleSource": "Levante-EMV",
+      "articleSourceHost": "levante-emv.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNVW94SUZNUGlFN2VWYS04NC02cFV3bFNkUjkydk8xcXJvaG90SHEyZ0xyVjZYNXNFSkVhcGE5LThBTzVLMnRTeHd4b2dPRTdCZzI5UlRvakJrV3lISmozd0hGSm1wQ3JmRVluZmFJTFAzbjVGNGk2cjhnV1R5WHVNdEpVVjhoMjdWeVp1aG5SbXQxejk4V243SHc5UmFOZFZBaXpVWUwtb3FVSWRpY1pBdtIBtgFBVV95cUxQd2pLa2xWTERQd000UHRRU1o1X25qbEVJUldvVmR3VUptc0lfNkFnaGJobUtJVDJLR0F1WjVnRGFUVmNaQzRoQlFQZEFaUU1OLWlZUFJnekxpeVNHQ2J3TzdmS192ODRmZUR6NWxxOGF4LUJqYVVOTGFfN0hrNko3akxUSzdVeDFlM0ZNWldjMUtkcnZkdFN4eEJ6anQ0cGwtN3NWeVZMdnJteEdKbzNZT0tvU1JkZw?oc=5",
+      "articleDate": "2026-08-24T17:05:02.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "Riba-roja dispara un 31,6 % la contratación en julio",
+      "context": "Riba-roja dispara un 31,6 % la contratación en julio y alcanza un récord de 22.156 afiliados",
+      "topic": "empleo",
+      "entities": {
+        "count": 31.6,
+        "countUnit": "%",
+        "date": "2026-07",
+        "referencedEntity": "contratación en Riba-roja de Túria"
+      },
+      "confidence": 0.55,
+      "reasoning": "Es una cifra porcentual concreta sobre variación de contratación que puede contrastarse con estadísticas oficiales de empleo.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "17iw9j4-1-num",
+      "articleId": "17iw9j4",
+      "articleFingerprint": "re5p73",
+      "articleSource": "Levante-EMV",
+      "articleSourceHost": "levante-emv.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNVW94SUZNUGlFN2VWYS04NC02cFV3bFNkUjkydk8xcXJvaG90SHEyZ0xyVjZYNXNFSkVhcGE5LThBTzVLMnRTeHd4b2dPRTdCZzI5UlRvakJrV3lISmozd0hGSm1wQ3JmRVluZmFJTFAzbjVGNGk2cjhnV1R5WHVNdEpVVjhoMjdWeVp1aG5SbXQxejk4V243SHc5UmFOZFZBaXpVWUwtb3FVSWRpY1pBdtIBtgFBVV95cUxQd2pLa2xWTERQd000UHRRU1o1X25qbEVJUldvVmR3VUptc0lfNkFnaGJobUtJVDJLR0F1WjVnRGFUVmNaQzRoQlFQZEFaUU1OLWlZUFJnekxpeVNHQ2J3TzdmS192ODRmZUR6NWxxOGF4LUJqYVVOTGFfN0hrNko3akxUSzdVeDFlM0ZNWldjMUtkcnZkdFN4eEJ6anQ0cGwtN3NWeVZMdnJteEdKbzNZT0tvU1JkZw?oc=5",
+      "articleDate": "2026-08-24T17:05:02.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "alcanza un récord de 22.156 afiliados",
+      "context": "Riba-roja dispara un 31,6 % la contratación en julio y alcanza un récord de 22.156 afiliados",
+      "topic": "empleo",
+      "entities": {
+        "count": 22156,
+        "countUnit": "afiliados",
+        "referencedEntity": "afiliados a la Seguridad Social en Riba-roja de Túria"
+      },
+      "confidence": 0.55,
+      "reasoning": "Cifra absoluta de afiliados presentada como récord, verificable con datos de afiliación a la Seguridad Social.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "13s432o-0-num",
+      "articleId": "13s432o",
+      "articleFingerprint": "1jepf6g",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85732-riba-roja-augmenta-un-316-la-contractacio-laboral-al-juliol.html",
+      "articleDate": "2026-08-24T10:47:07.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "Riba-roja augmenta un 31,6 % la contractació laboral al juliol",
+      "context": "Titular del artículo publicado por Periòdic del Camp de Túria el 2026-08-24T10:47:07.000Z. No se ha proporcionado el cuerpo del artículo, únicamente el titular con la cifra de incremento de la contratación laboral en julio.",
+      "topic": "empleo",
+      "entities": {
+        "count": 31.6,
+        "countUnit": "%",
+        "date": "juliol",
+        "referencedEntity": "Riba-roja de Túria"
+      },
+      "confidence": 0.5,
+      "reasoning": "El titular contiene una cifra porcentual concreta sobre contratación laboral que es contrastable con datos oficiales (SEPE/INE), aunque no se dispone del cuerpo del artículo para verificar contexto o fuente exacta.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1jchzrw-0-dat",
+      "articleId": "1jchzrw",
+      "articleFingerprint": "9gfa58",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-aumenta-un-31%276%25-la-contrataci%C3%B3n-laboral-en-julio-mientras-que-las-afiliaciones-a-la-seguridad-social-vuelven-a-marcar-un-nuevo-r%C3%A9cord-con-22.156-trabajadores",
+      "articleDate": "2026-08-24T09:10:00.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "dato_municipal",
+      "attributedSource": "municipal",
+      "verbatim": "Riba-roja aumenta un 31'6% la contratación laboral en julio",
+      "context": "Riba-roja aumenta un 31'6% la contratación laboral en julio mientras que las afiliaciones a la Seguridad Social vuelven a marcar un nuevo récord con 22.156 trabajadores",
+      "topic": "empleo",
+      "entities": {
+        "count": 31.6,
+        "countUnit": "%",
+        "referencedEntity": "contratación laboral en Riba-roja de Túria"
+      },
+      "confidence": 0.6,
+      "reasoning": "Es una cifra porcentual concreta sobre contratación laboral publicada por el propio Ayuntamiento, verificable contra registros de contratos del SEPE.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1jchzrw-1-dat",
+      "articleId": "1jchzrw",
+      "articleFingerprint": "9gfa58",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-aumenta-un-31%276%25-la-contrataci%C3%B3n-laboral-en-julio-mientras-que-las-afiliaciones-a-la-seguridad-social-vuelven-a-marcar-un-nuevo-r%C3%A9cord-con-22.156-trabajadores",
+      "articleDate": "2026-08-24T09:10:00.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "title",
+      "type": "dato_municipal",
+      "attributedSource": "municipal",
+      "verbatim": "las afiliaciones a la Seguridad Social vuelven a marcar un nuevo récord con 22.156 trabajadores",
+      "context": "Riba-roja aumenta un 31'6% la contratación laboral en julio mientras que las afiliaciones a la Seguridad Social vuelven a marcar un nuevo récord con 22.156 trabajadores",
+      "topic": "empleo",
+      "entities": {
+        "count": 22156,
+        "countUnit": "trabajadores",
+        "referencedEntity": "Seguridad Social"
+      },
+      "confidence": 0.6,
+      "reasoning": "Cifra exacta de afiliados y afirmación de récord histórico, contrastable con datos oficiales de afiliación a la Seguridad Social.",
+      "requiresHumanApproval": true
+    },
     {
       "id": "1fqbhjs-0-num",
       "articleId": "1fqbhjs",
@@ -1397,31 +1519,6 @@
       },
       "confidence": 0.6,
       "reasoning": "Declara un estado de obras en curso que puede contrastarse con los proyectos municipales activos de reconstrucción.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "14e5quo-0-num",
-      "articleId": "14e5quo",
-      "articleFingerprint": "9bcvpg",
-      "articleSource": "Interdiario",
-      "articleSourceHost": "interdiario.es",
-      "articleUrl": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPRGJjbWtiTGJKSTFfYV9FY3Y4UVZRZDlWR2lmWW1tZ3laSVF5NUN0TVdNZmVPMldZTWZBeUIxLWg4em5pU3RKTlJLT1NPcWVvb0tRU2huX1ZxMnI0SUdZQU4xcUhCTHUzYnJIZ2E1bktPVnBpTi1hMzFnSmhDQzVla19BRDhaaGt6cWRWV0lHT3JyMkFTUXdNckh5cUxua0hMdkJ2cFZzMF94VV8yRlQtTmFUX052a2taOE9pVENYd0F2NXM?oc=5",
-      "articleDate": "2026-08-13T08:07:00.000Z",
-      "segmentIndex": 0,
-      "segmentKind": "title",
-      "type": "afirmacion_numerica",
-      "attributedSource": "outlet",
-      "verbatim": "Riba-roja del Túria adjudica a Veolia la gestión del agua por 55,6 millones durante 17 años",
-      "context": "Titular de Interdiario (13/08/2026): 'Riba-roja del Túria adjudica a Veolia la gestión del agua por 55,6 millones durante 17 años'. No se dispone de más texto del cuerpo del artículo.",
-      "topic": "medio-ambiente",
-      "entities": {
-        "amountEuros": 55600000,
-        "count": 17,
-        "countUnit": "años",
-        "referencedEntity": "Veolia"
-      },
-      "confidence": 0.8,
-      "reasoning": "El titular aporta cifras concretas y verificables (importe del contrato y duración) sobre la adjudicación de la gestión del agua, contrastables con el expediente de contratación pública.",
       "requiresHumanApproval": true
     }
   ]

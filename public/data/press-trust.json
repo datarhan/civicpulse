@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28T04:55:42.494Z",
+  "generatedAt": "2026-08-28T08:16:38.079Z",
   "windowDays": 30,
   "articles": [
     {
@@ -14,10 +14,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 4
     },
     {
       "articleId": "d5303u",
@@ -48,10 +48,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 4
     },
     {
       "articleId": "1jchzrw",
@@ -65,10 +65,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 4
     },
     {
       "articleId": "hjdieg",
@@ -439,10 +439,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 3
+      "score": 1
     },
     {
       "articleId": "1micc74",
@@ -885,55 +885,21 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "se650n",
-      "articleFingerprint": "tuojf1",
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNRDFLYlhfSVI4Tk9OT2o3S1Y2a2hBQVlYZm51SlN2MWNiZUxoZDYyRHBTbWwtQkl6amMzZ3B1OVAyci16ZVZ3Mm11U2RueXRmZko0blpoWkJUTG51a09PV29VZkEyb3l3YnBnUWR1cWN6U1V2b2gxZlN5dEI0Q1ZDWmpXcXlIVkNDUktRZzdET2pOU0t1c0djSi1JbmJjWGZqaVhscVVGcUJETi16eE5EdGtCM0HSAboBQVVfeXFMTlFQUGdZUmx3aVN3eXZ0TXlDSkduZHhJdUdIalBndWxHaVhiTVZFLVE2Nlc2STBNa2dxX1RFT1RaOUozUklUNjRXSGcxQ2dha2pucTZkTmJES0pzeHZBbG1FMXRtY05Za0dKSkdGb1p3V1lGUS1zSjhnLVljNmg0bHlzaFdONjEteHhPUTQ2bk9rRzdNdUNJSXZFZmRhbzBwMVc1cmJkM1NVcXpFenRoMExXYjh0dG1FcFln?oc=5",
-      "date": "2026-07-29T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "1k7skyg",
-      "articleFingerprint": "gwou2o",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/bono-vuelve-al-cole-2026",
-      "date": "2026-07-29T06:35:43.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 27,
+      "articleCount": 26,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 27,
+        "sin-datos": 29,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.56,
+      "meanTrustScore": 2.65,
       "verifiedRatio": 0,
       "contradictedRatio": 0
     },
@@ -945,10 +911,10 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 28,
+        "sin-datos": 29,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3,
+      "meanTrustScore": 3.2,
       "verifiedRatio": 0,
       "contradictedRatio": 0
     },
@@ -960,12 +926,12 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 2,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.4,
-      "verifiedRatio": null,
-      "contradictedRatio": null
+      "meanTrustScore": 2.8,
+      "verifiedRatio": 0,
+      "contradictedRatio": 0
     },
     {
       "outlet": "Valencia Plaza",
@@ -983,21 +949,6 @@
       "contradictedRatio": 0
     },
     {
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
-      "articleCount": 3,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 1,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 3.33,
-      "verifiedRatio": 0,
-      "contradictedRatio": 0
-    },
-    {
       "outlet": "El Periódico de Aquí",
       "outletHost": "elperiodicodeaqui.com",
       "articleCount": 2,
@@ -1011,6 +962,21 @@
       "meanTrustScore": 1,
       "verifiedRatio": null,
       "contradictedRatio": null
+    },
+    {
+      "outlet": "Las Provincias",
+      "outletHost": "lasprovincias.es",
+      "articleCount": 2,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 1,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 4,
+      "verifiedRatio": 0,
+      "contradictedRatio": 0
     },
     {
       "outlet": "Valenciabonita",
@@ -1050,18 +1016,12 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 1,
+        "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3,
-      "verifiedRatio": 0,
-      "contradictedRatio": 0
+      "meanTrustScore": 1,
+      "verifiedRatio": null,
+      "contradictedRatio": null
     }
-  ],
-  "builtFrom": {
-    "plenos-agendas.json": "b23f149e79cf",
-    "press-claims-verified.json": "83f716492790",
-    "press.json": "b6ec6988ae6e",
-    "promises.json": "d18811c11210"
-  }
+  ]
 }

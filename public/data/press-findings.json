@@ -1,10 +1,61 @@
 {
   "version": "1",
-  "generatedAt": "2026-08-23",
+  "generatedAt": "2026-08-28",
   "legalNotice": "Auditoría editorial automatizada. Los lotes con ≥1 veredicto contradicho se mantienen en editorial/press-auto-curation-queue.md hasta revisión humana; los medios afectados pueden ejercer derecho de réplica mediante el formulario .github/ISSUE_TEMPLATE/press-finding-response.yml.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues",
   "methodologyUrl": "/metodologia#laboratorio-prensa",
   "items": [
+    {
+      "id": "pf-2026-08-28-15tpe88+",
+      "sourceClaimIds": [
+        "17vhhpk-0-num",
+        "15tpe88-0-dat",
+        "15tpe88-1-dat"
+      ],
+      "articleIds": [
+        "17vhhpk",
+        "15tpe88"
+      ],
+      "articleFingerprints": [
+        "15tpe88+17vhhpk"
+      ],
+      "attributedOutlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Las Provincias"
+      ],
+      "earliestArticleDate": "2026-08-17",
+      "latestArticleDate": "2026-08-17",
+      "title": "Auditoría · Las Provincias: Riba-roja cede una parcela para construir 36 viviendas de protección pública",
+      "summary": "Los datos municipales contrastan con la cobertura citada. Veredictos del lote: 3 sin-datos. Cobertura: 2 medio(s) — Ayuntamiento de Riba-roja de Túria, Las Provincias. Lote auto-curado por el laboratorio: el contraste es determinista y no lo ha revisado una persona.",
+      "severity": "informational",
+      "quotes": [
+        {
+          "text": "Riba-roja cede una parcela para construir 36 viviendas de protección pública",
+          "outlet": "Las Provincias",
+          "articleUrl": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPc1RtSHpNa2U3TDc3Yy1RaXR1UkdVUC1fREFOX2FmTk43Rk1UUF9iY1FSYTRINjRHYWRuTFU3VmI0cGdGdEpwVEsxTERYRzRuTlZ4bml2eHJueEdieGtwNGtKMWs1UGFsWkZXaXkwQlFFM3RzS3VQUlZRZ3BzTTh6MjZpeHBheFVZS0NTZ05wSzB0bjVESk9BU1piTmlKWk5ucnVFV3ZLV20xYXhCQjNFYzFzVDZsWnhnNHdrQUZpQWnSAcYBQVVfeXFMTWNSVWdTc0M3YktaYjlyQTZCWmdWWHo3WnJuUDJPY3dhUjRzN2ZPd3B6SG1tTnRDcEdRMlRwODVMdVpESFA3LTNvdGNSV2RLb1M2MEpHRG91Y0lObWcwMDY0NVJ6MUFTcW9ZOGVwb3gwa0daNU8zRUN0R1V3aWsyYjlYcDhrOGdCcmM4WXlTX0RGRUpKN0NMUG5iT0V5ZHF5UEM1aW1YVnZjRXN5U0NOLWd1OEo2NVpVTXZEZXI4NkV1VllxdzNR?oc=5",
+          "sourceClaimId": "17vhhpk-0-num"
+        },
+        {
+          "text": "cede una parcela municipal de 1.945 metros cuadrados",
+          "outlet": "Ayuntamiento de Riba-roja de Túria",
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-cede-una-parcela-municipal-de-1.945-metros-cuadrados-para-construir-36-viviendas-de-protecci%C3%B3n-p%C3%BAblica-tras-constatar-una-tensi%C3%B3n-en-el-mercado-inmobiliario",
+          "sourceClaimId": "15tpe88-0-dat"
+        },
+        {
+          "text": "para construir 36 viviendas de protección pública",
+          "outlet": "Ayuntamiento de Riba-roja de Túria",
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-cede-una-parcela-municipal-de-1.945-metros-cuadrados-para-construir-36-viviendas-de-protecci%C3%B3n-p%C3%BAblica-tras-constatar-una-tensi%C3%B3n-en-el-mercado-inmobiliario",
+          "sourceClaimId": "15tpe88-1-dat"
+        }
+      ],
+      "crossChecked": [],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "relatedPlenoItems": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-08-28",
+      "response": null
+    },
     {
       "id": "pf-2026-08-23-15tpe88+",
       "sourceClaimIds": [

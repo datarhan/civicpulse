@@ -1,16 +1,10 @@
 {
-  "generatedAt": "2026-08-28T04:55:42.530Z",
+  "generatedAt": "2026-08-28T08:16:38.116Z",
   "windowDays": 14,
   "items": [],
   "stats": {
     "plenoItemsUncovered": 0,
     "promisesUncovered": 0,
     "candidatesExamined": 0
-  },
-  "builtFrom": {
-    "plenos-agendas.json": "b23f149e79cf",
-    "press-claims-verified.json": "83f716492790",
-    "press.json": "b6ec6988ae6e",
-    "promises.json": "d18811c11210"
   }
 }
