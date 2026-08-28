@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T09:57:52.368Z",
+  "generatedAt": "2026-08-28T11:38:35.915Z",
   "bundleCount": 0,
   "archivedCount": 0,
   "contract": "Bundles routed here because they contain at least one `contradicho` claim. Auto-curation never publishes contradicho material — these need a human curator to review the LLM's claim-vs-evidence match before promotion. Archived bundles have already been reviewed and dismissed; they live in `archived[]` for transparency and can be un-archived from the dashboard.",

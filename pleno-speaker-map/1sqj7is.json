@@ -1,6 +1,6 @@
 {
   "plenoId": "1sqj7is",
-  "generatedAt": "2026-08-27T09:25:30.468Z",
+  "generatedAt": "2026-08-28T08:13:52.145Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -1264,6 +1264,540 @@
       "end": 598,
       "speaker": "c00/SPEAKER_00",
       "text": "Se aprueba por mayoría."
+    },
+    {
+      "start": 1451.2,
+      "end": 1453,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Bona vesprada."
+    },
+    {
+      "start": 1453,
+      "end": 1455.8,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Anem a arrancar el, el plenari,"
+    },
+    {
+      "start": 1455.8,
+      "end": 1457.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "el ple ordinari."
+    },
+    {
+      "start": 1457.5,
+      "end": 1461.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Amb 21 minuts de retard per"
+    },
+    {
+      "start": 1461.5,
+      "end": 1464.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "una incidència en Iberdrola, però bueno, ja estem nosaltres."
+    },
+    {
+      "start": 1464.5,
+      "end": 1467.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Passem al primer punt de l'ordre del dia,"
+    },
+    {
+      "start": 1467.5,
+      "end": 1472.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "que és l'aprovació de l'acta anterior. Alguna qüestió sobre l'acta?"
+    },
+    {
+      "start": 1472.5,
+      "end": 1475.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "No? L'aprovem per unanimitat."
+    },
+    {
+      "start": 1475.5,
+      "end": 1478.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Passem al segon punt: aprovació del reconeixement extrajudicial número cinc dos vint-i-sis."
+    },
+    {
+      "start": 1478.5,
+      "end": 1481,
+      "speaker": "c02/SPEAKER_00",
+      "text": "José Ángel."
+    },
+    {
+      "start": 1481,
+      "end": 1483,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Bona vesprada. Bueno,"
+    },
+    {
+      "start": 1483,
+      "end": 1487,
+      "speaker": "c02/SPEAKER_01",
+      "text": "se trata de un expediente de gastos por importe total de doscientos cuarenta y dos mil doscientos cincuenta y cinco euros,"
+    },
+    {
+      "start": 1487,
+      "end": 1491.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "correspondientes a gastos realizados a finales del pasado año."
+    },
+    {
+      "start": 1491.5,
+      "end": 1494.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Y estos gastos, tal y como indica la ley,"
+    },
+    {
+      "start": 1494.5,
+      "end": 1498,
+      "speaker": "c02/SPEAKER_01",
+      "text": "deben convalidarse y aprobarse mediante el reconocimiento"
+    },
+    {
+      "start": 1498,
+      "end": 1500.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "en sesión plenaria."
+    },
+    {
+      "start": 1500.5,
+      "end": 1504.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Por lo que proponemos al pleno convalidar y aprobar el expediente de reconocimiento extrajudicial de créditos por importe de doscientos cuarenta y dos mil doscientos cincuenta y cinco euros."
+    },
+    {
+      "start": 1504.5,
+      "end": 1509.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Y de esa forma, aprobar, disponer y reconocer las obligaciones económicas"
+    },
+    {
+      "start": 1509.5,
+      "end": 1511.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "y por,"
+    },
+    {
+      "start": 1511.5,
+      "end": 1515.5,
+      "speaker": "c02/SPEAKER_01",
+      "text": "y por cierto, realizar el pago a la, a la mayor brevedad posible."
+    },
+    {
+      "start": 1515.5,
+      "end": 1517,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Gracias."
+    },
+    {
+      "start": 1517,
+      "end": 1521,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Alguna qüestió? Salva."
+    },
+    {
+      "start": 1521,
+      "end": 1523,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Sí, gracias."
+    },
+    {
+      "start": 1523,
+      "end": 1525,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Gracias, buenas tardes."
+    },
+    {
+      "start": 1525,
+      "end": 1527.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Bien, en este caso, como bien apuntaba el concejal,"
+    },
+    {
+      "start": 1527.5,
+      "end": 1530,
+      "speaker": "c02/SPEAKER_02",
+      "text": "es un reconocimiento extrajudicial. Estamos hablando de"
+    },
+    {
+      "start": 1530,
+      "end": 1533.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "doscientos cuarenta y dos mil euros, ¿vale?"
+    },
+    {
+      "start": 1533.5,
+      "end": 1537,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Revisando el expediente, sí que, bueno, estuvimos"
+    },
+    {
+      "start": 1537,
+      "end": 1540,
+      "speaker": "c02/SPEAKER_02",
+      "text": "comentando porque vemos que prácticamente está todos los gastos de la campaña de Navidad"
+    },
+    {
+      "start": 1540,
+      "end": 1543.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "en este, en este expediente. Entendemos que"
+    },
+    {
+      "start": 1543.5,
+      "end": 1548,
+      "speaker": "c02/SPEAKER_02",
+      "text": "estos gastos sí que tenían partida presupuestaria y"
+    },
+    {
+      "start": 1548,
+      "end": 1552.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "nos extraña el verlos como, como extrajudiciales."
+    },
+    {
+      "start": 1552.5,
+      "end": 1555.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Si bien es cierto es que,"
+    },
+    {
+      "start": 1555.5,
+      "end": 1558,
+      "speaker": "c02/SPEAKER_02",
+      "text": "pleno tras pleno estamos viendo"
+    },
+    {
+      "start": 1558,
+      "end": 1561,
+      "speaker": "c02/SPEAKER_02",
+      "text": "que en todos los, en todos los plenos"
+    },
+    {
+      "start": 1561,
+      "end": 1564.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "hay reconocimiento de facturas extrajudiciales. Es una manera de,"
+    },
+    {
+      "start": 1564.5,
+      "end": 1568.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "ya de casi estructural de ir pagando facturas. En este caso,"
+    },
+    {
+      "start": 1568.5,
+      "end": 1571.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "el, las facturas sí que es verdad que son"
+    },
+    {
+      "start": 1571.5,
+      "end": 1574.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "relativamente recientes, relativamente estamos hablando de diciembre,"
+    },
+    {
+      "start": 1574.5,
+      "end": 1578.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "pero en vista de otras facturas que han pasado por pleno,"
+    },
+    {
+      "start": 1578.5,
+      "end": 1582.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "pues lo que no nos llama tanto la atención es la fecha. Lo que sí que es verdad"
+    },
+    {
+      "start": 1582.5,
+      "end": 1586,
+      "speaker": "c02/SPEAKER_02",
+      "text": "es que en repetidos, en todos los informes"
+    },
+    {
+      "start": 1586,
+      "end": 1589.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "que emiten los, los habilitados,"
+    },
+    {
+      "start": 1589.5,
+      "end": 1592.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "en todos coinciden en lo mismo:"
+    },
+    {
+      "start": 1592.5,
+      "end": 1595.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "que hay gastos que tenían que haber sido"
+    },
+    {
+      "start": 1595.5,
+      "end": 1598.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "a través de objeto de licitación pública, que no han sido;"
+    },
+    {
+      "start": 1598.5,
+      "end": 1602,
+      "speaker": "c02/SPEAKER_02",
+      "text": "gastos que son repetitivos y continuados en el tiempo;"
+    },
+    {
+      "start": 1602,
+      "end": 1605.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "gastos que no corresponden a contrato menor; incluso"
+    },
+    {
+      "start": 1605.5,
+      "end": 1609.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "se llega a comentar que hay facturas que están solo firmadas por los responsables políticos"
+    },
+    {
+      "start": 1609.5,
+      "end": 1613.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "en ciertos casos y no por el técnico adscrito."
+    },
+    {
+      "start": 1613.5,
+      "end": 1616.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Entonces, estamos viendo"
+    },
+    {
+      "start": 1616.5,
+      "end": 1620.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "este tipo de puntos pleno tras pleno, pero lo que echamos en falta"
+    },
+    {
+      "start": 1620.5,
+      "end": 1623.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "es medidas correctivas para poder solucionar esto."
+    },
+    {
+      "start": 1623.5,
+      "end": 1625.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Es decir,"
+    },
+    {
+      "start": 1625.5,
+      "end": 1629.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "entendemos que puedan ser más exigentes en, en"
+    },
+    {
+      "start": 1629.5,
+      "end": 1633.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "los habilitados en la interpretación de los expedientes,"
+    },
+    {
+      "start": 1633.5,
+      "end": 1637.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "pero entendemos que son los políticos los que tienen que buscar la manera de que"
+    },
+    {
+      "start": 1637.5,
+      "end": 1641.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "estos requisitos se cumplan y no ir pleno tras pleno con la misma situación:"
+    },
+    {
+      "start": 1641.5,
+      "end": 1645.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "gastos repetitivos, falta de licitaciones."
+    },
+    {
+      "start": 1645.5,
+      "end": 1649.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Entonces, no sé si tienen pensada o ya tienen en marcha alguna, alguna"
+    },
+    {
+      "start": 1649.5,
+      "end": 1653.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "propuesta correctiva para evitar que tengamos extrajudiciales a estos niveles"
+    },
+    {
+      "start": 1653.5,
+      "end": 1657.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "en todos los plenos. Entendemos que es una herramienta, que es legal, que todos los ayuntamientos lo hacen, pero en todos los plenos"
+    },
+    {
+      "start": 1657.5,
+      "end": 1661,
+      "speaker": "c02/SPEAKER_02",
+      "text": "y estamos hablando de doscientos cuarenta mil euros, entendemos que,"
+    },
+    {
+      "start": 1661,
+      "end": 1663.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "que hay que, que hay que solucionarlo. Gracias."
+    },
+    {
+      "start": 1663.5,
+      "end": 1666.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Més paraules al respecte?"
+    },
+    {
+      "start": 1666.5,
+      "end": 1668.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Esquerra Unida Podem."
+    },
+    {
+      "start": 1668.5,
+      "end": 1670.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Gràcies."
+    },
+    {
+      "start": 1670.5,
+      "end": 1673.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Jo vaig compartir les paraules del regidor del Partit Popular"
+    },
+    {
+      "start": 1673.5,
+      "end": 1676.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "i perquè considerem i considerem que"
+    },
+    {
+      "start": 1676.5,
+      "end": 1681.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "el Partit Socialista, una ferramenta que hauria de ser puntual, la utilitza com a norma i de manera"
+    },
+    {
+      "start": 1681.5,
+      "end": 1691.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 1691.5,
+      "end": 1693.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Estava dient que lo que fa el Partit Socialista és normalitzar"
+    },
+    {
+      "start": 1693.5,
+      "end": 1697.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "una ferramenta que hauria de ser puntual i, com parlava el regidor del Partit Popular,"
+    },
+    {
+      "start": 1697.5,
+      "end": 1701.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "els informes tècnics lo que diuen és que hi ha una falta de planificació en la tramitació administrativa,"
+    },
+    {
+      "start": 1701.5,
+      "end": 1705.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "que l'adjudicació de contractes verbals sense que hi haja, hi haja hagut un expedient administratiu previ,"
+    },
+    {
+      "start": 1705.5,
+      "end": 1708.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "això ho comporten els informes, la falta de procediment de licitació pública,"
+    },
+    {
+      "start": 1708.5,
+      "end": 1712.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "la continuïtat d'alguns proveïdors que seguixen prestant serveis sense regulació administrativa,"
+    },
+    {
+      "start": 1712.5,
+      "end": 1715.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "l'omissió de la funció interventora,"
+    },
+    {
+      "start": 1715.5,
+      "end": 1718.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "el gasto sense procediment de contractació,"
+    },
+    {
+      "start": 1718.5,
+      "end": 1722.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "despeses que haurien d'haver sigut objecte de licitació pública,"
+    },
+    {
+      "start": 1722.5,
+      "end": 1727.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "despeses factura de, en l'àmbit de la contractació menor que no responen a la naturalesa pròpia del contracte menor,"
+    },
+    {
+      "start": 1727.5,
+      "end": 1738.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "despeses de menjar que no van acompanyades de la justificació suficient, la qual cosa impedix verificar la inexistència de desviacions en la utilització dels crèdits pressupostaris. Aleshores,"
+    },
+    {
+      "start": 1738.5,
+      "end": 1742.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "a nivell tècnic, els informes no són positius i, sincerament, és una pràctica que el Partit Socialista"
+    },
+    {
+      "start": 1742.5,
+      "end": 1746.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "fa com a norma i crec, sincerament, que hauria de tindre una mesura correctora"
+    },
+    {
+      "start": 1746.5,
+      "end": 1750.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "per poder evitar esta pràctica política. Per tant,"
+    },
+    {
+      "start": 1750.5,
+      "end": 1754.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "simplement és quines mesures correctores va tindre l'equip de govern per poder"
+    },
+    {
+      "start": 1754.5,
+      "end": 1757.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "millorar esta qüestió i per no tindre expedients extrajudicials i informes negatius al respecte. Gràcies."
+    },
+    {
+      "start": 1757.5,
+      "end": 1760.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Més paraules?"
+    },
+    {
+      "start": 1760.5,
+      "end": 1762,
+      "speaker": "c02/SPEAKER_00",
+      "text": "José Ángel."
     }
   ],
   "rows": [],
@@ -1272,27 +1806,51 @@
       "label": "c00/SPEAKER_00",
       "reason": "unresolvable",
       "detail": "heard \"presidencia\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c02/SPEAKER_00",
+      "reason": "relation-contradicted",
+      "detail": "turn-grant, but 278.5s is followed by SPEAKER_01"
+    },
+    {
+      "label": "c02/SPEAKER_01",
+      "reason": "relation-contradicted",
+      "detail": "reply, but 278.5s follows SPEAKER_00"
+    },
+    {
+      "label": "c02/SPEAKER_02",
+      "reason": "relation-contradicted",
+      "detail": "reply, but 317s follows SPEAKER_01"
+    },
+    {
+      "label": "c02/SPEAKER_03",
+      "reason": "relation-contradicted",
+      "detail": "reply, but 466.5s follows SPEAKER_00"
     }
   ],
   "stats": {
     "chunksExpected": 29,
-    "chunksTranscribed": 1,
+    "chunksTranscribed": 3,
     "failedChunks": [
       {
-        "chunk": 1,
-        "why": "never attempted (call budget spent; resumes next run)"
-      },
-      {
-        "chunk": 2,
-        "why": "never attempted (call budget spent; resumes next run)"
-      },
-      {
         "chunk": 3,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
       },
       {
         "chunk": 4,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "covered 73% (floor 85%)",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
       },
       {
         "chunk": 5,
@@ -1391,14 +1949,15 @@
         "why": "never attempted (call budget spent; resumes next run)"
       }
     ],
-    "labelsSeen": 1,
+    "labelsSeen": 4,
     "rowsAccepted": 0,
-    "rowsRejected": 1,
+    "rowsRejected": 5,
     "rejectedBy": {
-      "unresolvable": 1
+      "unresolvable": 1,
+      "relation-contradicted": 4
     },
-    "attemptedThisRun": 1,
-    "apiCalls": 1,
-    "coverage": 0.04288068390337272
+    "attemptedThisRun": 3,
+    "apiCalls": 7,
+    "coverage": 0.06524570581504958
   }
 }

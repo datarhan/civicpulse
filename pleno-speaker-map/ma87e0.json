@@ -1,6 +1,6 @@
 {
   "plenoId": "ma87e0",
-  "generatedAt": "2026-08-27T08:09:41.594Z",
+  "generatedAt": "2026-08-28T07:46:36.826Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -6762,7 +6762,7 @@
       {
         "chunk": 8,
         "why": "covered 81% (floor 85%)",
-        "attempts": 2,
+        "attempts": 3,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -6772,7 +6772,7 @@
       {
         "chunk": 9,
         "why": "covered 2% (floor 85%)",
-        "attempts": 2,
+        "attempts": 3,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -6781,8 +6781,8 @@
       },
       {
         "chunk": 13,
-        "why": "covered 74% (floor 85%)",
-        "attempts": 1,
+        "why": "covered 82% (floor 85%)",
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -6790,7 +6790,7 @@
         }
       }
     ],
-    "labelsSeen": 22,
+    "labelsSeen": 0,
     "rowsAccepted": 10,
     "rowsRejected": 33,
     "rejectedBy": {
@@ -6799,8 +6799,8 @@
       "evidence-speaker-mismatch": 1,
       "ambiguous": 1
     },
-    "attemptedThisRun": 8,
-    "apiCalls": 15,
+    "attemptedThisRun": 3,
+    "apiCalls": 9,
     "coverage": 0.8586554664118122
   }
 }
