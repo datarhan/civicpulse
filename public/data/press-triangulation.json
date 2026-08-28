@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T15:21:29.190Z",
+  "generatedAt": "2026-08-28T04:55:42.505Z",
   "clusters": [
     {
       "clusterId": "1ato0ec",
@@ -133,7 +133,7 @@
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "9c5b91792b06",
+    "plenos-agendas.json": "b23f149e79cf",
     "press-claims-verified.json": "83f716492790",
     "press.json": "b6ec6988ae6e",
     "promises.json": "d18811c11210"
