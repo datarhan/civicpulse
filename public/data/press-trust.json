@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28T17:02:48.926Z",
+  "generatedAt": "2026-08-29T10:16:07.522Z",
   "windowDays": 30,
   "articles": [
     {
@@ -1004,23 +1004,6 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "hcda7k",
-      "articleFingerprint": "ijtlbc",
-      "outlet": "Valenciabonita",
-      "outletHost": "valenciabonita.es",
-      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxONi1XQzBZQ1pNZGFKTGZVeUhsRDBpTWhsaG45d3l1T05EdjU5alNxQUJFT1hZZmVRZDYzdElTcmx4dXZXMUpyYVRTRDJnUzFwNDVpTDN4Vjh3aDZVZWxYbXlQWlhueXhhT3lpUkxlZ2c5QWduRDd2T0tUc0gwbVU3RnE5Zw?oc=5",
-      "date": "2026-07-30T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
     }
   ],
   "outlets": [
@@ -1115,21 +1098,6 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "Valenciabonita",
-      "outletHost": "valenciabonita.es",
-      "articleCount": 2,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
-    },
-    {
       "outlet": "elperiodic.com",
       "outletHost": "elperiodic.com",
       "articleCount": 1,
@@ -1158,10 +1126,25 @@
       "meanTrustScore": 1,
       "verifiedRatio": null,
       "contradictedRatio": null
+    },
+    {
+      "outlet": "Valenciabonita",
+      "outletHost": "valenciabonita.es",
+      "articleCount": 1,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 1,
+      "verifiedRatio": null,
+      "contradictedRatio": null
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "ede0ac811afb",
+    "plenos-agendas.json": "18ce600649e6",
     "press-claims-verified.json": "20087c8edf48",
     "press.json": "9b04d0785a45",
     "promises.json": "d18811c11210"
