@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { execFileSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
   atribucionesDeBloc,
@@ -35,6 +35,32 @@ import {
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
 const BASE = resolve('public/data/pleno-claims-verified-base.json')
 
+/**
+ * La base está en `.gitignore` (línea 39): 9,4 MB que cada máquina regenera por
+ * su cuenta. En un clon fresco no existe, y el bloque de abajo la leía a pelo —
+ * `ENOENT` antes de la primera aserción.
+ *
+ * La asimetría explica por qué nadie lo vio: la nocturna la REGENERA en un paso
+ * dedicado (`nightly-scrape.yml:62-69`) antes de `npm test`, así que en CI el
+ * fichero siempre está y esto no puede fallar nunca; y es el único workflow que
+ * corre vitest. Verde para siempre en CI, roja para siempre en un clon limpio.
+ *
+ * El idioma es el de la casa, y el repositorio ya lo usa para ESTE mismo
+ * fichero: `loadVerifiedCorpus` tolera la base ausente con
+ * `baseDisponible: false`, y `tests/quote-contrast.test.ts` se salta su bloque
+ * con `describe.skipIf` y un aviso. Saltarse diciéndolo no es lo mismo que pasar
+ * en verde, que es justo lo que este bloque ya razona tres líneas más abajo con
+ * su `enBase >= antes`.
+ */
+const SIN_BASE = !existsSync(BASE)
+if (SIN_BASE) {
+  console.warn(
+    '[verified-rebuild-atribucion.test] base determinista ausente (clon fresco / CI sin regenerar) — ' +
+      'el bloque contra el repositorio real se salta con motivo: no hay con qué reproducir el caso. ' +
+      'Se genera con `npm run verify:pleno-claims -- --base-only`.',
+  )
+}
+
 describe('la cuenta de atribuciones', () => {
   it('cuenta los blocs atribuidos y no los nulos', () => {
     const items = [
@@ -65,73 +91,76 @@ describe('empobrecer se define como perder, sin matices', () => {
   })
 })
 
-describe('inyección de fallo: el rebuild contra el estado real del repositorio', () => {
-  // La prueba de verdad, y aquí no hace falta fabricar el escenario: el
-  // repositorio YA está en él. Se llama al rebuild real y se comprueba que se
-  // niega y que no ha tocado el fichero publicado.
-  it('se niega a publicar y deja intacto lo que ya estaba', () => {
-    const publicado = JSON.parse(readFileSync(VERIFIED, 'utf8'))
-    const base = JSON.parse(readFileSync(BASE, 'utf8'))
-    const antes = atribucionesDeBloc(publicado.items ?? [])
-    const enBase = atribucionesDeBloc(base.items ?? [])
+describe.skipIf(SIN_BASE)(
+  'inyección de fallo: el rebuild contra el estado real del repositorio',
+  () => {
+    // La prueba de verdad, y aquí no hace falta fabricar el escenario: el
+    // repositorio YA está en él. Se llama al rebuild real y se comprueba que se
+    // niega y que no ha tocado el fichero publicado.
+    it('se niega a publicar y deja intacto lo que ya estaba', () => {
+      const publicado = JSON.parse(readFileSync(VERIFIED, 'utf8'))
+      const base = JSON.parse(readFileSync(BASE, 'utf8'))
+      const antes = atribucionesDeBloc(publicado.items ?? [])
+      const enBase = atribucionesDeBloc(base.items ?? [])
 
-    // Prueba de trabajo: si la base dejara de ser más pobre que lo publicado
-    // —porque alguien la regenerara bien, que es el arreglo de fondo— este test
-    // estaría comprobando el caso feliz creyendo comprobar la guarda. Entonces
-    // se salta diciéndolo, en vez de pasar en verde sin medir nada.
-    if (enBase >= antes) {
-      expect(
-        enBase,
-        'la base ya no empobrece: este caso no puede reproducirse y no se ha probado la guarda',
-      ).toBeGreaterThanOrEqual(antes)
-      return
-    }
+      // Prueba de trabajo: si la base dejara de ser más pobre que lo publicado
+      // —porque alguien la regenerara bien, que es el arreglo de fondo— este test
+      // estaría comprobando el caso feliz creyendo comprobar la guarda. Entonces
+      // se salta diciéndolo, en vez de pasar en verde sin medir nada.
+      if (enBase >= antes) {
+        expect(
+          enBase,
+          'la base ya no empobrece: este caso no puede reproducirse y no se ha probado la guarda',
+        ).toBeGreaterThanOrEqual(antes)
+        return
+      }
 
-    const hashAntes = createHash('sha256').update(readFileSync(VERIFIED)).digest('hex')
+      const hashAntes = createHash('sha256').update(readFileSync(VERIFIED)).digest('hex')
 
-    let salida = ''
-    let fallo = false
-    try {
-      execFileSync(
-        'npx',
-        ['tsx', '-e', "import('./scripts/verified-rebuild').then(m => m.rebuildVerified())"],
-        {
-          encoding: 'utf8',
-          stdio: ['ignore', 'pipe', 'pipe'],
-          timeout: 180_000,
-          // La guarda de acusaciones se APAGA aquí, y no por comodidad: es la
-          // vecina, no la que se prueba, y aborta ANTES (verified-rebuild.ts:224
-          // frente a :251). El 24-08-2026 el repositorio entró también en SU
-          // caso —35 acusaciones subiendo de `sin-datos`— y desde entonces este
-          // test fallaba con el mensaje de la otra: pedía «1476» y recibía una
-          // lista de acusaciones. La guarda de atribución llevaba días sin
-          // ejercitarse y nadie lo sabía, porque el rojo parecía suyo.
-          //
-          // Apagarla por su propia válvula documentada es lo que aísla al
-          // sujeto. Ensanchar la aserción para aceptar cualquier «ABORTADO»
-          // habría dejado el test en verde sin volver a probar nada.
-          env: { ...process.env, [ANULAR_GUARDA_ACUSACIONES]: '1' },
-        },
+      let salida = ''
+      let fallo = false
+      try {
+        execFileSync(
+          'npx',
+          ['tsx', '-e', "import('./scripts/verified-rebuild').then(m => m.rebuildVerified())"],
+          {
+            encoding: 'utf8',
+            stdio: ['ignore', 'pipe', 'pipe'],
+            timeout: 180_000,
+            // La guarda de acusaciones se APAGA aquí, y no por comodidad: es la
+            // vecina, no la que se prueba, y aborta ANTES (verified-rebuild.ts:224
+            // frente a :251). El 24-08-2026 el repositorio entró también en SU
+            // caso —35 acusaciones subiendo de `sin-datos`— y desde entonces este
+            // test fallaba con el mensaje de la otra: pedía «1476» y recibía una
+            // lista de acusaciones. La guarda de atribución llevaba días sin
+            // ejercitarse y nadie lo sabía, porque el rojo parecía suyo.
+            //
+            // Apagarla por su propia válvula documentada es lo que aísla al
+            // sujeto. Ensanchar la aserción para aceptar cualquier «ABORTADO»
+            // habría dejado el test en verde sin volver a probar nada.
+            env: { ...process.env, [ANULAR_GUARDA_ACUSACIONES]: '1' },
+          },
+        )
+      } catch (err) {
+        fallo = true
+        const e = err as { stdout?: string; stderr?: string }
+        salida = `${e.stdout ?? ''}${e.stderr ?? ''}`
+      }
+
+      expect(fallo, 'el rebuild publicó un corpus más pobre sin rechistar').toBe(true)
+      // Que aborte NO basta: tiene que abortar por ESTO. Un `/ABORTADO/` a secas
+      // se lo tragaba cualquier otra guarda, y entonces el test diría que vigila
+      // la atribución mientras mide la de al lado.
+      expect(salida, 'abortó, pero no por la guarda de atribución').toMatch(
+        /ABORTADO: publicar esto dejaría el corpus con/,
       )
-    } catch (err) {
-      fallo = true
-      const e = err as { stdout?: string; stderr?: string }
-      salida = `${e.stdout ?? ''}${e.stderr ?? ''}`
-    }
+      // Las dos cifras, en el mensaje: quien lo lea a las siete y media de la
+      // mañana tiene que poder decidir sin abrir un nodo.
+      expect(salida).toContain(String(antes))
+      expect(salida).toContain(ANULAR_GUARDA_ATRIBUCION)
 
-    expect(fallo, 'el rebuild publicó un corpus más pobre sin rechistar').toBe(true)
-    // Que aborte NO basta: tiene que abortar por ESTO. Un `/ABORTADO/` a secas
-    // se lo tragaba cualquier otra guarda, y entonces el test diría que vigila
-    // la atribución mientras mide la de al lado.
-    expect(salida, 'abortó, pero no por la guarda de atribución').toMatch(
-      /ABORTADO: publicar esto dejaría el corpus con/,
-    )
-    // Las dos cifras, en el mensaje: quien lo lea a las siete y media de la
-    // mañana tiene que poder decidir sin abrir un nodo.
-    expect(salida).toContain(String(antes))
-    expect(salida).toContain(ANULAR_GUARDA_ATRIBUCION)
-
-    const hashDespues = createHash('sha256').update(readFileSync(VERIFIED)).digest('hex')
-    expect(hashDespues, 'abortó DESPUÉS de escribir, que es abortar tarde').toBe(hashAntes)
-  }, 190_000)
-})
+      const hashDespues = createHash('sha256').update(readFileSync(VERIFIED)).digest('hex')
+      expect(hashDespues, 'abortó DESPUÉS de escribir, que es abortar tarde').toBe(hashAntes)
+    }, 190_000)
+  },
+)

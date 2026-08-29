@@ -77,8 +77,19 @@ if [ -z "$PREPUSH_RANGE" ]; then
 fi
 RANGE="${PREPUSH_RANGE:-origin/main...HEAD}"
 git rev-parse --verify origin/main >/dev/null 2>&1 || RANGE="HEAD"
+# Ficheros de error propios de ESTE proceso: dos pushes a la vez no se pisan.
+ERR_RUTAS="${TMPDIR:-/tmp}/prepush-rutas.$$.err"
+ERR_JSON="${TMPDIR:-/tmp}/prepush-json.$$.err"
 CHANGED=$(git diff --name-only "$RANGE" 2>/dev/null)
-[ -z "$CHANGED" ] && exit 0
+# Se dice, no se calla. Las tres salidas de este bloque eran `exit 0` mudos, y
+# el gancho razona lo contrario doce lineas mas abajo para el backend ausente:
+# «a check nobody knows was skipped is worse than none». Un push que no imprime
+# nada es indistinguible de un push revisado y limpio — y el 29-08-2026 esa
+# ambiguedad se cobro media hora de mirar por que no habia parte.
+if [ -z "$CHANGED" ]; then
+  echo "[pre-push] sin ficheros en el rango ($RANGE) — nada que revisar."
+  exit 0
+fi
 
 # QUÉ rutas, no cuáles tocaba la lista fija.
 #
@@ -99,10 +110,32 @@ CHANGED=$(git diff --name-only "$RANGE" 2>/dev/null)
 # `src/i18n.jsx` tocado de refilón mete dieciséis rutas y el rediseño de verdad
 # mete dos, planas e indistinguibles — medido en el push del 26-08-2026, donde
 # el lector gastó el presupuesto sin llegar a /eficiencia ni a /gestion.
-DETALLE=$(printf '%s\n' "$CHANGED" | npx tsx scripts/routes-for-changes.ts --stdin --json 2>/dev/null)
-[ -z "$DETALLE" ] && exit 0
-RUTAS=$(printf '%s' "$DETALLE" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{console.log(JSON.parse(s).rutas.join("\n"))}catch{}})')
-[ -z "$RUTAS" ] && exit 0
+# El stderr del resolutor ya no se tira: sin el, «se ha caido» y «no hay rutas»
+# eran BYTE A BYTE lo mismo en la shell, y las dos salian 0 calladas.
+DETALLE=$(printf '%s\n' "$CHANGED" | npx tsx scripts/routes-for-changes.ts --stdin --json 2>"$ERR_RUTAS")
+if [ -z "$DETALLE" ]; then
+  echo "[pre-push] el resolutor de rutas no devolvio nada — NO se ha revisado ninguna pagina."
+  [ -s "$ERR_RUTAS" ] && sed 's/^/[pre-push]   /' "$ERR_RUTAS" | head -5
+  rm -f "$ERR_RUTAS"
+  exit 0
+fi
+rm -f "$ERR_RUTAS"
+# El `catch{}` de aqui abajo estaba vacio, asi que un JSON malformado se leia
+# como «cero rutas». Ahora grita por stderr y el caso se separa.
+RUTAS=$(printf '%s' "$DETALLE" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{console.log(JSON.parse(s).rutas.join("\n"))}catch(e){console.error("json ilegible: "+e.message)}})' 2>"$ERR_JSON")
+if [ -s "$ERR_JSON" ]; then
+  echo "[pre-push] el resolutor devolvio algo que no es JSON — NO se ha revisado ninguna pagina."
+  sed 's/^/[pre-push]   /' "$ERR_JSON" | head -3
+  rm -f "$ERR_JSON"
+  exit 0
+fi
+rm -f "$ERR_JSON"
+if [ -z "$RUTAS" ]; then
+  # El caso legitimo y comun: herramienta, raspadores, pruebas. Ninguna pagina
+  # cambia de texto, asi que no hay nada que leer — pero se DICE.
+  echo "[pre-push] ninguna ruta afectada por estos $(printf '%s\n' "$CHANGED" | wc -l | tr -d ' ') fichero(s) — no hay prosa que revisar."
+  exit 0
+fi
 N_RUTAS=$(printf '%s\n' "$RUTAS" | wc -l | tr -d ' ')
 N_DIRECTAS=$(printf '%s' "$DETALLE" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{console.log(JSON.parse(s).directas||0)}catch{console.log(0)}})')
 
