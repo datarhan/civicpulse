@@ -53,13 +53,47 @@ export const ABSENT = 'absent'
  * An input containing a `/` resolves from the repo root rather than
  * `public/data`, because `pleno-speaker-map/` sits outside it.
  */
+/**
+ * Dónde vive realmente una entrada, o `null` si no está en ninguna parte.
+ *
+ * Exportada a propósito: la primera versión de
+ * `tests/data-graph-entradas-comparables.test.ts` copió estas tres líneas para
+ * poder preguntarle a git por la ruta, y se desincronizó con el arreglo de
+ * abajo en el mismo commit. Es la regla 1 de CLAUDE.md —exporta la forma, no la
+ * recites— aplicada a una ruta en vez de a un enum.
+ */
+export function resolveInput(input: string, dir = DATA_DIR): string | null {
+  const name = input.endsWith('/') ? input.slice(0, -1) : input
+  const candidatas = name.includes('/') ? [resolve(name)] : [resolve(dir, name), resolve(name)]
+  return candidatas.find((p) => existsSync(p)) ?? null
+}
+
 export function hashOf(input: string, dir = DATA_DIR): string {
   const isDir = input.endsWith('/')
-  const name = isDir ? input.slice(0, -1) : input
   // A bare basename lives in `dir`; anything with a path separator is
-  // repo-relative.
-  const path = name.includes('/') ? resolve(name) : resolve(dir, name)
-  if (!existsSync(path)) return ABSENT
+  // repo-relative — y si `dir` no lo tiene, se mira la raíz ANTES de darlo por
+  // ausente.
+  //
+  // Ese último paso faltaba, y se llevó por delante justo el ejemplo que la
+  // cabecera de arriba pone. `pleno-speaker-map/` vive en la raíz del
+  // repositorio, no en `public/data`; la regla dice «lo que lleve una barra se
+  // resuelve desde la raíz», pero la barra que lleva es la FINAL, la que marca
+  // que es un directorio, y se recorta una línea antes de mirarla. Así que
+  // `name` quedaba sin separador, se resolvía contra `public/data`, no existía,
+  // y devolvía ABSENT.
+  //
+  // No fallaba de forma ruidosa: `pleno-claims-suggestions.json` publicaba
+  // «"pleno-speaker-map/": "absent"» y luego comparaba `absent` con `absent`,
+  // que coinciden siempre. Los mapas de voces podían cambiar enteros y el nodo
+  // que los lee no podía declararse rancio NUNCA. Una dependencia muerta con
+  // aspecto de dependencia viva, que es la avería de siempre en este repo: el
+  // control salía verde por no estar midiendo nada.
+  //
+  // Lo caza `tests/data-graph-entradas-comparables.test.ts`: una entrada de
+  // frescura que git versiona y que aun así hashea ABSENT sólo puede ser un
+  // fallo de resolución.
+  const path = resolveInput(input, dir)
+  if (!path) return ABSENT
 
   if (!isDir) return sha256Short(readFileSync(path, 'utf8'))
 

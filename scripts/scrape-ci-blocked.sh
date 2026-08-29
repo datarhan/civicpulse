@@ -32,6 +32,27 @@ mkdir -p scripts/logs
 # untouched local main, so the refreshed snapshots would never reach the site.
 cron_require_main "scrape-ci-blocked"
 
+# Y AHORA el pull, ANTES de raspar. Era el único cron de datos que no lo hacía
+# —hallazgos, press-lab y los dos auto-curate abren con «git pull inicial»— y
+# fue el único que se atascó.
+#
+# El orden lo era todo. Raspando primero, este cron generaba once instantáneas
+# sobre la main que tuviera el portátil, comiteaba, y SÓLO ENTONCES se
+# encontraba con la nocturna, que había reescrito los mismos ficheros la tarde
+# anterior. El 2026-08-29 chocaron en nueve, y cada conflicto era la misma
+# línea: un `generatedAt` que las dos partes habían regenerado.
+#
+# Pullando primero no hay nada con lo que chocar: los adaptadores son
+# idempotentes y reescriben el fichero ENTERO, así que generar encima de la
+# main recién traída produce exactamente lo mismo que generar y fusionar, sin
+# fusionar. El pull de después del commit se queda como reintento para la
+# ventana de carrera de verdad (que alguien empuje mientras raspamos), y con la
+# guarda nueva de `cron_git_pull_rebase` ya no puede dejar el árbol a medias.
+if ! cron_git_pull_rebase "git pull inicial"; then
+  echo "[ci-blocked] ERROR: el pull inicial falló — no se raspa nada. Ningún dato generado, nada que perder; el próximo run reintenta."
+  exit 1
+fi
+
 ADAPTERS=(
   scrape:paro
   scrape:pleno-agendas

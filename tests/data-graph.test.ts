@@ -135,7 +135,19 @@ describe('stalenessInputs', () => {
     const prov = DATA_GRAPH.find((n) => n.id === 'finding-quote-provenance.json')!
     expect(prov.reads).toContain('finding-quote-provenance.json')
     expect(stalenessInputs(prov)).not.toContain('finding-quote-provenance.json')
-    expect(stalenessInputs(prov)).toEqual(prov.reads.filter((r) => r !== prov.id))
+    // La regla tiene DOS exclusiones desde el 2026-08-29: lo que el nodo se
+    // escribe a sí mismo, y lo que git no versiona. Sigue siendo la propiedad,
+    // no la lista.
+    expect(stalenessInputs(prov)).toEqual(
+      prov.reads.filter((r) => r !== prov.id && !(prov.noComparables ?? []).includes(r)),
+    )
+    // La segunda exclusión, nombrada: la base del verificador está en
+    // .gitignore, así que su hash no significa lo mismo en el portátil que en
+    // CI. Se seguía leyendo y el nodo salía rancio en una máquina o en la otra
+    // todos los días, alternándose. Se declara, no se borra: la dependencia
+    // existe, lo que no puede es fechar nada.
+    expect(prov.noComparables).toContain('pleno-claims-verified-base.json')
+    expect(stalenessInputs(prov)).not.toContain('pleno-claims-verified-base.json')
     // Y sigue midiendo algo: el nodo tiene entradas además de sí mismo.
     expect(stalenessInputs(prov).length).toBeGreaterThan(0)
     expect(stalenessInputs(prov)).toContain('pleno-findings.json')

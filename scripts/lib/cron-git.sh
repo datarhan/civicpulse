@@ -222,11 +222,86 @@ cron_git_assert_head() {
 # Returns the pull's own exit code, so each caller keeps its own handling. The
 # identity check is not part of that: it exits the script outright.
 # ---------------------------------------------------------------------------
+# ¿Hay un rebase a medias? Por `git rev-parse --git-path`, no por
+# `.git/rebase-merge`: en un worktree el directorio de git NO es `.git/`, y una
+# comprobación que da siempre «no» es peor que no comprobar nada.
+_cron_git_rebase_en_curso() {
+  local nombre ruta
+  for nombre in rebase-merge rebase-apply; do
+    ruta="$(git rev-parse --git-path "$nombre" 2>/dev/null)" || continue
+    [ -n "$ruta" ] && [ -d "$ruta" ] && return 0
+  done
+  return 1
+}
+
+# ---------------------------------------------------------------------------
+# _cron_git_desatascar_rebase <contexto> <nº de alijos antes del pull>
+#
+# Un pull que falla por conflicto NO deja el repositorio como lo encontró: deja
+# un rebase abierto y HEAD desacoplado. Y eso no rompe este run —que ya se da
+# por fallado— sino TODOS los siguientes: `cron_require_main` exige estar en
+# 'main', así que cada cron posterior se salta con un OMITIDO y no hace nada.
+#
+# Pasó el 2026-08-29. El cron de las 06:55 comiteó, el pull chocó con la
+# nocturna en nueve ficheros —cada conflicto, un `generatedAt` regenerado— y
+# nadie lo resolvió. A partir de ahí se saltaron en silencio review-sweep
+# (07:30), auto-curate-promises (08:30), hallazgos-pipeline (09:30) y
+# press-lab-pipeline (10:15). El parte de salud tiene diecisiete guardas y
+# ninguna pregunta si los cron han corrido, así que el aviso habló de datos
+# mientras la flota local entera estaba parada.
+#
+# Los tres alijos «autostash» sueltos del 1, 2 y 3 de agosto son restos de lo
+# mismo, más callado.
+#
+# El mensaje que imprimía el llamador —«el próximo run reintenta»— era
+# sencillamente FALSO. Abortar aquí es lo que lo hace verdad: el commit local
+# sobrevive, el árbol queda utilizable y mañana se reintenta de verdad.
+# ---------------------------------------------------------------------------
+_cron_git_desatascar_rebase() {
+  local ctx="$1" alijos_antes="$2"
+  _cron_git_rebase_en_curso || return 0
+
+  cron_git_log "$ctx: el pull dejó un rebase A MEDIAS. Se aborta: dejarlo abierto no rompe este run, rompe TODOS los siguientes (se saltan por no estar en '${CRON_GIT_MAIN_BRANCH:-main}')."
+  local fichero
+  while IFS= read -r fichero; do
+    [ -n "$fichero" ] && cron_git_log "    en conflicto: $fichero"
+  done < <(git diff --name-only --diff-filter=U 2>/dev/null)
+
+  local salida_abort rc_abort=0
+  salida_abort="$(git rebase --abort 2>&1)" || rc_abort=$?
+  while IFS= read -r fichero; do
+    [ -n "$fichero" ] && cron_git_log "    $fichero"
+  done <<< "$salida_abort"
+
+  if [ "$rc_abort" -eq 0 ]; then
+    cron_git_log "  rebase abortado · HEAD vuelve a '$(_cron_git_head_label "$(_cron_git_head_ref)")'. Lo que este run comiteó SIGUE en local, sin publicar: el próximo run lo reintenta."
+  else
+    cron_git_log "  ATENCIÓN: «git rebase --abort» TAMBIÉN falló. El árbol sigue a medias y los cron posteriores se van a saltar en silencio. Esto necesita una persona."
+  fi
+
+  # El autostash se reaplica solo al abortar… casi siempre. Cuando no, se queda
+  # un alijo mudo, y un alijo que nadie nombra es trabajo perdido.
+  local alijos_ahora
+  alijos_ahora="$(git stash list 2>/dev/null | wc -l | tr -d " ")"
+  if [ "${alijos_ahora:-0}" -gt "${alijos_antes:-0}" ]; then
+    cron_git_log "  el autostash NO se reaplicó: quedan $((alijos_ahora - alijos_antes)) alijo(s) nuevo(s), el último en stash@{0}. Se recupera con «git stash pop»."
+  fi
+}
+
 cron_git_pull_rebase() {
   local ctx="${1:-git pull --rebase}"
   cron_git_assert_head "$ctx"
   local rc=0
+  local alijos_antes
+  alijos_antes="$(git stash list 2>/dev/null | wc -l | tr -d " ")"
   git pull --rebase --autostash origin "${CRON_GIT_MAIN_BRANCH:-main}" || rc=$?
+  # Un fallo del pull puede ser «no hay red» o puede ser «te he dejado un rebase
+  # abierto». Sólo el segundo inutiliza la flota entera, y sólo se distingue
+  # mirando. Se aborta ANTES de rebaselinar el contador, para que el retorno a
+  # main que hace el propio abort cuente como movimiento nuestro.
+  if [ "$rc" -ne 0 ]; then
+    _cron_git_desatascar_rebase "$ctx" "$alijos_antes"
+  fi
   # Our own pull is a legitimate HEAD movement, so re-baseline the counter after
   # it. Only the counter — the approved REF stays pinned, so a pull that leaves
   # a conflicted rebase (HEAD detached) is still caught at commit time.

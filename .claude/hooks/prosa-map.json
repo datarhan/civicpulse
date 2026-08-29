@@ -14,6 +14,7 @@
       "/curator"
     ],
     "bdns.json": [
+      "/",
       "/cambios",
       "/datos",
       "/lab-health",
@@ -33,11 +34,13 @@
       "/presupuesto"
     ],
     "budget.json": [
+      "/",
       "/datos",
       "/lab-health",
       "/presupuesto"
     ],
     "civic-poi.json": [
+      "/",
       "/datos"
     ],
     "competencias.json": [
@@ -58,6 +61,7 @@
       "/laboratorio/coste-esperado"
     ],
     "cpv-labels.json": [
+      "/",
       "/presupuesto"
     ],
     "criminalidad.json": [
@@ -91,12 +95,16 @@
       "/datos"
     ],
     "empleo.json": [
+      "/",
       "/datos",
       "/empleo",
       "/empleo/:id"
     ],
     "entities.json": [
       "/presupuesto"
+    ],
+    "events.json": [
+      "/"
     ],
     "factcheck.json": [
       "/lab-health",
@@ -112,6 +120,7 @@
       "/curator"
     ],
     "geo.json": [
+      "/",
       "/datos",
       "/lab-health",
       "/presupuesto",
@@ -143,12 +152,15 @@
       "/laboratorio/agentes/:assignmentId"
     ],
     "metro-network.json": [
+      "/",
       "/lab-health"
     ],
     "metro-schedule.json": [
+      "/",
       "/lab-health"
     ],
     "obras.json": [
+      "/",
       "/datos",
       "/presupuesto"
     ],
@@ -156,6 +168,7 @@
       "/cargos"
     ],
     "officials.json": [
+      "/",
       "/cargos",
       "/cargos/:slug",
       "/datos",
@@ -168,14 +181,17 @@
       "/quejas/dashboard"
     ],
     "padron.json": [
+      "/",
       "/datos",
       "/lab-health"
     ],
     "paro.json": [
+      "/",
       "/datos",
       "/lab-health"
     ],
     "participa.json": [
+      "/",
       "/cambios",
       "/datos",
       "/lab-health",
@@ -208,6 +224,7 @@
       "/plenos/:id"
     ],
     "plenos-agendas.json": [
+      "/",
       "/cargos/:slug",
       "/datos",
       "/departamentos",
@@ -217,6 +234,7 @@
       "/plenos/:id"
     ],
     "plenos.json": [
+      "/",
       "/cambios",
       "/datos",
       "/declaraciones",
@@ -261,6 +279,7 @@
       "/laboratorio"
     ],
     "press.json": [
+      "/",
       "/cambios",
       "/cargos",
       "/datos",
@@ -284,6 +303,7 @@
       "/empleo-publico"
     ],
     "promise-suggestions.json": [
+      "/",
       "/cargos",
       "/cargos/:slug",
       "/curator",
@@ -301,6 +321,7 @@
       "/promesas"
     ],
     "promises.json": [
+      "/",
       "/cargos",
       "/cargos/:slug",
       "/curator",
@@ -326,6 +347,7 @@
       "/quejas/:id"
     ],
     "quejas-responses.json": [
+      "/",
       "/cambios",
       "/cargos",
       "/cargos/:slug",
@@ -340,6 +362,7 @@
       "/quejas/dashboard"
     ],
     "quejas.json": [
+      "/",
       "/cambios",
       "/cargos",
       "/cargos/:slug",
@@ -382,12 +405,14 @@
       "/laboratorio/cobertura"
     ],
     "spain-ticker.json": [
+      "/",
       "/lab-health"
     ],
     "streets.json": [
       "/datos"
     ],
     "tender-geo.json": [
+      "/",
       "/presupuesto",
       "/quejas"
     ],
@@ -397,6 +422,7 @@
       "/presupuesto"
     ],
     "tenders.json": [
+      "/",
       "/cambios",
       "/cargos/:slug",
       "/curator",

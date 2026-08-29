@@ -210,6 +210,15 @@ if [ -n "\${STUB_STAGE_STRANGER:-}" ] && [ -e "\${STUB_STAGE_STRANGER}" ]; then
   git add -- "\${STUB_STAGE_STRANGER}" && echo "[stub] staged stranger \${STUB_STAGE_STRANGER}"
 fi
 ${SWITCH_SNIPPET}
+# El remoto se cae DESPUÉS del pull inicial. Desde que scrape-ci-blocked.sh
+# abre con «git pull inicial», un remoto roto de salida ya no llega al pull de
+# antes del push: falla antes, más barato y sin haber raspado nada. Para
+# ejercer el pull TARDÍO hay que romperlo por el camino, que además es el caso
+# real — alguien empuja mientras los adaptadores trabajan.
+if [ -n "\${STUB_BREAK_REMOTE:-}" ] && [ "\${STUB_BREAK_REMOTE}" = "$name" ]; then
+  git remote set-url origin "$PWD/no-such-origin.git"
+  echo "[stub] remoto roto tras $name"
+fi
 case " \${STUB_FAIL:-} " in *" $name "*) echo "[stub] $name FAILING" >&2; exit 1 ;; esac
 # The speaker-map arm reads this list as its work queue, so it has to name a
 # session or the whole branch is unreachable and its tests pass on nothing.
@@ -927,12 +936,36 @@ describe('scrape-ci-blocked.sh · a failed publish is no longer silent', () => {
   it('does not claim "pushed" when the pull before the push fails', () => {
     // Was `git pull --rebase … && git push …`: a failed pull skipped the push,
     // the script still echoed "pushed", and it exited on the ADAPTER count.
-    const dir = makeSandbox({ brokenRemote: true })
-    const r = runScript(dir, 'scripts/scrape-ci-blocked.sh')
+    //
+    // El remoto se rompe A MITAD (tras el primer adaptador), no de salida:
+    // desde que el script abre con un pull inicial, un remoto roto desde el
+    // principio ya no llega hasta aquí. Y romperlo por el camino es además el
+    // caso de verdad — alguien publica mientras los adaptadores trabajan.
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/scrape-ci-blocked.sh', {
+      STUB_BREAK_REMOTE: 'scrape:paro',
+    })
 
     expect(r.log).toContain('[stub] ran scrape:paro') // it really did the work
     expect(r.committed).toContain('public/data/paro.json') // and committed it locally
     expect(r.log).toMatch(/ERROR: git pull --rebase falló/)
+    expect(r.log).not.toContain('[ci-blocked] pushed')
+    expect(r.status).toBe(1)
+  }, 60_000)
+
+  it('se planta en el pull INICIAL sin raspar nada', () => {
+    // El 2026-08-29 este cron raspó once instantáneas, las comiteó y SÓLO
+    // ENTONCES pulló, chocando con la nocturna en nueve ficheros. Pullar
+    // primero hace ese choque imposible; y cuando el remoto no está, se para
+    // aquí, que es donde no hay nada que perder.
+    const dir = makeSandbox({ brokenRemote: true })
+    const r = runScript(dir, 'scripts/scrape-ci-blocked.sh')
+
+    expect(r.log).toMatch(/ERROR: el pull inicial falló/)
+    expect(r.log, 'no debe raspar nada si no ha podido ponerse al día').not.toContain(
+      '[stub] ran scrape:paro',
+    )
+    expect(r.committed).toEqual([])
     expect(r.log).not.toContain('[ci-blocked] pushed')
     expect(r.status).toBe(1)
   }, 60_000)
