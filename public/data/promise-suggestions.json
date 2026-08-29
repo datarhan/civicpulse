@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28T17:02:27.563Z",
+  "generatedAt": "2026-08-29T11:31:07.084Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -152,7 +152,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -169,6 +169,17 @@
             "dana",
             "millon",
             "tras"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNc1NtX2VrWHRFcFJ4emx0eHdQbnJUcHRBVVRUOVVseTRBN0JKdm1lTllDWklqS2UzYVIxZkg3dGQ3SkYzNzBsaldZc2xIYUpTbFVyblJsb3dTc3hEdjVtS0JpSlpwamRHYmZPRmt6eVZMTTdXNXlHbWN6My1LUHlJZ2VXV2Q0UWh2d2tIY0Z1NUE0YWVIbENELU9ObmE3VkFYTkFHcHBSYkEyUGRLRks2QjlMa3NjNm5xazVoa016NS1TbG4wRUlVUnkzdGbSAdIBQVVfeXFMUGFDYnJHcXQyTko5WGxGUWxxUjQyendITWFxd1pTOV9acHlvYjNYUkNkM1FmNldURkYxSEprZTB0SzEzalFEZTVmNDA2a2pyVW1fTUEwU05vMkNHRjVzZ0R4YndKODBhQTdWYjdLYUxYWUdWenJ2eVE3RlZJZk9UNk84OUVFdlZDMUdZcWRMRFpOZEZEakk3QWp6VHhQTlIxcW12S0s1ZVJzbzBYQmdvM3RLVTdic2RIbzlyMUlvMFpsQnF4UllkZFZ4cklzTGVuLTZB?oc=5",
+          "date": "2026-08-28",
+          "quote": "Llíria obtiene cerca de 9 millones para actuaciones frente a los efectos de la dana",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "dana",
+            "millon"
           ]
         },
         {
@@ -203,21 +214,10 @@
             "dana",
             "millon"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPM0dvdXpaelp5NVNtaEE3WXBQZjN3bUtHQjhWR29Uc0I5Mzl1QlowUWMxLU1VMFVBSTNyWUthTWh1OF9PRDJpa1JOY2ZBQ1VnX1FKb0U2WmJmX2FpSEV5ajRvOEFvd2dVT25xVUROal8yMFdyN1YwWUFmY3NuYTViN0dxcUpfckR3NEVSODg1cDdhWk9KZjA1WHNsdVlqWE84V2lPY2t5SWZfZlphQ29MYllNS1dLZXV5RGphZXVqRWpxelJUVWVucEg5eGw0clFXeHZLTmR3UmRoZzBPR1RmRFB4d1E4SWNSdnN5Yg?oc=5",
-          "date": "2026-05-08",
-          "quote": "Riba-roja de Túria repone señalética en el Parque Natural del Túria y casco histórico tras la Dana",
-          "kind": "press",
-          "publisher": "Valencia Plaza",
-          "matchedKeywords": [
-            "dana",
-            "tras"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -248,7 +248,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -333,7 +333,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -368,7 +368,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -417,7 +417,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -425,7 +425,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -433,7 +433,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -450,6 +450,17 @@
             "dana",
             "millon",
             "euro"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNc1NtX2VrWHRFcFJ4emx0eHdQbnJUcHRBVVRUOVVseTRBN0JKdm1lTllDWklqS2UzYVIxZkg3dGQ3SkYzNzBsaldZc2xIYUpTbFVyblJsb3dTc3hEdjVtS0JpSlpwamRHYmZPRmt6eVZMTTdXNXlHbWN6My1LUHlJZ2VXV2Q0UWh2d2tIY0Z1NUE0YWVIbENELU9ObmE3VkFYTkFHcHBSYkEyUGRLRks2QjlMa3NjNm5xazVoa016NS1TbG4wRUlVUnkzdGbSAdIBQVVfeXFMUGFDYnJHcXQyTko5WGxGUWxxUjQyendITWFxd1pTOV9acHlvYjNYUkNkM1FmNldURkYxSEprZTB0SzEzalFEZTVmNDA2a2pyVW1fTUEwU05vMkNHRjVzZ0R4YndKODBhQTdWYjdLYUxYWUdWenJ2eVE3RlZJZk9UNk84OUVFdlZDMUdZcWRMRFpOZEZEakk3QWp6VHhQTlIxcW12S0s1ZVJzbzBYQmdvM3RLVTdic2RIbzlyMUlvMFpsQnF4UllkZFZ4cklzTGVuLTZB?oc=5",
+          "date": "2026-08-28",
+          "quote": "Llíria obtiene cerca de 9 millones para actuaciones frente a los efectos de la dana",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "dana",
+            "millon"
           ]
         },
         {
@@ -484,21 +495,10 @@
             "dana",
             "millon"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNSXVDNFh4b2F5Q050eW9vX1BJclVqRHVqM2tKdkhoY2xkSkF6S1lrN2szdEZDZkhIQ1pjYUJ1dmd5Y2M0dXM1bkwwNEZTVXhWMS1UUHFBTzlNb1djaW5fYVd4Z1BiTDdELWNKdUE2U04wNnhmNWN2cnFPVkRaN1ZmV0tDSVlCZ20wTDdLd1FWSER0dVNESlBTeThwYUo3UEFlQW44MkhHSGNtdlJ0ZkdaN3YtUkVjd3ZTQVZjbGstTkZncmtfMUhvYWdFcGl6eXVEWjFlQ1lSTmVSR3VuS0Z5T3dDNGtxazZxZlV1XzhR?oc=5",
-          "date": "2026-04-15",
-          "quote": "El Gobierno destina 19 millones de euros a las obras de emergencia y restauración fluvial del Túria",
-          "kind": "press",
-          "publisher": "Valencia Plaza",
-          "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -529,7 +529,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -580,7 +580,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -624,7 +624,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -679,7 +679,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -709,7 +709,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -740,7 +740,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -773,7 +773,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -793,7 +793,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -812,7 +812,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -876,7 +876,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -910,7 +910,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -941,7 +941,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -994,7 +994,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-28T17:02:27.460Z"
+      "generatedAt": "2026-08-29T11:31:06.961Z"
     }
   ],
   "llmEvidence": [],
