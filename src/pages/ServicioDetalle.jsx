@@ -201,9 +201,16 @@ export default function ServicioDetalle() {
             className="mono"
             style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 8 }}
           >
-            {i.numerador.valor === null
-              ? 'El ayuntamiento no declara coste para este servicio: la casilla viene vacía, no a cero.'
-              : `Coste declarado: ${i.numerador.valor.toLocaleString('es-ES')} €`}
+            {/* El tercer sitio con el mismo binario, y el más rotundo: esta
+                frase afirmaba «la casilla viene vacía» en una ficha cuya
+                cabecera dice ENTREGA 2024, y en 2024 el ministerio declara
+                1.898.034,08 € para el agua. `valor === null` no significa que
+                la fuente calle; significa que aquí no se divide. */}
+            {i.numerador.valor !== null
+              ? `Coste declarado: ${i.numerador.valor.toLocaleString('es-ES')} €`
+              : i.numerador.declaradoNoComparable !== undefined
+                ? `El ayuntamiento declara ${i.numerador.declaradoNoComparable.toLocaleString('es-ES')} € en esta entrega. No se divide: en una concesión ese coste no es el que soporta el ayuntamiento.`
+                : 'El ayuntamiento no declara coste para este servicio: la casilla viene vacía, no a cero.'}
           </p>
           {/* Sin el `que`: para una ficha bloqueada, `MOTIVO` dice lo mismo y
               más —incluye por qué compararla diría que aquí es gratis—, así que

@@ -67,6 +67,74 @@ describe('scraper/indicadores', () => {
     }
   })
 
+  // La otra mitad de la regla de arriba, y la que faltaba. Que no se publique
+  // un cociente es correcto; que se rotule «coste no declarado» no lo es,
+  // porque el ministerio SÍ declaró. Un centinela que vale por dos hechos —«la
+  // fuente calla» y «nosotros no dividimos»— es la regla 3 de DATA_INTEGRITY,
+  // aquí sobre una superficie legalmente material.
+  it('se lleva la cifra que decide NO dividir, para no atribuir su silencio a la fuente', () => {
+    // Dos concesiones que NO son el mismo hecho, y hasta ahora salían idénticas.
+    const conCifra = resolverCoste(
+      [
+        {
+          ine: '46214',
+          anio: 2024,
+          programa: 'a161',
+          modoGestion: 'concesion',
+          costeTotal: 1_898_034.08,
+        },
+      ] as never,
+      'a161',
+      2024,
+    )
+    const muda = resolverCoste(
+      [
+        { ine: '46214', anio: 2024, programa: 'a161', modoGestion: 'concesion', costeTotal: 0 },
+      ] as never,
+      'a161',
+      2024,
+    )
+
+    // La decisión no cambia en ninguno de los dos: sin cociente.
+    expect(conCifra.valor).toBeNull()
+    expect(muda.valor).toBeNull()
+    expect(conCifra.motivo).toBe('concesion')
+    expect(muda.motivo).toBe('concesion')
+
+    // Lo que cambia es que ahora se distinguen.
+    expect(
+      conCifra.declaradoNoComparable,
+      'el ministerio declaró y el motor tiraba la cifra sin mirarla',
+    ).toBeCloseTo(1_898_034.08, 2)
+    expect(muda.declaradoNoComparable, 'aquí la fuente sí calla').toBeUndefined()
+  })
+
+  it('la entrega de 2021 del fixture es de las mudas, y por eso el caso de arriba es sintético', () => {
+    // Prueba de trabajo: el fixture es de 2021, uno de los cinco ejercicios en
+    // los que Riba-roja declaró cero para el agua. Si algún día trae cifra, el
+    // caso sintético de arriba deja de ser el único sitio donde se ejerce, y
+    // conviene enterarse en vez de seguir creyendo que se prueba con datos
+    // reales.
+    for (const id of ['a161-coste-unitario', 'a160-coste-unitario']) {
+      expect(byId(id).numerador.declaradoNoComparable).toBeUndefined()
+    }
+  })
+
+  it('la ficha distingue los tres casos, no dos', () => {
+    // Se comprueba sobre el JSX porque el defecto vivía ahí: el rótulo salía de
+    // `valor === null`, que es binario, y publicaba el silencio de la fuente
+    // sobre una decisión nuestra.
+    const jsx = readFileSync(
+      join(__dirname, '..', 'src/components/eficiencia/FilaServicio.jsx'),
+      'utf8',
+    )
+    expect(jsx).toContain('declaradoNoComparable')
+    expect(jsx).toContain('no comparables (concesión)')
+    expect(jsx).toContain('sin coste declarado (concesión)')
+    // Y el binario de antes ya no decide el rótulo.
+    expect(jsx).not.toContain("i.numerador.valor === null\n            ? 'coste no declarado'")
+  })
+
   it('refuses a ratio when the denominator is an undeclared zero', () => {
     // El transporte era el ejemplo natural —declaraba viajeros a cero— hasta
     // que su tarjeta pasó a dividir entre kilómetros de red, que sí declara.

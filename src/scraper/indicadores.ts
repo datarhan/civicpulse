@@ -71,6 +71,21 @@ export interface Magnitud {
   valor: number | null
   estado: EstadoCelda
   motivo?: Motivo
+  /**
+   * Lo que el ministerio SÍ declaró en una celda que aquí no se usa.
+   *
+   * Sólo se rellena con `motivo: 'concesion'`, y existe porque «no lo hemos
+   * dividido» y «no hay nada que dividir» son dos hechos y se estaban
+   * publicando como uno. Medido el 2026-08-29 sobre la entrega de 2024, la del
+   * año base: el a161 (agua) declara 1.898.034,08 € y el a160 (alcantarillado)
+   * 514.318,78 €, y la ficha rotulaba «coste no declarado» sobre las dos.
+   *
+   * `valor` sigue siendo null a propósito: en una concesión el coste declarado
+   * NO es el que soporta el ayuntamiento —lo cobra el concesionario del
+   * recibo—, así que dividirlo por habitantes mediría otra cosa. Lo que cambia
+   * es que ahora se puede decir de quién es el silencio.
+   */
+  declaradoNoComparable?: number
   /** La celda exacta, p. ej. `cesel:2021:CE3:a1621:Producción anual…`. */
   fuente: string
 }
@@ -369,7 +384,24 @@ export function resolverCoste(filas: CesteRow[], programa: string, anio: number)
     return { valor: null, estado: 'no-se-presta', fuente }
   }
   if (rows.some((r) => r.modoGestion === 'concesion')) {
-    return { valor: null, estado: 'no-declarado', motivo: 'concesion', fuente }
+    // Se mira el coste ANTES de darlo por no declarado. La versión anterior
+    // volvía aquí sin leer `costeTotal` siquiera, así que una concesión con
+    // cifra y una concesión muda salían idénticas — y la ficha las rotulaba a
+    // las dos «coste no declarado», que es el silencio de la FUENTE. En la
+    // entrega de 2024 el ministerio declara 1.898.034,08 € para el agua: el
+    // silencio era nuestro, y el rótulo se lo atribuía a él. Es el centinela
+    // que vale por dos cosas, la regla 3 de DATA_INTEGRITY, en una superficie
+    // legalmente material.
+    const declarado = rows.map((r) => r.costeTotal ?? 0).filter((c) => c > 0)
+    return declarado.length === 1
+      ? {
+          valor: null,
+          estado: 'no-declarado',
+          motivo: 'concesion',
+          declaradoNoComparable: declarado[0],
+          fuente,
+        }
+      : { valor: null, estado: 'no-declarado', motivo: 'concesion', fuente }
   }
 
   // Una fila con coste 0 no es una afirmación rival: es la misma «no lo
