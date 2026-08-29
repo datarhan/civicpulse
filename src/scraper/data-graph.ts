@@ -52,6 +52,36 @@ export interface DataNode {
   script?: string
   /** One line on what it is for, shown in `refresh`'s report. */
   note?: string
+  /**
+   * Entradas declaradas en `reads` que NO se pueden comparar entre máquinas.
+   *
+   * `builtFrom` publica el hash de cada entrada para poder decir «esto ya no
+   * sale de lo que tiene al lado». Eso sólo significa algo si las dos máquinas
+   * que lo escriben ven el MISMO fichero — y una entrada que git no versiona no
+   * lo es: el portátil y CI la regeneran cada uno por su cuenta, gana quien
+   * comitea el último, y la otra máquina lee «rancio» todos los días.
+   *
+   * Medido sobre `finding-quote-provenance.json`, que declara
+   * `pleno-claims-verified-base.json` (9,4 MB, en .gitignore):
+   *
+   *   b15f8cd5  28-ago 13:39  portátil  base=3d5deef4b695
+   *   da547f09  28-ago 17:08  CI        base=2541ae125123
+   *   bc83c79e  24-ago 16:02            base=e25ef262cc48
+   *   a8aae78a  25-ago 05:24            base=b1357c15c4ae
+   *   940eb2a9  26-ago 11:33            base=e25ef262cc48   ← y vuelta
+   *
+   * `npm run refresh` no lo arregla: lo voltea hasta la siguiente nocturna. Y
+   * una guarda que grita todos los días es una guarda que se acaba apagando,
+   * que es justo lo que dice la cabecera de `built-from.ts`.
+   *
+   * La entrada SIGUE en `reads`, que es donde está bien: la dependencia existe
+   * y el orden de reconstrucción la necesita. Lo que no puede es fechar nada.
+   *
+   * `tests/data-graph-entradas-comparables.test.ts` comprueba que ninguna otra
+   * entrada de frescura esté sin versionar, para que la próxima se cace una vez
+   * y no una vez al día.
+   */
+  noComparables?: readonly string[]
 }
 
 /**
@@ -131,6 +161,12 @@ export const DATA_GRAPH: readonly DataNode[] = [
       'pleno-claims-verified-base.json',
       'pleno-claims-overlay.json',
     ],
+    // La base está en .gitignore, así que su hash no significa lo mismo aquí
+    // que en CI y el nodo salía rancio en una máquina o en la otra a diario.
+    // Se sigue leyendo —el contraste informativo la usa— pero no fecha nada.
+    // El propio comentario de arriba ya decía que sin base las marcas salen
+    // idénticas: si no cambia la salida, no puede declararla vieja.
+    noComparables: ['pleno-claims-verified-base.json'],
     writes: ['finding-quote-provenance.json'],
     command: 'npm run compute:finding-quote-provenance',
     script: 'scripts/compute-finding-quote-provenance.ts',
@@ -210,7 +246,8 @@ export function producersOf(id: string, graph: readonly DataNode[] = DATA_GRAPH)
  * `compute:dept-stats` from rebuilding on every run forever.
  */
 export function stalenessInputs(node: DataNode): string[] {
-  return node.reads.filter((r) => !node.writes.includes(r))
+  const noComparables = node.noComparables ?? []
+  return node.reads.filter((r) => !node.writes.includes(r) && !noComparables.includes(r))
 }
 
 /**

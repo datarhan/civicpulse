@@ -437,3 +437,80 @@ describe('startRun', () => {
     expect(s).toContain('retracted=1')
   })
 })
+
+describe('assessManifest — contestado y rechazado NO es "no-work"', () => {
+  /**
+   * El parte real de `extract-speaker-map` del 2026-08-28. El backend contestó
+   * las nueve veces; los tres trozos volvieron por debajo del suelo de
+   * cobertura del 85 % y se anotaron con su motivo. `no-work` lo publicaba como
+   * ERROR diciendo «check retrieval and the backend» — la única parte del run
+   * que funcionaba.
+   */
+  const rechazadoPorCalidad = () =>
+    manifest({
+      script: 'extract-speaker-map',
+      backend: 'gemini-api',
+      model: 'gemini-3.5-flash',
+      owed: 16,
+      attempted: 3,
+      judged: 0,
+      neverAttempted: 0,
+      skipped: { 'below-coverage-floor': 3 },
+      llm: { ...NO_TRAFFIC, calls: 9, ok: 9, tokens: 180414 },
+    })
+
+  it('no lo llama no-work', () => {
+    expect(codes(rechazadoPorCalidad())).not.toContain('no-work')
+  })
+
+  it('lo nombra por lo que es, y como aviso', () => {
+    const f = assessManifest(rechazadoPorCalidad()).find((x) => x.code === 'rejected-on-quality')
+    expect(f).toBeTruthy()
+    expect(f?.level).toBe('warn')
+  })
+
+  it('dice el motivo y cuántas llamadas fueron bien', () => {
+    const f = assessManifest(rechazadoPorCalidad()).find((x) => x.code === 'rejected-on-quality')
+    expect(f?.message).toContain('below-coverage-floor=3')
+    expect(f?.message).toContain('9 successful model call')
+  })
+
+  // La guarda del hueco. Un backend mudo tiene ok 0, y eso SÍ es no-work: si
+  // este caso empezara a salir como aviso, la avería que el manifiesto existe
+  // para cazar se publicaría en amarillo.
+  it('un backend mudo que lo salta todo SIGUE siendo no-work', () => {
+    const m = manifest({
+      attempted: 3,
+      judged: 0,
+      skipped: { 'engine error': 3 },
+      llm: { ...NO_TRAFFIC, calls: 3, failed: 3, zeroTokenFailures: 3 },
+    })
+    expect(codes(m)).toContain('no-work')
+    expect(codes(m)).not.toContain('rejected-on-quality')
+  })
+
+  // La otra guarda: el aviso exige que TODO lo intentado traiga motivo. Con un
+  // ítem sin explicar, la contabilidad no cuadra y no se puede afirmar que la
+  // culpa fue de la puerta de calidad.
+  it('con un ítem sin motivo vuelve a ser no-work', () => {
+    const m = manifest({
+      attempted: 3,
+      judged: 0,
+      skipped: { 'below-coverage-floor': 2 },
+      llm: { ...NO_TRAFFIC, calls: 6, ok: 6, tokens: 1000 },
+    })
+    expect(codes(m)).toContain('no-work')
+    expect(codes(m)).not.toContain('rejected-on-quality')
+  })
+
+  it('nunca emite los dos a la vez', () => {
+    for (const m of [
+      rechazadoPorCalidad(),
+      manifest({ attempted: 3, judged: 0, skipped: { x: 3 }, llm: { ...NO_TRAFFIC } }),
+      manifest({ attempted: 1017, neverAttempted: 1017 }),
+    ]) {
+      const c = codes(m)
+      expect(c.includes('no-work') && c.includes('rejected-on-quality')).toBe(false)
+    }
+  })
+})

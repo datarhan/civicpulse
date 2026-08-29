@@ -121,9 +121,47 @@ export function assessManifest(m: RunManifest): ManifestFinding[] {
   const out: ManifestFinding[] = []
   const skippedTotal = Object.values(m.skipped).reduce((a, b) => a + b, 0)
 
+  // Un tercer desenlace que `no-work` no sabía nombrar: la pasada llegó al
+  // modelo, el modelo contestó TODAS las veces, y fue nuestra propia puerta de
+  // calidad la que tiró lo que devolvió.
+  //
+  // El parte real de `extract-speaker-map` del 2026-08-28: 3 trozos
+  // intentados, 0 juzgados — y 9 llamadas, 9 OK, 0 fallos, 180.414 tokens, con
+  // `skipped: { 'below-coverage-floor': 3 }`. Los tres volvieron por debajo del
+  // suelo de cobertura del 85 % (81 %, 82 % y una lectura basura del 2 %).
+  // `no-work` lo publicaba como ERROR diciendo «check retrieval and the
+  // backend» — señalando la única parte del run que funcionaba perfectamente.
+  //
+  // Es la regla 2 de CLAUDE.md aplicada a la regla misma: intentado / hecho /
+  // nunca intentado / SALTADO-CON-MOTIVO se informan por separado. El cuarto
+  // cubo ya venía en el manifiesto; quien lo tiraba era esta función.
+  //
+  // Dos guardas para que esto no se coma una avería de verdad:
+  //   · `llm.ok > 0` — un backend mudo trae ok 0 y sigue cayendo en `no-work`.
+  //   · `skippedTotal === attempted` — TODO lo intentado tiene que traer
+  //     motivo. Si sobra un solo ítem sin explicar, esto no aplica.
+  const todoSaltadoConMotivo =
+    m.attempted > 0 && m.judged === 0 && skippedTotal === m.attempted && m.llm.ok > 0
+
+  if (todoSaltadoConMotivo) {
+    const motivos = Object.entries(m.skipped)
+      .map(([motivo, n]) => `${motivo}=${n}`)
+      .join(', ')
+    out.push({
+      level: 'warn',
+      code: 'rejected-on-quality',
+      message:
+        `${m.script} processed ${m.attempted} item(s) and judged NONE — but every one ` +
+        `was skipped WITH A REASON (${motivos}) after ${m.llm.ok} successful model ` +
+        `call(s) and ${m.llm.tokens.toLocaleString('en-US')} token(s). The backend ` +
+        `answered; OUR OWN quality gate rejected the output. Look at the threshold and ` +
+        `the inputs, not at retrieval.`,
+    })
+  }
+
   // The headline failure: work was attempted and nothing came of it. This is
   // the shape that shipped as success three separate times.
-  if (m.attempted > 0 && m.judged === 0) {
+  if (!todoSaltadoConMotivo && m.attempted > 0 && m.judged === 0) {
     out.push({
       level: 'error',
       code: 'no-work',

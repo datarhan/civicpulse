@@ -120,6 +120,32 @@ function sinComentarios(t: string): string {
     .join('\n')
 }
 
+/**
+ * La ruta que `App.jsx` sirve SIN montar un `<Route>`, y el módulo que la pinta.
+ *
+ * Devuelve `null` si el patrón deja de reconocerse, para no romper a quien
+ * consulta el grafo; quien lo convierte en ruido es la prueba, que es donde un
+ * fallo así se ve una vez en vez de todos los días.
+ */
+function rutaDePortada(
+  textoApp: string,
+  componenteDe: Map<string, string>,
+): { ruta: string; fichero: string } | null {
+  const cond = textoApp.match(/const\s+(\w+)\s*=\s*location\.pathname\s*===\s*'([^']+)'/)
+  if (!cond) return null
+  const [, bandera, ruta] = cond
+  const desde = textoApp.indexOf(`if (${bandera}) {`)
+  if (desde === -1) return null
+  // Hasta el `return (` de la rama que NO es la portada, o un trozo generoso.
+  const corte = textoApp.indexOf('\n  return (', desde)
+  const bloque = textoApp.slice(desde, corte === -1 ? desde + 800 : corte)
+  for (const m of bloque.matchAll(/<(\w+)[\s/>]/g)) {
+    const fichero = componenteDe.get(m[1])
+    if (fichero) return { ruta, fichero }
+  }
+  return null
+}
+
 export function construirGrafoRutas(src: string): GrafoRutas {
   const todos = ficheros(src)
   const texto = new Map(todos.map((f) => [f, readFileSync(f, 'utf8')]))
@@ -235,10 +261,7 @@ export function construirGrafoRutas(src: string): GrafoRutas {
   /** El módulo de página de cada ruta. El bucle ya lo sabía y lo tiraba. */
   const paginaPorRuta = new Map<string, string>()
   const rutas: string[] = []
-  for (const m of textoApp.matchAll(/<Route\s+path="([^"]+)"\s+element=\{<(\w+)/g)) {
-    const [, ruta, comp] = m
-    const fichero = componenteDe.get(comp)
-    if (!fichero || ruta === '*') continue
+  const montarRuta = (ruta: string, fichero: string): void => {
     rutas.push(ruta)
     paginaPorRuta.set(ruta, fichero)
     for (const snap of alcanzaSnapshots(fichero)) {
@@ -255,6 +278,37 @@ export function construirGrafoRutas(src: string): GrafoRutas {
       rutasPorFichero.set(fich, set)
     }
   }
+
+  for (const m of textoApp.matchAll(/<Route\s+path="([^"]+)"\s+element=\{<(\w+)/g)) {
+    const [, ruta, comp] = m
+    const fichero = componenteDe.get(comp)
+    if (!fichero || ruta === '*') continue
+    montarRuta(ruta, fichero)
+  }
+
+  // LA PORTADA NO ES UN <Route>, así que este grafo no la veía — y como no la
+  // veía, la revisión lectora no la ha leído NUNCA.
+  //
+  // `App.jsx` resuelve `/` antes de llegar a `<Routes>`: `if (onLanding) return
+  // <DirectionD/>`. El bucle de arriba sólo mira `<Route path=…>`, o sea que la
+  // página más visitada del sitio quedaba fuera de `rutas`, fuera de
+  // `rutasPublicas()` y fuera del barrido nocturno. Medido: `review-sweep.log`,
+  // 144 KB desde el 13 de agosto, no tiene ni una línea de `/`. El gate decía
+  // «31 de 31 al día» sobre un conjunto que nunca la incluyó.
+  //
+  // Y no estaba limpia. Una pasada a mano del 25 de agosto dejó dos
+  // señalamientos vivos en `.review-cache.json` que ninguna guarda podía ver,
+  // uno de ellos `misleading`: «obra acumulada · 2,2 M€ de 123,7 M€», donde los
+  // 123,7 M€ son el total a diez años de TODOS los tipos de contrato, no de
+  // obra.
+  //
+  // Se deriva, no se apunta a mano: la bandera y su ruta salen del propio
+  // `location.pathname === '…'`, y el módulo, del primer componente del bloque
+  // que ya conoce el mapa de `import()`. Renombrar `DirectionD` no vuelve a
+  // perder la portada; una tabla con su nombre dentro, sí.
+  // `tests/route-graph-portada.test.ts` la fija por si el patrón cambia.
+  const portada = rutaDePortada(textoApp, componenteDe)
+  if (portada) montarRuta(portada.ruta, portada.fichero)
 
   // EL ARMAZÓN ALCANZA TODAS LAS RUTAS, y hasta ahora no alcanzaba ninguna.
   //
