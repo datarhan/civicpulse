@@ -43,6 +43,13 @@
       "reason": "El revisor confunde dos empresas. Dice que la concesión que el párrafo menciona es «un contrato de AGUA», y para eso usa la mayor adjudicación del histórico: 55.685.178,79 € de HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE, que en efecto es abastecimiento de agua. Pero SAV es S.A. AGRICULTORES DE LA VEGA DE VALENCIA, otra empresa: sus contratos en el registro son limpieza viaria (4.136.714,79 € el mayor), contenedores y parques. Y el párrafo verifica exactamente contra la fuente que cita: en coste-efectivo.json, el programa a1621 (recogida de residuos) trae modoGestion «concesion» en 2014 y «directa» en las diez entregas de 2015 a 2024. El reportaje acierta, el campo del ministerio es el que está mal, y el revisor ha juzgado la frase contra un contrato que no es el suyo — el mismo patrón que los dos descartes de /quejas. Comprobado el 29-08-2026.",
       "editor": "claude-opus-5",
       "at": "2026-08-29"
+    },
+    {
+      "route": "/reportajes/basuras",
+      "quote": "ese mismo día contenía 805 expedientes —de los que 699 están adjudicados o formalizados",
+      "reason": "El revisor compara una cifra CONGELADA con el registro de hoy. El reportaje dice «ese mismo día», y ese día es el 15 de agosto de 2026: la frase anterior lo fija («Comprobamos el 15 de agosto de 2026, contra el registro en vivo»), y el snapshot lo lleva en `registro.comprobadoEl`. Entonces eran 805 filas y 699 adjudicados; hoy son 808 y 700, y las dos cosas son ciertas a su fecha. Una cifra fechada que ya no coincide con el registro vivo no es un error, es lo que significa congelar: `check:drift` vigila justo eso y da 6 de 6 comparadas, 0 divergentes. La nota de corrección del 29-08-2026 de esta misma pieza lo dice con todas las letras, y aun así el revisor volvió a señalarlo — es el patrón de siempre, juzgar la frase contra un universo (el registro de hoy) más ancho que la frase (el registro de aquel día).",
+      "editor": "claude-opus-5",
+      "at": "2026-08-29"
     }
   ]
 }
