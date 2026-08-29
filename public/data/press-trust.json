@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-29T11:31:25.202Z",
+  "generatedAt": "2026-08-29T13:55:19.456Z",
   "windowDays": 30,
   "articles": [
     {
@@ -987,47 +987,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "ngjcec",
-      "articleFingerprint": "13jihbs",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-culmina-la-implantaci%C3%B3n-del-sistema-inteligente-de-conteo-de-visitantes-en-el-parque-natural-del-turia-y-el-n%C3%BAcleo-urbano",
-      "date": "2026-07-30T12:19:45.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "tdp628",
-      "articleFingerprint": "1ckgg60",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia%2C-pagina/horario-autob%C3%BAs-conectametro-agosto-2026",
-      "date": "2026-07-30T11:36:06.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 29,
+      "articleCount": 27,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1035,9 +1001,9 @@
         "sin-datos": 29,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.69,
+      "meanTrustScore": 2.74,
       "verifiedRatio": 0,
-      "contradictedRatio": 0
+      "contradictedRatio": null
     },
     {
       "outlet": "Periòdic del Camp de Túria",
@@ -1052,7 +1018,7 @@
       },
       "meanTrustScore": 3.2,
       "verifiedRatio": 0,
-      "contradictedRatio": 0
+      "contradictedRatio": null
     },
     {
       "outlet": "Levante-EMV",
@@ -1067,7 +1033,7 @@
       },
       "meanTrustScore": 2.67,
       "verifiedRatio": 0,
-      "contradictedRatio": 0
+      "contradictedRatio": null
     },
     {
       "outlet": "Valencia Plaza",
@@ -1082,7 +1048,7 @@
       },
       "meanTrustScore": 4,
       "verifiedRatio": 0,
-      "contradictedRatio": 0
+      "contradictedRatio": null
     },
     {
       "outlet": "Las Provincias",
@@ -1097,7 +1063,7 @@
       },
       "meanTrustScore": 3.33,
       "verifiedRatio": 0,
-      "contradictedRatio": 0
+      "contradictedRatio": null
     },
     {
       "outlet": "El Periódico de Aquí",

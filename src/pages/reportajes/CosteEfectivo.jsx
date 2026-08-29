@@ -785,10 +785,21 @@ export default function CosteEfectivo() {
           no está publicada donde se pueda enlazar. */}
       {data.laTarifa && <LaTarifa bloque={data.laTarifa} />}
 
-      <SecHead num="02" kicker="Lo que no se ve" title="El coste oficial del agua es cero" />
+      {/* «El coste oficial del agua es cero», decía este titular, y la
+          declaración ministerial lo desmiente en la mitad de sus entregas: el
+          a161 trae 1.861.058,09 € en 2014, 1.804.949,27 € en 2015,
+          1.928.056,75 € en 2016, 1.965.811,90 € en 2017 y 1.898.034,08 € en
+          2024 — la más reciente y la que /eficiencia usa de año base—, y cero
+          en las cinco de en medio. Corregido el 29-08-2026; el porqué, en la
+          nota de corrección de arriba. */}
+      <SecHead
+        num="02"
+        kicker="Lo que no se ve"
+        title="El coste oficial del agua es cero la mitad de los años"
+      />
       <P>
-        El panel del coste efectivo publica lo que cuesta cada servicio municipal. Para estos dos no
-        publica nada:
+        El panel del coste efectivo publica lo que cuesta cada servicio municipal. Para estos dos
+        publica una serie que se enciende y se apaga:
       </P>
       <Figura titulo="Las dos fichas que el panel no puede calcular" pie={data.panelCiego.nota}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

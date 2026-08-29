@@ -802,11 +802,11 @@ export default function Laboratorio() {
           }}
         >
           <strong style={{ color: 'var(--warn-ink)' }}>Extracción pendiente.</strong> Se están
-          monitorizando {fmtNumber(summary.monitoredCount)} titulares, pero el motor de extracción y
-          verificación aún no ha corrido sobre ellos: las tarjetas se muestran sin afirmaciones
-          auditadas y las tasas aparecen como «—». La cadena{' '}
-          <code>extract → verify → summarize → analytics</code> puebla estos veredictos (nocturna o
-          ejecución manual).
+          monitorizando {fmtNumber(summary.monitoredCount)} titulares, pero ninguna de sus
+          afirmaciones ha llegado todavía a un veredicto: la tasa de discrepancia aparece como «—»
+          porque no se ha examinado nada, y la de verificación marca el 0 % que le corresponde. La
+          cadena <code>extract → verify → summarize → analytics</code> puebla estos veredictos
+          (nocturna o ejecución manual).
         </div>
       )}
 

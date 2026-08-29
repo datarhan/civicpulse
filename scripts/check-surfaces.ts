@@ -51,8 +51,21 @@ function main() {
   const parte = parteFrescura(f)
   const leidas = rutas.length - f.sinLeer.length - f.rancias.length
 
-  // Descartes que ya no corresponden a ningún señalamiento vivo: sobran, y
-  // siguen armados por si esa frase vuelve por otro motivo.
+  // Descartes que hoy no corresponden a ningún señalamiento vivo. Siguen
+  // armados por si esa frase vuelve.
+  // «Sobran» era el veredicto, y no se sigue de lo que esta comprobación
+  // sabe. Un descarte sin señalamiento vivo puede ser dos cosas muy
+  // distintas: la frase desapareció de la página, o la frase SIGUE ahí y el
+  // modelo no la ha vuelto a señalar en esta pasada. Sólo la primera sobra.
+  //
+  // Medido el 2026-08-29 sobre los tres que llevaban semanas anunciándose
+  // como sobrantes: los tres seguían publicados palabra por palabra —
+  // `indicadores-friccion.ts:538` y `QuejasSpendOverlap.jsx:80` y `:109`—,
+  // así que borrarlos habría tirado tres juicios humanos y devuelto los tres
+  // avisos en el siguiente barrido. El aviso decía «sobran» y casi se le
+  // hace caso.
+  //
+  // Se dice lo que se sabe, y lo que hay que comprobar antes de tocar nada.
   const vivos = new Map(
     rutas.map((r) => [
       r,
@@ -62,7 +75,8 @@ function main() {
   const huerfanos = descartesHuerfanos(descartes, vivos)
   if (huerfanos.length > 0) {
     console.error(
-      `[check-surfaces] ${huerfanos.length} descarte(s) sin señalamiento vivo (sobran): ` +
+      `[check-surfaces] ${huerfanos.length} descarte(s) sin señalamiento vivo hoy ` +
+        `(siguen armados; comprueba si la frase sigue publicada antes de quitarlos): ` +
         huerfanos.map((d) => `${d.route} «${d.quote.slice(0, 40).replace(/\n/g, ' ')}»`).join(', '),
     )
   }

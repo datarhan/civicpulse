@@ -5,8 +5,13 @@ import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import DataAsOf from '../components/DataAsOf'
 // One RefList, not two. It was duplicated verbatim here and in PlenoFindings,
 // so a heading fixed on one surface silently left the other one lying.
+//
+// Y la misma lección otra vez, el 2026-08-29: el componente estaba compartido
+// pero la LLAMADA no, así que sacar el vídeo del pleno de los documentos
+// cotejados en FindingCard dejó esta página —la que el lector abre— enseñándolo
+// igual. Ahora se comparte la banda entera, `ListaDeCotejos`.
 import {
-  RefList,
+  ListaDeCotejos,
   QuoteProvenanceMark,
   QuoteProvenanceNote,
   citaRetenida,
@@ -171,8 +176,11 @@ export function FindingDetailCard({ f, permalink }) {
       <EvidenceBand n={2} title="Contra qué se cotejó">
         {f.crossChecked?.length || f.contradiction?.length ? (
           <>
-            <RefList refs={f.crossChecked} kind="crossChecked" plenoDate={f.plenoDate} />
-            <RefList refs={f.contradiction} kind="contradiction" plenoDate={f.plenoDate} />
+            <ListaDeCotejos
+              crossChecked={f.crossChecked}
+              contradiction={f.contradiction}
+              plenoDate={f.plenoDate}
+            />
           </>
         ) : (
           // Describe el REGISTRO, no el mundo. `pleno-findings.json` no separa

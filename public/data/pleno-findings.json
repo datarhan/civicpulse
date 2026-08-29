@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-27T13:26:24.995Z",
+  "generatedAt": "2026-08-29T11:20:48.151Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -3179,7 +3179,7 @@
       "plenoId": "otxq2c",
       "plenoDate": "2025-10-06",
       "title": "Debate de seguridad en el pleno 2025-10-06: videovigilancia y sistema COMETA",
-      "summary": "En la sesión, VOX manifestó que considera esencial el sistema COMETA en materia de seguridad, y hubo intervenciones sobre actuaciones ante la Consejería y sobre el cumplimiento de órdenes de alejamiento que no se reproducen aquí: ningún registro municipal las respalda ni las desmiente. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+      "summary": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, VOX manifestó que considera esencial el sistema COMETA en materia de seguridad. Hubo además intervenciones sobre actuaciones ante la Consejería y sobre el cumplimiento de órdenes de alejamiento que no se reproducen aquí: ningún registro municipal las respalda ni las desmiente. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
       "severity": "informational",
       "sourceClaimIds": [
         "otxq2c-078-acu-b00839",
@@ -3273,6 +3273,14 @@
           "reason": "El sumario reproducía un punto de acuerdo que la puerta editorial retiene por no constar respaldado en ningún registro municipal.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-11T08:26:45.618Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión, VOX manifestó que considera esencial el sistema COMETA en materia de seguridad, y hubo intervenciones sobre actuaciones ante la Consejería y sobre el cumplimiento de órdenes de alejamiento que no se reproducen aquí: ningún registro municipal las respalda ni las desmiente. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+          "corrected": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, VOX manifestó que considera esencial el sistema COMETA en materia de seguridad. Hubo además intervenciones sobre actuaciones ante la Consejería y sobre el cumplimiento de órdenes de alejamiento que no se reproducen aquí: ningún registro municipal las respalda ni las desmiente. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+          "reason": "El sumario daba por firme una intervención cuya cita esta misma ficha marca como procedente de la transcripción sustituida, y rotula «no consta en la transcripción revisada». Se ajusta la afirmación a lo que el registro sostiene: procede del texto anterior y nadie la ha reanclado al vigente. Lo señaló la revisión lectora de superficies.",
+          "editor": "claude-opus-5",
+          "correctedAt": "2026-08-29T11:20:48.150Z"
         }
       ]
     },

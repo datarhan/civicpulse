@@ -46,6 +46,45 @@ describe('los escalares de /laboratorio no se contradicen entre sí', () => {
     expect(s.hasEditorialContent).toBe(false)
   })
 
+  it('un corpus entero sin resolver NO publica una tasa de discrepancia del 0 %', () => {
+    // El estado real de /laboratorio el 2026-08-29: 63 filas, las 63
+    // `sin-datos`. La página publicaba «TASA DE DISCREPANCIA 0 %» al lado de
+    // «TASA DE VERIFICACIÓN 0 %», sobre las mismas 63.
+    //
+    // Las dos tasas NO son simétricas, y ahí estaba el defecto. «0 de 63
+    // verificadas» es una COBERTURA y es verdad: quien la lee concluye
+    // exactamente lo que pasa. «0 % de discrepancia» es un HALLAZGO, y sobre un
+    // corpus que nadie ha examinado se lee «hemos mirado y no hay
+    // discrepancias» cuando lo cierto es «no se ha mirado». Es el cero que en
+    // realidad es un centinela.
+    //
+    // Y el aviso que existe para decirlo —«Extracción pendiente»— no podía
+    // dispararse, porque su guarda preguntaba si había FILAS en vez de si había
+    // VEREDICTOS.
+    const verified = Array.from({ length: 63 }, (_, i) => claim(`a${i}`, 'sin-datos'))
+    const s = pressLabSummary({ press: [{ date: hace(2) }], verified }, AHORA)
+
+    expect(s.totalClaims).toBe(63)
+    expect(s.contradichoRatio, 'una discrepancia del 0 % sobre nada examinado').toBeNull()
+    expect(s.verificadoRatio, '0 de 63 verificadas sí es un hecho').toBe(0)
+    expect(s.hasEditorialContent, 'el aviso de extracción pendiente tiene que salir').toBe(false)
+  })
+
+  it('con un solo veredicto resuelto la discrepancia vuelve a ser medible', () => {
+    // La otra mitad de la guarda: en cuanto UNA fila se resuelve, la tasa
+    // existe otra vez. Sin esto, la corrección de arriba podría apagar la cifra
+    // para siempre y nadie lo notaría — que es el mismo defecto al revés.
+    const s = pressLabSummary(
+      {
+        press: [{ date: hace(2) }],
+        verified: [claim('a1', 'verificado'), claim('a2', 'sin-datos')],
+      },
+      AHORA,
+    )
+    expect(s.contradichoRatio).toBe(0)
+    expect(s.hasEditorialContent).toBe(true)
+  })
+
   it('monitorizados y auditados son cuentas distintas', () => {
     // Confundirlas exagera el trabajo hecho, que es lo que dice el docstring
     // del módulo: «a page reading 70 auditados / 0% verificado is

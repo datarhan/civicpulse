@@ -30,11 +30,21 @@ test.describe('Laboratorio (/laboratorio)', () => {
     expect(appErrors(errors)).toEqual([])
   })
 
-  // Honesty invariant (data-independent): the "Tasa de verificación" KPI shows
-  // "—" exactly when no claims have been audited, and in that state the page
-  // MUST surface the extraction-pending banner rather than a wall of empty
-  // cards. Whichever state the loaded snapshots are in, the two must agree.
-  test('shows the extraction-pending banner iff the verification rate is unavailable', async ({
+  // Honesty invariant (data-independent), reanclado el 2026-08-29 de la tasa de
+  // VERIFICACIÓN a la de DISCREPANCIA.
+  //
+  // Las dos no son simétricas, y colgar el aviso de la primera dejaba pasar
+  // justo el estado que había: 63 claims, las 63 `sin-datos`. La verificación
+  // valía «0 %» —cierto: 0 de 63 comprobadas, que es una cobertura— así que la
+  // rama del else exigía que el aviso NO saliera, y la página publicaba «TASA
+  // DE DISCREPANCIA 0 %» sin advertencia ninguna. Un 0 % de discrepancia sobre
+  // un corpus que nadie ha examinado se lee «hemos mirado y no hay
+  // discrepancias».
+  //
+  // El aviso cuelga ahora de lo que de verdad significa: si ni una sola
+  // afirmación ha llegado a un veredicto, la discrepancia no vale 0, no existe,
+  // y el aviso lo dice. Sigue sin depender del dato cargado.
+  test('shows the extraction-pending banner iff the discrepancy rate is unavailable', async ({
     page,
   }) => {
     await page.goto('/laboratorio', { waitUntil: 'domcontentloaded' })
@@ -42,19 +52,32 @@ test.describe('Laboratorio (/laboratorio)', () => {
       page.getByRole('heading', { name: 'Laboratorio de verificación de prensa' }),
     ).toBeVisible({ timeout: 8000 })
 
-    const rate = (
-      await page
-        .getByText('Tasa de verificación', { exact: true })
-        .first()
-        .locator('xpath=following-sibling::div[1]')
-        .innerText()
-    ).trim()
+    const valorKpi = async (etiqueta: string) =>
+      (
+        await page
+          .getByText(etiqueta, { exact: true })
+          .first()
+          .locator('xpath=following-sibling::div[1]')
+          .innerText()
+      ).trim()
+
+    const discrepancia = await valorKpi('Tasa de discrepancia')
     const bannerVisible = await page.getByText(/Extracción pendiente/i).isVisible()
 
-    if (rate === '—') {
-      expect(bannerVisible).toBe(true)
+    if (discrepancia === '—') {
+      expect(bannerVisible, 'sin veredictos resueltos el aviso tiene que salir').toBe(true)
     } else {
-      expect(bannerVisible).toBe(false)
+      expect(bannerVisible, 'con la discrepancia medida el aviso sobra').toBe(false)
+    }
+
+    // Y la asimetría, afirmada: la cobertura no se apaga con el hallazgo. Si
+    // alguien vuelve a poner las dos tasas en «—» a la vez, esto lo dice.
+    if (bannerVisible) {
+      const verificacion = await valorKpi('Tasa de verificación')
+      expect(
+        verificacion,
+        '«0 de 63 verificadas» es un hecho y se publica; sólo la discrepancia se calla',
+      ).not.toBe('—')
     }
   })
 
