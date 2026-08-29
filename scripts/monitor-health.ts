@@ -205,6 +205,17 @@ async function gather(): Promise<Observations> {
   // firmada— podía quedarse quieto para siempre sin que ninguna pantalla lo
   // dijera.
   for (const c of [
+    // La primera, porque es la que explica a las demás. El 2026-08-29 un rebase
+    // a medias dejó HEAD desacoplado, los cuatro agentes posteriores se saltaron
+    // por la guarda de rama, y este parte informó de cuatro problemas de DATOS
+    // mientras la causa era que no se estaba ejecutando nada. Dieciséis guardas
+    // de integridad y ninguna preguntaba si los cron habían corrido.
+    //
+    // No podía ser una fila de `EXPECTED_PASSES`: aquello lee manifiestos, y un
+    // run que muere en la guarda no escribe ninguno — su último manifiesto sólo
+    // envejece. Además `assertExpectationsAreReal` prohíbe listar un script sin
+    // instrumentar, y `press-lab` y `review-sweep` no instrumentan nada.
+    'check:cron',
     'check:json',
     'check:relations',
     // Aquí y no en `npm test`: en la nocturna los tests corren DESPUÉS de
