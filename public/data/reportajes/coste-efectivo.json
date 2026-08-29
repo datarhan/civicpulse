@@ -15,6 +15,10 @@
       {
         "fecha": "2026-08-26",
         "texto": "**Se ha corregido la comparación que descarta la pandemia, y el gráfico que la sostiene.** Decíamos «en 2020 rindieron más ayuntamientos valencianos que en cualquiera de los cuatro años siguientes — 503; sólo 2017, con 513, rindió más». La segunda mitad era falsa: el gráfico se publicó recortado en 2017 y la frase generalizaba sobre once entregas que ese gráfico no medía. Contadas las once, tres superan a 2020: 2014 con 517, 2016 con 515 y 2017 con 513. La entrega de 2020 es la cuarta más alta de once, no la segunda.\n\nEl gráfico pasa a traer las once entregas, de 2014 a 2024. No se ha retirado ni alterado ninguna de las ocho cifras publicadas el 16 de agosto: se añaden las tres que faltaban.\n\n**La conclusión no cambia.** 503 sigue por encima de 2015, 2018, 2019 y de las cuatro entregas siguientes, así que la pandemia sigue sin explicar por qué Riba-roja no rindió la suya."
+      },
+      {
+        "fecha": "2026-08-29",
+        "texto": "**Se ha corregido el titular «El coste oficial del agua es cero» y la explicación que lo acompañaba.** La declaración ministerial no viene a cero siempre: para el abastecimiento de agua (programa a161) trae 1.861.058,09 € en 2014, 1.804.949,27 € en 2015, 1.928.056,75 € en 2016, 1.965.811,90 € en 2017 y 1.898.034,08 € en 2024 —la entrega más reciente, y la que el panel usa de año base—, y cero en las cinco de en medio. El alcantarillado (a160) sigue el mismo patrón, con 514.318,78 € en 2024. El titular pasa a decir «la mitad de los años».\n\nDecíamos también que «el formulario del ministerio se rellena con cero» por tratarse de una concesión. Eso describe la mitad de la serie, no toda.\n\nY había un segundo error, y ése era nuestro: la ficha de /eficiencia rotula «coste no declarado» para estos dos servicios, y esa etiqueta no es el silencio del ministerio sino una decisión de esta web — cuando el modo de gestión es una concesión no dividimos el coste entre habitantes. Citábamos nuestra propia etiqueta como si fuera la fuente.\n\n**La conclusión no cambia.** El panel sigue sin publicar un coste por habitante para los dos servicios donde el dinero es mayor y llega a más casas. Lo que cambia es de quién es el silencio."
       }
     ]
   },
@@ -106,17 +110,17 @@
       {
         "programa": "a161",
         "label": "Abastecimiento domiciliario de agua potable",
-        "coste": "no declarado",
+        "coste": "cero en 5 de 10 entregas",
         "motivo": "concesión"
       },
       {
         "programa": "a160",
         "label": "Alcantarillado",
-        "coste": "no declarado",
+        "coste": "cero en 5 de 10 entregas",
         "motivo": "concesión"
       }
     ],
-    "porQue": "El coste efectivo mide lo que le cuesta el servicio a la entidad local. En una concesión la entidad local no paga: cobra el concesionario, directamente del recibo, y por eso el formulario del ministerio se rellena con cero. La consecuencia es que el instrumento con el que el Estado mide lo que cuestan los servicios municipales se queda ciego exactamente donde el dinero es mayor y llega a más casas."
+    "porQue": "El coste efectivo mide lo que le cuesta el servicio a la entidad local. En una concesión la entidad local no paga: cobra el concesionario, directamente del recibo. El formulario del ministerio recoge eso de forma errática: Riba-roja declaró cero en las entregas de 2018, 2019, 2021, 2022 y 2023, y en cambio 1.898.034,08 € para el agua y 514.318,78 € para el alcantarillado en la de 2024, la más reciente, con importes del mismo orden en 2014, 2015, 2016 y 2017. Y el panel de /eficiencia no publica ninguna de las dos cosas: cuando el modo de gestión es una concesión, esta web no divide el coste entre habitantes y rotula «coste no declarado» — que describe una decisión nuestra, no el silencio de la fuente. La consecuencia es la misma por dos caminos distintos: el instrumento con el que el Estado mide lo que cuestan los servicios municipales se queda ciego exactamente donde el dinero es mayor y llega a más casas."
   },
   "dinero": {
     "nota": "Recuento propio sobre los contratos adjudicados que publica el portal de contratación del ayuntamiento, 2017-2026.",

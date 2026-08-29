@@ -164,9 +164,14 @@ export function RefList({ refs, kind, plenoDate }) {
   const index = refDateIndexFor(tenders)
   const statusIndex = refStatusIndexFor(tenders)
   if (!refs || refs.length === 0) return null
-  const isCrossChecked = kind === 'crossChecked'
-  const label = t(isCrossChecked ? 'findings.refs.crossChecked' : 'findings.refs.contradiction')
-  const tone = isCrossChecked ? 'var(--ink50)' : 'var(--crit-ink)'
+  // Tres listas, no dos. `provenance` es la grabación de la propia sesión: de
+  // ahí salen las citas, así que no coteja nada — y mezclarla con los
+  // documentos hacía que una ficha sin ningún cotejo pareciera tener uno.
+  const esContradiccion = kind === 'contradiction'
+  const label = t(
+    `findings.refs.${kind === 'provenance' ? 'provenance' : esContradiccion ? 'contradiction' : 'crossChecked'}`,
+  )
+  const tone = esContradiccion ? 'var(--crit-ink)' : 'var(--ink50)'
   return (
     <div style={{ marginTop: 6 }}>
       <div
@@ -579,6 +584,39 @@ export function QuoteProvenanceNote({ entries, curatorName }) {
   )
 }
 
+/**
+ * Las tres listas de una ficha, juntas y en un solo sitio.
+ *
+ * Existe porque `RefList` ya se había duplicado literalmente entre esta página
+ * y `/hallazgos` —la cabecera de `pages/Hallazgos.jsx` lo cuenta— y de aquella
+ * vez se sacó el COMPONENTE a común, pero no las LLAMADAS: quedaron dos sitios
+ * pintando la misma banda a mano. El 2026-08-29 se sacó el vídeo del pleno de
+ * los documentos cotejados en uno de los dos, y la página que el lector abre
+ * era el otro: seguía enseñando «DOCUMENTOS COTEJADOS · PLENO-VIDEO» tal cual.
+ * Lo cazó mirar la página, no la suite.
+ *
+ * Así que ahora lo compartido es la banda entera, y un tercer sitio que la
+ * necesite no puede volver a divergir.
+ *
+ * El reparto: la grabación de la sesión es de DONDE SALEN las citas, no algo
+ * contra lo que se hayan contrastado. Publicarla bajo «Documentos cotejados»
+ * hacía que una ficha sin un solo cotejo documental —hay dos así— pareciera
+ * tener uno, justo debajo de un texto que promete haber buscado en la
+ * contratación, las subvenciones y el presupuesto.
+ */
+export function ListaDeCotejos({ crossChecked, contradiction, plenoDate }) {
+  const cotejos = crossChecked ?? []
+  const documentos = cotejos.filter((r) => r?.kind !== 'pleno-video')
+  const procedencia = cotejos.filter((r) => r?.kind === 'pleno-video')
+  return (
+    <>
+      <RefList refs={documentos} kind="crossChecked" plenoDate={plenoDate} />
+      <RefList refs={contradiction} kind="contradiction" plenoDate={plenoDate} />
+      <RefList refs={procedencia} kind="provenance" plenoDate={plenoDate} />
+    </>
+  )
+}
+
 export function FindingCard({ f }) {
   const { data: provenance } = useFindingQuoteProvenance()
   const prov = provenanceFor(provenance, f.id)
@@ -641,8 +679,18 @@ export function FindingCard({ f }) {
           <QuoteProvenanceNote entries={prov.slice(0, 3)} curatorName={f.curatorName} />
         </div>
       )}
-      <RefList refs={f.crossChecked} kind="crossChecked" plenoDate={f.plenoDate} />
-      <RefList refs={f.contradiction} kind="contradiction" plenoDate={f.plenoDate} />
+      {/* El vídeo del pleno sale de la lista de cotejos y se declara por lo que
+          es. Sin esto, «no apareció ningún dato que las confirme» quedaba
+          justo encima de un «DOCUMENTOS COTEJADOS» cuyo único renglón era la
+          grabación de esa misma sesión: el lector concluye que la búsqueda
+          documental devolvió algo. RefList ya no pinta nada con la lista
+          vacía, así que las 2 fichas que sólo tenían vídeo pasan a enseñar la
+          verdad — ningún documento — en vez de un cotejo aparente. */}
+      <ListaDeCotejos
+        crossChecked={f.crossChecked}
+        contradiction={f.contradiction}
+        plenoDate={f.plenoDate}
+      />
       {f.response && (
         <div
           style={{

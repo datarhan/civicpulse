@@ -32,6 +32,9 @@ export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.n
   }
 
   const totalClaims = verified.length
+  // Ninguna fila ha llegado a un veredicto que se pueda contar: ni confirmada
+  // ni desmentida. `sin-datos` y `parcial` no resuelven nada que dividir.
+  const sinResolver = verificado + contradicho === 0
   return {
     windowDays: WINDOW_DAYS,
     monitoredCount: inWindow.length, // headlines tracked in the rolling window
@@ -46,8 +49,29 @@ export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.n
     totalClaims,
     verificadoClaims: verificado,
     contradichoClaims: contradicho,
+    // La tasa de VERIFICACIÓN se queda en 0: «0 de 63 verificadas» es una
+    // cobertura, y es verdad. Quien la lee concluye exactamente lo que pasa —
+    // que no se ha verificado nada. No hay nada que arreglar ahí, y
+    // `tests/press-lab.js` lo fija a propósito.
     verificadoRatio: totalClaims === 0 ? null : verificado / totalClaims,
-    contradichoRatio: totalClaims === 0 ? null : contradicho / totalClaims,
-    hasEditorialContent: totalClaims > 0,
+    // La de DISCREPANCIA no es una cobertura, es un hallazgo, y ahí el 0
+    // miente: «0 %» se lee «hemos mirado y no hay discrepancias» cuando lo
+    // cierto es «no se ha mirado». Sin una sola fila resuelta, la tasa no vale
+    // 0, no existe.
+    contradichoRatio: sinResolver ? null : contradicho / totalClaims,
+    // «Hay contenido editorial» no es «hay filas»: es «hay veredictos
+    // resueltos». Con `totalClaims > 0` no podía dispararse sobre un corpus
+    // lleno de `sin-datos`, que es exactamente el estado de hoy — 63 de 63
+    // filas sin resolver — y la página publicaba «TASA DE DISCREPANCIA 0 %»
+    // al lado de «TASA DE VERIFICACIÓN 0 %» sobre las mismas 63.
+    //
+    // Un 0 % de discrepancia sobre un corpus que nadie ha examinado no
+    // significa «no hay discrepancias», significa «no se ha mirado». Es el
+    // cero-que-es-un-centinela otra vez, y el aviso que existe para decirlo
+    // —«Extracción pendiente»— estaba apagado justo cuando hacía falta.
+    //
+    // El recuento no se pierde: sigue en el pie de cada tarjeta («0 de 63
+    // claims»), que es una cobertura y sí es un hecho.
+    hasEditorialContent: !sinResolver,
   }
 }

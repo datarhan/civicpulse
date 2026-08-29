@@ -240,7 +240,19 @@ export function AlcaldeBox() {
                 title="Presupuesto municipal total de gasto"
               >
                 <span style={{ fontWeight: 700 }}>{formatBudgetEuros(budgetEuros)}</span>{' '}
-                <span style={{ color: PALETTE.ink50 }}>presupuesto</span>
+                {/*
+                  El año va AQUÍ, no sólo en el encabezado. Era la única cifra
+                  de la fila sin período propio —los contratos llevan
+                  «2017–2026» y las subvenciones el suyo—, así que el «· 2025»
+                  del título quedaba gobernando un presupuesto anual pegado a un
+                  acumulado de diez años. El lector que compara 41,5 M€ con
+                  123,7 M€ concluye lo que no es.
+                  Es la misma lección de tres líneas más abajo, aplicada a la
+                  cifra de al lado: el período tiene que estar donde se lee.
+                */}
+                <span style={{ color: PALETTE.ink50 }}>
+                  presupuesto{budgetYear ? ` ${budgetYear}` : ''}
+                </span>
               </a>
             )}
             {tendersAwarded && (

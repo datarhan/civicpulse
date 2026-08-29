@@ -202,8 +202,18 @@ export function computeTrustIndicators(opts: {
       }
     }
     const meanTrustScore = rows.reduce((acc, r) => acc + r.score, 0) / Math.max(rows.length, 1)
+    // El mismo defecto que en `src/lib/press-lab.js`, un nivel más abajo: la
+    // tabla de fiabilidad publicaba «Discrepa 0 %» en rojo para cada medio con
+    // artículos, sobre unas claims que están todas `sin-datos`. Arreglar sólo
+    // la tarjeta de arriba y dejar la tabla diciendo 0 % habría sido media
+    // corrección — y la mitad que se lee está en la tabla, medio por medio.
+    //
+    // La asimetría se mantiene: verificado es una COBERTURA («0 de 30
+    // comprobadas» es verdad y es lo que se quiere saber), discrepancia es un
+    // HALLAZGO y sobre nada examinado no vale 0, no existe.
+    const sinResolver = verdictCounts.verificado + verdictCounts.contradicho === 0
     const verifiedRatio = totalClaims === 0 ? null : verdictCounts.verificado / totalClaims
-    const contradictedRatio = totalClaims === 0 ? null : verdictCounts.contradicho / totalClaims
+    const contradictedRatio = sinResolver ? null : verdictCounts.contradicho / totalClaims
 
     outlets.push({
       outlet,

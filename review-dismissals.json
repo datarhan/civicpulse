@@ -22,6 +22,27 @@
       "reason": "El revisor mide el rango sobre las 130 asignaciones de tender-geo.json y la etiqueta habla de las 47 que SÍ tienen barrio, que es lo único que la columna suma. Medido: todas 2017–2026, situadas 2018–2026, y CERO situadas anteriores a 2018. La página acierta. Y el estrechamiento es deliberado: el filtro `zones.length > 0` de QuejasSpendOverlap.jsx lleva un comentario explicando que etiquetar con un periodo más ancho que el dinero que rotula es el mismo defecto un nivel más abajo. Mismo patrón que el descarte de /gestion: el revisor compara un universo más ancho que la frase que juzga. Es el encabezado de la misma columna que la frase de arriba, señalado por lo mismo.",
       "editor": "Sergei Lutchenko",
       "at": "2026-08-24"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "Por su parte, un grupo no identificado defendió el impacto positivo de la campaña de 2024.",
+      "reason": "El revisor empareja el CONTENIDO de una cita con la ATRIBUCIÓN de otra. En f-2026-05-11-cit-a0a379 la cita de la campaña 2024 es la [2] y su speakerGroup es null de verdad — «un grupo no identificado» es literalmente lo que dice el registro—; la pastilla «la ficha la atribuye a PSOE» que el revisor cita pertenece a la [3], una cita distinta y retenida. Y el null no es una laguna que arreglar: la corrección [0] de esa misma ficha sustituyó el «Otro» del extractor precisamente porque no era el nombre de ningún grupo, y la atribución real sigue sin determinarse. Nombrar por eliminación es lo que esa corrección evitó. Comprobado contra pleno-findings.json y finding-quote-provenance.json el 29-08-2026.",
+      "editor": "claude-opus-5",
+      "at": "2026-08-29"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "no se publica su literal aquí — tampoco se publica en el registro de declaraciones",
+      "reason": "El revisor lee el recuadro de «Literal retenido» como si hablara de la cita impresa que tiene encima, y habla de otra. En f-2026-05-11-cit-a0a379 las retenidas son la [1] (PP) y la [3] (PSOE), las dos con gate hidden; la del origen de la Fira en 2001, que es la que el revisor pone como desmentido, es la [0] y su gate es toggle: se muestra. Son citas distintas. La segunda mitad de la frase también se sostiene — con gate hidden la puerta editorial la suprime igualmente en /plenos. Lo que sí queda es un riesgo de maquetación, no de texto: 37 de 131 citas del corpus están retenidas, así que un recuadro punteado cayendo bajo una cita impresa es frecuente. Eso se arregla con la caja, no callando la frase. Comprobado el 29-08-2026.",
+      "editor": "claude-opus-5",
+      "at": "2026-08-29"
+    },
+    {
+      "route": "/reportajes/basuras",
+      "quote": "En esa misma declaración ministerial, Riba-roja consta como «gestión directa por la entidad local» en todos los ejercicios de 2015 a 2024. No puede ser cierto: la concesión de SAV estuvo vigente durante todo ese periodo. Es un error del dato oficial, y conviene saberlo antes de usar esa serie para nada.",
+      "reason": "El revisor confunde dos empresas. Dice que la concesión que el párrafo menciona es «un contrato de AGUA», y para eso usa la mayor adjudicación del histórico: 55.685.178,79 € de HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE, que en efecto es abastecimiento de agua. Pero SAV es S.A. AGRICULTORES DE LA VEGA DE VALENCIA, otra empresa: sus contratos en el registro son limpieza viaria (4.136.714,79 € el mayor), contenedores y parques. Y el párrafo verifica exactamente contra la fuente que cita: en coste-efectivo.json, el programa a1621 (recogida de residuos) trae modoGestion «concesion» en 2014 y «directa» en las diez entregas de 2015 a 2024. El reportaje acierta, el campo del ministerio es el que está mal, y el revisor ha juzgado la frase contra un contrato que no es el suyo — el mismo patrón que los dos descartes de /quejas. Comprobado el 29-08-2026.",
+      "editor": "claude-opus-5",
+      "at": "2026-08-29"
     }
   ]
 }

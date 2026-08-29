@@ -911,9 +911,19 @@ async function main() {
       )
     }
   }
-  // Descartes que ya no corresponden a ningún señalamiento vivo: sobran, y
-  // siguen ARMADOS por si esa frase vuelve un día por otro motivo. Se nombran,
-  // no se borran solos — quitar un veredicto humano lo decide un humano.
+  // Descartes que hoy no corresponden a ningún señalamiento vivo. Siguen
+  // ARMADOS por si esa frase vuelve un día por otro motivo. Se nombran, no se
+  // borran solos — quitar un veredicto humano lo decide un humano.
+  //
+  // Y ya no se dice «sobran», que era un veredicto y no se seguía de lo que
+  // esto sabe: un descarte sin señalamiento vivo puede ser que la frase
+  // desapareciera, o que siga publicada y el modelo no la haya vuelto a
+  // señalar. Medido el 2026-08-29 sobre los tres que llevaban semanas
+  // anunciándose como sobrantes: los tres seguían publicados palabra por
+  // palabra. Borrarlos habría tirado tres juicios humanos y devuelto los tres
+  // avisos en el siguiente barrido. La nota de abajo ya contaba que la
+  // primera versión de esto llamó «sobrante» a un descarte que estaba
+  // trabajando; la palabra volvió a hacer lo mismo por otra vía.
   if (!asJson) {
     // SÓLO sobre las rutas que esta pasada ha examinado, y leyendo los
     // señalamientos de la CACHÉ, no de `all`. Dos motivos, los dos medidos
@@ -932,7 +942,8 @@ async function main() {
     )
     if (huerfanos.length > 0) {
       console.log(
-        `           ${huerfanos.length} descarte(s) sin señalamiento vivo (sobran): ` +
+        `           ${huerfanos.length} descarte(s) sin señalamiento vivo hoy ` +
+          `(siguen armados; comprueba si la frase sigue publicada antes de quitarlos): ` +
           huerfanos
             .map((d) => `${d.route} «${d.quote.slice(0, 40).replace(/\n/g, ' ')}»`)
             .join(', '),

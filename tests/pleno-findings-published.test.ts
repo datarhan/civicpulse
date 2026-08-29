@@ -181,7 +181,21 @@ const expectWithdrawn = (id: string): void => {
  * El total es un registro histórico de correcciones VIVAS, no un contador que
  * sólo suba: una retirada legítima lo baja.
  */
-const TOTAL_CORRECTIONS = 146
+/*
+ * 146 → 147 el 2026-08-29, y es la CUARTA del mismo patrón que describe el
+ * bloque de arriba: `f-2025-10-06-acu-b00839` abría su sumario con «VOX
+ * manifestó que considera esencial el sistema COMETA», a secas, mientras la
+ * cita que lo sostiene lleva `solo-en-sustituida` y la propia ficha rotula «no
+ * consta en la transcripción revisada». La salvedad pasa a la frase en vez de
+ * vivir sólo en el chip.
+ *
+ * Las tres anteriores (cc8758, 3fd230, 5238db) eran todas de la sesión del
+ * 2026-01-19; ésta es de otra, así que el patrón no era de aquel lote de
+ * re-transcripción: es de cualquiera. Lo cazó la revisión lectora de
+ * superficies, no una pasada de citas — un sumario puede afirmar de más aunque
+ * todas sus citas estén bien marcadas, porque quien lo lee no lee los chips.
+ */
+const TOTAL_CORRECTIONS = 147
 const TOTAL_REMOVALS = 35
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -3453,5 +3467,62 @@ describe('published pleno findings — el reanclaje del 2026-08-10', () => {
         'f-2026-07-03-cit-df8455',
       ].filter((id) => !retractedIds.has(id)),
     )
+  })
+})
+
+describe('la grabación del pleno no se publica como documento cotejado', () => {
+  /**
+   * «DOCUMENTOS COTEJADOS · PLENO-VIDEO 11 may 2026 · YouTube», justo debajo de
+   * «se cotejaron automáticamente con la base documental municipal … y no
+   * apareció ningún dato». El lector concluye que la búsqueda documental
+   * devolvió algo. Lo que devolvió es la grabación de la MISMA sesión de la que
+   * salen las citas: procedencia, no corroboración.
+   *
+   * Se prueba el dato y la fuente a la vez, y por separado: sin la primera
+   * mitad, esto pasaría igual de verde sobre un corpus sin un solo vídeo.
+   */
+  it('hay fichas cuyo único cotejo ES el vídeo — si no, esta guarda no mide nada', () => {
+    const soloVideo = items.filter(
+      (f) => f.crossChecked.length > 0 && f.crossChecked.every((r) => r.kind === 'pleno-video'),
+    )
+    expect(items.length).toBeGreaterThan(10)
+    expect(
+      soloVideo.length,
+      'ninguna ficha tiene sólo vídeo: o el corpus cambió, o esta prueba dejó de vigilar el caso',
+    ).toBeGreaterThan(0)
+  })
+
+  it('la banda de cotejos se pinta desde UN solo componente', () => {
+    const jsx = readFileSync(resolve('src/components/PlenoFindings.jsx'), 'utf8')
+    // El reparto vive en un sitio y sólo en uno.
+    expect(jsx).toContain("const documentos = cotejos.filter((r) => r?.kind !== 'pleno-video')")
+    expect(jsx).toContain('export function ListaDeCotejos(')
+    // Y el vídeo se sigue publicando, con su nombre: quitarlo de la vista sería
+    // esconder la procedencia, que es lo contrario de lo que se busca.
+    expect(jsx).toContain('kind="provenance"')
+  })
+
+  it('LAS DOS páginas la usan — ninguna pinta RefList a mano', () => {
+    // Esto es lo que faltaba y por lo que el arreglo no llegó al lector. El
+    // componente `RefList` ya estaba compartido; las LLAMADAS no. Se cambió
+    // FindingCard, y /hallazgos —que tiene su propia llamada— siguió enseñando
+    // «DOCUMENTOS COTEJADOS · PLENO-VIDEO» exactamente igual. La cabecera de
+    // Hallazgos.jsx ya contaba esta misma lección de una vez anterior.
+    for (const ruta of ['src/components/PlenoFindings.jsx', 'src/pages/Hallazgos.jsx']) {
+      const jsx = readFileSync(resolve(ruta), 'utf8')
+      expect(jsx, `${ruta} no usa la banda compartida`).toContain('<ListaDeCotejos')
+    }
+    // Y la llamada cruda existe UNA vez en todo el repositorio: dentro de la
+    // banda compartida. Dos es la avería.
+    const componentes = readFileSync(resolve('src/components/PlenoFindings.jsx'), 'utf8')
+    const pagina = readFileSync(resolve('src/pages/Hallazgos.jsx'), 'utf8')
+    expect(componentes.split('kind="crossChecked"').length - 1).toBe(1)
+    expect(pagina.split('kind="crossChecked"').length - 1, '/hallazgos lo pinta a mano').toBe(0)
+  })
+
+  it('la etiqueta nueva existe en los dos idiomas', () => {
+    const i18n = readFileSync(resolve('src/i18n.jsx'), 'utf8')
+    const veces = i18n.split("'findings.refs.provenance'").length - 1
+    expect(veces, 'castellano y valenciano').toBe(2)
   })
 })

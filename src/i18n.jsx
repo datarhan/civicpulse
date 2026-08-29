@@ -213,7 +213,15 @@ export const CATALOGUE = {
     'map.money.obras': 'Solo obras',
     'map.money.play': 'Reproducir línea de tiempo del gasto',
     'map.money.pause': 'Pausar línea de tiempo del gasto',
-    'map.money.accum': 'obra acumulada',
+    // «obra acumulada» decía el rótulo, y la capa pinta TODO el gasto situado:
+    // el filtro «Solo obras» nace apagado. Medido sobre tenders.json con los
+    // predicados del repo, la obra es 185 filas y 17.475.488,67 € — el 14,1 %
+    // de los 123,7 M€ que la línea de debajo pone como denominador. El trozo
+    // situado tampoco es obra: de los 47 contratos con punto, 25 son obra, 13
+    // servicios y 9 suministros. Ni el numerador ni el denominador lo eran.
+    // Neutral en tipo, como el título del propio panel («Gasto situado»), que
+    // vale igual con el filtro puesto que sin él.
+    'map.money.accum': 'gasto acumulado',
     'map.money.of': 'de',
     'map.money.coverage':
       'Sólo el gasto cuyo título nombra un lugar. El resto son servicios de ámbito municipal —recogida de residuos, limpieza viaria, ayuda a domicilio— que no tienen un punto en el mapa.',
@@ -329,6 +337,14 @@ export const CATALOGUE = {
     // WHICH date is being shown, so «7 feb 2023» beneath a 2026 debate cannot
     // be read as the debate's own date.
     'findings.refs.crossChecked': 'Documentos cotejados',
+    // La grabación de la sesión NO es un documento cotejado: es de donde salen
+    // las citas. Iban en la misma lista, así que una ficha cuyo único cotejo
+    // era el vídeo del propio pleno enseñaba «DOCUMENTOS COTEJADOS ·
+    // PLENO-VIDEO» debajo de un texto que promete haber buscado en la
+    // contratación, las subvenciones y el presupuesto. Cotejo que no encuentra
+    // nada y procedencia de la cita son dos hechos, y sólo el segundo estaba
+    // ahí. Medido: de 40 hallazgos, 2 no tenían más cotejo que el vídeo.
+    'findings.refs.provenance': 'Procedencia de las citas',
     'findings.refs.contradiction': 'Documentos que contradicen',
     'findings.refs.date.award': 'adjudicación',
     'findings.refs.date.formalized': 'formalización',
@@ -771,7 +787,9 @@ export const CATALOGUE = {
     'map.money.obras': 'Només obres',
     'map.money.play': 'Reproduir la línia de temps de la despesa',
     'map.money.pause': 'Pausar la línia de temps de la despesa',
-    'map.money.accum': 'obra acumulada',
+    // Ver la nota del bloque castellano: el rótulo decía «obra» sobre una capa
+    // que pinta todo el gasto situado. Aquí además estaba sin traducir.
+    'map.money.accum': 'despesa acumulada',
     'map.money.of': 'de',
     'map.money.coverage':
       "Només la despesa el títol de la qual nomena un lloc. La resta són serveis d'àmbit municipal —recollida de residus, neteja viària, ajuda a domicili— que no tenen un punt al mapa.",
@@ -874,6 +892,7 @@ export const CATALOGUE = {
     'hallazgos.area.note':
       "Troballes les declaracions de les quals es classifiquen en esta àrea. L'atribució de cada troballa és al GRUP polític que va parlar, mai a una persona concreta.",
     'findings.refs.crossChecked': 'Documents contrastats',
+    'findings.refs.provenance': 'Procedència de les cites',
     'findings.refs.contradiction': 'Documents que contradiuen',
     'findings.refs.date.award': 'adjudicació',
     'findings.refs.date.formalized': 'formalització',

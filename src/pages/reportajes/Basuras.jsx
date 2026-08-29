@@ -658,8 +658,8 @@ export default function Basuras() {
           noticia. No lo está: ese mismo día contenía{' '}
           <span className="mono">{data.registro.filasEnRegistro}</span> expedientes —de los que{' '}
           <span className="mono">{data.registro.contratosAdjudicadosEnRegistro}</span> están
-          adjudicados o formalizados y el resto anulados, revocados o desistidos— con adjudicaciones
-          anotadas hasta el{' '}
+          adjudicados o formalizados y el resto anulados, revocados, desistidos o sin estado
+          publicado— con adjudicaciones anotadas hasta el{' '}
           <span className="mono">{data.registro.ultimaAdjudicacionDelRegistro}</span>. Se mantiene
           al día. Lo que falta es esta anotación.
         </Callout>
