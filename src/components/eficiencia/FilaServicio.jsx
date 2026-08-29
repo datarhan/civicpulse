@@ -91,8 +91,14 @@ export function FilaServicio({ indicador, formatea, x0, x1, chipHoisted = false 
         ? // NO «fuera de los libros del ayuntamiento» a secas: la revisión de
           // superficies leyó eso como que la casa no tiene ninguna relación
           // económica con el agua, y en la misma página hay una concesión de
-          // 55,69 M€ hasta 2043. Lo que está fuera es el COSTE declarado.
-          'sin coste declarado: lo paga el concesionario'
+          // 55,69 M€ hasta 2043. Lo que está fuera es la COMPARABILIDAD.
+          //
+          // Y tampoco «sin coste declarado», que es lo que decía hasta el
+          // 2026-08-29: en la entrega de 2024 el ministerio declara
+          // 1.898.034,08 € para el agua, así que esta celda desmentía a la de
+          // su izquierda en la misma fila. El hecho es que ese coste no es el
+          // del ayuntamiento, no que no exista.
+          'no comparable: lo paga el concesionario'
         : 'sin cociente en esta entrega'
       : 'no llegan a quince comparables (reglas 4 y 5)'
 
@@ -113,10 +119,22 @@ export function FilaServicio({ indicador, formatea, x0, x1, chipHoisted = false 
             un cero junto a un servicio real se lee como «aquí es gratis»: la
             trampa exacta que esta página se construyó para no pisar. Lo cazó
             review:surfaces. */}
+        {/* Tres estados, no dos. El rótulo salía de `valor === null`, que es
+            binario, así que TODO null se publicaba como «coste no declarado» —
+            el silencio de la fuente— incluido el caso que el comentario de
+            arriba describe: una concesión cuyo coste este motor descarta a
+            propósito. En la entrega de 2024 el ministerio declara
+            1.898.034,08 € para el agua y la ficha decía que no había nada.
+            Atribuir a la fuente una decisión nuestra es lo que arregla esto;
+            la decisión no cambia, se explica. */}
         <span className="cp-fila-coste mono">
-          {i.numerador.valor === null
-            ? 'coste no declarado'
-            : `${num(i.numerador.valor, 0)} € de coste declarado`}
+          {i.numerador.valor !== null
+            ? `${num(i.numerador.valor, 0)} € de coste declarado`
+            : i.numerador.declaradoNoComparable !== undefined
+              ? `${num(i.numerador.declaradoNoComparable, 0)} € declarados · no comparables (concesión)`
+              : i.numerador.motivo === 'concesion'
+                ? 'sin coste declarado (concesión)'
+                : 'coste no declarado'}
         </span>
       </td>
 
