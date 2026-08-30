@@ -1,7 +1,24 @@
 {
-  "generatedAt": "2026-08-30T04:55:01.345Z",
+  "generatedAt": "2026-08-30T10:19:03.628Z",
   "windowDays": 30,
   "articles": [
+    {
+      "articleId": "y58h6g",
+      "articleFingerprint": "1kpmp2o",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPdno4cXdwS25GRUc4bzZrdzRIZ0pneUd1VzRYT2JHc2xQR3JtV2RCTDlpY2pfMk9SQkRZb3VmcFJURmhMRTVLakpQb0lyOWwxa2czdGJsTVIwekVVcmtwWnFiOTAtdDg3WkdhUWtmLXpZUDJIVnNtY19YaTNZZFVvR0VNUjFRcGh3Q21pUTRXZ01yR2NVU1NNeTZWOGFKMGtXb3Z0aUw2WWdDQkhocmNYQmRvQkNGT3k3cm5JTTlCX21DT3N0OE1EZFYzT0NGVHfSAdQBQVVfeXFMT0FEVjBkRm1kV0xkVkJvYWpCeWZZVk90ak5KZkNGVnZQVDdvbHNKTmV6R01EekhoUEdLLW1ua0xiQ2syNUk3YWFGSUp0YnNQYXBTb2F0UlhFRHhhVDA4cHdaalppRkwtSHVYME1CMXhwTVYybWxadG5WVEstZFBOS2VmMk0tcTVxMkVUOWVrT3NUQlRfX3MxVDVWOUVSZ3VycnVjdmF6RzRNTk8zaXdZR3dwTFRUWVN5ZGdvRnVrYTFnUXBuSDN5MVpzcXUwMjRmYWowUUc?oc=5",
+      "date": "2026-08-30T04:01:33.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
     {
       "articleId": "qt6rcw",
       "articleFingerprint": "1b5ktzg",
@@ -18,6 +35,23 @@
         "opinionFraction": 0
       },
       "score": 2
+    },
+    {
+      "articleId": "1yey1aw",
+      "articleFingerprint": "kyk2sg",
+      "outlet": "El Debate",
+      "outletHost": "eldebate.com",
+      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQNFYwVlR1ZkFkWURzSWZXeTlMX0VUSGQ4UlNyYnE3Z29QaVp2Y0lsWm5xa0Nyamd2aWpTUVhuRHB4MjRJLUlhRGVuRlZKMWdiOWVmd19HaU9CVVBSdFFOUnlVLUpRX1dzYjR1UlJTRWNiZ0pzaFVNeXROU0o1cnYyMXJSbHVIVnhkcWJBV0R1S3V3VHBhQVY4WldheFc1VjVmTTF2b3RIbGQtb3hLWW80MDVpY3VYLWtlQUZvTGhaVzAydF8tMXFLMzJ2SHZrOWZwVVlzMkZsUVlrRkdnY1VsclRvbXF3R2JUYnfSAe8BQVVfeXFMT3lmaUhKc2dGeDhWenNrV0VINHBBLU9ST2NIakpad3FkejlfbkdWNGdaS01RUTd3eEg5d3FaeGZieUR0eTF5TlFZSHJmME5LVnJadmkwR2R2NU5aNTBpQkZOS1RwRGUtQlp5blFnZ21QREdvaDFweGVyckQweEpDbUl0UlJIRzNGdW11RzRuVlQ0UEg2UVA4bWU1TnpZNEVYVllrLWFUcWR5ZlFTMndIaExjUXktQjdHOVgtSzBaWTh4RHd4dXNHZXIyUGJNVS1KRGh3U0lyTTBIQ2cxTTZNZTFzNER0RWpjdXVNT2FhMFU?oc=5",
+      "date": "2026-08-29T02:30:00.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 1
     },
     {
       "articleId": "1xjkmc",
@@ -224,23 +258,6 @@
       "score": 3
     },
     {
-      "articleId": "17iw9j4",
-      "articleFingerprint": "re5p73",
-      "outlet": "Levante-EMV",
-      "outletHost": "levante-emv.com",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNVW94SUZNUGlFN2VWYS04NC02cFV3bFNkUjkydk8xcXJvaG90SHEyZ0xyVjZYNXNFSkVhcGE5LThBTzVLMnRTeHd4b2dPRTdCZzI5UlRvakJrV3lISmozd0hGSm1wQ3JmRVluZmFJTFAzbjVGNGk2cjhnV1R5WHVNdEpVVjhoMjdWeVp1aG5SbXQxejk4V243SHc5UmFOZFZBaXpVWUwtb3FVSWRpY1pBdtIBtgFBVV95cUxQd2pLa2xWTERQd000UHRRU1o1X25qbEVJUldvVmR3VUptc0lfNkFnaGJobUtJVDJLR0F1WjVnRGFUVmNaQzRoQlFQZEFaUU1OLWlZUFJnekxpeVNHQ2J3TzdmS192ODRmZUR6NWxxOGF4LUJqYVVOTGFfN0hrNko3akxUSzdVeDFlM0ZNWldjMUtkcnZkdFN4eEJ6anQ0cGwtN3NWeVZMdnJteEdKbzNZT0tvU1JkZw?oc=5",
-      "date": "2026-08-24T17:05:02.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 4
-    },
-    {
       "articleId": "d5303u",
       "articleFingerprint": "1810o54",
       "outlet": "COPE",
@@ -290,23 +307,6 @@
         "opinionFraction": 0
       },
       "score": 4
-    },
-    {
-      "articleId": "hjdieg",
-      "articleFingerprint": "y2f3do",
-      "outlet": "Levante-EMV",
-      "outletHost": "levante-emv.com",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOdjgyZ1MwX04xRDduNDR4RGdUSkxpRWNZQnk2QWNOTWhOR2ZqOGlUV1EzdDFfTTNoaUdjTnE2ZTN1YUtHNXFwNFJET1I3Ykdkak5rcnJMSVBRNXhLRXVOaXNycEVwV0QwVDFmQ0k2VEJvVmxVU25mdU1UcHU4djRkNVlGaGZhang4cTJ3aE9Ra0hpWnRfeXFOai1GZWtqTVJTYUozWjJSaVctdHNXd2UtRTRCSGJpdjTSAbwBQVVfeXFMTmRPVG53T2g2aFFQdTUyV2cxbFUyaVZaV0ZYVFBGNXFQX1JKa1BDUFhhbmw4azl4Rl9ZYmFqYzlhLUJ3R1Y2RFVXOGlNUTlQQ1BXOGE4M2s4WjFBZ0ZKcnpybE9PY3N0Nl9McjZoYndnMXEwWkRTWWtXTmRMM0RYRFJ3R3lUNWptZERDcHhIdnVnU0dkenYtMGZhaFBaVnN2N0xlM1RkMWhBZlo0cUZIak9GNzFtSW5iX1JPMzI?oc=5",
-      "date": "2026-08-23T04:00:33.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     },
     {
       "articleId": "y1bw9k",
@@ -581,11 +581,11 @@
       "score": 2
     },
     {
-      "articleId": "bp13b8",
-      "articleFingerprint": "1ato0ec",
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
-      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNYXBUQURFRkc2clZXSDlvWWJiVVVTY2JLczNEb2xiMFFCZmw4NkhkWlJBN2JTN1VaSUhhVWY4TVBoMDhQZm1lMDhYd0JNUXVEYzJ3VzZaamdrc1otREZzMkt3OUt5X0lUNGVuRXF5bENudjkxS1dxSUg5WXRaUzdhNjZZa2ZkUlBGMXlacDVBeU81LXR4em1NRmNHTkR3eGVJclHSAacBQVVfeXFMUDJGRDE5Y1JNd2czUVI2c3kwN1REY3ZCTXhmblpXWW1SeXNXMk03YzVWNXB1LXN1eHlBSk1iUWdzZEVWQTN0M2JwVGlPa1FJRjZYeU5XOVFkSWhHZDRLdnI0TU5HSHdlaGlXMVd3WW5jYjdBS3pvNDRtNlBEeTBsbHlqRFl3NUlxMjhoY0M0Z1NQWm9uSUwyZDVPODZYUXVzZGV2cjNKR1U?oc=5",
+      "articleId": "17gleav",
+      "articleFingerprint": "1xd1f7z",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNV09VM0VsOFQ2NndmVlNDVFdOMXdJQ3JtZm5KRWdMbWtEdXBpUzlhUml0VGhHbFFuVjNKWFJ2ZmVYeTlpMm5fR2Q2YkREb1RPam9HRHdtYW1hMTYyVGJSZmd5ZUhzNm00UXl3MDlTcEFrSFVnWjU0TDZkbGp6TXpVcnFRR2d6UGZyUXZsTkRCRFdic20tQ1lvVDZFVHJwazBLUUdYNmNoWmFvTUtDVFNQWlVlRW5ZWkxXUFR5cnRsR0lQT0VmQ3dVVlFrdVc1cW9fYk95ak5keFcwNmhDVURGNzdTT29UcWN5dlItd0t3Rl9xVmhyNXA1bVJkUkNJUDlv0gGGAkFVX3lxTE9iVTNob2J1TGoxT2tfc2FHSGhxeWtPWGJrYThNQ1RRczkzdGU3U2dhSk0ycjVYSjFjbl9NU1BQTW5ZR1JVS09zUy00WWFzVWNXLUNUNVJyOGxhU25mMkxrV2lNVkVJeFhZSU10UXlJSnRibnVkU0pqMVFpTE4yRXM0Z2ZoU3dmbnhqMWRHVVFZQmVSMThiSUZIRjN6Mmo2SzFCclZsVnpWa0FfVTRrNmpVRnVaUXBTOFVLZHhhMlR6NU14Vi1yTmp1Q2phN0xfWjVxalNCRTJ6OWlTcTBHT05QTm5RTUNoWVZRQl9ab0JabnY4ckxYS3lGQlhvUXFqNmNHRVMzQnc?oc=5",
       "date": "2026-08-15T07:00:00.000Z",
       "indicators": {
         "localCoverage": true,
@@ -598,11 +598,11 @@
       "score": 3
     },
     {
-      "articleId": "17gleav",
-      "articleFingerprint": "1xd1f7z",
-      "outlet": "Levante-EMV",
-      "outletHost": "levante-emv.com",
-      "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNV09VM0VsOFQ2NndmVlNDVFdOMXdJQ3JtZm5KRWdMbWtEdXBpUzlhUml0VGhHbFFuVjNKWFJ2ZmVYeTlpMm5fR2Q2YkREb1RPam9HRHdtYW1hMTYyVGJSZmd5ZUhzNm00UXl3MDlTcEFrSFVnWjU0TDZkbGp6TXpVcnFRR2d6UGZyUXZsTkRCRFdic20tQ1lvVDZFVHJwazBLUUdYNmNoWmFvTUtDVFNQWlVlRW5ZWkxXUFR5cnRsR0lQT0VmQ3dVVlFrdVc1cW9fYk95ak5keFcwNmhDVURGNzdTT29UcWN5dlItd0t3Rl9xVmhyNXA1bVJkUkNJUDlv0gGGAkFVX3lxTE9iVTNob2J1TGoxT2tfc2FHSGhxeWtPWGJrYThNQ1RRczkzdGU3U2dhSk0ycjVYSjFjbl9NU1BQTW5ZR1JVS09zUy00WWFzVWNXLUNUNVJyOGxhU25mMkxrV2lNVkVJeFhZSU10UXlJSnRibnVkU0pqMVFpTE4yRXM0Z2ZoU3dmbnhqMWRHVVFZQmVSMThiSUZIRjN6Mmo2SzFCclZsVnpWa0FfVTRrNmpVRnVaUXBTOFVLZHhhMlR6NU14Vi1yTmp1Q2phN0xfWjVxalNCRTJ6OWlTcTBHT05QTm5RTUNoWVZRQl9ab0JabnY4ckxYS3lGQlhvUXFqNmNHRVMzQnc?oc=5",
+      "articleId": "bp13b8",
+      "articleFingerprint": "1ato0ec",
+      "outlet": "Las Provincias",
+      "outletHost": "lasprovincias.es",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNYXBUQURFRkc2clZXSDlvWWJiVVVTY2JLczNEb2xiMFFCZmw4NkhkWlJBN2JTN1VaSUhhVWY4TVBoMDhQZm1lMDhYd0JNUXVEYzJ3VzZaamdrc1otREZzMkt3OUt5X0lUNGVuRXF5bENudjkxS1dxSUg5WXRaUzdhNjZZa2ZkUlBGMXlacDVBeU81LXR4em1NRmNHTkR3eGVJclHSAacBQVVfeXFMUDJGRDE5Y1JNd2czUVI2c3kwN1REY3ZCTXhmblpXWW1SeXNXMk03YzVWNXB1LXN1eHlBSk1iUWdzZEVWQTN0M2JwVGlPa1FJRjZYeU5XOVFkSWhHZDRLdnI0TU5HSHdlaGlXMVd3WW5jYjdBS3pvNDRtNlBEeTBsbHlqRFl3NUlxMjhoY0M0Z1NQWm9uSUwyZDVPODZYUXVzZGV2cjNKR1U?oc=5",
       "date": "2026-08-15T07:00:00.000Z",
       "indicators": {
         "localCoverage": true,
@@ -936,64 +936,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "1vofow",
-      "articleFingerprint": "17u6xx8",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/listado-definitivo-de-personas-admitidas-al-campamento-de-riba-roja-de-t%C3%BAria-2026",
-      "date": "2026-07-31T10:01:12.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "1phaklg",
-      "articleFingerprint": "1awjuqk",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-reconoce-la-labor-del-alumnado-y-el-profesorado-del-conservatorio-profesional-de-m%C3%BAsica-tras-la-consecuci%C3%B3n-de-diversos-premios-en-concursos-de-piano",
-      "date": "2026-07-31T09:21:51.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "1bwppt0",
-      "articleFingerprint": "pvbc80",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/consulta-p%C3%BAblica-modificaci%C3%B3n-ordenanza-reguladora-de-las-prestaciones-econ%C3%B3micas-de-urgencia",
-      "date": "2026-07-31T07:49:22.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 27,
+      "articleCount": 24,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1001,7 +950,7 @@
         "sin-datos": 29,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.74,
+      "meanTrustScore": 2.83,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1023,16 +972,16 @@
     {
       "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
-      "articleCount": 9,
+      "articleCount": 8,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 2,
+        "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.67,
-      "verifiedRatio": 0,
+      "meanTrustScore": 2.5,
+      "verifiedRatio": null,
       "contradictedRatio": null
     },
     {
@@ -1069,6 +1018,21 @@
       "outlet": "El Periódico de Aquí",
       "outletHost": "elperiodicodeaqui.com",
       "articleCount": 2,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 1,
+      "verifiedRatio": null,
+      "contradictedRatio": null
+    },
+    {
+      "outlet": "El Debate",
+      "outletHost": "eldebate.com",
+      "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1127,9 +1091,9 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "0a76ea8fa0c1",
+    "plenos-agendas.json": "ef48e99d5bf8",
     "press-claims-verified.json": "20087c8edf48",
-    "press.json": "1aab4ff2eaae",
+    "press.json": "e9b196a488f5",
     "promises.json": "d18811c11210"
   }
 }
