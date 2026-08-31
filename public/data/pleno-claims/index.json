@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28T11:38:08.802Z",
+  "generatedAt": "2026-08-31T22:15:10.619Z",
   "version": "1",
   "plenos": [
     {
@@ -34,7 +34,7 @@
         "movilidad": 4,
         "salud": 1
       },
-      "bytes": 415310
+      "bytes": 415313
     },
     {
       "plenoId": "brxx5g",
@@ -262,10 +262,10 @@
       "plenoDate": "2026-01-19",
       "chunkPath": "pleno-claims/19gax3o.json",
       "itemCount": 343,
-      "toggleCount": 342,
+      "toggleCount": 341,
       "byVerdict": {
-        "sin-datos": 341,
-        "parcial": 2
+        "sin-datos": 340,
+        "parcial": 3
       },
       "byType": {
         "afirmacion_numerica": 142,
@@ -287,7 +287,7 @@
         "social": 4,
         "educacion": 2
       },
-      "bytes": 468808
+      "bytes": 469474
     },
     {
       "plenoId": "1pe3qs8",
@@ -619,8 +619,8 @@
     "items": 4664,
     "plenos": 22,
     "byVerdict": {
-      "sin-datos": 4650,
-      "parcial": 12,
+      "sin-datos": 4649,
+      "parcial": 13,
       "verificado": 2
     },
     "byTopicVerdict": {
@@ -643,8 +643,8 @@
         "parcial": 7
       },
       "urbanismo": {
-        "sin-datos": 856,
-        "parcial": 1
+        "sin-datos": 855,
+        "parcial": 2
       },
       "transparencia": {
         "sin-datos": 619,
@@ -795,7 +795,7 @@
     },
     "sinDatosPorque": {
       "sinCorpus": 2804,
-      "comprobadoSinHallar": 1846
+      "comprobadoSinHallar": 1845
     }
   }
 }

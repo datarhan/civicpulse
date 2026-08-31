@@ -1,6 +1,6 @@
 {
   "plenoId": "1sqj7is",
-  "generatedAt": "2026-08-28T08:13:52.145Z",
+  "generatedAt": "2026-08-31T16:20:01.359Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -1834,8 +1834,8 @@
     "failedChunks": [
       {
         "chunk": 3,
-        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-        "attempts": 1,
+        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=AQ.Ab8RN6Ka_IH7ak4g6aO6_0HnSoBKeM4GOOcHspPlleSm261-_A -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5199646 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -1844,8 +1844,8 @@
       },
       {
         "chunk": 4,
-        "why": "covered 73% (floor 85%)",
-        "attempts": 1,
+        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=AQ.Ab8RN6Ka_IH7ak4g6aO6_0HnSoBKeM4GOOcHspPlleSm261-_A -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5111199 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -1854,15 +1854,33 @@
       },
       {
         "chunk": 5,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=AQ.Ab8RN6Ka_IH7ak4g6aO6_0HnSoBKeM4GOOcHspPlleSm261-_A -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5144465 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
       },
       {
         "chunk": 6,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=AQ.Ab8RN6Ka_IH7ak4g6aO6_0HnSoBKeM4GOOcHspPlleSm261-_A -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5159806 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
       },
       {
         "chunk": 7,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=AQ.Ab8RN6Ka_IH7ak4g6aO6_0HnSoBKeM4GOOcHspPlleSm261-_A -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5388793 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
       },
       {
         "chunk": 8,
@@ -1949,15 +1967,15 @@
         "why": "never attempted (call budget spent; resumes next run)"
       }
     ],
-    "labelsSeen": 4,
+    "labelsSeen": 0,
     "rowsAccepted": 0,
     "rowsRejected": 5,
     "rejectedBy": {
       "unresolvable": 1,
       "relation-contradicted": 4
     },
-    "attemptedThisRun": 3,
-    "apiCalls": 7,
+    "attemptedThisRun": 5,
+    "apiCalls": 15,
     "coverage": 0.06524570581504958
   }
 }

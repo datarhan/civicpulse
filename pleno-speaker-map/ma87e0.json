@@ -1,6 +1,6 @@
 {
   "plenoId": "ma87e0",
-  "generatedAt": "2026-08-28T07:46:36.826Z",
+  "generatedAt": "2026-08-31T11:43:11.212Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -6781,8 +6781,8 @@
       },
       {
         "chunk": 13,
-        "why": "covered 82% (floor 85%)",
-        "attempts": 2,
+        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=AQ.Ab8RN6Ka_IH7ak4g6aO6_0HnSoBKeM4GOOcHspPlleSm261-_A -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5323151 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
+        "attempts": 3,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -6799,8 +6799,8 @@
       "evidence-speaker-mismatch": 1,
       "ambiguous": 1
     },
-    "attemptedThisRun": 3,
-    "apiCalls": 9,
+    "attemptedThisRun": 1,
+    "apiCalls": 3,
     "coverage": 0.8586554664118122
   }
 }

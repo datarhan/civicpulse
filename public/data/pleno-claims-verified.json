@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-28T11:38:07.903Z",
-  "composedAt": "2026-08-28T11:38:08.481Z",
+  "generatedAt": "2026-08-31T22:15:09.860Z",
+  "composedAt": "2026-08-31T22:15:10.325Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -9,14 +9,14 @@
     "total": 6919,
     "byVerdict": {
       "verificado": 2,
-      "parcial": 12,
+      "parcial": 13,
       "contradicho": 0,
-      "sin-datos": 6905,
+      "sin-datos": 6904,
       "promesa-repetida": 0
     },
     "sinDatosPorque": {
       "sinCorpus": 4288,
-      "comprobadoSinHallar": 2617
+      "comprobadoSinHallar": 2616
     }
   },
   "items": [
@@ -5612,7 +5612,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h4tiCELtfEdxseVhcqrkhw%3D%3D",
-            "snippet": "Contrato administrativo de obras para el proyecto de “Asfaltado y reasfaltado de viales urbanos y caminos rurales de Riba-roja de Túria” Plan RENOVE , dividido en 6 lotes. · Ayuntamiento de Riba-roja de Túria · BECSA SA · construction · 76.082 €",
+            "snippet": "Contrato administrativo de obras para el proyecto de “Asfaltado y reasfaltado de viales urbanos y caminos rurales de Riba-roja de Túria” Plan RENOVE , dividido en 6 lotes. · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · construction · 76.082 €",
             "similarity": 0.98,
             "stance": "checked"
           }
@@ -65710,9 +65710,17 @@
       },
       "verification": {
         "claimId": "19gax3o-034-cit-8174e3",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2FkhmkNb0THlJ8Trn0ZPzLw%3D%3D",
+            "snippet": "Contratación de las Obras de reurbanización y mejora de la calle Joan Martorell a la calle Sagunto por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de Ciudades y comunidades sostenibles de la Agenda 2030, por tramitación ordinaria (Ctto. 37/2026) · Ayuntamiento de Riba-roja de Túria · construction · estado: unknown",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"

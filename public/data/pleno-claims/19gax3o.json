@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28T11:38:08.802Z",
+  "generatedAt": "2026-08-31T22:15:10.619Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -1738,15 +1738,23 @@
       },
       "verification": {
         "claimId": "19gax3o-034-cit-8174e3",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2FkhmkNb0THlJ8Trn0ZPzLw%3D%3D",
+            "snippet": "Contratación de las Obras de reurbanización y mejora de la calle Joan Martorell a la calle Sagunto por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de Ciudades y comunidades sostenibles de la Agenda 2030, por tramitación ordinaria (Ctto. 37/2026) · Ayuntamiento de Riba-roja de Túria · construction · estado: unknown",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
