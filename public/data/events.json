@@ -1,85 +1,15 @@
 {
-  "generatedAt": "2026-08-30T10:04:47.107Z",
+  "generatedAt": "2026-08-31T11:03:29.783Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 29,
+    "upcoming": 39,
     "nextDate": "2026-08-31T18:00:00.000Z"
   },
   "events": [
-    {
-      "id": "10jym2l",
-      "title": "Cine 'Desalojo'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27desalojo%27",
-      "eventDate": "2026-05-21T18:00:00.000Z",
-      "eventDateText": "21 de mayo de 2026 20:00",
-      "publishedDate": "2026-05-21T17:29:13.000Z",
-      "excerpt": "Cortometraje con entrada gratuita en el Auditori de Riba roja y que esta realizado por el director local Carlos Bigorra Badia, interpretado por Lola Molto y Nando Pascual.",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Cartel%20pelicula.jpg?itok=nQKyt6WE"
-    },
-    {
-      "id": "1poi9bk",
-      "title": "Competiciones deportivas 28 de mayo de 2026",
-      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-28-de-mayo-de-2026",
-      "eventDate": "2026-05-28T17:00:00.000Z",
-      "eventDateText": "28 de mayo de 2026 19:00",
-      "publishedDate": "2026-05-27T12:53:04.000Z",
-      "excerpt": null,
-      "image": null
-    },
-    {
-      "id": "x0m01s",
-      "title": "IV Festival de Guitarra",
-      "link": "https://www.ribarroja.es/es/evento/iv-festival-de-guitarra",
-      "eventDate": "2026-05-29T16:30:00.000Z",
-      "eventDateText": "29 de mayo de 2026 18:30",
-      "publishedDate": "2026-05-25T16:11:43.000Z",
-      "excerpt": "Viernes 29 de mayo a las 18:30 horas en la Sala Noble del Castillo, tendrá lugar el IV Festival de Guitarra del Conservatorio Profesional Municipal de Música de Riba-roja de Túria.",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260525%20Festival%20Guitarra.jpeg?itok=BoM61a8z"
-    },
-    {
-      "id": "cjza2g",
-      "title": "Competiciones deportivas 30 de mayo de 2026",
-      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-30-de-mayo-de-2026",
-      "eventDate": "2026-05-30T06:00:00.000Z",
-      "eventDateText": "30 de mayo de 2026 08:00",
-      "publishedDate": "2026-05-27T12:43:45.000Z",
-      "excerpt": null,
-      "image": null
-    },
-    {
-      "id": "zc3q5g",
-      "title": "V Jornadas de Memòria Històrica",
-      "link": "https://www.ribarroja.es/es/evento/v-jornadas-de-mem%C3%B2ria-hist%C3%B2rica",
-      "eventDate": "2026-05-30T08:00:00.000Z",
-      "eventDateText": "30 de mayo de 2026 10:00",
-      "publishedDate": "2026-05-25T16:15:57.000Z",
-      "excerpt": "Sábado 30 de mayo de 10:00 a13:45 horas en la Sala Noble del Castell, tendrán lugar las V Jornadas de Memòria Històrica de Riba-roja de Turia",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260525%20Memoria%202026%202.jpeg?itok=OGC4fULf"
-    },
-    {
-      "id": "qpij0w",
-      "title": "Concurso de dibujo y pintura de la Coordinadora en Defensa de los Bosques del Turia",
-      "link": "https://www.ribarroja.es/es/evento/concurso-de-dibujo-y-pintura-de-la-coordinadora-en-defensa-de-los-bosques-del-turia",
-      "eventDate": "2026-05-30T09:00:00.000Z",
-      "eventDateText": "30 de mayo de 2026 11:00",
-      "publishedDate": "2026-05-25T17:06:40.000Z",
-      "excerpt": "Sábado 30 de mayo en la Sala Ascensión Chirivella, tendrá lugar, el concurso de dibujo y pintura impulsado por la&nbsp; Coordinadora en Defensa de los Bosques del Turia &nbsp;que está dirigido a escolares de los municipi…",
-      "image": null
-    },
-    {
-      "id": "1fhplya",
-      "title": "Competiciones deportivas 31 de mayo de 2026",
-      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-31-de-mayo-de-2026",
-      "eventDate": "2026-05-31T07:00:00.000Z",
-      "eventDateText": "31 de mayo de 2026 09:00",
-      "publishedDate": "2026-05-27T12:50:20.000Z",
-      "excerpt": null,
-      "image": null
-    },
     {
       "id": "uxwbx2",
       "title": "Competiciones deportivas 6 de junio de 2026",
@@ -91,16 +21,6 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas.jpg?itok=QwfknWQ4"
     },
     {
-      "id": "y2sn57",
-      "title": "Cine 'Michael'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27michael%27",
-      "eventDate": "2026-06-06T20:30:00.000Z",
-      "eventDateText": "06 de junio de 2026 22:30",
-      "publishedDate": "2026-05-22T10:14:01.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260521%20michael_1.jpg?itok=VVbvdj1v"
-    },
-    {
       "id": "ntnzkw",
       "title": "Competiciones deportivas 7 de junio de 2026",
       "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-7-de-junio-de-2026",
@@ -109,26 +29,6 @@
       "publishedDate": "2026-06-04T10:53:57.000Z",
       "excerpt": null,
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas_0.jpg?itok=SmAN0llL"
-    },
-    {
-      "id": "b37x58",
-      "title": "Cine 'Los legendarios'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27los-legendarios%27",
-      "eventDate": "2026-06-07T15:00:00.000Z",
-      "eventDateText": "07 de junio de 2026 17:00",
-      "publishedDate": "2026-05-22T10:18:36.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260521%20los%20legendarios.jpg?itok=CuKj3Oty"
-    },
-    {
-      "id": "1g9ngsg",
-      "title": "Cine 'Michael'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27michael%27-0",
-      "eventDate": "2026-06-07T17:00:00.000Z",
-      "eventDateText": "07 de junio de 2026 19:00",
-      "publishedDate": "2026-05-22T11:05:20.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260521%20michael_0.jpg?itok=8Y9bZ0AD"
     },
     {
       "id": "1hi28cw",
@@ -401,16 +301,6 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/19%20don%20quijote%20en%20los%20infiernos.jpg?itok=VK0geBLc"
     },
     {
-      "id": "1v4yj6t",
-      "title": "Musical 'Viaje a Oz'",
-      "link": "https://www.ribarroja.es/es/evento/musical-%27viaje-a-oz%27",
-      "eventDate": "2026-09-20T16:00:00.000Z",
-      "eventDateText": "20 de septiembre de 2026 18:00",
-      "publishedDate": "2026-05-31T11:10:31.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20%20viaje%20a%20oz.jpg?itok=SNEXbncR"
-    },
-    {
       "id": "1s18y44",
       "title": "Ópera 'Madama Butterfly'",
       "link": "https://www.ribarroja.es/es/evento/%C3%B3pera-%27madama-butterfly%27",
@@ -419,6 +309,46 @@
       "publishedDate": "2026-05-31T12:01:10.000Z",
       "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/21%20madama%20buterflay.jpg?itok=ZByBU8pL"
+    },
+    {
+      "id": "wwknro",
+      "title": "Cine 'La isla olvidada'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27la-isla-olvidada%27",
+      "eventDate": "2026-10-10T15:00:00.000Z",
+      "eventDateText": "10 de octubre de 2026 17:00",
+      "publishedDate": "2026-08-31T06:42:14.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20la%20isla%20olvidada.jpg?itok=uO6t6yrw"
+    },
+    {
+      "id": "1x23hfw",
+      "title": "Cine 'Tadeo Jones y la lámpara maravillosa'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27tadeo-jones-y-la-l%C3%A1mpara-maravillosa%27",
+      "eventDate": "2026-10-10T17:00:00.000Z",
+      "eventDateText": "10 de octubre de 2026 19:00",
+      "publishedDate": "2026-08-31T06:45:34.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20tadeojones%20y%20la%20lampara.jpg?itok=wQeX3DNQ"
+    },
+    {
+      "id": "ltq6m1",
+      "title": "Cine 'Tadeo Jones y la lámpara maravillosa'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27tadeo-jones-y-la-l%C3%A1mpara-maravillosa%27-0",
+      "eventDate": "2026-10-11T15:00:00.000Z",
+      "eventDateText": "11 de octubre de 2026 17:00",
+      "publishedDate": "2026-08-31T06:49:22.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20tadeojones%20y%20la%20lampara_0.jpg?itok=i61rCYbW"
+    },
+    {
+      "id": "d9hcm0",
+      "title": "Cine 'Burundanga'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27burundanga%27",
+      "eventDate": "2026-10-11T17:00:00.000Z",
+      "eventDateText": "11 de octubre de 2026 19:00",
+      "publishedDate": "2026-08-31T06:52:12.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20burundanga.jpg?itok=35yx-aCt"
     },
     {
       "id": "z5khol",
@@ -431,26 +361,6 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/22%20A%20el%20sants%20inocents.jpg?itok=GU_k-2ML"
     },
     {
-      "id": "v2hrac",
-      "title": "Música 'Del Barroco al Jazz'",
-      "link": "https://www.ribarroja.es/es/evento/m%C3%BAsica-%27del-barroco-al-jazz%27",
-      "eventDate": "2026-10-22T17:00:00.000Z",
-      "eventDateText": "22 de octubre de 2026 19:00",
-      "publishedDate": "2026-05-31T11:16:05.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/23%20del%20barroco%20al%20jazz.jpg?itok=5H2l6gkN"
-    },
-    {
-      "id": "d04qgp",
-      "title": "Teatro 'Asesinato en el Orient Express'",
-      "link": "https://www.ribarroja.es/es/evento/teatro-%27asesinato-en-el-orient-express%27",
-      "eventDate": "2026-10-31T18:00:00.000Z",
-      "eventDateText": "31 de octubre de 2026 19:00",
-      "publishedDate": "2026-05-31T11:17:59.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260823%2024%20asesinato%20en%20el%20orient%20expres.jpg?itok=-Huo9u0Z"
-    },
-    {
       "id": "1raez6o",
       "title": "Concierto 'Messiah'",
       "link": "https://www.ribarroja.es/es/evento/concierto-%27messiah%27",
@@ -461,6 +371,66 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260823%20el%20mesias%20final%20.jpg?itok=w2rXSRVU"
     },
     {
+      "id": "nfc8cc",
+      "title": "Cine 'Ruega por nosotras'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27ruega-por-nosotras%27",
+      "eventDate": "2026-11-20T21:00:00.000Z",
+      "eventDateText": "20 de noviembre de 2026 22:00",
+      "publishedDate": "2026-08-31T06:54:17.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20ruega%20por%20nosotras.jpg?itok=DVbJlZWg"
+    },
+    {
+      "id": "jcce5",
+      "title": "Cine 'El gato con sombrero'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27el-gato-con-sombrero%27",
+      "eventDate": "2026-11-22T16:00:00.000Z",
+      "eventDateText": "22 de noviembre de 2026 17:00",
+      "publishedDate": "2026-08-31T06:57:50.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20el%20gato%20con%20sombrero.jpg?itok=I5vxB-yi"
+    },
+    {
+      "id": "wghwd8",
+      "title": "Cine 'Ruega por nosotras'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27ruega-por-nosotras%27-0",
+      "eventDate": "2026-11-22T18:00:00.000Z",
+      "eventDateText": "22 de noviembre de 2026 19:00",
+      "publishedDate": "2026-08-31T06:56:22.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20ruega%20por%20nosotras_0.jpg?itok=RxIqXymc"
+    },
+    {
+      "id": "b0floj",
+      "title": "Cine 'Street fighter'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27street-fighter%27",
+      "eventDate": "2026-11-27T21:00:00.000Z",
+      "eventDateText": "27 de noviembre de 2026 22:00",
+      "publishedDate": "2026-08-31T06:59:21.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20street%20figher.jpg?itok=6L6IBGPm"
+    },
+    {
+      "id": "1b50gro",
+      "title": "Cine 'La patrulla canina, la dino película'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27la-patrulla-canina%2C-la-dino-pel%C3%ADcula%27",
+      "eventDate": "2026-11-29T16:00:00.000Z",
+      "eventDateText": "29 de noviembre de 2026 17:00",
+      "publishedDate": "2026-08-31T07:02:51.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20la%20patrulla%20canina.jpg?itok=WsYVKN2v"
+    },
+    {
+      "id": "liboz2",
+      "title": "Cine 'Street fighter'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27street-fighter%27-0",
+      "eventDate": "2026-11-29T18:00:00.000Z",
+      "eventDateText": "29 de noviembre de 2026 19:00",
+      "publishedDate": "2026-08-31T07:01:39.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20street%20figher_0.jpg?itok=QX-3iMTN"
+    },
+    {
       "id": "19jtvs8",
       "title": "Danza 'Al compás de Nino'",
       "link": "https://www.ribarroja.es/es/evento/danza-%27al-comp%C3%A1s-de-nino%27",
@@ -469,6 +439,36 @@
       "publishedDate": "2026-07-21T11:50:53.000Z",
       "excerpt": null,
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260717%2025%20A%20al%20compas%20de%20Nino.jpg?itok=h2v72top"
+    },
+    {
+      "id": "1vyndzw",
+      "title": "Cine 'Willwood'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27willwood%27",
+      "eventDate": "2026-12-05T16:00:00.000Z",
+      "eventDateText": "05 de diciembre de 2026 17:00",
+      "publishedDate": "2026-08-31T07:09:00.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20wildwood-2.jpg?itok=7EuWyVL6"
+    },
+    {
+      "id": "lj10u0",
+      "title": "Cine 'Los juegos del hambre, Amanecer en la cosecha'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27los-juegos-del-hambre%2C-amanecer-en-la-cosecha%27",
+      "eventDate": "2026-12-05T21:00:00.000Z",
+      "eventDateText": "05 de diciembre de 2026 22:00",
+      "publishedDate": "2026-08-31T07:10:30.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20los%20juegos%20del%20hambre.jpg?itok=kU3Arkzb"
+    },
+    {
+      "id": "1k72tgg",
+      "title": "Cine 'Los juegos del hambre, Amanecer en la cosecha'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27los-juegos-del-hambre%2C-amanecer-en-la-cosecha%27-0",
+      "eventDate": "2026-12-06T17:00:00.000Z",
+      "eventDateText": "06 de diciembre de 2026 18:00",
+      "publishedDate": "2026-08-31T07:12:24.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20los%20juegos%20del%20hambre_0.jpg?itok=C-JZ4cvj"
     },
     {
       "id": "53mxwc",
