@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T11:17:31.690Z",
+  "generatedAt": "2026-09-01T09:45:12.646Z",
   "clusters": [
     {
       "clusterId": "10if6vd",
@@ -86,6 +86,27 @@
       }
     },
     {
+      "clusterId": "1hy1xq8",
+      "articleIds": [
+        "1t1ctq4",
+        "eky9vz"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Levante-EMV"
+      ],
+      "earliestDate": "2026-08-31T09:04:15.000Z",
+      "latestDate": "2026-08-31T16:37:16.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
+    {
       "clusterId": "1ij1q5o",
       "articleIds": [
         "1yotn1k",
@@ -103,27 +124,6 @@
         "parcial": 0,
         "contradicho": 0,
         "sin-datos": 7,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "1l29f9c",
-      "articleIds": [
-        "go2bww",
-        "zkv39w"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Levante-EMV"
-      ],
-      "earliestDate": "2026-08-28T04:01:15.000Z",
-      "latestDate": "2026-08-28T07:40:38.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
         "promesa-repetida": 0
       }
     },
@@ -196,9 +196,9 @@
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "3f32074cccf7",
+    "plenos-agendas.json": "fb9a8ca37ad3",
     "press-claims-verified.json": "20087c8edf48",
-    "press.json": "c19c83b32c6f",
+    "press.json": "c54d952e5a24",
     "promises.json": "d18811c11210"
   }
 }

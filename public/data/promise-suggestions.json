@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T11:17:13.747Z",
+  "generatedAt": "2026-09-01T09:44:55.229Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -129,6 +129,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOYlo2enN2MmQzQWJSRHZzb056M1BjUDJlMHIxelZZVjMxalVtcVU2cVJHLS1ueGhvdUNaUlA0TjNVQ19DRWJSdUVrYmZLQl9WUXhfTUxCRjhObUlqQkZhUjBiV0JqU0xHT3JKb1gtd1VjUUdaOWUta0h0Z053RTZOeHJfLS1LWGpGX1N0N1ZqVHp3b2pORWdZYmZUcUlnS3V4aDJYVUZDendMVjNLRkdNQWZiTnpWbjN1NVEwc1k3bkhDOHFvX0RrNUxoclRybnQ1Q1hsdlBtWndhZ9IB3wFBVV95cUxQRU9Od0R2d0EyVVRGaTgxQjQyWTNRTE9TcEFabzBFb2Y0YU8yS19MR0dnZ05DWGFGUGE4R0NMTG9FU1FYaUVsMGgzRzEwOEVBU1FjS0lBMnJuZzI2ZXVxNmJkbU9ORUQ0V2U0YmlBVEI0VTF0bld1OWJEUG9FWGEtczFaT2R4bkNzdWVxaEJKZzFMUW1uR0JzRG55UmlfTDFiWXloUnczWmhBem9QZVZqRXI2dXhyalFKbDBHWU1vM1R6Ti1BU1NGNTNUQVFndFJWc0EwU3QxUHlOckxYMDJV?oc=5",
+          "date": "2026-08-31",
+          "quote": "Transportes adjudica por 3,7 millones la mejora del enlace entre la A-3 y la A-7 para reducir atascos en Valencia",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "millon",
+            "entre"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPZTFYQjRPUnBtUUJfV0gzclA1eHFieGl4a1Q0UU9lU3Z6YkZLVDFtVFQ3TmVyZE8wRVNDajNyRURPSFUzTm9MUE0yQzRNUVMyM0JfV2p1cDZXaHRUQ2RmMFF5MFV5bEw0SmhqZXNSTFE4QjlvZ0hKTExkazRRNzZlSXdLOGRfcVY4bEhRaW9PWG9QLVVxWjlXTzhiZklyQm9EMHNhUG0yVFRybHNxMmY0TFF1V0fSAboBQVVfeXFMTTlSQ21TbVcxcDFSR2FRaXNfVXJqbGFTeEhjMjd2cUh0ZVE5NFlFM2Mzd0hlRGdUM1JQYVR1ZEs1NVN0b3lrQmpJaS1ESFJabF9mVFdoRGhyT0FvM0sxZ3Y2eTNBSG0yQkh3WVRyT3dtckxtZlB2VkJYd1BFRFVqS1RaaGpIT0JwZWROYTFaVTRETXlPUWhpYm1WZThTWmRnOV9jOTA1NHVKUTRQQkRRbWlERUJZR1h1dzVn?oc=5",
           "date": "2026-08-19",
           "quote": "Medio Ambiente arranca la limpieza del polvorín de cañas del Turia en Riba-roja",
@@ -138,21 +149,10 @@
             "medio",
             "ambiente"
           ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-adjudica-el-contrato-para-el-servicio-de-suministro-de-agua-potable-por-un-valor-de-55%E2%80%996-millones-de-euros-y-un-periodo-de-17-a%C3%B1os-de-vigencia",
-          "date": "2026-08-10",
-          "quote": "El Ayuntamiento de Riba-roja adjudica el contrato para el servicio de suministro de agua potable por un valor de 55’6 millones de euros y un periodo de 17 años de vigencia",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -217,7 +217,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -259,7 +259,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -344,7 +344,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -390,7 +390,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -439,7 +439,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -447,7 +447,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -455,7 +455,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -520,7 +520,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -551,7 +551,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -591,7 +591,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -635,7 +635,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -690,7 +690,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -720,7 +720,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -751,7 +751,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -784,27 +784,15 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
-      "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNN3VfOHBuMm1SZlk0OXpSbk45bU5Rd1dVVkdxX0h0QUlHSXJQeGdQdk81ZFdvbDRubGViUHF0TGRxRlJWLW5VTmF3Zy1JMG9YdnpxX2R4TnZlQTIxRXdaZFlMVzlkS0hWS0JrMXJjckhHR1pPNllZTk5NcmdIN0FnSGVINVBJdWFiLTB4WXJqclBKN2pBWURhdnlTb3FwdHdCNG9KRlpYZ2RzMGdvSTRpczduSmplUFgtVzc0RGVZSlBWX1dSNWtyeEZHLTdzZHlMa0w2WA?oc=5",
-          "date": "2026-06-08",
-          "quote": "Riba-roja pide reactivar el proyecto para llevar el metro hasta el casco urbano",
-          "kind": "press",
-          "publisher": "El Periódico de Aquí",
-          "matchedKeywords": [
-            "metro",
-            "proyecto"
-          ]
-        }
-      ],
+      "confidence": 0,
+      "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -823,7 +811,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -887,7 +875,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -921,7 +909,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -952,7 +940,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -1005,7 +993,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-31T11:17:13.620Z"
+      "generatedAt": "2026-09-01T09:44:55.102Z"
     }
   ],
   "llmEvidence": [],
