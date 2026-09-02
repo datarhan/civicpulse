@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-09-01T09:43:01.851Z",
+  "generatedAt": "2026-09-02T09:09:08.958Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 60,
-    "openTotal": 59,
-    "inRibaRoja": 38,
+    "total": 59,
+    "openTotal": 58,
+    "inRibaRoja": 37,
     "closingSoon": 11,
-    "withDetail": 60,
+    "withDetail": 59,
     "byMonth": {
       "2026-09": 1,
-      "2026-08": 30,
+      "2026-08": 29,
       "2026-07": 21,
       "2026-06": 1,
       "2026-05": 2,
@@ -2382,91 +2382,6 @@
             "experiencia": "6 Meses"
           }
         ]
-      }
-    },
-    {
-      "id": "2508",
-      "fo": 2508,
-      "codigo": "2026/00206",
-      "titulo": "Peon albañil",
-      "publishedAt": "2026-08-03",
-      "deadline": "2026-10-03",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2508",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00206"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Peon albañil"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "CONSTRUCCIÓN"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "de 8 a 18"
-          },
-          {
-            "label": "Salario",
-            "value": "base"
-          },
-          {
-            "label": "Funciones",
-            "value": "picar y desescombrar"
-          },
-          {
-            "label": "Habilidades",
-            "value": "no precisa"
-          },
-          {
-            "label": "Informática",
-            "value": "no"
-          }
-        ],
-        "tipoContrato": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "2",
-        "categoria": "PEONES",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa Turnos: Turno partido",
-        "horario": "de 8 a 18",
-        "salario": "base",
-        "funciones": "picar y desescombrar",
-        "ocupaciones": []
       }
     },
     {

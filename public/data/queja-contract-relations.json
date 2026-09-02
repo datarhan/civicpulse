@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-01T09:45:13.961Z",
+  "generatedAt": "2026-09-02T09:11:33.348Z",
   "source": "queja-contract-relations engine v1 (deterministic)",
   "stats": {
     "frozen": false,
     "quejasScanned": 1,
-    "contractsScanned": 700,
+    "contractsScanned": 701,
     "tierA": 4,
     "tierB": 25,
     "reason": null
@@ -99,28 +99,6 @@
       "score": 0.55,
       "relationLabel": "misma materia y fechas próximas",
       "requiresHumanApproval": true
-    },
-    {
-      "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
-      "tenderId": "5106922",
-      "via": "deterministic",
-      "signals": {
-        "place": {
-          "granularity": "barrio",
-          "slug": "urbanitzacio-valencia-la-vella"
-        },
-        "department": {
-          "slug": "urbanismo"
-        },
-        "temporal": {
-          "monthsAfter": -1.215006172839506
-        }
-      },
-      "tier": "A",
-      "score": 0.85,
-      "relationLabel": "misma zona y materia",
-      "requiresHumanApproval": false
     },
     {
       "quejaId": "Q-KJY6XSVG",
@@ -447,6 +425,28 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
+      "tenderId": "5106922",
+      "via": "deterministic",
+      "signals": {
+        "place": {
+          "granularity": "barrio",
+          "slug": "urbanitzacio-valencia-la-vella"
+        },
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": -1.215006172839506
+        }
+      },
+      "tier": "A",
+      "score": 0.85,
+      "relationLabel": "misma zona y materia",
+      "requiresHumanApproval": false
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IJNBnVI%2F%2F9sS7pcxhTeWOg%3D%3D",
       "tenderId": "4889055#12",
       "via": "deterministic",
@@ -538,8 +538,8 @@
   ],
   "builtFrom": {
     "promises.json": "d18811c11210",
-    "quejas.json": "015e85a79360",
-    "tender-geo.json": "9348c3c97248",
-    "tenders.json": "3ee687654237"
+    "quejas.json": "228f187b0772",
+    "tender-geo.json": "aad300fc746e",
+    "tenders.json": "4c8247ddbd02"
   }
 }

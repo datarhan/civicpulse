@@ -1,7 +1,92 @@
 {
-  "generatedAt": "2026-09-01T09:45:12.638Z",
+  "generatedAt": "2026-09-02T09:11:32.006Z",
   "windowDays": 30,
   "articles": [
+    {
+      "articleId": "161q2v1",
+      "articleFingerprint": "1slb5ao",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/la-confederaci%C3%B3n-hidrogr%C3%A1fica-del-j%C3%BAcar-habilita-tres-pasarelas-sobre-el-t%C3%BAria-a-su-paso-por-riba-roja-para-garantizar-el-paso-ciclo-peatonal",
+      "date": "2026-09-01T12:39:24.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
+      "articleId": "1v9gr48",
+      "articleFingerprint": "1mtqgek",
+      "outlet": "Periòdic del Camp de Túria",
+      "outletHost": "infoturia.com",
+      "url": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
+      "date": "2026-09-01T12:31:35.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
+      "articleId": "1baly32",
+      "articleFingerprint": "fkx730",
+      "outlet": "El Periódico de Aquí",
+      "outletHost": "elperiodicodeaqui.com",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOeFZuWE10YkNHY3B1WS02SE54eVJ6amV6T09iMHExMTRnM2x1YllpdXNHemluTFhRMFlEajF5dnhMZTVtMGd4dEJENG41V0p4WFQzeThRcEFJTGdWVEJCak93UTBwWVBaOXh2SEIwcWd1ZVVsb0kxcXBNV1l1RTZTdTJfeWMxbDRFMmZwYTlOQ0V3ZmxpU2xlNGRtUGVPNVlFYUVxbWs1VkctRnhEMHRWRDBLLW5QQ1IyTGpHRnJKa2R1TGlmX1FNWG5PWXlEbVB3TVpiaWR3TGpWRjJaVXc?oc=5",
+      "date": "2026-09-01T10:59:39.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": true,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
+      "articleId": "pb3qmg",
+      "articleFingerprint": "1rb28v0",
+      "outlet": "El Meridiano L´Horta",
+      "outletHost": "elmeridiano.es",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQdS1Wd0V6SXVDRTU2cEdZLXh3M0RmeGhyVVFmUWRYOXFZNnRpQTNMR0wtY3hsSGZSYVR1RWdIX2wzRmtXWmYzN3pNNzZUd0pZMGdIdHd1SjVRQzJsTHdWY1QzTGVONFRzYjhGTWNqaVFHUXBnd1hGd2pjdEVSSmRra3BzRWlFM1ctQ1RQR3FTcWo5MUw4eTFxU1R5M0N2Zw?oc=5",
+      "date": "2026-09-01T10:22:50.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": true,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
+      "articleId": "tfe81a",
+      "articleFingerprint": "1nbr4f4",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQS3JXeG1kREItVzRYTGctdXN2cmNLR1RENzJkci1FdG9aMnhpTnkyQnh2MXVXWWNvdmZJX09rd3BuRm1ZN2Q4dklJMkYySG9VUTlvcmEzb0NQdENwY3J3Qjh0Q1dXX3ZWLXV3UHBubFY2UE44NWpkeHNvdmV1SlBrUGtYTWRwN3ZqeGptb1pKUTRfSFFUZUUyYXV1RURZTXlqX0FTZnpOM2JxZDRLSkw1c29RQ1pzMlBSMzNUUXdSWHprR3FnSTBDa1pDZ9IB0AFBVV95cUxNTDMwRkw2YmZRRTBjMTByRlJzWWhwZnc5azhsUlRXdjhLR0pDUkxVYUc5TVBJX19zZmhUdjFaSDVLY0RtOWxodS1wcTIwc2tmSkd4X3BuVUs1MFAxVzBwTWpLYmxnZC1QUnY4aDhrNjVndFQtWGhrYjRlMU1Fd0taUE5SM0FGdGR5b25Sc0lKTkU2eTJkS1lobGxwMGV5LWRqRnN0RWZhV2tGVFQtOXkwdndYaXdpRGllOXd3eFFEaHBsb1l2WklrNi1LLXQ5VXJx?oc=5",
+      "date": "2026-09-01T10:16:52.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": true,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
     {
       "articleId": "eky9vz",
       "articleFingerprint": "1hy1xq8",
@@ -69,23 +154,6 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "64xnxs",
-      "articleFingerprint": "179vgi0",
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQOGdKbWt2cmRqaVpRV0N5UTFJYk9MejRtcU5FQUxjTXh5a1hZNy1jd0gxWnppZXlCeFNfWFJicGhQRlNVSnlPeTBvZ0JKQjNKblptX3F2MHNvcDFOU3J4S0JGNmotV3JqZjdtYWVBWmYzbllGbG1XaDlOUUg2TjFfV2MydmFUNkNpa2FUdWpBTE5MV2sycXFkT05ZYW9SUDUzOVlwQURXXzZoYjR0czhBQU5nb1Y0NHdVT3lB0gHAAUFVX3lxTE0xbWVmcS1XMVBWNnRmeDZuVEZuVTRSWXVfak5yMHVBVnJxS0RtZC1lTWVEdTMxMGVwcVk2cmNEcWliNEdrMGRENFNmY1dQVFF6R0QyMnNmS0JxQncxRDVQUU9XUFQzTlBGNUk3SXZ5REJxenN5ZjJlUlpfaUZJV2d5VHBnTUtOVk83N1pNQjFyN3dNWFR0OHFOOGlETUc1RUpoSzVhWC1yVVRYQlQ1Uy1sQm9OSHhKS29UMDBPNXVidg?oc=5",
-      "date": "2026-08-30T22:09:34.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     },
     {
       "articleId": "y58h6g",
@@ -258,23 +326,6 @@
       "score": 2
     },
     {
-      "articleId": "t0r04q",
-      "articleFingerprint": "rly7bk",
-      "outlet": "elperiodic.com",
-      "outletHost": "elperiodic.com",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNNnE3ZHMyWE1DMDZPMU0zM3VUWDdBWmd4THlHMm5zMDJwZ2ZPM2xKeGt1VGxjNlNhU3BJaEdBTFBGVUhESkk4Z0hLYzZPcExubE9lbE9xcDVHMDV0QVNYbTJXbUZYMDdYWWJMUmlIZ3NQU3hXUndvMUo1ejg1MjZMZHdwRkNQR0xEdGJsaFN4cl93cFctd1dqc1luX2lPRklrdnczSjVzQUgwOVBSU1JfRTlyZkJCWk9qTmc?oc=5",
-      "date": "2026-08-26T14:16:49.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
       "articleId": "1ezylig",
       "articleFingerprint": "13vj4ds",
       "outlet": "Levante-EMV",
@@ -343,40 +394,6 @@
       "score": 3
     },
     {
-      "articleId": "17iw9j4",
-      "articleFingerprint": "re5p73",
-      "outlet": "Levante-EMV",
-      "outletHost": "levante-emv.com",
-      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNVW94SUZNUGlFN2VWYS04NC02cFV3bFNkUjkydk8xcXJvaG90SHEyZ0xyVjZYNXNFSkVhcGE5LThBTzVLMnRTeHd4b2dPRTdCZzI5UlRvakJrV3lISmozd0hGSm1wQ3JmRVluZmFJTFAzbjVGNGk2cjhnV1R5WHVNdEpVVjhoMjdWeVp1aG5SbXQxejk4V243SHc5UmFOZFZBaXpVWUwtb3FVSWRpY1pBdtIBtgFBVV95cUxQd2pLa2xWTERQd000UHRRU1o1X25qbEVJUldvVmR3VUptc0lfNkFnaGJobUtJVDJLR0F1WjVnRGFUVmNaQzRoQlFQZEFaUU1OLWlZUFJnekxpeVNHQ2J3TzdmS192ODRmZUR6NWxxOGF4LUJqYVVOTGFfN0hrNko3akxUSzdVeDFlM0ZNWldjMUtkcnZkdFN4eEJ6anQ0cGwtN3NWeVZMdnJteEdKbzNZT0tvU1JkZw?oc=5",
-      "date": "2026-08-24T17:05:02.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 4
-    },
-    {
-      "articleId": "d5303u",
-      "articleFingerprint": "1810o54",
-      "outlet": "COPE",
-      "outletHost": "cope.es",
-      "url": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxNVHRBRzFPVGNPWkc0LVh4Wkp0RjBWSVRZZzRtYjAwU1FITmptLW1SOHk5VUctZVBkYWNhajdNemlSXzdoaldWaUI5eHpqT3p2eEhldE1FREhvY0xERVk3ejVNVXN1ajhKRXpDZU9CS2hMWUtuemhRT3UyTXZzNEpxanZYcUtZZzh3NWx0X2NfSzhyY1p1SE01WDJZQmVSbkxzWktINng3Q3J1eW1DTFRwdmV6Ykx3cHg5UlNaM1RqNGRHVnJNX2lJV2JmdjRYWjFZLWpPMGkxbDFkYUVNRnZRejA0SFRkZ0FEaUphN1pnWWR6REtCdzZ6WFhMZGwxcmtUTFNvM3ZVeUJpQ0lpMzdLckFrd3FzR3l6a25CS2E4WFMtT3hMdF8xTtIBrgJBVV95cUxNWmtweVVUc0I4bE1jMUNJZURxOVJ0UWIwUWpucVZVbmxGV3UwV3pUZjc2czNWdHZuMW5FX19rSm9uWHh6MTR4UkZ1ZWpES3E2OWVJMFZKTm83c1FrSlh2cHlNaTJOeFk4WlR3d0VqX3NJYzA0eWg5QWFBVnBZcGpfaUM5UUNvd2p6ekNqX2pjam5pWkttRlg5c2QwMm81ZWZsZ25XelBONnZZU2IySXhpRTRGSDZMeFRJTkhpaEJmQ1RRano3d0NGVjktVkcxR2VLbHZsMGs2amdKUm8xOEdDaTNDNDZTNy0xZ245cGxfVk1ITzJKRDY4eDVvUUFBZ3l0cjVaTjlWMnhvcHNCb19qT1JZaHJuUzQ2WGs3b0tBZmhjS2xsWS12a0VrRHRjZw?oc=5",
-      "date": "2026-08-24T11:19:50.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
       "articleId": "13s432o",
       "articleFingerprint": "1jepf6g",
       "outlet": "Periòdic del Camp de Túria",
@@ -416,7 +433,7 @@
       "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
       "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxONFg2NE9XdlYtMS05MmZ4VWhKUjBxVnlnazdma2dMWkZWbWVPdDJTQjlQcDRkZEh2NHlfVHUtbk9XSXFxal9tQlpyNm5ZNzhCNFhWbkFtS3R3cnVYTjFhUHpnNWRycjlrWGxUYm9NUDBGdEJnTWNZZGdGeERKNm9aRWlHR1kxdVNHbnJvS3B4M1NuSmJOdTB5cGVLVjdhbkx4N084LTZqY2NBeERkYUJTZUZHTmdfQzMtckdhc212VnZWUlFoOGhKVTNjYlZ6VUlV0gHWAUFVX3lxTE45OTBENlFIQzZDU3RiUFlGNFJoR1VKWjBhb3pLajJkX2c0cktoQ0xZSWdUanN3MENzWVBhaG1vclp4dVZBYkR4enhiUEdjWE00aTlIS3FILWFfUUh4QTJhWHM4WnFkdEFYZ0tKVUNxUkxFWXVNdFV1T0h4ZXZ1WktDdGVBejM0dGlybTJvV3d0OWdjeEtPMG1zZkdPUk1zUW1aUVVFZFJRbUFVa3RNNEV2RVJfclduVUpyNXJZUGcwRktGOTFhZDkxXzNrMTJjckRCRDUxMUE?oc=5",
-      "date": "2026-08-23T04:00:32.000Z",
+      "date": "2026-08-23T07:00:00.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -426,23 +443,6 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "1fqbhjs",
-      "articleFingerprint": "1oq1ic8",
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPTTRDT1I4MXBzbE9PcC13Zkw2R2pUTjF6elRWOUJ6Y0NuaTk4bVkzN2czWVNQZkJDejd3S1dPQUZnT3RIYTEwZ2FjRnVhUEwtRldWSmxfeWdXQlZfMkJWMmh5YThoLVA3N0czSTBSaVJ3TF9lN2ZGZGxad3NwaWRxNFdUZ0oxWlJwdlZVMXBLR2dZV1BYeWcyZUdScnZuRFZHZmliYlVQYXI4bmtBT3JCMV9FSVBUYTlTSXpsa25EZEtNVzktcXBSbXdydlIyaEZSTUhBdkNVUGJ2UmpLa0JobjVVbXpQZXFFWnE0a1BNenk?oc=5",
-      "date": "2026-08-21T13:56:14.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 5
     },
     {
       "articleId": "1e9m0nk",
@@ -472,11 +472,11 @@
         "localCoverage": true,
         "datedArticle": true,
         "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": true,
+        "corroboratedAcrossOutlets": false,
         "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 5
+      "score": 4
     },
     {
       "articleId": "1t8kbao",
@@ -494,23 +494,6 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "92589c",
-      "articleFingerprint": "3b2jza",
-      "outlet": "El Periódico de Aquí",
-      "outletHost": "elperiodicodeaqui.com",
-      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPUUptSWI5NXU2Qnd0N1d4YTJJZFFMZDlQUjMzOExmN04tdUhURjNYZDRydjctRUREcE95Z3l6SFRwWWNZaW9MYVE2VEFpcGN2UDduWVQtMWllMWFOWG1FVkMtcUhQTXR5cml5RFJWa3d1U3k1SUhOVEFXMFh0OUROOGNYbmZnVTBTY1RiZjVDXzNreDNwQWpMZFc5RU53amo1cVo1b3JxNzZGX0Z5cDlnTTJkOHNIY2loc3RYYzJkMHRPQWFDUmlidHViR2F5OHB6cmJFZ3djRQ?oc=5",
-      "date": "2026-08-20T14:10:58.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
     },
     {
       "articleId": "nh3z04",
@@ -664,23 +647,6 @@
         "opinionFraction": 0
       },
       "score": 5
-    },
-    {
-      "articleId": "4gae7p",
-      "articleFingerprint": "m1zo5n",
-      "outlet": "Periòdic del Camp de Túria",
-      "outletHost": "infoturia.com",
-      "url": "https://www.infoturia.com/riba-roja-de-turia/85543-investigen-la-mort-duna-dona-despres-dun-incendi-en-un-habitatge-a-riba-roja.html",
-      "date": "2026-08-15T16:40:25.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     },
     {
       "articleId": "17gleav",
@@ -1027,7 +993,7 @@
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 25,
+      "articleCount": 26,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1035,22 +1001,7 @@
         "sin-datos": 29,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.8,
-      "verifiedRatio": 0,
-      "contradictedRatio": null
-    },
-    {
-      "outlet": "Levante-EMV",
-      "outletHost": "levante-emv.com",
-      "articleCount": 10,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 2,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 2.6,
+      "meanTrustScore": 2.73,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1070,9 +1021,24 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
-      "articleCount": 4,
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "articleCount": 10,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 2.5,
+      "verifiedRatio": null,
+      "contradictedRatio": null
+    },
+    {
+      "outlet": "Valencia Plaza",
+      "outletHost": "valenciaplaza.com",
+      "articleCount": 3,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1080,22 +1046,22 @@
         "sin-datos": 1,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3,
+      "meanTrustScore": 3.67,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
     {
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "articleCount": 4,
+      "outlet": "Las Provincias",
+      "outletHost": "lasprovincias.es",
+      "articleCount": 3,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 2,
+        "sin-datos": 1,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 4,
+      "meanTrustScore": 3.33,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1110,7 +1076,22 @@
         "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 1,
+      "meanTrustScore": 1.5,
+      "verifiedRatio": null,
+      "contradictedRatio": null
+    },
+    {
+      "outlet": "El Meridiano L´Horta",
+      "outletHost": "elmeridiano.es",
+      "articleCount": 1,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 2,
       "verifiedRatio": null,
       "contradictedRatio": null
     },
@@ -1145,36 +1126,6 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "elperiodic.com",
-      "outletHost": "elperiodic.com",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
-    },
-    {
-      "outlet": "COPE",
-      "outletHost": "cope.es",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
-    },
-    {
       "outlet": "Valenciabonita",
       "outletHost": "valenciabonita.es",
       "articleCount": 1,
@@ -1191,9 +1142,9 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "fb9a8ca37ad3",
+    "plenos-agendas.json": "71ac0656f27f",
     "press-claims-verified.json": "20087c8edf48",
-    "press.json": "c54d952e5a24",
+    "press.json": "5f64bc7624ac",
     "promises.json": "d18811c11210"
   }
 }

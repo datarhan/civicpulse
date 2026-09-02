@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-01T09:45:28.679Z",
+  "generatedAt": "2026-09-02T09:11:48.567Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -7381,21 +7381,21 @@
       "etiqueta": "Contratos con un solo licitador",
       "descripcion": "De los contratos adjudicados que declaran cuántas ofertas recibieron, cuántos recibieron exactamente una.",
       "numerador": {
-        "valor": 333,
+        "valor": 334,
         "estado": "declarado",
         "fuente": "tenders:adjudicados:numberOfProposals=1"
       },
       "denominador": {
-        "valor": 700,
+        "valor": 701,
         "estado": "declarado",
         "fuente": "tenders:adjudicados:conOfertasDeclaradas"
       },
-      "valor": 0.4757142857142857,
+      "valor": 0.4764621968616263,
       "formato": "porcentaje",
       "periodo": "2017–2026",
       "caveats": [
         "Un licitador único no es irregular por sí mismo: hay mercados con un solo proveedor capaz. Es el indicador que la Comisión Europea usa para vigilar la competencia en compra pública, y lo que mide es cuánta de ella hubo.",
-        "Ningún contrato adjudicado se queda fuera: los 700 declaran cuántas ofertas recibieron, así que el denominador coincide con el total de adjudicados."
+        "Ningún contrato adjudicado se queda fuera: los 701 declaran cuántas ofertas recibieron, así que el denominador coincide con el total de adjudicados."
       ],
       "citas": [
         {
@@ -7411,16 +7411,16 @@
       "etiqueta": "Adjudicado sin llamada abierta",
       "descripcion": "Contratos menores y negociados sin publicidad, sobre el total de adjudicados. Los derivados de un acuerdo marco o de un SDA no cuentan: su licitación sí se publicó.",
       "numerador": {
-        "valor": 286,
+        "valor": 287,
         "estado": "declarado",
         "fuente": "tenders:adjudicados:sinPublicidad"
       },
       "denominador": {
-        "valor": 700,
+        "valor": 701,
         "estado": "declarado",
         "fuente": "tenders:adjudicados"
       },
-      "valor": 0.4085714285714286,
+      "valor": 0.4094151212553495,
       "formato": "porcentaje",
       "periodo": "2017–2026",
       "caveats": [
@@ -7445,11 +7445,11 @@
         "fuente": "tenders:adjudicados:top5Importe"
       },
       "denominador": {
-        "valor": 123689382.78999995,
+        "valor": 123702482.78999995,
         "estado": "declarado",
         "fuente": "tenders:adjudicados:importeTotal"
       },
-      "valor": 0.6842849847807866,
+      "valor": 0.6842125195149451,
       "formato": "porcentaje",
       "periodo": "2017–2026",
       "caveats": [

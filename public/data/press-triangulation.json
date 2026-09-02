@@ -1,6 +1,29 @@
 {
-  "generatedAt": "2026-09-01T09:45:12.646Z",
+  "generatedAt": "2026-09-02T09:11:32.012Z",
   "clusters": [
+    {
+      "clusterId": "1hy1xq8",
+      "articleIds": [
+        "1baly32",
+        "1t1ctq4",
+        "eky9vz"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "El Periódico de Aquí",
+        "Levante-EMV"
+      ],
+      "earliestDate": "2026-08-31T09:04:15.000Z",
+      "latestDate": "2026-09-01T10:59:39.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
     {
       "clusterId": "10if6vd",
       "articleIds": [
@@ -86,27 +109,6 @@
       }
     },
     {
-      "clusterId": "1hy1xq8",
-      "articleIds": [
-        "1t1ctq4",
-        "eky9vz"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Levante-EMV"
-      ],
-      "earliestDate": "2026-08-31T09:04:15.000Z",
-      "latestDate": "2026-08-31T16:37:16.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
       "clusterId": "1ij1q5o",
       "articleIds": [
         "1yotn1k",
@@ -128,23 +130,23 @@
       }
     },
     {
-      "clusterId": "1oq1ic8",
+      "clusterId": "1nbr4f4",
       "articleIds": [
-        "1fqbhjs",
-        "v4m8ao"
+        "pb3qmg",
+        "tfe81a"
       ],
       "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Valencia Plaza"
+        "El Meridiano L´Horta",
+        "Levante-EMV"
       ],
-      "earliestDate": "2026-08-21T12:04:33.000Z",
-      "latestDate": "2026-08-21T13:56:14.000Z",
+      "earliestDate": "2026-09-01T10:16:52.000Z",
+      "latestDate": "2026-09-01T10:22:50.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 3,
+        "sin-datos": 0,
         "promesa-repetida": 0
       }
     },
@@ -193,12 +195,12 @@
   ],
   "stats": {
     "totalClusters": 9,
-    "triangulated3Plus": 0
+    "triangulated3Plus": 1
   },
   "builtFrom": {
-    "plenos-agendas.json": "fb9a8ca37ad3",
+    "plenos-agendas.json": "71ac0656f27f",
     "press-claims-verified.json": "20087c8edf48",
-    "press.json": "c54d952e5a24",
+    "press.json": "5f64bc7624ac",
     "promises.json": "d18811c11210"
   }
 }

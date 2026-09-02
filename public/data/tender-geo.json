@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-01T09:45:09.840Z",
+  "generatedAt": "2026-09-02T09:11:29.142Z",
   "source": {
-    "tenders": "2026-09-01T09:33:06.853Z",
-    "geo": "2026-09-01T09:34:16.097Z"
+    "tenders": "2026-09-02T08:55:59.763Z",
+    "geo": "2026-09-02T08:57:28.084Z"
   },
   "universe": {
-    "totalContracts": 695,
-    "totalAmount": 123689382.78999995,
+    "totalContracts": 696,
+    "totalAmount": 123702482.78999995,
     "locatedContracts": 47,
     "locatedAmount": 2225591.15,
     "situatedContracts": 127,
@@ -49,7 +49,7 @@
         -0.5307458
       ],
       "contractCount": 6,
-      "amount": 344170.56999999995,
+      "amount": 344170.57,
       "danaAmount": 0
     },
     {
@@ -1403,23 +1403,6 @@
       }
     },
     {
-      "id": "5106922",
-      "zones": [
-        "urbanitzacio-valencia-la-vella"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-valencia-la-vella": "valencia la vella"
-      },
-      "dana": false,
-      "amount": 89980.26,
-      "amountKind": "final",
-      "date": "2026-05-27",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": null,
-      "place": null
-    },
-    {
       "id": "543940",
       "zones": [],
       "matchedAlias": {},
@@ -1646,31 +1629,6 @@
       }
     },
     {
-      "id": "554871",
-      "zones": [
-        "l-oliveral"
-      ],
-      "matchedAlias": {
-        "l-oliveral": "oliveral"
-      },
-      "dana": false,
-      "amount": 7950,
-      "amountKind": "final",
-      "date": "2018-04-11",
-      "contractType": "services",
-      "categoryTitle": "other",
-      "point": [
-        39.4710524,
-        -0.5366921
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "l'Oliveral",
-        "matchedText": "l'Oliveral",
-        "sourceId": "l-oliveral"
-      }
-    },
-    {
       "id": "462533",
       "zones": [],
       "matchedAlias": {},
@@ -1704,6 +1662,31 @@
       "amountKind": "final",
       "date": "2019-01-17",
       "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.4710524,
+        -0.5366921
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "l'Oliveral",
+        "matchedText": "l'Oliveral",
+        "sourceId": "l-oliveral"
+      }
+    },
+    {
+      "id": "554871",
+      "zones": [
+        "l-oliveral"
+      ],
+      "matchedAlias": {
+        "l-oliveral": "oliveral"
+      },
+      "dana": false,
+      "amount": 7950,
+      "amountKind": "final",
+      "date": "2018-04-11",
+      "contractType": "services",
       "categoryTitle": "other",
       "point": [
         39.4710524,
@@ -1981,6 +1964,27 @@
       }
     },
     {
+      "id": "1550047",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 143801.44,
+      "amountKind": "final",
+      "date": "2021-10-22",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.47822,
+        -0.58302
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Polígono Industrial Masía Baló",
+        "matchedText": "Polígono Industrial Masía Baló",
+        "sourceId": "poligon-industrial-masia-balo"
+      }
+    },
+    {
       "id": "5247428",
       "zones": [],
       "matchedAlias": {},
@@ -2032,27 +2036,6 @@
       "date": "2021-12-13",
       "contractType": "supplies",
       "categoryTitle": "security",
-      "point": [
-        39.47822,
-        -0.58302
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Polígono Industrial Masía Baló",
-        "matchedText": "Polígono Industrial Masía Baló",
-        "sourceId": "poligon-industrial-masia-balo"
-      }
-    },
-    {
-      "id": "1550047",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 143801.44,
-      "amountKind": "final",
-      "date": "2021-10-22",
-      "contractType": "construction",
-      "categoryTitle": "construction",
       "point": [
         39.47822,
         -0.58302
@@ -2384,6 +2367,27 @@
       }
     },
     {
+      "id": "440383",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 24908.52,
+      "amountKind": "final",
+      "date": "2018-11-05",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5469545,
+        -0.5666236
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Ajuntament de Riba-roja de Túria",
+        "matchedText": "Ajuntament de Riba-roja de Túria",
+        "sourceId": "node-5809597354"
+      }
+    },
+    {
       "id": "96520",
       "zones": [
         "urbanitzacio-valencia-la-vella",
@@ -2408,27 +2412,6 @@
         "name": "Monte Alcedo",
         "matchedText": "Monte Alcedo",
         "sourceId": "monte-alcedo"
-      }
-    },
-    {
-      "id": "440383",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 24908.52,
-      "amountKind": "final",
-      "date": "2018-11-05",
-      "contractType": "construction",
-      "categoryTitle": "other",
-      "point": [
-        39.5469545,
-        -0.5666236
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Ajuntament de Riba-roja de Túria",
-        "matchedText": "Ajuntament de Riba-roja de Túria",
-        "sourceId": "node-5809597354"
       }
     },
     {
@@ -2717,27 +2700,6 @@
       }
     },
     {
-      "id": "3733335",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 25200.4,
-      "amountKind": "final",
-      "date": "2022-08-30",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.54635,
-        -0.56768
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Mercado Municipal",
-        "matchedText": "Mercado Municipal",
-        "sourceId": "mercat-municipal"
-      }
-    },
-    {
       "id": "1881768",
       "zones": [],
       "matchedAlias": {},
@@ -2840,6 +2802,27 @@
         "name": "Passeig del Molinet",
         "matchedText": "Passeig del Molinet",
         "sourceId": "passeig-del-molinet"
+      }
+    },
+    {
+      "id": "3733335",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 25200.4,
+      "amountKind": "final",
+      "date": "2022-08-30",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.54635,
+        -0.56768
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Mercado Municipal",
+        "matchedText": "Mercado Municipal",
+        "sourceId": "mercat-municipal"
       }
     },
     {
@@ -3090,6 +3073,23 @@
       }
     },
     {
+      "id": "5106922",
+      "zones": [
+        "urbanitzacio-valencia-la-vella"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-valencia-la-vella": "valencia la vella"
+      },
+      "dana": false,
+      "amount": 89980.26,
+      "amountKind": "final",
+      "date": "2026-05-27",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": null,
+      "place": null
+    },
+    {
       "id": "1404560",
       "zones": [],
       "matchedAlias": {},
@@ -3133,31 +3133,6 @@
         "name": "l'Oliveral",
         "matchedText": "l'Oliveral",
         "sourceId": "l-oliveral"
-      }
-    },
-    {
-      "id": "4580111",
-      "zones": [
-        "urbanitzacio-la-reva"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-la-reva": "la reva"
-      },
-      "dana": true,
-      "amount": 1850,
-      "amountKind": "final",
-      "date": "2024-12-05",
-      "contractType": "services",
-      "categoryTitle": "transportation",
-      "point": [
-        39.4840972,
-        -0.572073
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Urbanització La Reva",
-        "matchedText": "Urbanització La Reva",
-        "sourceId": "urbanitzacio-la-reva"
       }
     },
     {
@@ -3210,6 +3185,31 @@
         "name": "Santa Rosa",
         "matchedText": "Santa Rosa",
         "sourceId": "santa-rosa"
+      }
+    },
+    {
+      "id": "4580111",
+      "zones": [
+        "urbanitzacio-la-reva"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-la-reva": "la reva"
+      },
+      "dana": true,
+      "amount": 1850,
+      "amountKind": "final",
+      "date": "2024-12-05",
+      "contractType": "services",
+      "categoryTitle": "transportation",
+      "point": [
+        39.4840972,
+        -0.572073
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanització La Reva",
+        "matchedText": "Urbanització La Reva",
+        "sourceId": "urbanitzacio-la-reva"
       }
     },
     {
@@ -3813,11 +3813,11 @@
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "04173694b6b5",
+    "civic-poi.json": "1eacdb7049cf",
     "gazetteer-supplement.json": "813c38c1dc80",
-    "geo.json": "e74266680b65",
+    "geo.json": "9271a8de753e",
     "place-overrides.json": "5a4641410141",
-    "streets.json": "8204c69e77ae",
-    "tenders.json": "3ee687654237"
+    "streets.json": "9fd4b510f9c4",
+    "tenders.json": "4c8247ddbd02"
   }
 }
