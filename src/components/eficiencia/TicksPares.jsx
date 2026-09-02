@@ -34,6 +34,17 @@ export function TicksPares({ indicador, formatea }) {
   const razon = indicador.valor / p.mediana
   const valores = (p.miembros ?? []).map((m) => m.valor)
   const extremos = { min: Math.min(...valores), max: Math.max(...valores) }
+  // Los extremos DE LOS ATÍPICOS, que no son los del grupo. La frase decía «N
+  // quedan fuera de un orden de magnitud — el menor declara X y el mayor Y»
+  // con la X y la Y del reparto entero, así que citaba como prueba de la
+  // distancia a dos cifras de las que a menudo sólo una lo está: en el agua,
+  // los tres atípicos son 0,20 · 0,20 · 0,22 €/m contra una mediana de 11,91,
+  // y el 31,99 que la frase señalaba está a ×2,7, ni de lejos un orden de
+  // magnitud. Medido sobre el panel del 2026-09-02: pasaba en 11 de 14 fichas.
+  const atipicosVals = (p.miembros ?? []).filter((m) => m.atipico).map((m) => m.valor)
+  const atipicos = atipicosVals.length
+    ? { min: Math.min(...atipicosVals), max: Math.max(...atipicosVals) }
+    : null
 
   return (
     <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid var(--border2)' }}>
@@ -155,10 +166,13 @@ export function TicksPares({ indicador, formatea }) {
                 ? 'Uno de estos comparables queda fuera de un orden de magnitud'
                 : `${p.atipicos} de estos comparables quedan fuera de un orden de magnitud`}
             </strong>{' '}
-            respecto a la mediana del grupo — el menor declara {formatea(extremos.min)} y el mayor{' '}
-            {formatea(extremos.max)}, una distancia que ninguna diferencia de gestión explica y que
-            dice más de cómo se rellena el formulario que de los servicios. Se marcan con la misma
-            regla que juzga la serie de Riba-roja, van señalados en la tabla de comparados y{' '}
+            respecto a la mediana del grupo ({formatea(p.mediana)}):{' '}
+            {atipicos && atipicos.min === atipicos.max
+              ? `declara ${formatea(atipicos.min)}`
+              : `declaran entre ${formatea(atipicos.min)} y ${formatea(atipicos.max)}`}
+            , una distancia que ninguna diferencia de gestión explica y que dice más de cómo se
+            rellena el formulario que de los servicios. Se marcan con la misma regla que juzga la
+            serie de Riba-roja, van señalados en la tabla de comparados y{' '}
             <strong>siguen contando en el percentil</strong>: son cifras oficiales y este panel no
             descarta lo que el ministerio publica.
           </span>

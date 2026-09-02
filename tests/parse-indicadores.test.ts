@@ -48,11 +48,18 @@ describe('scraper/indicadores', () => {
     expect(i.tier).toBe('carga')
   })
 
-  // ── THE reproducer ────────────────────────────────────────────────────────
-  // Without this rule the page publishes «Riba-roja suministra agua gratis, el
-  // más barato del grupo», because the concessionaire's cost never touches the
-  // council's books while the metres of network sit right there as a divisor.
-  it('never turns a concession into a ratio or a peer position', () => {
+  // ── THE reproducer, y lo que sigue siendo ────────────────────────────────
+  // La trampa original: el concesionario cobra del recibo, así que un servicio
+  // concedido puede declarar 0 € con los metros de red ahí puestos. Dividir
+  // publicaría «Riba-roja suministra agua gratis, la más barata del grupo».
+  //
+  // Lo que cambió el 2026-09-02 es el ALCANCE de la negativa, no la negativa:
+  // se rechazaba TODA concesión sin mirar la casilla, y en la entrega de 2024
+  // el ministerio declara 1.898.034,08 € para el agua. Ahora se rechaza lo que
+  // la trampa describe —la concesión que no declara— y se divide lo que sí.
+  // El fixture es de 2021, una de las entregas mudas: aquí Riba-roja sigue sin
+  // cociente, y por la razón correcta.
+  it('sigue sin dividir la concesión que no declara coste', () => {
     for (const id of ['a161-coste-unitario', 'a160-coste-unitario']) {
       const i = byId(id)
       expect(i.modoGestion).toBe('concesion')
@@ -67,13 +74,24 @@ describe('scraper/indicadores', () => {
     }
   })
 
-  // La otra mitad de la regla de arriba, y la que faltaba. Que no se publique
-  // un cociente es correcto; que se rotule «coste no declarado» no lo es,
-  // porque el ministerio SÍ declaró. Un centinela que vale por dos hechos —«la
-  // fuente calla» y «nosotros no dividimos»— es la regla 3 de DATA_INTEGRITY,
-  // aquí sobre una superficie legalmente material.
-  it('se lleva la cifra que decide NO dividir, para no atribuir su silencio a la fuente', () => {
-    // Dos concesiones que NO son el mismo hecho, y hasta ahora salían idénticas.
+  it('el cero de una concesión no es un coste, ni siquiera con denominador bueno', () => {
+    // La trampa 1, ejercida sobre la fila que la origina. Si esta prueba se
+    // pone verde con un cociente, «el agua es gratis» está publicado.
+    const muda = resolverCoste(
+      [
+        { ine: '46214', anio: 2024, programa: 'a161', modoGestion: 'concesion', costeTotal: 0 },
+      ] as never,
+      'a161',
+      2024,
+    )
+    expect(muda.estado).toBe('no-declarado')
+    expect(muda.motivo).toBe('concesion')
+    expect(muda.valor).toBeNull()
+  })
+
+  it('divide la concesión que SÍ declara, con la misma regla que una gestión directa', () => {
+    // El caso que el motor tiraba sin mirar. La cifra es la de la entrega de
+    // 2024, que es la que el panel publica: 1.898.034,08 € de agua.
     const conCifra = resolverCoste(
       [
         {
@@ -87,49 +105,46 @@ describe('scraper/indicadores', () => {
       'a161',
       2024,
     )
-    const muda = resolverCoste(
+    expect(conCifra.estado).toBe('declarado')
+    expect(conCifra.valor).toBeCloseTo(1_898_034.08, 2)
+
+    // Y las otras dos reglas del coste siguen mandando sobre una concesión:
+    // dos costes positivos distintos no se eligen a cara o cruz.
+    const dobles = resolverCoste(
       [
-        { ine: '46214', anio: 2024, programa: 'a161', modoGestion: 'concesion', costeTotal: 0 },
+        { ine: '46214', anio: 2024, programa: 'a161', modoGestion: 'concesion', costeTotal: 1000 },
+        { ine: '46214', anio: 2024, programa: 'a161', modoGestion: 'concesion', costeTotal: 2000 },
       ] as never,
       'a161',
       2024,
     )
-
-    // La decisión no cambia en ninguno de los dos: sin cociente.
-    expect(conCifra.valor).toBeNull()
-    expect(muda.valor).toBeNull()
-    expect(conCifra.motivo).toBe('concesion')
-    expect(muda.motivo).toBe('concesion')
-
-    // Lo que cambia es que ahora se distinguen.
-    expect(
-      conCifra.declaradoNoComparable,
-      'el ministerio declaró y el motor tiraba la cifra sin mirarla',
-    ).toBeCloseTo(1_898_034.08, 2)
-    expect(muda.declaradoNoComparable, 'aquí la fuente sí calla').toBeUndefined()
+    expect(dobles.estado).toBe('no-declarado')
+    expect(dobles.motivo).toBe('filas-duplicadas')
   })
 
   it('la entrega de 2021 del fixture es de las mudas, y por eso el caso de arriba es sintético', () => {
     // Prueba de trabajo: el fixture es de 2021, uno de los cinco ejercicios en
-    // los que Riba-roja declaró cero para el agua. Si algún día trae cifra, el
-    // caso sintético de arriba deja de ser el único sitio donde se ejerce, y
-    // conviene enterarse en vez de seguir creyendo que se prueba con datos
-    // reales.
+    // los que Riba-roja declaró cero para el agua. El caso con cifra se
+    // construye por eso, y no porque el motor no sepa leerlo — la prueba de
+    // más abajo lo ejerce sobre un municipio real del mismo fixture que sí
+    // declara. Si algún día esta entrega trae cifra, que se entere alguien.
     for (const id of ['a161-coste-unitario', 'a160-coste-unitario']) {
-      expect(byId(id).numerador.declaradoNoComparable).toBeUndefined()
+      expect(byId(id).numerador.valor).toBeNull()
     }
   })
 
-  it('la ficha distingue los tres casos, no dos', () => {
+  it('la ficha ya no tiene un rótulo que contradiga a la casilla de al lado', () => {
     // Se comprueba sobre el JSX porque el defecto vivía ahí: el rótulo salía de
     // `valor === null`, que es binario, y publicaba el silencio de la fuente
-    // sobre una decisión nuestra.
+    // sobre una decisión nuestra. Con la decisión levantada, el campo que la
+    // explicaba —`declaradoNoComparable`— ya no existe: un campo muerto que
+    // sigue leyéndose en la vista es cómo vuelve un rótulo viejo.
     const jsx = readFileSync(
       join(__dirname, '..', 'src/components/eficiencia/FilaServicio.jsx'),
       'utf8',
     )
-    expect(jsx).toContain('declaradoNoComparable')
-    expect(jsx).toContain('no comparables (concesión)')
+    expect(jsx).not.toContain('declaradoNoComparable')
+    expect(jsx).not.toContain('no comparables (concesión)')
     expect(jsx).toContain('sin coste declarado (concesión)')
     // Y el binario de antes ya no decide el rótulo.
     expect(jsx).not.toContain("i.numerador.valor === null\n            ? 'coste no declarado'")
@@ -502,5 +517,88 @@ describe('scraper/indicadores · euros constantes', () => {
     for (const p of snap.indicadores.flatMap((i) => i.serie)) {
       expect(p.valorReal ?? null).toBeNull()
     }
+  })
+})
+
+describe('scraper/indicadores · una concesión que declara, con datos reales del fixture', () => {
+  // Riba-roja declaró cero para el agua en la entrega de 2021, así que su
+  // propia ficha no puede ejercer esta rama del fixture. Otros municipios del
+  // MISMO volcado sí declaran, y el motor se apunta a uno de ellos: es la
+  // diferencia entre probar la regla contra datos del ministerio y probarla
+  // contra un objeto que hemos escrito nosotros.
+  const CONCESION_QUE_DECLARA = '03090' // Mutxamel · a161 en concesión con cifra
+  const suyas = rows.filter((r) => r.ine === CONCESION_QUE_DECLARA)
+  const snapC = construirIndicadores({
+    municipio: {
+      ine: CONCESION_QUE_DECLARA,
+      nombre: rows.find((r) => r.ine === CONCESION_QUE_DECLARA)!.nombre,
+      filas: suyas,
+    },
+    pares: { conjunto: 'cv-15k-40k', anios: [2021], miembros, filas: rows },
+    anioBase: 2021,
+    citaUrl: CITA,
+  })
+  const agua = snapC.indicadores.find((i) => i.id === 'a161-coste-unitario')!
+
+  it('publica el cociente en vez de tirar la cifra sin mirarla', () => {
+    expect(agua.modoGestion).toBe('concesion')
+    expect(agua.numerador.estado).toBe('declarado')
+    expect(agua.denominador.estado).toBe('declarado')
+    expect(agua.valor).toBeCloseTo(agua.numerador.valor! / agua.denominador.valor!, 9)
+    expect(situacion(agua)).toBe('con-ratio')
+  })
+
+  it('la compara SÓLO contra otras concesiones, nunca contra una gestión directa', () => {
+    // La regla 4 en horizontal. El coste de una concesión y el de una gestión
+    // directa no son la misma magnitud, y mezclarlas es el error de categoría
+    // que esta página se construyó para no cometer: lo que cambia respecto de
+    // antes es que ahora hay un grupo con el que sí se puede comparar.
+    expect(agua.comparable).toBe(true)
+    expect(agua.pares!.modoGestion).toBe('concesion')
+    expect(agua.pares!.n).toBeGreaterThanOrEqual(MIN_PARES)
+    const modoDeCadaPar = agua.pares!.miembros.map(
+      (m) =>
+        rows.find((r) => r.ine === m.ine && r.programa === 'a161' && r.anio === 2021)!.modoGestion,
+    )
+    expect(new Set(modoDeCadaPar)).toEqual(new Set(['concesion']))
+    expect(agua.pares!.miembros.every((m) => m.ine !== CONCESION_QUE_DECLARA)).toBe(true)
+  })
+
+  it('dice en una salvedad que ese dinero no sale del presupuesto municipal', () => {
+    // La diferencia que el cociente NO puede llevar dentro: el número es lo que
+    // cuesta el servicio, no lo que gasta el ayuntamiento. Sin esta frase, la
+    // fila se lee igual que la de un servicio pagado con impuestos.
+    expect(agua.caveats.some((c) => /concesionario/.test(c) && /recibo/.test(c))).toBe(true)
+  })
+
+  it('dice cuántas concesiones de la banda se quedan fuera por no declarar', () => {
+    // El grupo de comparación no es «los municipios con el agua concedida»,
+    // sino «los que además rellenan la casilla». Publicar un percentil sin
+    // decirlo presenta una muestra autoseleccionada como si fuera el universo.
+    //
+    // Los recuentos van SIN el municipio propio, que es el universo que la
+    // ficha rotula arriba («n=30»): con él dentro, la tarjeta enseñaba «31 de
+    // 42» al lado de un «n=30» y un lector no podía saber si él estaba o no
+    // en la cifra.
+    const enConcesion = new Set(
+      rows
+        .filter((r) => r.programa === 'a161' && r.anio === 2021 && r.modoGestion === 'concesion')
+        .map((r) => r.ine),
+    )
+    enConcesion.delete(CONCESION_QUE_DECLARA)
+    const frase = agua.caveats.find((c) => /no declaran? (su )?coste|no rellenan/.test(c))
+    expect(frase, 'sin frase que acote el grupo').toBeDefined()
+    // …y la frase cita los DOS recuentos, y el que resta cuadra con `pares.n`.
+    expect(frase).toContain(String(enConcesion.size))
+    expect(frase).toContain(String(agua.pares!.n))
+    expect(frase).toContain(String(enConcesion.size - agua.pares!.n))
+  })
+
+  it('una concesión muda del mismo fixture sigue sin cociente y sin par', () => {
+    // El contraste que hace que lo de arriba signifique algo: mismo programa,
+    // mismo año, mismo volcado — y sin casilla, sin división.
+    const rr = snap.indicadores.find((i) => i.id === 'a161-coste-unitario')!
+    expect(rr.valor).toBeNull()
+    expect(rr.pares).toBeNull()
   })
 })

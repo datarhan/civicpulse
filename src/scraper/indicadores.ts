@@ -11,10 +11,14 @@
  *
  * LAS CINCO TRAMPAS QUE ESTE MÓDULO EXISTE PARA PARAR
  *
- *  1. La concesión declara 0 €. Agua y alcantarillado no le cuestan nada al
- *     ayuntamiento porque los paga el concesionario vía tarifa, y el
- *     denominador (metros de red) sí está. Dividir publicaría «Riba-roja
- *     suministra agua gratis, el más eficiente de la comarca».
+ *  1. La concesión declara 0 €. El concesionario cobra del recibo, así que
+ *     agua y alcantarillado pueden venir a cero con el denominador (metros de
+ *     red) ahí puesto. Dividir publicaría «Riba-roja suministra agua gratis,
+ *     el más eficiente de la comarca». Ojo al ALCANCE: lo que no se divide es
+ *     la casilla vacía, no el modo de gestión. Hasta el 2026-09-02 se
+ *     rechazaba toda concesión sin mirar la casilla, y en la entrega de 2024
+ *     el ministerio declara 1.898.034,08 € para el agua: eso es un coste, se
+ *     divide, y se compara sólo contra otras concesiones.
  *  2. El cero significa «no lo declaré». Transporte urbano tiene presupuesto
  *     real y 0 viajeros declarados.
  *  3. Un servicio puede traer varias filas con costes distintos.
@@ -63,7 +67,7 @@ export type Motivo =
   | 'filas-duplicadas'
   /** El mismo atributo declarado dos veces con valores distintos. */
   | 'atributo-ambiguo'
-  /** Lo paga el concesionario: el coste del ayuntamiento no es el del servicio. */
+  /** Servicio concedido y casilla de coste vacía o a cero: el concesionario cobra del recibo. */
   | 'concesion'
 
 export interface Magnitud {
@@ -71,21 +75,6 @@ export interface Magnitud {
   valor: number | null
   estado: EstadoCelda
   motivo?: Motivo
-  /**
-   * Lo que el ministerio SÍ declaró en una celda que aquí no se usa.
-   *
-   * Sólo se rellena con `motivo: 'concesion'`, y existe porque «no lo hemos
-   * dividido» y «no hay nada que dividir» son dos hechos y se estaban
-   * publicando como uno. Medido el 2026-08-29 sobre la entrega de 2024, la del
-   * año base: el a161 (agua) declara 1.898.034,08 € y el a160 (alcantarillado)
-   * 514.318,78 €, y la ficha rotulaba «coste no declarado» sobre las dos.
-   *
-   * `valor` sigue siendo null a propósito: en una concesión el coste declarado
-   * NO es el que soporta el ayuntamiento —lo cobra el concesionario del
-   * recibo—, así que dividirlo por habitantes mediría otra cosa. Lo que cambia
-   * es que ahora se puede decir de quién es el silencio.
-   */
-  declaradoNoComparable?: number
   /** La celda exacta, p. ej. `cesel:2021:CE3:a1621:Producción anual…`. */
   fuente: string
 }
@@ -355,9 +344,21 @@ export const DIVERGENCIA_EXTREMA = 2
  */
 export const ATIPICO_FACTOR = 20
 
-/** Modos en los que el coste declarado ES el coste que soporta el ayuntamiento. */
+/**
+ * Modos que forman un grupo de comparación coherente consigo mismo.
+ *
+ * NO es «modos en los que el coste lo soporta el ayuntamiento», que es lo que
+ * decía mientras el conjunto excluía `concesion`: esa exclusión ya no la hace
+ * este conjunto, porque los pares se filtran al MISMO modo de gestión unas
+ * líneas más abajo y una concesión sólo se compara contra concesiones. Lo que
+ * queda fuera es lo que no puede formar grupo ni consigo mismo: `otra` es el
+ * híbrido «+ otra forma de gestión (*)», donde parte del coste está en otro
+ * sitio y no en el mismo sitio para dos municipios cualesquiera, y
+ * `sin-clasificar` es un fallo del clasificador, no un dato.
+ */
 const MODOS_COMPARABLES: ReadonlySet<ModoGestion> = new Set<ModoGestion>([
   'directa',
+  'concesion',
   'mancomunada',
   'consorciada',
   'convenio',
@@ -384,24 +385,28 @@ export function resolverCoste(filas: CesteRow[], programa: string, anio: number)
     return { valor: null, estado: 'no-se-presta', fuente }
   }
   if (rows.some((r) => r.modoGestion === 'concesion')) {
-    // Se mira el coste ANTES de darlo por no declarado. La versión anterior
-    // volvía aquí sin leer `costeTotal` siquiera, así que una concesión con
-    // cifra y una concesión muda salían idénticas — y la ficha las rotulaba a
-    // las dos «coste no declarado», que es el silencio de la FUENTE. En la
-    // entrega de 2024 el ministerio declara 1.898.034,08 € para el agua: el
-    // silencio era nuestro, y el rótulo se lo atribuía a él. Es el centinela
-    // que vale por dos cosas, la regla 3 de DATA_INTEGRITY, en una superficie
-    // legalmente material.
+    // La trampa 1, acotada a lo que la trampa dice. Esto volvía en cuanto veía
+    // el modo de gestión, SIN LEER `costeTotal` siquiera, y así una concesión
+    // muda y una concesión con cifra salían idénticas: en la entrega de 2024 el
+    // ministerio declara 1.898.034,08 € para el agua y 514.318,78 € para el
+    // alcantarillado, y las dos se publicaban como si la fuente callara. Un
+    // centinela valiendo por dos hechos —«la fuente calla» y «nosotros no
+    // dividimos»— es la regla 3 de DATA_INTEGRITY.
+    //
+    // Lo que se rechaza ahora es la casilla vacía o a cero, que es donde vive
+    // «el agua sale gratis». Un coste declarado ES un coste: se divide, y la
+    // comparación con pares lo filtra al mismo modo de gestión, así que una
+    // concesión nunca se mide contra una gestión directa.
     const declarado = rows.map((r) => r.costeTotal ?? 0).filter((c) => c > 0)
-    return declarado.length === 1
-      ? {
-          valor: null,
-          estado: 'no-declarado',
-          motivo: 'concesion',
-          declaradoNoComparable: declarado[0],
-          fuente,
-        }
-      : { valor: null, estado: 'no-declarado', motivo: 'concesion', fuente }
+    if (!declarado.length) {
+      return { valor: null, estado: 'no-declarado', motivo: 'concesion', fuente }
+    }
+    // Dos costes positivos distintos son dos afirmaciones rivales, aquí igual
+    // que en gestión directa: elegir sería un volado disfrazado de dato.
+    if (new Set(declarado).size > 1) {
+      return { valor: null, estado: 'no-declarado', motivo: 'filas-duplicadas', fuente }
+    }
+    return { valor: declarado[0], estado: 'declarado', fuente }
   }
 
   // Una fila con coste 0 no es una afirmación rival: es la misma «no lo
@@ -715,10 +720,17 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
         valor,
         estado: ok ? 'declarado' : n.estado === 'no-se-presta' ? 'no-se-presta' : 'no-declarado',
       }
-      if (ok) {
-        punto.numerador = n.valor!
-        punto.denominador = d.valor!
-      }
+      // Cada mitad por su cuenta, no sólo cuando las dos salen. El punto sólo
+      // las llevaba si había cociente, así que una entrega en la que el
+      // ayuntamiento declaró los metros de red y no el coste salía idéntica a
+      // una en la que no declaró nada — y la rejilla de la ficha la rotulaba
+      // «rindió la entrega, no declaró este servicio» sobre las dos filas, con
+      // 268.530 m declarados en la fuente. El mismo centinela de dos hechos que
+      // arregló `declaradoNoComparable`, una capa más abajo.
+      //
+      // `valor` sigue exigiendo las dos: un cociente a medias no existe.
+      if (n.estado === 'declarado') punto.numerador = n.valor!
+      if (d.estado === 'declarado') punto.denominador = d.valor!
       // El modo de gestión de ESE año, que no tiene por qué ser el que titula:
       // limpieza viaria estuvo concedida antes de 2016 y directa después, y un
       // coste bajo concesión no es la misma magnitud que uno de gestión
@@ -833,6 +845,57 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
     // de gestión: es que cada ayuntamiento rellena la magnitud a su manera.
     // Decirlo debilita la lectura, nunca la refuerza.
     const caveats = [...def.caveats]
+
+    // ── El cociente de una concesión no mide lo mismo que el de un servicio
+    // propio, y eso no cabe dentro del número ────────────────────────────────
+    //
+    // Se publica desde el 2026-09-02, y estas dos frases son la condición de
+    // que se publique. La primera dice de quién es el dinero: sin ella la fila
+    // se lee igual que la de un servicio pagado con impuestos, cuando lo que
+    // hay debajo es el recibo de cada casa. La segunda acota el grupo: los
+    // pares son las concesiones que RELLENAN la casilla, no las que tienen el
+    // servicio concedido, y un percentil sobre una muestra autoseleccionada
+    // presentado como si fuera el universo es la misma clase de afirmación que
+    // el centinela `Otro` de DATA_INTEGRITY.
+    //
+    // Derivadas del dato, no escritas a mano: los dos recuentos salen del
+    // volcado en cada pase, así que no pueden quedarse viejos cuando el
+    // ministerio publique otra entrega.
+    if (modoGestion === 'concesion' && valor !== null) {
+      caveats.push(
+        'Este servicio está concedido: el coste que el ayuntamiento declara no sale de su ' +
+          'presupuesto —lo cobra el concesionario del recibo de cada casa—, así que este cociente ' +
+          'dice lo que cuesta el servicio, no lo que el ayuntamiento gasta en él. Por eso sólo se ' +
+          'compara con otras concesiones.',
+      )
+      if (resumen) {
+        // COMPARABLES, sin contar a Riba-roja, que es la misma cuenta que la
+        // ficha rotula arriba («n=30») y la que titula la tira de percentiles.
+        // Con el municipio propio dentro salía «31 de 42» al lado de un «n=30»,
+        // dos universos distintos en la misma tarjeta sin decir en qué se
+        // diferencian: lo señaló la revisión lectora del 2026-09-02, y tenía
+        // razón — un lector no puede saber si él mismo está o no en la cifra.
+        // `pares.filas` no trae al propio municipio en la tubería real y sí en
+        // el fixture, así que se descuenta explícitamente en vez de confiar en
+        // quién llama.
+        const enConcesion = new Set<string>()
+        for (const f of pares.filas) {
+          if (f.programa === programa && f.anio === anioBase && f.modoGestion === 'concesion') {
+            enConcesion.add(f.ine)
+          }
+        }
+        enConcesion.delete(municipio.ine)
+        const mudos = enConcesion.size - resumen.n
+        if (mudos > 0) {
+          caveats.push(
+            `De los ${enConcesion.size} municipios comparables que también tienen este servicio ` +
+              `concedido, ${mudos} no declaran su coste: sin coste no hay cociente con el que ` +
+              `compararse, así que el percentil se calcula contra los ${resumen.n} restantes. El ` +
+              'grupo es el de las concesiones que rellenan esa casilla, no el de todas las que hay.',
+          )
+        }
+      }
+    }
     if (resumen && valor !== null && resumen.mediana > 0) {
       const razon = valor / resumen.mediana
       if (razon > DIVERGENCIA_EXTREMA || razon < 1 / DIVERGENCIA_EXTREMA) {

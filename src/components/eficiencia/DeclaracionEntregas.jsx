@@ -144,23 +144,41 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
     ? i.declaracion.denominador.desde
     : null
 
-  /** Qué clase de casilla es este año. Tres desenlaces, nunca dos. */
-  const desenlace = (a) => {
+  /**
+   * Qué clase de casilla es este año. Tres desenlaces, nunca dos.
+   *
+   * Y por MAGNITUD, no por año. Se decidía con `p.estado`, que es el del
+   * cociente y sólo vale «declarado» cuando salen las dos mitades: en el agua,
+   * donde el ayuntamiento declara los metros de red y deja el coste a cero, las
+   * dos filas se rotulaban «rindió la entrega, no declaró este servicio» — y
+   * los 268.530 m están en la fuente. La fila del denominador desmentía a su
+   * propia fuente para acompañar a la del numerador.
+   */
+  const desenlace = (a, clave) => {
     if (noPresentadas.includes(a)) return 'no-rindio'
     const p = porAnio.get(a)
-    if (!p || p.estado !== 'declarado') return 'no-declarado'
-    return 'declarado'
+    if (!p) return 'no-declarado'
+    if (clave) return typeof p[clave] === 'number' ? 'declarado' : 'no-declarado'
+    return p.estado === 'declarado' ? 'declarado' : 'no-declarado'
   }
 
   const declaradas = anios.filter((a) => desenlace(a) === 'declarado').length
-  const sinDeclarar = anios.filter((a) => desenlace(a) === 'no-declarado').length
+  const aniosSinDeclarar = anios.filter((a) => desenlace(a) === 'no-declarado')
+  const sinDeclarar = aniosSinDeclarar.length
   const sinRendir = anios.filter((a) => desenlace(a) === 'no-rindio')
+  // Y de qué clase es esa ausencia, que no es siempre la misma. En el agua el
+  // ayuntamiento rinde la entrega, declara los metros de red y deja el coste a
+  // cero: decir «no declaró este servicio» de un año así lo desmiente el dato
+  // de la casilla de al lado, que trae 268.530.
+  const aMedias = aniosSinDeclarar.filter(
+    (a) => desenlace(a, 'numerador') === 'declarado' || desenlace(a, 'denominador') === 'declarado',
+  ).length
 
   const fila = (clave, rotulo, formato, tonoDe) => (
     <>
       <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink70)' }}>{rotulo}</span>
       {anios.map((a, k) => {
-        const d = desenlace(a)
+        const d = desenlace(a, clave)
         const v = porAnio.get(a)?.[clave]
         return (
           <Casilla
@@ -268,7 +286,11 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
           )}
           {sinDeclarar > 0 && (
             <Muestra estilo={{ background: 'var(--paper)', border: '1px dashed var(--border)' }}>
-              rindió la entrega, no declaró este servicio
+              {/* «no declaró este servicio» rotulaba una casilla que ahora es de
+                  UNA magnitud: en el agua, la del coste está vacía y la de los
+                  metros de red trae 268.530, y la leyenda las llamaba a las dos
+                  lo mismo. Lo que la casilla dice es que esa cifra no está. */}
+              rindió la entrega, no declaró esta cifra
             </Muestra>
           )}
           {sinRendir.length > 0 && (
@@ -308,12 +330,14 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
                 : 'las ausencias de esta rejilla no son todas iguales'}
             </strong>
             {' — '}
-            en{' '}
-            {sinDeclarar === 1
-              ? anios.find((a) => desenlace(a) === 'no-declarado')
-              : 'unas entregas'}{' '}
-            el ayuntamiento rindió la entrega pero no declaró este servicio; en{' '}
-            {sinRendir.join(', ')} no rindió nada.{' '}
+            en {sinDeclarar === 1 ? aniosSinDeclarar[0] : 'unas entregas'} el ayuntamiento rindió la
+            entrega{' '}
+            {aMedias === sinDeclarar
+              ? 'y declaró este servicio a medias: una de las dos casillas viene con cifra y la otra no'
+              : aMedias > 0
+                ? 'y dejó este servicio sin cociente: en unas falta una de las dos casillas y en otras las dos'
+                : 'pero no declaró este servicio'}
+            ; en {sinRendir.join(', ')} no rindió nada.{' '}
           </>
         )}
         {sinRendir.length > 0 && (

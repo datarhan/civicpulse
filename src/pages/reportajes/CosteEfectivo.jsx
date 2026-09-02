@@ -801,7 +801,10 @@ export default function CosteEfectivo() {
         El panel del coste efectivo publica lo que cuesta cada servicio municipal. Para estos dos
         publica una serie que se enciende y se apaga:
       </P>
-      <Figura titulo="Las dos fichas que el panel no puede calcular" pie={data.panelCiego.nota}>
+      <Figura
+        titulo="Las dos fichas que el panel sólo calcula la mitad de los años"
+        pie={data.panelCiego.nota}
+      >
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {data.panelCiego.servicios.map((sv) => (
             <div
@@ -880,13 +883,27 @@ export default function CosteEfectivo() {
       </Figura>
       <P>{data.dinero.cautela}</P>
 
-      <SecHead num="04" kicker="Lo que el panel sí ve" title="Trece cifras, y cómo se leen" />
+      <SecHead num="04" kicker="Lo que el panel sí ve" title="Quince cifras, y cómo se leen" />
       <P>{data.panel.comoSeLee}</P>
+      {/* El recuento va DERIVADO del bloque, no escrito en la frase: decía «y
+          {'{'}bloqueados{'}'} no —los dos del agua—» y esos dos dejaron de estar
+          bloqueados el 2026-09-02, así que la aposición se quedó describiendo un
+          conjunto vacío. Una frase que sólo es cierta mientras una cifra no se
+          mueva es la que este repo ya ha pagado tres veces. */}
       <P>
-        De los quince servicios del registro,{' '}
-        <strong className="mono">{data.panel.conCociente}</strong> tienen coste unitario y{' '}
-        <strong className="mono">{data.panel.bloqueados}</strong> no —los dos del agua—. Dos quedan
-        por encima de tres de cada cuatro municipios comparables:{' '}
+        {data.panel.bloqueados > 0 ? (
+          <>
+            De los quince servicios del registro,{' '}
+            <strong className="mono">{data.panel.conCociente}</strong> tienen coste unitario y{' '}
+            <strong className="mono">{data.panel.bloqueados}</strong> no.
+          </>
+        ) : (
+          <>
+            Los <strong className="mono">{data.panel.conCociente}</strong> servicios del registro
+            tienen coste unitario.
+          </>
+        )}{' '}
+        Dos quedan por encima de tres de cada cuatro municipios comparables:{' '}
         {data.panel.posiciones.map((pos, i) => (
           <span key={pos.servicio}>
             {i > 0 && ' y '}
@@ -950,7 +967,7 @@ export default function CosteEfectivo() {
       <SecHead
         num="06"
         kicker="Lo que no se vuelve a medir"
-        title="Trece costes unitarios dividen entre una cantidad congelada"
+        title="Trece de los quince costes unitarios dividen entre una cantidad congelada"
       />
       <P>
         Un coste unitario es una división: lo que costó un servicio, entre la cantidad de servicio
@@ -975,8 +992,8 @@ export default function CosteEfectivo() {
         No es una rareza local, y tampoco es lo normal: la mediana de sus comparables repite el{' '}
         <span className="mono">{cong.banda.mediana.toLocaleString('es-ES')} %</span> de sus
         denominadores; Riba-roja repite el{' '}
-        <span className="mono">{cong.banda.propio.toLocaleString('es-ES')} %</span>, los{' '}
-        {cong.propios} a la vez.
+        <span className="mono">{cong.banda.propio.toLocaleString('es-ES')} %</span>, {cong.propios}{' '}
+        de sus {cong.medibles}.
       </P>
 
       <SecHead

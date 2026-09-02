@@ -1681,10 +1681,21 @@ export default function Metodologia() {
         </p>
         <ul style={{ margin: '10px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
           <li>
-            <strong>Concesión.</strong> Si el servicio lo presta un concesionario a su riesgo y
-            ventura, el ayuntamiento declara 0 € porque el coste lo soporta el concesionario y lo
-            recupera vía tarifa. Dividir ahí publicaría que el agua es gratis. No se calcula
-            cociente ni se compara.
+            {/* Decía «el ayuntamiento declara 0 €» en presente y sin matiz, y en
+                la entrega de 2024 declara 1.898.034,08 € para el agua. La frase
+                describía además la decisión vieja —no dividir NINGUNA concesión—
+                que se levantó el 2026-09-02. En el contrato editorial, que es lo
+                que es esta página, una regla que ya no se aplica es peor que
+                ninguna. */}
+            <strong>Concesión con la casilla vacía.</strong> Si el servicio lo presta un
+            concesionario a su riesgo y ventura, el coste lo soporta él y lo recupera vía tarifa, y
+            el formulario del ministerio se rellena de forma errática: unas entregas traen el
+            importe del servicio y otras un cero. Cuando trae cero no hay coste que dividir —hacerlo
+            publicaría que el agua es gratis—, así que no se calcula cociente ni se compara. Cuando
+            trae importe sí se divide, y entonces la ficha lleva dos salvedades que no caben dentro
+            del número: que ese dinero no sale del presupuesto municipal sino del recibo de cada
+            casa, y que la comparación es sólo contra las otras concesiones que también rellenan la
+            casilla, no contra todas las que tienen el servicio concedido.
           </li>
           <li>
             <strong>Cero sin declarar.</strong> Una unidad física a cero junto a un gasto real

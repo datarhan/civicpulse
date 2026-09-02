@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T09:11:48.567Z",
+  "generatedAt": "2026-09-02T21:54:18.500Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -327,12 +327,19 @@
       "serie": [
         {
           "anio": 2014,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null,
-          "p25ParesReal": null,
-          "p75ParesReal": null
+          "valor": 78.90253119414038,
+          "estado": "declarado",
+          "numerador": 723472.3,
+          "denominador": 9169.19,
+          "otroModo": "concesion",
+          "medianaPares": 82.98201542322505,
+          "p25Pares": 60.16684635910579,
+          "p75Pares": 137.42248692432568,
+          "nPares": 28,
+          "valorReal": 96.93095970458603,
+          "medianaParesReal": 101.94256472460681,
+          "p25ParesReal": 73.91436081609017,
+          "p75ParesReal": 168.82213207825512
         },
         {
           "anio": 2015,
@@ -475,7 +482,7 @@
           "congelada": false,
           "repeticionesFinales": 1,
           "desde": null,
-          "entregas": 9
+          "entregas": 10
         },
         "denominador": {
           "congelada": true,
@@ -489,6 +496,7 @@
       "caveats": [
         "La tonelada mide cuánta basura genera el municipio, no lo bien que se recoge: más toneladas no es peor gestión.",
         "La fuente no publica tasa de reciclaje, así que no hay dato de resultado con el que contrastar el coste.",
+        "En 2014 el servicio se prestaba bajo otro modo de gestión (concesion): esos años se publican pero la línea no los une con los del régimen actual, porque un coste bajo otro régimen no es la misma magnitud (regla 4).",
         "El ayuntamiento declara la misma cifra de producción anual residuos urbanos: toneladas desde 2019 —5 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 15 de 54 municipios comparables hacen lo mismo con esta misma cifra (regla 8)."
       ],
       "citas": [
@@ -770,12 +778,20 @@
       "serie": [
         {
           "anio": 2014,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null,
-          "p25ParesReal": null,
-          "p75ParesReal": null
+          "valor": 53296146.99999999,
+          "estado": "declarado",
+          "numerador": 532961.47,
+          "denominador": 0.01,
+          "otroModo": "concesion",
+          "medianaPares": 1.1850470502066375,
+          "p25Pares": 0.38698729270258414,
+          "p75Pares": 27.430359551154783,
+          "nPares": 24,
+          "atipico": true,
+          "valorReal": 65473776.304534376,
+          "medianaParesReal": 1.4558182878694348,
+          "p25ParesReal": 0.4754099660357505,
+          "p75ParesReal": 33.69791863575535
         },
         {
           "anio": 2015,
@@ -919,7 +935,7 @@
           "congelada": false,
           "repeticionesFinales": 1,
           "desde": null,
-          "entregas": 9
+          "entregas": 10
         },
         "denominador": {
           "congelada": true,
@@ -932,7 +948,8 @@
       },
       "caveats": [
         "La superficie es la declarada con servicio, no la superficie total del municipio.",
-        "El ministerio publica cifras inverosímiles para 2015: se apartan más de 20 veces de lo que declararon los municipios comparables ese mismo año. Se muestran porque son las oficiales, pero no se pueden leer como coste (regla 7).",
+        "En 2014 el servicio se prestaba bajo otro modo de gestión (concesion): esos años se publican pero la línea no los une con los del régimen actual, porque un coste bajo otro régimen no es la misma magnitud (regla 4).",
+        "El ministerio publica cifras inverosímiles para 2014, 2015: se apartan más de 20 veces de lo que declararon los municipios comparables ese mismo año. Se muestran porque son las oficiales, pero no se pueden leer como coste (regla 7).",
         "El ayuntamiento declara la misma cifra de superficie en metros cuadrados con servicio de limpieza desde 2018 —6 entregas seguidas— mientras actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya cambiado: nadie ha vuelto a medir el denominador. No es una rareza local: 31 de 52 municipios comparables hacen lo mismo con esta misma cifra (regla 8)."
       ],
       "citas": [
@@ -1239,6 +1256,7 @@
           "anio": 2014,
           "valor": null,
           "estado": "no-declarado",
+          "denominador": 880000,
           "valorReal": null,
           "medianaParesReal": null,
           "p25ParesReal": null,
@@ -1248,6 +1266,7 @@
           "anio": 2015,
           "valor": null,
           "estado": "no-declarado",
+          "denominador": 210971,
           "valorReal": null,
           "medianaParesReal": null,
           "p25ParesReal": null,
@@ -1274,14 +1293,14 @@
           "estado": "declarado",
           "numerador": 531622.27,
           "denominador": 210971,
-          "medianaPares": 2.5099176275685804,
-          "p25Pares": 1.30160523009162,
-          "p75Pares": 6.0958469961880475,
-          "nPares": 19,
+          "medianaPares": 2.693698967918137,
+          "p25Pares": 1.4133710608370458,
+          "p75Pares": 8.067679163486293,
+          "nPares": 20,
           "valorReal": 3.05773523954158,
-          "medianaParesReal": 3.0456426322182404,
-          "p25ParesReal": 1.579424095652698,
-          "p75ParesReal": 7.396964460963185
+          "medianaParesReal": 3.268650861264007,
+          "p25ParesReal": 1.715045589842254,
+          "p75ParesReal": 9.789670917278446
         },
         {
           "anio": 2018,
@@ -1289,14 +1308,14 @@
           "estado": "declarado",
           "numerador": 586244.7,
           "denominador": 210971,
-          "medianaPares": 3.45046313723038,
-          "p25Pares": 1.345382438853161,
-          "p75Pares": 10.553539110580774,
-          "nPares": 26,
+          "medianaPares": 3.6364510256700853,
+          "p25Pares": 1.3499340570117506,
+          "p75Pares": 10.10824586942891,
+          "nPares": 27,
           "valorReal": 3.3163454303774835,
-          "medianaParesReal": 4.117949195791701,
-          "p25ParesReal": 1.6056443183898719,
-          "p75ParesReal": 12.595102791927236
+          "medianaParesReal": 4.339916115931601,
+          "p25ParesReal": 1.6110764391198327,
+          "p75ParesReal": 12.063668352153833
         },
         {
           "anio": 2019,
@@ -1304,14 +1323,14 @@
           "estado": "declarado",
           "numerador": 558038.97,
           "denominador": 740046,
-          "medianaPares": 2.3971659914939307,
-          "p25Pares": 1.3132222501909423,
-          "p75Pares": 4.954559188288842,
-          "nPares": 30,
+          "medianaPares": 2.583587476096206,
+          "p25Pares": 1.3193400839061598,
+          "p75Pares": 5.128401861246136,
+          "nPares": 32,
           "valorReal": 0.8936821739907671,
-          "medianaParesReal": 2.8410271900580657,
-          "p25ParesReal": 1.5563795467733046,
-          "p75ParesReal": 5.871949384659981
+          "medianaParesReal": 3.061966627896489,
+          "p25ParesReal": 1.5636301635394614,
+          "p75ParesReal": 6.077980907890564
         },
         {
           "anio": 2021,
@@ -5869,6 +5888,7 @@
           "anio": 2014,
           "valor": null,
           "estado": "no-declarado",
+          "denominador": 4800,
           "valorReal": null,
           "medianaParesReal": null,
           "p25ParesReal": null,
@@ -6834,10 +6854,8 @@
       "servicio": "a161",
       "etiqueta": "Abastecimiento domiciliario de agua potable",
       "numerador": {
-        "valor": null,
-        "estado": "no-declarado",
-        "motivo": "concesion",
-        "declaradoNoComparable": 1898034.08,
+        "valor": 1898034.08,
+        "estado": "declarado",
         "fuente": "cesel:2024:CE2:a161:Econ14"
       },
       "denominador": {
@@ -6845,7 +6863,7 @@
         "estado": "declarado",
         "fuente": "cesel:2024:CE3:a161:Longitud de la red: metros lineales"
       },
-      "valor": null,
+      "valor": 7.01339127221668,
       "unidad": "€/m de red",
       "divisor": {
         "singular": "m de red",
@@ -6854,49 +6872,332 @@
       },
       "modoGestion": "concesion",
       "codGestionRaw": "Gestión indirecta mediante concesión, gestionando el concesionario el servicio a su riesgo y ventura",
-      "comparable": false,
-      "pares": null,
+      "comparable": true,
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 30,
+        "modoGestion": "concesion",
+        "percentil": 20,
+        "percentilBanda": [
+          7,
+          37
+        ],
+        "p25": 7.782706122414473,
+        "mediana": 11.910290129904695,
+        "p75": 15.667835789780156,
+        "atipicos": 3,
+        "miembros": [
+          {
+            "ine": "03011",
+            "nombre": "Alfàs del Pi (l')",
+            "poblacion": 21080,
+            "gastoTotal": 28021601.360000003,
+            "ingresoTotal": 28021601.36,
+            "valor": 24.44249939785417
+          },
+          {
+            "ine": "03015",
+            "nombre": "Almoradí",
+            "poblacion": 22965,
+            "gastoTotal": 18062868.5,
+            "ingresoTotal": 18062868.5,
+            "valor": 14.408443268624291
+          },
+          {
+            "ine": "03018",
+            "nombre": "Altea",
+            "poblacion": 24592,
+            "gastoTotal": 35462912.04,
+            "ingresoTotal": 35531749.15,
+            "valor": 1.2353211785558131
+          },
+          {
+            "ine": "03019",
+            "nombre": "Aspe",
+            "poblacion": 22397,
+            "gastoTotal": 22399647.61,
+            "ingresoTotal": 22399647.61,
+            "valor": 12.615302223682768
+          },
+          {
+            "ine": "03047",
+            "nombre": "Calp",
+            "poblacion": 27616,
+            "gastoTotal": 54911909,
+            "ingresoTotal": 54911909,
+            "valor": 23.425058419745874
+          },
+          {
+            "ine": "03050",
+            "nombre": "Campello (el)",
+            "poblacion": 31419,
+            "gastoTotal": 39144000,
+            "ingresoTotal": 39144000,
+            "valor": 0.20363389987997987,
+            "atipico": true
+          },
+          {
+            "ine": "03076",
+            "nombre": "Guardamar del Segura",
+            "poblacion": 18564,
+            "gastoTotal": 23283653.13,
+            "ingresoTotal": 23283653.13,
+            "valor": 22.926462707956883
+          },
+          {
+            "ine": "03079",
+            "nombre": "Ibi",
+            "poblacion": 24500,
+            "gastoTotal": 18485156.669999998,
+            "ingresoTotal": 20234845.23,
+            "valor": 7.040492956063236
+          },
+          {
+            "ine": "03090",
+            "nombre": "Mutxamel",
+            "poblacion": 28621,
+            "gastoTotal": 29441800,
+            "ingresoTotal": 29441800,
+            "valor": 13.985253071489984
+          },
+          {
+            "ine": "03093",
+            "nombre": "Novelda",
+            "poblacion": 26606,
+            "gastoTotal": 31151358.2,
+            "ingresoTotal": 31151358.2,
+            "valor": 8.379139294811637
+          },
+          {
+            "ine": "03119",
+            "nombre": "Sant Joan d'Alacant",
+            "poblacion": 26834,
+            "gastoTotal": 32736782.05,
+            "ingresoTotal": 32736782.05,
+            "valor": 9.748226155358898
+          },
+          {
+            "ine": "03121",
+            "nombre": "Santa Pola",
+            "poblacion": 39709,
+            "gastoTotal": 40220257.45,
+            "ingresoTotal": 45964057.45,
+            "valor": 31.98850927626437
+          },
+          {
+            "ine": "03139",
+            "nombre": "Villajoyosa/Vila Joiosa (la)",
+            "poblacion": 37449,
+            "gastoTotal": 50367007.54,
+            "ingresoTotal": 50367007.54,
+            "valor": 26.813965472027974
+          },
+          {
+            "ine": "03140",
+            "nombre": "Villena",
+            "poblacion": 34712,
+            "gastoTotal": 36468088.11,
+            "ingresoTotal": 36468088.11,
+            "valor": 9.225552996845424
+          },
+          {
+            "ine": "12028",
+            "nombre": "Benicasim/Benicàssim",
+            "poblacion": 20539,
+            "gastoTotal": 35540546.13,
+            "ingresoTotal": 35540546.13,
+            "valor": 13.710317068965518
+          },
+          {
+            "ine": "12126",
+            "nombre": "Vall d'Uixó (la)",
+            "poblacion": 32242,
+            "gastoTotal": 51059580.51,
+            "ingresoTotal": 51059580.51,
+            "valor": 11.741348474095103
+          },
+          {
+            "ine": "46007",
+            "nombre": "Albal",
+            "poblacion": 17365,
+            "gastoTotal": 14695743.67,
+            "ingresoTotal": 14695743.67,
+            "valor": 15.723746995994658
+          },
+          {
+            "ine": "46022",
+            "nombre": "Alfafar",
+            "poblacion": 22270,
+            "gastoTotal": 22786247.560000002,
+            "ingresoTotal": 22786247.56,
+            "valor": 21.360278216442175
+          },
+          {
+            "ine": "46054",
+            "nombre": "Benetússer",
+            "poblacion": 16734,
+            "gastoTotal": 15464543.36,
+            "ingresoTotal": 15464543.36,
+            "valor": 26.100144444444446
+          },
+          {
+            "ine": "46083",
+            "nombre": "Carcaixent",
+            "poblacion": 21934,
+            "gastoTotal": 22358261.5,
+            "ingresoTotal": 22358261.5,
+            "valor": 5.9563220600397875
+          },
+          {
+            "ine": "46085",
+            "nombre": "Carlet",
+            "poblacion": 16857,
+            "gastoTotal": 16584789.83,
+            "ingresoTotal": 16584789.83,
+            "valor": 7.679536964285714
+          },
+          {
+            "ine": "46094",
+            "nombre": "Catarroja",
+            "poblacion": 30604,
+            "gastoTotal": 39040734.730000004,
+            "ingresoTotal": 39040734.73,
+            "valor": 10.838943034747611
+          },
+          {
+            "ine": "46102",
+            "nombre": "Quart de Poblet",
+            "poblacion": 26967,
+            "gastoTotal": 40699000,
+            "ingresoTotal": 40699000,
+            "valor": 0.20274294573643412,
+            "atipico": true
+          },
+          {
+            "ine": "46110",
+            "nombre": "Xirivella",
+            "poblacion": 32093,
+            "gastoTotal": 25607159.82,
+            "ingresoTotal": 25607159.82,
+            "valor": 0.2202275699319094,
+            "atipico": true
+          },
+          {
+            "ine": "46111",
+            "nombre": "Chiva",
+            "poblacion": 17951,
+            "gastoTotal": 16198349.53,
+            "ingresoTotal": 17447997.84,
+            "valor": 13.290026801527636
+          },
+          {
+            "ine": "46164",
+            "nombre": "Massamagrell",
+            "poblacion": 17566,
+            "gastoTotal": 13015000,
+            "ingresoTotal": 13080000,
+            "valor": 12.079231785714285
+          },
+          {
+            "ine": "46181",
+            "nombre": "Oliva",
+            "poblacion": 26813,
+            "gastoTotal": 30282046,
+            "ingresoTotal": 30282046,
+            "valor": 9.056084234066343
+          },
+          {
+            "ine": "46194",
+            "nombre": "Picassent",
+            "poblacion": 23202,
+            "gastoTotal": 28002771.04,
+            "ingresoTotal": 28002771.04,
+            "valor": 6.504141448003333
+          },
+          {
+            "ine": "46213",
+            "nombre": "Requena",
+            "poblacion": 20982,
+            "gastoTotal": 18758559,
+            "ingresoTotal": 18758559,
+            "valor": 8.092213596800752
+          },
+          {
+            "ine": "46230",
+            "nombre": "Silla",
+            "poblacion": 20482,
+            "gastoTotal": 18730078.3,
+            "ingresoTotal": 18730078.3,
+            "valor": 15.500102171136653
+          }
+        ]
+      },
       "serie": [
         {
           "anio": 2014,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null,
-          "p25ParesReal": null,
-          "p75ParesReal": null
+          "valor": 7.7790423424176565,
+          "estado": "declarado",
+          "numerador": 1861058.09,
+          "denominador": 239240,
+          "medianaPares": 10.686807756076568,
+          "p25Pares": 4.312031979889521,
+          "p75Pares": 15.400137098713131,
+          "nPares": 48,
+          "valorReal": 9.556474658307941,
+          "medianaParesReal": 13.1286349917738,
+          "p25ParesReal": 5.297287574452334,
+          "p75ParesReal": 18.918912308244433
         },
         {
           "anio": 2015,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null,
-          "p25ParesReal": null,
-          "p75ParesReal": null
+          "valor": 7.439561733610865,
+          "estado": "declarado",
+          "numerador": 1804949.27,
+          "denominador": 242615,
+          "medianaPares": 10.579923028648736,
+          "p25Pares": 5.811609803789506,
+          "p75Pares": 15.874494847669062,
+          "nPares": 38,
+          "valorReal": 9.185383162450954,
+          "medianaParesReal": 13.062684379421045,
+          "p25ParesReal": 7.175404244216628,
+          "p75ParesReal": 19.599718761312285
         },
         {
           "anio": 2016,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null,
-          "p25ParesReal": null,
-          "p75ParesReal": null
+          "valor": 7.9439684475519865,
+          "estado": "declarado",
+          "numerador": 1928056.75,
+          "denominador": 242707,
+          "medianaPares": 11.305899931060084,
+          "p25Pares": 5.601410924810691,
+          "p75Pares": 16.391779132484604,
+          "nPares": 37,
+          "valorReal": 9.82808128190757,
+          "medianaParesReal": 13.987379761284549,
+          "p25ParesReal": 6.929927054200356,
+          "p75ParesReal": 20.2795037181674
         },
         {
           "anio": 2017,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null,
-          "p25ParesReal": null,
-          "p75ParesReal": null
+          "valor": 8.0995270016934,
+          "estado": "declarado",
+          "numerador": 1965811.9,
+          "denominador": 242707,
+          "medianaPares": 10.857135767256132,
+          "p25Pares": 5.300782014448787,
+          "p75Pares": 15.805675203594546,
+          "nPares": 35,
+          "valorReal": 9.82831646194579,
+          "medianaParesReal": 13.174518236508643,
+          "p25ParesReal": 6.4321982163774365,
+          "p75ParesReal": 19.179290070047106
         },
         {
           "anio": 2018,
           "valor": null,
           "estado": "no-declarado",
+          "denominador": 268530,
           "valorReal": null,
           "medianaParesReal": null,
           "p25ParesReal": null,
@@ -6906,6 +7207,7 @@
           "anio": 2019,
           "valor": null,
           "estado": "no-declarado",
+          "denominador": 268530,
           "valorReal": null,
           "medianaParesReal": null,
           "p25ParesReal": null,
@@ -6915,6 +7217,7 @@
           "anio": 2021,
           "valor": null,
           "estado": "no-declarado",
+          "denominador": 268530,
           "valorReal": null,
           "medianaParesReal": null,
           "p25ParesReal": null,
@@ -6924,6 +7227,7 @@
           "anio": 2022,
           "valor": null,
           "estado": "no-declarado",
+          "denominador": 268530,
           "valorReal": null,
           "medianaParesReal": null,
           "p25ParesReal": null,
@@ -6933,6 +7237,7 @@
           "anio": 2023,
           "valor": null,
           "estado": "no-declarado",
+          "denominador": 268530,
           "valorReal": null,
           "medianaParesReal": null,
           "p25ParesReal": null,
@@ -6940,20 +7245,26 @@
         },
         {
           "anio": 2024,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null,
-          "p25ParesReal": null,
-          "p75ParesReal": null
+          "valor": 7.01339127221668,
+          "estado": "declarado",
+          "numerador": 1898034.08,
+          "denominador": 270630,
+          "medianaPares": 11.910290129904695,
+          "p25Pares": 7.782706122414473,
+          "p75Pares": 15.667835789780156,
+          "nPares": 30,
+          "valorReal": 7.01339127221668,
+          "medianaParesReal": 11.910290129904695,
+          "p25ParesReal": 7.782706122414473,
+          "p75ParesReal": 15.667835789780156
         }
       ],
       "declaracion": {
         "numerador": {
           "congelada": false,
-          "repeticionesFinales": 0,
+          "repeticionesFinales": 1,
           "desde": null,
-          "entregas": 0
+          "entregas": 5
         },
         "denominador": {
           "congelada": false,
@@ -6964,7 +7275,10 @@
         "paresCongelados": 15,
         "paresMedibles": 55
       },
-      "caveats": [],
+      "caveats": [
+        "Este servicio está concedido: el coste que el ayuntamiento declara no sale de su presupuesto —lo cobra el concesionario del recibo de cada casa—, así que este cociente dice lo que cuesta el servicio, no lo que el ayuntamiento gasta en él. Por eso sólo se compara con otras concesiones.",
+        "De los 41 municipios comparables que también tienen este servicio concedido, 11 no declaran su coste: sin coste no hay cociente con el que compararse, así que el percentil se calcula contra los 30 restantes. El grupo es el de las concesiones que rellenan esa casilla, no el de todas las que hay."
+      ],
       "concesion": {
         "adjudicataria": "HIDRAQUA, Gestión Integral de Aguas de Levante, S.A.",
         "importe": 55685178.79,
@@ -6988,10 +7302,8 @@
       "servicio": "a160",
       "etiqueta": "Alcantarillado",
       "numerador": {
-        "valor": null,
-        "estado": "no-declarado",
-        "motivo": "concesion",
-        "declaradoNoComparable": 514318.78,
+        "valor": 514318.78,
+        "estado": "declarado",
         "fuente": "cesel:2024:CE2:a160:Econ14"
       },
       "denominador": {
@@ -6999,7 +7311,7 @@
         "estado": "declarado",
         "fuente": "cesel:2024:CE3:a160:Longitud del tramo: metros lineales."
       },
-      "valor": null,
+      "valor": 1.7346918277176298,
       "unidad": "€/m de red",
       "divisor": {
         "singular": "m de red",
@@ -7008,49 +7320,266 @@
       },
       "modoGestion": "concesion",
       "codGestionRaw": "Gestión indirecta mediante concesión, gestionando el concesionario el servicio a su riesgo y ventura",
-      "comparable": false,
-      "pares": null,
+      "comparable": true,
+      "pares": {
+        "conjunto": "cv-15k-40k",
+        "n": 22,
+        "modoGestion": "concesion",
+        "percentil": 23,
+        "percentilBanda": [
+          5,
+          41
+        ],
+        "p25": 2.129494215162271,
+        "mediana": 5.624232457690648,
+        "p75": 7.458327083480685,
+        "atipicos": 1,
+        "miembros": [
+          {
+            "ine": "03011",
+            "nombre": "Alfàs del Pi (l')",
+            "poblacion": 21080,
+            "gastoTotal": 28021601.360000003,
+            "ingresoTotal": 28021601.36,
+            "valor": 7.463572719614
+          },
+          {
+            "ine": "03015",
+            "nombre": "Almoradí",
+            "poblacion": 22965,
+            "gastoTotal": 18062868.5,
+            "ingresoTotal": 18062868.5,
+            "valor": 15.370617021276598
+          },
+          {
+            "ine": "03018",
+            "nombre": "Altea",
+            "poblacion": 24592,
+            "gastoTotal": 35462912.04,
+            "ingresoTotal": 35531749.15,
+            "valor": 0.8715214814483483
+          },
+          {
+            "ine": "03019",
+            "nombre": "Aspe",
+            "poblacion": 22397,
+            "gastoTotal": 22399647.61,
+            "ingresoTotal": 22399647.61,
+            "valor": 7.442590175080741
+          },
+          {
+            "ine": "03047",
+            "nombre": "Calp",
+            "poblacion": 27616,
+            "gastoTotal": 54911909,
+            "ingresoTotal": 54911909,
+            "valor": 6.073363431151241
+          },
+          {
+            "ine": "03076",
+            "nombre": "Guardamar del Segura",
+            "poblacion": 18564,
+            "gastoTotal": 23283653.13,
+            "ingresoTotal": 23283653.13,
+            "valor": 6.835433858464616
+          },
+          {
+            "ine": "03093",
+            "nombre": "Novelda",
+            "poblacion": 26606,
+            "gastoTotal": 31151358.2,
+            "ingresoTotal": 31151358.2,
+            "valor": 12
+          },
+          {
+            "ine": "03119",
+            "nombre": "Sant Joan d'Alacant",
+            "poblacion": 26834,
+            "gastoTotal": 32736782.05,
+            "ingresoTotal": 32736782.05,
+            "valor": 4.526075018661358
+          },
+          {
+            "ine": "03121",
+            "nombre": "Santa Pola",
+            "poblacion": 39709,
+            "gastoTotal": 40220257.45,
+            "ingresoTotal": 45964057.45,
+            "valor": 13.872794552270316
+          },
+          {
+            "ine": "03139",
+            "nombre": "Villajoyosa/Vila Joiosa (la)",
+            "poblacion": 37449,
+            "gastoTotal": 50367007.54,
+            "ingresoTotal": 50367007.54,
+            "valor": 8.118730974924395
+          },
+          {
+            "ine": "03140",
+            "nombre": "Villena",
+            "poblacion": 34712,
+            "gastoTotal": 36468088.11,
+            "ingresoTotal": 36468088.11,
+            "valor": 4.946974041443549
+          },
+          {
+            "ine": "12126",
+            "nombre": "Vall d'Uixó (la)",
+            "poblacion": 32242,
+            "gastoTotal": 51059580.51,
+            "ingresoTotal": 51059580.51,
+            "valor": 2.926037314049587
+          },
+          {
+            "ine": "46007",
+            "nombre": "Albal",
+            "poblacion": 17365,
+            "gastoTotal": 14695743.67,
+            "ingresoTotal": 14695743.67,
+            "valor": 1.4440936896530243
+          },
+          {
+            "ine": "46022",
+            "nombre": "Alfafar",
+            "poblacion": 22270,
+            "gastoTotal": 22786247.560000002,
+            "ingresoTotal": 22786247.56,
+            "valor": 6.326909040282161
+          },
+          {
+            "ine": "46083",
+            "nombre": "Carcaixent",
+            "poblacion": 21934,
+            "gastoTotal": 22358261.5,
+            "ingresoTotal": 22358261.5,
+            "valor": 2.953894453580505
+          },
+          {
+            "ine": "46094",
+            "nombre": "Catarroja",
+            "poblacion": 30604,
+            "gastoTotal": 39040734.730000004,
+            "ingresoTotal": 39040734.73,
+            "valor": 0.8060458265139117
+          },
+          {
+            "ine": "46102",
+            "nombre": "Quart de Poblet",
+            "poblacion": 26967,
+            "gastoTotal": 40699000,
+            "ingresoTotal": 40699000,
+            "valor": 0.20730701298701298,
+            "atipico": true
+          },
+          {
+            "ine": "46111",
+            "nombre": "Chiva",
+            "poblacion": 17951,
+            "gastoTotal": 16198349.53,
+            "ingresoTotal": 17447997.84,
+            "valor": 8.086467248425937
+          },
+          {
+            "ine": "46164",
+            "nombre": "Massamagrell",
+            "poblacion": 17566,
+            "gastoTotal": 13015000,
+            "ingresoTotal": 13080000,
+            "valor": 5.175101484230055
+          },
+          {
+            "ine": "46194",
+            "nombre": "Picassent",
+            "poblacion": 23202,
+            "gastoTotal": 28002771.04,
+            "ingresoTotal": 28002771.04,
+            "valor": 6.726116946330216
+          },
+          {
+            "ine": "46213",
+            "nombre": "Requena",
+            "poblacion": 20982,
+            "gastoTotal": 18758559,
+            "ingresoTotal": 18758559,
+            "valor": 1.8639798488664987
+          },
+          {
+            "ine": "46230",
+            "nombre": "Silla",
+            "poblacion": 20482,
+            "gastoTotal": 18730078.3,
+            "ingresoTotal": 18730078.3,
+            "valor": 1.2975691134413727
+          }
+        ]
+      },
       "serie": [
         {
           "anio": 2014,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null,
-          "p25ParesReal": null,
-          "p75ParesReal": null
+          "valor": 2.2850804934996503,
+          "estado": "declarado",
+          "numerador": 503042.19,
+          "denominador": 220142,
+          "medianaPares": 2.794771797152782,
+          "p25Pares": 1.6494158016513905,
+          "p75Pares": 6.3546200584298065,
+          "nPares": 40,
+          "valorReal": 2.8071982214633855,
+          "medianaParesReal": 3.43334882105085,
+          "p25ParesReal": 2.0262905915222613,
+          "p75ParesReal": 7.8065863223835
         },
         {
           "anio": 2015,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null,
-          "p25ParesReal": null,
-          "p75ParesReal": null
+          "valor": 2.2275886591352747,
+          "estado": "declarado",
+          "numerador": 498674.68,
+          "denominador": 223863,
+          "medianaPares": 3.483427750885888,
+          "p25Pares": 1.6240201992663357,
+          "p75Pares": 5.5387600089635285,
+          "nPares": 31,
+          "valorReal": 2.7503307446252987,
+          "medianaParesReal": 4.300874131609867,
+          "p25ParesReal": 2.005124539316244,
+          "p75ParesReal": 6.83852554073737
         },
         {
           "anio": 2016,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null,
-          "p25ParesReal": null,
-          "p75ParesReal": null
+          "valor": 2.3357172467089247,
+          "estado": "declarado",
+          "numerador": 522880.67,
+          "denominador": 223863,
+          "medianaPares": 4.080192114008091,
+          "p25Pares": 1.5100425160467723,
+          "p75Pares": 6.439657099164508,
+          "nPares": 28,
+          "valorReal": 2.8896916073832934,
+          "medianaParesReal": 5.047912766399161,
+          "p25ParesReal": 1.8681872523571317,
+          "p75ParesReal": 7.966984488427215
         },
         {
           "anio": 2017,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null,
-          "p25ParesReal": null,
-          "p75ParesReal": null
+          "valor": 2.399197991628809,
+          "estado": "declarado",
+          "numerador": 537091.66,
+          "denominador": 223863,
+          "medianaPares": 4.085616180309991,
+          "p25Pares": 0.7345217544711516,
+          "p75Pares": 6.619502098782176,
+          "nPares": 27,
+          "valorReal": 2.911290636065874,
+          "medianaParesReal": 4.957663423276131,
+          "p25ParesReal": 0.8913004734247808,
+          "p75ParesReal": 8.032390216582217
         },
         {
           "anio": 2018,
           "valor": null,
           "estado": "no-declarado",
+          "denominador": 245270,
           "valorReal": null,
           "medianaParesReal": null,
           "p25ParesReal": null,
@@ -7060,6 +7589,7 @@
           "anio": 2019,
           "valor": null,
           "estado": "no-declarado",
+          "denominador": 245270,
           "valorReal": null,
           "medianaParesReal": null,
           "p25ParesReal": null,
@@ -7069,6 +7599,7 @@
           "anio": 2021,
           "valor": null,
           "estado": "no-declarado",
+          "denominador": 245270,
           "valorReal": null,
           "medianaParesReal": null,
           "p25ParesReal": null,
@@ -7078,6 +7609,7 @@
           "anio": 2022,
           "valor": null,
           "estado": "no-declarado",
+          "denominador": 245270,
           "valorReal": null,
           "medianaParesReal": null,
           "p25ParesReal": null,
@@ -7087,6 +7619,7 @@
           "anio": 2023,
           "valor": null,
           "estado": "no-declarado",
+          "denominador": 245270,
           "valorReal": null,
           "medianaParesReal": null,
           "p25ParesReal": null,
@@ -7094,20 +7627,26 @@
         },
         {
           "anio": 2024,
-          "valor": null,
-          "estado": "no-declarado",
-          "valorReal": null,
-          "medianaParesReal": null,
-          "p25ParesReal": null,
-          "p75ParesReal": null
+          "valor": 1.7346918277176298,
+          "estado": "declarado",
+          "numerador": 514318.78,
+          "denominador": 296490,
+          "medianaPares": 5.624232457690648,
+          "p25Pares": 2.129494215162271,
+          "p75Pares": 7.458327083480685,
+          "nPares": 22,
+          "valorReal": 1.7346918277176298,
+          "medianaParesReal": 5.624232457690648,
+          "p25ParesReal": 2.129494215162271,
+          "p75ParesReal": 7.458327083480685
         }
       ],
       "declaracion": {
         "numerador": {
           "congelada": false,
-          "repeticionesFinales": 0,
+          "repeticionesFinales": 1,
           "desde": null,
-          "entregas": 0
+          "entregas": 5
         },
         "denominador": {
           "congelada": false,
@@ -7118,7 +7657,11 @@
         "paresCongelados": 23,
         "paresMedibles": 56
       },
-      "caveats": [],
+      "caveats": [
+        "Este servicio está concedido: el coste que el ayuntamiento declara no sale de su presupuesto —lo cobra el concesionario del recibo de cada casa—, así que este cociente dice lo que cuesta el servicio, no lo que el ayuntamiento gasta en él. Por eso sólo se compara con otras concesiones.",
+        "De los 27 municipios comparables que también tienen este servicio concedido, 5 no declaran su coste: sin coste no hay cociente con el que compararse, así que el percentil se calcula contra los 22 restantes. El grupo es el de las concesiones que rellenan esa casilla, no el de todas las que hay.",
+        "Esta cifra queda muy por debajo de la mediana de sus pares (×0,3). Una diferencia así suele venir de que cada ayuntamiento declara «Longitud del tramo: metros lineales.» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación (regla 6 de la metodología)."
+      ],
       "concesion": {
         "adjudicataria": "HIDRAQUA, Gestión Integral de Aguas de Levante, S.A.",
         "importe": 55685178.79,
@@ -7138,12 +7681,12 @@
   ],
   "universe": {
     "serviciosEnRegistro": 15,
-    "conRatio": 13,
-    "enConcesion": 2,
+    "conRatio": 15,
+    "enConcesion": 0,
     "sinUnidad": 0,
     "sinCoste": 0,
     "noSePresta": 0,
-    "comparables": 12,
+    "comparables": 14,
     "aniosDisponibles": [
       2014,
       2015,
@@ -7535,21 +8078,21 @@
         "fuente": "coste-efectivo:2024:denominadores-congelados"
       },
       "denominador": {
-        "valor": 13,
+        "valor": 15,
         "estado": "declarado",
         "fuente": "coste-efectivo:2024:denominadores-medibles"
       },
-      "valor": 1,
+      "valor": 0.8666666666666667,
       "formato": "porcentaje",
       "periodo": "2024",
       "pares": {
         "conjunto": "cv-15k-40k",
         "descripcion": "de la misma banda de población de los que se puede medir lo mismo",
-        "n": 50,
-        "percentil": 100,
-        "p25": 0.4487179487179487,
-        "mediana": 0.6306818181818181,
-        "p75": 0.7875000000000001,
+        "n": 52,
+        "percentil": 92,
+        "p25": 0.41250000000000003,
+        "mediana": 0.5773809523809523,
+        "p75": 0.7142857142857143,
         "maximo": 1
       },
       "caveats": [
@@ -7696,8 +8239,8 @@
   },
   "stats": {
     "indicadores": 15,
-    "conRatio": 13,
-    "comparables": 12,
+    "conRatio": 15,
+    "comparables": 14,
     "municipales": 8
   }
 }

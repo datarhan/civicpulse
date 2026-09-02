@@ -105,7 +105,10 @@ describe('infografía — cada cifra coincide con el reportaje congelado', () =>
     expect(html).toContain(`mediana · ${es1(c.banda.mediana)} %`)
     expect(html).toContain(`p75 · ${es1(c.banda.p75)} %`)
     expect(html).toContain(`${c.banda.n} comparables`)
-    expect(html).toContain(`Riba-roja · ${c.banda.propio} %`)
+    // Con `es1`, como sus tres vecinas. Interpolado en crudo daba «86.7» con
+    // punto inglés, y sólo pasaba porque la propia había sido siempre 100: un
+    // formateador que nunca se ejerce con decimales no está comprobado.
+    expect(html).toContain(`Riba-roja · ${es1(c.banda.propio)} %`)
   })
 
   it('la inflación acumulada y las tres variaciones, corrientes y constantes', () => {

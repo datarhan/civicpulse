@@ -154,18 +154,33 @@ describe('el hueco del calendario se marca, no sólo se deja en blanco', () => {
     expect(huecosSerie(puntos)).toEqual([])
   })
 
-  it('sobre el panel publicado: el hueco es 2020 y es de todas las series', () => {
-    // No es una rareza de una tarjeta: el ministerio publicó la entrega de 2020
-    // y aquí no se ha obtenido, así que las diez se parten por el mismo sitio.
-    // Eso es lo que hace que parezca una avería de dibujo en vez de un dato.
+  it('sobre el panel publicado: todo hueco contiene 2020, y hay dos clases de hueco', () => {
+    // La versión anterior exigía que el hueco fuera EXACTAMENTE 2020 en todas
+    // las series, y lo era mientras las trece tarjetas venían de servicios en
+    // gestión directa con la serie entera. Desde el 2026-09-02 el agua y el
+    // alcantarillado publican cociente, y su hueco es de otra clase: no es la
+    // entrega que no se obtuvo, son las cinco entregas que el ayuntamiento
+    // declaró a cero (2018, 2019, 2021, 2022 y 2023).
+    //
+    // Lo que se comprueba es la propiedad que sigue siendo verdad de las dos
+    // clases —un hueco tapa siempre 2020, porque 2020 le falta a todo el
+    // mundo— y que las dos clases EXISTEN. Rebajarla a «hay algún hueco» sería
+    // dejar de medir lo que esto medía.
     const conSerie = indicadores.filter((i) => i.valor !== null && declarados(i).length >= 2)
     expect(conSerie.length).toBeGreaterThan(0)
+    let soloCalendario = 0
+    let deDeclaracion = 0
     for (const i of conSerie) {
       const huecos = huecosSerie(declarados(i))
-      expect(huecos, `${i.servicio} tiene un hueco distinto de 2020`).toEqual([
-        { desde: 2020, hasta: 2020 },
-      ])
+      expect(huecos, `${i.servicio} publica más de un hueco`).toHaveLength(1)
+      const [h] = huecos
+      expect(h.desde, `${i.servicio}: su hueco no tapa 2020`).toBeLessThanOrEqual(2020)
+      expect(h.hasta, `${i.servicio}: su hueco no tapa 2020`).toBeGreaterThanOrEqual(2020)
+      if (h.desde === 2020 && h.hasta === 2020) soloCalendario += 1
+      else deDeclaracion += 1
     }
+    expect(soloCalendario, 'ninguna serie con el hueco de calendario solo').toBeGreaterThan(0)
+    expect(deDeclaracion, 'ninguna serie con hueco de declaración').toBeGreaterThan(0)
   })
 })
 
@@ -226,10 +241,20 @@ describe('ninguna entrega publicada se queda sin dibujar', () => {
     expect(puntosSueltos(puntos)).toEqual([])
   })
 
-  it('sobre el panel publicado: toda entrega limpia acaba en una línea o en un lunar', () => {
+  it('sobre el panel publicado: toda entrega limpia acaba en una línea, un lunar o un aro', () => {
+    // TRES canales de dibujo, no dos. El recuento sumaba línea y lunar y daba
+    // la cuenta exacta mientras el panel no tenía ni una entrega bajo otro modo
+    // de gestión: `tramosSerie` las descarta y `puntosOtroModo` las pinta como
+    // aro hueco, así que el tercer canal existía en el código y no en el dato.
+    // Al publicarse las concesiones aparecieron dos —residuos 2014 y limpieza
+    // viaria 2014, años concedidos— y la suma se quedó corta. Una prueba de
+    // COMPLETITUD a la que le falta un canal declara perdido lo que sí se
+    // dibuja: se le añade, y se exige que los tres tengan instancia viva para
+    // que no vuelva a pasar en silencio.
     const conSerie = indicadores.filter((i) => i.valor !== null && declarados(i).length >= 2)
     expect(conSerie.length).toBeGreaterThan(0)
     let sueltos = 0
+    let aros = 0
     for (const i of conSerie) {
       const puntos = declarados(i)
       const limpios = puntos.filter((p) => !p.atipico)
@@ -237,15 +262,19 @@ describe('ninguna entrega publicada se queda sin dibujar', () => {
         .filter((t) => t.length >= 2)
         .flat().length
       const solos = puntosSueltos(puntos)
+      const otros = puntosOtroModo(puntos)
       sueltos += solos.length
+      aros += otros.length
+      const dibujadas = enLinea + solos.length + otros.length
       expect(
-        enLinea + solos.length,
-        `${i.servicio} publica ${limpios.length} entregas limpias y sólo dibuja ${enLinea + solos.length}`,
+        dibujadas,
+        `${i.servicio} publica ${limpios.length} entregas limpias y sólo dibuja ${dibujadas}`,
       ).toBe(limpios.length)
     }
-    // Y el caso existe de verdad en el dato: si algún día deja de existir, esta
+    // Y los casos existen de verdad en el dato: si alguno deja de existir, esta
     // prueba pasa por no medir nada y conviene enterarse.
     expect(sueltos, 'ninguna serie publicada tiene un punto aislado').toBeGreaterThan(0)
+    expect(aros, 'ninguna serie publicada tiene una entrega de otro modo').toBeGreaterThan(0)
   })
 })
 
@@ -280,18 +309,28 @@ describe('el puente punteado sobre el año que falta', () => {
     expect(puentesHueco(puntos)).toEqual([])
   })
 
-  it('sobre el panel publicado: las diez cruzan 2020 y ninguna inventa el ancla', () => {
+  it('sobre el panel publicado: todas cruzan 2020 y ninguna inventa el ancla', () => {
+    // Los anclajes eran 2019 y 2021 en las trece series de gestión directa. Con
+    // el agua dentro hay una que salta de 2017 a 2024 —seis entregas declaradas
+    // a cero por medio—, así que lo que se exige no es el año concreto sino la
+    // propiedad: el puente cruza 2020, se apoya en entregas que EXISTEN, y
+    // ninguna de las dos es una cifra que la propia tarjeta declara ilegible.
     const conSerie = indicadores.filter((i) => i.valor !== null && declarados(i).length >= 2)
     expect(conSerie.length).toBeGreaterThan(0)
+    let largos = 0
     for (const i of conSerie) {
       const puntos = declarados(i)
       const [p] = puentesHueco(puntos)
       expect(p, `${i.servicio} se queda sin puente sobre su hueco`).toBeDefined()
-      expect(p.desde.anio).toBe(2019)
-      expect(p.hasta.anio).toBe(2021)
+      expect(p.desde.anio, `${i.servicio}: el puente no cruza 2020`).toBeLessThan(2020)
+      expect(p.hasta.anio, `${i.servicio}: el puente no cruza 2020`).toBeGreaterThan(2020)
+      expect(puntos, `${i.servicio}: ancla izquierda inventada`).toContain(p.desde)
+      expect(puntos, `${i.servicio}: ancla derecha inventada`).toContain(p.hasta)
       expect(p.desde.atipico).toBeFalsy()
       expect(p.hasta.atipico).toBeFalsy()
+      if (p.hasta.anio - p.desde.anio > 2) largos += 1
     }
+    expect(largos, 'ningún puente más largo que el hueco de calendario').toBeGreaterThan(0)
   })
 })
 

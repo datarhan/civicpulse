@@ -1,14 +1,14 @@
 {
   "meta": {
     "slug": "coste-efectivo",
-    "titulo": "El panel se queda en blanco donde está el dinero",
-    "subtitulo": "El coste efectivo del agua en Riba-roja es, oficialmente, nada: el ayuntamiento no declara ni un euro porque el servicio está concedido y lo cobra la empresa del recibo de cada casa. Diez días antes de que se publicara la primera versión de esta pieza, el Ayuntamiento adjudicó ese servicio por diecisiete años y 55,7 millones. El expediente había tardado siete.",
+    "titulo": "El panel se enciende y se apaga justo donde está el dinero",
+    "subtitulo": "El coste efectivo del agua en Riba-roja aparece y desaparece: el ayuntamiento declara cifra en cinco de las diez entregas y cero en las otras cinco, porque el servicio está concedido y lo cobra la empresa del recibo de cada casa. Diez días antes de que se publicara la primera versión de esta pieza, el Ayuntamiento adjudicó ese servicio por diecisiete años y 55,7 millones. El expediente había tardado siete.",
     "seccion": "Reportaje · datos",
     "municipio": "Riba-roja de Túria",
     "fechaDatos": "2026-08-23",
     "publicadoEl": "16 de agosto de 2026",
     "ampliadoEl": "23 de agosto de 2026",
-    "notaAmpliacion": "La primera versión de esta pieza, del 16 de agosto de 2026, contaba tres defectos en cómo el ayuntamiento rinde el coste efectivo al ministerio. Todo aquello sigue aquí, en las secciones 5 a 7, con sus cifras intactas. Lo que se ha añadido el 23 de agosto es lo que faltaba: qué hay detrás de las dos casillas que ese panel deja en blanco. Al ampliarla no se retiró ni se corrigió ninguna cifra de la versión anterior.",
+    "notaAmpliacion": "La primera versión de esta pieza, del 16 de agosto de 2026, contaba tres defectos en cómo el ayuntamiento rinde el coste efectivo al ministerio. Todo aquello sigue aquí, en las secciones 5 a 7, con sus cifras intactas. Lo que se ha añadido el 23 de agosto es lo que faltaba: qué hay detrás de las dos casillas que ese panel dejaba en blanco. Al ampliarla no se retiró ni se corrigió ninguna cifra de la versión anterior.",
     "estado": "publicado",
     "derechoReplica": "abierto",
     "correcciones": [
@@ -19,6 +19,10 @@
       {
         "fecha": "2026-08-29",
         "texto": "**Se ha corregido el titular «El coste oficial del agua es cero» y la explicación que lo acompañaba.** La declaración ministerial no viene a cero siempre: para el abastecimiento de agua (programa a161) trae 1.861.058,09 € en 2014, 1.804.949,27 € en 2015, 1.928.056,75 € en 2016, 1.965.811,90 € en 2017 y 1.898.034,08 € en 2024 —la entrega más reciente, y la que el panel usa de año base—, y cero en las cinco de en medio. El alcantarillado (a160) sigue el mismo patrón, con 514.318,78 € en 2024. El titular pasa a decir «la mitad de los años».\n\nDecíamos también que «el formulario del ministerio se rellena con cero» por tratarse de una concesión. Eso describe la mitad de la serie, no toda.\n\nY había un segundo error, y ése era nuestro: la ficha de /eficiencia rotulaba «coste no declarado» para estos dos servicios, y esa etiqueta no era el silencio del ministerio sino una decisión de esta web — cuando el modo de gestión es una concesión no dividimos el coste entre habitantes. Citábamos nuestra propia etiqueta como si fuera la fuente. El panel ya lo dice como es: enseña los 1.898.034,08 € que el ayuntamiento declara y explica por qué no los divide.\n\n**La conclusión no cambia.** El panel sigue sin publicar un coste por habitante para los dos servicios donde el dinero es mayor y llega a más casas. Lo que cambia es de quién es el silencio."
+      },
+      {
+        "fecha": "2026-09-02",
+        "texto": "**El panel ya calcula las dos fichas del agua, y esta pieza decía que no podía.** Hasta hoy el motor de /eficiencia se negaba a dividir el coste de cualquier servicio concedido, mirase o no la casilla. Esa negativa se ha acotado a lo que la justifica —la casilla vacía o a cero, donde dividir publicaría que el agua sale gratis—, así que las entregas en las que el ministerio sí declara cifra pasan a tener coste unitario: **7,01 €/m de red** en el abastecimiento de agua y **1,73 €/m** en el alcantarillado, en la entrega de 2024, comparadas sólo contra otras concesiones. Se corrige el titular «El panel se queda en blanco donde está el dinero», la entradilla que decía que el ayuntamiento «no declara ni un euro» y el primer dato de cabecera, que seguía siendo un «0 €» — los tres afirmaban lo que la corrección del 29 de agosto ya había retirado del cuerpo.\n\nCon las dos fichas dentro, el panel pasa de trece cocientes a quince, y eso mueve la sección 06: los denominadores que el ayuntamiento no vuelve a medir son trece **de quince**, no trece de trece. Los dos que sí se remiden son justo estos dos. La banda de comparables se recompone con ellos: 52 municipios y una mediana del 57,7 %, antes 50 y 63,1 %.\n\n**Qué NO cambia.** Que el coste declarado de una concesión no sale del presupuesto municipal: lo cobra el concesionario del recibo, y por eso el cociente dice lo que cuesta el servicio y no lo que gasta el ayuntamiento. Que cinco de las diez entregas siguen viniendo a cero. Y que la tarifa que paga un vecino sigue sin estar publicada en ningún sitio que se pueda enlazar, que es la sección 09 y no la toca nada de esto."
       }
     ]
   },
@@ -29,8 +33,8 @@
   },
   "kpis": [
     {
-      "n": "0 €",
-      "l": "es lo que el ayuntamiento declara que le cuesta el agua: está concedida y la paga el recibo"
+      "n": "1,9 M€",
+      "l": "declara el ayuntamiento que cuesta el agua en la entrega de 2024; en cinco de las diez, cero"
     },
     {
       "n": "55,7 M€",
@@ -105,22 +109,22 @@
     "loQueNoConsta": "El expediente publica que hubo dos recursos y que recayó sentencia, pero no qué alegaban ni qué resolvió: esos documentos no están en la ficha pública. Esta pieza no afirma nada sobre su contenido."
   },
   "panelCiego": {
-    "nota": "Los dos servicios del contrato son también las dos fichas que el panel de /eficiencia no puede calcular. No es un hueco de esta página: es cómo funciona la fuente.",
+    "nota": "Los dos servicios del contrato son también las dos fichas que el panel de /eficiencia sólo puede calcular la mitad de los años. No es un hueco de esta página: es cómo funciona la fuente.",
     "servicios": [
       {
         "programa": "a161",
         "label": "Abastecimiento domiciliario de agua potable",
         "coste": "cero en 5 de 10 entregas",
-        "motivo": "concesión"
+        "motivo": "concesión · serie partida"
       },
       {
         "programa": "a160",
         "label": "Alcantarillado",
         "coste": "cero en 5 de 10 entregas",
-        "motivo": "concesión"
+        "motivo": "concesión · serie partida"
       }
     ],
-    "porQue": "El coste efectivo mide lo que le cuesta el servicio a la entidad local. En una concesión la entidad local no paga: cobra el concesionario, directamente del recibo. El formulario del ministerio recoge eso de forma errática: Riba-roja declaró cero en las entregas de 2018, 2019, 2021, 2022 y 2023, y en cambio 1.898.034,08 € para el agua y 514.318,78 € para el alcantarillado en la de 2024, la más reciente, con importes del mismo orden en 2014, 2015, 2016 y 2017. Y el panel de /eficiencia no publica ninguna de las dos cosas: cuando el modo de gestión es una concesión, esta web no divide el coste entre habitantes y rotula «coste no declarado» — que describe una decisión nuestra, no el silencio de la fuente. La consecuencia es la misma por dos caminos distintos: el instrumento con el que el Estado mide lo que cuestan los servicios municipales se queda ciego exactamente donde el dinero es mayor y llega a más casas."
+    "porQue": "El coste efectivo mide lo que le cuesta el servicio a la entidad local. En una concesión la entidad local no paga: cobra el concesionario, directamente del recibo. El formulario del ministerio recoge eso de forma errática: Riba-roja declaró cero en las entregas de 2018, 2019, 2021, 2022 y 2023, y en cambio 1.898.034,08 € para el agua y 514.318,78 € para el alcantarillado en la de 2024, la más reciente, con importes del mismo orden en 2014, 2015, 2016 y 2017. El panel divide las entregas que traen cifra y deja en blanco las que traen cero, porque un cero ahí no es un precio: es la casilla sin rellenar, y dividirlo publicaría que el agua sale gratis. Queda una serie que se enciende y se apaga en el servicio donde el dinero es mayor y llega a más casas — y el euro que de verdad paga un vecino, la tarifa, no está en ninguna de las dos mitades."
   },
   "dinero": {
     "nota": "Recuento propio sobre los contratos adjudicados que publica el portal de contratación del ayuntamiento, 2017-2026.",
@@ -146,8 +150,8 @@
   },
   "panel": {
     "nota": "Lo que el coste efectivo sí deja ver, resumido. El panel completo, servicio por servicio y con la competencia delegada de cada uno, está en /eficiencia.",
-    "conCociente": 13,
-    "bloqueados": 2,
+    "conCociente": 15,
+    "bloqueados": 0,
     "comoSeLee": "Un coste unitario es una división, y lo que se puede concluir de que salga alto o bajo depende de qué hay en el divisor. Si es la plantilla del servicio, es un precio y no un rendimiento: un cuerpo mejor pagado sale «más caro» por cabeza sin que eso diga nada de cómo funciona. Si es la demanda que le llega, más no significa peor gestión ni menos mejor. Y si es lo que el servicio entrega, dice lo que costó cada unidad, no si estuvo bien hecha. La fuente no publica ningún indicador de calidad con el que contrastar ninguna de las tres, y por eso esta pieza no pone nota a nada.",
     "posiciones": [
       {
@@ -233,7 +237,7 @@
   },
   "congelados": {
     "propios": 13,
-    "medibles": 13,
+    "medibles": 15,
     "desdeMin": 2018,
     "desdeMax": 2019,
     "ejemplos": [
@@ -251,11 +255,11 @@
       }
     ],
     "banda": {
-      "n": 50,
-      "p25": 44.9,
-      "mediana": 63.1,
-      "p75": 78.8,
-      "propio": 100
+      "n": 52,
+      "p25": 41.3,
+      "mediana": 57.7,
+      "p75": 71.4,
+      "propio": 86.7
     },
     "bandaNota": "Municipios de la Comunitat Valenciana de 15.000 a 40.000 habitantes de los que se puede medir lo mismo: con coste unitario en 2024 en al menos la mitad de servicios que Riba-roja. El porcentaje es cuántos de sus denominadores repiten idénticos cuatro entregas o más."
   },

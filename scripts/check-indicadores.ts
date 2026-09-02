@@ -135,10 +135,30 @@ async function main() {
       if (!i.comparable) fail(`${i.id}: trae pares pero se declara no comparable`)
     }
 
-    // 5. Una concesión nunca puede acabar comparada.
-    comprobaciones++
-    if (i.modoGestion === 'concesion' && (i.valor !== null || i.pares)) {
-      fail(`${i.id}: es concesión y aun así publica cociente o pares`)
+    // 5. Una concesión se publica bajo condiciones, y son estas tres.
+    //
+    //    La regla era «una concesión nunca puede acabar comparada». Desde el
+    //    2026-09-02 sí puede, cuando el ministerio declara su coste — y lo que
+    //    la guarda tiene que vigilar deja de ser el modo de gestión y pasa a
+    //    ser lo que hace publicable ese cociente: que el cero no se divida, que
+    //    el grupo sea de concesiones y que las dos salvedades vayan puestas.
+    //    Una guarda que se borra porque su regla cambió deja sin vigilancia
+    //    justo la superficie que se acaba de tocar.
+    if (i.modoGestion === 'concesion') {
+      comprobaciones++
+      if (i.valor !== null && i.numerador.valor === null) {
+        fail(`${i.id}: concesión con cociente y sin coste declarado — el cero se está dividiendo`)
+      }
+      comprobaciones++
+      if (i.pares && i.pares.modoGestion !== 'concesion') {
+        fail(`${i.id}: concesión comparada contra pares en ${i.pares.modoGestion}`)
+      }
+      comprobaciones++
+      if (i.valor !== null && !i.caveats.some((c) => /concesionario/.test(c) && /recibo/.test(c))) {
+        fail(
+          `${i.id}: publica cociente de concesión sin decir que ese dinero no sale del presupuesto`,
+        )
+      }
     }
 
     // 6. La serie no interpola: un punto sin dato no lleva valor.

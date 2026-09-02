@@ -78,9 +78,12 @@ describe('geometriaEje — el percentil ES la posición', () => {
    * módulo puro salen de la misma función. Si divergen, la fila diría una cosa
    * y la pastilla de al lado otra.
    */
-  it('el hueco concuerda con `cruzaMediana` en las doce fichas comparables', () => {
+  it('el hueco concuerda con `cruzaMediana` en las catorce fichas comparables', () => {
+    // Catorce desde el 2026-09-02: el agua y el alcantarillado ganaron banda al
+    // dejar de rechazarse toda concesión. El recuento va fijo a propósito —una
+    // ficha que se cayera de la comparación pasaría inadvertida con un `>0`.
     const comparables = snap.indicadores.filter((i) => i.pares?.percentilBanda)
-    expect(comparables.length).toBe(12)
+    expect(comparables.length).toBe(14)
     let huecos = 0
     for (const i of comparables) {
       const g = geometriaEje({ percentil: i.pares.percentil, banda: i.pares.percentilBanda })

@@ -152,7 +152,14 @@ export function CompetenciaDelegada({ asignacion, conFoto = false, foto = null, 
             {fuente.decreto.expediente
               ? ` · ${fuente.decreto.expediente.split('·')[0].trim()}`
               : ''}
-            {a.firmadoEl ? ` · firmado el ${a.firmadoEl}` : ''}
+            {fuente.decreto.fecha ? `, de ${fuente.decreto.fecha}` : ''}
+            {/* «firmado el 2026-08-23» iba pegado al anuncio del BOP de 2023, y
+                un decreto no se publica tres años antes de firmarse: la fecha
+                del decreto es `fuente.decreto.fecha` y ésta es la de QUIEN
+                curó la atribución. Dos fechas de dos cosas distintas puestas
+                seguidas, la segunda sin sujeto. Lo señaló la revisión lectora
+                del 2026-09-02. */}
+            {a.firmadoEl ? ` · atribución firmada el ${a.firmadoEl}` : ''}
           </p>
         )}
       </div>

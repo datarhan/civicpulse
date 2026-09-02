@@ -11,7 +11,7 @@ test.describe('Reportajes index (/reportajes)', () => {
       timeout: 8000,
     })
     // Both published piezas list, newest first (shared registry order).
-    await expect(page.getByRole('heading', { name: /panel se queda en blanco/ })).toBeVisible()
+    await expect(page.getByRole('heading', { name: /panel se enciende y se apaga/ })).toBeVisible()
     await expect(page.getByRole('heading', { name: /destino inteligente/ })).toBeVisible()
     await expect(page.getByRole('heading', { name: /calle a calle/ })).toBeVisible()
 

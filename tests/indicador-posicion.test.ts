@@ -113,11 +113,13 @@ describe('particionPosiciones — el reparto que titula la página', () => {
     expect(p.situados).toBeGreaterThan(5)
   })
 
-  it('doce comparables: seis no se distinguen, cuatro abajo, dos arriba', () => {
+  it('catorce comparables: seis no se distinguen, seis abajo, dos arriba', () => {
+    // Doce hasta el 2026-09-02. El agua (p20) y el alcantarillado (p23) entran
+    // por abajo al publicarse el cociente de las concesiones que declaran.
     expect(p).toMatchObject({
-      situados: 12,
+      situados: 14,
       indistinguibles: 6,
-      abajo: 4,
+      abajo: 6,
       arriba: 2,
       sinSituar: 1,
     })

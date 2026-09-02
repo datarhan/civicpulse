@@ -7,9 +7,9 @@ import { particionPosiciones } from '../../scraper/indicador-areas'
  * La página contestaba «¿cuánto cuesta y qué se obtiene?» con quince pantallas
  * y ninguna conclusión, y luego con una lectura rápida que contaba posiciones.
  * Contar posiciones era la mitad de la respuesta. La otra mitad, la que manda,
- * es que la mitad de esas posiciones no se distinguen y que las trece
- * divisiones se hacen entre una cantidad que nadie vuelve a medir: sin eso,
- * doce percentiles se leen como doce hechos.
+ * es que la mitad de esas posiciones no se distinguen y que casi todas las
+ * divisiones se hacen entre una cantidad que nadie vuelve a medir: sin eso, un
+ * puñado de percentiles se lee como un puñado de hechos.
  *
  * Este fichero exporta TRES piezas porque la revisión las repartió por la
  * página en vez de apilarlas en un bloque:
@@ -68,6 +68,13 @@ function recuentos(data) {
 export function RespuestaCorta({ data }) {
   const r = recuentos(data)
   if (r.indicadores.length === 0) return null
+  // «las 15 divisiones» salía de `conRatio`, que cuenta las que HAY, no las que
+  // dividen entre una cantidad congelada. Coincidían mientras las trece
+  // congeladas eran las trece publicadas; el 2026-09-02 el agua y el
+  // alcantarillado entraron con su denominador SÍ remedido y la frase pasó a
+  // decir 15 dos líneas por encima de un recuento que dice «13 de 15».
+  // Se derivan las dos cifras y la conclusión se acota con ellas.
+  const todas = r.congelados.length === r.conRatio.length
   return (
     <p
       style={{
@@ -81,9 +88,16 @@ export function RespuestaCorta({ data }) {
     >
       La respuesta corta tiene dos partes y manda la segunda: de los {r.p.situados} servicios
       comparables, <strong>{r.p.indistinguibles} no se distinguen de la mediana</strong> de
-      municipios valencianos parecidos — y las {r.conRatio.length} divisiones se hacen entre una
-      cantidad que nadie vuelve a medir, así que{' '}
-      <strong>ninguna serie de esta página se puede leer como gestión.</strong>
+      municipios valencianos parecidos — y{' '}
+      {todas
+        ? `las ${r.conRatio.length} divisiones se hacen`
+        : `${r.congelados.length} de las ${r.conRatio.length} divisiones se hacen`}{' '}
+      entre una cantidad que nadie vuelve a medir, así que{' '}
+      <strong>
+        {todas
+          ? 'ninguna serie de esta página se puede leer como gestión.'
+          : 'sus series no se pueden leer como gestión.'}
+      </strong>
     </p>
   )
 }

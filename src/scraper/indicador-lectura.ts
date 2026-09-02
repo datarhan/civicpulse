@@ -289,10 +289,20 @@ export function leerIndicador(i: Indicador): Lectura {
   // efectivos» no dice nada; «los agentes y demás personal en plantilla» sí— y
   // cierra con el cociente marcado como ANUAL. Lo último no es adorno: sin
   // «al año», 81.965 € junto a la palabra «efectivo» se lee como un sueldo.
+  //
+  // Y en una concesión no dice «el ayuntamiento declaró … de coste» a secas.
+  // Desde el 2026-09-02 estas fichas tienen cociente, y esa frase colocaba en
+  // el presupuesto municipal un dinero que sale del recibo de cada casa: la
+  // salvedad lo aclara debajo, pero la primera frase es la que se lee.
+  const cierre =
+    i.modoGestion === 'concesion'
+      ? `: sale a ${euros(i.valor)} al año por cada ${i.divisor.singular}, que no paga el ` +
+        'presupuesto municipal sino el recibo de cada casa.'
+      : `: sale a ${euros(i.valor)} al año por cada ${i.divisor.singular}.`
   const que =
     `El ayuntamiento declaró ${euros(i.numerador.valor!)} de coste para este servicio en ` +
     `${entrega} y ${i.denominador.valor!.toLocaleString('es-ES')} ${i.divisor.plural} ` +
-    `—${i.divisor.glosa}—: sale a ${euros(i.valor)} al año por cada ${i.divisor.singular}.`
+    `—${i.divisor.glosa}—${cierre}`
 
   let donde: string | null = null
   if (i.pares) {
@@ -312,7 +322,14 @@ export function leerIndicador(i: Indicador): Lectura {
       )
     }
   } else if (i.modoGestion === 'concesion') {
-    donde = null
+    // Era `donde = null`, y valía mientras ninguna concesión podía tener
+    // pares: la rama sólo la alcanzaban fichas sin cociente, donde el motivo ya
+    // lo explicaba todo. Ahora la alcanza una concesión CON cifra a la que no
+    // le llegan quince comparables, y callar ahí deja la única ficha del panel
+    // que enseña un número sin decir por qué no lo sitúa.
+    donde =
+      'No hay comparación: no llegan a quince las concesiones de la banda que declaran las dos ' +
+      'cifras, y el coste de una concesión no se compara con el de una gestión directa (reglas 4 y 5).'
   } else {
     donde =
       'No hay comparación: no llegan a quince los municipios que prestan este servicio del mismo modo y declaran las dos cifras (reglas 4 y 5).'

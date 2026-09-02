@@ -76,11 +76,31 @@ describe('scraper/indicador-lectura', () => {
   })
 
   it('explica la tarjeta bloqueada en vez de dejarla sin lectura', () => {
-    const agua = byId('a161-coste-unitario')
-    const l = leerIndicador(agua)
+    // El agua era el ejemplo vivo hasta el 2026-09-02, cuando su concesión pasó
+    // a publicar cociente. Sin ninguna ficha bloqueada en el panel, el caso se
+    // CONSTRUYE en vez de saltarse: la rama existe en el código y una prueba que
+    // desaparece con el dato deja de vigilarla justo cuando nadie la mira.
+    const base = byId('a161-coste-unitario')
+    const bloqueada = {
+      ...base,
+      numerador: { ...base.numerador, valor: null, estado: 'no-declarado', motivo: 'concesion' },
+      valor: null,
+      pares: null,
+      comparable: false,
+    } as unknown as Indicador
+    const l = leerIndicador(bloqueada)
     expect(l.que).toMatch(/concedido/i)
     expect(l.como).toMatch(/hecho sobre la declaración/i)
     expect(l.donde).toBeNull()
+  })
+
+  it('y la misma ficha, ya con cifra, dice de quién es ese dinero', () => {
+    // La otra mitad: publicar el cociente de una concesión sin decir que sale
+    // del recibo lo mete en el presupuesto municipal, que es de donde no sale.
+    const l = leerIndicador(byId('a161-coste-unitario'))
+    expect(l.que).toMatch(/€ al año por cada m de red/)
+    expect(l.que).toMatch(/no paga el presupuesto municipal sino el recibo/i)
+    expect(l.donde).toMatch(/municipios valencianos de tamaño parecido/i)
   })
 
   it('marca las entregas que no pueden ser un coste, y no las cuenta como tendencia', () => {
@@ -190,7 +210,17 @@ describe('la lectura no repite lo que la tarjeta ya enseña', () => {
   it('conserva el motivo cuando no hay cifra que lo repita', () => {
     // Una tarjeta bloqueada no tiene número ni banda: ahí `que` ES el
     // contenido («no hay coste por unidad porque el servicio está concedido»).
-    const bloqueado = indicadores.find((i) => i.valor === null)!
+    // Construido por lo mismo que arriba: el panel publicado ya no trae
+    // ninguna ficha sin cifra, y `find` devolvía `undefined` — que en un test
+    // se ve como un TypeError, con suerte, y como un verde vacío sin ella.
+    const base = indicadores.find((i) => i.valor !== null)!
+    const bloqueado = {
+      ...base,
+      numerador: { ...base.numerador, valor: null, estado: 'no-declarado', motivo: 'concesion' },
+      valor: null,
+      pares: null,
+      comparable: false,
+    } as unknown as Indicador
     const l = leerIndicador(bloqueado)
     const v = lecturaVisible(l, { cifra: false, banda: false })
     expect(v.que).toBe(l.que)

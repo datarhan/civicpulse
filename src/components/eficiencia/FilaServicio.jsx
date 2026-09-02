@@ -75,9 +75,8 @@ export function FilaServicio({ indicador, formatea, x0, x1, chipHoisted = false 
   // de la pastilla era lo único que la decía sin leer el percentil.
   //
   // Tres motivos distintos para no situarse, y decirlos como uno solo era
-  // falso: el agua y el alcantarillado NO se quedan sin posición por falta de
-  // comparables, se quedan sin cociente porque su coste no cruza los libros del
-  // ayuntamiento. Culpar a la muestra de eso inventaba una carencia que no hay.
+  // falso: culpar a la muestra de un hueco que no viene de la muestra inventa
+  // una carencia que no hay.
   const posTexto = i.pares
     ? `p${i.pares.percentil}${
         Array.isArray(i.pares.percentilBanda)
@@ -88,17 +87,11 @@ export function FilaServicio({ indicador, formatea, x0, x1, chipHoisted = false 
       }${DIRECCION[pos] ? ` · ${DIRECCION[pos]}` : ''}`
     : i.valor === null
       ? (i.numerador.motivo ?? i.denominador.motivo) === 'concesion'
-        ? // NO «fuera de los libros del ayuntamiento» a secas: la revisión de
-          // superficies leyó eso como que la casa no tiene ninguna relación
-          // económica con el agua, y en la misma página hay una concesión de
-          // 55,69 M€ hasta 2043. Lo que está fuera es la COMPARABILIDAD.
-          //
-          // Y tampoco «sin coste declarado», que es lo que decía hasta el
-          // 2026-08-29: en la entrega de 2024 el ministerio declara
-          // 1.898.034,08 € para el agua, así que esta celda desmentía a la de
-          // su izquierda en la misma fila. El hecho es que ese coste no es el
-          // del ayuntamiento, no que no exista.
-          'no comparable: lo paga el concesionario'
+        ? // Una concesión SÍ se sitúa desde el 2026-09-02, cuando declara. Esta
+          // celda sólo la alcanza la que no declara, y entonces el hecho es que
+          // la casilla viene vacía —no que el coste sea incomparable, que es lo
+          // que decía cuando la negativa abarcaba el modo de gestión entero.
+          'sin coste declarado: la casilla de la concesión viene vacía'
         : 'sin cociente en esta entrega'
       : 'no llegan a quince comparables (reglas 4 y 5)'
 
@@ -112,29 +105,23 @@ export function FilaServicio({ indicador, formatea, x0, x1, chipHoisted = false 
           {i.modoGestion !== 'directa' ? ` · ${gestion.label}` : ''}
           {i.pares ? ` · n=${i.pares.n}` : ''}
         </span>
-        {/* «—», nunca «0 €». El motor DESCARTA a propósito el coste de un
-            servicio concedido —lo paga el concesionario y lo recupera del
-            recibo— y `numerador.valor` viene a null, no a cero. Escribir un
-            cero ahí publica una cifra que el snapshot se niega a publicar, y
-            un cero junto a un servicio real se lee como «aquí es gratis»: la
-            trampa exacta que esta página se construyó para no pisar. Lo cazó
-            review:surfaces. */}
-        {/* Tres estados, no dos. El rótulo salía de `valor === null`, que es
-            binario, así que TODO null se publicaba como «coste no declarado» —
-            el silencio de la fuente— incluido el caso que el comentario de
-            arriba describe: una concesión cuyo coste este motor descarta a
-            propósito. En la entrega de 2024 el ministerio declara
-            1.898.034,08 € para el agua y la ficha decía que no había nada.
-            Atribuir a la fuente una decisión nuestra es lo que arregla esto;
-            la decisión no cambia, se explica. */}
+        {/* «—», nunca «0 €». Una concesión que no declara viene con
+            `numerador.valor` a null, no a cero, y escribir un cero ahí publica
+            una cifra que el snapshot se niega a publicar: un cero junto a un
+            servicio real se lee como «aquí es gratis», que es la trampa exacta
+            que esta página se construyó para no pisar. Lo cazó review:surfaces.
+
+            El rótulo tuvo un tercer estado —«… € declarados · no comparables
+            (concesión)»— mientras el motor se negaba a dividir un coste que el
+            ministerio sí declaraba. Desde el 2026-09-02 ese coste se divide,
+            así que el estado sobra: o hay cifra, o la casilla de la concesión
+            viene vacía, o la fuente calla. */}
         <span className="cp-fila-coste mono">
           {i.numerador.valor !== null
             ? `${num(i.numerador.valor, 0)} € de coste declarado`
-            : i.numerador.declaradoNoComparable !== undefined
-              ? `${num(i.numerador.declaradoNoComparable, 0)} € declarados · no comparables (concesión)`
-              : i.numerador.motivo === 'concesion'
-                ? 'sin coste declarado (concesión)'
-                : 'coste no declarado'}
+            : i.numerador.motivo === 'concesion'
+              ? 'sin coste declarado (concesión)'
+              : 'coste no declarado'}
         </span>
       </td>
 

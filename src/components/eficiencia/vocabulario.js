@@ -28,7 +28,7 @@ export const GESTION = {
  */
 export const MOTIVO = {
   concesion:
-    'El servicio está concedido: lo paga el concesionario y lo recupera vía tarifa, así que lo que el ayuntamiento declare —declare una cifra o declare cero, y en estas diez entregas hace las dos cosas— no es lo que cuesta el servicio. Compararlo con un municipio de gestión directa diría que aquí es gratis.',
+    'El servicio está concedido y en esta entrega el ayuntamiento no declara coste: la casilla viene vacía o a cero porque el concesionario cobra del recibo. Un cero ahí no es un precio, y dividirlo diría que aquí el servicio es gratis. Las entregas en las que sí declara cifra sí tienen cociente, comparado sólo contra otras concesiones.',
   'cero-sin-declarar':
     'Hay gasto declarado, pero la unidad física viene a cero. Un cero junto a un presupuesto real significa «no se declaró», no «no hubo» (regla 3).',
   'filas-duplicadas':

@@ -19,8 +19,10 @@ const CON_RATIO: Indicador[] = SNAP.indicadores.filter((i: Indicador) => i.valor
 const COMPARABLE: Indicador = [...CON_RATIO]
   .sort((a, b) => (b.numerador.valor ?? 0) - (a.numerador.valor ?? 0))
   .find((i) => i.pares)!
+// Ver la nota del mismo selector en eficiencia.spec.ts: `motivo === 'concesion'`
+// dejó de nombrar a las fichas de concesión cuando dejaron de estar bloqueadas.
 const CONCESION: Indicador[] = SNAP.indicadores.filter(
-  (i: Indicador) => i.numerador.motivo === 'concesion',
+  (i: Indicador) => i.modoGestion === 'concesion' && i.valor !== null,
 )
 const CONGELADO: Indicador | undefined = CON_RATIO.find(
   (i) => i.declaracion?.denominador?.congelada,
@@ -180,16 +182,23 @@ test.describe('Ficha de servicio (/eficiencia/:id)', () => {
     }
   })
 
-  test('un servicio concedido explica por qué no hay cociente, sin inventarlo', async ({
-    page,
-  }) => {
+  test('un servicio concedido publica su cociente y dice quién lo paga', async ({ page }) => {
     expect(CONCESION.length).toBeGreaterThan(0)
-    await page.goto(`/eficiencia/${CONCESION[0].id}`, { waitUntil: 'domcontentloaded' })
-    await expect(page.getByText(/Sin cociente posible/i)).toBeVisible({ timeout: 8000 })
-    await expect(page.getByText(/lo paga el concesionario/i).first()).toBeVisible()
-    // Ni eje, ni banda, ni múltiplo: la trampa que esta página se diseñó para
-    // no pisar es publicar «el más barato de la comarca» dividiendo por cero.
-    await expect(page.locator('[data-eje-marcador]')).toHaveCount(0)
+    const c = CONCESION[0]
+    await page.goto(`/eficiencia/${c.id}`, { waitUntil: 'domcontentloaded' })
+    // La ficha decía «Sin cociente posible» hasta el 2026-09-02. Ahora hay
+    // cifra, y con ella el eje que la sitúa — contra concesiones, nunca contra
+    // una gestión directa: lo que esta página se diseñó para no publicar es «el
+    // más barato de la comarca», y eso sale de comparar magnitudes distintas o
+    // de dividir un cero, no de dividir.
+    await expect(page.getByText(/Sin cociente posible/i)).toHaveCount(0)
+    await expect(page.locator('[data-eje-marcador]')).not.toHaveCount(0)
+    await expect(page.getByText(/lo cobra el concesionario del recibo/i).first()).toBeVisible({
+      timeout: 8000,
+    })
+    await expect(
+      page.getByText(/no paga el presupuesto municipal sino el recibo/i).first(),
+    ).toBeVisible()
   })
 
   test('un identificador que no existe no finge una ficha', async ({ page }) => {

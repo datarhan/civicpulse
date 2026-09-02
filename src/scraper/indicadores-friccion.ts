@@ -21,7 +21,7 @@
  *
  * Módulo puro: recibe los snapshots ya leídos, no toca red ni disco.
  */
-import type { Magnitud } from './indicadores'
+import { resolverCoste, resolverUnidad, type Magnitud } from './indicadores'
 import type { CesteRow } from './coste-efectivo'
 import { SERVICIOS } from './indicador-registry'
 import { medirDeclaracionCongelada, MIN_ENTREGAS_CONGELADA } from './declaracion-congelada'
@@ -585,18 +585,32 @@ function medirDenominadores(
   // esté o no congelada no le hace daño a ninguna cifra publicada. Meterlos
   // diluiría justo lo que se quiere medir.
   //
+  // Se pregunta con LOS MISMOS resolvers que construyen el panel, no con una
+  // copia a mano de lo que hacen. La copia decía `modoGestion === 'directa'`,
+  // que fue un buen proxy de «tiene cociente» mientras la concesión era el
+  // único modo sin cociente, y dejó de serlo el 2026-09-02, cuando una
+  // concesión que declara pasó a dividir. Además contaba de más y de menos por
+  // su cuenta: contaba servicios con dos costes positivos distintos, que el
+  // panel rechaza, y no contaba los modos mancomunado o consorciado, que el
+  // panel publica. Es el modo de fallo 1 de docs/DATA_INTEGRITY.md —restar una
+  // forma en vez de importarla— en el indicador que describe al panel.
+  //
   // El criterio se aplica IGUAL a la banda, leyendo sus propias filas, así que
   // la comparación no depende en nada de qué publique este sitio.
   const hayCociente = new Set<string>()
+  const porMunicipio = new Map<string, CesteRow[]>()
   for (const f of filas) {
-    if (f.anio !== entrega) continue
-    if (f.modoGestion !== 'directa') continue
-    if (!((f.costeTotal ?? 0) > 0)) continue
-    const def = SERVICIOS[f.programa]
-    if (!def) continue
-    const u = f.unidades.find((x) => x.atributo === def.denominador)
-    if (!u || !(u.valor > 0)) continue
-    hayCociente.add(`${f.ine}|${f.programa}`)
+    const acc = porMunicipio.get(f.ine)
+    if (acc) acc.push(f)
+    else porMunicipio.set(f.ine, [f])
+  }
+  for (const [ine, suyas] of porMunicipio) {
+    for (const programa of programas) {
+      const def = SERVICIOS[programa]
+      if (resolverCoste(suyas, programa, entrega).estado !== 'declarado') continue
+      if (resolverUnidad(suyas, programa, entrega, def.denominador).estado !== 'declarado') continue
+      hayCociente.add(`${ine}|${programa}`)
+    }
   }
 
   const series = medirDeclaracionCongelada(filas, programas, anios).series.filter(

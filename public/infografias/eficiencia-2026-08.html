@@ -198,6 +198,12 @@
     /* Anclada al borde derecho: centrada sobre el 100 % se salía de la figura. */
     left: auto; right: 0; transform: none;
   }
+  /* …y centrada sobre su punto cuando el punto no está en el borde. Desde el
+     2-9-2026 la propia es el 86,7 % y no el 100 %: dejarla pegada a la derecha
+     la separaba del lunar que rotula, y aquí la posición es la afirmación. */
+  .strip-label.propia.centrada {
+    left: auto; right: auto; transform: translateX(-50%);
+  }
 
   /* ── Nominal contra real ──────────────────────────────────────────────── */
   .par { margin-bottom: 20px; }
@@ -262,6 +268,18 @@
     Fuente: Ministerio de Hacienda, coste efectivo de los servicios de las entidades
     locales (Orden HAP/2075/2014). Entregas de 2014 a 2024. Ninguna de estas cifras
     describe a una persona: el coste efectivo lo rinde la entidad local en su conjunto.
+  </p>
+
+  <p class="correccion">
+    <span class="fecha">Corrección · 2 de septiembre de 2026</span>
+    <b>El panel pasa de trece cocientes a quince, y esta lámina contaba trece.</b>
+    /eficiencia se negaba a dividir el coste de cualquier servicio concedido; desde
+    hoy divide el de las entregas en las que el ministerio sí declara cifra, y el
+    abastecimiento de agua y el alcantarillado entran en el panel. Los denominadores
+    sin remedir son trece <b>de quince</b>, no trece de trece: los dos que sí se
+    remiden son justo esos dos. La banda de comparables se recompone con ellos —52
+    municipios, mediana del 57,7 %, antes 50 y 63,1 %— y la proporción propia baja
+    del 100 % al 86,7 %. Ninguna cifra se retira: la afirmación se debilita.
   </p>
 
   <p class="correccion">
@@ -352,25 +370,25 @@
       variar un decimal desde 2018 o 2019, según el servicio.
     </p>
 
-    <p class="cifra">13 de 13<span class="u">denominadores sin remedir</span></p>
+    <p class="cifra">13 de 15<span class="u">denominadores sin remedir</span></p>
 
     <p>
-      No es una rareza local, y tampoco es lo normal. Entre los 50 municipios de su
+      No es una rareza local, y tampoco es lo normal. Entre los 52 municipios de su
       banda —Comunitat Valenciana, de 15.000 a 40.000 habitantes— de los que se
-      puede medir lo mismo, la mediana repite el 63,1 % de sus denominadores.
+      puede medir lo mismo, la mediana repite el 57,7 % de sus denominadores.
     </p>
 
     <figure>
-      <p class="fig-title">Denominadores que se repiten entrega tras entrega · 50 comparables</p>
+      <p class="fig-title">Denominadores que se repiten entrega tras entrega · 52 comparables</p>
       <div class="strip">
         <div class="strip-track"></div>
-        <div class="strip-iqr" style="left:44.9%; width:33.9%"></div>
-        <div class="tick" style="left:63.1%" title="Mediana de los comparables: 63,1 %"></div>
-        <span class="strip-label arriba" style="left:44.9%">p25 · 44,9 %</span>
-        <span class="strip-label abajo" style="left:63.1%">mediana · 63,1 %</span>
-        <span class="strip-label arriba" style="left:78.8%">p75 · 78,8 %</span>
-        <div class="punto" style="left:100%" title="Riba-roja de Túria: 100 %"></div>
-        <span class="strip-label abajo propia" style="left:96%">Riba-roja · 100 %</span>
+        <div class="strip-iqr" style="left:41.3%; width:30.1%"></div>
+        <div class="tick" style="left:57.7%" title="Mediana de los comparables: 57,7 %"></div>
+        <span class="strip-label arriba" style="left:41.3%">p25 · 41,3 %</span>
+        <span class="strip-label abajo" style="left:57.7%">mediana · 57,7 %</span>
+        <span class="strip-label arriba" style="left:71.4%">p75 · 71,4 %</span>
+        <div class="punto" style="left:86.7%" title="Riba-roja de Túria: 86,7 %"></div>
+        <span class="strip-label abajo propia centrada" style="left:86.7%">Riba-roja · 86,7 %</span>
       </div>
       <figcaption>
         La franja sombreada es la mitad central de los comparables; la marca vertical,

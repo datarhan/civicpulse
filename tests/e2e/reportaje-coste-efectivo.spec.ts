@@ -14,7 +14,9 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     await page.goto('/reportajes/coste-efectivo', { waitUntil: 'domcontentloaded' })
 
     await expect(
-      page.getByRole('heading', { name: 'El panel se queda en blanco donde está el dinero' }),
+      page.getByRole('heading', {
+        name: 'El panel se enciende y se apaga justo donde está el dinero',
+      }),
     ).toBeVisible({ timeout: 8000 })
 
     // El aviso de borrador sigue al estado del snapshot, no a una suposición.
@@ -108,11 +110,18 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     // riesgo tienen de reescribirse a mano siguen saliendo de ahí.
     await page.goto('/reportajes/coste-efectivo', { waitUntil: 'domcontentloaded' })
     await expect(
-      page.getByRole('heading', { name: 'El panel se queda en blanco donde está el dinero' }),
+      page.getByRole('heading', {
+        name: 'El panel se enciende y se apaga justo donde está el dinero',
+      }),
     ).toBeVisible({ timeout: 8000 })
 
     const cuerpo = await page.locator('.cp-page').innerText()
-    expect(cuerpo).toContain(`${snap.congelados.propios} a la vez`)
+    // «los 13 a la vez» decía que eran TODOS. Desde el 2026-09-02 son 13 de 15
+    // —el agua y el alcantarillado entran con su denominador sí remedido—, y la
+    // pieza lo dice como proporción. Se fija la proporción, que es la forma que
+    // sigue siendo cierta cuando la siguiente entrega mueva cualquiera de las
+    // dos cifras.
+    expect(cuerpo).toContain(`${snap.congelados.propios} de sus ${snap.congelados.medibles}`)
     for (const f of snap.rendicionCV.porAnio) {
       expect(cuerpo).toContain(String(f.n))
     }

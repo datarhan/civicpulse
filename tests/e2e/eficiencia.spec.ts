@@ -20,8 +20,15 @@ type MunicipalLike = Pick<IndicadorMunicipal, 'id' | 'panel' | 'valor' | 'etique
 // docs/DATA_INTEGRITY.md, and these numbers move with every entrega.
 const SNAP = JSON.parse(readFileSync('public/data/indicadores.json', 'utf8'))
 const CON_RATIO = SNAP.indicadores.filter((i: { valor: number | null }) => i.valor !== null)
+// Una concesión que PUBLICA cociente. Se seleccionaba por
+// `numerador.motivo === 'concesion'`, que era el conjunto de las bloqueadas
+// mientras toda concesión lo estaba; desde el 2026-09-02 ese conjunto está
+// vacío en el panel publicado y el `filter` devolvía [] — un
+// `expect(...).toBeGreaterThan(0)` que falla, con suerte, en vez de un test
+// que se salta.
 const CONCESION = SNAP.indicadores.filter(
-  (i: { numerador: { motivo?: string } }) => i.numerador.motivo === 'concesion',
+  (i: { modoGestion: string; valor: number | null }) =>
+    i.modoGestion === 'concesion' && i.valor !== null,
 )
 // La página ordena las tarjetas por coste descendente, así que «la primera
 // tarjeta con pares» NO es la primera del array. Buscarla por orden de array
@@ -359,19 +366,51 @@ test.describe('Eficiencia (/eficiencia)', () => {
     // sobre la tabla y en la fila queda lo que la distingue. Las dos mitades
     // se comprueban aquí, y las dos salen de `chipDeclaracion`, nunca de una
     // cadena rescrita en el test.
+    // DOS formas, y la regla elige. `LibroServicios` sube la frase a la banda
+    // sólo cuando el hecho es de TODAS las filas con cociente; en cuanto una se
+    // remide, la banda se cae sola y el chip vuelve a la fila —está escrito en
+    // su propio comentario, y desde el 2026-09-02 pasa: el agua y el
+    // alcantarillado publican cociente con el denominador SÍ remedido, así que
+    // son 13 de 15. Este test pedía la banda a secas y se puso rojo por una
+    // caída prevista. Lo que tiene que seguir siendo cierto es que el aviso
+    // esté, y el chip por fila de más abajo lo comprueba una por una.
     await abrir(page, 'sec-servicios')
+    const conCociente = SNAP.indicadores.filter((i: Indicador) => i.valor !== null)
     const banda = page.locator('.cp-libro-comun')
-    await expect(banda).toBeVisible({ timeout: 8000 })
-    await expect(banda).toContainText(String(congelados.length))
+    if (congelados.length === conCociente.length) {
+      await expect(banda).toBeVisible({ timeout: 8000 })
+      await expect(banda).toContainText(String(congelados.length))
+    } else {
+      await expect(banda, 'la banda dice «todas» sin serlo').toHaveCount(0)
+    }
 
     const anios = new Set(congelados.map((i: Indicador) => chipDeclaracion(i)!.desde))
     expect(anios.size, 'ningún año de congelación — ¿se cayó el campo `desde`?').toBeGreaterThan(0)
+    // Con la banda levantada la fila conserva sólo lo que la DISTINGUE —el año—
+    // y la frase vive una vez arriba; sin banda, el chip vuelve entero. Las dos
+    // formas salen de `chipDeclaracion`, nunca de una cadena rescrita aquí: es
+    // el fallo nº1 de docs/DATA_INTEGRITY.md, y ésta ya se había escrito a mano
+    // en su mitad corta.
+    const hoisted = congelados.length === conCociente.length
     for (const i of congelados) {
       const fila = page.locator(`.cp-libro tbody tr:has(a[href="/eficiencia/${i.id}"])`)
       await expect(
         fila.locator('.cp-divisor-desde'),
         `${i.servicio} publica su cociente sin marcar el denominador parado`,
-      ).toHaveText(` · sin remedir desde ${chipDeclaracion(i)!.desde}`)
+      ).toHaveText(
+        hoisted
+          ? ` · sin remedir desde ${chipDeclaracion(i)!.desde}`
+          : ` · ${chipDeclaracion(i)!.texto}`,
+      )
+    }
+    // Y las que NO están congeladas no llevan marca, para que la marca
+    // signifique algo: sin esto, un chip pintado en todas pasaría igual.
+    for (const i of conCociente.filter((x: Indicador) => !chipDeclaracion(x))) {
+      const fila = page.locator(`.cp-libro tbody tr:has(a[href="/eficiencia/${i.id}"])`)
+      await expect(
+        fila.locator('.cp-divisor-desde'),
+        `${i.servicio} remide su denominador y aun así sale marcado`,
+      ).toHaveCount(0)
     }
   })
 
@@ -429,38 +468,34 @@ test.describe('Eficiencia (/eficiencia)', () => {
     expect(sinEntrega.length, 'el snapshot no tiene años sin entrega').toBeGreaterThan(0)
   })
 
-  test('a concession shows no ratio and no peer position', async ({ page }) => {
+  test('a concession publishes its ratio, and says whose money it is', async ({ page }) => {
+    // LA trampa sigue siendo la misma —el concesionario cobra del recibo, así
+    // que una división ingenua publicaría «el agua más barata de la comarca»—
+    // pero desde el 2026-09-02 lo que se rechaza es el CERO, no el modo de
+    // gestión: en la entrega de 2024 el ministerio declara 1.898.034,08 € para
+    // el agua y eso es un coste. Lo que esta prueba vigila es la condición que
+    // hace publicable ese cociente: que la fila diga de quién es el dinero y
+    // que la comparación sea sólo contra otras concesiones.
     await abrir(page, 'sec-servicios')
-    // THE trap this page was designed around: the council books €0 for water
-    // because the concessionaire bears it, so a naive divide would publish
-    // "cheapest in the comarca".
     expect(CONCESION.length).toBeGreaterThan(0)
+    const c = CONCESION[0]
 
-    // Va DENTRO de la tabla, no en una sección aparte: sacarla la dejaría
-    // pareciendo completa. Sin cociente, sin posición y sin múltiplo.
-    const fila = page.locator(`.cp-libro tbody tr:has(a[href="/eficiencia/${CONCESION[0].id}"])`)
+    const fila = page.locator(`.cp-libro tbody tr:has(a[href="/eficiencia/${c.id}"])`)
     await expect(fila).toBeVisible({ timeout: 8000 })
-    // La celda ya no es sólo el cociente: desde que el divisor se plegó aquí
-    // lleva debajo entre qué divide, y una concesión SÍ declara su magnitud
-    // física —270.630 m de red— aunque no declare coste. Lo que tiene que
-    // seguir siendo una raya es el cociente.
-    await expect(fila.locator('.cp-c-unidad')).toContainText('—')
-    await expect(fila.locator('.cp-c-unidad')).not.toContainText('€')
-    await expect(fila.locator('.cp-c-razon')).toHaveText('—')
-    await expect(fila.locator('[data-eje-marcador]')).toHaveCount(0)
-    // El chip «sin comparación» se plegó con la columna del veredicto. La fila
-    // no perdió la información: ganó el motivo, que es lo que el propio código
-    // defiende — el agua y el alcantarillado NO se quedan sin posición por
-    // falta de comparables, se quedan sin cociente porque su coste no cruza los
-    // libros del ayuntamiento, y decir «sin comparación» culpaba a la muestra
-    // de una carencia que no hay.
-    await expect(fila.getByText(/lo paga el concesionario/i)).toBeVisible()
+    // Hay cociente, y con su unidad: la raya de antes era nuestra, no de la
+    // fuente.
+    await expect(fila.locator('.cp-c-unidad')).toContainText('€')
+    await expect(fila.locator('.cp-c-unidad')).not.toHaveText('—')
+    await expect(fila.locator('.cp-c-razon')).not.toHaveText('—')
 
-    // Y el motivo se explica entero en su ficha, no en un hueco.
-    await page.goto(`/eficiencia/${CONCESION[0].id}`, { waitUntil: 'domcontentloaded' })
-    await expect(page.getByText(/lo paga el concesionario/i).first()).toBeVisible({
+    // Y la ficha lleva las dos salvedades que el cociente no puede llevar
+    // dentro: de quién es el dinero, y contra quién se compara.
+    await page.goto(`/eficiencia/${c.id}`, { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText(/lo cobra el concesionario del recibo/i).first()).toBeVisible({
       timeout: 8000,
     })
+    await expect(page.getByText(/sólo se compara con otras concesiones/i).first()).toBeVisible()
+    await expect(page.getByText(/no declaran su coste/i).first()).toBeVisible()
   })
 
   test('sólo trae los indicadores que salen del mismo cuaderno', async ({ page }) => {
