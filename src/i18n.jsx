@@ -222,10 +222,10 @@ export const CATALOGUE = {
     // servicios y 9 suministros. Ni el numerador ni el denominador lo eran.
     // Neutral en tipo, como el título del propio panel («Gasto situado»), que
     // vale igual con el filtro puesto que sin él.
-    'map.money.accum': 'gasto acumulado',
+    'map.money.accum': 'adjudicado acumulado',
     'map.money.of': 'de',
     'map.money.coverage':
-      'Sólo el gasto cuyo título nombra un lugar. El resto son servicios de ámbito municipal —recogida de residuos, limpieza viaria, ayuda a domicilio— que no tienen un punto en el mapa.',
+      'Sólo los contratos cuyo título nombra un lugar. El resto son servicios de ámbito municipal —la concesión del agua, la recogida de residuos, la limpieza viaria— adjudicados por todo su plazo y sin un punto en el mapa.',
     'map.poi.title': 'Servicios públicos',
     'map.poi.source': 'OpenStreetMap · datos abiertos',
     'map.flood.title': 'Riesgo de inundación',
@@ -786,10 +786,10 @@ export const CATALOGUE = {
     'map.money.pause': 'Pausar la línia de temps de la despesa',
     // Ver la nota del bloque castellano: el rótulo decía «obra» sobre una capa
     // que pinta todo el gasto situado. Aquí además estaba sin traducir.
-    'map.money.accum': 'despesa acumulada',
+    'map.money.accum': 'adjudicat acumulat',
     'map.money.of': 'de',
     'map.money.coverage':
-      "Només la despesa el títol de la qual nomena un lloc. La resta són serveis d'àmbit municipal —recollida de residus, neteja viària, ajuda a domicili— que no tenen un punt al mapa.",
+      "Només els contractes el títol dels quals nomena un lloc. La resta són serveis d'àmbit municipal —la concessió de l'aigua, la recollida de residus, la neteja viària— adjudicats per tot el seu termini i sense un punt al mapa.",
     'map.poi.title': 'Serveis públics',
     'map.poi.source': 'OpenStreetMap · dades obertes',
     'map.flood.title': 'Risc d’inundació',
