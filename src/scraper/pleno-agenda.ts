@@ -345,3 +345,56 @@ export function mergeAgendaPlenos(
   const plenos = [...byId.values()].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))
   return { plenos, carriedForward: plenos.length - refreshed, refreshed }
 }
+
+/** Un departamento del recuento, con su cuenta de PUNTOS del orden del día. */
+export interface DepartmentTally {
+  department: string
+  count: number
+  departmentSlug: DepartmentSlug | null
+}
+
+/**
+ * Recuento de departamentos sobre los puntos del orden del día, con su
+ * denominador.
+ *
+ * Vivía dentro de `scripts/scrape-pleno-agendas.ts`, donde no se podía probar.
+ * Sale aquí porque el defecto que arregla es de aritmética, no de red.
+ *
+ * `itemsWithDepartment` es la mitad que faltaba. La tarjeta de `/plenos`
+ * rotulaba «399 puntos» y debajo ponía una fila de departamentos que suma 93;
+ * de esos 399, sólo 109 llevan departamento. Un lector no tenía forma de saber
+ * que el 73 % no está clasificado, y la regla de la casa es que una capa que
+ * enseña una fracción de su dominio lo diga.
+ *
+ * El numerador ya se arregló una vez: contaba SESIONES y ponía «Contratación ·
+ * 5» debajo de «377 puntos». Se cuentan puntos desde entonces, y la prueba lo
+ * fija para que no vuelva.
+ */
+export function tallyDepartments(plenos: Pick<EnrichedPleno, 'agenda'>[]): {
+  itemsTotal: number
+  itemsWithDepartment: number
+  deptCount: Record<string, number>
+  topDepartments: DepartmentTally[]
+} {
+  const deptCount: Record<string, number> = {}
+  let itemsTotal = 0
+  let itemsWithDepartment = 0
+  for (const p of plenos) {
+    for (const a of p.agenda ?? []) {
+      itemsTotal += 1
+      const d = a.departmentSlug || a.department
+      if (!d) continue
+      itemsWithDepartment += 1
+      deptCount[d] = (deptCount[d] || 0) + 1
+    }
+  }
+  const topDepartments = Object.entries(deptCount)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 12)
+    .map(([department, count]) => ({
+      department,
+      count,
+      departmentSlug: canonicalizeDepartment(department),
+    }))
+  return { itemsTotal, itemsWithDepartment, deptCount, topDepartments }
+}

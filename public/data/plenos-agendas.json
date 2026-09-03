@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T09:08:21.536Z",
+  "generatedAt": "2026-09-03T09:19:58.745Z",
   "source": {
     "baseUrl": "https://regmeet.com",
     "description": "Ayuntamiento de Riba-roja de Túria — sesiones plenarias en regmeet.com (aytoribarroja); cada página individual publica el orden del día en la tabla #tableOrdenDia. El departamento se infiere del título del punto."
@@ -7,6 +7,7 @@
   "stats": {
     "plenosFetched": 39,
     "agendaItemsTotal": 399,
+    "agendaItemsWithDepartment": 109,
     "plenosWithRuegos": 6,
     "uniqueDepartments": 21,
     "sessionsTotal": 61,

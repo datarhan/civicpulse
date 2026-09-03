@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { parsePlenoAgenda } from '../src/scraper/pleno-agenda'
+import { parsePlenoAgenda, tallyDepartments } from '../src/scraper/pleno-agenda'
 
 const FIXTURE = join(__dirname, 'fixtures', 'rr_pleno_20_abril_2026.html')
 
@@ -133,5 +133,81 @@ describe('scraper/pleno-agenda — parsePlenoAgenda (regmeet format)', () => {
     expect(byNum[2].section).toBe('resolutiva')
     expect(byNum[10].section).toBe('informativa') // "Dación cuenta …"
     expect(byNum[11].section).toBe('ruegos') // "Ruegos y preguntas"
+  })
+})
+
+// ---------------------------------------------------------------------------
+/**
+ * El recuento de departamentos y, sobre todo, su DENOMINADOR.
+ *
+ * La tarjeta de `/plenos` pone «399 puntos» de rótulo y debajo una fila de
+ * departamentos que suma 93. El comentario del propio guión guarda la versión
+ * ANTERIOR de este fallo —«Contratación · 5» bajo «377 puntos» contando
+ * sesiones en vez de puntos—; se arregló la unidad del numerador y nadie miró
+ * el denominador. De los 399 puntos, 109 llevan departamento: el 73 % no lleva
+ * ninguno, y la página no lo dice en ningún sitio.
+ *
+ * Por eso el recuento devuelve `itemsWithDepartment` junto a `itemsTotal`: sin
+ * los dos no se puede escribir la frase honesta, y una capa que enseña una
+ * fracción de su dominio tiene que decirlo.
+ */
+describe('tallyDepartments — el denominador de la tarjeta', () => {
+  const item = (n: number, slug: string | null) => ({
+    number: n,
+    title: `Punto ${n}`,
+    section: 'resolutiva' as const,
+    department: slug,
+    departmentSlug: slug as never,
+    expediente: null,
+  })
+  const pleno = (id: string, items: ReturnType<typeof item>[]) => ({
+    id,
+    date: '2026-01-01',
+    title: id,
+    kind: 'ordinario',
+    link: '',
+    agenda: items,
+    agendaCount: items.length,
+    departments: [],
+    hasRuegos: false,
+  })
+
+  it('separa los puntos con departamento de los puntos totales', () => {
+    const t = tallyDepartments([
+      pleno('a', [item(1, 'hacienda'), item(2, null), item(3, null)]),
+      pleno('b', [item(1, 'hacienda'), item(2, 'cultura'), item(3, null)]),
+    ])
+    expect(t.itemsTotal).toBe(6)
+    expect(t.itemsWithDepartment).toBe(3)
+  })
+
+  it('cuenta PUNTOS, no sesiones — el fallo que el guión ya documenta', () => {
+    const t = tallyDepartments([
+      pleno('a', [item(1, 'hacienda'), item(2, 'hacienda')]),
+      pleno('b', [item(1, 'hacienda')]),
+    ])
+    expect(t.topDepartments[0]).toMatchObject({ department: 'hacienda', count: 3 })
+  })
+
+  it('ordena de mayor a menor y se queda con doce', () => {
+    const muchos = Array.from({ length: 15 }, (_, i) =>
+      pleno(
+        `p${i}`,
+        Array.from({ length: i + 1 }, (_, j) => item(j, `dep-${i}`)),
+      ),
+    )
+    const t = tallyDepartments(muchos)
+    expect(t.topDepartments).toHaveLength(12)
+    expect(t.topDepartments[0].count).toBe(15)
+    expect(t.topDepartments.map((d) => d.count)).toEqual(
+      [...t.topDepartments.map((d) => d.count)].sort((a, b) => b - a),
+    )
+  })
+
+  it('sin ningún departamento devuelve cero, no una lista inventada', () => {
+    const t = tallyDepartments([pleno('a', [item(1, null), item(2, null)])])
+    expect(t.itemsTotal).toBe(2)
+    expect(t.itemsWithDepartment).toBe(0)
+    expect(t.topDepartments).toEqual([])
   })
 })

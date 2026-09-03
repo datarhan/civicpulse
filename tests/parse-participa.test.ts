@@ -32,6 +32,30 @@ describe('scraper/participa — parseParticipaPosts', () => {
     }
   })
 
+  /**
+   * La prueba de al lado busca ETIQUETAS, y lo que se colaba eran ENTIDADES.
+   *
+   * Las siete tarjetas de participación de `/plenos` terminaban en un literal
+   * «[&hellip;]» — el recorte que pone WordPress— porque `stripHtml` era una
+   * copia local que decodificaba seis entidades y no ésa. `normalize.ts` ya
+   * exporta `decodeHtmlEntities` para esto, y su cabecera lo pide: «New call
+   * sites import this».
+   *
+   * Se afirma sobre la CLASE, no sobre `&hellip;`: cualquier entidad que
+   * sobreviva es el mismo fallo con otro nombre.
+   */
+  it('decodes HTML entities (none survive into title or excerpt)', () => {
+    const ENTIDAD = /&(?:[a-zA-Z]{2,10}|#x?[0-9a-fA-F]+);/
+    const supervivientes = items
+      .flatMap((i) => [
+        { campo: 'title', valor: i.title },
+        { campo: 'excerpt', valor: i.excerpt },
+      ])
+      .filter((c) => ENTIDAD.test(c.valor))
+      .map((c) => `${c.campo}: …${c.valor.slice(-40)}`)
+    expect(supervivientes, `entidades sin decodificar: ${supervivientes.join(' | ')}`).toEqual([])
+  })
+
   it('strips HTML from the excerpt (no tags leaking through)', () => {
     for (const it of items) {
       expect(it.excerpt).not.toMatch(/<\/?[a-z][^>]*>/i)

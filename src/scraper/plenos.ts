@@ -178,3 +178,40 @@ export function parsePlenosIndex(html: string, opts: ParseOpts): PlenoItem[] {
   items.sort((a, b) => b.date.localeCompare(a.date))
   return items
 }
+
+/**
+ * Funde las sesiones traídas en esta pasada sobre las ya publicadas.
+ *
+ * `scrape-plenos` pide una ventana de cuatro años y reconstruía el fichero
+ * entero con lo que devolvieran, así que la lista publicada era exactamente
+ * «lo que la última pasada consiguió ver». Eso tiene dos filos:
+ *
+ *  · El 1 de enero de 2027, 2023 sale de la ventana y sus 17 sesiones se
+ *    borran solas, con los 2 trozos de declaraciones y las 5 órdenes del día
+ *    que cuelgan de ellas. Nadie las ha retirado: se caen del calendario.
+ *  · Un año que responde 404 devuelve lo mismo que un año sin sesiones —nada—
+ *    y el fichero encoge en silencio.
+ *
+ * Arrastrar lo ya visto quita los dos: la lista sólo puede crecer, y una
+ * caída deja de ser destructiva. Eso es lo que permite que el guión salga 1
+ * cuando un año falla sin arriesgarse a publicar un hueco, que es la mitad
+ * que faltaba de «una pasada tiene que demostrar que hizo su trabajo».
+ *
+ * Misma forma que `mergeAgendaPlenos` en `pleno-agenda.ts`, a propósito.
+ */
+export function mergePlenoSessions(
+  existing: PlenoItem[],
+  fetched: PlenoItem[],
+): { items: PlenoItem[]; carriedForward: number; refreshed: number } {
+  const byId = new Map<string, PlenoItem>()
+  for (const p of existing) byId.set(p.id, p)
+
+  let refreshed = 0
+  for (const f of fetched) {
+    byId.set(f.id, f)
+    refreshed += 1
+  }
+
+  const items = [...byId.values()].sort((a, b) => b.date.localeCompare(a.date))
+  return { items, carriedForward: items.length - refreshed, refreshed }
+}

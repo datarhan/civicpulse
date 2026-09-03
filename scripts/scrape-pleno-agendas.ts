@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url'
 import {
   parsePlenoAgenda,
   mergeAgendaPlenos,
+  tallyDepartments,
   type PlenoAgendaItem,
   type EnrichedPleno,
 } from '../src/scraper/pleno-agenda'
@@ -204,8 +205,13 @@ async function main() {
     )
   }
   if (rederived > 0) console.log(`[pleno-agendas] re-derived ${rederived} department tag(s)`)
-  const deptCount: Record<string, number> = {}
-  const itemCount = merged.reduce((s, r) => s + r.agendaCount, 0)
+  // Numerador y denominador salen del MISMO recorrido. La tarjeta de /plenos
+  // rotula el total de puntos y pinta debajo una fila de departamentos que
+  // cubre una cuarta parte de él; con los dos contados aparte, nada garantiza
+  // que hablen de lo mismo. `tallyDepartments` devuelve ambos y está probado.
+  const tally = tallyDepartments(merged)
+  const { deptCount, topDepartments } = tally
+  const itemCount = tally.itemsTotal
 
   if (itemCount === 0) {
     console.error(
@@ -217,24 +223,6 @@ async function main() {
   if (fetchFailures > 0) {
     console.warn(`[pleno-agendas] ${fetchFailures}/${targets.length} session pages unavailable`)
   }
-  // Count ITEMS, not sessions. This incremented once per session, so
-  // "Contratación · 5" sat directly under a header reading "377 puntos" while
-  // meaning 5 sessions — Contratación appears in 7 items across 5 sessions.
-  for (const r of merged) {
-    for (const a of r.agenda) {
-      const d = a.departmentSlug || a.department
-      if (d) deptCount[d] = (deptCount[d] || 0) + 1
-    }
-  }
-  const topDepartments = Object.entries(deptCount)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 12)
-    .map(([department, count]) => ({
-      department,
-      count,
-      departmentSlug: canonicalizeDepartment(department),
-    }))
-
   const payload = {
     generatedAt: new Date().toISOString(),
     source: {
@@ -245,6 +233,10 @@ async function main() {
     stats: {
       plenosFetched: merged.length,
       agendaItemsTotal: itemCount,
+      // Cuántos de esos puntos llevan departamento. Sin este número la
+      // tarjeta de /plenos rotula el total y enseña debajo una fila que sólo
+      // clasifica una parte, sin decir cuál: el 2026-09-03 eran 109 de 399.
+      agendaItemsWithDepartment: tally.itemsWithDepartment,
       plenosWithRuegos: merged.filter((r) => r.hasRuegos).length,
       uniqueDepartments: Object.keys(deptCount).length,
       // Coverage is published so the UI can tell "this session has no agenda

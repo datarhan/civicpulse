@@ -26,9 +26,16 @@ export function ParticipaBlock() {
         >
           Participación ciudadana
         </div>
+        {/* «actualizado 2 de septiembre de 2026» encima de tarjetas fechadas en
+            julio de 2024 leía como si el portal hubiera publicado algo ayer.
+            Esa fecha es cuándo MIRAMOS nosotros; el portal está vivo (responde
+            200) y simplemente no publica desde abril. Son dos hechos distintos
+            y ahora se dicen por separado: lo último que hay, y cuándo se
+            consultó. */}
         <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-          · datos reales de participa.ribarroja.es · {data.stats.total} posts · actualizado{' '}
-          {generated}
+          · datos reales de participa.ribarroja.es · {data.stats.total} posts
+          {data.stats.latestDate && <> · lo último, del {fmtDateShort(data.stats.latestDate)}</>} ·
+          consultado {generated}
         </div>
       </div>
       {/* The platform was decommissioned; the scraper keeps the last good

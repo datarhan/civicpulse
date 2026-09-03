@@ -10,6 +10,7 @@
  * "Encuestas" (id 22) — so we map to {activity|survey|other} based on
  * the category labels attached to the post.
  */
+import { decodeHtmlEntities } from './normalize'
 
 export type PostKind = 'activity' | 'survey' | 'other'
 
@@ -47,16 +48,15 @@ interface ParseOpts {
   categoriesJson?: string
 }
 
+// Esto era una copia local que decodificaba seis entidades, y `&hellip;` no
+// estaba entre ellas: las siete tarjetas de participación de `/plenos`
+// terminaban en un literal «[&hellip;]», el recorte que pone WordPress.
+// `decodeHtmlEntities` cubre esas seis y ochenta más, y es donde se arregla
+// la próxima que falte. Se decodifica DESPUÉS de quitar las etiquetas, como
+// en `sindic-expedientes.ts`, para que un `&lt;b&gt;` decodificado no se
+// convierta en una etiqueta que ya nadie va a quitar.
 function stripHtml(html: string): string {
-  return html
-    .replace(/<\/?[a-z][^>]*>/gi, ' ')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(parseInt(n, 10)))
-    .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCharCode(parseInt(n, 16)))
+  return decodeHtmlEntities(html.replace(/<\/?[a-z][^>]*>/gi, ' '))
     .replace(/\s+/g, ' ')
     .trim()
 }

@@ -34,7 +34,19 @@ function TopDepartmentsCard({ agendas }) {
         // happened and are simply not broken down. Naming the denominator is the
         // difference between a coverage figure and a 40% undercount of plenary
         // activity.
-        eyebrow={`Orden del día extraído de ${agendas.stats.sessionsWithAgenda ?? agendas.stats.plenosFetched} de ${agendas.stats.sessionsTotal ?? '—'} sesiones · ${agendas.stats.agendaItemsTotal} puntos`}
+        //
+        // Y el MISMO fallo tenía una segunda mitad que sobrevivió a ese arreglo.
+        // El rótulo decía «399 puntos» y debajo pintaba una fila que suma 93,
+        // porque sólo 109 de los 399 llevan departamento: el 73 % no está
+        // clasificado y la tarjeta no lo decía en ningún sitio. Se arregló la
+        // unidad del numerador —contaba sesiones— y nadie miró el denominador.
+        // La cifra sale del snapshot; si un snapshot viejo no la trae, se cae
+        // a la redacción anterior en vez de escribir «undefined».
+        eyebrow={
+          typeof agendas.stats.agendaItemsWithDepartment === 'number'
+            ? `Orden del día extraído de ${agendas.stats.sessionsWithAgenda ?? agendas.stats.plenosFetched} de ${agendas.stats.sessionsTotal ?? '—'} sesiones · ${agendas.stats.agendaItemsWithDepartment} de ${agendas.stats.agendaItemsTotal} puntos llevan departamento`
+            : `Orden del día extraído de ${agendas.stats.sessionsWithAgenda ?? agendas.stats.plenosFetched} de ${agendas.stats.sessionsTotal ?? '—'} sesiones · ${agendas.stats.agendaItemsTotal} puntos`
+        }
         title="Departamentos con más puntos en el orden del día"
         right={
           <Link
@@ -106,8 +118,15 @@ function Count({ n, label, tone, titulo }) {
  *
  * Las cifras salen del snapshot, no de una frase escrita a mano: es lo único
  * que impide que este párrafo se quede rancio cuando los datos se muevan.
+ *
+ * El MOTIVO también sale de ahí, y esa es la corrección del 2026-09-03. La
+ * frase decía «aún no hemos transcrito el acta», y para 15 de las 22 sesiones
+ * cuyo texto ya está procesado eso era falso: hay 45 transcripciones en disco.
+ * Lo que falta en esas 15 no es la transcripción, es extraer la votación y
+ * firmarla. Culpar a la etapa equivocada es un error sobre nuestro propio
+ * trabajo, así que ahora se separan los dos casos y los dos se cuentan.
  */
-function Leyenda({ total, conVerificada, conVotos }) {
+function Leyenda({ total, conVerificada, conVotos, conTexto, conTextoSinVotos }) {
   if (!total) return null
   return (
     <div
@@ -132,9 +151,16 @@ function Leyenda({ total, conVerificada, conVotos }) {
       {typeof conVotos === 'number' && (
         <>
           {' '}
-          Con <strong style={{ color: 'var(--ink)' }}>votaciones transcritas</strong> hay {conVotos}
-          : que una sesión no las tenga no significa que no se votara, sino que aún no hemos
-          transcrito el acta.
+          Con <strong style={{ color: 'var(--ink)' }}>votaciones publicadas</strong> hay {conVotos}.
+          Que una sesión no las tenga no significa que no se votara
+          {typeof conTexto === 'number' && conTextoSinVotos > 0 ? (
+            <>
+              : de las {conTexto} cuyo texto ya hemos procesado, {conTextoSinVotos} siguen sin
+              votación extraída y firmada; de las demás aún no tenemos el texto.
+            </>
+          ) : (
+            <>, sino que aún no la hemos extraído del acta.</>
+          )}
         </>
       )}
     </div>
@@ -205,10 +231,20 @@ export default function Plenos() {
   )
 
   const conVerificada = useMemo(() => rows.filter((r) => r.verificado > 0).length, [rows])
-  const conVotos = useMemo(
-    () => (votesData ? new Set((votesData.items ?? []).map((v) => v.plenoId)).size : null),
+  const plenosConVotos = useMemo(
+    () => (votesData ? new Set((votesData.items ?? []).map((v) => v.plenoId)) : null),
     [votesData],
   )
+  const conVotos = plenosConVotos ? plenosConVotos.size : null
+  // Sesiones cuyo texto ya está procesado (tienen trozo de declaraciones), y
+  // cuántas de ésas siguen sin votación publicada. Son los dos números que
+  // sostienen el motivo que da la leyenda; derivarlos es lo que impide que la
+  // frase vuelva a culpar a la etapa equivocada cuando los datos se muevan.
+  const conTexto = manifest?.plenos?.length ?? null
+  const conTextoSinVotos = useMemo(() => {
+    if (!manifest?.plenos || !plenosConVotos) return null
+    return manifest.plenos.filter((p) => !plenosConVotos.has(p.plenoId)).length
+  }, [manifest, plenosConVotos])
 
   return (
     <div
@@ -259,6 +295,8 @@ export default function Plenos() {
         total={plenosData?.stats?.total ?? rows.length}
         conVerificada={conVerificada}
         conVotos={conVotos}
+        conTexto={conTexto}
+        conTextoSinVotos={conTextoSinVotos}
       />
       <Card>
         {loading && (

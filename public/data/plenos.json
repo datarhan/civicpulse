@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T09:01:23.759Z",
+  "generatedAt": "2026-09-03T09:12:12.109Z",
   "source": {
     "baseUrl": "https://regmeet.com",
     "platform": "Regmeet — aytoribarroja/sesiones_categorias/3b56be67439045acfbc7c1552d87a166/<year>"
@@ -12,7 +12,15 @@
       "2025": 15,
       "2026": 11
     },
-    "latestDate": "2026-07-27"
+    "latestDate": "2026-07-27",
+    "ventana": {
+      "desde": 2023,
+      "hasta": 2026
+    },
+    "aniosIntentados": 4,
+    "aniosFallidos": 0,
+    "sesionesRefrescadas": 61,
+    "sesionesArrastradas": 0
   },
   "items": [
     {
