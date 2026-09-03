@@ -67,9 +67,15 @@ export const LAB_SOURCES = [
   // — Pleno editorial
   { path: '/data/pleno-findings.json', label: 'Hallazgos pleno · curados', group: 'pleno' },
   // The ungated monoliths (pleno-claims-{suggestions,verified}.json) are
-  // curator/CLI-only and excluded from deploy (.vercelignore) so opinativa /
-  // sin-datos accusation verbatim is never fetchable. The SPA reads the gated
-  // chunk manifest instead — that's the published, health-tracked artifact.
+  // curator/CLI-only and are pruned from the build by `publication-denylist.js`
+  // so opinativa / sin-datos accusation verbatim is never fetchable. The SPA
+  // reads the gated chunk manifest instead — that's the published,
+  // health-tracked artifact.
+  //
+  // Hasta el 2026-09-03 esta nota decía «excluded from deploy (.vercelignore)»
+  // y era falsa: los dos ficheros se descargaban de producción. `.vercelignore`
+  // no alcanza a un despliegue `--prebuilt`, que sube `dist/`. Se deja dicho
+  // porque el comentario viejo era la razón por la que nadie lo comprobó.
   {
     path: '/data/pleno-claims/index.json',
     label: 'Pleno claims · verificados (chunks)',

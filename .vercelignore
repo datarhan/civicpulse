@@ -1,7 +1,19 @@
 # Curator/CLI-only artifacts — the SPA reads the gated chunks under
-# public/data/pleno-claims/, never these monoliths. Keeping them out of
-# the deploy ensures ungated (opinativa / sin-datos) accusation verbatim
-# is never fetchable from the live site. They remain in git for the
+# public/data/pleno-claims/, never these monoliths. They remain in git for the
 # promote-claim / auto-curate / verify CLIs on the curator's machine.
+#
+# ESTAS DOS LÍNEAS NO SON LO QUE LOS MANTIENE FUERA DEL SITIO. Lo parecían, y
+# durante meses no lo fueron: el 2026-09-03 los dos ficheros se descargaban de
+# producción con 2.255 y 2.256 acusaciones sin revisar dentro. `.vercelignore`
+# filtra lo que se SUBE desde el directorio fuente, y este despliegue hace
+# `vercel build` + `vercel deploy --prebuilt`, así que sube `dist/` — donde
+# Vite ya ha copiado `public/` entero. Un patrón `public/…` no llega a mirar
+# nada de lo que se sube.
+#
+# Quien lo garantiza es `publication-denylist.js`, aplicado sobre `dist/` por
+# `vite.config.js` y comprobado contra el artefacto construido por
+# `tests/publication-denylist.test.ts`. Estas dos líneas se quedan como
+# segunda capa por si el despliegue deja de ser `--prebuilt`; si añades un
+# fichero aquí, añádelo TAMBIÉN a la lista, porque aquí solo no hace nada.
 public/data/pleno-claims-verified.json
 public/data/pleno-claims-suggestions.json
