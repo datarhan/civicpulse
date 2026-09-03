@@ -235,7 +235,8 @@
     "check:secrets": "npx tsx scripts/check-secrets.ts",
     "check:claim-provenance": "npx tsx scripts/check-claim-provenance.ts",
     "retract-attribution": "npx tsx scripts/retract-claim-attribution.ts",
-    "check:basemap": "npx tsx scripts/check-basemap.ts"
+    "check:basemap": "npx tsx scripts/check-basemap.ts",
+    "check:wms": "npx tsx scripts/check-wms.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

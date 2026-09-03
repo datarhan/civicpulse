@@ -1,15 +1,12 @@
 // @ts-check
 import { WMSTileLayer } from 'react-leaflet'
+import { PATRICOVA_FLOOD_LAYER, PATRICOVA_URL } from '../../../lib/patricova'
 
-// PATRICOVA — Pla d'Acció Territorial de caràcter sectorial sobre prevenció del
-// Risc d'Inundació a la Comunitat Valenciana. Official Generalitat Valenciana /
-// ICV WMS. Layer 59 = "Riesgo de Inundación / Risc d'inundació / Flood risk"
-// (confirmed via GetCapabilities; the service offers EPSG:3857, Leaflet's
-// default). ArcGIS numeric layer ids can shift on republish — re-check with
-// GetCapabilities if the overlay ever renders blank.
-const PATRICOVA_URL =
-  'https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer'
-export const PATRICOVA_FLOOD_LAYER = '59'
+// El servicio y el número de capa viven en `src/lib/patricova.js`, junto al
+// título que ese número debe tener. El aviso que había aquí —«los ids de
+// ArcGIS pueden correrse al republicar, vuelve a mirar GetCapabilities si la
+// capa sale en blanco»— resultó ser exacto y no sirvió de nada, porque nadie
+// vuelve a mirar. Ahora lo mira `npm run check:wms` todas las noches.
 
 /**
  * Official flood-risk overlay. Semi-transparent so the base map + money bubbles

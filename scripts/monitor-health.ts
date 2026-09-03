@@ -275,6 +275,13 @@ async function gather(): Promise<Observations> {
     // comitear se aprende a saltar con --no-verify, igual que se dijo de
     // check:claim-provenance.
     'check:basemap',
+    // Y la otra capa de trama ajena, por el mismo motivo exacto. El ICV
+    // republicó su servicio y «Riesgo de Inundación» dejó de ser la capa 59
+    // para ser la 60; el mapa siguió pidiendo la 59 y el WMS respondió lo de
+    // siempre: 200, PNG válido, imagen en blanco. El componente YA llevaba
+    // escrito el aviso de que los ids de ArcGIS se corren al republicar —fue
+    // exacto y no sirvió de nada, porque un comentario no lo ejecuta nadie.
+    'check:wms',
   ]) {
     const msg = runCheck(c)
     if (msg) integrity.push({ check: c, message: msg })

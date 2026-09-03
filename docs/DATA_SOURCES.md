@@ -389,7 +389,7 @@ overwrites it. Change the bot's SQLite instead.
 ### Flood-risk zones (no snapshot — live WMS)
 
 - **Pipeline** — _(none — WMS overlay)_
-- **Source** — **PATRICOVA** WMS · Generalitat Valenciana / ICV `carto.icv.gva.es/…/WMSServer` layer 59 "Riesgo de Inundación" (EPSG:3857)
+- **Source** — **PATRICOVA** WMS · Generalitat Valenciana / ICV `carto.icv.gva.es/…/WMSServer`, capa «Riesgo de Inundación» (EPSG:3857). El número de capa vive en `src/lib/patricova.js` y **se mueve**: el ICV republicó el servicio y pasó de la 59 a la 60, con el mapa pidiendo la vieja sin que nada lo dijera —un WMS al que se le pide una capa que no existe responde `200 image/png` con la imagen en blanco. Lo vigila `npm run check:wms`, que busca por TÍTULO y nombra el id nuevo
 - **Surfaces** — Direction D StylizedMap "Riesgo inundación" layer (`WMSTileLayer`, off by default)
 
 ### Full Metrovalencia network (L1–L10)

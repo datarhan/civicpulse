@@ -1,0 +1,1735 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WMS_Capabilities version="1.3.0"
+  xmlns="http://www.opengis.net/wms"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:esri_wms="http://www.esri.com/wms"
+  xsi:schemaLocation="http://www.opengis.net/wms http://schemas.opengis.net/wms/1.3.0/capabilities_1_3_0.xsd http://www.esri.com/wms https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?version=1.3.0%26service=WMS%26request=GetSchemaExtension">
+  <Service>
+    <Name><![CDATA[WMS]]></Name>
+    <Title><![CDATA[tm_infraestructuras_ordenacion_territorial]]></Title>
+    <Abstract>WMS</Abstract>
+    <KeywordList><Keyword><![CDATA[]]></Keyword></KeywordList>
+    <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?"/>
+    <ContactInformation>
+      <ContactPersonPrimary>
+        <ContactPerson><![CDATA[]]></ContactPerson>
+        <ContactOrganization><![CDATA[]]></ContactOrganization>
+      </ContactPersonPrimary>
+      <ContactPosition><![CDATA[]]></ContactPosition>
+      <ContactAddress>
+        <AddressType><![CDATA[]]></AddressType>
+        <Address><![CDATA[]]></Address>
+        <City><![CDATA[]]></City>
+        <StateOrProvince><![CDATA[]]></StateOrProvince>
+        <PostCode><![CDATA[]]></PostCode>
+        <Country><![CDATA[]]></Country>
+      </ContactAddress>
+      <ContactVoiceTelephone><![CDATA[]]></ContactVoiceTelephone>
+      <ContactFacsimileTelephone><![CDATA[]]></ContactFacsimileTelephone>
+      <ContactElectronicMailAddress><![CDATA[]]></ContactElectronicMailAddress>
+    </ContactInformation>
+    <Fees><![CDATA[]]></Fees>
+    <AccessConstraints><![CDATA[]]></AccessConstraints>
+    <MaxWidth>4096</MaxWidth>
+    <MaxHeight>4096</MaxHeight>
+  </Service>
+  <Capability>
+    <Request>
+      <GetCapabilities>
+        <Format>application/vnd.ogc.wms_xml</Format>
+        <Format>text/xml</Format>
+        <DCPType>
+          <HTTP><Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?"/></Get></HTTP>
+        </DCPType>
+      </GetCapabilities>
+      <GetMap>
+        <Format>image/bmp</Format>
+        <Format>image/jpeg</Format>
+        <Format>image/tiff</Format>
+        <Format>image/png</Format>
+        <Format>image/png8</Format>
+        <Format>image/png24</Format>
+        <Format>image/png32</Format>
+        <Format>image/gif</Format>
+        <Format>image/svg+xml</Format>
+        <DCPType>
+          <HTTP><Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?"/></Get></HTTP>
+        </DCPType>
+      </GetMap>
+      <GetFeatureInfo>
+        <Format>application/vnd.esri.wms_raw_xml</Format>
+        <Format>application/vnd.esri.wms_featureinfo_xml</Format>
+        <Format>application/vnd.ogc.wms_xml</Format>
+        <Format>application/geojson</Format>
+        <Format>text/xml</Format>
+        <Format>text/html</Format>
+        <Format>text/plain</Format>
+        <DCPType>
+          <HTTP><Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?"/></Get></HTTP>
+        </DCPType>
+      </GetFeatureInfo>
+      <esri_wms:GetStyles>
+        <Format>application/vnd.ogc.sld+xml</Format>
+        <DCPType>
+          <HTTP><Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?"/></Get></HTTP>
+        </DCPType>
+      </esri_wms:GetStyles>
+    </Request>
+    <Exception>
+      <Format>application/vnd.ogc.se_xml</Format>
+      <Format>application/vnd.ogc.se_inimage</Format>
+      <Format>application/vnd.ogc.se_blank</Format>
+      <Format>text/xml</Format>
+      <Format>XML</Format>
+    </Exception>
+    <Layer>
+      <Title><![CDATA[Ordenación territorial]]></Title>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.623671</westBoundLongitude><eastBoundLongitude>0.780063</eastBoundLongitude><southBoundLatitude>37.764312</southBoundLatitude><northBoundLatitude>40.856729</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.623671" miny="37.764312" maxx="0.780063" maxy="40.856729"/>
+<BoundingBox CRS="EPSG:4326" minx="37.764312" miny="-1.623671" maxx="40.856729" maxy="0.780063"/>
+<BoundingBox CRS="EPSG:3857" minx="-180746.234847" miny="4546184.235942" maxx="86836.228817" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:102100" minx="-180746.234847" miny="4546184.235942" maxx="86836.228817" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:25830" minx="616003.285868" miny="4180557.209321" maxx="832999.665025" maxy="4529733.994150"/>
+      <Layer queryable="1">
+        <Title><![CDATA[PATs en tramitación | PATs en tramitació | PATs in process]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.505968</westBoundLongitude><eastBoundLongitude>0.722568</eastBoundLongitude><southBoundLatitude>37.810347</southBoundLatitude><northBoundLatitude>40.537250</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.505968" miny="37.810347" maxx="0.722568" maxy="40.537250"/>
+<BoundingBox CRS="EPSG:4326" minx="37.810347" miny="-1.505968" maxx="40.537250" maxy="0.722568"/>
+<BoundingBox CRS="EPSG:3857" minx="-167643.558498" miny="4552668.772242" maxx="80435.878087" maxy="4944323.879063"/>
+<BoundingBox CRS="EPSG:102100" minx="-167643.558498" miny="4552668.772242" maxx="80435.878087" maxy="4944323.879063"/>
+<BoundingBox CRS="EPSG:25830" minx="626527.325240" miny="4185824.292408" maxx="827729.155040" maxy="4494051.460908"/>
+      <Layer queryable="1">
+        <Title><![CDATA[PATs versión preliminar | PATs versió preliminar | PATs preview version]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.044438</westBoundLongitude><eastBoundLongitude>-0.630534</eastBoundLongitude><southBoundLatitude>37.841380</southBoundLatitude><northBoundLatitude>38.330635</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.044438" miny="37.841380" maxx="-0.630534" maxy="38.330635"/>
+<BoundingBox CRS="EPSG:4326" minx="37.841380" miny="-1.044438" maxx="38.330635" maxy="-0.630534"/>
+<BoundingBox CRS="EPSG:3857" minx="-116266.287087" miny="4557042.260884" maxx="-70190.736368" maxy="4626239.281785"/>
+<BoundingBox CRS="EPSG:102100" minx="-116266.287087" miny="4557042.260884" maxx="-70190.736368" maxy="4626239.281785"/>
+<BoundingBox CRS="EPSG:25830" minx="670927.146605" miny="4190017.866491" maxx="708494.901838" maxy="4245157.514652"/>
+      <Layer queryable="1">
+        <Title><![CDATA[PAT Vega Baja | PAT Vega Baja | PAT Vega Baja]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.044438</westBoundLongitude><eastBoundLongitude>-0.630534</eastBoundLongitude><southBoundLatitude>37.841380</southBoundLatitude><northBoundLatitude>38.330635</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.044438" miny="37.841380" maxx="-0.630534" maxy="38.330635"/>
+<BoundingBox CRS="EPSG:4326" minx="37.841380" miny="-1.044438" maxx="38.330635" maxy="-0.630534"/>
+<BoundingBox CRS="EPSG:3857" minx="-116266.287087" miny="4557042.260884" maxx="-70190.736368" maxy="4626239.281785"/>
+<BoundingBox CRS="EPSG:102100" minx="-116266.287087" miny="4557042.260884" maxx="-70190.736368" maxy="4626239.281785"/>
+<BoundingBox CRS="EPSG:25830" minx="670927.146605" miny="4190017.866491" maxx="708494.901838" maxy="4245157.514652"/>
+      <Layer queryable="1">
+        <Name>3</Name>
+        <Title><![CDATA[PATVB Unidades paisaje | PATVB Unitats paisatge | PATVB Landscape Units]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.044438</westBoundLongitude><eastBoundLongitude>-0.630534</eastBoundLongitude><southBoundLatitude>37.841380</southBoundLatitude><northBoundLatitude>38.330635</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.044438" miny="37.841380" maxx="-0.630534" maxy="38.330635"/>
+<BoundingBox CRS="EPSG:4326" minx="37.841380" miny="-1.044438" maxx="38.330635" maxy="-0.630534"/>
+<BoundingBox CRS="EPSG:3857" minx="-116266.287087" miny="4557042.260884" maxx="-70190.736368" maxy="4626239.281785"/>
+<BoundingBox CRS="EPSG:102100" minx="-116266.287087" miny="4557042.260884" maxx="-70190.736368" maxy="4626239.281785"/>
+<BoundingBox CRS="EPSG:25830" minx="670927.146605" miny="4190017.866491" maxx="708494.901838" maxy="4245157.514652"/>
+        <Style>
+          <Name>default</Name>
+          <Title>3</Title>
+          <LegendURL width="384" height="846">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=3" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>4</Name>
+        <Title><![CDATA[PATVB Zonificación SNU | PATVB Zonificació SNU | PATVB SNU Zonification]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.044438</westBoundLongitude><eastBoundLongitude>-0.630534</eastBoundLongitude><southBoundLatitude>37.841380</southBoundLatitude><northBoundLatitude>38.330635</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.044438" miny="37.841380" maxx="-0.630534" maxy="38.330635"/>
+<BoundingBox CRS="EPSG:4326" minx="37.841380" miny="-1.044438" maxx="38.330635" maxy="-0.630534"/>
+<BoundingBox CRS="EPSG:3857" minx="-116266.287087" miny="4557042.260884" maxx="-70190.736368" maxy="4626239.281785"/>
+<BoundingBox CRS="EPSG:102100" minx="-116266.287087" miny="4557042.260884" maxx="-70190.736368" maxy="4626239.281785"/>
+<BoundingBox CRS="EPSG:25830" minx="670927.146605" miny="4190017.866491" maxx="708494.901838" maxy="4245157.514652"/>
+        <Style>
+          <Name>default</Name>
+          <Title>4</Title>
+          <LegendURL width="66" height="162">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=4" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>5</Name>
+        <Title><![CDATA[PATVB Afecciones SNU | PATVB Afeccions SNU | PATVB SNU Afections]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.041588</westBoundLongitude><eastBoundLongitude>-0.649283</eastBoundLongitude><southBoundLatitude>37.841734</southBoundLatitude><northBoundLatitude>38.254387</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.041588" miny="37.841734" maxx="-0.649283" maxy="38.254387"/>
+<BoundingBox CRS="EPSG:4326" minx="37.841734" miny="-1.041588" maxx="38.254387" maxy="-0.649283"/>
+<BoundingBox CRS="EPSG:3857" minx="-115949.101065" miny="4557092.201120" maxx="-72277.892500" maxy="4615424.809933"/>
+<BoundingBox CRS="EPSG:102100" minx="-115949.101065" miny="4557092.201120" maxx="-72277.892500" maxy="4615424.809933"/>
+<BoundingBox CRS="EPSG:25830" minx="671355.507561" miny="4190062.435300" maxx="706843.889671" maxy="4236653.725867"/>
+        <Style>
+          <Name>default</Name>
+          <Title>5</Title>
+          <LegendURL width="300" height="90">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=5" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>6</Name>
+        <Title><![CDATA[PATVB Sectores | PATVB Sectors | PATVB Sectors]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.025133</westBoundLongitude><eastBoundLongitude>-0.646489</eastBoundLongitude><southBoundLatitude>37.844183</southBoundLatitude><northBoundLatitude>38.167635</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.025133" miny="37.844183" maxx="-0.646489" maxy="38.167635"/>
+<BoundingBox CRS="EPSG:4326" minx="37.844183" miny="-1.025133" maxx="38.167635" maxy="-0.646489"/>
+<BoundingBox CRS="EPSG:3857" minx="-114117.235769" miny="4557437.452347" maxx="-71966.774046" maxy="4603134.171895"/>
+<BoundingBox CRS="EPSG:102100" minx="-114117.235769" miny="4557437.452347" maxx="-71966.774046" maxy="4603134.171895"/>
+<BoundingBox CRS="EPSG:25830" minx="673000.823748" miny="4190364.716951" maxx="707082.992739" maxy="4227032.328794"/>
+        <Style>
+          <Name>default</Name>
+          <Title>6</Title>
+          <LegendURL width="504" height="108">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=6" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>7</Name>
+        <Title><![CDATA[PATVB Ámbito | PATVB Àmbit | PATVB Areas]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.044438</westBoundLongitude><eastBoundLongitude>-0.630534</eastBoundLongitude><southBoundLatitude>37.841380</southBoundLatitude><northBoundLatitude>38.330635</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.044438" miny="37.841380" maxx="-0.630534" maxy="38.330635"/>
+<BoundingBox CRS="EPSG:4326" minx="37.841380" miny="-1.044438" maxx="38.330635" maxy="-0.630534"/>
+<BoundingBox CRS="EPSG:3857" minx="-116266.287087" miny="4557042.260884" maxx="-70190.736368" maxy="4626239.281785"/>
+<BoundingBox CRS="EPSG:102100" minx="-116266.287087" miny="4557042.260884" maxx="-70190.736368" maxy="4626239.281785"/>
+<BoundingBox CRS="EPSG:25830" minx="670927.146605" miny="4190017.866491" maxx="708494.901838" maxy="4245157.514652"/>
+        <Style>
+          <Name>default</Name>
+          <Title>7</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=7" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      </Layer>
+      </Layer>
+      <Layer queryable="1">
+        <Title><![CDATA[Ámbitos PATs | Àmbits PATs | PATs Areas]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.505968</westBoundLongitude><eastBoundLongitude>0.722568</eastBoundLongitude><southBoundLatitude>37.810347</southBoundLatitude><northBoundLatitude>40.537250</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.505968" miny="37.810347" maxx="0.722568" maxy="40.537250"/>
+<BoundingBox CRS="EPSG:4326" minx="37.810347" miny="-1.505968" maxx="40.537250" maxy="0.722568"/>
+<BoundingBox CRS="EPSG:3857" minx="-167643.558498" miny="4552668.772242" maxx="80435.878087" maxy="4944323.879063"/>
+<BoundingBox CRS="EPSG:102100" minx="-167643.558498" miny="4552668.772242" maxx="80435.878087" maxy="4944323.879063"/>
+<BoundingBox CRS="EPSG:25830" minx="626527.325240" miny="4185824.292408" maxx="827729.155040" maxy="4494051.460908"/>
+      <Layer queryable="1">
+        <Title><![CDATA[PAT Paisajes del Vino | PAT Paisatges del Vi | PAT Wine Landscapes]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.489292</westBoundLongitude><eastBoundLongitude>0.226487</eastBoundLongitude><southBoundLatitude>38.234700</southBoundLatitude><northBoundLatitude>40.211812</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.489292" miny="38.234700" maxx="0.226487" maxy="40.211812"/>
+<BoundingBox CRS="EPSG:4326" minx="38.234700" miny="-1.489292" maxx="40.211812" maxy="0.226487"/>
+<BoundingBox CRS="EPSG:3857" minx="-165787.274736" miny="4612634.324329" maxx="25212.451198" maxy="4896770.201057"/>
+<BoundingBox CRS="EPSG:102100" minx="-165787.274736" miny="4612634.324329" maxx="25212.451198" maxy="4896770.201057"/>
+<BoundingBox CRS="EPSG:25830" minx="628556.732266" miny="4232934.893924" maxx="782407.015099" maxy="4456261.080270"/>
+      <Layer queryable="1">
+        <Title><![CDATA[Ámbito Alicante | Àmbit Alacant | Alacant ambit]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.099427</westBoundLongitude><eastBoundLongitude>0.161091</eastBoundLongitude><southBoundLatitude>38.234700</southBoundLatitude><northBoundLatitude>38.775086</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.099427" miny="38.234700" maxx="0.161091" maxy="38.775086"/>
+<BoundingBox CRS="EPSG:4326" minx="38.234700" miny="-1.099427" maxx="38.775086" maxy="0.161091"/>
+<BoundingBox CRS="EPSG:3857" minx="-122387.696535" miny="4612634.324329" maxx="17932.554062" maxy="4689505.618281"/>
+<BoundingBox CRS="EPSG:102100" minx="-122387.696535" miny="4612634.324329" maxx="17932.554062" maxy="4689505.618281"/>
+<BoundingBox CRS="EPSG:25830" minx="665100.265708" miny="4233563.758103" maxx="776681.632411" maxy="4296565.142899"/>
+      <Layer queryable="1">
+        <Name>11</Name>
+        <Title><![CDATA[ambito_al_amp | ambito_al_amp | ambito_al_amp]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.099427</westBoundLongitude><eastBoundLongitude>0.161091</eastBoundLongitude><southBoundLatitude>38.234700</southBoundLatitude><northBoundLatitude>38.775086</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.099427" miny="38.234700" maxx="0.161091" maxy="38.775086"/>
+<BoundingBox CRS="EPSG:4326" minx="38.234700" miny="-1.099427" maxx="38.775086" maxy="0.161091"/>
+<BoundingBox CRS="EPSG:3857" minx="-122387.696535" miny="4612634.324329" maxx="17932.554062" maxy="4689505.618281"/>
+<BoundingBox CRS="EPSG:102100" minx="-122387.696535" miny="4612634.324329" maxx="17932.554062" maxy="4689505.618281"/>
+<BoundingBox CRS="EPSG:25830" minx="665100.265708" miny="4233563.758103" maxx="776681.632411" maxy="4296565.142899"/>
+        <Style>
+          <Name>default</Name>
+          <Title>11</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=11" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>12</Name>
+        <Title><![CDATA[ambito_al | ambito_al | ambito_al]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.093097</westBoundLongitude><eastBoundLongitude>0.160789</eastBoundLongitude><southBoundLatitude>38.298204</southBoundLatitude><northBoundLatitude>38.772438</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.093097" miny="38.298204" maxx="0.160789" maxy="38.772438"/>
+<BoundingBox CRS="EPSG:4326" minx="38.298204" miny="-1.093097" maxx="38.772438" maxy="0.160789"/>
+<BoundingBox CRS="EPSG:3857" minx="-121683.007929" miny="4621638.148561" maxx="17898.957228" maxy="4689127.455390"/>
+<BoundingBox CRS="EPSG:102100" minx="-121683.007929" miny="4621638.148561" maxx="17898.957228" maxy="4689127.455390"/>
+<BoundingBox CRS="EPSG:25830" minx="665656.345445" miny="4240622.316236" maxx="776414.139095" maxy="4296270.247614"/>
+        <Style>
+          <Name>default</Name>
+          <Title>12</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=12" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      </Layer>
+      <Layer queryable="1">
+        <Name>13</Name>
+        <Title><![CDATA[Ámbito Utiel-Requena | Àmbit Utiel-Requena | Utiel-Requena ambit]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.466962</westBoundLongitude><eastBoundLongitude>-0.920442</eastBoundLongitude><southBoundLatitude>39.308645</southBoundLatitude><northBoundLatitude>39.775489</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.466962" miny="39.308645" maxx="-0.920442" maxy="39.775489"/>
+<BoundingBox CRS="EPSG:4326" minx="39.308645" miny="-1.466962" maxx="39.775489" maxy="-0.920442"/>
+<BoundingBox CRS="EPSG:3857" minx="-163301.485702" miny="4765979.308924" maxx="-102463.085509" maxy="4833370.436674"/>
+<BoundingBox CRS="EPSG:102100" minx="-163301.485702" miny="4765979.308924" maxx="-102463.085509" maxy="4833370.436674"/>
+<BoundingBox CRS="EPSG:25830" minx="631290.079433" miny="4352148.536789" maxx="679295.520279" maxy="4404907.511250"/>
+        <Style>
+          <Name>default</Name>
+          <Title>13</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=13" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Title><![CDATA[Ámbito Valencia | Ámbit València | Valencia ambit]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.178537</westBoundLongitude><eastBoundLongitude>-0.274958</eastBoundLongitude><southBoundLatitude>38.709450</southBoundLatitude><northBoundLatitude>39.969993</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.178537" miny="38.709450" maxx="-0.274958" maxy="39.969993"/>
+<BoundingBox CRS="EPSG:4326" minx="38.709450" miny="-1.178537" maxx="39.969993" maxy="-0.274958"/>
+<BoundingBox CRS="EPSG:3857" minx="-131194.183408" miny="4680137.775774" maxx="-30608.129485" maxy="4861582.646352"/>
+<BoundingBox CRS="EPSG:102100" minx="-131194.183408" miny="4680137.775774" maxx="-30608.129485" maxy="4861582.646352"/>
+<BoundingBox CRS="EPSG:25830" minx="655552.170560" miny="4286109.296298" maxx="736947.872542" maxy="4427983.354026"/>
+      <Layer queryable="1">
+        <Name>15</Name>
+        <Title><![CDATA[ambito_val_amp | ambito_val_amp | ambito_val_amp]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.178537</westBoundLongitude><eastBoundLongitude>-0.274958</eastBoundLongitude><southBoundLatitude>38.709450</southBoundLatitude><northBoundLatitude>39.969993</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.178537" miny="38.709450" maxx="-0.274958" maxy="39.969993"/>
+<BoundingBox CRS="EPSG:4326" minx="38.709450" miny="-1.178537" maxx="39.969993" maxy="-0.274958"/>
+<BoundingBox CRS="EPSG:3857" minx="-131194.183408" miny="4680137.775774" maxx="-30608.129485" maxy="4861582.646352"/>
+<BoundingBox CRS="EPSG:102100" minx="-131194.183408" miny="4680137.775774" maxx="-30608.129485" maxy="4861582.646352"/>
+<BoundingBox CRS="EPSG:25830" minx="655552.170560" miny="4286109.296298" maxx="736947.872542" maxy="4427983.354026"/>
+        <Style>
+          <Name>default</Name>
+          <Title>15</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=15" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>16</Name>
+        <Title><![CDATA[ambito_val | ambito_val | ambito_val]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.939730</westBoundLongitude><eastBoundLongitude>-0.593018</eastBoundLongitude><southBoundLatitude>38.716019</southBoundLatitude><northBoundLatitude>39.718987</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.939730" miny="38.716019" maxx="-0.593018" maxy="39.718987"/>
+<BoundingBox CRS="EPSG:4326" minx="38.716019" miny="-0.939730" maxx="39.718987" maxy="-0.593018"/>
+<BoundingBox CRS="EPSG:3857" minx="-104610.212423" miny="4681075.007543" maxx="-66014.460225" maxy="4825189.828836"/>
+<BoundingBox CRS="EPSG:102100" minx="-104610.212423" miny="4681075.007543" maxx="-66014.460225" maxy="4825189.828836"/>
+<BoundingBox CRS="EPSG:25830" minx="676589.909470" miny="4287278.463561" maxx="709268.899159" maxy="4399338.364128"/>
+        <Style>
+          <Name>default</Name>
+          <Title>16</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=16" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      </Layer>
+      <Layer queryable="1">
+        <Name>17</Name>
+        <Title><![CDATA[Ámbito Castellón | Ámbit Castelló | Castellón ambit]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.132910</westBoundLongitude><eastBoundLongitude>-0.003943</eastBoundLongitude><southBoundLatitude>40.107534</southBoundLatitude><northBoundLatitude>40.186633</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.132910" miny="40.107534" maxx="-0.003943" maxy="40.186633"/>
+<BoundingBox CRS="EPSG:4326" minx="40.107534" miny="-0.132910" maxx="40.186633" maxy="-0.003943"/>
+<BoundingBox CRS="EPSG:3857" minx="-14795.504289" miny="4881581.108683" maxx="-438.966113" maxy="4893100.412579"/>
+<BoundingBox CRS="EPSG:102100" minx="-14795.504289" miny="4881581.108683" maxx="-438.966113" maxy="4893100.412579"/>
+<BoundingBox CRS="EPSG:25830" minx="744083.566423" miny="4443633.156050" maxx="755360.885725" maxy="4452777.335677"/>
+        <Style>
+          <Name>default</Name>
+          <Title>17</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=17" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      </Layer>
+      <Layer queryable="1">
+        <Name>18</Name>
+        <Title><![CDATA[PATCAS | PATCAS | PATCAS]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.594511</westBoundLongitude><eastBoundLongitude>0.722568</eastBoundLongitude><southBoundLatitude>39.697600</southBoundLatitude><northBoundLatitude>40.522040</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.594511" miny="39.697600" maxx="0.722568" maxy="40.522040"/>
+<BoundingBox CRS="EPSG:4326" minx="39.697600" miny="-0.594511" maxx="40.522040" maxy="0.722568"/>
+<BoundingBox CRS="EPSG:3857" minx="-66180.627964" miny="4822095.155901" maxx="80435.878087" maxy="4942096.204214"/>
+<BoundingBox CRS="EPSG:102100" minx="-66180.627964" miny="4822095.155901" maxx="80435.878087" maxy="4942096.204214"/>
+<BoundingBox CRS="EPSG:25830" minx="703769.105489" miny="4396960.947658" maxx="819196.248314" maxy="4492362.567157"/>
+        <Style>
+          <Name>default</Name>
+          <Title>18</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=18" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>19</Name>
+        <Title><![CDATA[PATMAA | PATMAA | PATMAA]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.440475</westBoundLongitude><eastBoundLongitude>-0.141658</eastBoundLongitude><southBoundLatitude>38.600210</southBoundLatitude><northBoundLatitude>38.727016</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.440475" miny="38.600210" maxx="-0.141658" maxy="38.727016"/>
+<BoundingBox CRS="EPSG:4326" minx="38.600210" miny="-0.440475" maxx="38.727016" maxy="-0.141658"/>
+<BoundingBox CRS="EPSG:3857" minx="-49033.453525" miny="4664565.863653" maxx="-15769.322460" maxy="4682644.088052"/>
+<BoundingBox CRS="EPSG:102100" minx="-49033.453525" miny="4664565.863653" maxx="-15769.322460" maxy="4682644.088052"/>
+<BoundingBox CRS="EPSG:25830" minx="722499.108129" miny="4275520.202239" maxx="748918.718349" maxy="4290363.335722"/>
+        <Style>
+          <Name>default</Name>
+          <Title>19</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=19" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>20</Name>
+        <Title><![CDATA[PATAM | PATAM | PATAM]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.667912</westBoundLongitude><eastBoundLongitude>-0.271046</eastBoundLongitude><southBoundLatitude>39.931623</southBoundLatitude><northBoundLatitude>40.267352</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.667912" miny="39.931623" maxx="-0.271046" maxy="40.267352"/>
+<BoundingBox CRS="EPSG:4326" minx="39.931623" miny="-0.667912" maxx="40.267352" maxy="-0.271046"/>
+<BoundingBox CRS="EPSG:3857" minx="-74351.582800" miny="4856010.851580" maxx="-30172.705783" maxy="4904869.592770"/>
+<BoundingBox CRS="EPSG:102100" minx="-74351.582800" miny="4856010.851580" maxx="-30172.705783" maxy="4904869.592770"/>
+<BoundingBox CRS="EPSG:25830" minx="698296.953718" miny="4422771.959359" maxx="733190.568006" maxy="4461004.692265"/>
+        <Style>
+          <Name>default</Name>
+          <Title>20</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=20" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>21</Name>
+        <Title><![CDATA[PATADEMUZ | PATADEMUZ | PATADEMUZ]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.460323</westBoundLongitude><eastBoundLongitude>-1.067271</eastBoundLongitude><southBoundLatitude>39.992291</southBoundLatitude><northBoundLatitude>40.213888</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.460323" miny="39.992291" maxx="-1.067271" maxy="40.213888"/>
+<BoundingBox CRS="EPSG:4326" minx="39.992291" miny="-1.460323" maxx="40.213888" maxy="-1.067271"/>
+<BoundingBox CRS="EPSG:3857" minx="-162562.403739" miny="4864822.082222" maxx="-118808.116246" maxy="4897072.806885"/>
+<BoundingBox CRS="EPSG:102100" minx="-162562.403739" miny="4864822.082222" maxx="-118808.116246" maxy="4897072.806885"/>
+<BoundingBox CRS="EPSG:25830" minx="631018.051825" miny="4428036.788990" maxx="665001.187704" maxy="4453288.512780"/>
+        <Style>
+          <Name>default</Name>
+          <Title>21</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=21" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>22</Name>
+        <Title><![CDATA[PATCC | PATCC | PATCC]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.972137</westBoundLongitude><eastBoundLongitude>0.252966</eastBoundLongitude><southBoundLatitude>38.469074</southBoundLatitude><northBoundLatitude>39.180632</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.972137" miny="38.469074" maxx="0.252966" maxy="39.180632"/>
+<BoundingBox CRS="EPSG:4326" minx="38.469074" miny="-0.972137" maxx="39.180632" maxy="0.252966"/>
+<BoundingBox CRS="EPSG:3857" minx="-108217.743442" miny="4645903.750978" maxx="28160.075295" maxy="4747578.729577"/>
+<BoundingBox CRS="EPSG:102100" minx="-108217.743442" miny="4645903.750978" maxx="28160.075295" maxy="4747578.729577"/>
+<BoundingBox CRS="EPSG:25830" minx="675156.367803" miny="4259809.809102" maxx="783807.767875" maxy="4341864.275215"/>
+        <Style>
+          <Name>default</Name>
+          <Title>22</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=22" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>23</Name>
+        <Title><![CDATA[PATEVAL | PATEVAL | PATEVAL]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.229619</westBoundLongitude><eastBoundLongitude>-0.243991</eastBoundLongitude><southBoundLatitude>39.137869</southBoundLatitude><northBoundLatitude>39.985420</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.229619" miny="39.137869" maxx="-0.243991" maxy="39.985420"/>
+<BoundingBox CRS="EPSG:4326" minx="39.137869" miny="-1.229619" maxx="39.985420" maxy="-0.243991"/>
+<BoundingBox CRS="EPSG:3857" minx="-136880.608531" miny="4741439.366660" maxx="-27160.903192" maxy="4863823.848316"/>
+<BoundingBox CRS="EPSG:102100" minx="-136880.608531" miny="4741439.366660" maxx="-27160.903192" maxy="4863823.848316"/>
+<BoundingBox CRS="EPSG:25830" minx="651155.529759" miny="4333568.524464" maxx="738202.727941" maxy="4429777.370996"/>
+        <Style>
+          <Name>default</Name>
+          <Title>23</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=23" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>24</Name>
+        <Title><![CDATA[PATAE | PATAE | PATAE]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.977434</westBoundLongitude><eastBoundLongitude>-0.295387</eastBoundLongitude><southBoundLatitude>38.101181</southBoundLatitude><northBoundLatitude>38.660495</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.977434" miny="38.101181" maxx="-0.295387" maxy="38.660495"/>
+<BoundingBox CRS="EPSG:4326" minx="38.101181" miny="-0.977434" maxx="38.660495" maxy="-0.295387"/>
+<BoundingBox CRS="EPSG:3857" minx="-108807.457212" miny="4593729.139844" maxx="-32882.311697" maxy="4673156.462454"/>
+<BoundingBox CRS="EPSG:102100" minx="-108807.457212" miny="4593729.139844" maxx="-32882.311697" maxy="4673156.462454"/>
+<BoundingBox CRS="EPSG:25830" minx="675979.516437" miny="4218973.220543" maxx="737152.391342" maxy="4282573.749820"/>
+        <Style>
+          <Name>default</Name>
+          <Title>24</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=24" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>25</Name>
+        <Title><![CDATA[PATVB | PATVB | PATVB]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.044438</westBoundLongitude><eastBoundLongitude>-0.630534</eastBoundLongitude><southBoundLatitude>37.841380</southBoundLatitude><northBoundLatitude>38.330635</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.044438" miny="37.841380" maxx="-0.630534" maxy="38.330635"/>
+<BoundingBox CRS="EPSG:4326" minx="37.841380" miny="-1.044438" maxx="38.330635" maxy="-0.630534"/>
+<BoundingBox CRS="EPSG:3857" minx="-116266.287087" miny="4557042.260884" maxx="-70190.736368" maxy="4626239.281785"/>
+<BoundingBox CRS="EPSG:102100" minx="-116266.287087" miny="4557042.260884" maxx="-70190.736368" maxy="4626239.281785"/>
+<BoundingBox CRS="EPSG:25830" minx="670927.146605" miny="4190017.866491" maxx="708494.901838" maxy="4245157.514652"/>
+        <Style>
+          <Name>default</Name>
+          <Title>25</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=25" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      </Layer>
+      </Layer>
+      <Layer queryable="1">
+        <Title><![CDATA[Pendientes (regulación territorial) | Pendents (regulació territorial) | Slopes (territorial regulation)]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.595005</westBoundLongitude><eastBoundLongitude>0.780063</eastBoundLongitude><southBoundLatitude>37.797337</southBoundLatitude><northBoundLatitude>40.819217</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.595005" miny="37.797337" maxx="0.780063" maxy="40.819217"/>
+<BoundingBox CRS="EPSG:4326" minx="37.797337" miny="-1.595005" maxx="40.819217" maxy="0.780063"/>
+<BoundingBox CRS="EPSG:3857" minx="-177555.189084" miny="4550835.706718" maxx="86836.228817" maxy="4985712.637846"/>
+<BoundingBox CRS="EPSG:102100" minx="-177555.189084" miny="4550835.706718" maxx="86836.228817" maxy="4985712.637846"/>
+<BoundingBox CRS="EPSG:25830" minx="618486.216602" miny="4184259.092567" maxx="832851.269784" maxy="4525568.600651"/>
+      <Layer queryable="1">
+        <Name>27</Name>
+        <Title><![CDATA[Pendientes (%) | Pendents (%) | Slopes (%)]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.595005</westBoundLongitude><eastBoundLongitude>0.780063</eastBoundLongitude><southBoundLatitude>37.797337</southBoundLatitude><northBoundLatitude>40.819217</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.595005" miny="37.797337" maxx="0.780063" maxy="40.819217"/>
+<BoundingBox CRS="EPSG:4326" minx="37.797337" miny="-1.595005" maxx="40.819217" maxy="0.780063"/>
+<BoundingBox CRS="EPSG:3857" minx="-177555.189084" miny="4550835.706718" maxx="86836.228817" maxy="4985712.637846"/>
+<BoundingBox CRS="EPSG:102100" minx="-177555.189084" miny="4550835.706718" maxx="86836.228817" maxy="4985712.637846"/>
+<BoundingBox CRS="EPSG:25830" minx="618486.216602" miny="4184259.092567" maxx="832851.269784" maxy="4525568.600651"/>
+        <Style>
+          <Name>default</Name>
+          <Title>27</Title>
+          <LegendURL width="90" height="72">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=27" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      </Layer>
+      <Layer queryable="1">
+        <Title><![CDATA[Estrategia Territorial de la Comunitat Valenciana | Estratègia Territorial de la Comunitat Valenciana | Comunitat Valenciana Territorial Strategy]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.561158</westBoundLongitude><eastBoundLongitude>0.737902</eastBoundLongitude><southBoundLatitude>37.810260</southBoundLatitude><northBoundLatitude>40.813712</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.561158" miny="37.810260" maxx="0.737902" maxy="40.813712"/>
+<BoundingBox CRS="EPSG:4326" minx="37.810260" miny="-1.561158" maxx="40.813712" maxy="0.737902"/>
+<BoundingBox CRS="EPSG:3857" minx="-173787.276260" miny="4552656.469100" maxx="82142.925191" maxy="4984902.982224"/>
+<BoundingBox CRS="EPSG:102100" minx="-173787.276260" miny="4552656.469100" maxx="82142.925191" maxy="4984902.982224"/>
+<BoundingBox CRS="EPSG:25830" minx="621350.788800" miny="4185738.356807" maxx="829080.061473" maxy="4524804.636952"/>
+      <Layer queryable="1">
+        <Name>29</Name>
+        <Title><![CDATA[Área Mercado Local Trabajo | Àrea mercat local treball | Local market work area]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.561158</westBoundLongitude><eastBoundLongitude>0.737902</eastBoundLongitude><southBoundLatitude>37.810260</southBoundLatitude><northBoundLatitude>40.813712</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.561158" miny="37.810260" maxx="0.737902" maxy="40.813712"/>
+<BoundingBox CRS="EPSG:4326" minx="37.810260" miny="-1.561158" maxx="40.813712" maxy="0.737902"/>
+<BoundingBox CRS="EPSG:3857" minx="-173787.276260" miny="4552656.469100" maxx="82142.925191" maxy="4984902.982224"/>
+<BoundingBox CRS="EPSG:102100" minx="-173787.276260" miny="4552656.469100" maxx="82142.925191" maxy="4984902.982224"/>
+<BoundingBox CRS="EPSG:25830" minx="621350.788800" miny="4185738.356807" maxx="829080.061473" maxy="4524804.636952"/>
+        <Style>
+          <Name>default</Name>
+          <Title>29</Title>
+          <LegendURL width="168" height="1008">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=29" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>30</Name>
+        <Title><![CDATA[Sistema Nodal de Referencia | Sistema Nodal de Referència | Nodal Reference System]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.561158</westBoundLongitude><eastBoundLongitude>0.737902</eastBoundLongitude><southBoundLatitude>37.810260</southBoundLatitude><northBoundLatitude>40.813712</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.561158" miny="37.810260" maxx="0.737902" maxy="40.813712"/>
+<BoundingBox CRS="EPSG:4326" minx="37.810260" miny="-1.561158" maxx="40.813712" maxy="0.737902"/>
+<BoundingBox CRS="EPSG:3857" minx="-173787.276260" miny="4552656.469100" maxx="82142.925191" maxy="4984902.982224"/>
+<BoundingBox CRS="EPSG:102100" minx="-173787.276260" miny="4552656.469100" maxx="82142.925191" maxy="4984902.982224"/>
+<BoundingBox CRS="EPSG:25830" minx="621350.788800" miny="4185738.356807" maxx="829080.061473" maxy="4524804.636952"/>
+        <Style>
+          <Name>default</Name>
+          <Title>30</Title>
+          <LegendURL width="276" height="126">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=30" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>31</Name>
+        <Title><![CDATA[Áreas Urbanas Integradas y Centros de Polaridad | Àrees Urbanes Integrades i Centres de Polaritat | Integrated Urban Areas and Polarity Centers]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.561158</westBoundLongitude><eastBoundLongitude>0.737902</eastBoundLongitude><southBoundLatitude>37.810260</southBoundLatitude><northBoundLatitude>40.813712</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.561158" miny="37.810260" maxx="0.737902" maxy="40.813712"/>
+<BoundingBox CRS="EPSG:4326" minx="37.810260" miny="-1.561158" maxx="40.813712" maxy="0.737902"/>
+<BoundingBox CRS="EPSG:3857" minx="-173787.276260" miny="4552656.469100" maxx="82142.925191" maxy="4984902.982224"/>
+<BoundingBox CRS="EPSG:102100" minx="-173787.276260" miny="4552656.469100" maxx="82142.925191" maxy="4984902.982224"/>
+<BoundingBox CRS="EPSG:25830" minx="621350.788800" miny="4185738.356807" maxx="829080.061473" maxy="4524804.636952"/>
+        <Style>
+          <Name>default</Name>
+          <Title>31</Title>
+          <LegendURL width="54" height="36">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=31" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>32</Name>
+        <Title><![CDATA[Área Urbana Integrada | Àrea urbana integrada | Integrated urban area]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.561158</westBoundLongitude><eastBoundLongitude>0.737902</eastBoundLongitude><southBoundLatitude>37.810260</southBoundLatitude><northBoundLatitude>40.813712</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.561158" miny="37.810260" maxx="0.737902" maxy="40.813712"/>
+<BoundingBox CRS="EPSG:4326" minx="37.810260" miny="-1.561158" maxx="40.813712" maxy="0.737902"/>
+<BoundingBox CRS="EPSG:3857" minx="-173787.276260" miny="4552656.469100" maxx="82142.925191" maxy="4984902.982224"/>
+<BoundingBox CRS="EPSG:102100" minx="-173787.276260" miny="4552656.469100" maxx="82142.925191" maxy="4984902.982224"/>
+<BoundingBox CRS="EPSG:25830" minx="621350.788800" miny="4185738.356807" maxx="829080.061473" maxy="4524804.636952"/>
+        <Style>
+          <Name>default</Name>
+          <Title>32</Title>
+          <LegendURL width="312" height="612">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=32" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>33</Name>
+        <Title><![CDATA[Áreas Funcionales | Àrees funcionals | Functional areas]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.561158</westBoundLongitude><eastBoundLongitude>0.737902</eastBoundLongitude><southBoundLatitude>37.810260</southBoundLatitude><northBoundLatitude>40.813712</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.561158" miny="37.810260" maxx="0.737902" maxy="40.813712"/>
+<BoundingBox CRS="EPSG:4326" minx="37.810260" miny="-1.561158" maxx="40.813712" maxy="0.737902"/>
+<BoundingBox CRS="EPSG:3857" minx="-173787.276260" miny="4552656.469100" maxx="82142.925191" maxy="4984902.982224"/>
+<BoundingBox CRS="EPSG:102100" minx="-173787.276260" miny="4552656.469100" maxx="82142.925191" maxy="4984902.982224"/>
+<BoundingBox CRS="EPSG:25830" minx="621350.788800" miny="4185738.356807" maxx="829080.061473" maxy="4524804.636952"/>
+        <Style>
+          <Name>default</Name>
+          <Title>33</Title>
+          <LegendURL width="168" height="288">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=33" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>34</Name>
+        <Title><![CDATA[Ámbito | Àmbit | Scope]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.561158</westBoundLongitude><eastBoundLongitude>0.737902</eastBoundLongitude><southBoundLatitude>37.810260</southBoundLatitude><northBoundLatitude>40.813712</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.561158" miny="37.810260" maxx="0.737902" maxy="40.813712"/>
+<BoundingBox CRS="EPSG:4326" minx="37.810260" miny="-1.561158" maxx="40.813712" maxy="0.737902"/>
+<BoundingBox CRS="EPSG:3857" minx="-173787.276260" miny="4552656.469100" maxx="82142.925191" maxy="4984902.982224"/>
+<BoundingBox CRS="EPSG:102100" minx="-173787.276260" miny="4552656.469100" maxx="82142.925191" maxy="4984902.982224"/>
+<BoundingBox CRS="EPSG:25830" minx="621350.788800" miny="4185738.356807" maxx="829080.061473" maxy="4524804.636952"/>
+        <Style>
+          <Name>default</Name>
+          <Title>34</Title>
+          <LegendURL width="150" height="72">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=34" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      </Layer>
+      <Layer queryable="1">
+        <Title><![CDATA[PAT de la Huerta | PAT de l'Horta | Horta PAT]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.634985</westBoundLongitude><eastBoundLongitude>-0.243233</eastBoundLongitude><southBoundLatitude>39.270507</southBoundLatitude><northBoundLatitude>39.653696</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.634985" miny="39.270507" maxx="-0.243233" maxy="39.653696"/>
+<BoundingBox CRS="EPSG:4326" minx="39.270507" miny="-0.634985" maxx="39.653696" maxy="-0.243233"/>
+<BoundingBox CRS="EPSG:3857" minx="-70686.241804" miny="4760493.721118" maxx="-27076.519563" maxy="4815745.160082"/>
+<BoundingBox CRS="EPSG:102100" minx="-70686.241804" miny="4760493.721118" maxx="-27076.519563" maxy="4815745.160082"/>
+<BoundingBox CRS="EPSG:25830" minx="702903.862292" miny="4349461.826352" maxx="737820.143908" maxy="4392954.573239"/>
+      <Layer queryable="1">
+        <Name>36</Name>
+        <Title><![CDATA[Ámbitos excluidos ejec. sentencia | Àmbits exclosos exec. sentència | Ámbitos excluidos ejec. sentencia]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.413960</westBoundLongitude><eastBoundLongitude>-0.361118</eastBoundLongitude><southBoundLatitude>39.449129</southBoundLatitude><northBoundLatitude>39.518376</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.413960" miny="39.449129" maxx="-0.361118" maxy="39.518376"/>
+<BoundingBox CRS="EPSG:4326" minx="39.449129" miny="-0.413960" maxx="39.518376" maxy="-0.361118"/>
+<BoundingBox CRS="EPSG:3857" minx="-46081.812882" miny="4786211.121939" maxx="-40199.461224" maxy="4796198.833259"/>
+<BoundingBox CRS="EPSG:102100" minx="-46081.812882" miny="4786211.121939" maxx="-40199.461224" maxy="4796198.833259"/>
+<BoundingBox CRS="EPSG:25830" minx="722301.125508" miny="4369810.785312" maxx="727069.415608" maxy="4377629.278741"/>
+        <Style>
+          <Name>default</Name>
+          <Title>36</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=36" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>37</Name>
+        <Title><![CDATA[Disposición transitoria | Disposició transitòria | Transitional regulation]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.432715</westBoundLongitude><eastBoundLongitude>-0.288239</eastBoundLongitude><southBoundLatitude>39.397375</southBoundLatitude><northBoundLatitude>39.576015</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.432715" miny="39.397375" maxx="-0.288239" maxy="39.576015"/>
+<BoundingBox CRS="EPSG:4326" minx="39.397375" miny="-0.432715" maxx="39.576015" maxy="-0.288239"/>
+<BoundingBox CRS="EPSG:3857" minx="-48169.623077" miny="4778752.978278" maxx="-32086.603257" maxy="4804519.824047"/>
+<BoundingBox CRS="EPSG:102100" minx="-48169.623077" miny="4778752.978278" maxx="-32086.603257" maxy="4804519.824047"/>
+<BoundingBox CRS="EPSG:25830" minx="720506.033053" miny="4364019.884437" maxx="733514.177543" maxy="4384213.791256"/>
+        <Style>
+          <Name>default</Name>
+          <Title>37</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=37" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>38</Name>
+        <Title><![CDATA[Unidades de Paisaje | Unitats de Paisatge | Landscape Units]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.511268</westBoundLongitude><eastBoundLongitude>-0.258227</eastBoundLongitude><southBoundLatitude>39.354482</southBoundLatitude><northBoundLatitude>39.633463</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.511268" miny="39.354482" maxx="-0.258227" maxy="39.633463"/>
+<BoundingBox CRS="EPSG:4326" minx="39.354482" miny="-0.511268" maxx="39.633463" maxy="-0.258227"/>
+<BoundingBox CRS="EPSG:3857" minx="-56914.105215" miny="4772575.962577" maxx="-28745.645770" maxy="4812820.173286"/>
+<BoundingBox CRS="EPSG:102100" minx="-56914.105215" miny="4772575.962577" maxx="-28745.645770" maxy="4812820.173286"/>
+<BoundingBox CRS="EPSG:25830" minx="713581.546334" miny="4359069.227111" maxx="736243.628135" maxy="4390669.141504"/>
+        <Style>
+          <Name>default</Name>
+          <Title>38</Title>
+          <LegendURL width="384" height="468">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=38" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>39</Name>
+        <Title><![CDATA[Sectores recuperación huerta | Sectors recuperació horta | Orchard recovery sectors]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.461963</westBoundLongitude><eastBoundLongitude>-0.265324</eastBoundLongitude><southBoundLatitude>39.421776</southBoundLatitude><northBoundLatitude>39.609334</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.461963" miny="39.421776" maxx="-0.265324" maxy="39.609334"/>
+<BoundingBox CRS="EPSG:4326" minx="39.421776" miny="-0.461963" maxx="39.609334" maxy="-0.265324"/>
+<BoundingBox CRS="EPSG:3857" minx="-51425.479261" miny="4782268.694275" maxx="-29535.693301" maxy="4809333.063189"/>
+<BoundingBox CRS="EPSG:102100" minx="-51425.479261" miny="4782268.694275" maxx="-29535.693301" maxy="4809333.063189"/>
+<BoundingBox CRS="EPSG:25830" minx="717889.114710" miny="4366657.158409" maxx="735405.598870" maxy="4387972.068073"/>
+        <Style>
+          <Name>default</Name>
+          <Title>39</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=39" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>40</Name>
+        <Title><![CDATA[Enclaves huerta | Enclavaments horta | Orchard settlements]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.460176</westBoundLongitude><eastBoundLongitude>-0.282768</eastBoundLongitude><southBoundLatitude>39.408474</southBoundLatitude><northBoundLatitude>39.605962</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.460176" miny="39.408474" maxx="-0.282768" maxy="39.605962"/>
+<BoundingBox CRS="EPSG:4326" minx="39.408474" miny="-0.460176" maxx="39.605962" maxy="-0.282768"/>
+<BoundingBox CRS="EPSG:3857" minx="-51226.527266" miny="4780352.061129" maxx="-31477.551670" maxy="4808845.887061"/>
+<BoundingBox CRS="EPSG:102100" minx="-51226.527266" miny="4780352.061129" maxx="-31477.551670" maxy="4808845.887061"/>
+<BoundingBox CRS="EPSG:25830" minx="718053.149218" miny="4365185.010519" maxx="733948.262081" maxy="4387552.323566"/>
+        <Style>
+          <Name>default</Name>
+          <Title>40</Title>
+          <LegendURL width="21" height="21">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=40" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>41</Name>
+        <Title><![CDATA[Zonas rurales comunes | Zones rurals comunes | Common rural areas]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.469042</westBoundLongitude><eastBoundLongitude>-0.300341</eastBoundLongitude><southBoundLatitude>39.398179</southBoundLatitude><northBoundLatitude>39.598577</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.469042" miny="39.398179" maxx="-0.300341" maxy="39.598577"/>
+<BoundingBox CRS="EPSG:4326" minx="39.398179" miny="-0.469042" maxx="39.598577" maxy="-0.300341"/>
+<BoundingBox CRS="EPSG:3857" minx="-52213.521684" miny="4778868.814549" maxx="-33433.789897" maxy="4807778.924503"/>
+<BoundingBox CRS="EPSG:102100" minx="-52213.521684" miny="4778868.814549" maxx="-33433.789897" maxy="4807778.924503"/>
+<BoundingBox CRS="EPSG:25830" minx="717314.947524" miny="4364020.738269" maxx="732469.233018" maxy="4386687.050312"/>
+        <Style>
+          <Name>default</Name>
+          <Title>41</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=41" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>42</Name>
+        <Title><![CDATA[Áreas protección huerta | Àrees protecció horta | Orchard protection areas]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.521263</westBoundLongitude><eastBoundLongitude>-0.247314</eastBoundLongitude><southBoundLatitude>39.348757</southBoundLatitude><northBoundLatitude>39.639160</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.521263" miny="39.348757" maxx="-0.247314" maxy="39.639160"/>
+<BoundingBox CRS="EPSG:4326" minx="39.348757" miny="-0.521263" maxx="39.639160" maxy="-0.247314"/>
+<BoundingBox CRS="EPSG:3857" minx="-58026.711463" miny="4771751.804573" maxx="-27530.830716" maxy="4813643.771960"/>
+<BoundingBox CRS="EPSG:102100" minx="-58026.711463" miny="4771751.804573" maxx="-27530.830716" maxy="4813643.771960"/>
+<BoundingBox CRS="EPSG:25830" minx="712706.239850" miny="4358410.079187" maxx="737203.447077" maxy="4391330.294238"/>
+        <Style>
+          <Name>default</Name>
+          <Title>42</Title>
+          <LegendURL width="270" height="90">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=42" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>43</Name>
+        <Title><![CDATA[Ámbito ampliado | Àmbit ampliat | Extended scope]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.634985</westBoundLongitude><eastBoundLongitude>-0.243233</eastBoundLongitude><southBoundLatitude>39.270507</southBoundLatitude><northBoundLatitude>39.653696</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.634985" miny="39.270507" maxx="-0.243233" maxy="39.653696"/>
+<BoundingBox CRS="EPSG:4326" minx="39.270507" miny="-0.634985" maxx="39.653696" maxy="-0.243233"/>
+<BoundingBox CRS="EPSG:3857" minx="-70686.241804" miny="4760493.721118" maxx="-27076.519563" maxy="4815745.160082"/>
+<BoundingBox CRS="EPSG:102100" minx="-70686.241804" miny="4760493.721118" maxx="-27076.519563" maxy="4815745.160082"/>
+<BoundingBox CRS="EPSG:25830" minx="702903.862292" miny="4349461.826352" maxx="737820.143908" maxy="4392954.573239"/>
+        <Style>
+          <Name>default</Name>
+          <Title>43</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=43" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>44</Name>
+        <Title><![CDATA[Ámbito estricto | Àmbit estricte | Strict scope]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.521265</westBoundLongitude><eastBoundLongitude>-0.247432</eastBoundLongitude><southBoundLatitude>39.348751</southBoundLatitude><northBoundLatitude>39.639191</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.521265" miny="39.348751" maxx="-0.247432" maxy="39.639191"/>
+<BoundingBox CRS="EPSG:4326" minx="39.348751" miny="-0.521265" maxx="39.639191" maxy="-0.247432"/>
+<BoundingBox CRS="EPSG:3857" minx="-58026.921551" miny="4771750.992797" maxx="-27544.055225" maxy="4813648.180703"/>
+<BoundingBox CRS="EPSG:102100" minx="-58026.921551" miny="4771750.992797" maxx="-27544.055225" maxy="4813648.180703"/>
+<BoundingBox CRS="EPSG:25830" minx="712705.984388" miny="4358409.448786" maxx="737193.227602" maxy="4391333.367058"/>
+        <Style>
+          <Name>default</Name>
+          <Title>44</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=44" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      </Layer>
+      <Layer queryable="1">
+        <Title><![CDATA[Ley de la Huerta de València | Llei de l'Horta de València | Law of the Horta de València]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.521265</westBoundLongitude><eastBoundLongitude>-0.247432</eastBoundLongitude><southBoundLatitude>39.348751</southBoundLatitude><northBoundLatitude>39.639191</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.521265" miny="39.348751" maxx="-0.247432" maxy="39.639191"/>
+<BoundingBox CRS="EPSG:4326" minx="39.348751" miny="-0.521265" maxx="39.639191" maxy="-0.247432"/>
+<BoundingBox CRS="EPSG:3857" minx="-58026.921529" miny="4771750.993178" maxx="-27544.055106" maxy="4813648.180707"/>
+<BoundingBox CRS="EPSG:102100" minx="-58026.921529" miny="4771750.993178" maxx="-27544.055106" maxy="4813648.180707"/>
+<BoundingBox CRS="EPSG:25830" minx="712705.984404" miny="4358409.449081" maxx="737193.227685" maxy="4391333.367063"/>
+      <Layer queryable="1">
+        <Name>46</Name>
+        <Title><![CDATA[Ámbito Ley de la Huerta | Àmbit Llei de l'Horta | Law of the Horta scope]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.521265</westBoundLongitude><eastBoundLongitude>-0.247432</eastBoundLongitude><southBoundLatitude>39.348751</southBoundLatitude><northBoundLatitude>39.639191</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.521265" miny="39.348751" maxx="-0.247432" maxy="39.639191"/>
+<BoundingBox CRS="EPSG:4326" minx="39.348751" miny="-0.521265" maxx="39.639191" maxy="-0.247432"/>
+<BoundingBox CRS="EPSG:3857" minx="-58026.921529" miny="4771750.993178" maxx="-27544.055106" maxy="4813648.180707"/>
+<BoundingBox CRS="EPSG:102100" minx="-58026.921529" miny="4771750.993178" maxx="-27544.055106" maxy="4813648.180707"/>
+<BoundingBox CRS="EPSG:25830" minx="712705.984404" miny="4358409.449081" maxx="737193.227685" maxy="4391333.367063"/>
+        <Style>
+          <Name>default</Name>
+          <Title>46</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=46" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      </Layer>
+      <Layer queryable="1">
+        <Title><![CDATA[PATIVEL | PATIVEL | PATIVEL]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.884936</westBoundLongitude><eastBoundLongitude>0.653755</eastBoundLongitude><southBoundLatitude>37.764147</southBoundLatitude><northBoundLatitude>40.590865</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.884936" miny="37.764147" maxx="0.653755" maxy="40.590865"/>
+<BoundingBox CRS="EPSG:4326" minx="37.764147" miny="-0.884936" maxx="40.590865" maxy="0.653755"/>
+<BoundingBox CRS="EPSG:3857" minx="-98510.672802" miny="4546161.116798" maxx="72775.624471" maxy="4952180.388705"/>
+<BoundingBox CRS="EPSG:102100" minx="-98510.672802" miny="4546161.116798" maxx="72775.624471" maxy="4952180.388705"/>
+<BoundingBox CRS="EPSG:25830" minx="678981.777017" miny="4181753.610017" maxx="821869.532204" maxy="4499760.471369"/>
+      <Layer queryable="1">
+        <Title><![CDATA[Catálogo de Playas de la C.V. | Catàleg de platges de la C.V. | C.V. beaches catalogue]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.849970</westBoundLongitude><eastBoundLongitude>0.653515</eastBoundLongitude><southBoundLatitude>37.787965</southBoundLatitude><northBoundLatitude>40.585766</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.849970" miny="37.787965" maxx="0.653515" maxy="40.585766"/>
+<BoundingBox CRS="EPSG:4326" minx="37.787965" miny="-0.849970" maxx="40.585766" maxy="0.653515"/>
+<BoundingBox CRS="EPSG:3857" minx="-94618.182416" miny="4549515.507348" maxx="72748.916665" maxy="4951432.941861"/>
+<BoundingBox CRS="EPSG:102100" minx="-94618.182416" miny="4549515.507348" maxx="72748.916665" maxy="4951432.941861"/>
+<BoundingBox CRS="EPSG:25830" minx="681954.795248" miny="4184466.820274" maxx="821744.975864" maxy="4499193.456629"/>
+      <Layer queryable="1">
+        <Name>49</Name>
+        <Title><![CDATA[Catálogo | Catàleg | Catalogue]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.849970</westBoundLongitude><eastBoundLongitude>0.653515</eastBoundLongitude><southBoundLatitude>37.787965</southBoundLatitude><northBoundLatitude>40.585766</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.849970" miny="37.787965" maxx="0.653515" maxy="40.585766"/>
+<BoundingBox CRS="EPSG:4326" minx="37.787965" miny="-0.849970" maxx="40.585766" maxy="0.653515"/>
+<BoundingBox CRS="EPSG:3857" minx="-94618.182416" miny="4549515.507348" maxx="72748.916665" maxy="4951432.941861"/>
+<BoundingBox CRS="EPSG:102100" minx="-94618.182416" miny="4549515.507348" maxx="72748.916665" maxy="4951432.941861"/>
+<BoundingBox CRS="EPSG:25830" minx="681954.795248" miny="4184466.820274" maxx="821744.975864" maxy="4499193.456629"/>
+        <Style>
+          <Name>default</Name>
+          <Title>49</Title>
+          <LegendURL width="222" height="126">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=49" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      </Layer>
+      <Layer queryable="1">
+        <Title><![CDATA[Zonas de Protección | Zones de protecció | Protection zones]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.884936</westBoundLongitude><eastBoundLongitude>0.648027</eastBoundLongitude><southBoundLatitude>37.764312</southBoundLatitude><northBoundLatitude>40.590865</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.884936" miny="37.764312" maxx="0.648027" maxy="40.590865"/>
+<BoundingBox CRS="EPSG:4326" minx="37.764312" miny="-0.884936" maxx="40.590865" maxy="0.648027"/>
+<BoundingBox CRS="EPSG:3857" minx="-98510.672802" miny="4546184.235942" maxx="72138.023217" maxy="4952180.388705"/>
+<BoundingBox CRS="EPSG:102100" minx="-98510.672802" miny="4546184.235942" maxx="72138.023217" maxy="4952180.388705"/>
+<BoundingBox CRS="EPSG:25830" minx="678981.777017" miny="4181771.828645" maxx="821364.082373" maxy="4499740.343286"/>
+      <Layer queryable="1">
+        <Name>51</Name>
+        <Title><![CDATA[Suelos transitorios | Sòls transitoris | Transitory soils]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.796088</westBoundLongitude><eastBoundLongitude>0.363852</eastBoundLongitude><southBoundLatitude>37.889282</southBoundLatitude><northBoundLatitude>40.257070</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.796088" miny="37.889282" maxx="0.363852" maxy="40.257070"/>
+<BoundingBox CRS="EPSG:4326" minx="37.889282" miny="-0.796088" maxx="40.257070" maxy="0.363852"/>
+<BoundingBox CRS="EPSG:3857" minx="-88620.140521" miny="4563796.860800" maxx="40503.852148" maxy="4903369.665897"/>
+<BoundingBox CRS="EPSG:102100" minx="-88620.140521" miny="4563796.860800" maxx="40503.852148" maxy="4903369.665897"/>
+<BoundingBox CRS="EPSG:25830" minx="687425.591840" miny="4195820.464847" maxx="795822.842118" maxy="4461720.536910"/>
+        <Style>
+          <Name>default</Name>
+          <Title>51</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=51" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>52</Name>
+        <Title><![CDATA[Ajustes cartográficos | Ajustos cartogràfics | Cartographic adjustments]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.751047</westBoundLongitude><eastBoundLongitude>-0.749539</eastBoundLongitude><southBoundLatitude>37.907273</southBoundLatitude><northBoundLatitude>37.909436</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.751047" miny="37.907273" maxx="-0.749539" maxy="37.909436"/>
+<BoundingBox CRS="EPSG:4326" minx="37.907273" miny="-0.751047" maxx="37.909436" maxy="-0.749539"/>
+<BoundingBox CRS="EPSG:3857" minx="-83606.136571" miny="4566334.925332" maxx="-83438.354688" maxy="4566640.007078"/>
+<BoundingBox CRS="EPSG:102100" minx="-83606.136571" miny="4566334.925332" maxx="-83438.354688" maxy="4566640.007078"/>
+<BoundingBox CRS="EPSG:25830" minx="697707.227733" miny="4197911.574347" maxx="697845.538298" maxy="4198154.728285"/>
+        <Style>
+          <Name>default</Name>
+          <Title>52</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=52" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>53</Name>
+        <Title><![CDATA[Protección litoral | Protecció litoral | Coastal protection]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.766530</westBoundLongitude><eastBoundLongitude>0.514595</eastBoundLongitude><southBoundLatitude>37.853393</southBoundLatitude><northBoundLatitude>40.556131</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.766530" miny="37.853393" maxx="0.514595" maxy="40.556131"/>
+<BoundingBox CRS="EPSG:4326" minx="37.853393" miny="-0.766530" maxx="40.556131" maxy="0.514595"/>
+<BoundingBox CRS="EPSG:3857" minx="-85329.696434" miny="4558735.787312" maxx="57284.437119" maxy="4947089.895604"/>
+<BoundingBox CRS="EPSG:102100" minx="-85329.696434" miny="4558735.787312" maxx="57284.437119" maxy="4947089.895604"/>
+<BoundingBox CRS="EPSG:25830" minx="689100.222574" miny="4191899.671250" maxx="809233.628597" maxy="4495423.733870"/>
+        <Style>
+          <Name>default</Name>
+          <Title>53</Title>
+          <LegendURL width="252" height="54">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=53" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>54</Name>
+        <Title><![CDATA[Ámbito de conexión | Àmbit de connexió | Connection scope]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.884913</westBoundLongitude><eastBoundLongitude>0.629066</eastBoundLongitude><southBoundLatitude>37.765680</southBoundLatitude><northBoundLatitude>40.590865</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.884913" miny="37.765680" maxx="0.629066" maxy="40.590865"/>
+<BoundingBox CRS="EPSG:4326" minx="37.765680" miny="-0.884913" maxx="40.590865" maxy="0.629066"/>
+<BoundingBox CRS="EPSG:3857" minx="-98508.045118" miny="4546376.903463" maxx="70027.257316" maxy="4952180.388705"/>
+<BoundingBox CRS="EPSG:102100" minx="-98508.045118" miny="4546376.903463" maxx="70027.257316" maxy="4952180.388705"/>
+<BoundingBox CRS="EPSG:25830" minx="678983.774661" miny="4181923.702315" maxx="819687.266911" maxy="4499673.935735"/>
+        <Style>
+          <Name>default</Name>
+          <Title>54</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=54" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>55</Name>
+        <Title><![CDATA[Ámbito ampliado | Àmbit ampliat | Extended scope]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.866043</westBoundLongitude><eastBoundLongitude>0.640091</eastBoundLongitude><southBoundLatitude>37.786475</southBoundLatitude><northBoundLatitude>40.588267</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.866043" miny="37.786475" maxx="0.640091" maxy="40.588267"/>
+<BoundingBox CRS="EPSG:4326" minx="37.786475" miny="-0.866043" maxx="40.588267" maxy="0.640091"/>
+<BoundingBox CRS="EPSG:3857" minx="-96407.442409" miny="4549305.694788" maxx="71254.652899" maxy="4951799.496101"/>
+<BoundingBox CRS="EPSG:102100" minx="-96407.442409" miny="4549305.694788" maxx="71254.652899" maxy="4951799.496101"/>
+<BoundingBox CRS="EPSG:25830" minx="680587.709781" miny="4184269.091488" maxx="820568.913927" maxy="4499423.999076"/>
+        <Style>
+          <Name>default</Name>
+          <Title>55</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=55" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>56</Name>
+        <Title><![CDATA[Ámbito estricto | Àmbit estricte | Strict scope]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.868488</westBoundLongitude><eastBoundLongitude>0.647888</eastBoundLongitude><southBoundLatitude>37.764312</southBoundLatitude><northBoundLatitude>40.587978</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.868488" miny="37.764312" maxx="0.647888" maxy="40.587978"/>
+<BoundingBox CRS="EPSG:4326" minx="37.764312" miny="-0.868488" maxx="40.587978" maxy="0.647888"/>
+<BoundingBox CRS="EPSG:3857" minx="-96679.615858" miny="4546184.235942" maxx="72122.559169" maxy="4951757.186791"/>
+<BoundingBox CRS="EPSG:102100" minx="-96679.615858" miny="4546184.235942" maxx="72122.559169" maxy="4951757.186791"/>
+<BoundingBox CRS="EPSG:25830" minx="680381.562975" miny="4181804.729226" maxx="821351.840753" maxy="4499419.296954"/>
+        <Style>
+          <Name>default</Name>
+          <Title>56</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=56" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>57</Name>
+        <Title><![CDATA[Ámbito ejecución sentencia | Àmbit execució sentència | Scope of execution of sentence]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.717489</westBoundLongitude><eastBoundLongitude>0.386514</eastBoundLongitude><southBoundLatitude>37.931129</southBoundLatitude><northBoundLatitude>40.388300</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.717489" miny="37.931129" maxx="0.386514" maxy="40.388300"/>
+<BoundingBox CRS="EPSG:4326" minx="37.931129" miny="-0.717489" maxx="40.388300" maxy="0.386514"/>
+<BoundingBox CRS="EPSG:3857" minx="-79870.520716" miny="4569701.231286" maxx="43026.527048" maxy="4922530.449088"/>
+<BoundingBox CRS="EPSG:102100" minx="-79870.520716" miny="4569701.231286" maxx="43026.527048" maxy="4922530.449088"/>
+<BoundingBox CRS="EPSG:25830" minx="693734.683200" miny="4200630.619797" maxx="797647.426531" maxy="4476364.189420"/>
+        <Style>
+          <Name>default</Name>
+          <Title>57</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=57" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      </Layer>
+      <Layer queryable="1">
+        <Name>58</Name>
+        <Title><![CDATA[Línea de costa 1956/57 | Línea de costa 1956/57 | Coastline 1956/57]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-0.763000</westBoundLongitude><eastBoundLongitude>0.514970</eastBoundLongitude><southBoundLatitude>37.817548</southBoundLatitude><northBoundLatitude>40.553451</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-0.763000" miny="37.817548" maxx="0.514970" maxy="40.553451"/>
+<BoundingBox CRS="EPSG:4326" minx="37.817548" miny="-0.763000" maxx="40.553451" maxy="0.514970"/>
+<BoundingBox CRS="EPSG:3857" minx="-84936.731593" miny="4553683.424989" maxx="57326.245608" maxy="4946697.196112"/>
+<BoundingBox CRS="EPSG:102100" minx="-84936.731593" miny="4553683.424989" maxx="57326.245608" maxy="4946697.196112"/>
+<BoundingBox CRS="EPSG:25830" minx="689406.681645" miny="4187929.403388" maxx="809416.598311" maxy="4495127.403688"/>
+        <Style>
+          <Name>default</Name>
+          <Title>58</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=58" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      </Layer>
+      <Layer queryable="1">
+        <Title><![CDATA[PATRICOVA-Plan de Acción Territorial de carácter sectorial sobre prevención del Riesgo de Inundación en Comunitat Valenciana | PATRICOVA-Pla d'Acció Territorial de caràcter sectorial sobre prevenció del Risc d'Inundació a la Comunitat Valenciana | PATRICOVA]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.623671</westBoundLongitude><eastBoundLongitude>0.681181</eastBoundLongitude><southBoundLatitude>37.775593</southBoundLatitude><northBoundLatitude>40.856729</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.623671" miny="37.775593" maxx="0.681181" maxy="40.856729"/>
+<BoundingBox CRS="EPSG:4326" minx="37.775593" miny="-1.623671" maxx="40.856729" maxy="0.681181"/>
+<BoundingBox CRS="EPSG:3857" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:102100" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:25830" minx="616003.285868" miny="4181808.951692" maxx="824236.363303" maxy="4529378.394306"/>
+      <Layer queryable="1">
+        <Name>60</Name>
+        <Title><![CDATA[Riesgo de Inundación | Risc d'inundació | Flood risk]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.613356</westBoundLongitude><eastBoundLongitude>0.677086</eastBoundLongitude><southBoundLatitude>37.807343</southBoundLatitude><northBoundLatitude>40.835222</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.613356" miny="37.807343" maxx="0.677086" maxy="40.835222"/>
+<BoundingBox CRS="EPSG:4326" minx="37.807343" miny="-1.613356" maxx="40.835222" maxy="0.677086"/>
+<BoundingBox CRS="EPSG:3857" minx="-179598.019354" miny="4552245.412068" maxx="75372.865264" maxy="4988067.238969"/>
+<BoundingBox CRS="EPSG:102100" minx="-179598.019354" miny="4552245.412068" maxx="75372.865264" maxy="4988067.238969"/>
+<BoundingBox CRS="EPSG:25830" minx="616910.469572" miny="4185345.182677" maxx="823736.763044" maxy="4526975.760236"/>
+        <Style>
+          <Name>default</Name>
+          <Title>60</Title>
+          <LegendURL width="66" height="90">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=60" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>141741.071429</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1">
+        <Title><![CDATA[Peligrosidad por Inundación | Perillositat per inundació | Flood hazard]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.623671</westBoundLongitude><eastBoundLongitude>0.681181</eastBoundLongitude><southBoundLatitude>37.775593</southBoundLatitude><northBoundLatitude>40.856729</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.623671" miny="37.775593" maxx="0.681181" maxy="40.856729"/>
+<BoundingBox CRS="EPSG:4326" minx="37.775593" miny="-1.623671" maxx="40.856729" maxy="0.681181"/>
+<BoundingBox CRS="EPSG:3857" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:102100" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:25830" minx="616003.285868" miny="4181808.951692" maxx="824236.363303" maxy="4529378.394306"/>
+      <Layer queryable="1">
+        <Name>62</Name>
+        <Title><![CDATA[Peligrosidad Geomorfológica | Perillositat geomorfològica | Geomorphological danger]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.623671</westBoundLongitude><eastBoundLongitude>0.681181</eastBoundLongitude><southBoundLatitude>37.775593</southBoundLatitude><northBoundLatitude>40.856729</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.623671" miny="37.775593" maxx="0.681181" maxy="40.856729"/>
+<BoundingBox CRS="EPSG:4326" minx="37.775593" miny="-1.623671" maxx="40.856729" maxy="0.681181"/>
+<BoundingBox CRS="EPSG:3857" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:102100" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:25830" minx="616003.285868" miny="4181808.951692" maxx="824236.363303" maxy="4529378.394306"/>
+        <Style>
+          <Name>default</Name>
+          <Title>62</Title>
+          <LegendURL width="180" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=62" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>141741.071429</MaxScaleDenominator>
+      </Layer>
+      <Layer queryable="1">
+        <Name>63</Name>
+        <Title><![CDATA[Peligrosidad 6 | Perillositat 6 | Danger 6]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.623671</westBoundLongitude><eastBoundLongitude>0.681181</eastBoundLongitude><southBoundLatitude>37.775593</southBoundLatitude><northBoundLatitude>40.856729</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.623671" miny="37.775593" maxx="0.681181" maxy="40.856729"/>
+<BoundingBox CRS="EPSG:4326" minx="37.775593" miny="-1.623671" maxx="40.856729" maxy="0.681181"/>
+<BoundingBox CRS="EPSG:3857" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:102100" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:25830" minx="616003.285868" miny="4181808.951692" maxx="824236.363303" maxy="4529378.394306"/>
+        <Style>
+          <Name>default</Name>
+          <Title>63</Title>
+          <LegendURL width="408" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=63" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>64</Name>
+        <Title><![CDATA[Peligrosidad 5 | Perillositat 5 | Danger 5]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.623671</westBoundLongitude><eastBoundLongitude>0.681181</eastBoundLongitude><southBoundLatitude>37.775593</southBoundLatitude><northBoundLatitude>40.856729</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.623671" miny="37.775593" maxx="0.681181" maxy="40.856729"/>
+<BoundingBox CRS="EPSG:4326" minx="37.775593" miny="-1.623671" maxx="40.856729" maxy="0.681181"/>
+<BoundingBox CRS="EPSG:3857" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:102100" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:25830" minx="616003.285868" miny="4181808.951692" maxx="824236.363303" maxy="4529378.394306"/>
+        <Style>
+          <Name>default</Name>
+          <Title>64</Title>
+          <LegendURL width="408" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=64" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>65</Name>
+        <Title><![CDATA[Peligrosidad 4 | Perillositat 4 | Danger 4]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.623671</westBoundLongitude><eastBoundLongitude>0.681181</eastBoundLongitude><southBoundLatitude>37.775593</southBoundLatitude><northBoundLatitude>40.856729</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.623671" miny="37.775593" maxx="0.681181" maxy="40.856729"/>
+<BoundingBox CRS="EPSG:4326" minx="37.775593" miny="-1.623671" maxx="40.856729" maxy="0.681181"/>
+<BoundingBox CRS="EPSG:3857" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:102100" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:25830" minx="616003.285868" miny="4181808.951692" maxx="824236.363303" maxy="4529378.394306"/>
+        <Style>
+          <Name>default</Name>
+          <Title>65</Title>
+          <LegendURL width="414" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=65" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>66</Name>
+        <Title><![CDATA[Peligrosidad 3 | Perillositat 3 | Danger 3]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.623671</westBoundLongitude><eastBoundLongitude>0.681181</eastBoundLongitude><southBoundLatitude>37.775593</southBoundLatitude><northBoundLatitude>40.856729</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.623671" miny="37.775593" maxx="0.681181" maxy="40.856729"/>
+<BoundingBox CRS="EPSG:4326" minx="37.775593" miny="-1.623671" maxx="40.856729" maxy="0.681181"/>
+<BoundingBox CRS="EPSG:3857" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:102100" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:25830" minx="616003.285868" miny="4181808.951692" maxx="824236.363303" maxy="4529378.394306"/>
+        <Style>
+          <Name>default</Name>
+          <Title>66</Title>
+          <LegendURL width="402" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=66" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>67</Name>
+        <Title><![CDATA[Peligrosidad 2 | Perillositat 2 | Danger 2]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.623671</westBoundLongitude><eastBoundLongitude>0.681181</eastBoundLongitude><southBoundLatitude>37.775593</southBoundLatitude><northBoundLatitude>40.856729</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.623671" miny="37.775593" maxx="0.681181" maxy="40.856729"/>
+<BoundingBox CRS="EPSG:4326" minx="37.775593" miny="-1.623671" maxx="40.856729" maxy="0.681181"/>
+<BoundingBox CRS="EPSG:3857" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:102100" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:25830" minx="616003.285868" miny="4181808.951692" maxx="824236.363303" maxy="4529378.394306"/>
+        <Style>
+          <Name>default</Name>
+          <Title>67</Title>
+          <LegendURL width="414" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=67" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>68</Name>
+        <Title><![CDATA[Peligrosidad 1 | Perillositat 1 | Danger 1]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.623671</westBoundLongitude><eastBoundLongitude>0.681181</eastBoundLongitude><southBoundLatitude>37.775593</southBoundLatitude><northBoundLatitude>40.856729</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.623671" miny="37.775593" maxx="0.681181" maxy="40.856729"/>
+<BoundingBox CRS="EPSG:4326" minx="37.775593" miny="-1.623671" maxx="40.856729" maxy="0.681181"/>
+<BoundingBox CRS="EPSG:3857" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:102100" minx="-180746.234847" miny="4547772.955589" maxx="75828.712148" maxy="4991232.102906"/>
+<BoundingBox CRS="EPSG:25830" minx="616003.285868" miny="4181808.951692" maxx="824236.363303" maxy="4529378.394306"/>
+        <Style>
+          <Name>default</Name>
+          <Title>68</Title>
+          <LegendURL width="402" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=68" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      <Layer queryable="1">
+        <Name>69</Name>
+        <Title><![CDATA[Red de Cauces | Xarxa de llits | Watercourses network]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.609933</westBoundLongitude><eastBoundLongitude>0.665729</eastBoundLongitude><southBoundLatitude>37.831921</southBoundLatitude><northBoundLatitude>40.854990</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.609933" miny="37.831921" maxx="0.665729" maxy="40.854990"/>
+<BoundingBox CRS="EPSG:4326" minx="37.831921" miny="-1.609933" maxx="40.854990" maxy="0.665729"/>
+<BoundingBox CRS="EPSG:3857" minx="-179216.957989" miny="4555708.996626" maxx="74108.667045" maxy="4990976.223605"/>
+<BoundingBox CRS="EPSG:102100" minx="-179216.957989" miny="4555708.996626" maxx="74108.667045" maxy="4990976.223605"/>
+<BoundingBox CRS="EPSG:25830" minx="617164.260973" miny="4188076.787838" maxx="822629.396441" maxy="4529130.632391"/>
+        <Style>
+          <Name>default</Name>
+          <Title>69</Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=69" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+        <MaxScaleDenominator>47247.023810</MaxScaleDenominator>
+      </Layer>
+      </Layer>
+      <Layer queryable="1">
+        <Name>70</Name>
+        <Title><![CDATA[Estudios de Inundabilidad | Estudis d'inundabilitat | Floodability studies]]></Title>
+        <Abstract><![CDATA[]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:25830</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>-1.440259</westBoundLongitude><eastBoundLongitude>0.471619</eastBoundLongitude><southBoundLatitude>37.848150</southBoundLatitude><northBoundLatitude>40.522688</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="-1.440259" miny="37.848150" maxx="0.471619" maxy="40.522688"/>
+<BoundingBox CRS="EPSG:4326" minx="37.848150" miny="-1.440259" maxx="40.522688" maxy="0.471619"/>
+<BoundingBox CRS="EPSG:3857" minx="-160328.890564" miny="4557996.696891" maxx="52500.375640" maxy="4942191.123833"/>
+<BoundingBox CRS="EPSG:102100" minx="-160328.890564" miny="4557996.696891" maxx="52500.375640" maxy="4942191.123833"/>
+<BoundingBox CRS="EPSG:25830" minx="632120.917071" miny="4190113.412430" maxx="805472.868953" maxy="4491566.015348"/>
+        <Style>
+          <Name>default</Name>
+          <Title>70</Title>
+          <LegendURL width="28" height="28">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://carto.icv.gva.es/arcgis/services/tm_infraestructuras/ordenacion_territorial/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=70" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+      </Layer>
+    </Layer>
+  </Capability>
+</WMS_Capabilities>
