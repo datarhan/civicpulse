@@ -303,6 +303,35 @@ if [ -n "$CHAIN_SKIPPED" ]; then log "  omitidos (nunca intentados):$CHAIN_SKIPP
 RUN_INCOMPLETE=0
 if [ -n "$CHAIN_FAILED" ] || [ -n "$CHAIN_SKIPPED" ]; then RUN_INCOMPLETE=1; fi
 
+# ---- rederivar lo que esta tubería acaba de mover ---------------------
+# `compute:press-analytics` ESCRIBE la salida de un nodo derivado
+# (`press-trust.json`, y con él press-triangulation y press-coverage-gaps), y
+# ese fichero lo escriben dos pasos: el cómputo y `refresh`, que le pone el
+# `builtFrom`. Computar sin rederivar lo dejaba pelado, y este cron lo
+# comiteaba así. Medido sobre el historial el 2026-09-03: TODOS los commits de
+# press-lab —516a8985, 2be4ab02— publican press-trust sin `builtFrom`,
+# mientras que los de cualquier otra procedencia lo llevan.
+#
+# Nadie lo veía porque nadie miraba: `e2e.yml` ignora `public/data/**`, así que
+# un commit de datos no dispara CI, y `npm test` sólo corre en la nocturna,
+# donde `scrape-all.sh` ejecuta `refresh` antes de los tests y barría esto. El
+# rojo le salía a quien trabajaba en local, o a quien abría un PR de código
+# sobre un main envenenado; y como la puerta de salud bloquea el despliegue si
+# `npm test` falla, era un bloqueo latente que tapaba otro guión.
+#
+# Va aquí, después de TODO el trabajo de datos y antes de decidir qué se
+# publica, para que las derivaciones describan el estado final y no uno
+# intermedio — igual que en hallazgos-pipeline.sh y scrape-ci-blocked.sh.
+# `refresh` es dependency-driven: reconstruye lo que sus entradas hayan movido
+# y nada más, así que no hay lista que mantener aquí.
+#
+# No es fatal: perder los datos de una pasada buena por un fallo al resellar
+# sería cambiar un defecto pequeño por uno grande. Lo caza
+# tests/data-graph-frescura.test.ts, y que esta llamada exista lo fija
+# tests/refresco-antes-de-comitear.test.ts.
+npm run refresh \
+  || log "warn: refresh falló — puede comitearse un derivado sin rederivar (lo caza tests/data-graph-frescura.test.ts)"
+
 # ---- commit + push ONLY snapshots owned by steps that SUCCEEDED -------
 # Explicit paths so we never race press.json (GH nightly), pleno-* (hallazgos
 # cron), quejas.json (quejas cron), or promises.json (promises cron).
