@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import {
+  classifyAgendaRun,
   mergeAgendaPlenos,
   type EnrichedPleno,
   type PlenoAgendaItem,
@@ -111,5 +112,53 @@ describe('scraper/pleno-agenda — mergeAgendaPlenos', () => {
     expect(plenos).toHaveLength(37)
     expect(carriedForward).toBe(30)
     expect(plenos.reduce((s, p) => s + p.agendaCount, 0)).toBe(30 * 10 + 7 * 17)
+  })
+})
+
+/**
+ * El 3 de septiembre de 2026 la pasada de agendas salió 0 y en verde con
+ * regmeet.com **entero caído**: ni una sola página se leyó del origen vivo. Los
+ * dos plenos de julio quedaron sin orden del día y nadie se enteró.
+ *
+ * La puerta era `liveDown && refreshed === 0`, y `refreshed` cuenta lo vivo y
+ * lo del archivo JUNTOS. Aquel día el archivo devolvió tres sesiones viejas, así
+ * que `refreshed` valía 3 y la puerta se calló. Es la regla 2 de
+ * DATA_INTEGRITY: una pasada tiene que demostrar que hizo SU trabajo, y
+ * «recuperé algo de la Wayback Machine» no es «leí el origen».
+ *
+ * Cuatro desenlaces, no dos: doblar «el origen está muerto» dentro de «algo
+ * hice» es lo que imprimió el visto bueno.
+ */
+describe('scraper/pleno-agenda — classifyAgendaRun', () => {
+  it('una sesión leída del origen vivo es una pasada sana', () => {
+    const r = classifyAgendaRun({ attempted: 28, fromLive: 3, fromArchive: 2 })
+    expect(r.outcome).toBe('ok')
+    expect(r.ok).toBe(true)
+  })
+
+  it('EL DEFECTO: sólo el archivo respondió — el origen está caído y hay que decirlo', () => {
+    const r = classifyAgendaRun({ attempted: 28, fromLive: 0, fromArchive: 3 })
+    expect(r.outcome).toBe('solo-archivo')
+    expect(r.ok).toBe(false)
+    expect(r.motivo).toMatch(/archivo/i)
+  })
+
+  it('ni vivo ni archivo: la pasada no avanzó nada', () => {
+    const r = classifyAgendaRun({ attempted: 28, fromLive: 0, fromArchive: 0 })
+    expect(r.outcome).toBe('sin-avance')
+    expect(r.ok).toBe(false)
+  })
+
+  it('no intentarlo no es fracasar: sin objetivos la pasada calla', () => {
+    const r = classifyAgendaRun({ attempted: 0, fromLive: 0, fromArchive: 0 })
+    expect(r.outcome).toBe('nada-intentado')
+    expect(r.ok).toBe(true)
+  })
+
+  it('el motivo nombra las dos procedencias por separado, nunca su suma', () => {
+    const r = classifyAgendaRun({ attempted: 28, fromLive: 0, fromArchive: 3 })
+    expect(r.motivo).toContain('0')
+    expect(r.motivo).toContain('3')
+    expect(r.motivo).not.toContain('3 sesion(es) refrescadas')
   })
 })

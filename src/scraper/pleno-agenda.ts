@@ -346,6 +346,77 @@ export function mergeAgendaPlenos(
   return { plenos, carriedForward: plenos.length - refreshed, refreshed }
 }
 
+/** De dónde salió cada agenda recuperada en una pasada. */
+export interface AgendaRunTally {
+  /** Sesiones a las que la pasada fue a por su orden del día. */
+  attempted: number
+  /** …de las que el ORIGEN VIVO (regmeet) devolvió puntos. */
+  fromLive: number
+  /** …de las que los puntos salieron de la Wayback Machine. */
+  fromArchive: number
+}
+
+export type AgendaRunOutcome = 'ok' | 'solo-archivo' | 'sin-avance' | 'nada-intentado'
+
+/**
+ * Cómo salió una pasada de agendas, en CUATRO desenlaces.
+ *
+ * Vive aquí, y no dentro del script, por lo mismo que `tallyDepartments`: el
+ * defecto que arregla es de contabilidad, no de red, y ahí se puede probar.
+ *
+ * El 3 de septiembre de 2026 la pasada salió 0 y en verde con regmeet.com
+ * entero caído — ni una página leída del origen. Los dos plenos de julio se
+ * quedaron sin orden del día y la puerta no dijo nada, porque era
+ * `liveDown && refreshed === 0` y `refreshed` **suma lo vivo y lo del
+ * archivo**. Aquel día la Wayback Machine devolvió tres sesiones viejas, la
+ * suma valió 3, y «el origen está muerto» se coló dentro de «algo hice».
+ *
+ * Regla 2 de DATA_INTEGRITY: una pasada tiene que demostrar que hizo SU
+ * trabajo, y las procedencias se informan por separado o no se informan. Que
+ * el archivo rescate historia es una buena noticia y no es la misma noticia.
+ *
+ * `nada-intentado` es el cuarto desenlace y no es un fallo: sin objetivos no
+ * hay nada que probar. Doblarlo dentro de `sin-avance` haría saltar la puerta
+ * en la pasada más sana que existe, y una puerta que grita cuando todo está
+ * bien es la que se acaba apagando.
+ */
+export function classifyAgendaRun(tally: AgendaRunTally): {
+  outcome: AgendaRunOutcome
+  ok: boolean
+  motivo: string
+} {
+  const { attempted, fromLive, fromArchive } = tally
+  // Las dos procedencias se nombran SIEMPRE por separado, nunca su suma: es la
+  // suma la que dejó pasar el 3 de septiembre.
+  const procedencias = `${fromLive} del origen vivo · ${fromArchive} del archivo · ${attempted} intentada(s)`
+
+  if (attempted === 0) {
+    return {
+      outcome: 'nada-intentado',
+      ok: true,
+      motivo: 'ninguna sesión necesitaba orden del día: nada que leer',
+    }
+  }
+  if (fromLive > 0) {
+    return { outcome: 'ok', ok: true, motivo: procedencias }
+  }
+  if (fromArchive > 0) {
+    return {
+      outcome: 'solo-archivo',
+      ok: false,
+      motivo:
+        `el origen vivo no devolvió NI UNA sesión; sólo respondió el archivo (${procedencias}). ` +
+        'La cobertura creció con historia, pero las sesiones recientes no tienen captura y se ' +
+        'quedan sin orden del día hasta que regmeet vuelva',
+    }
+  }
+  return {
+    outcome: 'sin-avance',
+    ok: false,
+    motivo: `la pasada no recuperó ninguna agenda (${procedencias})`,
+  }
+}
+
 /** Un departamento del recuento, con su cuenta de PUNTOS del orden del día. */
 export interface DepartmentTally {
   department: string

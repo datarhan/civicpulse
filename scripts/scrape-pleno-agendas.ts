@@ -12,6 +12,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
+  classifyAgendaRun,
   parsePlenoAgenda,
   mergeAgendaPlenos,
   tallyDepartments,
@@ -121,6 +122,11 @@ async function main() {
   const results: EnrichedPleno[] = []
   let fetchFailures = 0
   let fromArchive = 0
+  // Lo leído del ORIGEN VIVO, contado aparte de lo rescatado del archivo. Sin
+  // esta mitad la puerta del final no distingue «regmeet respondió» de «la
+  // Wayback Machine me dio historia vieja», y el 3-sep-2026 salió en verde con
+  // el origen entero caído. Ver `classifyAgendaRun`.
+  let fromLive = 0
   // The live host is either up or it isn't; after N consecutive failures stop
   // paying its 15 s timeout on every remaining session and run archive-only.
   // Aborting outright (the old behaviour) meant a regmeet outage blocked the
@@ -157,7 +163,10 @@ async function main() {
     const departments = Array.from(
       new Set(agenda.map((a) => a.department).filter(Boolean) as string[]),
     )
-    if (archived && agenda.length > 0) fromArchive += 1
+    if (agenda.length > 0) {
+      if (archived) fromArchive += 1
+      else fromLive += 1
+    }
     console.log(`${agenda.length} items${archived ? ' (archivo)' : ''}`)
     results.push({
       id: p.id,
@@ -244,6 +253,9 @@ async function main() {
       sessionsTotal: plenos.length,
       sessionsWithAgenda: merged.length,
       refreshedThisRun: refreshed,
+      // Las dos procedencias, por separado y siempre. Su SUMA es lo que dejó
+      // pasar una pasada con el origen muerto (3-sep-2026).
+      recoveredFromLive: fromLive,
       carriedForward,
       recoveredFromArchive: fromArchive,
     },
@@ -258,12 +270,21 @@ async function main() {
       `${Object.keys(deptCount).length} departamentos (refrescadas ${refreshed}, de archivo ${fromArchive})`,
   )
 
-  // Live upstream down AND nothing new recovered: report it so scrape-all
-  // soft-fails and the staleness is visible, without discarding the merge.
-  if (liveDown && refreshed === 0) {
-    console.error('[pleno-agendas] live upstream unreachable and no session recovered this run')
+  // La puerta, en cuatro desenlaces. Se cierra DESPUÉS de escribir, igual que
+  // antes: arrastrar lo ya visto deja el fichero íntegro, así que fallar en
+  // alto no publica un hueco.
+  //
+  // Era `liveDown && refreshed === 0`, y `refreshed` suma lo vivo y lo del
+  // archivo. El 3-sep-2026 regmeet.com estaba entero caído — ECONNREFUSED
+  // desde tres redes distintas — y la pasada salió 0 en verde porque la
+  // Wayback Machine devolvió tres sesiones viejas. Los plenos del 6 y del 27
+  // de julio se quedaron sin orden del día sin que saltara nada.
+  const desenlace = classifyAgendaRun({ attempted: targets.length, fromLive, fromArchive })
+  if (!desenlace.ok) {
+    console.error(`[pleno-agendas] ${desenlace.outcome}: ${desenlace.motivo}`)
     process.exit(1)
   }
+  console.log(`[pleno-agendas] ${desenlace.outcome}: ${desenlace.motivo}`)
 }
 
 main().catch((err) => {
