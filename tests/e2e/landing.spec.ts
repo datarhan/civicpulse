@@ -95,6 +95,33 @@ test.describe('Landing (/)', () => {
     await expect(govLink).toContainText(span)
   })
 
+  test('una concesión de la lista dice que su importe es por todo el plazo', async ({ page }) => {
+    // Las cuatro «últimas adjudicaciones» son 13.100 €, 7.500 €, 55.685.178,79 €
+    // y 417.600 €, todas de las mismas cinco semanas. La tercera se adjudica de
+    // una vez por sus diecisiete años; entre las otras se lee como un
+    // compromiso puntual 1,34 veces mayor que el presupuesto anual, que está
+    // impreso en esta misma pantalla.
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
+
+    const notas = page.locator('.cp-concesion-nota')
+    await expect(notas.first()).toBeVisible({ timeout: 8000 })
+
+    // Que la comprobación haya EVALUADO algo: si la lista dejara de traer una
+    // concesión, esto se cae en vez de pasar por no encontrar nada.
+    const cuantas = await notas.count()
+    expect(cuantas).toBeGreaterThan(0)
+
+    // Y que NO la lleven todas: una salvedad en las cuatro filas es una
+    // salvedad que no distingue nada.
+    const filas = page.locator('a[href="/presupuesto"]').first()
+    expect(await filas.count()).toBeGreaterThan(0)
+    expect(cuantas).toBeLessThan(4)
+
+    // El plazo sale del dato, no de la prosa: diecisiete años.
+    await expect(notas.first()).toContainText(/17 años/)
+    await expect(notas.first()).toContainText(/no un gasto anual/)
+  })
+
   test('has a heading outline a screen reader can navigate', async ({ page }) => {
     // Regression guard. The landing's ONLY heading used to be the LeadStory
     // press headline — so the homepage h1 was a third-party article title, and
@@ -239,5 +266,47 @@ test.describe('Landing (/)', () => {
     await expect(layerControl.getByRole('button', { name: /Tren L9/i })).toHaveCount(0)
     await layerControl.getByRole('button', { name: /^Quejas$/i }).click()
     await expect(page.getByText(/Quejas por barrio/i).first()).toBeVisible({ timeout: 6000 })
+  })
+})
+
+test.describe('capa de incendios forestales', () => {
+  test('apagada no pinta ni leyenda ni polígonos; encendida, las dos cosas', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
+    await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 8000 })
+
+    // Las DOS mitades. Un interruptor que dice OFF mientras su capa pinta es
+    // el defecto que este par de asserts existe para cazar.
+    const control = page.getByRole('group', { name: /Capas del mapa/i })
+    const chip = control.getByRole('button', { name: /Incendios forestales/i })
+    await expect(chip).toHaveAttribute('aria-pressed', 'false')
+    await expect(page.locator('path.cp-incendio')).toHaveCount(0)
+    await expect(page.locator('.cp-incendios-legend')).toHaveCount(0)
+
+    await chip.click()
+    await expect(chip).toHaveAttribute('aria-pressed', 'true')
+    const poligonos = page.locator('path.cp-incendio')
+    await expect(poligonos.first()).toBeVisible({ timeout: 8000 })
+    // Que la comprobación haya EVALUADO algo: «cero polígonos» también pasaría
+    // un toBeVisible sobre nada.
+    expect(await poligonos.count()).toBeGreaterThan(20)
+
+    // La cobertura no es decoración: dice qué NO enseña la capa.
+    const leyenda = page.locator('.cp-incendios-legend')
+    await expect(leyenda).toBeVisible()
+    const texto = await leyenda.innerText()
+    expect(texto).toMatch(/No están cartografiados todos los incendios/i)
+    // El año final se DERIVA del snapshot; si alguien lo escribe a mano en la
+    // prosa, esta línea deja de cuadrar con el dato.
+    expect(texto).toMatch(/\d{4}–\d{4}/)
+    expect(texto).toMatch(/con causa determinada/i)
+
+    // El deslizador recorta la serie: 1993 tiene que pintar menos que el total.
+    const deslizador = page.locator('.cp-incendios-slider input[type="range"]')
+    await expect(deslizador).toBeVisible()
+    const todos = await poligonos.count()
+    await deslizador.fill('1993')
+    await expect(async () => {
+      expect(await poligonos.count()).toBeLessThan(todos)
+    }).toPass({ timeout: 5000 })
   })
 })

@@ -202,6 +202,7 @@ export const CATALOGUE = {
     'map.layer.poi': 'Servicios',
     'map.layer.quejas': 'Quejas',
     'map.layer.flood': 'Riesgo inundación',
+    'map.layer.incendios': 'Incendios forestales',
     'map.quejas.title': 'Quejas por barrio',
     'map.quejas.crit': 'silencio alto',
     'map.quejas.warn': 'silencio moderado',
@@ -228,6 +229,8 @@ export const CATALOGUE = {
     'map.poi.title': 'Servicios públicos',
     'map.poi.source': 'OpenStreetMap · datos abiertos',
     'map.flood.title': 'Riesgo de inundación',
+    'map.incendios.title': 'Incendios forestales',
+    'map.incendios.serie': 'Serie de incendios',
 
     // Common
     'common.loading': 'Cargando…',
@@ -769,6 +772,7 @@ export const CATALOGUE = {
     'map.layer.poi': 'Serveis',
     'map.layer.quejas': 'Queixes',
     'map.layer.flood': 'Risc d’inundació',
+    'map.layer.incendios': 'Incendis forestals',
     'map.quejas.title': 'Queixes per barri',
     'map.quejas.crit': 'silenci alt',
     'map.quejas.warn': 'silenci moderat',
@@ -789,6 +793,8 @@ export const CATALOGUE = {
     'map.poi.title': 'Serveis públics',
     'map.poi.source': 'OpenStreetMap · dades obertes',
     'map.flood.title': 'Risc d’inundació',
+    'map.incendios.title': 'Incendis forestals',
+    'map.incendios.serie': 'Sèrie d’incendis',
 
     'common.loading': 'Carregant…',
     'common.noData': 'Sense dades',

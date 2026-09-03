@@ -7,6 +7,10 @@ import {
   reviewSurfaceDetailed,
   REVIEW_CHUNK_CHARS,
   parseReviewArgs,
+  conEstado,
+  rutaBase,
+  estadoDe,
+  RUTAS_CON_ESTADO,
   readCacheEntry,
   type SurfaceInput,
 } from '../src/scraper/reader-review'
@@ -500,5 +504,80 @@ describe('un fallo transitorio del backend no cuesta la ruta entera', () => {
     expect(call).not.toHaveBeenCalled()
     expect(r.attempts).toBe(0)
     expect(r.reason).toBe('empty-page')
+  })
+})
+
+describe('parseReviewArgs — una bandera que no existe no puede pasar en silencio', () => {
+  /**
+   * `--rutas /` NO era una bandera reconocida: se descartaba entera y `/` se
+   * leía como ruta posicional. Salió bien por casualidad. Un
+   * `--budget-second 60` mal tecleado corre SIN techo y parece que obedeció,
+   * que es la misma familia que el resto de esta tanda: fallar en silencio
+   * dando la impresión de haber trabajado.
+   */
+  it('acepta las banderas que conoce', () => {
+    const r = parseReviewArgs(['--all', '--json', '--budget-seconds', '60', '/'])
+    expect(r.all).toBe(true)
+    expect(r.json).toBe(true)
+    expect(r.budgetSeconds).toBe(60)
+    expect(r.routes).toEqual(['/'])
+    expect(r.desconocidas).toEqual([])
+  })
+
+  it('nombra la bandera que no conoce, en vez de tragársela', () => {
+    const r = parseReviewArgs(['--rutas', '/'])
+    expect(r.desconocidas).toEqual(['--rutas'])
+  })
+
+  it('también en la forma con igual', () => {
+    expect(parseReviewArgs(['--budget-second=60']).desconocidas).toEqual(['--budget-second'])
+  })
+
+  it('las rutas posicionales siguen siendo rutas', () => {
+    const r = parseReviewArgs(['/', '/quejas'])
+    expect(r.routes).toEqual(['/', '/quejas'])
+    expect(r.desconocidas).toEqual([])
+  })
+})
+
+describe('claves de ruta con estado', () => {
+  /**
+   * La lectura sólo veía lo que se renderiza por defecto. Las capas opcionales
+   * del mapa —incendios, servicios, quejas, inundación— se montan con
+   * `{layers.x && <Capa/>}`, así que sus nodos NO EXISTEN en el DOM y su prosa
+   * no se leía nunca. Peor: `routes-for-changes` mapea IncendiosLegend.jsx a
+   * `/`, de modo que un push que la tocaba leía `/`, sacaba «cobertura 100 % ·
+   * nada que señalar» e imprimía «revisión completa». Un verde falso.
+   *
+   * La clave lleva el estado dentro y sigue siendo una CADENA: la caché, la
+   * frescura, los descartes y el orden por antigüedad son todos por cadena, y
+   * convertir las rutas en objetos habría tocado las cuatro cosas.
+   */
+  it('compone y descompone una clave con estado', () => {
+    const clave = conEstado('/', 'capas')
+    expect(clave).toBe('/ [capas]')
+    expect(rutaBase(clave)).toBe('/')
+    expect(estadoDe(clave)).toBe('capas')
+  })
+
+  it('una ruta sin estado se queda como está', () => {
+    expect(rutaBase('/quejas')).toBe('/quejas')
+    expect(estadoDe('/quejas')).toBeNull()
+  })
+
+  it('la ruta base es lo que hay que comparar al aterrizar', () => {
+    // El control de «NO MONTADA» compara `location.pathname` con la ruta. Con
+    // la clave entera nunca coincidiría y toda entrada con estado saldría
+    // marcada como no montada, con salida 1.
+    expect(rutaBase('/ [capas]')).toBe('/')
+    expect(rutaBase('/plenos [capas]')).toBe('/plenos')
+  })
+
+  it('los estados declarados apuntan a rutas que existen', () => {
+    for (const clave of RUTAS_CON_ESTADO) {
+      expect(estadoDe(clave)).toBeTruthy()
+      expect(rutaBase(clave).startsWith('/')).toBe(true)
+    }
+    expect(RUTAS_CON_ESTADO.length).toBeGreaterThan(0)
   })
 })

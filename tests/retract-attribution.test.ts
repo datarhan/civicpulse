@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import {
   retractAttributions,
   onlySpeakerGroupMoved,
+  esCompuesto,
   emptyTally,
 } from '../src/scraper/retract-attribution'
 
@@ -130,5 +131,34 @@ describe('scraper/retract-attribution — onlySpeakerGroupMoved', () => {
     const before = { items: [{ claim: claim('a', 'PP') }, { claim: claim('b', 'PP') }] }
     const after = { items: [{ claim: claim('a', null) }] }
     expect(onlySpeakerGroupMoved(before, after)).toBe(false)
+  })
+})
+
+describe('scraper/retract-attribution — esCompuesto', () => {
+  // Un fichero COMPUESTO no se sella al escribirlo: lo fecha `composedAt`, y
+  // eso sólo lo mueve quien lo compone. `restamp-curated.ts` se niega a
+  // sellarlos por esta misma razón y remite a recomponer. Distinguirlos es lo
+  // que le permite al CLI saber que, tras escribir, le queda un paso.
+  it('reconoce un fichero compuesto por su composedAt', () => {
+    expect(esCompuesto({ generatedAt: 'x', composedAt: 'y', items: [] })).toBe(true)
+  })
+
+  it('un fichero normal no lo es', () => {
+    expect(esCompuesto({ generatedAt: 'x', items: [] })).toBe(false)
+  })
+
+  it('un composedAt que no es una fecha no cuenta como sello', () => {
+    // Ni null, ni número, ni objeto: si no es una cadena, no hay sello que
+    // haya quedado atrás, y tratarlo como si lo hubiera manda a recomponer
+    // ficheros que no lo necesitan.
+    for (const basura of [null, 42, {}, [], undefined]) {
+      expect(esCompuesto({ generatedAt: 'x', composedAt: basura })).toBe(false)
+    }
+  })
+
+  it('no revienta con algo que no es un objeto', () => {
+    for (const basura of [null, undefined, 'texto', 7]) {
+      expect(esCompuesto(basura)).toBe(false)
+    }
   })
 })

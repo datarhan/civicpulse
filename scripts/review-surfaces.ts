@@ -42,7 +42,7 @@ import { committedAwardYearSpan } from '../src/lib/contract-status'
 import { createHash } from 'node:crypto'
 import { resolve } from 'node:path'
 import { chromium } from '@playwright/test'
-import { construirGrafoRutas, rutasPublicas } from './lib/route-graph'
+import { construirGrafoRutas, rutasRevisables } from './lib/route-graph'
 import {
   reviewSurfaceDetailed,
   chunkRenderedText,
@@ -57,6 +57,8 @@ import {
   type SurfaceInput,
   type ReaderFinding,
   type ReviewCacheEntry,
+  rutaBase,
+  estadoDe,
 } from '../src/scraper/reader-review'
 import {
   sinDescartar,
@@ -172,7 +174,10 @@ function mayorAdjudicacion(tenders: {
   return `${(imp(top) / 1e6).toFixed(2)} M€ — ${String(top.title ?? '').slice(0, 90)}`
 }
 
-function factsFor(route: string): Record<string, unknown> {
+function factsFor(clave: string): Record<string, unknown> {
+  // Los hechos van por RUTA: el estado cambia lo que se renderiza, no de qué
+  // trata la página.
+  const route = rutaBase(clave)
   const tenders = read('tenders.json')
   const budget = read('budget.json')
   const plenos = read('plenos.json')
@@ -243,6 +248,38 @@ function factsFor(route: string): Record<string, unknown> {
         conVerificada,
     }
   }
+  // Las capas opcionales del mapa, cuando la clave pide encenderlas.
+  //
+  // Sin esto la prosa se renderiza pero sigue sin revisarse de verdad: la
+  // regla 2 del sistema dice «si ningún hecho contradice la frase, no la
+  // señales», así que una leyenda sin cifras detrás es tan inauditable como
+  // una que no está en el DOM. Cada línea de aquí es exactamente una cifra que
+  // esa prosa puede equivocar.
+  if (estadoDe(clave) === 'capas') {
+    const inc = read('incendios.json')
+    const poi = read('civic-poi.json')
+    const quejas = read('quejas.json')
+    const u = inc?.universe
+    return {
+      ...common,
+      'incendios: perímetros DIBUJADOS (los que cruzan el término)': u?.dibujados,
+      'incendios: filas del snapshot (incluye los que NO se pintan)': u?.totalIncendios,
+      'incendios: atribuidos a Riba-roja pero cartografiados FUERA del término (no se pintan)':
+        u?.atribuidosSinPerimetroAqui,
+      'incendios: hectáreas de lo dibujado (superficie del incendio COMPLETO, sin recortar por la frontera)':
+        u?.superficieHaTotal,
+      'incendios: primer año cartografiado': u?.anyoMin,
+      'incendios: ÚLTIMO año cartografiado — la serie termina aquí, los posteriores existen y no están dibujados':
+        u?.anyoMax,
+      'incendios: partes SIN causa determinada (fuera del denominador de cualquier porcentaje de causas)':
+        u?.sinClasificar,
+      'incendios: advertencia de la propia fuente (ICV)': u?.aviso,
+      'incendios: reparto por causa': inc?.stats?.porCausa,
+      'servicios (POI): total en el mapa': poi?.stats?.total,
+      'quejas: total registradas': quejas?.stats?.total ?? (quejas?.items ?? []).length,
+    }
+  }
+
   if (route.startsWith('/hallazgos'))
     return {
       ...common,
@@ -267,7 +304,18 @@ async function main() {
     rotate: rotar,
     rotateDesde,
     all: todas,
+    desconocidas,
   } = parseReviewArgs(process.argv.slice(2), process.env.REVIEW_BUDGET_SECONDS)
+
+  // Una bandera que no existe se descartaba entera. `--rutas /` no se parseaba
+  // nunca: funcionó por casualidad, porque `/` se leyó como ruta posicional.
+  // Un `--budget-second 60` mal tecleado corre SIN techo con la misma cara de
+  // haber obedecido.
+  if (desconocidas.length > 0) {
+    console.error(`[review] bandera(s) que no existen: ${desconocidas.join(', ')}`)
+    console.error('[review] no se ejecuta nada: corrige el mando o quítalas.')
+    process.exit(2)
+  }
   // `--force` significa «vuelve a leer ESTAS rutas», no «olvida el fichero».
   //
   // Era `force ? {} : loadCache()`, y como al final se escribe la caché
@@ -298,7 +346,10 @@ async function main() {
     [...lista].sort((a, b) =>
       (readCacheEntry(cache[a])?.at ?? '').localeCompare(readCacheEntry(cache[b])?.at ?? ''),
     )
-  const publicas = rutasPublicas(construirGrafoRutas(resolve('src')))
+  // Las claves con estado entran en la pasada COMPLETA. `check:surfaces` lee
+  // la misma constante, así que una clave que el barrido lee y el parte no
+  // conoce —invisible, nunca rancia— no puede existir.
+  const publicas = rutasRevisables(construirGrafoRutas(resolve('src')))
   const base = named.length ? named : todas ? publicas : DEFAULT_ROUTES
   // Con `--rotate-desde N`: la cabeza en el orden de quien llama, la cola
   // rotada. Es lo que permite leer primero lo que el push reescribió sin perder
@@ -454,7 +505,7 @@ async function main() {
       let ultimo = ''
       for (let intento = 0; ; intento += 1) {
         try {
-          await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' })
+          await page.goto(`${BASE}${rutaBase(route)}`, { waitUntil: 'networkidle' })
           // Give the snapshot store a beat to resolve before reading the text.
           await page.waitForTimeout(1200)
           if (intento > 0 && !asJson)
@@ -515,7 +566,9 @@ async function main() {
     // No se cachea y cuenta como SIN REVISAR: decir «no está montada» es un
     // resultado, decir «limpia» es mentira.
     const aterrizaje = new URL(page.url()).pathname
-    if (aterrizaje !== route) {
+    // Contra la ruta BASE: una clave con estado —`/ [capas]`— aterriza en `/`,
+    // y compararla entera marcaría como NO MONTADA toda entrada con estado.
+    if (aterrizaje !== rutaBase(route)) {
       noMontadas.push({ route, aterrizaje })
       if (!asJson) {
         console.log(`\n── ${route}`)
@@ -540,6 +593,38 @@ async function main() {
     // Publicado no es «visible ahora mismo»: los seis paneles están en el DOM,
     // cualquiera los abre con un clic y los seis se imprimen en papel. Se
     // revisan los seis.
+    // El estado, si la clave lo pide, ANTES de leer.
+    //
+    // Aquí sí hace falta pulsar: las capas opcionales no están ocultas, no
+    // existen —`{layers.x && <Capa/>}`—, así que ningún `hidden = false` las
+    // alcanza. Se pulsa por `data-capa`, que es la clave de la capa y no
+    // cambia con el idioma, a diferencia de la etiqueta.
+    const estado = estadoDe(route)
+    if (estado === 'capas') {
+      const encendidas = await page.evaluate(() => {
+        const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-capa]'))
+        const tocadas: string[] = []
+        for (const c of chips) {
+          if (c.getAttribute('aria-pressed') === 'false') {
+            c.click()
+            tocadas.push(c.getAttribute('data-capa') ?? '?')
+          }
+        }
+        return tocadas
+      })
+      // Las capas piden sus propios datos al encenderse (los perímetros de
+      // incendios son un fichero aparte), así que hay que darles tiempo o se
+      // lee la leyenda a medio poblar.
+      await page.waitForTimeout(2500)
+      if (!asJson && encendidas.length > 0) {
+        if (!cabeceraPuesta) {
+          console.log(`\n── ${route}`)
+          cabeceraPuesta = true
+        }
+        console.log(`   capas encendidas para leer su prosa: ${encendidas.join(', ')}`)
+      }
+    }
+
     const abiertos = await page.evaluate(() => {
       const ocultos = Array.from(
         document.querySelectorAll<HTMLElement>('[role="tabpanel"][hidden]'),

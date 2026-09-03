@@ -29,6 +29,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
   emptyTally,
+  esCompuesto,
   onlySpeakerGroupMoved,
   retractAttributions,
 } from '../src/scraper/retract-attribution'
@@ -124,6 +125,7 @@ function main() {
 
   console.log(`[retract-attribution] ${ids.length} declaración(es) · ${files.length} fichero(s)`)
   const seenSomewhere = new Set<string>()
+  const compuestosTocados: string[] = []
   let totalWrites = 0
 
   for (const path of files) {
@@ -156,6 +158,11 @@ function main() {
     console.log(
       `  ${rel.padEnd(48)} ${dryRun ? 'retiraría' : 'retirado'} ${tally.retracted.size} · ${detail}`,
     )
+    // Un fichero compuesto lo fecha `composedAt`, y eso no lo mueve escribir:
+    // lo mueve recomponer. Se anota AQUÍ, con el original delante, para no
+    // tener que volver a leer nada después.
+    if (esCompuesto(original)) compuestosTocados.push(rel)
+
     if (!dryRun) {
       // El fichero conserva su formato: 2 espacios y salto final, como lo
       // escriben los generadores. Sin esto el diff sería el fichero entero y
@@ -178,11 +185,64 @@ function main() {
     `\n[retract-attribution] ${dryRun ? '[en seco] ' : ''}${totalWrites} atribución(es) a null` +
       (motivo ? `\n  motivo: ${motivo}` : ''),
   )
+  // Recomponer. Escribir un fichero compuesto deja su `composedAt` detrás del
+  // contenido que sella, y `check:stamps` —que entra en el parte nocturno— se
+  // pone en rojo. Pasó de verdad: PR #80 movió cuatro atribuciones y dejó el
+  // sello en el día anterior. No vale sellarlo a mano —`restamp-curated.ts` se
+  // niega, y con razón: aquí `generatedAt` es el sello del base y
+  // `check:verified-compose` exige igualdad exacta con él—. Lo que fecha el
+  // contenido es `composedAt`, y sólo lo escribe quien compone.
+  //
+  // La pasada de composición es local, determinista y sin LLM ni red, así que
+  // encadenarla no cuesta nada y cierra la puerta en vez de documentarla.
+  if (compuestosTocados.length > 0 && totalWrites > 0) {
+    if (dryRun) {
+      console.log(
+        `\n[retract-attribution] [en seco] recompondría ${compuestosTocados.length} fichero(s) ` +
+          `compuesto(s) para mover su sello: ${compuestosTocados.join(', ')}`,
+      )
+    } else {
+      console.log(
+        `\n[retract-attribution] recomponiendo ${compuestosTocados.length} fichero(s) ` +
+          'compuesto(s) para que su sello alcance al contenido…',
+      )
+      try {
+        execFileSync('npx', ['tsx', join(ROOT, 'scripts/verify-pleno-claims.ts')], {
+          encoding: 'utf8',
+          maxBuffer: 64 * 1024 * 1024,
+          cwd: ROOT,
+          stdio: 'inherit',
+        })
+      } catch {
+        // Un fallo aquí NO deshace la retractación —ya está escrita— pero
+        // dejarlo pasar en silencio publicaría el sello viejo, que es el
+        // defecto que esto viene a cerrar.
+        console.error(
+          '\n[retract-attribution] la recomposición FALLÓ. La retractación SÍ está escrita,\n' +
+            '  pero el sello se quedó atrás: corre `npm run verify:pleno-claims` a mano\n' +
+            '  antes de comitear, o `npm run check:stamps` saldrá en rojo.',
+        )
+        process.exit(1)
+      }
+    }
+  }
+
   if (!dryRun) {
     console.log(
       '  El registro es el commit: descríbelo ahí, y vuelve a pasar\n' +
         '  `npm run check:claim-provenance` para confirmar que ya no las señala.',
     )
+    if (compuestosTocados.length > 0) {
+      // Recomponer NO es el último paso: hay nodos derivados que leen este
+      // fichero —`finding-quote-provenance.json` entre ellos— y se quedan
+      // rancios. No se encadena aquí a propósito: `refresh` recorre el grafo
+      // entero y podría reconstruir cosas que no tienen nada que ver con una
+      // retractación. Se nombra, que es lo que faltaba.
+      console.log(
+        '  Y queda un paso: `npm run refresh` — al mover verified.json se\n' +
+          '  quedan rancios los nodos derivados que lo leen.',
+      )
+    }
   }
 }
 

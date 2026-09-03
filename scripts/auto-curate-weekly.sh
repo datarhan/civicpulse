@@ -73,7 +73,7 @@ cron_git_pull_rebase "git pull inicial"
 # code. Observed spent 2026-08-02, 62-hour reset.
 export LLM_BACKEND="${LLM_BACKEND:-claude-code}"
 export CLAUDE_CODE_MODEL="${CLAUDE_CODE_MODEL:-claude-sonnet-5}"
-export AGY_MODEL="${AGY_MODEL:-gemini-3.5-flash-medium}"  # only read if LLM_BACKEND=agy
+export AGY_MODEL="${AGY_MODEL:-gemini-3.8-flash-medium}"  # only read if LLM_BACKEND=agy
 # The gemini CLI is no longer a fallback target and its env (GEMINI_MODEL,
 # GOOGLE_GENAI_USE_GCA) is gone from here. agy replaced it, and the install
 # that remains cannot authenticate without a browser — it hangs for the full

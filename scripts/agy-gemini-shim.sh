@@ -6,10 +6,19 @@
 #   agy -p <prompt> --model <model>
 # and re-emits agy's plain-text answer inside the gemini `-o json` envelope
 # ({"response": "..."}) that client.ts expects to parse.
+#
+# ⚠️  MUERTO: nada lo referencia. Nació en 75a3eb50 cuando GEMINI_BIN podía
+#     apuntar aquí; con el CLI de gemini retirado de la cascada, nadie lo hace.
+#     Se mantiene su modelo al día por consistencia, no porque se use.
+#
+#     SI ALGUIEN LO RE-ENCHUFA: le falta `--sandbox`, que `src/llm/client.ts`
+#     (callAgy) documenta como requisito de seguridad. Reintroducirlo por aquí
+#     sería una regresión, no sólo una cadena obsoleta. Lo más probable es que
+#     este fichero deba borrarse.
 set -euo pipefail
 
 prompt=""
-model="gemini-3.5-flash-medium"
+model="gemini-3.8-flash-medium"
 while [ $# -gt 0 ]; do
   case "$1" in
     -p | --prompt | --print)

@@ -1,8 +1,12 @@
 import { describe, it, expect } from 'vitest'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import {
   isCommittedContract,
   contractAmountEur,
   committedAwardYearSpan,
+  isConcession,
+  contractTermYears,
 } from '../src/lib/contract-status'
 
 /**
@@ -123,5 +127,54 @@ describe('committedAwardYearSpan', () => {
     expect(committedAwardYearSpan([])).toBe(null)
     expect(committedAwardYearSpan([c('awarded', null)])).toBe(null)
     expect(committedAwardYearSpan(null)).toBe(null)
+  })
+})
+
+describe('concesiones — un importe por todo el plazo no es un gasto anual', () => {
+  /**
+   * En la portada, «últimas adjudicaciones» pone cuatro filas seguidas: 13.100 €,
+   * 7.500 €, 55.685.178,79 € y 417.600 €, todas de las mismas cinco semanas. La
+   * tercera es la concesión del agua, que se adjudica de una vez por sus
+   * diecisiete años; leída entre las otras tres parece un compromiso puntual
+   * reciente 1,34 veces mayor que el presupuesto anual, que está impreso en la
+   * misma pantalla.
+   *
+   * El tipo de contrato lo distingue sin heurística: `public_services_management`
+   * lo llevan 4 filas de 809.
+   */
+  it('reconoce una concesión por su tipo de contrato, no por el título', () => {
+    expect(isConcession({ contractType: 'public_services_management' })).toBe(true)
+    for (const t of ['services', 'supplies', 'construction', undefined, null]) {
+      expect(isConcession({ contractType: t })).toBe(false)
+    }
+  })
+
+  it('el plazo en años sale de los días, no de escribirlo', () => {
+    // La del agua: 6.209 días.
+    expect(contractTermYears({ duration: 6209 })).toBe(17)
+    expect(contractTermYears({ duration: 365 })).toBe(1)
+    expect(contractTermYears({ duration: 182 })).toBe(0)
+  })
+
+  it('sin plazo utilizable devuelve null, y no un cero que parezca un dato', () => {
+    // `as never`: el tipo dice number|null, y la gracia de la guarda es
+    // aguantar lo que la vida mete en un JSON raspado.
+    for (const d of [null, undefined, 0, -5, 'seis', NaN]) {
+      expect(contractTermYears({ duration: d as never })).toBeNull()
+    }
+    expect(contractTermYears(null)).toBeNull()
+  })
+
+  it('la concesión del agua del snapshot vivo sigue siendo la única grande', () => {
+    // Contra el fichero publicado: si el tipo dejara de traerla, la salvedad
+    // desaparecería de la portada sin que nada se pusiera rojo.
+    const contracts = JSON.parse(
+      readFileSync(join(__dirname, '..', 'public/data/tenders.json'), 'utf8'),
+    ).contracts
+    const concesiones = contracts.filter(isConcession)
+    expect(concesiones.length).toBeGreaterThan(0)
+    const agua = concesiones.find((c: { title?: string }) => /agua potable/i.test(c.title ?? ''))
+    expect(agua).toBeDefined()
+    expect(contractTermYears(agua)).toBe(17)
   })
 })

@@ -2198,6 +2198,27 @@ export default function Metodologia() {
             marginTop: 8,
           }}
         >
+          La capa de <strong>incendios forestales</strong> no sitúa nada: dibuja los perímetros tal
+          y como los cartografía el Institut Cartogràfic Valencià, sin un vértice nuestro. Se
+          consulta por <strong>geometría</strong>, no por nombre de municipio —la misma fuente
+          archiva este pueblo con dos grafías distintas, y filtrar por el nombre borra un año entero
+          de la serie—, así que aparece todo lo que cruza el término, incluido lo que la Generalitat
+          atribuye a un municipio vecino; cuando eso pasa, la ficha lo dice. La superficie es la del
+          incendio completo, nunca recortada por la frontera: recortarla daría una cifra nuestra con
+          firma ajena. Al revés también ocurre —hay un incendio atribuido a Riba-roja que la propia
+          Generalitat dibuja fuera del término—: ése se cuenta en la cobertura y no se pinta, porque
+          dibujarlo pondría una cicatriz donde no ardió. Las causas son las del parte oficial, y los
+          partes que no la determinan quedan fuera del porcentaje en vez de convertirse en una causa
+          llamada «otras».
+        </p>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
           Cada punto abre la ficha del contrato con el dato que ya publica el expediente:
           adjudicatario, importe de licitación → adjudicación (la baja), objeto (código CPV
           traducido), procedimiento, número de licitadores y plazo. La etiqueta CPV usa el

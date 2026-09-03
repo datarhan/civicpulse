@@ -23,6 +23,7 @@ const NO_TRAFFIC: RunStats = {
   failed: 0,
   zeroTokenFailures: 0,
   shortCircuited: 0,
+  freeBackendFallbacks: 0,
   tokens: 0,
   costUSD: 0,
 }
@@ -512,5 +513,36 @@ describe('assessManifest — contestado y rechazado NO es "no-work"', () => {
       const c = codes(m)
       expect(c.includes('no-work') && c.includes('rejected-on-quality')).toBe(false)
     }
+  })
+})
+
+describe('assessManifest — un primario de coste cero que se cayó', () => {
+  /**
+   * El agujero que este hallazgo destapó: `gemini-3.5-flash-medium` llevaba
+   * días sin existir, agy fallaba en cada llamada, y la pasada salía LIMPIA
+   * porque claude-code contestaba detrás. `ok` subía, `zeroTokenFailures` no
+   * se movía, y ZERO_TOKEN_ALARM —que es lo único que miraba esto— no podía
+   * saltar por definición.
+   */
+  it('avisa cuando la cadena abandonó un backend gratis y otro respondió', () => {
+    const m = manifest({
+      llm: { ...NO_TRAFFIC, calls: 12, ok: 12, freeBackendFallbacks: 12 },
+    })
+    const f = assessManifest(m)
+    const aviso = f.find((x) => x.code === 'free-backend-fallback')
+    expect(aviso).toBeDefined()
+    expect(aviso!.level).toBe('warn')
+    // Tiene que decir CUÁNTAS: «hubo respaldos» no es accionable.
+    expect(aviso!.message).toMatch(/12/)
+  })
+
+  it('no avisa cuando no hubo ningún respaldo', () => {
+    const m = manifest({ llm: { ...NO_TRAFFIC, calls: 12, ok: 12 } })
+    expect(assessManifest(m).some((x) => x.code === 'free-backend-fallback')).toBe(false)
+  })
+
+  it('una pasada sin tráfico no dispara el aviso', () => {
+    // Un adaptador determinista no tiene backend que se le caiga.
+    expect(assessManifest(manifest()).some((x) => x.code === 'free-backend-fallback')).toBe(false)
   })
 })

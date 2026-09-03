@@ -12,6 +12,10 @@ import { FullNetwork } from './network/FullNetwork'
 import { NetworkLegend } from './network/NetworkLegend'
 import { MoneyLayer } from './layers/MoneyLayer'
 import { NeighborhoodsLayer } from './layers/NeighborhoodsLayer'
+import { IncendiosLayer } from './layers/IncendiosLayer'
+import { IncendiosYearSlider } from './controls/IncendiosYearSlider'
+import { useIncendios } from '../../hooks/useIncendios'
+import { porAnyo } from '../../lib/incendios'
 import { FloodRiskLayer } from './layers/FloodRiskLayer'
 import { CivicPoiLayer } from './layers/CivicPoiLayer'
 import { QuejasLayer } from './layers/QuejasLayer'
@@ -67,12 +71,17 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
     poi: false,
     quejas: false,
     flood: false,
+    incendios: false,
   })
   const toggleLayer = (k) => setLayers((s) => ({ ...s, [k]: !s[k] }))
 
   const { data: tgeo } = useTenderGeo()
   const { data: tenders } = useTenders()
   const { data: obrasData } = useObras()
+  // El índice de incendios (sin geometría, ~7 KB comprimido) hace falta aquí
+  // para el rango del deslizador; los anillos los pide la capa, y sólo cuando
+  // alguien la enciende.
+  const { data: incendiosIdx } = useIncendios()
   const snapshot = tgeo || EMPTY_TENDER_GEO
   const dateMin = snapshot.universe?.dateMin ? new Date(snapshot.universe.dateMin).getTime() : null
   const dateMax = snapshot.universe?.dateMax ? new Date(snapshot.universe.dateMax).getTime() : null
@@ -80,9 +89,20 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
   // Money-timeline cursor. `null` = "not yet touched" → resolves to dateMax so
   // the layer opens on the full cumulative picture; scrubbing/playing sets it.
   const [at, setAt] = useState(null)
+  // null = sin tocar: se ve la serie entera hasta el último año cartografiado.
+  const [anyoIncendios, setAnyoIncendios] = useState(null)
   const [danaOnly, setDanaOnly] = useState(false)
   const [obrasOnly, setObrasOnly] = useState(false)
   const effectiveAt = at ?? dateMax ?? Infinity
+
+  const incendiosUniverse = incendiosIdx?.universe
+  const serieIncendios = useMemo(
+    () =>
+      incendiosUniverse
+        ? porAnyo(incendiosIdx?.incendios, incendiosUniverse.anyoMin, incendiosUniverse.anyoMax)
+        : [],
+    [incendiosIdx, incendiosUniverse],
+  )
 
   const contractsById = useMemo(
     () => new Map((tenders?.contracts || []).map((c) => [c.id, c])),
@@ -126,6 +146,10 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
         {/* POIs BEFORE money: later siblings paint on top in Leaflet's overlay
             pane, so rendering them after the spend pins put them over the
             money and they swallowed its clicks. */}
+        {/* Antes que el dinero: los hermanos posteriores pintan encima en el
+          panel de superposición de Leaflet, y un polígono de 20 ha sobre los
+          pines se comería sus clics. */}
+        {layers.incendios && <IncendiosLayer anyoVisible={anyoIncendios} />}
         {layers.poi && <CivicPoiLayer />}
         {layers.money && (
           <MoneyLayer
@@ -151,7 +175,14 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
       {/* Anchored to the bottom-left: the toggle chips sit at the very bottom
           (above the attribution line); the money slider + POI/flood legends
           stack UPWARD above them via column-reverse, so the chip row stays put
-          as contextual panels appear. */}
+          as contextual panels appear.
+
+          The stack is CAPPED to the map and scrolls when it doesn't fit. It
+          grows with the number of open layers while the map does not: measured
+          at 375px the map is 277px tall and the chips + money slider alone
+          already ran 59px past its top edge — a panel could end up above the
+          viewport entirely, unreachable rather than merely overlapping. The
+          chip row is the last flex child, so it is what stays pinned. */}
       <div
         style={{
           position: 'absolute',
@@ -162,6 +193,9 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
           flexDirection: 'column-reverse',
           gap: 8,
           maxWidth: 'calc(100% - 24px)',
+          maxHeight: 'calc(100% - 40px)',
+          overflowY: 'auto',
+          overscrollBehavior: 'contain',
         }}
       >
         <LayerControl layers={layers} onToggle={toggleLayer} />
@@ -180,6 +214,15 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
         )}
         {layers.poi && <PoiLegend />}
         {layers.quejas && <QuejasLegend />}
+        {layers.incendios && (
+          <IncendiosYearSlider
+            anyoMin={incendiosUniverse?.anyoMin ?? 1993}
+            anyoMax={incendiosUniverse?.anyoMax ?? new Date().getFullYear()}
+            value={anyoIncendios}
+            onChange={setAnyoIncendios}
+            serie={serieIncendios}
+          />
+        )}
         {layers.flood && <FloodLegend />}
       </div>
     </div>

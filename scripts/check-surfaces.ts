@@ -20,7 +20,7 @@
  */
 import { readFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { construirGrafoRutas, rutasPublicas } from './lib/route-graph'
+import { construirGrafoRutas, rutasRevisables } from './lib/route-graph'
 import { medirFrescura, parteFrescura, DIAS_FRESCURA } from '../src/scraper/surface-freshness'
 import {
   validarDescartes,
@@ -33,7 +33,11 @@ const CACHE = resolve('.review-cache.json')
 const DESCARTES = resolve('review-dismissals.json')
 
 function main() {
-  const rutas = rutasPublicas(construirGrafoRutas(resolve('src')))
+  // Las claves con estado cuentan como superficie propia. Si el barrido las
+  // lee y este parte no las conoce, nunca se reportarían rancias: la prosa de
+  // las capas volvería a envejecer sin que nada lo dijera, que es el agujero
+  // que estas claves vienen a tapar.
+  const rutas = rutasRevisables(construirGrafoRutas(resolve('src')))
   // Un fichero ausente NO es un fichero vacío que da todo por bueno: es cero
   // revisiones, y `medirFrescura` lo cuenta como «ninguna leída».
   const cache: Record<string, string | ReviewCacheEntry> = existsSync(CACHE)

@@ -72,7 +72,7 @@ export PATH="/usr/local/bin:/opt/homebrew/bin:$HOME/.local/bin:$PATH"
 export LLM_BACKEND="${LLM_BACKEND:-claude-code}"
 export CLAUDE_CODE_MODEL="${CLAUDE_CODE_MODEL:-claude-sonnet-5}"
 export LLM_CONCURRENCY="${LLM_CONCURRENCY:-1}"   # Max plan is burst-rate limited
-export AGY_MODEL="${AGY_MODEL:-gemini-3.5-flash-medium}"  # only read when LLM_BACKEND=agy
+export AGY_MODEL="${AGY_MODEL:-gemini-3.8-flash-medium}"  # only read when LLM_BACKEND=agy
 
 # AUTO-PUBLISH ENABLED: grounded, high-confidence en-progreso status changes +
 # documentada new promises publish to promises.json; parcial/cumplida/

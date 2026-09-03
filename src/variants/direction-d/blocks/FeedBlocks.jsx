@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useTenders, formatDate as formatTenderDate } from '../../../hooks/useTenders'
 import { contractAmount } from '../../../lib/tender-geo'
-import { isCommittedContract } from '../../../lib/contract-status'
+import { isCommittedContract, isConcession, contractTermYears } from '../../../lib/contract-status'
 import { yearSpan } from '../../../lib/year-span'
 import { useParticipa, KIND_ICON } from '../../../hooks/useParticipa'
 import { usePress, timeAgo as pressTimeAgo } from '../../../hooks/usePress'
@@ -181,6 +181,32 @@ export function LiveContracts() {
               {fmtEur(contractAmount(c))}
             </span>
           </div>
+          {/* Una concesión se adjudica por TODO su plazo de una vez, así que su
+              importe no es comparable con el de las filas que tiene al lado ni
+              con el presupuesto anual impreso en esta misma pantalla. Sin esta
+              línea, la del agua —55,7 M€ entre una de 7.500 € y otra de 418 k€,
+              todas del mismo mes— se lee como un compromiso puntual reciente
+              1,34 veces mayor que el presupuesto del año.
+
+              Los años se calculan de `duration`, nunca se escriben: es
+              exactamente el número que alguien teclea una vez y se queda viejo
+              cuando el registro cambia una fecha. Mismo convenio que
+              `committedAwardYearSpan` y que la ficha de /eficiencia. */}
+          {isConcession(c) && (
+            <div
+              className="cp-concesion-nota"
+              style={{
+                marginTop: 4,
+                fontSize: 'var(--fs-micro)',
+                color: PALETTE.ink60,
+                lineHeight: 1.35,
+              }}
+            >
+              {contractTermYears(c)
+                ? `Concesión: el importe es el valor estimado por todo su plazo —${contractTermYears(c)} años—, no un gasto anual.`
+                : 'Concesión: el importe es el valor estimado por todo su plazo, no un gasto anual.'}
+            </div>
+          )}
         </div>
       ))}
     </div>

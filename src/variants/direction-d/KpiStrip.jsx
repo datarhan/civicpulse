@@ -212,11 +212,17 @@ function KpiStrip() {
       />
       {/* The period is not decoration. This sits next to "Presup. 2025 · €41,6M",
           an ANNUAL figure, while this one is CUMULATIVE over a decade of awards
-          (2017-2026) and includes multi-year concessions like the €15,8M waste
-          contract. Unlabelled, the pair invites the reader to conclude the town
-          awards more in contracts than its entire yearly budget. That inference
-          only became available once the figure was corrected from €14,7M to
-          €68,0M, so the framing had to be corrected with it. */}
+          and includes multi-year concessions — the water one alone is €55,7M
+          awarded in a single go for a seventeen-year term. Unlabelled, the pair
+          invites the reader to conclude the town awards more in contracts than
+          its entire yearly budget. That inference only became available once
+          the figure was corrected from €14,7M upwards, so the framing had to be
+          corrected with it.
+
+          Figures here are illustrative of the SHAPE only; the rendered numbers
+          come from the snapshot. Two of them had already gone stale in this
+          comment (€68,0M and «the €15,8M waste contract») while nothing on
+          screen was wrong — the drift this repo built a hook for. */}
       <Kpi
         label={awardedYears ? `Contratos adj. ${awardedYears}` : 'Contratos adj.'}
         value={awardedValue}

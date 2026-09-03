@@ -55,6 +55,7 @@ export const NO_LLM_STATS: RunStats = Object.freeze({
   failed: 0,
   zeroTokenFailures: 0,
   shortCircuited: 0,
+  freeBackendFallbacks: 0,
   tokens: 0,
   costUSD: 0,
 })
@@ -209,6 +210,30 @@ export function assessManifest(m: RunManifest): ManifestFinding[] {
   // fallos MANDAN sobre los aciertos. Si mandan, el backend se niega; si no,
   // la pasada iba bien y se cortó, que es otra cosa y baja a aviso —pero se
   // sigue nombrando, porque bajar de nivel no es callar.
+  // Un primario de coste cero que se cayó y al que otro backend tapó.
+  //
+  // El agujero que esto cierra: `gemini-3.5-flash-medium` dejó de existir en
+  // el catálogo de agy, agy fallaba en TODAS las llamadas, y la pasada salía
+  // limpia porque claude-code contestaba detrás. `ok` subía, `zeroTokenFailures`
+  // no se movía, y ZERO_TOKEN_ALARM no podía saltar: mira fallos de la CADENA
+  // ENTERA, y la cadena no falló. Es la segunda vez que este modelo se queda
+  // atrás sin que nada lo note; la primera costó 317 ventanas en openai medido.
+  //
+  // Aviso, no error: la pasada hizo su trabajo y el resultado es válido. Lo que
+  // no es válido es no enterarse — con openai tercero en la cadena, un primario
+  // muerto está a una caída de claude-code de una llamada con tarjeta.
+  if (m.llm.freeBackendFallbacks > 0) {
+    out.push({
+      level: 'warn',
+      code: 'free-backend-fallback',
+      message:
+        `${m.llm.freeBackendFallbacks} llamada(s) abandonaron un backend de coste cero y las ` +
+        `respondió el siguiente de la cadena. La pasada salió bien, pero el primario está ` +
+        `roto: mira el stderr por «falling back to». Un modelo retirado da exactamente esta ` +
+        `forma, y el respaldo la tapa.`,
+    })
+  }
+
   if (m.llm.zeroTokenFailures >= ZERO_TOKEN_ALARM) {
     const seNiega = m.llm.zeroTokenFailures > m.llm.ok
     out.push(

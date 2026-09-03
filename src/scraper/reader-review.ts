@@ -272,8 +272,18 @@ export function huellaDeHechos(facts: Record<string, unknown>): string {
   return sha256Short(JSON.stringify(ordenado))
 }
 
+/**
+ * Las banderas SIN valor que esta pasada entiende. Declaradas, para que una
+ * que no esté aquí se pueda nombrar en vez de descartarse.
+ */
+const BANDERAS_SUELTAS = ['--json', '--force', '--rotate', '--all', '--capas']
+
+/** Las que llevan valor, en cualquiera de las dos formas. */
+const BANDERAS_CON_VALOR = ['--budget-seconds', '--rotate-desde']
+
 export function parseReviewArgs(argv: string[], budgetEnv?: string) {
   const routes: string[] = []
+  const desconocidas: string[] = []
   let budgetSeconds = Number(budgetEnv ?? 0)
   let rotateDesde = 0
   for (let i = 0; i < argv.length; i += 1) {
@@ -290,11 +300,23 @@ export function parseReviewArgs(argv: string[], budgetEnv?: string) {
       rotateDesde = Number(a.slice('--rotate-desde='.length))
     } else if (!a.startsWith('--')) {
       routes.push(a)
+    } else {
+      // Una bandera que no reconocemos NO se descarta en silencio. `--rutas /`
+      // se tiraba entera y `/` se leía como ruta posicional, así que el mando
+      // parecía obedecer; un `--budget-second 60` mal tecleado corre sin techo
+      // con la misma cara. Es fallar en silencio dando la impresión de haber
+      // trabajado, que es justo lo que esta pasada existe para detectar.
+      const nombre = a.split('=')[0]
+      if (!BANDERAS_SUELTAS.includes(nombre) && !BANDERAS_CON_VALOR.includes(nombre)) {
+        desconocidas.push(nombre)
+      }
     }
   }
   if (!Number.isFinite(budgetSeconds) || budgetSeconds <= 0) budgetSeconds = 0
   return {
     routes,
+    /** Banderas que no existen. Quien llama decide, pero no puede no saberlo. */
+    desconocidas,
     budgetSeconds,
     json: argv.includes('--json'),
     force: argv.includes('--force'),
@@ -570,3 +592,53 @@ export async function reviewSurfaceDetailed(
   // something is hidden without letting you judge whether it mattered.
   return { findings: kept, dropped, consulted: true, attempts }
 }
+
+/**
+ * ## Rutas con ESTADO
+ *
+ * La lectura sólo ve lo que la página renderiza por defecto. Su única
+ * interacción es des-ocultar `[role="tabpanel"][hidden]`, y eso vale porque
+ * esos paneles SÍ están en el DOM. Las capas opcionales del mapa no: se montan
+ * con `{layers.x && <Capa/>}`, así que sus nodos no existen y su prosa —la
+ * leyenda, el reparto de causas, la cobertura— no se leía nunca.
+ *
+ * Y el hueco no era silencioso, era un verde FALSO: `routes-for-changes` mapea
+ * `IncendiosLegend.jsx` a `/`, de modo que un push que la tocaba leía `/`,
+ * sacaba «cobertura 100 % · nada que señalar» e imprimía «revisión completa de
+ * las 1 ruta(s) que toca este push» sobre un fichero cuya prosa no se había
+ * renderizado.
+ *
+ * La clave sigue siendo una CADENA, con el estado dentro: `/ [capas]`. La
+ * caché, la frescura, los descartes y el orden por antigüedad van todos por
+ * cadena, y convertir las rutas en objetos habría tocado las cuatro cosas para
+ * no ganar nada.
+ */
+const SEPARADOR_ESTADO = / \[([a-z0-9-]+)\]$/
+
+/** `/` + `capas` → `/ [capas]`. */
+export function conEstado(ruta: string, estado: string): string {
+  return `${ruta} [${estado}]`
+}
+
+/** La ruta que hay que navegar y con la que comparar al aterrizar. */
+export function rutaBase(clave: string): string {
+  return clave.replace(SEPARADOR_ESTADO, '')
+}
+
+/** El estado que hay que preparar antes de leer, o null si no hay ninguno. */
+export function estadoDe(clave: string): string | null {
+  return SEPARADOR_ESTADO.exec(clave)?.[1] ?? null
+}
+
+/**
+ * Las claves con estado que entran en la pasada completa y en el parte.
+ *
+ * UNA sola, y combinada a propósito: cada estado es un render y una lectura
+ * enteros de la página (~3-5 min medidos), y el barrido nocturno ya corre
+ * entre 17 min y 2 h. Con las cuatro capas encendidas a la vez, las cuatro
+ * leyendas están en el DOM en una sola pasada.
+ *
+ * Vive aquí, y no en el CLI, para que `check:surfaces` lea la MISMA lista: una
+ * clave que el barrido lee pero el parte no conoce nunca se reportaría rancia.
+ */
+export const RUTAS_CON_ESTADO = [conEstado('/', 'capas')]

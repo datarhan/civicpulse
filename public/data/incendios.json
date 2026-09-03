@@ -1,0 +1,2620 @@
+{
+  "generatedAt": "2026-09-03T18:30:48.926Z",
+  "fuente": {
+    "nombre": "Institut Cartogràfic Valencià / GVA — Incendios forestales de la Comunitat Valenciana",
+    "url": "https://dadesobertes.gva.es/es/dataset/incendios-forestales-de-la-comunitat-valenciana-1993-2024",
+    "servicio": "https://carto.icv.gva.es/arcgis/rest/services/tm_medio_ambiente/prevencion_de_incendios/MapServer",
+    "licencia": "CC BY 4.0",
+    "atribucion": "Institut Cartogràfic Valencià (ICV) — Generalitat Valenciana, CC BY 4.0",
+    "aviso": "No están cartografiados todos los incendios forestales del periodo"
+  },
+  "universe": {
+    "totalIncendios": 91,
+    "dibujados": 90,
+    "propios": 86,
+    "ajenos": 5,
+    "atribuidosSinPerimetroAqui": 1,
+    "superficieHaSinPerimetroAqui": 128,
+    "superficieHaTotal": 214.8651,
+    "superficieHaPropios": 192.3282,
+    "anyoMin": 1993,
+    "anyoMax": 2024,
+    "capasConsultadas": 32,
+    "capasConDatos": 32,
+    "sinClasificar": 4,
+    "aviso": "No están cartografiados todos los incendios forestales del periodo"
+  },
+  "incendios": [
+    {
+      "id": "1993VL0079",
+      "idMinisterio": "1993460079",
+      "anyo": 1993,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Otros",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "1993-06-08",
+      "horaDeteccion": "14:00",
+      "extinguidoEl": "1993-06-08",
+      "superficieHa": 3,
+      "arboladaHa": 0,
+      "noArboladaHa": 3,
+      "bbox": [
+        39.54707,
+        -0.56856,
+        39.54753,
+        -0.56796
+      ],
+      "centroide": [
+        39.54726,
+        -0.56832
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1993VL0104",
+      "idMinisterio": "1993460104",
+      "anyo": 1993,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Agente forestal",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "1993-06-29",
+      "horaDeteccion": "12:30",
+      "extinguidoEl": "1993-06-29",
+      "superficieHa": 2,
+      "arboladaHa": 1,
+      "noArboladaHa": 1,
+      "bbox": [
+        39.54707,
+        -0.56856,
+        39.54753,
+        -0.56796
+      ],
+      "centroide": [
+        39.54726,
+        -0.56832
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1993VL0114",
+      "idMinisterio": "1993460114",
+      "anyo": 1993,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Aeronave",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "1993-07-06",
+      "horaDeteccion": "18:15",
+      "extinguidoEl": "1993-07-06",
+      "superficieHa": 2.5,
+      "arboladaHa": 0,
+      "noArboladaHa": 2.5,
+      "bbox": [
+        39.54707,
+        -0.56856,
+        39.54753,
+        -0.56796
+      ],
+      "centroide": [
+        39.54726,
+        -0.56832
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1993VL0212",
+      "idMinisterio": "1993460212",
+      "anyo": 1993,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Otros",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "1993-08-26",
+      "horaDeteccion": "19:30",
+      "extinguidoEl": "1993-08-26",
+      "superficieHa": 1.5,
+      "arboladaHa": 0,
+      "noArboladaHa": 1.5,
+      "bbox": [
+        39.54707,
+        -0.56856,
+        39.54753,
+        -0.56796
+      ],
+      "centroide": [
+        39.54726,
+        -0.56832
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1994VL0003",
+      "idMinisterio": "1994460003",
+      "anyo": 1994,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Otros",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "1994-01-01",
+      "horaDeteccion": "21:30",
+      "extinguidoEl": "1994-01-02",
+      "superficieHa": 2,
+      "arboladaHa": 0,
+      "noArboladaHa": 2,
+      "bbox": [
+        39.54707,
+        -0.56856,
+        39.54753,
+        -0.56796
+      ],
+      "centroide": [
+        39.54726,
+        -0.56832
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1994VL0006",
+      "idMinisterio": "1994460006",
+      "anyo": 1994,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Otros",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "1994-01-04",
+      "horaDeteccion": "10:00",
+      "extinguidoEl": "1994-01-04",
+      "superficieHa": 1.5,
+      "arboladaHa": 0,
+      "noArboladaHa": 1.5,
+      "bbox": [
+        39.54707,
+        -0.56856,
+        39.54753,
+        -0.56796
+      ],
+      "centroide": [
+        39.54726,
+        -0.56832
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1994VL0079",
+      "idMinisterio": "1994460079",
+      "anyo": 1994,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Otros",
+      "causa": "sinClasificar",
+      "causaOriginal": "Causa desconocida",
+      "detectadoEl": "1994-04-02",
+      "horaDeteccion": "16:00",
+      "extinguidoEl": "1994-04-02",
+      "superficieHa": 0.6,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.6,
+      "bbox": [
+        39.54707,
+        -0.56856,
+        39.54753,
+        -0.56796
+      ],
+      "centroide": [
+        39.54726,
+        -0.56832
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1994VL0185",
+      "idMinisterio": "1994460185",
+      "anyo": 1994,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Otros",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "1994-06-17",
+      "horaDeteccion": "16:00",
+      "extinguidoEl": "1994-06-17",
+      "superficieHa": 3,
+      "arboladaHa": 0,
+      "noArboladaHa": 3,
+      "bbox": [
+        39.54707,
+        -0.56856,
+        39.54753,
+        -0.56796
+      ],
+      "centroide": [
+        39.54726,
+        -0.56832
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1994VL0267",
+      "idMinisterio": "1994460267",
+      "anyo": 1994,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Otros",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "1994-08-10",
+      "horaDeteccion": "12:45",
+      "extinguidoEl": "1994-08-12",
+      "superficieHa": 128,
+      "arboladaHa": 128,
+      "noArboladaHa": 0,
+      "bbox": [
+        39.51851,
+        -0.51267,
+        39.53449,
+        -0.48825
+      ],
+      "centroide": [
+        39.52688,
+        -0.49938
+      ],
+      "intersecta": false
+    },
+    {
+      "id": "1995VL0117",
+      "idMinisterio": "1995460117",
+      "anyo": 1995,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Otros",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "1995-05-14",
+      "horaDeteccion": "13:00",
+      "extinguidoEl": "1995-05-14",
+      "superficieHa": 0,
+      "arboladaHa": 0,
+      "noArboladaHa": 0,
+      "bbox": [
+        39.54707,
+        -0.56856,
+        39.54753,
+        -0.56796
+      ],
+      "centroide": [
+        39.54726,
+        -0.56832
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1996VL0144",
+      "idMinisterio": "1996460144",
+      "anyo": 1996,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Otros",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "1996-09-14",
+      "horaDeteccion": "12:45",
+      "extinguidoEl": "1996-09-14",
+      "superficieHa": 0.7,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.7,
+      "bbox": [
+        39.53915,
+        -0.54961,
+        39.5401,
+        -0.54802
+      ],
+      "centroide": [
+        39.53974,
+        -0.54896
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1997VL0009",
+      "idMinisterio": "1997460009",
+      "anyo": 1997,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Otros",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "1997-03-16",
+      "horaDeteccion": "13:20",
+      "extinguidoEl": "1997-03-16",
+      "superficieHa": 0.1,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.1,
+      "bbox": [
+        39.55511,
+        -0.57385,
+        39.55557,
+        -0.57349
+      ],
+      "centroide": [
+        39.55537,
+        -0.57369
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1997VL0030",
+      "idMinisterio": "1997460030",
+      "anyo": 1997,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Otros",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "1997-05-01",
+      "horaDeteccion": "13:45",
+      "extinguidoEl": "1997-05-01",
+      "superficieHa": 0.5,
+      "arboladaHa": 0.5,
+      "noArboladaHa": 0,
+      "bbox": [
+        39.54117,
+        -0.59056,
+        39.54275,
+        -0.58972
+      ],
+      "centroide": [
+        39.54186,
+        -0.59023
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1997VL0051",
+      "idMinisterio": "1997460051",
+      "anyo": 1997,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Vigilante fijo",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "1997-07-08",
+      "horaDeteccion": "12:40",
+      "extinguidoEl": "1997-07-08",
+      "superficieHa": 0.7,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.7,
+      "bbox": [
+        39.56344,
+        -0.56507,
+        39.56454,
+        -0.56388
+      ],
+      "centroide": [
+        39.56396,
+        -0.56442
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1997VL0063",
+      "idMinisterio": "1997460063",
+      "anyo": 1997,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Agente forestal",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "1997-07-13",
+      "horaDeteccion": "14:00",
+      "extinguidoEl": "1997-07-13",
+      "superficieHa": 0.6,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.6,
+      "bbox": [
+        39.56486,
+        -0.59066,
+        39.56576,
+        -0.58947
+      ],
+      "centroide": [
+        39.56541,
+        -0.59012
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1997VL0144",
+      "idMinisterio": "1997460144",
+      "anyo": 1997,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Vigilante fijo",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "1997-11-10",
+      "horaDeteccion": null,
+      "extinguidoEl": "1997-11-10",
+      "superficieHa": 0.1,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.1,
+      "bbox": [
+        39.55713,
+        -0.5651,
+        39.55738,
+        -0.56449
+      ],
+      "centroide": [
+        39.55727,
+        -0.56484
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1998VL0054",
+      "idMinisterio": "1998460054",
+      "anyo": 1998,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "LA MALLA",
+      "deteccion": "Otros",
+      "causa": "rayo",
+      "causaOriginal": "Rayo",
+      "detectadoEl": "1998-04-26",
+      "horaDeteccion": "15:00",
+      "extinguidoEl": "1998-04-26",
+      "superficieHa": 2,
+      "arboladaHa": 0,
+      "noArboladaHa": 2,
+      "bbox": [
+        39.54229,
+        -0.58971,
+        39.54335,
+        -0.58681
+      ],
+      "centroide": [
+        39.54293,
+        -0.58835
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1998VL0075",
+      "idMinisterio": "1998460075",
+      "anyo": 1998,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "MAS DE ESCOTO",
+      "deteccion": "Otros",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "1998-07-04",
+      "horaDeteccion": "13:10",
+      "extinguidoEl": "1998-07-04",
+      "superficieHa": 0.2,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.2,
+      "bbox": [
+        39.5516,
+        -0.58449,
+        39.55199,
+        -0.58384
+      ],
+      "centroide": [
+        39.55178,
+        -0.58413
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "1999VL0008",
+      "idMinisterio": "1999460008",
+      "anyo": 1999,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "MASIA PEÑOT",
+      "deteccion": "Agente forestal",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "1999-02-03",
+      "horaDeteccion": "13:00",
+      "extinguidoEl": "1999-02-03",
+      "superficieHa": 0.55,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.55,
+      "bbox": [
+        39.53786,
+        -0.53831,
+        39.53895,
+        -0.53745
+      ],
+      "centroide": [
+        39.5385,
+        -0.53791
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2000VL0020",
+      "idMinisterio": "2000460020",
+      "anyo": 2000,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "RIBERA TURIA",
+      "deteccion": "Otros",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2000-02-21",
+      "horaDeteccion": "12:30",
+      "extinguidoEl": "2000-02-21",
+      "superficieHa": 2,
+      "arboladaHa": 0.1,
+      "noArboladaHa": 1.9,
+      "bbox": [
+        39.53055,
+        -0.53812,
+        39.53418,
+        -0.53656
+      ],
+      "centroide": [
+        39.53235,
+        -0.53738
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2000VL0210",
+      "idMinisterio": "2000460210",
+      "anyo": 2000,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "CANTERA CARASOLES",
+      "deteccion": "Llamada particular",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2000-07-27",
+      "horaDeteccion": "12:10",
+      "extinguidoEl": "2000-07-27",
+      "superficieHa": 0.12,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.12,
+      "bbox": [
+        39.51361,
+        -0.54296,
+        39.51391,
+        -0.54236
+      ],
+      "centroide": [
+        39.51374,
+        -0.54264
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2000VL0286",
+      "idMinisterio": "2000460286",
+      "anyo": 2000,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "PTE. DE RIBARROJA",
+      "deteccion": "Otros",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2000-09-21",
+      "horaDeteccion": "13:40",
+      "extinguidoEl": "2000-09-21",
+      "superficieHa": 0.15,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.15,
+      "bbox": [
+        39.54892,
+        -0.56147,
+        39.54959,
+        -0.56068
+      ],
+      "centroide": [
+        39.54921,
+        -0.56102
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2000VL0296",
+      "idMinisterio": "2000460296",
+      "anyo": 2000,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "EL FLARE",
+      "deteccion": "Llamada particular",
+      "causa": "rayo",
+      "causaOriginal": "Rayo",
+      "detectadoEl": "2000-10-06",
+      "horaDeteccion": null,
+      "extinguidoEl": "2000-10-06",
+      "superficieHa": 0.01,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.01,
+      "bbox": [
+        39.53138,
+        -0.57783,
+        39.53143,
+        -0.57762
+      ],
+      "centroide": [
+        39.5314,
+        -0.57772
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2001VL0169",
+      "idMinisterio": "2001460169",
+      "anyo": 2001,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "VCIA LA BELLA-R.TURI",
+      "deteccion": "Vigilante fijo",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2001-08-29",
+      "horaDeteccion": "13:22",
+      "extinguidoEl": "2001-08-29",
+      "superficieHa": 0.2,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.2,
+      "bbox": [
+        39.53547,
+        -0.5261,
+        39.53621,
+        -0.52535
+      ],
+      "centroide": [
+        39.53586,
+        -0.52569
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2002VL0267",
+      "idMinisterio": "2002460267",
+      "anyo": 2002,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Vigilante móvil",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2002-06-23",
+      "horaDeteccion": "13:20",
+      "extinguidoEl": "2002-06-23",
+      "superficieHa": 0.2,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.2,
+      "bbox": [
+        39.47913,
+        -0.56204,
+        39.4795,
+        -0.5614
+      ],
+      "centroide": [
+        39.47932,
+        -0.56176
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2003VL0030",
+      "idMinisterio": "2003460030",
+      "anyo": 2003,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "MAS DEL FRARE",
+      "deteccion": null,
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2003-04-26",
+      "horaDeteccion": "14:10",
+      "extinguidoEl": "2003-04-26",
+      "superficieHa": 0.05,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.05,
+      "bbox": [
+        39.53699,
+        -0.57862,
+        39.53715,
+        -0.5782
+      ],
+      "centroide": [
+        39.53709,
+        -0.57839
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2003VL0078",
+      "idMinisterio": "2003460078",
+      "anyo": 2003,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "LA VALLESA",
+      "deteccion": null,
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2003-07-07",
+      "horaDeteccion": "18:24",
+      "extinguidoEl": "2003-07-07",
+      "superficieHa": 0,
+      "arboladaHa": 0,
+      "noArboladaHa": 0,
+      "bbox": [
+        39.54157,
+        -0.52394,
+        39.54164,
+        -0.52386
+      ],
+      "centroide": [
+        39.54161,
+        -0.5239
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2004VL0183",
+      "idMinisterio": "2004460183",
+      "anyo": 2004,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "MONTAÑA DELS FLARES",
+      "deteccion": "Llamada particular",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2004-09-27",
+      "horaDeteccion": "22:25",
+      "extinguidoEl": "2004-09-29",
+      "superficieHa": 0.05,
+      "arboladaHa": 0.05,
+      "noArboladaHa": 0,
+      "bbox": [
+        39.53365,
+        -0.58393,
+        39.53383,
+        -0.58361
+      ],
+      "centroide": [
+        39.53375,
+        -0.58375
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2004VL0193",
+      "idMinisterio": "2004460193",
+      "anyo": 2004,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "EL POTRÓS",
+      "deteccion": "Vigilante móvil",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2004-10-17",
+      "horaDeteccion": "13:20",
+      "extinguidoEl": "2004-10-17",
+      "superficieHa": 0.02,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.02,
+      "bbox": [
+        39.47928,
+        -0.57719,
+        39.47943,
+        -0.57701
+      ],
+      "centroide": [
+        39.47935,
+        -0.57708
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2004VL0210",
+      "idMinisterio": "2004460210",
+      "anyo": 2004,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "PLA DE TOCHAR",
+      "deteccion": "Llamada particular",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2004-11-11",
+      "horaDeteccion": "17:00",
+      "extinguidoEl": "2004-11-11",
+      "superficieHa": 0.05,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.05,
+      "bbox": [
+        39.514,
+        -0.54993,
+        39.51419,
+        -0.54954
+      ],
+      "centroide": [
+        39.51409,
+        -0.54971
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2005VL0034",
+      "idMinisterio": "2005460034",
+      "anyo": 2005,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "ELS LLOBETS",
+      "deteccion": "Llamada particular",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2005-02-20",
+      "horaDeteccion": "15:31",
+      "extinguidoEl": "2005-02-20",
+      "superficieHa": 0.25,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.25,
+      "bbox": [
+        39.52059,
+        -0.58432,
+        39.52155,
+        -0.58371
+      ],
+      "centroide": [
+        39.52104,
+        -0.5841
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2005VL0204",
+      "idMinisterio": "2005460204",
+      "anyo": 2005,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "CAMP DE TIRO DE LEVANTE",
+      "deteccion": "Llamada particular",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2005-06-12",
+      "horaDeteccion": "17:03",
+      "extinguidoEl": "2005-06-12",
+      "superficieHa": 0.01,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.01,
+      "bbox": [
+        39.51386,
+        -0.57836,
+        39.51397,
+        -0.5782
+      ],
+      "centroide": [
+        39.51392,
+        -0.57828
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2005VL0314",
+      "idMinisterio": "2005460314",
+      "anyo": 2005,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "CUEVA DEL MORENO",
+      "deteccion": "112",
+      "causa": "rayo",
+      "causaOriginal": "Rayo",
+      "detectadoEl": "2005-08-15",
+      "horaDeteccion": "16:50",
+      "extinguidoEl": "2005-08-15",
+      "superficieHa": 0.8,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.8,
+      "bbox": [
+        39.52186,
+        -0.55861,
+        39.5231,
+        -0.5572
+      ],
+      "centroide": [
+        39.52243,
+        -0.55794
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2006VL0039",
+      "idMinisterio": "2006460039",
+      "anyo": 2006,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "SASTRE",
+      "deteccion": "Llamada particular",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2006-04-12",
+      "horaDeteccion": null,
+      "extinguidoEl": "2006-04-12",
+      "superficieHa": 1.4,
+      "arboladaHa": 0,
+      "noArboladaHa": 1.4,
+      "bbox": [
+        39.55618,
+        -0.58894,
+        39.55774,
+        -0.58685
+      ],
+      "centroide": [
+        39.55693,
+        -0.58764
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2006VL0064",
+      "idMinisterio": "2006460064",
+      "anyo": 2006,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "RÍO TURIA",
+      "deteccion": "112",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2006-05-28",
+      "horaDeteccion": "14:36",
+      "extinguidoEl": "2006-05-28",
+      "superficieHa": 0.1,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.1,
+      "bbox": [
+        39.54933,
+        -0.5671,
+        39.54959,
+        -0.56629
+      ],
+      "centroide": [
+        39.54948,
+        -0.56671
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2007VL0068",
+      "idMinisterio": "2007460068",
+      "anyo": 2007,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "POZA",
+      "deteccion": "Otros",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2007-05-19",
+      "horaDeteccion": "17:37",
+      "extinguidoEl": "2007-05-19",
+      "superficieHa": 0.7,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.7,
+      "bbox": [
+        39.52625,
+        -0.55292,
+        39.52695,
+        -0.5512
+      ],
+      "centroide": [
+        39.52665,
+        -0.55204
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2007VL0094",
+      "idMinisterio": "2007460094",
+      "anyo": 2007,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "EL QUINT",
+      "deteccion": "112",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2007-06-14",
+      "horaDeteccion": "19:00",
+      "extinguidoEl": "2007-06-15",
+      "superficieHa": 2.3,
+      "arboladaHa": 0.05,
+      "noArboladaHa": 2.25,
+      "bbox": [
+        39.55008,
+        -0.55546,
+        39.55129,
+        -0.55146
+      ],
+      "centroide": [
+        39.55078,
+        -0.55328
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2007VL0137",
+      "idMinisterio": "2007460137",
+      "anyo": 2007,
+      "municipio": "Paterna",
+      "propio": false,
+      "paraje": "LA VALLESA DE MANDOR",
+      "deteccion": "112",
+      "causa": "rayo",
+      "causaOriginal": "Rayo",
+      "detectadoEl": "2007-08-10",
+      "horaDeteccion": "15:45",
+      "extinguidoEl": "2007-08-10",
+      "superficieHa": 0.2,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.2,
+      "bbox": [
+        39.52716,
+        -0.51876,
+        39.52801,
+        -0.51818
+      ],
+      "centroide": [
+        39.5276,
+        -0.51846
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2007VL0163",
+      "idMinisterio": "2007460163",
+      "anyo": 2007,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "POZO DE LORIGUILLA",
+      "deteccion": "Agente forestal",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2007-09-21",
+      "horaDeteccion": "17:12",
+      "extinguidoEl": "2007-09-21",
+      "superficieHa": 0.04,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.04,
+      "bbox": [
+        39.55761,
+        -0.58935,
+        39.55828,
+        -0.58842
+      ],
+      "centroide": [
+        39.55794,
+        -0.58892
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2008VL0036",
+      "idMinisterio": "2008460036",
+      "anyo": 2008,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "MAS DE TRAVER",
+      "deteccion": "112",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2008-04-05",
+      "horaDeteccion": "19:30",
+      "extinguidoEl": "2008-04-05",
+      "superficieHa": 0.16,
+      "arboladaHa": 0.16,
+      "noArboladaHa": 0,
+      "bbox": [
+        39.542,
+        -0.53619,
+        39.5423,
+        -0.53532
+      ],
+      "centroide": [
+        39.54219,
+        -0.53571
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2008VL0044",
+      "idMinisterio": "2008460044",
+      "anyo": 2008,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "VALENCIA LA VELLA",
+      "deteccion": "Otros",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2008-04-12",
+      "horaDeteccion": null,
+      "extinguidoEl": "2008-04-12",
+      "superficieHa": 0.16,
+      "arboladaHa": 0.16,
+      "noArboladaHa": 0,
+      "bbox": [
+        39.53831,
+        -0.52805,
+        39.53871,
+        -0.52753
+      ],
+      "centroide": [
+        39.53849,
+        -0.5278
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2009VL0019",
+      "idMinisterio": "2009460019",
+      "anyo": 2009,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "RÍO TURIA - MASÍA TRAVER",
+      "deteccion": "112",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2009-03-17",
+      "horaDeteccion": "11:20",
+      "extinguidoEl": "2009-03-17",
+      "superficieHa": 0.15,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.15,
+      "bbox": [
+        39.54291,
+        -0.53812,
+        39.54327,
+        -0.53744
+      ],
+      "centroide": [
+        39.5431,
+        -0.53778
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2009VL0045",
+      "idMinisterio": "2009460045",
+      "anyo": 2009,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "MASÍA TRAVER - TURIA",
+      "deteccion": "112",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2009-05-05",
+      "horaDeteccion": "17:15",
+      "extinguidoEl": "2009-05-05",
+      "superficieHa": 0.2,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.2,
+      "bbox": [
+        39.54176,
+        -0.53877,
+        39.54222,
+        -0.53801
+      ],
+      "centroide": [
+        39.54193,
+        -0.53833
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2009VL0082",
+      "idMinisterio": "2009460082",
+      "anyo": 2009,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "LA BOTALLA",
+      "deteccion": "112",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2009-06-09",
+      "horaDeteccion": "10:11",
+      "extinguidoEl": "2009-06-09",
+      "superficieHa": 0.67,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.67,
+      "bbox": [
+        39.55031,
+        -0.57065,
+        39.55108,
+        -0.56865
+      ],
+      "centroide": [
+        39.55071,
+        -0.5697
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2009VL0134",
+      "idMinisterio": "2009460134",
+      "anyo": 2009,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "COLONIA DIAMANTE",
+      "deteccion": "112",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2009-07-23",
+      "horaDeteccion": "14:25",
+      "extinguidoEl": "2009-07-23",
+      "superficieHa": 0.8,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.8,
+      "bbox": [
+        39.55074,
+        -0.5773,
+        39.55161,
+        -0.57523
+      ],
+      "centroide": [
+        39.55116,
+        -0.57619
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2010VL0021",
+      "idMinisterio": "2010460021",
+      "anyo": 2010,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "LA LLOVATERA - EL POLVORÍN",
+      "deteccion": "112",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2010-04-04",
+      "horaDeteccion": "17:35",
+      "extinguidoEl": "2010-04-04",
+      "superficieHa": 0.01,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.01,
+      "bbox": [
+        39.51665,
+        -0.5359,
+        39.51675,
+        -0.53573
+      ],
+      "centroide": [
+        39.5167,
+        -0.53581
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2010VL0034",
+      "idMinisterio": "2010460034",
+      "anyo": 2010,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "SEMINAR",
+      "deteccion": "Aeronave",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2010-05-19",
+      "horaDeteccion": "17:00",
+      "extinguidoEl": "2010-05-19",
+      "superficieHa": 0.12,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.12,
+      "bbox": [
+        39.53784,
+        -0.56347,
+        39.53841,
+        -0.56302
+      ],
+      "centroide": [
+        39.53805,
+        -0.56321
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2010VL0038",
+      "idMinisterio": "2010460038",
+      "anyo": 2010,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "MAS DE TRAVER",
+      "deteccion": "112",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2010-05-21",
+      "horaDeteccion": "19:17",
+      "extinguidoEl": "2010-05-21",
+      "superficieHa": 0.02,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.02,
+      "bbox": [
+        39.54207,
+        -0.53982,
+        39.54229,
+        -0.53967
+      ],
+      "centroide": [
+        39.54218,
+        -0.53973
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2011VL0061",
+      "idMinisterio": "2011460061",
+      "anyo": 2011,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "VALENCIA LA VELLA",
+      "deteccion": "112",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2011-04-05",
+      "horaDeteccion": "18:22",
+      "extinguidoEl": "2011-04-05",
+      "superficieHa": 0.05,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.05,
+      "bbox": [
+        39.54026,
+        -0.53384,
+        39.54051,
+        -0.53353
+      ],
+      "centroide": [
+        39.54038,
+        -0.53365
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2011VL0074",
+      "idMinisterio": "2011460074",
+      "anyo": 2011,
+      "municipio": "Vilamarxant",
+      "propio": false,
+      "paraje": "PERPYNATET Y PUENTE HIERRO",
+      "deteccion": "Vigilante fijo",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2011-05-09",
+      "horaDeteccion": "16:27",
+      "extinguidoEl": "2011-05-09",
+      "superficieHa": 0.46,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.46,
+      "bbox": [
+        39.56317,
+        -0.59249,
+        39.56387,
+        -0.5909
+      ],
+      "centroide": [
+        39.56353,
+        -0.59182
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2011VL0075",
+      "idMinisterio": "2011460075",
+      "anyo": 2011,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "SASTRE",
+      "deteccion": "Vigilante fijo",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2011-05-09",
+      "horaDeteccion": "16:27",
+      "extinguidoEl": "2011-05-09",
+      "superficieHa": 0.24,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.24,
+      "bbox": [
+        39.5606,
+        -0.58912,
+        39.56119,
+        -0.5883
+      ],
+      "centroide": [
+        39.56097,
+        -0.58875
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2011VL0119",
+      "idMinisterio": "2011460119",
+      "anyo": 2011,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "LLOBATERA",
+      "deteccion": "112",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2011-08-03",
+      "horaDeteccion": "12:00",
+      "extinguidoEl": "2011-08-04",
+      "superficieHa": 12.5,
+      "arboladaHa": 2,
+      "noArboladaHa": 10.5,
+      "bbox": [
+        39.51635,
+        -0.54429,
+        39.51967,
+        -0.53216
+      ],
+      "centroide": [
+        39.51792,
+        -0.53844
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2011VL0193",
+      "idMinisterio": "2011460193",
+      "anyo": 2011,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "BARRANCO PEDRERA",
+      "deteccion": "Vigilante móvil",
+      "causa": "rayo",
+      "causaOriginal": "Rayo",
+      "detectadoEl": "2011-11-01",
+      "horaDeteccion": "14:22",
+      "extinguidoEl": "2011-11-01",
+      "superficieHa": 0.02,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.02,
+      "bbox": [
+        39.53865,
+        -0.54853,
+        39.5388,
+        -0.54833
+      ],
+      "centroide": [
+        39.53873,
+        -0.54841
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2012VL0009",
+      "idMinisterio": "2012460009",
+      "anyo": 2012,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "MAS DE TRAVEU",
+      "deteccion": "Llamada particular",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2012-01-20",
+      "horaDeteccion": "16:00",
+      "extinguidoEl": "2012-01-20",
+      "superficieHa": 0.05,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.05,
+      "bbox": [
+        39.54286,
+        -0.53802,
+        39.54305,
+        -0.53746
+      ],
+      "centroide": [
+        39.54295,
+        -0.53773
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2012VL0105",
+      "idMinisterio": "2012460105",
+      "anyo": 2012,
+      "municipio": "Loriguilla",
+      "propio": false,
+      "paraje": "LA BARRAQUETA",
+      "deteccion": "112",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2012-04-26",
+      "horaDeteccion": "15:30",
+      "extinguidoEl": "2012-04-26",
+      "superficieHa": 0.8,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.8,
+      "bbox": [
+        39.50099,
+        -0.577,
+        39.50215,
+        -0.57575
+      ],
+      "centroide": [
+        39.50154,
+        -0.57631
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2012VL0133",
+      "idMinisterio": "2012460133",
+      "anyo": 2012,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "MAS DEL SASTRE",
+      "deteccion": "112",
+      "causa": "rayo",
+      "causaOriginal": "Rayo",
+      "detectadoEl": "2012-05-21",
+      "horaDeteccion": null,
+      "extinguidoEl": "2012-05-21",
+      "superficieHa": 1,
+      "arboladaHa": 0,
+      "noArboladaHa": 1,
+      "bbox": [
+        39.55556,
+        -0.58758,
+        39.55704,
+        -0.58541
+      ],
+      "centroide": [
+        39.55623,
+        -0.58659
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2012VL0160",
+      "idMinisterio": "2012460160",
+      "anyo": 2012,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "LA MURALLETA - TURIA",
+      "deteccion": "112",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2012-06-15",
+      "horaDeteccion": "15:30",
+      "extinguidoEl": "2012-06-15",
+      "superficieHa": 0.5,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.5,
+      "bbox": [
+        39.54868,
+        -0.5671,
+        39.54991,
+        -0.56495
+      ],
+      "centroide": [
+        39.54917,
+        -0.56585
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2012VL0228",
+      "idMinisterio": "2012460228",
+      "anyo": 2012,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "BCO. LA PEDRERA",
+      "deteccion": "112",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2012-09-24",
+      "horaDeteccion": "13:54",
+      "extinguidoEl": "2012-09-27",
+      "superficieHa": 60,
+      "arboladaHa": 0,
+      "noArboladaHa": 60,
+      "bbox": [
+        39.52672,
+        -0.55486,
+        39.533,
+        -0.53598
+      ],
+      "centroide": [
+        39.52955,
+        -0.54455
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2012VL0237",
+      "idMinisterio": "2012460237",
+      "anyo": 2012,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "ELS POUS",
+      "deteccion": "Agente forestal",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2012-09-26",
+      "horaDeteccion": "11:30",
+      "extinguidoEl": "2012-09-27",
+      "superficieHa": 0.25,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.25,
+      "bbox": [
+        39.52446,
+        -0.51487,
+        39.52493,
+        -0.51347
+      ],
+      "centroide": [
+        39.52471,
+        -0.51429
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2012VL0240",
+      "idMinisterio": "2012460240",
+      "anyo": 2012,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "POLVORÍN",
+      "deteccion": "112",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2012-10-07",
+      "horaDeteccion": "15:35",
+      "extinguidoEl": "2012-10-07",
+      "superficieHa": 0.12,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.12,
+      "bbox": [
+        39.51936,
+        -0.54548,
+        39.52097,
+        -0.53963
+      ],
+      "centroide": [
+        39.52017,
+        -0.54252
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2013VL0020",
+      "idMinisterio": "2013460020",
+      "anyo": 2013,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "MASIA TRAVER",
+      "deteccion": "112",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2013-03-20",
+      "horaDeteccion": "12:34",
+      "extinguidoEl": "2013-03-20",
+      "superficieHa": 0.01,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.01,
+      "bbox": [
+        39.54328,
+        -0.54186,
+        39.54335,
+        -0.54174
+      ],
+      "centroide": [
+        39.54332,
+        -0.54179
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2013VL0064",
+      "idMinisterio": "2013460064",
+      "anyo": 2013,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "BASSETA BLANCA",
+      "deteccion": "Llamada particular",
+      "causa": "rayo",
+      "causaOriginal": "Rayo",
+      "detectadoEl": "2013-06-21",
+      "horaDeteccion": "20:32",
+      "extinguidoEl": "2013-06-21",
+      "superficieHa": 0.15,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.15,
+      "bbox": [
+        39.50689,
+        -0.57878,
+        39.50726,
+        -0.57813
+      ],
+      "centroide": [
+        39.50707,
+        -0.57845
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2014VL0157",
+      "idMinisterio": "2014460157",
+      "anyo": 2014,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "VALLESA MANDOR",
+      "deteccion": "112",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2014-06-13",
+      "horaDeteccion": "14:22",
+      "extinguidoEl": "2014-06-13",
+      "superficieHa": 34.34,
+      "arboladaHa": 16.31,
+      "noArboladaHa": 18.03,
+      "bbox": [
+        39.53058,
+        -0.53272,
+        39.5402,
+        -0.51643
+      ],
+      "centroide": [
+        39.53509,
+        -0.52508
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2014VL0231",
+      "idMinisterio": "2014460231",
+      "anyo": 2014,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "PLA DE TOCHAR",
+      "deteccion": "Llamada particular",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2014-09-09",
+      "horaDeteccion": "17:57",
+      "extinguidoEl": "2014-09-09",
+      "superficieHa": 0.1,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.1,
+      "bbox": [
+        39.51881,
+        -0.54699,
+        39.51911,
+        -0.54672
+      ],
+      "centroide": [
+        39.51895,
+        -0.54686
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2015VL0036",
+      "idMinisterio": "2015460036",
+      "anyo": 2015,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": null,
+      "deteccion": "Vigilante fijo",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencias y Causas accidentales",
+      "detectadoEl": "2015-05-01",
+      "horaDeteccion": "16:15",
+      "extinguidoEl": "2015-05-01",
+      "superficieHa": 0.35,
+      "arboladaHa": 0.35,
+      "noArboladaHa": 0,
+      "bbox": [
+        39.54181,
+        -0.53647,
+        39.54231,
+        -0.53517
+      ],
+      "centroide": [
+        39.54209,
+        -0.53579
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2016VL0080",
+      "idMinisterio": "2016460080",
+      "anyo": 2016,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "València la Vella",
+      "deteccion": null,
+      "causa": "negligencia",
+      "causaOriginal": "Negligencia",
+      "detectadoEl": "2016-05-14",
+      "horaDeteccion": "15:40",
+      "extinguidoEl": "2016-05-14",
+      "superficieHa": 0.8,
+      "arboladaHa": 0.8,
+      "noArboladaHa": 0,
+      "bbox": [
+        39.54029,
+        -0.53555,
+        39.54123,
+        -0.53394
+      ],
+      "centroide": [
+        39.54076,
+        -0.53466
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2016VL0116",
+      "idMinisterio": "2016460116",
+      "anyo": 2016,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "Río Túria",
+      "deteccion": null,
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2016-06-18",
+      "horaDeteccion": null,
+      "extinguidoEl": "2016-06-18",
+      "superficieHa": 0.56,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.56,
+      "bbox": [
+        39.54961,
+        -0.55893,
+        39.55037,
+        -0.55795
+      ],
+      "centroide": [
+        39.55002,
+        -0.55844
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2017VL0036",
+      "idMinisterio": "2017460036",
+      "anyo": 2017,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "Valencia la Vella",
+      "deteccion": null,
+      "causa": "intencionado",
+      "causaOriginal": "Intencionada",
+      "detectadoEl": "2017-05-06",
+      "horaDeteccion": "20:03",
+      "extinguidoEl": "2017-05-06",
+      "superficieHa": 0.15,
+      "arboladaHa": 0.15,
+      "noArboladaHa": 0,
+      "bbox": [
+        39.5401,
+        -0.53002,
+        39.54039,
+        -0.52915
+      ],
+      "centroide": [
+        39.54026,
+        -0.52959
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2017VL0145",
+      "idMinisterio": "2017460145",
+      "anyo": 2017,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "Valencia la Vella",
+      "deteccion": null,
+      "causa": "sinClasificar",
+      "causaOriginal": "Otras",
+      "detectadoEl": "2017-08-11",
+      "horaDeteccion": "15:55",
+      "extinguidoEl": "2017-08-11",
+      "superficieHa": 0.09,
+      "arboladaHa": 0.09,
+      "noArboladaHa": 0,
+      "bbox": [
+        39.53072,
+        -0.52776,
+        39.5308,
+        -0.52766
+      ],
+      "centroide": [
+        39.53076,
+        -0.5277
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2018VL0078",
+      "idMinisterio": "2018460078",
+      "anyo": 2018,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "La Perla d'Alcedo",
+      "deteccion": null,
+      "causa": "negligencia",
+      "causaOriginal": "Negligencia",
+      "detectadoEl": "2018-05-19",
+      "horaDeteccion": "12:23",
+      "extinguidoEl": "2018-05-19",
+      "superficieHa": 0.045,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.045,
+      "bbox": [
+        39.54334,
+        -0.53797,
+        39.54377,
+        -0.53767
+      ],
+      "centroide": [
+        39.54352,
+        -0.5378
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2018VL0191",
+      "idMinisterio": "2018460191",
+      "anyo": 2018,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "Botaia",
+      "deteccion": null,
+      "causa": "intencionado",
+      "causaOriginal": "Intencionada",
+      "detectadoEl": "2018-12-31",
+      "horaDeteccion": "16:57",
+      "extinguidoEl": "2018-12-31",
+      "superficieHa": 0.0065,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.0065,
+      "bbox": [
+        39.54923,
+        -0.56714,
+        39.5494,
+        -0.56699
+      ],
+      "centroide": [
+        39.54932,
+        -0.56706
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2019VL0036",
+      "idMinisterio": "2019460036",
+      "anyo": 2019,
+      "municipio": "RIBA-ROJA DEL TÚRIA",
+      "propio": true,
+      "paraje": "El Toxar",
+      "deteccion": "Llamada particular",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencia",
+      "detectadoEl": "2019-03-17",
+      "horaDeteccion": "16:34",
+      "extinguidoEl": "2019-03-17",
+      "superficieHa": 0.48,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.48,
+      "bbox": [
+        39.51556,
+        -0.55797,
+        39.51637,
+        -0.55677
+      ],
+      "centroide": [
+        39.51596,
+        -0.55739
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2019VL0044",
+      "idMinisterio": "2019460044",
+      "anyo": 2019,
+      "municipio": "RIBA-ROJA DEL TÚRIA",
+      "propio": true,
+      "paraje": "El Calvari/Posa",
+      "deteccion": "Llamada particular",
+      "causa": "intencionado",
+      "causaOriginal": "intencionado",
+      "detectadoEl": "2019-03-27",
+      "horaDeteccion": "15:24",
+      "extinguidoEl": "2019-03-27",
+      "superficieHa": 0.06,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.06,
+      "bbox": [
+        39.53292,
+        -0.56925,
+        39.53314,
+        -0.56904
+      ],
+      "centroide": [
+        39.53303,
+        -0.56912
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2019VL0072",
+      "idMinisterio": "2019460072",
+      "anyo": 2019,
+      "municipio": "RIBA-ROJA DEL TÚRIA",
+      "propio": true,
+      "paraje": "Los Arrozales",
+      "deteccion": "Llamada particular",
+      "causa": "intencionado",
+      "causaOriginal": "intencionado",
+      "detectadoEl": "2019-06-07",
+      "horaDeteccion": "12:32",
+      "extinguidoEl": "2019-06-07",
+      "superficieHa": 0.58,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.58,
+      "bbox": [
+        39.54917,
+        -0.56626,
+        39.54994,
+        -0.56457
+      ],
+      "centroide": [
+        39.54946,
+        -0.56527
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2020VL0006",
+      "idMinisterio": "2020460005",
+      "anyo": 2020,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "El Seminar",
+      "deteccion": "Llamada particular",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencia",
+      "detectadoEl": "2020-02-03",
+      "horaDeteccion": "17:56",
+      "extinguidoEl": "2020-02-03",
+      "superficieHa": 0.007,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.007,
+      "bbox": [
+        39.54033,
+        -0.56774,
+        39.54047,
+        -0.56763
+      ],
+      "centroide": [
+        39.5404,
+        -0.56768
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2020VL0025",
+      "idMinisterio": "2020460018",
+      "anyo": 2020,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "perpinyanet",
+      "deteccion": "Observatorio foresta",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2020-03-06",
+      "horaDeteccion": "12:30",
+      "extinguidoEl": "2020-03-06",
+      "superficieHa": 20,
+      "arboladaHa": 10,
+      "noArboladaHa": 10,
+      "bbox": [
+        39.54992,
+        -0.59046,
+        39.5582,
+        -0.5688
+      ],
+      "centroide": [
+        39.55331,
+        -0.579
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2021VL0039",
+      "idMinisterio": "2021460034",
+      "anyo": 2021,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "El Moliner.",
+      "deteccion": "Observatorio foresta",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencia",
+      "detectadoEl": "2021-03-31",
+      "horaDeteccion": "13:14",
+      "extinguidoEl": "2021-03-31",
+      "superficieHa": 0.045,
+      "arboladaHa": 0.045,
+      "noArboladaHa": 0,
+      "bbox": [
+        39.50004,
+        -0.58816,
+        39.50045,
+        -0.58782
+      ],
+      "centroide": [
+        39.50022,
+        -0.58799
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2021VL0053",
+      "idMinisterio": "2021460045",
+      "anyo": 2021,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "Valencia la Vella - Barranc de la Pedrera",
+      "deteccion": "Llamada particular",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2021-05-21",
+      "horaDeteccion": "20:03",
+      "extinguidoEl": "2021-05-22",
+      "superficieHa": 0.5,
+      "arboladaHa": 0.5,
+      "noArboladaHa": 0,
+      "bbox": [
+        39.53971,
+        -0.53538,
+        39.54025,
+        -0.53325
+      ],
+      "centroide": [
+        39.53997,
+        -0.53415
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2021VL0065",
+      "idMinisterio": "2021460055",
+      "anyo": 2021,
+      "municipio": "Manises",
+      "propio": false,
+      "paraje": "La Presa",
+      "deteccion": "Observatorio foresta",
+      "causa": "sinClasificar",
+      "causaOriginal": "Otras Causas",
+      "detectadoEl": "2021-06-21",
+      "horaDeteccion": "12:20",
+      "extinguidoEl": "2021-06-21",
+      "superficieHa": 0.1,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.1,
+      "bbox": [
+        39.51799,
+        -0.51995,
+        39.51891,
+        -0.51888
+      ],
+      "centroide": [
+        39.5184,
+        -0.51939
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2022VL0041",
+      "idMinisterio": "2022460034",
+      "anyo": 2022,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "Riu Túria",
+      "deteccion": "Llamada particular",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencia",
+      "detectadoEl": "2022-05-15",
+      "horaDeteccion": "18:10",
+      "extinguidoEl": "2022-05-15",
+      "superficieHa": 0.008,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.008,
+      "bbox": [
+        39.5404,
+        -0.52999,
+        39.54053,
+        -0.52969
+      ],
+      "centroide": [
+        39.54046,
+        -0.52985
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2022VL0053",
+      "idMinisterio": "2022460045",
+      "anyo": 2022,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "Rambla Redona",
+      "deteccion": "Llamada particular",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2022-06-04",
+      "horaDeteccion": "10:45",
+      "extinguidoEl": "2022-06-04",
+      "superficieHa": 0.3826,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.3826,
+      "bbox": [
+        39.56335,
+        -0.59107,
+        39.56393,
+        -0.58958
+      ],
+      "centroide": [
+        39.56365,
+        -0.59028
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2022VL0072",
+      "idMinisterio": "2022460061",
+      "anyo": 2022,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "Valencia la Vella",
+      "deteccion": "Llamada particular",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencia",
+      "detectadoEl": "2022-06-16",
+      "horaDeteccion": "21:27",
+      "extinguidoEl": "2022-06-16",
+      "superficieHa": 0.0225,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.0225,
+      "bbox": [
+        39.54099,
+        -0.53406,
+        39.54124,
+        -0.5339
+      ],
+      "centroide": [
+        39.5411,
+        -0.53398
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2022VL0074",
+      "idMinisterio": "2022460064",
+      "anyo": 2022,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "Perpinyonet",
+      "deteccion": "Llamada particular",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2022-06-18",
+      "horaDeteccion": "08:50",
+      "extinguidoEl": "2022-06-18",
+      "superficieHa": 0.0005,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.0005,
+      "bbox": [
+        39.55811,
+        -0.58948,
+        39.55814,
+        -0.58945
+      ],
+      "centroide": [
+        39.55812,
+        -0.58947
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2022VL0080",
+      "idMinisterio": "2022460070",
+      "anyo": 2022,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "el Mas de Traver",
+      "deteccion": "Llamada particular",
+      "causa": "sinClasificar",
+      "causaOriginal": "Otras Causas",
+      "detectadoEl": "2022-06-23",
+      "horaDeteccion": "17:04",
+      "extinguidoEl": "2022-06-23",
+      "superficieHa": 0.11,
+      "arboladaHa": 0.11,
+      "noArboladaHa": 0,
+      "bbox": [
+        39.53712,
+        -0.54277,
+        39.53765,
+        -0.54071
+      ],
+      "centroide": [
+        39.53743,
+        -0.54199
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2023VL0039",
+      "idMinisterio": "2023460035",
+      "anyo": 2023,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "la Basseta Blanca",
+      "deteccion": "Llamada particular",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencia",
+      "detectadoEl": "2023-03-12",
+      "horaDeteccion": "12:15",
+      "extinguidoEl": "2023-03-12",
+      "superficieHa": 0.53,
+      "arboladaHa": 0.1,
+      "noArboladaHa": 0.43,
+      "bbox": [
+        39.50665,
+        -0.57888,
+        39.50783,
+        -0.57805
+      ],
+      "centroide": [
+        39.50726,
+        -0.57849
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2023VL0041",
+      "idMinisterio": "2023460037",
+      "anyo": 2023,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "els Cara-sols",
+      "deteccion": "Llamada particular",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencia",
+      "detectadoEl": "2023-03-12",
+      "horaDeteccion": "18:33",
+      "extinguidoEl": "2023-03-12",
+      "superficieHa": 0.0161,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.0161,
+      "bbox": [
+        39.505,
+        -0.54486,
+        39.50522,
+        -0.54467
+      ],
+      "centroide": [
+        39.5051,
+        -0.54476
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2023VL0058",
+      "idMinisterio": "2023460053",
+      "anyo": 2023,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "el Barranc de la Pedrera",
+      "deteccion": "Llamada particular",
+      "causa": "negligencia",
+      "causaOriginal": "Negligencia",
+      "detectadoEl": "2023-03-26",
+      "horaDeteccion": "17:36",
+      "extinguidoEl": "2023-03-26",
+      "superficieHa": 0.053,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.053,
+      "bbox": [
+        39.53721,
+        -0.54563,
+        39.53762,
+        -0.54517
+      ],
+      "centroide": [
+        39.53737,
+        -0.54545
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2023VL0185",
+      "idMinisterio": "2023460172",
+      "anyo": 2023,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "Mas d'Escoto",
+      "deteccion": "Llamada particular",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2023-08-08",
+      "horaDeteccion": "15:59",
+      "extinguidoEl": "2023-08-08",
+      "superficieHa": 0.11,
+      "arboladaHa": 0,
+      "noArboladaHa": 0.11,
+      "bbox": [
+        39.55263,
+        -0.57974,
+        39.55292,
+        -0.57883
+      ],
+      "centroide": [
+        39.55278,
+        -0.57927
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2024VL0113",
+      "idMinisterio": "2024460106",
+      "anyo": 2024,
+      "municipio": "Vilamarxant",
+      "propio": false,
+      "paraje": "Perpinyanet - Riu Túria",
+      "deteccion": "Llamada particular",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2024-04-03",
+      "horaDeteccion": "15:59",
+      "extinguidoEl": "2024-04-04",
+      "superficieHa": 20.9769,
+      "arboladaHa": 0,
+      "noArboladaHa": 20.9769,
+      "bbox": [
+        39.56246,
+        -0.60301,
+        39.56782,
+        -0.5844
+      ],
+      "centroide": [
+        39.56496,
+        -0.59404
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2024VL0142",
+      "idMinisterio": "2024460132",
+      "anyo": 2024,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "Masia de Sant Antoni",
+      "deteccion": "Llamada particular",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2024-04-25",
+      "horaDeteccion": "19:15",
+      "extinguidoEl": "2024-04-26",
+      "superficieHa": 4.0649,
+      "arboladaHa": 0.432,
+      "noArboladaHa": 3.6329,
+      "bbox": [
+        39.54413,
+        -0.54835,
+        39.54713,
+        -0.5436
+      ],
+      "centroide": [
+        39.5457,
+        -0.54609
+      ],
+      "intersecta": true
+    },
+    {
+      "id": "2024VL0155",
+      "idMinisterio": "2024460144",
+      "anyo": 2024,
+      "municipio": "Riba-roja de Túria",
+      "propio": true,
+      "paraje": "els Pagos",
+      "deteccion": "Llamada particular",
+      "causa": "intencionado",
+      "causaOriginal": "Intencionado",
+      "detectadoEl": "2024-05-04",
+      "horaDeteccion": "14:09",
+      "extinguidoEl": "2024-05-06",
+      "superficieHa": 21.7371,
+      "arboladaHa": 3.8811,
+      "noArboladaHa": 17.856,
+      "bbox": [
+        39.54055,
+        -0.54498,
+        39.54918,
+        -0.52879
+      ],
+      "centroide": [
+        39.54514,
+        -0.53735
+      ],
+      "intersecta": true
+    }
+  ],
+  "stats": {
+    "total": 90,
+    "porCausa": {
+      "negligencia": 48,
+      "intencionado": 31,
+      "sinClasificar": 4,
+      "rayo": 7
+    },
+    "porAnyo": {
+      "1993": 4,
+      "1994": 4,
+      "1995": 1,
+      "1996": 1,
+      "1997": 5,
+      "1998": 2,
+      "1999": 1,
+      "2000": 4,
+      "2001": 1,
+      "2002": 1,
+      "2003": 2,
+      "2004": 3,
+      "2005": 3,
+      "2006": 2,
+      "2007": 4,
+      "2008": 2,
+      "2009": 4,
+      "2010": 3,
+      "2011": 5,
+      "2012": 7,
+      "2013": 2,
+      "2014": 2,
+      "2015": 1,
+      "2016": 2,
+      "2017": 2,
+      "2018": 2,
+      "2019": 3,
+      "2020": 2,
+      "2021": 3,
+      "2022": 5,
+      "2023": 4,
+      "2024": 3
+    }
+  }
+}

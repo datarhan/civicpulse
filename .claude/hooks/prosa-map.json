@@ -126,6 +126,14 @@
       "/presupuesto",
       "/quejas"
     ],
+    "incendios-perimetros.json": [
+      "/",
+      "/datos"
+    ],
+    "incendios.json": [
+      "/",
+      "/datos"
+    ],
     "indicadores.json": [
       "/datos",
       "/eficiencia",

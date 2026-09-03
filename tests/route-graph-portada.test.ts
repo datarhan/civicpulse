@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import { resolve } from 'node:path'
 import { readFileSync } from 'node:fs'
-import { construirGrafoRutas, rutasPublicas } from '../scripts/lib/route-graph'
+import { construirGrafoRutas, rutasPublicas, rutasRevisables } from '../scripts/lib/route-graph'
+import { RUTAS_CON_ESTADO, rutaBase } from '../src/scraper/reader-review'
 
 /**
  * La portada tiene que estar en el grafo de rutas.
@@ -63,5 +64,42 @@ describe('el grafo de rutas', () => {
       .filter(([, rutas]) => rutas.has('/'))
       .map(([snap]) => snap)
     expect(suyos.length, 'la portada no alcanza ningún snapshot').toBeGreaterThan(5)
+  })
+})
+
+describe('rutasRevisables — la lista que leen los DOS consumidores', () => {
+  /**
+   * La composición estaba escrita dos veces, en `review-surfaces --all` y en
+   * `check-surfaces`. Una clave que el barrido lee pero el parte no conoce no
+   * se reportaría rancia NUNCA: la prosa de las capas volvería a envejecer en
+   * silencio, que es justo el agujero que estas claves vienen a tapar. Es
+   * también el duplicado favorito de este repositorio —la copia que se arregla
+   * mientras las otras siguen mal—, y por eso `rutasPublicas` vive ya donde
+   * vive.
+   */
+  const grafo = construirGrafoRutas(resolve('src'))
+
+  it('trae las rutas públicas y además las claves con estado', () => {
+    const revisables = rutasRevisables(grafo)
+    for (const r of rutasPublicas(grafo)) expect(revisables).toContain(r)
+    for (const c of RUTAS_CON_ESTADO) expect(revisables).toContain(c)
+    expect(revisables.length).toBe(rutasPublicas(grafo).length + RUTAS_CON_ESTADO.length)
+  })
+
+  it('cada clave con estado apunta a una ruta pública que existe', () => {
+    // Un estado sobre una ruta que no está montada se leería como NO MONTADA
+    // en cada barrido, para siempre.
+    const publicas = rutasPublicas(grafo)
+    for (const c of RUTAS_CON_ESTADO) expect(publicas).toContain(rutaBase(c))
+  })
+
+  it('los dos guiones que la consumen la piden a la función compartida', () => {
+    // Contra la fuente, porque el defecto que esto vigila es que UNO de los dos
+    // se quede con su propia copia.
+    for (const p of ['scripts/review-surfaces.ts', 'scripts/check-surfaces.ts']) {
+      const src = readFileSync(resolve(p), 'utf8')
+      expect(src).toMatch(/rutasRevisables\(/)
+      expect(src).not.toMatch(/\.\.\.RUTAS_CON_ESTADO/)
+    }
   })
 })

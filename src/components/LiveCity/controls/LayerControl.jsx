@@ -20,6 +20,7 @@ export const MAP_LAYERS = [
   { key: 'poi', labelKey: 'map.layer.poi', glyph: '◉' },
   { key: 'quejas', labelKey: 'map.layer.quejas', glyph: '⚑' },
   { key: 'flood', labelKey: 'map.layer.flood', glyph: '≈' },
+  { key: 'incendios', labelKey: 'map.layer.incendios', glyph: '▲' },
 ]
 
 const cardStyle = {
@@ -70,6 +71,11 @@ export function LayerControl({ layers, onToggle }) {
             <button
               key={key}
               type="button"
+              // Asidero estable para la lectura automática: las etiquetas van
+              // traducidas y cambian, la clave de la capa no. La revisión
+              // lectora enciende las capas por aquí para poder leer la prosa
+              // que sólo existe con ellas encendidas.
+              data-capa={key}
               onClick={() => onToggle(key)}
               aria-pressed={on}
               style={chipStyle(on)}

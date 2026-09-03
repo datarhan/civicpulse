@@ -21,6 +21,10 @@ import {
   isReasoningModel,
   extractJsonPayload,
   claudeEnvelopeToRaw,
+  AGY_MODEL_DEFAULT,
+  isFreeBackend,
+  resetRunStats,
+  getRunStats,
 } from '../../src/llm/client'
 
 const TestSchema = z.object({ reply: z.string() })
@@ -463,22 +467,17 @@ describe('LLM client · agy backend config', () => {
   })
 
   /**
-   * The default has to be a model `agy` still recognises, and `gemini-2.5-pro`
-   * is not one. Measured 2026-08-11:
+   * DOS veces se ha quedado atrás este valor —`gemini-2.5-pro` en julio,
+   * `gemini-3.5-flash-medium` en septiembre, cuando la familia 3.5 desapareció
+   * entera del catálogo— y las dos veces ESTE test lo restató y siguió en
+   * verde. Es la regla 1 de DATA_INTEGRITY en directo: un test que repite una
+   * constante no puede enterarse de que la constante dejó de ser cierta
+   * upstream.
    *
-   *   $ agy -p … --model gemini-2.5-pro --sandbox
-   *   Error: invalid model selection … not recognized as a known model
-   *   exit 1
-   *
-   * So every agy call that did not set AGY_MODEL explicitly failed on argv,
-   * before the prompt was ever sent. `hallazgos-pipeline.sh` and
-   * `auto-curate-weekly.sh` were unaffected only because they happen to export
-   * `gemini-3.5-flash-medium` themselves — agy takes the effort baked into the
-   * model string, which is why no `--effort` flag is needed here.
-   *
-   * The old assertion pinned the broken value and stayed green, which is the
-   * failure mode DATA_INTEGRITY.md rule 1 is about: a test restating a constant
-   * cannot notice that the constant stopped being true upstream.
+   * Así que ya no repite el literal: importa la constante. Lo que un test sin
+   * el binario delante puede comprobar es la FORMA (ver el bloque de arriba);
+   * que el modelo siga existiendo lo detecta `freeBackendFallbacks`, en
+   * ejecución.
    */
   it('defaults agyBin to "agy" and agyModel to a model agy recognises', () => {
     delete process.env.AGY_BIN
@@ -486,7 +485,7 @@ describe('LLM client · agy backend config', () => {
     delete process.env.GEMINI_MODEL
     const config = loadConfigFromEnv()
     expect(config.agyBin).toBe('agy')
-    expect(config.agyModel).toBe('gemini-3.5-flash-medium')
+    expect(config.agyModel).toBe(AGY_MODEL_DEFAULT)
   })
 
   it('honors AGY_BIN and AGY_MODEL overrides', () => {
@@ -508,7 +507,7 @@ describe('LLM client · agy backend config', () => {
   it('ignores GEMINI_MODEL — a retired backend cannot pick agy’s model', () => {
     delete process.env.AGY_MODEL
     process.env.GEMINI_MODEL = 'gemini-2.5-pro'
-    expect(loadConfigFromEnv().agyModel).toBe('gemini-3.5-flash-medium')
+    expect(loadConfigFromEnv().agyModel).toBe(AGY_MODEL_DEFAULT)
   })
 })
 
@@ -722,5 +721,53 @@ describe('describeClaudeFailure · un fallo del CLI tiene que decir por qué', (
 
   it('no se queda mudo cuando no hay ni envelope ni stderr', () => {
     expect(describeClaudeFailure(1, '', '').trim().length).toBeGreaterThan(0)
+  })
+})
+
+describe('llm/client — el modelo por defecto de agy, y el respaldo silencioso', () => {
+  /**
+   * El defecto no lo pinamos con un literal: DOS veces ya se ha quedado atrás
+   * —`gemini-2.5-pro` en julio, `gemini-3.5-flash-medium` en septiembre— y las
+   * dos veces el test que lo vigilaba lo restató y siguió en verde. Ahora se
+   * importa la constante: el test comprueba la FORMA que agy exige, que es lo
+   * único que un test sin binario delante puede saber.
+   */
+  it('el defecto lleva el esfuerzo horneado en el id, como pide agy', () => {
+    // `gemini-3.8-flash` a secas lo rechaza: «requires --effort». Por eso
+    // callAgy no pasa --effort, y por eso el sufijo NO es decorativo.
+    expect(AGY_MODEL_DEFAULT).toMatch(/-(low|medium|high)$/)
+  })
+
+  it('el defecto no es de una familia retirada', () => {
+    // Las dos que ya se cayeron. Si el catálogo vuelve a rodar esto no lo
+    // salva —para eso está el registro del respaldo—, pero sí impide
+    // reintroducir una muerta conocida.
+    expect(AGY_MODEL_DEFAULT).not.toMatch(/gemini-2\.5|gemini-3\.5/)
+  })
+
+  it('la configuración usa la constante, no una copia', () => {
+    delete process.env.AGY_MODEL
+    delete process.env.GEMINI_MODEL
+    expect(loadConfigFromEnv().agyModel).toBe(AGY_MODEL_DEFAULT)
+  })
+
+  it('sabe qué backends son de coste cero', () => {
+    // Un respaldo entre gratuitos es una molestia; uno que sale de gratis
+    // hacia medido es una factura. La diferencia hay que poder nombrarla.
+    for (const b of ['agy', 'claude-code', 'gemini', 'ollama'] as const) {
+      expect(isFreeBackend(b)).toBe(true)
+    }
+    for (const b of ['openai', 'anthropic'] as const) {
+      expect(isFreeBackend(b)).toBe(false)
+    }
+  })
+
+  it('las estadísticas cuentan los respaldos que abandonan un backend gratis', () => {
+    // Hoy este contador no existe, y por eso un primario de $0 muerto es
+    // INVISIBLE: la cadena responde con el siguiente, `ok` sube, y
+    // `zeroTokenFailures` no se mueve, así que ZERO_TOKEN_ALARM no puede
+    // saltar. Es exactamente cómo `gemini-3.5-flash-medium` llevaba días roto.
+    resetRunStats()
+    expect(getRunStats().freeBackendFallbacks).toBe(0)
   })
 })

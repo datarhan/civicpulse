@@ -283,6 +283,51 @@ test.describe('Mobile shell (iPhone 13 mini / 375px)', () => {
     )
   })
 
+  test('los paneles del mapa caben DENTRO del mapa, con las capas abiertas', async ({ page }) => {
+    // Ninguna suite miraba esto y por eso llevaba roto. A 375 px el mapa mide
+    // ~277 px de alto y la pila de controles va anclada abajo creciendo hacia
+    // arriba: con los chips y el deslizador de gasto ya se salía 59 px por
+    // encima del borde, y al abrir una capa más el panel acababa FUERA de la
+    // pantalla —inalcanzable, no sólo solapado—. El guardia de scroll
+    // horizontal no lo ve porque el desbordamiento es vertical.
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
+    await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 10000 })
+
+    const chip = page.getByRole('button', { name: /Incendios forestales/i })
+    await chip.first().click()
+    // Por RECUENTO, no por visibilidad: al zoom del móvil los incendios más
+    // pequeños —hay uno de 0,0005 ha— colapsan a un path de un píxel
+    // (`d="M167 123L167 122z"`), que Playwright considera oculto. La capa está
+    // pintando; lo que no sirve es preguntarle si se ve al más diminuto.
+    await expect
+      .poll(async () => page.locator('path.cp-incendio').count(), { timeout: 8000 })
+      .toBeGreaterThan(20)
+
+    const medida = await page.evaluate(() => {
+      const r = (el: Element) => {
+        const b = el.getBoundingClientRect()
+        return { top: Math.round(b.top), bottom: Math.round(b.bottom) }
+      }
+      const mapa = document.querySelector('.leaflet-container')
+      const chips = document.querySelector('[role="group"]')
+      const pila = chips?.parentElement
+      if (!mapa || !chips || !pila) return null
+      return { mapa: r(mapa), pila: r(pila), chips: r(chips), alto: window.innerHeight }
+    })
+
+    // Que la comprobación haya EVALUADO algo: sin los tres nodos no mide nada
+    // y pasaría igual, que es el defecto que este repo ya ha pagado dos veces.
+    expect(medida).not.toBeNull()
+    const m = medida!
+    expect(m.mapa.bottom).toBeGreaterThan(m.mapa.top)
+
+    expect(m.pila.top).toBeGreaterThanOrEqual(m.mapa.top)
+    expect(m.pila.bottom).toBeLessThanOrEqual(m.mapa.bottom)
+    // Y los chips —lo único que permite volver a apagar la capa— visibles.
+    expect(m.chips.top).toBeGreaterThanOrEqual(0)
+    expect(m.chips.bottom).toBeLessThanOrEqual(m.alto)
+  })
+
   test('hamburger opens the sidebar drawer, Escape closes it', async ({ page }) => {
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
     const sidebar = page.locator('.cp-shell-sidebar')

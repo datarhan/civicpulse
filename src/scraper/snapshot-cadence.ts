@@ -161,6 +161,22 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     hint: 'npm run scrape:criminalidad',
   },
   {
+    file: 'incendios.json',
+    cls: 'manual' as const,
+    // El ICV publica una capa anual y con año y pico de desfase: en septiembre
+    // de 2026 la serie termina en 2024. Un presupuesto anual holgado, porque
+    // avisar antes de que exista la entrega siguiente es ruido.
+    maxAgeDays: 400,
+    hint: 'npm run scrape:incendios -- --refetch',
+  },
+  {
+    file: 'incendios-perimetros.json',
+    cls: 'manual' as const,
+    // Sale de la MISMA pasada que el índice; si uno se mueve, el otro también.
+    maxAgeDays: 400,
+    hint: 'npm run scrape:incendios -- --refetch',
+  },
+  {
     file: 'reciclaje.json',
     cls: 'manual' as const,
     // Corte único (edición 2022; upstream congelado en un visor sin datos).

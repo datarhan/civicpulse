@@ -267,4 +267,23 @@ else
   echo "[pre-push] ⚠︎ la revisión NO llegó a emitir resumen — NO SE REVISÓ NADA ($(( $(date +%s) - STARTED ))s)."
   echo "[pre-push]   El push continúa igualmente, porque este gancho nunca bloquea, pero nadie ha leído estas páginas."
 fi
+
+# Y lo que esta revisión NO PUEDE haber leído, dicho en voz alta.
+#
+# Las capas opcionales del mapa se montan con `{layers.x && <Capa/>}`: apagadas,
+# sus nodos no existen, así que su prosa —leyenda, causas, cobertura— no está en
+# el DOM y no se lee. Pero `routes-for-changes` mapea esos ficheros a `/`, de
+# modo que un push que tocaba IncendiosLegend.jsx leía `/`, sacaba «cobertura
+# 100% · nada que señalar» e imprimía «revisión completa». Un verde FALSO: el
+# número era cierto y la conclusión no.
+#
+# Leerlo aquí no cabe —una pasada con las capas encendidas cuesta ~5 min contra
+# un techo de 180 s—, así que lo lee el barrido nocturno con la clave
+# `/ [capas]`. Lo que sí cabe es no llamarlo completo.
+N_CAPAS=$(printf '%s\n' "$CHANGED" | grep -c 'src/components/LiveCity/' || true)
+if [ "${N_CAPAS:-0}" -gt 0 ]; then
+  echo "[pre-push] ⚠︎ $N_CAPAS fichero(s) de capas del mapa en este push."
+  echo "[pre-push]   Su prosa sólo existe con la capa ENCENDIDA, así que esta revisión no la ha leído."
+  echo "[pre-push]   La lee el barrido nocturno como «/ [capas]»; a mano: npm run review:surfaces -- '/ [capas]'"
+fi
 exit 0

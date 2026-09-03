@@ -93,7 +93,7 @@ if [ -f "$REPO_DIR/.env" ]; then set -a; . "$REPO_DIR/.env"; set +a; fi
 # spent 2026-08-02 with a 62-hour reset.
 export LLM_BACKEND="${LLM_BACKEND:-claude-code}"
 export CLAUDE_CODE_MODEL="${CLAUDE_CODE_MODEL:-claude-sonnet-5}"
-export AGY_MODEL="${AGY_MODEL:-gemini-3.5-flash-medium}"  # only read if LLM_BACKEND=agy
+export AGY_MODEL="${AGY_MODEL:-gemini-3.8-flash-medium}"  # only read if LLM_BACKEND=agy
 
 # Preflight, same as press-lab-pipeline: if the chosen backend cannot answer a
 # one-word prompt, skip the steps that need it rather than let per-call failures

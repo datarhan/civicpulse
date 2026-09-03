@@ -5,8 +5,9 @@ import { yearSpan } from '../../../lib/year-span'
 /**
  * What share of municipal contracting this map can actually show.
  *
- * The layer was labelled "Gasto municipal" and painted €2,2M of €68,0M — 3,3%,
- * 47 of 693 awarded contracts — with no statement of that anywhere. Every
+ * The layer was labelled "Gasto municipal" and painted a low single-digit
+ * percentage of municipal contracting — today €2,2M of €123,7M, 1,8%, 47 of
+ * 696 contracts — with no statement of that anywhere. Every
  * individual pin was scrupulous (the place-resolver's gates deliberately
  * under-match, an honest miss beating a wrong pin) but the AGGREGATE read as
  * completeness. In a project whose credibility rests on honesty gates, that was
@@ -49,8 +50,8 @@ export function MoneyCoverage({ snapshot }) {
   // `dateMin`/`dateMax` are the span of this exact universe — the same rows the
   // denominator sums — so the period can never describe a wider set than the
   // figure. The landing's KPI strip publishes «Presup. 2025 · €41,6M» a few
-  // hundred pixels below, and an undated €68,0M beside a one-year budget is the
-  // comparison this whole line exists to prevent.
+  // hundred pixels below, and an undated nine-figure cumulative beside a
+  // one-year budget is the comparison this whole line exists to prevent.
   const span = yearSpan([u.dateMin, u.dateMax])
 
   return (

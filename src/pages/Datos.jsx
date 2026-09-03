@@ -30,6 +30,7 @@ import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useFrontera } from '../hooks/useFrontera'
 import { useCosteEsperado } from '../hooks/useCosteEsperado'
 import { useReciclaje } from '../hooks/useReciclaje'
+import { useIncendios } from '../hooks/useIncendios'
 import { usePmp } from '../hooks/usePmp'
 import { useIpc } from '../hooks/useIpc'
 import { useCriminalidad } from '../hooks/useCriminalidad'
@@ -115,6 +116,7 @@ function DatasetsCatalog() {
   const frontera = useFrontera().data
   const costeEsperado = useCosteEsperado().data
   const reciclaje = useReciclaje().data
+  const incendios = useIncendios().data
   const pmp = usePmp().data
   const ipc = useIpc().data
   const crimen = useCriminalidad().data
@@ -337,6 +339,16 @@ function DatasetsCatalog() {
       updated: formatDate(fichasEficiencia?.generatedAt),
       source: 'curación editorial · promote-indicador',
       path: '/data/eficiencia-findings.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Incendios forestales (perímetros)',
+      rows: incendios?.universe?.dibujados
+        ? `${incendios.universe.dibujados} incendios · ${incendios.universe.anyoMin}–${incendios.universe.anyoMax}`
+        : '—',
+      updated: formatDate(incendios?.generatedAt),
+      source: 'ICV/GVA · prevencion_de_incendios · CC BY 4.0',
+      path: '/data/incendios.json',
       fmt: ['json'],
     },
     {
@@ -931,6 +943,7 @@ const EXTRA_DATASETS = [
   ['CTBG · reclamaciones', '/data/ctbg.json', 'MinHac · CTBG'],
   ['Consell de Transparència CV', '/data/consell-cv.json', 'GVA · CTCV'],
   ['Obras municipales', '/data/obras.json', 'Portal de Transparencia'],
+  ['Incendios forestales · geometría', '/data/incendios-perimetros.json', 'ICV/GVA · CC BY 4.0'],
   ['Procesos selectivos', '/data/procesos-selectivos.json', 'ribarroja.es'],
   ['Registro de asociaciones', '/data/asociaciones.json', 'Registro Municipal'],
   ['Servicios civiles (POI)', '/data/civic-poi.json', 'OpenStreetMap'],

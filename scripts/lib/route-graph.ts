@@ -17,6 +17,7 @@
  *
  * Módulo puro salvo por la lectura de src/: no toca red y no escribe nada.
  */
+import { RUTAS_CON_ESTADO } from '../../src/scraper/reader-review'
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 
@@ -102,6 +103,20 @@ export interface GrafoRutas {
  */
 export function rutasPublicas(grafo: GrafoRutas): string[] {
   return grafo.rutas.filter((r) => !r.includes(':') && r !== '/curator')
+}
+
+/**
+ * Todo lo que la revisión lectora debe cubrir: las rutas públicas MÁS las
+ * claves con estado.
+ *
+ * Existe por lo mismo que `rutasPublicas` justo encima: la composición estaba
+ * escrita dos veces —en `review-surfaces --all` y en `check-surfaces`— y una
+ * clave que el barrido lee pero el parte no conoce nunca se reportaría rancia.
+ * La prosa de las capas volvería a envejecer en silencio, que es exactamente
+ * el agujero que estas claves vienen a tapar.
+ */
+export function rutasRevisables(grafo: GrafoRutas): string[] {
+  return [...rutasPublicas(grafo), ...RUTAS_CON_ESTADO]
 }
 
 /**

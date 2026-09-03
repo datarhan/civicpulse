@@ -137,3 +137,46 @@ export function committedAwardYearSpan(contracts) {
   }
   return from !== null && to !== null ? { from, to } : null
 }
+
+/**
+ * Tipos de contrato que son una CONCESIÓN.
+ *
+ * Se exporta como conjunto en vez de comprobarse a mano en cada superficie:
+ * una concesión se adjudica por todo su plazo de una vez, y esa salvedad tiene
+ * que decirse igual la pinte quien la pinte.
+ */
+export const CONCESSION_CONTRACT_TYPES = ['public_services_management']
+
+/**
+ * ¿Es una concesión?
+ *
+ * Por TIPO, nunca por el título. Un regex sobre «concesión» arrastraría también
+ * los expedientes que sólo la mencionan, y la portada ya tiene un precedente
+ * caro de eso: un patrón por «emergencia» casaba 72 contratos de los que ~63
+ * eran limpieza tras la DANA. El tipo lo llevan 4 filas de 809.
+ *
+ * @param {{contractType?: string|null}|null|undefined} c
+ */
+export function isConcession(c) {
+  return Boolean(c && CONCESSION_CONTRACT_TYPES.includes(c.contractType ?? ''))
+}
+
+/**
+ * El plazo del contrato en años, redondeado, a partir de sus días.
+ *
+ * «Diecisiete años» es lo que hace entendible un importe de ocho dígitos, y es
+ * justo la clase de número que alguien teclea una vez y se queda viejo. Sale de
+ * dividir — el mismo convenio que `committedAwardYearSpan`: se calcula, nunca
+ * se escribe.
+ *
+ * Sin plazo utilizable devuelve `null`, no `0`: un cero se lee como «dura
+ * cero», que es un dato, y lo que hay es una ausencia.
+ *
+ * @param {{duration?: number|null}|null|undefined} c
+ * @returns {number|null}
+ */
+export function contractTermYears(c) {
+  const dias = c?.duration
+  if (typeof dias !== 'number' || !Number.isFinite(dias) || dias <= 0) return null
+  return Math.round(dias / 365.2425)
+}

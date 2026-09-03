@@ -276,7 +276,11 @@ export function AlcaldeBox() {
               >
                 <span style={{ fontWeight: 700 }}>{tendersAwarded}</span>{' '}
                 <span style={{ color: PALETTE.ink50 }}>
-                  contratos{tendersYears ? ` ${tendersYears}` : ''}
+                  {/* «acumulados», no sólo el período: es la palabra que llevan las
+              otras dos superficies que publican este mismo par —la tira de KPI
+              («acumulado · Gobierto/PLACSP») y FeedBlocks («Acumulado
+              2017–2026»)—, y ésta era la única de las tres sin ella. */}
+                  contratos acumulados{tendersYears ? ` ${tendersYears}` : ''}
                   {tendersEuros ? ` · ${formatBudgetEuros(tendersEuros)}` : ''}
                 </span>
               </a>

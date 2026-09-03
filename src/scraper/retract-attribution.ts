@@ -99,3 +99,21 @@ export function onlySpeakerGroupMoved(before: unknown, after: unknown): boolean 
   }
   return JSON.stringify(strip(before)) === JSON.stringify(strip(after))
 }
+
+/**
+ * ¿Es un fichero COMPUESTO —de los que se fechan con `composedAt`—?
+ *
+ * Importa porque a esos escribirles no basta. `composedAt` lo mueve sólo quien
+ * compone, así que una pasada que edita el contenido y para ahí deja el sello
+ * detrás y `check:stamps` en rojo. `restamp-curated.ts` se niega a sellarlos
+ * por lo mismo y remite a recomponer; esto es la misma pregunta, para que el
+ * CLI sepa que le queda un paso en vez de salir en verde a medias.
+ *
+ * Sólo una CADENA cuenta: un `composedAt` nulo o numérico no es un sello que
+ * se haya quedado atrás, y tratarlo como tal mandaría a recomponer ficheros
+ * que no lo necesitan.
+ */
+export function esCompuesto(doc: unknown): boolean {
+  if (!doc || typeof doc !== 'object') return false
+  return typeof (doc as { composedAt?: unknown }).composedAt === 'string'
+}

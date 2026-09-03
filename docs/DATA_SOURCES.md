@@ -227,6 +227,39 @@ overwrites it. Change the bot's SQLite instead.
   publish per municipality is NOT a duplicate; duplication is judged among
   cost-bearing rows only.
 
+### Incendios forestales (landing map layer)
+
+- **Pipeline** — `incendios.ts` → `scrape:incendios` → `incendios.json`
+  (attributes, centroid, bbox) + `incendios-perimetros.json` (rings only). Two
+  files because `/datos` calls the hook purely to read `stats` and must not
+  pull the geometry to render a row count.
+- **Source** — MapServer of the Institut Cartogràfic Valencià (GVA),
+  `tm_medio_ambiente/prevencion_de_incendios`, CC BY 4.0. One layer per year;
+  the CLI **discovers** them instead of carrying a list, so a new year is
+  picked up rather than silently missed. Queried with the municipal boundary
+  from `geo.json` as the query geometry — the server does the intersect, so
+  there is no turf.js and no client-side point-in-polygon.
+- **Surfaces** — `/` (StylizedMap «Incendios forestales» layer), `/datos`
+- **Gotchas** — four, all measured:
+  1. **Never filter by `nom_mun`.** The source files the same town as
+     «Riba-roja de Túria» and «RIBA-ROJA DEL TÚRIA»; a `LIKE '%Riba-roja%'`
+     sweep returns **zero for 2019** and looks healthy. Matching goes through
+     `RIBA_ROJA_ALIASES`.
+  2. **`outFields=*`, never a field list.** The schema changes between layers —
+     `detecp_txt` does not exist before ~2010 — and ArcGIS answers 400 «Failed
+     to execute query» to an unknown field name instead of ignoring it. The
+     explicit list took down half the series with an error that looked
+     intermittent and was deterministic.
+  3. **A 200 can carry an error envelope.** `{"error":{"code":400}}` in the
+     body is not «zero fires»; the CLI rejects it, retries, and never caches
+     it. Each layer is also counted twice — a `returnCountOnly` probe against
+     the download — because a run has to prove it did work.
+  4. **Attribution and cartography disagree.** `1994VL0267` (128 ha, the
+     largest in the series) is filed under Riba-roja and drawn 5 km outside the
+     boundary. It ships with `intersecta: false`: counted in `universe`, never
+     painted. `sup_f` is always the WHOLE fire's area, never clipped.
+  Cadence `manual` 400d — the ICV publishes annually, a year-plus behind.
+
 ### Criminalidad municipal (outcome beside the police cost card)
 
 - **Pipeline** — `criminalidad.ts` → `scrape:criminalidad` →

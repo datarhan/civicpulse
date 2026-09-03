@@ -243,6 +243,40 @@ export interface ClientConfig {
   zeroCostOnly: boolean
 }
 
+/**
+ * Modelo por defecto de agy. **Importa esta constante; no repitas el literal.**
+ *
+ * agy hornea el esfuerzo de razonamiento DENTRO del id: «gemini-3.8-flash» a
+ * secas se rechaza con «requires --effort (available: low, medium, high)»,
+ * mientras que «gemini-3.8-flash-medium» se acepta como un único valor de
+ * --model. Por eso `callAgy` no pasa ningún `--effort`.
+ *
+ * El catálogo de agy RUEDA, y este valor se ha quedado atrás dos veces:
+ * `gemini-2.5-pro` (arreglado en d1ad9284, tras filtrar 317 ventanas a openai
+ * medido) y `gemini-3.5-flash-medium` (septiembre de 2026 — la familia 3.5
+ * dejó de existir entera). Las dos veces el test que lo vigilaba REPITIÓ el
+ * literal y siguió en verde, que es la regla 1 de DATA_INTEGRITY en directo.
+ *
+ * Un test sin el binario delante no puede saber si el modelo existe. Lo que sí
+ * detecta la tercera vez es `freeBackendFallbacks`: si el primario de $0 muere,
+ * la cadena responde igual y ahora queda constancia.
+ *
+ * Verificado 2026-09-03 contra `agy models` (v1.1.25), incluido `--sandbox`.
+ */
+export const AGY_MODEL_DEFAULT = 'gemini-3.8-flash-medium'
+
+/**
+ * ¿Este backend es de coste cero para nosotros?
+ *
+ * `openai` y `anthropic` van contra tarjeta; el resto van contra cuota (Max,
+ * la de agy) o contra la máquina. La distinción no es cosmética: un respaldo
+ * ENTRE gratuitos es una molestia, y uno que sale de gratis hacia medido es
+ * una factura. `zeroCostOnly` filtra la cadena con este mismo criterio.
+ */
+export function isFreeBackend(b: Backend): boolean {
+  return b !== 'openai' && b !== 'anthropic'
+}
+
 export function loadConfigFromEnv(): ClientConfig {
   // Backend auto-selection hierarchy when LLM_BACKEND is unset. Matches the
   // cross-backend fallback order in callLLM.
@@ -305,15 +339,7 @@ export function loadConfigFromEnv(): ClientConfig {
     // was let a stale value for the dead backend choose the live one's model,
     // and the value in circulation (gemini-2.5-pro) is one agy rejects.
     agyBin: process.env.AGY_BIN || 'agy',
-    // agy bakes the reasoning effort into the model id — «gemini-3.5-flash» on
-    // its own is rejected with «requires --effort (available: low, medium,
-    // high)», while «gemini-3.5-flash-medium» is accepted as a single --model
-    // value. That is why callAgy passes no --effort flag.
-    //
-    // The previous default, gemini-2.5-pro, is no longer a model agy knows:
-    // «not recognized as a known model or custom model in settings», exit 1
-    // before the prompt is sent. Verified 2026-08-11 against agy's own list.
-    agyModel: process.env.AGY_MODEL || 'gemini-3.5-flash-medium',
+    agyModel: process.env.AGY_MODEL || AGY_MODEL_DEFAULT,
     cacheDir: resolve('.llm-cache'),
     maxTokensPerRun: Number(process.env.LLM_MAX_TOKENS_PER_RUN || 500_000),
     zeroCostOnly: process.env.LLM_ZERO_COST_ONLY === '1',
@@ -464,6 +490,16 @@ export interface RunStats {
   zeroTokenFailures: number
   /** Calls skipped because the breaker was already open (it did its job). */
   shortCircuited: number
+  /**
+   * Veces que la cadena ABANDONÓ un backend de coste cero y siguió con otro.
+   *
+   * Sin esto, un primario de $0 muerto es invisible: el siguiente contesta,
+   * `ok` sube, `zeroTokenFailures` no se mueve y ZERO_TOKEN_ALARM no puede
+   * saltar. Así llevaba días roto `gemini-3.5-flash-medium` sin que ninguna
+   * guarda lo viera — y con `openai` tercero en la cadena, un primario muerto
+   * está a una caída de claude-code de una llamada medida.
+   */
+  freeBackendFallbacks: number
   tokens: number
   costUSD: number
 }
@@ -476,6 +512,7 @@ function freshStats(): RunStats {
     failed: 0,
     zeroTokenFailures: 0,
     shortCircuited: 0,
+    freeBackendFallbacks: 0,
     tokens: 0,
     costUSD: 0,
   }
@@ -1438,9 +1475,18 @@ export async function callLLM<TSchema extends ZodTypeAny>(
     // This backend's retries exhausted. If there's another backend to try,
     // log the fallback so the user sees what happened.
     if (bi + 1 < attemptedBackends.length) {
+      const siguiente = attemptedBackends[bi + 1]
+      // `perBackendAttempt`, no `maxRetries + 1`: un error NO reintentable
+      // —«invalid model selection», por ejemplo— rompe el bucle al primer
+      // intento, y anunciar «exhausted 3 attempts» manda a buscar una caída
+      // intermitente donde hay un fallo determinista. Pasó: tres líneas
+      // idénticas de «3 attempts» eran tres llamadas de UN intento cada una.
       process.stderr.write(
-        `[llm] ${backend} exhausted ${maxRetries + 1} attempts (${lastErr.slice(0, 80)}); falling back to ${attemptedBackends[bi + 1]}\n`,
+        `[llm] ${backend} exhausted ${perBackendAttempt} attempt(s) (${lastErr.slice(0, 80)}); falling back to ${siguiente}\n`,
       )
+      // Abandonar un backend de coste cero queda registrado. Sin esto el
+      // respaldo tapa la avería: el siguiente contesta y la pasada sale limpia.
+      if (isFreeBackend(backend)) currentStats.freeBackendFallbacks += 1
     }
   }
 
