@@ -229,7 +229,8 @@
     "check:solicitudes": "npx tsx scripts/check-solicitudes.ts",
     "retirar-pasada": "npx tsx scripts/retirar-pasada.ts",
     "report:claim-coverage": "npx tsx scripts/report-claim-coverage.ts",
-    "restamp": "npx tsx scripts/restamp-curated.ts"
+    "restamp": "npx tsx scripts/restamp-curated.ts",
+    "eval:transcribe": "npx tsx scripts/eval-transcribe-ab.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

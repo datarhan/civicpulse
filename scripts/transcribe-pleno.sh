@@ -5,6 +5,7 @@
 #   bash scripts/transcribe-pleno.sh <plenoId>
 #   WHISPER_ENGINE=mlx    bash scripts/transcribe-pleno.sh <plenoId>   # recommended: ~5× realtime, \$0
 #   WHISPER_ENGINE=openai bash scripts/transcribe-pleno.sh <plenoId>   # fastest: ~30s, paid
+#   WHISPER_ENGINE=gemini bash scripts/transcribe-pleno.sh <plenoId>   # \$0 free tier, 25 req/day
 #   WHISPER_MODEL=medium  bash scripts/transcribe-pleno.sh <plenoId>   # 2-3× faster CPU (local)
 #
 # Looks up the pleno in public/data/pleno-videos.json, downloads audio (mp3,
@@ -24,6 +25,29 @@
 #                       Audio is re-encoded to 16 kbps mono opus (≈12 MB per
 #                       2h pleno) so we stay under the 25 MB upload limit
 #                       without chunking.
+#   gemini            · Gemini 3.5 Transcribe (Interactions API). \$0 on the
+#                       free tier — 25 requests/day, MEASURED 2026-09-03 by
+#                       exhausting it, not read off a docs page. (The
+#                       per-MINUTE ceiling for this model is NOT measured; the
+#                       15/min figure came from flash-lite and quotas are
+#                       per-model.) That daily pot is per-model, so it is NOT the
+#                       20/day of gemini-3.5-flash the speaker-map sweep runs
+#                       on. Paid rate if billing is ever enabled is
+#                       \$0.003/min — half the OpenAI path. Requires
+#                       GEMINI_API_KEY. Opt-in only, never a fallback.
+#                       Verbatim mode with word timestamps; speakers stay
+#                       UNKNOWN on purpose (see GEMINI_DIARIZE below).
+#
+# Gemini-only knobs:
+#   GEMINI_TRANSCRIBE_MODEL · defaults to gemini-3.5-transcribe
+#   GEMINI_DIARIZE=1        · ask for speaker clusters. OFF by default and
+#                             think before turning it on: the model diarizes at
+#                             most THREE speakers and this chamber seats 21, so
+#                             what comes back is 21 people folded into 3
+#                             confident labels — feeding a wrong attribution
+#                             into voice-id and the extractor. Attribution here
+#                             comes from the speaker-map step, which reads the
+#                             chair's spoken turn grants instead.
 #
 # Model choice (WHISPER_MODEL env — only applies when WHISPER_ENGINE=local|mlx):
 #   large-v3 (default) · best WER, ~0.3× realtime on M-series int8 CPU
@@ -400,6 +424,223 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
   #
   # Reports the DELTA, not the totals: "30 untraceable" reads the same whether
   # it is yesterday's 30 or 30 the run just created.
+  if [ "${SKIP_CORPUS_CHECK:-0}" != "1" ] && [ -x "$REPO_ROOT/scripts/verify-transcript-corpus.sh" ]; then
+    echo "[transcribe] re-checking the transcript corpus…"
+    bash "$REPO_ROOT/scripts/verify-transcript-corpus.sh" || true
+  fi
+elif [ "$WHISPER_ENGINE" = "gemini" ]; then
+  # ── Gemini 3.5 Transcribe branch ─────────────────────────────────────────
+  # $0 on the free tier and HALF the price of the OpenAI path if it ever goes
+  # paid ($0.003/min vs $0.006/min). Needs GEMINI_API_KEY.
+  #
+  # NEVER reachable by fallback. Like every metered-capable backend here it is
+  # opt-in only: WHISPER_ENGINE=gemini, explicitly. The free tier is generous
+  # but it is not infinite, and a silent fall-through is how an unattended run
+  # starts spending.
+  #
+  # QUOTA, measured 2026-09-03 by exhausting it: 25 requests/day
+  # (GenerateRequestsPerDayPerProjectPerModel-FreeTier, quotaValue 25). It
+  # refills slowly rather than resetting on a clock. The per-MINUTE ceiling is
+  # NOT measured for this model — 15/min is flash-lite's number and quotas are
+  # per-model, so the backoff below is sized for an unknown, not a known, RPM.
+  # The daily budget is PER MODEL, so it is a different
+  # pot from the 20/day of gemini-3.5-flash that the speaker-map sweep in
+  # hallazgos-pipeline.sh lives on — transcribing here does not eat that
+  # backlog burn, and vice versa. At 20-min chunks, 25 requests is ~8 h of
+  # audio a day: about four plenos.
+  if [ -z "${GEMINI_API_KEY:-}" ] && [ -f "$REPO_ROOT/.env" ]; then
+    # shellcheck disable=SC1090
+    set -a; . "$REPO_ROOT/.env"; set +a
+  fi
+  if [ -z "${GEMINI_API_KEY:-}" ]; then
+    echo "[transcribe] GEMINI_API_KEY not set — export it or add to .env" >&2
+    exit 1
+  fi
+
+  # Same duration-based chunking as the OpenAI path, and for one extra reason
+  # on top of the 2026-07-29 hallucination-loop postmortem: gemini-3.5-transcribe
+  # accepts 1 h per request, but only 30 min once word-level timestamps are on,
+  # and this branch always asks for them (the coverage gate below is computed
+  # from the last timestamp — without them a truncated transcript is invisible).
+  # 20-min chunks sit inside both ceilings.
+  DUR_S=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 "$AUDIO" 2>/dev/null | cut -d. -f1)
+  DUR_S=${DUR_S:-0}
+  CHUNK_SECS=1200
+  CHUNK_DIR="$WORKDIR/chunks"
+  mkdir -p "$CHUNK_DIR"
+  if [ "$DUR_S" -gt 1500 ]; then
+    echo "[transcribe] audio ${DUR_S}s > 1500s — splitting into ${CHUNK_SECS}s chunks @ 64 kbps mono opus…"
+    ffmpeg -hide_banner -loglevel error -y \
+      -i "$AUDIO" -f segment -segment_time "$CHUNK_SECS" -reset_timestamps 1 \
+      -ac 1 -ar 16000 -c:a libopus -b:a 64k \
+      "$CHUNK_DIR/chunk-%03d.ogg"
+  else
+    echo "[transcribe] audio ${DUR_S}s ≤ 1500s — single request @ 64 kbps mono opus…"
+    ffmpeg -hide_banner -loglevel error -y \
+      -i "$AUDIO" -ac 1 -ar 16000 -c:a libopus -b:a 64k \
+      "$CHUNK_DIR/chunk-000.ogg"
+    CHUNK_SECS=0  # marker: single chunk, no time offset needed
+  fi
+  N_CHUNKS=$(ls "$CHUNK_DIR"/chunk-*.ogg | wc -l | tr -d ' ')
+  # The rx4hb4 guard, unchanged: a truncated download decodes to less audio
+  # than its header claims and ffmpeg emits fewer segments without failing.
+  if [ "$CHUNK_SECS" -gt 0 ]; then
+    EXPECTED_CHUNKS=$(( (DUR_S + CHUNK_SECS - 1) / CHUNK_SECS ))
+    if [ "$N_CHUNKS" -lt "$EXPECTED_CHUNKS" ]; then
+      echo "[transcribe] FATAL: ${DUR_S}s of audio should split into ${EXPECTED_CHUNKS} chunk(s), got ${N_CHUNKS}." >&2
+      echo "[transcribe] The download is truncated or corrupt. Refusing to publish a partial transcript." >&2
+      exit 1
+    fi
+  fi
+  if [ "$N_CHUNKS" -gt 25 ]; then
+    echo "[transcribe] ${N_CHUNKS} chunks exceeds the measured free-tier ceiling of 25 requests/day." >&2
+    echo "[transcribe] The run would 429 part-way and publish a partial session. Split it across days" >&2
+    echo "[transcribe] or use WHISPER_ENGINE=openai for this one." >&2
+    exit 1
+  fi
+  echo "[transcribe] sending ${N_CHUNKS} chunk(s) to ${GEMINI_TRANSCRIBE_MODEL:-gemini-3.5-transcribe}…"
+
+  TMP_TXT="$WORKDIR/transcript-gemini.txt"
+  : > "$TMP_TXT"
+  IDX=0
+  for CHUNK in "$CHUNK_DIR"/chunk-*.ogg; do
+    OFFSET=$(( IDX * CHUNK_SECS ))
+    REQ_JSON="$WORKDIR/request-${IDX}.json"
+    RESP_JSON="$WORKDIR/response-${IDX}.json"
+    # The request body is assembled by node, not by a bash heredoc: a 20-min
+    # chunk is ~9.6 MB and its base64 ~13 MB, which is fine in a FILE and is
+    # not fine as a shell argument.
+    #
+    # `verbatim` is the mode that matters and the reason this engine exists.
+    # Gemini's other mode ("smart") strips ums, resolves self-corrections and
+    # tidies the sentence — good for meeting notes, disqualifying here. Every
+    # quote this repo publishes is checked against the transcript by
+    # `quoteAppearsIn`, so prose that reads better than what was said is prose
+    # that breaks citation checking and misquotes a councillor.
+    CHUNK_PATH="$CHUNK" REQ_OUT="$REQ_JSON" \
+    GEMINI_MODEL="${GEMINI_TRANSCRIBE_MODEL:-gemini-3.5-transcribe}" \
+    DIARIZE="${GEMINI_DIARIZE:-0}" node -e '
+      const fs = require("fs")
+      const audio = fs.readFileSync(process.env.CHUNK_PATH).toString("base64")
+      const mode = { type: "verbatim", timestamp_granularities: ["word"] }
+      // Diarization is OFF by default, and that is a correctness decision, not
+      // a cost one. gemini-3.5-transcribe diarizes up to THREE speakers; this
+      // chamber seats 21 councillors plus the public. Asking anyway does not
+      // fail — it returns three clusters with 21 people folded into them, and
+      // those labels feed voice-id.ts and the attribution the claim extractor
+      // joins. A merged cluster is a wrong attribution wearing a confident label,
+      // which is the `Otro` sentinel all over again. Speakers stay UNKNOWN and
+      // attribution comes from the speaker-map step, which reads the turn
+      // grants the chair says OUT LOUD ("té la paraula el senyor…").
+      if (process.env.DIARIZE === "1") mode.diarization_mode = "speaker"
+      fs.writeFileSync(process.env.REQ_OUT, JSON.stringify({
+        model: process.env.GEMINI_MODEL,
+        input: [{ type: "audio", mime_type: "audio/ogg", data: audio }],
+        generation_config: { transcription_config: { mode } },
+      }))
+    '
+    HTTP_CODE=000
+    for TRY in 0 1 2 3; do
+      if [ "$TRY" -gt 0 ]; then
+        # A 429 here is most often the per-minute ceiling, which clears on
+        # its own — hence a backoff that starts above a minute. It can also be
+        # the daily cap, which does NOT clear inside three retries; that is
+        # what the pre-flight above refuses to walk into, and what makes this
+        # loop give up loudly instead of publishing half a session.
+        BACKOFF=$(( 60 * TRY ))
+        echo "[transcribe]   chunk ${IDX} retry ${TRY}/3 after ${BACKOFF}s (prev HTTP $HTTP_CODE)" >&2
+        sleep "$BACKOFF"
+      fi
+      # The key goes in the 0600 config file, never on the command line —
+      # curl's argv is world-readable in the process table.
+      printf 'url = "https://generativelanguage.googleapis.com/v1beta/interactions?key=%s"\n' \
+        "$GEMINI_API_KEY" > "$CURL_AUTH_CONF"
+      HTTP_CODE=$(curl -sS -o "$RESP_JSON" -w "%{http_code}" \
+        --config "$CURL_AUTH_CONF" \
+        --connect-timeout 30 --max-time 1800 \
+        -H 'Content-Type: application/json' \
+        --data-binary "@$REQ_JSON" 2>/dev/null || true)
+      if [ "$HTTP_CODE" = "200" ]; then
+        break
+      fi
+    done
+    if [ "$HTTP_CODE" != "200" ]; then
+      echo "[transcribe] chunk ${IDX} gave up after 4 attempts (last HTTP $HTTP_CODE)" >&2
+      head -c 800 "$RESP_JSON" >&2 2>/dev/null || true
+      exit 1
+    fi
+    OFFSET_S="$OFFSET" CHUNK_IDX="$IDX" N_CHUNKS="$N_CHUNKS" RESP_JSON="$RESP_JSON" OUT_PATH="$TMP_TXT" node -e '
+      const fs = require("fs")
+      const data = JSON.parse(fs.readFileSync(process.env.RESP_JSON, "utf8"))
+      const offset = Number(process.env.OFFSET_S)
+      const chunkIdx = Number(process.env.CHUNK_IDX)
+      // Interactions API shape: steps[].content[].{text, annotations[]}, where
+      // each annotation is one word: {text, start_offset:"1.500s",
+      // end_offset:"2.300s", speaker:"spk:0", type:"word_info"}.
+      const words = []
+      for (const step of data.steps || [])
+        for (const c of step.content || [])
+          for (const a of c.annotations || [])
+            if (a.type === "word_info") words.push(a)
+      if (words.length === 0) {
+        // A 200 carrying no words is not an empty room, it is a failed read —
+        // and writing nothing here would let the backlog detector count this
+        // session as transcribed forever. Rule 2: never fold "got nothing"
+        // into "nothing to get".
+        console.error(`[transcribe] chunk ${chunkIdx}: 200 OK but zero word annotations — refusing to publish silence`)
+        process.exit(1)
+      }
+      const secs = (v) => Number(String(v || "0").replace(/s$/, "")) || 0
+      // Group consecutive words into speaker turns. With diarization off every
+      // word carries the same (or no) speaker, so this collapses to one run per
+      // chunk broken only by the 2 s gap rule below — which keeps lines short
+      // enough to read and to cite.
+      const order = []
+      const label = (sp) => {
+        if (!sp) return "UNKNOWN"
+        if (!order.includes(sp)) order.push(sp)
+        // Chunk-local numbering, offset per chunk: "spk:0" in chunk 2 is not
+        // the same voice as "spk:0" in chunk 1, because each request is
+        // diarized independently. Same convention as the OpenAI branch.
+        return `SPEAKER_${String(chunkIdx * 20 + order.indexOf(sp)).padStart(2, "0")}`
+      }
+      const out = fs.createWriteStream(process.env.OUT_PATH, { flags: "a" })
+      let cur = null
+      const flush = () => {
+        if (!cur) return
+        out.write(`[${(cur.start + offset).toFixed(1)} → ${(cur.end + offset).toFixed(1)}] (${cur.label}) ${cur.text.join(" ")}\n`)
+        cur = null
+      }
+      for (const w of words) {
+        const st = secs(w.start_offset), en = secs(w.end_offset)
+        const lb = label(w.speaker)
+        if (cur && cur.label === lb && st - cur.end < 2) {
+          cur.text.push(w.text); cur.end = en
+        } else {
+          flush(); cur = { label: lb, start: st, end: en, text: [w.text] }
+        }
+      }
+      flush()
+      out.end()
+      const spk = [...new Set(words.map((w) => w.speaker).filter(Boolean))]
+      console.error(`[transcribe]   chunk ${chunkIdx + 1}/${process.env.N_CHUNKS}: ${words.length} words · +${offset}s offset · ${spk.length || "no"} speaker cluster(s)`)
+    '
+    IDX=$(( IDX + 1 ))
+  done
+
+  # Spend ledger, same shape as the OpenAI branch so `npm run llm:cost` sees
+  # both. costUSD is 0 while the run fits the free tier; the paid rate is
+  # $0.003/min if this project ever enables billing.
+  AUDIO_MIN=$(python3 -c "print(f'{${DUR_S:-0}/60:.2f}')" 2>/dev/null || echo 0)
+  mkdir -p "$REPO_ROOT/.llm-cache"
+  printf '{"backend":"gemini-audio","model":"%s","promptVersion":"transcribe-v1","tokenCount":0,"costUSD":0,"latencyMs":0,"retryCount":0,"createdAt":"%s","result":"%s (%s min, %s req, free tier)"}\n' \
+    "${GEMINI_TRANSCRIBE_MODEL:-gemini-3.5-transcribe}" \
+    "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" \
+    "$PLENO_ID" "$AUDIO_MIN" "$N_CHUNKS" \
+    > "$REPO_ROOT/.llm-cache/audio-$PLENO_ID-$(date -u +%s).json"
+
+  mv "$TMP_TXT" "$OUT_PATH"
+
   if [ "${SKIP_CORPUS_CHECK:-0}" != "1" ] && [ -x "$REPO_ROOT/scripts/verify-transcript-corpus.sh" ]; then
     echo "[transcribe] re-checking the transcript corpus…"
     bash "$REPO_ROOT/scripts/verify-transcript-corpus.sh" || true

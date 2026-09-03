@@ -13,7 +13,9 @@
 # Quality-lift env vars (inherited by transcribe-pleno.sh):
 #   WHISPER_DENOISE=1   ffmpeg afftdn pre-Whisper noise reduction
 #   WHISPER_DIARIZE=1   pyannote speaker diarization post-Whisper
-#   WHISPER_ENGINE=...  mlx | openai | local (default: local)
+#   WHISPER_ENGINE=...  mlx | openai | gemini | local (default: local)
+#                       This script only passes it through; the engines and
+#                       their quotas live in scripts/transcribe-pleno.sh.
 #   WHISPER_MODEL=...   large-v3 | medium | small (default: large-v3)
 #
 # Example all-in pass (denoise → transcribe → diarize → LLM refine):

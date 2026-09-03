@@ -10,14 +10,120 @@ at a cost in setup, runtime or money.
 
 ## 1 · Whisper engine (`WHISPER_ENGINE`)
 
-| Value    | Cost / speed                                | Notes                                                                                                                                                                                                                                                                                                                        |
-| -------- | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `openai` | ~$0.006/min (~$0.72 per 2 h pleno), 30–60 s | **The `hallazgos-pipeline` cron default since 2026-07-07.** Zero local GPU/CPU. Needs `OPENAI_API_KEY`.                                                                                                                                                                                                                      |
-| `mlx`    | ~5–10× realtime, $0, local                  | lightning-whisper-mlx on the Apple Neural Engine. Better WER on technical terms than whisper-1 (it gets "UNE 93200:2008" where OpenAI produces "norma 1 en 93.200"). Was the nightly default until 2026-07-07 — retired from cron because it pins the local GPU (~30 min/run) and trips the Metal watchdog on 5 h+ sessions. |
-| `local`  | ~0.3× realtime, $0                          | faster-whisper CPU int8. The fallback when MLX is not bootstrapped.                                                                                                                                                                                                                                                          |
+| Value    | Cost / speed                                  | Notes                                                                                                                                                                                                                                                                                                                        |
+| -------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `openai` | ~$0.006/min (~$0.72 per 2 h pleno), 30–60 s   | **The `hallazgos-pipeline` cron default since 2026-07-07.** Zero local GPU/CPU. Needs `OPENAI_API_KEY`.                                                                                                                                                                                                                      |
+| `mlx`    | ~5–10× realtime, $0, local                    | lightning-whisper-mlx on the Apple Neural Engine. Better WER on technical terms than whisper-1 (it gets "UNE 93200:2008" where OpenAI produces "norma 1 en 93.200"). Was the nightly default until 2026-07-07 — retired from cron because it pins the local GPU (~30 min/run) and trips the Metal watchdog on 5 h+ sessions. |
+| `local`  | ~0.3× realtime, $0                            | faster-whisper CPU int8. The fallback when MLX is not bootstrapped.                                                                                                                                                                                                                                                          |
+| `gemini` | **$0** free tier (25 req/day), ~1-2 min/chunk | Gemini 3.5 Transcribe via the Interactions API, verbatim mode + word timestamps. Needs `GEMINI_API_KEY`. **Opt-in only, never a fallback — and MEASURED WORSE than `openai` on the markers that carry attribution; read the A/B result below before using it.**                                                              |
 
 `WHISPER_MODEL` chooses the weights (`large-v3` default; `medium`/`small` trade
 WER for speed).
+
+### The Gemini quota, measured rather than read
+
+**25 requests/day**, established on 2026-09-03 by exhausting it and reading the
+quota name back out of the 429 (`GenerateRequestsPerDayPerProjectPerModel-FreeTier`,
+`quotaValue: 25`, `model: gemini-3.5-transcribe`). It refills slowly rather than
+resetting on a clock — a single request slipped through 13 minutes after the wall,
+and a 20-min chunk sent right after did not — so treat it as ~1 request/hour of
+headroom once spent, not as "back at midnight".
+
+**The per-minute ceiling for this model is NOT measured.** 15/minute is what
+`gemini-3.5-flash-lite` reported (`GenerateRequestsPerMinutePerProjectPerModel-FreeTier`,
+`quotaValue: 15`) and these quotas are per-model, so carrying that number across
+would be a guess wearing a measurement's clothes. The engine's retry backoff
+(60/120/180 s) is sized for an unknown RPM, not for a known one.
+
+Two things follow from the daily budget, and neither is guessable from the
+pricing page:
+
+- **It is a different pot from the speaker-map sweep.** The daily budget is
+  per-MODEL, and `extract:speaker-map` runs on `gemini-3.5-flash` (20/day,
+  measured 2026-08-10). Transcribing does not eat that multi-week backlog burn,
+  and the burn does not eat transcription.
+- **A pleno must fit in one day.** 25 requests at 20-min chunks is ~8 h of
+  audio, about four sessions. `transcribe-pleno.sh` refuses up front rather
+  than 429-ing half way and publishing a partial session — a truncated
+  transcript is the `rx4hb4` defect, where 44 claims were extracted from 7% of
+  a session.
+
+The consumer **Google AI Pro subscription grants none of this.** It is a chat
+subscription with no API quota attached; every call above goes through
+`GEMINI_API_KEY`. Do not reason about cost from the subscription.
+
+### Speakers stay `UNKNOWN` on the Gemini path, deliberately
+
+`gemini-3.5-transcribe` will diarize, but **at most three speakers**, and this
+chamber seats 21 councillors. Asking for it does not fail — it returns three
+confident clusters with 21 people folded into them, and those labels feed
+`voice-id.ts` and the attribution join the extractor makes. That is a wrong
+attribution wearing a confident label: the `Otro` sentinel again, in a new
+place. So the engine emits `(UNKNOWN)` and attribution comes from the
+speaker-map step, which reads the turn grants the chair says out loud.
+`GEMINI_DIARIZE=1` exists for experiments and should not be used on a real
+session.
+
+`scripts/transcribe-file.ts` (the curator dashboard's non-pleno ingest) does NOT
+have this engine — it still validates `mlx|local|openai` and exits 2 on anything
+else. That is a loud failure rather than a silent fall-through, so an exported
+`WHISPER_ENGINE=gemini` cannot quietly change what the dashboard does; it just
+stops. Wire it there too if the A/B says this engine wins.
+
+### A/B before switching anything
+
+```bash
+set -a; source .env; set +a
+npm run eval:transcribe -- <plenoId> --start 1800 --secs 1200
+```
+
+Transcribes one 20-minute window with the candidate engine and diffs it against
+the **published** transcript of the same seconds. It reports word counts,
+word-set overlap and a marker table (party names, the contractor, the chair's
+turn grants) — not a WER, because no human-verified reference transcript exists
+here and a number implying one would be a lie. The markers are the decision: the
+published 27-jul-2026 transcript contains `EU-Podem` and `Hidraqua` zero times
+in 1,962 lines, and a name the engine cannot hear is a quote that can never be
+cited.
+
+### What the A/B actually said: do not adopt this engine (2026-09-03)
+
+Ran on `15uvjew`, window [3600, 4800)s. **`gemini-3.5-transcribe` lost ground on
+every marker that carries attribution and gained none:**
+
+| marker         | published (`gpt-4o-transcribe-diarize`) | `gemini-3.5-transcribe` |
+| -------------- | --------------------------------------- | ----------------------- |
+| Esquerra Unida | 3                                       | **0**                   |
+| VOX            | 2                                       | **0**                   |
+| Podem          | 5                                       | 1                       |
+| Compromís      | 2                                       | 1                       |
+| té la paraula  | 1                                       | **0**                   |
+
+Word count 95% of published and word-set overlap 81%, so it is transcribing the
+same speech, not a different window. It simply dissolves the Valencian proper
+nouns. The passage that settles it, same seconds, both engines:
+
+- published: «aprofitant el vot a favor que tenim per part d'**Esquerra Unida** podem»
+- gemini: «aprofitant ehm el vot a favor que tenim eh per part **dels que reunida** Podem»
+
+That is the identical failure mode this repo already documented for the OLD
+engine («Compromís, Rafa» → «Más palabras, compromiso, razón») — only now it is
+Gemini doing it. Verbatim mode is working (the «ehm»/«eh» are faithfully kept);
+what fails is the domain vocabulary.
+
+**The counterintuitive part, and the reason this note exists:** the 2026-08-10
+measurement that made a Gemini path look attractive was `gemini-3.5-flash`, the
+GENERAL multimodal model, which got those same turn-grants right. The
+SPECIALISED speech-to-text model is worse here — presumably it brings less world
+knowledge to a proper noun it has never heard. Do not carry a result from one
+Gemini model to another; they are not interchangeable, and this engine takes
+`GEMINI_TRANSCRIBE_MODEL` precisely so the next candidate can be tried without
+new code.
+
+Caveat kept honest: **n = 1 window.** The free-tier quota ran out before a second
+one could run. That is enough to stop an adoption, not enough to close the
+question — and the cheap next step is `--start 5400`, since the audio is already
+cached.
 
 **Audio over 25 min is split into 20-min chunks** re-encoded to 64 kbps mono
 opus. whisper-1 fed ONE multi-hour request degenerates into hallucination loops
