@@ -245,6 +245,20 @@ async function gather(): Promise<Observations> {
     'check:cobertura',
     'check:veredictos',
     'check:solicitudes',
+    // Nadie comprobaba las DECLARACIONES contra su transcripción.
+    // `check:citations` y `check:finding-quotes` cubren las citas de los
+    // HALLAZGOS —la prosa curada, ~130— y lo hacen bien; las 4.664
+    // declaraciones publicadas no las miraba nada. Cuatro sesiones se
+    // re-transcribieron después de extraer sus declaraciones y no se
+    // re-derivó ni una cita ni una atribución.
+    //
+    // Entra AQUÍ y no en el pre-commit a propósito, y no por ser lento: sale
+    // 1 hoy mismo, con 24 citas sin rastro y 4 con el partido cambiado. Una
+    // puerta que nace roja en el camino de comitear es una puerta que se
+    // aprende a saltar con --no-verify en dos días, y entonces deja de
+    // proteger de lo que venga después. En el parte se ve todas las noches y
+    // no bloquea a nadie.
+    'check:claim-provenance',
   ]) {
     const msg = runCheck(c)
     if (msg) integrity.push({ check: c, message: msg })
