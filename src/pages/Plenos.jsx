@@ -1,216 +1,51 @@
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Pill, SectionHead } from '../components/Primitives'
+import { ExtLink } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
-import { ParticipaBlock } from '../components/plenos/ParticipaBlock'
-import { usePlenos, PLENO_TONE, PLENO_LABEL } from '../hooks/usePlenos'
+import { estiloPlenos } from '../components/plenos/plenos.css.js'
+import { EscaleraCobertura } from '../components/plenos/EscaleraCobertura'
+import { TablaSesiones } from '../components/plenos/TablaSesiones'
+import { TarjetaVotaciones } from '../components/plenos/TarjetaVotaciones'
+import { TarjetaDeclaraciones } from '../components/plenos/TarjetaDeclaraciones'
+import { RepartoPorArea } from '../components/plenos/RepartoPorArea'
+import { usePlenos } from '../hooks/usePlenos'
 import { usePlenoClaimsManifest } from '../hooks/usePlenoClaims'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { usePlenoVotes } from '../hooks/usePlenoVotes'
-import { summarizeSessions } from '../lib/pleno-summary'
+import { resumenPlenos } from '../lib/pleno-summary'
 import { fmtDateLong } from '../lib/formatters'
 import { useT } from '../i18n'
-import { DEPARTMENT_LABEL } from '../scraper/departments'
+
+const PORTAL_PARTICIPA = 'https://participa.ribarroja.es'
 
 /**
- * `department` now holds the canonical slug (the counts are keyed on it so the
- * 57 items with a slug but no raw department name are included), so render the
- * human label rather than the slug itself.
+ * El índice de sesiones, reconstruido sobre `Revisión Eficiencia.dc.html` (3b)
+ * del proyecto de Claude Design.
+ *
+ * La auditoría de esa maqueta reunía ocho señalamientos y todos apuntaban al
+ * mismo sitio: **el índice contaba cosas sin decir nunca sobre cuántas
+ * sesiones las contaba**. Una fila muda podía ser una sesión sin nada que
+ * declarar o una sesión que no hemos leído, y no había forma de distinguirlas;
+ * los dos únicos denominadores de la página vivían dentro de una tarjeta
+ * derivada que iba por delante del objeto y de un párrafo de leyenda que la
+ * revisión lectora malinterpretó dos barridos seguidos.
+ *
+ * De ahí el orden nuevo: la escalera de cobertura arriba —61 · 39 · 22 · 7,
+ * anidados—, luego las sesiones con columnas rotuladas y la ausencia dibujada
+ * aparte del cero, y sólo después los agregados.
+ *
+ * NINGUNA CIFRA ESTÁ ESCRITA AQUÍ. Todas salen de `resumenPlenos`, que las
+ * deriva de los cinco snapshots. La maqueta traía dos que no se sostienen y
+ * derivarlas las corrige solas: decía «desde junio de 2023» cuando la sesión
+ * más antigua es del 23 de enero de 2023 —siete anteriores a esta
+ * corporación— y hablaba de 2 retractaciones de hallazgos cuando el registro
+ * lleva doce.
+ *
+ * La paleta de la maqueta está caducada y no se pega: su azul es, hexadecimal
+ * a hexadecimal, el color del PP, y este sitio atribuye afirmaciones a
+ * partidos. La marca es `--civic`.
  */
-function deptName(d) {
-  const label = d.departmentSlug && DEPARTMENT_LABEL[d.departmentSlug]
-  return label ? label.es : d.department
-}
-
-function TopDepartmentsCard({ agendas }) {
-  if (!agendas?.topDepartments?.length) return null
-  return (
-    <Card style={{ marginBottom: 14 }}>
-      <SectionHead
-        // "Plenos analizados · 37 sesiones" read, right under the page title, as
-        // if the town had held 37 — while the list below says 61. The 377 points
-        // come from the 37 whose orden del día we could extract; the other 24
-        // happened and are simply not broken down. Naming the denominator is the
-        // difference between a coverage figure and a 40% undercount of plenary
-        // activity.
-        //
-        // Y el MISMO fallo tenía una segunda mitad que sobrevivió a ese arreglo.
-        // El rótulo decía «399 puntos» y debajo pintaba una fila que suma 93,
-        // porque sólo 109 de los 399 llevan departamento: el 73 % no está
-        // clasificado y la tarjeta no lo decía en ningún sitio. Se arregló la
-        // unidad del numerador —contaba sesiones— y nadie miró el denominador.
-        // La cifra sale del snapshot; si un snapshot viejo no la trae, se cae
-        // a la redacción anterior en vez de escribir «undefined».
-        eyebrow={
-          typeof agendas.stats.agendaItemsWithDepartment === 'number'
-            ? `Orden del día extraído de ${agendas.stats.sessionsWithAgenda ?? agendas.stats.plenosFetched} de ${agendas.stats.sessionsTotal ?? '—'} sesiones · ${agendas.stats.agendaItemsWithDepartment} de ${agendas.stats.agendaItemsTotal} puntos llevan departamento`
-            : `Orden del día extraído de ${agendas.stats.sessionsWithAgenda ?? agendas.stats.plenosFetched} de ${agendas.stats.sessionsTotal ?? '—'} sesiones · ${agendas.stats.agendaItemsTotal} puntos`
-        }
-        title="Departamentos con más puntos en el orden del día"
-        right={
-          <Link
-            to="/departamentos"
-            style={{ fontSize: 'var(--fs-meta)', color: 'var(--civic)', textDecoration: 'none' }}
-          >
-            Ver dashboard por departamento →
-          </Link>
-        }
-      />
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 8 }}>
-        {agendas.topDepartments.map((d) => (
-          <Link
-            key={d.department}
-            to={d.departmentSlug ? `/departamentos/${d.departmentSlug}` : '/departamentos'}
-            className="mono"
-            style={{
-              fontSize: 'var(--fs-micro)',
-              padding: '3px 8px',
-              background: 'var(--civic-soft)',
-              color: 'var(--civic)',
-              borderRadius: 'var(--r-input)',
-              letterSpacing: '.05em',
-              textDecoration: 'none',
-            }}
-          >
-            {deptName(d)}
-            <span style={{ marginLeft: 5, color: 'var(--ink50)' }}>· {d.count}</span>
-          </Link>
-        ))}
-      </div>
-    </Card>
-  )
-}
-
-// `title` y `aria-label` porque dos de estas marcas son un GLIFO SUELTO.
-//
-// «18 puntos» y «5 hallazgos» se explican solos; «7 ✓» no. La revisión de
-// superficies lo leyó como «votaciones registradas» —lo son sólo 7 sesiones de
-// 61— cuando en realidad cuenta declaraciones verificadas. Da igual cuál de las
-// dos lecturas: un contador sin rótulo, en fila con otros que sí lo llevan,
-// invita a suponer, y aquí suponer sale caro.
-function Count({ n, label, tone, titulo }) {
-  if (!n) return null
-  return (
-    <span
-      className="mono"
-      style={{ fontSize: 'var(--fs-micro)', color: tone, marginLeft: 8 }}
-      title={titulo ? `${n} ${titulo}` : undefined}
-      aria-label={titulo ? `${n} ${titulo}` : undefined}
-    >
-      {n} {label}
-    </span>
-  )
-}
-
-/**
- * Qué significan las marcas de cada fila, dicho UNA vez y para quien mira.
- *
- * `Count` ya lleva `title` y `aria-label`, pero los dos sólo alcanzan a quien
- * pasa el ratón o usa lector de pantalla. Un lector que simplemente mira ve
- * «18 puntos · 9 ✓ · 5 hallazgos», dos de los tres rotulados y uno no, y
- * supone. La revisión de superficies lo leyó como «votaciones registradas» en
- * dos barridos seguidos, que es exactamente la suposición que invita.
- *
- * Y de paso dice lo que el revisor echaba en falta y la página no contaba en
- * ningún sitio: cuántas sesiones tienen votaciones transcritas. Son muchas
- * menos que las que llevan ✓, y que no las haya NO significa que no se votara.
- *
- * Las cifras salen del snapshot, no de una frase escrita a mano: es lo único
- * que impide que este párrafo se quede rancio cuando los datos se muevan.
- *
- * El MOTIVO también sale de ahí, y esa es la corrección del 2026-09-03. La
- * frase decía «aún no hemos transcrito el acta», y para 15 de las 22 sesiones
- * cuyo texto ya está procesado eso era falso: hay 45 transcripciones en disco.
- * Lo que falta en esas 15 no es la transcripción, es extraer la votación y
- * firmarla. Culpar a la etapa equivocada es un error sobre nuestro propio
- * trabajo, así que ahora se separan los dos casos y los dos se cuentan.
- */
-function Leyenda({ total, conVerificada, conVotos, conTexto, conTextoSinVotos }) {
-  if (!total) return null
-  return (
-    <div
-      style={{
-        fontSize: 'var(--fs-aux)',
-        color: 'var(--ink70)',
-        lineHeight: 1.5,
-        margin: '0 0 8px',
-        paddingLeft: 10,
-        borderLeft: '2px solid var(--border2)',
-      }}
-    >
-      <span className="mono" style={{ color: 'var(--ok-ink)' }}>
-        ✓
-      </span>{' '}
-      son <strong style={{ color: 'var(--ink)' }}>declaraciones verificadas</strong> contra los
-      datos abiertos, y{' '}
-      <span className="mono" style={{ color: 'var(--crit-ink)' }}>
-        ✗
-      </span>{' '}
-      las contradichas — no votos. Llevan ✓ {conVerificada} de las {total} sesiones.
-      {typeof conVotos === 'number' && (
-        <>
-          {' '}
-          Con <strong style={{ color: 'var(--ink)' }}>votaciones publicadas</strong> hay {conVotos}.
-          Que una sesión no las tenga no significa que no se votara
-          {typeof conTexto === 'number' && conTextoSinVotos > 0 ? (
-            <>
-              : de las {conTexto} cuyo texto ya hemos procesado, {conTextoSinVotos} siguen sin
-              votación extraída y firmada; de las demás aún no tenemos el texto.
-            </>
-          ) : (
-            <>, sino que aún no la hemos extraído del acta.</>
-          )}
-        </>
-      )}
-    </div>
-  )
-}
-
-function SessionRow({ row, t }) {
-  return (
-    <Link
-      to={`/plenos/${row.id}`}
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '130px 1fr auto',
-        gap: 12,
-        alignItems: 'center',
-        padding: '11px 6px',
-        borderBottom: '1px solid var(--border2)',
-        textDecoration: 'none',
-        color: 'inherit',
-      }}
-    >
-      <span className="mono" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-        {fmtDateLong(row.date)}
-      </span>
-      <span style={{ minWidth: 0 }}>
-        <Pill tone={PLENO_TONE[row.kind] || 'ghost'} size="xs">
-          {PLENO_LABEL[row.kind] || row.kind}
-        </Pill>
-        <Count n={row.agendaCount} label={t('plenosIndex.points')} tone="var(--ink50)" />
-        <Count
-          n={row.verificado}
-          label="✓"
-          tone="var(--ok-ink)"
-          titulo={t('plenosIndex.verificadas')}
-        />
-        <Count
-          n={row.contradicho}
-          label="✗"
-          tone="var(--crit-ink)"
-          titulo={t('plenosIndex.contradichas')}
-        />
-        <Count n={row.findings} label={t('plenosIndex.findings')} tone="var(--intel-ink)" />
-      </span>
-      <span className="mono" style={{ fontSize: 'var(--fs-body)', color: 'var(--ink50)' }}>
-        →
-      </span>
-    </Link>
-  )
-}
-
 export default function Plenos() {
   const t = useT()
   const { loading, data: plenosData } = usePlenos()
@@ -219,104 +54,130 @@ export default function Plenos() {
   const { data: findingsData } = usePlenoFindings()
   const { data: votesData } = usePlenoVotes()
 
-  const rows = useMemo(
+  const r = useMemo(
     () =>
-      summarizeSessions({
-        plenos: plenosData?.items ?? [],
-        manifestPlenos: manifest?.plenos ?? [],
-        findings: findingsData?.items ?? [],
-        agendas: agendasData?.plenos ?? [],
+      resumenPlenos({
+        plenos: plenosData,
+        agendas: agendasData,
+        manifest,
+        votes: votesData,
+        findings: findingsData,
       }),
-    [plenosData, manifest, findingsData, agendasData],
+    [plenosData, agendasData, manifest, votesData, findingsData],
   )
-
-  const conVerificada = useMemo(() => rows.filter((r) => r.verificado > 0).length, [rows])
-  const plenosConVotos = useMemo(
-    () => (votesData ? new Set((votesData.items ?? []).map((v) => v.plenoId)) : null),
-    [votesData],
-  )
-  const conVotos = plenosConVotos ? plenosConVotos.size : null
-  // Sesiones cuyo texto ya está procesado (tienen trozo de declaraciones), y
-  // cuántas de ésas siguen sin votación publicada. Son los dos números que
-  // sostienen el motivo que da la leyenda; derivarlos es lo que impide que la
-  // frase vuelva a culpar a la etapa equivocada cuando los datos se muevan.
-  const conTexto = manifest?.plenos?.length ?? null
-  const conTextoSinVotos = useMemo(() => {
-    if (!manifest?.plenos || !plenosConVotos) return null
-    return manifest.plenos.filter((p) => !plenosConVotos.has(p.plenoId)).length
-  }, [manifest, plenosConVotos])
 
   return (
     <div
       className="cp-page"
-      style={{ padding: '24px 24px 48px', maxWidth: 1100, margin: '0 auto' }}
+      style={{ padding: '24px 24px 48px', maxWidth: 1180, margin: '0 auto' }}
     >
-      <div style={{ marginBottom: 18 }}>
-        <div
-          className="mono"
-          style={{
-            fontSize: 'var(--fs-micro)',
-            color: 'var(--ink50)',
-            textTransform: 'uppercase',
-            letterSpacing: '.08em',
-          }}
-        >
-          {t('plenos.eyebrow')}
+      <style>{estiloPlenos}</style>
+
+      <div className="cp-plenos-hero" style={{ marginBottom: 30 }}>
+        <div>
+          <div
+            className="mono"
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              textTransform: 'uppercase',
+              letterSpacing: '.08em',
+            }}
+          >
+            {t('plenos.eyebrow')}
+          </div>
+          <h1
+            style={{
+              fontSize: 'var(--fs-page)',
+              fontWeight: 700,
+              letterSpacing: '-.015em',
+              margin: '6px 0 0',
+              lineHeight: 1.14,
+            }}
+          >
+            {t('plenos.title')}
+          </h1>
+          {/* El lede lleva los cuatro números de la escalera en prosa, porque
+              un lector que no mira la tarjeta de al lado tiene que salir de
+              aquí sabiendo el denominador. */}
+          <p
+            style={{
+              margin: '14px 0 0',
+              fontSize: 'var(--fs-head)',
+              lineHeight: 1.5,
+              color: 'var(--ink)',
+              maxWidth: '62ch',
+            }}
+          >
+            El ayuntamiento ha celebrado <strong>{r.total} sesiones</strong>
+            {r.ventana.desde && <> desde el {fmtDateLong(r.ventana.desde)}</>}. De ésas, tenemos el
+            orden del día de {r.agenda.sesiones}, declaraciones extraídas de {r.embudo.sesiones} y{' '}
+            <strong>votaciones transcritas de {r.votos.sesiones}</strong>. Lo que esta página no
+            cuenta no es que no ocurriera: es que aún no lo hemos leído.
+          </p>
+          <p
+            style={{
+              margin: '12px 0 0',
+              fontSize: 'var(--fs-aux)',
+              lineHeight: 1.55,
+              color: 'var(--ink70)',
+              maxWidth: '66ch',
+            }}
+          >
+            Cada sesión enlaza a su acta en regmeet.com, el gestor del propio ayuntamiento.{' '}
+            <Link to="/metodologia" style={{ color: 'var(--civic)' }}>
+              Cómo se procesa una sesión →
+            </Link>
+          </p>
         </div>
-        <div
-          style={{
-            fontSize: 'var(--fs-page)',
-            fontWeight: 700,
-            letterSpacing: '-.015em',
-            marginTop: 2,
-          }}
-        >
-          {t('plenos.title')}
-        </div>
+        <EscaleraCobertura escalera={r.escalera} />
       </div>
 
-      <TopDepartmentsCard agendas={agendasData} />
+      <div style={{ height: 1, background: 'var(--border)', margin: '0 0 30px' }} />
 
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 6 }}>
-        <div
-          className="mono"
+      <TablaSesiones filas={r.filas} filtros={r.filtros} porAnio={r.porAnio} loading={loading} />
+
+      <div className="cp-plenos-duo" style={{ marginTop: 30 }}>
+        <TarjetaVotaciones votos={r.votos} total={r.total} />
+        <TarjetaDeclaraciones embudo={r.embudo} />
+      </div>
+
+      <div style={{ marginTop: 30 }}>
+        <RepartoPorArea departamentos={r.departamentos} agenda={r.agenda} sesiones={r.total} />
+      </div>
+
+      <div className="cp-plenos-pie" style={{ marginTop: 30 }}>
+        <p
           style={{
-            fontSize: 'var(--fs-micro)',
-            color: 'var(--ink50)',
-            textTransform: 'uppercase',
-            letterSpacing: '.08em',
+            margin: 0,
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            maxWidth: '60ch',
           }}
         >
-          Sesiones · {plenosData?.stats?.total ?? rows.length}
+          Fuente: actas y vídeos publicados por el Ayuntamiento de Riba-roja de Túria en
+          regmeet.com.
+          {r.ventana.hasta && <> Última sesión recogida: {fmtDateLong(r.ventana.hasta)}.</>}{' '}
+          {plenosData?.generatedAt && <DataAsOf iso={plenosData.generatedAt} label="Plenos" />}
+        </p>
+        <span style={{ flex: 1 }} />
+        {/* La participación ciudadana sale del índice de plenos: es contenido
+            de otra sección y se llevaba el último tercio del scroll. El enlace
+            va al portal vivo —participa.ribarroja.es responde 200— y no a un
+            volcado nuestro; el snapshot sigue catalogado en /datos. */}
+        <div style={{ display: 'flex', gap: 16, fontSize: 'var(--fs-aux)', flexWrap: 'wrap' }}>
+          <ExtLink href={PORTAL_PARTICIPA} style={{ color: 'var(--civic)' }}>
+            Participación ciudadana →
+          </ExtLink>
+          <Link to="/hallazgos" style={{ color: 'var(--civic)' }}>
+            Hallazgos →
+          </Link>
+          <Link to="/metodologia" style={{ color: 'var(--civic)' }}>
+            Metodología →
+          </Link>
         </div>
-        {plenosData?.generatedAt && <DataAsOf iso={plenosData.generatedAt} label="Plenos" />}
       </div>
-      <Leyenda
-        total={plenosData?.stats?.total ?? rows.length}
-        conVerificada={conVerificada}
-        conVotos={conVotos}
-        conTexto={conTexto}
-        conTextoSinVotos={conTextoSinVotos}
-      />
-      <Card>
-        {loading && (
-          <div style={{ padding: 12, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>…</div>
-        )}
-        {rows.map((row) => (
-          <SessionRow key={row.id} row={row} t={t} />
-        ))}
-      </Card>
-
-      <div style={{ marginTop: 14 }}>
-        <Link
-          to="/declaraciones"
-          style={{ fontSize: 'var(--fs-aux)', color: 'var(--civic)', textDecoration: 'none' }}
-        >
-          {t('plenosIndex.crossSession')}
-        </Link>
-      </div>
-
-      <ParticipaBlock />
     </div>
   )
 }

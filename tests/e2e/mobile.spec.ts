@@ -69,7 +69,10 @@ const ROUTES: Route[] = [
   { path: '/cargos', ready: /Robert Raga Gadea/ }, // officials snapshot
   { path: '/cargos/robert-raga-gadea', ready: /@ribarroja\.es/ }, // the official's own record
   { path: '/presupuesto', ready: /€\d+(?:,\d+)?M/ }, // CONPREL KPI figure
-  { path: '/plenos', ready: /DE \d+ SESIONES/i },
+  // El rediseño del índice retiró el rótulo «… de 39 de 61 sesiones» de la
+  // tarjeta de departamentos, que era donde vivía la señal anterior. La nueva
+  // sale del lede, que es lo primero que la página escribe con datos dentro.
+  { path: '/plenos', ready: /celebrado \d+ sesiones/i },
   { path: `/plenos/${FIRST_PLENO_ID}`, ready: /\d{1,2} de [a-záéíóúñ]+ de \d{4}/i }, // session date
   { path: '/promesas', ready: /\d+ compromisos en seguimiento/ },
   { path: '/departamentos', ready: /De \d+ concejalías con delegación/ },

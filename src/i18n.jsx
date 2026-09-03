@@ -283,13 +283,6 @@ export const CATALOGUE = {
     // Claim ledger (declaraciones contrastadas)
     'ledger.loadMore': 'Cargar más',
 
-    // Pleno index (/plenos)
-    'plenosIndex.crossSession': 'Verificación de declaraciones (todas las sesiones) →',
-    'plenosIndex.points': 'puntos',
-    'plenosIndex.findings': 'hallazgos',
-    'plenosIndex.verificadas': 'declaraciones verificadas',
-    'plenosIndex.contradichas': 'declaraciones contradichas',
-
     // Pleno detail (/plenos/:id)
     'plenoDetail.notFound': 'Sesión no encontrada',
     'plenoDetail.back': '← Todos los plenos',
@@ -846,13 +839,6 @@ export const CATALOGUE = {
 
     // Claim ledger (declaracions contrastades)
     'ledger.loadMore': 'Carrega més',
-
-    // Pleno index (/plenos)
-    'plenosIndex.crossSession': 'Verificació de declaracions (totes les sessions) →',
-    'plenosIndex.points': 'punts',
-    'plenosIndex.findings': 'troballes',
-    'plenosIndex.verificadas': 'declaracions verificades',
-    'plenosIndex.contradichas': 'declaracions contradites',
 
     // Pleno detail (/plenos/:id)
     'plenoDetail.notFound': 'Sessió no trobada',

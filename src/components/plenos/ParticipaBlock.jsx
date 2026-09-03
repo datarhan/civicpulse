@@ -3,6 +3,18 @@ import { useParticipa, KIND_ICON, KIND_LABEL } from '../../hooks/useParticipa'
 import { fmtDateLong, fmtDateShort } from '../../lib/formatters'
 import { RetiredSourceNote } from '../RetiredSourceNote'
 
+/**
+ * SIN MONTAR desde el rediseño del índice de plenos (3-sep-2026).
+ *
+ * Vivía al final de /plenos y se llevaba el último tercio del scroll con
+ * contenido de otra sección. Ahora esa página enlaza al portal en su pie y no
+ * lo pinta.
+ *
+ * El dato NO se pierde por ello, y conviene saberlo antes de tocar nada aquí:
+ * `ParticipaBlockD` (variants/direction-d/blocks/FeedBlocks.jsx) pinta el mismo
+ * snapshot en la portada, y /datos lo cataloga con su fuente y su fecha. Lo que
+ * queda sin montar es esta variante, no la participación ciudadana.
+ */
 export function ParticipaBlock() {
   const { loading, error, data } = useParticipa()
   if (loading || error || !data) return null

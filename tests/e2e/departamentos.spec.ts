@@ -163,13 +163,19 @@ test.describe('Departamentos (/departamentos)', () => {
     })
   })
 
-  test('Plenos page TopDepartmentsCard chips link into /departamentos/:slug', async ({ page }) => {
-    // The TopDepartmentsCard + its /departamentos/ chips only render when the
-    // agenda snapshot has departments; skip when the upstream scraper has not
-    // populated them (not a frontend bug — the page honestly hides the card).
+  test('Plenos · el reparto por área enlaza a /departamentos/:slug', async ({ page }) => {
+    // El reparto y sus enlaces sólo se pintan si el snapshot de órdenes del día
+    // trae departamentos; se salta cuando el raspador no los ha poblado (no es
+    // un fallo de front: la página esconde el bloque honestamente).
+    //
+    // El bloque cambió de sitio y de nombre con el rediseño del índice —era
+    // «TopDepartmentsCard», la primera tarjeta de la página, y ahora es el
+    // reparto por área, detrás de las sesiones—, pero el contrato que esta
+    // prueba defiende es el mismo y no depende de ninguno de los dos: desde
+    // /plenos se entra a la ficha de un departamento.
     test.skip(!agendaHasDepartments(), 'plenos-agendas.json has no departments in this snapshot')
     await page.goto('/plenos', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByText(/Ver dashboard por departamento/i).first()).toBeVisible({
+    await expect(page.getByText(/Qué áreas llevan el orden del día/i).first()).toBeVisible({
       timeout: 8000,
     })
     const chip = page.locator('a[href^="/departamentos/"]').first()

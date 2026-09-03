@@ -194,8 +194,7 @@
       "/",
       "/cambios",
       "/datos",
-      "/lab-health",
-      "/plenos"
+      "/lab-health"
     ],
     "plantilla.json": [
       "/cargos"

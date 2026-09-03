@@ -92,6 +92,12 @@ describe('la caja discontinua significa una sola cosa en todo el sitio', () => {
     'src/components/Primitives.jsx': 'la propuesta de máquina',
     'src/components/PlenoFindings.jsx': 'fecha y estado que no constan',
     'src/components/plenos/VoteBreakdownRetracted.jsx': 'votación retirada',
+    // La misma familia exacta, y en el índice de plenos es el tema de la
+    // página: la caja discontinua marca la parte del acta que NO hemos
+    // procesado —«sin extraer», «sin transcribir»—, que es lo que había que
+    // separar del cero. Un cero es una afirmación en firme sobre el registro;
+    // esto es la ausencia de una.
+    'src/components/plenos/TablaSesiones.jsx': 'la parte del acta que no hemos procesado',
     'src/components/eficiencia/DeclaracionEntregas.jsx':
       'la entrega que el ayuntamiento no presentó',
     // La misma provisionalidad que la de arriba, a escala de panel: la rejilla
