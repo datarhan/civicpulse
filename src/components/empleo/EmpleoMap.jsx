@@ -1,5 +1,13 @@
 import { useEffect } from 'react'
-import { MapContainer, TileLayer, CircleMarker, Tooltip, useMap } from 'react-leaflet'
+import {
+  AttributionControl,
+  CircleMarker,
+  MapContainer,
+  TileLayer,
+  Tooltip,
+  useMap,
+} from 'react-leaflet'
+import { BASEMAP_ATTRIBUTION, BASEMAP_URL } from '../../lib/basemap'
 
 // Comarca centre — a sensible initial view before FitBounds runs.
 const CENTER = [39.5, -0.54]
@@ -48,7 +56,8 @@ export default function EmpleoMap({ points, t }) {
         scrollWheelZoom={false}
         attributionControl={false}
       >
-        <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png" />
+        <TileLayer url={BASEMAP_URL} attribution={BASEMAP_ATTRIBUTION} />
+        <AttributionControl prefix={false} />
         <FitBounds points={points} />
         {points.map((p) => (
           <CircleMarker

@@ -259,6 +259,22 @@ async function gather(): Promise<Observations> {
     // proteger de lo que venga después. En el parte se ve todas las noches y
     // no bloquea a nadie.
     'check:claim-provenance',
+    // El mapa base, y es la única de esta lista que mira PÍXELES.
+    //
+    // CARTO empezó a exigir clave en sus teselas ráster y lo que hace sin ella
+    // no es fallar: sirve `200 image/png` con «API KEY REQUIRED» estampado en
+    // diagonal. Los cuatro mapas del sitio lo llevaron puesto sin que nada lo
+    // dijera, porque las diecisiete guardas de este parte miran códigos, datos
+    // y texto. Ninguna podía verlo, ni podrá: medido el 3-sep-2026, una clave
+    // inválida devuelve la tesela marcada BYTE A BYTE igual que no mandar
+    // clave —sin 401, sin 403, sin cabecera— así que un secreto sin poner en
+    // Vercel o una cuota agotada son indistinguibles de acertar por HTTP.
+    //
+    // Aquí y no en el pre-commit por dos motivos: pide red, y nace roja
+    // mientras no haya clave puesta. Una puerta que nace roja en el camino de
+    // comitear se aprende a saltar con --no-verify, igual que se dijo de
+    // check:claim-provenance.
+    'check:basemap',
   ]) {
     const msg = runCheck(c)
     if (msg) integrity.push({ check: c, message: msg })

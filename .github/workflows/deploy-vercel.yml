@@ -107,6 +107,17 @@ jobs:
           # at all. The guard is commit-then-gate: the nightly verifies and
           # reds the run, which blocks the next deploy.
           VITE_ENABLE_EFICIENCIA: 'true'
+          # Clave del mapa base. NO es una bandera de lanzamiento: no enciende
+          # ninguna ruta, así que `tests/deploy-triggers.test.js` no la compara
+          # y no va en e2e.yml — allí no hay nada que ejercitarla, porque
+          # ninguna spec mira los píxeles de una tesela.
+          #
+          # Sin ella el sitio NO se rompe: CARTO sirve la tesela con «API KEY
+          # REQUIRED» estampado y un 200 impecable, que es exactamente cómo
+          # llegó a producción el 3-sep-2026 sin que nada lo dijera. Lo mira
+          # `check:basemap` en el parte nocturno, comparando bytes, porque una
+          # clave inválida y ninguna clave dan la MISMA tesela.
+          VITE_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
         run: vercel build --prod --token="$VERCEL_TOKEN"
 
       - name: Deploy prebuilt bundle

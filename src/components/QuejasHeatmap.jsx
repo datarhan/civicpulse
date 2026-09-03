@@ -1,5 +1,14 @@
 import { useEffect, useMemo } from 'react'
-import { Circle, MapContainer, Polyline, TileLayer, Tooltip, useMap } from 'react-leaflet'
+import {
+  AttributionControl,
+  Circle,
+  MapContainer,
+  Polyline,
+  TileLayer,
+  Tooltip,
+  useMap,
+} from 'react-leaflet'
+import { BASEMAP_ATTRIBUTION, BASEMAP_URL } from '../lib/basemap'
 import { useGeo } from '../hooks/useGeo'
 import { useQuejas, prettyNeighborhood } from '../hooks/useQuejas'
 import { computePerNeighborhood, healthFromCounts } from '../lib/neighborhood-aggregate'
@@ -69,10 +78,8 @@ export default function QuejasHeatmap() {
         style={{ width: '100%', height: '100%' }}
       >
         <ResizeOnMount />
-        <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-          subdomains={['a', 'b', 'c', 'd']}
-        />
+        <TileLayer url={BASEMAP_URL} attribution={BASEMAP_ATTRIBUTION} />
+        <AttributionControl prefix={false} />
         <Boundary />
         {perNeighborhood.map((n) => {
           const { color } = healthFromCounts(n.total, n.resueltas, n.silencios)

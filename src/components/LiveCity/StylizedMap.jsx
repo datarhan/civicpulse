@@ -1,6 +1,7 @@
 // @ts-check
 import { useMemo, useState } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
+import { BASEMAP_URL } from '../../lib/basemap'
 import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { useTenders } from '../../hooks/useTenders'
 import { useObras } from '../../hooks/useObras'
@@ -130,11 +131,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
       >
         <ResizeOnMount />
 
-        <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-          subdomains={['a', 'b', 'c', 'd']}
-          attribution=""
-        />
+        <TileLayer url={BASEMAP_URL} attribution="" />
 
         {layers.flood && <FloodRiskLayer />}
 
