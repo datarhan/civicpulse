@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T09:11:32.012Z",
+  "generatedAt": "2026-09-03T08:34:39.507Z",
   "clusters": [
     {
       "clusterId": "1hy1xq8",
@@ -15,12 +15,17 @@
       ],
       "earliestDate": "2026-08-31T09:04:15.000Z",
       "latestDate": "2026-09-01T10:59:39.000Z",
-      "amountDrift": null,
+      "amountDrift": {
+        "min": 40000,
+        "max": 40000,
+        "spread": 0,
+        "spreadPct": 0
+      },
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 3,
         "promesa-repetida": 0
       }
     },
@@ -57,12 +62,17 @@
       ],
       "earliestDate": "2026-08-25T06:55:58.000Z",
       "latestDate": "2026-08-25T16:39:17.000Z",
-      "amountDrift": null,
+      "amountDrift": {
+        "min": 100000,
+        "max": 140000,
+        "spread": 40000,
+        "spreadPct": 0.4
+      },
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 2,
         "promesa-repetida": 0
       }
     },
@@ -104,7 +114,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 5,
+        "sin-datos": 0,
         "promesa-repetida": 0
       }
     },
@@ -125,7 +135,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 7,
+        "sin-datos": 0,
         "promesa-repetida": 0
       }
     },
@@ -146,7 +156,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 1,
         "promesa-repetida": 0
       }
     },
@@ -167,7 +177,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 3,
+        "sin-datos": 0,
         "promesa-repetida": 0
       }
     },
@@ -196,11 +206,5 @@
   "stats": {
     "totalClusters": 9,
     "triangulated3Plus": 1
-  },
-  "builtFrom": {
-    "plenos-agendas.json": "71ac0656f27f",
-    "press-claims-verified.json": "20087c8edf48",
-    "press.json": "5f64bc7624ac",
-    "promises.json": "d18811c11210"
   }
 }

@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-08-28T08:16:14.829Z",
+  "generatedAt": "2026-09-03T08:17:16.334Z",
   "source": {
     "url": "https://factchecktools.googleapis.com/v1alpha1/claims:search",
     "query": "\"Riba-roja de Túria\"",
-    "description": "Consultadas 3 de 3 fuentes (Google Fact Check Tools API, Maldita.es RSS, Newtral RSS) · 61 revisión(es) examinada(s), ninguna nombra Riba-roja de Túria (la consulta arrastra el embalse de Riba-roja del Ebro, que es otro sitio)"
+    "description": "Consultadas 2 de 3 fuentes (Google Fact Check Tools API, Newtral RSS) · 11 revisión(es) examinada(s), ninguna nombra Riba-roja de Túria (la consulta arrastra el embalse de Riba-roja del Ebro, que es otro sitio) · Maldita.es RSS: NO consultada — HTTP 524"
   },
   "consulta": {
     "intentos": [
@@ -15,9 +15,10 @@
       },
       {
         "fuente": "Maldita.es RSS",
-        "estado": "consultada",
-        "examinadas": 50,
-        "aceptadas": 0
+        "estado": "error",
+        "examinadas": 0,
+        "aceptadas": 0,
+        "motivo": "HTTP 524"
       },
       {
         "fuente": "Newtral RSS",
@@ -31,9 +32,9 @@
     "total": 0,
     "reviewers": 0,
     "byVerdict": {},
-    "fuentesConsultadas": 3,
-    "fuentesCaidas": 0,
-    "revisionesExaminadas": 61
+    "fuentesConsultadas": 2,
+    "fuentesCaidas": 1,
+    "revisionesExaminadas": 11
   },
   "items": []
 }

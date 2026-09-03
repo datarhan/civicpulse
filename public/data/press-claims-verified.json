@@ -1,93 +1,1314 @@
 {
-  "generatedAt": "2026-08-28T08:16:35.069Z",
+  "generatedAt": "2026-09-03T08:34:36.745Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 63,
+    "total": 36,
     "byVerdict": {
-      "verificado": 0,
-      "parcial": 0,
+      "verificado": 1,
+      "parcial": 1,
       "contradicho": 0,
-      "sin-datos": 63,
+      "sin-datos": 34,
       "promesa-repetida": 0
     }
   },
   "items": [
     {
       "claim": {
-        "id": "17iw9j4-0-num",
-        "articleId": "17iw9j4",
-        "articleFingerprint": "re5p73",
-        "articleSource": "Levante-EMV",
-        "articleSourceHost": "levante-emv.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNVW94SUZNUGlFN2VWYS04NC02cFV3bFNkUjkydk8xcXJvaG90SHEyZ0xyVjZYNXNFSkVhcGE5LThBTzVLMnRTeHd4b2dPRTdCZzI5UlRvakJrV3lISmozd0hGSm1wQ3JmRVluZmFJTFAzbjVGNGk2cjhnV1R5WHVNdEpVVjhoMjdWeVp1aG5SbXQxejk4V243SHc5UmFOZFZBaXpVWUwtb3FVSWRpY1pBdtIBtgFBVV95cUxQd2pLa2xWTERQd000UHRRU1o1X25qbEVJUldvVmR3VUptc0lfNkFnaGJobUtJVDJLR0F1WjVnRGFUVmNaQzRoQlFQZEFaUU1OLWlZUFJnekxpeVNHQ2J3TzdmS192ODRmZUR6NWxxOGF4LUJqYVVOTGFfN0hrNko3akxUSzdVeDFlM0ZNWldjMUtkcnZkdFN4eEJ6anQ0cGwtN3NWeVZMdnJteEdKbzNZT0tvU1JkZw?oc=5",
-        "articleDate": "2026-08-24T17:05:02.000Z",
+        "id": "161q2v1-0-num",
+        "articleId": "161q2v1",
+        "articleFingerprint": "1slb5ao",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/la-confederaci%C3%B3n-hidrogr%C3%A1fica-del-j%C3%BAcar-habilita-tres-pasarelas-sobre-el-t%C3%BAria-a-su-paso-por-riba-roja-para-garantizar-el-paso-ciclo-peatonal",
+        "articleDate": "2026-09-01T12:39:24.000Z",
         "segmentIndex": 0,
         "segmentKind": "title",
         "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "Riba-roja dispara un 31,6 % la contratación en julio",
-        "context": "Riba-roja dispara un 31,6 % la contratación en julio y alcanza un récord de 22.156 afiliados",
-        "topic": "empleo",
+        "attributedSource": "municipal",
+        "verbatim": "La Confederación Hidrográfica del Júcar habilita tres pasarelas sobre el Túria a su paso por Riba-roja para garantizar el paso ciclo-peatonal",
+        "context": "Titular publicado por el Ayuntamiento de Riba-roja de Túria (01/09/2026) sobre la habilitación de infraestructuras de paso sobre el río Túria.",
+        "topic": "movilidad",
         "entities": {
-          "count": 31.6,
-          "countUnit": "%",
-          "date": "2026-07",
-          "referencedEntity": "contratación en Riba-roja de Túria"
+          "count": 3,
+          "countUnit": "pasarelas",
+          "referencedEntity": "Confederación Hidrográfica del Júcar"
         },
         "confidence": 0.55,
-        "reasoning": "Es una cifra porcentual concreta sobre variación de contratación que puede contrastarse con estadísticas oficiales de empleo.",
+        "reasoning": "Afirma una cifra concreta y verificable (tres pasarelas habilitadas por la CHJ) sobre una obra pública identificable en Riba-roja de Túria.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "17iw9j4-0-num",
+        "claimId": "161q2v1-0-num",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [],
-        "articleUrl": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNVW94SUZNUGlFN2VWYS04NC02cFV3bFNkUjkydk8xcXJvaG90SHEyZ0xyVjZYNXNFSkVhcGE5LThBTzVLMnRTeHd4b2dPRTdCZzI5UlRvakJrV3lISmozd0hGSm1wQ3JmRVluZmFJTFAzbjVGNGk2cjhnV1R5WHVNdEpVVjhoMjdWeVp1aG5SbXQxejk4V243SHc5UmFOZFZBaXpVWUwtb3FVSWRpY1pBdtIBtgFBVV95cUxQd2pLa2xWTERQd000UHRRU1o1X25qbEVJUldvVmR3VUptc0lfNkFnaGJobUtJVDJLR0F1WjVnRGFUVmNaQzRoQlFQZEFaUU1OLWlZUFJnekxpeVNHQ2J3TzdmS192ODRmZUR6NWxxOGF4LUJqYVVOTGFfN0hrNko3akxUSzdVeDFlM0ZNWldjMUtkcnZkdFN4eEJ6anQ0cGwtN3NWeVZMdnJteEdKbzNZT0tvU1JkZw?oc=5",
-        "articleSource": "Levante-EMV",
-        "articleSourceHost": "levante-emv.com",
-        "articleFingerprint": "re5p73"
+        "articleUrl": "https://www.ribarroja.es/es/noticia/la-confederaci%C3%B3n-hidrogr%C3%A1fica-del-j%C3%BAcar-habilita-tres-pasarelas-sobre-el-t%C3%BAria-a-su-paso-por-riba-roja-para-garantizar-el-paso-ciclo-peatonal",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1slb5ao"
       }
     },
     {
       "claim": {
-        "id": "17iw9j4-1-num",
-        "articleId": "17iw9j4",
-        "articleFingerprint": "re5p73",
-        "articleSource": "Levante-EMV",
-        "articleSourceHost": "levante-emv.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNVW94SUZNUGlFN2VWYS04NC02cFV3bFNkUjkydk8xcXJvaG90SHEyZ0xyVjZYNXNFSkVhcGE5LThBTzVLMnRTeHd4b2dPRTdCZzI5UlRvakJrV3lISmozd0hGSm1wQ3JmRVluZmFJTFAzbjVGNGk2cjhnV1R5WHVNdEpVVjhoMjdWeVp1aG5SbXQxejk4V243SHc5UmFOZFZBaXpVWUwtb3FVSWRpY1pBdtIBtgFBVV95cUxQd2pLa2xWTERQd000UHRRU1o1X25qbEVJUldvVmR3VUptc0lfNkFnaGJobUtJVDJLR0F1WjVnRGFUVmNaQzRoQlFQZEFaUU1OLWlZUFJnekxpeVNHQ2J3TzdmS192ODRmZUR6NWxxOGF4LUJqYVVOTGFfN0hrNko3akxUSzdVeDFlM0ZNWldjMUtkcnZkdFN4eEJ6anQ0cGwtN3NWeVZMdnJteEdKbzNZT0tvU1JkZw?oc=5",
-        "articleDate": "2026-08-24T17:05:02.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "title",
+        "id": "1v9gr48-0-num",
+        "articleId": "1v9gr48",
+        "articleFingerprint": "1mtqgek",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
+        "articleDate": "2026-09-01T12:31:35.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "body",
         "type": "afirmacion_numerica",
         "attributedSource": "outlet",
-        "verbatim": "alcanza un récord de 22.156 afiliados",
-        "context": "Riba-roja dispara un 31,6 % la contratación en julio y alcanza un récord de 22.156 afiliados",
-        "topic": "empleo",
+        "verbatim": "El parc del Túria recupera la connectivitat amb quatre noves passarel·les",
+        "context": "Titular de l'article, que anuncia el nombre total de passarel·les noves instal·lades al parc natural del Túria.",
+        "topic": "medio-ambiente",
         "entities": {
-          "count": 22156,
-          "countUnit": "afiliados",
-          "referencedEntity": "afiliados a la Seguridad Social en Riba-roja de Túria"
+          "count": 4,
+          "countUnit": "passarel·les",
+          "referencedEntity": "parc natural del Túria"
         },
-        "confidence": 0.55,
-        "reasoning": "Cifra absoluta de afiliados presentada como récord, verificable con datos de afiliación a la Seguridad Social.",
+        "confidence": 0.9,
+        "reasoning": "El titular afirma una xifra concreta i verificable de passarel·les noves instal·lades.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "17iw9j4-1-num",
+        "claimId": "1v9gr48-0-num",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [],
-        "articleUrl": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNVW94SUZNUGlFN2VWYS04NC02cFV3bFNkUjkydk8xcXJvaG90SHEyZ0xyVjZYNXNFSkVhcGE5LThBTzVLMnRTeHd4b2dPRTdCZzI5UlRvakJrV3lISmozd0hGSm1wQ3JmRVluZmFJTFAzbjVGNGk2cjhnV1R5WHVNdEpVVjhoMjdWeVp1aG5SbXQxejk4V243SHc5UmFOZFZBaXpVWUwtb3FVSWRpY1pBdtIBtgFBVV95cUxQd2pLa2xWTERQd000UHRRU1o1X25qbEVJUldvVmR3VUptc0lfNkFnaGJobUtJVDJLR0F1WjVnRGFUVmNaQzRoQlFQZEFaUU1OLWlZUFJnekxpeVNHQ2J3TzdmS192ODRmZUR6NWxxOGF4LUJqYVVOTGFfN0hrNko3akxUSzdVeDFlM0ZNWldjMUtkcnZkdFN4eEJ6anQ0cGwtN3NWeVZMdnJteEdKbzNZT0tvU1JkZw?oc=5",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1mtqgek"
+      }
+    },
+    {
+      "claim": {
+        "id": "1v9gr48-1-num",
+        "articleId": "1v9gr48",
+        "articleFingerprint": "1mtqgek",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
+        "articleDate": "2026-09-01T12:31:35.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Tres se situen a Riba-roja i una altra a l’entorn de la potabilitzadora de Manises",
+        "context": "Subtítol de l'article que detalla la ubicació de les quatre passarel·les reconstruïdes.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 3,
+          "countUnit": "passarel·les",
+          "referencedEntity": "Riba-roja de Túria"
+        },
+        "confidence": 0.9,
+        "reasoning": "Especifica un repartiment numèric verificable de les passarel·les entre Riba-roja i Manises.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1v9gr48-1-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1mtqgek"
+      }
+    },
+    {
+      "claim": {
+        "id": "1v9gr48-2-dat",
+        "articleId": "1v9gr48",
+        "articleFingerprint": "1mtqgek",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
+        "articleDate": "2026-09-01T12:31:35.000Z",
+        "segmentIndex": 2,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "d’aquestes passarel·les, desaparegudes en la dana de 2024",
+        "context": "La reconstrucció d’aquestes passarel·les, desaparegudes en la dana de 2024, permet recuperar la connectivitat entre tots dos marges del riu Túria.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "date": "2024",
+          "referencedEntity": "dana de 2024"
+        },
+        "confidence": 0.85,
+        "reasoning": "Vincula la destrucció de les passarel·les anteriors a un esdeveniment i any concrets i verificables.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1v9gr48-2-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1mtqgek"
+      }
+    },
+    {
+      "claim": {
+        "id": "1v9gr48-3-num",
+        "articleId": "1v9gr48",
+        "articleFingerprint": "1mtqgek",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
+        "articleDate": "2026-09-01T12:31:35.000Z",
+        "segmentIndex": 3,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "corresponents a avingudes amb un període de retorn de 100 anys",
+        "context": "Aquestes estructures han sigut concebudes per a suportar condicions hidràuliques severes, corresponents a avingudes amb un període de retorn de 100 anys.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 100,
+          "countUnit": "anys (període de retorn)",
+          "referencedEntity": "passarel·les del parc del Túria"
+        },
+        "confidence": 0.85,
+        "reasoning": "Especifica un paràmetre tècnic quantificable sobre la resistència hidràulica dissenyada per a les estructures.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1v9gr48-3-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1mtqgek"
+      }
+    },
+    {
+      "claim": {
+        "id": "1v9gr48-4-num",
+        "articleId": "1v9gr48",
+        "articleFingerprint": "1mtqgek",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
+        "articleDate": "2026-09-01T12:31:35.000Z",
+        "segmentIndex": 4,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Els assajos s’han dut a terme amb càrregues de 14.700 i 9.450 quilograms, en funció de les característiques de cada passarel·la.",
+        "context": "Les passarel·les s’han posat en servei després de la realització de les proves de càrrega que han permés verificar que les estructures responen segons el que es preveu.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "countUnit": "quilograms (14.700 i 9.450)",
+          "referencedEntity": "proves de càrrega"
+        },
+        "confidence": 0.85,
+        "reasoning": "Detalla xifres exactes de les càrregues de prova aplicades, un dato tècnic contrastable.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1v9gr48-4-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1mtqgek"
+      }
+    },
+    {
+      "claim": {
+        "id": "1v9gr48-5-num",
+        "articleId": "1v9gr48",
+        "articleFingerprint": "1mtqgek",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
+        "articleDate": "2026-09-01T12:31:35.000Z",
+        "segmentIndex": 5,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Tres d’elles salven el llit d’aigüesbaixes amb una obertura de 24 metres, mentre que la quarta compta amb una obertura de 20 metres.",
+        "context": "Descripció tècnica de les quatre passarel·les reconstruïdes al parc del Túria després de les proves de càrrega.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "countUnit": "metres (24 i 20)",
+          "referencedEntity": "obertura de les passarel·les"
+        },
+        "confidence": 0.85,
+        "reasoning": "Aporta mesures exactes de l'obertura de les passarel·les, un dato tècnic verificable.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1v9gr48-5-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1mtqgek"
+      }
+    },
+    {
+      "claim": {
+        "id": "1v9gr48-6-dat",
+        "articleId": "1v9gr48",
+        "articleFingerprint": "1mtqgek",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
+        "articleDate": "2026-09-01T12:31:35.000Z",
+        "segmentIndex": 6,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "la Confederació Hidrogràfica del Xúquer (CHJ) ha restituït al llarg del parc natural del Túria",
+        "context": "Les passarel·les per als vianants que la Confederació Hidrogràfica del Xúquer (CHJ) ha restituït al llarg del parc natural del Túria ja es troben operatives.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "Confederació Hidrogràfica del Xúquer (CHJ)"
+        },
+        "confidence": 0.8,
+        "reasoning": "Identifica l'entitat responsable de la reconstrucció, un dato institucional verificable.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1v9gr48-6-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1mtqgek"
+      }
+    },
+    {
+      "claim": {
+        "id": "1baly32-0-num",
+        "articleId": "1baly32",
+        "articleFingerprint": "fkx730",
+        "articleSource": "El Periódico de Aquí",
+        "articleSourceHost": "elperiodicodeaqui.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOeFZuWE10YkNHY3B1WS02SE54eVJ6amV6T09iMHExMTRnM2x1YllpdXNHemluTFhRMFlEajF5dnhMZTVtMGd4dEJENG41V0p4WFQzeThRcEFJTGdWVEJCak93UTBwWVBaOXh2SEIwcWd1ZVVsb0kxcXBNV1l1RTZTdTJfeWMxbDRFMmZwYTlOQ0V3ZmxpU2xlNGRtUGVPNVlFYUVxbWs1VkctRnhEMHRWRDBLLW5QQ1IyTGpHRnJKa2R1TGlmX1FNWG5PWXlEbVB3TVpiaWR3TGpWRjJaVXc?oc=5",
+        "articleDate": "2026-09-01T10:59:39.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "El Auditorio de Riba-roja invierte 40.000 euros en modernizar sus instalaciones",
+        "context": "Titular de El Periódico de Aquí (01/09/2026): 'El Auditorio de Riba-roja invierte 40.000 euros en modernizar sus instalaciones'. No se dispone del cuerpo del artículo para más contexto.",
+        "topic": "cultura",
+        "entities": {
+          "amountEuros": 40000,
+          "referencedEntity": "Auditorio de Riba-roja"
+        },
+        "confidence": 0.55,
+        "reasoning": "Cifra concreta de inversión (40.000€) en una instalación pública, verificable frente a presupuestos o contratos municipales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1baly32-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOeFZuWE10YkNHY3B1WS02SE54eVJ6amV6T09iMHExMTRnM2x1YllpdXNHemluTFhRMFlEajF5dnhMZTVtMGd4dEJENG41V0p4WFQzeThRcEFJTGdWVEJCak93UTBwWVBaOXh2SEIwcWd1ZVVsb0kxcXBNV1l1RTZTdTJfeWMxbDRFMmZwYTlOQ0V3ZmxpU2xlNGRtUGVPNVlFYUVxbWs1VkctRnhEMHRWRDBLLW5QQ1IyTGpHRnJKa2R1TGlmX1FNWG5PWXlEbVB3TVpiaWR3TGpWRjJaVXc?oc=5",
+        "articleSource": "El Periódico de Aquí",
+        "articleSourceHost": "elperiodicodeaqui.com",
+        "articleFingerprint": "fkx730"
+      }
+    },
+    {
+      "claim": {
+        "id": "tfe81a-0-num",
+        "articleId": "tfe81a",
+        "articleFingerprint": "1nbr4f4",
         "articleSource": "Levante-EMV",
         "articleSourceHost": "levante-emv.com",
-        "articleFingerprint": "re5p73"
+        "articleUrl": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQS3JXeG1kREItVzRYTGctdXN2cmNLR1RENzJkci1FdG9aMnhpTnkyQnh2MXVXWWNvdmZJX09rd3BuRm1ZN2Q4dklJMkYySG9VUTlvcmEzb0NQdENwY3J3Qjh0Q1dXX3ZWLXV3UHBubFY2UE44NWpkeHNvdmV1SlBrUGtYTWRwN3ZqeGptb1pKUTRfSFFUZUUyYXV1RURZTXlqX0FTZnpOM2JxZDRLSkw1c29RQ1pzMlBSMzNUUXdSWHprR3FnSTBDa1pDZ9IB0AFBVV95cUxNTDMwRkw2YmZRRTBjMTByRlJzWWhwZnc5azhsUlRXdjhLR0pDUkxVYUc5TVBJX19zZmhUdjFaSDVLY0RtOWxodS1wcTIwc2tmSkd4X3BuVUs1MFAxVzBwTWpLYmxnZC1QUnY4aDhrNjVndFQtWGhrYjRlMU1Fd0taUE5SM0FGdGR5b25Sc0lKTkU2eTJkS1lobGxwMGV5LWRqRnN0RWZhV2tGVFQtOXkwdndYaXdpRGllOXd3eFFEaHBsb1l2WklrNi1LLXQ5VXJx?oc=5",
+        "articleDate": "2026-09-01T10:16:52.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "El Parque Fluvial del Turia recupera la conectividad con cuatro nuevas pasarelas reconstruidas por el Gobierno",
+        "context": "El Parque Fluvial del Turia recupera la conectividad con cuatro nuevas pasarelas reconstruidas por el Gobierno",
+        "topic": "movilidad",
+        "entities": {
+          "count": 4,
+          "countUnit": "pasarelas",
+          "referencedEntity": "Gobierno"
+        },
+        "confidence": 0.5,
+        "reasoning": "El titular afirma una cifra concreta y verificable (cuatro pasarelas reconstruidas) atribuida a una actuación gubernamental, contrastable con fuentes oficiales del proyecto.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "tfe81a-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQS3JXeG1kREItVzRYTGctdXN2cmNLR1RENzJkci1FdG9aMnhpTnkyQnh2MXVXWWNvdmZJX09rd3BuRm1ZN2Q4dklJMkYySG9VUTlvcmEzb0NQdENwY3J3Qjh0Q1dXX3ZWLXV3UHBubFY2UE44NWpkeHNvdmV1SlBrUGtYTWRwN3ZqeGptb1pKUTRfSFFUZUUyYXV1RURZTXlqX0FTZnpOM2JxZDRLSkw1c29RQ1pzMlBSMzNUUXdSWHprR3FnSTBDa1pDZ9IB0AFBVV95cUxNTDMwRkw2YmZRRTBjMTByRlJzWWhwZnc5azhsUlRXdjhLR0pDUkxVYUc5TVBJX19zZmhUdjFaSDVLY0RtOWxodS1wcTIwc2tmSkd4X3BuVUs1MFAxVzBwTWpLYmxnZC1QUnY4aDhrNjVndFQtWGhrYjRlMU1Fd0taUE5SM0FGdGR5b25Sc0lKTkU2eTJkS1lobGxwMGV5LWRqRnN0RWZhV2tGVFQtOXkwdndYaXdpRGllOXd3eFFEaHBsb1l2WklrNi1LLXQ5VXJx?oc=5",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleFingerprint": "1nbr4f4"
+      }
+    },
+    {
+      "claim": {
+        "id": "eky9vz-0-num",
+        "articleId": "eky9vz",
+        "articleFingerprint": "1hy1xq8",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQdVNyR3BkenRGVkpnNlpZM0l1ajhOZlY1QXJPSUtrbHMxSW5EWk9wT3RBcG1nSWFxNVJFdnF1cXNtajdfQ2hmTnNoYmtmOTB3OE9YMXUxQV9XWWpxQ0dpV2dtYVMzSWt6NmRBenB4cWFEaFZoRDAtRjFCamwxWU1pOFA1VnNJcW40bEFpX004MHVMUVFCMHBnOXNObE1xUXlFN3NwQXZnRXE1dWY3WlR1QXhIQk9pTTBqdVZ3WjBWUjZsZUd4WnZPTU9zSWVaTG50dmNLS3o2bWrSAdgBQVVfeXFMUHVTckdwZHp0RlZKZzZaWTNJdWo4TmZWNUFyT0lLa2xzMUluRFpPcE90QXBtZ0lhcTVSRXZxdXFzbWo3X0NoZk5zaGJrZjkwdzhPWDF1MUFfV1lqcUNHaVdnbWFTM0lrejZkQXpweHFhRGhWaEQwLUYxQmpsMVlNaThQNVZzSXFuNGxBaV9NODB1TFFRQjBwZzlzTmxNcVF5RTdzcEF2Z0VxNXVmN1pUdUF4SEJPaU0wanVWd1owVlI2bGVHeFp2T01Pc0llWkxudHZjS0t6Nm1q?oc=5",
+        "articleDate": "2026-08-31T16:37:16.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "El Auditorio de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones",
+        "context": "Titular publicado por Levante-EMV (31-08-2026) referido al Auditorio de Riba-roja de Túria. No se dispone de cuerpo de artículo adicional para contrastar detalles.",
+        "topic": "cultura",
+        "entities": {
+          "amountEuros": 40000,
+          "referencedEntity": "Auditorio de Riba-roja de Túria"
+        },
+        "confidence": 0.55,
+        "reasoning": "Cifra concreta de inversión (40.000 euros) en una instalación municipal, verificable contra presupuestos o contratos públicos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "eky9vz-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQdVNyR3BkenRGVkpnNlpZM0l1ajhOZlY1QXJPSUtrbHMxSW5EWk9wT3RBcG1nSWFxNVJFdnF1cXNtajdfQ2hmTnNoYmtmOTB3OE9YMXUxQV9XWWpxQ0dpV2dtYVMzSWt6NmRBenB4cWFEaFZoRDAtRjFCamwxWU1pOFA1VnNJcW40bEFpX004MHVMUVFCMHBnOXNObE1xUXlFN3NwQXZnRXE1dWY3WlR1QXhIQk9pTTBqdVZ3WjBWUjZsZUd4WnZPTU9zSWVaTG50dmNLS3o2bWrSAdgBQVVfeXFMUHVTckdwZHp0RlZKZzZaWTNJdWo4TmZWNUFyT0lLa2xzMUluRFpPcE90QXBtZ0lhcTVSRXZxdXFzbWo3X0NoZk5zaGJrZjkwdzhPWDF1MUFfV1lqcUNHaVdnbWFTM0lrejZkQXpweHFhRGhWaEQwLUYxQmpsMVlNaThQNVZzSXFuNGxBaV9NODB1TFFRQjBwZzlzTmxNcVF5RTdzcEF2Z0VxNXVmN1pUdUF4SEJPaU0wanVWd1owVlI2bGVHeFp2T01Pc0llWkxudHZjS0t6Nm1q?oc=5",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleFingerprint": "1hy1xq8"
+      }
+    },
+    {
+      "claim": {
+        "id": "1vjq8j4-0-num",
+        "articleId": "1vjq8j4",
+        "articleFingerprint": "1oqo7dc",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOYlo2enN2MmQzQWJSRHZzb056M1BjUDJlMHIxelZZVjMxalVtcVU2cVJHLS1ueGhvdUNaUlA0TjNVQ19DRWJSdUVrYmZLQl9WUXhfTUxCRjhObUlqQkZhUjBiV0JqU0xHT3JKb1gtd1VjUUdaOWUta0h0Z053RTZOeHJfLS1LWGpGX1N0N1ZqVHp3b2pORWdZYmZUcUlnS3V4aDJYVUZDendMVjNLRkdNQWZiTnpWbjN1NVEwc1k3bkhDOHFvX0RrNUxoclRybnQ1Q1hsdlBtWndhZ9IB3wFBVV95cUxQRU9Od0R2d0EyVVRGaTgxQjQyWTNRTE9TcEFabzBFb2Y0YU8yS19MR0dnZ05DWGFGUGE4R0NMTG9FU1FYaUVsMGgzRzEwOEVBU1FjS0lBMnJuZzI2ZXVxNmJkbU9ORUQ0V2U0YmlBVEI0VTF0bld1OWJEUG9FWGEtczFaT2R4bkNzdWVxaEJKZzFMUW1uR0JzRG55UmlfTDFiWXloUnczWmhBem9QZVZqRXI2dXhyalFKbDBHWU1vM1R6Ti1BU1NGNTNUQVFndFJWc0EwU3QxUHlOckxYMDJV?oc=5",
+        "articleDate": "2026-08-31T15:47:32.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Transportes adjudica por 3,7 millones la mejora del enlace entre la A-3 y la A-7 para reducir atascos en Valencia",
+        "context": "Titular de Levante-EMV (31/08/2026): 'Transportes adjudica por 3,7 millones la mejora del enlace entre la A-3 y la A-7 para reducir atascos en Valencia'. No se dispone de cuerpo de artículo adicional para contextualizar la fuente exacta de la cifra.",
+        "topic": "movilidad",
+        "entities": {
+          "amountEuros": 3700000,
+          "referencedEntity": "enlace A-3 / A-7"
+        },
+        "confidence": 0.55,
+        "reasoning": "El titular contiene una cifra concreta de adjudicación (3,7 millones de euros) para una obra pública, dato en principio verificable en el portal de contratación pública o el BOE.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1vjq8j4-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOYlo2enN2MmQzQWJSRHZzb056M1BjUDJlMHIxelZZVjMxalVtcVU2cVJHLS1ueGhvdUNaUlA0TjNVQ19DRWJSdUVrYmZLQl9WUXhfTUxCRjhObUlqQkZhUjBiV0JqU0xHT3JKb1gtd1VjUUdaOWUta0h0Z053RTZOeHJfLS1LWGpGX1N0N1ZqVHp3b2pORWdZYmZUcUlnS3V4aDJYVUZDendMVjNLRkdNQWZiTnpWbjN1NVEwc1k3bkhDOHFvX0RrNUxoclRybnQ1Q1hsdlBtWndhZ9IB3wFBVV95cUxQRU9Od0R2d0EyVVRGaTgxQjQyWTNRTE9TcEFabzBFb2Y0YU8yS19MR0dnZ05DWGFGUGE4R0NMTG9FU1FYaUVsMGgzRzEwOEVBU1FjS0lBMnJuZzI2ZXVxNmJkbU9ORUQ0V2U0YmlBVEI0VTF0bld1OWJEUG9FWGEtczFaT2R4bkNzdWVxaEJKZzFMUW1uR0JzRG55UmlfTDFiWXloUnczWmhBem9QZVZqRXI2dXhyalFKbDBHWU1vM1R6Ti1BU1NGNTNUQVFndFJWc0EwU3QxUHlOckxYMDJV?oc=5",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleFingerprint": "1oqo7dc"
+      }
+    },
+    {
+      "claim": {
+        "id": "1bt7s8w-0-num",
+        "articleId": "1bt7s8w",
+        "articleFingerprint": "1s8fa60",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85857-el-auditori-municipal-de-riba-roja-invertix-40-000-euros-en-les-installacions-i-equipaments-tecnics.html",
+        "articleDate": "2026-08-31T13:34:56.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "L'Auditori Municipal de Riba-roja invertix 40.000 euros en les instal·lacions i equipaments tècnics",
+        "context": "Titular del Periòdic del Camp de Túria (31/08/2026): 'L'Auditori Municipal de Riba-roja invertix 40.000 euros en les instal·lacions i equipaments tècnics'. No se dispone del cuerpo del artículo, solo del titular.",
+        "topic": "cultura",
+        "entities": {
+          "amountEuros": 40000,
+          "referencedEntity": "Auditori Municipal de Riba-roja"
+        },
+        "confidence": 0.55,
+        "reasoning": "Cifra concreta de inversión (40.000 euros) en un equipamiento municipal, contrastable mediante presupuestos o contratos públicos, aunque solo se dispone del titular sin cuerpo de noticia.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1bt7s8w-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85857-el-auditori-municipal-de-riba-roja-invertix-40-000-euros-en-les-installacions-i-equipaments-tecnics.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1s8fa60"
+      }
+    },
+    {
+      "claim": {
+        "id": "1t1ctq4-0-dat",
+        "articleId": "1t1ctq4",
+        "articleFingerprint": "1js11tg",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-auditorio-municipal-de-riba-roja-de-t%C3%BAria-invierte-40.000-euros-en-la-modernizaci%C3%B3n-de-sus-instalaciones-y-equipamientos-t%C3%A9cnicos",
+        "articleDate": "2026-08-31T09:04:15.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "El Auditorio Municipal de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones y equipamientos técnicos",
+        "context": "El Auditorio Municipal de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones y equipamientos técnicos",
+        "topic": "cultura",
+        "entities": {
+          "amountEuros": 40000,
+          "referencedEntity": "Auditorio Municipal de Riba-roja de Túria"
+        },
+        "confidence": 0.75,
+        "reasoning": "El titular aporta una cifra concreta (40.000 €) de inversión municipal en un equipamiento público, contrastable con el presupuesto o las actas municipales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1t1ctq4-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-auditorio-municipal-de-riba-roja-de-t%C3%BAria-invierte-40.000-euros-en-la-modernizaci%C3%B3n-de-sus-instalaciones-y-equipamientos-t%C3%A9cnicos",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1js11tg"
+      }
+    },
+    {
+      "claim": {
+        "id": "1xjkmc-0-num",
+        "articleId": "1xjkmc",
+        "articleFingerprint": "vncazw",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNc1NtX2VrWHRFcFJ4emx0eHdQbnJUcHRBVVRUOVVseTRBN0JKdm1lTllDWklqS2UzYVIxZkg3dGQ3SkYzNzBsaldZc2xIYUpTbFVyblJsb3dTc3hEdjVtS0JpSlpwamRHYmZPRmt6eVZMTTdXNXlHbWN6My1LUHlJZ2VXV2Q0UWh2d2tIY0Z1NUE0YWVIbENELU9ObmE3VkFYTkFHcHBSYkEyUGRLRks2QjlMa3NjNm5xazVoa016NS1TbG4wRUlVUnkzdGbSAdIBQVVfeXFMUGFDYnJHcXQyTko5WGxGUWxxUjQyendITWFxd1pTOV9acHlvYjNYUkNkM1FmNldURkYxSEprZTB0SzEzalFEZTVmNDA2a2pyVW1fTUEwU05vMkNHRjVzZ0R4YndKODBhQTdWYjdLYUxYWUdWenJ2eVE3RlZJZk9UNk84OUVFdlZDMUdZcWRMRFpOZEZEakk3QWp6VHhQTlIxcW12S0s1ZVJzbzBYQmdvM3RLVTdic2RIbzlyMUlvMFpsQnF4UllkZFZ4cklzTGVuLTZB?oc=5",
+        "articleDate": "2026-08-28T16:57:35.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "unspecified",
+        "verbatim": "Llíria obtiene cerca de 9 millones para actuaciones frente a los efectos de la dana",
+        "context": "Titular del artículo publicado en Levante-EMV (28/08/2026): \"Llíria obtiene cerca de 9 millones para actuaciones frente a los efectos de la dana\".",
+        "topic": "medio-ambiente",
+        "entities": {
+          "amountEuros": 9000000,
+          "referencedEntity": "Llíria"
+        },
+        "confidence": 0.55,
+        "reasoning": "El titular cuantifica una cifra aproximada de financiación (~9 millones de euros) que es verificable frente a resoluciones o convenios oficiales de ayuda tras la dana.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xjkmc-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNc1NtX2VrWHRFcFJ4emx0eHdQbnJUcHRBVVRUOVVseTRBN0JKdm1lTllDWklqS2UzYVIxZkg3dGQ3SkYzNzBsaldZc2xIYUpTbFVyblJsb3dTc3hEdjVtS0JpSlpwamRHYmZPRmt6eVZMTTdXNXlHbWN6My1LUHlJZ2VXV2Q0UWh2d2tIY0Z1NUE0YWVIbENELU9ObmE3VkFYTkFHcHBSYkEyUGRLRks2QjlMa3NjNm5xazVoa016NS1TbG4wRUlVUnkzdGbSAdIBQVVfeXFMUGFDYnJHcXQyTko5WGxGUWxxUjQyendITWFxd1pTOV9acHlvYjNYUkNkM1FmNldURkYxSEprZTB0SzEzalFEZTVmNDA2a2pyVW1fTUEwU05vMkNHRjVzZ0R4YndKODBhQTdWYjdLYUxYWUdWenJ2eVE3RlZJZk9UNk84OUVFdlZDMUdZcWRMRFpOZEZEakk3QWp6VHhQTlIxcW12S0s1ZVJzbzBYQmdvM3RLVTdic2RIbzlyMUlvMFpsQnF4UllkZFZ4cklzTGVuLTZB?oc=5",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleFingerprint": "vncazw"
+      }
+    },
+    {
+      "claim": {
+        "id": "3jikj8-0-num",
+        "articleId": "3jikj8",
+        "articleFingerprint": "1haxv4s",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
+        "articleDate": "2026-08-27T11:26:49.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "El primero con un presupuesto base de licitación de 774.500 euros",
+        "context": "La actuación de adecuación del Barranc dels Moros se ha estructurado en dos lotes. El primero con un presupuesto base de licitación de 774.500 euros y el segundo, ha contado con un presupuesto de 142.347,15 euros, ambos ejecutados por Becsa.",
+        "topic": "urbanismo",
+        "entities": {
+          "amountEuros": 774500,
+          "referencedEntity": "Barranc dels Moros - Lote 1 (Becsa)"
+        },
+        "confidence": 0.9,
+        "reasoning": "Cifra de licitación pública verificable en el expediente de contratación municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "3jikj8-0-num",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=POJYBO8NDn2cCF8sV%2BqtYA%3D%3D",
+            "snippet": "Obras Adecuación del Barranc dels Moros como itinerario turístico y peatonal (Fase I) de Riba-roja de Túria dividido en dos lotes, en el marco del Plan de Recuperación, Transformación y Resiliencia-  Financiado por la  Unión Europea, Next Generation” · Ayuntamiento de Riba-roja de Túria · construction · 757.725 €",
+            "similarity": 0.63,
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1haxv4s"
+      }
+    },
+    {
+      "claim": {
+        "id": "3jikj8-1-num",
+        "articleId": "3jikj8",
+        "articleFingerprint": "1haxv4s",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
+        "articleDate": "2026-08-27T11:26:49.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "el segundo, ha contado con un presupuesto de 142.347,15 euros, ambos ejecutados por Becsa",
+        "context": "La actuación de adecuación del Barranc dels Moros se ha estructurado en dos lotes. El primero con un presupuesto base de licitación de 774.500 euros y el segundo, ha contado con un presupuesto de 142.347,15 euros, ambos ejecutados por Becsa.",
+        "topic": "urbanismo",
+        "entities": {
+          "amountEuros": 142347.15,
+          "referencedEntity": "Barranc dels Moros - Lote 2 (Becsa)"
+        },
+        "confidence": 0.9,
+        "reasoning": "Cifra de presupuesto de contrato público verificable, con empresa adjudicataria identificada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "3jikj8-1-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1haxv4s"
+      }
+    },
+    {
+      "claim": {
+        "id": "3jikj8-2-num",
+        "articleId": "3jikj8",
+        "articleFingerprint": "1haxv4s",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
+        "articleDate": "2026-08-27T11:26:49.000Z",
+        "segmentIndex": 2,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "con una inversión de 158.916,51 euros, IVA incluido, ejecutadas por la empresa Nerco Infraestructuras",
+        "context": "También han finalizado las obras de instalación de pérgolas con vegetación autóctona para el fomento de la resiliencia frente al cambio climático, con una inversión de 158.916,51 euros, IVA incluido, ejecutadas por la empresa Nerco Infraestructuras.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "amountEuros": 158916.51,
+          "referencedEntity": "Pérgolas vegetales (Nerco Infraestructuras)"
+        },
+        "confidence": 0.9,
+        "reasoning": "Importe de inversión y contratista identificados, verificable en fuentes de contratación municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "3jikj8-2-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1haxv4s"
+      }
+    },
+    {
+      "claim": {
+        "id": "3jikj8-3-num",
+        "articleId": "3jikj8",
+        "articleFingerprint": "1haxv4s",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
+        "articleDate": "2026-08-27T11:26:49.000Z",
+        "segmentIndex": 3,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "Se han implantado cuatro estructuras situadas en puntos especialmente expuestos al sol",
+        "context": "Se han implantado cuatro estructuras situadas en puntos especialmente expuestos al sol. Las pérgolas están diseñadas para que, una vez crezca la vegetación autóctona enredadera, proporcionen sombra y mayor confort.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 4,
+          "countUnit": "pérgolas/estructuras",
+          "referencedEntity": "Pérgolas vegetales"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cantidad concreta de estructuras instaladas, comprobable mediante inspección física o memoria del proyecto.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "3jikj8-3-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1haxv4s"
+      }
+    },
+    {
+      "claim": {
+        "id": "3jikj8-4-num",
+        "articleId": "3jikj8",
+        "articleFingerprint": "1haxv4s",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
+        "articleDate": "2026-08-27T11:26:49.000Z",
+        "segmentIndex": 4,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "con una inversión de 296.195,90 euros, ejecutada por la empresa Obra Civil i Edificaciones Escrimar",
+        "context": "La tercera actuación recientemente finalizada corresponde al proyecto de \"Mejora del carril bici y la ejecución o mejora de refugios climáticos\", con una inversión de 296.195,90 euros, ejecutada por la empresa Obra Civil i Edificaciones Escrimar.",
+        "topic": "movilidad",
+        "entities": {
+          "amountEuros": 296195.9,
+          "referencedEntity": "Mejora del carril bici y refugios climáticos (Obra Civil i Edificaciones Escrimar)"
+        },
+        "confidence": 0.9,
+        "reasoning": "Importe de inversión y contratista identificados para obra de movilidad, verificable en contratación pública.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "3jikj8-4-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1haxv4s"
+      }
+    },
+    {
+      "claim": {
+        "id": "3jikj8-5-num",
+        "articleId": "3jikj8",
+        "articleFingerprint": "1haxv4s",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
+        "articleDate": "2026-08-27T11:26:49.000Z",
+        "segmentIndex": 5,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "ha incluido un total de 18 intervenciones y una inversión total de 2.112.907 euros en el municipio",
+        "context": "El Plan de Sostenibilidad Turística en Destinos de Riba-roja de Túria ha incluido un total de 18 intervenciones y una inversión total de 2.112.907 euros en el municipio, destinada a impulsar la sostenibilidad turística.",
+        "topic": "urbanismo",
+        "entities": {
+          "amountEuros": 2112907,
+          "count": 18,
+          "countUnit": "actuaciones",
+          "referencedEntity": "Plan de Sostenibilidad Turística en Destinos (PSTD)"
+        },
+        "confidence": 0.9,
+        "reasoning": "Cifra agregada de número de actuaciones e inversión total del plan, contrastable con el expediente del PSTD.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "3jikj8-5-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1haxv4s"
+      }
+    },
+    {
+      "claim": {
+        "id": "3jikj8-6-dat",
+        "articleId": "3jikj8",
+        "articleFingerprint": "1haxv4s",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
+        "articleDate": "2026-08-27T11:26:49.000Z",
+        "segmentIndex": 6,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "El desarrollo del PSTD ha contado con la colaboración del Ministerio de Industria y Turismo, la Generalitat Valenciana, Turisme Comunitat Valenciana y el Ayuntamiento de Riba-roja de Túria",
+        "context": "El desarrollo del PSTD ha contado con la colaboración del Ministerio de Industria y Turismo, la Generalitat Valenciana, Turisme Comunitat Valenciana y el Ayuntamiento de Riba-roja de Túria.",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "Ministerio de Industria y Turismo, Generalitat Valenciana, Turisme Comunitat Valenciana, Ayuntamiento de Riba-roja de Túria"
+        },
+        "confidence": 0.75,
+        "reasoning": "Enumeración de instituciones colaboradoras, verificable con convenios o documentación del PSTD.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "3jikj8-6-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1haxv4s"
+      }
+    },
+    {
+      "claim": {
+        "id": "3jikj8-7-dat",
+        "articleId": "3jikj8",
+        "articleFingerprint": "1haxv4s",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
+        "articleDate": "2026-08-27T11:26:49.000Z",
+        "segmentIndex": 7,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "financiado por la Unión Europea a través de los fondos NextGenerationEU",
+        "context": "Estas actuaciones se desarrollan en el marco del Plan de Recuperación, Transformación y Resiliencia (PRTR), financiado por la Unión Europea a través de los fondos NextGenerationEU.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "PRTR / NextGenerationEU"
+        },
+        "confidence": 0.8,
+        "reasoning": "Afirmación sobre el origen de la financiación pública, contrastable con la documentación oficial del PRTR.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "3jikj8-7-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1haxv4s"
+      }
+    },
+    {
+      "claim": {
+        "id": "1gwkjpc-0-num",
+        "articleId": "1gwkjpc",
+        "articleFingerprint": "xdgmdo",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+        "articleDate": "2026-08-27T11:17:54.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "amb un pressupost base de licitació de 774.500 euros",
+        "context": "L'actuació s'ha estructurat en dos lots. El primer amb un pressupost base de licitació de 774.500 euros i el segon, ha comptat amb un pressupost de 142.347,15 euros, tots dos executats per Becsa.",
+        "topic": "urbanismo",
+        "entities": {
+          "amountEuros": 774500,
+          "referencedEntity": "Becsa"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra de presupuesto de licitación pública, verificable en el expediente de contratación municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1gwkjpc-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "xdgmdo"
+      }
+    },
+    {
+      "claim": {
+        "id": "1gwkjpc-1-num",
+        "articleId": "1gwkjpc",
+        "articleFingerprint": "xdgmdo",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+        "articleDate": "2026-08-27T11:17:54.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "el segon, ha comptat amb un pressupost de 142.347,15 euros, tots dos executats per Becsa",
+        "context": "L'actuació s'ha estructurat en dos lots. El primer amb un pressupost base de licitació de 774.500 euros i el segon, ha comptat amb un pressupost de 142.347,15 euros, tots dos executats per Becsa.",
+        "topic": "urbanismo",
+        "entities": {
+          "amountEuros": 142347.15,
+          "referencedEntity": "Becsa"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra de presupuesto del segundo lote y adjudicataria, contrastable en el registro de contratos públicos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1gwkjpc-1-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "xdgmdo"
+      }
+    },
+    {
+      "claim": {
+        "id": "1gwkjpc-2-num",
+        "articleId": "1gwkjpc",
+        "articleFingerprint": "xdgmdo",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+        "articleDate": "2026-08-27T11:17:54.000Z",
+        "segmentIndex": 2,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "amb una inversió de 158.916,51 euros, IVA inclòs, executades per l'empresa Nerco Infraestructuras",
+        "context": "També han finalitzat les obres d'instal·lació de pèrgoles amb vegetació autòctona per al foment de la resiliència davant del canvi climàtic, amb una inversió de 158.916,51 euros, IVA inclòs, executades per l'empresa Nerco Infraestructuras.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "amountEuros": 158916.51,
+          "referencedEntity": "Nerco Infraestructuras"
+        },
+        "confidence": 0.85,
+        "reasoning": "Importe de inversión y empresa ejecutora contrastables mediante el contrato o factura municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1gwkjpc-2-num",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ujgt5qEIoTA2wEhQbcAqug%3D%3D",
+            "snippet": "Contrato administrativo de obras para la ejecución del proyecto de “Obras de Instalación de pérgolas con vegetación autóctona para fomento de la resiliencia frente al cambio climático, en el marco del Plan de Recuperación, Transformación y Resiliencia financiado por la Unión Europea- Next Generation · Ayuntamiento de Riba-roja de Túria · NERCO INFRAESTRUCTURAS, S.L. · construction · 131.336 €",
+            "similarity": 0.81,
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "xdgmdo"
+      }
+    },
+    {
+      "claim": {
+        "id": "1gwkjpc-3-num",
+        "articleId": "1gwkjpc",
+        "articleFingerprint": "xdgmdo",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+        "articleDate": "2026-08-27T11:17:54.000Z",
+        "segmentIndex": 3,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "S'han implantat quatre estructures situades en punts especialment exposats al sol",
+        "context": "amb una inversió de 158.916,51 euros, IVA inclòs, executades per l'empresa Nerco Infraestructuras. S'han implantat quatre estructures situades en punts especialment exposats al sol.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 4,
+          "countUnit": "pèrgoles"
+        },
+        "confidence": 0.8,
+        "reasoning": "Número concreto de estructuras instaladas, verificable in situ o en la memoria del proyecto.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1gwkjpc-3-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "xdgmdo"
+      }
+    },
+    {
+      "claim": {
+        "id": "1gwkjpc-4-num",
+        "articleId": "1gwkjpc",
+        "articleFingerprint": "xdgmdo",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+        "articleDate": "2026-08-27T11:17:54.000Z",
+        "segmentIndex": 4,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "amb una inversió de 296.195,90 euros, executada per l'empresa Obra Civil i Edificaciones Escrimar",
+        "context": "La tercera actuació recentment finalitzada correspon al projecte de \"Millora del carril bici i l'execució o millora de refugis climàtics\", amb una inversió de 296.195,90 euros, executada per l'empresa Obra Civil i Edificaciones Escrimar.",
+        "topic": "movilidad",
+        "entities": {
+          "amountEuros": 296195.9,
+          "referencedEntity": "Obra Civil i Edificaciones Escrimar"
+        },
+        "confidence": 0.85,
+        "reasoning": "Importe de inversión y empresa adjudicataria del carril bici, contrastable en el expediente de contratación.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1gwkjpc-4-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "xdgmdo"
+      }
+    },
+    {
+      "claim": {
+        "id": "1gwkjpc-5-num",
+        "articleId": "1gwkjpc",
+        "articleFingerprint": "xdgmdo",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+        "articleDate": "2026-08-27T11:17:54.000Z",
+        "segmentIndex": 5,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "ha inclòs un total de 18 intervencions i una inversió total de 2.112.907 euros en el municipi",
+        "context": "El Pla de Sostenibilitat Turística en Destins de Riba-roja de Túria ha inclòs un total de 18 intervencions i una inversió total de 2.112.907 euros en el municipi, destinada a impulsar la sostenibilitat turística...",
+        "topic": "other",
+        "entities": {
+          "amountEuros": 2112907,
+          "count": 18,
+          "countUnit": "actuacions",
+          "referencedEntity": "Pla de Sostenibilitat Turística en Destins (PSTD)"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra global de inversión y número de actuaciones del plan, contrastable con las cuentas y convenios del PSTD.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1gwkjpc-5-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "xdgmdo"
+      }
+    },
+    {
+      "claim": {
+        "id": "1gwkjpc-6-dat",
+        "articleId": "1gwkjpc",
+        "articleFingerprint": "xdgmdo",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+        "articleDate": "2026-08-27T11:17:54.000Z",
+        "segmentIndex": 6,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "ha comptat amb la col·laboració del Ministeri d'Indústria i Turisme, la Generalitat Valenciana, Turisme Comunitat Valenciana i l'Ajuntament de Riba-roja de Túria",
+        "context": "El desenvolupament del PSTD ha comptat amb la col·laboració del Ministeri d'Indústria i Turisme, la Generalitat Valenciana, Turisme Comunitat Valenciana i l'Ajuntament de Riba-roja de Túria.",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "Ministeri d'Indústria i Turisme, Generalitat Valenciana, Turisme Comunitat Valenciana"
+        },
+        "confidence": 0.7,
+        "reasoning": "Afirmación sobre instituciones colaboradoras en el plan, verificable en convenios o documentación oficial del PSTD.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1gwkjpc-6-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "xdgmdo"
+      }
+    },
+    {
+      "claim": {
+        "id": "1ezylig-0-num",
+        "articleId": "1ezylig",
+        "articleFingerprint": "13vj4ds",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQSjIzVFJONlJSTzg4ekpmU3dKM3AtenBUeWdqaDIyZ084VXpIRGhyQUg0cFBhWHdkbWRoYVBmcTd2MmstQkdzaGpSSlQ5ZldwTkFBOUFDX3V1bGRjcFdPWHpudEJObDlZLWNnYzR4MlhwcF81SllEMmpMRlkyWHhnaUVpNFY3eFR5T1o5dXJXY1p5RjFKVVlBUU55Nmo1Z3Jwa1gxVG1JOXVrdW0wLWRmaDY3WTlwdHNOd0ZaNkhmV1ZmQ0hGU05IYzBGV1JkMDFrS1NoYS0zbW12dTBn0gHiAUFVX3lxTE4yeHBabkwxVU9QN2NnUXlUVTZNel8tY0Q5UTBYdk9VbS1Wd0NhUUlDZkhqeFgyTVR3R1lhMDBHZ2hzc0ZnUklwZ25CY0JyQ1hlNVlqQmNiRE9WNlRBZFU5c2RpYk00dlBSNS1ueE55NDhGczJaa0J1UDFWMlJDd3I2TS14NGJJb0dScDhEM2I2Nzd1bWdpdTVSRkQySHhFQVp1NXZZMnlvYmpUUERld2NYMkxwNzNZMEhIeVY1QWZld0NWVXhlYW5sVVZES2dvMm9Qbk9FTlkwcy1ZVlJwOWlmR2c?oc=5",
+        "articleDate": "2026-08-25T16:39:17.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Riba-roja de Túria destina una partida de 100.000 euros para la rehabilitación de las fachadas",
+        "context": "Titular del artículo publicado por Levante-EMV (25/08/2026) sobre Riba-roja de Túria: 'Riba-roja de Túria destina una partida de 100.000 euros para la rehabilitación de las fachadas'.",
+        "topic": "urbanismo",
+        "entities": {
+          "amountEuros": 100000,
+          "referencedEntity": "Ayuntamiento de Riba-roja de Túria"
+        },
+        "confidence": 0.55,
+        "reasoning": "El titular cita una cifra presupuestaria concreta (100.000 euros) destinada a un fin específico, verificable contra presupuestos o convocatorias municipales, aunque no se dispone del cuerpo del artículo para mayor contexto.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1ezylig-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQSjIzVFJONlJSTzg4ekpmU3dKM3AtenBUeWdqaDIyZ084VXpIRGhyQUg0cFBhWHdkbWRoYVBmcTd2MmstQkdzaGpSSlQ5ZldwTkFBOUFDX3V1bGRjcFdPWHpudEJObDlZLWNnYzR4MlhwcF81SllEMmpMRlkyWHhnaUVpNFY3eFR5T1o5dXJXY1p5RjFKVVlBUU55Nmo1Z3Jwa1gxVG1JOXVrdW0wLWRmaDY3WTlwdHNOd0ZaNkhmV1ZmQ0hGU05IYzBGV1JkMDFrS1NoYS0zbW12dTBn0gHiAUFVX3lxTE4yeHBabkwxVU9QN2NnUXlUVTZNel8tY0Q5UTBYdk9VbS1Wd0NhUUlDZkhqeFgyTVR3R1lhMDBHZ2hzc0ZnUklwZ25CY0JyQ1hlNVlqQmNiRE9WNlRBZFU5c2RpYk00dlBSNS1ueE55NDhGczJaa0J1UDFWMlJDd3I2TS14NGJJb0dScDhEM2I2Nzd1bWdpdTVSRkQySHhFQVp1NXZZMnlvYmpUUERld2NYMkxwNzNZMEhIeVY1QWZld0NWVXhlYW5sVVZES2dvMm9Qbk9FTlkwcy1ZVlJwOWlmR2c?oc=5",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleFingerprint": "13vj4ds"
+      }
+    },
+    {
+      "claim": {
+        "id": "vxu9zk-0-num",
+        "articleId": "vxu9zk",
+        "articleFingerprint": "oh3lx0",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85756-riba-roja-destina-140-000-euros-a-la-rehabilitacio-de-les-facanes-lavaluacio-dedificis-i-laccessibilitat-dels-habitatges.html",
+        "articleDate": "2026-08-25T09:48:44.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Riba-roja destina 140.000 euros a la rehabilitació de les façanes, l'avaluació d'edificis i l'accessibilitat dels habitatges",
+        "context": "Titular del artículo publicado en Periòdic del Camp de Túria (25/08/2026) sobre inversión municipal en rehabilitación de fachadas, evaluación de edificios y accesibilidad de viviendas en Riba-roja de Túria.",
+        "topic": "vivienda",
+        "entities": {
+          "amountEuros": 140000,
+          "referencedEntity": "Riba-roja de Túria"
+        },
+        "confidence": 0.6,
+        "reasoning": "Cifra concreta de inversión municipal (140.000 euros) verificable contra presupuestos o convocatorias de ayudas del Ayuntamiento, aunque solo se dispone del titular sin cuerpo del artículo que confirme la fuente exacta.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "vxu9zk-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85756-riba-roja-destina-140-000-euros-a-la-rehabilitacio-de-les-facanes-lavaluacio-dedificis-i-laccessibilitat-dels-habitatges.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "oh3lx0"
+      }
+    },
+    {
+      "claim": {
+        "id": "18imvfs-0-dat",
+        "articleId": "18imvfs",
+        "articleFingerprint": "sy1fbk",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-destina-una-partida-de-140.000-euros-para-la-rehabilitaci%C3%B3n-de-las-fachadas%2C-la-evaluaci%C3%B3n-de-los-edificios-y-la-accesibilidad-en-el-interior-de-las-viviendas-del-periodo-2026-2027",
+        "articleDate": "2026-08-25T06:55:58.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "destina una partida de 140.000 euros para la rehabilitación de las fachadas, la evaluación de los edificios y la accesibilidad en el interior de las viviendas del periodo 2026-2027",
+        "context": "El Ayuntamiento de Riba-roja de Túria destina una partida de 140.000 euros para la rehabilitación de las fachadas, la evaluación de los edificios y la accesibilidad en el interior de las viviendas del periodo 2026-2027",
+        "topic": "vivienda",
+        "entities": {
+          "amountEuros": 140000,
+          "date": "2026-2027",
+          "referencedEntity": "Ayuntamiento de Riba-roja de Túria"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra presupuestaria concreta (140.000€) y periodo definido (2026-2027) anunciados por el propio Ayuntamiento, verificables contra el presupuesto municipal publicado.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "18imvfs-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-destina-una-partida-de-140.000-euros-para-la-rehabilitaci%C3%B3n-de-las-fachadas%2C-la-evaluaci%C3%B3n-de-los-edificios-y-la-accesibilidad-en-el-interior-de-las-viviendas-del-periodo-2026-2027",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "sy1fbk"
       }
     },
     {
@@ -201,2144 +1422,7 @@
         "articleSourceHost": "ribarroja.es",
         "articleFingerprint": "9gfa58"
       }
-    },
-    {
-      "claim": {
-        "id": "1fqbhjs-0-num",
-        "articleId": "1fqbhjs",
-        "articleFingerprint": "1oq1ic8",
-        "articleSource": "Valencia Plaza",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPTTRDT1I4MXBzbE9PcC13Zkw2R2pUTjF6elRWOUJ6Y0NuaTk4bVkzN2czWVNQZkJDejd3S1dPQUZnT3RIYTEwZ2FjRnVhUEwtRldWSmxfeWdXQlZfMkJWMmh5YThoLVA3N0czSTBSaVJ3TF9lN2ZGZGxad3NwaWRxNFdUZ0oxWlJwdlZVMXBLR2dZV1BYeWcyZUdScnZuRFZHZmliYlVQYXI4bmtBT3JCMV9FSVBUYTlTSXpsa25EZEtNVzktcXBSbXdydlIyaEZSTUhBdkNVUGJ2UmpLa0JobjVVbXpQZXFFWnE0a1BNenk?oc=5",
-        "articleDate": "2026-08-21T13:56:14.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "Un vehículo controlará 30 puntos de imagen captados por once cámaras durante las fiestas de Riba-roja",
-        "context": "Titular del artículo de Valencia Plaza (21/08/2026): 'Un vehículo controlará 30 puntos de imagen captados por once cámaras durante las fiestas de Riba-roja'.",
-        "topic": "seguridad",
-        "entities": {
-          "count": 30,
-          "countUnit": "puntos de imagen",
-          "referencedEntity": "fiestas de Riba-roja de Túria"
-        },
-        "confidence": 0.55,
-        "reasoning": "Cifra concreta y verificable sobre el número de puntos de imagen vigilados durante las fiestas.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1fqbhjs-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPTTRDT1I4MXBzbE9PcC13Zkw2R2pUTjF6elRWOUJ6Y0NuaTk4bVkzN2czWVNQZkJDejd3S1dPQUZnT3RIYTEwZ2FjRnVhUEwtRldWSmxfeWdXQlZfMkJWMmh5YThoLVA3N0czSTBSaVJ3TF9lN2ZGZGxad3NwaWRxNFdUZ0oxWlJwdlZVMXBLR2dZV1BYeWcyZUdScnZuRFZHZmliYlVQYXI4bmtBT3JCMV9FSVBUYTlTSXpsa25EZEtNVzktcXBSbXdydlIyaEZSTUhBdkNVUGJ2UmpLa0JobjVVbXpQZXFFWnE0a1BNenk?oc=5",
-        "articleSource": "Valencia Plaza",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleFingerprint": "1oq1ic8"
-      }
-    },
-    {
-      "claim": {
-        "id": "1e9m0nk-0-num",
-        "articleId": "1e9m0nk",
-        "articleFingerprint": "1c1dk3c",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85694-un-vehicle-innovador-controlara-30-punts-dimatge-captats-per-onze-cameres-de-vigilancia-durant-les-festes-de-fadrins.html",
-        "articleDate": "2026-08-21T12:40:16.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "Un vehicle innovador controlarà 30 punts d’imatge captats per onze càmeres de vigilància durant les festes de Fadrins",
-        "context": "Titular del artículo: Un vehicle innovador controlarà 30 punts d’imatge captats per onze càmeres de vigilància durant les festes de Fadrins.",
-        "topic": "seguridad",
-        "entities": {
-          "count": 30,
-          "countUnit": "punts d'imatge",
-          "referencedEntity": "Festes de Fadrins (Riba-roja de Túria)"
-        },
-        "confidence": 0.55,
-        "reasoning": "Cifra concreta (30 puntos de imagen) sobre un dispositivo de videovigilancia, verificable ante el Ayuntamiento, aunque solo se dispone del titular sin cuerpo de artículo.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1e9m0nk-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85694-un-vehicle-innovador-controlara-30-punts-dimatge-captats-per-onze-cameres-de-vigilancia-durant-les-festes-de-fadrins.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "1c1dk3c"
-      }
-    },
-    {
-      "claim": {
-        "id": "v4m8ao-0-num",
-        "articleId": "v4m8ao",
-        "articleFingerprint": "kzwkrw",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/un-novedoso-veh%C3%ADculo-controlar%C3%A1-30-puntos-de-imagen-captados-por-once-c%C3%A1maras-de-vigilancia-para-garantizar-la-seguridad-durante-las-fiestas-de-fadrins",
-        "articleDate": "2026-08-21T12:04:33.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "Un novedoso vehículo controlará 30 puntos de imagen captados por once cámaras de vigilancia para garantizar la seguridad durante las fiestas de Fadrins",
-        "context": "Titular de la nota publicada por el Ayuntamiento de Riba-roja de Túria (21/08/2026) sobre el dispositivo de videovigilancia previsto para las fiestas de Fadrins.",
-        "topic": "seguridad",
-        "entities": {
-          "count": 30,
-          "countUnit": "puntos de imagen",
-          "referencedEntity": "cámaras de vigilancia"
-        },
-        "confidence": 0.75,
-        "reasoning": "El Ayuntamiento afirma una cifra concreta (30 puntos de imagen) que es verificable comprobando el dispositivo real desplegado.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "v4m8ao-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/un-novedoso-veh%C3%ADculo-controlar%C3%A1-30-puntos-de-imagen-captados-por-once-c%C3%A1maras-de-vigilancia-para-garantizar-la-seguridad-durante-las-fiestas-de-fadrins",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "kzwkrw"
-      }
-    },
-    {
-      "claim": {
-        "id": "v4m8ao-2-dat",
-        "articleId": "v4m8ao",
-        "articleFingerprint": "kzwkrw",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/un-novedoso-veh%C3%ADculo-controlar%C3%A1-30-puntos-de-imagen-captados-por-once-c%C3%A1maras-de-vigilancia-para-garantizar-la-seguridad-durante-las-fiestas-de-fadrins",
-        "articleDate": "2026-08-21T12:04:33.000Z",
-        "segmentIndex": 2,
-        "segmentKind": "title",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "Un novedoso vehículo controlará 30 puntos de imagen captados por once cámaras de vigilancia para garantizar la seguridad durante las fiestas de Fadrins",
-        "context": "Titular de la nota publicada por el Ayuntamiento de Riba-roja de Túria (21/08/2026) sobre el dispositivo de videovigilancia previsto para las fiestas de Fadrins.",
-        "topic": "seguridad",
-        "entities": {
-          "referencedEntity": "fiestas de Fadrins"
-        },
-        "confidence": 0.55,
-        "reasoning": "El despliegue de un vehículo de videovigilancia durante las fiestas de Fadrins es un hecho operativo concreto que puede contrastarse con la realidad del dispositivo.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "v4m8ao-2-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/un-novedoso-veh%C3%ADculo-controlar%C3%A1-30-puntos-de-imagen-captados-por-once-c%C3%A1maras-de-vigilancia-para-garantizar-la-seguridad-durante-las-fiestas-de-fadrins",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "kzwkrw"
-      }
-    },
-    {
-      "claim": {
-        "id": "nh3z04-0-dat",
-        "articleId": "nh3z04",
-        "articleFingerprint": "lqvrz",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85629-lus-de-drons-a-riba-roja-reforca-la-vigilancia-contra-els-robatoris-i-les-infraccions-en-la-campanya-estival-de-la-garrofa.html",
-        "articleDate": "2026-08-20T13:00:42.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "outlet",
-        "verbatim": "ha posat en marxa per quart any consecutiu el dispositiu especial de vigilància a les zones agrícoles del terme municipal",
-        "context": "L'article explica que la Policia Local de Riba-roja de Túria ha posat en marxa el dispositiu especial de vigilància a les zones agrícoles per quart any consecutiu, coincidint amb la campanya de recollida de la garrofa, cultiu vulnerable als robatoris.",
-        "topic": "seguridad",
-        "entities": {
-          "count": 4,
-          "countUnit": "anys consecutius",
-          "referencedEntity": "Policia Local de Riba-roja de Túria"
-        },
-        "confidence": 0.8,
-        "reasoning": "Afirma un dato verificable sobre el número de años consecutivos que lleva activo el dispositivo policial.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "nh3z04-0-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85629-lus-de-drons-a-riba-roja-reforca-la-vigilancia-contra-els-robatoris-i-les-infraccions-en-la-campanya-estival-de-la-garrofa.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "lqvrz"
-      }
-    },
-    {
-      "claim": {
-        "id": "nh3z04-1-num",
-        "articleId": "nh3z04",
-        "articleFingerprint": "lqvrz",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85629-lus-de-drons-a-riba-roja-reforca-la-vigilancia-contra-els-robatoris-i-les-infraccions-en-la-campanya-estival-de-la-garrofa.html",
-        "articleDate": "2026-08-20T13:00:42.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "s’han realitzat 100 serveis de vigilància dinàmica en l’entorn agrícola",
-        "context": "Des que va entrar en servei el dispositiu de vigilància preventiva de l'entorn natural, fluvial i agrícola el passat 30 de juny, s'han realitzat 100 serveis de vigilància dinàmica en l'entorn agrícola i 13 actuacions d'identificació.",
-        "topic": "seguridad",
-        "entities": {
-          "count": 100,
-          "countUnit": "serveis de vigilància dinàmica",
-          "date": "2026-06-30",
-          "referencedEntity": "Policia Local de Riba-roja de Túria"
-        },
-        "confidence": 0.85,
-        "reasoning": "Cifra concreta de servicios policiales realizados desde una fecha determinada, contrastable con registros municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "nh3z04-1-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85629-lus-de-drons-a-riba-roja-reforca-la-vigilancia-contra-els-robatoris-i-les-infraccions-en-la-campanya-estival-de-la-garrofa.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "lqvrz"
-      }
-    },
-    {
-      "claim": {
-        "id": "nh3z04-2-num",
-        "articleId": "nh3z04",
-        "articleFingerprint": "lqvrz",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85629-lus-de-drons-a-riba-roja-reforca-la-vigilancia-contra-els-robatoris-i-les-infraccions-en-la-campanya-estival-de-la-garrofa.html",
-        "articleDate": "2026-08-20T13:00:42.000Z",
-        "segmentIndex": 2,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "13 actuacions dirigides a comprovar les identitats de persones recol·lectores",
-        "context": "Des que va entrar en servei el dispositiu de vigilància preventiva de l'entorn natural, fluvial i agrícola el passat 30 de juny, s'han realitzat 100 serveis de vigilància dinàmica en l'entorn agrícola i 13 actuacions dirigides a comprovar les identitats de persones recol·lectores.",
-        "topic": "seguridad",
-        "entities": {
-          "count": 13,
-          "countUnit": "actuacions d'identificació",
-          "date": "2026-06-30",
-          "referencedEntity": "Policia Local de Riba-roja de Túria"
-        },
-        "confidence": 0.85,
-        "reasoning": "Cifra concreta de actuaciones policiales de identificación, contrastable con registros municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "nh3z04-2-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85629-lus-de-drons-a-riba-roja-reforca-la-vigilancia-contra-els-robatoris-i-les-infraccions-en-la-campanya-estival-de-la-garrofa.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "lqvrz"
-      }
-    },
-    {
-      "claim": {
-        "id": "nh3z04-3-dat",
-        "articleId": "nh3z04",
-        "articleFingerprint": "lqvrz",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85629-lus-de-drons-a-riba-roja-reforca-la-vigilancia-contra-els-robatoris-i-les-infraccions-en-la-campanya-estival-de-la-garrofa.html",
-        "articleDate": "2026-08-20T13:00:42.000Z",
-        "segmentIndex": 3,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "outlet",
-        "verbatim": "La campanya de vigilància agrícola romandrà activa fins a finals d’agost",
-        "context": "La campanya de vigilància agrícola romandrà activa fins a finals d'agost, coincidint amb el final de la recollida de la garrofa, mentre que el Previfoc es prolongarà durant el mes de setembre.",
-        "topic": "seguridad",
-        "entities": {
-          "date": "2026-08",
-          "referencedEntity": "campanya de vigilància agrícola"
-        },
-        "confidence": 0.75,
-        "reasoning": "Indica una fecha de finalización prevista del dispositivo, verificable con el calendario municipal real.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "nh3z04-3-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85629-lus-de-drons-a-riba-roja-reforca-la-vigilancia-contra-els-robatoris-i-les-infraccions-en-la-campanya-estival-de-la-garrofa.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "lqvrz"
-      }
-    },
-    {
-      "claim": {
-        "id": "nh3z04-4-dat",
-        "articleId": "nh3z04",
-        "articleFingerprint": "lqvrz",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85629-lus-de-drons-a-riba-roja-reforca-la-vigilancia-contra-els-robatoris-i-les-infraccions-en-la-campanya-estival-de-la-garrofa.html",
-        "articleDate": "2026-08-20T13:00:42.000Z",
-        "segmentIndex": 4,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "outlet",
-        "verbatim": "el Previfoc es prolongarà durant el mes de setembre",
-        "context": "La campanya de vigilància agrícola romandrà activa fins a finals d'agost, coincidint amb el final de la recollida de la garrofa, mentre que el Previfoc es prolongarà durant el mes de setembre.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "date": "2026-09",
-          "referencedEntity": "Previfoc"
-        },
-        "confidence": 0.75,
-        "reasoning": "Especifica la duración prevista del programa Previfoc, un dato verificable frente al calendario municipal real.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "nh3z04-4-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85629-lus-de-drons-a-riba-roja-reforca-la-vigilancia-contra-els-robatoris-i-les-infraccions-en-la-campanya-estival-de-la-garrofa.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "lqvrz"
-      }
-    },
-    {
-      "claim": {
-        "id": "sctwe4-0-num",
-        "articleId": "sctwe4",
-        "articleFingerprint": "1o4si8s",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-uso-de-drones-en-riba-roja-refuerza-la-vigilancia-contra-los-robos-e-infracciones-durante-la-campa%C3%B1a-estival-de-la-algarroba",
-        "articleDate": "2026-08-20T11:55:27.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "ha puesto en marcha por cuarto año consecutivo, el dispositivo especial de vigilancia en las zonas agrícolas del término municipal",
-        "context": "La Policía Local de Riba-roja de Túria ha puesto en marcha por cuarto año consecutivo, el dispositivo especial de vigilancia en las zonas agrícolas del término municipal coincidiendo con la campaña de recolección de la algarroba, un cultivo especialmente vulnerable a robos por su cotización en el mercado.",
-        "topic": "seguridad",
-        "entities": {
-          "count": 4,
-          "countUnit": "años consecutivos",
-          "referencedEntity": "dispositivo especial de vigilancia en las zonas agrícolas"
-        },
-        "confidence": 0.85,
-        "reasoning": "El número de ediciones consecutivas del dispositivo es un dato verificable contra hemeroteca y registros municipales de años anteriores.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "sctwe4-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-uso-de-drones-en-riba-roja-refuerza-la-vigilancia-contra-los-robos-e-infracciones-durante-la-campa%C3%B1a-estival-de-la-algarroba",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1o4si8s"
-      }
-    },
-    {
-      "claim": {
-        "id": "sctwe4-1-dat",
-        "articleId": "sctwe4",
-        "articleFingerprint": "1o4si8s",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-uso-de-drones-en-riba-roja-refuerza-la-vigilancia-contra-los-robos-e-infracciones-durante-la-campa%C3%B1a-estival-de-la-algarroba",
-        "articleDate": "2026-08-20T11:55:27.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "Desde que entrara en servicio el dispositivo de vigilancia preventiva del entorno natural, fluvial y agrícola el pasado 30 de junio",
-        "context": "Desde que entrara en servicio el dispositivo de vigilancia preventiva del entorno natural, fluvial y agrícola el pasado 30 de junio, se han practicado 100 servicios de vigilancia dinámica en el entorno agrícola y 13 actuaciones dirigidas a comprobar las identidades de personas recolectoras.",
-        "topic": "seguridad",
-        "entities": {
-          "date": "2026-06-30",
-          "referencedEntity": "dispositivo de vigilancia preventiva del entorno natural, fluvial y agrícola"
-        },
-        "confidence": 0.85,
-        "reasoning": "La fecha exacta de entrada en servicio del dispositivo es un hecho concreto y contrastable con registros municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "sctwe4-1-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-uso-de-drones-en-riba-roja-refuerza-la-vigilancia-contra-los-robos-e-infracciones-durante-la-campa%C3%B1a-estival-de-la-algarroba",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1o4si8s"
-      }
-    },
-    {
-      "claim": {
-        "id": "sctwe4-2-num",
-        "articleId": "sctwe4",
-        "articleFingerprint": "1o4si8s",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-uso-de-drones-en-riba-roja-refuerza-la-vigilancia-contra-los-robos-e-infracciones-durante-la-campa%C3%B1a-estival-de-la-algarroba",
-        "articleDate": "2026-08-20T11:55:27.000Z",
-        "segmentIndex": 2,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "se han practicado 100 servicios de vigilancia dinámica en el entorno agrícola y 13 actuaciones dirigidas a comprobar las identidades de personas recolectoras",
-        "context": "Desde que entrara en servicio el dispositivo de vigilancia preventiva del entorno natural, fluvial y agrícola el pasado 30 de junio, se han practicado 100 servicios de vigilancia dinámica en el entorno agrícola y 13 actuaciones dirigidas a comprobar las identidades de personas recolectoras.",
-        "topic": "seguridad",
-        "entities": {
-          "count": 100,
-          "countUnit": "servicios de vigilancia dinámica",
-          "referencedEntity": "dispositivo de vigilancia preventiva del entorno natural, fluvial y agrícola"
-        },
-        "confidence": 0.9,
-        "reasoning": "Cifra concreta de actuaciones policiales publicada por el Ayuntamiento, verificable con partes de servicio de la Policía Local.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "sctwe4-2-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-uso-de-drones-en-riba-roja-refuerza-la-vigilancia-contra-los-robos-e-infracciones-durante-la-campa%C3%B1a-estival-de-la-algarroba",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1o4si8s"
-      }
-    },
-    {
-      "claim": {
-        "id": "sctwe4-4-dat",
-        "articleId": "sctwe4",
-        "articleFingerprint": "1o4si8s",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-uso-de-drones-en-riba-roja-refuerza-la-vigilancia-contra-los-robos-e-infracciones-durante-la-campa%C3%B1a-estival-de-la-algarroba",
-        "articleDate": "2026-08-20T11:55:27.000Z",
-        "segmentIndex": 4,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "La campaña de vigilancia agrícola permanecerá activa hasta finales de agosto, coincidiendo con el final de la recogida de la algarroba",
-        "context": "La campaña de vigilancia agrícola permanecerá activa hasta finales de agosto, coincidiendo con el final de la recogida de la algarroba, mientras que el Previfoc se prolongará durante el mes de septiembre.",
-        "topic": "seguridad",
-        "entities": {
-          "date": "2026-08",
-          "referencedEntity": "campaña de vigilancia agrícola"
-        },
-        "confidence": 0.75,
-        "reasoning": "Fecha de finalización anunciada del dispositivo, contrastable comprobando si efectivamente cesó a finales de agosto.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "sctwe4-4-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-uso-de-drones-en-riba-roja-refuerza-la-vigilancia-contra-los-robos-e-infracciones-durante-la-campa%C3%B1a-estival-de-la-algarroba",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1o4si8s"
-      }
-    },
-    {
-      "claim": {
-        "id": "sctwe4-5-dat",
-        "articleId": "sctwe4",
-        "articleFingerprint": "1o4si8s",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-uso-de-drones-en-riba-roja-refuerza-la-vigilancia-contra-los-robos-e-infracciones-durante-la-campa%C3%B1a-estival-de-la-algarroba",
-        "articleDate": "2026-08-20T11:55:27.000Z",
-        "segmentIndex": 5,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "el Previfoc se prolongará durante el mes de septiembre",
-        "context": "La campaña de vigilancia agrícola permanecerá activa hasta finales de agosto, coincidiendo con el final de la recogida de la algarroba, mientras que el Previfoc se prolongará durante el mes de septiembre.",
-        "topic": "seguridad",
-        "entities": {
-          "date": "2026-09",
-          "referencedEntity": "Previfoc"
-        },
-        "confidence": 0.75,
-        "reasoning": "Duración anunciada de otro dispositivo municipal (Previfoc), contrastable con la fecha real de finalización.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "sctwe4-5-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-uso-de-drones-en-riba-roja-refuerza-la-vigilancia-contra-los-robos-e-infracciones-durante-la-campa%C3%B1a-estival-de-la-algarroba",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1o4si8s"
-      }
-    },
-    {
-      "claim": {
-        "id": "1yotn1k-0-dat",
-        "articleId": "1yotn1k",
-        "articleFingerprint": "1ijhbip",
-        "articleSource": "Valencia Plaza",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOeDhkMlBHa2ZFNFJKRWZQNXdKb0VhdTRnaEJEcEthOEw1dGdxTUtnbDdWLUtQa2g1UGRxaGpKWm5vekRxQVE3a292NlZqdzBWVmNpTi1HU3NYVnZmZXBBX2ZfR05abURPRERCN01MMDFOM1dwSjhiZ004Y2c3THdJb3ZuVVJhYzZIVVNHNDV3S29NZEVBX1Y1czZUZTR2Zk5uY01IcFB5QlpmVHBUX2VXWlNRVGNhZThMSS1kZzVIVk9tRGJmVW95dThyM205LTBMU0E5cGxISWNIT1NFN0liOU42QmFIYjQ?oc=5",
-        "articleDate": "2026-08-18T12:04:41.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "dato_municipal",
-        "attributedSource": "outlet",
-        "verbatim": "Riba-roja pone en marcha un servicio gratuito de atención terapéutica para menores con autismo",
-        "context": "Titular del artículo de Valencia Plaza (18/08/2026) sobre Riba-roja de Túria: 'Riba-roja pone en marcha un servicio gratuito de atención terapéutica para menores con autismo'. No se dispone del cuerpo del artículo con más detalles.",
-        "topic": "salud",
-        "entities": {
-          "referencedEntity": "Riba-roja de Túria"
-        },
-        "confidence": 0.55,
-        "reasoning": "Afirma la puesta en marcha efectiva de un servicio municipal concreto (gratuito, terapéutico, para menores con autismo), lo cual es verificable contrastando con el Ayuntamiento, aunque solo se dispone del titular sin cuerpo del artículo.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1yotn1k-0-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOeDhkMlBHa2ZFNFJKRWZQNXdKb0VhdTRnaEJEcEthOEw1dGdxTUtnbDdWLUtQa2g1UGRxaGpKWm5vekRxQVE3a292NlZqdzBWVmNpTi1HU3NYVnZmZXBBX2ZfR05abURPRERCN01MMDFOM1dwSjhiZ004Y2c3THdJb3ZuVVJhYzZIVVNHNDV3S29NZEVBX1Y1czZUZTR2Zk5uY01IcFB5QlpmVHBUX2VXWlNRVGNhZThMSS1kZzVIVk9tRGJmVW95dThyM205LTBMU0E5cGxISWNIT1NFN0liOU42QmFIYjQ?oc=5",
-        "articleSource": "Valencia Plaza",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleFingerprint": "1ijhbip"
-      }
-    },
-    {
-      "claim": {
-        "id": "1de2i28-0-pro",
-        "articleId": "1de2i28",
-        "articleFingerprint": "13kym0",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85574-riba-roja-posa-en-marxa-laula-tea-un-nou-servei-municipal-gratuit-datencio-terapeutica-per-a-menors-amb-trastorn-de-lespectre-autista.html",
-        "articleDate": "2026-08-18T11:24:45.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "body",
-        "type": "promesa",
-        "attributedSource": "municipal",
-        "verbatim": "posarà en marxa el pròxim mes d’octubre l’Aula TEA, un servei municipal gratuït d’atenció terapèutica especialitzada",
-        "context": "L’Ajuntament de Riba-roja, a través de l’àrea de Polítiques Inclusives, posarà en marxa el pròxim mes d’octubre l’Aula TEA, un servei municipal gratuït d’atenció terapèutica especialitzada dirigit a xiquets i xiquetes d’entre 4 i 12 anys amb trastorn de l’espectre autista (TEA).",
-        "topic": "social",
-        "entities": {
-          "amountEuros": 0,
-          "date": "octubre 2026",
-          "referencedEntity": "Aula TEA"
-        },
-        "confidence": 0.85,
-        "reasoning": "Compromiso municipal con fecha concreta de puesta en marcha y coste (gratuito), verificable a partir de octubre.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1de2i28-0-pro",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85574-riba-roja-posa-en-marxa-laula-tea-un-nou-servei-municipal-gratuit-datencio-terapeutica-per-a-menors-amb-trastorn-de-lespectre-autista.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "13kym0"
-      }
-    },
-    {
-      "claim": {
-        "id": "1de2i28-1-num",
-        "articleId": "1de2i28",
-        "articleFingerprint": "13kym0",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85574-riba-roja-posa-en-marxa-laula-tea-un-nou-servei-municipal-gratuit-datencio-terapeutica-per-a-menors-amb-trastorn-de-lespectre-autista.html",
-        "articleDate": "2026-08-18T11:24:45.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "dirigit a xiquets i xiquetes d’entre 4 i 12 anys amb trastorn de l’espectre autista (TEA)",
-        "context": "un servei municipal gratuït d’atenció terapèutica especialitzada dirigit a xiquets i xiquetes d’entre 4 i 12 anys amb trastorn de l’espectre autista (TEA). El programa naix amb l’objectiu d’oferir una atenció integral, personalitzada i de qualitat.",
-        "topic": "social",
-        "entities": {
-          "countUnit": "anys (rang 4-12)",
-          "referencedEntity": "Aula TEA - franja d'edat destinatària"
-        },
-        "confidence": 0.8,
-        "reasoning": "Especifica un rango de edad concreto de los destinatarios del servicio, contrastable con el reglamento del programa.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1de2i28-1-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85574-riba-roja-posa-en-marxa-laula-tea-un-nou-servei-municipal-gratuit-datencio-terapeutica-per-a-menors-amb-trastorn-de-lespectre-autista.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "13kym0"
-      }
-    },
-    {
-      "claim": {
-        "id": "1de2i28-2-dat",
-        "articleId": "1de2i28",
-        "articleFingerprint": "13kym0",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85574-riba-roja-posa-en-marxa-laula-tea-un-nou-servei-municipal-gratuit-datencio-terapeutica-per-a-menors-amb-trastorn-de-lespectre-autista.html",
-        "articleDate": "2026-08-18T11:24:45.000Z",
-        "segmentIndex": 2,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "es desenvoluparà tots els dijous, de 17.00 a 20.00 hores, entre els mesos d’octubre i maig, a ‘El Nostre Espai’",
-        "context": "L’Aula TEA es desenvoluparà tots els dijous, de 17.00 a 20.00 hores, entre els mesos d’octubre i maig, a ‘El Nostre Espai’, i comptarà amb un equip multidisciplinari format per professionals de diverses disciplines.",
-        "topic": "social",
-        "entities": {
-          "countUnit": "hores setmanals",
-          "date": "octubre-maig",
-          "referencedEntity": "Aula TEA - horari i calendari"
-        },
-        "confidence": 0.85,
-        "reasoning": "Detalla horario semanal y calendario concretos del servicio, verificables in situ.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1de2i28-2-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85574-riba-roja-posa-en-marxa-laula-tea-un-nou-servei-municipal-gratuit-datencio-terapeutica-per-a-menors-amb-trastorn-de-lespectre-autista.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "13kym0"
-      }
-    },
-    {
-      "claim": {
-        "id": "1de2i28-3-dat",
-        "articleId": "1de2i28",
-        "articleFingerprint": "13kym0",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85574-riba-roja-posa-en-marxa-laula-tea-un-nou-servei-municipal-gratuit-datencio-terapeutica-per-a-menors-amb-trastorn-de-lespectre-autista.html",
-        "articleDate": "2026-08-18T11:24:45.000Z",
-        "segmentIndex": 3,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "comptarà amb un equip multidisciplinari format per professionals de logopèdia, teràpia ocupacional, pedagogia terapèutica, psicologia i fisioteràpia",
-        "context": "a ‘El Nostre Espai’, i comptarà amb un equip multidisciplinari format per professionals de logopèdia, teràpia ocupacional, pedagogia terapèutica, psicologia i fisioteràpia, que treballaran de manera coordinada per a atendre les necessitats específiques de cada menor.",
-        "topic": "social",
-        "entities": {
-          "count": 5,
-          "countUnit": "especialitats professionals",
-          "referencedEntity": "equip multidisciplinari Aula TEA"
-        },
-        "confidence": 0.8,
-        "reasoning": "Enumera cinco especialidades profesionales concretas que compondrán el equipo, verificable con la plantilla del servicio.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1de2i28-3-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85574-riba-roja-posa-en-marxa-laula-tea-un-nou-servei-municipal-gratuit-datencio-terapeutica-per-a-menors-amb-trastorn-de-lespectre-autista.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "13kym0"
-      }
-    },
-    {
-      "claim": {
-        "id": "1de2i28-4-dat",
-        "articleId": "1de2i28",
-        "articleFingerprint": "13kym0",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85574-riba-roja-posa-en-marxa-laula-tea-un-nou-servei-municipal-gratuit-datencio-terapeutica-per-a-menors-amb-trastorn-de-lespectre-autista.html",
-        "articleDate": "2026-08-18T11:24:45.000Z",
-        "segmentIndex": 4,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "un habitatge adquirit i rehabilitat per l’Ajuntament de Riba-roja el 2025 per a convertir-lo en un recurs municipal destinat a l’atenció de persones amb necessitats especials",
-        "context": "El programa es desenvoluparà a El Nostre Espai, un habitatge adquirit i rehabilitat per l’Ajuntament de Riba-roja el 2025 per a convertir-lo en un recurs municipal destinat a l’atenció de persones amb necessitats especials.",
-        "topic": "urbanismo",
-        "entities": {
-          "date": "2025",
-          "referencedEntity": "El Nostre Espai"
-        },
-        "confidence": 0.8,
-        "reasoning": "Afirma una fecha concreta (2025) de adquisición y rehabilitación municipal de un inmueble, contrastable en actas o contratos municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1de2i28-4-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85574-riba-roja-posa-en-marxa-laula-tea-un-nou-servei-municipal-gratuit-datencio-terapeutica-per-a-menors-amb-trastorn-de-lespectre-autista.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "13kym0"
-      }
-    },
-    {
-      "claim": {
-        "id": "1de2i28-5-dat",
-        "articleId": "1de2i28",
-        "articleFingerprint": "13kym0",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85574-riba-roja-posa-en-marxa-laula-tea-un-nou-servei-municipal-gratuit-datencio-terapeutica-per-a-menors-amb-trastorn-de-lespectre-autista.html",
-        "articleDate": "2026-08-18T11:24:45.000Z",
-        "segmentIndex": 5,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "aquestes instal·lacions acullen les activitats del Programa Municipal d’Activitats per a adolescents i persones adultes amb discapacitat intel·lectual",
-        "context": "Actualment, aquestes instal·lacions acullen les activitats del Programa Municipal d’Activitats per a adolescents i persones adultes amb discapacitat intel·lectual, oferint un entorn completament adaptat per a fomentar l’autonomia.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "Programa Municipal d'Activitats - El Nostre Espai"
-        },
-        "confidence": 0.75,
-        "reasoning": "Describe el uso actual verificable de la instalación por otro programa municipal existente.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1de2i28-5-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85574-riba-roja-posa-en-marxa-laula-tea-un-nou-servei-municipal-gratuit-datencio-terapeutica-per-a-menors-amb-trastorn-de-lespectre-autista.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "13kym0"
-      }
-    },
-    {
-      "claim": {
-        "id": "33vp63-0-pro",
-        "articleId": "33vp63",
-        "articleFingerprint": "1ij1q5o",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-pone-en-marcha-el-aula-tea%2C-un-nuevo-servicio-municipal-gratuito-de-atenci%C3%B3n-terap%C3%A9utica-especializada-para-menores-con-trastorno-del-espectro-autista",
-        "articleDate": "2026-08-18T09:26:42.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "body",
-        "type": "promesa",
-        "attributedSource": "municipal",
-        "verbatim": "pondrá en marcha el próximo mes de octubre el Aula TEA, un servicio municipal gratuito de atención terapéutica especializada",
-        "context": "El Ayuntamiento de Riba-roja de Túria, a través del área de Políticas Inclusivas, pondrá en marcha el próximo mes de octubre el Aula TEA, un servicio municipal gratuito de atención terapéutica especializada dirigido a niños y niñas de entre 4 y 12 años con Trastorno del Espectro Autista (TEA).",
-        "topic": "social",
-        "entities": {
-          "date": "2026-10",
-          "referencedEntity": "Aula TEA"
-        },
-        "confidence": 0.85,
-        "reasoning": "Compromiso público con fecha concreta (octubre 2026) de puesta en marcha de un servicio, verificable en el futuro.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "33vp63-0-pro",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-pone-en-marcha-el-aula-tea%2C-un-nuevo-servicio-municipal-gratuito-de-atenci%C3%B3n-terap%C3%A9utica-especializada-para-menores-con-trastorno-del-espectro-autista",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1ij1q5o"
-      }
-    },
-    {
-      "claim": {
-        "id": "33vp63-1-dat",
-        "articleId": "33vp63",
-        "articleFingerprint": "1ij1q5o",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-pone-en-marcha-el-aula-tea%2C-un-nuevo-servicio-municipal-gratuito-de-atenci%C3%B3n-terap%C3%A9utica-especializada-para-menores-con-trastorno-del-espectro-autista",
-        "articleDate": "2026-08-18T09:26:42.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "dirigido a niños y niñas de entre 4 y 12 años con Trastorno del Espectro Autista (TEA)",
-        "context": "un servicio municipal gratuito de atención terapéutica especializada dirigido a niños y niñas de entre 4 y 12 años con Trastorno del Espectro Autista (TEA).",
-        "topic": "social",
-        "entities": {
-          "countUnit": "años",
-          "referencedEntity": "Trastorno del Espectro Autista (TEA)"
-        },
-        "confidence": 0.8,
-        "reasoning": "Define el criterio de edad de acceso al servicio, un dato objetivo y comprobable.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "33vp63-1-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-pone-en-marcha-el-aula-tea%2C-un-nuevo-servicio-municipal-gratuito-de-atenci%C3%B3n-terap%C3%A9utica-especializada-para-menores-con-trastorno-del-espectro-autista",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1ij1q5o"
-      }
-    },
-    {
-      "claim": {
-        "id": "33vp63-2-dat",
-        "articleId": "33vp63",
-        "articleFingerprint": "1ij1q5o",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-pone-en-marcha-el-aula-tea%2C-un-nuevo-servicio-municipal-gratuito-de-atenci%C3%B3n-terap%C3%A9utica-especializada-para-menores-con-trastorno-del-espectro-autista",
-        "articleDate": "2026-08-18T09:26:42.000Z",
-        "segmentIndex": 2,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "El Aula TEA se desarrollará todos los jueves, de 17:00 a 20:00 horas, entre los meses de octubre y mayo, en ‘El Nostre Espai’",
-        "context": "El Aula TEA se desarrollará todos los jueves, de 17:00 a 20:00 horas, entre los meses de octubre y mayo, en 'El Nostre Espai', y contará con un equipo multidisciplinar formado por profesionales de logopedia, terapia ocupacional, pedagogía terapéutica, psicología y fisioterapia.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "El Nostre Espai"
-        },
-        "confidence": 0.85,
-        "reasoning": "Especifica horario, periodicidad y ubicación concretos del servicio, datos verificables.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "33vp63-2-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-pone-en-marcha-el-aula-tea%2C-un-nuevo-servicio-municipal-gratuito-de-atenci%C3%B3n-terap%C3%A9utica-especializada-para-menores-con-trastorno-del-espectro-autista",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1ij1q5o"
-      }
-    },
-    {
-      "claim": {
-        "id": "33vp63-3-dat",
-        "articleId": "33vp63",
-        "articleFingerprint": "1ij1q5o",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-pone-en-marcha-el-aula-tea%2C-un-nuevo-servicio-municipal-gratuito-de-atenci%C3%B3n-terap%C3%A9utica-especializada-para-menores-con-trastorno-del-espectro-autista",
-        "articleDate": "2026-08-18T09:26:42.000Z",
-        "segmentIndex": 3,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "contará con un equipo multidisciplinar formado por profesionales de logopedia, terapia ocupacional, pedagogía terapéutica, psicología y fisioterapia",
-        "context": "en 'El Nostre Espai', y contará con un equipo multidisciplinar formado por profesionales de logopedia, terapia ocupacional, pedagogía terapéutica, psicología y fisioterapia, que trabajarán de forma coordinada para atender las necesidades específicas de cada menor.",
-        "topic": "salud",
-        "entities": {
-          "count": 5,
-          "countUnit": "especialidades profesionales",
-          "referencedEntity": "Aula TEA"
-        },
-        "confidence": 0.8,
-        "reasoning": "Enumera un número concreto de disciplinas profesionales que integrarán el equipo, comprobable con la composición real del servicio.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "33vp63-3-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-pone-en-marcha-el-aula-tea%2C-un-nuevo-servicio-municipal-gratuito-de-atenci%C3%B3n-terap%C3%A9utica-especializada-para-menores-con-trastorno-del-espectro-autista",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1ij1q5o"
-      }
-    },
-    {
-      "claim": {
-        "id": "33vp63-4-dat",
-        "articleId": "33vp63",
-        "articleFingerprint": "1ij1q5o",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-pone-en-marcha-el-aula-tea%2C-un-nuevo-servicio-municipal-gratuito-de-atenci%C3%B3n-terap%C3%A9utica-especializada-para-menores-con-trastorno-del-espectro-autista",
-        "articleDate": "2026-08-18T09:26:42.000Z",
-        "segmentIndex": 4,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "una vivienda adquirida y rehabilitada por el Ayuntamiento de Riba-roja de Túria en 2025 para convertirla en un recurso municipal destinado a la atención de personas con necesidades especiales",
-        "context": "El programa se desarrollará en El Nostre Espai, una vivienda adquirida y rehabilitada por el Ayuntamiento de Riba-roja de Túria en 2025 para convertirla en un recurso municipal destinado a la atención de personas con necesidades especiales.",
-        "topic": "urbanismo",
-        "entities": {
-          "date": "2025",
-          "referencedEntity": "El Nostre Espai"
-        },
-        "confidence": 0.75,
-        "reasoning": "Afirma un hecho verificable (año de adquisición y rehabilitación municipal de un inmueble) mediante registros patrimoniales o presupuestarios.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "33vp63-4-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-pone-en-marcha-el-aula-tea%2C-un-nuevo-servicio-municipal-gratuito-de-atenci%C3%B3n-terap%C3%A9utica-especializada-para-menores-con-trastorno-del-espectro-autista",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1ij1q5o"
-      }
-    },
-    {
-      "claim": {
-        "id": "33vp63-5-dat",
-        "articleId": "33vp63",
-        "articleFingerprint": "1ij1q5o",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-pone-en-marcha-el-aula-tea%2C-un-nuevo-servicio-municipal-gratuito-de-atenci%C3%B3n-terap%C3%A9utica-especializada-para-menores-con-trastorno-del-espectro-autista",
-        "articleDate": "2026-08-18T09:26:42.000Z",
-        "segmentIndex": 5,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "La información e inscripciones podrán realizarse en La Botaia (calle Santander, 1), a través del correo electrónico ssociales@ribarroja.es o del teléfono 961 653 147",
-        "context": "La información e inscripciones podrán realizarse en La Botaia (calle Santander, 1), a través del correo electrónico ssociales@ribarroja.es o del teléfono 961 653 147.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "La Botaia"
-        },
-        "confidence": 0.7,
-        "reasoning": "Datos operativos de contacto e inscripción que pueden verificarse frente a los canales oficiales reales del Ayuntamiento.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "33vp63-5-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-pone-en-marcha-el-aula-tea%2C-un-nuevo-servicio-municipal-gratuito-de-atenci%C3%B3n-terap%C3%A9utica-especializada-para-menores-con-trastorno-del-espectro-autista",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1ij1q5o"
-      }
-    },
-    {
-      "claim": {
-        "id": "1hiwvms-0-num",
-        "articleId": "1hiwvms",
-        "articleFingerprint": "1sk278c",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85552-riba-roja-cedeix-una-parcella-municipal-de-1-945-m%c2%b2-per-a-construir-36-habitatges-de-proteccio-publica.html",
-        "articleDate": "2026-08-17T13:35:30.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "una parcel·la de 1.945 m² per a 36 habitatges de protecció pública",
-        "context": "Riba-roja cedeix una parcel·la de 1.945 m² per a 36 habitatges de protecció pública",
-        "topic": "vivienda",
-        "entities": {
-          "count": 1945,
-          "countUnit": "m²",
-          "referencedEntity": "parcel·la cedida per l'Ajuntament de Riba-roja de Túria"
-        },
-        "confidence": 0.55,
-        "reasoning": "Cifra concreta de superficie de la parcela cedida, contrastable en el acuerdo o planeamiento municipal.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1hiwvms-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85552-riba-roja-cedeix-una-parcella-municipal-de-1-945-m%c2%b2-per-a-construir-36-habitatges-de-proteccio-publica.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "1sk278c"
-      }
-    },
-    {
-      "claim": {
-        "id": "1hiwvms-1-num",
-        "articleId": "1hiwvms",
-        "articleFingerprint": "1sk278c",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85552-riba-roja-cedeix-una-parcella-municipal-de-1-945-m%c2%b2-per-a-construir-36-habitatges-de-proteccio-publica.html",
-        "articleDate": "2026-08-17T13:35:30.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "per a 36 habitatges de protecció pública",
-        "context": "Riba-roja cedeix una parcel·la de 1.945 m² per a 36 habitatges de protecció pública",
-        "topic": "vivienda",
-        "entities": {
-          "count": 36,
-          "countUnit": "habitatges de protecció pública",
-          "referencedEntity": "Riba-roja de Túria"
-        },
-        "confidence": 0.55,
-        "reasoning": "Número concreto de viviendas de protección pública anunciadas, contrastable en el acuerdo municipal de cesión.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1hiwvms-1-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85552-riba-roja-cedeix-una-parcella-municipal-de-1-945-m%c2%b2-per-a-construir-36-habitatges-de-proteccio-publica.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "1sk278c"
-      }
-    },
-    {
-      "claim": {
-        "id": "1hiwvms-2-dat",
-        "articleId": "1hiwvms",
-        "articleFingerprint": "1sk278c",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85552-riba-roja-cedeix-una-parcella-municipal-de-1-945-m%c2%b2-per-a-construir-36-habitatges-de-proteccio-publica.html",
-        "articleDate": "2026-08-17T13:35:30.000Z",
-        "segmentIndex": 2,
-        "segmentKind": "title",
-        "type": "dato_municipal",
-        "attributedSource": "outlet",
-        "verbatim": "Riba-roja cedeix una parcel·la de 1.945 m² per a 36 habitatges de protecció pública",
-        "context": "Riba-roja cedeix una parcel·la de 1.945 m² per a 36 habitatges de protecció pública",
-        "topic": "vivienda",
-        "entities": {
-          "date": "2026-08-17",
-          "referencedEntity": "Ajuntament de Riba-roja de Túria"
-        },
-        "confidence": 0.5,
-        "reasoning": "Afirma una acción municipal concreta (cesión de suelo) verificable en actas o acuerdos publicados del ayuntamiento.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1hiwvms-2-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85552-riba-roja-cedeix-una-parcella-municipal-de-1-945-m%c2%b2-per-a-construir-36-habitatges-de-proteccio-publica.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "1sk278c"
-      }
-    },
-    {
-      "claim": {
-        "id": "17vhhpk-0-num",
-        "articleId": "17vhhpk",
-        "articleFingerprint": "1yj7qok",
-        "articleSource": "Las Provincias",
-        "articleSourceHost": "lasprovincias.es",
-        "articleUrl": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPc1RtSHpNa2U3TDc3Yy1RaXR1UkdVUC1fREFOX2FmTk43Rk1UUF9iY1FSYTRINjRHYWRuTFU3VmI0cGdGdEpwVEsxTERYRzRuTlZ4bml2eHJueEdieGtwNGtKMWs1UGFsWkZXaXkwQlFFM3RzS3VQUlZRZ3BzTTh6MjZpeHBheFVZS0NTZ05wSzB0bjVESk9BU1piTmlKWk5ucnVFV3ZLV20xYXhCQjNFYzFzVDZsWnhnNHdrQUZpQWnSAcYBQVVfeXFMTWNSVWdTc0M3YktaYjlyQTZCWmdWWHo3WnJuUDJPY3dhUjRzN2ZPd3B6SG1tTnRDcEdRMlRwODVMdVpESFA3LTNvdGNSV2RLb1M2MEpHRG91Y0lObWcwMDY0NVJ6MUFTcW9ZOGVwb3gwa0daNU8zRUN0R1V3aWsyYjlYcDhrOGdCcmM4WXlTX0RGRUpKN0NMUG5iT0V5ZHF5UEM1aW1YVnZjRXN5U0NOLWd1OEo2NVpVTXZEZXI4NkV1VllxdzNR?oc=5",
-        "articleDate": "2026-08-17T13:30:30.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "Riba-roja cede una parcela para construir 36 viviendas de protección pública",
-        "context": "Titular del artículo publicado por Las Provincias el 17/08/2026 sobre la cesión de una parcela municipal en Riba-roja de Túria destinada a vivienda protegida.",
-        "topic": "vivienda",
-        "entities": {
-          "count": 36,
-          "countUnit": "viviendas",
-          "referencedEntity": "Riba-roja de Túria"
-        },
-        "confidence": 0.65,
-        "reasoning": "Cifra concreta (36 viviendas) y acción municipal (cesión de parcela) verificables en fuentes municipales, aunque solo se dispone del titular sin cuerpo del artículo.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "17vhhpk-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPc1RtSHpNa2U3TDc3Yy1RaXR1UkdVUC1fREFOX2FmTk43Rk1UUF9iY1FSYTRINjRHYWRuTFU3VmI0cGdGdEpwVEsxTERYRzRuTlZ4bml2eHJueEdieGtwNGtKMWs1UGFsWkZXaXkwQlFFM3RzS3VQUlZRZ3BzTTh6MjZpeHBheFVZS0NTZ05wSzB0bjVESk9BU1piTmlKWk5ucnVFV3ZLV20xYXhCQjNFYzFzVDZsWnhnNHdrQUZpQWnSAcYBQVVfeXFMTWNSVWdTc0M3YktaYjlyQTZCWmdWWHo3WnJuUDJPY3dhUjRzN2ZPd3B6SG1tTnRDcEdRMlRwODVMdVpESFA3LTNvdGNSV2RLb1M2MEpHRG91Y0lObWcwMDY0NVJ6MUFTcW9ZOGVwb3gwa0daNU8zRUN0R1V3aWsyYjlYcDhrOGdCcmM4WXlTX0RGRUpKN0NMUG5iT0V5ZHF5UEM1aW1YVnZjRXN5U0NOLWd1OEo2NVpVTXZEZXI4NkV1VllxdzNR?oc=5",
-        "articleSource": "Las Provincias",
-        "articleSourceHost": "lasprovincias.es",
-        "articleFingerprint": "1yj7qok"
-      }
-    },
-    {
-      "claim": {
-        "id": "15tpe88-0-dat",
-        "articleId": "15tpe88",
-        "articleFingerprint": "1v2ow04",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-cede-una-parcela-municipal-de-1.945-metros-cuadrados-para-construir-36-viviendas-de-protecci%C3%B3n-p%C3%BAblica-tras-constatar-una-tensi%C3%B3n-en-el-mercado-inmobiliario",
-        "articleDate": "2026-08-17T11:54:37.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "cede una parcela municipal de 1.945 metros cuadrados",
-        "context": "Riba-roja cede una parcela municipal de 1.945 metros cuadrados para construir 36 viviendas de protección pública tras constatar una tensión en el mercado inmobiliario",
-        "topic": "urbanismo",
-        "entities": {
-          "count": 1945,
-          "countUnit": "metros cuadrados",
-          "referencedEntity": "parcela municipal"
-        },
-        "confidence": 0.8,
-        "reasoning": "La superficie exacta de la parcela cedida (1.945 m²) es un dato verificable mediante registros catastrales o municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "15tpe88-0-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-cede-una-parcela-municipal-de-1.945-metros-cuadrados-para-construir-36-viviendas-de-protecci%C3%B3n-p%C3%BAblica-tras-constatar-una-tensi%C3%B3n-en-el-mercado-inmobiliario",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1v2ow04"
-      }
-    },
-    {
-      "claim": {
-        "id": "15tpe88-1-dat",
-        "articleId": "15tpe88",
-        "articleFingerprint": "1v2ow04",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-cede-una-parcela-municipal-de-1.945-metros-cuadrados-para-construir-36-viviendas-de-protecci%C3%B3n-p%C3%BAblica-tras-constatar-una-tensi%C3%B3n-en-el-mercado-inmobiliario",
-        "articleDate": "2026-08-17T11:54:37.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "title",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "para construir 36 viviendas de protección pública",
-        "context": "Riba-roja cede una parcela municipal de 1.945 metros cuadrados para construir 36 viviendas de protección pública tras constatar una tensión en el mercado inmobiliario",
-        "topic": "vivienda",
-        "entities": {
-          "count": 36,
-          "countUnit": "viviendas",
-          "referencedEntity": "viviendas de protección pública"
-        },
-        "confidence": 0.8,
-        "reasoning": "El número concreto de viviendas de protección pública (36) es una cifra contrastable con el proyecto urbanístico que se apruebe.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "15tpe88-1-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-cede-una-parcela-municipal-de-1.945-metros-cuadrados-para-construir-36-viviendas-de-protecci%C3%B3n-p%C3%BAblica-tras-constatar-una-tensi%C3%B3n-en-el-mercado-inmobiliario",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1v2ow04"
-      }
-    },
-    {
-      "claim": {
-        "id": "1k7hpxd-0-pro",
-        "articleId": "1k7hpxd",
-        "articleFingerprint": "83junr",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleDate": "2026-08-13T12:27:03.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "body",
-        "type": "promesa",
-        "attributedSource": "outlet",
-        "verbatim": "treballa estos dies en el pont de la CV-336 sobre el riu per culminar les obres durant la pròxima setmana",
-        "context": "L'empresa encarregada de la gestió integral de l'aigua treballa estos dies en el pont de la CV-336 sobre el riu per culminar les obres durant la pròxima setmana.",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "CV-336"
-        },
-        "confidence": 0.5,
-        "reasoning": "Fija un plazo relativo ('pròxima setmana') para finalizar las obras, verificable si se cumple o no.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1k7hpxd-0-pro",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "83junr"
-      }
-    },
-    {
-      "claim": {
-        "id": "1k7hpxd-1-dat",
-        "articleId": "1k7hpxd",
-        "articleFingerprint": "83junr",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleDate": "2026-08-13T12:27:03.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "outlet",
-        "verbatim": "després dels danys ocasionats per la DANA d’octubre de 2024 en el viaducte de la carretera CV-336",
-        "context": "La intervenció substituïx la derivació provisional instal·lada després dels danys ocasionats per la DANA d’octubre de 2024 en el viaducte de la carretera CV-336.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "date": "2024-10",
-          "referencedEntity": "DANA / CV-336"
-        },
-        "confidence": 0.9,
-        "reasoning": "Cita una fecha y causa concreta (DANA octubre 2024) verificable con registros oficiales del suceso.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1k7hpxd-1-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "83junr"
-      }
-    },
-    {
-      "claim": {
-        "id": "1k7hpxd-2-dat",
-        "articleId": "1k7hpxd",
-        "articleFingerprint": "83junr",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleDate": "2026-08-13T12:27:03.000Z",
-        "segmentIndex": 2,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "outlet",
-        "verbatim": "El Molinet, Santa Mònica, Montealcedo, Parc Montealcedo, Entrenaranjos, Santa Rosa i El Clot",
-        "context": "va obligar a plantejar una solució provisional que va evitar que els veïns i veïnes de la zona nord (El Molinet, Santa Mònica, Montealcedo, Parc Montealcedo, Entrenaranjos, Santa Rosa i El Clot) pogueren quedar en algun moment sense subministrament d’aigua potable.",
-        "topic": "urbanismo",
-        "entities": {
-          "count": 7,
-          "countUnit": "urbanitzacions",
-          "referencedEntity": "zona nord de Riba-roja de Túria"
-        },
-        "confidence": 0.85,
-        "reasoning": "Enumera un número concreto de urbanizaciones afectadas, verificable con datos municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1k7hpxd-2-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "83junr"
-      }
-    },
-    {
-      "claim": {
-        "id": "1k7hpxd-3-dat",
-        "articleId": "1k7hpxd",
-        "articleFingerprint": "83junr",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleDate": "2026-08-13T12:27:03.000Z",
-        "segmentIndex": 3,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "outlet",
-        "verbatim": "Durant els primers dies, van comptar amb el subministrament del depòsit de l’Eliana.",
-        "context": "va obligar a plantejar una solució provisional... Durant els primers dies, van comptar amb el subministrament del depòsit de l’Eliana.",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "depòsit de l'Eliana"
-        },
-        "confidence": 0.8,
-        "reasoning": "Afirma un hecho concreto y verificable sobre el origen del suministro de emergencia.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1k7hpxd-3-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "83junr"
-      }
-    },
-    {
-      "claim": {
-        "id": "1k7hpxd-4-num",
-        "articleId": "1k7hpxd",
-        "articleFingerprint": "83junr",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleDate": "2026-08-13T12:27:03.000Z",
-        "segmentIndex": 4,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "una canonada d’acer inoxidable austenític d’alta resistència, grau 316L, amb un diàmetre nominal de 400 mil·límetres",
-        "context": "L’actuació consistix en la instal·lació d’una canonada d’acer inoxidable austenític d’alta resistència, grau 316L, amb un diàmetre nominal de 400 mil·límetres.",
-        "topic": "urbanismo",
-        "entities": {
-          "count": 400,
-          "countUnit": "mil·límetres",
-          "referencedEntity": "canonada acer inoxidable 316L"
-        },
-        "confidence": 0.9,
-        "reasoning": "Especifica una cifra técnica concreta (diámetro nominal) verificable mediante el proyecto de obra.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1k7hpxd-4-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "83junr"
-      }
-    },
-    {
-      "claim": {
-        "id": "1k7hpxd-5-num",
-        "articleId": "1k7hpxd",
-        "articleFingerprint": "83junr",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleDate": "2026-08-13T12:27:03.000Z",
-        "segmentIndex": 5,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "La nova canalització, d’aproximadament 48 metres de longitud, discorre adossada longitudinalment al lateral del tauler del pont",
-        "context": "La nova canalització, d’aproximadament 48 metres de longitud, discorre adossada longitudinalment al lateral del tauler del pont i de manera elevada, la qual cosa evita realitzar suports directes sobre el llit o les ribes del riu Túria.",
-        "topic": "urbanismo",
-        "entities": {
-          "count": 48,
-          "countUnit": "metres",
-          "referencedEntity": "pont CV-336 sobre el riu Túria"
-        },
-        "confidence": 0.85,
-        "reasoning": "Aporta una longitud aproximada verificable, aunque calificada como 'aproximadament'.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1k7hpxd-5-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "83junr"
-      }
-    },
-    {
-      "claim": {
-        "id": "1k7hpxd-6-num",
-        "articleId": "1k7hpxd",
-        "articleFingerprint": "83junr",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleDate": "2026-08-13T12:27:03.000Z",
-        "segmentIndex": 6,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "una ventosa trifuncional de 80 mil·límetres dotada d’una vàlvula de comporta intermèdia que facilitarà les tasques de manteniment",
-        "context": "El muntatge incorpora, així mateix, un maneguet antivibratori per a absorbir els esforços dinàmics del fluid i de la conducció, i amortir el soroll, així com una ventosa trifuncional de 80 mil·límetres dotada d’una vàlvula de comporta intermèdia que facilitarà les tasques de manteniment.",
-        "topic": "urbanismo",
-        "entities": {
-          "count": 80,
-          "countUnit": "mil·límetres",
-          "referencedEntity": "ventosa trifuncional"
-        },
-        "confidence": 0.85,
-        "reasoning": "Detalla una especificación técnica numérica verificable del componente instalado.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1k7hpxd-6-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "83junr"
-      }
-    },
-    {
-      "claim": {
-        "id": "1k7hpxd-7-obr",
-        "articleId": "1k7hpxd",
-        "articleFingerprint": "83junr",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleDate": "2026-08-13T12:27:03.000Z",
-        "segmentIndex": 7,
-        "segmentKind": "body",
-        "type": "cita_obra",
-        "attributedSource": "municipal",
-        "verbatim": "Esta important obra es localitza en una de les zones zero de la DANA, en la qual es va vore greument afectat el pont que connecta el nucli urbà amb la zona nord. Amb esta nova conducció millorem la xarxa d’aigua potable i, en un futur, ens permetrà poder connectar amb l’Eliana",
-        "context": "Durant la visita, l’alcalde ha subratllat la importància de l’actuació: «Esta important obra es localitza en una de les zones zero de la DANA... ens permetrà poder connectar amb l’Eliana».",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "pont CV-336 / l'Eliana"
-        },
-        "confidence": 0.6,
-        "reasoning": "Declaración institucional sobre el alcance y objetivo futuro de la obra, contrastable con el proyecto real.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1k7hpxd-7-obr",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "83junr"
-      }
-    },
-    {
-      "claim": {
-        "id": "1k7hpxd-8-obr",
-        "articleId": "1k7hpxd",
-        "articleFingerprint": "83junr",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleDate": "2026-08-13T12:27:03.000Z",
-        "segmentIndex": 8,
-        "segmentKind": "body",
-        "type": "cita_obra",
-        "attributedSource": "municipal",
-        "verbatim": "seguim en procés de reconstrucció, amb obres que afecten no només el parc natural del Túria, sinó també l’àrea industrial de Riba-roja de Túria",
-        "context": "Raga ha recordat que «seguim en procés de reconstrucció, amb obres que afecten no només el parc natural del Túria, sinó també l’àrea industrial de Riba-roja de Túria».",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "parc natural del Túria / àrea industrial de Riba-roja de Túria"
-        },
-        "confidence": 0.7,
-        "reasoning": "Afirma un estado de proceso de reconstrucción en curso, contrastable con el listado de obras municipales activas.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1k7hpxd-8-obr",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "83junr"
-      }
-    },
-    {
-      "claim": {
-        "id": "1k7hpxd-9-num",
-        "articleId": "1k7hpxd",
-        "articleFingerprint": "83junr",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleDate": "2026-08-13T12:27:03.000Z",
-        "segmentIndex": 9,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "El cost de l’actuació definitiva, que inclou tant la derivació provisional com la restitució definitiva de la conducció, ascendix a 120.000 euros",
-        "context": "El cost de l’actuació definitiva, que inclou tant la derivació provisional com la restitució definitiva de la conducció, ascendix a 120.000 euros.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 120000,
-          "referencedEntity": "restitució conducció aigua potable pont CV-336"
-        },
-        "confidence": 0.9,
-        "reasoning": "Indica una cifra exacta de coste de la obra, verificable mediante contrato o expediente municipal.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1k7hpxd-9-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "83junr"
-      }
-    },
-    {
-      "claim": {
-        "id": "1k7hpxd-10-dat",
-        "articleId": "1k7hpxd",
-        "articleFingerprint": "83junr",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleDate": "2026-08-13T12:27:03.000Z",
-        "segmentIndex": 10,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "outlet",
-        "verbatim": "finançada íntegrament amb les ajudes directes atorgades en el marc de la Resolució de la Secretaria d’Estat de Medi Ambient, òrgan integrat en el Ministeri per a la Transició Ecològica i el Repte Demogràfic",
-        "context": "Esta actuació està finançada íntegrament amb les ajudes directes atorgades en el marc de la Resolució de la Secretaria d’Estat de Medi Ambient, òrgan integrat en el Ministeri per a la Transició Ecològica i el Repte Demogràfic.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "Secretaria d'Estat de Medi Ambient / Ministeri per a la Transició Ecològica i el Repte Demogràfic"
-        },
-        "confidence": 0.6,
-        "reasoning": "Atribuye la financiación a una resolución ministerial concreta, verificable en el BOE u organismo citado; cita larga (>200 chars) exige confianza moderada.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1k7hpxd-10-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "83junr"
-      }
-    },
-    {
-      "claim": {
-        "id": "1k7hpxd-11-num",
-        "articleId": "1k7hpxd",
-        "articleFingerprint": "83junr",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleDate": "2026-08-13T12:27:03.000Z",
-        "segmentIndex": 11,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "la inversió a Riba-roja de Túria a través de l’empresa gestora del cicle de l’aigua és de 4,4 milions d’euros",
-        "context": "En total, la inversió a Riba-roja de Túria a través de l’empresa gestora del cicle de l’aigua és de 4,4 milions d’euros.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 4400000,
-          "referencedEntity": "empresa gestora del cicle de l'aigua"
-        },
-        "confidence": 0.9,
-        "reasoning": "Cifra global de inversión concreta y verificable con la empresa gestora del ciclo del agua.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1k7hpxd-11-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "83junr"
-      }
-    },
-    {
-      "claim": {
-        "id": "1k7hpxd-12-num",
-        "articleId": "1k7hpxd",
-        "articleFingerprint": "83junr",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleDate": "2026-08-13T12:27:03.000Z",
-        "segmentIndex": 12,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "el desmuntatge de la canonada provisional de baixant de 200 mil·límetres actualment en servici i a la col·locació d’una brida cega",
-        "context": "Una vegada completats l’ancoratge i l’alineació longitudinal de la conducció, es procedirà al desmuntatge de la canonada provisional de baixant de 200 mil·límetres actualment en servici i a la col·locació d’una brida cega per a segellar l’antiga derivació.",
-        "topic": "urbanismo",
-        "entities": {
-          "count": 200,
-          "countUnit": "mil·límetres",
-          "referencedEntity": "canonada provisional de baixant"
-        },
-        "confidence": 0.8,
-        "reasoning": "Describe una acción técnica futura con una cifra concreta (200 mm), verificable al completarse la obra.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1k7hpxd-12-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85505-riba-roja-restablix-la-conduccio-definitiva-daigua-potable-amb-la-zona-nord-danyada-per-la-dana.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "83junr"
-      }
-    },
-    {
-      "claim": {
-        "id": "t56pik-0-dat",
-        "articleId": "t56pik",
-        "articleFingerprint": "3j7e78",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleDate": "2026-08-13T09:51:38.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "outlet",
-        "verbatim": "La intervención sustituye la derivación provisional instalada tras los daños ocasionados por la DANA de octubre de 2024 en el viaducto de la carretera CV-336.",
-        "context": "Las obras para la restitución de la conducción de agua potable sobre el puente del río Turia avanzan a buen ritmo con el fin de restablecer de manera definitiva el suministro. La intervención sustituye la derivación provisional instalada tras los daños ocasionados por la DANA de octubre de 2024 en el viaducto de la carretera CV-336.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "date": "2024-10",
-          "referencedEntity": "viaducto CV-336"
-        },
-        "confidence": 0.85,
-        "reasoning": "Afirma una causa y una fecha verificables (daños del puente por la DANA de octubre de 2024) contrastables con registros oficiales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "t56pik-0-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "3j7e78"
-      }
-    },
-    {
-      "claim": {
-        "id": "t56pik-1-dat",
-        "articleId": "t56pik",
-        "articleFingerprint": "3j7e78",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleDate": "2026-08-13T09:51:38.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "outlet",
-        "verbatim": "los vecinos y vecinas de la zona norte (El Molinet, Santa Mónica, Montealcedo, Parque Montealcedo, Entrenaranjos, Santa Rosa y El Clot) pudieran quedar en algún momento sin suministro de agua potable",
-        "context": "La afectación de la riada sobre el puente provocó la rotura de la tubería, lo que obligó a proponer una solución provisional que evitó que los vecinos y vecinas de la zona norte (El Molinet, Santa Mónica, Montealcedo, Parque Montealcedo, Entrenaranjos, Santa Rosa y El Clot) pudieran quedar en algún momento sin suministro de agua potable.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "count": 7,
-          "countUnit": "urbanizaciones",
-          "referencedEntity": "zona norte de Riba-roja de Túria"
-        },
-        "confidence": 0.8,
-        "reasoning": "Enumera urbanizaciones concretas afectadas, dato contrastable con los registros municipales del suministro de agua.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "t56pik-1-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "3j7e78"
-      }
-    },
-    {
-      "claim": {
-        "id": "t56pik-2-num",
-        "articleId": "t56pik",
-        "articleFingerprint": "3j7e78",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleDate": "2026-08-13T09:51:38.000Z",
-        "segmentIndex": 2,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "La actuación consiste en la instalación de una tubería de acero inoxidable austenítico de alta resistencia, grado 316L, con un diámetro nominal de 400 milímetros.",
-        "context": "La actuación consiste en la instalación de una tubería de acero inoxidable austenítico de alta resistencia, grado 316L, con un diámetro nominal de 400 milímetros.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "count": 400,
-          "countUnit": "milímetros",
-          "referencedEntity": "tubería de acero inoxidable 316L"
-        },
-        "confidence": 0.9,
-        "reasoning": "Especificación técnica cuantificable del proyecto, contrastable con el proyecto de obra.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "t56pik-2-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "3j7e78"
-      }
-    },
-    {
-      "claim": {
-        "id": "t56pik-3-num",
-        "articleId": "t56pik",
-        "articleFingerprint": "3j7e78",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleDate": "2026-08-13T09:51:38.000Z",
-        "segmentIndex": 3,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "La nueva canalización, de aproximadamente 48 metros de longitud, discurre adosada longitudinalmente al lateral del tablero del puente",
-        "context": "La nueva canalización, de aproximadamente 48 metros de longitud, discurre adosada longitudinalmente al lateral del tablero del puente y de forma elevada, lo que evita realizar apoyos directos sobre el lecho o las márgenes del río Turia.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "count": 48,
-          "countUnit": "metros",
-          "referencedEntity": "canalización de agua potable"
-        },
-        "confidence": 0.85,
-        "reasoning": "Dato técnico de longitud cuantificable y verificable in situ o en el proyecto de obra.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "t56pik-3-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "3j7e78"
-      }
-    },
-    {
-      "claim": {
-        "id": "t56pik-4-num",
-        "articleId": "t56pik",
-        "articleFingerprint": "3j7e78",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleDate": "2026-08-13T09:51:38.000Z",
-        "segmentIndex": 4,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "una ventosa trifuncional de 80 milímetros dotada de una válvula de compuerta intermedia que facilitará las tareas de mantenimiento",
-        "context": "El montaje incorpora, asimismo, un manguito antivibratorio para absorber los esfuerzos dinámicos del fluido y de la conducción, y amortiguar el ruido, así como una ventosa trifuncional de 80 milímetros dotada de una válvula de compuerta intermedia que facilitará las tareas de mantenimiento.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "count": 80,
-          "countUnit": "milímetros",
-          "referencedEntity": "ventosa trifuncional"
-        },
-        "confidence": 0.85,
-        "reasoning": "Especificación técnica concreta del componente instalado, contrastable con el proyecto de obra.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "t56pik-4-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "3j7e78"
-      }
-    },
-    {
-      "claim": {
-        "id": "t56pik-5-num",
-        "articleId": "t56pik",
-        "articleFingerprint": "3j7e78",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleDate": "2026-08-13T09:51:38.000Z",
-        "segmentIndex": 5,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "se procederá al desmontaje de la tubería provisional de bajante de 200 milímetros actualmente en servicio y a la colocación de una brida ciega para sellar la antigua derivación",
-        "context": "Una vez completados el anclaje y la alineación longitudinal de la conducción, se procederá al desmontaje de la tubería provisional de bajante de 200 milímetros actualmente en servicio y a la colocación de una brida ciega para sellar la antigua derivación.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "count": 200,
-          "countUnit": "milímetros",
-          "referencedEntity": "tubería provisional de bajante"
-        },
-        "confidence": 0.8,
-        "reasoning": "Describe una acción técnica futura y concreta con especificaciones verificables una vez ejecutada.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "t56pik-5-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "3j7e78"
-      }
-    },
-    {
-      "claim": {
-        "id": "t56pik-6-num",
-        "articleId": "t56pik",
-        "articleFingerprint": "3j7e78",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleDate": "2026-08-13T09:51:38.000Z",
-        "segmentIndex": 6,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "El coste de la actuación definitiva que incluye tanto la derivación provisional como la restitución definitiva de la conducción asciende a 120.000€.",
-        "context": "El coste de la actuación definitiva que incluye tanto la derivación provisional como la restitución definitiva de la conducción asciende a 120.000€. Esta actuación está financiada íntegramente con las ayudas directas otorgadas en el marco de la Resolución de la Secretaría de Estado de Medio Ambiente.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 120000,
-          "referencedEntity": "actuación de restitución de la conducción"
-        },
-        "confidence": 0.9,
-        "reasoning": "Cifra económica concreta y verificable contra presupuestos o contratos municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "t56pik-6-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "3j7e78"
-      }
-    },
-    {
-      "claim": {
-        "id": "t56pik-7-dat",
-        "articleId": "t56pik",
-        "articleFingerprint": "3j7e78",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleDate": "2026-08-13T09:51:38.000Z",
-        "segmentIndex": 7,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "outlet",
-        "verbatim": "Esta actuación está financiada íntegramente con las ayudas directas otorgadas en el marco de la Resolución de la Secretaría de Estado de Medio Ambiente, órgano integrado en el Ministerio para la Transición Ecológica y el Reto Demográfico.",
-        "context": "El coste de la actuación definitiva... asciende a 120.000€. Esta actuación está financiada íntegramente con las ayudas directas otorgadas en el marco de la Resolución de la Secretaría de Estado de Medio Ambiente, órgano integrado en el Ministerio para la Transición Ecológica y el Reto Demográfico.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "Secretaría de Estado de Medio Ambiente (MITECO)"
-        },
-        "confidence": 0.65,
-        "reasoning": "Identifica una fuente de financiación pública contrastable con la resolución oficial citada; cita larga, se limita la confianza.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "t56pik-7-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "3j7e78"
-      }
-    },
-    {
-      "claim": {
-        "id": "t56pik-8-num",
-        "articleId": "t56pik",
-        "articleFingerprint": "3j7e78",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleDate": "2026-08-13T09:51:38.000Z",
-        "segmentIndex": 8,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "En total, la inversión en Riba-roja de Túria a través de la empresa gestora del ciclo de agua es de 4,4 millones de euros.",
-        "context": "Esta actuación está financiada íntegramente con las ayudas directas otorgadas en el marco de la Resolución de la Secretaría de Estado de Medio Ambiente. En total, la inversión en Riba-roja de Túria a través de la empresa gestora del ciclo de agua es de 4,4 millones de euros.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 4400000,
-          "referencedEntity": "empresa gestora del ciclo integral del agua"
-        },
-        "confidence": 0.85,
-        "reasoning": "Cifra de inversión total explícita, contrastable con las cuentas de la empresa concesionaria del ciclo del agua.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "t56pik-8-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "3j7e78"
-      }
-    },
-    {
-      "claim": {
-        "id": "t56pik-9-dat",
-        "articleId": "t56pik",
-        "articleFingerprint": "3j7e78",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleDate": "2026-08-13T09:51:38.000Z",
-        "segmentIndex": 9,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "esta importante obra se localiza en una de las zonas cero de la Dana, en la que se vio gravemente afectado el puente que conecta el casco urbano con la zona norte",
-        "context": "Durante su visita, el alcalde subrayó la importancia de la actuación: “esta importante obra se localiza en una de las zonas cero de la Dana, en la que se vio gravemente afectado el puente que conecta el casco urbano con la zona norte. Con esta nueva conducción mejoramos la red de agua potable...”",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "puente CV-336"
-        },
-        "confidence": 0.7,
-        "reasoning": "Declaración institucional sobre el alcance del daño del puente, contrastable con informes técnicos de la DANA.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "t56pik-9-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "3j7e78"
-      }
-    },
-    {
-      "claim": {
-        "id": "t56pik-10-pro",
-        "articleId": "t56pik",
-        "articleFingerprint": "3j7e78",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleDate": "2026-08-13T09:51:38.000Z",
-        "segmentIndex": 10,
-        "segmentKind": "body",
-        "type": "promesa",
-        "attributedSource": "municipal",
-        "verbatim": "en un futuro nos permitirá poder conectar con l' Eliana",
-        "context": "Con esta nueva conducción mejoramos la red de agua potable y en un futuro nos permitirá poder conectar con l' Eliana”.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "l'Eliana"
-        },
-        "confidence": 0.75,
-        "reasoning": "Compromiso institucional sobre una futura conexión de red, verificable en próximas actuaciones municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "t56pik-10-pro",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "promises"
-        ],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "3j7e78"
-      }
-    },
-    {
-      "claim": {
-        "id": "t56pik-11-dat",
-        "articleId": "t56pik",
-        "articleFingerprint": "3j7e78",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleDate": "2026-08-13T09:51:38.000Z",
-        "segmentIndex": 11,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "seguimos en proceso de reconstrucción, con obras que afectan no solo al parque natural del Túria, sino al área industrial de Riba-roja de Túria",
-        "context": "Raga ha recordado que seguimos en proceso de reconstrucción, con obras que afectan no solo al parque natural del Túria, sino al área industrial de Riba-roja de Túria.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "parque natural del Túria / área industrial de Riba-roja"
-        },
-        "confidence": 0.6,
-        "reasoning": "Declara un estado de obras en curso que puede contrastarse con los proyectos municipales activos de reconstrucción.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "t56pik-11-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-restablece-la-conducci%C3%B3n-definitiva-de-agua-potable-con-la-zona-norte-da%C3%B1ada-por-la-dana",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "3j7e78"
-      }
     }
   ],
-  "sourceGeneratedAt": "2026-08-28T08:16:18.790Z"
+  "sourceGeneratedAt": "2026-09-03T08:34:32.924Z"
 }
