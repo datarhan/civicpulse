@@ -1834,7 +1834,7 @@
     "failedChunks": [
       {
         "chunk": 3,
-        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=AQ.Ab8RN6Ka_IH7ak4g6aO6_0HnSoBKeM4GOOcHspPlleSm261-_A -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5199646 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
+        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=REDACTED -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5199646 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
         "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
@@ -1844,7 +1844,7 @@
       },
       {
         "chunk": 4,
-        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=AQ.Ab8RN6Ka_IH7ak4g6aO6_0HnSoBKeM4GOOcHspPlleSm261-_A -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5111199 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
+        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=REDACTED -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5111199 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
         "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
@@ -1854,7 +1854,7 @@
       },
       {
         "chunk": 5,
-        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=AQ.Ab8RN6Ka_IH7ak4g6aO6_0HnSoBKeM4GOOcHspPlleSm261-_A -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5144465 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
+        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=REDACTED -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5144465 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
         "attempts": 1,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
@@ -1864,7 +1864,7 @@
       },
       {
         "chunk": 6,
-        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=AQ.Ab8RN6Ka_IH7ak4g6aO6_0HnSoBKeM4GOOcHspPlleSm261-_A -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5159806 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
+        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=REDACTED -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5159806 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
         "attempts": 1,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
@@ -1874,7 +1874,7 @@
       },
       {
         "chunk": 7,
-        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=AQ.Ab8RN6Ka_IH7ak4g6aO6_0HnSoBKeM4GOOcHspPlleSm261-_A -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5388793 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
+        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=REDACTED -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5388793 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
         "attempts": 1,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",

@@ -57,8 +57,15 @@ the same value for the GitHub Action that pulls nightly snapshots):
 EXPORT_TOKEN=$(openssl rand -hex 16)
 echo "EXPORT_TOKEN=$EXPORT_TOKEN"   # write this down
 
+> **El token no se escribe en este fichero.** Aquí vivió el token real del bot
+> desde el 20-abr-2026 hasta el 3-sep-2026, comiteado y empujado: lo encontró
+> `npm run check:secrets`. Cógelo de @BotFather o de `.env` (que está
+> gitignorado) y pégalo sólo en la terminal. Un token de bot da control total
+> del bot —leer cada mensaje que llega y escribir en su nombre—, y este bot
+> recibe quejas de vecinos identificables.
+
 flyctl secrets set --app munigraph-ribarroja \
-  BOT_TOKEN=8448334642:AAHPfeh5u_XRTYYAOMiKynfjOOt9K8ikYvw \
+  BOT_TOKEN=<BOT_TOKEN de @BotFather — NUNCA lo pegues aquí> \
   EXPORT_TOKEN=$EXPORT_TOKEN \
   PUBLIC_BASE_URL=https://civicpulse.es \
   WEBHOOK_URL=https://munigraph-ribarroja.fly.dev \
@@ -66,6 +73,7 @@ flyctl secrets set --app munigraph-ribarroja \
 ```
 
 Optional secrets you can set now or later:
+
 - `CHANNEL_ID=-100…` — enables `[NUEVA]/[APOYADA]/[REGISTRADA]` broadcasts.
   The bot must be added as an admin of that channel.
 - `ADMIN_USER_IDS=123,456` — Telegram user IDs allowed to run `/batch`,

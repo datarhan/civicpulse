@@ -10,6 +10,19 @@ npm run format:check --silent
 # what happened to pleno-votes-suggestions.json (ffab006). Milliseconds.
 npm run check:json --silent
 
+# Y refúsate a comitear un SECRETO.
+#
+# El 1-sep-2026 la clave de Gemini entró en un commit —dentro de dos mapas de
+# voces— y se empujó al remoto en tres ramas. Nadie la escribió: el manifiesto
+# guarda el MOTIVO de un trozo fallido, el motivo es el `err.message` de
+# `execFileSync`, y ese mensaje lleva el argv del curl con `?key=…`. Y en cuanto
+# se montó esta guarda encontró un segundo secreto que llevaba comiteado desde
+# el 20-abr-2026: el token real del bot de Telegram, a pelo en bot/DEPLOY.md.
+#
+# Se mira sólo lo ESTAMPADO, para que el gancho siga costando milisegundos.
+# Rotar la credencial es lo primero; borrar la línea no la saca de git.
+npm run check:secrets --silent -- --staged
+
 # Y refúsate a comitear desde un árbol PODADO.
 #
 # Aquí no se usa `sparse-checkout` en ningún sitio, así que si aparece uno viene

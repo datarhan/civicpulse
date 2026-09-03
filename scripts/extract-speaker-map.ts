@@ -28,6 +28,7 @@
  * fetch. Requests go through curl with `--no-buffer` on the SSE endpoint.
  */
 import { execFileSync, spawnSync } from 'node:child_process'
+import { redactSecrets } from '../src/scraper/redact-secrets'
 import {
   existsSync,
   mkdirSync,
@@ -153,11 +154,24 @@ function parseArgs(argv: string[]): Args {
 }
 
 function sh(cmd: string, args: string[], opts: { input?: string } = {}): string {
-  return execFileSync(cmd, args, {
-    encoding: 'utf8',
-    maxBuffer: 256 * 1024 * 1024,
-    input: opts.input,
-  })
+  try {
+    return execFileSync(cmd, args, {
+      encoding: 'utf8',
+      maxBuffer: 256 * 1024 * 1024,
+      input: opts.input,
+    })
+  } catch (err) {
+    // `execFileSync` pone el argv COMPLETO en el mensaje, y el argv lleva
+    // `?key=<GEMINI_API_KEY>`. Ese mensaje se guarda como el `why` de un trozo
+    // fallido, así que el 1-sep-2026 la clave acabó comiteada en dos mapas de
+    // voces y empujada al remoto en tres ramas. El motivo se sigue guardando
+    // —sin él «no pude» se lee igual que «no había nada»—; lo que no viaja es
+    // el secreto. Ver src/scraper/redact-secrets.ts.
+    const e = err as Error
+    const clean = new Error(redactSecrets(e.message, [process.env.GEMINI_API_KEY]))
+    clean.name = e.name
+    throw clean
+  }
 }
 
 /**

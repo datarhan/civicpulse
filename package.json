@@ -230,7 +230,8 @@
     "retirar-pasada": "npx tsx scripts/retirar-pasada.ts",
     "report:claim-coverage": "npx tsx scripts/report-claim-coverage.ts",
     "restamp": "npx tsx scripts/restamp-curated.ts",
-    "eval:transcribe": "npx tsx scripts/eval-transcribe-ab.ts"
+    "eval:transcribe": "npx tsx scripts/eval-transcribe-ab.ts",
+    "check:secrets": "npx tsx scripts/check-secrets.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
