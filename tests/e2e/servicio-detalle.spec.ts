@@ -201,6 +201,97 @@ test.describe('Ficha de servicio (/eficiencia/:id)', () => {
     ).toBeVisible()
   })
 
+  test('el rótulo del eje no se pega ni se descoloca a ningún ancho', async ({
+    page,
+  }, testInfo) => {
+    // El defecto: «2014banda: mitad central de comparables · - - 2024». Era un
+    // flex con space-between, que reparte lo que SOBRA, y cuando la leyenda no
+    // cabe no sobra nada.
+    //
+    // Se prueba por ANCHOS DE LA FILA, no de la ventana, porque la ventana no
+    // es la variable: `.cp-ficha-cols` reparte sus columnas por su cuenta y la
+    // misma fila mide 786px con la ventana a 1440, 474 a 1100 y 620 a 900. Una
+    // prueba sólo a 375px habría dado verde con el defecto vivo en un portátil,
+    // que es exactamente como llegó hasta aquí.
+    test.skip(Boolean(testInfo.project.use.isMobile), 'setViewportSize no vale en emulación móvil')
+    // La leyenda más ancha del panel es la que decide el umbral: si se prueba
+    // con una corta, el caso de una línea nunca se aprieta.
+    const anchaPrimero = [...CON_RATIO].sort(
+      (a, b) => (b.unidad?.length ?? 0) - (a.unidad?.length ?? 0),
+    )[0]
+
+    let enLinea = 0
+    let apilado = 0
+    for (const w of [1440, 1200, 1100, 1000, 900, 800, 760, 700, 620, 560, 500, 430, 375, 320]) {
+      await page.setViewportSize({ width: w, height: 900 })
+      await page.goto(`/eficiencia/${anchaPrimero.id}`, { waitUntil: 'domcontentloaded' })
+      const fila = page.locator('.cp-serie-eje').first()
+      await expect(fila).toBeVisible({ timeout: 8000 })
+
+      const m = await fila.evaluate((el) => {
+        const nota = el.querySelector('.cp-serie-eje-nota')
+        const [a, z] = [...el.children].filter((c) => c !== nota)
+        const f = el.getBoundingClientRect()
+        const r = (c) => c.getBoundingClientRect()
+        const cajas = [...el.children].map((c) => ({
+          t: c.textContent.trim().slice(0, 18),
+          ...r(c).toJSON(),
+        }))
+        let solape = null
+        for (let i = 0; i < cajas.length; i += 1) {
+          for (let j = i + 1; j < cajas.length; j += 1) {
+            const x = cajas[i]
+            const y = cajas[j]
+            if (
+              x.left < y.right - 0.5 &&
+              y.left < x.right - 0.5 &&
+              x.top < y.bottom - 0.5 &&
+              y.top < x.bottom - 0.5
+            ) {
+              solape = `${x.t} × ${y.t}`
+            }
+          }
+        }
+        return {
+          apilado: r(nota).top > r(a).top + 2,
+          izqAlBorde: r(a).left - f.left,
+          derAlBorde: f.right - r(z).right,
+          huecoIzq: r(nota).left - r(a).right,
+          huecoDer: r(z).left - r(nota).right,
+          huecoAnios: r(z).left - r(a).right,
+          desborda: Math.max(0, r(nota).right - f.right, r(z).right - f.right, f.left - r(a).left),
+          solape,
+        }
+      })
+
+      const donde = `a ${w}px`
+      expect(m.solape, `${donde}: dos rótulos del eje se pisan`).toBeNull()
+      expect(m.desborda, `${donde}: el eje se sale de su caja`).toBeLessThanOrEqual(1)
+      // El año de cada extremo, EN su extremo: el defecto que la medida de
+      // solapes no ve es un «2024» a media fila, que no choca con nada.
+      expect(
+        Math.abs(m.izqAlBorde),
+        `${donde}: el año inicial no está en el borde`,
+      ).toBeLessThanOrEqual(1)
+      expect(
+        Math.abs(m.derAlBorde),
+        `${donde}: el año final no está en el borde`,
+      ).toBeLessThanOrEqual(1)
+      if (m.apilado) {
+        apilado += 1
+        expect(m.huecoAnios, `${donde}: los dos años se tocan`).toBeGreaterThanOrEqual(8)
+      } else {
+        enLinea += 1
+        expect(m.huecoIzq, `${donde}: el año inicial toca la leyenda`).toBeGreaterThanOrEqual(8)
+        expect(m.huecoDer, `${donde}: la leyenda toca el año final`).toBeGreaterThanOrEqual(8)
+      }
+    }
+    // Y que las DOS formas se hayan ejercido: con una sola, la mitad de las
+    // aserciones de arriba no se ha ejecutado y esto pasa midiendo medio caso.
+    expect(enLinea, 'ningún ancho dejó el eje en una línea').toBeGreaterThan(0)
+    expect(apilado, 'ningún ancho apiló la leyenda').toBeGreaterThan(0)
+  })
+
   test('un identificador que no existe no finge una ficha', async ({ page }) => {
     await page.goto('/eficiencia/no-existe-este-servicio', { waitUntil: 'domcontentloaded' })
     await expect(page.getByText(/No hay ninguna ficha con ese identificador/i)).toBeVisible({

@@ -340,7 +340,10 @@ export function SerieServicio({ puntos, formatea, unidad }) {
   const nombraHueco = (h) => (h.desde === h.hasta ? `${h.desde}` : `${h.desde}–${h.hasta}`)
 
   return (
-    <div style={{ marginTop: 10 }}>
+    // `cp-serie` es el CONTENEDOR de la consulta, no un adorno: el rótulo del
+    // eje se parte según lo ancho que sea ESTA caja, que no es lo ancho que sea
+    // la ventana. Ver `.cp-serie-eje` en ficha.css.js.
+    <div className="cp-serie" style={{ marginTop: 10 }}>
       <div style={{ position: 'relative', height: ALTO }}>
         {/* La banda del año que falta, DEBAJO de la línea.
 
@@ -597,18 +600,20 @@ export function SerieServicio({ puntos, formatea, unidad }) {
         ))}
       </div>
 
-      <div
-        className="mono"
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          marginTop: 4,
-        }}
-      >
+      {/* Año · leyenda · año. La geometría vive en la hoja porque necesita una
+          consulta de contenedor, y `style` no puede llevarla.
+
+          Era un flex con `justifyContent: 'space-between'`, que sólo reparte el
+          espacio SOBRANTE: cuando la leyenda no cabe no sobra nada, los tres
+          hijos se pegan y salía «2014banda: mitad central de comparables · - -
+          2024» con el resto en una segunda línea. Y no era cosa del móvil —
+          medido sobre esta misma ficha, la fila mide 786px a 1440 de ventana,
+          474 a 1100 y 620 a 900, porque la ficha reparte sus columnas por su
+          cuenta: chocaba también en un portátil. Por eso la consulta es de
+          CONTENEDOR y no de ventana; la ventana no es la variable que decide. */}
+      <div className="mono cp-serie-eje">
         <span>{x0}</span>
-        <span>
+        <span className="cp-serie-eje-nota">
           {bandas.length
             ? 'banda: mitad central de comparables · - - - su mediana · '
             : conMediana.length >= 2
