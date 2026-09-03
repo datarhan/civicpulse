@@ -17,17 +17,32 @@
  * 2026-08-30 y otra vez después; ninguna prueba podía verlo, porque el dato
  * estaba bien y la palabra mal.
  *
- * Lo que se fija aquí son las cadenas que rotulan una CIFRA. El nombre de la
- * capa («Gasto situado») es un rótulo de tema, no una afirmación sobre un
- * número, y se deja aparte a propósito.
+ * Se fijan las cadenas que rotulan la CIFRA y también el nombre de la capa.
+ * Al principio el nombre se dejó fuera —un rótulo de tema no es una afirmación
+ * sobre un número— pero la capa se llamaba «Gasto situado» encima de una
+ * tarjeta que decía «adjudicado acumulado», así que el mapa se contradecía
+ * consigo mismo a dos centímetros de distancia. Si la cifra es adjudicado, la
+ * capa que la pinta también.
+ *
+ * Aparte va una trampa que salió al renombrar: el deslizador de INCENDIOS
+ * tomaba prestadas las etiquetas de reproducción de la capa del dinero, así
+ * que quien usa lector de pantalla oía «línea de tiempo del gasto» sobre los
+ * incendios forestales. Renombrar sin mirar eso lo habría empeorado —habría
+ * dicho «de los contratos»— así que ahora son neutras y compartidas a
+ * propósito, con `map.timeline.*`.
  */
 import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { CATALOGUE, LOCALES } from '../src/i18n'
 import { isCommittedContract } from '../src/lib/contract-status'
 
-/** Las cadenas de la tarjeta del dinero que describen una cifra. */
-const ROTULOS_DE_CIFRA = ['map.money.accum', 'map.money.coverage']
+/** La cifra, su cobertura, y el nombre de la capa que las pinta. */
+const ROTULOS_DE_CIFRA = [
+  'map.money.accum',
+  'map.money.coverage',
+  'map.layer.money',
+  'map.money.title',
+]
 
 /** Ejecución presupuestaria: en la portada esta palabra ya tiene dueño. */
 const FAMILIA_GASTO = /gasto|despesa/i
@@ -77,5 +92,14 @@ describe('portada · «gasto» no es «adjudicado»', () => {
         expect(texto, `${locale} · ${clave}`).toMatch(FAMILIA_ADJUDICADO)
       }
     }
+  })
+
+  it('el deslizador de incendios no toma prestada la etiqueta del dinero', () => {
+    // Antes usaba `map.money.play`/`map.money.pause`, así que un lector de
+    // pantalla oía «línea de tiempo del gasto» sobre la capa de incendios.
+    // Invisible en pantalla y por eso duró: la etiqueta sólo existe para quien
+    // no ve el botón.
+    const slider = readFileSync('src/components/LiveCity/controls/IncendiosYearSlider.jsx', 'utf8')
+    expect(slider).not.toMatch(/map\.money\./)
   })
 })

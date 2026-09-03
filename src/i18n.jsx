@@ -197,7 +197,7 @@ export const CATALOGUE = {
 
     // Map (landing interactive layers)
     'map.layers.title': 'Capas del mapa',
-    'map.layer.money': 'Gasto situado',
+    'map.layer.money': 'Contratos situados',
     'map.layer.obras': 'Obras 2019–2024',
     'map.layer.poi': 'Servicios',
     'map.layer.quejas': 'Quejas',
@@ -209,11 +209,14 @@ export const CATALOGUE = {
     'map.quejas.ok': 'mayoría resueltas',
     'map.quejas.civic': 'en curso',
     'map.quejas.radius': 'radio ∝ nº de quejas',
-    'map.money.title': 'Gasto situado',
+    'map.money.title': 'Contratos situados',
     'map.money.dana': 'Solo DANA',
     'map.money.obras': 'Solo obras',
-    'map.money.play': 'Reproducir línea de tiempo del gasto',
-    'map.money.pause': 'Pausar línea de tiempo del gasto',
+    // Neutras y compartidas: las usan el deslizador del dinero Y el de
+    // incendios. Cuando decían «del gasto», el botón de incendios lo decía
+    // también a quien usa lector de pantalla.
+    'map.timeline.play': 'Reproducir la línea de tiempo',
+    'map.timeline.pause': 'Pausar la línea de tiempo',
     // «obra acumulada» decía el rótulo, y la capa pinta TODO el gasto situado:
     // el filtro «Solo obras» nace apagado. Medido sobre tenders.json con los
     // predicados del repo, la obra es 185 filas y 17.475.488,67 € — el 14,1 %
@@ -767,7 +770,7 @@ export const CATALOGUE = {
 
     // Map (landing interactive layers)
     'map.layers.title': 'Capes del mapa',
-    'map.layer.money': 'Despesa situada',
+    'map.layer.money': 'Contractes situats',
     'map.layer.obras': 'Obres 2019–2024',
     'map.layer.poi': 'Serveis',
     'map.layer.quejas': 'Queixes',
@@ -779,11 +782,11 @@ export const CATALOGUE = {
     'map.quejas.ok': 'majoria resoltes',
     'map.quejas.civic': 'en curs',
     'map.quejas.radius': 'radi ∝ nº de queixes',
-    'map.money.title': 'Despesa situada',
+    'map.money.title': 'Contractes situats',
     'map.money.dana': 'Només DANA',
     'map.money.obras': 'Només obres',
-    'map.money.play': 'Reproduir la línia de temps de la despesa',
-    'map.money.pause': 'Pausar la línia de temps de la despesa',
+    'map.timeline.play': 'Reproduir la línia de temps',
+    'map.timeline.pause': 'Pausar la línia de temps',
     // Ver la nota del bloque castellano: el rótulo decía «obra» sobre una capa
     // que pinta todo el gasto situado. Aquí además estaba sin traducir.
     'map.money.accum': 'adjudicat acumulat',

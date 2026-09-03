@@ -98,7 +98,7 @@ export function IncendiosYearSlider({ anyoMin, anyoMax, value, onChange, serie }
           type="button"
           style={botonStyle}
           onClick={() => setPlaying((p) => !p)}
-          aria-label={playing ? t('map.money.pause') : t('map.money.play')}
+          aria-label={`${playing ? t('map.timeline.pause') : t('map.timeline.play')}: ${t('map.incendios.title')}`}
         >
           {playing ? '❙❙' : '▶'}
         </button>

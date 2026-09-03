@@ -159,7 +159,12 @@ test.describe('Landing (/)', () => {
     // municipal-accountability map opening on a static OSM list of schools put
     // the least mission-relevant layer in the most valuable position.
     await expect(page.getByRole('group', { name: /Capas del mapa/i })).toBeVisible()
-    await expect(page.getByRole('button', { name: /línea de tiempo del gasto/i })).toBeVisible()
+    // Se fija el DESLIZADOR, no el botón de reproducir: la etiqueta del botón
+    // es neutra a propósito —la comparten esta capa y la de incendios— así que
+    // no distingue una de otra. La del deslizador sí es sólo de ésta.
+    await expect(
+      page.getByRole('slider', { name: /línea de tiempo de los contratos situados/i }),
+    ).toBeVisible()
     await expect(page.locator('path.cp-money-pin').first()).toBeVisible({ timeout: 8000 })
 
     // The layer must state what share of contracting it can actually show —
@@ -178,7 +183,7 @@ test.describe('Landing (/)', () => {
 
     // Named for what it is. "Gasto municipal" promised all of it.
     const control = page.getByRole('group', { name: /Capas del mapa/i })
-    await expect(control.getByRole('button', { name: /^Gasto situado$/i })).toBeVisible()
+    await expect(control.getByRole('button', { name: /^Contratos situados$/i })).toBeVisible()
     await expect(control.getByRole('button', { name: /^Gasto municipal$/i })).toHaveCount(0)
 
     // Obras lost its chip: its source is frozen and 6 of its 11 geolocated

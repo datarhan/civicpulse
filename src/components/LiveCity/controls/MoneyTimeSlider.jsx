@@ -137,7 +137,7 @@ export function MoneyTimeSlider({
             if (value >= max) onChange(min)
             setPlaying((p) => !p)
           }}
-          aria-label={playing ? t('map.money.pause') : t('map.money.play')}
+          aria-label={`${playing ? t('map.timeline.pause') : t('map.timeline.play')}: ${t('map.money.title')}`}
           style={{ all: 'unset', cursor: 'pointer', fontSize: 'var(--fs-body)', lineHeight: 1 }}
         >
           {playing ? '⏸' : '▶'}
@@ -152,7 +152,7 @@ export function MoneyTimeSlider({
             setPlaying(false)
             onChange(Number(e.target.value))
           }}
-          aria-label="Línea de tiempo del gasto situado por zona"
+          aria-label="Línea de tiempo de los contratos situados por zona"
           aria-valuetext={label}
           style={{ flex: 1, accentColor: 'var(--civic)' }}
         />
