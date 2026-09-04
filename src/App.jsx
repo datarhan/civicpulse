@@ -55,6 +55,10 @@ const BuildingCivicPulse = lazy(() => import('./pages/blog/BuildingCivicPulse'))
 // builds never reference Curator.jsx so the chunk is tree-shaken out.
 const isDev = import.meta.env.MODE !== 'production'
 const Curator = isDev ? lazy(() => import('./pages/Curator')) : null
+// El despiece se monta con la misma puerta que el panel del curador: sólo en
+// desarrollo, y sus extremos tampoco se registran en una compilación de
+// producción (vite.config.js). Dos capas, las dos tienen que fallar.
+const Despiece = isDev ? lazy(() => import('./pages/Despiece')) : null
 
 // "Periodistas IA" flag lives in src/flags.js (leaf module) so pages and
 // hooks can read it without importing the router. When disabled, the routes
@@ -159,6 +163,7 @@ function InnerShell({ onOpenCmdK }) {
               <Route path="/lab-health" element={<LabHealth />} />
               <Route path="/cambios" element={<Cambios />} />
               {Curator && <Route path="/curator" element={<Curator />} />}
+              {Despiece && <Route path="/despiece" element={<Despiece />} />}
               <Route path="/nosotros" element={<Nosotros />} />
               <Route path="/about" element={<About />} />
               {/* Long-form data reportajes — indexed at /reportajes (in NAV); each pieza keeps

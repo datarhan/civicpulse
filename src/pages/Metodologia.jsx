@@ -916,9 +916,9 @@ export default function Metodologia() {
             veredicto determinista hasta que la vía semántica las alcance. (Aquí no damos el número
             exacto a propósito: cambia con cada pleno transcrito, y una cifra escrita en esta página
             se quedaría falsa sin que nadie lo notara. El recuento vigente está en el bloque{' '}
-            <code>stats</code> de <code>pleno-claims-verified.json</code>, que se publica junto al
-            resto de los datos.) En una muestra de control etiquetada a mano, su veredicto{' '}
-            <code>sin-datos</code> acierta ~92&nbsp;%, así que{' '}
+            <code>totals</code> del manifiesto publicado <code>/data/pleno-claims/index.json</code>
+            .) En una muestra de control etiquetada a mano, su veredicto <code>sin-datos</code>{' '}
+            acierta ~92&nbsp;%, así que{' '}
             <strong>
               sólo aplicamos sus retractaciones a <code>sin-datos</code>
             </strong>{' '}

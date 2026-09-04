@@ -1,0 +1,100 @@
+{
+  "generatedAt": "2026-09-04T11:51:07.343Z",
+  "source": {
+    "portal": "https://www.hacienda.gob.es/es-ES/CDI/Paginas/SistemasFinanciacionDeuda/InformacionEELLs/DeudaViva.aspx",
+    "fichero": "https://www.hacienda.gob.es/cdi/sist%20financiacion%20y%20deuda/informacioneells/2025/deuda-viva-ayuntamientos-202512.xlsx"
+  },
+  "municipio": {
+    "ine": "46214",
+    "nombre": "Riba-roja de Túria"
+  },
+  "unidad": "euros",
+  "ultimo": {
+    "ejercicio": 2025,
+    "fecha": "2025-12-31",
+    "deudaEuros": 8996572,
+    "reparto": {
+      "n": 8134,
+      "aCero": 5243,
+      "mediana": 0,
+      "p75": 57173,
+      "p90": 1002748
+    },
+    "percentil": 97
+  },
+  "serie": [
+    {
+      "ejercicio": 2021,
+      "fecha": "2021-12-31",
+      "deudaEuros": 4500000,
+      "reparto": {
+        "n": 8133,
+        "aCero": 4812,
+        "mediana": 0,
+        "p75": 100000,
+        "p90": 1090481
+      },
+      "percentil": 95
+    },
+    {
+      "ejercicio": 2022,
+      "fecha": "2022-12-31",
+      "deudaEuros": 9328280,
+      "reparto": {
+        "n": 8133,
+        "aCero": 4878,
+        "mediana": 0,
+        "p75": 91667,
+        "p90": 1140054
+      },
+      "percentil": 97
+    },
+    {
+      "ejercicio": 2023,
+      "fecha": "2023-12-31",
+      "deudaEuros": 8899310,
+      "reparto": {
+        "n": 8133,
+        "aCero": 5086,
+        "mediana": 0,
+        "p75": 87917,
+        "p90": 1069354
+      },
+      "percentil": 97
+    },
+    {
+      "ejercicio": 2024,
+      "fecha": "2024-12-31",
+      "deudaEuros": 8108857,
+      "reparto": {
+        "n": 8134,
+        "aCero": 5164,
+        "mediana": 0,
+        "p75": 75025,
+        "p90": 1082737
+      },
+      "percentil": 97
+    },
+    {
+      "ejercicio": 2025,
+      "fecha": "2025-12-31",
+      "deudaEuros": 8996572,
+      "reparto": {
+        "n": 8134,
+        "aCero": 5243,
+        "mediana": 0,
+        "p75": 57173,
+        "p90": 1002748
+      },
+      "percentil": 97
+    }
+  ],
+  "noPublicados": [],
+  "stats": {
+    "puntos": 5,
+    "desde": 2021,
+    "hasta": 2025,
+    "variacionEuros": 4496572,
+    "universo": 8134
+  }
+}

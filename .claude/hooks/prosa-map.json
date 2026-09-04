@@ -81,6 +81,10 @@
       "/cargos",
       "/cargos/:slug"
     ],
+    "deuda-viva.json": [
+      "/datos",
+      "/presupuesto"
+    ],
     "eficiencia-findings.json": [
       "/datos",
       "/eficiencia",

@@ -57,3 +57,4 @@ public/data/pleno-claims-regrounding-flags.json
 
 # Raw upstream payloads cached while iterating (CESEL national workbook is ~45 MB)
 .cache/
+.despiece/

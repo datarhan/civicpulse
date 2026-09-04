@@ -43,6 +43,96 @@ export const PUBLICATION_DENYLIST = Object.freeze([
 ])
 
 /**
+ * ¿Lleva este fichero filas que esperan la firma de una persona?
+ *
+ * `requiresHumanApproval: true` es la marca que ya escribe todo el que produce
+ * una sugerencia. Se lee del texto en crudo a propósito: un fichero de 9 MB no
+ * hace falta parsearlo para saber que la lleva.
+ */
+export function esBorrador(texto) {
+  return /"requiresHumanApproval"\s*:\s*true/.test(texto)
+}
+
+/**
+ * Las rutas `/data/…` que pide el NAVEGADOR, leídas del código del front.
+ *
+ * Dos cosas que NO cuentan como pedir, y las dos han costado algo aquí:
+ *
+ *  · Una mención en prosa. `Metodologia.jsx` escribe
+ *    `<code>pleno-claims-verified.json</code>` para explicar la tubería. Tomar
+ *    eso por una petición dejaría 9 MB de acusaciones sin puerta editorial
+ *    descargándose del sitio. Por eso se exige la comilla y el prefijo `/data/`.
+ *  · Una línea de comentario. Es el mismo defecto que `route-graph.ts` ya pagó
+ *    —leer prosa como declaración le daba a `padron.json` 34 rutas en vez de 2—
+ *    y que el despiece volvió a pagar con `scrape:coste-efectivo`.
+ *
+ * De una plantilla —`` `/data/pleno-claims/${id}.json` ``— se queda el prefijo
+ * hasta la última barra: qué hoja pide no se deriva, el directorio sí.
+ */
+export function referenciasDelNavegador(textos) {
+  const out = new Set()
+  for (const texto of textos) {
+    const vivo = texto
+      .split('\n')
+      .filter((l) => !/^\s*(\/\/|\*)/.test(l))
+      .join('\n')
+    // Una plantilla corta sola en `${`, así que `/data/pleno-claims/${id}.json`
+    // deja `/data/pleno-claims/` y una ruta plana se queda entera.
+    for (const m of vivo.matchAll(/['"`]\/data\/([A-Za-z0-9_./-]*)/g)) {
+      const resto = m[1]
+      // `/data/` a secas sale de `/data/${p.chunkPath}`, con la ruta entera en
+      // el dato. No dice nada de ningún fichero, y metido en el conjunto casa
+      // con TODOS: medido construyendo, la guarda quitaba 2 en vez de 6 y daba
+      // los otros 4 por servidos.
+      if (resto === '') continue
+      out.add(`/data/${resto}`)
+      // Un fichero nombrado dentro de un directorio deja servido el directorio.
+      // `usePlenoClaims` pide `/data/pleno-claims/index.json` y luego las hojas
+      // que ese manifiesto liste: sin esto, quitar una línea del hook haría que
+      // la guarda borrase los 23 trozos publicados sin que nadie lo pidiera.
+      const barra = resto.lastIndexOf('/')
+      if (barra > 0) out.add(`/data/${resto.slice(0, barra + 1)}`)
+    }
+  }
+  return out
+}
+
+/**
+ * El reparto en CUATRO suertes: denegadas, servidas, limpias e ilegibles.
+ *
+ * La cuarta es la que importa. Un fichero que no se pudo leer no lleva «nada»:
+ * lleva algo que no se ha mirado, y es exactamente el que seguiría
+ * publicándose. Doblarlo con «limpias» es el `r?.findings ?? []` de siempre.
+ */
+export function repartir({ hojas, referencias }) {
+  const denegar = []
+  const servidas = []
+  const limpias = []
+  const ilegibles = []
+  const pide = (rel) => {
+    const url = `/${rel}`
+    for (const r of referencias) {
+      if (r === url) return true
+      if (r.endsWith('/') && url.startsWith(r)) return true
+    }
+    return false
+  }
+  for (const { rel, texto } of hojas) {
+    if (texto === null || texto === undefined) {
+      ilegibles.push(rel)
+      continue
+    }
+    if (!esBorrador(texto)) {
+      limpias.push(rel)
+      continue
+    }
+    if (pide(rel)) servidas.push(rel)
+    else denegar.push(rel)
+  }
+  return { denegar, servidas, limpias, ilegibles }
+}
+
+/**
  * Complemento de Vite que aplica la lista sobre `dist/` al terminar la
  * compilación, que es el momento en que ya se ha copiado `public/` entero.
  *
@@ -68,10 +158,64 @@ export function vitePublicationGuard() {
         const { fileURLToPath } = await import('node:url')
         const root = dirname(fileURLToPath(import.meta.url))
 
+        const { readdir, readFile } = await import('node:fs/promises')
+        const { join, relative } = await import('node:path')
+
+        // Lo que pide el navegador, del código que corre EN el navegador.
+        // `src/scraper/` queda fuera a propósito: es código de tubería, se
+        // ejecuta en Node y nombrar un fichero ahí no lo hace descargable.
+        const textos = []
+        for (const carpeta of ['src/hooks', 'src/pages', 'src/components', 'src/lib']) {
+          const base = resolve(root, carpeta)
+          const anda = async (d) => {
+            let entradas
+            try {
+              entradas = await readdir(d, { withFileTypes: true })
+            } catch {
+              return
+            }
+            for (const e of entradas) {
+              const p = join(d, e.name)
+              if (e.isDirectory()) await anda(p)
+              else if (/\.(jsx?|tsx?)$/.test(e.name)) textos.push(await readFile(p, 'utf8'))
+            }
+          }
+          await anda(base)
+        }
+        const referencias = referenciasDelNavegador(textos)
+
+        // Las hojas del artefacto, que es el único denominador honesto.
+        const hojas = []
+        const andaDatos = async (d) => {
+          let entradas
+          try {
+            entradas = await readdir(d, { withFileTypes: true })
+          } catch {
+            return
+          }
+          for (const e of entradas) {
+            const p = join(d, e.name)
+            if (e.isDirectory()) await andaDatos(p)
+            else if (e.name.endsWith('.json')) {
+              const rel = relative(resolve(root, 'dist'), p)
+              try {
+                hojas.push({ rel, texto: await readFile(p, 'utf8') })
+              } catch {
+                hojas.push({ rel, texto: null })
+              }
+            }
+          }
+        }
+        await andaDatos(resolve(root, 'dist', 'data'))
+
+        const reparto = repartir({ hojas, referencias })
+        const derivadas = reparto.denegar.map((rel) => `public/${rel}`)
+        const todas = [...new Set([...PUBLICATION_DENYLIST, ...derivadas])]
+
         const quitados = []
         const ausentes = []
         const fallidos = []
-        for (const rel of PUBLICATION_DENYLIST) {
+        for (const rel of todas) {
           const destino = resolve(root, 'dist', rel.replace(/^public\//, ''))
           try {
             await stat(destino)
@@ -88,16 +232,24 @@ export function vitePublicationGuard() {
         }
 
         console.log(
-          `[publication-guard] ${quitados.length} quitado(s) de dist · ` +
-            `${ausentes.length} no estaba(n) · ${fallidos.length} fallido(s)`,
+          `[publication-guard] ${hojas.length} hoja(s) juzgada(s) · ` +
+            `${quitados.length} quitada(s) · ${ausentes.length} no estaba(n) · ` +
+            `${reparto.servidas.length} con firma pendiente que una página SÍ pide · ` +
+            `${fallidos.length} fallida(s) · ${reparto.ilegibles.length} ilegible(s)`,
         )
         for (const rel of quitados) console.log(`[publication-guard]   quitado ${rel}`)
+        if (reparto.ilegibles.length) {
+          // Un fichero que no se pudo leer es justo el que seguiría
+          // publicándose. No puede pasar por «no llevaba nada».
+          throw new Error(
+            `[publication-guard] no se pudieron leer, así que no se han juzgado: ` +
+              `${reparto.ilegibles.join(', ')}`,
+          )
+        }
         if (fallidos.length) {
           // Que la compilación termine bien dejando dentro un fichero que la
           // lista prohíbe es publicarlo. Se cae aquí.
-          throw new Error(
-            `[publication-guard] no se pudo retirar de dist/: ${fallidos.join(', ')}`,
-          )
+          throw new Error(`[publication-guard] no se pudo retirar de dist/: ${fallidos.join(', ')}`)
         }
       },
     },

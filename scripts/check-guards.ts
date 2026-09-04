@@ -198,6 +198,17 @@ const INJECTIONS: Array<{
   describe: string
   corrupt: (s: string) => string
 }> = [
+  {
+    // El despiece se DERIVA del código: si el extractor deja de reconocer una
+    // forma, no protesta — devuelve menos nodos y dibuja menos. Romper la
+    // detección de rutas de App.jsx es la forma más limpia de comprobar que el
+    // suelo por carril tiene dientes, porque un mapa a medias se lee igual de
+    // completo que uno entero.
+    guard: 'check:despiece',
+    file: 'src/App.jsx',
+    describe: 'un App.jsx cuyas rutas el grafo ya no reconoce',
+    corrupt: (s) => s.replace(/<Route\s+path=/g, '<Ruta path='),
+  },
   // Las cuatro de la tanda de procedencia de veredictos (2026-08-27). Las
   // cuatro se inyectaron a mano al construirlas; escribirlas aquí es lo que
   // hace que se sigan probando cuando nadie se acuerde.

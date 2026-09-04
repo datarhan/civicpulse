@@ -5,6 +5,15 @@ import { contrastarPresupuesto, TOLERANCIA_EQUILIBRIO } from '../scraper/budget-
 import { useBudgetExecution } from '../hooks/useBudgetExecution'
 import { useObras } from '../hooks/useObras'
 import { useBdns } from '../hooks/useBdns'
+import { useDeudaViva } from '../hooks/useDeudaViva'
+import { useTenders } from '../hooks/useTenders'
+import {
+  resumenMenores,
+  TECHO_MENOR_SIN_IVA,
+  NORMA_MENOR,
+  pesoDelMayor,
+} from '../scraper/contratos-menores'
+import { isCommittedContract } from '../lib/contract-status'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 import GastoDashboard from '../components/Presupuesto/GastoDashboard'
 import { TedNotices } from '../components/Presupuesto/TedNotices'
@@ -731,6 +740,284 @@ function ObrasEnCursoSection() {
   )
 }
 
+/**
+ * Lo que el ayuntamiento DEBE.
+ *
+ * Distinto del capítulo «Deuda pública» que sale más abajo en el presupuesto:
+ * aquél es el dinero que se aparta ese año para atenderla, esto es el saldo
+ * vivo a 31 de diciembre. La distinción se dice en la propia tarjeta porque de
+ * otro modo un lector suma dos cifras que no se suman.
+ */
+function DeudaVivaSection() {
+  const { data } = useDeudaViva()
+  const serie = data?.serie ?? []
+  if (serie.length === 0) return null
+  const ultimo = serie[serie.length - 1]
+  const primero = serie[0]
+  const tope = Math.max(...serie.map((p) => p.deudaEuros))
+  const eur = (n) =>
+    new Intl.NumberFormat('es-ES', {
+      style: 'currency',
+      currency: 'EUR',
+      maximumFractionDigits: 0,
+    }).format(n)
+  const delta = ultimo.deudaEuros - primero.deudaEuros
+
+  return (
+    <Card style={{ marginBottom: 16 }}>
+      <SectionHead
+        eyebrow="Endeudamiento · entrega anual del Ministerio"
+        title={`Deuda viva: ${eur(ultimo.deudaEuros)} a 31/12/${ultimo.ejercicio}`}
+      />
+      <p
+        style={{
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink50)',
+          margin: '2px 0 12px',
+          maxWidth: '68ch',
+        }}
+      >
+        Es el saldo que el Ayuntamiento debía al cerrar el ejercicio.{' '}
+        <strong>No es el capítulo «Deuda pública» del presupuesto</strong>, que es lo que se aparta
+        cada año para atenderla: son dos cifras distintas y no se suman.
+      </p>
+
+      <div style={{ display: 'grid', gap: 6, margin: '0 0 12px' }}>
+        {serie.map((p) => (
+          <div key={p.ejercicio} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span
+              className="mono"
+              style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', width: 40 }}
+            >
+              {p.ejercicio}
+            </span>
+            <div
+              style={{
+                flex: 1,
+                height: 14,
+                background: 'var(--crit-soft)',
+                borderRadius: 'var(--r-pill)',
+                overflow: 'hidden',
+              }}
+            >
+              <div
+                style={{
+                  width: `${tope > 0 ? (p.deudaEuros / tope) * 100 : 0}%`,
+                  height: '100%',
+                  background: 'var(--crit)',
+                  opacity: 0.75,
+                }}
+              />
+            </div>
+            <span
+              className="mono"
+              style={{ fontSize: 'var(--fs-meta)', width: 92, textAlign: 'right' }}
+            >
+              {eur(p.deudaEuros)}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+          flexWrap: 'wrap',
+          marginBottom: 10,
+        }}
+      >
+        <Pill tone={delta > 0 ? 'warn' : 'ok'}>
+          {delta > 0 ? '+' : ''}
+          {eur(delta)} desde {primero.ejercicio}
+        </Pill>
+        {ultimo.percentil != null && ultimo.reparto && (
+          <span style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+            por encima del {ultimo.percentil} % de los {ultimo.reparto.n.toLocaleString('es-ES')}{' '}
+            ayuntamientos de la entrega — de los que {ultimo.reparto.aCero.toLocaleString('es-ES')}{' '}
+            declaran cero deuda
+          </span>
+        )}
+      </div>
+
+      {data?.noPublicados?.length > 0 && (
+        <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '0 0 8px' }}>
+          Sin entrega publicada todavía: {data.noPublicados.join(', ')}. La serie se corta ahí
+          porque el Ministerio aún no ha publicado ese ejercicio, no porque no haya deuda.
+        </p>
+      )}
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+        <DataAsOf iso={data?.generatedAt} file="deuda-viva.json" />
+        <ExtLink href={data?.source?.portal}>Ministerio de Hacienda · deuda viva EE.LL.</ExtLink>
+      </div>
+    </Card>
+  )
+}
+
+/**
+ * La contratación menor: lo que se adjudica sin concurso.
+ *
+ * El dato llevaba ahí desde siempre —`minorContract`, leído de ribalicita— y no
+ * lo enseñaba nadie: ni un fichero del front nombraba el campo. El portal del
+ * Ayuntamiento se compromete a publicar estos contratos «como mínimo
+ * trimestralmente», así que la pregunta que contesta esta tarjeta es la que el
+ * propio compromiso invita a hacer.
+ *
+ * Todo se mide SIN IVA, que es como define el techo el art. 118. Con los
+ * importes brutos salían quince contratos por encima del límite y son cuatro.
+ */
+function ContratacionMenorSection() {
+  const { data } = useTenders()
+  const contratos = data?.contracts ?? []
+  if (contratos.length === 0) return null
+  const r = resumenMenores(contratos)
+  if (r.n === 0) return null
+
+  const eur = (n) =>
+    new Intl.NumberFormat('es-ES', {
+      style: 'currency',
+      currency: 'EUR',
+      maximumFractionDigits: 0,
+    }).format(n)
+  // El denominador son los ADJUDICADOS, no las filas del snapshot: de las 809
+  // hay 108 anuladas, revocadas, desistidas o sin clasificar. Compararse con
+  // ellas diluye el peso de la vía directa —23 % en vez del 26 % real— y lo
+  // cazó la revisión lectora antes de que esto se publicara.
+  const adjudicados = contratos.filter((c) => isCommittedContract(c))
+  const totalNeto = adjudicados
+    .map((c) => c.finalAmountNoTaxes ?? c.initialAmountNoTaxes ?? 0)
+    .reduce((a, b) => a + b, 0)
+  const cuota = totalNeto > 0 ? (r.importeSinIva / totalNeto) * 100 : null
+  // El total lo domina una sola concesión adjudicada de una vez por todo su
+  // plazo, así que «2,5 % del importe» dicho solo tranquiliza más de lo que el
+  // dato sostiene. Derivado, nunca escrito: una concesión nueva lo mueve.
+  const peso = pesoDelMayor(
+    adjudicados.map((c) => c.finalAmountNoTaxes ?? c.initialAmountNoTaxes ?? 0),
+    r.importeSinIva,
+  )
+  const topeAnio = Math.max(...r.porAnio.map((a) => a.n), 1)
+
+  return (
+    <Card style={{ marginBottom: 16 }}>
+      <SectionHead
+        eyebrow="Contratación · vía directa"
+        title={`Contratos menores: ${r.n} de ${adjudicados.length}, ${eur(r.importeSinIva)}`}
+      />
+      <p
+        style={{
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink50)',
+          margin: '2px 0 12px',
+          maxWidth: '68ch',
+        }}
+      >
+        El contrato menor se adjudica <strong>sin licitación ni publicidad previa</strong>. Son el{' '}
+        {Math.round((r.n / adjudicados.length) * 100)} % de los contratos adjudicados o firmados y
+        {cuota != null ? ` el ${cuota.toFixed(1)} % del importe` : ''}: muchos expedientes y poca
+        parte del dinero.{' '}
+        {peso && (
+          <>
+            Ese segundo porcentaje depende mucho del denominador — una sola concesión de{' '}
+            {eur(peso.importeDelMayor)}, adjudicada de una vez por todo su plazo, es el{' '}
+            {peso.cuotaDelMayor} % de todo lo contratado; apartándola, los menores serían el{' '}
+            {peso.cuotaSinElMayor} %.{' '}
+          </>
+        )}
+        Todas las cifras van <strong>sin IVA</strong>, porque así define el techo el art. 118 de la
+        Ley 9/2017 —{eur(TECHO_MENOR_SIN_IVA.construction)} en obras,{' '}
+        {eur(TECHO_MENOR_SIN_IVA.services)} en servicios y suministros.
+      </p>
+
+      <div style={{ display: 'grid', gap: 5, margin: '0 0 12px' }}>
+        {r.porAnio.map((a) => (
+          <div key={a.anio} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span
+              className="mono"
+              style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', width: 40 }}
+            >
+              {a.anio}
+            </span>
+            <div
+              style={{
+                flex: 1,
+                height: 12,
+                background: 'var(--civic-soft)',
+                borderRadius: 'var(--r-pill)',
+                overflow: 'hidden',
+              }}
+            >
+              <div
+                style={{
+                  width: `${(a.n / topeAnio) * 100}%`,
+                  height: '100%',
+                  background: 'var(--civic)',
+                }}
+              />
+            </div>
+            <span
+              className="mono"
+              style={{ fontSize: 'var(--fs-meta)', width: 118, textAlign: 'right' }}
+            >
+              {a.n} · {eur(a.importeSinIva)}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      {r.sobreTecho.length > 0 && (
+        <div style={{ margin: '0 0 10px' }}>
+          <Pill tone="warn">{r.sobreTecho.length} por encima del techo del art. 118</Pill>
+          <ul
+            style={{
+              margin: '8px 0 0',
+              paddingLeft: 18,
+              fontSize: 'var(--fs-meta)',
+              color: 'var(--ink70)',
+            }}
+          >
+            {r.sobreTecho.map((c) => (
+              <li key={c.title} style={{ marginBottom: 3 }}>
+                <span className="mono">{eur(c.importeSinIva)}</span> frente a{' '}
+                <span className="mono">{eur(c.techo)}</span> — {c.title}
+              </li>
+            ))}
+          </ul>
+          <p
+            style={{
+              fontSize: 'var(--fs-meta)',
+              color: 'var(--ink50)',
+              margin: '8px 0 0',
+              maxWidth: '68ch',
+            }}
+          >
+            La marca «contrato menor» la pone el portal de contratación, no nosotros, y una etiqueta
+            equivocada en origen se parece exactamente a un incumplimiento. Esto mide la distancia
+            al límite legal y la publica; llamarlo infracción es un paso que no da un programa.
+          </p>
+        </div>
+      )}
+
+      {(r.sinTecho > 0 || r.sinImporte > 0) && (
+        <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '0 0 8px' }}>
+          {r.sinTecho > 0 && `${r.sinTecho} sin techo declarado para su tipo de contrato`}
+          {r.sinTecho > 0 && r.sinImporte > 0 && ' · '}
+          {r.sinImporte > 0 && `${r.sinImporte} sin importe neto publicado`}: no se comparan con el
+          límite, en vez de darlos por dentro.
+          {r.anulados > 0 &&
+            ` Otros ${r.anulados} venían marcados como menores y su adjudicación se deshizo: no cuentan como gasto ni se les mide el techo.`}
+        </p>
+      )}
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+        <DataAsOf iso={data?.generatedAt} file="tenders.json" />
+        <ExtLink href={NORMA_MENOR}>Ley 9/2017, art. 118</ExtLink>
+      </div>
+    </Card>
+  )
+}
+
 export default function Presupuesto() {
   return (
     <div
@@ -741,6 +1028,8 @@ export default function Presupuesto() {
       <div style={{ marginBottom: 16 }}>
         <EjecucionSection />
       </div>
+      <DeudaVivaSection />
+      <ContratacionMenorSection />
       <ObrasEnCursoSection />
       <div style={{ marginBottom: 16 }}>
         <GastoDashboard />

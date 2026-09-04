@@ -206,6 +206,13 @@ export const NAV = [
           label: 'Curator (dev)',
           icon: Ic.settings ?? Ic.warn,
         },
+        {
+          to: '/despiece',
+          id: 'despiece',
+          labelKey: 'nav.despiece',
+          label: 'Despiece (dev)',
+          icon: Ic.lab ?? Ic.settings,
+        },
       ]
     : []),
   {

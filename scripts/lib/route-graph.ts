@@ -76,6 +76,20 @@ export function resolverImport(desde: string, spec: string): string | null {
 export interface GrafoRutas {
   /** snapshot (`indicadores.json`) → rutas que lo cargan o lo describen. */
   rutasPorSnapshot: Map<string, Set<string>>
+  /**
+   * fichero absoluto → snapshots que ese fichero nombra DIRECTAMENTE.
+   *
+   * Lo transitivo (`rutasPorSnapshot`) contesta «qué páginas hablan de esto»,
+   * que es lo que necesita el recordatorio de prosa vieja. Lo directo contesta
+   * «quién lo carga», que es otra pregunta: sin ella el despiece sólo puede
+   * dibujar el cierre —treinta rutas colgando de `index.css`— y no la arista
+   * que de verdad explica el dato, `usePadron → padron.json`.
+   */
+  snapshotsDe: Map<string, Set<string>>
+  /** fichero absoluto → ficheros que importa (estáticos + dinámicos), resueltos. */
+  importa: Map<string, string[]>
+  /** Igual, pero SÓLO por imports estáticos: lo que envuelve a todas las páginas. */
+  importaEstatico: Map<string, string[]>
   /** fichero absoluto de src/ → rutas cuyo módulo de página lo alcanza. */
   rutasPorFichero: Map<string, Set<string>>
   /** Todas las rutas montadas en App.jsx, salvo el comodín. */
@@ -101,8 +115,20 @@ export interface GrafoRutas {
  * arregla mientras las otras siguen mal es el duplicado favorito de este
  * repositorio.
  */
+/**
+ * Rutas montadas en desarrollo que NO existen en la compilación de producción.
+ *
+ * Estaba escrito a mano dentro del filtro de abajo, con un solo nombre. En
+ * cuanto hubo una segunda —el despiece— la copia volvía a ser una copia: la
+ * revisión lectora saldría a pedir una página que en producción devuelve el
+ * comodín, y el gancho de pre-push lo haría en cada push que tocara algo que
+ * esa página importa. Es exactamente el defecto que el comentario de abajo ya
+ * describía para `/curator`.
+ */
+export const RUTAS_LOCALES: readonly string[] = ['/curator', '/despiece']
+
 export function rutasPublicas(grafo: GrafoRutas): string[] {
-  return grafo.rutas.filter((r) => !r.includes(':') && r !== '/curator')
+  return grafo.rutas.filter((r) => !r.includes(':') && !RUTAS_LOCALES.includes(r))
 }
 
 /**
@@ -357,5 +383,13 @@ export function construirGrafoRutas(src: string): GrafoRutas {
     rutasPorFichero.set(fich, set)
   }
 
-  return { rutasPorSnapshot, rutasPorFichero, paginaPorRuta, rutas: todasLasRutas.sort() }
+  return {
+    rutasPorSnapshot,
+    rutasPorFichero,
+    paginaPorRuta,
+    snapshotsDe,
+    importa,
+    importaEstatico,
+    rutas: todasLasRutas.sort(),
+  }
 }

@@ -107,6 +107,12 @@ describe('la caja discontinua significa una sola cosa en todo el sitio', () => {
     'src/components/eficiencia/EntregasBarras.jsx': 'la entrega que el ayuntamiento no presentó',
     'src/components/eficiencia/libro.css.js':
       'una posición que la muestra no sostiene: la banda plausible cruza la mediana',
+    // Exactamente la misma familia: «no medido» es la AUSENCIA de una
+    // afirmación, no un hallazgo y tampoco un visto bueno. Va en caja
+    // discontinua para que no se pueda leer junto a los puntos débiles —que sí
+    // son afirmaciones en firme— como si fuera uno más. La página es local y no
+    // se despliega, pero la doctrina es semántica y aquí se cumple.
+    'src/pages/Despiece.jsx': 'la comprobación que no se pudo hacer',
   }
 
   it('ninguna caja discontinua nueva aparece sin declarar qué provisionalidad marca', () => {

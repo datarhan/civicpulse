@@ -216,6 +216,10 @@ async function gather(): Promise<Observations> {
     // envejece. Además `assertExpectationsAreReal` prohíbe listar un script sin
     // instrumentar, y `press-lab` y `review-sweep` no instrumentan nada.
     'check:cron',
+    // El despiece es un mapa derivado del código: si el extractor deja de
+    // reconocer el repositorio, devuelve un dibujo en blanco sin quejarse. Los
+    // suelos por carril son lo que convierte eso en un rojo.
+    'check:despiece',
     'check:json',
     'check:relations',
     // Aquí y no en `npm test`: en la nocturna los tests corren DESPUÉS de

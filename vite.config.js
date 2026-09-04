@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { viteCuratorPlugin } from './vite-curator-plugin.js'
+import { viteAppGraphPlugin } from './vite-app-graph-plugin.js'
 import { vitePublicationGuard } from './publication-denylist.js'
 import { buildDefines } from './build-defines.js'
 
@@ -18,7 +19,7 @@ import { buildDefines } from './build-defines.js'
 export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
-    ...(mode === 'development' ? [viteCuratorPlugin()] : []),
+    ...(mode === 'development' ? [viteCuratorPlugin(), viteAppGraphPlugin()] : []),
     vitePublicationGuard(),
   ],
   define: buildDefines(),
@@ -31,7 +32,10 @@ export default defineConfig(({ mode }) => ({
       // Production: ensure no chunk references the dev-only Curator page.
       // (The route is gated by `import.meta.env.MODE` in App.jsx; this is
       // an additional fence.)
-      external: mode === 'production' ? [/.*\bvite-curator-plugin\.js$/] : [],
+      external:
+        mode === 'production'
+          ? [/.*\bvite-curator-plugin\.js$/, /.*\bvite-app-graph-plugin\.js$/]
+          : [],
     },
   },
 }))

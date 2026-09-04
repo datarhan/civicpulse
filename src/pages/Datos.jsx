@@ -32,6 +32,7 @@ import { useCosteEsperado } from '../hooks/useCosteEsperado'
 import { useReciclaje } from '../hooks/useReciclaje'
 import { useIncendios } from '../hooks/useIncendios'
 import { usePmp } from '../hooks/usePmp'
+import { useDeudaViva } from '../hooks/useDeudaViva'
 import { useIpc } from '../hooks/useIpc'
 import { useCriminalidad } from '../hooks/useCriminalidad'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
@@ -118,6 +119,7 @@ function DatasetsCatalog() {
   const reciclaje = useReciclaje().data
   const incendios = useIncendios().data
   const pmp = usePmp().data
+  const deudaViva = useDeudaViva().data
   const ipc = useIpc().data
   const crimen = useCriminalidad().data
 
@@ -323,6 +325,14 @@ function DatasetsCatalog() {
       updated: formatDate(pmp?.generatedAt),
       source: 'MinHac · RD 1040/2017 · refresco manual',
       path: '/data/pmp.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Deuda viva del ayuntamiento (serie)',
+      rows: deudaViva?.stats?.puntos ? `${deudaViva.stats.puntos} ejercicios` : '—',
+      updated: formatDate(deudaViva?.generatedAt),
+      source: 'MinHac CDI · entrega anual · refresco manual',
+      path: '/data/deuda-viva.json',
       fmt: ['json'],
     },
     {

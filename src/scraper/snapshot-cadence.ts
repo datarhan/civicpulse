@@ -136,6 +136,16 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     hint: 'npm run scrape:pmp',
   },
   {
+    file: 'deuda-viva.json',
+    cls: 'manual' as const,
+    // Una entrega al año, y el ministerio publica el ejercicio cerrado con
+    // meses de retraso: la de 2025 estaba en septiembre de 2026. Año y medio
+    // largo, como coste-efectivo, para no llamar rancio a un dato que todavía
+    // no existe.
+    maxAgeDays: 430,
+    hint: 'npm run scrape:deuda-viva',
+  },
+  {
     file: 'coste-efectivo.json',
     cls: 'manual' as const,
     // Una entrega al año, publicada en otoño; 430 cubre el ciclo con margen.

@@ -182,6 +182,43 @@ overwrites it. Change the bot's SQLite instead.
   signed finding. `coste-efectivo.json` (430d) and `ipc.json` (400d) carry the
   same class.
 
+### Deuda viva del ayuntamiento
+
+- **Pipeline** — `scrape-deuda-viva.ts` → `deuda-viva.ts` → `deuda-viva.json`
+- **Source** — Ministerio de Hacienda, CDI, «Deuda Viva de las Entidades
+  Locales». One workbook per closed exercise, ~8.100 municipalities each.
+- **Surfaces** — `/presupuesto` (series + percentile), `/datos`
+- **Cadence** — class `manual` (430 days). Annual delivery published months
+  after the exercise closes; deliberately out of `scrape:all` for the same
+  reason as `coste-efectivo`: re-downloading 5 workbooks nightly against a
+  public administration for data that changes once a year is the opposite of
+  the "keep scrapers polite" rule.
+- **Traps, both measured** — the ministry does **not** name every delivery the
+  same way: 2022–2025 are `-<YYYY>12.xlsx`, 2021 is `-<YYYY>1231.xlsx`. With a
+  single pattern the adapter reported 2021 as unpublished while the file was
+  there, and the series then began in 2022 — right after the year the debt
+  doubled. And matching by NAME finds `Riba-roja d'Ebre` (Tarragona, 43125)
+  before Riba-roja de Túria (46214): the join is on the INE code, which the
+  workbook carries in two separate columns.
+- **What is NOT published** — only the national _distribution_, never the table.
+  Naming eight thousand councils would sign a claim about each of them, and they
+  have no right of reply here. Same line `/laboratorio/frontera` draws.
+
+### Contratación menor
+
+- **Pipeline** — no adapter of its own: `minorContract` already rides in
+  `tenders.json` from ribalicita. `contratos-menores.ts` summarises it.
+- **Surfaces** — `/presupuesto`
+- **Trap** — the art. 118 ceiling is on the value **excluding tax**. Measured on
+  gross amounts, 15 contracts sit above the ceiling; on net amounts, 4. The
+  eleven in between are €39.900 net read as €48.279 with 21 % VAT. Publishing
+  the gross count would assert the council breaks the law eleven times more
+  often than it does.
+- **What this does not claim** — the `minorContract` flag comes from the
+  contracting portal, not from us. The surface measures the distance to the
+  legal ceiling; calling it an infringement is a curator's step, not a
+  program's.
+
 ### Frontera del gasto (DEA · laboratory experiment)
 
 - **Pipeline** — `lp-simplex.ts` + `dea.ts` + `dea-bootstrap.ts` +
