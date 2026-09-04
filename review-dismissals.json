@@ -50,6 +50,34 @@
       "reason": "El revisor compara una cifra CONGELADA con el registro de hoy. El reportaje dice «ese mismo día», y ese día es el 15 de agosto de 2026: la frase anterior lo fija («Comprobamos el 15 de agosto de 2026, contra el registro en vivo»), y el snapshot lo lleva en `registro.comprobadoEl`. Entonces eran 805 filas y 699 adjudicados; hoy son 808 y 700, y las dos cosas son ciertas a su fecha. Una cifra fechada que ya no coincide con el registro vivo no es un error, es lo que significa congelar: `check:drift` vigila justo eso y da 6 de 6 comparadas, 0 divergentes. La nota de corrección del 29-08-2026 de esta misma pieza lo dice con todas las letras, y aun así el revisor volvió a señalarlo — es el patrón de siempre, juzgar la frase contra un universo (el registro de hoy) más ancho que la frase (el registro de aquel día).",
       "editor": "claude-opus-5",
       "at": "2026-08-29"
+    },
+    {
+      "route": "/reportajes/coste-efectivo",
+      "quote": "CONTRATACIÓN MUNICIPAL · 699 CONTRATOS ADJUDICADOS",
+      "reason": "El revisor compara una cifra CONGELADA con el snapshot de hoy. La pieza declara «Datos a 2026-08-23» y sus figuras viven en public/data/reportajes/coste-efectivo.json precisamente para no moverse; 699 era el recuento de adjudicados ese día y el registro vivo va por 701, dos adjudicaciones que entraron después de firmarla. No hay prosa que arreglar, y el falso positivo crece solo: cada adjudicación nueva volvería a señalar todos los reportajes. Lo que faltaba era decírselo al que juzga, y se ha añadido en el mismo cambio: factsFor devuelve para /reportajes/* un aviso con la fechaDatos de la propia pieza, diciendo que sus cifras no tienen por qué coincidir con los snapshots de hoy y que sólo hay defecto si la pieza se contradice a sí misma o miente en la fecha.",
+      "editor": "claude-opus-5",
+      "at": "2026-09-04"
+    },
+    {
+      "route": "/empleo",
+      "quote": "EN RIBA-ROJA\n37\n63%",
+      "reason": "La página YA explica la diferencia que el revisor presenta como no explicada. Son dos poblaciones distintas y medidas: el KPI cuenta `inRibaRoja`, derivado de `location` por la política de alias (37 de 59), y el gráfico agrupa `detail.municipio`, que sólo traen 42 de las 59 ofertas (24 de ellas Riba-roja). Justo debajo del gráfico, EmpleoStats pinta «17 ofertas no traen municipio en su ficha y quedan fuera de este gráfico», derivado de byMunicipioCoverage y no escrito a mano. Es además exactamente este defecto, ya arreglado: el comentario del componente lo cuenta —iba sobre 44 de 67 con el KPI sobre 67— y razona por qué se cuenta lo EXCLUIDO y no lo incluido. Medido contra empleo.json el 4-09-2026: 59 ofertas, 37 inRibaRoja, 24 con detail.municipio de Riba-roja, 17 sin detail.municipio.",
+      "editor": "claude-opus-5",
+      "at": "2026-09-04"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "La ficha la atribuye a PSOE.",
+      "reason": "Tercera cara del mismo señalamiento que ya se descartó dos veces el 29-08-2026, con las dos citas invertidas: el revisor lee la pastilla del recuadro «Literal retenido» como si rotulara la cita impresa que tiene encima. Son citas distintas de f-2026-05-11-cit-a0a379: la de publicar el convenio va sin atribuir, y la atribuida a PSOE es la [3], retenida. En texto plano —que es lo que lee la revisión— el borde punteado y el «Literal retenido.» que separan los dos bloques desaparecen, así que el señalamiento nace de la maquetación aplanada, no del dato. Comprobado contra pleno-findings.json el 4-09-2026. Lo que sí queda pendiente, como ya decía el descarte del 29-08, es la caja: 37 de 131 citas están retenidas y el recuadro cae bajo una cita impresa a menudo.",
+      "editor": "claude-opus-5",
+      "at": "2026-09-04"
+    },
+    {
+      "route": "/ [capas]",
+      "quote": "90 incendios acumulados desde 1993",
+      "reason": "El revisor dice que el incendio 91 —atribuido a Riba-roja por la GVA y cartografiado fuera del término— no se declara y que sólo hay un aviso genérico del ICV. La capa lo declara, en la misma tarjeta y cuatro líneas más abajo. Verificado en el navegador contra la build de producción el 4-09-2026, con la capa encendida: «Otro incendio (128 ha) consta a nombre de Riba-roja pero la Generalitat lo dibuja fuera del término, así que no se pinta.» Sale de IncendiosCobertura leyendo universe.atribuidosSinPerimetroAqui y superficieHaSinPerimetroAqui del propio snapshot, así que no puede desviarse de los polígonos que tiene al lado, y el scraper además lo avisa por consola en cada pasada.",
+      "editor": "claude-opus-5",
+      "at": "2026-09-04"
     }
   ]
 }
