@@ -144,18 +144,35 @@ describe('el input que hashea la caché de LLM lleva las cifras', () => {
   })
 
   it('el input incluye ruta, fragmento Y huella de hechos', () => {
-    const m = src.match(/input: \{ route: i\.route,[^}]*\}/)
-    expect(m, 'no se encuentra el input de la llamada por fragmento').not.toBeNull()
+    const m = src.match(/const claveDeCache = \{[^}]*\}/)
+    expect(m, 'no se encuentra la clave de caché por fragmento').not.toBeNull()
     const input = m![0]
     // Los tres, y por motivos distintos: sin `fragment` un fragmento contesta
     // por toda la página; sin `facts` una cifra movida sirve el juicio viejo.
-    expect(input, 'sin ruta').toContain('route: i.route')
+    expect(input, 'sin ruta').toContain('route')
     expect(input, 'sin fragmento: un fragmento contestaría por toda la página').toContain(
       'fragment: hashOf(chunk)',
     )
     expect(input, 'SIN HUELLA DE HECHOS: una cifra movida serviría el veredicto viejo').toContain(
       'facts: fh',
     )
+  })
+
+  /**
+   * Y UNA SOLA derivación para los dos que preguntan.
+   *
+   * Desde que existe `llmCacheHas` —la sonda que exime del presupuesto a lo que
+   * ya está en disco— hay dos sitios que necesitan esta clave. Calculada dos
+   * veces, el día que una se quede atrás la sonda diría «está en caché» de algo
+   * que no está: el fragmento se saltaría el presupuesto, la llamada se haría
+   * igual y el reloj se iría por donde nadie mira. Es la regla 1 de
+   * DATA_INTEGRITY aplicada a una clave en vez de a un enum.
+   */
+  it('la sonda y la llamada preguntan por la MISMA clave', () => {
+    const usos = src.match(/input: claveDeCache\b/g) ?? []
+    expect(usos.length, 'la clave debería usarla la sonda y la llamada').toBe(2)
+    // Y que no haya quedado una segunda derivación suelta al lado.
+    expect(src).not.toMatch(/input: \{ route: i\.route/)
   })
 
   it('la huella se calcula ANTES del acierto de caché, no después', () => {

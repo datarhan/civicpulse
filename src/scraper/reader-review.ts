@@ -642,3 +642,45 @@ export function estadoDe(clave: string): string | null {
  * clave que el barrido lee pero el parte no conoce nunca se reportaría rancia.
  */
 export const RUTAS_CON_ESTADO = [conEstado('/', 'capas')]
+
+/**
+ * ¿Se puede acometer este fragmento con el reloj que queda?
+ *
+ * La regla en una frase: **el presupuesto tasa el TRABAJO, no los fragmentos.**
+ *
+ * `review:surfaces` estima con la llamada más lenta que ha medido y no con la
+ * media, a propósito: un presupuesto es una promesa sobre el peor caso, y
+ * promediar un fragmento servido de caché con uno vivo es como una estimación
+ * acaba arrancando alegremente la llamada que la revienta. Pero esa misma
+ * prudencia, aplicada a un fragmento que YA está en `.llm-cache`, deja de ser
+ * prudencia: le pone el precio de ochenta segundos a abrir un fichero, y la
+ * página se queda sin leer teniendo el veredicto guardado en el disco.
+ *
+ * Lo que costaba, medido el 4-09-2026:
+ *
+ *   /hallazgos      32 fragmentos, TODOS en caché. Una edición normal —un
+ *                   contador que sube, un hallazgo nuevo, una palabra del pie—
+ *                   cambia UNO: medido sobre el texto renderizado, 68 de 69
+ *                   fragmentos conservan su hash, porque `esFrontera` ya corta
+ *                   por contenido. La página no era cara; se tasaba mal.
+ *   /declaraciones  2 fragmentos con presupuesto de 180 s. El primero costó
+ *                   138 s de verdad; en ese punto la estimación pedía otros 138
+ *                   y sólo quedaban 42, así que la regla vieja se plantaba y
+ *                   dejaba la ruta PARCIAL — por no leer un fragmento que ya
+ *                   estaba en caché. Con ésta salió 2/2 y 100 %.
+ *
+ * Y lo que NO cambia: un fragmento que sí cuesta y no cabe se cuenta, deja la
+ * ruta PARCIAL, no se cachea y se reintenta. Un presupuesto puede costar
+ * cobertura; no puede esconder lo que cuesta —ni tirar la que no cuesta nada.
+ */
+export function cabeElFragmento(opts: {
+  /** ¿Contesta la caché? Entonces cuesta una lectura de disco, no una llamada. */
+  gratis: boolean
+  ahora: number
+  /** La llamada más lenta MEDIDA en esta pasada. 0 antes de medir ninguna. */
+  slowestCallMs: number
+  deadline: number
+}): boolean {
+  if (opts.gratis) return true
+  return opts.ahora + opts.slowestCallMs < opts.deadline
+}
