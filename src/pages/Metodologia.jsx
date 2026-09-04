@@ -1218,9 +1218,18 @@ export default function Metodologia() {
             el registro de declaraciones del pleno
           </a>{' '}
           esa puerta hace tres cosas distintas — publica la afirmación con sus datos, la publica
-          etiquetada como sin contraste, o <strong>no la publica</strong>. Lo último se reserva a
-          las acusaciones públicas que el cotejo no pudo respaldar, y a los desmentidos que asigna
-          una máquina, que son pistas para un redactor y no veredictos.
+          etiquetada como sin contraste, o <strong>no la publica</strong>. Lo último ocurre por dos
+          motivos, y no son de la misma clase. Uno es de <strong>contraste</strong>: las acusaciones
+          públicas que el cotejo no pudo respaldar, y los desmentidos que asigna una máquina, que
+          son pistas para un redactor y no veredictos. El otro es de <strong>procedencia</strong>, y
+          es más simple: si el literal de una declaración no aparece en ninguna transcripción que
+          tengamos —ni en la vigente, ni en las que sustituyó una re-transcripción—, no podemos
+          enseñar que se dijera, así que no se publica. Cuántas son se dice en{' '}
+          <a href="/plenos" style={{ color: 'var(--civic)' }}>
+            el recuento de declaraciones
+          </a>
+          , porque una retirada que no se cuenta es indistinguible de una extracción que nunca
+          ocurrió.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>
