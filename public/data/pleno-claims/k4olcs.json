@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T19:29:16.755Z",
+  "generatedAt": "2026-09-04T15:08:04.752Z",
   "version": "1",
   "plenoId": "k4olcs",
   "plenoDate": "2026-04-20",
@@ -4152,33 +4152,6 @@
       },
       "verification": {
         "claimId": "k4olcs-095-afi-da0564",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "k4olcs-096-afi-c341f3",
-        "plenoId": "k4olcs",
-        "plenoDate": "2026-04-20",
-        "segmentIndex": 96,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "se aprobó unanimidad la urgencia",
-        "context": "Vale, pues... falta un voto, se ha aprobado unanimidad la urgencia. Pasemos al 5.2. José, explica el punto.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "votación de la urgencia"
-        },
-        "confidence": 0.93,
-        "reasoning": "Es una afirmación verificable sobre el resultado de una votación plenaria; puede contrastarse con el acta o el recuento de votos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "k4olcs-096-afi-c341f3",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],

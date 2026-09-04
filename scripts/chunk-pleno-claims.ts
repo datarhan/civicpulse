@@ -27,10 +27,94 @@ import {
   type VerifiedSnapshot,
 } from '../src/scraper/pleno-claims-chunks'
 import { gateItemsForPublic } from '../src/scraper/claim-public-gate'
+import { classifyClaimProvenancePreparado } from '../src/scraper/claim-provenance'
+import { prepararHeno, type HenoPreparado } from '../src/scraper/quote-match'
+import { loadSupersededTexts, TRANSCRIPTS_DIR } from './lib/transcript-corpus'
 
 const MONOLITH = resolve('public/data/pleno-claims-verified.json')
 const CHUNKS_DIR = resolve('public/data/pleno-claims')
 const MANIFEST = resolve(CHUNKS_DIR, 'index.json')
+
+/**
+ * Techo de retirada por falta de procedencia, como fracción del corpus.
+ *
+ * La regla de la puerta es correcta y su modo de fallo es catastrófico: si un
+ * fichero de transcripción no está —un checkout a medias, un `superseded/`
+ * podado, el sparse-checkout ajeno que ya se llevó `docs/` entero una vez—
+ * TODAS las citas de esa sesión pasan a «sin rastro» y el sitio se publicaría
+ * sin ellas, en silencio y con la comprobación en verde, porque la comprobación
+ * lee lo publicado.
+ *
+ * Así que se para. 1.582 de las 4.664 declaraciones publicadas viven hoy sólo
+ * en una sustituida: perder esa carpeta retiraría un tercio del corpus. El techo
+ * está donde separa «unas cuantas frases que el extractor parafraseó» de
+ * «faltan ficheros»: hoy son 6 de 6.919, un 0,09 %.
+ *
+ * Es la regla 1 de DATA_INTEGRITY —toda aserción de enum con su techo de
+ * respaldo— aplicada a una puerta que RETIRA en vez de coercer.
+ */
+export const TECHO_SIN_PROCEDENCIA = 0.02
+
+/**
+ * El motivo por el que NO se debe escribir, o `null` si se puede.
+ *
+ * Función aparte para que la guarda se pueda probar sin montar un corpus en
+ * disco: una guarda que sólo existe dentro de un `if` en mitad de una escritura
+ * es una guarda que nadie ejercita, y este repositorio ya ha tenido dos que
+ * estaban verdes por no ejecutarse nunca.
+ */
+export function excesoDeRetirada(sinProcedencia: number, total: number): string | null {
+  // Un corpus vacío no se juzga por porcentaje: 0/0 no es «todo bien», pero
+  // tampoco es esta guarda quien lo dice — de eso ya se ocupa el monolito
+  // ausente de más arriba.
+  if (total <= 0) return null
+  const cuota = sinProcedencia / total
+  if (cuota <= TECHO_SIN_PROCEDENCIA) return null
+  return (
+    `[chunk-claims] ${sinProcedencia} de ${total} declaraciones ` +
+    `(${(cuota * 100).toFixed(1)} %) no constan en ninguna transcripción — por encima del ` +
+    `techo del ${(TECHO_SIN_PROCEDENCIA * 100).toFixed(0)} %. Eso no es prosa parafraseada, ` +
+    `son transcripciones que faltan: comprueba public/data/pleno-transcripts/ y su carpeta ` +
+    `superseded/ (npm run check:sparse) ANTES de publicar un corpus recortado.`
+  )
+}
+
+/**
+ * Los ids cuyo literal no consta en ninguna transcripción que tengamos.
+ *
+ * Mismo emparejador y mismos textos que `check:claim-provenance`, a propósito:
+ * dos decisores sobre la misma pregunta es como empiezan a discrepar la puerta
+ * y el parte. `sin-transcripcion` NO entra — eso es «no lo hemos mirado».
+ */
+export function idsSinProcedencia(
+  items: readonly { claim?: { id?: string; plenoId?: string; verbatim?: string } }[],
+  leerVigente: (plenoId: string) => string | null,
+  leerSustituidas: (plenoId: string) => string[],
+): Set<string> {
+  // Los textos se normalizan UNA vez por sesión, no una por declaración:
+  // normalizar es el 100 % del coste del emparejador (6,11 ms por
+  // transcripción de 274 KB frente a 0,04 ms de búsqueda, medido), así que
+  // hacerlo dentro del bucle costaba 42 s de los 46 que tardaba esta pasada.
+  const vigentes = new Map<string, HenoPreparado | null>()
+  const sustituidas = new Map<string, HenoPreparado[]>()
+  const out = new Set<string>()
+  for (const it of items) {
+    const c = it.claim
+    if (!c?.id || !c.plenoId || !c.verbatim) continue
+    if (!vigentes.has(c.plenoId)) {
+      const t = leerVigente(c.plenoId)
+      vigentes.set(c.plenoId, t === null ? null : prepararHeno(t))
+      sustituidas.set(c.plenoId, leerSustituidas(c.plenoId).map(prepararHeno))
+    }
+    const p = classifyClaimProvenancePreparado({
+      verbatim: c.verbatim,
+      current: vigentes.get(c.plenoId) ?? null,
+      superseded: sustituidas.get(c.plenoId) ?? [],
+    })
+    if (p === 'sin-rastro') out.add(c.id)
+  }
+  return out
+}
 
 interface Args {
   dryRun: boolean
@@ -68,7 +152,25 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
   // and stamp each survivor with its visibility BEFORE chunking, so the
   // deployed chunks never contain ungated accusation verbatim.
   const crudos = monolith.items ?? []
-  const items = gateItemsForPublic(crudos)
+  const sinProcedencia = idsSinProcedencia(
+    crudos,
+    (id) => {
+      const p = resolve(TRANSCRIPTS_DIR, `${id}.txt`)
+      return existsSync(p) ? readFileSync(p, 'utf8') : null
+    },
+    (id) => loadSupersededTexts(id),
+  )
+  // El techo antes de escribir nada: una retirada masiva es siempre un fichero
+  // que falta, nunca un corpus que de pronto se inventó.
+  const exceso = excesoDeRetirada(sinProcedencia.size, crudos.length)
+  if (exceso !== null) throw new Error(exceso)
+  if (sinProcedencia.size > 0) {
+    console.warn(
+      `[chunk-claims] ${sinProcedencia.size} declaración(es) retenida(s): su literal no consta ` +
+        `en ninguna transcripción que tengamos. No se publican.`,
+    )
+  }
+  const items = gateItemsForPublic(crudos, { sinProcedencia })
   // Lo que la puerta se lleva, contado por tipo antes de perderlo de vista. Un
   // tipo retenido entero desaparecería de la tabla de cobertura y el lector
   // concluiría que no lo extraemos: la ausencia hay que publicarla, no omitirla.
@@ -81,7 +183,7 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
   }
   const grouped = groupItemsByPleno(items)
   const generatedAt = new Date().toISOString()
-  const { manifest, chunks } = buildManifest(grouped, generatedAt, retenidas)
+  const { manifest, chunks } = buildManifest(grouped, generatedAt, retenidas, sinProcedencia.size)
 
   // Track the chunks we're about to write so we can prune stale ones.
   const expected = new Set<string>()

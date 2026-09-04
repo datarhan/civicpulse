@@ -174,6 +174,28 @@ function mayorAdjudicacion(tenders: {
   return `${(imp(top) / 1e6).toFixed(2)} M€ — ${String(top.title ?? '').slice(0, 90)}`
 }
 
+/**
+ * Lo que el ayuntamiento lleva ejecutado del ejercicio, que es OTRA cifra que
+ * la de arriba y la que el revisor daba por buena al leer «gasto total».
+ * Viene del estado de ejecución municipal, no del ministerio: son dos fuentes
+ * y por eso el crédito no coincide entre ellas.
+ */
+function ejecucionFacts(
+  ej: {
+    latest?: { year?: number; fechaListado?: string; gastos?: { total?: Record<string, number> } }
+  } | null,
+): Record<string, unknown> {
+  const g = ej?.latest?.gastos?.total
+  if (!g) return {}
+  const cuando = ej?.latest?.fechaListado ?? String(ej?.latest?.year ?? '')
+  return {
+    [`ejecución municipal a ${cuando}: crédito INICIAL de gasto`]: g.inicial,
+    [`ejecución municipal a ${cuando}: crédito ACTUAL de gasto (inicial + modificaciones)`]:
+      g.actual,
+    [`ejecución municipal a ${cuando}: gasto RECONOCIDO (lo efectivamente ejecutado)`]: g.ejecutado,
+  }
+}
+
 function factsFor(clave: string): Record<string, unknown> {
   // Los hechos van por RUTA: el estado cambia lo que se renderiza, no de qué
   // trata la página.
@@ -218,8 +240,24 @@ function factsFor(clave: string): Record<string, unknown> {
     // → colgado. No era longitud ni puntuación, era la pregunta.
     'contratos: mayor adjudicación individual (una concesión se adjudica por todo su plazo de una vez, así que una pieza puede excluirla del denominador)':
       mayorAdjudicacion(tenders),
-    'presupuesto: gasto total (UN año)': budget?.snapshot?.totalExpense,
+    // Tercera vez que un rótulo de esta tabla fabrica el señalamiento que
+    // luego hay que desmentir a mano, y la más cara: decía «gasto total», que
+    // se lee como dinero salido, cuando la cifra es el CRÉDITO de gasto del
+    // presupuesto definitivo que el ayuntamiento rinde al ministerio
+    // (CONPREL, `TipoDato=Presupuestos&TipoPublicacion=Definitiva`). Con ese
+    // rótulo el revisor señaló la portada por «hacer pasar el gasto ejecutado
+    // por presupuesto» —siendo la portada correcta— y volvió a señalar
+    // /gestion y /presupuesto por lo mismo en barridos distintos. Cuatro
+    // falsos positivos de una premisa mal rotulada, en la herramienta cuyo
+    // trabajo entero es cazar rótulos que no cuadran con su cifra.
+    //
+    // Mismo remedio que con los contratos: las cifras que se confunden, las
+    // dos, y ETIQUETADAS. El estado de ejecución municipal es justo la
+    // magnitud que el revisor creía estar viendo, así que va delante.
+    'presupuesto: CRÉDITO de gasto del ejercicio (presupuesto definitivo rendido al ministerio — lo autorizado, NO lo gastado)':
+      budget?.snapshot?.totalExpense,
     'presupuesto: ejercicio': budget?.snapshot?.year,
+    ...ejecucionFacts(read('budget-execution.json')),
   }
   if (route.startsWith('/plenos')) {
     const claims = read('pleno-claims-verified.json')
@@ -290,6 +328,26 @@ function factsFor(clave: string): Record<string, unknown> {
       // where the truth was 49 — an under-count, in the flattering direction.
       'hallazgos: escritos por una máquina': authorshipBreakdown(findings?.items ?? []).machine,
     }
+  // Un reportaje CONGELA sus cifras: cada pieza se publica con la foto de los
+  // datos del día que se firmó, y por eso `public/data/reportajes/<slug>.json`
+  // existe. El revisor no lo sabía y se le entregaba el snapshot de HOY como
+  // si fuera la verdad contra la que juzgar: señaló «699 contratos» en
+  // /reportajes/coste-efectivo porque el registro vivo ya va por 701 — dos
+  // adjudicaciones que entraron después de firmar la pieza.
+  //
+  // Es un falso positivo que crece solo: cada adjudicación nueva vuelve a
+  // señalar todos los reportajes, y no hay prosa que arreglar porque la pieza
+  // dice su fecha. Lo que faltaba era decírselo al que juzga.
+  if (route.startsWith('/reportajes/')) {
+    const slug = route.slice('/reportajes/'.length).replace(/\/$/, '')
+    const pieza = read(`reportajes/${slug}.json`)
+    const fecha = pieza?.meta?.fechaDatos
+    if (fecha)
+      return {
+        ...common,
+        'AVISO — esta pieza CONGELA sus cifras': `Es un reportaje firmado con los datos a ${fecha}. Sus cifras NO se actualizan y no tienen por qué coincidir con los snapshots de arriba, que son los de hoy. Una diferencia entre una cifra de la pieza y una de esta lista sólo es un defecto si la pieza se contradice a sí misma o si la fecha que declara es falsa.`,
+      }
+  }
   return common
 }
 

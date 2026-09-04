@@ -131,6 +131,18 @@ export interface PlenoClaimsChunkManifest {
      * fila que no está no la publica.
      */
     retenidas: Record<string, number>
+    /**
+     * Retenidas porque su literal NO consta en ninguna transcripción nuestra.
+     *
+     * Aparte de `retenidas` —que reparte por tipo lo que la puerta editorial se
+     * lleva por no estar fundado— porque el motivo es de otra clase: éstas no
+     * es que no podamos comprobar lo que dicen, es que no podemos enseñar que
+     * se dijeran. Y va contado porque, si no, la retirada sería invisible: la
+     * comprobación de procedencia lee lo PUBLICADO, así que retirarlas la
+     * dejaría en verde sin que nadie supiera cuántas hay. Un número que la
+     * puerta baja y el parte nombra.
+     */
+    retenidasSinProcedencia: number
   }
 }
 
@@ -227,6 +239,7 @@ export function buildManifest(
   itemsByPleno: Map<string, VerifiedClaimItem[]>,
   generatedAt: string,
   retenidas: Record<string, number> = {},
+  retenidasSinProcedencia = 0,
 ): {
   manifest: PlenoClaimsChunkManifest
   chunks: Map<string, PlenoClaimsChunk>
@@ -316,6 +329,7 @@ export function buildManifest(
           porClaseDocumental: agruparPorClaseDocumental(sinCorpusVerbatims),
         },
         retenidas,
+        retenidasSinProcedencia,
         sinDatosPorque,
       },
     },

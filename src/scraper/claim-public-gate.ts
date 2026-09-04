@@ -138,7 +138,33 @@ function tieneVerificadorAnotado(item: ClaimVisibilityInput): boolean {
   return corpusReales(ca).length > 0
 }
 
-export function classifyClaimVisibility(item: ClaimVisibilityInput): ClaimVisibility {
+/**
+ * Una cita que no consta en NINGUNA transcripción que tengamos no se publica.
+ *
+ * Es la puerta que faltaba, y la más simple de justificar: el resto de este
+ * fichero decide si una frase está lo bastante FUNDADA para enseñarla; ésta
+ * decide si la frase se dijo. `check:claim-provenance` lleva desde el 3-09-2026
+ * contando en rojo unas declaraciones publicadas cuyo literal no aparece en la
+ * transcripción vigente ni en ninguna sustituida — la definición operativa de
+ * «indistinguible de una inventada», que es lo que la carpeta `superseded/`
+ * existe para evitar.
+ *
+ * Se DERIVA, no se cura: el llamador pasa el conjunto que calcula con los mismos
+ * textos y el mismo emparejador que usa la comprobación. Una lista curada de
+ * ids se quedaría rancia —es el defecto que este repositorio ya se ha contado
+ * dos veces— y además esto se cura solo en la dirección buena: recupera el
+ * archivo que faltaba y la cita vuelve a publicarse sola.
+ *
+ * Lo que NO entra aquí: una sesión sin transcripción ninguna. Eso es «no lo
+ * hemos mirado», no «no lo encontramos», y confundirlos retiraría medio corpus
+ * el día que un fichero no se descargue. Quien los separa es
+ * `classifyClaimProvenance`, y el llamador sólo manda los `sin-rastro`.
+ */
+export function classifyClaimVisibility(
+  item: ClaimVisibilityInput,
+  opts: { sinProcedencia?: boolean } = {},
+): ClaimVisibility {
+  if (opts.sinProcedencia) return 'hidden'
   const verdict = item?.verification?.verdict
   if (verdict === 'contradicho' && !isCuratorPromoted(item)) return 'hidden'
   const grounded =
@@ -163,11 +189,21 @@ export interface GatedItem extends VerifiedClaimItem {
 /**
  * Drop `hidden` items and stamp each survivor with its visibility.
  * The chunker calls this before writing public chunks.
+ *
+ * `sinProcedencia` son los ids cuyo literal no aparece en ninguna transcripción
+ * que tengamos. Va como conjunto y no como campo del item porque la respuesta
+ * depende de ficheros del disco, y este módulo es puro a propósito: quien lee
+ * los textos es el chunker, quien decide qué significa es esto.
  */
-export function gateItemsForPublic(items: VerifiedClaimItem[]): GatedItem[] {
+export function gateItemsForPublic(
+  items: VerifiedClaimItem[],
+  opts: { sinProcedencia?: ReadonlySet<string> } = {},
+): GatedItem[] {
   const out: GatedItem[] = []
   for (const it of items ?? []) {
-    const visibility = classifyClaimVisibility(it)
+    const visibility = classifyClaimVisibility(it, {
+      sinProcedencia: opts.sinProcedencia?.has(it?.claim?.id ?? '') ?? false,
+    })
     if (visibility === 'hidden') continue
     out.push({ ...it, visibility })
   }

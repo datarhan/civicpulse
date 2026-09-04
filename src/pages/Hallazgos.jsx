@@ -23,6 +23,7 @@ import { authorshipBreakdown } from '../scraper/finding-authorship'
 import { PARTY_TONE } from '../hooks/usePromises'
 import { usePlenoClaims } from '../hooks/usePlenoClaims'
 import { findingMatchesArea } from '../lib/finding-area'
+import { contarHallazgos, pasaFiltros } from '../lib/hallazgos-filtros'
 import { DEPARTMENT_LABEL } from '../scraper/departments'
 import { useT } from '../i18n'
 import { blocLabel } from '../lib/party-label.js'
@@ -451,32 +452,24 @@ export default function Hallazgos() {
   // snapshot would be worse than no figure.
   const authorship = useMemo(() => (items.length > 0 ? authorshipBreakdown(items) : null), [items])
 
-  const counts = useMemo(() => {
-    const bySeverity = {}
-    const bySpeaker = {}
-    const byPleno = {}
-    for (const f of items) {
-      bySeverity[f.severity] = (bySeverity[f.severity] ?? 0) + 1
-      for (const q of f.quotes ?? []) {
-        const s = q.speakerGroup ?? '—'
-        bySpeaker[s] = (bySpeaker[s] ?? 0) + 1
-      }
-      byPleno[f.plenoDate] = (byPleno[f.plenoDate] ?? 0) + 1
-    }
-    return { bySeverity, bySpeaker, byPleno }
-  }, [items])
+  // Contar y filtrar salen del MISMO módulo (`lib/hallazgos-filtros.js`), que
+  // es lo que impide que se les vuelva a ir la unidad: vivían en dos `useMemo`
+  // separados y el chip de GRUPO acabó contando CITAS mientras su propio filtro
+  // seleccionaba HALLAZGOS. Ver la cabecera de ese fichero.
+  const counts = useMemo(() => contarHallazgos(items), [items])
 
   const filtered = useMemo(() => {
-    return items.filter((f) => {
-      if (severityFilter && f.severity !== severityFilter) return false
-      if (speakerFilter) {
-        const speakers = new Set((f.quotes ?? []).map((q) => q.speakerGroup ?? '—'))
-        if (!speakers.has(speakerFilter)) return false
-      }
-      if (plenoFilter && f.plenoDate !== plenoFilter) return false
-      if (!findingMatchesArea(f, areaFilter, claimsForArea)) return false
-      return true
-    })
+    return items.filter(
+      (f) =>
+        pasaFiltros(f, {
+          severidad: severityFilter,
+          grupo: speakerFilter,
+          pleno: plenoFilter,
+        }) &&
+        // El de área se queda fuera del módulo puro: necesita el corpus de
+        // declaraciones, que es E/S.
+        findingMatchesArea(f, areaFilter, claimsForArea),
+    )
   }, [items, severityFilter, speakerFilter, plenoFilter, areaFilter, claimsForArea])
 
   // Group by pleno date

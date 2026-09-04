@@ -321,6 +321,55 @@ export function assessManifest(m: RunManifest): ManifestFinding[] {
   return out
 }
 
+/**
+ * Pasadas cuyo fallo YA está resuelto: la misma pasada volvió a correr después,
+ * dentro de la ventana, y volvió limpia.
+ *
+ * El caso que lo trae, y que se repetirá cada vez que se arregle un defecto de
+ * instrumentación: `scrape-incendios` escribió dos manifiestos con
+ * `attempted 32 · judged 0` porque el script no llamaba a `judge()`. Arreglado
+ * el script y relanzado, el manifiesto nuevo salió ✓ — y el parte siguió en
+ * ROJO por los dos viejos hasta que caducaran de la ventana de 36 h. Un rojo
+ * sobre el que no hay nada que hacer, que es exactamente cómo se entrena a la
+ * gente a no leer la puerta; el mismo defecto que el arreglo del script venía
+ * a quitar, un piso más arriba.
+ *
+ * La regla es la de siempre en este fichero: NO se silencia, se BAJA de nivel y
+ * se dice por qué. El fallo sigue impreso, con su motivo, y encima la línea que
+ * explica que una pasada posterior de lo mismo vino bien. Lo único que cambia
+ * es que deja de contar como error, porque no describe el estado de hoy.
+ *
+ * Dos guardas para que esto no se coma una avería de verdad:
+ *
+ *   · Sólo lo posterior rescata. Si la ÚLTIMA pasada de un script trae errores,
+ *     no se baja nada — ni la última ni las anteriores. Una pasada que sigue
+ *     rota sigue en rojo por muchas veces que haya ido bien antes.
+ *   · Se agrupa por script Y modo. `--base` y una pasada normal del mismo
+ *     script hacen trabajos distintos, y dejar que una tape a la otra sería
+ *     inventarse que se ha comprobado algo que nadie comprobó.
+ */
+export function fallosYaSuperados(manifests: readonly RunManifest[]): ReadonlySet<string> {
+  const porPasada = new Map<string, RunManifest[]>()
+  for (const m of manifests) {
+    const clave = `${m.script} ${m.mode ?? ''}`
+    const lista = porPasada.get(clave)
+    if (lista) lista.push(m)
+    else porPasada.set(clave, [m])
+  }
+
+  const out = new Set<string>()
+  for (const lista of porPasada.values()) {
+    const ordenadas = [...lista].sort((a, b) => a.startedAt.localeCompare(b.startedAt))
+    const ultima = ordenadas[ordenadas.length - 1]
+    // La última manda. Si ella falla, el estado de hoy es «falla».
+    if (assessManifest(ultima).some((f) => f.level === 'error')) continue
+    for (const m of ordenadas.slice(0, -1)) {
+      if (assessManifest(m).some((f) => f.level === 'error')) out.add(m.runId)
+    }
+  }
+  return out
+}
+
 export function formatManifest(m: RunManifest): string {
   const skipped = Object.entries(m.skipped)
     .map(([k, v]) => `${k}=${v}`)

@@ -1218,9 +1218,18 @@ export default function Metodologia() {
             el registro de declaraciones del pleno
           </a>{' '}
           esa puerta hace tres cosas distintas — publica la afirmación con sus datos, la publica
-          etiquetada como sin contraste, o <strong>no la publica</strong>. Lo último se reserva a
-          las acusaciones públicas que el cotejo no pudo respaldar, y a los desmentidos que asigna
-          una máquina, que son pistas para un redactor y no veredictos.
+          etiquetada como sin contraste, o <strong>no la publica</strong>. Lo último ocurre por dos
+          motivos, y no son de la misma clase. Uno es de <strong>contraste</strong>: las acusaciones
+          públicas que el cotejo no pudo respaldar, y los desmentidos que asigna una máquina, que
+          son pistas para un redactor y no veredictos. El otro es de <strong>procedencia</strong>, y
+          es más simple: si el literal de una declaración no aparece en ninguna transcripción que
+          tengamos —ni en la vigente, ni en las que sustituyó una re-transcripción—, no podemos
+          enseñar que se dijera, así que no se publica. Cuántas son se dice en{' '}
+          <a href="/plenos" style={{ color: 'var(--civic)' }}>
+            el recuento de declaraciones
+          </a>
+          , porque una retirada que no se cuenta es indistinguible de una extracción que nunca
+          ocurrió.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>
@@ -1770,11 +1779,16 @@ export default function Metodologia() {
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           Comparar entregas entre sí sirve además para detectar cuándo una viene mal. El alumbrado
-          público pasa de 21,76 a 147,25 € por punto de luz entre 2021 y 2024, y no es que se haya
-          encarecido siete veces: la entrega de 2021 declaraba 98 mil euros para 4.514 puntos de luz
-          frente a 664 mil en 2024. La salvedad automática que avisa cuando una cifra se aleja más
-          del doble de la mediana de sus pares ya señalaba esa tarjeta antes de que hubiera una
-          segunda entrega con la que contrastarla.
+          público pasa de 21,76 a 147,25 € por punto de luz entre 2021 y 2024, y el salto no está en
+          el denominador: el ayuntamiento declara los mismos 4.514 puntos de luz desde 2019 sin
+          volver a contarlos. Lo que se multiplica es el coste declarado — 98 mil euros en 2021, 664
+          mil en 2024. Lo llamativo no es la cifra de ahora, sino las de antes: entre 2014 y 2021 el
+          ayuntamiento declaró entre 1 y 22 € por punto de luz mientras la mediana de sus
+          comparables iba de 89 a 128, y la serie sólo entra en el rango de sus pares en 2023. Cuál
+          de las dos mitades viene mal no lo decidimos nosotros; lo que se publica es que no
+          coinciden. La salvedad automática que avisa cuando una cifra se aleja más del doble de la
+          mediana de sus pares ya señalaba esa tarjeta antes de que hubiera una segunda entrega con
+          la que contrastarla.
         </p>
         <div id="reglas-eficiencia" style={{ scrollMarginTop: 24, marginTop: 14 }}>
           <p style={{ margin: 0, color: 'var(--ink70)' }}>

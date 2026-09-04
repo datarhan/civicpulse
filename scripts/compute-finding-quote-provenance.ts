@@ -60,6 +60,11 @@ export function computeProvenance(now = new Date()): QuoteProvenanceSnapshot {
   // Validate before deriving: a snapshot that fails its own validator would
   // give this pass a shape nobody guarantees, and the output is published.
   const snapshot = validateFindingsSnapshot(readFileSync(findingsPath, 'utf8'))
+  // El escáner del grafo no puede seguir esta lectura: la ruta vive dentro de
+  // `lib/transcript-corpus.ts` y aquí sólo se ve la llamada. Sin la marca, la
+  // entrada declarada sale como «arista fantasma» — la guarda anti-deriva
+  // haciendo su trabajo, que es no dejar declarar lo que no se puede ver.
+  // data-graph: reads pleno-transcripts/
   const sessions = loadSessionTexts(snapshot.items.map((f) => f.plenoId))
   // El monolito publicado como verdad de las marcas; la base, si existe, como
   // contraste informativo — see lib/verified-corpus.ts.

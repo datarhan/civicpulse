@@ -12,6 +12,7 @@
  */
 import {
   readManifests,
+  fallosYaSuperados,
   assessManifest,
   formatManifest,
   type RunManifest,
@@ -241,13 +242,24 @@ function main() {
 
   let errors = overdue.length
   let warns = 0
+  // Fallos que una pasada POSTERIOR de lo mismo ya dejó atrás. Se siguen
+  // imprimiendo enteros —el hallazgo, su código y su motivo— y dejan de contar
+  // como error, porque no describen el estado de hoy. Ver `fallosYaSuperados`.
+  const superados = fallosYaSuperados(manifests)
   for (const m of manifests) {
     const findings = assessManifest(m)
-    const bad = findings.filter((f) => f.level === 'error').length
+    const resuelto = superados.has(m.runId)
+    const bad = resuelto ? 0 : findings.filter((f) => f.level === 'error').length
     const mark = bad > 0 ? '✗' : findings.length > 0 ? '!' : '✓'
     process.stdout.write(`\n${mark} ${formatManifest(m)}\n`)
+    if (resuelto) {
+      process.stdout.write(
+        `    RESUELTO — una pasada posterior de ${m.script} dentro de esta ventana vino limpia.\n` +
+          `    Lo de abajo pasó y se deja escrito; ya no cuenta como error.\n`,
+      )
+    }
     for (const f of findings) {
-      if (f.level === 'error') errors++
+      if (f.level === 'error' && !resuelto) errors++
       else warns++
       process.stdout.write(`    ${f.level.toUpperCase()} [${f.code}] ${f.message}\n`)
     }

@@ -190,3 +190,63 @@ describe('resumenPlenos', () => {
     expect(vacio.ventana.desde).toBeNull()
   })
 })
+
+/**
+ * La escalera decía «cada escalón es un subconjunto del anterior» y no lo es.
+ *
+ * El orden del día lo publica regmeet y las declaraciones salen de la
+ * transcripción: dos tuberías independientes, así que una sesión puede tener
+ * transcripción sin acta. En producción son cuatro sesiones —27-jul-2026,
+ * 6-jul-2026, 24-may-2023 y 23-ene-2023— y la frase las negaba una por una en
+ * la misma tarjeta que las cuenta. Ninguna prueba lo vio porque las cuatro
+ * cifras de la escalera eran correctas; lo falso era la oración sobre ellas.
+ *
+ * Se cuenta, no se afirma: cuando las cuatro se resuelvan la nota se calla
+ * sola en vez de envejecer al revés.
+ */
+describe('excepciones de la escalera', () => {
+  const base = {
+    plenos: {
+      items: [
+        { id: 'a', date: '2026-01-10', title: 'A', kind: 'ordinario' },
+        { id: 'b', date: '2026-04-20', title: 'B', kind: 'ordinario' },
+      ],
+      stats: { total: 2 },
+    },
+    manifest: { plenos: [], totals: {} },
+    agendas: { plenos: [], stats: {}, topDepartments: [] },
+    votes: { items: [], stats: {} },
+    findings: { items: [] },
+  }
+
+  it('cuenta las sesiones con declaraciones y sin orden del día', () => {
+    const { escaleraExcepciones, escalera } = resumenPlenos({
+      ...base,
+      // 'b' transcrita (44 declaraciones) pero sin acta de regmeet.
+      manifest: { plenos: [{ plenoId: 'b', itemCount: 44 }], totals: {} },
+    })
+    expect(escaleraExcepciones.declSinOrden).toBe(1)
+    expect(escaleraExcepciones.votosSinDecl).toBe(0)
+    // Y la escalera sigue contando bien: el defecto era la frase, no la cifra.
+    expect(escalera.find((e) => e.id === 'declaraciones').n).toBe(1)
+    expect(escalera.find((e) => e.id === 'orden').n).toBe(0)
+  })
+
+  it('cuenta las sesiones con votaciones y sin declaraciones', () => {
+    const { escaleraExcepciones } = resumenPlenos({
+      ...base,
+      votes: { items: [], stats: { byPleno: { a: 3 } } },
+    })
+    expect(escaleraExcepciones.votosSinDecl).toBe(1)
+  })
+
+  it('da cero cuando los escalones sí anidan', () => {
+    const { escaleraExcepciones } = resumenPlenos({
+      ...base,
+      agendas: { plenos: [{ id: 'b', agendaCount: 9 }], stats: {}, topDepartments: [] },
+      manifest: { plenos: [{ plenoId: 'b', itemCount: 44 }], totals: {} },
+      votes: { items: [], stats: { byPleno: { b: 2 } } },
+    })
+    expect(escaleraExcepciones).toEqual({ declSinOrden: 0, votosSinDecl: 0 })
+  })
+})

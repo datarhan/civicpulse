@@ -8,10 +8,11 @@
  * `compute:finding-quote-provenance` and `triage:quote-reanchor` cannot end up
  * disagreeing about which bytes they are looking at.
  */
-import { existsSync, readFileSync, statSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 import type { SessionTexts } from '../../src/scraper/quote-provenance'
+import { archivosDe } from '../../src/scraper/superseded-archive'
 
 export const TRANSCRIPTS_DIR = 'public/data/pleno-transcripts'
 export const SUPERSEDED_DIR = 'public/data/pleno-transcripts/superseded'
@@ -19,6 +20,27 @@ export const SUPERSEDED_DIR = 'public/data/pleno-transcripts/superseded'
 function readIfExists(path: string): { text: string; bytes: number } | null {
   if (!existsSync(path)) return null
   return { text: readFileSync(path, 'utf8'), bytes: statSync(path).size }
+}
+
+/**
+ * TODAS las transcripciones sustituidas de una sesión, no sólo la principal.
+ *
+ * Una sesión se puede re-transcribir varias veces y el archivo guarda una
+ * predecesora por ranura (`superseded-archive.ts`). La pregunta «¿esta cita
+ * estuvo publicada alguna vez?» sólo se contesta bien mirándolas todas: con
+ * una sola ranura, tres citas del corpus publicado —dos a nombre del PSOE— se
+ * quedaron sin procedencia porque la segunda re-transcripción pisó el archivo
+ * de la primera.
+ *
+ * Devuelve `[]` cuando no hay ninguna, que NO es lo mismo que no haber mirado:
+ * quien distingue eso es `classifyClaimProvenance` con su `current`.
+ */
+export function loadSupersededTexts(plenoId: string, supersededDir?: string): string[] {
+  const dir = resolve(supersededDir ?? SUPERSEDED_DIR)
+  if (!existsSync(dir)) return []
+  return archivosDe(readdirSync(dir), plenoId)
+    .map((n) => readIfExists(`${dir}/${n}`)?.text)
+    .filter((t): t is string => typeof t === 'string')
 }
 
 /**

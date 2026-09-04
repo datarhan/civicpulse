@@ -7,8 +7,13 @@ const TONO_BARRA = {
 }
 
 /**
- * «Qué tenemos del acta»: cuatro escalones anidados, cada uno subconjunto del
- * anterior.
+ * «Qué tenemos del acta»: cuatro escalones sobre el mismo denominador.
+ *
+ * NO están anidados, y la tarjeta lo dice cuando no lo están. El orden del día
+ * lo trae regmeet y las declaraciones la transcripción: son dos tuberías
+ * independientes, así que una sesión puede tener transcripción sin acta. El pie
+ * afirmaba lo contrario mientras la tabla de al lado enseñaba las cuatro
+ * sesiones que lo desmienten.
  *
  * Es la respuesta al hallazgo central de la auditoría — el índice contaba
  * cosas sin decir nunca sobre cuántas sesiones las contaba, así que la única
@@ -19,8 +24,9 @@ const TONO_BARRA = {
  * tonos semánticos base no se redefinen en oscuro precisamente porque su
  * trabajo es pintar, no escribir.
  */
-export function EscaleraCobertura({ escalera }) {
+export function EscaleraCobertura({ escalera, excepciones }) {
   if (!escalera?.length) return null
+  const sueltas = (excepciones?.declSinOrden ?? 0) + (excepciones?.votosSinDecl ?? 0)
   return (
     <Card style={{ padding: '18px 20px' }}>
       <div
@@ -89,8 +95,36 @@ export function EscaleraCobertura({ escalera }) {
           color: 'var(--ink50)',
         }}
       >
-        Cada escalón es un subconjunto del anterior. La cobertura sube cuando se transcribe una
-        sesión antigua, no cuando el pleno se reúne.
+        Los cuatro escalones se cuentan sobre las mismas {escalera[0]?.de ?? 0} sesiones, pero no
+        están anidados:{' '}
+        {sueltas > 0 ? (
+          <>
+            {excepciones.declSinOrden > 0 && (
+              <>
+                {excepciones.declSinOrden === 1
+                  ? 'una sesión tiene declaraciones extraídas sin su orden del día'
+                  : `${excepciones.declSinOrden} sesiones tienen declaraciones extraídas sin su orden del día`}
+              </>
+            )}
+            {excepciones.declSinOrden > 0 && excepciones.votosSinDecl > 0 && ', y '}
+            {excepciones.votosSinDecl > 0 && (
+              <>
+                {excepciones.votosSinDecl === 1
+                  ? 'una tiene votaciones sin declaraciones'
+                  : `${excepciones.votosSinDecl} tienen votaciones sin declaraciones`}
+              </>
+            )}
+            . El orden del día lo publica regmeet y las declaraciones salen de la transcripción, así
+            que una sesión puede tener lo segundo sin lo primero.
+          </>
+        ) : (
+          <>
+            hoy cada escalón resulta ser un subconjunto del anterior, pero es una coincidencia de la
+            cobertura, no una garantía: el orden del día lo publica regmeet y las declaraciones
+            salen de la transcripción.
+          </>
+        )}{' '}
+        La cobertura sube cuando se transcribe una sesión antigua, no cuando el pleno se reúne.
       </p>
     </Card>
   )

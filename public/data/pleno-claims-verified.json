@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-03T19:29:16.556Z",
-  "composedAt": "2026-09-03T19:29:16.689Z",
+  "generatedAt": "2026-09-04T14:03:28.853Z",
+  "composedAt": "2026-09-04T14:03:28.951Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -9,14 +9,14 @@
     "total": 6919,
     "byVerdict": {
       "verificado": 2,
-      "parcial": 13,
+      "parcial": 12,
       "contradicho": 0,
-      "sin-datos": 6904,
+      "sin-datos": 6905,
       "promesa-repetida": 0
     },
     "sinDatosPorque": {
       "sinCorpus": 4288,
-      "comprobadoSinHallar": 2616
+      "comprobadoSinHallar": 2617
     }
   },
   "items": [
@@ -7611,8 +7611,8 @@
       },
       "verification": {
         "claimId": "15uvjew-183-cit-e0c863",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [
           {
             "kind": "tender",

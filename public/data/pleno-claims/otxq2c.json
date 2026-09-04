@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T19:29:16.755Z",
+  "generatedAt": "2026-09-04T15:08:04.752Z",
   "version": "1",
   "plenoId": "otxq2c",
   "plenoDate": "2025-10-06",
@@ -8059,36 +8059,6 @@
       },
       "verification": {
         "claimId": "otxq2c-216-cit-109deb",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "otxq2c-217-cit-fd6346",
-        "plenoId": "otxq2c",
-        "plenoDate": "2025-10-06",
-        "segmentIndex": 217,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "és un programa que busca incentivar és el comerç local.",
-        "context": "En este cas, és un programa que lo que busca incentivar és el comerç local. Jo sé que a vegades, per la xarxa de ciutats intel·ligents, que és un programa que busca",
-        "topic": "cultura",
-        "entities": {
-          "referencedEntity": "programa para incentivar el comercio local"
-        },
-        "confidence": 0.78,
-        "reasoning": "Describe un programa/acción concreta orientada a incentivar el comercio local; es verificable contrastando la existencia y finalidad del programa o iniciativa mencionada.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "otxq2c-217-cit-fd6346",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],

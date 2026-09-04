@@ -366,6 +366,14 @@ function norm(s: string | undefined | null): string {
 }
 
 /**
+ * Una declaración que habla de dinero RECIBIDO. Su registro es la BDNS; un
+ * expediente de contratación es el flujo contrario y no la corrobora. Se pide
+ * el sustantivo, no la familia entera: «subvencionar» describe lo que hace el
+ * ayuntamiento con su propio dinero, que sí puede ir por contrato.
+ */
+const SUBVENCION_RE = /\b(subvenci[óo]n(?:es)?|subvenci[óo]|ayuda[s]? p[úu]blica[s]?)\b/i
+
+/**
  * Stopwords for overlapScore — tokens that appear in the municipality's name
  * or in generic municipal-contract boilerplate so they inflate every score
  * against every tender. Dropping these forces matches to rely on genuinely
@@ -1044,11 +1052,41 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     // factual / contra-datos fall through to the strong/weak verdict below
   }
 
+  // Una SUBVENCIÓN es dinero que entra; un CONTRATO es dinero que sale.
+  //
+  // «resulta que la parte de cultura hemos conseguido una subvención de 39.000
+  // euros» se publicó como `parcial` con una sola fila de evidencia: un
+  // contrato menor de obras de 39.900 € en la Casa de la Cultura. Son flujos
+  // opuestos, y lo único que se parecía era la cifra —0,62 de similitud sobre
+  // un número y la palabra «cultura»—. La página promete «cruzada contra los
+  // datos abiertos (PLACSP, BDNS, presupuesto)», así que enseñar un gasto bajo
+  // una afirmación sobre un ingreso dice que se comprobó lo que no se comprobó:
+  // BDNS se miró y no dio nada, que es `sin-datos`, no «parcial».
+  //
+  // Misma familia que las dos puertas de arriba —el importe que coincide con
+  // un objeto que no, y el parecido de título que no funda una acusación—:
+  // aquí lo que no cuadra no es el objeto ni el importe, es la DIRECCIÓN del
+  // dinero. Y baja, nunca sube: un contrato deja de fundar la subvención, no
+  // pasa a refutarla.
+  //
+  // A diferencia de `noFundante`, ésta no sostiene NI `parcial`: un parecido de
+  // título es una pista publicable —el lector ve un contrato y puede juzgar el
+  // parecido—, pero un contrato bajo una subvención no es una pista, es la
+  // magnitud contraria, y publicarlo como corroboración parcial es la
+  // afirmación falsa. Se sigue enseñando la fila: mirado y descartado se dice,
+  // no se borra.
+  const niParcial = new Set<ClaimEvidence>()
+  if (SUBVENCION_RE.test(claim.verbatim)) {
+    for (const e of evidence) if (e.kind === 'tender') niParcial.add(e)
+  }
+
   // Un parecido de título sostiene `parcial` —es una pista publicable— pero
   // nunca `verificado`: esa vía no comprueba el importe ni el sentido, así que
   // no puede sostener la palabra más fuerte que este verificador sabe decir.
-  const strong = evidence.some((e) => !noFundante.has(e) && (e.similarity ?? 0) >= 0.8)
-  const weak = evidence.some((e) => (e.similarity ?? 0) >= 0.5)
+  const strong = evidence.some(
+    (e) => !noFundante.has(e) && !niParcial.has(e) && (e.similarity ?? 0) >= 0.8,
+  )
+  const weak = evidence.some((e) => !niParcial.has(e) && (e.similarity ?? 0) >= 0.5)
 
   if (strong) {
     return {

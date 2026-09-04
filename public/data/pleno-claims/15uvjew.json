@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T19:29:16.755Z",
+  "generatedAt": "2026-09-04T15:08:04.752Z",
   "version": "1",
   "plenoId": "15uvjew",
   "plenoDate": "2026-07-27",
@@ -5908,8 +5908,8 @@
       },
       "verification": {
         "claimId": "15uvjew-183-cit-e0c863",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [
           {
             "kind": "tender",
@@ -5926,7 +5926,7 @@
           "budget"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

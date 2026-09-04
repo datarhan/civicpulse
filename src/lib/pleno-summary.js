@@ -115,8 +115,8 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
   const conDecl = filas.filter((f) => f.decl !== null).length
   const conVotos = filas.filter((f) => f.votos !== null).length
 
-  // Cuatro escalones, cada uno subconjunto del anterior. El tono no lo elige
-  // el escalón: lo elige la COLUMNA que representa, para que la barra de la
+  // Cuatro escalones sobre el MISMO denominador. El tono no lo elige el
+  // escalón: lo elige la COLUMNA que representa, para que la barra de la
   // escalera y la cifra de la tabla se pinten igual.
   const escalera = [
     { id: 'sesiones', rotulo: 'Sesiones celebradas', n: total, tono: 'civic' },
@@ -124,6 +124,19 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
     { id: 'declaraciones', rotulo: 'Con declaraciones extraídas', n: conDecl, tono: 'intel' },
     { id: 'votaciones', rotulo: 'Con votaciones transcritas', n: conVotos, tono: 'warn' },
   ].map((e) => ({ ...e, de: total, cuota: total ? e.n / total : 0 }))
+
+  // La escalera decía «cada escalón es un subconjunto del anterior» y no lo
+  // es: el orden del día viene de regmeet y las declaraciones de la
+  // transcripción, que son dos tuberías independientes, así que una sesión
+  // puede tener transcripción y no tener acta. Cuatro la tienen hoy, y la
+  // frase las negaba una por una en la misma tarjeta que las cuenta.
+  //
+  // DERIVADO, no escrito: cuando esas cuatro se resuelvan, la nota se calla
+  // sola. Una frase a mano volvería a envejecer, que es cómo llegó ésta aquí.
+  const escaleraExcepciones = {
+    declSinOrden: filas.filter((f) => f.decl !== null && f.puntos === null).length,
+    votosSinDecl: filas.filter((f) => f.votos !== null && f.decl === null).length,
+  }
 
   const fechas = sesiones
     .map((s) => s.date)
@@ -139,6 +152,14 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
     extraidas: t.items ?? 0,
     sesiones: manifest?.plenos?.length ?? 0,
     retenidas: t.retenidas?.acusacion_publica ?? 0,
+    // El segundo motivo por el que una declaración no llega a publicarse, y de
+    // otra clase que el primero: la puerta editorial retiene lo que no podemos
+    // CONTRASTAR, y ésta retiene lo que no podemos demostrar que se DIJERA —su
+    // literal no consta en ninguna transcripción nuestra, ni la vigente ni las
+    // sustituidas. Se cuenta porque, si no, la retirada sería invisible: la
+    // comprobación de procedencia audita lo publicado, así que retirarlas la
+    // deja en verde. La fila sólo se pinta cuando hay alguna.
+    retenidasSinProcedencia: t.retenidasSinProcedencia ?? 0,
     sinDatos: t.byVerdict?.['sin-datos'] ?? 0,
     parcial: t.byVerdict?.parcial ?? 0,
     verificado: t.byVerdict?.verificado ?? 0,
@@ -187,6 +208,7 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
     filtros,
     porAnio,
     escalera,
+    escaleraExcepciones,
     ventana,
     embudo,
     votos: votosResumen,

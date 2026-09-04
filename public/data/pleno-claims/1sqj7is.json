@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T19:29:16.755Z",
+  "generatedAt": "2026-09-04T15:08:04.752Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -1773,33 +1773,6 @@
       },
       "verification": {
         "claimId": "1sqj7is-073-afi-70bdb9",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-075-cit-06a2d5",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 75,
-        "type": "cita_convenio",
-        "speakerGroup": null,
-        "verbatim": "se han solicitado informes a administraciones supramunicipales",
-        "context": "Fragmento en el que el interviniente justifica el garantismo del procedimiento, enumerando que se han cursado solicitudes de informe a la Conselleria de política y transición ecológica, a la subdirección general de evaluación ambiental, al servicio territorial valenciano de medio ambiente y a la entidad de saneamiento de aguas EPSAR.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "conselleria política y transición ecológica; subdirección general de evaluación ambiental; servicio territorial valenciano de medio ambiente; epsar"
-        },
-        "confidence": 0.72,
-        "reasoning": "Afirmación procedimental verificable: la solicitud de informes a estas administraciones supramunicipales debe constar en el expediente administrativo del PRI UE Casco 1 (punto 5 del orden del día), cotejable contra el expediente publicado en sede o en el portal de transparencia.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-075-cit-06a2d5",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
