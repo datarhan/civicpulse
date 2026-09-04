@@ -1779,11 +1779,16 @@ export default function Metodologia() {
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           Comparar entregas entre sí sirve además para detectar cuándo una viene mal. El alumbrado
-          público pasa de 21,76 a 147,25 € por punto de luz entre 2021 y 2024, y no es que se haya
-          encarecido siete veces: la entrega de 2021 declaraba 98 mil euros para 4.514 puntos de luz
-          frente a 664 mil en 2024. La salvedad automática que avisa cuando una cifra se aleja más
-          del doble de la mediana de sus pares ya señalaba esa tarjeta antes de que hubiera una
-          segunda entrega con la que contrastarla.
+          público pasa de 21,76 a 147,25 € por punto de luz entre 2021 y 2024, y el salto no está en
+          el denominador: el ayuntamiento declara los mismos 4.514 puntos de luz desde 2019 sin
+          volver a contarlos. Lo que se multiplica es el coste declarado — 98 mil euros en 2021, 664
+          mil en 2024. Lo llamativo no es la cifra de ahora, sino las de antes: entre 2014 y 2021 el
+          ayuntamiento declaró entre 1 y 22 € por punto de luz mientras la mediana de sus
+          comparables iba de 89 a 128, y la serie sólo entra en el rango de sus pares en 2023. Cuál
+          de las dos mitades viene mal no lo decidimos nosotros; lo que se publica es que no
+          coinciden. La salvedad automática que avisa cuando una cifra se aleja más del doble de la
+          mediana de sus pares ya señalaba esa tarjeta antes de que hubiera una segunda entrega con
+          la que contrastarla.
         </p>
         <div id="reglas-eficiencia" style={{ scrollMarginTop: 24, marginTop: 14 }}>
           <p style={{ margin: 0, color: 'var(--ink70)' }}>
