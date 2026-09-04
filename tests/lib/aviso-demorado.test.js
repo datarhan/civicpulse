@@ -21,10 +21,10 @@ describe('aviso demorado', () => {
     const a = creaAvisoDemorado((v) => visto.push(v), 250)
     a.empieza()
     vi.advanceTimersByTime(100)
-    a.acaba()
+    a.termina()
     vi.advanceTimersByTime(1000)
-    // Ni un solo `true`: es el parpadeo que se quiere evitar.
-    expect(visto).toEqual([false])
+    // Ni un solo 'cargando': es el parpadeo que se quiere evitar.
+    expect(visto).toEqual([null])
   })
 
   it('una carga lenta sí lo dice, y luego lo retira', () => {
@@ -32,9 +32,9 @@ describe('aviso demorado', () => {
     const a = creaAvisoDemorado((v) => visto.push(v), 250)
     a.empieza()
     vi.advanceTimersByTime(300)
-    expect(visto).toEqual([true])
-    a.acaba()
-    expect(visto).toEqual([true, false])
+    expect(visto).toEqual(['cargando'])
+    a.termina()
+    expect(visto).toEqual(['cargando', null])
   })
 
   it('no lo dice ANTES del umbral', () => {
@@ -56,7 +56,32 @@ describe('aviso demorado', () => {
     vi.advanceTimersByTime(200)
     a.empieza() // segunda tanda: no debe reiniciar nada
     vi.advanceTimersByTime(60) // 260 ms desde la primera
-    expect(visto).toEqual([true])
+    expect(visto).toEqual(['cargando'])
+  })
+
+  it('una tanda con una tesela caída acaba en ERROR, no en silencio', () => {
+    // La regresión que costó una traza de consola encontrar: Leaflet dispara
+    // `load` cuando la tanda acaba AUNQUE sus teselas hayan fallado, en este
+    // orden exacto — loading → tileerror → load. Dictaminando en el fallo, el
+    // error se ponía y `load` lo borraba un instante después, y la capa se
+    // quedaba encendida pintando nada y sin decir nada.
+    const visto = []
+    const a = creaAvisoDemorado((v) => visto.push(v), 250)
+    a.empieza()
+    a.falla()
+    a.termina()
+    expect(visto).toEqual(['error'])
+  })
+
+  it('la tanda siguiente no hereda el fallo de la anterior', () => {
+    const visto = []
+    const a = creaAvisoDemorado((v) => visto.push(v), 250)
+    a.empieza()
+    a.falla()
+    a.termina()
+    a.empieza()
+    a.termina()
+    expect(visto).toEqual(['error', null])
   })
 
   it('cancelar al desmontar no enciende un aviso huérfano', () => {

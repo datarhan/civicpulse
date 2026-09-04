@@ -34,13 +34,13 @@ const titleStyle = {
  * Es tonta a propósito: recibe `cargando`, no lo averigua. Quien monta la capa
  * es quien recibe los eventos de Leaflet, y por tanto quien lo sabe.
  */
-export function FloodLegend({ cargando = false }) {
+export function FloodLegend({ estado = null }) {
   const t = useT()
   return (
     <div style={cardStyle}>
       <div style={{ ...titleStyle, display: 'flex', justifyContent: 'space-between', gap: 6 }}>
         <span>{t('map.flood.title')}</span>
-        {cargando && (
+        {estado === 'cargando' && (
           <span style={{ letterSpacing: 0, textTransform: 'none', opacity: 0.75 }}>
             {t('map.flood.loading')}
           </span>
@@ -50,6 +50,22 @@ export function FloodLegend({ cargando = false }) {
         Zonas oficiales de peligrosidad · <strong>PATRICOVA</strong> (Generalitat Valenciana / ICV).
         Tonos más intensos = mayor riesgo.
       </div>
+      {/* Un mapa en blanco con el interruptor encendido es una capa que miente
+          por omisión: el lector no puede distinguir «aquí no hay riesgo» de
+          «no ha llegado el dato». Medido el 4-sep-2026, el WMS del ICV alterna
+          200 rápidos, 200 de 5-10 s y 400s, así que este caso NO es raro. */}
+      {estado === 'error' && (
+        <div
+          style={{
+            marginTop: 5,
+            fontSize: 'var(--fs-micro)',
+            color: '#8C2A12',
+            lineHeight: 1.35,
+          }}
+        >
+          {t('map.flood.error')}
+        </div>
+      )}
     </div>
   )
 }

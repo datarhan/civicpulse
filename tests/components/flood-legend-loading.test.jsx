@@ -29,12 +29,26 @@ const pinta = (props) =>
 
 describe('FloodLegend · acuse de recibo', () => {
   it('mientras cargan las tramas lo dice', () => {
-    pinta({ cargando: true })
+    pinta({ estado: 'cargando' })
     expect(screen.getByText(/cargando/i)).toBeInTheDocument()
   })
 
   it('cuando ya están, no deja el aviso puesto', () => {
-    pinta({ cargando: false })
+    pinta({ estado: null })
+    expect(screen.queryByText(/cargando/i)).toBeNull()
+  })
+
+  it('si el servicio no responde, LO DICE en vez de dejar el mapa mudo', () => {
+    // Medido el 4-sep-2026: el WMS del ICV alterna 200 rápidos, 200 de 5-10 s y
+    // 400s. Cuando falla, la capa se quedaba encendida, sin pintar nada y sin
+    // decir nada — que es peor que pintar una fracción, y este repositorio ya
+    // tiene escrita la regla: los estados vacíos se declaran.
+    pinta({ estado: 'error' })
+    expect(screen.getByText(/no responde|no ha respondido/i)).toBeInTheDocument()
+  })
+
+  it('el error no se confunde con la carga', () => {
+    pinta({ estado: 'error' })
     expect(screen.queryByText(/cargando/i)).toBeNull()
   })
 
@@ -42,8 +56,8 @@ describe('FloodLegend · acuse de recibo', () => {
     // El aviso de carga no puede comerse la atribución: es lo que sostiene la
     // afirmación de la capa, y la ODbL/el ICV no dejan de exigirla mientras
     // carga.
-    for (const cargando of [true, false]) {
-      const { unmount } = pinta({ cargando })
+    for (const estado of ['cargando', 'error', null]) {
+      const { unmount } = pinta({ estado })
       expect(screen.getByText(/PATRICOVA/)).toBeInTheDocument()
       unmount()
     }

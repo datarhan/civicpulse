@@ -22,13 +22,23 @@ import { creaAvisoDemorado } from '../../../lib/aviso-demorado'
  */
 const UMBRAL_AVISO_MS = 250
 
-export function FloodRiskLayer({ onCargando }) {
+export function FloodRiskLayer({ onEstado }) {
   // El retardo vive en `lib/aviso-demorado` y no aquí porque la espera larga de
   // un servicio ajeno no se puede provocar en un navegador; allí sí se le
   // adelanta el reloj y se comprueba.
   const aviso = useRef(null)
-  if (!aviso.current) aviso.current = creaAvisoDemorado((v) => onCargando?.(v), UMBRAL_AVISO_MS)
-  useEffect(() => () => aviso.current?.cancela(), [])
+  if (!aviso.current)
+    aviso.current = creaAvisoDemorado((estado) => onEstado?.(estado), UMBRAL_AVISO_MS)
+  // Al montar se limpia el estado anterior: si el encendido de antes acabó en
+  // `error`, la leyenda lo enseñaría otra vez durante los 250 ms que tarda
+  // `loading` en anunciarse, acusando de fallo a un intento que aún no ha
+  // pasado. Y al desmontar se desarma el reloj, o encendería el aviso de una
+  // capa que ya no está.
+  useEffect(() => {
+    onEstado?.(null)
+    return () => aviso.current?.cancela()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <WMSTileLayer
@@ -53,11 +63,17 @@ export function FloodRiskLayer({ onCargando }) {
       // regalado.
       updateWhenIdle={true}
       eventHandlers={{
+        // Cada tanda empieza limpia: un fallo de la tanda anterior no puede
+        // acusar a ésta antes de que se sepa cómo acaba.
         loading: () => aviso.current.empieza(),
-        load: () => aviso.current.acaba(),
-        // Si el servicio falla, el aviso NO puede quedarse encendido: diría
-        // «cargando» sobre algo que ya no va a llegar.
-        tileerror: () => aviso.current.acaba(),
+        // `tileerror` sólo APUNTA el fallo. Leaflet dispara `load` igualmente
+        // cuando la tanda termina —aunque todas sus teselas hayan fallado—, así
+        // que decidir aquí y no allí dejaba el error puesto un instante y
+        // borrado al siguiente. Medido en la traza: loading → tileerror → load.
+        tileerror: () => aviso.current.falla(),
+        // El veredicto se da cuando la tanda ha terminado, que es lo único que
+        // sabe si hubo fallo.
+        load: () => aviso.current.termina(),
       }}
     />
   )

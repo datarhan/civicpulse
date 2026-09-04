@@ -94,13 +94,11 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
   const [anyoIncendios, setAnyoIncendios] = useState(null)
   const [danaOnly, setDanaOnly] = useState(false)
   const [obrasOnly, setObrasOnly] = useState(false)
-  // El acuse de recibo de la capa de inundación. Vive aquí porque el estado
-  // nace en la capa (los eventos de Leaflet) y se pinta en la leyenda, que son
-  // hermanas. NO se reinicia al apagar el interruptor —queda como estuviera—
-  // y da igual: la leyenda sólo existe mientras la capa está montada, y volver
-  // a montarla dispara `loading` otra vez. Lo que sí importa es que
-  // `tileerror` lo apague, o un servicio caído dejaría «cargando» para siempre.
-  const [floodCargando, setFloodCargando] = useState(false)
+  // Estado de la capa de inundación: null | 'cargando' | 'error'. Vive aquí
+  // porque nace en la capa (los eventos de Leaflet) y se pinta en la leyenda,
+  // que son hermanas. La capa lo limpia al montar, así que un fallo del
+  // encendido anterior no acusa al siguiente antes de intentarlo.
+  const [floodEstado, setFloodEstado] = useState(null)
   const effectiveAt = at ?? dateMax ?? Infinity
 
   const incendiosUniverse = incendiosIdx?.universe
@@ -140,7 +138,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
 
         <TileLayer url={BASEMAP_URL} attribution="" />
 
-        {layers.flood && <FloodRiskLayer onCargando={setFloodCargando} />}
+        {layers.flood && <FloodRiskLayer onEstado={setFloodEstado} />}
 
         <FullNetwork />
         <MunicipalBoundary />
@@ -227,7 +225,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
             serie={serieIncendios}
           />
         )}
-        {layers.flood && <FloodLegend cargando={floodCargando} />}
+        {layers.flood && <FloodLegend estado={floodEstado} />}
       </div>
     </div>
   )
