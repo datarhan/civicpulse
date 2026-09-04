@@ -364,7 +364,12 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
         <ExtLink
           href={article.link}
           style={{
-            color: linkRot?.status === 'dead' ? 'var(--crit)' : 'var(--civic)',
+            // `--crit` es RELLENO y esto es TEXTO: en oscuro daba 3,65:1 a 11 px
+            // sobre el papel, por debajo del 4,5 de AA. Es la misma regla que
+            // `Cobertura.jsx` ya escribe para `--ok`/`--warn`, y estuvo latente
+            // mientras sólo hubo 4 enlaces muertos: la auditoría nocturna subió a
+            // 19 y la puerta de contraste lo cazó a la primera.
+            color: linkRot?.status === 'dead' ? 'var(--crit-ink)' : 'var(--civic)',
             textDecoration: 'underline',
           }}
           title={
