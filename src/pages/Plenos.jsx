@@ -130,7 +130,7 @@ export default function Plenos() {
             </Link>
           </p>
         </div>
-        <EscaleraCobertura escalera={r.escalera} />
+        <EscaleraCobertura escalera={r.escalera} excepciones={r.escaleraExcepciones} />
       </div>
 
       <div style={{ height: 1, background: 'var(--border)', margin: '0 0 30px' }} />
