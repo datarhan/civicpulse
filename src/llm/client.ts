@@ -1348,6 +1348,44 @@ export interface CallLlmOptions<TSchema extends ZodTypeAny> {
   maxRetries?: number
 }
 
+/**
+ * ¿Contestaría la caché a esta llamada sin salir de disco?
+ *
+ * Existe para quien tiene un RELOJ y no sólo una factura. Una lectura servida de
+ * `.llm-cache` cuesta abrir un fichero; una guarda de presupuesto que le pone el
+ * precio de la llamada más lenta que ha medido acaba negándose a hacer trabajo
+ * gratis, y eso no es prudencia, es dejar la página sin leer teniendo la
+ * respuesta en el disco.
+ *
+ * Lo que costaba, medido el 4-09-2026 sobre `/hallazgos`: 69 fragmentos, y una
+ * edición normal —un contador que sube, un hallazgo nuevo, el pie de página—
+ * cambia UNO. Los otros 68 estaban en caché y el gancho de pre-push no leía
+ * ninguno, porque `noTimeToStart()` los tasaba a 80 s cada uno y con 180 s de
+ * presupuesto se plantaba en el tercero.
+ *
+ * La clave sale de `cacheKey`, la MISMA función que usa `callLLM`. Derivarla
+ * aparte sería reescribir un enum (regla 1 de DATA_INTEGRITY aplicada a una
+ * clave): dos derivaciones que acaban discrepando, y ésta fallando hacia el lado
+ * malo — diría «está en caché» de algo que no está, el fragmento se saltaría el
+ * presupuesto, la llamada se haría igual y el reloj se iría por donde nadie mira.
+ */
+export function llmCacheHas(opts: {
+  promptVersion: string
+  schema: ZodTypeAny
+  input: unknown
+  config?: ClientConfig
+}): boolean {
+  const config = opts.config ?? loadConfigFromEnv()
+  const key = cacheKey({
+    backend: config.backend,
+    model: backendModel(config),
+    promptVersion: opts.promptVersion,
+    schema: opts.schema,
+    input: opts.input,
+  })
+  return readCache(config.cacheDir, key) != null
+}
+
 export async function callLLM<TSchema extends ZodTypeAny>(
   opts: CallLlmOptions<TSchema>,
 ): Promise<z.infer<TSchema> | null> {

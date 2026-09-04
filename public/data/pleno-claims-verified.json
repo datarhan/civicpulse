@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-09-04T14:03:28.853Z",
-  "composedAt": "2026-09-04T14:03:28.951Z",
+  "composedAt": "2026-09-04T19:20:18.974Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -35525,7 +35525,7 @@
         "segmentIndex": 265,
         "type": "afirmacion_numerica",
         "speakerGroup": null,
-        "verbatim": "durante este año, en el año 2026, hemos comprobado que",
+        "verbatim": "Durante este año, en el año 2026, año de feria, hemos comprobado que",
         "context": "Durante este año, en el año 2026, hemos comprobado que",
         "topic": "cultura",
         "entities": {
@@ -46192,7 +46192,7 @@
         "segmentIndex": 96,
         "type": "afirmacion_numerica",
         "speakerGroup": null,
-        "verbatim": "se aprobó unanimidad la urgencia",
+        "verbatim": "se ha aprobado unanimidad la urgencia",
         "context": "Vale, pues... falta un voto, se ha aprobado unanimidad la urgencia. Pasemos al 5.2. José, explica el punto.",
         "topic": "transparencia",
         "entities": {
@@ -88421,7 +88421,7 @@
         "segmentIndex": 24,
         "type": "afirmacion_numerica",
         "speakerGroup": null,
-        "verbatim": "esa prolongación en el 2023 2024",
+        "verbatim": "esta prolongación en el 2023 2024",
         "context": "ese reajuste que hemos tenido esta prolongación en el 2023 2024 por no nombrar la habana que también ha sido un punto afectado",
         "topic": "other",
         "entities": {
@@ -139139,7 +139139,7 @@
         "segmentIndex": 217,
         "type": "cita_obra",
         "speakerGroup": null,
-        "verbatim": "és un programa que busca incentivar és el comerç local.",
+        "verbatim": "és un programa que el que busca incentivar és el comerç local.",
         "context": "En este cas, és un programa que lo que busca incentivar és el comerç local. Jo sé que a vegades, per la xarxa de ciutats intel·ligents, que és un programa que busca",
         "topic": "cultura",
         "entities": {
@@ -171028,7 +171028,7 @@
         "segmentIndex": 197,
         "type": "cita_convenio",
         "speakerGroup": null,
-        "verbatim": "indicar si se graban las conversaciones telefónicas;",
+        "verbatim": "indicando si se graban las conversaciones telefónicas;",
         "context": "canales, indicando si se graban las conversaciones telefónicas;\n[0.0 → 0.0] c) los procedimientos de gestión, incluida la manera en que la autoridad competente puede",
         "topic": "transparencia",
         "entities": {

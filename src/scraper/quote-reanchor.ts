@@ -277,17 +277,35 @@ export interface Candidate {
  *
  * La ventana mide lo que mide la cita: buscar una frase de 20 palabras en
  * tramos de 20 evita que un pasaje larguísimo gane por acumulación.
+ *
+ * `windowFactor` ensancha esa ventana para quien busca un original MÁS LARGO
+ * que la cita, y existe porque las dos colas que usan esta función tienen
+ * relaciones distintas entre cita y fuente. En `/hallazgos` la cita la copió un
+ * curador del texto viejo, así que mide lo mismo que su pasaje y el factor 1 es
+ * exacto. En `/declaraciones` la escribió el extractor, que RECORTA al citar:
+ * medido el 4-09-2026, `10yl550-265` publica «…en el año 2026, hemos comprobado
+ * que» de un acta que dice «…en el año 2026, AÑO DE FERIA, hemos comprobado
+ * que». Con la ventana justa no cabe de «durante» a «comprobado», el pasaje
+ * verdadero empata a 67 % con uno que no tiene nada que ver, y gana el otro por
+ * orden de aparición. Con 1,5 el verdadero da 100 %.
+ *
+ * Por defecto 1, así que la cola de `/hallazgos` mide hoy lo que medía ayer.
  */
 export function candidatePassages(
   quote: string,
   index: TranscriptIndex,
-  opts: { top?: number; supersededAt?: { start: number; end: number } | null } = {},
+  opts: {
+    top?: number
+    supersededAt?: { start: number; end: number } | null
+    windowFactor?: number
+  } = {},
 ): Candidate[] {
   const top = opts.top ?? 4
   const wanted = contentWords(quote)
   const quoteLen = normaliseForQuoteMatch(quote).split(' ').filter(Boolean).length
   if (quoteLen === 0 || index.words.length === 0) return []
-  const win = Math.max(6, Math.min(quoteLen, index.words.length))
+  const holgada = Math.ceil(quoteLen * (opts.windowFactor ?? 1))
+  const win = Math.max(6, Math.min(holgada, index.words.length))
   const wantedSet = new Set(wanted)
 
   // Recuento deslizante: cuántas veces aparece cada palabra buscada dentro de la

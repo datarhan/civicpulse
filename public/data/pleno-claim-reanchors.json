@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-04T19:20:18.895Z",
+  "entries": {
+    "10yl550-265-afi-f9c405": {
+      "verbatim": "Durante este año, en el año 2026, año de feria, hemos comprobado que",
+      "from": "durante este año, en el año 2026, hemos comprobado que",
+      "fuente": "current",
+      "reason": "El extractor se dejó «año de feria» al copiar la frase del acta y la cita dejó de constar en ninguna transcripción. Reanclada al literal de la vigente, que dice «Durante este año, en el año 2026, año de feria, hemos comprobado que no es cuestión de agotamiento del personal.». No cambia lo que se afirma: restituye tres palabras que se llevó el recorte.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-09-04T19:20:01.475Z"
+    },
+    "k4olcs-096-afi-c341f3": {
+      "verbatim": "se ha aprobado unanimidad la urgencia",
+      "from": "se aprobó unanimidad la urgencia",
+      "fuente": "superseded/k4olcs.txt",
+      "reason": "El extractor flexionó «se ha aprobado» como «se aprobó» al citar. Reanclada al literal de la transcripción sustituida, donde consta «falta un voto, se ha aprobado unanimidad la urgencia». La sesión se re-transcribió tres veces —24-abr, 28-abr y 1-ago— y la vigente ya no trae el pasaje.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-09-04T19:20:03.223Z"
+    },
+    "qz6weg-024-afi-90deed": {
+      "verbatim": "esta prolongación en el 2023 2024",
+      "from": "esa prolongación en el 2023 2024",
+      "fuente": "superseded/qz6weg.txt",
+      "reason": "El extractor citó «esa prolongación» donde el acta dice «esta prolongación». Reanclada a la transcripción sustituida: la vigente de esta sesión está EN INGLÉS —el motor la tradujo en vez de transcribirla— así que la procedencia en castellano sólo existe en la anterior.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-09-04T19:20:15.583Z"
+    },
+    "otxq2c-217-cit-fd6346": {
+      "verbatim": "és un programa que el que busca incentivar és el comerç local.",
+      "from": "és un programa que busca incentivar és el comerç local.",
+      "fuente": "current",
+      "reason": "El extractor se dejó «el que» y publicó una frase agramatical con dos «és» seguidos. Reanclada al literal de la vigente: «En aquest cas, és un programa que el que busca incentivar és el comerç local.». Se mantiene en valencià, que es la lengua en que se pronunció.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-09-04T19:20:17.239Z"
+    },
+    "1tgd1h4-197-cit-3d6334": {
+      "verbatim": "indicando si se graban las conversaciones telefónicas;",
+      "from": "indicar si se graban las conversaciones telefónicas;",
+      "fuente": "current",
+      "reason": "El extractor flexionó «indicando» como «indicar» al citar un texto que se estaba leyendo en voz alta. Reanclada al literal de la vigente: «…los números de teléfono asociados a dichos canales, indicando si se graban las conversaciones telefónicas;».",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-09-04T19:20:18.895Z"
+    }
+  }
+}

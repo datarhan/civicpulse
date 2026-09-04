@@ -45,6 +45,7 @@ export const CURATED = {
   'pleno-claims-verified.json': 'npm run downgrade-verdict / verify:pleno-claims',
   'pleno-claims-overlay.json': 'npm run downgrade-verdict / apply-gold-downgrades',
   'pleno-claim-reclassifications.json': 'npm run reclassify-claim',
+  'pleno-claim-reanchors.json': 'npm run reanchor-claim',
   'press-findings.json': 'npm run correct-press-finding',
   'journalist-reports.json':
     'npm run promote-report / correct-journalist-report / journalist-reply',

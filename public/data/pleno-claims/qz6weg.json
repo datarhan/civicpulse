@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T15:08:04.752Z",
+  "generatedAt": "2026-09-04T19:20:20.239Z",
   "version": "1",
   "plenoId": "qz6weg",
   "plenoDate": "2025-12-01",
@@ -1133,6 +1133,33 @@
           "verdict-engine"
         ],
         "confidence": 0.2
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "qz6weg-024-afi-90deed",
+        "plenoId": "qz6weg",
+        "plenoDate": "2025-12-01",
+        "segmentIndex": 24,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "esta prolongación en el 2023 2024",
+        "context": "ese reajuste que hemos tenido esta prolongación en el 2023 2024 por no nombrar la habana que también ha sido un punto afectado",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "prolongación 2023-2024"
+        },
+        "confidence": 0.61,
+        "reasoning": "Se afirma una prolongación en los años 2023 y 2024; es verificable en actas, cronogramas o expedientes si se identifica a qué actuación se refiere.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "qz6weg-024-afi-90deed",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },

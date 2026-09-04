@@ -167,7 +167,9 @@ function main() {
       `\n  ${String(retenidas).padStart(5)}  retenidas          su literal no consta en ninguna ` +
         `transcripción, así que la\n` +
         `         puerta de publicación NO las publica (chunk-pleno-claims). No cuentan\n` +
-        `         arriba porque esto audita lo publicado.`,
+        `         arriba porque esto audita lo publicado.\n` +
+        `         Cuáles son y qué dice el acta en su lugar:\n` +
+        `           npm run triage:claim-reanchor`,
     )
   }
 

@@ -45,6 +45,7 @@ import { chromium } from '@playwright/test'
 import { construirGrafoRutas, rutasRevisables } from './lib/route-graph'
 import {
   reviewSurfaceDetailed,
+  cabeElFragmento,
   chunkRenderedText,
   parseReviewArgs,
   readCacheEntry,
@@ -67,7 +68,7 @@ import {
   type RegistroDescartes,
 } from '../src/scraper/surface-dismissals'
 import { authorshipBreakdown } from '../src/scraper/finding-authorship'
-import { callLLM, getRunStats } from '../src/llm/client'
+import { callLLM, llmCacheHas, getRunStats } from '../src/llm/client'
 import {
   buildReaderReviewSystemPrompt,
   buildReaderReviewUserPrompt,
@@ -471,7 +472,8 @@ async function main() {
    * bound is therefore `budget + the first call`, and the summary prints the
    * time actually spent so nobody has to take this comment's word for it.
    */
-  const noTimeToStart = () => Date.now() + slowestCallMs >= deadline
+  const noTimeToStart = () =>
+    !cabeElFragmento({ gratis: false, ahora: Date.now(), slowestCallMs, deadline })
   const browser = await chromium.launch()
   const page = await browser.newPage()
   const all: Array<{
@@ -756,15 +758,49 @@ async function main() {
     let charsReviewed = 0
     let chunksReviewed = 0
     let deCache = 0
+    /** Fragmentos que el reloj no pudo pagar. Se cuentan; nunca se pliegan. */
+    let sinPresupuesto = 0
     let reason: string | undefined = chunks.length ? undefined : 'empty-page'
 
     for (const [index, chunk] of chunks.entries()) {
-      // `break`, not `continue`: once the clock is gone it stays gone, and the
-      // fragments left behind make this route PARCIAL — reported, uncached, and
-      // retried next run. A budget may cost coverage; it may not hide the cost.
-      if (noTimeToStart()) {
+      // CONTENT-ADDRESSED, y calculada UNA vez: la usan la sonda de aquí abajo y
+      // la llamada de más abajo, y si se derivaran por separado acabarían
+      // preguntando por entradas distintas — la sonda diría «está en caché» de
+      // algo que no lo está, el fragmento se saltaría el presupuesto y la
+      // llamada se haría igual.
+      const claveDeCache = { route, fragment: hashOf(chunk), facts: fh }
+      /**
+       * Un fragmento que ya está en `.llm-cache` cuesta abrir un fichero.
+       *
+       * `noTimeToStart()` tasa TODOS los fragmentos a `slowestCallMs`, que es la
+       * llamada más lenta medida, y para lo que la guarda existe —no arrancar
+       * algo que el reloj va a matar— está bien. Pero cobrarle ese precio a una
+       * respuesta que ya está en disco no es prudencia: es dejar la página sin
+       * leer teniendo el veredicto guardado.
+       *
+       * Lo que costaba, medido el 4-09-2026: `/hallazgos` son 69 fragmentos, y
+       * una edición normal —un contador que sube, un hallazgo nuevo, una palabra
+       * del pie— cambia UNO. Los otros 68 estaban en caché y el gancho de
+       * pre-push no leía ninguno: con 180 s de presupuesto y 80 s por llamada se
+       * plantaba en el tercero y la ruta salía SIN REVISAR. La página no era
+       * cara; el presupuesto la tasaba mal.
+       */
+      const gratis = llmCacheHas({
+        schema: ReaderReviewSchema,
+        promptVersion: READER_REVIEW_PROMPT_VERSION,
+        input: claveDeCache,
+      })
+      // `continue`, no `break`, y el cambio es deliberado: desde que la sonda
+      // existe los fragmentos que quedan ya no son todos iguales, y pararse en
+      // el primero que no cabe tiraría la cobertura que YA está pagada más
+      // abajo en la página. Lo que el reloj rechaza se cuenta, deja la ruta
+      // PARCIAL, no se cachea y se reintenta a la siguiente — igual que antes.
+      // Un presupuesto puede costar cobertura; no puede esconder lo que cuesta,
+      // ni tirar la que no cuesta nada.
+      if (!cabeElFragmento({ gratis, ahora: Date.now(), slowestCallMs, deadline })) {
         reason ??= 'budget'
-        break
+        sinPresupuesto += 1
+        continue
       }
       const input: SurfaceInput = { route, renderedText: chunk, facts }
       const calledAt = Date.now()
@@ -808,7 +844,7 @@ async function main() {
             // arreglar sólo la caché de RUTA hacía que el bucle se reejecutara
             // y los 7 fragmentos salieran igualmente de caché — medido, «0
             // leído(s) ahora, 7 de caché» con un total adjudicado movido.
-            input: { route: i.route, fragment: hashOf(chunk), facts: fh },
+            input: claveDeCache,
             // Bajo presupuesto, UN intento por llamada.
             //
             // El techo de arriba acota una llamada; sin esto no acota la
@@ -941,7 +977,9 @@ async function main() {
             `(${pct(1 - coverage)} de la página). ` +
             `${
               reason === 'budget'
-                ? `Se agotó el presupuesto de ${budgetSeconds}s.`
+                ? `Se agotó el presupuesto de ${budgetSeconds}s ` +
+                  `(${sinPresupuesto} fragmento(s) no cabían; los que ya estaban en caché sí se ` +
+                  `han servido).`
                 : reason === 'no-answer'
                   ? 'Ningún backend respondió a esos.'
                   : ''
