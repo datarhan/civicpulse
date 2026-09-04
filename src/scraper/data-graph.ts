@@ -160,6 +160,24 @@ export const DATA_GRAPH: readonly DataNode[] = [
       'pleno-claims-verified.json',
       'pleno-claims-verified-base.json',
       'pleno-claims-overlay.json',
+      // Las transcripciones, que es CONTRA LO QUE se comprueba cada cita y no
+      // estaban declaradas. La misma omisión que el comentario de arriba narra
+      // con el corpus del verificador: el nodo las lee —`loadSessionTexts`, en
+      // la línea 63 del script— y el grafo creía que sólo dependía de los
+      // hallazgos. Sin esto, re-transcribir una sesión NO marcaba rancio el
+      // fichero que dice qué citas siguen localizables, que es justo lo que una
+      // re-transcripción cambia.
+      //
+      // LO QUE ESTA ENTRADA NO CUBRE, y conviene decirlo aquí para que nadie la
+      // lea como cobertura entera: el hash de directorio es NO RECURSIVO a
+      // propósito (ver `hashOf` en built-from.ts), así que archivar una
+      // sustituida dentro de `superseded/` no lo mueve. Comprobado el
+      // 4-09-2026 metiendo un fichero ahí: el hash no cambia. Es el caso menos
+      // urgente —archivar sólo añade un respaldo, así que una cita puede pasar
+      // de «sin rastro» a «sólo en la sustituida» pero nunca al revés— y
+      // taparlo obligaría a volver recursivo un hash que se hizo plano
+      // justamente para que archivar no marcara rancias las declaraciones.
+      'pleno-transcripts/',
     ],
     // La base está en .gitignore, así que su hash no significa lo mismo aquí
     // que en CI y el nodo salía rancio en una máquina o en la otra a diario.
