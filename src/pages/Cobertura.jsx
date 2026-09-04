@@ -392,8 +392,10 @@ export default function Cobertura() {
         >
           <li>
             Son las declaraciones <strong style={{ color: 'var(--ink)' }}>publicadas</strong>. El
-            corpus interno lleva más: una acusación cuyo veredicto no nombra ningún corpus no se
-            sirve, y su literal queda retenido por la puerta editorial.{' '}
+            corpus interno lleva más, y la puerta editorial retiene por dos motivos distintos: una
+            acusación cuyo veredicto no nombra ningún corpus no se sirve, y una declaración cuyo
+            literal no consta en ninguna transcripción nuestra tampoco — de la primera no podemos
+            comprobar lo que dice, de la segunda no podemos enseñar que se dijera.{' '}
             {retenidas.length > 0 && (
               <>
                 Ahora mismo hay retenidas{' '}
