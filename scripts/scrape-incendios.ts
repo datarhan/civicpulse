@@ -225,6 +225,17 @@ async function main() {
     const porNombre = await consultar(id, anyo, { where: WHERE_NOMINAL }, 'nombre', refetch)
     rec.attempt()
     if (porFrontera.length > 0) conDatos += 1
+    // El manifiesto contaba 32 intentos y CERO juzgados, así que `check:runs`
+    // publicaba «processed 32 item(s) and judged NONE» sobre una pasada que
+    // traía sus 90 incendios. Un error diario que no describe ninguna avería
+    // es como se enseña a la gente a no leer la puerta.
+    //
+    // Una capa juzgada es una capa que trajo filas por alguna de las dos vías.
+    // La distinción no es decorativa: el modo de fallo de este servicio es
+    // contestar 200 con el sobre vacío —le pasó a CARTO y al propio ICV el
+    // mismo día—, y ahí `judged` cae mientras `attempted` no se mueve.
+    if (porFrontera.length > 0 || porNombre.length > 0) rec.judge()
+    else rec.skip('capa-sin-filas')
     espaciales.push(porFrontera)
     nominales.push(porNombre)
   }
