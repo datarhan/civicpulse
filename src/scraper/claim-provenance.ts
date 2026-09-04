@@ -34,7 +34,7 @@
  * corpus daba 491 «sin rastro» en vez de 24 — veinte veces la alarma real. El
  * instrumento se equivoca antes que el dato.
  */
-import { quoteAppearsIn } from './quote-match'
+import { prepararHeno, quoteAppearsInPrepared, type HenoPreparado } from './quote-match'
 
 export type ProvenanceOutcome = 'vigente' | 'solo-superseded' | 'sin-rastro' | 'sin-transcripcion'
 
@@ -53,14 +53,52 @@ export function classifyClaimProvenance(input: {
   verbatim: string
   /** Texto de la transcripción vigente, o null si no hay ninguna. */
   current: string | null
-  /** Texto de la transcripción superseded, o null si no hay. */
-  superseded: string | null
+  /**
+   * Las transcripciones SUSTITUIDAS de esta sesión, o null si no hay ninguna.
+   *
+   * Acepta una lista porque una sesión se re-transcribe más de una vez y el
+   * archivo guarda una predecesora por ranura — ver `superseded-archive.ts`.
+   * Con una sola ranura, tres citas publicadas se quedaron sin procedencia
+   * cuando la segunda re-transcripción pisó el archivo de la primera. Un
+   * `string` suelto se sigue aceptando: es el caso de una sola predecesora y
+   * lo usan las pruebas y los llamadores viejos.
+   */
+  superseded: string | readonly string[] | null
+}): ProvenanceOutcome {
+  const anteriores =
+    input.superseded === null
+      ? []
+      : typeof input.superseded === 'string'
+        ? [input.superseded]
+        : input.superseded
+  return classifyClaimProvenancePreparado({
+    verbatim: input.verbatim,
+    current: input.current === null ? null : prepararHeno(input.current),
+    superseded: anteriores.map(prepararHeno),
+  })
+}
+
+/**
+ * Lo mismo, con los textos ya normalizados.
+ *
+ * Existe por el coste, no por la lógica: normalizar es el 100 % del trabajo de
+ * `quoteAppearsIn`, así que preguntar por 6.919 declaraciones normalizaba las
+ * ~25 transcripciones 6.919 veces — 42 s, de los que 41,8 eran repetir lo
+ * mismo. La puerta de publicación entra por aquí; todo lo demás sigue entrando
+ * por arriba. LOS CUATRO DESENLACES SE DECIDEN UNA SOLA VEZ, aquí: dos copias
+ * de esta escalera es exactamente cómo empiezan a discrepar la puerta que
+ * retira y el parte que cuenta.
+ */
+export function classifyClaimProvenancePreparado(input: {
+  verbatim: string
+  current: HenoPreparado | null
+  superseded: readonly HenoPreparado[]
 }): ProvenanceOutcome {
   const { verbatim, current, superseded } = input
   // Sin acta no se ha comprobado nada. Su propia categoría, siempre.
   if (current === null) return 'sin-transcripcion'
-  if (quoteAppearsIn(verbatim, current)) return 'vigente'
-  if (superseded !== null && quoteAppearsIn(verbatim, superseded)) return 'solo-superseded'
+  if (quoteAppearsInPrepared(verbatim, current)) return 'vigente'
+  if (superseded.some((t) => quoteAppearsInPrepared(verbatim, t))) return 'solo-superseded'
   return 'sin-rastro'
 }
 

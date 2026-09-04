@@ -152,6 +152,14 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
     extraidas: t.items ?? 0,
     sesiones: manifest?.plenos?.length ?? 0,
     retenidas: t.retenidas?.acusacion_publica ?? 0,
+    // El segundo motivo por el que una declaración no llega a publicarse, y de
+    // otra clase que el primero: la puerta editorial retiene lo que no podemos
+    // CONTRASTAR, y ésta retiene lo que no podemos demostrar que se DIJERA —su
+    // literal no consta en ninguna transcripción nuestra, ni la vigente ni las
+    // sustituidas. Se cuenta porque, si no, la retirada sería invisible: la
+    // comprobación de procedencia audita lo publicado, así que retirarlas la
+    // deja en verde. La fila sólo se pinta cuando hay alguna.
+    retenidasSinProcedencia: t.retenidasSinProcedencia ?? 0,
     sinDatos: t.byVerdict?.['sin-datos'] ?? 0,
     parcial: t.byVerdict?.parcial ?? 0,
     verificado: t.byVerdict?.verificado ?? 0,

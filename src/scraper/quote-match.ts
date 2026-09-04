@@ -58,9 +58,39 @@ export function normaliseForQuoteMatch(s: string): string {
  * to discount the ones that are real.
  */
 export function quoteAppearsIn(quote: string, haystack: string, words = 8): boolean {
+  return quoteAppearsInPrepared(quote, prepararHeno(haystack), words)
+}
+
+/**
+ * Un texto ya normalizado, para quien pregunta MUCHAS citas contra el mismo.
+ *
+ * Normalizar es todo el coste de `quoteAppearsIn`: medido sobre una
+ * transcripción de 274 KB, 6,11 ms de normalización contra 0,04 ms de búsqueda
+ * — el 100 % dentro del ruido. La puerta de publicación pregunta por las 6.919
+ * declaraciones del corpus y normalizaba las ~25 transcripciones una vez por
+ * cada una: 42 s de trabajo del que 41,8 son repetir lo mismo.
+ *
+ * Va envuelto en un objeto y no como `string` a propósito: un heno crudo pasado
+ * por error a `quoteAppearsInPrepared` compilaría y devolvería falsos negativos
+ * silenciosos, que en este emparejador significa publicar «esta cita no consta
+ * en ninguna acta» de una que sí.
+ */
+export interface HenoPreparado {
+  readonly normalizado: string
+}
+
+export function prepararHeno(haystack: string): HenoPreparado {
+  return { normalizado: normaliseForQuoteMatch(haystack) }
+}
+
+/**
+ * La regla de emparejamiento, una sola vez. `quoteAppearsIn` es esto con el
+ * heno preparado al vuelo; no hay dos implementaciones que puedan discrepar.
+ */
+export function quoteAppearsInPrepared(quote: string, heno: HenoPreparado, words = 8): boolean {
   const q = normaliseForQuoteMatch(quote).split(' ').filter(Boolean)
   if (q.length === 0) return false
-  const hay = normaliseForQuoteMatch(haystack)
+  const hay = heno.normalizado
   const n = Math.min(words, q.length)
   for (let i = 0; i + n <= q.length; i += 1) {
     if (hay.includes(q.slice(i, i + n).join(' '))) return true

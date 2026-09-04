@@ -39,6 +39,21 @@ export function TarjetaDeclaraciones({ embudo }) {
       tono: 'var(--warn-ink)',
       nota: 'acusaciones públicas sin contrastar: no se publican aquí',
     },
+    // Segundo motivo de retirada, y de otra clase: arriba se retiene lo que no
+    // podemos contrastar, aquí lo que no podemos demostrar que se dijera. Sólo
+    // aparece si hay alguna, así que la tarjeta no le explica al lector una
+    // categoría vacía — y cuando la haya, la dirá sin que nadie se acuerde.
+    ...(embudo.retenidasSinProcedencia
+      ? [
+          {
+            id: 'sin-procedencia',
+            rotulo: 'Retenidas por falta de procedencia',
+            valor: n(embudo.retenidasSinProcedencia),
+            tono: 'var(--warn-ink)',
+            nota: 'su literal no consta en ninguna transcripción nuestra: no se publican',
+          },
+        ]
+      : []),
     {
       id: 'sin-datos',
       rotulo: 'Publicadas sin datos que las contrasten',
