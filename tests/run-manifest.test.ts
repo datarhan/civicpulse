@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import {
   assessManifest,
+  fallosYaSuperados,
   startRun,
   formatManifest,
   ZERO_TOKEN_ALARM,
@@ -544,5 +545,79 @@ describe('assessManifest — un primario de coste cero que se cayó', () => {
   it('una pasada sin tráfico no dispara el aviso', () => {
     // Un adaptador determinista no tiene backend que se le caiga.
     expect(assessManifest(manifest()).some((x) => x.code === 'free-backend-fallback')).toBe(false)
+  })
+})
+
+/**
+ * Un fallo que una pasada POSTERIOR de lo mismo ya dejó atrás.
+ *
+ * `scrape-incendios` escribió dos manifiestos con `attempted 32 · judged 0`
+ * porque el script no llamaba a `judge()`. Arreglado el script y relanzado, el
+ * manifiesto nuevo salió limpio — y el parte siguió en ROJO por los dos viejos
+ * hasta que caducaran de la ventana de 36 h. Un rojo sobre el que no hay nada
+ * que hacer es como se entrena a la gente a no leer la puerta: el mismo defecto
+ * que el arreglo del script venía a quitar, un piso más arriba.
+ *
+ * No se silencia: se baja de nivel. El hallazgo se sigue imprimiendo entero.
+ */
+describe('fallosYaSuperados', () => {
+  // Un raspador determinista, que es el caso real: `scrape-incendios` no llama
+  // a ningún modelo. Con el backend de LLM del fixture por defecto, la pasada
+  // «limpia» traía `judged-without-calls` —juzgar 32 sin una sola llamada— y no
+  // rescataba nada. El fixture restataba una forma que producción no tiene, que
+  // es la regla 1 de DATA_INTEGRITY pillada por su propia prueba.
+  const sinBackend = { backend: null, model: null }
+  const roto = (over: Partial<RunManifest>) =>
+    manifest({ ...sinBackend, owed: 32, attempted: 32, judged: 0, ...over })
+  const limpio = (over: Partial<RunManifest>) =>
+    manifest({ ...sinBackend, owed: 32, attempted: 32, judged: 32, ...over })
+
+  it('rescata el fallo cuando una pasada posterior vino limpia', () => {
+    const viejo = roto({ runId: 'viejo', startedAt: '2026-09-03T18:27:00.000Z' })
+    const nuevo = limpio({ runId: 'nuevo', startedAt: '2026-09-04T13:43:00.000Z' })
+    // Control: el viejo SÍ trae un error, o esta prueba no mediría nada.
+    expect(assessManifest(viejo).some((f) => f.level === 'error')).toBe(true)
+    expect([...fallosYaSuperados([viejo, nuevo])]).toEqual(['viejo'])
+  })
+
+  it('no depende del orden en que lleguen', () => {
+    const viejo = roto({ runId: 'viejo', startedAt: '2026-09-03T18:27:00.000Z' })
+    const nuevo = limpio({ runId: 'nuevo', startedAt: '2026-09-04T13:43:00.000Z' })
+    expect([...fallosYaSuperados([nuevo, viejo])]).toEqual(['viejo'])
+  })
+
+  /**
+   * LA guarda: si la última sigue rota, el estado de hoy es «rota». No rescata
+   * ni a la última ni a las anteriores por muchas veces que fuera bien antes.
+   */
+  it('no rescata nada si la última pasada sigue fallando', () => {
+    const a = roto({ runId: 'a', startedAt: '2026-09-03T18:00:00.000Z' })
+    const b = limpio({ runId: 'b', startedAt: '2026-09-03T19:00:00.000Z' })
+    const c = roto({ runId: 'c', startedAt: '2026-09-04T10:00:00.000Z' })
+    expect([...fallosYaSuperados([a, b, c])]).toEqual([])
+  })
+
+  /**
+   * `--base` y una pasada normal del mismo script hacen trabajos distintos.
+   * Dejar que una tape a la otra sería inventarse que se comprobó algo que
+   * nadie comprobó.
+   */
+  it('no cruza modos: una pasada `--base` limpia no rescata a la normal', () => {
+    const normal = roto({ runId: 'normal', mode: 'full', startedAt: '2026-09-03T18:00:00.000Z' })
+    const base = limpio({ runId: 'base', mode: 'base', startedAt: '2026-09-04T10:00:00.000Z' })
+    expect([...fallosYaSuperados([normal, base])]).toEqual([])
+  })
+
+  it('no cruza scripts distintos', () => {
+    const uno = roto({ runId: 'uno', script: 'a', startedAt: '2026-09-03T18:00:00.000Z' })
+    const otro = limpio({ runId: 'otro', script: 'b', startedAt: '2026-09-04T10:00:00.000Z' })
+    expect([...fallosYaSuperados([uno, otro])]).toEqual([])
+  })
+
+  it('no rescata una pasada limpia — no hay nada que rescatar', () => {
+    const a = limpio({ runId: 'a', startedAt: '2026-09-03T18:00:00.000Z' })
+    const b = limpio({ runId: 'b', startedAt: '2026-09-04T10:00:00.000Z' })
+    expect([...fallosYaSuperados([a, b])]).toEqual([])
+    expect([...fallosYaSuperados([])]).toEqual([])
   })
 })
