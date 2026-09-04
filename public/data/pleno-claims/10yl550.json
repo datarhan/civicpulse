@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T15:08:04.752Z",
+  "generatedAt": "2026-09-04T19:20:20.239Z",
   "version": "1",
   "plenoId": "10yl550",
   "plenoDate": "2026-05-11",
@@ -5555,6 +5555,33 @@
           "tenders",
           "tenders-ted"
         ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "10yl550-265-afi-f9c405",
+        "plenoId": "10yl550",
+        "plenoDate": "2026-05-11",
+        "segmentIndex": 265,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Durante este año, en el año 2026, año de feria, hemos comprobado que",
+        "context": "Durante este año, en el año 2026, hemos comprobado que",
+        "topic": "cultura",
+        "entities": {
+          "date": "2026-01-01"
+        },
+        "confidence": 0.8,
+        "reasoning": "Se menciona el año 2026, lo que puede ser verificado en relación a eventos o actividades que se hayan llevado a cabo en ese año.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "10yl550-265-afi-f9c405",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },

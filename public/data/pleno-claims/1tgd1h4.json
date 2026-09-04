@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T15:08:04.752Z",
+  "generatedAt": "2026-09-04T19:20:20.239Z",
   "version": "1",
   "plenoId": "1tgd1h4",
   "plenoDate": "2024-07-29",
@@ -13558,6 +13558,33 @@
         "checkedAgainst": [
           "curator-downgrade"
         ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1tgd1h4-197-cit-3d6334",
+        "plenoId": "1tgd1h4",
+        "plenoDate": "2024-07-29",
+        "segmentIndex": 197,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "indicando si se graban las conversaciones telefónicas;",
+        "context": "canales, indicando si se graban las conversaciones telefónicas;\n[0.0 → 0.0] c) los procedimientos de gestión, incluida la manera en que la autoridad competente puede",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "canales externos de información"
+        },
+        "confidence": 0.8,
+        "reasoning": "Es un detalle concreto de información exigida por la norma; se puede contrastar con el contenido publicado o el texto legal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1tgd1h4-197-cit-3d6334",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },

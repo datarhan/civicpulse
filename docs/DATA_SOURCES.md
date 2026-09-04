@@ -61,6 +61,7 @@ Everything produced by the convention above. Safe to delete and rebuild.
 | `competencias.json`                                 | `src/scraper/competencias.ts` · curated · hand-edit via PR · `npm run competencia-reply` · `check:competencias`               |
 | `sociedades.json`                                   | `src/scraper/sociedades.ts` · curated · hand-edit via PR · material vía `npm run scrape:borme`                                |
 | `pleno-claim-reclassifications.json`                | `src/scraper/verified-merge.ts` · `npm run reclassify-claim` (sólo ALEJÁNDOSE de `acusacion_publica`)                         |
+| `pleno-claim-reanchors.json`                        | `src/scraper/verified-merge.ts` · `npm run reanchor-claim` (sólo sobre citas SIN procedencia, y el literal ha de constar entero en un acta)                         |
 
 Each CLI re-validates the whole snapshot before writing, so an invariant
 (≥20-char verbatim quote, ≥10-char title) cannot silently slip. Route

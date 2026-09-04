@@ -31,9 +31,12 @@ import {
   isDowngrade,
   validateOverlay,
   validateReclassifications,
+  validateReanchors,
   reclassificationOutcomes,
+  reanchorOutcomes,
   type Overlay,
   type Reclassifications,
+  type Reanchors,
   type VerifiedItem,
 } from '../src/scraper/verified-merge'
 import type { ClaimVerdict } from '../src/scraper/claim-verifier'
@@ -43,6 +46,7 @@ const DATA = resolve('public/data')
 export const BASE = resolve(DATA, 'pleno-claims-verified-base.json')
 export const OVERLAY = resolve(DATA, 'pleno-claims-overlay.json')
 export const RECLASSIFICATIONS = resolve(DATA, 'pleno-claim-reclassifications.json')
+export const REANCHORS = resolve(DATA, 'pleno-claim-reanchors.json')
 export const VERIFIED = resolve(DATA, 'pleno-claims-verified.json')
 
 interface Snapshot {
@@ -194,11 +198,20 @@ export function loadReclassifications(): Reclassifications {
   return r
 }
 
+/** Igual que `loadReclassifications`, y validado al leer por lo mismo. */
+export function loadReanchors(): Reanchors {
+  if (!existsSync(REANCHORS)) return { version: 1, generatedAt: '', entries: {} }
+  const r = JSON.parse(readFileSync(REANCHORS, 'utf8')) as Reanchors
+  validateReanchors(r)
+  return r
+}
+
 export async function rebuildVerified(opts: { refreshChunks?: boolean } = {}): Promise<{
   total: number
   byVerdict: Record<ClaimVerdict, number>
   overlayApplied: number
   reclassApplied: number
+  reanchorApplied: number
 }> {
   if (!existsSync(BASE)) {
     throw new Error(
@@ -208,7 +221,8 @@ export async function rebuildVerified(opts: { refreshChunks?: boolean } = {}): P
   const base = JSON.parse(readFileSync(BASE, 'utf8')) as Snapshot
   const overlay = loadOverlay()
   const reclas = loadReclassifications()
-  const items = mergeVerified(base.items, overlay, reclas)
+  const reanclajes = loadReanchors()
+  const items = mergeVerified(base.items, overlay, reclas, reanclajes)
 
   // Los tres desenlaces de cada reclasificación, a la vista en cada rebuild:
   // «no encontrada» u «obsoleta» plegadas en «aplicada» serían el verde hueco
@@ -220,6 +234,19 @@ export async function rebuildVerified(opts: { refreshChunks?: boolean } = {}): P
   for (const id of reclasOutcomes.obsoletas) {
     process.stderr.write(
       `[rebuild] reclasificación de ${id}: OBSOLETA — la base ya no dice el tipo registrado en from\n`,
+    )
+  }
+
+  // Los mismos tres desenlaces para los reanclajes. Una entrada obsoleta —la
+  // base cambió el literal por su cuenta— tiene que verse: significa que la
+  // declaración volvió a quedarse sin la corrección que un curador firmó.
+  const reancOutcomes = reanchorOutcomes(base.items, reanclajes)
+  for (const id of reancOutcomes.sinClaim) {
+    process.stderr.write(`[rebuild] reanclaje de ${id}: el claim ya no está en la base\n`)
+  }
+  for (const id of reancOutcomes.obsoletas) {
+    process.stderr.write(
+      `[rebuild] reanclaje de ${id}: OBSOLETO — la base ya no dice el literal registrado en from\n`,
     )
   }
 
@@ -312,5 +339,6 @@ export async function rebuildVerified(opts: { refreshChunks?: boolean } = {}): P
     byVerdict,
     overlayApplied,
     reclassApplied: reclasOutcomes.aplicadas.length,
+    reanchorApplied: reancOutcomes.aplicadas.length,
   }
 }

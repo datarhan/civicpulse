@@ -7,11 +7,12 @@
  * deterministic re-run rebuilds the base and re-applies the overlay — it can no
  * longer clobber second-pass or curator decisions.
  *
- * A third, optional layer joined later: `pleno-claim-reclassifications.json`,
- * the curator sidecar for a claim whose TYPE the extractor got wrong (the
- * overlay owns verdicts and deliberately cannot touch the claim). Same merge
- * discipline: the base stays machine-reproducible, the sidecar is committed and
- * precious, and any rebuild re-applies it.
+ * Two more optional layers joined later, both curator sidecars for a field the
+ * overlay deliberately cannot touch (it owns verdicts, not the claim):
+ * `pleno-claim-reclassifications.json` for a claim whose TYPE the extractor got
+ * wrong, and `pleno-claim-reanchors.json` for one whose VERBATIM it mis-quoted.
+ * Same merge discipline in all cases: the base stays machine-reproducible, the
+ * sidecar is committed and precious, and any rebuild re-applies it.
  *
  * Pure module — no fs, no Date (callers pass timestamps). See
  * docs/superpowers/specs/2026-06-23-factcheck-rebuild-p2-design.md.
@@ -19,6 +20,10 @@
 import { ALLOWED_CLAIM_TYPES, type ClaimType, type PlenoClaim } from './pleno-claim'
 import type { ClaimVerdict, ClaimVerification, ClaimEvidence } from './claim-verifier'
 import { corpusReales } from './claim-verdicts'
+// El mismo descuento de palabras vacías que usa la cola de reanclaje de
+// `/hallazgos`. Importado, no recitado: dos listas de stopwords que midieran
+// distinto harían que el CLI aceptara lo que la cola desaconseja.
+import { contentWords } from './quote-reanchor'
 
 export interface VerifiedItem {
   claim: PlenoClaim
@@ -111,26 +116,40 @@ function reclassifiedClaim(claim: PlenoClaim, type: ClaimType): PlenoClaim {
 
 /**
  * base items in their original order; for each, the overlay entry (matched by
- * claimId) replaces the verification when present, and the reclassification
- * entry (matched by claimId, and only while `claim.type` still equals the
- * recorded `from`) replaces the claim's type. Entries whose claimId is absent
- * from base are dropped (the claim was removed upstream). Evidence is deduped
- * on the way out (base- AND overlay-origin), so the published monolith + chunks
- * never carry a citation twice.
+ * claimId) replaces the verification when present, the reclassification entry
+ * replaces the claim's type, and the reanchor entry replaces its verbatim. Both
+ * sidecars apply only while the claim still shows the state they recorded in
+ * `from` — a base that moved upstream makes the entry stale, not silently
+ * re-applied to something the curator never judged. Entries whose claimId is
+ * absent from base are dropped (the claim was removed upstream). Evidence is
+ * deduped on the way out (base- AND overlay-origin), so the published monolith
+ * + chunks never carry a citation twice.
+ *
+ * Los dos sidecars tocan campos distintos del mismo objeto y se COMPONEN: un
+ * claim reclasificado y reanclado sale con las dos correcciones. Escribirlos
+ * como un `else if` —que es como salió la primera versión— habría hecho que
+ * aplicar el segundo deshiciera el primero en silencio.
  */
 export function mergeVerified(
   baseItems: VerifiedItem[],
   overlay: Overlay,
   reclassifications?: Reclassifications,
+  reanchors?: Reanchors,
 ): VerifiedItem[] {
   const entries = overlay?.entries ?? {}
   const reclas = reclassifications?.entries ?? {}
+  const reanc = reanchors?.entries ?? {}
   return baseItems.map((it) => {
     const e = entries[it.claim.id]
     const verification = withDedupedEvidence(e ? e.verification : it.verification)
     const r = reclas[it.claim.id]
-    const claim =
+    let claim =
       r != null && it.claim.type === r.from ? reclassifiedClaim(it.claim, r.type) : it.claim
+    const a = reanc[it.claim.id]
+    // Contra `it.claim.verbatim`, no contra `claim.verbatim`: la reclasificación
+    // no toca el literal, y comparar contra el intermedio ataría dos estratos
+    // que son independientes a propósito.
+    if (a != null && it.claim.verbatim === a.from) claim = reanchoredClaim(claim, a.verbatim)
     return verification === it.verification && claim === it.claim ? it : { claim, verification }
   })
 }
@@ -518,4 +537,234 @@ export function cotejarCompose(input: {
     'lo publicado es MÁS NUEVO que su base, y el rebuild copia el sello del base: ' +
       'o se editó a mano o el base retrocedió',
   )
+}
+
+// ─── El cuarto estrato: el literal ──────────────────────────────────────────
+//
+// El overlay manda sobre los VEREDICTOS, las reclasificaciones sobre el TIPO, y
+// este sidecar sobre el único campo que dice QUÉ dijo alguien: `verbatim`.
+//
+// Nace de lo que `check:claim-provenance` lleva contando desde el 3-09-2026 y
+// la puerta de `claim-public-gate.ts` acabó reteniendo: siete declaraciones
+// publicadas cuyo literal no aparece en ninguna transcripción que tengamos.
+// Cuatro de las siete NO son citas inventadas. Medido el 4-09-2026 contra los
+// textos, con lo publicado a la izquierda y el acta a la derecha:
+//
+//   10yl550-265  «…en el año 2026, hemos comprobado»  «…en el año 2026, AÑO DE
+//                                                      FERIA, hemos comprobado»
+//   k4olcs-096   «se APROBÓ unanimidad»               «se HA APROBADO unanimidad»
+//   qz6weg-024   «ESA prolongación en el 2023 2024»   «ESTA prolongación…»
+//   1tgd1h4-197  «INDICAR si se graban»               «INDICANDO si se graban»
+//
+// El extractor recorta y flexiona al citar. Eso no es una confabulación: es un
+// literal mal anclado, y la diferencia decide qué se hace con él. Retirarlas
+// para siempre le cobra al lector un fallo de nuestro extractor; dejarlas
+// publicadas pone entre comillas unas palabras que nadie pronunció. Reanclarlas
+// es la tercera salida, y la única que no miente en ninguna de las dos
+// direcciones.
+//
+// Por qué un sidecar y no arreglar la base: re-extraer vuelve a acuñar los ids
+// —el hash va sobre el prefijo del verbatim— y pierde la atribución de bloc,
+// que no se puede reconstruir (los mapas de voces no existen). Es la misma
+// razón por la que existen los otros dos estratos, aplicada al tercer campo.
+//
+// QUÉ IMPIDE QUE ESTO SEA UNA MÁQUINA DE REESCRIBIR CITAS
+//
+// Tres cosas, y sólo la última depende de que alguien se porte bien:
+//
+//  1. La puerta de publicación NO se fía de este fichero. `chunk-pleno-claims`
+//     recalcula la procedencia contra las transcripciones en cada compilación,
+//     así que un reanclaje que apunte a un texto que no existe deja la
+//     declaración retenida igual que estaba. Un mal reanclaje no publica nada.
+//  2. `from` fija el estado observado. Si la base cambia el literal por su
+//     cuenta, la entrada queda OBSOLETA y se salta contada, en vez de aplicarse
+//     sobre algo que el curador nunca juzgó.
+//  3. `RETENCION_MINIMA` exige que el literal nuevo conserve las palabras con
+//     contenido del viejo. No distingue un acierto de un casi-acierto —para eso
+//     está la persona y su motivo—; impide la sustitución gruesa, que es
+//     cambiar una cita por otro pasaje del mismo pleno.
+
+/**
+ * Cuánto del literal viejo sobrevive en el nuevo, medido en palabras con
+ * contenido (0–1). Las vacías se descuentan por lo mismo que en
+ * `quote-reanchor.ts`: «de la que en el» lo comparte cualquier par de frases.
+ *
+ * Se mide en esta dirección —viejo dentro de nuevo— porque lo que hay que
+ * proteger es lo que ya está publicado: un reanclaje puede AÑADIR palabras que
+ * el extractor se dejó (los cuatro casos reales lo hacen), pero no puede
+ * llevarse por delante aquello de lo que la declaración hablaba.
+ */
+export function retencionLexica(from: string, verbatim: string): number {
+  const viejas = new Set(contentWords(from))
+  if (viejas.size === 0) return 1
+  const nuevas = new Set(contentWords(verbatim))
+  let vivas = 0
+  for (const w of viejas) if (nuevas.has(w)) vivas += 1
+  return vivas / viejas.size
+}
+
+/**
+ * El suelo, y lo que NO es.
+ *
+ * Medido sobre los seis literales de este corpus que sí se pueden situar en un
+ * acta: los cuatro reanclajes buenos dan 1,00 · 1,00 · 0,75 · 0,67 (las dos
+ * cifras bajas son cambios de flexión —«aprobó»/«aprobado»,
+ * «indicar»/«indicando»— que cuentan como palabra distinta), y las dos
+ * soldaduras que un humano tiene que resolver dan 0,60 y 0,50.
+ *
+ * El corte NO va en el hueco entre 0,67 y 0,60: siete puntos de separación en
+ * una muestra de seis casos no discriminan nada, y fingir que sí sería inventar
+ * un umbral con aire de medición. Va en 0,6 porque ahí ataja la sustitución
+ * GRUESA —reanclar sobre un pasaje distinto del mismo pleno, que cae cerca de
+ * cero— y deja pasar lo que un curador tiene que mirar de todas formas. Quien
+ * decide sigue siendo la persona que escribe el motivo; esto sólo se niega a
+ * ser la vía por la que una cita se convierte en otra sin que nadie lo note.
+ */
+export const RETENCION_MINIMA = 0.6
+
+/** El mínimo de `PlenoClaim.verbatim`, que este estrato no puede rebajar. */
+const VERBATIM_MINIMO = 20
+
+/**
+ * Un reanclaje de curador. `from` guarda el literal publicado del que se movió:
+ * la entrada corrige un estado OBSERVADO, igual que `ReclassificationEntry`.
+ */
+export interface ReanchorEntry {
+  /** El literal corregido, tal y como consta en la transcripción. */
+  verbatim: string
+  /** El literal publicado del que se movió (rastro de auditoría). */
+  from: string
+  /** Dónde consta: `current` o el nombre del fichero en `superseded/`. */
+  fuente: string
+  /** Los motivos del curador, ≥20 caracteres. */
+  reason: string
+  editor?: string
+  appliedAt: string
+}
+
+export interface Reanchors {
+  version: number
+  generatedAt: string
+  entries: Record<string, ReanchorEntry>
+}
+
+/**
+ * Revienta con un sidecar malformado. Se llama al ESCRIBIR y al LEER —igual que
+ * sus dos hermanas— para que un fichero editado a mano no pueda mover lo que el
+ * CLI no movería.
+ */
+export function validateReanchors(r: Reanchors): void {
+  if (!r || typeof r.version !== 'number' || !r.entries || typeof r.entries !== 'object') {
+    throw new Error('[reanchor] malformed: missing version/entries')
+  }
+  for (const [id, e] of Object.entries(r.entries)) {
+    if (!e || typeof e !== 'object') throw new Error(`[reanchor] ${id}: entry not an object`)
+    if (typeof e.verbatim !== 'string' || e.verbatim.trim().length < VERBATIM_MINIMO) {
+      throw new Error(`[reanchor] ${id}: verbatim needs at least ${VERBATIM_MINIMO} chars`)
+    }
+    if (typeof e.from !== 'string' || e.from.length === 0) {
+      throw new Error(`[reanchor] ${id}: missing from — nothing to detect staleness against`)
+    }
+    if (e.verbatim.trim() === e.from.trim()) {
+      throw new Error(`[reanchor] ${id}: verbatim equals from — nothing is being re-anchored`)
+    }
+    if (typeof e.fuente !== 'string' || e.fuente.length === 0) {
+      throw new Error(`[reanchor] ${id}: missing fuente — a re-anchor names the text it anchors to`)
+    }
+    if (!e.reason || e.reason.trim().length < 20) {
+      throw new Error(`[reanchor] ${id}: needs a reason of at least 20 chars`)
+    }
+    if (typeof e.appliedAt !== 'string') throw new Error(`[reanchor] ${id}: missing appliedAt`)
+    const retenido = retencionLexica(e.from, e.verbatim)
+    if (retenido < RETENCION_MINIMA) {
+      throw new Error(
+        `[reanchor] ${id}: el literal nuevo sólo conserva ${(retenido * 100).toFixed(0)} % de las ` +
+          `palabras con contenido del publicado (mínimo ${RETENCION_MINIMA * 100} %). ` +
+          'Un reanclaje corrige cómo se citó una frase; esto sustituye una frase por otra.',
+      )
+    }
+  }
+}
+
+/** Reancla un claim: literal reemplazado, todo lo demás —id incluido— intacto. */
+function reanchoredClaim(claim: PlenoClaim, verbatim: string): PlenoClaim {
+  return { ...claim, verbatim }
+}
+
+export interface ApplyReanchor {
+  claimId: string
+  verbatim: string
+  fuente: string
+  reason: string
+  editor?: string
+}
+
+/**
+ * Añade/reemplaza entradas de reanclaje (puro — devuelve un sidecar nuevo).
+ *
+ * Se juzga contra el corpus PUBLICADO que pasa el llamante, y hay una negativa
+ * que no es obvia y sí es la importante: **un claim con bloc atribuido no se
+ * reancla**. La atribución sale de `resolveBloc(raw.verbatim)` en el extractor,
+ * o sea que está DERIVADA de las mismas palabras que el reanclaje sustituye;
+ * moverlas dejaría un partido colgado de una frase que el mapa de voces nunca
+ * emparejó. Quien quiera reanclar una de ésas retira antes la atribución con
+ * `npm run retract-attribution`, que es el CLI que sí es dueño de ese campo, y
+ * entonces vuelve. Hoy no le toca a ninguna de las siete retenidas —todas
+ * llevan `speakerGroup: null`—, y por eso mismo conviene que esté escrito antes
+ * de que le toque a alguna.
+ */
+export function applyReanchorEntries(
+  reanchors: Reanchors,
+  entries: ApplyReanchor[],
+  stampIso: string,
+  publicado: ReadonlyMap<string, { verbatim: string; speakerGroup: string | null }>,
+): Reanchors {
+  const next: Reanchors = {
+    version: reanchors?.version ?? 1,
+    generatedAt: stampIso,
+    entries: { ...(reanchors?.entries ?? {}) },
+  }
+  for (const e of entries) {
+    const actual = publicado.get(e.claimId)
+    if (!actual) throw new Error(`[reanchor] ${e.claimId}: not found in the published corpus`)
+    if (actual.speakerGroup) {
+      throw new Error(
+        `[reanchor] ${e.claimId}: la declaración está atribuida a ${actual.speakerGroup}, y esa ` +
+          'atribución se resolvió sobre el literal que quieres sustituir. Retírala primero con ' +
+          '`npm run retract-attribution` y vuelve.',
+      )
+    }
+    next.entries[e.claimId] = {
+      verbatim: e.verbatim,
+      from: actual.verbatim,
+      fuente: e.fuente,
+      reason: e.reason,
+      ...(e.editor ? { editor: e.editor } : {}),
+      appliedAt: stampIso,
+    }
+  }
+  validateReanchors(next)
+  return next
+}
+
+/**
+ * Qué hizo el merge con cada reanclaje: los tres desenlaces por separado, por lo
+ * mismo que en `reclassificationOutcomes` — plegar «no encontrada» dentro de
+ * «aplicada» es el verde hueco de la regla 2 de DATA_INTEGRITY.
+ */
+export function reanchorOutcomes(
+  baseItems: VerifiedItem[],
+  reanchors: Reanchors,
+): { aplicadas: string[]; obsoletas: string[]; sinClaim: string[] } {
+  const byId = new Map(baseItems.map((it) => [it.claim.id, it]))
+  const aplicadas: string[] = []
+  const obsoletas: string[] = []
+  const sinClaim: string[] = []
+  for (const [id, e] of Object.entries(reanchors?.entries ?? {})) {
+    const item = byId.get(id)
+    if (item == null) sinClaim.push(id)
+    else if (item.claim.verbatim !== e.from) obsoletas.push(id)
+    else aplicadas.push(id)
+  }
+  return { aplicadas, obsoletas, sinClaim }
 }
