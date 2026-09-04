@@ -232,6 +232,7 @@ export const CATALOGUE = {
     'map.poi.title': 'Servicios públicos',
     'map.poi.source': 'OpenStreetMap · datos abiertos',
     'map.flood.title': 'Riesgo de inundación',
+    'map.flood.loading': 'cargando tramas…',
     'map.incendios.title': 'Incendios forestales',
     'map.incendios.serie': 'Serie de incendios',
 
@@ -796,6 +797,7 @@ export const CATALOGUE = {
     'map.poi.title': 'Serveis públics',
     'map.poi.source': 'OpenStreetMap · dades obertes',
     'map.flood.title': 'Risc d’inundació',
+    'map.flood.loading': 'carregant trames…',
     'map.incendios.title': 'Incendis forestals',
     'map.incendios.serie': 'Sèrie d’incendis',
 
