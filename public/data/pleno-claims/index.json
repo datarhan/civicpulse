@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T19:29:16.755Z",
+  "generatedAt": "2026-09-04T14:03:29.009Z",
   "version": "1",
   "plenos": [
     {
@@ -7,10 +7,10 @@
       "plenoDate": "2026-07-27",
       "chunkPath": "pleno-claims/15uvjew.json",
       "itemCount": 283,
-      "toggleCount": 277,
+      "toggleCount": 278,
       "byVerdict": {
-        "sin-datos": 275,
-        "parcial": 7,
+        "sin-datos": 276,
+        "parcial": 6,
         "verificado": 1
       },
       "byType": {
@@ -34,7 +34,7 @@
         "movilidad": 4,
         "salud": 1
       },
-      "bytes": 415313
+      "bytes": 415387
     },
     {
       "plenoId": "brxx5g",
@@ -619,14 +619,13 @@
     "items": 4664,
     "plenos": 22,
     "byVerdict": {
-      "sin-datos": 4649,
-      "parcial": 13,
+      "sin-datos": 4650,
+      "parcial": 12,
       "verificado": 2
     },
     "byTopicVerdict": {
       "cultura": {
-        "sin-datos": 205,
-        "parcial": 1
+        "sin-datos": 206
       },
       "empleo": {
         "sin-datos": 203
@@ -795,7 +794,7 @@
     },
     "sinDatosPorque": {
       "sinCorpus": 2804,
-      "comprobadoSinHallar": 1845
+      "comprobadoSinHallar": 1846
     }
   }
 }
