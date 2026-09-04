@@ -28,6 +28,7 @@ import {
   type ProvenanceRow,
 } from '../src/scraper/claim-provenance'
 import { alignSpeakerMap, blocResolverFor } from '../src/scraper/speaker-map-align'
+import { loadSupersededTexts } from './lib/transcript-corpus'
 import { parseDiarizedTranscript } from '../src/scraper/voice-id'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -50,6 +51,23 @@ interface Detail extends ProvenanceRow {
   fresh: string | null
 }
 
+/**
+ * Cuántas retiró la puerta de publicación por falta de procedencia, según el
+ * manifiesto que ella misma escribe. Se lee, no se recalcula: recalcularlo aquí
+ * sería un segundo decisor sobre la misma pregunta, y dos decisores es como
+ * empiezan a discrepar la puerta y el parte.
+ */
+function manifestRetenidasSinProcedencia(): number {
+  const raw = read(join(CLAIMS, 'index.json'))
+  if (raw === null) return 0
+  try {
+    const m = JSON.parse(raw) as { totals?: { retenidasSinProcedencia?: number } }
+    return m.totals?.retenidasSinProcedencia ?? 0
+  } catch {
+    return 0
+  }
+}
+
 function main() {
   const onlyPleno = arg('--pleno')
   const listWanted = arg('--list')
@@ -66,7 +84,12 @@ function main() {
     plenosSeen += 1
 
     const current = read(join(TRANSCRIPTS, `${plenoId}.txt`))
-    const superseded = read(join(TRANSCRIPTS, 'superseded', `${plenoId}.txt`))
+    // TODAS las sustituidas, no sólo la principal: una sesión se re-transcribe
+    // más de una vez y el archivo guarda una por ranura. Leyendo sólo
+    // `<id>.txt` esta comprobación daba «sin rastro» a tres citas cuya
+    // procedencia estaba archivada en la ranura que la segunda
+    // re-transcripción había pisado.
+    const superseded = loadSupersededTexts(plenoId, join(TRANSCRIPTS, 'superseded'))
     if (current === null) plenosWithoutTranscript += 1
 
     // El mapa de voces es opcional y su ausencia NO es un desacuerdo: sin él
@@ -132,6 +155,22 @@ function main() {
   for (const [k, label] of P) {
     console.log(`    ${String(t.provenance[k] ?? 0).padStart(5)}  ${k.padEnd(18)} ${label}`)
   }
+  // Lo que la puerta de publicación se llevó por este mismo motivo.
+  //
+  // Sin esta línea, retirar una cita sin procedencia dejaría esta comprobación
+  // en verde sin que nadie supiera que existe: lee `public/data/pleno-claims/`,
+  // que es justo de donde la puerta las quita. Verde por no medir, otra vez.
+  // Se dice, y no bloquea: no publicarlas ES el arreglo.
+  const retenidas = manifestRetenidasSinProcedencia()
+  if (retenidas > 0) {
+    console.log(
+      `\n  ${String(retenidas).padStart(5)}  retenidas          su literal no consta en ninguna ` +
+        `transcripción, así que la\n` +
+        `         puerta de publicación NO las publica (chunk-pleno-claims). No cuentan\n` +
+        `         arriba porque esto audita lo publicado.`,
+    )
+  }
+
   console.log('\n  atribución frente al mapa de voces de hoy')
   const A: Array<[AttributionOutcome, string]> = [
     ['coincide', 'lo publicado es lo que sostiene la evidencia'],

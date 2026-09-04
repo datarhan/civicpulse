@@ -385,9 +385,33 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
   # re-transcription rewrites punctuation, proper nouns and segmentation — so
   # an honest citation stops matching the file it came from. Without the old
   # text, `check:finding-quotes` cannot tell that apart from a fabrication.
+  #
+  # Y no se pisa la anterior. Una sesión se re-transcribe más de una vez, y este
+  # `cp` sobreescribía la ranura: k4olcs pasó por aquí el 24-abr, el 28-abr y el
+  # 1-ago-2026, y la segunda vez se llevó por delante el texto del que se habían
+  # sacado citas publicadas. Medido el 4-09-2026: tres declaraciones del corpus
+  # publicado sin procedencia por esto, dos de ellas a nombre del PSOE. Se
+  # recuperaron de git, que es suerte y no diseño.
+  #
+  # Antes de ocupar la ranura principal, la que hubiera se aparta con la fecha
+  # de hoy. Ver src/scraper/superseded-archive.ts para la convención de nombres.
   if [ -f "$OUT_PATH" ]; then
-    mkdir -p "$(dirname "$OUT_PATH")/superseded"
-    cp "$OUT_PATH" "$(dirname "$OUT_PATH")/superseded/$(basename "$OUT_PATH")"
+    SUPERSEDED_DIR="$(dirname "$OUT_PATH")/superseded"
+    SUPERSEDED_MAIN="$SUPERSEDED_DIR/$(basename "$OUT_PATH")"
+    mkdir -p "$SUPERSEDED_DIR"
+    # Idéntica no se aparta: apartarla llenaría la carpeta de copias del mismo
+    # texto cada vez que una re-transcripción sale byte a byte igual.
+    if [ -f "$SUPERSEDED_MAIN" ] && ! cmp -s "$SUPERSEDED_MAIN" "$OUT_PATH"; then
+      ROTADA="${SUPERSEDED_MAIN%.txt}.$(date -u +%Y-%m-%d).txt"
+      n=1
+      while [ -e "$ROTADA" ]; do
+        ROTADA="${SUPERSEDED_MAIN%.txt}.$(date -u +%Y-%m-%d)-${n}.txt"
+        n=$((n + 1))
+      done
+      mv "$SUPERSEDED_MAIN" "$ROTADA"
+      echo "[transcribe] la sustituida anterior se aparta en $(basename "$ROTADA")" >&2
+    fi
+    cp "$OUT_PATH" "$SUPERSEDED_MAIN"
   fi
   # Record what this cost, so `npm run llm:cost` can see it.
   #
