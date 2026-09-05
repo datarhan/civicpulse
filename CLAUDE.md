@@ -384,6 +384,23 @@ worktree, only by invoking it directly. And a config flag on a worktree lives in
 its own `config.worktree`: a leftover pattern file with the flag still `true` is
 not inert, it is primed.
 
+**This working tree is never quiet, so a tree-moving git command is a write to
+something else's file.** Five launchd agents run against this checkout on their
+own schedule, write `public/data/`, and end with their own `git commit` + `git
+push origin main`. On 2026-09-05 a `git stash push` on one speaker map — meant
+as a harmless A/B of a curated change — sat for twelve minutes while the
+`hallazgos` agent started the extractor for that same session. The extractor
+resumes from the file on disk, so it read the stashed-away version and restarted
+from 299 segments instead of 655. The worse loss was the measurement itself: the
+"before" and "after" halves fell on opposite sides of a live rewrite, so the
+numbers described the cron's progress rather than the change under test.
+**To compare two versions, copy them aside (`git show HEAD:<path>` and `cp`) —
+never move the tree.** `.claude/hooks/live-tree-paths.mjs` asks before a
+tree-moving command (and before a `git push`, which races the agents' own) and
+is silent when nothing is running, so it costs nothing on a quiet machine. It
+derives the running set from the process table rather than a roster, because a
+hand-kept list inside a control against stale state goes stale itself.
+
 A second hook clears the same bar for a different failure: **prose goes stale
 when the data moves**. Three sentences on `/eficiencia`, `/metodologia` and the
 municipal panel each kept asserting something that had stopped being true one
