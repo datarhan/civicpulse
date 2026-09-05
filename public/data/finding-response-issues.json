@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-27T12:52:53.534Z",
+  "generatedAt": "2026-09-04T09:34:35.309Z",
   "repo": "datarhan/civicpulse",
   "issueCount": 0,
-  "error": "GitHub 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/issues/issues#list-repository-issues\",\"status\":\"404\"}",
+  "error": "GitHub 404 on datarhan/civicpulse (no GITHUB_TOKEN). Repo may be private — set GITHUB_TOKEN in .env, or override the path with GITHUB_REPO=<owner>/<repo>.",
   "issues": []
 }

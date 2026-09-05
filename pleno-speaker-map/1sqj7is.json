@@ -1,6 +1,6 @@
 {
   "plenoId": "1sqj7is",
-  "generatedAt": "2026-08-31T16:20:01.359Z",
+  "generatedAt": "2026-09-05T08:21:29.042Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -1798,9 +1798,5038 @@
       "end": 1762,
       "speaker": "c02/SPEAKER_00",
       "text": "José Ángel."
+    },
+    {
+      "start": 3000,
+      "end": 3005.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "es igual, en la fiscalización, en las propuestas por parte de los técnicos. En fin,"
+    },
+    {
+      "start": 3005.1,
+      "end": 3010.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "no voy a continuar. Yo creo, y le digo a la ciudadanía,"
+    },
+    {
+      "start": 3010.1,
+      "end": 3012.9,
+      "speaker": "c05/SPEAKER_00",
+      "text": "que no es así, que lo que lleva esto es un control máximo."
+    },
+    {
+      "start": 3012.9,
+      "end": 3017.9,
+      "speaker": "c05/SPEAKER_00",
+      "text": "Solo falta que algo que el Estado y que Europa, como herramienta para más,"
+    },
+    {
+      "start": 3017.9,
+      "end": 3021.9,
+      "speaker": "c05/SPEAKER_00",
+      "text": "sea más eficaz, más eficiente y más transparente, lo volvamos a complicar."
+    },
+    {
+      "start": 3021.9,
+      "end": 3027.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "Y entonces, pues, lo que es una herramienta buena, pues la tengamos que tirar a la basura,"
+    },
+    {
+      "start": 3027.1,
+      "end": 3031.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "según el Partido Popular. Entonces, de verdad, yo, yo les,"
+    },
+    {
+      "start": 3031.1,
+      "end": 3035.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "les convino a que no, no con los políticos, sino con los técnicos,"
+    },
+    {
+      "start": 3035.1,
+      "end": 3039.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "sobre todo con el área de contratación, a la que les agradezco el trabajo"
+    },
+    {
+      "start": 3039.1,
+      "end": 3043.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "del servicio de Ribalicit, la atención que están prestando a los licitadores,"
+    },
+    {
+      "start": 3043.1,
+      "end": 3047.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "sobre todo a comercios y a pequeñas empresas. Si es que esto lo que le facilita"
+    },
+    {
+      "start": 3047.1,
+      "end": 3051.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "a las pequeñas empresas poder participar, ¿eh? Pero participan en un sistema"
+    },
+    {
+      "start": 3051.1,
+      "end": 3055.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "en lo que, por una parte, está el servicio que se quiere hacer y, por otra parte,"
+    },
+    {
+      "start": 3055.1,
+      "end": 3059.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "las condiciones de esa licitación con su precio público. Pero vamos,"
+    },
+    {
+      "start": 3059.1,
+      "end": 3063.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "más abierto que esto, poco hay, poco hay. Entonces, yo les invito"
+    },
+    {
+      "start": 3063.1,
+      "end": 3067.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "a que, en cualquier caso, que sean los, ustedes con, con los técnicos"
+    },
+    {
+      "start": 3067.1,
+      "end": 3071.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "del Ayuntamiento, que les expliquen realmente de qué van los sistemas dinámicos de adquisición."
+    },
+    {
+      "start": 3071.1,
+      "end": 3072.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "Gracias."
+    },
+    {
+      "start": 3072.1,
+      "end": 3074.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "Té la paraula el senyor Salvador."
+    },
+    {
+      "start": 3074.1,
+      "end": 3078.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Gracias. Yo creo que mi intervención, quizá no, quizá a lo mejor"
+    },
+    {
+      "start": 3078.1,
+      "end": 3082.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "no yo lo haya visto de una forma distinta, pero he intentado ser bastante cauteloso y comedido, ¿eh?"
+    },
+    {
+      "start": 3082.1,
+      "end": 3087.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Es decir, el hecho de que usted diga que el Partido Popular quiere tirar"
+    },
+    {
+      "start": 3087.1,
+      "end": 3090.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "esta herramienta a la basura me deja anodadado."
+    },
+    {
+      "start": 3090.1,
+      "end": 3095.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Es decir, yo creo que he empezado, y si no, rectifico, diciendo que es una herramienta"
+    },
+    {
+      "start": 3095.1,
+      "end": 3100.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "que puede ser útil. Pero mire, le voy a ser claro, porque creo que si soy comedido,"
+    },
+    {
+      "start": 3100.1,
+      "end": 3104.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "usted no me entiende. A nosotros el miedo que nos da es su gestión,"
+    },
+    {
+      "start": 3104.1,
+      "end": 3106.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "porque gestionan mal."
+    },
+    {
+      "start": 3106.1,
+      "end": 3111.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Gestionan mal. La herramienta es buena, el gobierno malo."
+    },
+    {
+      "start": 3111.1,
+      "end": 3115.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Ese es el problema y el miedo que tenemos nosotros. Y la herramienta yo creo que no hay que tirarla a la basura,"
+    },
+    {
+      "start": 3115.1,
+      "end": 3119.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "hay que utilizarla bien. Pero si un gobierno gestiona mal, pues da dudas,"
+    },
+    {
+      "start": 3119.1,
+      "end": 3123.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "tenemos dudas de que usted esta herramienta la utilicen bien, como han hecho"
+    },
+    {
+      "start": 3123.1,
+      "end": 3127.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "con todo lo que llevan haciendo con las extrajudiciales,"
+    },
+    {
+      "start": 3127.1,
+      "end": 3131.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "con los contratos, con los presupuestos, con muchas cosas."
+    },
+    {
+      "start": 3131.1,
+      "end": 3135.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Usted cree, quería un poco de bronca, pues oiga, bronca. Con bronca queda claro:"
+    },
+    {
+      "start": 3135.1,
+      "end": 3138.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "herramienta buena, gobierno malo. Gracias."
+    },
+    {
+      "start": 3138.1,
+      "end": 3141.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "Té la paraula el senyor José Ángel, una altra intervenció."
+    },
+    {
+      "start": 3141.1,
+      "end": 3144.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "Sí. Bueno, lo que ha dejado usted claro es que les da igual lo que traigamos al pleno,"
+    },
+    {
+      "start": 3144.1,
+      "end": 3149.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "todo lo que hace este gobierno es malo y punto. Pues no es el gobierno, es el gobierno"
+    },
+    {
+      "start": 3149.1,
+      "end": 3153.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "y el equipo de gobierno y son los técnicos los que traen aquí pues propuestas como esta,"
+    },
+    {
+      "start": 3153.1,
+      "end": 3157.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "que sirven para mejorar la forma de contratar, que sirven para reducir"
+    },
+    {
+      "start": 3157.1,
+      "end": 3161.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "los extrajudiciales. Pero como a ustedes les parece todo mal y es, y la cuestión es hacer ruido,"
+    },
+    {
+      "start": 3161.1,
+      "end": 3165.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "pues usted haga ruido, nosotros seguiremos trabajando para mejorar el sistema de contratación,"
+    },
+    {
+      "start": 3165.1,
+      "end": 3170.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "¿eh? Y agradeciéndole a los técnicos del Ayuntamiento estas fórmulas que sirven"
+    },
+    {
+      "start": 3170.1,
+      "end": 3174.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "para que los autónomos de su municipio y del mío puedan participar en la contratación pública,"
+    },
+    {
+      "start": 3174.1,
+      "end": 3176.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "por ejemplo. Gracias."
+    },
+    {
+      "start": 3176.1,
+      "end": 3181.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "Bueno, pues, eh, jo, jo, pensava que, bueno, jo m'he apuntat dos coses ací que ha dit el,"
+    },
+    {
+      "start": 3181.1,
+      "end": 3184.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "el regidor del Partit Popular, i jo crec que, eh, per molt que un parle baixet,"
+    },
+    {
+      "start": 3184.1,
+      "end": 3188.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "a vegades lo que diu encara és més fort sí que si parla fort."
+    },
+    {
+      "start": 3188.1,
+      "end": 3192.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "Vosté ha qüestionat dos coses: la seguretat jurídica, m'he apuntat ací,"
+    },
+    {
+      "start": 3192.1,
+      "end": 3196.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "ha qüestionat el control, i ha dit que està és més eficient i més àgil."
+    },
+    {
+      "start": 3196.1,
+      "end": 3201.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "O siga, de la seua intervenció és un poc, eh, allò de,"
+    },
+    {
+      "start": 3201.1,
+      "end": 3205.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "de mesclar-ho tot, però clar, quan mescla el control i la seguretat, eh, està"
+    },
+    {
+      "start": 3205.1,
+      "end": 3209.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "traslladant-nos una responsabilitat que no deuria, ¿eh?"
+    },
+    {
+      "start": 3209.1,
+      "end": 3212.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "I aleshores deuria de ser prudent per molt baixet que parle."
+    },
+    {
+      "start": 3212.1,
+      "end": 3216.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "Vosté està dient ací que no controlem i que no té seguretat jurídica el que fem,"
+    },
+    {
+      "start": 3216.1,
+      "end": 3221.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "però que ara la ferramenta és més àgil i més eficient. Pues, contemple vosté la panna mental"
+    },
+    {
+      "start": 3221.1,
+      "end": 3225.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "que acaba de dir, salvo que vulga dir que nosaltres ho fem mal, que és lo que ha dit el tio Mora,"
+    },
+    {
+      "start": 3225.1,
+      "end": 3229.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "quan ja ha vingut la vena, que ho fem mal, que som oscurs, que, bueno, uf,"
+    },
+    {
+      "start": 3229.1,
+      "end": 3234.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "que no controlem i que, i eixe cap, eixe espès mant, sí, eixe espès manto"
+    },
+    {
+      "start": 3234.1,
+      "end": 3238.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "respecte a la honestedat d'este govern. I, per tant, vaig a ser molt clar amb vosté."
+    },
+    {
+      "start": 3238.1,
+      "end": 3243.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "Miren, respecte a este punt en concret, no sols és que hem avançat,"
+    },
+    {
+      "start": 3243.1,
+      "end": 3247.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "sinó que hem sigut pioners en tota Espanya, reconegut no per nosaltres,"
+    },
+    {
+      "start": 3247.1,
+      "end": 3251.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "pels tècnics i els ministeris corresponents. O siga, és una ferramenta innovadora,"
+    },
+    {
+      "start": 3251.1,
+      "end": 3256.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "que, a demés, els funcionaris públics, baix la directriu política,"
+    },
+    {
+      "start": 3256.1,
+      "end": 3260.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "perquè si no haguérem volgut, a lo millor no haguérem donat este, este pas,"
+    },
+    {
+      "start": 3260.1,
+      "end": 3264.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "perquè n'hi ha un govern, mal que li pese, que també ajuda a que els tècnics facen allò que tenen que fer,"
+    },
+    {
+      "start": 3264.1,
+      "end": 3268.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "que siguen creatius, innovadors, que proposen i que duguen davant té més seguretat jurídica que teníem,"
+    },
+    {
+      "start": 3268.1,
+      "end": 3272.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "té més control, és més eficient, és millor per a la butxaca dels nostres veïns i veïnes,"
+    },
+    {
+      "start": 3272.1,
+      "end": 3276.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "perquè competixen més, i damunt cada ajuntament fa el tràmit, per tant, això que ha volgut dir, no,"
+    },
+    {
+      "start": 3276.1,
+      "end": 3280.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "com n'hi ha més ajuntaments, els expedients, ah, perdone, al revés."
+    },
+    {
+      "start": 3280.1,
+      "end": 3284.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "I, per tant, en eixa política d'aliances que tenim des d'este ajuntament,"
+    },
+    {
+      "start": 3284.1,
+      "end": 3288.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "pues volem que els nostres autònoms puguen anar a presentar-se a L'Eliana, que en tenim més que en L'Eliana,"
+    },
+    {
+      "start": 3288.1,
+      "end": 3292.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "o en Llíria, que en tenim més que en Llíria, o les nostres pimes, que n'hi han més, i per això hem firmat acords amb L'Eliana i Llíria."
+    },
+    {
+      "start": 3292.1,
+      "end": 3297.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "Però si un vol fer una crítica, encara que siga moderada en el sentit del to,"
+    },
+    {
+      "start": 3297.1,
+      "end": 3301.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "però dura en el contingut sobre, sí, sobre el govern, sobre el govern,"
+    },
+    {
+      "start": 3301.1,
+      "end": 3305.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "pues aleshores té que tindre una contestació apel·lant a que, eh, qualsevol tipus de dubte que tinguen els nostres veïns,"
+    },
+    {
+      "start": 3305.1,
+      "end": 3309.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "dir-li: més transparència, molt més que tenia el PP, per supost. No vaig a parlar dels contractes com els feien,"
+    },
+    {
+      "start": 3309.1,
+      "end": 3313.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "sense publicitat, en fi, eixes qüestions que passen i que li passen a molts ajuntaments, ¿eh?"
+    },
+    {
+      "start": 3313.1,
+      "end": 3317.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "I nosaltres hem intentat tindre reduir i encara no ho hem aconseguit del tot, però ho anem a aconseguir,"
+    },
+    {
+      "start": 3317.1,
+      "end": 3321.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "poquet a poquet, reduir al màxim per a que els controls i fiscalització de, de, dels contractes siguen els més,"
+    },
+    {
+      "start": 3321.1,
+      "end": 3325.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "on més puguem arribar. Això també du problemes, perquè després du, pues que, com som molt garantistes,"
+    },
+    {
+      "start": 3325.1,
+      "end": 3329.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "n'hi han atrasos en els contractes, costa més, però quan prenem el pas, el prenem segur. Jo sí que"
+    },
+    {
+      "start": 3329.1,
+      "end": 3333.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "voldria que en eixa intervenció desvetlara els dos dubtes: n'hi ha més control,"
+    },
+    {
+      "start": 3333.1,
+      "end": 3337.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "n'hi ha més control i té absolutament seguretat jurídica. En això em quedaria"
+    },
+    {
+      "start": 3337.1,
+      "end": 3341.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "satisfet si en esta explicació vostés s'entraren prou. I si no, com ha dit el, el nostre regidor,"
+    },
+    {
+      "start": 3341.1,
+      "end": 3345.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "no parlen de la part política, que, que, en fi, que consideren que no es diuen les coses com toquen o fem lo que tenen que fer,"
+    },
+    {
+      "start": 3345.1,
+      "end": 3349.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "sinó que parlen de la part tècnica, vaigen a l'àrea de contractació i parlen amb eixa àrea i que els expliquen lo que és un SDA,"
+    },
+    {
+      "start": 3349.1,
+      "end": 3353.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "que repetisc que és un sistema pioner, que ens ha funcionat molt bé, que ha anat bé per als, sobretot per als pressupostos nostres i per als veïns i veïnes,"
+    },
+    {
+      "start": 3353.1,
+      "end": 3357.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "perquè estalviem diners i, sobretot també, els autònoms, les pimes de Riba-roja, que aixina cada dia pues mos demana més gent i des de"
+    },
+    {
+      "start": 3357.1,
+      "end": 3361.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "Ribalicit, insistisc, que és un contracte quasi personalitzat en empreses i que no ho tenia, no ho tenia cap ajuntament, ara ja van"
+    },
+    {
+      "start": 3361.1,
+      "end": 3365.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "ajuntaments adherint-se com nosaltres, pues és reconeguda a nivell de totes les de tota Espanya, eh, eh, bueno, i la secretària general"
+    },
+    {
+      "start": 3365.1,
+      "end": 3369.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "com a responsable màxima de contractació és la que ha anat a arreplegar, bueno, a arreplegar, a fer valdre pues eixe reconeixement que hem tingut, val?"
+    },
+    {
+      "start": 3369.1,
+      "end": 3373.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "I no, i no és suficient, anem a fer més i anem a treballar ací treballant perquè la contractació pública siga innovadora, siga transparent i que done bons resultats, val?"
+    },
+    {
+      "start": 3373.1,
+      "end": 3375.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "Passem a la, a la votació d'este punt, per favor."
+    },
+    {
+      "start": 3375.1,
+      "end": 3389.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "Bueno, tretze, tretze vots a favor i huit abstencions. Grup Socialista?"
+    },
+    {
+      "start": 3389.1,
+      "end": 3390.1,
+      "speaker": "c05/SPEAKER_03",
+      "text": "A favor."
+    },
+    {
+      "start": 3390.1,
+      "end": 3391.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "El Partit Popular?"
+    },
+    {
+      "start": 3391.1,
+      "end": 3392.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Abstención."
+    },
+    {
+      "start": 3392.1,
+      "end": 3393.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "Vox?"
+    },
+    {
+      "start": 3393.1,
+      "end": 3394.1,
+      "speaker": "c05/SPEAKER_04",
+      "text": "Abstención."
+    },
+    {
+      "start": 3394.1,
+      "end": 3395.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "Esquerra Unida Podem?"
+    },
+    {
+      "start": 3395.1,
+      "end": 3396.1,
+      "speaker": "c05/SPEAKER_05",
+      "text": "A favor."
+    },
+    {
+      "start": 3396.1,
+      "end": 3397.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "Compromís?"
+    },
+    {
+      "start": 3397.1,
+      "end": 3398.1,
+      "speaker": "c05/SPEAKER_06",
+      "text": "A favor."
+    },
+    {
+      "start": 3398.1,
+      "end": 3403.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "Passem al següent punt de l'ordre del dia, que és el cinqué: acord relatiu al sotmetiment d'informació pública de la versió inicial del PRI de la UA Casco 1."
+    },
+    {
+      "start": 3403.1,
+      "end": 3414.1,
+      "speaker": "c05/SPEAKER_01",
+      "text": "M'ha rigut un poc perquè això de l'urbanisme és, és, no és de risa, però du moltes, moltes fases, ara és una altra."
+    },
+    {
+      "start": 3414.1,
+      "end": 3416.1,
+      "speaker": "c05/SPEAKER_07",
+      "text": "Sí, vamos a hablar de gestión, esa que está siendo tan, tan nombrada, ¿no? En este caso de gestión urbanística."
+    },
+    {
+      "start": 3416.1,
+      "end": 3434.1,
+      "speaker": "c05/SPEAKER_07",
+      "text": "Bueno, pues, eh, vamos a hablar del sometimiento de información pública de la propuesta del Plan de Reforma Interior de la unidad de ejecución Casco 1."
+    },
+    {
+      "start": 3434.1,
+      "end": 3440.1,
+      "speaker": "c05/SPEAKER_07",
+      "text": "La unidad de ejecución Casco 1, para que nuestros vecinos la ubiquen, sería la parte que hay detrás del campo de fútbol, donde hay algunas viviendas ya."
+    },
+    {
+      "start": 3440.1,
+      "end": 3443.1,
+      "speaker": "c05/SPEAKER_07",
+      "text": "Esa parte, toda esa zona sería Casco 1."
+    },
+    {
+      "start": 3443.1,
+      "end": 3449.1,
+      "speaker": "c05/SPEAKER_07",
+      "text": "El Ayuntamiento, como órgano promotor, ha promovido la tramitación del referido plan e interviniendo también como órgano ambiental y territorial,"
+    },
+    {
+      "start": 3449.1,
+      "end": 3453.1,
+      "speaker": "c05/SPEAKER_07",
+      "text": "ha procedido a su evaluación ambiental y territorial estratégica."
+    },
+    {
+      "start": 3453.1,
+      "end": 3460.1,
+      "speaker": "c05/SPEAKER_07",
+      "text": "En agosto realizamos del 2022 se realizó el trámite del documento de inicio de evaluación ambiental y territorial y el borrador del PRI, el Plan de Reforma Interior,"
+    },
+    {
+      "start": 3460.1,
+      "end": 3462.1,
+      "speaker": "c05/SPEAKER_07",
+      "text": "¿vale? De esa unidad Casco 1."
+    },
+    {
+      "start": 3600,
+      "end": 3611.8,
+      "speaker": "c06/SPEAKER_00",
+      "text": "solicitado informes a diferentes administraciones afectadas, en este caso ha sido a ocho áreas, cinco de la Conselleria de Política Territorial, Obras Públicas y Movilidad, al Servicio Territorial de Urbanismo, al de Infraestructura Verde y Paisaje,"
+    },
+    {
+      "start": 3611.8,
+      "end": 3622.1,
+      "speaker": "c06/SPEAKER_00",
+      "text": "a la Estrategia Territorial de la Comunidad Valenciana, la Subdirección General de Movilidad, a la Subdirección General de Transporte, y también se han solicitado otros tres informes dentro de la Conselleria de Agricultura,"
+    },
+    {
+      "start": 3622.1,
+      "end": 3633.9,
+      "speaker": "c06/SPEAKER_00",
+      "text": "Desarrollo Rural, Emergencia Climática y Transición Ecológica, a la Subdirección General de Evaluación Ambiental, al Servicio Territorial Valenciano de Medio Ambiente y a la Entidad de Saneamiento de Aguas de la EPSAR, lo digo por el garantismo de las actuaciones y las gestiones que se hacen."
+    },
+    {
+      "start": 3633.9,
+      "end": 3643.1,
+      "speaker": "c06/SPEAKER_00",
+      "text": "Además de estas solicitudes de informe a administraciones supramunicipales, se han solicitado informes al Departamento de Calidad Ambiental, Área de Actividades,"
+    },
+    {
+      "start": 3643.1,
+      "end": 3657.4,
+      "speaker": "c06/SPEAKER_00",
+      "text": "y Área de Medio Ambiente y Paisaje, constando informe de urbanismo y de medio ambiente en el expediente que todos han podido ver. Se ha emitido también informe ambiental y territorial estratégico favorable en el procedimiento simplificado,"
+    },
+    {
+      "start": 3657.4,
+      "end": 3671.9,
+      "speaker": "c06/SPEAKER_00",
+      "text": "que por parte de la oficina técnica municipal también se ha redactado la propuesta de plan para su sometimiento al trámite de información pública, incluyéndose las conclusiones del trámite de evaluación ambiental y estratégico. Esta sería la siguiente fase, vale, la de la el plan de reforma interior."
+    },
+    {
+      "start": 3671.9,
+      "end": 3684.1,
+      "speaker": "c06/SPEAKER_00",
+      "text": "Visto el informe conjunto de la arquitecta municipal y el tag de urbanismo de fecha diecinueve de febrero de este año, y el informe de la secretaría municipal de fecha veinticuatro de febrero de este año también, y constando en el expediente la versión preliminar del plan,"
+    },
+    {
+      "start": 3684.1,
+      "end": 3691.9,
+      "speaker": "c06/SPEAKER_00",
+      "text": "proponemos al pleno los siguientes puntos. En primer lugar, someter al trámite de información pública por periodo de cuarenta y cinco días del PRI."
+    },
+    {
+      "start": 3691.9,
+      "end": 3697.4,
+      "speaker": "c06/SPEAKER_00",
+      "text": "En segundo, publicar anuncio en la dirección en el Diario Oficial de la Comunidad Valenciana indicando la dirección electrónica para su consulta."
+    },
+    {
+      "start": 3697.4,
+      "end": 3701.1,
+      "speaker": "c06/SPEAKER_00",
+      "text": "En tercer lugar, publicar el documento en la página web del ayuntamiento."
+    },
+    {
+      "start": 3701.1,
+      "end": 3707.9,
+      "speaker": "c06/SPEAKER_00",
+      "text": "Realizar consulta a la siguiente administración pública afectada, en este caso sería solamente del PRI, al Servicio Territorial de Urbanismo de la Conselleria de Vivienda, Obras Públicas"
+    },
+    {
+      "start": 3707.9,
+      "end": 3713.9,
+      "speaker": "c06/SPEAKER_00",
+      "text": "y Vertebración del Territorio. Y en quinto lugar, notificar el presente acuerdo a los propietarios del ámbito afectado. Nada más."
+    },
+    {
+      "start": 3713.9,
+      "end": 3715.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "El portavoz de Vox, ¿va a intervenir?"
+    },
+    {
+      "start": 3715.1,
+      "end": 3715.9,
+      "speaker": "c06/SPEAKER_02",
+      "text": "No."
+    },
+    {
+      "start": 3715.9,
+      "end": 3717.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "¿Alguna palabra?"
+    },
+    {
+      "start": 3717.1,
+      "end": 3719.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "¿Alguna cuestión más, Teresa?"
+    },
+    {
+      "start": 3719.1,
+      "end": 3733.9,
+      "speaker": "c06/SPEAKER_00",
+      "text": "Sí. Bueno, pues nada, seguir diciendo que seguimos adelante poco a poco con las unidades de ejecución. Ya comenté en el pleno pasado que trajimos Santa Santa Rosa dos, hoy en este pleno hemos traído Casco uno, son las dos unidades que en trámites"
+    },
+    {
+      "start": 3733.9,
+      "end": 3744.1,
+      "speaker": "c06/SPEAKER_00",
+      "text": "y porque son unidades de ejecución en las que tenemos muchas viviendas con zonas muy consolidadas y eso dificulta que esa unidad todo el trámite pues es más farragoso porque tienes que tener en cuenta la gente que ya vive,"
+    },
+    {
+      "start": 3744.1,
+      "end": 3754.1,
+      "speaker": "c06/SPEAKER_00",
+      "text": "las condiciones de las parcelas, intentar darles a todos una legalidad dentro de de esa posibilidad. Seguiremos también con las siguientes unidades de ejecución, es algo que traemos heredado, pero la responsabilidad de gobierno, como no"
+    },
+    {
+      "start": 3754.1,
+      "end": 3764.1,
+      "speaker": "c06/SPEAKER_00",
+      "text": "puede ser de otra forma, pues ahí tenemos que estar en estas unidades. Nos gustaría poder llevarlas todas a la vez, como muchas veces he comentado tenemos veintidós unidades afectadas e implicadas, en este caso las que van un poco en la rueda"
+    },
+    {
+      "start": 3764.1,
+      "end": 3774.1,
+      "speaker": "c06/SPEAKER_00",
+      "text": "son seis o siete las que vamos tramitando por el ayuntamiento y en este momento también decir que creo que lo comenté en el pleno pasado, que estamos teniendo iniciativas privadas y que eso podrá generar que tengamos otras unidades que también vayan siguiendo adelante porque"
+    },
+    {
+      "start": 3774.1,
+      "end": 3788.1,
+      "speaker": "c06/SPEAKER_00",
+      "text": "sí, eh no dejamos de de poner en la prioridad la situación que tenemos y la necesidad de vivienda, la hay en todo el país y en nuestro municipio de Riba-roja queremos fomentar lo máximo que podamos el que se pueda tener acceso a una vivienda, ya pueda ser unifamiliar, plurifamiliar, de la medida que se pueda. Gracias."
+    },
+    {
+      "start": 3788.1,
+      "end": 3800.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Gracias. Es importante este punto en el sentido que ha dicho la la regidora de Urbanismo, que por el tema porque afecta directamente a a poder eh pro- promocionar unidades que al final construyan sí en viviendas, ¿vale?"
+    },
+    {
+      "start": 3800.1,
+      "end": 3810.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Yo complementar un poco lo que decía Teresa porque me pregunta mucha gente en el Facebook, en en las redes, eh como es lógico, la preocupación que hay de todo el tema de la vivienda. Y como dice Teresa,"
+    },
+    {
+      "start": 3810.1,
+      "end": 3820.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "n'hi han tres tipus d'actuació que hem fet. Una és la vivenda que estava com a conseqüència del boom immobiliari de quan governava el Partit Popular, que ha anat tot per l'aire i, o siga, tot en els bancs i i crisis i a partir d'ahí, estem parlant del dos mil sis, dos mil set, dos mil huit, dos mil deu, ¿val?"
+    },
+    {
+      "start": 3820.1,
+      "end": 3832.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Eh, s'ha caigut molts llocs eh o vivendes de la SAREB, d'eixe banc primer que era un banco público-privado, seixanta per cent els bancs, quaranta per cent de del de l'Estat, després ha passat a ser tot de l'Estat i eh i tenim tres tipus d'actuació, les vivendes que ja tenien,"
+    },
+    {
+      "start": 3832.1,
+      "end": 3841.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "que este el SAREB i que estan totes en marxa en disposició de de la gent, ¿val? L'última la de les vint-i-dues de passatge Germanies, ¿no?"
+    },
+    {
+      "start": 3841.1,
+      "end": 3842.1,
+      "speaker": "c06/SPEAKER_00",
+      "text": "Sí, dentro del departamento de vivienda."
+    },
+    {
+      "start": 3842.1,
+      "end": 3853.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Vale, que hi han en Germanies que ja estan en marxa i en breu espere que ja n'hi hagen persones adjudicades i i famílies que tinguen eixes vivendes, que és lo que se demana tant d'Urbanisme com de l'àrea de Serveis Socials, ¿val? Per altra part, són eh"
+    },
+    {
+      "start": 3853.1,
+      "end": 3863.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "els solars del SAREB que anaven a ser eh en el seu moment unitats d'actuació, com també ha dit Teresa, eh per a fer vivendes i que també estem impulsant i és importantíssim perquè és el SAREB, insistisc que ara és eh tot el públic, i ahí se poden fer vivendes eh per a,"
+    },
+    {
+      "start": 3863.1,
+      "end": 3873.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "diríem, tindre una oferta important a Riba-roja perquè tenim molta demanda. També està en marxa i, com ha dit Teresa, n'hi han iniciativa privada per a poder dur-ho endavant."
+    },
+    {
+      "start": 3873.1,
+      "end": 3883.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Una altra que també és important i això afecta al Partit Popular i a Vox perquè governen la Generalitat o cogovernen o, en fi, se posen d'acord en la Generalitat, perquè hem oferit solars de l'ajuntament per a construir vivenda."
+    },
+    {
+      "start": 3883.1,
+      "end": 3893.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "I jo, bona part que vos corresponga, pues ahí teniu eh des de l'any dos mil vint-i-dos, vint-i-tres, solar que del poble se cedix per a fer vivendes públiques, ¿val? Estem mirant què fan alguns ajuntaments, depén, hem demanat una reunió, si mos atenen, eh ho du ja l'EVHA,"
+    },
+    {
+      "start": 3893.1,
+      "end": 3900.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "que era l'institut que duia el tema de la vivenda, però bueno, ahí n'hi ha tot una fórmula també de poder fer vivendes. I després està la part privada,"
+    },
+    {
+      "start": 3900.1,
+      "end": 3913.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "que ha dit Teresa també, i ahí pues eixes iniciatives n'hi han bones perspectives, pareix que el capital o part dels fondos o part de les empreses volen invertir ja en en fer vivendes i, si no se trenca la ratxa, se'm posa sempre entre cometes,"
+    },
+    {
+      "start": 3913.1,
+      "end": 3927.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "pues en dos, tres anys podem dir que estarem en condicions, dos, tres anys no menos, d'oferir al mercat pues a lo millor eh equis vivendes tant de renta lliure com de eh protecció social. I això és important, parlaríem de més de mil vivendes. El poble hui és un dels principals problemes que té"
+    },
+    {
+      "start": 3927.1,
+      "end": 3937.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "i volia tractar en este punt perquè efectivament pues mos demana la gent, com a vosaltres vos demanarà, i estan buscant altres llocs a viure i això mos preocupa. Per tant, impulsar tot lo que tenia el banc públic, que ho hem fet,"
+    },
+    {
+      "start": 3937.1,
+      "end": 3947.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "segon, els espais que són de l'ajuntament, oferir-los perquè qui té les competències, que ací és la Generalitat Valenciana, ¿val?"
+    },
+    {
+      "start": 3947.1,
+      "end": 3957.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Tercer, el tema de la iniciativa privada i quart, que no l'he nomenat, que mos preocupa que no s'estiga agafant-se a la llei de la vivenda del Estat espanyol, ara es comenta que sí, i topen els preus dels lloguers."
+    },
+    {
+      "start": 3957.1,
+      "end": 3967.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "I això no està passant i i ens preocupa que ací a Riba-roja no puguem topar els els preus de lloguer que ja estan en nou-cents, mil, set-cents i huit-cents euros, que és una barbaritat. Si la Generalitat ens deixara, toparíem el preu com han fet en en Astúries i en altres llocs, ¿val? En Astúries, Catalunya i en altres comunitats, per a reduir lo que es paga de lloguer."
+    },
+    {
+      "start": 3967.1,
+      "end": 3971.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Passem a al punt este del cinquè, del Casco u, a votar-lo. Anem a votar."
+    },
+    {
+      "start": 3971.1,
+      "end": 3985.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Vint vots a favor, una abstenció. ¿Grup Socialista?"
+    },
+    {
+      "start": 3985.1,
+      "end": 3985.9,
+      "speaker": "c06/SPEAKER_03",
+      "text": "A favor."
+    },
+    {
+      "start": 3985.9,
+      "end": 3986.9,
+      "speaker": "c06/SPEAKER_01",
+      "text": "¿Partit Popular?"
+    },
+    {
+      "start": 3986.9,
+      "end": 3987.9,
+      "speaker": "c06/SPEAKER_04",
+      "text": "A favor."
+    },
+    {
+      "start": 3987.9,
+      "end": 3988.9,
+      "speaker": "c06/SPEAKER_01",
+      "text": "¿Vox?"
+    },
+    {
+      "start": 3988.9,
+      "end": 3989.9,
+      "speaker": "c06/SPEAKER_02",
+      "text": "A favor."
+    },
+    {
+      "start": 3989.9,
+      "end": 3996.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Molt bé. Es Compromís, ¿podem? Compromís. Vale. Passem al següent punt de l'ordre del dia, que és l'adequació a l'Esquema Nacional de Seguretat. ¿Urgència?"
+    },
+    {
+      "start": 3996.1,
+      "end": 4004.1,
+      "speaker": "c06/SPEAKER_05",
+      "text": "Bueno, seguretat sí que és urgència. Urgència, ja de val, passarà Ángel."
+    },
+    {
+      "start": 4004.1,
+      "end": 4012.1,
+      "speaker": "c06/SPEAKER_06",
+      "text": "Sí, en el en les comissions informatives han anat de urgència, per a dur-ho al ple. I, bueno, sí. Ah."
+    },
+    {
+      "start": 4012.1,
+      "end": 4025.1,
+      "speaker": "c06/SPEAKER_06",
+      "text": "Bueno, adjuntamos documento sobre la política de seguridad del ayuntamiento en el ámbito en el ámbito de las TIC, tecnologías de la información y la comunicación. Eh nuestra política de seguridad debe enmarcarse dentro del Esquema Nacional de Seguridad,"
+    },
+    {
+      "start": 4025.1,
+      "end": 4035.1,
+      "speaker": "c06/SPEAKER_06",
+      "text": "que es la propuesta que llevamos al pleno. Son las normas de seguridad nacional de normativa nacional y nos certifican dentro del esquema de norma estatal."
+    },
+    {
+      "start": 4035.1,
+      "end": 4045.1,
+      "speaker": "c06/SPEAKER_06",
+      "text": "De este caso se debe constituir el Comité de Seguridad y a continuación se irán dando los pasos más técnicos de acuerdo con el documento adjunto a al al expediente. Gracias."
+    },
+    {
+      "start": 4045.1,
+      "end": 4048.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "¿Alguna qüestió respecte a este punt? ¿Alguna qüestió més?"
+    },
+    {
+      "start": 4048.1,
+      "end": 4062.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "Bueno, sabeu que ens a mi sí que me preocupava molt, bueno, preocupa sempre, ¿no? Perquè hem vist que, no sé, ha passat a l'EMT i ha passat a molts llocs que a través d'atacs eh ciber- cibernètics d'estos que n'hi han, eh han buidat contes, han tingut problemes importants en matèria de seguretat. Jo vull destacar el departament d'OSIC de Riba-roja de Túria,"
+    },
+    {
+      "start": 4062.1,
+      "end": 4072.1,
+      "speaker": "c06/SPEAKER_01",
+      "text": "que de vegades també som molt crítics en algunes coses, però que fins ara la seguretat que oferix i té el departament i el seu coordinador al respecte en quant a a seguretat a a poder tindre atacs eh que que que n'hi han en altres ajuntaments i que han tingut problemes brutals en les dades"
+    },
+    {
+      "start": 4072.1,
+      "end": 4080,
+      "speaker": "c06/SPEAKER_01",
+      "text": "i en i en qüestions molt importants, pues fins ara ha anat així bé. Jo crec que això va a un punt, no, Ángel, de millorar eixa seguretat, ¿val? I en eixe sentit d'ahí, més tranquil·litat perquè tenim moltes dades de moltes persones i i ja sabem que cada vegada pues els els delictes eh ciber-"
+    },
+    {
+      "start": 4800,
+      "end": 4821.5,
+      "speaker": "c08/SPEAKER_00",
+      "text": "actores, cuya labor es la de unirnos, no la de dividir. Por todo ello, votaremos, por supuesto, en contra de esta propuesta y pediremos al equipo de gobierno que abandone esta deriva sectaria, marcada tanto por el PSOE como por sus socios, centrando esfuerzos en políticas que miren al futuro de todos nosotros. Muchas gracias."
+    },
+    {
+      "start": 4821.5,
+      "end": 4826.9,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Bueno, hemos dado un poquito más de minutos. Estamos casi en seis."
+    },
+    {
+      "start": 4826.9,
+      "end": 4831.7,
+      "speaker": "c08/SPEAKER_01",
+      "text": "¿Demás portavoces al respecto? Esquerra Unida-Podem, ¿José?"
+    },
+    {
+      "start": 4831.7,
+      "end": 4833.1,
+      "speaker": "c08/SPEAKER_02",
+      "text": "Sí, gràcies."
+    },
+    {
+      "start": 4833.1,
+      "end": 4848.9,
+      "speaker": "c08/SPEAKER_02",
+      "text": "Nosaltres, des d'Esquerra Unida-Podem, anem a donar tot el suport al reconeixement de la figura de Salvador Ronda Soriano. Agrair a la regidora de Memòria Històrica, Eva, de l'equip de govern, i també a l'associació per a la recuperació de la memòria històrica."
+    },
+    {
+      "start": 4848.9,
+      "end": 4858.9,
+      "speaker": "c08/SPEAKER_02",
+      "text": "Crec sincerament que, en primer lloc, esta proposta de govern, que no moció, també és important saber parlar els conceptes,"
+    },
+    {
+      "start": 4858.9,
+      "end": 4872.9,
+      "speaker": "c08/SPEAKER_02",
+      "text": "està emmarcada dins d'una normativa, d'una llei. Aleshores, jo, l'únic consell que li puc donar a l'extrema dreta és que siga legal, que no"
+    },
+    {
+      "start": 4872.9,
+      "end": 4885.9,
+      "speaker": "c08/SPEAKER_02",
+      "text": "siga il·legal i que defense una normativa vigent que és estatal. Per tant, que s'acoste a la norma, que s'acoste a la llei i que no done missatges per a promulgar la il·legalitat, que és lo que està fent."
+    },
+    {
+      "start": 4885.9,
+      "end": 4902.9,
+      "speaker": "c08/SPEAKER_02",
+      "text": "A més d'això, esta llei, com bé ha dit Eva, lo que ens dona i lo que ens diu és que tenim un deure com a administració pública, que és de preservar la memòria democràtica i de promoure el reconeixement i la reparació moral de les persones que varen patir repercussió, repressió per motius polítics en la dictadura franquista."
+    },
+    {
+      "start": 4902.9,
+      "end": 4917.9,
+      "speaker": "c08/SPEAKER_02",
+      "text": "A més, el regidor de l'extrema dreta també ha parlat de la funció dels ajuntaments, i també és molt important saber que els ajuntaments tenen plena potestat a l'hora d'establir i de modificar la denominació de les vies públiques,"
+    },
+    {
+      "start": 4917.9,
+      "end": 4930.9,
+      "speaker": "c08/SPEAKER_02",
+      "text": "especialment quan es tracta de d'honor o de reconeixement institucional a persones que han contribuït al progrés social i democràtic del nostre municipi."
+    },
+    {
+      "start": 4930.9,
+      "end": 4944.9,
+      "speaker": "c08/SPEAKER_02",
+      "text": "En este sentit, ressaltar la figura de Salvador Ronda, que va ser un alcalde d'este poble en un període constitucional i democràtic de la història d'Espanya, que és la Segona República,"
+    },
+    {
+      "start": 4944.9,
+      "end": 4957.9,
+      "speaker": "c08/SPEAKER_02",
+      "text": "i que després de la Guerra Civil, com tantes altres persones compromeses amb la democràcia, Salvador Ronda va patir represàlies, repercussió i repressió per part de la dictadura franquista."
+    },
+    {
+      "start": 4957.9,
+      "end": 4971.9,
+      "speaker": "c08/SPEAKER_02",
+      "text": "Este fet el situa clarament dins del conjunt de persones víctimes de del règim franquista i, per tant, està reconegut dins de la legislació de memòria democràtica."
+    },
+    {
+      "start": 4971.9,
+      "end": 4981.9,
+      "speaker": "c08/SPEAKER_02",
+      "text": "En definitiva, és una proposta que guanyem en llibertat, guanyem en democràcia i, a més, és una llei que ens obliga a reconèixer"
+    },
+    {
+      "start": 4981.9,
+      "end": 4997.9,
+      "speaker": "c08/SPEAKER_02",
+      "text": "i que tenim una obligació com a municipi d'implantar-la, de fer-la. Per tant, està dins de la legalitat, dins de la norma vigent, i estar en contra de la normativa vigent és absolutament antidemocràtic i s'acosta a la il·legalitat."
+    },
+    {
+      "start": 4997.9,
+      "end": 5001.9,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Més paraules. Compromís, Rafa."
+    },
+    {
+      "start": 5001.9,
+      "end": 5005.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Gràcies, senyor alcalde. Bona vesprada a totes i a tots."
+    },
+    {
+      "start": 5005.9,
+      "end": 5013.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "En primer lloc, agrair a l'associació de memòria històrica del nostre municipi"
+    },
+    {
+      "start": 5013.9,
+      "end": 5022.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "que haguera fet esta instància demanant este reconeixement a l'alcalde Salvador Ronda."
+    },
+    {
+      "start": 5022.9,
+      "end": 5033.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "A la regidora de Memòria Històrica, pues ens haguera agradat que haguera comptat en alguns partits per a fer una moció sobre este sobre este reconeixement."
+    },
+    {
+      "start": 5033.9,
+      "end": 5042.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Crec que per part d'Esquerra Unida, Podem i Compromís no haguérem tingut cap problema perquè creguem que la figura de l'alcalde Salvador Ronda és una figura que deurem de"
+    },
+    {
+      "start": 5042.9,
+      "end": 5051.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "de reconèixer la labor social que feu quan va ser alcalde."
+    },
+    {
+      "start": 5051.9,
+      "end": 5061.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "I respecte a les declaracions del portaveu de de Vox, de l'extrema dreta, pues, evidentment,"
+    },
+    {
+      "start": 5061.9,
+      "end": 5071.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "seguix la línia de tot el seu partit a nivell nacional i, com no podia ser d'una altra manera, a nivell local."
+    },
+    {
+      "start": 5071.9,
+      "end": 5082.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Jo, en alguns plenaris, li he recriminat, en afecte i sense acritud, que vosté no és del poble i, possiblement, pues no conega la figura de l'alcalde Salvador Ronda. Els que tenim certa edat hem sentit parlar de l'alcalde."
+    },
+    {
+      "start": 5082.9,
+      "end": 5086.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "I, efectivament, perquè som del poble."
+    },
+    {
+      "start": 5086.9,
+      "end": 5090.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Quan vosté diu que no ha trobat res,"
+    },
+    {
+      "start": 5090.9,
+      "end": 5102.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "jo li diria que, quan es guanya la guerra, la dictadura lo que feu va ser silenciar no soles la memòria de les persones que varen fer"
+    },
+    {
+      "start": 5102.9,
+      "end": 5113.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "polítiques socials com la de l'alcalde Salvador Ronda, sinó que intentaren silenciar a les persones"
+    },
+    {
+      "start": 5113.9,
+      "end": 5121.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "tirant-les a les cunetes, com està demostrat. Però, bueno."
+    },
+    {
+      "start": 5121.9,
+      "end": 5134.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "Després també ha dit que, i és un recurs recurrent del seu partit, sobre la Guerra Civil, una guerra entre hermanos. No, perdone."
+    },
+    {
+      "start": 5134.9,
+      "end": 5144.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "No blanquegem, no blanquegem un alçament, un alçament militar contra un govern democràtic. I això és lo que vostés volen acallar i no ho van a aconseguir."
+    },
+    {
+      "start": 5144.9,
+      "end": 5159.9,
+      "speaker": "c08/SPEAKER_03",
+      "text": "No ho van a aconseguir perquè n'hi ha gent, com l'associació de memòria històrica d'este poble i de tots els pobles d'Espanya, que van a lluitar perquè n'hi haja reconeixement i reparació. Gràcies."
+    },
+    {
+      "start": 5159.9,
+      "end": 5163.9,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Més paraules. Eva."
+    },
+    {
+      "start": 5163.9,
+      "end": 5165.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "Sí."
+    },
+    {
+      "start": 5165.9,
+      "end": 5171.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "Val. Perfecte. Doncs, en contestació a a Vox,"
+    },
+    {
+      "start": 5171.9,
+      "end": 5179.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "una qüestió pedagògica, una de tècnica i una més política."
+    },
+    {
+      "start": 5179.9,
+      "end": 5193.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "La pedagògica seria que, junt a la sol·licitud de l'associació per a la recuperació de la memòria, va annexa tota una semblança biogràfica i una documentació biogràfica més que pertinent en què s'explica"
+    },
+    {
+      "start": 5193.9,
+      "end": 5203.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "un per un tots els aspectes de la figura d'aquest benefactor del poble que va ser en Salvador Ronda Soriano i tots els, bàsicament, tots els aspectes en educació,"
+    },
+    {
+      "start": 5203.9,
+      "end": 5208.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "salvaguarda dels més vulnerables,"
+    },
+    {
+      "start": 5208.9,
+      "end": 5213.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "salvaguarda també de la identitat del poble,"
+    },
+    {
+      "start": 5213.9,
+      "end": 5217.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "autonomista, conciliador."
+    },
+    {
+      "start": 5217.9,
+      "end": 5229.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "Bàsicament, tota una investigació que s'ha fet gràcies no solament als familiars, sinó als arxius i la documentació que és totalment fidedigna."
+    },
+    {
+      "start": 5229.9,
+      "end": 5234.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "I aleshores, si vols, te la passaré, José Luis, perquè, a més a més,"
+    },
+    {
+      "start": 5234.9,
+      "end": 5239.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "està tota la documentació en"
+    },
+    {
+      "start": 5244.9,
+      "end": 5251.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "Després, una qüestió tècnica que, efectivament, com ha comentat José Manuel, i està en l'informe tècnic,"
+    },
+    {
+      "start": 5251.9,
+      "end": 5255.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "la justificació de per què és una proposta d'acord"
+    },
+    {
+      "start": 5255.9,
+      "end": 5268.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "i també com s'argumenta que la denominació de les vies públiques urbanes és una qüestió incardinada dins de l'àmbit dels honors i distincions que ve regulada en l'àmbit local"
+    },
+    {
+      "start": 5268.9,
+      "end": 5281.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "als articles cent vuitanta-sis a cent noranta-un del ROF, i sent que l'òrgan competent per a l'atorgament de dits honors és el ple de la corporació, s'ha inclinat per aquesta postura col·legiada,"
+    },
+    {
+      "start": 5281.9,
+      "end": 5294.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "és que està en castellà, \"a vida cuenta que ofrecería una mejor oportunidad de consenso entre todos los representantes municipales\". Aleshores, queda justificat també que forma part del ROF la denominació de les vies públiques urbanes, sobretot incardinat, com he dit, dins de l'àmbit dels honors i distincions que aquestes figures de rellevància local"
+    },
+    {
+      "start": 5294.9,
+      "end": 5301.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "i de l'alçada personal i política de Salvador Ronda mereix."
+    },
+    {
+      "start": 5301.9,
+      "end": 5307.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "I la qüestió política és que t'equivoques de dalt a baix perquè ací el problema no el tenim nosaltres, el problema és que la dreta i la ultra dreta es neguen a complir un imperatiu democràtic,"
+    },
+    {
+      "start": 5307.9,
+      "end": 5321.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "que és acatar la llei estatal de memòria històrica vint barra dos mil vint-i-dos. Heu tractat de carregar-se la valenciana per la vostra concòrdia de la vergonya, però teniu un marc estatal"
+    },
+    {
+      "start": 5321.9,
+      "end": 5331.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "que heu de respectar, vos agrade o no, i és un deure moral inexcusable que marca qualsevol societat madura i democràtica i normal que vulga sanar"
+    },
+    {
+      "start": 5331.9,
+      "end": 5336.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "les atrocitats del passat."
+    },
+    {
+      "start": 5336.9,
+      "end": 5344.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "I també un altre problema que teniu darrere és no distingir temps de guerra i temps de pau."
+    },
+    {
+      "start": 5344.9,
+      "end": 5351.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "Temps de guerra: assassinats, atrocitats, tropelies, sí. Temps de pau: repressió,"
+    },
+    {
+      "start": 5351.9,
+      "end": 5355.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "afusellaments"
+    },
+    {
+      "start": 5355.9,
+      "end": 5369.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "i destrossar la vida de les famílies en temps de pau i destrossar la vida dels vençuts, que és el que busca la llei de memòria històrica, restaurar la dignitat d'aquestes persones. Temps de guerra, temps de pau, és que no hi ha manera."
+    },
+    {
+      "start": 5369.9,
+      "end": 5371.9,
+      "speaker": "c08/SPEAKER_04",
+      "text": "Ja."
+    },
+    {
+      "start": 5371.9,
+      "end": 5375.9,
+      "speaker": "c08/SPEAKER_01",
+      "text": "Més paraules. María José, Partido Popular."
+    },
+    {
+      "start": 5375.9,
+      "end": 5399,
+      "speaker": "c08/SPEAKER_05",
+      "text": "No hace falta remontarse a un siglo en la historia de nuestro"
+    },
+    {
+      "start": 5400,
+      "end": 5401.9,
+      "speaker": "c09/SPEAKER_00",
+      "text": "pueblo."
+    },
+    {
+      "start": 5401.9,
+      "end": 5406,
+      "speaker": "c09/SPEAKER_00",
+      "text": "Y en concreto en la Comunidad Valenciana, para ver que hemos vivido profundas heridas"
+    },
+    {
+      "start": 5406,
+      "end": 5410.5,
+      "speaker": "c09/SPEAKER_00",
+      "text": "tras la Segunda República, la Guerra Civil, la dictadura y el terrorismo."
+    },
+    {
+      "start": 5410.5,
+      "end": 5415.5,
+      "speaker": "c09/SPEAKER_00",
+      "text": "Ante algunos de estos hechos, ya nuestros abuelos evocaron una reconciliación"
+    },
+    {
+      "start": 5415.5,
+      "end": 5420.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "que pretendía sanar las heridas y a restaurar"
+    },
+    {
+      "start": 5420.1,
+      "end": 5423.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "el equilibrio perdido con una democracia."
+    },
+    {
+      "start": 5423.1,
+      "end": 5426.8,
+      "speaker": "c09/SPEAKER_00",
+      "text": "Nunca ha habido un relato consensuado sobre la Segunda República,"
+    },
+    {
+      "start": 5426.8,
+      "end": 5431.8,
+      "speaker": "c09/SPEAKER_00",
+      "text": "la Guerra Civil y el franquismo, ni entre los historiadores, ni en los relatos"
+    },
+    {
+      "start": 5431.8,
+      "end": 5435.4,
+      "speaker": "c09/SPEAKER_00",
+      "text": "heredados de padres, abuelos y bisabuelos."
+    },
+    {
+      "start": 5435.4,
+      "end": 5440.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "La Guerra Civil, y ya lo dije en otra ocasión, nos debe enseñar que no importa el bando,"
+    },
+    {
+      "start": 5440.1,
+      "end": 5445.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "ni el origen, ni las creencias, el sufrimiento y la muerte fue la misma para todos."
+    },
+    {
+      "start": 5445.1,
+      "end": 5449.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "Ustedes hoy traen aquí una propuesta de calle de un alcalde"
+    },
+    {
+      "start": 5449.1,
+      "end": 5452.8,
+      "speaker": "c09/SPEAKER_00",
+      "text": "al que pretenden honrar por sus ideas republicanas."
+    },
+    {
+      "start": 5452.8,
+      "end": 5457.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "Esta moción pretende levantar heridas, volver atrás,"
+    },
+    {
+      "start": 5457.1,
+      "end": 5459.9,
+      "speaker": "c09/SPEAKER_00",
+      "text": "busca la confrontación en la sociedad."
+    },
+    {
+      "start": 5459.9,
+      "end": 5464.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "Una sociedad democrática y plural debe hacer un esfuerzo por reconocer"
+    },
+    {
+      "start": 5464.1,
+      "end": 5468.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "la complejidad y la dureza de su pasado traumático,"
+    },
+    {
+      "start": 5468.1,
+      "end": 5472.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "como es el caso, con el ánimo de comprender las razones que guiaron"
+    },
+    {
+      "start": 5472.1,
+      "end": 5476.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "a los españoles de entonces a actuar como actuaron y que nada tiene que ver"
+    },
+    {
+      "start": 5476.1,
+      "end": 5479.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "con lo que vivimos y pensamos ahora."
+    },
+    {
+      "start": 5479.1,
+      "end": 5482.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "¿Quieren honrar su memoria? Honren a todas las víctimas."
+    },
+    {
+      "start": 5482.1,
+      "end": 5485.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "Hay muchas maneras de hacerlo, pero no nos manipulen"
+    },
+    {
+      "start": 5485.1,
+      "end": 5489.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "con la idea de que poniendo el nombre de un alcalde republicano"
+    },
+    {
+      "start": 5489.1,
+      "end": 5493.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "están honrando a más que fueron perseguidos como ustedes dicen."
+    },
+    {
+      "start": 5493.1,
+      "end": 5497.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "¿Se han parado a pensar el coste de tiempo y de dinero para los vecinos afectados?"
+    },
+    {
+      "start": 5497.1,
+      "end": 5501.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "¿O es que solo está el número dieciocho, que es la Guardia Civil?"
+    },
+    {
+      "start": 5501.1,
+      "end": 5505.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "Hay un número enfrente, números en la misma calle para cambiar, hay algunos vecinos más, mírenlo."
+    },
+    {
+      "start": 5505.1,
+      "end": 5509.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "¿Asumirá el Ayuntamiento ese gasto? ¿Cómo se compensa el tiempo"
+    },
+    {
+      "start": 5509.1,
+      "end": 5513.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "que perderán para regularizar su documentación, DNI, carné de conducir,"
+    },
+    {
+      "start": 5513.1,
+      "end": 5515.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "entre otras muchas cosas?"
+    },
+    {
+      "start": 5515.1,
+      "end": 5519.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "Hay muchas formas de honrar a la historia y a las personas."
+    },
+    {
+      "start": 5519.1,
+      "end": 5523.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "Asuman la concordia que firmaron nuestros abuelos y bisabuelos"
+    },
+    {
+      "start": 5523.1,
+      "end": 5526.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "y dejen de alimentar un enfrentamiento ideológico"
+    },
+    {
+      "start": 5526.1,
+      "end": 5528.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "que no existe en nuestros días."
+    },
+    {
+      "start": 5528.1,
+      "end": 5532.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "Yo hasta ahora entendía que ser concejal era trabajar por el pueblo,"
+    },
+    {
+      "start": 5532.1,
+      "end": 5535.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "por nuestros vecinos. ¿Creen que de verdad a nuestros vecinos"
+    },
+    {
+      "start": 5535.1,
+      "end": 5539.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "les interesa esto hoy? Nuestros vecinos quieren soluciones a la necesidad"
+    },
+    {
+      "start": 5539.1,
+      "end": 5543.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "de oferta de vivienda, a la necesidad de crear empleo, de ayudar a nuestros autónomos,"
+    },
+    {
+      "start": 5543.1,
+      "end": 5547.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "a un servicio de recogida de basura efectivo y no el que tenemos,"
+    },
+    {
+      "start": 5547.1,
+      "end": 5551.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "a que disminuya la violencia en nuestro domicilio, en nuestro municipio,"
+    },
+    {
+      "start": 5551.1,
+      "end": 5554.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "los robos y sustracciones de vehículos."
+    },
+    {
+      "start": 5554.1,
+      "end": 5558.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "Y no es trabajar por nuestros vecinos el traer aquí al pleno el dar el nombre"
+    },
+    {
+      "start": 5558.1,
+      "end": 5562.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "de una calle a un alcalde por sus ideas republicanas, y con todos mis respetos"
+    },
+    {
+      "start": 5562.1,
+      "end": 5566.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "a ese alcalde como a todos los demás que han existido en nuestro municipio."
+    },
+    {
+      "start": 5566.1,
+      "end": 5567.1,
+      "speaker": "c09/SPEAKER_00",
+      "text": "Muchas gracias."
+    },
+    {
+      "start": 5567.1,
+      "end": 5570.1,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Mes paraules. Vox, os doy la palabra."
+    },
+    {
+      "start": 5570.1,
+      "end": 5574.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "Perdón, muchas gracias, perdón."
+    },
+    {
+      "start": 5574.1,
+      "end": 5578.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "Once de septiembre del treinta y seis, Carmen García García declara que su marido"
+    },
+    {
+      "start": 5578.1,
+      "end": 5582.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "se lo llevan unos milicianos y aparece muerto en una cuneta."
+    },
+    {
+      "start": 5582.1,
+      "end": 5586.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "Higinio Montaner Jiménez, Francisco Vado Soler,"
+    },
+    {
+      "start": 5586.1,
+      "end": 5590.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "José Casado Ramón, Santos Queral Ferrer,"
+    },
+    {
+      "start": 5590.1,
+      "end": 5594.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "etcétera, etcétera, etcétera, así hasta ciento veintiuna páginas,"
+    },
+    {
+      "start": 5594.1,
+      "end": 5598.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "muertos en cunetas, unos en el camino de Liria, en camino de Cuart, etcétera."
+    },
+    {
+      "start": 5598.1,
+      "end": 5602.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "Le voy a leer, no sé si tendrá la cosa general,"
+    },
+    {
+      "start": 5602.1,
+      "end": 5605.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "si no se la voy a enviar también para que, para que tenga información."
+    },
+    {
+      "start": 5605.1,
+      "end": 5609.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "Estamos frente a la iglesia. El día veintisiete de julio del treinta y seis comenzó el incendio"
+    },
+    {
+      "start": 5609.1,
+      "end": 5613.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "de la iglesia de esta localidad, que estaba ya clausurada de unos días"
+    },
+    {
+      "start": 5613.1,
+      "end": 5617.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "antes de evitar lo que pudiera ocurrir. Las turbas penetraron"
+    },
+    {
+      "start": 5617.1,
+      "end": 5621.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "violando las puertas y comenzó el secuestro de las imágenes de la iglesia"
+    },
+    {
+      "start": 5621.1,
+      "end": 5625.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "y los amontonaron en medio de una plaza haciendo mofa y escarnio de ellos"
+    },
+    {
+      "start": 5625.1,
+      "end": 5629.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "con gran algarada. Después comenzó el incendio del edificio,"
+    },
+    {
+      "start": 5629.1,
+      "end": 5633.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "etcétera, etcétera, y por resumir, continuaron sus fechorías y procedieron"
+    },
+    {
+      "start": 5633.1,
+      "end": 5637.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "al saqueo del convento de las Hermanas Trinitarias, la destrucción de la capilla,"
+    },
+    {
+      "start": 5637.1,
+      "end": 5641.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "incendiando la masía del pollo. Fueron objeto de estos saqueos"
+    },
+    {
+      "start": 5641.1,
+      "end": 5645.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "el palacio de los condes de Montornés, sito en la Vallesa de Mandor,"
+    },
+    {
+      "start": 5645.1,
+      "end": 5649.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "el de los condes de Torrefiel, la masía del pollo, Belot, Traver, Porchinos,"
+    },
+    {
+      "start": 5649.1,
+      "end": 5653.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "Monte Alcedo, etcétera, etcétera. Y fue desmantelado el archivo"
+    },
+    {
+      "start": 5653.1,
+      "end": 5657.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "de este Ayuntamiento, del cual fue todo arrojado a la plaza y allí saqueado absolutamente."
+    },
+    {
+      "start": 5657.1,
+      "end": 5661.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "Mira, la izquierda radical, que tiene una visión tan corta"
+    },
+    {
+      "start": 5661.1,
+      "end": 5665.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "de lo que es este grandísimo país de España, no nos puede decir que"
+    },
+    {
+      "start": 5665.1,
+      "end": 5669.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "no vivo aquí, porque para mí hoy por hoy Ribarroja es lo más importante"
+    },
+    {
+      "start": 5669.1,
+      "end": 5673.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "que tengo en mi vida, el mayor orgullo que tengo y que he tenido en mi vida"
+    },
+    {
+      "start": 5673.1,
+      "end": 5677.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "de ser concejal de este Ayuntamiento. Y lo que quiero es que se viva en paz,"
+    },
+    {
+      "start": 5677.1,
+      "end": 5681.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "no que vuelvan a sacar temas para revivir una guerra"
+    },
+    {
+      "start": 5681.1,
+      "end": 5685.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "que hace más de cien años, de cosas que pasaron casi hace cien años que pasaron."
+    },
+    {
+      "start": 5685.1,
+      "end": 5689.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "No me venga usted ahora a decir que esto es bueno para el pueblo, porque esto lo único que hace es"
+    },
+    {
+      "start": 5689.1,
+      "end": 5693.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "cuesta dinero, trae problemas, reviva heridas ya cerradas"
+    },
+    {
+      "start": 5693.1,
+      "end": 5697.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "y además no es algo que le importa a los ciudadanos. Como bien ha comentado la regidora"
+    },
+    {
+      "start": 5697.1,
+      "end": 5701.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "del Partido Popular, lo que le importa al ciudadano es la gestión, el pago de las facturas,"
+    },
+    {
+      "start": 5701.1,
+      "end": 5705.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "la recogida de basuras, etcétera, etcétera. Así que me parece"
+    },
+    {
+      "start": 5705.1,
+      "end": 5709.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "una auténtica barbaridad esta moción que presentan ustedes y que por supuesto vamos a votar en contra."
+    },
+    {
+      "start": 5709.1,
+      "end": 5710.1,
+      "speaker": "c09/SPEAKER_02",
+      "text": "Muchas gracias."
+    },
+    {
+      "start": 5710.1,
+      "end": 5714.1,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Mes paraules. Esquerra Unida-Podem."
+    },
+    {
+      "start": 5714.1,
+      "end": 5715.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "Gràcies."
+    },
+    {
+      "start": 5715.1,
+      "end": 5719.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "Jo crec que és essencial no tindre la mirada xicoteta"
+    },
+    {
+      "start": 5719.1,
+      "end": 5723.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "perquè a lo millor a la dreta de l'extrema dreta no li importa, pot ser,"
+    },
+    {
+      "start": 5723.1,
+      "end": 5727.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "però sí que hi ha gent, i ací tenim una associació, de fet tenim gent"
+    },
+    {
+      "start": 5727.1,
+      "end": 5731.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "que ha vingut hui a este ple perquè sí que li importa esta matèria."
+    },
+    {
+      "start": 5731.1,
+      "end": 5735.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "Aleshores, dir que això no importa a la ciutadania és un error i és una mentira"
+    },
+    {
+      "start": 5735.1,
+      "end": 5739.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "perquè si no, no haguera hagut una associació que impulsara esta proposta"
+    },
+    {
+      "start": 5739.1,
+      "end": 5743.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "i no haguera l'equip de govern impulsat esta proposta. Per tant, mira si li interessa a la ciutadania"
+    },
+    {
+      "start": 5743.1,
+      "end": 5747.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "que esta proposta no ve de, com a tal, l'espai polític de l'equip de govern, ve d'una associació"
+    },
+    {
+      "start": 5747.1,
+      "end": 5749.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "que hi ha ciutadans del nostre poble."
+    },
+    {
+      "start": 5749.1,
+      "end": 5751.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "Això per una banda. Per altra banda,"
+    },
+    {
+      "start": 5751.1,
+      "end": 5755.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "esta proposta és una proposta d'una normativa vigent, d'una llei."
+    },
+    {
+      "start": 5755.1,
+      "end": 5759.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "Per tant, lo que té que fer la dreta i l'extrema dreta és complir la llei."
+    },
+    {
+      "start": 5759.1,
+      "end": 5763.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "Si volen representar la il·legalitat en este ple, això hauran d'explicar-lo,"
+    },
+    {
+      "start": 5763.1,
+      "end": 5767.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "però realment lo que s'està basant esta proposta és en una normativa vigent, per tant lo que tenim que fer és seguir la normativa vigent."
+    },
+    {
+      "start": 5767.1,
+      "end": 5771.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "De fet, esta normativa lo que fa és dignificar i reconéixer,"
+    },
+    {
+      "start": 5771.1,
+      "end": 5775.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "no està separant, no està obrint ferides, sinó tot el contrari, tancant-les,"
+    },
+    {
+      "start": 5775.1,
+      "end": 5779.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "perquè és molt important eixa reparació."
+    },
+    {
+      "start": 5779.1,
+      "end": 5783.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "I al final és una qüestió que va per damunt de nosaltres."
+    },
+    {
+      "start": 5783.1,
+      "end": 5787.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "Reitere, hi ha una normativa espanyola que ens impulsa i ens obliga"
+    },
+    {
+      "start": 5787.1,
+      "end": 5791.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "a que un Ajuntament com Riba-roja faça açò. Per tant,"
+    },
+    {
+      "start": 5791.1,
+      "end": 5795.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "si esteu contra una normativa o contra una llei, el problema el teniu vosaltres."
+    },
+    {
+      "start": 5795.1,
+      "end": 5799.1,
+      "speaker": "c09/SPEAKER_03",
+      "text": "Heu de complir la llei perquè si no lo que esteu representant, torne a dir, és la il·legalitat en este Ajuntament. Gràcies."
+    },
+    {
+      "start": 5799.1,
+      "end": 5802.1,
+      "speaker": "c09/SPEAKER_01",
+      "text": "Mes paraules. Compromís."
+    },
+    {
+      "start": 5802.1,
+      "end": 5805.1,
+      "speaker": "c09/SPEAKER_04",
+      "text": "Gràcies, senyor alcalde. Bueno, sobre la normativa ja no vaig a dir res més perquè crec que José Manuel vos ho ha deixat ben, ben clar"
+    },
+    {
+      "start": 5805.1,
+      "end": 5811.1,
+      "speaker": "c09/SPEAKER_04",
+      "text": "i la regidora de Memòria Històrica crec que també."
+    },
+    {
+      "start": 5811.1,
+      "end": 5815.1,
+      "speaker": "c09/SPEAKER_04",
+      "text": "Jo lo que sí que, que bueno, pues que l'alcalde moltes vegades ha dit que el Partit Popular va traent la pateta"
+    },
+    {
+      "start": 5815.1,
+      "end": 5820.1,
+      "speaker": "c09/SPEAKER_04",
+      "text": "i hui, evidentment, la trau del tot."
+    },
+    {
+      "start": 5820.1,
+      "end": 5825.1,
+      "speaker": "c09/SPEAKER_04",
+      "text": "Està, pues, comprant els seus argumentaris, no sé per què,"
+    },
+    {
+      "start": 5825.1,
+      "end": 5829.1,
+      "speaker": "c09/SPEAKER_04",
+      "text": "però la veritat és que per als que tenim algo de memòria,"
+    },
+    {
+      "start": 5829.1,
+      "end": 5833.1,
+      "speaker": "c09/SPEAKER_04",
+      "text": "i no perquè sigam més llistos que ningú, sinó perquè tenim certa edat"
+    },
+    {
+      "start": 5833.1,
+      "end": 5837.1,
+      "speaker": "c09/SPEAKER_04",
+      "text": "i hem sentit parlar a la gent major d'este poble"
+    },
+    {
+      "start": 5837.1,
+      "end": 5841.1,
+      "speaker": "c09/SPEAKER_04",
+      "text": "i contar tot lo que va passar en eixa època fosca,"
+    },
+    {
+      "start": 5841.1,
+      "end": 5845.1,
+      "speaker": "c09/SPEAKER_04",
+      "text": "que siga la dictadura, pues, pues tenim memòria, evidentment."
+    },
+    {
+      "start": 5845.1,
+      "end": 5849.1,
+      "speaker": "c09/SPEAKER_04",
+      "text": "Vostés intenten blanquejar-ho tot."
+    },
+    {
+      "start": 5849.1,
+      "end": 5853.1,
+      "speaker": "c09/SPEAKER_04",
+      "text": "Intenten blanquejar una dictadura que va provocar lo que en esta moció es detalla,"
+    },
+    {
+      "start": 5853.1,
+      "end": 5857.1,
+      "speaker": "c09/SPEAKER_04",
+      "text": "un, un soterrament a una persona que havia sigut un càrrec públic,"
+    },
+    {
+      "start": 5857.1,
+      "end": 5861.1,
+      "speaker": "c09/SPEAKER_04",
+      "text": "no sols a l'alcalde Salvador Ronda, sinó a altres, altres veïns i veïnes d'este poble."
+    },
+    {
+      "start": 5861.1,
+      "end": 5865.1,
+      "speaker": "c09/SPEAKER_04",
+      "text": "I estan intentant justificar eixe vot negatiu que van a fer a esta proposta, que lo únic que fa és"
+    },
+    {
+      "start": 4200,
+      "end": 4203.7,
+      "speaker": "c07/SPEAKER_00",
+      "text": "delinqüència ha pujat en tota Espanya, ací a Riba-roja també."
+    },
+    {
+      "start": 4203.7,
+      "end": 4208.9,
+      "speaker": "c07/SPEAKER_00",
+      "text": "I, per suposat, l'Ajuntament de Riba-roja està súper preparat, i així i tot mai n'hi ha el cent per cent de seguretat,"
+    },
+    {
+      "start": 4208.9,
+      "end": 4213.1,
+      "speaker": "c07/SPEAKER_00",
+      "text": "però estem adaptant-se per a tindre la màxima seguretat, no? Que és molt, molt important i molt delicat."
+    },
+    {
+      "start": 4213.1,
+      "end": 4216.1,
+      "speaker": "c07/SPEAKER_00",
+      "text": "Passem a la seua votació. Vots parells?"
+    },
+    {
+      "start": 4216.1,
+      "end": 4226.5,
+      "speaker": "c07/SPEAKER_00",
+      "text": "[silencio]"
+    },
+    {
+      "start": 4226.5,
+      "end": 4229.5,
+      "speaker": "c07/SPEAKER_00",
+      "text": "Anem votant."
+    },
+    {
+      "start": 4229.5,
+      "end": 4233.5,
+      "speaker": "c07/SPEAKER_00",
+      "text": "Anem votant."
+    },
+    {
+      "start": 4233.5,
+      "end": 4237.5,
+      "speaker": "c07/SPEAKER_00",
+      "text": "Falta Raquel, que no està. Pues, s'aprova per unanimitat, val? De tots els grups polítics. Passem al següent."
+    },
+    {
+      "start": 4237.5,
+      "end": 4245.5,
+      "speaker": "c07/SPEAKER_00",
+      "text": "El seté, que és memòria històrica o memòria democràtica, reconeixement públic de la figura de Salvador Ronda Soriano,"
+    },
+    {
+      "start": 4245.5,
+      "end": 4251.5,
+      "speaker": "c07/SPEAKER_00",
+      "text": "va ser alcalde de Riba-roja de Túria durant la Segona República Espanyola, otorgant-li el nom d'una via urbana."
+    },
+    {
+      "start": 4251.5,
+      "end": 4257.5,
+      "speaker": "c07/SPEAKER_00",
+      "text": "Té la paraula la nostra regidora de memòria històrica."
+    },
+    {
+      "start": 4257.5,
+      "end": 4259.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "Gràcies."
+    },
+    {
+      "start": 4259.5,
+      "end": 4265.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "Portem una proposta d'acord des de l'àrea de memòria històrica en referència al reconeixement públic"
+    },
+    {
+      "start": 4265.5,
+      "end": 4271.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "de la figura de Salvador Ronda Soriano, alcalde de Riba-roja de Túria durant la Segona República,"
+    },
+    {
+      "start": 4271.5,
+      "end": 4275.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "otorgant-li el nom d'una via urbana. Aquest reconeixement"
+    },
+    {
+      "start": 4275.5,
+      "end": 4280.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "va ser sol·licitat per l'Associació per a la Recuperació de la Memòria Històrica"
+    },
+    {
+      "start": 4280.5,
+      "end": 4284.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "de Riba-roja de Túria en base al següent."
+    },
+    {
+      "start": 4284.5,
+      "end": 4290.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "Primer, en base a la Llei de Memòria Històrica Estatal vint barra dos mil vint-i-dos,"
+    },
+    {
+      "start": 4290.5,
+      "end": 4297.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "que als seus articles u punt dos, tres punt e i trenta-quatre"
+    },
+    {
+      "start": 4297.5,
+      "end": 4303.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "estableix el deure de les administracions públiques a reconéixer i reparar moralment"
+    },
+    {
+      "start": 4303.5,
+      "end": 4309.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "les persones que patiren persecució o violència per raons polítiques o ideològiques durant la dictadura franquista"
+    },
+    {
+      "start": 4309.5,
+      "end": 4314.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "i preservar la memòria democràtica com a garantia de no repetició."
+    },
+    {
+      "start": 4314.5,
+      "end": 4320.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "Afegir en este punt que l'esmentada llei assumeix com a política d'estat"
+    },
+    {
+      "start": 4320.5,
+      "end": 4325.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "la legítima demanda de ciutadans a la rehabilitació pública de les víctimes"
+    },
+    {
+      "start": 4325.5,
+      "end": 4327.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "de la dictadura franquista."
+    },
+    {
+      "start": 4327.5,
+      "end": 4329.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "No se me veu?"
+    },
+    {
+      "start": 4329.5,
+      "end": 4331.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "Però se m'escolta, no?"
+    },
+    {
+      "start": 4331.5,
+      "end": 4333.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "Sí."
+    },
+    {
+      "start": 4333.5,
+      "end": 4335.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "Això quant al primer punt."
+    },
+    {
+      "start": 4335.5,
+      "end": 4339.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "Segon, aquest reconeixement va ser sol·licitat"
+    },
+    {
+      "start": 4339.5,
+      "end": 4344.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "en base a la seua rellevància local i, en este sentit, en la sol·licitud"
+    },
+    {
+      "start": 4344.5,
+      "end": 4349.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "es fa constar a la documentació biogràfica pertinent la seua actuació política i social,"
+    },
+    {
+      "start": 4349.5,
+      "end": 4355.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "destacant especialment el seu paper en la creació del grup escolar Blasco Ibáñez, actual CEIP Cervantes,"
+    },
+    {
+      "start": 4355.5,
+      "end": 4360.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "la seua defensa dels més vulnerables, el seu compromís"
+    },
+    {
+      "start": 4360.5,
+      "end": 4365.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "amb la igualtat i l'educació, el seu suport a l'autonomia valenciana i el seu talant"
+    },
+    {
+      "start": 4365.5,
+      "end": 4367.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "conciliador."
+    },
+    {
+      "start": 4367.5,
+      "end": 4372.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "En tercer lloc, igualment s'assenyala que finalitzada la guerra,"
+    },
+    {
+      "start": 4372.5,
+      "end": 4377.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "Salvador Ronda patir repressió, confiscacions, treballs forçats"
+    },
+    {
+      "start": 4377.5,
+      "end": 4383.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "i persecució pels seus ideals democràtics, sent per tant considerat víctima de la dictadura franquista"
+    },
+    {
+      "start": 4383.5,
+      "end": 4388.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "en els termes previstos per la llei barra dos mil vint-i-dos de deu d'octubre"
+    },
+    {
+      "start": 4388.5,
+      "end": 4390.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "de memòria democràtica."
+    },
+    {
+      "start": 4390.5,
+      "end": 4395.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "Es va considerar per tant justificada la sol·licitud de l'Associació per a la Recuperació de Memòria Històrica"
+    },
+    {
+      "start": 4395.5,
+      "end": 4400.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "i es proposa la designació d'alcalde Salvador Ronda"
+    },
+    {
+      "start": 4400.5,
+      "end": 4405.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "al tram urbà comprés entre la caserna de la Guàrdia Civil, avinguda Pacadar,"
+    },
+    {
+      "start": 4405.5,
+      "end": 4410.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "número divuit, fins al camp de futbol Roberto Gil, conegut ara com a avinguda del poliesportiu."
+    },
+    {
+      "start": 4410.5,
+      "end": 4415.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "La idoneïtat d'aquesta ubicació respon, d'una part, a la seua proximitat a l'actual CEIP Cervantes,"
+    },
+    {
+      "start": 4415.5,
+      "end": 4420.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "que és el grup escolar Blasco Ibáñez fundat per l'alcalde Ronda,"
+    },
+    {
+      "start": 4420.5,
+      "end": 4425.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "i per altra, a la escassa afectació que dit canvi de nom tindrà respecte de s'habitacles,"
+    },
+    {
+      "start": 4425.5,
+      "end": 4430.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "atés que sols caldria modificar la direcció del poliesportiu La Mallà,"
+    },
+    {
+      "start": 4430.5,
+      "end": 4435.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "d'avinguda poliesportiu sense número al número que corresponga, si s'escau,"
+    },
+    {
+      "start": 4435.5,
+      "end": 4439.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "de la nova avinguda alcalde Salvador Ronda."
+    },
+    {
+      "start": 4439.5,
+      "end": 4442.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "Fins ací la justificació."
+    },
+    {
+      "start": 4442.5,
+      "end": 4446.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "I, per altra banda, se proposa al ple"
+    },
+    {
+      "start": 4446.5,
+      "end": 4449.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "l'adopció dels següents acords. Primer,"
+    },
+    {
+      "start": 4449.5,
+      "end": 4454.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "reconéixer públicament la figura d'en Salvador Ronda Soriano, alcalde de Riba-roja de Túria"
+    },
+    {
+      "start": 4454.5,
+      "end": 4459.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "durant la seua república, durant la segona, en la segona república, perdón,"
+    },
+    {
+      "start": 4459.5,
+      "end": 4464.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "per la seua contribució al progrés educatiu i social, la defensa de les llibertats i la democràcia,"
+    },
+    {
+      "start": 4464.5,
+      "end": 4469.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "així com la repressió patida després de la guerra civil."
+    },
+    {
+      "start": 4469.5,
+      "end": 4474.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "Segon, disposar el canvi en la denominació de l'actual avinguda Pacadar,"
+    },
+    {
+      "start": 4474.5,
+      "end": 4479.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "en el tram urbà comprés entre la caserna de la Guàrdia Civil, sito"
+    },
+    {
+      "start": 4479.5,
+      "end": 4484.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "en l'avinguda Pacadar, número divuit, i fins al camp de futbol Roberto Gil,"
+    },
+    {
+      "start": 4484.5,
+      "end": 4489.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "que passarà a anomenar-se alcalde Salvador Ronda, realitzant-se les modificacions que siguen pertinents"
+    },
+    {
+      "start": 4489.5,
+      "end": 4494.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "a efectes cadastrals, registrals i en la notificació a les administracions i organismes corresponents."
+    },
+    {
+      "start": 4494.5,
+      "end": 4499.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "Tercer, notificar aquest acord a l'Associació de la Recuperació de la Memòria Històrica de Riba-roja,"
+    },
+    {
+      "start": 4499.5,
+      "end": 4504.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "a la família d'en Salvador Ronda Soriano, així com informar públicament"
+    },
+    {
+      "start": 4504.5,
+      "end": 4508.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "del canvi de denominació a tots els efectes oportuns."
+    },
+    {
+      "start": 4508.5,
+      "end": 4513.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "Quart, preveure en la fase d'execució del present acord"
+    },
+    {
+      "start": 4513.5,
+      "end": 4518.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "la col·locació de la senyalítica corresponent i d'una placa explicativa sobre la rellevància d'en Salvador Ronda,"
+    },
+    {
+      "start": 4518.5,
+      "end": 4523.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "així com la celebració d'un acte institucional, si s'escau, a la participació de la corporació municipal,"
+    },
+    {
+      "start": 4523.5,
+      "end": 4527.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "familiars, entitats memorialistes i veïns de la localitat."
+    },
+    {
+      "start": 4527.5,
+      "end": 4529.5,
+      "speaker": "c07/SPEAKER_01",
+      "text": "Ja està dit."
+    },
+    {
+      "start": 4529.5,
+      "end": 4533.5,
+      "speaker": "c07/SPEAKER_00",
+      "text": "Vale. Paraules al respecte?"
+    },
+    {
+      "start": 4533.5,
+      "end": 4535.5,
+      "speaker": "c07/SPEAKER_00",
+      "text": "Vox, José Luis."
+    },
+    {
+      "start": 4535.5,
+      "end": 4539.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "Muchas gracias."
+    },
+    {
+      "start": 4539.5,
+      "end": 4545.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "De todas las mociones que se han presentado durante este periodo"
+    },
+    {
+      "start": 4545.5,
+      "end": 4551.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "que estamos trabajando, hay una principalmente que me da pena y es esta,"
+    },
+    {
+      "start": 4551.5,
+      "end": 4556.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "muchísima pena, y voy a explicar el porqué."
+    },
+    {
+      "start": 4556.5,
+      "end": 4562.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "Con todos los problemas que tiene ahora mismo el Ayuntamiento de de Riba-roja de Túria con la recogida de basuras,"
+    },
+    {
+      "start": 4562.5,
+      "end": 4568.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "con el pago de impuestos, etcétera, traen aquí, no sé, algo de una persona que no sabíamos prácticamente"
+    },
+    {
+      "start": 4568.5,
+      "end": 4574.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "ni quién era, que no he tratado de averiguar en todos los en todos los buscadores qué hizo,"
+    },
+    {
+      "start": 4574.5,
+      "end": 4579.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "nadie sabe nada. Pero ustedes principalmente lo que vienen aquí a sacar es,"
+    },
+    {
+      "start": 4579.5,
+      "end": 4584.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "como se les han acabado los ideales, vienen a remover una guerra entre hermanos que pasó."
+    },
+    {
+      "start": 4584.5,
+      "end": 4590.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "Mi intervención va a va a tener en esta primera parte un argumento de lo que estoy diciendo"
+    },
+    {
+      "start": 4590.5,
+      "end": 4596.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "y en la segunda he tenido las ganas de leerme lo que es la causa general de la república,"
+    },
+    {
+      "start": 4596.5,
+      "end": 4602.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "la causa general después de la guerra civil y en la página siete he parado porque me estaban dando hasta náuseas"
+    },
+    {
+      "start": 4602.5,
+      "end": 4608.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "de ver las barbaridades que hicieron los republicanos en este municipio y además voy a nombrar luego hasta algunos nombres"
+    },
+    {
+      "start": 4608.5,
+      "end": 4614.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "de los asesinatos en la cuneta. Tiene ciento veintiuna páginas y me he quedado en la página siete."
+    },
+    {
+      "start": 4614.5,
+      "end": 4619.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "Pero lo que sí que quiero decirles es que desde Vox Riba-roja de Túria nosotros"
+    },
+    {
+      "start": 4619.5,
+      "end": 4624.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "respetamos profundamente la historia de nuestro municipio y el legítimo deseo de recordar a quienes trabajaron por su desarrollo,"
+    },
+    {
+      "start": 4624.5,
+      "end": 4629.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "pero sin embargo no podemos apoyar esta moción por varias razones de fondo."
+    },
+    {
+      "start": 4629.5,
+      "end": 4635.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "Nosotros consideramos esencial para preservar la convivencia y la neutralidad que debe ser un ayuntamiento"
+    },
+    {
+      "start": 4635.5,
+      "end": 4640.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "no presentar mociones de este tipo."
+    },
+    {
+      "start": 4640.5,
+      "end": 4645.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "Ustedes están instrumentalizando ideológicamente el pasado que promueve la llamada"
+    },
+    {
+      "start": 4645.5,
+      "end": 4651.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "Ley de Memoria Democrática solamente para lo que a ustedes les interesa,"
+    },
+    {
+      "start": 4651.5,
+      "end": 4656.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "que esta norma además impone una visión tremendamente parcial y sectaria de la historia de España"
+    },
+    {
+      "start": 4656.5,
+      "end": 4661.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "al dividirnos en dos bloques, entre buenos y malos."
+    },
+    {
+      "start": 4661.5,
+      "end": 4666.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "En los dos bandos había buenas personas, en los dos, no solamente en uno, estoy convencido de ello."
+    },
+    {
+      "start": 4666.5,
+      "end": 4671.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "Y además lo dicen según su ideología que defendieron además casi hace un siglo y lo sacan ahora."
+    },
+    {
+      "start": 4671.5,
+      "end": 4677.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "Desde Vox creemos que los ayuntamientos lo que tienen que dedicarse es a resolver los problemas reales de los vecinos,"
+    },
+    {
+      "start": 4677.5,
+      "end": 4682.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "la seguridad, la limpieza, los servicios públicos. Hoy comentando, no entendía la gente cómo, me han dicho, \"¿no en el pleno van a sacar"
+    },
+    {
+      "start": 4682.5,
+      "end": 4687.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "ahora poner una calle a nombre de un alcalde de la república?\". Decían, \"¿pero en los ayuntamientos se están dedicando a esto?\"."
+    },
+    {
+      "start": 4687.5,
+      "end": 4692.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "Pues sí, si se les acaba realmente las ideas y no gestionan, como muy bien ha comentado usted antes, gestionan francamente mal,"
+    },
+    {
+      "start": 4692.5,
+      "end": 4697.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "pues tienen que inventarse estos temas. No se deben reabrir estas heridas que deben quedar en los libros de historia"
+    },
+    {
+      "start": 4697.5,
+      "end": 4702.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "y que lamentablemente después de sacarlos y leerlos nos encontramos con que en todos los bandos ha habido auténticas barbaridades."
+    },
+    {
+      "start": 4702.5,
+      "end": 4708.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "Nosotros consideramos que no es una función del ayuntamiento juzgar estos hechos de la Segunda República o de la Guerra Civil,"
+    },
+    {
+      "start": 4708.5,
+      "end": 4713.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "ni otorgar reconocimientos con base a valoraciones políticas completamente retrospectivas."
+    },
+    {
+      "start": 4713.5,
+      "end": 4719.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "Las instituciones locales lo que deben tener es prudencia atendiendo a la memoria común de todos los riba-rojeros,"
+    },
+    {
+      "start": 4719.5,
+      "end": 4724.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "no a la memoria exclusiva de algunos, no solo eso es una no una reivindicación de asociaciones completamente ideologizadas."
+    },
+    {
+      "start": 4724.5,
+      "end": 4730.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "Y además creemos que la denominación de vías públicas lo que debe fomentar es la unidad social y el consenso, no la separación entre todos nosotros."
+    },
+    {
+      "start": 4730.5,
+      "end": 4735.5,
+      "speaker": "c07/SPEAKER_02",
+      "text": "Aquí hemos apoyado todas las mociones de nombramiento de tantos buenos hombres y mujeres de Riba-roja que han aportado,"
+    },
+    {
+      "start": 4735.5,
+      "end": 4740,
+      "speaker": "c07/SPEAKER_02",
+      "text": "médicos, maestros, deportistas, benefactores,"
+    },
+    {
+      "start": 7200,
+      "end": 7210,
+      "speaker": "c12/SPEAKER_00",
+      "text": "poder calificar esta visión como una integración de todas las tecn- tecnologías de información y comunicación para la mejora de la vida de la calidad de la vida y la accesibilidad de sus habitantes y asegurar un desenvolvimiento sostenible económico, social y ambiental."
+    },
+    {
+      "start": 7210,
+      "end": 7217,
+      "speaker": "c12/SPEAKER_00",
+      "text": "El Ayuntamiento ya cuenta en una sección de innovación en el área de secretaría general,"
+    },
+    {
+      "start": 7217,
+      "end": 7229,
+      "speaker": "c12/SPEAKER_00",
+      "text": "bajo la dirección política del alcalde, la cual se encarga de gestionar todos los proyectos relacionados para convertir a nuestra población en una smart city."
+    },
+    {
+      "start": 7229,
+      "end": 7236,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Y además, desde mayo del año pasado, contamos con un agente local de innovación."
+    },
+    {
+      "start": 7236,
+      "end": 7241,
+      "speaker": "c12/SPEAKER_00",
+      "text": "La agenda urbana de Riba-roja 2025-2030,"
+    },
+    {
+      "start": 7241,
+      "end": 7257,
+      "speaker": "c12/SPEAKER_00",
+      "text": "la su elaboración e implementación está basada en un marco estratégico para definir los objetivos y las situaciones encadenadas en los objetivos ODS y en aplicar al año 2030 ser en Riba-roja una smart city."
+    },
+    {
+      "start": 7257,
+      "end": 7301,
+      "speaker": "c12/SPEAKER_00",
+      "text": "incide de manera importante en una movilidad sostenible, segura y conectada en entornos urbanos y metropolitanos, en el objetivo fundamental de impulsar una movilidad urbana sostenible, descarbonizar y una mejora de la calidad de la vida. En el actual contexto, los vehículos eléctricos, todos sabemos que están así ya y que y que no se van a ir, y representan una conducción más neta y sostenible. Tenemos coches eléctricos, híbridos, motos, bicicletas y espatinet, lo que es comúnmente conocidos patinet. Todo eso forma ya"
+    },
+    {
+      "start": 7301,
+      "end": 7310,
+      "speaker": "c12/SPEAKER_00",
+      "text": "la costumbre de nuestro tráfico del día a día. Por eso es necesario, entendemos, desplegar en nuestro municipio las infraestructuras de recarga"
+    },
+    {
+      "start": 7310,
+      "end": 7313,
+      "speaker": "c12/SPEAKER_00",
+      "text": "que permiten el su uso."
+    },
+    {
+      "start": 7313,
+      "end": 7335,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Otro objetivo estratégico de la agenda urbana incide en la vinculación del desenvolvimiento urbano sostenible como sociedad del conocimiento, de la innovación tecnológica y especialmente la tecnología de equidad digital son el verdadero motor e impulsor de los cambios actuales y futuros en nuestra sociedad."
+    },
+    {
+      "start": 7335,
+      "end": 7360,
+      "speaker": "c12/SPEAKER_00",
+      "text": "El plan de acción de esta agenda urbana incluye un impulso de la administración electrónica digital facilitando, perdón, los procedimientos administrativos a la ciudadanía, desenvolviendo aplicaciones webs útiles y eficientes, mejorando infraestructuras y equipamientos para la obtención de una banda amplia de internet estable y óptima que permita un acceso a internet y a las comunicaciones en el su ámbito."
+    },
+    {
+      "start": 7360,
+      "end": 7363,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Por todo eso, proponemos:"
+    },
+    {
+      "start": 7363,
+      "end": 7367,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Creaciones de punto de recarga rápida para vehículos eléctricos."
+    },
+    {
+      "start": 7367,
+      "end": 7372,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Creaciones de puntos de recarga para los patinet y las bicis eléctricas."
+    },
+    {
+      "start": 7372,
+      "end": 7386,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Creaciones de puntos que incorporen tecnología USB, tanto en el mobiliario de parques como en instalaciones municipales para permitir la recarga de dispositivos electrónicos personales,"
+    },
+    {
+      "start": 7386,
+      "end": 7389,
+      "speaker": "c12/SPEAKER_00",
+      "text": "telefonía móvil, tablets, etcétera."
+    },
+    {
+      "start": 7389,
+      "end": 7394,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Implantación de una red wifi en todos los edificios municipales útil y eficiente"
+    },
+    {
+      "start": 7394,
+      "end": 7404,
+      "speaker": "c12/SPEAKER_00",
+      "text": "para todos los ciudadanos y empleados que se encuentren en los mismos, a través de una red de invitados o similar como existe en la mayoría de los edificios públicos de la Comunidad Valenciana."
+    },
+    {
+      "start": 7404,
+      "end": 7429,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Acceso a la plataforma del Ayuntamiento desde cualquier ordenador, ya sea PC o Mac, a través de una pasarela segura de un sistema operativo indiferente, Windows, Mac, si son móviles Android, iOS, y desde cualquier navegador, Chrome, Safari y todos los que puedan gastarse hoy en día, como se tiene en cualquier ayuntamiento y entidad pública."
+    },
+    {
+      "start": 7429,
+      "end": 7445,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Creación de una web municipal más accesible, rápida, visualmente atractiva, con una estructura simple, con un diseño adaptable a móviles y tablets, tanto de un sistema operativo como de otro, garantizando una experiencia intuitiva."
+    },
+    {
+      "start": 7445,
+      "end": 7464,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Mejorar las infraestructuras de telecomunicaciones mitjançant la instalación de antenas en edificios públicos para poder conseguir una red estable en el casco urbano, zona centro y casa de la cultura, y conseguir un acceso a banda amplia en la mayor parte de las urbanizaciones y núcleos diseminados."
+    },
+    {
+      "start": 7464,
+      "end": 7472,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Y para acabar, una revisión y actualización de la ordenanza reguladora de la administración electrónica en el Ayuntamiento de Riba-roja. Muchas gracias."
+    },
+    {
+      "start": 7472,
+      "end": 7475,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Paraules. Esther."
+    },
+    {
+      "start": 7475,
+      "end": 7479,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Gracias, alcalde. Buenas tardes a todos y a todas."
+    },
+    {
+      "start": 7479,
+      "end": 7493,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Bueno, con esta exposición de motivos podemos ver que el municipio, bajo el mandato de este gobierno desde 2015, no ha per- no ha perdido la oportunidad de trabajar y desarrollar un modelo de ciudad innovadora, digital"
+    },
+    {
+      "start": 7493,
+      "end": 7503,
+      "speaker": "c12/SPEAKER_02",
+      "text": "y sostenible para la mejora de la calidad de la vida y accesibilidad a sus habitantes y asegurar un desarrollo sostenible tanto económicamente como social y ambientalmente, siempre en mejora permanente."
+    },
+    {
+      "start": 7503,
+      "end": 7507,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Así que esta moción casi es como si fuera una moción de felicitación."
+    },
+    {
+      "start": 7507,
+      "end": 7511,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Nos complace el apoyo a todo este desarrollo que hemos llevado a cabo, la verdad."
+    },
+    {
+      "start": 7511,
+      "end": 7532,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Pero hace una relación de acciones de acciones que se han desarrollado como que forma parte de un ecosistema innovador privilegiado, en el año 2019 la guía, en el año 2023 la creación de concejalía de innovación y distinción de la ciudad de ciencia, el desarrollo de la agenda urbana,"
+    },
+    {
+      "start": 7532,
+      "end": 7536,
+      "speaker": "c12/SPEAKER_02",
+      "text": "así que contar como un agente local de innovación."
+    },
+    {
+      "start": 7536,
+      "end": 7552,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Pero, sin embargo, hay algunas otras que no se han comentado como pueden ser el plan PMUS de movilidad sostenible, segura y conectada en entornos urbanos y metropolitanos, o el hub de innovación con desarrollos de proyectos innovadores como sería"
+    },
+    {
+      "start": 7552,
+      "end": 7569,
+      "speaker": "c12/SPEAKER_02",
+      "text": "el próximo que está preparándose SIGIM, Sistema Integral de Gestión de Incidencias Municipales, para mejorar la coordinación interna en la gestión de estas incidencias, más de tres mil anuales, así como las sugerencias, con un grupo de trabajo interdepartamental"
+    },
+    {
+      "start": 7569,
+      "end": 7577,
+      "speaker": "c12/SPEAKER_02",
+      "text": "y que marcará un hito en esa forma de trabajo de nuestros departamentos y, por tanto, repercusión en la ciudadanía."
+    },
+    {
+      "start": 7577,
+      "end": 7587,
+      "speaker": "c12/SPEAKER_02",
+      "text": "O el plan director de destinos turísticos inteligentes con la pertenencia a la red DTI de la Generalitat y próximamente a la red nacional"
+    },
+    {
+      "start": 7587,
+      "end": 7590,
+      "speaker": "c12/SPEAKER_02",
+      "text": "de DTI Segittur."
+    },
+    {
+      "start": 7590,
+      "end": 7597,
+      "speaker": "c12/SPEAKER_02",
+      "text": "O el plan de sostenibilidad turística en destinos, con la que sí, esa digitalización de nuestro municipio"
+    },
+    {
+      "start": 7597,
+      "end": 7605,
+      "speaker": "c12/SPEAKER_02",
+      "text": "llegará a alcanzar un punto más que relevante, incluyendo la realidad aumentada,"
+    },
+    {
+      "start": 7605,
+      "end": 7612,
+      "speaker": "c12/SPEAKER_02",
+      "text": "la gamificación, que pueden ver ustedes en la página web de turismo y señalización, los informes de movilidad,"
+    },
+    {
+      "start": 7612,
+      "end": 7622,
+      "speaker": "c12/SPEAKER_02",
+      "text": "que serán sistemas para recopilación y análisis de datos, tanto patrones de movilidad como análisis de redes sociales, las campañas de promoción segmentada,"
+    },
+    {
+      "start": 7622,
+      "end": 7635,
+      "speaker": "c12/SPEAKER_02",
+      "text": "que tratarán la segmentación demográfica o por intereses o por comportamiento, como el retargeting o geotargeting, geográfica y geolocalización, bueno, términos técnicos, ¿no?"
+    },
+    {
+      "start": 7635,
+      "end": 7649,
+      "speaker": "c12/SPEAKER_02",
+      "text": "El plan de accesibilidad a yacimientos, con el suministro e instalación de elementos accesibles, la señalización táctil y podotáctil para facilitar orientación de personas con discapacidad visual, paneles informativos en braille y con códigos QR"
+    },
+    {
+      "start": 7649,
+      "end": 7656,
+      "speaker": "c12/SPEAKER_02",
+      "text": "para acceso a información en formato digital y autodescrito y códigos Navilens."
+    },
+    {
+      "start": 7656,
+      "end": 7661,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Y instalación de sensores de conteo en el parque natural y otros entornos."
+    },
+    {
+      "start": 7661,
+      "end": 7679,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Muy importante y relevante con la instalación de sensores de conteo de personas en puntos estratégicos de nuestro parque natural y en el núcleo urbano de Riba-roja, que llevará la instalación de sensores también de ocupación en los parkings principales del municipio con paneles de información sobre la ocupación de de estos parkings"
+    },
+    {
+      "start": 7679,
+      "end": 7699,
+      "speaker": "c12/SPEAKER_02",
+      "text": "y sensores de calidad del aire en el área recreativa del parque natural con medición de parámetros como partículas en suspensión, PM10, PM2.5, dióxido de nitrógeno, ozono, temperatura y humedad, implementación de un sistema de transmisión de datos seguro y eficiente, una plataforma digital de visualización y análisis de datos en tiempo real,"
+    },
+    {
+      "start": 7699,
+      "end": 7714,
+      "speaker": "c12/SPEAKER_02",
+      "text": "o el panel inteligente de datos, lo más cercano a la smart city, que nos permitirá soportar el tratamiento analítico de datos mediante herramientas de business intelligence y la generación de informes, cuadros de mando, además de de herramientas"
+    },
+    {
+      "start": 7714,
+      "end": 7721,
+      "speaker": "c12/SPEAKER_02",
+      "text": "que contendrán un servicio portal web accesible por el usuario dependiendo de los distintos roles,"
+    },
+    {
+      "start": 7721,
+      "end": 7735,
+      "speaker": "c12/SPEAKER_02",
+      "text": "donde tomarán datos de fuentes externas como puede ser el el INE o fuentes de Dataestur, Datos Gob, fuentes procedentes de Aemet o datos internos del Ayuntamiento, accesos a base de datos y otros servicios."
+    },
+    {
+      "start": 7735,
+      "end": 7749,
+      "speaker": "c12/SPEAKER_02",
+      "text": "Por tanto, todo nuestro sistema de gestión y explotación de datos, indicadores, cuadros de mando nos permitirán esa gestión pública más eficiente y decisiones basadas en información real, mayor transparencia y mejores servicios para los ciudadanos."
+    },
+    {
+      "start": 7749,
+      "end": 7754,
+      "speaker": "c12/SPEAKER_01",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 7754,
+      "end": 7757,
+      "speaker": "c12/SPEAKER_00",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 7757,
+      "end": 7760,
+      "speaker": "c12/SPEAKER_01",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 7760,
+      "end": 7761,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Ay, perdón."
+    },
+    {
+      "start": 7761,
+      "end": 7764,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Esther. Muy bien, pero me has recordado al escritor que decía \"yo he venido a hablar de mi libro\" y como aquel."
+    },
+    {
+      "start": 7764,
+      "end": 7772,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Todo lo que has dicho está muy bien, pero sin acceso al 5G, a la wi- al wifi y a la telefonía móvil no podemos tener acceso a nada, a nada de lo que has dicho."
+    },
+    {
+      "start": 7772,
+      "end": 7776,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Mira, el diecinueve de febrero registré la moción."
+    },
+    {
+      "start": 7776,
+      "end": 7782,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Ha servido. Ha servido. Porque, primero, en el plan normativo anual se va a tratar la ordenanza reguladora de la administración electrónica de este Ayuntamiento."
+    },
+    {
+      "start": 7782,
+      "end": 7791,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Hace más de diez años que está obsoleta. Hace más de diez años que está obsoleta, pero me alegro de que se vaya a tratar."
+    },
+    {
+      "start": 7791,
+      "end": 7796,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Nos vamos a adecuar a al Esquema Nacional de Seguridad,"
+    },
+    {
+      "start": 7796,
+      "end": 7800,
+      "speaker": "c12/SPEAKER_01",
+      "text": "obligatorio desde hace casi cuatro años. Me alegro, ha servido para algo."
+    },
+    {
+      "start": 7800,
+      "end": 7806,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Todo esto posterior a la presentación en el registro de entrada de esta moción."
+    },
+    {
+      "start": 7800,
+      "end": 7804.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Yo vengo a hablar de cosas para la gente de la calle, para la gente de a pie, para nosotros."
+    },
+    {
+      "start": 7804.1,
+      "end": 7808.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Tú entras a la web municipal, en el buscador, donde pone \"busca\","
+    },
+    {
+      "start": 7808.1,
+      "end": 7812.4,
+      "speaker": "c13/SPEAKER_00",
+      "text": "lo puede cualquier ciudadano lo puede comprobar, pon \"ordenanza\" a ver qué te sale. Y mira que hay ordenanzas."
+    },
+    {
+      "start": 7812.4,
+      "end": 7818.9,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Pon \"pleno\" y a ver qué te sale. Ni salen ordenanzas ni salen plenos."
+    },
+    {
+      "start": 7818.9,
+      "end": 7823.9,
+      "speaker": "c13/SPEAKER_00",
+      "text": "La web es una maraña que en su día estaría bien o no en su día,"
+    },
+    {
+      "start": 7823.9,
+      "end": 7830.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "pero hoy en día, comparadas con webs de otras administraciones públicas, está desfasada y obsoleta."
+    },
+    {
+      "start": 7830.1,
+      "end": 7835.4,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Y lo hemos comentado varias veces y el concejal José Ángel en repetidas ocasiones me ha dicho que se está trabajando en ello."
+    },
+    {
+      "start": 7835.4,
+      "end": 7840.4,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Eh, la plataforma, la plataforma, yo tengo este portátil, si no accedo desde este portátil,"
+    },
+    {
+      "start": 7840.4,
+      "end": 7845.4,
+      "speaker": "c13/SPEAKER_00",
+      "text": "me voy a cualquier punto de España, no del extranjero, de España, de la Comunidad Valenciana, de Riba-roja, con otro ordenador y no puedo acceder a ella,"
+    },
+    {
+      "start": 7845.4,
+      "end": 7848.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "teniendo certificado digital o no."
+    },
+    {
+      "start": 7848.1,
+      "end": 7851.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "El acceso desde el móvil ya ni hablar."
+    },
+    {
+      "start": 7851.1,
+      "end": 7856.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Si tú en el navegador usas Safari, que mucha gente es usuaria de Apple,"
+    },
+    {
+      "start": 7856.1,
+      "end": 7861.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "como otra mucha gente es usuaria de Android, no puedes acceder a la mayoría a la plataforma donde se registra la documentación del ayuntamiento."
+    },
+    {
+      "start": 7861.1,
+      "end": 7864.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "No se puede acceder. Eso no es una forma de hablar, eso es algo práctico que siempre se ve."
+    },
+    {
+      "start": 7864.1,
+      "end": 7870.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Yo en octubre del dos mil veinticuatro se aprobó la agenda urbana. Todos votamos a favor."
+    },
+    {
+      "start": 7870.1,
+      "end": 7875.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "En esa agenda urbana se decía en una de las propuestas para llevar en el análisis DAFO, en una de las propuestas era"
+    },
+    {
+      "start": 7875.1,
+      "end": 7878.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "que los vehículos bueno, eran acuerdos de propuestas que se estaban haciendo,"
+    },
+    {
+      "start": 7878.1,
+      "end": 7881.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "los vehículos eléctricos tendrían cargadores."
+    },
+    {
+      "start": 7881.1,
+      "end": 7886.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Nosotros el treinta y uno de octubre del año pasado hicimos una moción porque no iban,"
+    },
+    {
+      "start": 7886.1,
+      "end": 7891.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "bueno, una moción no, una publicación en redes sociales porque no funcionaban desde hace años."
+    },
+    {
+      "start": 7891.1,
+      "end": 7896.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "La semana siguiente José Luis habló, José Luis Ramos habló y los quitó"
+    },
+    {
+      "start": 7896.1,
+      "end": 7901.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "porque era competencia desleal. Ustedes en el dos mil veinticuatro lo ponen como una fuerza,"
+    },
+    {
+      "start": 7901.1,
+      "end": 7905.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "como una actuación necesaria en la agenda urbana, en el dos mil veinticinco la quitan."
+    },
+    {
+      "start": 7905.1,
+      "end": 7907.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Yo qué hago que les diga."
+    },
+    {
+      "start": 7907.1,
+      "end": 7912.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "En el análisis DAFO ustedes también, ampliación de la red de aparcamientos públicos y mejora de los existentes."
+    },
+    {
+      "start": 7912.1,
+      "end": 7914.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "No sé, no está."
+    },
+    {
+      "start": 7914.1,
+      "end": 7918.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Modernización de las infraestructuras de autobús urbano. No sé, no está."
+    },
+    {
+      "start": 7918.1,
+      "end": 7921.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Creación de una red de puntos de recarga. No sé, no está."
+    },
+    {
+      "start": 7921.1,
+      "end": 7926.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "En el año dos mil diecinueve se aprobó una moción por todo nosotros la mayoría no estábamos,"
+    },
+    {
+      "start": 7926.1,
+      "end": 7930.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "del Partido Popular ninguno, excepto Salva."
+    },
+    {
+      "start": 7930.1,
+      "end": 7935.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Se aprobó una moción aprobada por el pleno del ayuntamiento para poner wifi en las zonas ajardinadas, zonas de ocio y zona deportiva."
+    },
+    {
+      "start": 7935.1,
+      "end": 7940.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Hoy en día no existe wifi ni en las zonas ajardinadas, ni en las zonas de ocio, ni en las zonas deportivas."
+    },
+    {
+      "start": 7940.1,
+      "end": 7945.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Entras al auditorio y según la compañía tienes acceso a internet o no, a la telefonía móvil, ya no acceso."
+    },
+    {
+      "start": 7945.1,
+      "end": 7950.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Sales ahora por la calle Mayor, subes, dentro de las casas no puedes acceder a la tecnología a la tecnología cinco G."
+    },
+    {
+      "start": 7950.1,
+      "end": 7953.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "No puedes acceder, no hay conexión."
+    },
+    {
+      "start": 7953.1,
+      "end": 7954.1,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Vete acabando."
+    },
+    {
+      "start": 7954.1,
+      "end": 7957.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Acabe, continuaré o si gracias."
+    },
+    {
+      "start": 7957.1,
+      "end": 7962.1,
+      "speaker": "c13/SPEAKER_00",
+      "text": "Es que se ha pasado dos minutos, ha pasado cinco minutos."
+    },
+    {
+      "start": 7962.1,
+      "end": 7963.1,
+      "speaker": "c13/SPEAKER_01",
+      "text": "A ver, eh ¿quién es palabra? ¿Quiere la palabra?"
+    },
+    {
+      "start": 7963.1,
+      "end": 7966.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Sí, sí. Respecto a las propuestas que nos presenta,"
+    },
+    {
+      "start": 7966.1,
+      "end": 7971.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "sí, sí, me gustaría decirte que que que no he encontrado ninguna que nos plantee un nuevo reto que no tengamos ya identificado"
+    },
+    {
+      "start": 7971.1,
+      "end": 7976.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "y y poder ampliar algu- nuestros planes con alguna novedad, pero pero no es así."
+    },
+    {
+      "start": 7976.1,
+      "end": 7981.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Respecto a la creación de de puntos de recarga, sí que se está mirando, se está mirando hace tiempo buscar una solución,"
+    },
+    {
+      "start": 7981.1,
+      "end": 7986.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "una solución que jurídica y fiscalmente sea viable por lo que has comentado tú."
+    },
+    {
+      "start": 7986.1,
+      "end": 7991.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Has comentado precisamente que que era una una solución la que la de ponerlos,"
+    },
+    {
+      "start": 7991.1,
+      "end": 7996.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "que se quitaron precisamente por eso, porque no era no se podía llevar a cabo de esa manera."
+    },
+    {
+      "start": 7996.1,
+      "end": 8001.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Entonces, tiene que haber una forma de hacerlo que tiene que ser más compleja para poner en marcha pues en diversos parkings esta solución,"
+    },
+    {
+      "start": 8001.1,
+      "end": 8004.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "pero se está estudiando, sí que se está estudiando."
+    },
+    {
+      "start": 8004.1,
+      "end": 8009.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Igual que igual que que respecto a la implantación de la red wifi,"
+    },
+    {
+      "start": 8009.1,
+      "end": 8014.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "pues en principio todos los edificios municipales tienen sistema wifi, Riba-roja, conectándote a Riba-roja,"
+    },
+    {
+      "start": 8014.1,
+      "end": 8018.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "tú dispones de una wifi. Vale, eso eh en dos mil diecinueve"
+    },
+    {
+      "start": 8018.1,
+      "end": 8023.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "se pusieron se puso en las bibliotecas municipales y fue en diciembre del dos mil diez cuando se empezó a instalar esta red"
+    },
+    {
+      "start": 8023.1,
+      "end": 8028.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "y y poco a poco se fue eh llevando a todos los locales de a todos los,"
+    },
+    {
+      "start": 8028.1,
+      "end": 8033.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "perdón, los edificios municipales en este momento. Vale."
+    },
+    {
+      "start": 8033.1,
+      "end": 8038.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Luego, eh el otro tema que me comentas de la plataforma, pues en principio es accesible desde cualquier navegador,"
+    },
+    {
+      "start": 8038.1,
+      "end": 8043.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "en principio, y desde cualquier sistema operativo. Lo que ocurre es que alguna vez alguno de los sistemas operativos"
+    },
+    {
+      "start": 8043.1,
+      "end": 8048.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "pueden tener algunas características que que a veces no sabemos ni que las tenemos por defecto,"
+    },
+    {
+      "start": 8048.1,
+      "end": 8053.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "que que no te permiten igual acceder a un acceso no seguro, a un acceso seguro o permitir bloqueos."
+    },
+    {
+      "start": 8053.1,
+      "end": 8058.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Eso es verdad que a veces eh las propias características de los teléfonos móviles y de y de donde está"
+    },
+    {
+      "start": 8058.1,
+      "end": 8063.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "donde están las plataformas hay problemas de compatibilidad, pero si hay algún problema,"
+    },
+    {
+      "start": 8063.1,
+      "end": 8068.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "se habla con la con el personal de Osi y te indican cómo puedes hacerlo y llegar perfectamente."
+    },
+    {
+      "start": 8068.1,
+      "end": 8073.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Es verdad que también la ciudadanía igual necesitamos más formación en administración electrónica, eso también es verdad."
+    },
+    {
+      "start": 8073.1,
+      "end": 8078.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Vale. A la pasarela de pago se accede también."
+    },
+    {
+      "start": 8078.1,
+      "end": 8083.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "A la pasarela de pago se accede perfectamente, sin ningún problema."
+    },
+    {
+      "start": 8083.1,
+      "end": 8088.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Vale, y luego respecto a la a la web municipal, sí que te quiero dar una buena noticia, aunque ya te lo ha comentado José Ángel,"
+    },
+    {
+      "start": 8088.1,
+      "end": 8093.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "que sí que se está sí que se está trabajando precisamente desde el área de Osi, ah,"
+    },
+    {
+      "start": 8093.1,
+      "end": 8095.1,
+      "speaker": "c13/SPEAKER_03",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8095.1,
+      "end": 8100.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8100.1,
+      "end": 8105.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8105.1,
+      "end": 8110.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8110.1,
+      "end": 8115.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8115.1,
+      "end": 8120.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8120.1,
+      "end": 8125.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8125.1,
+      "end": 8130.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8130.1,
+      "end": 8135.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8135.1,
+      "end": 8140.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8140.1,
+      "end": 8145.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8145.1,
+      "end": 8150.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8150.1,
+      "end": 8155.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8155.1,
+      "end": 8160.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8160.1,
+      "end": 8165.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8165.1,
+      "end": 8170.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8170.1,
+      "end": 8175.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8175.1,
+      "end": 8180.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8180.1,
+      "end": 8185.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8185.1,
+      "end": 8190.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8190.1,
+      "end": 8195.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8195.1,
+      "end": 8200.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8200.1,
+      "end": 8205.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8205.1,
+      "end": 8210.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8210.1,
+      "end": 8215.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8215.1,
+      "end": 8220.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8220.1,
+      "end": 8225.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8225.1,
+      "end": 8230.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8230.1,
+      "end": 8235.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8235.1,
+      "end": 8240.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8240.1,
+      "end": 8245.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8245.1,
+      "end": 8250.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8250.1,
+      "end": 8255.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8255.1,
+      "end": 8260.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8260.1,
+      "end": 8265.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8265.1,
+      "end": 8270.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8270.1,
+      "end": 8275.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8275.1,
+      "end": 8280.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8280.1,
+      "end": 8285.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8285.1,
+      "end": 8290.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8290.1,
+      "end": 8295.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8295.1,
+      "end": 8300.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8300.1,
+      "end": 8305.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8305.1,
+      "end": 8310.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8310.1,
+      "end": 8315.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8315.1,
+      "end": 8320.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8320.1,
+      "end": 8325.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8325.1,
+      "end": 8330.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8330.1,
+      "end": 8335.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8335.1,
+      "end": 8340.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8340.1,
+      "end": 8345.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8345.1,
+      "end": 8350.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8350.1,
+      "end": 8355.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8355.1,
+      "end": 8360.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8360.1,
+      "end": 8365.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8365.1,
+      "end": 8370.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8370.1,
+      "end": 8375.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8375.1,
+      "end": 8380.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8380.1,
+      "end": 8385.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8385.1,
+      "end": 8390.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8390.1,
+      "end": 8395.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8395.1,
+      "end": 8400.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8400.1,
+      "end": 8405.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8405.1,
+      "end": 8410.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8410.1,
+      "end": 8415.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8415.1,
+      "end": 8420.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8420.1,
+      "end": 8425.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8425.1,
+      "end": 8430.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8430.1,
+      "end": 8435.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8435.1,
+      "end": 8440.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8440.1,
+      "end": 8445.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8445.1,
+      "end": 8450.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8450.1,
+      "end": 8455.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8455.1,
+      "end": 8460.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8460.1,
+      "end": 8465.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8465.1,
+      "end": 8470.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8470.1,
+      "end": 8475.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8475.1,
+      "end": 8480.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8480.1,
+      "end": 8485.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8485.1,
+      "end": 8490.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8490.1,
+      "end": 8495.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8495.1,
+      "end": 8500.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8500.1,
+      "end": 8505.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8505.1,
+      "end": 8510.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8510.1,
+      "end": 8515.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "[inaudible]"
+    },
+    {
+      "start": 8515.1,
+      "end": 8516.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Vale, pues"
+    },
+    {
+      "start": 8516.1,
+      "end": 8521.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "nada, respecto a la web, decir eso, que tanto en las áreas de Osi como transparencia"
+    },
+    {
+      "start": 8521.1,
+      "end": 8526.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "y comunicación estamos trabajando ya para la puesta a punto y en marcha en breve de esa nueva web,"
+    },
+    {
+      "start": 8526.1,
+      "end": 8531.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "esa web que será, como tú comentas, con un diseño pues adaptable a móviles,"
+    },
+    {
+      "start": 8531.1,
+      "end": 8536.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "responsive y que además tendrá asociada una nueva APP que nos permitirá también disfrutar y poder navegar"
+    },
+    {
+      "start": 8536.1,
+      "end": 8541.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "de una manera pues más intuitiva porque efectivamente esa web estaba obsoleta."
+    },
+    {
+      "start": 8541.1,
+      "end": 8546.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Es una web que realmente eh merece un cambio sí o sí y por eso se está trabajando. Es complicado porque"
+    },
+    {
+      "start": 8546.1,
+      "end": 8551.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "hay que hacer toda la migración de todo lo que está, intentar no perder cierta información"
+    },
+    {
+      "start": 8551.1,
+      "end": 8556.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "y reordenarla de otra manera muy diferente. Entonces, está siendo un proyecto un poco complejo, pero"
+    },
+    {
+      "start": 8556.1,
+      "end": 8561.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "ya estamos en un punto que está bastante bastante afinado y y no tardaremos mucho en que eso esté disponible."
+    },
+    {
+      "start": 8561.1,
+      "end": 8566.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Y nada más, porque yo ya no sé qué tiempo llevo ni qué no."
+    },
+    {
+      "start": 8566.1,
+      "end": 8567.1,
+      "speaker": "c13/SPEAKER_02",
+      "text": "Con la interrupción."
+    },
+    {
+      "start": 8567.1,
+      "end": 8571.1,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Alberto, un minut. Ah, bueno, Compromís, perdoneu, que teniu paraula."
+    },
+    {
+      "start": 8571.1,
+      "end": 8573.1,
+      "speaker": "c13/SPEAKER_01",
+      "text": "Compromís, Rafa."
+    },
+    {
+      "start": 8573.1,
+      "end": 8578.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "Gràcies, senyor alcalde. La veritat és que, eh, em quede se'm queda la expectativa a veure quina"
+    },
+    {
+      "start": 8578.1,
+      "end": 8583.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "contestació feia la regidora de l'equip de govern."
+    },
+    {
+      "start": 8583.1,
+      "end": 8588.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "I la veritat és que, eh, no estàvem segurs"
+    },
+    {
+      "start": 8588.1,
+      "end": 8593.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "del nostre vot, però crec que en la contestació que ha fet"
+    },
+    {
+      "start": 8593.1,
+      "end": 8598.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "la regidora de l'equip de govern ens l'ha aclarat i anem a votar a favor de la de la moció."
+    },
+    {
+      "start": 8598.1,
+      "end": 8603.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "Perquè, eh, esperàvem que donara alguna informació de"
+    },
+    {
+      "start": 8603.1,
+      "end": 8608.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "que totes estes propostes que fa el Partit Popular, pues que estigueren ja en marxa."
+    },
+    {
+      "start": 8608.1,
+      "end": 8613.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "Miren, eh, nosaltres totes les propostes que beneficien als nostres veïns i veïnes,"
+    },
+    {
+      "start": 8613.1,
+      "end": 8618.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "vinguen d'on vinguen, encara que després el Partit Popular diga que no, eh, les anem a recolzar."
+    },
+    {
+      "start": 8618.1,
+      "end": 8623.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "I les anem a recolzar perquè, és a dir-li, per si no ho sap,"
+    },
+    {
+      "start": 8623.1,
+      "end": 8628.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "els comerços de la zona centro, sobretot del casc antic,"
+    },
+    {
+      "start": 8628.1,
+      "end": 8633.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "la majoria no poden tindre datàfono per cobrar perquè no tenen"
+    },
+    {
+      "start": 8633.1,
+      "end": 8638.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "no tenen red wifi, no tenen red, val?"
+    },
+    {
+      "start": 8638.1,
+      "end": 8643.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "I la veritat és que una de les propostes que porta el Partit Popular crec que"
+    },
+    {
+      "start": 8643.1,
+      "end": 8648.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "milloraria eixa eixa eixa problemàtica que tenen els comerços."
+    },
+    {
+      "start": 8648.1,
+      "end": 8653.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "I com tots i tot el sabeu, eh, el comerç és la meua debilitat."
+    },
+    {
+      "start": 8653.1,
+      "end": 8658.1,
+      "speaker": "c13/SPEAKER_04",
+      "text": "Per això i perquè està molt bé que s'han fet moltes coses des de l'equip de govern en matèria"
+    },
+    {
+      "start": 8400,
+      "end": 8407.9,
+      "speaker": "c14/SPEAKER_00",
+      "text": "de de infraestructura comunicativa, pero todas estas propuestas creemos que mejorarían mucho la vida de nuestros vecinos y vecinas y por eso vamos a respaldarla. Gracias."
+    },
+    {
+      "start": 8407.9,
+      "end": 8417.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Vale. Último turno de debate para el PP. ¿Tiene que acabar de hacer intervenciones?"
+    },
+    {
+      "start": 8417.1,
+      "end": 8421.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Yo, Esther, decir que la culpa es de la ciudadanía"
+    },
+    {
+      "start": 8421.1,
+      "end": 8430.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "que no tenemos formación, que no tenemos la suficiente formación en las nuevas tecnologías, qué quieres que te diga. Díselo a los jóvenes si tienen formación y cuando te dicen que aquí no hay 5G."
+    },
+    {
+      "start": 8430.1,
+      "end": 8431.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "No sé."
+    },
+    {
+      "start": 8431.1,
+      "end": 8441.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Eh, parece ser que en el mercado tú nunca has visto a los a los que van a cobrar con el datáfono haciendo señales como si estuvieran buscando, no sé, eh, señales."
+    },
+    {
+      "start": 8441.1,
+      "end": 8444.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "¿Qué es lo que están buscando? Porque no pueden cobrar desde dentro."
+    },
+    {
+      "start": 8444.1,
+      "end": 8448.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "A los comercios sales fuera a pagar porque no hay no hay conexión"
+    },
+    {
+      "start": 8448.1,
+      "end": 8452.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "5G en el centro del pueblo. Es que negar eso es negar la mayor."
+    },
+    {
+      "start": 8452.1,
+      "end": 8460.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Que yo tenga Safari y tenga que subir a Osic a ver cómo puedo navegar, no me pasa ni en la Diputación, ni en el Ayuntamiento de Valencia, ni en la Generalitat Valenciana, ni en ninguna administración pública que se precie."
+    },
+    {
+      "start": 8460.1,
+      "end": 8466.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Puedes entrar a través del navegador de Safari, del Google Chrome, del del Firefox, del navegador que sea"
+    },
+    {
+      "start": 8466.1,
+      "end": 8471.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "y tienes que tener acceso. Puedo entrar desde la desde el móvil"
+    },
+    {
+      "start": 8471.1,
+      "end": 8476.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "a través de la aplicación o desde la web hecha para móvil, porque es diferente una web hecha para ordenador que una web hecha para móvil."
+    },
+    {
+      "start": 8476.1,
+      "end": 8478.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "El Ayuntamiento de Riba-roja no la tiene."
+    },
+    {
+      "start": 8478.1,
+      "end": 8487.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Dos mil veintiséis, agenda urbana, smart city, adhesión a la Red Española de Ciudades Inteligentes. Lo tenéis todo."
+    },
+    {
+      "start": 8487.1,
+      "end": 8489.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Sobre el papel, todo."
+    },
+    {
+      "start": 8489.1,
+      "end": 8491.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Sobre la calle, nada."
+    },
+    {
+      "start": 8491.1,
+      "end": 8495.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Porque sin wifi, sin 5G, no tienes acceso a nada."
+    },
+    {
+      "start": 8495.1,
+      "end": 8503.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Los patinetes no tienen dónde cargarse. Los vehículos eléctricos, aprobada la agenda urbana por todos,"
+    },
+    {
+      "start": 8503.1,
+      "end": 8505.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "por todos los que estamos aquí hoy,"
+    },
+    {
+      "start": 8505.1,
+      "end": 8512.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "un proyecto era que hubieran cargadores eléctricos para los vehículos eléctricos, pero vamos, está plasmado en la agenda urbana."
+    },
+    {
+      "start": 8512.1,
+      "end": 8517.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "No existen. Es más, los quitasteis. En noviembre del veinticinco los quitasteis."
+    },
+    {
+      "start": 8517.1,
+      "end": 8524.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Diciendo que era competencia desleal. Se pues se comete competencia desleal en toda la Vale. Correcto."
+    },
+    {
+      "start": 8524.1,
+      "end": 8533.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Se se se en toda la población del Estado español hay competencia desleal excepto en Riba-roja. Tienen que dar gracias. Pero bueno,"
+    },
+    {
+      "start": 8533.1,
+      "end": 8540.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "sé que estáis trabajando en todo, me alegro y sé que ha servido para algo, aunque vote en contra. Gracias."
+    },
+    {
+      "start": 8540.1,
+      "end": 8542.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Bueno, dos cosas."
+    },
+    {
+      "start": 8542.1,
+      "end": 8548.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Eh, porque las intervenciones las puede hacer como quiera, pero eh hay que matizarlas."
+    },
+    {
+      "start": 8548.1,
+      "end": 8552.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "La concejala no ha dicho que la gente no sabe, que hay que hacer un curso."
+    },
+    {
+      "start": 8552.1,
+      "end": 8554.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Eso lo ha dicho usted."
+    },
+    {
+      "start": 8554.1,
+      "end": 8561.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Demagógicamente para intentar demostrar o decir que vamos en contra de la gente."
+    },
+    {
+      "start": 8561.1,
+      "end": 8564.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Lo que ha dicho la concejala, que evidentemente, y es así,"
+    },
+    {
+      "start": 8564.1,
+      "end": 8571.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "por ejemplo, yo sería uno de ellos, hace falta hoy formación al respecto para los retos que tiene de futuro en materia"
+    },
+    {
+      "start": 8571.1,
+      "end": 8576.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "de tecnología. Y es una verdad como un como un templo."
+    },
+    {
+      "start": 8576.1,
+      "end": 8581.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Vale. Ahora, interpretar lo que usted quiere decir se equivoca. Usted sí que ha hecho demagogia en toda la intervención."
+    },
+    {
+      "start": 8581.1,
+      "end": 8586.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Porque el 5G no depende de este ayuntamiento y lo sabe perfectamente."
+    },
+    {
+      "start": 8586.1,
+      "end": 8589.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Depende de los ministerios."
+    },
+    {
+      "start": 8589.1,
+      "end": 8591.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Por tanto, diga la verdad."
+    },
+    {
+      "start": 8591.1,
+      "end": 8599.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Y si dijera la verdad, diría que este pueblo y más pueblos como este no tienen el 5G y no es culpa de los gobiernos, ni de los alcaldes, ni de los concejales, ni del pleno."
+    },
+    {
+      "start": 8599.1,
+      "end": 8603.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Tú puedes tener lo que quieras, como si quieres tener un avión."
+    },
+    {
+      "start": 8603.1,
+      "end": 8605.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Yo digo la verdad."
+    },
+    {
+      "start": 8605.1,
+      "end": 8609.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Eh, por tanto, puedes tener hasta un avión si quieres. Atento cuando uno habla,"
+    },
+    {
+      "start": 8609.1,
+      "end": 8614.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "porque tienes mucho vicio de interrumpir cuando nadie interrumpe cuando tú hablas, y siempre lo haces."
+    },
+    {
+      "start": 8614.1,
+      "end": 8619.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "En risas, eh atento, ¿vale? Y lo que no te agrada, lo escuchas."
+    },
+    {
+      "start": 8619.1,
+      "end": 8621.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Y no confundamos a la gente."
+    },
+    {
+      "start": 8621.1,
+      "end": 8625.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Mira, cuando nosotros entramos aquí, hace diez años y pico,"
+    },
+    {
+      "start": 8625.1,
+      "end": 8629.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "por cierto, una pandemia y una DANA, que no es una cosa menor,"
+    },
+    {
+      "start": 8629.1,
+      "end": 8634.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "les para firmar, los montones de firmas que tenían ahí. Y este ayuntamiento ya tiene la firma electrónica, pero este ayuntamiento no tenía nada, absolutamente."
+    },
+    {
+      "start": 8634.1,
+      "end": 8641.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "De hecho, cuando vino la pandemia, fuimos de los pocos ayuntamientos que habíamos avanzado y teníamos la firma electrónica, que entre otras cosas la impulsamos desde el área de Osic y de secretaría."
+    },
+    {
+      "start": 8641.1,
+      "end": 8647.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Y por eso pudimos teletrabajar, cosa que no hicieron otros ayuntamientos de esta comarca, ayuntamientos donde gobernáis vosotros."
+    },
+    {
+      "start": 8647.1,
+      "end": 8649.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "De aquí al lado."
+    },
+    {
+      "start": 8649.1,
+      "end": 8654.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Y no podían trabajar porque no tenían ni esa tecnología en el ayuntamiento, cosa que nosotros habíamos hecho."
+    },
+    {
+      "start": 8654.1,
+      "end": 8659.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "La app que tenemos va a ser pionera en la comarca, más de doce mil descargas."
+    },
+    {
+      "start": 8659.1,
+      "end": 8664.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Y así tendría un listado. Nosotros somos el pueblo por ratio que más hemos invertido"
+    },
+    {
+      "start": 8664.1,
+      "end": 8673.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "bonificadamente el cambio de modelo energético a través de renovables, esas que tú no sabes ni lo que son."
+    },
+    {
+      "start": 8673.1,
+      "end": 8677.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Porque decir lo de la gasolinera eléctrica, que ya te lo ha explicado bien el concejal,"
+    },
+    {
+      "start": 8677.1,
+      "end": 8684.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "y te va a decir que fuimos a hacer un impulso, el único ayuntamiento que bonificaba con seiscientos euros el kilovatio"
+    },
+    {
+      "start": 8684.1,
+      "end": 8691.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "para que la gente tuviera el cambio de modelo energético, porque nosotros sí que creemos en el cambio climático, no la boca chicoteta que cree el PP o en contra de Vox."
+    },
+    {
+      "start": 8691.1,
+      "end": 8693.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "O en contra del negacionismo de Vox."
+    },
+    {
+      "start": 8693.1,
+      "end": 8700.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Y fuimos a bonificar, y junto con Paterna hemos sido de la Comunidad Valenciana o el País Valenciano, cada uno que le diga como quiera, por ratios, los que más cambio de modelo energético hemos tenido."
+    },
+    {
+      "start": 8700.1,
+      "end": 8704.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "No solo bonificando la vivienda privada, sino también los edificios públicos."
+    },
+    {
+      "start": 8704.1,
+      "end": 8706.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Y eso la agenda que tú aprobaste."
+    },
+    {
+      "start": 8706.1,
+      "end": 8712.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Los indicadores, si te vas a la universidad, a la plaza de la universidad, no porque lo diga el alcalde, los indicadores que tienes,"
+    },
+    {
+      "start": 8712.1,
+      "end": 8717.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "el cumplimiento de indicadores son de los pueblos que más hemos cumplido los indicadores de la agenda urbana."
+    },
+    {
+      "start": 8717.1,
+      "end": 8721.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Por eso tienes subvenciones que votaste en contra, entre otras las de Ribactiva, que votaron en contra de nueve millones de euros."
+    },
+    {
+      "start": 8721.1,
+      "end": 8728.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "La Conselleria de Transparencia, que ni existía aquí, y de participación, somos el treinta y cinco de España, medido externamente, y fuimos los primeros de la comunidad, ahora los terceros."
+    },
+    {
+      "start": 8728.1,
+      "end": 8730.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Hemos modernizado toda la administración."
+    },
+    {
+      "start": 8730.1,
+      "end": 8736.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Los plenos no se retransmitían por la televisión, no se retransmitían por la tele, tecnología, ya lo tenemos."
+    },
+    {
+      "start": 8736.1,
+      "end": 8739.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Eso cuando gobernaban ustedes, hace nada, ¿eh? No no hace siglos, hace cuatro días."
+    },
+    {
+      "start": 8739.1,
+      "end": 8741.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Hace cuatro días."
+    },
+    {
+      "start": 8741.1,
+      "end": 8749.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Tienen acceso a todos los expedientes desde hace más de nueve años de manera, eh diríamos, a través de tecnología nueva,"
+    },
+    {
+      "start": 8749.1,
+      "end": 8753.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "que no tenía ningún o pocos portavoces de otros sitios."
+    },
+    {
+      "start": 8753.1,
+      "end": 8756.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "De esta comarca, no me quiero ir a otros sitios de pueblos parecidos."
+    },
+    {
+      "start": 8756.1,
+      "end": 8763.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Y claro que queda por hacer. La web, si usted hubiera preguntado, porque ha dicho muchas cosas y está todo grabado, si hubiera preguntado en Osic,"
+    },
+    {
+      "start": 8763.1,
+      "end": 8771.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "que es el técnico, le habría dicho ya que la web están migrando, que lo ha dicho muy bien, todos los datos. Y la web va a ser una web pionera en esta comarca también y la tendrá en breve, no porque la moción que dice usted, porque la web está trabajándose de hace más de ocho meses."
+    },
+    {
+      "start": 8771.1,
+      "end": 8775.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Más de ocho meses. Pregunte a los técnicos y se lo explicarán. Atenta, atenta, que no he acabado todavía, atenta."
+    },
+    {
+      "start": 8775.1,
+      "end": 8778.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Porque son explicaciones que tengo que dar."
+    },
+    {
+      "start": 8778.1,
+      "end": 8785.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Más de ocho meses que estamos trabajando en ese tema y va a ser, hombre, siempre es bueno mejorar, de las mejores webs que hay, porque incorporamos toda el área de transparencia"
+    },
+    {
+      "start": 8785.1,
+      "end": 8792.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "en un visor presupuestario, que somos de los pocos pueblos que tiene un visor presupuestario para saber qué estamos haciendo en los presupuestos y el grado de cumplimiento."
+    },
+    {
+      "start": 8792.1,
+      "end": 8794.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Este ayuntamiento."
+    },
+    {
+      "start": 8794.1,
+      "end": 8801.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Por tanto, intentar de ahí a que el datáfono del comercio no va y la culpa es del ayuntamiento es engañar a la gente."
+    },
+    {
+      "start": 8801.1,
+      "end": 8803.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Engañar absolutamente."
+    },
+    {
+      "start": 8803.1,
+      "end": 8805.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Engañar."
+    },
+    {
+      "start": 8805.1,
+      "end": 8808.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "¿Vale? Y así le podría decir toda su intervención."
+    },
+    {
+      "start": 8808.1,
+      "end": 8811.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Hemos avanzado mucho, no lo suficiente, y estamos trabajando."
+    },
+    {
+      "start": 8811.1,
+      "end": 8813.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Hemos avanzado más todavía."
+    },
+    {
+      "start": 8813.1,
+      "end": 8818.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Pero hoy Riba-roja podemos decir tiene una agenda de innovación porque hemos trabajado la innovación."
+    },
+    {
+      "start": 8818.1,
+      "end": 8822.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Por eso tenemos un reconocimiento técnico del ministerio como pueblo innovador."
+    },
+    {
+      "start": 8822.1,
+      "end": 8829.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Y porque ha habido una decisión política, ayuda por los técnicos, pero porque ha habido una decisión política de ir por ahí y no"
+    },
+    {
+      "start": 8829.1,
+      "end": 8836.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "ironicemos estar en la red de innovación o estar en redes donde se aprende, viajando, escuchando, porque en Riba-roja hacemos mucho trabajo,"
+    },
+    {
+      "start": 8836.1,
+      "end": 8841.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "van los técnicos a esos sitios y impregnándose de todo lo que está pasando en España que va más allá de lo que usted dice."
+    },
+    {
+      "start": 8841.1,
+      "end": 8844.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Y claro que hay que hacer muchísimo."
+    },
+    {
+      "start": 8844.1,
+      "end": 8850.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Pero de momento podríamos decir que en materia de smart city somos unos pueblos, por ejemplo, sandbox,"
+    },
+    {
+      "start": 8850.1,
+      "end": 8854.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "que a lo mejor no sabe todavía qué es, pero yo lo explico."
+    },
+    {
+      "start": 8854.1,
+      "end": 8855.1,
+      "speaker": "c14/SPEAKER_02",
+      "text": "Sí que lo sé, sí que lo sé."
+    },
+    {
+      "start": 8855.1,
+      "end": 8861.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Vale, pues si sabe lo que es, el sandbox es un pionero junto con Alcoy, Alicante, Valencia y Riba-roja."
+    },
+    {
+      "start": 8861.1,
+      "end": 8865.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "De todos los quinientos cincuenta y cinco municipios, cinco. Uno, Riba-roja."
+    },
+    {
+      "start": 8865.1,
+      "end": 8872.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Que empresas como la universidad ya han medido la huella de carbono de la IA en este ayuntamiento."
+    },
+    {
+      "start": 8872.1,
+      "end": 8875.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Proyecto innovador y que seguramente será premiado."
+    },
+    {
+      "start": 8875.1,
+      "end": 8876.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Que hace poco que lo aprobamos."
+    },
+    {
+      "start": 8876.1,
+      "end": 8882.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "O otras empresas que van a probar en Riba-roja en ese sandbox, ese campo de experimento para mejorar tecnológicamente."
+    },
+    {
+      "start": 8882.1,
+      "end": 8888.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Alcoy, repito, Alicante, Valencia y Riba-roja, cuatro en toda la comunidad."
+    },
+    {
+      "start": 8888.1,
+      "end": 8890.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Pues claro que quedan cosas por hacer."
+    },
+    {
+      "start": 8890.1,
+      "end": 8897.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Pero de ahí a volver decir que lo que hemos hecho es un desastre, que hemos de aprobar, pero que no, no, no, perdone, la electrolinera que pusimos va ser pionera."
+    },
+    {
+      "start": 8897.1,
+      "end": 8904.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Lo que no podía ser ya una vez hecho el producto y trabajamos como campaña de marketing para que la gente apueste por las renovables,"
+    },
+    {
+      "start": 8904.1,
+      "end": 8911.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "estar pagando en dinero público cuarenta o cincuenta mil euros al año, ¿vale?, de impuestos de los vecinos para que la gente se promocionase ese vehículo."
+    },
+    {
+      "start": 8911.1,
+      "end": 8916.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Ya lo han promocionado, a partir de ahí cada uno tiene que trabajar en los elementos que hay."
+    },
+    {
+      "start": 8916.1,
+      "end": 8921.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Y ahora la Generalitat tiene una serie de subvenciones también que compensen lo el tema de la fotovoltaica que hacemos."
+    },
+    {
+      "start": 8921.1,
+      "end": 8923.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "Y después decir,"
+    },
+    {
+      "start": 8923.1,
+      "end": 8929.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "si no tenemos la red, la red que usted demanda, que estamos demandándola también nosotros, de electrolineras"
+    },
+    {
+      "start": 8929.1,
+      "end": 8931.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "privadas,"
+    },
+    {
+      "start": 8931.1,
+      "end": 8937.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "como si fueran electrolineras, vamos, como una gasolinera, en todas las urbanizaciones es porque efectivamente"
+    },
+    {
+      "start": 8937.1,
+      "end": 8940.1,
+      "speaker": "c14/SPEAKER_01",
+      "text": "hay problemas de cesión de espacio, que son concesiones demaniales,"
     }
   ],
-  "rows": [],
+  "rows": [
+    {
+      "label": "c06/SPEAKER_00",
+      "bloc": "PSOE",
+      "slug": "teresa-pozuelo-martin",
+      "heardAs": "Teresa",
+      "evidence": [
+        {
+          "spokenBy": "c06/SPEAKER_01",
+          "at": 3717.1,
+          "quote": "¿Alguna cuestión más, Teresa?",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c06/SPEAKER_02",
+      "bloc": "VOX",
+      "slug": "jose-luis-fernandez-santamaria",
+      "heardAs": null,
+      "evidence": [
+        {
+          "spokenBy": "c06/SPEAKER_01",
+          "at": 3713.9,
+          "quote": "El portavoz de Vox, ¿va a intervenir?",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c08/SPEAKER_03",
+      "bloc": "Compromís",
+      "slug": "rafael-folgado-navarro",
+      "heardAs": "Rafa",
+      "evidence": [
+        {
+          "spokenBy": "c08/SPEAKER_01",
+          "at": 5000,
+          "quote": "Compromís, Rafa.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c08/SPEAKER_05",
+      "bloc": "PP",
+      "slug": "maria-jose-pradas-ramo",
+      "heardAs": "María José",
+      "evidence": [
+        {
+          "spokenBy": "c08/SPEAKER_01",
+          "at": 5373,
+          "quote": "María José, Partido Popular.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c07/SPEAKER_02",
+      "bloc": "VOX",
+      "slug": "jose-luis-fernandez-santamaria",
+      "heardAs": "José Luis",
+      "evidence": [
+        {
+          "spokenBy": "c07/SPEAKER_00",
+          "at": 4533.5,
+          "quote": "Vox, José Luis.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c13/SPEAKER_04",
+      "bloc": "Compromís",
+      "slug": "rafael-folgado-navarro",
+      "heardAs": "Rafa",
+      "evidence": [
+        {
+          "spokenBy": "c13/SPEAKER_01",
+          "at": 8571.1,
+          "quote": "Compromís, Rafa.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    }
+  ],
   "rejected": [
     {
       "label": "c00/SPEAKER_00",
@@ -1826,16 +6855,141 @@
       "label": "c02/SPEAKER_03",
       "reason": "relation-contradicted",
       "detail": "reply, but 466.5s follows SPEAKER_00"
+    },
+    {
+      "label": "c05/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "heard \"José Ángel Hernández\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c05/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "heard \"Robert Raga Albert\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c05/SPEAKER_02",
+      "reason": "unresolvable",
+      "detail": "heard \"Salvador Silvestre\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c05/SPEAKER_03",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c05/SPEAKER_04",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "392s is SPEAKER_02, cited as SPEAKER_01"
+    },
+    {
+      "label": "c05/SPEAKER_05",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "394s is SPEAKER_04, cited as SPEAKER_01"
+    },
+    {
+      "label": "c05/SPEAKER_06",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "396s is SPEAKER_05, cited as SPEAKER_01"
+    },
+    {
+      "label": "c06/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c06/SPEAKER_06",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "396.1s is SPEAKER_05, cited as SPEAKER_01"
+    },
+    {
+      "label": "c08/SPEAKER_00",
+      "reason": "relation-contradicted",
+      "detail": "reply, but 255s follows SPEAKER_03"
+    },
+    {
+      "label": "c08/SPEAKER_01",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "201s is SPEAKER_01, cited as SPEAKER_03"
+    },
+    {
+      "label": "c08/SPEAKER_02",
+      "reason": "ambiguous",
+      "detail": "heard \"José\" fits 6: José Luis Ramos March, José Ángel Hernández Carrizosa, José Manuel Vila Oltra, María José Pradas Ramo, José Luis Fernández Santamaría, José Manuel Gallardo Martínez"
+    },
+    {
+      "label": "c08/SPEAKER_04",
+      "reason": "ambiguous",
+      "detail": "heard \"Eva\" fits 2: Eva Lara Catalá, Salvador Evaristo Ferrer Cortina"
+    },
+    {
+      "label": "c09/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c09/SPEAKER_01",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "402s is SPEAKER_01, cited as SPEAKER_04"
+    },
+    {
+      "label": "c09/SPEAKER_02",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "167s is SPEAKER_00, cited as SPEAKER_01"
+    },
+    {
+      "label": "c09/SPEAKER_03",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "310s is SPEAKER_02, cited as SPEAKER_01"
+    },
+    {
+      "label": "c09/SPEAKER_04",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "399s is SPEAKER_03, cited as SPEAKER_01"
+    },
+    {
+      "label": "c07/SPEAKER_00",
+      "reason": "relation-contradicted",
+      "detail": "turn-grant, but 51.5s is followed by SPEAKER_01"
+    },
+    {
+      "label": "c07/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c13/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c13/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "heard \"alcalde\" matches nobody"
+    },
+    {
+      "label": "c13/SPEAKER_02",
+      "reason": "unresolvable",
+      "detail": "heard \"regidora de l'equip de govern\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c14/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "heard \"alcalde\" matches nobody"
+    },
+    {
+      "label": "c14/SPEAKER_02",
+      "reason": "relation-contradicted",
+      "detail": "reply, but 180s follows SPEAKER_01"
     }
   ],
   "stats": {
     "chunksExpected": 29,
-    "chunksTranscribed": 3,
+    "chunksTranscribed": 11,
     "failedChunks": [
       {
         "chunk": 3,
-        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=REDACTED -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5199646 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
-        "attempts": 2,
+        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "attempts": 3,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -1844,7 +6998,17 @@
       },
       {
         "chunk": 4,
-        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=REDACTED -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5111199 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
+        "why": "covered 82% (floor 85%)",
+        "attempts": 3,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
+      },
+      {
+        "chunk": 10,
+        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
         "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
@@ -1853,66 +7017,24 @@
         }
       },
       {
-        "chunk": 5,
-        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=REDACTED -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5144465 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
-        "attempts": 1,
-        "givenUpUnder": {
-          "prompt": "speaker-map-v2",
-          "floor": 0.85,
-          "thinking": "low"
-        }
-      },
-      {
-        "chunk": 6,
-        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=REDACTED -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5159806 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
-        "attempts": 1,
-        "givenUpUnder": {
-          "prompt": "speaker-map-v2",
-          "floor": 0.85,
-          "thinking": "low"
-        }
-      },
-      {
-        "chunk": 7,
-        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=REDACTED -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5388793 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
-        "attempts": 1,
-        "givenUpUnder": {
-          "prompt": "speaker-map-v2",
-          "floor": 0.85,
-          "thinking": "low"
-        }
-      },
-      {
-        "chunk": 8,
-        "why": "never attempted (call budget spent; resumes next run)"
-      },
-      {
-        "chunk": 9,
-        "why": "never attempted (call budget spent; resumes next run)"
-      },
-      {
-        "chunk": 10,
-        "why": "never attempted (call budget spent; resumes next run)"
-      },
-      {
         "chunk": 11,
-        "why": "never attempted (call budget spent; resumes next run)"
-      },
-      {
-        "chunk": 12,
-        "why": "never attempted (call budget spent; resumes next run)"
-      },
-      {
-        "chunk": 13,
-        "why": "never attempted (call budget spent; resumes next run)"
-      },
-      {
-        "chunk": 14,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
       },
       {
         "chunk": 15,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
       },
       {
         "chunk": 16,
@@ -1967,15 +7089,17 @@
         "why": "never attempted (call budget spent; resumes next run)"
       }
     ],
-    "labelsSeen": 0,
-    "rowsAccepted": 0,
-    "rowsRejected": 5,
+    "labelsSeen": 14,
+    "rowsAccepted": 6,
+    "rowsRejected": 30,
     "rejectedBy": {
-      "unresolvable": 1,
-      "relation-contradicted": 4
+      "unresolvable": 12,
+      "relation-contradicted": 7,
+      "evidence-speaker-mismatch": 9,
+      "ambiguous": 2
     },
-    "attemptedThisRun": 5,
-    "apiCalls": 15,
-    "coverage": 0.06524570581504958
+    "attemptedThisRun": 7,
+    "apiCalls": 16,
+    "coverage": 0.3733260414342972
   }
 }
