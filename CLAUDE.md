@@ -237,6 +237,22 @@ the nightly commits data and nobody pushes those pages. `check:surfaces` reports
 into the existing `monitor:health` digest when a page goes unread or a flag is
 left standing.
 
+**One class of defect does not need a model, and this site produced it seven
+times in one day**: calling a budget credit «gastado». The municipality has five
+magnitudes the prose collapses into one word — crédito inicial 37,60 M€, plus
+24,52 M€ of modifications, definitive credit 62,12 M€, 41,58 M€ reported to
+CONPREL, and obligaciones reconocidas 18,91 M€, which is the only one actually
+spent. A reader who sums the budget chapters and reads «se gasta» is wrong by
+2,2×, and no data guard can see it: the numbers are right and the word is wrong.
+`src/scraper/magnitudes-fiscales.ts` derives the magnitudes from the snapshots
+and flags an execution word qualifying a figure that is not execution, with no
+LLM call and no chance of hallucinating. It runs inside `review:surfaces` on the
+text already rendered there, and its findings ride the same cache, digest and
+dismissal channel — a second channel would be one more guard nobody reads. It
+deliberately does not judge prose without a figure beside it: a deterministic
+check stretched into style is a false-positive machine, and a false positive here
+spends the attention the real ones need.
+
 «The routes that push can have broken» was a promise the hook did not keep until
 2026-08-23. It derived them with a **two-dot** `git diff origin/main..HEAD`,
 which compares the two TIPS: with the branch even slightly behind, everything

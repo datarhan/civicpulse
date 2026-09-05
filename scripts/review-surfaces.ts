@@ -70,6 +70,11 @@ import {
 import { authorshipBreakdown } from '../src/scraper/finding-authorship'
 import { callLLM, llmCacheHas, getRunStats } from '../src/llm/client'
 import {
+  magnitudesDe,
+  revisarMagnitudes,
+  type MagnitudFiscal,
+} from '../src/scraper/magnitudes-fiscales'
+import {
   buildReaderReviewSystemPrompt,
   buildReaderReviewUserPrompt,
   READER_REVIEW_PROMPT_VERSION,
@@ -486,6 +491,12 @@ async function main() {
    */
   const noTimeToStart = () =>
     !cabeElFragmento({ gratis: false, ahora: Date.now(), slowestCallMs, deadline })
+  /** Las cinco magnitudes del ejercicio, derivadas de los snapshots. */
+  const magnitudes: MagnitudFiscal[] = magnitudesDe(
+    read('budget.json'),
+    read('budget-execution.json'),
+  )
+
   const browser = await chromium.launch()
   const page = await browser.newPage()
   const all: Array<{
@@ -709,6 +720,28 @@ async function main() {
     // The WHOLE page. No `.slice()` here, ever — see `chunkRenderedText`.
     const renderedText = await page.locator('body').innerText()
 
+    // ── El pase DETERMINISTA, antes de gastar una sola llamada ──────────────
+    //
+    // Hay una clase de defecto que no hace falta preguntarle a un modelo, y que
+    // este sitio produjo SIETE veces el mismo día: llamar «gastado» a un crédito
+    // presupuestario. Se comprueba con una regla —¿hay una palabra de ejecución
+    // calificando una cifra que no es de ejecución?— sobre el texto que ya está
+    // renderizado aquí. Cuesta cero llamadas y no puede alucinar, que son las
+    // dos cosas que la revisión lectora no puede prometer.
+    //
+    // Sus avisos salen por el MISMO canal que los del modelo: el mismo caché, el
+    // mismo `check:surfaces` y el mismo registro de descartes. Un segundo canal
+    // sería una guarda más que nadie mira.
+    const avisosDeterministas: ReaderFinding[] = revisarMagnitudes(renderedText, magnitudes).map(
+      (a) => ({
+        quote: a.fragmento.slice(0, 200),
+        inference: `Un lector concluye que esa cifra es dinero ya gastado, porque «${a.palabra}» la califica.`,
+        contradictedBy: `No lo es: ${magnitudes.find((m) => m.clave === a.clave)?.etiqueta ?? a.clave}. Lo efectivamente gastado es otra cifra.`,
+        // `misleading` y no `unclear`: la frase no es ambigua, dice algo que no es.
+        severity: 'misleading' as const,
+      }),
+    )
+
     const h = hashOf(renderedText)
     // Los hechos se calculan ANTES del acierto de caché, no después: son parte
     // de lo que se le pone delante al modelo, así que son parte de la pregunta.
@@ -898,6 +931,10 @@ async function main() {
       findings.push(...r.findings)
       dropped.push(...r.dropped)
     }
+
+    // Los deterministas se añaden SIEMPRE, incluso si el presupuesto dejó la
+    // ruta a medias: no dependen de haber llamado a nadie.
+    findings.push(...avisosDeterministas)
 
     const coverage = renderedText.length ? charsReviewed / renderedText.length : 0
     const consulted = chunksReviewed > 0
