@@ -42,8 +42,9 @@
 #   GEMINI_TRANSCRIBE_MODEL · defaults to gemini-3.5-transcribe
 #   GEMINI_DIARIZE=1        · ask for speaker clusters. OFF by default and
 #                             think before turning it on: the model diarizes at
-#                             most THREE speakers and this chamber seats 21, so
-#                             what comes back is 21 people folded into 3
+#                             most EIGHT speakers —Google marca EXPERIMENTAL la
+#                             atribución de tres o más— y esta cámara sienta a
+#                             21, so what comes back is 21 people folded into 8
 #                             confident labels — feeding a wrong attribution
 #                             into voice-id and the extractor. Attribution here
 #                             comes from the speaker-map step, which reads the
@@ -564,9 +565,13 @@ elif [ "$WHISPER_ENGINE" = "gemini" ]; then
       const audio = fs.readFileSync(process.env.CHUNK_PATH).toString("base64")
       const mode = { type: "verbatim", timestamp_granularities: ["word"] }
       // Diarization is OFF by default, and that is a correctness decision, not
-      // a cost one. gemini-3.5-transcribe diarizes up to THREE speakers; this
-      // chamber seats 21 councillors plus the public. Asking anyway does not
-      // fail — it returns three clusters with 21 people folded into them, and
+      // a cost one. gemini-3.5-transcribe diarizes up to EIGHT speakers, y
+      // Google marca la atribución de tres o más como EXPERIMENTAL (docs
+      // consultadas el 5-09-2026; aquí ponía «THREE», que era el techo cuando
+      // se escribió). Cambió el número, no la conclusión: this
+      // chamber seats 21 councillors plus the public, así que ocho grupos
+      // siguen siendo una fusión. Asking anyway does not
+      // fail — it returns those clusters with 21 people folded into them, and
       // those labels feed voice-id.ts and the attribution the claim extractor
       // joins. A merged cluster is a wrong attribution wearing a confident label,
       // which is the `Otro` sentinel all over again. Speakers stay UNKNOWN and
