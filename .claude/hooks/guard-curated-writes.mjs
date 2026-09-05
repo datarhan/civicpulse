@@ -13,6 +13,7 @@ import { decide, decideBash } from './curated-paths.mjs'
 import { decideIrreplaceableBash } from './irreplaceable-paths.mjs'
 import { decideLiveTreeBash } from './live-tree-paths.mjs'
 import { decideMeasureMedia } from './measure-media.mjs'
+import { decideCurlBash } from './curl-hosts.mjs'
 
 let payload = {}
 try {
@@ -35,7 +36,10 @@ const verdict =
     ? (decideBash(input.command) ??
       decideIrreplaceableBash(input.command) ??
       decideLiveTreeBash(input.command) ??
-      decideMeasureMedia(input.command))
+      decideMeasureMedia(input.command) ??
+      // El último de la cadena: los otros cuatro dicen algo más accionable
+      // cuando ambos podrían saltar, y éste sólo habla de a dónde sale.
+      decideCurlBash(input.command))
     : ['Write', 'Edit', 'NotebookEdit', 'MultiEdit'].includes(tool)
       ? decide(input.file_path ?? input.notebook_path)
       : null
