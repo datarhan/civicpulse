@@ -33,6 +33,19 @@ export function TedNotices() {
   // nine exercises. Nor does every notice carry a figure, so the count behind
   // the euros is stated rather than left to be assumed as all of them.
   const span = yearSpan(items.map((i) => i.publicationDate))
+  // La mayor adjudicación, y qué parte del total se lleva.
+  //
+  // «56 anuncios 2018–2026 · 110,83 M€» invita a leer un volumen repartido en
+  // nueve años, y medido el 5-09-2026 UNA sola —la concesión del agua, 55,69 M€—
+  // es el 50 %. No es un reparto: una concesión se adjudica por todo su plazo de
+  // una vez, que es la salvedad que /gestion ya publica junto a su indicador de
+  // concentración y aquí faltaba.
+  //
+  // DERIVADO y condicional: si entra otro contrato grande y la mayor deja de
+  // dominar, la frase desaparece sola. Escrita a mano seguiría ahí describiendo
+  // un reparto que ya no existe.
+  const mayor = valued.reduce((a, b) => (b.totalValueEur > (a?.totalValueEur ?? 0) ? b : a), null)
+  const cuotaMayor = total > 0 && mayor ? mayor.totalValueEur / total : 0
   const rows = [...items]
     .sort((a, b) => (b.totalValueEur ?? 0) - (a.totalValueEur ?? 0))
     .slice(0, 10)
