@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T00:00:00.000Z",
+  "generatedAt": "2026-09-05T00:00:00.000Z",
   "total": 340,
   "women": 177,
   "men": 163,
@@ -15,8 +15,8 @@
     "plazas": 408,
     "approx": true,
     "asOf": "2024",
-    "label": "plazas autorizadas (funcionario + laboral + eventual, vacantes incluidas)",
-    "note": "Métrica distinta de los 340 empleados de arriba: cuenta los PUESTOS autorizados —cubiertos y vacantes—, no las personas, y no lleva desglose por sexo. Cifra aproximada por suma de las dotaciones de la plantilla 2024 (el documento oficial no publica un total); muchas plazas figuran como vacantes, por lo que el personal efectivamente cubierto es menor.",
+    "label": "plazas autorizadas (funcionario + laboral, vacantes incluidas)",
+    "note": "Métrica distinta de los 340 empleados de arriba: cuenta los PUESTOS autorizados —cubiertos y vacantes—, no las personas, y no lleva desglose por sexo. Cifra aproximada por suma de las dotaciones de la plantilla 2024 (el documento oficial no publica un total); muchas plazas figuran como vacantes, por lo que el personal efectivamente cubierto es menor. El anexo del BOP trae las tablas de personal funcionario y laboral y ninguna de personal eventual: ese personal lo fija aparte el acuerdo plenario de 07-07-2023, con su número y su retribución, y no entra en esta suma.",
     "source": {
       "publisher": "BOP València núm. 211 · Ajuntament de Riba-roja de Túria",
       "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/7559961/filesGroup/20241122-2-Plantilla-personal-2024.pdf",
