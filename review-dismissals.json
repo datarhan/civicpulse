@@ -99,6 +99,20 @@
       "reason": "El revisor ancla «hacer pública la compra» en la NOTIFICACIÓN a la CNMC (2025-09-22) y de ahí saca siete semanas. El reportaje distingue tres fechas del mismo expediente C/1600/25 y las publica las tres: notificada 2025-09-22, autorizada 2025-10-01 y ANUNCIADA 2025-10-21. Del anuncio a la formalización del 2025-11-11 hay 21 días exactos: tres semanas, que es lo que dice la frase. Mismo patrón que los descartes de /gestion y /quejas — el revisor juzga la frase contra un universo más ancho que el que la frase nombra. Comprobado contra public/data/reportajes/basuras.json el 5-09-2026.",
       "editor": "claude-opus-5",
       "at": "2026-09-05"
+    },
+    {
+      "route": "/presupuesto",
+      "quote": "GASTOS PRESUPUESTADOS",
+      "reason": "El revisor redescubre la discrepancia que la página PUBLICA. «Gastos presupuestados · 41,6 M€» rotula lo que el ayuntamiento rindió a CONPREL, y es correcto: son gastos presupuestados, no ejecutados. Que esa cifra no cuadre con el listado municipal —ni con el crédito inicial (37.599.838,15 €, 3,98 M€ de diferencia) ni con el definitivo (62.123.153,08 €, 20,54 M€)— es exactamente lo que la propia página explica dos bloques más abajo, diciendo que no las reconcilia porque «elegir una sería inventar el puente entre dos fuentes oficiales». Medido el 5-09-2026. Mismo patrón que el descarte de /gestion sobre esas dos mismas fuentes.",
+      "editor": "claude-opus-5",
+      "at": "2026-09-05"
+    },
+    {
+      "route": "/presupuesto",
+      "quote": "GASTOS 2025 · CLASIFICACIÓN ECONÓMICA",
+      "reason": "Lo mismo un bloque más abajo, y sobre el encabezado de la tabla en vez del rótulo de la tarjeta: el revisor compara la suma de los capítulos (41,56 M€, que es la cifra de CONPREL) contra el crédito del listado municipal y llama contradicción a la diferencia. La página ya la publica y se niega a reconciliarla, y el título dice «prevé gastarse» desde hoy, precisamente para que nadie lea ejecución donde hay presupuesto. Medido el 5-09-2026.",
+      "editor": "claude-opus-5",
+      "at": "2026-09-05"
     }
   ]
 }

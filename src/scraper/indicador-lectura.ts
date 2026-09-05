@@ -410,7 +410,7 @@ const COMO_MUNICIPAL: Record<string, string> = {
   'concentracion-proveedores':
     'Mide concentración del importe adjudicado en el periodo, no gasto anual: las concesiones se adjudican por todo su plazo de una vez.',
   'modificaciones-presupuestarias':
-    'Las modificaciones son legales y a veces inevitables: lo que mide es cuánto se aleja el presupuesto ejecutado del que se debatió y aprobó.',
+    'Las modificaciones son legales y a veces inevitables: lo que mide es cuánto se aleja el crédito finalmente disponible del que se debatió y aprobó — no lo gastado, que es otra cifra y bastante menor.',
   'ejecucion-presupuestaria':
     'El divisor es el crédito definitivo, hinchado con modificaciones de última hora: buena parte de un porcentaje bajo es crédito que nunca pudo gastarse.',
 }
