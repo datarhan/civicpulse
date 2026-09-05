@@ -255,7 +255,19 @@ function factsFor(clave: string): Record<string, unknown> {
     // Mismo remedio que con los contratos: las cifras que se confunden, las
     // dos, y ETIQUETADAS. El estado de ejecución municipal es justo la
     // magnitud que el revisor creía estar viendo, así que va delante.
-    'presupuesto: CRÉDITO de gasto del ejercicio (presupuesto definitivo rendido al ministerio — lo autorizado, NO lo gastado)':
+    // «Definitivo» era FALSO, y lo destapó el propio revisor el 5-09-2026
+    // señalando /presupuesto con esta etiqueta como autoridad. El crédito
+    // DEFINITIVO del listado municipal es 62.123.153,08 € (inicial 37.599.838,15
+    // + 24.523.314,93 de modificaciones); esta cifra no se le parece. Tampoco es
+    // el inicial: son 3,98 M€ más. Lo único cierto es que es lo que el
+    // ayuntamiento rindió a CONPREL, y que no cuadra con ninguna de las dos —que
+    // es exactamente lo que /presupuesto publica y se niega a reconciliar.
+    //
+    // La etiqueta mandaba al modelo a juzgar la página contra una premisa falsa,
+    // y una premisa falsa en el instrumento produce señalamientos para siempre:
+    // el mismo defecto que ya costó «gasto total» por un crédito y «805
+    // contratos» por las filas de un snapshot.
+    'presupuesto: CRÉDITO de gasto del ejercicio que el ayuntamiento rindió a CONPREL (lo autorizado, NO lo gastado; NO coincide ni con el crédito inicial ni con el definitivo del listado municipal, y /presupuesto lo dice sin reconciliarlos)':
       budget?.snapshot?.totalExpense,
     'presupuesto: ejercicio': budget?.snapshot?.year,
     ...ejecucionFacts(read('budget-execution.json')),
